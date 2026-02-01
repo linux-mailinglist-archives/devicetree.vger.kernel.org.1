@@ -1,195 +1,147 @@
-Return-Path: <devicetree+bounces-261578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261579-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sMALJFBjf2nkpQIAu9opvQ
-	(envelope-from <devicetree+bounces-261578-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 15:29:36 +0100
+	id 4Dp0FmJmf2mwpgIAu9opvQ
+	(envelope-from <devicetree+bounces-261579-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 15:42:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3303C623C
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 15:29:35 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3DC5C6387
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 15:42:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 78D293008D18
-	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 14:29:30 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 268123001025
+	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 14:42:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061F8350A0C;
-	Sun,  1 Feb 2026 14:29:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30C533C53D;
+	Sun,  1 Feb 2026 14:42:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="gX+jFi6+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AgkUhVmu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D84C133BBCC;
-	Sun,  1 Feb 2026 14:29:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC1DB3FC9;
+	Sun,  1 Feb 2026 14:42:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769956169; cv=none; b=rEO2sUbnorEcCXip5hnHu45EWimAweTxizamyu2KC97SfNdIWbZMQvy0uTa7JeOpCMl4G3b9YojGq5DgnZTTdNTnpDA0c4kh56ppATiUKkwnk867/VOVn8Orqhr12btbqzm5jouDx3OPenJeFKDHQD4i3/3rAG4AAciTVrtzObI=
+	t=1769956956; cv=none; b=PedechkEojC6CO/iKGSLpu6NnqnUcorR0laSvy9yxsFfAgCCAdJU1E+eqSfxQFUU1alxGhj1gUL/8tzX3leQ+73tyfpwMvd5AtbmvSf4PeFulObZLMnvoXC0CJABPDxX3Q82mpZpNxvb2X6UYVD6DNTywvJbpaUZ25bCVMpVTFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769956169; c=relaxed/simple;
-	bh=zvkGLtA6an0FHycpIE71ogcBHJS6HCdtQrfn5c+bjuc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=HPMg/x5hJgHWkY2e/7HEhUY440EDbDwUkBYK5g2ztTbUkxslIp0BJeEaM0PCxJFhqWahH0Jzi4PAK+r9Fi/mz157gqVsVD/+1uXxHhgnDvTpVGRY3cycYJvdihmQ8sGPEEM7lFwH7rrV0CIspN4dqAQJAzr6DcYkD/YhXssfn2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=gX+jFi6+; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id B8ACC2621E;
-	Sun,  1 Feb 2026 15:29:24 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id j9NVCeQIX6d0; Sun,  1 Feb 2026 15:29:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1769956164; bh=zvkGLtA6an0FHycpIE71ogcBHJS6HCdtQrfn5c+bjuc=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To;
-	b=gX+jFi6+G0qnVX8evZU+mYG2CwWR/DiSagcJSW3K37JtkDudLRfF4LnAgmFQiWrTK
-	 pCuoI7DDecd53iG3S2xd4eSayzwoJZjHcy+HmX12wao9XK/UMXRRjdJ618EebicYTb
-	 K6npAIs0m8yw0zcxHmdv/qmdoVSrw96A57mihmB+l6GucZUvREwda2tBUcUXHY1RjC
-	 PzxjBCZj5E/ig1Qd6HLbkTK14aMpRAkp53Uw0rW87XS0Js0QiwAyZv6RHXlM4gwhiY
-	 EA7LbUqfjDWCIqTyUIjJT1HA3+AuYVwMj3CBW1b7JW4CEkH2+cc8YDn3H+q+sO+yWf
-	 5hNck7SEetR7w==
+	s=arc-20240116; t=1769956956; c=relaxed/simple;
+	bh=OeBpCErw6r8n4vjTlbift/I6h4KXHBnrI+uQFy8NL8I=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GLIxrUtGIHp59ZJpYNXCwAOzvJmolbwuk9hPaJi+CkoxVdjor6MIJRE+PTYOnn+HowljO4ywvvs2chw8rTWEybfaPMMvVS8ma/oLH1mF43SsEfdXtMZUbKGk1rDUKog+63WvUIxC5dkHTW+ArCvxFbYRgl/+jwK5SWzJUJfnFE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AgkUhVmu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDC4CC4CEF7;
+	Sun,  1 Feb 2026 14:42:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769956956;
+	bh=OeBpCErw6r8n4vjTlbift/I6h4KXHBnrI+uQFy8NL8I=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=AgkUhVmuj+KM0l7ldEon9TGhYTBZB6JybPJoz6HSB8qo1fTOXVBObZiuUwX66IUa1
+	 q3I2/vBksSYfwauLPldWiRusTS8byPxwc9UzgMIQyL49VkT1Lrexmf+iuHzhTMhNeC
+	 PlQd3istsBRC5yM/3P1dMkvPPFr3EM+C7/ke3t0fNYiw664HPgAZTGZTI2D02aekI+
+	 /YdqvR4vtJwBnrEqMD+sUsTfUX6trhx9y+utzTLmQPOuJtUgmXfRfG5EjkinaQz5GV
+	 3sm3gLRCNxFV82LNJ13Jmj1PtLveTuUULB7tHkm/L6U//KmPkwKF3KSeL5UU1vJPK5
+	 V21aVQIEOAHHQ==
+Date: Sun, 1 Feb 2026 14:42:26 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, stable@vger.kernel.org,
+ kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Andy Shevchenko
+ <andy@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, David Jander <david@protonic.nl>
+Subject: Re: [PATCH v3 1/8] iio: dac: ds4424: fix -128 rejection and
+ refactor raw access
+Message-ID: <20260201144226.218a43cb@jic23-huawei>
+In-Reply-To: <aX9Jysah66FlHfLZ@pengutronix.de>
+References: <20260128153824.3679187-1-o.rempel@pengutronix.de>
+	<20260128153824.3679187-2-o.rempel@pengutronix.de>
+	<20260129175819.789a99ac@jic23-huawei>
+	<aX9Jysah66FlHfLZ@pengutronix.de>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 01 Feb 2026 19:59:17 +0530
-Message-Id: <DG3P3DHVSC0J.2LVZT4D9SA2QH@disroot.org>
-Cc: "Yassine Oudjana" <y.oudjana@protonmail.com>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, <linux-pm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] power: supply: add support for S2MU005 battery fuel
- gauge device
-From: "Kaustabh Chakraborty" <kauschluss@disroot.org>
-To: "Sebastian Reichel" <sebastian.reichel@collabora.com>, "Kaustabh
- Chakraborty" <kauschluss@disroot.org>
-References: <20260126-s2mu005-fuelgauge-v1-0-68a146ed0819@disroot.org>
- <20260126-s2mu005-fuelgauge-v1-2-68a146ed0819@disroot.org>
- <aXq7NohfIy3c5AWL@venus> <DG2QBROWWMLI.2EE3CBLLPAJHR@disroot.org>
- <aX8yPp2JVubxHNFJ@venus>
-In-Reply-To: <aX8yPp2JVubxHNFJ@venus>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[protonmail.com,kernel.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-261578-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261579-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[disroot.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:mid,disroot.org:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E3303C623C
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,pengutronix.de:email]
+X-Rspamd-Queue-Id: E3DC5C6387
 X-Rspamd-Action: no action
 
-On 2026-02-01 12:14 +01:00, Sebastian Reichel wrote:
-> Hi,
->
-> On Sat, Jan 31, 2026 at 04:44:36PM +0530, Kaustabh Chakraborty wrote:
->> On 2026-01-29 02:59 +01:00, Sebastian Reichel wrote:
->> >> +static int s2mu005_fg_get_status(struct s2mu005_fg *priv, int *value=
-)
->> >> +{
->> >> +	int current_now;
->> >> +	int capacity;
->> >> +	int ret;
->> >> +
->> >> +	ret =3D s2mu005_fg_get_current_now(priv, &current_now);
->> >> +	if (ret)
->> >> +		return ret;
->> >> +
->> >> +	if (current_now <=3D 0) {
->> >> +		*value =3D POWER_SUPPLY_STATUS_DISCHARGING;
->> >> +		return 0;
->> >> +	}
->> >> +
->> >> +	ret =3D s2mu005_fg_get_capacity(priv, &capacity);
->> >> +	if (ret)
->> >> +		return ret;
->> >> +
->> >> +	if (capacity < 90)
->> >> +		*value =3D POWER_SUPPLY_STATUS_CHARGING;
->> >> +	else
->> >> +		*value =3D POWER_SUPPLY_STATUS_FULL;
->> >
->> > Usually there is some kind of hysteresis that stops charging
->> > when the battery is full and then restarts charging once the
->> > battery drops under a certain capacity. As this code first
->> > checks the current to determine if the battery is discharging
->> > and only then checks if the battery is full - does your code
->> > toggle between FULL and DISCHARGING?
->>=20
->> (Perhaps I misunderstood your query, let me know if I did)
->>=20
->> It has been a while since I last tested this - but as far as I can
->> recall, after a certain threshold, the current would constantly bounce
->> between -ve and +ve. I believe it was somewhere around 90% to 95% and
->> above. If that's what 'hysteresis' is, then yes.
->
-> A typical charging setup is:
->
-> 1. charge to 100%
-> 2. stop charging
-> 3. wait for charge to drop under 95% (or some other treshold)
-> 4. restart charging
-> 5. go to 1
+On Sun, 1 Feb 2026 13:40:42 +0100
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
-Yes, I believe that's what's happening internally. I just tested it and
-the threshold seems to be much higher, at ~97%. I will update it in the
-next revision then.
+> Hi Jonathan,
+> 
+> On Thu, Jan 29, 2026 at 05:58:19PM +0000, Jonathan Cameron wrote:
+> > On Wed, 28 Jan 2026 16:38:17 +0100
+> > Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+> >   
+> > > The DS442x DAC uses sign-magnitude encoding, so -128 cannot be represented.
+> > > Previously, passing -128 resulted in a truncated value that programmed 0mA.
+> > > 
+> > > Fix this by validating the input against the 7-bit magnitude limit.
+> > > Additionally, refactor the raw access logic to use symmetrical bitwise
+> > > operations, replacing the union structure.
+> > > 
+> > > Fixes: d632a2bd8ffc ("iio: dac: ds4422/ds4424 dac driver")
+> > > Cc: <stable@vger.kernel.org>
+> > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>  
+> > Hi Olkesij
+> > 
+> > This is good stuff but, this fails the test of being the minimal fix
+> > suited for a trivial backport.
+> > 
+> > The right solution here is split it.  Just apply the correct
+> > limit in the fix patch, then the refactors in a patch on top of
+> > that which most likely won't be backported for stable.  
+> 
+> The v1 of this patch was implemented according to the fix patch
+> requirements:
+> https://lore.kernel.org/all/20260119182424.1660601-5-o.rempel@pengutronix.de/
+> 
+> May be keep v1 as is and rebase v3 as refactoring stage on top of it?
+Perfect.
 
->> An older revision of this driver (I don't have it anymore) used to add
->> up the consecutive values of current in order to reduce the effect of
->> this inconsistency, but it was still unreliable.
->>=20
->> Moreover, I do not possess any documentation for this device, so it's
->> not possible for me to know what or how.
->
-> For the setup I described above, you consider everything above the
-> treshold as POWER_SUPPLY_STATUS_FULL independent of the current
-> direction. So you need to reorder:
->
-> if (capacity >=3D 90)
->     return POWER_SUPPLY_STATUS_FULL;
->
-> if (current_now < 0)
->     return POWER_SUPPLY_STATUS_DISCHARGING;
-> else if (current_now =3D=3D 0)
->     return POWER_SUPPLY_STATUS_NOT_CHARGING;
-> else
->     return POWER_SUPPLY_STATUS_CHARGING;
+Thanks!
 
-Understood. I will re-implement it in this order then.
+Jonathan
 
->
-> Greetings,
->
-> -- Sebastian
+> 
+> Best Regards,
+> Oleksij
 
 
