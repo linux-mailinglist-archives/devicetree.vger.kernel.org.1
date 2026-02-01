@@ -1,152 +1,152 @@
-Return-Path: <devicetree+bounces-261574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261575-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UHQfLP5If2mBnAIAu9opvQ
-	(envelope-from <devicetree+bounces-261574-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 13:37:18 +0100
+	id eHF1D91Jf2mDnAIAu9opvQ
+	(envelope-from <devicetree+bounces-261575-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 13:41:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7293C5E38
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 13:37:13 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64E1BC5E82
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 13:41:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 37129300D45E
-	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 12:37:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 063553004CB7
+	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 12:40:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AEF232F75B;
-	Sun,  1 Feb 2026 12:37:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NFgo0gX4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A32EB32F75B;
+	Sun,  1 Feb 2026 12:40:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06D1131AA84;
-	Sun,  1 Feb 2026 12:37:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2874033CEA7
+	for <devicetree@vger.kernel.org>; Sun,  1 Feb 2026 12:40:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769949431; cv=none; b=NXxH9JKVljHjAdwNRjEGyaaPV5cnd3a0pbx6tW9zqTps3bSeJM6g77HVDC1bmoFQZjBUy3453am8rSpSFMqkzQa+ALbgdNttubOMMhy4ya7QCJaF4OPKBQw7qqhkaguyQcCIm1bjgZc/Cl5zV1f2rKGtbQUT4SNtUjwU3hwi2II=
+	t=1769949657; cv=none; b=TMS5r0x1I40cV+ZPtYc7bF1FOMUMc180zbXSm5Vmtu72AhALSAmLcnAPVdscKhu32ocaCRdGyaX7HaN2hEhuqmsN0WbiFtrs26cX9P6MGGeuR20eXXE2/g+IUUZMvToRIb+ArYE+DEWy1UBjRQAlhDX3g6Ng2d/RWXeGdx5g32E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769949431; c=relaxed/simple;
-	bh=dGFx1VFWlzUONLDaiGnHfQKX+Ch//O+EYhfbY6SQQX8=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=FFYD0+5I0sNDsPUcmOqg05rp+Em9ccfu/ACuuwta/g9oCm0hY2itt+ygL7ei1s/wVqyXkUrLjxT7v4xNswr7SxbgPMLG0N7CXmeF7oglIo3s9m+4CjN+UCH57Xx0aGLBcPrq5w34SYRocjcst93DvQxEpKSKdECTeWnWSc7L4E4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NFgo0gX4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6668DC4CEF7;
-	Sun,  1 Feb 2026 12:37:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769949430;
-	bh=dGFx1VFWlzUONLDaiGnHfQKX+Ch//O+EYhfbY6SQQX8=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=NFgo0gX4uOKnO4aLFv4fzv4vMsy2AG0BojmtvNr3bxDP12Dy4tyzj4qveTTpDRSIL
-	 Q57sjRmwqvpHVf9xjj3oOPLIzPqaBO19MQsd1xiCkW0LOdjMsyqiVFs6kueibSWxBl
-	 1sYm3LXChw7MeaYK/Ub8UiFaoEGvviYemv9+CkZWtqd4PV5DPtY0J7EFMnSkYcgYGG
-	 E43PXEL1yydK0NyN3j3U6zkLJnWdARgy158qhSyWH8/4dMVB131XON+0oOzbVBQ53E
-	 tocKg05grXKjzgNVU8Tffwm9bKKaYquC4APg3Uq28iowVCVS780fHLlShu3D3Bb5jY
-	 /om+toEnczXnQ==
-Date: Sun, 01 Feb 2026 06:37:09 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1769949657; c=relaxed/simple;
+	bh=vJqFt+FVGUvjaOSRBjCX6+NMl1s9GZI+rj1BQx5YYYk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lKiPzkdQd08GYKPL5AV3Jng+ahcRaSZrNMlZOTSQ8n5dyjUM5N9aSxpx/DVxNtGrnugsgPIxtC3L8R6w3Tr9OwH9l0+jd/e+rOabF8g6dwBUN5W0jy4Kw4rEjAwypCyLlU7hFq2ZuFPjyuhQbGcWwxorYoyYyFxRtBEiY625o3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vmWkt-0004qd-Kn; Sun, 01 Feb 2026 13:40:43 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vmWkt-003ZSU-11;
+	Sun, 01 Feb 2026 13:40:42 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vmWks-00AJy7-1b;
+	Sun, 01 Feb 2026 13:40:42 +0100
+Date: Sun, 1 Feb 2026 13:40:42 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, stable@vger.kernel.org,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>,
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH v3 1/8] iio: dac: ds4424: fix -128 rejection and refactor
+ raw access
+Message-ID: <aX9Jysah66FlHfLZ@pengutronix.de>
+References: <20260128153824.3679187-1-o.rempel@pengutronix.de>
+ <20260128153824.3679187-2-o.rempel@pengutronix.de>
+ <20260129175819.789a99ac@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- linux-kernel@vger.kernel.org, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- linux-arm-kernel@lists.infradead.org, 
- Herve Codina <herve.codina@bootlin.com>, linux-usb@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@gmail.com>
-In-Reply-To: <20260201-atmel-usb-v1-2-d1a3e93003f1@gmail.com>
-References: <20260201-atmel-usb-v1-0-d1a3e93003f1@gmail.com>
- <20260201-atmel-usb-v1-2-d1a3e93003f1@gmail.com>
-Message-Id: <176994942956.410099.10343293169382130437.robh@kernel.org>
-Subject: Re: [PATCH 2/4] dt-bindings: usb: atmel,at91sam9g45-ehci: convert
- to DT schema
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260129175819.789a99ac@jic23-huawei>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261574-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-261575-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.7.161.32:email]
-X-Rspamd-Queue-Id: C7293C5E38
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,pengutronix.de:email,pengutronix.de:url,pengutronix.de:mid]
+X-Rspamd-Queue-Id: 64E1BC5E82
 X-Rspamd-Action: no action
 
+Hi Jonathan,
 
-On Sun, 01 Feb 2026 11:34:21 +0000, Charan Pedumuru wrote:
-> Convert Atmel AT91SAM9G45 EHCI USB Host Controller
-> binding to DT schema.
-> Changes during conversion:
-> - Include "usb-ehci" as a fallback compatible to allow atmel EHCI
->   driver matching.
+On Thu, Jan 29, 2026 at 05:58:19PM +0000, Jonathan Cameron wrote:
+> On Wed, 28 Jan 2026 16:38:17 +0100
+> Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 > 
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
-> ---
->  .../bindings/usb/atmel,at91sam9g45-ehci.yaml       | 71 ++++++++++++++++++++++
->  1 file changed, 71 insertions(+)
+> > The DS442x DAC uses sign-magnitude encoding, so -128 cannot be represented.
+> > Previously, passing -128 resulted in a truncated value that programmed 0mA.
+> > 
+> > Fix this by validating the input against the 7-bit magnitude limit.
+> > Additionally, refactor the raw access logic to use symmetrical bitwise
+> > operations, replacing the union structure.
+> > 
+> > Fixes: d632a2bd8ffc ("iio: dac: ds4422/ds4424 dac driver")
+> > Cc: <stable@vger.kernel.org>
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Hi Olkesij
 > 
+> This is good stuff but, this fails the test of being the minimal fix
+> suited for a trivial backport.
+> 
+> The right solution here is split it.  Just apply the correct
+> limit in the fix patch, then the refactors in a patch on top of
+> that which most likely won't be backported for stable.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+The v1 of this patch was implemented according to the fix patch
+requirements:
+https://lore.kernel.org/all/20260119182424.1660601-5-o.rempel@pengutronix.de/
 
-yamllint warnings/errors:
+May be keep v1 as is and rebase v3 as refactoring stage on top of it?
 
-dtschema/dtc warnings/errors:
-Warning: Duplicate compatible "usb-ehci" found in schemas matching "$id":
-	http://devicetree.org/schemas/usb/atmel,at91sam9g45-ehci.yaml
-	http://devicetree.org/schemas/usb/generic-ehci.yaml#
-Warning: Duplicate compatible "atmel,at91sam9g45-ehci" found in schemas matching "$id":
-	http://devicetree.org/schemas/usb/atmel,at91sam9g45-ehci.yaml
-	http://devicetree.org/schemas/usb/generic-ehci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/atmel,at91sam9g45-ehci.example.dtb: usb@500000 (atmel,at91sam9g45-ehci): Unevaluated properties are not allowed ('clock-names' was unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/generic-ehci.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260201-atmel-usb-v1-2-d1a3e93003f1@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
