@@ -1,176 +1,189 @@
-Return-Path: <devicetree+bounces-261515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261516-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oFoCCH+7fmmSdQIAu9opvQ
-	(envelope-from <devicetree+bounces-261515-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 03:33:35 +0100
+	id gMEMJTHBfmm4dgIAu9opvQ
+	(envelope-from <devicetree+bounces-261516-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 03:57:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FE7BC4AC4
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 03:33:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6EDCC4BB1
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 03:57:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AE2CB300603B
-	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 02:33:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6D2EE30125DE
+	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 02:57:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E22A25D208;
-	Sun,  1 Feb 2026 02:33:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3627F2777E0;
+	Sun,  1 Feb 2026 02:57:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d+BT2xPC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N9tHDRZ8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B5D625C6EE
-	for <devicetree@vger.kernel.org>; Sun,  1 Feb 2026 02:33:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F53618787A;
+	Sun,  1 Feb 2026 02:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769913208; cv=none; b=DVibZBqTZGtcgZWSNupjVRGJTSEv+w48FzcaPfA8/wJAaL5tae6AcsRGrxc+L39oZzu+/MhTapXSFJMukSmbos2yJGcUtf3NOKq/o2rP14ReAWs69Cfh2Tgv+cnV9PEywKgZD0R0iM6H0JVbVnZn5SweI3o8cB6xRNCI4F6H7a0=
+	t=1769914670; cv=none; b=VahDBGw74DJvBsnGx8TdyHpdOV+4OOPopyzgF5qaRl9Vvjdfr24QcJnZmkfGcfRwavlK7duGW4Rna3h2Rr0a4buT6M1bNxsDSptcsLzLicipRSXlnLghEfl6oSW6Wdwrddlh88GAYFe4WVx82ESjseuL1FBcMzXsO1ZLRgPblf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769913208; c=relaxed/simple;
-	bh=oadJ7vK/SzOOArI8dl4RQS9/RbWpxRBfQUZfy4XJWis=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gCt4fuIlMNKzs/kMt5yAyoN/1mJsAR2uwGxM+ri/sKBzUL6NZcFA4GXAKwZnGYnuaV89mbWwD+c5Il0pp1/ZoyPiavc9UAOsbZk8E/QOwY61QDF/UJuihFwjxUg/VA0uwox5CKY2gTBhU3zk7TPltGpISXGKn01WF0WQLrMv1d8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d+BT2xPC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1908AC19422
-	for <devicetree@vger.kernel.org>; Sun,  1 Feb 2026 02:33:28 +0000 (UTC)
+	s=arc-20240116; t=1769914670; c=relaxed/simple;
+	bh=R4QN70gtL6kBwxgirmfc+vVqtNxB/tfOuczO6/4Za4Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oqHooob/nFiGdlRot3hpiQL01vieLDiR0XzRithAQIAyKQM78QYecg75hOP1Jr8KF00VkmigPZ5KUT/nSUEKJCx5Ip48OgpUgL1xpHTZF+GJGd6IyeiOxaG1y92eaYjjrNKaFnIkBBJOdky5phWRmGf/XAR+0I19M27lR82s7gg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N9tHDRZ8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 83577C4CEF1;
+	Sun,  1 Feb 2026 02:57:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769913208;
-	bh=oadJ7vK/SzOOArI8dl4RQS9/RbWpxRBfQUZfy4XJWis=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=d+BT2xPCs3j90xUW9gLaPDyOF1cZYeep9XyUr+nVAN0K6IBFhH9KQ54+EQL3XzCfm
-	 J8fn7Wj6fUfWXppgtSLvWV2rzIzRyqnmCH2OlpYjN0L5dTujUYWScHOq/SJBBlHBjZ
-	 Kz6jEruTrO8UVG8i49IW7NGv3BLaMYyTksDDYBSPouGW2nMRuKC43X+iyemBqOVtx/
-	 z6TGyfi44iKTBqewvy2mgPvodmCwj+BjgtAHzj8s8KDvVFqyuHbvQqceEbrGhwFfFi
-	 jCjIHCRRyFdZrcB32TibBZxk8H9wl+8vA+ur7JzikFkZzS3dyhBLPjzQTvIeJffnro
-	 Xr//wzuq/QPUA==
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b88593aa4dcso469642966b.3
-        for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 18:33:28 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWK2KeiJHsxD2IxLMIiHVRG2L1jjXuuJHR02o1DhnYPe3ZH6zvf04asA5S/rr0H/+RC2Kab/0i/GQM/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeHmOCkRyF3vAH3wKffsXHWOeDoFOkrpYX8mNjiQkAK7061jd0
-	4EvDp+XWwHCaMsbwI0UR7axlvmeXrJCPVN+E6CGcDB+H81VYo+N46MrCbLlUHWgmzPb3NsPQsXT
-	Tv/0A11c8ZbfiUszvV1tvhCBjDPKbopA=
-X-Received: by 2002:a17:907:84b:b0:b73:398c:c5a7 with SMTP id
- a640c23a62f3a-b8dff722195mr415349566b.41.1769913206644; Sat, 31 Jan 2026
- 18:33:26 -0800 (PST)
+	s=k20201202; t=1769914669;
+	bh=R4QN70gtL6kBwxgirmfc+vVqtNxB/tfOuczO6/4Za4Y=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=N9tHDRZ8tOTEpxwmVKian4bOs+iOkNNuHCvnPEiaxCGRKDFSCy54fOmEo9v5pq5sm
+	 /t0mU3V97TPKcnBPCdJ4JBuAqCJlNqa+lon57Mei8WBFcygtE27mrJOMeR0A58qwNj
+	 3oTXC4bPHiUrhZW/IpdYsY1cCT6bhVkaLFwGVm00l3EO+w2aaEW+7HZZPWlJXbbqGu
+	 APEGXx79FWuUm8DsTBdF3FYOrs7096BUQ/ThgrkdjSFVQZMsS3j3u/UHHcYVkAOV4d
+	 gfY7NG20EY1JPH3cRm/eNMGiYr5Rm4Tz0wO0oqVeSiMP6PNBgFGtyh81Dv3iveAeCm
+	 6p4OCqwtOafbA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 705ADE7C6FD;
+	Sun,  1 Feb 2026 02:57:49 +0000 (UTC)
+From: Abdurrahman Hussain via B4 Relay <devnull+abdurrahman.nexthop.ai@kernel.org>
+Subject: [PATCH v8 0/6] i2c: xiic: use generic device property accessors
+Date: Sun, 01 Feb 2026 02:57:44 +0000
+Message-Id: <20260201-i2c-xiic-v8-0-deb2dd158d1a@nexthop.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260131094547.455916-1-zhengxingda@iscas.ac.cn> <20260131094547.455916-6-zhengxingda@iscas.ac.cn>
-In-Reply-To: <20260131094547.455916-6-zhengxingda@iscas.ac.cn>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Sun, 1 Feb 2026 10:33:15 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H6VT0tE-rE+3YAm-Tjz4TKxqtaQmc4Medsw_0VQEW-W3A@mail.gmail.com>
-X-Gm-Features: AZwV_QgDTqY28h2jztUBFGOMBXwN06OkrWUBMEBAwRUW9RZDCVhRti3Y45wjuik
-Message-ID: <CAAhV-H6VT0tE-rE+3YAm-Tjz4TKxqtaQmc4Medsw_0VQEW-W3A@mail.gmail.com>
-Subject: Re: [PATCH 5/8] irqchip/loongson-pch-lpc: add OF init code
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Cc: Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-mips@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACjBfmkC/3XOTW6DMBCG4atEXteRPf6lq96j6mJsxsWLQGQoo
+ oq4e01WrmiXI83z6nuwmUqmmb1eHqzQmuc8jfXwLxcWBxw/iee+3gwEWCEBeIbIt5wjVwF9l5I
+ h7BSr7/dCKW/P1PtHvVOZbnwZCmETkEYI8NpewSjfcckx9F+l4HDD8W2kbRmm+xXz0RvyvEzl+
+ 7lshaP6x4gVuOBS6WR6pxX50EaOFatqpWqkqpKCi70Go/t0lvo/qavUqCigMlJEOknTSttIU6X
+ 3KC2CdyDjSdpWukbaY60HgmSTNe4sXSu7RroqHTjSSvvOUfol933/AU4FELsDAgAA
+X-Change-ID: 20260122-i2c-xiic-3ba89ff5ea93
+To: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Abdurrahman Hussain <abdurrahman@nexthop.ai>, Andrew Lunn <andrew@lunn.ch>, 
+ lkp@intel.com
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769914668; l=2657;
+ i=abdurrahman@nexthop.ai; s=20260119; h=from:subject:message-id;
+ bh=R4QN70gtL6kBwxgirmfc+vVqtNxB/tfOuczO6/4Za4Y=;
+ b=YfXXstzqXqVi3zQ+d1PuXev5tPSZc5dWhI07nv2amogmUdyI1ttyJHy/Q1wYH5NcRz61TsIHD
+ aEmsRzWGoU6BBp0Ax5QvbOOvTqEFOyqjiHgvGW56kJWLzlhoaa+URHd
+X-Developer-Key: i=abdurrahman@nexthop.ai; a=ed25519;
+ pk=S+ysnf+NwMcBdHBlyKIUEAtaFGSIhQwcJcgcXhq0osg=
+X-Endpoint-Received: by B4 Relay for abdurrahman@nexthop.ai/20260119 with
+ auth_id=608
+X-Original-From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+Reply-To: abdurrahman@nexthop.ai
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261515-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261516-lists,devicetree=lfdr.de,abdurrahman.nexthop.ai];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[abdurrahman@nexthop.ai];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chenhuacai@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[flygoat.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3FE7BC4AC4
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D6EDCC4BB1
 X-Rspamd-Action: no action
 
-Hi, Icenowy,
+- Switch to generic device property accessors.
+- Switch to managed devm_ functions to simplify error handling.
+- General cleanups.
+- Skip clock setup on non-OF systems where clock is not specified via
+firmware.
 
-On Sat, Jan 31, 2026 at 5:46=E2=80=AFPM Icenowy Zheng <zhengxingda@iscas.ac=
-.cn> wrote:
->
-> As the (kernel-internally) OF-based MIPS Loongson-3 systems can also
-> have PCH LPC interrupt controller, add OF-based initialization code for
-> the driver.
-I think Patch-3/4/5 can be combined to a single one.
+Signed-off-by: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+---
+Changes in v8:
+- Made the clock change the last patch in the series.
+- Reworded the clock change description.
+- Changed dev->fwnode to dev_fwnode(dev).
+- Link to v7: https://lore.kernel.org/r/20260129-i2c-xiic-v7-0-727e434897ef@nexthop.ai
 
-Huacai
->
-> Co-developed-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> ---
->  drivers/irqchip/irq-loongson-pch-lpc.c | 28 ++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
->
-> diff --git a/drivers/irqchip/irq-loongson-pch-lpc.c b/drivers/irqchip/irq=
--loongson-pch-lpc.c
-> index 96489e031d34e..0baa93028abf4 100644
-> --- a/drivers/irqchip/irq-loongson-pch-lpc.c
-> +++ b/drivers/irqchip/irq-loongson-pch-lpc.c
-> @@ -13,6 +13,8 @@
->  #include <linux/irqchip/chained_irq.h>
->  #include <linux/irqdomain.h>
->  #include <linux/kernel.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_irq.h>
->  #include <linux/syscore_ops.h>
->
->  #include "irq-loongson.h"
-> @@ -257,3 +259,29 @@ int __init pch_lpc_acpi_init(struct irq_domain *pare=
-nt,
->         return 0;
->  }
->  #endif /* CONFIG_ACPI */
-> +
-> +#ifdef CONFIG_OF
-> +static int pch_lpc_of_init(struct device_node *node,
-> +                               struct device_node *parent)
-> +{
-> +       int parent_irq;
-> +       struct fwnode_handle *irq_handle;
-> +       struct resource res;
-> +
-> +       if (of_address_to_resource(node, 0, &res))
-> +               return -EINVAL;
-> +
-> +       parent_irq =3D irq_of_parse_and_map(node, 0);
-> +       if (!parent_irq) {
-> +               pr_err("Failed to get the parent IRQ for LPC IRQs\n");
-> +               return -EINVAL;
-> +       }
-> +
-> +       irq_handle =3D of_fwnode_handle(node);
-> +
-> +       return pch_lpc_init(res.start, resource_size(&res), irq_handle,
-> +                           parent_irq);
-> +}
-> +
-> +IRQCHIP_DECLARE(pch_lpc, "loongson,pch-lpc-1.0", pch_lpc_of_init);
-> +#endif /* CONFIG_OF */
-> --
-> 2.52.0
->
+Changes in v7:
+- Drop the dt-bindings patch.
+- Skip clock setup on non-OF systems.
+- Minor commit body rewording.
+- Applied code-review trailers with `b4 trailers -u`
+- Link to v6: https://lore.kernel.org/r/20260127-i2c-xiic-v6-0-e82e2f6f657c@nexthop.ai
+
+Changes in v6:
+- Cosmetic changes to address the comments.
+- Added a patch to use resource format specifier in debug log.
+- Link to v5: https://lore.kernel.org/r/20260126-i2c-xiic-v5-0-88a16a28721c@nexthop.ai
+
+Changes in v5:
+- Reorder the cosmetic patch to be the last in the series.
+- Added a documentation patch to describe the optional clock.
+- Minor commit body rewording.
+- Link to v4: https://lore.kernel.org/r/20260123-i2c-xiic-v4-0-4a3eba3510ce@nexthop.ai
+
+Changes in v4:
+- Reorder the cosmetic patch to be the first in the series.
+- Amend the mutex_init patch to also switch to the managed pm_runtime_
+  variant.
+- Link to v3: https://lore.kernel.org/r/20260123-i2c-xiic-v3-0-eb7cd4254dfb@nexthop.ai
+
+Changes in v3:
+- Reorder the "optional clock" patch to be the first in the series. 
+- Add a patch to switch to devm_mutex_init().
+- Remove dup message in error path.
+- Cosmetic: use temporary dev variable.
+- Link to v2: https://lore.kernel.org/r/20260122-i2c-xiic-v2-0-134f5d743e8b@nexthop.ai
+
+Changes in v2:
+- Split the patch into two independent changes.
+- Added struct device *dev at the top of probe() and remove() to re-use.
+- Switched to device_set_node(...)
+
+---
+Abdurrahman Hussain (6):
+      i2c: xiic: switch to devres managed APIs
+      i2c: xiic: remove duplicate error message
+      i2c: xiic: switch to generic device property accessors
+      i2c: xiic: cosmetic cleanup
+      i2c xiic: cosmetic: use resource format specifier in debug log
+      i2c: xiic: skip input clock setup on non-OF systems
+
+ drivers/i2c/busses/i2c-xiic.c | 98 +++++++++++++++++++------------------------
+ 1 file changed, 42 insertions(+), 56 deletions(-)
+---
+base-commit: 4d310797262f0ddf129e76c2aad2b950adaf1fda
+change-id: 20260122-i2c-xiic-3ba89ff5ea93
+
+Best regards,
+-- 
+Abdurrahman Hussain <abdurrahman@nexthop.ai>
+
+
 
