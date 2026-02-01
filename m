@@ -1,263 +1,189 @@
-Return-Path: <devicetree+bounces-261562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261563-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +CcNMrowf2k8lQIAu9opvQ
-	(envelope-from <devicetree+bounces-261562-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 11:53:46 +0100
+	id LjiwBQE2f2nClgIAu9opvQ
+	(envelope-from <devicetree+bounces-261563-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 12:16:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26AE4C5B02
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 11:53:46 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AB7DC5B69
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 12:16:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 30E7A307223B
-	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 10:50:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 47C093001FF2
+	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 11:16:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16378329392;
-	Sun,  1 Feb 2026 10:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D15725A357;
+	Sun,  1 Feb 2026 11:16:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aa23tBV7";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="a//g5Xam"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="IAFO/5ia"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9556E32937E
-	for <devicetree@vger.kernel.org>; Sun,  1 Feb 2026 10:49:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769942969; cv=none; b=bkoIbjQWjr2v57mnhtJdzq97xXcb9pmo3Y76iG8Vlk+fjJ0N4eEWU3KY5RfPNzYMheV3g2b8m5gqnwVjojT/TtXwEAD1ehtA/6iuAyJOQN2dG0Mzg+0/ledJDvNvhq+XdwdiWr1n4JYycYo68uTfN11+qOTP4WfZuV+md2/vmQ8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769942969; c=relaxed/simple;
-	bh=rOtATlSUdBEg1H0iWW1mR8swNg1N1WiPDt1QTwWw37Y=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EZO4hhuocgsaTmDIMKLSJ5eVo+D5MzUQcHWlVyx/fTbnum2lBDikBbDEwMroYk8EE3+GtNB5RLQ8SZIY3wwqegJv1ZSovL8ED4zCNrIXPR9y1LBk4O1JNMDlNkJmJjQ/15SL88+8Mi70vNlZGKYQuly6vahcpLlqVgmwdEOJWII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aa23tBV7; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=a//g5Xam; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6117j5Jx3106696
-	for <devicetree@vger.kernel.org>; Sun, 1 Feb 2026 10:49:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FAPtvj1aaT/4nS3PbQJ8vu2dWXMqUi3SGtAzQD4qK7c=; b=aa23tBV7ONrBIQXf
-	HkaUgvvVAUtiwydR0UX1F/GOAy0MPW3PNYf+i6yotyR/DY2beQEpOmi4oy3JRTCu
-	WXwi9JBc6224Apt69Z3TFfyr+Sg9a3BSVc03y77TxxmiIEqITXnjEagJRuraEO+A
-	evK/GRhDiB2wcxu7bfcaDIkSPzEROt+E4wjKO34vV019LI7nNHe5TzTI+M2oFP6d
-	z9mkE53LL+38PQLG79wTv/Mv1geS/H3OYdfVR8vGxKr+tmmIxXnwgnv8e2E8M1v4
-	gutw3VBeMMdO/DPAq8wP1uSpjRy1iqlZrzNT3e3DO8N2HKgTeRrTTpr0DKMFPBsi
-	3yDlTQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c1avx2dgf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 01 Feb 2026 10:49:25 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-503915b0a88so57255161cf.1
-        for <devicetree@vger.kernel.org>; Sun, 01 Feb 2026 02:49:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769942964; x=1770547764; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FAPtvj1aaT/4nS3PbQJ8vu2dWXMqUi3SGtAzQD4qK7c=;
-        b=a//g5XamJQkvZj/is8HbT6D4aetlSZS9pvnRW4sB6Z3TBCLFyuVPDunt8zhsbvf5DO
-         KSRL9uSllaSYxMmvLsCZwe/vTVOdyWtN2ibGm/ScOQUzTWE+X3I/12muREQOtZQcymao
-         oo5s5os06Q83LjadQM44gSe1GuY9BpsX/6LYO4ealHOrWkYjAqd8hJz6RKGMYDCv4dj5
-         iV6fzxaZrwg27cN79jdZetEKi1kHhLQsDwoJi6gkkqflXeVk50l29e9Yz3YS2uifdVkM
-         gX3hQVMP5OLv+ElLfPEI/UyyMgx4O5J65R91tEB/4OZDjookWv4kYNF9gFq5AfIXC3jX
-         sXvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769942964; x=1770547764;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=FAPtvj1aaT/4nS3PbQJ8vu2dWXMqUi3SGtAzQD4qK7c=;
-        b=XDuoG4B03/artk5s5frabOhb9Wqu02rGZPlUcDvNkZCAzQC3hbOIKpozRXOCZL8dwb
-         AKzlB6qN3c+dVvQgryw9cVyreeAhSUc4siUtX3utAhCydjtWHvdaKoHO2TkqLFi/+B2j
-         NM50twE4y1vRm/lgLw87stFLMdreU+8edOfzCCCnqZYhs2gS7YbZ45dI2yMqPnk/o63g
-         ItWie1d/ZA5CMNi25GDFs46G9FNj9NT/aKSsDu3qP9Ld6XrpspP+ygmHXu8ko0GPXFZz
-         WtKXepkX+JasEFok3COB4hHXnvAmqt33p1hKPHk0l8p9nyPW8XeoNi24q4e11AfM/Mrd
-         Anlw==
-X-Forwarded-Encrypted: i=1; AJvYcCX2JI5s1FiIbgyZZODgZO2BDg/W3b12sxuq48z45GQzQY88pdqSI7JbF7fT6zdHIcOYcBQq5Kg9gv/b@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLp/c4Fr3l94PV4GMEHjkMTTrcwWi2KBXl5t6CVbWdaXBmuNk4
-	4jemCxa8I2ih6fMBEJqm3gcPC4JkSU6ZHfd0CJEAmPV7i7d0oMhtVa2AMeChnCA4dkEXp9KgOmi
-	diyIUv86prKm7hW0adCLAfRAG2/hqdqVrY6g0f/J8i9+vCYPvFm/wqyxVjBfoWees
-X-Gm-Gg: AZuq6aLOr6+fbnMW4QSUfxWw5xnMP6TPOPPdZlzypvlR7thsNCe9XLM9IRU2nbYeKAL
-	hRJeU28wuGV49+4FBx7tZoYTlbAY6Goyneit1qmNmdAdWZkexBuBf5EfyhpwnK9sEyCBRoODSPZ
-	BBltBVtNSxoBOGeFTKvgZ1EGfTTHyN6xwq8sLgyv3u4BudO/2qOc53xS+Z3guVwYqJiOLfLJi//
-	GE3EYQ+rP+Lhhw/QJkAYskfViPEYyT73ywhDESRwOFq9wMZVzC02UgKOK1y5g/U8QT/cWaM034T
-	mdtaSL2Aw0eMbP8SxDDCO0MRRq6UByZqhV7woQvtc/6sSNp6Z2Xfe1LxLF2mV4wPEl+jUfelUTF
-	QmbKTdOEn1rfbtsVoBTez1HaJkXIoG0B/eqKlTygxFzv1AW0w7mqOn4uZPRUxX0W9h6yQuU3ARv
-	n7/fkHY2xPiXf/dM+Nbm4Kv38=
-X-Received: by 2002:a05:622a:1186:b0:4ee:1301:ebb3 with SMTP id d75a77b69052e-505d226c899mr92131401cf.54.1769942964426;
-        Sun, 01 Feb 2026 02:49:24 -0800 (PST)
-X-Received: by 2002:a05:622a:1186:b0:4ee:1301:ebb3 with SMTP id d75a77b69052e-505d226c899mr92131241cf.54.1769942964085;
-        Sun, 01 Feb 2026 02:49:24 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e074b7a8csm2835006e87.77.2026.02.01.02.49.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Feb 2026 02:49:22 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Sun, 01 Feb 2026 12:49:05 +0200
-Subject: [PATCH v2 8/8] arm64: dts: qcom: sm8250: correct frequencies in
- the Iris OPP table
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A114F3EBF22;
+	Sun,  1 Feb 2026 11:16:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769944572; cv=pass; b=lkbr2e8CytACNsdQXVFZowNasyX6QcLMjxF56QxAN4YLcXTYEHC6qwT3l7qzeze5WyQSwGSo/BParx1IpAm8owpfVdP+peD7y6M4lwZKVvKwm6p5DvmMM0bm+nbsr7fyIW3bMrNjonFD2KozejRDxkWcsaluAbnvRAR2I5Yy3j0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769944572; c=relaxed/simple;
+	bh=n/uBuw0drGPJJyQB+HxpY+41UIP2wuvAa+CcA2vk5rk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aKfk65ygtu4UOIBi7FuLHl+ACVa/KeukYIhclbaBvlxU2FzC6xN2NBDO5wBOgFD/0JzqJ0foxsfrENngF3EA4EEqKXZtiVPg+0sL7GlHr+slmaNY5QPI/0P35H4N/AGey/V43nHM8JFrc6VGQtp2oNupRQ177Hg9xit4+SXbfAs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=IAFO/5ia; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1769944558; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=NZ3kXzRHA5V1kaGR6EMp2tl7Jfk0bYCQN2Iew0NTrc/GjioIfXcB0GoJ8gp4C6b7DckQym/AOmUp7tgaoTvNKODsPVx5Rut4y29pODiFAXLINNbaHVl1hbsiLjPSWfJYRR+XVrQFC3TceFdB8ipMNByxVscpQP9oqbHKs0Apl6I=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1769944558; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Lln9T+9WYFEENfA8Q5OoZDMyLhXrk9yxE0MH9+RRXfw=; 
+	b=QykMyTUij10MdV5OS7Hhip+MgENSYhRq5ioY3MgxZvui7OWNVe1r0F4SJNSFKrMVLEiPopmSvENazphoyPYQpURHo7iYY27OW66wqgmO2hTrhWKjxvHHLf9q2SiKamBuObuJ/Qi9ZEDKdW9yD2A2CbVVIffPgS05zWBZVhysOuo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769944558;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=Lln9T+9WYFEENfA8Q5OoZDMyLhXrk9yxE0MH9+RRXfw=;
+	b=IAFO/5iaJOXkcHkUAqRp54cN3QLNEmYSpuRe+N3IE9Q/ERL1KXTaRyUjobGERENM
+	IKQ8OrRj+REJa+Ob4BirljPVISV/MCH+g+Ch9YeL8JrYsBhh8zXGq9LRjzyySEKXl87
+	PRvNeckDpDxxHLQGj2CJ3fqMQo2E4VQU9vn5QUDc=
+Received: by mx.zohomail.com with SMTPS id 1769944556287768.3176811007377;
+	Sun, 1 Feb 2026 03:15:56 -0800 (PST)
+Received: by venus (Postfix, from userid 1000)
+	id 303EA18090E; Sun, 01 Feb 2026 12:14:58 +0100 (CET)
+Date: Sun, 1 Feb 2026 12:14:58 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Yassine Oudjana <y.oudjana@protonmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] power: supply: add support for S2MU005 battery fuel
+ gauge device
+Message-ID: <aX8yPp2JVubxHNFJ@venus>
+References: <20260126-s2mu005-fuelgauge-v1-0-68a146ed0819@disroot.org>
+ <20260126-s2mu005-fuelgauge-v1-2-68a146ed0819@disroot.org>
+ <aXq7NohfIy3c5AWL@venus>
+ <DG2QBROWWMLI.2EE3CBLLPAJHR@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260201-iris-venus-fix-sm8250-v2-8-6f40d2605c89@oss.qualcomm.com>
-References: <20260201-iris-venus-fix-sm8250-v2-0-6f40d2605c89@oss.qualcomm.com>
-In-Reply-To: <20260201-iris-venus-fix-sm8250-v2-0-6f40d2605c89@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Hans Verkuil <hverkuil@kernel.org>,
-        Stefan Schmidt <stefan.schmidt@linaro.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Dikshita Agarwal <dikshita@qti.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1819;
- i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=rOtATlSUdBEg1H0iWW1mR8swNg1N1WiPDt1QTwWw37Y=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBpfy+mrexJvxvRxvLaDB/4xTWsitXwKRuyapAos
- wg/sBPcXI+JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaX8vpgAKCRCLPIo+Aiko
- 1eE9CACeDHGYlons6fPMaRboS7Ni6okVtQVdnWfL12L81cp/aVNkJSn8SC5yV1oTFjQLoo8PFNN
- isOA74pcXcDEcKxmDKGKK0Ukcg6y5aezORHTjfw2eBYENAqFz18givnM45c2feDkHhDOtA3X8WO
- xyDB9oT5EU1HTv5vwRcw+kC7cpue14qKM4AD0T/R4FInatsE29mwajYRBTDSlU+49ku4JTbLVQH
- wsox9HD/rbKxlyWWrcchYEYlKxsIRdcMvd/Ik9JgAB09gVotPHLzNfVnsmPXoRfH8eASGGXuquK
- /gnW+qiBIJgQoIx4dz77KWzj6BsUEclyh/ByBnOgW2UCFd+J
-X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-ORIG-GUID: cXmbTrjE8pBPZYe1AnupTPJK8sptt5FF
-X-Proofpoint-GUID: cXmbTrjE8pBPZYe1AnupTPJK8sptt5FF
-X-Authority-Analysis: v=2.4 cv=P4w3RyAu c=1 sm=1 tr=0 ts=697f2fb5 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=jxPhmlQz5o5YGUuCidoA:9 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAxMDA5NCBTYWx0ZWRfXwiRxbj30OhQx
- H2srpQnbWMk4kGNCeg7irGoqJtm+fkexJVgpWFKTBl4cHISV5WnI4X+hxKk2vX3sm79c5snv7g+
- i8RMYRydYc9zPyKLhH6D+Bs6RRn0Cs/9vAWX7RN391zvMr0pvuzB1pmDx2w7Jfzx+BEflLDADp1
- /XElrZRdyhsyEtBTLhlTOVDynusnF0q07YCl44bIlMue6Hf66nKbby1xaYlb/wbJExAZAn9uIe6
- EMpO/2lgSjIGCsinw5GdzVdFEVZc7dGGvpesjnegmBuXZS9r1kNK/omkpPI8OKnTPHVFNg3S22S
- JOF5R4FTNPqzDIeyUSZ7p+oRWOW3hpswYoJ0CftiyLFAr3VINjFWT/3deGIs3L7ZOIB7BOolKTL
- Ga/AF+fNC9qYmWi7IEwS79pjipVCI9PE1s+Jvi+gOaSWlI0E/MrwDsUHVJFqyOeyPIY892IZGKh
- N800v7SFPuAorrhTnRw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-01_04,2026-01-30_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 lowpriorityscore=0 adultscore=0
- priorityscore=1501 impostorscore=0 suspectscore=0 spamscore=0 clxscore=1015
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602010094
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DG2QBROWWMLI.2EE3CBLLPAJHR@disroot.org>
+X-ZohoMailClient: External
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261562-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[protonmail.com,kernel.org,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261563-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 26AE4C5B02
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,collabora.com:dkim]
+X-Rspamd-Queue-Id: 7AB7DC5B69
 X-Rspamd-Action: no action
 
-The OPP table for the Iris core is wrong, it copies the VDD table from
-the downstream kernel, but that table is written for the
-video_cc_mvs0_clk_src, while the upstream uses video_cc_mvs0_clk for OPP
-rate setting (which is clk_src divided by 3). Specify correct
-frequencies in the OPP table.
+Hi,
 
-Fixes: fa245b3f06cd ("arm64: dts: qcom: sm8250: Add venus DT node")
-Suggested-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+On Sat, Jan 31, 2026 at 04:44:36PM +0530, Kaustabh Chakraborty wrote:
+> On 2026-01-29 02:59 +01:00, Sebastian Reichel wrote:
+> >> +static int s2mu005_fg_get_status(struct s2mu005_fg *priv, int *value)
+> >> +{
+> >> +	int current_now;
+> >> +	int capacity;
+> >> +	int ret;
+> >> +
+> >> +	ret = s2mu005_fg_get_current_now(priv, &current_now);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	if (current_now <= 0) {
+> >> +		*value = POWER_SUPPLY_STATUS_DISCHARGING;
+> >> +		return 0;
+> >> +	}
+> >> +
+> >> +	ret = s2mu005_fg_get_capacity(priv, &capacity);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	if (capacity < 90)
+> >> +		*value = POWER_SUPPLY_STATUS_CHARGING;
+> >> +	else
+> >> +		*value = POWER_SUPPLY_STATUS_FULL;
+> >
+> > Usually there is some kind of hysteresis that stops charging
+> > when the battery is full and then restarts charging once the
+> > battery drops under a certain capacity. As this code first
+> > checks the current to determine if the battery is discharging
+> > and only then checks if the battery is full - does your code
+> > toggle between FULL and DISCHARGING?
+> 
+> (Perhaps I misunderstood your query, let me know if I did)
+> 
+> It has been a while since I last tested this - but as far as I can
+> recall, after a certain threshold, the current would constantly bounce
+> between -ve and +ve. I believe it was somewhere around 90% to 95% and
+> above. If that's what 'hysteresis' is, then yes.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 531470506809..21a186e199a5 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -4350,26 +4350,26 @@ venus: video-codec@aa00000 {
- 			venus_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
--				opp-720000000 {
--					opp-hz = /bits/ 64 <720000000>;
-+				opp-240000000 {
-+					opp-hz = /bits/ 64 <240000000>;
- 					required-opps = <&rpmhpd_opp_low_svs>,
- 							<&rpmhpd_opp_low_svs>;
- 				};
- 
--				opp-1014000000 {
--					opp-hz = /bits/ 64 <1014000000>;
-+				opp-338000000 {
-+					opp-hz = /bits/ 64 <338000000>;
- 					required-opps = <&rpmhpd_opp_low_svs>,
- 							<&rpmhpd_opp_svs>;
- 				};
- 
--				opp-1098000000 {
--					opp-hz = /bits/ 64 <1098000000>;
-+				opp-366000000 {
-+					opp-hz = /bits/ 64 <366000000>;
- 					required-opps = <&rpmhpd_opp_svs>,
- 							<&rpmhpd_opp_svs_l1>;
- 				};
- 
--				opp-1332000000 {
--					opp-hz = /bits/ 64 <1332000000>;
-+				opp-444000000 {
-+					opp-hz = /bits/ 64 <444000000>;
- 					required-opps = <&rpmhpd_opp_svs>,
- 							<&rpmhpd_opp_nom>;
- 				};
+A typical charging setup is:
 
--- 
-2.47.3
+1. charge to 100%
+2. stop charging
+3. wait for charge to drop under 95% (or some other treshold)
+4. restart charging
+5. go to 1
 
+> An older revision of this driver (I don't have it anymore) used to add
+> up the consecutive values of current in order to reduce the effect of
+> this inconsistency, but it was still unreliable.
+> 
+> Moreover, I do not possess any documentation for this device, so it's
+> not possible for me to know what or how.
+
+For the setup I described above, you consider everything above the
+treshold as POWER_SUPPLY_STATUS_FULL independent of the current
+direction. So you need to reorder:
+
+if (capacity >= 90)
+    return POWER_SUPPLY_STATUS_FULL;
+
+if (current_now < 0)
+    return POWER_SUPPLY_STATUS_DISCHARGING;
+else if (current_now == 0)
+    return POWER_SUPPLY_STATUS_NOT_CHARGING;
+else
+    return POWER_SUPPLY_STATUS_CHARGING;
+
+Greetings,
+
+-- Sebastian
 
