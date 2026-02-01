@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-261539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261540-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kDV/AaQLf2lziwIAu9opvQ
-	(envelope-from <devicetree+bounces-261539-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 09:15:32 +0100
+	id sJNMEKsLf2mEiwIAu9opvQ
+	(envelope-from <devicetree+bounces-261540-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 09:15:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0AE2C5355
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 09:15:31 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDA6CC5364
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 09:15:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BD0253002333
-	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 08:15:30 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 468963002332
+	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 08:15:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B19331AF30;
-	Sun,  1 Feb 2026 08:15:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 528FB2E62DC;
+	Sun,  1 Feb 2026 08:15:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="Jxs4GulN"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="gkeZhdTZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6DE223D2B4;
-	Sun,  1 Feb 2026 08:15:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 375D72D1907;
+	Sun,  1 Feb 2026 08:15:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769933729; cv=none; b=dnv0QJo5pMWIxkuuvmD/lDpz4ff3CMLk3A/1xrc6ytprAe+AkNKLmKxQCFZlr+rBYl/iC3j+P1CIvq2AFVMnwKTHIUKlwNzC+pTtWB0XSE9EW52NbQ48KN0nBglN/AlHVM+p9kRCo/UHW2EcOgyP3a8a4z9TrkLDsgE8FMFw3Z0=
+	t=1769933736; cv=none; b=BG6gzFkU580WJT02QMD4y7HeftDiUXc0lwx9f83NsGhPVG4EspDJ2r5TRG5lh6NMxTMJsAVrq8XkTrpft0boqtwKsIw2ICwXlm+3a3Zzwb8/dxDybHuHZmbLpJQJAhHrs8vMYGXMAZYn0M04q80DWahPWSrJPXzfj917SkVhM8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769933729; c=relaxed/simple;
-	bh=FzBTD+S7513EuFmRGeBcFGjeVmO7k9yNQXrJVkyx/3g=;
+	s=arc-20240116; t=1769933736; c=relaxed/simple;
+	bh=ClRsL+2qFhbb2DxQcLT1Zsr3EKA1I9/bIRp7i6mIMko=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=f4ZoESI5dBE2Zu95rdNZMKVdgtXWDflXvZG1SmQonXA7fS3LuBybxZ3RjuH9os0xGiEZnbCKHuIcPqVDZr3ZPEce9idOIlmGdEwoZSOiJBkP422J06H4cDg0kM7bDcQvSFaNQ2DkW4zAKvP41lJbjPFjAqqappTOK0xbdJFKXhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=Jxs4GulN; arc=none smtp.client-ip=117.135.210.5
+	 MIME-Version; b=aeMY184mFc2lM86xh3ZZpTxXib7XHEelSng2KnQyRVq9EMQMfK89ynThVZyhBZ4f6rAFAY1JlJg2RXQq5eycFAqPBcZBRGGnWS1oWVuy5YWPZ22BGMJdXBGK/s0rnrqsRn6oa2u1qfnoTOgHoYRePAr8RWPnsOQ0/8tImkcXChs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=gkeZhdTZ; arc=none smtp.client-ip=117.135.210.2
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=PS
-	OwGDUdVdduIta+j2KKb1RKHKHSYr2bnlnBAZBE19k=; b=Jxs4GulNiuuEZxf5uL
-	mQ1t6YRz/A3fJAjuZFtb9JXef29b5e2s5oSd2CYQzJuN1zdh7PbizWtj8ivsdlz+
-	mfWzqAjyZGJ1ojhCiUGNiTn9F1LKOAQ2STGELgY1IDSZqHyIaiAKB+8wc7ongEM0
-	lnNfFaVB45IIUaKbSRO55TUPo=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=zH
+	2EnTZ0jPmNS1phMLXrQ3tAVky7heoWvHfS5J433Ew=; b=gkeZhdTZyGV3ojrNBr
+	7uz+h5108Sj/4sCKFus3MkXwNnd2ZJrzXyKLgC6DEJq8IFrC8OBGggZlfzEFjLu5
+	ftPC+PUTfBi3ib8/hJjLAII1nW/m6XmNxRJwoEOJj/W6bcSAZh/syKJsLuuVY1cg
+	Z4JlcIkG3kVZ8cIxRHPdDBh0A=
 Received: from ProDesk-480.. (unknown [])
-	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3Hz40C39pmxGTKQ--.55310S4;
-	Sun, 01 Feb 2026 16:13:48 +0800 (CST)
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3Hz40C39pmxGTKQ--.55310S5;
+	Sun, 01 Feb 2026 16:13:50 +0800 (CST)
 From: Andy Yan <andyshrk@163.com>
 To: dmitry.baryshkov@oss.qualcomm.com,
 	heiko@sntech.de
@@ -72,9 +72,9 @@ Cc: alchark@gmail.com,
 	linux-kernel@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
 	Andy Yan <andy.yan@rock-chips.com>
-Subject: [PATCH v2 2/5] drm/bridge: synopsys: dw-dp: Set pixel mode by platform data
-Date: Sun,  1 Feb 2026 16:13:28 +0800
-Message-ID: <20260201081338.407999-3-andyshrk@163.com>
+Subject: [PATCH v2 3/5] drm/bridge: synopsys: dw-dp: Make i2s/spdif clk optional
+Date: Sun,  1 Feb 2026 16:13:29 +0800
+Message-ID: <20260201081338.407999-4-andyshrk@163.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260201081338.407999-1-andyshrk@163.com>
 References: <20260201081338.407999-1-andyshrk@163.com>
@@ -85,12 +85,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3Hz40C39pmxGTKQ--.55310S4
-X-Coremail-Antispam: 1Uf129KBjvJXoWxuF4UXFyDtF47tr1xJF4Utwb_yoWrAw4rpF
-	WxJFW5KrWkKF4Y9a48ArWkCFn0yw1q9ayxJa1xGw4Ik34fKFn5Xr9Ivr15Wrn7XF9xur13
-	CrsrJrW8ZF1jkrUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jmrWwUUUUU=
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbC7RwMaml-CzxsDAAA3W
+X-CM-TRANSID:_____wD3Hz40C39pmxGTKQ--.55310S5
+X-Coremail-Antispam: 1Uf129KBjvJXoW7WF43Kw1DZF15JrWDuFWDtwb_yoW8GF4rpF
+	srG3Wrtry8Jw4S9Fy7AF18Ar9xta4kGay8uayUKw4F9wn7KF1S9anIy3y3Kr1UZ3W7Ww13
+	Jrs8Z3yaka4q9F7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jddbbUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbC7h4Maml-Cz5sBQAA3c
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -98,12 +98,12 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261539-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261540-lists,devicetree=lfdr.de];
 	FREEMAIL_FROM(0.00)[163.com];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[28];
@@ -117,133 +117,48 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_CC(0.00)[gmail.com,intel.com,kernel.org,collabora.com,kwiboo.se,rock-chips.com,ideasonboard.com,linux.intel.com,linaro.org,ffwll.ch,suse.de,vger.kernel.org,lists.freedesktop.org,lists.infradead.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,rock-chips.com:email]
-X-Rspamd-Queue-Id: E0AE2C5355
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,rock-chips.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EDA6CC5364
 X-Rspamd-Action: no action
 
 From: Andy Yan <andy.yan@rock-chips.com>
 
-In the implementation and integration of the SoC, the DW DisplayPort
-hardware block can be configured to work in single, dual, quad pixel
-mode on differnt platforms, so make the pixel mode set by plat_data
-to support the upcoming rk3576 variant.
+The i2s/spdif clk are mandatory for rk3588, but not used
+for the upcoming rk3576, so make it optional here.
 
 Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 Tested-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
 ---
 
-Changes in v2:
-- Commit message improve: The pixel mode is determined during the IC
-  integration stage
+(no changes since v1)
 
- drivers/gpu/drm/bridge/synopsys/dw-dp.c   |  8 +-------
- drivers/gpu/drm/rockchip/dw_dp-rockchip.c | 19 +++++++++++++++----
- include/drm/bridge/dw_dp.h                |  7 +++++++
- 3 files changed, 23 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/bridge/synopsys/dw-dp.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-dp.c b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-index 82aaf74e1bc0..eccf6299bdb7 100644
+index eccf6299bdb7..93e3efe18957 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-dp.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-@@ -352,12 +352,6 @@ enum {
- 	DW_DP_YCBCR420_16BIT,
- };
+@@ -2014,13 +2014,13 @@ struct dw_dp *dw_dp_bind(struct device *dev, struct drm_encoder *encoder,
+ 		return ERR_CAST(dp->aux_clk);
+ 	}
  
--enum {
--	DW_DP_MP_SINGLE_PIXEL,
--	DW_DP_MP_DUAL_PIXEL,
--	DW_DP_MP_QUAD_PIXEL,
--};
--
- enum {
- 	DW_DP_SDP_VERTICAL_INTERVAL = BIT(0),
- 	DW_DP_SDP_HORIZONTAL_INTERVAL = BIT(1),
-@@ -1984,7 +1978,7 @@ struct dw_dp *dw_dp_bind(struct device *dev, struct drm_encoder *encoder,
- 		return ERR_CAST(dp);
+-	dp->i2s_clk = devm_clk_get(dev, "i2s");
++	dp->i2s_clk = devm_clk_get_optional(dev, "i2s");
+ 	if (IS_ERR(dp->i2s_clk)) {
+ 		dev_err_probe(dev, PTR_ERR(dp->i2s_clk), "failed to get i2s clock\n");
+ 		return ERR_CAST(dp->i2s_clk);
+ 	}
  
- 	dp->dev = dev;
--	dp->pixel_mode = DW_DP_MP_QUAD_PIXEL;
-+	dp->pixel_mode = plat_data->pixel_mode;
- 
- 	dp->plat_data.max_link_rate = plat_data->max_link_rate;
- 	bridge = &dp->bridge;
-diff --git a/drivers/gpu/drm/rockchip/dw_dp-rockchip.c b/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
-index 25ab4e46301e..89d614d53596 100644
---- a/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
-@@ -75,7 +75,7 @@ static const struct drm_encoder_helper_funcs dw_dp_encoder_helper_funcs = {
- static int dw_dp_rockchip_bind(struct device *dev, struct device *master, void *data)
- {
- 	struct platform_device *pdev = to_platform_device(dev);
--	struct dw_dp_plat_data plat_data;
-+	const struct dw_dp_plat_data *plat_data;
- 	struct drm_device *drm_dev = data;
- 	struct rockchip_dw_dp *dp;
- 	struct drm_encoder *encoder;
-@@ -89,7 +89,10 @@ static int dw_dp_rockchip_bind(struct device *dev, struct device *master, void *
- 	dp->dev = dev;
- 	platform_set_drvdata(pdev, dp);
- 
--	plat_data.max_link_rate = 810000;
-+	plat_data = of_device_get_match_data(dev);
-+	if (!plat_data)
-+		return -ENODEV;
-+
- 	encoder = &dp->encoder.encoder;
- 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm_dev, dev->of_node);
- 	rockchip_drm_encoder_set_crtc_endpoint_id(&dp->encoder, dev->of_node, 0, 0);
-@@ -99,7 +102,7 @@ static int dw_dp_rockchip_bind(struct device *dev, struct device *master, void *
- 		return ret;
- 	drm_encoder_helper_add(encoder, &dw_dp_encoder_helper_funcs);
- 
--	dp->base = dw_dp_bind(dev, encoder, &plat_data);
-+	dp->base = dw_dp_bind(dev, encoder, plat_data);
- 	if (IS_ERR(dp->base)) {
- 		ret = PTR_ERR(dp->base);
- 		return ret;
-@@ -134,8 +137,16 @@ static void dw_dp_remove(struct platform_device *pdev)
- 	component_del(dp->dev, &dw_dp_rockchip_component_ops);
- }
- 
-+static const struct dw_dp_plat_data rk3588_dp_plat_data = {
-+	.max_link_rate = 810000,
-+	.pixel_mode = DW_DP_MP_QUAD_PIXEL,
-+};
-+
- static const struct of_device_id dw_dp_of_match[] = {
--	{ .compatible = "rockchip,rk3588-dp", },
-+	{
-+		.compatible = "rockchip,rk3588-dp",
-+		.data = &rk3588_dp_plat_data,
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, dw_dp_of_match);
-diff --git a/include/drm/bridge/dw_dp.h b/include/drm/bridge/dw_dp.h
-index d05df49fd884..25363541e69d 100644
---- a/include/drm/bridge/dw_dp.h
-+++ b/include/drm/bridge/dw_dp.h
-@@ -11,8 +11,15 @@
- struct drm_encoder;
- struct dw_dp;
- 
-+enum {
-+	DW_DP_MP_SINGLE_PIXEL,
-+	DW_DP_MP_DUAL_PIXEL,
-+	DW_DP_MP_QUAD_PIXEL,
-+};
-+
- struct dw_dp_plat_data {
- 	u32 max_link_rate;
-+	u8 pixel_mode;
- };
- 
- struct dw_dp *dw_dp_bind(struct device *dev, struct drm_encoder *encoder,
+-	dp->spdif_clk = devm_clk_get(dev, "spdif");
++	dp->spdif_clk = devm_clk_get_optional(dev, "spdif");
+ 	if (IS_ERR(dp->spdif_clk)) {
+ 		dev_err_probe(dev, PTR_ERR(dp->spdif_clk), "failed to get spdif clock\n");
+ 		return ERR_CAST(dp->spdif_clk);
 -- 
 2.43.0
 
