@@ -1,198 +1,193 @@
-Return-Path: <devicetree+bounces-261893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261894-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OHk2DsPYgGnMBwMAu9opvQ
-	(envelope-from <devicetree+bounces-261893-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 18:02:59 +0100
+	id IL4/I7fbgGnMBwMAu9opvQ
+	(envelope-from <devicetree+bounces-261894-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 18:15:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F1D4CF51E
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 18:02:58 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ECE9CF711
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 18:15:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2BD863037E69
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 17:01:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B16A03007205
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 17:08:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CE0E3815EF;
-	Mon,  2 Feb 2026 17:01:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7CDD3803F8;
+	Mon,  2 Feb 2026 17:08:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G3YfkSIh"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="2qqhM+kS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B361937F8BD
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 17:01:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC90239086
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 17:07:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770051684; cv=none; b=Ai9+EBBYDy7YjyUFalDi8Z3uNeKwJVdAu+Eodh/wm5UzkaKTum5T1zsCwCWaKkUb6i138gVej/3bRWvDVQJRcmBY+tcr6gu483rfQlQOel18+faWbkyChbe9eTVIZmH88oZ1VCZVsERfJ7NtQnWy8p45428BvDyS25eN/cQSoNQ=
+	t=1770052081; cv=none; b=Nz/N7v3+ANXucTmRwXhzz9j4ElVhuvSzn7gN5CNWBJo2ztJ1MYsiLJQuwhVyljRqiXCeH2ppn+IrZ9GHH/wDT4BdQK2ymkQhTVnr8pdXKVHhUMseWX/vSGenRAAmLB9iU/gx/L3lVHJm/8SvIIfalwFuyzWHNl2Ki7LMNaQAgOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770051684; c=relaxed/simple;
-	bh=LtvoHqnysD1zGYNutc4CejPWz9ZTHU2Nh66lqyyYhTQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U4hsfn2OW6+PmCJhQwDm/khSKsv90SvmEJ3O5acm1ID+HArFxxI7B/mEMjtWFZdKK3fsj6VX/mGB2ddRceND+2tJ1E3OqNamIsroBSCCW/iYEgxoW3rGd9Fng1il+BMeBycX0x7EMeLC63xZIxtNrCB9VYI29mnL9VXM3AhPnq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G3YfkSIh; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-59b6d5bd575so4621134e87.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 09:01:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770051681; x=1770656481; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8ppJ+s5yD8OpOfsCawBEF1Fn1W+ZwaOrmnxykM3fGoI=;
-        b=G3YfkSIhgpO2DU7pGKspLuJYzH1ncijTeXopmA1zaZD39svyPmkiPO2U9CsaK5U9D2
-         D93DPWFHBmb/471NOQnMb3sB1K4b2H/Ltg16VpdxU/lABZqtgcJVcBT7jZI/0UWGbp7Q
-         9rJZ7zHbriluKasGCIdpmqnrlwGajMucu6Y8on7gG7wGeXEhZsjXW46hFxYJDZsp2rao
-         woAUGfVLZxGIR+XkmpannAa9ZcMlT3jxCDDb2PqgY7LZhOzlvt07NpL2T97heEmb2K3k
-         YR9cs05b23hgO06w4VIijpl2gq3ud0BukDbAiRxRblGSvyACVdi4iTmbl5upg85QFdXt
-         kZYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770051681; x=1770656481;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8ppJ+s5yD8OpOfsCawBEF1Fn1W+ZwaOrmnxykM3fGoI=;
-        b=tmELYFwaOZwQgoyp4g7b73ogZyQpZhefA7eMiEUQjDHtZ136O6/8g66owBDOmcUpQJ
-         DWNbqTZwBmTvB70eOlK5Vh+ZZ0LSnMRmYvnNaWQIO7FcY6PPO2bmNNt2HL5baKqWAuLM
-         3AiXZwwfRVeOBRR40lf5oPaDrvUa5mikWEFHh65zUnrT7+MMLc8hxOmdgLcWwv2fbXhr
-         02uMa88ivL0XpqPWCq7+FNIsVhLngbzoZnL7Mro0wIocn5hjYYNBPv0egrLR8IqQ0uGU
-         dP+D86vm1EmFSI2hB7qUhBuISqF4pu8pcheL30vzsczJWLOTTXE1bOo2tCMtSVeZKfli
-         U0gg==
-X-Forwarded-Encrypted: i=1; AJvYcCX8OeaVt6gRqs9G3K5+8wWwxfMc4rpMFRP+Cs1v9RyWb5A8rPsH1hN0/DgwDWQtFKj6QI9C1Oi+o7nq@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoA4tPRqpQT7x0kxwCKzGZyw5ORhybhNGg2ibm/VrML2Cyp7lv
-	MRG6empaDjP+qZLou2eG2FTzGv9fMtQTO8gyI5DzMRoe+EXEmLj+beK5UP/OKnfU
-X-Gm-Gg: AZuq6aKmvkLmGerr+3tTZPPUwuuqgLtHLLe6vW/TlFTmJ69PhWDsP3kxuojo+enTDhH
-	zTDYUOKfFLJkhRDOcq7P4/uHiWf76eXDchdCBnkSryGfAGpXoolpBSJtdiPsYvdizjf0Nm+BdqF
-	ydMCeqyYjNFrMY4WZhUSxjzF3wTGPnMpdbUrsoVHw9wD9C5vWxP0F5Joi+PBup5gjsOQKuNxh1D
-	oxZYvgrZnCci/2LKfBZyLM+oiLslKqNFMYzXSnVjhc6SCX/mzD+VQrRBPvtgFlY7Y+XA7BkIVKw
-	Hrm6cqve695phdYV2N0Epi0DR0tYWsQZ2s7TuOiBZfBc68h/5nRHO6q51hCT3zKtsvX5wY+CApn
-	b0vS8hZoeeOM3vSjDYXQpsU3unMx/9I4Ikvem6t0I2ODDyCeqdXl12WCDniMG+A30YEMMXhi1n4
-	5Ae/3ZV3J7WY/3xSzS0KShr+Tww5Pyzj9uff/vOBKk7bYgAHdmNB5c5lyqDgfH8LtEag5SvG1W0
-	RfdqFcuMoTP9biur850Z64R3y7OOn4cOMvT
-X-Received: by 2002:a05:6512:3192:b0:59b:af7b:9ac1 with SMTP id 2adb3069b0e04-59e163ffc29mr4714394e87.4.1770051680463;
-        Mon, 02 Feb 2026 09:01:20 -0800 (PST)
-Received: from ?IPV6:2001:999:700:7c7d:ca87:d71e:154f:6316? (n7ka2o5f47ode54rg9i-1.v6.elisa-mobile.fi. [2001:999:700:7c7d:ca87:d71e:154f:6316])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e074b7033sm3618294e87.68.2026.02.02.09.01.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Feb 2026 09:01:19 -0800 (PST)
-Message-ID: <d7ed59c4-2262-4cd5-978f-e9e5c0e8a9a9@gmail.com>
-Date: Mon, 2 Feb 2026 19:02:31 +0200
+	s=arc-20240116; t=1770052081; c=relaxed/simple;
+	bh=yJvr7IWqWNLafBfMaSBl3AFwi4LUD5evFMVrgV81dIE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=Bq6iTmR0lkxrrWd//4BSC4ndvPfDUe+FBsESLPb9Evm5uA/ANx657AF3hjV8iPLsnzExKxZAo3lCpy7QaS4j0gIkWIrTNLkuaTxt3Zv2nh6EJdRw6BOPCB89VOL1TeBXOQzUqomPdxikbT/sJxSbMBgZYl2cHrVKw9ICQKJtf1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=2qqhM+kS; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id EE2114E423C1;
+	Mon,  2 Feb 2026 17:07:56 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BEF2560767;
+	Mon,  2 Feb 2026 17:07:56 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E9F3E119A8888;
+	Mon,  2 Feb 2026 18:07:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1770052075; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=GI+ra4XFLShnydK/2m1O36TI0V8Tq0yYe+Uz1t6wvaU=;
+	b=2qqhM+kSc6wGOF8joN8LTC5kMrxJrGg/XunkxEBv7HGKWW75HyI0OdOn6hM8FhiIoOLbd3
+	kHALb7zczTwoPZSq91G5IncAHvcy0wuQxdViDhp5+SaJMI5+bRdhUut5E8nKtdG7PfHZrw
+	wfJbj7b8NpuTQ82Q7C59YXf/GnO4Ez9sSQi8RlXObT92OBp/oEgSUUqhHhP0DWRka9WRBM
+	BZOMylxjxQIkqjQpb5J+CGZqmx1wcgdyFr4RScLEWf6q0A4MXs8foeSROFNQtH1EePquOT
+	H3mPAR8Vaaedr9txCYvBevjRa6wIuJ3HvG0l192QPEg5vPqY0IwWYEx8dVK7cQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] ASoC: ti: davinci-mcasp: Add asynchronous mode
- support
-To: Sen Wang <sen@ti.com>, broonie@kernel.org, lgirdwood@gmail.com,
- perex@perex.cz, tiwai@suse.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260130051045.1898892-1-sen@ti.com>
- <20260130051045.1898892-5-sen@ti.com>
-From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-Content-Language: en-US
-In-Reply-To: <20260130051045.1898892-5-sen@ti.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Date: Mon, 02 Feb 2026 18:07:45 +0100
+Message-Id: <DG4N39EA7RN5.NARFDHX3IXGE@bootlin.com>
+Subject: Re: [PATCH v5 20/25] drm/tilcdc: Use devm_drm_of_get_bridge()
+ helper
+Cc: "Jyri Sarha" <jyri.sarha@iki.fi>, "Tomi Valkeinen"
+ <tomi.valkeinen@ideasonboard.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Russell King" <linux@armlinux.org.uk>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony Lindgren" <tony@atomide.com>,
+ "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
+ <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
+ Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
+ <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Markus
+ Schneider-Pargmann" <msp@baylibre.com>, "Bajjuri Praneeth"
+ <praneeth@ti.com>, "Louis Chauvet" <louis.chauvet@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
+ <miguel.gazquez@bootlin.com>, "Herve Codina" <herve.codina@bootlin.com>,
+ <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-omap@vger.kernel.org>
+To: "Kory Maincent" <kory.maincent@bootlin.com>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+X-Mailer: aerc 0.20.1
+References: <20260123-feature_tilcdc-v5-0-5a44d2aa3f6f@bootlin.com>
+ <20260123-feature_tilcdc-v5-20-5a44d2aa3f6f@bootlin.com>
+ <DG269FV5MZ8I.2VFNJXA0N2Y26@bootlin.com>
+ <20260202105717.53067aae@kmaincent-XPS-13-7390>
+In-Reply-To: <20260202105717.53067aae@kmaincent-XPS-13-7390>
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261893-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261894-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[ti.com,kernel.org,gmail.com,perex.cz,suse.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[iki.fi,ideasonboard.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,armlinux.org.uk,bgdev.pl,atomide.com,intel.com,linaro.org,kwiboo.se,baylibre.com,ti.com,bootlin.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[31];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peterujfalusi@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8F1D4CF51E
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:email,bootlin.com:url,bootlin.com:mid]
+X-Rspamd-Queue-Id: 9ECE9CF711
 X-Rspamd-Action: no action
 
-
-
-On 30/01/2026 07:10, Sen Wang wrote:
-> McASP has dedicated clock & frame sync registers for both transmit
-> and receive. Currently McASP driver only supports synchronous behavior and
-> couples both TX & RX settings.
-> 
-> Add logic that enables asynchronous mode via ti,async-mode property. In
-> async mode, playback & record can be done simultaneously with different
-> audio configurations (tdm slots, tdm width, audio bit depth).
-> 
-> Note the ability to have different tx/rx DSP formats (i2s, dsp_a, etc.),
-> while possible in hardware, remains to be a gap as it require changes
-> to the corresponding machine driver interface.
-> 
-> Existing IIS (sync mode) and DIT mode logic remains mostly unchanged.
-> Exceptions are IIS mode logic that previously assumed sync mode, which has
-> now been made aware of the distinction. And shared logic across all modes
-> also now checks for McASP tx/rx-specific driver attributes. Those
-> attributes have been populated according to the original extent, ensuring
-> no divergence in functionality.
-> 
-> Constraints no longer applicable for async mode are skipped.
-> Clock selection options have also been added to include rx/tx-only clk_ids,
-> exposing independent configuration via the machine driver as well.
-> 
-> Note that asynchronous mode is not applicable for McASP in DIT mode,
-> which is a transmitter-only mode to interface w/ self-clocking formats.
-> 
-> Signed-off-by: Sen Wang <sen@ti.com>
-> ---
->  include/linux/platform_data/davinci_asp.h |   3 +-
->  sound/soc/ti/davinci-mcasp.c              | 487 +++++++++++++++++-----
->  sound/soc/ti/davinci-mcasp.h              |  10 +
->  3 files changed, 398 insertions(+), 102 deletions(-)
-> 
-> diff --git a/sound/soc/ti/davinci-mcasp.c b/sound/soc/ti/davinci-mcasp.c
+On Mon Feb 2, 2026 at 10:57 AM CET, Kory Maincent wrote:
+> On Fri, 30 Jan 2026 20:31:11 +0100
+> "Luca Ceresoli" <luca.ceresoli@bootlin.com> wrote:
 >
+>> Hi Kory,
+>>
+>> On Fri Jan 23, 2026 at 5:12 PM CET, Kory Maincent (TI.com) wrote:
+>> > Replace drm_of_find_panel_or_bridge() with the newer
+>> > devm_drm_of_get_bridge() helper which simplifies the code by:
+>> > - Automatically handling both panel and bridge cases internally
+>> > - Managing the panel-to-bridge conversion when needed
+>> > - Using devres for resource management, eliminating manual cleanup
+>> >
+>> > This removes the need for explicit panel-to-bridge conversion via
+>> > devm_drm_panel_bridge_add_typed() and the associated error handling pa=
+th.
+>
+> ...
+>
+>> >  	encoder =3D drmm_simple_encoder_alloc(ddev, struct tilcdc_encoder,
+>> >  					    base, DRM_MODE_ENCODER_NONE);
+>> > @@ -73,12 +70,5 @@ int tilcdc_encoder_create(struct drm_device *ddev)
+>> >  	}
+>> >  	priv->encoder =3D encoder;
+>> >
+>> > -	if (panel) {
+>> > -		bridge =3D devm_drm_panel_bridge_add_typed(ddev->dev, panel,
+>> > -
+>> > DRM_MODE_CONNECTOR_DPI);
+>>
+>> You are introducing a subtle difference here: while you pass the connect=
+or
+>> type to devm_drm_panel_bridge_add_typed(), devm_drm_of_get_bridge() does
+>> not take it and expects it to ahve been set previously and errors out if=
+ it
+>> hasn't.
+>>
+>> Can you ensure the connector type is alway set before this
+>> devm_drm_of_get_bridge() call?
+>
+> The connector type should be set by the bridge or the panel driver.
+>
+> https://elixir.bootlin.com/linux/v6.18.6/source/drivers/gpu/drm/bridge/pa=
+nel.c#L397
+>  * This function is deprecated and should not be used in new drivers. Use
+>  * devm_drm_panel_bridge_add() instead, and fix panel drivers as necessar=
+y if
+>  * they don't report a connector type.
 
-  static void mcasp_start_rx(struct davinci_mcasp *mcasp)
->  {
->  	if (mcasp->rxnumevt) {	/* enable FIFO */
-> @@ -230,13 +288,17 @@ static void mcasp_start_rx(struct davinci_mcasp *mcasp)
->  	/*
->  	 * When ASYNC == 0 the transmit and receive sections operate
->  	 * synchronously from the transmit clock and frame sync. We need to make
-> -	 * sure that the TX signlas are enabled when starting reception.
-> +	 * sure that the TX signals are enabled when starting reception.
-> +	 * Else set pin to be output when McASP is the master
+Ah, right, so it means this patch might cause some regressions due to panel
+drivers to be fixed. So it's fine as long as you are ready to handle such
+regression, should any happen.
 
-In new code - while it might not match with old code - use producer
-instead of master.
+Also other patches did exactly the same, e.g.:
 
-Otherwise it looks nice, I trust you have tested the sync and DIT mode.
+  commit 6e1853589ea6 ("drm/lcdif: switch to devm_drm_of_get_bridge")
+  commit a43dd76bacd0 ("drm/vc4: dsi: Switch to devm_drm_of_get_bridge")
 
-With this nitpick addressed:
-Acked-by: Peter Ujfalusi <peter.ujfalusi@gmail.com>
+And so:
+Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
--- 
-Péter
-
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
