@@ -1,393 +1,363 @@
-Return-Path: <devicetree+bounces-261872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261873-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aOO4CoPAgGl3AgMAu9opvQ
-	(envelope-from <devicetree+bounces-261872-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:19:31 +0100
+	id yFzIHMnBgGl3AgMAu9opvQ
+	(envelope-from <devicetree+bounces-261873-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:24:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 400F0CE189
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:19:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC7A5CE2B3
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:24:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5262E3084448
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 15:16:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CAEE73033FBE
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 15:18:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22B0937A4AB;
-	Mon,  2 Feb 2026 15:16:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24CC237AA7B;
+	Mon,  2 Feb 2026 15:18:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H8c7g6dC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ToBMxOku"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com [74.125.82.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C3D37A497
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 15:16:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 264AD36B07F
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 15:18:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770045362; cv=none; b=Se6MiC2vVJCjThu04Nkno/+WAo/DTJLu6JO69wiOQcD/CrsTa6nWFA4kuDdfBLHjOWhQS66GlTLoesjjgWw3nM0bm1nF83ocvZfjOyGyBdVp37MGiWFYrimd+ltgwwYYxhonS/3CQRUAPBeRk2/AnURwUFk8Mso32nnrqWhycAU=
+	t=1770045534; cv=none; b=ZCNdVpAy8kWHqlaMUxDH6PMjcH4O0/a2RrR9Nayj+5+V5enVfWEtwvOzEnI8rqGAnn3zUkHHluX3QKUvKizWOlvTlb3lN8YZq5LJn/4LGKdpGfWV6myyUeRCcAQAJ1y5oWxFL6Su7c0SJXEsxF9iIy/idXAKUdaol+nNaqbmjHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770045362; c=relaxed/simple;
-	bh=0C7YXUmFLO4jUnfUB6PvUlfMYDCIAsCzsPf0qKWlbNU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pBLh3iZOdPJBBqEv7iGW8tSrpL2m+l0MLJRjz3ChOe6NSdl8YFc6j5yZ03vINKgtqH7dK9w5GoF0sfFGEkp1MNT9tkOACD9B0v1DD0NaGZxZEh6s/LMM0+aIhZl+mHa4dQTBhifcVFZ1yDfpAYKJdaiyoOfjOPHgPagCxkBQZYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H8c7g6dC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE5A5C2BCB0
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 15:16:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770045361;
-	bh=0C7YXUmFLO4jUnfUB6PvUlfMYDCIAsCzsPf0qKWlbNU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=H8c7g6dCF6g/GAD/DYW6DgVtUzt7sOeWAUuePm6ySBAD83Z8pryrsDJB7gKTWv8/9
-	 TQl+qxRLcsJu98gSIoUn3+ZqjF+5RKur627d9Px6yNcHkN6HTmFSQQilmDuW1dU0T2
-	 p/De90NpUEzlRjPDJbzvHZ5s1NJDbaHSSKvbzm5hVuYausjCjxzlPzmkOf/oToG1bd
-	 QJrO6cE15gMlF+KuKg6vAePjIKfigDWyFrsMmcflWnyi1Co5xLyjhhZY6KcI43A3IR
-	 4XyNLGu55q4aGSi/fZSoXWx5cXSLydlOMQTl1kxUOt0wwakgcZZ3VLuZ0AuEgeNNQp
-	 CCRSCMjizzTDA==
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-6581234d208so7643430a12.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 07:16:01 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUEAJdeKRd8CMVB22oeAKYfx7ocp2mndI1A7hq8s+Ak3UXVTExsMSGwhPcTCQz3wW+6yIvla/Ilttu5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlwfbpMaAKbWBFFyXLliblASiUtzH0ufvEWztSHR+i6WcvrQSo
-	0d8hEzcC7HMXOjn5x2sfJvSo53x/TONdlIoFbjzeXWXcmxfr7kt9a+2DgycosZkwbQR/lCsJGPl
-	NvAMUjYCEJ4aLUnkqPeOcAA0LHU10bg==
-X-Received: by 2002:a17:907:7f94:b0:b8a:fd04:c789 with SMTP id
- a640c23a62f3a-b8dff5ff196mr667062766b.22.1770045360128; Mon, 02 Feb 2026
- 07:16:00 -0800 (PST)
+	s=arc-20240116; t=1770045534; c=relaxed/simple;
+	bh=+zjYskbMXQnNft8MzUReBiuObT6dy/7vTEvHmUyjvOM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SakNUIniVRRnSBHLyoTKHgrvMzkutFP5+DSJm8dWdPDK3WmIBvjFlOwDp5Z61wnVSqQxmkiujwO7TGCq215U6lvP5YPOI055DsWYyQN/+vlVpGWN4Bb5Zw8Rbq2M62a+ZtkbGn6Y3SY5bFLxCMhS/NDvrBqDah2iUjDjDJyVmnk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ToBMxOku; arc=none smtp.client-ip=74.125.82.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f177.google.com with SMTP id 5a478bee46e88-2b7381d2d95so2294863eec.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 07:18:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770045531; x=1770650331; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=LDCiY8TG5eNaEr/sCWKc9Mka+bVdBZQpMlZxy/9XJA8=;
+        b=ToBMxOkuVzGfBrX5nWH2p37x/3mhnhtyqsGympfGfzf9SIICPX6yGfAQuG9OcTAULu
+         2goEmrzZTx6b5327A55uKhWzthC0m8Es8hsLJiZNr52mumt8rATpzuNthK9AuwuUo4yY
+         Rgrrnqz+K0YRQC5Wbg6SGF66enzUgatwAgLnGcbERVzA0SIT+BuPVG1+4w1rjvtybuSe
+         629QoObirAqMY02dB3uYhxGEXCoUkl1uFFQLSDBvnjCbD3vhMim6WEkQ6+48NiFbn1JI
+         ngT1wq7V7RJ14hT3dU36BwmQmD1VMIk3WERh1XK0KBqi42lE20L/DVNTF3h4zX83Jj/R
+         BfEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770045531; x=1770650331;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LDCiY8TG5eNaEr/sCWKc9Mka+bVdBZQpMlZxy/9XJA8=;
+        b=qIiN+WODoMyGspOtkaLjO3oGC8xywOwL2UPOzHwvQq/jCW3uE/BiM7zLiXQtSJjR41
+         XFBW2MJCxzApxuF7nvX3vfLqm5fIZ1sD5RclclfJJMCZy5S3EHDYEWON7EBn5OiCNeBt
+         ORyeIN1TL8Yu7NvJa2Rlw63fSPewXqYf2ZeaqQepdqBBJMjKIARAwzBX3XhhlbRsQBno
+         ClgFnsB00RZrkMgr0K0MS5sR7MjXNy11CEZNtjIlI3x4IoEJzEV09wkx9+ycaxtowEk1
+         H4UIaZ48rFmc63aN5LCGUu2/1gGxpmSVOTvssGWlGPgdFO9XTYC5VXPxRKOckgitm0F5
+         ylRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVPpvJ1gnGuOHEIkQDpykdzx6TaedwQgmoupVJUUZz8VZSO5ICnfSlYeQLVXULuNC5aVwejoQFscnR8@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPHTUC6yYS4ba/HeOwUg4qNfLbR1o5uWBMKC1MyLK1U8DMAO7S
+	UPotSxVRA501QPBb61u8ywftqrWmrrWcWU2u2czn0+2wBV20pSCpxgzr
+X-Gm-Gg: AZuq6aKNhZYlifOQ9U1OgSRypTSqpEyzP011yPENRnsH+JeH8QluD7Y/iPW3eTkDUpn
+	iP2IKJ0uAcNsvYIjNUmFqxQkxkRHty3cQbvI91YLge6MhCrxKwHty468oXtda7W+8insXYaUcNn
+	/jh9NxIVTn7m3dlFesOYTKGOT5M/MrZ7fS9M8kG20J2L0VcivFwrLBVoKvHjigGRwuMii86DlhE
+	ZLfercUZX2QebdT8Ri5in7QZP88FfQ5jGEzxYk/aZ0ewdCkJHLlvgrmX9JkgZ2qtgnwtOlv8fe2
+	nsUXWlZv+2IKAwc6ZopmWiYskmjF5WnuyExk489Xp9Mh1f7cefUgQrgQ7EbvU/1uqhXRil6axgo
+	dFf01FvaY3OSlmJGWC4M9RripKBQFIu+W1cH/LHDCRDXdVX20+plSKWn3q9miqWn00GaQkhRVWu
+	3QT3/AhZ6lK1jEnwjs+A4j977jis1q9dNCqqE2DQgvEJM7cRDBry50pGZ++CDC
+X-Received: by 2002:a05:7300:8b24:b0:2b7:c00a:f733 with SMTP id 5a478bee46e88-2b7c923a06bmr4612479eec.5.1770045529575;
+        Mon, 02 Feb 2026 07:18:49 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b7a1adef97sm19943163eec.29.2026.02.02.07.18.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Feb 2026 07:18:48 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <c5e1aaeb-d832-44ac-ba19-77f162b4f31d@roeck-us.net>
+Date: Mon, 2 Feb 2026 07:18:47 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260130141442.139640-1-harshdaniel66356@gmail.com>
-In-Reply-To: <20260130141442.139640-1-harshdaniel66356@gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 2 Feb 2026 09:15:47 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+podtc-O5uDJ16uOUDmqxKiBXH8RdTYJs3Xv-+O2U1ng@mail.gmail.com>
-X-Gm-Features: AZwV_QgVDYsVQbzvlBnrSRy7fDxc72QlOmIH1Br8rsKg-QqYADC1j7Ds9HtwhmQ
-Message-ID: <CAL_Jsq+podtc-O5uDJ16uOUDmqxKiBXH8RdTYJs3Xv-+O2U1ng@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: media: Add bindings for dim2 compatible strings.
-To: harshdaniel66356@gmail.com
-Cc: parthiban.veerasooran@microchip.com, christian.gromm@microchip.com, 
-	gregkh@linuxfoundation.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-staging@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] hwmon: add support for MCP998X
+To: Victor.Duicu@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, corbet@lwn.net
+Cc: Marius.Cristea@microchip.com, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20260127151823.9728-1-victor.duicu@microchip.com>
+ <20260127151823.9728-3-victor.duicu@microchip.com>
+ <491bd9ec-d6b7-4f1a-877b-67ffbc658ba8@roeck-us.net>
+ <da5b2f992a430d30efb558502aec7dc6f6769b0d.camel@microchip.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <da5b2f992a430d30efb558502aec7dc6f6769b0d.camel@microchip.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-261872-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261873-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[roeck-us.net];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_NONE(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,e6050000:email,218e000:email,microchip.com:email,devicetree.org:url]
-X-Rspamd-Queue-Id: 400F0CE189
+	RCPT_COUNT_SEVEN(0.00)[10];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:mid]
+X-Rspamd-Queue-Id: CC7A5CE2B3
 X-Rspamd-Action: no action
 
-On Fri, Jan 30, 2026 at 8:15=E2=80=AFAM <harshdaniel66356@gmail.com> wrote:
->
-> From: Harsh Daniel <harshdaniel66356@gmail.com>
->
-> Add device tree bindings for the compatible strings used in the
-> staging/most/dim2 driver to resolve checkpatch warnings:
-> - fsl,imx6q-mlb150
-> - renesas,mlp and renesas,rcar-gen3-mlp
-> - xlnx,axi4-os62420_3pin-1.00.a and xlnx,axi4-os62420_6pin-1.00.a
->
-> These bindings document the MediaLB DIM2 module found in Freescale
-> i.MX6Q, Renesas R-Car, and Xilinx FPGA platforms.
->
-> Signed-off-by: Harsh Daniel <harshdaniel66356@gmail.com>
-> ---
->  .../bindings/media/fsl,imx6q-mlb150.yaml      | 73 +++++++++++++++++++
->  .../bindings/media/renesas,mlp.yaml           | 65 +++++++++++++++++
->  .../media/xilinx/xlnx,axi4-os62420.yaml       | 60 +++++++++++++++
+On 2/2/26 00:15, Victor.Duicu@microchip.com wrote:
+> Hi Guenter,
+> 
+> 
+>>> +static int mcp9982_read_limit(struct mcp9982_priv *priv, u8
+>>> address, long *val)
+>>> +{
+>>> +     unsigned int limit, reg_high, reg_low;
+>>> +     int ret;
+>>> +
+>>> +     switch (address) {
+>>> +     case MCP9982_INTERNAL_HIGH_LIMIT_ADDR:
+>>> +     case MCP9982_INTERNAL_LOW_LIMIT_ADDR:
+>>> +     case MCP9982_THERM_LIMIT_ADDR(0):
+>>> +     case MCP9982_THERM_LIMIT_ADDR(1):
+>>> +     case MCP9982_THERM_LIMIT_ADDR(2):
+>>> +     case MCP9982_THERM_LIMIT_ADDR(3):
+>>> +     case MCP9982_THERM_LIMIT_ADDR(4):
+>>> +             ret = regmap_read(priv->regmap, address, &limit);
+>>> +             if (ret)
+>>> +                     return ret;
+>>> +
+>>> +             *val = limit & 0xFF;
+>>> +             *val = (*val - MCP9982_OFFSET) * 1000;
+>>> +
+>>> +             return 0;
+>>> +     case MCP9982_EXT_HIGH_LIMIT_ADDR(1):
+>>> +     case MCP9982_EXT_HIGH_LIMIT_ADDR(2):
+>>> +     case MCP9982_EXT_HIGH_LIMIT_ADDR(3):
+>>> +     case MCP9982_EXT_HIGH_LIMIT_ADDR(4):
+>>> +     case MCP9982_EXT_LOW_LIMIT_ADDR(1):
+>>> +     case MCP9982_EXT_LOW_LIMIT_ADDR(2):
+>>> +     case MCP9982_EXT_LOW_LIMIT_ADDR(3):
+>>> +     case MCP9982_EXT_LOW_LIMIT_ADDR(4):
+>>> +             /*
+>>> +              * The register address determines whether a single
+>>> byte or
+>>> +              * multiple byte (block) operation is run. For a
+>>> single byte
+>>> +              * operation, the MSB of the register address is set
+>>> to "0".
+>>> +              * For a multiple byte operation, it is set to "1".
+>>> The addresses
+>>> +              * quoted in the register map and throughout the data
+>>> sheet assume
+>>> +              * single byte operation. For multiple byte
+>>> operations, the user
+>>> +              * must set the MSB of each register address to "1".
+>>> +              */
+>>> +             ret = regmap_read(priv->regmap, address, &reg_high);
+>>> +             if (ret)
+>>> +                     return ret;
+>>> +
+>>> +             ret = regmap_read(priv->regmap, address + 1,
+>>> &reg_low);
+>>> +             if (ret)
+>>> +                     return ret;
+>>> +
+>> Consider using regmap_bulk_read().
+> 
+>    The MCP998X family is designed so that block reading is allowed only
+> on the dedicated temperature and memory blocks. Reading from
+> those memory areas uses the SMBus protocol, which returns count
+> and the data. From any other memory region, reading only one byte
+> is allowed. This behavior is described in the documentation at page 26.
+> 
+>    In V2 patch, block reading was used in this function, however this
+> was an exploit. After reading one byte the chip returns NACK to finish
+> the read, that will force the Linux driver to issue another 1 byte read
+> for the second byte, which will return the value and stop.
+>    For the addresses 0x00 to 0x09 (temperature registers) the chip will
+> not return NACK after the first byte, it will just go to sleep and
+> return invalid data 0xff. That was a design choice to be backwards
+> compatible with older parts.
+> 
+This warrants a comment in the code. Others won't know and might send
+a patch to "fix" the code.
 
-These all look pretty similar and it's the same h/w block, so they
-should be 1 binding doc.
+> ...
+> 
+>>>
+>>> +             switch (attr) {
+>>> +             case hwmon_temp_input:
+>>> +                     /*
+>>> +                      * The chips support block reading only on
+>>> the temperature and
+>>> +                      * status memory blocks. The driver uses only
+>>> individual read commands.
+>>> +                      */
+>>> +                     ret = regmap_read(priv->regmap,
+>>> MCP9982_HIGH_BYTE_ADDR(channel), &reg_high);
+>>> +                     if (ret)
+>>> +                             return ret;
+>>> +
+>>> +                     ret = regmap_read(priv->regmap,
+>>> MCP9982_HIGH_BYTE_ADDR(channel) + 1,
+>>> +                                       &reg_low);
+>>> +                     if (ret)
+>>> +                             return ret;
+>>> +
+>>
+>> Consider using regmap_bulk_read().
+> 
+>    In V2 patch, block reading was used to read the temperatures from the
+> dedicated memory. However, the operation would use SMBus protocol
+> and return count alongside the data.
+> 
+>    Regmap_bulk_read() in this context uses SMBus protocol, while in the
+> context of reading the temperature limits uses I2C protocol(and is an
+> invalid request).
+> 
+>    In order to avoid having one function with multiple behaviors and
+> to keep the driver more generic all block reads were removed.
+> 
+As above.
 
->  MAINTAINERS                                   |  3 +
->  4 files changed, 201 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/fsl,imx6q-mlb=
-150.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/renesas,mlp.y=
-aml
->  create mode 100644 Documentation/devicetree/bindings/media/xilinx/xlnx,a=
-xi4-os62420.yaml
->
-> diff --git a/Documentation/devicetree/bindings/media/fsl,imx6q-mlb150.yam=
-l b/Documentation/devicetree/bindings/media/fsl,imx6q-mlb150.yaml
-> new file mode 100644
-> index 000000000000..2d0aab3d2286
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/fsl,imx6q-mlb150.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/fsl,imx6q-mlb150.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX6Q MediaLB DIM2 Controller
-> +
-> +maintainers:
-> +  - Andrey Shvetsov <andrey.shvetsov@k2l.de>
-> +
-> +description: |
+> 
+>>> +                     *val = ((reg_high << 8) + reg_low) >> 5;
+>>> +                     *val = (*val - (MCP9982_OFFSET << 3)) * 125;
+>>> +
+>>> +                     return 0;
+>>> +             case hwmon_temp_max:
+>>> +                     if (channel)
+>>> +                             addr =
+>>> MCP9982_EXT_HIGH_LIMIT_ADDR(channel);
+>>> +                     else
+>>> +                             addr =
+>>> MCP9982_INTERNAL_HIGH_LIMIT_ADDR;
+>>> +
+>>> +                     return mcp9982_read_limit(priv, addr, val);
+>>> +             case hwmon_temp_max_alarm:
+>>> +                     *val = regmap_test_bits(priv->regmap,
+>>> MCP9982_HIGH_LIMIT_STATUS_ADDR,
+>>> +                                             BIT(channel));
+>>> +                     if (*val < 0)
+>>> +                             return *val;
+>>> +
+>>> +                     return 0;
+>>> +             case hwmon_temp_max_hyst:
+>>> +                     if (channel)
+>>> +                             addr =
+>>> MCP9982_EXT_HIGH_LIMIT_ADDR(channel);
+>>> +                     else
+>>> +                             addr =
+>>> MCP9982_INTERNAL_HIGH_LIMIT_ADDR;
+>>> +                     ret = mcp9982_read_limit(priv, addr, val);
+>>> +                     if (ret)
+>>> +                             return ret;
+>>> +
+>>> +                     ret = regmap_read(priv->regmap,
+>>> MCP9982_HYS_ADDR, &hyst);
+>>> +                     if (ret)
+>>> +                             return ret;
+>>> +
+>>> +                     *val -= (hyst & 0xFF) * 1000;
+>>
+>> What is the mask for ? The chip registers are 8 bit wide.
+>>
+>>> +                     *val = clamp_val(*val, -64000, 191875);
+>>
+>> Clamping on reads is highly unusual. Why is this needed ?
+> 
+>    There are instances when the hysteresis limit could be outside
+> the range of temperatures.
+> 
+>    For example, if the high limit is set to -45000 and the hysteresis
+> is set to 20000, the high limit hysteresis is -65000 which is outside
+> the range of supported temperatures.
+> 
+>    The hysteresis is set related to the critical temperature (that is
+> higher then the "high limit") but it will be applied also to the "high
+> temperature". In this case the hysteresis is valid for critical but it
+> will be out of range for the "high temp".
+> 
+"Supported" is irrelevant. Question is what is written into and reported by
+the chip. It may be "out of range", but the value is still written into
+the chip. So the question is: How does the chip react to the "out of range"
+values ? I suspect that it technically still works, even if the value is not
+officially supported. That should be reflected in the reported values.
+More specifically, if setting the hysteresis in your example to 19000
+instead of 20000 triggers a different response from the chip, that needs
+to be reflected in the reported values.
 
-Don't need '|'.
+Guenter
 
-> +  MediaLB DIM2 module found in Freescale i.MX6Q SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx6q-mlb150
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: MediaLB Interrupt
-> +      - description: AHB0 Interrupt
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 2
-> +    items:
-> +      - const: mlb
-> +      - const: pll8_mlb
-
-Drop block name 'mlb'. Use 'core' or something related to the function.
-
-> +
-> +  microchip,clock-speed:
-
-Use standard "clock-frequency".
-
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum:
-> +      - 256fs
-> +      - 512fs
-> +      - 1024fs
-> +      - 2048fs
-> +      - 3072fs
-> +      - 4096fs
-> +      - 6144fs
-> +      - 8192fs
-> +    description: DIM2 clock speed.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - microchip,clock-speed
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    mlb@218e000 {
-> +        compatible =3D "fsl,imx6q-mlb150";
-> +        reg =3D <0x0218e000 0x4000>;
-> +        interrupts =3D <0 150 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <0 151 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks =3D <&clks 1>, <&clks 2>;
-> +        clock-names =3D "mlb", "pll8_mlb";
-> +        microchip,clock-speed =3D "2048fs";
-> +    };
-> diff --git a/Documentation/devicetree/bindings/media/renesas,mlp.yaml b/D=
-ocumentation/devicetree/bindings/media/renesas,mlp.yaml
-> new file mode 100644
-> index 000000000000..dfd9045d87f2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/renesas,mlp.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/renesas,mlp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas MediaLB DIM2 Controller
-> +
-> +maintainers:
-> +  - Andrey Shvetsov <andrey.shvetsov@k2l.de>
-> +
-> +description: |
-> +  MediaLB DIM2 module found in Renesas R-Car Gen2 and Gen3 SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - renesas,mlp
-
-Drop. Too generic. You need SoC specific compatibles.
-
-> +      - renesas,rcar-gen3-mlp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: MediaLB Interrupt
-> +      - description: AHB0 Interrupt
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  microchip,clock-speed:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum:
-> +      - 256fs
-> +      - 512fs
-> +      - 1024fs
-> +      - 2048fs
-> +      - 3072fs
-> +      - 4096fs
-> +      - 6144fs
-> +      - 8192fs
-> +    description: DIM2 clock speed.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - microchip,clock-speed
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    mlp@e6050000 {
-> +        compatible =3D "renesas,mlp";
-> +        reg =3D <0xe6050000 0x1000>;
-> +        interrupts =3D <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks =3D <&cpg 123>;
-> +        microchip,clock-speed =3D "2048fs";
-> +    };
-> diff --git a/Documentation/devicetree/bindings/media/xilinx/xlnx,axi4-os6=
-2420.yaml b/Documentation/devicetree/bindings/media/xilinx/xlnx,axi4-os6242=
-0.yaml
-> new file mode 100644
-> index 000000000000..dd4ac5c6ccf3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/xilinx/xlnx,axi4-os62420.ya=
-ml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/xilinx/xlnx,axi4-os62420.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx MediaLB DIM2 Controller
-> +
-> +maintainers:
-> +  - Andrey Shvetsov <andrey.shvetsov@k2l.de>
-> +
-> +description: |
-> +  MediaLB DIM2 module found in Xilinx FPGAs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - xlnx,axi4-os62420_3pin-1.00.a
-> +      - xlnx,axi4-os62420_6pin-1.00.a
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: MediaLB Interrupt
-> +      - description: AHB0 Interrupt
-> +
-> +  microchip,clock-speed:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum:
-> +      - 256fs
-> +      - 512fs
-> +      - 1024fs
-> +      - 2048fs
-> +      - 3072fs
-> +      - 4096fs
-> +      - 6144fs
-> +      - 8192fs
-> +    description: DIM2 clock speed.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - microchip,clock-speed
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    dim2@e6050000 {
-> +        compatible =3D "xlnx,axi4-os62420_3pin-1.00.a";
-> +        reg =3D <0x43c00000 0x10000>;
-> +        interrupts =3D <0 144 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <0 145 IRQ_TYPE_LEVEL_HIGH>;
-> +        microchip,clock-speed =3D "2048fs";
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5b11839cba9d..914693621b3b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17650,6 +17650,9 @@ M:      Christian Gromm <christian.gromm@microchi=
-p.com>
->  S:     Maintained
->  F:     Documentation/ABI/testing/configfs-most
->  F:     Documentation/ABI/testing/sysfs-bus-most
-> +F:     Documentation/devicetree/bindings/media/fsl,imx6q-mlb150.yaml
-> +F:     Documentation/devicetree/bindings/media/renesas,mlp.yaml
-> +F:     Documentation/devicetree/bindings/media/xilinx/xlnx,axi4-os62420.=
-yaml
->  F:     drivers/most/
->  F:     drivers/staging/most/
->  F:     include/linux/most.h
-> --
-> 2.52.0
->
->
 
