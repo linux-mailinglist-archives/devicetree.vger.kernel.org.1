@@ -1,179 +1,226 @@
-Return-Path: <devicetree+bounces-261863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261864-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wB38Oei9gGl3AgMAu9opvQ
-	(envelope-from <devicetree+bounces-261863-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:08:24 +0100
+	id mIT5DMy8gGl3AgMAu9opvQ
+	(envelope-from <devicetree+bounces-261864-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:03:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id A320CCDE93
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:08:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6157CDD0E
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:03:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3FBF530472A8
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 15:01:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A2DF6303A262
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 15:01:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEA34374725;
-	Mon,  2 Feb 2026 15:00:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5319C376BE2;
+	Mon,  2 Feb 2026 15:01:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dcQ7YMOY"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GtaZJJNF";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gxukD+0d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 673047E110
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 15:00:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770044438; cv=pass; b=eEzD4vAGYxzIuy9omLCn3vgXcQTlhw1vOjUwhyRAoTlBS+5bXUK2w+2LyuqbW2qoCcYVwZXK+0c9zYk+6ZwK5P+jalVoYV90SF1a4n6UuG2VXoFfVpIBLhQ1u5GznO8P0ks6dJgqDDYf6+skMjYnfvQiqUvuM8M2DljyNSbrCg8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770044438; c=relaxed/simple;
-	bh=/f5J2Sr8vMu8D3rzhsrUy2kkF1nH8LK32/MXs2Qtic4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=N6Xj/iFfEFYcfHJGG5IGA3WZE2Xlt+4Ov0gGjUKWoVZ/+iOwTLv7aozXdLZNu1iiJj78umPrZTd2VFlGNbUiQMD1gpWcJ/LxTval+0mxtFR6Asafen6tu537y62IoqY33jEZDkJ6+O50C0xihv2VMEyc5OrpYV49gkBkkk5Dxbw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dcQ7YMOY; arc=pass smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-59e0d5c446cso5538731e87.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 07:00:37 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770044436; cv=none;
-        d=google.com; s=arc-20240605;
-        b=h2WHmTeBc2Xp6dGyDwB8dvIjoZBkoY0hhTpF2356o1MzWF5o4SMfTxA9aQq36iRSJz
-         i98Yvvo9+oD6o6B9Ys4LPrc+oQdmW/3vpE7pDQe1RLULsanI6IeSK7Q0f/cNSw36raDV
-         LPO+GitmzkxE2EtFbPYHF6s5OM7peob/+Rjx2G073FKVoXZGVgloyRD5fHmP5jABVQaa
-         376KRb+RNe9C+Cm2BgklS2hUVjwvhUDPFPq6nIvUvG3QwiWzlkKYyKSnG4EG3sFCaCW6
-         ph0W+1+ztjakAS3oA+4wx6u5Agwn2yajjsSGQzdkL8DdOlgztMSEAGStFzeCazlq6pgC
-         tVlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=tjY8IMEcwraRaAcklulnPu0XEgItry8qPQsBSr8viBU=;
-        fh=wnKnENWOe9dGyDwb5Pp/DIS1Ol5nk/ALg2PTWthN8UU=;
-        b=Pxk1qnu0TsPkI68GKpofFoFepyw6IFAjBZqsiYvC8xiswVNXyeoyDk/rWB3QLrFF3H
-         r0SE+3TlvDvTP5Z5aEeZ/7zCEqYUVSFvJgtWjcCmX+ZGPe0RXyEg92+rYlMWuLKa1Mjk
-         fCdxAUKf4KEda7P5+9sAl5dVYvIyl7lDa7nMyrXcg8UA+E7Q9bQqwpG6WpGqlw1/MdjW
-         bGTC9M4URwQQXi9vpHcKZuI+nLW8okbK0jpffy91lugIptLgoBbhR9XFzw+DWIID+0in
-         e+3uRW242ybT0AoYVCxhR2iiEmK8tU3vVS3FZFmkMMrVbcZr45PQZGmkmrYmdMmHtDx2
-         hEZw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BF96369967
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 15:01:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770044514; cv=none; b=ONelhfr6rdzAj00S0B2YmiqLqU8Vpi3QSBeYF5BnTOPxZ9pr8pE4jxNwv2RKsNd7iSj+Chh+2tMr05enqQ9qqh5bu46UK8v46zZpNGhrmsQWU/zDqdWknz/aiox3jnjhaEOSXQTUMwwZ9txwKO74ckZ2+Q5o5PZVOT9BgxyYCTo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770044514; c=relaxed/simple;
+	bh=JcxIl+U6XrrYzwzysRKriC7B7jJmpe/ag7DnsCLo6KY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SBT7a824v5FaZvYJu98VHIQGh6bcGPTdyPR6sYAMwAq39kP+zWk/mSbVY/f7uCTlXoBTuzhqtDvZY9Y7g3pGMceYrhYnKXsZMzNQbRXOAq5uwhDn1z3Ks16sF/hIzmDzRU8/MVUV6B7QB79L+vWbybqQUSvlpIXZFb+2g1W+RAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GtaZJJNF; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gxukD+0d; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 612CVJxK2356982
+	for <devicetree@vger.kernel.org>; Mon, 2 Feb 2026 15:01:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	b7LkWBSg9k/hqZXrb855SBQlwZa3bPE252WnYqjGZpc=; b=GtaZJJNFInkB0nDH
+	54tU49dyHv+VRHJZVBVJMVqJVvxuHoy1ovO4QvYQfZfGdsGfExvWo28Un/bDUCk5
+	VKxVX2OW1YQnzWUG9zpQkzbVrouNacirwHDWVQItC3VXh46cmsOlYkcgvPKDkcut
+	5fjMcnaME0scGguzeWG3lvQdQsudjNlzePnArMMwXC4ux0kXQKS5WPZoF2S64/iT
+	fk/2FcJZ6/Y6ZQZiUqttHbdeyQeXljEK2HBkEPtbjVxMLv4Qg5uGQEOeBJ4a93Vz
+	pSsuSXAlg6LQYi4O8n+B1BwjGjUKv/X8dxuXJfgZwprHwaJ7P23ycrkSogrria07
+	h6XDMA==
+Received: from mail-oi1-f197.google.com (mail-oi1-f197.google.com [209.85.167.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c2v0m8d7a-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 15:01:49 +0000 (GMT)
+Received: by mail-oi1-f197.google.com with SMTP id 5614622812f47-45ef75e1b70so1537378b6e.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 07:01:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1770044436; x=1770649236; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tjY8IMEcwraRaAcklulnPu0XEgItry8qPQsBSr8viBU=;
-        b=dcQ7YMOYW9wxccJztqL+nbMIdmfMOz/nk2Lx1NVMIg5y6Dhx2/JHttwfR2tHklV2xC
-         FJBqp7QYagpI398/2Orvbahpk87XlxanjEVYErOAU9BruEhTbSjyRSS8VpSBRWsMqZu8
-         +tqvlXUVIAZ0aIgXnDkozhFJd1VX2ztzNnQajpO21iJx0fRqyi0PxGkERL9w2J5potYL
-         frglArS7XtjUz2vIVeNfVm7NxggpmQeiNv8rfOZWane5iDczTkaCK9O0baFxTQjby8EM
-         5bdWDVneEpGic2u3sUE1iE58MRTBMxx8HyEfeAB3P76HIOMo5ah7uUnsgtv4FC/NUv0D
-         0uXQ==
+        d=oss.qualcomm.com; s=google; t=1770044508; x=1770649308; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=b7LkWBSg9k/hqZXrb855SBQlwZa3bPE252WnYqjGZpc=;
+        b=gxukD+0dMe3W9vVLPa0qNZeIGXLUk0N7n1A3XqE0Mh4Om8tf2lYZCp6YAovBoKkgbI
+         dFJBeIN1KBDSxSb/XuuMvPUycHC8fpqXdfGW1DP+9Nwm9LiyFpKqh4xpviXRhW64EQMK
+         +Gy3EOzEdbF1CFz5qUQiBItNk4hGsizWdNOZ9dR0i+0pTFKWW0aN6CRi+CWMHwhs25Nx
+         0nN9h1IXVtK190XZIfTnqkBY7KVcog1pc/IhJGVdW9Ls5QGQfMwvyyOJCA6R8oOUA1D0
+         Q51PdyP4P/mqgVubbROlWQn10fULyGwOMbWxbuMSkTUDhTYxt2/6QgP5E32cJX4sGdAf
+         XJDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770044436; x=1770649236;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tjY8IMEcwraRaAcklulnPu0XEgItry8qPQsBSr8viBU=;
-        b=Bfdp3XxOr7Ay93ZZHuojBVJ0SHdUTjPs5MymXTsKJyPOJqsdzyM9lDruvyeUdRia8X
-         Z/KlWJyqc9AZQyCz5+ZJv+Xg+aKEUi8DGx+qvSgeq7NNj1e9oITmpXjOvLhVx6MTgGgt
-         9ZgSagMB5hn1G78Zfs8PPmUjm9e7flT26NTxZDMmw6CRDwbqraG65XJd2woLm43SZo9D
-         uN6WN+H/RhmRhNCS8DY2X6e5ZGh1z6W848mz4HeuW/K8LEMY7b9Ra8mAoJ+kgMP7t1Sk
-         CqbGqqquMRrUHdEKEB9Vy96MG39d16qVZ9Iqtu0O7O8uiGrvmLHR/wuRlnOz3FiH7cuc
-         wAtw==
-X-Forwarded-Encrypted: i=1; AJvYcCUtVDpCP4QTNiSlWa1buXnKdMv31Wk4G0Y2EExnS19N4amw/gmHVOlMjhSyn5ryGcAiZ/Zxyk7tUq/E@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4Am8zCa6h3qScxzVzy4o8+0CetK1vgYC9JZQEEiEtyibl4Qt2
-	ny80qHwbPRu8YMsop6BmZZXslLohZFPhvZOh6QD63sOSdJHPX81iPq333fQuJYWQkmRBc8wWF66
-	ViEYTaipA0HHz7/AW/90W2FZm4Mau0yr6TQsTTBZlUQ==
-X-Gm-Gg: AZuq6aJNk96ZaSnmRR91UFPoJlG+4/sH1rLCP2KKQOUesWcguwsDSmqOGxgjvlbxvHj
-	HK247Zd4eXT0fMbi40AelznSmUaZIBwzImBb9vXDuAr0q3BQDeZ3ANVMXDtfBh2/WFsszqo6rw+
-	1Hj9Hj6y0i96YvVJAboUrpjNe+ND0YU6n9qulbNKznahKdCW0dxdR+rHB+1GBFHJZZHNGJRiIJD
-	+vwYptFuuVUUEb4aJZMThv1yZFbKg9J1EFtmFgiLUtyy/IvlBfqyxcSNBHtWg66ix/ARl2c
-X-Received: by 2002:a05:6512:1114:b0:59d:cb2c:9b60 with SMTP id
- 2adb3069b0e04-59e16443c8cmr3908427e87.40.1770044435428; Mon, 02 Feb 2026
- 07:00:35 -0800 (PST)
+        d=1e100.net; s=20230601; t=1770044508; x=1770649308;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=b7LkWBSg9k/hqZXrb855SBQlwZa3bPE252WnYqjGZpc=;
+        b=PCPp95pt+G3Ni29DPiS6sAkz78jH0FXNhlsZf8hHYv7Ovxyl1/W2e2TPq0SV4dqq+U
+         41YsQkc8BS9FEuSqKkLH+nruj83QzKxyv/9+b8uV+BB0r7GmDITLqDWJSDjs1rXNzAfW
+         wT1HFprAHv7Kg9SQYbtUO9UtBWTA4gQuj+MCUSwJHDwo2R1pPfmFB3lUCnTt65ixwnLJ
+         Jng+IhQ0XVp+i6aZ/mOMH2NNSj8J1CEt9ONjgYpVPCJQA6ctSAHI1g+FBe2qHTZ/QtgD
+         4iWCzzqeslELCR1Uue8QD+THBy6e3Q4skGInxH67GirYSaxVcbuqtxyz6bjGC+XLhALv
+         9OCg==
+X-Forwarded-Encrypted: i=1; AJvYcCXgsn2xgylCL0g0E8hNRGlhrIfJ+fsIWOzv+e2KirCdEdiAEqki8pnyR/Kfpemv/JbEblE0nB4N49aI@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbPoITOWQBF5smqJhIkx1kBYzqzjLP9aWBVUrgeNEfMXxqiZ2e
+	PGtEF1XkqZYhkd29rq4tDEnHDb3sQGkTBxP5HQRQeAee/LljA2V7Nd8FCwjnP3NGQjopSboJ2HL
+	7NcW0HfJFsglN4vIzpRYaRRm3ID8MNLHUA4HynCAP0CeRvl8Yp2OlI+pFxMzHfWfW
+X-Gm-Gg: AZuq6aJwPv9ptOts9j7C32X7htJeByowDhvDbXkSPXt+GMKvJrc5jp5L49T+v1+KnnQ
+	aJJmKMrRIXNlcyU3Ik+SwK11wx9WWQnM2U8FBjRL4CMk0Zil+ZG0eH535mUDRZMfmCOzGWJiVG7
+	btV2IHC3ptO/k9ez2Uw8xSazqwhuq1GT8aNhxfmgZXxIkcEBU6CIK/qxdiLrlrYauScQ2Z7SEtj
+	YG7hh4ERRtlP5ZCHCInCc5xdK6gWlY/Kiq+bgOBi4JXzDF9otHGRem0+YUFqnZQk0zH6ABXk9j1
+	Rdrpf47B+Ad4JWZGlEOGDeqVqXEqakASTZDqG+mFRXZkfjtepFEOaLnVwEVwTQ1xebNa1AQ6Pgl
+	ZHgWW/qsfu3HrgtGeNkaebOEpyinStYUsSNAu+eLa6S5ROtjuIj6dRRx9Pz/hvcaWcK4=
+X-Received: by 2002:a05:6830:4124:b0:7cf:e23f:5ae3 with SMTP id 46e09a7af769-7d1a525f7acmr4859749a34.1.1770044508545;
+        Mon, 02 Feb 2026 07:01:48 -0800 (PST)
+X-Received: by 2002:a05:6830:4124:b0:7cf:e23f:5ae3 with SMTP id 46e09a7af769-7d1a525f7acmr4859515a34.1.1770044502743;
+        Mon, 02 Feb 2026 07:01:42 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8dbf2ecc73sm897795866b.62.2026.02.02.07.01.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Feb 2026 07:01:41 -0800 (PST)
+Message-ID: <cac8e14e-63e4-462a-a505-cd64e81b2d1d@oss.qualcomm.com>
+Date: Mon, 2 Feb 2026 16:01:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260202064820.347550-1-irving-ch.lin@mediatek.com>
-In-Reply-To: <20260202064820.347550-1-irving-ch.lin@mediatek.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 2 Feb 2026 15:59:57 +0100
-X-Gm-Features: AZwV_QgUchHwCanQC14NjkrQfkr08G0f7AUahWDnGm1YzWor4lHgCWR2MlI4fGQ
-Message-ID: <CAPDyKFokrMP05rqbACON-ov+=diKpRfxywEqyuJHNnUk72L4kA@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Add support for MT8189 power controller
-To: "irving.ch.lin" <irving-ch.lin@mediatek.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Matthias Brugger <mbrugger@suse.com>, devicetree@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com, 
-	Qiqi Wang <qiqi.wang@mediatek.com>, sirius.wang@mediatek.com, 
-	vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/4] Enable ICE clock scaling
+To: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260128-enable-ufs-ice-clock-scaling-v4-0-260141e8fce6@oss.qualcomm.com>
+ <7b219a50-6971-4a0c-a465-418f8abd5556@oss.qualcomm.com>
+ <aYBF3Geeuq2qHmYg@hu-arakshit-hyd.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <aYBF3Geeuq2qHmYg@hu-arakshit-hyd.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=dceNHHXe c=1 sm=1 tr=0 ts=6980bc5d cx=c_pps
+ a=WJcna6AvsNCxL/DJwPP1KA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=fQ1HhNXxD7se1t-yopsA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=_Y9Zt4tPzoBS9L09Snn2:22
+X-Proofpoint-GUID: bFb3sxnW_4g60Xy7zRjASnrQMqjhIaqX
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAyMDExOCBTYWx0ZWRfX4hAho5wpYnzN
+ GhpaHC3oXo8E7h6LDfcmD5ufXqLHZGEj3ySdlycoIfiD6pafQ00IAla38QcJvcN4WHWWag7sV9H
+ dEYqQZwx+hvCrb4KDHaclD7f3j8L9/69+Ln92LLbur0+hNXMdVuW7n21Gd+uV2hLafc//aWCLhU
+ 27NFHSus3IjCGeYvbHLL4WFCl78W2KKC/fdgUfKDSPCswDVc9oMwjDdXQ/LSyIbnTwOXIvuWzxP
+ 8wNm467JvKjA1uYLMenyhs0bnXIR5krG1XaFrVZafpJrtwAoKOFWocCHdYoyQYglyg6ZctN9yLp
+ hlpv78BP+AEb8UCfHyZvXRzRhoJfKmjUs1zELjMbJzZ0bLZiBHu+/ALOKkZ1UWLmWF4eFWEWTsE
+ wn//H+ZSCjnN4eSXJSgKo8b5J4tjhXUjxKaz16hte+g0617Qazdz9ykZWcew8foGfHtJtaFoMY1
+ KZ47jcq+g1bxf1VPYlA==
+X-Proofpoint-ORIG-GUID: bFb3sxnW_4g60Xy7zRjASnrQMqjhIaqX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-02_04,2026-01-30_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 spamscore=0 malwarescore=0 suspectscore=0
+ lowpriorityscore=0 impostorscore=0 adultscore=0 phishscore=0 bulkscore=0
+ clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2602020118
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261863-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,suse.com,vger.kernel.org,lists.infradead.org,mediatek.com];
+	TAGGED_FROM(0.00)[bounces-261864-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: A320CCDE93
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: A6157CDD0E
 X-Rspamd-Action: no action
 
-On Mon, 2 Feb 2026 at 07:48, irving.ch.lin <irving-ch.lin@mediatek.com> wrote:
->
-> From: Irving-CH Lin <irving-ch.lin@mediatek.com>
->
->   This series add support for the power controllers
-> of MediaTek's new SoC, MT8189. With these changes, other modules
-> can easily manage power resources using standard Linux APIs,
-> such as the pm_runtime API on MT8189 platform.
->
-> Irving-CH Lin (3):
->   dt-bindings: power: Add MediaTek MT8189 power domain
->   pmdomain: mediatek: Add bus protect control flow for MT8189
->   pmdomain: mediatek: Add power domain driver for MT8189 SoC
->
->  .../power/mediatek,power-controller.yaml      |   1 +
->  drivers/pmdomain/mediatek/mt8189-pm-domains.h | 485 ++++++++++++++++++
->  drivers/pmdomain/mediatek/mtk-pm-domains.c    |  36 +-
->  drivers/pmdomain/mediatek/mtk-pm-domains.h    |   5 +
->  .../dt-bindings/power/mediatek,mt8189-power.h |  38 ++
->  5 files changed, 560 insertions(+), 5 deletions(-)
->  create mode 100644 drivers/pmdomain/mediatek/mt8189-pm-domains.h
->  create mode 100644 include/dt-bindings/power/mediatek,mt8189-power.h
->
-> --
-> 2.45.2
->
+On 2/2/26 7:36 AM, Abhinaba Rakshit wrote:
+> On Thu, Jan 29, 2026 at 01:17:51PM +0100, Konrad Dybcio wrote:
+>> On 1/28/26 9:46 AM, Abhinaba Rakshit wrote:
+>>> Introduce support for dynamic clock scaling of the ICE (Inline Crypto Engine)
+>>> using the OPP framework. During ICE device probe, the driver now attempts to
+>>> parse an optional OPP table from the ICE-specific device tree node to
+>>> determine minimum and maximum supported frequencies for DVFS-aware operations.
+>>> API qcom_ice_scale_clk is exposed by ICE driver and is invoked by UFS host
+>>> controller driver in response to clock scaling requests, ensuring coordination
+>>> between ICE and host controller.
+>>>
+>>> For MMC controllers that do not support clock scaling, the ICE clock frequency
+>>> is kept aligned with the MMC controller’s clock rate (TURBO) to ensure
+>>> consistent operation.
+>>
+>> You skipped that bit, so I had to do a little digging..
+>>
+>> This paragraph sounds scary on the surface, as leaving a TURBO vote hanging
+>> would absolutely wreck the power/thermal profile of a running device,
+>> however sdhci-msm's autosuspend functions quiesce the ICE by calling
+>> qcom_ice_suspend()
+>>
+>> I think you're missing a dev_pm_opp_set(dev, NULL) or so in that function
+>> and a mirrored restore in _resume
+> 
+> Thanks for pointing this out, its an important piece which is missed.
+> We can use dev_pm_opp_set_rate(dev, 0/min_freq) in _suspend and restore the
 
-The series applied for next, thanks!
+FWIW
 
-Kind regards
-Uffe
+dev_pm_opp_set_rate(0) will drop the rpmh vote altogether and NOT
+disable the clock or change its rate
+
+dev_pm_opp_set_rate(min_freq) will *lower* the rpmh vote and DO
+set_rate (the clock is also left on)
+
+Konrad
+
+> suspended frequency in the _resume. Something similar which is used by sdhci-msm.
 
