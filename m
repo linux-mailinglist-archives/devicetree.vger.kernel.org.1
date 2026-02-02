@@ -1,363 +1,198 @@
-Return-Path: <devicetree+bounces-261873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261874-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yFzIHMnBgGl3AgMAu9opvQ
-	(envelope-from <devicetree+bounces-261873-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:24:57 +0100
+	id 4MjCDFrCgGl3AgMAu9opvQ
+	(envelope-from <devicetree+bounces-261874-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:27:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC7A5CE2B3
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:24:56 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAB90CE338
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:27:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CAEE73033FBE
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 15:18:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8FA64301FABB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 15:24:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24CC237AA7B;
-	Mon,  2 Feb 2026 15:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6876137AA9A;
+	Mon,  2 Feb 2026 15:24:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ToBMxOku"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EZoqAc+O";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="E01szgeK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com [74.125.82.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 264AD36B07F
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 15:18:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E4A137472B
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 15:24:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770045534; cv=none; b=ZCNdVpAy8kWHqlaMUxDH6PMjcH4O0/a2RrR9Nayj+5+V5enVfWEtwvOzEnI8rqGAnn3zUkHHluX3QKUvKizWOlvTlb3lN8YZq5LJn/4LGKdpGfWV6myyUeRCcAQAJ1y5oWxFL6Su7c0SJXEsxF9iIy/idXAKUdaol+nNaqbmjHA=
+	t=1770045874; cv=none; b=fsLGtAfA7N42+o2H4/WDbmU4avkKSgJuFLpY2zPeGkeB5o/od8bP9/Zb4H1YRhdcLNJsgCXNvp1actfAupExyNrlxu6Zu5/j/SxO2amssg1z6f3JzVOww5N+x9FhoLFeViuhwpdVJ3tOuj2vjaIQCZkf0bG+MTFgCbrBK6cyENE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770045534; c=relaxed/simple;
-	bh=+zjYskbMXQnNft8MzUReBiuObT6dy/7vTEvHmUyjvOM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SakNUIniVRRnSBHLyoTKHgrvMzkutFP5+DSJm8dWdPDK3WmIBvjFlOwDp5Z61wnVSqQxmkiujwO7TGCq215U6lvP5YPOI055DsWYyQN/+vlVpGWN4Bb5Zw8Rbq2M62a+ZtkbGn6Y3SY5bFLxCMhS/NDvrBqDah2iUjDjDJyVmnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ToBMxOku; arc=none smtp.client-ip=74.125.82.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f177.google.com with SMTP id 5a478bee46e88-2b7381d2d95so2294863eec.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 07:18:52 -0800 (PST)
+	s=arc-20240116; t=1770045874; c=relaxed/simple;
+	bh=vfT1tcLU7TlKpr9DWxg8Ld9JpOc3RsUi/2EutBZZTVI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o/UL6ciqVNETZNED0WFmsB+NMYzLLqKS7gaHCodJhJlJ5kctH6tsokX8Q2+UiL9hcUCfB15dWKooczIjEUkh0RxRpsA6tXFUbzzMWJ5KQYLhtwQA3z3yJT1QjJaB1ADbiSnbnWJPaTYdCVZ4V0YUdREXAyxK8Lkor/Eez7YEHYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EZoqAc+O; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=E01szgeK; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 612CJSJE2884358
+	for <devicetree@vger.kernel.org>; Mon, 2 Feb 2026 15:24:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=xuAB/aSdQx719HfPcvH/r4Wn
+	Qq2zb8+m9cWd9HNsaIU=; b=EZoqAc+OlFGnWvQy9qRTb5zu79/gJZgv0W/R5qww
+	O1/mPEPht5XWaIF57donUqoYPanPKNkGDo05v3RM2H0hQYdwTCAIFO2tWhpqvGQl
+	ZIe2JKdb2be+j/EeKRfekurTo4RUxc4UG9KqVpfbnO/yKH+tE3NQ7Q4lNPxNe4cp
+	Xuw3UoEx8ChgCEcKr7FXys/EOhYWKjTdMhhgnYgHTJmZsjrDs6ZhQ3Jc+U87LIFo
+	H3InlTf61RlDpXKaEsp9camHh76ctRtkguu5tIBjO/Fy75YFnNXR1Oc/yaXBKVfL
+	jUJE/6d/RKonexo2M5fKdZ1+UrLLmjP0U8ucfuNoZ5UqGA==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c2uu3ghdq-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 15:24:31 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c277fe676eso1378196685a.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 07:24:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770045531; x=1770650331; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=LDCiY8TG5eNaEr/sCWKc9Mka+bVdBZQpMlZxy/9XJA8=;
-        b=ToBMxOkuVzGfBrX5nWH2p37x/3mhnhtyqsGympfGfzf9SIICPX6yGfAQuG9OcTAULu
-         2goEmrzZTx6b5327A55uKhWzthC0m8Es8hsLJiZNr52mumt8rATpzuNthK9AuwuUo4yY
-         Rgrrnqz+K0YRQC5Wbg6SGF66enzUgatwAgLnGcbERVzA0SIT+BuPVG1+4w1rjvtybuSe
-         629QoObirAqMY02dB3uYhxGEXCoUkl1uFFQLSDBvnjCbD3vhMim6WEkQ6+48NiFbn1JI
-         ngT1wq7V7RJ14hT3dU36BwmQmD1VMIk3WERh1XK0KBqi42lE20L/DVNTF3h4zX83Jj/R
-         BfEA==
+        d=oss.qualcomm.com; s=google; t=1770045871; x=1770650671; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=xuAB/aSdQx719HfPcvH/r4WnQq2zb8+m9cWd9HNsaIU=;
+        b=E01szgeK/lJ0Na6h+b6LKAzAchhLuUaF5/4KmfomtVM32zbot+LvI3GENzjuyg0whN
+         QNbuexZtj+RdtLDzKNcJsiEyTpkH3GPlf5cStaT0a/phtRIG6CH6lNru/RHlWklDc5/h
+         tOepcuko0BZ8iHwvu/yyISrYZuFu6ceSvVSTJn80Fc9wKfQq5yiMkSZvIXg3XUIGFO9s
+         5L7RdrTLgDFjibdunElFnj4uosgZpeyTPD0YsnbdqOyWH3F9fSZbuo49egdYjY+YkyyF
+         zJSQEIGLKsKKnMUqO90Uqk0nRJQU/BY5NlL73r2k5ne23y83Lu4uoKLJhxmU8BxIK+g1
+         YI4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770045531; x=1770650331;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1770045871; x=1770650671;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=LDCiY8TG5eNaEr/sCWKc9Mka+bVdBZQpMlZxy/9XJA8=;
-        b=qIiN+WODoMyGspOtkaLjO3oGC8xywOwL2UPOzHwvQq/jCW3uE/BiM7zLiXQtSJjR41
-         XFBW2MJCxzApxuF7nvX3vfLqm5fIZ1sD5RclclfJJMCZy5S3EHDYEWON7EBn5OiCNeBt
-         ORyeIN1TL8Yu7NvJa2Rlw63fSPewXqYf2ZeaqQepdqBBJMjKIARAwzBX3XhhlbRsQBno
-         ClgFnsB00RZrkMgr0K0MS5sR7MjXNy11CEZNtjIlI3x4IoEJzEV09wkx9+ycaxtowEk1
-         H4UIaZ48rFmc63aN5LCGUu2/1gGxpmSVOTvssGWlGPgdFO9XTYC5VXPxRKOckgitm0F5
-         ylRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVPpvJ1gnGuOHEIkQDpykdzx6TaedwQgmoupVJUUZz8VZSO5ICnfSlYeQLVXULuNC5aVwejoQFscnR8@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPHTUC6yYS4ba/HeOwUg4qNfLbR1o5uWBMKC1MyLK1U8DMAO7S
-	UPotSxVRA501QPBb61u8ywftqrWmrrWcWU2u2czn0+2wBV20pSCpxgzr
-X-Gm-Gg: AZuq6aKNhZYlifOQ9U1OgSRypTSqpEyzP011yPENRnsH+JeH8QluD7Y/iPW3eTkDUpn
-	iP2IKJ0uAcNsvYIjNUmFqxQkxkRHty3cQbvI91YLge6MhCrxKwHty468oXtda7W+8insXYaUcNn
-	/jh9NxIVTn7m3dlFesOYTKGOT5M/MrZ7fS9M8kG20J2L0VcivFwrLBVoKvHjigGRwuMii86DlhE
-	ZLfercUZX2QebdT8Ri5in7QZP88FfQ5jGEzxYk/aZ0ewdCkJHLlvgrmX9JkgZ2qtgnwtOlv8fe2
-	nsUXWlZv+2IKAwc6ZopmWiYskmjF5WnuyExk489Xp9Mh1f7cefUgQrgQ7EbvU/1uqhXRil6axgo
-	dFf01FvaY3OSlmJGWC4M9RripKBQFIu+W1cH/LHDCRDXdVX20+plSKWn3q9miqWn00GaQkhRVWu
-	3QT3/AhZ6lK1jEnwjs+A4j977jis1q9dNCqqE2DQgvEJM7cRDBry50pGZ++CDC
-X-Received: by 2002:a05:7300:8b24:b0:2b7:c00a:f733 with SMTP id 5a478bee46e88-2b7c923a06bmr4612479eec.5.1770045529575;
-        Mon, 02 Feb 2026 07:18:49 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b7a1adef97sm19943163eec.29.2026.02.02.07.18.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Feb 2026 07:18:48 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <c5e1aaeb-d832-44ac-ba19-77f162b4f31d@roeck-us.net>
-Date: Mon, 2 Feb 2026 07:18:47 -0800
+        bh=xuAB/aSdQx719HfPcvH/r4WnQq2zb8+m9cWd9HNsaIU=;
+        b=GwEe8G5I9Ss422HHPetC3wGOmnCDyz/x2wMU2En0SLeVt+Q2k/7rpF6QFv/KGYAExd
+         PozhCc+bQTgxpQXFaMlcISS4K7ueuKj0ZXWCmugvEXOoWAd0fv9/AMaYvbTk+ZZ2bCuX
+         +taRhI16aqM5o4c8RmqPYV6SClIBpcIomJIkeDoxd4AzjpTl6hnhexQGUQ5EAAvhak6M
+         3hrHPOJ20aSKCwceZuMuxAOxeq4uqmHgwkvsMWYt8iK16d9Oa9p6hTSiv8p3u7nSKaRM
+         iIcrKvEazgLIbSlA8ujVYWNaIlFmDf6oG/R7b3h2m0pEQjoX5R36Mpq6VdpuYwLYhVCF
+         eBEg==
+X-Forwarded-Encrypted: i=1; AJvYcCXxGA7H6hI+Zjwkp/YQ2LFYtAtO4sdcHcDW9IiIQWyMLn9IZnp/4j1xMUfyWw0JfKIDkELIug6Pep0S@vger.kernel.org
+X-Gm-Message-State: AOJu0YwirlvW6pgUvozpKYBBYcLT47oldA+ygn2JUPeoabd+TmCCMfVI
+	77005n5R/vhny7zrcUPDPHN+6XHbXOd3uhazvlmWJc0Qfn9EriPAWWHITsDSa0cpztjQxItHmcM
+	xmSf6/vdYWuqOgZH52rnJ5XNYGhywkDQz2iEHHQ2+cIZURflMW2rxnKo3skZdAoJS
+X-Gm-Gg: AZuq6aLYJD46xT7MNJ9qAm2FQ+Y30E/heHc5cAcefVS8Zu+BGg4KUhyfN4lzeKfndSE
+	K7KnSTuVe69VE91pjRVe9LIUkzAXP+aArh7Z+WL31VwA1Vtnp7d0t3LC+jPg2o6567d+xiuutbt
+	b1OBdsRk0WJoEVf6lv/tKN0clFUAlBKRZTTTV0/1c1S07aByuQifLJdbAnn3nG1WogC/0WVfcld
+	2vtBxv9J+INK8lcFwIkkSsnvqJZIOv34S0sdJZXsKFS/DNCIVTC7AbFZrS1jveXMwwswSoH3AtV
+	RcaPqAui4R51mtt/yk7iPxPf7BGdrtSF32xg1KqDk4S27Lf8yd6G3sOQ1Sn6dqPWiCw70QFd5GH
+	RC/xR0iaH954siYEhcVH0sXVm
+X-Received: by 2002:a05:620a:7017:b0:8c7:1a0d:7d9d with SMTP id af79cd13be357-8c9eb33a996mr1226529285a.81.1770045870463;
+        Mon, 02 Feb 2026 07:24:30 -0800 (PST)
+X-Received: by 2002:a05:620a:7017:b0:8c7:1a0d:7d9d with SMTP id af79cd13be357-8c9eb33a996mr1226524285a.81.1770045869853;
+        Mon, 02 Feb 2026 07:24:29 -0800 (PST)
+Received: from oss.qualcomm.com ([86.121.162.109])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e132356dsm47121957f8f.33.2026.02.02.07.24.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Feb 2026 07:24:29 -0800 (PST)
+Date: Mon, 2 Feb 2026 17:24:27 +0200
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+To: YijieYang <yijie.yang@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: Add base PURWA-IOT-EVK board
+Message-ID: <ulnt5ivsedctjy6shyj6sjlaa7ig5b44jsvvrzm5horzl2zkuk@37upvv5uaybx>
+References: <20260202-purwa-v5-0-1f5a93578802@oss.qualcomm.com>
+ <20260202073555.1345260-4-yijie.yang@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] hwmon: add support for MCP998X
-To: Victor.Duicu@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, corbet@lwn.net
-Cc: Marius.Cristea@microchip.com, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20260127151823.9728-1-victor.duicu@microchip.com>
- <20260127151823.9728-3-victor.duicu@microchip.com>
- <491bd9ec-d6b7-4f1a-877b-67ffbc658ba8@roeck-us.net>
- <da5b2f992a430d30efb558502aec7dc6f6769b0d.camel@microchip.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <da5b2f992a430d30efb558502aec7dc6f6769b0d.camel@microchip.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260202073555.1345260-4-yijie.yang@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: ZQM9Ot2PYwyEG1FOXCQgQ1wYOpStVemh
+X-Authority-Analysis: v=2.4 cv=OrRCCi/t c=1 sm=1 tr=0 ts=6980c1af cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
+ a=kj9zAlcOel0A:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=TSu30AdjdkAtlEphcj8A:9
+ a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-GUID: ZQM9Ot2PYwyEG1FOXCQgQ1wYOpStVemh
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAyMDEyMSBTYWx0ZWRfX906Ym2Jtd/f4
+ 03AK/SjGbkgCUAIF1XwRDiIPnPelqO+pN+/taES0QjgOaSi3/ccCAclYWhe7vQNzu3Ah5LdAFH5
+ vi3echaYk5FIxpOdHXGvop4YZIb9BHeWZ31UqJMiRI1ysb5xcwfDh5m3efWkvR+g5LASmQmr9FY
+ hsCuv9BLcIetk/XRNlA+9qMKuJxcGnAHQlm5pCJO4lgBXxFgpLIeFgqIU+QMuew3iMu3PCcPIHN
+ blQvYzyhz1vw5qaFhFxFnfBpqEsBNF0Ew0uwmcA9iAeaenMbbhEI3UzTCNdgV+JboR6x5eJbIFo
+ CKFr2IeDUEIeZkOFEx5LJJN/VaZiFJ5odQ4ka05sTFvMGRzyKp0X1rV/CADln7vANYz7APp6Mbi
+ o9DHCQ5uwpzKQdjRX0Yw29W8sYJM1SWOKBqF2LK3DDSjx/eoVoJre8WfB2Dh8sqGiIGuKOBwlnX
+ jkYg4oPDKo0cdjB0DMg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-02_04,2026-01-30_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015 adultscore=0
+ malwarescore=0 phishscore=0 impostorscore=0 priorityscore=1501 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602020121
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261873-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[roeck-us.net];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261874-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:mid]
-X-Rspamd-Queue-Id: CC7A5CE2B3
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: BAB90CE338
 X-Rspamd-Action: no action
 
-On 2/2/26 00:15, Victor.Duicu@microchip.com wrote:
-> Hi Guenter,
+On 26-02-02 15:35:48, YijieYang wrote:
+> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
 > 
+> The PURWA-IOT-EVK is an evaluation platform for IoT products, composed of
+> the Purwa IoT SoM and a carrier board. Together, they form a complete
+> embedded system capable of booting to UART.
 > 
->>> +static int mcp9982_read_limit(struct mcp9982_priv *priv, u8
->>> address, long *val)
->>> +{
->>> +     unsigned int limit, reg_high, reg_low;
->>> +     int ret;
->>> +
->>> +     switch (address) {
->>> +     case MCP9982_INTERNAL_HIGH_LIMIT_ADDR:
->>> +     case MCP9982_INTERNAL_LOW_LIMIT_ADDR:
->>> +     case MCP9982_THERM_LIMIT_ADDR(0):
->>> +     case MCP9982_THERM_LIMIT_ADDR(1):
->>> +     case MCP9982_THERM_LIMIT_ADDR(2):
->>> +     case MCP9982_THERM_LIMIT_ADDR(3):
->>> +     case MCP9982_THERM_LIMIT_ADDR(4):
->>> +             ret = regmap_read(priv->regmap, address, &limit);
->>> +             if (ret)
->>> +                     return ret;
->>> +
->>> +             *val = limit & 0xFF;
->>> +             *val = (*val - MCP9982_OFFSET) * 1000;
->>> +
->>> +             return 0;
->>> +     case MCP9982_EXT_HIGH_LIMIT_ADDR(1):
->>> +     case MCP9982_EXT_HIGH_LIMIT_ADDR(2):
->>> +     case MCP9982_EXT_HIGH_LIMIT_ADDR(3):
->>> +     case MCP9982_EXT_HIGH_LIMIT_ADDR(4):
->>> +     case MCP9982_EXT_LOW_LIMIT_ADDR(1):
->>> +     case MCP9982_EXT_LOW_LIMIT_ADDR(2):
->>> +     case MCP9982_EXT_LOW_LIMIT_ADDR(3):
->>> +     case MCP9982_EXT_LOW_LIMIT_ADDR(4):
->>> +             /*
->>> +              * The register address determines whether a single
->>> byte or
->>> +              * multiple byte (block) operation is run. For a
->>> single byte
->>> +              * operation, the MSB of the register address is set
->>> to "0".
->>> +              * For a multiple byte operation, it is set to "1".
->>> The addresses
->>> +              * quoted in the register map and throughout the data
->>> sheet assume
->>> +              * single byte operation. For multiple byte
->>> operations, the user
->>> +              * must set the MSB of each register address to "1".
->>> +              */
->>> +             ret = regmap_read(priv->regmap, address, &reg_high);
->>> +             if (ret)
->>> +                     return ret;
->>> +
->>> +             ret = regmap_read(priv->regmap, address + 1,
->>> &reg_low);
->>> +             if (ret)
->>> +                     return ret;
->>> +
->> Consider using regmap_bulk_read().
+> PURWA-IOT-EVK uses the PS8833 as a retimer for USB0, unlike HAMOA-IOT-EVK.
+> Meanwhile, USB0 bypasses the SBU selector FSUSB42.
 > 
->    The MCP998X family is designed so that block reading is allowed only
-> on the dedicated temperature and memory blocks. Reading from
-> those memory areas uses the SMBus protocol, which returns count
-> and the data. From any other memory region, reading only one byte
-> is allowed. This behavior is described in the documentation at page 26.
+> Make the following peripherals on the carrier board enabled:
+> - UART
+> - On-board regulators
+> - USB Type-C mux
+> - Pinctrl
+> - Embedded USB (EUSB) repeaters
+> - NVMe
+> - pmic-glink
+> - USB DisplayPorts
+> - Bluetooth
+> - WLAN
+> - Audio
+> - PCIe ports for PCIe3 through PCIe6a
+> - TPM
 > 
->    In V2 patch, block reading was used in this function, however this
-> was an exploit. After reading one byte the chip returns NACK to finish
-> the read, that will force the Linux driver to issue another 1 byte read
-> for the second byte, which will return the value and stop.
->    For the addresses 0x00 to 0x09 (temperature registers) the chip will
-> not return NACK after the first byte, it will just go to sleep and
-> return invalid data 0xff. That was a design choice to be backwards
-> compatible with older parts.
-> 
-This warrants a comment in the code. Others won't know and might send
-a patch to "fix" the code.
+> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
 
-> ...
-> 
->>>
->>> +             switch (attr) {
->>> +             case hwmon_temp_input:
->>> +                     /*
->>> +                      * The chips support block reading only on
->>> the temperature and
->>> +                      * status memory blocks. The driver uses only
->>> individual read commands.
->>> +                      */
->>> +                     ret = regmap_read(priv->regmap,
->>> MCP9982_HIGH_BYTE_ADDR(channel), &reg_high);
->>> +                     if (ret)
->>> +                             return ret;
->>> +
->>> +                     ret = regmap_read(priv->regmap,
->>> MCP9982_HIGH_BYTE_ADDR(channel) + 1,
->>> +                                       &reg_low);
->>> +                     if (ret)
->>> +                             return ret;
->>> +
->>
->> Consider using regmap_bulk_read().
-> 
->    In V2 patch, block reading was used to read the temperatures from the
-> dedicated memory. However, the operation would use SMBus protocol
-> and return count alongside the data.
-> 
->    Regmap_bulk_read() in this context uses SMBus protocol, while in the
-> context of reading the temperature limits uses I2C protocol(and is an
-> invalid request).
-> 
->    In order to avoid having one function with multiple behaviors and
-> to keep the driver more generic all block reads were removed.
-> 
-As above.
-
-> 
->>> +                     *val = ((reg_high << 8) + reg_low) >> 5;
->>> +                     *val = (*val - (MCP9982_OFFSET << 3)) * 125;
->>> +
->>> +                     return 0;
->>> +             case hwmon_temp_max:
->>> +                     if (channel)
->>> +                             addr =
->>> MCP9982_EXT_HIGH_LIMIT_ADDR(channel);
->>> +                     else
->>> +                             addr =
->>> MCP9982_INTERNAL_HIGH_LIMIT_ADDR;
->>> +
->>> +                     return mcp9982_read_limit(priv, addr, val);
->>> +             case hwmon_temp_max_alarm:
->>> +                     *val = regmap_test_bits(priv->regmap,
->>> MCP9982_HIGH_LIMIT_STATUS_ADDR,
->>> +                                             BIT(channel));
->>> +                     if (*val < 0)
->>> +                             return *val;
->>> +
->>> +                     return 0;
->>> +             case hwmon_temp_max_hyst:
->>> +                     if (channel)
->>> +                             addr =
->>> MCP9982_EXT_HIGH_LIMIT_ADDR(channel);
->>> +                     else
->>> +                             addr =
->>> MCP9982_INTERNAL_HIGH_LIMIT_ADDR;
->>> +                     ret = mcp9982_read_limit(priv, addr, val);
->>> +                     if (ret)
->>> +                             return ret;
->>> +
->>> +                     ret = regmap_read(priv->regmap,
->>> MCP9982_HYS_ADDR, &hyst);
->>> +                     if (ret)
->>> +                             return ret;
->>> +
->>> +                     *val -= (hyst & 0xFF) * 1000;
->>
->> What is the mask for ? The chip registers are 8 bit wide.
->>
->>> +                     *val = clamp_val(*val, -64000, 191875);
->>
->> Clamping on reads is highly unusual. Why is this needed ?
-> 
->    There are instances when the hysteresis limit could be outside
-> the range of temperatures.
-> 
->    For example, if the high limit is set to -45000 and the hysteresis
-> is set to 20000, the high limit hysteresis is -65000 which is outside
-> the range of supported temperatures.
-> 
->    The hysteresis is set related to the critical temperature (that is
-> higher then the "high limit") but it will be applied also to the "high
-> temperature". In this case the hysteresis is valid for critical but it
-> will be out of range for the "high temp".
-> 
-"Supported" is irrelevant. Question is what is written into and reported by
-the chip. It may be "out of range", but the value is still written into
-the chip. So the question is: How does the chip react to the "out of range"
-values ? I suspect that it technically still works, even if the value is not
-officially supported. That should be reflected in the reported values.
-More specifically, if setting the hysteresis in your example to 19000
-instead of 20000 triggers a different response from the chip, that needs
-to be reflected in the reported values.
-
-Guenter
-
+Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
 
