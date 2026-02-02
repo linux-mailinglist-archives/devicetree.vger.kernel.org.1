@@ -1,156 +1,398 @@
-Return-Path: <devicetree+bounces-261898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261908-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uPIpEmPogGleCAMAu9opvQ
-	(envelope-from <devicetree+bounces-261898-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 19:09:39 +0100
+	id KPyEH33pgGleCAMAu9opvQ
+	(envelope-from <devicetree+bounces-261908-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 19:14:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60718CFF06
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 19:09:38 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91046D0007
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 19:14:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C649D3004413
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 18:09:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 18EFE300E630
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 18:11:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4885C388853;
-	Mon,  2 Feb 2026 18:09:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4728938E100;
+	Mon,  2 Feb 2026 18:10:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cPjz6/ly";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dkh1hJLB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A1112248A8;
-	Mon,  2 Feb 2026 18:09:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C01522248A8
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 18:10:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770055772; cv=none; b=K7hJF9W333zVTE69vg85eQGzoKxgBg7gRocaHNXkkc1AZLUCDdT0mv3lTRcA7bGx1tIYnee1vabRnR40xbPeOe9U4H8TmoX4M+rSUfb4/QlhLpL1+EegMoryzXShey2uXdAJQ2udqUtC4B1nDlg3eDu9STAtHUnKFh4QrX/vu7U=
+	t=1770055847; cv=none; b=cmJh7qO5nSBL3tmhL7mQSD4vvXstKEs7Nu2w0k53AWqupCms8lwtNksNV5oRbsRUKKy3U63Vepm/jqH2XS0N/zAvDRibKJiU7UdaL0rewIFyyIsjnSWcfF+NizF+UwKL4/u+qjLLgdRTcDXLL1PCoe8VGXNE1bL/dF3hyTY9/6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770055772; c=relaxed/simple;
-	bh=viPzO1OIsG8xBjLEk/McdydKjkbMWxBClZM+2L19Uds=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kijVwspYY1owe/Wrlh2KmLqDXR6Bgf+3juleRMqdYxWlIM4Bjym+rQuSxo3dDV3hGO4j7nc44PsuTBQKWSb+BjmxbOCy6M/7pCmQKvvkJ3jV8UeaVyI0dyX/i0jHQhCIiSeeLX65NHarpSOobTgaBUBHXCa1pKqiBdXIsLaWvIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.99)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vmyMU-000000001P7-1Dmt;
-	Mon, 02 Feb 2026 18:09:22 +0000
-Date: Mon, 2 Feb 2026 18:09:17 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
-	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH v12 4/4] net: dsa: add basic initial driver for MxL862xx
- switches
-Message-ID: <aYDoTSySNt7vXazL@makrotopia.org>
-References: <cover.1769908155.git.daniel@makrotopia.org>
- <c5895811389aed7f426ed9c9461e8ac0e8017da1.1769908155.git.daniel@makrotopia.org>
- <20260202102326.vz5qhg6wzzje553v@skbuf>
+	s=arc-20240116; t=1770055847; c=relaxed/simple;
+	bh=L5bLTQa7zwHJTh1VWiuGpTOvZWKavJhytKPxRE0/sfo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=QBEkEXw9iAQi5KbEdsy5UpKSNL/Nd+sCynDO40jSqQ/7qs0hejJ6VwB0ZRWKA5UiR4ErzKJdZgNP6jKgbk2s4cdutMtuVYOnLKV7wo11iGgSIxTGXvKMiIY7LHDwVrkeqGpMG7rObU/XxVlBVNqSSGAFGX2GtJE29OihdfeQHbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cPjz6/ly; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dkh1hJLB; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 612HSrfa092361
+	for <devicetree@vger.kernel.org>; Mon, 2 Feb 2026 18:10:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:in-reply-to:message-id
+	:mime-version:references:subject:to; s=qcppdkim1; bh=qfXRkiX70F7
+	J+5IZZ9fYqWyzFFOmyuc1s3yJyTWwBI0=; b=cPjz6/lyQo6XcVKdg5PQSNYDnW6
+	naUaoWe4uMaUVLntsOzP4kW0XEzWdqJWbLNibqecm4dAAJelUV2+3UGhobHrph4s
+	UR3PiPG43r7QNh1H0K5Auk6qW3sgpUJJsV66pvkxQFeXue+azRmqGv6AldMuW7GO
+	7+jd+2I4uP/nXaclc1iXLwUX7F5qDWRm12wFD4grt5fqgiV84uq8v6dUIxmgEVgm
+	Evdzn2p3XAv7QasLmo+aqbdFNVZn4RAAnbT/QXLLOPx//MjWNY4JalA8bOppjmmg
+	MyANJ/tvKVCsbR4VH8OjevNpfCIypysWD/2S/yhzONaU4p2cELNoYO+zafA==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c2trbh9k8-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 18:10:44 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-81e81fbbb8cso4567553b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 10:10:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770055844; x=1770660644; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qfXRkiX70F7J+5IZZ9fYqWyzFFOmyuc1s3yJyTWwBI0=;
+        b=dkh1hJLBVno0YTtYtmWv40Fgz7vrsPwKJhb2GNpvw+aZMgdXajYmN00M+2NZSiSLlX
+         l3vqMQlPkv9fUXqPhDRQDfWjRww8VfzMglbIxO0GuhQdtDRHw4Mj2EDbV/gWWy8QdX18
+         uKTFYqVo7VjD8kmgLlhCPjV5XLuV4/U66uGigrd0gx+LVEFdInWefPHyWQMbw/OCbvxq
+         OFeVgC4Rv7EwRO+SYbCLgMJX6C9UDHyWYNiFambw4uTtA8OocVFc+X5PvPmvw9qtBDoG
+         H1JzMTZz+dqAJ+DpGQ36hLfZ0buV5Y2dfk+NQED6U3z1E5RufvNODlV0dI/eBNBM8Ead
+         CUNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770055844; x=1770660644;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=qfXRkiX70F7J+5IZZ9fYqWyzFFOmyuc1s3yJyTWwBI0=;
+        b=B6fwcMVS3u4Rh1SRFJwJHl19ZXq5jl9KQBAVwo4WF9fWEIVL7V4N/6CAtc+75MtsRu
+         3O4CDcMq1bCkFDgyCMmPEZ+Dttop4AVR1Q4A/4t5Mx1dVWqlgLQYK11zmq5hKdLlQyFg
+         uA2s29IVS9wHKsbtAaomCgnRfiGO5TexKzjatdfcFFdNxtTYfIua9LktuDUUk7E2FMKY
+         cP0SfAvZcdIk++waUxi3STI0Y6eRGXa1p1E4J8zmPa8D1/PYXYwtko622xoAOsxJEg/c
+         WF+k5/fKKqJbxLJCPvMhANoBliKwxVqmhE09RjBrTlAgxeNi3wNogQEUIrqhxWioHgQa
+         opQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWHn8zGeMnxoax3gNJf7w23WB1qQfdHCdJo8A+2KAFn+TVBrsuEJaKNPwatFMaKIDyt/xMd7q0wa9XY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5vslM4kJlPzX3Nc3QCM00L0oWd9+4/Suo9FIgosBT8FTF60/z
+	oU/XI3eWXrhdfiS+yKDA9qVlQ+4oJOx6JIwGF4iwNV9AduyD3IJdZbgiyS4rNoLTvpo9OlVIWZH
+	TxSV/KCKpDg5aOkq/nKHAsp98jMOXusyvVyOlX0NB1W2KN68SsTI3lqSN2JhRh1DB
+X-Gm-Gg: AZuq6aIP0c+rwvLN6N3Kx83voYnEMn5dvOlrJpdg+UqNV+ZSNJ10y4zVXYE7U/IgVoi
+	eowfQ/L7el/FcZq3U/q8NgHD2xQBUd4SEklClcnW5vF1lfe9vXQU1UdbsbSs/JC7Qp36N+Lh+aW
+	moGW9QseNt2iqyerYE6DTJ+eI5ze3tJgNZ8zfazONCA22J7EhWfkT/4TKdI9k/RqIjgIUPxibuP
+	STHT331QPsAYM8xtrRKzZEICQp3idUEGbRetPdtOBYMzYs7zPi5ttqREXAnVnfXBwraUlRgkBEg
+	LpPA+N0L8jQlbx8RFiLTwW8Th51fDUsKc6JbLjJR8jh1bLO3Kvv6DtoGscSLEzrnF3itvmsIKFh
+	CCsPYNirYjIOMvmuBhPI7eHJsDB4WGgzxGFdpUyr1tQE=
+X-Received: by 2002:a05:6a00:12d4:b0:823:16e2:66db with SMTP id d2e1a72fcca58-823ab425e00mr13012375b3a.0.1770055843664;
+        Mon, 02 Feb 2026 10:10:43 -0800 (PST)
+X-Received: by 2002:a05:6a00:12d4:b0:823:16e2:66db with SMTP id d2e1a72fcca58-823ab425e00mr13012330b3a.0.1770055843031;
+        Mon, 02 Feb 2026 10:10:43 -0800 (PST)
+Received: from hu-ptalari-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82379bfc712sm17476780b3a.40.2026.02.02.10.10.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Feb 2026 10:10:42 -0800 (PST)
+From: Praveen Talari <praveen.talari@oss.qualcomm.com>
+To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Praveen Talari <praveen.talari@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bjorn.andersson@oss.qualcomm.com, dmitry.baryshkov@oss.qualcomm.com,
+        konrad.dybcio@oss.qualcomm.com
+Cc: prasad.sodagudi@oss.qualcomm.com, quic_vtanuku@quicinc.com,
+        aniket.randive@oss.qualcomm.com, chandana.chiluveru@oss.qualcomm.com,
+        jyothi.seerapu@oss.qualcomm.com
+Subject: [PATCH v4 09/13] i2c: qcom-geni: Isolate serial engine setup
+Date: Mon,  2 Feb 2026 23:39:18 +0530
+Message-Id: <20260202180922.1692428-10-praveen.talari@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260202180922.1692428-1-praveen.talari@oss.qualcomm.com>
+References: <20260202180922.1692428-1-praveen.talari@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260202102326.vz5qhg6wzzje553v@skbuf>
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: k0jYZMfpMppueEUyE_MvFCXJnskNu6kZ
+X-Authority-Analysis: v=2.4 cv=dcmNHHXe c=1 sm=1 tr=0 ts=6980e8a4 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=6GPvvr__t7aM35KwLhsA:9 a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-GUID: k0jYZMfpMppueEUyE_MvFCXJnskNu6kZ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAyMDE0MiBTYWx0ZWRfX7iyJNs6Ier2m
+ i1KNI+6TQ5CJCcKSnxHi6P9U5bCFuEDHkEpcqu3c72DbD8VA7wdeO1d2nFXuM71ULG05bisUdiL
+ dBvzCzX9Zhm7em5V1E6BDZeVGpHuSMoL2pHnFTNKOCn/9zyqmptktsQ6mryoTaxL8ZuI6M9CLQV
+ 4Fntteh2uMFAaRMIpkJMurMzw3lq9UNahHkpajFEUrKhIXabHXmCOP4YciLg3mz7ysW6V8TeYMh
+ hXuOjsMgNRhi9Mz70lu38VVl5zxnC9Hfk36E/0bPRXbZyun7Vzd12fdzJ94hcFpyk8e00CG3Roz
+ KB0NV2UbUpxg//8w2BaGmeI72eDiIfPkuFJaDrWbNkRcJoVXOVd1jh+IvObwVq6EJoTMM15OiBo
+ Bv50IrWldY6dztXFB2nAtGqNGdONCuq9hChXEsnpJqKIsT/PXTa3gIs/fIxVbABcd+U3Ws7jiqf
+ Q/ghC8dNqJFFJ4lOPYQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-02_05,2026-02-02_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 malwarescore=0 impostorscore=0 lowpriorityscore=0 phishscore=0
+ bulkscore=0 suspectscore=0 clxscore=1015 priorityscore=1501 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602020142
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261898-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[makrotopia.org];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-261908-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[26];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FROM_NEQ_ENVFROM(0.00)[praveen.talari@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 60718CFF06
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 91046D0007
 X-Rspamd-Action: no action
 
-On Mon, Feb 02, 2026 at 12:23:26PM +0200, Vladimir Oltean wrote:
-> On Sun, Feb 01, 2026 at 02:25:13AM +0000, Daniel Golle wrote:
-> > +static int mxl862xx_setup_mdio(struct dsa_switch *ds)
-> > +{
-> > +	struct mxl862xx_priv *priv = ds->priv;
-> > +	struct device *dev = ds->dev;
-> > +	struct device_node *mdio_np;
-> > +	struct mii_bus *bus;
-> > +	int ret;
-> > +
-> > +	bus = devm_mdiobus_alloc(dev);
-> > +	if (!bus)
-> > +		return -ENOMEM;
-> > +
-> > +	bus->priv = priv;
-> > +	ds->user_mii_bus = bus;
-> > +	bus->name = KBUILD_MODNAME "-mii";
-> > +	snprintf(bus->id, MII_BUS_ID_SIZE, "%s-mii", dev_name(dev));
-> > +	bus->read_c45 = mxl862xx_phy_read_c45_mii_bus;
-> > +	bus->write_c45 = mxl862xx_phy_write_c45_mii_bus;
-> > +	bus->read = mxl862xx_phy_read_mii_bus;
-> > +	bus->write = mxl862xx_phy_write_mii_bus;
-> > +	bus->parent = dev;
-> > +	bus->phy_mask = ~ds->phys_mii_mask;
-> > +
-> > +	mdio_np = of_get_child_by_name(dev->of_node, "mdio");
-> > +	if (!mdio_np)
-> > +		return -ENODEV;
-> 
-> As per the dt-bindings patch, the "mdio" child node is not required.
-> But here it is.
+Moving the serial engine setup to geni_i2c_init() API for a cleaner
+probe function and utilizes the PM runtime API to control resources
+instead of direct clock-related APIs for better resource management.
 
-Now that ports are counted from 0, and 0 being the microcontroller, the
-port number no longer matches the PHY ID, so I suppose I got to change
-the dt-bindigns as that kinda makes the mdio node mandatory for anything
-to work.
+Enables reusability of the serial engine initialization like
+hibernation and deep sleep features where hardware context is lost.
 
-> 
-> All user ports are given a valid non-NULL dp->cpu_dp pointer. I strongly
-> oppose introducing FUD in the code. If there are valid reasons behind
-> this I'm all ears, but there aren't.
-> 
+Acked-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
+---
+v3->v4:
+viken:
+- Added Acked-by tag
+- Removed extra space before invoke of geni_i2c_init().
 
-Looking at other drivers I thought that, and regret not having challenged the
-AI commenting on this...
+v1->v2:
+Bjorn:
+- Updated commit text.
+---
+ drivers/i2c/busses/i2c-qcom-geni.c | 158 ++++++++++++++---------------
+ 1 file changed, 75 insertions(+), 83 deletions(-)
+
+diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
+index ae609bdd2ec4..81ed1596ac9f 100644
+--- a/drivers/i2c/busses/i2c-qcom-geni.c
++++ b/drivers/i2c/busses/i2c-qcom-geni.c
+@@ -977,10 +977,77 @@ static int setup_gpi_dma(struct geni_i2c_dev *gi2c)
+ 	return ret;
+ }
+ 
++static int geni_i2c_init(struct geni_i2c_dev *gi2c)
++{
++	const struct geni_i2c_desc *desc = NULL;
++	u32 proto, tx_depth;
++	bool fifo_disable;
++	int ret;
++
++	ret = pm_runtime_resume_and_get(gi2c->se.dev);
++	if (ret < 0) {
++		dev_err(gi2c->se.dev, "error turning on device :%d\n", ret);
++		return ret;
++	}
++
++	proto = geni_se_read_proto(&gi2c->se);
++	if (proto == GENI_SE_INVALID_PROTO) {
++		ret = geni_load_se_firmware(&gi2c->se, GENI_SE_I2C);
++		if (ret) {
++			dev_err_probe(gi2c->se.dev, ret, "i2c firmware load failed ret: %d\n", ret);
++			goto err;
++		}
++	} else if (proto != GENI_SE_I2C) {
++		ret = dev_err_probe(gi2c->se.dev, -ENXIO, "Invalid proto %d\n", proto);
++		goto err;
++	}
++
++	desc = device_get_match_data(gi2c->se.dev);
++	if (desc && desc->no_dma_support) {
++		fifo_disable = false;
++		gi2c->no_dma = true;
++	} else {
++		fifo_disable = readl_relaxed(gi2c->se.base + GENI_IF_DISABLE_RO) & FIFO_IF_DISABLE;
++	}
++
++	if (fifo_disable) {
++		/* FIFO is disabled, so we can only use GPI DMA */
++		gi2c->gpi_mode = true;
++		ret = setup_gpi_dma(gi2c);
++		if (ret)
++			goto err;
++
++		dev_dbg(gi2c->se.dev, "Using GPI DMA mode for I2C\n");
++	} else {
++		gi2c->gpi_mode = false;
++		tx_depth = geni_se_get_tx_fifo_depth(&gi2c->se);
++
++		/* I2C Master Hub Serial Elements doesn't have the HW_PARAM_0 register */
++		if (!tx_depth && desc)
++			tx_depth = desc->tx_fifo_depth;
++
++		if (!tx_depth) {
++			ret = dev_err_probe(gi2c->se.dev, -EINVAL,
++					    "Invalid TX FIFO depth\n");
++			goto err;
++		}
++
++		gi2c->tx_wm = tx_depth - 1;
++		geni_se_init(&gi2c->se, gi2c->tx_wm, tx_depth);
++		geni_se_config_packing(&gi2c->se, BITS_PER_BYTE,
++				       PACKING_BYTES_PW, true, true, true);
++
++		dev_dbg(gi2c->se.dev, "i2c fifo/se-dma mode. fifo depth:%d\n", tx_depth);
++	}
++
++err:
++	pm_runtime_put(gi2c->se.dev);
++	return ret;
++}
++
+ static int geni_i2c_probe(struct platform_device *pdev)
+ {
+ 	struct geni_i2c_dev *gi2c;
+-	u32 proto, tx_depth, fifo_disable;
+ 	int ret;
+ 	struct device *dev = &pdev->dev;
+ 	const struct geni_i2c_desc *desc = NULL;
+@@ -1060,102 +1127,27 @@ static int geni_i2c_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = clk_prepare_enable(gi2c->core_clk);
+-	if (ret)
+-		return ret;
+-
+-	ret = geni_se_resources_on(&gi2c->se);
+-	if (ret) {
+-		dev_err_probe(dev, ret, "Error turning on resources\n");
+-		goto err_clk;
+-	}
+-	proto = geni_se_read_proto(&gi2c->se);
+-	if (proto == GENI_SE_INVALID_PROTO) {
+-		ret = geni_load_se_firmware(&gi2c->se, GENI_SE_I2C);
+-		if (ret) {
+-			dev_err_probe(dev, ret, "i2c firmware load failed ret: %d\n", ret);
+-			goto err_resources;
+-		}
+-	} else if (proto != GENI_SE_I2C) {
+-		ret = dev_err_probe(dev, -ENXIO, "Invalid proto %d\n", proto);
+-		goto err_resources;
+-	}
+-
+-	if (desc && desc->no_dma_support) {
+-		fifo_disable = false;
+-		gi2c->no_dma = true;
+-	} else {
+-		fifo_disable = readl_relaxed(gi2c->se.base + GENI_IF_DISABLE_RO) & FIFO_IF_DISABLE;
+-	}
+-
+-	if (fifo_disable) {
+-		/* FIFO is disabled, so we can only use GPI DMA */
+-		gi2c->gpi_mode = true;
+-		ret = setup_gpi_dma(gi2c);
+-		if (ret)
+-			goto err_resources;
+-
+-		dev_dbg(dev, "Using GPI DMA mode for I2C\n");
+-	} else {
+-		gi2c->gpi_mode = false;
+-		tx_depth = geni_se_get_tx_fifo_depth(&gi2c->se);
+-
+-		/* I2C Master Hub Serial Elements doesn't have the HW_PARAM_0 register */
+-		if (!tx_depth && desc)
+-			tx_depth = desc->tx_fifo_depth;
+-
+-		if (!tx_depth) {
+-			ret = dev_err_probe(dev, -EINVAL,
+-					    "Invalid TX FIFO depth\n");
+-			goto err_resources;
+-		}
+-
+-		gi2c->tx_wm = tx_depth - 1;
+-		geni_se_init(&gi2c->se, gi2c->tx_wm, tx_depth);
+-		geni_se_config_packing(&gi2c->se, BITS_PER_BYTE,
+-				       PACKING_BYTES_PW, true, true, true);
+-
+-		dev_dbg(dev, "i2c fifo/se-dma mode. fifo depth:%d\n", tx_depth);
+-	}
+-
+-	clk_disable_unprepare(gi2c->core_clk);
+-	ret = geni_se_resources_off(&gi2c->se);
+-	if (ret) {
+-		dev_err_probe(dev, ret, "Error turning off resources\n");
+-		goto err_dma;
+-	}
+-
+-	ret = geni_icc_disable(&gi2c->se);
+-	if (ret)
+-		goto err_dma;
+-
+ 	gi2c->suspended = 1;
+ 	pm_runtime_set_suspended(gi2c->se.dev);
+ 	pm_runtime_set_autosuspend_delay(gi2c->se.dev, I2C_AUTO_SUSPEND_DELAY);
+ 	pm_runtime_use_autosuspend(gi2c->se.dev);
+ 	pm_runtime_enable(gi2c->se.dev);
+ 
++	ret = geni_i2c_init(gi2c);
++	if (ret < 0) {
++		pm_runtime_disable(gi2c->se.dev);
++		return ret;
++	}
++
+ 	ret = i2c_add_adapter(&gi2c->adap);
+ 	if (ret) {
+ 		dev_err_probe(dev, ret, "Error adding i2c adapter\n");
+ 		pm_runtime_disable(gi2c->se.dev);
+-		goto err_dma;
++		return ret;
+ 	}
+ 
+ 	dev_dbg(dev, "Geni-I2C adaptor successfully added\n");
+ 
+-	return ret;
+-
+-err_resources:
+-	geni_se_resources_off(&gi2c->se);
+-err_clk:
+-	clk_disable_unprepare(gi2c->core_clk);
+-
+-	return ret;
+-
+-err_dma:
+-	release_gpi_dma(gi2c);
+-
+ 	return ret;
+ }
+ 
+-- 
+2.34.1
+
 
