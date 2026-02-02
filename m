@@ -1,435 +1,260 @@
-Return-Path: <devicetree+bounces-261743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261744-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QHYWLk+AgGka9gIAu9opvQ
-	(envelope-from <devicetree+bounces-261743-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:45:35 +0100
+	id +MpnG5J/gGnE8wIAu9opvQ
+	(envelope-from <devicetree+bounces-261744-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:42:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20BC3CB2A0
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:45:35 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92CA1CB1E0
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:42:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D3DA630860D1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 10:37:44 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E580E3007B23
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 10:40:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8C9C35C1AB;
-	Mon,  2 Feb 2026 10:37:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB0AF3570B2;
+	Mon,  2 Feb 2026 10:40:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cokpgzLR"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="E14rRjUf";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fNxuB82p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E799135B64C
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 10:37:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770028656; cv=pass; b=jP9ovVS7X7YOUF2v8gcCCIai6SU6bbHVDQ6ydToR5brMpqmQHsZmeZ1OVNS7kdJjBxvBhUkX9zaCAX5FfLTPDm0k0F2Y0pBB85YOVHMWcu1Ks/jSoCzqDOtfMXwIXNXezW0DgszB0gdeXHcBXZC3tzVIkPv088ULrMa2+Al3C4w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770028656; c=relaxed/simple;
-	bh=P7BrR8QvBj73TBqsrF6OihXrgbB+M4oc79DNzrwO8BA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dbovVgvB/KocWW/ctGoJ9SQCY+SsxmPdPOKu6s97LjqrER4OH+nZb1wK8FCw+DMAqNxwoS1QZkW8DNM12ICr+Qt35b7FlKOCwvEMDGpIUXRLQZ55/EEIHwwrNCF1oZDpBq5eU1rQDYFPpSR4qEfhD8Ci2LWEjViObfkrPHmc47w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cokpgzLR; arc=pass smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b885e8c6727so821777266b.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 02:37:33 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770028652; cv=none;
-        d=google.com; s=arc-20240605;
-        b=KZXAshb0Y5snZTEnAMSUTlv4SPQgazmPD0J6z1QLzNusZibMq4XQMF0OyUVFvLF0NA
-         391NWFNJ3IO1IZ65PAvZC7rVZIAPy59BWf+83LOO0tHNCCBXPSke5BsykdDIvnZuYxG4
-         LvDZtvF8i/oUm+ocoPkdI9WkVq7v62rr2Ssnbiya+f38H6R0DuhS9Orl5aCjKrtUXws9
-         ttkCqBhvkA/d3OjfsSDO+NzdPq/JQl2nCbBTUii1kt+8jGCL9xNqMb0UIIJeWrQgzh9K
-         EtrN1s50/QiMn2I9X92FYE4rZDXQAYgq0QBkbjuyoXHJ2KKsrqtgB4smLzFeqkZJynhm
-         JyzA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=osHQLxXgB0+OWVrxqsLMgDWtZoVUS3LxuKc/2PLIVd4=;
-        fh=R3rmo1GVr0rrK4ALFychQn2d1Wv2rAkA7PT0bJZ9uJk=;
-        b=NIJMzfpM9XQLDKaRCn9CSjBUK3fD1uWLkaYSaL/DgZ9x2yhBrVgMz0kcFkYSJY8oH8
-         aPub777OZC1cudxBAZpdzuRP4ARJHntPHFJ41AfwT42tnrLLYIRAHGCfS2NPbbTPXnB/
-         16voD3V7FEDB9ZompUNSPwaIRDOGCXA5immuVsYPe/cmGTeyoPDQDQpEsHaKRPDFVmmy
-         4VMuEdi7zpTZQEaLwkm2w3PvvSd6CvBLH1pjIueXA9OHWfauhktoCImz4ZsG5OR0bHun
-         FYjTD3YVoeG0Dqjdh3YvRSIdY6DI+4pRyxLmaFk5QegY767uGGJ27lBoEFizZTj0Rwss
-         1xlw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F53F221555
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 10:40:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770028815; cv=none; b=AjywsQOKPHH+/KgLjXG2i8Wco5L0ISP8gSerLLagMFq9mIVv2Lct2VuvqRYtiFcqWvhOcB/jZoE6Ann8Sc6y6SU5sBIXRLHa5noc+zD0G3d7eT3DMC0n1lB4Sw10s2N97uVIUQvjpk4AUEkBSOeJOLoGRcntXWAdQmF/zzTOIEE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770028815; c=relaxed/simple;
+	bh=6gTBglFHTaGgqTTG6CBV0R7cUv7XK9CWO51lUDEkXsA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qHKfjP6+AkJ3ZoPHh79OMbQR7sTwVp3dopfuNkZ0TBGZEGmHi4QAIuGbKRDGH1GKd2snDIBoof3J0zrNinns4qePoxGvGjqI4flgD1weficdpfAfqJ90UUB9Au4MkjIIuHkVm8cHh6kbcQ0X1dlvYt4G0RlVjaeliMSk9elxIPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=E14rRjUf; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fNxuB82p; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61281qZt1558427
+	for <devicetree@vger.kernel.org>; Mon, 2 Feb 2026 10:40:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	2eKwi0gX9NY3lt9IpkM1Ek8vFQh6Pze36H48CYSXvew=; b=E14rRjUfhrZknhv1
+	pHRM8oI5iG6TN5bIN0kkaPZQLr2MzmgH8+UUcWVnk05E5bDOfabKpOCB+KGAxzwo
+	YdYRDLV5ZUeXphedUKHVkgOfoMpFtXOkr4w6q6AgkuX3/RgrZ3r73JOh9Uv5LNw0
+	36OxDoo+YD+5hD6Sb5T56Xp9D71AdH+XVeTfH2eUa/TzUN9HSVSzbBF7iTiD96DR
+	1Sex2QL9BbGm9xaVrC+40fL5fL8YpZPQC54gVqs68XYmNRn9cURoeUIUWg0L6GyP
+	0h2/fhJAHNn1KU/+CFeKokWWl0okpv+5JMWTR7wm7rQ5WDP6yt3dx43I5WuFU3OG
+	HcLB2A==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c1au2n2nb-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 10:40:13 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-c636238ec57so2918502a12.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 02:40:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770028652; x=1770633452; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=osHQLxXgB0+OWVrxqsLMgDWtZoVUS3LxuKc/2PLIVd4=;
-        b=cokpgzLRaUg1hFkww5OdV3eUx/XkrPcRA02cd3ttmu3nZvhh8Wekhde5qONvZxgu+g
-         Ob28B8aEAZ2QMavjzvt8Shifw+Ks0aKmXnat68zKG8oraffacKYmdkCZxMUQ64ozZ2YF
-         8dnRvXn1BteokgbZZeEl4djePK9GEhYFgkNtl5noNFSSfsZguUUwCWzPjnInhgwtmrPp
-         gHANB+GnH8mhT/aQGrl2JAfjHujibsU5l6SKR0rP9zC1GXvUtUODpgz1Nb2dIGTLDv5X
-         Jn7ejTwnUN75G8MIz0jyBqpEm6iJ82/W/sCTHb343HgAn94mde3USzfyiYAl5b4WIS8B
-         U1RA==
+        d=oss.qualcomm.com; s=google; t=1770028813; x=1770633613; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2eKwi0gX9NY3lt9IpkM1Ek8vFQh6Pze36H48CYSXvew=;
+        b=fNxuB82psHV4bIjz3fE82NuDAqYeTrzGd89/Qtu4Obgo2b47NnX/JtRP0tHRhF3tvt
+         pclG6MHhzsZflmTf4LFGDb7w2d5cgfFh+BVvwg6C7HRNN3mvMGFbZCmkSHUWhVt9lQ21
+         aVdCCE91Ik6F6QQZIYHPaOSmIkG+JphpVbg01KMlisr5c3VUtfOOJfOvqph/9mKW4DGN
+         TSLyMRamWpvVzXFGtl1Zmi3igSEZRFAW0RHdIApEA/SV1nFdtzSJFo8i17MmVOrNfCoY
+         zJbC8bf917UkZeINlB7ypT9tPSslzB2tQ57TyvS43AFTYeQuGXrfXsEDCCyqWI7+l5ZX
+         KZ9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770028652; x=1770633452;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=osHQLxXgB0+OWVrxqsLMgDWtZoVUS3LxuKc/2PLIVd4=;
-        b=Ofi/9R9+XssHiOWJVNOj18tF0zWAGbjQHXUWYcxCDhRbXqQgJ9S+K44v1TH6IqtV/6
-         9BdIRJh/Ba4vycnSIQVi25X486vVkPS2UqZjICSyWc2iOtjjoq5DE0ZH5teS1D1xT1aX
-         1bHqdf0c+PNWqSd7NSoayAjYOvGeEJzRbeBHHNnVgSO7p/9BX26TxP0j9Km0zB5u0Muu
-         go/yrP+FxrGlxEG5c4YQBONvVjKmbRjgKMKXi2MPw7brFWZ+dafUGsOs+BqOz037Yfvb
-         o1IDd5Wo03VWRxrM+FdpwnN2tT72MxGPPMp4xTuw0MHNwcxDz6yAJv6fpS7SUHYLxC76
-         h6rA==
-X-Forwarded-Encrypted: i=1; AJvYcCUw++jC3LaX2oFfXtx8Aoi3z96Gqn9wUz4WYfaJe87BvSLAt9cCTSg+U+4JyAC5ivv6rOW7QjqPhOHl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2aJWzFqS+5f4YxvOprBb179abAIou3wLt0G8qb3Una7YvglGQ
-	ITESbAqEclUGvTZdinwI104r7XcuBb7kbbu1OEL77YaSiMoj097ZD18GJt6cSJ3kfPbkiO1hKMB
-	TKoIKsX/rdGCD2t+O3bEBXv+JFCChLwo=
-X-Gm-Gg: AZuq6aJ06Jr/mvNQOSJT1+/NP6AcJIocuOm5TNm8OkvvZK7NkAvkaqcr40UhCZnwCl/
-	bIJ9XU//3uwHeWjLPweJXRsJuv7JSS6b9UKYaBXvvPHkNdcj+WbevJDi4xPcJMIRGdwgrbblMu2
-	BQvPtDueHojzNNGUPkArXvd5lX/DS78qcsCs6ioyl1Orf1uY5M2H9NBQwTtyCMJo7rOiPeZwtSA
-	P6skp7YFTotEwndc9cnPrCvNKetZWvp732TusEj+RSW4C7zT7q0hGlLFl56nlIuE7AJ/BWHGVlR
-	UM9hC2tmqDiQK56N5BQJyvQRXDo=
-X-Received: by 2002:a17:906:9f8a:b0:b87:1ffc:bfc0 with SMTP id
- a640c23a62f3a-b8dff430c2bmr675859166b.20.1770028651996; Mon, 02 Feb 2026
- 02:37:31 -0800 (PST)
+        d=1e100.net; s=20230601; t=1770028813; x=1770633613;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2eKwi0gX9NY3lt9IpkM1Ek8vFQh6Pze36H48CYSXvew=;
+        b=tZTPcwShlsS92rl/jb5Cx4NJmgr5fen1xWzs7aiXEs5ygT8ke1xC10oXLElG+3YcOd
+         f4Z341rgLBpH4AVa2gEw4ekYR9csmpg6z6nO1O7Q1ZCbdl4GZt6Yd+/CP4WBI27jz3d9
+         SgHzpgC4mUkSGbb7cfhgZymlgaH3/zAYdEJsrRFmSh5+eQBcn3uLjwy24ayyMCYu2kNm
+         feIDOKtvocvwceYc47sC7F47lwHkDnv+93FB2AZQ4x74pwFh2CD7g5sPRcuVBXi1TInS
+         iojcRJOUYRDpunECH3guhEY63Lli58MaABIpbVMtVZIVYVpSayDRcYytAJA+sOArF2uB
+         kkww==
+X-Forwarded-Encrypted: i=1; AJvYcCVYSOreDTm27JIqjBI2yaSCBBH80EuXI2w2L1zzgu1opgBnNcJNJZ/7iZUD4rYq/BKtAkzp/4hxqSuJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3VpKcjC+u+FAR2tEDJbr0hMUWCJu8S1zXsoouQMRxko5YdYKo
+	j3zR6J+ReYerRp0DWPxaoHfxvRH3ytwtExuU2fqXi0zcPdIowNssSF99GGxyEqidMQULbugtPHp
+	ZaGYHdWRpcRlxUs3uOhHOirr8ke0zXkcERJTSeXFXht5Q+UeeFtn+9M3QcZulk3lR
+X-Gm-Gg: AZuq6aL0PMpFH19bIOtt4Scmk0qrgSTiPO6XYnVyXEAQWVBxlaKMeLq66E45m3ts5xt
+	AalN5bHPCcf6KZELfTEeRhaFSJmLh3CQG7AsrgaYz1MKJA73dqIgE/Rqs/vuFLmAJXhbTUh3TYJ
+	tG5kVzUtX39XVxA7bSIqHETFBT51kxWF/CoyyqM16t58EGugr35dejV3HfjVpGyr1tfmLnnVpGt
+	y2De0Hr2P2FTE41LW3CZgiMGmFHOmksal3/eMmLFo8Dv6sneG0+uUvApJSrZahBDsVuyy5oKko0
+	5q+i1S39DAS2YkZqeIfIC4fXNB0nlmzB3ZjsvGYmbd7JTJ33kBogUpVGz6YwM1D6ctQqPvpgyQG
+	3nxCFERiu58f41um1Ae4egHxjNCBozLP6I2l6cCnhAg==
+X-Received: by 2002:a17:902:e888:b0:2a7:d42f:7065 with SMTP id d9443c01a7336-2a8d96cc4e7mr118124925ad.27.1770028813101;
+        Mon, 02 Feb 2026 02:40:13 -0800 (PST)
+X-Received: by 2002:a17:902:e888:b0:2a7:d42f:7065 with SMTP id d9443c01a7336-2a8d96cc4e7mr118124595ad.27.1770028812611;
+        Mon, 02 Feb 2026 02:40:12 -0800 (PST)
+Received: from [10.204.100.98] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a8dc225534sm86203905ad.68.2026.02.02.02.40.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Feb 2026 02:40:11 -0800 (PST)
+Message-ID: <4dddeac0-cfb0-4ecc-bee2-0b968da6e7c2@oss.qualcomm.com>
+Date: Mon, 2 Feb 2026 16:10:03 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251119184708.566461-1-iansdannapel@gmail.com>
- <20251119184708.566461-4-iansdannapel@gmail.com> <aTv1s6ui1/JmBis0@yilunxu-OptiPlex-7050>
-In-Reply-To: <aTv1s6ui1/JmBis0@yilunxu-OptiPlex-7050>
-From: Ian Dannapel <iansdannapel@gmail.com>
-Date: Mon, 2 Feb 2026 11:37:21 +0100
-X-Gm-Features: AZwV_QhfHFH2QK9_GDCT9HKbl2SXGCpE-BCgTCvibfpml-PbjYBSjsiIIVJPNws
-Message-ID: <CAKrir7jj7h+gO0GPtPbdb4oT5jUmATW1CFwU6YHeuvx4VS1gBA@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] fpga-mgr: Add Efinix SPI programming driver
-To: Xu Yilun <yilun.xu@linux.intel.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-fpga@vger.kernel.org, mdf@kernel.org, yilun.xu@intel.com, 
-	trix@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	heiko@sntech.de, neil.armstrong@linaro.org, mani@kernel.org, 
-	kever.yang@rock-chips.com, dev@kael-k.io
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/5] media: qcom: flip the switch between Venus and
+ Iris drivers
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Stephan Gerhold <stephan.gerhold@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+References: <20260131-venus-iris-flip-switch-v4-0-e10b886771e1@oss.qualcomm.com>
+ <f8179247-80ed-4bf0-85d8-53441f0d9311@oss.qualcomm.com>
+ <249f2097-8676-4fcb-8570-1ec8c0e946fa@oss.qualcomm.com>
+ <pd4slkxwj7q4jrxaxd4xhbzoygxvlnjxjeylqi36pzwy57lion@la65rc7u2fyf>
+Content-Language: en-US
+From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+In-Reply-To: <pd4slkxwj7q4jrxaxd4xhbzoygxvlnjxjeylqi36pzwy57lion@la65rc7u2fyf>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: DzPApOnn0ijdE-oV7ubDK6J9uEBEHLXg
+X-Authority-Analysis: v=2.4 cv=TtfrRTXh c=1 sm=1 tr=0 ts=69807f0d cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=4G6ViigsJfsZwVOxGF8A:9 a=QEXdDO2ut3YA:10
+ a=3WC7DwWrALyhR5TkjVHa:22
+X-Proofpoint-GUID: DzPApOnn0ijdE-oV7ubDK6J9uEBEHLXg
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAyMDA4NyBTYWx0ZWRfX7A48WppiCM0C
+ AOtJm+0zr4cyeDkwv1ghn6K3iMGfJjioNnnqnnnuJMoC8csaYcq6HluFrevn9+fFIFLf6nOkpgf
+ 23xo9qlWnLKsoBSpXo6Pbd0Uqq256IbZkhgWEMtXtP5bBNBLMUnSx+f4G0+1dOXSX4xno/XJPUP
+ QVyykXkOw4ddwbWQuSyRNnVqvATnqFX1qFVO0pGBkOKjgH34Nn0gNLecfJpluRjrkmxO/0ciP3t
+ 13NYhVuASahG2ZzGGZpgDbffWrLPTSaQRM3sH9xxa0BWt9WoGH17XMVZb4IjS4ph1xFj2ajjUd8
+ 9AtmxB2/5BgAjOMDmysk+tWwNXQsugVeSAPIpjGG01pH5uDP9OZgKoQyGWdbOpLrFcoA3PRO3DI
+ jw6gTFl2tNpQst15nhzjggPpyyRwRwt1G7zOfrB7C8xWcViMJt27FvFsfed78nPiX5dBILGLhLA
+ vwcRRUBs8xEhYJ3MgLQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-02_03,2026-01-30_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 phishscore=0 clxscore=1015 bulkscore=0
+ lowpriorityscore=0 malwarescore=0 priorityscore=1501 adultscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2602020087
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-261744-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261743-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[iansdannapel@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 20BC3CB2A0
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 92CA1CB1E0
 X-Rspamd-Action: no action
 
-Hey Yilun,
-thank you very much for your review
 
-On Fri, Dec 12, 2025 at 12:16=E2=80=AFPM Xu Yilun <yilun.xu@linux.intel.com=
-> wrote:
+On 2/2/2026 2:54 PM, Dmitry Baryshkov wrote:
+> On Mon, Feb 02, 2026 at 12:12:01PM +0530, Vikash Garodia wrote:
+>>
+>> On 2/2/2026 12:00 PM, Vikash Garodia wrote:
+>>>
+>>> On 1/31/2026 7:28 PM, Dmitry Baryshkov wrote:
+>>>> As the Venus and Iris drivers are close to the "feature parity" for the
+>>>> common platforms (SC7280, SM8250), in order to get more attention to
+>>>> squashing bugs from the Iris driver, flip the switch and default to the
+>>>> Iris driver if both are enabled. The Iris driver has several
+>>>> regressions, but hopefully they can be fixed through the development
+>>>> cycle by the respective team. Also it is better to fail the test than
+>>>> crash the device (which Venus driver does a lot).
+>>>>
+>>>> Note: then intention is to land this in 6.21, which might let us to
+>>>> drop those platforms from the Venus driver in 6.22+.
+>>>>
+>>>> Testing methodology: fluster test-suite, single-threaded mode, SM8250
+>>>> device (RB5).
+>>>
+>>> Fluster results for SC7280 is regressing, which we were discussing in
+>>> earlier version of this series, need to be fixed. All tests were failing
+>>> but one for h265 decode.
+>>
+>> I see the patch (#4/5) to increase the size, please add the fluster report
+>> on sc7280.
+> 
+>  From the cover letter:
+> 
+>     For SC7280, the results match the SM8250 ones.
+> 
+> Anyway, the relevant part:
+> 
+> |Test|GStreamer-H.265-V4L2-Gst1.0|
+> |TOTAL|133/147|
+> |TOTAL TIME|82.276s|
+> 
+> |-|-|
+> |Profile|GStreamer-H.265-V4L2-Gst1.0|
+> |MAIN|132/135|
+> |MAIN_10|0/11|
+> |MAIN_STILL_PICTURE|1/1|
+> 
+> 
+> # GLOBAL SUMMARY
+> |TOTALS|GStreamer-H.265-V4L2-Gst1.0|
+> |-|-|
+> |TOTAL|133/147|
+> |TOTAL TIME|82.276s|
+> |-|-|
+> |Profile|GStreamer-H.265-V4L2-Gst1.0|
+> |MAIN|132/135|
+> |MAIN_10|0/11|
+> |MAIN_STILL_PICTURE|1/1|
+> |-|-|
+> 
 
-> >
-> > +config FPGA_MGR_EFINIX_SPI
-> > +     tristate "Efinix FPGA configuration over SPI"
-> > +     depends on SPI
-> > +     help
-> > +       FPGA manager driver support for Efinix FPGAs configuration over=
- SPI
-> > +       (passive mode only).
-> > +
->
-> Any reason insert it here? If no add it at tail.
-No reason at all, will move to the back.
->
+Thank you, good to see this.
 
-> >  obj-$(CONFIG_FPGA_MGR_XILINX_SELECTMAP)      +=3D xilinx-selectmap.o
-> >  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)    +=3D xilinx-spi.o
-> > +obj-$(CONFIG_FPGA_MGR_EFINIX_SPI)    +=3D efinix-spi.o
->
-> Ditto, maybe add it at tail of "FPGA Manager Drivers"?
-of course
-> > +#include <linux/spi/spi.h>
-> > +
-> > +/* 13 dummy bytes =E2=86=92 104 SPI clock cycles (8 bits each)
->
-> Wrong format for multi-line comments, please see:
->
->   Documentation/process/coding-style.rst
-okay, will fix all comments styling
->
-> > + * Used to meet the requirement for >100 clock cycles idle sequence.
-> > + */
-> > +#define EFINIX_SPI_IDLE_CYCLES_BYTES 13
-> > +
-> > +/* tDMIN: Minimum time between deassertion of CRESET_N to first
->
-> ditto, please go through the entire patch for this.
->
-> > + * valid configuration data. (32 =C2=B5s)
-> > + */
-> > +#define EFINIX_TDMIN_US_MIN    35
-> > +#define EFINIX_TDMIN_US_MAX    40
-> > +
-> > +/* tCRESET_N: Minimum CRESET_N low pulse width required to
-> > + * trigger re-configuration. (320 ns)
-> > + */
-> > +#define EFINIX_TCRESETN_DELAY_MIN_US  1
-> > +#define EFINIX_TCRESETN_DELAY_MAX_US  2
-> > +
-> > +/* tUSER: Minimum configuration duration after CDONE goes high
-> > + * before entering user mode. (25 =C2=B5s)
-> > + */
-> > +#define EFINIX_TUSER_US_MIN    30
-> > +#define EFINIX_TUSER_US_MAX    35
-> > +
-> > +struct efinix_spi_conf {
-> > +     struct spi_device *spi;
-> > +     struct gpio_desc *cdone;
-> > +     struct gpio_desc *reset;
-> > +     bool bus_locked;
-> > +};
-> > +
-> > +static void efinix_spi_reset(struct efinix_spi_conf *conf)
-> > +{
-> > +     gpiod_set_value(conf->reset, 1);
-> > +     usleep_range(EFINIX_TCRESETN_DELAY_MIN_US, EFINIX_TCRESETN_DELAY_=
-MAX_US);
-> > +     gpiod_set_value(conf->reset, 0);
-> > +     usleep_range(EFINIX_TDMIN_US_MIN, EFINIX_TDMIN_US_MAX);
-> > +}
-> > +
-> > +static enum fpga_mgr_states efinix_spi_state(struct fpga_manager *mgr)
-> > +{
-> > +     struct efinix_spi_conf *conf =3D mgr->priv;
-> > +
-> > +     if (conf->cdone && gpiod_get_value(conf->cdone) =3D=3D 1)
-> > +             return FPGA_MGR_STATE_OPERATING;
-> > +
-> > +     return FPGA_MGR_STATE_UNKNOWN;
-> > +}
-> > +
-> > +static int efinix_spi_write_init(struct fpga_manager *mgr,
-> > +                              struct fpga_image_info *info,
-> > +                              const char *buf, size_t count)
-> > +{
-> > +     struct efinix_spi_conf *conf =3D mgr->priv;
-> > +     struct spi_transfer assert_cs =3D {
-> > +             .cs_change =3D 1,
->
-> You've addressed an important concern, please briefly describe in this
-> function & changelog: what's the HW requirement, how to solve it by
-> cs_change & spi_bus_lock().
-OK. changelog means description in the commit message?
->
-> > +     };
-> > +     struct spi_message message;
-> > +     int ret;
-> > +
-> > +     if (info->flags & FPGA_MGR_PARTIAL_RECONFIG) {
-> > +             dev_err(&mgr->dev, "Partial reconfiguration not supported=
-\n");
-> > +             return -EOPNOTSUPP;
-> > +     }
-> > +
-> > +     spi_bus_lock(conf->spi->controller);
-> > +     conf->bus_locked =3D true;
-> > +     spi_message_init_with_transfers(&message, &assert_cs, 1);
-> > +     ret =3D spi_sync_locked(conf->spi, &message);
-> > +     if (ret) {
-> > +             spi_bus_unlock(conf->spi->controller);
-> > +             conf->bus_locked =3D false;
-> > +             return ret;
-> > +     }
-> > +
-> > +     /* Reset with CS asserted */
-> > +     efinix_spi_reset(conf);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int efinix_spi_write(struct fpga_manager *mgr, const char *buf,
-> > +                         size_t count)
-> > +{
-> > +     struct spi_transfer write_xfer =3D {
-> > +             .tx_buf =3D buf,
-> > +             .len =3D count,
-> > +             .cs_change =3D 1, /* Keep CS asserted */
-> > +     };
-> > +     struct efinix_spi_conf *conf =3D mgr->priv;
-> > +     struct spi_message message;
-> > +     int ret;
-> > +
-> > +     spi_message_init_with_transfers(&message, &write_xfer, 1);
-> > +     ret =3D spi_sync_locked(conf->spi, &message);
-> > +     if (ret) {
-> > +             dev_err(&mgr->dev, "SPI error in firmware write: %d\n", r=
-et);
-> > +             if (conf->bus_locked) {
->
-> Do we really need this flag? If we failed to lock bus on write_init(),
-> we can't get here, is it?
-Its actually not needed, it's just extra protection in case the API is
-misused, eg write_complete() is executed even if write() failed.
-But since this is not the case, I will remove it.
->
-> > +                     spi_bus_unlock(conf->spi->controller);
-> > +                     conf->bus_locked =3D false;
-> > +             }
-> > +     }
-> > +     return ret;
-> > +}
-> > +
-> > +static int efinix_spi_write_complete(struct fpga_manager *mgr,
-> > +                                  struct fpga_image_info *info)
-> > +{
-> > +     unsigned long timeout =3D
-> > +             jiffies + usecs_to_jiffies(info->config_complete_timeout_=
-us);
-> > +     struct spi_transfer clk_cycles =3D {
-> > +             .len =3D EFINIX_SPI_IDLE_CYCLES_BYTES,
->
-> Here we also release the cs, is it? Please add comments here.
-Exactly, I think I should also add .cs_change state to explicitly release i=
-t.
->
-> > +     };
-> > +     struct efinix_spi_conf *conf =3D mgr->priv;
-> > +     struct spi_message message;
-> > +     int ret =3D -1, done =3D 0;
->
-> Why initialize these 2 variables, IIUC they are all re-assigned before
-> any usage.
-will fix
->
-> > +     bool expired =3D false;
-> > +     u8 *dummy_buf;
-> > +
-> > +     dummy_buf =3D kzalloc(EFINIX_SPI_IDLE_CYCLES_BYTES, GFP_KERNEL);
-> > +     if (!dummy_buf) {
-> > +             ret =3D -ENOMEM;
-> > +             goto unlock_spi;
-> > +     }
-> > +
-> > +     clk_cycles.tx_buf =3D dummy_buf;
-> > +     spi_message_init_with_transfers(&message, &clk_cycles, 1);
-> > +     ret =3D spi_sync_locked(conf->spi, &message);
-> > +     if (ret) {
-> > +             dev_err(&mgr->dev, "SPI error in write complete: %d\n", r=
-et);
-> > +             goto free_buf;
-> > +     }
-> > +
-> > +     if (conf->cdone) {
-> > +             while (!expired) {
-> > +                     done =3D gpiod_get_value(conf->cdone);
-> > +                     if (done < 0) {
-> > +                             ret =3D done;
-> > +                             goto free_buf;
-> > +                     }
-> > +                     if (done)
-> > +                             break;
-> > +
-> > +                     usleep_range(10, 20);
-> > +                     expired =3D time_after(jiffies, timeout);
-> > +             }
-> > +
-> > +             if (expired) {
-> > +                     dev_err(&mgr->dev, "Timeout waiting for CDONE\n")=
-;
-> > +                     ret =3D -ETIMEDOUT;
-> > +                     goto free_buf;
-> > +             }
-> > +     }
-> > +
-> > +     usleep_range(EFINIX_TUSER_US_MIN, EFINIX_TUSER_US_MAX);
-> > +
-> > +free_buf:
-> > +     kfree(dummy_buf);
-> > +unlock_spi:
-> > +     if (conf->bus_locked) {
-> > +             spi_bus_unlock(conf->spi->controller);
-> > +             conf->bus_locked =3D false;
-> > +     }
-> > +     return ret;
-> > +}
-> > +
-> > +static const struct fpga_manager_ops efinix_spi_ops =3D {
-> > +     .state =3D efinix_spi_state,
-> > +     .write_init =3D efinix_spi_write_init,
-> > +     .write =3D efinix_spi_write,
-> > +     .write_complete =3D efinix_spi_write_complete,
-> > +};
-> > +
-> > +static int efinix_spi_probe(struct spi_device *spi)
-> > +{
-> > +     struct efinix_spi_conf *conf;
-> > +     struct fpga_manager *mgr;
-> > +
-> > +     conf =3D devm_kzalloc(&spi->dev, sizeof(*conf), GFP_KERNEL);
-> > +     if (!conf)
-> > +             return -ENOMEM;
-> > +
-> > +     conf->spi =3D spi;
-> > +
-> > +     conf->reset =3D devm_gpiod_get(&spi->dev, "reset", GPIOD_OUT_HIGH=
-);
-> > +     if (IS_ERR(conf->reset))
-> > +             return dev_err_probe(&spi->dev, PTR_ERR(conf->reset),
-> > +                                  "Failed to get RESET gpio\n");
-> > +
-> > +     if (!(spi->mode & SPI_CPHA) || !(spi->mode & SPI_CPOL))
-> > +             return dev_err_probe(&spi->dev, -EINVAL,
-> > +                                  "Unsupported SPI mode, set CPHA and =
-CPOL\n");
-> > +
-> > +     conf->cdone =3D devm_gpiod_get_optional(&spi->dev, "cdone", GPIOD=
-_IN);
-> > +     if (IS_ERR(conf->cdone))
-> > +             return dev_err_probe(&spi->dev, PTR_ERR(conf->cdone),
-> > +                                  "Failed to get CDONE gpio\n");
-> > +
-> > +     mgr =3D devm_fpga_mgr_register(&spi->dev,
-> > +                                  "Efinix FPGA Manager",
-> > +                                  &efinix_spi_ops, conf);
->
-> The initialization sequence is quite random...
->
-> 1. if (!(spi->mode & SPI_CPHA) || !(spi->mode & SPI_CPOL))
-> 2. conf =3D devm_kzalloc(&spi->dev, sizeof(*conf), GFP_KERNEL);
-> 3. conf->reset =3D devm_gpiod_get(&spi->dev, "reset", GPIOD_OUT_HIGH);
-> 4. conf->cdone =3D devm_gpiod_get_optional(&spi->dev, "cdone", GPIOD_IN);
-> 5. Initialize other fields in conf.
-> 6. mgr =3D devm_fpga_mgr_register()
-> 7. return PTR_ERR_OR_ZERO(mgr);
->
-> Is it better?
+> 
+>>
+>>>
+>>> Regards,
+>>> Vikash
+>>>
+>>
+> 
 
-I agree, I will reorder the initialization!
-
-Regards,
-Ian
 
