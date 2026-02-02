@@ -1,197 +1,155 @@
-Return-Path: <devicetree+bounces-261770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261771-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YH9zFiSFgGnE8wIAu9opvQ
-	(envelope-from <devicetree+bounces-261770-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:06:12 +0100
+	id oIxxAnCFgGnE8wIAu9opvQ
+	(envelope-from <devicetree+bounces-261771-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:07:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE906CB74D
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:06:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61D8ECB797
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:07:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 68AED301412F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 11:00:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1868830036EB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 11:02:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 230B82951B3;
-	Mon,  2 Feb 2026 11:00:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815C635D5F6;
+	Mon,  2 Feb 2026 11:02:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="U/13cqsk";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="X2A19VOM"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="e1C5v3m7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0594835DD09
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 11:00:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1E0623EA99;
+	Mon,  2 Feb 2026 11:02:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770030021; cv=none; b=tLZZiB/lHpMrtG2iYuJQK6h11kZXqXAWel2YM3/rM1gkuh1bHg8KR5aJIJ05gtE1vf77+KR1h16xw8nLBJfYy0EysK+mCxOctFD6d68m7EU2qq5BsRs9YY0GiuQ9J0QuGKp1A75bK4DKtBCsgQ2EwEgxeYeSHCIoAMKdZ2CSGzo=
+	t=1770030166; cv=none; b=SNlzZ6rPrhqEiQjdxetKdsI3TkqALhrGsucNXEyAlWjDxlTIejO1LH+yaKn+8ABH/1ZuhaXMGRTPw3wqDrH0xl8Hw/7RTsiQBy4JdPvxpV+l+3fYGMZ0nJHkapydCFB8Dven9ILB7CUOS+l80ClaTiF6iuOoxmqWmfxkdi3aBQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770030021; c=relaxed/simple;
-	bh=rDNg3RNfurGN1Z6oV8ZAzB/LQiPiwhWEOlLHnxUvaWw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NtQIOsxRKpvLDz46tRdbLtKuPXHahWaWv2GuN10o72QY+gxhpQRBILoJ//C5O0H/g3vIQi9lK6WggXKHQxeTciIDMwZB+7ScV8t8K/evP1pxk6zvwyF+m9NO2JgQ2hmUvEkd1E58y6MVgH1ISQE+nqz6rIEYxWYGcKimMrqzocs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=U/13cqsk; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=X2A19VOM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61283sx61749779
-	for <devicetree@vger.kernel.org>; Mon, 2 Feb 2026 11:00:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	K8nl8n8+hpRgD4+NstSwXyU0r/XY4eYaf9Gky0MTgSo=; b=U/13cqsk+FJXMZac
-	3hyJSrD3uiPA5kCpemopxx6Gz28WT49/Cra4/b37224uczGNuEYeKdFnF7NxEZmE
-	HDVAlmSBDC4D7xaYbHmBpByep3jHWdzVk1FE8KtjFp5ilJNyUodZPUmjmhRqINqy
-	rSRxE6HxxGPEDc7PIQrp25dNez2SYniJbavSmuAwMjOKJG3h0bIzp0ck29BSzKth
-	HRNb+wfS1zLjO15MsehX8XKdrw7OrjJ/Ax8vRKO9Z00izkm3hEpbBKXLlijC7kRQ
-	3qzA/5o62f9n8L7JUK7fj1WRdOGJn3qgHBxq08KaqOYpKYCK6mgXgrM6GhWXGAMT
-	eVKvQw==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c1avnn5r8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 11:00:16 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-8946c23cf90so17515226d6.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 03:00:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770030016; x=1770634816; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=K8nl8n8+hpRgD4+NstSwXyU0r/XY4eYaf9Gky0MTgSo=;
-        b=X2A19VOMi8YrTh+JdEOdSnfpKrEjMMho+uUXYgjRgCsFy/L3JjcTBir63X55dyxI/Y
-         o8lfiYk2+kCFAlwcbzLxS6m+FwGvaY3u9C+ts+0XfUrt8EHY2c9qyIcs0ZFs8lhwp9NL
-         ZoIoDakOmvU63lrKYhuTla+vnjB+0uopMVpzumbXbvyhu4wO5s9+PyGZd1tbGm1mmZ8e
-         d4IOaDfxgMGmqSniR68CGmTUmeuddMi4GKoeQq0VzVAPswejNGOeoJagjGWCg3Opay3L
-         Ab91aWwv+PpkzBvgLDGmXSvn9dPWmUUf/c0ehO1cmhjhS2TJqoDUADIRdgygIf/qPrmA
-         R0lg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770030016; x=1770634816;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=K8nl8n8+hpRgD4+NstSwXyU0r/XY4eYaf9Gky0MTgSo=;
-        b=Nkrsa6kJjgMyvBsM+FgIDe0me25Z1gZIA7bb95Kp7h31lUpQdl7ZsKBsaQmOk+wCeX
-         StWVkwlVUF1DPpnBd0dPJP2Z/JXOghvn6nESvPRGZhB34g/303do5WGgXR3ZrrROAVFR
-         siFYfbvFGYDzEUR7uJmc5UsLAurWn/s2Frbkqr+nimqduclxYr8rQwDEjkwch1XMkVVH
-         SqN8wG2NXulak4MOkb5tXWFkvSI/ebxubEJ0IccvyCxicMZFmNWGD8mmn/CbBO3QAstx
-         Sl32+WosL4iz6tmoI7LhuWVAjVgAFezIcEp5VCR2xGnLEDhSn0ziKPPosF1lsfctfR5Z
-         x8+A==
-X-Forwarded-Encrypted: i=1; AJvYcCWSArVYQeHleZRpZ0A1UK/Z2R6X4QXMFCvWjXST5gHp9UDalqGk2coHheSD7Sot3KzoBeYKrnGhJ6wX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaUzEGzx+xMmfJXBzuyGN2QZF1/R5v87K1SMPg/n9w6cvMpHBj
-	azWWOQIbs/UyVS/p7ebUCwTVYjzkf0PUEA/H2T8SXDFVyZNgOC6rPRcg0/yxXgpYuOd4O/m6pvu
-	aXEOr4AKQzccax4FEjUrLYZARWO71Lwrh/d1/js0AKh7S+T2v6A4NBThwkv2r0FhP
-X-Gm-Gg: AZuq6aIZC+SF+9hpvfGmZFBOoh+9Q1zbpm+1293RL5JfVXJNJM9wVpUM5NlKMHSdV0O
-	b8gwFkTOqyRAyJ+z+qqvKbSfKPGHuaf1iqydxojBsFsSDe4yECfX7lzhzF5Wwe2JTzq4kDmfQdO
-	1gvQvkmrporovSWghgLUBEliCBaNRLNsTPp45eECqa1/WJHBvHMQHg43Dr3598xNC/wchQFSPWf
-	olM4kcJg/Dwmeie1Xn4rb0l7zZ5Mw/wLTIhnZWr1rnlOhvHHbc7S10Qi1eqXikhPg81/W7xXk+C
-	V08mZ7vka3Mlong0HfjiO6sNXaFna2t7//Bq7GtHkEUU0cd8UhwOmNS/9SgyY/x6lBOESIhYgiR
-	YFgyahsIRrW/H6TrQ06FqtQXhZsXMKQ7WJCFaj5QP6amiJRfZCoGE4JcFslx3+tmwIg0=
-X-Received: by 2002:a05:6214:8009:b0:894:e086:e4bc with SMTP id 6a1803df08f44-894ea12bc69mr114323706d6.6.1770030016093;
-        Mon, 02 Feb 2026 03:00:16 -0800 (PST)
-X-Received: by 2002:a05:6214:8009:b0:894:e086:e4bc with SMTP id 6a1803df08f44-894ea12bc69mr114323166d6.6.1770030015295;
-        Mon, 02 Feb 2026 03:00:15 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-658b46abb3esm7641208a12.32.2026.02.02.03.00.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Feb 2026 03:00:13 -0800 (PST)
-Message-ID: <57c2b126-2620-4fc6-87eb-31b4f8299dfd@oss.qualcomm.com>
-Date: Mon, 2 Feb 2026 12:00:10 +0100
+	s=arc-20240116; t=1770030166; c=relaxed/simple;
+	bh=hZ26fDidiQHdeKBfaZdypSRdmQ/WD1YSdkZPa9SDtxo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TTlUSGWfBJaoI1kGjvzLXiz28SCGn/ZUq/3v+uNCgqXa0m5wy+pVv0ygrKpEyfM2W9ST3DUabkVVag7dzekG7TyK4iof/ee2aAjf6M+7oHQ6kjG9NLZvbR7z4dQDtpm//GTSl3cBPXl8arqpT+j5CFgLSJMuRRIeMmNUIs7F/fE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=e1C5v3m7; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=IOYz2TuhVp85h0jhI1HUwXLqYbeA4OKb+Y19Cz43y/E=; b=e1C5v3m71HQEFE+NdXuiJSWjVf
+	WB+g3NMiak3HrbVsDD1ryKPCC/bZC6BdPzGClmo5S5UttzXBG3gtgYBlL2T23POoudKMZQU57QxQQ
+	0P6JTwiarTXfajkZT2ws3UtV83W+PQGrORIYUun5jvxSSxPm72VlBJSL5ROI9mbazCwfIBFPuH55w
+	cPQMfKqLwmMzWo+G/J/aXjyywDBils1KDt/M5s5v64mrSO7c3izOuCto1chym22gCymLRlXoCR4yt
+	1ZpFfRXB5paLK4lkQOiiUFePEiU/dWnSCTRYEYpgQeDTGyBqq005UNEcMcTp5VftEsC4Y6S8caen1
+	RLgaCQVQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44854)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vmrhO-000000003tp-1v8X;
+	Mon, 02 Feb 2026 11:02:30 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vmrhL-000000003L4-3UCM;
+	Mon, 02 Feb 2026 11:02:27 +0000
+Date: Mon, 2 Feb 2026 11:02:27 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH RFC net-next v4 3/4] net: mdio: add unlocked mdiodev C45
+ bus accessors
+Message-ID: <aYCEQ1fAzc2OWcPP@shell.armlinux.org.uk>
+References: <cover.1767718090.git.daniel@makrotopia.org>
+ <36fbca0aaa0ca86450c565190931d987931ab958.1767718090.git.daniel@makrotopia.org>
+ <aV1MGQirTHyFdv7Q@shell.armlinux.org.uk>
+ <aV2OWT4g0jwfS548@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] clk: qcom: videocc-glymur: Add video clock
- controller driver for Glymur
-To: Taniya Das <taniya.das@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
-        Imran Shaik <imran.shaik@oss.qualcomm.com>,
-        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260202-glymur_videocc-v2-0-8f7d8b4d8edd@oss.qualcomm.com>
- <20260202-glymur_videocc-v2-4-8f7d8b4d8edd@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260202-glymur_videocc-v2-4-8f7d8b4d8edd@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 0VgJYBwDEAUfKfLwq5mZJXx37ugs98aM
-X-Authority-Analysis: v=2.4 cv=bPMb4f+Z c=1 sm=1 tr=0 ts=698083c0 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=d7ClhsmVZ3m4v3ji_18A:9
- a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-GUID: 0VgJYBwDEAUfKfLwq5mZJXx37ugs98aM
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAyMDA4OCBTYWx0ZWRfX9BDW5yCPrZYr
- 0QyhI6+AWWa3nxWvrFPf+B1mdjo75qfyHXYHpgyVIiK/rR/N7ZEwHg5AvTj9OJhzpWTZmEABv/0
- WaROS/LPOj084MZ0NIcp/nnFiUGNwjMWBIRZbxGvI5C381J+FtKefv7sfw/68XRdtWwSrhhLU2h
- HjYvpucLRv8m500RTT4hbO9KjSwyiik2L7cw+951YO/1L7N2hFhRG1qeBdsZcSgkq0ND6D2B3bj
- G5raMaMyuP6k8IxTpB0TQ9ZE7t1dCrKitOuMHE2J2uNiAeEDBoHh7DToj6JRsvaQjZuqnKWPAap
- 2chB71o473wPhVbBUC5JlySxnn2DyovVi13U7ZQFVR1woWaLH22R6POCoClpg7YWYQcuC+NPtRg
- iLITPZu5cwSu94oyIOD2Wyg0Gp05uYUgPs1IpOLlaKCsR96QKU2i7nBp9lI94t3xZ3QKcH4CJ12
- k7yvrQLzzrfi4xMGhYA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-02_03,2026-01-30_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 clxscore=1015 malwarescore=0 suspectscore=0 bulkscore=0
- phishscore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602020088
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aV2OWT4g0jwfS548@makrotopia.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261770-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	DKIM_TRACE(0.00)[armlinux.org.uk:-];
+	TAGGED_FROM(0.00)[bounces-261771-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: EE906CB74D
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 61D8ECB797
 X-Rspamd-Action: no action
 
-On 2/2/26 11:56 AM, Taniya Das wrote:
-> Add support for the video clock controller for video clients to be able
-> to request for videocc clocks on Glymur platform.
+On Tue, Jan 06, 2026 at 10:36:09PM +0000, Daniel Golle wrote:
+> On Tue, Jan 06, 2026 at 05:53:29PM +0000, Russell King (Oracle) wrote:
+> > On Tue, Jan 06, 2026 at 05:14:57PM +0000, Daniel Golle wrote:
+> > > +static inline int __mdiodev_c45_write(struct mdio_device *mdiodev, u32 devad,
+> > > +				      u16 regnum, u16 val)
+> > > +{
+> > > +	return __mdiobus_c45_write(mdiodev->bus, mdiodev->addr, devad, regnum,
+> > > +				 val);
+> > 
+> > Something doesn't look right here - missing a couple of spaces to
+> > correctly align? I suspect checkpatch would spot it?
 > 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> ---
+> Somehow those two spaces got dropped somewhere on the way. Strangely
+> neither checkpatch.pl locally nor on patchwork[1] caught that -- maybe
+> because 'return' statements are somehow treated differently?
+> 
+> Anyway, fixed in my local tree now and going to be fixed in v5.
+> 
+> Are you otherwise fine with adding those unlocked mdiodev c45 helpers?
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Yes.
 
-Konrad
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
