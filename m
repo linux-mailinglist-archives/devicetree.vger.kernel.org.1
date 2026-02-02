@@ -1,413 +1,240 @@
-Return-Path: <devicetree+bounces-261614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261615-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MNSYJnIXgGma2gIAu9opvQ
-	(envelope-from <devicetree+bounces-261614-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 04:18:10 +0100
+	id IK4wH0cYgGma2gIAu9opvQ
+	(envelope-from <devicetree+bounces-261615-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 04:21:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3168DC8022
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 04:18:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3C5EC8080
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 04:21:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 31A0830010F9
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 03:18:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1EAD130056C2
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 03:21:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D509B2222B6;
-	Mon,  2 Feb 2026 03:18:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D940223328;
+	Mon,  2 Feb 2026 03:21:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="LU6p2xEg"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="m3uiHwbY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013029.outbound.protection.outlook.com [52.101.72.29])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B13751B4F1F
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 03:18:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BBA51DEFE8;
+	Mon,  2 Feb 2026 03:21:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.29
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770002287; cv=pass; b=NjWLlfWMwhxNb8Ga3MWzUDq0TPR2L8hAvIA0TrkEYbXhj6I5+cvc4Ivlkaw9viaDJHSfF7c7tN6+z5naPBRqrNZ6FVkdZoR+nA0QRfvGWN2C3rw6pIWSaIgyl/yLIs+NHm2DF9y/+RmBl+KBc17ikwhdtYFWaV9MQGqcmy4t0bw=
+	t=1770002466; cv=fail; b=VjhNQzXQ5sHFr8B+Eg9xTM/Vv6bwVZposlomdlJ+m+l6CjAbaPyxyN9t+wyQqbob0qK53aK37UNKeIjaFFztTtuwNF2y6SeHvYus2g47rO5k7tOx5M39KmNei7TCLxhdTYB0yb8Oqe8ORK7SaNHR9s9HfGtrZJM8LzCFZU5L0yk=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770002287; c=relaxed/simple;
-	bh=ShGgQhbThQ6I+6O+faNv+aPbTubcoIQhkPUIA0b5/DY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bSEqCIs6L4TFtoczOV0YeG0HqjzM3t41p+FdooEh5r8dJS4tp01qksvZ9X8HlAywCIhYqSpnLmaPiQz4zzc6DWwUx0BdwTxCVVb1PwQwL9AnPe9l3IUKEDwLaft4DMs1GOgB8qob37qWIkSOFVSmtxm8JEP6jNRRgVLcv9fRGIk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=LU6p2xEg; arc=pass smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-658d54197d3so6439298a12.0
-        for <devicetree@vger.kernel.org>; Sun, 01 Feb 2026 19:18:05 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770002284; cv=none;
-        d=google.com; s=arc-20240605;
-        b=c0zYxqa8R5XEfg/PuXpxStnWbXts6K0ovWxlxEgdDY5HIsmLW2c2zDqwG/+3qTDvkG
-         SMeCgjzV3n1nvMIHzS9mfXWkTg8otdB/VSOHHHpje0GoEjYy3IVybQsVv4qeJjt0suvu
-         WTgy84IfQ9Dvaj08LaEry5BM++1qY2aGcGCgJHajuTiDSb7wOlL4Yrdtav+QsRjHsC3H
-         5oLAiNpng4Ie+wHS71Ufn6t6v7bSwc6BQ8lUM8EoeiUt21m5AfNsBImOX+/BFjlcUWVt
-         09C0mzW27g1lTz5k2C+FaCu+egp9dXhHEPmVtAPybDmikdb5Y72aILXvEIDbg+GOnlGt
-         4BJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=f2z9Nua1MUqgPyVmhT784kx+od6sNmMKO2jLUk+q1qQ=;
-        fh=kSm1WlFrJaj6A5ur3jFQwIyVsnUTCU9rdpenrxpDpr0=;
-        b=cTYAxWaQ1/G8bJq+AJ1M538bgHyYq/fZ1h3BXibnN/AERsuo/TShiGEIfUjTJ4GMe1
-         YE4d22LkvawBc/NehwwWZrI0GvZFltQhUXdY26GtwOx7I/Bio+e5i+l1LZmZokp1GDjF
-         Gcanc57YBmg9YLthKSNu2QFjnUWuQVm8B1kXphR8izXMd5wEXmEwBQOSPV4XQYo9Dd74
-         z+MaFNIDGiSdiFyWz2jETXpJn4dnoOeeqGvPLddvAIrAEVYFyepprXSNfaBy1mAt8qpH
-         Sqq1AQwFfxvfDxZnAQeuuugMKYDFiUK/zbqSY4jVehfjmSKXpABg1FHR0W0W5HiTMUJH
-         iKVw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance.com; s=google; t=1770002284; x=1770607084; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=f2z9Nua1MUqgPyVmhT784kx+od6sNmMKO2jLUk+q1qQ=;
-        b=LU6p2xEgti5eKXNUF3ok6dU9DmsAgp0hl4aOWifzPglTas3J69vKhD4yBZTJKJeOkL
-         P29AXMwPN79x6A1hDhspOxjPMR949zQi48mdzHOYSoC1gXAwwgvWeC10ZNV+C8gb2iwU
-         m7cnrm/2018J5/M9rbDB5Sqsqa8eq7F7cT7+GoHm9tfDrKfkfXp19EKRBeUjggeQxUxx
-         4rOuK1khg3jfBfq6BofB2SbgLdQFkxLeiHNN0BhVTACbsK8GnrMm58nOrdyOenu+Od8o
-         vw+XF1JV6++e16yfI3KSSbI++m8B7FYLom5vo6ecAywwDsN/X3XE926t4zqWcTmuXihM
-         2jLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770002284; x=1770607084;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=f2z9Nua1MUqgPyVmhT784kx+od6sNmMKO2jLUk+q1qQ=;
-        b=dvS/4gXy3FmYf3S6KZeEvhwjuSW3ieWMcj2A12D6R3pCE1bpOHPNVwEGrmndXllFT7
-         z44FEaC2lepmR1Jq2cIeoDFnvEBX8gLzFM1q14IPqXXxT2R6TrHHTCdQVQ7xI4v/eLJG
-         MjkTpgKe3BQnPRuQObePJEhyxOozGDdP9zcyvAAMwGOtpjzR1KTymNfUC040090ec6fe
-         gZ971lv1Oij2AUJ088WxA8gC23r38dunZNgc0FIeJjwxAMOCw8HqZzgCVt2L7e/L8oFm
-         SWS0+c360/OxCQnt6PWH9sXgzLymn1NJt0Iq+SHRk93jATBhgCJWC5ptw3HhrgkwmpYJ
-         gz6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXt0l0O756Pm0T+P8pJxHNC5zR9zHlrUtXDw6wgw/4EU8WZG+IURrXSgO7g+ZetKsXYSE9bcFDYD2ea@vger.kernel.org
-X-Gm-Message-State: AOJu0YynDK3PAbiBRMNLFuaCIkU2bgs2UvZgP3DgOgVrjx+NH2PXaDaL
-	N1SfA5N+CcyT1qroZwSMVape6KF5wvrmS2HGs5xmpwMHU7jKilmTzZBy3APptOV9c1xc+EQq7UG
-	xqe6XPJCmYUdHrC9UDiXYQmyNaTqb+0a8RVIjt/yQXw==
-X-Gm-Gg: AZuq6aK3CQ8jkcG0PWDoiexIth4K+XxvaM1i+HHl3iCrjbluDbZTKfx1tDXOqQHhooh
-	8S/DpvCR2W2cPao+Te67bRXJ20wpUv1HdsuoP4ECmJuFPeR4Icr+zOEL8XXrqy2wmjrfrhFi7vZ
-	F7e8jsV0maD4LGTSUchdwjkNK51Q7me2CFW+qeq0HO89z0ijPbTzQ2p4UOD3tN7uVx0mBkWcFPs
-	w+JW0d+WvDWq6ypWPZJaLlw9BP20UPyQ4tXBshPzCtmnYhnNr+oCUJfUEsgCs3T6D+xiL3JqtR1
-	8g==
-X-Received: by 2002:a05:6402:146e:b0:64b:5885:87d6 with SMTP id
- 4fb4d7f45d1cf-658de5936acmr5660707a12.24.1770002283907; Sun, 01 Feb 2026
- 19:18:03 -0800 (PST)
+	s=arc-20240116; t=1770002466; c=relaxed/simple;
+	bh=S8Zcw88+wwykdmDcB7GyDtuCHe6s10+BoDeXWlg9jSM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=EnNNJ1/pRo6v/ySp6HxR4pD2Lz86kYExwF4qyzcTDP7wQ5eIzeBpoxCMy7Dp9AbdRIDP4f2c2SZ+cEwYo+PtB/Bqif5ramlTaqdAzU8ufP1YSBUESkX5E4Wojhk7V9t4dcAWqwLRI8RQiV0ESqS00tWlNWqnbhg8a0HhKk1XAq0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=m3uiHwbY; arc=fail smtp.client-ip=52.101.72.29
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OeP/USW9HujR3bzi0SIXWvyOoOheJCq57xDyJSsTJAv/8NGRFLsWNiIxCPIPe+rjNRbZQ/sd+ti2gndtFZQ8MMvrPcLQO3k7TLWorIansWqs9Cux1PyQJObOkhV4Np8f4eKiH1Z6NLF+tbJA9ee0ubGc80cMR+6AFHh93aK61cNWBheplivFq9vrdKtDU7cFxYWrR7OoKOxLgpuF3gl96uvyGQcDE+fU7orPEl24yZUVX2xKDYoRnqYDYUPj9gUoIm4ZNTBRRTk9MUQvYaF3z98GIUkMVpeuSUky0fIi5UZz5RGuLPgkUpEiRZfoLorij3Z/m9cPsRG7H8Y6s+DLRQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/jeXZpEnSP/6SsMxF/8l6sfWftxXCj8e+mB6He/m/QE=;
+ b=SYQtw+Dpl+xJslRkVzCsi3Tlgxsx01mD80VDu0IdERlgW2gH36HKky4fB3LtBZU/1lPnASaVZbJcy8yfjvpg00ndrStY7mNH3t5sFTeBZ3vHUicdOj8FckEqcxjauwFUilH6PpN9KEnQsoeqk2MJdvyERM+f9zrDzJ0zmJr6n3+QVscX1INI7MhYxRCcNTXClsnSG9NiUopNEGzgwElNRnFknGdFARZnqogMJ7z4OY6PGN0TPaSsylUMUgkFmpyniB3MrvQWETBjGRVaeXKG3fx5ITX6CwPN3z7qI2r/2ROVBezB0J88dcDgVyB5+LYG9WCl7RGslRWnr/K/0SaFmg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/jeXZpEnSP/6SsMxF/8l6sfWftxXCj8e+mB6He/m/QE=;
+ b=m3uiHwbYz+cMVhVL4KBR2vWH9hZXZd2+bxv2gpslgQX+2xeaXYBZ/RNM5WnYTwkaBdHvNbN9hLxKYNGaGGTrDoqkN5mHySsjzykcj1uoa/WNmVhWZd1YcmoiNK0/XRcM9P7g4szSn3qEQKjwMC9d8g/BxhSsfvIzlHi//oNSfSXum/vqgMaCyVLUTSc3KSgD/Ih4buJzDpDjL8wrOsSF/+hkn7nOdNzrhhZCA7B8vMdlFwwW4HeGBpUpmjbTFY5dlnf2kFGFJfgUBKOfm3gbLSnqvh31GwQcwLgxvVRLJeBzOE0HMT2caDoIHWa/zFGjBXl12Oa96XC7+DrRpHGgKw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+ by DB9PR04MB9645.eurprd04.prod.outlook.com (2603:10a6:10:309::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.15; Mon, 2 Feb
+ 2026 03:20:56 +0000
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::4972:7eaa:b9f6:7b5e]) by PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::4972:7eaa:b9f6:7b5e%5]) with mapi id 15.20.9564.006; Mon, 2 Feb 2026
+ 03:20:55 +0000
+Date: Mon, 2 Feb 2026 11:22:33 +0800
+From: Peng Fan <peng.fan@oss.nxp.com>
+To: Joy Zou <joy.zou@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+	Peng Fan <peng.fan@nxp.com>, Ye Li <ye.li@nxp.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+Subject: Re: [PATCH v3 1/2] arm64: dts: imx95: Reserve eDMA channels 0-1 for
+ V2X
+Message-ID: <aYAYeQaGK2RUFQs6@shlinux89>
+References: <20260130-b4-imx95-v2x-v3-0-95af05bece95@nxp.com>
+ <20260130-b4-imx95-v2x-v3-1-95af05bece95@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260130-b4-imx95-v2x-v3-1-95af05bece95@nxp.com>
+X-ClientProxiedBy: SI2PR06CA0016.apcprd06.prod.outlook.com
+ (2603:1096:4:186::22) To PAXPR04MB8459.eurprd04.prod.outlook.com
+ (2603:10a6:102:1da::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260128-ssqosid-cbqri-v2-0-dca586b091b9@kernel.org> <20260128-ssqosid-cbqri-v2-3-dca586b091b9@kernel.org>
-In-Reply-To: <20260128-ssqosid-cbqri-v2-3-dca586b091b9@kernel.org>
-From: yunhui cui <cuiyunhui@bytedance.com>
-Date: Mon, 2 Feb 2026 11:17:52 +0800
-X-Gm-Features: AZwV_QjLj_QCXAGGOyiKRELyI0nXPUskAFHV0pKdx8_ngOCQOAP2pJR-3btcosk
-Message-ID: <CAEEQ3wkqC4jFf1LGgh2c6dgGwT=tuvpFV+D4fiw40P3LZ7_8hg@mail.gmail.com>
-Subject: Re: [External] [PATCH RFC v2 03/17] RISC-V: Add support for srmcfg
- CSR from Ssqosid ext
-To: Drew Fustini <fustini@kernel.org>
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	=?UTF-8?B?UmFkaW0gS3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Adrien Ricciardi <aricciardi@baylibre.com>, 
-	Nicolas Pitre <npitre@baylibre.com>, =?UTF-8?Q?Kornel_Dul=C4=99ba?= <mindal@semihalf.com>, 
-	Atish Patra <atish.patra@linux.dev>, Atish Kumar Patra <atishp@rivosinc.com>, 
-	Vasudevan Srinivasan <vasu@rivosinc.com>, Ved Shanbhogue <ved@rivosinc.com>, 
-	Chen Pei <cp0613@linux.alibaba.com>, Liu Zhiwei <zhiwei_liu@linux.alibaba.com>, 
-	Weiwei Li <liwei1518@gmail.com>, guo.wenjia23@zte.com.cn, liu.qingtao2@zte.com.cn, 
-	Reinette Chatre <reinette.chatre@intel.com>, Tony Luck <tony.luck@intel.com>, 
-	Babu Moger <babu.moger@amd.com>, Peter Newman <peternewman@google.com>, 
-	Fenghua Yu <fenghua.yu@intel.com>, James Morse <james.morse@arm.com>, 
-	Ben Horgan <ben.horgan@arm.com>, Dave Martin <Dave.Martin@arm.com>, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, x86@kernel.org, 
-	Rob Herring <robh@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Robert Moore <robert.moore@intel.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, linux-acpi@vger.kernel.org, 
-	acpica-devel@lists.linux.dev, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|DB9PR04MB9645:EE_
+X-MS-Office365-Filtering-Correlation-Id: 08794188-01a0-4c98-d773-08de620a1392
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|7416014|52116014|366016|376014|1800799024|38350700014|7142099003;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?iBzwLmk83YLeSXKs0+ocIWj5FlEfo0etsoCLd6Uy7Pz1rDIQzlpdIWHTV6oq?=
+ =?us-ascii?Q?pZksVfRa1ldg79MQgRw/Y3r9SqYlfLnKuHjVSnokjRLAsGxJAu6YP90h+w38?=
+ =?us-ascii?Q?Tcm2Pn5hTzQTtJyARBGNEAvnw9RVDfr9FyQDSL+8SKxgpRdyzkLKIaFrvg8k?=
+ =?us-ascii?Q?wqJqE5A/qWbkuMeHAuKsBS92HA1oFGDrDdvYP7yRFsHnLYCjqm+fJcY9kTQ3?=
+ =?us-ascii?Q?/iwVLWxjlEBF4uN2rl1RfFrjsOKdtIMEsYtKWVEA9tp6vWR9a5ZcxpxrOgrA?=
+ =?us-ascii?Q?0gUeiEQEnJ24fa100OA+WdIZ/R3+LwXoi9ieyi9CWcibO28M1rfCubHsTiId?=
+ =?us-ascii?Q?wZAlF7dnKylHDOKnmmlMAhAehW3iGkHfWxXDRqHSAlexCmpPDO9arXGtYrNI?=
+ =?us-ascii?Q?vZzVKGJDrTF12h674Ypw7M866MmB0dUqJPmWnmG8X3FnQrrMrJC1c6Mp4hc1?=
+ =?us-ascii?Q?TzjeFeY0ubtK7vb2AW6VUDFf7VLnlw16W3HDGl4mnwsVr5RE5OBGJ2gyNWTW?=
+ =?us-ascii?Q?ki6ziVskYyKZyLEKrAEv2KXItR1xz4+O9krnUdCULrVSJqy2wD33tlLwA+vC?=
+ =?us-ascii?Q?bYCAOve4hh2meZKIw0x5jcr9nbouZPBUDAV3X3B6r4NdZMHedFCKLVeK9+HL?=
+ =?us-ascii?Q?bPJbTjpQ4+LQrW5MCqILU51jaForCCZiwk87tXCSTedqy28VpjNX8kD/cgFx?=
+ =?us-ascii?Q?GYRXQebUaneX/d3y7zMOl59N6mlcFEgBI6xMsyD3072ckUTToMaxOlSVILge?=
+ =?us-ascii?Q?zBmzqcX8495/x8OW6YRSS2y/asOzHWaYfKW3ZghCfx+9f2F44/k59APRNcEH?=
+ =?us-ascii?Q?MoSm2M50IgQ4kZL+cB3Sz31vjlCRKHY1irEbvt8avQmZtf536B3C2tN4bkVc?=
+ =?us-ascii?Q?pQghtNA0+1o5CvAgQT/3XS41PElb7+Nx3eQND+ePG8uXV3MP83JFm+Uir0AZ?=
+ =?us-ascii?Q?BtqCc4BB8qCQnRUDsX4kQxACld1PxLyw6AaQFa+gCa6vKLSrGXAbupGstcRs?=
+ =?us-ascii?Q?tc3kYDsRgKmFkX4azfWgdCFh6Y3xak7zyskJEQf1FRU4n1apHb1km/pem64i?=
+ =?us-ascii?Q?H+NGWUkO6ECsL3zg584eOcjoOrc1IAeG4DaxUnwnK0pc6HleCamGSzBONAni?=
+ =?us-ascii?Q?gbjaiKeU0B0vN9Zy5s6UsT5YStH1+mBrGY4tFDrvt6UZV5owD2S4XTYkhbxE?=
+ =?us-ascii?Q?GBCLxahRfoVfA/EnMnMqUGFRxVdc5q5qiIM+LrxtiqDpLHIUT2S1bE24eB4o?=
+ =?us-ascii?Q?AeTntM7DjqL+Hldn1kEj4/hUN8N+G2ZtxXnypDwVMdAJH1UfZhCIFg7o6Gzb?=
+ =?us-ascii?Q?GtOApQZiypQTuIOt4k0qgc6itQGeLUprq3Kghn2UVB+//lKaEgTByowKXR+w?=
+ =?us-ascii?Q?QWVu18yK4J6c7j0WbaPWs++jtGPtyF8wcj8kAczA8yTnLbIVLU+UWyqg4LBH?=
+ =?us-ascii?Q?6RuFiHSA/QpOGPUIKKOAFGvTs0IDkJwpR78VVPLzrQqJzW/eeHe48yM0Q1fE?=
+ =?us-ascii?Q?8s0g6JeLYUNeS+0jo6k9y5JPM0MThI9VzuUKTh7dlPMZhHrRoFX3WO5QfwOq?=
+ =?us-ascii?Q?QO56qw/be9tC5k2GXxSs4F0I9C+PUdhbi1eH5kqz6yb5lfxRf2p+j9K8DEKP?=
+ =?us-ascii?Q?AFU8kO0o1mpvLgTQAbZqKEc=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(52116014)(366016)(376014)(1800799024)(38350700014)(7142099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?8tTW07OtAlN4g2JhKpLwcmjOpfXQf7UGol6ocKIgR+6KCvuyBzrEjK5aIZlX?=
+ =?us-ascii?Q?FmbfsAGWEF2QiTKVvTnQD1qFSXy7m7Hu61D1xwzvzaltTMovzJNpPvuheoY8?=
+ =?us-ascii?Q?AO7Jmk/ylelEoZ5XndHZ8qDNsFU1kYgKgX7N/TQDTSxcTIA/dfKZXfVlwTW8?=
+ =?us-ascii?Q?KQdsq6Kj3WVgph1K9WjLawezpwSpuWZ6SPcwnW+5cXxRxhY/YTClVTkcE/kG?=
+ =?us-ascii?Q?TltaUzR9M89HDxnjUz0JEHNQcxC4eDn1Uix9miQSqYHcVS9UcKBiAAVlZ7mq?=
+ =?us-ascii?Q?f91a7yE4OcsUZ0xzcpH/zdeM+goc7iz5LpyNdGBPUplVvz1M6MpA3x+7ERW0?=
+ =?us-ascii?Q?eaYF0X5g8DyfUn9aqSi8lkoJ/1WnIfF6VB620zD4C9V2VQ55yHAhiASV9+Ir?=
+ =?us-ascii?Q?sDaOShHOfUfBGw2tqeHCfjpx8/5tZgsvErbJxzHh2waFb6/abclLyTpBK/Uj?=
+ =?us-ascii?Q?pNEZc4gCotUQ7fJyxHWA3Y++4Otes8SLcJjXv4EFs8AQPgPMZ9OyWEdYwkAc?=
+ =?us-ascii?Q?60PI+TsdhccG01Qf6tFhKNdLZ+NoP1j8CDbDGK7f/w6OCPoKE/B1K6AWeiHv?=
+ =?us-ascii?Q?q4vKszXw3LRm2/D1IrKnu7ADfGTxshFiy5xlTRwWYxzSmsLeGtSy/u5a9/eh?=
+ =?us-ascii?Q?eEMd7zBooEiSjvwMEz2/6e9yqypEcxxSEGFtkwvGZvC0aBaM3KD71clXxSil?=
+ =?us-ascii?Q?gjZ5eASDosIszPz94KETwPVZRPPcpCXOZgzvAKHEu+5nukj4VaQI5O5PkOhX?=
+ =?us-ascii?Q?l7GuaHad3/4UPjqGMtYlKsE4FaZ2OZNLGQsdNZYUhJxyI8W0TR3Bmvm21pYf?=
+ =?us-ascii?Q?fUVCpSkaPAIvuMFRsW7EfWdcpOh2Ehfd4ZDtEKki8AqBETOsXMW/oSISs5Xj?=
+ =?us-ascii?Q?3pR4pj0jmzKSWc8Y0mOl+lj5HoNL5XZrgA8p6L3xJuuSxI36he+TfiCaSDhQ?=
+ =?us-ascii?Q?KZU+pk6D4TRVb5dvmkaRISPIYMDn9M8pZMGj0Dysr6WjZVfraYe+J8jgG9vj?=
+ =?us-ascii?Q?qmHANXqOHJdO3gAQdyLGCq3aQE9gV6TW30ZPRv4OmUOyLvgS1Enx9nzIStY/?=
+ =?us-ascii?Q?XAWDE32Z4cfjVdELPE3bb9bHlYWMr+8zMUFai/mL0dsEVqnAzdOEVATRpRQM?=
+ =?us-ascii?Q?rfY+oI2//5wRSPVOSl9C4YSAjUMjJirkdTmc3sJPIzL+wmHShTHEwLbVqjd7?=
+ =?us-ascii?Q?8XS4toefuaHYejUoW5js3OHr5ZzUndGIxiUmW+I3c0UizeAxaSCFau56H6kF?=
+ =?us-ascii?Q?IXbRwfJlxRFpLMOA+SUPVd26FZrrhzi1wQlOkTC5FtGGQbENRno98XvpnwgX?=
+ =?us-ascii?Q?7NSc4g1TNSCzJlSCA61S5P/wEgLMAFghZDXoGWffoQTrJECmCbSzIoBQCbYQ?=
+ =?us-ascii?Q?iTUgq0+aqUIkX4ehDBqJ81IYeziNoo0pvLbZ4vi/munX+padIlvWr8HAvLWy?=
+ =?us-ascii?Q?JwwfcmE4HFb/pxUh02R+DrhebxTgNXKNxpZGrwxxiCEKgqnpNYGAvTd9CtG8?=
+ =?us-ascii?Q?zxpHOVpz4HJp+wFuKxquwl38Dh9DHxXMMUM6TGIP5FjqTitKEKurgcaAnr/e?=
+ =?us-ascii?Q?ccfis6CnIKjRlSWCJjtCG+jaPP5s75DTbO1Lg+/E8s0moAzj+czkHEYPMWmt?=
+ =?us-ascii?Q?olHmTxi+p5y0mYlUiTWDtZ5YCbBA5aOvyv2OB77Wh/scgba46Y3YqHWRpwut?=
+ =?us-ascii?Q?ZLYtseVRrMFNm2PwI/WiIeXC8G+hmhEG9MCh8YgSo7dbCRUGtcgfIuy9o2Jb?=
+ =?us-ascii?Q?C6A8/i2v/A=3D=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08794188-01a0-4c98-d773-08de620a1392
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 03:20:55.3488
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zLbZ0fW5ZFX3y7Ez05PwuUmTAaumbnIpzrwcgYBxC3pyzzCHEViL0dRpSNfnRFuzKiOi65kBi2IgnSvDYaunFQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9645
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[bytedance.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[bytedance.com:s=google];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261614-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261615-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[41];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,linux.alibaba.com,gmail.com,zte.com.cn,intel.com,amd.com,google.com,arm.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cuiyunhui@bytedance.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bytedance.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	DBL_PROHIBIT(0.00)[2.128.222.128:email];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,bytedance.com:dkim,semihalf.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,brainfault.org:email]
-X-Rspamd-Queue-Id: 3168DC8022
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,NXP1.onmicrosoft.com:dkim,nxp.com:email]
+X-Rspamd-Queue-Id: D3C5EC8080
 X-Rspamd-Action: no action
 
-Hi Drew,
+Hi Joy,
 
-On Thu, Jan 29, 2026 at 4:28=E2=80=AFAM Drew Fustini <fustini@kernel.org> w=
-rote:
->
-> Add support for the srmcfg CSR defined in the Ssqosid ISA extension
-> (Supervisor-mode Quality of Service ID). The CSR contains two fields:
->
->   - Resource Control ID (RCID) used determine resource allocation
->   - Monitoring Counter ID (MCID) used to track resource usage
->
-> Requests from a hart to shared resources like cache will be tagged with
-> these IDs. This allows the usage of shared resources to be associated
-> with the task currently running on the hart.
->
-> A srmcfg field is added to thread_struct and has the same format as the
-> srmcfg CSR. This allows the scheduler to set the hart's srmcfg CSR to
-> contain the RCID and MCID for the task that is being scheduled in. The
-> srmcfg CSR is only written to if the thread_struct.srmcfg is different
-> than the current value of the CSR.
->
-> A per-cpu variable cpu_srmcfg is used to mirror that state of the CSR.
-> This is because access to L1D hot memory should be several times faster
-> than a CSR read. Also, in the case of virtualization, accesses to this
-> CSR are trapped in the hypervisor.
->
-> Link: https://github.com/riscv/riscv-ssqosid/releases/tag/v1.0
-> Co-developed-by: Kornel Dul=C4=99ba <mindal@semihalf.com>
-> Signed-off-by: Kornel Dul=C4=99ba <mindal@semihalf.com>
-> [fustini: rename csr, refactor switch_to, rebase on upstream]
-> Signed-off-by: Drew Fustini <fustini@kernel.org>
-> ---
->  MAINTAINERS                        |  7 +++++++
->  arch/riscv/Kconfig                 | 17 ++++++++++++++++
->  arch/riscv/include/asm/csr.h       |  8 ++++++++
->  arch/riscv/include/asm/processor.h |  3 +++
->  arch/riscv/include/asm/qos.h       | 41 ++++++++++++++++++++++++++++++++=
-++++++
->  arch/riscv/include/asm/switch_to.h |  3 +++
->  arch/riscv/kernel/Makefile         |  2 ++
->  arch/riscv/kernel/qos/Makefile     |  2 ++
->  arch/riscv/kernel/qos/qos.c        |  5 +++++
->  9 files changed, 88 insertions(+)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 765ad2daa218..e98d553bd0ca 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -22505,6 +22505,13 @@ F:     drivers/perf/riscv_pmu.c
->  F:     drivers/perf/riscv_pmu_legacy.c
->  F:     drivers/perf/riscv_pmu_sbi.c
->
-> +RISC-V QOS RESCTRL SUPPORT
-> +M:     Drew Fustini <fustini@kernel.org>
-> +L:     linux-riscv@lists.infradead.org
-> +S:     Supported
-> +F:     arch/riscv/include/asm/qos.h
-> +F:     arch/riscv/kernel/qos/
-> +
->  RISC-V RPMI AND MPXY DRIVERS
->  M:     Rahul Pathak <rahul@summations.net>
->  M:     Anup Patel <anup@brainfault.org>
-> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> index 6b39f37f769a..35a6238b02c5 100644
-> --- a/arch/riscv/Kconfig
-> +++ b/arch/riscv/Kconfig
-> @@ -595,6 +595,23 @@ config RISCV_ISA_SVNAPOT
->
->           If you don't know what to do here, say Y.
->
-> +config RISCV_ISA_SSQOSID
-> +       bool "Ssqosid extension support for supervisor mode Quality of Se=
-rvice ID"
-> +       default y
-> +       help
-> +         Adds support for the Ssqosid ISA extension (Supervisor-mode
-> +         Quality of Service ID).
-> +
-> +         Ssqosid defines the srmcfg CSR which allows the system to tag t=
-he
-> +         running process with an RCID (Resource Control ID) and MCID
-> +         (Monitoring Counter ID). The RCID is used to determine resource
-> +         allocation. The MCID is used to track resource usage in event
-> +         counters.
-> +
-> +         For example, a cache controller may use the RCID to apply a
-> +         cache partitioning scheme and use the MCID to track how much
-> +         cache a process, or a group of processes, is using.
-> +
->  config RISCV_ISA_SVPBMT
->         bool "Svpbmt extension support for supervisor mode page-based mem=
-ory types"
->         depends on 64BIT && MMU
-> diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-> index 4a37a98398ad..2590b89b8f72 100644
-> --- a/arch/riscv/include/asm/csr.h
-> +++ b/arch/riscv/include/asm/csr.h
-> @@ -75,6 +75,13 @@
->  #define SATP_ASID_MASK _AC(0xFFFF, UL)
->  #endif
->
-> +/* SRMCFG fields */
-> +#define SRMCFG_RCID_MASK       _AC(0x00000FFF, UL)
-> +#define SRMCFG_MCID_MASK       SRMCFG_RCID_MASK
-> +#define SRMCFG_MCID_SHIFT      16
-> +#define SRMCFG_MASK            ((SRMCFG_MCID_MASK << SRMCFG_MCID_SHIFT) =
-| \
-> +                                 SRMCFG_RCID_MASK)
-> +
->  /* Exception cause high bit - is an interrupt if set */
->  #define CAUSE_IRQ_FLAG         (_AC(1, UL) << (__riscv_xlen - 1))
->
-> @@ -317,6 +324,7 @@
->  #define CSR_STVAL              0x143
->  #define CSR_SIP                        0x144
->  #define CSR_SATP               0x180
-> +#define CSR_SRMCFG             0x181
->
->  #define CSR_STIMECMP           0x14D
->  #define CSR_STIMECMPH          0x15D
-> diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/=
-processor.h
-> index da5426122d28..183c55e32b96 100644
-> --- a/arch/riscv/include/asm/processor.h
-> +++ b/arch/riscv/include/asm/processor.h
-> @@ -122,6 +122,9 @@ struct thread_struct {
->         /* A forced icache flush is not needed if migrating to the previo=
-us cpu. */
->         unsigned int prev_cpu;
->  #endif
-> +#ifdef CONFIG_RISCV_ISA_SSQOSID
-> +       u32 srmcfg;
-> +#endif
->  };
->
->  /* Whitelist the fstate from the task_struct for hardened usercopy */
-> diff --git a/arch/riscv/include/asm/qos.h b/arch/riscv/include/asm/qos.h
-> new file mode 100644
-> index 000000000000..84830d7c6dc4
-> --- /dev/null
-> +++ b/arch/riscv/include/asm/qos.h
-> @@ -0,0 +1,41 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +#ifndef _ASM_RISCV_QOS_H
-> +#define _ASM_RISCV_QOS_H
-> +
-> +#ifdef CONFIG_RISCV_ISA_SSQOSID
-> +
-> +#include <linux/sched.h>
-> +#include <linux/jump_label.h>
-> +
-> +#include <asm/barrier.h>
-> +#include <asm/csr.h>
-> +#include <asm/hwcap.h>
-> +
-> +/* cached value of srmcfg csr for each cpu */
-> +DECLARE_PER_CPU(u32, cpu_srmcfg);
-> +
-> +static inline void __switch_to_srmcfg(struct task_struct *next)
-> +{
-> +       u32 *cpu_srmcfg_ptr =3D this_cpu_ptr(&cpu_srmcfg);
-> +       u32 thread_srmcfg;
-> +
-> +       thread_srmcfg =3D READ_ONCE(next->thread.srmcfg);
+Sorry to jump in at V3.
 
+On Fri, Jan 30, 2026 at 05:36:27PM +0800, Joy Zou wrote:
+>Reserve eDMA channels 0 and 1 on the AXI eDMA controller for exclusive
+>use by V2X (Vehicle-to-Everything) fast hash operations.
+>
+>Reviewed-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>Tested-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>Signed-off-by: Joy Zou <joy.zou@nxp.com>
+>---
+> arch/arm64/boot/dts/freescale/imx95.dtsi | 2 ++
+> 1 file changed, 2 insertions(+)
+>
+>diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+>index 55e2da094c889fc7c1096d0e36f31ae118d2a982..9ac82da2ff440e08ae8378d7ff830a568d50a354 100644
+>--- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+>+++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+>@@ -631,6 +631,8 @@ edma2: dma-controller@42000000 {
+> 				reg = <0x42000000 0x210000>;
+> 				#dma-cells = <3>;
+> 				dma-channels = <64>;
+>+				/* channels 0 and 1 reserved for V2X fast hash */
+>+				dma-channel-mask = <0x3>;
 
-First set the cpu_list, and then the condition thread_srmcfg !=3D
-*cpu_srmcfg_ptr will not be satisfied. Is a default value required
-here? Both code paths for cpu_list and tasks are compared against the
-default value; you may refer to the implementation of mpam.
+This is wrong. Per dt-binding,
+dma-channel-mask means Bitmask of available DMA channels in ascending order,
+The usage in this patch does not match the dt-binding.
 
-> +
-> +       if (thread_srmcfg !=3D *cpu_srmcfg_ptr) {
-> +               *cpu_srmcfg_ptr =3D thread_srmcfg;
-> +               csr_write(CSR_SRMCFG, thread_srmcfg);
-> +       }
-> +}
-> +
-> +static __always_inline bool has_srmcfg(void)
-> +{
-> +       return riscv_has_extension_unlikely(RISCV_ISA_EXT_SSQOSID);
-> +}
-> +
-> +#else /* ! CONFIG_RISCV_ISA_SSQOSID  */
-> +
-> +static __always_inline bool has_srmcfg(void) { return false; }
-> +#define __switch_to_srmcfg(__next) do { } while (0)
-> +
-> +#endif /* CONFIG_RISCV_ISA_SSQOSID */
-> +#endif /* _ASM_RISCV_QOS_H */
-> diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/=
-switch_to.h
-> index 0e71eb82f920..a684a3795d3d 100644
-> --- a/arch/riscv/include/asm/switch_to.h
-> +++ b/arch/riscv/include/asm/switch_to.h
-> @@ -14,6 +14,7 @@
->  #include <asm/processor.h>
->  #include <asm/ptrace.h>
->  #include <asm/csr.h>
-> +#include <asm/qos.h>
->
->  #ifdef CONFIG_FPU
->  extern void __fstate_save(struct task_struct *save_to);
-> @@ -119,6 +120,8 @@ do {                                                 =
-       \
->                 __switch_to_fpu(__prev, __next);        \
->         if (has_vector() || has_xtheadvector())         \
->                 __switch_to_vector(__prev, __next);     \
-> +       if (has_srmcfg())                               \
-> +               __switch_to_srmcfg(__next);     \
->         if (switch_to_should_flush_icache(__next))      \
->                 local_flush_icache_all();               \
->         __switch_to_envcfg(__next);                     \
-> diff --git a/arch/riscv/kernel/Makefile b/arch/riscv/kernel/Makefile
-> index f60fce69b725..a3c36d18145c 100644
-> --- a/arch/riscv/kernel/Makefile
-> +++ b/arch/riscv/kernel/Makefile
-> @@ -125,3 +125,5 @@ obj-$(CONFIG_ACPI)          +=3D acpi.o
->  obj-$(CONFIG_ACPI_NUMA)        +=3D acpi_numa.o
->
->  obj-$(CONFIG_GENERIC_CPU_VULNERABILITIES) +=3D bugs.o
-> +
-> +obj-$(CONFIG_RISCV_ISA_SSQOSID) +=3D qos/
-> diff --git a/arch/riscv/kernel/qos/Makefile b/arch/riscv/kernel/qos/Makef=
-ile
-> new file mode 100644
-> index 000000000000..9f996263a86d
-> --- /dev/null
-> +++ b/arch/riscv/kernel/qos/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +obj-$(CONFIG_RISCV_ISA_SSQOSID) +=3D qos.o
-> diff --git a/arch/riscv/kernel/qos/qos.c b/arch/riscv/kernel/qos/qos.c
-> new file mode 100644
-> index 000000000000..7b06f7ae9056
-> --- /dev/null
-> +++ b/arch/riscv/kernel/qos/qos.c
-> @@ -0,0 +1,5 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +#include <asm/qos.h>
-> +
-> +/* cached value of sqoscfg csr for each cpu */
-> +DEFINE_PER_CPU(u32, cpu_srmcfg);
->
-> --
-> 2.43.0
->
-
-Thanks,
-Yunhui
+Regards
+Peng
 
