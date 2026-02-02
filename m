@@ -1,458 +1,323 @@
-Return-Path: <devicetree+bounces-261768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261769-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SDWMFIKEgGnE8wIAu9opvQ
-	(envelope-from <devicetree+bounces-261768-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:03:30 +0100
+	id 0K9UF/+EgGnE8wIAu9opvQ
+	(envelope-from <devicetree+bounces-261769-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:05:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EC6FCB6C9
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:03:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3DD0CB728
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:05:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8F4743014C7E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 10:59:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2EA32300186D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 11:00:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A271B35CBD1;
-	Mon,  2 Feb 2026 10:59:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8328F35C197;
+	Mon,  2 Feb 2026 11:00:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GlkMDBZg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 788232DC350;
-	Mon,  2 Feb 2026 10:59:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FFC135A943;
+	Mon,  2 Feb 2026 11:00:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770029971; cv=none; b=j0Ki+KqVJc9+j5fEVTX17lOFKnqc3SIbTdnaBC3KpE+wgHKs8kngU9zacgbmqQUaZa5fe0VcOjU5eWALBxWB3kh0U2dNWYvAqV8IMi9pZrYUxG/lwhImIBF1r1ZoS8+XpYP7UCrgDwxz/zimogcHdX8hX+lDSMF6xvubncY1Rdo=
+	t=1770030001; cv=none; b=L5K97W4WG8yAB9RqswInsqWmYkHa8OcDPIDGqsey84MilHA7K1Fynd2pCpxRJYu87EXC/X6VkBQwcofEfb59BkSNp8JGuqH+l+XRETo1THv1nwk3Um8aUjbqsjRj6PA4KW9zgYKXUQlAiKBqzKfY8q2HnmIs05OCD4Nn05ityTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770029971; c=relaxed/simple;
-	bh=IuRaSBLIVYPYtk7Ns+Da75yPOBJvau0vURBHjEnT3JA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Nkbh9Lbp2uRbG7SpYjivfIldyX8EykO4rbszkai13j6IB4ZVmt7iFiP1BaTgGInqt+aH9X76NbOsjf/74i+tiR71BIDv9uGBPLRpqzTFCxnXO7AormZo71PW5PkU08Aar9TUMVqKL1Kdk8LvK1SDHnJi68Lt+ynmiWOk6TxGzpY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7EF8B339;
-	Mon,  2 Feb 2026 02:59:22 -0800 (PST)
-Received: from [10.57.7.119] (unknown [10.57.7.119])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6EAE43F7A6;
-	Mon,  2 Feb 2026 02:59:25 -0800 (PST)
-Message-ID: <a27b755d-00d2-4350-98ab-0b68ab754770@arm.com>
-Date: Mon, 2 Feb 2026 10:59:27 +0000
+	s=arc-20240116; t=1770030001; c=relaxed/simple;
+	bh=TUnLtH/hGYDDh2Iz7+OkTetuo8jQN0M82oo7UEGB3Yg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g/oVHXKDncNrBoj4bNqQD03rHZKmqs1+oHXAI0hYQ/XTEcJUjIdlRt9MaHnjkxI+OMD5sxJjEnW5yfXtIiqEWPaLgvUxVo9NqyjXk8aBNO4f56Ad3wyLZqMEWsZUrkmuZ0kxeB2Y9foLA9Ss4flFv4XQSwVJYYy6QaPnK18IN+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GlkMDBZg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52A81C116C6;
+	Mon,  2 Feb 2026 10:59:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770030001;
+	bh=TUnLtH/hGYDDh2Iz7+OkTetuo8jQN0M82oo7UEGB3Yg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GlkMDBZg6unx+96Zcs1IKoVEox02V85SUcZeN0y1r+gsBiDn0EWevG33GMpRscrzm
+	 gnMppSFRPNWQRafon2cp/69/5vh4MT+WYsk1+H5P8+WATrj9vTCLRe9ldjqwIFAS3F
+	 hh32lbtHKMXLcPxTZlK1x2E4fMHqzs4rVXntSdC2/m/YGfZRLwayaDq4nSVNvfOGlc
+	 HJB4VTC7QlF8QbUXQ1KGIn1gRQKwr+QLZCLpHcZUTEk1q3kDBzJPtykh+JwQdqzzSS
+	 vk3IaxeaLgFPEJu8AuOromDEC+3fyRC5tqMpGx6VevjPT2bj3gTOg3boJTF9X3gCwp
+	 hU91tEau63b9g==
+Date: Mon, 2 Feb 2026 16:29:51 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: zhangsenchuan@eswincomputing.com
+Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	christian.bruel@foss.st.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, 
+	thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com, 
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
+Subject: Re: [PATCH v10 0/2] Add driver support for Eswin EIC7700 SoC PCIe
+ controller
+Message-ID: <4vqlkw2cr3caqj7whlld7r2d5nenrxsufuc72zwwy5a6a5wmza@3haxytsqqigj>
+References: <20260129092629.1866-1-zhangsenchuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/8] thermal: Add Remote Proc cooling driver
-To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, krzk+dt@kernel.org,
- casey.connolly@linaro.org, amitk@kernel.org, konradybcio@kernel.org,
- rui.zhang@intel.com, daniel.lezcano@linaro.org, rafael@kernel.org,
- conor+dt@kernel.org, andersson@kernel.org, robh@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, Amit Kucheria <amit.kucheria@oss.qualcomm.com>,
- mathieu.poirier@linaro.org, mani@kernel.org
-References: <20251223123227.1317244-1-gaurav.kohli@oss.qualcomm.com>
- <20251223123227.1317244-2-gaurav.kohli@oss.qualcomm.com>
-Content-Language: en-US
-From: Lukasz Luba <lukasz.luba@arm.com>
-In-Reply-To: <20251223123227.1317244-2-gaurav.kohli@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260129092629.1866-1-zhangsenchuan@eswincomputing.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.36 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,eswincomputing.com,einfochips.com];
+	TAGGED_FROM(0.00)[bounces-261769-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lukasz.luba@arm.com,devicetree@vger.kernel.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261768-lists,devicetree=lfdr.de];
-	R_DKIM_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: 0EC6FCB6C9
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[21]
+X-Rspamd-Queue-Id: B3DD0CB728
 X-Rspamd-Action: no action
 
-Hi Gaurav,
-
-On 12/23/25 12:32, Gaurav Kohli wrote:
-> Add a new generic driver for thermal cooling devices that control
-> remote processors (modem, DSP, etc.) through various communication
-> channels.
+On Thu, Jan 29, 2026 at 05:26:28PM +0800, zhangsenchuan@eswincomputing.com wrote:
+> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
 > 
-> This driver provides an abstraction layer between the thermal
-> subsystem and vendor-specific remote processor communication
-> mechanisms.
-
-Is this the patch about proposing the new cooling
-device type at last LPC2025 conference (what we've discussed with Amit)?
-
-There was some feedback asking you to add a bit more description
-into this patch header, please do that (with some background as well).
-
+> Changes in v10:
+> - Updates: eswin,eic7700-pcie.yaml
+>   - None
 > 
-> Suggested-by: Amit Kucheria <amit.kucheria@oss.qualcomm.com>
-> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-> ---
->   MAINTAINERS                          |   8 ++
->   drivers/thermal/Kconfig              |  11 ++
->   drivers/thermal/Makefile             |   2 +
->   drivers/thermal/remoteproc_cooling.c | 154 +++++++++++++++++++++++++++
->   include/linux/remoteproc_cooling.h   |  52 +++++++++
->   5 files changed, 227 insertions(+)
->   create mode 100644 drivers/thermal/remoteproc_cooling.c
->   create mode 100644 include/linux/remoteproc_cooling.h
+
+This version looks good to me, but it'd be good if Bjorn could give an Ack since
+there were previous reviews from him. Also, this week is -rc8, so it is too late
+for 7.0. I hope we can merge this series early, once v7.0-rc1 is released.
+
+- Mani
+
+> - Updates: pcie-eic7700.c
+>   - Remove devm_clk_bulk_get_all_enabled API, use devm_clk_bulk_get_all
+>     and clk_bulk_prepare_enable. Add resource release codes and add
+>     eic7700_pcie_host_deinit API.
+>   - Update PCI_DEVICE_ID_ESWIN_EIC7700.
+>   - Add reset_control_put release resources in "goto err_port:".
+>   - Delete trailing comma after a terminator in eic7700_pcie_of_match.
+> - Link to V9: https://lore.kernel.org/all/20251229113021.1859-1-zhangsenchuan@eswincomputing.com/
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 679e5f11e672..c1ba87315cdf 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -25935,6 +25935,14 @@ F:	drivers/thermal/cpufreq_cooling.c
->   F:	drivers/thermal/cpuidle_cooling.c
->   F:	include/linux/cpu_cooling.h
->   
-> +THERMAL/REMOTEPROC_COOLING
-> +M:	Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-> +L:	linux-pm@vger.kernel.org
-> +S:	Supported
-> +F:	drivers/thermal/remoteproc_cooling.c
-> +F:	include/linux/remoteproc_cooling.h
-> +
-> +
->   THERMAL/POWER_ALLOCATOR
->   M:	Lukasz Luba <lukasz.luba@arm.com>
->   L:	linux-pm@vger.kernel.org
-> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-> index b10080d61860..31e92be34387 100644
-> --- a/drivers/thermal/Kconfig
-> +++ b/drivers/thermal/Kconfig
-> @@ -229,6 +229,17 @@ config PCIE_THERMAL
->   
->   	  If you want this support, you should say Y here.
->   
-> +
-> +config REMOTEPROC_THERMAL
-> +	bool "Remote processor cooling support"
-> +	help
-> +	  This implements a generic cooling mechanism for remote processors
-> +	  (modem, DSP, etc.) that allows vendor-specific implementations to
-> +	  register thermal cooling devices and provide callbacks for thermal
-> +	  mitigation.
-> +
-> +	  If you want this support, you should say Y here.
-> +
->   config THERMAL_EMULATION
->   	bool "Thermal emulation mode support"
->   	help
-> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-> index bb21e7ea7fc6..ae747dde54fe 100644
-> --- a/drivers/thermal/Makefile
-> +++ b/drivers/thermal/Makefile
-> @@ -34,6 +34,8 @@ thermal_sys-$(CONFIG_DEVFREQ_THERMAL) += devfreq_cooling.o
->   
->   thermal_sys-$(CONFIG_PCIE_THERMAL) += pcie_cooling.o
->   
-> +thermal_sys-$(CONFIG_REMOTEPROC_THERMAL) += remoteproc_cooling.o
-> +
->   obj-$(CONFIG_K3_THERMAL)	+= k3_bandgap.o k3_j72xx_bandgap.o
->   # platform thermal drivers
->   obj-y				+= broadcom/
-> diff --git a/drivers/thermal/remoteproc_cooling.c b/drivers/thermal/remoteproc_cooling.c
-> new file mode 100644
-> index 000000000000..a1f948cbde0f
-> --- /dev/null
-> +++ b/drivers/thermal/remoteproc_cooling.c
-> @@ -0,0 +1,154 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Remote Processor Cooling Device
-> + *
-> + * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/export.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/of.h>
-> +#include <linux/slab.h>
-> +#include <linux/thermal.h>
-> +
-> +#define REMOTEPROC_PREFIX		"rproc_"
-> +
-> +struct remoteproc_cooling_ops {
-> +	int (*get_max_level)(void *devdata, unsigned long *level);
-> +	int (*get_cur_level)(void *devdata, unsigned long *level);
-> +	int (*set_cur_level)(void *devdata, unsigned long level);
-> +};
+> Changes in v9:
+> - Updates: eswin,eic7700-pcie.yaml
+>   - None
+> 
+> - Updates: pcie-eic7700.c
+>   - Update comment, s/Rort/Port/.
+> - Link to V8: https://lore.kernel.org/all/20251215095928.1712-1-zhangsenchuan@eswincomputing.com/
+> 
+> Changes in v8:
+> - Updates: eswin,eic7700-pcie.yaml
+>   - None
+> 
+> - Updates: pcie-eic7700.c
+>   - Remove dw_pcie_suspend_noirq/dw_pcie_resume_noirq API and add a
+>     comment, and remove .deinit.
+>   - Remove no_pme_handshake flag.
+>   - Add dw_pcie_dbi_ro_wr_en/dw_pcie_dbi_ro_wr_dis API.
+>   - Add eic7700_pcie_assert helper function.
+>   - Update NOIRQ_SYSTEM_SLEEP_PM_OPS to DEFINE_NOIRQ_DEV_PM_OPS.
+> - Link to V7: https://lore.kernel.org/all/20251202090225.1602-1-zhangsenchuan@eswincomputing.com/
+> 
+> Changes in v7:
+> - Updates: eswin,eic7700-pcie.yaml
+>   - None
+> 
+> - Updates: pcie-eic7700.c
+>   - Update "config PCIE_EIC7700" bool to tristate.
+>   - Remove fix MSI-X code, depend on new commit [1].
+>   - Add set no_pme_handshake flag.
+>   - Update -EINVAL to -ENODATA and add PM runtime function.
+>   - Add ".probe_type = PROBE_PREFER_ASYNCHRONOUS,".
+>   - Update eic7700_pcie_perst_deassert function name to
+>     eic7700_pcie_perst_reset.
+>   - Update readw to dw_pcie_readw_dbi function.
+>   - Add comments above reset_control_bulk_deassert function.
+> 
+> - Updates: pcie-designware.h pcie-designware-host.c
+>  -  The ESWIN EIC7700 SoC lacks hardware support for the L2/L3 low-power
+>     link states. It cannot enter the L2/L3 ready state through the
+>     PME_Turn_Off/PME_To_Ack handshake protocol. To address this, add a
+>     no_pme_handshake flag skip PME_Turn_Off broadcast and link state check
+>     code, other driver can reuse this flag if meet the similar situation.
+> - Link to V6: https://lore.kernel.org/linux-pci/20251120101018.1477-1-zhangsenchuan@eswincomputing.com/
+> - Link to: https://lore.kernel.org/linux-pci/20251109-remove_cap-v1-3-2208f46f4dc2@oss.qualcomm.com/ [1]
+> 
+> Changes in v6:
+> - Updates: eswin,eic7700-pcie.yaml
+>   - Add Reviewed-by: Rob Herring (Arm) <robh@kernel.org>.
+> 
+> - Updates: pcie-eic7700.c
+>   - Remove pci_root_ports_have_device function judgment during suspend.
+>   - Remove eic7700_pcie_pme_turn_off and eic7700_pcie_get_ltssm function.
+>   - Add set no_suspport_L2 flag.
+> 
+> - Updates: pcie-designware.h pcie-designware-host.c
+>  - The ESWIN EIC7700 soc does not support enter L2 link state. Therefore
+>    add no_suspport_L2 flag skip PME_Turn_Off broadcast and link state
+>    check code, other driver can reuse this flag if meet the similar
+>    situation.
+> - Link to V5: https://lore.kernel.org/all/20251110090716.1392-1-zhangsenchuan@eswincomputing.com/
+> - Link to: https://lore.kernel.org/all/e7plmtwtkkd4ymrt2hkztcqdx4ugfjk64oksjyf6lpi2oui53d@vhuo5occyref/
+> 
+> Changes in v5:
+> - Updates: eswin,eic7700-pcie.yaml
+>   - Modify reg-names: update mgmt to elbi.
+>   - Modify clock-names: update pclk to phy_reg.
+>   - Modify reset-names: update powerup to pwr.
+>   - Remove powerup modify in "snps,dw-pcie-common.yaml" file.
+> 
+> - Updates: pcie-eic7700.c
+>   - Update the driver submission comment, mention EIC7700 in the
+>     "config PCIE_EIC7700" and in the driver title.
+>   - Update some comments, for examples: "s/PME_TURN_OFF/PME_Turn_Off/",
+>     "s/INTX/INTx/", "s/PERST/PERST#/", "s/perst/PERST#/", "s/id/ID/".
+>   - Update "struct *_pcie" name and function name, add the eic7700 prefix.
+>   - Use PCIEELBI_CTRL0_DEV_TYPE macro and update comment, use FIELD_PREP.
+>   - Add eic7700_pcie_data pointer in struct eic7700_pcie.
+>   - Update .deinit callback function name and removed the dw_pcie_link_up
+>     judgment, add pci_root_ports_have_device function judgment.
+>   - Remove devm_platform_ioremap_resource_byname function get mgmt, use
+>     platform_get_resource_byname function get elbi in "pcie-designware.c".
+>   - Update of_reset_control_get to of_reset_control_get_exclusive, use
+>     devm_reset_control_bulk_get_exclusive function get resets, update use
+>     reset_control_bulk_assert/reset_control_bulk_deassert function.
+> - Link to V4: https://lore.kernel.org/all/20251030082900.1304-1-zhangsenchuan@eswincomputing.com/
+> - Link to https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/tree/?h=controller/dwc
+> 
+> Changes in v4:
+> - Updates: eswin,eic7700-pcie.yaml
+>   - Use snps,dw-pcie.yaml instead pci-host-bridge.yaml.
+> 
+> - Updates: snps,dw-pcie-common.yaml
+>   - Add powerup reset property, our powerup property is somewhat different
+>     from the general attributes defined by Synopsys DWC binding.
+> 
+> - Updates: pcie-eic7700.c
+>   - Update the driver submission comment.
+>   - Alphabetize so the menuconfig entries remain sorted by vendor.
+>   - Update use PCI_CAP_LIST_NEXT_MASK macro.
+>   - Use readl_poll_timeout function.
+>   - Update eswin_pcie_suspend/eswin_pcie_resume name to
+>     eswin_pcie_suspend_noirq/eswin_pcie_resume_noirq.
+>   - PM use dw_pcie_suspend_noirq and dw_pcie_resume_noirq function and add
+>     eswin_pcie_get_ltssm, eswin_pcie_pme_turn_off, eswin_pcie_host_exit
+>     function adapt to PM.
+> - Link to V3: https://lore.kernel.org/linux-pci/20250923120946.1218-1-zhangsenchuan@eswincomputing.com/
+> 
+> Changes in v3:
+> - Updates: eswin,eic7700-pcie.yaml
+>   - Based on the last patch yaml file, devicetree separates the root port
+>     node, changing it significantly. Therefore, "Reviewed-by: Krzysztof
+>     Kozlowski <krzysztof.kozlowski@linaro.org>" is not added.
+>   - Clock and reset drivers are under review. In yaml, macro definitions
+>     used in clock and reset can only be replaced by constant values.
+>   - Move the num-lanes and perst resets to the PCIe Root Port node, make
+>     it easier to support multiple Root Ports in future versions of the
+>     hardware.
+>   - Update the num-lanes attribute and modify define num-lanes as decimal.
+>   - Optimize the ranges attribute and clear the relocatable flag (bit 31)
+>     for any regions.
+>   - Update comment: inte~inth are actual interrupts and these names align
+>     with the interrupt names in the hardware IP, inte~inth interrupts
+>     corresponds to Deassert_INTA~Deassert_INTD.
+>   - Add Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>.
+> 
+> - Updates: pcie-eic7700.c
+>   - Update the submission comment and add DWC IP revision, data rate, lane
+>     information.
+>   - Optimize the "config PCIE_EIC7700" configuration.
+>   - Optimize the macro definition, add bitfield definition for the mask,
+>     and remove redundant comments. optimize comments, make use of 80
+>     columns for comments.
+>   - Use the dw_pcie_find_capability function to obtain the offset by
+>     traversing the function list.
+>   - Remove the sets MPS code and configure it by PCI core.
+>   - Alphabetize so the menuconfig entries remain sorted by vendor.
+>   - Configure ESWIN VID:DID for Root Port as the default values are
+> 	invalid,and remove the redundant lane config.
+>   - Use reverse Xmas order for all local variables in this driver
+>   - Hardware doesn't support MSI-X but it advertises MSI-X capability, set
+>     a flag and clear it conditionally.
+>   - Resets are all necessary, Update the interface function for resets.
+>   - Since driver does not depend on any parent to power on any resource,
+>     the pm runtime related functions are removed.
+>   - Remove "eswin_pcie_shutdown" function, our comment on the shutdown
+>     function is incorrect. Moreover, when the host powers reboots,it will
+>     enter the shutdown function, we are using host reset and do not need
+>     to assert perst. Therefore, the shutdown function is not necessary.
+>   - remove "eswin_pcie_remove", because it is not safe to remove it during
+>     runtime, and this driver has been modified to builtin_platform_driver
+>     and does not support hot plugging, therefore, the remove function is
+>     not needed.
+>   - The Suspend function adds link state judgment, and for controllers
+>     with active devices, resources cannot be turned off.
+>   - Add Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>.
+> - Link to V2: https://lore.kernel.org/linux-pci/20250829082021.49-1-zhangsenchuan@eswincomputing.com/
+> 
+> Changes in v2:
+> - Updates: eswin,eic7700-pcie.yaml
+>   - Optimize the naming of "clock-names" and "reset-names".
+>   - Add a reference to "$ref: /schemas/pci/pci-host-bridge.yaml#".
+>     (The name of the reset attribute in the "snps,dw-pcie-common.yaml"
+>     file is different from our reset attribute and "snps,dw-pcie.yaml"
+>     file cannot be directly referenced)
+>   - Follow DTS coding style to optimize yaml attributes.
+>   - Remove status = "disabled" from yaml.
+> 
+> - Updates: pcie-eic7700.c
+>   - Remove unnecessary imported header files.
+>   - Use dev_err instead of pr_err and remove the WARN_ON function.
+>   - The eswin_evb_socket_power_on function is removed and not supported.
+>   - The eswin_pcie_remove function is placed after the probe function.
+>   - Optimize function alignment.
+>   - Manage the clock using the devm_clk_bulk_get_all_enabled function.
+>   - Handle the release of resources after the dw_pcie_host_init function
+>     call fails.
+>   - Remove the dev_dbg function and remove __exit_p.
+>   - Add support for the system pm function.
+> - Link to V1: https://lore.kernel.org/all/20250516094057.1300-1-zhangsenchuan@eswincomputing.com/
+> 
+> Senchuan Zhang (2):
+>   dt-bindings: PCI: eic7700: Add Eswin PCIe host controller
+>   PCI: eic7700: Add Eswin PCIe host controller driver
+> 
+>  .../bindings/pci/eswin,eic7700-pcie.yaml      | 167 +++++++
+>  drivers/pci/controller/dwc/Kconfig            |  11 +
+>  drivers/pci/controller/dwc/Makefile           |   1 +
+>  drivers/pci/controller/dwc/pcie-eic7700.c     | 410 ++++++++++++++++++
+>  4 files changed, 589 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
+>  create mode 100644 drivers/pci/controller/dwc/pcie-eic7700.c
+> 
+> --
+> 2.25.1
+> 
 
-1. There is no comment for struct and the functions like you did below.
-2. Why you need those 3 callbacks?
-    It looks like they are simple wrappers on stuff in
-    'struct thermal_cooling_device_ops'.
-    Please try to get rid of them and re-use the existing fwk callbacks.
-
-> +
-> +/**
-> + * struct remoteproc_cdev - Remote processor cooling device
-> + * @cdev: Thermal cooling device handle
-> + * @ops: Vendor-specific operation callbacks
-> + * @devdata: Private data for vendor implementation
-> + * @np: Device tree node associated with this cooling device
-> + * @lock: Mutex to protect cooling device operations
-> + */
-> +struct remoteproc_cdev {
-
-Please use the full naming:
-remoteproc_cooling_device
-
-> +	struct thermal_cooling_device *cdev;
-
-You don't need to keep it here. AFAICS it's only
-used in the 'unregister' function. Please check my
-comment here and then remove this pointer.
-(It creates uneseccery linkage between those devices).
-
-> +	const struct remoteproc_cooling_ops *ops;
-
-So here it can be simply:
-struct thermal_cooling_device_ops cooling_ops;
-
-> +	void *devdata;
-> +	struct device_node *np;
-
-This 'np' is also not used, remove it please.
-
-> +	struct mutex lock;
-> +};
-> +
-> +
-> +/* Thermal cooling device callbacks */
-> +
-> +static int remoteproc_get_max_state(struct thermal_cooling_device *cdev,
-> +				    unsigned long *state)
-> +{
-> +	struct remoteproc_cdev *rproc_cdev = cdev->devdata;
-> +	int ret;
-> +
-> +	if (!rproc_cdev || !rproc_cdev->ops)
-> +		return -EINVAL;
-
-This mustn't be changed in runtime accidenly. We don't guard in
-cpufreq-/devfreq- cooling these callbacks that way. Please drop them.
-
-> +
-> +	mutex_lock(&rproc_cdev->lock);
-> +	ret = rproc_cdev->ops->get_max_level(rproc_cdev->devdata, state);
-> +	mutex_unlock(&rproc_cdev->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int remoteproc_get_cur_state(struct thermal_cooling_device *cdev,
-> +				    unsigned long *state)
-> +{
-> +	struct remoteproc_cdev *rproc_cdev = cdev->devdata;
-> +	int ret;
-> +
-> +	if (!rproc_cdev || !rproc_cdev->ops)
-> +		return -EINVAL;
-
-as above
-
-> +
-> +	mutex_lock(&rproc_cdev->lock);
-> +	ret = rproc_cdev->ops->get_cur_level(rproc_cdev->devdata, state);
-> +	mutex_unlock(&rproc_cdev->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int remoteproc_set_cur_state(struct thermal_cooling_device *cdev,
-> +				    unsigned long state)
-> +{
-> +	struct remoteproc_cdev *rproc_cdev = cdev->devdata;
-> +	int ret;
-> +
-> +	if (!rproc_cdev || !rproc_cdev->ops)
-> +		return -EINVAL;
-
-as above
-
-> +
-> +	mutex_lock(&rproc_cdev->lock);
-> +	ret = rproc_cdev->ops->set_cur_level(rproc_cdev->devdata, state);
-> +	mutex_unlock(&rproc_cdev->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct thermal_cooling_device_ops remoteproc_cooling_ops = {
-> +	.get_max_state = remoteproc_get_max_state,
-> +	.get_cur_state = remoteproc_get_cur_state,
-> +	.set_cur_state = remoteproc_set_cur_state,
-> +};
-> +
-> +struct remoteproc_cdev *
-> +remoteproc_cooling_register(struct device_node *np,
-> +			     const char *name, const struct remoteproc_cooling_ops *ops,
-> +			     void *devdata)
-
-Since this is based on device_node, please align to the naming
-convention from cpufreq-/devfreq-cooling and use prefix 'of_'
-
-of_remoteproc_cooling_register()
-
-> +{
-> +	struct remoteproc_cdev *rproc_cdev;
-> +	struct thermal_cooling_device *cdev;
-> +	int ret;
-> +
-> +	if (!name || !ops) {
-
-IMO you should check the '!np' here, not the lines below.
-We can simply bail out very early.
-
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	rproc_cdev = kzalloc(sizeof(*rproc_cdev), GFP_KERNEL);
-> +	if (!rproc_cdev)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	rproc_cdev->ops = ops;
-> +	rproc_cdev->devdata = devdata;
-> +	rproc_cdev->np = np;
-> +	mutex_init(&rproc_cdev->lock);
-> +
-> +	char *rproc_name __free(kfree) =
-> +		kasprintf(GFP_KERNEL, REMOTEPROC_PREFIX "%s", name);
-> +	/* Register with thermal framework */
-> +	if (np) {
-
-Too late to test 'np'.
-
-> +		cdev = thermal_of_cooling_device_register(np, rproc_name, rproc_cdev,
-> +							  &remoteproc_cooling_ops);
-> +	}
-> +
-> +	if (IS_ERR(cdev)) {
-
-This check should be just below the line when you get the 'cdev'
-
-> +		ret = PTR_ERR(cdev);
-> +		goto free_rproc_cdev;
-> +	}
-> +
-> +	rproc_cdev->cdev = cdev;
-> +
-> +	return rproc_cdev;
-> +
-> +free_rproc_cdev:
-> +	kfree(rproc_cdev);
-> +	return ERR_PTR(ret);
-> +}
-> +EXPORT_SYMBOL_GPL(remoteproc_cooling_register);
-> +
-> +void remoteproc_cooling_unregister(struct remoteproc_cdev *rproc_cdev)
-
-Change the API to be alined with cpufreq-cooling and devfreq-cooling
-types of devices, so:
-
-void remoteproc_cooling_unregister(struct thermal_cooling_device *cdev)
-
-You still should be able to get the rptoc_cdev like:
-
-rproc_cdev = cdev->devdata;
-
-and free it.
-
-> +{
-> +	if (!rproc_cdev)
-> +		return;
-> +
-> +	thermal_cooling_device_unregister(rproc_cdev->cdev);
-> +	mutex_destroy(&rproc_cdev->lock);
-> +	kfree(rproc_cdev);
-> +}
-> +EXPORT_SYMBOL_GPL(remoteproc_cooling_unregister);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_DESCRIPTION("Remote Processor Cooling Device");
-> diff --git a/include/linux/remoteproc_cooling.h b/include/linux/remoteproc_cooling.h
-> new file mode 100644
-> index 000000000000..ef94019d220d
-> --- /dev/null
-> +++ b/include/linux/remoteproc_cooling.h
-> @@ -0,0 +1,52 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Remote Processor Cooling Device
-> + *
-> + * Copyright (c) 2025, Qualcomm Innovation Center
-> + */
-> +
-> +#ifndef __REMOTEPROC_COOLING_H__
-> +#define __REMOTEPROC_COOLING_H__
-> +
-> +#include <linux/thermal.h>
-> +
-> +struct device;
-> +struct device_node;
-> +
-> +struct remoteproc_cooling_ops {
-> +	int (*get_max_level)(void *devdata, unsigned long *level);
-> +	int (*get_cur_level)(void *devdata, unsigned long *level);
-> +	int (*set_cur_level)(void *devdata, unsigned long level);
-> +};
-
-That duplicate w/ .c file content.
-We don't need this in the header, please follow the cpufreq-/devfreq-
-design.
-
-> +
-> +struct remoteproc_cdev;
-> +
-> +#ifdef CONFIG_REMOTEPROC_THERMAL
-> +
-> +struct remoteproc_cdev *
-> +remoteproc_cooling_register(struct device_node *np,
-> +			     const char *name,
-> +			     const struct remoteproc_cooling_ops *ops,
-> +			     void *devdata);
-> +
-> +void remoteproc_cooling_unregister(struct remoteproc_cdev *rproc_cdev);
-> +
-> +#else /* !CONFIG_REMOTEPROC_THERMAL */
-> +
-> +static inline struct remoteproc_cdev *
-> +remoteproc_cooling_register(struct device_node *np,
-> +			     const char *name,
-> +			     const struct remoteproc_cooling_ops *ops,
-> +			     void *devdata)
-> +{
-> +	return ERR_PTR(-EINVAL);
-> +}
-
-Function naming convention here as well
-
-
-Regards,
-Lukasz
+-- 
+மணிவண்ணன் சதாசிவம்
 
