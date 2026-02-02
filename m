@@ -1,412 +1,284 @@
-Return-Path: <devicetree+bounces-261618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261619-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJwMAvcngGnv3QIAu9opvQ
-	(envelope-from <devicetree+bounces-261618-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 05:28:39 +0100
+	id LkqfB3MpgGlO3gIAu9opvQ
+	(envelope-from <devicetree+bounces-261619-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 05:34:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1E5FC82A5
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 05:28:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64B47C82BB
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 05:34:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1CAC33008775
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 04:28:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A67FD300638A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 04:34:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1C9429ACD7;
-	Mon,  2 Feb 2026 04:28:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F32FA29D28B;
+	Mon,  2 Feb 2026 04:34:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="E+LB94Rr"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="HAbMN56m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011005.outbound.protection.outlook.com [52.101.52.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB1E128D8DA
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 04:28:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 590012147E6;
+	Mon,  2 Feb 2026 04:34:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.5
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770006511; cv=pass; b=uGq9Qd/aiNjxFZgYWwwMxJDxnsvA6uApzOL7Zi6w7B7SlBMNIYnRoKCexBObf1H2NyI6ydfJc4T2D9prpuCl/npzHYWubvupnYfL4LZT6xRdV/nBOBynYAeoe9BYXEhhf5NBRiovqz6XRbh/Q1MUtWsA/dnnIje3eLe4sunVzv0=
+	t=1770006895; cv=fail; b=N0RxQXDnIoXzGPvaQSNWpD+ljOP/j9mtqCql/c8YqttQ1KBwXjlFZEVMUF85ON0Oqyu9jhNddYuHqc1k/Lo+ftfvXfVYDbZ8qAL69EbD4yg5jeOh0/6LXTTA1k8RLFQlSN94+LhTgKfMgzB5hvQwJzFmliLYMXKubIXBSeEX/bQ=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770006511; c=relaxed/simple;
-	bh=pUVGgthQ839+VjER5eMc/k3P643CMKy+SrYbAa3c6hc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fQLEYgPysp6sJrhgeYFEqzWybB3AcNOkKh0I2dN23hKJvZYU4amCIt95a2LPAEblGhY9eL+3IJyBc5mrPONOLPtYM9ULLY2cluE3HAKkXH17R4Y/+PJO9Px0l4q67kYx1FMS3oBTwogCEazRcXRvNWKp/xoJTPQ2WH61kmMa8Ss=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=E+LB94Rr; arc=pass smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-385da75c6e6so39520631fa.2
-        for <devicetree@vger.kernel.org>; Sun, 01 Feb 2026 20:28:29 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770006508; cv=none;
-        d=google.com; s=arc-20240605;
-        b=W3Mx6B+wOt6xEgUpnEED8IBz56tTTAt+yDAiwKtiQMWpgWIcXS24YRdsTLmp2/cF50
-         Zxzpfhiiku6F09qfq216+JjBqwjHP7oOqhJG2Xi6dwyEZg/ztFVSZoEsuKFYnEGBBi13
-         hRcjkrz2zaR85vmMX4A/rDVCuNy3zbijbxdBbiZn8M5RPeDrmO3ANlRV32yLyblXUfAB
-         HJ7kkXRULAUgDzW78ZB6upizWOoQKd79YMKhpA2ad9teroKkGrq7nG+DM8//aTFcJ24T
-         WT/ypPZUTiCej8wJXnRuv/722wRaMXiY+pANHeC83026+nsfRTmLTqBPKMHP+uqHFjtN
-         91gQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=2RZFio6MipuyvvHseqe3FSKD7GaQ7TcS4ZKkrjtcRy0=;
-        fh=jPuDkm3Dn3+C6gZZQpVqtaOqtSDct/fbJqKhCvGGkXY=;
-        b=MnpEGVormZjmK0/f5ptU9Mn1zK18Ygi6pwHV0g81wQjMVTEJpCy3Qu57nBC3bfq0vA
-         8hcV5wxt+4fkEcgrQUsST6rE2LKIYSo5KMzygpB+1EmPaqh8/PJIBY5CKVc77r3MUtv/
-         XVMXR6MvVHjTEpIxYisiWe0jS4cEod9JAWwFJ/DSpTJmXoNmaVUKXIyCAlapms5r+oAe
-         gini24XmGEs5rK4IOwcfstO07uO/+wQfMq+BPBwbODhfxhAjZ7iT1U7p+lnQbxLGwsbM
-         oP+4t3ltae3GQr+ijegIRWxYQXDb2HbrZcYVqFLpzPOxl+t0PDlO8kKcHXeCiEucJ3d+
-         UzEg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance.com; s=google; t=1770006508; x=1770611308; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2RZFio6MipuyvvHseqe3FSKD7GaQ7TcS4ZKkrjtcRy0=;
-        b=E+LB94RrWNUm0XjZNN8lwOHSfQC9B1troHDlA0RpzeanmUzGLGtM+VpBq2ZNwTOf3F
-         lOBt7NQKAu+ZxThMN8UkmeEE4JqQ60Ln52YxfpZ/axpBZQG8294KV0Gng6h8BFO4QaA1
-         pYZHTYHVQRH+PoiqOE/A0VDLLeEtTLCkIxX3uPxruRYQtILKw2HMEmPnp1tvnSAEaq9u
-         szxAr3YP6ynZjlnCf9SwpnQhthJPlxCTs/CseCPS3aGd/ejJJzhz/gdkGLoGDoGFo+kR
-         cB4o4RDRjByUps0pOUuCnGc5VCx0wY/PcOC0iWom+F7j7HAsY3l9dbQLdHq+6qDG3+L5
-         4kSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770006508; x=1770611308;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=2RZFio6MipuyvvHseqe3FSKD7GaQ7TcS4ZKkrjtcRy0=;
-        b=iTrNwDE+K2MoOKFc5LKBU4QUFzaTADQQGh448Ugf6+45p0k5jCR65c90uPdamn8gD9
-         3rE53/A5lw+HvPrAq9B3rSZe1qVlNaerSxNjoyivzSwjHsy9bBrVVlwcuCAHXwUPhpIY
-         Pghyiy66xY5Elv5U8xl4/Equ0TxtHkPSITcJuoRKXUPIiSXoLtsIpn2a4oucwiPDJbpf
-         x8GSJ1W/6BKjQmPUcCqXaqxIJlB7aDrSCzYhq2QjJuUzhNhjHehllVGPY0pOzkFwBbTL
-         sSPiEebhJODNeJolk1/k5Me/uRtJ6dpO8QG78r6mGd8erQiUFGaw8jp1EIwdhr32dw9n
-         kCMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUylT9BWOvxhlQ8/Yy1+uiIPHJ7lsp9ieMm5OAUA5W6GNRh2aAufwJFNnumWnKPJn+cgZn349PfJ9CU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+/eCS3O3yJANM4sdE318d4WxWPEQ8YXdzPeRN6Azh8CRWRDAB
-	zg/o9Fc9KRdNGZ3Sd1u3rvi5vJFZtzutS7U1wSkAWtWcXjNYODtzt9RMQvkJCi9XhQhTCPy5G8K
-	quxL6qxFGbTqHIsisDjy6pdlm31+AleRI1gIrbQBRFA==
-X-Gm-Gg: AZuq6aKEhzudkd/QwTU8++Z5AFTsUF5/D3h6q1dJh7nVL2Qc4IJChHfl4Z0NOD9Jr3z
-	viXtUu7qBPnpDjiEAF5Sbnujab7FI3FoPrIN9G9ZpbZ0unlVMcNL6LqndHUSIFkatVNy4DHj6+X
-	HVMd0hdO+HML/kmdaRvN4+utXuNxwDX+dxl80wYI7h7EknOmZKPn10tKiu7FoI/ABYDoy8nMiYs
-	cObRafQNTG0C0E7Scfjp/Ixl0J9eEyveNsD/U0A+MwvBeqxOH1xfG8mVGTdwEQ/mtZ5z7QvDv0Q
-	0A==
-X-Received: by 2002:a17:907:74e:b0:b8d:be69:78bf with SMTP id
- a640c23a62f3a-b8dff5dd77amr628734866b.20.1770006490652; Sun, 01 Feb 2026
- 20:28:10 -0800 (PST)
+	s=arc-20240116; t=1770006895; c=relaxed/simple;
+	bh=6t/eQUay1NDmODzJA9gFkGK0kLigPkGoHZy8b3LfLWY=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=dulPw+WI1jAUCff+GyIBEosjgISXYJWIsbtYtCtGizBqiL/6CV14u2/y3wGV+ksIgqa++R3HZTJZC7bzBCzH4z7L9DhBwMmIl/VC37DAHRowpUATevBOPER9IS6vhR9bXkoUbUAYBocZLYD9n2EJPkA9Z7/D5M8kcMaRnLIcDac=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=HAbMN56m; arc=fail smtp.client-ip=52.101.52.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XDmbhnE05noPX5kUOdzCLyhwLaHpCflZoUlWcQ0zSnc+BIQFwd8d7j1QGUCIS3BVM+W/IOi+ZsMAGx152dqzNR9exv26PcM2BCtLTeUMJFj4w9VZTbmFORQjDkFhvXMSB/KOTYws/6p0GRdanBNXHFy8kv9ofRQVn7VT7MUFqj26EvoeZdDm9eajw/6FRtWJAWpalo8uKYlNlQHo/k1EZ3t68DoTDeZbrr2221+JYNbJI9gB+r57h+BibXePxNx+NaaC5L0iiGH+iCg9zlYWsUxDmzW8Dic3Jp9vpjUxBqxsmYED/fkRBNnomj3kBpaVBNvomi8opJC323BhNdD9OQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Jc+JChuMWNKwbCzSNPfPXnMYGttRNOsBP0uNWgKQFqg=;
+ b=IAdSNLTsur95E4yNW2+28a266lLYSWRYO5PloiS4yq98aFYuvrwAEDx3nm3cS00JgmnUiQY98Rr8fOo5Yl2pyS5k16XsIfWQ4J3Uj4ujr5lye+sHgJDxfA34AUJfboVcnJH2OtrR1Zri4wSqTL6oFeoi2SNfjCTDkv52a2ustzVE+Ndzxe64s2/oYIz4YTysKDHmpSzNBt1Q+pIH+3sYdCofcNKbMU3Jbtcn+SFzjJcHAyKpS5ZmWKZSzsrTq8Riiz+NcdsE5bt9F+LrlnkofOwDQRy7QVGQw5K26SepiSr+siLmWjWuW4k3KUxQlh33/lhrAB/BrS3PiuqdlcIosQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Jc+JChuMWNKwbCzSNPfPXnMYGttRNOsBP0uNWgKQFqg=;
+ b=HAbMN56mggmv6rnJ0ubQ6soMs4AuwS5jOzmrQ1MylhejiN8PxuLfLaEwApy/asgfKKSTJX5oaJvYR3aMMJaKo5BMJZkuelioKGN+EsTMihbLF/S+gmYenm24Tm/g0EjMg+lKI4ZOlX8Y0BH3aX4D+POPqOGWb8EQcQvL21RBAQBUDXveg84tgFLibe4qiXULBz+Wju9meqXYqAs0FZw1/pS1tkS+cgfz7xDkQvB7MU++XX6H1v9jeO8ibW56XGN0rxT1VEsmn+JIx7vawvTNeqBAFnPJ6/pEvbhquPegN5gWgpFjYPzB+dxBEqTXVJiWoz7lheXHJ2dnBqj/uvERrw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB8245.namprd12.prod.outlook.com (2603:10b6:8:f2::16) by
+ DM4PR12MB7719.namprd12.prod.outlook.com (2603:10b6:8:101::13) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9564.16; Mon, 2 Feb 2026 04:34:47 +0000
+Received: from DS0PR12MB8245.namprd12.prod.outlook.com
+ ([fe80::e7c5:cfca:a597:7fa4]) by DS0PR12MB8245.namprd12.prod.outlook.com
+ ([fe80::e7c5:cfca:a597:7fa4%4]) with mapi id 15.20.9564.016; Mon, 2 Feb 2026
+ 04:34:47 +0000
+Message-ID: <591a5dbf-323d-494e-8f21-c2814a9880cd@nvidia.com>
+Date: Mon, 2 Feb 2026 10:04:30 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4 17/22] dt-bindings: PCI: tegra194: Add monitor clock
+ support
+To: Rob Herring <robh@kernel.org>
+Cc: "bhelgaas@google.com" <bhelgaas@google.com>,
+ "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+ "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
+ "mani@kernel.org" <mani@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+ Jon Hunter <jonathanh@nvidia.com>,
+ "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+ Vidya Sagar <vidyas@nvidia.com>, "cassel@kernel.org" <cassel@kernel.org>,
+ "18255117159@163.com" <18255117159@163.com>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20260126074519.3426742-1-mmaddireddy@nvidia.com>
+ <20260126074519.3426742-18-mmaddireddy@nvidia.com>
+ <20260129164000.GA1237815-robh@kernel.org>
+Content-Language: en-US
+X-Nvconfidentiality: nvpublic
+From: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+In-Reply-To: <20260129164000.GA1237815-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN2PR01CA0111.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:27::26) To DS0PR12MB8245.namprd12.prod.outlook.com
+ (2603:10b6:8:f2::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260128-ssqosid-cbqri-v2-0-dca586b091b9@kernel.org> <20260128-ssqosid-cbqri-v2-3-dca586b091b9@kernel.org>
-In-Reply-To: <20260128-ssqosid-cbqri-v2-3-dca586b091b9@kernel.org>
-From: yunhui cui <cuiyunhui@bytedance.com>
-Date: Mon, 2 Feb 2026 12:27:59 +0800
-X-Gm-Features: AZwV_Qh6sUTHEto5Wt3yZWj9_zPb8qdXk_-HeJ2r0Rjdk_jaW_mUHlx9PsMyamI
-Message-ID: <CAEEQ3wmK_4y-woedO0htdh3tnO=4SEGwRUrDsGLYRWwsPF105w@mail.gmail.com>
-Subject: Re: [External] [PATCH RFC v2 03/17] RISC-V: Add support for srmcfg
- CSR from Ssqosid ext
-To: Drew Fustini <fustini@kernel.org>
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	=?UTF-8?B?UmFkaW0gS3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Adrien Ricciardi <aricciardi@baylibre.com>, 
-	Nicolas Pitre <npitre@baylibre.com>, =?UTF-8?Q?Kornel_Dul=C4=99ba?= <mindal@semihalf.com>, 
-	Atish Patra <atish.patra@linux.dev>, Atish Kumar Patra <atishp@rivosinc.com>, 
-	Vasudevan Srinivasan <vasu@rivosinc.com>, Ved Shanbhogue <ved@rivosinc.com>, 
-	Chen Pei <cp0613@linux.alibaba.com>, Liu Zhiwei <zhiwei_liu@linux.alibaba.com>, 
-	Weiwei Li <liwei1518@gmail.com>, guo.wenjia23@zte.com.cn, liu.qingtao2@zte.com.cn, 
-	Reinette Chatre <reinette.chatre@intel.com>, Tony Luck <tony.luck@intel.com>, 
-	Babu Moger <babu.moger@amd.com>, Peter Newman <peternewman@google.com>, 
-	Fenghua Yu <fenghua.yu@intel.com>, James Morse <james.morse@arm.com>, 
-	Ben Horgan <ben.horgan@arm.com>, Dave Martin <Dave.Martin@arm.com>, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, x86@kernel.org, 
-	Rob Herring <robh@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Robert Moore <robert.moore@intel.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, linux-acpi@vger.kernel.org, 
-	acpica-devel@lists.linux.dev, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB8245:EE_|DM4PR12MB7719:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2776df9d-c52b-47f1-44ce-08de621464fc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|366016|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Z0pJbVZ5cjk2M3lFMy9MUTJsaDQrL0dwdlpqajAxbGdDdURqditoNXZCQTY3?=
+ =?utf-8?B?MEl4T0kza1Z6SDJSMUxTcUlRb3BNMm9zR2RPZzR2RGJlOUprbWtxUVdvZTFm?=
+ =?utf-8?B?QmdNbzR1alFiUGJEcXdhbjltdzZXQU8vcWx6MFppTlo3YUloMlFBRlp5UTJa?=
+ =?utf-8?B?TFFJcGNRRmpOTnUwVW9hV0luNWJuSlI1R2hJV3FpNTU2S0lWTTZiVzNRMXc4?=
+ =?utf-8?B?ZlBZUTRrbmpZZC9rRzdWM2tQNWJ5OHluQXBDY2trNXFPRE12NnZLQmxkSTZa?=
+ =?utf-8?B?Ry82dWNMWFFmNjdpN3FkU3hlRi90ODg2L3VTNGsvL2sxcjgzcDljN2piMUt0?=
+ =?utf-8?B?VkVUaW1BVWdWb3FtYjM4UHVxZGwzZHNSMXhJRS9EaWd3ZjBUbjlVTWR4QzNi?=
+ =?utf-8?B?bVBDTHlyOFdsZEhvRVZsLzRxcVNrbGh3S2kvUE1BZGxSdStnYkVGU0h0TU92?=
+ =?utf-8?B?NWNJMlpJQWJhaVk3K2JiK05wVnBjSjd0R1lRVHNndFArVDE0RTBrR3RHemth?=
+ =?utf-8?B?ZlJpUVV0ZmI1L1hFOVZUZ1BOK0REZHl2SFNXSHpFZWZyYitIdDJJUTk0WkRm?=
+ =?utf-8?B?TjMxcDdyY09XVlNHQVZLcThwSDVTQWhrM0s3bDFKT1RpYnhhU0xxakVxYVB4?=
+ =?utf-8?B?SHpCYnNRQ0I3QmZKTC9mTW95MHhsT1JFOHFSMlpxWUJKN29PTWxqdmRzN1pD?=
+ =?utf-8?B?eXB3eEZ0d3NUS0xOVEJSaG81MzlqblRkYlB4K0s1UnJDaW5MRmd2ZzZVV245?=
+ =?utf-8?B?cEVDUG9CRGV0SVNZcFhhTi9YT0NNdk9jakl3MHZYY0t4OXcyQ0ZYMkE0NUpu?=
+ =?utf-8?B?UGJ3SW1kOHRMWmVCeVd3aDQ2MURtUFA4SmVyL0I3UWV5Z1pTNTlEcWk2dkw2?=
+ =?utf-8?B?Rm5wRG5TMzFKdDFiRnBwTVZkYXA3d1BwbVBXazlXTHREZnhqZTg3RGNyN01J?=
+ =?utf-8?B?bm4zUVJ2WXlPUTlEckFnZFAwaW53ZU9nQm5TOGdNMmpuVWVJKzRIYUdDcHVW?=
+ =?utf-8?B?YkdNamNaMlBqT2ZDeHFvcjg4RjUxS2dmMXUvbGdjVTJ0VWJnQjRhMnlTVzh5?=
+ =?utf-8?B?dnZIWjVaeC8xZkVkNUdZcFJ3MzQ5Nlp5VXo4QlByTHpEMHM1U1FoMGNRVnE1?=
+ =?utf-8?B?a1gxWForMkRTeXpoTUxDY1BtY3g2RHhaWFpjUndJVDh4d2tEVlZ3SFZ4M0FF?=
+ =?utf-8?B?Rm5NK1hYZ054NlV4VGd5WmJCd00vUUlpblhzajZFVldDQTFxVUJXelAwOFo1?=
+ =?utf-8?B?Unc4eXRoVUIrKys2Vkd6YU02d3FZbXRWc1BCNndpV3pqMDZOdDJrKys5MDZs?=
+ =?utf-8?B?S21KMGxZNW8zdXpKUnhrWmt3a1l4RnlZK0pjQ2hoc01ob2dpUDJFY2xMdk55?=
+ =?utf-8?B?L0tnTDNKV0xQRlppTkszYUREakUzankzSWdxNytSQmw4VUpJMjlweHh0dmdJ?=
+ =?utf-8?B?V2NDOGtTcmM0OVN3N1ZnVWwyWDJjN2VZM1lmN3J2S0FWRDdtRGlJM2xPdDI0?=
+ =?utf-8?B?cUhWVVR2Rm1lRTlKbzRkZFBUb215K1ZsZS94TzRhZG1WMHViUmpKY3k5U0ZR?=
+ =?utf-8?B?NHFaL1RXY0JTbFFMZEhQdVFqTkdwdUVmQzIxc1kzWDFncFVsYVg1c3hlckZS?=
+ =?utf-8?B?emlKRjNuaTNOVGJ4ZVgyZnhsUnRWMDBjR2tJWkFpdUUrUlhPTjBtTjdDWjVL?=
+ =?utf-8?B?Z0ZTTExHdkZsN2VFdHE5Y3d1cDJDbm9ueFBlc2x1bC8zNU5lSzRlRVErZDJR?=
+ =?utf-8?B?ek1Vbld3TnNmNG4zRWREVURqcm8yK1pFdFNkcjE4dXdCaURmcWdYU2RVYXpP?=
+ =?utf-8?B?d0hzNjFqOGl5VFFsSFlQU01uTWVEVE9DdGNrMGxObTllZEF0clVhZ2ZNdm9h?=
+ =?utf-8?B?YjlyVDk5aUg0ZjlEbVpQd0N4aVRZZHpqMkJ0bVgydzcwVTJXbm11Q1BDRFhx?=
+ =?utf-8?B?UlZ3TlNNNnB1dFpwdVBXZExCQ0Ryd3N2SXZ4dmI5cjFpcHZmVGswWUxWcGR4?=
+ =?utf-8?B?TE1LL0QvYnZmbEVGSk52ZHg1TzM5ekFlaFFka21sSDYxb2dHWWdNVWIrVmNN?=
+ =?utf-8?B?Znp5OVRoQ2JGOXA2QVhweFA5VncrRzFhWVJZYitINjQxS25KY2RjNlFmZ2pW?=
+ =?utf-8?Q?vogM=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB8245.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?aWJKeHhUTGJEYW9PODRDYU1iN0RPQjFTbEIyMVkvUUlDYStYOHcwNys0TVFH?=
+ =?utf-8?B?bG9oVVJvNHc3QmVWNSs4MytNS09ieXQvWFlDUFJTMjdEaTIzaE83dmtQdC9O?=
+ =?utf-8?B?R0ZjWXlhU0hJb0Q4ZVpTSFd1bmNXMHNXTVVmWEZWQTNteW1KRXl6c2gzdDBI?=
+ =?utf-8?B?ajIwQVZTdVhhK1hDREtVbVFiN1dwRURUS1drb0JKNG52WjZtR2pEU1VRTTVF?=
+ =?utf-8?B?V0gvb1V1Q2lnOUZNcy81SG03ZUNsbUk4SHMrWHd3anAycWdMQkx2T0FOeXJU?=
+ =?utf-8?B?emtUTW9DS0ZwbE5CQW5XQlI5VUxuUWdWTlkrRlk4ODNuU1cwUGNaNjR1SThG?=
+ =?utf-8?B?OVdjd3hieVBKSm1UTnZMSEF4RmZJVnBiM3pRTzVsQ3hQMy85MGhKYU9YNHB6?=
+ =?utf-8?B?MnYxQ2IxOGVidExCb09hZzRxSjdnRWJVRTh0S1lTbjA3OEVzOUZyRElVMStu?=
+ =?utf-8?B?Vnkvcm0vdFF5bE1hdjVqMzBRZXdrdXZ4UDdIY292dlNZUW8wTWdzMkE0Tzhy?=
+ =?utf-8?B?d3NQbzRlRWEweFIvYkRPd2UzTmc0ZThNc0FTMWphRVRLelR4NHE4bHB6eHAw?=
+ =?utf-8?B?VjJVL0ZxMWtvU1RXUUpraTBaWmJaUlZQL2Q0eWFmL3pFdHE3blVxaGVyZDJn?=
+ =?utf-8?B?WkhGQ2xFb2d3dFRlMDR3Wm5kakxYdFdWTTBMS1RXY1A0QnBDMWdSdWZaS2Qr?=
+ =?utf-8?B?WTNPUXhFYzNsdDhqTjVSZGtwclpWQklYeFhjTHoxa0hjbnlYTjRDSXB5WVJL?=
+ =?utf-8?B?bVZxbjJYenNyZElPK1p3V0ttSGd4VUx4dzBxSXplRVlibzN0K3NxbVFMWW41?=
+ =?utf-8?B?Mk5MRUpYemY4ejk2bGhlS3Z4SG5Ed2U1b2dxTldTZk9lcG9zbGM4VGVSeUgx?=
+ =?utf-8?B?R0FXckRqaXpYL2IvZjU0NEhEcU9XdHVkSG1JV3lvc0ZWTHRqb0J5TEJhYWFo?=
+ =?utf-8?B?V1RFK29aZlkxZWx1UDNLamdhZmVOdjI4SmY5Q2w1My9POUtuOFBMRzBPV2Vx?=
+ =?utf-8?B?dDN3Z01mb1BCM3NtTGZlZWFOUStpTi9ydFdSOWhEZS9ETmZ6c2ppeTNOWGJy?=
+ =?utf-8?B?U1NEb2s1aU5XK1RZU2lxb0MyTlZrUUh4L0F6WndMVnhkRUFVRGRlTS9TZDNu?=
+ =?utf-8?B?eHYrYVJOSzRFOFYrcUZ0UHpObWZrYlRVdjBxYWJSd3hndVdCcFNzdnM5d1Uw?=
+ =?utf-8?B?eWdRT0dBOFJEamxTV2IxNTZYL2o0ZXhrVDhlZUEvM2t5OWZvZ0t2ZkhkY296?=
+ =?utf-8?B?dENvRE1nVVNaejBWRG9sOHp4L2ZTdmFoYnNZS043aXorWGt2VkNraHgwWDNn?=
+ =?utf-8?B?REt1WTlsN2tOSnljZlNpYUFXSDVwalBXWjd5Z2dHSWNPTURXN1FKRHJlRWsz?=
+ =?utf-8?B?QzBsVkV3UWJZbkcveDJOM3I0aVJmYVFGeDloTmMzclYvSXlkdTRWdEU0dkVU?=
+ =?utf-8?B?bEZaSHRSR0grb2o4bVMzTXBZcWFOVnplakJpeWNzWG82cTdOWXJRVWdXd1I4?=
+ =?utf-8?B?YjJIZmVKN3RMdld6bWFPWklKMjZSQVZwZTJHa091eFpVR1R4SzdkTVhxSExx?=
+ =?utf-8?B?OUxWWkE3VW1ad1dHVE1VQVQ4OEpWb2tnVkM1U0thOWg5U0lwa0x0eS8xdjdE?=
+ =?utf-8?B?SEJMN0k4QzQ0UDhoYUk1Zm1QdzUzblR2UVBPSGViVkJhN2NBaE03bURjWjRI?=
+ =?utf-8?B?WWRLSGt3bUd1ZXk5VUNvQ3hhcmF5UDBqTEtZejFleFFQdEVzY3V1aFlKL09L?=
+ =?utf-8?B?MUYvcWNyRlIxS2trYjJDeHg5M09ma0wraFJNL0xBQmwxQ2wvN2ZQNkl1Mk9Y?=
+ =?utf-8?B?OE10VkNLVlRacVAvMXY1UHZhN2RrOC9DNGZxUy9CY2poM1M0L3NHRE1uRWVI?=
+ =?utf-8?B?TXluS3RaOEhhd21sd2h1SWtoOHNwL3o4NjJkVkJqVEdxSzhheUJMZlJCY2VM?=
+ =?utf-8?B?T2hibFFSOG1vY0Foa2MrbUJHSmVjWEt1Mm9jZllsdHpzd25DZUZhZ3kwWXoy?=
+ =?utf-8?B?cjdlYVJrNU1RT3JhbXZYNWRDN1pyT0h4elY3dW84TG4wYVEwbUV0dEk0b3lt?=
+ =?utf-8?B?ZnVpTU8rNTNKcW90UEgyajVmKzdGRFBJblFYdlNlOWZwd214cmY5Q3ZESDE1?=
+ =?utf-8?B?YXNmaVYraURVRjRVK1RYSGtZV1BOaW5wYVlyanNnM05ZMW8yRGtmdGxQNzZU?=
+ =?utf-8?B?b0dzeitUeDR2QlFXWGx3cEczQ1JIMVlrSUlJd0NsOGVTanVNWnk0UjBLVUVO?=
+ =?utf-8?B?dEQ5VlNnYkZhbU9uOGRsb3lxU0xNVmRBaFFDdEpuekQ5c05zeStDZHVZYzlY?=
+ =?utf-8?B?QW55ajRuT3JrZy8vdnFoRFllbXNzQjNGSGcyY2x5Vzg5MSsyL1ZyUT09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2776df9d-c52b-47f1-44ce-08de621464fc
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB8245.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 04:34:47.0175
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Y345l+rcS28oNxk+Shq4DUTDZqQfLvZ6Z+vrXRVvX+C+SafT9J2mifLc/nU+X5epCjFSYHPc+16oso7k4xbbFg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7719
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[bytedance.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[bytedance.com:s=google];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261618-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261619-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[google.com,kernel.org,gmail.com,nvidia.com,163.com,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[41];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,linux.alibaba.com,gmail.com,zte.com.cn,intel.com,amd.com,google.com,arm.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cuiyunhui@bytedance.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bytedance.com:+];
+	FROM_NEQ_ENVFROM(0.00)[mmaddireddy@nvidia.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,bytedance.com:dkim,brainfault.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A1E5FC82A5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 64B47C82BB
 X-Rspamd-Action: no action
 
-Hi Drew=EF=BC=8C
 
-On Thu, Jan 29, 2026 at 4:28=E2=80=AFAM Drew Fustini <fustini@kernel.org> w=
-rote:
+On 29/01/26 10:10 pm, Rob Herring wrote:
+> On Mon, Jan 26, 2026 at 01:15:14PM +0530, Manikanta Maddireddy wrote:
+>> From: Vidya Sagar <vidyas@nvidia.com>
+>>
+>> Tegra supports PCIe core clock monitoring for any rate changes that may be
+>> happening because of the link speed changes. This is useful in tracking
+>> any changes in the core clock that are not initiated by the software.
+>>
+>> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+>> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+>> ---
+>> V4:
+>> * None
+>>
+>> V3:
+>> * This is a new patch in this series
+>>
+>>   .../devicetree/bindings/pci/nvidia,tegra194-pcie-ep.yaml    | 6 +++++-
+>>   .../devicetree/bindings/pci/nvidia,tegra194-pcie.yaml       | 6 +++++-
+>>   2 files changed, 10 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie-ep.yaml
+>> index 6d6052a2748f..ca5da919c347 100644
+>> --- a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie-ep.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie-ep.yaml
+>> @@ -55,12 +55,16 @@ properties:
+>>         - const: intr
+>>   
+>>     clocks:
+>> +    minItems: 1
+>>       items:
+>> -      - description: module clock
+>> +      - description: module's core clock
+>> +      - description: module's monitor clock
+> Drop "module's"
+I will fix it in next version.
 >
-> Add support for the srmcfg CSR defined in the Ssqosid ISA extension
-> (Supervisor-mode Quality of Service ID). The CSR contains two fields:
+>>   
+>>     clock-names:
+>> +    minItems: 1
+>>       items:
+>>         - const: core
+>> +      - const: core_m
+> I would use "module" unless this corresponds to h/w documentation.
 >
->   - Resource Control ID (RCID) used determine resource allocation
->   - Monitoring Counter ID (MCID) used to track resource usage
+> Otherwise,
 >
-> Requests from a hart to shared resources like cache will be tagged with
-> these IDs. This allows the usage of shared resources to be associated
-> with the task currently running on the hart.
->
-> A srmcfg field is added to thread_struct and has the same format as the
-> srmcfg CSR. This allows the scheduler to set the hart's srmcfg CSR to
-> contain the RCID and MCID for the task that is being scheduled in. The
-> srmcfg CSR is only written to if the thread_struct.srmcfg is different
-> than the current value of the CSR.
->
-> A per-cpu variable cpu_srmcfg is used to mirror that state of the CSR.
-> This is because access to L1D hot memory should be several times faster
-> than a CSR read. Also, in the case of virtualization, accesses to this
-> CSR are trapped in the hypervisor.
->
-> Link: https://github.com/riscv/riscv-ssqosid/releases/tag/v1.0
-> Co-developed-by: Kornel Dul=C4=99ba <mindal@semihalf.com>
-> Signed-off-by: Kornel Dul=C4=99ba <mindal@semihalf.com>
-> [fustini: rename csr, refactor switch_to, rebase on upstream]
-> Signed-off-by: Drew Fustini <fustini@kernel.org>
-> ---
->  MAINTAINERS                        |  7 +++++++
->  arch/riscv/Kconfig                 | 17 ++++++++++++++++
->  arch/riscv/include/asm/csr.h       |  8 ++++++++
->  arch/riscv/include/asm/processor.h |  3 +++
->  arch/riscv/include/asm/qos.h       | 41 ++++++++++++++++++++++++++++++++=
-++++++
->  arch/riscv/include/asm/switch_to.h |  3 +++
->  arch/riscv/kernel/Makefile         |  2 ++
->  arch/riscv/kernel/qos/Makefile     |  2 ++
->  arch/riscv/kernel/qos/qos.c        |  5 +++++
->  9 files changed, 88 insertions(+)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 765ad2daa218..e98d553bd0ca 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -22505,6 +22505,13 @@ F:     drivers/perf/riscv_pmu.c
->  F:     drivers/perf/riscv_pmu_legacy.c
->  F:     drivers/perf/riscv_pmu_sbi.c
->
-> +RISC-V QOS RESCTRL SUPPORT
-> +M:     Drew Fustini <fustini@kernel.org>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-If you don=E2=80=99t mind, to help support RISC-V QoS resctrl development a=
-nd
-ensure interface stability, could you please add an 'R:' entry with my
-email address?
+Thank you for quick review.
 
-> +L:     linux-riscv@lists.infradead.org
-> +S:     Supported
-> +F:     arch/riscv/include/asm/qos.h
-> +F:     arch/riscv/kernel/qos/
-> +
->  RISC-V RPMI AND MPXY DRIVERS
->  M:     Rahul Pathak <rahul@summations.net>
->  M:     Anup Patel <anup@brainfault.org>
-> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> index 6b39f37f769a..35a6238b02c5 100644
-> --- a/arch/riscv/Kconfig
-> +++ b/arch/riscv/Kconfig
-> @@ -595,6 +595,23 @@ config RISCV_ISA_SVNAPOT
->
->           If you don't know what to do here, say Y.
->
-> +config RISCV_ISA_SSQOSID
-> +       bool "Ssqosid extension support for supervisor mode Quality of Se=
-rvice ID"
-> +       default y
-> +       help
-> +         Adds support for the Ssqosid ISA extension (Supervisor-mode
-> +         Quality of Service ID).
-> +
-> +         Ssqosid defines the srmcfg CSR which allows the system to tag t=
-he
-> +         running process with an RCID (Resource Control ID) and MCID
-> +         (Monitoring Counter ID). The RCID is used to determine resource
-> +         allocation. The MCID is used to track resource usage in event
-> +         counters.
-> +
-> +         For example, a cache controller may use the RCID to apply a
-> +         cache partitioning scheme and use the MCID to track how much
-> +         cache a process, or a group of processes, is using.
-> +
->  config RISCV_ISA_SVPBMT
->         bool "Svpbmt extension support for supervisor mode page-based mem=
-ory types"
->         depends on 64BIT && MMU
-> diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-> index 4a37a98398ad..2590b89b8f72 100644
-> --- a/arch/riscv/include/asm/csr.h
-> +++ b/arch/riscv/include/asm/csr.h
-> @@ -75,6 +75,13 @@
->  #define SATP_ASID_MASK _AC(0xFFFF, UL)
->  #endif
->
-> +/* SRMCFG fields */
-> +#define SRMCFG_RCID_MASK       _AC(0x00000FFF, UL)
-> +#define SRMCFG_MCID_MASK       SRMCFG_RCID_MASK
-> +#define SRMCFG_MCID_SHIFT      16
-> +#define SRMCFG_MASK            ((SRMCFG_MCID_MASK << SRMCFG_MCID_SHIFT) =
-| \
-> +                                 SRMCFG_RCID_MASK)
-> +
->  /* Exception cause high bit - is an interrupt if set */
->  #define CAUSE_IRQ_FLAG         (_AC(1, UL) << (__riscv_xlen - 1))
->
-> @@ -317,6 +324,7 @@
->  #define CSR_STVAL              0x143
->  #define CSR_SIP                        0x144
->  #define CSR_SATP               0x180
-> +#define CSR_SRMCFG             0x181
->
->  #define CSR_STIMECMP           0x14D
->  #define CSR_STIMECMPH          0x15D
-> diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/=
-processor.h
-> index da5426122d28..183c55e32b96 100644
-> --- a/arch/riscv/include/asm/processor.h
-> +++ b/arch/riscv/include/asm/processor.h
-> @@ -122,6 +122,9 @@ struct thread_struct {
->         /* A forced icache flush is not needed if migrating to the previo=
-us cpu. */
->         unsigned int prev_cpu;
->  #endif
-> +#ifdef CONFIG_RISCV_ISA_SSQOSID
-> +       u32 srmcfg;
-> +#endif
->  };
->
->  /* Whitelist the fstate from the task_struct for hardened usercopy */
-> diff --git a/arch/riscv/include/asm/qos.h b/arch/riscv/include/asm/qos.h
-> new file mode 100644
-> index 000000000000..84830d7c6dc4
-> --- /dev/null
-> +++ b/arch/riscv/include/asm/qos.h
-> @@ -0,0 +1,41 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +#ifndef _ASM_RISCV_QOS_H
-> +#define _ASM_RISCV_QOS_H
-> +
-> +#ifdef CONFIG_RISCV_ISA_SSQOSID
-> +
-> +#include <linux/sched.h>
-> +#include <linux/jump_label.h>
-> +
-> +#include <asm/barrier.h>
-> +#include <asm/csr.h>
-> +#include <asm/hwcap.h>
-> +
-> +/* cached value of srmcfg csr for each cpu */
-> +DECLARE_PER_CPU(u32, cpu_srmcfg);
-> +
-> +static inline void __switch_to_srmcfg(struct task_struct *next)
-> +{
-> +       u32 *cpu_srmcfg_ptr =3D this_cpu_ptr(&cpu_srmcfg);
-> +       u32 thread_srmcfg;
-> +
-> +       thread_srmcfg =3D READ_ONCE(next->thread.srmcfg);
-> +
-> +       if (thread_srmcfg !=3D *cpu_srmcfg_ptr) {
-> +               *cpu_srmcfg_ptr =3D thread_srmcfg;
-> +               csr_write(CSR_SRMCFG, thread_srmcfg);
-> +       }
-> +}
-> +
-> +static __always_inline bool has_srmcfg(void)
-> +{
-> +       return riscv_has_extension_unlikely(RISCV_ISA_EXT_SSQOSID);
-> +}
-> +
-> +#else /* ! CONFIG_RISCV_ISA_SSQOSID  */
-> +
-> +static __always_inline bool has_srmcfg(void) { return false; }
-> +#define __switch_to_srmcfg(__next) do { } while (0)
-> +
-> +#endif /* CONFIG_RISCV_ISA_SSQOSID */
-> +#endif /* _ASM_RISCV_QOS_H */
-> diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/=
-switch_to.h
-> index 0e71eb82f920..a684a3795d3d 100644
-> --- a/arch/riscv/include/asm/switch_to.h
-> +++ b/arch/riscv/include/asm/switch_to.h
-> @@ -14,6 +14,7 @@
->  #include <asm/processor.h>
->  #include <asm/ptrace.h>
->  #include <asm/csr.h>
-> +#include <asm/qos.h>
->
->  #ifdef CONFIG_FPU
->  extern void __fstate_save(struct task_struct *save_to);
-> @@ -119,6 +120,8 @@ do {                                                 =
-       \
->                 __switch_to_fpu(__prev, __next);        \
->         if (has_vector() || has_xtheadvector())         \
->                 __switch_to_vector(__prev, __next);     \
-> +       if (has_srmcfg())                               \
-> +               __switch_to_srmcfg(__next);     \
->         if (switch_to_should_flush_icache(__next))      \
->                 local_flush_icache_all();               \
->         __switch_to_envcfg(__next);                     \
-> diff --git a/arch/riscv/kernel/Makefile b/arch/riscv/kernel/Makefile
-> index f60fce69b725..a3c36d18145c 100644
-> --- a/arch/riscv/kernel/Makefile
-> +++ b/arch/riscv/kernel/Makefile
-> @@ -125,3 +125,5 @@ obj-$(CONFIG_ACPI)          +=3D acpi.o
->  obj-$(CONFIG_ACPI_NUMA)        +=3D acpi_numa.o
->
->  obj-$(CONFIG_GENERIC_CPU_VULNERABILITIES) +=3D bugs.o
-> +
-> +obj-$(CONFIG_RISCV_ISA_SSQOSID) +=3D qos/
-> diff --git a/arch/riscv/kernel/qos/Makefile b/arch/riscv/kernel/qos/Makef=
-ile
-> new file mode 100644
-> index 000000000000..9f996263a86d
-> --- /dev/null
-> +++ b/arch/riscv/kernel/qos/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +obj-$(CONFIG_RISCV_ISA_SSQOSID) +=3D qos.o
-> diff --git a/arch/riscv/kernel/qos/qos.c b/arch/riscv/kernel/qos/qos.c
-> new file mode 100644
-> index 000000000000..7b06f7ae9056
-> --- /dev/null
-> +++ b/arch/riscv/kernel/qos/qos.c
-> @@ -0,0 +1,5 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +#include <asm/qos.h>
-> +
-> +/* cached value of sqoscfg csr for each cpu */
-> +DEFINE_PER_CPU(u32, cpu_srmcfg);
->
-> --
-> 2.43.0
->
+HW register to enable the clock is core_m, so I am using same name.
 
-Thanks,
-Yunhui
 
