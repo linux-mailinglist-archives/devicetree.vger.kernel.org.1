@@ -1,90 +1,84 @@
-Return-Path: <devicetree+bounces-261965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261966-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +B2UAFocgWm0EAMAu9opvQ
-	(envelope-from <devicetree+bounces-261965-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 22:51:22 +0100
+	id KMfRJZ8sgWl6EgMAu9opvQ
+	(envelope-from <devicetree+bounces-261966-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 00:00:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14816D1DB5
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 22:51:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B60B8D28E3
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 00:00:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9612B300BE0F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 21:47:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 52098302DB83
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 22:48:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0DAF3148DA;
-	Mon,  2 Feb 2026 21:47:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9083A3596F5;
+	Mon,  2 Feb 2026 22:48:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dhMe5vx+"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="qEindJno"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazon11010041.outbound.protection.outlook.com [52.101.85.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D446E3148CD;
-	Mon,  2 Feb 2026 21:47:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.85.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770068856; cv=fail; b=VclEZNfRPbs0CkMaNzPfmrOPMmAYYEPHoh8vJf82ycBdmiSut2yalIZQA6jGLkG4SbveDV9tR1F9d9Wo0zDAX84jYZO4X5k9J7KFe7l1Je6+o0ESpDYAzwivf8MFcDpqL0p5vA2Bt0WYSPUIvTZynp0WzIM7IYU9pToZO/rRRHM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770068856; c=relaxed/simple;
-	bh=IJuj6x4tOw5HmEdD+0w+kTEA8EAb+41WtcbZux5WS00=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fRnW0fTKCUhUHGOvOSvY4MrrHJDmGhs1jY+hcFQBOzsJr6nb1pvCuBQYFCVXc+92geyor/HnyyWktbIwagbej5ppszDoy4jmzGLWezIYPLESIxkDf+hiawv5vt33cY8kGjN0PSNF/4Igl4fGVvv6JHY/bF1ovzB0B3EnTax8Jb0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dhMe5vx+; arc=fail smtp.client-ip=52.101.85.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rw+52CPuvdARxwflCV2x7RzenszAdqEFVWlMVzfvvg+J+Cr8WvWNf6Bka93H/5ILYkALMWXXRGsX3bGQnHJ5W10QLb+0eqzR9GXpXwfHbZzXwR+DpWezOidUA/lv4R5RwqA3igyWpdNiIjEypkhfOY0gJBhnCAYs6SGpDBcUPVb/4RfI8NmtZdZzvIEvoXXR1oYbuXMgEU2E3M/KdBtWAtgOfPI4Qpe7MPktvW93og28+Gr2WjSj8OoFlCX5jX23m/wZ124NmYYLsdS59gkaPKHJtTJ2qtfG7+nVnMf//HaP0tPMAUL8oKAWoZLFPJdOQpMOsLphOQhm8b1/JBMjaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uiQSMvH44EYdHdpYHjGfcnECr8jVh6ANp3CWpfZmIGU=;
- b=BggXJ32Qc3Hgxn6pFT2TAfDkjmczQZ8mcM6zAQ7LDfjw2TmiouJ75pchw1Z8DRqSw+pbJ5tTjfnHwyf1R2Xsju6Y1tXa0BkNSF4BXkgGZGrcK+qx1zE2OO2zBfnOTrHCt0+TpfStPAq+KCsz72Qdd02FsGYPZJzopWFT3ogDJyR92xMMRmjHK9ZUQ2T5IOFA6xIyCj6xKhoZif0r6p2zHif04+FqoNY9biQqq2rsW4A/QaoFjcYNk50ZDpei1fUP4capH3IMkFMNAlR5cPGevo53g+Rz1+N6apNF9bHbfl5QR+ae41ppSwzeQ5mwxa9iM9RRwWLX7YnD2/lHnNw70g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uiQSMvH44EYdHdpYHjGfcnECr8jVh6ANp3CWpfZmIGU=;
- b=dhMe5vx+tTYs1t92lje0gRmJfD8UCVoh9QlfmjYjD2w2byU7BePzaEp9HX7fWqQEbIn3SE8t5sF1OEDFAZ0DcWwDl2Ebo887lki0nScz4YzD60Eb0519t/Bx9SOWsqJTZd4yG6qScdVOFi8126lwGffpK7dzSJz7V04Ns/Pl/sI=
-Received: from DS7P220CA0072.NAMP220.PROD.OUTLOOK.COM (2603:10b6:8:224::16) by
- CYYPR10MB7649.namprd10.prod.outlook.com (2603:10b6:930:c7::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.16; Mon, 2 Feb 2026 21:47:32 +0000
-Received: from DS1PEPF0001708E.namprd03.prod.outlook.com
- (2603:10b6:8:224:cafe::af) by DS7P220CA0072.outlook.office365.com
- (2603:10b6:8:224::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.16 via Frontend Transport; Mon,
- 2 Feb 2026 21:47:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- DS1PEPF0001708E.mail.protection.outlook.com (10.167.17.134) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.10 via Frontend Transport; Mon, 2 Feb 2026 21:47:30 +0000
-Received: from DLEE201.ent.ti.com (157.170.170.76) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Feb
- 2026 15:47:30 -0600
-Received: from DLEE212.ent.ti.com (157.170.170.114) by DLEE201.ent.ti.com
- (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Feb
- 2026 15:47:29 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE212.ent.ti.com
- (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 2 Feb 2026 15:47:29 -0600
-Received: from [128.247.81.0] (mz02jj9v.dhcp.ti.com [128.247.81.0])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 612LlTTK2842411;
-	Mon, 2 Feb 2026 15:47:29 -0600
-Message-ID: <392a3042-7916-4bf4-a819-69ba955a0b32@ti.com>
-Date: Mon, 2 Feb 2026 15:47:29 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A41A356A05
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 22:48:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770072520; cv=none; b=G5FOznO8a9rjZphq4B5AsIjVNUAtTz30AT6BIKJkZL6Kx5bgSIIgxwM25F7p5pz4h5g2bHPKlV3Ty4izw5gPeAuTXjSahoG8+qIFW1fcPPJ70BfjYq7ES1XKTBaHbSbtGaiS060KUxxuap1puLxJ0xxW7ZK72z9ifcP6w+5wVdE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770072520; c=relaxed/simple;
+	bh=o3Bn8QuqwePy51tzC7oXfrEiDa31Kqfqd3Ab1p5UScU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h/W8PqWY2SieSS+CKiTGITchJmP+JIXYwvSykQijuWDG9LnmpJn2p1dDTmBDnLW1eyj6X7Q3BT3Qz/1nGRt8fOvxgo7fJ3FLMHKwZA4vl4lxlFbNjR6SLERXhiiIPAbuz5q3toziSdo6e3ZNZ2JsFWxEaJIqFbP9QCFrBadEbQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=qEindJno; arc=none smtp.client-ip=209.85.167.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-45c962424daso2043890b6e.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 14:48:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1770072517; x=1770677317; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JSAtrL+Y9tqEZj9ofXU44Yu8l9qg/1Ym7mvkc+EsokY=;
+        b=qEindJnoB18ZPd1pxdTXOjRog7jNXPfBKyYS8XoNguHmuM/X01H5ZsdhhOQ5do0/96
+         WGtR8omuW3XkEutgE4JHcZ4IktXcht0YfTsQbTrg0pSsvTilP8ay/Mw/aDvhHOENug9E
+         4q1XoAcnay7QoRfbtRfWPD1Rz+ZspNm85jZ1nAS0fIzr6QpSE2qHR+NCRq4PakSIIxg/
+         nFmaWNPdYA/G3sTnfK8o1UbQt4t1HsdmMWdWnA9bePWH4gDPANlySzBLY58l/bbTDg7V
+         /KO75u2bLzKAHg77233mFhwXaC0WANl7inhYAGwCYmsyMxii1XjLFYQZQzybUOL1AUHg
+         sdjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770072517; x=1770677317;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JSAtrL+Y9tqEZj9ofXU44Yu8l9qg/1Ym7mvkc+EsokY=;
+        b=GBf+iKK6h0+exNjyTAvwVyLoFHhMHvTYNR3T9pKgU6CDAvoY26Gyk1EFNhP0uBXvIv
+         QXHZ4GjPKiCJrT+xmUYP3QOSWedoeGZZlAnpn13fflybvenp64XL0X7zZdzvUh39QfS7
+         qVdRY3oopfh5/+nPK3ILgzFvvDX+zPVhLQ26gqVboFIC/AlQV6q+AcjiyOTpgckvukMC
+         O4K588IHn+8CHGtipJ9ksklfQB3Hor0ekOT1m3cZHZCIVZvTN193UkSkdUvOgFFZLbQu
+         A5907ZX7wDfSjNMmAOqnbl0VljDdwVXCZKMtlfju6GbI5LV7+p9NK094ZFswV7YY14NJ
+         2f3w==
+X-Forwarded-Encrypted: i=1; AJvYcCWLo13WzrKadjBEENU9ZewQOPqvcbK8xdUA5fk8drQI6XSqYyW6GKPueynBO6MknsBdVoAIYMxHTbge@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxj28CExmCTG57ZhHSfZwCzPMYKshxzEyuzDLX95XpE0pq9mKP1
+	NuQxUpe7w5L9laOV9auO9f112TO2c5w2ll7wqjxml+YycQJfKZORVi5Ttufetd+foUg=
+X-Gm-Gg: AZuq6aJ6i7axyuLR9jVyNpHM06TABKvfbq/0JCcSAy49FACEPGqn+7QRzaDirt/Fegl
+	zySwx1Ytc7tolHDysH/ltaCeQK3rDG5IJdoZuAUtvtkiOat1uFPFwTRh9UzbfaRzClrCIbIc0Di
+	M5VSJpMP7F5xU1Acsc2Gx5OJOSNY4RJR9qu8LVMi7TrA2jqnjCM/3IGDVJ8WH1cMNq24ua8LKcn
+	/4PAZTcoMWtloawhZJrNvi0ZO0Z3aAkA2Jsbp5UH80Hf7CRdWQ9gmkxs2DqQ7jLhptXk4obpbin
+	gAOqtxWVjKL1q16W/OoT/22mMCzzjGQj9HUqO/fGxUx9lIsBUtBpDr5JmzEh1d7RgF22Bal3iZe
+	cS0x2XLDMCODOjfEczckabVKiVkTrbQ2kwn1bl7W8dgOHUFRvFa0pqZ0dMoCSjIVK5z1pU0h6L6
+	V6GrZK5iZrpGFpC1JtAbVDY2XTgPRglYGqejp53rzhAOpWvs9R8Aa8fs8ssnu0
+X-Received: by 2002:a05:6808:5391:b0:450:caf8:eba2 with SMTP id 5614622812f47-45f34d405e0mr5752387b6e.57.1770072517226;
+        Mon, 02 Feb 2026 14:48:37 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:3695:6954:27c2:42ef? ([2600:8803:e7e4:500:3695:6954:27c2:42ef])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-45f08f22826sm9856970b6e.11.2026.02.02.14.48.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Feb 2026 14:48:36 -0800 (PST)
+Message-ID: <086d6b35-8c19-4e92-9cd1-557b98991d35@baylibre.com>
+Date: Mon, 2 Feb 2026 16:48:34 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,186 +86,95 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] ASoC: ti: davinci-mcasp: Add asynchronous mode
- support
-To: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
-	<broonie@kernel.org>, <lgirdwood@gmail.com>, <perex@perex.cz>,
-	<tiwai@suse.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-References: <20260130051045.1898892-1-sen@ti.com>
- <20260130051045.1898892-5-sen@ti.com>
- <d7ed59c4-2262-4cd5-978f-e9e5c0e8a9a9@gmail.com>
+Subject: Re: [PATCH 2/2] iio: light: Add support for Capella cm36686 and
+ cm36672p sensors
+To: Erikas Bitovtas <xerikasxx@gmail.com>, Jonathan Cameron
+ <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Tsai <ktsai@capellamicro.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20260201-cm36686-v1-0-4949a2a9ba63@gmail.com>
+ <20260201-cm36686-v1-2-4949a2a9ba63@gmail.com>
+ <eb922433-3951-409a-a397-b48efef57b7b@baylibre.com>
+ <b133521f-434d-4972-82a3-6e7978e557bd@gmail.com>
 Content-Language: en-US
-From: Sen Wang <sen@ti.com>
-In-Reply-To: <d7ed59c4-2262-4cd5-978f-e9e5c0e8a9a9@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0001708E:EE_|CYYPR10MB7649:EE_
-X-MS-Office365-Filtering-Correlation-Id: d11d2623-152b-43da-6f66-08de62a4aa6c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|7416014|376014|82310400026|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?SmJvTmtFdTFYZnVhazBvKy9BbExhM3JjUzBzS0xFTHd1bFZpcnMvSUhrdEY5?=
- =?utf-8?B?WHVCKzVoVE55RDN5SXRNUk5IVGVFVnpZZTZFUHQ3VWR5aG81eTR5VG1sVUdS?=
- =?utf-8?B?TW15VEFHYjd2TnhqbkFRU0s3aWdVdXJYUi92cHl0TS93MjR4UHRFejh0MkxZ?=
- =?utf-8?B?T2lBa3Y3ZzI4VXFnQmRjdk9EdG10SzI5S1I2a2xYTzAwWHlCWTJCdjhlWlhB?=
- =?utf-8?B?TXZ1R3pLSkhiNUphQ093dzZNY3BXLzE2L2s3dGRtaHppcVVDK1I1NmdZY2c2?=
- =?utf-8?B?UzRHM0JCY0prSDVKeXNPWDlORExwaG5qeXpKdS9XeklXd2lxSm5lUDYzM0ox?=
- =?utf-8?B?QTk0Z1lpOGpCVDBBQmpER1VaZG1iTUZqdkhrcjJzWklmRU5xbWxvVjJsTU5E?=
- =?utf-8?B?b25XQm05YXVOWWV5VldnK3NqL1FJMXdUSFJUZTh5VVFERU1qOU4zUVBNYUNT?=
- =?utf-8?B?VStlYVIyYzBPQVR3VUQyRER2VUs3RUNldVkvZDRBOEZISEtYZGJ0WjdNZHZR?=
- =?utf-8?B?eHhYM2VhcmRGWis0VnBxOFNoT3pQSVRiNG5UaWVXd2s1QmhhT2lZUnF0a3g3?=
- =?utf-8?B?YnhtVHd1YUY2Y3JtUktjeWlxaHYyblB1WUtSbGlHZnNwRVkxSjJ6S2FGNUov?=
- =?utf-8?B?Z3JGb2ZuOUhTd3VrOEVUNWVuTitNd2NEMG1TYUowUEtodXgzS0dSTk0rTFBl?=
- =?utf-8?B?bkR5N3BlZXVUdnNwZGJSTGVtNDhPdUNuY1U2R1ZsZEJPWHM3RWlLdFE4ZXlk?=
- =?utf-8?B?OWtjdlhHZVdsWjBFaTk3OVlsK2ZVZmJzb2pwbm56aFVlWVlpN2RoNXpQWEVO?=
- =?utf-8?B?dkwxU0hsNENpYUJtN2E5WXlVTGl6Z1M1NDBkM2hPTEpDY2FxK04xcURrc2tC?=
- =?utf-8?B?c24ybjVnSzljdzA5ZVhVY3RvTmo2OW9wMVQwc1pFeG41ZkczSmpXdVZNajMx?=
- =?utf-8?B?WFpaeWp0aUZ1bkRZMDhuNmk5WGJjdklZbXdWcEVEdXhacnRZTWR0Wk1wSTJO?=
- =?utf-8?B?MVFYbSsxR2NObGVDOWVza1VSdzUyMVZpY2VKeXU1OGg5K3NZM3lIMVF0VGV3?=
- =?utf-8?B?QzVzMk9DZjJVRG01dm43WjhUQ2EzVDA5cTZ4NnEwWXVyL01zclBXU3gweWhq?=
- =?utf-8?B?R1lYUnN1VjYwanAvOWxsUDJuZkVNejVSTHRtcGY5ME1UczVFNE5LUWtnSTVL?=
- =?utf-8?B?WmlJdk9rWTUySFI1YlRidlNLbmJqYXBkYlg2VW1ub0hFT3kzN29OejI1ekJh?=
- =?utf-8?B?Q0N5QUU1VWc0ZWh2TXB3UzAvY0hoMnlQeGhXa01EWG05NjR2Y0pONnVoaytj?=
- =?utf-8?B?aHRmWWIxSlJMNFI1eU0xS3ArcGNvTTZuTVI5cFE5cEtoOWcybGQ0YXlSb0t4?=
- =?utf-8?B?TUJjN0pQUDJBUlM0ejh0cFBrQ2g5ZFozbndPN2VPc3dORnVDY0UyZkt5bkhH?=
- =?utf-8?B?MmRERE9zcEduMFdDWURKY21WOWxIdXJ1bitmeUZsRk92MGtwZ0hPTFNzUk91?=
- =?utf-8?B?Y3Y2QjlLUG1Jelk5Q2toWFZBVDBBUHJjK0V3V2FRVlh1OE02UkNSUDBOOE5u?=
- =?utf-8?B?endwdXZDUEpPR213MGRUeFFnUDEyVXRnMTZyQzMrcVRrMVBpY2N5R2JFMytZ?=
- =?utf-8?B?KzdycVFBVnhTTklXUkFtUHczbVhNczA0TklkeWovTjZ3UzNFMXMrTHdCeXVQ?=
- =?utf-8?B?Wm1zTnRFYW9xV0I2aE4wYXNXblhvVVpXYXdXWTVHdThuYUh1aVIwYUlWN3R5?=
- =?utf-8?B?bU5jTHphWU8vbVZKYkExWWpxSHB5Mk4zcDloQktQd3V5NE53OFY0VlNrYUt5?=
- =?utf-8?B?WlBPSWpTaVd5UUJOcXNCZ2ZobDRCaGdsWTB5a2c2Uys3aE1CMU5kckVtdVlp?=
- =?utf-8?B?TzFWU0tXWXphY2RHdUlXT1VmRnRsc3czTXNQTVVmLzNEVzk2akVrQXVqdlA2?=
- =?utf-8?B?Y2VXMGlVQTJsT3BGa2ZjcTI5VTA0N2s4S0IvYzlXc1FoNm1GTHl1OTdZVG5M?=
- =?utf-8?B?QndGNHFLWStMQzc4N0RQOGV3dHI2aXFoM2F5QXl0U3lwWDI0OEgweDl5R1Zm?=
- =?utf-8?B?MUdNZ21NSHJKWVNKait5M01mNktHTW85bWxvU043TGs0RzJGRHMvcXRHMEJx?=
- =?utf-8?B?TU5tYm8yVXFYeG81RzhoQ2dCMHAvdkFmcWtlcFVxU0VWekR2eGdyUmZoSmZD?=
- =?utf-8?Q?xXtDh6YIRBrMsSP2jKb8PAxNrbHV3JA7H9OUmEQNW/V/?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(7416014)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	7ra4Zxn+tIUCIf4AbKmNIsYfBBvxPu7h0pCf8rZ4yPJpPk2QXCB2WjHLasdnKUHgl1sKoUAz0YbPOzknEElclTcQMAbJgzRbPSvxoD4EivKPQ1aneDtkH/qjQ7gSROCPNvg32ej9gdCRSLrbNmORJwTkGYoxgNICyJL4eIBkls3r3/QuSJG4JaNB8vU9yk3VZ0Vn5iT2CsnOQ6uvTVfAetNDdgCwp+lytqsZsXJNuqVX+kLlQB4O+bn+/3MzbDVP4MBoW3b/2+tpCm50usU+CL4GTYAKH9Jo/Lp/DwkoXBuYsawhEDLlXg5fckKduG2MCAb16qKqGjHbsJzVMykE5cbp8hrU5vjvE5/m0dhsBnLxhtjKMyZl4azrOEpF26kWLV9J9X6a+eu47iXBU0NtEYugMHvpMT17FwvcNbDVmb6VqMj/wWhVbcbAzMfkfrJO
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 21:47:30.5630
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d11d2623-152b-43da-6f66-08de62a4aa6c
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS1PEPF0001708E.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR10MB7649
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <b133521f-434d-4972-82a3-6e7978e557bd@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261965-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ti.com:email,ti.com:dkim,ti.com:mid];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,perex.cz,suse.com];
+	TAGGED_FROM(0.00)[bounces-261966-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,analog.com,capellamicro.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
+	DMARC_NA(0.00)[baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sen@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 14816D1DB5
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,baylibre-com.20230601.gappssmtp.com:dkim]
+X-Rspamd-Queue-Id: B60B8D28E3
 X-Rspamd-Action: no action
 
-On 2/2/26 11:02, Péter Ujfalusi wrote:
+On 2/2/26 6:04 AM, Erikas Bitovtas wrote:
 > 
 > 
-> On 30/01/2026 07:10, Sen Wang wrote:
->> McASP has dedicated clock & frame sync registers for both transmit
->> and receive. Currently McASP driver only supports synchronous behavior and
->> couples both TX & RX settings.
->>
->> Add logic that enables asynchronous mode via ti,async-mode property. In
->> async mode, playback & record can be done simultaneously with different
->> audio configurations (tdm slots, tdm width, audio bit depth).
->>
->> Note the ability to have different tx/rx DSP formats (i2s, dsp_a, etc.),
->> while possible in hardware, remains to be a gap as it require changes
->> to the corresponding machine driver interface.
->>
->> Existing IIS (sync mode) and DIT mode logic remains mostly unchanged.
->> Exceptions are IIS mode logic that previously assumed sync mode, which has
->> now been made aware of the distinction. And shared logic across all modes
->> also now checks for McASP tx/rx-specific driver attributes. Those
->> attributes have been populated according to the original extent, ensuring
->> no divergence in functionality.
->>
->> Constraints no longer applicable for async mode are skipped.
->> Clock selection options have also been added to include rx/tx-only clk_ids,
->> exposing independent configuration via the machine driver as well.
->>
->> Note that asynchronous mode is not applicable for McASP in DIT mode,
->> which is a transmitter-only mode to interface w/ self-clocking formats.
->>
->> Signed-off-by: Sen Wang <sen@ti.com>
->> ---
->>   include/linux/platform_data/davinci_asp.h |   3 +-
->>   sound/soc/ti/davinci-mcasp.c              | 487 +++++++++++++++++-----
->>   sound/soc/ti/davinci-mcasp.h              |  10 +
->>   3 files changed, 398 insertions(+), 102 deletions(-)
->>
->> diff --git a/sound/soc/ti/davinci-mcasp.c b/sound/soc/ti/davinci-mcasp.c
->>
-> 
->    static void mcasp_start_rx(struct davinci_mcasp *mcasp)
->>   {
->>   	if (mcasp->rxnumevt) {	/* enable FIFO */
->> @@ -230,13 +288,17 @@ static void mcasp_start_rx(struct davinci_mcasp *mcasp)
->>   	/*
->>   	 * When ASYNC == 0 the transmit and receive sections operate
->>   	 * synchronously from the transmit clock and frame sync. We need to make
->> -	 * sure that the TX signlas are enabled when starting reception.
->> +	 * sure that the TX signals are enabled when starting reception.
->> +	 * Else set pin to be output when McASP is the master
-> 
-> In new code - while it might not match with old code - use producer
-> instead of master.
-> 
-> Otherwise it looks nice, I trust you have tested the sync and DIT mode.
-> 
-> With this nitpick addressed:
-> Acked-by: Peter Ujfalusi <peter.ujfalusi@gmail.com>
-> 
+> On 2/1/26 8:45 PM, David Lechner wrote:
+>> On 2/1/26 11:03 AM, Erikas Bitovtas wrote:
 
-Hi Péter, thanks for your review
+Pro tip: when you reply, trim out the not relevant parts like this.
+It was hard to find your actual reply.
 
-I'll use inclusive terminology (producer) instead.
+...
 
-I've functionally tested IIS sync mode. For DIT mode, since I don't have 
-hardware available, I've only done a register dump in comparison, during
-idle, playback & shutdown - all registers in effect stay unchanged.
+>>> +static const struct iio_chan_spec cm36686_channels[] = {
+>>> +	{
+>>> +		.type = IIO_LIGHT,
+>>> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+>>
+>> IIO_LIGHT should have IIO_CHAN_INFO_SCALE to convert raw to convert the
+>> raw value to lux. If we don't have that info due to lack of documentation,
+>> then we should add a comment to explain that. Or maybe we can make an
+>> educated guess?
+> No documentation on this is available, but we know that ASUS in their driver for
+> cm36686 use 160ms integration time for light and, after applying their custom
+> calibration functions, divide received raw value by 25 if the device is cm36686,
+> or by 20 if it's cm36283. Maybe from there we can extrapolate the lux value like
+> this:
+> 80ms -> raw / 12.5
+> 160ms -> raw / 25
+> 320ms -> raw / 50
+> 640ms -> raw / 100
+> Not sure how accurate that would be, however.
+> Xiaomi gets IIO_CHAN_INFO_SCALE by multiplying a value retrieved from a device
+> tree property called "als_trans_ratio", which is not documented anywhere.
+The ASUS driver is an input driver, not IIO, so not sure that helps.
 
-Will post a V2 shortly with all the corrections.
+We could start with hard-coding the als_trans_ratio in this driver for the
+scale (and write comments explaining where it came from and what we know
+and don't know). Then at least we would have a scale. And if anyone needs
+something more accurate and reverse-engineers it we could fix it up later
+with a DT property or something like that.
 
-Best,
-Sen Wang
 
