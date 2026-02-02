@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-261748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261751-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ALK9IRqBgGnE8wIAu9opvQ
-	(envelope-from <devicetree+bounces-261748-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:48:58 +0100
+	id gMLFGhKAgGnE8wIAu9opvQ
+	(envelope-from <devicetree+bounces-261751-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:44:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 040BDCB309
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:48:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 090A1CB254
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:44:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 67807300D96D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 10:44:25 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E1BCC3008308
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 10:44:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9211635B650;
-	Mon,  2 Feb 2026 10:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94DE35BDBC;
+	Mon,  2 Feb 2026 10:44:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="oUtk7MDf"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="EGUYWVh1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B16152E6CC4;
-	Mon,  2 Feb 2026 10:44:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AC50156F45;
+	Mon,  2 Feb 2026 10:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770029063; cv=none; b=hWjONkKIhHVNOTlQ2AzgLKHBR5ESSfKqO1S4vW03oJz5tD9enkyyiNk0tZDUux7SrDcnupUoPH2AXWL5Xug1WhM3b80ZKGhMD8Rw1v/x66VsukoMcatXrwywgI44MVzIiI8broBb3oo3HmaI8pSDxVpdPFTHJ32ZOofq2LzdmWU=
+	t=1770029069; cv=none; b=kGJJbNlwqJYuILgbZIMHteYA/jg6xb3cxhH60Zeal2K8Tg1jygqyrosqNvSkPog7h6IwOtGgex9gP0eyGf+sBR7PnxylnCHy/Pgj9JACZSBmGpllnZmZXM8PjFxWowzikfIXs8fFFKhBWucbxNeCNJcQWWcXLyg2izO8jN2g0Cw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770029063; c=relaxed/simple;
-	bh=AaVe1pjaER66BSebJZWxUmfJ2o8xzxozlDgG45+LDuk=;
+	s=arc-20240116; t=1770029069; c=relaxed/simple;
+	bh=Th2Pyfo6YtFvOWalzENkMGywH6Y1rzwFvxcMHuDq2AA=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=C86IgwmmJO1TBK9FLmVNQpF5Pa7K7JGJfpBPbjwRceiLTg0C0OdNT2F9s0fJZf2asVT29ZcAy7V5FgCNqhAlE9iD2NiRfdhrQvOE2dgA0Ap4tZAojMeJoWvSmiB+ZHJ0HYWgfC9+r3JfVcYkQGJtfVbIpNdyAfUaw8vpzpc0cWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=oUtk7MDf; arc=none smtp.client-ip=68.232.153.233
+	 MIME-Version:Content-Type; b=F3inhYa8oKcf4VyjSA2JJY3xy55okYUGmqi/nM3GpohcC4dGssEO9SNagLGZ0v2E50/90QwtK2uWshE5d/HXwOgqGb7nWM9ZElowhU5Uc1paCWW2B7207wbZNa2jDwew72WIrngtLFSzlNhn7uiCNd+OI6XcQJOgZTq4yUZDFts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=EGUYWVh1; arc=none smtp.client-ip=68.232.153.233
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1770029062; x=1801565062;
+  t=1770029068; x=1801565068;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=AaVe1pjaER66BSebJZWxUmfJ2o8xzxozlDgG45+LDuk=;
-  b=oUtk7MDfMcOMLyzsO/C68sStIabWO9wIAHGsNMr7YEs2UlSLbE/UfTxj
-   a2fT8q+H+c0Z3sZFvpXIbAtxLEUbpslrH0Z12cTKPS75DPRxTbGxkctpj
-   HyaNVeBBNHHUdcyT+gP2Z1NTt6rVgEEFS0ZuAeAfs4mhUAqXuhH/OkUHs
-   TNiQ884f40DfR9aMfAzE+/87GdzAvhnSXE3xFxp9yTOlG82GGytRZhV3K
-   ifrRw5LXD8OBBpTgeMJMm9LeSC7hcQgLmOmW6ortQQeoJ/AJ88wS8sKuE
-   neucrylJxcLm+/IW3LKBSH4s4qIUP6tSGAwLoJo0Rf4Sr7NO2M69ny328
-   g==;
-X-CSE-ConnectionGUID: DSQwcYL0TyCoxPqC95EJag==
-X-CSE-MsgGUID: xxR6AZGYSNq5/76nmJyAdA==
+  bh=Th2Pyfo6YtFvOWalzENkMGywH6Y1rzwFvxcMHuDq2AA=;
+  b=EGUYWVh1ob30pu21j41jzAHNPaabKfIncU8AEoceHxDwwyMVGRfknRFu
+   OTW29247kwVD8kuPjbKap4j+bEghjHSukBz+aR4SMhtc9caCelrXdlK87
+   QLyyHZAHjUBqK1JBbVAgthqI4EU7LHtE2Oa9jGGjlLWE8i48IygjXhokY
+   Noq0Z+f6Oup3fx6dnDbC5PkmG+nigafITe/e88DsPQ9PY1MPCanDuHHTd
+   M8DgkRwXqWMB7d+7+Lqy06LCXGuxMpWeLOq5+j3I2B2S+zH/1BU3dDvPI
+   JfFrID8+29cEfdSh+ZWSBOMESp1aBT5VzboPZEYAvuf12E5WKJ63faJnW
+   w==;
+X-CSE-ConnectionGUID: 7oiJFARpQRyJAEDPNcfsaA==
+X-CSE-MsgGUID: tqWdLbeJSXGwzwxOpnDMTA==
 X-IronPort-AV: E=Sophos;i="6.21,268,1763449200"; 
-   d="scan'208";a="52769520"
+   d="scan'208";a="59959604"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 02 Feb 2026 03:41:12 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2026 03:41:21 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
+ chn-vm-ex4.mchp-main.com (10.10.87.33) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Mon, 2 Feb 2026 03:40:41 -0700
+ 15.2.2562.35; Mon, 2 Feb 2026 03:40:47 -0700
 Received: from archlinux.mchp-main.com (10.10.85.11) by
  chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Mon, 2 Feb 2026 03:40:38 -0700
+ 15.1.2507.58 via Frontend Transport; Mon, 2 Feb 2026 03:40:41 -0700
 From: Mihai Sain <mihai.sain@microchip.com>
 To: <mturquette@baylibre.com>, <sboyd@kernel.org>,
 	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
@@ -70,9 +70,9 @@ To: <mturquette@baylibre.com>, <sboyd@kernel.org>,
 CC: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<ryan.wanner@microchip.com>, Mihai Sain <mihai.sain@microchip.com>
-Subject: [PATCH 1/5] clk: at91: sam9x7: Remove gmac peripheral and generic clock entries with ID 67
-Date: Mon, 2 Feb 2026 12:40:21 +0200
-Message-ID: <20260202104025.3781-2-mihai.sain@microchip.com>
+Subject: [PATCH 2/5] clk: at91: sam9x7: Rename macb0_clk to gmac_clk
+Date: Mon, 2 Feb 2026 12:40:22 +0200
+Message-ID: <20260202104025.3781-3-mihai.sain@microchip.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260202104025.3781-1-mihai.sain@microchip.com>
 References: <20260202104025.3781-1-mihai.sain@microchip.com>
@@ -92,12 +92,12 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
 	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCPT_COUNT_TWELVE(0.00)[17];
-	TAGGED_FROM(0.00)[bounces-261748-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261751-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -109,48 +109,34 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 040BDCB309
+X-Rspamd-Queue-Id: 090A1CB254
 X-Rspamd-Action: no action
 
-According with datasheet table 12.1 the instance ID 67 is reserved.
-This change drops the gmactsu_clk and gmac_gclk entries from
-the SAM9X7 clock description tables.
+Update the peripheral clock name for ID 24 from macb0_clk to gmac_clk
+to match the actual GMAC hardware block present on SAM9X7 SoCs.
+This aligns the clock naming with the device tree and avoids confusion
+with legacy MACB controllers.
 
 Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
 ---
- drivers/clk/at91/sam9x7.c | 10 ----------
- 1 file changed, 10 deletions(-)
+ drivers/clk/at91/sam9x7.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/clk/at91/sam9x7.c b/drivers/clk/at91/sam9x7.c
-index 89868a0aeaba..d9603f1124d0 100644
+index d9603f1124d0..68e569bd70f5 100644
 --- a/drivers/clk/at91/sam9x7.c
 +++ b/drivers/clk/at91/sam9x7.c
-@@ -420,7 +420,6 @@ static const struct {
- 	{ .n = "lvdsc_clk",	.id = 56, },
- 	{ .n = "pit64b1_clk",	.id = 58, },
- 	{ .n = "puf_clk",	.id = 59, },
--	{ .n = "gmactsu_clk",	.id = 67, },
- };
- 
- /*
-@@ -702,15 +701,6 @@ static const struct {
- 		.pp_count = 1,
- 		.pp_chg_id = INT_MIN,
- 	},
--
--	{
--		.n = "gmac_gclk",
--		.id = 67,
--		.pp = { "audiopll_divpmcck", "plla_div2pmcck", },
--		.pp_mux_table = { 6, 8, },
--		.pp_count = 2,
--		.pp_chg_id = INT_MIN,
--	},
- };
- 
- static void __init sam9x7_pmc_setup(struct device_node *np)
+@@ -387,7 +387,7 @@ static const struct {
+ 	{ .n = "dma0_clk",	.id = 20, },
+ 	{ .n = "uhphs_clk",	.id = 22, },
+ 	{ .n = "udphs_clk",	.id = 23, },
+-	{ .n = "macb0_clk",	.id = 24, },
++	{ .n = "gmac_clk",	.id = 24, },
+ 	{ .n = "lcd_clk",	.id = 25, },
+ 	{ .n = "sdmmc1_clk",	.id = 26, },
+ 	{ .n = "ssc_clk",	.id = 28, },
 -- 
 2.52.0
 
