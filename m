@@ -1,210 +1,267 @@
-Return-Path: <devicetree+bounces-261848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261849-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yL8gFtK4gGl3AgMAu9opvQ
-	(envelope-from <devicetree+bounces-261848-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 15:46:42 +0100
+	id SJSnOle6gGl3AgMAu9opvQ
+	(envelope-from <devicetree+bounces-261849-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 15:53:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B43A0CD8E3
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 15:46:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91EDBCDA84
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 15:53:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F2B4C300908C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 14:46:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EE34230117DA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 14:53:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20718372B2B;
-	Mon,  2 Feb 2026 14:46:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27CC737473F;
+	Mon,  2 Feb 2026 14:53:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fVOzYKe2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UGQuQJWQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34CF136F423
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 14:46:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770043597; cv=pass; b=knAPqkhEavJo3kk9uv3SHB06U+prATEVI0VFSqofr8UFLOJ/z2RQhDs160kOpVnoJsbRebbIridPoWRHFj2Zk1gkpm9nF09H/ldnC9eMB+iziXiiBx710AXaNvbIsYw3mm97YBnpbxSrrpOs0N6R4vkLbwU4nR6+jRNnjgQ8w+A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770043597; c=relaxed/simple;
-	bh=6wKlGaF+HJlYg3oYlybm2siLLYbtx8o9sW8eaq0Ny5A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VJURxRPh4bTg/wN2lKmEeW4/7ytpophEy74ZCdPmN9HS1oHFEPLcZqtqNwCFDtZQBkU8RWAa0Cx4VHyAa67amvUgrPZfRmxXzZZNdbiitwk08+izPSj3k69j04SQbc5aLLD8VYK0TzapCDF+ScU5W2MkCKz3APKpW+lGQEiSnEo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fVOzYKe2; arc=pass smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12A3537472E
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 14:52:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770043982; cv=none; b=Kp2Q1cAFEmbAdxzzgZkJEP44HyKcORfrnzYW0HhSdFhUg+qZvfTToN7CQ4oXQ/KHHP9hutBAsaovywBxz7CpuPstpn9qHpW4t9uVcQIVNDQp7KsVjzwfZPm4mzKavBgQRb++fqDrOmHBEzrjpQbtOjcpQ53cxYJ+8DNG3DfY9hc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770043982; c=relaxed/simple;
+	bh=7mmYBSlGn9pr58Ada0yI1WrJmu1rxBzreSlmAkai3QA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VIFq7M7lZp+8Z+X20YA54TFzCZtJOboh4fXxKfgbfeuMHKlRDg3vFlMJz3qCk3mzpPtOT6RrmiVV5olXO5pyzbrbXSkDcegdQroeKsBr0P4sUKRSW08VLYcGLRYUJMAofQ5Bwq1Pe0W79kcSKzNxj4aZFoEqANMnyIMrMtTUpEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UGQuQJWQ; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-59b77f2e43aso5983651e87.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 06:46:34 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770043593; cv=none;
-        d=google.com; s=arc-20240605;
-        b=OwbDYqv5jVFaJvtaAGjY4bieznCQPGh0SSVGxT3+8U7Wry0SlmVt1f/FxjuN/Bb7Ua
-         Lkp8KBA/ULo7HwnAjdHK/mMeetiKxZSealo1ZEPHK/8R4ky4+QwbIL7K8LbHq3P+2jZX
-         IOieafYVxDQCn+bEzeZBr+lURx74gctB8CVazBQXNW4nOc3UxQa0k/u5sD9sK35j5SM4
-         0IL/U4DyNhp+U8vsc0+nWLm/z4QrVVB3j0aulxmHT930+3pZA9Se52/0Vgy7mlDZE3UI
-         AvdMdJo2eFR+nAA/QcrspzQXHz2/UBlf7GBblVqxIUVuNkbpBQmbYR4bDPjVEm3nNAvK
-         ugmg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=CCxcsWChfDF2Gh4ycD+vyncq/ofeycyF+64lSijnMn0=;
-        fh=1/IatQxLNDDsf29LKmijnkVukiDJDtc0vfXZQ4Pz0aU=;
-        b=B3W/QxZhV1g4JVzd2l28kSfsq2bDXPk+Lfq5M9k/oSMjX+brVd+oz7US30GYRyUMj4
-         aVdAEOjRKCe6fo+bJRiStdhVirLCqgRFn8kxnc1TwFqP0hA5fcGpCzwIh9eQxwzc08HK
-         FIHodmZXG9LBYUUE2vt89dey4rUuLCvUG0OKxiURygwZIhea/rSAQTMhfNg5ePB8ZQ4E
-         AmtEkL99CcMDzhz1qzeOJ0gwppUXzK0NJfobh72cekADiBYD6wV0gPzU1lBrh3Z5rsHM
-         KZ+3+TJI2qZIrBw0hcEvbEniKyrR0cQqGhzTZl+dhi6LVh2s8J2ukvvYhUacF7eeYziY
-         RKfg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b87677a8abeso687162566b.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 06:52:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1770043593; x=1770648393; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=CCxcsWChfDF2Gh4ycD+vyncq/ofeycyF+64lSijnMn0=;
-        b=fVOzYKe2l2RRcFW+Sf7fGimY+tIcvF5zBMwbbs7M+DLbk0mH85UpGR3Jws6hsrL7ZQ
-         gjeXyI2CZajzK2NznroXwsu7OdOwiwaT56j3YR/rIVcCra3Zep39byQ7bXnbiJgnA80w
-         c03KOxxv6aHSdSZufwhXe7xg6221bjbExrwu/ii68LoBcV1FpXGkalsGpn7Vyti7RrQ9
-         OeJpYNhAXBcR7UouNnwElYV5VJVwN3HcRVcsVQnJUiGTcY1afNNjV+z4S0KaVdj4poUJ
-         bUMqzXekNZP8KrUlx8w0xMn8F404sCfaITXKzIbS5WU/GF0hxeR3//Epw7itz8PFJ5RU
-         0g6g==
+        d=linaro.org; s=google; t=1770043978; x=1770648778; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/FAPn1s81bjTvSS2PqJP+fsJ0s7tNOWXLNO1ZsVsGR0=;
+        b=UGQuQJWQlULnXqesHI3jej4arViV8N/KLUoQ98Xg7PHYTykMpJt4ki79D2fH5VAPEe
+         I52ESEZs/0LUPi/UEdhslpm4C9WSSjIBSD/y/Rd0ZThHM5NRWybJRLQVxXRdLooXI8zs
+         S6BSwWI2Rjc6HuhzD0LdA0PGrnjU9Y52kBkGLC7OhiXr3c3WQQMkC1y4IAYolHQg+iKZ
+         0GGlhfxYthEmFnjT5Kjjy2VjDRQzZgoe+h6mNAnce+C/TifvJdvXwRU8Dp//WomyQk4X
+         kha5u/N3hBpNin3uzVwWG0PqeGTvaKw0M4jP2n1zkFILVJs5MIkM2OtgXwcGfpt6PlX4
+         psWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770043593; x=1770648393;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CCxcsWChfDF2Gh4ycD+vyncq/ofeycyF+64lSijnMn0=;
-        b=SQbuO4rjY8x/nviilnY0ea06vZnN+HuZj5ZQVFc7E6LYY+oEThAGglwMFoBS6rWVjD
-         +ea+KI2woliSvgjiY5XaU5/TdKf6YODospo2do4gt8VZcF1uDVXn4djrOG8Qez/WgSwZ
-         BTVNjTQeBeahK1T3RDWF9EYcJQcvfFUOzBhEsCeth5fD8FoUCmwU7a1YtK50yVSnyn39
-         thdMHBPBtyOoHE5v4VUdl15dZmQjfVGEQkOdp/dz7Hh4YWytbXzQbByH63xIEA/GG44P
-         v76mOnNubiMco4DbH4qkw1J2rRdXoiMuBts4zMYcFV3OUCafQDfO4hLh/Ot5jq1vTbXO
-         ohbg==
-X-Forwarded-Encrypted: i=1; AJvYcCUKy5mR4SdmIqKTRqQp09yr3x7BHNlLcr4bfXSj8cp6lNHRPzG0dD2Ho6MI5moNOyAxdvaSvWDPs6aX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvPTVdexVPFg0hBQyochH9HBR2wx4bBC1aR88lDEj3jnG8H4RW
-	eI2OQaA473noXRFQsySHhdiEjJt7V7Ou1CnNZDJbP3cE1Uv6vsFUM94UBaX0ELtC2xVbjoR35QR
-	MHhEcAmZRKE190Z4tBMYXbq3Tc7dvxWo5PKBGcHVxbg==
-X-Gm-Gg: AZuq6aLmq3Jpi/BrbsoYuc+LGtENHeGaiZaIlrs7iNEUrDicsSQTu/Ar1gIkQrrOEbZ
-	xZ6LM3CbDQz2lBhnXE0wOXXH+lbI03EZjUTCNjZfyb7EEcYvTqH/8MJOS5fnGPQRuot0Ao8Ok2b
-	/TGdceR5GO6T9VCpwEiZCn9xdW6jGFPryb3tle7VBwG7OQvzDQqa6eB12j3x0qnsoYK2z2OxJfB
-	CiZw2apUFkUZGGc/aTngHUmLdDfUi4j45LJC3pkV7C7uSFdL53h1vZsjUCj7FnsGVcAuxKv
-X-Received: by 2002:a05:6512:3d07:b0:59d:f1c7:3e02 with SMTP id
- 2adb3069b0e04-59e0d88d299mr7865289e87.1.1770043593213; Mon, 02 Feb 2026
- 06:46:33 -0800 (PST)
+        d=1e100.net; s=20230601; t=1770043978; x=1770648778;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/FAPn1s81bjTvSS2PqJP+fsJ0s7tNOWXLNO1ZsVsGR0=;
+        b=CGkg+q2dypiIGl2p60mEO+jwO2Ik2B1XzkBoUN3NsT2d2DDRsPGD5Q15GLsq4lwhhA
+         RM0R5QFHXIPAMh3nmzV7fwLbYOv1cb6fmwobgKDw4/bUeap+9riA7iV8Nl0fn3M8yKKm
+         MPjVn3hoCWjUV4pXDcjNUKfZS1kVKynb9GbUdlYA4NdaZ6THQh8h0NrznlFnsB7vAmKt
+         pzQ62T0qqx3qQ/oboTgdCEkev0i04TicZfC4FTxfzPqHJyHcc4J3SwtzXcAZOI2rKy+O
+         coals4AUQfgn5NHlE1n9WYov250megaF4yo+Mfkui4vUUc4Atylx4BiBgSugejINYn65
+         rNRg==
+X-Forwarded-Encrypted: i=1; AJvYcCXGdkDohytAeHpbXze4jz0OzOgpHVDHLQkwr8UrgGBevhulrJEkZwmn5W1R5yL2TiT19N6cUphUykum@vger.kernel.org
+X-Gm-Message-State: AOJu0YwT5Eh+q/NUEAP1Pu9JGu8gVLl6h6fV6HWQfiGVGsRcsQeMOy61
+	JFeWpiQuIWhhUTSq5afJKCTUn5mZMlcAusViokA/SH5mQ3g3ClJW6y7WlBUc34UoJmlao8PIcyB
+	7t52E4g0=
+X-Gm-Gg: AZuq6aJOGiUA7NDC89CaMzjDfU73YXDR7RGEhl5j+CVMygCzTEUHSQo7lfQNZNhiNXL
+	tcfUJ9tThoGDUVymL6IrPospvfZ6OlUT4SUyB02PR3IWEFlj8K74DdkMs08enrRwDldEx0qIDFW
+	z9q7VywOqHSNAzZfZgP56jxKb5wkww5KyyCXDNO9VbcBvG7/56RfcgAVDJYpXsPB4H4N1sMezid
+	uBuGIwPtyaz2RNw+umzNsHp9bkyUH0n3Njio2kcIElXfVWUx7alhz71POz6yetodUNJpctvZimX
+	umOOtts/HS4DISYerAcag93yGUt2hCQykplDo4Qt+opBoNQO8DleT5GDJ29hUuzOxznrJwB3mvG
+	RJF051WqYDSVdCDsN5kPWoK/5gLAqxtX2WojnqUc+tiJQzhfc+bGewJkWWlpHO7c43DcGJJUYvg
+	duKAY/YvQmC+/2uIp7sqkr9Cqqh3ExQ8Pfydxe0WZ29kzXR3EIdfUM
+X-Received: by 2002:a17:907:e118:b0:b88:5182:b869 with SMTP id a640c23a62f3a-b8dff53e52dmr517742466b.23.1770043977666;
+        Mon, 02 Feb 2026 06:52:57 -0800 (PST)
+Received: from [192.168.0.40] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8dbeff5629sm891897166b.27.2026.02.02.06.52.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Feb 2026 06:52:57 -0800 (PST)
+Message-ID: <47fbba15-6375-40fc-bd2c-8ebf2788837e@linaro.org>
+Date: Mon, 2 Feb 2026 14:52:54 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260201-iris-venus-fix-sm8250-v2-0-6f40d2605c89@oss.qualcomm.com>
-In-Reply-To: <20260201-iris-venus-fix-sm8250-v2-0-6f40d2605c89@oss.qualcomm.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 2 Feb 2026 15:45:56 +0100
-X-Gm-Features: AZwV_QhOzR0E6k1IfUGRMUbn9MQFxH_pvh_89KhmlNk_aUHzuxVlk0zPxkYMZY8
-Message-ID: <CAPDyKFoNX087ZhLkQ_n8-42WNQcL06noSuPJPDG87y0andVdNg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/8] media: qcom: iris/venus: fix power domain handling
- on SM8250
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Taniya Das <quic_tdas@quicinc.com>, Jonathan Marek <jonathan@marek.ca>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, "Bryan O'Donoghue" <bod@kernel.org>, 
-	Vikash Garodia <vikash.garodia@oss.qualcomm.com>, 
-	Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Stanimir Varbanov <stanimir.varbanov@linaro.org>, 
-	Abhinav Kumar <abhinav.kumar@linux.dev>, Hans Verkuil <hverkuil@kernel.org>, 
-	Stefan Schmidt <stefan.schmidt@linaro.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Dikshita Agarwal <dikshita@qti.qualcomm.com>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-media@vger.kernel.org, 
-	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/7] of: factor out of_map_id() code
+To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+ Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>, Bryan O'Donoghue <bod@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Saravana Kannan <saravanak@kernel.org>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Stefan Schmidt <stefan.schmidt@linaro.org>,
+ Hans Verkuil <hverkuil@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
+ Hans Verkuil <hverkuil+cisco@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ iommu@lists.linux.dev, Charan Teja Kalla <charan.kalla@oss.qualcomm.com>,
+ Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+References: <20260126-kaanapali-iris-v1-0-e2646246bfc1@oss.qualcomm.com>
+ <20260126-kaanapali-iris-v1-2-e2646246bfc1@oss.qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <20260126-kaanapali-iris-v1-2-e2646246bfc1@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261848-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[24];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-261849-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[linaro.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,qualcomm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: B43A0CD8E3
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,linaro.org:mid,linaro.org:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 91EDBCDA84
 X-Rspamd-Action: no action
 
-On Sun, 1 Feb 2026 at 11:49, Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
->
-> As pointed out by Konrad during the review of SM8350 / SC8280XP
-> patchset, Iris aka Venus description has several flows. It doesn't scale
-> MMCX, the frequencies in the OPP table are wrong, etc.
->
-> Let's correct the Iris/Venus enablement for SM8250 (unfortunately also
-> stopping it from being overclocked).
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+On 26/01/2026 12:25, Vikash Garodia wrote:
+> From: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
 
-Do you want me to pick up patch2 for v7.0 - or what do you suggest at
-this point?
+This commit message is confusing and inaccurate.
 
-Kind regards
-Uffe
+First up, you're not factoring _out_ of_map_id() - factor out 
+of_map_id() means to remove of_map_id() - you are refactoring of_map_id().
 
+Your patch title should be something like "refactor of_map_id() to 
+prepare for mapping of multiple IDs to a single device"
 
+> Linux interprets multiple mappings for the same input ID as a set of
+> equivalent choices to pick one. There exists usecases where these set
+> must be maintained in parallel, ex: on ARM, a dynamically created child
+> device(s) is referencing multiple input id's in parent iommu-map.
+> 
+> Factor out the code where multiple mappings needs to be maintained in
+> parallel can be achieved through callback from this factored out code.
+
+Which callback ? There is no ->function(pointer, here...); ?!
+
+Just make some plain and straightforward statements about what you are 
+doing and why. There's no need to resort to dissertation-speak.
+
+> Signed-off-by: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+> Signed-off-by: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
 > ---
-> Changes in v2:
-> - Fixed example in the new sm8250-videocc schema
-> - Link to v1: https://lore.kernel.org/r/20260131-iris-venus-fix-sm8250-v1-0-b635ee66284c@oss.qualcomm.com
->
-> ---
-> Dmitry Baryshkov (8):
->       dt-bindings: clock: qcom,sm8250-videocc: account for the MX domain
->       pmdomain: de-constify fields struct dev_pm_domain_attach_data
->       media: dt-bindings: qcom,sm8250-venus: sort out power domains
->       media: iris: scale MMCX power domain on SM8250
->       media: venus: scale MMCX power domain on SM8250
->       arm64: dts: qcom: sm8250: add MX power domain to the video CC
->       arm64: dts: qcom: sort out Iris power domains
->       arm64: dts: qcom: sm8250: correct frequencies in the Iris OPP table
->
->  .../bindings/clock/qcom,sm8250-videocc.yaml        | 85 ++++++++++++++++++++++
->  .../devicetree/bindings/clock/qcom,videocc.yaml    | 20 -----
->  .../bindings/media/qcom,sm8250-venus.yaml          | 10 +--
->  arch/arm64/boot/dts/qcom/sm8250.dtsi               | 42 +++++++----
->  .../media/platform/qcom/iris/iris_platform_gen1.c  |  2 +-
->  drivers/media/platform/qcom/iris/iris_probe.c      |  7 ++
->  drivers/media/platform/qcom/venus/core.c           |  7 +-
->  drivers/media/platform/qcom/venus/core.h           |  1 +
->  drivers/media/platform/qcom/venus/pm_helpers.c     |  8 +-
->  include/linux/pm_domain.h                          |  4 +-
->  10 files changed, 140 insertions(+), 46 deletions(-)
-> ---
-> base-commit: 44ef70faf71468e0ae4bdb782a6d43f0614b8ffa
-> change-id: 20260131-iris-venus-fix-sm8250-f938e29e7497
->
-> Best regards,
-> --
-> With best wishes
-> Dmitry
->
+>   drivers/of/base.c | 47 ++++++++++++++++++++++++++++++++---------------
+>   1 file changed, 32 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index 0825f3dc93f2472e9947af09acdde72031ab85bc..606bef4f90e7d13bae4f7b0c45acd1755ad89826 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -2122,6 +2122,32 @@ static bool of_check_bad_map(const __be32 *map, int len)
+>   	return true;
+>   }
+>   
+> +static int of_map_id_fill_output(struct of_map_id_arg *arg,
+> +				 struct device_node *phandle_node, u32 id_or_offset,
+> +				 const __be32 *out_base, u32 cells,
+> +				 bool bypass)
+> +{
+> +	if (bypass) {
+> +		arg->map_args.args[0] = id_or_offset;
+> +		return 0;
+> +	}
+> +
+> +	if (arg->map_args.np)
+> +		of_node_put(phandle_node);
+> +	else
+> +		arg->map_args.np = phandle_node;
+> +
+> +	if (arg->map_args.np != phandle_node)
+> +		return -EAGAIN;
+> +
+> +	for (int i = 0; i < cells; i++)
+> +		arg->map_args.args[i] = (id_or_offset + be32_to_cpu(out_base[i]));
+> +
+> +	arg->map_args.args_count = cells;
+> +
+> +	return 0;
+> +}
+> +
+>   /**
+>    * of_map_id - Translate an ID through a downstream mapping.
+>    * @np: root complex device node.
+> @@ -2162,8 +2188,7 @@ int of_map_id(const struct device_node *np, u32 id, const char *map_name,
+>   		if (arg->map_args.np)
+>   			return -ENODEV;
+>   		/* Otherwise, no map implies no translation */
+> -		arg->map_args.args[0] = id;
+> -		return 0;
+> +		goto bypass_translation;
+>   	}
+>   
+>   	if (map_bytes % sizeof(*map))
+> @@ -2185,6 +2210,7 @@ int of_map_id(const struct device_node *np, u32 id, const char *map_name,
+>   		struct device_node *phandle_node;
+>   		u32 id_base, phandle, id_len, id_off, cells = 0;
+>   		const __be32 *out_base;
+> +		int ret;
+>   
+>   		if (map_len - offset < 2)
+>   			goto err_map_len;
+> @@ -2238,19 +2264,10 @@ int of_map_id(const struct device_node *np, u32 id, const char *map_name,
+>   		if (masked_id < id_base || id_off >= id_len)
+>   			continue;
+>   
+> -		if (arg->map_args.np)
+> -			of_node_put(phandle_node);
+> -		else
+> -			arg->map_args.np = phandle_node;
+> -
+> -		if (arg->map_args.np != phandle_node)
+> +		ret = of_map_id_fill_output(arg, phandle_node, id_off, out_base, cells, false);
+> +		if (ret == -EAGAIN)
+>   			continue;
+>   
+> -		for (int i = 0; i < cells; i++)
+> -			arg->map_args.args[i] = (id_off + be32_to_cpu(out_base[i]));
+> -
+> -		arg->map_args.args_count = cells;
+> -
+>   		pr_debug("%pOF: %s, using mask %08x, id-base: %08x, out-base: %08x, length: %08x, id: %08x -> %08x\n",
+>   			np, map_name, map_mask, id_base, be32_to_cpup(out_base),
+>   			id_len, id, id_off + be32_to_cpup(out_base));
+> @@ -2260,9 +2277,9 @@ int of_map_id(const struct device_node *np, u32 id, const char *map_name,
+>   	pr_info("%pOF: no %s translation for id 0x%x on %pOF\n", np, map_name,
+>   		id, arg->map_args.np  ? arg->map_args.np : NULL);
+>   
+> +bypass_translation:
+>   	/* Bypasses translation */
+> -	arg->map_args.args[0] = id;
+> -	return 0;
+> +	return of_map_id_fill_output(arg, NULL, id, 0, 0, true);
+>   
+>   err_map_len:
+>   	pr_err("%pOF: Error: Bad %s length: %d\n", np, map_name, map_bytes);
+> 
+
 
