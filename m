@@ -1,314 +1,298 @@
-Return-Path: <devicetree+bounces-261623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261624-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kB0KKlM0gGmu4QIAu9opvQ
-	(envelope-from <devicetree+bounces-261623-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 06:21:23 +0100
+	id +JWbOuU0gGmu4QIAu9opvQ
+	(envelope-from <devicetree+bounces-261624-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 06:23:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B33AC8496
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 06:21:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46681C84CD
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 06:23:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 46F8330053E1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 05:21:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EE53D30036EF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 05:23:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E3A25BEE8;
-	Mon,  2 Feb 2026 05:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4184618B0F;
+	Mon,  2 Feb 2026 05:23:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IVS7e9aG";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GXvP15rt"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="sguWycRx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from SA9PR02CU001.outbound.protection.outlook.com (mail-southcentralusazon11013070.outbound.protection.outlook.com [40.93.196.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 759841BCA1C
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 05:21:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770009674; cv=none; b=mSoiM//bilhu0IS0sSYpxvk7mr3i8dyVUtwYSs+gnO6hkXhiVFhGykI6xE6TCtcqWdKPYVBiDodQuo1Sgx1V3HBzFgdUPjTxKeSwvvcr/gX5tsB2H29R2vzppj04wH1DAO2bLrhsFuafbLbKDDKNu7SzTva0NeOvISFZFbfbBaY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770009674; c=relaxed/simple;
-	bh=te9FD4rB0oMU66Wb6pIxkNpWX6WJJIYc5S/vXfkEItI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NUQpc3DAypdbvmWRh/sN6llWfvE7H2P4XlMLIR26iNJU3CO9wrben9+3992q/K959IA4/PupiHdPCnPyXvELvtoUgRRrcd6AZooez5jbicTYA8HR1OjUFDCnDdlMLyxEPWMOueARmm2Q23dlC75a1UcnVJQ4E2qI8yNW09FNaQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IVS7e9aG; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GXvP15rt; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 611MKZHM1642240
-	for <devicetree@vger.kernel.org>; Mon, 2 Feb 2026 05:21:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=avkyNtH/SaAbcSwWAILRO3xA
-	KrigdZRlCz9IqkfyLOY=; b=IVS7e9aGKBQWgdY+Wtgpxx/ffzcvYA5Rqxb7rz9x
-	Vn9SNZc3PZDozgXEZTicTwAvMS+v16KJxq+fWc6v7+Qs9tOwjqi9HHqgsJ73AlsP
-	0mVdapeTRVU1mp0JtP7xYHG/20VGYPXm6x59iOoclWvmdnwrKLJRoXPiBkUe12cc
-	HqWDZdbmHa4fKmEjjDaFZ6SWlwqRoBjGCf63PVszrDFguXbTsCztkfZwQhDtpQgN
-	o5/8H5h7Wx//KhVPNt6Fq3eqN1dPEm3KQ2l9xzHvbkfnmSswHFGWzoGGU46ynSWN
-	UsRsC0KwoyRnAzd2M6tIXyu5LSRteB4d0TOb1FN0MNFzfw==
-Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c23h1hp6h-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 05:21:12 +0000 (GMT)
-Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-2b7a28264c1so6780216eec.0
-        for <devicetree@vger.kernel.org>; Sun, 01 Feb 2026 21:21:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770009671; x=1770614471; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=avkyNtH/SaAbcSwWAILRO3xAKrigdZRlCz9IqkfyLOY=;
-        b=GXvP15rt5JXV0RXGiNo68D8H7BhHTTufpVsE1IrZsI2kYnuo7TII76F52ujsAJsFUb
-         BQnoR782rFO/zSUpSowQZqbKdE9JIZEl1/hmaqFhtibDVPPMeRIiwdTWdchLajhm9+3a
-         c4DOhDcaMd2xV5HDZSVZZ/C9LZ6hn5TBkkqBdBIYI1p3gDmpbKuR3uthxz0Lt/OD7VmU
-         vgdrsznu6Tnl404rdclbFdPugWs1IPvyrWyIkuI0jxYPt0rHJhoGYTosAqB8e+DcqXYE
-         Mqz4P6iEZqfnrpRAXkYuw0cgnJGpIju3ymjmE5DAECZCvha0kxUBFMDdBj7Jrya3JOw4
-         xWOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770009671; x=1770614471;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=avkyNtH/SaAbcSwWAILRO3xAKrigdZRlCz9IqkfyLOY=;
-        b=gwCA8Lpb3TuWpmKaD/Bqn1Mrpdv38VtI/BSDByTxI8YGPxAW6ktsPlAWZajseYPiB/
-         4Q4glhwK+uWM2zwwml6j9bx3jHxcf0YofCq6iFL8IMrN5UzWZj8/bq17V1j8VFOJEhUK
-         QHu++UjHHxBFo1H+u89A0PytjeeTYALFgOcsg65prq5gSzHmympSvZ3PbmUZqi9Svy4N
-         qSk6jrhYJoCw2cWMs7H/GkQ9Y+2ubb+sbFGJ1LsM5vlAPnbSm4wZNVy3U4D/pjx94wa3
-         trSq+KFWhgqdirxpHeq0pCf+diK/ioeyEJqNKu59MS1r99RQ+B6mKXP01NPzJNzmH6zJ
-         rw6g==
-X-Forwarded-Encrypted: i=1; AJvYcCWK9c5+IJKTnO2DxRvdqdmAn4sMSf+FcU3MzPRCnw85xjGtINCTIPnR2Xr+7D66gCWUNRDCkWidOn4d@vger.kernel.org
-X-Gm-Message-State: AOJu0YyaZYXNH/OnV/g86DMCnf7AAxvKLwkFWPCM2eqtuaz3LT/b+D7K
-	zjZWpKhUvH64ckntTkc6qlGd/xWaWKqFTtrPn1q7yRye+/RXoQj3+PhAPVU95EXHY4bqC0yTMoM
-	atd4yEcy+umH2HEa0YN/j4575x9LrntMBcrkySECpMGcgdxwNTJIjsVhD3tnX23N783norgvyL+
-	g=
-X-Gm-Gg: AZuq6aJpeQgF1GjoUzC9GnUp1R4vy2OifNv//E/PmIMnhRdq2TdCAb3OJ6Ye/aor0x/
-	FSHlybaa9A0f9lZPnjfPwGTyQ/G9d7/QBVoyJFg2/MqLdAJ1pfUMWLCDtUCmcYiSioN2U7c/iKY
-	/o2HlYJznY6ebm/JSNToLzmEUxZuMotZNDZWTZdv1jhZJRLyfn0XF3I+9HPHk6JIbUBtwxZKGBW
-	w8xQgTStIQSoAK3UU2jXxM5Qs4K4KkQHj5U9bWlgIhGCGz5V0EAgW4k1UypLDcfZa4rwwWgWGPB
-	Rm2R4TqP7ir0uQE8kRagA9Rwr8rNPe/yAnTJ72Vw7SlJptHruaElzJOBzBJKq8/evqR2bqSSL3a
-	bwDC5Pflj0WOu10X0LDUidvuMPiF0sW6/m9SoX+zsQiBplna8o4da/xHM
-X-Received: by 2002:a05:7300:cac8:b0:2a4:3593:c7d3 with SMTP id 5a478bee46e88-2b7c866c83amr5085436eec.19.1770009671068;
-        Sun, 01 Feb 2026 21:21:11 -0800 (PST)
-X-Received: by 2002:a05:7300:cac8:b0:2a4:3593:c7d3 with SMTP id 5a478bee46e88-2b7c866c83amr5085418eec.19.1770009670416;
-        Sun, 01 Feb 2026 21:21:10 -0800 (PST)
-Received: from hu-qianyu-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b7a16cf8f2sm20996442eec.7.2026.02.01.21.21.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Feb 2026 21:21:09 -0800 (PST)
-Date: Sun, 1 Feb 2026 21:21:08 -0800
-From: Qiang Yu <qiang.yu@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-        Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
-        Maulik Shah <maulik.shah@oss.qualcomm.com>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
-        Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>,
-        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Abel Vesa <abelvesa@kernel.org>
-Subject: Re: [PATCH v6 0/4] arm64: dts: qcom: Introduce Glymur SoC dtsi and
- Glymur CRD dts
-Message-ID: <aYA0RBA9FjNmP8Ui@hu-qianyu-lv.qualcomm.com>
-References: <20260122-upstream_v3_glymur_introduction-v6-0-245f408ed82a@oss.qualcomm.com>
- <75lzykd37zdvrks5i2bb4zb2yzjtm25kv3hegmikndkbr772mz@w2ykff3ny45u>
- <aXtM9vE9y73vnVeA@hu-qianyu-lv.qualcomm.com>
- <6d2b92d0-55bb-4ce0-ad5e-316210a3d2c5@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C77EA3EBF37;
+	Mon,  2 Feb 2026 05:23:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.196.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770009827; cv=fail; b=oHa4bye4ou1W45A5pstp+uUSB94wuMcUaogD3XTSuLakW1dMN1QmcZl00GSXi9BnNcHtHg+LlSqyP8MDYf9zZ/lKN96U2PKHwLKBcIvJdsasvrqf/MFlXlnjrVly6i/h/0uOx9TvBUi7OJGEADZ/RTrXZCN1c8/CcLUesXS4c9Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770009827; c=relaxed/simple;
+	bh=WSN4uAPZnmsN3onq2lVDXEiiWppDVAA+2Y+5XhumPAQ=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=j4GGbJXBU0NdfDkxSeQ2lrxRG4amZ52EKQOCsIv/kbFAuO7NJnYPoK7jSfPjlxD6B2mz2xBU1cJCDDROvwfGJltPXpct7sM3lEdMxp00enpTzIQb1ZTipttc9XI04aAP3DG8iFNgOFo2EPMcOvTgwBSgXL9vtF6JKiZwSnOJtYs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=sguWycRx; arc=fail smtp.client-ip=40.93.196.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PLn9PG5WLYRmhb9AvlnI9wo+nMbylSm5ZG87xBmjFGmHGsaIT9lEDGIaP/9uoGs6/SGgo8vgQ1MPEl0RRtbHGrUpBdzG7ExZqH9hRx6T3nxY4kO5MlpmuR4A7t3qTN8jELdLRXS+5E/4z0bkNBwxrr/qOs78AAE+rnlpyLTfrXHeI8B3/qDBSarz3gfYVSf3VrKzZDJYiuQbPo6eWhYBCb1HdwpDTY5/NnnwwskIbRYugf9jqNx5wgISOWfETXz315FsC+unE3y/JozJvkfPFrERb8OaPucl++FlJqXh8ZigvprEhCiO3Vql6qcOnhNIA3FQo3S7pL51cflTcUgXkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xm1OR6GzILUCJTAdVVfy/LdDvFQk2DpAVcmznSucqu8=;
+ b=lCVL5kCKnx+B25D1PQX8D0GL9r2iKzLFj4vvPZzsU/505Q6fViozgc94DUlSn8XpMIiSGyqEOH+pTqaxnPEFYPF1tAPD/mxves4bZs2F7nXKfQZp2FVxyLmzONoA3gG7ZQE+/EKCYRIzouQ82vSI2DTkgMWWvbw2P0a6jCQgTd5ia6GX1KsE3FBXQfQc6PlLJVbRtNMbb6q9S4VEz45AnamfK8CxNhWgZOVREPvC/1mNYNWNDkYfI/YoBSEGQnVpsWBzCJ/XOaW+BCPse772c34BNlV8PdlmAp2kIm6XzevsbHnLS1kcbdTXX6VyoWQE8LdfGFwAnfObESKmVfxutQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xm1OR6GzILUCJTAdVVfy/LdDvFQk2DpAVcmznSucqu8=;
+ b=sguWycRxdVf9zbX5jTaaM1Fezg/HetZGfpidA2jcoiwtLOjZRrzdv2IYF8dQddutAt2Fi/PJAS8tRpYRiDKDVqIm9nvwJANmJdFzb98jiL4aIwmPQCYRj+GPyJpqDqPlSVSI1u70QoGbLrMlRA8yC0tXlCU8UoK8AE/iVF53f9mkZS/dZD7+NLa8w03kRSMjlI4K9hX17YmVRjMDkr58b0IoXWwqyBhtCneW+FNgy+8UKvWxatyOM5QhtgjZZfLHkM0Psbg03JJBAIbEhppS87Zq9DWFR2vv6uoAdcclD55GAVS2AHs8JTPa8EezKX+kKUu6zQnFXQclA0QfHR2uKw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB8245.namprd12.prod.outlook.com (2603:10b6:8:f2::16) by
+ PH7PR12MB5901.namprd12.prod.outlook.com (2603:10b6:510:1d5::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Mon, 2 Feb
+ 2026 05:23:41 +0000
+Received: from DS0PR12MB8245.namprd12.prod.outlook.com
+ ([fe80::e7c5:cfca:a597:7fa4]) by DS0PR12MB8245.namprd12.prod.outlook.com
+ ([fe80::e7c5:cfca:a597:7fa4%4]) with mapi id 15.20.9564.016; Mon, 2 Feb 2026
+ 05:23:41 +0000
+Message-ID: <157b145a-9473-46e5-9d1a-d317a2be17ba@nvidia.com>
+Date: Mon, 2 Feb 2026 10:52:52 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4 04/22] PCI: tegra194: Apply pinctrl settings for both
+ PCIe RP and EP
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+ 18255117159@163.com, cassel@kernel.org, vidyas@nvidia.com,
+ jingoohan1@gmail.com, thierry.reding@gmail.com, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, mani@kernel.org,
+ kwilczynski@kernel.org, lpieralisi@kernel.org, bhelgaas@google.com
+References: <20260126074519.3426742-1-mmaddireddy@nvidia.com>
+ <20260126074519.3426742-5-mmaddireddy@nvidia.com>
+ <a39410ec-4054-40eb-a687-0f161cffff2c@nvidia.com>
+Content-Language: en-US
+From: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+X-Nvconfidentiality: nvpublic
+In-Reply-To: <a39410ec-4054-40eb-a687-0f161cffff2c@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0165.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1cf::15) To DS0PR12MB8245.namprd12.prod.outlook.com
+ (2603:10b6:8:f2::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6d2b92d0-55bb-4ce0-ad5e-316210a3d2c5@oss.qualcomm.com>
-X-Proofpoint-GUID: 5XIelie2RdK66kQSEek-LwxtxZjZR7sI
-X-Proofpoint-ORIG-GUID: 5XIelie2RdK66kQSEek-LwxtxZjZR7sI
-X-Authority-Analysis: v=2.4 cv=Fu8IPmrq c=1 sm=1 tr=0 ts=69803448 cx=c_pps
- a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=kj9zAlcOel0A:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=qC_FGOx9AAAA:8
- a=gEfo2CItAAAA:8 a=LtUyV6W0DBWilpilEP8A:9 a=CjuIK1q_8ugA:10
- a=6Ab_bkdmUrQuMsNx7PHu:22 a=fsdK_YakeE02zTmptMdW:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAyMDA0MyBTYWx0ZWRfX58+uwsAdHGkL
- Hy7K9Aj9j9m9J4P027C1ZTq7T231ISbbFKdkxztxtM1+jHZ7MHtwYfyGnI5IX1GcX0zMPs8+XBj
- ha1/dncXexs6n1mKPfdRVm+0u+TSjhmg+Gpz1n8iEUEqAAMmYTeSKzQFoO0issOmAwNaZeDq+G/
- zHkgBfYK2w4DhVs7oz+7l0PHzPXqL9OTIwgstJRk+ribioYs5KxeAjA3oK0I5mg9FMGrirx1RRk
- HJAvLltJxGHKNzKDeLicJqIDbVw8+XJ/6LO9rwkPuzZMG2hP75fqNREDnmRsT/t/vVPUOGDq5Ib
- zGa65P5lie/K+3HFk5wtW1vnvCFJHlXzAhWGHzd2Axn39NcaS10tT9pkj/OIWWi7CQccLuNXuIZ
- fVPRWz7VVMBwtz9W6Kb2o9ngYSPbuYR1sQLNRfUR+Y9djPIuL7CzVvUkJU7vaRRzsHdf0L3rIq5
- lmCp/xpfyPrNTQbNpOA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-02_01,2026-01-30_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 lowpriorityscore=0 priorityscore=1501
- clxscore=1015 suspectscore=0 bulkscore=0 malwarescore=0 adultscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602020043
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB8245:EE_|PH7PR12MB5901:EE_
+X-MS-Office365-Filtering-Correlation-Id: f4371b2d-e036-4575-815a-08de621b3a25
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?azdhZXFPaTZCVkVOZEZHZE5Hd1p3NXZRY0RNQ3d2NGNTQTlMT0hoS1dWYS9I?=
+ =?utf-8?B?UjBCZzMvaXFmZEJmZlRCR3Fkd2YwaTNkTE1HZWZubjJVcGtJN2ZrT1RQaENw?=
+ =?utf-8?B?Snpza2RVYTZxMkRwc1lQVXRiMVlkM2liN3FobWcyNHVYQU1VZWJqaDF5MXhm?=
+ =?utf-8?B?dGpSNWFMdFU0K1ZlY2dkSjBqd0dTaTJKcVJIYnVqcHZFSWJNQTZVOHBFejdN?=
+ =?utf-8?B?K0YwTWhGU2FpWjl4cWx5d0JiZjJ1WklyZFAzVlpDZWM5cjErUVhHTWVUSlR6?=
+ =?utf-8?B?MFJWanFsQVBiMmljMjU3dkREc3NmbGRrUHRQMHBjNUt6WDc0ZnNpQWFYVW9k?=
+ =?utf-8?B?Uk1wRFlhWFJaci9YcnRGY0gyM0hwQmptVFJ2K1NwaERmUmtWU1JIbEQ4ME9u?=
+ =?utf-8?B?ZC9neFBrSTh4RXZuUXpKT2xXLzEyaGJjM0tuTEhaZHNJRUNxb04vTENXbmpw?=
+ =?utf-8?B?OG9McS8vODJqeDh2c0R6WXlST2tCQytmQ29MbFVOSWljUUlyTWhWcWtaMlZt?=
+ =?utf-8?B?NjhoTHlKZzdtbDdqKytTZDZZWitHdUlCV0JBSU53d0U4Q09NY0s5NnVhVVVa?=
+ =?utf-8?B?TGE3L1FPWnJLcEZUT0J0SWtNeWtBOHN3VWR5MVRhWjdlUmpBNmJ1aEE5K1hR?=
+ =?utf-8?B?Mk9VcndnQTg2VWJTVm9JSnQ5bGppbVRqeGo2eTZwL09IcmJhbDdSUExOUmVO?=
+ =?utf-8?B?bXNpNXJlUWxxQ1c2R3VyNkpzM1pzRmdSU2ExQmoxc1o2aGdYTGhnczRqWGxY?=
+ =?utf-8?B?MU40cWRFTThTOUl5KzU4ajZoZkROTjkrdEFjRjBsZTNvWEQ2WTZ5VzhvMWtu?=
+ =?utf-8?B?cktwTEpkVnd6Vzc5S0V5TEVFTmtUUmVBbFc4b0o4Slp1bmczaXBRR2FSdG5z?=
+ =?utf-8?B?djZSRXViUUl5V2VkZ21MK2dNT0E2T2J5Rm5PTjB2VVNFeksxTkhmT3N6a2ZT?=
+ =?utf-8?B?V2JiMTF3Z0RuUEk1TjdEKzkwREFneStUcWZidFkvN3RTakdxYU9UYklzSjFk?=
+ =?utf-8?B?bFIzVmI2aVV3STBwZ0FUSU1Lcit3cFpxSXk5dnk0V3dkUmc3U3JZVDF4dDF4?=
+ =?utf-8?B?bk5hQVhhL2tPdjVVSmJWT2Y2YUdMODNHd2VTNFJ6SGFZNjFMTjloN2d5T0Jk?=
+ =?utf-8?B?eGpvbVpnRXdSR09mOEVkOU50bTJ4S3c1U3JxZytmUkZ1dEdqNVZ4dFlybkNy?=
+ =?utf-8?B?VTJOV1VNUkVrUkovU1o1TEZSU1k5bzk2aXRwb0RseHh3eE5wcFVSZ1dJVXRo?=
+ =?utf-8?B?R3I0dFEwRUtQaDdxcktMSjZnK1VjbDhDNkMycHgrREo1RHRRNWJUNUNWSFVV?=
+ =?utf-8?B?Zmh1UXdHbUFLbG9qMzRDUm1iL2gwMU8vV1BIM2xZQ1Q0QkJ4a0dDdWFMSGlK?=
+ =?utf-8?B?bnJOOFNGNWFCUEpGU3RrOXpNWS9XUjZTWjd6NUZmQTR4anNWZC82SFNCTGxB?=
+ =?utf-8?B?MCs4TGxLSm14U0VsTjY0bXlpN0h0ZU96QUFQOWRnQXRXR3NYdnJyYUxEaDJj?=
+ =?utf-8?B?UHBya3EzTGZyRjdXUGJScG1KS1A0dGJ4Wm9RdUpiVDY3MmZXaTRNbTROSXFp?=
+ =?utf-8?B?TVJjUU9MTmNVVHBiUW5lQ2tuL09SN1pxK3FyemNldXM1N1g4MldvT0QyWnYr?=
+ =?utf-8?B?SDE5R3BtUWhOU21kZEVsQUlLeDBtVG1td2ZJL0cvYTZ4NWlwL3dxTGZSckRQ?=
+ =?utf-8?B?aS8vWW5RUzdPOGRoZlJDZDJOcloyTi9uL0t3RTJjSnNkUFBMUnpTYU41Q3JB?=
+ =?utf-8?B?alJWS2hYK2d3Z2Z6Tkh2amE1MHJsNWorU3U3cDRqNDZCZVAxQ1UzSm9LZktI?=
+ =?utf-8?B?Y296bHQzQXRWS1hVSzBiODRYNHoxVnkyVVpDMUdHT1hOSzlRRGh5emdXandG?=
+ =?utf-8?B?Y0gvd1U3UVhpZ09ZVUJRWXJDdW81RGVmRkZ3NktEdXJTOEpmQlpnL0RNdnZl?=
+ =?utf-8?B?ZzFQaTV5NEU4SXMwYy84dEtqQSswWlBmZXV5dTRNZHM1QnJvSFJuaXE5ZWtV?=
+ =?utf-8?B?bllZeW9VRjQ3OXY2ZTBrV2ZSbGNwM084UWVhaTJ1R0FTK3pMRDE3L0p4Nk5V?=
+ =?utf-8?B?My9VWnBXYndKd2Y0dko0am1DeUJMV1lEaC9yUk5WZ1Q0NGhOeXlMSVFSc2Uw?=
+ =?utf-8?Q?zu1E=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB8245.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?RStkRHAwVVFzcURGWFIrR2VDOFdvS3FRVzBBa1p2bFF3L3VPZlhmZUlwL2s2?=
+ =?utf-8?B?RnBsZE9DL1RuQlhvazFBeE9kK3h2MExqNHhGaHJsd1hKaHEydTd6bFc0M3B1?=
+ =?utf-8?B?VlpTZlVyUFdOemtIWlRjWHhUV2lDUTZMN3pBUFRlMTYycjgycHJ6RkcxOTUy?=
+ =?utf-8?B?bTdBbHRvODlncC9Lak9GeXgrdm9LMEU2RmgxMVFYNSszZktrazdwY2haS0hu?=
+ =?utf-8?B?UVhVUnF6dlNFT0FQRzFaYlc5WmpRUGRJMGtGQm1IY3Bab01aM2dOMXdlQnF3?=
+ =?utf-8?B?eUp4T0lvNVUvamJLbTZnZ0FHUnlKeVAvM2FvN0pQT251cnhUUWlZcURjanV3?=
+ =?utf-8?B?b2l1S3VuYXFCcHhPczZYcEtwUEJlbUlCemdKcnRlU2k0U1VpdE5SV09FeFFn?=
+ =?utf-8?B?cHFDUHY0ODFZdDFyaXo4WWM1YTQzd3pLRzRjV0syZDhXbGZsUnlHVmI1Q01S?=
+ =?utf-8?B?WGd1OEQ5ekdsQUxjSlhUcnM3Q3pWc3FTemlEZDM5bmMxZDNoNWhLeCs4U3V5?=
+ =?utf-8?B?Q2s1emp2ZnFEVUM3S2xtc3ZXOUlhbHMzc0RjOVpHSVVsK3JXcTRPYWxWOFBi?=
+ =?utf-8?B?d2wzWHZESWkxVGZ3NnJYajRWU2FOTnBVVW1CWnFsVkkrWmtONytXM2g5bHll?=
+ =?utf-8?B?bXRralgrbXJTU0xGV2s5Zmk4ZXJXZy91dytrUkFrK0xINTI1VlU5Q21sTFBQ?=
+ =?utf-8?B?Qk9jS1NlNWF1Qld3YzJGd0ExbkdiQmpJa2NGTjN6bmVTbnhGZDN2MUNDS0VE?=
+ =?utf-8?B?b0Y4LzgzKzlNYnJrLzdoaCtReWZkTU5YL0RSY285aEpKdStheXE0bWlqVHNs?=
+ =?utf-8?B?WFlGWERnN1R3WDhIeTRkY3lDUEFXRnM5eU9JeVFjb2NmUTJCWEI5RTFnWHZU?=
+ =?utf-8?B?akFOTGVGdVdhNnk2Z1oxZTlNUEk5dUdBcGVSVm16aWczTEJ6VU4xaHI5bnJX?=
+ =?utf-8?B?WUNEdGhmUmE3U21wcHpNMzRzUVkrbGF0WWJsU09IY08wMjIxRmpXQkV1Mng4?=
+ =?utf-8?B?QURsMGJDS1F3UG13dXdxOTNzVXpVS1dvSTZQbzZFZ1B0YnJibVhpMXVOYk5h?=
+ =?utf-8?B?d2picGozcVoweU4zWWxsN1ZNbEFqUmhVZEJGUmMyd1I5Wnp2OE1YclppTGhu?=
+ =?utf-8?B?aTFiWU5EUGdRQ1h0K2E2QlV4ekJ2Z1lSRk4yS2ZINFRNWnZaZHN6Q0t2MDhK?=
+ =?utf-8?B?SDJhTGhWZVJ0R041WXFGYXQwcERKbTNqQmRhckdiZjl6N2NrWlVEOEkvSTkx?=
+ =?utf-8?B?cEtBOEZ3b3JMRFN1RHFDR1d6R2RWNFAyeno2TE5JWHFBZGloM0ZJd0ZYSDdS?=
+ =?utf-8?B?MkdvVy8xenl5bElXM3ZlalBOTENBbCtNbkJ2SndjUG5pTGFYVFhTaFZscmh4?=
+ =?utf-8?B?bCtKb0lSNnBmMnNkUmF2OE1TL3dOTmpPcjlDNVAzbGZwSFZEcTNaOFJiaXVO?=
+ =?utf-8?B?eXRmNitYNU9TZUFGamp2ZmtSNXFia3pwUCtZaGxtSktYS3pnOC9wYm1hb3hk?=
+ =?utf-8?B?M3NzVy9MRWhXcHlJT0c2MXc3WTQ3RWlpSjE4Z1o2c3dBNXpZRWQxbUo2ZGRa?=
+ =?utf-8?B?dUlSNit0WGhRQzlyTWpoZDF1N28wdHpRNWt3ZGVzVm1qVkQyOStXalNIK3M5?=
+ =?utf-8?B?YUJiS2ZvbWlsYzA2K0ExY1VsMWtYVkRPLzNFVGp0b3dKYWxQNkZFOVpCZVcx?=
+ =?utf-8?B?T3I0aFlRQ0NDdC9pYitMbEZXSndYbUIvclM3alJ1VVJxTStYc29VN1JiTVVr?=
+ =?utf-8?B?Z0lNS0JTdzl1bXMwL2VNZnZNODlxL0F4ZE9vYndxbVJzKzhBbm5qaFF2UUdC?=
+ =?utf-8?B?ZXlkNHR3RUhBRncvd1hPMzlSY3dOMjNWQVN4SGZNNTVaMStSenNkSjIxeHhJ?=
+ =?utf-8?B?RVh1b0c2Y256Y3RLa0RESEI4UERYazFGZGprR3hFdzBsWWI0a05zeDQ1SER2?=
+ =?utf-8?B?bUlOcFFORGI0aDdPRmp6YWprMk5rdTBWS2R4QkxCbm5RTXE1UTJUcnEvbVB6?=
+ =?utf-8?B?a29Wc3B1SytEQ0hNcmlLVGMxMkxRdThDcXhjbzdRSGlNWnpwRHN6N3pTNnFl?=
+ =?utf-8?B?SHJnaytHdVVLRUhuTmRqVHRpcDR2Q1dRdzZrYXFsbTc2all2RXZBSEIwdy9Q?=
+ =?utf-8?B?bjMzRzJYMk9Ed0UxTWpZVmtDODI1K2ZRV2VoeDM4STVFOU9aZFNSWEpGTFg2?=
+ =?utf-8?B?L21MQlo0MXh0c0dWVVIrcjV5U0xKeE9xOTJpRE54aHVJYTRYV0Z6U1ppci9V?=
+ =?utf-8?B?a3dUQytRYkVKbUM3YS9LWXNJQm4xclUzVHhqNjRPOHBaSXdhWFk1eEczeTFT?=
+ =?utf-8?B?OXl1RUZ6ZU9saVp1ODcrbmR1cVJmMDRNSmtJSk5EUUZCWC85czFydz09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f4371b2d-e036-4575-815a-08de621b3a25
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB8245.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 05:23:41.6213
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: z2MxUNGUqCzPm0SFyZ4OKfxtAfT3NVUK2Shy3raDtVQzEDVE16JbGwAkBalFNT675DOr/TrMByP874f1UzuY9Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5901
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-261623-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[codelinaro.org:url,0.0.0.1:email,0.0.0.0:email,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.12.53.0:email,hu-qianyu-lv.qualcomm.com:mid,ee00:email];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[qiang.yu@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-261624-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,163.com,kernel.org,nvidia.com,gmail.com,google.com];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mmaddireddy@nvidia.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 0B33AC8496
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:mid,nvidia.com:email,Nvidia.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 46681C84CD
 X-Rspamd-Action: no action
 
-On Thu, Jan 29, 2026 at 01:07:08PM +0100, Konrad Dybcio wrote:
-> On 1/29/26 1:05 PM, Qiang Yu wrote:
-> > On Wed, Jan 28, 2026 at 07:21:04PM -0600, Bjorn Andersson wrote:
-> >> On Thu, Jan 22, 2026 at 08:53:57PM +0530, Pankaj Patil wrote:
-> >>> Introduce dt-bindings and initial device tree support for Glymur,
-> >>> Qualcomm's next-generation compute SoC and it's associated
-> >>> Compute Reference Device (CRD) platform.
-> >>>
-> >>> https://www.qualcomm.com/products/mobile/snapdragon/laptops-and-tablets/snapdragon-x2-elite
-> >>> https://www.qualcomm.com/news/releases/2025/09/new-snapdragon-x2-elite-extreme-and-snapdragon-x2-elite-are-the-
-> >>>
-> >>> The base support enables booting to shell with rootfs on NVMe,
-> >>> demonstrating functionality for PCIe and NVMe subsystems.
-> >>> DCVS is also enabled, allowing dynamic frequency scaling for the CPUs.
-> >>> TSENS (Thermal Sensors) enabled for monitoring SoC temperature and
-> >>> thermal management. The platform is capable of booting kernel at EL2
-> >>> with kvm-unit tests performed on it for sanity.
-> >>>
-> >>> Added dtsi files for the PMIC's enabled PMH0101, PMK8850, PMCX0102,
-> >>> SMB2370, PMH0104, PMH0110 along with temp-alarm and GPIO nodeS.
-> >>>
-> >>> For CPU compatible naming, there is one discussion which is not specific
-> >>> to Glymur, Kaanapali and Glymur use the same Oryon cores.
-> >>> https://lore.kernel.org/all/20251119-oryon-binding-v1-1-f79a101b0391@oss.qualcomm.com/
-> >>> We've kept the "qcom,oryon" compatible
-> >>>
-> >>> Features enabled in this patchset:
-> >>> 1. NVMe storage support
-> >>> 2. PCIe controller and PCIe PHY
-> >>> 3. RPMH Regulators
-> >>> 4. Clocks and reset controllers - GCC, TCSRCC, DISPCC, RPMHCC
-> >>> 5. Interrupt controller
-> >>> 6. TLMM (Top-Level Mode Multiplexer)
-> >>> 7. QUP Block
-> >>> 8. Reserved memory regions
-> >>> 9. PMIC support with regulators
-> >>> 10. CPU Power Domains
-> >>> 11. TSENS (Thermal Sensors)
-> >>> 12. DCVS: CPU DCVS with scmi perf protocol
-> >>>
-> >>> Dependencies:
-> >>>
-> >>> dt-bindings:
-> >>> 1. https://lore.kernel.org/all/20260121-glymur-pmic-mfd-v1-1-2aab4f21e79c@oss.qualcomm.com/
-> >>> 2. https://lore.kernel.org/all/20251215-knp-pmic-leds-v3-2-5e583f68b0e5@oss.qualcomm.com/
-> >>> 3. https://lore.kernel.org/all/20260121110828.2267061-1-pankaj.patil@oss.qualcomm.com/
-> >>> 4. https://lore.kernel.org/all/20260111155234.5829-1-pankaj.patil@oss.qualcomm.com/
-> >>>
-> >>> Linux-next based tree with Glymur patches is available at:
-> >>> https://git.codelinaro.org/clo/linux-kernel/kernel-qcom/-/tree/b4/v6_glymur_introduction
-> >>>
-> >>
-> >> FWIW, I applied these patches onto next-20260128 to see if things has
-> >> improved since Rob's report and I get:
-> >>
-> >> $ make qcom/glymur-crd.dtb CHECK_DTBS=1
-> >>   DTC [C] arch/arm64/boot/dts/qcom/glymur-crd.dtb
-> >> qcom/glymur-crd.dtb: dma-controller@800000 (qcom,glymur-gpi-dma): interrupts: [[0, 588, 4], [0, 589, 4], [0, 590, 4], [0, 591, 4], [0, 592, 4], [0, 593, 4], [0, 594, 4], [0, 595, 4], [0, 596, 4], [0, 597, 4], [0, 598, 4], [0, 599, 4], [2, 129, 4], [2, 130, 4], [2, 131, 4], [2, 132, 4]] is too long
-> >>         from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-> >> qcom/glymur-crd.dtb: dma-controller@a00000 (qcom,glymur-gpi-dma): interrupts: [[0, 279, 4], [0, 280, 4], [0, 281, 4], [0, 282, 4], [0, 283, 4], [0, 284, 4], [0, 293, 4], [0, 294, 4], [0, 295, 4], [0, 296, 4], [0, 297, 4], [0, 298, 4], [2, 124, 4], [2, 125, 4], [2, 126, 4], [2, 127, 4]] is too long
-> >>         from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-> >> qcom/glymur-crd.dtb: dma-controller@b00000 (qcom,glymur-gpi-dma): interrupts: [[2, 76, 4], [2, 77, 4], [2, 78, 4], [2, 79, 4], [2, 80, 4], [2, 81, 4], [2, 82, 4], [2, 83, 4], [2, 84, 4], [2, 85, 4], [2, 86, 4], [2, 87, 4], [2, 88, 4], [2, 89, 4], [2, 90, 4], [2, 91, 4]] is too long
-> >>         from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-> >> qcom/glymur-crd.dtb: pmic@1 (qcom,pmh0101): led-controller@ee00:compatible:0: 'qcom,pmh0101-flash-led' is not one of ['qcom,pm6150l-flash-led', 'qcom,pm660l-flash-led', 'qcom,pm7550-flash-led', 'qcom,pm8150c-flash-led', 'qcom,pm8150l-flash-led', 'qcom,pm8350c-flash-led', 'qcom,pm8550-flash-led', 'qcom,pmi8998-flash-led']
-> >>         from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
-> >> qcom/glymur-crd.dtb: pmic@1 (qcom,pmh0101): pwm:compatible: 'oneOf' conditional failed, one must be fixed:
-> >>         ['qcom,pmh0101-pwm', 'qcom,pm8350c-pwm'] is too long
-> >>         'qcom,pmh0101-pwm' is not one of ['qcom,pm660l-lpg', 'qcom,pm8150b-lpg', 'qcom,pm8150l-lpg', 'qcom,pm8350c-pwm', 'qcom,pm8916-pwm', 'qcom,pm8941-lpg', 'qcom,pm8994-lpg', 'qcom,pmc8180c-lpg', 'qcom,pmi632-lpg', 'qcom,pmi8950-pwm', 'qcom,pmi8994-lpg', 'qcom,pmi8998-lpg', 'qcom,pmk8550-pwm']
-> >>         'qcom,pmh0101-pwm' is not one of ['qcom,pm6150l-lpg']
-> >>         'qcom,pmh0101-pwm' is not one of ['qcom,pm8550-pwm']
-> >>         'qcom,pmh0101-pwm' is not one of ['qcom,pm8937-pwm']
-> >>         'qcom,pm8150l-lpg' was expected
-> >>         'qcom,pm8916-pwm' was expected
-> >>         from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
-> >> qcom/glymur-crd.dtb: led-controller@ee00 (qcom,pmh0101-flash-led): compatible:0: 'qcom,pmh0101-flash-led' is not one of ['qcom,pm6150l-flash-led', 'qcom,pm660l-flash-led', 'qcom,pm7550-flash-led', 'qcom,pm8150c-flash-led', 'qcom,pm8150l-flash-led', 'qcom,pm8350c-flash-led', 'qcom,pm8550-flash-led', 'qcom,pmi8998-flash-led']
-> >>         from schema $id: http://devicetree.org/schemas/leds/qcom,spmi-flash-led.yaml#
-> >> qcom/glymur-crd.dtb: /soc@0/arbiter@c400000/spmi@c426000/pmic@1/led-controller@ee00: failed to match any schema with compatible: ['qcom,pmh0101-flash-led', 'qcom,spmi-flash-led']
-> >> qcom/glymur-crd.dtb: pwm (qcom,pmh0101-pwm): compatible: 'oneOf' conditional failed, one must be fixed:
-> >>         ['qcom,pmh0101-pwm', 'qcom,pm8350c-pwm'] is too long
-> >>         'qcom,pmh0101-pwm' is not one of ['qcom,pm660l-lpg', 'qcom,pm8150b-lpg', 'qcom,pm8150l-lpg', 'qcom,pm8350c-pwm', 'qcom,pm8916-pwm', 'qcom,pm8941-lpg', 'qcom,pm8994-lpg', 'qcom,pmc8180c-lpg', 'qcom,pmi632-lpg', 'qcom,pmi8950-pwm', 'qcom,pmi8994-lpg', 'qcom,pmi8998-lpg', 'qcom,pmk8550-pwm']
-> >>         'qcom,pmh0101-pwm' is not one of ['qcom,pm6150l-lpg']
-> >>         'qcom,pmh0101-pwm' is not one of ['qcom,pm8550-pwm']
-> >>         'qcom,pmh0101-pwm' is not one of ['qcom,pm8937-pwm']
-> >>         'qcom,pm8150l-lpg' was expected
-> >>         'qcom,pm8916-pwm' was expected
-> >>         from schema $id: http://devicetree.org/schemas/leds/leds-qcom-lpg.yaml#
-> >> qcom/glymur-crd.dtb: /soc@0/arbiter@c400000/spmi@c426000/pmic@1/pwm: failed to match any schema with compatible: ['qcom,pmh0101-pwm', 'qcom,pm8350c-pwm']
-> >>
-> >> So, we're still missing a few dependencies.
-> >>
-> >>
-> >> Booting the system I get a ton of errors from PCIe in the kernel log:
-> >>
-> >> debugfs: 'opp:5000000' already exists in 'soc@0-1c00000.pci'
-> >>
-> >> # dmesg | grep -E 'debugfs: .+ already exists' |wc -l
-> >> 508
-> >>
-> >> The system does eventually boot, and I was happy to see that we do end
-> >> up finding the PCIe devices after all.
-> >>
-> > I enabled dynamic debug logs and observed that each PCIe platform device
-> > probe was deferred approximately 10 times. The probe deferrals resulted in
-> > additional OPP debugfs warnings being printed.
-> > 
-> > The PCIe platform device probe was deferred because the PHY driver was not
-> > ready - either because the PHY driver was not yet loaded, or because the
-> > PHY driver's own probe was also deferred due to its dependency (e.g.,
-> > 1fd5000.clock-controller) not being ready. This is normal behavior,
-> > correct? I also observed that other driver probes were deferred.
-> > 
-> > But I'm not sure why there are more than 300 times probe deferrals on
-> > your setup.
-> 
-> I think Bjorn is trying to say that the driver is wrong, because it
-> effectively seems to call devm_pm_opp_of_add_table repeatedly
+
+On 30/01/26 10:51 pm, Jon Hunter wrote:
 >
-Okay, to avoid PCIe driver probe deferrals and the resulting increased OPP
-debugfs warnings caused by these deferrals, we plan to move the PHY
-properties back from the root port node to the controller device tree
-node.
+>
+> On 26/01/2026 07:45, Manikanta Maddireddy wrote:
+>> From: Vidya Sagar <vidyas@nvidia.com>
+>>
+>> PERST# and CLKREQ# pinctrl settings should be applied for both root port
+>> and endpoint mode. Move pinctrl_pm_select_default_state() function call
+>> from root port specific configuration function to probe().
+>>
+>> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+>> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+>> ---
+>> V4:
+>> * None
+>>
+>> V3:
+>> * None
+>>
+>> V2:
+>> * None
+>>
+>>   drivers/pci/controller/dwc/pcie-tegra194.c | 19 +++++++++++++------
+>>   1 file changed, 13 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c 
+>> b/drivers/pci/controller/dwc/pcie-tegra194.c
+>> index 0b8c1a7ca232..04ff211deaea 100644
+>> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
+>> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+>> @@ -1645,12 +1645,6 @@ static int tegra_pcie_config_rp(struct 
+>> tegra_pcie_dw *pcie)
+>>           goto fail_pm_get_sync;
+>>       }
+>>   -    ret = pinctrl_pm_select_default_state(dev);
+>> -    if (ret < 0) {
+>> -        dev_err(dev, "Failed to configure sideband pins: %d\n", ret);
+>> -        goto fail_pm_get_sync;
+>> -    }
+>> -
+>>       ret = tegra_pcie_init_controller(pcie);
+>>       if (ret < 0) {
+>>           dev_err(dev, "Failed to initialize controller: %d\n", ret);
+>> @@ -2106,6 +2100,19 @@ static int tegra_pcie_dw_probe(struct 
+>> platform_device *pdev)
+>>       pp = &pci->pp;
+>>       pp->num_vectors = MAX_MSI_IRQS;
+>>   +    ret = pinctrl_pm_select_default_state(dev);
+>> +    if (ret < 0) {
+>> +        const char *level = KERN_ERR;
+>> +
+>> +        if (ret == -EPROBE_DEFER)
+>> +            level = KERN_DEBUG;
+>> +
+>> +        dev_printk(level, dev,
+>> +               "Failed to configure sideband pins: %d\n",
+>> +               ret);
+>
+> We can now use dev_err_probe() to handle the above and this becomes ...
+>
+>  if (ret < 0)
+>         return dev_err_probe(dev, ret, "Failed to configure sideband 
+> pins: %d\n", ret);
+>
+Thank you for quick review. I will fix it in next version.
 
-- Qiang Yu
+I will wait for few more days for others to review this series and then 
+send new version.
 
-> Konrad
+>> +        return ret;
+>> +    }
+>> +
+>>       ret = tegra_pcie_dw_parse_dt(pcie);
+>>       if (ret < 0) {
+>>           const char *level = KERN_ERR;
+>
 
