@@ -1,136 +1,372 @@
-Return-Path: <devicetree+bounces-261688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261685-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sNfbGdBfgGlj7AIAu9opvQ
-	(envelope-from <devicetree+bounces-261688-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 09:26:56 +0100
+	id iOIaKlxcgGlj7AIAu9opvQ
+	(envelope-from <devicetree+bounces-261685-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 09:12:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7ADEC9AE0
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 09:26:55 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 162C6C98D2
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 09:12:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0051E30063AE
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 08:26:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1E4843006D72
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 08:08:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0447C355808;
-	Mon,  2 Feb 2026 08:26:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE102311C05;
+	Mon,  2 Feb 2026 08:08:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="BFdEKFnL"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ekB0z7x0";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LGEgOJAx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A21A354AE2;
-	Mon,  2 Feb 2026 08:25:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F9B331076D
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 08:08:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770020761; cv=none; b=mo62YPqqVtFWaz717mkI4yn3J3VP7WHRBTYpyJA4iGPDmsy0+OMr6iNTCaR2JkE+N3xktpP3GSNjoUxSO6s5XhCC/hVZqPNUulIMhcBSkyLkrNWG293D8aLq1SUzyex0ndmK7L8bwxm60eaY/NBGkkowbI95wyvxBz9qM1Sjb20=
+	t=1770019681; cv=none; b=WUV9SQKbDjVQ64BDrGP1A0ixiQ2K7Me3Kvzk2/738Y63BPTMK/uwTfjghBB4Uy/knW2UbYkNcR2wBplYJ8NEmXHFt+YN+1XMkqJaDy5uem1qx8LElrQNVWYjAAxPE0aIonD5iN6sgeB/c/ceehEmHCtvXOv5uhBmYuj7T7ZinAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770020761; c=relaxed/simple;
-	bh=phCEsAISm1EXcNibuPfrZAjaH8jQm5Bi33x10pdIXaE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ktC5vaIjLnM8QJkLOUDDGVkc5/DVMKrWw0W5mcBlAdyo+vr1dEGBxDlZwPLqAzhMdH2yVehxRsOEbSXATf3FUgejk88FQNMMNG4YxQQdvIPD9PaoU3yhfyB5WYA/0Px3a6wxFYXoy7jlhm5f7xaEGovlrwZlB/AOjaWtGzvUjHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=BFdEKFnL; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=U/gycSIOgTGnUjvcUt1gVzgzrqctuqnK7adcurWVRKo=; b=BFdEKFnLsQ7B9xXiQ64Kv6nXPx
-	EYyNmEZY3tuigNX8cPmLRVVRBkhuY8yzUm0i81JbNWq7KjNcyUCCqvX1PGdw0uaWFr8bejJmIAdRk
-	jsrhU1ydfOLrSqak/N+rvFhuAUbpRCYaOIaLSIPa0v+PQOpBsyEznHqdf0px+8mqe/VlG+oyC2rRw
-	E2RM4OpET+F4I1dNAQxlwPzjjgdG1ojaAFFXxe/+aD7H3H4JJ3fowEZ+lGWO5n95MlEic8HEydcGg
-	a6DetxO4kV3ha9mTdUx+f6xHAhPJwsf6pnNUECcT3/brpwAW/ASL6v6aCT5J3e3Oivls/NLnPEsZH
-	J56SmypQ==;
-Date: Mon, 2 Feb 2026 09:04:08 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Mithil Bavishi <bavishimithil@gmail.com>
-Cc: aaro.koskinen@iki.fi, airlied@gmail.com, conor+dt@kernel.org,
- jernej.skrabec@gmail.com, jonas@kwiboo.se, khilman@baylibre.com,
- krzk+dt@kernel.org, laurent.pinchart@ideasonboard.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
- jesszhan0024@gmail.com, rfoss@kernel.org, robh@kernel.org,
- rogerq@kernel.org, simona@ffwll.ch, thierry.reding@gmail.com,
- tony@atomide.com, tzimmermann@suse.de, andrzej.hajda@intel.com,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH v5 5/8] ARM: dts: ti: omap: espresso-common: Add common
- device tree for Samsung Galaxy Tab 2 series
-Message-ID: <20260202090408.4c3757cb@kemnade.info>
-In-Reply-To: <20260129054709.3878-6-bavishimithil@gmail.com>
-References: <20260129054709.3878-1-bavishimithil@gmail.com>
-	<20260129054709.3878-6-bavishimithil@gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1770019681; c=relaxed/simple;
+	bh=e5UiulWzCpaboMvckiModZJV708yrENsmfOIZvdK54s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=o/T+EBr28VCfMd2wKV5E4fetKbP95KsvyZx2DZyhty1jQuftoG9vDB8/Fcv3UiaksPQIZz/rXz4tBghPCsDzDpv19nEzlHWcYdEssnuq0722jjn7CIYheChxH9AzdyfeHspvb70GyBM47CTHDWzJr7UIwxPL0RqywSdJeNICEmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ekB0z7x0; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LGEgOJAx; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61285GA32343019
+	for <devicetree@vger.kernel.org>; Mon, 2 Feb 2026 08:07:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5q11L4BQa7xe0Hjz/HSun8Va0jvfPXvUtsh17UGLK2c=; b=ekB0z7x0h4AZNP7G
+	A+JnxbuZZxqMncceUe+4sl1yG/kRQZRUvlHm2Tz3ovW0pvXedn6pVXfDzhJEI+te
+	QM6vWk55TZvHtXgkRIJ/nQO4zjIX/31NKN/lmsMTywNojcz2ZomG1BF+iRrnGnZz
+	0zoC+dRjSU8jlVEvBgScsmA+VX6ok3wjAiMdq4HgB27Q/rOvEeQ0z+nzBorQRtNi
+	3cCEuJd/1CjXEAmqOnKlnwT2hyEwVKqF9Kz/acUnaPjAYYGB8M8gpdLwOI3PyWsW
+	daF3cl+KBOpNGDMj4Md3hNGtBTjgMxgDBWIoF4wpXdGg2B64bIftGMd0bhVXi5XK
+	d0YC8w==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c1ard4k1j-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 08:07:59 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-82371886e58so1967365b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 00:07:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770019678; x=1770624478; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5q11L4BQa7xe0Hjz/HSun8Va0jvfPXvUtsh17UGLK2c=;
+        b=LGEgOJAxstQxFDfJ9i+YRTJ8yNT8R5+u+d+g2+irBnZF6ds+/Vsk1rKsKvNdqvkabF
+         fQ5/GNx23vjurAE/KMY00Q2wztoLwfCS6sSfFO6aVBW6ic2xJq0MjetJGdtPyf/d09o/
+         pkevt4GtNfoisaC43ZqNj6PidV9REkHPi04SLN62ewa7CCqbyJe7UGHt/LttBS7AJik2
+         4pYKK0it3dY7WC6PEivL0Za0XWJX/2zkxSK5e+KrL1EUGj98zr+ZyDHJi7X+5KFTgbmy
+         /k2mKfWmGXlLF/E3pMFe8KBSJPdIGMVCvBrahUYh1JzvnkOmAkv3MCyw/nd+DtuglznR
+         9zzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770019678; x=1770624478;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5q11L4BQa7xe0Hjz/HSun8Va0jvfPXvUtsh17UGLK2c=;
+        b=pBlKe7yJ3nxuSI2cB5OcpMK+sZcatqiZcM54pugA/ZhfHvw/KthFqawKieoyEiqLZ/
+         HG4kE4awLpIg5Yn3m0g6RMAMtgrRzo8pOtRplr3+FWxBVg/zXkUO4GSUuisA1ZKbyCcW
+         YZvFAxyl9V2wZtAdo5EH+W9UYPaUkFK7jkgXSNldLoEpAo4PqZI4VnxWSLbECGch9f2k
+         F7/hYgrwJdvKwVycrpdSRcLXmhs03UbA85iIA7BWZ/3DkWrEKn+yIJ2K3lexRTgoOqiM
+         mgUWJAFcZaelzuUHX0iRxYc4XM5pl7fFzjgRZmdNmDiByi8tNKwWlqPS7rbVjjcvG4nd
+         flbw==
+X-Forwarded-Encrypted: i=1; AJvYcCXdbFYOT2t+D1Rx1tZhEzR/c2l3w3n9HA4jfuIMkj7XNW7KwaaVrTLTctDLFs1mePJ6tCuLRU/bqTAV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0An/7hmIAYpRu6/4f5X5GEY+zL4Rqu5bL6lddQ5Pb+Ev0lskB
+	yE69y4mWIsutrnamA9qxy8rt+D9dyllXscCFVB4s03ORQSPutqvzc1iu8E8V8cM8wKmlQ05Z9Kp
+	RJh+Hg8ra73B/BEE4mBvbg1I1pg83VUwgIo9yayfvoNKhA6j9Zb3q5x+XaSsnoGtVf6AJNjuN
+X-Gm-Gg: AZuq6aJX4WO5erzVkg0Ir9AxwcvYL//PoLFsEhZEkG0/t4H6tKI2wVEu4b+a/6YL5oH
+	X5s7s2GfKvIGd1JeyDc68Yc99cyTOErdWt/WK9kw2JJXXX+6AQf5geLwJuLrvdYFDui1n1iGl0i
+	E8PJX6aWXEAIlc+PWNOS82zArQh11DFeXK89zXg7o+y7XrvLe1AKLnp01X27oWw9YZfkbwRhXZL
+	Ypk+mTgaiaWQs3nOCd1/eS+nT9V6EKDW1ouQSO133FhvArzCWkKzcPXLuUOZEkJ2pWLo0mzFH2H
+	rS8A0E9g755fnHRhp9h03WyT1cPJ2tpghdD/qFFin62E8ljlE3DZblCT6twG6Q6AdQeWg+WOz9/
+	LPSiO9JSXCjPYNJPBbQDaq5iqyHF0XRgMw4MBycpR9A9Z
+X-Received: by 2002:a05:6a00:9288:b0:823:ef8:5ce0 with SMTP id d2e1a72fcca58-823ab65bb2amr11704831b3a.13.1770019677798;
+        Mon, 02 Feb 2026 00:07:57 -0800 (PST)
+X-Received: by 2002:a05:6a00:9288:b0:823:ef8:5ce0 with SMTP id d2e1a72fcca58-823ab65bb2amr11704800b3a.13.1770019677275;
+        Mon, 02 Feb 2026 00:07:57 -0800 (PST)
+Received: from [10.206.109.90] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82379c53f6bsm18084171b3a.63.2026.02.02.00.07.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Feb 2026 00:07:56 -0800 (PST)
+Message-ID: <9831d703-8427-31af-48c7-3942108b3a55@oss.qualcomm.com>
+Date: Mon, 2 Feb 2026 13:37:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 1/7] media: dt-bindings: Document SC8280XP/SM8350 Venus
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab
+ <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bjorn Andersson <andersson@kernel.org>,
+        David Heidelberg <david@ixit.cz>, linux-media@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20260125-iris-sc8280xp-v3-0-d21861a9ea33@oss.qualcomm.com>
+ <20260125-iris-sc8280xp-v3-1-d21861a9ea33@oss.qualcomm.com>
+ <3d99e35d-1aef-5e04-55c8-628918e29da4@oss.qualcomm.com>
+ <g2ft7zu7mabl63hggbyyfkhntvkmsqjvtu43r2c35ycgrghxgs@53m33fj3b2ft>
+Content-Language: en-US
+From: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
+In-Reply-To: <g2ft7zu7mabl63hggbyyfkhntvkmsqjvtu43r2c35ycgrghxgs@53m33fj3b2ft>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAyMDA2OSBTYWx0ZWRfX+kOXZXBWxTnD
+ CG1toxWwcCYM9qiDKOEoxpnT2sooicocgGq5yvIsr3rtiZrwWWRm3fE+t3tLjNvIX931OTNbdof
+ HSvHezMbO6NsNYav5dM0DX8Y7/XZrLrgaesuUt9T+kmqvE0BxAb4/6FPnglugm031Sw/JOiZFcs
+ f6Ej0KL2lHOzi41slBkEe0mvNxmPrU6I97vhNT/PKJ4fxSWu74WKDYiqB06eW/le9L+E/YNA1MJ
+ oG3cg+JHAryI2Z+hOCYe/Hb8k78JJBv2L3cSZ728KoFoN2KDUAxXByrwIoX9QbSoOBt7ixc+zuT
+ 0dobgRE1qw4zEpCsUGf8RD0+vg1Mrxxpt1hvSJlTWWG9oVjuHNoLq99WDoHkentpsin2nSvvNiE
+ ELCaNnyEkhHN7uj7PpZ+hEWps9aH8Q4mrKVC2aBo8tE2bWqtFzC94U0fuiPB66Duecw2Xlt+3Kr
+ 0qBBY5Dl8TdFEjFj9pQ==
+X-Authority-Analysis: v=2.4 cv=J6anLQnS c=1 sm=1 tr=0 ts=69805b5f cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
+ a=EUspDBNiAAAA:8 a=9QtVEiAcijqVnSbVjO0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=IoOABgeZipijB_acs4fv:22 a=sptkURWiP4Gy88Gu7hUp:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: 5ek-6lUt-KdsVhdJvVjItl7zSZ-JlBBE
+X-Proofpoint-GUID: 5ek-6lUt-KdsVhdJvVjItl7zSZ-JlBBE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-02_02,2026-01-30_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 phishscore=0 suspectscore=0
+ malwarescore=0 bulkscore=0 adultscore=0 clxscore=1015 spamscore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2602020069
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kemnade.info,none];
-	R_DKIM_ALLOW(-0.20)[kemnade.info:s=20220719];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261688-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[26];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kemnade.info:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andreas@kemnade.info,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[iki.fi,gmail.com,kernel.org,kwiboo.se,baylibre.com,ideasonboard.com,linux.intel.com,linaro.org,bp.renesas.com,ffwll.ch,atomide.com,suse.de,intel.com,vger.kernel.org,lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261685-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,kemnade.info:mid,kemnade.info:dkim]
-X-Rspamd-Queue-Id: C7ADEC9AE0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,aa00000:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,linaro.org:email,devicetree.org:url];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dikshita.agarwal@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt,linaro];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 162C6C98D2
 X-Rspamd-Action: no action
 
-On Thu, 29 Jan 2026 00:47:06 -0500
-Mithil Bavishi <bavishimithil@gmail.com> wrote:
 
-> Create common device tree for Samsung Espresso series devices
+
+On 1/31/2026 1:03 PM, Dmitry Baryshkov wrote:
+> On Fri, Jan 30, 2026 at 05:59:48PM +0530, Dikshita Agarwal wrote:
+>>
+>>
+>> On 1/25/2026 9:02 PM, Dmitry Baryshkov wrote:
+>>> From: Konrad Dybcio <konradybcio@kernel.org>
+>>>
+>>> Both of these SoCs implement an IRIS2 block, with SC8280XP being able
+>>> to clock it a bit higher and  with SM8350 having 4 VPP pipes, while
+>>> SC8280XP having just 2.
+>>>
+>>> Document Iris2 cores found on these SoCs.
+>>>
+>>> Signed-off-by: Konrad Dybcio <konradybcio@kernel.org>
+>>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+>>> [ bod: dropped dts video-encoder/video-decoder ]
+>>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>> [db: dropped status, dropped extra LLCC interconnect]
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>> ---
+>>>  .../bindings/media/qcom,sm8350-venus.yaml          | 113 +++++++++++++++++++++
+>>>  1 file changed, 113 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8350-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sm8350-venus.yaml
+>>> new file mode 100644
+>>> index 000000000000..d78bdc08d830
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/media/qcom,sm8350-venus.yaml
+>>> @@ -0,0 +1,113 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/media/qcom,sm8350-venus.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm SM8350 Venus video encode and decode accelerators
+>>
+>> s/Venus/iris
+>>
+>>> +
+>>> +maintainers:
+>>> +  - Konrad Dybcio <konradybcio@kernel.org>
+>>> +
+>>> +description: |
+>>> +  The Venus Iris2 IP is a video encode and decode accelerator present
+>>> +  on Qualcomm platforms
+>>> +
+>>> +allOf:
+>>> +  - $ref: qcom,venus-common.yaml#
+>>
+>> Pls remove the reference to venus-common.yaml and follow schema of
+>> sm8550-iris.yaml
 > 
-> Let's create a common tree for all the variants first, later we can
-> device specific trees based on their screen sizes
+> Why? For example, sm8750-iris uses venus-common.yaml.
+
+Ack — in that case sm8750‑iris should be aligned as well.
+Since Krzysztof’s patch [1] removes all venus-common references from
+sm8550‑iris, all *-iris platforms should follow the same convention IMO.
+
+[1]:
+https://lore.kernel.org/linux-media/20250823155349.22344-2-krzysztof.kozlowski@linaro.org/
+
+Thanks,
+Dikshita
 > 
-> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
-> ---
-[...]
-> +			OMAP4_IOPAD(0x0c0, WAKEUP_EN | PIN_INPUT | MUX_MODE3)
-
-We had the discussion. This should be done via pinctrl irq if possible instead of
-specifying WAKEUP_EN here, You had some trouble to understand how it can be done,
-and we agreed to add the wakeup functionality as a follow-up concentrating just
-on that detail and for now just remove WAKEUP_EN.
-[...]
-> +		mount-matrix =	"-1", "0", "0",
-> +				"0", "1", "0",
-> +				"0", "0", "1";
-> +		};
-> +
-still this strange matrix. This is no rotation matrix. Determinant is -1.
-Something is strange here, so also the idea in our earlier discussion was to
-also postpone it and maybe separately discuss it with iio.
-
-Regards,
-Andreas
+>>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - qcom,sc8280xp-venus
+>>> +      - qcom,sm8350-venus
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 3
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: iface
+>>> +      - const: core
+>>> +      - const: vcodec0_core
+>>> +
+>>> +  resets:
+>>> +    maxItems: 1
+>>> +
+>>> +  reset-names:
+>>> +    items:
+>>> +      - const: core
+>>
+>> It should be named as bus not core
+> 
+> Ack
+> 
+>>
+>>> +
+>>> +  power-domains:
+>>> +    maxItems: 3
+>>> +
+>>> +  power-domain-names:
+>>> +    items:
+>>> +      - const: venus
+>>> +      - const: vcodec0
+>>> +      - const: mx
+>>> +
+>>> +  interconnects:
+>>> +    maxItems: 2
+>>> +
+>>> +  interconnect-names:
+>>> +    items:
+>>> +      - const: cpu-cfg
+>>> +      - const: video-mem
+>>> +
+>>> +  operating-points-v2: true
+>>> +  opp-table:
+>>> +    type: object
+>>> +
+>>> +  iommus:
+>>> +    maxItems: 1
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - power-domain-names
+>>> +  - iommus
+>>> +
+>>> +unevaluatedProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +    #include <dt-bindings/clock/qcom,gcc-sm8350.h>
+>>> +    #include <dt-bindings/clock/qcom,sm8350-videocc.h>
+>>> +    #include <dt-bindings/interconnect/qcom,icc.h>
+>>> +    #include <dt-bindings/interconnect/qcom,sm8350.h>
+>>> +    #include <dt-bindings/power/qcom-rpmpd.h>
+>>> +
+>>> +    venus: video-codec@aa00000 {
+>>> +        compatible = "qcom,sm8350-venus";
+>>> +        reg = <0x0aa00000 0x100000>;
+>>> +        interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+>>> +
+>>> +        clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
+>>> +                 <&videocc VIDEO_CC_MVS0C_CLK>,
+>>> +                 <&videocc VIDEO_CC_MVS0_CLK>;
+>>> +        clock-names = "iface",
+>>> +                      "core",
+>>> +                      "vcodec0_core";
+>>> +
+>>> +        resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>;
+>>> +        reset-names = "core";
+>>
+>> s/core/bus following the existing YAML
+>>
+>> Thanks,
+>> Dikshita
+>>
+>>> +
+>>> +        power-domains = <&videocc MVS0C_GDSC>,
+>>> +                        <&videocc MVS0_GDSC>,
+>>> +                        <&rpmhpd SM8350_MX>;
+>>> +        power-domain-names = "venus",
+>>> +                             "vcodec0",
+>>> +                             "mx";
+>>> +
+>>> +        interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+>>> +                         &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
+>>> +                        <&mmss_noc MASTER_VIDEO_P0 QCOM_ICC_TAG_ALWAYS
+>>> +                         &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+>>> +        interconnect-names = "cpu-cfg",
+>>> +                             "video-mem";
+>>> +
+>>> +        operating-points-v2 = <&venus_opp_table>;
+>>> +        iommus = <&apps_smmu 0x2100 0x400>;
+>>> +        memory-region = <&pil_video_mem>;
+>>> +    };
+>>>
+> 
 
