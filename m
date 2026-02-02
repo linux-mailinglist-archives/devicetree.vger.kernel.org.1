@@ -1,167 +1,311 @@
-Return-Path: <devicetree+bounces-261780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261781-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SAJPKpyLgGnO9wIAu9opvQ
-	(envelope-from <devicetree+bounces-261780-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:33:48 +0100
+	id YDf5FnaRgGlA/gIAu9opvQ
+	(envelope-from <devicetree+bounces-261781-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:58:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F0B3CBB1F
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:33:47 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AE54CBF78
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:58:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3C9C93021D26
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 11:31:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3017E3002B42
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 11:58:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F6813624BE;
-	Mon,  2 Feb 2026 11:31:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C116361677;
+	Mon,  2 Feb 2026 11:58:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="eB3l9G1h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011035.outbound.protection.outlook.com [40.107.74.35])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D98C735E548;
-	Mon,  2 Feb 2026 11:31:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770031917; cv=none; b=u8jbEzwJHL+CJvHWVGdtkq+c9Vf7l00W8esZleJajr/HSG8fcKwQ7Tzg6Zs/nt7bhoYfYbJteuL+atnKZDUrfQ+3wlchuQbOE1q+P4jcnptSSo0sTVLCmm4gj2sZ7uHXKPiA5WIb2cuxUBl3ef8kBHvZJsdqeuSjdR1CD7KTnzY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770031917; c=relaxed/simple;
-	bh=Ueylp6HQwvDtkHj6Zl1LQcic6rImdfM2EhfgQAhN4B8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q1V+Xp36SDWfPGu+GUzHyIUu7qfhNqKL+U7jMJJU6sO9e8QcVoFJVrBj+xqcjjOFMua26OCYTYT+nq8DTJq84wrx+rUtyQ86MKTj5ddSXeSMeh8VSo/o46s+2Xs0gGPv/axZEYP4BvAQbacNW3+qhcZeZdmVfKHNm9WYDi2Nawg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from duge-virtual-machine (unknown [183.192.223.177])
-	by APP-01 (Coremail) with SMTP id qwCowABH8WwYi4BpJdr9Bg--.29650S2;
-	Mon, 02 Feb 2026 19:31:38 +0800 (CST)
-Date: Mon, 2 Feb 2026 19:31:36 +0800
-From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-To: vkoul@kernel.org, gregkh@linuxfoundation.org, conor@kernel.org
-Cc: neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-	pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	alex@ghiti.fr, linux-phy@lists.infradead.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 0/4] Add USB support for Canaan K230
-Message-ID: <aYCLGLvbKZy+WyxI@duge-virtual-machine>
-References: <20260121145526.14672-1-jiayu.riscv@isrc.iscas.ac.cn>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797582D2488;
+	Mon,  2 Feb 2026 11:58:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.35
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770033522; cv=fail; b=O4xQrB0dy53QVxY2rVoBMmfReRI+25WOeQqVEc0/trVBjTYbVbEqtaeX/D0MsYrX5XJYyZkmIcSQMebuqfePgb2FMoHXPDeXTYAW5jvug7OekT8JkR57IZlXsF/nby5yI0rHS/l2gAAXKzrS7+RmM+lKeV6B77EMqJMgrkLfPhc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770033522; c=relaxed/simple;
+	bh=noMUz1NTiSu8+L6PUdZ9w5pBWMtIpzVi3BbIUJ51CJY=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=vEWwBB1GK/GbQmYUDnyp2U5+dfUGcRTDx17ivvv8MgwUShQC/aClnTBsfyPiMxNp3KWcFlvfzc7dcstf+d7OyszXtU/6337OcT8XmVliYP1cwltgBaOIOmqG/3K2M8svZM9SC5SvKH1cAeGJK8gLD2gAuMIrIsQQYOP/LEkVUrc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=eB3l9G1h; arc=fail smtp.client-ip=40.107.74.35
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ncGEimn3S10VGuh3WsGfTCsd9xAoOTWCvTx07JOOufuHEMr6tpdaAS0UaTYm3ezN+e5Up0EM/ZDlTgc3GO3ijD5JHEybIyY+Mwuwop3jIXfBxe2MDoblcRSvQoWppZmk6sDSe2VHzbI/amF97yzqn98eYDn6ouOKkTqexIV2tYZCTYNJwMsbGcXQh6wGQZK01Cem2XHguxHaDi6uAcJj9mDfoE9FkiuJnAPSCOZCOJTxBmpXPU8qW3J5KfOS1QAGZ/Pr3TOjxE55D8Krn7FsujKFZn9ntLZxo63mH5T3hyd+qCfXLvoMiKXUyJz3dqwxjtQ88o4ykMwSgfB9oegXTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=l2y462Uj81qyR7pLSBZ0CxEcxIQo5zLxOJCI3LF6JfI=;
+ b=zLiLuySMR0orabkBlAm9rrOIGNUL6Y+J3flQUTI8o/K9ll0RfnOPrgof+tCRDat+rohGqW+jYrd3nsRNy2/aO4lAa8mILLQe27jrASJV9mLnstL7n03ZhjTPFRiFSJq1HMEqVsnR1LzmJkQKSm2zwpYQw5+Pt1xY4IUFV460zgf8q48OzlTZNYyAifqRdl5fWaZgLgpuQM+jHwprmlZR+fFsZKiQGZ+DxPBwSOAgYZ97qK0MKeZyckg54Tl5vhBUTlXwJ8aZaEjUw/jhxeksziludl6kupT5cmRoBjJtLRnekTt3o8Md/0YSErRIPIszUp7DHYLwA96Dyu5UOG62/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=l2y462Uj81qyR7pLSBZ0CxEcxIQo5zLxOJCI3LF6JfI=;
+ b=eB3l9G1hP6JrNSUW07gs7RAoYS0xjWdU37M0k42E+oLxKh+tEcMZz/hWDY/zp69mqM8x/2zsA7NyTzrhr7ZDVMvcqs5zmeiVi2pVytY7SB/z+0sHZRNqB8Migcpmx02Tjl47aIlMvf4vikPVfp8N7JltpLRmYIogv76BIn3J6cw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
+ by OSZPR01MB6552.jpnprd01.prod.outlook.com (2603:1096:604:fc::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Mon, 2 Feb
+ 2026 11:58:35 +0000
+Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com
+ ([fe80::33f1:f7cd:46be:e4d8]) by TYCPR01MB11947.jpnprd01.prod.outlook.com
+ ([fe80::33f1:f7cd:46be:e4d8%5]) with mapi id 15.20.9564.016; Mon, 2 Feb 2026
+ 11:58:35 +0000
+From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+To: tomm.merciai@gmail.com,
+	geert@linux-m68k.org,
+	laurent.pinchart@ideasonboard.com
+Cc: linux-renesas-soc@vger.kernel.org,
+	biju.das.jz@bp.renesas.com,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH v4 00/20] Add support for DU and DSI on the Renesas RZ/G3E SoC
+Date: Mon,  2 Feb 2026 12:57:31 +0100
+Message-ID: <cover.1770030493.git.tommaso.merciai.xr@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: FR0P281CA0087.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1e::12) To TYCPR01MB11947.jpnprd01.prod.outlook.com
+ (2603:1096:400:3e1::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260121145526.14672-1-jiayu.riscv@isrc.iscas.ac.cn>
-X-CM-TRANSID:qwCowABH8WwYi4BpJdr9Bg--.29650S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7trWrCrWkWry3Kw1ftFWrXwb_yoW5JF17pa
-	y2kFW3CFsrJFW2gFs3tw48WF9xX3Z5Jry5Wryaq3s8W3WUZr1UZ393KrWYvFyDJF4DCryj
-	qFs0kFyxKFy5AaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
-	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
-	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
-	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
-	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
-	14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
-	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
-	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
-	IFyTuYvjxUqiFxDUUUU
-X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB11947:EE_|OSZPR01MB6552:EE_
+X-MS-Office365-Filtering-Correlation-Id: 622f0689-c017-4be9-2e30-08de625264d9
+X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|7416014|376014|52116014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?wuPEIxTnMvlaxMuYhSwizb6vXnGP/w6n8GQqD9YuIhlUC3eY4b9w1sVoSfIf?=
+ =?us-ascii?Q?cER0XquhPoPeNbZ3xP+RsPE0Vw6adJwdanqlOe3+bmLtjDt5Fdm1CKIjPcS9?=
+ =?us-ascii?Q?ZZs3irWGA56dkOzWSMijX4QKoELlVXuksM2LDN/3+DeUGS0PdSWB/aGxkpaB?=
+ =?us-ascii?Q?TEEKrWgWB5IjUsdZFQdqW3iJd9XfKrtwHGcyD2+r7YOY/cYbaxez83o/fFxk?=
+ =?us-ascii?Q?C5IpH71yNKRLle7BJc974R48ElOYRtaXzRlnm5ldnMy5PELIyoMwMGyriXcE?=
+ =?us-ascii?Q?4mrVWQxp6hJKiHhEppLDxRlMOUYrQstfIXabzzAO2gqgwSVwbdepngglVoNh?=
+ =?us-ascii?Q?JKe82tsNUlVhIPmH2MjJBOh2p71+lLzOPpOyclg1KRxUp7TVAbsJoOGNfuAG?=
+ =?us-ascii?Q?8+BDN5TRuELcd4lxoJqvWqeq1M3duwZMXYf45ZxMZ8XW+742s1je5Vi/OIT2?=
+ =?us-ascii?Q?uoF7q1AMO0sUbLhEELWaGeqOY4VeB0ZnY+rykEdg+VPyNXQtKjg8z/5DzSwi?=
+ =?us-ascii?Q?ZBZbxRJGQPmN7ZCRYd4upwuhiELYQUC9QZpgfZAYFPiP6R51KlxqzIjCeaWG?=
+ =?us-ascii?Q?3nSTnjc0sI+GC3+wjpoVvVk1wtS+pTnm96PWpIA/ni6GhBzz+SBWtoPveKh8?=
+ =?us-ascii?Q?4K+qcVrBssbTJyEoCop/+pUByY2Ek2xr5vw+84Ik9mvn0dzmTc0jhzPnk96W?=
+ =?us-ascii?Q?kyXfMfoA2mvPnf8nG9eoSpYBwUtJdDi2GjF8+jPtBTFEKNVOMYwaqV2T/+Nx?=
+ =?us-ascii?Q?aPqP0Lrfm4Pl384QgMmwtbPQibcIMURVTdN+0d6NldR4fV9ZGkFrV98PoQRS?=
+ =?us-ascii?Q?2A1RpTFljdlIAEEYxd+eGISRLnLXbhVw2mWVeEz+/MCgzYGK5nofc9QJaKF4?=
+ =?us-ascii?Q?e3CEJMMNBUP81u98/8YOW4okKNUAbqgNSsBA/pAW1UgctSZJgZl+DMJH+jsX?=
+ =?us-ascii?Q?UVeR+FWwDMqN2rUaRi2G7UQFZ2nT1mvQ0dW3FjcVe4dfbtfnCJN++muOUWkO?=
+ =?us-ascii?Q?kXMCDZdtpWsN0zEUfFqABLR69T6jfWvCGzXgg/QwHu4WX6cE4qhpfk2+6xdH?=
+ =?us-ascii?Q?cGn6ydxroqSTQM6Z7DZMEetYieK1WPPG3sk/GZ0hG5FKnYZ5rqvR4Eb49EtI?=
+ =?us-ascii?Q?Oi2SD3uf2rmTHTSqGRPwuLVJdL7XWqyFmoPrHr+o/IGx+FCaw5uoYLPi6ws1?=
+ =?us-ascii?Q?JDljnU9SHQopUIP0+t5IbQmf0g1YuMpEYWit2cYSJA5QtueKzgCNRKMEkk3D?=
+ =?us-ascii?Q?vtJAulR4QbhIKv9R0H68x2hnkFgMbFtiPYG1i3PyXUPeIwaiy4jlkVG92Fy/?=
+ =?us-ascii?Q?V7ff3WX9BkVWCbhfySGOGCUvEoQdq3D/TFl71xm/91favfXuszOtQWYf+TJc?=
+ =?us-ascii?Q?LF8gIruunzBG2AY4KKQ0IVxa/f9QXU/xTIxqZAAKI+isw/x/1fG2SOtBYZRH?=
+ =?us-ascii?Q?/BQifh4GJrV8s4jYlHNBU3RANgYPTomkiz2WoYsw3Z6npViv0wUOyMr6Nwuc?=
+ =?us-ascii?Q?RWU0DINPzYsrkDkQ305nLG0cqHK8q8ars683qCcuSgpb5/APgLvfbVGqUfD0?=
+ =?us-ascii?Q?cyVfr/SrVDr0esuS795/93FvZS1vowqka5aUin+Hj0vwrKlxXRyQ4gHlQ7XZ?=
+ =?us-ascii?Q?PXdA927wGBfym3itP9Wpm48=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11947.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?6V/cRowmT2F5e/O2oLf/yh3SLvRgMemn/N4EzVSBh84YxSxM3Ov2My/xuuMx?=
+ =?us-ascii?Q?emMgLC/Eso7t0J5Id5W2S7hGn2FVj7y4tRFm6jnMSfMHONbz5n6XD6krcrGj?=
+ =?us-ascii?Q?wka1qo/WCYp2FaCrHXmWbTVxgX3p58i+zJ+EBEzbRLGJFQaCdO4td7yQq6ft?=
+ =?us-ascii?Q?A8UmtXQ++aOZLBx1dPx/lhs/+AeHcWsiMIveJDkNS83q5pc14xBVezukfiAv?=
+ =?us-ascii?Q?DqHInwBQlCDbTouReqLBhtOmFK14yAw9Vsz17WbzhSH4jnpSbE3WC1q5Eq9R?=
+ =?us-ascii?Q?2jtgVBhxvnI4QKDh/Mbc/7N28jk9fKhKxwL8KkabvdlU8SrBu8a1/r8d+Mk3?=
+ =?us-ascii?Q?XvOKcv3mjNaEz6/hsJG+ZaOYuE+mqaUTcqv9xACbeMCQKxk+S1qPSsbjBLup?=
+ =?us-ascii?Q?Mp6zZkOSUya07oHGwzqJjx6aIqAx02xWI0cOq1f1ZZYLQ/o3sAJ1woh6l+B/?=
+ =?us-ascii?Q?FfktLnGabMMug+4//8mU3mlUnr8e+vL85ehUDnEN2oOtGxuwdPL1ljf2p394?=
+ =?us-ascii?Q?9NA2LUTrK2hFRaJ26SkSf88SlwM9S6wBaIbj8seOYUXjhyc5RkiHlRAogbLb?=
+ =?us-ascii?Q?UR+xZVtYsIKytZa6DbiItfaTp1r6nnbFolzGIx05xtA+LhNTHGjOX1ZNiM1p?=
+ =?us-ascii?Q?yfW6IzeKCJff55/4y6R4dz3rkdb5w8LrA6wBuaqXisuTxJPQb01SoGpmy6YO?=
+ =?us-ascii?Q?SpOdsRIYbGydedl+PE/VxUlV6zM499sFhSu6EaNE5xKqMeAfzCO3YG5fGLF+?=
+ =?us-ascii?Q?HNTlC+LZ9dMArVkd+P/T2Lwn677TAm/jGNernuO/Lzso8MOf9uArlgCoEn1b?=
+ =?us-ascii?Q?g2oe0ENuSzxlDNUx3w4KmKJs2dHmP4ZzKQO2iJ48izq3GYbs5/z19YGchAbv?=
+ =?us-ascii?Q?/9Oawdyix7C34GBTLnU2eglvkEHge7vv2Sq5HTlZhWndzRQ+uIkNGdIkw7b2?=
+ =?us-ascii?Q?MKiVHrQlLoIt6QwioQZDIK7oUQy/9GonP7eXYkDnRIWe7XvznwqmiRScPCDB?=
+ =?us-ascii?Q?5CXhKt0F/7eaa60g8+OPvMGW1mRt122wn2inrh0L/ROgdnMRFk8jK/y19Icw?=
+ =?us-ascii?Q?Et2bK7h/unqhT0nMZW9YW6K60UEWgw2b4PzH2yGeGk/ordMM8ixFWv09uUhl?=
+ =?us-ascii?Q?Rr6y1uTEhsLsn7in7KS3ddBiCT9qrIhlPGxaxOSV47oao7i4p9qrzUIn1fQc?=
+ =?us-ascii?Q?f3Gt2fFTrepLDb5zxHgxdiZ2a70FMAJ14cQV1IAGuWCZWezqaTBu7BSjW5dQ?=
+ =?us-ascii?Q?X+LgOWOdvI+EdJvUTFk5oLG3FDhaEJMdq6Ih93kybwIdfiEC6a0MAkk7Rxur?=
+ =?us-ascii?Q?Xm7cF4HlfkHeA4wzphg/cjL8K9i0fDBxqnnKHffd5ucyZ7feMJVgVIGIlRXq?=
+ =?us-ascii?Q?OrwVvMr/HrqjLlaPigBzu5mlVJnacwiEd1sLy/LIyr3XWaylITPpwDs53Or5?=
+ =?us-ascii?Q?DjZppHqY6um0XvqHVnQAJZY2TiG0OKobmQLGeQ3eLPZ7lG8IAEZkQYP/aH3r?=
+ =?us-ascii?Q?/VDzfBvC3Wmzo0628BqBUQKWohKpN76klcriDF6g+lqLH1W7Sr9q44kmMFqu?=
+ =?us-ascii?Q?TNlhvkjNAb9FWQYkMfaMKKNOvNbCWSi7egEfJcfa7bhaaCaX+LiwtPK/m+i1?=
+ =?us-ascii?Q?FcaPUUEdAvmM/lY/ew+8WHe+CU4MrVXQdNVoB+Zocpm5LaM5ik3QAWb2orMb?=
+ =?us-ascii?Q?6qeDJOzV7+QsrBiEq0ZDxmVz8/1xDiCF1uaNjj7YDIaL/rmTye9QxW3yriDj?=
+ =?us-ascii?Q?FNVYL9+OnlGMRDO4KVCSlufTALWSiq2ezX0qaYsGUDvOXGiQuE37?=
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 622f0689-c017-4be9-2e30-08de625264d9
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 11:58:35.6112
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VoTWEGa74ibyG8oez3sdevQSoAkuqUiMhApvA8DmZ8+hM8djNfX2iI00z0btUFWiK4bU5R0RT2CglFwj4BG/76zW6I46IEKjBIW3F1JmtX8Kj3mqBh4yOQoCCEMLPz13
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB6552
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261780-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261781-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,linux-m68k.org,ideasonboard.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,bp.renesas.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,glider.be,baylibre.com,ideasonboard.com,lists.freedesktop.org];
+	DKIM_TRACE(0.00)[bp.renesas.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_NONE(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tommaso.merciai.xr@bp.renesas.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4F0B3CBB1F
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8AE54CBF78
 X-Rspamd-Action: no action
 
-On Wed, Jan 21, 2026 at 10:55:21PM +0800, Jiayu Du wrote:
-> Add support for the USB PHY and DWC2 IP which is used by Canaan K230,
-> and made relevant changes to the DTS.
-> 
-> This series is based on the initial 100ask K230 DshanPi series [1] which
-> is based on the clock and pinctrl series. Check the details in the link.
-> 
-> Link: https://lore.kernel.org/all/20260115060801.16819-1-jiayu.riscv@isrc.iscas.ac.cn/ [1]
-> 
-> Changes in v5:
-> - Changed the year of Copyright to 2026.
-> - Add blank line after the declaration of variables
-> - Fix wrong alignment.
-> - Link to v4: https://lore.kernel.org/all/20260120143243.71937-1-jiayu.riscv@isrc.iscas.ac.cn/
-> 
-> Changes in v4:
-> - Shrink reg length to match the address/size-cells in k230-usb-phy yaml.
-> - Move all PHY instance creation and initialization from xlate to probe.
-> - Modify xlate function to only perform index lookup for PHY instances.
-> - Define all register base offsets macros at the top of file instead of
->   hard-coding magic numbers directly in probe.
-> - Link to v2: https://lore.kernel.org/all/20260115064223.21926-1-jiayu.riscv@isrc.iscas.ac.cn/
-> 
-> Changes in v3:
-> - Please ignore v3.
-> 
-> Changes in v2:
-> - Fold the child into the parent in dtsi.
-> - Define one usbphy with phy-cells=1.
-> - Delete the clock of the usbphy as it is not needed.
-> - Link to v1: https://lore.kernel.org/all/20251230023725.15966-1-jiayu.riscv@isrc.iscas.ac.cn/
-> 
-> Jiayu Du (4):
->   dt-bindings: phy: Add Canaan K230 USB PHY
->   dt-bindings: usb: dwc2: Add support for Canaan K230 SoC
->   phy: usb: Add driver for Canaan K230 USB 2.0 PHY
->   riscv: dts: canaan: Add syscon and USB nodes for K230
-> 
->  .../bindings/phy/canaan,k230-usb-phy.yaml     |  35 +++
->  .../devicetree/bindings/usb/dwc2.yaml         |   3 +
->  .../boot/dts/canaan/k230-canmv-dshanpi.dts    |  17 ++
->  arch/riscv/boot/dts/canaan/k230.dtsi          |  35 +++
->  drivers/phy/Kconfig                           |   1 +
->  drivers/phy/Makefile                          |   1 +
->  drivers/phy/canaan/Kconfig                    |  14 +
->  drivers/phy/canaan/Makefile                   |   2 +
->  drivers/phy/canaan/phy-k230-usb.c             | 284 ++++++++++++++++++
->  9 files changed, 392 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/canaan,k230-usb-phy.yaml
->  create mode 100644 drivers/phy/canaan/Kconfig
->  create mode 100644 drivers/phy/canaan/Makefile
->  create mode 100644 drivers/phy/canaan/phy-k230-usb.c
-> 
-> -- 
-> 2.52.0
-> 
-Hello Vinod, could you please take a look at this patch? Thank you!
+Dear All,
 
-Regards,
-Jiayu Du
+This patch series adds support for the 2 Display Units (DUs) and MIPI DSI
+interface found on the Renesas RZ/G3E SoC.
+
+RZ/G3E SoC has 2 LCD controller (LCDC0 and LCDC1), both are composed
+of Frame Compression Processor (FCPVD), Video Signal Processor (VSPD),
+and Display Unit (DU).
+
+LCDC0 is connected to LVDS (single or dual channel) and DSI.
+LCDC1 is connected to LVDS (single ch), DSI, and GPIO (Parallel I/F).
+
+Thanks & Regards,
+Tommaso
+
+v1->v2:
+ - Rebased on top of next-20260129.
+ - PATCH 1: Added rzv2h_cpg_plldsi_smux_{get,set}_duty_cycle clock
+   operations to allow the DRM driver to query and configure the
+   appropriate clock path based on the required output duty cycle.
+   Updated commit message accordingly.
+ - PATCH 2-5: Collected tags.
+ - PATCH 6: Moved clk_ids to match enum order.
+ - PATCH 7: Collected GUytterhoeven tag. Fixed "dsi_0_vclk2" position
+   to match order.
+ - PATCH 8: Collected GUytterhoeven tag.
+ - PATCH 9: Use single compatible string instead of multiple compatible
+   strings for the two DU instances, leveraging a 'renesas,id' property
+   to differentiate between DU0 and DU1. Updated commit message.
+ - PATCH 10: Removed oneOf from clocks property, which is not sufficient
+   to differentiate between RZ/G3E, RZ/V2H(P) and RZ/G2L. Use the already
+   existing vclk instead of vclk1 for RZ/G3E DSI bindings. Updated allOf.
+ - PATCH 14: Instead of using clk-provider API to select the right parent
+   clock, just set the correct duty cycle based on the output. Updated
+   commit message accordingly.
+ - PATCH 15-16: Collected tags.
+ - PATCH 17: Squashed fcpvd0 and fcpvd1 patches into a single patch.
+   Collected tags.
+ - PATCH 18: Squashed vspd0 and vspd1 patches into a single patch.
+   Collected tags.
+ - PATCH 19: Reworked DU nodes to use single compatible. Use vclk instead
+   of vclk1 for DSI Node and set to the right position.
+ - PATCH 20: Fixed: dsi, du and adv7535 are part of the R9A09G047E57
+   SMARC SoM board then add entries in the rzg3e-smarc-som.dtsi instead
+   of using the r9a09g047e57-smarc-du1-adv7535.dtsi.
+
+v2->v3:
+ - PATCH 1: Added missing defines for duty num/den.
+
+v3->v4:
+ - Rebased on top of next-20260130
+ - PATCH 1: Fixed build error: https://lore.kernel.org/oe-kbuild-all/202601311423.gWtJuxiU-lkp@intel.com/
+
+Tommaso Merciai (20):
+  clk: renesas: rzv2h: Add PLLDSI clk mux support
+  clk: renesas: r9a09g047: Add CLK_PLLETH_LPCLK support
+  clk: renesas: r9a09g047: Add CLK_PLLDSI{0,1} clocks
+  clk: renesas: r9a09g047: Add CLK_PLLDSI{0,1}_DIV7 clocks
+  clk: renesas: r9a09g047: Add CLK_PLLDSI{0,1}_CSDIV clocks
+  clk: renesas: r9a09g047: Add support for SMUX2_DSI{0,1}_CLK
+  clk: renesas: r9a09g047: Add support for DSI clocks and resets
+  clk: renesas: r9a09g047: Add support for LCDC{0,1} clocks and resets
+  dt-bindings: display: renesas,rzg2l-du: Add support for RZ/G3E SoC
+  dt-bindings: display: bridge: renesas,dsi: Add support for RZ/G3E SoC
+  drm: renesas: rz-du: mipi_dsi: Add out_port to OF data
+  drm: renesas: rz-du: mipi_dsi: Add RZ_MIPI_DSI_FEATURE_GPO0R feature
+  drm: renesas: rz-du: mipi_dsi: Add support for RZ/G3E
+  drm: renesas: rz-du: Add RZ/G3E support
+  media: dt-bindings: media: renesas,vsp1: Document RZ/G3E
+  media: dt-bindings: media: renesas,fcp: Document RZ/G3E SoC
+  arm64: dts: renesas: r9a09g047: Add fcpvd{0,1} nodes
+  arm64: dts: renesas: r9a09g047: Add vspd{0,1} nodes
+  arm64: dts: renesas: r9a09g047: Add DU{0,1} and DSI nodes
+  arm64: dts: renesas: r9a09g047e57-smarc: Enable DU1 and DSI support
+
+ .../bindings/display/bridge/renesas,dsi.yaml  | 144 ++++++++++----
+ .../bindings/display/renesas,rzg2l-du.yaml    |  54 +++++
+ .../bindings/media/renesas,fcp.yaml           |   2 +
+ .../bindings/media/renesas,vsp1.yaml          |   1 +
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    | 175 +++++++++++++++++
+ .../boot/dts/renesas/rzg3e-smarc-som.dtsi     | 114 +++++++++++
+ drivers/clk/renesas/r9a09g047-cpg.c           |  84 ++++++++
+ drivers/clk/renesas/rzv2h-cpg.c               | 184 ++++++++++++++++++
+ drivers/clk/renesas/rzv2h-cpg.h               |  12 ++
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c |  48 +++++
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c  |  26 +++
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h  |  11 ++
+ .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c    | 105 +++++++++-
+ .../drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h   |   3 +
+ include/linux/clk/renesas.h                   |  20 ++
+ 15 files changed, 939 insertions(+), 44 deletions(-)
+
+-- 
+2.43.0
 
 
