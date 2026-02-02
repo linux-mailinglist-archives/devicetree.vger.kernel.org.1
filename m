@@ -1,81 +1,83 @@
-Return-Path: <devicetree+bounces-261689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261690-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CnD4JMJigGml7gIAu9opvQ
-	(envelope-from <devicetree+bounces-261689-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 09:39:30 +0100
+	id CLfYME9igGlR7gIAu9opvQ
+	(envelope-from <devicetree+bounces-261690-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 09:37:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD94C9BB7
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 09:39:29 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEEC7C9B9E
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 09:37:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A45B7301225B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 08:37:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1F1243001F91
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 08:37:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B096285C88;
-	Mon,  2 Feb 2026 08:37:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F5D030FC22;
+	Mon,  2 Feb 2026 08:37:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dMHBd3rJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kDzjVy9M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9154E27145F
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 08:37:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB0C023D2B4
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 08:37:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770021450; cv=none; b=S5RZMS7Fet8vgGl7EXwhtUE+9FBA+qwxrnYOMlCKyU5dtUL/Th7LSyvkQjYLc1YavlFYYqjDK/1PFAw63g6nY3BtI/f8vsdsK+qNCWQ6s0mj4OSsdFI7XLfMqk5SpObaRZXWGPRk9X5uW5wZMWybTzXq0He9S2nwYrV45/mLTxk=
+	t=1770021451; cv=none; b=WWiJu0arzYZ7Keavgs8b/cluZh+Atz3zcFKaIYvfeVaQdo8eRUkQDpqoGvoxCgwKJoBhRMuV/4PEBW2PqYV1wVVAwA0lJSzmlUcnDfV6T3vn805iS/hc68HN9z2lq3xwAzQn71TKxr337FnAjnKhfLwkOgTh9t73rsHNnmXYk1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770021450; c=relaxed/simple;
-	bh=bERW+1dHy0vUh17HBWzjY5pG5Z1bSNNrbqFAq6GkPJk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CA4dJwhz9dvUvUQcPbAV+hgpzxyyLYotBTqmzY6S6M1vrRCgIoQPTPFnLnDXMwgV79OMHA4CYaidXAEerHl0iAUsaiGRNDF3nq8NCzKCSI9oDpez/Ornt2mUyC5Bze5KTpKT3koYTp7Ig/vb4QGIJUhwcDBflfMFzj3uEt2AHmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dMHBd3rJ; arc=none smtp.client-ip=209.85.128.65
+	s=arc-20240116; t=1770021451; c=relaxed/simple;
+	bh=cmqMih4MUx+xdsxqRaw6RKXabUbqmRn2ZVQMLIr1M7U=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=JPAYF+dvz/1vJJIVg+Rg8BSIvPuALF4QbU9z/KN6J/Rt8C54rhka99JYRAOh0gBBYtSc5Vt/MO0U6JSm85dp9HTtKp232D1JYmV1CCafggB2dd26v1wNKLuwKdtlENCpYmqUd+q9k1L7C6LO6pk2WocjYCjepM/99u9PvreqVfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kDzjVy9M; arc=none smtp.client-ip=209.85.128.68
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-4806f3fc50bso42560675e9.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 00:37:28 -0800 (PST)
+Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-4805ef35864so34664355e9.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 00:37:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770021447; x=1770626247; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vWq9Hnp6KWeMpHzlDV6hhOVjTaAvi1IP4KKp2IsINYo=;
-        b=dMHBd3rJ9OGXcecnWgRky7cFM8X1wcJemgDo3CETgAYkO9FfFrZh0v6trHjg0chRKe
-         PAZd4TLWw77V45JLYg82NN1zHw9ogBRPtvvT1j3rPW81jZyhT44eJdDURwxHsSX7t2ux
-         3npXXAHqzixZJjI5+q5m1wEA71qIipz63h6eXNcZLYg7X+mjW/AbYG/vNwROEvsss326
-         /PoRqngMfSLDJBtlOLGyyHmTnsqf+ir6GL5QWhiwNtvlp070WewB1kpSA7fJ2fClLbBq
-         msxFpkw8XDd0o8YonLlY/BrTfJlPrgTKTEXxMKTjQwHN1sCWY5dhMJmvrdyemZDSaaI4
-         5mCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770021447; x=1770626247;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1770021448; x=1770626248; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vWq9Hnp6KWeMpHzlDV6hhOVjTaAvi1IP4KKp2IsINYo=;
-        b=hCnLu/n1SsjqejF34+WSAbxVlYFcPWVjEOO7RhLBLMaTDY4rULXp1t5AF9Z26NCJkT
-         FSLL1oHp3yVpkRO3hAqJvxjwnkCkbqRatlIKRE0IEW3Nz7ov1Eo8eR6hE+tnbpRgxbqz
-         +AYHakrrguu9SLfCkII9URfNfXGQSLApQruFC25VQ0r1YkvlW3z7u0IzCfipOOBdEm3M
-         3+h8H9Y1Lc7NFCfdS0Ht38poVdnANw8nDNUAaJ60I1by3YUt9bIVP4vCbaaeGeMGtbHn
-         6SJLfuRvICK9gUf++lfQW2WMaKY2eN9qcte26wgTVgV740OInPUqWJMNTZ+Xq9+xJqLE
-         QoPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXBJgTmLXymmIf7ZwVx/xxLh+nJVgGbX9nwCvdhtsiCPB3LaGAdXD5lLSau2qZYvzABkK/XpfDNR/EJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdO3/NP/95WF8ZvZCJcmmGe8RKB5brZNwTck4Mu78UiBN9zlG9
-	wpuiECVdCaqvOHAx53ocgh4Ch0F6ci4ep6run3O/q7o62kIMocJx0NiT
-X-Gm-Gg: AZuq6aKK/de4Op+PY/YdmlGv2AcfO8kzsV+z8DIpwRlvC3LYnSOM6uXFJyOl0WawfQK
-	3sZtqu0GTlmitW96MCkYh7psyOhd3KjNzzKdxNJZa+UhdLQasYAXlrVamoKf4UWSLrmXSd2/9xX
-	t3IJgo6oIkMXDAXFGLEPQTj1o0m7RNS5jiHH+a3ZnFTZarMmEg4eDMxtzkk93FRR9YiJ+EzeLbG
-	lfadVSr5u5NPB3F4fSp8fDK89DJObR1ioHjR3nn+xd8ufvAVxYWaLNbj7OiJwNglKyklvImtoid
-	deyf4e19RYCpM0H0zRHkKhgF4BbTjPOPHr6ivNtI/IoMfClwfFqtSOIaXO0HSKUd2g465h2q1EC
-	thzHreAPppxp8hC7CVnS5GTjc2Ro08KfJ+jGXH68z3wEYu/JG8RNOT1abZL/FIJfCndu/wqqa1I
-	cbbBtNPqcMeJs6P2HOycXQbqFJ+TQUP2URlj43E5+5qf6uth2z5Tje3sm4O6frdEKAM4YgpD7Uo
-	xSC3O6SqJh5r3wO9sYKzM2YZQZuUDCPq4J0T3v60DqzjBQPLp/MKsvlbGkCusYkg4QkQmGA8ol9
-	a9AEE3Jk
-X-Received: by 2002:a05:600c:8b31:b0:47e:e78a:c832 with SMTP id 5b1f17b1804b1-482db4b692dmr124615335e9.37.1770021446832;
-        Mon, 02 Feb 2026 00:37:26 -0800 (PST)
+        bh=joUE9EOzP/3mRELBtbdhIrRdcsM6ON8pu5mMACf9Xr0=;
+        b=kDzjVy9Mr8R3mBr86h74N4yPEvak9vBqc5E3eBKeJFaiiFRktChipuAbLOi94DyP8Q
+         DXuWErN4ZrxasXKuhzMTC/ZhenMc4pda7frwiNY74RsttMJPnewaw/6Jxqmn5ukFoGBj
+         FirxjbQFMmDw/T4TjDXayNcLRi7DIISgv7on7L7Tx5fAS2yxyAuPw8aCpkmD+5oOn+QL
+         2WZobYX2ClMU8EkexWI/GrMAZyyQemieGpo4UcCFVNk75zD8TgMHZ/Afh2cbupYQqfe/
+         1ZOe1K7Ybw/5eVBEGsN3fLiLdaumuZIIdXpIsjI39BiAFED89n+tTF5OLFurfkY0PE1R
+         KNsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770021448; x=1770626248;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=joUE9EOzP/3mRELBtbdhIrRdcsM6ON8pu5mMACf9Xr0=;
+        b=cPHAhqSF/okQTaumNTQRwBbGTIswPeGVu9UC2DkA7GDfJMmuMOPQ0NeFuzqZpElJ90
+         by+kEW9nkoPw3ogYH7xfxe6oP22/ONN/jz07mFhsozuoKki2NICDvD7RiERftl1eb8eo
+         5kbft4UukGzEv/lqyE8mR432/kMInwE57ejF24Eok/cSZ+8Rk0r89QwYDgDpBi6M18/a
+         EPHs5T2d59radB/Zq+FYoUFKlpofrmqMtE52Z8+LZcG7xUwqlqrXI4Q/PMnd4OTERLbl
+         TdZkOC4SDpKLeuCDz9mxcqi7ZVKam1DjO1/tlqk2If6xjdymt1eyKKgjkKyMoirCP+sw
+         ViLg==
+X-Forwarded-Encrypted: i=1; AJvYcCXjnUw/cznYZlIoNHvWDjWHynB/Qr5YOIMC4N/if/gBdVJESEzja+RpomXnjV3MRCbnUBKvCB2oP75K@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxtk/E5uwWnRiyyWQl2dVvMqh7C66kMXAZxVK8pHsNC+O8N1GFx
+	u9gApsPTQAFccFXXSxpvaHSwlkMtKL6BGcoc99474lH075OFUhbOIwAI
+X-Gm-Gg: AZuq6aKHrmIBA+0/iNNQgCmlNS1BcZj2WN5ZFgyQTPGX+QuzwrMQL7sXcA9kswc/aQG
+	8BPHZvbx5ZRZkgPnCf6Gy8JRBNdPGI8VnqB9LVhLfxhiqXne1wvNNqFdM2723Jig8/sEAQjCM+A
+	fYp7FG+8fk5v64tFS6Jp+CMQuvEmYui4AR3pwBkLI+jpjiUxrpA5qVlR2DsfPu3JG3pycbCxV3p
+	u8Lg5e/8QCFu8Z/Y4QQ2FO8bxZASJ4OEBXVwF/1uBGkavsElHAB1R2RntXjoTavNpfo4QBexWR+
+	dsZFXAgNhjQYQNgxFGhUDn81hNR5loRuxoW9qCo44Hu2ai8cizSz8lrfpcpIqinsoe3/vLXlUzC
+	Ekx9lhGyCShO5X+t+JhxuJ684p+G86/x3aVDL6Lhl2vmOvQCUo/pYKRD0Rwl5WpQ52J6AKLkSLN
+	uA2SmnHjp3X0jPw9Ta9Isg3VIOx16ChFPKUexdN+3l37LJvU2mtijZHbOTsyAQsq1fCHI46ckqd
+	9D+LORyqy5WUGkH3bKn2yr0aVaDzjODBgNCQ90XYPxFLNL+XdE34bGFzDIoGxa6Sew2xCfWn2NU
+	NUdUU/eFTyPwVVtrRik=
+X-Received: by 2002:a05:600c:4e56:b0:480:53ce:45d3 with SMTP id 5b1f17b1804b1-482db47cdc5mr123484685e9.18.1770021448326;
+        Mon, 02 Feb 2026 00:37:28 -0800 (PST)
 Received: from franzs-nb.corp.toradex.com (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4806ce564f9sm399535415e9.14.2026.02.02.00.37.25
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4806ce564f9sm399535415e9.14.2026.02.02.00.37.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Feb 2026 00:37:25 -0800 (PST)
+        Mon, 02 Feb 2026 00:37:27 -0800 (PST)
 From: Franz Schnyder <fra.schnyder@gmail.com>
 To: Nishanth Menon <nm@ti.com>,
 	Vignesh Raghavendra <vigneshr@ti.com>,
@@ -86,11 +88,14 @@ To: Nishanth Menon <nm@ti.com>,
 Cc: Franz Schnyder <franz.schnyder@toradex.com>,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 0/2] arm64: dts: ti: k3-am69-aquila: Fix DP enable GPIO
-Date: Mon,  2 Feb 2026 09:35:59 +0100
-Message-ID: <20260202083604.325060-1-fra.schnyder@gmail.com>
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH v1 1/2] arm64: dts: ti: k3-am69-aquila-dev: Fix DP regulator enable GPIO
+Date: Mon,  2 Feb 2026 09:36:00 +0100
+Message-ID: <20260202083604.325060-2-fra.schnyder@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260202083604.325060-1-fra.schnyder@gmail.com>
+References: <20260202083604.325060-1-fra.schnyder@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,14 +110,14 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	TO_DN_SOME(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-261689-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261690-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -121,31 +126,43 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[fraschnyder@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[toradex.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DAD94C9BB7
+	RCPT_COUNT_SEVEN(0.00)[11];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[toradex.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CEEC7C9B9E
 X-Rspamd-Action: no action
 
 From: Franz Schnyder <franz.schnyder@toradex.com>
 
-Correct the DP regulator enable GPIO to index 21 on Clover and Dev board.
+Correct the DP regulator enable GPIO to index 21.
 The 3.3V DP regulator was not being enabled by the assigned GPIO, as it
 is routed to GPIO index 21 and not 37, which was causing instability
 with displays connected over DP or via an active DP-to-HDMI adapter.
 
-Franz Schnyder (2):
-  arm64: dts: ti: k3-am69-aquila-dev: Fix DP regulator enable GPIO
-  arm64: dts: ti: k3-am69-aquila-clover: Fix DP regulator enable GPIO
+Fixes: 39ac6623b1d8 ("arm64: dts: ti: Add Aquila AM69 Support")
+Cc: stable@vger.kernel.org
+Signed-off-by: Franz Schnyder <franz.schnyder@toradex.com>
+---
+ arch/arm64/boot/dts/ti/k3-am69-aquila-dev.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- arch/arm64/boot/dts/ti/k3-am69-aquila-clover.dts | 2 +-
- arch/arm64/boot/dts/ti/k3-am69-aquila-dev.dts    | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-am69-aquila-dev.dts b/arch/arm64/boot/dts/ti/k3-am69-aquila-dev.dts
+index f48601ae38b7..d3677c2c2547 100644
+--- a/arch/arm64/boot/dts/ti/k3-am69-aquila-dev.dts
++++ b/arch/arm64/boot/dts/ti/k3-am69-aquila-dev.dts
+@@ -33,7 +33,7 @@ reg_3v3_dp: regulator-3v3-dp {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_gpio_21_dp>;
+ 		/* Aquila GPIO_21_DP (AQUILA B57) */
+-		gpio = <&main_gpio0 37 GPIO_ACTIVE_HIGH>;
++		gpio = <&main_gpio0 21 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		regulator-max-microvolt = <3300000>;
+ 		regulator-min-microvolt = <3300000>;
 -- 
 2.43.0
 
