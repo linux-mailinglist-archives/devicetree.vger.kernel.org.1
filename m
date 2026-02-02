@@ -1,2074 +1,229 @@
-Return-Path: <devicetree+bounces-261602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261603-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mGqkDQrmf2kuzwIAu9opvQ
-	(envelope-from <devicetree+bounces-261602-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 00:47:22 +0100
+	id COECFPjvf2mS0gIAu9opvQ
+	(envelope-from <devicetree+bounces-261603-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 01:29:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A089AC7911
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 00:47:21 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D23C7A07
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 01:29:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 27480300638D
-	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 23:47:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A532130038DA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 00:29:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC956274B3A;
-	Sun,  1 Feb 2026 23:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8DB15C158;
+	Mon,  2 Feb 2026 00:29:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cYQk8XQo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA853D3B3
-	for <devicetree@vger.kernel.org>; Sun,  1 Feb 2026 23:47:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A079B156F45
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 00:29:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769989631; cv=none; b=umNjMsE6+KCGGDBiLTm4Iz2ZcEQCK7PrzeQsjPtuOE8GxPrn5SzMgvVBZF1mS9lBMeNtcNpPBbVuoLFfCuRAMvoNaBbiuN5svex5rqIc9Amgw2ncXJdutIGT++vCSpmExco9df70rJqr68I7P7CMDARE4T1Mv/BRtlummBrzYAg=
+	t=1769992181; cv=none; b=dwZJXew2EGrkOISq5e29wuaM8Sqbl9pIznUK0ew0Uvos5u0RjIcq6HNEowaf1gSPgkbpQJjZ4AHDscSlu2KJhRQu/rQ1MZeTJ3Y5ZmvS9MpkvqK1OIh6O11OJcZX69VJ5+TkX+GY9ZUTVIja3IlnEAKauiQlE9BVuWLitrCZLpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769989631; c=relaxed/simple;
-	bh=tzkbrf9BKfTYCa7DGSWR9acNiSeSvQVO1NaEomUtz8o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tnSbbFn0CJWye4bDIQmUXNHl37kxWS0unOOAiA/9Y6CF8v75BzTPWfMhH9LdZ/PA48f2ynzvl8/+ZBZ9YK8ywaaT8yd41R7dQcQGZrEI2sU0Qczhsm0luYLqI8z2MV7cxgBL5aijAN+KTBMiOqTT8CB+XEWOAAPMpmVXP2D2Q28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vmh98-0005gr-5x; Mon, 02 Feb 2026 00:46:26 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vmh97-003dsp-1L;
-	Mon, 02 Feb 2026 00:46:24 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vmh96-00AROy-1i;
-	Mon, 02 Feb 2026 00:46:24 +0100
-Date: Mon, 2 Feb 2026 00:46:24 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Marco Felsch <kernel@pengutronix.de>,
-	Henrik Rydberg <rydberg@bitmath.org>,
-	Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v5 4/4] Input: Add TouchNetix aXiom I2C Touchscreen
- support
-Message-ID: <20260201234624.4g4pz7pvzs23n744@pengutronix.de>
-References: <20260111-v6-10-topic-touchscreen-axiom-v5-0-f94e0ae266cb@pengutronix.de>
- <20260111-v6-10-topic-touchscreen-axiom-v5-4-f94e0ae266cb@pengutronix.de>
- <20260119211750.udvems44y3u7m4x7@pengutronix.de>
- <jp3m5acvoxk7zadzv5h6imqntpyceoaliqw27wlvkydfb2ennz@dbfc4mh44yn6>
+	s=arc-20240116; t=1769992181; c=relaxed/simple;
+	bh=6SFe3Ghqu8kb6cqq/+mrrOvxiNsxEDyfe6FJhD8ydZs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=le4XYM6aW39VOL0k1n0/TptS4J0gAWZs4ZE7RjbpMngcoSrbMthc0An9heecPGxsU+Bo+Kx244QKchamYy1ArPzqB0jPzweV7RTdyDlUriSFgwRAkKfQt23jz9zCbaaOummecP6jZXMqE+acK0qKjKVNqYL/LuoV0CzWN0CAuDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cYQk8XQo; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-8230d228372so1959843b3a.1
+        for <devicetree@vger.kernel.org>; Sun, 01 Feb 2026 16:29:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769992180; x=1770596980; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=aiJyNVeka4jGyWbpUJLioxLaUjYpoLttjwErqJDkxhY=;
+        b=cYQk8XQoT/x3PDVtUEHJROmSqh74fU1i2NGhFL496dR1mS8NWZt+aydoB04x5MLTkJ
+         7QPAABkefseEelmfBIZgQKAwW3woe8EDmOc6gKGAehf5jhq3l5jjcP8eK+YIgYYvlCQc
+         cmKGsw4Exp/P03oyVwfML3jYQes+Kr1kOEpbcis9xYH8EaKcrVNaijeShfIfwth8JkYq
+         LOTLww+xLET5woUj4Kl3DRh2PwHQP5uKsBbgNWQNSLn/NrN0TeALfvWSgmisrjsfgI+S
+         Fs9S2YgW6djPRmR7S5fFxh7eyZ2ATGN+gFk7uWp12qJd/78wJvjyJtSXgtP8blITUngK
+         ZEhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769992180; x=1770596980;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aiJyNVeka4jGyWbpUJLioxLaUjYpoLttjwErqJDkxhY=;
+        b=DV/8RFOfqpZEaVrD0NWE0FXS3oRWgWu93IWWmzTJMDKRV+QKdP0QOIKv0HH9+1Deev
+         NBi05uMSmacax+jCWbdDuCzG2ONUJGF6nBLumm7aaf7Kf0l68GZPAj/XOFbrWppZYTN7
+         XsRxB6Hskx4RXTO9BWBhyBt+5DAQgEmcu3Joq2UvSt4pxq0outF5DX7Tj1hbWvmVdNuY
+         xHsEVpLkUYfkagolzxFVVFupQGkya5dGKXJZ6dtXh2HKVi2kgFE8pxDU9BgTKo5omjYd
+         LUJxAng4bjbbQAcjt5fEX7TdiJCd1zZZAb+XtBySxkvhpVjf+3Hs23av5dN/u4YM/HbB
+         IJsg==
+X-Forwarded-Encrypted: i=1; AJvYcCWtDBReiWsWpRyD/oYq54Qx+k/jGEK5hteKhxeJ7hMNlB8K6m1RwWv1wemYFgAd2ut7O7Bojh0OFttI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1gAJvzRsqu+X0LB3IkBqavSlqk2fk+VzJflS+aMj0Ue3rknrf
+	LOc89L5fWipRFYc3liTP1PHVKXFzcoy3tpO3EZun+TaFiwomj1B25vKKVjOK0pR8
+X-Gm-Gg: AZuq6aLZ2fWd/+cC4hGZM+EaJc41EwXVvUl3xN46Vd22eMSUM+gOrkW0v24KBx4x0JT
+	M4xW4CDlB1mUYaK46EsJqrY751GC2761W4GcqFGCK+iQQSqTzfw9hhQXD/mcF0XiVYCSLMHkkyY
+	yS7t1TkQz90R/uh9ysgCVCxWe1W9W9A9itFrDQhsDDmHeKNvXvBYA90EEd1BWA+gSKFqzeOsXWI
+	anzyH+pQjv2NG2cqDu4KhiAYieevWetQvj+qABrYXnh0RpBItg7EbItrSpfmQ6wFdT+v3sW7x7d
+	9JrGw0B2QwIf9ICDIPj5H49mOxabjFopVkDJr2IvXwlRgWyi6s9gPQbdUVqhQHGvyerW+Te+ngW
+	UdjY+zKPaisnMUG6uuGxefz+K8VW0ejvugswLtq8JY3tnTzQrzH4901qJ17h9Ag3x4VMRgnCZK9
+	Ic6LUtmUjAnGnCeNzb9mU/utRne9zczayvTinjPA4nNGme0tdCB4OoQpC2HoS5Mlbg6QNZ1m0=
+X-Received: by 2002:a05:6a20:a105:b0:38e:87b6:9b53 with SMTP id adf61e73a8af0-392e005b53bmr9760363637.30.1769992179862;
+        Sun, 01 Feb 2026 16:29:39 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c64276efb16sm12801668a12.4.2026.02.01.16.29.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 01 Feb 2026 16:29:39 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <787ffcff-28cb-43e0-97db-19dd7a996d13@roeck-us.net>
+Date: Sun, 1 Feb 2026 16:29:38 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <jp3m5acvoxk7zadzv5h6imqntpyceoaliqw27wlvkydfb2ennz@dbfc4mh44yn6>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] hwmon:(pmbus/tda38740a) TDA38740A Voltage
+ Regulator Driver
+To: ashish yadav <ashishyadav78@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ASHISH YADAV <Ashish.Yadav@infineon.com>
+References: <20260107144507.46491-1-Ashish.Yadav@infineon.com>
+ <03da3b10-dfe9-466a-9dc9-b51e29938e3e@roeck-us.net>
+ <CAJKbuCYcRMrX5H5rWXWXOz4FCZi5iu8CCE2Oi3WEsWqEikqsYg@mail.gmail.com>
+ <f0d230be-676b-47b9-9565-22319b8e62cc@roeck-us.net>
+ <CAJKbuCYUCr-R-91Ou1y6XDEPdqabSDvCxUypc-YmW=-EPxgNyQ@mail.gmail.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
+ RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
+ nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
+ 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
+ gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
+ IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
+ kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
+ VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
+ jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
+ BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
+ ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
+ CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAmgrMyQFCSbODQkACgkQyx8mb86fmYGcWRAA
+ oRwrk7V8fULqnGGpBIjp7pvR187Yzx+lhMGUHuM5H56TFEqeVwCMLWB2x1YRolYbY4MEFlQg
+ VUFcfeW0OknSr1s6wtrtQm0gdkolM8OcCL9ptTHOg1mmXa4YpW8QJiL0AVtbpE9BroeWGl9v
+ 2TGILPm9mVp+GmMQgkNeCS7Jonq5f5pDUGumAMguWzMFEg+Imt9wr2YA7aGen7KPSqJeQPpj
+ onPKhu7O/KJKkuC50ylxizHzmGx+IUSmOZxN950pZUFvVZH9CwhAAl+NYUtcF5ry/uSYG2U7
+ DCvpzqOryJRemKN63qt1bjF6cltsXwxjKOw6CvdjJYA3n6xCWLuJ6yk6CAy1Ukh545NhgBAs
+ rGGVkl6TUBi0ixL3EF3RWLa9IMDcHN32r7OBhw6vbul8HqyTFZWY2ksTvlTl+qG3zV6AJuzT
+ WdXmbcKN+TdhO5XlxVlbZoCm7ViBj1+PvIFQZCnLAhqSd/DJlhaq8fFXx1dCUPgQDcD+wo65
+ qulV/NijfU8bzFfEPgYP/3LP+BSAyFs33y/mdP8kbMxSCjnLEhimQMrSSo/To1Gxp5C97fw5
+ 3m1CaMILGKCmfI1B8iA8zd8ib7t1Rg0qCwcAnvsM36SkrID32GfFbv873bNskJCHAISK3Xkz
+ qo7IYZmjk/IJGbsiGzxUhvicwkgKE9r7a1rOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
+ 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
+ pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
+ J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
+ pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
+ 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
+ ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
+ I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
+ nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
+ HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
+ JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAmgrMyQFCSbODQkACgkQyx8mb86fmYHlgg/9
+ H5JeDmB4jsreE9Bn621wZk7NMzxy9STxiVKSh8Mq4pb+IDu1RU2iLyetCY1TiJlcxnE362kj
+ njrfAdqyPteHM+LU59NtEbGwrfcXdQoh4XdMuPA5ADetPLma3YiRa3VsVkLwpnR7ilgwQw6u
+ dycEaOxQ7LUXCs0JaGVVP25Z2hMkHBwx6BlW6EZLNgzGI2rswSZ7SKcsBd1IRHVf0miwIFYy
+ j/UEfAFNW+tbtKPNn3xZTLs3quQN7GdYLh+J0XxITpBZaFOpwEKV+VS36pSLnNl0T5wm0E/y
+ scPJ0OVY7ly5Vm1nnoH4licaU5Y1nSkFR/j2douI5P7Cj687WuNMC6CcFd6j72kRfxklOqXw
+ zvy+2NEcXyziiLXp84130yxAKXfluax9sZhhrhKT6VrD45S6N3HxJpXQ/RY/EX35neH2/F7B
+ RgSloce2+zWfpELyS1qRkCUTt1tlGV2p+y2BPfXzrHn2vxvbhEn1QpQ6t+85FKN8YEhJEygJ
+ F0WaMvQMNrk9UAUziVcUkLU52NS9SXqpVg8vgrO0JKx97IXFPcNh0DWsSj/0Y8HO/RDkGXYn
+ FDMj7fZSPKyPQPmEHg+W/KzxSSfdgWIHF2QaQ0b2q1wOSec4Rti52ohmNSY+KNIW/zODhugJ
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <CAJKbuCYUCr-R-91Ou1y6XDEPdqabSDvCxUypc-YmW=-EPxgNyQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261602-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261603-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	DMARC_NA(0.00)[roeck-us.net];
 	FREEMAIL_TO(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,axcfg.py:url,cdu.data:url]
-X-Rspamd-Queue-Id: A089AC7911
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B9D23C7A07
 X-Rspamd-Action: no action
 
-Hi Dmitry,
-
-On 26-01-20, Dmitry Torokhov wrote:
-> Hi Marco,
+On 1/22/26 03:42, ashish yadav wrote:
+> Hi Guenter,
 > 
-> On Mon, Jan 19, 2026 at 10:17:50PM +0100, Marco Felsch wrote:
-> > Hi Dmitry,
-> > 
-> > gentle ping since we never received feedback from one of the input
-> > maintainers.
+> Please find my response inline.
 > 
-> Some time ago I did few cleanup/fixes to this driver but did not
-> actually post them. The patch is below, please pick what still makes
-> sense and then I'll do the full review.
-
-Thanks a lot, this was a really nice cleanup. I applied all your
-changes and will send a new version soon.
-
-Regards,
-  Marco
-
-
+> Thanks & Regards
+>     Ashish Yadav
 > 
-> Thanks!
-> 
-> -- 
-> Dmitry
-> 
-> ---
->  drivers/input/touchscreen/touchnetix_axiom.c |  989 +++++++++++++-------------
->  1 file changed, 495 insertions(+), 494 deletions(-)
-> 
-> diff --git a/drivers/input/touchscreen/touchnetix_axiom.c b/drivers/input/touchscreen/touchnetix_axiom.c
-> index e8f56a8f7e8a..300e7b76c3b3 100644
-> --- a/drivers/input/touchscreen/touchnetix_axiom.c
-> +++ b/drivers/input/touchscreen/touchnetix_axiom.c
-> @@ -396,24 +396,24 @@ static int axiom_u34_rev1_process_report(struct axiom_data *ts, const u8 *_buf,
->  static int axiom_u41_rev2_process_report(struct axiom_data *ts, const u8 *buf,
->  					 size_t bufsize);
->  
-> -#define AXIOM_USAGE(num, rev)		\
-> -	{				\
-> -		.usage_num = num,	\
-> -		.rev_num = rev,		\
-> +#define AXIOM_USAGE(num, rev)			\
-> +	{					\
-> +		.usage_num = num,		\
-> +		.rev_num = rev,			\
->  	}
->  
-> -#define AXIOM_RO_USAGE(num, rev)	\
-> -	{				\
-> -		.usage_num = num,	\
-> -		.rev_num = rev,		\
-> -		.is_ro = true,		\
-> +#define AXIOM_RO_USAGE(num, rev)		\
-> +	{					\
-> +		.usage_num = num,		\
-> +		.rev_num = rev,			\
-> +		.is_ro = true,			\
->  	}
->  
-> -#define AXIOM_CDU_USAGE(num, rev)	\
-> -	{				\
-> -		.usage_num = num,	\
-> -		.rev_num = rev,		\
-> -		.is_cdu = true,		\
-> +#define AXIOM_CDU_USAGE(num, rev)		\
-> +	{					\
-> +		.usage_num = num,		\
-> +		.rev_num = rev,			\
-> +		.is_cdu = true,			\
->  	}
->  
->  #define AXIOM_REPORT_USAGE(num, rev, func)	\
-> @@ -511,20 +511,19 @@ static bool axiom_skip_usage_check(struct axiom_data *ts)
->  	}
->  }
->  
-> -static unsigned int
-> -axiom_usage_baseaddr(struct axiom_data *ts, unsigned char usage_num)
-> +static unsigned int axiom_usage_baseaddr(struct axiom_data *ts,
-> +					 unsigned char usage_num)
->  {
->  	return ts->usage_table[usage_num].baseaddr;
->  }
->  
-> -static unsigned int
-> -axiom_usage_size(struct axiom_data *ts, unsigned char usage_num)
-> +static unsigned int axiom_usage_size(struct axiom_data *ts,
-> +				     unsigned char usage_num)
->  {
->  	return ts->usage_table[usage_num].size_bytes;
->  }
->  
-> -static int
-> -axiom_usage_rev(struct axiom_data *ts, unsigned char usage_num)
-> +static int axiom_usage_rev(struct axiom_data *ts, unsigned char usage_num)
->  {
->  	struct axiom_usage_table_entry *entry = &ts->usage_table[usage_num];
->  
-> @@ -534,8 +533,8 @@ axiom_usage_rev(struct axiom_data *ts, unsigned char usage_num)
->  	return entry->info->rev_num;
->  }
->  
-> -static bool
-> -axiom_driver_supports_usage(struct axiom_data *ts, unsigned char usage_num)
-> +static bool axiom_driver_supports_usage(struct axiom_data *ts,
-> +					unsigned char usage_num)
->  {
->  	const struct axiom_usage_info *iter = driver_required_usages;
->  	struct device *dev = ts->dev;
-> @@ -571,14 +570,12 @@ axiom_driver_supports_usage(struct axiom_data *ts, unsigned char usage_num)
->  	return false;
->  }
->  
-> -static bool
-> -axiom_usage_entry_is_report(struct axiom_u31_usage_table_entry *entry)
-> +static bool axiom_usage_entry_is_report(struct axiom_u31_usage_table_entry *entry)
->  {
->  	return entry->num_pages == 0;
->  }
->  
-> -static unsigned int
-> -axiom_get_usage_size_bytes(struct axiom_u31_usage_table_entry *entry)
-> +static unsigned int axiom_get_usage_size_bytes(struct axiom_u31_usage_table_entry *entry)
->  {
->  	unsigned char max_offset;
->  
-> @@ -699,9 +696,9 @@ static bool axiom_usage_supported(struct axiom_data *ts, unsigned int baseaddr)
->  
->  static void axiom_poll(struct input_dev *input);
->  
-> -static unsigned long
-> -axiom_wait_for_completion_timeout(struct axiom_data *ts, struct axiom_completion *x,
-> -				  long timeout)
-> +static unsigned long axiom_wait_for_completion_timeout(struct axiom_data *ts,
-> +						       struct axiom_completion *x,
-> +						       long timeout)
->  {
->  	struct i2c_client *client = to_i2c_client(ts->dev);
->  	unsigned long poll_timeout;
-> @@ -751,7 +748,7 @@ static void axiom_complete(struct axiom_data *ts, struct axiom_completion *x)
->  static int axiom_u02_wait_idle(struct axiom_data *ts)
->  {
->  	unsigned int reg;
-> -	int ret, _ret;
-> +	int error, ret;
->  	u16 cmd;
->  
->  	if (!axiom_driver_supports_usage(ts, AXIOM_U02))
-> @@ -764,23 +761,24 @@ static int axiom_u02_wait_idle(struct axiom_data *ts)
->  	 * Missing regmap_raw_read_poll_timeout for now. RESP_SUCCESS means that
->  	 * the last command successfully completed and the device is idle.
->  	 */
-> -	ret = read_poll_timeout(regmap_raw_read, _ret,
-> -				_ret || cmd == AXIOM_U02_REV1_RESP_SUCCESS,
-> -				10 * USEC_PER_MSEC, 1 * USEC_PER_SEC, false,
-> -				ts->regmap, reg, &cmd, 2);
-> -	if (ret)
-> +	error = read_poll_timeout(regmap_raw_read, ret,
-> +				  ret || cmd == AXIOM_U02_REV1_RESP_SUCCESS,
-> +				  10 * USEC_PER_MSEC, 1 * USEC_PER_SEC, false,
-> +				  ts->regmap, reg, &cmd, 2);
-> +	if (error) {
->  		dev_err(ts->dev, "Poll u02 timedout with: %#x\n", cmd);
-> +		return error;
-> +	}
->  
-> -	return ret;
-> +	return 0;
->  }
->  
-> -static int
-> -axiom_u02_send_msg(struct axiom_data *ts,
-> -		   const struct axiom_u02_rev1_system_manager_msg *msg,
-> -		   bool validate_response)
-> +static int axiom_u02_send_msg(struct axiom_data *ts,
-> +			      const struct axiom_u02_rev1_system_manager_msg *msg,
-> +			      bool validate_response)
->  {
->  	unsigned int reg;
-> -	int ret;
-> +	int error;
->  
->  	if (!axiom_driver_supports_usage(ts, AXIOM_U02))
->  		return -EINVAL;
-> @@ -788,9 +786,9 @@ axiom_u02_send_msg(struct axiom_data *ts,
->  	reg = axiom_usage_baseaddr(ts, AXIOM_U02);
->  	reg += AXIOM_U02_REV1_COMMAND_REG;
->  
-> -	ret = regmap_raw_write(ts->regmap, reg, msg, sizeof(*msg));
-> -	if (ret)
-> -		return ret;
-> +	error = regmap_raw_write(ts->regmap, reg, msg, sizeof(*msg));
-> +	if (error)
-> +		return error;
->  
->  	if (!validate_response)
->  		return 0;
-> @@ -798,8 +796,7 @@ axiom_u02_send_msg(struct axiom_data *ts,
->  	return axiom_u02_wait_idle(ts);
->  }
->  
-> -static int
-> -axiom_u02_rev1_send_single_cmd(struct axiom_data *ts, u16 cmd)
-> +static int axiom_u02_rev1_send_single_cmd(struct axiom_data *ts, u16 cmd)
->  {
->  	struct axiom_u02_rev1_system_manager_msg msg = {
->  		.command = cpu_to_le16(cmd)
-> @@ -826,7 +823,7 @@ static int axiom_u02_stop(struct axiom_data *ts)
->  static int axiom_u02_save_config(struct axiom_data *ts)
->  {
->  	struct axiom_u02_rev1_system_manager_msg msg;
-> -	int ret;
-> +	int error;
->  
->  	if (!axiom_driver_supports_usage(ts, AXIOM_U02))
->  		return -EINVAL;
-> @@ -836,45 +833,48 @@ static int axiom_u02_save_config(struct axiom_data *ts)
->  	msg.parameters[1] = cpu_to_le16(AXIOM_U02_REV1_PARAM1_SAVEVLTLCFG2NVM);
->  	msg.parameters[2] = cpu_to_le16(AXIOM_U02_REV1_PARAM2_SAVEVLTLCFG2NVM);
->  
-> -	ret = axiom_u02_send_msg(ts, &msg, false);
-> -	if (ret)
-> -		return ret;
-> +	error = axiom_u02_send_msg(ts, &msg, false);
-> +	if (error)
-> +		return error;
->  
->  	/* Downstream axcfg.py waits for 2sec without checking U01 response */
-> -	ret = axiom_wait_for_completion_timeout(ts, &ts->nvm_write,
-> -					msecs_to_jiffies(2 * MSEC_PER_SEC));
-> -	if (!ret)
-> +	if (!axiom_wait_for_completion_timeout(ts, &ts->nvm_write,
-> +					       msecs_to_jiffies(2 * MSEC_PER_SEC))) {
->  		dev_err(ts->dev, "Error save volatile config timedout\n");
-> +		return -ETIMEDOUT;
-> +	}
->  
-> -	return ret ? 0 : -ETIMEDOUT;
-> +	return 0;
->  }
->  
->  static int axiom_u02_swreset(struct axiom_data *ts)
->  {
-> -	struct axiom_u02_rev1_system_manager_msg msg = { };
-> -	int ret;
-> +	struct axiom_u02_rev1_system_manager_msg msg = {
-> +		.command = cpu_to_le16(AXIOM_U02_REV1_CMD_SOFTRESET),
-> +	};
-> +	int error;
->  
->  	if (!axiom_driver_supports_usage(ts, AXIOM_U02))
->  		return -EINVAL;
->  
-> -	msg.command = cpu_to_le16(AXIOM_U02_REV1_CMD_SOFTRESET);
-> -	ret = axiom_u02_send_msg(ts, &msg, false);
-> -	if (ret)
-> -		return ret;
-> +	error = axiom_u02_send_msg(ts, &msg, false);
-> +	if (error)
-> +		return error;
->  
->  	/*
->  	 * Downstream axcfg.py waits for 1sec without checking U01 hello. Tests
->  	 * showed that waiting for the hello message isn't enough therefore we
-> -	 * need both to make it robuster.
-> +	 * need both to make it more robust.
->  	 */
-> -	ret = axiom_wait_for_completion_timeout(ts, &ts->boot_complete,
-> -					msecs_to_jiffies(1 * MSEC_PER_SEC));
-> -	if (!ret)
-> +	if (!axiom_wait_for_completion_timeout(ts, &ts->boot_complete,
-> +					       msecs_to_jiffies(1 * MSEC_PER_SEC))) {
->  		dev_err(ts->dev, "Error swreset timedout\n");
-> +		error = -ETIMEDOUT;
-> +	}
->  
->  	fsleep(USEC_PER_SEC);
->  
-> -	return ret ? 0 : -ETIMEDOUT;
-> +	return error;
->  }
->  
->  static int axiom_u02_fillconfig(struct axiom_data *ts)
-> @@ -897,7 +897,7 @@ static int axiom_u02_enter_bootloader(struct axiom_data *ts)
->  	struct axiom_u02_rev1_system_manager_msg msg = { };
->  	struct device *dev = ts->dev;
->  	unsigned int val;
-> -	int ret;
-> +	int error;
->  
->  	if (!axiom_driver_supports_usage(ts, AXIOM_U02))
->  		return -EINVAL;
-> @@ -908,57 +908,62 @@ static int axiom_u02_enter_bootloader(struct axiom_data *ts)
->  	 */
->  	msg.command = cpu_to_le16(AXIOM_U02_REV1_CMD_ENTERBOOTLOADER);
->  	msg.parameters[0] = cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLOADER_KEY1);
-> -	ret = axiom_u02_send_msg(ts, &msg, false);
-> -	if (ret) {
-> -		dev_err(dev, "Failed to send bootloader-key1: %d\n", ret);
-> -		return ret;
-> +	error = axiom_u02_send_msg(ts, &msg, false);
-> +	if (error) {
-> +		dev_err(dev, "Failed to send bootloader-key1: %d\n", error);
-> +		return error;
->  	}
->  
->  	msg.parameters[0] = cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLOADER_KEY2);
-> -	ret = axiom_u02_send_msg(ts, &msg, false);
-> -	if (ret) {
-> -		dev_err(dev, "Failed to send bootloader-key2: %d\n", ret);
-> -		return ret;
-> +	error = axiom_u02_send_msg(ts, &msg, false);
-> +	if (error) {
-> +		dev_err(dev, "Failed to send bootloader-key2: %d\n", error);
-> +		return error;
->  	}
->  
->  	msg.parameters[0] = cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLOADER_KEY3);
-> -	ret = axiom_u02_send_msg(ts, &msg, false);
-> -	if (ret) {
-> -		dev_err(dev, "Failed to send bootloader-key3: %d\n", ret);
-> -		return ret;
-> +	error = axiom_u02_send_msg(ts, &msg, false);
-> +	if (error) {
-> +		dev_err(dev, "Failed to send bootloader-key3: %d\n", error);
-> +		return error;
->  	}
->  
->  	/* Sleep before the first read to give the device time */
->  	fsleep(250 * USEC_PER_MSEC);
->  
->  	/* Wait till the device reports it is in bootloader mode */
-> -	return regmap_read_poll_timeout(ts->regmap,
-> -			AXIOM_U31_REV1_DEVICE_ID_HIGH_REG, val,
-> -			FIELD_GET(AXIOM_U31_REV1_MODE_MASK, val) ==
-> -			AXIOM_U31_REV1_MODE_BLP, 250 * USEC_PER_MSEC,
-> -			USEC_PER_SEC);
-> +	error = regmap_read_poll_timeout(ts->regmap,
-> +					 AXIOM_U31_REV1_DEVICE_ID_HIGH_REG, val,
-> +					 FIELD_GET(AXIOM_U31_REV1_MODE_MASK, val) ==
-> +						AXIOM_U31_REV1_MODE_BLP,
-> +					 250 * USEC_PER_MSEC, USEC_PER_SEC);
-> +	if (error)
-> +		return error;
-> +
-> +	return 0;
->  }
->  
-> -static int axiom_u04_get(struct axiom_data *ts, u8 **_buf)
-> +static u8 *axiom_u04_get(struct axiom_data *ts)
->  {
-> -	u8 buf[AXIOM_U04_REV1_SIZE_BYTES];
->  	unsigned int reg;
-> -	int ret;
-> +	int error;
->  
->  	if (!axiom_driver_supports_usage(ts, AXIOM_U04))
-> -		return -EINVAL;
-> +		return ERR_PTR(-EINVAL);
->  
-> -	reg = axiom_usage_baseaddr(ts, AXIOM_U04);
-> -	ret = regmap_raw_read(ts->regmap, reg, buf, sizeof(buf));
-> -	if (ret)
-> -		return ret;
-> +	u8 *buf __free(kfree) = kzalloc(AXIOM_U04_REV1_SIZE_BYTES, GFP_KERNEL);
-> +	if (!buf)
-> +		return ERR_PTR(-ENOMEM);
->  
-> -	*_buf = kmemdup(buf, sizeof(buf), GFP_KERNEL);
-> +	reg = axiom_usage_baseaddr(ts, AXIOM_U04);
-> +	error = regmap_raw_read(ts->regmap, reg, buf, sizeof(buf));
-> +	if (error)
-> +		return ERR_PTR(error);
->  
-> -	return sizeof(buf);
-> +	return_ptr(buf);
->  }
->  
-> -static int axiom_u04_set(struct axiom_data *ts, u8 *buf, unsigned int bufsize)
-> +static int axiom_u04_set(struct axiom_data *ts, u8 *buf)
->  {
->  	unsigned int reg;
->  
-> @@ -966,7 +971,7 @@ static int axiom_u04_set(struct axiom_data *ts, u8 *buf, unsigned int bufsize)
->  		return -EINVAL;
->  
->  	reg = axiom_usage_baseaddr(ts, AXIOM_U04);
-> -	return regmap_raw_write(ts->regmap, reg, buf, bufsize);
-> +	return regmap_raw_write(ts->regmap, reg, buf, AXIOM_U04_REV1_SIZE_BYTES);
->  }
->  
->  /*
-> @@ -977,52 +982,52 @@ static int axiom_u31_parse_device_info(struct axiom_data *ts)
->  {
->  	struct regmap *regmap = ts->regmap;
->  	unsigned int id_low, id_high, val;
-> -	int ret;
-> +	int error;
->  
-> -	ret = regmap_read(regmap, AXIOM_U31_REV1_DEVICE_ID_HIGH_REG, &id_high);
-> -	if (ret)
-> -		return ret;
-> +	error = regmap_read(regmap, AXIOM_U31_REV1_DEVICE_ID_HIGH_REG, &id_high);
-> +	if (error)
-> +		return error;
->  	id_high = FIELD_GET(AXIOM_U31_REV1_DEVICE_ID_HIGH_MASK, id_high);
->  
-> -	ret = regmap_read(regmap, AXIOM_U31_REV1_DEVICE_ID_LOW_REG, &id_low);
-> -	if (ret)
-> -		return ret;
-> +	error = regmap_read(regmap, AXIOM_U31_REV1_DEVICE_ID_LOW_REG, &id_low);
-> +	if (error)
-> +		return error;
->  	ts->device_id = id_high << 8 | id_low;
->  
-> -	ret = regmap_read(regmap, AXIOM_U31_REV1_RUNTIME_FW_MAJ_REG, &val);
-> -	if (ret)
-> -		return ret;
-> +	error = regmap_read(regmap, AXIOM_U31_REV1_RUNTIME_FW_MAJ_REG, &val);
-> +	if (error)
-> +		return error;
->  	ts->fw_major = val;
->  
-> -	ret = regmap_read(regmap, AXIOM_U31_REV1_RUNTIME_FW_MIN_REG, &val);
-> -	if (ret)
-> -		return ret;
-> +	error = regmap_read(regmap, AXIOM_U31_REV1_RUNTIME_FW_MIN_REG, &val);
-> +	if (error)
-> +		return error;
->  	ts->fw_minor = val;
->  
->  	/* All other fields are not allowed to be read in BLP mode */
->  	if (axiom_get_runmode(ts) == AXIOM_BLP_MODE)
->  		return 0;
->  
-> -	ret = regmap_read(regmap, AXIOM_U31_REV1_RUNTIME_FW_RC_REG, &val);
-> -	if (ret)
-> -		return ret;
-> +	error = regmap_read(regmap, AXIOM_U31_REV1_RUNTIME_FW_RC_REG, &val);
-> +	if (error)
-> +		return error;
->  	ts->fw_rc = FIELD_GET(AXIOM_U31_REV1_RUNTIME_FW_RC_MASK, val);
->  	ts->silicon_rev = FIELD_GET(AXIOM_U31_REV1_SILICON_REV_MASK, val);
->  
-> -	ret = regmap_read(regmap, AXIOM_U31_REV1_RUNTIME_FW_STATUS_REG, &val);
-> -	if (ret)
-> -		return ret;
-> +	error = regmap_read(regmap, AXIOM_U31_REV1_RUNTIME_FW_STATUS_REG, &val);
-> +	if (error)
-> +		return error;
->  	ts->fw_status = FIELD_GET(AXIOM_U31_REV1_RUNTIME_FW_STATUS, val);
->  	ts->fw_variant = FIELD_GET(AXIOM_U31_REV1_RUNTIME_FW_VARIANT, val);
->  
-> -	ret = regmap_read(regmap, AXIOM_U31_REV1_JEDEC_ID_HIGH_REG, &val);
-> -	if (ret)
-> -		return ret;
-> +	error = regmap_read(regmap, AXIOM_U31_REV1_JEDEC_ID_HIGH_REG, &val);
-> +	if (error)
-> +		return error;
->  	ts->jedec_id = val << 8;
->  
-> -	ret = regmap_read(regmap, AXIOM_U31_REV1_JEDEC_ID_LOW_REG, &val);
-> -	if (ret)
-> -		return ret;
-> +	error = regmap_read(regmap, AXIOM_U31_REV1_JEDEC_ID_LOW_REG, &val);
-> +	if (error)
-> +		return error;
->  	ts->jedec_id |= val;
->  
->  	return 0;
-> @@ -1032,20 +1037,19 @@ static int axiom_u33_read(struct axiom_data *ts, struct axiom_crc *crc);
->  
->  static int axiom_u31_device_discover(struct axiom_data *ts)
->  {
-> -	struct axiom_u31_usage_table_entry *u31_usage_table __free(kfree) = NULL;
->  	struct axiom_u31_usage_table_entry *entry;
->  	struct regmap *regmap = ts->regmap;
->  	unsigned int mode, num_usages;
->  	struct device *dev = ts->dev;
->  	unsigned int i;
-> -	int ret;
-> +	int error;
->  
->  	axiom_set_runmode(ts, AXIOM_DISCOVERY_MODE);
->  
-> -	ret = regmap_read(regmap, AXIOM_U31_REV1_DEVICE_ID_HIGH_REG, &mode);
-> -	if (ret) {
-> +	error = regmap_read(regmap, AXIOM_U31_REV1_DEVICE_ID_HIGH_REG, &mode);
-> +	if (error) {
->  		dev_err(dev, "Failed to read MODE\n");
-> -		return ret;
-> +		return error;
->  	}
->  
->  	/* Abort if the device is in bootloader protocol mode */
-> @@ -1054,10 +1058,10 @@ static int axiom_u31_device_discover(struct axiom_data *ts)
->  		axiom_set_runmode(ts, AXIOM_BLP_MODE);
->  
->  	/* Since we are not in bootloader mode we can parse the device info */
-> -	ret = axiom_u31_parse_device_info(ts);
-> -	if (ret) {
-> +	error = axiom_u31_parse_device_info(ts);
-> +	if (error) {
->  		dev_err(dev, "Failed to parse device info\n");
-> -		return ret;
-> +		return error;
->  	}
->  
->  	/* All other fields are not allowed to be read in BLP mode */
-> @@ -1066,22 +1070,22 @@ static int axiom_u31_device_discover(struct axiom_data *ts)
->  		return -EACCES;
->  	}
->  
-> -	ret = regmap_read(regmap, AXIOM_U31_REV1_NUM_USAGES_REG, &num_usages);
-> -	if (ret) {
-> +	error = regmap_read(regmap, AXIOM_U31_REV1_NUM_USAGES_REG, &num_usages);
-> +	if (error) {
->  		dev_err(dev, "Failed to read NUM_USAGES\n");
-> -		return ret;
-> +		return error;
->  	}
->  
-> -	u31_usage_table = kcalloc(num_usages, sizeof(*u31_usage_table),
-> -				  GFP_KERNEL);
-> +	struct axiom_u31_usage_table_entry *u31_usage_table __free(kfree) =
-> +		kcalloc(num_usages, sizeof(*u31_usage_table), GFP_KERNEL);
->  	if (!u31_usage_table)
->  		return -ENOMEM;
->  
-> -	ret = regmap_raw_read(regmap, AXIOM_U31_REV1_PAGE1, u31_usage_table,
-> -			      array_size(num_usages, sizeof(*u31_usage_table)));
-> -	if (ret) {
-> +	error = regmap_raw_read(regmap, AXIOM_U31_REV1_PAGE1, u31_usage_table,
-> +				array_size(num_usages, sizeof(*u31_usage_table)));
-> +	if (error) {
->  		dev_err(dev, "Failed to read NUM_USAGES\n");
-> -		return ret;
-> +		return error;
->  	}
->  
->  	/*
-> @@ -1106,7 +1110,7 @@ static int axiom_u31_device_discover(struct axiom_data *ts)
->  		if (IS_ERR(info)) {
->  			dev_info(dev, "Required usage u%02X isn't supported for rev.%u\n",
->  				 entry->usage_num, entry->uifrevision);
-> -			ret = -EACCES;
-> +			error = -EACCES;
->  		}
->  
->  		size_bytes = axiom_get_usage_size_bytes(entry);
-> @@ -1121,20 +1125,24 @@ static int axiom_u31_device_discover(struct axiom_data *ts)
->  			ts->max_report_byte_len = size_bytes;
->  	}
->  
-> -	if (ret)
-> -		return ret;
-> +	if (error)
-> +		return error;
->  
->  	/* From now on we are in TCP mode to include usage revision checks */
->  	axiom_set_runmode(ts, AXIOM_TCP_MODE);
->  
-> -	return axiom_u33_read(ts, &ts->crc[AXIOM_CRC_CUR]);
-> +	error = axiom_u33_read(ts, &ts->crc[AXIOM_CRC_CUR]);
-> +	if (error)
-> +		return error;
-> +
-> +	return 0;
->  }
->  
->  static int axiom_u33_read(struct axiom_data *ts, struct axiom_crc *crc)
->  {
->  	struct device *dev = ts->dev;
->  	unsigned int reg;
-> -	int ret;
-> +	int error;
->  
->  	if (!axiom_driver_supports_usage(ts, AXIOM_U33))
->  		return -EINVAL;
-> @@ -1143,10 +1151,10 @@ static int axiom_u33_read(struct axiom_data *ts, struct axiom_crc *crc)
->  		struct axiom_u33_rev2 val;
->  
->  		reg = axiom_usage_baseaddr(ts, AXIOM_U33);
-> -		ret = regmap_raw_read(ts->regmap, reg, &val, sizeof(val));
-> -		if (ret) {
-> +		error = regmap_raw_read(ts->regmap, reg, &val, sizeof(val));
-> +		if (error) {
->  			dev_err(dev, "Failed to read u33\n");
-> -			return ret;
-> +			return error;
->  		}
->  
->  		crc->runtime = le32_to_cpu(val.runtime_crc);
-> @@ -1160,10 +1168,10 @@ static int axiom_u33_read(struct axiom_data *ts, struct axiom_crc *crc)
->  		struct axiom_u33_rev3 val;
->  
->  		reg = axiom_usage_baseaddr(ts, AXIOM_U33);
-> -		ret = regmap_raw_read(ts->regmap, reg, &val, sizeof(val));
-> -		if (ret) {
-> +		error = regmap_raw_read(ts->regmap, reg, &val, sizeof(val));
-> +		if (error) {
->  			dev_err(dev, "Failed to read u33\n");
-> -			return ret;
-> +			return error;
->  		}
->  
->  		crc->runtime = le32_to_cpu(val.runtime_crc);
-> @@ -1195,31 +1203,22 @@ static bool axiom_u42_touch_enabled(struct axiom_data *ts, const u8 *buf,
->  	}
->  }
->  
-> -static void axiom_u42_get_touchslots(struct axiom_data *ts)
-> +static bool axiom_u42_get_touchslots(struct axiom_data *ts)
->  {
-> -	u8 *buf __free(kfree) = NULL;
-> -	struct device *dev = ts->dev;
->  	unsigned int bufsize;
->  	unsigned int reg;
-> -	int ret, i;
-> -
-> -	if (!axiom_driver_supports_usage(ts, AXIOM_U42)) {
-> -		dev_warn(dev, "Use default touchslots num\n");
-> -		goto fallback;
-> -	}
-> +	int error, i;
->  
->  	bufsize = axiom_usage_size(ts, AXIOM_U42);
-> -	buf = kzalloc(bufsize, GFP_KERNEL);
-> -	if (!buf) {
-> -		dev_warn(dev, "Failed to alloc u42 read buffer, use default value\n");
-> -		goto fallback;
-> -	}
-> +	u8 *buf __free(kfree) = kzalloc(bufsize, GFP_KERNEL);
-> +	if (!buf)
-> +		return false;
->  
->  	reg = axiom_usage_baseaddr(ts, AXIOM_U42);
-> -	ret = regmap_raw_read(ts->regmap, reg, buf, bufsize);
-> -	if (ret) {
-> -		dev_warn(dev, "Failed to read u42, use default value\n");
-> -		goto fallback;
-> +	error = regmap_raw_read(ts->regmap, reg, buf, bufsize);
-> +	if (error) {
-> +		dev_warn(ts->dev, "Failed to read u42\n");
-> +		return false;
->  	}
->  
->  	ts->enabled_slots = 0;
-> @@ -1232,41 +1231,42 @@ static void axiom_u42_get_touchslots(struct axiom_data *ts)
->  		}
->  	}
->  
-> -	return;
-> +	return true;
-> +}
->  
-> -fallback:
-> -	ts->enabled_slots = AXIOM_MAX_TOUCHSLOTS_MASK;
-> -	ts->num_slots = AXIOM_MAX_TOUCHSLOTS;
-> +static void axiom_get_touchslots(struct axiom_data *ts)
-> +{
-> +	if (!axiom_driver_supports_usage(ts, AXIOM_U42) ||
-> +	    !axiom_u42_get_touchslots(ts)) {
-> +		dev_warn(ts->dev, "Use default touchslots num\n");
-> +		ts->enabled_slots = AXIOM_MAX_TOUCHSLOTS_MASK;
-> +		ts->num_slots = AXIOM_MAX_TOUCHSLOTS;
-> +	}
->  }
->  
->  static void axiom_u64_cds_enabled(struct axiom_data *ts)
->  {
->  	unsigned int reg, val;
-> -	int ret;
-> -
-> -	if (!axiom_driver_supports_usage(ts, AXIOM_U64))
-> -		goto fallback_out;
-> -
-> -	reg = axiom_usage_baseaddr(ts, AXIOM_U64);
-> -	reg += AXIOM_U64_REV2_ENABLECDSPROCESSING_REG;
-> -
-> -	ret = regmap_read(ts->regmap, reg, &val);
-> -	if (ret)
-> -		goto fallback_out;
-> +	int error;
->  
-> -	val = FIELD_GET(AXIOM_U64_REV2_ENABLECDSPROCESSING_MASK, val);
-> -	ts->cds_enabled = val ? true : false;
-> +	ts->cds_enabled = false;
->  
-> -	return;
-> +	if (axiom_driver_supports_usage(ts, AXIOM_U64)) {
-> +		reg = axiom_usage_baseaddr(ts, AXIOM_U64);
-> +		reg += AXIOM_U64_REV2_ENABLECDSPROCESSING_REG;
->  
-> -fallback_out:
-> -	ts->cds_enabled = false;
-> +		error = regmap_read(ts->regmap, reg, &val);
-> +		if (!error) {
-> +			val = FIELD_GET(AXIOM_U64_REV2_ENABLECDSPROCESSING_MASK, val);
-> +			ts->cds_enabled = val ? true : false;
-> +		}
-> +	}
->  }
->  
->  static int axiom_cdu_wait_idle(struct axiom_data *ts, u8 cdu_usage_num)
->  {
->  	unsigned int reg;
-> -	int ret, _ret;
-> +	int error, ret;
->  	u16 cmd;
->  
->  	reg = axiom_usage_baseaddr(ts, cdu_usage_num);
-> @@ -1275,15 +1275,17 @@ static int axiom_cdu_wait_idle(struct axiom_data *ts, u8 cdu_usage_num)
->  	 * Missing regmap_raw_read_poll_timeout for now. RESP_SUCCESS means that
->  	 * the last command successfully completed and the device is idle.
->  	 */
-> -	ret = read_poll_timeout(regmap_raw_read, _ret,
-> -				_ret || cmd == AXIOM_CDU_RESP_SUCCESS,
-> -				10 * USEC_PER_MSEC, 1 * USEC_PER_SEC, false,
-> -				ts->regmap, reg, &cmd, 2);
-> -	if (ret)
-> +	error = read_poll_timeout(regmap_raw_read, ret,
-> +				  ret || cmd == AXIOM_CDU_RESP_SUCCESS,
-> +				  10 * USEC_PER_MSEC, 1 * USEC_PER_SEC, false,
-> +				  ts->regmap, reg, &cmd, 2);
-> +	if (error) {
->  		dev_err(ts->dev, "Poll CDU u%02X timedout with: %#x\n",
->  			cdu_usage_num, cmd);
-> +		return error;
-> +	}
->  
-> -	return ret;
-> +	return 0;
->  }
->  
->  /*********************** Report usage handling ********************************/
-> @@ -1312,8 +1314,8 @@ static int axiom_process_report(struct axiom_data *ts, unsigned char usage_num,
->  }
->  
->  /* Make use of datasheet method 1 - single transfer read */
-> -static int
-> -axiom_u34_rev1_process_report(struct axiom_data *ts, const u8 *_buf, size_t bufsize)
-> +static int axiom_u34_rev1_process_report(struct axiom_data *ts,
-> +					 const u8 *_buf, size_t bufsize)
->  {
->  	unsigned int reg = axiom_usage_baseaddr(ts, AXIOM_U34);
->  	struct regmap *regmap = ts->regmap;
-> @@ -1323,11 +1325,11 @@ axiom_u34_rev1_process_report(struct axiom_data *ts, const u8 *_buf, size_t bufs
->  	u16 crc_report, crc_calc;
->  	unsigned int len;
->  	u8 *payload;
-> -	int ret;
-> +	int error;
->  
-> -	ret = regmap_raw_read(regmap, reg, buf, ts->max_report_byte_len);
-> -	if (ret)
-> -		return ret;
-> +	error = regmap_raw_read(regmap, reg, buf, ts->max_report_byte_len);
-> +	if (error)
-> +		return error;
->  
->  	/* TODO: Add overflow statistics */
->  
-> @@ -1373,8 +1375,8 @@ axiom_u34_rev1_process_report(struct axiom_data *ts, const u8 *_buf, size_t bufs
->  	return 0;
->  }
->  
-> -static void
-> -axiom_u41_rev2_decode_target(const u8 *buf, u8 id, u16 *x, u16 *y, s8 *z)
-> +static void axiom_u41_rev2_decode_target(const u8 *buf, u8 id,
-> +					 u16 *x, u16 *y, s8 *z)
->  {
->  	u16 val;
->  
-> @@ -1389,8 +1391,8 @@ axiom_u41_rev2_decode_target(const u8 *buf, u8 id, u16 *x, u16 *y, s8 *z)
->  	*z = buf[AXIOM_U41_REV2_Z_REG(id)];
->  }
->  
-> -static int
-> -axiom_u41_rev2_process_report(struct axiom_data *ts, const u8 *buf, size_t bufsize)
-> +static int axiom_u41_rev2_process_report(struct axiom_data *ts,
-> +					 const u8 *buf, size_t bufsize)
->  {
->  	struct input_dev *input = ts->input;
->  	unsigned char id;
-> @@ -1437,8 +1439,8 @@ axiom_u41_rev2_process_report(struct axiom_data *ts, const u8 *buf, size_t bufsi
->  	return 0;
->  }
->  
-> -static int
-> -axiom_u01_rev1_process_report(struct axiom_data *ts, const u8 *buf, size_t bufsize)
-> +static int axiom_u01_rev1_process_report(struct axiom_data *ts,
-> +					 const u8 *buf, size_t bufsize)
->  {
->  	switch (buf[AXIOM_U01_REV1_REPORTTYPE_REG]) {
->  	case AXIOM_U01_REV1_REPORTTYPE_HELLO:
-> @@ -1509,13 +1511,11 @@ static int axiom_regmap_read(void *context, const void *reg_buf, size_t reg_size
->  	xfer[1].len = val_size;
->  	xfer[1].buf = val_buf;
->  
-> -	ret = i2c_transfer(i2c->adapter, xfer, 2);
-> -	if (ret == 2)
-> +	ret = i2c_transfer(i2c->adapter, xfer, ARRAY_SIZE(xfer));
-> +	if (likely(ret == ARRAY_SIZE(xfer)))
->  		return 0;
-> -	else if (ret < 0)
-> -		return ret;
-> -	else
-> -		return -EIO;
-> +
-> +	return ret < 0 ? ret : -EIO;
->  }
->  
->  static int axiom_regmap_write(void *context, const void *data, size_t count)
-> @@ -1523,7 +1523,6 @@ static int axiom_regmap_write(void *context, const void *data, size_t count)
->  	struct device *dev = context;
->  	struct i2c_client *i2c = to_i2c_client(dev);
->  	struct axiom_data *ts = i2c_get_clientdata(i2c);
-> -	char *buf __free(kfree) = NULL;
->  	struct axiom_cmd_header hdr;
->  	u16 xferlen, addr, baseaddr;
->  	size_t val_size, msg_size;
-> @@ -1548,7 +1547,7 @@ static int axiom_regmap_write(void *context, const void *data, size_t count)
->  		return -EINVAL;
->  
->  	msg_size = sizeof(hdr) + val_size;
-> -	buf = kzalloc(msg_size, GFP_KERNEL);
-> +	u8 *buf __free(kfree) = kzalloc(msg_size, GFP_KERNEL);
->  	if (!buf)
->  		return -ENOMEM;
->  
-> @@ -1556,8 +1555,10 @@ static int axiom_regmap_write(void *context, const void *data, size_t count)
->  	memcpy(&buf[sizeof(hdr)], &((char *)data)[2], val_size);
->  
->  	ret = i2c_master_send(i2c, buf, msg_size);
-> +	if (likely(ret == msg_size))
-> +		return 0;
->  
-> -	return ret == msg_size ? 0 : ret;
-> +	return ret < 0 ? ret : -EIO;
->  }
->  
->  static const struct regmap_config axiom_i2c_regmap_config = {
-> @@ -1571,29 +1572,20 @@ static const struct regmap_config axiom_i2c_regmap_config = {
->  
->  static int axiom_update_input_dev(struct axiom_data *ts);
->  
-> -static enum fw_upload_err
-> -axiom_axfw_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32 size)
-> +static enum fw_upload_err __axiom_axfw_fw_prepare(struct axiom_data *ts,
-> +						  struct axiom_firmware *afw,
-> +						  const u8 *data, u32 size)
->  {
-> -	struct axiom_data *ts = fw_upload->dd_handle;
-> -	struct axiom_firmware *afw = &ts->fw[AXIOM_FW_AXFW];
->  	u8 major_ver, minor_ver, rc_ver, status, variant;
->  	u32 fw_file_crc32, crc32_calc;
->  	struct device *dev = ts->dev;
->  	unsigned int signature_len;
-> -	enum fw_upload_err ret;
->  	u16 fw_file_format_ver;
->  	u16 fw_file_device_id;
->  
-> -	mutex_lock(&afw->lock);
-> -	afw->cancel = false;
-> -	mutex_unlock(&afw->lock);
-> -
-> -	mutex_lock(&ts->fwupdate_lock);
-> -
->  	if (size < sizeof(struct axiom_fw_axfw_hdr)) {
->  		dev_err(dev, "Invalid AXFW file size\n");
-> -		ret = FW_UPLOAD_ERR_INVALID_SIZE;
-> -		goto out;
-> +		return FW_UPLOAD_ERR_INVALID_SIZE;
->  	}
->  
->  	signature_len = strlen(AXIOM_FW_AXFW_SIGNATURE);
-> @@ -1603,8 +1595,7 @@ axiom_axfw_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32 size)
->  		 * ALC don't. Therefore the AXFW format is preferred.
->  		 */
->  		dev_warn(dev, "No AXFW signature, assume ALC firmware\n");
-> -		ret = FW_UPLOAD_ERR_NONE;
-> -		goto out;
-> +		return FW_UPLOAD_ERR_NONE;
->  	}
->  
->  	fw_file_crc32 = get_unaligned_le32(&data[signature_len]);
-> @@ -1612,8 +1603,7 @@ axiom_axfw_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32 size)
->  	if (fw_file_crc32 != crc32_calc) {
->  		dev_err(dev, "AXFW CRC32 doesn't match (fw:%#x calc:%#x)\n",
->  			fw_file_crc32, crc32_calc);
-> -		ret = FW_UPLOAD_ERR_FW_INVALID;
-> -		goto out;
-> +		return FW_UPLOAD_ERR_FW_INVALID;
->  	}
->  
->  	data += signature_len + sizeof(fw_file_crc32);
-> @@ -1621,8 +1611,7 @@ axiom_axfw_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32 size)
->  	if (fw_file_format_ver != AXIOM_FW_AXFW_FILE_FMT_VER) {
->  		dev_err(dev, "Invalid AXFW file format version: %04x",
->  			fw_file_format_ver);
-> -		ret = FW_UPLOAD_ERR_FW_INVALID;
-> -		goto out;
-> +		return FW_UPLOAD_ERR_FW_INVALID;
->  	}
->  
->  	data += sizeof(fw_file_format_ver);
-> @@ -1630,8 +1619,7 @@ axiom_axfw_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32 size)
->  	if (fw_file_device_id != ts->device_id) {
->  		dev_err(dev, "Invalid AXFW target device (fw:%#04x dev:%#04x)\n",
->  			fw_file_device_id, ts->device_id);
-> -		ret = FW_UPLOAD_ERR_FW_INVALID;
-> -		goto out;
-> +		return FW_UPLOAD_ERR_FW_INVALID;
->  	}
->  
->  	/*
-> @@ -1640,7 +1628,7 @@ axiom_axfw_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32 size)
->  	 *  * downloading the firmware failed in between, or
->  	 *  * the following usage discovery failed.
->  	 *
-> -	 *  All cases are crcitical and we need to use any firmware to
-> +	 *  All cases are critical and we need to use any firmware to
->  	 *  bring the device back into a working state which is supported by the
->  	 *  host.
->  	 */
-> @@ -1657,19 +1645,32 @@ axiom_axfw_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32 size)
->  	if (major_ver == ts->fw_major && minor_ver == ts->fw_minor &&
->  	    rc_ver == ts->fw_rc && status == ts->fw_status &&
->  	    variant == ts->fw_variant) {
-> -		ret = FW_UPLOAD_ERR_DUPLICATE;
-> -		goto out;
-> +		return FW_UPLOAD_ERR_DUPLICATE;
->  	}
->  
->  	dev_info(dev, "Detected AXFW %02u.%02u.%02u (%s)\n",
->  		 major_ver, minor_ver, rc_ver,
->  		 status ? "production" : "engineering");
->  
-> -	mutex_lock(&afw->lock);
-> -	ret = afw->cancel ? FW_UPLOAD_ERR_CANCELED : FW_UPLOAD_ERR_NONE;
-> -	mutex_unlock(&afw->lock);
-> +	guard(mutex)(&afw->lock);
-> +	return afw->cancel ? FW_UPLOAD_ERR_CANCELED : FW_UPLOAD_ERR_NONE;
-> +}
-> +
-> +static enum fw_upload_err axiom_axfw_fw_prepare(struct fw_upload *fw_upload,
-> +						const u8 *data, u32 size)
-> +{
-> +	struct axiom_data *ts = fw_upload->dd_handle;
-> +	struct axiom_firmware *afw = &ts->fw[AXIOM_FW_AXFW];
-> +	enum fw_upload_err ret;
-> +
-> +	scoped_guard(mutex, &afw->lock) {
-> +		afw->cancel = false;
-> +	}
-> +
-> +	mutex_lock(&ts->fwupdate_lock);
-> +
-> +	ret = __axiom_axfw_fw_prepare(ts, afw, data, size);
->  
-> -out:
->  	/*
->  	 * In FW_UPLOAD_ERR_NONE case the complete handler will release the
->  	 * lock.
-> @@ -1683,28 +1684,26 @@ axiom_axfw_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32 size)
->  static int axiom_enter_bootloader_mode(struct axiom_data *ts)
->  {
->  	struct device *dev = ts->dev;
-> -	int ret;
-> +	int error;
->  
->  	axiom_set_runmode(ts, AXIOM_BLP_PRE_MODE);
->  
-> -	ret = axiom_u02_wait_idle(ts);
-> -	if (ret)
-> +	error = axiom_u02_wait_idle(ts);
-> +	if (error)
->  		goto err_out;
->  
-> -	ret = axiom_u02_enter_bootloader(ts);
-> -	if (ret) {
-> +	error = axiom_u02_enter_bootloader(ts);
-> +	if (error) {
->  		dev_err(dev, "Failed to enter bootloader mode\n");
->  		goto err_out;
->  	}
->  
->  	axiom_set_runmode(ts, AXIOM_BLP_MODE);
-> -
->  	return 0;
->  
->  err_out:
->  	axiom_set_runmode(ts, AXIOM_TCP_MODE);
-> -
-> -	return ret;
-> +	return error;
->  }
->  
->  static int axoim_blp_wait_ready(struct axiom_data *ts)
-> @@ -1727,18 +1726,18 @@ static int axoim_blp_wait_ready(struct axiom_data *ts)
->  	return ret;
->  }
->  
-> -static int
-> -axiom_blp_write_chunk(struct axiom_data *ts, const u8 *data, u16 length)
-> +static int axiom_blp_write_chunk(struct axiom_data *ts,
-> +				 const u8 *data, u16 length)
->  {
->  	unsigned int chunk_size = AXIOM_U01_BLP_FIFO_CHK_SIZE_BYTES;
->  	unsigned int reg = AXIOM_U01_BLP_FIFO_REG;
->  	struct device *dev = ts->dev;
->  	unsigned int pos = 0;
-> -	int ret;
-> +	int error;
->  
-> -	ret = axoim_blp_wait_ready(ts);
-> -	if (ret)
-> -		return ret;
-> +	error = axoim_blp_wait_ready(ts);
-> +	if (error)
-> +		return error;
->  
->  	/*
->  	 * TODO: Downstream does this chunk transfers. Verify if this is
-> @@ -1751,16 +1750,16 @@ axiom_blp_write_chunk(struct axiom_data *ts, const u8 *data, u16 length)
->  		if ((pos + chunk_size) > length)
->  			len = length - pos;
->  
-> -		ret = regmap_raw_write(ts->regmap, reg, &data[pos], len);
-> -		if (ret) {
-> -			dev_err(dev, "Bootloader download AXFW chunk failed %d\n", ret);
-> -			return ret;
-> +		error = regmap_raw_write(ts->regmap, reg, &data[pos], len);
-> +		if (error) {
-> +			dev_err(dev, "Bootloader download AXFW chunk failed %d\n", error);
-> +			return error;
->  		}
->  
->  		pos += len;
-> -		ret = axoim_blp_wait_ready(ts);
-> -		if (ret)
-> -			return ret;
-> +		error = axoim_blp_wait_ready(ts);
-> +		if (error)
-> +			return error;
->  	}
->  
->  	return 0;
-> @@ -1773,11 +1772,11 @@ static int axiom_blp_reset(struct axiom_data *ts)
->  	struct device *dev = ts->dev;
->  	unsigned int attempts = 20;
->  	unsigned int mode;
-> -	int ret;
-> +	int error;
->  
-> -	ret = axoim_blp_wait_ready(ts);
-> -	if (ret)
-> -		return ret;
-> +	error = axoim_blp_wait_ready(ts);
-> +	if (error)
-> +		return error;
->  
->  	/*
->  	 * For some reason this write fail with -ENXIO. Skip checking the return
-> @@ -1787,17 +1786,17 @@ static int axiom_blp_reset(struct axiom_data *ts)
->  	regmap_raw_write(ts->regmap, reg, &reset_cmd, sizeof(reset_cmd));
->  
->  	do {
-> -		ret = regmap_read(ts->regmap, AXIOM_U31_REV1_DEVICE_ID_HIGH_REG,
-> -				  &mode);
-> -		if (!ret)
-> +		error = regmap_read(ts->regmap, AXIOM_U31_REV1_DEVICE_ID_HIGH_REG,
-> +				    &mode);
-> +		if (!error)
->  			break;
->  
->  		fsleep(250 * USEC_PER_MSEC);
->  	} while (attempts--);
->  
-> -	if (ret) {
-> -		dev_err(dev, "Failed to read MODE after BLP reset: %d\n", ret);
-> -		return ret;
-> +	if (error) {
-> +		dev_err(dev, "Failed to read MODE after BLP reset: %d\n", error);
-> +		return error;
->  	}
->  
->  	mode = FIELD_GET(AXIOM_U31_REV1_MODE_MASK, mode);
-> @@ -1833,27 +1832,24 @@ static void axiom_unregister_input_dev(struct axiom_data *ts)
->  	ts->input = NULL;
->  }
->  
-> -static enum fw_upload_err
-> -axiom_axfw_fw_write(struct fw_upload *fw_upload, const u8 *data, u32 offset,
-> -		    u32 size, u32 *written)
-> +static enum fw_upload_err axiom_axfw_fw_write(struct fw_upload *fw_upload,
-> +					      const u8 *data, u32 offset,
-> +					      u32 size, u32 *written)
->  {
->  	struct axiom_data *ts = fw_upload->dd_handle;
->  	struct axiom_firmware *afw = &ts->fw[AXIOM_FW_AXFW];
->  	struct device *dev = ts->dev;
-> -	bool cancel;
-> -	int ret;
-> +	int error;
->  
->  	/* Done before cancel check due to cleanup based put */
-> -	ret = pm_runtime_resume_and_get(ts->dev);
-> -	if (ret)
-> +	error = pm_runtime_resume_and_get(ts->dev);
-> +	if (error)
->  		return FW_UPLOAD_ERR_HW_ERROR;
->  
-> -	mutex_lock(&afw->lock);
-> -	cancel = afw->cancel;
-> -	mutex_unlock(&afw->lock);
-> -
-> -	if (cancel)
-> -		return FW_UPLOAD_ERR_CANCELED;
-> +	scoped_guard(mutex, &afw->lock) {
-> +		if (afw->cancel)
-> +			return FW_UPLOAD_ERR_CANCELED;
-> +	}
->  
->  	axiom_lock_input_device(ts);
->  
-> @@ -1883,8 +1879,8 @@ axiom_axfw_fw_write(struct fw_upload *fw_upload, const u8 *data, u32 offset,
->  		 * The bootlaoder FW can handle the complete chunk incl. the
->  		 * header.
->  		 */
-> -		ret = axiom_blp_write_chunk(ts, data, len);
-> -		if (ret)
-> +		error = axiom_blp_write_chunk(ts, data, len);
-> +		if (error)
->  			goto err;
->  
->  		size -= len;
-> @@ -1892,12 +1888,12 @@ axiom_axfw_fw_write(struct fw_upload *fw_upload, const u8 *data, u32 offset,
->  		data += len;
->  	}
->  
-> -	ret = axiom_blp_reset(ts);
-> -	if (ret)
-> +	error = axiom_blp_reset(ts);
-> +	if (error)
->  		dev_warn(dev, "BLP reset failed\n");
->  
-> -	ret = axiom_u31_device_discover(ts);
-> -	if (ret) {
-> +	error = axiom_u31_device_discover(ts);
-> +	if (error) {
->  		/*
->  		 * This is critical and we need to avoid that the user-space can
->  		 * still use the input-dev.
-> @@ -1911,8 +1907,8 @@ axiom_axfw_fw_write(struct fw_upload *fw_upload, const u8 *data, u32 offset,
->  	/* Unlock before the input device gets unregistered */
->  	axiom_unlock_input_device(ts);
->  
-> -	ret = axiom_update_input_dev(ts);
-> -	if (ret) {
-> +	error = axiom_update_input_dev(ts);
-> +	if (error) {
->  		dev_err(dev, "Input device update failed after AXFW/ALC firmware update\n");
->  		return FW_UPLOAD_ERR_HW_ERROR;
->  	}
-> @@ -1936,9 +1932,8 @@ static void axiom_axfw_fw_cancel(struct fw_upload *fw_upload)
->  	struct axiom_data *ts = fw_upload->dd_handle;
->  	struct axiom_firmware *afw = &ts->fw[AXIOM_FW_AXFW];
->  
-> -	mutex_lock(&afw->lock);
-> +	guard(mutex)(&afw->lock);
->  	afw->cancel = true;
-> -	mutex_unlock(&afw->lock);
->  }
->  
->  static void axiom_axfw_fw_cleanup(struct fw_upload *fw_upload)
-> @@ -1958,8 +1953,8 @@ static const struct fw_upload_ops axiom_axfw_fw_upload_ops = {
->  	.cleanup = axiom_axfw_fw_cleanup,
->  };
->  
-> -static int
-> -axiom_set_new_crcs(struct axiom_data *ts, const struct axiom_fw_cfg_chunk *cfg)
-> +static int axiom_set_new_crcs(struct axiom_data *ts,
-> +			      const struct axiom_fw_cfg_chunk *cfg)
->  {
->  	struct axiom_crc *crc = &ts->crc[AXIOM_CRC_NEW];
->  	const u32 *u33_data = (const u32 *)cfg->usage_content;
-> @@ -1987,8 +1982,8 @@ axiom_set_new_crcs(struct axiom_data *ts, const struct axiom_fw_cfg_chunk *cfg)
->  	return 0;
->  }
->  
-> -static unsigned int
-> -axiom_cfg_fw_prepare_chunk(struct axiom_fw_cfg_chunk *chunk, const u8 *data)
-> +static unsigned int axiom_cfg_fw_prepare_chunk(struct axiom_fw_cfg_chunk *chunk,
-> +					       const u8 *data)
->  {
->  	chunk->usage_num = data[0];
->  	chunk->usage_rev = data[1];
-> @@ -2017,46 +2012,37 @@ static bool axiom_cfg_fw_update_required(struct axiom_data *ts)
->  	    !axiom_usage_crc_match(ts, AXIOM_U22, cur, new, u22_sequencedata) ||
->  	    !axiom_usage_crc_match(ts, AXIOM_U43, cur, new, u43_hotspots) ||
->  	    !axiom_usage_crc_match(ts, AXIOM_U93, cur, new, u93_profiles) ||
-> -	    !axiom_usage_crc_match(ts, AXIOM_U94, cur, new, u94_deltascalemap))
-> +	    !axiom_usage_crc_match(ts, AXIOM_U94, cur, new, u94_deltascalemap)) {
->  		return true;
-> +	}
->  
->  	return false;
->  }
->  
-> -static enum fw_upload_err
-> -axiom_cfg_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32 size)
-> +static enum fw_upload_err __axiom_cfg_fw_prepare(struct axiom_data *ts,
-> +						 struct axiom_firmware *afw,
-> +						 const u8 *data, u32 size)
->  {
-> -	struct axiom_data *ts = fw_upload->dd_handle;
-> -	struct axiom_firmware *afw = &ts->fw[AXIOM_FW_CFG];
->  	u32 cur_runtime_crc, fw_runtime_crc;
->  	struct axiom_fw_cfg_chunk chunk;
->  	struct device *dev = ts->dev;
-> -	enum fw_upload_err ret;
->  	u32 signature;
-> -
-> -	mutex_lock(&afw->lock);
-> -	afw->cancel = false;
-> -	mutex_unlock(&afw->lock);
-> -
-> -	mutex_lock(&ts->fwupdate_lock);
-> +	int error;
->  
->  	if (axiom_get_runmode(ts) != AXIOM_TCP_MODE) {
->  		dev_err(dev, "Device not in TCP mode, abort TH2CFG update\n");
-> -		ret = FW_UPLOAD_ERR_HW_ERROR;
-> -		goto out;
-> +		return FW_UPLOAD_ERR_HW_ERROR;
->  	}
->  
->  	if (size < sizeof(struct axiom_fw_cfg_hdr)) {
->  		dev_err(dev, "Invalid TH2CFG file size\n");
-> -		ret = FW_UPLOAD_ERR_INVALID_SIZE;
-> -		goto out;
-> +		return FW_UPLOAD_ERR_INVALID_SIZE;
->  	}
->  
->  	signature = get_unaligned_be32(data);
->  	if (signature != AXIOM_FW_CFG_SIGNATURE) {
->  		dev_err(dev, "Invalid TH2CFG signature\n");
-> -		ret = FW_UPLOAD_ERR_FW_INVALID;
-> -		goto out;
-> +		return FW_UPLOAD_ERR_FW_INVALID;
->  	}
->  
->  	/* Skip to the first fw chunk */
-> @@ -2080,39 +2066,47 @@ axiom_cfg_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32 size)
->  
->  	if (size == 0) {
->  		dev_err(dev, "Failed to find the u33 entry in TH2CFG\n");
-> -		ret = FW_UPLOAD_ERR_FW_INVALID;
-> -		goto out;
-> +		return FW_UPLOAD_ERR_FW_INVALID;
->  	}
->  
-> -	ret = axiom_set_new_crcs(ts, &chunk);
-> -	if (ret) {
-> -		ret = FW_UPLOAD_ERR_FW_INVALID;
-> -		goto out;
-> -	}
-> +	error = axiom_set_new_crcs(ts, &chunk);
-> +	if (error)
-> +		return FW_UPLOAD_ERR_FW_INVALID;
->  
->  	/*
->  	 * Nothing to do if the CRCs are the same. TODO: Must be extended once
->  	 * the CDU update is added.
->  	 */
-> -	if (!axiom_cfg_fw_update_required(ts)) {
-> -		ret = FW_UPLOAD_ERR_DUPLICATE;
-> -		goto out;
-> -	}
-> +	if (!axiom_cfg_fw_update_required(ts))
-> +		return FW_UPLOAD_ERR_DUPLICATE;
->  
->  	cur_runtime_crc = ts->crc[AXIOM_CRC_CUR].runtime;
->  	fw_runtime_crc = ts->crc[AXIOM_CRC_NEW].runtime;
->  	if (cur_runtime_crc != fw_runtime_crc) {
->  		dev_err(dev, "TH2CFG and device runtime CRC doesn't match: %#x != %#x\n",
->  			fw_runtime_crc, cur_runtime_crc);
-> -		ret = FW_UPLOAD_ERR_FW_INVALID;
-> -		goto out;
-> +		return FW_UPLOAD_ERR_FW_INVALID;
-> +	}
-> +
-> +	guard(mutex)(&afw->lock);
-> +	return afw->cancel ? FW_UPLOAD_ERR_CANCELED : FW_UPLOAD_ERR_NONE;
-> +}
-> +
-> +static enum fw_upload_err axiom_cfg_fw_prepare(struct fw_upload *fw_upload,
-> +					       const u8 *data, u32 size)
-> +{
-> +	struct axiom_data *ts = fw_upload->dd_handle;
-> +	struct axiom_firmware *afw = &ts->fw[AXIOM_FW_CFG];
-> +	enum fw_upload_err ret;
-> +
-> +	scoped_guard(mutex, &afw->lock) {
-> +		afw->cancel = false;
->  	}
->  
-> -	mutex_lock(&afw->lock);
-> -	ret = afw->cancel ? FW_UPLOAD_ERR_CANCELED : FW_UPLOAD_ERR_NONE;
-> -	mutex_unlock(&afw->lock);
-> +	mutex_lock(&ts->fwupdate_lock);
-> +
-> +	ret = __axiom_cfg_fw_prepare(ts, afw, data, size);
->  
-> -out:
->  	/*
->  	 * In FW_UPLOAD_ERR_NONE case the complete handler will release the
->  	 * lock.
-> @@ -2125,27 +2119,26 @@ axiom_cfg_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32 size)
->  
->  static int axiom_zero_volatile_mem(struct axiom_data *ts)
->  {
-> -	int ret, size;
-> -	u8 *buf;
-> +	int error;
->  
->  	/* Zero out the volatile memory except for the user content in u04 */
-> -	ret = axiom_u04_get(ts, &buf);
-> -	if (ret < 0)
-> -		return ret;
-> -	size = ret;
-> +	u8 *buf __free(kfree) = axiom_u04_get(ts);
-> +	if (IS_ERR(buf))
-> +		return PTR_ERR(buf);
->  
-> -	ret = axiom_u02_fillconfig(ts);
-> -	if (ret)
-> -		goto out;
-> +	error = axiom_u02_fillconfig(ts);
-> +	if (error)
-> +		return error;
->  
-> -	ret = axiom_u04_set(ts, buf, size);
-> -out:
-> -	kfree(buf);
-> -	return ret;
-> +	error = axiom_u04_set(ts, buf);
-> +	if (error)
-> +		return error;
-> +
-> +	return 0;
->  }
->  
-> -static bool
-> -axiom_skip_cfg_chunk(struct axiom_data *ts, const struct axiom_fw_cfg_chunk *chunk)
-> +static bool axiom_skip_cfg_chunk(struct axiom_data *ts,
-> +				 const struct axiom_fw_cfg_chunk *chunk)
->  {
->  	u8 usage_num = chunk->usage_num;
->  
-> @@ -2156,21 +2149,22 @@ axiom_skip_cfg_chunk(struct axiom_data *ts, const struct axiom_fw_cfg_chunk *chu
->  
->  	/* Skip read-only usages */
->  	if (ts->usage_table[usage_num].info &&
-> -	    ts->usage_table[usage_num].info->is_ro)
-> +	    ts->usage_table[usage_num].info->is_ro) {
->  		return true;
-> +	}
->  
->  	return false;
->  }
->  
-> -static int
-> -axiom_write_cdu_usage(struct axiom_data *ts, const struct axiom_fw_cfg_chunk *chunk)
-> +static int axiom_write_cdu_usage(struct axiom_data *ts,
-> +				 const struct axiom_fw_cfg_chunk *chunk)
->  {
->  	struct axiom_cdu_usage cdu = { };
->  	struct device *dev = ts->dev;
->  	unsigned int remaining;
->  	unsigned int reg;
->  	unsigned int pos;
-> -	int ret;
-> +	int error;
->  
->  	pos = 0;
->  	remaining = chunk->usage_length;
-> @@ -2189,17 +2183,17 @@ axiom_write_cdu_usage(struct axiom_data *ts, const struct axiom_fw_cfg_chunk *ch
->  		memset(cdu.data, 0, sizeof(cdu.data));
->  		memcpy(cdu.data, &chunk->usage_content[pos], size);
->  
-> -		ret = regmap_raw_write(ts->regmap, reg, &cdu, sizeof(cdu));
-> -		if (ret) {
-> +		error = regmap_raw_write(ts->regmap, reg, &cdu, sizeof(cdu));
-> +		if (error) {
->  			dev_err(dev, "Failed to write CDU u%02X\n",
->  				chunk->usage_num);
-> -			return ret;
-> +			return error;
->  		}
->  
-> -		ret = axiom_cdu_wait_idle(ts, chunk->usage_num);
-> -		if (ret) {
-> +		error = axiom_cdu_wait_idle(ts, chunk->usage_num);
-> +		if (error) {
->  			dev_err(dev, "CDU write wait-idle failed\n");
-> -			return ret;
-> +			return error;
->  		}
->  
->  		remaining -= size;
-> @@ -2215,59 +2209,65 @@ axiom_write_cdu_usage(struct axiom_data *ts, const struct axiom_fw_cfg_chunk *ch
->  	cdu.parameters[0] = cpu_to_le16(AXIOM_CDU_PARAM0_COMMIT);
->  	cdu.parameters[1] = cpu_to_le16(AXIOM_CDU_PARAM1_COMMIT);
->  
-> -	ret = regmap_raw_write(ts->regmap, reg, &cdu, sizeof(cdu));
-> -	if (ret) {
-> +	error = regmap_raw_write(ts->regmap, reg, &cdu, sizeof(cdu));
-> +	if (error) {
->  		dev_err(dev, "Failed to commit CDU u%02X to NVM\n",
->  			chunk->usage_num);
-> -		return ret;
-> +		return error;
->  	}
->  
-> -	ret = axiom_wait_for_completion_timeout(ts, &ts->nvm_write,
-> -					msecs_to_jiffies(5 * MSEC_PER_SEC));
-> -	if (!ret) {
-> +	if (!axiom_wait_for_completion_timeout(ts, &ts->nvm_write,
-> +					       msecs_to_jiffies(5 * MSEC_PER_SEC))) {
->  		dev_err(ts->dev, "Error CDU u%02X commit timedout\n",
->  			chunk->usage_num);
->  		return -ETIMEDOUT;
->  	}
->  
-> -	return axiom_cdu_wait_idle(ts, chunk->usage_num);
-> +	error = axiom_cdu_wait_idle(ts, chunk->usage_num);
-> +	if (error)
-> +		return error;
-> +
-> +	return 0;
->  }
->  
-> -static int
-> -axiom_write_cfg_chunk(struct axiom_data *ts, const struct axiom_fw_cfg_chunk *chunk)
-> +static int axiom_write_cfg_chunk(struct axiom_data *ts,
-> +				 const struct axiom_fw_cfg_chunk *chunk)
->  {
->  	unsigned int reg;
-> -	int ret;
-> +	int error;
->  
->  	if (ts->usage_table[chunk->usage_num].info &&
->  	    ts->usage_table[chunk->usage_num].info->is_cdu) {
-> -		ret = axiom_write_cdu_usage(ts, chunk);
-> -		if (ret)
-> -			return ret;
-> -		goto out;
-> +		error = axiom_write_cdu_usage(ts, chunk);
-> +		if (error)
-> +			return error;
-> +	} else {
-> +		reg = axiom_usage_baseaddr(ts, chunk->usage_num);
-> +		error = regmap_raw_write(ts->regmap, reg, chunk->usage_content,
-> +					 chunk->usage_length);
-> +		if (error)
-> +			return error;
->  	}
->  
-> -	reg = axiom_usage_baseaddr(ts, chunk->usage_num);
-> -	ret = regmap_raw_write(ts->regmap, reg, chunk->usage_content, chunk->usage_length);
-> -	if (ret)
-> -		return ret;
-> +	error = axiom_u02_wait_idle(ts);
-> +	if (error)
-> +		return error;
->  
-> -out:
-> -	return axiom_u02_wait_idle(ts);
-> +	return 0;
->  }
->  
->  static int axiom_verify_volatile_mem(struct axiom_data *ts)
->  {
-> -	int ret;
-> +	int error;
->  
-> -	ret = axiom_u02_computecrc(ts);
-> -	if (ret)
-> -		return ret;
-> +	error = axiom_u02_computecrc(ts);
-> +	if (error)
-> +		return error;
->  
->  	/* Query the new CRCs after they are re-computed */
-> -	ret = axiom_u33_read(ts, &ts->crc[AXIOM_CRC_CUR]);
-> -	if (ret)
-> -		return ret;
-> +	error = axiom_u33_read(ts, &ts->crc[AXIOM_CRC_CUR]);
-> +	if (error)
-> +		return error;
->  
->  	return ts->crc[AXIOM_CRC_CUR].vltusageconfig ==
->  	       ts->crc[AXIOM_CRC_NEW].vltusageconfig ? 0 : -EINVAL;
-> @@ -2310,27 +2310,24 @@ static int axiom_verify_crcs(struct axiom_data *ts)
->  	return 0;
->  }
->  
-> -static enum fw_upload_err
-> -axiom_cfg_fw_write(struct fw_upload *fw_upload, const u8 *data, u32 offset,
-> -		   u32 size, u32 *written)
-> +static enum fw_upload_err axiom_cfg_fw_write(struct fw_upload *fw_upload,
-> +					     const u8 *data, u32 offset,
-> +					     u32 size, u32 *written)
->  {
->  	struct axiom_data *ts = fw_upload->dd_handle;
->  	struct axiom_firmware *afw = &ts->fw[AXIOM_FW_CFG];
->  	struct device *dev = ts->dev;
-> -	bool cancel;
-> -	int ret;
-> +	int error;
->  
->  	/* Done before cancel check due to cleanup based put */
-> -	ret = pm_runtime_resume_and_get(ts->dev);
-> -	if (ret)
-> +	error = pm_runtime_resume_and_get(ts->dev);
-> +	if (error)
->  		return FW_UPLOAD_ERR_HW_ERROR;
->  
-> -	mutex_lock(&afw->lock);
-> -	cancel = afw->cancel;
-> -	mutex_unlock(&afw->lock);
-> -
-> -	if (cancel)
-> -		return FW_UPLOAD_ERR_CANCELED;
-> +	scoped_guard(mutex, &afw->lock) {
-> +		if (afw->cancel)
-> +			return FW_UPLOAD_ERR_CANCELED;
-> +	}
->  
->  	axiom_lock_input_device(ts);
->  
-> @@ -2340,12 +2337,12 @@ axiom_cfg_fw_write(struct fw_upload *fw_upload, const u8 *data, u32 offset,
->  		return FW_UPLOAD_ERR_HW_ERROR;
->  	}
->  
-> -	ret = axiom_u02_stop(ts);
-> -	if (ret)
-> +	error = axiom_u02_stop(ts);
-> +	if (error)
->  		goto err_swreset;
->  
-> -	ret = axiom_zero_volatile_mem(ts);
-> -	if (ret)
-> +	error = axiom_zero_volatile_mem(ts);
-> +	if (error)
->  		goto err_swreset;
->  
->  	/* Skip to the first fw chunk */
-> @@ -2362,16 +2359,14 @@ axiom_cfg_fw_write(struct fw_upload *fw_upload, const u8 *data, u32 offset,
->  		chunk_len = axiom_cfg_fw_prepare_chunk(&chunk, data);
->  		if (axiom_skip_cfg_chunk(ts, &chunk)) {
->  			dev_dbg(dev, "Skip TH2CFG usage u%02X\n", chunk.usage_num);
-> -			goto next_chunk;
-> -		}
-> -
-> -		ret = axiom_write_cfg_chunk(ts, &chunk);
-> -		if (ret) {
-> -			axiom_set_runmode(ts, AXIOM_TCP_MODE);
-> -			goto err_swreset;
-> +		} else {
-> +			error = axiom_write_cfg_chunk(ts, &chunk);
-> +			if (error) {
-> +				axiom_set_runmode(ts, AXIOM_TCP_MODE);
-> +				goto err_swreset;
-> +			}
->  		}
->  
-> -next_chunk:
->  		data += chunk_len;
->  		size -= chunk_len;
->  		*written += chunk_len;
-> @@ -2380,28 +2375,28 @@ axiom_cfg_fw_write(struct fw_upload *fw_upload, const u8 *data, u32 offset,
->  	axiom_set_runmode(ts, AXIOM_TCP_MODE);
->  
->  	/* Ensure that the chunks are written correctly */
-> -	ret = axiom_verify_volatile_mem(ts);
-> -	if (ret) {
-> +	error = axiom_verify_volatile_mem(ts);
-> +	if (error) {
->  		dev_err(dev, "Failed to verify written config, abort\n");
->  		goto err_swreset;
->  	}
->  
-> -	ret = axiom_u02_save_config(ts);
-> -	if (ret)
-> +	error = axiom_u02_save_config(ts);
-> +	if (error)
->  		goto err_swreset;
->  
->  	/*
->  	 * TODO: Check if u02 start would be sufficient to load the new config
->  	 * values
->  	 */
-> -	ret = axiom_u02_swreset(ts);
-> -	if (ret) {
-> +	error = axiom_u02_swreset(ts);
-> +	if (error) {
->  		dev_err(dev, "Soft reset failed\n");
->  		goto err_unlock;
->  	}
->  
-> -	ret = axiom_u33_read(ts, &ts->crc[AXIOM_CRC_CUR]);
-> -	if (ret)
-> +	error = axiom_u33_read(ts, &ts->crc[AXIOM_CRC_CUR]);
-> +	if (error)
->  		goto err_unlock;
->  
->  	if (axiom_verify_crcs(ts))
-> @@ -2410,8 +2405,8 @@ axiom_cfg_fw_write(struct fw_upload *fw_upload, const u8 *data, u32 offset,
->  	/* Unlock before the input device gets unregistered */
->  	axiom_unlock_input_device(ts);
->  
-> -	ret = axiom_update_input_dev(ts);
-> -	if (ret) {
-> +	error = axiom_update_input_dev(ts);
-> +	if (error) {
->  		dev_err(dev, "Input device update failed after TH2CFG firmware update\n");
->  		goto err_out;
->  	}
-> @@ -2425,7 +2420,7 @@ axiom_cfg_fw_write(struct fw_upload *fw_upload, const u8 *data, u32 offset,
->  err_unlock:
->  	axiom_unlock_input_device(ts);
->  err_out:
-> -	return ret == -ETIMEDOUT ? FW_UPLOAD_ERR_TIMEOUT : FW_UPLOAD_ERR_HW_ERROR;
-> +	return error == -ETIMEDOUT ? FW_UPLOAD_ERR_TIMEOUT : FW_UPLOAD_ERR_HW_ERROR;
->  }
->  
->  static void axiom_cfg_fw_cancel(struct fw_upload *fw_upload)
-> @@ -2433,9 +2428,8 @@ static void axiom_cfg_fw_cancel(struct fw_upload *fw_upload)
->  	struct axiom_data *ts = fw_upload->dd_handle;
->  	struct axiom_firmware *afw = &ts->fw[AXIOM_FW_CFG];
->  
-> -	mutex_lock(&afw->lock);
-> +	guard(mutex)(&afw->lock);
->  	afw->cancel = true;
-> -	mutex_unlock(&afw->lock);
->  }
->  
->  static void axiom_cfg_fw_cleanup(struct fw_upload *fw_upload)
-> @@ -2474,7 +2468,7 @@ static int axiom_register_fwl(struct axiom_data *ts)
->  	struct device *dev = ts->dev;
->  	struct fw_upload *fwl;
->  	char *fw_name;
-> -	int ret;
-> +	int error;
->  
->  	if (!IS_ENABLED(CONFIG_FW_UPLOAD)) {
->  		dev_dbg(dev, "axfw and th2cfgbin update disabled\n");
-> @@ -2490,9 +2484,9 @@ static int axiom_register_fwl(struct axiom_data *ts)
->  		return dev_err_probe(dev, PTR_ERR(fwl),
->  				     "Failed to register firmware upload\n");
->  
-> -	ret = devm_add_action_or_reset(dev, axiom_remove_axfw_fwl_action, ts);
-> -	if (ret)
-> -		return ret;
-> +	error = devm_add_action_or_reset(dev, axiom_remove_axfw_fwl_action, ts);
-> +	if (error)
-> +		return error;
->  
->  	ts->fw[AXIOM_FW_AXFW].fwl = fwl;
->  
-> @@ -2505,9 +2499,9 @@ static int axiom_register_fwl(struct axiom_data *ts)
->  		return dev_err_probe(dev, PTR_ERR(fwl),
->  				     "Failed to register cfg firmware upload\n");
->  
-> -	ret = devm_add_action_or_reset(dev, axiom_remove_cfg_fwl_action, ts);
-> -	if (ret)
-> -		return ret;
-> +	error = devm_add_action_or_reset(dev, axiom_remove_cfg_fwl_action, ts);
-> +	if (error)
-> +		return error;
->  
->  	ts->fw[AXIOM_FW_CFG].fwl = fwl;
->  
-> @@ -2643,7 +2637,7 @@ static int axiom_register_input_dev(struct axiom_data *ts,
->  	struct device *dev = ts->dev;
->  	struct i2c_client *client = to_i2c_client(dev);
->  	struct input_dev *input;
-> -	int ret;
-> +	int error;
->  
->  	input = input_allocate_device();
->  	if (!input) {
-> @@ -2673,7 +2667,7 @@ static int axiom_register_input_dev(struct axiom_data *ts,
->  
->  	touchscreen_parse_properties(input, true, &ts->prop);
->  
-> -	axiom_u42_get_touchslots(ts);
-> +	axiom_get_touchslots(ts);
->  	if (!ts->num_slots && update_in_process) {
->  		input_free_device(input);
->  		/*
-> @@ -2690,11 +2684,11 @@ static int axiom_register_input_dev(struct axiom_data *ts,
->  		return -EINVAL;
->  	}
->  
-> -	ret = input_mt_init_slots(input, ts->num_slots, INPUT_MT_DIRECT);
-> -	if (ret) {
-> +	error = input_mt_init_slots(input, ts->num_slots, INPUT_MT_DIRECT);
-> +	if (error) {
->  		input_free_device(input);
->  		dev_err(dev, "Failed to init mt slots\n");
-> -		return ret;
-> +		return error;
->  	}
->  
->  	/*
-> @@ -2705,19 +2699,21 @@ static int axiom_register_input_dev(struct axiom_data *ts,
->  	 * always.
->  	 */
->  	if (!ts->irq_setup_done && client->irq) {
-> -		ret = devm_request_threaded_irq(dev, client->irq, NULL, axiom_irq,
-> -						IRQF_ONESHOT, dev_name(dev), ts);
-> -		if (ret) {
-> +		error = devm_request_threaded_irq(dev, client->irq,
-> +						  NULL, axiom_irq,
-> +						  IRQF_ONESHOT,
-> +						  dev_name(dev), ts);
-> +		if (error) {
->  			dev_err(dev, "Failed to request IRQ\n");
-> -			return ret;
-> +			return error;
->  		}
->  		ts->irq_setup_done = true;
->  	} else {
-> -		ret = input_setup_polling(input, axiom_poll);
-> -		if (ret) {
-> +		error = input_setup_polling(input, axiom_poll);
-> +		if (error) {
->  			input_free_device(input);
->  			dev_err(dev, "Setup polling mode failed\n");
-> -			return ret;
-> +			return error;
->  		}
->  
->  		input_set_poll_interval(input, ts->poll_interval);
-> @@ -2726,14 +2722,14 @@ static int axiom_register_input_dev(struct axiom_data *ts,
->  	input_set_drvdata(input, ts);
->  	ts->input = input;
->  
-> -	ret = input_register_device(input);
-> -	if (ret) {
-> +	error = input_register_device(input);
-> +	if (error) {
->  		input_free_device(input);
->  		ts->input = NULL;
->  		dev_err(dev, "Failed to register input device\n");
->  	};
->  
-> -	return ret;
-> +	return error;
->  }
->  
->  static int axiom_update_input_dev(struct axiom_data *ts)
-> @@ -2747,15 +2743,15 @@ static int axiom_parse_firmware(struct axiom_data *ts)
->  {
->  	struct device *dev = ts->dev;
->  	struct gpio_desc *gpio;
-> -	int ret;
-> +	int error;
->  
->  	ts->supplies[0].supply = "vddi";
->  	ts->supplies[1].supply = "vdda";
->  	ts->num_supplies = ARRAY_SIZE(ts->supplies);
->  
-> -	ret = devm_regulator_bulk_get(dev, ts->num_supplies, ts->supplies);
-> -	if (ret)
-> -		return dev_err_probe(dev, ret,
-> +	error = devm_regulator_bulk_get(dev, ts->num_supplies, ts->supplies);
-> +	if (error)
-> +		return dev_err_probe(dev, error,
->  				     "Failed to get power supplies\n");
->  
->  	gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> @@ -2770,20 +2766,15 @@ static int axiom_parse_firmware(struct axiom_data *ts)
->  	return 0;
->  }
->  
-> -static int axiom_power_device(struct axiom_data *ts, unsigned int enable)
-> +static int axiom_power_up_device(struct axiom_data *ts)
->  {
->  	struct device *dev = ts->dev;
-> -	int ret;
-> -
-> -	if (!enable) {
-> -		regulator_bulk_disable(ts->num_supplies, ts->supplies);
-> -		return 0;
-> -	}
-> +	int error;
->  
-> -	ret = regulator_bulk_enable(ts->num_supplies, ts->supplies);
-> -	if (ret) {
-> +	error = regulator_bulk_enable(ts->num_supplies, ts->supplies);
-> +	if (error) {
->  		dev_err(dev, "Failed to enable power supplies\n");
-> -		return ret;
-> +		return error;
->  	}
->  
->  	gpiod_set_value_cansleep(ts->reset_gpio, 1);
-> @@ -2795,6 +2786,11 @@ static int axiom_power_device(struct axiom_data *ts, unsigned int enable)
->  	return 0;
->  }
->  
-> +static void axiom_power_down_device(struct axiom_data *ts)
-> +{
-> +	regulator_bulk_disable(ts->num_supplies, ts->supplies);
-> +}
-> +
->  static int axiom_panel_prepared(struct drm_panel_follower *follower)
->  {
->  	struct axiom_data *ts = container_of(follower, struct axiom_data,
-> @@ -2838,7 +2834,7 @@ static int axiom_i2c_probe(struct i2c_client *client)
->  {
->  	struct device *dev = &client->dev;
->  	struct axiom_data *ts;
-> -	int ret;
-> +	int error;
->  
->  	ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
->  	if (!ts)
-> @@ -2857,53 +2853,56 @@ static int axiom_i2c_probe(struct i2c_client *client)
->  	init_completion(&ts->nvm_write.completion);
->  	mutex_init(&ts->fwupdate_lock);
->  
-> -	ret = axiom_register_fwl(ts);
-> -	if (ret)
-> -		return ret;
-> +	error = axiom_register_fwl(ts);
-> +	if (error)
-> +		return error;
->  
-> -	ret = axiom_parse_firmware(ts);
-> -	if (ret)
-> -		return ret;
-> +	error = axiom_parse_firmware(ts);
-> +	if (error)
-> +		return error;
->  
-> -	ret = axiom_power_device(ts, 1);
-> -	if (ret)
-> -		return dev_err_probe(dev, ret, "Failed to power-on device\n");
-> +	error = axiom_power_up_device(ts);
-> +	if (error)
-> +		return dev_err_probe(dev, error, "Failed to power-on device\n");
->  
->  	pm_runtime_set_autosuspend_delay(dev, 10 * MSEC_PER_SEC);
->  	pm_runtime_use_autosuspend(dev);
->  	pm_runtime_set_active(dev);
->  	pm_runtime_get_noresume(dev);
-> -	ret = devm_pm_runtime_enable(dev);
-> -	if (ret)
-> -		return dev_err_probe(dev, ret, "Failed to enable pm-runtime\n");
-> +	error = devm_pm_runtime_enable(dev);
-> +	if (error)
-> +		return dev_err_probe(dev, error, "Failed to enable pm-runtime\n");
->  
-> -	ret = axiom_register_panel_follower(ts);
-> -	if (ret)
-> -		return dev_err_probe(dev, ret, "Failed to register panel follower\n");
-> +	error = axiom_register_panel_follower(ts);
-> +	if (error)
-> +		return dev_err_probe(dev, error, "Failed to register panel follower\n");
->  
-> -	ret = axiom_u31_device_discover(ts);
-> +	error = axiom_u31_device_discover(ts);
->  	/*
->  	 * Register the device to allow FW updates in case that the current FW
->  	 * doesn't support the required driver usages or if the device is in
->  	 * bootloader mode.
->  	 */
-> -	if (ret && ret == -EACCES && IS_ENABLED(CONFIG_FW_UPLOAD)) {
-> -		dev_warn(dev, "Device discovery failed, wait for user fw update\n");
-> -		pm_runtime_mark_last_busy(dev);
-> -		pm_runtime_put_sync_autosuspend(dev);
-> -		return 0;
-> -	} else if (ret) {
-> +	if (error) {
-> +		if (error == -EACCES && IS_ENABLED(CONFIG_FW_UPLOAD)) {
-> +			dev_warn(dev, "Device discovery failed, wait for user fw update\n");
-> +			pm_runtime_mark_last_busy(dev);
-> +			pm_runtime_put_sync_autosuspend(dev);
-> +			return 0;
-> +		}
->  		pm_runtime_put_sync(dev);
-> -		return dev_err_probe(dev, ret, "Device discovery failed\n");
-> +		return dev_err_probe(dev, error, "Device discovery failed\n");
->  	}
->  
-> -	ret = axiom_register_input_dev(ts, false);
-> +	error = axiom_register_input_dev(ts, false);
->  	pm_runtime_mark_last_busy(dev);
->  	pm_runtime_put_sync_autosuspend(dev);
-> -	if (ret && IS_ENABLED(CONFIG_FW_UPLOAD))
-> +	if (error) {
-> +		if (!IS_ENABLED(CONFIG_FW_UPLOAD))
-> +			return dev_err_probe(dev, error, "Failed to register input device\n");
-> +
->  		dev_warn(dev, "Failed to register the input device, wait for user fw update\n");
-> -	else if (ret)
-> -		return dev_err_probe(dev, ret, "Failed to register input device\n");
-> +	}
->  
->  	return 0;
->  }
-> @@ -2923,18 +2922,20 @@ static int axiom_runtime_suspend(struct device *dev)
->  	if (client->irq && ts->irq_setup_done)
->  		disable_irq(client->irq);
->  
-> -	return axiom_power_device(ts, 0);
-> +	axiom_power_down_device(ts);
-> +
-> +	return 0;
->  }
->  
->  static int axiom_runtime_resume(struct device *dev)
->  {
->  	struct axiom_data *ts = dev_get_drvdata(dev);
->  	struct i2c_client *client = to_i2c_client(dev);
-> -	int ret;
-> +	int error;
->  
-> -	ret = axiom_power_device(ts, 1);
-> -	if (ret)
-> -		return ret;
-> +	error = axiom_power_up_device(ts);
-> +	if (error)
-> +		return error;
->  
->  	if (client->irq && ts->irq_setup_done)
->  		enable_irq(client->irq);
+> On Tue, Jan 13, 2026 at 8:40 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>>
+>> On 1/12/26 23:24, ashish yadav wrote:
+>>
+>>>> The need for this, especially why it would only be needed for PMBUS_READ_VOUT
+>>>> but not for any other VOUT related commands, is still insufficiently explained
+>>>> (and I failed to understand the rationale provided earlier).
+>>>>
+>>>
+>>> It is specifically needed for READ_VOUT as it is being used by
+>>> external controller to monitor the rail health.
+>>> Other Vout related parameters are used internally in the IC to for
+>>> output voltage related protections and does not impact any external
+>>> decision making.
+>>>
+>>
+>> Sorry, that doesn't really make sense. How would the chip know to match
+>> VOUT with its VOUT limits if both don't use the same scale ?
+>>
+> The chip telemetry would still show Vout as 0.7V as it does not know
+> about the external feedback resistors.
+> Hence, no need to scale internal Vout related parameters.
+> This scale is only for external vendor use to tweak their telemetry
+> output voltage reading.
 > 
 
--- 
-#gernperDu 
-#CallMeByMyFirstName
+You fail to explain why VOUT_SCALE_LOOP - which is supposed to handle such
+situations - can not be used, and why it would be acceptable for other VOUT
+related attributes such as VOUT_MIN, VOUT_MAX, VOUT_MARGIN_LOW, VOUT_MARGIN_HIGH,
+and the various VOUT fault limits to show the wrong values.
 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+For reference:
+
+VOUT_SCALE_LOOP:
+"Used to account for any external attenuation network on VOUT sense
+  feedback and provide correct VOUT reporting."
+
+Guenter
+
 
