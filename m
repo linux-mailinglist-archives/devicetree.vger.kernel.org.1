@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-261752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261735-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WLR+BqWAgGnE8wIAu9opvQ
-	(envelope-from <devicetree+bounces-261752-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:47:01 +0100
+	id AGMEB6B8gGnE8wIAu9opvQ
+	(envelope-from <devicetree+bounces-261735-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:29:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33617CB2BE
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:47:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87BC8CAF35
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:29:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D27BA3001041
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 10:46:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B2B5C300D930
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 10:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04A3357737;
-	Mon,  2 Feb 2026 10:46:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80E36359F98;
+	Mon,  2 Feb 2026 10:27:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-8fab.mail.infomaniak.ch (smtp-8fab.mail.infomaniak.ch [83.166.143.171])
+Received: from smtp-bc0f.mail.infomaniak.ch (smtp-bc0f.mail.infomaniak.ch [45.157.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E955278753
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 10:46:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.166.143.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83623570DA
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 10:27:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.157.188.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770029216; cv=none; b=gT0ru4Ud9hsv/T++gtgo1YpzKC9Ua9lvhvyG7haL40anciu2jkmAQW7JtfomLJ2vVC2HqlY+S2pqROEkhmVwdOpb3Y16WKEE+keegucDk7RCoIsNqK1kiuE7zBJEPXHsoPTs62Iy/k6vnpShnlAbC44v0JU2Cjj844dsGdGXucM=
+	t=1770028073; cv=none; b=VirShvFH6yVisP/ugL4Nqqe/XMOjKx8KVergaviw/XvwQCB1ll5Na7iRQrmoqQrr15hWyrwlht4IDEv6JqmfopuKfcq/dMTfCfAiWgNmvyNtAL29KvWOyQkK/Lu6p+kyLQHvr9JnmfndkgpQCx4UKG788Y5kN3ikSyac9lAbc90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770029216; c=relaxed/simple;
-	bh=bleeBFJPuuFsgNHUwUVf9FvzmPn7y26MsMtoKi1PeCs=;
+	s=arc-20240116; t=1770028073; c=relaxed/simple;
+	bh=9Yyi4gTMhanz87L+88zAle5xLB7ShfU/IZ/x32HRFuk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rCNLBPxkHwooyPfxH6faQ0IF1CBJOUB7xrd6DIFJmmmgTyzfGiYsa9BG6WJV9+6YUdkH9s969iS5YEVW0ergZewdx5BVUIO/F/jWJnTzpYUkDrC6MfkSwOhfw9+4/1HgaVRAAAdxPhGCc2vdvfONkVYRcwMjtvAILOBkzqkok5E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=83.166.143.171
+	 In-Reply-To:To:Cc; b=AowSZU3ISKpVOA4Ld+uNSqbKTRW7a8dVAW1v8FxNQ/xhQM5Zex21q56tYfbWOrf7xKt48g4oFcryDQEHahyHBjJoGkKINTz+fQg7jHPRLpIIwgx2PpGD6iRhbW+R+Kmj6VVbfOLMW4UIxIGTsWPMAxPkR/bq5LuPRAJICUDKbRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=45.157.188.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
 Received: from smtp-4-0000.mail.infomaniak.ch (smtp-4-0000.mail.infomaniak.ch [10.7.10.107])
-	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4f4N993pdZz7Y0;
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4f4N9B1XMVz9km;
+	Mon,  2 Feb 2026 11:27:42 +0100 (CET)
+Received: from unknown by smtp-4-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4f4N993hzRz8V;
 	Mon,  2 Feb 2026 11:27:41 +0100 (CET)
-Received: from unknown by smtp-4-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4f4N986dlPz6vV;
-	Mon,  2 Feb 2026 11:27:40 +0100 (CET)
 From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Mon, 02 Feb 2026 11:27:25 +0100
-Subject: [PATCH 1/2] arm64: dts: rockchip: fix Ethernet PHY not found on
- PX30 Cobra
+Date: Mon, 02 Feb 2026 11:27:26 +0100
+Subject: [PATCH 2/2] arm64: dts: rockchip: fix Ethernet PHY not found on
+ PX30 Ringneck
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,7 +49,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260202-px30-eth-phy-v1-1-ef365be64922@cherry.de>
+Message-Id: <20260202-px30-eth-phy-v1-2-ef365be64922@cherry.de>
 References: <20260202-px30-eth-phy-v1-0-ef365be64922@cherry.de>
 In-Reply-To: <20260202-px30-eth-phy-v1-0-ef365be64922@cherry.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -63,28 +63,29 @@ X-Infomaniak-Routing: alpha
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DMARC_NA(0.00)[0leil.net];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
+	DMARC_NA(0.00)[0leil.net];
 	FROM_NEQ_ENVFROM(0.00)[foss@0leil.net,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261752-lists,devicetree=lfdr.de,kernel];
+	TAGGED_FROM(0.00)[bounces-261735-lists,devicetree=lfdr.de,kernel];
 	RCVD_COUNT_FIVE(0.00)[5];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: 33617CB2BE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cherry.de:mid,cherry.de:email,0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 87BC8CAF35
 X-Rspamd-Action: no action
 
 From: Quentin Schulz <quentin.schulz@cherry.de>
@@ -107,18 +108,23 @@ The devices in the field only ever had a TI DP83825, so let's simply
 bypass the auto-detection mechanism entirely by passing the appropriate
 PHY IDs via the compatible.
 
+Note that this is only an issue since commit e463625af7f9 ("arm64: dts:
+rockchip: move reset to dedicated eth-phy node on ringneck") as before
+that commit the reset was done by the MAC controller before starting the
+MDIO auto-detection mechanism, via the snps,reset-* properties.
+
 Cc: stable@vger.kernel.org
-Fixes: bb510ddc9d3e ("arm64: dts: rockchip: add px30-cobra base dtsi and board variants")
+Fixes: e463625af7f9 ("arm64: dts: rockchip: move reset to dedicated eth-phy node on ringneck")
 Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
 ---
- arch/arm64/boot/dts/rockchip/px30-cobra.dtsi | 2 +-
+ arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30-cobra.dtsi b/arch/arm64/boot/dts/rockchip/px30-cobra.dtsi
-index b7e669d8ba4d1..add917af5de78 100644
---- a/arch/arm64/boot/dts/rockchip/px30-cobra.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30-cobra.dtsi
-@@ -397,7 +397,7 @@ &io_domains {
+diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi b/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
+index 4203b335a2633..973b4c5880e24 100644
+--- a/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
++++ b/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
+@@ -344,7 +344,7 @@ &io_domains {
  
  &mdio {
  	dp83825: ethernet-phy@0 {
