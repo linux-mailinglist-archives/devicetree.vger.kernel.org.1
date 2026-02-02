@@ -1,253 +1,172 @@
-Return-Path: <devicetree+bounces-261845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261846-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wAJpM9qwgGn6AQMAu9opvQ
-	(envelope-from <devicetree+bounces-261845-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 15:12:42 +0100
+	id oJscL4SvgGn6AQMAu9opvQ
+	(envelope-from <devicetree+bounces-261846-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 15:07:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 331A3CD311
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 15:12:42 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B744CD213
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 15:07:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 226813058B88
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 14:02:17 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C40EE300372C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 14:04:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E4236654D;
-	Mon,  2 Feb 2026 14:02:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B88F36AB52;
+	Mon,  2 Feb 2026 14:04:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="DIvAry6Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HO17UQf6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010062.outbound.protection.outlook.com [52.101.84.62])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB14335EDC9;
-	Mon,  2 Feb 2026 14:02:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.62
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770040936; cv=fail; b=NUO3Uwe0JQPmJaesgJ77g+8Ws59aqxrJwSB8Thi3yNoS1RITmjrPGZh3RvynPwgF+YTgc5GFDDhdKWS/5mD5qkxMxDhUEqY3cihyw0rpziK+4jVdJkxnVI+x2nMAdql2ShT5wmUqMW+m0em0lcSaNXSDpl9ntvYQOYffkJabE1Y=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770040936; c=relaxed/simple;
-	bh=uFTS/tG1kvfEBx9d1dGVWr0GWFN4Gd3XUnjV1NZETSg=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=OzBfdX1+89BEQQmUnLWBFei7Izi0Pso0X3rVOcEyBJq8YFRPOBFtbMzjBSKUUXVX3VteIZD7HFduoCR0o/sYBhc4qsLXlac3p6C1f1fQFV+CXHAg2/tJP1RqBRtFOAQTj5/wHpF9rC2XwdRQ/PTOskUXRMUV4wuOB6N4iVGtyK4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=DIvAry6Y; arc=fail smtp.client-ip=52.101.84.62
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OgCoaW4GXn8IeeoCEs7hS/PwxM5yIE16WvmBzZNJK0+g+kgYbHMf50/mKQ4slW8URreATNeFjztNrCbtxA4h9y5RIcrJ1B99SBrxc70/yOioNpnjhAr+QeNXOmPf41FhjeZBrwLKnjOJxy34jhyUwCtjUjZo0AX6veo0cB68l2GjjZDHev/85LKwELmf1jZXgw5NZvehakPXBqqZZ2sZSMmDsRd7Ezh9iwGB6IdsLjaPs/PRVLHQ6lTS3BVhE2iojvNPQQBhB0OiRIdkuWAJJ+LMwfMrZOrooPCwP3lGCeIL039bLQN0EyBfp2Vg5tiGmhvUTyrcs/6nb38car2U1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XGKWVHKmJeTHKDdK6FooVhqQ5lOyrUX5SxwzNYntQ00=;
- b=OFumGKijaO2Ir6Q0uYnre+i1o1tNodktI6TxnzeHrjjNEeINh4bjmyavJarCQ6LrzshO9teU6aBF7vQOM24YqyGIFWIf91q0SuhEsZHevHa35mDtPW0x9wWhw231xKZPAR4Ll9fHP95ERdKDMxiAglYGXwIBY6pN3f2SkkososQT2aWI2ZQgHsiyJ/RJnUk7DZ01QkKskreYeERCPwjq4e7G1D3/Bg15IyPcqZJOsfHvU7lHY7t6FJt3RpCN6oiBgDciz/6f6noTNp8QTsURMC2Ve1ms5BODt4oR4jiraTjaJ08VzzyvX1KtEyEa33HdoaC8gYPjrVlLkqz388tlPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XGKWVHKmJeTHKDdK6FooVhqQ5lOyrUX5SxwzNYntQ00=;
- b=DIvAry6YdTZy5DSg8gqiBT6pHzJgz9hYx55Rh+qPD/I2sW5U1twXDS8C+Xo+BgR7MlaPL3c5h+HiZAADkljx3eHAANZaRAvXBZsSkZvHejKlQvzsQOKvXQQySha8ctrFJR4pR2plhJxmtWZgR0Q2o08kYIsS52hVaZ22KRRZIqU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from GVXPR04MB12038.eurprd04.prod.outlook.com (2603:10a6:150:2be::5)
- by DB9PR04MB11598.eurprd04.prod.outlook.com (2603:10a6:10:60f::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Mon, 2 Feb
- 2026 14:02:10 +0000
-Received: from GVXPR04MB12038.eurprd04.prod.outlook.com
- ([fe80::6c04:8947:f2f0:5e78]) by GVXPR04MB12038.eurprd04.prod.outlook.com
- ([fe80::6c04:8947:f2f0:5e78%6]) with mapi id 15.20.9564.016; Mon, 2 Feb 2026
- 14:02:10 +0000
-Message-ID: <567d6404-2a71-43ad-8ba7-5053fe1576bd@cherry.de>
-Date: Mon, 2 Feb 2026 15:02:08 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: fix Ethernet PHY not found on
- PX30 Cobra
-To: Andrew Lunn <andrew@lunn.ch>, Quentin Schulz <foss+kernel@0leil.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Heiko Stuebner <heiko.stuebner@cherry.de>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20260202-px30-eth-phy-v1-0-ef365be64922@cherry.de>
- <20260202-px30-eth-phy-v1-1-ef365be64922@cherry.de>
- <33d3bdd5-0fed-41f6-8b8c-9690e7665346@lunn.ch>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <33d3bdd5-0fed-41f6-8b8c-9690e7665346@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR3P281CA0048.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:4a::20) To GVXPR04MB12038.eurprd04.prod.outlook.com
- (2603:10a6:150:2be::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D4836654D;
+	Mon,  2 Feb 2026 14:04:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770041084; cv=none; b=DnUpDQ7pUJpdYKLavwGhMF88clRWTgpNgkYEqMsS4qPOuz9/A5y3gAKqY46KrYmojWXH9pY7JBJsKELVu2bIf+tziOKWQs+zqera7mFS8XQjRTpBkMofwucUtsra/9QlKyxmYCjZYLqhpxUN9GmssblD2AT471qV8nq1qoaqX+Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770041084; c=relaxed/simple;
+	bh=SXuNNOnsQdFJa9SM+WHqux1k31fSFS+8p5nyixxKTJo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EbDQyInj7A7Oi1EisxxyVMzyiQ0W/WZQnnnvx2L1qp9vnzM97F8/SM8Ygar/mWPSXXhwug3fKEREd37gvcaQdmLHMrlK3+kqKcZgvXmQE/jE+75S+YcV8UH4LF1Qsnf0hY/KNRKGsOaXQRjpu2j+Ac8y5zCFfC0DKU//KRj1kwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HO17UQf6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D54DDC116C6;
+	Mon,  2 Feb 2026 14:04:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770041083;
+	bh=SXuNNOnsQdFJa9SM+WHqux1k31fSFS+8p5nyixxKTJo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HO17UQf6jX9VBo5h2uNe0FhP5pMsqZvgqeBo7PJdXPpAnIAGY0bZfPKwaYnQO46aQ
+	 woKYoOJwu+4SN16iUYE9sPExv5gywBB6lUMXG1Bc/vS3tCSSzqHLfYf0ubfABKYVcb
+	 1YYQVOoAFKYsEprcuqo1z/qfDAOKyF50w1Ykhtr2T9GsFeXsfgI2cqaeEldGw8krq3
+	 cQZ2seOf4J3VUtfq05qkeNDOyYhQi9LgHjfeTDGUgqfirYWXMbFXby7hwIICyrbm+9
+	 +Mku1CX8mo9puXeHJrkw47YFEqv+IkRgD7bqRM2w9lfupLXMa9SnA0MsuEt5AlEAc+
+	 GBABLITYgOySw==
+Date: Mon, 2 Feb 2026 08:04:41 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, sumit.garg@oss.qualcomm.com, dmitry.baryshkov@oss.qualcomm.com
+Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: ipq9574: Enable eMMC variant
+Message-ID: <px6xpdu2mafxunvvlx6svf3blyzh3w4le4c7jqgxqeerbsgq2d@3rsoiwpkcguu>
+References: <20260202073322.259534-1-varadarajan.narayanan@oss.qualcomm.com>
+ <20260202073322.259534-5-varadarajan.narayanan@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXPR04MB12038:EE_|DB9PR04MB11598:EE_
-X-MS-Office365-Filtering-Correlation-Id: 10398916-5ae5-4b3a-8647-08de6263a85f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?c3BvNnhzSXBuZm5PYmlQWGxoU3ZSaW9qS0x6bVZMRnBiUjVvN2VoRElZUWlr?=
- =?utf-8?B?STk3SlhKbmEzb2QxVkRWNi9aT3NWOXo3YjM5SUVocUNmbHVUL21BU1lIQ3FO?=
- =?utf-8?B?N0grbEc5RHV1eUxGUnhtK3hnUFpRd01FYmJBSkFad0RMbHdmSHFwbWVJT25a?=
- =?utf-8?B?OFZ3Rk4vc2NPRTlHajNHR1dySXJHTlZXOWxNTDRNZjNEMExXL1N1djBtclhJ?=
- =?utf-8?B?enVCcjREdXU4ajkxMjBndXFUTklSUXRyZVllR09ra3pWSWF4N1o5aVluTW1s?=
- =?utf-8?B?VHpQQXNCNWYvT3dPUlQ1UzJFRlRtNy9FL2s1aFM2dG1qMXR5TjVhZmZ6a0lL?=
- =?utf-8?B?ZjVuUXRzRE1nV2lVN2g5RkxFYlVyekU3WWxaVTFvbmhZR0N5UVJ4M2xSNHpY?=
- =?utf-8?B?K3FWam5tZFNEdlZmaG90cEFYQ0VXc2g3K043MVRhbzNRK04xaWJEOEl0akRv?=
- =?utf-8?B?NGZ5dGN1TWpCVHdCSXY1RW5EbmtOY2dnTVdSZTFaQ3lKNSsyaVV2cTUwMkhN?=
- =?utf-8?B?SHhndWZFL1dVdEVML3pXbzlSTlVmUlBHMDVPZE5mS0U1dExVUW5uaFJLZGtn?=
- =?utf-8?B?VFF0eFVQVUVNbGcxQzh3U3M1RHByUkMra0tOOGVaVEF3K25ZWHN2WkpSTjBR?=
- =?utf-8?B?cU9NWnNXZHJ1MDJpbUZLUVVPTk03UGowQ05CMjZIWjQ5SS9tMFI3SFRsZEh0?=
- =?utf-8?B?clhZOGUxK3UvRit4Vm0xTnRhQmdRd3E2OXBPOXlVTGF2YlNpL3hDbnhSVHdj?=
- =?utf-8?B?aXpqQkJlQ2xXY0NwR3dFaGZNcitXVkh5T21IWEw0TjVjVmNWQWtCcm0wbDd6?=
- =?utf-8?B?RGV2TnU0SzQrTzNORGxiT201aElZZGdGQ3QvUmpwNkxZNVNKVExkbi8wc1dX?=
- =?utf-8?B?dWRBeEJOaHJxRkRab3FINlkwQVJSTkl5ZEI3YWFvaDloTmNMVTdnTzBqRUwz?=
- =?utf-8?B?RHB6WVU3OFJVRDJJRFk0MVQ0KzNGQUkxSlJsQWc1U1FOcnZhS0J4TUx4RG43?=
- =?utf-8?B?U3pIMTZJOTE5L0s3V3pydVpoQkJMQ2JpeTRwdmdROEUvOUVZYkwyRjl3eFBV?=
- =?utf-8?B?Nkg5RXpWMUVGTmxoMHNidzRXVmRKUlhkMXlCNjJjRk5EcUs0UjNpV0ZqMWli?=
- =?utf-8?B?QlFXOURybFVCNDJKNSs2SnlWUXFxRTY0THJlTkhPREV1Z3A0c0R4YlF2ek4y?=
- =?utf-8?B?cXRIbG1KOFozbDB1cTFrZmNuSm5mWjVOVTFLVCsrUUVhOGViR2RLYUlFQlFY?=
- =?utf-8?B?UUdJTEVJSC9hVHVIRUl4R0R1MzdyR0dPd09oYnorNzhLelM3ZEF2Zmp4c3R0?=
- =?utf-8?B?cnN4OWk4SGZ5UDVYUW56RUhtVmRUdDJiOHdRMzdmMmhzYnNJREJhTDJxN2JU?=
- =?utf-8?B?L1A1b1hCMXlBTGE2cjlneHJDa3h4L25LbVFpVGFtNTNyeGpoWEpQVzhZSVg1?=
- =?utf-8?B?Rk12QW1oSlphZUJUdHN3QUJMc1QvTTBKU2g4MUJyNWg4MEdZeDNwRHl1Skk5?=
- =?utf-8?B?UjNDeFR4NlR4SVpyVG1JWjArTWpnYlZaRm9vN05pc1pmRzZMb1ZTUmMwMU1p?=
- =?utf-8?B?dUJwTjZFOWlkVlEwcUkvQ2lnTTE3cklCcTQ0NlZORjFjTUpEUm54N3RKSVhF?=
- =?utf-8?B?R1ZNNFJGRzhKWGdBRFhITk00RXd4Yit3L1F5NzNDbnppUmUwbkI1d1lLZEJI?=
- =?utf-8?B?NlIvcWNjSWZhak1BeU5kYkV5a0VVZXg3dkgvUkxJOGp5akQvNW9EaWVMeDhT?=
- =?utf-8?B?ZndqMHNCN1lDTGhtZXlwTmJyNFNDWTJQdldKNCttc3dPMkw4RmxMbkZtZkU5?=
- =?utf-8?B?ZWtiZlBGeWpJNzZkOEFxNjltR2lvMk9qTFpEYjVXd3krOU1mVmRvZ3dXeExY?=
- =?utf-8?B?UUtuS0dkRUxiVVhGYU1oTnRUTlkyc3Mwb0pLdjRGamZ0UVBLRnlsMVk2bFF0?=
- =?utf-8?B?NHJoamQ2Qk5HaVFKRkhoeExZamdVOXphcFd3clB1cjh6L0kzWEtiQUVVVm82?=
- =?utf-8?B?ZVlRbkpSZm8yT2E4OFdQYWVtZWxyem41L1gxdFIxNTBSb0lPMjU1b3FNV21J?=
- =?utf-8?B?WFoxZnVhV3IzU2VmeGU5ekRROHc0NzFBQlo1dVk1blY4NHhXQlBRQU5HNW0z?=
- =?utf-8?Q?E6is=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12038.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Y1VpNWJ2bGROaHZhQ1JKN3FqRVB4aFI5eDI4Zk5BN1hIdjdTdWJqUnNtT1FU?=
- =?utf-8?B?b2krektHK0prT1RpK3VWY2VZcFoySGw5aGpKTFFZRW1Wb256dzBQZ1JYS0Vk?=
- =?utf-8?B?VGVKTHlZSHg0bDFGOXM0UEMvQmE3cUdEZUxZazRrbThEUFZPazBvTUZaazM4?=
- =?utf-8?B?UW55OGl3R0VkbGVpbWMxY1lSN2trQjhzbkNoL1VtbGc1YmlXeUVzbUJ3Umht?=
- =?utf-8?B?bW01V2NGcVlBQWgrb21UbHNWaGxKaTZDNDFVT2xVaUdhRXAwSkc3U1BqMmNP?=
- =?utf-8?B?dWkyTDJmdE5DNmkyS25hTVhEYk1rNXRXZm1DOEMySWpnYyt1VlFBN2ZneWNo?=
- =?utf-8?B?TlU4SW1SQlBWdFJqVW9ueTZ1NzdQT1UweHpuYVNsWEU2MTgyd3BpSzZKNmJL?=
- =?utf-8?B?NStDTUVZYVNtS1BKOTFSbW1id3l5ei81YWZZODNKUUZIZ0hPb09WRU12RW1v?=
- =?utf-8?B?LzMvUzFoY1Vtd1AxcklQV2VMcWR6VkdRY21XVUhSazhuaGV3dGpjL1lLT2Nt?=
- =?utf-8?B?RlJmMGk0L3ZMVUo0WVh0NTNUTlROTkEvbGFvOVRBUzJ0ODJ6RTlQSTZBQnJ0?=
- =?utf-8?B?cURBWXN5NkxDeFNKS2ROK25EWEFRcFptV2YrTFpRdWVrazB5WHVvRElSblZP?=
- =?utf-8?B?bmxuVElQdU55VkIyZXRLNkdKZit1VlBVbkU5RmJCSmlhQ0NkOXNZRjBROFI4?=
- =?utf-8?B?QXRyZ1VJL2NvL1dMTEZiL05aNU81b3NrTXlDMXlMRzNRV3NZaUdSVUtBamM1?=
- =?utf-8?B?Rmh2TG1FSGtITUFiWm1GdGpXT0F3OVF6VnBTRENUNDVaN1lsY3I4V2NhNGU0?=
- =?utf-8?B?RVd5M2h5MGJwaTEzbk8veVNub0pCYVJuSUN3ZTZCU0lUOVZ3dEZmYm8xanFD?=
- =?utf-8?B?WEV4OTlPdk5MM20yRnA4MGxUYmE0dlNUOC9SeFJEM0RhMTVLSERvT0ZZbHlx?=
- =?utf-8?B?OEp2NXNWUUlHbG5aNWhwYzdZSk9HTVRRSTBqQ2dtdW41a0ZtZTlCMklXb3hV?=
- =?utf-8?B?Ny9BYjhrTE14cCtKSisxN05qNk1tTGRYRllSbmozVFVsNVcwb05tdFdhSlc2?=
- =?utf-8?B?dStGbDJGUEFaTzlZdzlGYldmRDZ5MElINmZ3Z0tVU1R3MlZaYUNUd2VoU2lu?=
- =?utf-8?B?RUtubFZmSmpVL2NDejN5aHRQenUzd2xvc0NSamQ2TnlpdkppdHFyMTJhUVAx?=
- =?utf-8?B?ZEpjVWpxZkcxQVpEVThreEpETGpDRWdyR2VMZ2xPM0M4cXFWMnc4dVNqbmd2?=
- =?utf-8?B?MURMOWlxZGNxRW1HeGVZeENwMWk5VGNGeHRzSUFuQUhhRC85R2E3K1QwdWNH?=
- =?utf-8?B?NFZvb0RZN1JDdmhTSkZwV0VKZmlxczlSMkhEblpLaE01Yy9JVlYrbWhvcjFY?=
- =?utf-8?B?VUgzWjNod2dNMWxva3IzUnF3RGNIVTBHaUdqbVVYUVVqUXJwdUxwZHgyemRY?=
- =?utf-8?B?b3d6OWxXbnFEOGxYbXZnRFd2WUs2VnNEN094Tk9pM3RIV1Y1RWh4eHpRRklG?=
- =?utf-8?B?ZnVnYWJacU5GRkpDRUc3aGJRaDVoWFpQSlR4Q2ZyMEZrdm5VeGx4cUhNNEFx?=
- =?utf-8?B?RnZvcForR3Z3TXhUM2NEWGhkY1o5d3FMKzVqdmxnSUVaRDlCWDR1S2FVYS9L?=
- =?utf-8?B?bWhIeVcrOU0zUFQyRXVvbHlYSTZZSHIrSWVwQ0s5U3N1cHV2WHF2U282YndL?=
- =?utf-8?B?QXc5K1RGUUd1WmJ1cWhEaFVzRUhzbldmQ0NENjdzUTEwaW05OXVaNnVJb1Ir?=
- =?utf-8?B?ZkE2enoyRkE4MVgyemVXNHp0Z080YzNUMWdmS3l0dm0xUTlYbDJQVmM5bWVL?=
- =?utf-8?B?d3JMUkZZMk5ZQXZvVDQ2TnpOUS9SQXEwZFBlM2RMVzIwcTFxNDlnYlZURVdm?=
- =?utf-8?B?RTUxZHZOWDN5eTRNSnR2Rkp5V1MrZDc0WVdsVHlDUHVKV25LZWd1bWNFeVNH?=
- =?utf-8?B?cm1pYjEyc1hiNVdCSGtNeG9uVmFlT0M5QlFZN2RSdlpEcVBncWVCN2ZKK2Zq?=
- =?utf-8?B?dkQxTGh1UlJPRVdFSlVqY29sNDFXUlJBUlFHOE10YkJTdk9VL0Q5YytXVzEx?=
- =?utf-8?B?ekEwanNTOU1sNmNsNmhUcHJXUG1SVC80NjhmM2xvNjN2eXZMcVN1UXJSSHZD?=
- =?utf-8?B?aEEwOC9XK1RBeW5lcXQybnlnaWhhazl6NDVlM092OUlnNThNeE15QWFqWVdj?=
- =?utf-8?B?QjBRelRpdkdyNkVlYTNQeTdITzdlbTMxWjhiTm05RU1MNXZPV2hId1U3YTBw?=
- =?utf-8?B?cWJzMkZaV3VKNTR4MDdkSW9RTW5Xb2hmSDl5cmFxK0VCcmVCbGx3eDN3RzhS?=
- =?utf-8?B?bVd5KzFRWTNSOXJSV1NFYWVSbG85NlovZ3NlNVBXTHVrVEJYS0RQZz09?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10398916-5ae5-4b3a-8647-08de6263a85f
-X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12038.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 14:02:10.0732
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uOZZO8IkpV4YGiqzGa0wjxU/gMln9hKhrVid7vz+Mdwq02kE6P0rDpWnB3n5NXygFv6VYjkXltA/CjbinBhgc33Lple1fa9Szgaeauaa/2U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB11598
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260202073322.259534-5-varadarajan.narayanan@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[cherry.de,quarantine];
-	R_DKIM_ALLOW(-0.20)[cherry.de:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-261845-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261846-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[quentin.schulz@cherry.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[cherry.de:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,kernel,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cherry.de:email,cherry.de:dkim,cherry.de:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 331A3CD311
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0B744CD213
 X-Rspamd-Action: no action
 
-Hi Andrew,
-
-On 2/2/26 2:52 PM, Andrew Lunn wrote:
-> On Mon, Feb 02, 2026 at 11:27:25AM +0100, Quentin Schulz wrote:
->> From: Quentin Schulz <quentin.schulz@cherry.de>
->>
->> When not passing the PHY ID with an ethernet-phy-idX.Y compatible
->> property, the MDIO bus will attempt to auto-detect the PHY by reading
->> its registers and then probing the appropriate driver. For this to work,
->> the PHY needs to be in a working state.
->>
->> Unfortunately, the net subsystem doesn't control the PHY reset GPIO when
->> attempting to auto-detect the PHY. This means the PHY needs to be in a
->> working state when entering the Linux kernel. This historically has been
->> the case for this device, but only because the bootloader was taking
->> care of initializing the Ethernet controller even when not using it.
->> We're attempting to support the removal of the network stack in the
->> bootloader, which means the Linux kernel will be entered with the PHY
->> still in reset and now Ethernet doesn't work anymore.
->>
->> The devices in the field only ever had a TI DP83825, so let's simply
->> bypass the auto-detection mechanism entirely by passing the appropriate
->> PHY IDs via the compatible.
->>
->> Cc: stable@vger.kernel.org
->> Fixes: bb510ddc9d3e ("arm64: dts: rockchip: add px30-cobra base dtsi and board variants")
->> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+On Mon, Feb 02, 2026 at 01:03:22PM +0530, Varadarajan Narayanan wrote:
+> RDP433 can have NAND or eMMC based on a board level rework. Since the
+> same GPIOS are used for both the interfaces, only one of them can be
+> used. Add a new DTS file to disable NAND and enable eMMC.
 > 
-> What is the justification for stable?
+> Signed-off-by: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
+> ---
+> v4: Move sdhc properties to SoC dtsi.
+>     Disable nand (that is enabled in ipq9574-rdp-common.dtsi) here as
+>     the eMMC variant doesn't have NAND.
 > 
+> v3: As qpic_nand is disabled in ipq9574-rdp-common.dtsi, no need to disable
+>     it here. Just enable eMMC.
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile             |  2 +-
+>  .../boot/dts/qcom/ipq9574-rdp433-emmc.dts     | 24 +++++++++++++++++++
+>  2 files changed, 25 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-rdp433-emmc.dts
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 6f34d5ed331c..d5fe12ef4300 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -26,7 +26,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c1.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c2.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp418.dtb
+> -dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp433.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp433.dtb ipq9574-rdp433-emmc.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp449.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp453.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp454.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433-emmc.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433-emmc.dts
+> new file mode 100644
+> index 000000000000..9053838ef696
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433-emmc.dts
+> @@ -0,0 +1,24 @@
+> +// SPDX-License-Identifier: BSD-3-Clause-Clear
+> +/*
+> + * IPQ9574 RDP433 (eMMC variant) board device tree source
+> + *
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "ipq9574-rdp-common.dtsi"
+> +#include "ipq9574-rdp433-common.dtsi"
+> +
+> +/ {
+> +	model = "Qualcomm Technologies, Inc. IPQ9574/AP-AL02-C7 (eMMC)";
+> +	compatible = "qcom,ipq9574-ap-al02-c7-emmc", "qcom,ipq9574";
+> +};
+> +
+> +&qpic_nand {
+> +	status = "disabled";
+> +};
 
-Bootloader without network stack = no network in Linux.
+I'd prefer you keep optional peripherals/buses disabled in the common
+dtsi and enable them in respective dts, this generally gives cleaner
+layers.
 
-Cheers,
-Quentin
+Was this done on purpose?
+
+Regards,
+Bjorn
+
+> +
+> +&sdhc_1 {
+> +	status = "okay";
+> +};
+> -- 
+> 2.34.1
+> 
 
