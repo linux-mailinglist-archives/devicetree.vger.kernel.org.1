@@ -1,342 +1,136 @@
-Return-Path: <devicetree+bounces-261684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261688-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WNQ3ChpcgGlj7AIAu9opvQ
-	(envelope-from <devicetree+bounces-261684-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 09:11:06 +0100
+	id sNfbGdBfgGlj7AIAu9opvQ
+	(envelope-from <devicetree+bounces-261688-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 09:26:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F370C989B
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 09:11:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7ADEC9AE0
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 09:26:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7C080302BEA1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 08:04:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0051E30063AE
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 08:26:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE5AB310635;
-	Mon,  2 Feb 2026 08:04:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0447C355808;
+	Mon,  2 Feb 2026 08:26:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cr2EZx3I"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="BFdEKFnL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB4B2EC56D
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 08:04:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A21A354AE2;
+	Mon,  2 Feb 2026 08:25:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770019482; cv=none; b=s/LunSjpmdJz71Q4+vs+B0aYx+6b17RTayZ8zujFX3xRe2mYnZLWmB8CZG5n2ZFW1TI71we9ch/1xH0bQKNMvJ6PeFQ2x5BYfHcUk+f9EHfM+czHmgPntc0Qks8k67J1vilsa+r5UgWiSH/h5B4aWl85JAK6uhHXybzs4rlgyLM=
+	t=1770020761; cv=none; b=mo62YPqqVtFWaz717mkI4yn3J3VP7WHRBTYpyJA4iGPDmsy0+OMr6iNTCaR2JkE+N3xktpP3GSNjoUxSO6s5XhCC/hVZqPNUulIMhcBSkyLkrNWG293D8aLq1SUzyex0ndmK7L8bwxm60eaY/NBGkkowbI95wyvxBz9qM1Sjb20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770019482; c=relaxed/simple;
-	bh=1YjBFMlMygrwfnk4BEfelTSmkv7l652jlGdUz7B943w=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=U2SJXVzet/IP5tIZrixNhiCn1aZ9UWnQcBouaKKYPGfSNiiEZp6LlWeSN39vhAAWe8s2vE1e/Jk9JiFjxvbh5oR6OZ7RcxbXKh9rrwAukwt6PI3glCoEcZ0HmNatKpN81ip/MYypdSUc822Hr3u7UzeYW0/H+Nw1NLeyME7BwGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cr2EZx3I; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-823c56765fdso908688b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 00:04:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770019481; x=1770624281; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ucnn95nrk17FbulixZ/28n+yr+SHkegFd7cld6WxCEE=;
-        b=cr2EZx3IJJaNkkjfwV6gZDLbBBtMaGHqrg5B4vmn1jgP43542H6YhEkm7iqhvXgh0D
-         aT165cih33r3z7ouNJRsSei51oJuQiaRcR4wVZ0ZWbv9dlQpn6AAwpSf+MEzFh/hLvvk
-         5QlFEkqq5noEWkgs80eM78g2XBiBW0DgMP8XNk9SWQKwygq0jq+7tblSRu9Y/RMQLDlH
-         KdbcST0lEErIMv2C+0hjdoqslWATJbCirBJzK5228MFRkds7lKkosp2R8Iif7zGFZ4C6
-         Xm7gYVAXma+nAquyxhNpwOmoV0U32BAPs09hjPc8VYh7VoNTopk0kxhPgJf970sKUT3T
-         dN1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770019481; x=1770624281;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ucnn95nrk17FbulixZ/28n+yr+SHkegFd7cld6WxCEE=;
-        b=veSs+HeIFJy87cnuMIwkMH7NVRYZb+5nXHU7c6iGcZJpM4lMr7OQvW0BVE41ZqTK94
-         dZ1a8fbKEoVpWvu4yMWeFUWdMAM276OaSGrvK0+6AEiVDjpOnjfihhjeYT8nVSp7c8Qf
-         KezkWDOTIZYlrKIHaWvaUAfLzfvK4ICOska/3g8QEEwWPLh3nb03XOpJ/269X7Gc5bHr
-         31RlearpXS1tfj7vk8ykXV3kaPlZoX7qYMLauS5G3feEF7MaY0MvhBmO3wbIHzZXJWEW
-         /8HbVa6K9BaT+97ZXPSY34SGHf/vZLrgWyjxKx0LsN8zBs60/ZLc1EOsA52mZxNmJT4n
-         z9/g==
-X-Forwarded-Encrypted: i=1; AJvYcCVGzg5QIS6yRo8aJCjDEKNuvGeEy3JdN20w96GXVEUypq7JsItrN42HjWLRXkb4OfSURO2Q3kYlk0XC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9Yz5ue91Lt9Wzuw/HWUeK4kjPIMR7yS94AhpjEx/oPJhEE6rs
-	UwOJq7FvO05ac3OMqh29F0emWzJ6ec3V/pFpbGPC0FfN+CPiYT4c5cis
-X-Gm-Gg: AZuq6aK02ZjN3Dyhqs18LKuSFvM3JnQ27NJe12GAn9vQvLHLaY4jX4FDZkphtGni+3H
-	uH8Qrwuq/KeSpwWYD8IKXH4vSWM9pCiU2HSMP7EEkkBRQwLDEwOfJ56lFtAy31CN3hLujB4EeAL
-	Q36z98dabvPzMHkX5hPnBLbLBZn+hO1tqQNAOAe4kLio8G5m4XIGZRGlB25Vej5blQWC4qB2BT2
-	WDnXJpX5q2ca7kGo0t58oy3HIezTlCaqjs9mFCOEGC38/lGs7HvZhUULJxiM4ZIdziihgXqvU9h
-	7zTOZGkwduMX+aeQEBRtiOs9of5qt7RzOsS5uQX0MJbEDQptNJ4+kBalapUS5FHyT7o5YDeomiu
-	EC/onaJhCNUK4dlo6zjqJ3drDJK7CByVDnXbgHXRkjtMGDA7Q6IVDaSA+Zs7RgrKGacO1xcEz4e
-	4EbWtyTDmcPEXwBCy7qILDpobyUI8Z+tyv2Q==
-X-Received: by 2002:a05:6a21:6b05:b0:35e:11ff:45c1 with SMTP id adf61e73a8af0-392e0024999mr10957213637.18.1770019480817;
-        Mon, 02 Feb 2026 00:04:40 -0800 (PST)
-Received: from localhost.localdomain ([2401:4900:61bf:a770:ed27:c783:3591:cfc1])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c642a3356b4sm13596938a12.17.2026.02.02.00.04.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Feb 2026 00:04:40 -0800 (PST)
-From: ASHISH YADAV <ashishyadav78@gmail.com>
-X-Google-Original-From: ASHISH YADAV <Ashish.Yadav@infineon.com>
-To: Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Ashish Yadav <ashish.yadav@infineon.com>
-Subject: [PATCH 2/2] hwmon:(pmbus/xdpe1a2g7b) Add support for xdpe1a2g5b/7b controllers
-Date: Mon,  2 Feb 2026 13:33:55 +0530
-Message-Id: <20260202080355.53061-3-Ashish.Yadav@infineon.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20260202080355.53061-1-Ashish.Yadav@infineon.com>
-References: <20260202080355.53061-1-Ashish.Yadav@infineon.com>
+	s=arc-20240116; t=1770020761; c=relaxed/simple;
+	bh=phCEsAISm1EXcNibuPfrZAjaH8jQm5Bi33x10pdIXaE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ktC5vaIjLnM8QJkLOUDDGVkc5/DVMKrWw0W5mcBlAdyo+vr1dEGBxDlZwPLqAzhMdH2yVehxRsOEbSXATf3FUgejk88FQNMMNG4YxQQdvIPD9PaoU3yhfyB5WYA/0Px3a6wxFYXoy7jlhm5f7xaEGovlrwZlB/AOjaWtGzvUjHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=BFdEKFnL; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=U/gycSIOgTGnUjvcUt1gVzgzrqctuqnK7adcurWVRKo=; b=BFdEKFnLsQ7B9xXiQ64Kv6nXPx
+	EYyNmEZY3tuigNX8cPmLRVVRBkhuY8yzUm0i81JbNWq7KjNcyUCCqvX1PGdw0uaWFr8bejJmIAdRk
+	jsrhU1ydfOLrSqak/N+rvFhuAUbpRCYaOIaLSIPa0v+PQOpBsyEznHqdf0px+8mqe/VlG+oyC2rRw
+	E2RM4OpET+F4I1dNAQxlwPzjjgdG1ojaAFFXxe/+aD7H3H4JJ3fowEZ+lGWO5n95MlEic8HEydcGg
+	a6DetxO4kV3ha9mTdUx+f6xHAhPJwsf6pnNUECcT3/brpwAW/ASL6v6aCT5J3e3Oivls/NLnPEsZH
+	J56SmypQ==;
+Date: Mon, 2 Feb 2026 09:04:08 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Mithil Bavishi <bavishimithil@gmail.com>
+Cc: aaro.koskinen@iki.fi, airlied@gmail.com, conor+dt@kernel.org,
+ jernej.skrabec@gmail.com, jonas@kwiboo.se, khilman@baylibre.com,
+ krzk+dt@kernel.org, laurent.pinchart@ideasonboard.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
+ jesszhan0024@gmail.com, rfoss@kernel.org, robh@kernel.org,
+ rogerq@kernel.org, simona@ffwll.ch, thierry.reding@gmail.com,
+ tony@atomide.com, tzimmermann@suse.de, andrzej.hajda@intel.com,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH v5 5/8] ARM: dts: ti: omap: espresso-common: Add common
+ device tree for Samsung Galaxy Tab 2 series
+Message-ID: <20260202090408.4c3757cb@kemnade.info>
+In-Reply-To: <20260129054709.3878-6-bavishimithil@gmail.com>
+References: <20260129054709.3878-1-bavishimithil@gmail.com>
+	<20260129054709.3878-6-bavishimithil@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kemnade.info,none];
+	R_DKIM_ALLOW(-0.20)[kemnade.info:s=20220719];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261684-lists,devicetree=lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_FROM(0.00)[bounces-261688-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kemnade.info:+];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ashishyadav78@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
 	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andreas@kemnade.info,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[iki.fi,gmail.com,kernel.org,kwiboo.se,baylibre.com,ideasonboard.com,linux.intel.com,linaro.org,bp.renesas.com,ffwll.ch,atomide.com,suse.de,intel.com,vger.kernel.org,lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infineon.com:mid,infineon.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9F370C989B
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,kemnade.info:mid,kemnade.info:dkim]
+X-Rspamd-Queue-Id: C7ADEC9AE0
 X-Rspamd-Action: no action
 
-From: Ashish Yadav <ashish.yadav@infineon.com>
+On Thu, 29 Jan 2026 00:47:06 -0500
+Mithil Bavishi <bavishimithil@gmail.com> wrote:
 
-Add the pmbus driver for Infineon Digital Multi-phase XDPE1A2G5B and
-XDPE1A2G7B controllers.
+> Create common device tree for Samsung Espresso series devices
+> 
+> Let's create a common tree for all the variants first, later we can
+> device specific trees based on their screen sizes
+> 
+> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+> ---
+[...]
+> +			OMAP4_IOPAD(0x0c0, WAKEUP_EN | PIN_INPUT | MUX_MODE3)
 
-XDPE1A2G5B controller supports Linear Data format for VOUT using VOUT_MODE
-command.
-XDPE1A2G7B controller supports Linear and VID Data format for VOUT using 
-VOUT_MODE command.
+We had the discussion. This should be done via pinctrl irq if possible instead of
+specifying WAKEUP_EN here, You had some trouble to understand how it can be done,
+and we agreed to add the wakeup functionality as a follow-up concentrating just
+on that detail and for now just remove WAKEUP_EN.
+[...]
+> +		mount-matrix =	"-1", "0", "0",
+> +				"0", "1", "0",
+> +				"0", "0", "1";
+> +		};
+> +
+still this strange matrix. This is no rotation matrix. Determinant is -1.
+Something is strange here, so also the idea in our earlier discussion was to
+also postpone it and maybe separately discuss it with iio.
 
-In case of vid mode in XDPE1A2G7B controller, NVIDIA PWM VID vrm_version
-is supported:
-Vout = 5mV * (VID-1) + 195mV
-
-Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
----
- drivers/hwmon/pmbus/Kconfig      |   9 +++
- drivers/hwmon/pmbus/Makefile     |   1 +
- drivers/hwmon/pmbus/pmbus.h      |   2 +-
- drivers/hwmon/pmbus/pmbus_core.c |   4 ++
- drivers/hwmon/pmbus/xdpe1a2g7b.c | 115 +++++++++++++++++++++++++++++++
- 5 files changed, 130 insertions(+), 1 deletion(-)
- create mode 100644 drivers/hwmon/pmbus/xdpe1a2g7b.c
-
-diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-index f3fb94cebf1a..c6750bce446d 100644
---- a/drivers/hwmon/pmbus/Kconfig
-+++ b/drivers/hwmon/pmbus/Kconfig
-@@ -684,6 +684,15 @@ config SENSORS_XDPE152
- 	  This driver can also be built as a module. If so, the module will
- 	  be called xdpe152c4.
- 
-+config SENSORS_XDPE1A2G7B
-+	tristate "Infineon XDPE1A2G7B"
-+	help
-+	  If you say yes here you get hardware monitoring support for Infineon
-+	  XDPE1A2G5B and XDPE1A2G7B.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called xdpe1a2g7b.
-+
- config SENSORS_XDPE122
- 	tristate "Infineon XDPE122 family"
- 	help
-diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-index 349a89b6d92e..620f24baa289 100644
---- a/drivers/hwmon/pmbus/Makefile
-+++ b/drivers/hwmon/pmbus/Makefile
-@@ -67,6 +67,7 @@ obj-$(CONFIG_SENSORS_UCD9200)	+= ucd9200.o
- obj-$(CONFIG_SENSORS_XDP710)	+= xdp710.o
- obj-$(CONFIG_SENSORS_XDPE122)	+= xdpe12284.o
- obj-$(CONFIG_SENSORS_XDPE152)	+= xdpe152c4.o
-+obj-$(CONFIG_SENSORS_XDPE1A2G7B)	+= xdpe1a2g7b.o
- obj-$(CONFIG_SENSORS_ZL6100)	+= zl6100.o
- obj-$(CONFIG_SENSORS_PIM4328)	+= pim4328.o
- obj-$(CONFIG_SENSORS_CRPS)	+= crps.o
-diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus.h
-index d2e9bfb5320f..3ddcb742d289 100644
---- a/drivers/hwmon/pmbus/pmbus.h
-+++ b/drivers/hwmon/pmbus/pmbus.h
-@@ -416,7 +416,7 @@ enum pmbus_sensor_classes {
- #define PMBUS_PAGE_VIRTUAL	BIT(31)	/* Page is virtual */
- 
- enum pmbus_data_format { linear = 0, ieee754, direct, vid };
--enum vrm_version { vr11 = 0, vr12, vr13, imvp9, amd625mv };
-+enum vrm_version { vr11 = 0, vr12, vr13, imvp9, amd625mv, nvidia195mv };
- 
- /* PMBus revision identifiers */
- #define PMBUS_REV_10 0x00	/* PMBus revision 1.0 */
-diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
-index be6d05def115..4d7634ee6148 100644
---- a/drivers/hwmon/pmbus/pmbus_core.c
-+++ b/drivers/hwmon/pmbus/pmbus_core.c
-@@ -885,6 +885,10 @@ static s64 pmbus_reg2data_vid(struct pmbus_data *data,
- 		if (val >= 0x0 && val <= 0xd8)
- 			rv = DIV_ROUND_CLOSEST(155000 - val * 625, 100);
- 		break;
-+	case nvidia195mv:
-+		if (val >= 0x01)
-+			rv = 195 + (val - 1) * 5;  /* VID step is 5mv */
-+		break;
- 	}
- 	return rv;
- }
-diff --git a/drivers/hwmon/pmbus/xdpe1a2g7b.c b/drivers/hwmon/pmbus/xdpe1a2g7b.c
-new file mode 100644
-index 000000000000..79b12b56e7b6
---- /dev/null
-+++ b/drivers/hwmon/pmbus/xdpe1a2g7b.c
-@@ -0,0 +1,115 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Hardware monitoring driver for Infineon Multi-phase Digital XDPE1A2G5B
-+ * and XDPE1A2G7B Controllers
-+ *
-+ * Copyright (c) 2026 Infineon Technologies. All rights reserved.
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include "pmbus.h"
-+
-+#define XDPE1A2G7B_PAGE_NUM 2
-+#define XDPE1A2G7B_NVIDIA_195MV 0x1E /* NVIDIA mode 1.95mV, VID step is 5mV */
-+
-+static int xdpe1a2g7b_identify(struct i2c_client *client,
-+			       struct pmbus_driver_info *info)
-+{
-+	u8 vout_params;
-+	int i, ret, vout_mode;
-+
-+	vout_mode = pmbus_read_byte_data(client, 0, PMBUS_VOUT_MODE);
-+	if (vout_mode >= 0 && vout_mode != 0xff) {
-+		switch (vout_mode >> 5) {
-+		case 0:
-+			info->format[PSC_VOLTAGE_OUT] = linear;
-+			return 0;
-+		case 1:
-+			info->format[PSC_VOLTAGE_OUT] = vid;
-+			break;
-+		default:
-+			return -ENODEV;
-+		}
-+	}
-+
-+	for (i = 0; i < info->pages; i++) {
-+		/* Read the VOUT_MODE register for VID Code Type. */
-+		ret = pmbus_read_byte_data(client, i, PMBUS_VOUT_MODE);
-+		if (ret < 0)
-+			return ret;
-+
-+		vout_params = ret & GENMASK(4, 0);
-+		switch (vout_params) {
-+		case XDPE1A2G7B_NVIDIA_195MV:
-+			info->vrm_version[i] = nvidia195mv;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static struct pmbus_driver_info xdpe1a2g7b_info = {
-+	.pages = XDPE1A2G7B_PAGE_NUM,
-+	.identify = xdpe1a2g7b_identify,
-+	.format[PSC_VOLTAGE_IN] = linear,
-+	.format[PSC_TEMPERATURE] = linear,
-+	.format[PSC_CURRENT_IN] = linear,
-+	.format[PSC_CURRENT_OUT] = linear,
-+	.format[PSC_POWER] = linear,
-+	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
-+		   PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
-+		   PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_STATUS_TEMP |
-+		   PMBUS_HAVE_POUT | PMBUS_HAVE_PIN | PMBUS_HAVE_STATUS_INPUT,
-+	.func[1] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
-+		   PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
-+		   PMBUS_HAVE_PIN | PMBUS_HAVE_POUT | PMBUS_HAVE_STATUS_INPUT,
-+};
-+
-+static int xdpe1a2g7b_probe(struct i2c_client *client)
-+{
-+	struct pmbus_driver_info *info;
-+
-+	info = devm_kmemdup(&client->dev, &xdpe1a2g7b_info, sizeof(*info),
-+			    GFP_KERNEL);
-+	if (!info)
-+		return -ENOMEM;
-+
-+	return pmbus_do_probe(client, info);
-+}
-+
-+static const struct i2c_device_id xdpe1a2g7b_id[] = { { "xdpe1a2g5b" },
-+						      { "xdpe1a2g7b" },
-+						      {} };
-+
-+MODULE_DEVICE_TABLE(i2c, xdpe1a2g7b_id);
-+
-+static const struct of_device_id __maybe_unused xdpe1a2g7b_of_match[] = {
-+	{ .compatible = "infineon,xdpe1a2g5b" },
-+	{ .compatible = "infineon,xdpe1a2g7b" },
-+	{}
-+};
-+
-+MODULE_DEVICE_TABLE(of, xdpe1a2g7b_of_match);
-+
-+static struct i2c_driver xdpe1a2g7b_driver = {
-+	.driver = {
-+		.name = "xdpe1a2g7b",
-+		.of_match_table = of_match_ptr(xdpe1a2g7b_of_match),
-+	},
-+	.probe = xdpe1a2g7b_probe,
-+	.id_table = xdpe1a2g7b_id,
-+};
-+
-+module_i2c_driver(xdpe1a2g7b_driver);
-+
-+MODULE_AUTHOR("Ashish Yadav <ashish.yadav@infineon.com>");
-+MODULE_DESCRIPTION("PMBus driver for Infineon XDPE1A2G5B/7B");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("PMBUS");
--- 
-2.39.5
-
+Regards,
+Andreas
 
