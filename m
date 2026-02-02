@@ -1,180 +1,400 @@
-Return-Path: <devicetree+bounces-261708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261707-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AL4xOIJ2gGkV8gIAu9opvQ
-	(envelope-from <devicetree+bounces-261708-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:03:46 +0100
+	id yCm7KvN0gGnU8QIAu9opvQ
+	(envelope-from <devicetree+bounces-261707-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 10:57:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36287CA6C0
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:03:46 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E08CCA55C
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 10:57:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 82E87306824C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 09:57:33 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2C71B30065C8
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 09:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46D9A2DEA8F;
-	Mon,  2 Feb 2026 09:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910FB3563D1;
+	Mon,  2 Feb 2026 09:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FXCVqwM7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AhFPS8rS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD15F2DCF58;
-	Mon,  2 Feb 2026 09:57:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7E62DFF19
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 09:57:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770026253; cv=none; b=eByb92gZ7mxdGRaQv95V073z4QwC5CO5KIJrZ29emvJiNaCYqWih6LLJ6a/UA9AUN2r2WJqsHCNxIfcFo7Yie/kg2lOlo8nwIyxIRM/6nhw/n4lHBV+IwxIYWvRTOnEdSkOV1jp1Dn/bd/yPSNySRGS5MmN9aenelA4ANBbbBN4=
+	t=1770026225; cv=none; b=aJ2Wm3pVrc+a44SEh9VtFTl7FIJaW/xu9+yBiojtRc5ciNS7MWn8E7JRewV40xL8puekakdUcVy9Yzflsjmr3cWIKvD1fXR8GJJzkMSV3VqLETSCiNMAdSZspVsUVbqdt1lyEAJlf5gqtK8KwoBTumB5ri8qwmqHHz3E4iZ2EbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770026253; c=relaxed/simple;
-	bh=yP87X20z3tjBiL2FhsQNrvRzYFGHMI6DbStmcFuw5SY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=H3W3B+eCuVHxbt691VSPmrdPrN7EJ9H/vFelWk706NlwZPNa1FVa54w4XnDnME3okNCW0cIFtRn1Zc82IqvDiICLZemG8lm+TO+kadASq91PWUl+P/bPWguyHkxXCeKAfFiKiTHxKZKCEMMD3gEG6J0ZFZ/RPqrQ97d0Y3RpCQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FXCVqwM7; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id AC150C237F2;
-	Mon,  2 Feb 2026 09:57:32 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id E12BB60767;
-	Mon,  2 Feb 2026 09:57:27 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 24B11119A88F3;
-	Mon,  2 Feb 2026 10:57:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770026246; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=S+RzlUEH251YiNbOWqwHIrsXi4zbpi7hYqWeCjzmkvA=;
-	b=FXCVqwM72h5FfBEEXwcOFOqTDjIdbJaKQXVYgrJ8vEuINUCHICIlFugMQeTGBCNR3O6Mow
-	O8vavTSKTulfNlq/92gz9cn/ivnkcP8CHDf943HUZpYM8vdjSJHF+t1oUXcloP8KCHQ5O9
-	L4KfNkJ4Tgs759FtCusyfBX27o+U0DsBRF5F6byiew2+Hqv5mBJkIE5sUaijyqm0KTruKn
-	6x7MEh/prgS0XlRexT4gxyKUL/Kr0jKr4oJJ9OxNWE2snMNmeVBKpyITDLkt0I/SsUvjZ0
-	kVNpU1wBPIAlEfJCKS5V4JpovaWRxhAPIVTJDU7ySTHTAq8JOCC2197uz7BWHQ==
-Date: Mon, 2 Feb 2026 10:57:17 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-Cc: "Jyri Sarha" <jyri.sarha@iki.fi>, "Tomi Valkeinen"
- <tomi.valkeinen@ideasonboard.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Russell King" <linux@armlinux.org.uk>,
- "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony Lindgren" <tony@atomide.com>,
- "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
- <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
- Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
- <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Markus
- Schneider-Pargmann" <msp@baylibre.com>, "Bajjuri Praneeth"
- <praneeth@ti.com>, "Louis Chauvet" <louis.chauvet@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
- <miguel.gazquez@bootlin.com>, "Herve Codina" <herve.codina@bootlin.com>,
- <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-omap@vger.kernel.org>
-Subject: Re: [PATCH v5 20/25] drm/tilcdc: Use devm_drm_of_get_bridge()
- helper
-Message-ID: <20260202105717.53067aae@kmaincent-XPS-13-7390>
-In-Reply-To: <DG269FV5MZ8I.2VFNJXA0N2Y26@bootlin.com>
-References: <20260123-feature_tilcdc-v5-0-5a44d2aa3f6f@bootlin.com>
-	<20260123-feature_tilcdc-v5-20-5a44d2aa3f6f@bootlin.com>
-	<DG269FV5MZ8I.2VFNJXA0N2Y26@bootlin.com>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1770026225; c=relaxed/simple;
+	bh=aQyS+hE0k2g5HzJUxy2lGI++kpB0sDD0gMSMsx1vkYE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=RmsHYScI8sMYCvECWCXb3Vton91UdEinAXRiQmwhkhYr9YA2hskTH2suoTLyqHt3C26iNwn9uWh+2Edg8PRXeveq8xTNpYd+9bw25vXqxFW2eaYrEyQ7oKoPzaLJaGs5BI4ygXLLWQvvxIi353DChsbNpu20XcT5DQPOVObGjiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AhFPS8rS; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-42fed090e5fso3382636f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 01:57:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770026222; x=1770631022; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=AFDYJ7q5ek+KQjUhD9TdsFNk97m/l5Paz0LDlGO6qOo=;
+        b=AhFPS8rSkzQLsTOupJ+6H0meExyi1Bz1CHUpTwrBTmp8xc9ZCXfAB3XhMDsFHXBRyx
+         7GXi9yOy1fVJryLASSDmr1BAwW27HZhgLvceQX9KQaE5blpqbfFDn9aJDitA0wAvT1ob
+         2zcYadrwjl8xlofawGgQ/FIwbsCIvvl0JFef3gRq6w1u2rwt/9Zv+AYRYjbLLgrwnGbN
+         RQ761QqXE8kMx6FMx54oh990Vw48Xpadhb4Ee4mO/3+lV3MfT8bqbtvIkJmzVkzd5LTg
+         q6NJbkIVvYI7xFRq/AKRAYPDbUwaPsIfXIfmebtI60H72Ewn6Oi50Lk/0zyPjgHMn1Mw
+         XLHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770026222; x=1770631022;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AFDYJ7q5ek+KQjUhD9TdsFNk97m/l5Paz0LDlGO6qOo=;
+        b=Sr1ys32CTuKi3oVO5/OM5vnZqAI0S3EmJgF1mGUU8wN74ujlQ1xdpFgiKM0BRwIYAN
+         GOAnEbPR/+uOQTzlxNDffxdPdwCr34QuV4hwselZwrAjxkARVgQ+zhqz8sre1gBfIiGm
+         xh0jpckK2ga3j0aktWIVvRFRmBPW/oJ+8HITXwh8Uq8orfKCXW9zxELfF8Z5xtpF+jCG
+         PJE5sTkDaCVeKnD+lcz2Us4ugvZBXi7tSe37FgzUxel0I4z6qZ77AINpgGpWBXticMY9
+         YkBHvgugtnadPEYLANCTbl6C8okZ7NzXSkzNilSISQ38dAM9erWw7+96AamGLCuGvYxF
+         O1RQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV6pckkXZRbfogquIfZRKwYxsJuBbZ0rR72qUCo6meAEmDgqdOmo2BDI41WQxCI9iwdXWPrCSKwra3S@vger.kernel.org
+X-Gm-Message-State: AOJu0YzA46NELR3QFrBQWko6SNLzwIKDFPwQJ3MOgI133Xh2pxHrSZ/C
+	wHAVOomGK6heP9lGMgHRQokTlzgEXLzp5U6e/P7R7vLpOCdFCCWfFvJN
+X-Gm-Gg: AZuq6aJqxVWJ7b+WNSyueJzZzZvvD0ePpu6ZC/8uxLOo+8UNFDN1wslg3TA+eUdwBlN
+	CsZx9acO4Bh/bqlloUDyhZC2sN2jHofnSOAfaXpZYZtH51KxN2TwOo/IrDxhzxkKK57VmkytAy9
+	kbKcIIWcfAVi3xNycgigM/Fl7QzF/rEv+IHu+oINPjygoob+DV16m9L96A4l8yCwCkPv9guEPj2
+	nmBP8lZI2pXc8fx4YjwsKdoPxGk654wuzWldFje6or7S+Y/v7vFU/xeotTCzx0/umzenOZHKjTf
+	FcCRz12yboWgtgMeBPaAGK3U/hmy/S3sfwKu3viCoZUXOqxNtghos4NrIAP0zO5DMsxwkSCXkse
+	t0aYX15eO89eV44p4GVw80b3/dZsiKYJSXPc03o1/EFRpUaXWnvHxlbvc8YWUNa/bC3y3UJAVVW
+	DP917X5SDtK9u2x3TUBP4=
+X-Received: by 2002:a05:6000:61e:b0:432:8504:8d5b with SMTP id ffacd0b85a97d-435f3abb458mr15482339f8f.50.1770026221918;
+        Mon, 02 Feb 2026 01:57:01 -0800 (PST)
+Received: from [192.168.1.187] ([148.63.225.166])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e10e483asm41024865f8f.3.2026.02.02.01.57.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Feb 2026 01:57:01 -0800 (PST)
+Message-ID: <eb1d9b939f95888739ce4a70f516cec07393c6df.camel@gmail.com>
+Subject: Re: [PATCH v6 2/8] iio: core: add fixed point parsing with 64-bit
+ parts
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>,  Andy Shevchenko	 <andy@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich	
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>
+Date: Mon, 02 Feb 2026 09:57:44 +0000
+In-Reply-To: <20260130-adf41513-iio-driver-v6-2-cf46239026bc@analog.com>
+References: <20260130-adf41513-iio-driver-v6-0-cf46239026bc@analog.com>
+	 <20260130-adf41513-iio-driver-v6-2-cf46239026bc@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261708-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[31];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_CC(0.00)[iki.fi,ideasonboard.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,armlinux.org.uk,bgdev.pl,atomide.com,intel.com,linaro.org,kwiboo.se,baylibre.com,ti.com,bootlin.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261707-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:url]
-X-Rspamd-Queue-Id: 36287CA6C0
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 4E08CCA55C
 X-Rspamd-Action: no action
 
-On Fri, 30 Jan 2026 20:31:11 +0100
-"Luca Ceresoli" <luca.ceresoli@bootlin.com> wrote:
-
-> Hi Kory,
+On Fri, 2026-01-30 at 10:06 +0000, Rodrigo Alencar via B4 Relay wrote:
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 >=20
-> On Fri Jan 23, 2026 at 5:12 PM CET, Kory Maincent (TI.com) wrote:
-> > Replace drm_of_find_panel_or_bridge() with the newer
-> > devm_drm_of_get_bridge() helper which simplifies the code by:
-> > - Automatically handling both panel and bridge cases internally
-> > - Managing the panel-to-bridge conversion when needed
-> > - Using devres for resource management, eliminating manual cleanup
-> >
-> > This removes the need for explicit panel-to-bridge conversion via
-> > devm_drm_panel_bridge_add_typed() and the associated error handling pat=
-h.
-
-...
-
-> >  	encoder =3D drmm_simple_encoder_alloc(ddev, struct tilcdc_encoder,
-> >  					    base, DRM_MODE_ENCODER_NONE);
-> > @@ -73,12 +70,5 @@ int tilcdc_encoder_create(struct drm_device *ddev)
-> >  	}
-> >  	priv->encoder =3D encoder;
-> >
-> > -	if (panel) {
-> > -		bridge =3D devm_drm_panel_bridge_add_typed(ddev->dev, panel,
-> > -
-> > DRM_MODE_CONNECTOR_DPI); =20
+> Add iio_str_to_fixpoint64() function that leverages simple_strtoull()
+> to parse numbers from a string.
+> A helper function __iio_str_to_fixpoint64() replaces
+> __iio_str_to_fixpoint() implementation, extending its usage for
+> 64-bit fixed-point parsing.
 >=20
-> You are introducing a subtle difference here: while you pass the connector
-> type to devm_drm_panel_bridge_add_typed(), devm_drm_of_get_bridge() does
-> not take it and expects it to ahve been set previously and errors out if =
-it
-> hasn't.
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> ---
+> =C2=A0drivers/iio/industrialio-core.c | 211 +++++++++++++++++++++++++++++=
++----------
+> =C2=A0include/linux/iio/iio.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 2 +
+> =C2=A02 files changed, 163 insertions(+), 50 deletions(-)
 >=20
-> Can you ensure the connector type is alway set before this
-> devm_drm_of_get_bridge() call?
+> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-c=
+ore.c
+> index 3115d59c1372..37e9ed6b659b 100644
+> --- a/drivers/iio/industrialio-core.c
+> +++ b/drivers/iio/industrialio-core.c
+> @@ -21,6 +21,7 @@
+> =C2=A0#include <linux/kernel.h>
+> =C2=A0#include <linux/module.h>
+> =C2=A0#include <linux/mutex.h>
+> +#include <linux/overflow.h>
+> =C2=A0#include <linux/poll.h>
+> =C2=A0#include <linux/property.h>
+> =C2=A0#include <linux/sched.h>
+> @@ -881,6 +882,136 @@ static ssize_t iio_read_channel_info_avail(struct d=
+evice *dev,
+> =C2=A0	}
+> =C2=A0}
+> =C2=A0
+> +/**
+> + * iio_safe_strntou64() - Parse u64 from string checking for overflow sa=
+fety
+> + * @str: The string to parse
+> + * @endp: output pointer to the end parsing position
+> + * @result: parsed value
+> + * @max_chars: maximum number of digit characters to read
+> + *
+> + * This function is used in fixed-point parsing and it iterates over a c=
+onst
+> + * char array. It might duplicate behavior of simple_strtoull() or kstrt=
+oull(),
+> + * but those have their own limitations:
+> + * - simple_strtoull() is not overflow-safe and its usage is discouraged=
+;
+> + * - kstrtoull() is safe, but requires termination and it would required=
+ a copy
+> + *=C2=A0=C2=A0 of the string to a temporary buffer.
+> + *
+> + * The implementation of this function is similar to _parse_integer_limi=
+t()
+> + * available in lib/kstrtox.h, but that header/function is not available=
+ to be
+> + * used in kernel modules. Hence, this implementation may need to change=
+ or
+> + * removed to reuse a new suitable helper that is properly exposed.
+> + *
+> + * Returns:
+> + * number of parsed characters on success, -ERANGE on overflow
+> + */
+> +static ssize_t iio_safe_strntou64(const char *str, const char **endp,
+> +				=C2=A0 u64 *result, size_t max_chars)
+> +{
+> +	u64 digit, acc =3D 0;
+> +	ssize_t idx =3D 0;
+> +
+> +	while (isdigit(str[idx]) && idx < max_chars) {
+> +		digit =3D str[idx] - '0';
+> +		if (unlikely(acc & (~0ull << 60))) {
+> +			if (check_mul_overflow(acc, 10, &acc) ||
+> +			=C2=A0=C2=A0=C2=A0 check_add_overflow(acc, digit, &acc))
+> +				return -ERANGE;
+> +		} else {
+> +			acc =3D acc * 10 + digit;
+> +		}
+> +		idx++;
+> +	}
+> +
+> +	*endp =3D str + idx;
+> +	*result =3D acc;
+> +	return idx;
+> +}
+> +
+> +/**
+> + * __iio_str_to_fixpoint64() - Parse a fixed-point number from a string
+> + * @str: The string to parse
+> + * @fract_mult: Multiplier for the first decimal place, should be a powe=
+r of 10
+> + * @integer: The integer part of the number
+> + * @fract: The fractional part of the number
+> + * @scale_db: True if this should parse as dB
+> + *
+> + * This variant uses 64-bit integers for both integer and fractional par=
+ts.
+> + * Parsed positive values greater than S64_MAX are returned as-is. Parse=
+d
+> + * negative values less than S64_MIN are treated as range error, so -ERA=
+NGE is
+> + * returned.
+> + *
+> + * Returns:
+> + * 0 on success, or a negative error code if the string could not be par=
+sed.
+> + */
+> +static int __iio_str_to_fixpoint64(const char *str, u64 fract_mult,
+> +				=C2=A0=C2=A0 s64 *integer, s64 *fract, bool scale_db)
+> +{
+> +	u64 i =3D 0, f =3D 0;
+> +	int ret, precision =3D ffs(fract_mult);
+> +	bool negative =3D false;
+> +
+> +	if (precision > 20) /* ceil(log10(U64_MAX)) =3D 20 */
+> +		return -EINVAL;
+> +
+> +	if (str[0] =3D=3D '-') {
+> +		negative =3D true;
+> +		str++;
+> +	} else if (str[0] =3D=3D '+') {
+> +		str++;
+> +	}
+> +
+> +	ret =3D iio_safe_strntou64(str, &str, &i, SIZE_MAX);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (precision && *str =3D=3D '.') {
+> +		str++; /* skip decimal point */
+> +		ret =3D iio_safe_strntou64(str, &str, &f, precision);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		if (ret < precision) /* scale up */
+> +			f *=3D int_pow(10, precision - ret);
+> +
+> +		while (isdigit(*str)) /* truncate: ignore further digits */
+> +			str++;
+> +	}
+> +
+> +	if (!ret)
+> +		return -EINVAL;
+> +
+> +	if (scale_db) {
+> +		/* Ignore the dB suffix */
+> +		if (!strncmp(str, " dB", sizeof(" dB") - 1))
+> +			str +=3D sizeof(" dB") - 1;
+> +		else if (!strncmp(str, "dB", sizeof("dB") - 1))
+> +			str +=3D sizeof("dB") - 1;
+> +	}
+> +
+> +	if (*str =3D=3D '\n')
+> +		str++;
+> +
+> +	if (*str !=3D '\0')
+> +		return -EINVAL;
+> +
+> +	if (negative) {
+> +		if (i) {
+> +			if (i > (u64)S64_MIN)
+> +				return -ERANGE;
+> +			i =3D -i;
+> +		} else {
+> +			if (f > (u64)S64_MIN)
+> +				return -ERANGE;
+> +			f =3D -f;
+> +		}
+> +	}
+> +
+> +	*integer =3D i;
+> +	*fract =3D f;
+> +
+> +	return 0;
+> +}
+> +
+> =C2=A0/**
+> =C2=A0 * __iio_str_to_fixpoint() - Parse a fixed-point number from a stri=
+ng
+> =C2=A0 * @str: The string to parse
+> @@ -895,63 +1026,43 @@ static ssize_t iio_read_channel_info_avail(struct =
+device *dev,
+> =C2=A0static int __iio_str_to_fixpoint(const char *str, int fract_mult,
+> =C2=A0				 int *integer, int *fract, bool scale_db)
+> =C2=A0{
+> -	int i =3D 0, f =3D 0;
+> -	bool integer_part =3D true, negative =3D false;
+> +	s64 integer64, fract64;
+> +	int ret;
+> =C2=A0
+> -	if (fract_mult =3D=3D 0) {
+> -		*fract =3D 0;
+> +	ret =3D __iio_str_to_fixpoint64(str, fract_mult, &integer64, &fract64,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 scale_db);
+> +	if (ret)
+> +		return ret;
 
-The connector type should be set by the bridge or the panel driver.
+I know it feels tempting to do the above while adding the 64bit variant. Bu=
+t isn't the
+overflow safety also an issue on the 32bit variant? IMO, we should first ha=
+ve a patch
+adding the overflow safety with a Fixes tag and then add 64bit support.
 
-https://elixir.bootlin.com/linux/v6.18.6/source/drivers/gpu/drm/bridge/pane=
-l.c#L397
- * This function is deprecated and should not be used in new drivers. Use
- * devm_drm_panel_bridge_add() instead, and fix panel drivers as necessary =
-if
- * they don't report a connector type.
+=20
+> =C2=A0
+> -		return kstrtoint(str, 0, integer);
+> -	}
+> +	if (integer64 < INT_MIN || integer64 > UINT_MAX ||
+> +	=C2=A0=C2=A0=C2=A0 fract64 < INT_MIN || fract64 > UINT_MAX)
+> +		return -ERANGE;
+> =C2=A0
+> -	if (str[0] =3D=3D '-') {
+> -		negative =3D true;
+> -		str++;
+> -	} else if (str[0] =3D=3D '+') {
+> -		str++;
+> -	}
+> -
+> -	while (*str) {
+> -		if ('0' <=3D *str && *str <=3D '9') {
+> -			if (integer_part) {
+> -				i =3D i * 10 + *str - '0';
+> -			} else {
+> -				f +=3D fract_mult * (*str - '0');
+> -				fract_mult /=3D 10;
+> -			}
+> -		} else if (*str =3D=3D '\n') {
+> -			if (*(str + 1) =3D=3D '\0')
+> -				break;
+> -			return -EINVAL;
+> -		} else if (!strncmp(str, " dB", sizeof(" dB") - 1) && scale_db) {
+> -			/* Ignore the dB suffix */
+> -			str +=3D sizeof(" dB") - 1;
+> -			continue;
+> -		} else if (!strncmp(str, "dB", sizeof("dB") - 1) && scale_db) {
+> -			/* Ignore the dB suffix */
+> -			str +=3D sizeof("dB") - 1;
+> -			continue;
+> -		} else if (*str =3D=3D '.' && integer_part) {
+> -			integer_part =3D false;
+> -		} else {
+> -			return -EINVAL;
+> -		}
+> -		str++;
+> -	}
+> -
+> -	if (negative) {
+> -		if (i)
+> -			i =3D -i;
+> -		else
+> -			f =3D -f;
+> -	}
+> -
+> -	*integer =3D i;
+> -	*fract =3D f;
+> +	*integer =3D integer64;
+> +	*fract =3D fract64;
 
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Hmmm, aren't we truncating the values? They are still int pointers...
+
+- Nuno S=C3=A1
+
 
