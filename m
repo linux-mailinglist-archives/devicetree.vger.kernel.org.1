@@ -1,287 +1,363 @@
-Return-Path: <devicetree+bounces-261702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261703-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iMeZIPlxgGkw8QIAu9opvQ
-	(envelope-from <devicetree+bounces-261702-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 10:44:25 +0100
+	id sPCRNulygGkw8QIAu9opvQ
+	(envelope-from <devicetree+bounces-261703-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 10:48:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44245CA3C9
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 10:44:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B071CA440
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 10:48:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7F341301A2B6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 09:44:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 23C833023533
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 09:44:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AE24352943;
-	Mon,  2 Feb 2026 09:44:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0AD0353EE5;
+	Mon,  2 Feb 2026 09:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g07vD4Td"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dqiu0+/h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82A7533A9CC
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 09:44:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770025453; cv=none; b=biFF9/EwBww8agNbOawqj1OyGb6hVgazYgwhM344rSKu6k3p9OuU+keCBtUbzW67kcFwfbP7dzwro8RpmXpgFJ7fj1rlVqpFRIJRrN3mspi1080iiNtVtH/9k1W8g29a/FasxJ1IKfwdSEx7d0yEUIc0dlHkPgVTZqGOQq03/mg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770025453; c=relaxed/simple;
-	bh=5EL6AsHcVBdeADGxMcjKBj+/YFrUYYn5U1xjZYVD1R0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pVkojTXhtcbM+Tw2hGkEz0ZB2k9ZNg9d0jT0oNHzE6uSNtdQtup6K0TjtVs8nN/KKJqpnhkQibiDAv42vqqwstgz8ZzIyDuBlAnwYCIC0TmbhnyGBeYcTZ4hE5VnjSbyXxI7vBWkxK9q9QAslDeyoVyc8Sv13H2JTDLf4K0FeDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g07vD4Td; arc=none smtp.client-ip=209.85.128.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20950352C47
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 09:44:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.216.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770025472; cv=pass; b=N8NFyhpM9bS/fUL0WRGjXYqYrG4dRH/QN217I/vHV8JLVo5m+Kh14Ci67s7EAVX7ZUuBQqUXKtwOZ/BzDalFfbAJx5xwWRucdJ6EWaZXtU8bCQixhGPeOdi1JbsUIblHUva4zYQ101oU0zjM2G3GThDUK5E5TIvp8ZFOLBr7Dzk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770025472; c=relaxed/simple;
+	bh=TxocIH3WSUgiuoUqSarLJ9wDs59/gNeIjdpFZaZiiIo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GLWG9tfpN4ppzSo2UbIzEUUt15jTQU/fKNEKMIg0StnFLqGCKvzb2VxFEULl/h1RmB3EbbmL/qen9WegSTBEXNWW6xUS5a73IDMNXLQGH47WKl6Ks5AWxatUqUYFYfJdoI1Bi81uNgdGh1uVMPy03zILSx+wtSHnqvuYM9Hakx4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dqiu0+/h; arc=pass smtp.client-ip=209.85.216.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-47edbae8307so2110925e9.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 01:44:11 -0800 (PST)
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-34be2be4b7cso2154228a91.3
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 01:44:30 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770025470; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ENZ1eZGinTyZeHgi635RneLXhEkWsDTA+iCRrxvDzMEDLvvndOpJPuBjV20vqLDCvu
+         SKdYWXYdhxpX8UQwJbcCG+8SIkyKROFWNWsPhsOFzE0sc7mbu4fzkpJrFl+m8LxOMwuR
+         2YaxVJXJ5SaIcVDLVHlRZM/ssXkILbfLQY+GYjLh+2plZi79jDRXKTVD8wu0c/8tM7V/
+         FAN/7M9GmIR9Dd2Z0FZTVeDq+pqrwfy08n853lX1RJj33AFiaAcrPQ5I2aHj7miKm9Qg
+         /1dVAEJBdFwkH/fIVIXPZnbLcTU/OB+X0/cemH4K/M8/GDjd+Jl23mEUSghLfgXRv2k4
+         LGzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=TAF2UH/s9XOKetfcQpOwLtcTNJG8Fm6zI5indZbLJnA=;
+        fh=GIs4eNK569kCJgxLRDlzXONXvkIj7CW4I0ArpZ6/Xlg=;
+        b=TRrhP5aS0dm9B7GBEvBzbzRTAKxbRmcWfEiYh4Nz7IrSgpyi7TOprgXWPhzYIGEOrz
+         xMU+RyNXGy8bpTAZI3E2qzuJx6f3ah395NHODAqA8mzx/kp5u5UjsBWwXkI0EfoWWvgG
+         499mngeSFOjZ/+MzI0GJHU8chwAZJ/hIFiZJB82jKcX7c/CenMLIxnqXdtMxHDF+m8U0
+         LA1vQ/1UP/U3Qfcuyiy4ZzTNk3dAnmPrcTHn86Yd6Cr9V14sL4L7FypLIC1W/TFYgDZ/
+         wXzM43lVQWpVcApg+WoMxIbOfpzILsHLgAi335xYUREHOseTZfsxHMdKaLjuvNPv29A2
+         HyAA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770025450; x=1770630250; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0rIIYAGyPLAQP7m4TA99kT+nOX8OsDiOc0NkESM+vog=;
-        b=g07vD4TdYLrGyQVgQVplCyFnKiXbeflmRduplqxTWOcj5qyhfYdzdzWagR+HnmQhv4
-         HOWSI+iuUUN5G6s6mGyCxbwycNAdZD0e6pZiZYyXqNVIuFah0brR3N+/agXoOYYRgNlv
-         6r21hsieVmtSzuI1uGHasNpKqQEQi5PloS7l4n3iYVbfa3AJ2SrfFIcdtLQbF5gQq093
-         cGsSuRH6nAXd8W2zwknDLWKaIDvqlWmnfixu3Y/IHcKgU2a+nJ18BpgH82ajMegoxDv3
-         3Fmz2BpXdocJckeTara/hHaUSZ/44YHLHPjIueOaJPyV1HGegQ4LinDx8R9fwHGdRxIX
-         LGOw==
+        d=gmail.com; s=20230601; t=1770025470; x=1770630270; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TAF2UH/s9XOKetfcQpOwLtcTNJG8Fm6zI5indZbLJnA=;
+        b=Dqiu0+/h9yK1+SB4ZQ3gyV9Cme9HzEJHfNKkv7SZx/f930OHwSPQBk2sFC7LcZ05Mu
+         ia6Fulrp9Ih1j9ViqHhAqW0YLsHNKKd2wGz1EUKHXaP+hYAOFbLm3/v3w3LhWE0kalSY
+         sK1hZgNmhUSzoiIvFK24Ka4VwTx2unZfJ4/uKhftLAphhl2+jbmnZTwRETtCfAoqvWpr
+         iNxrnwrAOB6lKe7YHZi25V5SYYogK4GKISYy/jPmeqGFlCtDm+wCDt6/IhhF4uJ4z4w4
+         10Pzp4kuFtLi7v/aTSfAv1ghR3wPL680ec6UTh3hW/2gwerT1XrQpQw7xvhiinL0dQRV
+         w9tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770025450; x=1770630250;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0rIIYAGyPLAQP7m4TA99kT+nOX8OsDiOc0NkESM+vog=;
-        b=oavX/t32TiQrCx7C1nLeFLkvPOWXwNOq9botew96XhiAWxfMQH280kHCRMjXGim2Fh
-         HpVfgBjE+0/By6VtlSVSn2gLpxFXctVwG/8BkYdCzIIsTXRsO7T05nw734i/fEDKx+4G
-         m3G2kDWsYGBYeKEU4T2ff3Yj/Ychh0Ya89N2flg8nhizHSuXJd/EtaWOvIN8kFF+xcSJ
-         5jnOfHnsYrEBr5WZSssRXhFKoXYpTw78e3B/f1k2i7tNiVyleCOjNksH0vmP1ST98oMW
-         gCOlFA29tuTNQ3qGv0gjwNuoYthsmMHaV4fB5061Y5woTxvFGJ6kKyPLUwjldj+FEFoZ
-         QimA==
-X-Forwarded-Encrypted: i=1; AJvYcCWnQeiJjAEcrJCMXZVOLASmVxhRweaArs8sdm6lcLIuhPusY4YKPiydR0w/GhilVdj4re/G058o8sDc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXY4YRess/NovKmyr8AjFKnFbwFV2kzYVK2srOus+tLz75tHvy
-	5hbCkgu7ok5snuIrJlC57ns6RB4HTPMis7uPCQ/iPcI+tGv968ahHn5w
-X-Gm-Gg: AZuq6aK08KVETkQHgta2RZt5OKifHbWKs57v4x92gfoipuAZ0GDR+qg1Kr0yxyM6P5R
-	kHf7yABevOnAeOc5MO2zSDI4YC4d33mdfjWjoN2fQaDijUE303copJeFnaiKosT3ghwc7lphzsE
-	EDtaHH6trSWRPLf1c97Ik8maUUEP8XYLAzK4EvUVjLQSBJYP+ZjoAFNnUtGFFDksF7IAtKhWh6d
-	dfjJIG2+59rFSaUs+1NF4BgTURA0DqYFu1wiwjjwxi2/6tmbMA7DB+XjAuAET6p2RpO7OpsYlfk
-	/iIcozQJY2GI9rOnQGa8pTSemA1GUv1rHWC6JrN/FWE/7glIyyULBcpNQbHo2JutRln38YczsnB
-	EiMBRBN0SoFH+5fLRWvFDDGMOAfozPbjwOTqlvl5dCfLj/Sjuka92X6jTVLvO2kmWGBAgHuIt8K
-	QND1A=
-X-Received: by 2002:a05:600c:818e:b0:477:9dd9:ac57 with SMTP id 5b1f17b1804b1-482db2022f4mr72271205e9.0.1770025449530;
-        Mon, 02 Feb 2026 01:44:09 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d501:d900:74c4:3a65:f9a9:6c29])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e10e4757sm44205033f8f.5.2026.02.02.01.44.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Feb 2026 01:44:08 -0800 (PST)
-Date: Mon, 2 Feb 2026 11:44:05 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: daniel@makrotopia.org, lxu@maxlinear.com, hkallweit1@gmail.com,
-	yweng@maxlinear.com, ajayaraman@maxlinear.com, andrew@lunn.ch,
-	netdev@vger.kernel.org, bxu@maxlinear.com, krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org, lrosu@maxlinear.com, chad@monroe.io,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
-	edumazet@google.com, pabeni@redhat.com, cezary.wilmanski@adtran.com,
-	davem@davemloft.net, john@phrozen.org, frankwu@gmx.de,
-	jpovazanec@maxlinear.com, linux@armlinux.org.uk,
-	fchan@maxlinear.com, horms@kernel.org
-Subject: Re: [net-next,v11,4/4] net: dsa: add basic initial driver for
- MxL862xx switches
-Message-ID: <20260202094405.rsojaz5xmorubjfz@skbuf>
-References: <46226b74030f76bd04149ed5c92b3e263abbe6c2.1769817939.git.daniel@makrotopia.org>
- <20260131175243.1122906-2-kuba@kernel.org>
+        d=1e100.net; s=20230601; t=1770025470; x=1770630270;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=TAF2UH/s9XOKetfcQpOwLtcTNJG8Fm6zI5indZbLJnA=;
+        b=twnyUcx7w0x2cbzJ5BNlX2PyF/Y0pPBjMrXkHgupxw0cL13hebIZv4dGmS8BmAeW8A
+         SmrBbVsp26Pp2n8wVV4D5bMYdo8pUR2K85WmlxWGCUbKmuzQ3S9EcvU7bYwMM2xmX4yM
+         WORdAakc66f0hhr3VggbnuQAUw7/6I/RrJk0EfNkBTOLdQ2gdzVAZ3PluYj5hYMfyLbn
+         Na4oPsAd2rciAwjHF4L90IAM8vrzowqqRnk37lZ9LGXCgHvJmm+OA+PK7PpUnJe99HBD
+         7MFf4bHsUnhisR4rzrGEzI6oC1nly/+9wD/BphVo1CQtp5guLBrAkcmb0G2e9JtocTbN
+         a9wg==
+X-Forwarded-Encrypted: i=1; AJvYcCW2k1j8F3BcShqRE1Nwdcj6w4UpQyvgwNuuoe1B5246n1z9/ku6m0UWUhRApjRCF60UOj1R2sz/UWAI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyvo1lVfbd0QRfj41L4Z87WLETnVZmyuooCUK0WHwvzdjFlsaQq
+	h11Bx7LX9w2y4rGMeE88LayXliKhKIzWpDsXvZw/JhMDV2segfU+ro4bMk6nXaV5V3wwAzM3KGW
+	TXBh8D8cNEkomDoZMX2DAxMpScsWmgT43MA==
+X-Gm-Gg: AZuq6aJ6gV6wneKTuOV5WMz6rJxEeWgV4kmRXMb+nJB2Jf967c+Sh0WLPiF583UY624
+	/TvZbcD3cNXZ/PTmVNIcSI40AFlYP3Cy0U7kjUstM034V7kOPUQ9h12ts3hQwASQ1ziKoJLT9iE
+	uQ3YEpYFkfrHsIMLjDDm+KVds5YyEtfa5tj3vSBw52rcTv6FkYCjEtdnvBYMaxyZkM6GtWu/vgi
+	Px8FdNMwm2IN8jQwhpVSRTs70banfxUsoSMCde/LT6wxJLOgG3YI6pj9yLIZeGGi1+Oeu67heYE
+	Y+RTPg==
+X-Received: by 2002:a17:90a:e704:b0:340:f7d6:dc70 with SMTP id
+ 98e67ed59e1d1-3543b32db3cmr10551164a91.13.1770025470178; Mon, 02 Feb 2026
+ 01:44:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260131175243.1122906-2-kuba@kernel.org>
+References: <20260130054330.3462544-1-shengjiu.wang@nxp.com>
+ <20260130054330.3462544-4-shengjiu.wang@nxp.com> <aXzDlScEXfmUys32@lizhi-Precision-Tower-5810>
+In-Reply-To: <aXzDlScEXfmUys32@lizhi-Precision-Tower-5810>
+From: Shengjiu Wang <shengjiu.wang@gmail.com>
+Date: Mon, 2 Feb 2026 17:44:16 +0800
+X-Gm-Features: AZwV_QgU5fRT0_5Q6bzl-9D65zjMNMGvATERP1AuFCLfH7W34TynL2XUXVAiodw
+Message-ID: <CAA+D8ANrW0N7Sjbat_LN3d8UbcuN-=DOKjfF0XncgqqM62rCMg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] ASoC: fsl_asrc_m2m: Start ASRC before DMA device
+ for M2M
+To: Frank Li <Frank.li@nxp.com>
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com, broonie@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Xiubo.Lee@gmail.com, nicoleotsuka@gmail.com, perex@perex.cz, tiwai@suse.com, 
+	linuxppc-dev@lists.ozlabs.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261702-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	FREEMAIL_CC(0.00)[makrotopia.org,maxlinear.com,gmail.com,lunn.ch,vger.kernel.org,kernel.org,monroe.io,google.com,redhat.com,adtran.com,davemloft.net,phrozen.org,gmx.de,armlinux.org.uk];
+	TAGGED_FROM(0.00)[bounces-261703-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[nxp.com,gmail.com,kernel.org,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org,perex.cz,suse.com,lists.ozlabs.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[shengjiuwang@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 44245CA3C9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3B071CA440
 X-Rspamd-Action: no action
 
-On Sat, Jan 31, 2026 at 09:52:44AM -0800, Jakub Kicinski wrote:
-> > +static int mxl862xx_add_single_port_bridge(struct dsa_switch *ds, int port)
+On Fri, Jan 30, 2026 at 10:43=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
+>
+> On Fri, Jan 30, 2026 at 01:43:29PM +0800, Shengjiu Wang wrote:
+> > There is a limitation on i.MX952 that dma request is not cleared at the
+> > end of conversion with dma slave mode. Which causes sample is dropped
+> > from the input fifo on the second time if dma is triggered before the
+> > client device and EDMA may copy wrong data from output fifo as the outp=
+ut
+> > fifo is not ready in the beginning.
+> >
+> > So need to trigger asrc before dma on i.MX952, and add delay to wait
+> > output data is generated then start the EDMA for output, otherwise the
+> > m2m function has noise issues.
+> >
+> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > ---
+> >  sound/soc/fsl/fsl_asrc.c        | 25 +++++++++++++++++++++++++
+> >  sound/soc/fsl/fsl_asrc.h        |  2 ++
+> >  sound/soc/fsl/fsl_asrc_common.h |  4 ++++
+> >  sound/soc/fsl/fsl_asrc_m2m.c    | 29 +++++++++++++++++++++--------
+> >  4 files changed, 52 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/sound/soc/fsl/fsl_asrc.c b/sound/soc/fsl/fsl_asrc.c
+> > index 5846a2b1f73c..2374577c13f9 100644
+> > --- a/sound/soc/fsl/fsl_asrc.c
+> > +++ b/sound/soc/fsl/fsl_asrc.c
+> > @@ -1084,6 +1084,28 @@ static unsigned int fsl_asrc_get_output_fifo_siz=
+e(struct fsl_asrc_pair *pair)
+> >       return val >> ASRFSTi_OUTPUT_FIFO_SHIFT;
+> >  }
+> >
+> > +static bool fsl_asrc_m2m_output_ready(struct fsl_asrc_pair *pair)
 > > +{
-> > +	struct mxl862xx_bridge_port_config br_port_cfg = {};
-> > +	struct dsa_port *dp = dsa_to_port(ds, port);
-> > +	struct mxl862xx_bridge_alloc br_alloc = {};
-> > +	int ret;
+> > +     struct fsl_asrc *asrc =3D pair->asrc;
+> > +     enum asrc_pair_index index =3D pair->index;
+> > +     int retry =3D 1000;
+> > +     u32 val;
 > > +
-> > +	ret = MXL862XX_API_READ(ds->priv, MXL862XX_BRIDGE_ALLOC, br_alloc);
-> > +	if (ret) {
-> > +		dev_err(ds->dev, "failed to allocate a bridge for port %d\n", port);
-> > +		return ret;
-> > +	}
+> > +     /* Check output fifo status if it exceeds the watermark. */
+> > +     do {
+> > +             regmap_read(asrc->regmap, REG_ASRFST(index), &val);
+> > +             val &=3D ASRFSTi_OUTPUT_FIFO_MASK;
+> > +             val =3D val >> ASRFSTi_OUTPUT_FIFO_SHIFT;
+> > +     } while (val < ASRC_M2M_OUTPUTFIFO_WML && --retry);
+>
+> use regmap_read_poll_timeout()
+
+Ok, will update it.
+
+>
 > > +
-> > +	br_port_cfg.bridge_id = br_alloc.bridge_id;
-> > +	br_port_cfg.bridge_port_id = cpu_to_le16(port);
-> > +	br_port_cfg.mask = cpu_to_le32(MXL862XX_BRIDGE_PORT_CONFIG_MASK_BRIDGE_ID |
-> > +				       MXL862XX_BRIDGE_PORT_CONFIG_MASK_BRIDGE_PORT_MAP |
-> > +				       MXL862XX_BRIDGE_PORT_CONFIG_MASK_MC_SRC_MAC_LEARNING |
-> > +				       MXL862XX_BRIDGE_PORT_CONFIG_MASK_VLAN_BASED_MAC_LEARNING);
-> > +	br_port_cfg.src_mac_learning_disable = true;
-> > +	br_port_cfg.vlan_src_mac_vid_enable = false;
-> > +	br_port_cfg.vlan_dst_mac_vid_enable = false;
-> > +	br_port_cfg.bridge_port_map[0] = cpu_to_le16(BIT(dp->cpu_dp->index));
-> 
-> Can this dereference NULL pointers?
-
-No. DSA will not make calls to ds->ops->port_setup() with "port" values
-for which dsa_to_port(ds, port) will not find a struct dsa_port *.
-
-> The dsa_to_port() function can return NULL if the port is not found in
-> the switch tree. The code stores the result in dp but doesn't check if
-> dp is NULL before dereferencing dp->cpu_dp->index.
-> 
-> Looking at include/net/dsa.h, dsa_to_port() returns NULL when the port
-> is not found:
-> 
->     static inline struct dsa_port *dsa_to_port(struct dsa_switch *ds, int p)
->     {
->         struct dsa_switch_tree *dst = ds->dst;
->         struct dsa_port *dp;
-> 
->         list_for_each_entry(dp, &dst->ports, list)
->             if (dp->ds == ds && dp->index == p)
->                 return dp;
-> 
->         return NULL;
->     }
-> 
-> Additionally, even if dp is non-NULL, dp->cpu_dp could also be NULL if
-> the CPU port hasn't been properly assigned during initialization.
-
-mxl862xx_add_single_port_bridge() has been called when all other port
-types except user ports have been excluded. All user and DSA ports have
-a non-NULL dp->cpu_dp pointer after dsa_tree_setup_cpu_ports() runs,
-i.e. also at the time of ds->ops->port_setup().
-
-> > +static int mxl862xx_setup_mdio(struct dsa_switch *ds)
-> > +{
-> > +	struct mxl862xx_priv *priv = ds->priv;
-> > +	struct device *dev = ds->dev;
-> > +	struct device_node *mdio_np;
-> > +	struct mii_bus *bus;
-> > +	static int idx;
-> > +	int ret;
+> > +     if (!retry) {
+> > +             pair_warn("output is not ready\n");
+> > +             return false;
+> > +     }
 > > +
-> > +	bus = devm_mdiobus_alloc(dev);
-> > +	if (!bus)
-> > +		return -ENOMEM;
+> > +     return true;
+> > +}
 > > +
-> > +	bus->priv = priv;
-> > +	ds->user_mii_bus = bus;
-> > +	bus->name = KBUILD_MODNAME "-mii";
-> > +	snprintf(bus->id, MII_BUS_ID_SIZE, KBUILD_MODNAME "-%d", idx++);
-> 
-> Can concurrent probes race on the idx variable?
-> 
-> The static int idx is shared across all driver instances and accessed
-> without synchronization. If multiple instances of this driver are probed
-> concurrently on different CPU cores, they could race on the idx++
-> operation potentially leading to duplicate MII bus IDs. MII bus IDs must
-> be unique system-wide.
-> 
-> [ ... ]
+> >  static int fsl_asrc_m2m_prepare(struct fsl_asrc_pair *pair)
+> >  {
+> >       struct fsl_asrc_pair_priv *pair_priv =3D pair->private;
+> > @@ -1281,6 +1303,7 @@ static int fsl_asrc_probe(struct platform_device =
+*pdev)
+> >
+> >       asrc_priv->soc =3D of_device_get_match_data(&pdev->dev);
+> >       asrc->use_edma =3D asrc_priv->soc->use_edma;
+> > +     asrc->start_before_dma =3D asrc_priv->soc->start_before_dma;
+> >       asrc->get_dma_channel =3D fsl_asrc_get_dma_channel;
+> >       asrc->request_pair =3D fsl_asrc_request_pair;
+> >       asrc->release_pair =3D fsl_asrc_release_pair;
+> > @@ -1295,6 +1318,7 @@ static int fsl_asrc_probe(struct platform_device =
+*pdev)
+> >       asrc->m2m_get_maxburst =3D fsl_asrc_m2m_get_maxburst;
+> >       asrc->m2m_pair_resume =3D fsl_asrc_m2m_pair_resume;
+> >       asrc->m2m_get_cap =3D fsl_asrc_m2m_get_cap;
+> > +     asrc->m2m_output_ready =3D fsl_asrc_m2m_output_ready;
+> >
+> >       if (of_device_is_compatible(np, "fsl,imx35-asrc")) {
+> >               asrc_priv->clk_map[IN] =3D input_clk_map_imx35;
+> > @@ -1565,6 +1589,7 @@ static const struct fsl_asrc_soc_data fsl_asrc_im=
+x8qxp_data =3D {
+> >  static const struct fsl_asrc_soc_data fsl_asrc_imx952_data =3D {
+> >       .use_edma =3D true,
+> >       .channel_bits =3D 4,
+> > +     .start_before_dma =3D true,
+> >  };
+> >
+> >  static const struct of_device_id fsl_asrc_ids[] =3D {
+> > diff --git a/sound/soc/fsl/fsl_asrc.h b/sound/soc/fsl/fsl_asrc.h
+> > index 2f67b085de24..1be93148a879 100644
+> > --- a/sound/soc/fsl/fsl_asrc.h
+> > +++ b/sound/soc/fsl/fsl_asrc.h
+> > @@ -446,10 +446,12 @@ struct dma_block {
+> >   *
+> >   * @use_edma: using edma as dma device or not
+> >   * @channel_bits: width of ASRCNCR register for each pair
+> > + * @start_before_dma: start asrc before dma
+> >   */
+> >  struct fsl_asrc_soc_data {
+> >       bool use_edma;
+> >       unsigned int channel_bits;
+> > +     bool start_before_dma;
+> >  };
+> >
+> >  /**
+> > diff --git a/sound/soc/fsl/fsl_asrc_common.h b/sound/soc/fsl/fsl_asrc_c=
+ommon.h
+> > index 0cd595b0f629..c8a1a2b5915d 100644
+> > --- a/sound/soc/fsl/fsl_asrc_common.h
+> > +++ b/sound/soc/fsl/fsl_asrc_common.h
+> > @@ -107,6 +107,7 @@ struct fsl_asrc_pair {
+> >   * @asrc_rate: default sample rate for ASoC Back-Ends
+> >   * @asrc_format: default sample format for ASoC Back-Ends
+> >   * @use_edma: edma is used
+> > + * @start_before_dma: start asrc before dma
+> >   * @get_dma_channel: function pointer
+> >   * @request_pair: function pointer
+> >   * @release_pair: function pointer
+> > @@ -116,6 +117,7 @@ struct fsl_asrc_pair {
+> >   * @m2m_start: function pointer
+> >   * @m2m_unprepare: function pointer
+> >   * @m2m_stop: function pointer
+> > + * @m2m_output_ready: function pointer, check output fifo ready or not
+> >   * @m2m_calc_out_len: function pointer
+> >   * @m2m_get_maxburst: function pointer
+> >   * @m2m_pair_suspend: function pointer
+> > @@ -143,6 +145,7 @@ struct fsl_asrc {
+> >       int asrc_rate;
+> >       snd_pcm_format_t asrc_format;
+> >       bool use_edma;
+> > +     bool start_before_dma;
+> >
+> >       struct dma_chan *(*get_dma_channel)(struct fsl_asrc_pair *pair, b=
+ool dir);
+> >       int (*request_pair)(int channels, struct fsl_asrc_pair *pair);
+> > @@ -154,6 +157,7 @@ struct fsl_asrc {
+> >       int (*m2m_start)(struct fsl_asrc_pair *pair);
+> >       int (*m2m_unprepare)(struct fsl_asrc_pair *pair);
+> >       int (*m2m_stop)(struct fsl_asrc_pair *pair);
+> > +     bool (*m2m_output_ready)(struct fsl_asrc_pair *pair);
+> >
+> >       int (*m2m_calc_out_len)(struct fsl_asrc_pair *pair, int input_buf=
+fer_length);
+> >       int (*m2m_get_maxburst)(u8 dir, struct fsl_asrc_pair *pair);
+> > diff --git a/sound/soc/fsl/fsl_asrc_m2m.c b/sound/soc/fsl/fsl_asrc_m2m.=
+c
+> > index f46881f71e43..296e13a16490 100644
+> > --- a/sound/soc/fsl/fsl_asrc_m2m.c
+> > +++ b/sound/soc/fsl/fsl_asrc_m2m.c
+> > @@ -253,15 +253,28 @@ static int asrc_m2m_device_run(struct fsl_asrc_pa=
+ir *pair, struct snd_compr_task
+> >       reinit_completion(&pair->complete[IN]);
+> >       reinit_completion(&pair->complete[OUT]);
+> >
+> > -     /* Submit DMA request */
+> > -     dmaengine_submit(pair->desc[IN]);
+> > -     dma_async_issue_pending(pair->desc[IN]->chan);
+> > -     if (out_dma_len > 0) {
+> > -             dmaengine_submit(pair->desc[OUT]);
+> > -             dma_async_issue_pending(pair->desc[OUT]->chan);
+> > -     }
+> > +     if (asrc->start_before_dma) {
+> > +             asrc->m2m_start(pair);
+> > +             /* Submit DMA request */
+> > +             dmaengine_submit(pair->desc[IN]);
+> > +             dma_async_issue_pending(pair->desc[IN]->chan);
+> > +             if (out_dma_len > 0) {
+> > +                     if (asrc->m2m_output_ready)
+> > +                             asrc->m2m_output_ready(pair);
+> > +                     dmaengine_submit(pair->desc[OUT]);
+> > +                     dma_async_issue_pending(pair->desc[OUT]->chan);
+> > +             }
+> > +     } else {
+> > +             /* Submit DMA request */
+> > +             dmaengine_submit(pair->desc[IN]);
+> > +             dma_async_issue_pending(pair->desc[IN]->chan);
+> > +             if (out_dma_len > 0) {
+> > +                     dmaengine_submit(pair->desc[OUT]);
+> > +                     dma_async_issue_pending(pair->desc[OUT]->chan);
+> > +             }
+> >
+> > -     asrc->m2m_start(pair);
+> > +             asrc->m2m_start(pair);
+> > +     }
+>
+> if really like start_before_dma, move common part no change
+>
+>         if (start_before_dma)
+>                 asrc->m2m_start(pair);
+>
+>         ....
+>
+>         if (!start_before_dma)
+>                 asrc->m2m_start(pair);
 
-Technically ds->ops->setup() runs under dsa2_mutex, but the "static int idx"
-is still not ideal due to the ever-increasing index upon unbinding and
-rebinding.
+Ok, will update it.
 
-> > +static int mxl862xx_setup_cpu_bridge(struct dsa_switch *ds, int port)
-> > +{
-> > +	struct mxl862xx_bridge_port_config br_port_cfg = {};
-> > +	struct mxl862xx_priv *priv = ds->priv;
-> > +	u16 bridge_port_map = 0;
-> > +	struct dsa_port *dp;
-> > +
-> > +	/* CPU port bridge setup */
-> > +	br_port_cfg.mask = cpu_to_le32(MXL862XX_BRIDGE_PORT_CONFIG_MASK_BRIDGE_PORT_MAP |
-> > +				       MXL862XX_BRIDGE_PORT_CONFIG_MASK_MC_SRC_MAC_LEARNING |
-> > +				       MXL862XX_BRIDGE_PORT_CONFIG_MASK_VLAN_BASED_MAC_LEARNING);
-> > +
-> > +	br_port_cfg.bridge_port_id = cpu_to_le16(port);
-> > +	br_port_cfg.src_mac_learning_disable = false;
-> > +	br_port_cfg.vlan_src_mac_vid_enable = true;
-> > +	br_port_cfg.vlan_dst_mac_vid_enable = true;
-> > +
-> > +	/* include all assigned user ports in the CPU portmap */
-> > +	dsa_switch_for_each_user_port(dp, ds) {
-> > +		if (dp->cpu_dp->index != port)
-> > +			continue;
-> 
-> Can dp->cpu_dp be dereferenced safely here?
-> 
-> The code dereferences dp->cpu_dp->index without checking if cpu_dp is
-> NULL. While the DSA framework should ensure user ports have a CPU port
-> assigned during initialization, there is no explicit NULL check. If
-> cpu_dp is NULL for any reason such as incomplete initialization or
-> configuration error, this will cause a NULL pointer dereference and
-> kernel crash.
-
-No incompletely initialized ports are published to dst->ports.
-
-> > +	ret = dsa_register_switch(ds);
-> > +	if (ret)
-> > +		return ret;
-> 
-> Is dev_set_drvdata() called too early?
-> 
-> The function calls dev_set_drvdata(dev, ds) before calling
-> dsa_register_switch(ds). If dsa_register_switch() fails, the function
-> returns the error but leaves the driver data pointing to an unregistered
-> switch.
-> 
-> This creates a problem for cleanup paths. The mxl862xx_remove() function
-> retrieves the switch with dev_get_drvdata() and calls
-> dsa_unregister_switch(ds). If probe failed, ds is not NULL so the check
-> passes but the switch was never successfully registered. Similarly,
-> mxl862xx_shutdown() could be called and would also operate on an
-> unregistered switch. While dsa_switch_shutdown() has a check for
-> ds->setup flag that provides some protection, this is fragile and could
-> lead to inconsistent state or crashes in error scenarios.
-> 
-> [Jakub] AI is a bit pedantic about leaving the drvdata pointer in place
->         but I guess it's not a bad thing to clean up
-
-Can somebody gently explain what is the point? It is easily testable
-that if mdio_driver :: probe() fails, .remove() or .shutdown() will not
-be called. It really does not matter whether dev_set_drvdata() was
-called or not.
+best regards
+Shengjiu Wang
+>
+> Frank
+> >
+> >       if (!wait_for_completion_interruptible_timeout(&pair->complete[IN=
+], 10 * HZ)) {
+> >               dev_err(dev, "out DMA task timeout\n");
+> > --
+> > 2.34.1
+> >
 
