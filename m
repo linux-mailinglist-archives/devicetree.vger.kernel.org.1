@@ -1,204 +1,158 @@
-Return-Path: <devicetree+bounces-261891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261892-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AKV6METWgGmFBwMAu9opvQ
-	(envelope-from <devicetree+bounces-261891-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 17:52:20 +0100
+	id qGTvIWzWgGmFBwMAu9opvQ
+	(envelope-from <devicetree+bounces-261892-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 17:53:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40F8FCF2F8
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 17:52:20 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 264E7CF33F
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 17:53:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 218E230630E9
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 16:48:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8D9C43016EE3
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 16:52:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C86773803C1;
-	Mon,  2 Feb 2026 16:48:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 009F7223705;
+	Mon,  2 Feb 2026 16:52:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="On8twFI7"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Rt4YYZJK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38A1537F8DB
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 16:48:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A010279DAF
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 16:52:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770050914; cv=none; b=MSUa7FJLrkNyBCoMwhdUxc58Ai7ID0ELZOGodV0CLfEPKFayNaYZXql/jqjG61riS2PVx/qmeIOzPT36l/7hbWWYL17DQ7ehrUNuS92vhKJ99i9M53x6S/7cWUTO1ioIa66dcL24nK3miGpKiNcU/1AEG27N5CDp9IA71gmBhTM=
+	t=1770051167; cv=none; b=esbGPlz3qtdoHaobzFg1z0MBqLuuB5ogxn8GoM/gTKwa6PhxbP2/L00kQgmrNtl2E1OxqkFEvaBPZ5McMin8eGWBEmB0TRx1LAoHOtgrORi+Wy5UawzN3Y+e9zScR/rASi/+O+BeiOpW9EHSZ0x/cXX2ogq6geFlelSuWiB+t2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770050914; c=relaxed/simple;
-	bh=9nc5Yb9Ey5V1/5wY5YpYIHYPLoHq/9oLwfxwaQMf34o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j5h9Sr+Bg+4QpPqKoZ+NWyXBqekee4CN2E7VSNIcgZguHWq8QWfInpcl//UMkemyyDJgplKQrVMutHDAK4BUzJhsT/nnhXuvk9QTVNaaleGIrjvhGvUiZSTBDfIULEEeM5HqlRxMu7Ug38ZbdCze5pRsj1kaZXqXG1ppJ6tAkEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=On8twFI7; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-59dea72099eso5505293e87.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 08:48:33 -0800 (PST)
+	s=arc-20240116; t=1770051167; c=relaxed/simple;
+	bh=KaGRXwrFVNIEvTUkF1qV1Et/QLGicBj8WZhhKScJFjI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fpfsU65VyVtdaHV4ksmhm5fXvjS1/anQv0hkxMJcb+7ZBsdIiHRMZaCde/9nr+Vag9aO/t9SITqmEedX6uq0kjnaKia5AwriKiy0+XRdZg3cSYXSiIFLoH4iuy6nFKJkC9QdM1G3tOWql9PKDOD93GzoRdCH1XDQqDD/iW+qjYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Rt4YYZJK; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-64b92abe63aso8722380a12.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 08:52:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770050911; x=1770655711; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6So5Xq258WzvuB3Waej1vRyM0kWGAajf74EAt3sWHG0=;
-        b=On8twFI7EU2/S2JDFowvEq++EKhZw3NzRavb9TkkW+8Vz40EF6Z/xSdXAjjktOnZuB
-         dgh5j4oJZuMMnh5DHSpq7Xnej9kngirIPoJoA/h8PYh5/LZEWREFB5QZWpZ+szWVP9Tm
-         0UOHml6xiJeQViptwzUmcyTEoLjbyO2R2ByBjwbPkVQK/QKkurQII8DaESXsFH+KXIB3
-         oSLAeyqwls+VEtxefDelYadTUiZU/6np3sNvZaFU7QGjuVsqZ9JBCbWOru/TjbGOTmmg
-         qkbOB5Ck2xQJKHLnIVEXLJNAaWXtRbBwilYzsDo9BsMCqHDTUp4MUZ/weof0FAnYWILu
-         v9tg==
+        d=chromium.org; s=google; t=1770051161; x=1770655961; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=enDw9LkM3CdlAH4/IbRE0pQEHAl9HYEyYit2vG/Lo9A=;
+        b=Rt4YYZJKaxcP3xuXtqdrRzc/8VZySWFFdeOB+LqQoSCn7CL/ARfhoFmb00SuprbcLI
+         qj+6nuK41NqHpzIbUOusOtrjbLRqT2f/+OeFe/H0Qp5t9EiusoMlcOdfpahL7NRjO9bi
+         4kG3lJAqESCV/juLhq7BcYmehGJGJbILGXdhE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770050911; x=1770655711;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6So5Xq258WzvuB3Waej1vRyM0kWGAajf74EAt3sWHG0=;
-        b=brbvUSxozx9m7ksWl4siXIzebssZni5tfDEFsmQ26l+SYRQeZ8SObGIiVL5UIfmZO/
-         wkxj28VKp1T84/RRrreHPp/KnPaDMJJeknzIfjSSFDKRCzUXdVp3K71915Cr5hwoE56m
-         V8uBtN0ICqCWiSYkxH9AX8hr1+pcy3edDLnYxirm441Pylrzuwjm3wiw3SXKrsgnzjb2
-         WQL6sXMmMQeeM3uW+Z01B1nn0bWqxLxujrHx0kO9ccutDkm762+51VjtfDs/wwFUJ6LZ
-         MgULNZUHKhu+VJzANsjsWYh8XIyp3ffab2mcxHY6kjN9yxj9wy5f27QgAe/X0HJULQVT
-         YGmA==
-X-Forwarded-Encrypted: i=1; AJvYcCVLJoXzSMdLeUkfRzNvQIUdjIbvbr0fx3djpEr3MhvI1tSZePF25u+/LYbogHC/sMvyeJ4ppti98I70@vger.kernel.org
-X-Gm-Message-State: AOJu0YzwKgHne7mO9pRdjY7jsr6hVHIcaPbEQxuZD1KWYWqcUig6kXuz
-	T7O08qtow/aLm5BcODLWF4ivbgYyFhdJfZtbATeX3DY28mewQdczFMXF
-X-Gm-Gg: AZuq6aI6zrzwStEHVq0+QvZMOCMAQRAdgHLXtHeQOLQhy29SQldp+6csAnJgIu3zUg6
-	+j5zOOASBEvkTNvYzIFnutJTTJnICm7OtrbCI6+F5cp1onhxhh56vGupfCwy6wb5O3vCDHE/ZUx
-	46eIp7ASMwPgQK0y8JkSC9GYnwrLhHgGW6Hzxa7EFluh312XHoq16t0DM7J6ZtcSDBHx0PKYbn+
-	JMIDw1tteVbrMFIzMF/MNDDA61xGsS34Z+spiyBMGQOT6dWotMQ/o+01yhGcexouUrhyMHvIyLt
-	smJipidVhDcOaJRkyRzctlX7Pccj6XnaqFe0TxtAbtuPh0XqGT1qWQeOX5uNKq6ZbABDikgG+9g
-	lkEkC3Ps7QQnUKmpUTn67CHOKnjIYyrWaPH8G4OdxyGms/s0y1j3Vsx0BtNgZz8LtkOqDF+BHJ3
-	qf0Tf0coR28kQKyOusnboRHX4aVqwWKMcQ4gdxKEpZlPRIbi9JygbKi/ycKUp1SVS3bzUnnubVm
-	Zv6tqX4dX+5TT/O7jDR6U5/g/i+45wEkwsS8hdLCXOB4BY=
-X-Received: by 2002:a05:6512:128a:b0:59d:d22b:8d30 with SMTP id 2adb3069b0e04-59e164329femr4784423e87.33.1770050911061;
-        Mon, 02 Feb 2026 08:48:31 -0800 (PST)
-Received: from ?IPV6:2001:999:700:7c7d:ca87:d71e:154f:6316? (n7ka2o5f47ode54rg9i-1.v6.elisa-mobile.fi. [2001:999:700:7c7d:ca87:d71e:154f:6316])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e074bc9b0sm3650331e87.91.2026.02.02.08.48.28
+        d=1e100.net; s=20230601; t=1770051161; x=1770655961;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=enDw9LkM3CdlAH4/IbRE0pQEHAl9HYEyYit2vG/Lo9A=;
+        b=roF5KCAN1AnHgX6jpky7OX/wW/w9N566omr0GgbsykAs9Rj3X7sSFdArVqKY13NNAH
+         Jcnwh5AoN8y2P17yoOWEBLXn8YHWUv/407YWcY2rjNMJzjin1mbPjHa+dILx71NxpJHu
+         1vIl3IVeFLa4NaZkuEexzr+IVQCO1bDemBpHN4z6xes3fIRrBE5zonElHPzsdDMs7462
+         ABbX6ekMMYXxtFVCsfsSVjB6KL4kU3oulNbdLCUhio5MkWaBAT5DdjWqd++d/LqB9kAD
+         NAX6hNZJKENJw+fLsUJD12SU86zCOIOMh2tSZWEM4QCsnIcxe5IsO/h28qbX3Sx4LyZ5
+         Z2Ew==
+X-Forwarded-Encrypted: i=1; AJvYcCU71o/Ubi1IOy98W0DgUyf3Lt4mB3o5rw86/0sfM5q+dl53mD8gLIZ+opl56D5kbMPTyW4zJRJRCPT3@vger.kernel.org
+X-Gm-Message-State: AOJu0YynGTWb4qjsXJ4tk/Rs1vdB7L6y4aEUZH7D9LG4BWTcjd6igIaV
+	jjJDVBG7oQ14o/2syc5ELbsiac8KNhN086o3bd8d6OAaL5bQPy5O9vfBB2+YWvIas5DxsNgL6TA
+	E3Hsnng==
+X-Gm-Gg: AZuq6aLfSpd4+mxPMIYmY5J/qs73VoEYsb4XVQdSzIwLCy2i62OuIASKY6bENwYk3B6
+	w0hPi+hWQP4WbLDZKnLrVok3WuymYJPSJqWj5oFHuexDqwIswTHGPDRjklF7zX0PfhJJjUBECxS
+	Dyq8iNpbnx2KLlJKNfI6Zun0H5iZdhap8by0Ss0IsY2+3FiPqejnCnUvv4Qow9pnyEh5NGBqFGi
+	mgcPTglRniz39NqoL0iBz8XFEuunItVXZvsm7Fs0EAzegeqVbwIHJeUr68DFQ6ODhQgIlO1ybcv
+	kaIm+g/1BV6i5FBWH8KqfBjs1UfKb9j22mxHkdq+Bym2q8PQzv7orfEc++w6ZQpc/mzvL5FD9/T
+	z0T4EvBYH9QZZGBH5gGlbABHDRopf133FSb1SPrjCYicpG+Dj5WoWkbjClAryMTROy6MnZkOGgF
+	yfpFgrxn97qY8GIkxOxp1v5dm8fP4Zhz9IcQ7M4xDesL3q4tTFzw==
+X-Received: by 2002:a17:907:3f91:b0:b87:5c45:b884 with SMTP id a640c23a62f3a-b8dff652e78mr781767366b.31.1770051160621;
+        Mon, 02 Feb 2026 08:52:40 -0800 (PST)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com. [209.85.128.46])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8df8465ba1sm623703466b.38.2026.02.02.08.52.34
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Feb 2026 08:48:30 -0800 (PST)
-Message-ID: <ffcbbe3b-3a1b-4986-8b4c-b0f7e309ccbb@gmail.com>
-Date: Mon, 2 Feb 2026 18:49:40 +0200
+        Mon, 02 Feb 2026 08:52:35 -0800 (PST)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4806dffc64cso35817805e9.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 08:52:34 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXZBPNikQBIkZgHsf8y0iDY91LvqJ3ypC/0pAOUefF4mqquhSnPu2BBlkImix7rlPBxUhBVkQil71Vr@vger.kernel.org
+X-Received: by 2002:a05:600c:6298:b0:480:5951:fc1e with SMTP id
+ 5b1f17b1804b1-482db45fbf4mr163945605e9.11.1770051153710; Mon, 02 Feb 2026
+ 08:52:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] ASoC: ti: davinci-mcasp: Streamline pdir behavior
- across rx & tx streams
-To: Sen Wang <sen@ti.com>, broonie@kernel.org, lgirdwood@gmail.com,
- perex@perex.cz, tiwai@suse.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260130051045.1898892-1-sen@ti.com>
- <20260130051045.1898892-4-sen@ti.com>
-Content-Language: en-US
-From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-In-Reply-To: <20260130051045.1898892-4-sen@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <cover.1769191673.git.robin.murphy@arm.com> <c7f6f75d55a4801eab63a0dc81d14ae27866aca9.1769191673.git.robin.murphy@arm.com>
+In-Reply-To: <c7f6f75d55a4801eab63a0dc81d14ae27866aca9.1769191673.git.robin.murphy@arm.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Mon, 2 Feb 2026 08:52:22 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=XCK1RBgdxs07aHgowNvCSm5-+oUVZ3HcMVWuKwW4ggTg@mail.gmail.com>
+X-Gm-Features: AZwV_QjXmR-vAYYsukd2qlxBElYKsT5Nm3boXnLH7lvnRNqLj3lt-cXAEK2VGP4
+Message-ID: <CAD=FV=XCK1RBgdxs07aHgowNvCSm5-+oUVZ3HcMVWuKwW4ggTg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: Move FriendlyElec
+ HD702E to eDP
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: heiko@sntech.de, neil.armstrong@linaro.org, thierry.reding@gmail.com, 
+	sam@ravnborg.org, jesszhan0024@gmail.com, dri-devel@lists.freedesktop.org, 
+	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261891-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[ti.com,kernel.org,gmail.com,perex.cz,suse.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[sntech.de,linaro.org,gmail.com,ravnborg.org,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[chromium.org:+];
+	TAGGED_FROM(0.00)[bounces-261892-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peterujfalusi@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[dianders@chromium.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:url,ti.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 40F8FCF2F8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:dkim,arm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 264E7CF33F
 X-Rspamd-Action: no action
 
+Hi,
 
-
-On 30/01/2026 07:10, Sen Wang wrote:
-> Simplify the mcasp_set_clk_pdir caller convention in start/stop stream
-> function, to make it so that set_clk_pdir gets called regardless when
-> stream starts and also disables when stream ends.
-> 
-> Functionality-wise, everything remains the same as the previously skipped
-> calls are now either correctly configured
-> (when McASP is SND_SOC_DAIFMT_BP_FC - pdir needs to be enabled)
-> or called with a bitmask of zero (when McASP is SND_SOC_DAIFMT_BC_FC - pdir
-> gets disabled).
-> 
-> On brief regarding McASP Clock and Frame sync configurations, refer to [0].
-> 
-> [0]:TRM Section 12.1.1.4.2 https://www.ti.com/lit/ug/sprujd4a/sprujd4a.pdf
-> 
-> Signed-off-by: Sen Wang <sen@ti.com>
+On Fri, Jan 23, 2026 at 11:22=E2=80=AFAM Robin Murphy <robin.murphy@arm.com=
+> wrote:
+>
+> The "E" alludes to the fact that FriendlyElec's HD702E is actually an
+> eDP panel - move its compatible to the appropriate binding doc.
+>
+> Cc: <devicetree@vger.kernel.org>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 > ---
->  sound/soc/ti/davinci-mcasp.c | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/sound/soc/ti/davinci-mcasp.c b/sound/soc/ti/davinci-mcasp.c
-> index aa14fc1c8011..4f8a2ce6ce78 100644
-> --- a/sound/soc/ti/davinci-mcasp.c
-> +++ b/sound/soc/ti/davinci-mcasp.c
-> @@ -235,8 +235,8 @@ static void mcasp_start_rx(struct davinci_mcasp *mcasp)
->  	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp)) {
->  		mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, TXHCLKRST);
->  		mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, TXCLKRST);
-> -		mcasp_set_clk_pdir(mcasp, true);
->  	}
-> +	mcasp_set_clk_pdir(mcasp, true);
->  
->  	/* Activate serializer(s) */
->  	mcasp_set_reg(mcasp, DAVINCI_MCASP_RXSTAT_REG, 0xFFFFFFFF);
-> @@ -311,10 +311,10 @@ static void mcasp_stop_rx(struct davinci_mcasp *mcasp)
->  	 * In synchronous mode stop the TX clocks if no other stream is
->  	 * running
->  	 */
-> -	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && !mcasp->streams) {
-> -		mcasp_set_clk_pdir(mcasp, false);
-> +	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && !mcasp->streams)
->  		mcasp_set_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, 0);
-> -	}
-> +	if (!mcasp->streams)
-> +		mcasp_set_clk_pdir(mcasp, false);
+>  .../devicetree/bindings/display/panel/panel-edp-legacy.yaml     | 2 ++
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 --
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 
-I'm not sure about this, but the sequence should be preserved, PDIR
-change first.
+Pushed patches to drm-misc-next:
 
->  
->  	mcasp_set_reg(mcasp, DAVINCI_MCASP_GBLCTLR_REG, 0);
->  	mcasp_set_reg(mcasp, DAVINCI_MCASP_RXSTAT_REG, 0xFFFFFFFF);
-> @@ -340,7 +340,7 @@ static void mcasp_stop_tx(struct davinci_mcasp *mcasp)
->  	 */
->  	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && mcasp->streams)
->  		val =  TXHCLKRST | TXCLKRST | TXFSRST;
-> -	else
-> +	if (!mcasp->streams)
->  		mcasp_set_clk_pdir(mcasp, false);
->  
->  
-
--- 
-Péter
-
+[1/4] dt-bindings: display: panel: Move FriendlyElec HD702E to eDP
+      commit: e2242223b714ac9fd8233546ca74ce972024111f
 
