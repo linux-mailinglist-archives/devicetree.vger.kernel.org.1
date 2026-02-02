@@ -1,196 +1,416 @@
-Return-Path: <devicetree+bounces-261879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261880-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gGbyHKLCgGl3AgMAu9opvQ
-	(envelope-from <devicetree+bounces-261879-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:28:34 +0100
+	id qJnkECLEgGl3AgMAu9opvQ
+	(envelope-from <devicetree+bounces-261880-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:34:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 184FCCE375
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:28:34 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D73CE4D2
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:34:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 25DE7300B466
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 15:28:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DA07F301BEF7
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 15:31:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F17FD37AA97;
-	Mon,  2 Feb 2026 15:28:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A57F2248A8;
+	Mon,  2 Feb 2026 15:31:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FBovvPWy";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BJ7z85r9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MlYiVBrG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f41.google.com (mail-dl1-f41.google.com [74.125.82.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73E853793DA
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 15:28:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD081DA62E
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 15:31:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770046108; cv=none; b=gZtggEWz9IYZnp2r9B1UyZUcd5M9hvGkvxMU5HpnB20R+dGUwK5LEVlBP1tAttGhuxj03SwsavB/5FtiE7o5chrFSriq5JQ7zBV5Ajlw1RVCej6lrs8C38svk68+1B/7fwZ/Kcr3xUXpr1mkW0fSI7U/PdM5SxHECX5X4rUQpTA=
+	t=1770046278; cv=none; b=mp86LFVB/ncMwEPzKqdrdeThGyxn+wztMjjgSxSWQQPQ+2PhoDE24aAIeNMoqw6T70M+5Zz4z6w46JUsgk5uSTJuelLqdSuEYYqlJl2hhNIJDILXyqjLbZwQ8eoAb7ancgNN3PKo669fClYI8Idj6oYpBdhNeYazWBlllCbZEoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770046108; c=relaxed/simple;
-	bh=1I322/dM+NuBo9CkzAYX3QYx0C17eFG2BAzLvHNf+jY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KttQJHVv9/DnZposlVdIFXQfprfn2jPH7CjVudvb8MZw+rtaEpmgv0o5/17arPI8Bcc1sZ/D2Jw0jbOEovmPFCrtk38w6K/rXBVOiVYqq2BAwqVylzIF2rFODrrS1Rb+jDlYp/4B6L7jEoTFf+zj8RAg99PWwtEt9J6oW8WJh48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FBovvPWy; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BJ7z85r9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 612AtJkV3915998
-	for <devicetree@vger.kernel.org>; Mon, 2 Feb 2026 15:28:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=AHkXeN+o7WvzaWGkxUhekKQW
-	QkWVCeVyHZlgLTqTpbs=; b=FBovvPWy1RCcvl0Jk2aZ1lN1M0LvwJdmlOtzNhYa
-	Oegz2oFTdTrJJhYq0peH3Vc+MqXvZyk6qoWkoDDjdBD/YF+kjIfvgkgsk4K0NH/m
-	nG6tdMJ1ctZ2WM8UWXnViw2CM80wYe02KxfvpJ61C4UXvbQ9Fjda68XzGPZoj+rl
-	8e1yaHKnjhue4uuQk7wJ+XptW0QzDz7qvxOD4FMW6C86G9vTXkNWHIxOCKVoAiEH
-	1sx+uD5oWG3eZ8lBGLDGhbX6+qwQJ5G3hYT9ixpkabkkrFdauhYpqZGhpe1lRpRA
-	ELZCYR8m2JKJirWTf5OU8ItoWSTl9ypInHqIVt/HLHSgSw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c2tkmgs5x-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 15:28:26 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c52d3be24cso730933085a.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 07:28:26 -0800 (PST)
+	s=arc-20240116; t=1770046278; c=relaxed/simple;
+	bh=UEzb61WiEx2UmPh655yKl5YB3scIAObWORgpS5rNTkw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bO0WvT1vSTzDjWTwU2ZCyb54/UsgZqNZeKJ/0BEPYJ9xXbLfddXnOSXnsnQdeaE4M2g3TvGLEiYXTqRTmw2zRzmYHF07iEcGRmD8XRdCE0z9mquRJPHH+MRW8F+dbGiUkw2q1FCWS1bGmSWBdlV8wLYXFls5E31Gf2ADysfLfpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MlYiVBrG; arc=none smtp.client-ip=74.125.82.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f41.google.com with SMTP id a92af1059eb24-12336c0a8b6so3453835c88.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 07:31:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770046106; x=1770650906; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AHkXeN+o7WvzaWGkxUhekKQWQkWVCeVyHZlgLTqTpbs=;
-        b=BJ7z85r9rzLC7d+p8ICA/RZ+vGcaxV7cI97g+zX4EbxG4YYexNanc4gKDUgthMG/up
-         4YLsJGk2JLNCvFJilh4jKlezJ34QNlBPmOhjelooIcSeP96Ucfaua7XX5gYOejPYzK94
-         DNdFvs4bi0kJwYO4sS+L9dyE+PX/MudPQv0RxitjxDpTWludvjjyLErXloHnNZEIri/3
-         UpDAHOMI9ioRA0nuS+FwEWbrYUsIGscP7xv/kfvmeq4o8w6ULUN2CLsyqUAMDMt84DBc
-         DsVYlEbaa+lDMRFPJoV9hxXYnmBrwtZfHl4Ip2LLrQnoF46R2pRQyoMdRUCdQP9uCXgR
-         9Zsg==
+        d=gmail.com; s=20230601; t=1770046276; x=1770651076; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=KASwKVJAOcRcDQ62DynEubbsVbrQ52fy8su604URc1s=;
+        b=MlYiVBrGUaf5E8ChoapXNaQGq0Tfx1fq5Kt9CBf4dHp/61hInLa8jlZyN7OgMVLDIt
+         9DFbjyrHXox8FHtbxn+m7OH44jcT7xTMwJWR+lW9e21MqLPGZWkttGhur32KGTZi8fqU
+         YNB3mujrRBfE2LNhl6Pc80Fe7gef5HRK/pHRfHvcxVbnAXkoAt+4iZvKM6Vj+WeYEa6Q
+         0VVdkUxRQScaUBpzZq13NqQplzrHnLhEcGTOg40oNyqJUTeyMRxYCdXDazE0nzJxpGse
+         XH4iKzB0TFVWZOz9snJ+6f5iknL/DHiAT9fFyzVqUTfsnl9o4nDSWwHrgC/YStbv4jMS
+         uR6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770046106; x=1770650906;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1770046276; x=1770651076;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=AHkXeN+o7WvzaWGkxUhekKQWQkWVCeVyHZlgLTqTpbs=;
-        b=Ti3zNDVqxcuNJ66Qp0LoDFk4qKcgiTZ7auILbeL1BnwkMyOr3xvLof8DFS9+KmsqrS
-         +fFdMtXlVBE0lCaUqluuPu8trhyDuYKP3fMjxAruk9mm5t4KN4DzAcPnFYI8CzEc41Ue
-         I4RNmVgXN105eKGCqV8qg/zJp4Oc9ZX5QZ/mZQZKHRRmOLt+e5//dH3cSiMg/6+j2O6i
-         215Gvn67RHxmQ9P+aL8X1XJvkqZrtHC0Y0t6zm9HozP/n4oSY1AKBALlAVb6/+JTwhgf
-         mz0j+oRRBDRphpax82IKKfpe0a+pfi8Nr5jQzfdDX4QuJNTrmEhfiZ26mK7QM2kWtlhY
-         68yg==
-X-Forwarded-Encrypted: i=1; AJvYcCUk1OKRYXC4r9+uvFyS4M5qaf7TjlJRs3GoP1Du6APzoysFitJZ2XC1JCtPMk4+fm9OGqsUvjsu4fG3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7rCrbGUAQO68m6F0L394MSSUEfHOARPLjSCZnpRHHpOjug7AL
-	bR1GE/9nSyUeLkLDIuOKXKsfcZVpIOXQg1svIEuMir4mxMxB0Ua8gvaD6NrzttR8qX4nUrkX0NJ
-	DqYHZxGmEyDz2sWIPnryHR8KWqjQpOMTI6Jk1tCB8JmRT/9YjPGqcRhAnQeXD3VZ4
-X-Gm-Gg: AZuq6aK6V/JBlNF66etZgy/D6/x86l4tzGT8wN4dOhLl8C9KQrzT9lyoMbfSBog7QWa
-	eMW1ULwIm3s1t4c0VaGZMx2Kd9zJUqZ9hKQ3BPkjbl0ZZWeFOJ+PJ4hoWehqVcTfflNHOcDDgGJ
-	aXUV7Jmy70A+YiEEgj7jnIz4JbFkNEJ7oZ5zAFsipdZ/ndA+RXv0dwiqb2Ck55Kfyuiggahm9lf
-	lsHeUBQoORYTOr9EY+48hYKR3/2RQ5avMRl2b+6EqU6zd3QLzWbdvEtToqVPddb7JAb5+y6WtAR
-	+/F8VO6eg/lNZLqJpunNDy3sqJ9vg0q5BzBb07QJ+AP6YLnh05J9iQJJGbJkr07Eqct777IVieZ
-	LpJz6tIknUJM/Ke9/vCg638em
-X-Received: by 2002:a05:620a:4708:b0:8c5:3202:8bb1 with SMTP id af79cd13be357-8c9eb227ccemr1519104985a.13.1770046105452;
-        Mon, 02 Feb 2026 07:28:25 -0800 (PST)
-X-Received: by 2002:a05:620a:4708:b0:8c5:3202:8bb1 with SMTP id af79cd13be357-8c9eb227ccemr1519100185a.13.1770046104805;
-        Mon, 02 Feb 2026 07:28:24 -0800 (PST)
-Received: from oss.qualcomm.com ([86.121.162.109])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e10ee040sm44303982f8f.11.2026.02.02.07.28.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Feb 2026 07:28:24 -0800 (PST)
-Date: Mon, 2 Feb 2026 17:28:22 +0200
-From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-To: Xin Liu <xin.liu@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        tingwei.zhang@oss.qualcomm.com, jie.gan@oss.qualcomm.com
-Subject: Re: [PATCH v2] arm64: dts: qcom: hamoa: Add remoteproc in EL2 device
- trees
-Message-ID: <dwf5hn3ijjmr7hguk2msaeidhvwi4kf5p7ih723klqyrko3tig@xhjrmthsdzfi>
-References: <20260202055436.818098-1-xin.liu@oss.qualcomm.com>
+        bh=KASwKVJAOcRcDQ62DynEubbsVbrQ52fy8su604URc1s=;
+        b=ODGYV4O/rxk7x1l/Vt6s2kt0KqE4OLcJToQBYdX8wXkTAptOQO80XzuNyIYaluoVXN
+         yNscGrvyFRWbWo5MeBFn6DNIoOzbKUF9fQsR/iOTZBg2kF1AxKGMbdTyMHMT28MDwBqz
+         7ZrgyyxADapg58fHtQp73tIgx5g3IInvw8mRbyB6QrYZkWRas8UUu04WnOT67dVt6zdp
+         zJN+EVcru49/Nu8DM4MdvJ1WmjVPIJnFQ8OnyTwhaLV3nw1RsRE8hFjJMMdPx6biGm3K
+         272dWVbKkDIxcO1o5f0HAgM81X5mtT4njwXROyDdn0jfzcJ5fduoc2eLMnKv1+3mVsJb
+         tP+w==
+X-Forwarded-Encrypted: i=1; AJvYcCUp4TngL4JWsC4gnW2IVtvnsmIOlNwgw6KRLQiSA6FVtQKZlmqOzjwts1INkcEaMcVP+EdgKpk6TNQ2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yym1xJ1TOVvtj9YXlBjwnQ1LzAqv4emQMtFs6Q3IVjqcoWj0vXF
+	mGquCO4Nu8VIV0NVGgi+DRzGrJgFjYMC6077dhtm+5DGs4zgffpDWOf1
+X-Gm-Gg: AZuq6aL0reBGPbJQSS+O8s9OKd5QItjSy9xvCQb0+VZdH+jTKMGgupSgegjNmgA8HWj
+	eWio4DjZgGlDRY177mjEGGGomUf6xln9Qrd5XfwvdKMIvJUithqqO2jciEns/U6ST0NvdLQVx8Z
+	j9qy/L22whqskKNNHfE95nHoz9T21DpJuuHkl+7sij3R9id2vr52ILMod+ScucBUig4NvvX2QQU
+	dAFbeULNa51eGGAVGKTLmzh7UBOf1ImfPoFK6mobF6NJ1K8bx1CBwJnvfNs/hefJwmafFNrvcMp
+	H9TZcYjnsyHx0g0lM8+dSR1W6s6TDpakEk3L9KLfVraXbK99mOvyAsxFF09KMkkOAibawTTw7qu
+	3ad/brs3/OrUwnvhc6f+Sw2kXM4Ocv18ETKemVl/vG5oayzmEzHUTeG1NLPfqBywxWpQM2IUhVR
+	TtbBoC2VCM7ltdUiLSY6+vrVycbt+7mqwSTfQdemUzES7E26Fv8yRiEO2oQP01
+X-Received: by 2002:a05:7022:124:b0:121:dea2:d54d with SMTP id a92af1059eb24-125c0fafcd7mr5852450c88.20.1770046276127;
+        Mon, 02 Feb 2026 07:31:16 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b7a1adc60dsm19913850eec.23.2026.02.02.07.31.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Feb 2026 07:31:15 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <d0854014-7977-48b9-bf31-d66865352ecf@roeck-us.net>
+Date: Mon, 2 Feb 2026 07:31:14 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260202055436.818098-1-xin.liu@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=TaebdBQh c=1 sm=1 tr=0 ts=6980c29a cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
- a=kj9zAlcOel0A:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=rdvWTO9h8kAPeaJoiacA:9
- a=CjuIK1q_8ugA:10 a=eSe6kog-UzkA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-GUID: v-HOWm01k37jabv6AujCj0VzfJfX_x9r
-X-Proofpoint-ORIG-GUID: v-HOWm01k37jabv6AujCj0VzfJfX_x9r
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAyMDEyMiBTYWx0ZWRfXwa8oeWdStzNN
- S1pcEWKw9MPuiU1WxCu0vHGx24Zg8YRhD4sfoV4qvteWQBXcmICD5As23FPS0QkNNPYw5UoY/gA
- xWmdIhFQ1RBe6F8TH3e2RI08bwDhu2F/nUWV4XkgeJCjkBPtYkZlglB9Ee6iI+sSEwR0QwrWBTL
- Hob2YQH9ekYCrc9ilwZfOnbY5ZsJktg2aLrlSXzL9JfhG7WfZV5A7fAuhoj+9NWZ+6SsT8JIxCZ
- AUiFCZuVGcRZpkrIn2jYjx0KKHY+fbDOLwyXz5qQmZ3adwmXD9SoV0WmwjhoulRKqpaLiGuWsgT
- 3XiE7WlSZUl/7q/jDCq+y9637tZlo/m1BX/JE//TIGKvMbxBGydyq58sEh9R41Als6PrRhlR1jX
- 3uqPJIWkLkfnIdGATh5SZX8EsCrDsKV7EH4VGDwyf++VfQ2BMtdU6xbs9hR0PiiiarkSfm1kVTV
- f0eAZh/Kwak4AhwU8Tg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-02_04,2026-01-30_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 impostorscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
- suspectscore=0 bulkscore=0 priorityscore=1501 clxscore=1015 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602020122
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] hwmon:(pmbus/xdpe1a2g7b) Add support for
+ xdpe1a2g5b/7b controllers
+To: ASHISH YADAV <ashishyadav78@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Ashish Yadav <ashish.yadav@infineon.com>
+References: <20260202080355.53061-1-Ashish.Yadav@infineon.com>
+ <20260202080355.53061-3-Ashish.Yadav@infineon.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20260202080355.53061-3-Ashish.Yadav@infineon.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-261880-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261879-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:url,qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 184FCCE375
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,infineon.com:email]
+X-Rspamd-Queue-Id: B3D73CE4D2
 X-Rspamd-Action: no action
 
-On 26-02-01 21:54:36, Xin Liu wrote:
-> All the existing variants Hamoa boards are using Gunyah hypervisor
-> which means that, so far, Linux-based OS could only boot in EL1 on
-> those devices. However, it is possible for us to boot Linux at EL2
-> on these devices [1].
+On 2/2/26 00:03, ASHISH YADAV wrote:
+> From: Ashish Yadav <ashish.yadav@infineon.com>
 > 
-> When running under Gunyah, the remote processor firmware IOMMU streams
-> are controlled by Gunyah. However, without Gunyah, the IOMMU is managed
-> by the consumer of this DeviceTree. Therefore, describe the firmware
-> streams for each remote processor.
+> Add the pmbus driver for Infineon Digital Multi-phase XDPE1A2G5B and
+> XDPE1A2G7B controllers.
 > 
-> Add remoteproc to the EL2 device trees to generate the corresponding
-> -el2.dtb files.
+> XDPE1A2G5B controller supports Linear Data format for VOUT using VOUT_MODE
+> command.
+> XDPE1A2G7B controller supports Linear and VID Data format for VOUT using
+> VOUT_MODE command.
 > 
-> [1]
-> https://docs.qualcomm.com/bundle/publicresource/topics/80-70020-4/boot-developer-touchpoints.html#uefi
+> In case of vid mode in XDPE1A2G7B controller, NVIDIA PWM VID vrm_version
+> is supported:
+> Vout = 5mV * (VID-1) + 195mV
 > 
-> Signed-off-by: Xin Liu <xin.liu@oss.qualcomm.com>
+> Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
+> ---
+>   drivers/hwmon/pmbus/Kconfig      |   9 +++
+>   drivers/hwmon/pmbus/Makefile     |   1 +
+>   drivers/hwmon/pmbus/pmbus.h      |   2 +-
+>   drivers/hwmon/pmbus/pmbus_core.c |   4 ++
+>   drivers/hwmon/pmbus/xdpe1a2g7b.c | 115 +++++++++++++++++++++++++++++++
 
-I think subject line is misleading. You are not adding the remoteprocs,
-but rather overriding iommus properties.
+Driver documentation missing.
 
-With that fixed:
+>   5 files changed, 130 insertions(+), 1 deletion(-)
+>   create mode 100644 drivers/hwmon/pmbus/xdpe1a2g7b.c
+> 
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index f3fb94cebf1a..c6750bce446d 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -684,6 +684,15 @@ config SENSORS_XDPE152
+>   	  This driver can also be built as a module. If so, the module will
+>   	  be called xdpe152c4.
+>   
+> +config SENSORS_XDPE1A2G7B
+> +	tristate "Infineon XDPE1A2G7B"
+> +	help
+> +	  If you say yes here you get hardware monitoring support for Infineon
+> +	  XDPE1A2G5B and XDPE1A2G7B.
+> +
+> +	  This driver can also be built as a module. If so, the module will
+> +	  be called xdpe1a2g7b.
+> +
+>   config SENSORS_XDPE122
+>   	tristate "Infineon XDPE122 family"
+>   	help
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index 349a89b6d92e..620f24baa289 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -67,6 +67,7 @@ obj-$(CONFIG_SENSORS_UCD9200)	+= ucd9200.o
+>   obj-$(CONFIG_SENSORS_XDP710)	+= xdp710.o
+>   obj-$(CONFIG_SENSORS_XDPE122)	+= xdpe12284.o
+>   obj-$(CONFIG_SENSORS_XDPE152)	+= xdpe152c4.o
+> +obj-$(CONFIG_SENSORS_XDPE1A2G7B)	+= xdpe1a2g7b.o
+>   obj-$(CONFIG_SENSORS_ZL6100)	+= zl6100.o
+>   obj-$(CONFIG_SENSORS_PIM4328)	+= pim4328.o
+>   obj-$(CONFIG_SENSORS_CRPS)	+= crps.o
+> diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus.h
+> index d2e9bfb5320f..3ddcb742d289 100644
+> --- a/drivers/hwmon/pmbus/pmbus.h
+> +++ b/drivers/hwmon/pmbus/pmbus.h
+> @@ -416,7 +416,7 @@ enum pmbus_sensor_classes {
+>   #define PMBUS_PAGE_VIRTUAL	BIT(31)	/* Page is virtual */
+>   
+>   enum pmbus_data_format { linear = 0, ieee754, direct, vid };
+> -enum vrm_version { vr11 = 0, vr12, vr13, imvp9, amd625mv };
+> +enum vrm_version { vr11 = 0, vr12, vr13, imvp9, amd625mv, nvidia195mv };
+>   
+>   /* PMBus revision identifiers */
+>   #define PMBUS_REV_10 0x00	/* PMBus revision 1.0 */
+> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
+> index be6d05def115..4d7634ee6148 100644
+> --- a/drivers/hwmon/pmbus/pmbus_core.c
+> +++ b/drivers/hwmon/pmbus/pmbus_core.c
+> @@ -885,6 +885,10 @@ static s64 pmbus_reg2data_vid(struct pmbus_data *data,
+>   		if (val >= 0x0 && val <= 0xd8)
+>   			rv = DIV_ROUND_CLOSEST(155000 - val * 625, 100);
+>   		break;
+> +	case nvidia195mv:
+> +		if (val >= 0x01)
+> +			rv = 195 + (val - 1) * 5;  /* VID step is 5mv */
+> +		break;
+>   	}
+>   	return rv;
+>   }
 
-Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+The core change needs to be a separate patch.
+
+> diff --git a/drivers/hwmon/pmbus/xdpe1a2g7b.c b/drivers/hwmon/pmbus/xdpe1a2g7b.c
+> new file mode 100644
+> index 000000000000..79b12b56e7b6
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/xdpe1a2g7b.c
+> @@ -0,0 +1,115 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Hardware monitoring driver for Infineon Multi-phase Digital XDPE1A2G5B
+> + * and XDPE1A2G7B Controllers
+> + *
+> + * Copyright (c) 2026 Infineon Technologies. All rights reserved.
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include "pmbus.h"
+> +
+> +#define XDPE1A2G7B_PAGE_NUM 2
+> +#define XDPE1A2G7B_NVIDIA_195MV 0x1E /* NVIDIA mode 1.95mV, VID step is 5mV */
+> +
+> +static int xdpe1a2g7b_identify(struct i2c_client *client,
+> +			       struct pmbus_driver_info *info)
+> +{
+> +	u8 vout_params;
+> +	int i, ret, vout_mode;
+> +
+> +	vout_mode = pmbus_read_byte_data(client, 0, PMBUS_VOUT_MODE);
+> +	if (vout_mode >= 0 && vout_mode != 0xff) {
+
+What if vout_mode < 0 ? Also, what if the mode is different for page 1 ?
+
+Also, if I understand patch 0 correctly, executing this function is not needed
+for XDPE1A2G5B.
+
+> +		switch (vout_mode >> 5) {
+> +		case 0:
+> +			info->format[PSC_VOLTAGE_OUT] = linear;
+> +			return 0;
+> +		case 1:
+> +			info->format[PSC_VOLTAGE_OUT] = vid;
+> +			break;
+> +		default:
+> +			return -ENODEV;
+> +		}
+> +	}
+> +
+> +	for (i = 0; i < info->pages; i++) {
+> +		/* Read the VOUT_MODE register for VID Code Type. */
+> +		ret = pmbus_read_byte_data(client, i, PMBUS_VOUT_MODE);
+
+Given that there are only two pages, reading PMBUS_VOUT_MODE for
+page 0 twice is a bit of a waste. On top of that, the need for the loop
+suggests that the mode can be different across pages. That needs to be
+supported: Bailing out in that case is not acceptable. Worse:
+What if the mode is linear on page 0 but vid on page 1 ?
+
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		vout_params = ret & GENMASK(4, 0);
+> +		switch (vout_params) {
+> +		case XDPE1A2G7B_NVIDIA_195MV:
+> +			info->vrm_version[i] = nvidia195mv;
+> +			break;
+> +		default:
+> +			return -EINVAL;
+
+This warrants an error message and an explanation (comment) why other modes
+are not supported by the driver. The detailed datasheet is not public, so
+you'll have to help out here. As mentioned above, bailing out because the
+mode on page 1 is linear is not acceptable.
+
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static struct pmbus_driver_info xdpe1a2g7b_info = {
+> +	.pages = XDPE1A2G7B_PAGE_NUM,
+> +	.identify = xdpe1a2g7b_identify,
+> +	.format[PSC_VOLTAGE_IN] = linear,
+> +	.format[PSC_TEMPERATURE] = linear,
+> +	.format[PSC_CURRENT_IN] = linear,
+> +	.format[PSC_CURRENT_OUT] = linear,
+> +	.format[PSC_POWER] = linear,
+> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
+> +		   PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
+> +		   PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_STATUS_TEMP |
+> +		   PMBUS_HAVE_POUT | PMBUS_HAVE_PIN | PMBUS_HAVE_STATUS_INPUT,
+> +	.func[1] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
+> +		   PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
+> +		   PMBUS_HAVE_PIN | PMBUS_HAVE_POUT | PMBUS_HAVE_STATUS_INPUT,
+> +};
+> +
+> +static int xdpe1a2g7b_probe(struct i2c_client *client)
+> +{
+> +	struct pmbus_driver_info *info;
+> +
+> +	info = devm_kmemdup(&client->dev, &xdpe1a2g7b_info, sizeof(*info),
+> +			    GFP_KERNEL);
+> +	if (!info)
+> +		return -ENOMEM;
+> +
+> +	return pmbus_do_probe(client, info);
+> +}
+> +
+> +static const struct i2c_device_id xdpe1a2g7b_id[] = { { "xdpe1a2g5b" },
+> +						      { "xdpe1a2g7b" },
+> +						      {} };
+
+Please use more lines and less indentation.
+
+> +
+> +MODULE_DEVICE_TABLE(i2c, xdpe1a2g7b_id);
+> +
+> +static const struct of_device_id __maybe_unused xdpe1a2g7b_of_match[] = {
+> +	{ .compatible = "infineon,xdpe1a2g5b" },
+> +	{ .compatible = "infineon,xdpe1a2g7b" },
+> +	{}
+
+... just like here.
+
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, xdpe1a2g7b_of_match);
+> +
+> +static struct i2c_driver xdpe1a2g7b_driver = {
+> +	.driver = {
+> +		.name = "xdpe1a2g7b",
+> +		.of_match_table = of_match_ptr(xdpe1a2g7b_of_match),
+> +	},
+> +	.probe = xdpe1a2g7b_probe,
+> +	.id_table = xdpe1a2g7b_id,
+> +};
+> +
+> +module_i2c_driver(xdpe1a2g7b_driver);
+> +
+> +MODULE_AUTHOR("Ashish Yadav <ashish.yadav@infineon.com>");
+> +MODULE_DESCRIPTION("PMBus driver for Infineon XDPE1A2G5B/7B");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS("PMBUS");
+
 
