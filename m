@@ -1,201 +1,196 @@
-Return-Path: <devicetree+bounces-261953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261955-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wE7+H90KgWkCDwMAu9opvQ
-	(envelope-from <devicetree+bounces-261953-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 21:36:45 +0100
+	id qKJ7AvALgWkCDwMAu9opvQ
+	(envelope-from <devicetree+bounces-261955-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 21:41:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2945AD1263
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 21:36:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82D85D1334
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 21:41:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3A0D4300D9BD
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 20:36:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 326803016C95
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 20:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15B60306B3E;
-	Mon,  2 Feb 2026 20:36:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20F42303CB6;
+	Mon,  2 Feb 2026 20:37:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="b6WKG7OJ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="b5+AgDD7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sgRURVy2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 606E32F0C6A
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 20:36:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF53427F75F;
+	Mon,  2 Feb 2026 20:37:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770064594; cv=none; b=q4qWzjEfHi0KxFMr8OpHGQG8OBZehiZmfXqRVzUCeJCxxy+AaMPWZKW+E8Qe+4sfDfd2k7qbZVE2VBZfFrHHNiZ8SiykxsOIJ3LZs/RlFtS9tOumWz93X+0+5OzuLFG/srcfeOOzTCfTxnBpwL58aK8lRylWL+n17oGCPmHmRlA=
+	t=1770064656; cv=none; b=RAONzn4TWFtStmERanqGujF4Ugjr7/bHyEKkN+OrjHCQ2v3oOXl1/9J8O5nP/TfCiDj7uiTLNyZ6kNOdU2wmhfTNlOZL/3LZ+bC3WiZSfJZzYx2eUlLFqJqZeWfLIelD0oHYcMNlaNidBsGXXpLB6EfhrRy9wnUY8uhz5jCMwZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770064594; c=relaxed/simple;
-	bh=cFAedMFN/XZ3dKYVnc/Dk3TOJBd26XbUVgj0LnwonIs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TsykkEq65VUyjOkx/pTKUsEpPOAF+PIYxPRxQQh7efaAPMc8uAxMSXHBuNsuh1dLewtmh3BQm2AEwaTGfjrLbVgfF50dETbRTPWDZkKfAAPhq7qlogB1xA7Lj/ZOUUIcGzwMOdq24l2czIhQtTLIxL+sY8a8uJYi03xfrLPR12g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=b6WKG7OJ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=b5+AgDD7; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 612JcSar3082673
-	for <devicetree@vger.kernel.org>; Mon, 2 Feb 2026 20:36:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=vbwJSPgt7gA53ZZR3Ht+lc0M
-	HdennY+KJOsIXiBPlfQ=; b=b6WKG7OJCih5/90LNxwb83RuHxnzDYCvyAD3wzd2
-	B4dwoe6z7v1jQykQAX5BtdUdFhms+H5K9j8c1ZOsfkrSRQEj6h56C21/KX/jpQC1
-	Vhx3T0C/rq7f5/TO1RGAENTM6S5f1RsH0OIsQAoHV8Ie+BkBiuWk5IYcVz14eHTw
-	NidojeiMHO0pSsybwLG0lL0VXf0tTKT8meHJwpmZ2jNCOImW1zUIhSou+n2cwRRo
-	XcmTfGsXP4B8looyBOcPQEVqunermAWESBq8jYhvY1ElabkH6WK+TJXeDNLKqHuN
-	YwAFp5AgaxnIzi81LVvh2G9Qn+JRlnNmauZVhnwiH6NJHw==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c2ttn1rba-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 20:36:30 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c6ad709d8fso38590085a.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 12:36:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770064589; x=1770669389; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vbwJSPgt7gA53ZZR3Ht+lc0MHdennY+KJOsIXiBPlfQ=;
-        b=b5+AgDD7eHZa8oXfv7D8oHKd73RR8K43zqDR5Gd7TwshluLgXxEc66sz+G59e48698
-         O0DCMQgLwivl6FW7BEfOjypozMo6g/F/ME8ag6RByvZsq9pOHLlhR96QBixat1vyQ07E
-         RGBYmnGEfOaaChQi/MDSLtb7ljWun15RAMdekAt6Ig2Kx+c27Sgj3HZ2Te+DQhfjjZ0Z
-         d8ITM75OSnkiODNeWvo1MxQcria1PJ9NjhNa3wogdjBEbHPi3uJoejTQSIDSITnH14YT
-         LQMwqsBcCiRbL6Z7SCkTXsqkP1xSP9xflVp1Czk3xDIQ4p5AaluwjdH06XwGN6TLYYB7
-         PqFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770064589; x=1770669389;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vbwJSPgt7gA53ZZR3Ht+lc0MHdennY+KJOsIXiBPlfQ=;
-        b=gJwOoi3bruv5b60RdOmECCUoEVmrBAinqfl6LnWpmi4fbE6bOyN2wXiTHidXnZfqRg
-         f+wyEke9ntFrjzEC59k2MIwmYVu2UgUbAWrC75SicwTX5+rOk8Zp4z4ZX7wjm6DsBJZN
-         6FZILk/bh0wUObKDGBKeJmzkgefL2uzyop8FFdRUcJWExqbALE6B81/zYk2O8Qs5sPNp
-         Eb3ylL8G0+t011lCgeL9Q1BPcOHltEQBAGsymgcWjFfyXykOm8HGZo3LJstFQ3mPWJ0/
-         uPxzmNJJIr1B3tjYJm6p4iO8kNdL0NTeKli7r7f4CHBdbcDXhpD+ByFbyCri7e60mbUn
-         VCmg==
-X-Forwarded-Encrypted: i=1; AJvYcCUfoezF2leHiTJzu6+jgMi/VNHjQ1AUA7jwqN83mWX7gNZCzBVZOuJL4BGJvnTkEXlFBa8eUj8evo8H@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsArTx4Ey8jerEjhcB3VFlRHkJacyBvyfrIDKlkgYHvOLzeeWd
-	M7sQSZAqQ+lKcHg6YUbb6cisiOG/F8A4k8KY2RcUSSH60Plc+SCS5+6UQn2ixD/xPr3sHNLKM3e
-	LAWcbpk2Sp/L4UIK479GPm9drHUVjYeWsY1eZE3Ts4UUI/SZH0+EuL0vaVVZUD/X3
-X-Gm-Gg: AZuq6aJP9eld1LfeACVyMyLDkLLRw+xuPRLiudxxfEwLCEi6f20q4dRkAoIST/D0PUI
-	r8cabuXLRYRNrvNb9w+QY+p+kNQ/CByev24OQC3KSCjx0AzAWet96nCx6qtCr7IekT40a9L4v8A
-	zdfJ02YDVGb+MyFIHWSYnPY88CSpUeEh33wzCbW+aO646LsX4+ckTNKiYj18XDuWkl3hmM/27YS
-	rlCcwc6wgcLY1FuEr3p5uRIF91eGr6VLgo0s+c+aGKYiTk+c97WmrJiVdAdFLNCqLCUGuFkZSf0
-	dfOzjCjp6eaSLU6v66LF+VlxNCZYvXKZuAB/AR9wOc8VDYcQ8HJRuPbUGgMHxWJgloOdX1+tIA6
-	Rr0riv79efZvrym85gdT+5d9bR4/6A+ufUfYpmTvpNoXY+1quIQ04fhJJm90y8OnqiLeib/DYSZ
-	WjYf3MmMxY4AHEd47tP3BK+3c=
-X-Received: by 2002:a05:620a:444e:b0:8c7:79d:f91b with SMTP id af79cd13be357-8ca2032ed87mr95560385a.6.1770064589430;
-        Mon, 02 Feb 2026 12:36:29 -0800 (PST)
-X-Received: by 2002:a05:620a:444e:b0:8c7:79d:f91b with SMTP id af79cd13be357-8ca2032ed87mr95556585a.6.1770064588970;
-        Mon, 02 Feb 2026 12:36:28 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38625c43e36sm31363081fa.8.2026.02.02.12.36.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Feb 2026 12:36:28 -0800 (PST)
-Date: Mon, 2 Feb 2026 22:36:21 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Taniya Das <taniya.das@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
-        Imran Shaik <imran.shaik@oss.qualcomm.com>,
-        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] clk: qcom: videocc-glymur: Add video clock
- controller driver for Glymur
-Message-ID: <3y4m3c2qf6ysvkt3cqkatzklwbmxkoxmxyxfu2tu5r5jpcejsw@dqf2kp7rur3f>
-References: <20260202-glymur_videocc-v2-0-8f7d8b4d8edd@oss.qualcomm.com>
- <20260202-glymur_videocc-v2-4-8f7d8b4d8edd@oss.qualcomm.com>
+	s=arc-20240116; t=1770064656; c=relaxed/simple;
+	bh=A1/zLNhJfjFpBOKRyqAz2kve72MPbHG7NLjWIiqjpsg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ml32tml7DPa74gWbCmJfRG51mQNJoTRuWPrmLxU/81FjbG9MPYz+u1Zl/WRq343fDWoeh19pc7SV5U5m4h+ZcnLa+9gnPOIkpLor5yEBA/hZvSLyuG5hjI0lrUOt2Jo8rcYMjrUGqqttE1dcLbq+dOjEt5MXZrtdk8Ig0rqk7I8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sgRURVy2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7B15BC116C6;
+	Mon,  2 Feb 2026 20:37:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770064655;
+	bh=A1/zLNhJfjFpBOKRyqAz2kve72MPbHG7NLjWIiqjpsg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=sgRURVy2I93F+eI8Coqcu55cjCX/IQdxGEYBnywl9hyGZ11iHFKpMj4cws7+tS8TF
+	 DPqctMbCCT5GvlDbT7iTRRJbgTd1rZJwZhVas/c8q6MM918AxPA59Iru2KG2z7Vcrt
+	 X1JWF2zKIkTw9maDX3mYNpYRchtICUo1xwa3btIGYZp8fw1veeLExh5CByfu84qA82
+	 IZioCLKTWYWOikIiTgMl7oHQ5F+9T7ZjCN+RsfVHXp531UZZ9boRpNhrJ/KeZ/Xeng
+	 yp/2oMZxrqXGkyjLzokK4BT3yx9rEwUPlUqSID8f4M5kbzAEGP6mxcSoi0YLveVkPm
+	 cRIsn5n0x2f7Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49B1FE7FDD2;
+	Mon,  2 Feb 2026 20:37:35 +0000 (UTC)
+From: Abdurrahman Hussain via B4 Relay <devnull+abdurrahman.nexthop.ai@kernel.org>
+Subject: [PATCH v9 0/7] i2c: xiic: use generic device property accessors
+Date: Mon, 02 Feb 2026 20:37:17 +0000
+Message-Id: <20260202-i2c-xiic-v9-0-ce4695f5267d@nexthop.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260202-glymur_videocc-v2-4-8f7d8b4d8edd@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=ANnNY0ku c=1 sm=1 tr=0 ts=69810ace cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=d7ClhsmVZ3m4v3ji_18A:9 a=CjuIK1q_8ugA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAyMDE2MSBTYWx0ZWRfXxIUyMa/w+knh
- Rejq8hpITkKJ+5FzveBNPjO0/ggD+IkBYy6yPCZTWE9RGJXT1G+wMtajT1uNeGbpKx3cfQYlF0Y
- 9P0bJBKY4EMHTZ3eBw5MMUNhTnRI/PE5IkBydQI9H0XkeCA0NtXepbEg9Lx462D3qAxQFreiZHH
- G4y56biu92tFPpyU9ugKI2pSHug2Njb7NGAweYLJp4spEe8rH/ervnoDDGiQE51bbIRZZo0TFnt
- TXTR6JwIXBLsfsPpml2yk9RvahwJZiTYpyHg+bXEsOLPGN3+P1/Mk4VoVaQw2dLdcDrnreJzheM
- E4bT6jhgQiK0afzCkEdOZDfTwC4ALQqAICc9BdhUmJZblm3ss1E2qckI50Td3LDTGaGOi3cTtk1
- jszJf1zXxbol6ANEkhV1OMbcYUViw4XmDP+SMyBBw9mhla0RfM1u8SOnrZb73QmuZ7QaEEly/Yz
- Ig7VNGc7etj78Vbgy/g==
-X-Proofpoint-GUID: tKxDlnuUqsZp6YQG_8_hU8GmQtbBALlv
-X-Proofpoint-ORIG-GUID: tKxDlnuUqsZp6YQG_8_hU8GmQtbBALlv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-02_05,2026-02-02_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015 bulkscore=0
- spamscore=0 priorityscore=1501 impostorscore=0 phishscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602020161
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP0KgWkC/3XOTU7DMBCG4atUWePKHv93xT0Qi4k9Jl40qZwQB
+ VW9O043GAWWI83z6rt3M5VMc3c53btCa57zNNbDv5y6MOD4QSzHenfAwXABwDIEtuUcmOzR+ZQ
+ 0oZddfb8VSnl7pt7e653KdGXLUAibgNCcg1PmDFo6zwTDPn6WgsMVx9eRtmWYbmfMe2/I8zKVr
+ +eyFfbqHyNWYJwJqZKOVklyfRvZV6yylbKRskrqbYgKtIrpKNV/UlWpUFKPUgse6CB1K00jdZX
+ OoTAIzoIIB2laaRtp9rUOCJJJRtujtK30jbRVWrCkpHLeUjpI9yOBi0a6KiP1EKPQLgr8JR+Px
+ zd1YViDPQIAAA==
+X-Change-ID: 20260122-i2c-xiic-3ba89ff5ea93
+To: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Abdurrahman Hussain <abdurrahman@nexthop.ai>, Andrew Lunn <andrew@lunn.ch>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770064654; l=2976;
+ i=abdurrahman@nexthop.ai; s=20260119; h=from:subject:message-id;
+ bh=A1/zLNhJfjFpBOKRyqAz2kve72MPbHG7NLjWIiqjpsg=;
+ b=Ef7fK8HYs+2jpLp9KFy3BAz5ekxFj5yUdBTxuPbpnvohfr83RaFyw7Op/27m0Je1YyW8u/3mM
+ fK6V5pWe0S4DXew9oUMSVGAFbknMiZ0Hi0FdYlSygTgRON+nQSnTWLC
+X-Developer-Key: i=abdurrahman@nexthop.ai; a=ed25519;
+ pk=S+ysnf+NwMcBdHBlyKIUEAtaFGSIhQwcJcgcXhq0osg=
+X-Endpoint-Received: by B4 Relay for abdurrahman@nexthop.ai/20260119 with
+ auth_id=608
+X-Original-From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+Reply-To: abdurrahman@nexthop.ai
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261953-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:dkim];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-261955-lists,devicetree=lfdr.de,abdurrahman.nexthop.ai];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[abdurrahman@nexthop.ai];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 2945AD1263
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nexthop.ai:replyto,nexthop.ai:email,nexthop.ai:mid]
+X-Rspamd-Queue-Id: 82D85D1334
 X-Rspamd-Action: no action
 
-On Mon, Feb 02, 2026 at 04:26:53PM +0530, Taniya Das wrote:
-> Add support for the video clock controller for video clients to be able
-> to request for videocc clocks on Glymur platform.
-> 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> ---
->  drivers/clk/qcom/Kconfig          |   9 +
->  drivers/clk/qcom/Makefile         |   1 +
->  drivers/clk/qcom/videocc-glymur.c | 533 ++++++++++++++++++++++++++++++++++++++
->  3 files changed, 543 insertions(+)
-> 
+- Switch to generic device property accessors.
+- Switch to managed devm_ functions to simplify error handling.
+- General cleanups.
+- Skip clock setup on non-OF systems where clock is not specified via
+firmware.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Signed-off-by: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+---
+Changes in v9:
+- Fix an issue found by the test robot in the cleanup patch.
+- Reworded the clock change description.
+- Add a patch to switch to i2c_add_numbered_adapter().
+- Link to v8: https://lore.kernel.org/r/20260201-i2c-xiic-v8-0-deb2dd158d1a@nexthop.ai
 
-> 
+Changes in v8:
+- Made the clock change the last patch in the series.
+- Reworded the clock change description.
+- Changed dev->fwnode to dev_fwnode(dev).
+- Link to v7: https://lore.kernel.org/r/20260129-i2c-xiic-v7-0-727e434897ef@nexthop.ai
 
+Changes in v7:
+- Drop the dt-bindings patch.
+- Skip clock setup on non-OF systems.
+- Minor commit body rewording.
+- Applied code-review trailers with `b4 trailers -u`
+- Link to v6: https://lore.kernel.org/r/20260127-i2c-xiic-v6-0-e82e2f6f657c@nexthop.ai
+
+Changes in v6:
+- Cosmetic changes to address the comments.
+- Added a patch to use resource format specifier in debug log.
+- Link to v5: https://lore.kernel.org/r/20260126-i2c-xiic-v5-0-88a16a28721c@nexthop.ai
+
+Changes in v5:
+- Reorder the cosmetic patch to be the last in the series.
+- Added a documentation patch to describe the optional clock.
+- Minor commit body rewording.
+- Link to v4: https://lore.kernel.org/r/20260123-i2c-xiic-v4-0-4a3eba3510ce@nexthop.ai
+
+Changes in v4:
+- Reorder the cosmetic patch to be the first in the series.
+- Amend the mutex_init patch to also switch to the managed pm_runtime_
+  variant.
+- Link to v3: https://lore.kernel.org/r/20260123-i2c-xiic-v3-0-eb7cd4254dfb@nexthop.ai
+
+Changes in v3:
+- Reorder the "optional clock" patch to be the first in the series. 
+- Add a patch to switch to devm_mutex_init().
+- Remove dup message in error path.
+- Cosmetic: use temporary dev variable.
+- Link to v2: https://lore.kernel.org/r/20260122-i2c-xiic-v2-0-134f5d743e8b@nexthop.ai
+
+Changes in v2:
+- Split the patch into two independent changes.
+- Added struct device *dev at the top of probe() and remove() to re-use.
+- Switched to device_set_node(...)
+
+---
+Abdurrahman Hussain (7):
+      i2c: xiic: switch to devres managed APIs
+      i2c: xiic: remove duplicate error message
+      i2c: xiic: switch to generic device property accessors
+      i2c: xiic: cosmetic cleanup
+      i2c: xiic: cosmetic: use resource format specifier in debug log
+      i2c: xiic: use numbered adapter registration
+      i2c: xiic: skip input clock setup on non-OF systems
+
+ drivers/i2c/busses/i2c-xiic.c | 99 +++++++++++++++++++------------------------
+ 1 file changed, 43 insertions(+), 56 deletions(-)
+---
+base-commit: 18f7fcd5e69a04df57b563360b88be72471d6b62
+change-id: 20260122-i2c-xiic-3ba89ff5ea93
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Abdurrahman Hussain <abdurrahman@nexthop.ai>
+
+
 
