@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-261726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261724-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MC0uJGx6gGnE8wIAu9opvQ
-	(envelope-from <devicetree+bounces-261726-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:20:28 +0100
+	id +B4wImV7gGnE8wIAu9opvQ
+	(envelope-from <devicetree+bounces-261724-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:24:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70ABDCAC9F
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:20:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3BC5CAD61
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:24:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 944313006780
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 10:20:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F2C0A302658A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 10:20:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F143590A9;
-	Mon,  2 Feb 2026 10:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A964357A34;
+	Mon,  2 Feb 2026 10:20:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="c5sszhZR"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="t5h3FX3d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB09357A34
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 10:20:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA3D357738
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 10:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770027608; cv=none; b=mkb6wve3dn9HxVRcK+vbo9xzD6h5+gDMfRDr7vaPVXGMMqNpJR4oIvX5vVqF1CpJBZI6NEJBFivx2HQoevsmPsFTW5dVIguPp1d6gSxjZAvAIrJczzL/e96R0g3bZrpARXm6tUeTWwZXnxNKdWPJV7NHzFKfqu3aPG825FyGrgM=
+	t=1770027603; cv=none; b=gh3MFFM8Fv942RZs7MOV5noDP2X3BqPabSIxxoCHg2LI5DtKzoKEk7iksuaG8B0x3AaLuOmNicJGtt3TJJui+SwfgzTZ/bRjtSDepz3LVKdBWWq29Hduk31o1HUngSA7qfgeiRXEvzNWuqP1oF88vy3cnn2GDKhQP6o8NLKTQXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770027608; c=relaxed/simple;
-	bh=W26wZTN4cYPmTG8/320nYWMNj9yUU3A1TuhhG1rew8o=;
+	s=arc-20240116; t=1770027603; c=relaxed/simple;
+	bh=C6tL7FYsC2S48kjUFSWWfir6UcX4lpdzTixbElYtGXk=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=jWRLDFszkF7qjnq0yg0jnTiaJGmykNb5VG41MRTeTRiCS9v2l0JNCaqiS6K4nH1AxM8mteyFF9NkiH5UPVNMEKdGYEugFwYbV9KCzKuEQMmaMBEHUiH0afc26zFwW4ME2Uwi0XVnem51894iw5XUl/WwyFlSjgaCH/BcHk0VSxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=c5sszhZR; arc=none smtp.client-ip=203.254.224.24
+	 Content-Type:References; b=LYNkV+9SxasNaBpM8Mkuq1YI/Hra8A/Qm2eXb8WUJIlkSqEZb3Z7/TJ0hyZysuxsLmPxLKh9xM0f+pejV8g1Ui9o7W7tCB5GzkwzAC6kUbMrKiKkjS7KCtvmP8LbkuJCmFO3nGMLsa4bvK0QKzI8IMZFnIpkPgIEVOQsEzrZEJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=t5h3FX3d; arc=none smtp.client-ip=203.254.224.24
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20260202101957epoutp014a328bd27afa30d75be2c33bb0bb4ee7~QZrjq2Fh82788127881epoutp01Y
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 10:19:57 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20260202101957epoutp014a328bd27afa30d75be2c33bb0bb4ee7~QZrjq2Fh82788127881epoutp01Y
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20260202102000epoutp01bba18d19b4c730dfb84dd1f948ab444e~QZrl30g-c2745927459epoutp01o
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 10:20:00 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20260202102000epoutp01bba18d19b4c730dfb84dd1f948ab444e~QZrl30g-c2745927459epoutp01o
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1770027597;
-	bh=7rkA62EyICvB2Oj4g0Lcl7ZwX6bRw380njYJqIERUKo=;
+	s=mail20170921; t=1770027600;
+	bh=s4HVsaW21NBJ1yxRDmOXRttOAA45F2suCXv9URGuPoM=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=c5sszhZRbIfY0Tra+7A60ZVQpsuKnJ1N6UEUglGps1UlVT0WmMS++pJEILqhEPsiS
-	 0IwZTXVqvPZ9lxt9726sugrf3HR3UgZ2EsV4yC+YNNrpE1gooRrSEDrBO+jJIVeb1i
-	 a0Wu/zJKU8negrp92S6AI9LN+DwriTvoemRLuUo4=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
-	20260202101956epcas5p4f5ddc6ca95705d2df5dbe0da14bf8ae0~QZrio5skk1684616846epcas5p41;
-	Mon,  2 Feb 2026 10:19:56 +0000 (GMT)
-Received: from epcas5p1.samsung.com (unknown [182.195.38.88]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4f4N0C5MrLz6B9m6; Mon,  2 Feb
-	2026 10:19:55 +0000 (GMT)
+	b=t5h3FX3dLP0CJ6wcylMQvS6crv8MW3nQxW8nJ0RWLCiQXXpyWfdw8lHTK2vVmKrUY
+	 qdtT0H66wAehId1m6n4uL/6KrwIdZnksGoUL9L9rU38SMqoQSdP06cMxDCtdSOmdsT
+	 PSW3m6pRpNGai+rlrZxhCZEdLRpU3gRJB0ZcFXf8=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20260202101959epcas5p3dbca50509ffff5c290d8ac24269216cc~QZrlTKHqP0463704637epcas5p3J;
+	Mon,  2 Feb 2026 10:19:59 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.95]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4f4N0G5Sbfz6B9m6; Mon,  2 Feb
+	2026 10:19:58 +0000 (GMT)
 Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
 	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20260202101954epcas5p27735b03488efceba5d7f970931905ec5~QZrgxJzbN0775007750epcas5p22;
-	Mon,  2 Feb 2026 10:19:54 +0000 (GMT)
+	20260202101957epcas5p224b18e84c561e542c39096b2bd7f29a7~QZrjdPMz70827008270epcas5p2B;
+	Mon,  2 Feb 2026 10:19:57 +0000 (GMT)
 Received: from bose.samsungds.net (unknown [107.108.83.9]) by
 	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20260202101952epsmtip18aba22eca8314236102eb90dda3f28a7~QZreYo_hN1761017610epsmtip1W;
-	Mon,  2 Feb 2026 10:19:52 +0000 (GMT)
+	20260202101955epsmtip19544b13693357c191df1fa79e02a89a4~QZrg-_XPW1761017610epsmtip1Y;
+	Mon,  2 Feb 2026 10:19:54 +0000 (GMT)
 From: Raghav Sharma <raghav.s@samsung.com>
 To: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com,
 	alim.akhtar@samsung.com, mturquette@baylibre.com, sboyd@kernel.org,
@@ -70,10 +70,10 @@ Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
 	linux-kernel@vger.kernel.org, chandan.vn@samsung.com,
 	dev.tailor@samsung.com, karthik.sun@samsung.com, Raghav Sharma
 	<raghav.s@samsung.com>
-Subject: [PATCH 1/3] dt-bindings: clock: exynosautov920: add G3D clock
- definitions
-Date: Mon,  2 Feb 2026 16:05:53 +0530
-Message-Id: <20260202103555.2089376-2-raghav.s@samsung.com>
+Subject: [PATCH 2/3] clk: samsung: exynosautov920: add block G3D clock
+ support
+Date: Mon,  2 Feb 2026 16:05:54 +0530
+Message-Id: <20260202103555.2089376-3-raghav.s@samsung.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260202103555.2089376-1-raghav.s@samsung.com>
 Precedence: bulk
@@ -83,33 +83,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20260202101954epcas5p27735b03488efceba5d7f970931905ec5
+X-CMS-MailID: 20260202101957epcas5p224b18e84c561e542c39096b2bd7f29a7
 X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
 CMS-TYPE: 105P
 cpgsPolicy: CPGSC10-543,Y
 X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20260202101954epcas5p27735b03488efceba5d7f970931905ec5
+X-CMS-RootMailID: 20260202101957epcas5p224b18e84c561e542c39096b2bd7f29a7
 References: <20260202103555.2089376-1-raghav.s@samsung.com>
-	<CGME20260202101954epcas5p27735b03488efceba5d7f970931905ec5@epcas5p2.samsung.com>
+	<CGME20260202101957epcas5p224b18e84c561e542c39096b2bd7f29a7@epcas5p2.samsung.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[19];
-	TAGGED_FROM(0.00)[bounces-261726-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261724-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email,samsung.com:dkim,samsung.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,samsung.com:email,samsung.com:dkim,samsung.com:mid];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[raghav.s@samsung.com,devicetree@vger.kernel.org];
@@ -120,71 +120,94 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 70ABDCAC9F
+X-Rspamd-Queue-Id: E3BC5CAD61
 X-Rspamd-Action: no action
 
-Add device tree clock binding definitions for CMU_G3D
+Add support for CMU_G3D which provides clocks to G3D block, and
+register the required compatible and cmu_info for the same.
 
 Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
 ---
- .../clock/samsung,exynosautov920-clock.yaml   | 21 +++++++++++++++++++
- .../clock/samsung,exynosautov920.h            |  6 ++++++
- 2 files changed, 27 insertions(+)
+ drivers/clk/samsung/clk-exynosautov920.c | 52 ++++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/samsung,exynosautov920-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynosautov920-clock.yaml
-index 1318720193b3..6b1fc61a2ff9 100644
---- a/Documentation/devicetree/bindings/clock/samsung,exynosautov920-clock.yaml
-+++ b/Documentation/devicetree/bindings/clock/samsung,exynosautov920-clock.yaml
-@@ -35,6 +35,7 @@ properties:
-       - samsung,exynosautov920-cmu-cpucl0
-       - samsung,exynosautov920-cmu-cpucl1
-       - samsung,exynosautov920-cmu-cpucl2
-+      - samsung,exynosautov920-cmu-g3d
-       - samsung,exynosautov920-cmu-hsi0
-       - samsung,exynosautov920-cmu-hsi1
-       - samsung,exynosautov920-cmu-hsi2
-@@ -287,6 +288,26 @@ allOf:
-             - const: oscclk
-             - const: noc
+diff --git a/drivers/clk/samsung/clk-exynosautov920.c b/drivers/clk/samsung/clk-exynosautov920.c
+index d0617c7fff3a..c38b103721f0 100644
+--- a/drivers/clk/samsung/clk-exynosautov920.c
++++ b/drivers/clk/samsung/clk-exynosautov920.c
+@@ -30,6 +30,7 @@
+ #define CLKS_NR_M2M                     (CLK_DOUT_M2M_NOCP + 1)
+ #define CLKS_NR_MFC                     (CLK_DOUT_MFC_NOCP + 1)
+ #define CLKS_NR_MFD                     (CLK_DOUT_MFD_NOCP + 1)
++#define CLKS_NR_G3D			(CLK_MOUT_G3D_NOCP_USER + 1)
  
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,exynosautov920-cmu-g3d
-+
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: External reference clock (38.4 MHz)
-+            - description: CMU_G3D SWITCH clock (from CMU_TOP)
-+            - description: CMU_G3D NOCP clock (from CMU_TOP)
-+
-+        clock-names:
-+          items:
-+            - const: oscclk
-+            - const: switch
-+            - const: nocp
-+
- required:
-   - compatible
-   - "#clock-cells"
-diff --git a/include/dt-bindings/clock/samsung,exynosautov920.h b/include/dt-bindings/clock/samsung,exynosautov920.h
-index 06dec27a8c77..f2628c220b22 100644
---- a/include/dt-bindings/clock/samsung,exynosautov920.h
-+++ b/include/dt-bindings/clock/samsung,exynosautov920.h
-@@ -309,4 +309,10 @@
- #define CLK_MOUT_MFD_NOC_USER           1
- #define CLK_DOUT_MFD_NOCP               2
+ /* ---- CMU_TOP ------------------------------------------------------------ */
  
-+/* CMU_G3D */
-+#define FOUT_PLL_G3D                    1
-+#define CLK_MOUT_G3D_NOC                2
-+#define CLK_MOUT_G3D_SWITCH_USER        3
-+#define CLK_MOUT_G3D_NOCP_USER          4
+@@ -1942,6 +1943,54 @@ static const struct samsung_cmu_info mfd_cmu_info __initconst = {
+ 	.clk_name               = "noc",
+ };
+ 
++/* ---- CMU_G3D --------------------------------------------------------- */
 +
- #endif /* _DT_BINDINGS_CLOCK_EXYNOSAUTOV920_H */
++/* Register Offset definitions for CMU_G3D (0x1a000000) */
++#define PLL_LOCKTIME_PLL_G3D                    0x0
++#define PLL_CON3_PLL_G3D                        0x10c
++#define CLK_CON_MUX_MUX_CLK_G3D_NOC             0x1000
++#define PLL_CON0_MUX_CLKCMU_G3D_NOCP_USER       0x600
++#define PLL_CON0_MUX_CLKCMU_G3D_SWITCH_USER     0x610
++
++static const unsigned long g3d_clk_regs[] __initconst = {
++	PLL_LOCKTIME_PLL_G3D,
++	PLL_CON3_PLL_G3D,
++	CLK_CON_MUX_MUX_CLK_G3D_NOC,
++	PLL_CON0_MUX_CLKCMU_G3D_NOCP_USER,
++	PLL_CON0_MUX_CLKCMU_G3D_SWITCH_USER,
++};
++
++static const struct samsung_pll_clock g3d_pll_clks[] __initconst = {
++	/* CMU_G3D_PLL */
++	PLL(pll_531x, FOUT_PLL_G3D, "fout_pll_g3d", "oscclk",
++	PLL_LOCKTIME_PLL_G3D, PLL_CON3_PLL_G3D, NULL),
++};
++
++/* List of parent clocks for Muxes in CMU_G3D */
++PNAME(mout_clk_g3d_noc_p) = { "oscclk", "fout_pll_g3d", "mout_clkcmu_g3d_switch_user"};
++PNAME(mout_clkcmu_g3d_switch_user_p) = { "oscclk", "dout_clkcmu_g3d_switch" };
++PNAME(mout_clkcmu_g3d_nocp_user_p) = { "oscclk", "dout_clkcmu_g3d_nocp" };
++
++static const struct samsung_mux_clock g3d_mux_clks[] __initconst = {
++	MUX(CLK_MOUT_G3D_NOC, "mout_clk_g3d_noc",
++	    mout_clk_g3d_noc_p, CLK_CON_MUX_MUX_CLK_G3D_NOC, 0, 2),
++	MUX(CLK_MOUT_G3D_SWITCH_USER, "mout_clkcmu_g3d_switch_user",
++	    mout_clkcmu_g3d_switch_user_p, PLL_CON0_MUX_CLKCMU_G3D_SWITCH_USER, 4, 1),
++	MUX(CLK_MOUT_G3D_NOCP_USER, "mout_clkcmu_g3d_nocp_user",
++	    mout_clkcmu_g3d_nocp_user_p, PLL_CON0_MUX_CLKCMU_G3D_NOCP_USER, 4, 1),
++};
++
++static const struct samsung_cmu_info g3d_cmu_info __initconst = {
++	.pll_clks               = g3d_pll_clks,
++	.nr_pll_clks            = ARRAY_SIZE(g3d_pll_clks),
++	.mux_clks               = g3d_mux_clks,
++	.nr_mux_clks            = ARRAY_SIZE(g3d_mux_clks),
++	.nr_clk_ids             = CLKS_NR_G3D,
++	.clk_regs               = g3d_clk_regs,
++	.nr_clk_regs            = ARRAY_SIZE(g3d_clk_regs),
++	.clk_name               = "noc",
++};
++
+ static int __init exynosautov920_cmu_probe(struct platform_device *pdev)
+ {
+ 	const struct samsung_cmu_info *info;
+@@ -1981,6 +2030,9 @@ static const struct of_device_id exynosautov920_cmu_of_match[] = {
+ 	}, {
+ 		.compatible = "samsung,exynosautov920-cmu-mfd",
+ 		.data = &mfd_cmu_info,
++	}, {
++		.compatible = "samsung,exynosautov920-cmu-g3d",
++		.data = &g3d_cmu_info,
+ 	},
+ 	{ }
+ };
 -- 
 2.34.1
 
