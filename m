@@ -1,141 +1,180 @@
-Return-Path: <devicetree+bounces-261706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261708-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iMXmL8h1gGkV8gIAu9opvQ
-	(envelope-from <devicetree+bounces-261706-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:00:40 +0100
+	id AL4xOIJ2gGkV8gIAu9opvQ
+	(envelope-from <devicetree+bounces-261708-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:03:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28EE8CA5F7
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:00:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36287CA6C0
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:03:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D84C430238E2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 09:55:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 82E87306824C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 09:57:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 285BC2DEA61;
-	Mon,  2 Feb 2026 09:55:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46D9A2DEA8F;
+	Mon,  2 Feb 2026 09:57:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Erft4jra"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FXCVqwM7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 050B12DC32E;
-	Mon,  2 Feb 2026 09:55:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD15F2DCF58;
+	Mon,  2 Feb 2026 09:57:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770026154; cv=none; b=cCacn7Ek/oQsJ6a50ZbszKESO1Bha6WIS61wizH357dmhymmzEkt8iuX6Ml4HvmFCD4urgwIauowAzOsWP7bc+nbKmDQpVx8CE+6Pc7haJZV/xAH7vUfNGTe3ej3Ka45ftmC4zFRqXCh9kPMUyb4cmk1zIHiotdsJ2HWvVEoR1A=
+	t=1770026253; cv=none; b=eByb92gZ7mxdGRaQv95V073z4QwC5CO5KIJrZ29emvJiNaCYqWih6LLJ6a/UA9AUN2r2WJqsHCNxIfcFo7Yie/kg2lOlo8nwIyxIRM/6nhw/n4lHBV+IwxIYWvRTOnEdSkOV1jp1Dn/bd/yPSNySRGS5MmN9aenelA4ANBbbBN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770026154; c=relaxed/simple;
-	bh=nrWm3dhaEALUM7SquGpf0Lks7Y4JWRLOuswId+VvyNc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=XS42t7asTBXLszLyLE/8h2RZXsE/OcmQEyiue6v2WCY3x650UEbzMEQQ/EoS1tbO7hy5+eGLxBcTlqsyypb8xIqTPfoDqlqJU9SZd6yUfm89JhiqMgNZTDotEAiN68UQkS++vhaPlkdc/D7JSGrgKdcSS4d0ZQZ1g/QQkQ0gVY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Erft4jra; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD73CC116C6;
-	Mon,  2 Feb 2026 09:55:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770026153;
-	bh=nrWm3dhaEALUM7SquGpf0Lks7Y4JWRLOuswId+VvyNc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=Erft4jrayL8HvkDT2XuPHvpE9NgI+zoHEpPYe5P3FK2gphITvYwgUnusiYEPg61A+
-	 GBdSLLfqqiFfWqzfLBEN3zNs/kQvKpH0Bd/vsRdxCArwG6NUD4Vh0sWRNblW8FOke8
-	 Q0Xbj/y3B+g4ySD6zWiFvImpZrbTaTz7o8FkNBrfSEv0DQcH7rkLxUCSSFiHQUbqbx
-	 lAyhaojF+ERyeoQgEIMlo53KlzMry8pRKHfrPFw6CMUk8PEqONsHt+xOV7Foho8pFA
-	 1eSibwOwe2+MzI4OIyxUxS9vmMxnCBWX9o7PUVkZH/3v4RNwNMbXijSCMN8c0GrU/3
-	 869PhsG9cPFWw==
-From: Thomas Gleixner <tglx@kernel.org>
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Huacai Chen <chenhuacai@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-mips@vger.kernel.org
-Subject: Re: [PATCH 5/8] irqchip/loongson-pch-lpc: add OF init code
-In-Reply-To: <b26dd193fe62d490c6c3aa6df93c5b0dc6749ffe.camel@iscas.ac.cn>
-References: <20260131094547.455916-1-zhengxingda@iscas.ac.cn>
- <20260131094547.455916-6-zhengxingda@iscas.ac.cn> <87v7ggfnby.ffs@tglx>
- <b26dd193fe62d490c6c3aa6df93c5b0dc6749ffe.camel@iscas.ac.cn>
-Date: Mon, 02 Feb 2026 10:55:49 +0100
-Message-ID: <87sebjfp0a.ffs@tglx>
+	s=arc-20240116; t=1770026253; c=relaxed/simple;
+	bh=yP87X20z3tjBiL2FhsQNrvRzYFGHMI6DbStmcFuw5SY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=H3W3B+eCuVHxbt691VSPmrdPrN7EJ9H/vFelWk706NlwZPNa1FVa54w4XnDnME3okNCW0cIFtRn1Zc82IqvDiICLZemG8lm+TO+kadASq91PWUl+P/bPWguyHkxXCeKAfFiKiTHxKZKCEMMD3gEG6J0ZFZ/RPqrQ97d0Y3RpCQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FXCVqwM7; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id AC150C237F2;
+	Mon,  2 Feb 2026 09:57:32 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id E12BB60767;
+	Mon,  2 Feb 2026 09:57:27 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 24B11119A88F3;
+	Mon,  2 Feb 2026 10:57:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1770026246; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=S+RzlUEH251YiNbOWqwHIrsXi4zbpi7hYqWeCjzmkvA=;
+	b=FXCVqwM72h5FfBEEXwcOFOqTDjIdbJaKQXVYgrJ8vEuINUCHICIlFugMQeTGBCNR3O6Mow
+	O8vavTSKTulfNlq/92gz9cn/ivnkcP8CHDf943HUZpYM8vdjSJHF+t1oUXcloP8KCHQ5O9
+	L4KfNkJ4Tgs759FtCusyfBX27o+U0DsBRF5F6byiew2+Hqv5mBJkIE5sUaijyqm0KTruKn
+	6x7MEh/prgS0XlRexT4gxyKUL/Kr0jKr4oJJ9OxNWE2snMNmeVBKpyITDLkt0I/SsUvjZ0
+	kVNpU1wBPIAlEfJCKS5V4JpovaWRxhAPIVTJDU7ySTHTAq8JOCC2197uz7BWHQ==
+Date: Mon, 2 Feb 2026 10:57:17 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+Cc: "Jyri Sarha" <jyri.sarha@iki.fi>, "Tomi Valkeinen"
+ <tomi.valkeinen@ideasonboard.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Russell King" <linux@armlinux.org.uk>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony Lindgren" <tony@atomide.com>,
+ "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
+ <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
+ Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
+ <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Markus
+ Schneider-Pargmann" <msp@baylibre.com>, "Bajjuri Praneeth"
+ <praneeth@ti.com>, "Louis Chauvet" <louis.chauvet@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
+ <miguel.gazquez@bootlin.com>, "Herve Codina" <herve.codina@bootlin.com>,
+ <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-omap@vger.kernel.org>
+Subject: Re: [PATCH v5 20/25] drm/tilcdc: Use devm_drm_of_get_bridge()
+ helper
+Message-ID: <20260202105717.53067aae@kmaincent-XPS-13-7390>
+In-Reply-To: <DG269FV5MZ8I.2VFNJXA0N2Y26@bootlin.com>
+References: <20260123-feature_tilcdc-v5-0-5a44d2aa3f6f@bootlin.com>
+	<20260123-feature_tilcdc-v5-20-5a44d2aa3f6f@bootlin.com>
+	<DG269FV5MZ8I.2VFNJXA0N2Y26@bootlin.com>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.84 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261706-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tglx@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-261708-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 28EE8CA5F7
+	RCPT_COUNT_TWELVE(0.00)[31];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_CC(0.00)[iki.fi,ideasonboard.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,armlinux.org.uk,bgdev.pl,atomide.com,intel.com,linaro.org,kwiboo.se,baylibre.com,ti.com,bootlin.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:url]
+X-Rspamd-Queue-Id: 36287CA6C0
 X-Rspamd-Action: no action
 
-On Mon, Feb 02 2026 at 13:50, Icenowy Zheng wrote:
-> =E5=9C=A8 2026-02-01=E6=98=9F=E6=9C=9F=E6=97=A5=E7=9A=84 17:19 +0100=EF=
-=BC=8CThomas Gleixner=E5=86=99=E9=81=93=EF=BC=9A
->> On Sat, Jan 31 2026 at 17:45, Icenowy Zheng wrote:
->>=20
->> > As the (kernel-internally) OF-based MIPS Loongson-3 systems can
->> > also
->>=20
->> What are kernel-internally systems?
->
-> I mean kernel-internally-OF-based. These devices' firmware does not
-> ship DT, but Linux kernel ships some DTs and pick one by arch code.
->
-> Do you have any suggestions for rewording to make this more clear? Or
-> should I just stop to mention this implementaion detail?
+On Fri, 30 Jan 2026 20:31:11 +0100
+"Luca Ceresoli" <luca.ceresoli@bootlin.com> wrote:
 
-It's irrelevant for the driver where the device tree comes from, no?
+> Hi Kory,
+>=20
+> On Fri Jan 23, 2026 at 5:12 PM CET, Kory Maincent (TI.com) wrote:
+> > Replace drm_of_find_panel_or_bridge() with the newer
+> > devm_drm_of_get_bridge() helper which simplifies the code by:
+> > - Automatically handling both panel and bridge cases internally
+> > - Managing the panel-to-bridge conversion when needed
+> > - Using devres for resource management, eliminating manual cleanup
+> >
+> > This removes the need for explicit panel-to-bridge conversion via
+> > devm_drm_panel_bridge_add_typed() and the associated error handling pat=
+h.
 
->> > +{
->> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int parent_irq;
->> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct fwnode_handle *irq_h=
-andle;
->> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct resource res;
->>=20
->> Variable ordering.
->
-> Is there any rule for the ordering?
+...
 
-I gave you the link in the other reply.
+> >  	encoder =3D drmm_simple_encoder_alloc(ddev, struct tilcdc_encoder,
+> >  					    base, DRM_MODE_ENCODER_NONE);
+> > @@ -73,12 +70,5 @@ int tilcdc_encoder_create(struct drm_device *ddev)
+> >  	}
+> >  	priv->encoder =3D encoder;
+> >
+> > -	if (panel) {
+> > -		bridge =3D devm_drm_panel_bridge_add_typed(ddev->dev, panel,
+> > -
+> > DRM_MODE_CONNECTOR_DPI); =20
+>=20
+> You are introducing a subtle difference here: while you pass the connector
+> type to devm_drm_panel_bridge_add_typed(), devm_drm_of_get_bridge() does
+> not take it and expects it to ahve been set previously and errors out if =
+it
+> hasn't.
+>=20
+> Can you ensure the connector type is alway set before this
+> devm_drm_of_get_bridge() call?
 
->> If pch_lpc_init() fails the parent interrupt mapping is leaked, no?
->
-> I don't know any reverse operation for irq_of_parse_and_map(), and most
+The connector type should be set by the bridge or the panel driver.
 
-irq_dispose_mapping()
+https://elixir.bootlin.com/linux/v6.18.6/source/drivers/gpu/drm/bridge/pane=
+l.c#L397
+ * This function is deprecated and should not be used in new drivers. Use
+ * devm_drm_panel_bridge_add() instead, and fix panel drivers as necessary =
+if
+ * they don't report a connector type.
 
-> implementations I see has no cleanup codepath for this parent IRQ.
-
-You looked at the wrong drivers then :)
-
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
