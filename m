@@ -1,219 +1,275 @@
-Return-Path: <devicetree+bounces-261609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261610-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id f/zoH94DgGlN1gIAu9opvQ
-	(envelope-from <devicetree+bounces-261609-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 02:54:38 +0100
+	id CNMPLrAGgGn11gIAu9opvQ
+	(envelope-from <devicetree+bounces-261610-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 03:06:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE44AC7CEC
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 02:54:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C064C7D62
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 03:06:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 64AD03004201
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 01:54:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C202B3004213
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 02:06:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B0061E9B12;
-	Mon,  2 Feb 2026 01:54:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B00D212FAD;
+	Mon,  2 Feb 2026 02:06:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="p58dtMxx"
+	dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b="CV6mQGF+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011022.outbound.protection.outlook.com [52.101.65.22])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A45726ADC;
-	Mon,  2 Feb 2026 01:54:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA35F1FA859
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 02:06:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.175
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769997275; cv=fail; b=oDuOT9t8E9HifiG2GbIl6FmN/vplBpu9RS6bYC3tJmZpwba9OVizIg0h74xo5r3pBQz/P1+6FyQbbobU2sp3YoMUCwK8IrcFezAeY7DHmvsOG3HULpP3SsCoAeieQyPoWuNMyemNrOf8/YsNmVvSo2eP/GmX0ja38MsJAqg0oh4=
+	t=1769997997; cv=pass; b=M5c+nqxJc26xUz7cQHIH5fdM58cRXitCGpmRvILBfRT4MqQzSqOl/VRJG4dVCnrKPMcbyOEMCDc1Cu9NQDwyHIF277E7b+RkJCbgJnIjFp+MBwJx+7hjRiR5MLAIlEw2eO6WDGUK1tK0jOq0vp262xtOKh1W5kRiFxrM5XUpoEg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769997275; c=relaxed/simple;
-	bh=rdIAL7bj4IKHd0kabTO+TDh93xeciFMJ8IvyxSsi5YA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=MMZgPk+k2NEpH3FRwbQxC6Y/w1NXDj7ipnttU+hIxBVxFAdhVNzGTHHRJisHSiQDQpr9uKiLsZ08vVJU5nW5AIFrtZALSkeqVoLRFs2R8tkff3P6qHMEyG0O/4ZT9Aw6nvGqRk5eVlNp08jyfSTwe6iIojUzhl8jX2sxBju82LQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=p58dtMxx; arc=fail smtp.client-ip=52.101.65.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DbnXsTggojRxklvJI6iBrhGHVnOUIKKiggbGDFaK12aYkDgyPWDU9NmqY73AY8dsBVa2RQDBfZItfDvOQs5yn1yrMfYCgnCtBK2vjyp2NkdwYsKNo7AMwOGitgM73qkfsPN+F2t8NQg5ZLhg6oc0DlRqlUkPvcL8KGHq46KSRrHqQTpOME18EdflE8pfW+Y6GoWtHaqHITPU1t54Sy2fjSUBke3S4oa8teOzC+NCRkzGTEEVKW9Ir8dZwkONSlrVX3ZUrlKdrodHh/vZ5aGTQEVgHlkoJII+oLZfik2Y0uA9PFTZAIMhYJN9JHp4QeN202xbkvsLWpiYcASJ8NrCmg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kucq8Qu1xJ05a/ByoaqjC4uaNi1fpEW8h/kk1s+U7jw=;
- b=hTZNQAB40Zp/qg3FhGVYAt+v/oPlOgL0a7unxBYM7QvfXcLLwDNwOkBjklZnyT/LBzq2cHthtbyXq3FgxBBGTYRBpqFRSeKg0fMH1pDnjr/zcgEqzEdzspDLjMY2BC+USzWcZpmTGwd+pUR0W9MTD+4McAuzkdcSwnAPO4QWyhj66HqEqdh7P5y3p0YNk7044ldBRkQ22YOW4CyAWuDDOohb9tTFonr6KapnwHpWNEHXdXIDTQrvlvl7YYhL1n2lLJ6LKAdx/tSfc0rANYW4pREgyI9FeINWsgTS0FTKIXmkyYN3TItqGSLS+SC6eal1N+ByIh33/lCmlmgisjGN3g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kucq8Qu1xJ05a/ByoaqjC4uaNi1fpEW8h/kk1s+U7jw=;
- b=p58dtMxxuhNvwtUGaKWQ79OVw0MR32Ifmd2C250q0CHPBtWR9LqUEIsF3hcki8r8ej0pexwjXWiqxB1llSmgJrso/cVvJ4MRv/pccQd4WKX1BYvlyu8CBWplIqD8e8VPHE8TH+dGhBRVkdRnl+vPjYs1xjhSP3T/6KOSavoo3WaWyR4ZqbBr17Yi5E0zgsbC4qHZlrSbrXx1e8vs0PnurMNhIvte28gOaYaYoUmDJphuRmRNQ3mrZiwgDju85wWXcjPwrSFwXYYv2IBqO48DAfMcfOKmCr5HDs+WOaXnhDbTJlfJUa7Qud+dJbeVCH9ofKsknjzKcZcyJwp13m8/Ag==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by VI0PR04MB10663.eurprd04.prod.outlook.com (2603:10a6:800:260::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Mon, 2 Feb
- 2026 01:54:30 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::4972:7eaa:b9f6:7b5e]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::4972:7eaa:b9f6:7b5e%5]) with mapi id 15.20.9564.006; Mon, 2 Feb 2026
- 01:54:30 +0000
-Date: Mon, 2 Feb 2026 09:56:03 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: Lukasz Majewski <lukma@nabladev.com>
-Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 0/4] clk: vf610: Add clocks to support MTIP L2 switch
-Message-ID: <aYAEM8pcuumly+hc@shlinux89>
-References: <20260129095442.1646748-1-lukma@nabladev.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260129095442.1646748-1-lukma@nabladev.com>
-X-ClientProxiedBy: SI2PR06CA0007.apcprd06.prod.outlook.com
- (2603:1096:4:186::9) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	s=arc-20240116; t=1769997997; c=relaxed/simple;
+	bh=cZHOuyFSDD0YCiUahnVWqH20bORv4bma4nfHULxUbNM=;
+	h=Mime-Version:From:References:In-Reply-To:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fID/Qd7TIuFMnPKazjzZOmK0XKIBQNF+ZsHpCEeKxUMGki3oAc0MoTmXN7sxqkxzvYJhRVpifcnlvZJZy/LrNKVWp1iS2Fi3NXzECCuwQTtdOw6G+kTGAMcC/VujVilpvC4x/fhJEYL9BPjsmJ5JyCQt2mjFjTs5LyfU6kdvV7g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexthop.ai; spf=pass smtp.mailfrom=nexthop.ai; dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b=CV6mQGF+; arc=pass smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexthop.ai
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nexthop.ai
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-790b7b3e594so39384947b3.3
+        for <devicetree@vger.kernel.org>; Sun, 01 Feb 2026 18:06:35 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769997995; cv=none;
+        d=google.com; s=arc-20240605;
+        b=lvD4zzp/zivLr0wDQVGRWJ848vuKvt8TNdNvhWjyD/lpdrOIsR8PHQKzCbTrhscNl6
+         3WGHZ3+59OQ62FGjJN5PtHsfZ5AB7tgtEYON7nst2N5m2qgfYT7+Q2phLQ9htRPA7Huj
+         d1M2hBWLU9GDWyvdnGMUtG0dqEKV6WMAA8LsJgMj7ZKVz46qNUE02yRimfk1cQtN9NfY
+         NPo7cxespQLNBEv3kk5pYrzxPrqyrbWrrVN/NoFZ5XrU1+hv/o4bTHGLoxzmFInDzE5x
+         GI/2XwnKIMlrwJCl4bVHoOkqoqjii/HGiMPdw0E/1LjTAWSdEnr6XWkqP6SgM36DCUC5
+         EB2g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:in-reply-to
+         :references:from:mime-version:dkim-signature;
+        bh=aMiZMMtcuEUphHiFBhOZs43qw2Jy4XV2UcTsb9dz3D0=;
+        fh=Pwnh9ROeKeGSSWxJ/4mhlxJs6uAchYa7ZeWas31QSJo=;
+        b=TQ3Rs+kaoaOo6ZIDKxrVQUXUrDO/d5C4vMl5rsRzhuJH4WzjwXxnl6EK9TIyjiNQsc
+         EK82yXr1YXMN1ZfXZNlHa5Cmh1pYbkTHwBmqyk4zmqsguwnUgCMSKuSOsOfb07POjTZt
+         q0U+T6KYTWsGXu6uP+BmeS3SU3drA+wbf0U2r+wb3IeM9cOMZq9LQaC/vUCuSIOWbsVj
+         FSCHrTHcKf2QIrcs3Y1Tul17XSzp0Fitaq1ZzRbLD+UusxMVbCwNzzKC6yZIfCA1ys1D
+         hs2ZfRMxkRO3wFK63gvbSk9IowWUOQGbowMbvxAnIx1Kn2HXLkcHldFraE/D+zKeTjAT
+         MpXw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nexthop.ai; s=google; t=1769997995; x=1770602795; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:in-reply-to
+         :references:from:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aMiZMMtcuEUphHiFBhOZs43qw2Jy4XV2UcTsb9dz3D0=;
+        b=CV6mQGF+4ioMLL/OrHOp6SCrZ2vMfrCEV8bxM+SO89R7+MC5J6Tgy9U96Xfysk09Om
+         VK+1lyyZOo7eF2V6inK8Uf71Cp9co08/rke+U+9LUOXC9SjfXJ8kWx82aPBRuKK+awB8
+         fyWcWOORevBMXNcpFJAj8/DGehUp9KIwd7WBjz1BPSR00/FRJhZxyIhoYHvPU4jILhCU
+         APuXRItZnhqMIZspGHsurQSeKJRMOHSkdDKRgUbyaDwlteFSoqLSuVFZ0iTRN3zSeESL
+         1kz+ar1NbgWQIPtMwc7TWBwTDX/xUl1rkSY/fsi2dOZglcfkdvsaYFWgWHA7oZBWQsyh
+         6t3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769997995; x=1770602795;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:in-reply-to
+         :references:from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aMiZMMtcuEUphHiFBhOZs43qw2Jy4XV2UcTsb9dz3D0=;
+        b=O5O5MubPsdwpRNsvTpfYjlSEjFVrNeqjADkXyBi1Oag2QWY7zyCcecxfJ00x4S0TCG
+         BMTHNBW4XAyNRKItq33M9XGYZBlKA/uK3tljkLM4Yk5YKNPQL1UK0j0ktZ5+SSlZlBBi
+         m6XgqOU2Mm4CJy9cOwwGtcEyP4a8cBZdfKx0WB6ibBInohiy+8dGPaIZiu9A8NqxJmSm
+         oQ3EhFUuJwfPY5WFt3nWbYjMyhlE4SURxUothIHnZb8Swuhyt7fHP7gNXfWHZEzt2JHW
+         jk6rWeW5yUywvCqb7zxAWVi4xGa6FsusNdhvWtmtRaCSSDDU7byZPBO2kqAXUvHOpUJx
+         SfDw==
+X-Forwarded-Encrypted: i=1; AJvYcCUhIggZn3wtbZqT/IAAMbsWiLtNDMyEt/BjyR/q5CVL8cEGc2ofzdJYGJGWAPYRKakVcSTsfn+kOIow@vger.kernel.org
+X-Gm-Message-State: AOJu0YxVcTcqKSJxWxFFBtPU/oXmaBmMBrkXtzdctBw1tzkt+IUFxlJX
+	M5yra3cZPh2Kv6kXxQjcHHLQLxliaf5jwnGVEOnzs8ErrKZxKwJ+5BKu+n+LHHbyv0KU+LOyM16
+	c+XaO+b7LTHyl3UxhYrlzygU1zxIsbP/W/wsMdnCafg==
+X-Gm-Gg: AZuq6aLRvg6tYkNmNc0O0QxbdpSNB7tCLbIkdMYMTpzrbItGJAEd5v7bdtDu8vf6/Y2
+	sqbxdBfWC/Bt4QFjzgAwyD4MXWyEymigLJkDCsLJf72nnlnVutsL3ciGUEH5L/IcMZ392pFJCJJ
+	cO956p5JczopSVi4svPig6RQ08NmzmfoTIjxi5GUjhFpYNwPbpyM/YgclpgrMEkzljRvBx77i0n
+	u0H/t6DhPWW5bbzYAqayiOOGx9NFB+LbtQo/rGU0De7RrqKo/BFJnH04YLYmGy/sJiukPBp
+X-Received: by 2002:a05:690c:e3e1:b0:794:198e:943b with SMTP id
+ 00721157ae682-7949de7f6bfmr88706007b3.8.1769997994805; Sun, 01 Feb 2026
+ 18:06:34 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 2 Feb 2026 02:06:34 +0000
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 2 Feb 2026 02:06:34 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|VI0PR04MB10663:EE_
-X-MS-Office365-Filtering-Correlation-Id: 614cc1e5-fcc1-4e63-009d-08de61fe0122
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|7416014|376014|19092799006|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?u/dLMmdMNI+OUdilbN8dqqTEs4lX+3b0A18m/FNV/QNlOdaF83a+byDTXnEo?=
- =?us-ascii?Q?hDnHqbcx1ILUjmJJ6SvR/7ozI67GdfU60zKhJoNOyuFkb+qn0bZRg+e2Eu44?=
- =?us-ascii?Q?R1vVwFM+yZH9GODd1WiEToiCTAS2FiRpB2avLbJCeRfGK1+2GKZrak0xmQV7?=
- =?us-ascii?Q?cz9skFLafuL+xH8++dJv75bkv7f0C0nPJsdVtrXGgh9SWLk02E3pyO2OWYPC?=
- =?us-ascii?Q?8Bm6ser4znw/YBtQjJPKQvcTahpqnE68jFDiIFxWbkB75ww8ooOMoRkWTPHI?=
- =?us-ascii?Q?ujOc3FEHrxvsuIq3zwwCHr1pj9Ny1TDtl8hToIHMcs3wRMoiMUTYcVVZ+Yd4?=
- =?us-ascii?Q?2uryF6G5rQwgw5yzzh8AYC3hbxdD82YoF8eowRK/zfNuJFNuFvOxkI6oELrq?=
- =?us-ascii?Q?3mJnQ0fz5PFRgeO8ix6fitbOBov55mHVwBL4zs1P+3bO5na9r8N7wtPpGtko?=
- =?us-ascii?Q?dllVTArkueNxaX/ej7kFZlEh85DbQBxrakv5EOSNUVGpRZKjzoDgoReMkN71?=
- =?us-ascii?Q?Ac3oK0TkAc+oN7qUWqXOeU+0L9rPA/hnq/2YvyQQ+lGgWiVsLeu74dzxaCmr?=
- =?us-ascii?Q?9QCs4QfxQNGXo+lTqcILOxbUCXwFvh/Wp1mSkksxI9CN7aRvxr0FWgDb2SJV?=
- =?us-ascii?Q?mvgjlpJzhQYRKmkquMvPNPwqcJukvFotmQnYD48+vv5DbaDEjlptdNOgipFL?=
- =?us-ascii?Q?NBX8awxB9Syy6IHiilNNwUxAWl7UvdSGwRyoIzIyYFiEyfGf93uodE5ygfAn?=
- =?us-ascii?Q?GvGowUtn7d+WLhltxnzWVrTk9pgvsJoHKivKKb3HFSZNvNETaeTlJoO94tTM?=
- =?us-ascii?Q?LaddY+Wc+v19KnL9SDl+tgr0JQ/8/q2pDMQIkpg4WEk6oJXodVODIJg71hd5?=
- =?us-ascii?Q?o+yCzaePe0KZv+Lcal0pA/g3gx79ilbxht7429uhEnGILYLFRB025aOjOxmu?=
- =?us-ascii?Q?dm6Amg333kMgMDmYHvYfTp1nqXNMc4v+RDuMHF5vHqWQrybaY2hfyfd/ZFry?=
- =?us-ascii?Q?n8OViV2dHwTb1NmH6q9EQfubgosuQMK+0Bw+UarQekbh2wJ4IKHk4ESdnzeK?=
- =?us-ascii?Q?lj/yfQd5fLFwLY88sTd5Z74WelM7kz0MuzCmgMWiHV4Hh/9W1JxA+hoDHWI4?=
- =?us-ascii?Q?++GfTm850U9v8Ik3cvJ9yuN05M7ySfrR8sHb4fIhlY+Imc0bf6ycOcAGFmdG?=
- =?us-ascii?Q?p8qlafathrp9hSHaSlVUgUlXQp8aWitIZKx9hdVYAIGaDBT6DR9Wtt15/IJX?=
- =?us-ascii?Q?kDRwvVMue4RM9gbDzlaJum4uj7p3OK/dcCKzXIxuzcuFaAX16s85YaVHNYQd?=
- =?us-ascii?Q?aiMrj9a8d2FCMmEoXDyZgQg6U0XALCqxnrSFAwhvzm88U3FRUINVMSR1FMwu?=
- =?us-ascii?Q?BWCuXGv8ps9vHZsyZwE2Ii7gLAtHZwjQAywtb6uhM2ryIFuz0Yb4H5/1TPQx?=
- =?us-ascii?Q?E3qpKGLwjpcOkMosBe/OTu+WJ5GAxTRtcQaVAJZyy1iUw0RcWzMGLDY5ylLM?=
- =?us-ascii?Q?ZV19kX58CDEss0G/DYkTzcYdz03iGvNR6jeOlyjyRhEfk7ZA8FS6NSqVmjzh?=
- =?us-ascii?Q?X4TF25eeAF98xqAZC/o1MNXzcLBgMl/TWjCGCM79/T69ElCuUb3TKH6e0RD+?=
- =?us-ascii?Q?p85grzFP1BouoBJfkmzQMgs=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(7416014)(376014)(19092799006)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?aiLinMLZQJsP99hwCbaFSYxYR2fReGPZI6SDS3VlxCoVt8q8wXg0UhwtBdvd?=
- =?us-ascii?Q?HlTRMjQHWUT3xH660ZF/+dgaYcIpZxcolskjqNIWaLZInHdSJ4HjE7hcZpgY?=
- =?us-ascii?Q?qsCrV6HxeuR/3IVQUQ9OZctJmlEHCfcTsXlOdnRo9+fgRmeFbKEZwR9WYzfQ?=
- =?us-ascii?Q?Ahobvm8vsi8yltrxoxM2J7w/IhYHSlEy1J/c+8PUTSErxUik6rvVpDNV5sQ5?=
- =?us-ascii?Q?c4y2DHtOsykU3tcrRyFGVelUDLYPK4CPHgU/cStwRzfpmUkR5F3n8gFZiSJV?=
- =?us-ascii?Q?roXDpRocaXfJ5S8nIUnDSSpK/A5Sck2xzB5LCOEUn2VIsCAZYLuRMuzbZefZ?=
- =?us-ascii?Q?n+5GjAAE98uU1KG+7ZNsod+iXX1GdXoi8KILPdxSTS91OoN1leaEgxkaugyc?=
- =?us-ascii?Q?pgDoc1u+oHmClrjROj3BiTy0fNFJSd58GdJtCWCm8QbYvWqIAmMcNYHVdvmo?=
- =?us-ascii?Q?uZ4NJhBYloPr59eNR0t+rKXkdmQj9Uuxu3BvPjoWFavvTfgZ/f2TDZiRVvXR?=
- =?us-ascii?Q?ag+g8dhhJ9MqMB/O32q44Lcici5LR2WoISLdHdo+irZACSCVzEUTmPDRsYhj?=
- =?us-ascii?Q?g55J9J8cV5DDpViDp2pEo4iuIODPm9B275O74yiZQ/KJ2aRW0/hMxDIg/Fu9?=
- =?us-ascii?Q?FL8cZcohM8kWFUFoPtWwO9WK9H1ZqnjIQ4nlF7tyBeSRQA5wCoVWpmUqykIK?=
- =?us-ascii?Q?vjAhq+SB9HiMslTAYsTx7XbOT4mWJ7UO2UrYtJIKQWytcLY1eoCvk6ybyoDO?=
- =?us-ascii?Q?1owrJtJsv8tMxwAeQpCwDBPvSm53MlBa/dhq7qQe56gCOq991JJhqj6HVWTc?=
- =?us-ascii?Q?pG2Sv9/Jrzu9wSeq42VYw4s58fVp0DI2jujOxuQlW4EgBHIExgbJtEhekCsx?=
- =?us-ascii?Q?1RpBsVRTREKcLvLrfpG1lgCzSnjyElmOpdvHuG7DNfTBIFV+QZMjVOKAoTNn?=
- =?us-ascii?Q?C2BE2CboCUqD5v00U+uv1T7jDyQhgbGQgo+brK2m2OQpnJPdA7mKiSeKkTc+?=
- =?us-ascii?Q?ER83FgF5Q4QJKBNy6zqk/KqOgKZTdh7xxcNHq3gO9VmWhRupV/gB12f0Jczw?=
- =?us-ascii?Q?MaEafGonow4ITpi3hdSQGDbCmGC+SyJRxdCPS7wjpT7eRfZPHHXahxSfFaEg?=
- =?us-ascii?Q?uZphPCwpcceVMNv1hU903/8qLImgDN3hnynHQRtUFR9N44pReOVBsT2uoiZv?=
- =?us-ascii?Q?8fXjBtpebk48rZUViKmBzRYsCDWFnx3byOOcnkuCj8guXVeNzu0124PcJlGi?=
- =?us-ascii?Q?0HpwwqZwGcQ3vbXaH5E5Bog3XHajuh5aWjvTTKzXiTw0m+WxjahK+WlfZ2EG?=
- =?us-ascii?Q?y190+ikoHjGQOwvE5cumlleuqqbQq0d6OwT27nQ56c5/CWkdppjXjyE2brPV?=
- =?us-ascii?Q?sUBmOynjJ3LwXg8qc7Cpf9GHGvBPrMP1PGQFGezwoENU+S96nlobou3RYyl2?=
- =?us-ascii?Q?OsNoNvtAz8QIEMdtvB/j+Zwh5doFTEvnUdk500Tj1atiePWwblhzOUeoy67l?=
- =?us-ascii?Q?U56idAnU3Byec3EAMEWdV6Zx0wUlRek6YRQJbmxBxssKORZkwPnLys4umxjH?=
- =?us-ascii?Q?LR8Exoaog8ZpddcjVEn4GQMYz2a1tmtd9rZwgrwro4rNJb2aEw1xvP8W5b5J?=
- =?us-ascii?Q?vjt14Lb1sGo3kbGMXKljdJ40lGDG5sFryPDWAomqrw6lF72s98I3it2+Tyy8?=
- =?us-ascii?Q?YxPBH8G2oVfF6HHBqRvAGD1MERqsNHPDpuuI3Ae+JbkfF887y4lNb/5dQkmh?=
- =?us-ascii?Q?P8KQtJrBhg=3D=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 614cc1e5-fcc1-4e63-009d-08de61fe0122
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 01:54:30.6036
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cyOO6UD33q52QQBOGBUPP+cmnQWwOs7Njy+7ITM3IQW9BgmO8EtyWyDG9jG+Zr2EIIHV+fa/UekUgoyul4T5ZA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10663
+Mime-Version: 1.0
+From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+X-Mailer: aerc 0.21.0
+References: <202601311615.10yziOui-lkp@intel.com> <81522270-1703-48E1-B64C-8CF174E1EF94@nexthop.ai>
+ <r2qkeep6jf7xxjzckn72z4avgx3qiqh4g2fkvzeyu2p2o54bff@xs4kzlong7cn>
+In-Reply-To: <r2qkeep6jf7xxjzckn72z4avgx3qiqh4g2fkvzeyu2p2o54bff@xs4kzlong7cn>
+Date: Mon, 2 Feb 2026 02:06:34 +0000
+X-Gm-Features: AZwV_QgA40VM4P6w_-3GskOG6YPGtVtQKONh5VU7M0VmOxyGKRkaTPHiN25oam0
+Message-ID: <CAGYn4vxTAJwO3GiKmRtD1gTit-Wm4VOMnxZPxUfUJ0JEwj8dEw@mail.gmail.com>
+Subject: Re: [PATCH v7 5/6] i2c: xiic: cosmetic cleanup
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Abdurrahman Hussain <abdurrahman@nexthop.ai>
+Cc: Dan Carpenter <dan.carpenter@linaro.org>, oe-kbuild@lists.linux.dev, 
+	Abdurrahman Hussain via B4 Relay <devnull+abdurrahman.nexthop.ai@kernel.org>, Michal Simek <monstr@monstr.eu>, 
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, lkp@intel.com, 
+	oe-kbuild-all@lists.linux.dev, Andy Shevchenko <andriy.shevchenko@intel.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[nexthop.ai:s=google];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261609-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[nexthop.ai];
+	TAGGED_FROM(0.00)[bounces-261610-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,baylibre.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[NXP1.onmicrosoft.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email]
-X-Rspamd-Queue-Id: CE44AC7CEC
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[abdurrahman@nexthop.ai,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nexthop.ai:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,abdurrahman.nexthop.ai,dt];
+	NEURAL_HAM(-0.00)[-0.997];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,01.org:url,linaro.org:email]
+X-Rspamd-Queue-Id: 1C064C7D62
 X-Rspamd-Action: no action
 
-On Thu, Jan 29, 2026 at 10:54:38AM +0100, Lukasz Majewski wrote:
->This patch series:
->- cleans up clocks' setup on vf610 by moving VF610_CLK_END define
->  to driver code
->- introduces support for several clocks required by MTIP switch IP block
+On Sun Feb 1, 2026 at 10:23 PM UTC, Uwe Kleine-K=C3=B6nig wrote:
+> Hello,
 >
->Lukasz Majewski (4):
->  clk: vf610: Move VF610_CLK_END define to clk-vf610 driver
->  dt-bindings: clock: vf610: Drop VF610_CLK_END define
->  dt-bindings: clock: vf610: Add definitions for MTIP L2 switch
->  clk: vf610: Add support for the Ethernet switch clocks
+> On Sat, Jan 31, 2026 at 06:14:58PM -0800, Abdurrahman Hussain wrote:
+>> > On Jan 31, 2026, at 6:35=E2=80=AFAM, Dan Carpenter <dan.carpenter@lina=
+ro.org> wrote:
+>> > kernel test robot noticed the following build warnings:
+>> >
+>> > url:    https://github.com/intel-lab-lkp/linux/commits/Abdurrahman-Hus=
+sain-via-B4-Relay/i2c-xiic-skip-input-clock-setup-on-non-OF-systems/2026013=
+0-054653
+>> > base:   63804fed149a6750ffd28610c5c1c98cce6bd377
+>> > patch link:    https://lore.kernel.org/r/20260129-i2c-xiic-v7-5-727e43=
+4897ef%40nexthop.ai
+>> > patch subject: [PATCH v7 5/6] i2c: xiic: cosmetic cleanup
+>> > config: i386-randconfig-141-20260130 (https://download.01.org/0day-ci/=
+archive/20260131/202601311615.10yziOui-lkp@intel.com/config)
+>> > compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 8=
+7f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+>> > smatch version: v0.5.0-8994-gd50c5a4c
+>> >
+>> > If you fix the issue in a separate patch/commit (i.e. not just a new v=
+ersion of
+>> > the same patch/commit), kindly add following tags
+>> > | Reported-by: kernel test robot <lkp@intel.com>
+>> > | Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+>> > | Closes: https://lore.kernel.org/r/202601311615.10yziOui-lkp@intel.co=
+m/
+>> >
+>> > smatch warnings:
+>> > drivers/i2c/busses/i2c-xiic.c:1539 xiic_i2c_remove() warn: pm_runtime_=
+get_sync() also returns 1 on success
+>> >
+>> > vim +1539 drivers/i2c/busses/i2c-xiic.c
+>> >
+>> > e190a0c389e601 Uwe Kleine-K=C3=B6nig    2023-05-08  1529  static void =
+xiic_i2c_remove(struct platform_device *pdev)
+>> > e1d5b6598cdc33 Richard R=C3=B6jfors     2010-02-11  1530  {
+>> > 2557b4ba04df79 Abdurrahman Hussain 2026-01-29  1531   struct device *d=
+ev =3D &pdev->dev;
+>> > e1d5b6598cdc33 Richard R=C3=B6jfors     2010-02-11  1532   struct xiic=
+_i2c *i2c =3D platform_get_drvdata(pdev);
+>> > 36ecbcab84d023 Shubhrajyoti Datta  2016-03-02  1533   int ret;
+>> > e1d5b6598cdc33 Richard R=C3=B6jfors     2010-02-11  1534
+>> > e1d5b6598cdc33 Richard R=C3=B6jfors     2010-02-11  1535   /* remove a=
+dapter & data */
+>> > e1d5b6598cdc33 Richard R=C3=B6jfors     2010-02-11  1536   i2c_del_ada=
+pter(&i2c->adap);
+>> > e1d5b6598cdc33 Richard R=C3=B6jfors     2010-02-11  1537
+>> > 2557b4ba04df79 Abdurrahman Hussain 2026-01-29  1538   ret =3D pm_runti=
+me_get_sync(dev);
+>> > 2557b4ba04df79 Abdurrahman Hussain 2026-01-29 @1539   if (ret)
+>> > 2557b4ba04df79 Abdurrahman Hussain 2026-01-29  1540   dev_warn(dev, "F=
+ailed to activate device for removal (%pe)\n",
+>> > 810199f7315604 Uwe Kleine-K=C3=B6nig    2022-10-19  1541   ERR_PTR(ret=
+));
+>> >
+>> >
+>> > pm_runtime_get_sync() can return 1 on success.  Perhaps use
+>> > pm_runtime_resume_and_get()?
+>> >
+>> > 810199f7315604 Uwe Kleine-K=C3=B6nig    2022-10-19  1542   else
+>> > e1d5b6598cdc33 Richard R=C3=B6jfors     2010-02-11  1543   xiic_deinit=
+(i2c);
+>> > 810199f7315604 Uwe Kleine-K=C3=B6nig    2022-10-19  1544
+>> > 2557b4ba04df79 Abdurrahman Hussain 2026-01-29  1545   pm_runtime_put_s=
+ync(dev);
+>> > 2557b4ba04df79 Abdurrahman Hussain 2026-01-29  1546   pm_runtime_dont_=
+use_autosuspend(dev);
+>> > e1d5b6598cdc33 Richard R=C3=B6jfors     2010-02-11  1547  }
+>> >
+>> > --
+>> > 0-DAY CI Kernel Test Service
+>> > https://github.com/intel/lkp-tests/wiki
+>> >
+>>
+>> This maybe a false positive.
+>
+> It's not.
+>
+> The blamed commit 2557b4ba04df ("i2c: xiic: cosmetic cleanup") has:
+>
+> -       ret =3D pm_runtime_get_sync(i2c->dev);
+> -
+> -       if (ret < 0)
+> -               dev_warn(&pdev->dev, "Failed to activate device for remov=
+al (%pe)\n",
+> +       ret =3D pm_runtime_get_sync(dev);
+> +       if (ret)
+> +               dev_warn(dev, "Failed to activate device for removal (%pe=
+)\n",
+>                          ERR_PTR(ret));
+>
+> So we need
+>
+> diff --git a/drivers/i2c/busses/i2c-xiic.c b/drivers/i2c/busses/i2c-xiic.=
+c
+> index 37a15065db60..a5334b7c46d8 100644
+> --- a/drivers/i2c/busses/i2c-xiic.c
+> +++ b/drivers/i2c/busses/i2c-xiic.c
+> @@ -1536,7 +1536,7 @@ static void xiic_i2c_remove(struct platform_device =
+*pdev)
+>  	i2c_del_adapter(&i2c->adap);
+>
+>  	ret =3D pm_runtime_get_sync(dev);
+> -	if (ret)
+> +	if (ret < 0)
+>  		dev_warn(dev, "Failed to activate device for removal (%pe)\n",
+>  			 ERR_PTR(ret));
+>  	else
+>
+> Best regards
+> Uwe
 
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
+Hi Uwe,
+
+Yes, indeed, I missed that. Thanks for pointing it out!
+
+Best regards,
+Abdurrahman
 
