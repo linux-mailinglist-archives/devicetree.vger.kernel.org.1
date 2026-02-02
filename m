@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-261827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261828-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sGSGGTWsgGkFAQMAu9opvQ
-	(envelope-from <devicetree+bounces-261827-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 14:52:53 +0100
+	id IGXhB0+ugGmiAQMAu9opvQ
+	(envelope-from <devicetree+bounces-261828-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 15:01:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDB80CCF55
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 14:52:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88D94CD10F
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 15:01:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F0488302C677
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 13:52:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5E2D93064F13
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 13:56:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96F0C36AB5D;
-	Mon,  2 Feb 2026 13:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B00369980;
+	Mon,  2 Feb 2026 13:56:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="VkwL9o8v"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="onYzNWYT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE08236AB52;
-	Mon,  2 Feb 2026 13:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DFF5285CBA;
+	Mon,  2 Feb 2026 13:56:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770040348; cv=none; b=es6TNeXm/i+xM+cMyzZquez3D0ndjQzZL9BM1NPPqpdi0pPk+CBl5UIs+lk5DwhYBjHwiPhi7ZC2GOrJh4+NAAc2I3bQZjmUsZ/4FlnNOufJgvaSUTjDuVrsNEujhGVeCjA1VPkEEe5L8wAM5HlCEfcUKjFUsNXAKj1rEW8b/+k=
+	t=1770040568; cv=none; b=Q9UCOc2kvw2qVUSh/jNk512UjvG6YGxG2Q3qvx4l4fI0q/gHkrnJuF1iyHvjqylZv4B982M9hrswBvNw/iLkbNxLz+9Mbhj5u5jVTGtJs/onN5YcjmilR3ezo+k/2tCI8oTsY82qp45Dy1Sc+QlNfq65QPl8ZHYegvsWL6tGiKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770040348; c=relaxed/simple;
-	bh=GkhWbFMpVzRq7MnIMBTWCCOCPa2CcC9fCWqYlwJF0j0=;
+	s=arc-20240116; t=1770040568; c=relaxed/simple;
+	bh=kvwKExbwIcYF0ue04OiBMJvdmTlLzUZT5GdsFLWH7q0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XmhQC2q88Sm2v9s3xN2GZOpB1m/JRKBpRoMEMzt84RhWUCodu0Tpj06XXxfGHvOTIscn1pexmBvow4+I6R/yUgHXt7iFCjz5x+38Kj9GeWkH8qfWYeiI9tO5lZ7dliT9JlWOK17+0Vbi/lmlqY3oWE/nhE4fLGJq+G4HjUkWIW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=VkwL9o8v; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=fzdQH8lVVLvliQVfWtlcDBU8XKY5gZJWrWa//z/lWc7IxuuuFjOWUUmAfT7DRc5x0c5VjFLq+zv5RXGNEGeFhEDCfRIWPg3S7gDWblx2jlFh9qRK12d4KfikAUSJpdJNMNLsBRZnyk1A8bYe9c9jQbJ7+VzqlhNxW/yVRW46SH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=onYzNWYT; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -39,27 +39,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=oXfG5HjD0eLexGaveDkivvSGOBEOw3IK1EmqCYt7KWE=; b=VkwL9o8v+yiNf1jpLT1CLwcH4Q
-	mUFOK94yWW5aM/cJP7KqTfRjEwTDEGi8aA9Eeh813R7r9t4aCkLn8xdYT8t2LSqp3pjPPSPmLz4t1
-	pAZBXRwNVQV9qkoIJazPfpskvN/HtemAAV62k6n3xsafWaHuty1fNhwNVxFCkiUzsNA4=;
+	bh=ZQh9OYc3Oc4hr8yMakIVLGrYeLd2XVCP0GPV4wb5uzM=; b=onYzNWYTUx1c1sMmhmU2VYAXzS
+	2EEyuUZNK6gff5lLgdPS2mFkrr2o7bA9Vu8lMFTKNj5rQ0PWvjbWbg3ogQtO43rJE0hB3vvA+E8fL
+	evzT/vn2UqXuxBP3LBeLA2qnvecZ0gXSEyDVoQ7yqGREkK1pYoc8/5smRdD0cDfg39f0=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1vmuLi-005pXN-7x; Mon, 02 Feb 2026 14:52:18 +0100
-Date: Mon, 2 Feb 2026 14:52:18 +0100
+	id 1vmuPF-005pYn-72; Mon, 02 Feb 2026 14:55:57 +0100
+Date: Mon, 2 Feb 2026 14:55:57 +0100
 From: Andrew Lunn <andrew@lunn.ch>
-To: Quentin Schulz <foss+kernel@0leil.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Heiko Stuebner <heiko.stuebner@cherry.de>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Quentin Schulz <quentin.schulz@cherry.de>, stable@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: fix Ethernet PHY not found on
- PX30 Cobra
-Message-ID: <33d3bdd5-0fed-41f6-8b8c-9690e7665346@lunn.ch>
-References: <20260202-px30-eth-phy-v1-0-ef365be64922@cherry.de>
- <20260202-px30-eth-phy-v1-1-ef365be64922@cherry.de>
+To: Mihai Sain <mihai.sain@microchip.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	varshini.rajendran@microchip.com, cristian.birsan@microchip.com,
+	balamanikandan.gunasundar@microchip.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, ryan.wanner@microchip.com
+Subject: Re: [PATCH 1/5] clk: at91: sam9x7: Remove gmac peripheral and
+ generic clock entries with ID 67
+Message-ID: <2fa66fa6-1ad5-430b-b030-c3969147c853@lunn.ch>
+References: <20260202104025.3781-1-mihai.sain@microchip.com>
+ <20260202104025.3781-2-mihai.sain@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,63 +68,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260202-px30-eth-phy-v1-1-ef365be64922@cherry.de>
+In-Reply-To: <20260202104025.3781-2-mihai.sain@microchip.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261827-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261828-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[lunn.ch:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,kernel,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim,cherry.de:email]
-X-Rspamd-Queue-Id: CDB80CCF55
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim]
+X-Rspamd-Queue-Id: 88D94CD10F
 X-Rspamd-Action: no action
 
-On Mon, Feb 02, 2026 at 11:27:25AM +0100, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@cherry.de>
-> 
-> When not passing the PHY ID with an ethernet-phy-idX.Y compatible
-> property, the MDIO bus will attempt to auto-detect the PHY by reading
-> its registers and then probing the appropriate driver. For this to work,
-> the PHY needs to be in a working state.
-> 
-> Unfortunately, the net subsystem doesn't control the PHY reset GPIO when
-> attempting to auto-detect the PHY. This means the PHY needs to be in a
-> working state when entering the Linux kernel. This historically has been
-> the case for this device, but only because the bootloader was taking
-> care of initializing the Ethernet controller even when not using it.
-> We're attempting to support the removal of the network stack in the
-> bootloader, which means the Linux kernel will be entered with the PHY
-> still in reset and now Ethernet doesn't work anymore.
-> 
-> The devices in the field only ever had a TI DP83825, so let's simply
-> bypass the auto-detection mechanism entirely by passing the appropriate
-> PHY IDs via the compatible.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: bb510ddc9d3e ("arm64: dts: rockchip: add px30-cobra base dtsi and board variants")
-> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+On Mon, Feb 02, 2026 at 12:40:21PM +0200, Mihai Sain wrote:
+> According with datasheet table 12.1 the instance ID 67 is reserved.
+> This change drops the gmactsu_clk and gmac_gclk entries from
+> the SAM9X7 clock description tables.
 
-What is the justification for stable?
+It would be nice to mention in the commit message that there are no
+users of these clocks in mainline, so there are no backwards
+compatibility issues.
 
-     Andrew
+	Andrew
 
