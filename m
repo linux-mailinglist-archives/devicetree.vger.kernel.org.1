@@ -1,416 +1,324 @@
-Return-Path: <devicetree+bounces-261880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261881-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qJnkECLEgGl3AgMAu9opvQ
-	(envelope-from <devicetree+bounces-261880-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:34:58 +0100
+	id cCy2Kp3EgGl3AgMAu9opvQ
+	(envelope-from <devicetree+bounces-261881-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:37:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3D73CE4D2
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:34:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AE29CE4FE
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 16:37:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DA07F301BEF7
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 15:31:20 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 59A503016EE7
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 15:36:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A57F2248A8;
-	Mon,  2 Feb 2026 15:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D41B8246798;
+	Mon,  2 Feb 2026 15:36:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MlYiVBrG"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="AaduWTnD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f41.google.com (mail-dl1-f41.google.com [74.125.82.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013008.outbound.protection.outlook.com [40.107.159.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD081DA62E
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 15:31:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770046278; cv=none; b=mp86LFVB/ncMwEPzKqdrdeThGyxn+wztMjjgSxSWQQPQ+2PhoDE24aAIeNMoqw6T70M+5Zz4z6w46JUsgk5uSTJuelLqdSuEYYqlJl2hhNIJDILXyqjLbZwQ8eoAb7ancgNN3PKo669fClYI8Idj6oYpBdhNeYazWBlllCbZEoI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770046278; c=relaxed/simple;
-	bh=UEzb61WiEx2UmPh655yKl5YB3scIAObWORgpS5rNTkw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bO0WvT1vSTzDjWTwU2ZCyb54/UsgZqNZeKJ/0BEPYJ9xXbLfddXnOSXnsnQdeaE4M2g3TvGLEiYXTqRTmw2zRzmYHF07iEcGRmD8XRdCE0z9mquRJPHH+MRW8F+dbGiUkw2q1FCWS1bGmSWBdlV8wLYXFls5E31Gf2ADysfLfpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MlYiVBrG; arc=none smtp.client-ip=74.125.82.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f41.google.com with SMTP id a92af1059eb24-12336c0a8b6so3453835c88.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 07:31:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770046276; x=1770651076; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=KASwKVJAOcRcDQ62DynEubbsVbrQ52fy8su604URc1s=;
-        b=MlYiVBrGUaf5E8ChoapXNaQGq0Tfx1fq5Kt9CBf4dHp/61hInLa8jlZyN7OgMVLDIt
-         9DFbjyrHXox8FHtbxn+m7OH44jcT7xTMwJWR+lW9e21MqLPGZWkttGhur32KGTZi8fqU
-         YNB3mujrRBfE2LNhl6Pc80Fe7gef5HRK/pHRfHvcxVbnAXkoAt+4iZvKM6Vj+WeYEa6Q
-         0VVdkUxRQScaUBpzZq13NqQplzrHnLhEcGTOg40oNyqJUTeyMRxYCdXDazE0nzJxpGse
-         XH4iKzB0TFVWZOz9snJ+6f5iknL/DHiAT9fFyzVqUTfsnl9o4nDSWwHrgC/YStbv4jMS
-         uR6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770046276; x=1770651076;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KASwKVJAOcRcDQ62DynEubbsVbrQ52fy8su604URc1s=;
-        b=ODGYV4O/rxk7x1l/Vt6s2kt0KqE4OLcJToQBYdX8wXkTAptOQO80XzuNyIYaluoVXN
-         yNscGrvyFRWbWo5MeBFn6DNIoOzbKUF9fQsR/iOTZBg2kF1AxKGMbdTyMHMT28MDwBqz
-         7ZrgyyxADapg58fHtQp73tIgx5g3IInvw8mRbyB6QrYZkWRas8UUu04WnOT67dVt6zdp
-         zJN+EVcru49/Nu8DM4MdvJ1WmjVPIJnFQ8OnyTwhaLV3nw1RsRE8hFjJMMdPx6biGm3K
-         272dWVbKkDIxcO1o5f0HAgM81X5mtT4njwXROyDdn0jfzcJ5fduoc2eLMnKv1+3mVsJb
-         tP+w==
-X-Forwarded-Encrypted: i=1; AJvYcCUp4TngL4JWsC4gnW2IVtvnsmIOlNwgw6KRLQiSA6FVtQKZlmqOzjwts1INkcEaMcVP+EdgKpk6TNQ2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yym1xJ1TOVvtj9YXlBjwnQ1LzAqv4emQMtFs6Q3IVjqcoWj0vXF
-	mGquCO4Nu8VIV0NVGgi+DRzGrJgFjYMC6077dhtm+5DGs4zgffpDWOf1
-X-Gm-Gg: AZuq6aL0reBGPbJQSS+O8s9OKd5QItjSy9xvCQb0+VZdH+jTKMGgupSgegjNmgA8HWj
-	eWio4DjZgGlDRY177mjEGGGomUf6xln9Qrd5XfwvdKMIvJUithqqO2jciEns/U6ST0NvdLQVx8Z
-	j9qy/L22whqskKNNHfE95nHoz9T21DpJuuHkl+7sij3R9id2vr52ILMod+ScucBUig4NvvX2QQU
-	dAFbeULNa51eGGAVGKTLmzh7UBOf1ImfPoFK6mobF6NJ1K8bx1CBwJnvfNs/hefJwmafFNrvcMp
-	H9TZcYjnsyHx0g0lM8+dSR1W6s6TDpakEk3L9KLfVraXbK99mOvyAsxFF09KMkkOAibawTTw7qu
-	3ad/brs3/OrUwnvhc6f+Sw2kXM4Ocv18ETKemVl/vG5oayzmEzHUTeG1NLPfqBywxWpQM2IUhVR
-	TtbBoC2VCM7ltdUiLSY6+vrVycbt+7mqwSTfQdemUzES7E26Fv8yRiEO2oQP01
-X-Received: by 2002:a05:7022:124:b0:121:dea2:d54d with SMTP id a92af1059eb24-125c0fafcd7mr5852450c88.20.1770046276127;
-        Mon, 02 Feb 2026 07:31:16 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b7a1adc60dsm19913850eec.23.2026.02.02.07.31.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Feb 2026 07:31:15 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <d0854014-7977-48b9-bf31-d66865352ecf@roeck-us.net>
-Date: Mon, 2 Feb 2026 07:31:14 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7286A2E8B82;
+	Mon,  2 Feb 2026 15:36:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.8
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770046593; cv=fail; b=ojQEQt7w8ImZVm/uwrkIJH7xOdrrCIrYt5pN8GMRiQE4G29SJ0r6e8TJ6yOdpb6N7/UsQqrlN2UsGXuN2DdsWjEFEqNq/u5cyrbAYIttBmM36DlrKkTNeJLnV6L/TyQG0rga32in58qBdr942+0PC71q93s4m1iWHMrL1NpP4pU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770046593; c=relaxed/simple;
+	bh=rHldvwfmCP0RqZcUAtQWoyA/HFkg2/zdzX1+kbPACgY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=sB6lgM1RCDqvFq6bCH2R3lprvpEIkd1Sdoa6up4VXTO7wzul2KkRXpQrhDxmgSxx+28XDvNyMIrBiuh/GPkQpYgOElEx6rTMKciDThLkbsIkU48qY0yculBc8usuFhcIgo4I99Z09HhgQWny41Np3tqUMiY+wUfjYq1ov9N13rM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=AaduWTnD; arc=fail smtp.client-ip=40.107.159.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dl4qhMZcMxe0P6kKh5k/VWC4Gq8jEkI7rT4wF8GWxSHquLvXrxddg5H4ei9QxzOiVQEeTvU43naaXtH4CnA4z8QYYuKOpJSZIXmGPtR/ncwebeLNuNX4QSjIp/CvsecSfQrsaqiY9WGwnznLD7N/uRLXy+RO9XSEvV7dEo9hS/qd4w+Wcbp0AmRjhTuTQT9u0OleYIy5EQ6DzEOUs7tOOs0B/QHFVs72PCMsvb7EIfuGgeH/ZMc6zrQWlGLzEl4EaunONbWfKwhfNPFON1lSs7HjkvRC4h+xyLvJqDp7QxrqP5UvWuDCScVJX2BPjTIOSTO4Un1RnF0WbO6D9EZglw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=F3btKMzYNY8reGB0o5YYU7Q4u9OcynSkz40hrjzFuI4=;
+ b=MFSoOoWIWWPaFVCM1vtULD5TVbk1JUHcVfRFUylU/5Pnvu2z3ksdlJnIjis1zkoV9/hAtPyk0NoWAKvVbisrqjgGtLN2R+61aVDiLzERWbzIjTVCY8RHQEAigYwfK7tp1cAaz0xMTXPya5+D/V4thwFrfMmHvNPR/MCnxL34/sRW3iNoFns1O1K8QhQKSO2Kbizm7+nNp0G5hJIoMHNsKH65SFkX/l7Yit7eVpSDF078Qa2X77VKFs/oeEAB9Klw/hXv6W/gFCArO6sQ5sLyA9T4GlGVGUNMOrL7Q71AeeJKvMLmzCCjnIEy7mNoJdy+gPF4y9Dgh5fxpceZv+MlaA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=F3btKMzYNY8reGB0o5YYU7Q4u9OcynSkz40hrjzFuI4=;
+ b=AaduWTnDnjAdTJmNR0gYwdcXkajc6fB189DTU02uS1+09MFjO7U3v+uUCTA7i7h4s7uuSizE+UNZXIuMcyclfOCxY1m1CeRI+gJq2g/qcqfEcQ3m78DROXA26iTNnSn4+0tRq0MUd0RwNBSCNPegplAGRgDaucftQoYqOmYIYXnfkt45dMN55O5D+Y8yEOZuxeH1z3pJ1SSs0xL4Wg4bmwEvNe/2HCxLMxT6Zqc1m1Ekz/osh5vzlj8VgkS4nOlz66angapv3aHwKBXhDWInMICBr9iXGjiX4j4GYd6rVptDn7EB9Yk1c9J0EIbRFQVlWODt2QmBzXIf3+eVlgPPZA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by PAWPR04MB11569.eurprd04.prod.outlook.com (2603:10a6:102:50a::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Mon, 2 Feb
+ 2026 15:36:27 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9564.016; Mon, 2 Feb 2026
+ 15:36:26 +0000
+Date: Mon, 2 Feb 2026 10:36:15 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Li Jun <jun.li@nxp.com>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] usb: dwc3: add may_lose_power flag
+Message-ID: <aYDEb+nZe2efehEr@lizhi-Precision-Tower-5810>
+References: <20260202-add-flatten-dts-based-dwc3-imx-driver-v1-0-c44a5e919380@nxp.com>
+ <20260202-add-flatten-dts-based-dwc3-imx-driver-v1-2-c44a5e919380@nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260202-add-flatten-dts-based-dwc3-imx-driver-v1-2-c44a5e919380@nxp.com>
+X-ClientProxiedBy: SJ0PR05CA0209.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::34) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] hwmon:(pmbus/xdpe1a2g7b) Add support for
- xdpe1a2g5b/7b controllers
-To: ASHISH YADAV <ashishyadav78@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ashish Yadav <ashish.yadav@infineon.com>
-References: <20260202080355.53061-1-Ashish.Yadav@infineon.com>
- <20260202080355.53061-3-Ashish.Yadav@infineon.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20260202080355.53061-3-Ashish.Yadav@infineon.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|PAWPR04MB11569:EE_
+X-MS-Office365-Filtering-Correlation-Id: ec8517f3-70f9-4936-574e-08de6270d3d0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|52116014|19092799006|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RnRnRUN6YTl4Rkk3MmpIbFByam5hQy9XcXo3TTlaZVVJWk5yWXZHOXVlLzBr?=
+ =?utf-8?B?M3VGaUhOWjNabStDUDJVTlRLK2ZWL28vajVjWERQd0V3VHJZbTFmZDUwYnNq?=
+ =?utf-8?B?enl3NFdRdmlBUzQ2bllkd1d5aHRoZUtjaUlRSjdjbittY3Jtb1VCRTduZzE1?=
+ =?utf-8?B?ZDZOTnBlZm15bFhxdy9PSWJ0SXQrTlhZaklLcXdnaDVhekQ0L1BJbWpCd1pW?=
+ =?utf-8?B?bXFRUnVPRWZEdjRTSnMxM0I1T0JaeUcvZDV4TVVMVDJWem5ZK3NWclhDb254?=
+ =?utf-8?B?TEdrY2I2Q1VqdERKK1BUdndUZTkzVWM5UTNobXQ0Z2E1WHJsWTR1YW9SQ1Ba?=
+ =?utf-8?B?VTlmbTc2Z1UwNHMrenY2T1JHZWtwQWdCb3BURHNYU3hLM2x4dEdZT3ZabjFl?=
+ =?utf-8?B?ZjNEVDdZNTN4Tkk0MHgydFlPWlgyMkllZ0hSdFo0UC95YkIybGYzK3pjY04z?=
+ =?utf-8?B?K0pFTk5jbTJCMnVtRjJGbzI3MFVqUGZMQTlnaXlFZWhWWGFPckJqV0d1RE9j?=
+ =?utf-8?B?V1YweDJRUmcwMzRoZllSK1hGdmU0ZFRpb1drRytxS3RCWk1idHNkdm5Uc1Iv?=
+ =?utf-8?B?RnB1MTJnN3ovN0UwclZiK2FEQ1pTRENub2tMYWhlbm8yVFo1ai9Ma3htRnhy?=
+ =?utf-8?B?b0ZjZWQ2U25ITTZiVUNqRmdaOGFDc3JSM0l3bUhNaGw4R0F3UnpyVGo3REs4?=
+ =?utf-8?B?bEVDNGpQVWxtV3E2Nko4OXNKUmo1UHEzZi81bmlUZU01a1BLaDRGVlNXOG1h?=
+ =?utf-8?B?bHVhMDEwZnpWamFHUzVLcFNQakowZE1KaVB4UGdnWXdOVlh4d29WRUowT1Q4?=
+ =?utf-8?B?emV3ajNIVU53MG51b2J6ZG5PWkxJeUV4STdNejJIVnNpY2VDL3NIZEVaRFZm?=
+ =?utf-8?B?SDBzMDd0WG5VcThzcjZ3WisvdzhrcmVNb1FudXgrL2FGL25ubERHenB0dWFt?=
+ =?utf-8?B?SlZyYkNiZjNyRmdKUHBVU3BiL085MHpLenlnVCs2b2c4UHRpY1dCOFM5QmR0?=
+ =?utf-8?B?TElSa3diTi84NU8wM250WU1XWXQyaitCWUJoUVRQQkgvVkpvTkw1cUZ6My9n?=
+ =?utf-8?B?aDd6dG5sa1Z3Nm94c3FlOHBkL2RMaktNRVpOWjJVUHNyQWRoT3JYYlVpRHYx?=
+ =?utf-8?B?OGxncG5OeVhEbzhadFVkNS95dWtFSFdDQ2VQZ2RJdXVOUzB0SElWUk9aWjd0?=
+ =?utf-8?B?a3BoaHI2S1VaNDVjWjladDlZeHZZb2FZVnNjZlhsVW9FYTZNODJEMmM2OUhK?=
+ =?utf-8?B?TUZHWGhSMzRxemRmYmlJOG5aUnRTaUFiRUkvUU1EQWR3M3JXS21kL0l6c1h6?=
+ =?utf-8?B?UmJtYVRoek1iOHE3c3ZCNFJsZWNQeFBsVnF4bnZEcjZxdXV2bzQrRUgvak9Z?=
+ =?utf-8?B?R1BIWS8xM3E0Sy9WdW1nSld4RFdjbS9xNnoybnkvWlZrSXVSdnEvUjQwUXha?=
+ =?utf-8?B?T2JkRFRNRVJ2d1VoY2JDbHdJT2ZOYk5kc3ZNTU5QQVNzeFgyaUdtQmNBM1pC?=
+ =?utf-8?B?eElpem9UQ0FITGR6aFJUZC9rQ3VjQkNLM20rcHRGa1JPMk5qNmZmU0JYa1No?=
+ =?utf-8?B?ckpVbnQweDBCUDRiTVlDSEl4U2dVK3ZQVHVFOTEwcCtUMkk4WEV1VGlCRkxY?=
+ =?utf-8?B?MUZiaXpqbHRrYTd0UjVwcjNDeGE5Z1ErQVI0VXlyN004dzh2ODVJU1c3NDRs?=
+ =?utf-8?B?clVmSFozQlpkeE15Q3Ryd2I0MWNPcGZ4d3FlTVBMQ1V1QVRydXlLZmYwVERB?=
+ =?utf-8?B?WGdQa2lMRmhpeGQ2TTVISWo0dTBoelplYmF3dndRVmVBS1pRQ0pxY0Rsdmt1?=
+ =?utf-8?B?VU5sUGhHaWJZVG15VHV5OVp6b1JWbFNaK2FFR3pBSGxtQ0taUkFRVUozcU5E?=
+ =?utf-8?B?MHFZWGpLUzRGSGQwMWwwb0FQeUsvR3FUQmJqK09ad2RlNXRFQjd6SlJXRklE?=
+ =?utf-8?B?VWMvRmtsVWZkZFhRT2VjeG45L1g1WVJGbEtKTDlJQ1drSm1Hdng4UmJUNGVR?=
+ =?utf-8?B?QXhVMkdKMHdpZEhkTlJNNTVUNFUzVmNlSHR5a2dsZUZtSGZPN0FldjVvelBT?=
+ =?utf-8?B?Yi8wRkY3VGhpYXg5Z0VCQ1h2dG0wS3docms3akl5V05GZmd1TUROSzhxWnRv?=
+ =?utf-8?B?N2pzK3lteCsxOTNHUjllS1J3a3F4YlpYWXh5NUR5TnlLQUc0YUVGek5IaUsz?=
+ =?utf-8?Q?XpKpEz5Z2gPkjRk+44PbVwo=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(19092799006)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?UzNmNXpWYUJCSDd4dnNrb3BsUlJTanRXRHR3TzltUkdUQ2JaYTQxK1dxUW1M?=
+ =?utf-8?B?WnRoWHdsUDBLNlpZWUhZbWVWUXQ1TmFnaHdmZ1REVWdCKzRtSnp5M0hTTkV2?=
+ =?utf-8?B?c0EvRmw2a25sNmNyb1d3T1VPQndCOGFkZFZZS2VmQlBqNStrbi9FS2xvTFhF?=
+ =?utf-8?B?SjJ4bXV2MUpWdURzUlh1TGFVTkFUd3pXUEFRRW8rRXFGSDlobGFQR05yRW9Z?=
+ =?utf-8?B?a2pSR2liUHRNV1ZHR3VmUks3L0krVmZWbUJaL3ByeG1nYjF1eGY5UFdjTk9o?=
+ =?utf-8?B?WVRuSmVWRkVwV1VReXRYU29VYXRRZk5VMjlDOFZWdHNNc0JrVEVKV2FuaklE?=
+ =?utf-8?B?YlFPME80N21NZGYrKzBoaFRvWFBGV2hQaDhpdjJiSTArdmdvbFdmSnVRYXht?=
+ =?utf-8?B?WWZyNDNVMWZtVUlia0tzNjk5MHBmY0ljQzNtZk80Wklmb2lMNmx1Z2RJUEt1?=
+ =?utf-8?B?ZkpvRWdmTmFVVWNHc2IzeE9BWGtnYmMzcWZ0NEdyUDQzMkJCV3ZvNndWR2Zn?=
+ =?utf-8?B?UTRXNzRhZVlvNjA1SFRXUTFOeVFuRm5wVEJBaHBGRnhXMUhPb1grOXNoc3li?=
+ =?utf-8?B?V0hWekpSazZxZUUzWDV1ZWx2NmpzY2pjSzgxZE5XRmQxZWkyTmVoL2t0MGJT?=
+ =?utf-8?B?VlNXNXhUdXRCNWxoSThBQnhJRUFkK3Y2TFJWTEk0a0NaYmZOTjlpcWhQbHU1?=
+ =?utf-8?B?NEhSdEhIaWhYb0dtQ0h0Q1hNN1NJUjVxMEFHY2Q4bHJUdUZHS1gwTkwvVGlo?=
+ =?utf-8?B?cFpsQUhMR1FXSkhSWjlrZVJCQ05HRFNpbkV2NzZqNThJYXpHcmpmVXc3b0pw?=
+ =?utf-8?B?Y0Q3Y05yeEpCUXVSKzFOa0pORW1xNm1xMXRuNjlHbVBMK1dJU3BEdTJVeHFt?=
+ =?utf-8?B?eDY0enQ1SkVFV3draHZhY3l6ZzVjWS91SWw3N1BSbm9JcDY5K1RsRENtYXox?=
+ =?utf-8?B?NHZmdTMxdGZnc2pMYTJTcGRSY2ZTcjZoakJzL3FwR2ZKOXpCRURUR1dORHJ2?=
+ =?utf-8?B?NmxkWHpJZ0xSckJndThTUjhvK3NFenpyekJ1aU9XeWVpbGhpc0FDQzF4TXYz?=
+ =?utf-8?B?ZkNSMEh5eENzRDcyL2QreUdLSUFsMzdQa0Rra2hyZHlzeFNMSUpmdEJOa0lB?=
+ =?utf-8?B?Y0lNYXArcW9tbUFNSGRLejAwbG1PZ2VvS2ZKeWFSMDh6SGpYZjhHWkVEWkZk?=
+ =?utf-8?B?Y2N3cnl5SlZPQVI1RTY5TVQwQWlCaXZFTWpWWXN0Q2t4c1FocW5UOUQ2Y1Zr?=
+ =?utf-8?B?bVo0WjN3ZWFweTMrOFg4V2p0SWZmY1o1bXJ3VVo0Um1zMlB1WGt3MUozenpM?=
+ =?utf-8?B?Rloxb1puLzY3RnVpbkxyR1dSRmdpekFvd2pEZFhySm94d3lGZnJHZWxSYm0v?=
+ =?utf-8?B?ZmN4OTBIZjRBdW10LzBMMHNEajRqME1nd0cxbG5MOThpSUJ4WlZJc2FrWlVO?=
+ =?utf-8?B?ZTlTdU81d0hUY3Nsb2IrRVRSOEo1WllkR1JOeEdFMllJMENoZ1ZlbzFINHU4?=
+ =?utf-8?B?bVVQWFRoME9UOXpCMGxuQWxDYi9MYWhmREVpeCtQTmQrMnQ3Mm80c2lsODZD?=
+ =?utf-8?B?b3BzT1VLeVA1QnZTb2RDR2JyTTVIb1Y1VDdWY2JUbmlSWFZiNlBvZHFlbGZs?=
+ =?utf-8?B?YkFzUmtaSEVMenRKSWtVZDVIckpHUDRUQUJyMWpaRkdBQzg5bkRlUE9McnVh?=
+ =?utf-8?B?SXNudzFhNGRJMFpmNGRYTUNCa2JydkYrc1liUVVhZUIyQ3lKT05wTTg5SjZt?=
+ =?utf-8?B?eVhFMFZRVHB6dGo1ZWZpSU81UmhKUmhJT1lGcTN1MERBWFkwYXRXbGowakl4?=
+ =?utf-8?B?ZHpTL3FFR01nbzU5V0szVlpxWUV2VUI1c2sxTURtMm1xZXFxbFU3TVlqLzln?=
+ =?utf-8?B?Mm5BbFlYU2ZPOHc2RTY3V3JTWFpySXR2SFR6R0hFOTFkWW1RTm5zS3Z5Z3Vw?=
+ =?utf-8?B?RUlFMHFqNGFPSjk3MTFMTjh0V2VUNEhyVGUwVjNnNmp3ZDBhNHN2c3NLQmNq?=
+ =?utf-8?B?SHdKY25nTm5uWFBsRUt1MlJ6d08zdXEvUEd1Uy9FTCt5TGhVYm0yTDdlbXhF?=
+ =?utf-8?B?REVzQ3ZJbVNFdGlLY1dCSXR1OVc1NFRaYlF0c0VpRWw2di9Od1AwT0RveVMw?=
+ =?utf-8?B?YmwyVVNUelhTd0N3bmpLdlpVZThJQjNRSDQ3dXVneTl5N3VHS0N2UkVYcW1r?=
+ =?utf-8?B?ZDdsdkZWd05GdTNTODg5SWFydmx4Z0RmalBBNnk0ZjV3ZVJUSmdTWkxkQXhB?=
+ =?utf-8?B?ZU8zSURaNEN2TmFvOUhlelFLSHZUUmk0dk1oZm5PRTUzUEIyajE2S2xGUk5z?=
+ =?utf-8?Q?ir5RLQmf737cwT9WdQ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec8517f3-70f9-4936-574e-08de6270d3d0
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 15:36:26.6444
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hhjdfob0PVZeRXeEWTeEA+YQ+iUjhkKTrr1E+QL/zFkTpmMktbY5Yfw+wdb+VaiKstBH0tCWdQM9QdmWImU1Ag==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB11569
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261880-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261881-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,pengutronix.de,gmail.com,nxp.com,synopsys.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,infineon.com:email]
-X-Rspamd-Queue-Id: B3D73CE4D2
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:email,nxp.com:dkim]
+X-Rspamd-Queue-Id: 4AE29CE4FE
 X-Rspamd-Action: no action
 
-On 2/2/26 00:03, ASHISH YADAV wrote:
-> From: Ashish Yadav <ashish.yadav@infineon.com>
-> 
-> Add the pmbus driver for Infineon Digital Multi-phase XDPE1A2G5B and
-> XDPE1A2G7B controllers.
-> 
-> XDPE1A2G5B controller supports Linear Data format for VOUT using VOUT_MODE
-> command.
-> XDPE1A2G7B controller supports Linear and VID Data format for VOUT using
-> VOUT_MODE command.
-> 
-> In case of vid mode in XDPE1A2G7B controller, NVIDIA PWM VID vrm_version
-> is supported:
-> Vout = 5mV * (VID-1) + 195mV
-> 
-> Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
+On Mon, Feb 02, 2026 at 06:27:46PM +0800, Xu Yang wrote:
+> The current design assumes that the controller remains powered
+> when wakeup is enabled. However, some SoCs provide wakeup
+> capability even when the controller itself is powered down, using
+> separate dedicated wakeup logic. This allows additional power
+> savings, but requires the controller to be fully re‑initialized
+> after system resume.
+>
+> To support these SoCs, introduce a flag to track the controller’s
+> power state and use it throughout the suspend/resume flow.
+
+Nit: next time, wrap at pos 75 to reduce some lines.
+
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > ---
->   drivers/hwmon/pmbus/Kconfig      |   9 +++
->   drivers/hwmon/pmbus/Makefile     |   1 +
->   drivers/hwmon/pmbus/pmbus.h      |   2 +-
->   drivers/hwmon/pmbus/pmbus_core.c |   4 ++
->   drivers/hwmon/pmbus/xdpe1a2g7b.c | 115 +++++++++++++++++++++++++++++++
-
-Driver documentation missing.
-
->   5 files changed, 130 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/hwmon/pmbus/xdpe1a2g7b.c
-> 
-> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-> index f3fb94cebf1a..c6750bce446d 100644
-> --- a/drivers/hwmon/pmbus/Kconfig
-> +++ b/drivers/hwmon/pmbus/Kconfig
-> @@ -684,6 +684,15 @@ config SENSORS_XDPE152
->   	  This driver can also be built as a module. If so, the module will
->   	  be called xdpe152c4.
->   
-> +config SENSORS_XDPE1A2G7B
-> +	tristate "Infineon XDPE1A2G7B"
-> +	help
-> +	  If you say yes here you get hardware monitoring support for Infineon
-> +	  XDPE1A2G5B and XDPE1A2G7B.
+>  drivers/usb/dwc3/core.c | 9 +++++++--
+>  drivers/usb/dwc3/core.h | 2 ++
+>  drivers/usb/dwc3/glue.h | 3 +++
+>  3 files changed, 12 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index c07ffe82c85049364c38c7ba152aab0ff764d95e..9d4326da5ec7669fa714707fb24556723cab51b8 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -2314,6 +2314,9 @@ int dwc3_core_probe(const struct dwc3_probe_data *data)
+>  			goto err_exit_debugfs;
+>  	}
+>
+> +	if (data->core_may_lose_power)
+> +		dwc->may_lose_power = true;
 > +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called xdpe1a2g7b.
-> +
->   config SENSORS_XDPE122
->   	tristate "Infineon XDPE122 family"
->   	help
-> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-> index 349a89b6d92e..620f24baa289 100644
-> --- a/drivers/hwmon/pmbus/Makefile
-> +++ b/drivers/hwmon/pmbus/Makefile
-> @@ -67,6 +67,7 @@ obj-$(CONFIG_SENSORS_UCD9200)	+= ucd9200.o
->   obj-$(CONFIG_SENSORS_XDP710)	+= xdp710.o
->   obj-$(CONFIG_SENSORS_XDPE122)	+= xdpe12284.o
->   obj-$(CONFIG_SENSORS_XDPE152)	+= xdpe152c4.o
-> +obj-$(CONFIG_SENSORS_XDPE1A2G7B)	+= xdpe1a2g7b.o
->   obj-$(CONFIG_SENSORS_ZL6100)	+= zl6100.o
->   obj-$(CONFIG_SENSORS_PIM4328)	+= pim4328.o
->   obj-$(CONFIG_SENSORS_CRPS)	+= crps.o
-> diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus.h
-> index d2e9bfb5320f..3ddcb742d289 100644
-> --- a/drivers/hwmon/pmbus/pmbus.h
-> +++ b/drivers/hwmon/pmbus/pmbus.h
-> @@ -416,7 +416,7 @@ enum pmbus_sensor_classes {
->   #define PMBUS_PAGE_VIRTUAL	BIT(31)	/* Page is virtual */
->   
->   enum pmbus_data_format { linear = 0, ieee754, direct, vid };
-> -enum vrm_version { vr11 = 0, vr12, vr13, imvp9, amd625mv };
-> +enum vrm_version { vr11 = 0, vr12, vr13, imvp9, amd625mv, nvidia195mv };
->   
->   /* PMBus revision identifiers */
->   #define PMBUS_REV_10 0x00	/* PMBus revision 1.0 */
-> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
-> index be6d05def115..4d7634ee6148 100644
-> --- a/drivers/hwmon/pmbus/pmbus_core.c
-> +++ b/drivers/hwmon/pmbus/pmbus_core.c
-> @@ -885,6 +885,10 @@ static s64 pmbus_reg2data_vid(struct pmbus_data *data,
->   		if (val >= 0x0 && val <= 0xd8)
->   			rv = DIV_ROUND_CLOSEST(155000 - val * 625, 100);
->   		break;
-> +	case nvidia195mv:
-> +		if (val >= 0x01)
-> +			rv = 195 + (val - 1) * 5;  /* VID step is 5mv */
-> +		break;
->   	}
->   	return rv;
->   }
-
-The core change needs to be a separate patch.
-
-> diff --git a/drivers/hwmon/pmbus/xdpe1a2g7b.c b/drivers/hwmon/pmbus/xdpe1a2g7b.c
-> new file mode 100644
-> index 000000000000..79b12b56e7b6
-> --- /dev/null
-> +++ b/drivers/hwmon/pmbus/xdpe1a2g7b.c
-> @@ -0,0 +1,115 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Hardware monitoring driver for Infineon Multi-phase Digital XDPE1A2G5B
-> + * and XDPE1A2G7B Controllers
-> + *
-> + * Copyright (c) 2026 Infineon Technologies. All rights reserved.
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/init.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include "pmbus.h"
-> +
-> +#define XDPE1A2G7B_PAGE_NUM 2
-> +#define XDPE1A2G7B_NVIDIA_195MV 0x1E /* NVIDIA mode 1.95mV, VID step is 5mV */
-> +
-> +static int xdpe1a2g7b_identify(struct i2c_client *client,
-> +			       struct pmbus_driver_info *info)
-> +{
-> +	u8 vout_params;
-> +	int i, ret, vout_mode;
-> +
-> +	vout_mode = pmbus_read_byte_data(client, 0, PMBUS_VOUT_MODE);
-> +	if (vout_mode >= 0 && vout_mode != 0xff) {
-
-What if vout_mode < 0 ? Also, what if the mode is different for page 1 ?
-
-Also, if I understand patch 0 correctly, executing this function is not needed
-for XDPE1A2G5B.
-
-> +		switch (vout_mode >> 5) {
-> +		case 0:
-> +			info->format[PSC_VOLTAGE_OUT] = linear;
-> +			return 0;
-> +		case 1:
-> +			info->format[PSC_VOLTAGE_OUT] = vid;
-> +			break;
-> +		default:
-> +			return -ENODEV;
-> +		}
-> +	}
-> +
-> +	for (i = 0; i < info->pages; i++) {
-> +		/* Read the VOUT_MODE register for VID Code Type. */
-> +		ret = pmbus_read_byte_data(client, i, PMBUS_VOUT_MODE);
-
-Given that there are only two pages, reading PMBUS_VOUT_MODE for
-page 0 twice is a bit of a waste. On top of that, the need for the loop
-suggests that the mode can be different across pages. That needs to be
-supported: Bailing out in that case is not acceptable. Worse:
-What if the mode is linear on page 0 but vid on page 1 ?
-
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		vout_params = ret & GENMASK(4, 0);
-> +		switch (vout_params) {
-> +		case XDPE1A2G7B_NVIDIA_195MV:
-> +			info->vrm_version[i] = nvidia195mv;
-> +			break;
-> +		default:
-> +			return -EINVAL;
-
-This warrants an error message and an explanation (comment) why other modes
-are not supported by the driver. The detailed datasheet is not public, so
-you'll have to help out here. As mentioned above, bailing out because the
-mode on page 1 is linear is not acceptable.
-
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static struct pmbus_driver_info xdpe1a2g7b_info = {
-> +	.pages = XDPE1A2G7B_PAGE_NUM,
-> +	.identify = xdpe1a2g7b_identify,
-> +	.format[PSC_VOLTAGE_IN] = linear,
-> +	.format[PSC_TEMPERATURE] = linear,
-> +	.format[PSC_CURRENT_IN] = linear,
-> +	.format[PSC_CURRENT_OUT] = linear,
-> +	.format[PSC_POWER] = linear,
-> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
-> +		   PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
-> +		   PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_STATUS_TEMP |
-> +		   PMBUS_HAVE_POUT | PMBUS_HAVE_PIN | PMBUS_HAVE_STATUS_INPUT,
-> +	.func[1] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
-> +		   PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
-> +		   PMBUS_HAVE_PIN | PMBUS_HAVE_POUT | PMBUS_HAVE_STATUS_INPUT,
-> +};
-> +
-> +static int xdpe1a2g7b_probe(struct i2c_client *client)
-> +{
-> +	struct pmbus_driver_info *info;
-> +
-> +	info = devm_kmemdup(&client->dev, &xdpe1a2g7b_info, sizeof(*info),
-> +			    GFP_KERNEL);
-> +	if (!info)
-> +		return -ENOMEM;
-> +
-> +	return pmbus_do_probe(client, info);
-> +}
-> +
-> +static const struct i2c_device_id xdpe1a2g7b_id[] = { { "xdpe1a2g5b" },
-> +						      { "xdpe1a2g7b" },
-> +						      {} };
-
-Please use more lines and less indentation.
-
-> +
-> +MODULE_DEVICE_TABLE(i2c, xdpe1a2g7b_id);
-> +
-> +static const struct of_device_id __maybe_unused xdpe1a2g7b_of_match[] = {
-> +	{ .compatible = "infineon,xdpe1a2g5b" },
-> +	{ .compatible = "infineon,xdpe1a2g7b" },
-> +	{}
-
-... just like here.
-
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, xdpe1a2g7b_of_match);
-> +
-> +static struct i2c_driver xdpe1a2g7b_driver = {
-> +	.driver = {
-> +		.name = "xdpe1a2g7b",
-> +		.of_match_table = of_match_ptr(xdpe1a2g7b_of_match),
-> +	},
-> +	.probe = xdpe1a2g7b_probe,
-> +	.id_table = xdpe1a2g7b_id,
-> +};
-> +
-> +module_i2c_driver(xdpe1a2g7b_driver);
-> +
-> +MODULE_AUTHOR("Ashish Yadav <ashish.yadav@infineon.com>");
-> +MODULE_DESCRIPTION("PMBus driver for Infineon XDPE1A2G5B/7B");
-> +MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS("PMBUS");
-
+>  	pm_runtime_put(dev);
+>
+>  	dma_set_max_seg_size(dev, UINT_MAX);
+> @@ -2462,7 +2465,8 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
+>  		dwc3_core_exit(dwc);
+>  		break;
+>  	case DWC3_GCTL_PRTCAP_HOST:
+> -		if (!PMSG_IS_AUTO(msg) && !device_may_wakeup(dwc->dev)) {
+> +		if (!PMSG_IS_AUTO(msg) &&
+> +		    (!device_may_wakeup(dwc->dev) || dwc->may_lose_power)) {
+>  			dwc3_core_exit(dwc);
+>  			break;
+>  		}
+> @@ -2525,7 +2529,8 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
+>  		dwc3_gadget_resume(dwc);
+>  		break;
+>  	case DWC3_GCTL_PRTCAP_HOST:
+> -		if (!PMSG_IS_AUTO(msg) && !device_may_wakeup(dwc->dev)) {
+> +		if (!PMSG_IS_AUTO(msg) &&
+> +		    (!device_may_wakeup(dwc->dev) || dwc->may_lose_power)) {
+>  			ret = dwc3_core_init_for_resume(dwc);
+>  			if (ret)
+>  				return ret;
+> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+> index 08cc6f2b5c23631a752c77fd7394e5876c929f0a..5b1358f36490a001bc9e68139224f7be70a57995 100644
+> --- a/drivers/usb/dwc3/core.h
+> +++ b/drivers/usb/dwc3/core.h
+> @@ -1117,6 +1117,7 @@ struct dwc3_glue_ops {
+>   * @usb3_lpm_capable: set if hadrware supports Link Power Management
+>   * @usb2_lpm_disable: set to disable usb2 lpm for host
+>   * @usb2_gadget_lpm_disable: set to disable usb2 lpm for gadget
+> + * @may_lose_power: set to indicate the core may lose power during pm suspend
+>   * @disable_scramble_quirk: set if we enable the disable scramble quirk
+>   * @u2exit_lfps_quirk: set if we enable u2exit lfps quirk
+>   * @u2ss_inp3_quirk: set if we enable P3 OK for U2/SS Inactive quirk
+> @@ -1369,6 +1370,7 @@ struct dwc3 {
+>  	unsigned		usb3_lpm_capable:1;
+>  	unsigned		usb2_lpm_disable:1;
+>  	unsigned		usb2_gadget_lpm_disable:1;
+> +	unsigned		may_lose_power:1;
+>
+>  	unsigned		disable_scramble_quirk:1;
+>  	unsigned		u2exit_lfps_quirk:1;
+> diff --git a/drivers/usb/dwc3/glue.h b/drivers/usb/dwc3/glue.h
+> index df86e14cb706ca509206677f644da2a7225b1b26..b428a9f4a32625e7331f8492a408f7c20c915825 100644
+> --- a/drivers/usb/dwc3/glue.h
+> +++ b/drivers/usb/dwc3/glue.h
+> @@ -29,6 +29,8 @@ struct dwc3_properties {
+>   *		be ignored by the DWC3 core, as they are managed by the glue
+>   * @skip_core_init_mode: Skip the finial initialization of the target mode, as
+>   *		it must be managed by the glue
+> + * @core_may_lose_power: indicate the controller may not remain power during
+> + *		system suspend/resume
+>   * @properties: dwc3 software manage properties
+>   */
+>  struct dwc3_probe_data {
+> @@ -36,6 +38,7 @@ struct dwc3_probe_data {
+>  	struct resource *res;
+>  	bool ignore_clocks_and_resets;
+>  	bool skip_core_init_mode;
+> +	bool core_may_lose_power;
+>  	struct dwc3_properties properties;
+>  };
+>
+>
+> --
+> 2.34.1
+>
 
