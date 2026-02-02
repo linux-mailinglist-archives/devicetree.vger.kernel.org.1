@@ -1,316 +1,227 @@
-Return-Path: <devicetree+bounces-261897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261899-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qN8TI9PggGl0CQMAu9opvQ
-	(envelope-from <devicetree+bounces-261897-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 18:37:23 +0100
+	id cN6SMmbpgGleCAMAu9opvQ
+	(envelope-from <devicetree+bounces-261899-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 19:13:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A26D4CFAD7
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 18:37:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C0EECFFE3
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 19:13:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 151FB3001188
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 17:37:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 631073053B9A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 18:09:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 032D338737D;
-	Mon,  2 Feb 2026 17:37:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC64838BF6C;
+	Mon,  2 Feb 2026 18:09:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="irt5izqA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LWE2pmnl";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="drAljPG5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD31371075;
-	Mon,  2 Feb 2026 17:37:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B71B2248A8
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 18:09:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770053838; cv=none; b=NSivbiANeUKH9QAyy0bHiWhx48raS6ZfR2fZjbv/O/aPfljcj3BtlRKTYvaMldvlUXcm3EeP3hn0G8GHT/4l7nVrXVzy3jpiUoneZHWYDDVUQva/SF9z7b02c1bYxOCJhuRi1SMofkfyHBVlq2qjujEgvEhr6P2x+UDuru21QI4=
+	t=1770055775; cv=none; b=N7dqmhmr6HSMnV9qSLl7pVn2AIjSRjYp6nGNHaZDYcnV3edInOvCSmzUAt0sgb58OaKmBs/dAhBCrmuwZU+IdoetKQ0qrCoim57+jqenremvbHNEZi4RL0AyrsLZ6PrF8/ZTucnOIVK71d/d54Mq8YKcS9ZI/DDvI4SCdh5H3zM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770053838; c=relaxed/simple;
-	bh=qnUdp0fecZJL9WMPJ0BhqY7uIDclw68asQkR5FLPZ6A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MrBmQx7mtCfq4HsZJUDqGbrXbR1ai1RzDfp3alc9hjSFxibux+4efLfaiivcMs+YUBzGoI8qndoOWye/9UR0OwHBOajxkKRC13sMCSIgGfPExokXuojo0Ki2EhEuP6uBvVKMZF0PFXUTUy3Z8haYUEiPYB8N9I0XRaphz/LXjxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=irt5izqA; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770053836; x=1801589836;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qnUdp0fecZJL9WMPJ0BhqY7uIDclw68asQkR5FLPZ6A=;
-  b=irt5izqAZbxl/s7FFehFDSP7akpXSEiVyawPf1BCGtn0Z8etkrJFTGtP
-   DveWUBmZQGwcGnt0ZiC/ic/sYepEC5zxiV/Db3m0DC4ABmo4j5ZEHjrBR
-   tB/Kz/VryaYmdJI5+zmU2Rdh0S6/FoE7ng68geMqzTbqB3hJ5sWS2jOpm
-   ltJZ6deEcmcuTtF2RCk6J9qC3iYU3Hv6y+2BG0J3OrNhh1W7TOwoSUTQK
-   /n5CuF190LINnd/KyooDN218kFY7IR8cMgWTEi7EmFR/dDVdeVUb0fKX2
-   7wLwb2I1FrFD4ZlNgZtEmjKYX5AtrWmKAnH3Bps7zszcPcKeN9ZsJFlpA
-   Q==;
-X-CSE-ConnectionGUID: PWJHQvvzTf+UPEG0VoVJGA==
-X-CSE-MsgGUID: 23VfB+NQRv6vcH50JMPo2w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="82584537"
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; 
-   d="scan'208";a="82584537"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2026 09:37:15 -0800
-X-CSE-ConnectionGUID: mNWRr4kkTkKaw6XHoiHtJA==
-X-CSE-MsgGUID: /VpVgHcER1S748B3+00oVw==
-X-ExtLoop1: 1
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 02 Feb 2026 09:37:13 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vmxrK-00000000foG-3J1S;
-	Mon, 02 Feb 2026 17:37:10 +0000
-Date: Tue, 3 Feb 2026 01:37:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Vladimir Moravcevic <vmoravcevic@axiado.com>,
-	Krutik Shah <krutikshah@axiado.com>,
-	Prasad Bolisetty <pbolisetty@axiado.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-	Vladimir Moravcevic <vmoravcevic@axiado.com>
-Subject: Re: [PATCH 2/3] usb: gadget: udc: Add UDC driver for Axiado Device
- controller IP Corigine
-Message-ID: <202602030131.VCTzZ4me-lkp@intel.com>
-References: <20260202-axiado-ax3000-usb-device-controller-v1-2-45ce0a8b014f@axiado.com>
+	s=arc-20240116; t=1770055775; c=relaxed/simple;
+	bh=nAZMxJaPZ93+y83+6k1pES++idA/vnmjXuZYzre1qSY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=s6OFfoSPrGvYtfNOTXpbcRobX7AD2AbCIyhtUCpRbZVnBVWo5gneJfUR4mxUlNRhdKhfeRCoIJW0ChfA4khCtfoJCCKBJ8rCihB5OfDgcH06m+vhaT+MX3Wa4p6SACwq/x/kPMSj5hPS6gYTLOprmlBh3DnXaRY56Vh+5Ci+WmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LWE2pmnl; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=drAljPG5; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 612AP7mF2106939
+	for <devicetree@vger.kernel.org>; Mon, 2 Feb 2026 18:09:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=wWnOL8UZfjGMmCa4y7NChRkFDGCYeDJ6A71
+	nXpZlX3I=; b=LWE2pmnlyL1H77xuLPVrJ8y/5a7a2J2XtTuO3re7fsBHigw/y5Z
+	hx0cn8r14HEbN2Xi8ss6k/GTEib8cC1EmEH+Y/ZrtFozIuJDqzj5Y5/7H7RmhoKj
+	WvT9F8cW3+2TbhVEdWY/5+01K5mXwpj8qANRnxAD8mF1GlEHm0RtoYOyqpQ5z+pa
+	sfmiog7/+RuojAxtoSQgjyk33U/wb+ijrjUMHLRyEhpudPp3DVvJj+tK+ynruRuG
+	IwkIOwdjQkQGCyDjKuuaMy3NGij65bpNXqy0Uc6XxbOsuOUcdgui373qC5+F9lnx
+	0RtfnTqVFki1pBcdokZd2cXHx09xZdvkGgg==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c2t5e9ebp-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 18:09:33 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-81efa628efbso4729400b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 10:09:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770055773; x=1770660573; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wWnOL8UZfjGMmCa4y7NChRkFDGCYeDJ6A71nXpZlX3I=;
+        b=drAljPG5dBioKLcwIMqsAZmqmdSHTjiVp/mhpQmSsVNykDHPtZ+AG6h09VTxjWBKcT
+         w9YQ2KNbqoTYhcdeuid/9FMC5OFbwEHN+8BTwtoLOTL6cDrWwOoW1xDq+JrVLRKEiG6d
+         3C+U8ZK7nYDuEupFhsGUFlcijUJMbl/OojXHQq7tKuiLUm1VeAnJwLHe63o51DzMQp3G
+         x2EIS1HTx/AHX9jzznXBN7EGUdLhF76s/N+FTLddM0AzPEcywIh41z9DCC7I6hp6ZsH5
+         6KcCB3aNx50AzLO9vj9P+yllD+mE2vYVkQ8U0aBUtqb3CN9sI01MaEnu2M31oUllrWXR
+         bg6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770055773; x=1770660573;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wWnOL8UZfjGMmCa4y7NChRkFDGCYeDJ6A71nXpZlX3I=;
+        b=vtN5yE0qTcxjebxclRSeJgDyd7qH5zKsDX93zslhIOJn/c9/4RmvSRIPrOR2Mio8m1
+         cqcyAIHC09OzlwaDbYHUTVlCFf0FuYruOC/ADF2K9RcWxQxRFN9DysJdJWHj0/N3ux0K
+         3ikI7C7VYFb44AiC81nWv/vb2jXRaNhqK1EEn5ueuxn1cK0rCw58R/XCifhMkgZuxt0p
+         dH1BZ+umXSPQBFxN+u41W6mhn/JIfVSmMkkc9RA6hinMCTB5ug3Lxl4tS48aUIu1nqmN
+         8kZ7Bm4/r1jiPVHgsR1l++LNu+lKuL8nXEtC2UpbIJyjWZW+QvaBWG2PFfetP5JgAkpk
+         BIcw==
+X-Forwarded-Encrypted: i=1; AJvYcCUilc5V5kER1i5V08Jee1gmzI9dLgB5RRcKSVkqAuDXf9Tfe1rPGUr/c2U537/4jImisb0licerQ0zj@vger.kernel.org
+X-Gm-Message-State: AOJu0YydtYRleSIysMoKOdm/tENbKl2GdTRvn42v2gvUlPuXFx/saldv
+	PWEdusBPK9p6qP9ogNsYhbdvs+XSZFCeBkKOkaSGD8rIOArLDGBqMT+CUR/2gQRAAM5kAiPNBuS
+	BH1ty+dkn9CqVFjeMrQSCftf7wMnKtVMHo1fKVWfY/cuLiRLuZN8bwpHln6fqh5GH
+X-Gm-Gg: AZuq6aLvln1jpmDr4xzIVRr3oXk1+R0o05VT2QVrdZVX/gAoRmGOkecZKynORlHS8YT
+	2bS7OGsf6E/IOkFllC/MaGDfbJYc3qhD1wmjasfAcvPGk04AkHVjrt7YsoByX9EalIktK82pBbI
+	ruWdR0B5n3hvZ+LxmYD9eoyNqoz0WjhqedwEqeuv6gy91IwB/QazF6WqAF+BAqRV7DPRuYFcleO
+	knxQAguWyn/XPfRdPrg8FP1AJAkh5gyclyRa8PorZDJKzZUtLVj03UMRF7+fx6+p1Ci+AfCcCid
+	FOgWXkSVn+gmUW43U5V2QZrEFPyD9BuGgKufyKlPDS2Ylnbjij7MFs5lajZ6Oga7e6UnaK9jiIJ
+	o+3+yyqvz1QbVWSWw4RlmUl+d6hHNALVAExtMYdCoccg=
+X-Received: by 2002:a05:6a00:94f4:b0:821:a7b6:10a2 with SMTP id d2e1a72fcca58-823aa940016mr11985953b3a.62.1770055773080;
+        Mon, 02 Feb 2026 10:09:33 -0800 (PST)
+X-Received: by 2002:a05:6a00:94f4:b0:821:a7b6:10a2 with SMTP id d2e1a72fcca58-823aa940016mr11985902b3a.62.1770055772385;
+        Mon, 02 Feb 2026 10:09:32 -0800 (PST)
+Received: from hu-ptalari-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82379bfc712sm17476780b3a.40.2026.02.02.10.09.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Feb 2026 10:09:31 -0800 (PST)
+From: Praveen Talari <praveen.talari@oss.qualcomm.com>
+To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Praveen Talari <praveen.talari@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bjorn.andersson@oss.qualcomm.com, dmitry.baryshkov@oss.qualcomm.com,
+        konrad.dybcio@oss.qualcomm.com
+Cc: prasad.sodagudi@oss.qualcomm.com, quic_vtanuku@quicinc.com,
+        aniket.randive@oss.qualcomm.com, chandana.chiluveru@oss.qualcomm.com,
+        jyothi.seerapu@oss.qualcomm.com
+Subject: [PATCH v4 00/13] Enable I2C on SA8255p Qualcomm platforms
+Date: Mon,  2 Feb 2026 23:39:09 +0530
+Message-Id: <20260202180922.1692428-1-praveen.talari@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260202-axiado-ax3000-usb-device-controller-v1-2-45ce0a8b014f@axiado.com>
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAyMDE0MiBTYWx0ZWRfX1Rb9l0tj7O7n
+ Rm+qzD+kxEK4KKtxU3efOs4GBvMZr3N475Ehj9bfHVaFaA1xgAPC/t4Rc1eTODYrIdjgMJ6cNv7
+ tvWOyoLbyLf8Zps81iY0DtSvzOWP0ly4yUGbLLrNINEdBbBT+YwzWd/LlJReVc3FSufAdwh0/ze
+ bst41kTQ16LFFxhEN30D5DZxnwJaIrqa6hV9XL1ps3TxbRHnmO0jm2D6zUCFTCAGEKpTUDKk+9I
+ 3CnogAGaeTkEy+QiClYsHnza3NgXSCh16K8k7v1U3ofdpQsH49gcv7ATQilNnGVDo0UjKZSImVW
+ t9xTC+PvIsaMhsHLDJ7BWJhKo7DQujaPdQYaVoKJkCSoqPtjFcpIGB29KLAFaV1LqabM9ne/bvV
+ bs0SJ3yUTZMB2gUwyl39h7GsJWoYIE2RG/ygEPgJ8WLRMhHsg9wX5CNAaoNk0ZeDBgdOXzdOwJE
+ iU8G9NgqZrCZo3GvGpg==
+X-Proofpoint-GUID: ydwAewqH0JxFY44ESdO2CNTodJur1sqx
+X-Authority-Analysis: v=2.4 cv=NOfYOk6g c=1 sm=1 tr=0 ts=6980e85d cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=8413JC8MLbS8ckBEwAwA:9 a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-ORIG-GUID: ydwAewqH0JxFY44ESdO2CNTodJur1sqx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-02_05,2026-02-02_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 priorityscore=1501 suspectscore=0 impostorscore=0
+ adultscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602020142
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261897-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261899-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:dkim];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FROM_NEQ_ENVFROM(0.00)[praveen.talari@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid,01.org:url]
-X-Rspamd-Queue-Id: A26D4CFAD7
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 2C0EECFFE3
 X-Rspamd-Action: no action
 
-Hi Vladimir,
+The Qualcomm automotive SA8255p SoC relies on firmware to configure
+platform resources, including clocks, interconnects and TLMM.
+The driver requests resources operations over SCMI using power
+and performance protocols.
 
-kernel test robot noticed the following build warnings:
+The SCMI power protocol enables or disables resources like clocks,
+interconnect paths, and TLMM (GPIOs) using runtime PM framework APIs,
+such as resume/suspend, to control power states(on/off).
 
-[auto build test WARNING on 63804fed149a6750ffd28610c5c1c98cce6bd377]
+The SCMI performance protocol manages I2C frequency, with each
+frequency rate represented by a performance level. The driver uses
+geni_se_set_perf_opp() API to request the desired frequency rate..
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vladimir-Moravcevic/dt-bindings-usb-axiado-ax3000-udc-Add-Axiado-UDC/20260202-211951
-base:   63804fed149a6750ffd28610c5c1c98cce6bd377
-patch link:    https://lore.kernel.org/r/20260202-axiado-ax3000-usb-device-controller-v1-2-45ce0a8b014f%40axiado.com
-patch subject: [PATCH 2/3] usb: gadget: udc: Add UDC driver for Axiado Device controller IP Corigine
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20260203/202602030131.VCTzZ4me-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260203/202602030131.VCTzZ4me-lkp@intel.com/reproduce)
+As part of geni_se_set_perf_opp(), the OPP for the requested frequency
+is obtained using dev_pm_opp_find_freq_floor() and the performance
+level is set using dev_pm_opp_set_opp().
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602030131.VCTzZ4me-lkp@intel.com/
+Praveen Talari (13):
+  soc: qcom: geni-se: Refactor geni_icc_get() and make qup-memory ICC
+    path optional
+  soc: qcom: geni-se: Add geni_icc_set_bw_ab() function
+  soc: qcom: geni-se: Introduce helper API for resource initialization
+  soc: qcom: geni-se: Handle core clk in geni_se_clks_off() and
+    geni_se_clks_on()
+  soc: qcom: geni-se: Add resources activation/deactivation helpers
+  soc: qcom: geni-se: Introduce helper API for attaching power domains
+  soc: qcom: geni-se: Introduce helper APIs for performance control
+  dt-bindings: i2c: Describe SA8255p
+  i2c: qcom-geni: Isolate serial engine setup
+  i2c: qcom-geni: Move resource initialization to separate function
+  i2c: qcom-geni: Use resources helper APIs in runtime PM functions
+  i2c: qcom-geni: Store of_device_id data in driver private struct
+  i2c: qcom-geni: Enable I2C on SA8255p Qualcomm platforms
+---
+v3->v4
+- Added a new patch(4/13) to handle core clk as part of
+  geni_se_clks_off/on().
+---
 
-All warnings (new ones prefixed by >>):
-
-   drivers/usb/gadget/udc/crg_udc.c: In function 'crg_udc_queue_trbs':
->> drivers/usb/gadget/udc/crg_udc.c:881:13: warning: variable 'num_sgs' set but not used [-Wunused-but-set-variable]
-     881 |         u32 num_sgs = 0;
-         |             ^~~~~~~
-   drivers/usb/gadget/udc/crg_udc.c: In function 'crg_udc_ep_enable':
->> drivers/usb/gadget/udc/crg_udc.c:1812:26: warning: variable 'uccr' set but not used [-Wunused-but-set-variable]
-    1812 |         struct crg_uccr *uccr;
-         |                          ^~~~
->> drivers/usb/gadget/udc/crg_udc.c:1811:25: warning: variable 'epcx' set but not used [-Wunused-but-set-variable]
-    1811 |         struct ep_cx_s *epcx;
-         |                         ^~~~
-   drivers/usb/gadget/udc/crg_udc.c: In function 'crg_udc_common_irq':
->> drivers/usb/gadget/udc/crg_udc.c:4250:13: warning: variable 'retval' set but not used [-Wunused-but-set-variable]
-    4250 |         int retval = 0;
-         |             ^~~~~~
-   drivers/usb/gadget/udc/crg_udc.c: At top level:
->> drivers/usb/gadget/udc/crg_udc.c:126:19: warning: 'driver_name' defined but not used [-Wunused-const-variable=]
-     126 | static const char driver_name[] = "crg_udc";
-         |                   ^~~~~~~~~~~
---
->> Warning: drivers/usb/gadget/udc/crg_udc.c:4325 cannot understand function prototype: 'const struct of_device_id of_crg_udc_match[] ='
+ .../bindings/i2c/qcom,sa8255p-geni-i2c.yaml   |  64 ++++
+ drivers/i2c/busses/i2c-qcom-geni.c            | 303 +++++++++---------
+ drivers/soc/qcom/qcom-geni-se.c               | 265 +++++++++++++--
+ include/linux/soc/qcom/geni-se.h              |  19 ++
+ 4 files changed, 476 insertions(+), 175 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/i2c/qcom,sa8255p-geni-i2c.yaml
 
 
-vim +/num_sgs +881 drivers/usb/gadget/udc/crg_udc.c
-
-   858	
-   859	static int crg_udc_queue_trbs(struct crg_udc_ep *udc_ep_ptr,
-   860			struct crg_udc_request *udc_req_ptr,  bool b_isoc,
-   861			u32 xfer_ring_size,
-   862			u32 num_trbs_needed, u64 buffer_length)
-   863	{
-   864		struct crg_gadget_dev *crg_udc = udc_ep_ptr->crg_udc;
-   865		struct transfer_trb_s *p_xfer_ring = udc_ep_ptr->first_trb;
-   866		u32 num_trbs_ava = 0;
-   867		struct usb_request *usb_req = &udc_req_ptr->usb_req;
-   868		u64 buff_len_temp = 0;
-   869		u32 i, j = 1;
-   870		struct transfer_trb_s *enq_pt = udc_ep_ptr->enq_pt;
-   871		u8 td_size;
-   872		u8 chain_bit = 1;
-   873		u8 short_pkt = 0;
-   874		u8 intr_on_compl = 0;
-   875		u32 count;
-   876		bool full_td = true;
-   877		u32 intr_rate;
-   878		dma_addr_t trb_buf_addr;
-   879		bool need_zlp = false;
-   880		struct scatterlist *sg = NULL;
- > 881		u32 num_sgs = 0;
-   882		u64 sg_addr = 0;
-   883	
-   884		dev_dbg(crg_udc->dev, "%s %s\n", __func__, udc_ep_ptr->usb_ep.name);
-   885		if (udc_req_ptr->usb_req.num_sgs) {
-   886			num_sgs = udc_req_ptr->usb_req.num_sgs;
-   887			sg = udc_req_ptr->usb_req.sg;
-   888			sg_addr = (u64) sg_dma_address(sg);
-   889			buffer_length = sg_dma_len(sg);
-   890	
-   891			dev_dbg(crg_udc->dev, "num_sgs = %d, num_mapped_sgs = %d\n",
-   892				udc_req_ptr->usb_req.num_sgs,
-   893				udc_req_ptr->usb_req.num_mapped_sgs);
-   894			dev_dbg(crg_udc->dev,
-   895				"sg_addr = %p, buffer_length = %llu, num_trbs = %d\n",
-   896				(void *)sg_addr, buffer_length, num_trbs_needed);
-   897		}
-   898	
-   899		if (!b_isoc) {
-   900			if (udc_req_ptr->usb_req.zero == 1 &&
-   901				udc_req_ptr->usb_req.length != 0 &&
-   902				((udc_req_ptr->usb_req.length %
-   903				  udc_ep_ptr->usb_ep.maxpacket) == 0)) {
-   904				need_zlp = true;
-   905			}
-   906		}
-   907	
-   908		td_size = num_trbs_needed;
-   909	
-   910		num_trbs_ava = room_on_ring(crg_udc, xfer_ring_size,
-   911			p_xfer_ring, udc_ep_ptr->enq_pt, udc_ep_ptr->deq_pt);
-   912	
-   913		/* trb_buf_addr points to the addr of the buffer that we write in
-   914		 * each TRB. If this function is called to complete the pending TRB
-   915		 * transfers of a previous request, point it to the buffer that is
-   916		 * not transferred, or else point it to the starting address of the
-   917		 * buffer received in usb_request
-   918		 */
-   919		if (udc_req_ptr->trbs_needed) {
-   920			/* Here udc_req_ptr->trbs_needed is used to indicate if we
-   921			 * are completing a previous req
-   922			 */
-   923			trb_buf_addr = usb_req->dma +
-   924				(usb_req->length - udc_req_ptr->buff_len_left);
-   925		} else {
-   926			if (sg_addr)
-   927				trb_buf_addr = sg_addr;
-   928			else
-   929				trb_buf_addr = usb_req->dma;
-   930		}
-   931	
-   932		if (num_trbs_ava >= num_trbs_needed) {
-   933			count = num_trbs_needed;
-   934		} else {
-   935			if (b_isoc) {
-   936				struct crg_udc_request *udc_req_ptr_temp;
-   937				u8 temp = 0;
-   938	
-   939				list_for_each_entry(udc_req_ptr_temp,
-   940						&udc_ep_ptr->queue, queue) {
-   941					temp++;
-   942				}
-   943	
-   944				if (temp >= 2) {
-   945					dev_err(crg_udc->dev, "%s don't do isoc discard\n", __func__);
-   946					/*  we already scheduled two mfi in advance. */
-   947					return 0;
-   948				}
-   949			}
-   950	
-   951			/* always keep one trb for zlp. */
-   952			count = num_trbs_ava;
-   953			full_td = false;
-   954			dev_dbg(crg_udc->dev, "TRB Ring Full. Avail: 0x%x Req: 0x%x\n",
-   955					num_trbs_ava, num_trbs_needed);
-   956			udc_ep_ptr->tran_ring_full = true;
-   957	
-   958			/*if there is still some trb not queued,
-   959			 *it means last queued
-   960			 *trb is not the last trb of TD, so no need zlp
-   961			 */
-   962			need_zlp = false;
-   963		}
-   964	
-   965		for (i = 0; i < count; i++) {
-   966			if ((udc_req_ptr->usb_req.num_sgs) && (buffer_length == 0)) {
-   967				sg = sg_next(sg);
-   968				if (sg) {
-   969					trb_buf_addr = (u64) sg_dma_address(sg);
-   970					buffer_length = sg_dma_len(sg);
-   971					dev_dbg(crg_udc->dev,
-   972						"trb_buf_addr = %p, num_trbs = %d\n",
-   973						(void *)trb_buf_addr, num_trbs_needed);
-   974					dev_dbg(crg_udc->dev, "buffer_length = %llu\n",
-   975						buffer_length);
-   976				} else {
-   977					dev_err(crg_udc->dev,
-   978						"scatterlist ended unexpectedly (i=%d, count=%d)\n",
-   979						i, count);
-   980					return -EINVAL;
-   981				}
-   982			}
-   983	
-   984			if (buffer_length > TRB_MAX_BUFFER_SIZE)
-   985				buff_len_temp = TRB_MAX_BUFFER_SIZE;
-   986			else
-   987				buff_len_temp = buffer_length;
-   988	
-   989			buffer_length -= buff_len_temp;
-   990	
-   991			if (usb_endpoint_dir_out(udc_ep_ptr->desc))
-   992				short_pkt = 1;
-   993	
-   994			if ((buffer_length == 0) && (i == (count - 1))) {
-   995				chain_bit = 0;
-   996				intr_on_compl = 1;
-   997				udc_req_ptr->all_trbs_queued = 1;
-   998			}
-   999	
-  1000	
-
+base-commit: 193579fe01389bc21aff0051d13f24e8ea95b47d
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
