@@ -1,97 +1,87 @@
-Return-Path: <devicetree+bounces-261775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261776-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iKGJAb2FgGnE8wIAu9opvQ
-	(envelope-from <devicetree+bounces-261775-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:08:45 +0100
+	id mKMCHPGFgGnE8wIAu9opvQ
+	(envelope-from <devicetree+bounces-261776-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:09:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FC04CB7E3
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:08:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86E60CB811
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:09:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B40BC300CC3C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 11:04:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4BA84301A7F4
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 11:09:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F357B35E53B;
-	Mon,  2 Feb 2026 11:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ABFB35EDD5;
+	Mon,  2 Feb 2026 11:08:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ncC1Dr6k"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="F9Etb5hI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f169.google.com (mail-dy1-f169.google.com [74.125.82.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8962C35DD02
-	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 11:04:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D203E35DD00;
+	Mon,  2 Feb 2026 11:08:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770030254; cv=none; b=QMKgCILmGk37icjLn0k93PbYlvTFRLEljIJD0nHpYvFGZvRmA1EgEJ+GG6sScD8pc707AsToOpCvsjic8g8EdiT2dOB/H+MYHOFcSkCx4Dmu/A4ZDAoYBGMrB6ApXQXTfN3nRMBwyGkedDQussr7oGVKdcODFMlnIHhSDVCT4fw=
+	t=1770030537; cv=none; b=rEkW/HcfaRq7LQR1hyOVHNiaymhexBqArVBTwpytteq0XB69xYAuSKWi+Vwu6kCvrm+NBCKhEnGzOwr+5Ly1Hq2/xujSSpRLFsQvtr7JwPb9goh8sNKi4dML4C0KwYnAQbjGbYsiuE3pGYcDkCmkmL6gUA4VYjBMQA6QDlxDFA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770030254; c=relaxed/simple;
-	bh=Loys3V60w4/i089Z65xNUXkI9S+P9TwJDpkBw4scIF8=;
+	s=arc-20240116; t=1770030537; c=relaxed/simple;
+	bh=PvKAovUNaJvC8+s0Jg843NaSI54s0Z6Fd/KSFiYQhqs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S0JyRAS+elkf2d9YcgQmq6SPMiYiHxuMqnJ+kUyJl271lkpKMXHkpUJiQjCMCwr1iIqtChMsfPWgV39AVU9YERujQAgPrx8FFI2hD5q60vFHTopK4FAPMaYRsh9ER2Dums3z8OZepqle2oqXDZONrvRDX+60ZbkvN9N09iwE2RE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ncC1Dr6k; arc=none smtp.client-ip=74.125.82.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f169.google.com with SMTP id 5a478bee46e88-2b72e49776eso7983844eec.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 03:04:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770030253; x=1770635053; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XpnvG6a+X8idDiHgSW6vo1XR9f+nMb7ZNZHPlBThMwg=;
-        b=ncC1Dr6kZdAZXOJFQGyUyj8n19L42Nfze2MUVNAwlVnCcpJXzQ9EkkbxOkxzbG7jcX
-         oshktc2x1UuniOOMt1O2ScGJOeq0z+YYfmbsfkWvQYvcMzybhHbYUXcX1bpaAtdf611l
-         hae1guQ09kLAV8BRnVbhahMJwNHU777HrjLNjGBzq9g8K7k6wawVOE9+r37rkxcHWgE0
-         TYRQvBLa6McGqUEP8bp20Icgk3QH1Xf091CSZ6g3aQllRfKstCaFhBfaymDcrrHQrlVf
-         3+2ck2qLMx0JUtwrqWWO8NZ1D4BS4f+KFT7+iKh+Te9OSGdJegypDN5uMb2DXT2YwbFL
-         46jA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770030253; x=1770635053;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XpnvG6a+X8idDiHgSW6vo1XR9f+nMb7ZNZHPlBThMwg=;
-        b=crF5tvaD6xca8r7a53nO3RvqMz0CMN84ZFPhyG1pcMBR6Gm7ozY1w2TKUr/J/SSD8x
-         0vFWYlPp/F4itJbeWaYAj8F9Wg274vd8j2x/iV3zZ+oBwdF1cE8Gqc/wFBIpQSGS3MiJ
-         ZFXiMuW9gCxIaxBE/H0XQZE6R9oFgwD8zUriy2vQqv5i1NffeGmMYiMRsI+D/8G2aIDN
-         ovRlrpMf340o2ncYSwWxU3+IfwyrAOXWb1PCdqlUH3zTA2K7Ew1j9NiBzATYEsqDUWpT
-         oS15ZBKNZW9cUZRC3FLCg39PjzZPIL6Ip5JnLDdCcPInezGWPv31E9H+iOi93DnKTn/9
-         iP/A==
-X-Forwarded-Encrypted: i=1; AJvYcCWfPoLkO830dpDLQMk1KUq3i2Or3vbFQojUpjE2YSk8cXKAfKncHdtA8WFsSWmhChiuB6runxVK2vxv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2Hu7UmIVoA3GPEj/J5L2P/+bgfR6unSE6ZcejEUqFXv3khpV5
-	+P2/qHVWSnffxGA0wm8im/uHPb28zUkUNKX+uUWI5B4ehebZx02jyTBI
-X-Gm-Gg: AZuq6aK14dWgPgRhzx6BYRsycNFkvYQ6djM22WyBVoC/VHGTIdLAEdzHNq2K7oF7Vba
-	s/cp80n8AJojD+yiXYJ5AVSD1yqJTv8SuBoi81/0NstdXLvRvMsmXWerZgVa8aghr4seOX4+DjO
-	QIWybHflKMokJsoDp/8jqNhzZADw8tYPXkQ3MLpwSbBpEP2CVZfn/Bgv+pExgLgSK/wqxWJsH9J
-	43wP02ue736z8sgY3JxzDmWzUuME0gpBZ/gwOckGwzD/IDuvkmEbAU/pQuEDWYB+hkcEDM/HtfQ
-	u6iG4hAcQWqagJ97hCme8sMw74wjXlS2qnQZwnnZzo965kQQwfkbsROV48WNzqkdbgpEZOIVPtm
-	KwaX7r74kpvNRgD8D3RzGhumoGzId2m5ruQoJ/5APzx9mtPKgkRTNsfMVV8yOZKobenbjuJsLuB
-	I+NxYtkVeC4Sw5Z4z3fRMJ4Y4Cd9mHSh6B6nwAF7GEx/mbbvXdSzpGn2FpFwRBgNU=
-X-Received: by 2002:a05:7301:2f99:b0:2b7:c5d7:84bf with SMTP id 5a478bee46e88-2b7c86756ccmr5986307eec.19.1770030251139;
-        Mon, 02 Feb 2026 03:04:11 -0800 (PST)
-Received: from google.com ([2a00:79e0:2ebe:8:2956:5cef:ff00:c68d])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b7a1add4c2sm19657728eec.27.2026.02.02.03.04.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Feb 2026 03:04:10 -0800 (PST)
-Date: Mon, 2 Feb 2026 03:04:07 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Luca Weiss <luca.weiss@fairphone.com>, 
-	Griffin Kroah-Hartman <griffin.kroah@fairphone.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] Input: aw86938 - add driver for Awinic AW86938
-Message-ID: <aYCCv6nI2QkvD8rb@google.com>
-References: <20260128-aw86938-driver-v2-0-b51ee086aaf5@fairphone.com>
- <20260128-aw86938-driver-v2-2-b51ee086aaf5@fairphone.com>
- <aX6whqw7XyaKMd9m@google.com>
- <472d7db3-db34-4966-aa17-588e1153ba12@oss.qualcomm.com>
- <DG4EAYDXMGQS.2MKAJKDFQCFEG@fairphone.com>
- <34fa533c-b9ab-4025-b9ad-4041837e790c@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=eA/pnjffIe75LpcaSUiz9DDsNs6K9OPReAVIpa6jSy30jjs8rYYLJQ1vvn5uZK2gDM5QNicnMAsEgrKbqFuGqgo0fWuOPr/+8OMIb8RexFELG0k/vz0pLwE7P/1nL79GJ/JCKaSXLo86oEIpVcRTJsopltjprlXumTfzW4wOpNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=F9Etb5hI; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=8GXEhcxnrPJI4HqzcHeRLssdsPmoUUVFpCoHDTkxVAc=; b=F9Etb5hI2eVAOtYnfwq1PhKWRr
+	Cxwvs7OzaRLWoOt8d4xjM8NxNUc3bgFlM1aLM5AwIZXteKJtvYHUlhhpJq1uPvMLhRtZ3IU8LCH0K
+	Rt4Y7jHpANwYAwqP6gDAHp1CwCKNvUfgLFXJEh0uYItOHCFsVLJv2HnRwYJ3cEo2EYm4rUGYHm3Nf
+	mE7dLZC6VFu+oCc76dQn09tf5fL9Y6yPuxyARZLM/ycGAZebyBvmYMyBZBiLudkyUuZjY4w/S/ENa
+	Fro0z79WPAvtQmDgPlfluyuW9MLatrhNiZ9KM5p+bL8TzELvT5Nb/A4WMR2a15XN8vlDlfMotX/gs
+	GYc6ln4A==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:53754)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vmrnO-000000003vI-0rCx;
+	Mon, 02 Feb 2026 11:08:42 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vmrnL-000000003LN-2QJr;
+	Mon, 02 Feb 2026 11:08:39 +0000
+Date: Mon, 2 Feb 2026 11:08:39 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH v12 3/4] net: mdio: add unlocked mdiodev C45 bus accessors
+Message-ID: <aYCFtyggDldJ-JMR@shell.armlinux.org.uk>
+References: <cover.1769908155.git.daniel@makrotopia.org>
+ <f50a5384d9d8bf677d016deb5844f0651c4b8a4f.1769908155.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,95 +90,67 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <34fa533c-b9ab-4025-b9ad-4041837e790c@oss.qualcomm.com>
+In-Reply-To: <f50a5384d9d8bf677d016deb5844f0651c4b8a4f.1769908155.git.daniel@makrotopia.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261775-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[armlinux.org.uk:-];
+	TAGGED_FROM(0.00)[bounces-261776-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 5FC04CB7E3
+X-Rspamd-Queue-Id: 86E60CB811
 X-Rspamd-Action: no action
 
-On Mon, Feb 02, 2026 at 11:19:36AM +0100, Konrad Dybcio wrote:
-> On 2/2/26 11:14 AM, Luca Weiss wrote:
-> > Hi Konrad,
-> > 
-> > On Mon Feb 2, 2026 at 11:12 AM CET, Konrad Dybcio wrote:
-> >> On 2/1/26 2:49 AM, Dmitry Torokhov wrote:
-> >>> Hi Griffin,
-> >>>
-> >>> On Wed, Jan 28, 2026 at 04:51:14PM +0100, Griffin Kroah-Hartman wrote:
-> >>>> @@ -717,9 +746,19 @@ static int aw86927_detect(struct aw86927_data *haptics)
-> >>>>  
-> >>>>  	chip_id = be16_to_cpu(read_buf);
-> >>>>  
-> >>>> -	if (chip_id != AW86927_CHIPID) {
-> >>>> -		dev_err(haptics->dev, "Unexpected CHIPID value 0x%x\n", chip_id);
-> >>>> -		return -ENODEV;
-> >>>> +	switch (haptics->model) {
-> >>>> +	case AW86927:
-> >>>> +		if (chip_id != AW86927_CHIPID) {
-> >>>> +			dev_err(haptics->dev, "Unexpected CHIPID value 0x%x\n", chip_id);
-> >>>> +			return -ENODEV;
-> >>>> +		}
-> >>>
-> >>> If we are able to query chip ID why do we need to have separate
-> >>> compatibles? I would define chip data structure with differences between
-> >>> variants and assign and use it instead of having separate compatible.
-> >>
-> >> dt-bindings guidelines explicitly call for this, a chipid comparison
-> >> then works as a safety net
-> > 
-> > Are you saying, that
-> > 
-> > 1. we should enforce dt-bindings == CHIP_ID (what's currently done)
+On Sun, Feb 01, 2026 at 02:25:03AM +0000, Daniel Golle wrote:
+> Add helper inline functions __mdiodev_c45_read() and
+> __mdiodev_c45_write(), which are the C45 equivalents of the existing
+> __mdiodev_read() and __mdiodev_write() added by commit e6a45700e7e1
+> ("net: mdio: add unlocked mdiobus and mdiodev bus accessors")
 > 
-> This
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 
-No. If there is a compatible chip with different ID (for whatever reason
-- maybe there is additional functionality that either board does not
-need or the driver does not implement) we absolutely should not refuse
-to bind the driver.
+Sigh, there's too many versions of this patch series. While netdev has
+a 24H period, there is also this - note the last sentence. The reason
+this exists is to stop this exact problem, where ongoing discussion is
+split across multiple different versions of the same series.
 
-Hint: this thing is called _compatible_ for a reason.
+Resending after review
+~~~~~~~~~~~~~~~~~~~~~~
 
-> 
-> > 
-> > or
-> > 
-> > 2. we should have both compatibles with no handling based on compatible,
-> >    but only use CHIP_ID at runtime to change behavior
-> 
-> This is spaghetti
+Allow at least 24 hours to pass between postings. This will ensure reviewers
+from all geographical locations have a chance to chime in. Do not wait
+too long (weeks) between postings either as it will make it harder for reviewers
+to recall all the context.
 
-I really do not understand the aversion of DT maintainers to generic
-compatibles. We see this in I2C HID where we keep adding compatibles
-for what could be described via device properties.
+Make sure you address all the feedback in your new posting. *Do not post a new
+version of the code if the discussion about the previous version is still
+ongoing, unless directly instructed by a reviewer.*
 
-Thanks.
 
 -- 
-Dmitry
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
