@@ -1,146 +1,229 @@
-Return-Path: <devicetree+bounces-261709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261710-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2NqCBpl3gGne8gIAu9opvQ
-	(envelope-from <devicetree+bounces-261709-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:08:25 +0100
+	id sBtIFNB2gGmo8gIAu9opvQ
+	(envelope-from <devicetree+bounces-261710-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:05:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44CC8CA921
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:08:24 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0132CA75D
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 11:05:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 53B2D3013DEC
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 10:02:30 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B2C853006133
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 10:02:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BD9C356A0D;
-	Mon,  2 Feb 2026 10:02:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54F683563F6;
+	Mon,  2 Feb 2026 10:02:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="G93WKS+A";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="RelfcC7/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C43333A9DD;
-	Mon,  2 Feb 2026 10:02:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348C72E54CC
+	for <devicetree@vger.kernel.org>; Mon,  2 Feb 2026 10:02:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770026536; cv=none; b=i6p/OJJ1dYvWgBFrZ1LgYg5OD6J7DOuI6XfOnTebhb/rWIapMLbDtS8Qq4kgB1Pou8eABCoUnJbzyvkPecGUNhKjoOGW6o8Ou2fPEv/D+wLZ88DmN1i5uXu3iBRO++/dmTA3RvV/R0xQvoRNghQkZrEtSmNRMTQ3X80ElVPLRWU=
+	t=1770026559; cv=none; b=n0abM3MvpOm39/Sos2QXK0p/Nf865u9LVSAQ6/m/Xfc1sTtVIxuN9pRo4V+v4tR7AANic4L+KQh0JYByVfy5j++YPx+wwXn/VyYs09l774KJEgGJBZXSgJUXZLAV5Ve29xcZtE7htOejnrHFoIVIRwfJbN/JbTQxKU06duvhs5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770026536; c=relaxed/simple;
-	bh=EkERK/YvJZVeEAaxQXtMPwfz12Ghm/oBYLVlx31ZR+o=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HJMee7pHSoAyVf9es41l2bAljM8NLGToN/tC2SfhklgHi7DEQN09SfHrNAIgKR0rRoJilkzCTdZr3653FohVdD0IRT+fXQfk2qJJRkN498vwKiJKdiQM92fs0gAUv1S2R25mBUSNHIGI8FESGF9ftsGSKUapr+cDbuZ077bz+bg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [58.61.141.99])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 32ccae3d3;
-	Mon, 2 Feb 2026 18:02:04 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: Yixun Lan <dlan@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH 1/1] riscv: dts: spacemit: Add 'linux,pci-domain' to PCIe nodes for K1
-Date: Mon,  2 Feb 2026 18:00:00 +0800
-Message-Id: <20260202100000.19176-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1770026559; c=relaxed/simple;
+	bh=JDSeexC0+JEFNCPV/nFoAtVuXSlVMpI6OdGFK/M9k6o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cJRgDt/k/tFKzw9h/dyEhHc9XscHymCSFn8VhDVfN0IscX4XCi9GRdN2g0PB2JbSezDYzjANJdH6vl+mZhi5moSOaKp8dUw5gEfXVEcg9W9MwVcIvaTfZCI1QzvGEH7oLRI+uHNf5dZHJgUs1EXTfBdRVDTdIRtfwc8xNs46SMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=G93WKS+A; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=RelfcC7/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61282xVN2705690
+	for <devicetree@vger.kernel.org>; Mon, 2 Feb 2026 10:02:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	jCAadpfJgT9dXEEIgywaUL4bC6A8NzSXrVe0HfftFtA=; b=G93WKS+AhHzdPX1h
+	z3wSHCpza4u4nh5QC9t9MYGDXmNpzeM5weAn/OFUK4H3V5tY+YemhR/u+yxEJB+3
+	AE5hc8QSiJLHu1T8Augtvt6kAnkBkN1F3WafhhJ0W1JSpNCshs2ifiIqROdeci+w
+	ut8N75TQ0zvBDOB5q3PPZjuklNMW7hamV8FwNslmuDEfyNuC/llZn7GzE2j4ng15
+	1HOit32Mf7BW8eSE+CnN0DXFCCAru4qeZJsVjABhvciolM9sGVZWeww1CVNOM5hy
+	QL03uzyZC02tDlaehPzUkNEyZau+vAk0ypLGgno1aIMvrIagwPgA8zmfLWGXUl9Z
+	mQb2YQ==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c1awdcy60-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 10:02:36 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c709a3a56dso83607585a.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 02:02:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770026555; x=1770631355; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jCAadpfJgT9dXEEIgywaUL4bC6A8NzSXrVe0HfftFtA=;
+        b=RelfcC7/uNfcNbB0mQGG/KoTcKCOpdbUfFtSlkMlqDIBV4VHqt5R4lmpttq8PNz9P1
+         T3WIPDeRhLnUvuZ22W4qa6GqbZ0rUbDJMXs1cwDQ/sBiP1b+BcSJ3J7+8stwR55F9FD5
+         y8Ekt1UNyDx36CglR5TOyClUJu5XJ6CYry0FMzk5RamkBvrLYtW0FkDHQeP8ugX0/hJB
+         8T8UtRBkj2C25Bkv+V4/ICxBpeT76JC+YPB+C4BMH0hwKir7S/+izgnH9cLp4uAf4TVY
+         mokOAjLpr7J7Aepln3wl76zrCLlEeXk9qjLicuqH86ZeJ1m9RZEa8PqhjFV8XpXNAUNr
+         f1Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770026555; x=1770631355;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jCAadpfJgT9dXEEIgywaUL4bC6A8NzSXrVe0HfftFtA=;
+        b=tsAXavb8SY42gflTebhDp1MThLT14OxKL0ufYXc3yPNtX6NUXAmzV1cvfLZCEjDCKN
+         ECHkcWk49X9nRp2BquZh5jHiQYfYJs0ln/xlZPt4oFsN6JN8ZY48swAVfVZobO6kdlRI
+         njGEki84anOesuepaYcmwo25jh+EDiVXsfqjFTAZon+4Pqn7XAuluewCrzVXn/f74zpm
+         3ZaQgOscEnA6H/LIuT+RpoK1AjcVdhTckCAjJwr3aaSH4k3iX//hi96KIIc4f4faE804
+         DxZJpTo0UCnC8oxD8TMov7MCuFMjLlZvy4OzBDUOVGTVKBL9ZNx7Y4Nk+N4LXKGYPJFk
+         8t8g==
+X-Forwarded-Encrypted: i=1; AJvYcCW5z8+cntVm/3GlCuIlHuO61zPT0isXbeoSSkaB+jqg6M8vZodvUnVKeF9d4zEYHUgQhCXaESMHKJwB@vger.kernel.org
+X-Gm-Message-State: AOJu0YypnGMa4ClClIe4G6eQ7XxZAxLOLC1RZO19HCUxjkk9Gs6x9Fnu
+	DCz1tmp3CHvZD62tjFi5f8Sls56PKzDXe/62d3hC8G9dW4EK7YvYjOs+8THTnJULDE1bhh+b+98
+	mxslwBxouFhhb4nHfx6T35frYGcvRLp8R9h/ghGA7F5J5Qg6r4BXYGIgqiTTpal5+
+X-Gm-Gg: AZuq6aJ1ya2Drbq1pqNIqSF2PgMFTjsnfhRfmKnQGE67ygyrO2bRrQyywAgWe9eak+a
+	2b6rDIV6M+h0NECQP+xHizMbvaPWrKc3+ZMkgsi6Kn1FV8EEOmCco/R7UfABnEYfX/GjeRksfsM
+	ppw2kntTlJJzufzAtC4w0Qae1Bq/msuMPYtuXCvoHkKBLZZwAFx0nyhSNkf9NO/Yi+CH5A2JOI8
+	2Fj2r6X3GcSIGymI8TGu/ua9bfUaYgts79lOQ2Hh3a9ZLMl4QCVMvdsNYZnjAyR+N4ZqK9Zrbtv
+	rYN26Cd8i7wd4iVxqIO4VD20dZzYilDSp7SVCQjXIiHmgj2EPqjgE0S8aGgXvpNrHSfbXFFkJLV
+	mmjtQWVPG07yjIxD13UtzF/NcXFZv2W9uCmdfWD3m+4tGQJFJ2HRZmHRNcTcOsSdr+rM=
+X-Received: by 2002:a05:620a:4009:b0:8c7:9e6:3a4e with SMTP id af79cd13be357-8c9eb10f0a2mr1033782785a.0.1770026555492;
+        Mon, 02 Feb 2026 02:02:35 -0800 (PST)
+X-Received: by 2002:a05:620a:4009:b0:8c7:9e6:3a4e with SMTP id af79cd13be357-8c9eb10f0a2mr1033779985a.0.1770026555002;
+        Mon, 02 Feb 2026 02:02:35 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8dbf1c500bsm837501866b.54.2026.02.02.02.02.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Feb 2026 02:02:34 -0800 (PST)
+Message-ID: <231ae9c2-bb3b-430c-990c-deab6a8a0d0b@oss.qualcomm.com>
+Date: Mon, 2 Feb 2026 11:02:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9c1dcd5e8403a2kunm5c5f4d8f1ec8af
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZH0gaVkgfHR9CH0pKGk8aGFYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlOQ1VNSlVKT0pVQkJZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE5VSktLVUpCS0
-	tZBg++
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/8] media: venus: scale MMCX power domain on SM8250
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>, Jonathan Marek <jonathan@marek.ca>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Hans Verkuil <hverkuil@kernel.org>,
+        Stefan Schmidt <stefan.schmidt@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Dikshita Agarwal <dikshita@qti.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+References: <20260201-iris-venus-fix-sm8250-v2-0-6f40d2605c89@oss.qualcomm.com>
+ <20260201-iris-venus-fix-sm8250-v2-5-6f40d2605c89@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260201-iris-venus-fix-sm8250-v2-5-6f40d2605c89@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: isdZlIxIyLKgClqUdHkwboOSSJKgLIrr
+X-Proofpoint-ORIG-GUID: isdZlIxIyLKgClqUdHkwboOSSJKgLIrr
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAyMDA4NSBTYWx0ZWRfX4H/1xpOewJnY
+ wcyDmAtGwFq80LHkjdQEMDd0De8tvZN8ta+/hSR2PpY3b8G64o+CNRBbGI+rKWz3O9gIkksBw/p
+ hFkYFS5I2/98iStpLGmYG4EtakClQYjOSaluYwTcEOrJd3vKuP9XuGXDmrkIroiKPy7BW1DTr/Z
+ wnfAJqxPmbtubfF+Faz6wBRwLY9mYe5oOVOJVFn3W3hAa7V+FW4wjv/aySa6l20XqGCHUatK+tk
+ khQTRrei9s5/xYU8lQ7h3G2jXU5OzsOigRi0Z35bhWVRl0/ixSkZTrCmQE2nHyzEXPFO8fs3Y1L
+ OL/SKoqHt2aW4sueVbBFTUmjcQHYHO0woFdB3mhwOrD+zjE32A/aw8rGGmbSuNiYZVrE32rhkSC
+ yodD8Xr4TzfFIXxbMZ8M+7sUgRq0qpDVc5LwBqhJ/2ffDSK0qhAnVYTSKdt58YEqU7zlgwa2rWt
+ GhxxZOpvno+26VZaoBg==
+X-Authority-Analysis: v=2.4 cv=T8OBjvKQ c=1 sm=1 tr=0 ts=6980763c cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=v07b0KzaqYqj_yNn1HoA:9
+ a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-02_03,2026-01-30_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 spamscore=0 clxscore=1015 suspectscore=0 impostorscore=0
+ bulkscore=0 lowpriorityscore=0 adultscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602020085
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.64 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-261709-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[29];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261710-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ca800000:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ca400000:email]
-X-Rspamd-Queue-Id: 44CC8CA921
+	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: E0132CA75D
 X-Rspamd-Action: no action
 
-The SpacemiT K1 SoC has 3 PCIe EP controller nodes. Add the
-'linux,pci-domain' property to assign a PCI domain number to
-each of the controllers instead of assigning it randomly.
+On 2/1/26 11:49 AM, Dmitry Baryshkov wrote:
+> On SM8250 most of the video clocks are powered by the MMCX domain, while
+> the PLL it powered on by the MX domain. Extend the driver to support
+> scaling both power domains, while keeping compatibitility with the
+> existing DTs, which define only the MX domain.
+> 
+> Fixes: 0aeabfa29a9c ("media: venus: core: add sm8250 DT compatible and resource data")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- arch/riscv/boot/dts/spacemit/k1.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+[...]
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index 529ec68e9c23..d2015201f8e5 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -1033,6 +1033,7 @@ pcie-bus {
- 			#size-cells = <2>;
- 			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>,
- 				     <0x0 0xb8000000 0x1 0x38000000 0x3 0x48000000>;
-+
- 			pcie0: pcie@ca000000 {
- 				device_type = "pci";
- 				compatible = "spacemit,k1-pcie";
-@@ -1044,6 +1045,7 @@ pcie0: pcie@ca000000 {
- 					    "atu",
- 					    "config",
- 					    "link";
-+				linux,pci-domain = <0>;
- 				#address-cells = <3>;
- 				#size-cells = <2>;
- 				ranges = <0x01000000 0x0 0x00000000 0x0 0x8f002000 0x0 0x00100000>,
-@@ -1087,6 +1089,7 @@ pcie1: pcie@ca400000 {
- 					    "atu",
- 					    "config",
- 					    "link";
-+				linux,pci-domain = <1>;
- 				#address-cells = <3>;
- 				#size-cells = <2>;
- 				ranges = <0x01000000 0x0 0x00000000 0x0 0x9f002000 0x0 0x00100000>,
-@@ -1130,6 +1133,7 @@ pcie2: pcie@ca800000 {
- 					    "atu",
- 					    "config",
- 					    "link";
-+				linux,pci-domain = <2>;
- 				#address-cells = <3>;
- 				#size-cells = <2>;
- 				ranges = <0x01000000 0x0 0x00000000 0x0 0xb7002000 0x0 0x00100000>,
--- 
-2.25.1
+> @@ -904,6 +904,12 @@ static int vcodec_domains_get(struct venus_core *core)
+>  
+>  	/* Attach the power domain for setting performance state */
+>  	ret = devm_pm_domain_attach_list(dev, &opp_pd_data, &core->opp_pmdomain);
+> +	/* backwards compatibility for incomplete ABI SM8250 */
 
+"eeeh", I'd rather error out since it can't guarantee to have its
+power fully on
+
+Konrad
+
+> +	if (ret == -ENODEV &&
+> +	    of_device_is_compatible(dev->of_node, "qcom,sm8250-venus")) {
+> +		opp_pd_data.num_pd_names--;
+> +		ret = devm_pm_domain_attach_list(dev, &opp_pd_data, &core->opp_pmdomain);
+> +	}
+>  	if (ret < 0)
+>  		return ret;
+>  
+> 
 
