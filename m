@@ -1,62 +1,51 @@
-Return-Path: <devicetree+bounces-261779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261780-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wCecJlSIgGnO9wIAu9opvQ
-	(envelope-from <devicetree+bounces-261779-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:19:48 +0100
+	id SAJPKpyLgGnO9wIAu9opvQ
+	(envelope-from <devicetree+bounces-261780-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:33:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED343CB8ED
-	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:19:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F0B3CBB1F
+	for <lists+devicetree@lfdr.de>; Mon, 02 Feb 2026 12:33:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E83A53050D5B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 11:16:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3C9C93021D26
+	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 11:31:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9310A3612F4;
-	Mon,  2 Feb 2026 11:16:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F6813624BE;
+	Mon,  2 Feb 2026 11:31:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0336B36074D;
-	Mon,  2 Feb 2026 11:16:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D98C735E548;
+	Mon,  2 Feb 2026 11:31:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770030964; cv=none; b=q1JLMUeW8fIq+3P0AlJWSm3EAhJ0F45MW8ufWlVbFHuLF4YZMW34TuRi18NBvrOe/ExJptoUgMkw8d6q9Q+2JfR2CDKB5CXBRboMbo2BnuTCnY6IndObEWywaMHj0OBFOZYXAT2CX/Co16UXEF3aunwP3kCwXPSFqcqRmxzc2rE=
+	t=1770031917; cv=none; b=u8jbEzwJHL+CJvHWVGdtkq+c9Vf7l00W8esZleJajr/HSG8fcKwQ7Tzg6Zs/nt7bhoYfYbJteuL+atnKZDUrfQ+3wlchuQbOE1q+P4jcnptSSo0sTVLCmm4gj2sZ7uHXKPiA5WIb2cuxUBl3ef8kBHvZJsdqeuSjdR1CD7KTnzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770030964; c=relaxed/simple;
-	bh=+V2l2AI+iz4koqyoYFa4rFyV0qgxaJjUuwQW/iHCqvg=;
+	s=arc-20240116; t=1770031917; c=relaxed/simple;
+	bh=Ueylp6HQwvDtkHj6Zl1LQcic6rImdfM2EhfgQAhN4B8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OkSqU4U0IZ3oldXZRLGzQRfFTF8qEZgoKFLM9FRBqahVtfhPyYfhS/VE92nHKnkT/ZksdW36Gq3f5dWllabV975AFKCOQ6D476yB0Ql6gLp3EPck7rZFABCilHUAGJbhqF8iZ1zPK0icSKoZl7ToiBIRHCk0kN1ZnZ2iGm5+cgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.99)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vmruQ-0000000081a-23b9;
-	Mon, 02 Feb 2026 11:15:58 +0000
-Date: Mon, 2 Feb 2026 11:15:54 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Jakub Kicinski <kuba@kernel.org>, lxu@maxlinear.com,
-	hkallweit1@gmail.com, yweng@maxlinear.com, ajayaraman@maxlinear.com,
-	andrew@lunn.ch, netdev@vger.kernel.org, bxu@maxlinear.com,
-	olteanv@gmail.com, krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
-	lrosu@maxlinear.com, chad@monroe.io, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, robh@kernel.org, edumazet@google.com,
-	pabeni@redhat.com, cezary.wilmanski@adtran.com, davem@davemloft.net,
-	john@phrozen.org, frankwu@gmx.de, jpovazanec@maxlinear.com,
-	fchan@maxlinear.com, horms@kernel.org
-Subject: Re: [net-next,v11,4/4] net: dsa: add basic initial driver for
- MxL862xx switches
-Message-ID: <aYCHai1Fsedssibq@makrotopia.org>
-References: <46226b74030f76bd04149ed5c92b3e263abbe6c2.1769817939.git.daniel@makrotopia.org>
- <20260131175243.1122906-2-kuba@kernel.org>
- <aX6keghdVMI-A6Fq@makrotopia.org>
- <aYCGNMAdZXsQnLKl@shell.armlinux.org.uk>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q1V+Xp36SDWfPGu+GUzHyIUu7qfhNqKL+U7jMJJU6sO9e8QcVoFJVrBj+xqcjjOFMua26OCYTYT+nq8DTJq84wrx+rUtyQ86MKTj5ddSXeSMeh8VSo/o46s+2Xs0gGPv/axZEYP4BvAQbacNW3+qhcZeZdmVfKHNm9WYDi2Nawg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [183.192.223.177])
+	by APP-01 (Coremail) with SMTP id qwCowABH8WwYi4BpJdr9Bg--.29650S2;
+	Mon, 02 Feb 2026 19:31:38 +0800 (CST)
+Date: Mon, 2 Feb 2026 19:31:36 +0800
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: vkoul@kernel.org, gregkh@linuxfoundation.org, conor@kernel.org
+Cc: neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, linux-phy@lists.infradead.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 0/4] Add USB support for Canaan K230
+Message-ID: <aYCLGLvbKZy+WyxI@duge-virtual-machine>
+References: <20260121145526.14672-1-jiayu.riscv@isrc.iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,54 +54,114 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aYCGNMAdZXsQnLKl@shell.armlinux.org.uk>
+In-Reply-To: <20260121145526.14672-1-jiayu.riscv@isrc.iscas.ac.cn>
+X-CM-TRANSID:qwCowABH8WwYi4BpJdr9Bg--.29650S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7trWrCrWkWry3Kw1ftFWrXwb_yoW5JF17pa
+	y2kFW3CFsrJFW2gFs3tw48WF9xX3Z5Jry5Wryaq3s8W3WUZr1UZ393KrWYvFyDJF4DCryj
+	qFs0kFyxKFy5AaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
+	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
+	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
+	14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
+	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
+	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
+	IFyTuYvjxUqiFxDUUUU
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261779-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,maxlinear.com,gmail.com,lunn.ch,vger.kernel.org,monroe.io,google.com,redhat.com,adtran.com,davemloft.net,phrozen.org,gmx.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[makrotopia.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_FROM(0.00)[bounces-261780-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_NONE(0.00)[];
 	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: ED343CB8ED
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4F0B3CBB1F
 X-Rspamd-Action: no action
 
-On Mon, Feb 02, 2026 at 11:10:44AM +0000, Russell King (Oracle) wrote:
-> On Sun, Feb 01, 2026 at 12:55:22AM +0000, Daniel Golle wrote:
-> > Do you think it's worth to fix this also in other drivers which follow
-> > the same pattern? (bcm_sf2, mt7530 and mv88e6xxx if OF node is NULL --
-> > if there is an OF node it uses %pOF, and I'm not sure that's such a good
-> > idea either)
+On Wed, Jan 21, 2026 at 10:55:21PM +0800, Jiayu Du wrote:
+> Add support for the USB PHY and DWC2 IP which is used by Canaan K230,
+> and made relevant changes to the DTS.
 > 
-> So in v11 here, you ask a question of your reviewer. 2 hours later, you
-> send v12 without waiting for a response.
+> This series is based on the initial 100ask K230 DshanPi series [1] which
+> is based on the clock and pinctrl series. Check the details in the link.
 > 
-> Slow down. Give your reviewers time to respond before posting your next
-> version.
+> Link: https://lore.kernel.org/all/20260115060801.16819-1-jiayu.riscv@isrc.iscas.ac.cn/ [1]
+> 
+> Changes in v5:
+> - Changed the year of Copyright to 2026.
+> - Add blank line after the declaration of variables
+> - Fix wrong alignment.
+> - Link to v4: https://lore.kernel.org/all/20260120143243.71937-1-jiayu.riscv@isrc.iscas.ac.cn/
+> 
+> Changes in v4:
+> - Shrink reg length to match the address/size-cells in k230-usb-phy yaml.
+> - Move all PHY instance creation and initialization from xlate to probe.
+> - Modify xlate function to only perform index lookup for PHY instances.
+> - Define all register base offsets macros at the top of file instead of
+>   hard-coding magic numbers directly in probe.
+> - Link to v2: https://lore.kernel.org/all/20260115064223.21926-1-jiayu.riscv@isrc.iscas.ac.cn/
+> 
+> Changes in v3:
+> - Please ignore v3.
+> 
+> Changes in v2:
+> - Fold the child into the parent in dtsi.
+> - Define one usbphy with phy-cells=1.
+> - Delete the clock of the usbphy as it is not needed.
+> - Link to v1: https://lore.kernel.org/all/20251230023725.15966-1-jiayu.riscv@isrc.iscas.ac.cn/
+> 
+> Jiayu Du (4):
+>   dt-bindings: phy: Add Canaan K230 USB PHY
+>   dt-bindings: usb: dwc2: Add support for Canaan K230 SoC
+>   phy: usb: Add driver for Canaan K230 USB 2.0 PHY
+>   riscv: dts: canaan: Add syscon and USB nodes for K230
+> 
+>  .../bindings/phy/canaan,k230-usb-phy.yaml     |  35 +++
+>  .../devicetree/bindings/usb/dwc2.yaml         |   3 +
+>  .../boot/dts/canaan/k230-canmv-dshanpi.dts    |  17 ++
+>  arch/riscv/boot/dts/canaan/k230.dtsi          |  35 +++
+>  drivers/phy/Kconfig                           |   1 +
+>  drivers/phy/Makefile                          |   1 +
+>  drivers/phy/canaan/Kconfig                    |  14 +
+>  drivers/phy/canaan/Makefile                   |   2 +
+>  drivers/phy/canaan/phy-k230-usb.c             | 284 ++++++++++++++++++
+>  9 files changed, 392 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/canaan,k230-usb-phy.yaml
+>  create mode 100644 drivers/phy/canaan/Kconfig
+>  create mode 100644 drivers/phy/canaan/Makefile
+>  create mode 100644 drivers/phy/canaan/phy-k230-usb.c
+> 
+> -- 
+> 2.52.0
+> 
+Hello Vinod, could you please take a look at this patch? Thank you!
 
-Got it, just thought because the question wasn't related to that driver
-but rather whether the same issue (or non-issue?) should also be fixed in
-other drivers...
+Regards,
+Jiayu Du
 
-I'm going to wait now until all debates have settled and then post v13 :)
 
