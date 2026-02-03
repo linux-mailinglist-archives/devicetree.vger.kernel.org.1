@@ -1,67 +1,65 @@
-Return-Path: <devicetree+bounces-262157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262159-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wDRXBCHHgWk0JwMAu9opvQ
-	(envelope-from <devicetree+bounces-262157-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:00:01 +0100
+	id +OKpOf3HgWl1JwMAu9opvQ
+	(envelope-from <devicetree+bounces-262159-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:03:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D3B5D7379
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:00:00 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0848D7452
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:03:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4F2333085107
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 09:56:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0E488300789C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 10:03:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8754D39A7F3;
-	Tue,  3 Feb 2026 09:56:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E462F392C2D;
+	Tue,  3 Feb 2026 10:03:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZLrZwVMC"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ACqs4WtL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BB692C21EA;
-	Tue,  3 Feb 2026 09:56:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB9D396B6A;
+	Tue,  3 Feb 2026 10:03:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770112564; cv=none; b=cKQ4LplJWuYG/aUead2sPOPWOqLTx16dhjo7THtBdWcNX+3yFQB5+s1seSsZk/s6s92JkYDNa8CDCVSJE2P/iOzXX4TMN67ynJtRQkxT3vI9qGpYKN78ktE51Uz8X/vt9RDrBQHW93ekcFESVDLehSNHxr/UMdoHKstOI+CiDaw=
+	t=1770113017; cv=none; b=PtUuBHQgetdm1gVthaHHXzd1zPci0EyG+gQfyYHCWvYuJb0Z33u0Z2UxRCLJPtUwcvEujmGltrUCskFIhooW9eNjeADyQXAt6EbXcAvyHaORK/D1ANNxMtIm3J7NPz4sc5R0JbwhG6bigGYXyBCt1L6Jv5v15gNv2Q7I5ox3hm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770112564; c=relaxed/simple;
-	bh=LoKJCNr9bQkE0PaWz3bXP6qu71p3NwwS3q1jbcRoInA=;
+	s=arc-20240116; t=1770113017; c=relaxed/simple;
+	bh=6ZkV3ByHK7lbbphiAJiVTRBt4VdeKYBWGsshtVaY7K8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dN6bY7M8Dk1JphOYPLjzncB4jA1YRaMkhyu46vPj1OVIBJDzgmBTKY30KrrqzhR0L0iOAZDpUO7TdH3gy9El+44m3cfJKIWn9MUkXp9p2keJUN0uu5Q3kXeC11ZY6G0qOPEQYM3k+hWJtykqt/rkOWaJ7UyEUnAWMTLllb4aGj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZLrZwVMC; arc=none smtp.client-ip=198.175.65.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=ud/WVj+HVufUJiYxkI/WA6ZHSpY7bA/obMs9cB8eI/rjHxQ7EZx20GezfxVzQ8PlFb9t4iaF4IPv7a5zAKWgvOcXt5bOMz7ujcl/WiwGQ8x65+ucsGUn1KeekMNYXTgQO3MLFZhJJYGjF43TeSY6VN+BiHGQKwUqcwH4kiK8qCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ACqs4WtL; arc=none smtp.client-ip=192.198.163.19
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770112563; x=1801648563;
+  t=1770113016; x=1801649016;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=LoKJCNr9bQkE0PaWz3bXP6qu71p3NwwS3q1jbcRoInA=;
-  b=ZLrZwVMCRM4ED950kebZQzjhsovhJSsQfgSNu73P2F5/m6EGML6vv2sl
-   lExoAEi1ZH/XYAEKeeSHG7AYoytqxbmqp8OLD6vjGAclMZRraOSvpzLxL
-   ZYHqNOTn0+JTrUwdGwlw0b0y87Ao0oMVu05sTRbs2VILzqG7UFnK77Q0O
-   VDRrxaewrcnYdyf9DYGW+guF65smqb8gKmwjAHujcm8AXrbXPgOD6NYO+
-   8AY4CQCTVMSqsRNl3HRv6l3j04O6SOQYsM1u5nX0erAmwGuAA3R6uzYGq
-   uhjm9X460Te20IgInc6Upc+ixKCZvlv7qqQ+xdngyEy+9FeMOdcxERpdO
-   w==;
-X-CSE-ConnectionGUID: 9R98pduJQQywrmYjyOBjpQ==
-X-CSE-MsgGUID: SAxCEqktR6uzuB1WDk9twg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="71442271"
+  bh=6ZkV3ByHK7lbbphiAJiVTRBt4VdeKYBWGsshtVaY7K8=;
+  b=ACqs4WtLOnKY5LCNoTADtVy9GqU9WjGNYEL5oQgO16afQNrVvsoqbYUY
+   n3ECawpphVfOGqvqWnpbKPwg5vTG+BeGeKqc8y110LEAf7RfO7SY6xL0n
+   SYz3In1TqzMc/4Dx4dgzPRHz6qrjDNX7KZidr88G9mXab9boJc4YMHXMI
+   frL2uPN/p4XDKKVUYdPnPBpKWcxYUOcYNyZ5OIRsx1YOwhQ5FqPVjpgFl
+   iwovgEwfg18l+HHN79vr0A/dhkN7lE7LwzXuC2AFlMTC/mvw9UaXqDkYS
+   iLuEJHlT2M/qQ8vAMMof8AzBOz1oUJycSsrFjEMNqv011ggvbdaEMB2Po
+   A==;
+X-CSE-ConnectionGUID: 9f3ZBAQ/Qoa05LThSOOY/A==
+X-CSE-MsgGUID: Xmde7HO0SpWeZzC2vHHuSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="70297660"
 X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; 
-   d="scan'208";a="71442271"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 01:56:02 -0800
-X-CSE-ConnectionGUID: FPy37RvSRSuBS3QAiYVkZQ==
-X-CSE-MsgGUID: Y22YufrMSnOY0mwkZ8kn9w==
+   d="scan'208";a="70297660"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 02:03:34 -0800
+X-CSE-ConnectionGUID: hhpHB20mT6qV9BkswWv+ow==
+X-CSE-MsgGUID: Yktz9S0wSqiTsYlcCgn0Fg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; 
-   d="scan'208";a="209587105"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.99])
-  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 01:55:59 -0800
-Date: Tue, 3 Feb 2026 11:55:57 +0200
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 02:03:26 -0800
+Date: Tue, 3 Feb 2026 12:03:23 +0200
 From: Andy Shevchenko <andriy.shevchenko@intel.com>
 To: Oleksij Rempel <o.rempel@pengutronix.de>
 Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -72,11 +70,11 @@ Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
 	David Lechner <dlechner@baylibre.com>,
 	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
 	David Jander <david@protonic.nl>
-Subject: Re: [PATCH v4 05/13] iio: dac: ds4424: rename iio_info struct to
- avoid ambiguity
-Message-ID: <aYHGLeHndgJiD8zV@smile.fi.intel.com>
+Subject: Re: [PATCH v4 06/13] iio: dac: ds4424: use device match data for
+ chip info
+Message-ID: <aYHH69gXyuwmQR03@smile.fi.intel.com>
 References: <20260203093434.2548978-1-o.rempel@pengutronix.de>
- <20260203093434.2548978-6-o.rempel@pengutronix.de>
+ <20260203093434.2548978-7-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260203093434.2548978-6-o.rempel@pengutronix.de>
+In-Reply-To: <20260203093434.2548978-7-o.rempel@pengutronix.de>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
@@ -93,12 +91,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262157-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262159-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
 	RCPT_COUNT_TWELVE(0.00)[13];
@@ -106,7 +104,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
@@ -116,20 +114,31 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smile.fi.intel.com:mid,intel.com:email,intel.com:dkim]
-X-Rspamd-Queue-Id: 7D3B5D7379
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: A0848D7452
 X-Rspamd-Action: no action
 
-On Tue, Feb 03, 2026 at 10:34:25AM +0100, Oleksij Rempel wrote:
-> Rename the static `ds4424_info` structure to `ds4424_iio_info`.
+On Tue, Feb 03, 2026 at 10:34:26AM +0100, Oleksij Rempel wrote:
+> Refactor the driver to use device match data instead of checking ID enums
+> in a switch statement.
 > 
-> The previous name was generic and could be confused with chip-specific
-> data structures (like the upcoming `ds4424_chip_info`). The new name
-> explicitly indicates that this structure holds the IIO framework
-> callbacks.
+> Define a `ds4424_chip_info` structure to hold variant-specific attributes
+> (currently just the channel count) and attach it directly to the I2C and
+> OF device ID tables.
+> 
+> Use `client->name` instead of `id->name` to decouple the probe function
+> from the legacy `i2c_device_id` structure.
+> 
+> This simplifies the probe function and makes it easier to add support for
+> new variants like DS4402/DS4404.
 
-OK,
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+...
+
+> -	indio_dev->name = id->name;
+
+> +	indio_dev->name = client->name;
+
+Isn't this an ABI breakage?
 
 -- 
 With Best Regards,
