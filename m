@@ -1,432 +1,158 @@
-Return-Path: <devicetree+bounces-262312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262313-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gNYzFvcXgmmZPAMAu9opvQ
-	(envelope-from <devicetree+bounces-262312-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 16:44:55 +0100
+	id yBmILDEYgmmZPAMAu9opvQ
+	(envelope-from <devicetree+bounces-262313-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 16:45:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEC1BDB72F
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 16:44:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AED1DB75C
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 16:45:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6F7EC303E2D4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 15:41:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 73A13308F9D1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 15:41:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 603B13B9605;
-	Tue,  3 Feb 2026 15:40:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8865D3B9605;
+	Tue,  3 Feb 2026 15:41:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="SKicUJXV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JWYzJmqr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f193.google.com (mail-qk1-f193.google.com [209.85.222.193])
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F77D3B95E3
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 15:40:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11E973B95E3
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 15:41:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770133259; cv=none; b=cZdLHcYVzayqncWaTy6SY8sgbJ21vwcGBVivlux21Uu55pSvS336MWi9yZAe/iNYw8lGaL5zvgByhJzyiUOVPVnZ2J6j63uKx00vja1bhnPRMkPTzR2U+3h/guUOR6DIIk2b8ZrIsY3VGPks1i5zwz7qR6t3WXJGH0kdM+QrZ88=
+	t=1770133272; cv=none; b=lBbSxa/nzloAIMGEA7qinHDv7SbRkrnlzYwslZpMaIwlLMtiQJPE57FXi2efmhk5TVFoJ3fbxSZwY4xpgrMgUPQfKg+QOv8aEgGz48biA1Xdk6K6eKIx80Ci2d7KmL3c4K+dsldQV+JmaWoAZzRqO1asjTnrnnajX22QumsHxDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770133259; c=relaxed/simple;
-	bh=2GolLxBI7M4FrQQ01gPdYp9MHSke1dJvpw9m0JW/AlM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=MxxEy1WFVjwjfegym1KVyBUfwpJqC2F7LyL+FcHDAv4FSfdF+AuCVjhOPbDMYER165BGp2dIs3mdE++CDEEcC4tAV8NfYIXzbk8p3/eR4J8jCFZVbFgFmTCBvoOAo04WVOkQU44WVmQc5QF2mbO+RhNt7mbx3bsO1mhyL+WduDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=SKicUJXV; arc=none smtp.client-ip=209.85.222.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qk1-f193.google.com with SMTP id af79cd13be357-8c5389c3cd2so594037185a.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 07:40:57 -0800 (PST)
+	s=arc-20240116; t=1770133272; c=relaxed/simple;
+	bh=1LJxSgDfu2qHVQ0BcLX0FLZBAv55EAAcPTpRZxMhd0k=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=kVTStRDpSEfaU9637slroRIUCy37NZEULGrwgZGB54qx2WoYGZ/FwipTNentURT74bhLA0r1FEb9f+TubWHX+d9R7ol4ToxZH7Wto7blzfZyYXxgswN139YHGgIiT2ZmBZFMQ1inmOeQ0XRVwHGiBTDOoIj05uAKoGjqFT7aJiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JWYzJmqr; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-794d4c34bd3so25690047b3.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 07:41:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1770133256; x=1770738056; darn=vger.kernel.org;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=2GolLxBI7M4FrQQ01gPdYp9MHSke1dJvpw9m0JW/AlM=;
-        b=SKicUJXVbyCi+jh+7oHFUk9zdm8/7Ov6NfLvUOnUq5LOK5g9LOdJjfalN+c7I9nYmB
-         Y27eWjoehA9uUl9dAbfEP6iySAzXrw9UdxroDEkKJo1HILQdZfVhz1SI/K4GndntPfOj
-         jInQXwDYS3jbqzkrIQQoELOnRavoi5ikmSWcuRGX2AjYl+hauZc5IBT6+hFqBta7hL0z
-         n3zNVX4nhIhX1Ai2/V8df/NrUoNZTb1y9rzI4CdT9raUxtKbciKmkjTmD4rTDsvyHs2r
-         FoFZwRwH7fIxnh4JyIpPyu+U1H7ZNIpsOSCqRI1L+su8+ZEzeSxS0psd03MXG4+/XWAi
-         xH1A==
+        d=gmail.com; s=20230601; t=1770133270; x=1770738070; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Y+dHBcJ0EB1oMWtqDa79JLU2lSQMRC9g+f/II9Wq8ic=;
+        b=JWYzJmqrJZlDuWM1M5XSmQVkgjbQcC7n26n23tCf3PGLlAdKUMHG3fwNQyMmVm3ZkA
+         K1V+/fe3vNvj9m2gpSXu7EXOOMCMLYTpAIMUoNTCUJW0ni7iz/z7Fm7rPcR6KDQq7xK4
+         ItBSQRcNiyDYGU9SwuC1FC/yFjrozk1SC56D913jf+Ua85WQ1j/kmZVsmYiHoygrctCU
+         TeXJVuXmZBXolSbyCba4DGpse3lDmguwg/wiBjGHL2o17ltHCvkFuHQ+diVXfAL+GGqM
+         4HMLpjX2VLE66GvCE68ai7nPtr72lbMMIBjr/h+BZGUR/Dp9v7EFbqwryxuAvUhAlaiw
+         eG1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770133256; x=1770738056;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2GolLxBI7M4FrQQ01gPdYp9MHSke1dJvpw9m0JW/AlM=;
-        b=twW7J5tQ79VmT7vyYoc5sm3PJ1Oyqb7qZF52fJogQDho3jBu+vzaPPG4eFuNqJVM4F
-         jzY8IEWNAFiBFnwHvIk6ZaGOxJF+Yoj9jO71kk+xlsK6YNN52qDYJRqkG7//b7sB9CpU
-         /mjM5FKT2QxHRZIFtx9Ff6/KbEJBcNZhpV2rZoVgBw3TYl1fGCUlKh4oYIWvORnoQsnJ
-         rvMDomvpW2XI3kObOV8EjoXk5ZUNyBwhLspskvu75a57JKIBeJvTefyG99Se/MFsWIrU
-         rbuw7xttcLBaWVM5b9eTc6+LqxlTJMIUVeJMDzOKkEv/gs5V2mlLO5kg5hDPTNJvfTTn
-         nrxg==
-X-Forwarded-Encrypted: i=1; AJvYcCXVzBGESQ9Gv84PZLJ4k8p5fiUn77Ls7fykdqsv/ebx0gYv+uZ004O+tYsv86F5w4YlrqIQCrsZteWm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5f6+oEf3PHf6wTDEIa1O8n3ov7DQjnIFkLQDNMdfQjFxK/dbs
-	y7AS8cDG3VHNTVcRJN/Gg1bZxLcaaPauEqCgJNMFkHoEpp+1Dst6GRI1I+9Qj8eoMeg=
-X-Gm-Gg: AZuq6aLMYOJCtT5Q9+TcLKjQ4s+NLM70DtekVSdq8VDMtCORbSPbTWKy2479+YimRTa
-	8nhRL0hKcWdUMZcGJ8Jfnvu8+Rk3dXv33BIe/tPttHR43sGEiwRXLJGBgw7l1DQ9VAUWjfnh1eZ
-	BdpM8a+rkTJenIAzXVPx/xMDpm0mgoO7BMoFTgEHHINxIJ925xeH80bDOSCIfUJxxbvZvOD07tr
-	wGDGF7Oko/xqwIOQ/nJ17UZpAZ4FqSxp6fKgllVRkm0Y+hIiHqD8w/YUk73IHLOMVbpy0n1w92G
-	NCdwxe4/yBFL61LQdMsT9NqI6HQJ1rPIRhem69jdHHEK/lwzmwS6jrkm5CGqiiqTW74SUxVcm7T
-	w+ozXG0d9NDd0eP0ViYaTV/FHxgWZtkJpf6RBH0dvmVTmi6fJaJ+ShTFawp1za9h4luR/R/wLXH
-	aT547UCN5A0S3GaGs5/wYn/MQYXbg=
-X-Received: by 2002:a05:620a:7105:b0:8c6:d2ca:1d0e with SMTP id af79cd13be357-8c9eb2584c3mr2033310985a.11.1770133256006;
-        Tue, 03 Feb 2026 07:40:56 -0800 (PST)
-Received: from ?IPv6:2606:6d00:15:210e::5ac? ([2606:6d00:15:210e::5ac])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c711ba6c58sm1610151685a.23.2026.02.03.07.40.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Feb 2026 07:40:55 -0800 (PST)
-Message-ID: <db9016a39f612cc93ee070c1eba4e4471a89a5cd.camel@ndufresne.ca>
-Subject: Re: [PATCH] arm64: dts: imx8mq: Restore VPU G2 clock to 600MHz for
- 4K60fps decoding
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: "Ming Qian(OSS)" <ming.qian@oss.nxp.com>, Marco Felsch
-	 <m.felsch@pengutronix.de>
-Cc: linux-media@vger.kernel.org, imx@lists.linux.dev,
- ulf.hansson@linaro.org, 	Frank.li@nxp.com, peng.fan@nxp.com,
- festevam@gmail.com, robh@kernel.org, 	benjamin.gaignard@collabora.com,
- sebastian.fricke@collabora.com, 	linux-imx@nxp.com,
- devicetree@vger.kernel.org, conor+dt@kernel.org, 	p.zabel@pengutronix.de,
- linux-pm@vger.kernel.org, s.hauer@pengutronix.de, 	mchehab@kernel.org,
- linux-arm-kernel@lists.infradead.org, eagle.zhou@nxp.com, 
-	linux-kernel@vger.kernel.org, kernel@pengutronix.de,
- hverkuil-cisco@xs4all.nl, 	krzk+dt@kernel.org, shawnguo@kernel.org,
- l.stach@pengutronix.de
-Date: Tue, 03 Feb 2026 10:40:52 -0500
-In-Reply-To: <cd07dc6e-1f19-4a59-8ee5-81a36d51bf1c@oss.nxp.com>
-References: <20260130084133.2159-1-ming.qian@oss.nxp.com>
-	 <df8d5d5f28870752e77ec74f34fea7ceb6e97286.camel@ndufresne.ca>
-	 <0b24716b-438c-4185-8a93-3a3879147c24@oss.nxp.com>
-	 <169eba79e8e1f906b1a0b59e22a531dfc7e57a1f.camel@ndufresne.ca>
-	 <5e3431c69da07557edb20a252c4759be8c857f08.camel@ndufresne.ca>
-	 <ca3a8042-1394-4925-9c61-dbfcbf4cf7d9@oss.nxp.com>
-	 <20260203083110.woan3gmc3qdh7nmm@pengutronix.de>
-	 <cd07dc6e-1f19-4a59-8ee5-81a36d51bf1c@oss.nxp.com>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-okkgKqsgZ+IV64MKbOhB"
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+        d=1e100.net; s=20230601; t=1770133270; x=1770738070;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y+dHBcJ0EB1oMWtqDa79JLU2lSQMRC9g+f/II9Wq8ic=;
+        b=clN2N10oYLeDTAP1dXmeoUBitl0I+tJ4RJCoQBl4uwOKg+fckGylxqOxywa/KZQ09G
+         SaIOFxFBVfZVvOjIxzQOuACD3M/t1Y3Qvc8xbzLhgoRi6TG5BprNuSWpUEfVFcIZ333A
+         vnQBufTSgKZD1QDWW10FuNSDvoytW9wd7bRTHF1g+FvYOSQexwQPfj7Hl4BeFAG8RDL5
+         1pr/3lOG4x3XTcoEfvNfo+OisXMgkblq/7+1XvrGoDNtOWaKYD7uTAX8iSULdpECYOXH
+         tRDDLY16yP9Y8WaNq8eukf3zIB4+JloBr4x53RtclGKbmRxuDW0FEO8cspC+EszIOZLT
+         3tlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVwJSukg+gP0AjOtehYaedZ3oj4yTI8Cn9WjzGmYLlGDW1NxpCYY5MFghPemCcHHGdI995B+AZxA9dg@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZsmToMujb6gj59sSr3Z+H7pM/9M5o6RzT/ovaOA7EYrYladQy
+	wFGsSRo00knw+XI9WsFIBTOUMvAqDQ+53twlseV/opH2s3o3vvtiUEm3
+X-Gm-Gg: AZuq6aLPdBcJ/+h6bRFIMWJhKbW0s1QLnxufzTVfH6vWTL4mkeruQQrj7xV9H0PAxkh
+	4IuqcZxyGZ7Af3rEA1EHK8liqJU+DaIFDDwZH41RepDXAvoX2zUkwafZEPGlbpwzIXP3luHj3zB
+	P8oh5howtZ6mtyw3JyjA6jMy+d9kvUcmpllmFFSAq0IU2D7bzhxwHG9l3HXmK0hDYkIiWx4i9Ce
+	i6CXtDMQiigOKgqJqFjP73UT1uQw4feYb2DpUUoegcrQ01DY13nYepkNnPOGBhVX3aS4kXP5SuY
+	fg9rxXk8IQOelxzfDvGwWqG84C7tZvaxSLqkCJgNPZs38ClRCKhcU3pP8As8R6hiTUbyQkbe3vr
+	+ryGBt4mDdlA17hGc4dGYMQesXJxAtUgPIUJp5SwvwAD0UoJW5ocmOZFUrldR/z2lEsQEwu49vf
+	VGEyvj3rUghAJOPw==
+X-Received: by 2002:a05:690c:260b:b0:794:f3df:80f3 with SMTP id 00721157ae682-794f3dfa1a8mr32368167b3.69.1770133269769;
+        Tue, 03 Feb 2026 07:41:09 -0800 (PST)
+Received: from [192.168.0.40] ([79.133.247.80])
+        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-649b30b5825sm8121645d50.24.2026.02.03.07.41.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Feb 2026 07:41:09 -0800 (PST)
+Message-ID: <372c9172-ea01-4a3a-b737-3f7f14519791@gmail.com>
+Date: Tue, 3 Feb 2026 17:41:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Erikas Bitovtas <xerikasxx@gmail.com>
+Subject: Re: [PATCH 2/2] iio: light: Add support for Capella cm36686 and
+ cm36672p sensors
+To: David Lechner <dlechner@baylibre.com>, Jonathan Cameron
+ <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Tsai <ktsai@capellamicro.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20260201-cm36686-v1-0-4949a2a9ba63@gmail.com>
+ <20260201-cm36686-v1-2-4949a2a9ba63@gmail.com>
+ <eb922433-3951-409a-a397-b48efef57b7b@baylibre.com>
+ <b133521f-434d-4972-82a3-6e7978e557bd@gmail.com>
+ <086d6b35-8c19-4e92-9cd1-557b98991d35@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <086d6b35-8c19-4e92-9cd1-557b98991d35@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[ndufresne-ca.20230601.gappssmtp.com:s=20230601];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[ndufresne.ca : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,linaro.org,nxp.com,gmail.com,kernel.org,collabora.com,pengutronix.de,lists.infradead.org,xs4all.nl];
-	DKIM_TRACE(0.00)[ndufresne-ca.20230601.gappssmtp.com:+];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262312-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262313-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas@ndufresne.ca,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	REDIRECTOR_URL(0.00)[aka.ms];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ndufresne-ca.20230601.gappssmtp.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aka.ms:url,ndufresne.ca:mid]
-X-Rspamd-Queue-Id: AEC1BDB72F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2AED1DB75C
 X-Rspamd-Action: no action
 
+> Pro tip: when you reply, trim out the not relevant parts like this.
 
---=-okkgKqsgZ+IV64MKbOhB
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Noted.
+> We could start with hard-coding the als_trans_ratio in this driver for the
+> scale (and write comments explaining where it came from and what we know
+> and don't know). Then at least we would have a scale. And if anyone needs
+> something more accurate and reverse-engineers it we could fix it up later
+> with a DT property or something like that.
+> 
 
-Le mardi 03 f=C3=A9vrier 2026 =C3=A0 16:53 +0800, Ming Qian(OSS) a =C3=A9cr=
-it=C2=A0:
-> Hi Marco,
->=20
-> On 2/3/2026 4:31 PM, Marco Felsch wrote:
-> > [You don't often get email from m.felsch@pengutronix.de. Learn why this=
- is important at https://aka.ms/LearnAboutSenderIdentification=C2=A0]
-> >=20
-> > Hi,
-> >=20
-> > sorry for jumping in.
-> >=20
-> > On 26-02-03, Ming Qian(OSS) wrote:
-> > > Hi Nicolas,
-> > >=20
-> > > On 2/3/2026 3:12 AM, Nicolas Dufresne wrote:
-> > > > Hi,
-> > > >=20
-> > > > Le lundi 02 f=C3=A9vrier 2026 =C3=A0 13:44 -0500, Nicolas Dufresne =
-a =C3=A9crit :
-> > > > > > This doesn't sound like just a VPU issue; it's related to the d=
-isplay or
-> > > > > > DDR.
-> > > > > > If not displayed, do the fluster test cases yield different res=
-ults at
-> > > > > > 600MHz and 300MHz?
-> > > > >=20
-> > > > > Didn't you run these tests before sending ? I can try again, but =
-in my
-> > > > > internal
-> > > > > notes, I wrote:
-> > > > >=20
-> > > > > =C2=A0=C2=A0=C2=A0 > Tested that, and everything becomes unstable
-> > > > >=20
-> > > > > That was before I figure-out the IRQ handler didn't handle except=
-ion bits that
-> > > > > didn't stop the decoder (or dry IRQ, which strangely is common fr=
-om the G2).
-> > > >=20
-> > > > Ran some fluster tests now. With this patch the results is not cons=
-istent
-> > > > anymore. Then I ran it with weston being started, and in the middle=
- of the test
-> > > > the display turned black. Matches my past observation. We did repro=
-duce this on
-> > > > BSP kernel too. When the display goes black, the recent hantro driv=
-ers reports:
-> > > >=20
-> > > > [=C2=A0 827.581586] hantro-vpu 38310000.video-codec: frame decode t=
-imed out.
-> > > > [=C2=A0 827.720201] hantro-vpu 38310000.video-codec: not all macrob=
-locks were
-> > > > decoded.
-> > > >=20
-> > > >=20
-> > > > I have local patches to reduce the cascade of errors, so it likely =
-survived
-> > > > longer then last time. I will send these patches soon. The "not all=
- macroblocks
-> > > > were decoded." is triggered by a bit in the status register that is=
- not
-> > > > documented in NXP TRM. I found that bit in some VC8000D documentati=
-on (the
-> > > > sucessor of G2). I concluded it was the same meaning after looking =
-at the failed
-> > > > buffer visually, it is indeed missing couple of macroblocks near th=
- end. Each
-> > > > time we see this error, the DCSS gives up and turn either black, or=
- sometimes
-> > > > other color. The second case has been tracked to a DCSS Scaler unde=
-rrun, the
-> > > > first we don't know.
-> > > >=20
-> > > > Fluster command ran (two threads, never completes):
-> > > >=20
-> > > > ./fluster.py run -d GStreamer-H.265-V4L2SL-Gst1.0 -ts JCT-VC-HEVC_V=
-1 -j2 -t90
-> > > >=20
-> > > > Nicolas
-> > >=20
-> > > My test results for fluster differ from yours.
-> > > On my end, the results for JCT-VC-HEVC_V1 are consistent at both 300M=
-Hz and
-> > > 600MHz.
-> > > And results remained unchanged after multiple tests.
-
-After more testing, the fluster test is stable for NV12/NV15 tiled output f=
-or me
-too. I'm running the tests with linear NV12/P010, which imply an extra set =
-of
-buffer. I will check if I can give you a easy way to test the linear format=
-s. I
-also have couple of streams that systematically breaks at specific spot (hi=
-gh
-complexity scenes) with the provided patch. As most licensed content, this =
-is
-not sharable as-is. I will try and see if I can find a way to share somethi=
-ng.
-
-> > >=20
-> > > I'm not sure what caused the differences between us.
-> >=20
-> > Once it comes to system stability, you need to ensure that your
-> > bootstack is aligned e.g. same TF-A version and sometimes same
-> > bootloader since there might be workarounds/erratum applied by the boot
-> > firmware.
-> >=20
-> > Regards,
-> > =C2=A0=C2=A0 Marco
-> >=20
->=20
-> Thanks for the reminder, and I agree.
-> I think we need to align our board environment first.
-
-I do likely have slightly different bootchain, and of course all the HDMI
-component are downstream, but I can't really isolate the dramatic issue of =
-this
-overclock without a display component of some sort. Its a huge differentiat=
-or in
-the bandwidth consumption which is the main challenge on this SoC so far. 1=
-0bit
-videos makes things a lot worse fwiw.
-
-We did review latest IMX vendor firmware package and can confirm we are run=
-ning
-the latest memory training blob and HDMI firmware.
-
-Nicolas
-
-> Regards,
-> Ming
->=20
-> > >=20
-> > > Below are my test results:
-> > >=20
-> > > 600Mhz, 0.9v
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/regulator/=
-regulator_summary=C2=A0 |grep SW1C
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SW1C=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0=
-=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0 unknown=C2=A0=C2=A0 90=
-0mV=C2=A0=C2=A0=C2=A0=C2=A0 0mA
-> > > 825mV=C2=A0 1100mV
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/clk/vpu_g2=
-/clk_rate
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 600000000
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ./fluster.py run -ts JCT-VC-HEVC=
-_V1 -d GStreamer-H.265-V4L2SL-Gst1.0 -j2 -t
-> > > 90
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ********************************=
-********************************************************************
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Running test suite JCT-VC-HEVC_V=
-1 with decoder
-> > > GStreamer-H.265-V4L2SL-Gst1.0
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Using 2 parallel job(s)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ********************************=
-********************************************************************
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ran 139/147 tests successfully=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 in 505.434 secs
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ran 139/147 tests successfully=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 in 505.350 secs
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ran 139/147 tests successfully=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 in 507.540 secs
-> > >=20
-> > > 600Mhz, 1.0v
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/regulator/=
-regulator_summary=C2=A0 |grep SW1C
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SW1C=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0=
-=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0 unknown=C2=A0 1000mV=
-=C2=A0=C2=A0=C2=A0=C2=A0 0mA
-> > > 825mV=C2=A0 1100mV
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/clk/vpu_g2=
-/clk_rate
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 600000000
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ./fluster.py run -ts JCT-VC-HEVC=
-_V1 -d GStreamer-H.265-V4L2SL-Gst1.0 -j2 -t
-> > > 90
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ran 139/147 tests successfully=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 in 506.901 secs
-> > >=20
-> > > 300Mhz, 0.9v
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/regulator/=
-regulator_summary=C2=A0 |grep SW1C
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SW1C=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0=
-=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0 unknown=C2=A0=C2=A0 90=
-0mV=C2=A0=C2=A0=C2=A0=C2=A0 0mA
-> > > 825mV=C2=A0 1100mV
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/clk/vpu_g2=
-/clk_rate
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 300000000
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ./fluster.py run -ts JCT-VC-HEVC=
-_V1 -d GStreamer-H.265-V4L2SL-Gst1.0 -j2 -t
-> > > 90
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ran 139/147 tests successfully=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 in 506.063 secs
-> > >=20
-> > > Downstream v4l2 driver
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/regulator/=
-regulator_summary=C2=A0 |grep SW1C
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SW1C=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0=
-=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0 unknown=C2=A0 1000mV=
-=C2=A0=C2=A0=C2=A0=C2=A0 0mA
-> > > 825mV=C2=A0 1100mV
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/clk/vpu_g2=
-/clk_rate
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 600000000
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ./fluster.py run -ts JCT-VC-HEVC=
-_V1 -d GStreamer-H.265-V4L2-Gst1.0 -j2 -t
-> > > 90
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ran 136/147 tests successfully=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 in 460.435 secs
-> > >=20
-> > > Regards,
-> > > Ming
-> > >=20
-> > >=20
-> >=20
-> > --
-> > #gernperDu
-> > #CallMeByMyFirstName
-> >=20
-> > Pengutronix e.K.=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
-> > Steuerwalder Str. 21=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | https://www.pengutronix.de/=C2=A0|
-> > 31137 Hildesheim, Germany=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | Phone: +49-5121=
--206917-0=C2=A0=C2=A0=C2=A0 |
-> > Amtsgericht Hildesheim, HRA 2686=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 | Fax:=C2=A0=C2=A0 +49-5121-206917-9=C2=A0=C2=A0=C2=
-=A0 |
-
---=-okkgKqsgZ+IV64MKbOhB
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaYIXBQAKCRDZQZRRKWBy
-9BdEAP91RCuQpeIs8WIAVqMpbGlTfJSJeLeq5HmQ5J1hZGuwXwD/WVhjnKNga4Pq
-kYR1FIhai0zcA1k4q9wESua75qp+hQM=
-=GTde
------END PGP SIGNATURE-----
-
---=-okkgKqsgZ+IV64MKbOhB--
+In arch/arm/boot/dts/qcom/libra/common-proximity.dtsi Xiaomi sets this property
+to 16, and they set integration time in their driver to 160ms. Maybe
+als_trans_ratio has something to do with integration time? In that case, we can
+calculate the scale from a formula, like this:
+scale = cm36686_als_it_times[index][1] / 10000 * 40000
+val = scale / 1000000
+val2 = scale % 1000000
+This would allow us to preserve lux value when changing integration time.
 
