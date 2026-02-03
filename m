@@ -1,267 +1,174 @@
-Return-Path: <devicetree+bounces-262305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262306-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8G9sEEEOgmkKOwMAu9opvQ
-	(envelope-from <devicetree+bounces-262305-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 16:03:29 +0100
+	id cH8FH7QOgmkKOwMAu9opvQ
+	(envelope-from <devicetree+bounces-262306-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 16:05:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D35DDAFF0
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 16:03:28 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D61FDB042
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 16:05:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5B311301AF46
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 15:03:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E3CC73032747
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 15:05:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C409830170F;
-	Tue,  3 Feb 2026 15:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D671830FC2A;
+	Tue,  3 Feb 2026 15:05:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L26QmPr3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QpSyuDXo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B8B2FF66C
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 15:03:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770130997; cv=pass; b=CPsZHrdlUyu+wQBpfRcvDGD7F0kaJfi6yiD57NZSdNViDvGPT0huEL4Mu3rHTp4hKsn1nz+k7nd7WwUrOnw3XfE9Ma3ImD3HvqND4Vgqkv4poeopDZZzKM2ZP1w36X+bpWzDKC3MkJPOUTOQgOIcYW/CQhC8bAry/HLMtVMeHis=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770130997; c=relaxed/simple;
-	bh=s6TMw/t8TwmZ9hTFL0cXJhHoIVq+ti2CBVZ7v8bG9vo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=G2gr3aLhj0hZe3mlvWl81Bnp7b6TK77nYppeQ66b8VxJTkzq75gcHm21x2j2UHbdicXjRyps2cUjHwB0/X7d4nnHlPe+4aRt42YvYV0sY+kSCjIGFDZ9+bnXSpZMgbNIWXbCO2cSfyaxP4jm7FGjb88gt+XVmwGk/gBabEQMA3Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L26QmPr3; arc=pass smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-435a517be33so3447330f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 07:03:15 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770130994; cv=none;
-        d=google.com; s=arc-20240605;
-        b=MFePxjKTt8dneubdC7lExnF9PPIiHjjYFJooMiICPjK36yGG7UxXa5DNFD2P/tsaa5
-         2IdxIsFPdjnWEO9ofgkwXruvNlWRAWhNZDkHIzbVOxE+XhGtCvfdsK1+ltCX2Q6y5xsS
-         v5jDP1aEhRWmM3LuDWRoG0tDKMHDTkQj+Tn4k/28jriVU5kYFyTK90Ltlf0VhWMmHVqS
-         qF1zM994kHrYEaAzCG0ZeApM34AGiIMiFVVJsx57cd/MvOeFqtFvX97xrtyV2flu7SaL
-         bmSRmDX5atHMFatxpLCYqtDLEbOgArdTe4rTj3g4ANMqdsYd0/LRroypl92T9WR8mc8+
-         W84g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=VGIYTuEUulJeU0/OSREhm3zUfZwfDji51fjUfoXxiEM=;
-        fh=2rrqmHEUKyrfSzzUPR+Gj9yD5Imm2trKOjKCp9nusJY=;
-        b=LTu/vYgapbKG03TQK/Y2S+kddcf7DdntrZPVTenpLPSIImxboLEDTf451lvlGJOPBM
-         JpjdCJXL0HfQcZMow4YKZPICsfI/fG9AWNZJNQjMokTkBkyOWRqf9HEg6lpRSnfXHn42
-         OjHJU6touJSIzPmlin5caQIG/H6cSpDNr+LZCK0BTTmUxBUU+ZVC+Rr4NL0FI/ay+6gw
-         PrvKBTpOHZW5/tOFaxWs2KSvL8dNEouCgQPsCked9oHZqjH+VM7lPqD0UQQ3mj/eofix
-         2tw/CJtGNDcipym1wZDq0UJVUqESGzHOqhMUDzNtqFOknxp/y8zzI8VxwgVpSKuzDU5S
-         pxNw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E306130F811
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 15:05:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770131107; cv=none; b=RDmhHlOeycbZz65E2kJEn2bwbPWAZtRAfIU+MyIoAtD5kkV6ng7QdsQXis5r3IETtc28Jot9zGdpjJQ85NNxBTc9Ym5jFbaNFp1T3/alQub17gOhw6bvPjp6CcX+6D/wXFIP2ghPpAbmtPSXdRDZNqetUZp0Vxjj/S/nhvysENQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770131107; c=relaxed/simple;
+	bh=dwdID4DDF4GDX1SlmcA+3fzCA+ycXbc62Ld/klzXumU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HLWSMQiI96JkxPqNQ3udtTkueHKwAlNv97HHVnKbEBoCidkF2Q15EUQrJVlTbUCzxdXBYVXgNAFm2Red8T1Y/8S/iws9zo7a3t6EOEz8u0CPutITTv9GTGfH61K5asIFziQRABEw802z9bdC2yY2InHBI8qMCn+iOSPHdN/9s/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QpSyuDXo; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-64b7318f1b0so7907001a12.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 07:05:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770130994; x=1770735794; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VGIYTuEUulJeU0/OSREhm3zUfZwfDji51fjUfoXxiEM=;
-        b=L26QmPr3F2q4pZ10zq18C2Zy/c+5gclgQWPEw3YiAjWIFfHdVu3mMc5tlVwMrA+DCr
-         V3duTPPiPCJv5jbIddMXKjwyc+0ThfFfnNetQMq3i0vvskDtUB61AEt2ejE6wlxhyrHT
-         I+WCwkHgRlH8hgxJdfA58sc36mH5NS816iQv8CwxHJK4xuxv580QrVoj53btHyu9kIlJ
-         u5aC2S/18T3MVNWgwobOJvegNRouijG1I9cJ6d++XXjSw2Ubqt/Vmr3s1a8KyYRcZqpV
-         /hyYFwwAqSwFFSLq5slW8ZmJ5U0vKqACnguiOTZe2w//Hws/1DXUaJGStvWdDuFx4KTw
-         ieJw==
+        d=linaro.org; s=google; t=1770131104; x=1770735904; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9PNsfQXg9zjxapzMuZRa/zLzG4m46Jh75ILxmkVsiiI=;
+        b=QpSyuDXo4abof9JkO71XCU0L++sL4W1+wPJrJo7W48kuy7WOXHhZrQZj7eTlkvPt/r
+         3EF48KIYISJTJf0dVDzcU03GLcWVwnutn/ZqKxcZWAIvyGfGJbH3OQmEC9zHKVx/3eIv
+         1uTifqNKiZLo622FwwQET8TQ9CzNqaLQbpqlEcTxtTxdcXJpFnpeRmlk+U9QiLi9D9x4
+         4SSHT3da5CfLVETraR88yINgZJ8QN233j/EuMTgUZme3bzkTwEAgE896M2Wge2tCYmS/
+         9zB7LE7l7vP30fslwT/TUHL8yBp84Ub2EbiZOUWsX6FuvpJiKF3eF8Aavz8x1Ey8WR1o
+         P/bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770130994; x=1770735794;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=VGIYTuEUulJeU0/OSREhm3zUfZwfDji51fjUfoXxiEM=;
-        b=Q7ZE3DsnYiAIalGZYtq8C8+YSNNK8aarkXq6fwG3Ky+ToUIyG/Ysnrvk4XR2pR1+QF
-         OCkFvakknIW4DqyYhNkQ6nu5wYpiliZYrxqzeBqrPHTFTdIXO98LKgzwXY9ZtnIsMjK4
-         OTX2yeBTmkZqwxgNFZ1u26dMXc6JqoadMgfpmJjFtpmLikPs/pCuJK4HjlACkeKQh6vj
-         GtFvPdNgD053nD/zPbXQk48ZKXa2vfrAW2mmdO1hqgCnBcprR2A2JVxLDdZQKpCMumK8
-         bvp0OtfBpTJm7HEWUXm8iwSx1lui6NT9utV0Al3QLK+/RMEJmouw/1D90YTDBGByXMSn
-         mD2g==
-X-Forwarded-Encrypted: i=1; AJvYcCXn/LIOyz3uR7algdv+IwTCytiXFtgB5l4r0dXc3OduyOZbJgwAdTlLp0UMq45pd68HrteVvzQ6VzP5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMd17+ggJeA1nPQ8nCwpdogWHcxiryJ3gvDpmqE4Zxc5P63YWr
-	RkiHpe02d6Tt7ke71Nzq6rVTVF6H8e2nLt9+RgWxfdEf7RCWgffLJ2laAb/aCYhDB677sn8R9wt
-	moB4ACWioDeXdn5VBcFqJZRirYrRy6/A=
-X-Gm-Gg: AZuq6aJyB1lNRZHewJ/hu4Sf5NwgGwOJPMOKL5PML9o6B2QaNSuWy/FKzWjiEw71kbt
-	skipCiEYXt4xIMBaibDb9CDjO+TwCVQYYZb5mjwtwQQ1jvJyCif2+k8F6vZCYewun4yHlWgbijp
-	XuDEDGcQpKSPjiRKUVPH63cOjUX95+HeB5YPTw86Ji8RHSdKK3Xcco3rRCC6rWJOY55670Befn4
-	0O4lTbINm7kYoznOvYFHkuoQnx93C4pDnD15Lf/nQlVSPaZkajqQ8V6dCIqT+WVkt793mMcsiB0
-	nmG0h1I=
-X-Received: by 2002:a05:6000:2892:b0:432:8504:b8a9 with SMTP id
- ffacd0b85a97d-435f3ab4f69mr24923375f8f.62.1770130993838; Tue, 03 Feb 2026
- 07:03:13 -0800 (PST)
+        d=1e100.net; s=20230601; t=1770131104; x=1770735904;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9PNsfQXg9zjxapzMuZRa/zLzG4m46Jh75ILxmkVsiiI=;
+        b=YPmpKOahmBLn0njNs7dRfnpDc25tMmfHZZvWq98O7JeCovD+gwTGMT0lzjfV9UrKeq
+         wCUIg5fs8fr8n/HbYG6rL3kzgbJpPKNX+rOCJiDU70qRYxxYo6QUHBcJ0eU9vegLVni+
+         WmVr4w6k1k9f2DFRDMsWaLPBSxH9/4QxSxKBDBBMnEMYMt3QCvCaKxC2rT22XIWfEkWj
+         uZ3wjYEnqSUuqSkDJx8VpxC2NmJC4qImBJLWp2WXrHPBKl3qM6ezGdbQaHsNYnpKNvkg
+         OvLk/cpr3VvDsDNA12sz1WAEz4fz60Y58RlIeMOWTwqi+TQaYUMMTNFTKQ6DpOHmvF3F
+         TOeg==
+X-Forwarded-Encrypted: i=1; AJvYcCVuds8+WQ9nlzJv6FGplFuelK5u0o/oFfHE0UlOMPJKq5zSdv7FQdkiu9UfDEGx/oN/ERNWlFk/w/87@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkhBTiLeJhG31GC6EwbCncXjOsd6p1WJtuxWJ0mI6DP60WOVog
+	vfKFx/iZY4ZtypzntMtHyeBk60fGfDu0FMepXYt+7A69L+JaNxmUuhfU9PvyoEBP2MQ=
+X-Gm-Gg: AZuq6aL2b4PqVLc6jSu83UXhskojPQqy40sjtiWeuwwxwUDTuvGH9RErl87BGewbd1I
+	N1HE1ZnZiqmNBkf99nlsgodfTpXhy4d/jUCUU5gLARLwUuSZx4BEo+tstXToqbjRzTAutzPRIMu
+	yvUAN5UaMmgUIAin49nhn0Vni1l276TW5K0ltYjNL58+32xnBiGKMBuNH2D4dKtrdMtjA5BdrYd
+	FdjFlFeHj6YgkJuDsZ9wlW9qKb/DkfnHmFlcyePtXu3k+HQbU01P4aUpoVJDup9pipQLqUm2YvW
+	R/dj/eVg36s+XLu4ErmOdzU7yhzx3rp5uA2qQAcMR5WmYF+CVbJkE9cZWxyqKI27B8WXEtWq3EE
+	eC/ltGez4F6pVxVNQblrRXdjcUEr40rA7hqJkwETfr+pG/RJIQR96LpDS/Sg6OUVQgYzujCoMIr
+	zVYJtL2PynRGPPu5TU
+X-Received: by 2002:a17:907:96a8:b0:b87:65c5:602f with SMTP id a640c23a62f3a-b8dff7a30a8mr1000149366b.34.1770131104069;
+        Tue, 03 Feb 2026 07:05:04 -0800 (PST)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8dbf2ed6f8sm1049398466b.65.2026.02.03.07.05.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Feb 2026 07:05:03 -0800 (PST)
+Date: Tue, 3 Feb 2026 18:05:00 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Peter Rosin <peda@axentia.se>, Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+	Janusz Krzysztofik <jmkrzyszt@gmail.com>,
+	Vignesh R <vigneshr@ti.com>, Andi Shyti <andi.shyti@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	Jon Nettleton <jon@solid-run.com>,
+	Mikhail Anikin <mikhail.anikin@solid-run.com>,
+	linux-can@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v7 2/7] mux: Add helper functions for getting optional
+ and selected mux-state
+Message-ID: <aYIOnErmiSZ6wnP1@stanley.mountain>
+References: <20260128-rz-sdio-mux-v7-0-92ebb6da0df8@solid-run.com>
+ <20260128-rz-sdio-mux-v7-2-92ebb6da0df8@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260125134302.45958-1-clamor95@gmail.com> <20260125134302.45958-8-clamor95@gmail.com>
- <8bd89524-dfc3-43b0-b0f2-cdb1cd51e1ac@baylibre.com> <CAPVz0n25ukBJ6=hmmR9nd4MBoPkHaHQ+ZHMXYxghYZdkB28_sg@mail.gmail.com>
- <20260203150136.GA2294714-robh@kernel.org>
-In-Reply-To: <20260203150136.GA2294714-robh@kernel.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 3 Feb 2026 17:03:02 +0200
-X-Gm-Features: AZwV_QhOrUmL6-YXtCaWdQ-PpGGpcikpM7Wb1yHtElG5VPVf7VhpylKKUQiQ_9M
-Message-ID: <CAPVz0n0rG5XDUi-sr75rw_++kBbfyAfpMH0DoONZPmUKHfLfCg@mail.gmail.com>
-Subject: Re: [PATCH v1 07/10] dt-bindings: input: cpcap-pwrbutton: convert to schema
-To: Rob Herring <robh@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Lee Jones <lee@kernel.org>, 
-	Pavel Machek <pavel@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Dixit Parmar <dixitparmar19@gmail.com>, 
-	Tony Lindgren <tony@atomide.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-leds@vger.kernel.org, linux-rtc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260128-rz-sdio-mux-v7-2-92ebb6da0df8@solid-run.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-262306-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262305-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,analog.com,gmail.com,bootlin.com,atomide.com,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com,solid-run.com,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[32];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:email,devicetree.org:url]
-X-Rspamd-Queue-Id: 8D35DDAFF0
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dan.carpenter@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[stanley.mountain:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linaro.org:dkim]
+X-Rspamd-Queue-Id: 5D61FDB042
 X-Rspamd-Action: no action
 
-=D0=B2=D1=82, 3 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 17:01 Rob H=
-erring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Sun, Feb 01, 2026 at 09:07:07AM +0200, Svyatoslav Ryhel wrote:
-> > =D1=81=D0=B1, 31 =D1=81=D1=96=D1=87. 2026=E2=80=AF=D1=80. =D0=BE 22:02 =
-David Lechner <dlechner@baylibre.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> > >
-> > > On 1/25/26 7:42 AM, Svyatoslav Ryhel wrote:
-> > > > Convert power button devicetree bindings for the Motorola CPCAP MFD=
- from
-> > > > TXT to YAML format. This patch does not change any functionality; t=
-he
-> > > > bindings remain the same.
-> > > >
-> > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > ---
-> > > >  .../bindings/input/cpcap-pwrbutton.txt        | 20 ------------
-> > > >  .../input/motorola,cpcap-pwrbutton.yaml       | 32 +++++++++++++++=
-++++
-> > > >  2 files changed, 32 insertions(+), 20 deletions(-)
-> > > >  delete mode 100644 Documentation/devicetree/bindings/input/cpcap-p=
-wrbutton.txt
-> > > >  create mode 100644 Documentation/devicetree/bindings/input/motorol=
-a,cpcap-pwrbutton.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/input/cpcap-pwrbutto=
-n.txt b/Documentation/devicetree/bindings/input/cpcap-pwrbutton.txt
-> > > > deleted file mode 100644
-> > > > index 0dd0076daf71..000000000000
-> > > > --- a/Documentation/devicetree/bindings/input/cpcap-pwrbutton.txt
-> > > > +++ /dev/null
-> > > > @@ -1,20 +0,0 @@
-> > > > -Motorola CPCAP on key
-> > > > -
-> > > > -This module is part of the CPCAP. For more details about the whole
-> > > > -chip see Documentation/devicetree/bindings/mfd/motorola-cpcap.txt.
-> > > > -
-> > > > -This module provides a simple power button event via an Interrupt.
-> > > > -
-> > > > -Required properties:
-> > > > -- compatible: should be one of the following
-> > > > -   - "motorola,cpcap-pwrbutton"
-> > > > -- interrupts: irq specifier for CPCAP's ON IRQ
-> > > > -
-> > > > -Example:
-> > > > -
-> > > > -&cpcap {
-> > > > -     cpcap_pwrbutton: pwrbutton {
-> > > > -             compatible =3D "motorola,cpcap-pwrbutton";
-> > > > -             interrupts =3D <23 IRQ_TYPE_NONE>;
-> > > > -     };
-> > > > -};
-> > > > diff --git a/Documentation/devicetree/bindings/input/motorola,cpcap=
--pwrbutton.yaml b/Documentation/devicetree/bindings/input/motorola,cpcap-pw=
-rbutton.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..643f6b2b1f13
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/input/motorola,cpcap-pwrbut=
-ton.yaml
-> > > > @@ -0,0 +1,32 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/input/motorola,cpcap-pwrbutton.=
-yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Motorola CPCAP PMIC power key
-> > > > +
-> > > > +maintainers:
-> > > > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > +
-> > > > +description:
-> > > > +  This module is part of the Motorola CPCAP MFD device. For more d=
-etails
-> > > > +  see Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml. T=
-he
-> > > > +  power key is represented as a sub-node of the PMIC node on the d=
-evice
-> > > > +  tree.
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    const: motorola,cpcap-pwrbutton
-> > > > +
-> > > > +  interrupts:
-> > > > +    minItems: 1
-> > >
-> > > Should this be maxItems: 1?
-> > >
-> > > > +    description: CPCAP's ON interrupt
-> > >
-> > > Or I suppose:
-> > >
-> > >   items:
-> > >     - description: ...
-> > >
-> >
-> > Both options are perfectly fine for me, and I lean towards using
-> > "items: desc" but I would like to hear what schema maintainers would
-> > say, which layout is preferred in this case.
->
-> Either is fine. 'description' is fine if you have something specific
-> about the interrupt to say. Saying what the interrupt is for is
-> specific. So 'description' is good in this case.
->
+Sorry about that, I just looked at the implementation in linux-next and
+didn't read the code from the patch too closely.
 
-Noted, thank you.
+On Wed, Jan 28, 2026 at 04:46:10PM +0200, Josua Mayer wrote:
+> +/**
+> + * mux_control_get_optional() - Get the optional mux-control for a device.
+> + * @dev: The device that needs a mux-control.
+> + * @mux_name: The name identifying the mux-control.
+> + *
+> + * Return: A pointer to the mux-control, an ERR_PTR with a negative errno.
 
-> Rob
+I wish the documentation for these "optional" said it could return NULL.
+
+> + */
+> +struct mux_control *mux_control_get_optional(struct device *dev, const char *mux_name)
+> +{
+> +	return mux_get(dev, mux_name, NULL, true);
+> +}
+> +EXPORT_SYMBOL_GPL(mux_control_get_optional);
+> +
+
+regards,
+dan carpenter
+
 
