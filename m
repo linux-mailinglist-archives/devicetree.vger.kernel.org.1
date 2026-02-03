@@ -1,230 +1,295 @@
-Return-Path: <devicetree+bounces-262038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262039-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QMiYHdh8gWnBGgMAu9opvQ
-	(envelope-from <devicetree+bounces-262038-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 05:43:04 +0100
+	id GEKNLGaCgWlNGwMAu9opvQ
+	(envelope-from <devicetree+bounces-262039-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 06:06:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE0A8D474E
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 05:43:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CCC5D48E3
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 06:06:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 10F993059A8A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 04:42:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4A47F3041987
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 05:06:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7F20256C8B;
-	Tue,  3 Feb 2026 04:42:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EF6B2F39A1;
+	Tue,  3 Feb 2026 05:06:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K4yVmeve"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hBSzrmWM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (mail-southcentralusazon11011038.outbound.protection.outlook.com [40.93.194.38])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40F87246798
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 04:42:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1C8A2D8DD6;
+	Tue,  3 Feb 2026 05:06:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.194.38
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770093755; cv=pass; b=JtLpr28ZsYsAA1gNocIroOkJwwX7BZouxfuRcMko1FXNYOx15nN0LIKTyUpDrQOsnWrvO/vdZkiFR8MTVgXRxrtMxk2+fXGSTMMKuXY2hLCw9P2w16r5Kll1/jXReOkzoclGbkHCum5GMVF7fNp5OXffPoGy+hT4e8XdQI8mJHA=
+	t=1770095170; cv=fail; b=HO0e3a85X6OJ7hZ6IRkxLsSZCJBvcvkiHxp5m3zciaUi0GUFohW21zICSC0dOKtHzZWZW5TLBQVb6JicQOl/5w/fjHIGc9eT8mHpExTx5cMMhmWvSQe31jTYCPvi1t6WcDVHuEB2LLD9WcmZN9U6SKkFIPsZn3NAXFtg8hCMSDg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770093755; c=relaxed/simple;
-	bh=/8MeH1cttYJ+MwAM/CE8nR5NDqaziX7ysD507sQ8ToA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SMEGfwuYv9gZNFoalC1R+kZnzf6DPToMgb07OX/OvdRA3kDsSyuE38clzqgESGSFKlMR25f7vviIlQ/mCbeZx1GNfI3q6tnX+n3w+UXWi7/nIT5pep+o/gF+WeMzuppMne/56c1w2GFu/Q0BNswShtA9Pa7qKNP7OmDoYUdNhSU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K4yVmeve; arc=pass smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-382fb535b73so47609771fa.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 20:42:33 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770093752; cv=none;
-        d=google.com; s=arc-20240605;
-        b=JUVIa4sbqiFVEJZjMnYpwuDpk5mSfJdIjFPEOpDd/rSLOHoQwLYsPz0QGgievM+hWR
-         9FX9CzBvzDIIM0wV4BfDN7UkAl13ZwugCDewYrjaZa7mr7FjQOGm1JNm/47CxPrwO7mP
-         lbsaug3hPiSCM6EdQ7Vyd6ZneRDfeOLoZNefuCrK64nQnO+EGY6V+oP6XhmPN1IdjHEB
-         Ly0badTEmVorxF/9kWXJ3YmYe/hPeSU0ugyP63N8tvjU7v+AkUkD7E8Cyt2JVKIZhcpZ
-         iumOe3iL2rKHXyqlB80IfwtOxRSykuj2qyMH89NNsRAdqJL+izd/jORO7dge0Ql32trt
-         VS3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=WHEmHpURdScauMItQeuVnDL0KvlEqWGD4wZIXfVvz+0=;
-        fh=m08igErINlQQy0L0nIVLP+aX8EqjaWF0X7QquWCOGD0=;
-        b=bWBVMa9zq02vPbGzi5ywD4No1kc1Nj8Ny5nYgMqmmQm3huT/UuCe+93XfC7qpmLxjt
-         pZhFXP8LtvjeWuBHDeZyeT7l7Bj471UIDt8HQM964JEa1ZWxbgv0tSchUlotdUXCjccH
-         dIjtivM4JKbymkgwu0I6wXB1tSeA4c+UACp/ps9HbgvediWj2FOeolyM4jhpjtdAWG2q
-         gkh6wlhaqNgpn5S0/pvs7XPlPhhjAuLQYEkmSimRjIMYTuJSwQ6oz+cjhWz+hhpXAasB
-         ipC061tIcf5qieBlV/NsZHz5mMBsb2dxerixlqnthxyq0B2MZFqmhpBOZCc6pXkT/LRn
-         Hqlw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770093752; x=1770698552; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WHEmHpURdScauMItQeuVnDL0KvlEqWGD4wZIXfVvz+0=;
-        b=K4yVmeveOTkS5/HVEaB9C2/2edMirWwViOLJbil1N3urqtMZHiSmZLPOCadJn9uRjv
-         QTXs7bcImIR/XSa9G/ntESm5fTDH1XIKgBqgPmNxnxmP9r1nptF6l0hIoTmWi7t8sMjt
-         ms5NZieuGpnfxb4YIZqK6aWGt7+T8C3o2sDSNmBRF3Grbua6pJCKX99Mwe9D0MWlFF2M
-         88E3bOtoNtq9LKve7nE3GdA4UbhBN3UEPkQLUFIWfr3w8VYx2Q7O+cCPRu0OCo581z91
-         Qld41P8MJDquQtNnIhs2DW89kSoxTbxZ8jF9jhnI0kakvGfdxjd7AYOQ8/eFMDhyuLNk
-         YHxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770093752; x=1770698552;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=WHEmHpURdScauMItQeuVnDL0KvlEqWGD4wZIXfVvz+0=;
-        b=P9YDbGE6940xrCFTfpXmOkdFhuKinA5HVWSl69qqZga2S4/qhwZ5tZOwFopdP9tcRc
-         hKC0JbNkRJw5kJqI/mtv8ji0SyWzdM87lQhUkazZ+wPDfNUCAesnOi9toZOlF1rCVb38
-         8yyIyergESkB6xo0d4wiJGx6Xixm6/JFneBnnVEYL4l/vzlF+S6mX7YyaWBU7XBBQLMw
-         g7/tewIULrn5xdH9UD3boTurx2JvnUT+JNwYOyNUUypQ2zr5MccKJLs4YSezzD5ByLzh
-         mleQjNfCmvxphHy7j3dU9XY79q58YrTmIuhUTLNc/J7BJnITaA+JwhGhORG3d4xXLkqd
-         7wyg==
-X-Forwarded-Encrypted: i=1; AJvYcCVt9vDL/k4EnLCusGEk3zZO3vP/O2Ig6p2URkQwJoclLAY/avVMvm6W8xqlFoVUz0833GaBRQL5aaxb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxDdU0uij2BcjwItYbEkh491T+vp3FFus/Uvg/TZTQ6LTjiykPX
-	PlbU7mVSGPNrkQhDbP7XrJowWVefsix4MOJZJN1DbE/8eAu0EklVhp/GnR1bXlvIvE29o4sYL6x
-	sB8DRZW12TQyCinMQnaoW4RHlso4HS1O3sKtMTv0=
-X-Gm-Gg: AZuq6aL2QJJajjwlpq+ByqffZ2+SaDuN1bXsXLgA9w4kE7OHuG4Ff3shZzpoBNIQsjL
-	QDMId4iS6WYjPZJAcGTVPMjepVIl3/6Eb0SvvoU4lG5Pb3Kh+tG0ozQQS2oenaiZerEoYgoXpUU
-	7RT3fJjUAuNZN+UAUXzPrpw/OCwHVTWIIWEegTf3fBQ75jZjZIzGKuLex5EvD2qjfVSBOEf2lXs
-	gdw3ZWAaxWnQF6O+t0xts2JihqYV9gxKO97jbKPSQ6GG9IktQRy9F9Uw1D/OLIZgAHYAbROGlPh
-	WdrJJij1Mdh8QXD2HulWPZ2X5O9/pL5789mKzXKSVw1BbWStXJRJHRbNKUqDKUMSG28=
-X-Received: by 2002:a2e:a54b:0:b0:385:c213:4d0 with SMTP id
- 38308e7fff4ca-3864669c841mr57076771fa.33.1770093752129; Mon, 02 Feb 2026
- 20:42:32 -0800 (PST)
+	s=arc-20240116; t=1770095170; c=relaxed/simple;
+	bh=ADt1G0gua0sU6TZCfuVqF9bmWwDsHgFNErc4mBoFjP8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ahQKspSbuQb3Xp4r56tuX0ukkkIFzZVNU6WwyWdetuOJlRCoR2mSfPNZsotDqm7mG8fV4Z8Wm3zrrJyHuf27WKBYwN8j34M42k0EQh9VXretj6Cr44aT6bcDNmT711aOx/RBv64qFWFXfezmJAr+Zp7QuWS7ENuS4a0iIN00Y+g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hBSzrmWM; arc=fail smtp.client-ip=40.93.194.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ckpp6RzwHLOTsxljwRCAw5Pp1cnbzJe+S9mbHNM53znN47LzqxZ8aVvIpIVRZufLUFhlKs0Xmcm+yH627hivig/nf0L+t0f3jlMwXltRKqG/VcZsdHZFu8chw4p6TZUITFdm1xoJy/VAEf+TATVBvEtF9UH/cFLdRDhHczLyaTC7NEpow+LEhg1qmmqazRX37184+Uo/D9H19QGEb+lwcaPPOYc+b0uzKHCuYGIkHWB1Ohsad+fMBZp1eaK9zJ5EnW21uk1E4n37oqhVeVBePZwkkvuRJIJjD684k1/hgxJMopms7WOvqqmSHmPoDdTJTqKSj5gI7EKLAeMhIvDpTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Nap07RHb4rM+hKSHVTqZcqGFHxc7m4waNZ0DBiX/gOg=;
+ b=JZ0eSzz2haS4AyGTIk8CqhuYaH9AqrghS+yp5+2hneXosCXFItMqkbQXiigZafAbUuC/gtjD4mNFgYl7vxezp0uqcCK6sWsVHXQfTBsr7Qg5yqeBbjiKFWr70dBTSh4eyPuyvgxuy2gvIPWRaShALJj3WJRKdNIPkU6HwSGO+myKdBO8itoxMLLQmBQiouzvnP0nW+4n443oUCvVOE4r3QEBpJ76QlRV9ai1TUGJQ0T4jpXAuRgZvFIk36/LfugEZRBUvMLHkWB8YAF4WkV7sQJFXXYR7ijTzel71L2bIKWDzcoK3ASqX42Rt1dI/2PaUATlD2Zq0mu8GfsY5XI7EQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Nap07RHb4rM+hKSHVTqZcqGFHxc7m4waNZ0DBiX/gOg=;
+ b=hBSzrmWMxJ3+EvR5EK4yUnoV1DDD10e/FSDwD2FxU3RCrad96BSawzy4sdpX9HTWV2NdYQYpPvXW8r9nqn4f/sr27TdvEMVpNeOVdC+PmTRoX5Xng8etfcBWT2lF1MGSLT8sF7qSui0a9jDkLfVQ7pkcJPT5EkauMumD/BC3g58=
+Received: from BY5PR17CA0035.namprd17.prod.outlook.com (2603:10b6:a03:1b8::48)
+ by DS3PR10MB997750.namprd10.prod.outlook.com (2603:10b6:8:347::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Tue, 3 Feb
+ 2026 05:06:02 +0000
+Received: from CO1PEPF000044F4.namprd05.prod.outlook.com
+ (2603:10b6:a03:1b8:cafe::24) by BY5PR17CA0035.outlook.office365.com
+ (2603:10b6:a03:1b8::48) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.16 via Frontend Transport; Tue,
+ 3 Feb 2026 05:06:05 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ CO1PEPF000044F4.mail.protection.outlook.com (10.167.241.74) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9587.10 via Frontend Transport; Tue, 3 Feb 2026 05:06:01 +0000
+Received: from DFLE203.ent.ti.com (10.64.6.61) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Feb
+ 2026 23:05:56 -0600
+Received: from DFLE211.ent.ti.com (10.64.6.69) by DFLE203.ent.ti.com
+ (10.64.6.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Feb
+ 2026 23:05:55 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE211.ent.ti.com
+ (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 2 Feb 2026 23:05:55 -0600
+Received: from [172.24.28.167] (lt5cd2489kgj.dhcp.ti.com [172.24.28.167])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61355qTw3353316;
+	Mon, 2 Feb 2026 23:05:53 -0600
+Message-ID: <10988add-dd63-47ca-ba5d-809694171f33@ti.com>
+Date: Tue, 3 Feb 2026 10:35:51 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260129-sm8550-abl-dtbo-v1-0-abca3be14024@gmail.com>
- <20260129-sm8550-abl-dtbo-v1-3-abca3be14024@gmail.com> <7d473eubnez5gcbou6mguomeetpotp73q7cjol3kfjlg7pz5r3@yjsh4rd4mwbv>
- <CALHNRZ80+KAfm2YHEoodBv_7jDZPZjtr-koo7q_N+aX+i1OfnA@mail.gmail.com> <osqwux5xkf4337gahljlkdvoeek6sudxcee3xqb5kp2ngqhwzj@6tz6xjj3cozl>
-In-Reply-To: <osqwux5xkf4337gahljlkdvoeek6sudxcee3xqb5kp2ngqhwzj@6tz6xjj3cozl>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Mon, 2 Feb 2026 22:42:20 -0600
-X-Gm-Features: AZwV_QiGtIQno5YJ8WByb9vDMG6D9IXqOcfdn8pPIGkyUNFp3ou3eV4gE9z_Px8
-Message-ID: <CALHNRZ8j4XWg_oVdPTTp+RPhsEtYrjR3iGusACgoa76dGL0U3A@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8550: Fix DTBO boot failure
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kumar Sharma <quic_vksharma@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721s2-common-proc-board: Add QSPI
+ flash partition details
+To: "Dutta, Anurag" <a-dutta@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+	<kristo@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <gehariprasath@ti.com>
+References: <20260121051855.5890-1-a-dutta@ti.com>
+ <1cc180ce-f808-4018-90c7-8df2c46ca94c@ti.com>
+ <9675d81c-12f5-4798-bad9-ecbb2349bb60@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <9675d81c-12f5-4798-bad9-ecbb2349bb60@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F4:EE_|DS3PR10MB997750:EE_
+X-MS-Office365-Filtering-Correlation-Id: 135e1420-caaa-49c1-c976-08de62e1ecb5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?cTl3cG5RWTNSbkIxOUZHQ05jKzR2elREeWVtRmtoYUF3UEJtckNnOHg3amJu?=
+ =?utf-8?B?d2V5a3JHQTZCUGlSd3BJWGRuWFF1NjBTUGxqc1pqYmE5cENPV2tCSGJzNGh0?=
+ =?utf-8?B?TzdNOFh3akZHL2locWs2NEpDSnVZaDl0UzRNM1BqaEZCK0xsYXluTS9wZUtL?=
+ =?utf-8?B?MzFNbGtsRjBjcFp6RThWdzZaUURGUGxNTUxITVBJWnJkQXlxSHVSU1VUb0dV?=
+ =?utf-8?B?QkVmeThRazZnZWl4eUYzeUQyWC8zVFhySFNqREJwTFpvUk9WVy93SktaQjNj?=
+ =?utf-8?B?NHMrVkUyZTNQYkVNbENPZ3N6M2Y2cnRBTVdsR2lNZS9TZ3V0blRJcUQ3ZW1v?=
+ =?utf-8?B?NHd3QTFpT3BsRVpzaHRXL0ZVZ29BcmNOYi90RzhxTE9NdHV4Z1Q0MWNpWkFt?=
+ =?utf-8?B?RUUrQ2JTdEloMThBeFVUeFJDODQ3Mm0xM3I0SmRyWUtVNk1aZ3JtRXlsNS9i?=
+ =?utf-8?B?SXRMT1U5TDY4Vk55a1RjbVdNUnBXQWEwVnlNWmV5cHRvSXJBUElTNXBSUFJ3?=
+ =?utf-8?B?VklNaHhOVDhxNUVEK0F1Qmw0TktBMFFqNTA3djZwTU1PWjdGZ0ozUnVxcFov?=
+ =?utf-8?B?VCsrMU5QcHZsVHNvTkY5NmhGMmUrWms5UkF1bHlQaWtMQmRTa0xhaXdmd3Ni?=
+ =?utf-8?B?VWNGUkY5U3M3YzZWOC94TTlaS2ZSQ284NjlRQ3RHeTBrWnpKYlg0ZTNqM2hT?=
+ =?utf-8?B?VWF2SG11VE55QUN6RGdDQTNNdUJzV3pYUEpFN3AyaGsrbnBsM0NRR0lEU1p5?=
+ =?utf-8?B?SGJOc2RzZ2R3elozSnVNaGhiUjFRZ0VGMUVOT0pUTGgwWXhKM0xMelNNZHZ0?=
+ =?utf-8?B?TnpnU1Z2N3BDbTU0bDdQUUNZN21WYUNLc0ExVDBsbjA0dkNXT2hpbVpoT0hW?=
+ =?utf-8?B?UjhuOWE4VUdLSENuU1ZjeUxkOXFzYlVrOXlEWkxxNDFhcFRmQWJFQkFQcDlu?=
+ =?utf-8?B?eDJXNWV4YkdIbUtGRTNETUJFbGs5Zmd2aERIR25oMXF2OEdMdU1pakVmUWU4?=
+ =?utf-8?B?QVFIbTV1MmZKSWRMcThibGdMS1VYVjdRSWd3RDlEK2R1Y0JIY25pYUNSanF2?=
+ =?utf-8?B?WTk0NjE3eFRvcm55eW5HSmJ5ZE9Oc2FwU2RRV2tYV2FPM1ZETSszSGVaQzNY?=
+ =?utf-8?B?eGNuWW9lUFFtWTNmb24vVCtIeHp4UEVyRDl3N3k5M1Q2M09hcGk0dndrU2gv?=
+ =?utf-8?B?OVdXY0hvMmlPR082VDNEdit1dU1LM3pMTCt4WHlhbVhQT1RVQUNrR1h4Mmly?=
+ =?utf-8?B?T3ZVTm5teVdiUW1FLy9DTzhvak5IbGE1K1ZZcGw3LzR5YXhsdDVCSVlLMkwv?=
+ =?utf-8?B?aTNTanp5RlhJYkxJK3lLVkRqOWV5eldkM3ZHSEtSbzRxQksybjBIWWtqRTNh?=
+ =?utf-8?B?NHVJRy84aHVuTFNoeUowK0x0V2Vkc3l6bU8zVVIwcjZ4SmFHdkdBeHBsSTZX?=
+ =?utf-8?B?clNTNnZGS292NEZZQ0lhWVRpV21mWnpubkFYQU5zK3RrSld3N1BnN1RjazNM?=
+ =?utf-8?B?WWNHaFFOc3RGcWRFajZ4Rll3SUkrcVRsbjF0eGtKbkN6ZHFmblBOM1Fab214?=
+ =?utf-8?B?STNwU0xuVXNaWTdNTHhUVnBqdEx3MWNBRUQ3SzFveTRFNkdSRytDSVFzRGRX?=
+ =?utf-8?B?elJyd1FVSHlFUFlCVUFWYWRscXVjYnZGZlBpWVpUYndUZDFTYTdBNjNjR2xG?=
+ =?utf-8?B?RVA4Z0tjMm9vYkJtZEJjdWZnMGQvOG5BM1NFMCtUa0dGRUhlOHZ3eURxQmVC?=
+ =?utf-8?B?Wm1pMHpzWlRLQS9JSFNxQ0JueGlsMTQxSk4wUVA2OXZpa1pCRjAydmliQS9E?=
+ =?utf-8?B?L1ljRE4xdDJGQWtmVjRhNWFycnA3ZmVWanViNnJ2SDRyQXNwVnlmTXMrdkJJ?=
+ =?utf-8?B?dzRpNzZEeXdtZnhwUENWc1RWV1VPYUljNjcvWm04eUdsRVJnT0tJQVdiMXFp?=
+ =?utf-8?B?emxwajlMclRvVnE1NTQ5K1F4bjU1R0JSRi9iYVV6OStjOFFlcnV6dlZjcjBo?=
+ =?utf-8?B?V0RLOUJUOGpTZXFtK1BUWExWMCszZHU4am5lOUU1RXpPN3ZPUmhGZGVkb2ZM?=
+ =?utf-8?B?VTIzSzlyTFhpVzZ4VHRHQVBWVml1dTlhTS9WYXQ0WTNlem05Yml3MnV4L0lz?=
+ =?utf-8?B?dGovM3BwVlcwelp2Y09RN1owaU4vemFlZjJBTFZ1U1VIUlFJb0d5eURpc2ZO?=
+ =?utf-8?Q?ZvByjFiJy0KyilpimY30/tM=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	fhV1X36GUSUhDnwuGcsx/0yDyQ2NHeepoX6IbP/YrfTvS9No0djIb7J5LUBbD9WTpmfyJpxrI8G+8VtQ+Uim6srGvJ+J2ZT/7BccSosypDo5FP5kBazGs6N/weEMOzKMfp09rP7aQszqWqQ/wX6XwknpNp8exrWy+Mt72z7dBi3sNcA7Y92xh29cl69TkvaXS40vIFpD8zy/t/8imYNVHofvSto/sOaoFoXkLjDw6N5gtLfyrWtg1ow6YEjUDa5ISXuH9IoZCgSgmCHnyPnnXtIgQSU+Rcv1Av5lYWrZ3bOM/SmdnSY+71XFCh4530Wh+t6s2iLe87GOxltgigpVCWnEoyYeE6vqrYCRhRIRtgV5tmXly+a+WVthAmB0KStaa68WmX2gNmAJBOOiJ0Qh5g/2Nzzm0fbIUeXXLw+4wtBjevSbgENlwzIuDidn25xm
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 05:06:01.0375
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 135e1420-caaa-49c1-c976-08de62e1ecb5
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CO1PEPF000044F4.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS3PR10MB997750
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262038-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	DKIM_TRACE(0.00)[ti.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262039-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.1.56.128:email,0.12.53.0:email,0.10.96.64:email];
+	TAGGED_RCPT(0.00)[devicetree];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[webgeek1234@gmail.com,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[u-kumar1@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[0.4.69.192:email];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com]
-X-Rspamd-Queue-Id: CE0A8D474E
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 2CCC5D48E3
 X-Rspamd-Action: no action
 
-On Sat, Jan 31, 2026 at 4:34=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
->
-> On Sat, Jan 31, 2026 at 03:09:12AM -0600, Aaron Kling wrote:
-> > On Sat, Jan 31, 2026 at 1:47=E2=80=AFAM Dmitry Baryshkov
-> > <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> > >
-> > > On Thu, Jan 29, 2026 at 01:46:32AM -0600, Aaron Kling via B4 Relay wr=
-ote:
-> > > > From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-> > > >
-> > > > ABL requires certain things in the base dtb to apply a dtbo. Namely=
-:
-> > > >
-> > > > * The scm node must be named qcom_scm
-> > > > * The timer node must have a label named arch_timer
-> > > >
-> > > > This aligns the sm8550 soc dtsi with those requirements. Without th=
-ese
-> > > > in the base dtb, when ABL attempts to apply any dtbo, it will fail =
-to
-> > > > the bootloader menu.
-> > > >
-> > > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > >
-> > > Did Pavan provide an SoB to the patch?
-> >
-> > No. The change comes from the gunyah watchdog discussion here [0].
->
-> Pavan, can we please get your SoB?
->
-> >
-> > >
-> > > > ---
-> > > >  arch/arm64/boot/dts/qcom/sm8550.dtsi | 4 ++--
-> > > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot=
-/dts/qcom/sm8550.dtsi
-> > > > index 740e3c238e8ed0f162dd168291f6e307ace66e80..d7cc20e1931904e7c60=
-3b800089f00955ecec3b7 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > > > +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > > > @@ -329,7 +329,7 @@ cluster_sleep_1: cluster-sleep-1 {
-> > > >       };
-> > > >
-> > > >       firmware {
-> > > > -             scm: scm {
-> > > > +             scm: qcom_scm {
-> > >
-> > > This one is a definite no-go. Device nodes can't use underscores in
-> > > names. It has been told to Qualcomm for ages. If we didn't comply, it
-> > > doesn't give us a permission to break the rules.
-> >
-> > I have not been able to make ABL load a dtbo without this change so
-> > far, though I have had a suggestion from off list that I may need to
-> > try a different method of flashing changes. I have not yet had time to
-> > do so yet, however. Given this list came from a Qualcomm employee and
-> > worked as advertised, my tendency is to believe that it is the minimal
-> > required.
->
-> I understand your point. But I'd really not encourage my colleagues into
-> thinking that it is okay (oh, it was landed for sm8550, so it's fine to
-> do it in future). And I can foresee this pattern to continue, because
-> even the latest downstream DTs I can see the qcom_scm node.
 
-After further testing, it turns out that this change is not entirely
-required. Alexander Koskovich pointed out that some things apparently
-get cached by ABL and don't get cleared unless all external power
-sources are removed from the device and it is powered off. Previously,
-I was flashing new images, then doing normal reboots, and seeing the
-failures. However, if I leave the scm node as-is in mainline, flash
-that, fully power off the unit, then attempt to boot, the unit boots
-as expected. However, the other two changes in the series, namely the
-tz-log and timer labels, are still required. Not having this change
-will unfortunately make user install instructions more complex, but
-that is something we can handle. And the rest of the changes should be
-mainline admissible. I will drop this part of the patch in the next
-revision.
+On 1/30/2026 1:30 PM, Dutta, Anurag wrote:
+>
+> On 22-01-2026 08:53, Kumar, Udit wrote:
+>>
+>> On 1/21/2026 10:48 AM, Anurag Dutta wrote:
+>>> J721S2 EVM has MT25QU512AB 64 MiB Quad SPI NOR flash connected
+>>> to OSPI1. Add the partition information as per bootloader.
+>>>
+>>> Signed-off-by: Anurag Dutta <a-dutta@ti.com>
+>>> ---
+>>> Test logs: 
+>>> https://gist.github.com/anuragdutta731/b65f63f22c69317d714b65a201438cbc
+>>
+>>
+>> Thanks for logs, but these are for boot-loader and I don't think 
+>> u-boot consumes partition details.
+>>
+>> could you share logs for kernel as well.
+>>
+> Hi Udit
+> Here are kernel logs : 
+> https://gist.github.com/anuragdutta731/d4ee38df3ed8889f44bf28ab163b1baf
 
-Aaron
+
+Thanks Anurag,
+
+I think, you need qspi.phypattern under bootph-all, as I see u-boot 
+stage will/may do phy-tuning.
+
+While at this, same thing needs to be cascaded to ospi flash as well.
+
+
+>>
+>>
+>>>
+>>>   .../dts/ti/k3-j721s2-common-proc-board.dts    | 41 
+>>> +++++++++++++++++++
+>>>   1 file changed, 41 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts 
+>>> b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>>> index 4fea99519113..7faf9367dbb2 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>>> @@ -530,6 +530,47 @@ flash@0 {
+>>>           cdns,tchsh-ns = <60>;
+>>>           cdns,tslch-ns = <60>;
+>>>           cdns,read-delay = <2>;
+>>> +
+>>> +        partitions {
+>>> +            compatible = "fixed-partitions";
+>>> +            #address-cells = <1>;
+>>> +            #size-cells = <1>;
+>>> +
+>>> +            partition@0 {
+>>> +                label = "qspi.tiboot3";
+>>> +                reg = <0x0 0x80000>;
+>>> +            };
+>>> +
+>>> +            partition@80000 {
+>>> +                label = "qspi.tispl";
+>>> +                reg = <0x80000 0x200000>;
+>>> +            };
+>>> +
+>>> +            partition@280000 {
+>>> +                label = "qspi.u-boot";
+>>> +                reg = <0x280000 0x400000>;
+>>> +            };
+>>> +
+>>> +            partition@680000 {
+>>> +                label = "qspi.env";
+>>> +                reg = <0x680000 0x40000>;
+>>> +            };
+>>> +
+>>> +            partition@6c0000 {
+>>> +                label = "qspi.env.backup";
+>>> +                reg = <0x6c0000 0x40000>;
+>>> +            };
+>>> +
+>>> +            partition@800000 {
+>>> +                label = "qspi.rootfs";
+>>> +                reg = <0x800000 0x37c0000>;
+>>> +            };
+>>> +
+>>> +            partition@3fc0000 {
+>>> +                label = "qspi.phypattern";
+>>> +                reg = <0x3fc0000 0x40000>;
+>>> +            };
+>>> +        };
+>>>       };
+>>>   };
 
