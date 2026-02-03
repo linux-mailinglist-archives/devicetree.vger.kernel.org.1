@@ -1,94 +1,79 @@
-Return-Path: <devicetree+bounces-262422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262423-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8CSBGQV8gmnAVQMAu9opvQ
-	(envelope-from <devicetree+bounces-262422-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 23:51:49 +0100
+	id eE+pKrN8gmnAVQMAu9opvQ
+	(envelope-from <devicetree+bounces-262423-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 23:54:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4496FDF63E
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 23:51:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 707C8DF6D6
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 23:54:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 644993028868
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 22:51:33 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 89AFC300360F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 22:54:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02151378D88;
-	Tue,  3 Feb 2026 22:51:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373CF35CBD5;
+	Tue,  3 Feb 2026 22:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZZx1Iq7h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sjCVV9pe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2732374758;
-	Tue,  3 Feb 2026 22:51:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 139AA31B839;
+	Tue,  3 Feb 2026 22:54:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770159076; cv=none; b=pgUDfrSqbXoT4aR+6iSx4uiSOZd+AkSm5FW5w/2ttREcaHwZ/M+71bjTHAqZ/kvXarwvUac61nzsjGCAMGyPRAMEkZfJSsTjwMF34fBYOJw3qs3KNHcCpsIUk5qz0hwrJ+VxITQudjW45d4pP99cB/Y/muBZYvc2EtMJ5CGE1QA=
+	t=1770159281; cv=none; b=QZkW5u8aLkOIXTb619Pd9sFQJIT1HEJ9Hx/5cLy94w+h0boUZdERjuLmR+M1Xufu+HtYdZE5a60Rv/x0nrRfRGvFmOLjYDyuq6oJy7huYXwcZvvUqs2jMwvEJDGjIpOG06xR1xobTkiaG0SkiLMkdoAwxWndLESrITSEegD82xY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770159076; c=relaxed/simple;
-	bh=x5l6L76bIyObE98V1AMZSCPiXBprN9x6wKcuM4vyGCs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qz58mHroMLRsPLfOz8DYxlRxUpX9WG9rgTdmRUtlfl6DOKCaGgxhoht1TVrXP02V75NCuDpw0Jw1JCB8Xct8pl/Oy2lgCmwKD7HXxNCVeguRgtLOZH9dS1rAv2y+hx3yyRd3DGGZwYbmYuY+ls/k9O+2+MhQf5z0CaXzs0rld84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZZx1Iq7h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 95631C19425;
-	Tue,  3 Feb 2026 22:51:16 +0000 (UTC)
+	s=arc-20240116; t=1770159281; c=relaxed/simple;
+	bh=xTEa66SqIkzAleDgDRd7lGWFimq5gjopqYwFXFVLDpQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Csum5B/3K4UkxTr2reCuPEVdrWUKBwasyatCcVGIuhoME8/3X+yEq5nNUg8E4upW4QDStdU6gPO/uoht3rjY3t0nHZLFduTU+9s9LUl8Agrk3GpIQy8DXmDYhKZTxy7iyyChmkR/JkRrecOdlnMsTmZGJpP800IYlSL7pORXJ2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sjCVV9pe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91E38C116D0;
+	Tue,  3 Feb 2026 22:54:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770159076;
-	bh=x5l6L76bIyObE98V1AMZSCPiXBprN9x6wKcuM4vyGCs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ZZx1Iq7hdeQwip2aOnYmX4gspMBunrojV4zhw1+QkWgVCCXcY2HcMO2f3RLDPV6e5
-	 tjfufeZyyziUvcectEsxuubPaUoEDwuUPvJREJ8eLra51BeLjQeaINLxj+QdvSJ818
-	 9XDecjIv69F0XvWW6u26ketPyk45rZDcy8R3tATDJQrQ0Vf+BvkeTN1taNJfVhh6LW
-	 wE7grJ1hWVxdJI1La9hkHOyFkI9mYnvv13x5HXh9BhrvCp3YomjHutB4V4+OjfHWDz
-	 D5TdNpRvhlNNazCcQvONvbCHDtddgfco6K0iTnLXEvRv+DMMFPt7+eXo+/GAcubPS0
-	 b0EQSySoUVU3Q==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 85722E8B37E;
-	Tue,  3 Feb 2026 22:51:16 +0000 (UTC)
-From: Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>
-Date: Tue, 03 Feb 2026 22:50:31 +0000
-Subject: [PATCH v5 5/5] usb: typec: tcpm/tcpci_maxim: deprecate WAR for
- setting charger mode
+	s=k20201202; t=1770159280;
+	bh=xTEa66SqIkzAleDgDRd7lGWFimq5gjopqYwFXFVLDpQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=sjCVV9peYhhrciKha3J/XPkboPPVtTmNcInZhTc+F62AFgALdSSL+Hmzh3A2B1EZw
+	 Arb6xJM4W1nFMQHJ3SDeign5nxpIop7IWk+jPnwsbnxebEoNgGkNU9yyuUd4JXgWp8
+	 uzRMtCfHfyqKmTWraf02FKOFcXLaV0kNPjJdZtK16eOujseXLzblXMxMdLyjtshz6e
+	 XpLGxeymh3oTeJzBWHskWP+FjM38PaSmDrWkwiV9MOHXwXgPgcGCmV7tmjtrBEmWup
+	 7ZfQI4kVJN5yRgs5VWOkBuS6/mK9mZoru9ha9OUUsxkn0fL38QTmXizln3FJaYtyfx
+	 BeatimVe6FgrA==
+Date: Tue, 3 Feb 2026 14:54:38 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+Cc: Dan Carpenter <dan.carpenter@linaro.org>, Chester Lin
+ <chester62515@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org, Eric
+ Dumazet <edumazet@google.com>, Fabio Estevam <festevam@gmail.com>, Frank Li
+ <Frank.Li@nxp.com>, Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+ imx@lists.linux.dev, Jan Petrous <jan.petrous@oss.nxp.com>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ Matthias Brugger <mbrugger@suse.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org, NXP S32 Linux Team
+ <s32@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring
+ <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ linaro-s32@linaro.org
+Subject: Re: [PATCH v6 0/3] s32g: Use a syscon for GPR
+Message-ID: <20260203145438.5a850b61@kernel.org>
+In-Reply-To: <bdb7cd69-7dcd-4e8a-b04a-14a2eb902311@redhat.com>
+References: <cover.1769764941.git.dan.carpenter@linaro.org>
+	<bdb7cd69-7dcd-4e8a-b04a-14a2eb902311@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260203-max77759-charger-v5-5-b50395376a5f@google.com>
-References: <20260203-max77759-charger-v5-0-b50395376a5f@google.com>
-In-Reply-To: <20260203-max77759-charger-v5-0-b50395376a5f@google.com>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Lee Jones <lee@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Badhri Jagan Sridharan <badhri@google.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>, 
- Amit Sunil Dhamne <amitsd@google.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770159075; l=4047;
- i=amitsd@google.com; s=20241031; h=from:subject:message-id;
- bh=DVhKKtAmFJeTde3lBLRKS7iTM2jYoSejns4c8Q7KrrM=;
- b=b0GO3q1YufX0GQelLtqZNXAOGw6l83elJv47namzZa5QOjjUjJ2hMMY/Pbsbe0+J0pd85DTbg
- 3NPQKZB5AevBcaCB7cBaBEI7zOGiBDb0w89cvkYwb/OQ3kuzCU8lDH7
-X-Developer-Key: i=amitsd@google.com; a=ed25519;
- pk=wD+XZSST4dmnNZf62/lqJpLm7fiyT8iv462zmQ3H6bI=
-X-Endpoint-Received: by B4 Relay for amitsd@google.com/20241031 with
- auth_id=262
-X-Original-From: Amit Sunil Dhamne <amitsd@google.com>
-Reply-To: amitsd@google.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -99,151 +84,41 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-262423-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262422-lists,devicetree=lfdr.de,amitsd.google.com];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,foss.st.com,lunn.ch,kernel.org,davemloft.net,vger.kernel.org,google.com,nxp.com,oss.nxp.com,lists.linux.dev,lists.infradead.org,st-md-mailman.stormreply.com,suse.com,pengutronix.de];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[amitsd@google.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,intel.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4496FDF63E
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 707C8DF6D6
 X-Rspamd-Action: no action
 
-From: Amit Sunil Dhamne <amitsd@google.com>
+On Tue, 3 Feb 2026 12:18:54 +0100 Paolo Abeni wrote:
+> It looks like patch 3/3 depends on 1/3 but it should land in a different
+> tree, as patches 1 && 2 looks suitable for 'net-next' and 3/3 should
+> probably go via the arm/freescale tree.
+> 
+> We either need explicit ack from freescale maintainers or this should be
+> split across subtrees, right?
 
-TCPCI maxim driver directly writes to the charger's register space to
-set charger mode depending on the power role. As MAX77759 chg driver
-exists, this WAR is not required.
+FWIW normally we don't touch the dts patch at all, unless the
+maintainer chimes in and tells us to take it. No waiting for acks.
+Off the top of my head us taking dts patches only happens if 
+the person posting the patch _is_ the platform maintainer..
 
-Instead, use a regulator interface to source vbus when typec is in
-source power mode. In other power modes, this regulator will be turned
-off if active.
-
-Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Reviewed-by: André Draszik <andre.draszik@linaro.org>
----
- drivers/usb/typec/tcpm/tcpci_maxim.h      |  1 +
- drivers/usb/typec/tcpm/tcpci_maxim_core.c | 54 +++++++++++++++++++------------
- 2 files changed, 34 insertions(+), 21 deletions(-)
-
-diff --git a/drivers/usb/typec/tcpm/tcpci_maxim.h b/drivers/usb/typec/tcpm/tcpci_maxim.h
-index b33540a42a953dc6d8197790ee4af3b6f52791ce..b314606eb0f67ddbc80d8760244aa6dee61bebc1 100644
---- a/drivers/usb/typec/tcpm/tcpci_maxim.h
-+++ b/drivers/usb/typec/tcpm/tcpci_maxim.h
-@@ -60,6 +60,7 @@ struct max_tcpci_chip {
- 	struct tcpm_port *port;
- 	enum contamiant_state contaminant_state;
- 	bool veto_vconn_swap;
-+	struct regulator *vbus_reg;
- };
- 
- static inline int max_tcpci_read16(struct max_tcpci_chip *chip, unsigned int reg, u16 *val)
-diff --git a/drivers/usb/typec/tcpm/tcpci_maxim_core.c b/drivers/usb/typec/tcpm/tcpci_maxim_core.c
-index 19f63865079658fb2a446dc390262d141b940e9a..e9e2405c5ca036e28c307088d4b785726834e71f 100644
---- a/drivers/usb/typec/tcpm/tcpci_maxim_core.c
-+++ b/drivers/usb/typec/tcpm/tcpci_maxim_core.c
-@@ -10,6 +10,7 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
- #include <linux/usb/pd.h>
- #include <linux/usb/tcpci.h>
- #include <linux/usb/tcpm.h>
-@@ -35,12 +36,6 @@
-  */
- #define TCPC_RECEIVE_BUFFER_LEN				32
- 
--#define MAX_BUCK_BOOST_SID				0x69
--#define MAX_BUCK_BOOST_OP				0xb9
--#define MAX_BUCK_BOOST_OFF				0
--#define MAX_BUCK_BOOST_SOURCE				0xa
--#define MAX_BUCK_BOOST_SINK				0x5
--
- static const struct regmap_range max_tcpci_tcpci_range[] = {
- 	regmap_reg_range(0x00, 0x95)
- };
-@@ -202,32 +197,49 @@ static void process_rx(struct max_tcpci_chip *chip, u16 status)
- 	tcpm_pd_receive(chip->port, &msg, rx_type);
- }
- 
-+static int get_vbus_regulator_handle(struct max_tcpci_chip *chip)
-+{
-+	if (IS_ERR_OR_NULL(chip->vbus_reg)) {
-+		chip->vbus_reg = devm_regulator_get_exclusive(chip->dev,
-+							      "vbus");
-+		if (IS_ERR_OR_NULL(chip->vbus_reg)) {
-+			dev_err(chip->dev,
-+				"Failed to get vbus regulator handle");
-+			return -ENODEV;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int max_tcpci_set_vbus(struct tcpci *tcpci, struct tcpci_data *tdata, bool source, bool sink)
- {
- 	struct max_tcpci_chip *chip = tdata_to_max_tcpci(tdata);
--	u8 buffer_source[2] = {MAX_BUCK_BOOST_OP, MAX_BUCK_BOOST_SOURCE};
--	u8 buffer_sink[2] = {MAX_BUCK_BOOST_OP, MAX_BUCK_BOOST_SINK};
--	u8 buffer_none[2] = {MAX_BUCK_BOOST_OP, MAX_BUCK_BOOST_OFF};
--	struct i2c_client *i2c = chip->client;
- 	int ret;
- 
--	struct i2c_msg msgs[] = {
--		{
--			.addr = MAX_BUCK_BOOST_SID,
--			.flags = i2c->flags & I2C_M_TEN,
--			.len = 2,
--			.buf = source ? buffer_source : sink ? buffer_sink : buffer_none,
--		},
--	};
--
- 	if (source && sink) {
- 		dev_err(chip->dev, "Both source and sink set\n");
- 		return -EINVAL;
- 	}
- 
--	ret = i2c_transfer(i2c->adapter, msgs, 1);
-+	ret = get_vbus_regulator_handle(chip);
-+	if (ret) {
-+		/*
-+		 * Regulator is not necessary for sink only applications. Return
-+		 * success in cases where sink mode is being modified.
-+		 */
-+		return source ? ret : 1;
-+	}
-+
-+	if (source) {
-+		if (!regulator_is_enabled(chip->vbus_reg))
-+			ret = regulator_enable(chip->vbus_reg);
-+	} else {
-+		if (regulator_is_enabled(chip->vbus_reg))
-+			ret = regulator_disable(chip->vbus_reg);
-+	}
- 
--	return  ret < 0 ? ret : 1;
-+	return ret < 0 ? ret : 1;
- }
- 
- static void process_power_status(struct max_tcpci_chip *chip)
-
--- 
-2.53.0.rc2.204.g2597b5adb4-goog
-
-
+For this series we're waiting for the bindings to be reviewed.
 
