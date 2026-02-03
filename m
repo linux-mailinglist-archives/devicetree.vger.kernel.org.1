@@ -1,251 +1,143 @@
-Return-Path: <devicetree+bounces-262336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262337-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gKB3IQAjgmnPPgMAu9opvQ
-	(envelope-from <devicetree+bounces-262336-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 17:32:00 +0100
+	id iOjwG6QkgmnPPgMAu9opvQ
+	(envelope-from <devicetree+bounces-262337-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 17:39:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45E68DBFE5
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 17:32:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7AADDC18C
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 17:38:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2C8E730480BE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 16:28:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7760B30C37F8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 16:30:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFF053D1CB6;
-	Tue,  3 Feb 2026 16:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9EC63D2FE3;
+	Tue,  3 Feb 2026 16:30:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hcbm8xyI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eXVCtWlq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B3B3C198D
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 16:28:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770136107; cv=pass; b=jyeOQUz85D04azw9tEHCesB3TNquwA77GBKLMu7yL1Hh7L32mi2eXZ5qYB77d5qNbY8i1RuUXJpqsccBX4owlGCbMYKS46oOpyRgSA6ebOpYQ3H6Vo7drGT7DQC5kB2VGWZwVhHyVG6ZoHzs4gSNIsPssh/OSGPMQzsjbA3zXXc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770136107; c=relaxed/simple;
-	bh=fXSdM/tph+CQ0hSdypd+WHNN70gFwJDk5S/Zwg+BMGE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E/lZm27RIuSBjVt6UnJesl5Y9WlYMUr3Eye2iJGEyDJEWvVzbXYTVyug6rkRjtcu3UE3ockMfM75J49661Tow8XrMzC5dixGsYkH6uEyzCCwn/XlgJgZwLPWbBAbz1Kkl+6TynQFELq7s+XP7Zik/t1DfzT1+/JCmSAeEYlnW/g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Hcbm8xyI; arc=pass smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4807068eacbso48643525e9.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 08:28:25 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770136104; cv=none;
-        d=google.com; s=arc-20240605;
-        b=QA9Hov5/nV69QeDQDh3FgZMg7Zfl8Gh+7ydtXwpH0+IB4G7yvABnpapQRC/5Gkqsg0
-         T7nXa5/oos7pd4Q3n227rqTicZ6rLIKwmE8KEAEMjuRfxROysQTX2twwgcKcJ260cLeL
-         ipAEgeuUBIBYJzODGjaO2hfzCrn+Wp1ebw48c4wVURKiDt44S+2ZNQdnFrya2PN8j2XF
-         R82Fs+dZ00txsTXgnrFtF1ghzpBtalqC+fyzBYgAfA/18QRsYiT5As1EPSKK0TVREq0t
-         5Jx4z3OKVvOdBvFXdGrWKOWnfOZ7FJKNNKubGD7DMDYhVdBreJptjdL140Vu8qDTB6mE
-         RYzw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=gRDaphbKaaiBTQfNJABzc/bHdMK4aRKibRK4EZa3oTc=;
-        fh=GGxRsyxBnIywuISTxKmN3Gh5Z2/vCVcs9rElC2ATrQQ=;
-        b=PZLlo1jVrXQ+vvFb3BZnE6hYh7iSYNBvLlIk65lKj5Xb7SX5kTwHUTqbtK0g44HXMP
-         ZoULlJx8Md/0vN2HdrX5mZIWplPZ+UkK+rklZz1f/DVykFimtRpdweNHCbESFWMHbp41
-         JWcoUmFtOV/b0y24c79zOZneYm7Cg8xjV4+qEulO7bHlXywJ96j7Y3Eos0uR8TzSNMXA
-         yZ1qs4QGzOd1ewW/YcR+xEi7H6Mb6JZipqpOEVM68nhvtSyfpIIyr04m34XRellrsyEE
-         4OlyHh1CA42scBCQOf+Hv50p6lhIODGZYKPB29ojP/ogKKInhJO6Qv8AQeAMvRmeZDzh
-         byLA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770136104; x=1770740904; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gRDaphbKaaiBTQfNJABzc/bHdMK4aRKibRK4EZa3oTc=;
-        b=Hcbm8xyItJ7T//WYCVBSa+eAv5LUDufCmbSIr9/0EatuyOo/AosxsDdhj0awaik0lU
-         HTZXFjQn7DhpDgu+K0Iz0mk0vqNO67pD1S92IS6NN2QCdfDY3T41asrGQqh4K4yhA48v
-         STzrDQae4Nm7c4rTYcRvxl7NbIqZgN0gCqQs0ejELh1klRYalpIMgakz0jJxejEQ5l58
-         z7rQM0PvIs4DrVB51oSKlh+Fc74uQdN4pTbqKVfXIZOg0Su5gX9mFCFKfYRIGOh2VyQ4
-         BAu7K0EVSgIquiKYGhAbquLZH4T3kTh1UyU4XneTt3hrBoJ5Hcy5TwPEc5K/ZFTpdwtR
-         jJRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770136104; x=1770740904;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=gRDaphbKaaiBTQfNJABzc/bHdMK4aRKibRK4EZa3oTc=;
-        b=HCcfvfOlWGWaQtgrhzWeb8OucqBFDYBtBYBfDQE1spMR1duhNCgL6nvTk6FOF0F61t
-         llTrawvW5+hXpisDPQbYCBWEIe0XfFQm3qr0oUcNe+FHeBWREg69LqmVfOR43QuVoySv
-         tnK8xegbmTDCP53mRTQYlsY3xKqQLOGPxtKP6zAxNvhL4tGas08A1pb6KABmrXbjk5+l
-         STXwOLK7lk3ri+d9DFdOErfA3RlSMmZlNuPPh9erVxFO2Koibs4o3/ly0ZPtdPe2e9J9
-         MY0bOAM/vwaKIvcky2i113KDTiR86U7Rx+hrY+lsFfQbjPKcjYYxhiGF42lZVUQ998Kv
-         8rPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWWU52T0GY9a0zzisPtT9s3IImVS4NbPMwXU5OfIVz8GeI7Fhc1qwJq9FQveg74UXK8RLm3+VqY0qX5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyny0DCdRbMQZpJa/ItifQgmZeut+TZk9aB86E6mgOj3rbvzVnF
-	LtkmHHkwPzxNoVpkZ+dSjrLpXDpay2k0HXUb2sjRYGSgijCtYPHhBx29OPr08mb1/2T9bT5BKn0
-	rRR3TuyZTYUroGXq9gn/a0si5BITPYiE=
-X-Gm-Gg: AZuq6aJGcw+NHGPWn9rJxrEkLxQFIaPpRIx7vEWlMrGskEzRX2OTZzj/j2IMywvSCm7
-	avcGrgr4Gos5uNPxJl/wytRa+C5rTvGXkLNvnepitOs+v+QIxSjDNyUdSYWoidQmR+fftCxmwS9
-	SBkgQyBNnwykWUaYt5vv+LZS1d/nZJELWUWLDJfOaXLUnoKfcfZlA+qcl8XeGx0wImS8Gq8wGhk
-	8yFr5O5v8AwnfeHXdAYlChbFz6DEe+vEeuX9nJHc5kJj9bXBB5lTZev359vcE70jVE9iyYB
-X-Received: by 2002:a05:600c:8505:b0:47e:e970:b4e4 with SMTP id
- 5b1f17b1804b1-4830e983855mr2996525e9.29.1770136104240; Tue, 03 Feb 2026
- 08:28:24 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8752B3D1CA8;
+	Tue,  3 Feb 2026 16:30:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770136232; cv=none; b=QWSBmqd9sJQQSlfTek/wHR5KSzL7OT3EQ/YdvQwSlfwzXJyPu73H/EkVONxR8zBz7BsuHqYxbcvIS1C+dysicmXCx0o/c/XLopk4UjcrSzwtFS6CuqzHUJMqrE2hR/D7Bsp2Utkjk2Hp9rZM0JjewTR8rJg6iRWAIZlDs1NB/6A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770136232; c=relaxed/simple;
+	bh=/BQwojtZUFGwRzXnl3YOUE8bYUgmbvvgBigNeu4S2Vc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=litMdWFklCNWkLXyPrfnwJP8hIw4/u0zGZKorktISd3deg9egl8Q6S+HK1Fzq42z6z4DSnwfwpdA/YCBhoNWvqof7pejvq15XGOvw8dd/d06nM/lpj/iZaaW0/7eYRyJt4/fNRVsWs84Mx1NF6wYfuKx2ZiN7gHuZV9Z5DCOZcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eXVCtWlq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13FFFC16AAE;
+	Tue,  3 Feb 2026 16:30:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770136232;
+	bh=/BQwojtZUFGwRzXnl3YOUE8bYUgmbvvgBigNeu4S2Vc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eXVCtWlqpVVdUwKTPTE9D6ZbJ37vNyPhp2ILSxoumBXcE2GuZtNZCaVO0tGPPFa7w
+	 EXTRL99Mqx6DP6Wu3R/I82Ep9uEcPt0CHv3Q742Q5hEtYantLl361HaCucO/tMwS4n
+	 xBMePreR5knlnpM0mnk78Wc3i0OkfOxo4lJzKiHNBYwf5tMVMQXNjR6w4E8mArajjr
+	 AiKmeSziBlVNjEVf06hrPYy/Bisw0CW7im3R90/vbhk2iZ5G7/kYRdZTLsebOSBDEY
+	 O6oV5cAXRUiSu2zy32gcAGZ2nEyrW2miaMfhgZiX4azZ7gaO/g79spNeVyKWQOtR+r
+	 L+QRkYuzW0emg==
+Date: Tue, 3 Feb 2026 16:30:27 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Rob Herring <robh@kernel.org>,
+	Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+	Saikiran <bjsaikiran@gmail.com>, lgirdwood@gmail.com,
+	andersson@kernel.org, konradybcio@kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	krzk+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: regulator: qcom,rpmh: Allow
+ regulator-off-on-delay-us
+Message-ID: <7da1e3e3-18d7-45f8-9168-481ce8e4493c@sirena.org.uk>
+References: <20260127190211.14312-1-bjsaikiran@gmail.com>
+ <20260127190211.14312-2-bjsaikiran@gmail.com>
+ <20260129174829.GA1324020-robh@kernel.org>
+ <355213ef-106c-4383-88e7-9b40f5b1c1ef@sirena.org.uk>
+ <fa760b2f-4b8c-46d5-90b9-2ad9e69ebf04@oss.qualcomm.com>
+ <20260203162005.ui7sl4t5m32jwas6@hu-kamalw-hyd.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260201104343.79231-1-clamor95@gmail.com> <20260201104343.79231-3-clamor95@gmail.com>
- <2026020350-unrevised-humming-7a42@gregkh> <CAPVz0n35NkEXjur-oJhW6Yxwme_KMLdYCnRAtjHEWSPEVrSUXQ@mail.gmail.com>
- <2026020346-ashamed-campfire-b483@gregkh>
-In-Reply-To: <2026020346-ashamed-campfire-b483@gregkh>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 3 Feb 2026 18:28:11 +0200
-X-Gm-Features: AZwV_QhcrxqiNzZ8cC3BM6w2wrqMyFc9v-0naWUEm2SUwORm6CXF_qwNkbtlMVY
-Message-ID: <CAPVz0n2HmLwdif5ry+y56LB8Gpwh2o9_gJ7K2jhcZVR=rPgfPA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/9] misc: Support Asus Transformer's EC access device
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Sebastian Reichel <sre@kernel.org>, 
-	=?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>, 
-	Ion Agorria <ion@agorria.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="KzM4c284YdjZFFsI"
+Content-Disposition: inline
+In-Reply-To: <20260203162005.ui7sl4t5m32jwas6@hu-kamalw-hyd.qualcomm.com>
+X-Cookie: Do you know Montana?
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+X-Spamd-Result: default: False [-4.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262336-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-262337-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,arndb.de,rere.qmqm.pl,agorria.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,gmail.com,vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 45E68DBFE5
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E7AADDC18C
 X-Rspamd-Action: no action
 
-=D0=B2=D1=82, 3 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 14:00 Greg =
-Kroah-Hartman <gregkh@linuxfoundation.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Tue, Feb 03, 2026 at 01:54:58PM +0200, Svyatoslav Ryhel wrote:
-> > =D0=B2=D1=82, 3 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 13:41 G=
-reg Kroah-Hartman <gregkh@linuxfoundation.org> =D0=BF=D0=B8=D1=88=D0=B5:
-> > >
-> > > On Sun, Feb 01, 2026 at 12:43:36PM +0200, Svyatoslav Ryhel wrote:
-> > > > --- /dev/null
-> > > > +++ b/drivers/misc/asus-dockram.c
-> > > > @@ -0,0 +1,327 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > > > +/*
-> > > > + * ASUS EC: DockRAM
-> > > > + */
-> > > > +
-> > > > +#include <linux/device.h>
-> > > > +#include <linux/err.h>
-> > > > +#include <linux/i2c.h>
-> > > > +#include <linux/mfd/asus-ec.h>
-> > > > +#include <linux/mod_devicetable.h>
-> > > > +#include <linux/module.h>
-> > > > +#include <linux/mutex.h>
-> > > > +#include <linux/slab.h>
-> > > > +#include <linux/string.h>
-> > > > +#include <linux/sysfs.h>
-> > > > +#include <linux/types.h>
-> > > > +#include <linux/unaligned.h>
-> > > > +
-> > > > +struct dockram_ec_data {
-> > > > +     struct mutex ctl_lock; /* prevent simultaneous access */
-> > > > +     char ctl_data[DOCKRAM_ENTRY_BUFSIZE];
-> > > > +};
-> > > > +
-> > > > +int asus_dockram_read(struct i2c_client *client, int reg, char *bu=
-f)
-> > > > +{
-> > > > +     int rc;
-> > > > +
-> > > > +     memset(buf, 0, DOCKRAM_ENTRY_BUFSIZE);
-> > > > +     rc =3D i2c_smbus_read_i2c_block_data(client, reg, DOCKRAM_ENT=
-RY_BUFSIZE, buf);
-> > > > +     if (rc < 0)
-> > > > +             return rc;
-> > > > +
-> > > > +     if (buf[0] > DOCKRAM_ENTRY_SIZE) {
-> > > > +             dev_err(&client->dev, "bad data len; buffer: %*ph; rc=
-: %d\n",
-> > > > +                     DOCKRAM_ENTRY_BUFSIZE, buf, rc);
-> > > > +             return -EPROTO;
-> > > > +     }
-> > > > +
-> > > > +     dev_dbg(&client->dev, "got data; buffer: %*ph; rc: %d\n",
-> > > > +             DOCKRAM_ENTRY_BUFSIZE, buf, rc);
-> > > > +
-> > > > +     return 0;
-> > > > +}
-> > > > +EXPORT_SYMBOL_GPL(asus_dockram_read);
-> > >
-> > > No documentation for these new public symbols?
-> > >
-> >
-> > These functions are mainly used in communication between the dockram
-> > device, asus-ec and its subdevices. Export is used here because all
-> > mentioned devices can be built as modules. I can add descriptions of
-> > functions into header if needed, but they should never be used outside
-> > of dockram-EC complex. Same applies to 2 export functions in the EC
-> > MFD.
->
-> Then you should properly document this :)
->
-> > > > +static BIN_ATTR_RW(dockram, DOCKRAM_ENTRIES * DOCKRAM_ENTRY_SIZE);
-> > > > +static DEVICE_ATTR_RW(control_reg);
-> > >
-> > > You did not document your new sysfs files in Documentation/ABI/ which=
- is
-> > > required.
-> > >
-> > > Also, why do you need a brand new user/kernel api at all?  Who is goi=
-ng
-> > > to use this and for what?
-> > >
-> >
-> > These api were used mainly for debugging/logging purposes and descend
-> > from original downstream EC driver. I can both add documentation into
-> > ABI or remove them if that is absolutely necessary.
->
-> Debugging should not be in sysfs, please put this type of stuff into
-> debugfs instead if you really need it.
->
 
-There is no similar way to handle BIN_ATTR_RW in the debugfs (), may I
-preserve  dockram_read/write with __maybe_unused instead of removing
-them? I will add comment with explanation
+--KzM4c284YdjZFFsI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> thanks,
->
-> greg k-h
+On Tue, Feb 03, 2026 at 09:50:05PM +0530, Kamal Wadhwa wrote:
+
+> But I'm wondering if this is really a 'slow discharge' issue, because if the
+> caps discharge slowly.. shouldn't the rails be turning back ON faster
+> compared to when they are completely discharged (fast discharge case without
+> bulk caps)?
+
+The issue is that some of the supplies fall to a level where they cause
+disruption to the devices using them but not far enough to put them back
+into a power on reset state, the device browns out somehow (I'm guessing
+some retained state is corrupted).  Ideally they'd have POR circuits
+that handle this case well but apparently that's not the case.
+
+--KzM4c284YdjZFFsI
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmCIqIACgkQJNaLcl1U
+h9AfbQf/aw5X3CMOprXvD8dHwduRIxp13+qV8bVay0bxXPDkAsaJMBq07PqMWcuG
+MYqPc8+6LfhN8N+29nyNte9bi0x0ls7KHYeokJnMUW+o9Q63J5r58nJ1Ee/iDnUb
+hJrJs/SSgEQQlTa+CDJxfr9WG4mcgFWl3nK5Wd3PoSdKpq2v7VO2LKCthTLgNRcg
+jIGjcQeGnWH3aUDO8RYaH+Wx4GfQCRvnnNOaUA52kCGd3t01ufeSg596wTbpkT+Z
+MCVaXGVhKrJ+f9cKH8eBvZ4GHYjrvNnnEG+1DG8+N9UAv04dvBViPFmdO2JgGkWq
+0cUCqFZXhF4VFrsfQI+gGEX5YijEaw==
+=Tsjh
+-----END PGP SIGNATURE-----
+
+--KzM4c284YdjZFFsI--
 
