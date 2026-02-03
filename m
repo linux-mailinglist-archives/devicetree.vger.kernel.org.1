@@ -1,157 +1,136 @@
-Return-Path: <devicetree+bounces-262411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262412-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8FL3C2legmnTTAMAu9opvQ
-	(envelope-from <devicetree+bounces-262411-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 21:45:29 +0100
+	id cGbcKUtjgmkATgMAu9opvQ
+	(envelope-from <devicetree+bounces-262412-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 22:06:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F080DE9B6
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 21:45:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08523DEB8C
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 22:06:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 78F58306AF26
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 20:45:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5BB95301F9A1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 21:06:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EA5427FD62;
-	Tue,  3 Feb 2026 20:45:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C87B61D90DD;
+	Tue,  3 Feb 2026 21:06:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OMO8mzeq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AHMghbet"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07192A1BF
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 20:45:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3AD9AD24;
+	Tue,  3 Feb 2026 21:06:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770151526; cv=none; b=XDxWk+VJ48CTedQF50ZxDwzl5Hx/6umL3Gjb01FLVcAZvxmTsWVZrvgfv/a5aRdjibMnC/dsZb5E4TOugxZ4cLzNT8+XA96wRbiIEArMeTgnPHqOD95hdYoC03TOAgj2Z6ka8OMOEcIF0QNbBB8jrA2v2UYGLvO+SL3Yx6Q/4WM=
+	t=1770152776; cv=none; b=YwpBhwM13qP7Tjxc+IClgEI5RHXsqD6qUAKsqHv5Veo1jHybeMYz/AWVa4DaV2M5QhiheiVS9nJmNV8mkXGLrUDVlSH9XXAe+Mf18ziKqmuAFRKb2IpJAdfherlXVx8nEMBeWo0G4qGk900J6+qdXPDr5cOTn7GsqCz9mRRx854=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770151526; c=relaxed/simple;
-	bh=JRBnZ+8tjOilMeZJMOzCmDnmZL1fwuQqpAz7EJltbms=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V65rhc0gUTIsBpYCBWm2VKIcXQuu9cZMF27UWoDcB0Q88ID0S+nJAyNNvJUrb6fspGni9BpFuCAGsvW7rCHo4tOyI2osRAz5+NNBf3MLz9VHCYVM69o+OC4/GWD7WA2y/qmynwB55WPiE7HsvAt70qh0Kk1V7x7chovG9oXFDeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OMO8mzeq; arc=none smtp.client-ip=209.85.215.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-c6541e35fc0so3462704a12.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 12:45:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770151524; x=1770756324; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SY6DYLnqRnlkJ6nNpwpLKHnvyItg1y7t+nOJ7MRScBQ=;
-        b=OMO8mzeqrPH2Iho15bxaFba0CIj/FzxXX9jhgdFpPX30XknXQVNnN+qBoKiSXcuQNW
-         0JTQIgujgXWjoCm7PupI7ag6OsUWVj2O/6yiH4VBZv6AYKGMRM2wtxOmW66nkqTgRfI3
-         zVGlqknXFjFnOM0JBNDLGVOvRxdfvyqCm5L0/1O/DGg78N5oxuRrYAkgek4Tm13BtiHO
-         5TFXMv5kiw6Ufqk/AcTvMR7a9jPfROw5dfVvxSMAjDF8KJASvfNrt0iGHks/lBFDfvbX
-         EGk0yfH7xwQY3NbmlgHqn58IB5kQtl0rFOKIz1YetLamT719nDZYjnK68K1bJv/4Ao2e
-         LosQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770151524; x=1770756324;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=SY6DYLnqRnlkJ6nNpwpLKHnvyItg1y7t+nOJ7MRScBQ=;
-        b=qOc939twZj2E/6qV4DtsXHxV50sO6JyHk0oy6VA1a00W/BgciaWMJtuotE/gOxgJvm
-         JbLuULMWqgvCXk1NB7O/hc//Hl1D1vKK1+n+0JwkS7/x5ealM+CRjNzSUyRppVv5Ypl+
-         W6V4gUivuN6boPtA8f3LoJNfaBN8vsP9lr3PEieIIMwE56g7e3PuVEH4TEK0Jqio17do
-         N90p/CTubwGDtzylzdVP25p1X64wFzCdFmeKFLQWjOCTr1TGQwImcMZgBKq3+BpnOACR
-         2rgwDmSk+VJZRZ6UXeFBUa1t3vNjGxKw2FymPpZsc8R5HZl6SKNZWjRapAXZfXXGQBLd
-         XbUA==
-X-Forwarded-Encrypted: i=1; AJvYcCX1XGCDEXn51wWvVw/eXx7XLV3GLahN3MFNvQgkAAe/ZUP+pobxkWfq3GzExzY3LLDOlUEq4F8Z1J5p@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNz0j5i/l4CzLmHzCJDum6hPWP4jST8wlPdt17+BU0G2hBkuLl
-	cNfHLZB8LC8wOvbO7SmPgSaa4tDuTPrSh/zyHNC4Aje436tFVsAI0fzL
-X-Gm-Gg: AZuq6aICIq+zbvlWHSHAr9vjKw1zlhRJR73A5TLwsdoSXnl1Frv1ujV6AYm2gt68CYu
-	s0YT/vIPdhieMOJHj/HxZKFX47CovUmrSdKzwLgwcbDqrYp8fyZX/W8DTCIfyvLXAZs5DI1B9Yw
-	ROtrCdDEYomLDGlPwUexm1+Js0KlV0cDHoDXZp4znj9t3vMnzFtLvABT82hApmDCTk1QhY00CH2
-	yNOvPs1mgaUMHDN3kGxvBTtwTYj0aTP2H11qJzqYcSEHdmw53hlAycad97TvovByU0v1cTdsQBV
-	1YxFmHis1Qvu/xBxqJa6ozSLtlFqL1inyQx0Fy4KAW1a/vJq7KPODDxBtexYIp2ZuCfnUiMCvnc
-	bHmif0Ds9px1rMD1VqM3e1BcuS0xtdLAjauEI0H4ewL9vONZOovr8bDdyt5zNrixFCZ1AgYZC2X
-	Q2+6VXEm9YJygBdHfw7h/Jj0mDU2Pv2z9WCSE=
-X-Received: by 2002:a05:6a21:718b:b0:393:7575:a8c7 with SMTP id adf61e73a8af0-3937575c9b3mr85990637.19.1770151524247;
-        Tue, 03 Feb 2026 12:45:24 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c6c8515f36esm175662a12.29.2026.02.03.12.45.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Feb 2026 12:45:23 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Tue, 3 Feb 2026 12:45:22 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: victor.duicu@microchip.com
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	corbet@lwn.net, marius.cristea@microchip.com,
-	linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] hwmon: add support for MCP998X
-Message-ID: <99479712-9847-4113-8092-b87f1298a6da@roeck-us.net>
-References: <20260127151823.9728-1-victor.duicu@microchip.com>
- <20260127151823.9728-3-victor.duicu@microchip.com>
+	s=arc-20240116; t=1770152776; c=relaxed/simple;
+	bh=QiR1z2+HeiDKpAyHdWBxPKPed1yY756ITXRwlIEc55I=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=fKWny6a59NMTHg/hX6wQBN6ifm5gg6POsX/Fem4jTs9q+OFWUegCsL3SObaSeI8SS6aquuUHcbGZChWwPm2y5BzgbF70xJyJuihDO/rjFTOs51uvR95/5IlhMP/aaoFP+1LZ0hHL9KUItM48yJltDUcWZY43m3mP6DErN8jBhbI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AHMghbet; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 271EFC116D0;
+	Tue,  3 Feb 2026 21:06:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770152776;
+	bh=QiR1z2+HeiDKpAyHdWBxPKPed1yY756ITXRwlIEc55I=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=AHMghbetgJ/C/gJNTWFvvDxmw1Sq4A0EIDLr6q+gXYVgVr+kqM9dhRRu/Pe+W7/HZ
+	 w7rkkLl2PuptX70uBmwtSbpCXrNttwDxzqACf/IFK5ga24aTuc5ptpIEqhFI1fJa8Z
+	 E1Jai61FsKDxQYuXF3BdK5a5GFPL+C4nLtTeHfA3ON7mDlFjknpvHEA0jXJDS7LJje
+	 qWv9+OMiRThxNoRMH9AySdA/NbbgnBPBT/oJGB9OAjg7NLetX5ncapJkZZ+XABEe/G
+	 F/PHjjJ9KyC7yvxrg3UVfVL26/zlOG0uUiq/UOynybcT9GcoJScXjLPC8wq9fCCRxO
+	 tcYa+AjCklAhQ==
+From: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260203-gemini-ssp-bindings-v1-1-6d85c9c72371@kernel.org>
+References: <20260203-gemini-ssp-bindings-v1-1-6d85c9c72371@kernel.org>
+Subject: Re: [PATCH] dt-bindings: spi: Add binding for Faraday FTSSP010
+Message-Id: <177015277489.369398.1449372282828529371.b4-ty@kernel.org>
+Date: Tue, 03 Feb 2026 21:06:14 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260127151823.9728-3-victor.duicu@microchip.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-47773
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_FROM(0.00)[bounces-262411-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DMARC_NA(0.00)[roeck-us.net];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262412-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,roeck-us.net:mid]
-X-Rspamd-Queue-Id: 9F080DE9B6
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 08523DEB8C
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 05:18:22PM +0200, victor.duicu@microchip.com wrote:
-> From: Victor Duicu <victor.duicu@microchip.com>
+On Tue, 03 Feb 2026 11:04:51 +0100, Linus Walleij wrote:
+> This adds a binding for the Faraday FTSSP010 SSP controller,
+> a pretty straight-forward syncronous serial port and SPI
+> controller.
 > 
-> This is the driver for Microchip MCP998X/33 and MCP998XD/33D
-> Multichannel Automotive Temperature Monitor Family.
+> The bindings are submitted separately because the one device
+> that has this is using it in a "nonstandard way" with regards
+> to the electronics, and does not make it possible to develop
+> or test a proper driver. However we want to be able to add
+> this resource to the device trees and it's not complex.
 > 
-> Signed-off-by: Victor Duicu <victor.duicu@microchip.com>
+> [...]
 
-Gemini is having fun. Another good point.
+Applied to
 
-> +#define MCP9982_HIGH_LIMIT_DEFAULT		21000
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-AI:
-The default high limit of 21 degrees C is extremely low and likely to cause
-immediate alarms on many systems (e.g., room temperature is often > 21C,
-and inside a case it is almost certainly higher). Standard practice is to
-leave limits as configured by BIOS/firmware, or set them to the chip's
-maximum rating if unconfigured. Overwriting them unconditionally to 21C
-is a regression in expected behavior and usability.
+Thanks!
 
-Me: I would not call this a regression, but Gemini does have a point.
-Why such a low high limit ? At the very least that warrants an
-explanation/comment.
+[1/1] dt-bindings: spi: Add binding for Faraday FTSSP010
+      commit: 4c9d53794bcfd3db45103269696b019d5ef09d41
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
 Thanks,
-Guenter
+Mark
+
 
