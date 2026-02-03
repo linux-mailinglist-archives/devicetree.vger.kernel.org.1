@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-262207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262206-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qKvEAJvcgWmDLQMAu9opvQ
-	(envelope-from <devicetree+bounces-262207-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:31:39 +0100
+	id eKRWMkvcgWmDLQMAu9opvQ
+	(envelope-from <devicetree+bounces-262206-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:30:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 524DAD861B
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:31:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A280D85C4
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:30:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DD550312BFE6
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6582E312CB7C
 	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 11:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6183E33C51D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 590A633C19A;
 	Tue,  3 Feb 2026 11:24:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G9cb5MIE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rqUsNAZu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C93433B97B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A1633B961;
 	Tue,  3 Feb 2026 11:24:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770117860; cv=none; b=tGfAhwX3wRSSaagCQS1HT5VH5AMrAMzrWexLt3KLc7DTL/6NY2eVZJMErplCJWfgsYTuxEQWuCgJhN9Rnd0lA6Ze1PSUPgNddKLrEhcXMCIv/aXOJLm8pn2ohIfXoKPjORu8YVDWUDlic++7k5cqsExKQzwP9xmgvIJILCAv/Fc=
+	t=1770117860; cv=none; b=ixDkdQdHlWLHsPnEU9BBNMHT7UlFXGWoRXkqTV5Nz4JjY9MdT4FQmJX6YR1Osi8AksDa5xaToMQaOQnSwi/gSQpq32fGuuKAalhl4RNvnui3ehPuH+KbQVnBMs5Fr4dp8GAeu2Nc78fgBbBRkPVc3/5uMXp9vfTb8FfIGszKh6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1770117860; c=relaxed/simple;
-	bh=mPm/ZXkLgijvX5BqaOJpIPMrDmYb6nV9d+WBghP1oaA=;
+	bh=JvqRvi/KRBjYNMnk26SO2KrpKQDhXOhrqtEVadrdH3Y=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UDPj7Mjt1ejgLlikc/J0OxGOLEy3uaYqSx+cLljZ7cVdwHd5ohZw2X3oJ5QeJkxz/qgfJ8d93iLq71jscuJExAIm0O+kx+yKVyXA0/W9dCyhR2M+Q8a9aiUqMYZdxZK2Bwz873QN5s0qbASm0R5rJO4j6Tdw6Ba3Rc7rftUskc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G9cb5MIE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DCE8CC4AF09;
-	Tue,  3 Feb 2026 11:24:19 +0000 (UTC)
+	 In-Reply-To:To:Cc; b=gMKOocfTOW6H0pYA6GSof3sdyZsL6ltNkuiwWgUh3ENDHgJe6kEAa6gEOjkSlguLtcqPdd8J0rPdPWi99XyjWBCuffUS+GI1hlOK+m8UohTrtxj34m4RSkLS2ySJwKiaMPpi9nSPQr+J113yMl03ABnJP9+1ebCoFDOFuFk3JfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rqUsNAZu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 08372C4AF0B;
+	Tue,  3 Feb 2026 11:24:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770117859;
-	bh=mPm/ZXkLgijvX5BqaOJpIPMrDmYb6nV9d+WBghP1oaA=;
+	s=k20201202; t=1770117860;
+	bh=JvqRvi/KRBjYNMnk26SO2KrpKQDhXOhrqtEVadrdH3Y=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=G9cb5MIEv9K2Rdtt8Jtjbp/11D1vN7NKRpq41UiDgfn1WOcUDSeI58GnPZSVwnBc4
-	 JRrXQPncrwmrN2yy2d/GWwnjB/N/VUbAMlmKtdetvoNQ8OqwZhIVXaVbVdnqaJdayX
-	 /4DLKWQ+PbpOvioXoOqzNqQhmPCcTanO4g81FpSPYlJ2F052iTly/ywqwupGWpTzPT
-	 AD7wN5eoTZq+ue54dw1w/Nnb0woPVfhQ2LxbchIT+zFBWQwKEOvfX56JA6ft91puBD
-	 DawOOyFdE10e5T6ebuERIVsyg3niOkT8Dk8LFwAAvHl7v7v+qHEEVjvpcW1U5wW76B
-	 Es0S5yjeF/mYg==
+	b=rqUsNAZuYOspCotY7SXlu/kxEEOa2/tEHTJdC3BiV5i6KFVq1pX8nWYysP8FQjDO4
+	 JlhgjWh2hJn6RRuZkClyBgUFUrFwLOfr7XQHYPIXh6L5AxZuTpGayg2O3uUER++OXI
+	 u+z9Bn2w26yrXI8/hkd/n/2I37DyeeKathhj/VQTekqvM8f5Im2LrMrPw4qdHOLXdI
+	 kuRvFUXTbWM5BEkpr/L4ZADH/gXABWBHKkti8v5MHs+DLbokzOWubJ3xsa33iyzdO2
+	 5WN3ihyW/FQdDS6REC45EI70/1i14tRWrf/KpLgbWGQ53YbZ5gPN8f4zDd9iR5iTmk
+	 rEF+ojP4nImQw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2164E6E807;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ECAC7E6E813;
 	Tue,  3 Feb 2026 11:24:19 +0000 (UTC)
 From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Date: Tue, 03 Feb 2026 11:24:13 +0000
-Subject: [PATCH v3 7/9] iio: amplifiers: ad8366: add device tree support
+Date: Tue, 03 Feb 2026 11:24:14 +0000
+Subject: [PATCH v3 8/9] iio: amplifiers: ad8366: consume enable gpio
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +58,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260203-iio-ad8366-update-v3-7-5d5636b5181a@analog.com>
+Message-Id: <20260203-iio-ad8366-update-v3-8-5d5636b5181a@analog.com>
 References: <20260203-iio-ad8366-update-v3-0-5d5636b5181a@analog.com>
 In-Reply-To: <20260203-iio-ad8366-update-v3-0-5d5636b5181a@analog.com>
 To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
@@ -70,11 +70,11 @@ Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
  Conor Dooley <conor+dt@kernel.org>, 
  Rodrigo Alencar <rodrigo.alencar@analog.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770117857; l=9094;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770117857; l=2016;
  i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
- bh=GjtGW1A1Fw9w2PC4dNzs8JDF0ld3ALoDYy8sRQJrqR0=;
- b=6RkSVPRBxqGkSiCW1ypzKM3bPa4mIDX9WRWgkIhI4B8KlXpDBQKKmufmaeUk30UHWHnf4sqmZ
- 4ZSxUi0ZcyHDPGs/h1QsIL4iBlaHPFYc30iz8Ut4B+gHVJQ861389Hs
+ bh=NI6Xmsw6qw3e0XQ9ey2GDgpNHtC2qQOpsDhpudcrNSs=;
+ b=ZER9ogdVMM1LC5NtTAY6EUzYEivRrdqa9Z7JDK8lrB2+9ayvCpIvxFYbFnrfBO9qWiV9YtaMV
+ WU8YXCibjV5BnBBKUU2aTvOAu0vFUDlB8gHQ3ZyiIFv8fmlsueHNL0u
 X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
  pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
 X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
@@ -87,12 +87,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262207-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
+	TAGGED_FROM(0.00)[bounces-262206-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
@@ -106,342 +106,64 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:replyto,analog.com:email,analog.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 524DAD861B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:replyto,analog.com:email,analog.com:mid]
+X-Rspamd-Queue-Id: 4A280D85C4
 X-Rspamd-Action: no action
 
 From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 
-Add device-tree support by dropping the enum ID in favor of extended
-chip info table, containing:
-- gain_step, indicating with sign the start of the code range;
-- num_channels, to indicate the number IIO channels;
-- pack_code() function to describe how SPI buffer is populated;
-
-With this, switch cases on the device type were dropped:
-- probe() function adjusted accordingly;
-- Simplified read_raw() and write_raw() callbacks;
+Some parts may consume enable GPIO to enable serial mode
+(HMC1119's and HMC792A P/S pin) or powerup the device
+(e.g. ADA4961's PWUP pin). Also, add a comment explaining
+that even though chips like HMC271A has a reset gpio, this
+driver previously considered the reset pin for parts that
+don't actually have a reset gpio, so it might have been
+used to enable/power the device.
 
 Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
 ---
- drivers/iio/amplifiers/ad8366.c | 217 ++++++++++++++++------------------------
- 1 file changed, 88 insertions(+), 129 deletions(-)
+ drivers/iio/amplifiers/ad8366.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/iio/amplifiers/ad8366.c b/drivers/iio/amplifiers/ad8366.c
-index 40b03e417be8..dc2fe94c53cd 100644
+index dc2fe94c53cd..92865ab96ade 100644
 --- a/drivers/iio/amplifiers/ad8366.c
 +++ b/drivers/iio/amplifiers/ad8366.c
-@@ -18,29 +18,27 @@
- #include <linux/iio/iio.h>
- #include <linux/iio/sysfs.h>
- #include <linux/module.h>
-+#include <linux/mod_devicetable.h>
- #include <linux/regulator/consumer.h>
- #include <linux/slab.h>
- #include <linux/spi/spi.h>
- #include <linux/sysfs.h>
-+#include <linux/unaligned.h>
+@@ -204,7 +204,7 @@ static const struct iio_chan_spec ad8366_channels[] = {
  
--enum ad8366_type {
--	ID_AD8366,
--	ID_ADA4961,
--	ID_ADL5240,
--	ID_HMC792,
--	ID_HMC1119,
--};
-+struct ad8366_state;
- 
- struct ad8366_info {
- 	int gain_min;
- 	int gain_max;
-+	int gain_step;
-+	int num_channels;
-+	size_t (*pack_code)(struct ad8366_state *st);
- };
- 
- struct ad8366_state {
- 	struct spi_device	*spi;
- 	struct mutex            lock; /* protect sensor state */
- 	unsigned char		ch[2];
--	enum ad8366_type	type;
- 	const struct ad8366_info *info;
- 	/*
- 	 * DMA (thus cache coherency maintenance) may require the
-@@ -49,60 +47,62 @@ struct ad8366_state {
- 	unsigned char		data[2] __aligned(IIO_DMA_MINALIGN);
- };
- 
--static const struct ad8366_info ad8366_infos[] = {
--	[ID_AD8366] = {
--		.gain_min = 4500,
--		.gain_max = 20500,
--	},
--	[ID_ADA4961] = {
--		.gain_min = -6000,
--		.gain_max = 15000,
--	},
--	[ID_ADL5240] = {
--		.gain_min = -11500,
--		.gain_max = 20000,
--	},
--	[ID_HMC792] = {
--		.gain_min = -15750,
--		.gain_max = 0,
--	},
--	[ID_HMC1119] = {
--		.gain_min = -31750,
--		.gain_max = 0,
--	},
-+static size_t ad8366_pack_code(struct ad8366_state *st)
-+{
-+	u8 ch_a = bitrev8(st->ch[0]) >> 2;
-+	u8 ch_b = bitrev8(st->ch[1]) >> 2;
-+
-+	put_unaligned_be16((ch_b << 6) | ch_a, &st->data[0]);
-+	return 2;
-+}
-+
-+static const struct ad8366_info ad8366_chip_info = {
-+	.gain_min = 4500,
-+	.gain_max = 20500,
-+	.gain_step = 253,
-+	.num_channels = 2,
-+	.pack_code = ad8366_pack_code,
- };
- 
--static int ad8366_write(struct iio_dev *indio_dev,
--			unsigned char ch_a, unsigned char ch_b)
-+static const struct ad8366_info ada4961_chip_info = {
-+	.gain_min = -6000,
-+	.gain_max = 15000,
-+	.gain_step = -1000,
-+	.num_channels = 1,
-+};
-+
-+static const struct ad8366_info adl5240_chip_info = {
-+	.gain_min = -11500,
-+	.gain_max = 20000,
-+	.gain_step = 500,
-+	.num_channels = 1,
-+};
-+
-+static const struct ad8366_info hmc792_chip_info = {
-+	.gain_min = -15750,
-+	.gain_max = 0,
-+	.gain_step = 250,
-+	.num_channels = 1,
-+};
-+
-+static const struct ad8366_info hmc1119_chip_info = {
-+	.gain_min = -31750,
-+	.gain_max = 0,
-+	.gain_step = -250,
-+	.num_channels = 1,
-+};
-+
-+static int ad8366_write_code(struct ad8366_state *st)
- {
--	struct ad8366_state *st = iio_priv(indio_dev);
--	int ret;
-+	const struct ad8366_info *inf = st->info;
-+	size_t len = 1;
- 
--	switch (st->type) {
--	case ID_AD8366:
--		ch_a = bitrev8(ch_a & 0x3F);
--		ch_b = bitrev8(ch_b & 0x3F);
-+	if (inf->pack_code)
-+		len = inf->pack_code(st);
-+	else
-+		st->data[0] = st->ch[0];
- 
--		st->data[0] = ch_b >> 4;
--		st->data[1] = (ch_b << 4) | (ch_a >> 2);
--		break;
--	case ID_ADA4961:
--		st->data[0] = ch_a & 0x1F;
--		break;
--	case ID_ADL5240:
--		st->data[0] = (ch_a & 0x3F);
--		break;
--	case ID_HMC792:
--	case ID_HMC1119:
--		st->data[0] = ch_a;
--		break;
--	}
--
--	ret = spi_write(st->spi, st->data, indio_dev->num_channels);
--	if (ret < 0)
--		dev_err(&indio_dev->dev, "write failed (%d)", ret);
--
--	return ret;
-+	return spi_write(st->spi, st->data, len);
- }
- 
- static int ad8366_read_raw(struct iio_dev *indio_dev,
-@@ -112,32 +112,14 @@ static int ad8366_read_raw(struct iio_dev *indio_dev,
- 			   long m)
- {
- 	struct ad8366_state *st = iio_priv(indio_dev);
-+	const struct ad8366_info *inf = st->info;
- 	int ret;
--	int code, gain = 0;
-+	int gain = inf->gain_step > 0 ? inf->gain_min : inf->gain_max;
- 
- 	mutex_lock(&st->lock);
- 	switch (m) {
- 	case IIO_CHAN_INFO_HARDWAREGAIN:
--		code = st->ch[chan->channel];
--
--		switch (st->type) {
--		case ID_AD8366:
--			gain = code * 253 + 4500;
--			break;
--		case ID_ADA4961:
--			gain = 15000 - code * 1000;
--			break;
--		case ID_ADL5240:
--			gain = 20000 - 31500 + code * 500;
--			break;
--		case ID_HMC792:
--			gain = -1 * code * 500;
--			break;
--		case ID_HMC1119:
--			gain = -1 * code * 250;
--			break;
--		}
--
-+		gain += inf->gain_step * st->ch[chan->channel];
- 		/* Values in dB */
- 		*val = gain / 1000;
- 		*val2 = (gain % 1000) * 1000;
-@@ -172,29 +154,14 @@ static int ad8366_write_raw(struct iio_dev *indio_dev,
- 	if (gain > inf->gain_max || gain < inf->gain_min)
- 		return -EINVAL;
- 
--	switch (st->type) {
--	case ID_AD8366:
--		code = (gain - 4500) / 253;
--		break;
--	case ID_ADA4961:
--		code = (15000 - gain) / 1000;
--		break;
--	case ID_ADL5240:
--		code = ((gain - 500 - 20000) / 500) & 0x3F;
--		break;
--	case ID_HMC792:
--		code = (abs(gain) / 500) & 0x3F;
--		break;
--	case ID_HMC1119:
--		code = (abs(gain) / 250) & 0x7F;
--		break;
--	}
-+	gain -= inf->gain_step > 0 ? inf->gain_min : inf->gain_max;
-+	code = DIV_ROUND_CLOSEST(gain, inf->gain_step);
- 
- 	mutex_lock(&st->lock);
- 	switch (mask) {
- 	case IIO_CHAN_INFO_HARDWAREGAIN:
- 		st->ch[chan->channel] = code;
--		ret = ad8366_write(indio_dev, st->ch[0], st->ch[1]);
-+		ret = ad8366_write_code(st);
- 		break;
- 	default:
- 		ret = -EINVAL;
-@@ -235,10 +202,6 @@ static const struct iio_chan_spec ad8366_channels[] = {
- 	AD8366_CHAN(1),
- };
- 
--static const struct iio_chan_spec ada4961_channels[] = {
--	AD8366_CHAN(0),
--};
--
  static int ad8366_probe(struct spi_device *spi)
  {
- 	struct gpio_desc *reset_gpio;
-@@ -261,35 +224,20 @@ static int ad8366_probe(struct spi_device *spi)
- 		return dev_err_probe(&spi->dev, ret, "Failed to get regulator\n");
- 
+-	struct gpio_desc *reset_gpio;
++	struct gpio_desc *reset_gpio, *enable_gpio;
+ 	struct iio_dev *indio_dev;
+ 	struct ad8366_state *st;
+ 	int ret;
+@@ -226,11 +226,22 @@ static int ad8366_probe(struct spi_device *spi)
  	st->spi = spi;
--	st->type = spi_get_device_id(spi)->driver_data;
-+	st->info = spi_get_device_match_data(spi);
+ 	st->info = spi_get_device_match_data(spi);
  
--	switch (st->type) {
--	case ID_AD8366:
--		indio_dev->channels = ad8366_channels;
--		indio_dev->num_channels = ARRAY_SIZE(ad8366_channels);
--		break;
--	case ID_ADA4961:
--	case ID_ADL5240:
--	case ID_HMC792:
--	case ID_HMC1119:
--		reset_gpio = devm_gpiod_get_optional(&spi->dev, "reset", GPIOD_OUT_HIGH);
--		if (IS_ERR(reset_gpio))
--			return dev_err_probe(&spi->dev, PTR_ERR(reset_gpio),
--					     "Failed to get reset GPIO\n");
-+	reset_gpio = devm_gpiod_get_optional(&spi->dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(reset_gpio))
-+		return dev_err_probe(&spi->dev, PTR_ERR(reset_gpio),
-+				     "Failed to get reset GPIO\n");
++	/*
++	 * Previously, this driver considered the reset gpio for some devices
++	 * that don't actually have a reset pin, which could have been wired
++	 * up to the enable pin instead, so some users might be relying on this
++	 * to turn the chip on rather than reset it.
++	 */
+ 	reset_gpio = devm_gpiod_get_optional(&spi->dev, "reset", GPIOD_OUT_HIGH);
+ 	if (IS_ERR(reset_gpio))
+ 		return dev_err_probe(&spi->dev, PTR_ERR(reset_gpio),
+ 				     "Failed to get reset GPIO\n");
  
--		indio_dev->channels = ada4961_channels;
--		indio_dev->num_channels = ARRAY_SIZE(ada4961_channels);
--		break;
--	default:
--		return dev_err_probe(&spi->dev, -EINVAL, "Invalid device ID\n");
--	}
--
--	st->info = &ad8366_infos[st->type];
++	enable_gpio = devm_gpiod_get_optional(&spi->dev, "enable", GPIOD_OUT_HIGH);
++	if (IS_ERR(enable_gpio))
++		return dev_err_probe(&spi->dev, PTR_ERR(enable_gpio),
++				     "Failed to get enable GPIO\n");
++
  	indio_dev->name = spi_get_device_id(spi)->name;
  	indio_dev->info = &ad8366_info;
  	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = ad8366_channels;
-+	indio_dev->num_channels = st->info->num_channels;
- 
--	ret = ad8366_write(indio_dev, 0, 0);
-+	ret = ad8366_write_code(st);
- 	if (ret < 0)
- 		return dev_err_probe(&spi->dev, ret, "failed to write initial gain\n");
- 
-@@ -297,18 +245,29 @@ static int ad8366_probe(struct spi_device *spi)
- }
- 
- static const struct spi_device_id ad8366_id[] = {
--	{"ad8366",  ID_AD8366},
--	{"ada4961", ID_ADA4961},
--	{"adl5240", ID_ADL5240},
--	{"hmc792a", ID_HMC792},
--	{"hmc1119", ID_HMC1119},
-+	{"ad8366", (kernel_ulong_t)&ad8366_chip_info},
-+	{"ada4961", (kernel_ulong_t)&ada4961_chip_info},
-+	{"adl5240", (kernel_ulong_t)&adl5240_chip_info},
-+	{"hmc792a", (kernel_ulong_t)&hmc792_chip_info},
-+	{"hmc1119", (kernel_ulong_t)&hmc1119_chip_info},
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, ad8366_id);
- 
-+static const struct of_device_id ad8366_of_match[] = {
-+	{ .compatible = "adi,ad8366", .data = &ad8366_chip_info },
-+	{ .compatible = "adi,ada4961", .data = &ada4961_chip_info },
-+	{ .compatible = "adi,adl5240", .data = &adl5240_chip_info },
-+	{ .compatible = "adi,hmc792a", .data = &hmc792_chip_info },
-+	{ .compatible = "adi,hmc1119", .data = &hmc1119_chip_info },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ad8366_of_match);
-+
- static struct spi_driver ad8366_driver = {
- 	.driver = {
--		.name	= KBUILD_MODNAME,
-+		.name		= KBUILD_MODNAME,
-+		.of_match_table	= ad8366_of_match,
- 	},
- 	.probe		= ad8366_probe,
- 	.id_table	= ad8366_id,
 
 -- 
 2.43.0
