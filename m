@@ -1,226 +1,199 @@
-Return-Path: <devicetree+bounces-262165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262158-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wB8WBTrKgWl1JwMAu9opvQ
-	(envelope-from <devicetree+bounces-262165-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:13:14 +0100
+	id kGvyFu/HgWl1JwMAu9opvQ
+	(envelope-from <devicetree+bounces-262158-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:03:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A1A0D761F
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:13:13 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A0DAD744B
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:03:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 89E773018BC3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 10:13:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6FA063013D8C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 10:03:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BADB939C64A;
-	Tue,  3 Feb 2026 10:13:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CECC339C638;
+	Tue,  3 Feb 2026 10:03:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="kIGWXhrH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q+gdIPF3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4C7303CB6;
-	Tue,  3 Feb 2026 10:13:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C81B139B49B
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 10:03:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770113588; cv=none; b=HUPzMeoLZrU4co3LhgyrPIJzpSvKsTJH1H37lYn+c+iGs7jJQceuzUwciPzxxtsChRcqvgxCWLm1HIZklrh6YWCyOjYB74lFwTRtFL4ksk4qV+JMi54RGykiYgeu58Svl3JclsfNOmExwpq8xqLM9Zj6K7Q4iYtuf8NOlX/8p+k=
+	t=1770113004; cv=none; b=Ib6PZpWOEVgKkEsUva5mRw6w8ABdepCmjrWCFzxASpyrTjPZg/W12rR0mLuaQsksZ8ZekOfdcUqmSxXtL9FktlmRSCfMANgRFZZjKCRWBNXsLDFXHdGVfq2pmDknSHWVvcbhaOJwLrZO8cNGpte8c5aYxdT1NrAysRmOyyQJ3bk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770113588; c=relaxed/simple;
-	bh=pJ0goWwKS6MP4ur7vxzRvhXTxeUm60Sw2ceZqjxHz+o=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Eo5O9MQI470wJSEdKUvbClkYlKeeWvBzdfusLXDueq2V9e44yGjyEwc6LRHl9hVZUXcUMa1MjF3ftMB0H767BGlYMYCt2Uxr0ooz+1CyhtJdZ0Zsp8Tv7mDYFpqzVjQMuLsk8/KGmfzN5hXzg5u82znYBZ7+9EiGlC1PUATannM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=kIGWXhrH; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4f4zbH658Rz9thY;
-	Tue,  3 Feb 2026 11:03:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1770113036;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=I/WLesTWjIpwef38SdQ4JX0gdMp0IJsjyMkm8xAgFWc=;
-	b=kIGWXhrH/fv5Z6UEAwBwiKWnU1HgR++qoAwUtaSjL0r2h36xtP6PXwALTo9+2xHpHvNDpX
-	7zzG/igQFe7TZlu/681yxRxR8YlgD6kHLF6QuhXJseIxd0hRuJkjd7lHXb4skFBFEXqdzh
-	jgCyWStCK5A94b3tELO/6fl8zgCGCNMb/s3//jcJUMlZV/K5Pr/H1HM+uH6cHsMNb0K0+p
-	dqlec2zoPzHAwiMB28GejqjFcDd7uK3S7/EQdz1XjIryuXQq9Qs4emeM15JzfeIKdplYVO
-	6p1jwz37A7xjGvN5mW8FZ4tYdhEKjcGECe2yHgo5PKxvwsyUKjSv9jnrfNM/XA==
-Date: Tue, 3 Feb 2026 11:03:41 +0100
-From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukasz.majewski@mailbox.org>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: andrew@lunn.ch, shawnguo@kernel.org, krzk+dt@kernel.org,
- linux-kernel@vger.kernel.org, edumazet@google.com, netdev@vger.kernel.org,
- pabeni@redhat.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- conor+dt@kernel.org, horms@kernel.org, richardcochran@gmail.com,
- robh@kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, wahrenst@gmx.net, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com
-Subject: Re: [net-next,v22,4/7] net: mtip: Add net_device_ops functions to
- the L2 switch driver
-Message-ID: <20260203110341.1ce21455@wsk>
-In-Reply-To: <20260203014247.824561-2-kuba@kernel.org>
-References: <20260131233459.1625279-5-lukasz.majewski@mailbox.org>
-	<20260203014247.824561-2-kuba@kernel.org>
-Organization: mailbox.org
+	s=arc-20240116; t=1770113004; c=relaxed/simple;
+	bh=ao5SwoLNTIiHJURJeN/qxgiD0uarUaiktckItiBuuxc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=CQGFvMphxhx9pwxv/FEmhTKlcPOgjlFLKtjdyTR4dKrBNfsCGsZSTWW8vtU/47fh6qWp34Wq6ZqY3qjErzinzqAnthe4IupMP1SCRrlFGGnzqwd+ua+r0DtG8UKI/GBeCVg14nyEA4t6MpQD+4X1e5knM1wzzUDS0/wPteEUh2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q+gdIPF3; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-42fb4eeb482so3750709f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 02:03:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770112999; x=1770717799; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=9t5Fe5bGozogr0ZNYAWcRlOMGPdLPrptTIS9SavKeiw=;
+        b=Q+gdIPF3SmpI+vGeoYLyresfGoXQJErwLP4kt0vS7MHbHziBXkiMJr4FGSgqTg3Ba2
+         kYlDInqM//a5uMC4b+BFNwDQ1xhlKT5hFw0ESwENUKUyvnind9qlcMAkhn37VDPfYruZ
+         rI2JA35kbaqVw02DEAqEeJCjf+GnST5hjsQtlz2k1Hye41gYF15v4mvTVBBu0WoI9qRE
+         bx1i+yj6Fo0v1J4E/qDHIPrVE9AX+MkJndllfCIG1ZJ84uskaOXhONfTmZrEXIptq9VM
+         QrrBU1TBFPdNSaAhJa3CzYgpiI6BREvOM1nCKtnzLK2+/Dc0nbLQ/y9yUUJUsSq/+7lQ
+         MsFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770112999; x=1770717799;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9t5Fe5bGozogr0ZNYAWcRlOMGPdLPrptTIS9SavKeiw=;
+        b=o1cusZKgnEYAH+87pSb0L4tnGt4llYut9h+kfllCKrxznvskOmVzTj/1VsKBV4Dxb1
+         BpeNsiLqbO5Ah61NIim6e5XxXcj1JlWyE21d+9NPs364xpFhmvnB4W6E2nTivITlmks2
+         TvPbV/52Fkuo8+QpvOkyuJhdn03xRnspx8JiwtkJs5tPBguwme4KpTPxH6Us+mbd4pg1
+         fz5gzlKhzWQBWFr0W3CWLEVBRHzuEZd+tVTeakculQXjSAyrfAeRTaaxQL8x/CMNghOl
+         YB3zgS8CbWLDyjwRcyVJi1Eeb3WElbOrdKWdTVEuVwPAjU+J/jReFDOW6j4+PFpBISFO
+         eybA==
+X-Forwarded-Encrypted: i=1; AJvYcCU1+40mbDKBsPcxvg1zfXMwMneb+X57pxVVhexo5tOVvfsLeVp9HYyD+E9B3TzyONEtGwmFTWC3iUHW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMSDLjAII20evOfE05gsWtgT0z5CW1u+BCjdPF2MCoLY1Cj+ty
+	jYQcqJL5V3jf53gapfnBV8UEaOXT6RJTmYisyN/QGl5KuHJfRSCEqDt8
+X-Gm-Gg: AZuq6aKB381VQJXxdDGaL8orbOkiDsSNPBbUaHcwLoIbCP1FfjghDAcjyIHzheNPQs4
+	wEHThD2UyVPkoDNaUJyN6Iy+qyKE6Fu00UcYQNDjJpUuZSAFECNL/ZEUfF/knX+vuw/Mm7Ok7z2
+	64SIYZQT83yq29oJqaOwEn19kn18sDvB+jI5tqLqtKKfSAYUxrhgyR+CP9On2Auv4yAPpyqyZfZ
+	DNnqXXz4KxNjm0Qx/MdX3pmPI6mCLuE0YYpHHFofnteEMDFiJghsT1kGw+FifaJ8yt59Pnto5hS
+	7ZkNqFQ0T8+dYWKR/WVTyvyDjgAENWz9SEsLs2ag378dRjTNcifLZSjBPEqNXElRNurQySqmUoR
+	KkGx04W2fFiyMHnh7+NnW83DccWyFjioqDzSKwIKaCorXYjmb5xNH9zkl49Kgl5xi5I0FFR+oU3
+	dhasJuebOZEsUGrj6rXMMgzNlka2FlFg==
+X-Received: by 2002:a05:6000:1ac8:b0:432:c37c:d83a with SMTP id ffacd0b85a97d-435f3a86321mr22562027f8f.15.1770112999096;
+        Tue, 03 Feb 2026 02:03:19 -0800 (PST)
+Received: from [192.168.1.187] ([148.63.225.166])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e135422csm52922361f8f.40.2026.02.03.02.03.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Feb 2026 02:03:18 -0800 (PST)
+Message-ID: <c4efbcda461cdfd58c7a7ab8b8c29c5f47fbda01.camel@gmail.com>
+Subject: Re: [PATCH v6 2/8] iio: core: add fixed point parsing with 64-bit
+ parts
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>, 
+	rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>,  Andy Shevchenko	 <andy@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich	
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>
+Date: Tue, 03 Feb 2026 10:04:01 +0000
+In-Reply-To: <nzowa6uhnlcllceml2pqjk4so33kl3rf2jwu36eh3znnxug6ub@gfzafmi3m5re>
+References: <20260130-adf41513-iio-driver-v6-0-cf46239026bc@analog.com>
+	 <20260130-adf41513-iio-driver-v6-2-cf46239026bc@analog.com>
+	 <eb1d9b939f95888739ce4a70f516cec07393c6df.camel@gmail.com>
+	 <nzowa6uhnlcllceml2pqjk4so33kl3rf2jwu36eh3znnxug6ub@gfzafmi3m5re>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-MBO-RS-ID: fe9904b47499ae8f7ea
-X-MBO-RS-META: zwqoyhezb5rx5qmpyzoc4ik3614jqbee
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262165-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262158-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lunn.ch,kernel.org,vger.kernel.org,google.com,redhat.com,davemloft.net,gmail.com,lists.linux.dev,lists.infradead.org,gmx.net,pengutronix.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lukasz.majewski@mailbox.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com,analog.com,vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:dkim,linux.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6A1A0D761F
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0A0DAD744B
 X-Rspamd-Action: no action
 
-Hi Jakub,
-
-> This is an AI-generated review of your patch. The human sending this
-> email has considered the AI review valid, or at least plausible.
+On Tue, 2026-02-03 at 09:26 +0000, Rodrigo Alencar wrote:
+> On 26/02/02 09:57AM, Nuno S=C3=A1 wrote:
+> > On Fri, 2026-01-30 at 10:06 +0000, Rodrigo Alencar via B4 Relay wrote:
+> > > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> > >=20
+> > > Add iio_str_to_fixpoint64() function that leverages simple_strtoull()
+> > > to parse numbers from a string.
+> > > A helper function __iio_str_to_fixpoint64() replaces
+> > > __iio_str_to_fixpoint() implementation, extending its usage for
+> > > 64-bit fixed-point parsing.
 >=20
-> For local reproduction steps see
-> https://netdev-ai.bots.linux.dev/ai-local.html ---
-> net: mtip: Add net_device_ops functions to the L2 switch driver
+> ...
 >=20
-> This patch adds net_device_ops callbacks for the MTIP L2 switch
-> driver, including transmit, multicast configuration, MAC address
-> handling, and timeout recovery functions.
+> > > =C2=A0/**
+> > > =C2=A0 * __iio_str_to_fixpoint() - Parse a fixed-point number from a =
+string
+> > > =C2=A0 * @str: The string to parse
+> > > @@ -895,63 +1026,43 @@ static ssize_t iio_read_channel_info_avail(str=
+uct device *dev,
+> > > =C2=A0static int __iio_str_to_fixpoint(const char *str, int fract_mul=
+t,
+> > > =C2=A0				 int *integer, int *fract, bool scale_db)
+> > > =C2=A0{
+> > > -	int i =3D 0, f =3D 0;
+> > > -	bool integer_part =3D true, negative =3D false;
+> > > +	s64 integer64, fract64;
+> > > +	int ret;
+> > > =C2=A0
+> > > -	if (fract_mult =3D=3D 0) {
+> > > -		*fract =3D 0;
+> > > +	ret =3D __iio_str_to_fixpoint64(str, fract_mult, &integer64, &fract=
+64,
+> > > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 scale_db);
+> > > +	if (ret)
+> > > +		return ret;
+> >=20
+> > I know it feels tempting to do the above while adding the 64bit variant=
+. But isn't the
+> > overflow safety also an issue on the 32bit variant? IMO, we should firs=
+t have a patch
+> > adding the overflow safety with a Fixes tag and then add 64bit support.
 >=20
-> > diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
-> > b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c ---
-> > a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c +++
-> > b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c =20
->=20
-> [ ... ]
->=20
-> > +static netdev_tx_t mtip_start_xmit_port(struct sk_buff *skb,
-> > +					struct net_device *dev,
-> > int port) +{
-> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
-> > +	struct switch_enet_private *fep =3D priv->fep;
-> > +	unsigned short status;
-> > +	unsigned int index;
-> > +	struct cbd_t *bdp;
-> > +	void *bufaddr;
-> > +
-> > +	spin_lock_bh(&fep->hw_lock); =20
->=20
-> [ ... ]
->=20
-> > +	/* Save skb pointer. */
-> > +	fep->tx_skbuff[index] =3D skb; =20
->=20
-> mtip_start_xmit_port() stores sk_buffs in fep->tx_skbuff[index] and
-> creates DMA mappings, but mtip_switch_tx() which should complete TX
-> operations is empty:
->=20
-> static void mtip_switch_tx(struct switch_enet_private *fep)
-> {
-> }
->=20
-> The NAPI poll handler mtip_rx_napi() calls mtip_switch_tx() to reclaim
-> transmitted buffers. Since it does nothing, won't every transmitted
-> packet leak the skb and DMA mapping? Also, dirty_tx is never
-> advanced, so the TX ring will fill (cur_tx =3D=3D dirty_tx) and stop
-> accepting packets.
->=20
-> jakub: maybe add a TODO comment transiently here, since later patch
-> implements the cleanup?
+> I think handling 64-bit support after taclking the overflow issue
+> would require changes on top of previous ones, which might get a messy
+> commit history, no? Mostly because the 64-bit variant of the function
+> is being used inside the 32-bit one. Also, the added auxiliary function
+> that implements the overflow check parses u64, which allowed for the
+> removal of the while loop in the __iio_str_to_fixpoint() implementation.
 
-The mtip_switch_tx() is empty as we have agreed, that I will divide
-this driver to several patches to ease the review.
+Typically we do fixes before because we might want to backport them and we =
+just want to backport the
+fix (so not the 64bit support). But we never really had any known issues wi=
+th the current API
+(AFAIK) so it might be ok as-is. Will defer to Jonathan.
 
-Adding TODO seems to only make AI review happy, as:
-
-- The patch which adds support for FEC_MTIP_L2SW in Kconfig will be
-  sent after the driver is accepted to net-next
-
-- Those commits are even now bisectable when FEC_MTIP_L2SW is
-  enabled (when I test the setup).
-
-Anyway, if you still would like to have the TODO comment, then please
-give me a hint how it shall be written to make the AI happy...
-
-
-
-And maybe a few my thoughts:
-
-1. AI review seems to bring each time different issues - even the
-"grammatic" ones were not provided with the first AI generated review.
-
-2. I have tried to setup claudie> to run the patch set through it -
-however, it requires a paid account on a cloud/AI vendor (and I guess
-that different vendors' AI engines produce different output for the same
-"AI prompt")?
-
-
-Anyway, I do appreciate the AI review - it provides very deep insights
-through the code.
-
->=20
-> > +static void mtip_timeout(struct net_device *dev, unsigned int
-> > txqueue) +{
-> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
-> > +
-> > +	dev->stats.tx_errors++; =20
->=20
-> Jakub Kicinski noted in v16 review that tx_errors are already counted
-> by the network stack, and the statistic is exposed per-queue in
-> sysfs. Does incrementing tx_errors here double-count timeout events?
->=20
-> https://lore.kernel.org/all/20250725151618.0bc84bdb@kernel.org/
->=20
-
-Yes, this shall been removed.
-
-> > +	DO_ONCE(mtip_print_hw_state, dev);
-> > +
-> > +	schedule_work(&priv->tx_timeout_work);
-> > +} =20
-
-
-
---=20
-Best regards,
-
-=C5=81ukasz Majewski
+- Nuno S=C3=A1
+> before this assignment.
+> =C2=A0
 
