@@ -1,198 +1,313 @@
-Return-Path: <devicetree+bounces-262368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262369-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id INC+N6A2gmmVQgMAu9opvQ
-	(envelope-from <devicetree+bounces-262368-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:55:44 +0100
+	id mFFeCLE1gmmVQgMAu9opvQ
+	(envelope-from <devicetree+bounces-262369-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:51:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 424BEDD2EE
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:55:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 871EBDD200
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:51:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BDA4F30675B4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 17:48:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A1C5330804FD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 17:50:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0A6361660;
-	Tue,  3 Feb 2026 17:48:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B51C3624BE;
+	Tue,  3 Feb 2026 17:50:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="mnmCHRwg"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="X78QS9kF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011058.outbound.protection.outlook.com [52.101.70.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9669A3168F6;
-	Tue,  3 Feb 2026 17:48:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770140912; cv=none; b=lReFKvXAaZ78A1+KnLOX6kcTjRD2+rz1qs6g7G9qUe9HBnpR0clJGZhFGDwT0UFv35QNOBYK9vatMSuwLqZMjC/5Gvu9+MPlqjqdkT7GCmQucFtpt75Fgi3mBhXolbRF5v6qJ6/rzvhvF5AHsWRxbacsv2xNn+twe8Aydu/cj8o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770140912; c=relaxed/simple;
-	bh=nT5gqQY1z1axiKnDg1xENUtc5nF991Bpu0PcgekNvUA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nm7AATTK/g9cekvR/IXWgsnCn4zZUssjHVStO7ieQWuHGkfxU9W3GvaDlS2mIHMF7LukOjCFcFqD189PgZveiPOQpSopOzSkT5GOpus8p3G3XD8Q/3iUU/16YJ6HmCQ0q/vsx9rnvyzy3pZV+Ql05o8QvCTQ6ErPLPFCnKZqbDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=mnmCHRwg; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=8+rZdHUALqDXCYWomEbTBBbdF709hbUaxOu7TxGSuck=; b=mnmCHRwgVvO2uVu8vPwzL3jlaQ
-	9e3s28tK2RkxDDz+wudnKFLlMgf8rsID3pS07Xd03nfUi/IOgHTvc4AYPkDSWkg8uZopukn03su/q
-	P7/A9g0eLJSwzR58O0WDaJVRC1VQO83NBE+KNK+wygGw/N/ZhhRad/Ht4honZ9Qc9Qo242neo8wKi
-	PIQ0qpcgMEmUQKrModpz+SkByA7jDdHARbBl5sgvopqaFP2qFctC8BEN+2kBzFlRlhaAMy2i3aCeK
-	DUf9JTguGfJOZXEOyc14Hbq6dAcCcmBDoL+92a34ygVVMMDNOsAfUug0efvdF/PZgHiZpVrcoCea1
-	hbGxnchg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46968)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vnKVS-000000005Pd-2TsJ;
-	Tue, 03 Feb 2026 17:48:06 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vnKVM-000000004ZO-2y1I;
-	Tue, 03 Feb 2026 17:48:00 +0000
-Date: Tue, 3 Feb 2026 17:48:00 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yanteng Si <siyanteng@cqsoftware.com.cn>,
-	Yao Zi <ziyao@disroot.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Shangjuan Wei <weishangjuan@eswincomputing.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Chen-Yu Tsai <wens@kernel.org>, Zhi Li <lizhi2@eswincomputing.com>,
-	Boon Khai Ng <boon.khai.ng@altera.com>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next v4 3/3] net: stmmac: Add glue layer for Spacemit
- K3 SoC
-Message-ID: <aYI00Exytbgbnuzp@shell.armlinux.org.uk>
-References: <20260130022705.1059214-1-inochiama@gmail.com>
- <20260130022705.1059214-4-inochiama@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7403635CB63;
+	Tue,  3 Feb 2026 17:50:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770141005; cv=fail; b=mZxB/hH9/UVfiWI0DRjdp2p1+AtEmxGc2h9ah5/aEgpSQkJVL4lXxjorVUqGRh7CMz6aqyyzKfeUAFO9G3gqolj8H3E/cAM+QckNmQByBvom1Fj6jpz/p12zq3cK+e1RKba/YMK5w/H8uQdaUHyttPO6wHwt8GK2DNNe0DcrK9c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770141005; c=relaxed/simple;
+	bh=qF9/cXhcDClye8bAgrHj6Z56TXkcRwGlPSse7S1zBDE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=dm7m1IoPwz8zfqAQHDRC15AXcRV876q9Gi/oNswTO1Eyk/3BdtqaUWGn19bpY3VfARLg+lsQEZ+EQMvD6rJjcjlERoOzGDlyS53mN+CPMzOMxXEL/PSfaw7Fd5DJ4CBjhnjbTx3PIwYuHGqaudn02H1cTwMevTzfgEcCj2UMtY4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=X78QS9kF; arc=fail smtp.client-ip=52.101.70.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Wox71V/9YVj8It+OVlPwXsbZkipRvQ8qxvrPWNBiY8Df7gST1wSNoU5fD8LpkzEfeg0+1v48xxRVnkA3s5uGTh1CHDTUFys3AljOjuLvfpF4THoE2RIXGUCZksgayhPSi1RRA0iocqEF/Ci8jMw9Io78ofXFhQbBOiNfNsruWDDyXABQvUyxpt6L/TclFXiwJI/tDvPR+3czUNCchnoxqEO9Izd1dbIDTdq0Wnuem21D+wTQ1CBsxEb7lKnng1panWnOpHjE3kq+u2TJbRizZRKmyRF+129laWeQlbZZOPtZ69FWKwPU1WQdNHWLDwpiVCGYfnqweSykXLGDnEMDnQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bDTYjguXTm8PgZWINX96540aSzdB5SUy/DqjGgXjUWU=;
+ b=EKDxE+HOrH+6PkrIBIcHLsQ2WOkl8Z21P9GKQeMb7awf59K5s3j3Fo4BrmtGx6HcJmEiKo60cxT9Vu+c95cskU5anO0ow8P5lvlwRJbhrCPBFHy3JajI5r1Baf72gk8O1hXKh1GdQngeUQPS8FJEPTqVW74QcZUOAGXKZkPo0eH8sA3t4u58Qwdw5IuwSmv87Ip84dG+EOGOMx8UifdoLWrrzyLZjQKlItYzCEd2VZ7TOA8GrnlLXFpGxDa8HPYwIybxgdUkd5wggJbQHd9eKdyD2NAiQ10UatoiJ1TsLZUzopgaBPb16/a6yMpz5aa2SWQYCU7C9SOjZpVLzeMZAQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bDTYjguXTm8PgZWINX96540aSzdB5SUy/DqjGgXjUWU=;
+ b=X78QS9kF7PY5Wrq9mbl+VkHBahCL/YNqEKqWfmrpqehiqyJpwNbqr+YRqWqCLSizmPq+ArQEW1gNiVOo7+aeUKrvqi1X2+HYcpYirbZPqdVftgTuQLZQ95aYTeZtZg5yhXi+ULdhA1NvlGVcqudQSJrTZ/VtQZrFt/syk+oTyaeVvgwkvYDXIQUZsC1Kzn5qT5uS2e0ycR6JqFQ0aNom3Jjtz5yBnMH/x7BnMGFJr5eNKfXHQgVO1mHTWvI3u3SCJM+Gsbz/2OH+XLByd5RPNmGFcEMefMeAvJxkoWy+1sSJixJ9uMtJcg4AjMQct3C77q5EU2oryrcs8pHJqYlZhQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by DBBPR04MB7499.eurprd04.prod.outlook.com (2603:10a6:10:203::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Tue, 3 Feb
+ 2026 17:50:00 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Tue, 3 Feb 2026
+ 17:50:00 +0000
+Date: Tue, 3 Feb 2026 12:49:52 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Sherry Sun <sherry.sun@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	s.hauer@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
+	kernel@pengutronix.de, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: imx943-evk: add usdhc3 for SDIO WiFi support
+Message-ID: <aYI1QN6g/DbtfIz+@lizhi-Precision-Tower-5810>
+References: <20260203091459.1595474-1-sherry.sun@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260203091459.1595474-1-sherry.sun@nxp.com>
+X-ClientProxiedBy: PH7P220CA0081.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:32c::29) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260130022705.1059214-4-inochiama@gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DBBPR04MB7499:EE_
+X-MS-Office365-Filtering-Correlation-Id: 983ee9aa-bcaf-40f3-8a09-08de634ca69e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|1800799024|376014|366016|52116014|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?JCHjtWEqCzaCGgg9fHqFD390kELAxoshkiErYPJu4DnaE2IJ8ep3Ee4V9scU?=
+ =?us-ascii?Q?b0b1TnqCYSs/obZEHuTZH/WPq7rnaBdoooMBXddjF6PFPvh7PP6ll4rIySBG?=
+ =?us-ascii?Q?3fiCmSWqA08KmuN9G4+0L1DYIcp4fbvJ0baPhHQn1k86fcO428vHYeaO0WWb?=
+ =?us-ascii?Q?NS6K5R4fRUOC1+uafd5UmDtkotJBgRWbd8UJRfaFr2/84ACywCIOVIXvPS7X?=
+ =?us-ascii?Q?FDDPK4FG8XBVrGdcMDv+i0Df270IqwU8r/2NN/e96n1beD3fU8ftN7L52NnZ?=
+ =?us-ascii?Q?tZO/LKVMix0LWvGVQAZAzaV1G9wuSeQHmBShaOK1GcDmR1g2DlWG2jK/wbr2?=
+ =?us-ascii?Q?QQATBlyZiTvaxPsmosmiGhRaucOByyBH5CgFjXRuE0x/AZEwV+/d/htT48aF?=
+ =?us-ascii?Q?lNEgzlDRq2gR7pClZsb/zHlUGS9HfSggw42YT9cd8Sz3ndj2W9lKRHdktdZC?=
+ =?us-ascii?Q?QZQNGvVr07N6FhxQ5fCSvZVmspq0Pj99UcfYlWFrlPrKjfsIOpdU8DV1bFQI?=
+ =?us-ascii?Q?e+CoSb+c87vgGMlKV4kFo0mr0SdXVHsTqCqQTxFaIiTMo7aQga8JGm6yr/gU?=
+ =?us-ascii?Q?prZsKjTLN2OympIZNrB8/fspVnl7CqLAQFCVFSf17cCBAqRqm3lqapx3W59b?=
+ =?us-ascii?Q?qjnVfZjwnQZskrIF0O1MFLpHNt+B4zKX3Whsdi5rhlCA7U1OY9nOHpYA8G5J?=
+ =?us-ascii?Q?4MTnYjMdF3UTXVhTrHwznCk5AOsq7eBWKSXR/yYzn2t8Mz5m1dBddF0zQlw+?=
+ =?us-ascii?Q?6FgUxxbvqE2tKM7+5btBRAYk/uTsOMNrlFYlar16LtlRO+MeTsRF6SCZ6L1/?=
+ =?us-ascii?Q?WUucKf4aYPjamVAlqfJQqf1Jf/9mUNkSLMaeBVfdr4QJ5coLaRx7CkW+jCy4?=
+ =?us-ascii?Q?+KbIdnZQF5MRXlxB/ZGLMAlnVHshbFIgMh8em2FDjzcVcCTCb9BJjhnQADtz?=
+ =?us-ascii?Q?oLnlR0X2xYb+ImIFyaeH8mqOS+cK9pOvf6ffyRRz6tskNBdaRVWhIrqT8wAw?=
+ =?us-ascii?Q?Q8YqYK6B50s3y51S2FL7j+3S+vkD8f2vFP1/xE1R/ufHHiPfz66S/bLcYaY4?=
+ =?us-ascii?Q?02ykZGenB9kAVyh/y3KbMlKEE+7Fsp6p/2T6kcipV9LmyekcINiuLXdd01Fs?=
+ =?us-ascii?Q?fbTmnSq8xsXUxzCsrMlwDG0bjup0Bap4V5OW4HqyhHmeZU55crwTOyrSrkVG?=
+ =?us-ascii?Q?dxAWc8AKgAInue0qAqVmQotdTkQvdeUqVBGLQ4zHKlRij9rRLYJ0wA+nwnja?=
+ =?us-ascii?Q?CCJ6A2+3MV7B0WzXrLSRtZat7UPVn4a+JXPoKFs4yyZLToVKmBA2phs42v4B?=
+ =?us-ascii?Q?mYCg+CMNOah18h+lHtGPMK/HJULi1VhRHR5SYt9sAA8UBluq2UdJ+Q9dtqKK?=
+ =?us-ascii?Q?JyH9aYXHU/mQr8l5XkUNieIPd8MTEhadjAFegPYj6PheYLt2GmsI5ux6Wkr4?=
+ =?us-ascii?Q?evccJanprFzW04gUcrhcIz7IS7f4CW159/pSD48b8wEdaW5UCFcX7GjfftDr?=
+ =?us-ascii?Q?gvMj6uOZ8RYn1xltURWYc0gHxJa2qAB1vj5dr2fDwlitLaF6OZBx42Qq7uKw?=
+ =?us-ascii?Q?1GVAFo3o+TUiEYKzgFuziRYaonJNUuBLSAlhDp5KAOpCenUDsRLL/GTmYByY?=
+ =?us-ascii?Q?kAfFt8FzthrW1jYlR6eaI/4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(52116014)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?l7IRTe1cyc+yg6Saji2lYecKpT9QIW+7tQZcgYXDmpbv++w4ITXVny+MZX9g?=
+ =?us-ascii?Q?ETDZq54io2/Akbf1HuGuqJL8bBs9+UVThHwKP1eyeyFrv04gGaFBdGfApvai?=
+ =?us-ascii?Q?Zeerz8L8N9kIBfN48XaR+y4O7DszurrXolxjTnwnRM9513E2GmSgNFGWxACP?=
+ =?us-ascii?Q?aluvZvQOPF9ne6GCTBPMToAMZ/1tFb651gB30s3IrpG61/SDkgQ5GalJ+m1N?=
+ =?us-ascii?Q?AKMDMwmI8HHWrrCfkuBLzleGbAxiswgCy+SCaFH5hx4tUCL6vCOV1yW4CyBA?=
+ =?us-ascii?Q?qN7/XIE2ZUvwHyfZAwAph2RX6ahwQ6qpLPTmEj+ZsvQVhJOqddOKbZFYE2W8?=
+ =?us-ascii?Q?5HDS8cP+PBDL/4wG9AUyBjpWKIdKLIOBhlxT1QEe0tij2AbAjjsFBknQhj/8?=
+ =?us-ascii?Q?0D7jDvjpi4YlKZ5DgzE5IPD6W5LGogJPKTpzqt/qI55Y8whrxmlQt1u7CvWY?=
+ =?us-ascii?Q?wkqf7SOJhEXFGPRW9/SxYh2rPcT8lrzP5gVrPl/GU2FpRgItDTvHlnOmDLsU?=
+ =?us-ascii?Q?ZXGDJy1gNjrxPmWEFJIhDIMsppBxnJ6uEIa4ZFJRZV+t+BkGjYGQi4mrutFz?=
+ =?us-ascii?Q?W8gm9DCG2oQRPWwpfrLg/7DJwRP34bEgS2O2yPAXItbVt4xAZlweM/b55DPA?=
+ =?us-ascii?Q?I8PHlW+5K6vka0M4R7RNiy/aeoeoijZVYSCE4QamefVjjlc1hpMWaUqfGk9E?=
+ =?us-ascii?Q?eHSMKy9KovGp6zb+s3Wecql/fESolj2dNz9CIcaQ2muTAmxTqkApoykso3+z?=
+ =?us-ascii?Q?X2LU0Eydx1AaI6xTQIRYKcNO4jMpmPWFRBQHYnbYfavCe2UkD6PdyhFXNTi9?=
+ =?us-ascii?Q?IYw3rkDomrlR3lRErk5p+/nCn6VZl+kj5Fzip284giM+b+MVb2cOTPF6w4Yk?=
+ =?us-ascii?Q?sP5ekdwJ1OqK4QN1Ig54M+PAFaV5rXkoS+VsaJsNYbjjHmlMLcNGhIx/Y9lO?=
+ =?us-ascii?Q?ufYXLTD0LwfRKIHPemA1DOiRAWMqJFR4qoEsfgHimb3nvESs2MoUM5B0xlVG?=
+ =?us-ascii?Q?NVOzsdSiI9uFRJgJWsog3AMrbZWZ8qELwBtVV5mjD4mbyTu3M+Jip4du5znK?=
+ =?us-ascii?Q?a1CtDBVFp5HqKZzuB0RhmJHtztbPC3JX4U3rFwil6brndQzRDLf9ccX7bgLd?=
+ =?us-ascii?Q?3rakv+vlEGi+xIyJs7DeabkckCgUF+xd2GJxn7jllxPppn+AB5U6j0/COrth?=
+ =?us-ascii?Q?OEv3QM9moaB67wfztvt1uNXk1b1E3MeeSi43zU42Y7XqyVAuskHjVIzowlPO?=
+ =?us-ascii?Q?9F8r8rgFpJwXSP0hPNeKTxcuYroo1qohA8ocgvRYexwo1l4OWwodAT70bjHB?=
+ =?us-ascii?Q?gOSuQx2yOb1hY3/D8hnnKx/bRZmB4Bdgq399rKBW9V5d6Eyok759my7Mle8z?=
+ =?us-ascii?Q?zIRdhAbpSBRWPLICeHJpRmW2r+SgnOQvJDnVOSRFpS29xQfhN6Lhx1pf7W9P?=
+ =?us-ascii?Q?yAog91oJpj575QqBHR3RbTU3b25qrGz0N1wVjmNUeMHxUYU3sXdB1zEjQnRp?=
+ =?us-ascii?Q?qW5sdGokt2oIeQGROm9j7B4b4zYs5bxaAkdysmN6fCFfrqPiLuCkr/T2shxJ?=
+ =?us-ascii?Q?RNox1vbY2O4MjidYzkGJwDqUOfaSPktxTqGbn5p3r8dmvqHFLS2jRyG5ZBIy?=
+ =?us-ascii?Q?0uynMpWGsCwi2EmLch70R+9TwFipiuY/4QCispLNEKnZyQlfNQqDujM4Zeoj?=
+ =?us-ascii?Q?ACYgc9rSEouPTCopB8O7iUvoz8HS630J6PDoEPX+EntaQA87?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 983ee9aa-bcaf-40f3-8a09-08de634ca69e
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 17:50:00.4193
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5TTKFuG/8rHvmDGMjEnJb3vXb/XuanVphm9rfHIxYdtxdRL7bL9ma/8ojrcL9HFDexnbSvYo2msR0tKxQdB5qg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7499
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262368-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-262369-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[36];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,cqsoftware.com.cn,disroot.org,bp.renesas.com,eswincomputing.com,bootlin.com,altera.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[armlinux.org.uk:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,shell.armlinux.org.uk:mid]
-X-Rspamd-Queue-Id: 424BEDD2EE
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,4.196.180.0:email]
+X-Rspamd-Queue-Id: 871EBDD200
 X-Rspamd-Action: no action
 
-On Fri, Jan 30, 2026 at 10:27:04AM +0800, Inochi Amaoto wrote:
-> +/* ctrl register bits */
-> +#define CTRL_PHY_INTF_RGMII		BIT(3)
-> +#define CTRL_PHY_INTF_MII		BIT(4)
-> +#define CTRL_WAKE_IRQ_EN		BIT(9)
-> +#define CTRL_PHY_IRQ_EN			BIT(12)
-
-Thanks for updating these.
-
-> +static int spacemit_dwmac_update_ifconfig(struct plat_stmmacenet_data *plat_dat,
-> +					  struct stmmac_resources *stmmac_res,
-> +					  struct regmap *apmu,
-> +					  unsigned int ctrl_offset)
-> +{
-> +	unsigned int mask = CTRL_PHY_INTF_MII | CTRL_PHY_INTF_RGMII | CTRL_WAKE_IRQ_EN;
-> +	unsigned int val = 0;
+On Tue, Feb 03, 2026 at 05:14:59PM +0800, Sherry Sun wrote:
+> Add usdhc3 to support M.2 SDIO WiFi on i.MX943 EVK board.
+>
+> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx943-evk.dts | 63 ++++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx943-evk.dts b/arch/arm64/boot/dts/freescale/imx943-evk.dts
+> index f54404c9bfc9..8f4f6875d036 100644
+> --- a/arch/arm64/boot/dts/freescale/imx943-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx943-evk.dts
+> @@ -20,6 +20,7 @@ aliases {
+>  		i2c5 = &lpi2c6;
+>  		mmc0 = &usdhc1;
+>  		mmc1 = &usdhc2;
+> +		mmc2 = &usdhc3;
+>  		serial0 = &lpuart1;
+>  		serial5 = &lpuart6;
+>  	};
+> @@ -54,6 +55,33 @@ dmic: dmic {
+>  		#sound-dai-cells = <0>;
+>  	};
+>
+> +	reg_m2_pwr: regulator-m2-pwr {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "M.2-power";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&pcal6416_i2c3_u46 2 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		/*
+> +		 * M.2 device only can be enabled(W_DISABLE1#) after all Power
+> +		 * Rails reach their minimum operating voltage (PCI Express M.2
+> +		 * Specification r5.1 3.1.4 Power-up Timing).
+> +		 * Set a delay equal to the max value of Tsettle here.
+> +		 */
+> +		startup-delay-us = <5000>;
+> +	};
 > +
-> +	switch (plat_dat->phy_interface) {
-> +	case PHY_INTERFACE_MODE_MII:
-> +		val = CTRL_PHY_INTF_MII;
-> +		break;
+> +	reg_m2_wlan: regulator-wlan {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "WLAN_EN";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&reg_m2_pwr>;
+> +		gpio = <&pcal6416_i2c3_u46 5 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
 > +
-> +	case PHY_INTERFACE_MODE_RMII:
-> +		break;
 > +
-> +	case PHY_INTERFACE_MODE_RGMII:
-> +	case PHY_INTERFACE_MODE_RGMII_ID:
-> +	case PHY_INTERFACE_MODE_RGMII_RXID:
-> +	case PHY_INTERFACE_MODE_RGMII_TXID:
-> +		val = CTRL_PHY_INTF_RGMII;
-> +		break;
+>  	reg_usdhc2_vmmc: regulator-usdhc2 {
+>  		compatible = "regulator-fixed";
+>  		off-on-delay-us = <12000>;
+> @@ -145,6 +173,12 @@ memory@80000000 {
+>  		reg = <0x0 0x80000000 0x0 0x80000000>;
+>  		device_type = "memory";
+>  	};
 > +
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
+> +	usdhc3_pwrseq: usdhc3_pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		reset-gpios = <&pcal6416_i2c3_u46 4 GPIO_ACTIVE_LOW>;
+> +	};
 > +
-> +	if (stmmac_res->wol_irq >= 0)
-> +		val |= CTRL_WAKE_IRQ_EN;
+
+put usdhc3_pwrseq before @hexvalue nodes.
+
+Frank
+>  };
+>
+>  &enetc1 {
+> @@ -760,6 +794,18 @@ IMX94_PAD_SD2_RESET_B__GPIO4_IO27	0x31e
+>  		>;
+>  	};
+>
+> +	pinctrl_usdhc3: usdhc3grp {
+> +		fsl,pins = <
+> +			IMX94_PAD_GPIO_IO48__USDHC3_CLK		0x158e
+> +			/* Need to config the SION for CMD pad, refer to ERR053138 */
+> +			IMX94_PAD_GPIO_IO49__USDHC3_CMD		0x4000138e
+> +			IMX94_PAD_GPIO_IO50__USDHC3_DATA0	0x138e
+> +			IMX94_PAD_GPIO_IO51__USDHC3_DATA1	0x138e
+> +			IMX94_PAD_GPIO_IO52__USDHC3_DATA2	0x138e
+> +			IMX94_PAD_GPIO_IO53__USDHC3_DATA3	0x138e
+> +		>;
+> +	};
 > +
-> +	return regmap_update_bits(apmu, ctrl_offset, mask, val);
-
-I would suggest that this is split into two parts - first, this is
-renamed and reduced to just controlling CTRL_WAKE_IRQ_EN.
-
-Next, a function hooked into plat_dat->set_phy_intf_sel which sets
-the CTRL_PHY_INTF_RGMII and CTRL_PHY_INTF_MII bits as appropriate.
-Note that this function is passed the dwmac's own phy_intf_sel
-value from common.h which will be PHY_INTF_SEL_GMII_MII,
-PHY_INTF_SEL_RGMII or PHY_INTF_SEL_RMII for you.
-
-It would also be good to have plat_dat->get_interfaces populated
-using phy_interface_set_rgmii(), and __set_bit(PHY_INTERFACE_MODE_MII)
-and __set_bit(PHY_INTERFACE_MODE_RMII) to indicate to phylink which
-interface modes are permissable.
-
-Thanks.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+>  	pinctrl_xspi1: xspi1grp {
+>  		fsl,pins = <
+>  			IMX94_PAD_XSPI1_SCLK__XSPI1_A_SCLK	0x3fe
+> @@ -802,6 +848,23 @@ &usdhc2 {
+>  	status = "okay";
+>  };
+>
+> +&usdhc3 {
+> +	/*
+> +	 * Only enable SDIO2.0 mode as the corresponding GPIO pads are 3.3V, the
+> +	 * max frequency is 50MHz.
+> +	 */
+> +	pinctrl-0 = <&pinctrl_usdhc3>;
+> +	pinctrl-1 = <&pinctrl_usdhc3>;
+> +	pinctrl-names = "default", "sleep";
+> +	bus-width = <4>;
+> +	vmmc-supply = <&reg_m2_wlan>;
+> +	mmc-pwrseq = <&usdhc3_pwrseq>;
+> +	keep-power-in-suspend;
+> +	non-removable;
+> +	wakeup-source;
+> +	status = "okay";
+> +};
+> +
+>  &wdog3 {
+>  	fsl,ext-reset-output;
+>  	status = "okay";
+> --
+> 2.37.1
+>
 
