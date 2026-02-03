@@ -1,85 +1,91 @@
-Return-Path: <devicetree+bounces-262079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262080-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sO3qCPmmgWmYIQMAu9opvQ
-	(envelope-from <devicetree+bounces-262079-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 08:42:49 +0100
+	id cMulHmupgWn0IQMAu9opvQ
+	(envelope-from <devicetree+bounces-262080-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 08:53:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D61CD5CDD
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 08:42:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D74CAD5DD4
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 08:53:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7D8C63029C0E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 07:42:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 28E7230952E0
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 07:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95D1939280C;
-	Tue,  3 Feb 2026 07:42:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F14E339283B;
+	Tue,  3 Feb 2026 07:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="A34NOF/3"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="G2IDi1WD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011015.outbound.protection.outlook.com [52.101.70.15])
+Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010058.outbound.protection.outlook.com [52.101.61.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C9136C0B4;
-	Tue,  3 Feb 2026 07:42:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BF67392C30;
+	Tue,  3 Feb 2026 07:51:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.58
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770104566; cv=fail; b=jLGt4KN/geDLl0EoywtGkMSObzaeowdjEv7I6PUvZQv0fPAOBuhgS6toojSoxR4pj2Y6FrzljGkVSF/KfcHpnzisM+9PIDTvlOIE4YBIu4PVPxiErjKEl0EtlVJZKdES0sheYgRUn2fltRafoyEjM0tLEjFhe6GDA5/wUmXjQpk=
+	t=1770105092; cv=fail; b=LomoTWFY5eigw9+ZkKoSR892gwztx5Mn9qBjMaFBQh/DwEjOQpjxM4Q2geOAkbbpfs8SXsCxllSa/N7ylJ4ea34PuDT3MW5SwEPVWCTtlsVADXW0KcI6gu6X3O/e9V6yP8DuzSV3qK76NMDG/QbUOWMeQh0LpteTl+BbG/liBrg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770104566; c=relaxed/simple;
-	bh=OImMbgeIvSag5UN0cE35PJ4tfhCoQ+/6gywfD1jNo/E=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=Zg/lrFOZ5vcRP56JOsotsJ71D+jt2+SWTst0LX+FaCCcZEi7/1bliBsFhECF+TPleFC277f2MSpoZHM1KmavojLI04TNSXZ/W44tep3I15IfO/+6KhTDXMNseZTHwHRxc6kvBo9mQToHqtJ+9Fldyi7six+hBCbVDVCGVlSRklM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=A34NOF/3; arc=fail smtp.client-ip=52.101.70.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+	s=arc-20240116; t=1770105092; c=relaxed/simple;
+	bh=fWtSBwnDVEYtB7gmFMYReh0CyiaAvINtkOBpMccG06U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mrQLG/8X6qEJlgeWbDP7EgJZmaCAa7I7VJD3W3Ro8ebC/tDOE8lE9C0oiGysie5i/rGnjFJ/vEoRYx6UypRkpVmP5uxjhZvaptxz7xtCL12W0ay9sUZ1P/0xSjGhfjf1hMjG8dfb1YTwgwsYbSQDJupIFm4X4sh+PGd4K4AO9OQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=G2IDi1WD; arc=fail smtp.client-ip=52.101.61.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QSyUvZsirIOJ0wQXCEih3QILpvMV3cMYBpG7Xh4H+fi9euDhiQWEFbKbkaCfmlYkNfe0vEp5WxkBooBWu4Lp0QgC8+rqrsBmFQnWkyVJ7jbeoZVTE20IT5Ufcs5nrQ69ahiymN8z3dOiMUzGOhTet0E2mF1lTfQ4H1Qb1cBeonZ7M77PrE33ID+89v0hIeALLvgZH55TscoxSkgKRC1ZVoC2uM/WGArUq1xby7VMAFZ0rpmmIWcaazeN5AOpKKnG1TRtYyZ8hP2rybF3X4wlxVxYTNmOoRzAgPqnQnPlQsCII3mhA4ql5iWAdE/PW/EHpxVyX2HQS+l7FEZW/4i8dg==
+ b=GkbWXVG2pX0jGDd2H5Z1XlNp4jgg3XwRqJDps0a4bzwGCi22AsTLCjPj036Zk3owyZCY6wtYtWDUmNaSpPSyWagEvMPJJWpofQhRy2ZrtFJAO6bo5xwrcDfiQaNfuvn+oNeq3QVroxoOIEIf1WAt5OijnKB5RQ0k9ycJYdsuYievbMa2Y/8nLgzrO+pAgLR6jXKZF5LBo29VgcgXxDYbV+Z3F9jOnol/6nikTm8ktepYMBSZTejO8cx7Wueo1hAVYf0BPQJT8VNq0LG3REwFBeRufXLO+VrucwKngGXuFoYulAW34rmsBVD7UpoPZPZpYoQhGHLRDKanG7dfz5Zjag==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jjwvWtHAFtaI/Xpqg9QGqz2wBbxFJWLTn36wZzoBzdA=;
- b=gtaT29TYRu+zhvm+fdKitrVVKcGrxrS5ltIueaHegVPAWdHAxbZMrZX5A6OhZiXhZREn97osAtLFF722P7pzxH9NGKEfeGZb71TjrqiROFQMF+RZnk2Sv7gxS5c+CUZiiFTnruBrLQTivTVoQpPXDTKnr/YoW7ZBOCCedv/i6fVcMd8sg7FATs8Htxe36LxM1Rp0JJANm5BttZ8wDByeUz3zl7kZAu/nZX1DPMihVUXJuha1iYvHmOAnlPoxSEIDO3TTeoJSBLKkEY4F56uPTWNLMxC2KFFUW0jt4wHQBlPexdnlk9/1TrBDR4XSn4S2uey97N+UI1UmWezMYrOkAw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ bh=FS+hTaw/K2eRYQwHrNMpe00V2QzUj9TPnE0uxI9cze0=;
+ b=GmZPMnlpHIeF82V5UNbivRZ3Q2rusS6YDhgIexcDqb2IcJk7gJFTCXV4vYjNzMTdPNZ/xlz/Dxil/JQQU84By8oAYQPQJCv6eoqrIA7uVV/OsVJGhtWnC23cK+6Dx0s/Gcll4s1yCyV4dQaqB4/QpZQiIxVvV602y2RQXMSRodXtImPU0iFtvnrkj/4S5VhSSknQ9o2LuLX1umdPNXeeI7HMrKrO48VxhwXVSkUyGxXjEhc2ime6GH7MHg5+5tFotr4jOgQzfJa8Wp1KFDyqJo1+DwrTZRt2NUPUGMv2Rq4HV75o1PozK5kap4GdyJu4X+zzfoWCtrut+QaFpSRwNg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jjwvWtHAFtaI/Xpqg9QGqz2wBbxFJWLTn36wZzoBzdA=;
- b=A34NOF/3cxBNUT83bRFp6DGRoxbXZFH5UZN5B9QwWTnkQK2cecN0w4b9spjYsbgthn26oon7oIiGe65AH1BoezLXk9ZIYL402JkZYzjSlknGy7jl0MI17wFir7HryViTQN+R/KJ4vN62YpNExYSzPvUaGG7rgCKGvcROGbiJ7R2jJokriCufoCDa4ASltpWzT5bxYJ+A8prVUZNqloYBqBocy7jbGi9HbPC3KWAWBIQQbWFXjjSUySzgyDjIaD7Ppa/CC4wqAC+1h3DlqQGXuT/6IaHRXnygV3WK/1KWCxOAE4eM6acVmpletswFQLjABYaIUPG+2/aA89KhvgFd+Q==
-Received: from DU7P251CA0008.EURP251.PROD.OUTLOOK.COM (2603:10a6:10:551::21)
- by AM0PR10MB3140.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:189::15) with
+ bh=FS+hTaw/K2eRYQwHrNMpe00V2QzUj9TPnE0uxI9cze0=;
+ b=G2IDi1WDz5ht/zLd2yL+9CUQBGh+wNFz5/xt2u8fxyZspAGb0tT0jfrhpdKwDPiwzr+Hg0Xmtr/WtnJL2tTYJAZAFn4U7v/HizlM3/H4t88B9k0SeQOW0SmXVo+ibP/jp349mGUhkS2o+PYqbN1BXkZHvi6q5Gn5ewmpcC34QR4=
+Received: from SN6PR04CA0097.namprd04.prod.outlook.com (2603:10b6:805:f2::38)
+ by LV3PR10MB7793.namprd10.prod.outlook.com (2603:10b6:408:1b8::22) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Tue, 3 Feb
- 2026 07:42:37 +0000
-Received: from DB1PEPF000509F5.eurprd02.prod.outlook.com
- (2603:10a6:10:551:cafe::47) by DU7P251CA0008.outlook.office365.com
- (2603:10a6:10:551::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.12 via Frontend Transport; Tue,
- 3 Feb 2026 07:42:37 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
- smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.59; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.59) by
- DB1PEPF000509F5.mail.protection.outlook.com (10.167.242.151) with Microsoft
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.12; Tue, 3 Feb
+ 2026 07:51:27 +0000
+Received: from SN1PEPF0002BA50.namprd03.prod.outlook.com
+ (2603:10b6:805:f2:cafe::66) by SN6PR04CA0097.outlook.office365.com
+ (2603:10b6:805:f2::38) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.16 via Frontend Transport; Tue,
+ 3 Feb 2026 07:51:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ SN1PEPF0002BA50.mail.protection.outlook.com (10.167.242.73) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.10 via Frontend Transport; Tue, 3 Feb 2026 07:42:36 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
- (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 3 Feb
- 2026 08:44:22 +0100
-Received: from [10.252.26.182] (10.252.26.182) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 3 Feb
- 2026 08:42:35 +0100
-Message-ID: <a17c017a-15f5-4ebc-9dd0-baab718dbe0a@foss.st.com>
-Date: Tue, 3 Feb 2026 08:42:34 +0100
+ 15.20.9587.10 via Frontend Transport; Tue, 3 Feb 2026 07:51:26 +0000
+Received: from DFLE200.ent.ti.com (10.64.6.58) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 3 Feb
+ 2026 01:51:22 -0600
+Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE200.ent.ti.com
+ (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 3 Feb
+ 2026 01:51:22 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE213.ent.ti.com
+ (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 3 Feb 2026 01:51:22 -0600
+Received: from [172.24.233.239] (uda0498651.dhcp.ti.com [172.24.233.239])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6137pHDh3149600;
+	Tue, 3 Feb 2026 01:51:18 -0600
+Message-ID: <f423267e-4324-4770-877f-78869ed6a360@ti.com>
+Date: Tue, 3 Feb 2026 13:21:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,278 +93,192 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [Linux-stm32] [PATCH v20 1/6] dt-bindings: firmware: Add TEE
- remoteproc service binding
-From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
-To: Sumit Garg <sumit.garg@kernel.org>, Rob Herring <robh@kernel.org>
-CC: <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Mathieu
- Poirier" <mathieu.poirier@linaro.org>, Bjorn Andersson
-	<andersson@kernel.org>, <linux-remoteproc@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-	<op-tee@lists.trustedfirmware.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
-	<linux-arm-kernel@lists.infradead.org>
-References: <20251217153917.3998544-1-arnaud.pouliquen@foss.st.com>
- <20251217153917.3998544-2-arnaud.pouliquen@foss.st.com>
- <20251229232530.GA2753472-robh@kernel.org> <aVOzHWmlJ-eneS-2@sumit-xelite>
- <CAL_Jsq+_S8UY7s7WQg9jXuBXCYMBWVCy=kVDMdkKTx6RctqQJA@mail.gmail.com>
- <aVtqITUxy--E8HJt@sumit-xelite>
- <49f1808d-1e08-4f47-ac3a-5f2274086060@foss.st.com>
+Subject: Re: [PATCH v4 16/19] dmaengine: ti: k3-udma-v2: Add support for
+ PKTDMA V2
+To: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
+	<vkoul@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>,
+	<dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<vigneshr@ti.com>
+CC: <r-sharma3@ti.com>, <gehariprasath@ti.com>
+References: <20260130110159.359501-1-s-adivi@ti.com>
+ <20260130110159.359501-17-s-adivi@ti.com>
+ <bb476db0-1421-4fdd-9415-85839425f9b9@gmail.com>
 Content-Language: en-US
-In-Reply-To: <49f1808d-1e08-4f47-ac3a-5f2274086060@foss.st.com>
+From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+In-Reply-To: <bb476db0-1421-4fdd-9415-85839425f9b9@gmail.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
- (10.75.128.133)
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB1PEPF000509F5:EE_|AM0PR10MB3140:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8fe294ef-2333-4df3-8e7c-08de62f7ccf5
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA50:EE_|LV3PR10MB7793:EE_
+X-MS-Office365-Filtering-Correlation-Id: dc854461-b732-48bd-193e-08de62f90871
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|82310400026|36860700013|1800799024|13003099007|7053199007;
+	BCL:0;ARA:13230040|1800799024|376014|7416014|36860700013|82310400026|921020;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?QlovdUp4aVdVOUQ1YmpzZHBBWnJFdlVUOEgwSHVocTRtMnNIWDV4S1YzK0tF?=
- =?utf-8?B?N081UUI0NGpqL1BBSXZYL01JRStwdFM5cWJVSC9DQ05IeDFncDRsQUplR0c0?=
- =?utf-8?B?ZCsyT1g5QWVsZGdRODR5N24wM3hvQmhDNENCbFNWVS9zSkdzT1NHSlZjZnN0?=
- =?utf-8?B?YUJWK3ViOXBvZGJESjdWSnM0ajlVRGZ3cFRTRUNvdXJ0ajV0dWNTRUd5bEFJ?=
- =?utf-8?B?cUJNZVErTm5Rb0t0aGpGODZSQjJBYmJxSk9MVHFXVWg2ZVBpOW9PYkNGbDBR?=
- =?utf-8?B?T3N5Uzc1a0ZpSWJkeUVFaFVhZExxZ3d1VDVrbUZFU3hZYjRCTzRzdDZSeTA5?=
- =?utf-8?B?eitFM3JIQ0dUeEJqcXBJSXF6SDhhS0lSa1BHRS9wb0tHdS84RHlPM2VTR3I2?=
- =?utf-8?B?NjdQdXZhd2R5cHRJZkJXNTlYbEQ5Zm5LaXNuMm1WK2xHNGwzdkJsU0lGbFkz?=
- =?utf-8?B?RjVnQWh3UGRVSU9BZlhZU0thblo0anJ6Z0xsZDhPWkNYMkRBcGtZQnl0cVkv?=
- =?utf-8?B?M0R5VnpEK1NYSXpMZDYrWVhra1BTelAvQ2dKSzlvM053N1lIOExLWit3TGNY?=
- =?utf-8?B?U3l5OXdrczNoNTNkQVJGSndQUnhsbmxXQ2tkd2hMZHJvMytSa3hOcUJML3l6?=
- =?utf-8?B?dDh0SG1TVjh4MS9xZnY1aUIzQTdKWUZDWVhlQlFOSnRjdWdnV1J2djZBZnZj?=
- =?utf-8?B?YlVPSUxCSHd2ZXY5WHhrQ1FndW12aUYvUXlPS0FzUWJnMkJuNHRRRFRXMGtX?=
- =?utf-8?B?VmplR2JlU016ajFSNTlHeml6QnJwWncwVVl1ZGlWRDBLd1kzQS9rWUlEZk5V?=
- =?utf-8?B?U3d4RGxSTU1INktUczlyVVN6VzlrdzFMSUpjM1FaNEJzT2pIZVlWVkpmVXpv?=
- =?utf-8?B?dXJ3cjd3M0RENFYvS3JSREI2bFAwcGZkZ2owa0tTZnk2ZEZ6dlVFTjlEZ1BU?=
- =?utf-8?B?Y1paWEpxMGlkTDR6aXJwOVV1alYrV2hJMnpGOUMweGsyalB6Vmw1NU9lQUth?=
- =?utf-8?B?WEFYUm9vakZSK3ZZMTR3eUtsWHRISXVQMTlRbThDelVmU2xIc3JLdFpDTjhN?=
- =?utf-8?B?WXpvTWsya2pKbnVxMmFJS0RwemVFVzZVRjk5QlRiTit0cGVzNFNqVzY2OHlL?=
- =?utf-8?B?cWl2dnZ2cXVlQ3dYZEZIcmdJVWdKZlh0U1hlM1ptWWh2cGYwYWlYL2J1Q3NP?=
- =?utf-8?B?Qm5GZURWelRuTHpEdU1RUmExOG0yeG9nek45dVNHQUxFWkVpNlhiTFVXMlNZ?=
- =?utf-8?B?bWo1NUZRdlR3ZzNtd1d1Y2hEMGo4MlNCY0ord3J4SmpKcktwdDRxQk1NbEtO?=
- =?utf-8?B?R0owbFlGZUxaNm5vYlAyVmpxdUJwU3pYQkNxWEVIckJUNGRQWnQyNDBDRjlL?=
- =?utf-8?B?akIyMnRrQnNrY0NGNHpPTFExc0g5RFljekhHdE5Jb1BkVWZyTnlFTVA4Kys3?=
- =?utf-8?B?RWIvUDVkdUZRMUd6Q0VRZlF4dWtWUFZ5dnd5M1luWE9qOTh2VVlIWHFpbUIz?=
- =?utf-8?B?N1IxZWlybTlzaEdkWXFJT0ZKZGNhM0FYNjh6TWxBTm0zejZCYkFMa01ZMUU3?=
- =?utf-8?B?dlBROEIvZ3FHMnlGU1VCL1hSNXd3MjdlU2RPdjdCZ2JVUWlZdi9VZCtLcEpz?=
- =?utf-8?B?SnVZOGwwMHBuUHBUMUJINzZQaU1aYXIwSkQ3eUplenBKZ2dSUWVVd2lkZXRV?=
- =?utf-8?B?Yy9yMFhkL3AzRGRNL2lTSFRRc2YxVFZXcUMvMWJTL2xDWHRmQ0Riam1TT0tp?=
- =?utf-8?B?dnNwNnZKcUg0enZqd1BkWHBJQldMZ3ZLMFhDZi9RaUVqWFY3ZThoMWdxZ3k4?=
- =?utf-8?B?SVJVZEZLd0F1U0R3clhGUmk1V0I4TjdNUHNlc1N3c21UVUFRMWY0enNmL21E?=
- =?utf-8?B?aGllQ3VZTldhRkNBZWVjQkhtOFVqMDBKRmVSMTBhSWFLZjZ1bHdzams1Q2Zt?=
- =?utf-8?B?Z3E2ZXd3dTdtZXpRb21qSkI0V1prU0hnb1JhbUJZc0RNZUl4UmJYQmJ2cDFi?=
- =?utf-8?B?YmFsVmpnSGRLbDBoYjJhTVhzaHlXbEE4MzJyTlRIYVVnbHdJWGs1bWkyNmZZ?=
- =?utf-8?B?MWNGOEloMEZLVjJGb2dpVnd0blh2VloyeFViTkpQc1I0K1ZXK0VJaEx3bDB3?=
- =?utf-8?B?US9ib1dCa3gwWWxSck1WY3R3SHhnTmVXZVpxaEdkLzB4NE45NDd1M0cwU0Ft?=
- =?utf-8?Q?aBLzhkOYIv9QmaKYw9Lt908=3D?=
+	=?utf-8?B?VnV6d1B3Mkd4YTVVQ0ViVkxLWmpzcVl3Q0VZa3R1SjA2RWFMNFBEeG1qRmkr?=
+ =?utf-8?B?MU5NN2dDd2dKb215ODBpV1Izd0NSNGdxSFBia1hEcmg1MWd1UWNoQmY0QjA5?=
+ =?utf-8?B?bUc5ODQ5WUcvWDdKYWIyS0VlVUhJMmg2aXhyN3hLSWVuQzJLb3BFa0IweVVY?=
+ =?utf-8?B?bmVwc3c0dXRXVDdxL3RRejNVUDhRTXN5dGdvNmZBNHNNRDE4emU3d0RMdmlu?=
+ =?utf-8?B?TDZpd1A2aXNWSm9GdWg2ditSYm1TRmNSTU5ERThoUDZybVVQK0hMR0tUeDh6?=
+ =?utf-8?B?cGljRU1pblBlc2JPVEJwNGFWR2h2VHlqRndxVlZlOVpNaU12T1VMOG8ycFcw?=
+ =?utf-8?B?Q1pMSEgwNHpCL3ozNWR0ZmloWVJQM1lidUZkVkpVUk1pa2R1YjlVMlV4Kzgv?=
+ =?utf-8?B?ejkzZmljVDEzdnpjbm1Ta2R3VjdMdDRsVDEzRmdkS0ljSGdOWmFsbk5BcGln?=
+ =?utf-8?B?aGEyUnlXSVpkQklZalFoUGxJMjRabFFtYzVOU0NXSS9Gc0VxTEFNQXpLeGJj?=
+ =?utf-8?B?QW9DVnJnb0FvR1NQY0h3YmNLcE9ZOXQwNjFteWREQzlEc3dOZVR2Q0s1aTFJ?=
+ =?utf-8?B?d0xGSEU2RFlHZVQ3R2NaN3R3Wm5mVzBnTjl5SHBaZE13NVJ6NzY0bTJWZWpI?=
+ =?utf-8?B?WE1iRGU2Z202WHhqdldLWGx6b1pKUXJQK2ZmcnlzcG9SQnp4Sm4wTFl5SHpa?=
+ =?utf-8?B?WExZOHZHL3hLTnI4KzBoQndna1VHYWYyV1dkcWx1dFZRRC9pRVNrRkRsQzJN?=
+ =?utf-8?B?TWFTbndXdCs1NFJHTkFEa21nNEVLK0hnWVh2OXFkZkhNazh6eTBYUjhiaDNx?=
+ =?utf-8?B?aStBZ2lXcDI5VXNVdjBSemlGTHlobXR5UGVwQ3FtdkpocWNBcTBaU3QvYnRh?=
+ =?utf-8?B?aGltN0Fjb3NQTmVPekZ5eUJybm5NMFc2dVhPOERCSlpUTlNGMC9vNCtpbXNX?=
+ =?utf-8?B?YktLMHJ0NVg3aUYwekoyTC8rL3BET0tPWFpia0RCbzNlVHJNNU1nVEV3djlV?=
+ =?utf-8?B?dVN3MEJoUEluaXc4eWlnYzNVLzQ3dmlSaGhEdTVUNlZPUW9YN3NPSWNvdHQx?=
+ =?utf-8?B?TjBDYUcyTER0Y29nSzdBeUZlWXh1ZHVILzJhYmRCR3Z2b0RXZU1DQ0FxbXVu?=
+ =?utf-8?B?NVByUlc4Y1YvSW5SRmhNWmV6b3pnbC9WUW5FRXJzMVUyWjZRbWNHdEgvZzVw?=
+ =?utf-8?B?TU1yN1BJNG9PNlhJR2pGaGhrd3AyalNkL1llY0Nidy9Qa3lYOVgxL2pCb3Y1?=
+ =?utf-8?B?SkJmR01YREZuNzB6clhWNDF6Tk5MZ3llTlRqUTB3TGhlRWNuYmYveFFmQTVN?=
+ =?utf-8?B?bVNGVkJwY1RGRkFwNXRPbVpLQW4vVkNzZEE2aGxTQ1FPVE05V1FOMFlha1Fn?=
+ =?utf-8?B?NTlaYk1TbzdJa3ZBSlZGZkc4L2tQOUhZMy9tWXRZK3pXSnVJNkM3RFRyOTc5?=
+ =?utf-8?B?WlBNQnFIbmNwNDNDS2N1ejY4V1lBMVQyL2ZUaklBcUxBWjVaeU8rR2hrN0FS?=
+ =?utf-8?B?R2gwU2M5YytSVWZQbVljYWU5RnJTQ3BSZ1pvakxBUVVCSnBEZGIyeXlldWVT?=
+ =?utf-8?B?WTEzZ2lMYndFOStWc2FVdUJTSjl1bzVLS3hmTlRMcGk5QTN0S2QrUWtUUUZ4?=
+ =?utf-8?B?dDlXWEJocjZhVExRZll0UHVjTzZYZDcyR2lrSUcxcUJSRCtrd1BBT1gvRmYv?=
+ =?utf-8?B?YmtxZXZuUktBSW9HT09Ib1EzTDJHcUM1a1JDcXlmTzBORnBDQUs5Tk1kTENy?=
+ =?utf-8?B?VE05NEw5ZldvNExhZFdTQUs4aHpMSXEwRmZpTlMyQjBCOHBtMGFwb1Z5RTIr?=
+ =?utf-8?B?UVhhSVc1aXJRM0pTblN0U1RyQmk0Z2lZYk03SUh2SURocGVYSm56dEFicVZS?=
+ =?utf-8?B?a29xMXJ1d284WnRKOTBGSkUvdEx3RC8xSVI3blVRa2p0dEh1S253M3ViMVNM?=
+ =?utf-8?B?VmpYL0ZFaXVpZ3YvZmU5M0RGeW5ZelBqRlVrR2M2M3E2QnN2aExNcnB5VjJ6?=
+ =?utf-8?B?eGY2dHVaaFpXb205SXpGN2JjREdMcVd6MXJLRjk0czZscGlqa2JOeWw0TlBW?=
+ =?utf-8?B?NVlidms5OHRXRzFYVzZWclJSQ091WTdSaktKbVhGK00vNC9lNUVYcC9jUlMy?=
+ =?utf-8?B?Zis5M3BZeStSVDhHYzZiM29yS1pUUHlMNjhwNjlUWFBvYTFYWDB6WmswY0tI?=
+ =?utf-8?B?dEk4MDJIQk1PUmZwS2V1bTVNNG9WRHlRby9ia3ZFNnJQdFFGZklSSEpPSE5S?=
+ =?utf-8?B?T1JRY05OQXhlQWpzRzBPa0dwZ0x3PT0=?=
 X-Forefront-Antispam-Report:
-	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(82310400026)(36860700013)(1800799024)(13003099007)(7053199007);DIR:OUT;SFP:1101;
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(36860700013)(82310400026)(921020);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	16a9bVpkzU7nUJWL2LepSini/6xwA2OdpnKgIKL6IYQ2n6sfp9vSWGnBqCxw8+zjkb5X3XnZCWwsDHf5M3G4vQdbJRtzs8Qwg9z+JREUwo2X0XXJug2rMDxbEg5KidwQCiP8xxVOOPpJd5wSHDjNYSNf+Ucceexi0p/wCC00wG0UgaWjv2wyQ5rntoJl5NmfKiseYY1t3ScNG+F4ILSuTRxhZGfTf5itUbAuq5F40ZvFntwcIJcgjipsAHngsXXVbM+q48FDG7qL4lga8+/Ylc7J8p3v5XLRZFGP543P6ZVmOg8tqJYlnLP/ymdvc6oUxJ6BSJzQ/V7tW8ha4rg2mYQnAAVr9crjzXdmFwPxGsLFR/adySnEJhxKLs+KEo9QPclC+5jJT0D3g5bgFNdI/1xO3ROwVcYdNUMkmE/siuSRjBU7dF9UN7mt6w8/rpfB
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 07:42:36.7104
+	jdYvTrx/X/qodyfaWxYVnekjzWkosiEVTbLFWWmjq5EkCo72iofifd27quqxT5b5fz9pfeK5ez2O/SUNa+DoFP27pl3umlQh2dZNLSSIw4D6HvSxqSqpc1OGt+1XW0kuztpFE4gEXUPrh17qtKwMd4qTvpBRgPHZ0RpHTIwEDQaml87SrADDjBELR4xkfAAJItQYeAUIVULmssYKm901a6igRDDOfsdmerjV225oMmjypBQXK4dP5gXzyDuFtE4Hr2CjQhrBZFdqaThe81ppmDR71gTizlTCtzfPVZ10A5t35PA67uVDKcY2QFk7BS94pmmn0O7+znVVG1KZxqNMJbzcdt3XJd4gk8E+W87060mKtePwneAK+ozBpAAdg6ZR2uRfEVHl4ixNlbEF5oeTQPQxUjIo0aLBibYsQd2nzGjzL8gkfoLHvGnmyHflk4yO
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 07:51:26.0429
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8fe294ef-2333-4df3-8e7c-08de62f7ccf5
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc854461-b732-48bd-193e-08de62f90871
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	DB1PEPF000509F5.eurprd02.prod.outlook.com
+	SN1PEPF0002BA50.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3140
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR10MB7793
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
-	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-262079-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-262080-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,foss.st.com:mid,foss.st.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,ti.com,vger.kernel.org,lists.infradead.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:email,ti.com:dkim,ti.com:mid];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[arnaud.pouliquen@foss.st.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[s-adivi@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[foss.st.com:+];
+	DKIM_TRACE(0.00)[ti.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 8D61CD5CDD
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: D74CAD5DD4
 X-Rspamd-Action: no action
 
 
-Hello Rob, Sumit,
-
-Just a gentle reminder. Could you please provide your advice or a 
-conclusion on the direction we should take for the DT declaration? I 
-need your input to be able to move forward.
-
-Thanks and regards,
-Arnaud
-
-On 1/13/26 10:20, Arnaud POULIQUEN wrote:
-> Hello,
-> 
-> On 1/5/26 08:37, Sumit Garg wrote:
->> On Fri, Jan 02, 2026 at 04:17:27PM -0600, Rob Herring wrote:
->>> On Tue, Dec 30, 2025 at 5:10 AM Sumit Garg <sumit.garg@kernel.org> 
->>> wrote:
->>>>
->>>> On Mon, Dec 29, 2025 at 05:25:30PM -0600, Rob Herring wrote:
->>>>> On Wed, Dec 17, 2025 at 04:39:12PM +0100, Arnaud Pouliquen wrote:
->>>>>> Add a device tree binding for the TEE-based remote processor control
->>>>>> service implemented as an OP-TEE Trusted Application identified by
->>>>>> UUID 80a4c275-0a47-4905-8285-1486a9771a08.
->>>>>>
->>>>>> The TEE service node is a child of the "linaro,optee-tz" firmware 
->>>>>> node and
->>>>>> acts as a container for remoteproc devices that are controlled via 
->>>>>> TEE.
->>>>>
->>>>> Is this generic for any remoteproc device or just ST's remoteproc. 
->>>>> Looks
->>>>> like the latter to me.
->>>>
->>>> That's true, the DT description of the remoteproc subnode is very
->>>> specific to the vendor which in this case is ST.
->>>>
->>>>>
->>>>>> In addition, the "linaro,optee-tz" binding is updated to specify the
->>>>>> '#address-cells' and '#size-cells' values used for child TEE service
->>>>>> nodes.
->>>>>
->>>>> I'm pretty sure I already rejected per service/app child nodes for
->>>>> OP-TEE when its binding was submitted.
->>>>
->>>> That was the reason to have discoverable TEE bus in first place and I
->>>> have been motivating people to dynamically discover firmware properties
->>>> rather than hardcoding in the DT.
->>>>
->>>>> If we do need something in DT
->>>>> to define some resources, then can't we have some sort of
->>>>> standard/common communications channel? I don't care to see some 
->>>>> sort of
->>>>> free-for-all where we have every vendor doing their own thing. OP-TEE
->>>>> needs to standarize this.
->>>>
->>>> I suppose this requires a wider scope work as you can see the DT 
->>>> resource
->>>> dependence from here [1]. By standardize communication channel, do you
->>>> mean to say if adding an alternative backend to fwnode for TEE in
->>>> parallel to DT, ACPI or swnode is the way to go for discovering fw
->>>> properties?
->>>
->>> No, not at all.
->>>
->>>> Or do you have any other suggestion here?
->>>
->>> What I mean is why doesn't the TEE define the communication channel
->>> (mailbox+shmem and notification interrupt) rather than each TEE app?
+On 03/02/26 11:55, Péter Ujfalusi wrote:
+>
+> On 30/01/2026 13:01, Sai Sree Kartheek Adivi wrote:
+>> The PKTDMA V2 is different than the existing PKTDMA supported by the
+>> k3-udma driver.
 >>
->> The synchronous communication channel is already there for each TEE app
->> based on (invoke commands + TEE shared memory). OP-TEE does support
->> notification interrupts too but those haven't been exposed to TEE client
->> drivers yet. I suppose this remoteproc use-case can be a good example to
->> expose that as a generic TEE notification interface too.
-> 
-> In the STM32MP series, the mailboxes and shared RAM are used for RPMsg 
-> communication between Linux and the remote processor. My concern is that 
-> using notification in OP-TEE could impact performance by introducing 
-> latency. Additionally, this might require a DMA allocator in OP-TEE to 
-> manage the shared memory. One RPMsg virtio requires the declaration of 
-> at least three carveouts. Managing these as memory regions in OP-TEE 
-> would be complex (due to limited number of memory area declaration on 
-> STM32MP2).
+>> The changes in PKTDMA V2 are:
+>> - Autopair: There is no longer a need for PSIL pair and AUTOPAIR bit
+>>    needs to set in the RT_CTL register.
+>> - Static channel mapping: Each channel is mapped to a single
+>>    peripheral.
+>> - Direct IRQs: There is no INT-A and interrupt lines from DMA are
+>>    directly connected to GIC.
+>> - Remote side configuration handled by DMA. So no need to write to
+>>    PEER registers to START / STOP / PAUSE / TEARDOWN.
+> Plus I suppose..
+>
+>> Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+>> ---
+>>   drivers/dma/ti/k3-udma-common.c |  29 ++++-
+>>   drivers/dma/ti/k3-udma-v2.c     | 219 ++++++++++++++++++++++++++++++--
+>>   drivers/dma/ti/k3-udma.h        |   3 +
+>>   3 files changed, 232 insertions(+), 19 deletions(-)
 >>
->>>
->>> More generally, is having TEE apps depending on random DT resources
->>> really a box we want to open? Is the next thing going to be a TEE
->>> clock/reset/gpio/power provider? Where do we draw the line?
->>
->> This is really a hard line to draw since silicon/OEM vendors based on 
->> their
->> hardware security architecture partition various resources among TEE and
->> the Linux world. And one general principle we try to follow for the TEE
->> is to keep it's Trusted Computing Base (TCB) to a minimal too.
->>
->> IMHO, if the threat model is well understood then we should allow for
->> this hetrogenous partitioning of system resources.
-> 
-> Here are some additional resources we need to manage the remote 
-> processor, which seem complex to handle without Device Tree (DT):
-> 
-> - Clocks: On STM32MP, we manage clocks through the OP-TEE SCMI service
->    [1]. The SCMI OP-TEE clock/reset service already exists and should be
->    reused.
-> - Power domains
-> - Remoteproc Watchdog interrupt: Cannot be caught by OP-TEE on
->    stm32mp15.
-> - Graceful shutdown of the remote processor: This involves sending a
->    mailbox notification to request shutdown and waiting up to 500 ms for
->    the remoteproc to deinitialize its resources. Waiting this long in the
->    secure context seems inefficient.
-> - compatibility with some coming IPC mechanisms: Such as rpmsg_I2C or
->    virtio-msg might require remoteproc subnode descriptions in the
->    future.
-> 
-> If the proposed topology does not gain consensus, what about an 
-> alternative approach that manages the remoteproc TEE similarly to SCMI, 
-> by introducing a remoteproc-backend with the proc ID as a parameter?
-> 
-> 
-> &firmware {
->      optee: optee {
->          compatible = "linaro,optee-tz";
->          method = "smc";
->          sproc: sproc {
->              compatible = "80a4c275-0a47-4905-8285-1486a9771a08";
->              #address-cells = <1>;
->          #size-cells = <0>;
->          };
->      };
-> };
-> 
-> rproc1: m33@0 {
->    [...]
-> 
->    remoteproc-backend = < &sproc 0>
-> };
-> 
-> 
-> rproc2: m0@0 {
->    [...]
-> 
->    remoteproc-backend = < &sproc 1>
-> };
-> 
-> 
-> [1]https://elixir.bootlin.com/linux/v6.18.4/source/drivers/clk/clk-scmi.c
-> 
-> Thanks,
-> Arnaud
-> 
->>
->> -Sumit
-> 
-> _______________________________________________
-> Linux-stm32 mailing list
-> Linux-stm32@st-md-mailman.stormreply.com
-> https://st-md-mailman.stormreply.com/mailman/listinfo/linux-stm32
-
+>> diff --git a/drivers/dma/ti/k3-udma-common.c b/drivers/dma/ti/k3-udma-common.c
+>> index ba0fc048234ac..d6459bcc17599 100644
+>> --- a/drivers/dma/ti/k3-udma-common.c
+>> +++ b/drivers/dma/ti/k3-udma-common.c
+>> @@ -2461,12 +2461,21 @@ int pktdma_setup_resources(struct udma_dev *ud)
+>>   
+>>   	ud->tchan_map = devm_kmalloc_array(dev, BITS_TO_LONGS(ud->tchan_cnt),
+>>   					   sizeof(unsigned long), GFP_KERNEL);
+>> +	bitmap_zero(ud->tchan_map, ud->tchan_cnt);
+>>   	ud->tchans = devm_kcalloc(dev, ud->tchan_cnt, sizeof(*ud->tchans),
+>>   				  GFP_KERNEL);
+>> -	ud->rchan_map = devm_kmalloc_array(dev, BITS_TO_LONGS(ud->rchan_cnt),
+>> -					   sizeof(unsigned long), GFP_KERNEL);
+>> -	ud->rchans = devm_kcalloc(dev, ud->rchan_cnt, sizeof(*ud->rchans),
+>> -				  GFP_KERNEL);
+>> +	if (ud->match_data->type == DMA_TYPE_PKTDMA_V2) {
+>> +		ud->rchan_map = ud->tchan_map;
+>> +		ud->rchans = ud->tchans;
+>> +		ud->chan_map = ud->tchan_map;
+>> +		ud->chans = ud->tchans;
+> It has single channel space and the TX/RX functionality alternates
+> within the space?
+> chX: TX, chX+1: TX, chX+2: RX, chX+3: TX, etc?
+Yes Peter, that is the case.
+>
+>> +	} else {
+>> +		ud->rchan_map = devm_kmalloc_array(dev, BITS_TO_LONGS(ud->rchan_cnt),
+>> +						   sizeof(unsigned long), GFP_KERNEL);
+>> +		bitmap_zero(ud->rchan_map, ud->rchan_cnt);
+>> +		ud->rchans = devm_kcalloc(dev, ud->rchan_cnt, sizeof(*ud->rchans),
+>> +					  GFP_KERNEL);
+>> +	}
+> ...
+>
+>> diff --git a/drivers/dma/ti/k3-udma-v2.c b/drivers/dma/ti/k3-udma-v2.c
+>> index af06d25fd598b..6761a079025ba 100644
+>> --- a/drivers/dma/ti/k3-udma-v2.c
+>> +++ b/drivers/dma/ti/k3-udma-v2.c
+>> @@ -744,6 +744,146 @@ static int bcdma_v2_alloc_chan_resources(struct dma_chan *chan)
+>>   	return ret;
+>>   }
+>>   
+>> +static int pktdma_v2_alloc_chan_resources(struct dma_chan *chan)
+>> +{
+>> +	struct udma_chan *uc = to_udma_chan(chan);
+>> +	struct udma_dev *ud = to_udma_dev(chan->device);
+>> +	u32 irq_ring_idx;
+>> +	__be32 addr[2] = {0, 0};
+>> +	struct of_phandle_args out_irq;
+>> +	int ret;
+> Nitpick: revers christmas tree declaration order.
+>
 
