@@ -1,33 +1,34 @@
-Return-Path: <devicetree+bounces-262131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262134-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cM/sGYLCgWmjJgMAu9opvQ
-	(envelope-from <devicetree+bounces-262131-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 10:40:18 +0100
+	id 4CIYJsTBgWlnJgMAu9opvQ
+	(envelope-from <devicetree+bounces-262134-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 10:37:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0435CD6EC7
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 10:40:17 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09551D6DE0
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 10:37:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E767230AC51B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 09:34:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2D8FF3092579
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 09:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD6439A816;
-	Tue,  3 Feb 2026 09:34:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE45B39B4B9;
+	Tue,  3 Feb 2026 09:34:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78A40396D2A
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 09:34:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FDF239A7E6
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 09:34:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770111284; cv=none; b=Y0SNlplS2/Ag5XVNlYXLZugl6LGWfe512e2P0SwGii3HL7dJk8Pxs2VoHf3wMryn0ysDp6l7IjxT6KW3tZkDmP9iy4gRcKVh7H/jfzyfIB+EVnRK39rVmn7gH4aH7tusUjB3kw+JgRVhQm9PMofy7RhCtSOaBMpo5hvKchVcDvA=
+	t=1770111285; cv=none; b=hUjIbRCVbqDHows67mgTdvQ+4fnKIE4McbM6pnNA3J51FzPp0gag+le2Cyi4ij4LBAvcWKtfS5UmNhy5xwrsf6fpvjWM+V2qnU/auh38hRIHNAiDrFaPxVJowBoIhB0CwVti1zyxiKZ0QWsZWrbkCmuXvCah5WDbmNBa4WOHMF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770111284; c=relaxed/simple;
-	bh=FjIkp1eerslXxP2lvdCMeTHnwsoNdZv4xU1+6MVOItI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fEdvvmeX/RRJJOeBNV14IBhyIW1hz0rhKQ+FqPb0Z4O3tfSGB8duqoFBiyNDZnMr6ss/WkCcnhd/7bpDwijR+8NQqJC7cuQ5sD6cmH3DaVUUGpE0rgXsahEIjYcGToh/WtQP68WrAADHN6Fq3+mrDblVhheGeuEEoY8MrYGvQMk=
+	s=arc-20240116; t=1770111285; c=relaxed/simple;
+	bh=qCboVe1jx0nMNuIqVhOHA0NxWT5XKcf/52HDaAkhOlw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=l+rP75c4CRlTiPaWabtQjDLf/CFevWJTtE1GuThOAzKAh3J77hGC75j2gCZ45S7yg1J7Kzd3Bdg9ZgBDsjw8pm6ajzZ2JpB9WUTuYkG8l1Savn5qkIdF+M6TzAwnH2JLCCAKEQw2F+nqkYeB6ZIR8Mxb3qBXuvC5o9IXiMVW2XQ=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -35,16 +36,16 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vnCnr-0003lW-QB; Tue, 03 Feb 2026 10:34:35 +0100
+	id 1vnCnr-0003lX-QA; Tue, 03 Feb 2026 10:34:35 +0100
 Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vnCnr-003slM-2U;
+	id 1vnCnr-003slN-2Z;
 	Tue, 03 Feb 2026 10:34:35 +0100
 Received: from ore by dude04 with local (Exim 4.98.2)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vnCnr-0000000Ah8d-07Ee;
+	id 1vnCnr-0000000Ah8n-0FPb;
 	Tue, 03 Feb 2026 10:34:35 +0100
 From: Oleksij Rempel <o.rempel@pengutronix.de>
 To: Jonathan Cameron <jic23@kernel.org>,
@@ -52,6 +53,7 @@ To: Jonathan Cameron <jic23@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
 Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	stable@vger.kernel.org,
 	kernel@pengutronix.de,
 	linux-kernel@vger.kernel.org,
 	linux-iio@vger.kernel.org,
@@ -60,10 +62,12 @@ Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
 	David Lechner <dlechner@baylibre.com>,
 	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
 	David Jander <david@protonic.nl>
-Subject: [PATCH v4 00/13] iio: dac: ds4424: add DS4402/DS4404 support and scale
-Date: Tue,  3 Feb 2026 10:34:20 +0100
-Message-ID: <20260203093434.2548978-1-o.rempel@pengutronix.de>
+Subject: [PATCH v4 01/13] iio: dac: ds4424: reject -128 RAW value
+Date: Tue,  3 Feb 2026 10:34:21 +0100
+Message-ID: <20260203093434.2548978-2-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260203093434.2548978-1-o.rempel@pengutronix.de>
+References: <20260203093434.2548978-1-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,7 +85,7 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -89,9 +93,9 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	DMARC_NA(0.00)[pengutronix.de];
 	RCVD_COUNT_FIVE(0.00)[6];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-262131-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262134-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -99,53 +103,51 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0435CD6EC7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:email]
+X-Rspamd-Queue-Id: 09551D6DE0
 X-Rspamd-Action: no action
 
-This series extends the ds4424 IIO DAC driver and its devicetree binding
-to support the DS4402 and DS4404 current DAC variants.
+The DS442x DAC uses sign-magnitude encoding, so -128 cannot be represented
+in hardware (7-bit magnitude).
 
-DS440x devices share the same register map as DS442x but use a different
-resolution (5-bit vs 7-bit) and a different full-scale current formula.
-The full-scale current depends on external Rfs resistors connected to
-the FS pins, so a new optional DT property is added to provide the
-per-channel Rfs values and allow the driver to report a correct IIO
-SCALE (mA/step).
+Previously, passing -128 resulted in a truncated value that programmed
+0mA (magnitude 0) instead of the expected maximum negative current,
+effectively failing silently.
 
-While adding DS440x support, a few related issues were addressed:
-- Port to regmap
-- Reject -128 in RAW writes on DS442x, which cannot be represented with
-  sign-magnitude encoding and could silently program an unintended
-  output.
-- Preserve preconfigured values on probe.
-- Ratelimit read error logging and use device context.
+Reject -128 to avoid producing the wrong current.
 
-David Jander (1):
-  iio: dac: ds4424: add DS4402/DS4404 device IDs
+Fixes: d632a2bd8ffc ("iio: dac: ds4422/ds4424 dac driver")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-Oleksij Rempel (12):
-  iio: dac: ds4424: reject -128 RAW value
-  iio: dac: ds4424: refactor raw access to use bitwise operations
-  iio: dac: ds4424: ratelimit read errors and use device context
-  iio: dac: ds4424: sort headers alphabetically
-  iio: dac: ds4424: rename iio_info struct to avoid ambiguity
-  iio: dac: ds4424: use device match data for chip info
-  iio: dac: ds4424: use fsleep() instead of usleep_range()
-  dt-bindings: iio: dac: maxim,ds4424: add ds4402/ds4404
-  iio: dac: ds4424: support per-variant output range limits
-  iio: dac: ds4424: convert to regmap
-  dt-bindings: iio: dac: maxim,ds4424: add maxim,rfs-ohms property
-  iio: dac: ds4424: add Rfs-based scale and per-variant limits
+---
+changes v4:
+- Restore v1 implementation: Keep this patch as a minimal fix suitable
+  for stable backports
+- Move the refactoring (bitwise operations and GENMASK usage) to a
+  separate follow-up patch.
+changes v3:
+- (Merged into refactoring patch in v3, now split again)
+---
+ drivers/iio/dac/ds4424.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- .../bindings/iio/dac/maxim,ds4424.yaml        |  42 +-
- drivers/iio/dac/Kconfig                       |   1 +
- drivers/iio/dac/ds4424.c                      | 368 ++++++++++++------
- 3 files changed, 280 insertions(+), 131 deletions(-)
-
---
+diff --git a/drivers/iio/dac/ds4424.c b/drivers/iio/dac/ds4424.c
+index a8198ba4f98a..059acca45f64 100644
+--- a/drivers/iio/dac/ds4424.c
++++ b/drivers/iio/dac/ds4424.c
+@@ -141,7 +141,7 @@ static int ds4424_write_raw(struct iio_dev *indio_dev,
+ 
+ 	switch (mask) {
+ 	case IIO_CHAN_INFO_RAW:
+-		if (val < S8_MIN || val > S8_MAX)
++		if (val <= S8_MIN || val > S8_MAX)
+ 			return -EINVAL;
+ 
+ 		if (val > 0) {
+-- 
 2.47.3
 
 
