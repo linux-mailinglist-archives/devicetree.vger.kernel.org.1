@@ -1,71 +1,65 @@
-Return-Path: <devicetree+bounces-262221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262222-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uFeCBL3jgWmDLQMAu9opvQ
-	(envelope-from <devicetree+bounces-262221-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 13:02:05 +0100
+	id CKFxJlvjgWmDLQMAu9opvQ
+	(envelope-from <devicetree+bounces-262222-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 13:00:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46CB0D8B56
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 13:01:59 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EC20D8B38
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 13:00:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F1DC130B4150
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 12:00:12 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0F00B30260BF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 12:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B500F33CEB9;
-	Tue,  3 Feb 2026 12:00:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 615EE33BBC8;
+	Tue,  3 Feb 2026 12:00:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="BFsYpk5Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44A5A3314C8
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 12:00:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 371BA337B8F;
+	Tue,  3 Feb 2026 12:00:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770120012; cv=none; b=Vkf+QAMkiBg5arxOmSsLSj+6nEuA40feXoXkjzgtJMOv2uq/+qnTd/p5KHevGak+tufOO+cMp+C1D2Btu6vmSmelqT0f90PdTtfDEDAu3cUlsvCIU0AWvmbhahwStbQd73/BOp7zE47604V2ZrKNLLTf5ze2mLlSq1dWnchirLM=
+	t=1770120024; cv=none; b=ZP5EHdYoSh+HjJJJXbdqSHBGoF7ZDYTM/gb1xX0qsPx4LtnOe0uhJY5fSPBKhaZ27+LnAePbfICWm67/bKRmMqqRpcUsf2haZEh3kTuLmGPSlaPZUGdV/LGhKaOuRHZdzdDY2NIUUXzeYCg1uA4Am6g1LlWmAvWNU4CvakRVuR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770120012; c=relaxed/simple;
-	bh=OhHw2xhKXIE2GbKn2kZmuYgDoMTvwTtviyTPHEQj9Dw=;
+	s=arc-20240116; t=1770120024; c=relaxed/simple;
+	bh=yCCU+DvWpf3LJfse1GGtLeSuFfLtuaZGyh1ZRLHPv6o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M+jguzU0J60JbeJmAh0rlkVzp03Io32/YakSEQOC3ci5CCrw2sMKRqpwkdcOPniWgZo8G/f97blBYOzUrA4RvhfBUou6YQuoQdlFPkRUoy6Z6lXDRHAfUFts5tQ+V+kKQS7okEGX4I3eM4l8fvlScviFjIZktGAw6lrtDdajTkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vnF4e-0005rI-5n; Tue, 03 Feb 2026 13:00:04 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vnF4d-003tmB-2R;
-	Tue, 03 Feb 2026 13:00:03 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vnF4c-00E3Ue-37;
-	Tue, 03 Feb 2026 13:00:02 +0100
-Date: Tue, 3 Feb 2026 13:00:02 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=VD2Ms0wNVOBHxmujl/Pw4UNUglr8vfSvlhsC6DBtyKKRjVRfL9GBp7Tzfd1sfF+xr566jNtVvZkwKsVkrl7zoEhFD8ax72ldVZWqPSGfoKiXXhr2IDncjJscFZIZE84p1q8+3oGy7xvFHbT3LBuLQNsllfe+W+lzmsz//JDuia8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=BFsYpk5Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 175B1C116D0;
+	Tue,  3 Feb 2026 12:00:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1770120023;
+	bh=yCCU+DvWpf3LJfse1GGtLeSuFfLtuaZGyh1ZRLHPv6o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BFsYpk5YsCjQrxctryV88+vNiA78r+2EPOoK5PJ/byNU2kNxDd44uzJGjVP6LlJhY
+	 ihl1qvC8kMjUs8c/ZrpwMw5p3gaZVcWAHkZr9TlLb92yaXa7OmIWxqqmoN+a2DUnME
+	 BgQZYUb+vZCuvKQmSqrdfXV/ZcbS25Qf7loKbgyQ=
+Date: Tue, 3 Feb 2026 13:00:20 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>,
-	David Jander <david@protonic.nl>
-Subject: Re: [PATCH v4 06/13] iio: dac: ds4424: use device match data for
- chip info
-Message-ID: <aYHjQhO92yxoy_9o@pengutronix.de>
-References: <20260203093434.2548978-1-o.rempel@pengutronix.de>
- <20260203093434.2548978-7-o.rempel@pengutronix.de>
- <aYHH69gXyuwmQR03@smile.fi.intel.com>
- <aYHLRvfJH54XumUA@pengutronix.de>
- <aYHhO7pJPEew7QMC@smile.fi.intel.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Pavel Machek <pavel@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Sebastian Reichel <sre@kernel.org>,
+	=?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+	Ion Agorria <ion@agorria.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-leds@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v1 2/9] misc: Support Asus Transformer's EC access device
+Message-ID: <2026020346-ashamed-campfire-b483@gregkh>
+References: <20260201104343.79231-1-clamor95@gmail.com>
+ <20260201104343.79231-3-clamor95@gmail.com>
+ <2026020350-unrevised-humming-7a42@gregkh>
+ <CAPVz0n35NkEXjur-oJhW6Yxwme_KMLdYCnRAtjHEWSPEVrSUXQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,83 +68,125 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <aYHhO7pJPEew7QMC@smile.fi.intel.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPVz0n35NkEXjur-oJhW6Yxwme_KMLdYCnRAtjHEWSPEVrSUXQ@mail.gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [3.84 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
+	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262221-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	TAGGED_FROM(0.00)[bounces-262222-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	ASN_FAIL(0.00)[1.2.3.5.c.f.2.1.0.0.0.0.0.0.0.0.b.d.0.0.1.0.0.e.a.0.c.3.0.0.6.2.asn6.rspamd.com:query timed out];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[linuxfoundation.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.988];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,arndb.de,rere.qmqm.pl,agorria.com,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:url,pengutronix.de:mid,distrokit:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 46CB0D8B56
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linuxfoundation.org:email,linuxfoundation.org:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3EC20D8B38
 X-Rspamd-Action: no action
 
-On Tue, Feb 03, 2026 at 01:51:23PM +0200, Andy Shevchenko wrote:
-> On Tue, Feb 03, 2026 at 11:17:42AM +0100, Oleksij Rempel wrote:
-> > On Tue, Feb 03, 2026 at 12:03:23PM +0200, Andy Shevchenko wrote:
-> > > On Tue, Feb 03, 2026 at 10:34:26AM +0100, Oleksij Rempel wrote:
+On Tue, Feb 03, 2026 at 01:54:58PM +0200, Svyatoslav Ryhel wrote:
+> вт, 3 лют. 2026 р. о 13:41 Greg Kroah-Hartman <gregkh@linuxfoundation.org> пише:
+> >
+> > On Sun, Feb 01, 2026 at 12:43:36PM +0200, Svyatoslav Ryhel wrote:
+> > > --- /dev/null
+> > > +++ b/drivers/misc/asus-dockram.c
+> > > @@ -0,0 +1,327 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > > +/*
+> > > + * ASUS EC: DockRAM
+> > > + */
+> > > +
+> > > +#include <linux/device.h>
+> > > +#include <linux/err.h>
+> > > +#include <linux/i2c.h>
+> > > +#include <linux/mfd/asus-ec.h>
+> > > +#include <linux/mod_devicetable.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/mutex.h>
+> > > +#include <linux/slab.h>
+> > > +#include <linux/string.h>
+> > > +#include <linux/sysfs.h>
+> > > +#include <linux/types.h>
+> > > +#include <linux/unaligned.h>
+> > > +
+> > > +struct dockram_ec_data {
+> > > +     struct mutex ctl_lock; /* prevent simultaneous access */
+> > > +     char ctl_data[DOCKRAM_ENTRY_BUFSIZE];
+> > > +};
+> > > +
+> > > +int asus_dockram_read(struct i2c_client *client, int reg, char *buf)
+> > > +{
+> > > +     int rc;
+> > > +
+> > > +     memset(buf, 0, DOCKRAM_ENTRY_BUFSIZE);
+> > > +     rc = i2c_smbus_read_i2c_block_data(client, reg, DOCKRAM_ENTRY_BUFSIZE, buf);
+> > > +     if (rc < 0)
+> > > +             return rc;
+> > > +
+> > > +     if (buf[0] > DOCKRAM_ENTRY_SIZE) {
+> > > +             dev_err(&client->dev, "bad data len; buffer: %*ph; rc: %d\n",
+> > > +                     DOCKRAM_ENTRY_BUFSIZE, buf, rc);
+> > > +             return -EPROTO;
+> > > +     }
+> > > +
+> > > +     dev_dbg(&client->dev, "got data; buffer: %*ph; rc: %d\n",
+> > > +             DOCKRAM_ENTRY_BUFSIZE, buf, rc);
+> > > +
+> > > +     return 0;
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(asus_dockram_read);
+> >
+> > No documentation for these new public symbols?
+> >
 > 
-> ...
-> 
-> > > > -	indio_dev->name = id->name;
-> > > 
-> > > > +	indio_dev->name = client->name;
-> > > 
-> > > Isn't this an ABI breakage?
-> > 
-> > I can't confirm it.
-> > 
-> > before all patches:
-> > root@DistroKit:~ cat /sys/bus/iio/devices/iio:device3/name 
-> > ds4424
-> > 
-> > after:
-> > root@DistroKit:~ cat /sys/bus/iio/devices/iio:device3/name 
-> > ds4424
-> 
-> In ACPI case it might look differently, but I have no means to test this.
-> 
-> id->name comes strictly from an i2c table, while client->name is constructed
-> using specifics of the firmware enumeration. In DT due to some (historical?)
-> reasons the client->name has no vendor substring and hence matches 1:1 to
-> id->name. In ACPI, IIRC, the client->name is ACPI device instance name,
-> something like ABCD0123:00.
+> These functions are mainly used in communication between the dockram
+> device, asus-ec and its subdevices. Export is used here because all
+> mentioned devices can be built as modules. I can add descriptions of
+> functions into header if needed, but they should never be used outside
+> of dockram-EC complex. Same applies to 2 export functions in the EC
+> MFD.
 
-Ok, I see. Should I revert this line?
+Then you should properly document this :)
 
-Thank you,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> > > +static BIN_ATTR_RW(dockram, DOCKRAM_ENTRIES * DOCKRAM_ENTRY_SIZE);
+> > > +static DEVICE_ATTR_RW(control_reg);
+> >
+> > You did not document your new sysfs files in Documentation/ABI/ which is
+> > required.
+> >
+> > Also, why do you need a brand new user/kernel api at all?  Who is going
+> > to use this and for what?
+> >
+> 
+> These api were used mainly for debugging/logging purposes and descend
+> from original downstream EC driver. I can both add documentation into
+> ABI or remove them if that is absolutely necessary.
+
+Debugging should not be in sysfs, please put this type of stuff into
+debugfs instead if you really need it.
+
+thanks,
+
+greg k-h
 
