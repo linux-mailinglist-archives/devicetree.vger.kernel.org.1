@@ -1,258 +1,226 @@
-Return-Path: <devicetree+bounces-262163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262165-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wHoKASDJgWl1JwMAu9opvQ
-	(envelope-from <devicetree+bounces-262163-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:08:32 +0100
+	id wB8WBTrKgWl1JwMAu9opvQ
+	(envelope-from <devicetree+bounces-262165-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:13:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CEB0D751F
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:08:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A1A0D761F
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:13:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 428D430D25F1
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 10:05:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 89E773018BC3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 10:13:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97E539C62A;
-	Tue,  3 Feb 2026 10:04:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BADB939C64A;
+	Tue,  3 Feb 2026 10:13:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UQhzVGJF"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="kIGWXhrH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27FA939A810
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 10:04:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4C7303CB6;
+	Tue,  3 Feb 2026 10:13:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770113099; cv=none; b=X+2uHUP88i1KAX9XI+zQjIXRXIwoZtvY43GD8fVjd47DDaXdvd+S4VhS1pVMvm71+MVUtTLKw3kh3IBDZRl5WTc8C4xElQ87egWOkNw74khjBaNHd65Nkehh62qoDSUMSYm6/BzvX4qMPk3Ry19VV1SyLxoG47zi/rmm7Aure9U=
+	t=1770113588; cv=none; b=HUPzMeoLZrU4co3LhgyrPIJzpSvKsTJH1H37lYn+c+iGs7jJQceuzUwciPzxxtsChRcqvgxCWLm1HIZklrh6YWCyOjYB74lFwTRtFL4ksk4qV+JMi54RGykiYgeu58Svl3JclsfNOmExwpq8xqLM9Zj6K7Q4iYtuf8NOlX/8p+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770113099; c=relaxed/simple;
-	bh=Hik5asmTwUamyL0nKO98yWSe3Rq6gzjjcbyeQGAYfqU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WTee1uKwHECF2NlTwWkAjxS62y7yNj3GEtQTOf+0S/CiPjQxR0twU04hQjacf18J+PEwNqlc9IFPxcI8mTtXvQ9EU2j49JgKY52G+cjWr8qQnAJyxRLK9nyAoemAIqkJxSP2yIptefoxF20oUufR294a+7JBLRG3pZ+7ZhXVK2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UQhzVGJF; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4806e0f6b69so39597715e9.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 02:04:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770113096; x=1770717896; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z51/LSwxyVQQCwJzOsYDCUnfNLjjWuW1smeCgpUaBns=;
-        b=UQhzVGJFJIgH6ZpiyRd/POZOK/80/d/bcnh3baHNVwyNtJFlrLWdvUhcRbvSG2XV8J
-         sSsVmPqx4Hr2LcrTjYkv5DnTJ14Vip3U7866dQh3Yq6XyVV5DmxQLTIcEL2qwmL6SItx
-         hKwjW0k4+Usetc11b6ySIzfq8Hza3xD9WXqX/Zz/SCB/PJP4r8/VsRVH1OqcfpoK7t0m
-         3CQrJCAGPmvO0kNuBMkG/pGvPkfgxchuDWLh7jZGKOnZ7vxHDbFj+gTcerrYXmxZHtNk
-         XOO4lltmVPho+w6X/Jr63Ug+2tWMBYQdbmOhmD0VUqbLn8IJTAsoBVf4hUXQYG+hproO
-         rGcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770113096; x=1770717896;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=z51/LSwxyVQQCwJzOsYDCUnfNLjjWuW1smeCgpUaBns=;
-        b=KrzYjBA9xqVGL8yW/zE+1Xjg8RVhrJODDEKu8VxYefyDD1CZ4cGmK4ECqD5mZ0PP8X
-         KnEVguC/ckIjPl8YDrJOuu7Ss5poUzGh84sizsgeX5nVblSXwvquVOAvom/0RTLmXllc
-         2GHOkqZ95TtO5f/erYCDBifHsGVlKGoyXXrx7Rzbz6GIoCAIrCOsjw0v6b4Bh/LbBfJy
-         bMXo5FD1XeHvkQpKY/9MN3lBBq+I/TJaBVZ0NyIBf5ApOuyl3zFiXcSO/BxKNH+mTbjQ
-         cCxKX9sKhJdzx68KfxbFxxGPVXY0GMusYaTUnNOYjtZBwVOi4vDHSyNPy1atVBFwF8wq
-         8gCw==
-X-Gm-Message-State: AOJu0Yxvii7B0HAWEAA5PVhostSPKpKzV6IRFBvLSIqplOMJUl0iKNfe
-	MOe11xORMAylKQqMkF92LQFW7AAzbI8OB2K5Nq/foS0wdz0lfKcY9ukl
-X-Gm-Gg: AZuq6aLBDCKrOTdbMX5J0iJIquXXzF560RSIRoxTRoziqrwefAbgdQ9yivrP6f9XPkx
-	HPm9gxID0FH++OxmBxtlVZMj8z6S0SE3gmFC8+DcJwukIfS129U1F5rku/Ahb/phbB22xsz/vc9
-	Kl9VuryeWIUwKjf0cz2NNr+aDUBUDBxbe0lzcFNfZp7WbnXoumDijzlGzN7pn13b2vJcMK6JHol
-	4amuii/xu6/kx51Ih7fbznHgSSLQULhQe0risBBpSzoclLjX1kcli4z4g9oob2AWna+yZnxFjRJ
-	h0i1s930EQNKUNnt+0HsJvx4Sp1XirGBVIY3Fx4dvFRUSiQdlkBHSxvkeVW5FerKxCxO/atYpKp
-	HPY4QpTyF4h9TXE2seQyBKwiKX51v1vASiGqMKq3Jv4aKGRrvRZRBXTtwiEcXv7T2ArpU8+ErQk
-	e8qB0RWfeJTS72NrdpcAeTUe14dlD7nixsAuTkAA==
-X-Received: by 2002:a05:600c:34c4:b0:480:52fd:d2e4 with SMTP id 5b1f17b1804b1-482db012dd7mr201253775e9.0.1770113096399;
-        Tue, 03 Feb 2026 02:04:56 -0800 (PST)
-Received: from SMW024614.wbi.nxp.com ([128.77.115.158])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-482dffd47c2sm115534365e9.0.2026.02.03.02.04.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Feb 2026 02:04:55 -0800 (PST)
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	Chancel Liu <chancel.liu@nxp.com>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v3 2/2] arm64: dts: imx95-15x15-frdm: support AONMIX MQS
-Date: Tue,  3 Feb 2026 02:03:32 -0800
-Message-ID: <20260203100332.915-3-laurentiumihalcea111@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260203100332.915-1-laurentiumihalcea111@gmail.com>
-References: <20260203100332.915-1-laurentiumihalcea111@gmail.com>
+	s=arc-20240116; t=1770113588; c=relaxed/simple;
+	bh=pJ0goWwKS6MP4ur7vxzRvhXTxeUm60Sw2ceZqjxHz+o=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Eo5O9MQI470wJSEdKUvbClkYlKeeWvBzdfusLXDueq2V9e44yGjyEwc6LRHl9hVZUXcUMa1MjF3ftMB0H767BGlYMYCt2Uxr0ooz+1CyhtJdZ0Zsp8Tv7mDYFpqzVjQMuLsk8/KGmfzN5hXzg5u82znYBZ7+9EiGlC1PUATannM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=kIGWXhrH; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4f4zbH658Rz9thY;
+	Tue,  3 Feb 2026 11:03:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1770113036;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=I/WLesTWjIpwef38SdQ4JX0gdMp0IJsjyMkm8xAgFWc=;
+	b=kIGWXhrH/fv5Z6UEAwBwiKWnU1HgR++qoAwUtaSjL0r2h36xtP6PXwALTo9+2xHpHvNDpX
+	7zzG/igQFe7TZlu/681yxRxR8YlgD6kHLF6QuhXJseIxd0hRuJkjd7lHXb4skFBFEXqdzh
+	jgCyWStCK5A94b3tELO/6fl8zgCGCNMb/s3//jcJUMlZV/K5Pr/H1HM+uH6cHsMNb0K0+p
+	dqlec2zoPzHAwiMB28GejqjFcDd7uK3S7/EQdz1XjIryuXQq9Qs4emeM15JzfeIKdplYVO
+	6p1jwz37A7xjGvN5mW8FZ4tYdhEKjcGECe2yHgo5PKxvwsyUKjSv9jnrfNM/XA==
+Date: Tue, 3 Feb 2026 11:03:41 +0100
+From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukasz.majewski@mailbox.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: andrew@lunn.ch, shawnguo@kernel.org, krzk+dt@kernel.org,
+ linux-kernel@vger.kernel.org, edumazet@google.com, netdev@vger.kernel.org,
+ pabeni@redhat.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ conor+dt@kernel.org, horms@kernel.org, richardcochran@gmail.com,
+ robh@kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, wahrenst@gmx.net, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com
+Subject: Re: [net-next,v22,4/7] net: mtip: Add net_device_ops functions to
+ the L2 switch driver
+Message-ID: <20260203110341.1ce21455@wsk>
+In-Reply-To: <20260203014247.824561-2-kuba@kernel.org>
+References: <20260131233459.1625279-5-lukasz.majewski@mailbox.org>
+	<20260203014247.824561-2-kuba@kernel.org>
+Organization: mailbox.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-MBO-RS-ID: fe9904b47499ae8f7ea
+X-MBO-RS-META: zwqoyhezb5rx5qmpyzoc4ik3614jqbee
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-262163-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	TAGGED_FROM(0.00)[bounces-262165-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lunn.ch,kernel.org,vger.kernel.org,google.com,redhat.com,davemloft.net,gmail.com,lists.linux.dev,lists.infradead.org,gmx.net,pengutronix.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurentiumihalcea111@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[lukasz.majewski@mailbox.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[mailbox.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,0.0.0.0:email]
-X-Rspamd-Queue-Id: 4CEB0D751F
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:dkim,linux.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6A1A0D761F
 X-Rspamd-Action: no action
 
-From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+Hi Jakub,
 
-Add support for AONMIX MQS (i.e. MQS1).
+> This is an AI-generated review of your patch. The human sending this
+> email has considered the AI review valid, or at least plausible.
+>=20
+> For local reproduction steps see
+> https://netdev-ai.bots.linux.dev/ai-local.html ---
+> net: mtip: Add net_device_ops functions to the L2 switch driver
+>=20
+> This patch adds net_device_ops callbacks for the MTIP L2 switch
+> driver, including transmit, multicast configuration, MAC address
+> handling, and timeout recovery functions.
+>=20
+> > diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
+> > b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c ---
+> > a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c +++
+> > b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c =20
+>=20
+> [ ... ]
+>=20
+> > +static netdev_tx_t mtip_start_xmit_port(struct sk_buff *skb,
+> > +					struct net_device *dev,
+> > int port) +{
+> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
+> > +	struct switch_enet_private *fep =3D priv->fep;
+> > +	unsigned short status;
+> > +	unsigned int index;
+> > +	struct cbd_t *bdp;
+> > +	void *bufaddr;
+> > +
+> > +	spin_lock_bh(&fep->hw_lock); =20
+>=20
+> [ ... ]
+>=20
+> > +	/* Save skb pointer. */
+> > +	fep->tx_skbuff[index] =3D skb; =20
+>=20
+> mtip_start_xmit_port() stores sk_buffs in fep->tx_skbuff[index] and
+> creates DMA mappings, but mtip_switch_tx() which should complete TX
+> operations is empty:
+>=20
+> static void mtip_switch_tx(struct switch_enet_private *fep)
+> {
+> }
+>=20
+> The NAPI poll handler mtip_rx_napi() calls mtip_switch_tx() to reclaim
+> transmitted buffers. Since it does nothing, won't every transmitted
+> packet leak the skb and DMA mapping? Also, dirty_tx is never
+> advanced, so the TX ring will fill (cur_tx =3D=3D dirty_tx) and stop
+> accepting packets.
+>=20
+> jakub: maybe add a TODO comment transiently here, since later patch
+> implements the cleanup?
 
-Reviewed-by: Chancel Liu <chancel.liu@nxp.com>
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
-Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
----
- .../boot/dts/freescale/imx95-15x15-frdm.dts   | 73 +++++++++++++++++++
- 1 file changed, 73 insertions(+)
+The mtip_switch_tx() is empty as we have agreed, that I will divide
+this driver to several patches to ease the review.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
-index ca1c4966c867..0f43e3be7058 100644
---- a/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
-@@ -243,6 +243,12 @@ codec {
- 		};
- 	};
- 
-+	sound-mqs {
-+		compatible = "audio-graph-card2";
-+		links = <&sai1_port1>;
-+		label = "mqs-audio";
-+	};
-+
- 	usdhc3_pwrseq: usdhc3-pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		reset-gpios = <&pcal6524 8 GPIO_ACTIVE_LOW>;
-@@ -473,6 +479,21 @@ &mu7 {
- 	status = "okay";
- };
- 
-+&mqs1 {
-+	clocks = <&scmi_clk IMX95_CLK_SAI1>;
-+	clock-names = "mclk";
-+	pinctrl-0 = <&pinctrl_mqs1>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	mqs1_port: port {
-+		mqs1_ep: endpoint {
-+			dai-format = "left_j";
-+			remote-endpoint = <&sai1_port1_ep>;
-+		};
-+	};
-+};
-+
- &netc_blk_ctrl {
- 	status = "okay";
- };
-@@ -534,6 +555,51 @@ &pcie0 {
- 	status = "okay";
- };
- 
-+&sai1 {
-+	clocks = <&scmi_clk IMX95_CLK_BUSAON>, <&dummy>,
-+		 <&scmi_clk IMX95_CLK_SAI1>, <&dummy>,
-+		 <&dummy>, <&scmi_clk IMX95_CLK_AUDIOPLL1>,
-+		 <&scmi_clk IMX95_CLK_AUDIOPLL2>;
-+	clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3", "pll8k", "pll11k";
-+	assigned-clocks = <&scmi_clk IMX95_CLK_AUDIOPLL1_VCO>,
-+			  <&scmi_clk IMX95_CLK_AUDIOPLL2_VCO>,
-+			  <&scmi_clk IMX95_CLK_AUDIOPLL1>,
-+			  <&scmi_clk IMX95_CLK_AUDIOPLL2>,
-+			  <&scmi_clk IMX95_CLK_SAI1>;
-+	assigned-clock-parents = <0>, <0>, <0>, <0>, <&scmi_clk IMX95_CLK_AUDIOPLL1>;
-+	assigned-clock-rates = <3932160000>, <3612672000>,
-+			       <393216000>, <361267200>,
-+			       <24576000>;
-+	fsl,sai-mclk-direction-output;
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* leave unconnected - no RX in the context of MQS */
-+		port@0 {
-+			reg = <0>;
-+
-+			endpoint {
-+			};
-+		};
-+
-+		sai1_port1: port@1 {
-+			reg = <1>;
-+			mclk-fs = <512>;
-+
-+			sai1_port1_ep: endpoint {
-+				dai-format = "left_j";
-+				system-clock-direction-out;
-+				bitclock-master;
-+				frame-master;
-+				remote-endpoint = <&mqs1_ep>;
-+			};
-+		};
-+	};
-+};
-+
- &scmi_iomuxc {
- 	pinctrl_emdio: emdiogrp {
- 		fsl,pins = <
-@@ -618,6 +684,13 @@ IMX95_PAD_GPIO_IO31__LPI2C4_SCL				0x40000b9e
- 		>;
- 	};
- 
-+	pinctrl_mqs1: mqs1grp {
-+		fsl,pins = <
-+			IMX95_PAD_SAI1_TXFS__AONMIX_TOP_MQS1_LEFT		0x31e
-+			IMX95_PAD_SAI1_RXD0__AONMIX_TOP_MQS1_RIGHT		0x31e
-+		>;
-+	};
-+
- 	pinctrl_pcal6524: pcal6524grp {
- 		fsl,pins = <
- 			IMX95_PAD_GPIO_IO34__GPIO5_IO_BIT14			0x31e
--- 
-2.43.0
+Adding TODO seems to only make AI review happy, as:
 
+- The patch which adds support for FEC_MTIP_L2SW in Kconfig will be
+  sent after the driver is accepted to net-next
+
+- Those commits are even now bisectable when FEC_MTIP_L2SW is
+  enabled (when I test the setup).
+
+Anyway, if you still would like to have the TODO comment, then please
+give me a hint how it shall be written to make the AI happy...
+
+
+
+And maybe a few my thoughts:
+
+1. AI review seems to bring each time different issues - even the
+"grammatic" ones were not provided with the first AI generated review.
+
+2. I have tried to setup claudie> to run the patch set through it -
+however, it requires a paid account on a cloud/AI vendor (and I guess
+that different vendors' AI engines produce different output for the same
+"AI prompt")?
+
+
+Anyway, I do appreciate the AI review - it provides very deep insights
+through the code.
+
+>=20
+> > +static void mtip_timeout(struct net_device *dev, unsigned int
+> > txqueue) +{
+> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
+> > +
+> > +	dev->stats.tx_errors++; =20
+>=20
+> Jakub Kicinski noted in v16 review that tx_errors are already counted
+> by the network stack, and the statistic is exposed per-queue in
+> sysfs. Does incrementing tx_errors here double-count timeout events?
+>=20
+> https://lore.kernel.org/all/20250725151618.0bc84bdb@kernel.org/
+>=20
+
+Yes, this shall been removed.
+
+> > +	DO_ONCE(mtip_print_hw_state, dev);
+> > +
+> > +	schedule_work(&priv->tx_timeout_work);
+> > +} =20
+
+
+
+--=20
+Best regards,
+
+=C5=81ukasz Majewski
 
