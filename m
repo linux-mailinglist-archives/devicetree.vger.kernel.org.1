@@ -1,56 +1,55 @@
-Return-Path: <devicetree+bounces-262199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262201-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eOiBIgbbgWlBLQMAu9opvQ
-	(envelope-from <devicetree+bounces-262199-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:24:54 +0100
+	id GChWKBDcgWmDLQMAu9opvQ
+	(envelope-from <devicetree+bounces-262201-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:29:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5895DD8461
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:24:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4628FD8558
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:29:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 293B0302D9FE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 11:24:21 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1383D3098758
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 11:24:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A9E9334698;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93297335551;
 	Tue,  3 Feb 2026 11:24:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mFnhsOG2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CHnjaSZy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5582F2652B6;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CF02333451;
 	Tue,  3 Feb 2026 11:24:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770117859; cv=none; b=ADIQmVSNsvcQ06OyObksDJ68j4Q/HUQtvZ1vqUtoDWH5hhYin+O7SKt0Kn5c5MCLjaJ3BCjcCgfScvknksH4uISYrp2JwW9tgIiBa5HFwG7CtYxaHjHKysOlhJI4VLZpJI9WU2fQ5/pRR5VwfXYE4rfNtwJD6mvWFtJ+2BsGHYg=
+	t=1770117859; cv=none; b=PZ+0IsbQOA//nm8jb54LNEBOZpAtMHMjMZJwUpCewQfTs+OyaSnDS9kLsPvv2LsvDzPmD7zoziurxK91WH9tb6UQ4yWktxc+rbfL/LqU7eG/aBQx/VyD4lQcslxRNjAW5Kxfns3EHXUEVq7pC6zBCoi0q7p7toNhgxLX3T8KuKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1770117859; c=relaxed/simple;
-	bh=o3bvt5IVoPOuC7CuBgSGeBwzgK4Z/m9v9mxJ/tknRCE=;
+	bh=aBPIntVD4TEFyPcuBJUSgguCDZx2ov8b6calvONPeKE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fT0ad1SMCuHhbOar1lU55Z7p7HGTC7wkEQHAGdh+vrOQNklKi+OT3PCU7WlZcsj4wsmXjeS7mIxStOONI800ZyfqI+nLi9aesv6TPKsgjcMUdNYMlYg79wTXpj/ahK3pnBufcOb6T6znDLvf5AXHLB6NptjLkqM7NntSEHd+LYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mFnhsOG2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2DFF1C19422;
+	 In-Reply-To:To:Cc; b=orbaH8kYR5HFX1duvwwhBqXoIMspZvbmXRFSp7RmvzVw5xJQAXgMvBN5lhTGYp9MU3Rq2VP+CRN+ATIPeABdlg+chn/colZ5yE0cioHmSgom+bi7SvGlrsPgBihus9UijYCPF8SZwIwlhAUjHRCnlJutnhx9It5j+Y4foOCRTBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CHnjaSZy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3C5ACC2BC87;
 	Tue,  3 Feb 2026 11:24:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1770117859;
-	bh=o3bvt5IVoPOuC7CuBgSGeBwzgK4Z/m9v9mxJ/tknRCE=;
+	bh=aBPIntVD4TEFyPcuBJUSgguCDZx2ov8b6calvONPeKE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=mFnhsOG2cjRfSBUBPBqR9mCYNj8fOs4ZITMNRiTl7xaMbofIyVKTt3lzxd6U/vm8k
-	 KS8nmGkjgMDEZfQm4kLqY6qUveEsWVoGSHcIP5bFZBfxiZ9RfnAiioj9eRUyyHL+V7
-	 jMfybIrm0w9shhxR2Rae6sc/kZCDwaIGh9AyTbSz80FwBFDU2hMr3fUyxTNYC0Zo+7
-	 nGp1R06fbB3/FiOfuSGTn6oQSo8UxUaIEw6YxzqrwDBfEHz28KmUCxhJsVf43x3FqG
-	 HE0AW0Aqx44hcxp74J0P5+3ZeKDh2s0HGyX+dEYQiTZhpE1FYuFMBqsdPuO2KDPA+/
-	 B7r/vEtRsjL+g==
+	b=CHnjaSZyHTsAftAPy+fPDPIqMvEC7lRE/O0UvSBgmELwKwl8WtZylt0BjeG3u3zZB
+	 fkHOU8GxPThIr7LmWb4LChKDpxAgVexjsnTWH1rVLYn7pG7x2rjCS3VauPDR6+XoQf
+	 5Nu5toMXT6mL8G3wpxtFIaq/KNO75sIJPzi5Zm5skeyPD1pgz5Twf5GMAcYKQcTWuh
+	 UOArk2xFndoFRrlv8qTVNge2qJEajt7ROFIZev0rMVsD7SUhL2WhOhZjoWSd6z+NA9
+	 gHRhCCaqn+zp8FicfpgwRZ7lhoBNJPdVnCjcXnHBMy9eTSVNPx4gs8fegwC4k4Ydqh
+	 0aBjTNlG5Cvpw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A669E6E807;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3201BE6E813;
 	Tue,  3 Feb 2026 11:24:19 +0000 (UTC)
 From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Date: Tue, 03 Feb 2026 11:24:07 +0000
-Subject: [PATCH v3 1/9] MAINTAINERS: Add missing maintainer entry for
- AD8366 driver
+Date: Tue, 03 Feb 2026 11:24:08 +0000
+Subject: [PATCH v3 2/9] dt-bindings: iio: amplifiers: Add AD8366 support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,7 +58,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260203-iio-ad8366-update-v3-1-5d5636b5181a@analog.com>
+Message-Id: <20260203-iio-ad8366-update-v3-2-5d5636b5181a@analog.com>
 References: <20260203-iio-ad8366-update-v3-0-5d5636b5181a@analog.com>
 In-Reply-To: <20260203-iio-ad8366-update-v3-0-5d5636b5181a@analog.com>
 To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
@@ -71,11 +70,11 @@ Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
  Conor Dooley <conor+dt@kernel.org>, 
  Rodrigo Alencar <rodrigo.alencar@analog.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770117857; l=890;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770117857; l=3527;
  i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
- bh=IB6nsbVkeaHwQfGZNvFxArIH7f6StXcyc8CEVB24Hfs=;
- b=Np2u20H0RWI9M63yBaqwlqKY5mgZF4mY77FQQ8nqYhbiowkUHpZoBb8llNwUtdE6KmrkuQmzp
- ZdDinUBGHxzD7O4LDazec5qQojIHu4kn6Vq24/lx4/qpWu8g7A0udUF
+ bh=z+RKl7OEhNSJ75C0Rq25IwQV3k770yUF9OzeepsRMoE=;
+ b=mrY7/uK5urx1izXJEND8WQuaPxLFT3ZAMegqfEtnKKRM9QTdClOFz2ESMOVgPlEs1AchYDWp9
+ LkG/klQi7F7B+CmKiIsBagi6asLaoX6aTJDRfLizC9mWq/iRXeEtZRZ
 X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
  pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
 X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
@@ -88,12 +87,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262199-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
+	TAGGED_FROM(0.00)[bounces-262201-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
@@ -107,41 +106,141 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5895DD8461
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,analog.com:replyto,analog.com:url,analog.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,devicetree.org:url]
+X-Rspamd-Queue-Id: 4628FD8558
 X-Rspamd-Action: no action
 
 From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 
-Add maintainers entry for drivers/iio/amplifiers/ad8366.c
+Add device tree binding documentation for amplifiers and digital
+attenuators. This covers different device variants with similar
+SPI control. Each device has its own gain range and step, hence
+no fallback compatibles are used.
 
 Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
 ---
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../bindings/iio/amplifiers/adi,ad8366.yaml        | 97 ++++++++++++++++++++++
+ MAINTAINERS                                        |  1 +
+ 2 files changed, 98 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/iio/amplifiers/adi,ad8366.yaml b/Documentation/devicetree/bindings/iio/amplifiers/adi,ad8366.yaml
+new file mode 100644
+index 000000000000..2719de1166a1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/amplifiers/adi,ad8366.yaml
+@@ -0,0 +1,97 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/amplifiers/adi,ad8366.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: AD8366 and similar Gain Amplifiers and Digital Attenuators
++
++maintainers:
++  - Michael Hennerich <michael.hennerich@analog.com>
++  - Rodrigo Alencar <rodrigo.alencar@analog.com>
++
++description:
++  Digital Variable Gain Amplifiers (VGAs) and Digital Attenuators with
++  SPI interface.
++
++properties:
++  compatible:
++    enum:
++      - adi,ad8366
++      - adi,ada4961
++      - adi,adl5240
++      - adi,adrf5720
++      - adi,adrf5730
++      - adi,adrf5731
++      - adi,hmc271a
++      - adi,hmc792a
++      - adi,hmc1018a
++      - adi,hmc1019a
++      - adi,hmc1119
++
++  reg:
++    maxItems: 1
++
++  vcc-supply:
++    description: Regulator that provides power to the device.
++
++  reset-gpios:
++    maxItems: 1
++
++  enable-gpios:
++    maxItems: 1
++    description: Power-up or Serial Mode Enable GPIO.
++
++required:
++  - compatible
++  - reg
++  - vcc-supply
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++  - if:
++      not:
++        properties:
++          compatible:
++            contains:
++              const: adi,hmc271a
++    then:
++      properties:
++        reset-gpios: false
++  - if:
++      not:
++        properties:
++          compatible:
++            contains:
++              anyOf:
++                - const: adi,ad8366
++                - const: adi,ada4961
++                - const: adi,adrf5720
++                - const: adi,adrf5730
++                - const: adi,adrf5731
++                - const: adi,hmc792a
++                - const: adi,hmc1018a
++                - const: adi,hmc1019a
++                - const: adi,hmc1119
++    then:
++      properties:
++        enable-gpios: false
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      amplifier@0 {
++        compatible = "adi,ad8366";
++        reg = <0>;
++        spi-max-frequency = <1000000>;
++        vcc-supply = <&vcc_3v3>;
++        enable-gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
++      };
++    };
++...
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 1251965d70bd..ec9a6beb7619 100644
+index ec9a6beb7619..ab4e487d603a 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -1583,6 +1583,14 @@ W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/devicetree/bindings/iio/adc/adi,ad7780.yaml
- F:	drivers/iio/adc/ad7780.c
+@@ -1589,6 +1589,7 @@ M:	Rodrigo Alencar <rodrigo.alencar@analog.com>
+ L:	linux-iio@vger.kernel.org
+ S:	Supported
+ W:	https://ez.analog.com/linux-software-drivers
++F:	Documentation/devicetree/bindings/iio/amplifiers/adi,ad8366.yaml
+ F:	drivers/iio/amplifiers/ad8366.c
  
-+ANALOG DEVICES INC AD8366 DRIVER
-+M:	Michael Hennerich <Michael.Hennerich@analog.com>
-+M:	Rodrigo Alencar <rodrigo.alencar@analog.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Supported
-+W:	https://ez.analog.com/linux-software-drivers
-+F:	drivers/iio/amplifiers/ad8366.c
-+
  ANALOG DEVICES INC AD9467 DRIVER
- M:	Michael Hennerich <Michael.Hennerich@analog.com>
- M:	Nuno Sa <nuno.sa@analog.com>
 
 -- 
 2.43.0
