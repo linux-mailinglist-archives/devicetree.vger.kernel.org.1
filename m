@@ -1,328 +1,148 @@
-Return-Path: <devicetree+bounces-262006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262007-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sO5kBupWgWkFFwMAu9opvQ
-	(envelope-from <devicetree+bounces-262006-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 03:01:14 +0100
+	id KGDUFhZZgWlQFwMAu9opvQ
+	(envelope-from <devicetree+bounces-262007-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 03:10:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85E23D394C
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 03:01:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E880ED3A34
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 03:10:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D331A308E55C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 01:56:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2BA573030D22
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 02:10:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 100732F069D;
-	Tue,  3 Feb 2026 01:56:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67FFB2F1FE2;
+	Tue,  3 Feb 2026 02:10:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="FOnOyxX+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bM0uQZ4k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011068.outbound.protection.outlook.com [52.101.70.68])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A842F0C78;
-	Tue,  3 Feb 2026 01:56:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.68
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770083780; cv=fail; b=fmNsx/Pi+hnKljIn0cQbfRyb8QEYMSJ+XZ8hZ+2xkiLyShRqCcEJOrOHru2ahwCbepVeqEn4tMzqueFUhOx4OQYKJI0ezhn3pP4XVYw0UufEqAWw6uWzXv2eiHfhxoodxZtuVOK6yLW0fnKn97iRWuEQBVcTGQK3FJIAR61aBb0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770083780; c=relaxed/simple;
-	bh=AAkUszj6SPnK2uMoevOU62XdwWErsKVAqBVjYvH/RUw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=l7gyUmrDUrpEvEKbfIwgGWmAMoBkUH3lWr/y5JOkqzPBYFaQQm81InKsQkS6VSyfyFG+FyFllddqqpkAkch0ALWSoQt7SgY6wtwRe50voA1bn17DnypGFoq4xXVtPNQPD0UqwyE4cRXBhiVImaD8NYsKMCffITNRI4hLa4z2wrg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=FOnOyxX+; arc=fail smtp.client-ip=52.101.70.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Kju2JnXquzHyrT4pRPoxPlI5dwJpSsUGztQGXY0muILi+RghOGllFwnEMPEpxhyaKTi5vJhZ+5RP/kf6mVFZPL6aCYnzoFAMao4rfG5iuaJxY+yUeLwofCcxLuub7FS2RDMuW8qmiZRZM7g+pd0jVHpHrKuILqFYJNnKDgVOCKqqUnXLLMqykcK4YNa072y9YU5keqYBvOdYkERGwd0QEoqnlIA18Bhy5gKdpvzaeLf/KUakJ03GtHAe1FQoGdFVrKYfM8WlCnnbf4NIM1rAmItOkgU3IWKb9+9ZxspoCbPv+rBSZnXnfzqQGDANDEfi0li9wKrPc+tB6+H69YP03Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iA6HH3oT7NxLhdanoXDLc8ORR9yhZ3AIV2S3H1AIpj0=;
- b=THIbtCkhBHiAT6U1ttwz13jnIuuUbBURtUtkDqpzDS39oyHgJ6IE2g3UrSX0c1SknpvJaIIwV9Y/04x7sKSwNgbJav3MY19NjNofsLCgaPdAEBYpJ+jayIp8clB9gQpXBPDrmnHesmmaieWEf/Lyr0sBc9nkxyoKZMudbzvv4EqjfemswUZX0rmyjRbziTEBtP3vx5hvvSmHrFjhAVXHhl38+B9IBStfT/CHfswFExqikmUB0v3gQKMR5cSEF+AqbDyiWraVFGYbjI7IZJej8+lORcPI55eBg9f2jbfY7WVQIAgXXOONOC47vSfM/FAwGCpBERaf31UIsR0oMi6NeQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iA6HH3oT7NxLhdanoXDLc8ORR9yhZ3AIV2S3H1AIpj0=;
- b=FOnOyxX+DYRBTDWmt3xw8Q+yxQBHPoG/Fua3pwCOjEFHe9HqeSkIyq8lgRrPnMtqWAu6JeCoMe0KI5zQ1Zl0zjeZpSI5/CFtF6nZFs4BtiEEOqgEPEcTzQjSKNSeLTF7OF08pQRTO78YByfgtmygdy9lwGOe1GQAVkC+wnhx0udTrx/rjaB5od0fK6bQ42qvNySIemccyqxs+HgVOU+3LXMZ8SegVmIOmDyHsYVIjNd4cP7c+RI1kU4CjFY7ssRl311K6AZccRwfESR55q+QDv7YrGJQrN9WtSkRpe9wZHv7VShRrPv8Q+RFB17C3XUWHA7mVTeRoD9ADdmup4CgQg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13) by GVXPR04MB10301.eurprd04.prod.outlook.com
- (2603:10a6:150:1dd::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Tue, 3 Feb
- 2026 01:56:16 +0000
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::2943:c36f:6a8c:81f7]) by VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::2943:c36f:6a8c:81f7%5]) with mapi id 15.20.9564.016; Tue, 3 Feb 2026
- 01:56:16 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: hongxing.zhu@nxp.com,
-	l.stach@pengutronix.de,
-	Frank.Li@nxp.com,
-	bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	s.hauer@pengutronix.de,
-	festevam@gmail.com
-Cc: imx@lists.linux.dev,
-	kernel@pengutronix.de,
-	linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH V3 10/10] arm64: dts: imx95: Add Root Port node and PERST property
-Date: Tue,  3 Feb 2026 09:56:14 +0800
-Message-Id: <20260203015614.2957479-11-sherry.sun@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20260203015614.2957479-1-sherry.sun@nxp.com>
-References: <20260203015614.2957479-1-sherry.sun@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR01CA0125.apcprd01.prod.exchangelabs.com
- (2603:1096:4:40::29) To VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43047145355;
+	Tue,  3 Feb 2026 02:10:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770084625; cv=none; b=IZpk0Po8L0O+LcDXK8m0IblHWR98Vdwdcl3y9Az2Q2jG2/3aqB3ykdLHYd3rpXOSX4guusS/wP0B3W5QztvAr3sOq74MqOb2Iyq8Qe9vo5cB3CMetKc5tTJczArUGQI5C3THSjn9EV8isqhqi9OWSH7MMP+B+bQ6/RYq91F3EPs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770084625; c=relaxed/simple;
+	bh=IkB/CmACAS4jbkEUbnSz2O0qLvuph4aShjWmKsqVi8A=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=u6fqnacfkldUzvahQ5RbrVC3d+YPRQqeyHwr9Gg3i0sjAtxI4MGmoaySeofKvb2ICzOwV4gJyvM5gTT7V7paRJ2bT2yn8xr7pFdkcF8jrf5nAT6HdpKuVUeY3O7z3Mc3pTv0l21F6PvZ7y4TJ2UhqiVwXfn2QzHe96uS3oQT4F0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bM0uQZ4k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6A66C116C6;
+	Tue,  3 Feb 2026 02:10:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770084624;
+	bh=IkB/CmACAS4jbkEUbnSz2O0qLvuph4aShjWmKsqVi8A=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=bM0uQZ4k1LAo04z/twyCpcQ3jZxZNusTUtYmKIWjRqgtRREpl8ukDfx23c0OcuoU/
+	 Wneh/sjUL/JiMvD3xdQ76yihjxhzial5ntg8KiE4uQclx8svuzeBnrg2eSYeLJz0AG
+	 dQwdNYwlpDzEPZGcmSE/SdAIJ4zcU1fU0rdw857cDWviYy+p7dJ+JfVxAQ/NculA3z
+	 wuFK7OdCe7jMMukq4xcqbU830lcmR02twH43ACpvdU3qnJPTP5kp+arBhV6FKPpCQe
+	 NSX14ZnUAD4GfQaQc0q5jArimrsmnY9G1AtMvmeBurGxfphGN3cWRiRJ988HaWXDY7
+	 ejiuHKYt7uC8w==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id CE0C33808200;
+	Tue,  3 Feb 2026 02:10:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI0PR04MB12114:EE_|GVXPR04MB10301:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2e3096ab-4f54-4eea-8524-08de62c76a95
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|376014|7416014|52116014|366016|1800799024|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?BxIo/HIH/D+ODraQTd5mKmcuhLU57EkCQPjE5YFk7F4SDnEIM/mLM7xDpSMN?=
- =?us-ascii?Q?LZuyB8xTtrVufwvqC+I+kYrYTzIf6wASoBYbW/rmPiBe5TbxplH4ZaAk5q1N?=
- =?us-ascii?Q?5mVvLyQzdmC6vATBl/q/ourbn4sVLuOD/0uukY++D7WDabBIDEd+PmlkYFr6?=
- =?us-ascii?Q?SIAm21amPc6fIflBqWCzTpjw771mG9lDHUUwFsOW2r8AsD+o7/1XYmvneWKN?=
- =?us-ascii?Q?AIVQzfImeGg/urESzU8fx5AuivYmHgXegaD5d+9PkDXzXCfGffrsmmifdnSE?=
- =?us-ascii?Q?D0/CLYIdsSIW2Pfb5M81oBNdv2CIKllUbp+VpjjGlIDRvmwzG+qeJ2p2YOZI?=
- =?us-ascii?Q?eKuupAdK8e+RMFtMrRaLwH8gkxzZgWRatkzYdsiGDh37eLGaxMaBt6NX9OuC?=
- =?us-ascii?Q?y+MdLy9fKeqosYGuWvy00BNepkg4kGDAWfm9kwKq/Pwlj5WIuM64/exa1pSN?=
- =?us-ascii?Q?KtExUM+khAh/fbleoeDJa0D0yuJq6OnVUDsT+jYLAzqCw1bmUcWWVggNs2DN?=
- =?us-ascii?Q?36rKunZ1t0gvc1TGi16nBz++F645JV9GeMH1SafeUVODujh2fKpbxOgpOe5l?=
- =?us-ascii?Q?NU/K5FajadzDgDUC9fFn9cknBGhKT7uvnC0Lhr5ofuRN61pNDZBpycRNKKAl?=
- =?us-ascii?Q?R2RM6HzWudCSx5musTcm1JHOAblq2QzkXn7ntDyH/kqrQWJnfzweGZ8QXalU?=
- =?us-ascii?Q?EkI9lvp2oglTUbsyqpJ/QvHgCE4S9Dxk+WgXKBU5zfYB5TGHSsp8AO/WoVYB?=
- =?us-ascii?Q?dcwuYpyeSevoEXo6fFKuGWYHXBwi/zYcDNIdO7vWqmHpgPnZgaLkXMBA0TLJ?=
- =?us-ascii?Q?ckAbHxdSHMBHdiZb0cHWmCXgopvnrS8U2oSG+DhhTCp+KPF0ssAUxEeh/XLs?=
- =?us-ascii?Q?4t8OMNrgoYxI36/ZhNHH/s3NA2eXu9Pk+cuczzAmsLwEd9VA+hNf4ByY04mL?=
- =?us-ascii?Q?5rzeMQxJmmKqMOliq/1ZnMCcRSz8nxPKN+Q2fU/PV9AgqCKhi2Gz6fUvOx4s?=
- =?us-ascii?Q?OUGvuQNDIZssmxUMQ3/ta8F9gWvZ0GVpFeSlGQBUNi8JXaRrT13+1ndEJsP2?=
- =?us-ascii?Q?2xK0Pd7O0rlLcOy0lAZnGbbtM1Lbdx58wm97tuiRRX4O2FenmETs3u75OoxL?=
- =?us-ascii?Q?gfQeQOlty5qUQIfvIXtXr9TbakYe2tDWXO254FC+tE3NBVlJnzOjRK01OZO4?=
- =?us-ascii?Q?XlKw5qXZIOkRQmSbOXIb6xyN+PcJ6lcAG8j6nk76cQ8vlfQ89axyPVyOSslD?=
- =?us-ascii?Q?zwNzHm0/e818QcuHHoeH7LFMFxcbk6TugY02fQEkWrm1V/Arogk9Q+QUjkSu?=
- =?us-ascii?Q?LV0KHjf3NFXu5QmLVvnfw0lwWcFKpEOhqVp7ulzI7YZLiiNJd8nLxgHlpR4f?=
- =?us-ascii?Q?AVg3y6jQtt/odd1A6cd80V5GZ1FY3a1KN41QGz/MSTQAAk4hSBGGvPJP/eNr?=
- =?us-ascii?Q?Dv/rPttbp7wbusxXQfW38lO6TdJVCiDLM9E9aXKxk7vyQ9Hbt7Ihr7D9dBZ9?=
- =?us-ascii?Q?mAKYeSXN8IAUg2reoVbXuV+lp5GIUI8KoOSJNukHvBXCLYgoD2gEchK55iLd?=
- =?us-ascii?Q?GRfv+dIVLiw8QgT2YiRg6NYa004fDro0RYvfeCwBwpKOyVTMvF1NTcsFl9Hx?=
- =?us-ascii?Q?MkDTldgPosS++zaMkk8UA9h6n1vegrVe52uJytvDAWSQ?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(376014)(7416014)(52116014)(366016)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?7W17zBbDEJ90Gdl9XSBxmeIJh0LqGJKAoa6IPQBTdyyNdlt7Kn9QgScmn9kx?=
- =?us-ascii?Q?VHb3xnRPXoHHs7ijjG8i0OHcqn0TU9gtYYWDILc+QQPlgtcJziEAw0ym1Hdr?=
- =?us-ascii?Q?IxesSZkfb87G1iexnZUgEHBxHRN6PWSwnbd1E0rEkE8aEtWT1rDQH0mElqS8?=
- =?us-ascii?Q?NepIQucQkESBTf7mGz8syexDh5p0g96NAiY06Vt4NaA07+aiQBbjT+1VdSzc?=
- =?us-ascii?Q?S4sYyLi/YPWUJCVmW51ouTq8ln7dDGAH0bvyRKs6KZ+r7Pjj64VEkvdg7NTm?=
- =?us-ascii?Q?80dofCZR3be9Ss2DH9TMEUKiM+lksgQcyDSMwEmRtPbbhxk0M5sbgonryTfD?=
- =?us-ascii?Q?8eCv952n9+wLR8QYv2EhQ2v0vZFR0cOeiw79jMrvQ5+uybOYah0bDvyvptt3?=
- =?us-ascii?Q?0odL7/1vs2T05YVELpg4R31mLurzgILb4g9mN9By2BfimQ7iTCZx3LQzYzls?=
- =?us-ascii?Q?sx0b8P5LWsSmDLB27mYaR7LtH8bPSnq05IDdh7ZbC66Xgu0tFP+JZArR69Bo?=
- =?us-ascii?Q?7AQm0w5v95sJobNrUOcWFhQv7Ph92opw2cKa9Kt49usZooha0HlOjbc+NROa?=
- =?us-ascii?Q?flDv2qnC6dzuvYJqD0WPYLL+OQOwybSAoCSBh2ILNgDNVA1vpABRTadqIlBQ?=
- =?us-ascii?Q?kR8lMILvJn7ydmkZ5ojJj4YMUcwwEOv6Pbmn1qMLLBrdcLKiM1+wVzgSM7q0?=
- =?us-ascii?Q?REl2G7bYh4uBpg+9n0upAH1HKUoKaHD3Uh79uamDgQ0fqWTnVU3ZcrbkkLG6?=
- =?us-ascii?Q?mpvkQGDeobNrKZx8s6hO90hUrMpgZGD14crgtqAsm7gWyGZjCQEx0AzCcDkc?=
- =?us-ascii?Q?snnD4kGJWH7yYBC/MRGupwc4H2BLPMT1nUfyHnUBaSLubEaYnG+rLIPvwZTi?=
- =?us-ascii?Q?F1rYNWJiSRd3GZYukPUgH/uZ7/t/XTW0g4f1y2vYwKGTcYrtblswqNJrc8tz?=
- =?us-ascii?Q?lNyy6PAu6Em2EEJRd4xMdJ4ShEDO2PNr8SpDnL2H1T8VCw0cWr6vbb2SO0lJ?=
- =?us-ascii?Q?bYYSVEMJFWse3zvhAOnGHfsEqhT0j3Uny1DrPfMmjH+mLOJ0z/Gvc10u5vNh?=
- =?us-ascii?Q?mci7FjYjDmzXG/AgFo5JnxZavXbfRjr70XY26QsX5l01G/Hyw5dvHbm4walg?=
- =?us-ascii?Q?+5bGYwHlWl15rV4tcZK4IWR0JKzV8bUbruXznEEkw50GrmGNifzdb8EAtZ7o?=
- =?us-ascii?Q?WXozCJm9hOpOnibI2qRYOhEG5Bf9lJhfh3r8oGXOociLooMKnHjEylwHN5UU?=
- =?us-ascii?Q?LgddK+5du6cnAyAZZRbw2rfBXIMB01d72cRxvi3hZw0pgQhyuMvbMhQBNLQJ?=
- =?us-ascii?Q?Vuz2jNJy087ijXcljgODE/Zk7bj+zDO8p52sMPh++YUeDB1uc4P3hCRv4RmC?=
- =?us-ascii?Q?XeU1mrFItFSdPrQrQL6Jzg9l3pocFjovqsBr/nLO6cxo3B+2OcoLsKgzl6tt?=
- =?us-ascii?Q?J0YQysqfk58IcG0w3W6Ra3haeM14vH6e9FO6K/udIr6jkSTaVHkh2UXtiq7g?=
- =?us-ascii?Q?Pc7/7ulRFjXc3hgmAxNvq2qUYigGE6S5Nm0DAf2eqEOzmNI2fjcNlWIxKQms?=
- =?us-ascii?Q?nA2zxoBQ/ITaamXuU90iVUQ6RQ7L4X8xPqqW3JwkdjOdpVgwOnV7UFRCApXj?=
- =?us-ascii?Q?MkZTaOjuqStGX3VAx0oF+W2maQAiU6orhuzw1ZEi6SCxDz1mMsZx/kelDMng?=
- =?us-ascii?Q?kjVdvZFrXlGjs9l3q37yyEhCGUMgaiT0WbwJrsUgBM/0tgQEHim1FNCJoEq0?=
- =?us-ascii?Q?1NeskvSMjQ=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e3096ab-4f54-4eea-8524-08de62c76a95
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 01:56:16.1775
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8251iaWcGwlBoCJTZvcz59gpx8wgMvFDD2gjbYjKsMtIm3bv9FzcGtB6uylWNbGyApKMD/yH2bImeAAaJ5GK6g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10301
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v7 0/7] ptp: vmclock: Add VM generation counter and ACPI
+ notification
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <177008462163.1277679.3528738405743179040.git-patchwork-notify@kernel.org>
+Date: Tue, 03 Feb 2026 02:10:21 +0000
+References: <20260130173704.12575-1-itazur@amazon.com>
+In-Reply-To: <20260130173704.12575-1-itazur@amazon.com>
+To: Takahiro Itazuri <itazur@amazon.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org, mail@bchalios.io,
+ graf@amazon.de, mzxreary@0pointer.de, xmarcalx@amazon.co.uk,
+ dwmw@amazon.co.uk
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262006-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,google.com,kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-262007-lists,devicetree=lfdr.de,netdevbpf];
+	FROM_NEQ_ENVFROM(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TO_DN_NONE(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email,nxp.com:dkim,nxp.com:mid,4c380000:email,4c300000:email]
-X-Rspamd-Queue-Id: 85E23D394C
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E880ED3A34
 X-Rspamd-Action: no action
 
-Since describing the PCIe PERST# property under Host Bridge node is now
-deprecated, it is recommended to add it to the Root Port node, so
-creating the Root Port node and add the reset-gpios property in Root
-Port.
+Hello:
 
-Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
----
- .../boot/dts/freescale/imx95-15x15-evk.dts    |  5 +++++
- .../boot/dts/freescale/imx95-19x19-evk.dts    | 10 +++++++++
- arch/arm64/boot/dts/freescale/imx95.dtsi      | 22 +++++++++++++++++++
- 3 files changed, 37 insertions(+)
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-index d4184fb8b28c..42bc09e48b80 100644
---- a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-@@ -554,6 +554,7 @@ &netcmix_blk_ctrl {
- &pcie0 {
- 	pinctrl-0 = <&pinctrl_pcie0>;
- 	pinctrl-names = "default";
-+	/* This property is deprecated, use reset-gpios from the Root Port node. */
- 	reset-gpio = <&gpio5 13 GPIO_ACTIVE_LOW>;
- 	vpcie-supply = <&reg_m2_pwr>;
- 	vpcie3v3aux-supply = <&reg_m2_pwr>;
-@@ -568,6 +569,10 @@ &pcie0_ep {
- 	status = "disabled";
- };
- 
-+&pcie0_port0 {
-+	reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
-+};
-+
- &sai1 {
- 	assigned-clocks = <&scmi_clk IMX95_CLK_AUDIOPLL1_VCO>,
- 			  <&scmi_clk IMX95_CLK_AUDIOPLL2_VCO>,
-diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-index 041fd838fabb..6f193cf04119 100644
---- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-@@ -540,6 +540,7 @@ &netc_timer {
- &pcie0 {
- 	pinctrl-0 = <&pinctrl_pcie0>;
- 	pinctrl-names = "default";
-+	/* This property is deprecated, use reset-gpios from the Root Port node. */
- 	reset-gpio = <&i2c7_pcal6524 5 GPIO_ACTIVE_LOW>;
- 	vpcie-supply = <&reg_pcie0>;
- 	vpcie3v3aux-supply = <&reg_pcie0>;
-@@ -554,9 +555,14 @@ &pcie0_ep {
- 	status = "disabled";
- };
- 
-+&pcie0_port0 {
-+	reset-gpios = <&i2c7_pcal6524 5 GPIO_ACTIVE_LOW>;
-+};
-+
- &pcie1 {
- 	pinctrl-0 = <&pinctrl_pcie1>;
- 	pinctrl-names = "default";
-+	/* This property is deprecated, use reset-gpios from the Root Port node. */
- 	reset-gpio = <&i2c7_pcal6524 16 GPIO_ACTIVE_LOW>;
- 	vpcie-supply = <&reg_slot_pwr>;
- 	vpcie3v3aux-supply = <&reg_slot_pwr>;
-@@ -570,6 +576,10 @@ &pcie1_ep {
- 	status = "disabled";
- };
- 
-+&pcie1_port0 {
-+	reset-gpios = <&i2c7_pcal6524 16 GPIO_ACTIVE_LOW>;
-+};
-+
- &sai1 {
- 	#sound-dai-cells = <0>;
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-index 55e2da094c88..7c5f350fe3a4 100644
---- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-@@ -1883,6 +1883,17 @@ pcie0: pcie@4c300000 {
- 			iommu-map-mask = <0x1ff>;
- 			fsl,max-link-speed = <3>;
- 			status = "disabled";
-+
-+			pcie0_port0: pcie@0 {
-+				compatible = "pciclass,0604";
-+				device_type = "pci";
-+				reg = <0x0 0x0 0x0 0x0 0x0>;
-+				bus-range = <0x01 0xff>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
- 		};
- 
- 		pcie0_ep: pcie-ep@4c300000 {
-@@ -1960,6 +1971,17 @@ pcie1: pcie@4c380000 {
- 			iommu-map-mask = <0x1ff>;
- 			fsl,max-link-speed = <3>;
- 			status = "disabled";
-+
-+			pcie1_port0: pcie@0 {
-+				compatible = "pciclass,0604";
-+				device_type = "pci";
-+				reg = <0x0 0x0 0x0 0x0 0x0>;
-+				bus-range = <0x01 0xff>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
- 		};
- 
- 		pcie1_ep: pcie-ep@4c380000 {
+On Fri, 30 Jan 2026 17:35:59 +0000 you wrote:
+> Similarly to live migration, starting a VM from some serialized state
+> (aka snapshot) is an event which calls for adjusting guest clocks, hence
+> a hypervisor should increase the disruption_marker before resuming the
+> VM vCPUs, letting the guest know.
+> 
+> However, loading a snapshot, is slightly different than live migration,
+> especially since we can start multiple VMs from the same serialized
+> state. Apart from adjusting clocks, the guest needs to take additional
+> action during such events, e.g. recreate UUIDs, reset network
+> adapters/connections, reseed entropy pools, etc. These actions are not
+> necessary during live migration. This calls for a differentiation
+> between the two triggering events.
+> 
+> [...]
+
+Here is the summary with links:
+  - [v7,1/7] ptp: vmclock: add vm generation counter
+    https://git.kernel.org/netdev/net-next/c/3495064b6d65
+  - [v7,2/7] ptp: vmclock: support device notifications
+    https://git.kernel.org/netdev/net-next/c/3b1526ddb254
+  - [v7,3/7] dt-bindings: ptp: Add amazon,vmclock
+    https://git.kernel.org/netdev/net-next/c/1d5a66045afa
+  - [v7,4/7] ptp: ptp_vmclock: Add device tree support
+    https://git.kernel.org/netdev/net-next/c/ddc867d0b5db
+  - [v7,5/7] ptp: ptp_vmclock: add 'VMCLOCK' to ACPI device match
+    https://git.kernel.org/netdev/net-next/c/ed4d23ed469c
+  - [v7,6/7] ptp: ptp_vmclock: remove dependency on CONFIG_ACPI
+    https://git.kernel.org/netdev/net-next/c/ac1e7404924c
+  - [v7,7/7] ptp: ptp_vmclock: return TAI not UTC
+    https://git.kernel.org/netdev/net-next/c/562f59fe3291
+
+You are awesome, thank you!
 -- 
-2.37.1
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
