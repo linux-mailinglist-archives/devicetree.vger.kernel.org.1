@@ -1,129 +1,150 @@
-Return-Path: <devicetree+bounces-261970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261972-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YBLCORY8gWk8FAMAu9opvQ
-	(envelope-from <devicetree+bounces-261970-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 01:06:46 +0100
+	id EJXCKYpAgWl6FAMAu9opvQ
+	(envelope-from <devicetree+bounces-261972-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 01:25:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47CB4D2D5B
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 01:06:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 077ABD2F43
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 01:25:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BF9B630036C3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 00:06:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 98ABB3069D52
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 00:21:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABC573FFD;
-	Tue,  3 Feb 2026 00:06:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 733402F872;
+	Tue,  3 Feb 2026 00:21:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ey0QQoH6"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="FJ6tOz39"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89FC23EBF00
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 00:06:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92F161A304A
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 00:21:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770077199; cv=none; b=ddSYGDiHu+0Iin82yi+LlPc81/Yi4hepqiZ9t6KTfczSZLa7KPwDunrtV+sLCim5TnPwonrtQEsO2GEUZ3p2ub2u/sDXblbNWU0b9btkNkxqyOmRQPtfL6H0Ri+scaC6UkW5GlM6dktR1srLk5UcuoTCtrd3A9jW+Ro/bvud4D0=
+	t=1770078118; cv=none; b=KPnQGrBbeJqcT39Nd8poXD40LmLjxPYYZI3xldCHh0q+ohYI+rtC3yhP9+fP2sh3GX+oOmt+t143sIoa6xCpoyjzBDvsfYtqUhAW2TF6IQLUASR+JbokwNuA1dh5ePmpFDeNAoz/GyMfqiJn59hYrB4f3UGeOQdanBXEuppD7LM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770077199; c=relaxed/simple;
-	bh=SYeGoreiX8dI0LCiK/jiS7IA90ZFkVbLZTsO3MdCF1k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rjuHrc4sWCfWG2PnGOO6586OZDDAMq4n9KuiQ/b+pnEmO8IKPQEDG9tdbWnjWG9L4zt7J/WKgPplPJFdPGPT5HIkeIu2JPISrNd/MggxZP+o/USY6I7MeF3KOcZ0IETc1lhO1Cw+Ol+TGvi4ph+Lk6R8bKTJqVXylmj57CwIAOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ey0QQoH6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DAC7C4AF09
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 00:06:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770077199;
-	bh=SYeGoreiX8dI0LCiK/jiS7IA90ZFkVbLZTsO3MdCF1k=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Ey0QQoH6BwuTR8fff+OqmjThDYe7eCajwESX4d2drLFd3bL1lc0hNeSV4U52uY3WP
-	 QcUpsSxajR/4h0BPohLq74kEN7nf37cBqFJWcGkGyIozqCNdodAdU+s64a70q5ZP/D
-	 2yXwXiH17dKeXfl/TyWRqjoxWYySycZmYLVjBP7tIzkVjUhSTdZ1tbohUOFJrELwUl
-	 SojBUyG2lQp7gqXyncwS4gon4SEEwFi+jCgRhKr5iELp9S0ji5LdDwX7EgunBvpAaK
-	 uM/3qojAupFuEw6KItnYABCiXYRxurRftIAWX6qbTN1haoU4FNOSOsG2gT3r/hYbou
-	 OCo4b+pYqLUWQ==
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-78f89501423so3108927b3.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 16:06:39 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUHSAOccPmLqmXeEgXaJvD77W8/o17JvYcZDegWsiMSuC0214U2+w1kLRvPuerRsT6OY035orOnYPU7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6pUGKvLHrrnFPznNZ3jJwLU9ldOykyDhui5L3QvCSxnnzNIfy
-	F3Wg88ueDgYAP3uf9eiahMZip5ipvQTUu/Ewu5OjSDje37MH0CBEXAba19cWSYO/7UFRG7x1OZN
-	OSwoClGA3ayEM4VUWqW0uEHaJ7Si/e/s=
-X-Received: by 2002:a53:c78b:0:b0:644:60d9:751f with SMTP id
- 956f58d0204a3-649d2f80c52mr930885d50.44.1770077198799; Mon, 02 Feb 2026
- 16:06:38 -0800 (PST)
+	s=arc-20240116; t=1770078118; c=relaxed/simple;
+	bh=yl42pVmd/Pi0ztQ54DneU35smjr2f4vAu8DEetdqRuY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=bwkOAhfEcD7aI3ZQ/SbVcygnsOOCOTTzCPWUTTJDjaVjf8tbVXSKTP8R1x42PQAtTbu+H8KVEsEHOsGaaTztrh/kZnFgtQbpM03hqpsXSqj1Bp7f9LTpN3q+q93eRd7wz9yp93o54uXThS1ugba5QBxxm0+sBUwqefT63WeBv0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=FJ6tOz39; arc=none smtp.client-ip=91.218.175.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1770078104;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=+2XTSPZI0r7r0xxXuEFfDuh4AMy4Nmaw4oOpOLhAvXI=;
+	b=FJ6tOz39ef3x9lh948TOCFUoh+KaPWT5sVuHy7f6TNRN961P6OhIhTYx8BzBhwsRkuCnIk
+	7ZX4HfvTe1DCCbScLcc5RJgoTVjeyK+cLEbgABoOu2v2hblyR4dfOFPbvuwTb1AuLaSmVc
+	G8bsfPUu8zZv8/2dra5Tpp53PzK7PvE=
+From: Sean Anderson <sean.anderson@linux.dev>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	linux-phy@lists.infradead.org
+Cc: =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+	linux-kernel@vger.kernel.org,
+	Michal Simek <michal.simek@amd.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Sean Anderson <sean.anderson@linux.dev>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH 0/8] phy: zynqmp: Perform complete initialization, including ILL calibration
+Date: Mon,  2 Feb 2026 19:21:20 -0500
+Message-Id: <20260203002128.935842-1-sean.anderson@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260128085114.1137725-1-pshete@nvidia.com> <20260128085114.1137725-2-pshete@nvidia.com>
-In-Reply-To: <20260128085114.1137725-2-pshete@nvidia.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 3 Feb 2026 01:06:28 +0100
-X-Gmail-Original-Message-ID: <CAD++jL=DOjp-k1XM6kULURQF5winWWqBm-S3JYFEVsZ8FpsY8Q@mail.gmail.com>
-X-Gm-Features: AZwV_Qhka7MsaZkB33uaVL0wGJTuPnFbgweVPaF4CVuqk1UUYD-WghDyZ7pRfdo
-Message-ID: <CAD++jL=DOjp-k1XM6kULURQF5winWWqBm-S3JYFEVsZ8FpsY8Q@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] gpio: tegra186: Add support for Tegra264
-To: Prathamesh Shete <pshete@nvidia.com>
-Cc: brgl@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	thierry.reding@gmail.com, jonathanh@nvidia.com, robh@kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Thierry Reding <treding@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261970-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,nvidia.com,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261972-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 47CB4D2D5B
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sean.anderson@linux.dev,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:mid,linux.dev:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 077ABD2F43
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 9:51=E2=80=AFAM Prathamesh Shete <pshete@nvidia.com=
-> wrote:
+This series completely initializes the GTRs in Linux, making all
+bootloader initialization (as performed by init_serdes() in
+psu_init_gpl.c) optional. This gives the following advantages:
 
-> Extend the existing Tegra186 GPIO controller driver with support for the
-> GPIO controller found on Tegra264.
->
-> Use the "wakeup-parent" phandle from the GPIO device tree node to
-> ensure the GPIO driver associates with the intended PMC device.
-> Relying only on compatible-based lookup can select an unexpected
-> PMC node, so fall back to compatible-based lookup when the phandle
-> is not present.
->
-> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
-> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
-> Acked-by: Thierry Reding <treding@nvidia.com>
+- On some boards (mine) the reference clocks may not be configured in
+  SPL/FSBL. So ILL calibration will fail (and take a long time to do so)
+  unless we defer initialization to U-Boot/Linux where the phy driver
+  can request the clocks.
+- If PCIe/SATA are not used in U-Boot, ILL calibration can be deferred
+  until Linux when it can be done it parallel with other initialization.
+- We will have flexibility to switch between different configurations at
+  runtime. For example, this could allow supporting both SATA and PCIe M.2
+  cards with [1].
 
-Reviewed-by: Linus Walleij <linusw@kernel.org>
+I have tested this series with DP, PCIe, SGMII, and SATA. USB3 is broken
+on my dev board at the moment (independent of this series; need to
+investigate) so I have not tested that. I have an equivalent set of
+patches for U-Boot that I will try to post soon.
 
-Yours,
-Linus Walleij
+[1] https://lore.kernel.org/linux-pci/20260107-pci-m2-v5-0-8173d8a72641@oss.qualcomm.com/
+
+
+Sean Anderson (8):
+  dt-bindings: pci: xilinx-nwl: Add resets
+  phy: zynqmp: Refactor bus width configuration into helper
+  phy: zynqmp: Refactor common phy initialization into a helper
+  phy: zynqmp: Calibrate ILL if necessary
+  phy: zynqmp: Initialize chicken bits
+  PCI: xilinx-nwl: Split phy_init from phy_power_on
+  PCI: xilinx-nwl: Reset the core during probe
+  arm64: zynqmp: Add PCIe resets
+
+ .../bindings/pci/xlnx,nwl-pcie.yaml           |  17 +
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |   4 +
+ drivers/pci/controller/pcie-xilinx-nwl.c      | 255 +++++++--
+ drivers/phy/xilinx/phy-zynqmp.c               | 487 +++++++++++++++++-
+ 4 files changed, 713 insertions(+), 50 deletions(-)
+
+-- 
+2.35.1.1320.gc452695387.dirty
+
 
