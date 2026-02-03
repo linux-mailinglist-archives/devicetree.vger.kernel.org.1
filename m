@@ -1,215 +1,158 @@
-Return-Path: <devicetree+bounces-262400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262401-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kPv9JfBTgmliSQMAu9opvQ
-	(envelope-from <devicetree+bounces-262400-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 21:00:48 +0100
+	id KB+PC+pVgmntSQMAu9opvQ
+	(envelope-from <devicetree+bounces-262401-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 21:09:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 414D7DE532
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 21:00:48 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51EACDE5DC
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 21:09:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E325C3062202
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 20:00:44 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AFAC4300A589
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 20:09:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8345423FC41;
-	Tue,  3 Feb 2026 20:00:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA065368294;
+	Tue,  3 Feb 2026 20:09:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vgjzg0JC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EKCY9pny"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E3CC13AA2D;
-	Tue,  3 Feb 2026 20:00:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 589DC316193
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 20:09:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770148844; cv=none; b=VTaTowldsH19nTwlcdGcBHm5tn0GHNnIRHYv8OauIW2p6kjWa6RKXl8MRikISF+5TCVPdt2PCSaERHQHAWb05tENE1RgUGtSBajuoScSvxULA9gBd++wBuECMgPu4YJFdksZyrwefsfg779hZAMMs+L/Kizn76JT8S4t7jjnuuU=
+	t=1770149348; cv=none; b=hRtRecfCAeUw6kOgnBUDpPgjzXaYBKKP2uePvMUFQuK2EQSp+8O0OugmHMyiEsBy0sU66dmA1rBXJSQP+BoJDDlQog9QDGtjdSUjxo/vU4cQp/kB8DdMKGr1JLqp+abo+2db/KMEhXuo7cWW8EO1Ishinl+AspQovRWVgiI4USE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770148844; c=relaxed/simple;
-	bh=eKNCgEBO6pJ63QzdwEPsSvrcDi0qCByDuzz0mMYiFKc=;
+	s=arc-20240116; t=1770149348; c=relaxed/simple;
+	bh=KXmsqY+Yl9J6VC7C3sRoq5iSnXOF93yU2uJPTfo6GLs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HOUuNZHcvji/CV3LH3bMZzI3y/fNU0q4Zt0RPdno6CyxX9OJEKa04xqfoo4KnWRht67cgRLe+DqIFeOssyz/S75HEJ4KZjQn+MsPy/sNX8uHVkkHtULMY4ZlfC+tFe9Dn0opcNtwY0oGn1EiPjJACgTL//q9favZ1G7k1NZpdag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vgjzg0JC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C604C116D0;
-	Tue,  3 Feb 2026 20:00:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770148843;
-	bh=eKNCgEBO6pJ63QzdwEPsSvrcDi0qCByDuzz0mMYiFKc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Vgjzg0JCTwi6+FOUDOBQKyIoi3VkM882ESZIcy/MG2dCcCJs9Ai4arJyd0ixH8v7m
-	 S7It/2f7BM11O0G7UWgPil4+56euEY5wTzKUXrz/IXiLRouE1vxXoSrSuYg+QRj5Zt
-	 9ltn3owIlgdSX0rys2mVxyHescG6B/LRC7Lmaam45gPO9xj3d1bdmLcdCDhiSADNL2
-	 777RTr+vSdumMGGFRngZI+TZ2HzwitiZbd3y7h8kX34Snxiisu/uiy5mP4W1V0Brac
-	 ComsQ4qzNb+IUiacCvJBGtYNo7CMxAg39nNbwHdAOyUksePbGrCtKaJZG2ODB6B90l
-	 i/ejsWPrZKCag==
-Date: Tue, 3 Feb 2026 12:00:42 -0800
-From: Drew Fustini <fustini@kernel.org>
-To: yunhui cui <cuiyunhui@bytedance.com>
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Adrien Ricciardi <aricciardi@baylibre.com>,
-	Nicolas Pitre <npitre@baylibre.com>,
-	Kornel =?utf-8?Q?Dul=C4=99ba?= <mindal@semihalf.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Atish Kumar Patra <atishp@rivosinc.com>,
-	Vasudevan Srinivasan <vasu@rivosinc.com>,
-	Ved Shanbhogue <ved@rivosinc.com>,
-	Chen Pei <cp0613@linux.alibaba.com>,
-	Liu Zhiwei <zhiwei_liu@linux.alibaba.com>,
-	Weiwei Li <liwei1518@gmail.com>, guo.wenjia23@zte.com.cn,
-	liu.qingtao2@zte.com.cn,
-	Reinette Chatre <reinette.chatre@intel.com>,
-	Tony Luck <tony.luck@intel.com>, Babu Moger <babu.moger@amd.com>,
-	Peter Newman <peternewman@google.com>,
-	Fenghua Yu <fenghua.yu@intel.com>,
-	James Morse <james.morse@arm.com>, Ben Horgan <ben.horgan@arm.com>,
-	Dave Martin <Dave.Martin@arm.com>, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, x86@kernel.org,
-	Rob Herring <robh@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Robert Moore <robert.moore@intel.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: Re: [External] [PATCH RFC v2 16/17] acpi: riscv: Parse RISC-V
- Quality of Service Controller (RQSC) table
-Message-ID: <aYJT6pjtWZIUBc1J@x1>
-References: <20260128-ssqosid-cbqri-v2-0-dca586b091b9@kernel.org>
- <20260128-ssqosid-cbqri-v2-16-dca586b091b9@kernel.org>
- <CAEEQ3wnAqSFUhezyUmJQut8eXThGJ1zxtdNTbFtJusyDstgVUg@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NKX34qDfr38FyvzcoEgskh8F+hj9RsvHj3ATRkHyD8jMSMm0nNTmsViyETK6Tt7Pr77WAb7PwWOgtR0rOn09XbUpwgRarK5mZldK5HM6OXFD5kwKWcsJAM3igLl7MyEtxzf9wYI0wfzKDDXZnNJnQLLsFTzD9+0TKdfOEsPr6Hc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EKCY9pny; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-34c3259da34so12350a91.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 12:09:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770149347; x=1770754147; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tVQhqA97aNi4iwum9p1p2SwQkrduofkl+pPHMaPCBPM=;
+        b=EKCY9pnyCnAXESn4UGgZ0nOZG3kiGfVHstEsfYvE+ptMkDRD0QcgRAvJcp+kvb1W3J
+         TOrIqLUFES/nwzzvD9shzWxNQih0TBfeaikD4e5Tmxu1xq+SB999q/RMNHokk5p2DhiX
+         oVqf5mpnxZiA4Pbrb9TIRo3cEeaH7+rAjdDGZQDBhUj3JETIUQtt/Log1qiMUrsOcO07
+         ci3HaCooruZFdSV82+E82fB8i3rU4s5w/CpLo4afUSWBKSS/v+VBCLYkdt0Yj6nM+44C
+         qTG+BfjFU6alalAY3c56cYC3Ms6taxhVZ5SMWlX8PPxWybqrQRNXGdY80gBms/Gcw5u4
+         JGEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770149347; x=1770754147;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=tVQhqA97aNi4iwum9p1p2SwQkrduofkl+pPHMaPCBPM=;
+        b=LaotackaBW38iAP9z6VF0aT3l98i1QML/JH6DdNB3TPaVcxp9NoYoFhsv0c+En228A
+         nUoHU51gDgFsnXy08yxdBwdbdnWuHvA4u8xr38LM/wuIEph/EG3mFVOfNbx6OORvhQBZ
+         PFKmwyedFt7XgyRJO3ypC16yahnmhnwlsiNLzk6RM+6MGQIAhtj8Exobud5qcfA4vSxf
+         JZAWBueMYpjb1wZRJV/qJUoZ53/NW20Nja7QrncDlhFH39COn2WiMzDXSQt/BOo4JDtL
+         NmyHTJ4vYuZxu8EMv5F+72XK0iON9XRaHsROhU+2tB3w0Kgt/6s1iSJgogJIvIno+Qc7
+         yXBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWE7QB1+iix6U4Asz243DKUQ9w9pOJT7x2CSRkf5mCewxK56M7JwUBQMTCoD0WI3t3UFdhtgSm6rPDh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJtHxTYXyd5mOqlo6kcrlXOdLQjpnoutm+EooXa0i0CuynlYT4
+	VCTCIgCSZ9c5oD1SMkqEySg3A4bQsykWU+qLbvauWJDY3J6+lhcXBPWG
+X-Gm-Gg: AZuq6aJD1gHdBIJtSFURWPO2HSM5DauzyCmi290ItTRo1WVr+mUb5y3n81bPhoZJ/Hj
+	s2At3qrIa97PT61LvqmSSGl2A6tm5y/wgbtDZFpq/Xa0CNXRPt1pV+eBcHjP/WGW1xiKRnhHg02
+	AQwy6uoTguj7C+ilgyYiK3U9yR8eVgPmXUKc7d7OZEKgaKnDO1xeNrmarsePIqU93d296X4IUGW
+	XSW6ApBIcuUxO8dmOUyty4YvDpZJpio4uz55Qib2DOT0jyMjVoiUr5cKn2fdI5kbdLLBXNsF3Fr
+	DPAM/R6t00KNR7UELM1iG/h+DskV9hVi5F5r1ioC4kppYlZHbCg3BR1EfQdxmCypmOOYXyfFQDB
+	FS5LeSNG9LXgeNDX/KEBI/UQVPaZ9duB1jvWS7clHpvb411YPrueFWvdyKbrO/oBvVh64nQ3gtF
+	6yesxyc6qgAnUJOmpMGt/w4e/yLxSwECFjW+E=
+X-Received: by 2002:a17:90b:4c51:b0:32d:f352:f764 with SMTP id 98e67ed59e1d1-354870b1e6dmr395651a91.2.1770149346689;
+        Tue, 03 Feb 2026 12:09:06 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35485b77664sm479374a91.0.2026.02.03.12.09.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Feb 2026 12:09:06 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Tue, 3 Feb 2026 12:09:05 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: victor.duicu@microchip.com
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	corbet@lwn.net, marius.cristea@microchip.com,
+	linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] hwmon: add support for MCP998X
+Message-ID: <fb5fcb40-1cce-4de8-83a9-c8a7f308505f@roeck-us.net>
+References: <20260127151823.9728-1-victor.duicu@microchip.com>
+ <20260127151823.9728-3-victor.duicu@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAEEQ3wnAqSFUhezyUmJQut8eXThGJ1zxtdNTbFtJusyDstgVUg@mail.gmail.com>
+In-Reply-To: <20260127151823.9728-3-victor.duicu@microchip.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262400-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[41];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,linux.alibaba.com,gmail.com,zte.com.cn,intel.com,amd.com,google.com,arm.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 414D7DE532
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_FROM(0.00)[bounces-262401-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DMARC_NA(0.00)[roeck-us.net];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_NONE(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,microchip.com:email,roeck-us.net:mid]
+X-Rspamd-Queue-Id: 51EACDE5DC
 X-Rspamd-Action: no action
 
-On Mon, Feb 02, 2026 at 07:08:48PM +0800, yunhui cui wrote:
-> Hi Drew,
+On Tue, Jan 27, 2026 at 05:18:22PM +0200, victor.duicu@microchip.com wrote:
+> From: Victor Duicu <victor.duicu@microchip.com>
 > 
-> On Thu, Jan 29, 2026 at 4:28 AM Drew Fustini <fustini@kernel.org> wrote:
-> >
-> > Add driver to parse the ACPI RISC-V Quality of Service Controller (RQSC)
-> > table which describes the capacity and bandwidth QoS controllers in a
-> > system. The QoS controllers implement the RISC-V Capacity and Bandwidth
-> > Controller QoS Register Interface (CBQRI) specification.
-> >
-> > Link: https://github.com/riscv-non-isa/riscv-cbqri/releases/tag/v1.0
-> > Link: https://github.com/riscv-non-isa/riscv-rqsc/blob/main/src/
-> > Signed-off-by: Drew Fustini <fustini@kernel.org>
-> > ---
-> >  MAINTAINERS                   |   1 +
-> >  arch/riscv/include/asm/acpi.h |  10 ++++
-> >  drivers/acpi/riscv/Makefile   |   2 +-
-> >  drivers/acpi/riscv/rqsc.c     | 112 ++++++++++++++++++++++++++++++++++++++++++
-> >  4 files changed, 124 insertions(+), 1 deletion(-)
-> >
-[..]
-> > +int acpi_parse_rqsc(struct acpi_table_header *table)
-> > +{
-> > +       struct acpi_table_rqsc *rqsc;
-> > +       int err;
-> > +
-> > +       BUG_ON(acpi_disabled);
-> > +       if (!table) {
-> > +               rqsc = acpi_get_rqsc();
-> > +               if (!rqsc)
-> > +                       return -ENOENT;
-> > +       } else {
-> > +               rqsc = (struct acpi_table_rqsc *)table;
-> > +       }
-> > +
-> > +       for (int i = 0; i < rqsc->num; i++) {
-> > +               struct cbqri_controller_info *ctrl_info;
-> > +
-> > +               ctrl_info = kzalloc(sizeof(*ctrl_info), GFP_KERNEL);
-> > +               if (!ctrl_info)
-> > +                       return -ENOMEM;
-> > +
-> > +               ctrl_info->type = rqsc->f[i].type;
-> > +               ctrl_info->addr = rqsc->f[i].reg[1];
-> > +               ctrl_info->size = CBQRI_CTRL_SIZE;
-> > +               ctrl_info->rcid_count = rqsc->f[i].rcid;
-> > +               ctrl_info->mcid_count = rqsc->f[i].mcid;
-> > +
-> > +               pr_info("Found controller with type %u addr 0x%lx size  %lu rcid  %u mcid  %u",
-> > +                       ctrl_info->type, ctrl_info->addr, ctrl_info->size,
-> > +                       ctrl_info->rcid_count, ctrl_info->mcid_count);
-> > +
-> > +               if (ctrl_info->type == CBQRI_CONTROLLER_TYPE_CAPACITY) {
-> > +                       ctrl_info->cache.cache_id = rqsc->f[i].res.id1;
-> > +                       ctrl_info->cache.cache_level =
-> > +                               find_acpi_cache_level_from_id(ctrl_info->cache.cache_id);
-> > +
-> > +                       struct acpi_pptt_cache *cache;
-> > +
-> > +                       cache = find_acpi_cache_from_id(ctrl_info->cache.cache_id);
-> > +                       if (cache) {
-> > +                               ctrl_info->cache.cache_size = cache->size;
-> > +                       } else {
-> > +                               pr_warn("%s(): failed to determine size for cache id 0x%x",
-> > +                                       __func__, ctrl_info->cache.cache_id);
-> > +                               ctrl_info->cache.cache_size = 0;
-> > +                       }
-> > +
-> > +                       pr_info("Cache controller has ID 0x%x level %u size %u ",
-> > +                               ctrl_info->cache.cache_id, ctrl_info->cache.cache_level,
-> > +                               ctrl_info->cache.cache_size);
-> > +
-> > +                       /*
-> > +                        * For CBQRI, any cpu (technically a hart in RISC-V terms)
-> > +                        * can access the memory-mapped registers of any CBQRI
-> > +                        * controller in the system.
-> > +                        */
-> > +                       err = cpumask_parse("FF", &ctrl_info->cache.cpu_mask);
+> This is the driver for Microchip MCP998X/33 and MCP998XD/33D
+> Multichannel Automotive Temperature Monitor Family.
 > 
-> Hardcode? acpi_pptt_get_cpumask_from_cache_id(ctrl_info->cache.cache_id,
-> &ctrl_info->cache.cpu_mask); ?
+> Signed-off-by: Victor Duicu <victor.duicu@microchip.com>
+> ---
 
-Thanks, I will give that a try as the current value 0xFF is not flexible.
+More feedback, with compliments from Gemini :-).
 
-Drew
+[ ... ]
+
+> +	case hwmon_temp:
+> +		switch (attr) {
+> +		case hwmon_temp_max:
+> +			if (channel)
+> +				addr = MCP9982_EXT_HIGH_LIMIT_ADDR(channel);
+> +			else
+> +				addr = MCP9982_INTERNAL_HIGH_LIMIT_ADDR;
+> +
+> +			return ret = mcp9982_write_limit(priv, addr, val);
+
+Pointless assignment to ret.
+
+Thanks,
+Guenter
 
