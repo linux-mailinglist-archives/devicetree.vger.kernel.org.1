@@ -1,1159 +1,331 @@
-Return-Path: <devicetree+bounces-261981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261983-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id APNEIr1EgWnNFAMAu9opvQ
-	(envelope-from <devicetree+bounces-261981-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 01:43:41 +0100
+	id mI/JLCxFgWnNFAMAu9opvQ
+	(envelope-from <devicetree+bounces-261983-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 01:45:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C34C8D31C3
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 01:43:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B29FD31E2
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 01:45:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8E8553060BC0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 00:39:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 20923300DD4F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 00:45:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C3C02116F4;
-	Tue,  3 Feb 2026 00:39:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FCC43594A;
+	Tue,  3 Feb 2026 00:45:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="E+Tk3oDU"
+	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="XOXgBh//";
+	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="iw5kRuN2";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="Xm9ELwz+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11013057.outbound.protection.outlook.com [40.93.201.57])
+Received: from mx0b-00230701.pphosted.com (mx0b-00230701.pphosted.com [148.163.158.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AF5C1E5B88;
-	Tue,  3 Feb 2026 00:39:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.201.57
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC11E1E49F;
+	Tue,  3 Feb 2026 00:45:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.158.9
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770079154; cv=fail; b=CAt0/g9JJJ6ht3QNa2l20snYEu8GPC9byw8P/MbjEDwyud0q3PVRibS1V9m7QrBFlH8nJKvzuLGXKruz/CjpBXfQiUaWu1+H7DF58EMzkVdMoFJcGXNjO3Dnb/fghGgUvb5RjjE/Faao4aie8/ooR0RWzzkEiZoHnHvt82Hw/GQ=
+	t=1770079530; cv=fail; b=hT/T0GseIgwGhEbkBbTqTAtWCTqgJIdgP7WNjwRG9ssbiu2Z3DypNAkeDsm4MGonR5Du6QYPUbmL/jxdqpSmyE1b0gqVp2T9cYKdOVau1lfKPxbSRVyTxHHbBo823rHC84VvI4z60oT4PFEFjjdY0r622kyBNiKYeSPOdUeEwx0=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770079154; c=relaxed/simple;
-	bh=Dbm/fDZP2YiX1KprE5ngpp5v1taMj9//9lNEnranviA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=h4CayNcmgUoTMIanb1+Rx0YqVbMK9RNTpZCPlhAMHJISMkUEtznphskHTkVwaA6PQqFy1c11JS9zZAUn5r5uIeQIpJAM4Dvf67oSgVtw2DEgfqN/FsHlraJgQh+6NlSLMNs2JTpvZM629IoZmpRzZ+eIciDPu6+cDQNgHfVyLqc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=E+Tk3oDU; arc=fail smtp.client-ip=40.93.201.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+	s=arc-20240116; t=1770079530; c=relaxed/simple;
+	bh=8MPM79eEfX3fcbRBIGy+S6ObpH9q+WWCOG6L6KnQmZM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=TXIAiqRC7I+BZpG1mjYDUIpqtQgFvCdNn6w8zmUgxz0Rc5qZfBHF0p7oIF1spSotqn4KSQnkXWSyeM9pPIK+oYDJh09bkB7JwQfQU/LUNu2ICeF0CvLTdNo9irKHSveUdWfRrXyBKriWSFjihvVTYfy9Xd8hTnBVxKWbgwYUq3c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=synopsys.com; spf=pass smtp.mailfrom=synopsys.com; dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=XOXgBh//; dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=iw5kRuN2; dkim=fail (1024-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=Xm9ELwz+ reason="signature verification failed"; arc=fail smtp.client-ip=148.163.158.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=synopsys.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=synopsys.com
+Received: from pps.filterd (m0098572.ppops.net [127.0.0.1])
+	by mx0b-00230701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 612Lsm6B4058942;
+	Mon, 2 Feb 2026 16:45:06 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com; h=
+	cc:content-id:content-transfer-encoding:content-type:date:from
+	:in-reply-to:message-id:mime-version:references:subject:to; s=
+	pfptdkimsnps; bh=8MPM79eEfX3fcbRBIGy+S6ObpH9q+WWCOG6L6KnQmZM=; b=
+	XOXgBh//4Bp5MG02x2Sf8yC1yUNY4BktmubAUyGq6YRtKQGgfUlRJtwICh2xoZTs
+	u1qR8WerW1x6q9Y/8zetlSZuudLEVZfdZf+9MpMTfPutlXA3o/Xy3jYu/xegzrcf
+	cBVZxtkH2Dq7ieoJxraxR7BnRTcn6myUSRkLhV7ifd7BxZ/8hnwWMqQbcmMS29BR
+	/fvvl2Gs/F9ZvMF9Pf3JpkUDgfhAdKRauV29VtvmZqhk4bna+7Jb6+ejQN+LXJL0
+	Fpi2XKENMZ9XJT+p5kkXTbOJwAXUTX/RW7uo7LbT7fAOfbfiZsmWHce3LbfFw1OW
+	x4/+feGlbZo5ku7ukMEXwQ==
+Received: from smtprelay-out1.synopsys.com (smtprelay-out1.synopsys.com [149.117.73.133])
+	by mx0b-00230701.pphosted.com (PPS) with ESMTPS id 4c1h8hsk63-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Mon, 02 Feb 2026 16:45:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+	t=1770079504; bh=8MPM79eEfX3fcbRBIGy+S6ObpH9q+WWCOG6L6KnQmZM=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=iw5kRuN2Sz+/hTk1lCuCcwDOqc+MQ58+eeHOdJYs05gHCiNzXLngight9EfY+nV5h
+	 x78DAsnQiFQNEKne6XQ/BsqXJ7hyIk2TRKaxogMdTC/5acKD30uDWZTqlUxJ2C5TgJ
+	 y+YuhvwZi6/JHR8cqyUXdSXi8Lk/TWXLmWDgWxgRcFwJxGaymensbcqciiv8Tth/gG
+	 hNEE4tPnckTo9gdDNQQyf8Z6v+ALnDVdjNpLy+9c464CUf8qYnHHEehad8/bpWxm2C
+	 nymWhHMIwUVoR1b/dp3UpnIkr5zJMI+YlWEZXa2OtHybav935iwCKFkeyZlq42v0cD
+	 xY2Su7/XD7jjg==
+Received: from mailhost.synopsys.com (sv1-mailhost1.synopsys.com [10.205.2.131])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits)
+	 client-signature RSA-PSS (2048 bits))
+	(Client CN "mailhost.synopsys.com", Issuer "SNPSica2" (verified OK))
+	by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id D2FFC402B2;
+	Tue,  3 Feb 2026 00:45:04 +0000 (UTC)
+Received: from o365relay-in.synopsys.com (us03-o365relay1.synopsys.com [10.4.161.137])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits)
+	 client-signature RSA-PSS (2048 bits))
+	(Client CN "o365relay-in.synopsys.com", Issuer "Sectigo Public Server Authentication CA OV R36" (not verified))
+	by mailhost.synopsys.com (Postfix) with ESMTPS id 3F4D4A0070;
+	Tue,  3 Feb 2026 00:45:04 +0000 (UTC)
+Authentication-Results: o365relay-in.synopsys.com; dmarc=pass (p=reject dis=none) header.from=synopsys.com
+Authentication-Results: o365relay-in.synopsys.com; spf=pass smtp.mailfrom=synopsys.com
+Authentication-Results: o365relay-in.synopsys.com;
+	dkim=pass (1024-bit key; unprotected) header.d=synopsys.com header.i=@synopsys.com header.a=rsa-sha256 header.s=selector1 header.b=Xm9ELwz+;
+	dkim-atps=neutral
+Received: from CO1PR07CU001.outbound.protection.outlook.com (mail-co1pr07cu00103.outbound.protection.outlook.com [40.93.10.91])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256
+	 client-signature RSA-PSS (2048 bits) client-digest SHA256)
+	(Client CN "mail.protection.outlook.com", Issuer "DigiCert Cloud Services CA-1" (verified OK))
+	by o365relay-in.synopsys.com (Postfix) with ESMTPS id 6222E401D9;
+	Tue,  3 Feb 2026 00:45:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jhhsMxOWo5W0cDsHFjtHZQOj2CSD0y1M+0zu7kEPLGF+cE6ULoUbn/7ZripZwFfDBB8/Enm5U3cK7chmVJbHaaPR0uHrraypQw5xSQSc+K/rEfIrm1onWnwIrw0o7dO2qBFJddOn/qlPKSuQekGos78jilZcocElHXhfqbNH3SveQDjfg1TjWiDywcWEu8KcybvydX/LoSz7BSGJCQUmoEeUkv1fuMc/xsLTMiKad51rMa4XEdOKaXHk/OrdBm6tSPUG5U3MVwcKjW+9/fiVVfaCPgS/xHE8nUGKd5SHkOW6ytCuAJtF3ldDSAi2JBUZ5N3ZkHPMahkqhtQQeZRv0g==
+ b=n5fCsVXMGJw5APYRk3+s2u7oXiz7RuV0kmUVaC99cHoWvO613z0VqApxp/alkZjRGFycayDkm6r12137S2u2mMcA1UHtX10bh7KhYnLoBltRccN+BlzGwk0dFPVdnJ+zArljSaJ1CerIwj0datsaZ5s+fBpLLngD2VYN1BJ7L6GaFRCeIvWGZF7WaYujmBBF1PhUul7pMzCNrAIpwdVvYh/uDRvVsPV0o4Veb+z0mknNhg4t0HsdjXC+mvgbTMgOPg3A6K/kqTpTxSdorX/eRHCmfIdBW0pbyF8Ygo9UgOjIiOasX4LiJFCPZFVafAZNDgpkIw0H2OIWG62ANyTeaA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7ddHxbQDJsG0dru79iLz6pqfUyZBxtqKATt/7eKUb54=;
- b=i5pKc8+pSfq/ZB6YqTNQHmOmgHaRGalGDl9+WqJx/YmalYaJc9KvDPf8HceymPjp7kRMLDX9130ZIocjmXG9DQDh4U4Qt+ijdZ9VuEpa9qXUITL74RKYLH9J4ZI6VnJ3vP1lpcv+Btbib5mmlZpB/dLIfpZBYD/EwXa84fYKxme9yDUprAKX5sO4ImJ6nFzhOQwS32624ZQ67pjI4krCJ3iwjHruruDJ3btJH+lkkHMEsaY3h5wYofJ8U5OXPVfUZ9cObQmG8/kQq+ptr5jzuP9ouZKJGWLkzEyiLG1J7THDcSEQH0atvccgxhzPSjTPKplMWSs2ktHQfmHrK5BDiw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ bh=8MPM79eEfX3fcbRBIGy+S6ObpH9q+WWCOG6L6KnQmZM=;
+ b=SwfD3MIw1YVVTZWlX8AnnP139eSmwjVRe9vEtAHuO/LBVe9q57p/CCnaetnABfYlPDI4RCearjh3MTW9WFURbKg5zmyXZ9e8+woI3EA5YIO4xptXk1L/NGJPMl6Khs6BNRiyGwwEJ7rxUVu58VuSdvgOQcikg4c4gpUpTS/ldlOahQ1YHDkAA3nKWUQMzFomYYBry5EFjAQjWMGYhpqIO/FG8wTndrNTblsBx2fpwNxvbHYSYlDhrtFxEVcGTI/px9t1VDz/dH0Zq0uJ45Z7OqB8G/zSw4kak8VCavwGUnHkFOzVwH6rIQAy7Of/6m5pPZnscEHx+yp5NcLJBlAxmw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synopsys.com; dmarc=pass action=none header.from=synopsys.com;
+ dkim=pass header.d=synopsys.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7ddHxbQDJsG0dru79iLz6pqfUyZBxtqKATt/7eKUb54=;
- b=E+Tk3oDUHGgQdVYwIyx9bfSggfYr3I2CZb3MK5Zxs+wC/lweQ7zqB5A4YErp/06yb7fgq6zPWHIYtShWbDPCinVyOyd5XaDLUI0FEQ5CR0Y+y7YXjDDs5aiCzqTFhhncaaikzW2h1J8XIL/y+C9WZbMnJv/ZS7ps8xX7gD5eLkI=
-Received: from PH8P221CA0058.NAMP221.PROD.OUTLOOK.COM (2603:10b6:510:349::7)
- by BN0PR10MB4822.namprd10.prod.outlook.com (2603:10b6:408:124::13) with
+ bh=8MPM79eEfX3fcbRBIGy+S6ObpH9q+WWCOG6L6KnQmZM=;
+ b=Xm9ELwz+hjF+NVW5CjjwkXAgFrJCsYC4vnKIpdbxpC7NhfydSpdShoIct54yLM74GNu+nRyUMQM7bcNaVbnbOgGVhNC9vGh2KEWxr2lsBgGD/W32iW4Wp8+iuZko9j9NOnW1XY/GozSdk7EQNgKkaZGuLZXqSTLeQRaTkrmNK40=
+Received: from LV2PR12MB5990.namprd12.prod.outlook.com (2603:10b6:408:170::16)
+ by SJ0PR12MB6989.namprd12.prod.outlook.com (2603:10b6:a03:448::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Tue, 3 Feb
- 2026 00:39:08 +0000
-Received: from SA2PEPF000015CD.namprd03.prod.outlook.com
- (2603:10b6:510:349:cafe::8) by PH8P221CA0058.outlook.office365.com
- (2603:10b6:510:349::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.12 via Frontend Transport; Tue,
- 3 Feb 2026 00:39:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- SA2PEPF000015CD.mail.protection.outlook.com (10.167.241.203) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.10 via Frontend Transport; Tue, 3 Feb 2026 00:39:07 +0000
-Received: from DLEE206.ent.ti.com (157.170.170.90) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Feb
- 2026 18:39:06 -0600
-Received: from DLEE209.ent.ti.com (157.170.170.98) by DLEE206.ent.ti.com
- (157.170.170.90) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Feb
- 2026 18:39:06 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE209.ent.ti.com
- (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 2 Feb 2026 18:39:06 -0600
-Received: from localhost (mz02jj9v.dhcp.ti.com [128.247.81.0])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6130d6vg3043936;
-	Mon, 2 Feb 2026 18:39:06 -0600
-From: Sen Wang <sen@ti.com>
-To: <peter.ujfalusi@gmail.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-	<perex@perex.cz>, <tiwai@suse.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Sen Wang <sen@ti.com>
-Subject: [PATCH v2 4/4] ASoC: ti: davinci-mcasp: Add asynchronous mode support
-Date: Mon, 2 Feb 2026 18:37:03 -0600
-Message-ID: <20260203003703.2334443-5-sen@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260203003703.2334443-1-sen@ti.com>
-References: <20260203003703.2334443-1-sen@ti.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.15; Tue, 3 Feb
+ 2026 00:44:57 +0000
+Received: from LV2PR12MB5990.namprd12.prod.outlook.com
+ ([fe80::3d09:f15f:d888:33a8]) by LV2PR12MB5990.namprd12.prod.outlook.com
+ ([fe80::3d09:f15f:d888:33a8%5]) with mapi id 15.20.9542.009; Tue, 3 Feb 2026
+ 00:44:57 +0000
+X-SNPS-Relay: synopsys.com
+From: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+To: Frank Li <Frank.li@nxp.com>
+CC: Xu Yang <xu.yang_2@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Li Jun <jun.li@nxp.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 3/3] usb: dwc3: introduce flatten model driver of i.MX Soc
+Thread-Topic: [PATCH 3/3] usb: dwc3: introduce flatten model driver of i.MX
+ Soc
+Thread-Index: AQHclC50Hm1F+24fW0iSvuy1L+8VR7VvjLqAgACXh4A=
+Date: Tue, 3 Feb 2026 00:44:57 +0000
+Message-ID: <20260203004453.rez3u2oiltciccfp@synopsys.com>
+References:
+ <20260202-add-flatten-dts-based-dwc3-imx-driver-v1-0-c44a5e919380@nxp.com>
+ <20260202-add-flatten-dts-based-dwc3-imx-driver-v1-3-c44a5e919380@nxp.com>
+ <aYDF6UkzX+GkuN9r@lizhi-Precision-Tower-5810>
+In-Reply-To: <aYDF6UkzX+GkuN9r@lizhi-Precision-Tower-5810>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: LV2PR12MB5990:EE_|SJ0PR12MB6989:EE_
+x-ms-office365-filtering-correlation-id: 928b98ca-3173-41d9-16c4-08de62bd748a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|366016|1800799024|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?N2tNbmlSWlZyT3E2NU1TeVN3VlVoajIwMEl1MTBQRzFRWkI2TTk5ZnJaSU9z?=
+ =?utf-8?B?OVh3VWorVVBsVENjMkQzT1hiUUp5WVA5ZDV6aVRjQU1RTUgvWHJnQjF4ZGFI?=
+ =?utf-8?B?TllEUmJtdHVXS2V5S1V4NmJISmV4cFVTTW5xc2g3NHE0aUlQK01IVERoZnJ0?=
+ =?utf-8?B?Ymx0cTYyT1lOcS9iNmo5R09GaWZMbHY2Q0VlTHBmMkU2c3FodkxwYytNaTAw?=
+ =?utf-8?B?TjIyczg5QVVFSUZUOWVSNUExaEVMOVpvUHJJNkx4YjE1bUdiWHhpeU80NWhU?=
+ =?utf-8?B?UEdKOExGYVhwUkl2dkY4U1Fwdjc2OUlZZnZ3RTdqRW9BajJ3b2VZWlIyWTcy?=
+ =?utf-8?B?elBGQmRQeC9kY08vUytqcjFhN25qK0E2b3VoLzFncXFUYXV5ZkhWUVdEM0lw?=
+ =?utf-8?B?QWpJaXVtNWFSZkZMVEtrb3BVS1dwcUQ2ajMwK0FSbWhmVXF1Y2YvT0pRcGZR?=
+ =?utf-8?B?Qmd2RURaUHRGTVVrcnVYODRpWENMWXd1WVBveGtXTWt4RjVpMjFjZjNscDhH?=
+ =?utf-8?B?ZEg5ZzBUNEhwNHBSVnlPa3h5NVN4QzlhaE42V1FoUmJhdzZmbWd0ekkzVnlN?=
+ =?utf-8?B?TVAwcVVtNkRlSGU2Sk9JU0grTW50c1VxajFYOWZRbnRiR2d2c2JVcUNWTXFy?=
+ =?utf-8?B?enhrdU5WMWxaSmdLbEIzSll1S0x4Mk9GSHhsMWV3R2sxd0VnaUgxZXJYRGRF?=
+ =?utf-8?B?TzRTVTgzMkxFVStBZlBvS2lVbmVTRkpmY2dmN2luTXg5N3VUNnRETDQvdVpM?=
+ =?utf-8?B?VlRSTVdLN0NjQ1pJUmQzdTRya2FPSW9jVUFPQ21Nb3kvRS9YVEZpTm5SL2M0?=
+ =?utf-8?B?WmFnOEl3aFU1SGpIQTRPWTBlQmxoUElMOTVxNGYwdEJtVTlvekRxMDM1dVM3?=
+ =?utf-8?B?TG5WVTQwa1cyS1FEb0RML2txWjZ6UnhjVzBtQTZLblA3SHJmSVlZd0M4OGQ1?=
+ =?utf-8?B?cUQvLy85Y0FMWEQxU0ZDT1VvTXhzSndzZ2l5TnNzV3QrV08wT2dxNDdrczZ5?=
+ =?utf-8?B?bnZSZ2EzVzhpNW9aNGdLQVdXdUtlelV2anM1V1ZEMWhkMCtBWmFqS1c2U00y?=
+ =?utf-8?B?UHFJMnRTQ21RWDdDNzBlK0JWWXBMdGxwck1TUC9oQU1MWHc5S2Z0UzNHM3pL?=
+ =?utf-8?B?VzlwU3NXN1NOZ0JiU21FaWZEU2hjVGEyL3hvdGF4ZE54OFE4djhFQ3NnVWFT?=
+ =?utf-8?B?RW94dDFJYzJSYlAzTStac01rUnhnSzg0bGt1MG9rWXBCYWxReTRtUHphTGFC?=
+ =?utf-8?B?dUt5L0U4ZnQrYm1wbDBtckU0RGUvRXZBcGpKK0M2ZzlmTnhPMFVlQnJOUXgv?=
+ =?utf-8?B?ZDhOWkNaK2VjZVJzeE1lRFZNcDA5dmRUeHgwRDdDMkF0OVl4eUREakhIWXhY?=
+ =?utf-8?B?U0h1SkFHS2JkckVxNkRBRkRkcS9STlR0MjdyVXlkcnpSNS9HdHBXRUhWZjZp?=
+ =?utf-8?B?ZlVsQ3FnUTNhMk1ZcEtuVng5UFQ1bUIzZlNWSWVwRkNCYS9DUkw4TjFnTVMw?=
+ =?utf-8?B?ajJvcTRZeG9NWXUyL08vVEdmMnBhejJyV1A2RURNZVdrejUxakpVY2tRVHlv?=
+ =?utf-8?B?dEsxNjdqZExSUGovUmx4ZUNzR0krZ20vQlk3TUVvWkdFT1BSYlMyVmhyZm1P?=
+ =?utf-8?B?WUFTRHBvRlpKYTEwYTRBV0Z2MlFLZW9MeFJ2ZlZqSXJOSXlXN2NvcXhOWWYz?=
+ =?utf-8?B?SmxYQ0Y1WHFHZW1aR3diWVFTK2xzcHFQQ0tUVWdEK0o0SjJ3VFdjZHdqalM2?=
+ =?utf-8?B?bGt2d2JQR0s1cFlsVER4R21mblJEL3g0S2lCZXBDa1dEckwxcEpGT09xZVFx?=
+ =?utf-8?B?VkNEZlVNOUQwV3lpTVlQVmhuU1hZWEhiZVpwVkhtallqOUNMeGNCNSs0Qmlw?=
+ =?utf-8?B?eExSVU03SWxSK29HS01NODRYa2tPNmhFL3QySlI2aGhJUW1nMzBlVUdvam1k?=
+ =?utf-8?B?Q2pzeEZYUEFETlhmVEdJWUdGdnNuMUpyZWlaYTV6dGVNU0JueDdjbFhqUnhB?=
+ =?utf-8?B?S3FIaHcvUUR0eVhIaE9kZzdUdDhCQ2svYjVDN1VCSEUxem1ZQzdWUWJsNktT?=
+ =?utf-8?B?RTVNZzlaeEZ5Nk1DTlpNNzkwZFFWMk1wVXQ4YWRBSEJkUkE1czlPa1FSUyt4?=
+ =?utf-8?B?eGRHc3dlYlBzR0piOUs1WER1WXhtc1Z6ZmdrMDBxNXQza1lQTHVzdGhHbUV0?=
+ =?utf-8?Q?Z8iDS8Q4X2DnwjTmP7sEBPQ=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV2PR12MB5990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?bmFvQVVtSW5PMVNOYUtadXdKY00xbXBibnFSNmswUFpxSUZsZDJPeGFPZXQv?=
+ =?utf-8?B?blA0LzRrWEo0d1A3QzhCOHpYMWdoMXE2MWVaNGRQVmJUOGRJOE1pSUZRZW4z?=
+ =?utf-8?B?T2lwTDcxV0dDUzRuV1BpLzRWZlJJc2FiRkJUU283eFNSTUY4dDdVQ2thWk1p?=
+ =?utf-8?B?TklHcDJCaXgvaERYbUxzRy9FR0YxQ2piZXR6TEV1V2V2Z25lS21sb1NLOFZJ?=
+ =?utf-8?B?OXQxK2FWLzdOWEgwaFBOWnA4ajhDeDJ4MXBYZTBYRk9OUSt3M0IvTTN1N1Ux?=
+ =?utf-8?B?azdFZHRwUUhWeUFaZEhCLzhGMU1aWjhJaktDazRLMys5NklCT20rTGVMOGUz?=
+ =?utf-8?B?Y0ZTa2s0UmNFSmV3N0lEUTUxeTl0c0FRNTNHUmhLSlpjbnlLcklJZk1TNEVm?=
+ =?utf-8?B?SjVxTUVEL3dlQXAzS3UzbW1nTDd6d2d5MnZSQmpMb2J2OW9JTENzSnJjVHl4?=
+ =?utf-8?B?L3A4S1pvSnJ6dGVTdlRRR3A3R24xS09MZEpZOGZBS3BsVmR5OTRzRzdRZzBN?=
+ =?utf-8?B?NXBSOHRkd1ZNbm5GNnhwRmRvcDJrUXJtQUloeDM0SEF1cHJrbE1TTEE2OVA4?=
+ =?utf-8?B?Zlh3aVVJbmVkb0ZCZndmNTdzY3p5eVlWaW5oTEpyM0hRS1hMblhhQ3F6NmlQ?=
+ =?utf-8?B?U3g1SWxDSmNLR3Jqdm1wLy9NYWVIL0hMTGk4ODFVYjVBYUZUS2xiQ3hHalJP?=
+ =?utf-8?B?Uk5Wdm5tMmtGWEdBQ0tRM1VJK1Q5ZmZsM1krVzhBZGpLQWRZVVo2MFlqdHZP?=
+ =?utf-8?B?LytodVJwVnlhQmJUbnZRVVBnMDRLdHJIUE9UaEVwN29LRFNQN2RNSWJhU0pB?=
+ =?utf-8?B?aGdiRllubm92Y2wxcmlxWmpUc3VEbUxseUxsd0tGa0kwZWN2VDdZQUowVjRJ?=
+ =?utf-8?B?UU1PV3FNSkM0T1o5Rkx5T1FUODdaZ0xyU3NrNVZkSmtmUzRNZ05hdFVQd0pN?=
+ =?utf-8?B?UmZ4OXRFYzFhT2VuM3NDaGV0NzdHS0R1RzhOdWpxMjNteVVwSWlmK1NEamRC?=
+ =?utf-8?B?bzVIR0NKZW13cUk4cHR0OVdFL1RocUdlK1FNMjlzZERNSExOc3p0bTFrd2hX?=
+ =?utf-8?B?UXQzS08wREl6MnB2WDltRkdFTzBkbTRXblFYaFZ4eG40bzRlQTlJSk9yN2ZT?=
+ =?utf-8?B?NE9ldUQrQ1ZXMHk0bThQUTNNc3EzSU9PYWFucG1CRFg3V0hWQkhlY1hPSjFU?=
+ =?utf-8?B?cG5LSEYvdng3K1dyNUR3RlBGWksyTlRzanNwazgzRG9pR0tvcVU1Y3FFY1ZG?=
+ =?utf-8?B?TEFXVkxxYk1UTjJTQXhLRnUrdmRiM2lqVjFHbUJWaGljTW4xeVVTQ2ZJcWVJ?=
+ =?utf-8?B?UlRRdkp2ZU8vejNYcmczeFJUa1FscTFoSDg5WjhBTEVuTjFSTzNzNDFYRXhG?=
+ =?utf-8?B?Q0F0LzRiMk1Hb0ZiTXJyYm5HaGlSeklsNThEcWtCbXVvZncxUDhOWXArTjQr?=
+ =?utf-8?B?dUl0VlNNbmJEWU4xWFRKeEgyUlJ0alM3amNKVkdNbVhxRG5PZ1RwRlNZRysx?=
+ =?utf-8?B?cHB6K2pzQU9kVFBDRW40OFZqYURwcEo1bW84SU1DUXlYWkxSMEtrRmh6R091?=
+ =?utf-8?B?aFVEcWd1cUgxTHFIQUJYRG91SW9tb001NFVPb3l0SHpjMlpXWnFsd3pNRHFQ?=
+ =?utf-8?B?VTJ1UkxpMFJNa2xZSjE2eTNFSVZ1c2o0S3d4eEdzZG4wSW93OXJ2ems2akdW?=
+ =?utf-8?B?YTIyMGJGeWRoMFhhSDJwWWNQMzNBRGViUmExK1dEcFJsNmdYcm5QOFBuZ2Vp?=
+ =?utf-8?B?cFliWnFLNDhGSk80YUVFTFhVSFVXcHh1bm9QclBodXV2L21FcFh0c3NCMGhV?=
+ =?utf-8?B?Ykx1L2dVMzRkUVNGWXN0TDVkem9GMmNHdVVBU1hzQlNScllZQjdEUml5Q3NO?=
+ =?utf-8?B?akIyNVdFZnR6Z0dvdnRKdVYzS0tkTXZFL2FnZGpFaTMrc21wdnZ1RnR2SmJy?=
+ =?utf-8?B?SmRKSUZ3akdqY2ZOZlhZdnJSV0czVDJFNFdORHBtK3l2TXQwbDdHMmRxcytr?=
+ =?utf-8?B?TGNyNFdWQTFPLzJiLzFlSnRoa2wycXRmQnFMTmt2Z3hsYkVIc2NPb3NMbDVv?=
+ =?utf-8?B?OCtWM0FkdUNjaWUycWpSZDNRL09KcTdXdmlXWVluSjRZZ0pPTGdZczlZMnZs?=
+ =?utf-8?B?akdnUGpWNzJ4MzcrNm1aclNmcHNIdjZ3T1N4NlllVmsyMFNIRkxQMk45V0di?=
+ =?utf-8?B?MXNBQXZFVVVWS0REd1YvbjBhSkpiZTJvKytoUVlhbURSdEp6Z2JKdktIbUI1?=
+ =?utf-8?B?aFowdFNBNnJmTW5COUhsNGR4OU1jTHNtODMrY3NXbS9RRkRMbWRlZ1RDUlBF?=
+ =?utf-8?B?OG5PY3BBbjhUakF2ZytaMlljWUk1SEJGT1djc2ZaMEtEc2Q4eGdMZz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <7C508D4366088244859A709B5555B076@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF000015CD:EE_|BN0PR10MB4822:EE_
-X-MS-Office365-Filtering-Correlation-Id: 41e75eb3-da17-4bf2-ea24-08de62bca3bd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|82310400026|376014|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?xVWIkYELFnJ1I1x1QA7/0uLqsFt+gjmtoqh24EDNY1ivkZ9VZBbft90QEPfC?=
- =?us-ascii?Q?9suT32ysn9NasleVDEQ+AJAkAlxPtPHHw6r9e+7LoOmvxqDFr/PkkaZJk0hI?=
- =?us-ascii?Q?httHRQaE0mGnI7cL6ZUMt7YymwoP04fr61XrowZJWR4D2+XTkY6DCjtTNDUb?=
- =?us-ascii?Q?0hDfzuWmLaQ/xOKJphuwErkDsQVIaWl8aMDr6vL7Y+AdFQJjF3iOMUnvhcuQ?=
- =?us-ascii?Q?XKP564qVpLK1E6pcZVrFIx2rJb+zBvpb3dBfsg3+PXaFfDj2qroYc5sbMjTF?=
- =?us-ascii?Q?HucP24oqlXH9mKKLJ4a+Z4M+zftS3W/fBzpbfWAvUNgPQ1GogNlubGhAL9Cn?=
- =?us-ascii?Q?edLxTrfKl23d0ThowJWA9Z0WOGJUtDfpXO0NLi4/GQDyQoDPAE/jFs1SCC7T?=
- =?us-ascii?Q?af6F0bcMHyNYOnYJxCDugr32/Sywfq19NEF3VYFCqdFeyP0OhAIEmRzfqCe/?=
- =?us-ascii?Q?UY1nzYTwr8wWe915AsABQ8bQx9I1jNJZdH3/SVguC0oXcy7uz/27DmL3fB1i?=
- =?us-ascii?Q?ytbW6iOPqliW9/Y20mEy07Nn80S6E9Akb87wJeUmmBapt0wIbUhafoSs+mwf?=
- =?us-ascii?Q?pmyzwffYAaoUmwr4oY3s8/UuopyKpXJujKPhijZVVkKcGAC2xOqcU7hUYDui?=
- =?us-ascii?Q?f1pYDRXeKHFomzUADKT6Cn+tu0tPaS2AvoZZlOR6NUb3koAYuufpXWyr5W9b?=
- =?us-ascii?Q?qiV7q4dTutFiRaAqr+cTNLNm1BKdN5QgtB3T+OmAfUn2FCgqyaqNCHddnciX?=
- =?us-ascii?Q?Lm1ot+MdAy2vTfSprwQv6u5KpS++qU/c/3pRkSCp2w4L66XYG8fM8h/6aN8B?=
- =?us-ascii?Q?sJxgIuZTLKJERJXElPHX/iGuGkdgVV8TCf+NpCl62+clNAHqt+z9VCzT/rmG?=
- =?us-ascii?Q?V8xfJc6YvOrxu1LKKkqmBT7O1vonOCcXXh4IC2ZkAwalxXMjNUnkjTJVhGNu?=
- =?us-ascii?Q?D28HSsAVPP4EFCOQa+g17wUoqO4s1+YGFITCPPJeiCp5hlpWzqgJ/mce0mFA?=
- =?us-ascii?Q?6Ex0z8LlrTiOIPY29IF607OQ2zsEPbF4McEgO5EusjBk7D9bEFX6URqlVliR?=
- =?us-ascii?Q?amYUFUNrq4TpXUy6PRViILoG6DnYGdBDg8o6cdnx4bstBsjRMaM/9PK2ctKJ?=
- =?us-ascii?Q?dt+cTwCOjFnOVYzpfWfjhH9DmsTE0lyHaU0J70v079BFXrhbonlU5uUzg7gQ?=
- =?us-ascii?Q?MgvMG500Lgihep2mj4eFilpfbxlhGlEUdp4dNlkKtnEEIVYBKLiJUWlGgXX3?=
- =?us-ascii?Q?PubMwKqoVbp2DY9Fe5indmDcqTgXRJZUQpoUdla+sPrU8lNfev2dll877WRU?=
- =?us-ascii?Q?VRCAx6xIlDux+mB6pcq+WUzuZKYve2mjUKYPLvYrRkgfZZF6wQzDHigzsLRt?=
- =?us-ascii?Q?M3PS9c87mR2aGf1AdyKblzexyveqq/W1AAjudiiBefv116IEWX0XRAn8A49A?=
- =?us-ascii?Q?f4ATZpu4rto4Grj9RVhhfmcHVWN6kIJ20bXK7Ki+W+B9/JVQ0h6dNf0Abk1W?=
- =?us-ascii?Q?pZVcPt1sla1keWN4BvtOuZE0EKoURRVuqQqRexTwzUMQuXuaExZ8Gyfy/4ce?=
- =?us-ascii?Q?gCD6gPOKDEf6vtCKFVxl1V/6x8Dt8v34nWSBJIJD88Tvye7z8E/aFXzpTp3v?=
- =?us-ascii?Q?l7LujlseyNVGwWyZLh0pLmaXeYihZu2taZ4jJ4nUtIbwy+1/gk/nLkNxL7iO?=
- =?us-ascii?Q?vl51Og=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(82310400026)(376014)(36860700013);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	g1Ghe7xOzfrbddc+xIQNAT4kcVgtn9ONcDZmkWy/BXfAgYUTA/2qsl1R46E4fGVoz/S+XMFBC+KOeoZuuLD0Ulq1OrlACSTsOfFrPasZ3pqQIcPIVKnDHCkDRbsyQPgN9paKdFQgahtNQ53T3AapvwYM1K9zVsqxGQFhj6UBkxH0yvHlb447DButNsLCkbANJzY/sJ0ND4p5wRMEFGwDlVk7/gCejq40rm3ehsKSi+IlAft5vQ1O+oGVvX/kQHfI7uGl/czQZLq1Qb+/8vPtcT3LrO7yBBgFEtq5BJkEc9ShYVJNN5NLgmDbsb2kHUz4fDL8XRAcHdo7ch5tIwtRq8X81Bo6vGrc6iHucTNqZxRTkXea8F3ugKHkK6GvrQAqplU+TGccymAcc9jxIFVGj7z2MLAs1Re0Z07hUwVmGPSyQUwTRN8biqN5Hvxtqg72
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 00:39:07.2899
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
+	W9mzJ9rys+dbX1Di9ZtkX4NsvK/HrvgJ1P3lsSI/5dEdxsAeSiWOC8G3PN8ULHov0LlGSwteYQ/28EFUbCzK2VQqSYV6hQt9aezN/0aBBFoUXoNC15w+VTcJjo3D0RB09vAkSh0lWSLhR+Roo/QsgNnjH+8Xm7IXz/IbkiUS9FGx3XZS9LHj5SCXSjRmHr9tLaRB3hDwN4ohSa6nK1lTwOpMErgH/aDutaz3a1dYtnMQCzF3gRP8uhkf3z+zKArEcdCIJl5epcWZpAVlFh6tshPZb/7ZCCgYiFnELxcuTLpgrr8p6ic2fgdAXJrPdkbpX1RE/nlvbCpTe+vYCvlj1KDlRWXpPqNx56r3BbHY0u8VBVllIVmdnqshslogluCmc7/+nX+/zuyGV1FElQ33zV8jZy3D+BiB3HZrBQSVWs9yl8RM/35e+XfCIFMX0bXl3fpaFxmxF+RVL5jD8xYZC4y4DQYpv/O42wwV0ZrhpmqQOycrwDwH/p4x5zJyKICVChmux6ucLGNHMFyNNjPuEwYg5DKvv6FHYOW9Sf/9/8+tXogb1O5enTu0SGSrHlw4TdtTDDuKDm+jvXriTcEnWWpP904c48cDKwISW9laJxOOlLFhJeowx1j4W+n2khQQhZAnfipjyy5jLkmnDSDMzA==
+X-OriginatorOrg: synopsys.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5990.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 928b98ca-3173-41d9-16c4-08de62bd748a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Feb 2026 00:44:57.6619
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 41e75eb3-da17-4bf2-ea24-08de62bca3bd
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SA2PEPF000015CD.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB4822
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c33c9f88-1eb7-4099-9700-16013fd9e8aa
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: TwUyvLYIx96gknW6PKVaQZBltekr78sZqn70m8el3n9QV94oQ3do00d5feKtoVPWPoKRHd+jxkuV3AoJCyY3Iw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6989
+X-Proofpoint-ORIG-GUID: 8nOE5jsGdgP9ZEp16UdPgzgp3VcB5-bd
+X-Proofpoint-GUID: 8nOE5jsGdgP9ZEp16UdPgzgp3VcB5-bd
+X-Authority-Analysis: v=2.4 cv=Y4L1cxeN c=1 sm=1 tr=0 ts=69814511 cx=c_pps
+ a=8EbXvwLXkpGsT4ql/pYRAw==:117 a=8EbXvwLXkpGsT4ql/pYRAw==:17
+ a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
+ a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=qPHU084jO2kA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=8AirrxEcAAAA:8 a=FPGbVDflkqIywSFyJRoA:9
+ a=QEXdDO2ut3YA:10 a=ST-jHhOKWsTCqRlWije3:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAzMDAwMyBTYWx0ZWRfX9EqNcxBQLTRa
+ /0RYkXGD5kkpC6ZI8MjcDaiWXIbukX5QmhL7w9UCMllu7j6rOSCnS98gCCK+jdXmTi6r2u9OkBJ
+ P0Jzh1bAtDV1KMpPZDc1sM63veHk4YqhaysFUJF12JarcSxm7XlUWyA4neXEYoyqOngFMjU9Ce6
+ AtBcgdvu/ZWGYSp0w67umnKlPocGtFhhsNVaPq6RMfcfeGhM22EwDunCtVrw4JcdxbX4L4Px4LY
+ xk3WM0IK+vjB5v17DShzeeEkeZim0a2/X4wa5IQg5+oQ/vpk1DA3UJTFV5DiXj101bkluxGl2Lg
+ 6VTjGJAkOeyruqqYHilIWqnl0QSgf/i5RMIxez7SWcMbejgqA0e6AQcP4tYup5cMgc1o9B7lSm+
+ HCLRZ6gA9tcbmwQGFzOIkDR/YZYatuHJIx5i1Th/qMEvAkYjkeH+CywKEX3GRFBBNKkItp2uiyU
+ bRzAUVoYi88XXOo3X2w==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-02_05,2026-02-02_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_active_cloned_notspam
+ policy=outbound_active_cloned score=0 priorityscore=1501 impostorscore=0
+ adultscore=0 suspectscore=0 spamscore=0 clxscore=1011 malwarescore=0
+ bulkscore=0 lowpriorityscore=0 phishscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.22.0-2601150000 definitions=main-2602030003
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [2.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	R_DKIM_ALLOW(-0.20)[synopsys.com:s=pfptdkimsnps,synopsys.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,perex.cz,suse.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261981-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sen@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261983-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[synopsys.com:mid,synopsys.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email];
+	R_DKIM_REJECT(0.00)[synopsys.com:s=selector1];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	DKIM_MIXED(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[nxp.com,linuxfoundation.org,kernel.org,pengutronix.de,gmail.com,synopsys.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	DKIM_TRACE(0.00)[synopsys.com:+,synopsys.com:-];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,ti.com:dkim,ti.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Thinh.Nguyen@synopsys.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[synopsys.com,quarantine];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: C34C8D31C3
+X-Rspamd-Queue-Id: 4B29FD31E2
 X-Rspamd-Action: no action
 
-McASP has dedicated clock & frame sync registers for both transmit
-and receive. Currently McASP driver only supports synchronous behavior and
-couples both TX & RX settings.
-
-Add logic that enables asynchronous mode via ti,async-mode property. In
-async mode, playback & record can be done simultaneously with different
-audio configurations (tdm slots, tdm width, audio bit depth).
-
-Note the ability to have different tx/rx DSP formats (i2s, dsp_a, etc.),
-while possible in hardware, remains to be a gap as it require changes
-to the corresponding machine driver interface.
-
-Existing IIS (sync mode) and DIT mode logic remains mostly unchanged.
-Exceptions are IIS mode logic that previously assumed sync mode, which has
-now been made aware of the distinction. And shared logic across all modes
-also now checks for McASP tx/rx-specific driver attributes. Those
-attributes have been populated according to the original extent, ensuring
-no divergence in functionality.
-
-Constraints no longer applicable for async mode are skipped.
-Clock selection options have also been added to include rx/tx-only clk_ids,
-exposing independent configuration via the machine driver as well.
-
-Note that asynchronous mode is not applicable for McASP in DIT mode,
-which is a transmitter-only mode to interface w/ self-clocking formats.
-
-Signed-off-by: Sen Wang <sen@ti.com>
-Acked-by: Peter Ujfalusi <peter.ujfalusi@gmail.com>
----
-v2:
-	- Corrected code comments to use inclusive terminology
-
- include/linux/platform_data/davinci_asp.h |   3 +-
- sound/soc/ti/davinci-mcasp.c              | 489 +++++++++++++++++-----
- sound/soc/ti/davinci-mcasp.h              |  10 +
- 3 files changed, 401 insertions(+), 101 deletions(-)
-
-diff --git a/include/linux/platform_data/davinci_asp.h b/include/linux/platform_data/davinci_asp.h
-index b9c8520b4bd3..509c5592aab0 100644
---- a/include/linux/platform_data/davinci_asp.h
-+++ b/include/linux/platform_data/davinci_asp.h
-@@ -59,7 +59,8 @@ struct davinci_mcasp_pdata {
- 	bool i2s_accurate_sck;
- 
- 	/* McASP specific fields */
--	int tdm_slots;
-+	int tdm_slots_tx;
-+	int tdm_slots_rx;
- 	u8 op_mode;
- 	u8 dismod;
- 	u8 num_serializer;
-diff --git a/sound/soc/ti/davinci-mcasp.c b/sound/soc/ti/davinci-mcasp.c
-index f9015b50e99d..b2788c4ce83c 100644
---- a/sound/soc/ti/davinci-mcasp.c
-+++ b/sound/soc/ti/davinci-mcasp.c
-@@ -70,6 +70,7 @@ struct davinci_mcasp_context {
- struct davinci_mcasp_ruledata {
- 	struct davinci_mcasp *mcasp;
- 	int serializers;
-+	int stream;
- };
- 
- struct davinci_mcasp {
-@@ -87,21 +88,27 @@ struct davinci_mcasp {
- 	bool	missing_audio_param;
- 
- 	/* McASP specific data */
--	int	tdm_slots;
-+	int	tdm_slots_tx;
-+	int	tdm_slots_rx;
- 	u32	tdm_mask[2];
--	int	slot_width;
-+	int	slot_width_tx;
-+	int	slot_width_rx;
- 	u8	op_mode;
- 	u8	dismod;
- 	u8	num_serializer;
- 	u8	*serial_dir;
- 	u8	version;
--	u8	bclk_div;
-+	u8	bclk_div_tx;
-+	u8	bclk_div_rx;
- 	int	streams;
- 	u32	irq_request[2];
- 
--	int	sysclk_freq;
-+	unsigned int	sysclk_freq_tx;
-+	unsigned int	sysclk_freq_rx;
- 	bool	bclk_master;
--	u32	auxclk_fs_ratio;
-+	bool	async_mode;
-+	u32	auxclk_fs_ratio_tx;
-+	u32	auxclk_fs_ratio_rx;
- 
- 	unsigned long pdir; /* Pin direction bitfield */
- 
-@@ -203,6 +210,27 @@ static inline void mcasp_set_clk_pdir(struct davinci_mcasp *mcasp, bool enable)
- 	}
- }
- 
-+static inline void mcasp_set_clk_pdir_stream(struct davinci_mcasp *mcasp,
-+					     int stream, bool enable)
-+{
-+	u32 bit, bit_end;
-+
-+	if (stream == SNDRV_PCM_STREAM_PLAYBACK) {
-+		bit = PIN_BIT_ACLKX;
-+		bit_end = PIN_BIT_AFSX + 1;
-+	} else {
-+		bit = PIN_BIT_ACLKR;
-+		bit_end = PIN_BIT_AFSR + 1;
-+	}
-+
-+	for_each_set_bit_from(bit, &mcasp->pdir, bit_end) {
-+		if (enable)
-+			mcasp_set_bits(mcasp, DAVINCI_MCASP_PDIR_REG, BIT(bit));
-+		else
-+			mcasp_clr_bits(mcasp, DAVINCI_MCASP_PDIR_REG, BIT(bit));
-+	}
-+}
-+
- static inline void mcasp_set_axr_pdir(struct davinci_mcasp *mcasp, bool enable)
- {
- 	u32 bit;
-@@ -215,6 +243,36 @@ static inline void mcasp_set_axr_pdir(struct davinci_mcasp *mcasp, bool enable)
- 	}
- }
- 
-+static inline int mcasp_get_tdm_slots(struct davinci_mcasp *mcasp, int stream)
-+{
-+	return (stream == SNDRV_PCM_STREAM_PLAYBACK) ?
-+	       mcasp->tdm_slots_tx : mcasp->tdm_slots_rx;
-+}
-+
-+static inline int mcasp_get_slot_width(struct davinci_mcasp *mcasp, int stream)
-+{
-+	return (stream == SNDRV_PCM_STREAM_PLAYBACK) ?
-+	       mcasp->slot_width_tx : mcasp->slot_width_rx;
-+}
-+
-+static inline unsigned int mcasp_get_sysclk_freq(struct davinci_mcasp *mcasp, int stream)
-+{
-+	return (stream == SNDRV_PCM_STREAM_PLAYBACK) ?
-+	       mcasp->sysclk_freq_tx : mcasp->sysclk_freq_rx;
-+}
-+
-+static inline unsigned int mcasp_get_bclk_div(struct davinci_mcasp *mcasp, int stream)
-+{
-+	return (stream == SNDRV_PCM_STREAM_PLAYBACK) ?
-+	       mcasp->bclk_div_tx : mcasp->bclk_div_rx;
-+}
-+
-+static inline unsigned int mcasp_get_auxclk_fs_ratio(struct davinci_mcasp *mcasp, int stream)
-+{
-+	return (stream == SNDRV_PCM_STREAM_PLAYBACK) ?
-+	       mcasp->auxclk_fs_ratio_tx : mcasp->auxclk_fs_ratio_rx;
-+}
-+
- static void mcasp_start_rx(struct davinci_mcasp *mcasp)
- {
- 	if (mcasp->rxnumevt) {	/* enable FIFO */
-@@ -230,13 +288,17 @@ static void mcasp_start_rx(struct davinci_mcasp *mcasp)
- 	/*
- 	 * When ASYNC == 0 the transmit and receive sections operate
- 	 * synchronously from the transmit clock and frame sync. We need to make
--	 * sure that the TX signlas are enabled when starting reception.
-+	 * sure that the TX signals are enabled when starting reception,
-+	 * when the McASP is the producer.
- 	 */
- 	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp)) {
- 		mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, TXHCLKRST);
- 		mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, TXCLKRST);
- 	}
--	mcasp_set_clk_pdir(mcasp, true);
-+	if (mcasp_is_synchronous(mcasp))
-+		mcasp_set_clk_pdir(mcasp, true);
-+	else
-+		mcasp_set_clk_pdir_stream(mcasp, SNDRV_PCM_STREAM_CAPTURE, true);
- 
- 	/* Activate serializer(s) */
- 	mcasp_set_reg(mcasp, DAVINCI_MCASP_RXSTAT_REG, 0xFFFFFFFF);
-@@ -267,7 +329,10 @@ static void mcasp_start_tx(struct davinci_mcasp *mcasp)
- 	/* Start clocks */
- 	mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, TXHCLKRST);
- 	mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, TXCLKRST);
--	mcasp_set_clk_pdir(mcasp, true);
-+	if (mcasp_is_synchronous(mcasp))
-+		mcasp_set_clk_pdir(mcasp, true);
-+	else
-+		mcasp_set_clk_pdir_stream(mcasp, SNDRV_PCM_STREAM_PLAYBACK, true);
- 
- 	/* Activate serializer(s) */
- 	mcasp_set_reg(mcasp, DAVINCI_MCASP_TXSTAT_REG, 0xFFFFFFFF);
-@@ -310,9 +375,17 @@ static void mcasp_stop_rx(struct davinci_mcasp *mcasp)
- 	/*
- 	 * In synchronous mode stop the TX clocks if no other stream is
- 	 * running
-+	 * Otherwise in async mode only stop RX clocks
- 	 */
--	if (!mcasp->streams)
-+	if (mcasp_is_synchronous(mcasp) && !mcasp->streams)
- 		mcasp_set_clk_pdir(mcasp, false);
-+	else if (!mcasp_is_synchronous(mcasp))
-+		mcasp_set_clk_pdir_stream(mcasp, SNDRV_PCM_STREAM_CAPTURE, false);
-+	/*
-+	 * When McASP is the producer and operating in synchronous mode,
-+	 * stop the transmit clocks if no other stream is running. As
-+	 * tx & rx operate synchronously from the transmit clock.
-+	 */
- 	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && !mcasp->streams)
- 		mcasp_set_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, 0);
- 
-@@ -337,11 +410,14 @@ static void mcasp_stop_tx(struct davinci_mcasp *mcasp)
- 	/*
- 	 * In synchronous mode keep TX clocks running if the capture stream is
- 	 * still running.
-+	 * Otherwise in async mode only stop TX clocks
- 	 */
- 	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && mcasp->streams)
- 		val =  TXHCLKRST | TXCLKRST | TXFSRST;
--	if (!mcasp->streams)
-+	if (mcasp_is_synchronous(mcasp) && !mcasp->streams)
- 		mcasp_set_clk_pdir(mcasp, false);
-+	else if (!mcasp_is_synchronous(mcasp))
-+		mcasp_set_clk_pdir_stream(mcasp, SNDRV_PCM_STREAM_PLAYBACK, false);
- 
- 
- 	mcasp_set_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, val);
-@@ -625,13 +701,39 @@ static int __davinci_mcasp_set_clkdiv(struct davinci_mcasp *mcasp, int div_id,
- 			       AHCLKRDIV(div - 1), AHCLKRDIV_MASK);
- 		break;
- 
-+	case MCASP_CLKDIV_AUXCLK_TXONLY:		/* MCLK divider for TX only */
-+		mcasp_mod_bits(mcasp, DAVINCI_MCASP_AHCLKXCTL_REG,
-+			       AHCLKXDIV(div - 1), AHCLKXDIV_MASK);
-+		break;
-+
-+	case MCASP_CLKDIV_AUXCLK_RXONLY:		/* MCLK divider for RX only */
-+		mcasp_mod_bits(mcasp, DAVINCI_MCASP_AHCLKRCTL_REG,
-+			       AHCLKRDIV(div - 1), AHCLKRDIV_MASK);
-+		break;
-+
- 	case MCASP_CLKDIV_BCLK:			/* BCLK divider */
- 		mcasp_mod_bits(mcasp, DAVINCI_MCASP_ACLKXCTL_REG,
- 			       ACLKXDIV(div - 1), ACLKXDIV_MASK);
-+		mcasp_mod_bits(mcasp, DAVINCI_MCASP_ACLKRCTL_REG,
-+			       ACLKRDIV(div - 1), ACLKRDIV_MASK);
-+		if (explicit) {
-+			mcasp->bclk_div_tx = div;
-+			mcasp->bclk_div_rx = div;
-+		}
-+		break;
-+
-+	case MCASP_CLKDIV_BCLK_TXONLY:		/* BCLK divider for TX only */
-+		mcasp_mod_bits(mcasp, DAVINCI_MCASP_ACLKXCTL_REG,
-+			       ACLKXDIV(div - 1), ACLKXDIV_MASK);
-+		if (explicit)
-+			mcasp->bclk_div_tx = div;
-+		break;
-+
-+	case MCASP_CLKDIV_BCLK_RXONLY:		/* BCLK divider for RX only */
- 		mcasp_mod_bits(mcasp, DAVINCI_MCASP_ACLKRCTL_REG,
- 			       ACLKRDIV(div - 1), ACLKRDIV_MASK);
- 		if (explicit)
--			mcasp->bclk_div = div;
-+			mcasp->bclk_div_rx = div;
- 		break;
- 
- 	case MCASP_CLKDIV_BCLK_FS_RATIO:
-@@ -645,11 +747,33 @@ static int __davinci_mcasp_set_clkdiv(struct davinci_mcasp *mcasp, int div_id,
- 		 * tdm_slot width by dividing the ratio by the
- 		 * number of configured tdm slots.
- 		 */
--		mcasp->slot_width = div / mcasp->tdm_slots;
--		if (div % mcasp->tdm_slots)
-+		mcasp->slot_width_tx = div / mcasp->tdm_slots_tx;
-+		if (div % mcasp->tdm_slots_tx)
- 			dev_warn(mcasp->dev,
--				 "%s(): BCLK/LRCLK %d is not divisible by %d tdm slots",
--				 __func__, div, mcasp->tdm_slots);
-+				 "%s(): BCLK/LRCLK %d is not divisible by %d tx tdm slots",
-+				 __func__, div, mcasp->tdm_slots_tx);
-+
-+		mcasp->slot_width_rx = div / mcasp->tdm_slots_rx;
-+		if (div % mcasp->tdm_slots_rx)
-+			dev_warn(mcasp->dev,
-+				 "%s(): BCLK/LRCLK %d is not divisible by %d rx tdm slots",
-+				 __func__, div, mcasp->tdm_slots_rx);
-+		break;
-+
-+	case MCASP_CLKDIV_BCLK_FS_RATIO_TXONLY:
-+		mcasp->slot_width_tx = div / mcasp->tdm_slots_tx;
-+		if (div % mcasp->tdm_slots_tx)
-+			dev_warn(mcasp->dev,
-+				 "%s(): BCLK/LRCLK %d is not divisible by %d tx tdm slots",
-+				 __func__, div, mcasp->tdm_slots_tx);
-+		break;
-+
-+	case MCASP_CLKDIV_BCLK_FS_RATIO_RXONLY:
-+		mcasp->slot_width_rx = div / mcasp->tdm_slots_rx;
-+		if (div % mcasp->tdm_slots_rx)
-+			dev_warn(mcasp->dev,
-+				 "%s(): BCLK/LRCLK %d is not divisible by %d rx tdm slots",
-+				 __func__, div, mcasp->tdm_slots_rx);
- 		break;
- 
- 	default:
-@@ -683,6 +807,20 @@ static int davinci_mcasp_set_sysclk(struct snd_soc_dai *dai, int clk_id,
- 			mcasp_clr_bits(mcasp, DAVINCI_MCASP_AHCLKRCTL_REG,
- 				       AHCLKRE);
- 			clear_bit(PIN_BIT_AHCLKX, &mcasp->pdir);
-+			mcasp->sysclk_freq_tx = freq;
-+			mcasp->sysclk_freq_rx = freq;
-+			break;
-+		case MCASP_CLK_HCLK_AHCLK_TXONLY:
-+			mcasp_clr_bits(mcasp, DAVINCI_MCASP_AHCLKXCTL_REG,
-+				       AHCLKXE);
-+			clear_bit(PIN_BIT_AHCLKX, &mcasp->pdir);
-+			mcasp->sysclk_freq_tx = freq;
-+			break;
-+		case MCASP_CLK_HCLK_AHCLK_RXONLY:
-+			mcasp_clr_bits(mcasp, DAVINCI_MCASP_AHCLKRCTL_REG,
-+				       AHCLKRE);
-+			clear_bit(PIN_BIT_AHCLKR, &mcasp->pdir);
-+			mcasp->sysclk_freq_rx = freq;
- 			break;
- 		case MCASP_CLK_HCLK_AUXCLK:
- 			mcasp_set_bits(mcasp, DAVINCI_MCASP_AHCLKXCTL_REG,
-@@ -690,22 +828,56 @@ static int davinci_mcasp_set_sysclk(struct snd_soc_dai *dai, int clk_id,
- 			mcasp_set_bits(mcasp, DAVINCI_MCASP_AHCLKRCTL_REG,
- 				       AHCLKRE);
- 			set_bit(PIN_BIT_AHCLKX, &mcasp->pdir);
-+			mcasp->sysclk_freq_tx = freq;
-+			mcasp->sysclk_freq_rx = freq;
-+			break;
-+		case MCASP_CLK_HCLK_AUXCLK_TXONLY:
-+			mcasp_set_bits(mcasp, DAVINCI_MCASP_AHCLKXCTL_REG,
-+				       AHCLKXE);
-+			set_bit(PIN_BIT_AHCLKX, &mcasp->pdir);
-+			mcasp->sysclk_freq_tx = freq;
-+			break;
-+		case MCASP_CLK_HCLK_AUXCLK_RXONLY:
-+			mcasp_set_bits(mcasp, DAVINCI_MCASP_AHCLKRCTL_REG,
-+				       AHCLKRE);
-+			set_bit(PIN_BIT_AHCLKR, &mcasp->pdir);
-+			mcasp->sysclk_freq_rx = freq;
- 			break;
- 		default:
- 			dev_err(mcasp->dev, "Invalid clk id: %d\n", clk_id);
- 			goto out;
- 		}
- 	} else {
--		/* Select AUXCLK as HCLK */
--		mcasp_set_bits(mcasp, DAVINCI_MCASP_AHCLKXCTL_REG, AHCLKXE);
--		mcasp_set_bits(mcasp, DAVINCI_MCASP_AHCLKRCTL_REG, AHCLKRE);
--		set_bit(PIN_BIT_AHCLKX, &mcasp->pdir);
-+		/* McASP is clock master, select AUXCLK as HCLK */
-+		switch (clk_id) {
-+		case MCASP_CLK_HCLK_AUXCLK_TXONLY:
-+			mcasp_set_bits(mcasp, DAVINCI_MCASP_AHCLKXCTL_REG,
-+				       AHCLKXE);
-+			set_bit(PIN_BIT_AHCLKX, &mcasp->pdir);
-+			mcasp->sysclk_freq_tx = freq;
-+			break;
-+		case MCASP_CLK_HCLK_AUXCLK_RXONLY:
-+			mcasp_set_bits(mcasp, DAVINCI_MCASP_AHCLKRCTL_REG,
-+				       AHCLKRE);
-+			set_bit(PIN_BIT_AHCLKR, &mcasp->pdir);
-+			mcasp->sysclk_freq_rx = freq;
-+			break;
-+		default:
-+			mcasp_set_bits(mcasp, DAVINCI_MCASP_AHCLKXCTL_REG,
-+				       AHCLKXE);
-+			mcasp_set_bits(mcasp, DAVINCI_MCASP_AHCLKRCTL_REG,
-+				       AHCLKRE);
-+			set_bit(PIN_BIT_AHCLKX, &mcasp->pdir);
-+			set_bit(PIN_BIT_AHCLKR, &mcasp->pdir);
-+			mcasp->sysclk_freq_tx = freq;
-+			mcasp->sysclk_freq_rx = freq;
-+			break;
-+		}
- 	}
- 	/*
- 	 * When AHCLK X/R is selected to be output it means that the HCLK is
- 	 * the same clock - coming via AUXCLK.
- 	 */
--	mcasp->sysclk_freq = freq;
- out:
- 	pm_runtime_put(mcasp->dev);
- 	return 0;
-@@ -717,9 +889,11 @@ static int davinci_mcasp_ch_constraint(struct davinci_mcasp *mcasp, int stream,
- {
- 	struct snd_pcm_hw_constraint_list *cl = &mcasp->chconstr[stream];
- 	unsigned int *list = (unsigned int *) cl->list;
--	int slots = mcasp->tdm_slots;
-+	int slots;
- 	int i, count = 0;
- 
-+	slots = mcasp_get_tdm_slots(mcasp, stream);
-+
- 	if (mcasp->tdm_mask[stream])
- 		slots = hweight32(mcasp->tdm_mask[stream]);
- 
-@@ -784,27 +958,42 @@ static int davinci_mcasp_set_tdm_slot(struct snd_soc_dai *dai,
- 		return -EINVAL;
- 	}
- 
--	mcasp->tdm_slots = slots;
-+	if (mcasp->async_mode) {
-+		if (tx_mask) {
-+			mcasp->tdm_slots_tx = slots;
-+			mcasp->slot_width_tx = slot_width;
-+		}
-+		if (rx_mask) {
-+			mcasp->tdm_slots_rx = slots;
-+			mcasp->slot_width_rx = slot_width;
-+		}
-+	} else {
-+		mcasp->tdm_slots_tx = slots;
-+		mcasp->tdm_slots_rx = slots;
-+		mcasp->slot_width_tx = slot_width;
-+		mcasp->slot_width_rx = slot_width;
-+	}
-+
- 	mcasp->tdm_mask[SNDRV_PCM_STREAM_PLAYBACK] = tx_mask;
- 	mcasp->tdm_mask[SNDRV_PCM_STREAM_CAPTURE] = rx_mask;
--	mcasp->slot_width = slot_width;
- 
- 	return davinci_mcasp_set_ch_constraints(mcasp);
- }
- 
- static int davinci_config_channel_size(struct davinci_mcasp *mcasp,
--				       int sample_width)
-+				       int sample_width, int stream)
- {
- 	u32 fmt;
- 	u32 tx_rotate, rx_rotate, slot_width;
- 	u32 mask = (1ULL << sample_width) - 1;
- 
--	if (mcasp->slot_width)
--		slot_width = mcasp->slot_width;
--	else if (mcasp->max_format_width)
--		slot_width = mcasp->max_format_width;
--	else
--		slot_width = sample_width;
-+	slot_width = mcasp_get_slot_width(mcasp, stream);
-+	if (!slot_width) {
-+		if (mcasp->max_format_width)
-+			slot_width = mcasp->max_format_width;
-+		else
-+			slot_width = sample_width;
-+	}
- 	/*
- 	 * TX rotation:
- 	 * right aligned formats: rotate w/ slot_width
-@@ -827,17 +1016,23 @@ static int davinci_config_channel_size(struct davinci_mcasp *mcasp,
- 	fmt = (slot_width >> 1) - 1;
- 
- 	if (mcasp->op_mode != DAVINCI_MCASP_DIT_MODE) {
--		mcasp_mod_bits(mcasp, DAVINCI_MCASP_RXFMT_REG, RXSSZ(fmt),
--			       RXSSZ(0x0F));
--		mcasp_mod_bits(mcasp, DAVINCI_MCASP_TXFMT_REG, TXSSZ(fmt),
--			       TXSSZ(0x0F));
--		mcasp_mod_bits(mcasp, DAVINCI_MCASP_TXFMT_REG, TXROT(tx_rotate),
--			       TXROT(7));
--		mcasp_mod_bits(mcasp, DAVINCI_MCASP_RXFMT_REG, RXROT(rx_rotate),
--			       RXROT(7));
--		mcasp_set_reg(mcasp, DAVINCI_MCASP_RXMASK_REG, mask);
-+		if (!mcasp->async_mode || stream == SNDRV_PCM_STREAM_PLAYBACK) {
-+			mcasp_mod_bits(mcasp, DAVINCI_MCASP_TXFMT_REG, TXSSZ(fmt),
-+				       TXSSZ(0x0F));
-+			mcasp_mod_bits(mcasp, DAVINCI_MCASP_TXFMT_REG, TXROT(tx_rotate),
-+				       TXROT(7));
-+			mcasp_set_reg(mcasp, DAVINCI_MCASP_TXMASK_REG, mask);
-+		}
-+		if (!mcasp->async_mode || stream == SNDRV_PCM_STREAM_CAPTURE) {
-+			mcasp_mod_bits(mcasp, DAVINCI_MCASP_RXFMT_REG, RXSSZ(fmt),
-+				       RXSSZ(0x0F));
-+			mcasp_mod_bits(mcasp, DAVINCI_MCASP_RXFMT_REG, RXROT(rx_rotate),
-+				       RXROT(7));
-+			mcasp_set_reg(mcasp, DAVINCI_MCASP_RXMASK_REG, mask);
-+		}
- 	} else {
- 		/*
-+		 * DIT mode only use TX serializers
- 		 * according to the TRM it should be TXROT=0, this one works:
- 		 * 16 bit to 23-8 (TXROT=6, rotate 24 bits)
- 		 * 24 bit to 23-0 (TXROT=0, rotate 0 bits)
-@@ -850,10 +1045,9 @@ static int davinci_config_channel_size(struct davinci_mcasp *mcasp,
- 			       TXROT(7));
- 		mcasp_mod_bits(mcasp, DAVINCI_MCASP_TXFMT_REG, TXSSZ(15),
- 			       TXSSZ(0x0F));
-+		mcasp_set_reg(mcasp, DAVINCI_MCASP_TXMASK_REG, mask);
- 	}
- 
--	mcasp_set_reg(mcasp, DAVINCI_MCASP_TXMASK_REG, mask);
--
- 	return 0;
- }
- 
-@@ -864,11 +1058,13 @@ static int mcasp_common_hw_param(struct davinci_mcasp *mcasp, int stream,
- 	int i;
- 	u8 tx_ser = 0;
- 	u8 rx_ser = 0;
--	u8 slots = mcasp->tdm_slots;
-+	int slots;
- 	u8 max_active_serializers, max_rx_serializers, max_tx_serializers;
- 	int active_serializers, numevt;
- 	u32 reg;
- 
-+	slots = mcasp_get_tdm_slots(mcasp, stream);
-+
- 	/* In DIT mode we only allow maximum of one serializers for now */
- 	if (mcasp->op_mode == DAVINCI_MCASP_DIT_MODE)
- 		max_active_serializers = 1;
-@@ -996,7 +1192,7 @@ static int mcasp_i2s_hw_param(struct davinci_mcasp *mcasp, int stream,
- 	u32 mask = 0;
- 	u32 busel = 0;
- 
--	total_slots = mcasp->tdm_slots;
-+	total_slots = mcasp_get_tdm_slots(mcasp, stream);
- 
- 	/*
- 	 * If more than one serializer is needed, then use them with
-@@ -1027,7 +1223,10 @@ static int mcasp_i2s_hw_param(struct davinci_mcasp *mcasp, int stream,
- 			mask |= (1 << i);
- 	}
- 
--	mcasp_clr_bits(mcasp, DAVINCI_MCASP_ACLKXCTL_REG, TX_ASYNC);
-+	if (mcasp->async_mode)
-+		mcasp_set_bits(mcasp, DAVINCI_MCASP_ACLKXCTL_REG, TX_ASYNC);
-+	else
-+		mcasp_clr_bits(mcasp, DAVINCI_MCASP_ACLKXCTL_REG, TX_ASYNC);
- 
- 	if (!mcasp->dat_port)
- 		busel = TXSEL;
-@@ -1126,16 +1325,33 @@ static int mcasp_dit_hw_param(struct davinci_mcasp *mcasp,
- 
- static int davinci_mcasp_calc_clk_div(struct davinci_mcasp *mcasp,
- 				      unsigned int sysclk_freq,
--				      unsigned int bclk_freq, bool set)
-+				      unsigned int bclk_freq,
-+				      int stream,
-+				      bool set)
- {
--	u32 reg = mcasp_get_reg(mcasp, DAVINCI_MCASP_AHCLKXCTL_REG);
- 	int div = sysclk_freq / bclk_freq;
- 	int rem = sysclk_freq % bclk_freq;
- 	int error_ppm;
- 	int aux_div = 1;
-+	int bclk_div_id, auxclk_div_id;
-+	bool auxclk_enabled;
-+
-+	if (mcasp->async_mode && stream == SNDRV_PCM_STREAM_CAPTURE) {
-+		auxclk_enabled = mcasp_get_reg(mcasp, DAVINCI_MCASP_AHCLKRCTL_REG) & AHCLKRE;
-+		bclk_div_id = MCASP_CLKDIV_BCLK_RXONLY;
-+		auxclk_div_id = MCASP_CLKDIV_AUXCLK_RXONLY;
-+	} else if (mcasp->async_mode && stream == SNDRV_PCM_STREAM_PLAYBACK) {
-+		auxclk_enabled = mcasp_get_reg(mcasp, DAVINCI_MCASP_AHCLKXCTL_REG) & AHCLKXE;
-+		bclk_div_id = MCASP_CLKDIV_BCLK_TXONLY;
-+		auxclk_div_id = MCASP_CLKDIV_AUXCLK_TXONLY;
-+	} else {
-+		auxclk_enabled = mcasp_get_reg(mcasp, DAVINCI_MCASP_AHCLKXCTL_REG) & AHCLKXE;
-+		bclk_div_id = MCASP_CLKDIV_BCLK;
-+		auxclk_div_id = MCASP_CLKDIV_AUXCLK;
-+	}
- 
- 	if (div > (ACLKXDIV_MASK + 1)) {
--		if (reg & AHCLKXE) {
-+		if (auxclk_enabled) {
- 			aux_div = div / (ACLKXDIV_MASK + 1);
- 			if (div % (ACLKXDIV_MASK + 1))
- 				aux_div++;
-@@ -1165,10 +1381,10 @@ static int davinci_mcasp_calc_clk_div(struct davinci_mcasp *mcasp,
- 			dev_info(mcasp->dev, "Sample-rate is off by %d PPM\n",
- 				 error_ppm);
- 
--		__davinci_mcasp_set_clkdiv(mcasp, MCASP_CLKDIV_BCLK, div, 0);
--		if (reg & AHCLKXE)
--			__davinci_mcasp_set_clkdiv(mcasp, MCASP_CLKDIV_AUXCLK,
--						   aux_div, 0);
-+		__davinci_mcasp_set_clkdiv(mcasp, bclk_div_id, div, false);
-+		if (auxclk_enabled)
-+			__davinci_mcasp_set_clkdiv(mcasp, auxclk_div_id,
-+						   aux_div, false);
- 	}
- 
- 	return error_ppm;
-@@ -1219,6 +1435,7 @@ static int davinci_mcasp_hw_params(struct snd_pcm_substream *substream,
- 	int channels = params_channels(params);
- 	int period_size = params_period_size(params);
- 	int ret;
-+	unsigned int sysclk_freq = mcasp_get_sysclk_freq(mcasp, substream->stream);
- 
- 	switch (params_format(params)) {
- 	case SNDRV_PCM_FORMAT_U8:
-@@ -1259,22 +1476,26 @@ static int davinci_mcasp_hw_params(struct snd_pcm_substream *substream,
- 	 * If mcasp is BCLK master, and a BCLK divider was not provided by
- 	 * the machine driver, we need to calculate the ratio.
- 	 */
--	if (mcasp->bclk_master && mcasp->bclk_div == 0 && mcasp->sysclk_freq) {
--		int slots = mcasp->tdm_slots;
-+	if (mcasp->bclk_master && mcasp_get_bclk_div(mcasp, substream->stream) == 0 &&
-+	    sysclk_freq) {
-+		int slots, slot_width;
- 		int rate = params_rate(params);
- 		int sbits = params_width(params);
- 		unsigned int bclk_target;
- 
--		if (mcasp->slot_width)
--			sbits = mcasp->slot_width;
-+		slots = mcasp_get_tdm_slots(mcasp, substream->stream);
-+
-+		slot_width = mcasp_get_slot_width(mcasp, substream->stream);
-+		if (slot_width)
-+			sbits = slot_width;
- 
- 		if (mcasp->op_mode == DAVINCI_MCASP_IIS_MODE)
- 			bclk_target = rate * sbits * slots;
- 		else
- 			bclk_target = rate * 128;
- 
--		davinci_mcasp_calc_clk_div(mcasp, mcasp->sysclk_freq,
--					   bclk_target, true);
-+		davinci_mcasp_calc_clk_div(mcasp, sysclk_freq,
-+					   bclk_target, substream->stream, true);
- 	}
- 
- 	ret = mcasp_common_hw_param(mcasp, substream->stream,
-@@ -1291,9 +1512,10 @@ static int davinci_mcasp_hw_params(struct snd_pcm_substream *substream,
- 	if (ret)
- 		return ret;
- 
--	davinci_config_channel_size(mcasp, word_length);
-+	davinci_config_channel_size(mcasp, word_length, substream->stream);
- 
--	if (mcasp->op_mode == DAVINCI_MCASP_IIS_MODE) {
-+	/* Channel constraints are disabled for async mode */
-+	if (mcasp->op_mode == DAVINCI_MCASP_IIS_MODE && !mcasp->async_mode) {
- 		mcasp->channels = channels;
- 		if (!mcasp->max_format_width)
- 			mcasp->max_format_width = word_length;
-@@ -1337,7 +1559,7 @@ static int davinci_mcasp_hw_rule_slot_width(struct snd_pcm_hw_params *params,
- 	snd_pcm_format_t i;
- 
- 	snd_mask_none(&nfmt);
--	slot_width = rd->mcasp->slot_width;
-+	slot_width = mcasp_get_slot_width(rd->mcasp, rd->stream);
- 
- 	pcm_for_each_format(i) {
- 		if (snd_mask_test_format(fmt, i)) {
-@@ -1387,12 +1609,15 @@ static int davinci_mcasp_hw_rule_rate(struct snd_pcm_hw_params *params,
- 	struct snd_interval *ri =
- 		hw_param_interval(params, SNDRV_PCM_HW_PARAM_RATE);
- 	int sbits = params_width(params);
--	int slots = rd->mcasp->tdm_slots;
-+	int slots, slot_width;
- 	struct snd_interval range;
- 	int i;
- 
--	if (rd->mcasp->slot_width)
--		sbits = rd->mcasp->slot_width;
-+	slots = mcasp_get_tdm_slots(rd->mcasp, rd->stream);
-+
-+	slot_width = mcasp_get_slot_width(rd->mcasp, rd->stream);
-+	if (slot_width)
-+		sbits = slot_width;
- 
- 	snd_interval_any(&range);
- 	range.empty = 1;
-@@ -1402,16 +1627,17 @@ static int davinci_mcasp_hw_rule_rate(struct snd_pcm_hw_params *params,
- 			uint bclk_freq = sbits * slots *
- 					 davinci_mcasp_dai_rates[i];
- 			unsigned int sysclk_freq;
-+			unsigned int ratio;
- 			int ppm;
- 
--			if (rd->mcasp->auxclk_fs_ratio)
--				sysclk_freq =  davinci_mcasp_dai_rates[i] *
--					       rd->mcasp->auxclk_fs_ratio;
-+			ratio = mcasp_get_auxclk_fs_ratio(rd->mcasp, rd->stream);
-+			if (ratio)
-+				sysclk_freq = davinci_mcasp_dai_rates[i] * ratio;
- 			else
--				sysclk_freq = rd->mcasp->sysclk_freq;
-+				sysclk_freq = mcasp_get_sysclk_freq(rd->mcasp, rd->stream);
- 
- 			ppm = davinci_mcasp_calc_clk_div(rd->mcasp, sysclk_freq,
--							 bclk_freq, false);
-+							 bclk_freq, rd->stream, false);
- 			if (abs(ppm) < DAVINCI_MAX_RATE_ERROR_PPM) {
- 				if (range.empty) {
- 					range.min = davinci_mcasp_dai_rates[i];
-@@ -1437,30 +1663,34 @@ static int davinci_mcasp_hw_rule_format(struct snd_pcm_hw_params *params,
- 	struct snd_mask *fmt = hw_param_mask(params, SNDRV_PCM_HW_PARAM_FORMAT);
- 	struct snd_mask nfmt;
- 	int rate = params_rate(params);
--	int slots = rd->mcasp->tdm_slots;
-+	int slots;
- 	int count = 0;
- 	snd_pcm_format_t i;
- 
-+	slots = mcasp_get_tdm_slots(rd->mcasp, rd->stream);
-+
- 	snd_mask_none(&nfmt);
- 
- 	pcm_for_each_format(i) {
- 		if (snd_mask_test_format(fmt, i)) {
- 			uint sbits = snd_pcm_format_width(i);
- 			unsigned int sysclk_freq;
--			int ppm;
-+			unsigned int ratio;
-+			int ppm, slot_width;
- 
--			if (rd->mcasp->auxclk_fs_ratio)
--				sysclk_freq =  rate *
--					       rd->mcasp->auxclk_fs_ratio;
-+			ratio = mcasp_get_auxclk_fs_ratio(rd->mcasp, rd->stream);
-+			if (ratio)
-+				sysclk_freq = rate * ratio;
- 			else
--				sysclk_freq = rd->mcasp->sysclk_freq;
-+				sysclk_freq = mcasp_get_sysclk_freq(rd->mcasp, rd->stream);
- 
--			if (rd->mcasp->slot_width)
--				sbits = rd->mcasp->slot_width;
-+			slot_width = mcasp_get_slot_width(rd->mcasp, rd->stream);
-+			if (slot_width)
-+				sbits = slot_width;
- 
- 			ppm = davinci_mcasp_calc_clk_div(rd->mcasp, sysclk_freq,
- 							 sbits * slots * rate,
--							 false);
-+							 rd->stream, false);
- 			if (abs(ppm) < DAVINCI_MAX_RATE_ERROR_PPM) {
- 				snd_mask_set_format(&nfmt, i);
- 				count++;
-@@ -1497,7 +1727,7 @@ static int davinci_mcasp_startup(struct snd_pcm_substream *substream,
- 					&mcasp->ruledata[substream->stream];
- 	u32 max_channels = 0;
- 	int i, dir, ret;
--	int tdm_slots = mcasp->tdm_slots;
-+	int tdm_slots;
- 	u8 *numevt;
- 
- 	/* Do not allow more then one stream per direction */
-@@ -1506,6 +1736,8 @@ static int davinci_mcasp_startup(struct snd_pcm_substream *substream,
- 
- 	mcasp->substreams[substream->stream] = substream;
- 
-+	tdm_slots = mcasp_get_tdm_slots(mcasp, substream->stream);
-+
- 	if (mcasp->tdm_mask[substream->stream])
- 		tdm_slots = hweight32(mcasp->tdm_mask[substream->stream]);
- 
-@@ -1527,6 +1759,7 @@ static int davinci_mcasp_startup(struct snd_pcm_substream *substream,
- 	}
- 	ruledata->serializers = max_channels;
- 	ruledata->mcasp = mcasp;
-+	ruledata->stream = substream->stream;
- 	max_channels *= tdm_slots;
- 	/*
- 	 * If the already active stream has less channels than the calculated
-@@ -1534,9 +1767,13 @@ static int davinci_mcasp_startup(struct snd_pcm_substream *substream,
- 	 * is in use we need to use that as a constraint for the second stream.
- 	 * Otherwise (first stream or less allowed channels or more than one
- 	 * serializer in use) we use the calculated constraint.
-+	 *
-+	 * However, in async mode, TX and RX have independent clocks and can
-+	 * use different configurations, so don't apply the constraint.
- 	 */
- 	if (mcasp->channels && mcasp->channels < max_channels &&
--	    ruledata->serializers == 1)
-+	    ruledata->serializers == 1 &&
-+	    !mcasp->async_mode)
- 		max_channels = mcasp->channels;
- 	/*
- 	 * But we can always allow channels upto the amount of
-@@ -1553,10 +1790,10 @@ static int davinci_mcasp_startup(struct snd_pcm_substream *substream,
- 				   0, SNDRV_PCM_HW_PARAM_CHANNELS,
- 				   &mcasp->chconstr[substream->stream]);
- 
--	if (mcasp->max_format_width) {
-+	if (mcasp->max_format_width && !mcasp->async_mode) {
- 		/*
- 		 * Only allow formats which require same amount of bits on the
--		 * bus as the currently running stream
-+		 * bus as the currently running stream to ensure sync mode
- 		 */
- 		ret = snd_pcm_hw_rule_add(substream->runtime, 0,
- 					  SNDRV_PCM_HW_PARAM_FORMAT,
-@@ -1565,8 +1802,7 @@ static int davinci_mcasp_startup(struct snd_pcm_substream *substream,
- 					  SNDRV_PCM_HW_PARAM_FORMAT, -1);
- 		if (ret)
- 			return ret;
--	}
--	else if (mcasp->slot_width) {
-+	} else if (mcasp_get_slot_width(mcasp, substream->stream)) {
- 		/* Only allow formats require <= slot_width bits on the bus */
- 		ret = snd_pcm_hw_rule_add(substream->runtime, 0,
- 					  SNDRV_PCM_HW_PARAM_FORMAT,
-@@ -1581,7 +1817,8 @@ static int davinci_mcasp_startup(struct snd_pcm_substream *substream,
- 	 * If we rely on implicit BCLK divider setting we should
- 	 * set constraints based on what we can provide.
- 	 */
--	if (mcasp->bclk_master && mcasp->bclk_div == 0 && mcasp->sysclk_freq) {
-+	if (mcasp->bclk_master && mcasp_get_bclk_div(mcasp, substream->stream) == 0 &&
-+	    mcasp_get_sysclk_freq(mcasp, substream->stream)) {
- 		ret = snd_pcm_hw_rule_add(substream->runtime, 0,
- 					  SNDRV_PCM_HW_PARAM_RATE,
- 					  davinci_mcasp_hw_rule_rate,
-@@ -1758,8 +1995,6 @@ static struct snd_soc_dai_driver davinci_mcasp_dai[] = {
- 			.formats	= DAVINCI_MCASP_PCM_FMTS,
- 		},
- 		.ops 		= &davinci_mcasp_dai_ops,
--
--		.symmetric_rate		= 1,
- 	},
- 	{
- 		.name		= "davinci-mcasp.1",
-@@ -1921,18 +2156,33 @@ static int davinci_mcasp_get_config(struct davinci_mcasp *mcasp,
- 		goto out;
- 	}
- 
-+	/* Parse TX-specific TDM slot and use it as default for RX */
- 	if (of_property_read_u32(np, "tdm-slots", &val) == 0) {
- 		if (val < 2 || val > 32) {
--			dev_err(&pdev->dev, "tdm-slots must be in rage [2-32]\n");
-+			dev_err(&pdev->dev, "tdm-slots must be in range [2-32]\n");
- 			return -EINVAL;
- 		}
- 
--		pdata->tdm_slots = val;
-+		pdata->tdm_slots_tx = val;
-+		pdata->tdm_slots_rx = val;
- 	} else if (pdata->op_mode == DAVINCI_MCASP_IIS_MODE) {
- 		mcasp->missing_audio_param = true;
- 		goto out;
- 	}
- 
-+	/* Parse RX-specific TDM slot count if provided */
-+	if (of_property_read_u32(np, "tdm-slots-rx", &val) == 0) {
-+		if (val < 2 || val > 32) {
-+			dev_err(&pdev->dev, "tdm-slots-rx must be in range [2-32]\n");
-+			return -EINVAL;
-+		}
-+
-+		pdata->tdm_slots_rx = val;
-+	}
-+
-+	if (pdata->op_mode != DAVINCI_MCASP_DIT_MODE)
-+		mcasp->async_mode = of_property_read_bool(np, "ti,async-mode");
-+
- 	of_serial_dir32 = of_get_property(np, "serial-dir", &val);
- 	val /= sizeof(u32);
- 	if (of_serial_dir32) {
-@@ -1958,8 +2208,15 @@ static int davinci_mcasp_get_config(struct davinci_mcasp *mcasp,
- 	if (of_property_read_u32(np, "rx-num-evt", &val) == 0)
- 		pdata->rxnumevt = val;
- 
--	if (of_property_read_u32(np, "auxclk-fs-ratio", &val) == 0)
--		mcasp->auxclk_fs_ratio = val;
-+	/* Parse TX-specific auxclk/fs ratio and use it as default for RX */
-+	if (of_property_read_u32(np, "auxclk-fs-ratio", &val) == 0) {
-+		mcasp->auxclk_fs_ratio_tx = val;
-+		mcasp->auxclk_fs_ratio_rx = val;
-+	}
-+
-+	/* Parse RX-specific auxclk/fs ratio if provided */
-+	if (of_property_read_u32(np, "auxclk-fs-ratio-rx", &val) == 0)
-+		mcasp->auxclk_fs_ratio_rx = val;
- 
- 	if (of_property_read_u32(np, "dismod", &val) == 0) {
- 		if (val == 0 || val == 2 || val == 3) {
-@@ -1988,19 +2245,51 @@ static int davinci_mcasp_get_config(struct davinci_mcasp *mcasp,
- 	mcasp->op_mode = pdata->op_mode;
- 	/* sanity check for tdm slots parameter */
- 	if (mcasp->op_mode == DAVINCI_MCASP_IIS_MODE) {
--		if (pdata->tdm_slots < 2) {
--			dev_warn(&pdev->dev, "invalid tdm slots: %d\n",
--				 pdata->tdm_slots);
--			mcasp->tdm_slots = 2;
--		} else if (pdata->tdm_slots > 32) {
--			dev_warn(&pdev->dev, "invalid tdm slots: %d\n",
--				 pdata->tdm_slots);
--			mcasp->tdm_slots = 32;
-+		if (pdata->tdm_slots_tx < 2) {
-+			dev_warn(&pdev->dev, "invalid tdm tx slots: %d\n",
-+				 pdata->tdm_slots_tx);
-+			mcasp->tdm_slots_tx = 2;
-+		} else if (pdata->tdm_slots_tx > 32) {
-+			dev_warn(&pdev->dev, "invalid tdm tx slots: %d\n",
-+				 pdata->tdm_slots_tx);
-+			mcasp->tdm_slots_tx = 32;
-+		} else {
-+			mcasp->tdm_slots_tx = pdata->tdm_slots_tx;
-+		}
-+
-+		if (pdata->tdm_slots_rx < 2) {
-+			dev_warn(&pdev->dev, "invalid tdm rx slots: %d\n",
-+				 pdata->tdm_slots_rx);
-+			mcasp->tdm_slots_rx = 2;
-+		} else if (pdata->tdm_slots_rx > 32) {
-+			dev_warn(&pdev->dev, "invalid tdm rx slots: %d\n",
-+				 pdata->tdm_slots_rx);
-+			mcasp->tdm_slots_rx = 32;
- 		} else {
--			mcasp->tdm_slots = pdata->tdm_slots;
-+			mcasp->tdm_slots_rx = pdata->tdm_slots_rx;
- 		}
- 	} else {
--		mcasp->tdm_slots = 32;
-+		mcasp->tdm_slots_tx = 32;
-+		mcasp->tdm_slots_rx = 32;
-+	}
-+
-+	/* Different TX/RX slot counts require async mode */
-+	if (pdata->op_mode != DAVINCI_MCASP_DIT_MODE &&
-+	    mcasp->tdm_slots_tx != mcasp->tdm_slots_rx && !mcasp->async_mode) {
-+		dev_err(&pdev->dev,
-+			"Different TX (%d) and RX (%d) TDM slots require ti,async-mode\n",
-+			mcasp->tdm_slots_tx, mcasp->tdm_slots_rx);
-+		return -EINVAL;
-+	}
-+
-+	/* Different TX/RX auxclk-fs-ratio require async mode */
-+	if (pdata->op_mode != DAVINCI_MCASP_DIT_MODE &&
-+	    mcasp->auxclk_fs_ratio_tx && mcasp->auxclk_fs_ratio_rx &&
-+	    mcasp->auxclk_fs_ratio_tx != mcasp->auxclk_fs_ratio_rx && !mcasp->async_mode) {
-+		dev_err(&pdev->dev,
-+			"Different TX (%d) and RX (%d) auxclk-fs-ratio require ti,async-mode\n",
-+			mcasp->auxclk_fs_ratio_tx, mcasp->auxclk_fs_ratio_rx);
-+		return -EINVAL;
- 	}
- 
- 	mcasp->num_serializer = pdata->num_serializer;
-diff --git a/sound/soc/ti/davinci-mcasp.h b/sound/soc/ti/davinci-mcasp.h
-index 5de2b8a31061..83b3c67f4a2b 100644
---- a/sound/soc/ti/davinci-mcasp.h
-+++ b/sound/soc/ti/davinci-mcasp.h
-@@ -298,10 +298,20 @@
- /* Source of High-frequency transmit/receive clock */
- #define MCASP_CLK_HCLK_AHCLK		0 /* AHCLKX/R */
- #define MCASP_CLK_HCLK_AUXCLK		1 /* Internal functional clock */
-+#define MCASP_CLK_HCLK_AHCLK_TXONLY	2 /* AHCLKX for TX only */
-+#define MCASP_CLK_HCLK_AHCLK_RXONLY	3 /* AHCLKR for RX only */
-+#define MCASP_CLK_HCLK_AUXCLK_TXONLY	4 /* AUXCLK for TX only */
-+#define MCASP_CLK_HCLK_AUXCLK_RXONLY	5 /* AUXCLK for RX only */
- 
- /* clock divider IDs */
- #define MCASP_CLKDIV_AUXCLK		0 /* HCLK divider from AUXCLK */
- #define MCASP_CLKDIV_BCLK		1 /* BCLK divider from HCLK */
- #define MCASP_CLKDIV_BCLK_FS_RATIO	2 /* to set BCLK FS ration */
-+#define MCASP_CLKDIV_AUXCLK_TXONLY	3 /* AUXCLK divider for TX only */
-+#define MCASP_CLKDIV_AUXCLK_RXONLY	4 /* AUXCLK divider for RX only */
-+#define MCASP_CLKDIV_BCLK_TXONLY	5 /* BCLK divider for TX only */
-+#define MCASP_CLKDIV_BCLK_RXONLY	6 /* BCLK divider for RX only */
-+#define MCASP_CLKDIV_BCLK_FS_RATIO_TXONLY 7 /* BCLK/FS ratio for TX only */
-+#define MCASP_CLKDIV_BCLK_FS_RATIO_RXONLY 8 /* BCLK/FS ratio for RX only*/
- 
- #endif	/* DAVINCI_MCASP_H */
--- 
-2.43.0
-
+T24gTW9uLCBGZWIgMDIsIDIwMjYsIEZyYW5rIExpIHdyb3RlOg0KPiBPbiBNb24sIEZlYiAwMiwg
+MjAyNiBhdCAwNjoyNzo0N1BNICswODAwLCBYdSBZYW5nIHdyb3RlOg0KPiA+IFRvIHN1cHBvcnQg
+ZmxhdHRlbiBkd2MzIGRldmljZXRyZWUgbW9kZWwsIGludHJvZHVjZSBhIG5ldyBkcml2ZXIuDQo+
+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBYdSBZYW5nIDx4dS55YW5nXzJAbnhwLmNvbT4NCg0KQ2Fu
+IHlvdSBpbmNsdWRlIGFkZGl0aW9uYWwgaW5mbyB0byBkZXNjcmliZSB3aHkgdGhpcyB3YXMgbmVl
+ZGVkDQood3JpdHRlbiBpbiB5b3VyIGNvdmVyIGxldHRlcikuDQoNCkFsc28gbm90ZSBhbnkgbmV3
+IGZlYXR1cmUgc3VwcG9ydGVkIGJ5IHRoaXMgZ2x1ZSB0aGF0J3Mgbm90IGN1cnJlbnRseQ0KYXZh
+aWxhYmxlIGluIHRoZSBvbGQgZHJpdmVyLg0KDQpUaGFua3MsDQpUaGluaA0KDQoocHMuIEknbSB0
+aGlua2luZyBvZiBjcmVhdGluZyBhIGxlZ2FjeV9nbHVlcyBkaXJlY3RvcnkgdG8gc3RhcnQgbW92
+aW5nDQphbGwgdGhlIGxlZ2FjeSBnbHVlIGRyaXZlcnMgdGhlcmUp
 
