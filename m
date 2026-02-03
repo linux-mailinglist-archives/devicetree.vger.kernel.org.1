@@ -1,154 +1,130 @@
-Return-Path: <devicetree+bounces-262355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262356-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gNEOBHMvgmlFQAMAu9opvQ
-	(envelope-from <devicetree+bounces-262355-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:25:07 +0100
+	id EFXaC+gxgml5QQMAu9opvQ
+	(envelope-from <devicetree+bounces-262356-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:35:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 947F0DCC01
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:25:06 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C42D4DCDE8
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:35:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C8EA530F49AD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 17:22:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 85DC0308E638
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 17:31:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A482428134C;
-	Tue,  3 Feb 2026 17:22:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBA3232573B;
+	Tue,  3 Feb 2026 17:30:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="SDkKUJHg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jLdQNw4n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-57-252.mail.qq.com (out162-62-57-252.mail.qq.com [162.62.57.252])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6368127E7EB
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 17:21:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.252
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B639D2F5487;
+	Tue,  3 Feb 2026 17:30:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770139320; cv=none; b=qEu2PxFDQUuXIcsb2SyPkkidDkPCE4MpPybj/o2TYSSs2QNN3pAfArmzifUsPPBXsgwcEWnNQZUmxO/X0C60XtENgtv39oJpyCaY4YdWNAfktEnbp2uLr3nfsRqQPxKzUBmC66b3yRfl5Ps8JBtFqh+I3GLGoJR48cBBtwi2Tbs=
+	t=1770139816; cv=none; b=Eb6gmaMh/2G22wXFFIPJ84KGbBeXsvBBf6FnR1ULPX73dUZ7g/VphZ0jIh7AAJixxbAsw3zBxvLl4xrnaRx+7tRfIG+CocwM7DvBtsjhuZlK/0pMC3jUliJvN0jiXp996L4j/lchRlobzOYEH3SM/X2cgSUMNTzi9rp+B6TDAQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770139320; c=relaxed/simple;
-	bh=J7RdU025kD7I69qyuE2qsyGELW3AWdeKD+AQLCdS7w4=;
-	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
-	 MIME-Version; b=mbleHzPc1xM8TGMeCyxNEjJ8qzBkTdqWOl4ibcJqM904h22vIB6serc+7SFAKqIDTjGung6/Wmh7UUQKfkEwp8b/BuVH8/tbwNiXoHsNbJBS8LmKTAC+JzE7bVcGGxT3ANy/gNaMX3zHpeembIEbmnjygEvCzew2NDewEy4kR/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=pass smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=SDkKUJHg; arc=none smtp.client-ip=162.62.57.252
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1770139314; bh=+7o+0vyglI6SKIn20vq/JuFe7AAgC6WPGuSWeg1wEjw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=SDkKUJHgSUCJNSjhk7deNHfgWBC4/iGdUek77gRnuQO1R7W6SQC26vZj+Q0z4BfPb
-	 m0u2eeFYNH8PQk9NLE6sf/I4TZbg7oth861kj5cCk2OUiOFhLwfwLRXH3Oo7pttGOJ
-	 FF083+53H5Zwl1ELAAcufZIq9zhK9wStZoztAt4w=
-Received: from cyy-pc.lan ([240e:379:2263:bd00:7e4b:55e4:8771:53fb])
-	by newxmesmtplogicsvrsza63-0.qq.com (NewEsmtp) with SMTP
-	id 571062C7; Wed, 04 Feb 2026 01:21:49 +0800
-X-QQ-mid: xmsmtpt1770139309tz6l3w68c
-Message-ID: <tencent_720A4669773B1EE15EC720869C35C2F0490A@qq.com>
-X-QQ-XMAILINFO: N9lasXYeZMXWq8mgpS9v9z2OCE4jLagYmjfDafYb6w1cbnEz/To+DObDJGFuCw
-	 jHoRzlacZGegfRK8DPENVMFgk9g+EauA3kndjtTxmMvuCQa/aKhriujcsTTKyPtdjv+fl8c3f143
-	 MuXc8uODYA7yISkfM5rBvX9dLLj4TQIvLYc6eqHch56U7tEFhiG081NwNycFLY26R92nCEzadUwq
-	 VC1khsrdqzFuSikouiFfdexzxDsoxQ3Bm0Ahu2lgrz6M89KfozukUJq3NOj+YGK0mhL3cxOEbMDx
-	 5GL4LPJFvoGuKU5YMhJOejkvsIUHvMD2V9HgsdizTqvUFnTSu17QGhWUvU8SxoUc08SdXMykU+9k
-	 TRiyTPzBOYkVZvP5WhCH2P5HAWc1AuvPh+FFmhCCNZ//Yf36bwqCo/Mv+JqsjUgOs9EFBgAq2Ebl
-	 tKtnBDFAkNmLHHVpLq6NcZ8EV3MOv4n6eSZbx10WWQG7NAvCWqi3lVSvxNfzlPFB72CQh1zRLiLq
-	 SgNwf7mQwwwbX6dMuD4Rgx4HN3LF5EPJOAr8tHOGZOzJnw0isFDWkyglapr2jCr9UrG5rY3acFqW
-	 hOjEQjB1UEabIvy7/zC8+ahVptE/Cmer9lGtdgX5gUTU4/GNtlPDszv59bnUY4wpKopTuly//pE3
-	 MTe/YQzYGWBkFv0a7nuMFWy8472up+IVlWshTD/ECDEC5dRcoSS1+8YzhIVV4gLGjcfO+yGMiLBR
-	 It/6Ldze/V/+7MBpTXeKbbX78XaFdYzoTb3WQ5UfBOpHxUmhYXf1jQ8x141n8e0kDfLFCmA4pwo5
-	 AJiogfUmgV0fpVIxcbQJiPNNCVh9591Q9yIbkts4KF1EHBXUNEjsnZ9DCFgqDGvhmaXXMF8EdhFO
-	 +fGlprvTaSEFuO8X+6oTgoQrc2bHlxVTHMU63l664R6F8y34rLCWsQ2nusPkQHfBggIS+qTEI2WI
-	 XSgXEjH1bufRRtsq6qjK1Bi3Y91slsys99ohTfZVz7uQXyFK6U6sC90yS1Wlzc/rsKFVQ3wd0rvM
-	 mulMTDXb2afR/nJTFEUvSaVvlpHnNUnpToU1yL/djfJcsVSHwmIRcOknUrpSy1QUaRFqcQJWjTD2
-	 q3Wt5c
-X-QQ-XMRINFO: Nq+8W0+stu50tPAe92KXseR0ZZmBTk3gLg==
-From: Yangyu Chen <cyy@cyyself.name>
-To: linux-riscv@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org,
-	Anup Patel <anup.patel@oss.qualcomm.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Charles Mirabile <cmirabil@redhat.com>,
-	Lucas Zampieri <lzampier@redhat.com>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Zhang Xincheng <zhangxincheng@ultrarisc.com>,
-	Charlie Jenkins <charlie@rivosinc.com>,
-	Marc Zyngier <maz@kernel.org>,
-	Sia Jee Heng <jeeheng.sia@starfivetech.com>,
-	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1770139816; c=relaxed/simple;
+	bh=qbpaCz16+IKL3o5zdQh/CjxHDfdFrbH1zxADlFBhemI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CdTDqdToJikxiS6x21v/7sQuMjjn7wQEx623lCooZjVWcMSb041p021uVp0BMysBujmOwQUdMzfDBKpUU2UY0U+40AkHh/JRiqQFDbbgM8NUtarvCyXkPJiA5XvnZFAvQJTBW2PJ04/b4eEmx8mU7J8gT8zad8C9aFelcQzSHe8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jLdQNw4n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CAD3C116D0;
+	Tue,  3 Feb 2026 17:30:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770139816;
+	bh=qbpaCz16+IKL3o5zdQh/CjxHDfdFrbH1zxADlFBhemI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=jLdQNw4nctAW0tsY2tP6Zk2kGU0l3T5iMnC1XVUT+nvtyfNzVVij15lgd4ElfLc6s
+	 fXt550YC7nLvik6JM7KPv4wqrsV4ddkUAKK7g2Ktq3SFl4pCNxezCMoilAeKDUa1XX
+	 u3ih70TxY91yCsZKlbPX08LdZ3/TEqrHe4ml+pPtlUDYfsTQ8e/KLmHtUhPuOawQTZ
+	 c8v9BgbfksHCPcGSPWw7maPKWtmZmNx+xm+Zn7TNHdeHvcJG8puF0xPJm0rjz2pMbU
+	 yMS2ikEfS+P3dyRI9QhuEk2Gs5NfhNeCWYCA79fJqRQveqH3NI69GQW/93UYIeZBIX
+	 gW0iQWYVDUmiA==
+From: Conor Dooley <conor@kernel.org>
+To: linusw@kernel.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
 	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Ghiti <alex@ghiti.fr>,
+	linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Jia Wang <wangjia@ultrarisc.com>,
-	Yangyu Chen <cyy@cyyself.name>
-Subject: [PATCH v3 2/2] dt-binding: riscv: Clarify the riscv,ndev meaning in PLIC
-Date: Wed,  4 Feb 2026 01:21:48 +0800
-X-OQ-MSGID: <20260203172148.1595129-1-cyy@cyyself.name>
+	linux-kernel@vger.kernel.org
+Subject: [rfc 0/2] pinctrl property checks
+Date: Tue,  3 Feb 2026 17:29:41 +0000
+Message-ID: <20260203-device-unwashed-ed24f8592d79@spud>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <tencent_AEBB719FAF49D05B5BDF7118D729463F6405@qq.com>
-References: <tencent_AEBB719FAF49D05B5BDF7118D729463F6405@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=935; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=3uRh5g2T+/PLcOva7VDfhDo0k6FRaoejSeV2ai+QgoU=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJlNBi2qBi1pwnfeHlvtntPveNGszWfCdqGaRVYfbJIjx Yzslu3oKGVhEONikBVTZEm83dcitf6Pyw7nnrcwc1iZQIYwcHEKwEQeGzD8U0rmPnPm9kx7z7uu efUSaR2SNz4pdLrNeFUjt5t37W+5qwz/U//lsJ7jau+YpaDRPfFxhIbp4waX/x5KcyQPymrc8ox lBwA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qq.com:s=s201512];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262356-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[cyyself.name];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	TAGGED_FROM(0.00)[bounces-262355-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cyy@cyyself.name,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qq.com:+];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 947F0DCC01
+X-Rspamd-Queue-Id: C42D4DCDE8
 X-Rspamd-Action: no action
 
-In PLIC, interrupt source 0 is reserved and should not be used.
-Therefore, the valid interrupt sources are from 1 to riscv,ndev
-inclusive. This commit updates the documentation to clarify this point.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Signed-off-by: Yangyu Chen <cyy@cyyself.name>
----
- .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml        | 2 ++
- 1 file changed, 2 insertions(+)
+Hey Linus,
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-index 388fc2c620c0..df9578bcac89 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-@@ -109,6 +109,8 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description:
-       Specifies how many external interrupts are supported by this controller.
-+      Note that source 0 is reserved in PLIC, so the valid interrupt sources
-+      are 1 to riscv,ndev inclusive.
- 
-   clocks: true
- 
+Finally got around to sending the property stuff that we were talking
+about. It's definitely not the best thing I have ever written, but I
+think it does an okay job of warning about setups that don't make sense
+while adding fairly little complexity wise.
+
+Cheers,
+Conor.
+
+CC: Linus Walleij <linusw@kernel.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Conor Dooley <conor+dt@kernel.org>
+CC: linux-gpio@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+
+Conor Dooley (2):
+  pinctrl: pinconf-generic: perform basic checks on pincfg properties
+  dt-bindings: pinctrl: pincfg-node: add restrictions on conflicting
+    properties
+
+ .../bindings/pinctrl/pincfg-node.yaml         | 105 ++++++++++++++++--
+ drivers/pinctrl/pinconf-generic.c             |  41 ++++++-
+ 2 files changed, 138 insertions(+), 8 deletions(-)
+
 -- 
 2.51.0
 
