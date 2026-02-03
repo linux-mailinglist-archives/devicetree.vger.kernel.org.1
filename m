@@ -1,183 +1,125 @@
-Return-Path: <devicetree+bounces-261968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261969-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4DXABuAxgWk2EwMAu9opvQ
-	(envelope-from <devicetree+bounces-261968-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 00:23:12 +0100
+	id uGSTJ9c7gWk8FAMAu9opvQ
+	(envelope-from <devicetree+bounces-261969-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 01:05:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70394D2A0F
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 00:23:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0642ED2D3E
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 01:05:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 843E3301225B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Feb 2026 23:23:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7E252301724B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 00:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326C635FF7A;
-	Mon,  2 Feb 2026 23:23:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9750E6FC5;
+	Tue,  3 Feb 2026 00:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IlpdREAa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BFnNi+Zv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E1292E1743;
-	Mon,  2 Feb 2026 23:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B633FFD
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 00:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770074586; cv=none; b=AUk+BuUDLyrPu6ZSwg4SdQQuRrUNlARumya3wQMiHZ7JQoKD1lZJlH+7v8wiDmfcqzOFowplUhXhqpHdd2PFBDjDLZz8kxqHF/Omp5txeiapzXVLMqFjmoMKt22oTBNJc3HQmuT/6Y+LMWYzhYQqbKukTi+thhbRVBlJPnoCRFw=
+	t=1770077134; cv=none; b=AC2bRlvw+bA1mcgWpRznW+qHktHC44MVp3Hcz2/bP5I2dmq5ZA2IQe3miBhWDKhFtSW7ogUzDpSK0admBRptiHcTfKGwD//oxBSmf8Jt1O3H145UBtpPv/kvU9AW4dsyD/zq0PdsdXpFU0xV6ZU3+wFz+hdixHTIU+9ZQbtOp2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770074586; c=relaxed/simple;
-	bh=3Iu8brpI4tChFP4pMAm50wy5Qo2Vd2Ele1ye8TxHhc8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KD73MOVMqTXJUvsARIpSirJIyEzBimDafTQ4vT2SPydHNVzkb4LsdsMuetfgKyEM/Wv78WCdabjmqrGrFbkLbqIBCAaILSNfBair/6weVU+BcCOIffzfCLGVQzpYbgG89rA7q8MR6qyTeUlSlP68lVe3rjQu0l7vwnlD3MzXq9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IlpdREAa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2EBEC116C6;
-	Mon,  2 Feb 2026 23:23:02 +0000 (UTC)
+	s=arc-20240116; t=1770077134; c=relaxed/simple;
+	bh=kKdeou5Pe7UeE6Ix+YqLXbuufCdY2z3T0wxGDQhiRmE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=u+RynOE/oNo0ql+0hHmjD42ls9F51r/LP5LlfWeNsVEXqi1Ki7pZe0GTDTyZ0wuLaLyyKZEFJBP7PwRWfuvcIrx5BzKBUK8R2ZkFPntKKMDeJldcOMF97iiWp2gfcTuhkJqWmdUC+AUxaVedCvJz9m2y7/IuCo6KV1qG+00zQ+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BFnNi+Zv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F8FFC2BCB0
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 00:05:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770074585;
-	bh=3Iu8brpI4tChFP4pMAm50wy5Qo2Vd2Ele1ye8TxHhc8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IlpdREAalrzMAm25i1T2HdjpGwznFedXcHWFxapntyqPyX2szYX23DSIoba/ShJMP
-	 6Uh5IWl/ColuRysV3TxmNqU4JtSqEp3ATY9FAT8rj/U9sKyIVdidqW/l+iSumP97A3
-	 XlUTz7Le1UC6lkfEM0RE8ZRAqNA1ykHjrcwpy42J3U56yaLqI51lECrSdzG/KBbH7y
-	 iEL5xM2jGvGEwQkYqPKeYOwLwUjK+U1cwf2/ZvC1mLaThoe+ifzzGHDhtFQewSTGIC
-	 2oszyHjsN1uG71kq9KophdTF11dP4ZYY8Cgmx0nXLdNPL2i3hEyX+bYf//JdFfGuTM
-	 Y4LOorDrGoSBg==
-Date: Mon, 2 Feb 2026 23:22:59 +0000
-From: Mark Brown <broonie@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	Jonathan Cameron <jonathan.cameron@huawei.com>
-Subject: Re: [PATCH v6 0/9] spi: add multi-lane support
-Message-ID: <ed1331d4-2e34-4b30-a0d7-f0e1d6093af8@sirena.org.uk>
-References: <20260123-spi-add-multi-bus-support-v6-0-12af183c06eb@baylibre.com>
+	s=k20201202; t=1770077134;
+	bh=kKdeou5Pe7UeE6Ix+YqLXbuufCdY2z3T0wxGDQhiRmE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=BFnNi+Zv2dDy+uisnj62bhZmOx+Uo1c9U+Shqx5+M+Q41ftZ8Ifk/eOO8xYo4huRR
+	 YPlMfNNCepNr+JIRQqPG2w2vjDnss3R0hIv4JhvSWyjyxC7PNQ4K/3KU5YS/NgidbI
+	 CJNwwXfZ875JGiPaqCLo9lyonoSjbZNTJtkRpggtzfCM+Zl3thRgdOWiOqElJ58I5n
+	 AhhWLprnJG7Druc1mYPMQ+aOXhJ0kgbQIPccu/fsQnWWpa8l2+o15K4QMvtclt4Qj/
+	 pQ4vb8ODVBZIZpqdgZrTWzDTOttVLJiWiVht7YjVJgWoDj7t8NoBsWBAaKih6+GINJ
+	 vG9TqvTQjfWdw==
+Received: by mail-yx1-f46.google.com with SMTP id 956f58d0204a3-6495d592b58so4677214d50.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 16:05:34 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV1a8URk0dbA6IyNF3e4XUpRqxtdm/LRgGonzw399BrAw6ypvX2aPY3wlu0yCGgEWAFzEISpv0y3bEX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyye5UK5UubYVM7EwRBTFi6KpGWlSdD/uMavq+r+97Ooo7Oxb3+
+	tchMcLfV1yC9mPbnnThn64ghjd4g5QluAeodEaLU91aNB3byqlKKARKIAF8bn4lgqZnJaDBM+dR
+	Uv51e1tfT7eDJN09PrHdnVMNslVSRFu4=
+X-Received: by 2002:a05:690e:124a:b0:644:51a4:4f16 with SMTP id
+ 956f58d0204a3-649a847327dmr10877144d50.45.1770077133463; Mon, 02 Feb 2026
+ 16:05:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="0MMXqhB0JZpPctVx"
-Content-Disposition: inline
-In-Reply-To: <20260123-spi-add-multi-bus-support-v6-0-12af183c06eb@baylibre.com>
-X-Cookie: Bedfellows make strange politicians.
+References: <20260130-k3-pinctrl-io-drv-fix-v1-1-077aec3ba7ae@kernel.org>
+In-Reply-To: <20260130-k3-pinctrl-io-drv-fix-v1-1-077aec3ba7ae@kernel.org>
+From: Linus Walleij <linusw@kernel.org>
+Date: Tue, 3 Feb 2026 01:05:22 +0100
+X-Gmail-Original-Message-ID: <CAD++jLmMRcgo9-sMOh6+y+Hg73HjmXPG_ur=mPUEQ-hhuWCtfg@mail.gmail.com>
+X-Gm-Features: AZwV_QjYr-Xcsc5cz_CTbglqWcpBs2gdc2w-EI4ETCV9es47TMb_bMpE3EZUcaA
+Message-ID: <CAD++jLmMRcgo9-sMOh6+y+Hg73HjmXPG_ur=mPUEQ-hhuWCtfg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: spacemit: fix drive-strength check warning
+To: Yixun Lan <dlan@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261968-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-261969-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 70394D2A0F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 0642ED2D3E
 X-Rspamd-Action: no action
 
+On Fri, Jan 30, 2026 at 12:22=E2=80=AFPM Yixun Lan <dlan@kernel.org> wrote:
 
---0MMXqhB0JZpPctVx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> The problem is that one value from drive-strength may match to more than
+> two different enum groups which lead to DT complaint, switch to use 'anyO=
+f'
+> to fix this kind warning.
+>
+> Fixes: c3efac0592f8 ("dt-bindings: pinctrl: spacemit: convert drive stren=
+gth to schema format")
+> Signed-off-by: Yixun Lan <dlan@kernel.org>
 
-On Fri, Jan 23, 2026 at 02:37:23PM -0600, David Lechner wrote:
-> This series is adding support for SPI controllers and peripherals that
-> have multiple SPI data lanes (data lanes being independent sets of
-> SDI/SDO lines, each with their own serializer/deserializer).
+Patch applied!
 
-The following changes since commit 8f0b4cce4481fb22653697cced8d0d04027cb1e8:
-
-  Linux 6.19-rc1 (2025-12-14 16:05:07 +1200)
-
-are available in the Git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git tags/spi-multi-lane
-
-for you to fetch changes up to 0ec5ed7c95d1ba6a74491928ff38abb351dbed36:
-
-  spi: axi-spi-engine: support SPI_MULTI_LANE_MODE_STRIPE (2026-02-02 12:12:47 +0000)
-
-----------------------------------------------------------------
-spi: Add multi-lane support
-
-This series is adding support for SPI controllers and peripherals that
-have multiple SPI data lanes (data lanes being independent sets of
-SDI/SDO lines, each with their own serializer/deserializer).
-
-----------------------------------------------------------------
-CL Wang (1):
-      spi: dt-bindings: Add support for ATCSPI200 SPI controller
-
-David Lechner (7):
-      spi: dt-bindings: change spi-{rx,tx}-bus-width to arrays
-      spi: dt-bindings: add spi-{tx,rx}-lane-map properties
-      spi: support controllers with multiple data lanes
-      spi: add multi_lane_mode field to struct spi_transfer
-      spi: Documentation: add page on multi-lane support
-      spi: dt-bindings: adi,axi-spi-engine: add multi-lane support
-      spi: axi-spi-engine: support SPI_MULTI_LANE_MODE_STRIPE
-
- .../bindings/display/panel/sitronix,st7789v.yaml   |   5 +-
- .../devicetree/bindings/iio/adc/adi,ad4030.yaml    |  42 +++-
- .../devicetree/bindings/iio/adc/adi,ad4695.yaml    |   5 +-
- .../bindings/spi/adi,axi-spi-engine.yaml           |  15 ++
- .../bindings/spi/allwinner,sun4i-a10-spi.yaml      |   6 +-
- .../bindings/spi/allwinner,sun6i-a31-spi.yaml      |   6 +-
- .../bindings/spi/andestech,ae350-spi.yaml          |  87 +++++++++
- .../bindings/spi/nvidia,tegra210-quad.yaml         |   6 +-
- .../bindings/spi/spi-peripheral-props.yaml         |  40 +++-
- Documentation/spi/index.rst                        |   1 +
- Documentation/spi/multiple-data-lanes.rst          | 217 +++++++++++++++++++++
- drivers/spi/spi-axi-spi-engine.c                   | 145 +++++++++++++-
- drivers/spi/spi.c                                  | 144 +++++++++++++-
- include/linux/spi/spi.h                            |  30 +++
- 14 files changed, 724 insertions(+), 25 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/spi/andestech,ae350-spi.yaml
- create mode 100644 Documentation/spi/multiple-data-lanes.rst
-
---0MMXqhB0JZpPctVx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmBMdMACgkQJNaLcl1U
-h9DFLAf/eDN1MHKzlDzHEkX7Kc/MuMXQ34+KLKm8zo8/idWiep9CDuUDVmzqf2Ig
-tgXs6Tj3jSvEwoXNDUYVZu6d5FOUmvHgla/qoYMgkOZq3IGuIcGJESeiJr5G+pBv
-FgfTyGv8Z2W2pup/pbFvj13osctJAg4DccA8i5zPqlIOFH6mbdpRKPVqLgJEFKyc
-aPhUkoo9y0TyysPK+1nDym8ZNMSv1EzCcn7c6paeZrExJzccu6XAbA99YTNzb5fC
-RESsFzN9eJCS1hc1oHtkfw7HxnFX/6Qm8lT3QD1332dsjSdnwa5pBY2L/6lt61dL
-aXTQ8FRPXxuJn0gphdi2oKoEkQpYwg==
-=11c/
------END PGP SIGNATURE-----
-
---0MMXqhB0JZpPctVx--
+Yours,
+Linus Walleij
 
