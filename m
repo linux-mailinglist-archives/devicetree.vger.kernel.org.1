@@ -1,182 +1,237 @@
-Return-Path: <devicetree+bounces-262269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262270-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iBlFHhP6gWk7NQMAu9opvQ
-	(envelope-from <devicetree+bounces-262269-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 14:37:23 +0100
+	id WCktBpv7gWk7NQMAu9opvQ
+	(envelope-from <devicetree+bounces-262270-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 14:43:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B29ED9F67
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 14:37:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CE0EDA0DA
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 14:43:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 657E030303E4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 13:37:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CB55F30AB7C8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 13:38:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5ACA39E6FD;
-	Tue,  3 Feb 2026 13:37:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8389F39E6E9;
+	Tue,  3 Feb 2026 13:38:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QkHYwE81"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EJNKeuTo";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HD13s9Yu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 054DF39E19D;
-	Tue,  3 Feb 2026 13:37:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27F4439E6D3
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 13:38:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770125838; cv=none; b=LOanb94QNZt0sCHFW3g1un4vngRenvS92E4WmTyXFZMC4vq7zgFRCmH/5Z3sXUY/yfSKO0chMutH1B5IBAqSBEo7AeYFnEcWpLErwcqH3PyILUJmyRZ+AvvszrTcd3lYuGQv8RW/RYsup42xTTYbtCBXX00l/tLx6WVFtNHjIxY=
+	t=1770125922; cv=none; b=UXjPG5Kv72+6RQg8VFRzXgid9Fe9ZViTr07DjVIHHO7TCfRf0tCPab/Zb5Vui/XYtcaViHDZKjJSP9D97p88L6As+C56tOJSdCjZLRFxAbolEzi+hj/WWcULDm2wF4XiULRUUgpMOfA7lZMlcRTtAwddfRZawK8ErR7TXwtM7CA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770125838; c=relaxed/simple;
-	bh=rLvwSN3Uz5uhxWXl5e00aiIyW5ykBESG7SvoM/VGydk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r2Q3laAJTuYgoDe7veMflXmG4+c91s89KhEYL2SaujzqdaygyDofzNEaLRashAI6aB2BOx4ZiXSJfgNvALOVBjXVJ0bvMwWk4bmKrGV94e863ZPmRVQLtfiMCk2RQrVP9YDrmE3FE378ZNlJBVsS87sLfM+RksjDDqVnXFbmEGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QkHYwE81; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770125836; x=1801661836;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rLvwSN3Uz5uhxWXl5e00aiIyW5ykBESG7SvoM/VGydk=;
-  b=QkHYwE81B4t0d4t6lpU8aFTlP38ZjDxwgQ61dtCpE+EyyKTKJDQ9Dhcu
-   rd1RStU3HDO2mw7/bK5C4mwD2xZMrMw5N/SUL87r3tV7x3ECWInLBG9T5
-   xWxRyhH0/2BfBfGdu+BBPf+1N1lipexiF/bpjfU7SrCdA+s+ez/bwKTPm
-   F6rXF3arfrp513vNienDa/II6F4DJoDiG2S5koGPdNkzNg+UiTsWKWBMd
-   878u+85s+0IBOUCr0uNHk1H2aAgYqwv4b6s7iferjAyuFXBvVBTA+uNQB
-   jg0qlhqqRrb2btJCXxFHJbOvSDvn3rbqcR4PHM3J8Mk3r4uFjJn69muhS
-   A==;
-X-CSE-ConnectionGUID: gMyJoim7S128/SGnOdncgQ==
-X-CSE-MsgGUID: V8xMcGMFTcyqi0hBBdtdZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="71201986"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; 
-   d="scan'208";a="71201986"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 05:37:15 -0800
-X-CSE-ConnectionGUID: S4JzETjrQLWG9fcIrO4XeQ==
-X-CSE-MsgGUID: bTnck/MDR9WEB+6C3uRhKw==
-X-ExtLoop1: 1
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 03 Feb 2026 05:37:12 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vnGab-00000000ghK-3RHN;
-	Tue, 03 Feb 2026 13:37:09 +0000
-Date: Tue, 3 Feb 2026 21:36:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Gary Yang <gary.yang@cixtech.com>, lee@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
-	peter.chen@cixtech.com
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	cix-kernel-upstream@cixtech.com, Gary Yang <gary.yang@cixtech.com>
-Subject: Re: [PATCH v6 2/3] reset: add Sky1 soc reset support
-Message-ID: <202602032143.85yHYNk5-lkp@intel.com>
-References: <20260203022031.4075627-3-gary.yang@cixtech.com>
+	s=arc-20240116; t=1770125922; c=relaxed/simple;
+	bh=Qv73lmQbZYMBOKSAxEjZKP57u5k9Nfbua5LdqE6riMk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nnE3Bx4Qz4+bC3HqvX6F573rRpN05XIxoYmEmfzrFBB0qbL/cUbEcjVKXMAeUFaO+OtJhcusp9YcKmtEYrbiPCjJW9EKR9aT3X+Lio8s1/kzaXRbOUBGrzWmpcj+uP+854jOQXadvpTUZ4JVOlERuGb6PK7Msxiwfpt4Ufx09GY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EJNKeuTo; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HD13s9Yu; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 613BlEd82418209
+	for <devicetree@vger.kernel.org>; Tue, 3 Feb 2026 13:38:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	W4FHKF8VjqcskeLt/BUuyQFPe04b8Hnj0qqZ8C6JMpw=; b=EJNKeuToChSWWyad
+	uNiX0go4GD89t0Umxq/HHMW2LEfsQyCsJiuFfud9SQfdcJdufw3uj62sQ9ld15E8
+	G8NNcAJw+78qRPF++fQvZVYWHMHM/OpJjLgUpuCDr3EebixSOjm76sJdgw+X/cSC
+	X2q6Xfz+3vkb4D+nt9MVKYNMiZuioRCAjQsY4L2FQwGZdtuvvFtC4Jar/frKxx7/
+	Oi4VfZ+zDOaAik0rJnaCqSb4AslhFGxsgyx2RXbFQuCeex/4tH+5y+cxRbyya4Fa
+	DSFA2pCr5yFVk4PXiXIadGL9/sWm+MF9AgQ9V5zMsyIanOftqThoj/I4W35yU46D
+	35Wy3Q==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c3gew89h8-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 13:38:32 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c522c44febso133889985a.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 05:38:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770125912; x=1770730712; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=W4FHKF8VjqcskeLt/BUuyQFPe04b8Hnj0qqZ8C6JMpw=;
+        b=HD13s9YuaUKRvPDPOHqQquHmMsErqDirInOOnk3gTUpy5b+QNknRirCctqCs7uVuGl
+         zWennju2YLtvxJVvqmJJ32WibG4qBL6ZQp3AAG1lNNWUJjoaQVzju9A2uqGmP8QtevqQ
+         usa6kV5HJDO9T8oVmbo4Eepzx+YLNRH8a9zIa4BXrPKAEWpx08jnirc58qj5LSYKcPwz
+         nGwhRtV+GM0SasRxTBVE3VWTUshakB24tbjNpV8o+irg4GCPMNkgR7IyD3jdQhG+uTDF
+         c8nj7IAUAn2V8MRdNsqzRMcxDoYxnu5rYhmthQ3Mz0nelhY7s2+61Ha9xI6sRlvP7xxM
+         3pbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770125912; x=1770730712;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W4FHKF8VjqcskeLt/BUuyQFPe04b8Hnj0qqZ8C6JMpw=;
+        b=nmaW8RhVsUAGP/UI+csqelFoFT7cywaxKaI9mXffkIURDKPvFWT0m7pJH1Lbvuty9V
+         nlciU9piAgurIzF160od51C2AIsH/ew01OFe2HZYLr/Z37c/Nw6UKHnNC8fb4xYgGMBg
+         A65/HY+rd6Y/dj9GMwi8GJH2iDUUsbFR7Ztjqn7AEDOzTtal+IFjOYUEjyGEdUw9AkRR
+         tDCJqfCtkWIWxaG/Gyk4/aRxO/kTYJpOTNRuPD8c84bPZhp6HLhcY6bSCgwuUXyPmSD3
+         fXV+u8tb4ZM3vHg2W/5xDlZ32cGcm7YfWcS55odqhZSNsUCCdVR6N024mQ7VegFuyKl4
+         uRYw==
+X-Forwarded-Encrypted: i=1; AJvYcCUu9B9m12roHMUESUO2xbRSSuG511Mt/xoUjSAGEtDsYwVYN31jfj7X01KgH5iAtUu2q6PVhsCmitoG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7LFuaKkpJ8G8hbk+2QVzHCBLnPxdlEOCOSL0xeexPP6rnno5J
+	VmFVJfyTrWbUO78BInHq/TG2li8OilzqxSDIKlsZP1ZNRw/WlSAoF8bwI/WZX76v3cqTkS2QtJl
+	uLqmngp9qdY5nNn/RUp/QtCszuY7e+B1h4hZIGguePFAQte75ZogjrjinMwG1v/LF
+X-Gm-Gg: AZuq6aLNRbkPM2QvAp26sdVUYg83/s/dfmadQZ8023ylx/Sp9nLMIMOFEiQGcJbFftR
+	Fb418jwSwsvzYkRFSY4NGIfT08XPNpS/F0T1bc76ysFUVCU/eiNG8rlaiuceLBaoZICsbHGsflK
+	wSyLjVyuHKWZuh0p1MnFqCQAHwm80FFIoUIgK9haJlaEqXT/jd2X4QYTTH4l3lBSyqpzSSW1xuD
+	Zy7oJ2fMpZ3zunyW/n5IizOXLF97IS0M3PxlQQ9ieYuJcJ5dOush9dMwAInMEAmF0SC+Ex/LUYt
+	SRhRWnudkz58ETI6pH8Mjm5VSgnH3zWNklRS+70BvAQwVgw19LzLDEGM5Q8hlLICcFy/ou/UOQx
+	1c6qcwpFW9Yfw9TuwJGRzrR6HVFACwJCtg71TQO0aUBs8wkHFAx9pYuPyBcX7t6HWQPY=
+X-Received: by 2002:a05:620a:4506:b0:8b9:fa81:5282 with SMTP id af79cd13be357-8c9eb27a8camr1419765585a.3.1770125911794;
+        Tue, 03 Feb 2026 05:38:31 -0800 (PST)
+X-Received: by 2002:a05:620a:4506:b0:8b9:fa81:5282 with SMTP id af79cd13be357-8c9eb27a8camr1419762685a.3.1770125911265;
+        Tue, 03 Feb 2026 05:38:31 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8de46abf6fsm827564266b.52.2026.02.03.05.38.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Feb 2026 05:38:30 -0800 (PST)
+Message-ID: <ee0fe165-1764-460f-ad6a-9633b06776b2@oss.qualcomm.com>
+Date: Tue, 3 Feb 2026 14:38:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260203022031.4075627-3-gary.yang@cixtech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 9/9] arm64: dts: qcom: qcs6490-rb3gen2: Enable EUD
+ debug functionality
+To: Elson Serrao <elson.serrao@oss.qualcomm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260126233830.2193816-1-elson.serrao@oss.qualcomm.com>
+ <20260126233830.2193816-10-elson.serrao@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260126233830.2193816-10-elson.serrao@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: AImbN5yp2D_1x3Aam_62Q9HFi4LiKH8z
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAzMDEwOSBTYWx0ZWRfXw5efUI+SWa9S
+ LttiGmyUkCvQMQDV1tEnlwNGtyo/iCggotqsZIs7/SNIP2w5jJdYuP/TMxBYUknYewYB4rvNCyx
+ H/oeK2co1FXVFQm15VxdvDBs8S2clVqN3XbW0GJJFYuq2bNzRzYUI85u027WzfIwikb79z8Mfhe
+ /76Ch4RDQoBEZomEpSXGPenWzRPttnw1bTk87UyBgfWr1gk0QxMWgbhZEfk/c+xPD+pZbkiaAbp
+ Z8hgJRAONNe4iIgbiM4sDYhmn3gQAE5bhFWgumDAsHH07Bs463e3A2J10Pj4VjnxmAc7cv0qxrV
+ eGt30h0FTgUtpK2OYSHyDBOJHC+5uWIjfuM3cqfzgb+p50HXSLA4xB8yj791mt0ubp+n9/PqF93
+ smtldPtNwBhf1+WM2Apx3SxDTsVlNazfvf5w35hBoWTW+/yi9uzQssZVgsMp+pKEn4iw6yVRWcB
+ /hQrM0wQiDLsjlk29Tw==
+X-Authority-Analysis: v=2.4 cv=XI89iAhE c=1 sm=1 tr=0 ts=6981fa58 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=yEEpPANMKW__IVoBb5EA:9
+ a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-ORIG-GUID: AImbN5yp2D_1x3Aam_62Q9HFi4LiKH8z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-03_04,2026-02-02_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 suspectscore=0 phishscore=0
+ lowpriorityscore=0 malwarescore=0 adultscore=0 clxscore=1015 spamscore=0
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2602030109
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262269-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262270-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,0.0.0.0:email];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,01.org:url]
-X-Rspamd-Queue-Id: 1B29ED9F67
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 7CE0EDA0DA
 X-Rspamd-Action: no action
 
-Hi Gary,
+On 1/27/26 12:38 AM, Elson Serrao wrote:
+> On this board, EUD resides on the primary High-Speed USB data path between
+> the connector and the DWC3 controller. Update the device tree connections
+> to correctly map the connector and controller endpoints, and describe
+> role-switch capability on the EUD primary path.
+> 
+> Signed-off-by: Elson Serrao <elson.serrao@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 20 ++++++++++++++++++--
+>  1 file changed, 18 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> index f29a352b0288..2fc2d0aed8dd 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> @@ -194,7 +194,7 @@ port@0 {
+>  					reg = <0>;
+>  
+>  					pmic_glink_hs_in: endpoint {
+> -						remote-endpoint = <&usb_1_dwc3_hs>;
+> +						remote-endpoint = <&eud_con0>;
+>  					};
+>  				};
+>  
+> @@ -1176,13 +1176,29 @@ &usb_1 {
+>  };
+>  
+>  &usb_1_dwc3_hs {
+> -	remote-endpoint = <&pmic_glink_hs_in>;
+> +	remote-endpoint = <&eud_usb0>;
+>  };
+>  
+>  &usb_1_dwc3_ss {
+>  	remote-endpoint = <&usb_dp_qmpphy_usb_ss_in>;
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on lee-leds/for-leds-next linus/master pza/reset/next v6.19-rc8 next-20260202]
-[cannot apply to pza/imx-drm/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Gary-Yang/dt-bindings-soc-cix-document-the-simple-mfd-syscon-on-Sky1-SoC/20260203-102331
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20260203022031.4075627-3-gary.yang%40cixtech.com
-patch subject: [PATCH v6 2/3] reset: add Sky1 soc reset support
-config: nios2-allmodconfig (https://download.01.org/0day-ci/archive/20260203/202602032143.85yHYNk5-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 11.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260203/202602032143.85yHYNk5-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602032143.85yHYNk5-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/reset/reset-sky1-base.c:97:5: warning: no previous prototype for 'sky1_reset_common_probe' [-Wmissing-prototypes]
-      97 | int sky1_reset_common_probe(struct platform_device *pdev,
-         |     ^~~~~~~~~~~~~~~~~~~~~~~
+The on-SoC links can be deferred to the common DTSI
 
 
-vim +/sky1_reset_common_probe +97 drivers/reset/reset-sky1-base.c
+>  };
+>  
+> +&eud_con0 {
+> +	remote-endpoint = <&pmic_glink_hs_in>;
+> +};
+> +
+> +&eud_usb0 {
+> +	remote-endpoint = <&usb_1_dwc3_hs>;
+> +};
+> +
+> +&eud {
+> +	status = "okay";
 
-    96	
-  > 97	int sky1_reset_common_probe(struct platform_device *pdev,
-    98				const struct sky1_src_variant *variant)
-    99	{
-   100		struct sky1_src *sky1src;
-   101		struct device *dev = &pdev->dev;
-   102	
-   103		sky1src = devm_kzalloc(dev, sizeof(*sky1src), GFP_KERNEL);
-   104		if (!sky1src)
-   105			return -ENOMEM;
-   106	
-   107		sky1src->regmap = device_node_to_regmap(dev->parent->of_node);
-   108		if (IS_ERR(sky1src->regmap)) {
-   109			dev_err(dev, "Unable to get sky1-src regmap");
-   110			return PTR_ERR(sky1src->regmap);
-   111		}
-   112	
-   113		sky1src->signals = variant->signals;
-   114		sky1src->rcdev.owner     = THIS_MODULE;
-   115		sky1src->rcdev.nr_resets = variant->signals_num;
-   116		sky1src->rcdev.ops       = &sky1_src_ops;
-   117		sky1src->rcdev.of_node   = dev->parent->of_node;
-   118		sky1src->rcdev.dev       = dev;
-   119	
-   120		return devm_reset_controller_register(dev, &sky1src->rcdev);
-   121	}
-   122	EXPORT_SYMBOL_GPL(sky1_reset_common_probe);
-   123	
+And I think it should be okay to keep it enabled by default
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Konrad
 
