@@ -1,124 +1,219 @@
-Return-Path: <devicetree+bounces-262423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262424-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eE+pKrN8gmnAVQMAu9opvQ
-	(envelope-from <devicetree+bounces-262423-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 23:54:43 +0100
+	id WKRFCUR9gmnAVQMAu9opvQ
+	(envelope-from <devicetree+bounces-262424-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 23:57:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 707C8DF6D6
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 23:54:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6ABEDF744
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 23:57:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 89AFC300360F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 22:54:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C40E130B5BA3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 22:56:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373CF35CBD5;
-	Tue,  3 Feb 2026 22:54:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A0BE36A037;
+	Tue,  3 Feb 2026 22:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sjCVV9pe"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="I3vbZbXC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 139AA31B839;
-	Tue,  3 Feb 2026 22:54:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B1932471B;
+	Tue,  3 Feb 2026 22:55:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770159281; cv=none; b=QZkW5u8aLkOIXTb619Pd9sFQJIT1HEJ9Hx/5cLy94w+h0boUZdERjuLmR+M1Xufu+HtYdZE5a60Rv/x0nrRfRGvFmOLjYDyuq6oJy7huYXwcZvvUqs2jMwvEJDGjIpOG06xR1xobTkiaG0SkiLMkdoAwxWndLESrITSEegD82xY=
+	t=1770159361; cv=none; b=HRscY5FV3JdiqZb/P6sAWKPsL8J2vDGg9p9Cq0rNChtWchG58LMohusGceYgk17XUa8FKnc8x5CZbZWFMfjMcOVfvrKgliVu/TD/zUIH7Qv0OKDkctRAod5+Opp7n2EkX3uN8ezqcauxpEwyNx42GLWnJeBy49o8KGjGyNPlV8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770159281; c=relaxed/simple;
-	bh=xTEa66SqIkzAleDgDRd7lGWFimq5gjopqYwFXFVLDpQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Csum5B/3K4UkxTr2reCuPEVdrWUKBwasyatCcVGIuhoME8/3X+yEq5nNUg8E4upW4QDStdU6gPO/uoht3rjY3t0nHZLFduTU+9s9LUl8Agrk3GpIQy8DXmDYhKZTxy7iyyChmkR/JkRrecOdlnMsTmZGJpP800IYlSL7pORXJ2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sjCVV9pe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91E38C116D0;
-	Tue,  3 Feb 2026 22:54:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770159280;
-	bh=xTEa66SqIkzAleDgDRd7lGWFimq5gjopqYwFXFVLDpQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=sjCVV9peYhhrciKha3J/XPkboPPVtTmNcInZhTc+F62AFgALdSSL+Hmzh3A2B1EZw
-	 Arb6xJM4W1nFMQHJ3SDeign5nxpIop7IWk+jPnwsbnxebEoNgGkNU9yyuUd4JXgWp8
-	 uzRMtCfHfyqKmTWraf02FKOFcXLaV0kNPjJdZtK16eOujseXLzblXMxMdLyjtshz6e
-	 XpLGxeymh3oTeJzBWHskWP+FjM38PaSmDrWkwiV9MOHXwXgPgcGCmV7tmjtrBEmWup
-	 7ZfQI4kVJN5yRgs5VWOkBuS6/mK9mZoru9ha9OUUsxkn0fL38QTmXizln3FJaYtyfx
-	 BeatimVe6FgrA==
-Date: Tue, 3 Feb 2026 14:54:38 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Paolo Abeni <pabeni@redhat.com>
-Cc: Dan Carpenter <dan.carpenter@linaro.org>, Chester Lin
- <chester62515@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
- "David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org, Eric
- Dumazet <edumazet@google.com>, Fabio Estevam <festevam@gmail.com>, Frank Li
- <Frank.Li@nxp.com>, Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
- imx@lists.linux.dev, Jan Petrous <jan.petrous@oss.nxp.com>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- Matthias Brugger <mbrugger@suse.com>, Maxime Coquelin
- <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org, NXP S32 Linux Team
- <s32@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring
- <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- linaro-s32@linaro.org
-Subject: Re: [PATCH v6 0/3] s32g: Use a syscon for GPR
-Message-ID: <20260203145438.5a850b61@kernel.org>
-In-Reply-To: <bdb7cd69-7dcd-4e8a-b04a-14a2eb902311@redhat.com>
-References: <cover.1769764941.git.dan.carpenter@linaro.org>
-	<bdb7cd69-7dcd-4e8a-b04a-14a2eb902311@redhat.com>
+	s=arc-20240116; t=1770159361; c=relaxed/simple;
+	bh=EpGvoxDrKuv7hIK1fCK6uHMFVNI2vX0KggMpEgCxAwY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MZK1d8j81G2LKBDmcVgjSUeahV8pK+YuY5oQaQt+3oGrlWYDKgcb00VBcDSUODO6QXjeFfSG5YLANUZNLDTm+LYqO3evsQ+LdO7jiPD/xVdfHJHF+M12ZI50EFKWpOBZe6YWOInkiGgC7Y+kE0fuSSw+5MtUfMgCoe9VNFcnauc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=I3vbZbXC; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770159360; x=1801695360;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EpGvoxDrKuv7hIK1fCK6uHMFVNI2vX0KggMpEgCxAwY=;
+  b=I3vbZbXCd86/reSBcjIBcOa3Qv8FT8V8+5pL8PRaKD3mJG8f0oroEdyM
+   r3DiyTHK08sW3p29RJTwk4D7y9YDUY12flwczh8qfBS3VWVHAKLcttBTs
+   BK5ZzfXaICiKgtJiJ2LB6g0RTWdEs39/kkq/cObgD6PkXVBqZP8+tfNC+
+   WNlZ/7d33Fkh1zItGUt3ETyDkZLWVE9rmaiJV346i3vFigjpvUBqDkBeA
+   538ffg1EB4DsgMO/Q6OxPygp3y0XmRENv8WuHGCERFDGHZCDfOYV3ainQ
+   JsM9/8WfLacKaAET97RfNR+hyb1YgSfGCdUifDYsO4Rd9hPkk25IvD/vv
+   Q==;
+X-CSE-ConnectionGUID: IxArffcwRJiUUIQodsHAQw==
+X-CSE-MsgGUID: yJRQcNgUSOqZA4oB+8L4Rg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71402300"
+X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; 
+   d="scan'208";a="71402300"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 14:55:59 -0800
+X-CSE-ConnectionGUID: GQiDoYA+Qam4UgwOSktzIQ==
+X-CSE-MsgGUID: C6nqfGIRQr21qCll8mjDRw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; 
+   d="scan'208";a="214138905"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by orviesa003.jf.intel.com with ESMTP; 03 Feb 2026 14:55:56 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vnPJJ-00000000hFi-1tvB;
+	Tue, 03 Feb 2026 22:55:53 +0000
+Date: Wed, 4 Feb 2026 06:55:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alain Volmat <alain.volmat@foss.st.com>,
+	Hugues Fruchet <hugues.fruchet@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Alain Volmat <alain.volmat@foss.st.com>
+Subject: Re: [PATCH 08/13] media: stm32: dcmipp: add pixel pipes helper
+ functions
+Message-ID: <202602040608.vLI553iq-lkp@intel.com>
+References: <20260202-stm32-dcmipp-pixel-pipes-support-v1-8-8d8d51f5e014@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260202-stm32-dcmipp-pixel-pipes-support-v1-8-8d8d51f5e014@foss.st.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262423-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,gmail.com,foss.st.com,lunn.ch,kernel.org,davemloft.net,vger.kernel.org,google.com,nxp.com,oss.nxp.com,lists.linux.dev,lists.infradead.org,st-md-mailman.stormreply.com,suse.com,pengutronix.de];
-	RCPT_COUNT_TWELVE(0.00)[26];
+	TAGGED_FROM(0.00)[bounces-262424-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[foss.st.com,kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 707C8DF6D6
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: B6ABEDF744
 X-Rspamd-Action: no action
 
-On Tue, 3 Feb 2026 12:18:54 +0100 Paolo Abeni wrote:
-> It looks like patch 3/3 depends on 1/3 but it should land in a different
-> tree, as patches 1 && 2 looks suitable for 'net-next' and 3/3 should
-> probably go via the arm/freescale tree.
-> 
-> We either need explicit ack from freescale maintainers or this should be
-> split across subtrees, right?
+Hi Alain,
 
-FWIW normally we don't touch the dts patch at all, unless the
-maintainer chimes in and tells us to take it. No waiting for acks.
-Off the top of my head us taking dts patches only happens if 
-the person posting the patch _is_ the platform maintainer..
+kernel test robot noticed the following build warnings:
 
-For this series we're waiting for the bindings to be reviewed.
+[auto build test WARNING on eb4ee870747c3a77a9c3c84d84efb64bd481013a]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Alain-Volmat/media-stm32-dcmipp-share-struct-dcmipp_device-among-subdevs/20260202-220852
+base:   eb4ee870747c3a77a9c3c84d84efb64bd481013a
+patch link:    https://lore.kernel.org/r/20260202-stm32-dcmipp-pixel-pipes-support-v1-8-8d8d51f5e014%40foss.st.com
+patch subject: [PATCH 08/13] media: stm32: dcmipp: add pixel pipes helper functions
+config: riscv-randconfig-r122-20260204 (https://download.01.org/0day-ci/archive/20260204/202602040608.vLI553iq-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 9b8addffa70cee5b2acc5454712d9cf78ce45710)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260204/202602040608.vLI553iq-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202602040608.vLI553iq-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+   WARNING: invalid argument to '-march': '_zacas_zabha'
+>> drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-pixelcommon.c:41:1: sparse: sparse: symbol 'dcmipp_pixel_formats_list' was not declared. Should it be static?
+
+vim +/dcmipp_pixel_formats_list +41 drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-pixelcommon.c
+
+    17	
+    18	#define DCMIPP_ENT(id, pad) (1 << (2 * (id) + (pad)))
+    19	#define DCMIPP_ISP_SINK			(DCMIPP_ENT(DCMIPP_ISP, 0))
+    20	#define DCMIPP_ISP_SRC			(DCMIPP_ENT(DCMIPP_ISP, 1))
+    21	#define DCMIPP_ISP_INOUT		(DCMIPP_ISP_SINK | DCMIPP_ISP_SRC)
+    22	#define DCMIPP_MAIN_POSTPROC_SINK	(DCMIPP_ENT(DCMIPP_MAIN, 0))
+    23	#define DCMIPP_MAIN_POSTPROC_SRC	(DCMIPP_ENT(DCMIPP_MAIN, 1))
+    24	#define DCMIPP_MAIN_POSTPROC_INOUT					\
+    25		(DCMIPP_MAIN_POSTPROC_SINK | DCMIPP_MAIN_POSTPROC_SRC)
+    26	#define DCMIPP_AUX_POSTPROC_SINK	(DCMIPP_ENT(DCMIPP_AUX, 0))
+    27	#define DCMIPP_AUX_POSTPROC_SRC	(DCMIPP_ENT(DCMIPP_AUX, 1))
+    28	#define DCMIPP_AUX_POSTPROC_INOUT					\
+    29		(DCMIPP_AUX_POSTPROC_SINK | DCMIPP_AUX_POSTPROC_SRC)
+    30	#define DCMIPP_ALL_POSTPROC_SINK					\
+    31		(DCMIPP_MAIN_POSTPROC_SINK | DCMIPP_AUX_POSTPROC_SINK)
+    32	#define DCMIPP_ALL_POSTPROC_INOUT					\
+    33		(DCMIPP_MAIN_POSTPROC_INOUT | DCMIPP_AUX_POSTPROC_INOUT)
+    34	
+    35	#define PIXMAP_MBUS(mbus, applicable_pipes)		\
+    36		{						\
+    37			.code = MEDIA_BUS_FMT_##mbus,		\
+    38			.pipes = applicable_pipes,		\
+    39		}
+    40	const struct dcmipp_pixelpipe_pix_map
+  > 41	dcmipp_pixel_formats_list[] = {
+    42		/* RGB formats */
+    43		/* RGB565 / RGB888 */
+    44		PIXMAP_MBUS(RGB565_2X8_LE, DCMIPP_AUX_POSTPROC_SINK | DCMIPP_ISP_SINK),
+    45		PIXMAP_MBUS(RGB565_1X16, DCMIPP_AUX_POSTPROC_SINK | DCMIPP_ISP_SINK),
+    46		PIXMAP_MBUS(RGB888_3X8, DCMIPP_AUX_POSTPROC_SINK | DCMIPP_ISP_SINK),
+    47		PIXMAP_MBUS(RGB888_1X24, DCMIPP_ALL_POSTPROC_INOUT | DCMIPP_ISP_INOUT),
+    48		/* YUV formats */
+    49		PIXMAP_MBUS(YUYV8_2X8, DCMIPP_AUX_POSTPROC_SINK | DCMIPP_ISP_SINK),
+    50		PIXMAP_MBUS(UYVY8_1X16, DCMIPP_AUX_POSTPROC_SINK | DCMIPP_ISP_SINK),
+    51		PIXMAP_MBUS(YUV8_1X24, DCMIPP_ALL_POSTPROC_INOUT | DCMIPP_ISP_SRC),
+    52		/* GREY */
+    53		PIXMAP_MBUS(Y8_1X8, DCMIPP_AUX_POSTPROC_SINK | DCMIPP_ISP_SINK),
+    54		PIXMAP_MBUS(Y10_1X10, DCMIPP_AUX_POSTPROC_SINK | DCMIPP_ISP_SINK),
+    55		PIXMAP_MBUS(Y12_1X12, DCMIPP_AUX_POSTPROC_SINK | DCMIPP_ISP_SINK),
+    56		PIXMAP_MBUS(Y14_1X14, DCMIPP_AUX_POSTPROC_SINK | DCMIPP_ISP_SINK),
+    57		/* Raw Bayer */
+    58		/* Raw 8 */
+    59		PIXMAP_MBUS(SBGGR8_1X8, DCMIPP_ISP_SINK),
+    60		PIXMAP_MBUS(SGBRG8_1X8, DCMIPP_ISP_SINK),
+    61		PIXMAP_MBUS(SGRBG8_1X8, DCMIPP_ISP_SINK),
+    62		PIXMAP_MBUS(SRGGB8_1X8, DCMIPP_ISP_SINK),
+    63		/* Raw 10 */
+    64		PIXMAP_MBUS(SBGGR10_1X10, DCMIPP_ISP_SINK),
+    65		PIXMAP_MBUS(SGBRG10_1X10, DCMIPP_ISP_SINK),
+    66		PIXMAP_MBUS(SGRBG10_1X10, DCMIPP_ISP_SINK),
+    67		PIXMAP_MBUS(SRGGB10_1X10, DCMIPP_ISP_SINK),
+    68		/* Raw 12 */
+    69		PIXMAP_MBUS(SBGGR12_1X12, DCMIPP_ISP_SINK),
+    70		PIXMAP_MBUS(SGBRG12_1X12, DCMIPP_ISP_SINK),
+    71		PIXMAP_MBUS(SGRBG12_1X12, DCMIPP_ISP_SINK),
+    72		PIXMAP_MBUS(SRGGB12_1X12, DCMIPP_ISP_SINK),
+    73		/* Raw 14 */
+    74		PIXMAP_MBUS(SBGGR14_1X14, DCMIPP_ISP_SINK),
+    75		PIXMAP_MBUS(SGBRG14_1X14, DCMIPP_ISP_SINK),
+    76		PIXMAP_MBUS(SGRBG14_1X14, DCMIPP_ISP_SINK),
+    77		PIXMAP_MBUS(SRGGB14_1X14, DCMIPP_ISP_SINK),
+    78	};
+    79	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
