@@ -1,118 +1,141 @@
-Return-Path: <devicetree+bounces-262271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262272-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KDvEMu77gWk7NQMAu9opvQ
-	(envelope-from <devicetree+bounces-262271-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 14:45:18 +0100
+	id SMhYI3r9gWk7NQMAu9opvQ
+	(envelope-from <devicetree+bounces-262272-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 14:51:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39DC9DA133
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 14:45:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFED0DA264
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 14:51:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C0FE03078635
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 13:42:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 302FA304EE89
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 13:51:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9545139C632;
-	Tue,  3 Feb 2026 13:42:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="RKlbpjDJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5381D396D22;
+	Tue,  3 Feb 2026 13:51:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159CB316190;
-	Tue,  3 Feb 2026 13:42:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A94F38E11F;
+	Tue,  3 Feb 2026 13:51:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770126156; cv=none; b=GuMzcjDWX1pw3aWi4yt+VDx0GFSUuWDArvhR8emrRdCBuPX6+JWuQ9aungTxXZzdqZA2xrO4ghhkeWa+u/XSAS9Y2Zy6r32SYZi1027HkQvqdHF0RqOdhxKRDn2G+cNYsK+kfb75Lz2A1rtWj1XYM6tH5a3Za/5ffLIPrn84yR4=
+	t=1770126709; cv=none; b=GqCnVmcG2ZQACEbFPwiIwg4O55vTPFTOo1FXcDzS9vVUDPjMIriOZmql2bE1ioehxRvLlEhdetq4+Z8TwhTPYBJpbats0xO0Teix5IjJX5fx8AeorQHtWnDoOHkzQAOZRqvdkkiePAZ/D00Dd2T9Qinp+VPlfFuAENemZGByw4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770126156; c=relaxed/simple;
-	bh=QtOdIRN+WK/1QkY83rIItqdg8KC1LcSmSDmogvKYVXs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sPo6AqoCqxN9M0iglwbWgnR+ymEFNi1S+g/1iJXRqaVSY8Wx9KU/kBroejCcsXE4LRXalVF4dGYOsfghZG5X1XsX8QaRyA7PiUuDOkdRhYSsu8FLuQD6+AwaJK8dlqvinXP5mgeIWRSmbG4tg3EthRTkpjyTELUg4yMDUVXCNp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=RKlbpjDJ; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=IGJeebgEXqWhXRsH4RnElTfr9kixznjS/2CB/02FO0o=; b=RKlbpjDJ5XhwXMQHJwEDOYWZen
-	8hVXGjCJHsSs0LyvjzebOr9bQSe7gKk7FcO36E3f08RxJYTCfgJPybJ7FD4PVePUNcAy20Cvmw5fS
-	/UOA/Yidi4aN5lMO8ke4wIAeQYfzVnlMpmUugmHoRKnOyhEIMv5O/WlmE2K0dsh+id/w=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vnGfY-005x22-CQ; Tue, 03 Feb 2026 14:42:16 +0100
-Date: Tue, 3 Feb 2026 14:42:16 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Potin Lai <potin.lai.pt@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Patrick Williams <patrick@stwcx.xyz>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org, Cosmo Chou <cosmo.chou@quantatw.com>,
-	Mike Hsieh <Mike_Hsieh@quantatw.com>,
-	Potin Lai <potin.lai@quantatw.com>,
-	Roger Kan <Roger.Kan@quantatw.com>
-Subject: Re: [PATCH v2 0/2] Add Meta (Facebook) SanMiguel BMC (AST2620)
-Message-ID: <3256b313-7671-4fda-9949-766906c344a7@lunn.ch>
-References: <20260203-sanmiguel_init_dts-v2-0-6a5682c32b38@gmail.com>
+	s=arc-20240116; t=1770126709; c=relaxed/simple;
+	bh=Yja9z00myolK/rxijUf6vQvKKm/kk51yjjM6oZ7Fmas=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fbUMvFLMBGXRXZTmdIKk1jrB0G5GCzOb4TUknJlX9vFkLT9YzOb4oLbFNPKbTt9GcGmBhSJo7Zc1js5eSqINroI3nR7IKHp2WXaHoJfQ+URrx4Kfdf7jC9KXMILESEvVqgl0nxB1TX/FdL+spSl5svAGLPaANBr5Zl3sOKbXMNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: EBI8gsTxQiqdqIR1jwIr1g==
+X-CSE-MsgGUID: +HlSqTVwQqWedxIFktftKg==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 03 Feb 2026 22:51:45 +0900
+Received: from vm01.adwin.renesas.com (unknown [10.226.93.5])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 2AE66421BAEF;
+	Tue,  3 Feb 2026 22:51:40 +0900 (JST)
+From: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+To: geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	biju.das.jz@bp.renesas.com,
+	fabrizio.castro.jz@renesas.com
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH v3 0/8] Add versaclock3 support for RZ/V2H and RZ/V2N EVKs
+Date: Tue,  3 Feb 2026 13:51:31 +0000
+Message-ID: <20260203135139.28151-1-ovidiu.panait.rb@renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260203-sanmiguel_init_dts-v2-0-6a5682c32b38@gmail.com>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262271-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-262272-lists,devicetree=lfdr.de];
+	TO_DN_NONE(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org,baylibre.com,bp.renesas.com,renesas.com];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[ovidiu.panait.rb@renesas.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.978];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim]
-X-Rspamd-Queue-Id: 39DC9DA133
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EFED0DA264
 X-Rspamd-Action: no action
 
-On Tue, Feb 03, 2026 at 05:48:13PM +0800, Potin Lai wrote:
-> Add Linux device tree entries for Meta (Facebook) SanMiguel specific
-> devices connected to the AST2620 BMC SoC.
-> 
-> Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
-> ---
-> Changes in v2:
-> - change mac0 phy-mode to rgmii-id
+Hi,
 
-No other change? Was the previous version broken, and never tested? Is
-this version broken and not tested? Is the phy-mode ignored, which
-suggests something else is broken?
+This series extends the versaclock3 driver to support registering multiple
+devices at the same time, and adds support for the internal freerunning
+32.768 kHz clock. The 32k clock is used on the Renesas RZ/V2H and RZ/V2N
+SoCs as RTC counter clock.
 
-     Andrew
+The dts nodes for the RZ/V2H and RZ/V2N EVKs were updated to describe
+the versa3 devices found on the boards.
+
+Best regards,
+Ovidiu
+
+v3:
+- Fixed a NULL pointer dereference on the error paths.
+- Added support for registering multiple versa3 instances at the same time.
+- Made clock names unique by prefixing them with the DT node name.
+- Rebased the internal 32k clock patch to match the new logic.
+- Added comments in RZ/V2H and RZ/V2N board dts to document rtxin_clk and
+  qextal_clk routing.
+
+v2: https://lore.kernel.org/all/20260120150606.7356-1-ovidiu.panait.rb@renesas.com/
+- Added versaclock3 dts node for RZ/V2N EVK.
+
+v1: https://lore.kernel.org/all/20251021175311.19611-1-ovidiu.panait.rb@renesas.com/
+
+Ovidiu Panait (8):
+  clk: versaclock3: Fix NULL pointer dereference in error path
+  clk: versaclock3: Remove unused SE2 clock select macro
+  clk: versaclock3: Reference parent clocks by type and index
+  clk: versaclock3: Add per-device clock data structure
+  clk: versaclock3: Prefix clock names with DT node name
+  clk: versaclock3: Add freerunning 32.768kHz clock support
+  arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Add versa3 clock
+    generator node
+  arm64: dts: renesas: r9a09g056n48-rzv2n-evk: Add versa3 clock
+    generator node
+
+ .../dts/renesas/r9a09g056n48-rzv2n-evk.dts    |  25 +
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    |  25 +
+ drivers/clk/clk-versaclock3.c                 | 618 +++++++++++++-----
+ 3 files changed, 506 insertions(+), 162 deletions(-)
+
+-- 
+2.51.0
+
 
