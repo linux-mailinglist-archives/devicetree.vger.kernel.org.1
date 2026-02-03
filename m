@@ -1,220 +1,323 @@
-Return-Path: <devicetree+bounces-262072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262073-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iLlbCGWagWl/HAMAu9opvQ
-	(envelope-from <devicetree+bounces-262072-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 07:49:09 +0100
+	id wCIvII6YgWl/HAMAu9opvQ
+	(envelope-from <devicetree+bounces-262073-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 07:41:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 473B6D574D
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 07:49:08 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 225F0D565A
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 07:41:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D25F330828FF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 06:34:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BBDD7302E712
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 06:36:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29D4537F11C;
-	Tue,  3 Feb 2026 06:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E8F37BE70;
+	Tue,  3 Feb 2026 06:36:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AC2qstMi";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QDwOplm1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NGEnkydS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B299225A640
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 06:32:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE5236EA9B
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 06:36:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770100370; cv=none; b=ZxA1NQyySpUKwCzRCUg/auMNoqxD3wMXB6RMf74woXqFn8rK8b3FxZJ6kfJJsiuZW4gG2j+e57i872DWIvpUpnBg57lYyIKkc52vVvuiB9tI1K5wW/Zy/Cfl3SUQR4O3m0nOd33SzdtOiV+IUxdTa7Avu+fSR85CVkn9zzaoDBI=
+	t=1770100581; cv=none; b=kZ9lQf2U1Kzku+ZRTblTnb4RXdsXcISx/Q+ueNAjAsflNVgaZNk9bjM9CYGYt3ZQEXAib+RdC1RP4sOqhTu2oRwVFyryekTR86ghuYIKWSehPBaU3Yea0NN5X3UWYDj5BH5DdMjbXsHQdocPmDccAYaAdYN3lYMmUkAsa8SEo98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770100370; c=relaxed/simple;
-	bh=kICWRRDeic3FzjUYfk6wZA50Xhw23GGYToPtLvwwX70=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=e/vq8zK4IeILz//c3Tiq03TQ240w8YnSkzIEj8Ra2gqfeCumd8QrUdDb4/KYB6g77tmFb487qJCExoPaAhcuTPzhSH4v4GuveaQGPYalb98qcaNgOcG0zSdy4m+xmQ/ZULR4z0H1M8O3teHNGSUKpka5PV2yL1KBsPtz7LWmSNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AC2qstMi; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QDwOplm1; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6132QqsH3386846
-	for <devicetree@vger.kernel.org>; Tue, 3 Feb 2026 06:32:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=N2oBlPbjkzULaEw9PhLk74w0izpOPSVkdcW
-	C0nfRP94=; b=AC2qstMiIzvSzflLO2crl7lLLSEoqUBD9jUqy11eDdCiYdgKMAt
-	iv8Rr1dGziHMCuCNazC2pST5+MlV1bqvSDGCklw7mo6GfyYqnKSltG4tg0qjspzi
-	5EoRQSG3WYYrpXgXYeCVrORSzh7Od+V9SjyphGbH09JhKvEKBeWBBdNnEVPeOLT/
-	1UL5wlL9Anekh2mCNx43+cOXtlD1CJP6go0FF9Of8FT2p9UL50t4PD69qKeJjI37
-	5YvmqFNpXg6DctAkJxsmziV+Ftg5BcoSLNDVqpqFKUcrRFlEtkoW49aI04ogypoT
-	XKh55cicP6BPpxcj1IAPXA8t68P/GNaDYFQ==
-Received: from mail-dl1-f69.google.com (mail-dl1-f69.google.com [74.125.82.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c2xvbtcnx-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 06:32:47 +0000 (GMT)
-Received: by mail-dl1-f69.google.com with SMTP id a92af1059eb24-11b94abc09dso7924594c88.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 22:32:47 -0800 (PST)
+	s=arc-20240116; t=1770100581; c=relaxed/simple;
+	bh=WIOfbh0WJE+TekDH/9Lq1OM/hLN3hJjCAli1fyDbuXo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KGBjRHqznZmV8vksbWDUDty9ZyKDotnaLrTmBZqPDSA0nS8B96PIc9g7Y6H5U8jj9BRzB9q4Jm2sGC0D6wvmOVIF31R0uCPfUU7Fz4wUKyHvyvX9ER9gAGzroAYG3DCeUI1FqVZWJ97aEOMYTVmk02879GYVQ5iTLRqVUjSCK4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NGEnkydS; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-59deec3d8dcso6907054e87.3
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 22:36:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770100367; x=1770705167; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=N2oBlPbjkzULaEw9PhLk74w0izpOPSVkdcWC0nfRP94=;
-        b=QDwOplm1ZFkceVGqsN+0cfPHEmjQL7EvJlXI415RQ2/mhSlQN+RLpwCDZFZio8kvQP
-         ataADpo8iVEvxEKQ1BWnj00omQ5kK9CFg7M0Owuogp9ikHSypMXA2q+OF3Fd0i0+ICvS
-         dDw3GdCyxjBfGZ5OJ10znVjO83VZZAkvUtfhgXPWaoVYSNNccVCEH4uoBuuuJ5OVBhfY
-         sm6jo6kB3172ycUeJX8G7OLa2IWnjjeL7UYbXe45XR++EZ0+KSDjjTKUSPRKFMLPH5pz
-         SKKASxWx3RuMB95OTi+dhs3foHMFhpuRgbPtHNxJ0zhVcaqw7iJoIu0L7/dELUxO1hUs
-         zMgQ==
+        d=gmail.com; s=20230601; t=1770100578; x=1770705378; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B8GrinKDGOqbbFlvjaosDEAsZcli0GS5u0koOnCbV+4=;
+        b=NGEnkydSeoBde0mzHhv1AMuCA73LYd/rBaz0aNflZ5f7G9qYFhwPXggQswWhXuVzum
+         G65wrLXisy5nTiiFlyKKBIiElLPwO7QTQlXUoDyPUI1LdzXrDgCVB2ytRtr0jQSEgFxl
+         qOEvXbm6nsNFLgepifmpj54bAQWKEwYqd02bNmIrYa4LsNanapFw3FuLQcf/eU4FOnqD
+         7ouk0hduslZOFUnFPC0uIbjsvWuZmUIVHZ63/aHk9/x8cfPozJydaXIMTLflLUhNTOs4
+         ZdZqjE5tw0u+usnnYMvDyeAJoMWwlqqtxluxLn3V/bYrDAjzkcsswOSKLRd1FSsshzhz
+         ct6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770100367; x=1770705167;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=N2oBlPbjkzULaEw9PhLk74w0izpOPSVkdcWC0nfRP94=;
-        b=OOxicLMN9wdU0zQRvVhrSSwbY2GwgG//uOG+YC/jZVc3Kbk1I+SYZCU/dDF/085k9z
-         ywNjXXY1WVWBNktGS4FWUyMgup2/f4FezfQhHbzdQVbBD2/5FPXfUWkOP3GK6q11Q4VW
-         yxX1GmHgtR8bcVgtfHRH933G2e5QZY5f/V1KVk7tgUCFDR8nkTe51nCG4/HtWmjADuGE
-         t+olGso/4GJAOoGcD8M4k7JTAhIulyzthdcoYEQIk5JJMeBN5FbY8OoPCQqpl2DVSa2d
-         dfoN7pxOAgVGSg/c9pojE+flhyRYCcSxJTxfTDj6XSEk0MEnwxdcTiW7KjkjW56PkMMa
-         n/LQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW3+5ZCpeUBJtxtDqKEGpH0AKBgkCSNTyEmCA3WEahWGAyfqy6VnMfANWkwxHJqRgQVvTvyBsgg/U3A@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz4aOwrymCfKCw5IKktOZpW7H+P8jvgkV/3hySgEvy1zlgRe0IJ
-	q02DSm/YyLV8MBpSndqFy29Zj7IYRmcFldDUmlz+9dSvtRbqWtYxb5CqlEKnclliyWEDqdLjdlw
-	yWFrXv4XCIJL7U8zX4BPkOtlUQ8u7f5JiTX3+kotxPlF8NtAqM+UAG+pN+XCLbWqh
-X-Gm-Gg: AZuq6aKLzp6f44RpgyZJTa/ZdCagyWluYAwJ+2CNsAPzjZ1mYPNpOUm2hkaeuy75SdG
-	eV2wNctlcy/bqE5DsRIVPYA/NFagf67CXPeWE61D1mr1X1ZnNA8wUdCSOdrrWlXxK9nr71uZB17
-	tLDBXGKTCJ6Ig74ToBHizWO61W/XiH7ZJFynIiUKat78cQQ/wHK28lzgQjuQxIXi/troFPVrnh0
-	cUrfPLc5I/XwJp/hBFvu6JrEcysU41QFXOll0gEJat8YHVnNPSU3K6yUOnvQW9dbOwnQGcmEuPW
-	8QkKNHqzd8WQQsFXggitSCdXtXvnB0Qsk2ZIMd6xb2O/GYpjCXRbgsp9Q2RqNgWV1cJDQSBUMYr
-	Yk9DrKkff2iVHoAlPx4ixbE9hyCxFb9YXCtpb9lW35UkoeAjp+EBPxGo=
-X-Received: by 2002:a05:7300:f193:b0:2ab:ca55:89c8 with SMTP id 5a478bee46e88-2b7c895fed9mr6525191eec.43.1770100366586;
-        Mon, 02 Feb 2026 22:32:46 -0800 (PST)
-X-Received: by 2002:a05:7300:f193:b0:2ab:ca55:89c8 with SMTP id 5a478bee46e88-2b7c895fed9mr6525184eec.43.1770100366009;
-        Mon, 02 Feb 2026 22:32:46 -0800 (PST)
-Received: from hu-liuxin-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b7a16eab72sm20957408eec.8.2026.02.02.22.32.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Feb 2026 22:32:45 -0800 (PST)
-From: Xin Liu <xin.liu@oss.qualcomm.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
-        jie.gan@oss.qualcomm.com, Abel Vesa <abel.vesa@oss.qualcomm.com>
-Subject: [PATCH v3] arm64: dts: qcom: hamoa: Add remoteproc IOMMUS in EL2 device trees
-Date: Mon,  2 Feb 2026 22:32:44 -0800
-Message-ID: <20260203063244.1498699-1-xin.liu@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
+        d=1e100.net; s=20230601; t=1770100578; x=1770705378;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B8GrinKDGOqbbFlvjaosDEAsZcli0GS5u0koOnCbV+4=;
+        b=lucmXde578+aJkdWW1u7Qddu1SJtVYtNllwRvkAxJSLHQ6FFc4VigMFeXre+wCS3Gn
+         NJlUn/q0jDa9u9R/vmU8qXmwaIKreXxd0NoWpqkzhiT9BOp0dGDWqbvTDyfFn59F0VDz
+         ArKaG7FWL21bhkdhY8Mwd98PvwW8Zztwf5FRrC4sOtKbwcaFt6TaH3fWd/CbU7MLJO8s
+         n5iOszJwAC0EUhBqC/zZDmI29xAG6CMjhHoZ0J0L1VDZ1xkW5ezOCKq0LosAPsxDTUkr
+         neb2fKoSO3sZHmvyl/32Z4xoLiXBoyqp37p5hVUtaiKHB1WENaIHc52Xv5SdYpK0f8Gg
+         DPYg==
+X-Forwarded-Encrypted: i=1; AJvYcCX/16JesW7LFeVw4Y6CBne/Br0EDi1nCeHdpF8vp5CnMVjEhiZtOXhV7i4i8O9nr0Qws4oAkuKGjI7M@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVJQ2aUq0OUAVX7sSPO13l+2hqd1QVG8LbiLBjFPuC0IeK3nQN
+	ZQ0BqsiTRfCiuPHFD5RXAr/ffre+YK5kFCIrZaQY56BamDP60vMMflWg
+X-Gm-Gg: AZuq6aKTG/x0NAXGYpG77jY17PEk/3BtJv9bfmylWbAidFrBIuAVsxzkBH8sFBidSH5
+	E9UakzfXTAeWXw4ujHjuE3ALV/GEBTw6yXW8Db9Q0oMw9C4pygr5+BamRmGXoFBnjzTH9lZeALV
+	ZL4PuidLNn6KH9ZaYVChzlNknDgB78z+NnSMPDp8svKK+H1wGJAwdQehb8Fs21wOGucJTzHzXiU
+	rvYyFp8w+5QumEPy6WLdC3bHBJ0j/RJ3fTPGT2KAUvQO1wv3py0HgMS5znRMZ7O69spKCW7o4mC
+	62g+wr2GObK+MTZQLRWw8IiJ8UVWAHuRvA8H87jYvCeUmHm+TtHcstdq0YhZbK5Vtlv6jlhQpIi
+	piSxr7eW7tvjtglcx02FiRXh9hvXYfaBM2I7O1fT/sf1Lrb+IqedirhWbfHweTmRKllmJtzYzH0
+	DP4qc/ZClNpdiJ5/ZvJhhjoof6CAzp4Mr5ZRA0bhKzAPB8RLet/z2ygPPolHwELW4EG46KYw==
+X-Received: by 2002:ac2:4e01:0:b0:59c:bfeb:cc2d with SMTP id 2adb3069b0e04-59e163f5918mr4193887e87.2.1770100577863;
+        Mon, 02 Feb 2026 22:36:17 -0800 (PST)
+Received: from [10.0.0.100] (host-185-69-74-59.kaisa-laajakaista.fi. [185.69.74.59])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e08e7e0d6sm3844554e87.62.2026.02.02.22.36.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Feb 2026 22:36:17 -0800 (PST)
+Message-ID: <98c254c5-94c1-49b0-b361-617639b781d8@gmail.com>
+Date: Tue, 3 Feb 2026 08:37:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 15/19] dmaengine: ti: k3-udma-v2: New driver for K3
+ BCDMA_V2
+To: Sai Sree Kartheek Adivi <s-adivi@ti.com>, vkoul@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, nm@ti.com,
+ ssantosh@kernel.org, dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ vigneshr@ti.com
+Cc: r-sharma3@ti.com, gehariprasath@ti.com
+References: <20260130110159.359501-1-s-adivi@ti.com>
+ <20260130110159.359501-16-s-adivi@ti.com>
+From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+Content-Language: en-US
+In-Reply-To: <20260130110159.359501-16-s-adivi@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: wWhZyfglUhGeMKuwa0I3jbPFu_r-KSPK
-X-Proofpoint-ORIG-GUID: wWhZyfglUhGeMKuwa0I3jbPFu_r-KSPK
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAzMDA1MCBTYWx0ZWRfXxHThug+OILRR
- qb61TBBzZ+0FiDmBnjCV87nZcjrDAdaRRg2LnnFWgLyWvH5JyvQUb7Quyun+5Bf8bV6lzyjrQgc
- 1vKq0HKM7S1KXP4lmygnBKwd1baB+YGA+fwSwefSApuchvQ5TnUupkMtRLCXZdqKcgDFaTy7sVV
- 4cX80j590q2m58YwMw4rW47Q2kISjF+rLYWUf1JXa2RV2yhMRc/zyBodQmAse1yfY96n+PPxmeN
- onu/AKooBei15KEtYe2omMIkFbHqXFsUCFN3inLKRxtMzoVExD46TyK1av9uPxpYNocyuI4MWBa
- /oQWTv1dPiUMNOtpAiuj0eMBMaw14+2N560KEeXvjuKvVbzgliuhEWNMVYWE2niJ2gllO+u69fX
- ifu7UAQ8D0xVh8qP+eYU5rtU37hP1xK0I/cJAg4qY+kcQRj+sxlcksFEezSVD0xci3FReSZaY21
- S22lr9hIQ+dUCWWbsWQ==
-X-Authority-Analysis: v=2.4 cv=AurjHe9P c=1 sm=1 tr=0 ts=6981968f cx=c_pps
- a=kVLUcbK0zfr7ocalXnG1qA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=GxtIMRurDqL_IDABb0sA:9 a=eSe6kog-UzkA:10
- a=vr4QvYf-bLy2KjpDp97w:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-03_02,2026-02-02_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 spamscore=0 suspectscore=0 phishscore=0 adultscore=0
- malwarescore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602030050
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262072-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262073-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xin.liu@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:url,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[peterujfalusi@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 473B6D574D
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 225F0D565A
 X-Rspamd-Action: no action
 
-All the existing variants Hamoa boards are using Gunyah hypervisor
-which means that, so far, Linux-based OS could only boot in EL1 on
-those devices. However, it is possible for us to boot Linux at EL2
-on these devices [1].
 
-When running under Gunyah, the remote processor firmware IOMMU streams
-are controlled by Gunyah. However, without Gunyah, the IOMMU is managed
-by the consumer of this DeviceTree. Therefore, describe the firmware
-streams for each remote processor.
 
-Add remoteproc IOMMUS to the EL2 device trees to generate the
-corresponding -el2.dtb files.
+On 30/01/2026 13:01, Sai Sree Kartheek Adivi wrote:
+> Add support for BCDMA_V2.
+> 
+> The BCDMA_V2 is different than the existing BCDMA supported by the
+> k3-udma driver.
+> 
+> The changes in BCDMA_V2 are:
+> - Autopair: There is no longer a need for PSIL pair and AUTOPAIR bit
+>   needs to set in the RT_CTL register.
+> - Static channel mapping: Each channel is mapped to a single peripheral.
+> - Direct IRQs: There is no INT-A and interrupt lines from DMA are
+>   directly connected to GIC.
+> - Remote side configuration handled by DMA. So no need to write to PEER
+>   registers to START / STOP / PAUSE / TEARDOWN.
+> 
+> Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+> ---
+>  drivers/dma/ti/Kconfig            |   16 +-
+>  drivers/dma/ti/Makefile           |    1 +
+>  drivers/dma/ti/k3-udma-common.c   |   75 +-
+>  drivers/dma/ti/k3-udma-v2.c       | 1283 +++++++++++++++++++++++++++++
+>  drivers/dma/ti/k3-udma.h          |  117 +--
+>  include/linux/soc/ti/k3-ringacc.h |    3 +
+>  6 files changed, 1429 insertions(+), 66 deletions(-)
+>  create mode 100644 drivers/dma/ti/k3-udma-v2.c
+> 
+> diff --git a/drivers/dma/ti/Kconfig b/drivers/dma/ti/Kconfig
+> index 712e456015459..ada2ea8aca4b0 100644
+> --- a/drivers/dma/ti/Kconfig
+> +++ b/drivers/dma/ti/Kconfig
+> @@ -49,6 +49,18 @@ config TI_K3_UDMA
+>  	  Enable support for the TI UDMA (Unified DMA) controller. This
+>  	  DMA engine is used in AM65x and j721e.
+>  
+> +config TI_K3_UDMA_V2
+> +	tristate "Texas Instruments K3 UDMA v2 support"
+> +	depends on ARCH_K3
+> +	select DMA_ENGINE
+> +	select DMA_VIRTUAL_CHANNELS
+> +	select TI_K3_UDMA_COMMON
+> +	select TI_K3_RINGACC
+> +	select TI_K3_PSIL
+> +        help
+> +	  Enable support for the TI UDMA (Unified DMA) v2 controller. This
+> +	  DMA engine is used in AM62L.
+> +
+>  config TI_K3_UDMA_COMMON
+>  	tristate
+>  	default n
+> @@ -56,14 +68,14 @@ config TI_K3_UDMA_COMMON
+>  config TI_K3_UDMA_GLUE_LAYER
+>  	tristate "Texas Instruments UDMA Glue layer for non DMAengine users"
+>  	depends on ARCH_K3 || COMPILE_TEST
+> -	depends on TI_K3_UDMA
+> +	depends on TI_K3_UDMA || TI_K3_UDMA_V2
 
-[1]
-https://docs.qualcomm.com/bundle/publicresource/topics/80-70020-4/boot-developer-touchpoints.html#uefi
+At this point the glue layer should not have dependency on UDMA_V2 as it
+only receives BCDMA support, which is not used by the glue?
 
-Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Signed-off-by: Xin Liu <xin.liu@oss.qualcomm.com>
----
-Changes in v3:
-- Modify the subject title
-- Link to v2 : https://lore.kernel.org/all/20260202055436.818098-1-xin.liu@oss.qualcomm.com/
+>  	help
+>  	  Say y here to support the K3 NAVSS DMA glue interface
+>  	  If unsure, say N.
+>  
+>  config TI_K3_PSIL
+>         tristate
+> -       default TI_K3_UDMA
+> +       default TI_K3_UDMA || TI_K3_UDMA_V2
+>  
+>  config TI_DMA_CROSSBAR
+>  	bool
+> diff --git a/drivers/dma/ti/Makefile b/drivers/dma/ti/Makefile
+> index 41bfba944dc6c..296aa3421e71b 100644
+> --- a/drivers/dma/ti/Makefile
+> +++ b/drivers/dma/ti/Makefile
+> @@ -3,6 +3,7 @@ obj-$(CONFIG_TI_CPPI41) += cppi41.o
+>  obj-$(CONFIG_TI_EDMA) += edma.o
+>  obj-$(CONFIG_DMA_OMAP) += omap-dma.o
+>  obj-$(CONFIG_TI_K3_UDMA) += k3-udma.o
+> +obj-$(CONFIG_TI_K3_UDMA_V2) += k3-udma-v2.o
+>  obj-$(CONFIG_TI_K3_UDMA_COMMON) += k3-udma-common.o
+>  obj-$(CONFIG_TI_K3_UDMA_GLUE_LAYER) += k3-udma-glue.o
+>  k3-psil-lib-objs := k3-psil.o \
+> diff --git a/drivers/dma/ti/k3-udma-common.c b/drivers/dma/ti/k3-udma-common.c
+> index 0ffc6becc402e..ba0fc048234ac 100644
+> --- a/drivers/dma/ti/k3-udma-common.c
+> +++ b/drivers/dma/ti/k3-udma-common.c
+> @@ -171,8 +171,13 @@ bool udma_is_desc_really_done(struct udma_chan *uc, struct udma_desc *d)
+>  	    uc->config.dir != DMA_MEM_TO_DEV || !(uc->config.tx_flags & DMA_PREP_INTERRUPT))
+>  		return true;
+>  
+> -	peer_bcnt = udma_tchanrt_read(uc, UDMA_CHAN_RT_PEER_BCNT_REG);
+> -	bcnt = udma_tchanrt_read(uc, UDMA_CHAN_RT_BCNT_REG);
+> +	if (uc->ud->match_data->type >= DMA_TYPE_BCDMA_V2) {
+> +		peer_bcnt = udma_chanrt_read(uc, UDMA_CHAN_RT_PERIPH_BCNT_REG);
+> +		bcnt = udma_chanrt_read(uc, UDMA_CHAN_RT_BCNT_REG);
+> +	} else {
+> +		peer_bcnt = udma_tchanrt_read(uc, UDMA_CHAN_RT_PEER_BCNT_REG);
+> +		bcnt = udma_tchanrt_read(uc, UDMA_CHAN_RT_BCNT_REG);
+> +	}
+>  
+>  	/* Transfer is incomplete, store current residue and time stamp */
+>  	if (peer_bcnt < bcnt) {
+> @@ -319,6 +324,7 @@ udma_prep_slave_sg_tr(struct udma_chan *uc, struct scatterlist *sgl,
+>  	size_t tr_size;
+>  	int num_tr = 0;
+>  	int tr_idx = 0;
+> +	u32 extra_flags = 0;
 
-Changes in v2:
-- Fix the adsp iommus mask
-- Link to v1 : https://lore.kernel.org/all/20260130073113.3091884-1-xin.liu@oss.qualcomm.com/
+nitpick: reverse christmas tree order
 
- arch/arm64/boot/dts/qcom/x1-el2.dtso | 8 ++++++++
- 1 file changed, 8 insertions(+)
+>  	u64 asel;
+>  
+>  	/* estimate the number of TRs we will need */
+> @@ -342,6 +348,9 @@ udma_prep_slave_sg_tr(struct udma_chan *uc, struct scatterlist *sgl,
+>  	else
+>  		asel = (u64)uc->config.asel << K3_ADDRESS_ASEL_SHIFT;
+>  
+> +	if (dir == DMA_MEM_TO_DEV && uc->ud->match_data->type == DMA_TYPE_BCDMA_V2)
 
-diff --git a/arch/arm64/boot/dts/qcom/x1-el2.dtso b/arch/arm64/boot/dts/qcom/x1-el2.dtso
-index 175679be01eb..ee006742d6f3 100644
---- a/arch/arm64/boot/dts/qcom/x1-el2.dtso
-+++ b/arch/arm64/boot/dts/qcom/x1-el2.dtso
-@@ -52,6 +52,14 @@ &pcie_smmu {
- 	status = "okay";
- };
- 
-+&remoteproc_adsp {
-+	iommus = <&apps_smmu 0x1000 0x80>;
-+};
-+
-+&remoteproc_cdsp {
-+	iommus = <&apps_smmu 0x0c00 0x0>;
-+};
-+
- /*
-  * The "SBSA watchdog" is implemented in software in Gunyah
-  * and can't be used when running in EL2.
+I would add the evaluation order in reverse to skip checking direction
+for UDMA_V1.
+
+> +		extra_flags = CPPI5_TR_CSF_EOP;
+> +
+>  	tr_req = d->hwdesc[0].tr_req_base;
+>  	for_each_sg(sgl, sgent, sglen, i) {
+>  		dma_addr_t sg_addr = sg_dma_address(sgent);
+> @@ -358,7 +367,7 @@ udma_prep_slave_sg_tr(struct udma_chan *uc, struct scatterlist *sgl,
+>  
+>  		cppi5_tr_init(&tr_req[tr_idx].flags, CPPI5_TR_TYPE1, false,
+>  			      false, CPPI5_TR_EVENT_SIZE_COMPLETION, 0);
+> -		cppi5_tr_csf_set(&tr_req[tr_idx].flags, CPPI5_TR_CSF_SUPR_EVT);
+> +		cppi5_tr_csf_set(&tr_req[tr_idx].flags, CPPI5_TR_CSF_SUPR_EVT | extra_flags);
+>  
+>  		sg_addr |= asel;
+>  		tr_req[tr_idx].addr = sg_addr;
+> @@ -372,7 +381,7 @@ udma_prep_slave_sg_tr(struct udma_chan *uc, struct scatterlist *sgl,
+>  				      false, false,
+>  				      CPPI5_TR_EVENT_SIZE_COMPLETION, 0);
+>  			cppi5_tr_csf_set(&tr_req[tr_idx].flags,
+> -					 CPPI5_TR_CSF_SUPR_EVT);
+> +					 CPPI5_TR_CSF_SUPR_EVT | extra_flags);
+>  
+>  			tr_req[tr_idx].addr = sg_addr + tr0_cnt1 * tr0_cnt0;
+>  			tr_req[tr_idx].icnt0 = tr1_cnt0;
+> @@ -632,7 +641,8 @@ int udma_configure_statictr(struct udma_chan *uc, struct udma_desc *d,
+>  			d->static_tr.bstcnt = d->residue / d->sglen / div;
+>  		else
+>  			d->static_tr.bstcnt = d->residue / div;
+> -	} else if (uc->ud->match_data->type == DMA_TYPE_BCDMA &&
+> +	} else if ((uc->ud->match_data->type == DMA_TYPE_BCDMA ||
+> +		   uc->ud->match_data->type == DMA_TYPE_BCDMA_V2) &&
+
+Have you thought of adding a version member to struct udma_match_data
+and use that instead of distinct different types for BCDMA/PKTDMA?
+
+Here for example you would not need any change as the code is common for
+both v1 and v2.
+
+>  		   uc->config.dir == DMA_DEV_TO_MEM &&
+>  		   uc->cyclic) {
+>  		/*
+...
+
+> diff --git a/drivers/dma/ti/k3-udma-v2.c b/drivers/dma/ti/k3-udma-v2.c
+> new file mode 100644
+> index 0000000000000..af06d25fd598b
+> --- /dev/null
+> +++ b/drivers/dma/ti/k3-udma-v2.c
+
+...
+
+> +static bool udma_v2_dma_filter_fn(struct dma_chan *chan, void *param)
+> +{
+> +	struct udma_chan_config *ucc;
+> +	struct psil_endpoint_config *ep_config;
+> +	struct udma_v2_filter_param *filter_param;
+> +	struct udma_chan *uc;
+> +	struct udma_dev *ud;
+
+nitpick: reverse christmas tree order
+also in few other places.
+
 -- 
-2.43.0
+Péter
 
 
