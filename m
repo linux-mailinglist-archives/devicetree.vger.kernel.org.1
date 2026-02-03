@@ -1,149 +1,136 @@
-Return-Path: <devicetree+bounces-262317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262320-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id APmRFWkZgmmZPAMAu9opvQ
-	(envelope-from <devicetree+bounces-262317-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 16:51:05 +0100
+	id IOreKg8egmmhPQMAu9opvQ
+	(envelope-from <devicetree+bounces-262320-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 17:10:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB9C7DB850
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 16:51:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06112DBB4E
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 17:10:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5C7A13012C56
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 15:46:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D72383134814
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 16:06:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E4E3B8BCE;
-	Tue,  3 Feb 2026 15:46:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2AE3C199C;
+	Tue,  3 Feb 2026 16:06:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Rmi52j3M"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="rdbePBqf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F00A199FAC;
-	Tue,  3 Feb 2026 15:46:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A1C83C198F;
+	Tue,  3 Feb 2026 16:06:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770133591; cv=none; b=G3BiGLCJbDVg23Rb2ygXrPDsXJm2ak42tn1swLiIqmqg7mXOEiKGToa8PDO9klqnQsVmQ0XDFZBYCMdhVWy8M9TvNyqxH7Ykt1lKkyzagNbwS6/s+w9FrIBf83hyT/OcA0D/vhSA5Stpx8iyshO2x3otj3vTv31QpGgXNVsw0DE=
+	t=1770134771; cv=none; b=LTZX3p/q5tWHDEjiTTh98UllkJd+NELAQaJyv0XTYm7H6IwppFXYW+CQ1H4qE5XRffVvSTCFjxPgu6wE3axorcYLYz+/rWCQ4Fbded/OD172Vs+SDQEyb1mUAPmolotj/B0JpPO0b+PUqfLbgEwn4+c5jzMbjnQUKoMQWMRYJa8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770133591; c=relaxed/simple;
-	bh=sJtV4BtXtNVfhwtflW/nj+oEb6SNz0EBbYiuSAWXftM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gTxrFgQpRdJXqtQXpG4R9VV+DmwD6FcVzRDACRoGPkxQbDTmncky9tmQOfGw2gqeCPx650ZLU3jkdzTNfO8iIl1bI9gWBVZ65J8/1YATqsjjX1P6LddzGBeJlpIBuMamrSY0qiehUPI2LQOmNYbbn95XObcSUzZqBiUvbZK9kmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Rmi52j3M; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770133590; x=1801669590;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=sJtV4BtXtNVfhwtflW/nj+oEb6SNz0EBbYiuSAWXftM=;
-  b=Rmi52j3MYe7y1+sH4uQP87eK3l1Njjzbva0AEjmRhKGaCUfpm7gheHP1
-   wJh+ot+H7+T9UATif16PaQDAztPfv7mOS+3TH6KiszLMQ1UmUBDb6PDLL
-   QreVXbGTEcJgqqaBYKa7qW+zASdpVq4Pw62VP+Bwpc7g784RwBpI1/i4I
-   6vinq6HWe1Y7Weomf63M+9t3DS6DMZpPohuI3ddsZbeu8RA/mtQAYVd7M
-   BFi53NYZe/dWOV6iPVr873q3kMiMSJmSY0hT3XvwA+bslNqmOYr3bnMFQ
-   4yGn0ipUGqtYmjg5i3jTGqDNk4TaFq7X52qqGXjJxjtQAaOGI57pUNCLW
-   g==;
-X-CSE-ConnectionGUID: cMNBf8gbSYeNnDIN3K8y2w==
-X-CSE-MsgGUID: EoOE26ttT8Sf2nIAVkKHyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="81937504"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; 
-   d="scan'208";a="81937504"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 07:46:29 -0800
-X-CSE-ConnectionGUID: sA/LmoYVQdaN4RT975YG3w==
-X-CSE-MsgGUID: J+HC6ftTRQOWJ7+bwRha4A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; 
-   d="scan'208";a="209173225"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.99])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 07:46:26 -0800
-Date: Tue, 3 Feb 2026 17:46:24 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: abdurrahman@nexthop.ai
-Cc: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v9 7/7] i2c: xiic: skip input clock setup on non-OF
- systems
-Message-ID: <aYIYUNejGCVdekx7@smile.fi.intel.com>
-References: <20260202-i2c-xiic-v9-0-ce4695f5267d@nexthop.ai>
- <20260202-i2c-xiic-v9-7-ce4695f5267d@nexthop.ai>
+	s=arc-20240116; t=1770134771; c=relaxed/simple;
+	bh=0LAmB812iyj9zmW/euXRvVW7EvM2Y0+uob/pzAN78DE=;
+	h=From:To:Cc:Date:Message-ID:MIME-Version:Subject; b=EsTPuNgga8hmzUg0K2EUMfmpfoeOWv9JEtO5YfhfTUqmsVFFQkShxsYCjvg99W0h3OY1pcFX4qyJ75V/fFBseduVsmdHcqYvb+JRhb4GJ0hkQmq4DOB+BwAITctfXadpAPRU4R/lIIsuMfHgnD2j7W5ALehkHW9mrgitZksJk/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=rdbePBqf; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Cc:To
+	:From:subject:date:message-id:reply-to;
+	bh=aYGVyeZ//rBGZUOON5iROdUT5Y8ysUNZDJxfBY/jK04=; b=rdbePBqfLvbAk2Pe7raKUVaJLc
+	br7MLaa4qrDZE2T/Vudt0fGvvxxafFRLemctQR2TCBKg2TGuxiJZDbpO1aDYGZXUHycrVvH9WagEi
+	CtuwvsaUcTbIL+JK4DCxHWBuDOZC6OuXWpyuos8p5R4tiKJDTF8aEd//Ydwnso9Aml78=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:53840 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1vnIfa-0000uz-KA; Tue, 03 Feb 2026 10:50:28 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: hvilleneuve@dimonoff.com,
+	dmitry.torokhov@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	hugo@hugovil.com
+Date: Tue,  3 Feb 2026 10:49:46 -0500
+Message-ID: <20260203155023.536103-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260202-i2c-xiic-v9-7-ce4695f5267d@nexthop.ai>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+Subject: [PATCH 0/2] input: add GPIO-based charlieplex keypad
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262317-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_SOME(0.00)[];
+	TO_DN_NONE(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262320-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[hugovil.com];
+	FREEMAIL_TO(0.00)[dimonoff.com,gmail.com,kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	NEURAL_HAM(-0.00)[-0.999];
+	DKIM_TRACE(0.00)[hugovil.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,smile.fi.intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CB9C7DB850
+	MIME_TRACE(0.00)[0:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,dimonoff.com:email,hugovil.com:mid,hugovil.com:dkim]
+X-Rspamd-Queue-Id: 06112DBB4E
 X-Rspamd-Action: no action
 
-On Mon, Feb 02, 2026 at 08:37:24PM +0000, Abdurrahman Hussain via B4 Relay wrote:
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-> Currently Linux does not implement ACPI ClockInput to describe clock
+Hello,
+this patch series add a new GPIO charlieplex keypad driver.
 
-ClockInput() resource
+I have tested the driver on a custom board with a Solidrun RZ/G2LC SOM
+with three charlieplex keyboards, all connected thru a a PCA9416 I2C GPIO
+expander.
 
-> resources, unlike DT. However the xiic driver is happy if something
-> magically enables the clock before the driver probes, and does not
-> turn it off again. The clock should always be considered optional for
-> ACPI.
+Thank you.
 
-...
+Hugo Villeneuve (2):
+  dt-bindings: input: add GPIO charlieplex keypad
+  Input: charlieplex_keypad: add GPIO charlieplex keypad
 
-> +	if (is_of_node(dev_fwnode(dev))) {
-> +		i2c->clk = devm_clk_get_enabled(dev, NULL);
-> +		if (IS_ERR(i2c->clk))
-> +			return dev_err_probe(&pdev->dev, PTR_ERR(i2c->clk),
+ .../input/gpio-charlieplex-keypad.yaml        |  88 +++++++
+ MAINTAINERS                                   |   7 +
+ drivers/input/keyboard/Kconfig                |  14 ++
+ drivers/input/keyboard/Makefile               |   1 +
+ drivers/input/keyboard/charlieplex_keypad.c   | 223 ++++++++++++++++++
+ 5 files changed, 333 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+ create mode 100644 drivers/input/keyboard/charlieplex_keypad.c
 
-Haven't you seen my previous comments? Why 'pdev'?
 
-> +					"failed to enable input clock.\n");
-> +	}
-
+base-commit: ed8a4ef29da3821ee3155d3b1925fa67fc92aae2
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.47.3
 
 
