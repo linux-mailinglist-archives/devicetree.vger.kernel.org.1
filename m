@@ -1,78 +1,80 @@
-Return-Path: <devicetree+bounces-262160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262162-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YNLfGunIgWl1JwMAu9opvQ
-	(envelope-from <devicetree+bounces-262160-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:07:37 +0100
+	id sPrYHFDIgWl1JwMAu9opvQ
+	(envelope-from <devicetree+bounces-262162-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:05:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15F7BD74F1
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:07:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAFF2D7490
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:05:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5ABB13058B8C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 10:04:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8EE91301A431
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 10:04:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC33739B4A3;
-	Tue,  3 Feb 2026 10:04:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9B639B4AB;
+	Tue,  3 Feb 2026 10:04:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i3p5xJgV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i4bjb+AQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F39396D24
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 10:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8963539C630
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 10:04:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770113093; cv=none; b=YxVlTXhIr0EV5idmuCEypT/e1qySla3aIVac1qNCviTrm9ShvI2maJGr3+lSMj/TGvx24Z0wWItSIUzIpF+z9vaYq+gEfR+8SfrLMM/nHd4yb9fUnxEkvhW7T9r+HpAoalNkUvGngjmSbHKc6bngloZZkaYSZ8NMrOGDYAoFm2A=
+	t=1770113096; cv=none; b=pRASVtDciz5bOFCMKyOjTSBYRnwQg2xwACTXcy3TyBxyiHche6s0TtIZT+jCOEYMl8eDmbssx/PVJYwSm+PC+K5umstr+yMMy+LuHxSSXz/XNmhc31KJIJTcgCxauw5VM22ucmI2I+hG3sLlwkKL8VEK7pVmgd+l2wRzl2FiNIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770113093; c=relaxed/simple;
-	bh=Sy0ZT3//n9xXHpwtu/2uEQ3odIe5kcqPKK201QPMl0c=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UZnkJfyYOJLsPRHavpqXZsIvsWw/9wDJA1SKyu8yUXG3ky2f1DBCFjDmVfHxmgn1kMH8LPUQFd7nrqphNGuqBIRahStJqTPrYQzRJEb/q32jgPkoX9ARkFb4UY0PxVWH7dzH49orUV3RlY3Rmwr/N0bUZ/0VSV0uTDG8m+X0i+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i3p5xJgV; arc=none smtp.client-ip=209.85.128.52
+	s=arc-20240116; t=1770113096; c=relaxed/simple;
+	bh=LTDt9fi4JHMSnHlrIwfIAx5d5MWGZYp0pTmhyqg8FnY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=ib0f5QAsd9OhtujQesvTDeXBnDmudV1k0LWpAtcnh0uvo+4pUvR1Yg4y0StS2cdCvHeF0GrsKP9V9jQGkC4rArrWILJdwWC72H0sC4VVptMZ5TjnBZ+885G1x+va2lvJhqMQy6z7MtC33rcQOPQoRYWa7UrB8NPRabANP6sQ3fs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i4bjb+AQ; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-47ee76e8656so72045215e9.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 02:04:51 -0800 (PST)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4805ef35864so46462975e9.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 02:04:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770113090; x=1770717890; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=RTaOmh9wnqbOJNsuDkJBw5xu/ZxW0Le6p4u6pemJa+w=;
-        b=i3p5xJgVvEHzJARfRhVcm2LAD2EgGb4XcvuJ6J+rS+jMs+7/vkLuRCnjNXO3oHvuGR
-         RabKVBF+Pc/P3F4eif2DSTqFy/oSCTq78zAY42KbaXQLnb5VBt3Dmpd6RX6dPQKbaXBD
-         jpwGdfdhWmk2oQw9RpoXa9PvhJBSlMBS6b9Jw6HnJRbnwzfCI5hlPoMAC4tuUwb/4OHo
-         ZPSPGAnwQVw/IAlLWkeVkvxl89U5FSKXV2UIqW23o60BDzA/JSthJVBBmFAA0eZ5VMUW
-         Z6D+mkTElOOSquOdpshNbZbCsyyd4zI2Pa2/7iBsiIZbTZlVNPb5WzhmAdCdy/9KBjFO
-         0jMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770113090; x=1770717890;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1770113093; x=1770717893; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RTaOmh9wnqbOJNsuDkJBw5xu/ZxW0Le6p4u6pemJa+w=;
-        b=iIznZkMqyyKZEkOY0voZYhzR24SNGOmKx3cq/apLQdmFfDhSM9zegoF3Ma2Q3jdndi
-         ACGJ9DZ89jO1Btmu0+F2zjky+wDi2UP2IwvopIp6fmY5KChiAtSEzHSBbbabtzLlQXD9
-         tCmWzZqothqeAwU2/XtP0HfHjRfuAsCt+VoOU02EXN75mjoURY1HiGJOwkPtl0mYqPuQ
-         l6sLd67rDj4pPCeGM3WvJ6Cxn/ZR24q3VvOOcvepB41tVPlqoCbI980M9lNBEzOfbfVz
-         qRE55fLqgA1F305yYZF5vWVIAA7sblPXfrT/7tQ7bEW4HUiquGBOZvlvIpn3cGmkT1DF
-         yySQ==
-X-Gm-Message-State: AOJu0Ywu8Hl8WHdzb8Iwwkyv/CikdQRDTB61DanEnzzho+U9B5IeZswp
-	/GHopNB30d60Sl+++KA4nT8BoSSYbFULRov/K0MPN0Avnrp33OJmFqqn
-X-Gm-Gg: AZuq6aIJnDMmlkcDmC/Xfu+LDEk27lv2DaxyAKnsa84XNMdA0K/idwJs8FcCrRBPEu0
-	RRx+sGoV2OQ8WOOtiZSRE4ordT5qepSuCILJOPHlE1dDKb1xr7cKpOBrz7FOyqSDtfhuZoRpIyI
-	cuMihR9FJolN7Vv3SXiRrrBImqvlBif3PdzG3m6t2faqh2YXLAoVqQtyFaFCD3QmlXHRe2eXa+m
-	wPsbnOYVXZxDpYp6CIoU6r5TqFhEO15WqXgk13EusO7lkv0qP+14vNUyqHwkiFKw5Wmx9at0KBP
-	gkUAwVROsLWN2eqrt0zh0ao67w1mQgHSgme8E6tg0sa1uDhzG6CIZF4tWgz0isaHgbwOks+Xl2c
-	BKmqgah4FzpgjzoGXRvsqZbj04h+VRNbkneqv9MiBE1QaVcqFhn+lAA45PUZOXgmhUkD+JKhj57
-	togr6cnoQVPoB2UfRJcUnCKSqStaY8pJTpuXT+yg==
-X-Received: by 2002:a05:600c:350a:b0:480:6910:abd1 with SMTP id 5b1f17b1804b1-482db491f3emr167091755e9.18.1770113089849;
-        Tue, 03 Feb 2026 02:04:49 -0800 (PST)
+        bh=p3UlFA0+6h5s1DkPOfyU17WjXdqB8dUR/b6rqqbq2XU=;
+        b=i4bjb+AQPmH7jpP5Eyhc6zaKVkX58STUtNdy9OfGLY+XVCHOcxsQT6ENf8dQE7aS8A
+         RjGh48vDORn0F7CT8qfMgrppv51t0OfMSAaBICQNc4YOijJShYLO0GE4TNgcvZUBbQ9U
+         FMYceZ4bxzu4+Tr+ZRFMlI2+Hq26v+seisOOaQM6yEnH0pc4awrDGuZKHlJD6w7dmvCs
+         46VJwb+asKtHZC0O6JkbV+cxgJhJqqLEn3g7A2h36uz+EX66Zzw37n2kWqQ7E2lN6Lps
+         WcPjfKlWCbVGvVV5UMxFCeAMi1WYew06x4zUHtlq1F/kcxi+AcxU1sIW/icXjKDgOzOc
+         gE5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770113093; x=1770717893;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=p3UlFA0+6h5s1DkPOfyU17WjXdqB8dUR/b6rqqbq2XU=;
+        b=a4ETIs+gGUTVAyjpAP3HPOf0YC5rkWpbNPnuuRC3QKRyxCfvkhBZpRGyQTSMjG1BHW
+         0ocKjXXMiut0atwLO/jI0rU5eYHh7sqZ6BN77i8IT6Tc4s94kcf2NVSJ3xTIHsLoYDYq
+         oMeXCOB+PvnAeZdN80Z2QFSjK0tWd8eUFP2IFCbuWCZRY/9cmWFgDcUYh8TG0enb4FMN
+         xvDtHmkyKBbdczvFaaQED1xyBCmlz0fDX2n8o97+Oy3bVolgwlY1EpLjioWH65OVf3NW
+         28OigJGnSfMxw+v4eSXBimxWlekKGJKoGq+NBcOrlgGFsGmFgrDOTsh7T23sbnNDklfU
+         /4xQ==
+X-Gm-Message-State: AOJu0YyPazl+8sbuFoMqJMcysOXqhthBkBZdFo/d5PUmlBfHl4aqqG2z
+	kLGLgc04gLgB/4Xpxs0IVvxhv3NMnvE2VcHUCe86YudLf8YK4tFYkdFB
+X-Gm-Gg: AZuq6aIaaNS94iyivJdi1maEi5U5yTxju0V9jDJpmgKlkcLvBUtZpZOwhS1YkS+BRUX
+	3TlDk3M/k2Vf4fo6GHpwBYmeRnLQpRmiJ4gK+aCCGtzUCOSxE1CSEq9vYr1bgdrlmTl4+u+n8Fw
+	GY10X7MyR30QAfz1OGD1s95dPZ8kHyKywRuPXFtHFja5C1W37fqLbAR1jnBscs5lh5iiqgQPVgd
+	5MkC/aQb0FT78NUVEcCR3sftP8YiAnKp0mfv//2L37Yz8cKhPKIzUS0LozCofC7GPxrW4qR+1LG
+	weR/vYnKZexs7bXCcxuBUKA/4cX+C6PUxpnySxW2Gkmi2CDdHYFtv6p/YoO6Unn0CBQL7eNP4Du
+	bBHt+0nPsLkykXj8Zgh5i4M+1f3VeSMVkm/rmDG1xdFg/cOf4urfPYPHvDC5gPRGdlH4BnFDmVe
+	FI9k/2lXaUbtq3xDIfRe5g4BqWRLtSFuKcZzjT8A==
+X-Received: by 2002:a05:600c:6088:b0:47e:e20e:bb9c with SMTP id 5b1f17b1804b1-482db447950mr171113855e9.8.1770113092893;
+        Tue, 03 Feb 2026 02:04:52 -0800 (PST)
 Received: from SMW024614.wbi.nxp.com ([128.77.115.158])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-482dffd47c2sm115534365e9.0.2026.02.03.02.04.47
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-482dffd47c2sm115534365e9.0.2026.02.03.02.04.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Feb 2026 02:04:49 -0800 (PST)
+        Tue, 03 Feb 2026 02:04:52 -0800 (PST)
 From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -87,10 +89,12 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	imx@lists.linux.dev,
 	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v3 0/2] Enable AONMIX MQS for IMX95-15x15-FRDM board
-Date: Tue,  3 Feb 2026 02:03:30 -0800
-Message-ID: <20260203100332.915-1-laurentiumihalcea111@gmail.com>
+Subject: [PATCH v3 1/2] arm64: dts: imx95: add AONMIX MQS node
+Date: Tue,  3 Feb 2026 02:03:31 -0800
+Message-ID: <20260203100332.915-2-laurentiumihalcea111@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260203100332.915-1-laurentiumihalcea111@gmail.com>
+References: <20260203100332.915-1-laurentiumihalcea111@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,57 +109,59 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-262160-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	TAGGED_FROM(0.00)[bounces-262162-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FROM_NEQ_ENVFROM(0.00)[laurentiumihalcea111@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[0.0.0.84:email];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 15F7BD74F1
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EAFF2D7490
 X-Rspamd-Action: no action
 
 From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-This series enables AONMIX MQS (i.e. MQS1) for the IMX95-15x15-FRDM board.
+Add DT node for AONMIX MQS (i.e. MQS1).
 
+Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 ---
-Changes in v3:
-- drop binding patch - picked up by Mark
-- split DTS patch into SoC and board patches.
-- link to v2: https://lore.kernel.org/lkml/20260126145537.2301-1-laurentiumihalcea111@gmail.com/
+ arch/arm64/boot/dts/freescale/imx95.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Changes in v2:
-- adjust binding commit message as suggested by Frank
-- replace whitespaces with tabs in MQS pinctrl definition
-- link to v1: https://lore.kernel.org/lkml/20260120150329.1486-1-laurentiumihalcea111@gmail.com/
----
-
-Laurentiu Mihalcea (2):
-  arm64: dts: imx95: add AONMIX MQS node
-  arm64: dts: imx95-15x15-frdm: support AONMIX MQS
-
- .../boot/dts/freescale/imx95-15x15-frdm.dts   | 73 +++++++++++++++++++
- arch/arm64/boot/dts/freescale/imx95.dtsi      |  5 ++
- 2 files changed, 78 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+index 55e2da094c88..0c55861d673c 100644
+--- a/arch/arm64/boot/dts/freescale/imx95.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+@@ -391,6 +391,11 @@ scmi_misc: protocol@84 {
+ 		};
+ 	};
+ 
++	mqs1: mqs-1 {
++		compatible = "fsl,imx95-aonmix-mqs";
++		status = "disabled";
++	};
++
+ 	pmu {
+ 		compatible = "arm,cortex-a55-pmu";
+ 		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_HIGH)>;
 -- 
 2.43.0
 
