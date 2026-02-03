@@ -1,53 +1,86 @@
-Return-Path: <devicetree+bounces-262007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262011-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KGDUFhZZgWlQFwMAu9opvQ
-	(envelope-from <devicetree+bounces-262007-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 03:10:30 +0100
+	id IEudGlRZgWkFFwMAu9opvQ
+	(envelope-from <devicetree+bounces-262011-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 03:11:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E880ED3A34
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 03:10:29 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 121D8D3A9A
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 03:11:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2BA573030D22
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 02:10:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 191E83032DE4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 02:11:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67FFB2F1FE2;
-	Tue,  3 Feb 2026 02:10:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bM0uQZ4k"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BED982F4A18;
+	Tue,  3 Feb 2026 02:11:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022098.outbound.protection.outlook.com [52.101.126.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43047145355;
-	Tue,  3 Feb 2026 02:10:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770084625; cv=none; b=IZpk0Po8L0O+LcDXK8m0IblHWR98Vdwdcl3y9Az2Q2jG2/3aqB3ykdLHYd3rpXOSX4guusS/wP0B3W5QztvAr3sOq74MqOb2Iyq8Qe9vo5cB3CMetKc5tTJczArUGQI5C3THSjn9EV8isqhqi9OWSH7MMP+B+bQ6/RYq91F3EPs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770084625; c=relaxed/simple;
-	bh=IkB/CmACAS4jbkEUbnSz2O0qLvuph4aShjWmKsqVi8A=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=u6fqnacfkldUzvahQ5RbrVC3d+YPRQqeyHwr9Gg3i0sjAtxI4MGmoaySeofKvb2ICzOwV4gJyvM5gTT7V7paRJ2bT2yn8xr7pFdkcF8jrf5nAT6HdpKuVUeY3O7z3Mc3pTv0l21F6PvZ7y4TJ2UhqiVwXfn2QzHe96uS3oQT4F0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bM0uQZ4k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6A66C116C6;
-	Tue,  3 Feb 2026 02:10:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770084624;
-	bh=IkB/CmACAS4jbkEUbnSz2O0qLvuph4aShjWmKsqVi8A=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=bM0uQZ4k1LAo04z/twyCpcQ3jZxZNusTUtYmKIWjRqgtRREpl8ukDfx23c0OcuoU/
-	 Wneh/sjUL/JiMvD3xdQ76yihjxhzial5ntg8KiE4uQclx8svuzeBnrg2eSYeLJz0AG
-	 dQwdNYwlpDzEPZGcmSE/SdAIJ4zcU1fU0rdw857cDWviYy+p7dJ+JfVxAQ/NculA3z
-	 wuFK7OdCe7jMMukq4xcqbU830lcmR02twH43ACpvdU3qnJPTP5kp+arBhV6FKPpCQe
-	 NSX14ZnUAD4GfQaQc0q5jArimrsmnY9G1AtMvmeBurGxfphGN3cWRiRJ988HaWXDY7
-	 ejiuHKYt7uC8w==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id CE0C33808200;
-	Tue,  3 Feb 2026 02:10:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4313B2F25F3;
+	Tue,  3 Feb 2026 02:11:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.98
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770084663; cv=fail; b=HjQ8xEVG6tCiFSAV8m7nUgKLMI9eCt3wig2keaC1ktAoqNePETBVselZGkyZK8HCmHfwXcm0HRaIhvl6Mwo1w/84jbZL2JDG9fWS/1B94+hahGQ1oC8HBCHnbigzUPS/Hl5SNHu/l5Jebim4UvLgkM7bkbGUcDbBKXxPal5Ie2Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770084663; c=relaxed/simple;
+	bh=N1XvBKyCiClVUhY/GgZJxu2y/EvDBOuzHbwv7/G0hfg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DsOMevNyXYde0cfklMNhi/cecv7rpYDy9Lw1jiuWBr7CPyawwUUu79EkPn7FpyWd5XTWGCfPbNZL9tUUsmz52Soqbt1EdNMytk8ZZMGpAhWAZpT8sVAfeIi2ngrr+9M0sJvg1fxPzIzoRLTTEEc49YDRGS0NvPOhY2nNG43o9iE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yFMF+CLa6peG2KCcJroFa1IqGY4ZVUVgmxIo51q1t3Anpx7d+/sLfqkQouwqMNd7YPUtVLxR1p5wjw6T4AqhffNWUrXtqwzoDcMFlGNILGw3EHj+J0Bvxd3UW3nk6h+tus5X9jUnnx3ZCKVl0IcMZZR3mpeDCIVPRIr09FVFaT5FUZBoh/nqX/01vzvISQVslIbWkAHKNViWj1TYD493Y80EJuzCaovt4ptWrtiaA7SLEuQF43zj4L0j9u7kp1UUbuj5dTTF4IhiayjjKkEujebxy5OBf8D69nu2LKwdquPCBsC0ya/dkdr+PN4/4rr9h0GViVjIcHI9rid54fAIJg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SlbK7wXSKwHdqZj8ToMf3yT888t8R1Z5oZrQfwB1MJg=;
+ b=KZ3I0huuySws729IsrSfOlsu0Hw6BWK47Wa89Bcm9b2yT7BHWk8tJSaj99p85+73AZNBqXVz/6LF4P4js3ZI8G+JRgTlm+mbheDJM4auNJILTeUYjr8C8qat20Yc/hce5N/YKlZ2cSMFSgv0MoBP+LVEKj9wsPSlqKzL+QO5HCf+r94j1StBU8b9woWhVXDkFw3mvp17CGa0nL6rrXpWJp8ywX3Ff7M+Kzcy6fN573X1OBUKkmUrR9T7ww+KQbp3Nxb/JhK7+uMqIwHxZKghB2FyD1saVIfjC/eS5v0hdBtwo1WWqOjGLZk3SVetWmRoq+bBbAVjoOKPH0yVsea/UQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from PS2PR01CA0047.apcprd01.prod.exchangelabs.com
+ (2603:1096:300:58::35) by SG2PR06MB5381.apcprd06.prod.outlook.com
+ (2603:1096:4:1d0::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.12; Tue, 3 Feb
+ 2026 02:10:56 +0000
+Received: from TY2PEPF0000AB89.apcprd03.prod.outlook.com
+ (2603:1096:300:58:cafe::a5) by PS2PR01CA0047.outlook.office365.com
+ (2603:1096:300:58::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.16 via Frontend Transport; Tue,
+ 3 Feb 2026 02:10:55 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB89.mail.protection.outlook.com (10.167.253.7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9587.10 via Frontend Transport; Tue, 3 Feb 2026 02:10:55 +0000
+Received: from localhost.localdomain (unknown [172.16.64.196])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id C79BE4350704;
+	Tue,  3 Feb 2026 10:10:53 +0800 (CST)
+From: Gary Yang <gary.yang@cixtech.com>
+To: lee@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	peter.chen@cixtech.com
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	cix-kernel-upstream@cixtech.com,
+	Gary Yang <gary.yang@cixtech.com>
+Subject: [PATCH v6 0/3] Add support for Cix Sky1 resets
+Date: Tue,  3 Feb 2026 10:10:50 +0800
+Message-ID: <20260203021053.4073258-1-gary.yang@cixtech.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,94 +88,175 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v7 0/7] ptp: vmclock: Add VM generation counter and ACPI
- notification
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <177008462163.1277679.3528738405743179040.git-patchwork-notify@kernel.org>
-Date: Tue, 03 Feb 2026 02:10:21 +0000
-References: <20260130173704.12575-1-itazur@amazon.com>
-In-Reply-To: <20260130173704.12575-1-itazur@amazon.com>
-To: Takahiro Itazuri <itazur@amazon.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, devicetree@vger.kernel.org,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org, mail@bchalios.io,
- graf@amazon.de, mzxreary@0pointer.de, xmarcalx@amazon.co.uk,
- dwmw@amazon.co.uk
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB89:EE_|SG2PR06MB5381:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 8a82c842-b041-4b43-07d8-08de62c976b3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?fYlmjLbyzsI9UGLpVPCCjKLWfnaZcf65k9p+stDyZk6aq1Wsk/sipBa/V51Y?=
+ =?us-ascii?Q?wMFFGrSjIx1JOJyf2zH5RKxLuCxDV/ee6JQujXkB1ftjLNv9a4bPv9jBomh8?=
+ =?us-ascii?Q?nyy6+0qhz10TttKEsjOwvgFAmMiAxCgcjJH6HgiWXJrWh4vlV65PRo6trTX9?=
+ =?us-ascii?Q?lmE3JNMK4b06ELBZkctctQ4ZXNh2y6aabMJK22YBET08rF5X68UwWF8cFzrg?=
+ =?us-ascii?Q?avhWAv+nkHl7ZRC/DDYfvK4+e+Mw+DLD+3/Jf5TJ1XEjmqt12vIlUWfdGG0F?=
+ =?us-ascii?Q?XGz+GZI4Fe9BhOUHMop/eTGvHmS0uaWuZLDpOltVcF5XwR5qaO6715SNxnQ+?=
+ =?us-ascii?Q?Xn9gNdYR/T/JtOt7j03gCOUdCSYveeTaWAyQFJ3yzRRp71LZYSJhAx+ltBcU?=
+ =?us-ascii?Q?VtNtpLfano+08pCU5MuJX8R0WCMhcnwz7rMN0MhciRnlPqjQzl327kuwMf9h?=
+ =?us-ascii?Q?TzxwQpBgUdO31RZbiVzgv7kaaNRwo3EOFmopRtCUXj7T8Za2Gu/o53+U51vM?=
+ =?us-ascii?Q?qWzWWEyRumk3lwTOYaBLJr29RjgekYiMhK9Nv4bBgO7xwtkuKb39FifvK6yR?=
+ =?us-ascii?Q?ScCdCgU+azg3K6Ra0QcnOgHmLJEg5oabVd6rAysbcXQMlZeMCy/l8j3Z8sV/?=
+ =?us-ascii?Q?TIfpep19xRqcHe7Dt1hi8NMfwfCuYb8MyZkD2q4OLGnZTfe/yhnkqdt4r1u3?=
+ =?us-ascii?Q?ThxEgY7ofL45t4alI1pu78j6umH7aNYU2f42omnPTKRLghXFXE6+AEefFXXK?=
+ =?us-ascii?Q?UfkTj/5GbO4BeK+Dz6f30OfhapVmfrxVISoiILtkkgN0ixiGqMEnGiRzbem1?=
+ =?us-ascii?Q?MAJbYrC4rtOtEpmfi6v1FiY7PGqmhSa6b4iDUmBVGyksXb3yT/x5x4Dz9AYz?=
+ =?us-ascii?Q?zqyNY61mdunP4PRNoBCPeqDBd4HDLUMXPeL3RrJOP0g8e/qvorcg9TEbOoqN?=
+ =?us-ascii?Q?HyFXgTfW5jEj7BHs+htodFDXVF1l3zKMdxqKfKNiNFASVVceBwd6+G3/9o8n?=
+ =?us-ascii?Q?HEAogPIE3UnoMOGwvbxTQwCKVkOPu2FligJ6y0/6QI1bbr1h0Ilx/Ap0xFpD?=
+ =?us-ascii?Q?yxzCsExKT98FFdOkoAESQ/+UIMQ87YQjF9QHsiNLRijnkph10mI0++2F65Qb?=
+ =?us-ascii?Q?ypzGMtAtNFj5Q2luKP1Pvc3x+jJQXSRJxaw6bw3LShc681iqFkWGzhdGrdmd?=
+ =?us-ascii?Q?icqSAiVf8K7+FQ3ggcVYjSSkpChfT76vTrp+WthsqeC1MMdNLN8kNwqBxtvh?=
+ =?us-ascii?Q?GO+n2rh8NjZm5AbdZAal+9FauYBJP1TVcdQU1k7Dmag8fwgjfXtdNZo4+BMu?=
+ =?us-ascii?Q?SpPWzKbT144sQD4f5HlUYB+OWoVRmlkW1OeBVj8bIRoGv5LPEEhOkDyol6Zt?=
+ =?us-ascii?Q?B2c35uayhyb5+vE9L/qrInuGOUu19Ge9IC4kdCzEVmboRbbKHholiZs+1UlD?=
+ =?us-ascii?Q?WQ4CYfx/2IE1fRT7yG408RkCvI9i6SQGNsQjK2CIdrtZk59OgaQYRo6KADUB?=
+ =?us-ascii?Q?5ay8vpUVT02LLlapl0O9x+b5uMKDyJ7qKVqsWiI44ZiILAXjY+UM16cuVRmB?=
+ =?us-ascii?Q?bp1KE1HwSQQzTEBXuhtGVXHg1cx0w64GmeyDwW5Es+TlWCUOoUuRi6M+Lwu9?=
+ =?us-ascii?Q?JqyWb0RBLEP7M2nBvY0tDmzKQHRXZgSuTEe4y2G6EBt9jHXFPh3Hfqwv5Z+7?=
+ =?us-ascii?Q?9AS2+Q=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	AGKShJs4TZU3uqguJoNdEwQ780YJiLWIRXjXulEunJAqW4QspHFcFIy19/3ma8CMIw2SLDBg5LdUJrCXVHX8IxbIQY5zBnVfiU0sAZlbiz2mou/SNaqRn7VLu3TbobDgWGPjZhJTjtz4IF+wX537AIWLL9rNPWAz/nmGcptAA7BQEsN7kaNKItdUgSZT+iMlbsM0/uxLmjP7Cje71xtpOC6ZN9JOqyRqVjFrmMwkBG/DGY+g/B1O2v73xxtQxqW3X/zdoTssy2Gc4+ZtXrstHQzSA7DwI4NOO2d3suXP78M/VqWs/XqG/R9dRBMAt2wO07LBm4+7hehJaE7C9pq9EUBogWym/r7jj9z2HEUxn/Q/IvV5Gd2F7FbsAXCwDEWauq+2zsqVdEh7LyDle7Hr5twgA1Pn6Bgn1akMmhHigHtrbme7oZrGCGUDoXhGE/d3
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 02:10:55.0125
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a82c842-b041-4b43-07d8-08de62c976b3
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	TY2PEPF0000AB89.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR06MB5381
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [3.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262007-lists,devicetree=lfdr.de,netdevbpf];
-	FROM_NEQ_ENVFROM(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262011-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[cixtech.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NO_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[gary.yang@cixtech.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_SEVEN(0.00)[7];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E880ED3A34
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,cixtech.com:mid]
+X-Rspamd-Queue-Id: 121D8D3A9A
 X-Rspamd-Action: no action
 
-Hello:
+Patch 1: Add yaml file for Cix Sky1 resets
+Patch 2: Add driver codes for Cix Sky1 resets
+Patch 3: Add dts nodes for Cix Sky1 resets
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+v6 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-control.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- refine reset driver
+- fix dt-bindings style
 
-On Fri, 30 Jan 2026 17:35:59 +0000 you wrote:
-> Similarly to live migration, starting a VM from some serialized state
-> (aka snapshot) is an event which calls for adjusting guest clocks, hence
-> a hypervisor should increase the disruption_marker before resuming the
-> VM vCPUs, letting the guest know.
-> 
-> However, loading a snapshot, is slightly different than live migration,
-> especially since we can start multiple VMs from the same serialized
-> state. Apart from adjusting clocks, the guest needs to take additional
-> action during such events, e.g. recreate UUIDs, reset network
-> adapters/connections, reseed entropy pools, etc. These actions are not
-> necessary during live migration. This calls for a differentiation
-> between the two triggering events.
-> 
-> [...]
+v5 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-controller.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- refine reset driver
+- fix dt-bindings style
 
-Here is the summary with links:
-  - [v7,1/7] ptp: vmclock: add vm generation counter
-    https://git.kernel.org/netdev/net-next/c/3495064b6d65
-  - [v7,2/7] ptp: vmclock: support device notifications
-    https://git.kernel.org/netdev/net-next/c/3b1526ddb254
-  - [v7,3/7] dt-bindings: ptp: Add amazon,vmclock
-    https://git.kernel.org/netdev/net-next/c/1d5a66045afa
-  - [v7,4/7] ptp: ptp_vmclock: Add device tree support
-    https://git.kernel.org/netdev/net-next/c/ddc867d0b5db
-  - [v7,5/7] ptp: ptp_vmclock: add 'VMCLOCK' to ACPI device match
-    https://git.kernel.org/netdev/net-next/c/ed4d23ed469c
-  - [v7,6/7] ptp: ptp_vmclock: remove dependency on CONFIG_ACPI
-    https://git.kernel.org/netdev/net-next/c/ac1e7404924c
-  - [v7,7/7] ptp: ptp_vmclock: return TAI not UTC
-    https://git.kernel.org/netdev/net-next/c/562f59fe3291
+v4 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- add syscon
+- refine reset driver
+- fix dt-bindings style
 
-You are awesome, thank you!
+v3 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- remove syscon
+
+v2 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- fix dt-bindings style
+- refine reset driver
+
+Gary Yang (3):
+  dt-bindings: soc: cix: document the simple-mfd syscon on Sky1 SoC
+  reset: add Sky1 soc reset support
+  arm64: dts: cix: add support for cix sky1 resets
+
+ .../soc/cix/cix,sky1-system-control.yaml      |  49 +++++
+ arch/arm64/boot/dts/cix/sky1.dtsi             |  14 ++
+ drivers/reset/Kconfig                         |   7 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-sky1-base.c               | 125 +++++++++++
+ drivers/reset/reset-sky1-fch.c                |  78 +++++++
+ drivers/reset/reset-sky1.c                    | 204 ++++++++++++++++++
+ drivers/soc/Kconfig                           |   1 +
+ drivers/soc/Makefile                          |   1 +
+ drivers/soc/cix/Kconfig                       |  11 +
+ drivers/soc/cix/Makefile                      |   1 +
+ drivers/soc/cix/sky1-system-control.c         |  47 ++++
+ include/dt-bindings/reset/cix,sky1-rst-fch.h  |  42 ++++
+ include/dt-bindings/reset/cix,sky1-rst.h      | 164 ++++++++++++++
+ include/linux/reset/sky1.h                    |  18 ++
+ 15 files changed, 763 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/cix/cix,sky1-system-control.yaml
+ create mode 100644 drivers/reset/reset-sky1-base.c
+ create mode 100644 drivers/reset/reset-sky1-fch.c
+ create mode 100644 drivers/reset/reset-sky1.c
+ create mode 100644 drivers/soc/cix/Kconfig
+ create mode 100644 drivers/soc/cix/Makefile
+ create mode 100644 drivers/soc/cix/sky1-system-control.c
+ create mode 100644 include/dt-bindings/reset/cix,sky1-rst-fch.h
+ create mode 100644 include/dt-bindings/reset/cix,sky1-rst.h
+ create mode 100644 include/linux/reset/sky1.h
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.49.0
 
 
