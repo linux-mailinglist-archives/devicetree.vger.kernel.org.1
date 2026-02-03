@@ -1,208 +1,159 @@
-Return-Path: <devicetree+bounces-262232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262233-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YJgqHqbqgWkFMAMAu9opvQ
-	(envelope-from <devicetree+bounces-262232-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 13:31:34 +0100
+	id SFb6IH3qgWkFMAMAu9opvQ
+	(envelope-from <devicetree+bounces-262233-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 13:30:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDD9ED90C7
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 13:31:33 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 842AED908C
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 13:30:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 30A2D306199C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 12:25:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 678BB30046BC
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 12:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B700F340A63;
-	Tue,  3 Feb 2026 12:25:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VGj0sV16";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Q00qQlC/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAF3A343D7F;
+	Tue,  3 Feb 2026 12:30:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4329A33FE0A
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 12:25:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A7F238C08;
+	Tue,  3 Feb 2026 12:30:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770121536; cv=none; b=TmiJ6dmGMI/vD6CvFPHM5OGQ6FFa/E9cLh2ixpMO5FoujNUpk+Hv2XP8vzvAA8TNqnpk2Eq2ITbWH+nFo2gukyquR4BHh9RC/XLTQnvMGTgq3jQ9eiHalhS9VtrGJHbU/kyUWkaJj8osHo79xm18GsqLmHKUyj0KVS4QtqY0qEM=
+	t=1770121840; cv=none; b=IhzlkWriKkQOktjnHNXnDnoEfTOjIQiyr6ebdzZIB+E85gNEq7gMRb5Gndgm69lReGxMMPaOGSP4b3TYqoAuwMhGul/m5CPnlrA++ht+zC1v9b2/Ah2vQ7v/DSafIBRzL6BtsnO4KhskyClBX60f4pYo/5mZGYvfzLoIuue1+9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770121536; c=relaxed/simple;
-	bh=q0BC+UNwqgkm+AoQaAiSVdLDeuvHClDj7duIXglk7RU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dfZzHt79ecJ+FybnsA8JWUuqoZhB6JV1CeKSI97FSqyIe33g/VROIUAgifuhMjzzz/KIDrN2yea3fDKIg1WxKVPKeFkKbxy0iNizw1GbZj4/8eccEfSmk9MVocBF5asPadVLA1EnLcaMGw7MrZ58wd47E50gdjWfLQQd5f3phsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VGj0sV16; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Q00qQlC/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6139m7eg3386846
-	for <devicetree@vger.kernel.org>; Tue, 3 Feb 2026 12:25:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	kr9VkLymfmxS+ULRZoGX6sAx4XQrg7pGqU67+DmAAfI=; b=VGj0sV16COHQZLLJ
-	bTb4nKpwOXw3jgTPBBQws41x/U6s3Y4GHDkTWd4XCppUqUa7kEzcLhPlFUxIC3tG
-	0ja51DKluhhIqSGzXkEVPX5huOXPMKcIMFtosy62cKcN5RFX7HWYJzNfd8iZn60t
-	+wXJg5qTXs6Tnrr9ef0R1u+BXA+ZYWwuvLLDtYiQbwfbb8ZCEkrc1wh9lrSHXVo7
-	/YBj8OJmGetGdV2Bv/rT4uPuf2uSIUD+bgp5Bag05yntFq2Ry7nzDYZuIr9WuNeJ
-	yGU4FRLlh1eBqYyDtTvU9rIL0OyymN2VGXkmiRurFaxpvXEwJMvgdXWUz616/occ
-	Y75BoQ==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c2xvbuepk-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 12:25:34 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c533f07450so143589885a.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 04:25:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770121533; x=1770726333; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kr9VkLymfmxS+ULRZoGX6sAx4XQrg7pGqU67+DmAAfI=;
-        b=Q00qQlC/6pzHN2a6IuqWeRInUzVhEz6/PE71B6LD1ndLLglFaTeA1RMiairbeWCsJs
-         5CEYZm4WWLye1BTR7L1Zubo44zPB40Q26/Q3Gh6KLYex7U7tdODkncgjmndn01kEQCdL
-         XBKDwA26zjZOi2xPmXXlSM03kWIGHGzYOSbA8U2natxY/mmkGBA1yNWaTYfOrpJ5al2i
-         PyCXx/Na70S3RDuG1in3Vp83cMOKOoeZ8F8xm1WJmKardkSJx8w963ciFm0O7qU+h3X7
-         gjSYQ82bz41ypvNrYiGha9pc74V4XBzB8pTdOc81ad4Ob55hi8EHCYoR5JZVPzodPq7w
-         fpRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770121533; x=1770726333;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kr9VkLymfmxS+ULRZoGX6sAx4XQrg7pGqU67+DmAAfI=;
-        b=U9E5VbQvGDay/1h4uqRnIDTledLf0xE+YcvfHKepFqxLYnAAQWu5Sjq7MWRozGiTfJ
-         qLrrTnfEStPNcwRyZaRe9iOMzfVp1yZAmveCMTHLQJnJ0xB0wsect2TIiFVch0YBbVFT
-         2z+LvmHrQumgbv2J4tCJdARR29r6hr0IhiIAVcS/ObweFZJE3y17qADBqpo5lbURapXp
-         YoKjh2nBLlZt0HjdjUPO9S37ykn2h8siOYPB2mf1tJ1UlnTobD2h1bJzv3W5hi9L7CUi
-         yOj/xMyHPu4vuQUWEXFpIfBFU9RryjqOYholQj7AISIt5RaPRoMaL9aLhW/+9ut8xA9h
-         yN1w==
-X-Forwarded-Encrypted: i=1; AJvYcCWjLpj9/qX5SZTWbOrxSELNASBUbb8s8qBZcnknjU3hqCfGHPuw64J/8nPy13UbbPbeUkXshvrA9ezR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzsp7t3jylknsYWMsr4e3wW3j4vj2q5GNW4VbOt92EdgRtU7wsn
-	YjoyhUyoCUPb6I359uh6uhcvcIBv2U73CtsCt6pORWtQ0cAyP3mEhJs7XveLbwxFKeVf8tM7YOg
-	fLntKKeVW3MbnulsSTFrLnDez1QKv96VYPwOumfsmyzz198anMn0foI8BBzcGWhm3
-X-Gm-Gg: AZuq6aJYml2na5GByO6IXu7bSL8ddm425fQeAx7dnfMQ/Rvj3MV8f6zi8IMLXb24B+3
-	p8K7ZqWB4d56pKDSmSbZ9bcKKgpz2XV+Sp808pvxlMZbkpB6S/5jiNrlnJHgb8/ZT2cWbaCmr89
-	y3qjCMhUQ3h540UHQnCSIIwOI+PVjLRKYKXD2CQvmtpS4QsszA35SHT9nep1/cFhbD3r7JA0bxN
-	1rgrGl1dmW7UJMDczIndVxwxqAUJciYNq2ZGeh/1L0AgWbNz/w95tNg9fTym3XVLlz2Vwk434hJ
-	aeBGvQraBwYkEV/mtD9LxGLQUHJOSpcgLyPFkbsV9xb6mEyqiaSm/hpDjKxmt5ak+x8/4ZXJXiW
-	6NT531YinBbC9JVm17ZgqM/PCKeEbEyNxu9VxsxSw3GJqpDXQEtEp0jzi206tE5LVPKo=
-X-Received: by 2002:a05:620a:454b:b0:8c6:ca3d:4e0a with SMTP id af79cd13be357-8c9eb285634mr1499522485a.3.1770121533573;
-        Tue, 03 Feb 2026 04:25:33 -0800 (PST)
-X-Received: by 2002:a05:620a:454b:b0:8c6:ca3d:4e0a with SMTP id af79cd13be357-8c9eb285634mr1499520585a.3.1770121533149;
-        Tue, 03 Feb 2026 04:25:33 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8dbeffedd3sm1003274366b.29.2026.02.03.04.25.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Feb 2026 04:25:32 -0800 (PST)
-Message-ID: <df7cbe46-153e-4959-911a-14600b3bea21@oss.qualcomm.com>
-Date: Tue, 3 Feb 2026 13:25:29 +0100
+	s=arc-20240116; t=1770121840; c=relaxed/simple;
+	bh=xSkZGHYDhEC58xgVczwO2WAMqB7U1AW/5NWYBqSZbOM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=W+0tf7AXDE/83SPAcT09NKY0qTPD02W2kzImOb8DAQob8v6roEcYzmgYOBATm0xyoZIk4TqasB71NLyj6NapxHyra+ahPYpr9pRQdPoj5Fq/mZ8f2z5ICm+q5I/PPMJK4+98KZGQrpyFVXM4nxAnC3bTavj5hCwcBwyVhFpIJOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.69.42])
+	by gateway (Coremail) with SMTP id _____8DxPMNo6oFpHF0PAA--.49668S3;
+	Tue, 03 Feb 2026 20:30:32 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.64.69.42])
+	by front1 (Coremail) with SMTP id qMiowJBxKMFl6oFp7RY_AA--.38493S2;
+	Tue, 03 Feb 2026 20:30:31 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	dmaengine@vger.kernel.org
+Cc: Xiaochuang Mao <maoxiaochuan@loongson.cn>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	Keguang Zhang <keguang.zhang@gmail.com>,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH 0/3] dmaengine: Add Loongson Multi-Channel DMA controller support
+Date: Tue,  3 Feb 2026 20:30:09 +0800
+Message-ID: <cover.1770119693.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 12/13] i2c: qcom-geni: Store of_device_id data in
- driver private struct
-To: Praveen Talari <praveen.talari@oss.qualcomm.com>,
-        Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
-        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, bjorn.andersson@oss.qualcomm.com,
-        dmitry.baryshkov@oss.qualcomm.com
-Cc: prasad.sodagudi@oss.qualcomm.com, quic_vtanuku@quicinc.com,
-        aniket.randive@oss.qualcomm.com, chandana.chiluveru@oss.qualcomm.com,
-        jyothi.seerapu@oss.qualcomm.com
-References: <20260202180922.1692428-1-praveen.talari@oss.qualcomm.com>
- <20260202180922.1692428-13-praveen.talari@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260202180922.1692428-13-praveen.talari@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: ZxG7oeP704It5sz8BvG5TlBVK-d2l2-c
-X-Proofpoint-ORIG-GUID: ZxG7oeP704It5sz8BvG5TlBVK-d2l2-c
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAzMDA5NyBTYWx0ZWRfX66xlNnnvzJII
- Nwd7OPpFTIS7QHmAvGd5J5zzKVlvVyKaYN79QTQbfymsLx0P4Uzli3JCCI8dPwqFpdgo9FqLDoH
- JtU9r1OiEEl8eaHibJ1YYnP0ajxa25H60wd9AFu5K2HGkRDbfBofZRyKH6mDtUOTuXdQDul4+3d
- fZCBZDL6Pgg+XOHF1HxNQexmZMl6jOo9ZA543TY2sKrG5r93uGG0ejqnPYsL5U7AAZBS3DerpNY
- xVCOE4Zj8wQC5vhwnS3eyiWUZRHAyNfPiMwXWJnhH8rfUYrDhpjMS9W32b1tJKp9CAGWfdrAZG3
- tskUrxfxTVycW2M0GspNSIvTuIGWCwIWaruivQYnkgbI95n1T/s71J807Q27uGVPVwZ8kSo3PNz
- q2+zQUoKedJQDLsbXks73WRn09UqYDDOA8Gvw5IYslca48LY6pEfA+XTYEa6rReYgHNHwHSgClk
- XQ82jgXVoSpiQEBuw/A==
-X-Authority-Analysis: v=2.4 cv=AurjHe9P c=1 sm=1 tr=0 ts=6981e93e cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=LkbPghAf8A_mGgTKem4A:9
- a=QEXdDO2ut3YA:10 a=zgiPjhLxNE0A:10 a=zZCYzV9kfG8A:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-03_03,2026-02-02_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 spamscore=0 suspectscore=0 phishscore=0 adultscore=0
- malwarescore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602030097
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowJBxKMFl6oFp7RY_AA--.38493S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAgEHCGmBjh4H5QAAsW
+X-Coremail-Antispam: 1Uk129KBj93XoW7Wry7XrWUKFykZw48Gry8Zwc_yoW8Aw4rpF
+	43A3yS93W8tFW3Aas3JFy8Ary5Aa4fJr9rua9rXw1Uur9xZ34UZr1rKFyjqFW7Ary7JFW2
+	qFy8GFWUGF17GwcCm3ZEXasCq-sJn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUkFb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+	xVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
+	1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv
+	67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41l42xK82IYc2
+	Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s02
+	6x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0x
+	vE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE
+	42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6x
+	kF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07jnUUUUUUUU=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	TAGGED_FROM(0.00)[bounces-262232-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-262233-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
+	DMARC_NA(0.00)[loongson.cn];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[loongson.cn,kernel.org,xen0n.name,lists.linux.dev,vger.kernel.org,gmail.com];
+	FREEMAIL_TO(0.00)[gmail.com,loongson.cn,kernel.org,vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[zhoubinbin@loongson.cn,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.980];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: CDD9ED90C7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 842AED908C
 X-Rspamd-Action: no action
 
-On 2/2/26 7:09 PM, Praveen Talari wrote:
-> To avoid repeatedly fetching and checking platform data across various
-> functions, store the struct of_device_id data directly in the i2c
-> private structure. This change enhances code maintainability and reduces
-> redundancy.
-> 
-> Acked-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
-> ---
+Hi all:
 
-[...]
+This patchset introduces the Loongson multi-channel DMA controller,
+which is present in the Loongson-2K0300 and Loongson-2K3000 processors.
 
->  
-> -	desc = device_get_match_data(&pdev->dev);
-> +	gi2c->dev_data = device_get_match_data(&pdev->dev);
+It is a multi-channel controller that enables data transfers from memory
+to memory, device to memory, and memory to device, as well as channel
+prioritization configurable through the channel configuration registers.
 
-Because you dereference it unconditionally later, this should be
-null-checked
+Additionally, since multiple distinct types of DMA controllers exist on
+the Loongson platform, I have attempted to consolidate all Loongson DMA
+drivers into a new directory named `Loongson` for easier management.
 
-Konrad
+Thanks.
+Binbin
+
+Binbin Zhou (3):
+  dmaengine: loongson: New directory for Loongson DMA controllers
+    drivers
+  dt-bindings: dmaengine: Add Loongson Multi-Channel DMA controller
+  dmaengine: loongson: New driver for the Loongson Multi-Channel DMA
+    controller
+
+ .../bindings/dma/loongson,ls2k0300-dma.yaml   |  78 ++
+ MAINTAINERS                                   |   6 +-
+ drivers/dma/Kconfig                           |  25 +-
+ drivers/dma/Makefile                          |   3 +-
+ drivers/dma/loongson/Kconfig                  |  38 +
+ drivers/dma/loongson/Makefile                 |   4 +
+ .../dma/{ => loongson}/loongson1-apb-dma.c    |   4 +-
+ drivers/dma/loongson/loongson2-apb-dma-v2.c   | 759 ++++++++++++++++++
+ .../dma/{ => loongson}/loongson2-apb-dma.c    |   4 +-
+ 9 files changed, 890 insertions(+), 31 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/loongson,ls2k0300-dma.yaml
+ create mode 100644 drivers/dma/loongson/Kconfig
+ create mode 100644 drivers/dma/loongson/Makefile
+ rename drivers/dma/{ => loongson}/loongson1-apb-dma.c (99%)
+ create mode 100644 drivers/dma/loongson/loongson2-apb-dma-v2.c
+ rename drivers/dma/{ => loongson}/loongson2-apb-dma.c (99%)
+
+
+base-commit: 3c8a86ed002ab8fb287ee4ec92f0fd6ac5b291d2
+-- 
+2.47.3
+
 
