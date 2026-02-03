@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-261980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261982-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OBCvHLpDgWnNFAMAu9opvQ
-	(envelope-from <devicetree+bounces-261980-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 01:39:22 +0100
+	id AGXeL+VDgWnNFAMAu9opvQ
+	(envelope-from <devicetree+bounces-261982-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 01:40:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E248DD3118
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 01:39:21 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C9E9D3143
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 01:40:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B94CC301F7AF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 00:39:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EAD4B30333EE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 00:39:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D592920ADD6;
-	Tue,  3 Feb 2026 00:39:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FC342116F4;
+	Tue,  3 Feb 2026 00:39:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pZ4TlfFz"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ixvvonOe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010045.outbound.protection.outlook.com [52.101.61.45])
+Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11012071.outbound.protection.outlook.com [40.107.209.71])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4681E9B3F;
-	Tue,  3 Feb 2026 00:39:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 756641E98EF;
+	Tue,  3 Feb 2026 00:39:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.209.71
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770079152; cv=fail; b=XaKDITXnVIT+34vVoESn8cQjoyhnLRD7jMnoVWuJjet3P+FBCMBq9qZRfUuFTo687F+k3vxwdxyDK9EZCVt46N/zerPslOvigBfHrjvWs2PWrpU6YR1t2sSpN/vSAP7kOKQFVq2p2CMsc5XM4DbPLKur6ILwpourJj3lptd0Eg4=
+	t=1770079157; cv=fail; b=hU7UQXRl64R37ABMNhj7zfBKLcyNf5OT/xrQmtzP80pe8ZzaEp84cbT83md6tz+aMiofLuxv2vRGXL4slaUTiODVOSzkWo1tqF70iP/4hpqJGp8PeOnAibSyDNlxqO40NqITzehWTIOlodEY36IRe+2dtwB3jbg/88PFBfPSWb8=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770079152; c=relaxed/simple;
-	bh=TcZcuzLvfL1HFYWZfx44YyzPx/DmbZbNj2sotARGkQw=;
+	s=arc-20240116; t=1770079157; c=relaxed/simple;
+	bh=5AfQp4OOwtpZha3LJBXAdCFoVJpmCfoQkXlfAqmgZDk=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EJHcCgP6kEIfPz+7iamJaGRd5pp9yy/H17erU4KQN4JfWpZNcItjCODwzl4J2q9+wld2uOpJppMI0RJXrn7L1quRAcTQns3+PRKLQTEgDYE3Y275g4T7aGHVP77y/5KJhWRsuwuPviTdW6BFTpx2G1BfeTFCW0fc4OSwoGd//4I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pZ4TlfFz; arc=fail smtp.client-ip=52.101.61.45
+	 MIME-Version:Content-Type; b=XnFTn2mJLfpiQ01cc43aPd1cz2QxwZA7D1n/Jne37x2OrOgBfQXRKdbPkDU0n9HgCGOhRXcCDLtsy0yHsBam6EuxM0hYmOJ/lMJY+RNJMieyYZTSgCHt2MEvPbeX4xZiAzzGsf1ywvAP2LbizgrK1V7wMYgq3LrZJXpS+rO7E3k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ixvvonOe; arc=fail smtp.client-ip=40.107.209.71
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GbH77j7IyNqiRIHn3M5VYZdZTxCD8v1QGmtciZJeeXHJTj8gGymcpqZhENUpkgkw2BA83a0Hu80/u0NIHYSwKLFrDytGIcaegzrSawYAcq5yKAdZ0vRxVZSIY0NuACyLGCc9sLBj2zg00dB0Jq9x90CxTb1KIN0t3P7bdwIouy3MYW9zY1i9hXWfH/lqSOmCtF+6iYkCRmqPwTFCluCNBMemOWFlfG20/xEbDKb7AnY0PcDvSJSbjg6/35fdannM8OcLD8hMu9F0FFAyhxtwdre/psP/D9MVG4Mk7xs0oMM7PieJ6m6OxhDdBx7uqFU+o/7BdmbcMXlCVA0N4tBa9A==
+ b=QD8CtEdtmWlcYmWLj5jVSpWRSw5c4y7oZmDdGNfo2q/Rys536byylkGvNSn4NyHgIlJwYV7dsQ26c+eNttbAfmJvNGpYenBpzhZmSBQl4Y2MhlaO23mZXAuTsBI/FCMJenG1U3BQkta4ftCzvlZdUUjPJL0q6UUeDcJzPtxgEwJodXJS3It2TTC/ArOsDS1occ+0uHGvZnyTMF7KQ2aK88AlrXt/PArzJSQZ9IxB/zuEUcrdVCY74KFv3nxvw+hDGEl3xJZMYd33wS7q1XQkX8Lc4M5zcyW1DHw8iHgn4utzWjpuenQjZHYQ5wlMXLRGicuN3JFe3CgWmwV/acchIA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/utXmdmqyQNsAdNXvotPEPA/dPXE5q7X7dktrmKmGog=;
- b=f8ht1B2muslwhd/4E5YZGCjt1mYn/WfMvM8Zg2gshNFMR8QjEcCdGAW6LcI2MdIl16hBElEz/URKlNkLJIZEYounqER6ehq+YRBl5Qz5CEqtsQG1hc65YaFUi6Ne/W4BTW8n1mWn1tkRPMvd7KSVDAdRIsJKr/DLmC8BP7EXM9JsotJ/F8Od4zjWBQFmNqnRLX2Qu6DQ7DgU8gZP+4q3xTWM3HacSjbJ5yVX/x7l00LrXAQpgPwKQ0ulboC/6+Kx1XMw54lZ2iDAcP+vwGMJkTkMcqV4m0wHTn+5yOudEUZgwSfFkdf400WJdhXXqmGQFx+JHgT69dpqwiVhLqT4BA==
+ bh=bD+aRaoHRdk09lqfWtRTxTdJENMhAQeMyC3hoYQrZ6U=;
+ b=crtRIdtQwPfJqYlckZUAqBIQ58z9DcSWiJrCKA+rbuXWmGe7Bjay7Ipd43a4NSSZzpP/QRZheh0Albq/5LDa8LemUjqB27WOzKzqP1rnQv5vXvFLZPfmS6Uu46INpnQ9+4OzwMPXc3F0F68jKYstKaSAPiOWbzVJbXdc+2H+02uPYVw4Z4GdrYf3LQOhsyImsxAET4nobJTMsjqtahhoRrY5H8AcDcaWP77nqXhNLDcrmq6GkWptv47eEoXfvzqN+16r43AA0ZCGbyefULIrakBsFViN93x4HicPdW4L0aBpo1ThhJpX0xSRt2j0Ne0/JqvXwOWZRaQ6PBnZOD4uHA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/utXmdmqyQNsAdNXvotPEPA/dPXE5q7X7dktrmKmGog=;
- b=pZ4TlfFzp2k0endYxm5FFj8Nfw47aOOZ/CEDhputWhKsEauR+KBJ4ZeL9upYYYjpL47jeCz58t62lxxbZQ566aM8Mzl6dUKB92GzhGBxHlANZ2iPCFbIBC5IbyzGpbKosC5UtPrBBOglAsR6n3/6biMh7rplkE/6NN54cX6TCX8=
-Received: from PH8P220CA0057.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:2d9::17)
- by LV8PR10MB7725.namprd10.prod.outlook.com (2603:10b6:408:1e6::18) with
+ bh=bD+aRaoHRdk09lqfWtRTxTdJENMhAQeMyC3hoYQrZ6U=;
+ b=ixvvonOe84lJL6GITmJae8nRrDUy5nzCYA2Z6tg18xi4u/HnqX8akjJza25hUbmQWSsKOKWNj+eJQGZP/i5/wx/vn8Gtb3lvT0eBOtACM4U0iwyQhQGd+ube7bpuikawJ41qqd7hfYzL1snk8/3t+VVlvHfVbGNiO9tbgqDzGRk=
+Received: from PH8P220CA0042.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:2d9::14)
+ by LV3PR10MB7964.namprd10.prod.outlook.com (2603:10b6:408:215::22) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Tue, 3 Feb
- 2026 00:39:08 +0000
+ 2026 00:39:10 +0000
 Received: from SN1PEPF0002BA4B.namprd03.prod.outlook.com
- (2603:10b6:510:2d9:cafe::37) by PH8P220CA0057.outlook.office365.com
- (2603:10b6:510:2d9::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.16 via Frontend Transport; Tue,
+ (2603:10b6:510:2d9:cafe::46) by PH8P220CA0042.outlook.office365.com
+ (2603:10b6:510:2d9::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.16 via Frontend Transport; Tue,
  3 Feb 2026 00:39:12 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
@@ -68,31 +68,31 @@ Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
 Received: from flwvzet200.ext.ti.com (198.47.21.194) by
  SN1PEPF0002BA4B.mail.protection.outlook.com (10.167.242.68) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.10 via Frontend Transport; Tue, 3 Feb 2026 00:39:06 +0000
-Received: from DFLE207.ent.ti.com (10.64.6.65) by flwvzet200.ext.ti.com
+ 15.20.9587.10 via Frontend Transport; Tue, 3 Feb 2026 00:39:08 +0000
+Received: from DFLE204.ent.ti.com (10.64.6.62) by flwvzet200.ext.ti.com
  (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Feb
- 2026 18:39:05 -0600
-Received: from DFLE211.ent.ti.com (10.64.6.69) by DFLE207.ent.ti.com
- (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 18:39:06 -0600
+Received: from DFLE214.ent.ti.com (10.64.6.72) by DFLE204.ent.ti.com
+ (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Feb
- 2026 18:39:05 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE211.ent.ti.com
- (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 18:39:06 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE214.ent.ti.com
+ (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 2 Feb 2026 18:39:05 -0600
+ Transport; Mon, 2 Feb 2026 18:39:06 -0600
 Received: from localhost (mz02jj9v.dhcp.ti.com [128.247.81.0])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6130d5GV2625678;
-	Mon, 2 Feb 2026 18:39:05 -0600
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6130d6mX2625696;
+	Mon, 2 Feb 2026 18:39:06 -0600
 From: Sen Wang <sen@ti.com>
 To: <peter.ujfalusi@gmail.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
 	<perex@perex.cz>, <tiwai@suse.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
 	<conor+dt@kernel.org>
 CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>, Sen Wang <sen@ti.com>
-Subject: [PATCH v2 2/4] ASoC: ti: davinci-mcasp: Disambiguate mcasp_is_synchronous function
-Date: Mon, 2 Feb 2026 18:37:01 -0600
-Message-ID: <20260203003703.2334443-3-sen@ti.com>
+Subject: [PATCH v2 3/4] ASoC: ti: davinci-mcasp: Streamline pdir behavior across rx & tx streams
+Date: Mon, 2 Feb 2026 18:37:02 -0600
+Message-ID: <20260203003703.2334443-4-sen@ti.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260203003703.2334443-1-sen@ti.com>
 References: <20260203003703.2334443-1-sen@ti.com>
@@ -107,58 +107,58 @@ Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4B:EE_|LV8PR10MB7725:EE_
-X-MS-Office365-Filtering-Correlation-Id: 674f2aa5-7370-477f-0d0f-08de62bca325
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4B:EE_|LV3PR10MB7964:EE_
+X-MS-Office365-Filtering-Correlation-Id: a5dbdc09-3819-43dc-f257-08de62bca48d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|82310400026|1800799024|36860700013;
+	BCL:0;ARA:13230040|82310400026|376014|7416014|36860700013|1800799024;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?1/SyPz4ZhF3cvDVnEzXHNPmJbWXMdXWwpQcLMMFvHG32ykL6POtQe8+o9J8u?=
- =?us-ascii?Q?H5WRJVcKyS83vY3SswGecP+pIvCWJPTo6r8IfrIw0ObIoDGlcUY9cEDWewp9?=
- =?us-ascii?Q?SuGHf9dsdJmQYdS+3lyZoN0DF01EQggFcNvhgweEGAC9VZ20qWoscCCreGuj?=
- =?us-ascii?Q?0JMyWqTs2mR3oNofE4D5fYcUq0ZxgQj58Uvz09av0IBsNf2iMASFIZrMQECD?=
- =?us-ascii?Q?2iYR5DSruUi1I8HqM6r2Tq5xa8NaGcSXe3gdH+YNpVB2CC4foKc0RIEsQvEV?=
- =?us-ascii?Q?P8O8yGCtMzlN9RT31RbeuuJaDI53WHBSMBRti9sjzfjO0KRhMkDIhRUAhQDa?=
- =?us-ascii?Q?M0fDRT3+aNeErbq0yEdi6x+fkCHtjZ05VnGph7Px4h67Y/WeHsHk1fZCVtq0?=
- =?us-ascii?Q?G5/zm8UTjwPBrDpJHF40P+MvVMOaThNKwFfWh6BkATgsMWVrAnm9QkHiri7R?=
- =?us-ascii?Q?YBYOmDxdkrlRBho6xC1WKcS1KJ4QUydZ9IslAyQnG0kmvjXhgrFAXNHXPDOv?=
- =?us-ascii?Q?hBQieMWHuK9VCajOdRRlb0YnceckriWqLutSSG4raLyH4MImV1hPJAWR9hRd?=
- =?us-ascii?Q?v3AZfvguL1pxdRF+nDfXw4YEOGU3cmNZPLcCQDZVEX9D5/QmWA0eeQMdwrEy?=
- =?us-ascii?Q?UfjlMp2C3uaYfzG8cXoTof5jwck3CM4Jf6j+JVseHYim+IKWeKz8SxbvZ3H8?=
- =?us-ascii?Q?2w9zNxhmhB8SEHdw8fgM7oPYlvnN8VTT0/5hENXEcbi1gRXnTBTVXJlaNv7w?=
- =?us-ascii?Q?LCSTYSjBaw6ErwyI/EL7JmqiEimri1M4PiApXeMTOnlK35Tq96itoud3nZnb?=
- =?us-ascii?Q?VJ9yRwYkC2rXAlxF71/o3z4PWCOJv9XJqytSFRqXlBAeZU52rxKBzxeE+R7u?=
- =?us-ascii?Q?4Ll+MkTbJyJoPRpaek080v28BfEZ46tOX0tuSQEZQmIg9nC53swgVwfC7SOI?=
- =?us-ascii?Q?BJRJNiVs3bKH4uemDLSWdWsG9iClucpyumNLGSMth1qe4BlioE1sUsS+kkB9?=
- =?us-ascii?Q?vjLTHPc+srtNDsVBUOQZy5TT7TlGxGr4igMg/q3BeOkTW1feJ2vM2MrFyY2f?=
- =?us-ascii?Q?8hayuM7WOKgVToDyeZUCoC0pGDwtxIJBFT2g8iACsHt9+yVOv4c1jDo6oGmi?=
- =?us-ascii?Q?WA9nujZqVM7KzCFaEKwmljdGCFzxh4Vtc2fLaAjhN21HnOWMczixL5pL9/f/?=
- =?us-ascii?Q?BQLmDyU4Yi2HsF91XgdJtb3+aaaNd9qnH0z7X7aVI6VGFBdar7ICX8i42TsR?=
- =?us-ascii?Q?n2J9o7UJpp9ztDFJuTHpzA8XjVrOikSet2qwTTKWxdRHDbX5yw1EELr3qEjV?=
- =?us-ascii?Q?h8j7WMffMw4DxbihFopFgXJIrahv2tc53PyJ5IQJortq+ghlfpHYxVo5TJMY?=
- =?us-ascii?Q?nGfpzW+hJj71YvbO3/m9dr+T9ennGEg1Ej1VF1CA+M9raTNXxNnpls0L29EB?=
- =?us-ascii?Q?GDrsneJ4y498WfZFldS4sHhmeddyv2FoMpwdO73+zGUw2PbLBjaafnOWL/yg?=
- =?us-ascii?Q?09gMqgTjlrYEcz0eMhBuyw9+8zXtvtoJO3n2326fYFs47+iCKbnfpSDxpenw?=
- =?us-ascii?Q?YdFQfN5K8yEacAsjq4IdsiyLBN9s2iHN+bj0NcsJoAavXFLUWdYrJeOxUSqB?=
- =?us-ascii?Q?kSBSMkGkSB1CekCFkiauDydcF9mj75cyLEM5PceRRZ6TDkJ47INI3pqLjJzj?=
- =?us-ascii?Q?STnnlQ=3D=3D?=
+	=?us-ascii?Q?sx75/9LZSL1QHL2/rYW3zxptFvzFPTfJGVZH2+7wCtE5Ko7v2Dc+dx4l+BiB?=
+ =?us-ascii?Q?DQgAc1sIL9ASha2llSTma732oYBsQWss7ZlKtB/djNsBLgDLxL9aa4twesP3?=
+ =?us-ascii?Q?7nYVYBeEr5NiXx8M44Ipk4ylIiIUVLj42LCQSlCTA83MQ3LextwciF8xA2u/?=
+ =?us-ascii?Q?bkkLze6rn2mkh8n8n/Eg9ub+KtWG097+0jcbct0iLf9tbo9PmJAjvBWSspVC?=
+ =?us-ascii?Q?CXHdrfwD6YKNcQFS4cCJC9cAm6mGRrAVsOIaj2tFYqPX6nm4ySseBLV5V/N/?=
+ =?us-ascii?Q?5TF3LWruNN30eqCsUPTMy+wmpA0vD2e7nudXxgRlV56qXkkJaaNEIzVaWrPf?=
+ =?us-ascii?Q?Unz1ewN8A+RDxTbLCFw1XJqm7lmZDqBvx3GXfVPy7GKFZuQnkmb0uMBECrqe?=
+ =?us-ascii?Q?05UhYUKLKDH3Dcx0XSmhgkQ1iFHLq0ZXyVmW/B+l7kSz81vEIBIiTWXxiZTA?=
+ =?us-ascii?Q?2b1HvXXCKduMzVOo7lLm93Y83gZl89d6rX6jCzrz3fxqKrIeot+z3c0/POLI?=
+ =?us-ascii?Q?RuUy9lRAyl0woA4AY7rc+nJPmLf9fxe/1RqEOAOhIluWKJTIhLLGPsqsaS9M?=
+ =?us-ascii?Q?EWFcbXCw921tUKpjFqiAecME8y6ds5TqYrd+jaJwFeKMKOUdGkteTdVPuePu?=
+ =?us-ascii?Q?ivgMbyyxm8+LzJ6c5pIPnPBMBPrAcLYBfZZeLo5MCe7K1Xj4fGhrh9Rg96ow?=
+ =?us-ascii?Q?NGSAs2FjZb3SBRJVuA7BCzTpq0Lh4o+50zdrZUG5DAhs6iT67kkrF9yL1Qe1?=
+ =?us-ascii?Q?mqAKdHblocvsNOyWyEnzmv5TsTgaZys3KCNKEWMOXSPJeffENUPMZbTk6B+W?=
+ =?us-ascii?Q?N+eOZ9/JzB6L4vxkyVx6gNY3FRY5O3PLEWna4LKerCbpjCoxMctPAGTbn6Uz?=
+ =?us-ascii?Q?tlovuIVYTfgubbgtcGrLOtaumcYENqiDfxsIP0vbpEdlHL6gGVwYmyUgonv0?=
+ =?us-ascii?Q?+O3bXRqckIFUZw65bK0+Fc1z+KD3XNh+QdGJ4eqwohpIqKUz8RtVHbiO/1M0?=
+ =?us-ascii?Q?d6r12L3Ny1BoCPK13HZRXbJUsAQ1GELajq8jwF7wzAivUWNBLMFu5QtIbVW0?=
+ =?us-ascii?Q?DT9NrFDs5JgfmIFTK8Ygtn5RzVTneokNJimKYe7X+u1cNExy7ZGVPFF1HSBj?=
+ =?us-ascii?Q?6HuRNAdSM3ZWgMf36M+au0IuI//DsTpSGtSL4oejvXEj+CcUN0JraSleH/33?=
+ =?us-ascii?Q?846cV09XfFDAluBdBdlmhgCpInwWpcZRP75gkuMEZuqoWDQt4oJLOg+QMuvj?=
+ =?us-ascii?Q?8+mu6PC04ltW7IVgbtL09ubK2oUmzK0owf7AHwhyRFbY/lcZme9kuitcfp+M?=
+ =?us-ascii?Q?pRK5FPOhDQ5gtD3WQFdE07VrBhIcLEMjm4W7r1dosT6sEoY/312m/tOxx/NL?=
+ =?us-ascii?Q?DwsfVF+mRZl3LL2XfkHSKaZVMImH0KDuSb7tok6u9xNYfKean034GpP7t+Lh?=
+ =?us-ascii?Q?uD5p/IdY45nb6oKjiYDm0l82oUpdfSyEncxO8Wg1R6z/Y5+S98ob39Bl1V2n?=
+ =?us-ascii?Q?ekH6Zr+3nwDwhp/5BVEMTqeob8H0KF4qqdCpN6272EdrAp1PBiF9rsqkYuJq?=
+ =?us-ascii?Q?aLu8tI2ZgI8WjEYgNOzPUNhuJzgXVkYvx92uz3qQuEpMXSYC0OMgb6fdQcDb?=
+ =?us-ascii?Q?f9V+mtZvDlUz2xHjhvSDfyjprxi8N793YzQAdYnn+8Yp4TlcUMlVmVDdQhTt?=
+ =?us-ascii?Q?TK1azw=3D=3D?=
 X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(7416014)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1101;
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(376014)(7416014)(36860700013)(1800799024);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	GlygIu5us6GFQGGXXmB/NwO+vmeLa3hcxNllDoNBNu3SIFn7Wn3zs+IYzQPjt7Rh5None8TvqB/tEggn1QXaceDXHVLMjeTsU3Q5GHqdKyDurn6DZ2lxuPvELhYP/Tff9Drr7CMc2yg2+wrhhgZ3joiA+lab1lHZifH0YaLZ3vXGvbFfiVyA1q41bsTNTNAFa9716MMWMOczoKB7R8AgPRI/3Q9Oh0Pmg/pB+gLmqeXJ2wpn1I7zZt5xbl8EjGy2csOJXbFmUqJemqhece3xma3t7LJzcHEStbC0woZMaEUpdyKiSYljdD+hRvCCJU2l0bFXyaO/v2h6Ks9QjLLULp7vhRpYC4y2X+mwubwkPA4IfZHoTocSbKDBmQWC1sVRDMKgF/tpN+gODi6kGg0YH5OIkofCOIPJ+AAV2E1hsUbSNH2eUiVWD9Q88K24ZyKQ
+	/KabF2k+/eJbPBwTZJRnEchN+6u8JrasdmyxwajWw1+bGAi2by6XBQlpNfsEPw4qO5XY20EfRVXn+2A7jijsnw+TLNwy+RaKvJ/1HmkQ+ptB6gHxLoaHSXEazesg5bG572DBQ4Q0NgLzjGpbiGR1XKHqB4K6Bx0vCVw7GMBgXIw5myWAIWQezqjeZN1kIysudJ/Ag6NbR8Crgqwq0jZNQ3vjBZe6COy3aFnvrrs7OVVyahv+I/ZMe8m5Mcfiy7Vg+8zoK6lgTaQGCfx5ncj8jfpLPaVq+l6yleSUdxGBQ2lJICjjt8t2WfvbD2CC+dLP1jp9RhIn21Q+kyKQAfAmkRuJXWTflhs1Z/SaOwcXLpmTRTTwEIxNv0PHs9VW8bmj5ENiIokOaWRYbA/ihwSZ+ILWX1AaYloG1Q/pcODAUGlSxwtmpAOu740JNK2OvOJp
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 00:39:06.3034
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 00:39:08.6561
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 674f2aa5-7370-477f-0d0f-08de62bca325
+X-MS-Exchange-CrossTenant-Network-Message-Id: a5dbdc09-3819-43dc-f257-08de62bca48d
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource:
 	SN1PEPF0002BA4B.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR10MB7725
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR10MB7964
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -166,7 +166,7 @@ X-Spamd-Result: default: False [2.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -176,7 +176,7 @@ X-Spamd-Result: default: False [2.84 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261980-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261982-lists,devicetree=lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	DKIM_TRACE(0.00)[ti.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -184,95 +184,72 @@ X-Spamd-Result: default: False [2.84 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sen@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ti.com:email,ti.com:dkim,ti.com:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ti.com:dkim,ti.com:email,ti.com:url,ti.com:mid];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: E248DD3118
+X-Rspamd-Queue-Id: 3C9E9D3143
 X-Rspamd-Action: no action
 
-The current mcasp_is_synchronous() function does more than what it
-proclaims, it also checks if McASP is a frame producer.
+Simplify the mcasp_set_clk_pdir caller convention in start/stop stream
+function, to make it so that set_clk_pdir gets called regardless when
+stream starts and also disables when stream ends.
 
-Therefore split the original function into two separate ones and
-replace all occurrences with the new equivalent logic.
+Functionality-wise, everything remains the same as the previously skipped
+calls are now either correctly configured
+(when McASP is SND_SOC_DAIFMT_BP_FC - pdir needs to be enabled)
+or called with a bitmask of zero (when McASP is SND_SOC_DAIFMT_BC_FC - pdir
+gets disabled).
+
+On brief regarding McASP Clock and Frame sync configurations, refer to [0].
+
+[0]:TRM Section 12.1.1.4.2 https://www.ti.com/lit/ug/sprujd4a/sprujd4a.pdf
 
 Signed-off-by: Sen Wang <sen@ti.com>
-Acked-by: Peter Ujfalusi <peter.ujfalusi@gmail.com>
 ---
- sound/soc/ti/davinci-mcasp.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+v2:
+	- Retained original order of operation in mcasp_stop_rx()
+
+ sound/soc/ti/davinci-mcasp.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/sound/soc/ti/davinci-mcasp.c b/sound/soc/ti/davinci-mcasp.c
-index 621a9d5f9377..aa14fc1c8011 100644
+index aa14fc1c8011..f9015b50e99d 100644
 --- a/sound/soc/ti/davinci-mcasp.c
 +++ b/sound/soc/ti/davinci-mcasp.c
-@@ -179,10 +179,16 @@ static void mcasp_set_ctl_reg(struct davinci_mcasp *mcasp, u32 ctl_reg, u32 val)
- 
- static bool mcasp_is_synchronous(struct davinci_mcasp *mcasp)
- {
--	u32 rxfmctl = mcasp_get_reg(mcasp, DAVINCI_MCASP_RXFMCTL_REG);
- 	u32 aclkxctl = mcasp_get_reg(mcasp, DAVINCI_MCASP_ACLKXCTL_REG);
- 
--	return !(aclkxctl & TX_ASYNC) && rxfmctl & AFSRE;
-+	return !(aclkxctl & TX_ASYNC);
-+}
-+
-+static bool mcasp_is_frame_producer(struct davinci_mcasp *mcasp)
-+{
-+	u32 rxfmctl = mcasp_get_reg(mcasp, DAVINCI_MCASP_RXFMCTL_REG);
-+
-+	return rxfmctl & AFSRE;
- }
- 
- static inline void mcasp_set_clk_pdir(struct davinci_mcasp *mcasp, bool enable)
-@@ -226,7 +232,7 @@ static void mcasp_start_rx(struct davinci_mcasp *mcasp)
- 	 * synchronously from the transmit clock and frame sync. We need to make
- 	 * sure that the TX signlas are enabled when starting reception.
- 	 */
--	if (mcasp_is_synchronous(mcasp)) {
-+	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp)) {
+@@ -235,8 +235,8 @@ static void mcasp_start_rx(struct davinci_mcasp *mcasp)
+ 	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp)) {
  		mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, TXHCLKRST);
  		mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, TXCLKRST);
- 		mcasp_set_clk_pdir(mcasp, true);
-@@ -239,7 +245,7 @@ static void mcasp_start_rx(struct davinci_mcasp *mcasp)
- 	mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLR_REG, RXSMRST);
- 	/* Release Frame Sync generator */
- 	mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLR_REG, RXFSRST);
--	if (mcasp_is_synchronous(mcasp))
-+	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp))
- 		mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, TXFSRST);
+-		mcasp_set_clk_pdir(mcasp, true);
+ 	}
++	mcasp_set_clk_pdir(mcasp, true);
  
- 	/* enable receive IRQs */
-@@ -305,7 +311,7 @@ static void mcasp_stop_rx(struct davinci_mcasp *mcasp)
+ 	/* Activate serializer(s) */
+ 	mcasp_set_reg(mcasp, DAVINCI_MCASP_RXSTAT_REG, 0xFFFFFFFF);
+@@ -311,10 +311,10 @@ static void mcasp_stop_rx(struct davinci_mcasp *mcasp)
  	 * In synchronous mode stop the TX clocks if no other stream is
  	 * running
  	 */
--	if (mcasp_is_synchronous(mcasp) && !mcasp->streams) {
-+	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && !mcasp->streams) {
+-	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && !mcasp->streams) {
++	if (!mcasp->streams)
  		mcasp_set_clk_pdir(mcasp, false);
++	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && !mcasp->streams)
  		mcasp_set_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, 0);
- 	}
-@@ -332,7 +338,7 @@ static void mcasp_stop_tx(struct davinci_mcasp *mcasp)
- 	 * In synchronous mode keep TX clocks running if the capture stream is
- 	 * still running.
+-	}
+ 
+ 	mcasp_set_reg(mcasp, DAVINCI_MCASP_GBLCTLR_REG, 0);
+ 	mcasp_set_reg(mcasp, DAVINCI_MCASP_RXSTAT_REG, 0xFFFFFFFF);
+@@ -340,7 +340,7 @@ static void mcasp_stop_tx(struct davinci_mcasp *mcasp)
  	 */
--	if (mcasp_is_synchronous(mcasp) && mcasp->streams)
-+	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && mcasp->streams)
+ 	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && mcasp->streams)
  		val =  TXHCLKRST | TXCLKRST | TXFSRST;
- 	else
+-	else
++	if (!mcasp->streams)
  		mcasp_set_clk_pdir(mcasp, false);
-@@ -1041,7 +1047,8 @@ static int mcasp_i2s_hw_param(struct davinci_mcasp *mcasp, int stream,
- 		 * not running already we need to configure the TX slots in
- 		 * order to have correct FSX on the bus
- 		 */
--		if (mcasp_is_synchronous(mcasp) && !mcasp->channels)
-+		if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) &&
-+		    !mcasp->channels)
- 			mcasp_mod_bits(mcasp, DAVINCI_MCASP_TXFMCTL_REG,
- 				       FSXMOD(total_slots), FSXMOD(0x1FF));
- 	}
+ 
+ 
 -- 
 2.43.0
 
