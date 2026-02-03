@@ -1,221 +1,123 @@
-Return-Path: <devicetree+bounces-262397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262398-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MIXwHVRTgmliSQMAu9opvQ
-	(envelope-from <devicetree+bounces-262397-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 20:58:12 +0100
+	id YF8NGoRTgmliSQMAu9opvQ
+	(envelope-from <devicetree+bounces-262398-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 20:59:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB9A3DE4C9
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 20:58:11 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68F28DE4F5
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 20:58:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9A652306705E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 19:57:45 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 565BB300693D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 19:58:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BBD5366DDF;
-	Tue,  3 Feb 2026 19:57:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14728367F55;
+	Tue,  3 Feb 2026 19:58:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b="SfZsmlXd"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="gTEutDCG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18BC2367F38
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 19:57:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C7F73659F4;
+	Tue,  3 Feb 2026 19:58:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770148665; cv=none; b=M3kqO5Pu7X1ApVGLqqwRgqOQWshAzEgMmrEnaVbxVXQThLVN/D1tjL/pLYeiW2HqMjPSAh+jHNN7WdIw2ZR8A8anUb0iOBRG0BqFNXt2G/I/kEZRsQXwoEGuM1bPa8smaqk8PWrxfZS8QM/xycp7sEKWTuCx8997B0MeOdF6EyI=
+	t=1770148733; cv=none; b=ESLSqZ5KTGYc5OdoRDz21ITfZHT1mLuzNd/ps0X4HSWkNVssVTJ4Bm5Th4UgyDS4vZeCNW46ErgqSvciuqScaqEqxta2opalBPfR7F39HaexQ9lWW1NjCfNte0guOXKrgGnPe6VW0WgPeNdI55BRfw+fepPIMOjhB60lWg9k1kc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770148665; c=relaxed/simple;
-	bh=fLXl2X0g8DFDlByHQ+eg17coYkA4Qg3G0nXPhngDioY=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=TN3+gydtM6gLrT4sgb2Qt453IeaVg5BgY48Iwj8i5R5bR1WTL5Ytzv0W4DaBGSYueYplDSNa4cSUUZghuqoWt2plwsZJazgh60SOMSqtKLv9pXLPjxtEAkK5brhMn7ez6aBhLfTBy16MQLvkOFxdnkVtpVF7kGNgQ9xTjIoaV0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexthop.ai; spf=pass smtp.mailfrom=nexthop.ai; dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b=SfZsmlXd; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexthop.ai
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nexthop.ai
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-82361bcbd8fso3522021b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 11:57:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nexthop.ai; s=google; t=1770148663; x=1770753463; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tkfty02cxqofjS2vATNtghiojOPwFY5oNur2jl4/Hn4=;
-        b=SfZsmlXdZZR5EN1Jf7PRGejz9l9OZRVMLiFDkmZDVqNkS6b6xjdNBK50xI8/Hh2OZr
-         PEqdP1TqSsqXtYhg2JDwCGq0OLs8/+JdSLSvTxa09PnJwglg7MYIab8bXGuv4o5n8ic8
-         ZfqHyY/xK5yntCdv2LyrnW1VQFnbRQjyI6LqATm3Vyu3Z6wl0vvHebpneQxzu7nHlfT/
-         CXvZoLYPMYnMCKsGNQ9NYf3HvZOAEt3S4GDOIhBkcbP3zlJuq9TAwheM8uKaM7LO+Qdc
-         Qmys80n2exIJVM1Yff5bSMOWIh3P/xM+9mOnjmVQslRaLUnwo9G8StCYX/w3dUaHPLWa
-         cpOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770148663; x=1770753463;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tkfty02cxqofjS2vATNtghiojOPwFY5oNur2jl4/Hn4=;
-        b=nEg481yaOUU0pEy09HrMlFluvxHtHUN1Bxb1Uk57qxFwsx91kYdBGEVwVlQ+W9+t4W
-         W7uRMHk63B6DdBeak19BJv/QKWTbfObId6GfnK04BvpnS6huetekvrq2PjoVrM47+Fly
-         nHRWldqBnKjDh53nfvAzlfsKDecdelA82vWNSTsSV3JelRl0Ahz0ZVIIwj15fLHgAhjb
-         /SsB5qLkyrIebmOiZRHA337tm/HLQxAMflwUALp9M4VllcWUHgBdY2M4MDsTU7WJ0xwJ
-         ywPbFhnMkkiNmHZae9pzMWoLa0/+HhIt7RqLtkDimqCSaLcEdyCWRqjlOR1txrhOpf1d
-         zpzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCViL+oJ9ry8fyr6li1s6Nr/mRyuTkT2LnfXKLl66D+SfjqvMj6ZJlu5B6kmDh+CTu4n3ZF5V8vnFAGc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yza9kzymr39DyfAK+xDkSnw3vt10UOt9Ls6Gm6k7YDpv5kAukpQ
-	RuvwwcCqAMoYz34Uptyqkk//5aUMAbDjmauUOMcV3P0wPflsOqHA7oT0zVg3Y0CsLeM=
-X-Gm-Gg: AZuq6aIP9E5lbPSe2eJLdZ22ZftsWDhhrsgSfsS6SV+uL5x8V0jf56PbPOF9qgsm0vI
-	ib6Tx0jH3e35px2s8jsDFJf4FztEDe8cfKsJy5s7vE55DuCuoaViYvqLvMMgKlNFlRfTrYb6OwE
-	9YQLWUSb9tlsPOHEwMIzK6xbXs0SP6Z86bJ3YJekaxrhOh65bSQy+JuZhu+vvAWVLP8ximxYlOH
-	PualobuivtIPnM5Gm5pa1fO7HDfnYQgM2hrHZyugwlrZ0qrMvhNItqi2QobBMFIKmsKJf0vtuqf
-	Fkm6UE+JWNCglAmw5yu6dge6i2EeWod9pAEaq+FwGQFlnyuvY3CZy415nXkfgLHS5IfdnHV5MZv
-	ZSfXL+Pn7EWXAMb0gZRjCFlbxZNI+qHrC3/lBwoo/YzGttubqqsKcdm635rEqT4Tpf1+NFv+DZW
-	3UyyXpcxJ0asn/ZryNZwFKiztiRBS0yRvZQq9sSEnAIc2iYVJCi21V5gXU
-X-Received: by 2002:a05:6a00:80a:b0:81e:ef16:b288 with SMTP id d2e1a72fcca58-8241c1dfd64mr495588b3a.22.1770148662815;
-        Tue, 03 Feb 2026 11:57:42 -0800 (PST)
-Received: from smtpclient.apple ([2601:602:8701:5361:2dd6:2d53:d593:7d46])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8241d4af6efsm181555b3a.65.2026.02.03.11.57.40
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 03 Feb 2026 11:57:41 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
-Precedence: bulk
-X-Mailing-List: devicetree@vger.kernel.org
-List-Id: <devicetree.vger.kernel.org>
-List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
-List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.300.41.1.7\))
-Subject: Re: [PATCH v9 6/7] i2c: xiic: use numbered adapter registration
-From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
-In-Reply-To: <DF13B121-56F2-4987-A47B-99A20E18554E@nexthop.ai>
-Date: Tue, 3 Feb 2026 11:57:30 -0800
+	s=arc-20240116; t=1770148733; c=relaxed/simple;
+	bh=r6ebOifb5oipciC4TfNCfM4gNzsZbhkk+dVdvHmGDvs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rt/OsFS9d7NA+QOA60QaxwNqwTH1hgq956p8uhU6Operl4FShbZjUvyikPqUPBKVK2+TNjXPPYrfz0ZDqMS1xX9n2Y3cTRbo+96T3xLsVCfjP10+tjpunEHgEOtOK+qit2z+hLq1z3GrSrUDRz69jiHOHr3fGPaRUJs+ak/Q1gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=gTEutDCG; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=qul62GtCDsQZaOnqvry1ZplbnKvVjFpiZ9Xacrsftfw=; b=gT
+	EutDCGk6vzh06S51sz6Yk8lO5i98esRV2XUpNLLw9ojyZCHmeknBNHQm+nVR+6S/qsePbHIhZicfJ
+	FMZK6NmjZQNQctP02fDZznHj9XIoMDdlq9EdZhRy0RfrkKDZF4LElRg6762D6jWjATPfD8ifhB99h
+	V790lNuV3oHNyd8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vnMXm-005zYN-PS; Tue, 03 Feb 2026 20:58:38 +0100
+Date: Tue, 3 Feb 2026 20:58:38 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Abdurrahman Hussain <abdurrahman@nexthop.ai>
 Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
- Michal Simek <michal.simek@amd.com>,
- Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org,
- linux-i2c@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <2D57C995-C65C-4F61-9CDD-9884967E7CC2@nexthop.ai>
+	Michal Simek <michal.simek@amd.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 6/7] i2c: xiic: use numbered adapter registration
+Message-ID: <96adf8b2-da6e-491e-a20f-acccd988d585@lunn.ch>
 References: <20260202-i2c-xiic-v9-0-ce4695f5267d@nexthop.ai>
  <20260202-i2c-xiic-v9-6-ce4695f5267d@nexthop.ai>
  <aYIYBheQgIN71os8@smile.fi.intel.com>
  <2F830E87-F00A-4A54-A5CC-E59BD2C5C7B2@nexthop.ai>
  <1ac7be34-22b1-4d93-9957-fc7ade9a2649@lunn.ch>
  <DF13B121-56F2-4987-A47B-99A20E18554E@nexthop.ai>
-To: Andrew Lunn <andrew@lunn.ch>
-X-Mailer: Apple Mail (2.3864.300.41.1.7)
+Precedence: bulk
+X-Mailing-List: devicetree@vger.kernel.org
+List-Id: <devicetree.vger.kernel.org>
+List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
+List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DF13B121-56F2-4987-A47B-99A20E18554E@nexthop.ai>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[nexthop.ai:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[nexthop.ai:+];
-	DMARC_NA(0.00)[nexthop.ai];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262397-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_FROM(0.00)[bounces-262398-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[abdurrahman@nexthop.ai,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nexthop.ai:email,nexthop.ai:dkim,nexthop.ai:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,lunn.ch:email]
-X-Rspamd-Queue-Id: CB9A3DE4C9
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim]
+X-Rspamd-Queue-Id: 68F28DE4F5
 X-Rspamd-Action: no action
 
-
-
-> On Feb 3, 2026, at 10:50=E2=80=AFAM, Abdurrahman Hussain =
-<abdurrahman@nexthop.ai> wrote:
->=20
->=20
->=20
->> On Feb 3, 2026, at 10:31=E2=80=AFAM, Andrew Lunn <andrew@lunn.ch> =
-wrote:
->>=20
->> On Tue, Feb 03, 2026 at 10:14:49AM -0800, Abdurrahman Hussain wrote:
->>>=20
->>>=20
->>>> On Feb 3, 2026, at 7:45=E2=80=AFAM, Andy Shevchenko =
-<andriy.shevchenko@intel.com> wrote:
->>>>=20
->>>> On Mon, Feb 02, 2026 at 08:37:23PM +0000, Abdurrahman Hussain via =
-B4 Relay wrote:
->>>>=20
->>>>> Use i2c_add_numbered_adapter() to allow platform devices to =
-specify
->>>>> fixed bus numbers when needed.
->>>>=20
->>>> Not sure about this. Doesn't it break the current approach? Please, =
-double
->>>> check that.
->>>>=20
->>>> --=20
->>>> With Best Regards,
->>>> Andy Shevchenko
->>>>=20
->>>>=20
->>>=20
->>> If pdev->id is PLATFORM_DEVID_NONE(-1) then =
-i2c_add_numbered_adapter()
->>> falls back to dynamic allocation and calls i2c_add_adapter().
->>>=20
->>> Many existing i2c drivers use the same approach, see i2c-pxa.c and
->>> i2c-pnx.c etc.
->>=20
->> It is not about if other drivers do this. Its about does this change
->> the behaviour of this driver, so that I2C busses get different IDs
->> then before, and so cause regressions?
->>=20
->> You need to explain in the commit message why you think this is safe.
->>=20
->>   Andrew
->=20
 > Before, the driver was always doing the dynamic allocation due to
-> i2c_add_adapter(). So there could not have been a system that relied =
-on
-> consistent i2c bus numbering. Even between reboots bus numbering could =
-change.
->=20
-> The systems that did set pdev->id and were expecting a consistent i2c =
-bus
+> i2c_add_adapter(). So there could not have been a system that relied on
+> consistent i2c bus numbering. Even between reboots bus numbering could change.
+> 
+> The systems that did set pdev->id and were expecting a consistent i2c bus
 > numbering were broken to begin with.
->=20
-> This patch won=E2=80=99t break any existing systems or cause =
-regressions.
->=20
+> 
+> This patch won’t break any existing systems or cause regressions.
 
-I can add the following to the commit if you find the wording =
-acceptable:
+Great, now please add that to the commit message. These are the sort
+of things reviewers want to know, is a change going to cause
+regressions. If you have done your homework, mentioning it in the
+commit message will help avoid the questions being asked.
 
-Previously, the i2c bus numbers were dynamically allocated because of =
-the use of
-the i2c_add_adapter() call. This meant there were no guarantees about =
-consistent
-bus numbering. However, with this change, on systems that don=E2=80=99t =
-set their platform
-device ID and leave it at the default PLATFORM_DEVID_NONE, the bus =
-numbers will
-still be dynamically allocated because of the check in =
-i2c_add_numbered_adapter().
-Therefore there won=E2=80=99t be any change in behavior.
-
-
+       Andrew
 
