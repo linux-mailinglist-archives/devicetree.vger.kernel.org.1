@@ -1,104 +1,85 @@
-Return-Path: <devicetree+bounces-262078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262079-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QLK5JhSjgWmJIAMAu9opvQ
-	(envelope-from <devicetree+bounces-262078-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 08:26:12 +0100
+	id sO3qCPmmgWmYIQMAu9opvQ
+	(envelope-from <devicetree+bounces-262079-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 08:42:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F06EAD5B01
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 08:26:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D61CD5CDD
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 08:42:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8D4D23046041
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 07:26:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7D8C63029C0E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 07:42:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0ACA392800;
-	Tue,  3 Feb 2026 07:26:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95D1939280C;
+	Tue,  3 Feb 2026 07:42:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KorpegDq";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YTz2koAt"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="A34NOF/3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011015.outbound.protection.outlook.com [52.101.70.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E4BD2FDC53
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 07:26:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770103569; cv=none; b=XLkervZHxOXFSf8G8LL+ZpViQ6C6ix5bYo0xOZZyMrZUTrX9Qk+CLT9pAMX+NtOLETM1RX1fuxdhtewG/voMwfqTkEKjS9tqyGMrRWYZ5RWmaAr16GmVXCwxhbI6MNACCUNo3RjJ8CNjV6QVC6+nOHcevh7on/LKQJSFeQhi3xU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770103569; c=relaxed/simple;
-	bh=YzEmTFngw7OF2If5k27CNptE53Ap1GPmgqB9IVTZhRo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OibLYLJameCR9LSXehs3OsJb45CC0qyCrI24bMyGJ6HpQ6fqZle84CbnbgxFa0KtmtA8YVY/XCVMzJHPDI10So3NjKcjdPUpQWRa82Bh0zjixEgzPKuuZszYQxv7liz7I8RVECfQM+nrVvutAih0iwIx4qym05KaALQMN5kU8sI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KorpegDq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YTz2koAt; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61367Hvo2848631
-	for <devicetree@vger.kernel.org>; Tue, 3 Feb 2026 07:26:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	yEQqK5ezuD/ArnWMW8/UzUIqt5NsM2OkUyHRLBk6WqU=; b=KorpegDqn4PRubhK
-	T5+beh5tYqABjyrVTvRR+7IO7CwUpir2D5HTuTd5/8nEBz6brf597RzYmb6TVEn3
-	dFQECR0KohCR+fSmtNcSiUWRvA2vswAKOluQdg7+0l16Xwd4lsfHWX2O3MK1saKM
-	e2fuYfqsCq1joU5zGfWVZvRxXJFDEfQEiTvDyphUlA5kKX0QsP/jYws/3IkgDebQ
-	meOIH0VinnG/iugncLg4qTNWFADpk84fgrIvH2asBAhsuDn8vBqbol8Ei4MwKm4+
-	cTuedEiOkW720wEUrKFeU9tKBNytMPH3oxCfYS7fDRTUSLSMEVRJ19M+UUNwZi0G
-	RAtZ6A==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c2tqtke67-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 07:26:07 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2a871daa9acso9070835ad.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 23:26:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770103566; x=1770708366; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yEQqK5ezuD/ArnWMW8/UzUIqt5NsM2OkUyHRLBk6WqU=;
-        b=YTz2koAtZmbGjzC++pC8uF4gDP1ovIaGyifmA1+nfJYecG4ng+9ZT/s5i+Zg7/n5rL
-         j2lcF6lwHaDDyX4B7PE8vcVRY7Kq8qmE6b3WK3M+SL3C0VrkZO+pUDTti0CPpf+FwEHg
-         blJH2FP6et57sHYW7tPhnkOudzAhAj5CJ0JfzKzYD59tqltE3+CP96sZUXWcPvw5P313
-         I2ugStZWYiWHJAnb0wua0DzYqDbeAOn8grlqosAgnRI36jeDLiTJlO/PChOSltQ5UwHS
-         Ufl+psViasQJ5ilIV8rlcpQbSXg2p1zl6wxfmiHMB0uXB19uQpP8DCLRR0PMCV2kXfwr
-         EJCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770103566; x=1770708366;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yEQqK5ezuD/ArnWMW8/UzUIqt5NsM2OkUyHRLBk6WqU=;
-        b=pa5GzRA29jPMTMMbVbspYlyzyhCMH4HZRUT7cXzEU3alSun/IU1wf8aQkheBXjI58J
-         VbmnVBMFizTeHEZqVTtbeKrqNssbQu3iEWOD+C8oaPlMuqZc5NgDL3DkvKGEeqRbJpz/
-         ZYJARO7WLYIvCYy0z7gZDZOW4YuuMdhZB9H9XL6syWuSatarh5i5y3kMSvGV7oT9QGpG
-         m5LIcAbBWZwsuSDhFwQJ5bJQ3IUzCUTfVVzDWr7HAYx5/9rdh00Q1pSAAjBTt/8ka64F
-         j6a0q/KiQvHbz17fMiQKRjBhqcYGcaDobeJowk+3wQjsa4nSE8T+6xquYLmcFIkk04+L
-         6cdw==
-X-Forwarded-Encrypted: i=1; AJvYcCU5cP/B5IJnr7G98OCn9ajZ8TOa51suXHAWfhBBWhbsws9WTsyu0xKxl1ewuI0VmmihkSpbIRFTUEhK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxpfb3ShPoO1n0VvdYbkmvTpxtZ60+g5gSymxDQoxG4ZoJYeT52
-	UhJN1U+c0GSM90UG+CzKnZ6HIZ4Kg5oPF9j7gZtDrf+Y22e7T7WlZOSBxh5ZIOR6o+BgWxsS7uO
-	xCGVUgfSJxg0DhsnldW0PqhGUmp7UFSkwO+5e+vVt6eOao9QmCjo/rUilhg9kEH9e
-X-Gm-Gg: AZuq6aKMLhW17jNB3mxz2+LT+cu4CMpLM+IZkcOjg0H7Ikz7cvFP/8seHWxUpRKKyQn
-	E029DOHpR9ra6ZXiEJPrkVngW/WeHCVYhQVDlhKNWf1Wda/o1a2clcAocDafMnvenJ8utDecvE5
-	HPvXVlZmPfezG6NccUj7BYMTRTjLBI7eLuHl3rCxTnyu2oL0k8+kFolUHlOfKOThBDr2mrcRmol
-	6Z8HvuTvlKfM8wgwWWz15iw1w0Yor+zVzA4KUrbIO/jKGGke75r7GebcPhd2PFFrZ4fLtvICbAc
-	W9d91HooNo3Mmi3T3JjGbDUhq0EqdkD0VfewQDysCRbZxJU0HrO58A4qHnYFsb6sGWruxvjqjz2
-	LLvc4dl7lw9c1EIyLfi09zviW25vOkf8GZtDPFA==
-X-Received: by 2002:a17:903:1987:b0:2a7:b447:338d with SMTP id d9443c01a7336-2a8d9948ee0mr94952725ad.8.1770103566597;
-        Mon, 02 Feb 2026 23:26:06 -0800 (PST)
-X-Received: by 2002:a17:903:1987:b0:2a7:b447:338d with SMTP id d9443c01a7336-2a8d9948ee0mr94952515ad.8.1770103566160;
-        Mon, 02 Feb 2026 23:26:06 -0800 (PST)
-Received: from [10.218.41.33] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a88b3eef68sm174553935ad.16.2026.02.02.23.26.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Feb 2026 23:26:05 -0800 (PST)
-Message-ID: <eb4bb75c-7594-4890-82e8-97a06ee67d42@oss.qualcomm.com>
-Date: Tue, 3 Feb 2026 12:56:00 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C9136C0B4;
+	Tue,  3 Feb 2026 07:42:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770104566; cv=fail; b=jLGt4KN/geDLl0EoywtGkMSObzaeowdjEv7I6PUvZQv0fPAOBuhgS6toojSoxR4pj2Y6FrzljGkVSF/KfcHpnzisM+9PIDTvlOIE4YBIu4PVPxiErjKEl0EtlVJZKdES0sheYgRUn2fltRafoyEjM0tLEjFhe6GDA5/wUmXjQpk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770104566; c=relaxed/simple;
+	bh=OImMbgeIvSag5UN0cE35PJ4tfhCoQ+/6gywfD1jNo/E=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=Zg/lrFOZ5vcRP56JOsotsJ71D+jt2+SWTst0LX+FaCCcZEi7/1bliBsFhECF+TPleFC277f2MSpoZHM1KmavojLI04TNSXZ/W44tep3I15IfO/+6KhTDXMNseZTHwHRxc6kvBo9mQToHqtJ+9Fldyi7six+hBCbVDVCGVlSRklM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=A34NOF/3; arc=fail smtp.client-ip=52.101.70.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QSyUvZsirIOJ0wQXCEih3QILpvMV3cMYBpG7Xh4H+fi9euDhiQWEFbKbkaCfmlYkNfe0vEp5WxkBooBWu4Lp0QgC8+rqrsBmFQnWkyVJ7jbeoZVTE20IT5Ufcs5nrQ69ahiymN8z3dOiMUzGOhTet0E2mF1lTfQ4H1Qb1cBeonZ7M77PrE33ID+89v0hIeALLvgZH55TscoxSkgKRC1ZVoC2uM/WGArUq1xby7VMAFZ0rpmmIWcaazeN5AOpKKnG1TRtYyZ8hP2rybF3X4wlxVxYTNmOoRzAgPqnQnPlQsCII3mhA4ql5iWAdE/PW/EHpxVyX2HQS+l7FEZW/4i8dg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jjwvWtHAFtaI/Xpqg9QGqz2wBbxFJWLTn36wZzoBzdA=;
+ b=gtaT29TYRu+zhvm+fdKitrVVKcGrxrS5ltIueaHegVPAWdHAxbZMrZX5A6OhZiXhZREn97osAtLFF722P7pzxH9NGKEfeGZb71TjrqiROFQMF+RZnk2Sv7gxS5c+CUZiiFTnruBrLQTivTVoQpPXDTKnr/YoW7ZBOCCedv/i6fVcMd8sg7FATs8Htxe36LxM1Rp0JJANm5BttZ8wDByeUz3zl7kZAu/nZX1DPMihVUXJuha1iYvHmOAnlPoxSEIDO3TTeoJSBLKkEY4F56uPTWNLMxC2KFFUW0jt4wHQBlPexdnlk9/1TrBDR4XSn4S2uey97N+UI1UmWezMYrOkAw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jjwvWtHAFtaI/Xpqg9QGqz2wBbxFJWLTn36wZzoBzdA=;
+ b=A34NOF/3cxBNUT83bRFp6DGRoxbXZFH5UZN5B9QwWTnkQK2cecN0w4b9spjYsbgthn26oon7oIiGe65AH1BoezLXk9ZIYL402JkZYzjSlknGy7jl0MI17wFir7HryViTQN+R/KJ4vN62YpNExYSzPvUaGG7rgCKGvcROGbiJ7R2jJokriCufoCDa4ASltpWzT5bxYJ+A8prVUZNqloYBqBocy7jbGi9HbPC3KWAWBIQQbWFXjjSUySzgyDjIaD7Ppa/CC4wqAC+1h3DlqQGXuT/6IaHRXnygV3WK/1KWCxOAE4eM6acVmpletswFQLjABYaIUPG+2/aA89KhvgFd+Q==
+Received: from DU7P251CA0008.EURP251.PROD.OUTLOOK.COM (2603:10a6:10:551::21)
+ by AM0PR10MB3140.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:189::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Tue, 3 Feb
+ 2026 07:42:37 +0000
+Received: from DB1PEPF000509F5.eurprd02.prod.outlook.com
+ (2603:10a6:10:551:cafe::47) by DU7P251CA0008.outlook.office365.com
+ (2603:10a6:10:551::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.12 via Frontend Transport; Tue,
+ 3 Feb 2026 07:42:37 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ DB1PEPF000509F5.mail.protection.outlook.com (10.167.242.151) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9587.10 via Frontend Transport; Tue, 3 Feb 2026 07:42:36 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 3 Feb
+ 2026 08:44:22 +0100
+Received: from [10.252.26.182] (10.252.26.182) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 3 Feb
+ 2026 08:42:35 +0100
+Message-ID: <a17c017a-15f5-4ebc-9dd0-baab718dbe0a@foss.st.com>
+Date: Tue, 3 Feb 2026 08:42:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,166 +87,278 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: lemans-evk: Add Mezzanine
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mohd.anwar@oss.qualcomm.com,
-        krishna.chundru@oss.qualcomm.com, monish.chunara@oss.qualcomm.com
-References: <20260202194234.3701434-1-umang.chheda@oss.qualcomm.com>
- <20260202194234.3701434-2-umang.chheda@oss.qualcomm.com>
- <f5lobc5k3iyjndtosof37su7fccmbhtg5ufexd3vmeebyl5onl@vvaomdgeaoxa>
+Subject: Re: [Linux-stm32] [PATCH v20 1/6] dt-bindings: firmware: Add TEE
+ remoteproc service binding
+From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+To: Sumit Garg <sumit.garg@kernel.org>, Rob Herring <robh@kernel.org>
+CC: <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Mathieu
+ Poirier" <mathieu.poirier@linaro.org>, Bjorn Andersson
+	<andersson@kernel.org>, <linux-remoteproc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<op-tee@lists.trustedfirmware.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jens Wiklander <jens.wiklander@linaro.org>,
+	<linux-arm-kernel@lists.infradead.org>
+References: <20251217153917.3998544-1-arnaud.pouliquen@foss.st.com>
+ <20251217153917.3998544-2-arnaud.pouliquen@foss.st.com>
+ <20251229232530.GA2753472-robh@kernel.org> <aVOzHWmlJ-eneS-2@sumit-xelite>
+ <CAL_Jsq+_S8UY7s7WQg9jXuBXCYMBWVCy=kVDMdkKTx6RctqQJA@mail.gmail.com>
+ <aVtqITUxy--E8HJt@sumit-xelite>
+ <49f1808d-1e08-4f47-ac3a-5f2274086060@foss.st.com>
 Content-Language: en-US
-From: Umang Chheda <umang.chheda@oss.qualcomm.com>
-In-Reply-To: <f5lobc5k3iyjndtosof37su7fccmbhtg5ufexd3vmeebyl5onl@vvaomdgeaoxa>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=XP89iAhE c=1 sm=1 tr=0 ts=6981a30f cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=uqgqG2pLL8I79JWUUZYA:9
- a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-GUID: nQhjTfrCqaZjl8f1_sAu4gXpqeyV1pcM
-X-Proofpoint-ORIG-GUID: nQhjTfrCqaZjl8f1_sAu4gXpqeyV1pcM
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAzMDA1OCBTYWx0ZWRfX2NGy1EcKFl6t
- 9DRrsXyp8Xt37gsqz32f6BC4Nz0m5LbaNkjX0MyRq4VOU6vPQ22ZmEXrK7hddcIMLY/2Ww/3uRj
- ARxlCVCI7gpOc1wlt0blB3iBViBbbi5pPrhUBh9eD+k2iynMInlSNSnBhGJseC970j5Jvu4wgU5
- V371JXOWHDe2ePVMfYUGDi9ghn1ddBjYkGBGX3NtdH5cGH1GfZrIacXa/6LmfiBORPwpo8DpbTm
- 3mtSdHhCTDtVOGKVD/ILOFxiqoP+ev4JZ4MMPWwd8OAwRizvxxgEWS7rMvwC7JngAtaE+66uju6
- /KVUXsvRI0m8usYILPk+sJ856ecEASDDeVluBQsaBll8i9EBEf9yhc+Uu/hLHbiFDmq2tIoqBR3
- 3PkIpAwJfM6Y64DT9I/fefrF5DowyS+yjZyyeoHL5NG1PESuiyDAL6fqSQ/ILdL/Y/seO1tuIjn
- s6jwpl8879jXI11lUZA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-03_02,2026-02-02_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 adultscore=0 impostorscore=0 malwarescore=0
- priorityscore=1501 spamscore=0 suspectscore=0 lowpriorityscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602030058
+In-Reply-To: <49f1808d-1e08-4f47-ac3a-5f2274086060@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB1PEPF000509F5:EE_|AM0PR10MB3140:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8fe294ef-2333-4df3-8e7c-08de62f7ccf5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|82310400026|36860700013|1800799024|13003099007|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?QlovdUp4aVdVOUQ1YmpzZHBBWnJFdlVUOEgwSHVocTRtMnNIWDV4S1YzK0tF?=
+ =?utf-8?B?N081UUI0NGpqL1BBSXZYL01JRStwdFM5cWJVSC9DQ05IeDFncDRsQUplR0c0?=
+ =?utf-8?B?ZCsyT1g5QWVsZGdRODR5N24wM3hvQmhDNENCbFNWVS9zSkdzT1NHSlZjZnN0?=
+ =?utf-8?B?YUJWK3ViOXBvZGJESjdWSnM0ajlVRGZ3cFRTRUNvdXJ0ajV0dWNTRUd5bEFJ?=
+ =?utf-8?B?cUJNZVErTm5Rb0t0aGpGODZSQjJBYmJxSk9MVHFXVWg2ZVBpOW9PYkNGbDBR?=
+ =?utf-8?B?T3N5Uzc1a0ZpSWJkeUVFaFVhZExxZ3d1VDVrbUZFU3hZYjRCTzRzdDZSeTA5?=
+ =?utf-8?B?eitFM3JIQ0dUeEJqcXBJSXF6SDhhS0lSa1BHRS9wb0tHdS84RHlPM2VTR3I2?=
+ =?utf-8?B?NjdQdXZhd2R5cHRJZkJXNTlYbEQ5Zm5LaXNuMm1WK2xHNGwzdkJsU0lGbFkz?=
+ =?utf-8?B?RjVnQWh3UGRVSU9BZlhZU0thblo0anJ6Z0xsZDhPWkNYMkRBcGtZQnl0cVkv?=
+ =?utf-8?B?M0R5VnpEK1NYSXpMZDYrWVhra1BTelAvQ2dKSzlvM053N1lIOExLWit3TGNY?=
+ =?utf-8?B?U3l5OXdrczNoNTNkQVJGSndQUnhsbmxXQ2tkd2hMZHJvMytSa3hOcUJML3l6?=
+ =?utf-8?B?dDh0SG1TVjh4MS9xZnY1aUIzQTdKWUZDWVhlQlFOSnRjdWdnV1J2djZBZnZj?=
+ =?utf-8?B?YlVPSUxCSHd2ZXY5WHhrQ1FndW12aUYvUXlPS0FzUWJnMkJuNHRRRFRXMGtX?=
+ =?utf-8?B?VmplR2JlU016ajFSNTlHeml6QnJwWncwVVl1ZGlWRDBLd1kzQS9rWUlEZk5V?=
+ =?utf-8?B?U3d4RGxSTU1INktUczlyVVN6VzlrdzFMSUpjM1FaNEJzT2pIZVlWVkpmVXpv?=
+ =?utf-8?B?dXJ3cjd3M0RENFYvS3JSREI2bFAwcGZkZ2owa0tTZnk2ZEZ6dlVFTjlEZ1BU?=
+ =?utf-8?B?Y1paWEpxMGlkTDR6aXJwOVV1alYrV2hJMnpGOUMweGsyalB6Vmw1NU9lQUth?=
+ =?utf-8?B?WEFYUm9vakZSK3ZZMTR3eUtsWHRISXVQMTlRbThDelVmU2xIc3JLdFpDTjhN?=
+ =?utf-8?B?WXpvTWsya2pKbnVxMmFJS0RwemVFVzZVRjk5QlRiTit0cGVzNFNqVzY2OHlL?=
+ =?utf-8?B?cWl2dnZ2cXVlQ3dYZEZIcmdJVWdKZlh0U1hlM1ptWWh2cGYwYWlYL2J1Q3NP?=
+ =?utf-8?B?Qm5GZURWelRuTHpEdU1RUmExOG0yeG9nek45dVNHQUxFWkVpNlhiTFVXMlNZ?=
+ =?utf-8?B?bWo1NUZRdlR3ZzNtd1d1Y2hEMGo4MlNCY0ord3J4SmpKcktwdDRxQk1NbEtO?=
+ =?utf-8?B?R0owbFlGZUxaNm5vYlAyVmpxdUJwU3pYQkNxWEVIckJUNGRQWnQyNDBDRjlL?=
+ =?utf-8?B?akIyMnRrQnNrY0NGNHpPTFExc0g5RFljekhHdE5Jb1BkVWZyTnlFTVA4Kys3?=
+ =?utf-8?B?RWIvUDVkdUZRMUd6Q0VRZlF4dWtWUFZ5dnd5M1luWE9qOTh2VVlIWHFpbUIz?=
+ =?utf-8?B?N1IxZWlybTlzaEdkWXFJT0ZKZGNhM0FYNjh6TWxBTm0zejZCYkFMa01ZMUU3?=
+ =?utf-8?B?dlBROEIvZ3FHMnlGU1VCL1hSNXd3MjdlU2RPdjdCZ2JVUWlZdi9VZCtLcEpz?=
+ =?utf-8?B?SnVZOGwwMHBuUHBUMUJINzZQaU1aYXIwSkQ3eUplenBKZ2dSUWVVd2lkZXRV?=
+ =?utf-8?B?Yy9yMFhkL3AzRGRNL2lTSFRRc2YxVFZXcUMvMWJTL2xDWHRmQ0Riam1TT0tp?=
+ =?utf-8?B?dnNwNnZKcUg0enZqd1BkWHBJQldMZ3ZLMFhDZi9RaUVqWFY3ZThoMWdxZ3k4?=
+ =?utf-8?B?SVJVZEZLd0F1U0R3clhGUmk1V0I4TjdNUHNlc1N3c21UVUFRMWY0enNmL21E?=
+ =?utf-8?B?aGllQ3VZTldhRkNBZWVjQkhtOFVqMDBKRmVSMTBhSWFLZjZ1bHdzams1Q2Zt?=
+ =?utf-8?B?Z3E2ZXd3dTdtZXpRb21qSkI0V1prU0hnb1JhbUJZc0RNZUl4UmJYQmJ2cDFi?=
+ =?utf-8?B?YmFsVmpnSGRLbDBoYjJhTVhzaHlXbEE4MzJyTlRIYVVnbHdJWGs1bWkyNmZZ?=
+ =?utf-8?B?MWNGOEloMEZLVjJGb2dpVnd0blh2VloyeFViTkpQc1I0K1ZXK0VJaEx3bDB3?=
+ =?utf-8?B?US9ib1dCa3gwWWxSck1WY3R3SHhnTmVXZVpxaEdkLzB4NE45NDd1M0cwU0Ft?=
+ =?utf-8?Q?aBLzhkOYIv9QmaKYw9Lt908=3D?=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(82310400026)(36860700013)(1800799024)(13003099007)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	16a9bVpkzU7nUJWL2LepSini/6xwA2OdpnKgIKL6IYQ2n6sfp9vSWGnBqCxw8+zjkb5X3XnZCWwsDHf5M3G4vQdbJRtzs8Qwg9z+JREUwo2X0XXJug2rMDxbEg5KidwQCiP8xxVOOPpJd5wSHDjNYSNf+Ucceexi0p/wCC00wG0UgaWjv2wyQ5rntoJl5NmfKiseYY1t3ScNG+F4ILSuTRxhZGfTf5itUbAuq5F40ZvFntwcIJcgjipsAHngsXXVbM+q48FDG7qL4lga8+/Ylc7J8p3v5XLRZFGP543P6ZVmOg8tqJYlnLP/ymdvc6oUxJ6BSJzQ/V7tW8ha4rg2mYQnAAVr9crjzXdmFwPxGsLFR/adySnEJhxKLs+KEo9QPclC+5jJT0D3g5bgFNdI/1xO3ROwVcYdNUMkmE/siuSRjBU7dF9UN7mt6w8/rpfB
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 07:42:36.7104
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8fe294ef-2333-4df3-8e7c-08de62f7ccf5
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB1PEPF000509F5.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3140
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
+	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,oss.qualcomm.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-262078-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-262079-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,foss.st.com:mid,foss.st.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[umang.chheda@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[arnaud.pouliquen@foss.st.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[foss.st.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: F06EAD5B01
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 8D61CD5CDD
 X-Rspamd-Action: no action
 
-Hi Dmitry,
 
-On 2/3/2026 1:49 AM, Dmitry Baryshkov wrote:
-> On Tue, Feb 03, 2026 at 01:12:34AM +0530, Umang Chheda wrote:
->> The Mezzanine is an hardware expansion add-on board designed
->> to be stacked on top of Lemans EVK.
->>
->> It has following peripherals :
->>
->> - 4x Type A USB ports in host mode.
->> - TC9563 PCIe switch, which has following three downstream ports (DSP) :
->>    - 1st DSP connects M.2 E-key connector for connecting WLAN endpoints.
->>    - 2nd DSP connects M.2 B-key connector for connecting cellular modems.
->>    - 3rd DSP with support for Dual Ethernet ports.
->> - eMMC.
->> - Additional 2.5GbE Ethernet PHY connected to native EMAC with support for
->>   MAC Address configuration via NVMEM.
->> - EEPROM.
->> - LVDS Display.
->> - 2*mini DP.
->>
->> Add support for following peripherals :
->> - TC9563 PCIe Switch.
->> - Additional 2.5GbE Ethernet Port.
->> - EEPROM.
->>
->> Written with inputs from :
->>     Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com> - Ethernet.
->>     Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com> - PCIe
->>     Monish Chunara <monish.chunara@oss.qualcomm.com> - EEPROM.
->>
->> Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
->> ---
->>  arch/arm64/boot/dts/qcom/Makefile             |   4 +
->>  .../boot/dts/qcom/lemans-evk-mezzanine.dtso   | 301 ++++++++++++++++++
->>  2 files changed, 305 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/qcom/lemans-evk-mezzanine.dtso
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index f80b5d9cf1e8..79449004adfd 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -43,6 +43,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-camera.dtb
->>  lemans-evk-el2-dtbs := lemans-evk.dtb lemans-el2.dtbo
->>
->>  dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-el2.dtb
->> +
->> +lemans-evk-mezzanine-dtbs	:= lemans-evk.dtb lemans-evk-mezzanine.dtbo
->> +
->> +dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-mezzanine.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= milos-fairphone-fp6.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8216-samsung-fortuna3g.dtb
->> diff --git a/arch/arm64/boot/dts/qcom/lemans-evk-mezzanine.dtso b/arch/arm64/boot/dts/qcom/lemans-evk-mezzanine.dtso
->> new file mode 100644
->> index 000000000000..674afe485a1b
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/lemans-evk-mezzanine.dtso
->> @@ -0,0 +1,301 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->> + */
->> +
->> +/dts-v1/;
->> +/plugin/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +
->> +&{/} {
->> +	model = "Qualcomm Technologies, Inc. Lemans-evk Mezzanine";
->> +
->> +	vreg_sys_pwr: regulator-vreg-sys-pwr {
-> Please sort the nodes.
+Hello Rob, Sumit,
 
-Ack
+Just a gentle reminder. Could you please provide your advice or a 
+conclusion on the direction we should take for the DT declaration? I 
+need your input to be able to move forward.
 
->
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "VREG_SYS_PWR";
->> +
->> +		regulator-min-microvolt = <24000000>;
->> +		regulator-max-microvolt = <24000000>;
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +	};
->> +
->> +	vreg_4p2: regulator-vreg-4p2 {
+Thanks and regards,
+Arnaud
 
-
-Thanks,
-Umang
+On 1/13/26 10:20, Arnaud POULIQUEN wrote:
+> Hello,
+> 
+> On 1/5/26 08:37, Sumit Garg wrote:
+>> On Fri, Jan 02, 2026 at 04:17:27PM -0600, Rob Herring wrote:
+>>> On Tue, Dec 30, 2025 at 5:10 AM Sumit Garg <sumit.garg@kernel.org> 
+>>> wrote:
+>>>>
+>>>> On Mon, Dec 29, 2025 at 05:25:30PM -0600, Rob Herring wrote:
+>>>>> On Wed, Dec 17, 2025 at 04:39:12PM +0100, Arnaud Pouliquen wrote:
+>>>>>> Add a device tree binding for the TEE-based remote processor control
+>>>>>> service implemented as an OP-TEE Trusted Application identified by
+>>>>>> UUID 80a4c275-0a47-4905-8285-1486a9771a08.
+>>>>>>
+>>>>>> The TEE service node is a child of the "linaro,optee-tz" firmware 
+>>>>>> node and
+>>>>>> acts as a container for remoteproc devices that are controlled via 
+>>>>>> TEE.
+>>>>>
+>>>>> Is this generic for any remoteproc device or just ST's remoteproc. 
+>>>>> Looks
+>>>>> like the latter to me.
+>>>>
+>>>> That's true, the DT description of the remoteproc subnode is very
+>>>> specific to the vendor which in this case is ST.
+>>>>
+>>>>>
+>>>>>> In addition, the "linaro,optee-tz" binding is updated to specify the
+>>>>>> '#address-cells' and '#size-cells' values used for child TEE service
+>>>>>> nodes.
+>>>>>
+>>>>> I'm pretty sure I already rejected per service/app child nodes for
+>>>>> OP-TEE when its binding was submitted.
+>>>>
+>>>> That was the reason to have discoverable TEE bus in first place and I
+>>>> have been motivating people to dynamically discover firmware properties
+>>>> rather than hardcoding in the DT.
+>>>>
+>>>>> If we do need something in DT
+>>>>> to define some resources, then can't we have some sort of
+>>>>> standard/common communications channel? I don't care to see some 
+>>>>> sort of
+>>>>> free-for-all where we have every vendor doing their own thing. OP-TEE
+>>>>> needs to standarize this.
+>>>>
+>>>> I suppose this requires a wider scope work as you can see the DT 
+>>>> resource
+>>>> dependence from here [1]. By standardize communication channel, do you
+>>>> mean to say if adding an alternative backend to fwnode for TEE in
+>>>> parallel to DT, ACPI or swnode is the way to go for discovering fw
+>>>> properties?
+>>>
+>>> No, not at all.
+>>>
+>>>> Or do you have any other suggestion here?
+>>>
+>>> What I mean is why doesn't the TEE define the communication channel
+>>> (mailbox+shmem and notification interrupt) rather than each TEE app?
+>>
+>> The synchronous communication channel is already there for each TEE app
+>> based on (invoke commands + TEE shared memory). OP-TEE does support
+>> notification interrupts too but those haven't been exposed to TEE client
+>> drivers yet. I suppose this remoteproc use-case can be a good example to
+>> expose that as a generic TEE notification interface too.
+> 
+> In the STM32MP series, the mailboxes and shared RAM are used for RPMsg 
+> communication between Linux and the remote processor. My concern is that 
+> using notification in OP-TEE could impact performance by introducing 
+> latency. Additionally, this might require a DMA allocator in OP-TEE to 
+> manage the shared memory. One RPMsg virtio requires the declaration of 
+> at least three carveouts. Managing these as memory regions in OP-TEE 
+> would be complex (due to limited number of memory area declaration on 
+> STM32MP2).
+>>
+>>>
+>>> More generally, is having TEE apps depending on random DT resources
+>>> really a box we want to open? Is the next thing going to be a TEE
+>>> clock/reset/gpio/power provider? Where do we draw the line?
+>>
+>> This is really a hard line to draw since silicon/OEM vendors based on 
+>> their
+>> hardware security architecture partition various resources among TEE and
+>> the Linux world. And one general principle we try to follow for the TEE
+>> is to keep it's Trusted Computing Base (TCB) to a minimal too.
+>>
+>> IMHO, if the threat model is well understood then we should allow for
+>> this hetrogenous partitioning of system resources.
+> 
+> Here are some additional resources we need to manage the remote 
+> processor, which seem complex to handle without Device Tree (DT):
+> 
+> - Clocks: On STM32MP, we manage clocks through the OP-TEE SCMI service
+>    [1]. The SCMI OP-TEE clock/reset service already exists and should be
+>    reused.
+> - Power domains
+> - Remoteproc Watchdog interrupt: Cannot be caught by OP-TEE on
+>    stm32mp15.
+> - Graceful shutdown of the remote processor: This involves sending a
+>    mailbox notification to request shutdown and waiting up to 500 ms for
+>    the remoteproc to deinitialize its resources. Waiting this long in the
+>    secure context seems inefficient.
+> - compatibility with some coming IPC mechanisms: Such as rpmsg_I2C or
+>    virtio-msg might require remoteproc subnode descriptions in the
+>    future.
+> 
+> If the proposed topology does not gain consensus, what about an 
+> alternative approach that manages the remoteproc TEE similarly to SCMI, 
+> by introducing a remoteproc-backend with the proc ID as a parameter?
+> 
+> 
+> &firmware {
+>      optee: optee {
+>          compatible = "linaro,optee-tz";
+>          method = "smc";
+>          sproc: sproc {
+>              compatible = "80a4c275-0a47-4905-8285-1486a9771a08";
+>              #address-cells = <1>;
+>          #size-cells = <0>;
+>          };
+>      };
+> };
+> 
+> rproc1: m33@0 {
+>    [...]
+> 
+>    remoteproc-backend = < &sproc 0>
+> };
+> 
+> 
+> rproc2: m0@0 {
+>    [...]
+> 
+>    remoteproc-backend = < &sproc 1>
+> };
+> 
+> 
+> [1]https://elixir.bootlin.com/linux/v6.18.4/source/drivers/clk/clk-scmi.c
+> 
+> Thanks,
+> Arnaud
+> 
+>>
+>> -Sumit
+> 
+> _______________________________________________
+> Linux-stm32 mailing list
+> Linux-stm32@st-md-mailman.stormreply.com
+> https://st-md-mailman.stormreply.com/mailman/listinfo/linux-stm32
 
 
