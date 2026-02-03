@@ -1,234 +1,373 @@
-Return-Path: <devicetree+bounces-262358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262359-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6hPbIMszgmlsQgMAu9opvQ
-	(envelope-from <devicetree+bounces-262358-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:43:39 +0100
+	id WI/qN0oygml5QQMAu9opvQ
+	(envelope-from <devicetree+bounces-262359-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:37:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99265DCFF0
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:43:38 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81715DCE14
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:37:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 180C3305920F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 17:31:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A3C6C30737FB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 17:32:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EE51364EB2;
-	Tue,  3 Feb 2026 17:30:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA858325738;
+	Tue,  3 Feb 2026 17:32:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GRaWRc6b"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="B+6uLkxA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011051.outbound.protection.outlook.com [40.107.130.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 298353644D2;
-	Tue,  3 Feb 2026 17:30:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770139821; cv=none; b=UhKOgGXu61taW5sBg+yR7zzEVFx9elIl71a5PxLao5ijn4mPjwsaCBnrq/E2POgxg0d5YSzL45Dp2OIfsaLUtfg1KCjIxR034bwLCTsF/zOvmKFWw1fvBeVUMAo/yL6YgjyjSSH3OFqiptNVdYPn7VS6tUe9/vdWyaXrNQ2XA+A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770139821; c=relaxed/simple;
-	bh=+TJZbuSUrc2aq/cuJGaaBK3cvI5fuXEhX3m/yBP+rCY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NWC4aNPNYaF1LASwsCTaqLSfevgeHrC0n33emAzTiaT63Ee0go6TukFFgS9+a6BnWQTJVlIrJzSMtBmJWWwGXWqSuh+ttEn5H1EBdrvWcF0Y1S1cMATjHDCQ+/aKdtQjC5OtcL8H/LFatvnto3eK5KKY45o4vdNqrq9LJ4AUqys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GRaWRc6b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8EBAC2BC86;
-	Tue,  3 Feb 2026 17:30:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770139820;
-	bh=+TJZbuSUrc2aq/cuJGaaBK3cvI5fuXEhX3m/yBP+rCY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=GRaWRc6bEwLpO8hmq0KoNnypzwN76hNAMU4aiLMDrSNyG6V82eV6MklhBYmLy4p1x
-	 p8nYreFLKGHkTXC0f5sjC7hT7Ydh4Yjg5P9FQL6umoQpsIorC1ogGgIQV0EKuSXjY6
-	 CstRjgNkYZozYURWnyZTKGT2shl8i4bM+EmhvvhWthUhkxDDpVyAUICboqPPZ/UivJ
-	 pASGHcf+8EwdCfT4i36nd329lDTk0BhBuUrYfEo2fQpvYIcVDf+gm1UDr2h5VPQSyt
-	 kUtbXq/uzBQW1W1oHQ2ZhgOy9F7md8yNlaeO5HN7lSDDmWeU3SbkMX5X0Fy0u4ROVy
-	 f7V1Tcho8m2cg==
-From: Conor Dooley <conor@kernel.org>
-To: linusw@kernel.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [rfc 2/2] dt-bindings: pinctrl: pincfg-node: add restrictions on conflicting properties
-Date: Tue,  3 Feb 2026 17:29:43 +0000
-Message-ID: <20260203-gleaming-perky-e12d6a5fe86f@spud>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260203-device-unwashed-ed24f8592d79@spud>
-References: <20260203-device-unwashed-ed24f8592d79@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A69CC33A9FF;
+	Tue,  3 Feb 2026 17:32:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770139927; cv=fail; b=mXC5ouXRQhLgQ2OVAxP6fn4g7bvsG5Qiz81w/cgnA/6BTQpHCOkBB9CywAc6lyZCGHd1105t9Q7KrbtxSUrmZv9jNvvslmZEgoIyhnzcKnwnM4mtqqWAPfe9sviUCmc57Nq6z3kDwMCxoutqs5GT4/NnSTTupiFlbdq4SckHZnI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770139927; c=relaxed/simple;
+	bh=RH1olY8n1Wf5lPBLecqeSyEPotrU7HOHftyJsd9pjyE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=Arti2ekJnVAHlrBmnx74vJN+MuEAoe2b06c3ApgtdBikf2xF9Eq8rhw5yRbEp2rU1kjqbu+jksJvgfDzFIAxvEf/W3JdqQTYGFfJZ4ckP080P9zw5yXKBF/NwTB5K6g3o2UHUZ6Udiq7g+wTNciBjUPOW8Trilol1/OqXyc3+58=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=B+6uLkxA; arc=fail smtp.client-ip=40.107.130.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JPHXRCUqs8VeSr8Pc33NbbnZ0dz650wx0KYRvTXJWjGsXV5QWzQbVNGYJ1Yk2K+FSJqMZ81C43/rhd63Ql6lK9JsyVdO3FKW5+/226IAU5xEexRQC92wfAnd+slupLBcCrOkPtbA2zDYoA4N5fqS8mTpzibfIh4jIa7efyqW1jJXMWmI9wq3+05aewp5zddVY5QTm40nayLkS1c9qCgtt6526e+oxOj5Z7Syu6p+QWfDI8DYvmk2mjL1eQxvidO2wY1i9unZDRzrGF7hokRX9xBBF0+R65VR2yGrFHfxlbkzhpk2OYtm20UAxongVOXvmEJRE5YawvJpcf0EeW/YiQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hH/zcV6maCcwI2PtqbjgHurndta3ayNB1SnTbHkvSi4=;
+ b=WY+DxhiVrWGuFjFqRoO6CEWEAg/kjIswG7V0ZaYQaluA2utzsBw2yAvwcW6s+WgUWrYHnET7ke0gfuS0oyXEOWwVYEWI0B1dVfM3XRUXvJoCfxCCDlDKXOe59lTo8J0YpPT06QJRrbwan/0XwUIpSI4K0K59qYog0eCjC0FJBhqOCWBX5kp0DpMhRzrmnlAj2YYU7FF/KbqtT6883Tscqezql8nHVEG9XmcisQwzVpjZYN+bdgnnpudk8tD/9ZTZsh/tmi4qE1TJYD8zTlPG/ZdQ/TjN4AKW1ZV07eCDRobaW54rIvkgt5ZQKkGuIpjKc91bwvSDE6351+w9KN805A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hH/zcV6maCcwI2PtqbjgHurndta3ayNB1SnTbHkvSi4=;
+ b=B+6uLkxAwRtZs448RhWfAP7s1/sbTCipZaHgAMRpJtPbvNTfwFk7FOaRorGIJRUI3NNg4kevcfOlkW3RaKkTYxId3RQZW9kuMP6kQ0dDo9/XYdeCC57kd9XRwj5ApUIh3+6sJuFY7sMpU9H7a4uB8xkwLTc/RQv2GU/xEC1B5t4BlW+AD+k6xo3PNqaOlwdms6h4cIxMlDnBfCB5wklIlPd2LuwbzhdUJ30kUm8PnujWBDelyOunfw/PY/eEJIau45nkWgHpnDBDPZaHpSWkI9AypeRtVJPJ7XuVsdUhQNyuc4RnidxnigZ8e7yh57wCI3HMoDLPVu927tIHlBDf6g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by DU2PR04MB8550.eurprd04.prod.outlook.com (2603:10a6:10:2d5::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Tue, 3 Feb
+ 2026 17:32:01 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Tue, 3 Feb 2026
+ 17:32:01 +0000
+Date: Tue, 3 Feb 2026 12:31:53 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Mario Peter <mario.peter@leica-geosystems.com>
+Cc: shawnguo@kernel.org, s.hauer@pengutronix.de, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, kernel@pengutronix.de,
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: freescale: imx8mm-evk: share usdhc3 setup
+Message-ID: <aYIxCRTdb3TdzG2d@lizhi-Precision-Tower-5810>
+References: <20260203142158.3929433-1-mario.peter@leica-geosystems.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260203142158.3929433-1-mario.peter@leica-geosystems.com>
+X-ClientProxiedBy: PH7PR17CA0041.namprd17.prod.outlook.com
+ (2603:10b6:510:323::24) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3170; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=fHWlkhGu4hcgzz/nLnrdWCDLipWjIryl6nOBxJfO8ZM=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJlNBjN6zvKLxfLMys0Om/17rpbpRXfR4IDKli8cJ1ec3 b6i5v7KjlIWBjEuBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAExkkhQjw+7uL7blu7yN61a6 evk7n2qrcHSfyS0dbyFrnnmsZ2rkQkaGPa67+oK9jJK8Q8/MmLzt2bLpjmwh5Uc0ZjkVlGUyHGH mAQA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DU2PR04MB8550:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1cde1af3-f7a5-4eb5-f96c-08de634a2386
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|19092799006|52116014|376014|366016|7053199007|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?nu3blSUbivkufwmNPSuK5mInOdPFteGJDt+2mM6VrrEf73/U2cncSqhI2rWn?=
+ =?us-ascii?Q?ckymfFfs/XY8wxHgzFpv6ZVcTeJgoO1EYbmdclKpUqwuxTZSsjQ5C1Z5xyww?=
+ =?us-ascii?Q?ErBzIHV9Rw+FWkoe5RZeHBlL1bOSfMTa9NOqjtZU/lq5UwhhCzoQOHi5+Mra?=
+ =?us-ascii?Q?5C5tPzWvFQ7R+bmYjnJeVFJMN3Ax4+I9lv2YoYLqKXRDeZvnHUBCqNJiUbWW?=
+ =?us-ascii?Q?YHm61IaMRc1fJl3mlRHblbMsKdd26VCNwNKV4Apzcyk8+LqLo8QP8g3V31zJ?=
+ =?us-ascii?Q?XbnYV1B/5zteqker3bCXyRBaA2q33jWPUJzB/rBQB38FU/PrzBHhHEjztOre?=
+ =?us-ascii?Q?7yJRN3hBGQ+yAH7HDpIVerJeyXa723o0N2D9HkXXpr2NmoVhd/XqRxFNVnCe?=
+ =?us-ascii?Q?ZGe6R8e2rXQtZUW7wQVTn8vTsBbTMVzYhBv6UbPA72Dp4kH8iiIrPoy+3geM?=
+ =?us-ascii?Q?RbGQePfVbQPtKoP7fo4hrgwMEK+HoJNauETL/DhkElFR4Km8hhU98YCQFJKq?=
+ =?us-ascii?Q?fdyPF5pL9ljiCwgc0IqupTGYlMG3M1Q7kJfxm5rgam4GiI5KG0t4O06p8UG/?=
+ =?us-ascii?Q?6ON97OAuyPSR+uKUWY2fyroWzvUynVfUpKhfOAdhaOL64DwOMjpavxoqm8uU?=
+ =?us-ascii?Q?Q/WvtbNGqyOXBPCoy4GrXRktQZ48n/6HTFJbi+vxwPTsPv3Q63s9jDMnQpla?=
+ =?us-ascii?Q?lgkG05PxxQbSNDgzLzFTGXiN0C5cSV60XycGSe9/by3aBzz1BFQaFBeHhcND?=
+ =?us-ascii?Q?0yp7yuG19bL3QAT8xJCdYxAeAjz2APw3/0UVf49ygPwXbqg9Dy8M2CLKFjSN?=
+ =?us-ascii?Q?vEhxpPenMuE/TsC4sHTvNJSE1LidnvMv1tEtqp2AdEAh7oJKvbtbtvCLU3Ul?=
+ =?us-ascii?Q?d2dDlrEP/4upnvj7lQPdoMJR/P4sx+ypUAevWRapT0RUxd1RHW6IaCTgZ4nj?=
+ =?us-ascii?Q?Idt7SFH9DwXKdqeslFrtOHuY4bmF2b51nAYyafGgumFfJURRLEgl7G9tmWMm?=
+ =?us-ascii?Q?l4xO7pcn8eLlxVMC3AzWUmNIRnWOsJgzzczSlWfsEVmKVm3NNw14UOQDcyK9?=
+ =?us-ascii?Q?JAcYKtJ2jP98rWGZIZ4JEqK1PxeuoCk5rIbs4p1y62qjBN23OT5EHCg6xefj?=
+ =?us-ascii?Q?EBD2FnwHR0VwUfwklYzTQvZCc1Glnq9vNoh4POgSWaB6inguDFlpW/iXP1oH?=
+ =?us-ascii?Q?xBDJ52fatDn3p7IUKYfRNRvQHUj/SNsn+y4bJxX/l7q37W86XDX4EoCzD/NJ?=
+ =?us-ascii?Q?ZYyX38FElVpbC+MD+Ba1ogQSFZdOGFPROjr7KX+kFwmXtH2oUEdexTJFx/Nv?=
+ =?us-ascii?Q?Sg2ZcIrclBPvFY4e3asGRvyyqOqqUNlv5MwoXUP6cQ+I9rqybbL48vpQ9I+Z?=
+ =?us-ascii?Q?aCvNk/HgkILVcFlRsxs8aVKZ7uBGTNbggNIsjsA9R2wX1Oo5tVtCSaf72KPU?=
+ =?us-ascii?Q?+9WjiJMFldK1fdkoap0C5RaChzHGdzgAxrX70G8Vbz5ZBBbTqIMEqYF5CYkl?=
+ =?us-ascii?Q?ayVp3kwzUv2j1FI8sV2Hn9R74siw/35myvE7GMIJAJ+oL5j65oFcNXMDuSKe?=
+ =?us-ascii?Q?rmEsL/agUeA2GJgNocgPQ2jMTsHb/Q0S100dMUGZgdk9CFJA9cj1YkBOVf9p?=
+ =?us-ascii?Q?tX55NRFbBHqHFepOIppO8j8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(19092799006)(52116014)(376014)(366016)(7053199007)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?vCUGpB2ymyEw2HIHJVMsMNvrT7BWx6ruuoZXwapaNEF9LmjF3eEyEI/orvvN?=
+ =?us-ascii?Q?AomaN6xSXN8CFLjtg5JGbKgSI+HCRoaLDw58rF+UOQ2xPgg3nbqGHyMf3nFv?=
+ =?us-ascii?Q?7WIllcReo4rWj6wn3l733F+vgMsFVRVSTfZdiE38QMuoG/6GpspwSB9gqUt6?=
+ =?us-ascii?Q?Wt3JCtl+dzYt6eazBR+3iS/1V8zREn/RVJ6v6+cDIbGJR+UNUn9q+/hukwsO?=
+ =?us-ascii?Q?1c2eeH9uVdf1MqRHtVGk9obIutZGqquz8NdeAl67SIT7n4MO9ioO5Hs0pblq?=
+ =?us-ascii?Q?B4/2+VTVXcqatcfgAlmpWT+zBOffjNjw86AYqUh66dC9ZM8vAa68DY4iq3gG?=
+ =?us-ascii?Q?UJL2h+WmNHhzO9tdRrgt2ioogr86qDloHXOZtBzGyqrfoVO4Q9FkCDGG6wcW?=
+ =?us-ascii?Q?BkyhRwhFzgzBgbNm97sYsSXxqpF01JZ2v3eQ+I8ImwlSM5Bp+j4CP+lOSF+u?=
+ =?us-ascii?Q?4mUWiO5NckhcnhI9wkqdO8feXxwhpNqBRoldVNrcsEQ2v3PGEgs0nTeGPrGH?=
+ =?us-ascii?Q?t/kepSaJPnCv9nivwte2dtOxobzr4qbYUMGaUFNP1xLBXufm9lxl+748+7Vc?=
+ =?us-ascii?Q?OAXEVRhI2lMYna20jZyLSJbB1A4FBpcTOYVGkndAORcrnSOeS12CU5deC/BT?=
+ =?us-ascii?Q?3Kb/tsQt/KE33Uqs9PaODUbdT6a1CNrHFwC5kSfVftxjEguNNBBJ01K1wOYD?=
+ =?us-ascii?Q?RWTuJrVroTmHdU4yMAnNWKWB6jUF1ABpG3FmwBQpJxWHUuNoo4RZ3FDDfsT0?=
+ =?us-ascii?Q?hNCSZEYpyveHN7SMjW9OlI8twSBGvyO+84CAIs+Ki4QBNj/Tdfi/e2lNYU9G?=
+ =?us-ascii?Q?re1kb0v3yHENA9mkTlz+ZjW5C4A5tgnn26kXXioVWgbCqhGZOJ1pUBRXJkXD?=
+ =?us-ascii?Q?auJVFlVHX2eYwKtZbc+JbVv4Z8+el+mWoBR154+wyrVv1FMVwT1VJMXrJ095?=
+ =?us-ascii?Q?69gtnoEOGTIb2dYbY3QMqSszFu9bi0zhgfmWSSC5XeiCmn6f81ZUrbgA4PG5?=
+ =?us-ascii?Q?l13tkjDVBuLuPhO/Ho5MD3d0lvl4poLtOXQn5CrWLfVEU/pYiM3CXemuj+DQ?=
+ =?us-ascii?Q?ZFm5EOXxi2nkyv1qRyq80I4YdgNiysPEnispzJOyU5JDotX7ZMxguh3Puvff?=
+ =?us-ascii?Q?zDrATNLvw8G+diCgC5ldRSdwcd9nOk5R0WijKLOrGcgldxg19jYDq2cnIwio?=
+ =?us-ascii?Q?W66f0hK8cJDJP4LiSADPmuXaaFViVyrqEhzz6/H0BtmJ+Xepvg8+OhVrJ4/a?=
+ =?us-ascii?Q?Gl7rGh8bVmVBFdajV2gZF7FFx5T55T8GOSXZyEX//f/gvJ2O+8iV6T67jdNM?=
+ =?us-ascii?Q?PD/Zi5oWASkmkbEWcNEprLqu++B+sXvKojWJTNZqiJnY3D1sw+bmiMBCwRqF?=
+ =?us-ascii?Q?LcAfgWJIqV5U8p/EiAQma/N6kbpC+wLI31inUaHIyjCBFVst85fuBrX6ArQK?=
+ =?us-ascii?Q?hWMOFi8tiNI0X1gZ+y0XscEJXjDTP4T3qLzLrp5k5OGdCtbBurOrc/S9nIVm?=
+ =?us-ascii?Q?AEYVnAtcF0x/IZtyRqwUfyYgQXulRHGsnupUkz4U7L06rC6aMrRoVfKF6dwZ?=
+ =?us-ascii?Q?k1wlZjCnHrcpZcUeIffCdrFADYwwcyqQc3SBWKGZpKXvQfjclVP6usxyOsnT?=
+ =?us-ascii?Q?dSyGJeFnjBTOj6hYpmFHPFyCWEX6R/c6Xqu79v8iWjrRy19cxH3WWZjQhpSg?=
+ =?us-ascii?Q?YXUCkZ+eS2YP5qLovq3JO5c6vGvEz/kl8VRJah91ZkBRXdD8HsnACwwDPT76?=
+ =?us-ascii?Q?k1Qx5b0JEg=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1cde1af3-f7a5-4eb5-f96c-08de634a2386
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 17:32:01.0645
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: KW3m3471S8yC/Zd6UQLmMPPV64V9UmMWB5E6Ttia3QNwhcLb9mPiqjOirDHeJTrV3GM9lEBdxkkyQje0ZlEpsw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8550
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [1.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262358-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262359-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	NEURAL_HAM(-0.00)[-0.999];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,microchip.com:email]
-X-Rspamd-Queue-Id: 99265DCFF0
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 81715DCE14
 X-Rspamd-Action: no action
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Tue, Feb 03, 2026 at 02:21:58PM +0000, Mario Peter wrote:
+> The eMMC controller on EVK and EVKB uses the same usdhc3
+> configuration and pinmux. Move the common node and pinctrl groups
+> into imx8mm-evk.dtsi so both boards inherit the shared setup and
+> avoid duplication in the board DTS files.
+>
+> Signed-off-by: Mario Peter <mario.peter@leica-geosystems.com>
+> ---
+> v1: submitted
+>
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dts  | 61 -------------------
 
-Many of the possible pincfg properties are not compatible with one
-another, either because they represent mutually exclusive states for a
-pin or because they provide the same information in different units.
+evkb should remove the common part according to your commit message
 
-Add some simple restrictions to prevent invalid configurations.
-
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- .../bindings/pinctrl/pincfg-node.yaml         | 105 ++++++++++++++++--
- 1 file changed, 98 insertions(+), 7 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
-index d1bc389e0a6d..874f0781d2fc 100644
---- a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
-@@ -162,12 +162,103 @@ properties:
-       this affects the expected delay in ps before latching a value to
-       an output pin.
- 
--if:
--  required:
--    - skew-delay
--then:
--  properties:
--    skew-delay-input-ps: false
--    skew-delay-output-ps: false
-+allOf:
-+  - if:
-+      required:
-+        - skew-delay
-+    then:
-+      properties:
-+        skew-delay-input-ps: false
-+        skew-delay-output-ps: false
-+
-+  - if:
-+      required:
-+        - input-disable
-+    then:
-+      properties:
-+        input-enable: false
-+
-+  - if:
-+      required:
-+        - output-disable
-+    then:
-+      properties:
-+        output-enable: false
-+        output-impedance-ohms: false
-+
-+  - if:
-+      required:
-+        - output-low
-+    then:
-+      properties:
-+        output-high: false
-+
-+  - if:
-+      required:
-+        - low-power-enable
-+    then:
-+      properties:
-+        low-power-disable: false
-+
-+  - if:
-+      required:
-+        - input-schmitt-disable
-+    then:
-+      properties:
-+        input-schmitt-enable: false
-+        input-schmitt-microvolt: false
-+
-+  - if:
-+      required:
-+        - drive-strength
-+    then:
-+      properties:
-+        drive-strength-microamp: false
-+
-+  - if:
-+      anyOf:
-+        - required:
-+            - drive-open-source
-+        - required:
-+            - drive-open-drain
-+        - required:
-+            - drive-push-pull
-+    then:
-+      oneOf:
-+        - required:
-+            - drive-open-source
-+        - required:
-+            - drive-open-drain
-+        - required:
-+            - drive-push-pull
-+
-+  - if:
-+      anyOf:
-+        - required:
-+            - bias-disable
-+        - required:
-+            - bias-high-impedance
-+        - required:
-+            - bias-bus-hold
-+        - required:
-+            - bias-pull-up
-+        - required:
-+            - bias-pull-down
-+        - required:
-+            - bias-pull-pin-default
-+    then:
-+      oneOf:
-+        - required:
-+            - bias-disable
-+        - required:
-+            - bias-high-impedance
-+        - required:
-+            - bias-bus-hold
-+        - required:
-+            - bias-pull-up
-+        - required:
-+            - bias-pull-down
-+        - required:
-+            - bias-pull-pin-default
- 
- additionalProperties: true
--- 
-2.51.0
-
+Frank
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 61 +++++++++++++++++++
+>  2 files changed, 61 insertions(+), 61 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> index b68954bcc383..002ebdeeb2d6 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> @@ -53,18 +53,6 @@ flash@0 {
+>  	};
+>  };
+>
+> -&usdhc3 {
+> -	assigned-clocks = <&clk IMX8MM_CLK_USDHC3_ROOT>;
+> -	assigned-clock-rates = <400000000>;
+> -	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> -	pinctrl-0 = <&pinctrl_usdhc3>;
+> -	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+> -	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+> -	bus-width = <8>;
+> -	non-removable;
+> -	status = "okay";
+> -};
+> -
+>  &iomuxc {
+>  	pinctrl_flexspi: flexspigrp {
+>  		fsl,pins = <
+> @@ -76,53 +64,4 @@ MX8MM_IOMUXC_NAND_DATA02_QSPI_A_DATA2           0x82
+>  			MX8MM_IOMUXC_NAND_DATA03_QSPI_A_DATA3           0x82
+>  		>;
+>  	};
+> -
+> -	pinctrl_usdhc3: usdhc3grp {
+> -		fsl,pins = <
+> -			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK               0x190
+> -			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD               0x1d0
+> -			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0           0x1d0
+> -			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1           0x1d0
+> -			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d0
+> -			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d0
+> -			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3           0x1d0
+> -			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4             0x1d0
+> -			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5            0x1d0
+> -			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6            0x1d0
+> -			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7              0x1d0
+> -			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE           0x190
+> -		>;
+> -	};
+> -
+> -	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
+> -		fsl,pins = <
+> -			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK               0x194
+> -			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD               0x1d4
+> -			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0           0x1d4
+> -			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1           0x1d4
+> -			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d4
+> -			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3           0x1d4
+> -			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4             0x1d4
+> -			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5            0x1d4
+> -			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6            0x1d4
+> -			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7              0x1d4
+> -			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE           0x194
+> -		>;
+> -	};
+> -
+> -	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
+> -		fsl,pins = <
+> -			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK               0x196
+> -			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD               0x1d6
+> -			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0           0x1d6
+> -			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1           0x1d6
+> -			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d6
+> -			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3           0x1d6
+> -			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4             0x1d6
+> -			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5            0x1d6
+> -			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6            0x1d6
+> -			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7              0x1d6
+> -			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE           0x196
+> -		>;
+> -	};
+>  };
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> index 6eab8a6001db..6e53828b5d30 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> @@ -649,6 +649,18 @@ &usdhc2 {
+>  	status = "okay";
+>  };
+>
+> +&usdhc3 {
+> +	assigned-clocks = <&clk IMX8MM_CLK_USDHC3_ROOT>;
+> +	assigned-clock-rates = <400000000>;
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 = <&pinctrl_usdhc3>;
+> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+> +	bus-width = <8>;
+> +	non-removable;
+> +	status = "okay";
+> +};
+> +
+>  &wdog1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_wdog>;
+> @@ -839,6 +851,55 @@ MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
+>  		>;
+>  	};
+>
+> +	pinctrl_usdhc3: usdhc3grp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK               0x190
+> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD               0x1d0
+> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0           0x1d0
+> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1           0x1d0
+> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d0
+> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d0
+> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3           0x1d0
+> +			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4             0x1d0
+> +			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5            0x1d0
+> +			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6            0x1d0
+> +			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7              0x1d0
+> +			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE           0x190
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK               0x194
+> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD               0x1d4
+> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0           0x1d4
+> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1           0x1d4
+> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d4
+> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3           0x1d4
+> +			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4             0x1d4
+> +			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5            0x1d4
+> +			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6            0x1d4
+> +			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7              0x1d4
+> +			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE           0x194
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK               0x196
+> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD               0x1d6
+> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0           0x1d6
+> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1           0x1d6
+> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d6
+> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3           0x1d6
+> +			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4             0x1d6
+> +			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5            0x1d6
+> +			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6            0x1d6
+> +			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7              0x1d6
+> +			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE           0x196
+> +		>;
+> +	};
+> +
+>  	pinctrl_wdog: wdoggrp {
+>  		fsl,pins = <
+>  			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B	0x166
+> --
+> 2.43.0
+>
 
