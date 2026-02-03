@@ -1,235 +1,166 @@
-Return-Path: <devicetree+bounces-262219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262220-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kPGbBSzigWmDLQMAu9opvQ
-	(envelope-from <devicetree+bounces-262219-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:55:24 +0100
+	id yMMfHZ/igWmDLQMAu9opvQ
+	(envelope-from <devicetree+bounces-262220-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:57:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AB7DD8AAA
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:55:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8E05D8AE6
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:57:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3B635307DC84
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 11:55:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E16873065D9D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 11:57:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7621733B6D5;
-	Tue,  3 Feb 2026 11:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8A6433A9CB;
+	Tue,  3 Feb 2026 11:57:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MCyAVNgX"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QyM1pRdR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92A4F33A9CB
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 11:55:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770119713; cv=pass; b=VQXEjS3ANtlTolrbW2kzz86lW7TtkzzGFX5Z8GN6iAWlpsKjiyezlc8KU+NFbNx9emk1hILpXSXNlHkd1wH2U0XsL8GNAj266LoTdwEpmCTvDJde4ELBgV6ovoPD9eOTi9Zshq3kAR+DrFjGyeaXXx6MNz8mX25zQcv6hO2r6ys=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770119713; c=relaxed/simple;
-	bh=9O0t3nOqWgtzHoOehLwVH3QJcXMOzB1ELLyYtURrIuo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J0mraj/csg5haJ8FsCaqgUAWzsxUbjzCUiUhyQFX4Wvq2730IE/k9AP/ZF5RjATuA7PCMtwQFR1ZGNBV2O4A/GYD00blmsi1HuWORbI7Oo08MzlHu0hg6k8bvkPMBAuvwoqIvBK8/y8k51ccXrmJF0T5K1dxeU0JX3/Mhzo7JrY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MCyAVNgX; arc=pass smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-47edd9024b1so44704055e9.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 03:55:11 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770119710; cv=none;
-        d=google.com; s=arc-20240605;
-        b=M3NQh5THTzQeIX2h8luq2dy4CO6f6WfCih30/B5tRMom85lnzswFGqmPaJ7q2f/6hE
-         yKlvuvpi73u0dTJr3pQgMeBz4CkcgvFZrtBmsLVoRb8Pen4W7cljQAXmOYaWuYZY3SJG
-         YHFJWYk6xrNQOUoBO6O5Vz1yMRrtiIHLmj7Ef+gorB/xSEcX7+GkmyaxDTJ4ELNZz0gM
-         MFZuiQjio6xPpOI2Uvc0BYUxGlpVMuyOLqeuyQjXu5WknvMROa+vlITqWmG40pfxOWsr
-         WvnqUelJKjsFGOETpTl4Q79/plh9uyRdVeZf9DlFM2Tg0PLFO24cfEuls6Je0ojLYFKW
-         URPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=kJ2rGVAn9aB3hsANmqfw/I2Kf6J6nYb+RtHOxOIJw0I=;
-        fh=vHdoefSdiebm+11QZULUp4C8bQLIUymNGY7HLhGsDao=;
-        b=TsnBlYWLVSGQey9b+LmJKzU7qJj6rGk2GCljZtvGrjSI+GmUghRTXsZVhk1YFZwpEI
-         F/YFUCTYDnhmzVJp9pu61f43CuBNGl7VVb8QnmhSc78uZv8zrWHFRADEi5994m+8GtLG
-         HT5YX/yqOZFGKVbkEomc55YrcNvCIxbQX3xERGcN5QwuvapTRiupuQ7X1/iwWllPjrdU
-         mHQDa8mTxBqevf3qlJl4IDtVKCq6eJAmmWUrnRRJY/t64AWxL5LBQRVgtRefrjSpLKzK
-         90prL65Z+eXDlaz92B3IvxAPVRiU0af/YbH9A+ryKsz8WGeWROGP0nBNtwlxodchGB94
-         W5tA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770119710; x=1770724510; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kJ2rGVAn9aB3hsANmqfw/I2Kf6J6nYb+RtHOxOIJw0I=;
-        b=MCyAVNgXL7nwa1l+j+PMLHiJK29uguooa6k9wvZGwna76kxD/t0qVYQbK9Mll7WidJ
-         ZPcRlwB6qJ8qw0nIQHtlSxKh2FzzMfTNsX+LvGUaOWIGBAxVBWTEeKuB3lAvoBtxcEC7
-         qwkIdURKccIDoWNbXifcEuR9L77pRHmnA4agCs4bmBUlEqkcnMmpjlEaYmGKPOhUNdBZ
-         T+nv5tjL29a3zsW8ET2PEe27hA4ZXUxNigCfpxlSEhqe/01xzLNogfLhPNAfr5bikbdx
-         KMHwbD1++UT/r1DXuMag6MNtH1Qcy0jflsuN/SCFhAdfz6v4WD5GFsNI9GlXYTdDX3rh
-         oFmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770119710; x=1770724510;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=kJ2rGVAn9aB3hsANmqfw/I2Kf6J6nYb+RtHOxOIJw0I=;
-        b=GkSw/8gFfRliSyCTYLsWZ7ziboECFGzOjqDiXsWsDSH0WH8eXS9Jj/JNcbaTHTy4AT
-         YUMX+D4ZM1aXhmIOW1EqcNM1BC5/xjsyaGgFVjmrc8FmBZYHPsfMLRPgaMCn3CCTmfdQ
-         zSeOYH5KJ1apmDTGXWGYHjPg/wfPuQ+P29flBIIyTCEKtR2xnF/WFth7mI5C0biNvXUJ
-         /9pFIfIdooHbAkmI4byQ+RlOjIjyE0AzVMQg+KK/DrnGzupVFsswBpCj+6oH8HDZf0LU
-         AzPU6KZpcwT5gblZuulV9KqD22jIAbZLU93Vokevs9UDzSSFRLP3Zu2DQ/0wFMLDMjTr
-         0UHw==
-X-Forwarded-Encrypted: i=1; AJvYcCUVEBsDGmyZJscxc4ah6aRUZ1W+PCqGDWb/HbxiVEdFSnHFXbCTjLn2u9BQ6/bLV1vMFNasalOKV8Bw@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVT7jujhrJee1B1XZaIktPQerrwUKzR0wsZRjulyfX1DRafJia
-	TcUNfPl8jV1h0zAdoqQa0RSzlaFQPSv+2eQsf8gvgrN90czZFM8Zo0uE82zVIJeKgFigHX9EK1W
-	5gJc6TmNRTXOcqcE4sCJRcz3H+xuKhno=
-X-Gm-Gg: AZuq6aIl29LUjTaTauFzSOq/70X91FJLbWhV7BD/hYxxJLc7aLPuUVm5V6NOpq3vis7
-	b5bfA+LTk/v6clzGgxrFGr/Qv3uelnLy4acniEElnc9UiyY9wa5H8PqBDHAIRlcyY07dDGg796b
-	Zu5PwkZlUkY/SE3GEpoZl0MkZ2ckDt5ggpFDY8QQvjavgAUYCU0i+GsHWJwFS68BPsp7g1TSCLf
-	shdN2+nhRQroOCtgQldJ7LKxpdeoHR9aEUn8vqjNawmSTNI4CsCALeuyhNXm0ew4o+Bv0WO
-X-Received: by 2002:a05:600c:34ce:b0:47d:25ac:3a94 with SMTP id
- 5b1f17b1804b1-482db491e61mr217693765e9.17.1770119709814; Tue, 03 Feb 2026
- 03:55:09 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB28D30EF83;
+	Tue,  3 Feb 2026 11:57:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770119836; cv=none; b=ga2P+AHtos2GUceXlfTDp92Zo39ioI6E/6Jhy+GwDl8YOpZKaGhWlJztGSbN34PV4AFm2W2hp1iRiWhJIhTBYxU/Ws056frR4SDUkiuPEc2YQw1U+tNan7+CjjpL0axNQsFUwb6Ss6Fk6G3vv5TnX56EVbkR4zei3fYFjvxKJxE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770119836; c=relaxed/simple;
+	bh=RUnOUTk2GWsWt+UZmmAHOCxB8S5qdwIVX1ssHbFQ9Os=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=vE8rfSzzhf9t+It+jGGb36KVdGZRFxrtnGWZuk6hEQKk2LL+qI90YlPoPnzcf58z7LHXevJtzgSeANPKWxz81WtqiCMgFo9DDZmvQGmldd7pYrD/zuKwHqEKgDKoXtbZ/EdiCo+9tT+CfurGs45gBgLdZ4TAWtC6qPs72INawf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QyM1pRdR; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770119835; x=1801655835;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RUnOUTk2GWsWt+UZmmAHOCxB8S5qdwIVX1ssHbFQ9Os=;
+  b=QyM1pRdRgDPMvQ66+2wHQAMZApN3wuzaP1SuQjibQOG4govue4b1s6hv
+   0tCrf6KFHcvPffqfAVqAeR32jUHeEwKB+iJhqg8KDuUkUMdoGQt4SWfj4
+   6RAIMeLEv6rY153qBd+nMkfn+68jiw6HC/OdZDtZj9pGkbT2NIEAULCb8
+   DyQwCC7ooyw0VkZApaZlLalFcUYikgak1LoJdo2iI7c3yuexKDCOf15Lm
+   B1SmMDZPFxjERLOcrWgp4ejlNyCWjr/PenjN3ZbbpbGiqz+bdKKy7IhN0
+   4P81vyGopqHRENMz5LgwgOBTJqfSHmsL4RoxHInwHWcBycXdQ88L11SUz
+   g==;
+X-CSE-ConnectionGUID: OxO1k1xyTym1VAWKOntluA==
+X-CSE-MsgGUID: gr6T1gKQRP6oAM+tme1StA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="71187818"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; 
+   d="scan'208";a="71187818"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 03:57:14 -0800
+X-CSE-ConnectionGUID: hTyHqRm4QNaxFbABRAh58A==
+X-CSE-MsgGUID: T9QWwV2NQ2Kr2Ul3s4LK6g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; 
+   d="scan'208";a="209970009"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.99])
+  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 03:57:10 -0800
+Date: Tue, 3 Feb 2026 13:57:08 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sander Vanheule <sander@svanheule.net>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH v4 11/13] iio: dac: ds4424: convert to regmap
+Message-ID: <aYHilKjWHmNTH3jg@smile.fi.intel.com>
+References: <20260203093434.2548978-1-o.rempel@pengutronix.de>
+ <20260203093434.2548978-12-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260201104343.79231-1-clamor95@gmail.com> <20260201104343.79231-3-clamor95@gmail.com>
- <2026020350-unrevised-humming-7a42@gregkh>
-In-Reply-To: <2026020350-unrevised-humming-7a42@gregkh>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 3 Feb 2026 13:54:58 +0200
-X-Gm-Features: AZwV_Qgw0b1U_6kBWSx9OhS-IJWxhPVx8BmrGdD1Vb7TZ1z_SuHtAUlbzg5ifu4
-Message-ID: <CAPVz0n35NkEXjur-oJhW6Yxwme_KMLdYCnRAtjHEWSPEVrSUXQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/9] misc: Support Asus Transformer's EC access device
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Sebastian Reichel <sre@kernel.org>, 
-	=?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>, 
-	Ion Agorria <ion@agorria.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260203093434.2548978-12-o.rempel@pengutronix.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262219-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-262220-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,arndb.de,rere.qmqm.pl,agorria.com,vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linuxfoundation.org:email]
-X-Rspamd-Queue-Id: 1AB7DD8AAA
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: E8E05D8AE6
 X-Rspamd-Action: no action
 
-=D0=B2=D1=82, 3 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 13:41 Greg =
-Kroah-Hartman <gregkh@linuxfoundation.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Sun, Feb 01, 2026 at 12:43:36PM +0200, Svyatoslav Ryhel wrote:
-> > --- /dev/null
-> > +++ b/drivers/misc/asus-dockram.c
-> > @@ -0,0 +1,327 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > +/*
-> > + * ASUS EC: DockRAM
-> > + */
-> > +
-> > +#include <linux/device.h>
-> > +#include <linux/err.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/mfd/asus-ec.h>
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/module.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/slab.h>
-> > +#include <linux/string.h>
-> > +#include <linux/sysfs.h>
-> > +#include <linux/types.h>
-> > +#include <linux/unaligned.h>
-> > +
-> > +struct dockram_ec_data {
-> > +     struct mutex ctl_lock; /* prevent simultaneous access */
-> > +     char ctl_data[DOCKRAM_ENTRY_BUFSIZE];
-> > +};
-> > +
-> > +int asus_dockram_read(struct i2c_client *client, int reg, char *buf)
-> > +{
-> > +     int rc;
-> > +
-> > +     memset(buf, 0, DOCKRAM_ENTRY_BUFSIZE);
-> > +     rc =3D i2c_smbus_read_i2c_block_data(client, reg, DOCKRAM_ENTRY_B=
-UFSIZE, buf);
-> > +     if (rc < 0)
-> > +             return rc;
-> > +
-> > +     if (buf[0] > DOCKRAM_ENTRY_SIZE) {
-> > +             dev_err(&client->dev, "bad data len; buffer: %*ph; rc: %d=
-\n",
-> > +                     DOCKRAM_ENTRY_BUFSIZE, buf, rc);
-> > +             return -EPROTO;
-> > +     }
-> > +
-> > +     dev_dbg(&client->dev, "got data; buffer: %*ph; rc: %d\n",
-> > +             DOCKRAM_ENTRY_BUFSIZE, buf, rc);
-> > +
-> > +     return 0;
-> > +}
-> > +EXPORT_SYMBOL_GPL(asus_dockram_read);
->
-> No documentation for these new public symbols?
->
+On Tue, Feb 03, 2026 at 10:34:31AM +0100, Oleksij Rempel wrote:
+> Refactor the driver to use the regmap API.
+> 
+> Replace the driver-specific mutex and manual shadow buffers with the
+> standard regmap infrastructure for locking and caching.
+> 
+> This ensures the cache is populated from hardware at probe, preventing
+> state desynchronization (e.g. across suspend/resume).
+> 
+> Define access tables to validate the different register maps of DS44x2
+> and DS44x4.
 
-These functions are mainly used in communication between the dockram
-device, asus-ec and its subdevices. Export is used here because all
-mentioned devices can be built as modules. I can add descriptions of
-functions into header if needed, but they should never be used outside
-of dockram-EC complex. Same applies to 2 export functions in the EC
-MFD.
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 
->
-> > +static BIN_ATTR_RW(dockram, DOCKRAM_ENTRIES * DOCKRAM_ENTRY_SIZE);
-> > +static DEVICE_ATTR_RW(control_reg);
->
-> You did not document your new sysfs files in Documentation/ABI/ which is
-> required.
->
-> Also, why do you need a brand new user/kernel api at all?  Who is going
-> to use this and for what?
->
+...
 
-These api were used mainly for debugging/logging purposes and descend
-from original downstream EC driver. I can both add documentation into
-ABI or remove them if that is absolutely necessary.
+> +#include <linux/array_size.h>
+>  #include <linux/bits.h>
+>  #include <linux/delay.h>
+>  #include <linux/err.h>
+>  #include <linux/i2c.h>
 
-> thanks,
->
-> greg k-h
+>  #include <linux/kernel.h>
+
+Side note: I expect at some point see this inclusion to be gone.
+
+>  #include <linux/module.h>
+> +#include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+
++ types.h // exempli gratia, u8 vals[] in the code
+
+...
+
+> +	u8 zero_buf[DS4424_MAX_DAC_CHANNELS] = { 0 };
+
+'0' is not needed.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
