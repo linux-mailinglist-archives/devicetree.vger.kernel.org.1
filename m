@@ -1,200 +1,186 @@
-Return-Path: <devicetree+bounces-262426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262427-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CGgeKxSBgmneVgMAu9opvQ
-	(envelope-from <devicetree+bounces-262426-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 00:13:24 +0100
+	id aL+BKS6CgmneVgMAu9opvQ
+	(envelope-from <devicetree+bounces-262427-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 00:18:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17E80DF9AF
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 00:13:24 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 136CFDFA3E
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 00:18:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A70E9305F7FF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 23:12:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 75333302AA07
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 23:18:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 605E72FF14C;
-	Tue,  3 Feb 2026 23:12:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1ADA3191BF;
+	Tue,  3 Feb 2026 23:18:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="gNFazDB1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mmKkVelQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f193.google.com (mail-pf1-f193.google.com [209.85.210.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D688374194
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 23:12:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8EB83002A0;
+	Tue,  3 Feb 2026 23:17:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770160377; cv=none; b=E7PS69iKr/siA7mvR0CUkkUB5C6SohnZ9npkokUqM4mifb+NvxFXOr+0IDIuoZbjJO4I2Z2h5rFBuE7eLYxUMQpBDrxuB2+HC79gPCVA7FtNRFPx+up/LfRtBLvZo4dQaPeHh859FlWqy+NLN3tPY9VtHfUsCdp1bJ90kbwshss=
+	t=1770160682; cv=none; b=nHnPzZOb+DJ3xVTHGqkVT/qIagmZaC8jRen0PQ/TNaESx9ZPd0E22zO99Naq8kviPBUGZ2DHNhMpUCDHIZoJBblGRazMfrKHiCh5+wQBvcwq0aO5hPTyFgzY6CPiS24qp5iHh8pv525J/liiH342gTXFK5P5mFvmBznZmBfpc40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770160377; c=relaxed/simple;
-	bh=b+6ezU8PaueXB2DpM+akcgePYGBcPLLporezIjuLT+g=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=p0IBhHluOyCPcnLUggn6/uEbPLdTY+kY0vAnZJhWFNEIuPxkf/0ZUplj6hLUFIKO87ZtonS7NbWbz61lqHLOrjtA0QNS51bME3qBOddlKOhucG8V6fUmwkgybePZQFL0It6GHCvp+vrgruXnZhCxgKQFfl6TBkDumsJHMW7C8rI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=gNFazDB1; arc=none smtp.client-ip=209.85.210.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f193.google.com with SMTP id d2e1a72fcca58-81f4f4d4822so3145738b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 15:12:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1770160374; x=1770765174; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hCOjNNMnUuznv6tosNTA/iIRiTXu2wBeg3Ia+sthXnc=;
-        b=gNFazDB1fEFOxYJalqDLQnf2a9KU5UxQM/7PkxkGtDV1nok7eq3eZveSWzBoI8jd7w
-         3aAy7gNFXbkum1bc1XR7TP4nvkqBrlIBd1CI8VTkEVJkgPBK0+i/vdf+VIou32iFFDoF
-         3FwjHmPqRIRcFbvdKe2QqpAlMUsCTEjyv6esizdi+gglNAoTdyJ/niobMbs67Gm7UkUq
-         OgVkjl5lVs00rpiaKmLVRWhGiPFgOm10RJlOTgpv5DnIEHqWi2NkTgfPpAfyTSH3qq3d
-         QilVD2rfiBGOZ9K8pSZpLnQOaANb2d/Tw+ykFOpAjPBNuZcJ7rDAGbJjxZCqvqX8NgRj
-         8vgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770160374; x=1770765174;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hCOjNNMnUuznv6tosNTA/iIRiTXu2wBeg3Ia+sthXnc=;
-        b=Hxl+14L6s5KayMBtiTYaTfEPSRHytHt0ngUQrfbm8QKzV039AOdmWkQDrcw9d0msBl
-         5E83BcRCXxbjyDEiuwwlB3rlqi1S0dObQzwbrYvnnAN+kmBOYrhBvasqWNEHYq2727Ua
-         Jw9dbXgHckxZ//Hjy3b4gaO4dqbh++OfiThogeYTrvuYxbDi+V1I4RbXseO76dbdZgEA
-         pxED4IBRHMNUY0bB0l5a8/tdIHOJ0+1WaoAIOInnIysk1W7WbubOwEcsAibYrKDeygvO
-         zCidGmn1tqTIpYI744Nmgft5ElQk4QRx0mtYbXaclM4HBhO82D7qv0ozYqRPzwIGMw3h
-         iDwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX8QMA2U2FYoCMnW8iU180MGqvZEXudx3zyZ/U9VVgaVW2ygpuhExeL4cWF4QEXQYjKdvshWTGoYTrc@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIx8/ZAZwq5g0U9EKOwCo8UKsXeSGBHIfmW5aNsc64sH5KP1OD
-	nOouuPZlZweDXo1X6OwJVY03Ndb6mpmkKadGyDLOCyWNGVMHFFB6Nj7asajNPs5+s+s=
-X-Gm-Gg: AZuq6aJUV3RjL4LhvrzR8VSEnOGLHuPqyRb5eItNTQUXnLOL1q6qt/9CCdGqeG9/fvg
-	RR6YYpxi44qgeGJOihVhduqnKDGKkHnf9bBbaTIjrPx9FyVvFoo71FDUHZY3pEFxahH1m18hhoW
-	ks16An78VUsiEnuBwG2buao6yVAjojCapx7U2rHGNNsVGUI2x5Zy8mh222ZEk0YDy7a96KqbnxL
-	l93aJQvxfJT75xv3/9V4VBB1eXuVqpHvUMOujrhb9Z66ms0rxO4xvtr1zzvNhv1XfFOEDLx0DPn
-	7gPn2s3oJ6L54SiaMox5xLzYblI4yAwfA3Pg+YKuUE8CJP/2A3nrvz5oFlwWP3kbjQUN28wSqO9
-	e4fHpSSbttl7hFpvbhTRfdgZh+zCYoxaRWaJuuhhv1HzEllDaNpRe5ctzInYcOmxLV8hkL2/4j4
-	HVzWGNpGrQ9zeWEy3v5Ik=
-X-Received: by 2002:a05:6a20:9185:b0:366:58cc:b74b with SMTP id adf61e73a8af0-393720cfdddmr966865637.21.1770160374489;
-        Tue, 03 Feb 2026 15:12:54 -0800 (PST)
-Received: from localhost ([71.212.200.220])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c6c84c70e08sm321672a12.20.2026.02.03.15.12.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Feb 2026 15:12:53 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi
- <cristian.marussi@arm.com>, devicetree@vger.kernel.org,
- linux-pm@vger.kernel.org, arm-scmi@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RFC v5 1/2] pmdomain: core: support domain hierarchy via
- power-domain-map
-In-Reply-To: <20260127151735.GA1699112-robh@kernel.org>
-References: <20260122-pmdomain-hierarchy-onecell-v5-0-76855ec856bd@baylibre.com>
- <20260122-pmdomain-hierarchy-onecell-v5-1-76855ec856bd@baylibre.com>
- <20260127151735.GA1699112-robh@kernel.org>
-Date: Tue, 03 Feb 2026 15:12:53 -0800
-Message-ID: <7hjywtzaiy.fsf@baylibre.com>
+	s=arc-20240116; t=1770160682; c=relaxed/simple;
+	bh=EZdlmMuWubpZ64KCJhFpuoZeVdTV3W5B6LfNQyiAMMw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mYzQTVAAQ9bH/CLcFGQpFLd7g2gcBwrvPV5rebJW0Wc/03fjDMHnT10GIy6WzFO/TJxroXpF5y2MFbPIWYnSacj0kbKaZ/ZAgL1jrLHw4nlmiVPs1eVkNAtu5XvsEke7cgF507Su9d7dKoWi9bW1J2vrPEQ6l0VDKCQAuxbgtGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mmKkVelQ; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770160680; x=1801696680;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EZdlmMuWubpZ64KCJhFpuoZeVdTV3W5B6LfNQyiAMMw=;
+  b=mmKkVelQfJgca0bE3OkgJlhc01vN3nxsZJAYKT4lJGOalJYrcqB6Lnnu
+   7spUMagRNXBCdXpH/msvC/qzSEj+nO6eDFkUZAz3uicjRqh0MtYg2QSlY
+   xBpFBA2H+gB8vo/HOlER6Df2yGAs6JuFcYAsFL2mkCxetc0q5+MUdmNto
+   aOlJK0cbigYdVv3Ae9j+W2N8DaCJ1ergOfYT0URNWSzHnpletRC3YHjFr
+   0us2UoBet45r8S4SIbDItRNGHs1cJ2sjsQ3x//QO+L4mF0GG0iIcY5w5I
+   tWt1ZyRakWGVFf/Bihp41j/dLKyW/M8fZ+WOKH6bjpnnlAZjgs5an+pT9
+   g==;
+X-CSE-ConnectionGUID: 5NLOROeIQeeehEErRwrxrw==
+X-CSE-MsgGUID: K9B+hyvGSBCK4+wRwltT6w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="74963116"
+X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; 
+   d="scan'208";a="74963116"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 15:17:59 -0800
+X-CSE-ConnectionGUID: 2IkFBlUsTcS6R4HXxNf7Cg==
+X-CSE-MsgGUID: 5EuLEejTTJyLpfjkyQPWVQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; 
+   d="scan'208";a="214716393"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 03 Feb 2026 15:17:57 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vnPec-00000000hHo-3x4c;
+	Tue, 03 Feb 2026 23:17:54 +0000
+Date: Wed, 4 Feb 2026 07:17:08 +0800
+From: kernel test robot <lkp@intel.com>
+To: Hugo Villeneuve <hugo@hugovil.com>, hvilleneuve@dimonoff.com,
+	dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	hugo@hugovil.com
+Subject: Re: [PATCH 2/2] Input: charlieplex_keypad: add GPIO charlieplex
+ keypad
+Message-ID: <202602040703.1Bu56Htu-lkp@intel.com>
+References: <20260203155023.536103-3-hugo@hugovil.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260203155023.536103-3-hugo@hugovil.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	TAGGED_FROM(0.00)[bounces-262426-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[khilman@baylibre.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-262427-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[hugovil.com,dimonoff.com,gmail.com,kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	DBL_PROHIBIT(0.00)[0.0.0.11:email];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre-com.20230601.gappssmtp.com:dkim,baylibre.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 17E80DF9AF
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,01.org:url]
+X-Rspamd-Queue-Id: 136CFDFA3E
 X-Rspamd-Action: no action
 
-Rob Herring <robh@kernel.org> writes:
+Hi Hugo,
 
-> On Thu, Jan 22, 2026 at 05:14:00PM -0800, Kevin Hilman (TI) wrote:
->> Add of_genpd_[add|remove]_subdomain_map() helper functions to support
->> hierarchical PM domains defined by using power-domains-map
->
-> power-domain-map. No 's'.
->
->> property (c.f. nexus node maps in DT spec, section 2.5.1).
->> 
->> This enables PM domain providers with #power-domain-cells > 0 to
->> establish subdomain relationships via the power-domain-map property,
->> which was not previously possible.
->> 
->> These new helper functions:
->> - uses an OF helper to iterate to over entries in power-domain-map
->> - For each mapped entry: extracts child specifier, resolves parent phandle,
->>   extracts parent specifier args, and establishes subdomain relationship
->> - Calls genpd_[add|remove]_subdomain() with proper gpd_list_lock mutex protection
->> 
->> Example from k3-am62l.dtsi:
->> 
->>   scmi_pds: protocol@11 {
->>       #power-domain-cells = <1>;
->>       power-domain-map = <15 &MAIN_PD>,  /* TIMER0 */
->>                          <19 &WKUP_PD>;  /* WKUP_TIMER0 */
->>   };
->> 
->>   MAIN_PD: power-controller-main {
->>       #power-domain-cells = <0>;
->>   };
->> 
->>   WKUP_PD: power-controller-main {
->>       #power-domain-cells = <0>;
->>   };
->> 
->> This allows SCMI power domain 15 to become a subdomain of MAIN_PD, and
->> domain 19 to become a subdomain of WKUP_PD.
->
-> One concern I have here is generally *-map is transparent meaning when 
-> you lookup <&scmi_pds 15>, &MAIN_PD is returned as the provider. It's 
-> also possible to have a map point to another map until you get to the 
-> final provider. The only way we have to support both behaviors is the 
-> consumer has to specify (i.e. with of_parse_phandle_with_args_map() vs. 
-> of_parse_phandle_with_args()), but the consumer shouldn't really know 
-> this detail.
->
-> Maybe a transparent map of power-domains would never make sense. IDK. If 
-> so, then there's not really any issue since the pmdomain core handles 
-> everyone the same way.
+kernel test robot noticed the following build warnings:
 
-I don't really know enough about potential usage of maps to know if
-there's ever a usecase for transparent maps.  However, the problem I'm
-trying to solve is less about transparent maps, and more about
-describing hierarchy in a situation where "leaf" domains of the same
-type (e.g. SCMI) can have different parent domains.
+[auto build test WARNING on ed8a4ef29da3821ee3155d3b1925fa67fc92aae2]
 
-When I first proposed this[1], I didn't use a map, but you suggested I
-try using a map[2].  So I'm not sure if I misunderstood what you
-proposed, or if now that you see it implemented, you're second guessing if
-the map is the right approach.
+url:    https://github.com/intel-lab-lkp/linux/commits/Hugo-Villeneuve/dt-bindings-input-add-GPIO-charlieplex-keypad/20260204-001338
+base:   ed8a4ef29da3821ee3155d3b1925fa67fc92aae2
+patch link:    https://lore.kernel.org/r/20260203155023.536103-3-hugo%40hugovil.com
+patch subject: [PATCH 2/2] Input: charlieplex_keypad: add GPIO charlieplex keypad
+config: parisc-randconfig-r072-20260204 (https://download.01.org/0day-ci/archive/20260204/202602040703.1Bu56Htu-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 8.5.0
+smatch version: v0.5.0-8994-gd50c5a4c
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260204/202602040703.1Bu56Htu-lkp@intel.com/reproduce)
 
-Kevin
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202602040703.1Bu56Htu-lkp@intel.com/
 
-[1] https://lore.kernel.org/r/20250528-pmdomain-hierarchy-onecell-v1-1-851780700c68@baylibre.com
-[2] https://lore.kernel.org/r/20250528203532.GA704342-robh@kernel.org
+All warnings (new ones prefixed by >>):
+
+   drivers/input/keyboard/charlieplex_keypad.c: In function 'charlieplex_keypad_init_gpio':
+>> drivers/input/keyboard/charlieplex_keypad.c:120:6: warning: variable 'nkeys' set but not used [-Wunused-but-set-variable]
+     int nkeys;
+         ^~~~~
+
+
+vim +/nkeys +120 drivers/input/keyboard/charlieplex_keypad.c
+
+   115	
+   116	static int charlieplex_keypad_init_gpio(struct platform_device *pdev,
+   117						struct charlieplex_keypad *keypad)
+   118	{
+   119		bool active_low;
+ > 120		int nkeys;
+   121		int i;
+   122	
+   123		keypad->line_gpios = devm_gpiod_get_array(&pdev->dev, "line", GPIOD_IN);
+   124		if (IS_ERR(keypad->line_gpios))
+   125			return PTR_ERR(keypad->line_gpios);
+   126	
+   127		keypad->nlines = keypad->line_gpios->ndescs;
+   128	
+   129		if (keypad->nlines > MATRIX_MAX_ROWS)
+   130			return -EINVAL;
+   131	
+   132		nkeys = (keypad->nlines * keypad->nlines) - keypad->nlines;
+   133	
+   134		active_low = device_property_read_bool(&pdev->dev, "gpio-activelow");
+   135	
+   136		for (i = 0; i < keypad->nlines; i++) {
+   137			gpiod_set_consumer_name(keypad->line_gpios->desc[i], "charlieplex_kbd_line");
+   138	
+   139			if (active_low ^ gpiod_is_active_low(keypad->line_gpios->desc[i]))
+   140				gpiod_toggle_active_low(keypad->line_gpios->desc[i]);
+   141		}
+   142	
+   143		return 0;
+   144	}
+   145	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
