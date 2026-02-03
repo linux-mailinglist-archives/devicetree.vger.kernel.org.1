@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-262428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262429-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CEcsNM2CgmneVgMAu9opvQ
-	(envelope-from <devicetree+bounces-262428-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 00:20:45 +0100
+	id cCf1MTSDgmkyVwMAu9opvQ
+	(envelope-from <devicetree+bounces-262429-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 00:22:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41096DFAF2
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 00:20:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DA52DFB5E
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 00:22:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 908E1300C7D3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 23:19:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4CD0F30C5E1E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 23:21:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96072320CBE;
-	Tue,  3 Feb 2026 23:19:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 531E8320CBE;
+	Tue,  3 Feb 2026 23:20:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BZ+bG4DI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eNMZfLj9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD67986348
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 23:19:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FB7C3148C1
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 23:20:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770160787; cv=none; b=EohYFpPzBAf11v2b1T027zjWfN2e5qTCSQnZpsEsndCSegCi6/gpjOzO6XjZlJh/4nAc5JTLfqa6U2gc8lza04oMGGZJ7PA4W3cdLw76V+yHnNTc+sJFBKdSN7AZi/E3dpp9GdhoBdnSS/LOqrvcXr4Tf/Y+32GdE5qssomqBQs=
+	t=1770160859; cv=none; b=V9CfBgHO1OjTXcoCY1dG3P0Mu3WRY5LXDkKelnyYTp2ZbBTrwLWghCcpMFyvrzHgeMLAH++hmr28YBpI+c/eK65eZk0779ExzD4RvIl+Sq8MaOGjt4nyuepXsZeEcSRl/6er3Y855tERYdqs0fOOCGH+4SiG7WxT9O9rNkp3IEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770160787; c=relaxed/simple;
-	bh=QmJIRkoJvSC1+X5XmHnKi501SEuHKyJrim2KrRQ9zFg=;
+	s=arc-20240116; t=1770160859; c=relaxed/simple;
+	bh=DBlsEnCNWOdgU65s3UGQhrlX8AWLWkEiqvqbN717n08=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=slppaDK9rQj7A0gh6lwJGx7frFE+pI3z93rvzSIrfHRecL/ehRvFZfc/+g8I931dsuulCL0Lv5DJvH2oUpTL9CWg6aPjACMRqG+awkPySAtuWwZUXrXSQo5a5TvIxr/476nydQGRNLz/w0hKdYKw9Cll6I7gKnmE+Y0mN4wP/CA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BZ+bG4DI; arc=none smtp.client-ip=209.85.128.65
+	 In-Reply-To:Content-Type; b=qb2Qra0idtyYmqKKPfEfXTWaPEixkCLDJL5sah8XQDfN7KqcCaIQBG8gAs/pffCJX8YOQeZ/rw4i76xp+RNtUkRIJdJSj97Sd3iPsndLxsJTKoW11V2QaY8A8o1jD+jCutOK0JYvkfShH5aMsIbLZfGV/rX87yLUgt5w9sNj+Ao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eNMZfLj9; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-4801ea9bafdso715065e9.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 15:19:44 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-48069a48629so63851935e9.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 15:20:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1770160783; x=1770765583; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1770160854; x=1770765654; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nUf/+8BbxtoTRhkrLvjqMjX8iWnPM8A43bKR4Om6EwE=;
-        b=BZ+bG4DIorv3Ms/VAg1NzEFZ9dK0XKKnWYUFIoEjjsTpLTi6DGrMlEw3ptbVClWDKS
-         6ueTSgQgEvee72itnYjh6LkSB2u0NBM07EpK+KKlDkbwUf73M3R2nSPR/5l/C4xycTh/
-         WKofmE121djfiy+TaVV4UXI/GAhV9SvobJOPdmO6fIDNxBFyIN0c64tOD5zxHt0xPNrU
-         LymDtom+q9w3cgKhYHTewqGxqTtrwy1Fk2wGqkCwVlFqtjy+g1/5niKy5KqRFp/2zt/h
-         4ilr/Y8BFT4RAXnmDyHWgQ/Jxoancq4ShpxKcOl1p74XU9ecVnFJ43f+HxokvG26fmCV
-         VLqA==
+        bh=kP3cETuc1CkrPsq53s7PbxZQOsGNVLDKkivfucBoVDY=;
+        b=eNMZfLj9tkKmMOs7kikYt2+qc5gx6WoZ55jn8TNRRC1cjpDOasTzJW4rUI/5wNRWXq
+         SrUNGKbwjHVJaBK8MvjKvfPOqTXD+6NmgLuNSZDtt1+g5LlL9yC3hN7vCoX2zFOgAjpp
+         22GvTZLF/qw5MTX8mUbdvMDfxgvkiKU8sHhvdNk0VM+mBPFdmgb5ySpZXtQuiSwf3+QR
+         JrW390zUgThE72BN26Quk/LbSP0iU9l9SsxBvkKXkyc1Xt76uFILq18uUQjDaYicR+Ay
+         YryAXBbzSUvq1vjS/HnkG/1uQRRETkKfaDj54bMCoszy1nxEkbudE7q4C7KfVf+E0+is
+         ct7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770160783; x=1770765583;
+        d=1e100.net; s=20230601; t=1770160854; x=1770765654;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=nUf/+8BbxtoTRhkrLvjqMjX8iWnPM8A43bKR4Om6EwE=;
-        b=kgssPiIhFiGvOH6kXhDLkSVhY2P2nlBPz/4cxcszaVRXf/Apbv0I+YUrPwMIbYB5bK
-         xXYu4BD6idauzJE2QQwubwOK2+ZD6gKlWRo2dagyH2affp5OaC2iRWpuVWsu6VPWN/63
-         ibqSYWBr+ULs7N2eOThOttEEZPr73heOZqrDMl2eSIW6A85RVTy6CFZW6e07Ges6zfgM
-         Sx83pjPRePK7NHzehffDfGfzHwkGpUURDIThtdr2aVmjdlUjOVzDl0OMj/226wVElkLD
-         icBLTU7JzrvvClORDhL9Y274UdEtxn43PlXvXVz7QaQWNkIKTrDMFRZESIzNtMF9IBb1
-         g0rQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUTyT0RkPwIkzgvXjbSkIjnQgT1t9DppX/47siMcJ2f089p7iQ9sn4/govrkktNuIXdz/0qTxxTorxP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwA/XXKNYNdr8cCXPkK18Fl4sbYEmH7ZqWNbLEmCIk+GAD8/CVb
-	TPut38w9J95gk5Z7fvLYQXCMrdaEx3wof8csLSUNwIWs1eisZb7bVOQPDfXMCOZx2ig=
-X-Gm-Gg: AZuq6aIIpImPtJ6N5ljgiN4K590fx92GXV+pjbtPDBQWMQeNOu/eQat8PRi1V9HxlLp
-	r+5UkDut4GTHLOOkMj2zcBjFBxbBAsO3ZRN9SNQczFJNM0sEujBAwGjArC02StKrylRMLRyxaNb
-	IcYJcCVQtXUrqwBrgCpyvRlfS0P9AIqrDcoscaQVY0O0U3thOb1be88GfwRLj6Zd4s92uEwZATC
-	GGGZsL2OeD2zgfDsyXP2mKEqnFOHfv5TP35qgaZW1s1+IgRnagqiGeizSRk6da8/FDM8iw9YGSi
-	0Bvn0I9Nf18wfT5M0F7lUQFCd40Cw3Yw4CyqH75NiiPyH2sat3OV5KUVhKdRDvPHmCMknaWyzMh
-	wQArFwoFcxlQjn/NtOtui1LeY8g/NNHe0EDiPoJ1WWBFo978EIzCvNrvcZoQn98ui+B2kc0rG6J
-	Ml4396QRB1BMy+BYQuYIMGYUXZnVKM9duqGtQgQ9f3wEBXyaJMny0U
-X-Received: by 2002:a05:600c:1c17:b0:480:5951:fc1e with SMTP id 5b1f17b1804b1-4830e930f73mr17628865e9.11.1770160783238;
-        Tue, 03 Feb 2026 15:19:43 -0800 (PST)
+        bh=kP3cETuc1CkrPsq53s7PbxZQOsGNVLDKkivfucBoVDY=;
+        b=qowZQWpk/ANzLoi55zNZW7x8UoCilgAi6s1GjcEjuEmZVH60nmugeznd+2XdqFHeEY
+         HonoZPEIQqgcWeaA7htky5l3MzdL4vaBtq8s5jppMJRlSunpG5qUuGHHnYOpMB+qrAdu
+         qAoPHx9VuAYKQ6+PGKSjn7JTF5qnGU0QHgDCyJg+q0/di2AvUqeLqAzcptziTrbJk7sG
+         YQUoKhFckH1KJ18lCdtxVJ0ojchVd1xrUpp29jM8E82tyqsnpjQe2SI62jvze+YpMSqw
+         wXyjlq/yOXEXRB8EGqAnRSC8zB+RhKwFzauShuFfUJTwYbLK7sGBOZjRgycclmhiRqlb
+         UD0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUCF1JUMVEvIaqlq5Bz84I+tQcJEes0DF0jwYm054uFM+DRu6cUw9pafTo28UVy/48F5CHEuyR0YDp6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTMcq+o9d7zF5O/LbeH43mUw4lBeRWi9q0WSfFEvEwHh5Jm9pN
+	hC81LcVUjMOjmKF+IHvwBwmPLN/E0cddqLd4iBqAD9ZB1DmafQO9dDo1XyD0YMIISPY=
+X-Gm-Gg: AZuq6aJ2rtqIRJeUXQwVEZ005Idz2sFjl7jIRDX2SjuMfQRxyvbZXk+W8r28ExzRnZL
+	b5a1ePE8gQJXTcTEQiXwzApYO9P0eoAum6dAoAIK/LxiruEqc6rYakhVDIKRUujAPFjYsln9dup
+	ESNylIIsXoLT6Mv44lovL9C9DtbM4yStd0LZyb9esmqpJodo5IFm0cFzEkkDFblxT0PpKdZXvZq
+	7UCz7OwtBpn5EsW52N2UEdo9hTl56tMGJEkB+jBMkElatoG2mdnGuZyhA3xuQryIkY8e8RtdgIY
+	NRsLSd5WM2GvU1qV8jF4ahPyXJKq3Wa8sig1iklZArWzbgJvoJqSXPWBF15lmVLbvufdMMNiCAB
+	tlcCPmAOIGW/x0I6l6dhIEsvolddN1VmibAOmDjtXzBX9qmD0RIj8zZhlNWWLGiL909knR+aQvN
+	jVYZ3wLEq+DrgAME8gsEkbc06HX6gxabnE1tHbpc4dqUsnForeQqe6gZsVnpNxLkY=
+X-Received: by 2002:a05:600c:5491:b0:46f:c55a:5a8d with SMTP id 5b1f17b1804b1-4830e935736mr15228825e9.4.1770160854462;
+        Tue, 03 Feb 2026 15:20:54 -0800 (PST)
 Received: from [192.168.0.40] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483108ec315sm2221095e9.8.2026.02.03.15.19.41
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4830fe86a7bsm4055075e9.8.2026.02.03.15.20.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Feb 2026 15:19:42 -0800 (PST)
-Message-ID: <0c3acd1c-5860-4819-9b36-6935137deea8@linaro.org>
-Date: Tue, 3 Feb 2026 23:19:39 +0000
+        Tue, 03 Feb 2026 15:20:53 -0800 (PST)
+Message-ID: <e31d9865-5002-49fa-b6f0-06328d3d6a12@linaro.org>
+Date: Tue, 3 Feb 2026 23:20:51 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,8 +86,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/8] dt-bindings: clock: qcom,sm8250-videocc: account
- for the MX domain
+Subject: Re: [PATCH v2 2/8] pmdomain: de-constify fields struct
+ dev_pm_domain_attach_data
 To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
  Bjorn Andersson <andersson@kernel.org>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
@@ -110,11 +110,11 @@ Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
  Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 References: <20260201-iris-venus-fix-sm8250-v2-0-6f40d2605c89@oss.qualcomm.com>
- <gfDLl0QXQ6wHp-p_Lm8sRAgCea7hCkOH5OWeF2Rj3rLMllCVIut5Je7AqhSNCTptN0w13hXwkQvP9rjH9hNUHw==@protonmail.internalid>
- <20260201-iris-venus-fix-sm8250-v2-1-6f40d2605c89@oss.qualcomm.com>
+ <3gNulq9mtM9Uxcj8IfIzusuPDhOGNCEcCGQrxhCBiYbh2DCGhUpRYpLgY-KfrSj746f6RWqzl90Fge-7U_CsUA==@protonmail.internalid>
+ <20260201-iris-venus-fix-sm8250-v2-2-6f40d2605c89@oss.qualcomm.com>
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Content-Language: en-US
-In-Reply-To: <20260201-iris-venus-fix-sm8250-v2-1-6f40d2605c89@oss.qualcomm.com>
+In-Reply-To: <20260201-iris-venus-fix-sm8250-v2-2-6f40d2605c89@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -122,7 +122,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -130,7 +130,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[28];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262428-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262429-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[linaro.org:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -139,168 +139,51 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,linaro.org:mid,quicinc.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,ab00000:email]
-X-Rspamd-Queue-Id: 41096DFAF2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,linaro.org:email,linaro.org:dkim,linaro.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5DA52DFB5E
 X-Rspamd-Action: no action
 
 On 01/02/2026 10:48, Dmitry Baryshkov wrote:
-> To configure the video PLLs and enable the video GDSCs on SM8250,
-> platform, the MX rail must be ON along with MMCX. Split the bindings
-> file in order to provide separate file utilizing MMCX and MX power
-> domains.
+> It doesn't really make sense to keep u32 fields to be marked as const.
+> Having the const fields prevents their modification in the driver.
+> Instead the whole struct can be defined as const (if it is constant).
 > 
-> Fixes: dafb992a95e1 ("dt-bindings: clock: add SM8250 QCOM video clock bindings")
+> Fixes: 161e16a5e50a ("PM: domains: Add helper functions to attach/detach multiple PM domains")
+
+This doesn't really fix a bug though.
+
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 > ---
->   .../bindings/clock/qcom,sm8250-videocc.yaml        | 85 ++++++++++++++++++++++
->   .../devicetree/bindings/clock/qcom,videocc.yaml    | 20 -----
->   2 files changed, 85 insertions(+), 20 deletions(-)
+>   include/linux/pm_domain.h | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8250-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8250-videocc.yaml
-> new file mode 100644
-> index 000000000000..341d3cbb7cbb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8250-videocc.yaml
-> @@ -0,0 +1,85 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,sm8250-videocc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Video Clock & Reset Controller
-> +
-> +maintainers:
-> +  - Taniya Das <quic_tdas@quicinc.com>
-> +
-> +description: |
-> +  Qualcomm video clock control module provides the clocks, resets and power
-> +  domains on Qualcomm SoCs.
-> +
-> +  See also::
-> +    include/dt-bindings/clock/qcom,videocc-sm8250.h
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - qcom,sm8250-videocc
-> +
-> +  clocks:
-> +    items:
-> +      - description: AHB
-> +      - description: Board XO source
-> +      - description: Board active XO source
-> +
-> +  clock-names:
-> +    items:
-> +      - const: iface
-> +      - const: bi_tcxo
-> +      - const: bi_tcxo_ao
-> +
-> +  power-domains:
-> +    items:
-> +      - description:
-> +          A phandle and PM domain specifier for the MMCX power domain.
-> +      - description:
-> +          A phandle and PM domain specifier for the MX power domain.
-> +
-> +  required-opps:
-> +    items:
-> +      - description:
-> +          A phandle to an OPP node describing required MMCX performance point.
-> +      - description:
-> +          A phandle to an OPP node describing required MX performance point.
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - clock-names
-> +  - '#power-domain-cells'
-> +  - power-domains
-> +  - required-opps
-> +
-> +allOf:
-> +  - $ref: qcom,gcc.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,rpmh.h>
-> +    #include <dt-bindings/power/qcom,rpmhpd.h>
-> +    clock-controller@ab00000 {
-> +      compatible = "qcom,sm8250-videocc";
-> +      reg = <0x0ab00000 0x10000>;
-> +      clocks = <&gcc_gcc_video_ahb_clk>,
-> +               <&rpmhcc RPMH_CXO_CLK>,
-> +               <&rpmhcc RPMH_CXO_CLK_A>;
-> +      clock-names = "iface",
-> +                    "bi_tcxo",
-> +                    "bi_tcxo_ao";
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +      #power-domain-cells = <1>;
-> +      power-domains = <&rpmhpd RPMHPD_MMCX>,
-> +                      <&rpmhpd RPMHPD_MX>;
-> +      required-opps = <&rpmhpd_opp_low_svs>,
-> +                      <&rpmhpd_opp_low_svs>;
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
-> index f4ff9acef9d5..8676c7e22b4c 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
-> @@ -19,7 +19,6 @@ description: |
->       include/dt-bindings/clock/qcom,videocc-sc7280.h
->       include/dt-bindings/clock/qcom,videocc-sdm845.h
->       include/dt-bindings/clock/qcom,videocc-sm8150.h
-> -    include/dt-bindings/clock/qcom,videocc-sm8250.h
+> diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
+> index f6f6d494f728..b299dc0128d6 100644
+> --- a/include/linux/pm_domain.h
+> +++ b/include/linux/pm_domain.h
+> @@ -49,8 +49,8 @@
 > 
->   properties:
->     compatible:
-> @@ -30,7 +29,6 @@ properties:
->             - qcom,sdm845-videocc
->             - qcom,sm6350-videocc
->             - qcom,sm8150-videocc
-> -          - qcom,sm8250-videocc
->         - items:
->             - const: qcom,sc8180x-videocc
->             - const: qcom,sm8150-videocc
-> @@ -128,24 +126,6 @@ allOf:
->               - const: iface
->               - const: bi_tcxo
+>   struct dev_pm_domain_attach_data {
+>   	const char * const *pd_names;
+> -	const u32 num_pd_names;
+> -	const u32 pd_flags;
+> +	u32 num_pd_names;
+> +	u32 pd_flags;
+>   };
 > 
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          enum:
-> -            - qcom,sm8250-videocc
-> -    then:
-> -      properties:
-> -        clocks:
-> -          items:
-> -            - description: AHB
-> -            - description: Board XO source
-> -            - description: Board active XO source
-> -        clock-names:
-> -          items:
-> -            - const: iface
-> -            - const: bi_tcxo
-> -            - const: bi_tcxo_ao
-> -
->   unevaluatedProperties: false
-> 
->   examples:
+>   struct dev_pm_domain_list {
 > 
 > --
 > 2.47.3
 > 
 > 
+
+Other than that.
+
 Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
