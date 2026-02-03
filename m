@@ -1,263 +1,230 @@
-Return-Path: <devicetree+bounces-262037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262038-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IFHMEpF7gWmOGgMAu9opvQ
-	(envelope-from <devicetree+bounces-262037-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 05:37:37 +0100
+	id QMiYHdh8gWnBGgMAu9opvQ
+	(envelope-from <devicetree+bounces-262038-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 05:43:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3D8CD470E
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 05:37:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE0A8D474E
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 05:43:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2016030579E7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 04:37:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 10F993059A8A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 04:42:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF4821146C;
-	Tue,  3 Feb 2026 04:37:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7F20256C8B;
+	Tue,  3 Feb 2026 04:42:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ie6s0gDS";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="J8Q/cLxK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K4yVmeve"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5744121FF46
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 04:37:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770093449; cv=none; b=Eifwt+/+zh6rzWh9NWBWmenXw/h+mZ/0Hs3PE08Xw8beeRrSx5zbyoudqXJoyP2/N5+qz5cV91j2nlONKOvV2BqrlZptsy7+NbVfAqAEkL0SMPOScIUKgS1c6vdpvJzKh38nSrI5qFEK9FbkEb6O/fkEvksCDwQitTKA9QeJpWA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770093449; c=relaxed/simple;
-	bh=zLhE0RW0NZylYhKvTkp+IqmliyhBD4c5dP75SGCxvao=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M2RtnFGdR4K2YpSCz1NzHAj/k0s/PJDJvzMbBVW4VSw56+n5Nj8xGc4a99uAu0mhwIqQbAvn+bMADk27sKZ9OaXyzBC9Uc5rGo9/kkNGLTS9HY7FwRRekC9oay8fi+Kxh+StX7vkng39/9WrIZ7E6f0PjJkyjOoFgY/NnAnwohI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ie6s0gDS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=J8Q/cLxK; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 612Kddt9256051
-	for <devicetree@vger.kernel.org>; Tue, 3 Feb 2026 04:37:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9RcJ4mSwuW7170LSx3yMtgBS7L24sa3Tcu4+H5j24SE=; b=Ie6s0gDSBxSomd+R
-	kgOsIoU/ICGN4OC/BlftcJptL7DVaeGdXT9PX7JntUTafzoaZMznGIj92Ov18I4b
-	9QZQmESNtfx8gTatAA654rvAUAUOYAXojR5tazyRU+wXKdRGcX0Z3Us6lmvLqaV4
-	N2kdXd2027Fx+UrZrTJkh++CjekUH8w6pVsFoqu+rBG7fLEwFUmR0rLqbVnX1V38
-	cuIqwMlTCWAe0V0WNQCdcciPbfnYu/H+8exIfITZznOj0lCHa2/idCDxqILiELs/
-	/dyLX9xdsjcJFhYrnVD4rGexlkl8vLCz5UyZTmCHq3MU/is0GMxfumePqAPcZ+BL
-	7Hq6VA==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c2v0kjmhy-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 04:37:27 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-81e81fbbb8cso5000564b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 20:37:27 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40F87246798
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 04:42:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.172
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770093755; cv=pass; b=JtLpr28ZsYsAA1gNocIroOkJwwX7BZouxfuRcMko1FXNYOx15nN0LIKTyUpDrQOsnWrvO/vdZkiFR8MTVgXRxrtMxk2+fXGSTMMKuXY2hLCw9P2w16r5Kll1/jXReOkzoclGbkHCum5GMVF7fNp5OXffPoGy+hT4e8XdQI8mJHA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770093755; c=relaxed/simple;
+	bh=/8MeH1cttYJ+MwAM/CE8nR5NDqaziX7ysD507sQ8ToA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SMEGfwuYv9gZNFoalC1R+kZnzf6DPToMgb07OX/OvdRA3kDsSyuE38clzqgESGSFKlMR25f7vviIlQ/mCbeZx1GNfI3q6tnX+n3w+UXWi7/nIT5pep+o/gF+WeMzuppMne/56c1w2GFu/Q0BNswShtA9Pa7qKNP7OmDoYUdNhSU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K4yVmeve; arc=pass smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-382fb535b73so47609771fa.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 20:42:33 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770093752; cv=none;
+        d=google.com; s=arc-20240605;
+        b=JUVIa4sbqiFVEJZjMnYpwuDpk5mSfJdIjFPEOpDd/rSLOHoQwLYsPz0QGgievM+hWR
+         9FX9CzBvzDIIM0wV4BfDN7UkAl13ZwugCDewYrjaZa7mr7FjQOGm1JNm/47CxPrwO7mP
+         lbsaug3hPiSCM6EdQ7Vyd6ZneRDfeOLoZNefuCrK64nQnO+EGY6V+oP6XhmPN1IdjHEB
+         Ly0badTEmVorxF/9kWXJ3YmYe/hPeSU0ugyP63N8tvjU7v+AkUkD7E8Cyt2JVKIZhcpZ
+         iumOe3iL2rKHXyqlB80IfwtOxRSykuj2qyMH89NNsRAdqJL+izd/jORO7dge0Ql32trt
+         VS3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=WHEmHpURdScauMItQeuVnDL0KvlEqWGD4wZIXfVvz+0=;
+        fh=m08igErINlQQy0L0nIVLP+aX8EqjaWF0X7QquWCOGD0=;
+        b=bWBVMa9zq02vPbGzi5ywD4No1kc1Nj8Ny5nYgMqmmQm3huT/UuCe+93XfC7qpmLxjt
+         pZhFXP8LtvjeWuBHDeZyeT7l7Bj471UIDt8HQM964JEa1ZWxbgv0tSchUlotdUXCjccH
+         dIjtivM4JKbymkgwu0I6wXB1tSeA4c+UACp/ps9HbgvediWj2FOeolyM4jhpjtdAWG2q
+         gkh6wlhaqNgpn5S0/pvs7XPlPhhjAuLQYEkmSimRjIMYTuJSwQ6oz+cjhWz+hhpXAasB
+         ipC061tIcf5qieBlV/NsZHz5mMBsb2dxerixlqnthxyq0B2MZFqmhpBOZCc6pXkT/LRn
+         Hqlw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770093447; x=1770698247; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9RcJ4mSwuW7170LSx3yMtgBS7L24sa3Tcu4+H5j24SE=;
-        b=J8Q/cLxKKHGxtmKpen6bKxZaS+R4vziOXfG95GX1KBmShxtz6VoaOpZfqMFy5pY0aX
-         93DNs3MoKS5+ZL/VSzi9ZCJlzOLvgr+WAiu0+Gxoytfh2aY9C+vmlgvQQ1RsYTuPW9ek
-         zL5n5TUwW2hYuJ4I0gjrVcnQQOGsVW7966Dq5vDVyuYb4jXkFnvxiUv5fauQrQvPBLSQ
-         lC8brS72aIDDXhZ/eemWA+TieihupSZK5ZoiCn2+36K/RnUKKrZ0VB0jfJT/Fam8U4KZ
-         SpcETBd0vn/EIlyaDRxLX4Y6Q6ZJiLryD/IKfHsyUiS/lioyQdSr5HPC4xm5tK5ssycY
-         cdrA==
+        d=gmail.com; s=20230601; t=1770093752; x=1770698552; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WHEmHpURdScauMItQeuVnDL0KvlEqWGD4wZIXfVvz+0=;
+        b=K4yVmeveOTkS5/HVEaB9C2/2edMirWwViOLJbil1N3urqtMZHiSmZLPOCadJn9uRjv
+         QTXs7bcImIR/XSa9G/ntESm5fTDH1XIKgBqgPmNxnxmP9r1nptF6l0hIoTmWi7t8sMjt
+         ms5NZieuGpnfxb4YIZqK6aWGt7+T8C3o2sDSNmBRF3Grbua6pJCKX99Mwe9D0MWlFF2M
+         88E3bOtoNtq9LKve7nE3GdA4UbhBN3UEPkQLUFIWfr3w8VYx2Q7O+cCPRu0OCo581z91
+         Qld41P8MJDquQtNnIhs2DW89kSoxTbxZ8jF9jhnI0kakvGfdxjd7AYOQ8/eFMDhyuLNk
+         YHxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770093447; x=1770698247;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9RcJ4mSwuW7170LSx3yMtgBS7L24sa3Tcu4+H5j24SE=;
-        b=nAhA4mwIpDr2YnlDZ15lSsXO1VOCWBPjMUunDIVE2mnrebh3yRsuzijVmt4QSPItGE
-         7Y82wp/SLkLjc7a7dIvvtwUvIL8nj01CJb4l1TWikNxP0n0cmIoIGwM/Y4wQw7ZZa6Xp
-         jZMHSBnodS35IhhZsUzlJBafDx0XftyLPx1JWjO6mtWapTY1FW8LRO97RM6JORcsrcMd
-         NO3sHipw+tFg/65rNKUS+v5OgPHu6KKiN1Sg5wIttXhBbbWBP0pIAnh8BiYajBlWb2wr
-         bbnJY7hnwNavqqas+rs6qXmU9/38WEH2HXEjvTQq34gqO2hZVt9qAJLRJzDkceqilSfd
-         ZqUg==
-X-Forwarded-Encrypted: i=1; AJvYcCXf1R+phAjreb+e1Hkw/KgK+uf+vXHS+NbXu6tf6jVsPbqiDedOwvaeWqWqFoLrHsntU2xGK2okcxlq@vger.kernel.org
-X-Gm-Message-State: AOJu0YyacjF+E86Na4rDhYtU/dlwIhBDJL3G+9vNWWoLRx4JiM5KTsQM
-	qXlKN7gCp4XCdsH1JnhHgddzLIR96ni5A43A1yNEoQtb484SHqWEjYJ7+wYwR9K6v7jtnbh20Bh
-	eGRz6OhwYNyX28kzx60LEk+kh+8ZbcVXEv43ZzpLp6OQnibB5OD63vxQKNYWSxM5F
-X-Gm-Gg: AZuq6aI+W0CH6qpLWbKV9HaLbRdBijzULoOKs1mKPMZ8Wl2WoT494dQwu+J9NPronu6
-	14nCd+/b9u56pyr7sZLYN7r1M064g0zH/GHzSrWMwqeZkWUctZcGTOIRXIHkvkt/gPuWjEwOgCL
-	ovPcRHUJTrOXUv7aZ5q/INBMIf8vRxXQG8RRbbulxROYRqRPo9Azn/Fc7BrwzuF20I/OfjNCjAh
-	hJAxD+XRBAL/AEev4OU5rs5B/0QLEYiSVooHYOQF1v5o5zPNI8kISlJpevzkx6RyFuICIu31zcm
-	HLwkaR1k7aVwfXEAd3z15nzs27p54RB9wiaaBJVG9wl1cptLz5W21H0KI+vykVcUMwumtgKQbF+
-	1KVXekwoBSwvYvyJlD4/rbKDDPD27KUa2Aefnj8QcgWEiOKqlJO5UGyL0AHCwSvgebUAKazcEIf
-	//WoE=
-X-Received: by 2002:a05:6a00:4c0b:b0:7e8:4398:b36d with SMTP id d2e1a72fcca58-823ab76f49fmr13627850b3a.64.1770093446867;
-        Mon, 02 Feb 2026 20:37:26 -0800 (PST)
-X-Received: by 2002:a05:6a00:4c0b:b0:7e8:4398:b36d with SMTP id d2e1a72fcca58-823ab76f49fmr13627829b3a.64.1770093446384;
-        Mon, 02 Feb 2026 20:37:26 -0800 (PST)
-Received: from ?IPV6:2405:201:c409:b03f:1dee:4ab6:7c98:fcd7? ([2405:201:c409:b03f:1dee:4ab6:7c98:fcd7])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82379c21112sm17072133b3a.54.2026.02.02.20.37.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Feb 2026 20:37:25 -0800 (PST)
-Message-ID: <62860c39-18cc-4db7-89ab-f85a39e67974@oss.qualcomm.com>
-Date: Tue, 3 Feb 2026 10:07:22 +0530
+        d=1e100.net; s=20230601; t=1770093752; x=1770698552;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=WHEmHpURdScauMItQeuVnDL0KvlEqWGD4wZIXfVvz+0=;
+        b=P9YDbGE6940xrCFTfpXmOkdFhuKinA5HVWSl69qqZga2S4/qhwZ5tZOwFopdP9tcRc
+         hKC0JbNkRJw5kJqI/mtv8ji0SyWzdM87lQhUkazZ+wPDfNUCAesnOi9toZOlF1rCVb38
+         8yyIyergESkB6xo0d4wiJGx6Xixm6/JFneBnnVEYL4l/vzlF+S6mX7YyaWBU7XBBQLMw
+         g7/tewIULrn5xdH9UD3boTurx2JvnUT+JNwYOyNUUypQ2zr5MccKJLs4YSezzD5ByLzh
+         mleQjNfCmvxphHy7j3dU9XY79q58YrTmIuhUTLNc/J7BJnITaA+JwhGhORG3d4xXLkqd
+         7wyg==
+X-Forwarded-Encrypted: i=1; AJvYcCVt9vDL/k4EnLCusGEk3zZO3vP/O2Ig6p2URkQwJoclLAY/avVMvm6W8xqlFoVUz0833GaBRQL5aaxb@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDdU0uij2BcjwItYbEkh491T+vp3FFus/Uvg/TZTQ6LTjiykPX
+	PlbU7mVSGPNrkQhDbP7XrJowWVefsix4MOJZJN1DbE/8eAu0EklVhp/GnR1bXlvIvE29o4sYL6x
+	sB8DRZW12TQyCinMQnaoW4RHlso4HS1O3sKtMTv0=
+X-Gm-Gg: AZuq6aL2QJJajjwlpq+ByqffZ2+SaDuN1bXsXLgA9w4kE7OHuG4Ff3shZzpoBNIQsjL
+	QDMId4iS6WYjPZJAcGTVPMjepVIl3/6Eb0SvvoU4lG5Pb3Kh+tG0ozQQS2oenaiZerEoYgoXpUU
+	7RT3fJjUAuNZN+UAUXzPrpw/OCwHVTWIIWEegTf3fBQ75jZjZIzGKuLex5EvD2qjfVSBOEf2lXs
+	gdw3ZWAaxWnQF6O+t0xts2JihqYV9gxKO97jbKPSQ6GG9IktQRy9F9Uw1D/OLIZgAHYAbROGlPh
+	WdrJJij1Mdh8QXD2HulWPZ2X5O9/pL5789mKzXKSVw1BbWStXJRJHRbNKUqDKUMSG28=
+X-Received: by 2002:a2e:a54b:0:b0:385:c213:4d0 with SMTP id
+ 38308e7fff4ca-3864669c841mr57076771fa.33.1770093752129; Mon, 02 Feb 2026
+ 20:42:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] arm64: dts: qcom:
- qcs6490-rb3gen2-industrial-mezzanine: Add TC9563 PCIe switch nodes
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260203-industrial-mezzanine-pcie-v2-0-8579ed6bf931@oss.qualcomm.com>
-Content-Language: en-US
-From: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>
-In-Reply-To: <20260203-industrial-mezzanine-pcie-v2-0-8579ed6bf931@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=Reqdyltv c=1 sm=1 tr=0 ts=69817b87 cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=sYISKGJa3KB_DH2wkrwA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAzMDAzNCBTYWx0ZWRfX7H1CdV5L77v+
- lLnf17RKw7TMrs1e7DTRUHYflCLn5KNlbQtsw3cUWrls0sT5A2ATfLr3Kn9hIl1gwBfqQpc9Oxw
- xnKAGJjDoCnA1FvMxu2wyBWqeHQBvo+f7YJ6azzZrYsZN7DCzAn9rSaDy0rnoEfKONLq6w435BK
- gmBs5S6e80mX6LwrN66N3tW9R/jV2mSo2rFe7pmHuZQQRVRDJl2nlD2y49Yg5vcoQAPvBE7taX/
- uYnnp4hsAE9bFNwD3x+WQrkuNc1TeygNmvHX7epg48NzbgEQZsdjdXPLspriQaIChR3ejFR3Its
- REyCqGUC6pPYCSGPtuL1gsqSelUqy6/e7WjiNws73aWWzCeWKnEM5qj0H99F7NYAwo/t6STpkq/
- 1/suRGPZt/aRNVor8jCyUW6KOD3S/ftdFs6p6zDoBnnoUqj8b+TmjUWREyRezlTrf5DPXBZ+vwF
- RVqb7vyzId2sMDQMJEA==
-X-Proofpoint-GUID: slimQ0ZBU0tsf_XC1__h7LqaugMG9uu2
-X-Proofpoint-ORIG-GUID: slimQ0ZBU0tsf_XC1__h7LqaugMG9uu2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-03_01,2026-02-02_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 suspectscore=0 adultscore=0 lowpriorityscore=0
- clxscore=1015 phishscore=0 impostorscore=0 malwarescore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602030034
+References: <20260129-sm8550-abl-dtbo-v1-0-abca3be14024@gmail.com>
+ <20260129-sm8550-abl-dtbo-v1-3-abca3be14024@gmail.com> <7d473eubnez5gcbou6mguomeetpotp73q7cjol3kfjlg7pz5r3@yjsh4rd4mwbv>
+ <CALHNRZ80+KAfm2YHEoodBv_7jDZPZjtr-koo7q_N+aX+i1OfnA@mail.gmail.com> <osqwux5xkf4337gahljlkdvoeek6sudxcee3xqb5kp2ngqhwzj@6tz6xjj3cozl>
+In-Reply-To: <osqwux5xkf4337gahljlkdvoeek6sudxcee3xqb5kp2ngqhwzj@6tz6xjj3cozl>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Mon, 2 Feb 2026 22:42:20 -0600
+X-Gm-Features: AZwV_QiGtIQno5YJ8WByb9vDMG6D9IXqOcfdn8pPIGkyUNFp3ou3eV4gE9z_Px8
+Message-ID: <CALHNRZ8j4XWg_oVdPTTp+RPhsEtYrjR3iGusACgoa76dGL0U3A@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8550: Fix DTBO boot failure
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kumar Sharma <quic_vksharma@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	TAGGED_FROM(0.00)[bounces-262038-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262037-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[sushrut.trivedi@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[webgeek1234@gmail.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: A3D8CD470E
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com]
+X-Rspamd-Queue-Id: CE0A8D474E
 X-Rspamd-Action: no action
 
-Hi,
+On Sat, Jan 31, 2026 at 4:34=E2=80=AFAM Dmitry Baryshkov
+<dmitry.baryshkov@oss.qualcomm.com> wrote:
+>
+> On Sat, Jan 31, 2026 at 03:09:12AM -0600, Aaron Kling wrote:
+> > On Sat, Jan 31, 2026 at 1:47=E2=80=AFAM Dmitry Baryshkov
+> > <dmitry.baryshkov@oss.qualcomm.com> wrote:
+> > >
+> > > On Thu, Jan 29, 2026 at 01:46:32AM -0600, Aaron Kling via B4 Relay wr=
+ote:
+> > > > From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
+> > > >
+> > > > ABL requires certain things in the base dtb to apply a dtbo. Namely=
+:
+> > > >
+> > > > * The scm node must be named qcom_scm
+> > > > * The timer node must have a label named arch_timer
+> > > >
+> > > > This aligns the sm8550 soc dtsi with those requirements. Without th=
+ese
+> > > > in the base dtb, when ABL attempts to apply any dtbo, it will fail =
+to
+> > > > the bootloader menu.
+> > > >
+> > > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > >
+> > > Did Pavan provide an SoB to the patch?
+> >
+> > No. The change comes from the gunyah watchdog discussion here [0].
+>
+> Pavan, can we please get your SoB?
+>
+> >
+> > >
+> > > > ---
+> > > >  arch/arm64/boot/dts/qcom/sm8550.dtsi | 4 ++--
+> > > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot=
+/dts/qcom/sm8550.dtsi
+> > > > index 740e3c238e8ed0f162dd168291f6e307ace66e80..d7cc20e1931904e7c60=
+3b800089f00955ecec3b7 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> > > > +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> > > > @@ -329,7 +329,7 @@ cluster_sleep_1: cluster-sleep-1 {
+> > > >       };
+> > > >
+> > > >       firmware {
+> > > > -             scm: scm {
+> > > > +             scm: qcom_scm {
+> > >
+> > > This one is a definite no-go. Device nodes can't use underscores in
+> > > names. It has been told to Qualcomm for ages. If we didn't comply, it
+> > > doesn't give us a permission to break the rules.
+> >
+> > I have not been able to make ABL load a dtbo without this change so
+> > far, though I have had a suggestion from off list that I may need to
+> > try a different method of flashing changes. I have not yet had time to
+> > do so yet, however. Given this list came from a Qualcomm employee and
+> > worked as advertised, my tendency is to believe that it is the minimal
+> > required.
+>
+> I understand your point. But I'd really not encourage my colleagues into
+> thinking that it is okay (oh, it was landed for sm8550, so it's fine to
+> do it in future). And I can foresee this pattern to continue, because
+> even the latest downstream DTs I can see the qcom_scm node.
 
-Apologies for the error, this is v1 series.
+After further testing, it turns out that this change is not entirely
+required. Alexander Koskovich pointed out that some things apparently
+get cached by ABL and don't get cleared unless all external power
+sources are removed from the device and it is powered off. Previously,
+I was flashing new images, then doing normal reboots, and seeing the
+failures. However, if I leave the scm node as-is in mainline, flash
+that, fully power off the unit, then attempt to boot, the unit boots
+as expected. However, the other two changes in the series, namely the
+tz-log and timer labels, are still required. Not having this change
+will unfortunately make user install instructions more complex, but
+that is something we can handle. And the rest of the changes should be
+mainline admissible. I will drop this part of the patch in the next
+revision.
 
-Thanks
-
-On 2/3/2026 10:01 AM, Sushrut Shree Trivedi wrote:
-> Add nodes for the two additional TC9563 PCIe switches present on the
-> QCOM RB3Gen2 Industrial Mezzanine platform.
->
-> One of the TC9563 is connected directly to the PCIe0 root-port while
-> the second TC9563 switch is connected in cascade fashion to another
-> already available TC9563 switch on PCIe1 via the former's downstream
-> port (DSP). The final PCIe hierarchy on the Industrial Mezz platform
-> would look something like below:
->
->                     ┌────────────────────────────┐
->                     │                            │
->                     │                            │
->                     │                            │
->                     │            SoC             │
->                     │                            │
->                     │    PCIe0           PCIe1   │
->                     │    ┌───┐           ┌───┐   │
->                     └────└─┬─┘───────────└─┬─┘───┘
->                            │               │
->                            │               │
->                            │               │
->           ┌────────────────┘               └────────────────┐
->           │                                                 │
->           │                                                 │
->           │                                                 │
-> ┌────────┴─────────┐                            ┌──────────┴───────┐
-> │       USP        │                            │        USP       │
-> │                  │                            │                  │
-> │      TC9563      │                            │      TC9563      │
-> │                  │                            │                  │
-> │                  │                            │                  │
-> │ DSP1  DSP2  DSP3 │                            │ DSP1  DSP2  DSP3 │
-> └──┬──────┬─────┬──┘                            └───┬─────┬─────┬──┘
->     │      │     │                                   │     │     │
->     │      │     │                                   │     │     │
->     │      │     │                                   │     │     │
->     │      │     │                                   │     EP    ETHERNET
->     │      │     │                                   │
->     │      │     │                                   └──────┐
->     EP     EP    ETHERNET                                   │
->                                                             │
->                                                             │
->                                                   ┌─────────┴────────┐
->                                                   │        USP       │
->                                                   │                  │
->                                                   │      TC9563      │
->                                                   │                  │
->                                                   │                  │
->                                                   │ DSP1  DSP2  DSP3 │
->                                                   └──┬──────┬─────┬──┘
->                                                      │      │     │
->                                                      │      │     │
->                                                      │      │     │
->                                                      │      │     │
->                                                      │      │     │
->                                                      EP     EP    ETHERNET
->                                                                                         
->                                                                                         
->
-> Signed-off-by: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>
-> ---
-> Changes in v2:
-> - EDITME: describe what is new in this series revision.
-> - EDITME: use bulletpoints and terse descriptions.
-> - Link to v1: https://lore.kernel.org/r/20260131-industrial-mezzanine-pcie-v1-0-b3c2905dd768@oss.qualcomm.com
->
-> ---
-> Sushrut Shree Trivedi (2):
->        arm64: dts: qcom: qcs6490-rb3gen2-industrial-mezzanine: Add TC9563 PCIe switch node for PCIe0
->        arm64: dts: qcom: qcs6490-rb3gen2-industrial-mezzanine: Add second TC9563 PCIe switch node for PCIe1
->
->   .../qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso | 234 +++++++++++++++++++++
->   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts       |  12 +-
->   2 files changed, 240 insertions(+), 6 deletions(-)
-> ---
-> base-commit: 4f938c7d3b25d87b356af4106c2682caf8c835a2
-> change-id: 20260131-industrial-mezzanine-pcie-75dd851f5b04
->
-> Best regards,
+Aaron
 
