@@ -1,174 +1,432 @@
-Return-Path: <devicetree+bounces-262311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262312-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cGISL9YWgmmZPAMAu9opvQ
-	(envelope-from <devicetree+bounces-262311-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 16:40:06 +0100
+	id gNYzFvcXgmmZPAMAu9opvQ
+	(envelope-from <devicetree+bounces-262312-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 16:44:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BCC0DB601
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 16:40:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEC1BDB72F
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 16:44:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 58ACA30067AE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 15:38:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6F7EC303E2D4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 15:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04883B8D78;
-	Tue,  3 Feb 2026 15:38:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 603B13B9605;
+	Tue,  3 Feb 2026 15:40:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GBgssIku"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="SKicUJXV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f193.google.com (mail-qk1-f193.google.com [209.85.222.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C09592DB7AE;
-	Tue,  3 Feb 2026 15:38:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F77D3B95E3
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 15:40:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770133131; cv=none; b=qKoMN9WlI3oasBbTiawSWLqplVd5pCGlDk23cm3SSlY4tzTXG8Faxd0d+9KQsyrda6XHMYZTioKJV75mSyscR5SNANNrWlUyzcJzj0TNVEHo/7iCskbGUF/gH1rHLrsRcsp7MWJWzI0CmCPOSG6Ld5P48HlzRG9ZWb3FO7Mb7OQ=
+	t=1770133259; cv=none; b=cZdLHcYVzayqncWaTy6SY8sgbJ21vwcGBVivlux21Uu55pSvS336MWi9yZAe/iNYw8lGaL5zvgByhJzyiUOVPVnZ2J6j63uKx00vja1bhnPRMkPTzR2U+3h/guUOR6DIIk2b8ZrIsY3VGPks1i5zwz7qR6t3WXJGH0kdM+QrZ88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770133131; c=relaxed/simple;
-	bh=v6A3tzQV+HRR60fcN7UvQte2RTaFoOhouiuZBmHlwUo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uf0baLj1lngT5gahCD8VCsnfw1cCYoiw6jZcAOhSbMTnxpIeH+lMHVmvu4Po4s0PE8DANXEJPcPCbpG3keIbsKLmWQsRzXmBbj5Cdsk0WpR1QBUElzEk+Jb4jIcwrJUK5sK/8EkNAZeLC4YFt88mw/h5NbvAEat1K3Bl2BSQIqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GBgssIku; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770133130; x=1801669130;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=v6A3tzQV+HRR60fcN7UvQte2RTaFoOhouiuZBmHlwUo=;
-  b=GBgssIkuRYWfph58V7hnrhv+X0rmhuJsKvawXsoO39lllLvg1t3wi1mD
-   vDIsuqGWsZ8Fy2MPfz9YgqH7trUd0+ygkiIfZ2RNg23V2tlZDpa03srXA
-   whMDi8uyzDjvbl/vp72wWA+oHwf7fX3Y/h5BZCvpjZh35/h2WYiIfpiRz
-   Q6W8TMb6sMVRZM4QSYvMxMePq5VmLl33PJ5BNr340ZDZ4hDP37GCVPbB5
-   zedo+/sH+YGAUFGVEk29JRrTk66HW4OMOcQ7PlYkmGv/GXs0MmdOlAZp8
-   zlodwqaW2DBbUjqIcelEIw8qYaf6qLX35Y5fie/dt6wsTPIYDU9nRwG5T
-   g==;
-X-CSE-ConnectionGUID: LiiJYJOYTROV4Ie8kuAjqw==
-X-CSE-MsgGUID: pPogL6ENSY6/Y40CxG6Xwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="71206993"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; 
-   d="scan'208";a="71206993"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 07:38:49 -0800
-X-CSE-ConnectionGUID: qzRzXXumTp+KWyAZ51XLRg==
-X-CSE-MsgGUID: hbMs+Fx2QKOAknzldq2Rbg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; 
-   d="scan'208";a="209914900"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.99])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 07:38:45 -0800
-Date: Tue, 3 Feb 2026 17:38:43 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: rodrigo.alencar@analog.com
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v6 3/8] iio: test: add kunit test for fixed-point parsing
-Message-ID: <aYIWg9874VmIdJnA@smile.fi.intel.com>
-References: <20260130-adf41513-iio-driver-v6-0-cf46239026bc@analog.com>
- <20260130-adf41513-iio-driver-v6-3-cf46239026bc@analog.com>
+	s=arc-20240116; t=1770133259; c=relaxed/simple;
+	bh=2GolLxBI7M4FrQQ01gPdYp9MHSke1dJvpw9m0JW/AlM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=MxxEy1WFVjwjfegym1KVyBUfwpJqC2F7LyL+FcHDAv4FSfdF+AuCVjhOPbDMYER165BGp2dIs3mdE++CDEEcC4tAV8NfYIXzbk8p3/eR4J8jCFZVbFgFmTCBvoOAo04WVOkQU44WVmQc5QF2mbO+RhNt7mbx3bsO1mhyL+WduDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=SKicUJXV; arc=none smtp.client-ip=209.85.222.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
+Received: by mail-qk1-f193.google.com with SMTP id af79cd13be357-8c5389c3cd2so594037185a.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 07:40:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1770133256; x=1770738056; darn=vger.kernel.org;
+        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
+         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=2GolLxBI7M4FrQQ01gPdYp9MHSke1dJvpw9m0JW/AlM=;
+        b=SKicUJXVbyCi+jh+7oHFUk9zdm8/7Ov6NfLvUOnUq5LOK5g9LOdJjfalN+c7I9nYmB
+         Y27eWjoehA9uUl9dAbfEP6iySAzXrw9UdxroDEkKJo1HILQdZfVhz1SI/K4GndntPfOj
+         jInQXwDYS3jbqzkrIQQoELOnRavoi5ikmSWcuRGX2AjYl+hauZc5IBT6+hFqBta7hL0z
+         n3zNVX4nhIhX1Ai2/V8df/NrUoNZTb1y9rzI4CdT9raUxtKbciKmkjTmD4rTDsvyHs2r
+         FoFZwRwH7fIxnh4JyIpPyu+U1H7ZNIpsOSCqRI1L+su8+ZEzeSxS0psd03MXG4+/XWAi
+         xH1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770133256; x=1770738056;
+        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
+         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2GolLxBI7M4FrQQ01gPdYp9MHSke1dJvpw9m0JW/AlM=;
+        b=twW7J5tQ79VmT7vyYoc5sm3PJ1Oyqb7qZF52fJogQDho3jBu+vzaPPG4eFuNqJVM4F
+         jzY8IEWNAFiBFnwHvIk6ZaGOxJF+Yoj9jO71kk+xlsK6YNN52qDYJRqkG7//b7sB9CpU
+         /mjM5FKT2QxHRZIFtx9Ff6/KbEJBcNZhpV2rZoVgBw3TYl1fGCUlKh4oYIWvORnoQsnJ
+         rvMDomvpW2XI3kObOV8EjoXk5ZUNyBwhLspskvu75a57JKIBeJvTefyG99Se/MFsWIrU
+         rbuw7xttcLBaWVM5b9eTc6+LqxlTJMIUVeJMDzOKkEv/gs5V2mlLO5kg5hDPTNJvfTTn
+         nrxg==
+X-Forwarded-Encrypted: i=1; AJvYcCXVzBGESQ9Gv84PZLJ4k8p5fiUn77Ls7fykdqsv/ebx0gYv+uZ004O+tYsv86F5w4YlrqIQCrsZteWm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5f6+oEf3PHf6wTDEIa1O8n3ov7DQjnIFkLQDNMdfQjFxK/dbs
+	y7AS8cDG3VHNTVcRJN/Gg1bZxLcaaPauEqCgJNMFkHoEpp+1Dst6GRI1I+9Qj8eoMeg=
+X-Gm-Gg: AZuq6aLMYOJCtT5Q9+TcLKjQ4s+NLM70DtekVSdq8VDMtCORbSPbTWKy2479+YimRTa
+	8nhRL0hKcWdUMZcGJ8Jfnvu8+Rk3dXv33BIe/tPttHR43sGEiwRXLJGBgw7l1DQ9VAUWjfnh1eZ
+	BdpM8a+rkTJenIAzXVPx/xMDpm0mgoO7BMoFTgEHHINxIJ925xeH80bDOSCIfUJxxbvZvOD07tr
+	wGDGF7Oko/xqwIOQ/nJ17UZpAZ4FqSxp6fKgllVRkm0Y+hIiHqD8w/YUk73IHLOMVbpy0n1w92G
+	NCdwxe4/yBFL61LQdMsT9NqI6HQJ1rPIRhem69jdHHEK/lwzmwS6jrkm5CGqiiqTW74SUxVcm7T
+	w+ozXG0d9NDd0eP0ViYaTV/FHxgWZtkJpf6RBH0dvmVTmi6fJaJ+ShTFawp1za9h4luR/R/wLXH
+	aT547UCN5A0S3GaGs5/wYn/MQYXbg=
+X-Received: by 2002:a05:620a:7105:b0:8c6:d2ca:1d0e with SMTP id af79cd13be357-8c9eb2584c3mr2033310985a.11.1770133256006;
+        Tue, 03 Feb 2026 07:40:56 -0800 (PST)
+Received: from ?IPv6:2606:6d00:15:210e::5ac? ([2606:6d00:15:210e::5ac])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c711ba6c58sm1610151685a.23.2026.02.03.07.40.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Feb 2026 07:40:55 -0800 (PST)
+Message-ID: <db9016a39f612cc93ee070c1eba4e4471a89a5cd.camel@ndufresne.ca>
+Subject: Re: [PATCH] arm64: dts: imx8mq: Restore VPU G2 clock to 600MHz for
+ 4K60fps decoding
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: "Ming Qian(OSS)" <ming.qian@oss.nxp.com>, Marco Felsch
+	 <m.felsch@pengutronix.de>
+Cc: linux-media@vger.kernel.org, imx@lists.linux.dev,
+ ulf.hansson@linaro.org, 	Frank.li@nxp.com, peng.fan@nxp.com,
+ festevam@gmail.com, robh@kernel.org, 	benjamin.gaignard@collabora.com,
+ sebastian.fricke@collabora.com, 	linux-imx@nxp.com,
+ devicetree@vger.kernel.org, conor+dt@kernel.org, 	p.zabel@pengutronix.de,
+ linux-pm@vger.kernel.org, s.hauer@pengutronix.de, 	mchehab@kernel.org,
+ linux-arm-kernel@lists.infradead.org, eagle.zhou@nxp.com, 
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+ hverkuil-cisco@xs4all.nl, 	krzk+dt@kernel.org, shawnguo@kernel.org,
+ l.stach@pengutronix.de
+Date: Tue, 03 Feb 2026 10:40:52 -0500
+In-Reply-To: <cd07dc6e-1f19-4a59-8ee5-81a36d51bf1c@oss.nxp.com>
+References: <20260130084133.2159-1-ming.qian@oss.nxp.com>
+	 <df8d5d5f28870752e77ec74f34fea7ceb6e97286.camel@ndufresne.ca>
+	 <0b24716b-438c-4185-8a93-3a3879147c24@oss.nxp.com>
+	 <169eba79e8e1f906b1a0b59e22a531dfc7e57a1f.camel@ndufresne.ca>
+	 <5e3431c69da07557edb20a252c4759be8c857f08.camel@ndufresne.ca>
+	 <ca3a8042-1394-4925-9c61-dbfcbf4cf7d9@oss.nxp.com>
+	 <20260203083110.woan3gmc3qdh7nmm@pengutronix.de>
+	 <cd07dc6e-1f19-4a59-8ee5-81a36d51bf1c@oss.nxp.com>
+Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-okkgKqsgZ+IV64MKbOhB"
+User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260130-adf41513-iio-driver-v6-3-cf46239026bc@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[ndufresne-ca.20230601.gappssmtp.com:s=20230601];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[ndufresne.ca : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262311-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,linaro.org,nxp.com,gmail.com,kernel.org,collabora.com,pengutronix.de,lists.infradead.org,xs4all.nl];
+	DKIM_TRACE(0.00)[ndufresne-ca.20230601.gappssmtp.com:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262312-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nicolas@ndufresne.ca,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,intel.com:dkim]
-X-Rspamd-Queue-Id: 1BCC0DB601
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	REDIRECTOR_URL(0.00)[aka.ms];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ndufresne-ca.20230601.gappssmtp.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aka.ms:url,ndufresne.ca:mid]
+X-Rspamd-Queue-Id: AEC1BDB72F
 X-Rspamd-Action: no action
 
-On Fri, Jan 30, 2026 at 10:06:44AM +0000, Rodrigo Alencar via B4 Relay wrote:
 
-> Add kunit test cases that aims to verify expected behavior for
-> iio_str_to_fixpoint() and iio_str_to_fixpoint64().
-> To run the test, create a .kunitconfig file with:
-> 
-> CONFIG_KUNIT=y
-> CONFIG_IIO=y
-> CONFIG_IIO_FIXPOINT_PARSE_KUNIT_TEST=y
-> 
-> and run the command:
-> ./tools/testing/kunit/kunit.py run --kunitconfig=.kunitconfig
+--=-okkgKqsgZ+IV64MKbOhB
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the test cases!
-There are some nit-picks, otherwise
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+Le mardi 03 f=C3=A9vrier 2026 =C3=A0 16:53 +0800, Ming Qian(OSS) a =C3=A9cr=
+it=C2=A0:
+> Hi Marco,
+>=20
+> On 2/3/2026 4:31 PM, Marco Felsch wrote:
+> > [You don't often get email from m.felsch@pengutronix.de. Learn why this=
+ is important at https://aka.ms/LearnAboutSenderIdentification=C2=A0]
+> >=20
+> > Hi,
+> >=20
+> > sorry for jumping in.
+> >=20
+> > On 26-02-03, Ming Qian(OSS) wrote:
+> > > Hi Nicolas,
+> > >=20
+> > > On 2/3/2026 3:12 AM, Nicolas Dufresne wrote:
+> > > > Hi,
+> > > >=20
+> > > > Le lundi 02 f=C3=A9vrier 2026 =C3=A0 13:44 -0500, Nicolas Dufresne =
+a =C3=A9crit :
+> > > > > > This doesn't sound like just a VPU issue; it's related to the d=
+isplay or
+> > > > > > DDR.
+> > > > > > If not displayed, do the fluster test cases yield different res=
+ults at
+> > > > > > 600MHz and 300MHz?
+> > > > >=20
+> > > > > Didn't you run these tests before sending ? I can try again, but =
+in my
+> > > > > internal
+> > > > > notes, I wrote:
+> > > > >=20
+> > > > > =C2=A0=C2=A0=C2=A0 > Tested that, and everything becomes unstable
+> > > > >=20
+> > > > > That was before I figure-out the IRQ handler didn't handle except=
+ion bits that
+> > > > > didn't stop the decoder (or dry IRQ, which strangely is common fr=
+om the G2).
+> > > >=20
+> > > > Ran some fluster tests now. With this patch the results is not cons=
+istent
+> > > > anymore. Then I ran it with weston being started, and in the middle=
+ of the test
+> > > > the display turned black. Matches my past observation. We did repro=
+duce this on
+> > > > BSP kernel too. When the display goes black, the recent hantro driv=
+ers reports:
+> > > >=20
+> > > > [=C2=A0 827.581586] hantro-vpu 38310000.video-codec: frame decode t=
+imed out.
+> > > > [=C2=A0 827.720201] hantro-vpu 38310000.video-codec: not all macrob=
+locks were
+> > > > decoded.
+> > > >=20
+> > > >=20
+> > > > I have local patches to reduce the cascade of errors, so it likely =
+survived
+> > > > longer then last time. I will send these patches soon. The "not all=
+ macroblocks
+> > > > were decoded." is triggered by a bit in the status register that is=
+ not
+> > > > documented in NXP TRM. I found that bit in some VC8000D documentati=
+on (the
+> > > > sucessor of G2). I concluded it was the same meaning after looking =
+at the failed
+> > > > buffer visually, it is indeed missing couple of macroblocks near th=
+ end. Each
+> > > > time we see this error, the DCSS gives up and turn either black, or=
+ sometimes
+> > > > other color. The second case has been tracked to a DCSS Scaler unde=
+rrun, the
+> > > > first we don't know.
+> > > >=20
+> > > > Fluster command ran (two threads, never completes):
+> > > >=20
+> > > > ./fluster.py run -d GStreamer-H.265-V4L2SL-Gst1.0 -ts JCT-VC-HEVC_V=
+1 -j2 -t90
+> > > >=20
+> > > > Nicolas
+> > >=20
+> > > My test results for fluster differ from yours.
+> > > On my end, the results for JCT-VC-HEVC_V1 are consistent at both 300M=
+Hz and
+> > > 600MHz.
+> > > And results remained unchanged after multiple tests.
 
-...
+After more testing, the fluster test is stable for NV12/NV15 tiled output f=
+or me
+too. I'm running the tests with linear NV12/P010, which imply an extra set =
+of
+buffer. I will check if I can give you a easy way to test the linear format=
+s. I
+also have couple of streams that systematically breaks at specific spot (hi=
+gh
+complexity scenes) with the provided patch. As most licensed content, this =
+is
+not sharable as-is. I will try and see if I can find a way to share somethi=
+ng.
 
-> +#include <kunit/test.h>
+> > >=20
+> > > I'm not sure what caused the differences between us.
+> >=20
+> > Once it comes to system stability, you need to ensure that your
+> > bootstack is aligned e.g. same TF-A version and sometimes same
+> > bootloader since there might be workarounds/erratum applied by the boot
+> > firmware.
+> >=20
+> > Regards,
+> > =C2=A0=C2=A0 Marco
+> >=20
+>=20
+> Thanks for the reminder, and I agree.
+> I think we need to align our board environment first.
 
-+ errno.h // -ERANGE
+I do likely have slightly different bootchain, and of course all the HDMI
+component are downstream, but I can't really isolate the dramatic issue of =
+this
+overclock without a display component of some sort. Its a huge differentiat=
+or in
+the bandwidth consumption which is the main challenge on this SoC so far. 1=
+0bit
+videos makes things a lot worse fwiw.
 
-> +#include <linux/iio/iio.h>
+We did review latest IMX vendor firmware package and can confirm we are run=
+ning
+the latest memory training blob and HDMI firmware.
 
-+ limits.h // S32_MIN
+Nicolas
 
-> +#include <linux/math.h>
+> Regards,
+> Ming
+>=20
+> > >=20
+> > > Below are my test results:
+> > >=20
+> > > 600Mhz, 0.9v
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/regulator/=
+regulator_summary=C2=A0 |grep SW1C
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SW1C=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0=
+=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0 unknown=C2=A0=C2=A0 90=
+0mV=C2=A0=C2=A0=C2=A0=C2=A0 0mA
+> > > 825mV=C2=A0 1100mV
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/clk/vpu_g2=
+/clk_rate
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 600000000
+> > >=20
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ./fluster.py run -ts JCT-VC-HEVC=
+_V1 -d GStreamer-H.265-V4L2SL-Gst1.0 -j2 -t
+> > > 90
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ********************************=
+********************************************************************
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Running test suite JCT-VC-HEVC_V=
+1 with decoder
+> > > GStreamer-H.265-V4L2SL-Gst1.0
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Using 2 parallel job(s)
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ********************************=
+********************************************************************
+> > >=20
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ran 139/147 tests successfully=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 in 505.434 secs
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ran 139/147 tests successfully=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 in 505.350 secs
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ran 139/147 tests successfully=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 in 507.540 secs
+> > >=20
+> > > 600Mhz, 1.0v
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/regulator/=
+regulator_summary=C2=A0 |grep SW1C
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SW1C=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0=
+=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0 unknown=C2=A0 1000mV=
+=C2=A0=C2=A0=C2=A0=C2=A0 0mA
+> > > 825mV=C2=A0 1100mV
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/clk/vpu_g2=
+/clk_rate
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 600000000
+> > >=20
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ./fluster.py run -ts JCT-VC-HEVC=
+_V1 -d GStreamer-H.265-V4L2SL-Gst1.0 -j2 -t
+> > > 90
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ran 139/147 tests successfully=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 in 506.901 secs
+> > >=20
+> > > 300Mhz, 0.9v
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/regulator/=
+regulator_summary=C2=A0 |grep SW1C
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SW1C=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0=
+=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0 unknown=C2=A0=C2=A0 90=
+0mV=C2=A0=C2=A0=C2=A0=C2=A0 0mA
+> > > 825mV=C2=A0 1100mV
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/clk/vpu_g2=
+/clk_rate
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 300000000
+> > >=20
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ./fluster.py run -ts JCT-VC-HEVC=
+_V1 -d GStreamer-H.265-V4L2SL-Gst1.0 -j2 -t
+> > > 90
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ran 139/147 tests successfully=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 in 506.063 secs
+> > >=20
+> > > Downstream v4l2 driver
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/regulator/=
+regulator_summary=C2=A0 |grep SW1C
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SW1C=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0=
+=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0 unknown=C2=A0 1000mV=
+=C2=A0=C2=A0=C2=A0=C2=A0 0mA
+> > > 825mV=C2=A0 1100mV
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat /sys/kernel/debug/clk/vpu_g2=
+/clk_rate
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 600000000
+> > >=20
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ./fluster.py run -ts JCT-VC-HEVC=
+_V1 -d GStreamer-H.265-V4L2-Gst1.0 -j2 -t
+> > > 90
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ran 136/147 tests successfully=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 in 460.435 secs
+> > >=20
+> > > Regards,
+> > > Ming
+> > >=20
+> > >=20
+> >=20
+> > --
+> > #gernperDu
+> > #CallMeByMyFirstName
+> >=20
+> > Pengutronix e.K.=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > Steuerwalder Str. 21=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | https://www.pengutronix.de/=C2=A0|
+> > 31137 Hildesheim, Germany=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | Phone: +49-5121=
+-206917-0=C2=A0=C2=A0=C2=A0 |
+> > Amtsgericht Hildesheim, HRA 2686=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 | Fax:=C2=A0=C2=A0 +49-5121-206917-9=C2=A0=C2=A0=C2=
+=A0 |
 
-+ types.h // s32
+--=-okkgKqsgZ+IV64MKbOhB
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
 
-...
+-----BEGIN PGP SIGNATURE-----
 
-> +static struct kunit_suite iio_fixpoint_parse_test_suite = {
-> +	.name = "iio-fixpoint-parse",
-> +	.test_cases = iio_fixpoint_parse_test_cases,
-> +};
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaYIXBQAKCRDZQZRRKWBy
+9BdEAP91RCuQpeIs8WIAVqMpbGlTfJSJeLeq5HmQ5J1hZGuwXwD/WVhjnKNga4Pq
+kYR1FIhai0zcA1k4q9wESua75qp+hQM=
+=GTde
+-----END PGP SIGNATURE-----
 
-> +
-
-Unneeded blank line.
-
-> +kunit_test_suite(iio_fixpoint_parse_test_suite);
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--=-okkgKqsgZ+IV64MKbOhB--
 
