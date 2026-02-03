@@ -1,63 +1,82 @@
-Return-Path: <devicetree+bounces-262214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262215-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eHheJBLfgWmDLQMAu9opvQ
-	(envelope-from <devicetree+bounces-262214-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:42:10 +0100
+	id KH1mKwPggWmDLQMAu9opvQ
+	(envelope-from <devicetree+bounces-262215-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:46:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B71CD888D
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:42:10 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 267BCD8943
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 12:46:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4BE18302D9FC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 11:41:51 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 971C630874D6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 11:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15D8B3370F4;
-	Tue,  3 Feb 2026 11:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7F233BBA2;
+	Tue,  3 Feb 2026 11:45:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="pkuNahVC"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TrEeEBEO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE347274B3A;
-	Tue,  3 Feb 2026 11:41:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73ACC33AD93;
+	Tue,  3 Feb 2026 11:45:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770118908; cv=none; b=YZ2PEc3UqVTtZr+/w0Vp2a7rTq/ZCHDy1AFdFnyvwJwQUn1JdVlu2vxkOXnx8NPuUj0crRWi+RS+F75xxaszJzkCaYzDs8AkcV8cZESjqN7qxtYut2DGRn+BbpTV7CSOyfvMVQNrWqYbQDTedjMaKVq8y77xt94Tmx1dSge4hQ8=
+	t=1770119113; cv=none; b=lO+IR1gVZFA6XfcKlXdz8KvKUYIvqhMqA04fhsNqFLNePWQjNBBPV3DvtzaZVxBXet+2sXpqOfFQu7gPWhwUyQVxW5fL3mk4HM/bs5hdmcW7gWsSScR6ZOmytl+yPTjyKmW6hlG7BM3Cvypqyhl5nAXrVa9u5oSOUyICsQJUjAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770118908; c=relaxed/simple;
-	bh=fYkxphING3HIWpahK7YJFEmJeYTWB272iYkC8ckgea0=;
+	s=arc-20240116; t=1770119113; c=relaxed/simple;
+	bh=h47NV9fKEHXPKnDefLt6vJRzMPn6p4uLXZCMxXsVyk0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P++8MBeS5K4GlqSkVjqAcKkYtUSGJGiPq18CMmtV5UiYnAzLpoKnLdjJ3AxEvdvRxw17h66xYmFpGtEm5OOZYajgFM5uo6tA8dZpbp3IhyXwSqnPSytsgrkqn+TtD0csoSi5Swf0rhyBWCDG2/TuF7AQsgIASGrukRIuzaMBSZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=pkuNahVC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98607C116D0;
-	Tue,  3 Feb 2026 11:41:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1770118907;
-	bh=fYkxphING3HIWpahK7YJFEmJeYTWB272iYkC8ckgea0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pkuNahVCVhXg8U7s5K+OS6Rfz1S+aJIbGe0kwTYFbUuxeuvnLL3eNwaPwuWOJRcAV
-	 O0r1AX2Z6io52JATFp/rhLKCVOVmziBoGnMMfCTSL9S98QOHeb9pQhgQ+cL/yXdH7k
-	 OZfapOlE5prWQMqftIHk3CbWswyvUFzIGwW+jYkE=
-Date: Tue, 3 Feb 2026 12:41:44 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=KBFq1LN+5E+XHXXmSMj6SosRvgBukqrtwrJekIH4775dUdW4IwBTPGk4Lrj+TA/ZpMhjOWJHjGZS9o2Bu9yMFPqS4kXfV/UU/6zQJ6aQtq/GCeaUX0EwDzuMlpjUkXT1ZVOIVjkpc1dR8ldnBvahy8HG/V6OPrwKIyjrWpNjkmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TrEeEBEO; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770119112; x=1801655112;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=h47NV9fKEHXPKnDefLt6vJRzMPn6p4uLXZCMxXsVyk0=;
+  b=TrEeEBEOF+ct+O5APfFD/Hd6HYQjLZ13vU3GjIjZBcsbCtXdAtsIsPfg
+   jqqQ1IF+ce51/wdgfSMg9O/2uyCn5i0rqq49ONVfrbknl4aXjRVW2y4a7
+   zcwan0LPV8iHkqBCMGlNy/s4JE2GfI7q/br46AJngTeeg8m6Cb1FvexS+
+   q1iYsw0uRwNrLrqXriOxozAENCJa2jCAvKIdTNhJvQ8MXHkEcBc+ak1SP
+   OCKWtZC6hY05MnGXojHW81cAGvGnd5RZ6vtiXu9AKyBvV8j3XgIHtvnnY
+   CeHKx1c9IsjQ3UO8/YHjprvr9hfZ5BnSoVx4u8a854+ir0BYOINjkLwpb
+   g==;
+X-CSE-ConnectionGUID: J2K8hDb6R2aBuwDRLlztgA==
+X-CSE-MsgGUID: c5icmgEHTXONoj/r0WEcgQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="88862843"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; 
+   d="scan'208";a="88862843"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 03:45:12 -0800
+X-CSE-ConnectionGUID: 3KXQzmd8S9SqITl2kEcvlQ==
+X-CSE-MsgGUID: c5drkZK0RLuVEwoChyLa+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; 
+   d="scan'208";a="213960699"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.99])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 03:45:08 -0800
+Date: Tue, 3 Feb 2026 13:45:06 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Pavel Machek <pavel@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Sebastian Reichel <sre@kernel.org>,
-	=?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-	Ion Agorria <ion@agorria.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-leds@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v1 2/9] misc: Support Asus Transformer's EC access device
-Message-ID: <2026020350-unrevised-humming-7a42@gregkh>
-References: <20260201104343.79231-1-clamor95@gmail.com>
- <20260201104343.79231-3-clamor95@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH v4 07/13] iio: dac: ds4424: use fsleep() instead of
+ usleep_range()
+Message-ID: <aYHfwpL_2109UcCq@smile.fi.intel.com>
+References: <20260203093434.2548978-1-o.rempel@pengutronix.de>
+ <20260203093434.2548978-8-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,104 +85,72 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260201104343.79231-3-clamor95@gmail.com>
+In-Reply-To: <20260203093434.2548978-8-o.rempel@pengutronix.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.84 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
-	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262214-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-262215-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[linuxfoundation.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,arndb.de,rere.qmqm.pl,agorria.com,vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linuxfoundation.org:dkim]
-X-Rspamd-Queue-Id: 2B71CD888D
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: 267BCD8943
 X-Rspamd-Action: no action
 
-On Sun, Feb 01, 2026 at 12:43:36PM +0200, Svyatoslav Ryhel wrote:
-> --- /dev/null
-> +++ b/drivers/misc/asus-dockram.c
-> @@ -0,0 +1,327 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * ASUS EC: DockRAM
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/mfd/asus-ec.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/slab.h>
-> +#include <linux/string.h>
-> +#include <linux/sysfs.h>
-> +#include <linux/types.h>
-> +#include <linux/unaligned.h>
-> +
-> +struct dockram_ec_data {
-> +	struct mutex ctl_lock; /* prevent simultaneous access */
-> +	char ctl_data[DOCKRAM_ENTRY_BUFSIZE];
-> +};
-> +
-> +int asus_dockram_read(struct i2c_client *client, int reg, char *buf)
-> +{
-> +	int rc;
-> +
-> +	memset(buf, 0, DOCKRAM_ENTRY_BUFSIZE);
-> +	rc = i2c_smbus_read_i2c_block_data(client, reg, DOCKRAM_ENTRY_BUFSIZE, buf);
-> +	if (rc < 0)
-> +		return rc;
-> +
-> +	if (buf[0] > DOCKRAM_ENTRY_SIZE) {
-> +		dev_err(&client->dev, "bad data len; buffer: %*ph; rc: %d\n",
-> +			DOCKRAM_ENTRY_BUFSIZE, buf, rc);
-> +		return -EPROTO;
-> +	}
-> +
-> +	dev_dbg(&client->dev, "got data; buffer: %*ph; rc: %d\n",
-> +		DOCKRAM_ENTRY_BUFSIZE, buf, rc);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(asus_dockram_read);
+On Tue, Feb 03, 2026 at 10:34:27AM +0100, Oleksij Rempel wrote:
+> The DS4422/DS4424 and DS4402/DS4404 datasheets do not specify a minimum
+> delay between power-up (POR) and the availability of the I2C interface.
+> 
+> The driver previously used `usleep_range(1000, 1200)` to enforce a ~1ms
+> delay. Replace this with `fsleep(1000)` to allow the kernel to select the
 
-No documentation for these new public symbols?
+> most efficient sleep mechanism (usleep or msleep) while retaining the
+
+Information in the parentheses is not needed and may be confusing in the future
+if kernel gets some Xsleep on top of the given list (which by the fact misses
+udelay).
+
+> existing conservative delay to ensure device readiness.
+
+There is a couple of nit-picks, otherwise LGTM,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+
+> +	/*
+> +	 * The datasheet does not specify a power-up to I2C ready time.
+> +	 * Maintain the existing conservative 1ms delay to ensure the
+> +	 * device is ready for communication.
+> +	 */
+> +	fsleep(1000);
+
+Perhaps use 1 * USEC_PER_MSEC as an argument?
 
 
-> +static BIN_ATTR_RW(dockram, DOCKRAM_ENTRIES * DOCKRAM_ENTRY_SIZE);
-> +static DEVICE_ATTR_RW(control_reg);
+-- 
+With Best Regards,
+Andy Shevchenko
 
-You did not document your new sysfs files in Documentation/ABI/ which is
-required.
 
-Also, why do you need a brand new user/kernel api at all?  Who is going
-to use this and for what?
-
-thanks,
-
-greg k-h
 
