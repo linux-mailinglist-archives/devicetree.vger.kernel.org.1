@@ -1,188 +1,360 @@
-Return-Path: <devicetree+bounces-262281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262282-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WE6xKov+gWmYNgMAu9opvQ
-	(envelope-from <devicetree+bounces-262281-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 14:56:27 +0100
+	id QAWvKTUGgmn3OAMAu9opvQ
+	(envelope-from <devicetree+bounces-262282-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 15:29:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33FBEDA41A
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 14:56:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A22ADA983
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 15:29:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D5147303962A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 13:56:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BAA39315C285
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 14:22:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7645A3A1A52;
-	Tue,  3 Feb 2026 13:56:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 231F83A9605;
+	Tue,  3 Feb 2026 14:22:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YQnKdJFU"
+	dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b="G7/tU0hZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f41.google.com (mail-dl1-f41.google.com [74.125.82.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013066.outbound.protection.outlook.com [52.101.83.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263C93A0EB3
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 13:56:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 125FB3A9604;
+	Tue,  3 Feb 2026 14:22:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.66
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770126981; cv=pass; b=LZ68751snwwWLdsxydZRoC5QGEvO/CyE26yIgLpYsk0Eb7ykFWqQYrcbOZJs2RphKrADS2+K4hbrsxNXl20ehFMWY55/397r+D8nqnpr3aKNfwSQBwxeeCM1zupKq1kIEwW1VMbGcbXfOE9RpOKzlQxbOGaBrPBNkj+T/ZdnUKY=
+	t=1770128555; cv=fail; b=m7X1NezO75rIQn9dAf8Pu0/nZZWE8gdX6dv5g+qjVC3ECzyEj1c6HZ3imHEF7HuhbpH0KqrgbkrV/hIYcPULsqOO7px6BoMGS16xSGrVa+UrnnUz0YsxKedd2VjVGbifeWXer8oBND0YoiQoPd43oiYnaTuCHRharjNpP20oB8Y=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770126981; c=relaxed/simple;
-	bh=2kJc0/oJx9J66cb6iheE4k1eLdyJmqswDf8bzyH50wo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Icdeb7JjvCuqsAltZfSXDnY+JzgCbRy2V5UQ+yDwDNIsZ7GbwL+T65LY1b/2T//5sNbaFEqC4TQzNoSFbaxUidUVocw5d1lK4+a7GHUX75WZ2CtV+K5Pa30DF/bRB2OfkIsDVQndD0KcCn1ZFwaukt9x4r2JqnYUK/hbaGKzMlM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YQnKdJFU; arc=pass smtp.client-ip=74.125.82.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f41.google.com with SMTP id a92af1059eb24-1233bb90317so614175c88.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 05:56:20 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770126979; cv=none;
-        d=google.com; s=arc-20240605;
-        b=SlhFuj1kgQyeilK0/iacgkY8nujI2LMG6W2+A0TxdvH1EvH4GG41HichBfMJel0Ovu
-         U/tNYJlI+tFhA55/p/BgJjqji667rBZULvggMhvn2GMCLb7tsJMH5sUXRTmR8J3O3/6c
-         k9l18NsaRzzcUmlT52f96ZUywFKlUr2BbSwSow58xFoSIlvWfUoOLx4rtmbyWx7gTs+s
-         qqMFqlYXisqOcoNdJj5BbceQ6ktgNhmgycszmDQPHsT/SVFHtjzH4Z+45hHuNjmTLVMg
-         m5p92uARjxkP2GaXoGKL+IOuLTqjgOG+/MyeffSJ0fgAS/oNQKIavG5PRsoN0UYh/2+O
-         HHbQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=oiDNEn6LPf3NNMPn5SjpOYR+1H1anFvHfyh9Q60C1l0=;
-        fh=X8XypK+V0FG5pmM1qazoEYaDtomsNJMeL3vG+SxgjWs=;
-        b=SLpQer2FE8fLEudb05V/uWxI0hpNp0FlWEVb+YAxScVFdQt4QbJs2QInCI4EVtRne4
-         L0r+bgTRs0DlA6b8dLtmYG2CTJggGDuVGNUL8J7Oxig+8UOZ5Eqw2F5l/qOgWrrLXjfh
-         X45XetZVhhAWs/irQSbUTQlBNJT6+QTfnLJUhAcP0KfTTcL/IEKgq0RwBtt1DP8KqFkC
-         AsZ0T1Az3j/1pu0vtTf8nh72NuiOmh8/rdnfngYqOOoNFB5BQLjRcn22w+akvYBKQIoK
-         6pigtbw9RHkDfLI1GIQWdgpvg4pZTXW1MwNhlK9ixjW8H71trwe98v8w4FhAZBTPxNUo
-         Owgw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770126979; x=1770731779; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oiDNEn6LPf3NNMPn5SjpOYR+1H1anFvHfyh9Q60C1l0=;
-        b=YQnKdJFUXHT+4HIyh3YOt6oazxnPJmvj8aNNHHnXPJAUbQhGFDGEtEnDDd2SluT6Af
-         dGEWv9Bqv93TQbcJAPW5RT+Prux1UMAzGOS0CsOIsW612+FISPiEDtySrutPKmJubKMC
-         TgyJ5mGjaXWl1ieEf/zEMBcu1gEDLP9Qgj5njPvq+hPfoAFkPI37PKjdxx0PkqnVpqt7
-         8EYZ60PqTWSfjenCNetIri/QIyaYxvNDZMzVFacwwqsVy3WjRkSsSRedKJ775Y9fxerB
-         h9spegp2vJ4GVC7JrhJ/gb88itu6G8TXvxBveUfomu65nrbaoaoBcmAarGKu/G+Sm4jJ
-         4BDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770126979; x=1770731779;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=oiDNEn6LPf3NNMPn5SjpOYR+1H1anFvHfyh9Q60C1l0=;
-        b=hkigMm0c154tDautKSO6TunBg0lIO6GoSUhw23z/EGpqopAVSfzOXl4lk1BUT54mhB
-         1qzKzFzCKCamTt+mB46tyQzcxCXgM7IVZqu5t3DtAzffqRF+dr7IJpRkhWVG6w0sotwY
-         1TI0mhyBgqhEXLWmPcTKt3+CF6UYKc6Yvot+MD3PEEl9t3Wa/Z6HEN+LVe8KkV9DOti4
-         v5ymOP/h/Ii8/zMjfkdr2nqo4qpcOCz1P+Q9iQCr8LWTWso4hRAu5XQSCVhp9aRb0fad
-         fWunGjHe8Y+buxpiG8+cmXn6TI1ZIwNhGYUAR1btYjnEC5280m7r2UWPoXMYNw5NmU8v
-         /zcg==
-X-Forwarded-Encrypted: i=1; AJvYcCUsDppRPlLL/JtpTg0VPXNrKWS9gMiBQJbaMaGMDkrYknGAACVioEmFK7Ta/rlW4WpyPCQfK0Dr8jNO@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQFG1Np9T3Q9GqRe3lQNv0NlZjL7pzpHimuGqts9ORwAMmZElg
-	vHVou6uWVNzJgEnYn7XDY/sFhL44n0N/IXOgMipXyQdUw70JJwJF/8EnNIatMBERbgIotkSBeSv
-	UufolJwWwHMdT5dH/T8dF3Pih36EjdDs=
-X-Gm-Gg: AZuq6aLw9m+FxkGKki1xCQuO05xbB1jp+bh8VIAcIVYu1EAPz2yVetBZ9UmOwXhn65Z
-	AaaQ+BsUJTZxX9QIe8qP8I4/44SCBf7trHYjpP65E17E5IRoIS8J2MdU3qhZ5hzYClpwchD2ugD
-	ttHe1eM4AbPhsNrf5QMe0Zp9TPJvou0xQDQ8g/EnkU2BbfF3IzKivc4bgccX7Izf18YA0sXATEP
-	rFj7dRoONh4UpnXqUFasnD2F9jEAe60MIhaCZ2iZAVZ4bsSTqC7z1SzV5/prit/zozYNha30EW+
-	uZuwcgOTu3LJQX7qDdbqqSbirsaiz2cdLYC3mUCbDEExdDRrnfj7uVzWhTPg5cPg+9U+F8KsVbY
-	K4+zRUYKnNw==
-X-Received: by 2002:a05:7022:90c:b0:121:d898:edae with SMTP id
- a92af1059eb24-126ea91f3e4mr1123936c88.24.1770126979199; Tue, 03 Feb 2026
- 05:56:19 -0800 (PST)
+	s=arc-20240116; t=1770128555; c=relaxed/simple;
+	bh=N1v2GBSt8BLzpJR8faLcIKqXg3jOc9pHxqIFJoEvNoA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ccOWkU40rR/2cwbJT84uILPMdSCN6Nva6sly63CyLiWMBGkmN94KxpsolWATr4fxkKHrI5pL9f3cxsRgCzQt58qO9P5NteiEuVsC+PH4fx0BQD0U3DFQo73fTbRlUNoHIK+pUGtkTZlLzDtqxhBBKrSMg3mV8PooLTA6jU2f++8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com; spf=fail smtp.mailfrom=leica-geosystems.com; dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b=G7/tU0hZ; arc=fail smtp.client-ip=52.101.83.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Iqcd2n1Ou/20b6qBEdjljzLcwSnnOdQnSU0wZgaGCmOkX+MN9JmTLKwbVKqDeuaxj8s7Fmg5KFlbC8Th8K6fxIdcrOQMQGV1r7bdFYMaMPNJrtEyskn/I3lOXqwosgnxRjgsn16OKkqecwjfc+ZcDzeBAlbrKQ6YYAG6Zpy+lPo4/mh9ttJJKZ/hhCpmRKu378PJpYU9eIfZ9fNzhUzKlVAkEg8ej/FUoWUmGMKKX/WFT8o/iqX8fI4rWV6KHlLTAgMcnHP30SbiIGgVKemGprBJy7GRSUcYudkQ0sMnhpYhBM5wLT5+RVV0IUYi9N599iqr9GT5i7pwv4k3UOBZdw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8LAyPmO+VzQkVLEDy1YMMHHGNzE7ifB/R8XYQ60wPvQ=;
+ b=GKkfXzvKKsXXROKHOUih0yEdWvvK/uoPBUb3xFJxzREptg847ZfAv/JK420zs+fdPB7OjXAxLFKqOFSFnUJDJcfXDuQhr3147O89Ys38cIuIl6TUOLGrvQWG9eE+BsEJ4lnfDxl5bYOylmm803AMSMsbYt11tObo5ghT16HYJ4m66/LrDvu5+ztNewcrdUtVnapjQvrdcleG79UtjQAzkSI0jhh9jXN5gwzeZM3vNf5rgrHNhG5CZnowIWAtqN0RVYUcE11CmXmWBYVd4hA2XLbv38hD7nqvPtsyHHnu748dPS07QKQLmHqfF7wxHcngOYhQL0ulEUu/fuYb11/sEQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 193.8.40.99) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=leica-geosystems.com; dmarc=pass (p=reject sp=reject pct=100)
+ action=none header.from=leica-geosystems.com; dkim=none (message not signed);
+ arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8LAyPmO+VzQkVLEDy1YMMHHGNzE7ifB/R8XYQ60wPvQ=;
+ b=G7/tU0hZIbZdsdHKlp9uLUS0vuaHY3ElTYZTquiHR71VFPZqbuorzqiaAPUswNzSuoKzMJTqzJ3sBSa1uqkaB/Bz1pcPwZHxAJTWuZjRGicfCXIBdtr7o/FKlzVkIhatiZI90MwF6wVD6XlkH23G51SV1XR0CwGDU9FN+9IFwAY=
+Received: from CWLP123CA0186.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:19b::15)
+ by PA2PR06MB9221.eurprd06.prod.outlook.com (2603:10a6:102:401::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Tue, 3 Feb
+ 2026 14:22:28 +0000
+Received: from AM4PEPF00027A5F.eurprd04.prod.outlook.com
+ (2603:10a6:400:19b:cafe::3e) by CWLP123CA0186.outlook.office365.com
+ (2603:10a6:400:19b::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.12 via Frontend Transport; Tue,
+ 3 Feb 2026 14:22:28 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.99)
+ smtp.mailfrom=leica-geosystems.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=leica-geosystems.com;
+Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com
+ designates 193.8.40.99 as permitted sender) receiver=protection.outlook.com;
+ client-ip=193.8.40.99; helo=hexagon.com; pr=C
+Received: from hexagon.com (193.8.40.99) by
+ AM4PEPF00027A5F.mail.protection.outlook.com (10.167.16.74) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9587.10 via Frontend Transport; Tue, 3 Feb 2026 14:22:27 +0000
+Received: from aherlnxbspsrv01.lgs-net.com ([10.61.228.61]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
+	 Tue, 3 Feb 2026 15:22:27 +0100
+From: Mario Peter <mario.peter@leica-geosystems.com>
+To: shawnguo@kernel.org,
+	s.hauer@pengutronix.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Mario Peter <mario.peter@leica-geosystems.com>
+Subject: [PATCH v1] arm64: dts: freescale: imx8mm-evk: share usdhc3 setup
+Date: Tue,  3 Feb 2026 14:21:58 +0000
+Message-ID: <20260203142158.3929433-1-mario.peter@leica-geosystems.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260202-imx31_dts_warning-v1-0-434dd2643c3b@nxp.com> <20260202-imx31_dts_warning-v1-5-434dd2643c3b@nxp.com>
-In-Reply-To: <20260202-imx31_dts_warning-v1-5-434dd2643c3b@nxp.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 3 Feb 2026 15:59:04 +0200
-X-Gm-Features: AZwV_Qju5F7xT8vnmaZowdmwJ5PbMdVnDwBoeT5wIv_XHgkftgb91IXvaA8NXhI
-Message-ID: <CAEnQRZCWcWaDGSFVvV0AT3rp7pO+iPXNnXW+4Dum9PwOFy3nQA@mail.gmail.com>
-Subject: Re: [PATCH 05/10] ARM: dts: imx51-babbage: rename at45db321d@1 to flash@1
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 03 Feb 2026 14:22:27.0767 (UTC) FILETIME=[86355C70:01DC9518]
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM4PEPF00027A5F:EE_|PA2PR06MB9221:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 9abce9e7-cad2-4c0e-059f-08de632fa8ff
+X-SET-LOWER-SCL-SCANNER: YES
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?y0jSjcTT2MUe6x/9ETUuMvF8JhFc3slQIqGGECrhEf2yiT7SenWmMwijbjau?=
+ =?us-ascii?Q?TmBQbsG4FFg4tyEZqkt1opgrK0cXHzOdj2ydfpvbofmpyImLaq2FhEB2Z0b9?=
+ =?us-ascii?Q?fLEaqJQEa1DnICR+zqdwosaCFPQAOXjt8FVqbtRknRYFPTohAWakqGySjTpL?=
+ =?us-ascii?Q?vLxccJ1Xnib+Abn6ntIk7uhZQKZbaDTihgON5In6hVawDXPGoDIl1yCl2U+T?=
+ =?us-ascii?Q?Y5J+JCQy5/afW326hkJGtQ8bBPuGcVP9wuk7YwV5cAXDfr8t1X5RwEEKWwXz?=
+ =?us-ascii?Q?+b14CR8SjuoNHOb/8TWLCvHY8jPJ3eZF6rqXTBkXHRtw2Xtg1oFK+XphgdXF?=
+ =?us-ascii?Q?N5/hcYc/nGwtqRpdQ66sh98k9cE+QBuVk5pmWjoSUZ2QlodZxurpjmQbHQ5+?=
+ =?us-ascii?Q?z38lv+cCDvHPSYN8yF1oVXvChGADJnyOWuH/JJGGR8iKAZTsZ+vrlXtGfqXT?=
+ =?us-ascii?Q?0PKqclbMLW1mVoztlYkCyT+M9E+WzJJhlJDQR4EM+hrg2fpTiPrb8UdakJLn?=
+ =?us-ascii?Q?H+bPsN7xHFEuhoaCq9yjwKpHwCxAFNpkB9Fq6pX9OJVJ5u1zq0GrNr/SMllJ?=
+ =?us-ascii?Q?cTC2uE59bix4KRu9sr7fc4bAomGOu27bfGg9qQXvO4kiN6I3i4sTVV837xRn?=
+ =?us-ascii?Q?h33iR9d4yOzaWNGj/vUelwiFgf/a44Z19TkGr9z4xv3mxz8A9bVXdFbW4bLa?=
+ =?us-ascii?Q?PZgDi0bfW+4VA5Fw3LWPsuNPSUnRVELZQ0QJntb/Khu/66ro+veoAPMcfoYi?=
+ =?us-ascii?Q?Pe2vCFJTZ64xAEt6Yqmd4R9y23qlg2A5KGFO2smHf5OT1MVZEVg+OiA1gH22?=
+ =?us-ascii?Q?pCHQiDzWAx/7vp58J9byGE33OoVKaWgmSGTXRGLD/zB3ym/rMtsbQEFUmI5k?=
+ =?us-ascii?Q?ZlZqlF3xfhbRTUB7bJcIbtysT2zmKyD9VrHtBrfDmUBjL8hYLv4PdM0uymKN?=
+ =?us-ascii?Q?zAPX3WZ85jrxJn9fCHB0bRd/intsJKC6ftc8dcNqz3JZtBNTjV9db+s/EdaT?=
+ =?us-ascii?Q?EDC3n8f788DQXLr9k0LXjm5X2CCn+uMqL1OJkOF6n8yzl3dMzzPwqAoZcQ/K?=
+ =?us-ascii?Q?r0mcyGYGDKSlyCvAxZhtScigosfd+RkUjUhxb/T87uJBxS6opd4rJU3dGXIW?=
+ =?us-ascii?Q?LtDms5N2KCirt4UioNyB1xaSvOVI61+DUppvUFaIWvLwIMYOFpdbM0pAHthy?=
+ =?us-ascii?Q?WiVuSRGtbRye4HUYBsBEPjXluPBdf+CfZJqmWGw5dBDKpm02/fQNTarn9SHx?=
+ =?us-ascii?Q?T5xwHm8IO4IYXke1jR6QD0CnVyq9cH6okhgPkn9Ux9kYZs8KLq3QmrUVDLqi?=
+ =?us-ascii?Q?m1ERt8hA8IzgY21m7GUd1MneJLwzZBJzHYHq4SxzOGdIQZxVYfOfkrKuFkya?=
+ =?us-ascii?Q?UilHNzjXPvl/uruitrooRjxaj0nLsdyfYvQaasW3whHDA9/SLa9f1gXuu5g/?=
+ =?us-ascii?Q?hnah4yE4EdGHdNOgfSCe0LZqLCcz7XGr3MDtfAvpQPVtisMmT5XLo5/e2pOK?=
+ =?us-ascii?Q?WDqNjpNIyTFnj5+zn17unmW57QU+w5+GgBGbVdMjQhY4kufMvGTmIvEkOCls?=
+ =?us-ascii?Q?bQMzuwzLQR0ZTatEXH38yAOmbVwbo92gmkXJSDXHQtYDMJBVw/seJTAjv5Na?=
+ =?us-ascii?Q?G/mpdkE6tqgXH5DHZWUCBbC0i/6cAebzyT+6dDcy7F4Gw7cZoJGRosyMdY0v?=
+ =?us-ascii?Q?eQb7Qg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:193.8.40.99;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom51.leica-geosystems.com;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	bswzmUOE3lY5yCe6rEgUF1lVng2PCdU6GiuqRgSO0CkJ+xgiTnWDip7V/Hb6urW6gxmT1pKpLTkvDamHp4U3Qc56GjG1nkUogcVBSgM615C9iCXsc6IUhjn6SZfFZLqyN41WMYpe7X5KYLmGquOMw4FWFghs+2HRBkxRgORafhyvBtvt7XPF1nGoWK9uhgu92+pt+0qhoGkJDs9S4haYUFD8WS7E4o0Wx+9OYqaM7wsDvHrehxm2BGHjhk6jIbZWr6QrEcsfGfDjxEg0qFT4ar5pQDy0lnSZN3AEAIe/7qhYzoWHbiUFito+diAI1KmH4yfYX9+mHBpPNOX5/MNa9zoEwqOJheQ7oADcIT1PQ9xhaCkIbzN+XPyBnHH4YvEGYuuz0/kAMI27I9Q/JbeHXV72Wjm4J2RsuZ1kogLIwTTrhi5/9pzIMT0htao25zMs
+X-OriginatorOrg: leica-geosystems.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 14:22:27.9711
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9abce9e7-cad2-4c0e-059f-08de632fa8ff
+X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.99];Helo=[hexagon.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM4PEPF00027A5F.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR06MB9221
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[leica-geosystems.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[leica-geosystems.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262281-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,leica-geosystems.com];
 	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,armlinux.org.uk,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-262282-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[leica-geosystems.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[danielbaluta@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[mario.peter@leica-geosystems.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email,leica-geosystems.com:email,leica-geosystems.com:dkim,leica-geosystems.com:mid];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.1:email,devicetree.org:url,nxp.com:email]
-X-Rspamd-Queue-Id: 33FBEDA41A
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 2A22ADA983
 X-Rspamd-Action: no action
 
-On Mon, Feb 2, 2026 at 9:45=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
->
-> Rename at45db321d@1 to flash@1 to fix below CHECK_DTBS warnings:
-> at45db321d@1 (atmel,at45db321d): $nodename:0: 'at45db321d@1' does not mat=
-ch '^(flash|.*sram|nand)(@.*)?$'
->         from schema $id: http://devicetree.org/schemas/mtd/atmel,dataflas=
-h.yaml
->
+The eMMC controller on EVK and EVKB uses the same usdhc3
+configuration and pinmux. Move the common node and pinctrl groups
+into imx8mm-evk.dtsi so both boards inherit the shared setup and
+avoid duplication in the board DTS files.
 
-The commit message should say *why* the commit is needed and not
-focus on fixing the warnings from a tool.
+Signed-off-by: Mario Peter <mario.peter@leica-geosystems.com>
+---
+v1: submitted
 
-e.g:
+ arch/arm64/boot/dts/freescale/imx8mm-evk.dts  | 61 -------------------
+ arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 61 +++++++++++++++++++
+ 2 files changed, 61 insertions(+), 61 deletions(-)
 
-ARM: dts: imx51-babbage: Use generic name for flash node
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+index b68954bcc383..002ebdeeb2d6 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+@@ -53,18 +53,6 @@ flash@0 {
+ 	};
+ };
+ 
+-&usdhc3 {
+-	assigned-clocks = <&clk IMX8MM_CLK_USDHC3_ROOT>;
+-	assigned-clock-rates = <400000000>;
+-	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+-	pinctrl-0 = <&pinctrl_usdhc3>;
+-	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+-	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+-	bus-width = <8>;
+-	non-removable;
+-	status = "okay";
+-};
+-
+ &iomuxc {
+ 	pinctrl_flexspi: flexspigrp {
+ 		fsl,pins = <
+@@ -76,53 +64,4 @@ MX8MM_IOMUXC_NAND_DATA02_QSPI_A_DATA2           0x82
+ 			MX8MM_IOMUXC_NAND_DATA03_QSPI_A_DATA3           0x82
+ 		>;
+ 	};
+-
+-	pinctrl_usdhc3: usdhc3grp {
+-		fsl,pins = <
+-			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK               0x190
+-			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD               0x1d0
+-			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0           0x1d0
+-			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1           0x1d0
+-			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d0
+-			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d0
+-			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3           0x1d0
+-			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4             0x1d0
+-			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5            0x1d0
+-			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6            0x1d0
+-			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7              0x1d0
+-			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE           0x190
+-		>;
+-	};
+-
+-	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
+-		fsl,pins = <
+-			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK               0x194
+-			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD               0x1d4
+-			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0           0x1d4
+-			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1           0x1d4
+-			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d4
+-			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3           0x1d4
+-			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4             0x1d4
+-			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5            0x1d4
+-			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6            0x1d4
+-			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7              0x1d4
+-			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE           0x194
+-		>;
+-	};
+-
+-	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
+-		fsl,pins = <
+-			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK               0x196
+-			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD               0x1d6
+-			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0           0x1d6
+-			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1           0x1d6
+-			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d6
+-			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3           0x1d6
+-			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4             0x1d6
+-			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5            0x1d6
+-			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6            0x1d6
+-			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7              0x1d6
+-			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE           0x196
+-		>;
+-	};
+ };
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+index 6eab8a6001db..6e53828b5d30 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+@@ -649,6 +649,18 @@ &usdhc2 {
+ 	status = "okay";
+ };
+ 
++&usdhc3 {
++	assigned-clocks = <&clk IMX8MM_CLK_USDHC3_ROOT>;
++	assigned-clock-rates = <400000000>;
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	pinctrl-0 = <&pinctrl_usdhc3>;
++	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
++	bus-width = <8>;
++	non-removable;
++	status = "okay";
++};
++
+ &wdog1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_wdog>;
+@@ -839,6 +851,55 @@ MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
+ 		>;
+ 	};
+ 
++	pinctrl_usdhc3: usdhc3grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK               0x190
++			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD               0x1d0
++			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0           0x1d0
++			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1           0x1d0
++			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d0
++			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d0
++			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3           0x1d0
++			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4             0x1d0
++			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5            0x1d0
++			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6            0x1d0
++			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7              0x1d0
++			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE           0x190
++		>;
++	};
++
++	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK               0x194
++			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD               0x1d4
++			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0           0x1d4
++			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1           0x1d4
++			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d4
++			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3           0x1d4
++			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4             0x1d4
++			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5            0x1d4
++			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6            0x1d4
++			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7              0x1d4
++			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE           0x194
++		>;
++	};
++
++	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK               0x196
++			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD               0x1d6
++			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0           0x1d6
++			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1           0x1d6
++			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2           0x1d6
++			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3           0x1d6
++			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4             0x1d6
++			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5            0x1d6
++			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6            0x1d6
++			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7              0x1d6
++			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE           0x196
++		>;
++	};
++
+ 	pinctrl_wdog: wdoggrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B	0x166
+-- 
+2.43.0
 
-Prefer generic node name 'flash' over the existing specific one to reflect
-the function of the device.
-
-This fixes below CHECK_DTBS warning:
- at45db321d@1 (atmel,at45db321d): $nodename:0: 'at45db321d@1' does not
-match '^(flash|.*sram|nand)(@.*)?$'
-         from schema $id: http://devicetree.org/schemas/mtd/atmel,dataflash=
-.yaml
-
-<snip>
-
-> -       flash: at45db321d@1 {
-> +       flash: flash@1 {
->                 #address-cells =3D <1>;
->                 #size-cells =3D <1>;
->                 compatible =3D "atmel,at45db321d", "atmel,at45", "atmel,d=
-ataflash";
->
-
-Thanks,
-Daniel.
 
