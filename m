@@ -1,148 +1,141 @@
-Return-Path: <devicetree+bounces-262434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262435-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uAerMO+GgmnDVwMAu9opvQ
-	(envelope-from <devicetree+bounces-262434-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 00:38:23 +0100
+	id iIYRNXWIgmn/VwMAu9opvQ
+	(envelope-from <devicetree+bounces-262435-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 00:44:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1E69DFC82
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 00:38:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 402CFDFD0F
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 00:44:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 688CA308E0AD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 23:38:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 52E5D301ABB5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 23:44:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82E232AABC;
-	Tue,  3 Feb 2026 23:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9E85330648;
+	Tue,  3 Feb 2026 23:44:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="X6z5x8DW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ugcyN0Rq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EE8A3BB57;
-	Tue,  3 Feb 2026 23:38:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96C3A32D0C4
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 23:44:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770161900; cv=none; b=Au4/RetrcCbPRIzzaFsaoHbx8hq+tdof9LsTwPgHgGetmwUdIDbL3soiKu28QDuewScLdm6S4azcK31iyBK/XrqFmZpnGrca+L7yySJi1YxTBrFTG6MC6DqyI1NaCytZb4IC4bYqk1MrBJWLp5855W4DgK5ps/Npoj+NKPuuLmg=
+	t=1770162280; cv=none; b=CSMDmsXWoxrAfyV4l4BaE/Bo1lVt19oXErogsOsfOc68Spv/+weLfl2ibqIwiUOQfN56kVRNmg7Kr4nb4Gn25Ccr9e7r/EdcpcekrynYN7oRDBIb7iMs8l19hX2Y8XP8Et3szAlu09y7Sd8sK5jKzfUq+CvDcwrnB1amVTVwbn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770161900; c=relaxed/simple;
-	bh=VUA7xPz2k2DqTILvSG8MJrzRqVcjkXmJKeKSnbJhE8c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hV4VrIJQyXrwZvv2IMuYKMSe2PdvLjRIaJOYp9Yp8FeFhrqlRt4dsXLJx433deZrpQtO4/G+uNW1/wUbKJmXNxswLxRSVGYLbE44EeZC9M75axYLSjs13mK+fUUToOvaBRyraTtnTIGEbjakR5WIh3TqgionYWiiPPh5SgrBvbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=X6z5x8DW; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770161899; x=1801697899;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=VUA7xPz2k2DqTILvSG8MJrzRqVcjkXmJKeKSnbJhE8c=;
-  b=X6z5x8DWHLzXx1XJgClbbrMkU/v8MvPcXrdLcqVnA8jrUzFy88NoVN6f
-   ZnXp+2ELsv+gc0Qp+UzmDWC8K8nUKavOezElpVYfkRJ2qNDheYBN49yix
-   X0VtbqWKKXGuBWmRkI956WOjmTFJdNyFYLaClWqLaM2/PG2ncUh7VKzJ3
-   FOOgroMrbW7JmpeaFEiy61u5AdPNjkqRG6U3KyGThvnYhuCa905SxSeGf
-   j+UpY/D3U560hVMw72He2DdPoD4e7nvc8YA2vqwaz27ff+T/J0s6ufjfM
-   7VPx21Wt4wb093Hra634aibSGWJ9KgZpptPuVy813fc34PfuiWntxxnMU
-   Q==;
-X-CSE-ConnectionGUID: shIJ1ZgMQaaU4gjuhmKZYw==
-X-CSE-MsgGUID: xR/1IfmqT1GE+B41Tk0MTA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71065833"
-X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; 
-   d="scan'208";a="71065833"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 15:38:19 -0800
-X-CSE-ConnectionGUID: u2/E/qW7S8KctZQwAD6OFA==
-X-CSE-MsgGUID: Gj/xUhl9RSSVJf+5vGhJUw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; 
-   d="scan'208";a="209100278"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.99])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 15:38:17 -0800
-Date: Wed, 4 Feb 2026 01:38:14 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Abdurrahman Hussain <abdurrahman@nexthop.ai>
-Cc: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v9 7/7] i2c: xiic: skip input clock setup on non-OF
- systems
-Message-ID: <aYKG5k5-6ll_RzQz@smile.fi.intel.com>
-References: <20260202-i2c-xiic-v9-0-ce4695f5267d@nexthop.ai>
- <20260202-i2c-xiic-v9-7-ce4695f5267d@nexthop.ai>
- <aYIYUNejGCVdekx7@smile.fi.intel.com>
- <9F7815FA-80D8-4C96-B61F-5CA6CB405F7A@nexthop.ai>
+	s=arc-20240116; t=1770162280; c=relaxed/simple;
+	bh=MUtAEzuFZ3UXsgeYeGcULd0s9lsr291/wS31tUAYPQI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PkQL90Z8x3jMzJvpM3L1iCk3+wUcY3A1jFWYSiXFoaUMJZ8aP7RMq6mebXTeeEX3vCETt6PWMRm620SeBGJMx5h1XvThlC8bhKvZaauTfvZRpUXPI5/Lyvf1cccBBBHTWoG6aAFFcS5WNR3ADDYzruRjFroMUASWhOOckzeZDOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ugcyN0Rq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47EBEC19425
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 23:44:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770162280;
+	bh=MUtAEzuFZ3UXsgeYeGcULd0s9lsr291/wS31tUAYPQI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ugcyN0RqC48lMQVC290mr54/cSG8mF5qG6qEw1bXtuEg1AHRMdgpEol4MTB4WYgbx
+	 2xgqlBNWqkJckBepT2lyA7KPKwAVTR7exlJt6+nKU49bLYyk6a32A0JXHEgkYdX0JW
+	 JdKy89rOSuHUxQGG36O3GomJnrxi8DRpkj9qqaL1u59b5X03z9pAKndSF27sExk6Mu
+	 e+wEhvO8nkNb10Lh7E62jU/jKYzK+2n8Cn3jkoSu8teRtumFaYuuD7lBca1tjzvYHH
+	 DNwMUzf8L2cy3eu0zdga38VJVA/+z07Ak3oWCQxVORf+z7cadCUrLBIMwDdqHvpyx/
+	 3Nl558QdYMMaA==
+Received: by mail-yx1-f51.google.com with SMTP id 956f58d0204a3-6495d592b58so256803d50.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 15:44:40 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVDt4bl2vMDbe824W0HTmAqDN0puddeubDQXYPpZRq1hSylfqMaY1yCD9wO8uicLS8h28t733Y7heqQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyt54s8RJFko5gnRWEmAGjTI1YDiRduIbsmY/uLLZVRSPCcwMCA
+	cM0As6qZUzrK/xeoHBXUpBpJ8SMUG8+9FSEPYOuFibTfhrvp5a7tkZqLoajBen38bJlltmiH1XE
+	52yn/PKQEj8CxhyfLkx9PA37YP4jo4Rg=
+X-Received: by 2002:a53:d8c6:0:b0:645:68cf:2bf4 with SMTP id
+ 956f58d0204a3-649db4ac96bmr877835d50.77.1770162279637; Tue, 03 Feb 2026
+ 15:44:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9F7815FA-80D8-4C96-B61F-5CA6CB405F7A@nexthop.ai>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20260203-dev-b4-aaeon-mcu-driver-v3-0-0a19432076ac@bootlin.com> <20260203-dev-b4-aaeon-mcu-driver-v3-4-0a19432076ac@bootlin.com>
+In-Reply-To: <20260203-dev-b4-aaeon-mcu-driver-v3-4-0a19432076ac@bootlin.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Wed, 4 Feb 2026 00:44:27 +0100
+X-Gmail-Original-Message-ID: <CAD++jLmsx885MteExK0NcS6aD3BVimK82Z3bosSpUvSs8p4Cag@mail.gmail.com>
+X-Gm-Features: AZwV_QjuysNBoHyalaty048gguXHT55tueRC1-zJSip9FADgZXaoN46HJGRIgaE
+Message-ID: <CAD++jLmsx885MteExK0NcS6aD3BVimK82Z3bosSpUvSs8p4Cag@mail.gmail.com>
+Subject: Re: [PATCH v3 4/5] gpio: aaeon: Add GPIO driver for SRG-IMX8P MCU
+To: "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, 
+	=?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?= <jeremie.dautheribes@bootlin.com>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Lee Jones <lee@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262434-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262435-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,bootlin.com,linux-watchdog.org,roeck-us.net,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: E1E69DFC82
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 402CFDFD0F
 X-Rspamd-Action: no action
 
-On Tue, Feb 03, 2026 at 10:38:51AM -0800, Abdurrahman Hussain wrote:
-> > On Feb 3, 2026, at 7:46 AM, Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
-> > On Mon, Feb 02, 2026 at 08:37:24PM +0000, Abdurrahman Hussain via B4 Relay wrote:
+On Tue, Feb 3, 2026 at 5:21=E2=80=AFPM Thomas Perrot (Schneider Electric)
+<thomas.perrot@bootlin.com> wrote:
 
-> >> Currently Linux does not implement ACPI ClockInput to describe clock
-> > 
-> > ClockInput() resource
-> > 
-> >> resources, unlike DT. However the xiic driver is happy if something
-> >> magically enables the clock before the driver probes, and does not
-> >> turn it off again. The clock should always be considered optional for
-> >> ACPI.
-> 
-> I just used the wording provided earlier by Andrew verbatim. But can change
-> to the following if you insist:
+> Add GPIO driver for the Aaeon SRG-IMX8P embedded controller. This
+> driver supports 7 GPO (General Purpose Output) pins and 12 GPIO pins
+> that can be configured as inputs or outputs.
+>
+> The driver implements proper state management for GPO pins (which are
+> output-only) and full direction control for GPIO pins. During probe,
+> all pins are reset to a known state (GPOs low, GPIOs as inputs) to
+> prevent undefined behavior across system reboots, as the MCU does not
+> reset GPIO states on soft reboot.
+>
+> Co-developed-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric) <jere=
+mie.dautheribes@bootlin.com>
+> Signed-off-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric) <jeremi=
+e.dautheribes@bootlin.com>
+> Signed-off-by: Thomas Perrot (Schneider Electric) <thomas.perrot@bootlin.=
+com>
 
-I do not alter the wording, I correct the mention of the respective resource.
-And yes, I insist.
+Looks good to me!
 
--- 
-With Best Regards,
-Andy Shevchenko
+Reviewed-by: Linus Walleij <linusw@kernel.org>
 
-
+Yours,
+Linus Walleij
 
