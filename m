@@ -1,189 +1,237 @@
-Return-Path: <devicetree+bounces-262360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262361-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KL2dJ1sygml5QQMAu9opvQ
-	(envelope-from <devicetree+bounces-262360-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:37:31 +0100
+	id oD4BAvQygmkuQgMAu9opvQ
+	(envelope-from <devicetree+bounces-262361-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:40:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A3D2DCE22
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:37:31 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7D91DCEF6
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:40:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 575F630A9C02
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 17:32:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AD3AC306C36F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 17:37:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C598528750C;
-	Tue,  3 Feb 2026 17:32:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBEBE333438;
+	Tue,  3 Feb 2026 17:37:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GRuVFepg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H47cB76l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6532D2F290A;
-	Tue,  3 Feb 2026 17:32:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 983212C235D;
+	Tue,  3 Feb 2026 17:37:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770139956; cv=none; b=NIw2AjZ0bisYlGcwX2ynmBuyUAGIsTDlRvvSQXF5UKKkDalKMWhwcXH7BAVgPUFzykfxCYABrvXvW6d/wSbxLUN6RZdovMUmLD1oj8s6e93qyb4NCD/kR+D9kKZIX8eG6QPoI9v5uDFR3TBdZOu0Bfd0r+uR4CGQOdDA6lcHXrQ=
+	t=1770140245; cv=none; b=alP+hYjblcOnxqZDTsNFQiyzwLgvRoIeWBoFng739NLKrlIxmdnLGrxHW3i0Vja6A7cUjnJaDqWxKacfHYeUFCMcYQvKC1T1hmxRw0/rGbe6D/c8+SQr6XTZ8BXQScEofcspkpJUFq9SyFbwORjviYWh5YB7fqP4aDKRCpVdRY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770139956; c=relaxed/simple;
-	bh=zOUHPvPYgAED+5chP8L8z0Gl/CW+3EmlWHBnR1pXUuA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cG2WLmIhGNoXaswrt6rqnkUQWTAhOUKtftMyisXa4ED/2eu/w9UWO8NzV+DPuzuXLArotWS69OS+4dOXfqfVfxRPx/XqBFMyt22c61EFAZD0gqUWZZ3KfwqQ/xwR5wTf9SOD/Ls88xxLf48dzSknJzFTRR4LFNGWb51WbWeAQGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GRuVFepg; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770139955; x=1801675955;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zOUHPvPYgAED+5chP8L8z0Gl/CW+3EmlWHBnR1pXUuA=;
-  b=GRuVFepgSwo9uPbqatqhaNGu7eEXeotl+61n+bw1cmJp6OUR7ckl+jyC
-   cj56zhrwuHek2FBRhyD8y9OXjPWzTLV+rN/K2dEkR8btqTLSjwn0wbT0e
-   rVUBYcvkepEo4oWOqqUwYSpbPtcRK5VEQxQ+noOHHPZTwvi33gkLq0mZF
-   5PBHMNvmxQynpspHmsdEaUT7H8aDdJ+4FVO4j3Gaxpg7IlQ+XwqwhT2sQ
-   7RHpy2sL6NI0jAqD06Pjqu1oaUiaQEztVEv7hipndoYEj2d3B5QAwuCQJ
-   KuiE5FQ2uGV387hW9q7uhJ4TWZ1eYfSejH/200/2af7AmzePc205nJVUm
-   g==;
-X-CSE-ConnectionGUID: BnaNZYw4QC+xCj7Rntqf0g==
-X-CSE-MsgGUID: esoELcmfQuOR8wlg5ORnuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="74939350"
-X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; 
-   d="scan'208";a="74939350"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 09:32:34 -0800
-X-CSE-ConnectionGUID: oGD2iRp5REOmYrYYHGZ1VQ==
-X-CSE-MsgGUID: j27gC4EKSv+Jhb07xjwNyg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; 
-   d="scan'208";a="209195436"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 03 Feb 2026 09:32:31 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vnKGK-00000000guW-0ghX;
-	Tue, 03 Feb 2026 17:32:28 +0000
-Date: Wed, 4 Feb 2026 01:32:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: Gary Yang <gary.yang@cixtech.com>, lee@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
-	peter.chen@cixtech.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	cix-kernel-upstream@cixtech.com, Gary Yang <gary.yang@cixtech.com>
-Subject: Re: [PATCH v6 2/3] reset: add Sky1 soc reset support
-Message-ID: <202602040111.sphIzkjq-lkp@intel.com>
-References: <20260203022031.4075627-3-gary.yang@cixtech.com>
+	s=arc-20240116; t=1770140245; c=relaxed/simple;
+	bh=pvuAZWwicfoMIRfRh7T6PVDleRf+nabIqQLjR4EU0i8=;
+	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=gIawajghZ2Iojk2teMmtzh+DCfU+T6fMq7hG4Q8vrJKbFeeTbNGuC/BoyMsUY0fuD7kyrquoie1gKdCThIhGh/NTd0axt0x95A1GsEhSiyMHPanDigeaMFmiTz3lZ+0BAi+6aglI84hmExFU0HklOqbKup68If9sHLYZxkKMTcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H47cB76l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23C7DC16AAE;
+	Tue,  3 Feb 2026 17:37:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770140245;
+	bh=pvuAZWwicfoMIRfRh7T6PVDleRf+nabIqQLjR4EU0i8=;
+	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
+	b=H47cB76l/Sg38yx9vK4S1AB+bZuQCtZa81Qlc5X9BOrwa+ya14BH4IdIeGGjYBGQg
+	 R+myVA90VbkRakBEBBdSeDLwt+MRtv0HtGnRmfdnZfEqcxpWt20BfgRhWWg5QkrCJ4
+	 gPkESU2rMULWqrcrcTeXFI61uFY3SadWEiqsqrw0+a6Z5+/44/VtyNVqzdcRwRLnxG
+	 KLcSzK8Ain4Hv4uTe/wYgIvNAPFXfdI4h44tfxhqI2Q7xvp8nLawd8LMmjH24+WOJI
+	 QEnyio89YXxFN9FES3MTGmd0JDl8RLohHEyFMa3weRi1GYtfQvszfi0OBAsHriCfRt
+	 cANeKmDv55uyg==
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 03 Feb 2026 11:37:24 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260203022031.4075627-3-gary.yang@cixtech.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ andersson@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, conor+dt@kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+To: YijieYang <yijie.yang@oss.qualcomm.com>
+In-Reply-To: <20260202-purwa-v5-0-1f5a93578802@oss.qualcomm.com>
+References: <20260202-purwa-v5-0-1f5a93578802@oss.qualcomm.com>
+Message-Id: <177014002716.3173249.7908353000261603377.robh@kernel.org>
+Subject: Re: [PATCH v5 0/4] Initial patch set for PURWA-IOT-EVK
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-262361-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262360-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 4A3D2DCE22
+X-Rspamd-Queue-Id: A7D91DCEF6
 X-Rspamd-Action: no action
 
-Hi Gary,
 
-kernel test robot noticed the following build warnings:
+On Mon, 02 Feb 2026 15:35:44 +0800, YijieYang wrote:
+> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> 
+> Introduce the device tree, DT bindings, and driver updates required to enable
+> the bring-up of the PURWA-IOT-EVK evaluation board. Focus is on two key
+> hardware components:
+> 
+> PURWA-IOT-SOM — A compact System-on-Module integrating the SoC, GPIOs, and
+> PMICs. Designed for modularity, it can pair with various carrier boards to
+> support diverse use cases.
+> 
+> PURWA-IOT-EVK — A carrier board tailored for IoT scenarios, providing
+> essential peripherals such as UART, on-board PMICs, and USB components.
+> 
+> Together, these components form a flexible and scalable platform. Initial
+> functionality is achieved through proper device tree configuration and driver
+> support.
+> 
+> The PURWA-IOT-EVK/SOM shares most of its hardware design with
+> HAMOA-IOT-EVK/SOM, differing primarily in the BOM. Consequently, the DTS files
+> are largely similar. Both platforms belong to Qualcomm’s IQ-X family. For more
+> details on the IQ-X series, see:
+> https://www.qualcomm.com/internet-of-things/products/iq-x-series
+> 
+> Hardware differences between HAMOA-IOT and PURWA-IOT:
+> - Display — PURWA uses a different number of clocks and frequency compared to
+>   HAMOA.
+> - GPU — PURWA integrates a different GPU.
+> - USB0 — PURWA uses a PS8833 retimer, while HAMOA employs an FSUSB42 as the
+>   SBU switch.
+> 
+> Features added and enabled:
+> - UART
+> - On-board regulators
+> - Regulators on the SOM
+> - PMIC GLINK
+> - USB0 through USB6 and their PHYs
+> - Embedded USB (eUSB) repeaters
+> - USB Type-C mux
+> - PCIe3, PCIe4, PCIe5, PCIe6a
+> - Reserved memory regions
+> - Pinctrl
+> - NVMe
+> - ADSP, CDSP
+> - WLAN, Bluetooth (M.2 interface)
+> - USB DisplayPort and eDP
+> - Graphics
+> - Audio
+> - TPM
+> 
+> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> ---
+> Changes in v2:
+> - Update the GPU firmware path.
+> - Update the description in the cover letter.
+> - Reorder the patches.
+> - Use separate DTS files for Purwa and Hamoa.
+> - Update base commit.
+> - Link to v1: https://lore.kernel.org/all/20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com/
+> 
+> Changes in v3:
+> - Delete unused PMIC and thermal nodes.
+> - Add WiFi node.
+> - Add display backlight node.
+> - Add connectors and VBUS regulators for USB3 and USB6.
+> - Enable PCIe3 and PCIe5; add PCIe ports along with reset and wake-up GPIOs.
+> - Link to v2: https://lore.kernel.org/r/20260109-purwa-v2-0-f39ee10684cb@oss.qualcomm.com
+> 
+> Changes in v4:
+> - Enable TPM.
+> - Update the descriptions for video and the USB OF graph.
+> - Link to v3: https://lore.kernel.org/all/20260113-purwa-v3-0-16eefacbdce9@oss.qualcomm.com/
+> 
+> Changes in v5:
+> - Reorder nodes in purwa-iot-evk.dts.
+> - Update base commit.
+> - The DT binding change that fixes the DT warning for pcie3_phy is located at: https://lore.kernel.org/linux-arm-msm/20260119-topic-purwa_phy_shutup_warning-v1-1-997a692b31c6@oss.qualcomm.com/T/#u
+> - Link to v4: https://lore.kernel.org/r/20260116-purwa-v4-0-89b2adae9f09@oss.qualcomm.com
+> 
+> ---
+> Yijie Yang (4):
+>       dt-bindings: arm: qcom: Document PURWA-IOT-EVK board
+>       firmware: qcom: scm: Allow QSEECOM on PURWA-IOT-EVK
+>       arm64: dts: qcom: Add PURWA-IOT-SOM platform
+>       arm64: dts: qcom: Add base PURWA-IOT-EVK board
+> 
+>  Documentation/devicetree/bindings/arm/qcom.yaml |    6 +
+>  arch/arm64/boot/dts/qcom/Makefile               |    1 +
+>  arch/arm64/boot/dts/qcom/purwa-iot-evk.dts      | 1549 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/purwa-iot-som.dtsi     |  685 ++++++++++
+>  drivers/firmware/qcom/qcom_scm.c                |    1 +
+>  5 files changed, 2242 insertions(+)
+> ---
+> base-commit: 6267b2da1b2d04847a1a8f441e138bc4a89435ee
+> change-id: 20251113-purwa-907ec75b4959
+> 
+> Best regards,
+> --
+> Yijie Yang <yijie.yang@oss.qualcomm.com>
+> 
+> 
+> 
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on lee-leds/for-leds-next linus/master pza/reset/next v6.19-rc8 next-20260202]
-[cannot apply to pza/imx-drm/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Gary-Yang/dt-bindings-soc-cix-document-the-simple-mfd-syscon-on-Sky1-SoC/20260203-102331
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20260203022031.4075627-3-gary.yang%40cixtech.com
-patch subject: [PATCH v6 2/3] reset: add Sky1 soc reset support
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20260204/202602040111.sphIzkjq-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260204/202602040111.sphIzkjq-lkp@intel.com/reproduce)
+My bot found DTB warnings on the .dts/.dtsi files added or changed in
+this series.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602040111.sphIzkjq-lkp@intel.com/
+Some warnings may be existing warnings. Consider fixing existing
+warnings before adding new features.
 
-All warnings (new ones prefixed by >>):
+Perhaps the warnings are fixed by another series. If that is the case,
+please set the base commit and any dependencies for the series using
+"b4".
 
->> drivers/reset/reset-sky1-base.c:97:5: warning: no previous prototype for function 'sky1_reset_common_probe' [-Wmissing-prototypes]
-      97 | int sky1_reset_common_probe(struct platform_device *pdev,
-         |     ^
-   drivers/reset/reset-sky1-base.c:97:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-      97 | int sky1_reset_common_probe(struct platform_device *pdev,
-         | ^
-         | static 
-   1 warning generated.
+Ultimately, it is up to the platform maintainer whether these warnings
+are acceptable or not.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
 
 
-vim +/sky1_reset_common_probe +97 drivers/reset/reset-sky1-base.c
+This patch series was applied (using b4) to base:
+ Base: 6267b2da1b2d04847a1a8f441e138bc4a89435ee (use --merge-base to override)
 
-    96	
-  > 97	int sky1_reset_common_probe(struct platform_device *pdev,
-    98				const struct sky1_src_variant *variant)
-    99	{
-   100		struct sky1_src *sky1src;
-   101		struct device *dev = &pdev->dev;
-   102	
-   103		sky1src = devm_kzalloc(dev, sizeof(*sky1src), GFP_KERNEL);
-   104		if (!sky1src)
-   105			return -ENOMEM;
-   106	
-   107		sky1src->regmap = device_node_to_regmap(dev->parent->of_node);
-   108		if (IS_ERR(sky1src->regmap)) {
-   109			dev_err(dev, "Unable to get sky1-src regmap");
-   110			return PTR_ERR(sky1src->regmap);
-   111		}
-   112	
-   113		sky1src->signals = variant->signals;
-   114		sky1src->rcdev.owner     = THIS_MODULE;
-   115		sky1src->rcdev.nr_resets = variant->signals_num;
-   116		sky1src->rcdev.ops       = &sky1_src_ops;
-   117		sky1src->rcdev.of_node   = dev->parent->of_node;
-   118		sky1src->rcdev.dev       = dev;
-   119	
-   120		return devm_reset_controller_register(dev, &sky1src->rcdev);
-   121	}
-   122	EXPORT_SYMBOL_GPL(sky1_reset_common_probe);
-   123	
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20260202-purwa-v5-0-1f5a93578802@oss.qualcomm.com:
+
+arch/arm64/boot/dts/qcom/purwa-iot-evk.dtb: phy@1bd4000 (qcom,x1p42100-qmp-gen4x4-pcie-phy): 'qcom,4ln-config-sel' is a required property
+	from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+
+
+
+
 
