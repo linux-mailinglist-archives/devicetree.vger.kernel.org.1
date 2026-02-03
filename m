@@ -1,310 +1,412 @@
-Return-Path: <devicetree+bounces-262364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262365-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aOLvLoo1gmmVQgMAu9opvQ
-	(envelope-from <devicetree+bounces-262364-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:51:06 +0100
+	id EFddBKM2gmmVQgMAu9opvQ
+	(envelope-from <devicetree+bounces-262365-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:55:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A609DD1CF
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:51:06 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F4ACDD2F5
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:55:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 65B2F30F61EC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 17:43:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3CEEA301778B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 17:43:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DCE286348;
-	Tue,  3 Feb 2026 17:43:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 913DD86348;
+	Tue,  3 Feb 2026 17:43:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="T9UqPi20"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PGMcPWol"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011024.outbound.protection.outlook.com [52.101.65.24])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A121A28727F;
-	Tue,  3 Feb 2026 17:43:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.24
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770140613; cv=fail; b=KZ6CpJ8VZU80fD4uXWbHrS3YZSlKrcoaCkXo5aZWxAAebA3FKuFw5h5hH7kPGzZg65/VwT+p/NhHALLoUeNm8hoGKPxEzjN4fvffLuAshivKb8Mrmml63h+2Ic90a3nE3lK9SuM8Tre7UG3/crxUGq9c8+V+etDzyMaYw20znMo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770140613; c=relaxed/simple;
-	bh=2BmEqpP67jGfBTf1MrMm+pPx2tlBorGLWteTCkT4n1s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Rdd9QvRhMOqkvz1RdGGJFxWd15dS8UEeqbPdzxevpFNm31Y8W5lil8lh4gWDmO3o5ZCRZGk71a/we1cGYImvDIYxXEDkZbrSKU7ZstNdoE1TkqCXNW7HGBgfgqxiP7WeQHO7aq5NCunv6b3bLqUnMc+ORMnqLCfChUWP7z1EZps=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=T9UqPi20; arc=fail smtp.client-ip=52.101.65.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZSYR4kUjSYB0R1b1sUh7fsu+nXeHa1rnqOj1H4jRd8TPR9b8RoloU3JWZYC7TMFkB+hCUyMJx6QKqCFjtJa99HCRH/IYrloMubhGSlk2f3FGWA5i9QsUMqFXWtrNYPmGzmUXWVRfldiGYDdU+vxfGLN5t8418O1f63UGxeM2fW43QgiKXqbGuQ3q4bKJDkvfyZcz37Y5VQtTibcP7vtkY8Vj8twILUxUpb8NxvTN9TB0qwb4QiAy161+Pfure5gyGFjjMu/wPJdDdKAiz3lDIwSi9VFMuSpYcmdZCnScbKFw07OfU2FQ1Xj1LJVeiVvc7dCXcQtBx3dtQ+1id9O8kw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Nz4cLTjKrRovTURdIWnYGeoOQd7GaCY3cS7BOXfEgHI=;
- b=TgfzPHqCHQCkHQFSwO0ux1jKNaRbNgA/bgQKMKFJtzPqYLWvfiXQWrbvwyqbBISkllh3wnkMPK5RrRA3VJyW5lleOg5VNhilsxY6s88Tk7SK5yL2rBt+0a8zGPmV7vkBbjDFsdVCS8erlBAD6Vs9Z/3Vxlhv1tnhkrEd87U2XybNgqr1y+fjpzHNd0TT+veSnrJhYtR5nyT+V0JQCBqOgfFmWJN3+hMHvcjU/4hRhMsUmMzN9NLzcBODKxU1D8guZ5NhraKZYyfzx72nbf/BiwZSBRamx7RD4G3todcUD+ybAx6X4jTFtbWjrDMYPOXmzEVzQcFMgPbbj745bG5vcQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Nz4cLTjKrRovTURdIWnYGeoOQd7GaCY3cS7BOXfEgHI=;
- b=T9UqPi20z27KAUA2FKyo7UGzyJv0gLhivyCUvX1TDRqbUtKu8b9mykosov0efNpJ37R+WXpn/7OCZxGSfj8zlgR5sELQSU+99bff+4yj1/Va5hQu3tcFljom4LcjPTHCvbI0VX0yQaDMfShP7ofmjgfVBM3qF026dau56n85c3lIUUVW6nptd+lOtCERkQcD+YF9ikB6vOljaVyOPtR1444ZOBzS3aT31bPfrr8z4iOV4KWNqouGUPoKuPKrACbXlbRE7LcM0VYrg3l820PSR8qZ6He024o4Mm6r0hMIVHodyd+DUklALlr0t6SjjuUnoUyNwaMyRfncCQ2A9+6r7Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by AS5PR04MB10018.eurprd04.prod.outlook.com (2603:10a6:20b:67e::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Tue, 3 Feb
- 2026 17:43:26 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Tue, 3 Feb 2026
- 17:43:26 +0000
-Date: Tue, 3 Feb 2026 12:43:17 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Sherry Sun <sherry.sun@nxp.com>, hongxing.zhu@nxp.com,
-	l.stach@pengutronix.de, bhelgaas@google.com, lpieralisi@kernel.org,
-	kwilczynski@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-	imx@lists.linux.dev, kernel@pengutronix.de,
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V3 02/10] PCI: imx6: Add support for parsing the reset
- property in new Root Port binding
-Message-ID: <aYIztYs/07WBLsAq@lizhi-Precision-Tower-5810>
-References: <20260203015614.2957479-1-sherry.sun@nxp.com>
- <20260203015614.2957479-3-sherry.sun@nxp.com>
- <nekxn5osukwkumqfh4qabj6okhtv4tdwrnthza4x54psrhauyf@p3lhia4mkhb4>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <nekxn5osukwkumqfh4qabj6okhtv4tdwrnthza4x54psrhauyf@p3lhia4mkhb4>
-X-ClientProxiedBy: PH7PR13CA0011.namprd13.prod.outlook.com
- (2603:10b6:510:174::26) To DU0PR04MB9372.eurprd04.prod.outlook.com
- (2603:10a6:10:35b::7)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8082830CDB6
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 17:43:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770140626; cv=none; b=teUWa0khLX2jn2Ib8i9h9b35h1axRmm7LlMjg4ZWzZat0K08lyia5+vW7HjX1UXV7Eq8WtbyWdeAAd5oWzRXN7KYXRbDYlgnc1jIBxPTRIHJwkz8cFFVyf8sz6w6votrcmjUnqJYbIACQFwmQQK+t39t4deie0qcEPZUQmcCqcA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770140626; c=relaxed/simple;
+	bh=S1xet4V3zPBG43Ro9kk2/7Y9HeZTpsW3YyvuxKzNa3E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SvhzSqiagRlTxSeQc1VmqY2urtSDZhjZhsiW3lu/eiCVrEfdtKPwyALessWo44oxMeeBagygARMQJ4lkmHCwr2tSF5V7UvqbJZBZdPUwuVBFYR3FMKqxjmMQlBs0M/MXRdJXZeSW0QwQ3V2vxIVOzZFPyk5aq445H2pHU/6ugyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PGMcPWol; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-81f4ba336b4so4916564b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 09:43:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770140624; x=1770745424; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=fc8GgBeKUnzZSNQagN8MObCUTYRnN8hwXFvTTnWwbok=;
+        b=PGMcPWolinvJ88yjA+clnR1ygBx82lB9mh6mYo5FpcRBDL+eC6C63VuWGmF/0jmXLU
+         qmoLijz0mwrajMo9/h4YhAmL23NSkMiRaTK3sT9IUbijLwkD4Zo6gO4xMnPq5w4ncYR+
+         gg0WC+SBnA66VUXoHQm4fpJ+uRW0eZtFRj7/YgQh65WbcDBK/nPC0WXJy+BXI8q9ybKM
+         HVVGoGMywHSkFnfh3z366kJ+jKpflDZR82g/6R6s6ACb8w/6qUKYxhyTw/RTZBCbHMbw
+         kN2kSynXLduVw94P75zpqGPEPFRRfHL46w7jJOEoFDJrdImGdERuvQOswlvP1jPbQcnd
+         dW3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770140624; x=1770745424;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fc8GgBeKUnzZSNQagN8MObCUTYRnN8hwXFvTTnWwbok=;
+        b=IeT+PdSyZpdiisrxsTnGhBWoTo6pvIXgAihpaWfmRlCCiMgYLFyQL7bTNfO9zp5M0s
+         ZFbqmNJoyBLJVTKBhk+Jnm3PsVH+thGraH2dwtwleJBevhnwKqGD7BjSZ9Oe1u9yO5Fy
+         JuV65+SUQvNFE0Qj35QxkDJkvc1zqpRG1VWvsLEdq0kY8v+1jXRlBt4e3YIY7LFrCyk1
+         Pg4Eofd3IYEzeNDpN0JaUQ5WlOWRGbk7klJvaXdflxJmTMiq4OQz6yV6O/Of3GebvOmk
+         CCqOvbDfMys576qI4qjIVKtwwED3jUd17WeMVk1s0miBJDbXJDXmfy9FMiZNfFVF3VGR
+         FQ7g==
+X-Gm-Message-State: AOJu0Yx7eGn/FGKJZkSeGeI4oAGtWAgZ6mMk3a41C2lkLg1ugsL3idjk
+	PDKu9JD2wkfL5CIYQ4mdg3L5tuIxKjyt42PzpF7MxCb312sxOKIM9ZFh
+X-Gm-Gg: AZuq6aJfXp0jQANptxVSJI/vNJHDxyCnhNfw1sZ9IxphRqDZSZBo2umWKAMWB9svxbK
+	IFSQlvB2OBsyoQWYFyywYwshuVb4cN9X0loAuJ9a/tWxpGkRSkA5oDwbs/G+CRfn6eTkrQF11xB
+	coFVhl56IXFhsjlNEo554ZEVbjXJ3NtF9grGJ7/JXA2W2XLbHQtjzCZ7ODtkqCnz1E/my/4RGpE
+	62TZc328ITdYT5wKV3LBgb2qQfsdTM886qicawcIYE1Ojjpg/I1H9+5mM1r/H32oLpI/eQFPxS2
+	je92Yzd7cz3dDL4SUXYqzn4ZTLWDEAtuZDYmLk8kpABb/duFTSaioMD13P4M2STmvgsX0fR/qCy
+	RT+kfG36OBSrCG8adZ1qcBR4wgZm/n0XYL2yKyJULIJr4+F6UxgLgOIvdFZIahOvdpwYqugzGzM
+	zOxdwkRxZY9s5ZNUto2HXBT11ZGMvC1cZCkYeB2N/es+CflvzT5ytq6ayPYNud
+X-Received: by 2002:a05:6a00:8f08:b0:81e:e09d:2687 with SMTP id d2e1a72fcca58-8241c16c890mr208650b3a.1.1770140623769;
+        Tue, 03 Feb 2026 09:43:43 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8241d434ed5sm3892b3a.39.2026.02.03.09.43.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Feb 2026 09:43:43 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <8ca53787-5968-41f9-a605-03e58a8c4565@roeck-us.net>
+Date: Tue, 3 Feb 2026 09:43:41 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AS5PR04MB10018:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6ba2041e-2b2c-4c14-7850-08de634bbbdf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|376014|7416014|52116014|19092799006|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cVhKR2hSZ0NBcTZpS01mYU51SjY3ellEZVBRZkJrN080YjFTdTUwT256RkZ3?=
- =?utf-8?B?d053MW4zVVFyWVNsWUd1VXFXck5GRzBLTUxvS0Iwak9IQnVOdUNBRmozaWpj?=
- =?utf-8?B?ZEtEM3B1UGtVMlZ4RHFQSTYzczhUVG54R0RaMVpjTDRVNkNzMkYxd2lIdUdV?=
- =?utf-8?B?QndNSmIwVE83SGprdW53VGo2elF6ak9YVGxrQnQzUFQrRkRCQkN3cnpPYjVW?=
- =?utf-8?B?c2VwSVhBUzN2eW4zQm0rTHJMTnpzN3dCMWJBbDdzSFBBV3FEZUF4Qzh6eWkv?=
- =?utf-8?B?U2Y2Y2xBNXhMdFN1dnBxaU9kUExUb0ZsRk9IQ2pJUUFjY1pMMmViSDE4ckt1?=
- =?utf-8?B?YWxGMzRSRWpwcmVyOHRjZGJSTGpIeXYreEdtbkdDOEV5Sk11UjNkbGNyajNI?=
- =?utf-8?B?dWFSN1RkUk5seTV2S0F1L0J1MGNiaytLbVBkam9kOTljSHplK0xGN1VYcFdE?=
- =?utf-8?B?T2thM01Pb0F4dkphemZ6YVhOMlVIRTRKeEw1TFk3ZWxyblRMcTdvRTlyRlVz?=
- =?utf-8?B?dUhBZHg0QXI1M0l4SUVadGJ0Q0E5TUJleHpYa05GY2hjdG9XcVNDci9WeTFu?=
- =?utf-8?B?cU5ZV0M4RmxUNUZHSDZ1WDYrc2JsM1lTaTdweHZFVkMrS1dEeWpDRk4zeXIx?=
- =?utf-8?B?MzV0SkRRaW51MDdacE16c3NrWnJLVUZCajdMc2J5VFhyYTJCNnY0M2Q4azlj?=
- =?utf-8?B?YVNJS2EwalJvOWRZS012UXpHU2FuejZYdTVDRWk1cGhYYUgxNS9sM0pEeGJQ?=
- =?utf-8?B?aXlKUXFOcUFVQ01ZQkZOT0lUK3pWQnVKMmhieWIrNDBBSEpQZGxDUkd4K05B?=
- =?utf-8?B?c1JmWE5oVElaKzlGajhONEVteVhMdUlJWTdCYldINnZzQWx1VExHa1BjbVpO?=
- =?utf-8?B?K3d1VjBXNER2dzdHNHNWY1ZiaDdDcWNkZnJBaXNIVHZ4Znl2RTFYVlM3NTBK?=
- =?utf-8?B?TkI5ejNCc0dCbisyNDRjYVNQSHlDa0E4WERpRUtPclRkdTRYcEFoYU11SmJ5?=
- =?utf-8?B?aWF0eEZHYi80MU9PYS9QUk1od3RzQ2toZlVWUDNPMlVFNE01Y3dhUTlaM21E?=
- =?utf-8?B?RTZYMnF4YVNqSWtQdEFPdXZ5b0h6VkFmK1pXZFdVdTBZdElxSjBjL1c2ZXJl?=
- =?utf-8?B?akJwRDA3ME5iT3J6QjZYeWZORER1cUJ1N1JncG9CMHZvTFpxQThaQU13MmpP?=
- =?utf-8?B?MjFqYU1pcXczTVB1RWhueHo0Q1RMdHdHcXJHV0c4OU4zeG5GL2NZUkNoSzZq?=
- =?utf-8?B?cURITTFOdmpTQTlzQ0pkdEVpRG5Mb28xRGVlWWhzbDVIenFxOE05YldpcVZJ?=
- =?utf-8?B?RTBCRXZZK3hiaWcrQmJoZGJLVXc0cWl5SnVZdC9CSlRZcHBQT0NCaEQybDBp?=
- =?utf-8?B?VUFNbzVMR2tnQXdraGE2eUk2cjR1TE5qTzdaM2tLUGVCWHBUcmtXdWI1bDEx?=
- =?utf-8?B?OENTc2I0cTBjUGxTSzBxQUVmVVcyMm8yRXNST3hGRUJkVVpsb2hCU3ZqeUtw?=
- =?utf-8?B?cVErUnlobHd2eUVXejBTbVZOZEJvcUpaT0s5ZnNwRXVlUnE2UFY5dFdsZVhZ?=
- =?utf-8?B?ZnNjM0VxUkluNnlqMWNEOUUrYmNDbTJ2NG0zQy95azJzZm52clRXOXV3dnZs?=
- =?utf-8?B?Ui9laXdzSU14N2JyNHNpSHRCR3RxeEhOaVV3WGs3d1g4YTYzSWdRd2tQOUk0?=
- =?utf-8?B?QThpMldJb0dPU295TWswUEN2R1RNM3JFV083Ums3djlGZlphMzgwd08rV3E1?=
- =?utf-8?B?cEJlNkphTDhqamFsamJUamUybjNVMXRpa3pCUlFUUWpQaTU3LzFXckNZRUd5?=
- =?utf-8?B?Sk5RNWs4N3lNU0Zvd3VVZWRNSE02Y1hza1c5eTFPQVk4UjVHTTY0ZW03ejNH?=
- =?utf-8?B?bnM0ekpzVEF5MVQ1QlpUa0J3d09WdWgwcGVTbmFuRVZrY0pVeks4NmZzNjgx?=
- =?utf-8?B?ZEs2ZXBKWGJRRjJ4MmhZZ1JGc0xuWWVqcW0zaVBYTHQzRXVINFNBRTVzNXdp?=
- =?utf-8?B?RU13QmU4WEdQd0UyaHBrK1hBekNmVE9JT0RZTlViWE02aHhvRlJ5SlMrRU1j?=
- =?utf-8?B?WkkweWlXcGJVcUlFU3BaK0pnZjlGLy8yKzcvMVNyUjFlekdmR1JocVV0Vmpx?=
- =?utf-8?B?TjBkRTdBVEJicVZkZEpCYXozbGxqbGNYa3E4MUFYOWFBenUxK2dXTUJlcHNr?=
- =?utf-8?Q?6N9k/zzb5xyaOpLVYgGLwg8=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(52116014)(19092799006)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bnk4S1ROSVMrZGIzSnJ1Qmc3b21WV0FEZk8vajc4bWZQZlBpb2ZUUWZ0T3dS?=
- =?utf-8?B?TkppZVpjZ1FjWkxzdDlzM1RCV0Fic2xEckdpU2tvazI1OHR1bEU1VGl3VlF1?=
- =?utf-8?B?NGIzM3pBeVRkZkN5V2ptNmw5aHdTdGNsUDg2RTVUV0xDL2FiNmZab29UMHFi?=
- =?utf-8?B?Q21XKzNrcDh5c0VzYWxYK0gvY0JrdDVOclVGcmJycXhJMk42a0RWTjFkVFBu?=
- =?utf-8?B?MFRrR093MGZseThSb2Z5T3lwK2NJNlYybU4zUE14dEZ4alZuWlhrQlhSc0Ir?=
- =?utf-8?B?dXQzQTN5U2gyNDJyTUZUWXU5TEc0UjBmK3JlY0J5QXA2VXhLY3RHdmRKMnhr?=
- =?utf-8?B?TDV5YTFnOGVDRFNRZU1HeFhBUGJ3L3pKY01rSUVSSXpydU1yMmZMbmQrWHpH?=
- =?utf-8?B?QitzZWF4RklkUHdwMGhneTFxN0J0WUJydGxEZUhTV3RWc0NVQmxNQnN0bkJs?=
- =?utf-8?B?OENWUmVYZHhOMStMbk0rTVlsYXZDV2pyaHRvVnpvcVY5S3NGSUYvYnRwM05S?=
- =?utf-8?B?b0NMdlJXUE9aWExvTE01ZUprN3RWNk5aVnVCNlJXVVJxbS84SXA5TC83MlAw?=
- =?utf-8?B?NUh0UEZKeWhQekVtU1lpYkF3Tzl3V21wSmt5OTZpK2FibmVrdFp0OXNHWjJN?=
- =?utf-8?B?MUNJMVhiNDFVRUxvcCtxVzltbkVHbmFQdTRNSTlyYVNMNzlQcFNVTUhzcWU5?=
- =?utf-8?B?K1JxMWtEWHFMdEZmMFhCckUxVXRDWkM3c3VNZnUwQkIxb1ZPZnBNZFlBR09S?=
- =?utf-8?B?ckpNU3pZKzZsRXFHVG0xWFdQRWRnWXFTOG5pRXRlS2ZBMnNQQ3R1dG01NmZ1?=
- =?utf-8?B?em9UU2JaR2NxK21CVDYrR2FLaUtiRjNZbXoyNnQwTUxJcW5MejQ0QUVIU2Ft?=
- =?utf-8?B?bTVYQUVuWGlwNXljTmtnMTZjYysxS1ViYkYxN3pHYmtmYlRCc2VmdkZDU2xE?=
- =?utf-8?B?UjhrTnlXNGxuSzNKMG44TU1wVlhTMGYvMWE1cFJRMFFiVGNELzkzMXdPMkVO?=
- =?utf-8?B?WHI0bDNDSCtJNldzQ2YwaVlGdTlRK0FCaW0wb3Z6U1poVDBNU3BHdjBPYXZK?=
- =?utf-8?B?ckg1cWdjUU9ELzI5Ykg5SjZqYkpEdytLVGNyczhNUk4vUDFEQURZOTFkbG1y?=
- =?utf-8?B?eUlFbUZtbGliTUdiNFNMcEhnYjd0R0ZyOFR6ODUxUERYV20ralFlbjQ3aXJH?=
- =?utf-8?B?elBqS1BaNDNLRk1sWGE4Q0dUKzBreDI5dVNCNENmNUdQTk1FdUtFYmwwUjRk?=
- =?utf-8?B?UXFIVWhaNXBsRWduYkx5NndiNWoybkFUaGp4aTM2VFlzMUxCY2dyVTQ2aDNM?=
- =?utf-8?B?MlhJVFhlZW51akhIOHVBTkhEeW9EZ1h6akt5Vnk0QnFvYzYrb1Jpay82TUFx?=
- =?utf-8?B?bnJaNnA5UmdQL2hmN3AvUGpFQXVNV0VYc1FtUUpSUi9YK0JZTGxnT2R6NUsr?=
- =?utf-8?B?WnBFYkZZZGN1VU1KS3N5bDZ0V1VnL0xScldFTk9ROGxSd3FSRmR4OG9qanB6?=
- =?utf-8?B?ZEF2Q2RCY05jdVAwRFRqcFJuVDB6dE1ybzVLanlZaDBKTTFPUjRyOXl3QXNU?=
- =?utf-8?B?ckRmb01MMXBQaiswbGR6T2ljQXJPVHAzOTJaaDBQZXBZdUNnLyszRU5odzJN?=
- =?utf-8?B?SUY5c3BCVXEzVjcveXQrVnVMQzBteWpybDJYdnRESHJENUJhUjJwc1psTEhZ?=
- =?utf-8?B?OUVYY3E1ZTJIUVZrdms1WU5wR2MyRXpzaGppT0VrY0tTWnRjbTdodVE5TGsw?=
- =?utf-8?B?UVNER1Nndk1wcTIrMTIzczhSSEc3amR6aDlQRE43OTlkbEVYNUVoVXI5ZnV4?=
- =?utf-8?B?SkhvSm5tdThoOFQ4d1R0MzRWdDdoUE1YODNEZ295TlR3REpYekxPbUF4eTNE?=
- =?utf-8?B?eG5kYjBJVkdwT09kMzlBQ2xyK0dQdGw3bnBidlR4V0NnM0lncWVSQXgwSXlF?=
- =?utf-8?B?NVRIbHMyU0h0ZDVWMk9lM1YvajNmb3kvazhVMTZMbGk4bVFsMzM5dkdVQW9v?=
- =?utf-8?B?bjZseWdRanFtZWVKZnhkY0M4RC9WYWVQdmhYNkxFRVptY0V3RE1RWXZXOWsz?=
- =?utf-8?B?ZkxLSFpiaXIyNzFVaGNwamYzc2Z2NjlnamUwVnpyZXBvSnlHU1Z2eE1TY1lM?=
- =?utf-8?B?c2NEMG9JZzFFeTRJdlVjaGRndjBCNW14bWlacElTVzdhbG9qaEY0ZmUxZWxn?=
- =?utf-8?B?dEE1L0NGQlRhR2R6RnZLN3RJMzg2a3NkclJsRjE2dGZJYlVpd2ZWelhOVWtm?=
- =?utf-8?B?bmZobGhCVlpJa0tkOUZ4dnE2VDV0aHhMbndmbkhNcHM2a1Q4Vk1ZUjZ6K3Bs?=
- =?utf-8?B?OXVQSDBGY2NSbmc1eittQ0YwMkZkYVIvMmtRb0gybXdOcVU2ZjlqZz09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ba2041e-2b2c-4c14-7850-08de634bbbdf
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9372.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 17:43:26.2600
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1gJWUc11hpQS4bs4lGpJ3wTlOx6GfoIq2jWRfDK9/9ZEcigAgvt7wVQ5zWhkA5RHKk9ZqC25JclEEJClQ3RwpA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB10018
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/5] watchdog: aaeon: Add watchdog driver for SRG-IMX8P
+ MCU
+To: "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>,
+ Bartosz Golaszewski <brgl@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ =?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?= <jeremie.dautheribes@bootlin.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Lee Jones <lee@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20260203-dev-b4-aaeon-mcu-driver-v3-0-0a19432076ac@bootlin.com>
+ <20260203-dev-b4-aaeon-mcu-driver-v3-5-0a19432076ac@bootlin.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
+ RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
+ nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
+ 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
+ gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
+ IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
+ kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
+ VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
+ jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
+ BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
+ ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
+ CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAmgrMyQFCSbODQkACgkQyx8mb86fmYGcWRAA
+ oRwrk7V8fULqnGGpBIjp7pvR187Yzx+lhMGUHuM5H56TFEqeVwCMLWB2x1YRolYbY4MEFlQg
+ VUFcfeW0OknSr1s6wtrtQm0gdkolM8OcCL9ptTHOg1mmXa4YpW8QJiL0AVtbpE9BroeWGl9v
+ 2TGILPm9mVp+GmMQgkNeCS7Jonq5f5pDUGumAMguWzMFEg+Imt9wr2YA7aGen7KPSqJeQPpj
+ onPKhu7O/KJKkuC50ylxizHzmGx+IUSmOZxN950pZUFvVZH9CwhAAl+NYUtcF5ry/uSYG2U7
+ DCvpzqOryJRemKN63qt1bjF6cltsXwxjKOw6CvdjJYA3n6xCWLuJ6yk6CAy1Ukh545NhgBAs
+ rGGVkl6TUBi0ixL3EF3RWLa9IMDcHN32r7OBhw6vbul8HqyTFZWY2ksTvlTl+qG3zV6AJuzT
+ WdXmbcKN+TdhO5XlxVlbZoCm7ViBj1+PvIFQZCnLAhqSd/DJlhaq8fFXx1dCUPgQDcD+wo65
+ qulV/NijfU8bzFfEPgYP/3LP+BSAyFs33y/mdP8kbMxSCjnLEhimQMrSSo/To1Gxp5C97fw5
+ 3m1CaMILGKCmfI1B8iA8zd8ib7t1Rg0qCwcAnvsM36SkrID32GfFbv873bNskJCHAISK3Xkz
+ qo7IYZmjk/IJGbsiGzxUhvicwkgKE9r7a1rOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
+ 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
+ pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
+ J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
+ pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
+ 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
+ ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
+ I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
+ nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
+ HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
+ JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAmgrMyQFCSbODQkACgkQyx8mb86fmYHlgg/9
+ H5JeDmB4jsreE9Bn621wZk7NMzxy9STxiVKSh8Mq4pb+IDu1RU2iLyetCY1TiJlcxnE362kj
+ njrfAdqyPteHM+LU59NtEbGwrfcXdQoh4XdMuPA5ADetPLma3YiRa3VsVkLwpnR7ilgwQw6u
+ dycEaOxQ7LUXCs0JaGVVP25Z2hMkHBwx6BlW6EZLNgzGI2rswSZ7SKcsBd1IRHVf0miwIFYy
+ j/UEfAFNW+tbtKPNn3xZTLs3quQN7GdYLh+J0XxITpBZaFOpwEKV+VS36pSLnNl0T5wm0E/y
+ scPJ0OVY7ly5Vm1nnoH4licaU5Y1nSkFR/j2douI5P7Cj687WuNMC6CcFd6j72kRfxklOqXw
+ zvy+2NEcXyziiLXp84130yxAKXfluax9sZhhrhKT6VrD45S6N3HxJpXQ/RY/EX35neH2/F7B
+ RgSloce2+zWfpELyS1qRkCUTt1tlGV2p+y2BPfXzrHn2vxvbhEn1QpQ6t+85FKN8YEhJEygJ
+ F0WaMvQMNrk9UAUziVcUkLU52NS9SXqpVg8vgrO0JKx97IXFPcNh0DWsSj/0Y8HO/RDkGXYn
+ FDMj7fZSPKyPQPmEHg+W/KzxSSfdgWIHF2QaQ0b2q1wOSec4Rti52ohmNSY+KNIW/zODhugJ
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20260203-dev-b4-aaeon-mcu-driver-v3-5-0a19432076ac@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262364-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262365-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[bootlin.com,kernel.org,pengutronix.de,gmail.com,linux-watchdog.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_CC(0.00)[nxp.com,pengutronix.de,google.com,kernel.org,gmail.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[i.mx:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,nxp.com:dkim]
-X-Rspamd-Queue-Id: 5A609DD1CF
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,bootlin.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1F4ACDD2F5
 X-Rspamd-Action: no action
 
-On Tue, Feb 03, 2026 at 06:38:18PM +0530, Manivannan Sadhasivam wrote:
-> On Tue, Feb 03, 2026 at 09:56:06AM +0800, Sherry Sun wrote:
-> > DT binding allows specifying 'reset' property in both host bridge and
-> > Root Port nodes, but specifying in the host bridge node is marked as
-> > deprecated. So add support for parsing the new binding that uses
-> > 'reset-gpios' property for PERST#.
-> >
-> > The initial idea is to add the PCIe M.2 KeyE connector support and PCI
-> > power control framework to the pcie-imx6 driver. Since the new
-> > M.2/pwrctrl model is implemented based on Root Ports and requires the
-> > pwrctrl driver to bind to a Root Port device, we need to introduce a
-> > Root Port child node on i.MX boards that provide an M.2 connector.
-> >
-> > To follow a more standardized DT structure, it also makes sense to move
-> > the reset-gpios and wake-gpios properties into the Root Port node. These
-> > signals logically belong to the Root Port rather than the host bridge,
-> > and placing them there aligns with the new M.2/pwrctrl model.
-> >
-> > To maintain DT backwards compatibility, fallback to the legacy method of
-> > parsing the host bridge node if the reset property is not present in the
-> > Root Port node.
-> >
-> > Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-> > ---
-> >  drivers/pci/controller/dwc/pci-imx6.c | 123 +++++++++++++++++++++++---
-> >  1 file changed, 109 insertions(+), 14 deletions(-)
-> >
-> > diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> > index a5b8d0b71677..e3ba68976bee 100644
-> > --- a/drivers/pci/controller/dwc/pci-imx6.c
-> > +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> > @@ -148,10 +148,15 @@ struct imx_lut_data {
-> >  	u32 data2;
-> >  };
-> >
-> > +struct imx_pcie_port {
-> > +	struct list_head	list;
-> > +	struct gpio_desc	*reset;
-> > +};
-> > +
->
-> I'd love to abstract the Root Port properties in a generic struct so that we can
-> introduce generic APIs to parse the ports. But I'm not asking you to implement
-> it :)
->
+On 2/3/26 08:21, Thomas Perrot (Schneider Electric) wrote:
+> Add watchdog driver for the Aaeon SRG-IMX8P embedded controller.
+> This driver provides system monitoring and recovery capabilities
+> through the MCU's watchdog timer.
+> 
+> The watchdog supports start, stop, and ping operations with a maximum
+> hardware heartbeat of 25 seconds and a default timeout of 240 seconds.
+> The driver assumes the watchdog is already running at probe time, as
+> the MCU typically enables it by default.
+> 
+> Co-developed-by: Jérémie Dautheribes (Schneider Electric) <jeremie.dautheribes@bootlin.com>
+> Signed-off-by: Jérémie Dautheribes (Schneider Electric) <jeremie.dautheribes@bootlin.com>
+> Signed-off-by: Thomas Perrot (Schneider Electric) <thomas.perrot@bootlin.com>
+> ---
+>   MAINTAINERS                      |   1 +
+>   drivers/watchdog/Kconfig         |  10 +++
+>   drivers/watchdog/Makefile        |   1 +
+>   drivers/watchdog/aaeon_mcu_wdt.c | 136 +++++++++++++++++++++++++++++++++++++++
+>   4 files changed, 148 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 2538f8c4bc1482b139e18243a68f0a21b9be3704..7b92af42c9fdc17a69a4e7a2fe50f9e199c8b144 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -193,6 +193,7 @@ S:	Maintained
+>   F:	Documentation/devicetree/bindings/mfd/aaeon,srg-imx8p-mcu.yaml
+>   F:	drivers/gpio/gpio-aaeon-mcu.c
+>   F:	drivers/mfd/aaeon-mcu.c
+> +F:	drivers/watchdog/aaeon_mcu_wdt.c
+>   F:	include/linux/mfd/aaeon-mcu.h
+>   
+>   AAEON UPBOARD FPGA MFD DRIVER
+> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> index d3b9df7d466b0b7215ee87b3040811d44ee53d2a..0835df4c902f059c0d61a6e8d884742dd7d2f741 100644
+> --- a/drivers/watchdog/Kconfig
+> +++ b/drivers/watchdog/Kconfig
+> @@ -168,6 +168,16 @@ config SOFT_WATCHDOG_PRETIMEOUT
+>   	  watchdog. Be aware that governors might affect the watchdog because it
+>   	  is purely software, e.g. the panic governor will stall it!
+>   
+> +config AAEON_MCU_WATCHDOG
+> +	tristate "Aaeon MCU Watchdog"
+> +	depends on MFD_AAEON_MCU || COMPILE_TEST
+> +	select WATCHDOG_CORE
+> +	help
+> +	  Select this option to enable watchdog timer support for the Aaeon
+> +	  SRG-IMX8P onboard microcontroller (MCU). This driver provides
+> +	  watchdog functionality through the MCU, allowing system monitoring
+> +	  and automatic recovery from system hangs.
+> +
+>   config BD957XMUF_WATCHDOG
+>   	tristate "ROHM BD9576MUF and BD9573MUF PMIC Watchdog"
+>   	depends on MFD_ROHM_BD957XMUF
+> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+> index ba52099b125398a32f80dad23317e223cc4af028..2deec425d3eafb6b208e061fda9f216f4baa8ecc 100644
+> --- a/drivers/watchdog/Makefile
+> +++ b/drivers/watchdog/Makefile
+> @@ -37,6 +37,7 @@ obj-$(CONFIG_USBPCWATCHDOG) += pcwd_usb.o
+>   # ALPHA Architecture
+>   
+>   # ARM Architecture
+> +obj-$(CONFIG_AAEON_MCU_WATCHDOG) += aaeon_mcu_wdt.o
+>   obj-$(CONFIG_ARM_SP805_WATCHDOG) += sp805_wdt.o
+>   obj-$(CONFIG_ARM_SBSA_WATCHDOG) += sbsa_gwdt.o
+>   obj-$(CONFIG_ARMADA_37XX_WATCHDOG) += armada_37xx_wdt.o
+> diff --git a/drivers/watchdog/aaeon_mcu_wdt.c b/drivers/watchdog/aaeon_mcu_wdt.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..416f3035c3226c3889682102d1d2453a9365b5ba
+> --- /dev/null
+> +++ b/drivers/watchdog/aaeon_mcu_wdt.c
+> @@ -0,0 +1,136 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Aaeon MCU Watchdog driver
+> + *
+> + * Copyright (C) 2025 Bootlin
+> + * Author: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
+> + * Author: Thomas Perrot <thomas.perrot@bootlin.com>
+> + */
+> +
+> +#include <linux/mfd/aaeon-mcu.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/watchdog.h>
+> +
+> +#define AAEON_MCU_CONTROL_WDT	0x63
+> +#define AAEON_MCU_PING_WDT	0x73
+> +
+> +#define AAEON_MCU_WDT_TIMEOUT         240
+> +#define AAEON_MCU_WDT_HEARTBEAT_MS    25000
+> +
+> +struct aaeon_mcu_wdt {
+> +	struct watchdog_device wdt;
+> +	struct device *dev;
+> +};
+> +
+> +static int aaeon_mcu_wdt_cmd(struct device *dev, u8 opcode, u8 arg)
+> +{
+> +	u8 cmd[3] = { opcode, arg, 0x00 };
+> +	u8 rsp;
+> +
+> +	return aaeon_mcu_i2c_xfer(dev, cmd, sizeof(cmd), &rsp, sizeof(rsp));
 
-good idea, where is good place to put it?
+This warrants a comment explaining why "rsp" is irrelevant.
 
-> >
-> > @@ -1688,12 +1771,24 @@ static int imx_pcie_probe(struct platform_device *pdev)
-> >  			return PTR_ERR(imx_pcie->phy_base);
-> >  	}
-> >
-> > -	/* Fetch GPIOs */
-> > -	imx_pcie->reset_gpiod = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> > -	if (IS_ERR(imx_pcie->reset_gpiod))
-> > -		return dev_err_probe(dev, PTR_ERR(imx_pcie->reset_gpiod),
-> > -				     "unable to get reset gpio\n");
-> > -	gpiod_set_consumer_name(imx_pcie->reset_gpiod, "PCIe reset");
-> > +	ret = imx_pcie_parse_ports(imx_pcie);
-> > +	if (ret) {
-> > +		if (ret != -ENOENT)
-> > +			return dev_err_probe(dev, ret, "Failed to parse Root Port: %d\n", ret);
-> > +
-> > +		/*
-> > +		 * In the case of properties not populated in Root Port node,
-> > +		 * fallback to the legacy method of parsing the Host Bridge
-> > +		 * node. This is to maintain DT backwards compatibility.
-> > +		 */
-> > +		ret = imx_pcie_parse_legacy_binding(imx_pcie);
-> > +		if (ret)
-> > +			return dev_err_probe(dev, ret, "Unable to get reset gpio: %d\n", ret);
-> > +	}
-> > +
-> > +	ret = devm_add_action_or_reset(dev, imx_pcie_delete_ports, imx_pcie);
-> > +	if (ret)
-> > +		return ret;
->
-> I'd prefer to do it in err labels.
+> +}
+> +
+> +static int aaeon_mcu_wdt_start(struct watchdog_device *wdt)
+> +{
+> +	struct aaeon_mcu_wdt *data = watchdog_get_drvdata(wdt);
+> +
+> +	return aaeon_mcu_wdt_cmd(data->dev, AAEON_MCU_CONTROL_WDT, 0x01);
+> +}
+> +
+> +static int aaeon_mcu_wdt_status(struct watchdog_device *wdt, bool *enabled)
+> +{
+> +	struct aaeon_mcu_wdt *data = watchdog_get_drvdata(wdt);
+> +	u8 cmd[3], rsp;
 
-we just removed err label and module remove.
+Not that it matters much, but for consistency it would be nice to use the
+same pattern as above and initialize cmd here.
 
-Frank
->
-> - Mani
->
-> --
-> மணிவண்ணன் சதாசிவம்
+> +	int ret;
+> +
+> +	cmd[0] = AAEON_MCU_CONTROL_WDT;
+> +	cmd[1] = 0x02;
+> +	cmd[2] = 0x00;
+> +
+> +	ret = aaeon_mcu_i2c_xfer(data->dev, cmd, sizeof(cmd), &rsp, sizeof(rsp));
+> +	if (ret)
+> +		return ret;
+> +
+> +	*enabled = rsp == 0x01;
+> +	return 0;
+> +}
+> +
+> +static int aaeon_mcu_wdt_stop(struct watchdog_device *wdt)
+> +{
+> +	struct aaeon_mcu_wdt *data = watchdog_get_drvdata(wdt);
+> +
+> +	return aaeon_mcu_wdt_cmd(data->dev, AAEON_MCU_CONTROL_WDT, 0x00);
+> +}
+> +
+> +static int aaeon_mcu_wdt_ping(struct watchdog_device *wdt)
+> +{
+> +	struct aaeon_mcu_wdt *data = watchdog_get_drvdata(wdt);
+> +
+> +	return aaeon_mcu_wdt_cmd(data->dev, AAEON_MCU_PING_WDT, 0x00);
+> +}
+> +
+> +static const struct watchdog_info aaeon_mcu_wdt_info = {
+> +	.identity	= "Aaeon MCU Watchdog",
+> +	.options	= WDIOF_KEEPALIVEPING
+> +};
+> +
+> +static const struct watchdog_ops aaeon_mcu_wdt_ops = {
+> +	.owner		= THIS_MODULE,
+> +	.start		= aaeon_mcu_wdt_start,
+> +	.stop		= aaeon_mcu_wdt_stop,
+> +	.ping		= aaeon_mcu_wdt_ping,
+> +};
+> +
+> +static int aaeon_mcu_wdt_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct watchdog_device *wdt;
+> +	struct aaeon_mcu_wdt *data;
+> +	bool enabled;
+> +	int ret;
+> +
+> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	data->dev = dev->parent;
+> +
+> +	wdt = &data->wdt;
+> +	wdt->parent = dev;
+> +	wdt->info = &aaeon_mcu_wdt_info;
+> +	wdt->ops = &aaeon_mcu_wdt_ops;
+> +	/*
+> +	 * The MCU firmware has a fixed hardware timeout of 25 seconds that
+> +	 * cannot be changed. The watchdog core will handle automatic pinging
+> +	 * to support longer timeouts. The default timeout of 240 seconds is
+> +	 * chosen arbitrarily as a reasonable value; users can adjust it via
+> +	 * the standard watchdog interface if needed.
+
+No, they can't, because WDIOF_SETTIMEOUT is not set in .options. Also,
+the above implies that the minimum timeout is 25 seconds, which is not set.
+Not that it matters, because the timeout can not be changed in the first
+place, but still ...
+
+Guenter
+
+> +	 */
+> +	wdt->timeout = AAEON_MCU_WDT_TIMEOUT;
+> +	wdt->max_hw_heartbeat_ms = AAEON_MCU_WDT_HEARTBEAT_MS;
+> +
+> +	watchdog_set_drvdata(wdt, data);
+> +
+> +	ret = aaeon_mcu_wdt_status(wdt, &enabled);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (enabled)
+> +		set_bit(WDOG_HW_RUNNING, &wdt->status);
+
+
+> +
+> +	return devm_watchdog_register_device(dev, wdt);
+> +}
+> +
+> +static struct platform_driver aaeon_mcu_wdt_driver = {
+> +	.driver		= {
+> +		.name	= "aaeon-mcu-wdt",
+> +	},
+> +	.probe		= aaeon_mcu_wdt_probe,
+> +};
+> +
+> +module_platform_driver(aaeon_mcu_wdt_driver);
+> +
+> +MODULE_DESCRIPTION("Aaeon MCU Watchdog Driver");
+> +MODULE_AUTHOR("Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>");
+> +MODULE_LICENSE("GPL");
+> 
+
 
