@@ -1,104 +1,104 @@
-Return-Path: <devicetree+bounces-262177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262178-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OCsaAOfOgWl1JwMAu9opvQ
-	(envelope-from <devicetree+bounces-262177-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:33:11 +0100
+	id WHOdFDTQgWl1JwMAu9opvQ
+	(envelope-from <devicetree+bounces-262178-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:38:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C176BD7B87
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:33:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D0C9D7CEE
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:38:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 767BF30438D9
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 10:31:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EE9FA30293E4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 10:31:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ACCA322B77;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 475FB322B69;
 	Tue,  3 Feb 2026 10:30:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="llaDFgcu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VDOp+1Qq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com [209.85.221.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BABA6318EE6
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 10:30:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BDDA31AA81
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 10:30:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770114638; cv=none; b=RP5LkGgxcRJBZEfd63CqUcazOQTVS31aSBZDTygbCgV23Kb7MkxDQeg4gTNqHlOb5jPrnyGkRh0AIORETaKQhelGgPzNKeowuSFY/5OMfVySPk7OxWSGVT7qUfB7uIqf/fFo1frJ+g8AzF3I46AYvuIEjB62ZaPtfLe+Kx+GsHA=
+	t=1770114638; cv=none; b=bb35Yn0L7sO+zibRKoAW7z7+df5d28ZlEYtPEtVQ9+iwj8gMH4oIDH/fWVcebm/16k8BQ28zt2SOIaEArCukctvDq30OsDWgIG3KFmUzKRnJ3BR40GB/gtPiE7ROkFOtkQVqiuWTEaTBvYbhDm0Nm/zoineL4yxmRx+O1KUg+I8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1770114638; c=relaxed/simple;
-	bh=PCnvYowvS57a0Nh4ri2yr2Df4UtEVSPTo7WzEhNb9NU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ISA1+gKrD+uBOGasPfU0e/6rsxyYvAEiCjiz7FR/eD+rlnEs1IyU6EkCYguZVFGXv9htHTLCy0YSsB9wN7CtPm8iE0HgHDeM8BN61z2MuBAnwhku6QPjreSM60zZkPt1foiLqUl6EPTbvYbdTMMDgV2fmt8eb2OgkTC9eYvzEjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=llaDFgcu; arc=none smtp.client-ip=209.85.221.46
+	bh=PjFk164I71mZxjVv/pn85dLTnDDTC9xoAQHGjiSsSzM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Z5sj7+lTO+u8J5LOkYAEsd+OJoxGU2vB6yTfkJoYn3eELV7Ajd9gst/0/SjE1hl8+UMx3WYyf/6wHwmSH7Nu2gWVRzQfwnQdegxOFfu5/aTx8oNHNXkfS+Psv2EttwUrO1ZsCtLmXQ2cct0ghZEpViKOuP6ycRvTeq1UKLrmYi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VDOp+1Qq; arc=none smtp.client-ip=209.85.221.66
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42fbc544b09so5025746f8f.1
+Received: by mail-wr1-f66.google.com with SMTP id ffacd0b85a97d-42fbc305552so5048547f8f.0
         for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 02:30:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20230601; t=1770114634; x=1770719434; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fUB7aym/7mJiHZlEcvDbwQm5CUiw6OddIgLw67f2MAM=;
-        b=llaDFgcuZ/l89KujlTjUDcTpjzDr91EuFY0hhHDxCJVNz9TW07/4IfEglXbrN/xOij
-         PAOxlaxMge70BxacHxEb2jXCHycBSZE3LILLN3capxQHahOU+kYdZWrEeE5RFaCRovlz
-         D4TP9RIV3uVc4dQ23nHKYSQsbkwBAEew1zGg6xKGxtbFXmt9LS6eyMcEQFwGWjAA5ii7
-         ZtZhEJqwgfaLOR7LkpZLp8CiryFfcp/63rw0yjjFcR9pupqnUYxmJjyH3WfHrvj/Oe/a
-         8jb4liI2k7XEDT62SAoEjpHFLU/GsnOcd9tKAjtisPn9gccbCyJA+AdZpjU6pskBIjRE
-         ToaQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1U+dkg/+uoRE1uMSj0xkZIAtaZIHuboawXSgHR45QSU=;
+        b=VDOp+1Qqhmta6P9zx3krp0YNF9MNafOkWV5JgHTha1WegG8L7HsN2ArHCah+QtoTa8
+         /7eLs2u6AgkEukxXBL9qzmdBWT0oQunF4g4ckqdCSSKtJg/WWszmXxlp4MmxnuIKyixh
+         e3DjwPDCHok89TsyBZMaUpNmwut64PGxLfGV5cYQTdN7gKGSvsEOv/haoUS3/rY6K89C
+         kugC4l5m3+MY8VKypR2vRq4OKuDqaw0R/WGHU8tpqlGBCggLHc4IHJgCObMNiwymQokO
+         UQ5ewHbLAOAKh8rVmGIcGpEeiGrdXibRMHKJBe9+UlORfFfblkJ/iw6HeaIhdvLALTpQ
+         8HuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1770114634; x=1770719434;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fUB7aym/7mJiHZlEcvDbwQm5CUiw6OddIgLw67f2MAM=;
-        b=KjuCr8JqKCDG52J3+F5XPHpVObISmy736CTVLKiHzFk6UQvhR1Wob2t9lrgZQmd4ed
-         bhsaRoKPg1H4+OS+e4oaPgPfy73g/NI8GDFSh99dFPElasZFBjJNxvukwz9bgSq/PXsa
-         pysnsbPKYdwrECXKbxPvADL8NLSGYskHdafNU0luZA34drlofZY1diwf97Ie6Ja6Fcd2
-         wiapqd68Lhn7NQFr9wZeRq/zhlec/gmDLf42dvGXdLK47rRv0BmWcBM8QL7vqSdPKdOr
-         cg3Hv1BULoc24bFAQVQMxczFkz29Rdj7ZvNaVqmZHDaD8CvxK/NmmzQsuAABSi20jA4b
-         oU9w==
-X-Forwarded-Encrypted: i=1; AJvYcCWtnQNgvLevgECuRA2iG34KTzTniTxPe2UTknARhzWbFJe2zeF771WQ+fg/GnkggPoTZOaCEa5X9SfT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxO3aT4j1Ki6p27Ld1RBchmFpzRNJYGMYpoOb3EzMjbKLyiBZu9
-	7g4MLUMO5cDPVhVzW2unNNwyyQHgdBCqXtG6pLQoGdeNcBnaq0n450SQ
-X-Gm-Gg: AZuq6aJoroTFwiDK+hh4Ck5gUdztZZ0VtSSz/ZzP3r1f2br5m5t1gYwSIpYFZJ+gQot
-	TN0z/JGPoMYGumks3cKq75IUKorAk9FbKo6LjWR8jWTE1iFklsi6Wf/Gy7lnP9FKrocyPeYqedH
-	CL/5fIfW+hshaEy/GVEHH6Q6HE3wVueHFZnXOaXWKb2ePixvvKcDmVUd55F9r5aKUiKmYI5tLjm
-	u7Mp8x34kJkckxu7dZ4Wv9QHYCzSWJAXxzQZEl/pN5QQQs8VXQJ9BKM7YiwhPK185qv/Ob1mH1p
-	HaWhKFu1ZVzcbm0wHihY0X8+BOck/hESbDvDAWq+EoVByiRkWAZPBCS7Fs1x2WaMwvlgE260KnT
-	LwCy5H6M9UGsN2I46vq+RiPHk3QXoNq0KVw9X9T5Tl3iMMtaSwEwgMYQRwvJnUseUA4LgU3VFwL
-	MPYz/+W/U164EGxmzvfw==
-X-Received: by 2002:a05:6000:26c6:b0:430:fcda:452d with SMTP id ffacd0b85a97d-435f3a72b46mr20486720f8f.22.1770114633786;
-        Tue, 03 Feb 2026 02:30:33 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=1U+dkg/+uoRE1uMSj0xkZIAtaZIHuboawXSgHR45QSU=;
+        b=EAh6G3e0wc0BziW9h48HsU/RLcpWmrFObcWt6vpG2FFiNRRLqpYitiUqCqqt/8nAgu
+         vUAIQ0Avpt1OTOArADbIpO03ouP/jERiPQoLBNHi5orDYQnkXxyghLLl2w2XzK/al7r0
+         HytiPFNc7G6OfBcO62/f5yD6nWNGKMmTQ4JkBUKaos+0ae0j1Wml2R+wod8YPw+Xu3vl
+         qseI1pk+/DaFCaiw6i/qI9jsjDwly2lDg6UyB38wqkhA00HJq51pxoNNhkJGWzmD3WNs
+         FzohR6QqUhs+OLu1qjbIDTRshE/IBRwiIbMJltjr2KiOBhX24ig7oHzKk4RDbgEckuLA
+         H4GA==
+X-Forwarded-Encrypted: i=1; AJvYcCULFGAeyo0oinEEK0iDQ6V8UyJmWeeTQaHA3ThBiWkOjI/0OeRjZdh4thS1jIwuGCKlNqZlL7wpIy2p@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7U21qDcm9B7hD34tIBOkoQCDQ5lnJ0gQIY3ubk83MB0AmtBa1
+	SusRwm/bseFRVPkFPNye1Q6dsm6OVEd1oY7zkHvFlXJgYOvtL+RW7RTa
+X-Gm-Gg: AZuq6aIGfFuhEH+cG6AqeX6BQ+yr9y5J651Jaga4y4ZEVOc1+azxi7MaVYrJhBAVw2P
+	2Qi60WNXfV/Mq9pg08Oc5KFmK83IiZR2ASrVFth3/ouP+tfrzG+bwwjG7rjXrmvQQkpPZwxMLeR
+	ZaOIjHyCnFohdMV8kX6WZyNFR3Rp/SbSBpUZLoWARwnX90Nx7vbLkdEExgCh4aL6Z3AJSnToDop
+	5k2K9WpGSlj7AaldA9oC7BQnJUCuwmsnAHWK/Ijei4snJaLpNjIEqzwtuHgdV2Un+LlpJj+4YEj
+	CBgucdVIS8jro7apR5/9HISIVzyhkKsT7sWShnNKdOmy7al8feoUdZJyjcy6lW9bwKfIZTZKiOs
+	JTx+YE3paeuo/64OyGBxBzcsKsdciZrH56LDF19yOSiVW8ayAGgZAtU+2GhWII8P4OAse5v1k6H
+	K+OsIICl74zEkAxZMUC2sO9bz69WW0
+X-Received: by 2002:a05:6000:1863:b0:435:a136:b891 with SMTP id ffacd0b85a97d-435f3a6a7e0mr20936885f8f.13.1770114634374;
+        Tue, 03 Feb 2026 02:30:34 -0800 (PST)
 Received: from biju.lan ([2a00:23c4:a758:8a01:9cd9:f748:166d:55fc])
         by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e1323034sm53160961f8f.35.2026.02.03.02.30.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Feb 2026 02:30:33 -0800 (PST)
+        Tue, 03 Feb 2026 02:30:34 -0800 (PST)
 From: Biju <biju.das.au@gmail.com>
 X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+To: Vinod Koul <vkoul@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Geert Uytterhoeven <geert+renesas@glider.be>,
 	Magnus Damm <magnus.damm@gmail.com>
 Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
 	dmaengine@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
 	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v3 00/10] Add support for Renesas RZ/G3L SoC and SMARC-EVK platform
-Date: Tue,  3 Feb 2026 10:30:08 +0000
-Message-ID: <20260203103031.247435-1-biju.das.jz@bp.renesas.com>
+	Biju Das <biju.das.au@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v3 01/10] dt-bindings: dma: rz-dmac: Document RZ/G3L SoC
+Date: Tue,  3 Feb 2026 10:30:09 +0000
+Message-ID: <20260203103031.247435-2-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260203103031.247435-1-biju.das.jz@bp.renesas.com>
+References: <20260203103031.247435-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -112,19 +112,19 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262177-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262178-lists,devicetree=lfdr.de];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
-	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,baylibre.com,glider.be,gmail.com];
+	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com,renesas.com,microchip.com];
+	FREEMAIL_TO(0.00)[kernel.org,glider.be,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -134,190 +134,41 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C176BD7B87
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email,bp.renesas.com:mid,microchip.com:email]
+X-Rspamd-Queue-Id: 9D0C9D7CEE
 X-Rspamd-Action: no action
 
 From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Hi all,
+Document the Renesas RZ/G3L DMAC block. This is identical to the one found
+on the RZ/G3S SoC.
 
-This patch series adds initial support for the Renesas RZ/G3L SoC and
-RZ/G3L SMARC EVK platform. The RZ/G3L device is a general-purpose
-microprocessor with a quad-core CA-55, single core CM-33, Mali-G31
-3-D Graphics and other peripherals.
-
-Support for the below list of blocks is added in the SoC DTSI (r9a08g046.dtsi):
-
- - EXT CLK
- - 4X CA55
- - SCIF
- - CPG
- - GIC
- - ARMv8 Timer
-
-This series also adds SCIF support for the RZ/G3L SMARC EVK board (r9a08g046l48-smarc.dts).
-
+Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
 v2->v3:
- * Added macros R9A08G046_ETH{0,1}_CLK_{TX,RX}_I_RMII in r9a08g046-cpg.h.
- * Keep the tag from Conor as it is trivial change for just adding macros.
+ * No change.
 v1->v2:
- * Dropped scif bindings patch as it is accepted.
  * Collected tags.
- * Squashed the patch#3 and #4
- * Documented GE3D/VCP for all SoC variants
- * Documented external ethernet clocks as it is a clock source for MUX
-   inside CPG
- * Updated commit description for bindings.
- * Keep the tag from Conor as it is trivial change for adding more
-   clks.
- * Added CLK_ETH{0,1}_TXC_TX_CLK_IN and CLK_ETH{0,1}_RXC_RX_CLK_IN clocks
-   in clk table.
- * Dropped R9A08G046_IA55_PCLK from critical clock list.
- * Added external clocks eth{0,1}_txc_tx_clk and eth{0,1}_rxc_rx_clk
-   in soc dtsi as it needed for cpg as it is a clock source for mux.
- * Updated cpg node.
- * Dropped gpio.h header from SoM dtsi.
- * Dropped scif node as it is already included in common platform
-   file.
+---
+ Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Test logs:
-/ # uname -r
-6.19.0-rc8-next-20260202-g61054f67d824
-/ # cat /proc/cpuinfo
-processor       : 0
-BogoMIPS        : 48.00
-Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer : 0x41
-CPU architecture: 8
-CPU variant     : 0x2
-CPU part        : 0xd05
-CPU revision    : 0
-
-processor       : 1
-BogoMIPS        : 48.00
-Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer : 0x41
-CPU architecture: 8
-CPU variant     : 0x2
-CPU part        : 0xd05
-CPU revision    : 0
-
-processor       : 2
-BogoMIPS        : 48.00
-Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer : 0x41
-CPU architecture: 8
-CPU variant     : 0x2
-CPU part        : 0xd05
-CPU revision    : 0
-
-processor       : 3
-BogoMIPS        : 48.00
-Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
-CPU implementer : 0x41
-CPU architecture: 8
-CPU variant     : 0x2
-CPU part        : 0xd05
-CPU revision    : 0
-
-/ # cat /proc/interrupts
-           CPU0       CPU1       CPU2       CPU3
- 11:        271        105        273         62    GICv3  27 Level     arch_timer
- 14:          0          0          0          0    GICv3 185 Edge      error
- 15:          0          0          0          0    GICv3 186 Edge      11820000.dma-controller:0
- 16:          0          0          0          0    GICv3 187 Edge      11820000.dma-controller:1
- 17:          0          0          0          0    GICv3 188 Edge      11820000.dma-controller:2
- 18:          0          0          0          0    GICv3 189 Edge      11820000.dma-controller:3
- 19:          0          0          0          0    GICv3 190 Edge      11820000.dma-controller:4
- 20:          0          0          0          0    GICv3 191 Edge      11820000.dma-controller:5
- 21:          0          0          0          0    GICv3 192 Edge      11820000.dma-controller:6
- 22:          0          0          0          0    GICv3 193 Edge      11820000.dma-controller:7
- 23:          0          0          0          0    GICv3 194 Edge      11820000.dma-controller:8
- 24:          0          0          0          0    GICv3 195 Edge      11820000.dma-controller:9
- 25:          0          0          0          0    GICv3 196 Edge      11820000.dma-controller:10
- 26:          0          0          0          0    GICv3 197 Edge      11820000.dma-controller:11
- 27:          0          0          0          0    GICv3 198 Edge      11820000.dma-controller:12
- 28:          0          0          0          0    GICv3 199 Edge      11820000.dma-controller:13
- 29:          0          0          0          0    GICv3 200 Edge      11820000.dma-controller:14
- 30:          0          0          0          0    GICv3 201 Edge      11820000.dma-controller:15
- 31:          0          0          0          0    GICv3 418 Level     100ac000.serial:rx err
- 32:          4          0          0          0    GICv3 420 Level     100ac000.serial:rx full
- 33:        222          0          0          0    GICv3 421 Level     100ac000.serial:tx empty
- 34:          0          0          0          0    GICv3 419 Level     100ac000.serial:break
- 35:         13          0          0          0    GICv3 422 Level     100ac000.serial:rx ready
-IPI0:        20          9         37         20       Rescheduling interrupts
-IPI1:       238        226        223        248       Function call interrupts
-IPI2:         0          0          0          0       CPU stop interrupts
-IPI3:         0          0          0          0       CPU stop NMIs
-IPI4:         0          0          0          0       Timer broadcast interrupts
-IPI5:         0          0          0          0       IRQ work interrupts
-IPI6:         0          0          0          0       CPU backtrace interrupts
-IPI7:         0          0          0          0       KGDB roundup interrupts
-Err:          0
-/ # cat /proc/meminfo
-MemTotal:        1887812 kB
-MemFree:         1848236 kB
-MemAvailable:    1815628 kB
-/ # cat /sys/devices/soc0/family
-RZ/G3L
-/ # cat /sys/devices/soc0/machine
-Renesas SMARC EVK version 2 based on r9a08g046l48
-/ # cat /sys/devices/soc0/soc_id
-r9a08g046
-/ # cat /sys/devices/soc0/revision
-0
-/ # dmesg | grep r9a
-[    0.000000] Machine model: Renesas SMARC EVK version 2 based on r9a08g046l48
-[    0.039307] renesas-rz-sysc 11020000.system-controller: Detected Renesas RZ/G3L r9a08g046 Rev 0
-
-Biju Das (10):
-  dt-bindings: dma: rz-dmac: Document RZ/G3L SoC
-  dt-bindings: soc: renesas: Document RZ/G3L SoC variants, SMARC SoM and
-    Carrier-II EVK
-  dt-bindings: soc: renesas: renesas,rzg2l-sysc: Document RZ/G3L SoC
-  soc: renesas: rz-sysc: Add SoC identification for RZ/G3L SoC
-  dt-bindings: clock: Document RZ/G3L SoC
-  clk: renesas: Add support for RZ/G3L SoC
-  arm64: dts: renesas: Add initial DTSI for RZ/G3L SoC
-  arm64: dts: renesas: Add initial support for RZ/G3L SMARC SoM
-  arm64: dts: renesas: renesas-smarc2: Move usb3 nodes to board DTS
-  arm64: dts: renesas: Add initial device tree for RZ/G3L SMARC EVK
-    board
-
- .../bindings/clock/renesas,rzg2l-cpg.yaml     |  40 +-
- .../bindings/dma/renesas,rz-dmac.yaml         |   1 +
- .../soc/renesas/renesas,rzg2l-sysc.yaml       |   1 +
- .../bindings/soc/renesas/renesas.yaml         |  13 +
- arch/arm64/boot/dts/renesas/Makefile          |   2 +
- arch/arm64/boot/dts/renesas/r9a08g046.dtsi    | 251 +++++++++++++
- .../boot/dts/renesas/r9a08g046l48-smarc.dts   |  37 ++
- arch/arm64/boot/dts/renesas/r9a08g046l48.dtsi |  13 +
- .../boot/dts/renesas/r9a09g047e57-smarc.dts   |   6 +
- .../boot/dts/renesas/renesas-smarc2.dtsi      |   8 -
- .../boot/dts/renesas/rzg3l-smarc-som.dtsi     |  20 +
- drivers/clk/renesas/Kconfig                   |   7 +-
- drivers/clk/renesas/Makefile                  |   1 +
- drivers/clk/renesas/r9a08g046-cpg.c           | 144 ++++++++
- drivers/clk/renesas/rzg2l-cpg.c               |   6 +
- drivers/clk/renesas/rzg2l-cpg.h               |   1 +
- drivers/soc/renesas/Kconfig                   |  12 +
- drivers/soc/renesas/Makefile                  |   1 +
- drivers/soc/renesas/r9a08g046-sysc.c          |  91 +++++
- drivers/soc/renesas/rz-sysc.c                 |   3 +
- drivers/soc/renesas/rz-sysc.h                 |   1 +
- include/dt-bindings/clock/r9a08g046-cpg.h     | 343 ++++++++++++++++++
- 22 files changed, 988 insertions(+), 14 deletions(-)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a08g046.dtsi
- create mode 100644 arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
- create mode 100644 arch/arm64/boot/dts/renesas/r9a08g046l48.dtsi
- create mode 100644 arch/arm64/boot/dts/renesas/rzg3l-smarc-som.dtsi
- create mode 100644 drivers/clk/renesas/r9a08g046-cpg.c
- create mode 100644 drivers/soc/renesas/r9a08g046-sysc.c
- create mode 100644 include/dt-bindings/clock/r9a08g046-cpg.h
-
+diff --git a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
+index d137b9cbaee9..e3311029eb2f 100644
+--- a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
++++ b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
+@@ -19,6 +19,7 @@ properties:
+               - renesas,r9a07g044-dmac # RZ/G2{L,LC}
+               - renesas,r9a07g054-dmac # RZ/V2L
+               - renesas,r9a08g045-dmac # RZ/G3S
++              - renesas,r9a08g046-dmac # RZ/G3L
+           - const: renesas,rz-dmac
+ 
+       - items:
 -- 
 2.43.0
 
