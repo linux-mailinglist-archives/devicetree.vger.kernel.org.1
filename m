@@ -1,749 +1,374 @@
-Return-Path: <devicetree+bounces-262409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262410-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GMx4AoJdgmlfTAMAu9opvQ
-	(envelope-from <devicetree+bounces-262409-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 21:41:38 +0100
+	id QLE1AeBfgmkzTQMAu9opvQ
+	(envelope-from <devicetree+bounces-262410-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 21:51:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1586BDE993
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 21:41:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 661D4DEA75
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 21:51:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 74ED830F3BFC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 20:40:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7EF7C30480AE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 20:40:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8445369964;
-	Tue,  3 Feb 2026 20:40:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C3036829B;
+	Tue,  3 Feb 2026 20:40:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="rza7ftJs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D/gE3uz/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E69436EABB;
-	Tue,  3 Feb 2026 20:40:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EABA935BDD5;
+	Tue,  3 Feb 2026 20:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770151219; cv=none; b=SQxRJw3okDb2Em+679aTTH0M6N2Zg85d7R+/9v+MX6rl0dCaayq2RxmJM1p9LBM3dydNvXsWk+9MoO/+u+fcM9mMhki4NpaziFFc7XXoSWkAScm/F76uu+iE6UnMj05YwCgZRq0lOgwzU2sczmhAETB4I8l2QgubKBbXH1AialI=
+	t=1770151251; cv=none; b=sxbaRalQ2/9jgtzJM0XNP763vxToH2xFTwH30GfjJvfUnJU7MAv0OIY48CJBUb4XiqIMT69UBO+cRfwBF0ViBi581UFFqvCSz12RCYCCsLUVUIAMstJOi7MStiBv7536Pk5cPK19iERW00gHuw7A2RleW68Z7UbcXCGg5tjHZ/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770151219; c=relaxed/simple;
-	bh=PB/YPuIfbczmANvF7Suxv7EOZk3AYLopqxibT+HUV8M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=U3hdBShVPYrl2nZtTwHabjZuD9xIrwRjVWRGrCloybuqcRMrRaccHvQp7NSoxn7vpBDbZpzuaSUBFTd5JkqbCaTBJ4EzyvywX+XnG0oGbT0kcWTEVFwGoAWULyUy3M+ApU8PslACg6diihr6CdAqqqtGCgbt8M2NS62y+Q2RIYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=rza7ftJs; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 814B01A2BCC;
-	Tue,  3 Feb 2026 20:40:15 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 5907B60728;
-	Tue,  3 Feb 2026 20:40:15 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D8944119A8888;
-	Tue,  3 Feb 2026 21:40:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770151214; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=T4Gn2q6lFFARW0PFlx0F6dBTAps69GluaTw3RiqCcfs=;
-	b=rza7ftJsu20EPr0KXvqfodieVgnJ4UK33GQbT2GTv9G/vCsWpD9RM88GhIuOXQX56cvkxo
-	2IzchlGs7k7BNzKXAaqmj6mmbfEfhnEQg33ZcEBRDgp3WCoP4vvci6x1hUbtmdGMJrz0Ro
-	Fd5VK3GAhsW+ObwMUIEI8EjD6ZIdL1iFO5WnV6cECiS3+5UUPpa94anw2OTM0e0XGfH8xd
-	voPGXie6tne35mveGgAev9T3tIMcJgQFY9PFqe5NF5mFTjP3KZabx9UNolaGjBJfUB9d7P
-	JoR2TYQ0UaGm0VWbqxj+9YxlrN2DOdRKlR+rCIrRMwnPe3XFSAGXCvsUmKroWQ==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Tue, 03 Feb 2026 21:39:59 +0100
-Subject: [PATCH v16 3/3] mtd: Add driver for concatenating devices
+	s=arc-20240116; t=1770151251; c=relaxed/simple;
+	bh=WtHWhesjW/7AQMhd0EcPVr+rtp8ksekBPqv0g1ETa3M=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=FqSjLPMUe0XQW462OuKH/TzV5mBENNrUkJwuisQBVSujXc0XPQW/7PPZdJLtOsHTWuqycXgrpvTWrAnAV3FDwCwayLEa/x1pgIDpS+5vQLelHZCX3wL7NsH9KywUpFXL8BuM+G9oUIyBsl6/BQpuR5XWiw+YRdmsSGtX64SIADs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D/gE3uz/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEE49C116D0;
+	Tue,  3 Feb 2026 20:40:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770151250;
+	bh=WtHWhesjW/7AQMhd0EcPVr+rtp8ksekBPqv0g1ETa3M=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=D/gE3uz/BpckJBJznUVybL13plg0F00fwqbUKVR9DSEJd1M35BU5CosJbLRhVook1
+	 e6nI9ItZXg3MD5eLCVH78lpTy9NtsfIjyXsLHYk0oSTFzMPbza3h2voOwmzgb1dL80
+	 EPXxBNbWwqnzVyDPkPqU99fezsZVf2RcMbUAJppeaPqlTKVuFnVGj7PTBv0FIT+J6x
+	 oFrbgPIotL+1oHywiex5jbgzhAgiL+yX9mf/70X2PK91geINzPDuC3mfLEbxiTqsTT
+	 V81et+wzjvQAJsLXjYyoDzvUCuWWuRO3Pg9gGlDUnrGk/y8gI5gZeMtKlQLig5ktS8
+	 rbov/4Gfk4ZOA==
+From: Thomas Gleixner <tglx@kernel.org>
+To: Yangyu Chen <cyy@cyyself.name>, linux-riscv@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org, Anup Patel <anup.patel@oss.qualcomm.com>,
+ Samuel Holland <samuel.holland@sifive.com>, Charles Mirabile
+ <cmirabil@redhat.com>, Lucas Zampieri <lzampier@redhat.com>, Paul Walmsley
+ <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Mason Huo
+ <mason.huo@starfivetech.com>, Zhang Xincheng
+ <zhangxincheng@ultrarisc.com>, Charlie Jenkins <charlie@rivosinc.com>,
+ Marc Zyngier <maz@kernel.org>, Sia Jee Heng
+ <jeeheng.sia@starfivetech.com>, Ley Foon Tan
+ <leyfoon.tan@starfivetech.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org, Jia Wang
+ <wangjia@ultrarisc.com>, Yangyu Chen <cyy@cyyself.name>
+Subject: Re: [PATCH v3 1/2] irqchip/sifive-plic: Fix wrong nr_irqs handling
+In-Reply-To: <tencent_3927462924B7319F8F4F90447BDC110FB705@qq.com>
+References: <tencent_AEBB719FAF49D05B5BDF7118D729463F6405@qq.com>
+ <tencent_3927462924B7319F8F4F90447BDC110FB705@qq.com>
+Date: Tue, 03 Feb 2026 21:40:46 +0100
+Message-ID: <87ikcd36i9.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260203-mtd-virt-concat-v16-3-a112a979c813@bootlin.com>
-References: <20260203-mtd-virt-concat-v16-0-a112a979c813@bootlin.com>
-In-Reply-To: <20260203-mtd-virt-concat-v16-0-a112a979c813@bootlin.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-Cc: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>, 
- Michal Simek <monstr@monstr.eu>, 
- Bernhard Frauendienst <kernel@nospam.obeliks.de>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [4.34 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262409-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262410-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	GREYLIST(0.00)[pass,body];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tglx@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[obeliks.de:email,bootlin.com:email,bootlin.com:dkim,bootlin.com:mid,0.15.66.64:email,0.0.0.1:email,0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amd.com:email,0.12.53.0:email]
-X-Rspamd-Queue-Id: 1586BDE993
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,cyyself.name:email]
+X-Rspamd-Queue-Id: 661D4DEA75
 X-Rspamd-Action: no action
 
-From: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+On Wed, Feb 04 2026 at 01:21, Yangyu Chen wrote:
+> @@ -351,7 +351,7 @@ static int plic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
+>  	if (ret)
+>  		return ret;
+>  
+> -	for (i = 0; i < nr_irqs; i++) {
+> +	for (i = 1; i <= nr_irqs; i++) {
+>  		ret = plic_irqdomain_map(domain, virq + i, hwirq + i);
 
-Introducing CONFIG_MTD_VIRT_CONCAT to separate the legacy flow from the new
-approach, where only the concatenated partition is registered as an MTD
-device, while the individual partitions that form it are not registered
-independently, as they are typically not required by the user.
-CONFIG_MTD_VIRT_CONCAT is a boolean configuration option that depends on
-CONFIG_MTD_PARTITIONED_MASTER. When enabled, it allows flash nodes to be
-exposed as individual MTD devices along with the other partitions.
+That's just wrong and clearly untested.
 
-The solution focuses on fixed-partitions description only as it depends on
-device boundaries. It supports multiple sets of concatenated devices, each
-comprising two or more partitions.
+@virq and @nr_irqs are provided by the core code and you cannot
+manipulate them just because.
 
-    flash@0 {
-            reg = <0>;
-            partitions {
-                    compatible = "fixed-partitions";
+This instance of nr_irqs has absolutely nothing to do with the problem
+you are trying to solve. The core invokes this to map
 
-                    part0@0 {
-                            part-concat-next = <&flash0_part1>;
-                            label = "part0_0";
-                            reg = <0x0 0x800000>;
-                    };
+    $N (@nr_irqs) Linux interrupt numbers starting from @virq to
+    hardware interrupt numbers.
 
-                    flash0_part1: part1@800000 {
-                            label = "part0_1";
-                            reg = <800000 0x800000>;
-                    };
+The fwspec argument (@arg) is used to retrieve the hardware interrupt
+number from the device tree:
 
-                    part2@1000000 {
-                            part-concat-next = <&flash1_part0>;
-                            label = "part0_2";
-                            reg = <0x800000 0x800000>;
-                    };
-            };
-    };
+    plic_irq_domain_translate(....);
 
-    flash@1 {
-            reg = <1>;
-            partitions {
-                    compatible = "fixed-partitions";
+The device tree better contains the real hardware interrupt number and
+not a 0 based enumeration.
 
-                    flash1_part0: part1@0 {
-                            label = "part1_0";
-                            reg = <0x0 0x800000>;
-                    };
+>  static irq_hw_number_t cp100_get_hwirq(struct plic_handler *handler, void __iomem *claim)
+>  {
+> -	int nr_irq_groups = DIV_ROUND_UP(handler->priv->nr_irqs, 32);
+> +	int nr_irq_groups = DIV_ROUND_UP(handler->priv->nr_irqs + 1, 32);
 
-                    part1@800000 {
-                            label = "part1_1";
-                            reg = <0x800000 0x800000>;
-                    };
-            };
-    };
+Requiring this '+1' muck all over the place is a guarantee for more
+disaster.
 
-The partitions that gets created are
+It's not really hard to sit back and think about it instead of
+mindlessly changing things until it looks about right. I'm tired of
+wasting my time with reviewing botched up stuff like that.
 
-flash@0
-part0_0-part0_1-concat
-flash@1
-part1_1
-part0_2-part1_0-concat
+Untested, but defintely correct patch below. If you find a bug, I owe
+you a beer at the next conference.
 
-Suggested-by: Bernhard Frauendienst <kernel@nospam.obeliks.de>
-Suggested-by: Miquel Raynal <miquel.raynal@bootlin.com>
-Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Thanks,
 
+        tglx
 ---
+Subject: irqchip/sifive-plic: Handle number of hardware interrupts correctly
+From: Thomas Gleixner <tglx@kernel.org>
+Date: Tue, 03 Feb 2026 20:16:12 +0100
 
-Changes in v16:
-- Add missing if (IS_REACHABLE(CONFIG_MTD_VIRT_CONCAT)) to fix build when
-  CONFIG_MTD_VIRT_CONCAT is not enabled
+The driver is inconsistently handling the number of hardware interrupts.
 
-Changes in v15:
-- Build mdt-concat as part of the mtd module, not a separate module
-  because they are interdependent; make the Konfig a bool instead of a
-  tristate so it is a opt-in feature
-- Remove 'default n' Kconfig line, 'n' is the default anyway
+The reason is that the firmware enumerates the maximum number of device
+interrupts, but the actual number of hardware interrupts is one more
+because hardware interrupt 0 is reserved.
+
+There are two loop variants where this matters:
+
+  1) Iterating over the device interrupts
+
+     for (irq = 1; irq < total_irqs; irq++)
+
+  2) Iterating over the number of interrupt register groups
+
+     for (grp = 0; grp < irq_groups; grp++)
+
+The current code stores the number of device interrupts and that requires
+to write the loops as:
+
+  1) for (irq = 1; irq <= device_irqs; irq++)
+
+  2) for (grp = 0; grp < DIV_ROUND_UP(device_irqs + 1); grp++)
+
+But the code gets it wrong all over the place. Just fixing up the
+conditions and off by ones is not a sustainable solution as the next changes
+will reintroduce the same bugs over and over.
+
+Sanitize it by storing the total number of hardware interrupts during probe
+and precalculating the number of groups. To future proof it mark
+priv::total_irqs __private, provide a correct iterator macro and adjust the
+code to this.
+
+Marking it private allows sparse (C=1 build) to catch direct access to this
+member:
+
+  drivers/irqchip/irq-sifive-plic.c:270:9: warning: dereference of noderef expression
+
+That should prevent at least the most obvious future damage in that area.
+
+Fixes: e80f0b6a2cf3 ("irqchip/irq-sifive-plic: Add syscore callbacks for hibernation")
+Reported-by: Yangyu Chen <cyy@cyyself.name>
+Signed-off-by: Thomas Gleixner <tglx@kernel.org>
 ---
- drivers/mtd/Kconfig           |   9 ++
- drivers/mtd/Makefile          |   1 +
- drivers/mtd/mtd_virt_concat.c | 363 ++++++++++++++++++++++++++++++++++++++++++
- drivers/mtd/mtdcore.c         |  21 +++
- drivers/mtd/mtdpart.c         |   6 +
- include/linux/mtd/concat.h    |  51 +++++-
- 6 files changed, 450 insertions(+), 1 deletion(-)
+ drivers/irqchip/irq-sifive-plic.c |   82 ++++++++++++++++++++------------------
+ 1 file changed, 45 insertions(+), 37 deletions(-)
 
-diff --git a/drivers/mtd/Kconfig b/drivers/mtd/Kconfig
-index 796a2eccbef0..0421c6208de7 100644
---- a/drivers/mtd/Kconfig
-+++ b/drivers/mtd/Kconfig
-@@ -206,6 +206,15 @@ config MTD_PARTITIONED_MASTER
- 	  the parent of the partition device be the master device, rather than
- 	  what lies behind the master.
+--- a/drivers/irqchip/irq-sifive-plic.c
++++ b/drivers/irqchip/irq-sifive-plic.c
+@@ -68,15 +68,17 @@
+ #define PLIC_QUIRK_CP100_CLAIM_REGISTER_ERRATUM	1
  
-+config MTD_VIRT_CONCAT
-+	bool "Virtual concatenated MTD devices"
-+	depends on MTD_PARTITIONED_MASTER
-+	help
-+	  The driver enables the creation of virtual MTD device by
-+	  concatenating multiple physical MTD devices into a single
-+	  entity. This allows for the creation of partitions larger than
-+	  the individual physical chips, extending across chip boundaries.
+ struct plic_priv {
+-	struct fwnode_handle *fwnode;
+-	struct cpumask lmask;
+-	struct irq_domain *irqdomain;
+-	void __iomem *regs;
+-	unsigned long plic_quirks;
+-	unsigned int nr_irqs;
+-	unsigned long *prio_save;
+-	u32 gsi_base;
+-	int acpi_plic_id;
++	struct fwnode_handle	*fwnode;
++	struct cpumask		lmask;
++	struct irq_domain	*irqdomain;
++	void __iomem		*regs;
++	unsigned long		plic_quirks;
++	/* @device_irqs + 1 to compensate for the reserved hwirq 0 */
++	unsigned int __private	total_irqs;
++	unsigned int		irq_groups;
++	unsigned long		*prio_save;
++	u32			gsi_base;
++	int			acpi_plic_id;
+ };
+ 
+ struct plic_handler {
+@@ -91,6 +93,12 @@ struct plic_handler {
+ 	u32			*enable_save;
+ 	struct plic_priv	*priv;
+ };
 +
- source "drivers/mtd/chips/Kconfig"
- 
- source "drivers/mtd/maps/Kconfig"
-diff --git a/drivers/mtd/Makefile b/drivers/mtd/Makefile
-index 593d0593a038..7b6dd53e8150 100644
---- a/drivers/mtd/Makefile
-+++ b/drivers/mtd/Makefile
-@@ -6,6 +6,7 @@
- # Core functionality.
- obj-$(CONFIG_MTD)		+= mtd.o
- mtd-y				:= mtdcore.o mtdsuper.o mtdconcat.o mtdpart.o mtdchar.o
-+mtd-$(CONFIG_MTD_VIRT_CONCAT)	+= mtd_virt_concat.o
- 
- obj-y				+= parsers/
- 
-diff --git a/drivers/mtd/mtd_virt_concat.c b/drivers/mtd/mtd_virt_concat.c
-new file mode 100644
-index 000000000000..aea88d1c9bc5
---- /dev/null
-+++ b/drivers/mtd/mtd_virt_concat.c
-@@ -0,0 +1,363 @@
-+// SPDX-License-Identifier: GPL-2.0+
 +/*
-+ * Virtual concat MTD device driver
-+ *
-+ * Copyright (C) 2018 Bernhard Frauendienst
-+ * Author: Bernhard Frauendienst <kernel@nospam.obeliks.de>
-+ */
++ * Macro to deal with the insanity of hardware interrupt 0 being reserved */
++#define for_each_device_irq(iter, priv)	\
++	for (unsigned int iter = 1; iter < ACCESS_PRIVATE(priv, total_irqs); iter++)
 +
-+#include <linux/device.h>
-+#include <linux/mtd/mtd.h>
-+#include "mtdcore.h"
-+#include <linux/mtd/partitions.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/slab.h>
-+#include <linux/mtd/concat.h>
-+
-+#define CONCAT_PROP "part-concat-next"
-+#define CONCAT_POSTFIX "concat"
-+#define MIN_DEV_PER_CONCAT 1
-+
-+static LIST_HEAD(concat_node_list);
-+
-+/**
-+ * struct mtd_virt_concat_node - components of a concatenation
-+ * @head: List handle
-+ * @count: Number of nodes
-+ * @nodes: Pointer to the nodes (partitions) to concatenate
-+ * @concat: Concatenation container
-+ */
-+struct mtd_virt_concat_node {
-+	struct list_head head;
-+	unsigned int count;
-+	struct device_node **nodes;
-+	struct mtd_concat *concat;
-+};
-+
-+/**
-+ * mtd_is_part_concat - Check if the device is already part
-+ *                       of a concatenated device
-+ * @dev:        pointer to 'device_node'
-+ *
-+ * Return: true if the device is already part of a concatenation,
-+ *         false otherwise.
-+ */
-+static bool mtd_is_part_concat(struct device_node *dev)
-+{
-+	struct mtd_virt_concat_node *item;
-+	int idx;
-+
-+	list_for_each_entry(item, &concat_node_list, head) {
-+		for (idx = 0; idx < item->count; idx++) {
-+			if (item->nodes[idx] == dev)
-+				return true;
-+		}
-+	}
-+	return false;
-+}
-+
-+static void mtd_virt_concat_put_mtd_devices(struct mtd_concat *concat)
-+{
-+	int i;
-+
-+	for (i = 0; i < concat->num_subdev; i++)
-+		put_mtd_device(concat->subdev[i]);
-+}
-+
-+void mtd_virt_concat_destroy_joins(void)
-+{
-+	struct mtd_virt_concat_node *item, *tmp;
-+	struct mtd_info *mtd;
-+
-+	list_for_each_entry_safe(item, tmp, &concat_node_list, head) {
-+		mtd = &item->concat->mtd;
-+		if (item->concat) {
-+			mtd_device_unregister(mtd);
-+			kfree(mtd->name);
-+			mtd_concat_destroy(mtd);
-+			mtd_virt_concat_put_mtd_devices(item->concat);
-+		}
-+	}
-+}
-+
-+/**
-+ * mtd_virt_concat_destroy - Destroy the concat that includes the mtd object
-+ * @mtd:        pointer to 'mtd_info'
-+ *
-+ * Return: 0 on success, -error otherwise.
-+ */
-+int mtd_virt_concat_destroy(struct mtd_info *mtd)
-+{
-+	struct mtd_info *child, *master = mtd_get_master(mtd);
-+	struct mtd_virt_concat_node *item, *tmp;
-+	struct mtd_concat *concat;
-+	int idx, ret = 0;
-+	bool is_mtd_found;
-+
-+	list_for_each_entry_safe(item, tmp, &concat_node_list, head) {
-+		is_mtd_found = false;
-+
-+		/* Find the concat item that hold the mtd device */
-+		for (idx = 0; idx < item->count; idx++) {
-+			if (item->nodes[idx] == mtd->dev.of_node) {
-+				is_mtd_found = true;
-+				break;
-+			}
-+		}
-+		if (!is_mtd_found)
-+			continue;
-+		concat = item->concat;
-+
-+		/*
-+		 * Since this concatenated device is being removed, retrieve
-+		 * all MTD devices that are part of it and register them
-+		 * individually.
-+		 */
-+		for (idx = 0; idx < concat->num_subdev; idx++) {
-+			child = concat->subdev[idx];
-+			if (child->dev.of_node != mtd->dev.of_node) {
-+				ret = add_mtd_device(child);
-+				if (ret)
-+					goto out;
-+			}
-+		}
-+		/* Destroy the concat */
-+		if (concat->mtd.name) {
-+			del_mtd_device(&concat->mtd);
-+			kfree(concat->mtd.name);
-+			mtd_concat_destroy(&concat->mtd);
-+			mtd_virt_concat_put_mtd_devices(item->concat);
-+		}
-+
-+		for (idx = 0; idx < item->count; idx++)
-+			of_node_put(item->nodes[idx]);
-+
-+		kfree(item->nodes);
-+		kfree(item);
-+	}
-+	return 0;
-+out:
-+	mutex_lock(&master->master.partitions_lock);
-+	list_del(&child->part.node);
-+	mutex_unlock(&master->master.partitions_lock);
-+	kfree(mtd->name);
-+	kfree(mtd);
-+
-+	return ret;
-+}
-+
-+/**
-+ * mtd_virt_concat_create_item - Create a concat item
-+ * @parts:        pointer to 'device_node'
-+ * @count:        number of mtd devices that make up
-+ *                the concatenated device.
-+ *
-+ * Return: 0 on success, -error otherwise.
-+ */
-+static int mtd_virt_concat_create_item(struct device_node *parts,
-+				       unsigned int count)
-+{
-+	struct mtd_virt_concat_node *item;
-+	struct mtd_concat *concat;
-+	int i;
-+
-+	for (i = 0; i < (count - 1); i++) {
-+		if (mtd_is_part_concat(of_parse_phandle(parts, CONCAT_PROP, i)))
-+			return 0;
-+	}
-+
-+	item = kzalloc(sizeof(*item), GFP_KERNEL);
-+	if (!item)
-+		return -ENOMEM;
-+
-+	item->count = count;
-+	item->nodes = kcalloc(count, sizeof(*item->nodes), GFP_KERNEL);
-+	if (!item->nodes) {
-+		kfree(item);
-+		return -ENOMEM;
-+	}
-+
-+	/*
-+	 * The partition in which "part-concat-next" property
-+	 * is defined is the first device in the list of concat
-+	 * devices.
-+	 */
-+	item->nodes[0] = parts;
-+
-+	for (i = 1; i < count; i++)
-+		item->nodes[i] = of_parse_phandle(parts, CONCAT_PROP, (i - 1));
-+
-+	concat = kzalloc(sizeof(*concat), GFP_KERNEL);
-+	if (!concat) {
-+		kfree(item);
-+		return -ENOMEM;
-+	}
-+
-+	concat->subdev = kcalloc(count, sizeof(*concat->subdev), GFP_KERNEL);
-+	if (!concat->subdev) {
-+		kfree(item);
-+		kfree(concat);
-+		return -ENOMEM;
-+	}
-+	item->concat = concat;
-+
-+	list_add_tail(&item->head, &concat_node_list);
-+
-+	return 0;
-+}
-+
-+void mtd_virt_concat_destroy_items(void)
-+{
-+	struct mtd_virt_concat_node *item, *temp;
-+	int i;
-+
-+	list_for_each_entry_safe(item, temp, &concat_node_list, head) {
-+		for (i = 0; i < item->count; i++)
-+			of_node_put(item->nodes[i]);
-+
-+		kfree(item->nodes);
-+		kfree(item);
-+	}
-+}
-+
-+/**
-+ * mtd_virt_concat_create_add - Add a mtd device to the concat list
-+ * @mtd:        pointer to 'mtd_info'
-+ *
-+ * Return: true on success, false otherwise.
-+ */
-+bool mtd_virt_concat_add(struct mtd_info *mtd)
-+{
-+	struct mtd_virt_concat_node *item;
-+	struct mtd_concat *concat;
-+	int idx;
-+
-+	list_for_each_entry(item, &concat_node_list, head) {
-+		concat = item->concat;
-+		for (idx = 0; idx < item->count; idx++) {
-+			if (item->nodes[idx] == mtd->dev.of_node) {
-+				concat->subdev[concat->num_subdev++] = mtd;
-+				return true;
-+			}
-+		}
-+	}
-+	return false;
-+}
-+
-+/**
-+ * mtd_virt_concat_node_create - List all the concatenations found in DT
-+ *
-+ * Return: 0 on success, -error otherwise.
-+ */
-+int mtd_virt_concat_node_create(void)
-+{
-+	struct device_node *parts = NULL;
-+	int ret = 0, count = 0;
-+
-+	/* List all the concatenations found in DT */
-+	do {
-+		parts = of_find_node_with_property(parts, CONCAT_PROP);
-+		if (!of_device_is_available(parts))
-+			continue;
-+
-+		if (mtd_is_part_concat(parts))
-+			continue;
-+
-+		count = of_count_phandle_with_args(parts, CONCAT_PROP, NULL);
-+		if (count < MIN_DEV_PER_CONCAT)
-+			continue;
-+
-+		/*
-+		 * The partition in which "part-concat-next" property is defined
-+		 * is also part of the concat device, so increament count by 1.
-+		 */
-+		count++;
-+
-+		ret = mtd_virt_concat_create_item(parts, count);
-+		if (ret) {
-+			of_node_put(parts);
-+			goto destroy_items;
-+		}
-+	} while (parts);
-+
-+	return ret;
-+
-+destroy_items:
-+	mtd_virt_concat_destroy_items();
-+
-+	return ret;
-+}
-+
-+/**
-+ * mtd_virt_concat_create_join - Create and register the concatenated
-+ *                                 MTD device.
-+ *
-+ * Return: 0 on success, -error otherwise.
-+ */
-+int mtd_virt_concat_create_join(void)
-+{
-+	struct mtd_virt_concat_node *item;
-+	struct mtd_concat *concat;
-+	struct mtd_info *mtd;
-+	ssize_t name_sz;
-+	int ret, idx;
-+	char *name;
-+
-+	list_for_each_entry(item, &concat_node_list, head) {
-+		concat = item->concat;
-+		/*
-+		 * Check if item->count != concat->num_subdev, it indicates
-+		 * that the MTD information for all devices included in the
-+		 * concatenation are not handy, concat MTD device can't be
-+		 * created hence switch to next concat device.
-+		 */
-+		if (item->count != concat->num_subdev) {
-+			continue;
-+		} else {
-+			/* Calculate the legth of the name of the virtual device */
-+			for (idx = 0, name_sz = 0; idx < concat->num_subdev; idx++)
-+				name_sz += (strlen(concat->subdev[idx]->name) + 1);
-+			name_sz += strlen(CONCAT_POSTFIX);
-+			name = kmalloc(name_sz + 1, GFP_KERNEL);
-+			if (!name) {
-+				mtd_virt_concat_put_mtd_devices(concat);
-+				return -ENOMEM;
-+			}
-+
-+			ret = 0;
-+			for (idx = 0; idx < concat->num_subdev; idx++) {
-+				ret += sprintf((name + ret), "%s-",
-+					       concat->subdev[idx]->name);
-+			}
-+			sprintf((name + ret), CONCAT_POSTFIX);
-+
-+			if (concat->mtd.name) {
-+				ret = memcmp(concat->mtd.name, name, name_sz);
-+				if (ret == 0)
-+					continue;
-+			}
-+			mtd = mtd_concat_create(concat->subdev, concat->num_subdev, name);
-+			if (!mtd) {
-+				kfree(name);
-+				return -ENXIO;
-+			}
-+			concat->mtd = *mtd;
-+			/* Arbitrary set the first device as parent */
-+			concat->mtd.dev.parent = concat->subdev[0]->dev.parent;
-+			concat->mtd.dev = concat->subdev[0]->dev;
-+
-+			/* Add the mtd device */
-+			ret = add_mtd_device(&concat->mtd);
-+			if (ret)
-+				goto destroy_concat;
-+		}
-+	}
-+
-+	return 0;
-+
-+destroy_concat:
-+	mtd_concat_destroy(mtd);
-+
-+	return ret;
-+}
-diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
-index 64808493b4f5..576537774628 100644
---- a/drivers/mtd/mtdcore.c
-+++ b/drivers/mtd/mtdcore.c
-@@ -34,6 +34,7 @@
+ static int plic_parent_irq __ro_after_init;
+ static bool plic_global_setup_done __ro_after_init;
+ static DEFINE_PER_CPU(struct plic_handler, plic_handlers);
+@@ -257,14 +265,11 @@ static int plic_irq_set_type(struct irq_
  
- #include <linux/mtd/mtd.h>
- #include <linux/mtd/partitions.h>
-+#include <linux/mtd/concat.h>
+ static int plic_irq_suspend(void *data)
+ {
+-	struct plic_priv *priv;
+-
+-	priv = per_cpu_ptr(&plic_handlers, smp_processor_id())->priv;
++	struct plic_priv *priv = this_cpu_ptr(&plic_handlers)->priv;
  
- #include "mtdcore.h"
- 
-@@ -1120,6 +1121,12 @@ int mtd_device_parse_register(struct mtd_info *mtd, const char * const *types,
- 			goto out;
+-	/* irq ID 0 is reserved */
+-	for (unsigned int i = 1; i < priv->nr_irqs; i++) {
+-		__assign_bit(i, priv->prio_save,
+-			     readl(priv->regs + PRIORITY_BASE + i * PRIORITY_PER_ID));
++	for_each_device_irq(irq, priv) {
++		__assign_bit(irq, priv->prio_save,
++			     readl(priv->regs + PRIORITY_BASE + irq * PRIORITY_PER_ID));
  	}
  
-+	if (IS_REACHABLE(CONFIG_MTD_VIRT_CONCAT)) {
-+		ret = mtd_virt_concat_node_create();
-+		if (ret < 0)
-+			goto out;
-+	}
-+
- 	/* Prefer parsed partitions over driver-provided fallback */
- 	ret = parse_mtd_partitions(mtd, types, parser_data);
- 	if (ret == -EPROBE_DEFER)
-@@ -1137,6 +1144,11 @@ int mtd_device_parse_register(struct mtd_info *mtd, const char * const *types,
- 	if (ret)
- 		goto out;
+ 	return 0;
+@@ -272,18 +277,15 @@ static int plic_irq_suspend(void *data)
  
-+	if (IS_REACHABLE(CONFIG_MTD_VIRT_CONCAT)) {
-+		ret = mtd_virt_concat_create_join();
-+		if (ret < 0)
-+			goto out;
-+	}
- 	/*
- 	 * FIXME: some drivers unfortunately call this function more than once.
- 	 * So we have to check if we've already assigned the reboot notifier.
-@@ -1186,6 +1198,11 @@ int mtd_device_unregister(struct mtd_info *master)
- 	nvmem_unregister(master->otp_user_nvmem);
- 	nvmem_unregister(master->otp_factory_nvmem);
- 
-+	if (IS_REACHABLE(CONFIG_MTD_VIRT_CONCAT)) {
-+		err = mtd_virt_concat_destroy(master);
-+		if (err)
-+			return err;
-+	}
- 	err = del_mtd_partitions(master);
- 	if (err)
- 		return err;
-@@ -2621,6 +2638,10 @@ static int __init init_mtd(void)
- 
- static void __exit cleanup_mtd(void)
+ static void plic_irq_resume(void *data)
  {
-+	if (IS_REACHABLE(CONFIG_MTD_VIRT_CONCAT)) {
-+		mtd_virt_concat_destroy_joins();
-+		mtd_virt_concat_destroy_items();
-+	}
- 	debugfs_remove_recursive(dfs_dir_mtd);
- 	cleanup_mtdchar();
- 	if (proc_mtd)
-diff --git a/drivers/mtd/mtdpart.c b/drivers/mtd/mtdpart.c
-index 2876501a7814..fc4483686242 100644
---- a/drivers/mtd/mtdpart.c
-+++ b/drivers/mtd/mtdpart.c
-@@ -18,6 +18,7 @@
- #include <linux/err.h>
- #include <linux/of.h>
- #include <linux/of_platform.h>
-+#include <linux/mtd/concat.h>
+-	unsigned int i, index, cpu;
++	struct plic_priv *priv = this_cpu_ptr(&plic_handlers)->priv;
++	unsigned int index, cpu;
+ 	unsigned long flags;
+ 	u32 __iomem *reg;
+-	struct plic_priv *priv;
+-
+-	priv = per_cpu_ptr(&plic_handlers, smp_processor_id())->priv;
  
- #include "mtdcore.h"
+-	/* irq ID 0 is reserved */
+-	for (i = 1; i < priv->nr_irqs; i++) {
+-		index = BIT_WORD(i);
+-		writel((priv->prio_save[index] & BIT_MASK(i)) ? 1 : 0,
+-		       priv->regs + PRIORITY_BASE + i * PRIORITY_PER_ID);
++	for_each_device_irq(irq, priv) {
++		index = BIT_WORD(irq);
++		writel((priv->prio_save[index] & BIT_MASK(irq)) ? 1 : 0,
++		       priv->regs + PRIORITY_BASE + irq * PRIORITY_PER_ID);
+ 	}
  
-@@ -409,6 +410,11 @@ int add_mtd_partitions(struct mtd_info *parent,
- 			goto err_del_partitions;
+ 	for_each_present_cpu(cpu) {
+@@ -293,7 +295,7 @@ static void plic_irq_resume(void *data)
+ 			continue;
+ 
+ 		raw_spin_lock_irqsave(&handler->enable_lock, flags);
+-		for (i = 0; i < DIV_ROUND_UP(priv->nr_irqs, 32); i++) {
++		for (unsigned int i = 0; i < priv->irq_groups; i++) {
+ 			reg = handler->enable_base + i * sizeof(u32);
+ 			writel(handler->enable_save[i], reg);
  		}
+@@ -431,7 +433,7 @@ static u32 cp100_isolate_pending_irq(int
  
-+		if (IS_REACHABLE(CONFIG_MTD_VIRT_CONCAT)) {
-+			if (mtd_virt_concat_add(child))
-+				continue;
-+		}
-+
- 		mutex_lock(&master->master.partitions_lock);
- 		list_add_tail(&child->part.node, &parent->partitions);
- 		mutex_unlock(&master->master.partitions_lock);
-diff --git a/include/linux/mtd/concat.h b/include/linux/mtd/concat.h
-index b42d9af87c4e..2cd9d48958a8 100644
---- a/include/linux/mtd/concat.h
-+++ b/include/linux/mtd/concat.h
-@@ -28,5 +28,54 @@ struct mtd_info *mtd_concat_create(
+ static irq_hw_number_t cp100_get_hwirq(struct plic_handler *handler, void __iomem *claim)
+ {
+-	int nr_irq_groups = DIV_ROUND_UP(handler->priv->nr_irqs, 32);
++	int nr_irq_groups = handler->priv->irq_groups;
+ 	u32 __iomem *enable = handler->enable_base;
+ 	irq_hw_number_t hwirq = 0;
+ 	u32 iso_mask;
+@@ -614,7 +616,6 @@ static int plic_probe(struct fwnode_hand
+ 	struct plic_handler *handler;
+ 	u32 nr_irqs, parent_hwirq;
+ 	struct plic_priv *priv;
+-	irq_hw_number_t hwirq;
+ 	void __iomem *regs;
+ 	int id, context_id;
+ 	u32 gsi_base;
+@@ -647,7 +648,16 @@ static int plic_probe(struct fwnode_hand
  
- void mtd_concat_destroy(struct mtd_info *mtd);
+ 	priv->fwnode = fwnode;
+ 	priv->plic_quirks = plic_quirks;
+-	priv->nr_irqs = nr_irqs;
++	/*
++	 * The firmware provides the number of device interrupts. As
++	 * hardware interrupt 0 is reserved, the number of total interrupts
++	 * is nr_irqs + 1.
++	 */
++	nr_irqs++;
++	ACCESS_PRIVATE(priv, total_irqs) = nr_irqs;
++	/* Precalculate the number of register groups */
++	priv->irq_groups = DIV_ROUND_UP(nr_irqs, 32);
++
+ 	priv->regs = regs;
+ 	priv->gsi_base = gsi_base;
+ 	priv->acpi_plic_id = id;
+@@ -686,7 +696,7 @@ static int plic_probe(struct fwnode_hand
+ 				u32 __iomem *enable_base = priv->regs +	CONTEXT_ENABLE_BASE +
+ 							   i * CONTEXT_ENABLE_SIZE;
  
--#endif
-+/**
-+ * mtd_virt_concat_node_create - Create a component for concatenation
-+ *
-+ * Returns a positive number representing the no. of devices found for
-+ * concatenation, or a negative error code.
-+ *
-+ * List all the devices for concatenations found in DT and create a
-+ * component for concatenation.
-+ */
-+int mtd_virt_concat_node_create(void);
-+
-+/**
-+ * mtd_virt_concat_add - add mtd_info object to the list of subdevices for concatenation
-+ * @mtd: pointer to new MTD device info structure
-+ *
-+ * Returns true if the mtd_info object is added successfully else returns false.
-+ *
-+ * The mtd_info object is added to the list of subdevices for concatenation.
-+ * It returns true if a match is found, and false if all subdevices have
-+ * already been added or if the mtd_info object does not match any of the
-+ * intended MTD devices.
-+ */
-+bool mtd_virt_concat_add(struct mtd_info *mtd);
+-				for (int j = 0; j <= nr_irqs / 32; j++)
++				for (int j = 0; j < priv->irq_groups; j++)
+ 					writel(0, enable_base + j);
+ 			}
+ 			continue;
+@@ -718,23 +728,21 @@ static int plic_probe(struct fwnode_hand
+ 			context_id * CONTEXT_ENABLE_SIZE;
+ 		handler->priv = priv;
  
-+/**
-+ * mtd_virt_concat_create_join - Create and register the concatenated MTD device
-+ *
-+ * Returns 0 on succes, or a negative error code.
-+ *
-+ * Creates and registers the concatenated MTD device
-+ */
-+int mtd_virt_concat_create_join(void);
-+
-+/**
-+ * mtd_virt_concat_destroy - Remove the concat that includes a specific mtd device
-+ *                           as one of its components.
-+ * @mtd: pointer to MTD device info structure.
-+ *
-+ * Returns 0 on succes, or a negative error code.
-+ *
-+ * If the mtd_info object is part of a concatenated device, all other MTD devices
-+ * within that concat are registered individually. The concatenated device is then
-+ * removed, along with its concatenation component.
-+ *
-+ */
-+int mtd_virt_concat_destroy(struct mtd_info *mtd);
-+
-+void mtd_virt_concat_destroy_joins(void);
-+void mtd_virt_concat_destroy_items(void);
-+
-+#endif
-
--- 
-2.52.0
-
+-		handler->enable_save = kcalloc(DIV_ROUND_UP(nr_irqs, 32),
+-					       sizeof(*handler->enable_save), GFP_KERNEL);
++		handler->enable_save = kcalloc(priv->irq_groups, sizeof(*handler->enable_save),
++					       GFP_KERNEL);
+ 		if (!handler->enable_save) {
+ 			error = -ENOMEM;
+ 			goto fail_cleanup_contexts;
+ 		}
+ done:
+-		for (hwirq = 1; hwirq <= nr_irqs; hwirq++) {
++		for_each_device_irq(hwirq, priv) {
+ 			plic_toggle(handler, hwirq, 0);
+-			writel(1, priv->regs + PRIORITY_BASE +
+-				  hwirq * PRIORITY_PER_ID);
++			writel(1, priv->regs + PRIORITY_BASE + hwirq * PRIORITY_PER_ID);
+ 		}
+ 		nr_handlers++;
+ 	}
+ 
+-	priv->irqdomain = irq_domain_create_linear(fwnode, nr_irqs + 1,
+-						   &plic_irqdomain_ops, priv);
++	priv->irqdomain = irq_domain_create_linear(fwnode, nr_irqs, &plic_irqdomain_ops, priv);
+ 	if (WARN_ON(!priv->irqdomain)) {
+ 		error = -ENOMEM;
+ 		goto fail_cleanup_contexts;
 
