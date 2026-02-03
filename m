@@ -1,188 +1,229 @@
-Return-Path: <devicetree+bounces-262351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262352-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GCGEJFctgmlFQAMAu9opvQ
-	(envelope-from <devicetree+bounces-262351-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:16:07 +0100
+	id cJeLCIwtgmlFQAMAu9opvQ
+	(envelope-from <devicetree+bounces-262352-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:17:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF22CDC9C7
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:16:06 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C828DCA17
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:16:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 64F39303C3B5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 17:12:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 84F213016B1E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 17:12:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DAB53D5242;
-	Tue,  3 Feb 2026 17:12:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3C23A1D08;
+	Tue,  3 Feb 2026 17:12:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="E833CbFG"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="NuUOa/tW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF2C03D6469
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 17:11:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B5A0311977
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 17:12:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770138721; cv=none; b=vBdkfp92Iv3vWwvlqq2oEbba5Dq8f0pnRYrnBaQiAtrNaj52BKJPJs4betXJxTfGbwoM8rGc0eLjHyWNEDOVphAC7E06s3jXa08ifmbaK0++YI22c4ocyfLMdzNUdyb55jqY9jhIXs049mYHUskjWMZshDiiOajYsrTUqD7VAjM=
+	t=1770138767; cv=none; b=SSz9R8IHdfRkhDc/8/v0Na0nggjSZO+IkPUun1UgMWXzBQb9ZiWeuiG9imVQb70W06psMJg6N7kT+WSjyinrMiAsHgCY0/37f7W4DpsOisaT45J82uK7RmmQHH+Z4mC3uaSadHVbFEpanlZy+0BditIf7s/+G9rBqAqFKDdufI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770138721; c=relaxed/simple;
-	bh=KvVwtGkYOu5PUrbVCouPvp9ISvZPAAdo9DySfRKviFM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iyUaWsQ2PcVn5cH+5X7XX4kD+3O0yyarYCxA9PeQLxwAceCCd9OdhMkX7qPP2xNKgUVlZsDGDU4x4wP+nq9bhSJLqFqO5q2UQ5Vb1K7kGwW7j4yFqCqa7/UFD4x2g96+Qw30QR44h6IIyh3rCtRvddVV+3SCOqljl0O7pBtQFi8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=E833CbFG; arc=none smtp.client-ip=209.85.161.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-6610b05b37dso4742790eaf.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 09:11:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1770138718; x=1770743518; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Wy/dNsn4u7o/hART3NmXV1T9kIccTcgOCggRGW81zXY=;
-        b=E833CbFG9bS7eGRz7RDodJUaeg7rVgQjtpwzJmr8FoEOt3kRviZf6HAPTNjzckqfTd
-         ZAc7XJVGXdS8Idexo6B/8WeeIWWwO5UYI0JYCmGTo4V6Yf4i9MUCkq557tLkY4icQWLD
-         2vhg8Ey83A5wqCkDzmbbQzSgzvR+wP0p2sckynfWOtxw51DJAAF4fc7qiE8FywZ6JhJG
-         N/5xZa9X+hMdwN6L0SaAfcU5sAIQNw/85kU5lTH7HkHYK7GvlLw9j6O+eigfiCe6aLmz
-         DkBNB4u5Cxe1hb8ILGJP8bM29Z/unudho4TJB7JOqyjUymHVT5HIdtelMvMtCWMOh5hK
-         SyIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770138718; x=1770743518;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Wy/dNsn4u7o/hART3NmXV1T9kIccTcgOCggRGW81zXY=;
-        b=TbYg72hTLAEopryzyCtZWZTVdHpfvxWFbmN81/FeG2JxfqvYeBC5fN5cK7kqLa4qxD
-         nUQIYLchh0S4iIBmnIYisA8Q+fDZRFu7gSibdzV7PuLNENxGxgqg5AltMmvn0Ai2tmNx
-         9bbJWq4sOu0w8pYJmArO/fp0kFTudAjQw6UB51zRLs4As4a6kNNXu4A42PwKsYffqoOW
-         MFfzVkSsa/UrdoZrLL+rAQtMgNOzc1waCqK50DwtzfeRiVrErTgf94e63kkig4Mprfow
-         DXRgKbBbLOLUjij5pVUSf3/15+TEiDCLIEjupIGGSY3VeaPlmgEwHqT9sJLuVjgZ6m3x
-         5gpg==
-X-Forwarded-Encrypted: i=1; AJvYcCVXNDnqQbHEtZL2UezXmR3eATkmOwa5zzhA8VMzcLvGELptnwahfIYTpmMYKfB6JfqtVuNsiM19HP2P@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZ2A4LDNTFUytznZqx3Fdr/O/8oIL+mhevVowjFoqRTNbgl6oj
-	DSiKVSTX569w0oqbLYcAj3/I5NGfopwk4bZcqXD2aaL6kYTvwtWtosQGwG7CiKRrdxQ=
-X-Gm-Gg: AZuq6aJLX8NPy948sGFSGwcBXTa/Odqq1PCHa8xEhduNTwjkuoSE8TQodrMZoQm3dcW
-	eQeBu8Z5YaoFTA2ryitryWz/uDAGMOI1jcb4efr9urfXwvafaKAhG7EZ7eIFn5VT3CB50CUb99D
-	pKYCiPcJfcO3DZtjBV6kKXbJztcIu1UYd7Tr8uvyz3n8LCONgwn2q3Nwx9Pzp1rCwwi3eIX5ln1
-	rfLy7NddT2f3Uexl/EWTSDpdxGyrYx/qqSMTSFgfH0EulsDdXNH8a/E5dUArFHbHTukYBE6h9EH
-	Msf2JKEPfnbVnpu7d08K1LIZHgRSjQracWuycj7VXi8b8VlRu6xnc4uinLv0PYH2qaaakn4AX6P
-	WBvhiufllahsExLzPVu53ydqP3u3eqWP2fNp9vSvPnXYZ99BeE6k4xbRnmXRwnKk6LxrTsogDS2
-	ybEfQRNqwIH6f41/1LQsmDeQ07Tj2+53oLkTdsp6r+DZ81AO2ZR9C9ok4=
-X-Received: by 2002:a05:6820:a01:b0:65b:257b:a898 with SMTP id 006d021491bc7-66a210468f5mr148431eaf.29.1770138717633;
-        Tue, 03 Feb 2026 09:11:57 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:8e13:880:992:e796? ([2600:8803:e7e4:500:8e13:880:992:e796])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-66a35f7a4besm27682eaf.17.2026.02.03.09.11.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Feb 2026 09:11:57 -0800 (PST)
-Message-ID: <b920f61a-02f8-4e6f-a2a4-0899d399148f@baylibre.com>
-Date: Tue, 3 Feb 2026 11:11:56 -0600
+	s=arc-20240116; t=1770138767; c=relaxed/simple;
+	bh=Y+OuOI2ubqgCVchlqqXv2JkAghT0P/SAeklx80lKeoU=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=m29mhWSAmSjkIImA7HU+5IIBi/cDqLOQmYh+h6jZLQTY18tZo0p1yHvwSV3Y/udt2JyJTj/t0NPKi9lRYRB0p2ogCOTr4sFVLgJeRCNF2ra+aipunGPa3Kl+bDgLGJG9SeaOQetSiImi2e1PGEz2Bkl+DAGVZNXsvOc3THiKWUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=NuUOa/tW; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id F2DB041C6B;
+	Tue,  3 Feb 2026 18:12:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1770138761; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=Q/RzIoETwq7EI8AtWKZybI6w+H5plu3IYaH4qKanRYc=;
+	b=NuUOa/tWVQA88Evlzzmypa+ZhmtZ9WD5NE3qkTSvFW9VDfzrlzWn/ica/Oh19ldTQOQex1
+	CG9Fzqx/MhWhIrx46uP60Hpriu/XwRWX0tUqFIbbDG19lngzHUuzJCSIS+GwVeQadyPf90
+	VxkSaSy9cqfGiwqZM3p0SoZDp1w/pOF25hTsRFUJ99YTCucmLrE+ehN97OzMwKkEm3Xq/f
+	ov+VWlccOepeSU/UKtDTG7Rom3SqhOaZgZr3a+oEmlU0ZQUEZdr69c7BNzN7k3IFODzDgL
+	FduwERu9VmRpfmuGf7o30rvVO61f3yK3rO1DnmotOQR50cKw3Q49+moMFBH42g==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <20260203151013.305032-1-jerrysteve1101@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+References: <705908c9-4552-d808-783e-3ce0cf45bbff@manjaro.org> <20260203151013.305032-1-jerrysteve1101@gmail.com>
+Date: Tue, 03 Feb 2026 18:12:37 +0100
+Cc: alchark@gmail.com, andyshrk@163.com, conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, robh@kernel.org
+To: "Jun Yan" <jerrysteve1101@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: ad4080: add AD4880 support
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- "Hennerich, Michael" <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "linux-iio@vger.kernel.org"
- <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20260129152731.154368-1-antoniu.miclaus@analog.com>
- <20260129152731.154368-2-antoniu.miclaus@analog.com>
- <5d2e85cd-caa2-43a6-a451-3b822bd0ef01@baylibre.com>
- <CY4PR03MB3399D81C92B07FEC8EFA09B19B9BA@CY4PR03MB3399.namprd03.prod.outlook.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <CY4PR03MB3399D81C92B07FEC8EFA09B19B9BA@CY4PR03MB3399.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Message-ID: <f6eb572c-dd2c-9606-4fb5-b26b51bbbb06@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH v3 3/3] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
+ =?utf-8?q?_rockchip=3A?= Add OneThing Edge Cube series
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
+X-Rspamd-Fuzzy: 4d8686c9e18ae259edcb18fbfd3b0c43d48bb8492706122afcdcffd3f170db1beae6de266bce58e1b5874c7e84fd60e44ae1a487be8ceb28d76f935daafaea6c
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	SUBJ_EXCESS_QP(1.20)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[manjaro.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[manjaro.org:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262351-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
+	TAGGED_FROM(0.00)[bounces-262352-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,163.com,kernel.org,vger.kernel.org,sntech.de,lists.infradead.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[manjaro.org:+];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	PRECEDENCE_BULK(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dsimic@manjaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: AF22CDC9C7
+X-Rspamd-Queue-Id: 1C828DCA17
 X-Rspamd-Action: no action
 
-On 2/3/26 9:42 AM, Miclaus, Antoniu wrote:
-> ...
+Hello Jun,
 
-...
+On Tuesday, February 03, 2026 16:10 CET, Jun Yan <jerrysteve1101@gmail.=
+com> wrote:
+> > On Monday, February 02, 2026 16:04 CET, Jun Yan <jerrysteve1101@gma=
+il.com> wrote:
+> > > The OneThing Edge Cube (OEC) series features the RK3566 SoC, 8GB
+> > > eMMC storage, and supports one SATA interface, one Gigabit Ethern=
+et
+> > > port, and one USB 3.0 port.
+> > >=20
+> > > Other than the difference in RAM capacity, the OEC and OEC-turbo =
+are
+> > > identical in all other specifications.
+> > >=20
+> > >   Specification:
+> > >     - Rockchip RK3566
+> > >     - LPDDR4X 2GB (OEC) / 4GB (OEC-turbo)
+> > >     - eMMC 8GB
+> > >     - Gigabit Ethernet port x 1
+> > >     - USB 3.0 port x 1
+> > >     - USB-C 2.0 port x 1
+> > >     - 12V DC Power supply
+> > >     - SATA 3.0 connector x 1
+> > >=20
+> > > These devices do not have a PMIC, and their hardware circuit desi=
+gn
+> > > is highly similar to that of the rk3566-box-demo[1]. Hardware sch=
+ematics
+> > > are not available at this time, with the vendor firmware dts avai=
+lable
+> > > for reference[2].
+> > >=20
+> > > Ethernet, USB 3.0 and SATA 3.0 ports tested, all working well.
+> > >=20
+> > > [1] https://elixir.bootlin.com/linux/v6.18.6/source/arch/arm64/bo=
+ot/dts/rockchip/rk3566-box-demo.dts
+> > > [2] https://archive.org/download/wxy-oec-RK3566-4G-dump/wxy-oec-R=
+K3566-4G-dump.dts
+> > >=20
+> > > Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+> > > ---
+> > >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+> > >  .../rockchip/rk3566-onething-oec-series.dts   | 312 ++++++++++++=
+++++++
+> > >  2 files changed, 313 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-onething-=
+oec-series.dts
+> > >=20
+> > > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/b=
+oot/dts/rockchip/Makefile
+> > > index 4d384f153c13..234fa53abe17 100644
+> > > --- a/arch/arm64/boot/dts/rockchip/Makefile
+> > > +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> > > @@ -104,6 +104,7 @@ dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-a=
+nbernic-rg353v.dtb
+> > >  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-anbernic-rg353vs.dtb
+> > >  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-anbernic-rg503.dtb
+> > >  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-odroid-m1s.dtb
+> > > +dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-onething-oec-series.=
+dtb
+> > >  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-orangepi-3b-v1.1.dtb
+> > >  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-orangepi-3b-v2.1.dtb
+> > >  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-pinenote-v1.1.dtb
+> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-onething-oec-ser=
+ies.dts b/arch/arm64/boot/dts/rockchip/rk3566-onething-oec-series.dts
+> > > new file mode 100644
+> > > index 000000000000..2007b93e190e
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/rockchip/rk3566-onething-oec-series.dts
+> > > @@ -0,0 +1,312 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > +
+> > > +/dts-v1/;
+> > > +
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > > +#include <dt-bindings/leds/common.h>
+> > > +#include <dt-bindings/pinctrl/rockchip.h>
+> > > +#include "rk3566.dtsi"
+> > > +
+> > > +/ {
+> > > +	model =3D "OneThing OEC/OEC-turbo";
+> > > +	compatible =3D "onething,oec-turbo", "onething,oec", "rockchip,=
+rk3566";
+> >=20
+> > Thanks for the v3!  After thinking a bit more about it, it would be=
+ better
+> > to name the board dtb "rk3566-onething-edge-cube.dtb" and omit the =
+"series"
+> > part, because the only difference between the board variants is the=
+ amount
+> > of DRAM.  Also, "onething,oec-turbo" should be removed from the com=
+patibles,
+> > and the single compatible renamed to "onething,edge-cube", because =
+I see no
+> > need to have an additional compatible, which may be added later if =
+really
+> > needed for some unforeseen differentiating purpose.
+> >=20
+> > Also, it might be better to use "OneThing Edge Cube/Edge Cube Turbo=
+" as the
+> > combined name, because "Edge Cube" is more self-descriptive than ju=
+st "OEC",
+> > which may also help with various search engines down the road.
+>=20
+> Sorry for the quick follow-up.
+> In official documentation (Most of it is in Chinese) from OneThing Te=
+ch[1],=20
+> the designations "OEC/OEC-turbo" are more commonly and widely used.
+> for this reason, I propose retaining the "OEC/OEC-turbo" naming in th=
+e model=20
+> property.
 
->>> @@ -98,4 +127,22 @@ examples:
->>>            io-backends = <&iio_backend>;
->>>          };
->>>      };
->>> +  - |
->>> +    spi {
->>> +        #address-cells = <1>;
->>> +        #size-cells = <0>;
->>> +
->>> +        adc@0 {
->>> +          compatible = "adi,ad4880";
->>> +          reg = <0>;
->>> +          adi,aux-spi-cs = <1>;
->>
->> We can already have multiple reg for a multiple CS device.
->>
->>              reg = <0>, <1>;
->>
->> So we shouldn't need a new adi,aux-spi-cs property for that.
-> 
-> Sure, that was the initial plan but for some reason going for multiple regs gets me to this:
-> 
-> [   11.396833]  spi_new_ancillary_device from ad4080_probe+0x4b8/0x5a4
-> [   11.396861]  ad4080_probe from really_probe+0xc8/0x2c8
-> [   11.397281] ad4080 spi1.0: chipselect 1 already in use
-> [   11.397297] ad4080 spi1.0: failed to register ancillary device
-> [   11.397317] ad4080 spi1.0: probe with driver ad4080 failed with error -16
-> 
-> While the aux-spi-cs works fine. Any tips?
+I see, that's an interesting twist.  As some kind of a compromise, it w=
+ould
+be best to have the board dtb named "rk3566-onething-edge-cube.dtb" and=
+ use
+"OneThing Edge Cube (OEC)/OEC Turbo" as the combined name.  That way th=
+e
+board dtb name isn't too short, while "OEC" is present in the model nam=
+e,
+for search engines to pick it up, hopefully, and for people to see it i=
+n
+a few places. :)
 
-The one existing user of spi_new_ancillary_device() used the multiple
-regs like I suggested. So I wonder if that is broken too. The changes
-for multiple CS for SPI parallel memories in the SPI core was made 2
-years after that driver was added. So I could see how it could have
-been broken without anyone noticing.
-
-I didn't look at it too deeply yet. But my guess is that we need to
-modify __spi_add_device() to change how it verifies the chip select.
-
-If it is being called from spi_add_device(), don't change the behavior.
-If it is being called from spi_new_ancillary_device(), then the
-chip select should be verified as one assigned to the main device
-rather than verifying that it is unused. I.e. don't call spi_dev_check_cs().
+> [1] https://help.onethingcloud.com/be81/OEC1/80c5
 
 
