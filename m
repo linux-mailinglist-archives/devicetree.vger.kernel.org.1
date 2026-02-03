@@ -1,191 +1,208 @@
-Return-Path: <devicetree+bounces-262109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262110-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qEq4HQK7gWm7JAMAu9opvQ
-	(envelope-from <devicetree+bounces-262109-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 10:08:18 +0100
+	id GNJ3AjS6gWm7JAMAu9opvQ
+	(envelope-from <devicetree+bounces-262110-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 10:04:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D65D6D696E
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 10:08:17 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B4C1D68D4
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 10:04:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7D7AA30713EF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 09:04:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 898713007BB8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 09:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1862C393DCA;
-	Tue,  3 Feb 2026 09:04:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EDfSNuTE";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LK8crCn+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89310393DCA;
+	Tue,  3 Feb 2026 09:04:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C686930E83E
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 09:04:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B0711DE885
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 09:04:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770109450; cv=none; b=iALCculfVAa3bHE4vFvTTuY/Im0VBmQLKMzE3DTN5TLF93Ykxzm1ypiFgFCAQ5+U4hrgrSfgrNNLNUbxURSy6Rkials7Twp0ZnYdDKnR6z5h1cjhnVSrZyrPg5F4Z17jPDhc1qIpt313wfKASlsQPYmSTo8egZKKB0XBr9nY7Ps=
+	t=1770109489; cv=none; b=Uij32vXzemRN404uJbqQyjpZcEB/KERuFUczxmuiQT3tWkuYv8HWvGm2cMdI4N4Q9a/eZL2TRW/fT/QPGQ6poduRPil5TdAwQgV9lianZr/3apQFxEpTQYf64Zsj0cXeJikBq+VRAbUFvCefRGUmqWgJp4ajLXnHZUqQP7i5HD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770109450; c=relaxed/simple;
-	bh=UuYMHxTLfM2fyfg9mxmD9oROYBJosUT9xY+ok6mD8g4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lTeEC7Cq50MP3yxY/CnoWhLbd1O5077vFlPcxKzWLTf580ITbsAODmtQTq5dZ0GIGuO6gdiFK/se99IGZ7mCD/QnryPa2WInWP7ubBjK0qeFS5DjG1ZrJzrq7mENVq+26uRenlk7VUmJDLv5/0C7buE9Lr7ZhnEDoPZMSkac61c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EDfSNuTE; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LK8crCn+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6135UE202107174
-	for <devicetree@vger.kernel.org>; Tue, 3 Feb 2026 09:04:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	kDd9sU/GOi0hof6ytSwymn2c6rYVs6a2ClA1gto2mEs=; b=EDfSNuTEanSVftUv
-	80vQnfi9PWiWqZgPPdfFHS+fDZKJoxWzxmvHIrRHSX9bTM8mxtiOeDZ6ayMqSN9r
-	sitTDWDq39x0TCzh6lRD20jWZbEy6ObTcl0cip7T45YrfZ7oxZL1qRk5m8sabIkE
-	tZJTBPq23iGCljr5Le+hgAD40b4xc05yTGGtpeWlVNzWIZdTrIYNkKWT5/RCICkn
-	3S1tEBzOIMwl9YRtFcZDYeZQK/WnwkhiyY+rCLzcsjPAiQZooZIWlS4UGf9Ub33J
-	asH7EJd4I19zniz6MFeZAXU5aCeVq4s6hEn6cpGEVzX/+7JV+HqN52jNVqMmng9h
-	UttrRw==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c2t5ebu03-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 09:04:07 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-88887682068so16931216d6.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 01:04:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770109447; x=1770714247; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kDd9sU/GOi0hof6ytSwymn2c6rYVs6a2ClA1gto2mEs=;
-        b=LK8crCn+a2rYsFCQYgMJ3WmGOR5PYlTAUdXmPEa2Jbdfvokt31swB97vWCdNJgTEOD
-         nt5IamMRd/XeQHnqNU0iaAfHipEb66pHfSZ6HcIOQt1LpnXLM5nAIGC+cGo6mZILoPIA
-         HYsuUCxo4GCPN8LUWhz+Onh2UeSgN8lMEoha+DdmmnSFDCZetUwh+CpXoUNlX/Nf21A4
-         Iw17mwhslBzkQxITJZpjhYEZky1Vyqr2Jr4Xu788zEZCDZLJATNqOnDY5TdsuSVMg8zH
-         2wUyOtoZ+fKiDD95Vs/ekfATsVO3xT/tIkv8jbkObDbQK061AnJ5FpKm+9XC3v39Dcdq
-         DLEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770109447; x=1770714247;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kDd9sU/GOi0hof6ytSwymn2c6rYVs6a2ClA1gto2mEs=;
-        b=q4Cj4oec+7gs1rCsYeyt22CGDgSHLz7FwU84QJ3s4LYe5MlFrgVn6Zro0YuUDCoFqe
-         GYs8M/dJBjqDn9IPywBLuObv0l3b1bj72Upvh8kPDZSkHW0R6tQZReurVXA5IQ6R26JG
-         ro61wsfbNQZwFkHUYR2jSSU41hYfCeHorSgUC0wJnL+/y5Lut+lhUwCyb11y8aMJlzSE
-         E1g9QWPZiYirx3/FmUbHaTct4sJC2FbFo383Y5FUz/eDMt8y3B1gfy4Fg4YbF67+B423
-         Fj0d4hghfj3P77HJohZ8BUPngmI5Mw6ls+Wk1skqATBhxliEaXZvtua+BGfelGaFhNjY
-         Cmfg==
-X-Forwarded-Encrypted: i=1; AJvYcCXgFPLIahQTL7toAM3zbsApNJ52cs1R7hcONbOCoPON0YPeVAzSCp7+KERDgfsO3hCINYnjMAvDePLk@vger.kernel.org
-X-Gm-Message-State: AOJu0YwYUskg6Z+4mLtz4ov0xGoje8dWv7dM1uHfSupp8I6pN2ysIdVT
-	t5sZJIZ9/NVse4ZuotK+IKHOtFidzgxekmu6SRdDDa7x+wWN5Muh9FXT4cLS6bHmExdVpUg8Eqh
-	yueJOSWgsWao1rWkrdubeFr2k4zWvcohQnlIkQ4m2EI+35H5bFaNCvgiUh2KVctdE
-X-Gm-Gg: AZuq6aJFIIusmorInN/j1enh93h3vSrSMCqrmwoGoVVHfHBj9NKcX+JhBrp5tKtGyLd
-	6OB+ixIizkOlkC+AjE+46hbwJ2zSqXEAHsqQR/kyPonLCsAwYFZWrGzHWHKm4GOuHAMlZ6TyMwx
-	T9LGnkDZeOJPFgXxfBvmaau+dradijRKYrw0wqn2LxyblIesduTIsaZWIPwGMSTRZ6908WdIDnv
-	p2loTxHFVjgPaelpTnDHIJJk5sMr7mlQTcZdUvM4IaP0cqGaR7wBqYqi85dN8e7AFRqMak/eFvW
-	761d+5XSMQeGIKa1CZlxkatzKLw/A/YaFekRkCqBNqp9ZhYKX2A4QEf+hvJAYosnpde4A/MtuB0
-	Za7fMKlmuFae4dCsoCJ98xvWKcHRaPCvSWK2DSZwM9sOOGwaWWQemXM+pla8DAgwRU4w=
-X-Received: by 2002:ae9:e710:0:b0:8c9:eb7f:b6d with SMTP id af79cd13be357-8c9eb7f16d1mr1137890085a.4.1770109446899;
-        Tue, 03 Feb 2026 01:04:06 -0800 (PST)
-X-Received: by 2002:ae9:e710:0:b0:8c9:eb7f:b6d with SMTP id af79cd13be357-8c9eb7f16d1mr1137888185a.4.1770109446494;
-        Tue, 03 Feb 2026 01:04:06 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-658b4452d67sm8778846a12.8.2026.02.03.01.04.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Feb 2026 01:04:04 -0800 (PST)
-Message-ID: <7a2b9a1b-97d7-4c4b-98bf-61176badbdc6@oss.qualcomm.com>
-Date: Tue, 3 Feb 2026 10:04:01 +0100
+	s=arc-20240116; t=1770109489; c=relaxed/simple;
+	bh=hMHPqQMG753T7ncGetQAZ0pJ5UyesNGe7Vaq1/V8TYc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Qm9FSY/fPOSErMQXiNvKxmnlE8OLHoZpXy95ESPDF8sDtr6/sDOBmhiV+Kkg3Gl8Lmp/wKo01xTAl2a0GGOgYUjCMKt27hStEisPHey89hrGK7kSIyBIhysmxTNrymA7FhSVI40QdmTbT7jVE2dHdvRHT8bat+M0zoAddloePdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <l.stach@pengutronix.de>)
+	id 1vnCKi-0000Yw-8R; Tue, 03 Feb 2026 10:04:28 +0100
+Message-ID: <20602b86caa7166a5ac8eb75d38be07c7d7bb264.camel@pengutronix.de>
+Subject: Re: [PATCH] arm64: dts: imx8mq: Restore VPU G2 clock to 600MHz for
+ 4K60fps decoding
+From: Lucas Stach <l.stach@pengutronix.de>
+To: "Ming Qian(OSS)" <ming.qian@oss.nxp.com>, Nicolas Dufresne
+	 <nicolas@ndufresne.ca>, linux-media@vger.kernel.org
+Cc: mchehab@kernel.org, hverkuil-cisco@xs4all.nl, 
+ benjamin.gaignard@collabora.com, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, p.zabel@pengutronix.de,
+ sebastian.fricke@collabora.com,  shawnguo@kernel.org,
+ ulf.hansson@linaro.org, s.hauer@pengutronix.de,  kernel@pengutronix.de,
+ festevam@gmail.com, linux-imx@nxp.com, Frank.li@nxp.com,  peng.fan@nxp.com,
+ eagle.zhou@nxp.com, devicetree@vger.kernel.org,  imx@lists.linux.dev,
+ linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org
+Date: Tue, 03 Feb 2026 10:04:25 +0100
+In-Reply-To: <ca3a8042-1394-4925-9c61-dbfcbf4cf7d9@oss.nxp.com>
+References: <20260130084133.2159-1-ming.qian@oss.nxp.com>
+	 <df8d5d5f28870752e77ec74f34fea7ceb6e97286.camel@ndufresne.ca>
+	 <0b24716b-438c-4185-8a93-3a3879147c24@oss.nxp.com>
+	 <169eba79e8e1f906b1a0b59e22a531dfc7e57a1f.camel@ndufresne.ca>
+	 <5e3431c69da07557edb20a252c4759be8c857f08.camel@ndufresne.ca>
+	 <ca3a8042-1394-4925-9c61-dbfcbf4cf7d9@oss.nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-2.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] arm64: dts: qcom: qcm6490-idp: add and enable BT node
-To: Janaki Ramaiah Thota <janaki.thota@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: quic_mohamull@quicinc.com, quic_hbandi@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260203071807.764036-1-janaki.thota@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260203071807.764036-1-janaki.thota@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjAzMDA3MSBTYWx0ZWRfX5xeisGTiqO+/
- jb/LlL4rFrRKlKNcD16T2qKrpTCX4Ee4WqhdvltZFaPB0ygnAXmk+9pgRq/fWgIUyqDHU5uQIEz
- lzJ7X+mbRZbUQBmF302lnSPZfbOfX0AUZnOkUsq7Nulz19qFge6QARqPsv1wg/h9iXTKGJSXMco
- ZgZgXCD6yxmjWhCAV/U3xyDk2YXC5erDSXR573zbBLYpzvzYfZdurHnSFvYqJEJAxRzMbFOLXhy
- NYsA5EzR4MZD35IyhSTifRmEBiqjREf5xAmJu3gCeBS5/IVXwYmjN6mWMg6UlW5QC9uXUujeH7Q
- RqBc8Sqp0fBQRdVRxekMRVMQq+kBsmpX2gMSnIQVkPyTGAeQrKBiTIDmVOiverA9PEdimIZLzIl
- eUdECs09/Z+B8egIXVOdgkh6Q/mp0da5a5V+z63dBfdfLS/WZLRlC0WP8lQZtIIkPJm0aGMAOlZ
- MFn22D7XR03GYW6rZDA==
-X-Proofpoint-GUID: CH2mFnEsCk-gZjtZ4S26-05FhJy4ze0M
-X-Authority-Analysis: v=2.4 cv=NOfYOk6g c=1 sm=1 tr=0 ts=6981ba07 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=urrX6pSkbUk8ZukRZgoA:9
- a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-ORIG-GUID: CH2mFnEsCk-gZjtZ4S26-05FhJy4ze0M
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-03_02,2026-02-02_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 priorityscore=1501 suspectscore=0 impostorscore=0
- adultscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602030071
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262109-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262110-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,xs4all.nl,collabora.com,pengutronix.de,linaro.org,gmail.com,nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[l.stach@pengutronix.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: D65D6D696E
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9B4C1D68D4
 X-Rspamd-Action: no action
 
-On 2/3/26 8:18 AM, Janaki Ramaiah Thota wrote:
-> Add the PMU node for WCN6750 present on the qcm6490-idp
-> board and assign its power outputs to the Bluetooth module.
-> 
-> In WCN6750 module sw_ctrl and wifi-enable pins are handled
-> in the wifi controller firmware. Therefore, it is not required
-> to have those pins' entries in the PMU node.
-> 
-> Signed-off-by: Janaki Ramaiah Thota <janaki.thota@oss.qualcomm.com>
-> ---
+Hi,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Am Dienstag, dem 03.02.2026 um 15:13 +0800 schrieb Ming Qian(OSS):
+> Hi Nicolas,
+>=20
+> On 2/3/2026 3:12 AM, Nicolas Dufresne wrote:
+> > Hi,
+> >=20
+> > Le lundi 02 f=C3=A9vrier 2026 =C3=A0 13:44 -0500, Nicolas Dufresne a =
+=C3=A9crit :
+> > > > This doesn't sound like just a VPU issue; it's related to the displ=
+ay or
+> > > > DDR.
+> > > > If not displayed, do the fluster test cases yield different results=
+ at
+> > > > 600MHz and 300MHz?
+> > >=20
+> > > Didn't you run these tests before sending ? I can try again, but in m=
+y
+> > > internal
+> > > notes, I wrote:
+> > >=20
+> > >    > Tested that, and everything becomes unstable
+> > >=20
+> > > That was before I figure-out the IRQ handler didn't handle exception =
+bits that
+> > > didn't stop the decoder (or dry IRQ, which strangely is common from t=
+he G2).
+> >=20
+> > Ran some fluster tests now. With this patch the results is not consiste=
+nt
+> > anymore. Then I ran it with weston being started, and in the middle of =
+the test
+> > the display turned black. Matches my past observation. We did reproduce=
+ this on
+> > BSP kernel too. When the display goes black, the recent hantro drivers =
+reports:
+> >=20
+> > [  827.581586] hantro-vpu 38310000.video-codec: frame decode timed out.
+> > [  827.720201] hantro-vpu 38310000.video-codec: not all macroblocks wer=
+e
+> > decoded.
+> >=20
+> >=20
+> > I have local patches to reduce the cascade of errors, so it likely surv=
+ived
+> > longer then last time. I will send these patches soon. The "not all mac=
+roblocks
+> > were decoded." is triggered by a bit in the status register that is not
+> > documented in NXP TRM. I found that bit in some VC8000D documentation (=
+the
+> > sucessor of G2). I concluded it was the same meaning after looking at t=
+he failed
+> > buffer visually, it is indeed missing couple of macroblocks near th end=
+. Each
+> > time we see this error, the DCSS gives up and turn either black, or som=
+etimes
+> > other color. The second case has been tracked to a DCSS Scaler underrun=
+, the
+> > first we don't know.
+> >=20
+> > Fluster command ran (two threads, never completes):
+> >=20
+> > ./fluster.py run -d GStreamer-H.265-V4L2SL-Gst1.0 -ts JCT-VC-HEVC_V1 -j=
+2 -t90
+> >=20
+> > Nicolas
+>=20
+> My test results for fluster differ from yours.
+> On my end, the results for JCT-VC-HEVC_V1 are consistent at both 300MHz=
+=20
+> and 600MHz.
+> And results remained unchanged after multiple tests.
+>=20
+> I'm not sure what caused the differences between us.
+>=20
+> Below are my test results:
+>=20
+> 600Mhz, 0.9v
+> 	cat /sys/kernel/debug/regulator/regulator_summary  |grep SW1C
+> 	 SW1C                             0    1      0 unknown   900mV     0mA=
+=20
+>    825mV  1100mV
+> 	cat /sys/kernel/debug/clk/vpu_g2/clk_rate
+> 	600000000
 
-Konrad
+You are driving the SoC out of spec. The datasheet clearly states that
+you need a 1000mV typical voltage for 600MHz VPU clock.
+
+If you drive the SoC outside of those ratings it squarely depends on
+the individual SoC if it will tolerate the too low voltage without
+errors. Some SoCs land on the better side of PVT curve and will run at
+the higher speed without issues, but some will not and will exhibit
+random issues outside of the datasheet provided specs.
+
+There isn't much to discuss here. The upstream DT for the i.MX8MQ runs
+all the clocks at a rate to meet the nominal drive voltage specs. If
+some peripheral clock does violate this, this is a bug not a feature to
+replicate in new patches.
+
+Regards,
+Lucas
 
