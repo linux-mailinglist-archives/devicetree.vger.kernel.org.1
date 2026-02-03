@@ -1,148 +1,162 @@
-Return-Path: <devicetree+bounces-262159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262160-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +OKpOf3HgWl1JwMAu9opvQ
-	(envelope-from <devicetree+bounces-262159-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:03:41 +0100
+	id YNLfGunIgWl1JwMAu9opvQ
+	(envelope-from <devicetree+bounces-262160-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:07:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0848D7452
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:03:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15F7BD74F1
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:07:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0E488300789C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 10:03:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5ABB13058B8C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 10:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E462F392C2D;
-	Tue,  3 Feb 2026 10:03:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC33739B4A3;
+	Tue,  3 Feb 2026 10:04:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ACqs4WtL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i3p5xJgV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB9D396B6A;
-	Tue,  3 Feb 2026 10:03:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F39396D24
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 10:04:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770113017; cv=none; b=PtUuBHQgetdm1gVthaHHXzd1zPci0EyG+gQfyYHCWvYuJb0Z33u0Z2UxRCLJPtUwcvEujmGltrUCskFIhooW9eNjeADyQXAt6EbXcAvyHaORK/D1ANNxMtIm3J7NPz4sc5R0JbwhG6bigGYXyBCt1L6Jv5v15gNv2Q7I5ox3hm4=
+	t=1770113093; cv=none; b=YxVlTXhIr0EV5idmuCEypT/e1qySla3aIVac1qNCviTrm9ShvI2maJGr3+lSMj/TGvx24Z0wWItSIUzIpF+z9vaYq+gEfR+8SfrLMM/nHd4yb9fUnxEkvhW7T9r+HpAoalNkUvGngjmSbHKc6bngloZZkaYSZ8NMrOGDYAoFm2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770113017; c=relaxed/simple;
-	bh=6ZkV3ByHK7lbbphiAJiVTRBt4VdeKYBWGsshtVaY7K8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ud/WVj+HVufUJiYxkI/WA6ZHSpY7bA/obMs9cB8eI/rjHxQ7EZx20GezfxVzQ8PlFb9t4iaF4IPv7a5zAKWgvOcXt5bOMz7ujcl/WiwGQ8x65+ucsGUn1KeekMNYXTgQO3MLFZhJJYGjF43TeSY6VN+BiHGQKwUqcwH4kiK8qCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ACqs4WtL; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770113016; x=1801649016;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6ZkV3ByHK7lbbphiAJiVTRBt4VdeKYBWGsshtVaY7K8=;
-  b=ACqs4WtLOnKY5LCNoTADtVy9GqU9WjGNYEL5oQgO16afQNrVvsoqbYUY
-   n3ECawpphVfOGqvqWnpbKPwg5vTG+BeGeKqc8y110LEAf7RfO7SY6xL0n
-   SYz3In1TqzMc/4Dx4dgzPRHz6qrjDNX7KZidr88G9mXab9boJc4YMHXMI
-   frL2uPN/p4XDKKVUYdPnPBpKWcxYUOcYNyZ5OIRsx1YOwhQ5FqPVjpgFl
-   iwovgEwfg18l+HHN79vr0A/dhkN7lE7LwzXuC2AFlMTC/mvw9UaXqDkYS
-   iLuEJHlT2M/qQ8vAMMof8AzBOz1oUJycSsrFjEMNqv011ggvbdaEMB2Po
-   A==;
-X-CSE-ConnectionGUID: 9f3ZBAQ/Qoa05LThSOOY/A==
-X-CSE-MsgGUID: Xmde7HO0SpWeZzC2vHHuSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="70297660"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; 
-   d="scan'208";a="70297660"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 02:03:34 -0800
-X-CSE-ConnectionGUID: hhpHB20mT6qV9BkswWv+ow==
-X-CSE-MsgGUID: Yktz9S0wSqiTsYlcCgn0Fg==
-X-ExtLoop1: 1
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.99])
-  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 02:03:26 -0800
-Date: Tue, 3 Feb 2026 12:03:23 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1770113093; c=relaxed/simple;
+	bh=Sy0ZT3//n9xXHpwtu/2uEQ3odIe5kcqPKK201QPMl0c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UZnkJfyYOJLsPRHavpqXZsIvsWw/9wDJA1SKyu8yUXG3ky2f1DBCFjDmVfHxmgn1kMH8LPUQFd7nrqphNGuqBIRahStJqTPrYQzRJEb/q32jgPkoX9ARkFb4UY0PxVWH7dzH49orUV3RlY3Rmwr/N0bUZ/0VSV0uTDG8m+X0i+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i3p5xJgV; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-47ee76e8656so72045215e9.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 02:04:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770113090; x=1770717890; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RTaOmh9wnqbOJNsuDkJBw5xu/ZxW0Le6p4u6pemJa+w=;
+        b=i3p5xJgVvEHzJARfRhVcm2LAD2EgGb4XcvuJ6J+rS+jMs+7/vkLuRCnjNXO3oHvuGR
+         RabKVBF+Pc/P3F4eif2DSTqFy/oSCTq78zAY42KbaXQLnb5VBt3Dmpd6RX6dPQKbaXBD
+         jpwGdfdhWmk2oQw9RpoXa9PvhJBSlMBS6b9Jw6HnJRbnwzfCI5hlPoMAC4tuUwb/4OHo
+         ZPSPGAnwQVw/IAlLWkeVkvxl89U5FSKXV2UIqW23o60BDzA/JSthJVBBmFAA0eZ5VMUW
+         Z6D+mkTElOOSquOdpshNbZbCsyyd4zI2Pa2/7iBsiIZbTZlVNPb5WzhmAdCdy/9KBjFO
+         0jMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770113090; x=1770717890;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RTaOmh9wnqbOJNsuDkJBw5xu/ZxW0Le6p4u6pemJa+w=;
+        b=iIznZkMqyyKZEkOY0voZYhzR24SNGOmKx3cq/apLQdmFfDhSM9zegoF3Ma2Q3jdndi
+         ACGJ9DZ89jO1Btmu0+F2zjky+wDi2UP2IwvopIp6fmY5KChiAtSEzHSBbbabtzLlQXD9
+         tCmWzZqothqeAwU2/XtP0HfHjRfuAsCt+VoOU02EXN75mjoURY1HiGJOwkPtl0mYqPuQ
+         l6sLd67rDj4pPCeGM3WvJ6Cxn/ZR24q3VvOOcvepB41tVPlqoCbI980M9lNBEzOfbfVz
+         qRE55fLqgA1F305yYZF5vWVIAA7sblPXfrT/7tQ7bEW4HUiquGBOZvlvIpn3cGmkT1DF
+         yySQ==
+X-Gm-Message-State: AOJu0Ywu8Hl8WHdzb8Iwwkyv/CikdQRDTB61DanEnzzho+U9B5IeZswp
+	/GHopNB30d60Sl+++KA4nT8BoSSYbFULRov/K0MPN0Avnrp33OJmFqqn
+X-Gm-Gg: AZuq6aIJnDMmlkcDmC/Xfu+LDEk27lv2DaxyAKnsa84XNMdA0K/idwJs8FcCrRBPEu0
+	RRx+sGoV2OQ8WOOtiZSRE4ordT5qepSuCILJOPHlE1dDKb1xr7cKpOBrz7FOyqSDtfhuZoRpIyI
+	cuMihR9FJolN7Vv3SXiRrrBImqvlBif3PdzG3m6t2faqh2YXLAoVqQtyFaFCD3QmlXHRe2eXa+m
+	wPsbnOYVXZxDpYp6CIoU6r5TqFhEO15WqXgk13EusO7lkv0qP+14vNUyqHwkiFKw5Wmx9at0KBP
+	gkUAwVROsLWN2eqrt0zh0ao67w1mQgHSgme8E6tg0sa1uDhzG6CIZF4tWgz0isaHgbwOks+Xl2c
+	BKmqgah4FzpgjzoGXRvsqZbj04h+VRNbkneqv9MiBE1QaVcqFhn+lAA45PUZOXgmhUkD+JKhj57
+	togr6cnoQVPoB2UfRJcUnCKSqStaY8pJTpuXT+yg==
+X-Received: by 2002:a05:600c:350a:b0:480:6910:abd1 with SMTP id 5b1f17b1804b1-482db491f3emr167091755e9.18.1770113089849;
+        Tue, 03 Feb 2026 02:04:49 -0800 (PST)
+Received: from SMW024614.wbi.nxp.com ([128.77.115.158])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-482dffd47c2sm115534365e9.0.2026.02.03.02.04.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Feb 2026 02:04:49 -0800 (PST)
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	David Jander <david@protonic.nl>
-Subject: Re: [PATCH v4 06/13] iio: dac: ds4424: use device match data for
- chip info
-Message-ID: <aYHH69gXyuwmQR03@smile.fi.intel.com>
-References: <20260203093434.2548978-1-o.rempel@pengutronix.de>
- <20260203093434.2548978-7-o.rempel@pengutronix.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Chancel Liu <chancel.liu@nxp.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: [PATCH v3 0/2] Enable AONMIX MQS for IMX95-15x15-FRDM board
+Date: Tue,  3 Feb 2026 02:03:30 -0800
+Message-ID: <20260203100332.915-1-laurentiumihalcea111@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260203093434.2548978-7-o.rempel@pengutronix.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262159-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262160-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[laurentiumihalcea111@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: A0848D7452
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 15F7BD74F1
 X-Rspamd-Action: no action
 
-On Tue, Feb 03, 2026 at 10:34:26AM +0100, Oleksij Rempel wrote:
-> Refactor the driver to use device match data instead of checking ID enums
-> in a switch statement.
-> 
-> Define a `ds4424_chip_info` structure to hold variant-specific attributes
-> (currently just the channel count) and attach it directly to the I2C and
-> OF device ID tables.
-> 
-> Use `client->name` instead of `id->name` to decouple the probe function
-> from the legacy `i2c_device_id` structure.
-> 
-> This simplifies the probe function and makes it easier to add support for
-> new variants like DS4402/DS4404.
+From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-...
+This series enables AONMIX MQS (i.e. MQS1) for the IMX95-15x15-FRDM board.
 
-> -	indio_dev->name = id->name;
+---
+Changes in v3:
+- drop binding patch - picked up by Mark
+- split DTS patch into SoC and board patches.
+- link to v2: https://lore.kernel.org/lkml/20260126145537.2301-1-laurentiumihalcea111@gmail.com/
 
-> +	indio_dev->name = client->name;
+Changes in v2:
+- adjust binding commit message as suggested by Frank
+- replace whitespaces with tabs in MQS pinctrl definition
+- link to v1: https://lore.kernel.org/lkml/20260120150329.1486-1-laurentiumihalcea111@gmail.com/
+---
 
-Isn't this an ABI breakage?
+Laurentiu Mihalcea (2):
+  arm64: dts: imx95: add AONMIX MQS node
+  arm64: dts: imx95-15x15-frdm: support AONMIX MQS
+
+ .../boot/dts/freescale/imx95-15x15-frdm.dts   | 73 +++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx95.dtsi      |  5 ++
+ 2 files changed, 78 insertions(+)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
 
