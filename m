@@ -1,229 +1,214 @@
-Return-Path: <devicetree+bounces-262352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262353-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cJeLCIwtgmlFQAMAu9opvQ
-	(envelope-from <devicetree+bounces-262352-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:17:00 +0100
+	id yGAmKbstgmnzQAMAu9opvQ
+	(envelope-from <devicetree+bounces-262353-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:17:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C828DCA17
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:16:59 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF12DCA80
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 18:17:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 84F213016B1E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 17:12:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6A0B0302EE72
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 17:17:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3C23A1D08;
-	Tue,  3 Feb 2026 17:12:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28FC3258CE5;
+	Tue,  3 Feb 2026 17:17:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="NuUOa/tW"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="I07Rl5C/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from out162-62-58-216.mail.qq.com (out162-62-58-216.mail.qq.com [162.62.58.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B5A0311977
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 17:12:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF3502652A2
+	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 17:17:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.58.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770138767; cv=none; b=SSz9R8IHdfRkhDc/8/v0Na0nggjSZO+IkPUun1UgMWXzBQb9ZiWeuiG9imVQb70W06psMJg6N7kT+WSjyinrMiAsHgCY0/37f7W4DpsOisaT45J82uK7RmmQHH+Z4mC3uaSadHVbFEpanlZy+0BditIf7s/+G9rBqAqFKDdufI8=
+	t=1770139057; cv=none; b=BXYxEJ61PcW0QPvRaM12FMs3g5da4ZRvxqr9ejnRggylxRbispHe3Tn+Tb36lC5Mo/fPYPEU6FQ9HXp0YFJ6ZyJOd1NNt68Zw3T/KauqD4nnFo/awYApfRKQA1JaWkgDTx7k1ENyYvOnQIgnTwg1cr4X74n/3/vF7Yz8ZteLAgQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770138767; c=relaxed/simple;
-	bh=Y+OuOI2ubqgCVchlqqXv2JkAghT0P/SAeklx80lKeoU=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=m29mhWSAmSjkIImA7HU+5IIBi/cDqLOQmYh+h6jZLQTY18tZo0p1yHvwSV3Y/udt2JyJTj/t0NPKi9lRYRB0p2ogCOTr4sFVLgJeRCNF2ra+aipunGPa3Kl+bDgLGJG9SeaOQetSiImi2e1PGEz2Bkl+DAGVZNXsvOc3THiKWUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=NuUOa/tW; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id F2DB041C6B;
-	Tue,  3 Feb 2026 18:12:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1770138761; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Q/RzIoETwq7EI8AtWKZybI6w+H5plu3IYaH4qKanRYc=;
-	b=NuUOa/tWVQA88Evlzzmypa+ZhmtZ9WD5NE3qkTSvFW9VDfzrlzWn/ica/Oh19ldTQOQex1
-	CG9Fzqx/MhWhIrx46uP60Hpriu/XwRWX0tUqFIbbDG19lngzHUuzJCSIS+GwVeQadyPf90
-	VxkSaSy9cqfGiwqZM3p0SoZDp1w/pOF25hTsRFUJ99YTCucmLrE+ehN97OzMwKkEm3Xq/f
-	ov+VWlccOepeSU/UKtDTG7Rom3SqhOaZgZr3a+oEmlU0ZQUEZdr69c7BNzN7k3IFODzDgL
-	FduwERu9VmRpfmuGf7o30rvVO61f3yK3rO1DnmotOQR50cKw3Q49+moMFBH42g==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <20260203151013.305032-1-jerrysteve1101@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-References: <705908c9-4552-d808-783e-3ce0cf45bbff@manjaro.org> <20260203151013.305032-1-jerrysteve1101@gmail.com>
-Date: Tue, 03 Feb 2026 18:12:37 +0100
-Cc: alchark@gmail.com, andyshrk@163.com, conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, robh@kernel.org
-To: "Jun Yan" <jerrysteve1101@gmail.com>
+	s=arc-20240116; t=1770139057; c=relaxed/simple;
+	bh=Ss6y/m/M59hrPPyxA75VSv9MVE4heN/jQ691MiDjeew=;
+	h=Message-ID:From:To:Cc:Subject:Date:MIME-Version; b=UfmKgjUoTzrx0RHjice8PKHEv6MCkjBMjWNB2ia7RLaQd2V72dhxAZs8Tte1hvQbyZQfxUymZMQ97NqM4ypfA9SSoCoJ38jwBwHgX23qMBax98qDBwlQxwzfONlw6G+QVLzX2QVLuN2TqDUm7pcywzvK+U9yzZDVv49DUk+v8mA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=pass smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=I07Rl5C/; arc=none smtp.client-ip=162.62.58.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cyyself.name
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1770139042; bh=2m9r7lyGKPwigNE6SDb1IPWk3KIGxSFqCC+NDWFmpPw=;
+	h=From:To:Cc:Subject:Date;
+	b=I07Rl5C/I/8zDa/1ev/DfF7RRCW4/PV/yuLHKQtqHARRDn4eIJlbLaqvbXkQpvF9B
+	 c46aYf8z4bBnjatGgTXvFffyfgjIB8D/Y7OucC8/9fEtsoruDxjglHdgho80P/kVjb
+	 5co+b9oGjYryKfUelI0DqyzutbWHVZvf+rJFqMQs=
+Received: from cyy-pc.lan ([240e:379:2263:bd00:7e4b:55e4:8771:53fb])
+	by newxmesmtplogicsvrszc43-0.qq.com (NewEsmtp) with SMTP
+	id 44FB641C; Wed, 04 Feb 2026 01:17:15 +0800
+X-QQ-mid: xmsmtpt1770139035tu2r2k9s8
+Message-ID: <tencent_AEBB719FAF49D05B5BDF7118D729463F6405@qq.com>
+X-QQ-XMAILINFO: MwoEXPhRg/2G5m80Km1Rl90HySxC/ky8sgaEysJd53CqJAobJIsrrGYHutoLrv
+	 Hd2o95KPOGZ9ARw4t/8cmcYbxmY4dIn5BqKVwv1fz2HNGZyi2qSLYBrL0h2AimFGxsfhEZ1ltYYO
+	 5qYzQpliCoDEAK+jV+58Tfj9L9ZRIJSAqKH5i37ITME32TaV3CCGPjn+eiVGIfaPEZfeeywU7wWP
+	 Pmqx15U58/tvNLsKU/WNJV3PrUwz3kn7xVrA1dSepjuyMvh+72NiSBpvdmtRFlC91jE9OzGkXmTZ
+	 xUsiWIPGZnQ/XMY4XIbp/mGf0GIpic13uvpotUrJS9wnP1xi5QVIY4BN3t3BX3Gz6Gy4o6YQepqn
+	 3ZWuCrGAoEu5rrNMoHw0N9YbCa9csveYHjJEc/7MSgEYS1q5/Fdjr0k9EeBfTkoT3+wljgLlrLdZ
+	 1Z/Mw4wWYFXsUPTkcCoY5h3ygVrB/KNNrB5A0HeekjOoOVioySCyvHZrAqfRKe1mbYDNDWSxGYhe
+	 6aYwa9IgCFLWxkMCQpIZdZtUtzaA+IqLmIHPjeYwvCHYL7aLpF5DnHCWOGOWGBshWfUAokv5GoVO
+	 NPEpxIT6F/n1iPrEsd277INJ/FRB4IrxXb5Di25mck4MSJweTUo7lr8/9zyGydYC0VD0zfnzqd++
+	 E8hpb/y0cSdretIJFdZ4h36mvskP3qDAMANmcI6yusFfmFmij7QPhWNLFqzJYedAC+80fbCGUcOo
+	 oS3Cw4xqjqHkaEDZhfoIPLk4b8n8uvaYdZVdhhEDkc2krrXYq32FvtVRkwYV7sp2qSFmLc1UVV7y
+	 VbHKEOw5+CC9B6c/ynPpvkuOU78Jzizara9leSgOnyLR6Og5zo+qjOcUHzt5/bUlG7iKiMXEIA2H
+	 3Y6sJP4F7GNg7YaGy5mrcTY1Bw/YnkTyErJ+nFaGOZwNmxpEeVnbM+RS3uXirn1qvMLyel3SG04m
+	 nxYYJX+s7PhRZ1Dbhllt7VKJ4rEfJGecU3IP9MOx5leOObslc+o+6vRhzrsDuq8FgqNWJL3bdUrN
+	 m6JQq+Nh7ajoBStsFpKENA8/KUf4qj4ezbF6OX7FGebnTnlpm5pEYCfh3OSFt2zscYp0jE5TqDK5
+	 ATeC0sn4C0m6x3zEE=
+X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
+From: Yangyu Chen <cyy@cyyself.name>
+To: linux-riscv@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org,
+	Anup Patel <anup.patel@oss.qualcomm.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Charles Mirabile <cmirabil@redhat.com>,
+	Lucas Zampieri <lzampier@redhat.com>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Mason Huo <mason.huo@starfivetech.com>,
+	Zhang Xincheng <zhangxincheng@ultrarisc.com>,
+	Charlie Jenkins <charlie@rivosinc.com>,
+	Marc Zyngier <maz@kernel.org>,
+	Sia Jee Heng <jeeheng.sia@starfivetech.com>,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	devicetree@vger.kernel.org,
+	Yash Shah <yash.shah@sifive.com>,
+	Jia Wang <wangjia@ultrarisc.com>,
+	Yangyu Chen <cyy@cyyself.name>
+Subject: [PATCH v3 0/2] irqchip/sifive-plic: Fix wrong nr_irqs handling
+Date: Wed,  4 Feb 2026 01:17:07 +0800
+X-OQ-MSGID: <20260203171707.1581780-1-cyy@cyyself.name>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <f6eb572c-dd2c-9606-4fb5-b26b51bbbb06@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH v3 3/3] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
- =?utf-8?q?_rockchip=3A?= Add OneThing Edge Cube series
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
-X-Rspamd-Fuzzy: 4d8686c9e18ae259edcb18fbfd3b0c43d48bb8492706122afcdcffd3f170db1beae6de266bce58e1b5874c7e84fd60e44ae1a487be8ceb28d76f935daafaea6c
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	SUBJ_EXCESS_QP(1.20)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[manjaro.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[manjaro.org:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qq.com:s=s201512];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262352-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,163.com,kernel.org,vger.kernel.org,sntech.de,lists.infradead.org];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[manjaro.org:+];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[cyyself.name];
 	MIME_TRACE(0.00)[0:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dsimic@manjaro.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	TAGGED_FROM(0.00)[bounces-262353-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cyy@cyyself.name,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qq.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 1C828DCA17
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 0EF12DCA80
 X-Rspamd-Action: no action
 
-Hello Jun,
+This patch series fixes long standing bugs in sifive-plic driver regarding
+the handling of nr_irqs. Some code assumes the first irq source is 0 while
+some assumes it is 1. Since the first irq source is actually 1, this causes
+various issues including memory corruption when the number of irqs is
+multiple of 32. Also, some code assumes nr_irqs is the maximum irq source
+ID while some assumes it is the total number of irq sources including the
+reserved source 0. This patch series standardizes the handling of nr_irqs
+to be the maximum irq source ID, and the first irq source is 1.
 
-On Tuesday, February 03, 2026 16:10 CET, Jun Yan <jerrysteve1101@gmail.=
-com> wrote:
-> > On Monday, February 02, 2026 16:04 CET, Jun Yan <jerrysteve1101@gma=
-il.com> wrote:
-> > > The OneThing Edge Cube (OEC) series features the RK3566 SoC, 8GB
-> > > eMMC storage, and supports one SATA interface, one Gigabit Ethern=
-et
-> > > port, and one USB 3.0 port.
-> > >=20
-> > > Other than the difference in RAM capacity, the OEC and OEC-turbo =
-are
-> > > identical in all other specifications.
-> > >=20
-> > >   Specification:
-> > >     - Rockchip RK3566
-> > >     - LPDDR4X 2GB (OEC) / 4GB (OEC-turbo)
-> > >     - eMMC 8GB
-> > >     - Gigabit Ethernet port x 1
-> > >     - USB 3.0 port x 1
-> > >     - USB-C 2.0 port x 1
-> > >     - 12V DC Power supply
-> > >     - SATA 3.0 connector x 1
-> > >=20
-> > > These devices do not have a PMIC, and their hardware circuit desi=
-gn
-> > > is highly similar to that of the rk3566-box-demo[1]. Hardware sch=
-ematics
-> > > are not available at this time, with the vendor firmware dts avai=
-lable
-> > > for reference[2].
-> > >=20
-> > > Ethernet, USB 3.0 and SATA 3.0 ports tested, all working well.
-> > >=20
-> > > [1] https://elixir.bootlin.com/linux/v6.18.6/source/arch/arm64/bo=
-ot/dts/rockchip/rk3566-box-demo.dts
-> > > [2] https://archive.org/download/wxy-oec-RK3566-4G-dump/wxy-oec-R=
-K3566-4G-dump.dts
-> > >=20
-> > > Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
-> > > ---
-> > >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
-> > >  .../rockchip/rk3566-onething-oec-series.dts   | 312 ++++++++++++=
-++++++
-> > >  2 files changed, 313 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-onething-=
-oec-series.dts
-> > >=20
-> > > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/b=
-oot/dts/rockchip/Makefile
-> > > index 4d384f153c13..234fa53abe17 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/Makefile
-> > > +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> > > @@ -104,6 +104,7 @@ dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-a=
-nbernic-rg353v.dtb
-> > >  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-anbernic-rg353vs.dtb
-> > >  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-anbernic-rg503.dtb
-> > >  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-odroid-m1s.dtb
-> > > +dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-onething-oec-series.=
-dtb
-> > >  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-orangepi-3b-v1.1.dtb
-> > >  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-orangepi-3b-v2.1.dtb
-> > >  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-pinenote-v1.1.dtb
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-onething-oec-ser=
-ies.dts b/arch/arm64/boot/dts/rockchip/rk3566-onething-oec-series.dts
-> > > new file mode 100644
-> > > index 000000000000..2007b93e190e
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk3566-onething-oec-series.dts
-> > > @@ -0,0 +1,312 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > +
-> > > +/dts-v1/;
-> > > +
-> > > +#include <dt-bindings/gpio/gpio.h>
-> > > +#include <dt-bindings/leds/common.h>
-> > > +#include <dt-bindings/pinctrl/rockchip.h>
-> > > +#include "rk3566.dtsi"
-> > > +
-> > > +/ {
-> > > +	model =3D "OneThing OEC/OEC-turbo";
-> > > +	compatible =3D "onething,oec-turbo", "onething,oec", "rockchip,=
-rk3566";
-> >=20
-> > Thanks for the v3!  After thinking a bit more about it, it would be=
- better
-> > to name the board dtb "rk3566-onething-edge-cube.dtb" and omit the =
-"series"
-> > part, because the only difference between the board variants is the=
- amount
-> > of DRAM.  Also, "onething,oec-turbo" should be removed from the com=
-patibles,
-> > and the single compatible renamed to "onething,edge-cube", because =
-I see no
-> > need to have an additional compatible, which may be added later if =
-really
-> > needed for some unforeseen differentiating purpose.
-> >=20
-> > Also, it might be better to use "OneThing Edge Cube/Edge Cube Turbo=
-" as the
-> > combined name, because "Edge Cube" is more self-descriptive than ju=
-st "OEC",
-> > which may also help with various search engines down the road.
->=20
-> Sorry for the quick follow-up.
-> In official documentation (Most of it is in Chinese) from OneThing Te=
-ch[1],=20
-> the designations "OEC/OEC-turbo" are more commonly and widely used.
-> for this reason, I propose retaining the "OEC/OEC-turbo" naming in th=
-e model=20
-> property.
+This bug can be reproduced by modifying the PLIC node in DT to have ndev as
+exactly multiple of 32, e.g., 32, 64, etc., then triggering some interrupts
+and checking dmesg for memory corruption:
 
-I see, that's an interesting twist.  As some kind of a compromise, it w=
-ould
-be best to have the board dtb named "rk3566-onething-edge-cube.dtb" and=
- use
-"OneThing Edge Cube (OEC)/OEC Turbo" as the combined name.  That way th=
-e
-board dtb name isn't too short, while "OEC" is present in the model nam=
-e,
-for search engines to pick it up, hopefully, and for people to see it i=
-n
-a few places. :)
+plic: plic@3c000000 {
+	compatible = "riscv,plic0";
+	reg = <0x0 0x3c000000 0x0 0x4000000>;
+	#interrupt-cells = <1>;
+	interrupt-controller;
+	interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>;
+	riscv,max-priority = <7>;
+	riscv,ndev = <64>;
+};
 
-> [1] https://help.onethingcloud.com/be81/OEC1/80c5
+Here is an example dmesg log when ndev is 64:
+[    0.077196] Unable to handle kernel paging request at virtual address ffffaf8000000000
+[    0.077205] Current swapper/0 pgtable: 4K pagesize, 48-bit VAs, pgdp=0x0000000081c2d000
+[    0.077215] [ffffaf8000000000] pgd=000000009ffffc01, p4d=000000009ffffc01, pud=000000009ffff801, pmd=000000009ffff401, pte=0000000000000000
+[    0.077240] Oops [#1]
+[    0.077246] Modules linked in:
+[    0.077254] CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.19.0-rc6 #36 NONE 
+[    0.077266] Hardware name: XiangShan (DT)
+[    0.077273] epc : __kmalloc_node_track_caller_noprof+0x1a0/0x524
+[    0.077284]  ra : kstrdup+0x32/0x60
+[    0.077293] epc : ffffffff80253c70 ra : ffffffff801fa70e sp : ffff8f800000b700
+[    0.077304]  gp : ffffffff81a1b580 tp : ffffaf8080158000 t0 : 0000000000000264
+[    0.077313]  t1 : 0000000000000003 t2 : 0000000000000000 s0 : ffff8f800000b750
+[    0.077323]  s1 : 0000000000000002 a0 : ffffaf8000000000 a1 : 0000000000000cc0
+[    0.077332]  a2 : ffff8d800200bfc0 a3 : ffffffff81a5c5e0 a4 : ffffaf8000000000
+[    0.077342]  a5 : 0000000000000003 a6 : ffffffffffffffff a7 : ffffaf8080001400
+[    0.077352]  s2 : ffffaf80802ff178 s3 : ffffffff810107f0 s4 : 0000000000000000
+[    0.077362]  s5 : 0000000000000000 s6 : ffff8f800000b9c0 s7 : ffffaf8080823200
+[    0.077372]  s8 : ffffffff81a20580 s9 : ffffaf808012c990 s10: ffffffffffffffff
+[    0.077382]  s11: 0000000000000000 t3 : 0000000000000cc0 t4 : ffffffff801fa764
+[    0.077391]  t5 : 0000000000000000 t6 : 0000000000000263
+[    0.077399] status: 0000000200000120 badaddr: ffffaf8000000000 cause: 000000000000000d
+[    0.077409] [<ffffffff80253c70>] __kmalloc_node_track_caller_noprof+0x1a0/0x524
+[    0.077422] [<ffffffff801fa70e>] kstrdup+0x32/0x60
+[    0.077433] [<ffffffff801fa764>] kstrdup_const+0x28/0x34
+[    0.077444] [<ffffffff80318438>] __kernfs_new_node+0x3c/0x274
+[    0.077457] [<ffffffff80318a90>] kernfs_new_node+0x44/0x6c
+[    0.077470] [<ffffffff80318f40>] kernfs_create_dir_ns+0x20/0x7c
+[    0.077483] [<ffffffff8031b8f8>] sysfs_create_dir_ns+0x60/0xcc
+[    0.077497] [<ffffffff80b41bea>] kobject_add_internal+0xae/0x2d8
+[    0.077509] [<ffffffff80b422d6>] kobject_add+0x52/0xb8
+[    0.077520] [<ffffffff80b6401c>] __irq_alloc_descs+0x190/0x328
+[    0.077534] [<ffffffff800976de>] irq_domain_alloc_descs.part.0+0x46/0x78
+[    0.077549] [<ffffffff8009827a>] irq_create_mapping_affinity+0x72/0xcc
+[    0.077561] [<ffffffff805d27d2>] plic_probe+0x2e2/0x6c8
+[    0.077573] [<ffffffff805d2bc8>] plic_platform_probe+0x10/0x18
+
+Changes since v2:
+- Clarify the riscv,ndev meaning in the devicetree binding
+  documentation for PLIC.
+- Fix the entire driver code to have all nr_irqs handling consistent
+  with the standard definition.
+
+v2: https://lore.kernel.org/lkml/tencent_A697393AE256C4288768342AF245099A690A@qq.com/
+
+Changes since v1:
+- Add more Fixes tags for earlier commits that are also affected by this
+  bug.
+- Add more explanation about the bug's history.
+
+v1: https://lore.kernel.org/lkml/tencent_6E9A1A3DF88005E3B4A11C4D7039637E4309@qq.com/
+
+Yangyu Chen (2):
+  irqchip/sifive-plic: Fix wrong nr_irqs handling
+  dt-binding: riscv: Clarify the riscv,ndev meaning in PLIC
+
+ .../interrupt-controller/sifive,plic-1.0.0.yaml  |  2 ++
+ drivers/irqchip/irq-sifive-plic.c                | 16 ++++++++--------
+ 2 files changed, 10 insertions(+), 8 deletions(-)
+
+-- 
+2.51.0
 
 
