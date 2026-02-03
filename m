@@ -1,171 +1,148 @@
-Return-Path: <devicetree+bounces-262161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262164-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UHVUCUnIgWl1JwMAu9opvQ
-	(envelope-from <devicetree+bounces-262161-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:04:57 +0100
+	id +GcUNp7JgWnUJwMAu9opvQ
+	(envelope-from <devicetree+bounces-262164-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:10:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDC4FD7487
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:04:56 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1480BD75AF
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 11:10:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1423F3024DF1
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 10:04:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B270530046AB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 10:10:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A84E039B4B8;
-	Tue,  3 Feb 2026 10:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CFCF39C638;
+	Tue,  3 Feb 2026 10:10:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ItKIC6TZ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WPeKi/kC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C7A39B4AA;
-	Tue,  3 Feb 2026 10:04:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B537039B4B7;
+	Tue,  3 Feb 2026 10:10:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770113095; cv=none; b=FiF/5/XjTpxpYLQ6JPBzceSzvp1wyHwcVc79WJHw5l3eZ8O3OXf3csNCOCJ3TNDVYQP+v+oA65ApDe5D2f+WyiTYv9e6suLJFBXnVoBkKpNvWdejOGxyBKdKLvTKWTlJqk42+04mLPLUCtxYUIEwIiHocFvuPTHkvyiUYd8wpb0=
+	t=1770113431; cv=none; b=bdyxbeEOmYIdsBfpac++jmJsYCzknjt3llWj9GvEJfuX+w9gtRNmHea2RZq6EvGJOYtBMsZDt64a9mgFRUm2e/7qCXjfFr51inupQM9w9BlTn2/o4xDcrcOATRt9O5hmZtxJ9QgnfAyh7USGCyngXh1zGq0FRzrp7xTXakXzOrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770113095; c=relaxed/simple;
-	bh=cCc3RPrMLTwTgTOa+BQG6iu6tz4SnNTh7rKUlCzcrfg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=B+BlhoGankumZWFSEjm4Y7qQFKcq00p8JPlw5ktmxQ6uBGDAd702nZROaHtk56FdYl9ZHTC98RHaNjWHdDqOYPxvH5j6IMlHiZSX4pjjKgxSx5FDSLMZnxVmMKXeWXkMuLQtxSin5BxI4sq0+kkh85INMqrfVHn+w3mww2cC3wE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ItKIC6TZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC36AC116D0;
-	Tue,  3 Feb 2026 10:04:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770113095;
-	bh=cCc3RPrMLTwTgTOa+BQG6iu6tz4SnNTh7rKUlCzcrfg=;
-	h=From:Date:Subject:To:Cc:From;
-	b=ItKIC6TZ1SCDFaceV76fUbbRV1xfNl8K9ikKnAULfC41+8gNvKMQm91FhoKWoYyea
-	 xoK5/iFxVeIAjYbbytI4OVU18D4G9gvrq2Cnq1Y/dcrkt0H6XpPyoYO+2Se7sRphfL
-	 kIsc5mqoQ1QAo04p09rlSKib7CwqYa0AzKO2PKB8xknMyxQa8HZUDj0g8+EYt4qrNL
-	 c6d6hrtI4fOOJr9A0fHOoKGV7hJl6/5aPlqGpAwQ3E9pvuOHZ9706kTczUy4fj5j/T
-	 oRCJsBXJ+5dAUt/ciiTcPd1b8OnXOcMryFWb7C5M6bVsQkrs/jcrDlh4RfefouZYDf
-	 qbviO1RF+xikQ==
-From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 03 Feb 2026 11:04:51 +0100
-Subject: [PATCH] dt-bindings: spi: Add binding for Faraday FTSSP010
+	s=arc-20240116; t=1770113431; c=relaxed/simple;
+	bh=ASQt567TmwDj0Kwqsfpa1jscAxuDRz2njZL/BXc7j0I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nrboNphuYpa9RSNZL+kLO4P7JSeJsbknFRSprqNCRV9yfUzKX/Jj93gaVwakzbacL15lPn5HjzqaIKgF7DbzZa5HKKOmL03BgBM+6JT23DvjZiNq8EYWENxkk5k0v28KvqLqHb5X+55IK6t0UYxthNlgm+8apjIbWchWbnGr8QY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WPeKi/kC; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770113430; x=1801649430;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ASQt567TmwDj0Kwqsfpa1jscAxuDRz2njZL/BXc7j0I=;
+  b=WPeKi/kCSnIBfd9PlNJFUUNqHqLHt9JovBWFYRkaEkgS9tEgj0IQqxma
+   Fe6k7AWX0BYtjcESYyK7YSMzHBN5yfowQqWUa4boccqMma/AYZPQP9KMk
+   2Xm/OPzHohTGjrPFXduSNlwnmSUs4x/2dTXhMB/Ka0t3F+iMPe9G4gDb5
+   6NxIJVQeL5+zLF9QxFZVhA4MfDVmlR5+mz4FZvbGOvDYqhhhurTykWAGq
+   wf6/EhJHAOJ6110t8xbw0OSto71HfvTsI5xPpa3CYjdFj668eg9JMi+zz
+   /7Kp0ImAgyNMjJwQpJdo+rAujBVgFgdXUD4+hhwnjXXbzb8e5TyzX0Xl3
+   g==;
+X-CSE-ConnectionGUID: CJjTLA1lRRKtO6Pt6KTbkQ==
+X-CSE-MsgGUID: tBEiZdwuTn6EysE/QTtlaw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="88702817"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; 
+   d="scan'208";a="88702817"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 02:10:29 -0800
+X-CSE-ConnectionGUID: CUyOb+gGSvmMzaQG+nuLCA==
+X-CSE-MsgGUID: ZsQpgSubSpGALXBjt4iGEQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; 
+   d="scan'208";a="240476389"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.99])
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 02:10:26 -0800
+Date: Tue, 3 Feb 2026 12:10:23 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Sander Vanheule <sander@svanheule.net>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH v2 5/8] iio: dac: ds4424: convert to regmap
+Message-ID: <aYHJj5uSnrj2xp4b@smile.fi.intel.com>
+References: <20260127060939.3914006-1-o.rempel@pengutronix.de>
+ <20260127060939.3914006-6-o.rempel@pengutronix.de>
+ <2cfd142fbaad3ddd3b3fb632c77a4e9f58d50f66.camel@svanheule.net>
+ <aX98dbnCcFnFY3ks@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260203-gemini-ssp-bindings-v1-1-6d85c9c72371@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MQQqDMBBG4avIrB2IsRX0KuIiTabpv3CUDEhBv
- LvB5bd47ySTAjGampOKHDBsWtG1DcVf0CyMVE3e+cF513OWFQo22/kDTdBs3MVXSJL8O8SRark
- X+eL/XOflum47e5C0ZQAAAA==
-X-Change-ID: 20260203-gemini-ssp-bindings-1c4aded25ac9
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- Linus Walleij <linusw@kernel.org>
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aX98dbnCcFnFY3ks@pengutronix.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262161-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-262164-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url]
-X-Rspamd-Queue-Id: BDC4FD7487
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,smile.fi.intel.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1480BD75AF
 X-Rspamd-Action: no action
 
-This adds a binding for the Faraday FTSSP010 SSP controller,
-a pretty straight-forward syncronous serial port and SPI
-controller.
+On Sun, Feb 01, 2026 at 05:16:53PM +0100, Oleksij Rempel wrote:
+> On Sun, Feb 01, 2026 at 03:42:28PM +0100, Sander Vanheule wrote:
+> > On Tue, 2026-01-27 at 07:09 +0100, Oleksij Rempel wrote:
 
-The bindings are submitted separately because the one device
-that has this is using it in a "nonstandard way" with regards
-to the electronics, and does not make it possible to develop
-or test a proper driver. However we want to be able to add
-this resource to the device trees and it's not complex.
+...
 
-Signed-off-by: Linus Walleij <linusw@kernel.org>
----
- .../devicetree/bindings/spi/faraday,ftssp010.yaml  | 43 ++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+> Which works mostly fine except of the cache initialisation. If I use
+> num_reg_defaults_raw with REGCACHE_MAPLE as proposed by Andy
+> Shevchenko, first access to regmap values over debugfs will explode with
+> NULL pointer etc...
 
-diff --git a/Documentation/devicetree/bindings/spi/faraday,ftssp010.yaml b/Documentation/devicetree/bindings/spi/faraday,ftssp010.yaml
-new file mode 100644
-index 000000000000..678598de3400
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/faraday,ftssp010.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/faraday,ftssp010.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Faraday FTSSP010 SPI Controller
-+
-+maintainers:
-+  - Linus Walleij <linusw@kernel.org>
-+
-+properties:
-+  compatible:
-+    const: faraday,ftssp010
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+  cs-gpios: true
-+
-+required:
-+  - compatible
-+  - interrupts
-+  - reg
-+
-+allOf:
-+  - $ref: spi-controller.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    spi@4a000000 {
-+        compatible = "faraday,ftssp010";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        reg = <0x4a000000 0x1000>;
-+        interrupts = <0>;
-+    };
+Yeah, this is known issue in regcache core. I don't remember how it was worked
+around in pinctrl-cy8c95x0.c.
 
----
-base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
-change-id: 20260203-gemini-ssp-bindings-1c4aded25ac9
+> If I remove num_reg_defaults_raw, I need to read register manually
+> to init defaul values as implemented in v3.
 
-Best regards,
+
 -- 
-Linus Walleij <linusw@kernel.org>
+With Best Regards,
+Andy Shevchenko
+
 
 
