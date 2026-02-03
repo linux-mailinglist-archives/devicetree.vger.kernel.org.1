@@ -1,249 +1,336 @@
-Return-Path: <devicetree+bounces-262074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262075-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kPCjHLiYgWl/HAMAu9opvQ
-	(envelope-from <devicetree+bounces-262074-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 07:42:00 +0100
+	id gHz6ITaggWkoIAMAu9opvQ
+	(envelope-from <devicetree+bounces-262075-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 08:13:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9A86D5677
-	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 07:41:59 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D53AD59A6
+	for <lists+devicetree@lfdr.de>; Tue, 03 Feb 2026 08:13:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BB56A307EEE7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 06:41:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6A08E300A30D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Feb 2026 07:13:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00C3C37F749;
-	Tue,  3 Feb 2026 06:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0253921C1;
+	Tue,  3 Feb 2026 07:13:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kOHm9TqQ"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="nM70/h/i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012053.outbound.protection.outlook.com [52.101.66.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAA2137F106
-	for <devicetree@vger.kernel.org>; Tue,  3 Feb 2026 06:41:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770100876; cv=none; b=LDXk6Eb7EUS10yNv02xTXLDBVuBH+gi6KTgCa0sdivRXZ1daibnhChDMPhv9fPfgYjBin4ez8moaUBspc0W7nkLj4a2alf7PY5L/t83702xUZBq/IJaueu49l7bNGSe4ODPZ2RcG93jzOW4H7mTqa1lqfhSXdt7vJTifOR2VYhM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770100876; c=relaxed/simple;
-	bh=oUP4qXDiIOWsqn/Wh2InSd/J5eOo2q9gQZJPEHI06xs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W16i7nBp97/KeWvGra1Nq6+tYibrxH7dUHhwYmGFBIO4udhSJd5QdunYVtTqdY4ICjKOdXze3hSBoylorJDtULh9yeKLnFWSMuRE7eyfH1hiNYyM4gNJj1nIFUR37Ru1eGFWhB5lFFJV+Emq3gGzHYYeJKz9oDIZYafptNAn5Gc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kOHm9TqQ; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-59dd4bec4ecso5955443e87.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Feb 2026 22:41:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770100873; x=1770705673; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EgJ2Ll3/CgFXhoIE6ohHknq/XdBboRec408Sf48XFuQ=;
-        b=kOHm9TqQ7nxUNqyCVYfMSfIiolWJoy7yo+kK1bZUlV68J1DEtIhtkTFwAj3+sCnFlg
-         1OSZu9b9ZvnMr5jNnYbc7RZc+I/7QM8HpuKqJnZ4VJd4owzHp+PbuokHzEZF9pqbHc9M
-         1wLrdS3v4UDUGe5n0ag5AyfCJRXii6QYH3aDHk6OigqNUUeEavIqh9l4ekxx2QoyfGK8
-         jJb7EoKKSpQqIjr1GGOdGKcN/PqJLMPcxP2RJi0kavkVbGzOHafE0lXumi2R9a9Z/Blk
-         7iPZ7F5EBmdZVTFN/mdnEnvJ4Qq90Q9eqx8f9yWDsg5KpAL4Knt+pxhF7PN3j6TsorZU
-         x+ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770100873; x=1770705673;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EgJ2Ll3/CgFXhoIE6ohHknq/XdBboRec408Sf48XFuQ=;
-        b=TbpW9GZswh9886DSfJ1wHLLbmhUSUYEl68sK5UcW1FGQz2TC/rFeVjtbWIJTXAfSWW
-         ShAKf3xELcsSdG3ODNXYfqIsXT4YqoT0AIXL7rcoRgdt54aE+lfKPkxDf6j4wUs8Q4gE
-         2huFh6pfhybrc68qWgyML1b5NgSSnVWcKAS74jHRZR7u2MvNw8pfjgbol4w7U29isx03
-         Ppvix936F90/iiHECZ6EJwwNm/tXa9L4xv0GBpLz/lMgh16vVceTRQ9UKPkSbBbZQVzo
-         NbcJHn4XCe84F/KvHHUPZhHEAuAKH2NKPha4fyKTeo4uew3h2lacX4KDpurhb+9xqi/n
-         u9Cw==
-X-Forwarded-Encrypted: i=1; AJvYcCX9wobHmIcB9dXoAcC/qetsIAcADEXpoBNS8KuKIsubHiz6ONmOIWDrHdeaci9RuTSYFb2To9JvyRq9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmUNMcl/G8mCe6mN+TIVY8XKU/1qziDYBjK/lbpwQwRvSziGQF
-	8O3MQW2vQ445R7nXyZhSs5xZdFKPnxG2xF9gXQe10N8B9HXckWFVZELf
-X-Gm-Gg: AZuq6aJVh4degjEizsSril1WHvaaZgjQyZGcYJsEBhVi6ImBWIBEmqUPwKXfmyhBh95
-	aEsPL2uN7LRuM+qM7ZXF6CT+eX72ISBAM45b2cd+YO8tlcOvVpmqlG4imb4SAg22d0BWvmOOtWZ
-	R5RMy+jFze/3n1BMISasiPrhXS9mtqyQGNzdPEIofL5c6ojjZxz7niYBfyUpZ14LsiSNYIGtHAd
-	EY4n+SjULOZwolAPVeuS/tml5bv+NRmQUmb1Ru+jTr2G2ziUQ7xzQoMAdWyy1tcC4OHqE93EA8H
-	Y2MzRNILClw7HJgfSlYjQKdjkQv6p6Ol2gZzUEqLWUzXBoANWLymm44CHgKuz6OgPdP4u6/7WSR
-	EBtBOmGq/Ko6CggdYmR/bLs00fY8/nRKEnbaHU3lqgt+f3qUX7SE5mH1VwcsZk5h9uqmQmMs1nA
-	lcZv2nsh4bGToqP/mlRpdCXMMSXDeGnZ53D3FHQZAj2I1x81pUaCbLkY+lO2c=
-X-Received: by 2002:a05:6512:159c:b0:598:853e:4866 with SMTP id 2adb3069b0e04-59e164314f1mr5253830e87.51.1770100872754;
-        Mon, 02 Feb 2026 22:41:12 -0800 (PST)
-Received: from [10.0.0.100] (host-185-69-74-59.kaisa-laajakaista.fi. [185.69.74.59])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e07481b72sm4048059e87.11.2026.02.02.22.41.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Feb 2026 22:41:12 -0800 (PST)
-Message-ID: <030ae04b-68b4-4570-90b3-1dfc6f31b4e5@gmail.com>
-Date: Tue, 3 Feb 2026 08:42:24 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0996338F95E;
+	Tue,  3 Feb 2026 07:13:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770102820; cv=fail; b=QsuLqIvFcaofxbRYXL6ktCT1mIVemkDz8QFD5kFj6+uK/MOQt6B6Sb9BDW4ItjvkzKVtxFQmbXdxIQX3KcdEdPjlbSjHCGDw4P8U2BSxH3Z8GlzPXwPzPSPKdx8vRpSAW45LcbNKVHdAxk2GWx3fd+aPatRHUJ91JKtuj2Z3uXw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770102820; c=relaxed/simple;
+	bh=0NknBcO+aoae1leyDvMBXWNLCHAJtwf/utzhsaesZ5s=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=rAYT7bABiUzPxDX1XsWtmpvDEz5QwbEPAEjANvRYiK7rKrLtRm/HsiGMWGinIbJmFt1Ympf2wfoWU6jQMWCN0w4VXKZDy2KB7k+xzK+Brw0K/kpgjuEtt+5pgjnkOgeulS78b+QTZMoKKsVMUI/6PvHwWqWGtmOp5b2hk1HYBog=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=nM70/h/i; arc=fail smtp.client-ip=52.101.66.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RtVC8FnFYbr/MIYG7fj1KH8DhIKL4N54eKBye8o8l9BhJkrF3Gvp2XUqXhwyCGRTYXPoHq6JqNIwjSV88RAzADc5oCzpsbjrLjaEl01CtJpdFnpxWqCF0dIU3Fb/bUuQMV8PAuOsjhFapfNPUP89EXPwU+uxtkz4D83+sMlOM9jNu7eKoT8JWpDPFT+/M88aGKSbB/2ttZVVbB5FBV0XmxTj6fcXqXl12UXHG1C9RV9vgmpiC2k5vL7OXAHmoUcNk2nU0RyPwrF1Z6OiNpkN6TeUKeyw4sG54OgcOT3I1fBjT1Sq5TU57azfYwsVrMzS56gvyfyoJOYT7oyknZPH0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zFsUK6VHwr0Hxx+ZXnbFkaszxvlcxKRg7LISXB60AFE=;
+ b=oHSmAwY7/ByIdDdkl7l6hxkmPtClFbKRfRhQzKN79HRH9IXQV6lziZn82jY/RaE/D3daA1jeeUSI2TDhVJzoiXM+NzzyZIzr5426CJWOXoaSwrcHCpHRybSqsf7xH4WFUwdwr9mjL81bYh776hNKzs5OBBPwoGKkwM5ZSsXRKgKIUPFsvPfJ2TmtFSZyoFOP1AuZ40AMV2QkmWIeZvBa+OF3ZJfpvY/WMpWnatHrl8axkEsrScJgzj1LlAc/1/5fauQ+X5Z0ROkyJUeSLwNz06kI2kZnVjoFiE8Kh2rnEZPjhCj9FDbDWcR9xlfy3xMv6oU/LLmCCF+hbLSPCVC72g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zFsUK6VHwr0Hxx+ZXnbFkaszxvlcxKRg7LISXB60AFE=;
+ b=nM70/h/iOwlIRZEdVJR0nXKb3CZhxIrGgwWsXp1UaNSVM6xKgO0Z8nqPXTnNFmsiZ8/9ubdgrMjEjaWs0f4XUsgEmBtp15mXCPP2VXmLTdIUnhMggyOsgPXwi8g3WW1iiHFSbhSJFnoItgkGO69gJy63eG9NAa+6GKp8wedkHKVTw9iD6hC4jv34RiJCcgD7i9OUGSJFghbwdi85ySrBH2swUAyToXa+hAS5ZIyMR+JndX58H4aXeXZd/3QcO5BMec8PWdfbhLKzS8tKLniWN+LxwUafrLl4EhlzisOF8ob4Po93ijo7wz/mJ+TAFu5UHirdNRaEP8Vg5XNM8KojJg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB8254.eurprd04.prod.outlook.com (2603:10a6:102:1cd::24)
+ by GV1PR04MB11063.eurprd04.prod.outlook.com (2603:10a6:150:20c::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Tue, 3 Feb
+ 2026 07:13:34 +0000
+Received: from PAXPR04MB8254.eurprd04.prod.outlook.com
+ ([fe80::2755:55ac:5d6f:4f87]) by PAXPR04MB8254.eurprd04.prod.outlook.com
+ ([fe80::2755:55ac:5d6f:4f87%4]) with mapi id 15.20.9564.016; Tue, 3 Feb 2026
+ 07:13:34 +0000
+Message-ID: <ca3a8042-1394-4925-9c61-dbfcbf4cf7d9@oss.nxp.com>
+Date: Tue, 3 Feb 2026 15:13:21 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: imx8mq: Restore VPU G2 clock to 600MHz for
+ 4K60fps decoding
+To: Nicolas Dufresne <nicolas@ndufresne.ca>, linux-media@vger.kernel.org
+Cc: mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+ benjamin.gaignard@collabora.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, p.zabel@pengutronix.de, sebastian.fricke@collabora.com,
+ shawnguo@kernel.org, ulf.hansson@linaro.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+ l.stach@pengutronix.de, Frank.li@nxp.com, peng.fan@nxp.com,
+ eagle.zhou@nxp.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260130084133.2159-1-ming.qian@oss.nxp.com>
+ <df8d5d5f28870752e77ec74f34fea7ceb6e97286.camel@ndufresne.ca>
+ <0b24716b-438c-4185-8a93-3a3879147c24@oss.nxp.com>
+ <169eba79e8e1f906b1a0b59e22a531dfc7e57a1f.camel@ndufresne.ca>
+ <5e3431c69da07557edb20a252c4759be8c857f08.camel@ndufresne.ca>
+From: "Ming Qian(OSS)" <ming.qian@oss.nxp.com>
+In-Reply-To: <5e3431c69da07557edb20a252c4759be8c857f08.camel@ndufresne.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2PR02CA0042.apcprd02.prod.outlook.com
+ (2603:1096:4:196::19) To PAXPR04MB8254.eurprd04.prod.outlook.com
+ (2603:10a6:102:1cd::24)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 00/19] dmaengine: ti: Add support for BCDMA v2 and
- PKTDMA v2
-To: Sai Sree Kartheek Adivi <s-adivi@ti.com>, vkoul@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, nm@ti.com,
- ssantosh@kernel.org, dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- vigneshr@ti.com
-Cc: r-sharma3@ti.com, gehariprasath@ti.com
-References: <20260130110159.359501-1-s-adivi@ti.com>
-From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-Content-Language: en-US
-In-Reply-To: <20260130110159.359501-1-s-adivi@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8254:EE_|GV1PR04MB11063:EE_
+X-MS-Office365-Filtering-Correlation-Id: d7143f7b-d842-4640-b567-08de62f3bd97
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|19092799006|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bTFHekJ2WnBPVmhOQVY5U2Nkd0kwWk9aZWt6eVB5dmhRT25yVFdzcXFVWDlF?=
+ =?utf-8?B?aHhoWWJETDVWRVIvNTdqNUhMallSVW5OejNVSFNqNEtyZzhaS1V0alpmdXRU?=
+ =?utf-8?B?cUdhZ2ZHRThNL3dFQnEyS0ZxRmNJOEkwdHlpNGZldWJjeWpDalZhUUkyNjJj?=
+ =?utf-8?B?Y0lnUHFIQVNsOWk5ZStqaDFJeWxHcUZ4eGNYYlRSaHNmemZ3TkRucGdFME5z?=
+ =?utf-8?B?blRXSkwwVDdVckh2bkt3ZDFraGRkZVVTUk9WNXIrL3UzYzVqVVBxd2hIYzNl?=
+ =?utf-8?B?OVJxeGdsWjUzWCtSNUlFQmxrZ1JXdUhNMEJSMTBMcXpHZmlVNWUwSEFnRWxV?=
+ =?utf-8?B?Sk1qa1VFcS9LQ1pXZUhseUtjaURkOUNMeEk2UzlLY3N5V2J3SG1LaVl0MDEz?=
+ =?utf-8?B?RlZpWDE4ajFHZC84OWVBSURHOHRFc210Zlk0ZEpISk1EdE1jcW1Ldi91dDlk?=
+ =?utf-8?B?Q0FYY2RYRWgzd1FsU0dOamRjSGNERjJRcU0yLzZZY2JNWEYxbXkvb051aVdD?=
+ =?utf-8?B?Rm1pWVpra3MzQm1DK1dsNGdBK2RCeEluUjZXQUpOaGFzSnZndDBDRS8wcVRC?=
+ =?utf-8?B?RXhnUFE4TFJKd3NSRUFOV1ZyOUNLUC81U2VWYW5MdU9CRjdtSEZBVzBNWmVn?=
+ =?utf-8?B?ckRqMFVwZjA2UWQyd28ybWxrOGw5OGFTMWl0d1puS3ZVaFdBbXJUclpwOUF4?=
+ =?utf-8?B?aWNBRFJJTkEvSXlJeHFwWFJrcUpPSFhqSXF5UFUzRjRCZTZGdEdZamNNWjJ3?=
+ =?utf-8?B?QnVMUGxyZUhVNkcxdDFPU2tIcC9oRUdwekRZWmtmRW9MaHBzMGJrdGpidWlP?=
+ =?utf-8?B?R2lDZWt4T3p0MzhGczU4dUdsdUZ4TEpmeTloQTFaZEtsMnU0VDNpLzd0eVE5?=
+ =?utf-8?B?MUtLdXFqUWtna3ZickxibEJRUE1qbjZQNE5zdkcwK3gwa0Rmd2VYeWhhdzRM?=
+ =?utf-8?B?M2xtV3FwYW9NQ09FdTNzaVRGTnB1QmJlOC81amd1cStJbEZFM1N3TVRvTk94?=
+ =?utf-8?B?TmZQUEJPK2hFU3pDRzc5UGdXRVdyTCtuUFh3Y25vVGladS9keHhyTEJ2dWtF?=
+ =?utf-8?B?ckh6OU96VHA2bHZPSXY2SzFFSnpvaXVvaklQQ0IxdVlsRFVtMFYvRVNRN2FV?=
+ =?utf-8?B?L0lVSzE5OXZMUkFJYXE1UWVJc0lIcHVZM0JETkJBdlJBMkRIOElIZGZrVGR3?=
+ =?utf-8?B?czdQOFVQamZOL1Q3c2JvM2VudkxlelFpOFppcWp0WXpvWjVqN3FRM3JkOWU2?=
+ =?utf-8?B?OUhTSnhQYmtkYVN3b2k3ZnVTVjF5UmV1Vnhob2ZRazUycjZVdXRTYmptWk9Q?=
+ =?utf-8?B?WTFGWnI2NmtFYXI2UzJsSU9HNEJ0UitCK0dEY0U1WGhYSFBMZkVHd20zRUx5?=
+ =?utf-8?B?eHRRc1lIbUJ1VHBZREM5bm9aUFZKOThBYlRjblJHbkdRM3FGdHQ4S3Znanhy?=
+ =?utf-8?B?MDIzSlhiNi9yZU5WYWsvdXgvaFF2Q2E0K2ZxeDBsQzdtVEpLblIxamFrUlhv?=
+ =?utf-8?B?SzB2cU00WFRHWGdiQzdlQlcydi9adllqMjJFZ0ltKzVsYXltTXBydTUvM2F2?=
+ =?utf-8?B?UWRzY05jUXlWUHFadFh2UkxwakVTaC9CbWFBSkl6VzlCR1Bvc2M4dVk2enlQ?=
+ =?utf-8?B?OEhDMHdPSUNNWG9KV2RoQnlYb3dybS9Cek05RlhIeVRsN2thMG5zZmtUOVRP?=
+ =?utf-8?B?djgwMkp6SzU3bytobXBYckdzV280WkhzWEd5aEVhVnBNRkNKRkxXU0piWjFE?=
+ =?utf-8?B?UGYxYW01NUVUZmJVbVdVM01CWnRIS3M5eDJEVUxCRkJOV1R0Qm5OcVduZlUw?=
+ =?utf-8?B?R3ZuNWpDcWd3dlp1eEt2YStWTmRWNEtVNU4zaVVuTzVGbFdhQXRQK21Xa1pJ?=
+ =?utf-8?B?U0pJVTljdGRld09ZZFhMa1QwZmltNDh0R3VQQWRKeFAxTThJWnlyMkwrZnl1?=
+ =?utf-8?B?MkVMYmVNQ1pWTCtJUTZwcFBtT3RycGNRNDd1eTNFakNvaFhPY0JyY3RLNGdp?=
+ =?utf-8?B?em56VS9BS0d0UjJ4em00cDY0anJRMTZoZHIraWdZTDNZbkVnK0ZXbnJGb053?=
+ =?utf-8?B?cU1TRFdsVXV6RGdMMVI2ZjFwaEpnTmEwRURCUFFYR3ZjWEhtVjBVSTFWOEZJ?=
+ =?utf-8?Q?u2xE=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8254.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(19092799006)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Qy9pM2RkSmRtdkhrRlFlNG45cCt6WldIVXdzWTNKQnVxbmlobmcwZUtGOWxr?=
+ =?utf-8?B?Q0FCNU1oZGFiN21hOXpsK0VxM0xnVXFJaE1LdWI5UzlhQkpMaWhTekU3YXFO?=
+ =?utf-8?B?NWpzeUlTSWtEb3huMXJCTURRMXVFNUZKM3JaS3k3N1hvNmFWdWF4MXEvdXgx?=
+ =?utf-8?B?UmNRRGVkNHJsQWFPL0k3V1MrNWdJaFp3ekQxdVZweldqU1JNUXVVanF3MXFi?=
+ =?utf-8?B?ek53Qm0yRC8vTkwvZWdyTjB3Q09rVjlrM3B0WGFNVEg3a216ZlMxZUVxVkxR?=
+ =?utf-8?B?MEJCYWw3T05DZ092c09yaUI4dC9kM0lKS0JYUitFMHExRkxXUWgvbElIc3BU?=
+ =?utf-8?B?T0Zrd0hVb1EzMzZudS9wNnRGbGhzOFVWK0RkM3RVV1dyUzQxM1NMMXRJQ2ZE?=
+ =?utf-8?B?Q0hudFBKRHpzdUlobGZLZ01uK3RkM3lqMGxMbmNFak5qdDVwZnF2eDNOaGhk?=
+ =?utf-8?B?a3lyT1lzcDR1Y0tmdm9FMFMxNlYzNkJuMzgxSzlsMElyNW03WDZPSkduV24r?=
+ =?utf-8?B?bVcxS0o2aUVseCs1b1c5V2dhQ3pLK1UzdzVrZ00wQnA5eWl3R0lsd1h3VXU5?=
+ =?utf-8?B?cENrUysvSjh6TUZ4TENQb3lpcFoyRktBK2c2KzVvWlY4NkJ0YkgxVGRvbGNt?=
+ =?utf-8?B?QVFoa1NjRE43UStYY2FNOGxCWkNSSVpYTDRLUUZOb2ZVTzJNZTNyS3RqV3F3?=
+ =?utf-8?B?SGtxK2xabjd3SnZzY0kwZjdnTE1LNUJaODNDS0x2Tkt2ZzlrYzVNNHpHYkF0?=
+ =?utf-8?B?ZmRxaVZLcEwvV2lVS3d3M0ZJbDVrTnNWZUZ1YkwzcW1lbEY2bWJreHhjeDRS?=
+ =?utf-8?B?Q2ZQdUZRMHVZOStjUDBFU01tT3J3cVo0cXlSeVUzNGRBdXZpWXBiQWRPTU4z?=
+ =?utf-8?B?UFJjUFRTaWI5eDNnaXYvUVFsTG15UERDR0g0Zkc5Q2w4MGlDMFg2dGVRejB3?=
+ =?utf-8?B?Mml5QXh0aVhIdDdEUk9xNHJkb3dIQ1FSQnM1aGo4bG43TWErNjBWcnh4Z0J4?=
+ =?utf-8?B?WU9wQlFkM1VZNTNLZWNjTGprUVArZHJnUEJKZDJjWVRmeFM1TmNQdGhZdklx?=
+ =?utf-8?B?RUNXQ2pXNEdLTDNoTEMxbjVvUndOejlTQ3N6Wm50K2dHZVk5Z3NNaFVUbG45?=
+ =?utf-8?B?YThWOG9lenZvYmVMUU81MVljdlNrei9mOGdma1FBWk82bjRUcmtKcW1QckFC?=
+ =?utf-8?B?QWNoWnhqL3ZnQmozaGNZQjZCdVN6TFFuS1NGNjA3T3orSHduZlZZZWs0cFF2?=
+ =?utf-8?B?SUwxbUQ0VHU1UHd5WEI0LzBtQ2RPT3l3OWlRd2l1SXhWZWxVczg1R3ZVU3Bq?=
+ =?utf-8?B?TzBBeVZRTUFOUmUwQjM2aDdyWGtMM3hwRkNrUFFzc2xhUHg4SkxBNzJFNFND?=
+ =?utf-8?B?S3F3TTdJWHlqSUkxQWJnNHlJYXJpclcycjJ3ODdxVW9ubHIyazBmUXRWUHdq?=
+ =?utf-8?B?cDNNQkhMT3haV2FqTjRCMDByakM1ZGZiOFdHNGNCdEdNNTdIbmcvME9jMDND?=
+ =?utf-8?B?dzJxYVN2RnRyY1VjVDhkc0lqdUlISkV0MVJLOHJEdkJEekJlRlpJZjVXczRJ?=
+ =?utf-8?B?MU9oY0FHekJwOVpqRDVycnNPQTIxdHg3U3BmYk10VmloWUFGaG1aRyswR2xt?=
+ =?utf-8?B?WTI1SmFVSzg2NmlyVE5LU2k1M2VPdEpjbUs0RkkzNnRjdk9qN2JKdDh1TTZS?=
+ =?utf-8?B?Y1YyWE95YjRDdDdNb2JWeFhqcnpxOTJibnl5VkF0RDBMbHdPYVlyQzMwK3JG?=
+ =?utf-8?B?TlZlc3BaTWxjU0lhUktVZEYrcWdpaHZwY2hLZlp0VXZqTnZzV1hadVpFQlRy?=
+ =?utf-8?B?NHRwYk1ObGZ1SEZvNGFIUnFvMzRoaW1sV0Njd2F5MTdLUVU3Y2tFK2xhZzQ5?=
+ =?utf-8?B?ZVFyS0ltL1h2cmt1YjN2d2l6Um1rSnIxUmNRYXVJUzNYMGJRMUdSbkFHM0Rm?=
+ =?utf-8?B?ZWp4blpRTFg2S1g1YkJxbGU1NHBUZGsvOTN5VUY2d3JtWHFjOEVPSzFmQXFB?=
+ =?utf-8?B?ckRGNWZrMC9xdE9sUnQ4L25xRWlEeVV3M1ZlMVNzamxnUkh3WnpFTnd0OVph?=
+ =?utf-8?B?SHJqd3g5K2czMlVIaFpJNmpMVHh0S2gwem1rSlkrdzYvWkd2M2FkamUrYTBZ?=
+ =?utf-8?B?TzhKNFFHWndSMkt2UENWTEc1a3cySk4zVG1iT1V5eXI2WXpua21FNElmQ0JO?=
+ =?utf-8?B?MzAyZ0tDYTllWGFxbmZZblliUldzbERXbWN1cnJnZ01kenZoQTNVRzlDbFEr?=
+ =?utf-8?B?b2xPMy8rQzlrNy9UMDBXdkg5T0RTclRHdGVaa0JGVmp0WUJkZnZTRkFMSHhB?=
+ =?utf-8?B?LzRnZWM3a3haSStjbHlzcHdkZ1lhaFp0MHNNYThjUkIxRGE4OVdtQT09?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d7143f7b-d842-4640-b567-08de62f3bd97
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8254.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 07:13:33.9466
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Bp2h54hd/g14/vy8e1VW89IEVq2PmxSFNlVyD6hlqMW/pDKzq1zlHGPg9cLZ3j3HcOXAuVPRvCdGPAdZI47w7w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB11063
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [1.94 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262074-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262075-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	FREEMAIL_CC(0.00)[kernel.org,xs4all.nl,collabora.com,pengutronix.de,linaro.org,gmail.com,nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peterujfalusi@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[ming.qian@oss.nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C9A86D5677
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,NXP1.onmicrosoft.com:dkim]
+X-Rspamd-Queue-Id: 2D53AD59A6
 X-Rspamd-Action: no action
 
-Hi
+Hi Nicolas,
 
-On 30/01/2026 13:01, Sai Sree Kartheek Adivi wrote:
-> This series adds support for the BCDMA_V2 and PKTDMA_V2 which is
-> introduced in AM62L.
+On 2/3/2026 3:12 AM, Nicolas Dufresne wrote:
+> Hi,
 > 
-> The key differences between the existing DMA and DMA V2 are:
-> - Absence of TISCI: Instead of configuring via TISCI calls, direct
->   register writes are required.
-> - Autopair: There is no longer a need for PSIL pair and instead AUTOPAIR
->   bit needs to set in the RT_CTL register.
-> - Static channel mapping: Each channel is mapped to a single peripheral.
-> - Direct IRQs: There is no INT-A and interrupt lines from DMA are
->   directly connected to GIC.
-> - Remote side configuration handled by DMA. So no need to write to PEER
->   registers to START / STOP / PAUSE / TEARDOWN.
+> Le lundi 02 février 2026 à 13:44 -0500, Nicolas Dufresne a écrit :
+>>> This doesn't sound like just a VPU issue; it's related to the display or
+>>> DDR.
+>>> If not displayed, do the fluster test cases yield different results at
+>>> 600MHz and 300MHz?
+>>
+>> Didn't you run these tests before sending ? I can try again, but in my
+>> internal
+>> notes, I wrote:
+>>
+>>    > Tested that, and everything becomes unstable
+>>
+>> That was before I figure-out the IRQ handler didn't handle exception bits that
+>> didn't stop the decoder (or dry IRQ, which strangely is common from the G2).
+> 
+> Ran some fluster tests now. With this patch the results is not consistent
+> anymore. Then I ran it with weston being started, and in the middle of the test
+> the display turned black. Matches my past observation. We did reproduce this on
+> BSP kernel too. When the display goes black, the recent hantro drivers reports:
+> 
+> [  827.581586] hantro-vpu 38310000.video-codec: frame decode timed out.
+> [  827.720201] hantro-vpu 38310000.video-codec: not all macroblocks were
+> decoded.
+> 
+> 
+> I have local patches to reduce the cascade of errors, so it likely survived
+> longer then last time. I will send these patches soon. The "not all macroblocks
+> were decoded." is triggered by a bit in the status register that is not
+> documented in NXP TRM. I found that bit in some VC8000D documentation (the
+> sucessor of G2). I concluded it was the same meaning after looking at the failed
+> buffer visually, it is indeed missing couple of macroblocks near th end. Each
+> time we see this error, the DCSS gives up and turn either black, or sometimes
+> other color. The second case has been tracked to a DCSS Scaler underrun, the
+> first we don't know.
+> 
+> Fluster command ran (two threads, never completes):
+> 
+> ./fluster.py run -d GStreamer-H.265-V4L2SL-Gst1.0 -ts JCT-VC-HEVC_V1 -j2 -t90
+> 
+> Nicolas
 
-I think this looks really good overall, I have few nitpicks around
-variable declaration order and one bigger ask for the possibility of
-introducing version member to struct udma_match_data to cut down on
-changes and have more targeted handling of the differences between the
-two variants.
+My test results for fluster differ from yours.
+On my end, the results for JCT-VC-HEVC_V1 are consistent at both 300MHz 
+and 600MHz.
+And results remained unchanged after multiple tests.
 
-> 
-> Changes from v3 to v4:
-> - Rename the dt-binding files to add "ti," prefix.
-> - Update cell description in dt-bindings and add client examples.
-> - Update k3_ring_intr_regs reg names
-> - Rename soc specific data to bcdma_v2_data and pktdma_v2_data to
->   bcdma_v2_am62l_data and pktdma_v2_am62l_data.
-> - Add a new patch [18/19] to fix a null pointer dereference issue when
->   trying to reserve a channel id that is out of bounds in
->   udma_reserve_##res macro. Also fix logging issues in this macro.
-> - Add a new patch [19/19] to switch to synchronous descriptor freeing to
->   avoid running out of memory during stress tests.
-> - Fix checkpatch warnings.
-> link to v3:
-> https://lore.kernel.org/linux-arm-kernel/20250623053716.1493974-1-s-adivi@ti.com
-> 
-> Changes from v2 to v3:
-> - Fix checkpatch errors & spellings.
-> link to v2:
-> https://lore.kernel.org/linux-arm-kernel/20250612071521.3116831-1-s-adivi@ti.com
-> 
-> Changes from v1 to v2:
-> - Split refactoring of k3-udma driver into multiple commits
-> - Fix bcdma v2 and pktdma v2 dt-binding examples
-> - Fix compatibles in k3-udma-v2.c
-> - move udma_is_desc_really_done to k3-udma-common.c as the difference
->   between k3-udma and k3-udma-v2 implementation is minor.
-> - remove udma_ prefix to function pointers in udma_dev
-> - reorder the commits to first refactor the existing code completely and
->   then introduce k3-udma-v2 related commits.
-> - remove redundant includes in k3-udma-common.c
-> - remove ti_sci_ dependency for k3_ringacc in Kconfig
-> - refactor setup_resources functions to remove ti_sci_ code from common
->   logic.
-> link to v1:
-> https://lore.kernel.org/linux-arm-kernel/20250428072032.946008-1-s-adivi@ti.com
-> 
-> Sai Sree Kartheek Adivi (19):
->   dmaengine: ti: k3-udma: move macros to header file
->   dmaengine: ti: k3-udma: move structs and enums to header file
->   dmaengine: ti: k3-udma: move static inline helper functions to header
->     file
->   dmaengine: ti: k3-udma: move descriptor management to k3-udma-common.c
->   dmaengine: ti: k3-udma: move ring management functions to
->     k3-udma-common.c
->   dmaengine: ti: k3-udma: Add variant-specific function pointers to
->     udma_dev
->   dmaengine: ti: k3-udma: move udma utility functions to
->     k3-udma-common.c
->   dmaengine: ti: k3-udma: move resource management functions to
->     k3-udma-common.c
->   dmaengine: ti: k3-udma: refactor resource setup functions
->   dmaengine: ti: k3-udma: move inclusion of k3-udma-private.c to
->     k3-udma-common.c
->   drivers: soc: ti: k3-ringacc: handle absence of tisci
->   dt-bindings: dma: ti: Add K3 BCDMA V2
->   dt-bindings: dma: ti: Add K3 PKTDMA V2
->   dmaengine: ti: k3-psil-am62l: Add AM62Lx PSIL and PDMA data
->   dmaengine: ti: k3-udma-v2: New driver for K3 BCDMA_V2
->   dmaengine: ti: k3-udma-v2: Add support for PKTDMA V2
->   dmaengine: ti: k3-udma-v2: Update glue layer to support PKTDMA V2
->   dmaengine: ti: k3-udma: Validate resource ID and fix logging in
->     reservation
->   dmaengine: ti: k3-udma: switch to synchronous descriptor freeing
-> 
->  .../bindings/dma/ti/ti,k3-bcdma-v2.yaml       |  116 +
->  .../bindings/dma/ti/ti,k3-pktdma-v2.yaml      |   90 +
->  drivers/dma/ti/Kconfig                        |   21 +-
->  drivers/dma/ti/Makefile                       |    5 +-
->  drivers/dma/ti/k3-psil-am62l.c                |  132 +
->  drivers/dma/ti/k3-psil-priv.h                 |    1 +
->  drivers/dma/ti/k3-psil.c                      |    1 +
->  drivers/dma/ti/k3-udma-common.c               | 2577 ++++++++++++++
->  drivers/dma/ti/k3-udma-glue.c                 |   91 +-
->  drivers/dma/ti/k3-udma-private.c              |   48 +-
->  drivers/dma/ti/k3-udma-v2.c                   | 1472 ++++++++
->  drivers/dma/ti/k3-udma.c                      | 3095 +----------------
->  drivers/dma/ti/k3-udma.h                      |  583 ++++
->  drivers/soc/ti/Kconfig                        |    1 -
->  drivers/soc/ti/k3-ringacc.c                   |  188 +-
->  include/linux/soc/ti/k3-ringacc.h             |   20 +
->  16 files changed, 5402 insertions(+), 3039 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/dma/ti/ti,k3-bcdma-v2.yaml
->  create mode 100644 Documentation/devicetree/bindings/dma/ti/ti,k3-pktdma-v2.yaml
->  create mode 100644 drivers/dma/ti/k3-psil-am62l.c
->  create mode 100644 drivers/dma/ti/k3-udma-common.c
->  create mode 100644 drivers/dma/ti/k3-udma-v2.c
-> 
+I'm not sure what caused the differences between us.
 
--- 
-Péter
+Below are my test results:
 
+600Mhz, 0.9v
+	cat /sys/kernel/debug/regulator/regulator_summary  |grep SW1C
+	 SW1C                             0    1      0 unknown   900mV     0mA 
+   825mV  1100mV
+	cat /sys/kernel/debug/clk/vpu_g2/clk_rate
+	600000000
+
+	./fluster.py run -ts JCT-VC-HEVC_V1 -d GStreamer-H.265-V4L2SL-Gst1.0 
+-j2 -t 90
+	****************************************************************************************************
+	Running test suite JCT-VC-HEVC_V1 with decoder 
+GStreamer-H.265-V4L2SL-Gst1.0
+	Using 2 parallel job(s)
+	****************************************************************************************************
+
+	Ran 139/147 tests successfully               in 505.434 secs
+	Ran 139/147 tests successfully               in 505.350 secs
+	Ran 139/147 tests successfully               in 507.540 secs
+
+600Mhz, 1.0v
+	cat /sys/kernel/debug/regulator/regulator_summary  |grep SW1C
+	 SW1C                             0    1      0 unknown  1000mV     0mA 
+   825mV  1100mV
+	cat /sys/kernel/debug/clk/vpu_g2/clk_rate
+	600000000
+
+	./fluster.py run -ts JCT-VC-HEVC_V1 -d GStreamer-H.265-V4L2SL-Gst1.0 
+-j2 -t 90
+	Ran 139/147 tests successfully               in 506.901 secs
+
+300Mhz, 0.9v
+	cat /sys/kernel/debug/regulator/regulator_summary  |grep SW1C
+	 SW1C                             0    1      0 unknown   900mV     0mA 
+   825mV  1100mV
+	cat /sys/kernel/debug/clk/vpu_g2/clk_rate
+	300000000
+
+	./fluster.py run -ts JCT-VC-HEVC_V1 -d GStreamer-H.265-V4L2SL-Gst1.0 
+-j2 -t 90
+	Ran 139/147 tests successfully               in 506.063 secs
+
+Downstream v4l2 driver
+	cat /sys/kernel/debug/regulator/regulator_summary  |grep SW1C
+	 SW1C                             0    2      0 unknown  1000mV     0mA 
+   825mV  1100mV
+	cat /sys/kernel/debug/clk/vpu_g2/clk_rate
+	600000000
+
+	./fluster.py run -ts JCT-VC-HEVC_V1 -d GStreamer-H.265-V4L2-Gst1.0 -j2 
+-t 90
+	Ran 136/147 tests successfully               in 460.435 secs
+
+Regards,
+Ming
 
