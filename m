@@ -1,191 +1,167 @@
-Return-Path: <devicetree+bounces-262456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262457-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YLhTOcqkgmlpXAMAu9opvQ
-	(envelope-from <devicetree+bounces-262456-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 02:45:46 +0100
+	id GO0+KiilgmlaXQMAu9opvQ
+	(envelope-from <devicetree+bounces-262457-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 02:47:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48D64E0860
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 02:45:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AD71E0888
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 02:47:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2530D3045C11
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 01:45:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1333F3017C3B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 01:47:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5565521B196;
-	Wed,  4 Feb 2026 01:45:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C33C275870;
+	Wed,  4 Feb 2026 01:47:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WJTiDp34"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FupUAjoY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F39022E65D;
-	Wed,  4 Feb 2026 01:45:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48DEC5C613;
+	Wed,  4 Feb 2026 01:47:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770169543; cv=none; b=l5ntgBc7HFR+NdQBSZjHQkrLYxVI7gJqSsPHd9aE6/ADhMpcVUwfFMvxVBdjE50rc9ieG6B+6LJjtCjcOEImBWgGKyVCp4vwxz6wNFPQzcfPn+F5mO+Y+5AjWN5pjeW6HHjdJhZm477RhcsIEIjiCHlqImb+mFHfjONAUBG6SZ0=
+	t=1770169636; cv=none; b=XktQwURWEJ6dPRueLcDbRei6JcYMEoE7kWO54WgxdcxOWyskClrLswfNbI5Iq35WLaEH3mgBRaPFnhApo97MwtTQDd+VFtKazKVaI2e3hSYHwJg2POFOC5vIZ7tc3JclcMXb/zxWYOz7anJw6rAfDwTTCJ+fKch/iNeUk/OvcAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770169543; c=relaxed/simple;
-	bh=YiABNjtqxGsl4v+Aef/koK3zybLExycxmkylXR0NkLM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nNPMue3xp6e9nROWs2mryztTHVRkPROyzzW4k2XL7QMz//UsCLbobIWbszJfP7R5032bx2p+8fpfGJr2sbfZQDONoTd5bJQoONVwU9r8kceBdAy13OWpV+dKOyP6Qr4G43giu1P8Wi/XWq+tfS2AvrdS5cjNedbpbpsfxSXt5cM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WJTiDp34; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770169541; x=1801705541;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YiABNjtqxGsl4v+Aef/koK3zybLExycxmkylXR0NkLM=;
-  b=WJTiDp345RuZA91pJPPL0lnK0WKaqksgjEo24XBA0joW0JwTC8Z1Mvuo
-   haLNpq+M/0VjWlUufryZVzELI3+xkbXkppZDlHFg7F1R4aX/uIHNFUK2x
-   iz+Xzm+jY2drsQz2BWWb/6luXY3NOpovtihNWjC4uasWMLB+irtaF8o95
-   jds+gZ75eeCsHBPXdEigFunckRj58MODueWxAMG8m4cMqCq4aqxMcJdPW
-   ZoZAXLv6E/A5VJ5K291sn9CJoVYHAe4std4WC/tS1fciKge4aYyoWqA7Y
-   cToMojyhRpFFq4mEsD7mTdtn25/KKKRxZTQ4lGKJR53n43O++NIaxyECI
-   w==;
-X-CSE-ConnectionGUID: y2GWe0hiQlKCVBhEd++b/A==
-X-CSE-MsgGUID: rPGlRoRNRhucPB9FrErGPg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="70552212"
-X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; 
-   d="scan'208";a="70552212"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 17:45:40 -0800
-X-CSE-ConnectionGUID: VuQZQQs7Rf6DdquKrzRZQw==
-X-CSE-MsgGUID: j3ODpeaBSSmdHo+qaUY7pw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; 
-   d="scan'208";a="210093354"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.168])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 17:45:37 -0800
-Date: Wed, 4 Feb 2026 03:45:35 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: rodrigo.alencar@analog.com
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v6 2/8] iio: core: add fixed point parsing with 64-bit
- parts
-Message-ID: <aYKkv3dq9Vkm3s_3@smile.fi.intel.com>
-References: <20260130-adf41513-iio-driver-v6-0-cf46239026bc@analog.com>
- <20260130-adf41513-iio-driver-v6-2-cf46239026bc@analog.com>
+	s=arc-20240116; t=1770169636; c=relaxed/simple;
+	bh=EtMmNO0INyqsoTPYTVYPBU1hfHnKquGk52ClsNNa3xA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nGjflMo0WHXfUyORd9BuWa44AldxIIbTBqaV17Zeu/pzibef6Du9mrWTBtyxyx0PWQtXhK3ffOBZXIYTJP1o++EhnnoBY1QcysfZjQ0gWURweXyJ9P+K3XVVM9X3n5B7htMe/DesVTbw5o2tOBA7tGrxM0gd427Hd8IVxqDZtro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FupUAjoY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2907C116D0;
+	Wed,  4 Feb 2026 01:47:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770169635;
+	bh=EtMmNO0INyqsoTPYTVYPBU1hfHnKquGk52ClsNNa3xA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=FupUAjoYyJSFprj0Sql3B8gqvRQF6RVKpaWm99ti+8tf64Kq4mtfH6anuNPVkDymQ
+	 fGlEdN7QWSRUACrO77juDSxaqKr5zNTf7UGpYQLcg2QnS1hLISuMqjdA4+3ZHLgY77
+	 CrDlVJqw0lJD5aRLJHOBYmWbBBDJ7NHkxRLNc08IKF65tAxGMmJvOVoRSUWIiWBHxA
+	 6w0sEzP1pHKVb2zVpC0Abe8/gaVAj8kAX21srQol/NeFVAoIXDugUDwPR5AVMjIfuN
+	 TsikZ+OnwcKCw4oq0jNGFu7OtULbQ7mfTfpSKCwxldgkOHKtNvFH+PJs6Bw2Uyv5ES
+	 bq3cCzlFuaXwA==
+Date: Tue, 3 Feb 2026 17:47:14 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukasz.majewski@mailbox.org>
+Cc: andrew@lunn.ch, shawnguo@kernel.org, krzk+dt@kernel.org,
+ linux-kernel@vger.kernel.org, edumazet@google.com, netdev@vger.kernel.org,
+ pabeni@redhat.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ conor+dt@kernel.org, horms@kernel.org, richardcochran@gmail.com,
+ robh@kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, wahrenst@gmx.net, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com
+Subject: Re: [net-next,v22,2/7] net: mtip: The L2 switch driver for imx287
+Message-ID: <20260203174714.79388301@kernel.org>
+In-Reply-To: <20260203211955.23ef4355@wsk>
+References: <20260131233459.1625279-3-lukasz.majewski@mailbox.org>
+	<20260203013909.822898-2-kuba@kernel.org>
+	<20260203211955.23ef4355@wsk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260130-adf41513-iio-driver-v6-2-cf46239026bc@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262456-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-262457-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,kernel.org,vger.kernel.org,google.com,redhat.com,davemloft.net,gmail.com,lists.linux.dev,lists.infradead.org,gmx.net,pengutronix.de];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: 48D64E0860
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4AD71E0888
 X-Rspamd-Action: no action
 
-On Fri, Jan 30, 2026 at 10:06:43AM +0000, Rodrigo Alencar via B4 Relay wrote:
+On Tue, 3 Feb 2026 21:19:55 +0100 =C5=81ukasz Majewski wrote:
+> > > +static void mtip_write_atable(struct switch_enet_private *fep, int
+> > > index,
+> > > +			      u32 write_lo, u32 write_hi)
+> > > +{
+> > > +	struct addr_table64b_entry __iomem *atable_base =3D
+> > > +		fep->hwentry->mtip_table64b_entry;
+> > > +
+> > > +	writel(write_lo, &atable_base[index].lo);
+> > > +	writel(write_hi, &atable_base[index].hi);
+> > > +}   =20
+> >=20
+> > Can these functions race with concurrent access? Looking at the
+> > callers, mtip_write_atable is called from two different paths:
+> >=20
+> > 1. Static entry updates: mtip_config_switch -> esw_mac_addr_static ->
+> >    mtip_update_atable_static -> mtip_write_atable (no lock held)
+> >=20
+> > 2. Dynamic entry updates: timer callback -> mtip_mgnt_timer ->
+> >    mtip_atable_dynamicms_learn_migration ->
+> > mtip_update_atable_dynamic1 -> mtip_write_atable (learn_lock held)
+> >=20
+> > The learn_lock only protects the dynamic entry path. The static entry
+> > path runs during link changes (mtip_switch_restart called from
+> > mtip_adjust_link) without lock protection.
+> >=20
+> > Both paths can access the same hash block in the address table
+> > (determined by GET_BLOCK_PTR(hash)). If the timer fires during a link
+> > change callback, both can concurrently access the table, potentially
+> > causing torn reads (reading .lo from one entry version and .hi from
+> > another) or torn writes (the entry is in an inconsistent state
+> > between the two writel calls).
+> >=20
+> > Would extending learn_lock to protect all address table access work,
+> > or is a separate hw_lock needed for hardware register access?
+> >  =20
+>=20
+> This is handled in another way:
+>=20
+> 1. Partial write is not possible as this IP block handles it in order
+> (with some kind of 'latch' registers):
+>=20
+> "VFxxx Controller Reference Manual, Rev. 0, 10/2016"
+> 11.5.4 MAC address lookup table
+>=20
+> "Each entry must be written or read with the low address accessed first
+> followed by the high address"
+>=20
+> 2. The code for dynamic IP writing will not "touch" the entries for
+> "static" MAC addresses - Figure 11-70 - bit 49 is "Record Type":
+> 	1 - static entry
+> 	0 - dynamic entry
+>=20
+> IMHO, we are "safe" here.
 
-> Add iio_str_to_fixpoint64() function that leverages simple_strtoull()
-> to parse numbers from a string.
-> A helper function __iio_str_to_fixpoint64() replaces
-> __iio_str_to_fixpoint() implementation, extending its usage for
-> 64-bit fixed-point parsing.
+My reading of the AI's comment was that there is no lock in SW so two
+SW threads can write:
 
-...
-
-> +/**
-> + * iio_safe_strntou64() - Parse u64 from string checking for overflow safety
-> + * @str: The string to parse
-> + * @endp: output pointer to the end parsing position
-> + * @result: parsed value
-> + * @max_chars: maximum number of digit characters to read
-> + *
-> + * This function is used in fixed-point parsing and it iterates over a const
-> + * char array. It might duplicate behavior of simple_strtoull() or kstrtoull(),
-> + * but those have their own limitations:
-> + * - simple_strtoull() is not overflow-safe and its usage is discouraged;
-> + * - kstrtoull() is safe, but requires termination and it would required a copy
-> + *   of the string to a temporary buffer.
-> + *
-> + * The implementation of this function is similar to _parse_integer_limit()
-> + * available in lib/kstrtox.h, but that header/function is not available to be
-> + * used in kernel modules. Hence, this implementation may need to change or
-> + * removed to reuse a new suitable helper that is properly exposed.
-> + *
-> + * Returns:
-> + * number of parsed characters on success, -ERANGE on overflow
-> + */
-> +static ssize_t iio_safe_strntou64(const char *str, const char **endp,
-> +				  u64 *result, size_t max_chars)
-> +{
-> +	u64 digit, acc = 0;
-> +	ssize_t idx = 0;
-> +
-> +	while (isdigit(str[idx]) && idx < max_chars) {
-> +		digit = str[idx] - '0';
-> +		if (unlikely(acc & (~0ull << 60))) {
-> +			if (check_mul_overflow(acc, 10, &acc) ||
-> +			    check_add_overflow(acc, digit, &acc))
-> +				return -ERANGE;
-> +		} else {
-> +			acc = acc * 10 + digit;
-> +		}
-> +		idx++;
-> +	}
-> +
-> +	*endp = str + idx;
-> +	*result = acc;
-> +	return idx;
-> +}
-
-There is a development in the parse_integer in the lib/. I reviewed that series
-and hopefully it will go in. With that done, we better reuse the lib/ function.
-
-https://lore.kernel.org/linux-hardening/20260202115451.290173-1-dmantipov@yandex.ru/
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+   Thread A   Thread B
+   write_lo
+              write_lo
+              write_hi
+   write_hi
 
