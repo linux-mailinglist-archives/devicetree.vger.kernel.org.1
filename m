@@ -1,196 +1,266 @@
-Return-Path: <devicetree+bounces-262819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262810-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EFd5KTPWg2kHuwMAu9opvQ
-	(envelope-from <devicetree+bounces-262819-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 00:28:51 +0100
+	id wHzOA7LUg2kHuwMAu9opvQ
+	(envelope-from <devicetree+bounces-262810-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 00:22:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1560EED44C
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 00:28:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64E50ED368
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 00:22:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8A8ED300D474
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 23:24:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A78963014576
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 23:22:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BD3C39E171;
-	Wed,  4 Feb 2026 23:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68AF339A7ED;
+	Wed,  4 Feb 2026 23:22:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="L5T+Srbk"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="nx5hGD84";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Naz589/k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 677BD38F230;
-	Wed,  4 Feb 2026 23:24:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011CA39526F;
+	Wed,  4 Feb 2026 23:22:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770247477; cv=none; b=VELBE/rSgBu8SU+IkoN4oxn0y+ECmyjqrWG/UhFuO8JV9YGdYlCyVGIyVBATbheFKNmj9B1D4HKdEQF2MS/KbBjy0G0f4NcI2zAWVnFRq6+UvhQEblqvTiac8xAzUn3pKF/PHymOzyy5UJa7rWLDItjsMSY6rOIRp8fGUMT+G44=
+	t=1770247332; cv=none; b=QLIjD9zb2m5ndnE5aG7P3n/hrOweHElVPdG8FWYK8WP1Qv8Yvb7B/ktThEnzjIXhVzQwipfk3qaZ86hgm+zeJpzHKvHbbh0bTH0U99hDkRifeOB+y/oV6BplC3IsLIwuJP8dKL0bwzCg33Et3Z3x2uVOweNst5obA+UpIw6QKrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770247477; c=relaxed/simple;
-	bh=6WLYdt4/g0FGvYTlZl5obCHuGrBDyDWgQc4688C+Pp8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FYsIyCUHC0pxK/EWH//Hf1is9w9wvBKMNw8HcsKCfVThXiK5dS8HsLqh4t1bqRZE9Y1MtoRpPiO8hV6rsAZ3EM4m2TTCVyFiEXdHvCJVNFQxtr2qNQ8+VOtw0PUdBLwDNyBQHfWlP1qKf74xrkM7StNjghYSAQL1Qx0cNUX+QkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=L5T+Srbk; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
-	s=s2025; t=1770247000;
-	bh=Gr09QrK6YVeG5HFkhtTTBy0LuiyxgEZg1zUEjeKVLC8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=L5T+Srbkp+1431z+6OhSUcj2+Q/RWbaAD0QZ5u0LxXQUkMuWdu5bLtZhnX2pjnlgB
-	 b62bMK7TuE85eX6ovj4+xFPnx6Nt9poO1K+3DdGbSR1VYPRq/C4cgxvjnCWnWe4C9F
-	 YT4kSsiXtZIRRcedRCzHJl8YYN+0+4OQBL6fubB9quAWz0P9n4RczdTtHiR54Ul0Ll
-	 1UTSFdAdI2KdoLgljnYfZ9KfG/eU8FIB3O7Z9U2ZtujKK5DNa+veZfJXVuHhcEztqE
-	 r1IaoF3K0GGobpXvYPPDjKgxBUquOKpZTbY7r0QkXRLB7J7dzkM+WsnzMQaEiG7L7i
-	 2WhmKhnw5BTMA==
-Received: from [IPV6:2605:59ca:364f:d400:1b91:6b30:22c2:fffc] (unknown [IPv6:2605:59ca:364f:d400:1b91:6b30:22c2:fffc])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 7A695B220741;
-	Thu,  5 Feb 2026 00:16:38 +0100 (CET)
-Message-ID: <e2394c64-af36-428f-ad6e-4c7038c0301e@freeshell.de>
-Date: Wed, 4 Feb 2026 15:16:36 -0800
+	s=arc-20240116; t=1770247332; c=relaxed/simple;
+	bh=ES8gXinlTHhZRpU9iV91xxLNxi1do/y+GyihrwEvBGI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DLf+es1itZ3+rnrgKvTDGkh5lOExOFrHtCdNGdP7ccsw4LPaky9LTRr7dgPit3iMy7fSWimD1GAvrzMhYNeSMUE4VHq/reDsn6PpsDOjf3WWD/Lw29fE8eCp/TufsF4unLxTxZBOQkii89BNzeYE1iWlp9WGITm5Muv68WB6dTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=nx5hGD84; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Naz589/k; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4f5xFr5FHNz9th0;
+	Thu,  5 Feb 2026 00:22:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1770247328;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=jUPYl25/I/xaiQSwfhlSBNd7Hf3mIc4vRgkGcNTxP+o=;
+	b=nx5hGD84YpwLQE5ISYb8EhFYHYd55Ava0d/82Uq/1kYQHBAHBHW9Hoc2znL9bqtq2AP/vW
+	nfudTgcJIA0EVWIPzX20A3KVwcOLRd2yXTkmG7ttec1W+RxXsvMF3wTUI8/gDua+meyr+j
+	wdjTDx5O79ZmWv++gAq/KZiltx1TvQXllui60O4XQmluA5Txt5LxVbDmIRZPUhDwMps/i6
+	emIdJ6LmMbYwoUAd/XnZvNeneD2TP2rboFMKB7irda79mZDBlch+mHEiffkjCawZ5+olVb
+	yRWDFjSkUQuSXN1mVAxhN1c8k6EwXY5NE5FDiSifBtbA8INjlPU2652HxzNRxQ==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b="Naz589/k";
+	spf=pass (outgoing_mbo_mout: domain of lukasz.majewski@mailbox.org designates 2001:67c:2050:b231:465::1 as permitted sender) smtp.mailfrom=lukasz.majewski@mailbox.org
+From: Lukasz Majewski <lukasz.majewski@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1770247326;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=jUPYl25/I/xaiQSwfhlSBNd7Hf3mIc4vRgkGcNTxP+o=;
+	b=Naz589/kaMWyIosGEF/Rd/gURaV0AXT1/yfFZnKXKqGf7zkRO9hMewjOZRj7er1cuEh0EF
+	oGJcdXeoKsdTFpcF7UZpkbDClV2HEo9YhVUpI1XtKrmKmzEFoYgtcLIqib2sRZlbMyHckO
+	R0SaFbubQnFXffvxQfenf/Afglxu1s8Hc1bklMg2UP9nIGBqxTlKzKN+quxMnQ4LV8Q4A6
+	zgkoW+tAXymgPguoWIUBKIAGDvX5CfYQWLoyJbmzdpbJC5vlcuisWN7+dZ9adKZdmD7TVf
+	stVI4TZBTCYVOG3eA1AZOoNYTe5eQUoYHe9EBussQyab/y62RXbYg71B2In0ew==
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Simon Horman <horms@kernel.org>,
+	Lukasz Majewski <lukasz.majewski@mailbox.org>
+Subject: [net-next v23 0/7] net: mtip: Add support for MTIP imx287 L2 switch driver
+Date: Thu,  5 Feb 2026 00:21:28 +0100
+Message-Id: <20260204232135.1024665-1-lukasz.majewski@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] riscv: dts: starfive: Milk-V Mars CM Lite broken-cd
-To: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
- Emil Renner Berthing <kernel@esmil.dk>, Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260204101602.30184-1-heinrich.schuchardt@canonical.com>
- <46d5d249-8cf2-46d1-a90c-1f2c5f146e15@canonical.com>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <46d5d249-8cf2-46d1-a90c-1f2c5f146e15@canonical.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 1a65e745695a95c5e45
+X-MBO-RS-META: ackt1q4t6kc7djdtdctky69jssasp49z
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[freeshell.de,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[freeshell.de:s=s2025];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262819-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,gmx.net,kernel.org,mailbox.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-262810-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[e@freeshell.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[freeshell.de:+];
+	FROM_NEQ_ENVFROM(0.00)[lukasz.majewski@mailbox.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mailbox.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[canonical.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,raspberrypi.com:url]
-X-Rspamd-Queue-Id: 1560EED44C
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[denx.de:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mailbox.org:mid,mailbox.org:dkim]
+X-Rspamd-Queue-Id: 64E50ED368
 X-Rspamd-Action: no action
 
-Hi,
+This patch series adds support for More Than IP's L2 switch driver embedded
+in some NXP's SoCs. This one has been tested on imx287, but is also available
+in the vf610.
 
-I think the correct fix will be device tree overlays per-carrier board
-and not this one-size-fits-all workaround with the System-on-Module.
-Review below:
+In the past there has been performed some attempts to upstream this driver:
 
-On 2/4/26 08:38, Heinrich Schuchardt wrote:
-> On 2/4/26 11:16, Heinrich Schuchardt wrote:
->> The card detect GPIO depends on support by the base board.
->>
->> Detecting an SD-card did not work for me with a Milk-V Mars CM Lite
->> mounted on an Waveshare CM4-IO-BASE-A board.
-> 
-> The schematic of the Waveshare CM4-IO-BASE-A board is available at
-> https://files.waveshare.com/upload/a/aa/CM4-IO-BASE-A_V4_SchDoc.pdf
-> showing pin 76 is not connected.
-> 
-> In https://forums.raspberrypi.com/viewtopic.php?t=291041 the Raspberry
-> Foundation explicitly wrote that pin 76 should not be connected when
-> using a compute module socket.
-> 
-> E. Shattow pointed me to a board
-> https://github.com/NabuCasa/yellow/releases/download/v1.3c/
-> Yellow_v1.3c_Schematic_git.8957b440adda.pdf
-> that actually disregarded this advice and uses pin 76 actually as cd-
-> gpio. This usage of GPIO 41 is a property of the specific base board and
-> not of the Milk-V Mars CM and should be described in a device-tree
-> overlay if needed.
-> 
-> Best regards
-> 
-> Heinrich
-> 
->>
->> According to [1] SD_SDIO0_CD_GPIO41 is connected to pin 76 reserved.
->> The Raspberry Pi Compute Module 4 IO Board documentation marks that
->> pin as
->> reserved. The Raspberry Pi Compute Module 5 IO Board documentation
->> marks the pin as VBAT.
->>
->> Remove the cd-gpios definition and add broken-cd.
->>
->> [1]  https://github.com/milkv-mars/mars-files/blob/main/Mars-
->> CM_Hardware_Schematices/Milk-V_Mars-CM_SCH_V1.0-2023-0905_Lite.pdf
->>
->> Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
->> ---
->>   arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
->> b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
->> index 63aa94d65ab55..566b0bdc2800d 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
->> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
->> @@ -13,7 +13,7 @@ / {
->>     &mmc0 {
->>       bus-width = <4>;
+1. The 4.19-cip based one [1]
+2. DSA based one for 5.12 [2] - i.e. the switch itself was treat as a DSA switch
+   with NO tag appended.
+3. The extension for FEC driver for 5.12 [3] - the trick here was to fully reuse
+   FEC when the in-HW switching is disabled. When bridge offloading is enabled,
+   the driver uses already configured MAC and PHY to also configure PHY.
 
-+ /* Schematic signal SD_SDIO0_CD_GPIO41 to CM4 connector pin 76*/
-+ /* Raspberry Pi CM4 specification pin 76 reserved do not connect */
+All three approaches were not accepted as eligible for upstreaming.
 
->> -    cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
->> +    broken-cd;
+The driver from this series has following features:
 
-All schematic documents for Mars CM Lite list this signal name as
-`SD_SDIO0_CD_GPIO41`.
+1. It is fully separated from fec_main - i.e. can be used interchangeable
+   with it. To be more specific - one can build them as modules and
+   if required switch between them when e.g. bridge offloading is required.
 
->>       disable-wp;
->>   };
->>   
+   To be more specific:
+        - Use FEC_MAIN: When one needs support for two ETH ports with separate
+          uDMAs used for both and bridging can be realized in SW.
 
-The carrier board I have a schematic document for - Home Assistant
-Yellow PoE rev 1.3 - lists this as SD_DETECT, apparently ignoring the
-Raspberry Pi Foundation document about CM4 Compute IO specification that
-explicitly says do not connect this pin to anything.
+        - Use MTIPL2SW: When it is enough to support two ports with only uDMA0
+          attached to switch and bridging shall be offloaded to HW. 
 
-The carrier board I do not have a schematic document for - DFRobot
-Compute Module 4 IoT Router Board Mini - only has SD Card and is
-operational as-is.
+2. This driver uses MTIP's L2 switch internal VLAN feature to provide port
+   separation at boot time. Port separation is disabled when bridging is
+   required.
 
-The compatibility issue for carrier boards that more strictly follow the
-Raspberry Pi CM4 IO specification may be better handled by device tree
-overlays. Though this is not convenient for users and requires more
-developer effort, overlays would be best to adopt dtbo per-carrier board
-to describe hardware accurately.
+3. Example usage:
+        Configuration:
+        ip link set lan0 up; sleep 1;
+        ip link set lan1 up; sleep 1;
+        ip link add name br0 type bridge;
+        ip link set br0 up; sleep 1;
+        ip link set lan0 master br0;
+        ip link set lan1 master br0;
+        bridge link;
+        ip addr add 192.168.2.17/24 dev br0;
+        ping -c 5 192.168.2.222
 
-What is needed to introduce overlays?
+        Removal:
+        ip link set br0 down;
+        ip link delete br0 type bridge;
+        ip link set dev lan1 down
+        ip link set dev lan0 down
 
-- E
+4. Limitations:
+        - Driver enables and disables switch operation with learning and ageing.
+        - Missing is the advanced configuration (e.g. adding entries to FBD). This is
+          on purpose, as up till now we didn't had consensus about how the driver
+          shall be added to Linux.
+          However, on top of this patch set the code with SWITCHDEV support (v6.6.
+          PREEMPT_RT enabled) has been implemented in [4].
+
+5. Clang build:
+	make LLVM_SUFFIX=-19 LLVM=1 mrproper
+	cp ./arch/arm/configs/mxs_defconfig .config
+	make ARCH=arm LLVM_SUFFIX=-19 LLVM=1 W=1 menuconfig
+	make ARCH=arm LLVM_SUFFIX=-19 LLVM=1 W=1 -j8 LOADADDR=0x40008000 uImage dtbs
+
+        make LLVM_SUFFIX=-19 LLVM=1 mrproper
+        make LLVM_SUFFIX=-19 LLVM=1 allmodconfig
+        make LLVM_SUFFIX=-19 LLVM=1 W=1 drivers/net/ethernet/freescale/mtipsw/ | tee llvm_build.log
+        make LLVM_SUFFIX=-19 LLVM=1 W=1 -j8 | tee llvm_build.log
+
+6. Kernel compliance checks:
+	make coccicheck MODE=report J=4 M=drivers/net/ethernet/freescale/mtipsw/
+        make allmodconfig; ~/work/src/smatch/smatch_scripts/kchecker drivers/net/ethernet/freescale/mtipsw/
+
+7. GCC:
+        make mrproper
+        make allmodconfig
+        make W=1 drivers/net/ethernet/freescale/mtipsw/
+
+        
+        [source OE/Yocto SDK build environment]
+        CROSS_COMPILE=arm-poky-linux-gnueabi- ARCH=arm make mrproper
+        cp ./arch/arm/configs/mxs_defconfig .config
+        CROSS_COMPILE=arm-poky-linux-gnueabi- ARCH=arm make menuconfig
+        CROSS_COMPILE=arm-poky-linux-gnueabi- ARCH=arm make -j8 LOADADDR=0x40008000 uImage dtbs
+
+8. DT_SCHEMA checks:
+        source ~/.venv/bin/activate
+        source /opt/poky/3.1.31/environment-setup-armv5e-poky-linux-gnueabi
+        make dt_binding_check DT_SCHEMA_FILES=nxp,imx28-mtip-switch.yaml
+        make CHECK_DTBS=y DT_SCHEMA_FILES=nxp,imx28-mtip-switch.yaml nxp/mxs/imx28-xea.dtb
+
+
+Links:
+[1] - https://github.com/lmajewski/linux-imx28-l2switch/commits/master
+[2] - https://github.com/lmajewski/linux-imx28-l2switch/tree/imx28-v5.12-L2-upstream-RFC_v1
+[3] - https://source.denx.de/linux/linux-imx28-l2switch/-/tree/imx28-v5.12-L2-upstream-switchdev-RFC_v1?ref_type=heads
+[4] - https://github.com/lmajewski/linux-imx28-l2switch/commits/vf610-linux-6.6.y-mtipl2sw
+
+
+Lukasz Majewski (7):
+  dt-bindings: net: Add MTIP L2 switch description
+  net: mtip: The L2 switch driver for imx287
+  net: mtip: Add buffers management functions to the L2 switch driver
+  net: mtip: Add net_device_ops functions to the L2 switch driver
+  net: mtip: Add mtip_switch_{rx|tx} functions to the L2 switch driver
+  net: mtip: Extend the L2 switch driver with management operations
+  net: mtip: Extend the L2 switch driver for imx287 with bridge
+    operations
+
+ .../bindings/net/nxp,imx28-mtip-switch.yaml   |  150 ++
+ MAINTAINERS                                   |    7 +
+ drivers/net/ethernet/freescale/Kconfig        |    1 +
+ drivers/net/ethernet/freescale/Makefile       |    1 +
+ drivers/net/ethernet/freescale/mtipsw/Kconfig |   13 +
+ .../net/ethernet/freescale/mtipsw/Makefile    |    4 +
+ .../net/ethernet/freescale/mtipsw/mtipl2sw.c  | 2032 +++++++++++++++++
+ .../net/ethernet/freescale/mtipsw/mtipl2sw.h  |  648 ++++++
+ .../ethernet/freescale/mtipsw/mtipl2sw_br.c   |  138 ++
+ .../ethernet/freescale/mtipsw/mtipl2sw_mgnt.c |  442 ++++
+ 10 files changed, 3436 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/Kconfig
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/Makefile
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_mgnt.c
+
+-- 
+2.39.5
+
 
