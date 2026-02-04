@@ -1,67 +1,62 @@
-Return-Path: <devicetree+bounces-262784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262785-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iE0xEi+Og2lCpQMAu9opvQ
-	(envelope-from <devicetree+bounces-262784-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 19:21:35 +0100
+	id kExODI6Og2lCpQMAu9opvQ
+	(envelope-from <devicetree+bounces-262785-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 19:23:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8048AEB92C
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 19:21:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C4EEEB980
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 19:23:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 83799308E52C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 18:10:39 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5071F309848E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 18:11:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFC35426ED6;
-	Wed,  4 Feb 2026 18:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11452423A78;
+	Wed,  4 Feb 2026 18:10:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CO8637w7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nwlvXR0B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CF49421EE2;
-	Wed,  4 Feb 2026 18:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2768423177;
+	Wed,  4 Feb 2026 18:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770228433; cv=none; b=ACS9zoxIPatGwNX3C7ou/+5dcNzeS5GXMr+g0NHJSyBXy8dUCB5DtUJfTWpvbl69rTDGy5JL1d0i/aPzxpEDWbHUAb8Pi2ARI6xky/1eQcr14Qy2Tc3tMINQ0SIO7MLk8Tf6C45o7C2LXXlmkeXu08U+moOZEOngGcQlt6GXIt4=
+	t=1770228631; cv=none; b=il7/8PzY799pGDDtwHlUK/tZzWRc3JzCqDNQevHdaMhQimvHt45W5mIKcSct+IhIhHCht5YccgaKKgX2rexpxd60b/hCr//dVC+SW2TBf1T86A6oN+z9DU0bk4cuBrw8gZMpBWURdp+fpENjmGG1DcX5pN7p6+kRaw7TFozylrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770228433; c=relaxed/simple;
-	bh=gUKiYi54MPXOa8OLr2IikMwDAGcFOielFJYFN7kyy48=;
+	s=arc-20240116; t=1770228631; c=relaxed/simple;
+	bh=WxnyfoifFLABy924YWy34UmPHS+Gu+G1OW1cX5TS97g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GOvVWOnfdxCohtca9Gfl++nRGdCYvVZj1wtf5n0lkJ7niJ9pcseeCkEnZTSEUX55//UNtdCPcTDrzqOKrMdBYOWmiQvmQtGuoRbMG24Uj60MDHwaozKQK8xSbhtxOs4crfcsVul3a4euKmzN1AL+02dnNCHMaBKgy7dhpXEwQZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CO8637w7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16C2CC4CEF7;
-	Wed,  4 Feb 2026 18:07:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=q73QhaxrVxi/jcESwJYe6OujX0itagkurRcXGOp1k+0dQzZ1/Z6OKS/i0HSFiynxqV2d4jtnUyf15yIx1RvI9r+j4jfufuFqG1BWN18AjQAW+9vXpEmM/IadpgFnve6QZeWbUBGVQJ1TRg9b67TfcNizyvg5ouRHZmIaRyHYVgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nwlvXR0B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94F98C4CEF7;
+	Wed,  4 Feb 2026 18:10:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770228433;
-	bh=gUKiYi54MPXOa8OLr2IikMwDAGcFOielFJYFN7kyy48=;
+	s=k20201202; t=1770228630;
+	bh=WxnyfoifFLABy924YWy34UmPHS+Gu+G1OW1cX5TS97g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CO8637w7pGh4pR/NtccsmsLcizq9hT/ISyNTQdwK5YNKBV4NyKbJl5+H7tEU5NIdH
-	 Jr0+GIS1QsJfTBrNy0rqNOy8zo/YYDy+muFeTcCNwfXi6E5hrZ4CHU51V1lhzCsqGf
-	 p1fM5MFDp8ibuKmaTtmMSyc7Angh9Bt16LxE1VewMedEiozZql2YfvBFB5W8V2RzUx
-	 LfQjmokERq7IVuhvEA78mj3na7ijnwTtb/GUN7XsbhPK0j58hVR/plNp6DgnuGeWK3
-	 igVDDJD91rjL6gImYYetAtZgbfVHx58rnT8p5KQmr4ce3SGYQsJ6ymuYBwdCgyl92+
-	 b57dlM3E7qGuA==
-Date: Wed, 4 Feb 2026 18:07:08 +0000
+	b=nwlvXR0BslkaCy+/hSCOL0MF1xdY916PZTThBizYeo+xr+kKryC5ijj74IyVy7lXm
+	 APGnV4r1EqI8sExTrRGxlIqMXdqsmQAYZIE7Mkg6FNDTY8MetCUl+o3pr3dbSwG+Mb
+	 ONGbZc+/e47L/Ud14axA4wRO5X22Bp84ZJR8R8RrVTf+FpvpPfj3f5wXGJvKrHhfaR
+	 WxpJWGmiVgsN8XeDnY6p0Dqu8GuBSHViK9Z9vJ/fqu8w/h3gQEIZmWf6nff8XWweO9
+	 JDsTVFVItFCZnIhHJxmxMBOR6/qNIgoAcxGECk2yLo59G0LIjH8Ak5TrDf2C6yDwBB
+	 oL8PCWRP2V2lg==
+Date: Wed, 4 Feb 2026 18:10:25 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Yixun Lan <dlan@gentoo.org>, Alex Elder <elder@riscstar.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: mfd: spacemit,p1: Add individual
- regulator supply properties
-Message-ID: <20260204-unlucky-raven-1ca0ed8f3392@spud>
-References: <20260204-spacemit-p1-v3-0-a894b3057026@riscstar.com>
- <20260204-spacemit-p1-v3-1-a894b3057026@riscstar.com>
+To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+Cc: ulf.hansson@linaro.org, adrian.hunter@intel.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, pjw@kernel.org,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	gaohan@iscas.ac.cn, me@ziyao.cc
+Subject: Re: [PATCH 1/3] dt-bindings: mmc: Add sdhci support for Canaan k230
+Message-ID: <20260204-imperfect-blitz-55fe5a85590f@spud>
+References: <20260204082908.27501-1-jiayu.riscv@isrc.iscas.ac.cn>
+ <20260204082908.27501-2-jiayu.riscv@isrc.iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,9 +64,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="I5CCiEoC65J3zMOc"
+	protocol="application/pgp-signature"; boundary="/gxknbu3c92leW+z"
 Content-Disposition: inline
-In-Reply-To: <20260204-spacemit-p1-v3-1-a894b3057026@riscstar.com>
+In-Reply-To: <20260204082908.27501-2-jiayu.riscv@isrc.iscas.ac.cn>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -79,85 +74,111 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-262785-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TAGGED_FROM(0.00)[bounces-262784-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,gentoo.org,riscstar.com,linux.spacemit.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 8048AEB92C
+X-Rspamd-Queue-Id: 2C4EEEB980
 X-Rspamd-Action: no action
 
 
---I5CCiEoC65J3zMOc
+--/gxknbu3c92leW+z
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 04, 2026 at 09:23:01PM +0800, Guodong Xu wrote:
-> Add supply properties that match the P1 PMIC's actual hardware topology
-> where each buck converter has its own VIN pin and LDO groups share
-> common input pins. Supply names are defined according to the pinout
-> names in the P1 datasheet.
+On Wed, Feb 04, 2026 at 04:29:06PM +0800, Jiayu Du wrote:
+> The Canaan k230 uses the SDHCI from Synopsys. Add compatible strings
+> to the k230. The k230 has two controllers. MMC0 supports eMMC, while
+> MMC1 supports SDIO.
 >=20
-> The existing "vin-supply" is marked as deprecated to avoid warnings
-> as dts and dt-bindings go via different trees.
->=20
-> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
 > ---
-> v3: Mark vin-supply as deprecated.
-> v2: Remove providers from the dts example.
->     Pass the 'make dt_binding_check' test.
-> ---
->  .../devicetree/bindings/mfd/spacemit,p1.yaml       | 53 ++++++++++++++++=
-+++++-
->  1 file changed, 52 insertions(+), 1 deletion(-)
+>  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml b/Doc=
-umentation/devicetree/bindings/mfd/spacemit,p1.yaml
-> index c6593ac6ef6a..41f784408e29 100644
-> --- a/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
-> @@ -28,7 +28,46 @@ properties:
->      maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yam=
+l b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> index 7e7c55dc2440..cab33da3af7d 100644
+> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> @@ -23,6 +23,8 @@ properties:
+>            - const: sophgo,sg2044-dwcmshc
+>            - const: sophgo,sg2042-dwcmshc
+>        - enum:
+> +          - canaan,k230-emmc
+> +          - canaan,k230-sdio
+
+I don't understand why there are two compatibles here, when the driver
+is able to handle them both identically, using the common properties for
+mmc controllers to differentiate. Is which is emmc and which sdio
+actually just determined by how the k230 boards use them?
+
+Or, if there are pinout differences, would pinctrl allow each to be used
+for either?
+
+>            - rockchip,rk3568-dwcmshc
+>            - rockchip,rk3588-dwcmshc
+>            - snps,dwcmshc-sdhci
+> @@ -87,6 +89,26 @@ required:
+>  allOf:
+>    - $ref: mmc-controller.yaml#
 > =20
->    vin-supply:
-> -    description: Input supply phandle.
-> +    deprecated: true
-> +    description:
-> +      Main power input (deprecated). Use individual vin1-6, aldoin,
-> +      dldoin1, and dldoin2 supply properties instead.
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - canaan,k230-emmc
+> +              - canaan,k230-sdio
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 5
+> +        clock-names:
+> +          items:
+> +            - const: core
+> +            - const: bus
+> +            - const: axi
+> +            - const: block
+> +            - const: timer
+> +
+>    - if:
+>        properties:
+>          compatible:
+> --=20
+> 2.52.0
+>=20
 
-What's the point documenting the deprecated version if it doesn't work
-anymore?
-
---I5CCiEoC65J3zMOc
+--/gxknbu3c92leW+z
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaYOKywAKCRB4tDGHoIJi
-0hPvAQDNhaGRPloJVhFrnHIbYInImXvLdwwaaEw4mhDkuUwL8gEAh71m/l08p23U
-4VuiK+wznUTz8EhMAUZdJpENMVEa5wo=
-=eTr7
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaYOLkQAKCRB4tDGHoIJi
+0jE5AP9A5xbrmdc6tgcmxgxJUe3JH7gzKH+FdLOdHZitm/CrGgEA9tVmRtqMmCcu
+bGQiOM9DLm67cQgmD4jeFM1ADLjrmAs=
+=fQk9
 -----END PGP SIGNATURE-----
 
---I5CCiEoC65J3zMOc--
+--/gxknbu3c92leW+z--
 
