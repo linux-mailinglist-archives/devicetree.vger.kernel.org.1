@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-262676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262682-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YDSVCGJRg2kalQMAu9opvQ
-	(envelope-from <devicetree+bounces-262676-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:02:10 +0100
+	id uIA1KL9Sg2mJlQMAu9opvQ
+	(envelope-from <devicetree+bounces-262682-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:07:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6099AE6C74
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:02:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 243EEE6DE8
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:07:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D65CB3012B09
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 14:01:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3A00930CC2BF
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 14:01:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF48840F8F7;
-	Wed,  4 Feb 2026 14:00:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E67040FD93;
+	Wed,  4 Feb 2026 14:00:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB4B340F8EB
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B315B40F8F2
 	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 14:00:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770213653; cv=none; b=eFViJWCrup8hfG29U0ECWUqKQZjFk9pYQipUXWH0/CrYH/wvDQB1+PRFZpRnSXdUqiCZYCtbWuO4RHqqDOuwL7afjC4r+6G4TEvlHKDx0dQs40J8Zrg9pFx9+Vn4cCGZ+eMSXNoUNGUHUislj+cr+xwwHHWw5L6BFHQn/wbrR/U=
+	t=1770213653; cv=none; b=kyjM0WBQeNk2aXauWNY+n2wyqN0o5NP0pKGBGvEObmGLmjj405NyTrbwikU07bP+qijA8Pr581X0GFBOKLKDe+OTXES5xxbBaTsGk9MUWnosSCCVySHMdqmiJFn9SMh1l7/7c0Locr1FKHaolW0H0A1uwGOP7DmzmhTBfOjugDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1770213653; c=relaxed/simple;
-	bh=FEXpCh8w3C/SL7XlA1uosNy4ATTwLM+5mvKIFu71tSc=;
+	bh=vOfPvsOG6cx3RT3EoUIw4rCEZHvSWFUEh7imvwz8rnA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OP2LUIAwow5D7GKcEtEDUthyWdF+9nYfDI/DaOrO0bS3ruis01+Uj+rJCqAwvbhGDUiiN9YVqvY6Vu2m1EwluiCw+nTSCl9u0RKRCHH7srjm/l3YHgEfDksonxqH2hpE+VgZZ9CCW8RIjtJGLLCKvkrGh24Zh/SP8RqgIUiLr/4=
+	 MIME-Version; b=RgYovJLvzevdY21enJSxaXJc8QXuz2Y/J3mvp0VCRUklUbuh+4Dt4XIlnAXJZU9j5gNG35pGBU8tLrwRMXVEftk/ftJ+jh8myQ+oaLBWKW5yvOxo3DAbfwHHPa+b1WtVuqF8gzCFJAXKWJ4egQDNyE2Eo90f+AgNyRVdMVkcBDw=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -36,16 +36,16 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vndR1-0001Qk-HO; Wed, 04 Feb 2026 15:00:47 +0100
+	id 1vndR1-0001Qm-HP; Wed, 04 Feb 2026 15:00:47 +0100
 Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vndR1-0045FI-1R;
+	id 1vndR1-0045FL-1d;
 	Wed, 04 Feb 2026 15:00:46 +0100
 Received: from ore by dude04 with local (Exim 4.98.2)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vndR0-00000001dfy-2pgg;
+	id 1vndR0-00000001dg8-2vGb;
 	Wed, 04 Feb 2026 15:00:46 +0100
 From: Oleksij Rempel <o.rempel@pengutronix.de>
 To: Jonathan Cameron <jic23@kernel.org>,
@@ -62,9 +62,9 @@ Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
 	David Lechner <dlechner@baylibre.com>,
 	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
 	David Jander <david@protonic.nl>
-Subject: [PATCH v5 04/13] iio: dac: ds4424: sort headers alphabetically
-Date: Wed,  4 Feb 2026 15:00:36 +0100
-Message-ID: <20260204140045.390677-5-o.rempel@pengutronix.de>
+Subject: [PATCH v5 05/13] iio: dac: ds4424: rename iio_info struct to avoid ambiguity
+Date: Wed,  4 Feb 2026 15:00:37 +0100
+Message-ID: <20260204140045.390677-6-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260204140045.390677-1-o.rempel@pengutronix.de>
 References: <20260204140045.390677-1-o.rempel@pengutronix.de>
@@ -85,7 +85,7 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -93,70 +93,62 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	DMARC_NA(0.00)[pengutronix.de];
 	RCVD_COUNT_FIVE(0.00)[6];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-262676-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262682-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.981];
+	NEURAL_HAM(-0.00)[-0.978];
 	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,pengutronix.de:mid,pengutronix.de:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6099AE6C74
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,pengutronix.de:mid,pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 243EEE6DE8
 X-Rspamd-Action: no action
 
-Sort the header inclusions alphabetically. This improves readability and
-simplifies adding new includes in the future.
+Rename the static `ds4424_info` structure to `ds4424_iio_info`.
 
-Group subsystem-specific headers (linux/iio/*) separately at the end
-to clarify subsystem context.
+The previous name was generic and could be confused with chip-specific
+data structures (like the upcoming `ds4424_chip_info`). The new name
+explicitly indicates that this structure holds the IIO framework
+callbacks.
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 ---
 changes v5:
-- no changes
+- add Reviewed-by: Andy
 changes v4:
-- no changes
-changes v3:
-- Keep linux/iio/* headers in a separate group at the end of the includes.
-changes v2:
-- new patch
+- New patch
 ---
- drivers/iio/dac/ds4424.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/iio/dac/ds4424.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/iio/dac/ds4424.c b/drivers/iio/dac/ds4424.c
-index 36286e4923af..c03051dc763e 100644
+index c03051dc763e..3385f39521d9 100644
 --- a/drivers/iio/dac/ds4424.c
 +++ b/drivers/iio/dac/ds4424.c
-@@ -6,16 +6,17 @@
-  */
+@@ -197,7 +197,7 @@ static int ds4424_resume(struct device *dev)
  
- #include <linux/bits.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
--#include <linux/i2c.h>
- #include <linux/regulator/consumer.h>
--#include <linux/err.h>
--#include <linux/delay.h>
--#include <linux/iio/iio.h>
-+
-+#include <linux/iio/consumer.h>
- #include <linux/iio/driver.h>
-+#include <linux/iio/iio.h>
- #include <linux/iio/machine.h>
--#include <linux/iio/consumer.h>
+ static DEFINE_SIMPLE_DEV_PM_OPS(ds4424_pm_ops, ds4424_suspend, ds4424_resume);
  
- #define DS4422_MAX_DAC_CHANNELS		2
- #define DS4424_MAX_DAC_CHANNELS		4
+-static const struct iio_info ds4424_info = {
++static const struct iio_info ds4424_iio_info = {
+ 	.read_raw = ds4424_read_raw,
+ 	.write_raw = ds4424_write_raw,
+ };
+@@ -252,7 +252,7 @@ static int ds4424_probe(struct i2c_client *client)
+ 
+ 	indio_dev->channels = ds4424_channels;
+ 	indio_dev->modes = INDIO_DIRECT_MODE;
+-	indio_dev->info = &ds4424_info;
++	indio_dev->info = &ds4424_iio_info;
+ 
+ 	ret = iio_device_register(indio_dev);
+ 	if (ret < 0) {
 -- 
 2.47.3
 
