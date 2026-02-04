@@ -1,421 +1,244 @@
-Return-Path: <devicetree+bounces-262600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262601-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +HMTIYcog2kxigMAu9opvQ
-	(envelope-from <devicetree+bounces-262600-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 12:07:51 +0100
+	id IC2oGZIpg2kxigMAu9opvQ
+	(envelope-from <devicetree+bounces-262601-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 12:12:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AA0AE4EA6
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 12:07:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9C4EE4F22
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 12:12:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 143E4300A4F2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 11:07:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A3159300CFCE
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 11:12:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62E383E8C78;
-	Wed,  4 Feb 2026 11:07:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D62B13E95A3;
+	Wed,  4 Feb 2026 11:12:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="lSCw1K5M"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="dDBc5NVK";
+	dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b="A/4bKgqu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011032.outbound.protection.outlook.com [52.101.65.32])
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D901D2F2905;
-	Wed,  4 Feb 2026 11:07:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.32
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9443F3D1CCC;
+	Wed,  4 Feb 2026 11:12:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.149.25
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770203267; cv=fail; b=J7awtmKLmVd0fjzBd6llXJ/wZ5kWFDe++v2iLQZaWMK7O+EUeVtTvOjM5zUFwFNcKX5Ct5yVmeK0kEVlADpHqR60GT30Bntr5aWP04uglr5AsqHtwyj/mNaTFNOI+6wzbJZPBKzbAuLe3D9lIuKnl1pZd9iRUMDfQXJ2Mw3ETi4=
+	t=1770203535; cv=fail; b=T90SzRZT56sgl7Oc/vaEl6FvvrkWrs5zaxnc5oLWZIxMRWf6CbJ/7f18IlCkFlXF5vhOLqvHttDidE+2aJ8IdRY7pzO4c97//qjIWve2ULpNmulgLgq9M06W+DZrj8FQKJiqFaEJ9Hm20GDBv5BfngG51HfRmTAfNfPseK25k50=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770203267; c=relaxed/simple;
-	bh=BvhGgGY75ZaXxX/eC0pnKd9byuPohDS+LYINlcZLPnk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=csL6iI70wgAYMjPR1FHUJowjT5qCZTIr9s1Eb9sSUreVGUlC4nkr2BbGPVRf4gxpuZmj5aSd3VDEGLGa5sOPi8sO7bjF0t/OVwYCRnCRUSB0tO4qofNSAhZUhqL3mk3XgmBD5m44IhFYok1SHb/lvKya3Q46En3Sa+XirITsVHg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=lSCw1K5M; arc=fail smtp.client-ip=52.101.65.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1770203535; c=relaxed/simple;
+	bh=PQ2QtK2P+a412hV5kGtQHwrR3/7Lq+oyiu8DhH6EDlg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JZWzIgrUD0crFGuZPbc3d6L/06XfKr1dk/u/uMdoU6RNd/tuipg49maHcm+mz4Sgkq1+L44oisyAW+LthVdwq8OAYMxgv3KKKWZUBKsH1vvch57EQs4evWzdR6Hi2sx7stER+wLNGO54tktCC7Bm58fchE9iov54hxwWRB2IxC4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=dDBc5NVK; dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b=A/4bKgqu; arc=fail smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 614508Zq2438060;
+	Wed, 4 Feb 2026 05:11:51 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=PODMain02222019; bh=qt8FlAU35op3k4Kj+H
+	iSpWzLjEqhEn9GiKS0N5xMTqM=; b=dDBc5NVKjBB0jF7zmreYmRgbqD7aiOeUZo
+	Ae9Cv5y1dNHUGzu7/Ywm1nWgqHihdpmsOMEmzPlFuRhbEAcE+oJoa5+yG/JxZGvy
+	sor6FMSeFsU58Ly750xvHtzpGpTfojAUjyeh2MhuyNNrW5wuGOpTdbh887WUjBJ+
+	HnHiWO3QbSE8+YzytiaNXvv9esrzmg6Ql0ikRZQ9Xwb2xJP3YunseJNlwoj1nBGj
+	zFkhCDvWapz93+yLVY7zKFOaUY8DFGbx5ptX5CRpBGIwVEes/G6rVGd8DnEkltBQ
+	ruSJvnqom58aRysJn88s7uRNHBLQQmzCGoyzr9jW6w56kmIhHnQg==
+Received: from ch5pr02cu005.outbound.protection.outlook.com (mail-northcentralusazon11022090.outbound.protection.outlook.com [40.107.200.90])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 4c1g12ve49-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 04 Feb 2026 05:11:51 -0600 (CST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FgdHFGMl+2TJ/24c1Hg8RE4KWyiYTpjFIgwL0A9+xJ+rYG3N1CMm/Az2OALZZK57ZMvGYa4ckthcwt3hshaK7HbQYiQ0jGO2fv0qtqdAqPzGEtOdL+HVkl/1GGkfM/5KyeVWlYr+Mbd0gi4TrrK0Ox9Oxq+z7bQJ5K3II0RvIZ4VS802DDtaqHBKvUjPhO/GUM3CTWVPy643m2GXe1hWzgE+zMB7r9/yjKI9U4XXgW3LmxzycwO9zA7FxqdKhp98G75xlkcdDsckrRwGCfeWsQcIXiIpB7RV+1ZbdFNZfi80eRRX/60AjOrfLY/1zpZGNElgX3UZQIs9f+MDDSRyZw==
+ b=MsJEFr1v2aT/t9V3YcP4ZuEMesu4MwYkmhSdlysSrtSvJxLJLBTY+KOcMBzqO+9DDAB8nvZB9N8+dWUYxsmAUqulO0FCzT6RJLTtzvwNBNJxKTG7/B15CuZ6pTgyqGZM/ewwds0jNBWdSCkEd/QEQLk63BbpelWgOBxMWrXHQG684V++QZsbKAWet/fH5LugHkC00oFxva6dVxBV9rxCw2mWlRgtV2Utr+2SeDq+Wdj0yIoB+IUs3Zi+lZySCnsveHOUiwcMuNP04BuHLbq169I2uBpzxCgxditj3jDIuOMfXiV9yFsRAh5YWYaJZzMVxESrfJzsTuTE0x0iqYVfEw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8JdjH56NTsmN3y5f/GT9p9IG7KeztPC1lY48JfYA0n0=;
- b=PAyzSJThKQUJbGyxf6QWXBVSRPzNnqidfis97QDWOlYRjETViKMPz2Wr1O15KZcxwfdiwzaPxahS8VwjZyB8HggQDDSRsLfaAxqZsEFNbHck8LHfMSym06w/f6zOMUTRNZmOxZ2ELg/RFyWzanCpUB08AxBJZHrPpi1UF9Dr2EZx+pvmpOsQ0NFtC1wWcscoa003ixlgrr2Siwy4RSBFkFNLNbu7LJcfEKghMTzAdz54gfvxal15FOIOeHP6of9uh/7jJRrB6EnLOH14Z1lN2NRcbOf8AgoxDa/bx9PsClEImho0nnHbhvIDghZmE8bANZFBLWk6vS0trWwZrQ2rwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ bh=qt8FlAU35op3k4Kj+HiSpWzLjEqhEn9GiKS0N5xMTqM=;
+ b=OEIO0Rw1nxqnBxJ6Zm4X4I3h8aWGgPYHUYnZDKMqO8GJUDs+vbMg7O1LbKHKEESl40s0YqhSoKMLmhkwat69M984/Q/Vw1udf2GCOtLzXivLNzObwzlaIu8WNsHmtmV7v1mpfM30VtNXSkhYeQrNxabQTmGtH84/d6xEeMkNtvQc3JE0ZK1JZj/kqFZZLva8NcOACMWD6a/uwCUOxRFTIEM5tLRbPNmRLxk3zqxRf1cgmPkJ5k82GpTIJu/FGI5O7RIoe7HOeYhiHI/nUXw1fP60yWEx3e1YDg4jpWgheMQLx/SrF57Ha3/rc0IoiOD0zq0BCMXLnfZ1kR9Ez3Ks+g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 84.19.233.75) smtp.rcpttodomain=cirrus.com
+ smtp.mailfrom=opensource.cirrus.com; dmarc=fail (p=reject sp=reject pct=100)
+ action=oreject header.from=opensource.cirrus.com; dkim=none (message not
+ signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=cirrus4.onmicrosoft.com; s=selector2-cirrus4-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8JdjH56NTsmN3y5f/GT9p9IG7KeztPC1lY48JfYA0n0=;
- b=lSCw1K5MAIR7t83E9XuIOZuBmEAdliV97DFBGpSKoKzlDZS3bcOZyMhq8L9XN6BI2VRdL2b6TtXYbkoTXDr91yTN6taD1666y1KFDD221eucYW9WXg7PZ/FQHVsdHVx5lkcQo4BesSV39RBD6sqa4+g95qZhP8/TsHD1Bvq952zPpdVejaSOZGkTQBFM0zg/RIt0eEHuQpspMNNsaLOmX4lIQjZHYq4QNq0LmCYwiruNEUULtiQry6sR3GDENzqOii3s7X7CTYMNavvvErzNQI1qbCLZ/pjlwJ98OjfQv+ucZJp9zfLcpupJvzcFPOYxyZYWF57V2CeY83+xLFSsZw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA6PR04MB11910.eurprd04.prod.outlook.com
- (2603:10a6:102:516::16) by GVXPR04MB10110.eurprd04.prod.outlook.com
- (2603:10a6:150:1b2::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Wed, 4 Feb
- 2026 11:07:43 +0000
-Received: from PA6PR04MB11910.eurprd04.prod.outlook.com
- ([fe80::d3f0:3c24:f717:4989]) by PA6PR04MB11910.eurprd04.prod.outlook.com
- ([fe80::d3f0:3c24:f717:4989%4]) with mapi id 15.20.9587.013; Wed, 4 Feb 2026
- 11:07:43 +0000
-Message-ID: <71b57f1c-be22-46a2-89a2-5abae11e0436@nxp.com>
-Date: Wed, 4 Feb 2026 12:07:41 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: Re: [RFC v1 01/11] media: uapi: v4l2-isp: Add v4l2 ISP extensible
- statistics definitions
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: julien.vuillaumier@nxp.com, alexi.birlinger@nxp.com,
- daniel.baluta@nxp.com, peng.fan@nxp.com, frank.li@nxp.com,
- laurent.pinchart@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20260123080938.3367348-1-antoine.bouyer@nxp.com>
- <20260123080938.3367348-2-antoine.bouyer@nxp.com> <aYIb8ZIZDfCJZEZ9@zed>
-Content-Language: en-US
-From: Antoine Bouyer <antoine.bouyer@nxp.com>
-In-Reply-To: <aYIb8ZIZDfCJZEZ9@zed>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM0PR02CA0156.eurprd02.prod.outlook.com
- (2603:10a6:20b:28d::23) To PA6PR04MB11910.eurprd04.prod.outlook.com
- (2603:10a6:102:516::16)
+ bh=qt8FlAU35op3k4Kj+HiSpWzLjEqhEn9GiKS0N5xMTqM=;
+ b=A/4bKgquo3sf+aaUyHxsY65A4I7KZgDPKJmGaK1Zc6hQoNBkOBotgZ1uoK+bzomfOdz7gRZb8ewHAuE9Sr7bRZ2jnsZ0rCMVXyNL823++R611AiuTE8c7D1hXvm3L/vCJ9HpKyzyJq1RKnWytL234sa/ZdJx4BYhstcZj7Jr2ZE=
+Received: from BY5PR04CA0025.namprd04.prod.outlook.com (2603:10b6:a03:1d0::35)
+ by IA1PR19MB6225.namprd19.prod.outlook.com (2603:10b6:208:3eb::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.13; Wed, 4 Feb
+ 2026 11:11:47 +0000
+Received: from CO1PEPF000066EB.namprd05.prod.outlook.com
+ (2603:10b6:a03:1d0:cafe::eb) by BY5PR04CA0025.outlook.office365.com
+ (2603:10b6:a03:1d0::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.13 via Frontend Transport; Wed,
+ 4 Feb 2026 11:11:37 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 84.19.233.75)
+ smtp.mailfrom=opensource.cirrus.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=oreject header.from=opensource.cirrus.com;
+Received-SPF: Fail (protection.outlook.com: domain of opensource.cirrus.com
+ does not designate 84.19.233.75 as permitted sender)
+ receiver=protection.outlook.com; client-ip=84.19.233.75;
+ helo=edirelay1.ad.cirrus.com;
+Received: from edirelay1.ad.cirrus.com (84.19.233.75) by
+ CO1PEPF000066EB.mail.protection.outlook.com (10.167.249.7) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.10
+ via Frontend Transport; Wed, 4 Feb 2026 11:11:45 +0000
+Received: from ediswmail9.ad.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
+	by edirelay1.ad.cirrus.com (Postfix) with ESMTPS id 339A940654E;
+	Wed,  4 Feb 2026 11:11:44 +0000 (UTC)
+Received: from opensource.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPSA id 1170D820249;
+	Wed,  4 Feb 2026 11:11:44 +0000 (UTC)
+Date: Wed, 4 Feb 2026 11:11:42 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: Maciej Strozek <mstrozek@opensource.cirrus.com>
+Cc: Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+        linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+        patches@opensource.cirrus.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 0/4] Add support for CS42L43B codec to CS42L43 driver
+Message-ID: <aYMpbnzi/UTO5Fqs@opensource.cirrus.com>
+References: <20260126144011.140029-1-mstrozek@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260126144011.140029-1-mstrozek@opensource.cirrus.com>
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA6PR04MB11910:EE_|GVXPR04MB10110:EE_
-X-MS-Office365-Filtering-Correlation-Id: d8725d01-5668-48f9-1a8e-08de63dd9e61
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-TrafficTypeDiagnostic: CO1PEPF000066EB:EE_|IA1PR19MB6225:EE_
+X-MS-Office365-Filtering-Correlation-Id: ae8c1bbe-f568-413f-8141-08de63de2f5e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|19092799006|7416014|376014|366016;
+	BCL:0;ARA:13230040|61400799027|36860700013|7416014|376014|82310400026|54012099003;
 X-Microsoft-Antispam-Message-Info:
- =?utf-8?B?QWVKd0c3WHJoWnNTaENoSlY5M3JpTDAyWk51bGVqa1AvbVdDWGp4MjZPTHBy?=
- =?utf-8?B?UitHWGlZK2FDRnIyTVVncDFHQWpyZllEelM4VG0zWGFrbnVnQWVWa0FkKzRG?=
- =?utf-8?B?YmRvMW9ZVmRoOW5vb3I4Mms4dDU3ZjdVWnRJUTFOUnJBQ3VWdHdMWklPcE1U?=
- =?utf-8?B?bzdPc1BEQW9pM0ZVMXhQOVJwbkxhc0xuQktvanc4SzZGelorMU9uYzVGMlVQ?=
- =?utf-8?B?WHFlYWZwRFhxVWExZmJ0MDFrOThURnBodkFTLzNaeDFqRkZNb1dRU1QwK0pX?=
- =?utf-8?B?Ui9CcktYWnJyaC9BUjdNS2FnTUVwSjU0OGUvaVovczhPN1VzanJWQmxDWTF3?=
- =?utf-8?B?MHZ4NCtWME5NMldNRjFXU2UwL3orSnVIRUc4bU1hY0piMVZsYXlHNmhxOFJT?=
- =?utf-8?B?eHRLbnh4R0hsUmd1c1RYSDd4WGYvTFNRRSsrdUFCUFJDbG4xWkt4eUY5S1Zn?=
- =?utf-8?B?ajZjWE9CdC9Jblg5eHc5RlFDcWdudDY5aThjdi9LZnE5bzVkaEpENjdZZzRm?=
- =?utf-8?B?MDJIbjRhU0J3eHF6aXNWT0RndCtlT1IxRUZSVWZ0d1EraDg1SDJ3dUw2TjEz?=
- =?utf-8?B?K0NHM2t2aUd2OXNHbW9kSk8wYzNaSUsvVXFTbHRncmhua21nZWM2WDdaMUx2?=
- =?utf-8?B?blZRajI5TkJmSDMvaTNodFI0WTcvSFYyVUNqMTJ4Z2NxNFFoS2t3TUlsOHFp?=
- =?utf-8?B?QWxZN1NvTFpsS0tVQThMRklMQ1RtT1BZLzdIZUxNQ1U3MlRra0dnZE9EaXMz?=
- =?utf-8?B?QkkrcHJwL28vdFVBemRENUxXWmZteEVicmxWL3lNNWVJZkNXVUZsUmgwT204?=
- =?utf-8?B?SFNzNU5CMFgzU1N1RFpkRHN2c2FBTnlVNWk3aHVrSTd1OXNkVjVKYmJTcklq?=
- =?utf-8?B?MHhDdFMrT0NNeTVvTHVBLzhBdmViMjFaQkJ6L21hRVFNU2hEdHliYldaanhR?=
- =?utf-8?B?czdQYkVvNmEwSURrczBvVEo3MUpDZkN6REwxTnl4Q1A1WUEvRDc3c24zRzBs?=
- =?utf-8?B?cHZmc3ZGbFUwRWF1MzhxSFlSU1E2WGZ4cUZwZ1RvV2lobUs3SXZ1TEpKUVJI?=
- =?utf-8?B?eHNzT20rdmFBZHlzK2pEYnpzbHF1eDRnbU5OcDNEazA5RkpteERNVGlGcVA0?=
- =?utf-8?B?bmdETjBBNWFGWjZ0dVZHNXZaS2pPRW11VE9CRXBXYWdSbXhKKzQ4QUFrRXhT?=
- =?utf-8?B?encyTUxYcHVadEpBVmprME9PZlZsZ1Q3VHRRa2czQzJwMWx1RVVUb05TOFhV?=
- =?utf-8?B?RFpuVjhGL0lUVUIwK2pDbnFraFYzbThoNGJ4cE9NSkZsNkk1OTBjSWE1LzlY?=
- =?utf-8?B?ellnWDF1aytTSjh2ZGIwRHlxMzlybVJrUmdYNHdxOU14SG13R21kbElXV3Vv?=
- =?utf-8?B?RHRJM3NBUHBWU3dvSmNPcE5jQk1QSWtlYWFVS3RDWnNaZ09JWGc3Mi9oakpB?=
- =?utf-8?B?OVg1clNhZEpDdTFGeEtOUWVZTGFjZGlENFVJdGxXaFZJRk82V1VIZ2VEMkdu?=
- =?utf-8?B?bDcvbzluZCs1VitqZllVdUQrQk1qWFhldCttQ1JueHRoRDc0MTM4aWZkVnhr?=
- =?utf-8?B?MHlIVkNwVHdEcGFVVE1Ma21hODAwbmhYMVlNaGtWSHNjSVdtdnNmOHh0UHJw?=
- =?utf-8?B?d1A1ajBTN0NWczVobFpPL0w1QVpSbFlzREpPdzE3QTF2UHpUeFhhUTlwN0VV?=
- =?utf-8?B?ZWNJL0piMFp1VEdmcE5LMHlZek5ZYUxxT3VUVy8wTWZ1Z3BvZzlRaFAvZW5x?=
- =?utf-8?B?OWpWMjBSclJzYlBzOVB0eURzMnBoNTA4bW1kTldZQXZFUDltZHBiWC9ubkV3?=
- =?utf-8?B?bC83VlVZTjBHa29rQllnWDd3VXYxc0ZmTWdvcDRhZ0hNRjcxQzZSMzF2SC8r?=
- =?utf-8?B?M3Z4Z1FiV2lrZjU0VjJFWVJ3c0F1dWxOeVBSaEdOcHAvc01WajZXWkdoOUVw?=
- =?utf-8?B?RXRrR3p6YjJ4cjZKNWxGN3gzTmI0U0pkajlaTEVydkNZQ09SZ1hmV2x3MXNH?=
- =?utf-8?B?QmV0RDloQW5tWXVhZjdVZVlRemYxeFE1YlFzOExGVlJ1WnhXQ0M5MlpyV3BQ?=
- =?utf-8?B?TndtQ2ZsZElnQW5TQUpXMUkySW9qSFV4c2kzdEYwNGZCd3hibUJLbmxKc0xY?=
- =?utf-8?Q?Bz2Y=3D?=
+	=?us-ascii?Q?s1YgNc4t/lzydpDc3Zd7s+Jh/cFTWBBej14Yczf7S8gB+q11HYRrj4sNkHfC?=
+ =?us-ascii?Q?oKEY+cpxiEG2bvWDrkB7bB2rwb15dGHVAovFBhoNagGtMkBafaIlO8tFdPeR?=
+ =?us-ascii?Q?G+SI5fKvJBhRlu2i+fMOzxPpuVLStcIB132sKXnl37N1kKhKkd59EzHmsjSU?=
+ =?us-ascii?Q?z/UfYy58dwCCNp7NhBv0qQVfOrbNO9EURW6etOnzyYe11f2KSEBmOp+vJJ8e?=
+ =?us-ascii?Q?sy8GX/BZ5VE7tqx8YX3BZFNq84aM06hyISpN62R/5gdDmvcemDZPwOUtTDsd?=
+ =?us-ascii?Q?FyF+7m7C+QKV38qQT286arFHXPs3DCjsEUhd51ewZw6+lXp/yU/DVZJmwFig?=
+ =?us-ascii?Q?Z8Xm4mPCXbrKRi2jWiI4+77qofvFUUSaqDzFydxC/enAUVztzMQmQTgsK8w0?=
+ =?us-ascii?Q?+RxggwBRLQbElNnyTV0u2YAk7NP5wvdwH7u3ZSOI6raUXVYONik99dULhS8N?=
+ =?us-ascii?Q?xHIkrnNTHyDL9ch2eKtSKsB08Arkvv16doiGrDJrbJ7na1yKewgXYCTuW7Mq?=
+ =?us-ascii?Q?cQAhm5v+4bqh2VWNCInqEzAuOPRG8btxpkX7HruvMYqU1DqxF03VzBZwektC?=
+ =?us-ascii?Q?1zsrqIXpDNSqTYSiyqc73WIbFM9OMWn0edV08yeCSonfwaesvZjfvs096UWf?=
+ =?us-ascii?Q?X/z1nw5k1Jf0zlAC8oznVl+BxtKaoXWywgJ0rVDYBbfc/UlVftUyn+cXUtDR?=
+ =?us-ascii?Q?Amh0Nj+nZcTrJoQ1I/uxHJ6P/BSZElj5HyAak49j0o2EfxF9olLkZezBmMV3?=
+ =?us-ascii?Q?7M+sEr2gjEmSwv434F7OUMQ1Gr3PDy4iGQtxSG5JjagRv/rIfRUzREYn99UT?=
+ =?us-ascii?Q?TMvKnfuPa1SctJYk1pO4Dsr81efGzXAik7MwCQ8T2P+x6e7xGnEVejThZmlz?=
+ =?us-ascii?Q?fGkHYJkNzVZfIteC1oUP6jY6wZX3Z2MrYzERhGaupBpQ+TuyptKe3SjdT6SM?=
+ =?us-ascii?Q?+BW5GYbjn/JP4u+87umYkQW/27FY8tMpGi6z+95TjFXTRNuTeDVCEdie5gBA?=
+ =?us-ascii?Q?aExQM0kwp1bAwxtytvp3q9w12kgZ9mo+du62WWS/Nt0mXSAmBWjAmzPJ6r/w?=
+ =?us-ascii?Q?gW3yiDrnfNXx4cId/Yv+KyFAzILtiTEUX7H7AEvze1gd1s58i+qniOUkv/cR?=
+ =?us-ascii?Q?OocMDEZRt4y/N+NdDhJOhfKaNuwRtRQO6J+iO7xKc4xcF9kKmrKHFYfgkpSt?=
+ =?us-ascii?Q?QWw3s0djgjdSFmq5enEim6dS4QChg0F0jz3qg6TAQBI47Wne91oKwmQ5nIJj?=
+ =?us-ascii?Q?5iF/rdH2gJmlXU1uQDUaEWAWq+RTaptiBWaK1AMKx7Pi2ltSNgqw3Opo9RX0?=
+ =?us-ascii?Q?XB+OPr4+C8loZiVp+jXC7oIpjbVPVfyjhJ8YxziIOMvuu4l7eOKSPD0i62IT?=
+ =?us-ascii?Q?ynw/eyan/g/u418y1AbatjY8UHb20Mf9hEFJCUP98ZVGfJbFyvFP3GDoFrEU?=
+ =?us-ascii?Q?1j5Jrfey2yJEM9DJkk9qhHdGtdBGc/OuTd2YuOjA/81VXNUSx5JXm+bC6aRi?=
+ =?us-ascii?Q?7hX+HLellVFuAboPtGNmgA3H67fDPA8LE5YvdqD5ZbHq7QynGjaBcLxMHhQn?=
+ =?us-ascii?Q?sX+nXjwEI9eOYf5gqcOlhfkswPANn1JG6A075p3Sr52JxMHGmnEzf39L3YFl?=
+ =?us-ascii?Q?KbL8HT6Cp+mhbFYqx+Ve8xNB+6vyjCItKUrq5JlKezBD9Q0c3TOaMvz7tyAQ?=
+ =?us-ascii?Q?lSQxMw=3D=3D?=
 X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA6PR04MB11910.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(7416014)(376014)(366016);DIR:OUT;SFP:1101;
+	CIP:84.19.233.75;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:edirelay1.ad.cirrus.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(61400799027)(36860700013)(7416014)(376014)(82310400026)(54012099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?Y0xUMGNPOHlEUzlKYVREWUc4YTNUbzdCaHJMdStHSWphNGlYcW1DOFVYaHpp?=
- =?utf-8?B?ckJHYTNGR2FSRmx6azFUampNYmU3YXp0d3luakVrR0FmcHVEbVhMdFZVMEVr?=
- =?utf-8?B?OFo5cHdWRXpHZGdIOXp4OEtrWG5nekhtaGE3VHNpSjBVdURtZW5yVHYxbzZl?=
- =?utf-8?B?M2RDWndEMHZjaWVGdUhxN3ppUHVaZytDZTRZbjRseUVIN2lUWVRnMGwrUnRo?=
- =?utf-8?B?UTFXeDd5TU9wTlMxZmZlQWRIcG1EZzJSLzJyM2syZG5BTm1DQmIySVNpMHFi?=
- =?utf-8?B?ajhab2M2S051UU9pRGdiOEZ0UlI5WllwVDZwZXB3a3pEbCt4SDdsRGxyZ29O?=
- =?utf-8?B?bWhVSk54akovVXVudlAxb05rNEhKYlMyTENNbElTZlFjRTJzUTdHM0x1VjFX?=
- =?utf-8?B?R2YvM2J1dHVOUlZZZ3o2SG1ERkVDSHJRVjdJeGJOSmpTb1BXS094cERVZURq?=
- =?utf-8?B?NDlCR2dGQkhIN2ZhZHpQc1FsVlgva2JwVTVPaE4vNFBnZkdKUUpDUGVyT2dw?=
- =?utf-8?B?Wlhjd2hISitIU29NOHhRa2sxOWliOHF1Z00rRWRvMEJyZnArcDdVeGxyVzdX?=
- =?utf-8?B?ZkRLWC80YTVrRmpqcFB6cFFaMXVHVy9RTWU5MVJEdkpEdVhNR2lvbTlQRFRx?=
- =?utf-8?B?a3ZsRk5vMmpabVhpRitPTjRZeUlRU3BlTjI4eTQ5RlhFSGM2RnJkV2U1a0ZN?=
- =?utf-8?B?YjRBaExBWElMUyswN3hzcTY4QXlRcGU1RXdQbVVMNzJ2YVI2Rkd2NTRKZFdT?=
- =?utf-8?B?WExiQkcvKzRZQnU4b2FGSlIwYTQ4Vi9IS0tkbFFpS0FIcDYxS0xWMUQ4K1Rr?=
- =?utf-8?B?M05pUmhvdWVvd3dmdEljZVJ4eS9rTUdhbHpSK3dzNThYZE9OWWdEaW9kTWdi?=
- =?utf-8?B?SDE1RFc5NysrTTV2R1hpbFlPWjhPbll1Nm1PcXRraERSejI5N0JCWTBWOHpS?=
- =?utf-8?B?VE5ranR5RndRREVXamlQVnM4UzVpc0NyWjBuM3pjdXQrYmNOU0pGWlptYjNq?=
- =?utf-8?B?ajcrc1BQRlpYNXpMQUtmcnE0eDV3OEtOOTJsL21ENnMveWpaVjZMQlRsQXBH?=
- =?utf-8?B?Um1yWHpadVZLaU5vMnhJeW9JMnh2Y05CT0M0ak9iK1lZb2xPQmY0Mjc5QUhs?=
- =?utf-8?B?MGVrTm5kdkFXRm1ETkxwMyt0dVBGdzE4RkduZVB5RUhlMERvamRCQjRLcTdw?=
- =?utf-8?B?d1RPVldBT0ZZNmttQXBVaDdsN2lrWk43RWVrYm42VWFFZ2l2OVFoeEg3K01p?=
- =?utf-8?B?S2N3Y1ZSRHY4d01BZ3hpUXpUWTVRMXV2NEhPdFF2QzJzM0cycHVYQVpPQ3Vk?=
- =?utf-8?B?NEZndGl0TlZ6N0FpMkVTd2xGY3N0TmJvZUMrYkFibjR1Vyt4V1dkajJuSi9i?=
- =?utf-8?B?bDkyWEoyZUFCV2ovaUs5dlJ1UXRkdzZ0cEkyOGtHWUlnVDd6VHduT2MwNjJt?=
- =?utf-8?B?K2U3dzlZUy9QenlBRmpCRnpjb1l5SGJWRDJwRGRFdkVFeWl1Q3BTc29mZkR4?=
- =?utf-8?B?VTYyNE5CRHZzdi84MC84ZkJtaFhxbFNNQ1VqcnNCYnQ5MCtSYlNXVS9nQlhh?=
- =?utf-8?B?c0d2dnhZYlZEYndGSE9iZ2NXSmN4UXdYM1o3Q3FpUHF6SmF6ZWRaZVhhc29I?=
- =?utf-8?B?dmlXbEtEaTY0bmhXOFZMVGkvakEyM21QMFFURUN5SEVGZWRpQnBUajZJY2lP?=
- =?utf-8?B?ZzB2dzZYOENwaHFlbEJwYUZtME5hTDJzZVZvZVZlVGJOR0lNSTJ0MUVGRjRR?=
- =?utf-8?B?QVRxbG14V3R1LzFpalhMYndIeG9GaUI2UjJ4U21uQjNoN25yWVZoSkxoUFdq?=
- =?utf-8?B?b3FRbjFBWFFrODBmT1VZQ2NIeWh4emJqaG1GNmtza2M0K3k4ZXViUmVOdmhJ?=
- =?utf-8?B?VmZQZmhRWG5mZHJsMmJ3ZjFIVkthcDZ3K084L2lDQXhGSjNGZ2NaQk9KYjhB?=
- =?utf-8?B?enNkMFJySWdVSzVLQVBpMGVJNHNXajlYdStLTVpxTlFoditvcWFLSjlKYjRy?=
- =?utf-8?B?MWJBRFk4dm95bGdIeWVjNGUyYUxPTi8wblN0OVB2S3hGVjE0Ui9Hb1FqSEph?=
- =?utf-8?B?ZmtIWkVlT0cyZ3Q0bWR2eWk3ajFKRjhUYUp4WnZBU2s2U05SOVZSdnN5ZHNk?=
- =?utf-8?B?THNIcVJreCtmRjFtUktGdHo0UlcwTW5MTENKejREN0hsUVNxdEdHdjd1akZU?=
- =?utf-8?B?b3lsZGF6a2FuZ0Q2NzhDWHhlN0tQSFJzY2VmSG1RWWZlNDFkb0d1M3EzVUVq?=
- =?utf-8?B?Z1AyTUl1Z2U4dGkrcFdoMjFuYUsvU1JyV2x4ejZwaG1tUjRSbmplVVU0N3pF?=
- =?utf-8?B?MENHVGIvQWNBL3grdW5TK0pKRkxBQkRnTy9seHBlTExsclhHOGpEdz09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d8725d01-5668-48f9-1a8e-08de63dd9e61
-X-MS-Exchange-CrossTenant-AuthSource: PA6PR04MB11910.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 11:07:43.0813
+	reoDTEYgm3qfIUi7zQS4JFs/M4i9sqxCmtNc/mQTAVnSxaJa/FxKqyye4SG+WliMtBbrPK8YNyOITJMBKy+FbbutfSFExi0FxHLi+XNASczs6PHxpJqs+WucRUa/7FDyUpH8s0v16E4RTK/MCSsX0Q2WxwS4fh82Ev/yqUf2t2cDWOhZqQUWE/jUZ3lQ3qx/kAaHYXA+cF2HBcrBhwR8Fi5MI0YeIWEyks6O31sxZUs6qRbhZLNmH2r7QCHCghsGW+72ABaZpfSttqbFGnUPYgGh76SBxnkSgjC5JWq9zipU+pomYl2VOXkB77th2W/nCYZnrS+4t1VtbImUYTnArqcQyqC7yve4Cxl7HI0mpbSHgbaaUJ1vn/17JYcF7F29C2EKMfD+haQHv35sF3fYhTophMS6278FK+e2FS+G9V+SwXrRlPm/Q0GOEX9X5AHa
+X-OriginatorOrg: opensource.cirrus.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 11:11:45.8534
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DvgbVuNr87evGfjr3cCjvEh3zK0FkrC4UrLuL/y4hkVbmiXTnb+UiqP0SIrCGHVCYRozz79MmEXUsYvnCD5MHQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10110
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae8c1bbe-f568-413f-8141-08de63de2f5e
+X-MS-Exchange-CrossTenant-Id: bec09025-e5bc-40d1-a355-8e955c307de8
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bec09025-e5bc-40d1-a355-8e955c307de8;Ip=[84.19.233.75];Helo=[edirelay1.ad.cirrus.com]
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-CO1PEPF000066EB.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR19MB6225
+X-Proofpoint-GUID: 21azQAukmzvtFUClCTPvXEJJKQ1lUqlH
+X-Authority-Analysis: v=2.4 cv=Mdthep/f c=1 sm=1 tr=0 ts=69832977 cx=c_pps
+ a=EQiSdmqO/0h9UsHobtR7BQ==:117 a=h1hSm8JtM9GN1ddwPAif2w==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
+ a=kj9zAlcOel0A:10 a=HzLeVaNsDn8A:10 a=s63m1ICgrNkA:10 a=RWc_ulEos4gA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=w1d2syhTAAAA:8 a=O88-UEvnqW5qY6NVAaYA:9
+ a=CjuIK1q_8ugA:10
+X-Proofpoint-ORIG-GUID: 21azQAukmzvtFUClCTPvXEJJKQ1lUqlH
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA0MDA4NCBTYWx0ZWRfX4Yaugg90NEWX
+ pf801zq7OKKAtzyLmAvS5f5vdutbVDMfrM6GO4DSs2WBCzKG8mnDSU8gkwMA375IvGGO9VTL/Zt
+ Ou/FppzvUUSQtMckDZzsMekUNHbwZtmmt28tt8AT1C+861azMIVPlMdHf121YYyb8TPx17kquVL
+ WAOaUIEu4rVnj1Zm2/kTEmM4mdW56K0t2NzJb90ND15nAQDWQqibsygo+JoFNMlXFru/z64i/N9
+ CgWSQXYhlknk4XL5ge6yxpcqRN4rhpUy7K2i3tCxWJTUrwMFM3HHOJAY4K8dMv+Lp8EzEDqKQlO
+ hXCM990GTCF2jvxNdGrWx5vzcci7dqweJNHRcEintcL0mtPMq9wBogxnpXCTANGnt1QNz6scToS
+ h6s3FRAPYz0SdzaWX04VrmBsQkfM8EwClsriBMv/L9f3XpowoXsIFMjwUbRXteUGmqwEoNx5588
+ r4AQANAblP1jBpIsuvA==
+X-Proofpoint-Spam-Reason: safe
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	DMARC_POLICY_ALLOW(-0.50)[cirrus.com,reject];
+	R_DKIM_ALLOW(-0.20)[cirrus.com:s=PODMain02222019,cirrus4.onmicrosoft.com:s=selector2-cirrus4-onmicrosoft-com];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-262601-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,cirrus.com:email,cirrus.com:dkim,opensource.cirrus.com:mid];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262600-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[nxp.com,ideasonboard.com,kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.infradead.org];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[cirrus.com:+,cirrus4.onmicrosoft.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ckeepax@opensource.cirrus.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[antoine.bouyer@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email,nxp.com:dkim,nxp.com:mid]
-X-Rspamd-Queue-Id: 1AA0AE4EA6
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: C9C4EE4F22
 X-Rspamd-Action: no action
 
-Hi Jacopo
+On Mon, Jan 26, 2026 at 02:39:14PM +0000, Maciej Strozek wrote:
+> Hello,
+> 
+> Introducing CS42L43B, a variant of the CS42L43 codec with changes to
+> PDM (DMIC) inputs, RAM/ROM memory and extra channels to two SoundWire
+> ports and ISRCs, and can be supported by the existing CS42L43 driver
+> with some modifications.
+> Support is split into four commits:
+>  1. Add CS42L43B codec info to SoundWire utils
+>  2. Add dt binding for the new variant
+>  3. MFD driver part 1/2
+>  4. ASoC codec driver part 2/2
+> 
+> Regards,
+> Maciej
+> 
+> ---
 
-On 2/3/26 5:15 PM, Jacopo Mondi wrote:
-> 
-> 
-> Hi Antoine
->    thanks a lot for extendable stats
-> 
-> On Fri, Jan 23, 2026 at 09:09:28AM +0100, Antoine Bouyer wrote:
->> Extend the v4l2-isp extensible format introduced for isp parameters buffer
->> to the statistics buffer as well.
->>
->> Like for ISP configuration purpose, that will help supporting various ISP
->> hardware versions reporting different statistics data with less impact on
->> userspace.
->>
->> The `v4l2_isp_stats_buffer` reuses the `v4l2_isp_params_buffer` container
->> definitions, with similar header, versions and flags. V0 and V1 versions
-> 
-> Why do you need two flags ?
-> 
-> Params had to introduce two because we had two drivers already
-> mainlined using the pre-v4l2-isp version of extensible params which
-> had defined their version identifier as 1 and 0 and we didn't want to
-> break existing userspace using those identifiers. So we had to accept
-> both V0 and V1 as "first version of the v4l2-isp extensible parameters
-> format".
-> 
-> For stats we don't have users, so I guess we can start with V1 == 0 ?
+Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
-I wanted to keep it aligned with params, so that any driver/userspace 
-can use the same API version value for both params and stats buffers, 
-and limit headache.
-
-> 
->> are provided to match with params versions. On the other side, ENABLE and
->> DISABLE flags are not really meaningfull for statistics purpose. So VALID
->> and INVALID flags are introduced. Purpose is to force ISP driver to
->> validate a statistics buffer, before it is consumed by userspace.
-> 
-> Interesting. What do you mean with "validate a statistics buffer" ?
-> And if a driver has to do validation, why would it send upstream a
-> non-validated buffer ?
-
-Like for version, I wanted to keep same header structure, including 
-flags. Since ENABLE/DISABLE is not relevant for statistics, I thought 
-about using a "validation" flag, to force driver confirming statistics 
-blocks are valid or not.
-
-If you feel it is useless, I'm fine with removing it. Should I keep a 
-flag field anyway to stay aligned with params then ?
-
-> 
->>
->> Signed-off-by: Antoine Bouyer <antoine.bouyer@nxp.com>
->> ---
->>   include/uapi/linux/media/v4l2-isp.h | 85 +++++++++++++++++++++++++++++
->>   1 file changed, 85 insertions(+)
->>
->> diff --git a/include/uapi/linux/media/v4l2-isp.h b/include/uapi/linux/media/v4l2-isp.h
->> index 779168f9058e..ed1279b86694 100644
->> --- a/include/uapi/linux/media/v4l2-isp.h
->> +++ b/include/uapi/linux/media/v4l2-isp.h
->> @@ -99,4 +99,89 @@ struct v4l2_isp_params_buffer {
->>        __u8 data[] __counted_by(data_size);
->>   };
->>
->> +/**
->> + * enum v4l2_isp_stats_version - V4L2 ISP statistics versioning
->> + *
->> + * @V4L2_ISP_STATS_VERSION_V0: First version of the V4L2 ISP statistics format
->> + *                          (for compatibility)
->> + * @V4L2_ISP_STATS_VERSION_V1: First version of the V4L2 ISP statistics format
->> + *
->> + * V0 and V1 are identical, and comply with V4l2 ISP parameters versions. So
->> + * both V0 and V1 refers to the first version of the V4L2 ISP statistics
->> + * format.
->> + *
->> + * Future revisions of the V4L2 ISP statistics format should start from the
->> + * value of 2.
->> + */
->> +enum v4l2_isp_stats_version {
->> +     V4L2_ISP_STATS_VERSION_V0 = 0,
->> +     V4L2_ISP_STATS_VERSION_V1,
-> 
-> As suggested I would make V1 == 0
-> 
->> +};
->> +
->> +#define V4L2_ISP_PARAMS_FL_BLOCK_VALID               (1U << 0)
->> +#define V4L2_ISP_PARAMS_FL_BLOCK_INVALID     (1U << 1)
->> +
->> +/*
->> + * Reserve the first 8 bits for V4L2_ISP_STATS_FL_* flag.
->> + *
->> + * Driver-specific flags should be defined as:
->> + * #define DRIVER_SPECIFIC_FLAG0     ((1U << V4L2_ISP_STATS_FL_DRIVER_FLAGS(0))
->> + * #define DRIVER_SPECIFIC_FLAG1     ((1U << V4L2_ISP_STATS_FL_DRIVER_FLAGS(1))
->> + */
->> +#define V4L2_ISP_STATS_FL_DRIVER_FLAGS(n)       ((n) + 8)
-> 
-> Currently we have no users of V4L2_ISP_PARAMS_FL_DRIVER_FLAGS so we
-> could even consider making it a V4L2_ISP_FL_DRIVER_FLAGS
-> 
-> Or do you think it is worth creating a new symbol ?
-
-To limit impact on potential on-going development, and future conflict, 
-creating new symbol may be safer IMO. But I'm fine with using a single 
-symbol if you prefer. Most probably this flag customization is not used 
-yet by any driver.
-
-> 
->> +
->> +/**
->> + * struct v4l2_isp_stats_block_header - V4L2 extensible statistics block header
->> + * @type: The statistics block type (driver-specific)
->> + * @flags: A bitmask of block flags (driver-specific)
->> + * @size: Size (in bytes) of the statistics block, including this header
->> + *
->> + * This structure represents the common part of all the ISP statistics blocks.
->> + * Each statistics block shall embed an instance of this structure type as its
->> + * first member, followed by the block-specific statistics data.
->> + *
->> + * The @type field is an ISP driver-specific value that identifies the block
->> + * type. The @size field specifies the size of the parameters block.
->> + *
->> + * The @flags field is a bitmask of per-block flags V4L2_STATS_ISP_FL_* and
->> + * driver-specific flags specified by the driver header.
->> + */
->> +struct v4l2_isp_stats_block_header {
->> +     __u16 type;
->> +     __u16 flags;
->> +     __u32 size;
->> +} __attribute__((aligned(8)));
->> +
-> 
-> This is currently identical to v4l2_isp_params_block_header.
-> 
-> Can we create a single header for both stats and params and provide a
-> 
-> #define v4l2_isp_params_block_header v4l2_isp_block_header
-> 
-> for maintaining compatibility with existing users ?
-> 
-> Or do you expect stats and params to eventually need different headers ?
-> 
-
-Current approach is to use same structure definitions as for params. So 
-I'm fine with creating a single header as suggested, and provide symbols 
-to keep compatibility.
-
->> +/**
->> + * struct v4l2_isp_stats_buffer - V4L2 extensible statistics data
->> + * @version: The statistics buffer version (driver-specific)
->> + * @data_size: The statistics data effective size, excluding this header
->> + * @data: The statistics data
->> + *
->> + * This structure contains the statistics information of the ISP hardware,
->> + * serialized for userspace into a data buffer. Each statistics block is
->> + * represented by a block-specific structure which contains a
->> + * :c:type:`v4l2_isp_stats_block_header` entry as first member. Driver
->> + * populates the @data buffer with statistics information of the ISP blocks it
->> + * intends to share to userspace. As a consequence, the data buffer effective
->> + * size changes according to the number of ISP blocks that driver intends to
->> + * provide and is set by the driver in the @data_size field.
->> + *
->> + * The statistics buffer is versioned by the @version field to allow modifying
->> + * and extending its definition. Driver shall populate the @version field to
->> + * inform the userpsace about the version it intends to use. The userspace will
->> + * parse and handle the @data buffer according to the data layout specific to
->> + * the indicated version.
->> + *
->> + * For each ISP block that driver wants to report, a block-specific structure
->> + * is appended to the @data buffer, one after the other without gaps in
->> + * between. Driver shall populate the @data_size field with the effective
->> + * size, in bytes, of the @data buffer.
->> + */
->> +struct v4l2_isp_stats_buffer {
->> +     __u32 version;
->> +     __u32 data_size;
->> +     __u8 data[] __counted_by(data_size);
->> +};
->> +
-> 
-> Same question. Should we introduce a struct v4l2_isp_buffer ?
-
-Yes, sounds reasonable.
-
-BR
-Antoine
-
-> 
-> Thanks!
-> 
->>   #endif /* _UAPI_V4L2_ISP_H_ */
->> --
->> 2.52.0
->>
->>
-
+Thanks,
+Charles
 
