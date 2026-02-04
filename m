@@ -1,352 +1,222 @@
-Return-Path: <devicetree+bounces-262707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262708-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MLCrDzpng2kFmgMAu9opvQ
-	(envelope-from <devicetree+bounces-262707-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 16:35:22 +0100
+	id 6D3pHfFmg2nQmQMAu9opvQ
+	(envelope-from <devicetree+bounces-262708-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 16:34:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B9EAE8EB9
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 16:35:21 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01424E8E35
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 16:34:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C547731CEF49
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 15:24:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 352C93078073
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 15:25:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124B841C2F7;
-	Wed,  4 Feb 2026 15:22:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 159AC421A09;
+	Wed,  4 Feb 2026 15:22:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="aGe+jbFH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JG1sviZB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012000.outbound.protection.outlook.com [52.101.66.0])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 761B821FF4C;
-	Wed,  4 Feb 2026 15:22:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.0
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770218522; cv=fail; b=UESI0XGxuSFupEc+/LFYncsfcZ8a6WT0HV1tp3RVzkywzfw1iTJKHQn2Nb2LpfO92THKwDMEWh/AWBDEL2/Pt/lc0w5ZMobWvH69UNefquPtD6ZzW1/hJJXmiLjXWr5/yEdFLzaBoVVX88Z89VezKUc/U2Ivxugbb7ve5wYyJMQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770218522; c=relaxed/simple;
-	bh=oimnGzK6cv8S+TcYiQgswRsNJiTu1JR8RwHO6K9AV8c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=NBD31hPV3RgvnyJ+PmIdK9yvw5/H4d2D02kvMXObwf6yaVs1PVBHe7NywgNs4ALGYKH0jTK+4SKyweV8Q4Zge0xxAldw8oa0Gf4uXPq2mwiQiIFEMzo/c4eci+e7TM/Cm39JyX+2jG5Ev5guXG/Yh+eKSzsDiVPWFgTDhS4UuzU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=aGe+jbFH; arc=fail smtp.client-ip=52.101.66.0
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fePaNWNonyVRyc7cO8Mci+EqIGOZZHThyAT7zTaLspCslgULwvK6W6VM7GBCyL/GJj3MjYKyxcgPQn9TdZ+uVClXGhLLY02EFqbo8JyK+DEadsleGrMIyVcCSk5Gaw1XzMFDtfutxJZv0CYjecX8HQyeQWGGj89bVGonkVwZ7ARmBqhKRTVOEEtGIMjk04OCSV0SC5oSIdhwzGZhTB6+TRUSg9Pw8shYsYFbFlHaa+u5AHazfZnGCCg/gvUs8sxSsP9gRRaYO+PQvH87TVqt/02iyofTgQ1rzmr/zql7u268kYEJsP28aRH9WOHqLI+R+YUjhWtBkGNzfEgN68yiOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hl+n1VEGOwEM/CJHL5Gwp2tLbvtbOu4mt2Ts8rYYs44=;
- b=fsuDanXpS5uRj9vHB0sU+AOnIiIMBEHWwLOP+Jz/O1bsmtgLGVviNwftTJ05UcPgm3/IHV0xSwJP2kLPZv2+8Uac7b57EadC48L2xK360wkoIYTwTn/vrC1dMGxFUdBVdOPbg3aPxLG6Z8B/jexxo5ECv50gL1GOONYfcl2dlpyxViemzKy7Dx6se9XkqFuFgCikke/WwJuiJ5GBYk1iKCZxhrJgxAX25y585b3ds98TxoAxLAqgSvZdSGOxFM9uF3U8loY4oAE2YOs4m00zLNkfZardQcAoKT0WKvfHv/kLXvTHgS2IuhA9Z1UJL+g6/EIAIAuULLj/ina0NgIPWA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hl+n1VEGOwEM/CJHL5Gwp2tLbvtbOu4mt2Ts8rYYs44=;
- b=aGe+jbFHIrHX//Ihv9a01VNMwLqgD97BLRZnM9SEoUzbtOLpj7ZGCmDD4ZuYikc+56XFtSVEd21S1Ynx/CvG66X9zjOfohm+aR/BmOLBpnQLiohvszFLT3YKBQcfV3p9g9CE5wIzWQUNuQSYbfZRBCoA4tM2gEV9VSCnH4wKUtLWOW0nuu1G98WNzV6n62U+fNQOJ5I9KQ3bieKiegDNEsoLSmJ+HBa31oZpvFAPloOzILJoI9MSoiP4cA/Hq4ouV5JNhOhRB365YcU1PnbBYJop3H0zZh27iyqqfm26MMTmRTZltwAQJnw8NADN/PFSwP0jFu7XqKEJpt5LDfmYpA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by DB9PR04MB8202.eurprd04.prod.outlook.com (2603:10a6:10:24f::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.12; Wed, 4 Feb
- 2026 15:21:58 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Wed, 4 Feb 2026
- 15:21:58 +0000
-Date: Wed, 4 Feb 2026 10:21:49 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Sherry Sun <sherry.sun@nxp.com>, Hongxing Zhu <hongxing.zhu@nxp.com>,
-	"l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-	"bhelgaas@google.com" <bhelgaas@google.com>,
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"kwilczynski@kernel.org" <kwilczynski@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH V3 03/10] arm: dts: imx6qdl: Add Root Port node and PERST
- property
-Message-ID: <aYNkDWt89b26wJWf@lizhi-Precision-Tower-5810>
-References: <20260203015614.2957479-1-sherry.sun@nxp.com>
- <20260203015614.2957479-4-sherry.sun@nxp.com>
- <mp25jwvoimpesfwtpmyeltdpbu7aznahxvkcn6jxg5jqzxck4i@pium66rnpdd3>
- <VI0PR04MB12114DBBE58AB89BEEDC28C019298A@VI0PR04MB12114.eurprd04.prod.outlook.com>
- <gshz5zc7qkfkqkla2mkpu7jjf3sctrqf5jo5vszzgxzpegxzni@yhdqkykyn2ar>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6A7F41C31F;
+	Wed,  4 Feb 2026 15:22:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770218528; cv=none; b=Dtviv6vZqAM1U0GdiaWPFonH5veWoj5NEQXr977IjIkaPRblZ17sFOK7K96Lj9vWEGeeMM5aZuVg0rZjakG99RNolWU9W0FcS4Lj8r/7THP0i8NpBkSZiVULqPK41pV2Q8QxlVowUX4l5iWhhWUW4CGphr5ydI/1ENl6uKoFFOE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770218528; c=relaxed/simple;
+	bh=J7ArmKCd79+jTdq1HkYeBhulemiAhITwl+MVGrfJ7aY=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=YQ6mIrdbAz/5WUNGcOjX617uHpfxpuzoTod6h/48u+v8SVHJnEv+5m1z90UB2hDBed7CWJkvne8IqErHR7xDMGybuFoOatCd4s0B9df85mmwfGQMLdFwMAlGLLCM9cOryxt/hy0Fhi8GJI+ZcYSZ1m0HMtcdWbYImMHOJTQ6fGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JG1sviZB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76108C116C6;
+	Wed,  4 Feb 2026 15:22:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770218527;
+	bh=J7ArmKCd79+jTdq1HkYeBhulemiAhITwl+MVGrfJ7aY=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=JG1sviZBC6i1uxLSpW2jmWb35BNKqtHVJAD2/tfVpl6Bs2bgJEkQNwH4dyaJRPS6U
+	 r6Id7Mj/Lykq7JoWdD0W+I/lwSIVNVv4/59xzFQTBGA34IMy1YCDtE0nd1ePoU//am
+	 YJdtndpf7wGnA0o9oEDK7uLS26QUaTFjO2aokIaUolZw6+KlR+TzvGHUOM+phzY4iH
+	 qve9XLYw7RC16W5oJfkUjCcCEfQN/pRAXTeNkUuDB4M2NwqUZIk6Kmc5okcrmtaONc
+	 szqftFbCWiX+nA9ivItQEWa/GIHzCEysa4DXUAcXNRu+ozrpWzDOWjIqZMS5M8221G
+	 BsfhrsNlFCkkw==
+Date: Wed, 04 Feb 2026 09:22:06 -0600
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <gshz5zc7qkfkqkla2mkpu7jjf3sctrqf5jo5vszzgxzpegxzni@yhdqkykyn2ar>
-X-ClientProxiedBy: SJ0PR03CA0388.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::33) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DB9PR04MB8202:EE_
-X-MS-Office365-Filtering-Correlation-Id: a6ebfd20-9e10-4448-72b5-08de64012314
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|366016|1800799024|376014|7416014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?NG5aajY3aHNQM1ZuREhBMU9ZQ3JESUdlVHJxM0htU09FZkFuMGRWTzV3dHRZ?=
- =?utf-8?B?SGF1WWxGOTJ1NjFwcTZMMld4NTFvZFBDNXNjM2Q5RXpLc29rUFplMjVpVWVB?=
- =?utf-8?B?eWtqQXBEM21pWGVvaktkM1JMcXRxY1RLRlp6OTBMWHUySm4wWFZKMm8yYXVh?=
- =?utf-8?B?NUxzNlpCV21CWXgvN3RNcU8zWlhhUGNsMkZESFF4bmJCY1picWhDcS9wcmpM?=
- =?utf-8?B?cjhURG9BNEd5SmlIQzloQ0Q0eENPOUVPZDlDMWFzTjEyeGc4aWl0ang3c1dQ?=
- =?utf-8?B?d2FUU3JhU3hFRHVqSlFMK3pmTVkwNlJ5aUl5Vm52cnUreEdhb3hLZ2dPYkpH?=
- =?utf-8?B?VGZZcFdSMHYyeG5CbDN3VVJJUmpCcy9rL2tvWVZWa0ZnT3NLMDNoVTlpOWRZ?=
- =?utf-8?B?NThyMmxEWFhucWI1aWV6cjllazFFRmNDNDhDTnRjOHNkVjNRTkZqakh0NDFV?=
- =?utf-8?B?cFZiY2JqV3BsUEZOcGFsQTYyb0xuSTNESWRMY3Bqa2xvYis1SnNqTEw2MDRR?=
- =?utf-8?B?Z1hUdnh1UzJNc3J2d0xBdnZoZWRneUd0ZXNJcWE3aDlYSElFZU9BK0luMFhz?=
- =?utf-8?B?TTlic2NnT2tnMmxWaUlZY1hMSzRDbk5rVTRQMjNhSW00UXBNMmZmNFE5MFZs?=
- =?utf-8?B?Rmkvb1U3YmI1bDRwZ0J3RFE3YVZVSlU1U29qZ0lPWURLTHVValh3Uzl4cmNz?=
- =?utf-8?B?ejZlcTNzQUhEYU5zSS9ZdGtpWmFGMGtNc1N0TU44S1IwMklqeUdGKzQwM3Nj?=
- =?utf-8?B?dCt6bUpERVp3NnJmczRSdzJzbENDSUJPZk9MY01CdmZDa3IrVlVJdmp5cEts?=
- =?utf-8?B?WHZvZWlRZ2NEbWk5aENUZU9MNnR3Ykd6RFN1TGxCT1UwRHY2NzZIT09Nc1N4?=
- =?utf-8?B?OWgwZ3hvSVNRSDIyWTRoL0pLajA4QmhZUjdIdkhXNHllSUFpb042STgzakRU?=
- =?utf-8?B?RzBIcWd3OFdxZGlYL3lwS1dldTFrV1VVSWxRS20zU2RaSE1EWTh5VHAxQlBm?=
- =?utf-8?B?OENsVXdHSm9YNDc3aHNHRWh0bHdyb2Z4V3NBWHZST0ZJbEFhMXZFeTk3UGZ4?=
- =?utf-8?B?NDNtMHNqZW56S2QxK2VUV3liNlV4VVhNUzBkQ0d4ZVJ4amlzbzkxM0JqL3Rq?=
- =?utf-8?B?cXRva2t2NzE3b1Y0NldUZmUvclVKMTJSZSt2VWd1Y1IyU2tWMlcycmtlMlY4?=
- =?utf-8?B?UnlLTi9yelZaS0t0c2lUcDB6bzMxSndqUSsvQSs5MHVYbTV1Wktucmthc2d4?=
- =?utf-8?B?eGJPeXR4MjhkNlBpeXFLK01pTWduc1JZQkJSQllEKzNCNlJQUEJuZ0VzQmtC?=
- =?utf-8?B?d2lreDU5eVRPenBJd1lvbUo4TlZxN1hvRDBhVlQramhZeXk5ZlJ1OHhRMmMr?=
- =?utf-8?B?SEpqK0JKbnE4cUFWSUE4VlJaUEY0NGo5RWlKK2NLSG41aE5IR2RCd0M2d3ND?=
- =?utf-8?B?YitEQTNIZy9oY2ZqMUJ2SDluYzRjUTkvd1ovUmVmZTFtMlRGUVlrOUJOR096?=
- =?utf-8?B?aVVJalhLUXp5WS9TWGhualpnME1HbFlYVCtTTlpGWG1UZTIrSDJ2NThxOUFQ?=
- =?utf-8?B?SDFjM2NZamd4dGs0ek1KWGtrOHFiNTh0aHNnT043Y2UyNG9vR3BnOE9vVG83?=
- =?utf-8?B?M0hhVklrVnJuWFRTTHkrajh4aHpjU2JuSytOYkMyenAyM0VhRTFabGREUmVG?=
- =?utf-8?B?V21JMkNiUTNsT3lMQjI1L2ZPbnpJSFkweXZuZnR3K0JYb2VzQmU0T05OTWlx?=
- =?utf-8?B?Ym5ydXYzV0ZiZUcrNFh5NkxzaGFZMitkTC9vZGpVNzF2dDJna1hYWTJXS2p3?=
- =?utf-8?B?WW9QOVJ3UXpCT2gvamNVUVE3MGF1TFBuWDhDRXQxS241SkZDaWZrQStUUHJF?=
- =?utf-8?B?dTk2TzJ0cmxCNWFXeEhzeVRHdG8rMDY3UzBsK3o1NW9HalU1alVwd3V0Q3dV?=
- =?utf-8?B?SzVtdGZVRFBQckplWVRBenNkOG5hRWxsT2lodmlkVzdPYnBpSlA2Mzh4Q21E?=
- =?utf-8?B?bTRmbmVMdVQ1eTlsczYzSHgyaXlGWDA4Q2FlQlBiNkpWWjNqQ3RRTG9GUTNi?=
- =?utf-8?B?QlZqVlI2cFk0VkZhYW9LZ1lGQUJnR0t1TTBkdGFqa0NsTjBabU5RbEV3enB3?=
- =?utf-8?B?cS95S2h0QU96MHNhRkZUZjcwWmh4OVR5VXhHMkd6d3VxQWZEdGo2dHRvRGx4?=
- =?utf-8?Q?Ga6CPOVRWQDi3eK372Plai8=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?L0UrbGhGTGdSYW5tU1NmUjgyVnpxREQxL2pPOXlIblRFR2Q1NXZzdHpEWllm?=
- =?utf-8?B?WjBoUW4vc05kcFZjSGJYVWw2TmZUUGZMMlROejR1NGZLSHJXdFZid0RKSEVt?=
- =?utf-8?B?bmRJaGJSdjNNV1pqZzBPWjZCMVBTUk9PUjY5dDFIYTdkMkJDc1FNNDUyRkMr?=
- =?utf-8?B?WXc1Sk55OGVvZ1ZmRHlkWWVweGZ4U3M5aVE1MTkySVdxMUxmOUROdlhFREV5?=
- =?utf-8?B?RStkOUc3RjB1aW56SXhQQXNRWEdJRjgrVzRCb0hiR2plT3BrbGZ1MEJYZTdZ?=
- =?utf-8?B?Wkw3c0VqUEYzbnUrcWFMV1hWcWJlQVA1UzAzNlVvYjcxSkdXTmpEakpLZzlW?=
- =?utf-8?B?Ulh2cTdEMDlKNXVvTXY0U1FpYm04blpIQWFuTkxQbUttT1RIYlA4K2hCTG5Q?=
- =?utf-8?B?cjNlQVh5NW12RUE5bm1zRmlnWitZOG85b2VvTys3ZVZPMGtoeks0Qk1aU1Ro?=
- =?utf-8?B?dnJ0RHZwbEoxTWNOcWJHaDZONkJPWVNrL1NwWkFrZGV5RnRBSHBBT3ZpQ0ZK?=
- =?utf-8?B?S0FPdmlxU3Brdm85K3lQbGZyTnpSSms0RFJSODk4UTZZOGtHL3FaNFNRZkQ0?=
- =?utf-8?B?WTNqTzRZQS8yckFPNUU5NWpMaFh5c2o5ZFozN2xLeUYwaUFwOCsyZ1ZUSSs1?=
- =?utf-8?B?a00xU0lyUkNIN0xmb0k2bnp4c1JRSkEvRDRzOFhWS1kzUnBFUDJoSDFndlpR?=
- =?utf-8?B?WXozQkVtYXhDUjZ6eGQwSk5HcW5CWi9JZWtDTlpWTTBHRGtmMnA5cHdoQUVD?=
- =?utf-8?B?bEUySGtwMGFKNE40RHVHQXYxd0lyWkZYams5OWtOWDlpU3ZSMHRiZzY3K1F2?=
- =?utf-8?B?K3R3Qys3WWZuL0NzSm5SMlk3QmNqa2NrUnh2SlAzUkViK0hVWlB0T0dQeEY3?=
- =?utf-8?B?OTY4N3YxL09ubGZVc2VuVmIxenFSQ1NMS25EQUpmeUhjVFBOT1BUY1VWMG56?=
- =?utf-8?B?eVgwVXgyVTYydTBRWm83WUZKbmxCb3VFeUtsa1hJUnJ1YSt2c0FCUk5md3A0?=
- =?utf-8?B?VjhEbjFKbVZKckJQUlJWKzVsMzE1Rk5uUGxPbndzcGt4U3V1eFRhS0gwU1pu?=
- =?utf-8?B?VHlrS3RYdCtPbVo0dGgwL2V4eHMvM2VOSnhzYklhSFRuM0dzZi92Y3lUazQ4?=
- =?utf-8?B?bEtBVHdlWU5ObDBIOXJtZVp4SU1URnV5NUhxVExkbkVSV0FNbmxjd2YyeEVa?=
- =?utf-8?B?NEU3bjFkT2gyMzFYaFJPdHh5M2Q2Y2gvUjMyUFhuKyszMlZsUVNDU3RkUkM2?=
- =?utf-8?B?TEt3dmRBb2VmV1R6cWx4eEEwa1VERVlLRjdaUTcvUE5CcmpQZHE0Ky9GVWZi?=
- =?utf-8?B?aGxnZVl5WWxjSFRscWFUcnpiZWZCeWhHOFhRRUxMalRjSVh6cTNJTUFXeVFT?=
- =?utf-8?B?cjExcXljYWwyTHlrTStNeWpVK0RMaE5tRk54UVlBc2ROeWc5eVl4VVFUL1hG?=
- =?utf-8?B?M3B4WUtnTXV4c0NTT0t4QzRqMWdweWYxbXJZVFI2bkJ5dTRGRlV3OXN5UmFn?=
- =?utf-8?B?cFlsYmpCOEwvYWs0cDF0aWN4NHJ6SmsycThicVFiK1pZdjZpQmVlOElCcmVK?=
- =?utf-8?B?cWJkOHJQZWtzdUgvQStwV3BmeVordHJkcGl0RWhWK0MvcFdJK3Q4Vi90S2p1?=
- =?utf-8?B?YWM2eHUwS2hDeFJ6N3pCMzVpWDcyT0dOaDRvZVlsb09PNmR2ZGt3ek8rSmRi?=
- =?utf-8?B?UmoyRlN2eStNSlUxNVQyTXN5VENDSmRyaGNrRSszaXVEUzhPUy9qUUFieDZa?=
- =?utf-8?B?bkg0dUJxMWFkVEdqSXRac09HZE1rU3lEL2Ywd3BvWHFrMzRKWllVbDRHQnhK?=
- =?utf-8?B?UEV0d0JnQWtVYXJnbTJTeHFyNHczMDZQSldObkd5ODdSMDI1VzFNNDlJaUQr?=
- =?utf-8?B?ektjYmpzcW1XQmpWc01JVnVjN3k3M2ZxZVZWeTEzZ1o2N3ExbmI4K2Jnci8w?=
- =?utf-8?B?ZXk2YXM1V0xza2FkdExmODN4M2NoMjFyZm4ybmE2MUpPSUVzdkN4Ukh4RHBw?=
- =?utf-8?B?ODBpbGF1cGJUcFJObTMvY25GZGJjTEttSjJYZVROR2k5T2dQWDU2Rm8wSlBy?=
- =?utf-8?B?b3pRdmRvYUJaSHJpaTNOZjlseGRnUXdVZEdod3lyUnpSVzV1MDdLUXR0cGFY?=
- =?utf-8?B?d0xEaHRQNy9hQzJTem5lVW1TclF2cnh6blNuekpYeVdkOWM3NlRVYkx1TnlX?=
- =?utf-8?B?OGlRaTNUSE40UGpMVzl0YTBQL3p6RHc4Q0JaZzc0S1pGeTNoREg2UWdQN0gz?=
- =?utf-8?B?TGRSVGpsdWt0QVVLRU9BSnVmSWg2YmxrblNsUWZGZk8xTm5tSkpvM1JPZ05Q?=
- =?utf-8?Q?aVGcRify3z7cGFf3UO?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6ebfd20-9e10-4448-72b5-08de64012314
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 15:21:58.2216
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iPvfRVZWZV820JdbVB7cK1OWCFYW8yZX3KPGN/TOAvbJ+WBdE7ruLYYsIMKU3t3mx7cIIQQ+zkKc207HHN/99A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8202
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, linux-kernel@vger.kernel.org, 
+ Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Thomas Gleixner <tglx@kernel.org>
+To: Biju <biju.das.au@gmail.com>
+In-Reply-To: <20260204142320.103184-2-biju.das.jz@bp.renesas.com>
+References: <20260204142320.103184-1-biju.das.jz@bp.renesas.com>
+ <20260204142320.103184-2-biju.das.jz@bp.renesas.com>
+Message-Id: <177021852663.2044780.8530228995216202645.robh@kernel.org>
+Subject: Re: [PATCH 1/8] dt-bindings: interrupt-controller:
+ renesas,rzg2l-irqc: Document RZ/G3L SoC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_CC(0.00)[nxp.com,pengutronix.de,google.com,kernel.org,gmail.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-262707-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[bp.renesas.com,kernel.org,glider.be,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-262708-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,1ffc000:email,0.30.132.128:email]
-X-Rspamd-Queue-Id: 7B9EAE8EB9
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,renesas.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,110a0000:email]
+X-Rspamd-Queue-Id: 01424E8E35
 X-Rspamd-Action: no action
 
-On Wed, Feb 04, 2026 at 06:03:55PM +0530, Manivannan Sadhasivam wrote:
-> On Wed, Feb 04, 2026 at 06:44:07AM +0000, Sherry Sun wrote:
-> > > On Tue, Feb 03, 2026 at 09:56:07AM +0800, Sherry Sun wrote:
-> > > > Since describing the PCIe PERST# property under Host Bridge node is
-> > > > now deprecated, it is recommended to add it to the Root Port node, so
-> > > > creating the Root Port node and add the reset-gpios property in Root
-> > > > Port.
-> > > >
-> > > > Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-> > > > ---
-> > > >  arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi |  5 +++++
-> > > >  arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi         | 11 +++++++++++
-> > > >  arch/arm/boot/dts/nxp/imx/imx6qp-sabreauto.dts |  5 +++++
-> > > >  3 files changed, 21 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi
-> > > > b/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi
-> > > > index ba29720e3f72..fe9046c03ddd 100644
-> > > > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi
-> > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi
-> > > > @@ -754,11 +754,16 @@ lvds0_out: endpoint {  &pcie {
-> > > >  	pinctrl-names = "default";
-> > > >  	pinctrl-0 = <&pinctrl_pcie>;
-> > > > +	/* This property is deprecated, use reset-gpios from the Root Port
-> > > > +node. */
-> > > >  	reset-gpio = <&gpio7 12 GPIO_ACTIVE_LOW>;
-> > >
-> > > You should just remove this property.
-> >
-> > Hi Manivannan,
-> >
-> > Actually I have discussed with Frank about this in V1, Frank suggested add
-> > comments here instead of removing the old property, just in case the dts
-> > used by old kernel to avoid function break. Or maybe we can at least keep it
-> > for some kernel release, then remove it later.
-> >
->
-> If the new DT breaks the old kernel, then the kernel needs to be upgraded. But
-> typically, one would update both kernel + DT or just the kernel, not just DT.
 
-But it should not impact bisect. Driver and dts is not in branch. If driver
-applied ahead of dts patch, it should be fine to remove it. But default
-linux-next can't guaratee the merge order.
+On Wed, 04 Feb 2026 14:23:09 +0000, Biju wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+> 
+> Document RZ/G3L (R9A08G046) IRQC bindings. The IRQC block on RZ/G3L SoC
+> is almost identical to one found on the RZ/G3S SoC with the difference
+> like it support more External IRQs, GPT Error Interrupts and also has
+> additional registers for GPT/MTU IRQ selection, shared IRQ selection
+> between external IRQ and TINT. Hence new generic compatible string
+> "renesas,r9a08g046-irqc" is added for RZ/G3L SoC.
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+>  .../renesas,rzg2l-irqc.yaml                   | 66 +++++++++++++++++--
+>  1 file changed, 62 insertions(+), 4 deletions(-)
+> 
 
-To avoid merge complex, keep it for a whole, then clean up it later.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Frank
+yamllint warnings/errors:
 
->
-> - Mani
->
-> > Best Regards
-> > Sherry
-> > >
-> > > >  	vpcie-supply = <&reg_pcie>;
-> > > >  	status = "okay";
-> > > >  };
-> > > >
-> > > > +&pcie_port0 {
-> > > > +	reset-gpios = <&gpio7 12 GPIO_ACTIVE_LOW>; };
-> > > > +
-> > > >  &pwm1 {
-> > > >  	pinctrl-names = "default";
-> > > >  	pinctrl-0 = <&pinctrl_pwm1>;
-> > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-> > > > b/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-> > > > index 76e6043e1f91..eeb376193398 100644
-> > > > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-> > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-> > > > @@ -289,6 +289,17 @@ pcie: pcie@1ffc000 {
-> > > >  				 <&clks IMX6QDL_CLK_PCIE_REF_125M>;
-> > > >  			clock-names = "pcie", "pcie_bus", "pcie_phy";
-> > > >  			status = "disabled";
-> > > > +
-> > > > +			pcie_port0: pcie@0 {
-> > > > +				compatible = "pciclass,0604";
-> > > > +				device_type = "pci";
-> > > > +				reg = <0x0 0x0 0x0 0x0 0x0>;
-> > > > +				bus-range = <0x01 0xff>;
-> > > > +
-> > > > +				#address-cells = <3>;
-> > > > +				#size-cells = <2>;
-> > > > +				ranges;
-> > > > +			};
-> > > >  		};
-> > > >
-> > > >  		aips1: bus@2000000 { /* AIPS1 */
-> > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qp-sabreauto.dts
-> > > > b/arch/arm/boot/dts/nxp/imx/imx6qp-sabreauto.dts
-> > > > index c5b220aeaefd..6b12cab7175f 100644
-> > > > --- a/arch/arm/boot/dts/nxp/imx/imx6qp-sabreauto.dts
-> > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6qp-sabreauto.dts
-> > > > @@ -45,10 +45,15 @@ MX6QDL_PAD_GPIO_6__ENET_IRQ
-> > > 	0x000b1
-> > > >  };
-> > > >
-> > > >  &pcie {
-> > > > +	/* This property is deprecated, use reset-gpios from the Root Port
-> > > > +node. */
-> > > >  	reset-gpio = <&max7310_c 5 GPIO_ACTIVE_LOW>;
-> > > >  	status = "okay";
-> > > >  };
-> > > >
-> > > > +&pcie_port0 {
-> > > > +	reset-gpios = <&max7310_c 5 GPIO_ACTIVE_LOW>; };
-> > > > +
-> > > >  &sata {
-> > > >  	status = "okay";
-> > > >  };
-> > > > --
-> > > > 2.37.1
-> > > >
-> > >
-> > > --
-> > > மணிவண்ணன் சதாசிவம்
->
-> --
-> மணிவண்ணன் சதாசிவம்
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:9: 'irq8' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:10: 'irq9' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:11: 'irq10' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:12: 'irq11' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:13: 'irq12' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:14: 'irq13' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:15: 'irq14' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:16: 'irq15' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:17: 'tint0' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:18: 'tint1' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:19: 'tint2' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:20: 'tint3' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:21: 'tint4' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:22: 'tint5' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:23: 'tint6' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:24: 'tint7' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:25: 'tint8' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:26: 'tint9' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:27: 'tint10' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:28: 'tint11' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:29: 'tint12' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:30: 'tint13' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:31: 'tint14' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:32: 'tint15' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:33: 'tint16' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:34: 'tint17' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:35: 'tint18' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:36: 'tint19' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:37: 'tint20' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:38: 'tint21' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:39: 'tint22' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:40: 'tint23' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:41: 'tint24' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:42: 'tint25' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:43: 'tint26' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:44: 'tint27' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:45: 'tint28' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:46: 'tint29' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.example.dtb: interrupt-controller@110a0000 (renesas,r9a07g044-irqc): interrupt-names:47: 'tint30' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260204142320.103184-2-biju.das.jz@bp.renesas.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
