@@ -1,188 +1,169 @@
-Return-Path: <devicetree+bounces-262633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262634-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yOtrK2U+g2kPkQMAu9opvQ
-	(envelope-from <devicetree+bounces-262633-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 13:41:09 +0100
+	id SMRrGSk/g2kPkQMAu9opvQ
+	(envelope-from <devicetree+bounces-262634-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 13:44:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 273D7E5EDE
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 13:41:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA715E5F42
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 13:44:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8BE8D300F17F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 12:40:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D39DA3009565
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 12:44:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9B673F077F;
-	Wed,  4 Feb 2026 12:40:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 575B13F23A6;
+	Wed,  4 Feb 2026 12:44:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XgxOCnFp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NYVLeejA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 943643F0775
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 12:40:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770208856; cv=pass; b=dAArl0KGyrII7ReoWiALe3ZwwtEy+5lZu2TBA3fN3Px2BBzEkN0Hvj2kANa/KO9FO/SJBO7q51SXHzn3SUvDjsItJU2fzp749q1hZ5A5EbHZddMom/Mf/kij6x1kUgCMNjofROkelfmwBgh5+JouykHjfIgpCRO3OIqXcn9AO5k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770208856; c=relaxed/simple;
-	bh=VVoqN1cbo7saKNRizaznTRjcFiDowh+PjgHqkK04EXg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pMjgyLBvYhvICc8QtOpRWrZGHo1GmsyBxaPALhImlHdKNRwpHS0JqpABqGY+kMpbD6ItpPXxRn8RF3dTAOn0DY+kBUF+aTQN2oPbO+5tOMOuRJxZ+Dt+fKMbgi5AdoG1YdpY4cjFX+6N+mdABNFG9oJHDzJJ8TGFemoUQfOZOIE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XgxOCnFp; arc=pass smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F098D39B48F
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 12:44:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770209061; cv=none; b=RaoAo8vl+HHHsiHlJleKsTp4OYx/qSx+7/OiCYX97jpmgeFlqGdTorGTxFbYciMNlR16rcjv7k4Vw4n63XgsZCTNsBfaKZM7srpbp+LFVUVqH4WMlkj/Fpvs25JaK4V8vCWqTGaIxmiVLYbSEbOzjhoGlNlNQgqfuuls5HZa2QI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770209061; c=relaxed/simple;
+	bh=2ccQeih6irYO5XzSFtymX8LSiL0DW7BGri+FxKdFDR8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hV2Nls9t9wW7mAhzTJwvWT6w2uRHJb60mbBuvkQxv5MH3I8XJdvJKj8u9C5BLnY2+YL7mmFV+D6vffn0KmzPTrkBf7Vwt8I9pljPJUtyGWHmKYY9xDmdxdD+GpSBsHmvH8LG8W88ctHu2w6NXThdEj9GMfQsFNcsGjtTvuBLSfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NYVLeejA; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-4359a16a400so5990260f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 04:40:56 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770208855; cv=none;
-        d=google.com; s=arc-20240605;
-        b=CJWYhGn+YyLdEL1PeiQ6KahNlQTjx7gvNcHzLdeUc03hd8YBpOkSBHaJq/QSv2M3aS
-         NxjzNguBE7DjTuBAkxRjJ2tXkBf1RKeguphDq93CDra3zXVtkLlekREWRmM32IY3TyCg
-         QgoAtL5BEH1h8q3wJ80M9+BU0II4N20XizlL/puic+7zj0jGdaacq3I3TpqNj+NaPXdA
-         NDjLGIaJFT09yqHURBIZ7eHrDx+16iaWR9xKMeNtk4c4FVyRUKOVPgZn5SIi/yyiUiB4
-         wxDH5Epqqdqj9z/gDkC8EtBzF5C7wDO/E8SndoxYHN5lFur0z67LIZ4EkO1TfN3PVjgI
-         5FEw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=m/zIsfoECBdgIZPuFNRz333Sc6yOkWK7EWk2qzyAS08=;
-        fh=o55i7XY4Jqj0aNTMvKPy5m/VtD00Ueo62afOXswOuWs=;
-        b=B33vfVVygQ0riFXRGuqFXjD9cN+tzSA64QnZJgvX5I+NLYMkAkTkPKXUekMI/TM2Na
-         tV+5fH4D8wgE6qRTF2/rTaIHGIC6JxIN8LL9Yu28qcx091k5dEntEIprq/nYyj72Qot2
-         epFjB6OiVhVX1fDxn8LssHEnpDY5rNbBN0HeA7KTM7oKW/k/8EHlqrIjTlI/s9SiA1tB
-         odBMLUguEAavQyuhLr/RJBU0V6aW0bzMPPyBGzbzyw+iGCtDFc+b4eqLSME0lPlhGQY2
-         m1Ti8NYo/c2AI9fY1A77GD/eBQ3e9bMeF+u5soETJHnwcX5M29VJofkm+4bnoS7yLGXZ
-         X0vQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-43590777e22so4220893f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 04:44:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770208855; x=1770813655; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m/zIsfoECBdgIZPuFNRz333Sc6yOkWK7EWk2qzyAS08=;
-        b=XgxOCnFpLIcB14A1aqEtxqTxGYRcjFq2R+iF1g/G5VUZLLl4achDnCyhdFu/2VotNv
-         LY9MiT9k8Wicu+tPAzFZyowDFRtmAbjsOAcqM66SIJZhT4kJEd29ilyOsreQ/H5f6XQs
-         /cc3ApU/IfhiZYMgbwF7uCnjd9/t5aA43XjucmuSNE6UkG+Gy8ClfhS4JX0CADP/YNP2
-         uXEd6w/MNVVlDGqklHl/H5uCrmyGfGJHw4ETON6HTPIbv2OjvZVm1xaiXmsYs31a5XTU
-         IPDe0+IG98N/866vOVNahnRtXxTavtQxwwO+xalzKfes4S37JBAiS6WdbUj++rcS9CaS
-         pRuw==
+        d=gmail.com; s=20230601; t=1770209059; x=1770813859; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=HdeWbr93zk7sz3NtKAzxThy4aGeFCJLtK1+LR0Bzdck=;
+        b=NYVLeejASjOK53lwlOzxLANcaoH9vubIJNtZxO6/TjzGJc+qkfYIEFtucOYzu2T7Iy
+         tGpVQy0XFNf0r438iOZRWdAw6rnAiXI9z9f39jkdRXeLyckWdKSJHzyGIVgQe0Z5t4Fg
+         TGPCNkrse4xVMHYfL/qRKkq1WvvHcj1MahqBbC+IPZ4Va+WNUHM/cITzyGdLRQl3DHsW
+         WD56APQofcq/5FyR2D9TmavUgROtySZjjmyEUJgJ9nwAn69AzRWwsWzQufJOWJkWmy+T
+         tssNBIi8F+/dtZv8LM/T6lGrFEM3un0+NGf5EuiT8oNabtuSENSzG6F+6cCH+3txonGy
+         RQLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770208855; x=1770813655;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=m/zIsfoECBdgIZPuFNRz333Sc6yOkWK7EWk2qzyAS08=;
-        b=UDRkfkBs70lqtjwP7vNFyH5HZdWxrOf8x3gu38cRUzPfMORE6G0X0GC9PUdeaeizWQ
-         mhEXQxSbm4Nc6huORMuu68aUDuqZjjYd5PUTHcv0BHxGXqQhj2Jk/BZeJU2ZUYVojbNz
-         ZaBNPPHWGHlEdO/Y6GHEdQ+TvLuGFcDQ0KQoA6TELMfr368/xCawfo36IPWxkiluofJN
-         Om/RJOjEX36DvKWpXHKtsiy7QhC4fT9veCVTuCEIPKKxNd9WVSUuafImtsn7UdVXBvpb
-         67314XeqrElQW0imNGJjZx/MD8i0ZH120XgP2Slg865eO0Qway2UDMe/GdLLiiECP1iV
-         tsvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUqtQmf7QqTrQpuHZtk4f7q0Q+pFsP+If024von3BB0K/yxMV1HLt9cHDC4898zBYrW/PYDhNrGnzTd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMQao1DvawIOewNshpUAxOWwfPL28TwTlzWsHA9Z41u7rJBwzw
-	AoLjsn6tZir/CNi2hRcDYEY3aj9BqeRguHN8sVZUfPIO8GvzF82JSgWOUVrBqlp72W0hAxnSZR9
-	Txf4UpxUvvDM/V7XRYMTFavNWgS3WFOQ=
-X-Gm-Gg: AZuq6aI2B5Jyi9sXNcNfmzkp40tWMnL2La2Gg3Dc+mMzc1kckf3yvsg9LyCE4ctKE73
-	Rq7/KSitrLGF7o/7W8y5NNyaswxJORGtk+9h2uSe/Y3W3AqI6Qoac2fvkO6Tm3LS60lQEUVTubk
-	Ni8R4AHJEpPoULiUQQ6/OhIlz9jgXzH741VWiagUrliw8GGzT4X7XWxY/EM7O8dOc+oTabOQTnb
-	lMgDHxx0z9DdtP/7pmUUoEvMP79Fm0I88T/AmaFKuPJG3AIRGdtrSYcDt7I41jPPrg9BUDH
-X-Received: by 2002:a05:6000:238a:b0:431:38f:8bc4 with SMTP id
- ffacd0b85a97d-4361805fbf4mr4039864f8f.61.1770208854743; Wed, 04 Feb 2026
- 04:40:54 -0800 (PST)
+        d=1e100.net; s=20230601; t=1770209059; x=1770813859;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HdeWbr93zk7sz3NtKAzxThy4aGeFCJLtK1+LR0Bzdck=;
+        b=Z6eOAvu1LY3h3D7yAw5Yn9nEK4WKoYB/5N6TW/MtA9Kc3ebQfDSkUEzpu/rDsIisvl
+         ZnPChEjYYTQ6pgmNKlIAJL3/+8+kAVZxTSsbZM+T5mCGngdCk8H9EnTv8mn4BWZ0K+0p
+         QDLXVtfB87NycuOIL3SOxpUGPn7bV+JEOcyt3ymbp1PYtWt5dG4c+rM8p5kzhyB+r41k
+         nvunp+GpXyArL1f6rMqwA3pk6pRH/++4F4/NrJtLXFZTYEIfdM2opuAx2xDzA6BYx0Tj
+         MSPGz3zU+lKXAV6llNz10Vepm4tGU/ByhtJxQKgV9qAFcRdOx3EeW9RSU5w5YWK1MHyY
+         nAOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUtkHgaiqyUavKXnzzeas+cD9KV7JKRckSrX2COdfw5JgqZj+F9feUAilxUbQYPeKUTZrK/stJNdbsw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzaityBUEMl5iBDAEusbZRAhUnvZ0udAcP1syVkWVird3EaOjP9
+	xkHa1Q70v39jilWxwsVR+dFiYgUjUuJHxnYwvaOsDQqiWpjCfgmx/Fz+
+X-Gm-Gg: AZuq6aIdKy7fdG4LvLApf5iaC+qmZcEARVfNBVJJsk6f0dxbsFBDu5TmveIvCDaSATn
+	q7/w0rVMT1s9XZjJclh043PWvKg442jCPGfwc4kU7M5rSWT5O//r61ObVRQbOujqw7UqgNoiWSX
+	u8c+kctA9F4r83HPVmFrivGoHTk6VTRFWAkbNGurJADThuEHg9aSCR32x7z0GwHmnC5x+y1ccg8
+	jE6T+d1X7yFyP0OPFG5mVrlhgJjoOcpZIFKy2427poFUuY3oGcrCO3C/yJ2Uk5CVDPf8fZf8Z8a
+	yAepqwnQgwLl1uMFpIK3sALX17d8TlwrmZTVeH5sQgfroelVryIzt0xDALQNsr576N9aVmBWWM+
+	EsKAeH5JRxSy5E0Z9l/ciRKLpF5Gfq28eewphAWVY9rqWCEeU0mBE6zLbIUkvGvUfIHJdI9JBHL
+	F6Ox+Skd4=
+X-Received: by 2002:a05:6000:2086:b0:435:ad52:31d9 with SMTP id ffacd0b85a97d-436180321b0mr4035154f8f.28.1770209059152;
+        Wed, 04 Feb 2026 04:44:19 -0800 (PST)
+Received: from legfed1 ([2a00:79c0:684:8900:e22:b7ee:dcfc:b04a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43618058473sm6521891f8f.22.2026.02.04.04.44.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Feb 2026 04:44:18 -0800 (PST)
+Date: Wed, 4 Feb 2026 13:44:16 +0100
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: dimitri.fedrau@liebherr.com, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] power: supply: gpio-charger: add support for
+ fast-charge timer
+Message-ID: <20260204124416.GA3066@legfed1>
+References: <20260109-gpio-charger-timer-v2-0-63fd1ba75830@liebherr.com>
+ <20260109-gpio-charger-timer-v2-2-63fd1ba75830@liebherr.com>
+ <aX0tJLqfY7b9oNAi@venus>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260201104343.79231-1-clamor95@gmail.com> <20260201104343.79231-3-clamor95@gmail.com>
- <2026020350-unrevised-humming-7a42@gregkh> <CAPVz0n35NkEXjur-oJhW6Yxwme_KMLdYCnRAtjHEWSPEVrSUXQ@mail.gmail.com>
- <2026020346-ashamed-campfire-b483@gregkh> <CAPVz0n2HmLwdif5ry+y56LB8Gpwh2o9_gJ7K2jhcZVR=rPgfPA@mail.gmail.com>
- <2026020314-humbling-mobility-c24a@gregkh> <CAPVz0n0TMOCYnMiVUZ7xx-1SqrXuaVCOY-o4-x9L=f-xSMDj8g@mail.gmail.com>
- <2026020347-mushy-lunar-d12d@gregkh>
-In-Reply-To: <2026020347-mushy-lunar-d12d@gregkh>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Wed, 4 Feb 2026 14:40:43 +0200
-X-Gm-Features: AZwV_Qgnx8Hqpc3gLtz5e76GzgExX_xLHyQNYXgz5FpI0RojQ_lqa8cEDXcBX9o
-Message-ID: <CAPVz0n0jrRxPQD-g7Pq-koDTW1Wr_FxNZc-SmY2-eE71dfei+Q@mail.gmail.com>
-Subject: Re: [PATCH v1 2/9] misc: Support Asus Transformer's EC access device
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Sebastian Reichel <sre@kernel.org>, 
-	=?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>, 
-	Ion Agorria <ion@agorria.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aX0tJLqfY7b9oNAi@venus>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262633-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262634-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,arndb.de,rere.qmqm.pl,agorria.com,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,linuxfoundation.org:email]
-X-Rspamd-Queue-Id: 273D7E5EDE
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dimafedrau@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[liebherr.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DA715E5F42
 X-Rspamd-Action: no action
 
-=D0=B2=D1=82, 3 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 18:58 Greg =
-Kroah-Hartman <gregkh@linuxfoundation.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Tue, Feb 03, 2026 at 06:50:01PM +0200, Svyatoslav Ryhel wrote:
-> > > debugfs allows you to do much much more than simple stuff like
-> > > BIN_ATTR_RW().  Go wild there, but don't put debugging stuff in sysfs=
-,
-> > > that is NOT what it is there for at all, but rather, that is exactly
-> > > what debugfs is for.
-> > >
-> >
-> > I am removing said stuff from sysfs, that is not what I am asking.
-> > Debugs does not allow to upload register values in a form of binary
-> > block. It allows only dumping via debugfs_create_blob or
-> > debugfs_create_regset32 but not writing. If you know examples of
-> > reading and writing register sets as binary data, please point me to
-> > it.
->
-> You can easily write your own given that debugfs allows you to use what
-> ever file operations you want to use for a file.  Why not just use that?
->
-> > I am asking if it is possible only to preserve dockram_read/write
-> > functions in the code, without exposing it to sysfs.
->
-> Why would you want to do that?
+Am Fri, Jan 30, 2026 at 11:19:44PM +0100 schrieb Sebastian Reichel:
+> Hi,
+> 
+> On Fri, Jan 09, 2026 at 07:41:20PM +0100, Dimitri Fedrau via B4 Relay wrote:
+> > From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> > 
+> > On some devices like TIs BQ24081 battery charger it is possible to activate
+> > or deactivate a fast-charge timer that provides a backup safety for charge
+> > termination. In case of the BQ24081 it is a fixed 7-hour timer. Add support
+> > for enabling/disabling the fast-charge timer via GPIO.
+> > 
+> > Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> > ---
+> 
+> The documentation is missing _a lot of information_. What happens
+> when the fast-charge timer is disabled? What happens when it is
+> enabled and times out? What do you expect users to do with this
+> control knob?
 >
 
-Nevermind, everything is good. I have figured it out hopefully.
+Yes, you are right. Will add the missing information for the BQ24081.
+When the timer is enabled and 7-hours are passed the device will enter
+state "Timer fault" where charging is disabled and cannot be enabled
+without powering the device down and up again.
 
-> confused,
->
-> greg k-h
+Disabling the timer will just deactive the mechanism above but charging
+is not affected by it.
+
+It's just a safety feature that can be turned on/off.
+
+Will add this information, am I missing anything else ?
+
+Best regards,
+Dimitri Fedrau
+
+[...]
 
