@@ -1,81 +1,63 @@
-Return-Path: <devicetree+bounces-262721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262722-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mMwPMepxg2mFmwMAu9opvQ
-	(envelope-from <devicetree+bounces-262721-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 17:20:58 +0100
+	id GMcuC+xyg2mFmwMAu9opvQ
+	(envelope-from <devicetree+bounces-262722-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 17:25:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31596EA1C4
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 17:20:58 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E0B1EA2E4
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 17:25:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 51121313513A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 15:47:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 432FC305450C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 15:58:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D434341322E;
-	Wed,  4 Feb 2026 15:47:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0305421A1B;
+	Wed,  4 Feb 2026 15:58:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="mVzufcXf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kqnwv+C8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32E2D36F41D
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 15:47:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE5440FD98;
+	Wed,  4 Feb 2026 15:58:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770220025; cv=none; b=ceEVpTXqIlxKrrjejRz3PzR+n8xM9ltCKG1hoGyURkLhmteTngxlLUBQFp+ULh8soUQM47nG+eIE8fe/NWrYqAoWboCgV65vYnkUVD9tHCshQcgNdHYM0vspHJcuaOkfYLiDflOAjaSt2XJ10jFkGt10hbfhpGnDhB5dZhvgBIM=
+	t=1770220721; cv=none; b=YaZQWPWPbysk3LPmBvUH/jKcGrvyO2Xf+S/wcuT0jxgWeCvNlboVsb8A1DxmxmdKDk8BOuTXJupFytfxSrcVWVhQDg9zReD9t2XrNTxPVwgPDsgPf4b6yfjwoDS6fHnk4pr1YEwkgcsw3i6/fMJRiV1IBZWqJeJxJ3fdDCa1wuY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770220025; c=relaxed/simple;
-	bh=NhBMhptCDXkwpcXyoAjy4paUP5kVjoY/noDcDnftIxM=;
+	s=arc-20240116; t=1770220721; c=relaxed/simple;
+	bh=fXIO50BxCOvj19SX/PYIBMX1v096vG7DR657MgvfepU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ILFUhN+pnImh+cqCWX0f+idxY8pkd+lmB3r62X5lEJHOg5d9tkY/6yugQ3+4tw9kNo4usHb3J+KpyCAbt6i6TmjqyWjIco+KcG/nzyEavcM5IdVD38m5s9eAvzMENTQm7rYpV0L55D4oDeMh39zv3YfpkgZhyLyBaBGYRakttsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=mVzufcXf; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=9pjd
-	1Z0abUIs/vb7jSYDYMKbNGzdvIiPE6k3qOxN4n0=; b=mVzufcXf2pCcfgow2H4I
-	4WfypG+vvaw0CzCW++E6pTpghodG+FWoDs6BVs6KJ0S5ax+QoUq9WKejdXaFgdDC
-	zLja6YCEkfnadgfeB1VGSe2SCvda7B7N7i2L8+ThOPWO9qFK20FjQCcWYDFmzdBC
-	20U6oQTvaFskSjER5kpMuCM4lZEjNlShSfl00FqW0aiQcE2/I0pnskekj+3kXGSG
-	4vayQRhLxRv0jJveM/536o64o1xRf/RQb4L8pfKRfs7W9BdcEh6qNzsELNadNr4O
-	XcQcEjfYwfip0kGKCO/okuRxMzt2MGQVFxckDlBloIeyrt5bstYIvkkuhSTgNxB3
-	cg==
-Received: (qmail 2418933 invoked from network); 4 Feb 2026 16:47:02 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 4 Feb 2026 16:47:02 +0100
-X-UD-Smtp-Session: l3s3148p1@UtCVdwFKnOkqAAAQagvIAoH29ntsUY5F
-Date: Wed, 4 Feb 2026 16:47:01 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Peter Rosin <peda@axentia.se>, Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
-	Janusz Krzysztofik <jmkrzyszt@gmail.com>,
-	Vignesh R <vigneshr@ti.com>, Andi Shyti <andi.shyti@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	Jon Nettleton <jon@solid-run.com>,
-	Mikhail Anikin <mikhail.anikin@solid-run.com>,
-	linux-can@vger.kernel.org, linux-phy@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v8 7/7] mmc: host: renesas_sdhi_core: support selecting
- an optional mux
-Message-ID: <aYNp9Uqj-Sq67T7N@shikoro>
-References: <20260203-rz-sdio-mux-v8-0-024ea405863e@solid-run.com>
- <20260203-rz-sdio-mux-v8-7-024ea405863e@solid-run.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=lpmd6kM77PVlgZzxTkhpABbBcqUs4GJa5u9FxcFvZsWlO6uAUWVYACKz0/gMjF1HP7UosEAohxUBd+qgCWLvt5rgoiMFk+lAXVlHCuyEDPBcK3csmOOtveMokvH9PNiZekHtVlcuc3Sq1cI4YJCEM53vr2bPI+Ej9s/oP99+daU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kqnwv+C8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BC44C4CEF7;
+	Wed,  4 Feb 2026 15:58:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770220721;
+	bh=fXIO50BxCOvj19SX/PYIBMX1v096vG7DR657MgvfepU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kqnwv+C8nMWAHhlk9ovqaF5hQpA6Io/TvuR1dwDelYJR7xE8KrwKmq0Zt7FQBrhhi
+	 Bz4zOOqg2DqMFGZ3kw2qKMhpL3RoyLNnAICEyGv9O6X1gmJ0dIjlhGsAOVj96luc+/
+	 QwsIwKxk35FnOYujaeJIStWhMwUZ+q2nzyUVBIyIVsGp05AkWVHCs1yhNFVH1VMXY8
+	 6czPwUV4KfiA189stlhbQ1bhMQfOzRyaKGeey38pjBVGg/34w31WnprdOzHeQQq9+V
+	 M+O8LP2v/0FTfHRSJRt7Y0NaR8kVPFFuBD7XBgIfQ8c2UCsd2UyaIGYuVLw2OvijbF
+	 +de6EYCBdh06A==
+Date: Wed, 4 Feb 2026 16:58:37 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+Cc: bryan.odonoghue@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
+	hverkuil-cisco@xs4all.nl, loic.poulain@oss.qualcomm.com, rfoss@kernel.org, 
+	linux-i2c@vger.kernel.org, cros-qcom-dts-watchers@chromium.org, quic_svankada@quicinc.com, 
+	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Subject: Re: [PATCH v9 1/5] dt-bindings: i2c: qcom-cci: Document qcs8300
+ compatible
+Message-ID: <aYNqLdPid_GeTryc@zenone.zhora.eu>
+References: <20260121183142.1867199-1-quic_nihalkum@quicinc.com>
+ <20260121183142.1867199-2-quic_nihalkum@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,62 +66,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260203-rz-sdio-mux-v8-7-024ea405863e@solid-run.com>
+In-Reply-To: <20260121183142.1867199-2-quic_nihalkum@quicinc.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262722-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[sang-engineering.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262721-lists,devicetree=lfdr.de,renesas];
-	RCPT_COUNT_TWELVE(0.00)[31];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,xs4all.nl,oss.qualcomm.com,vger.kernel.org,chromium.org,quicinc.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,solid-run.com,vger.kernel.org,lists.infradead.org];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FROM_NEQ_ENVFROM(0.00)[andi.shyti@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sang-engineering.com:email,sang-engineering.com:dkim,solid-run.com:email]
-X-Rspamd-Queue-Id: 31596EA1C4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[zenone.zhora.eu:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linaro.org:email]
+X-Rspamd-Queue-Id: 3E0B1EA2E4
 X-Rspamd-Action: no action
 
-On Tue, Feb 03, 2026 at 03:01:40PM +0200, Josua Mayer wrote:
-> Some hardware designs route data or control signals through a mux to
-> support multiple devices on a single sdhi controller.
-> 
-> In particular SolidRun RZ/G2L/G2LC/V2L System on Module use a mux for
-> switching between soldered eMMC and an optional microSD on a carrier
-> board, e.g. for development or provisioning.
-> 
-> SD/SDIO/eMMC are not well suited for runtime switching between different
-> cards, however boot-time selection is possible and useful - in
-> particular considering dt overlays.
-> 
-> Add support for an optional SD/SDIO/eMMC mux defined in dt, and select
-> it during probe.
-> 
-> Similar functionality already exists in other places, e.g. i2c-omap.
-> 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
+Hi Nihal,
 
-And to confirm the obvious, no regression found on a Renesas SparrowHawk
-(R-Car V4H) not using muxes:
+On Thu, Jan 22, 2026 at 12:01:38AM +0530, Nihal Kumar Gupta wrote:
+> The three instances of CCI found on the QCS8300 are functionally the same
+> as on a number of existing Qualcomm SoCs.
+> 
+> Introduce a new SoC-specific compatible string "qcom,qcs8300-cci" with a
+> common fallback.
+> 
+> Signed-off-by: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+just this patch merged to i2c/i2c-host-2(*)
 
+Thanks,
+Andi
+
+(*) The pull request for i2c/i2c-host-2 will be sent in the
+middle of the merge window.
 
