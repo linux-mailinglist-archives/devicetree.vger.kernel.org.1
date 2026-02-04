@@ -1,405 +1,327 @@
-Return-Path: <devicetree+bounces-262642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262640-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SIxWJRhHg2nqkgMAu9opvQ
-	(envelope-from <devicetree+bounces-262642-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 14:18:16 +0100
+	id MJrwErBGg2nqkgMAu9opvQ
+	(envelope-from <devicetree+bounces-262640-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 14:16:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23782E64F8
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 14:18:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D39BCE6499
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 14:16:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2308130094FB
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 13:16:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6C1A23009B23
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 13:14:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 056CC224AF9;
-	Wed,  4 Feb 2026 13:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9D5407595;
+	Wed,  4 Feb 2026 13:14:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="fD06VEke"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="SW62mAuN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ixit.cz [185.100.197.86])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75C752222C5;
-	Wed,  4 Feb 2026 13:16:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8248F3C196E;
+	Wed,  4 Feb 2026 13:14:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770210988; cv=none; b=Yr5d+krkaXzp4M9wXNQCajghaqmkYU7lzX/RHHPoV89EWyAkdaLn7j7Nh7eKoUTZn5R1IgtIDkSVnxRhp55uqwkDQiBWnGxEbLbOiu2EU7idxKnw3tm4gW2xmH1o8ORzPrORlUDrwfxzH7kUxuCGCZTM57aCdnPDRmpu2CefXe0=
+	t=1770210896; cv=none; b=NwVDDVoLS3ayyTvbdXcD0SWeI8WTfzAfhxNKD1uXQIDxufCJXc9aAUO+yJG8J07ZDuswW3HEdzgRbJPqp/tC0ASdr0E65NXrlNvTzeh+kg9YOFl9y3/4sS1yBDt7pboHH0VfkQ1WkBWfhojJg82MoLIFeYHlXPDNd5N0rGo3txM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770210988; c=relaxed/simple;
-	bh=HNPbsnzwv8Hjk7w14DUJwsGN9GXMI6fChx2nc7bPYS0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VZeaKBop1hlvtd+vxM/V56MyzvNJ3hDhEtC3c4JTubvnAnA3GPYdiCU+EqK1ZRpldWd1fU/Fuh9ixrYae0ZqWpUWJqOJ88AhhsdycrsZFw5BmYVXx8nlOwpmYELd0ab2im1iABQtRRbaw4Pb7BbfdXCXiUERRiwofYVggPP1Av8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=fD06VEke; arc=none smtp.client-ip=185.100.197.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [IPV6:2a02:f000:10bd:e301::f31] (unknown [IPv6:2a02:f000:10bd:e301::f31])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 6AAD45340364;
-	Wed, 04 Feb 2026 14:10:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1770210612;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=U2PmAO3LlepvlLH+LZZQMJG6BqIl1Rntwm3r7P7FVq8=;
-	b=fD06VEker9IllFQSFz2QnCScIaFwERTzU9eSyNxrOZcnKs/2ZuH9/vPgOdK5kFsm+2Niwj
-	u/fNRsdF5I56gqU9RnUP9m/LezZ3sX5rGs2+g9nNTO7mBuW/JBckJUz4MWIBdZz/qoRX1E
-	E/4XEvuVwxpnkFKdFoSFJmJxuC4Y7DY=
-Message-ID: <365e02e9-eb36-4870-afd4-d337a628794b@ixit.cz>
-Date: Wed, 4 Feb 2026 14:10:11 +0100
+	s=arc-20240116; t=1770210896; c=relaxed/simple;
+	bh=Nfoc7+w8xyU2KFGJ2g3NVQQ2nhWSMSasZ+FAcVUen80=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a4wgNHSV6uwOKNAhjTGdIcfSffOkr3LDn2bmxJn3tvsEQ30RCI3HwUs0axo9DIvnWdpt/4IXiiGzYnR2KKoUiH48773UGJAucoeVSbf+CtDY3ievLzRhDqInPCK7U5MeyVd3lOtp3bdPQko/VE52Er7uzKblYiiIzUZwMXv9YDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=SW62mAuN; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (net-93-65-100-155.cust.vodafonedsl.it [93.65.100.155])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id F27EE833;
+	Wed,  4 Feb 2026 14:14:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1770210851;
+	bh=Nfoc7+w8xyU2KFGJ2g3NVQQ2nhWSMSasZ+FAcVUen80=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SW62mAuNolLJ3881WEkiRfWmRZ7eOwd1Yxnnwtck+8ragCUiX/rLIPtsBJbOrxW9D
+	 0fvs2A8APWQEb0vKEsUyIkHZ2lbtjLzm/qWc5TebIwoIBffoMNTSZPSgG5bw4mW7dW
+	 fGDjUmRwD8Bu154pgyIyRLk6ILo7WeeW1ryMoA5o=
+Date: Wed, 4 Feb 2026 14:14:50 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Antoine Bouyer <antoine.bouyer@nxp.com>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	julien.vuillaumier@nxp.com, alexi.birlinger@nxp.com, daniel.baluta@nxp.com, peng.fan@nxp.com, 
+	frank.li@nxp.com, laurent.pinchart@ideasonboard.com, mchehab@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC v1 01/11] media: uapi: v4l2-isp: Add v4l2 ISP extensible
+ statistics definitions
+Message-ID: <aYNEtmJwnAtYitHO@zed>
+References: <20260123080938.3367348-1-antoine.bouyer@nxp.com>
+ <20260123080938.3367348-2-antoine.bouyer@nxp.com>
+ <aYIb8ZIZDfCJZEZ9@zed>
+ <71b57f1c-be22-46a2-89a2-5abae11e0436@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add Xiaomi 12 Lite 5G (taoyao) DTS
-To: Stanislav Zaikin <zstaseg@gmail.com>, devicetree@vger.kernel.org
-Cc: linux-arm-msm@vger.kernel.org, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org
-References: <20260204115645.1343750-1-zstaseg@gmail.com>
- <20260204115645.1343750-3-zstaseg@gmail.com>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <20260204115645.1343750-3-zstaseg@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <71b57f1c-be22-46a2-89a2-5abae11e0436@nxp.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262642-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
-	DKIM_TRACE(0.00)[ixit.cz:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_FROM(0.00)[bounces-262640-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[ideasonboard.com,nxp.com,kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.infradead.org];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jacopo.mondi@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 23782E64F8
+X-Rspamd-Queue-Id: D39BCE6499
 X-Rspamd-Action: no action
 
-On 04/02/2026 12:56, Stanislav Zaikin wrote:
-> Xiaomi 12 Lite 5G is a handset released in 2022
-> 
-> This commit has the following features working:
-> - Display (with simple fb)
-> - Touchscreen
-> - UFS
-> - Power and volume buttons
-> - Pinctrl
-> - RPM Regulators
-> - Remoteprocs - wifi, bluetooth
-> - USB (Device Mode)
-> 
-> Signed-off-by: Stanislav Zaikin <zstaseg@gmail.com>
-> ---
->   arch/arm64/boot/dts/qcom/Makefile             |   1 +
->   .../boot/dts/qcom/sm7325-xiaomi-taoyao.dts    | 866 ++++++++++++++++++
->   2 files changed, 867 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/sm7325-xiaomi-taoyao.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 6f34d5ed331c..61618da3f68c 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -280,6 +280,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm7125-xiaomi-curtana.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sm7125-xiaomi-joyeuse.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sm7225-fairphone-fp4.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sm7325-nothing-spacewar.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sm7325-xiaomi-taoyao.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-hdk.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-microsoft-surface-duo.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-mtp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sm7325-xiaomi-taoyao.dts b/arch/arm64/boot/dts/qcom/sm7325-xiaomi-taoyao.dts
-> new file mode 100644
-> index 000000000000..b3d2c8d3022e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm7325-xiaomi-taoyao.dts
-> @@ -0,0 +1,866 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-> +/*
-> + * Copyright (c) 2025, Stanislav Zaikin <zstaseg@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +/* PM7250B is configured to use SID8/9 */
-> +#define PM7250B_SID 8
-> +#define PM7250B_SID1 9
-> +
-> +#include <dt-bindings/arm/qcom,ids.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pm7325.h>
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include <dt-bindings/sound/qcom,q6afe.h>
-> +#include <dt-bindings/sound/qcom,q6asm.h>
-> +
-> +#include "sm7325.dtsi"
-> +#include "pm7325.dtsi"
-> +#include "pm7250b.dtsi" /* PM7250B */
-> +#include "pm8350c.dtsi" /* PM7350C */
-> +#include "pmk8350.dtsi" /* PMK7325 */
-> +
-> +/* The following reserved memory regions have different addresses or sizes */
-> +/delete-node/ &adsp_mem;
-> +/delete-node/ &cdsp_mem;
-> +/delete-node/ &rmtfs_mem;
-> +
-> +/ {
-> +	model = "Xiaomi 12 Lite 5G";
-> +	compatible = "xiaomi,taoyao", "qcom,sm7325";
-> +	chassis-type = "handset";
-> +
-> +	aliases {
-> +		serial0 = &uart5;
-> +		serial1 = &uart7;
-> +	};
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		framebuffer0: framebuffer@e1000000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0x0 0xe1000000 0x0 (1080 * 2400 * 4)>;
+Hi Antoine
 
-Hello Stanislav.
+On Wed, Feb 04, 2026 at 12:07:41PM +0100, Antoine Bouyer wrote:
+> Hi Jacopo
+>
+> On 2/3/26 5:15 PM, Jacopo Mondi wrote:
+> >
+> >
+> > Hi Antoine
+> >    thanks a lot for extendable stats
+> >
+> > On Fri, Jan 23, 2026 at 09:09:28AM +0100, Antoine Bouyer wrote:
+> > > Extend the v4l2-isp extensible format introduced for isp parameters buffer
+> > > to the statistics buffer as well.
+> > >
+> > > Like for ISP configuration purpose, that will help supporting various ISP
+> > > hardware versions reporting different statistics data with less impact on
+> > > userspace.
+> > >
+> > > The `v4l2_isp_stats_buffer` reuses the `v4l2_isp_params_buffer` container
+> > > definitions, with similar header, versions and flags. V0 and V1 versions
+> >
+> > Why do you need two flags ?
+> >
+> > Params had to introduce two because we had two drivers already
+> > mainlined using the pre-v4l2-isp version of extensible params which
+> > had defined their version identifier as 1 and 0 and we didn't want to
+> > break existing userspace using those identifiers. So we had to accept
+> > both V0 and V1 as "first version of the v4l2-isp extensible parameters
+> > format".
+> >
+> > For stats we don't have users, so I guess we can start with V1 == 0 ?
+>
+> I wanted to keep it aligned with params, so that any driver/userspace can
+> use the same API version value for both params and stats buffers, and limit
+> headache.
+>
+> >
+> > > are provided to match with params versions. On the other side, ENABLE and
+> > > DISABLE flags are not really meaningfull for statistics purpose. So VALID
+> > > and INVALID flags are introduced. Purpose is to force ISP driver to
+> > > validate a statistics buffer, before it is consumed by userspace.
+> >
+> > Interesting. What do you mean with "validate a statistics buffer" ?
+> > And if a driver has to do validation, why would it send upstream a
+> > non-validated buffer ?
+>
+> Like for version, I wanted to keep same header structure, including flags.
+> Since ENABLE/DISABLE is not relevant for statistics, I thought about using a
+> "validation" flag, to force driver confirming statistics blocks are valid or
+> not.
 
-Use memory-region instead of reg property pointing to framebuffer.
+See the question on the documentation patches.
 
-Happy to see the phone progressing towards mainline support!
+>
+> If you feel it is useless, I'm fine with removing it. Should I keep a flag
+> field anyway to stay aligned with params then ?
+>
 
-David
+RkISP1 has support for both "legacy" and "extensible" formats because
+it has been mainline for a long time with the legacy format only. We
+couldn't simply replace the existing format with the new one because
+we would break existing users.
 
-> +			width = <1080>;
-> +			height = <2400>;
-> +			stride = <(1080 * 4)>;
-> +			format = "a8r8g8b8";
-> +
-> +			clocks = <&gcc GCC_DISP_HF_AXI_CLK>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-0 = <&key_vol_up>;
-> +		pinctrl-names = "default";
-> +
-> +		key-volume-up {
-> +			label = "Volume Up";
-> +			gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEUP>;
-> +		};
-> +	};
-> +
-> +	pmic-glink {
-> +		compatible = "qcom,sm7325-pmic-glink",
-> +			     "qcom,qcm6490-pmic-glink",
-> +			     "qcom,pmic-glink";
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		orientation-gpios = <&tlmm 140 GPIO_ACTIVE_HIGH>;
-> +
-> +		connector@0 {
-> +			compatible = "usb-c-connector";
-> +			reg = <0>;
-> +			power-role = "dual";
-> +			data-role = "dual";
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					pmic_glink_hs_in: endpoint {
-> +						remote-endpoint = <&usb_1_dwc3_hs>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +
-> +					pmic_glink_sbu: endpoint {
-> +						remote-endpoint = <&fsa4480_sbu_mux>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	vreg_oled_dvdd: regulator-oled-dvdd {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "oled_dvdd";
-> +		regulator-min-microvolt = <1200000>;
-> +		regulator-max-microvolt = <1200000>;
-> +		gpio = <&tlmm 46 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		vin-supply = <&vreg_s1b_1p856>;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	// S2B is really ebi.lvl but it's there for supply map completeness sake.
-> +	vreg_s2b_0p7: regulator-smpa3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vreg_s2b_0p7";
-> +
-> +		regulator-min-microvolt = <700000>;
-> +		regulator-max-microvolt = <700000>;
-> +		regulator-always-on;
-> +		vin-supply = <&vph_pwr>;
-> +	};
-> +
-> +	vph_pwr: regulator-vph-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph_pwr";
-> +		regulator-min-microvolt = <3700000>;
-> +		regulator-max-microvolt = <3700000>;
-> +	};
-> +
-> +	reserved-memory {
-> +		cdsp_secure_heap_mem: cdsp-secure-heap@81800000 {
-> +			reg = <0x0 0x81800000 0x0 0x1e00000>;
-> +			no-map;
-> +		};
-> +
-> +		camera_mem: camera@86200000 {
-> +			reg = <0x0 0x86200000 0x0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		adsp_mem: adsp@86700000 {
-> +			reg = <0x0 0x86700000 0x0 0x4000000>;
-> +			no-map;
-> +		};
-> +
-> +		/* Mainline video_mem is downstream cvp_mem */
-> +		real_video_mem: video@8ad00000 {
-> +			reg = <0x0 0x8ad00000 0x0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		ipa_gsi_mem: ipa-gsi@8b710000 {
-> +			reg = <0x0 0x8b710000 0x0 0xa000>;
-> +			no-map;
-> +		};
-> +
-> +		cdsp_mem: cdsp@9c700000 {
-> +			reg = <0x0 0x9c700000 0x0 0x1e00000>;
-> +			no-map;
-> +		};
-> +
-> +		ramoops@a9000000 {
-> +			compatible = "ramoops";
-> +			reg = <0x0 0xa9000000 0x0 0x200000>;
-> +			pmsg-size = <0x200000>;
-> +			mem-type = <0x02>;
-> +		};
-> +
-> +		removed_mem: removed@c0000000 {
-> +			reg = <0x0 0xc0000000 0x0 0x6800000>;
-> +			no-map;
-> +		};
-> +
-> +		pil_trustedvm_mem: pil-trustedvm-region@d0800000 {
-> +			reg = <0x0 0xd0800000 0x0 0x76f7000>;
-> +			no-map;
-> +		};
-> +
-> +		qrtr_shmem: qrtr-shmem@d7ef7000 {
-> +			reg = <0x0 0xd7ef7000 0x0 0x9000>;
-> +			no-map;
-> +		};
-> +
-> +		neuron_block_0_mem: neuron-block@d7f00000 {
-> +			reg = <0x0 0xd7f00000 0x0 0x80000>;
-> +			no-map;
-> +		};
-> +
-> +		neuron_block_1_mem: neuron-block@d7f80000 {
-> +			reg = <0x0 0xd7f80000 0x0 0x80000>;
-> +			no-map;
-> +		};
-> +
-> +		framebuffer@e1000000 {
-> +			reg = <0x0 0xe1000000 0x0 (1080 * 2400 * 4)>;
-> +			no-map;
-> +		};
-> +
+All the other drivers that have been upstreamed with extensible only
+(Amlogic C3 and Mali C55) do not expose a legacy format as there was
+not prior version in mainline on which userspace might depend on.
 
-[...]
+Unless you have very convincing reason, I would certainly drop the
+legacy format and only use extensible.
+
+Thanks
+  j
+
+> >
+> > >
+> > > Signed-off-by: Antoine Bouyer <antoine.bouyer@nxp.com>
+> > > ---
+> > >   include/uapi/linux/media/v4l2-isp.h | 85 +++++++++++++++++++++++++++++
+> > >   1 file changed, 85 insertions(+)
+> > >
+> > > diff --git a/include/uapi/linux/media/v4l2-isp.h b/include/uapi/linux/media/v4l2-isp.h
+> > > index 779168f9058e..ed1279b86694 100644
+> > > --- a/include/uapi/linux/media/v4l2-isp.h
+> > > +++ b/include/uapi/linux/media/v4l2-isp.h
+> > > @@ -99,4 +99,89 @@ struct v4l2_isp_params_buffer {
+> > >        __u8 data[] __counted_by(data_size);
+> > >   };
+> > >
+> > > +/**
+> > > + * enum v4l2_isp_stats_version - V4L2 ISP statistics versioning
+> > > + *
+> > > + * @V4L2_ISP_STATS_VERSION_V0: First version of the V4L2 ISP statistics format
+> > > + *                          (for compatibility)
+> > > + * @V4L2_ISP_STATS_VERSION_V1: First version of the V4L2 ISP statistics format
+> > > + *
+> > > + * V0 and V1 are identical, and comply with V4l2 ISP parameters versions. So
+> > > + * both V0 and V1 refers to the first version of the V4L2 ISP statistics
+> > > + * format.
+> > > + *
+> > > + * Future revisions of the V4L2 ISP statistics format should start from the
+> > > + * value of 2.
+> > > + */
+> > > +enum v4l2_isp_stats_version {
+> > > +     V4L2_ISP_STATS_VERSION_V0 = 0,
+> > > +     V4L2_ISP_STATS_VERSION_V1,
+> >
+> > As suggested I would make V1 == 0
+> >
+> > > +};
+> > > +
+> > > +#define V4L2_ISP_PARAMS_FL_BLOCK_VALID               (1U << 0)
+> > > +#define V4L2_ISP_PARAMS_FL_BLOCK_INVALID     (1U << 1)
+> > > +
+> > > +/*
+> > > + * Reserve the first 8 bits for V4L2_ISP_STATS_FL_* flag.
+> > > + *
+> > > + * Driver-specific flags should be defined as:
+> > > + * #define DRIVER_SPECIFIC_FLAG0     ((1U << V4L2_ISP_STATS_FL_DRIVER_FLAGS(0))
+> > > + * #define DRIVER_SPECIFIC_FLAG1     ((1U << V4L2_ISP_STATS_FL_DRIVER_FLAGS(1))
+> > > + */
+> > > +#define V4L2_ISP_STATS_FL_DRIVER_FLAGS(n)       ((n) + 8)
+> >
+> > Currently we have no users of V4L2_ISP_PARAMS_FL_DRIVER_FLAGS so we
+> > could even consider making it a V4L2_ISP_FL_DRIVER_FLAGS
+> >
+> > Or do you think it is worth creating a new symbol ?
+>
+> To limit impact on potential on-going development, and future conflict,
+> creating new symbol may be safer IMO. But I'm fine with using a single
+> symbol if you prefer. Most probably this flag customization is not used yet
+> by any driver.
+>
+> >
+> > > +
+> > > +/**
+> > > + * struct v4l2_isp_stats_block_header - V4L2 extensible statistics block header
+> > > + * @type: The statistics block type (driver-specific)
+> > > + * @flags: A bitmask of block flags (driver-specific)
+> > > + * @size: Size (in bytes) of the statistics block, including this header
+> > > + *
+> > > + * This structure represents the common part of all the ISP statistics blocks.
+> > > + * Each statistics block shall embed an instance of this structure type as its
+> > > + * first member, followed by the block-specific statistics data.
+> > > + *
+> > > + * The @type field is an ISP driver-specific value that identifies the block
+> > > + * type. The @size field specifies the size of the parameters block.
+> > > + *
+> > > + * The @flags field is a bitmask of per-block flags V4L2_STATS_ISP_FL_* and
+> > > + * driver-specific flags specified by the driver header.
+> > > + */
+> > > +struct v4l2_isp_stats_block_header {
+> > > +     __u16 type;
+> > > +     __u16 flags;
+> > > +     __u32 size;
+> > > +} __attribute__((aligned(8)));
+> > > +
+> >
+> > This is currently identical to v4l2_isp_params_block_header.
+> >
+> > Can we create a single header for both stats and params and provide a
+> >
+> > #define v4l2_isp_params_block_header v4l2_isp_block_header
+> >
+> > for maintaining compatibility with existing users ?
+> >
+> > Or do you expect stats and params to eventually need different headers ?
+> >
+>
+> Current approach is to use same structure definitions as for params. So I'm
+> fine with creating a single header as suggested, and provide symbols to keep
+> compatibility.
+>
+> > > +/**
+> > > + * struct v4l2_isp_stats_buffer - V4L2 extensible statistics data
+> > > + * @version: The statistics buffer version (driver-specific)
+> > > + * @data_size: The statistics data effective size, excluding this header
+> > > + * @data: The statistics data
+> > > + *
+> > > + * This structure contains the statistics information of the ISP hardware,
+> > > + * serialized for userspace into a data buffer. Each statistics block is
+> > > + * represented by a block-specific structure which contains a
+> > > + * :c:type:`v4l2_isp_stats_block_header` entry as first member. Driver
+> > > + * populates the @data buffer with statistics information of the ISP blocks it
+> > > + * intends to share to userspace. As a consequence, the data buffer effective
+> > > + * size changes according to the number of ISP blocks that driver intends to
+> > > + * provide and is set by the driver in the @data_size field.
+> > > + *
+> > > + * The statistics buffer is versioned by the @version field to allow modifying
+> > > + * and extending its definition. Driver shall populate the @version field to
+> > > + * inform the userpsace about the version it intends to use. The userspace will
+> > > + * parse and handle the @data buffer according to the data layout specific to
+> > > + * the indicated version.
+> > > + *
+> > > + * For each ISP block that driver wants to report, a block-specific structure
+> > > + * is appended to the @data buffer, one after the other without gaps in
+> > > + * between. Driver shall populate the @data_size field with the effective
+> > > + * size, in bytes, of the @data buffer.
+> > > + */
+> > > +struct v4l2_isp_stats_buffer {
+> > > +     __u32 version;
+> > > +     __u32 data_size;
+> > > +     __u8 data[] __counted_by(data_size);
+> > > +};
+> > > +
+> >
+> > Same question. Should we introduce a struct v4l2_isp_buffer ?
+>
+> Yes, sounds reasonable.
+>
+> BR
+> Antoine
+>
+> >
+> > Thanks!
+> >
+> > >   #endif /* _UAPI_V4L2_ISP_H_ */
+> > > --
+> > > 2.52.0
+> > >
+> > >
+>
 
