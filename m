@@ -1,155 +1,202 @@
-Return-Path: <devicetree+bounces-262528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262531-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MMH9Lj3rgmnqewMAu9opvQ
-	(envelope-from <devicetree+bounces-262528-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 07:46:21 +0100
+	id gtiXDPnugmldfQMAu9opvQ
+	(envelope-from <devicetree+bounces-262531-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 08:02:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DC79E2672
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 07:46:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 897D5E27AA
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 08:02:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1F9B4302A55C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 06:46:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EFC513036617
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 07:02:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC81638736A;
-	Wed,  4 Feb 2026 06:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C8BD385513;
+	Wed,  4 Feb 2026 07:02:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MonAV9Wt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D4IQIb7I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 827E3244670
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 06:46:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43F9F230264;
+	Wed,  4 Feb 2026 07:02:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770187561; cv=none; b=XtjZ3+y7qSxRQIZjlMU2aAMrTlJdfilZbIXj/5gwq99DI/Bg1iE955Sim6zQthscsQ714SzKjzG4wGXZm20SZK5GFiXPwqfFkpu35YWLJyEQqvGXYHSx3N3pCr7dAhw7AVFzn4kkwm2N9beqIb1xW8VZ8MWASkCtHzuTUr6/TO8=
+	t=1770188526; cv=none; b=MUpWWEXtl1yAllnaPbLeLcu+oUSkSVEJTlv6YEzFEu4CXpnhAiv2fHDROHaKEpyfCV5YZoUcgudz1vRx+kPeOj60BJJRM2RUlv/zFNnjTzbPkB9ojJJyP4QkWnB7vfJAB11Wp/8et/6hUv1fOQ+X3M5tFjWkm/HhaMHBiAuLvr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770187561; c=relaxed/simple;
-	bh=IdONEzeO/kcku0TNPRScc8YoDp0OPcTwD4lfoMWDGls=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=MEipBX7c+Dp6CmLv3ksprlIf8g/xZH3osYZC0kP/HhWPAhKTq9zqs0qYGt1qrH9jl4ychyX5pEqe25kJCwxtJXoiTYu09g8ghE+cCMuWYdFzUtuNs8f+rULToWrOz1o2jG3lelcmJh4VQiHA8qpoksqAqSGPVgML3Lo5jW3pgJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MonAV9Wt; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-47ee07570deso53799855e9.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 22:46:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1770187560; x=1770792360; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=IdONEzeO/kcku0TNPRScc8YoDp0OPcTwD4lfoMWDGls=;
-        b=MonAV9WtdyE7UMKkwNZh6mmFeiqnI7HjPePX1UpVAEJa/uIbRessX3pQTShd1OxggQ
-         wf3O4s29UibTQ6tdFC+rqh+YThiEUz715lmKSkCHWd5usJBpbq7L1PYrSsUEPgz478QU
-         U4HMVw+2YuO7p/tkvZvrTOGRxiTeJhWWR1VsIfoN0MOjhSjyoH8RN2ONnCScBGK245WB
-         lzrVu6gpPF3syjHUf4FO+95cHMZo0N56o1EKOBJ81CiJsMS71jERgHSAHMKM1qLWEL9L
-         LESXIxXOMKnuYmx8Gkb6iih5wlvAxAoSK/dd8ahoYIXcKii2BbMAaKQfNXn/JltkS8QF
-         MM4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770187560; x=1770792360;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IdONEzeO/kcku0TNPRScc8YoDp0OPcTwD4lfoMWDGls=;
-        b=C2oFTg2URRGwsl4OukXV3axVCLrpH8xUplEDuD7oa5PNRQHi48+mW0UQ8ttymAmVu1
-         /RkREpAwkgVK2h4imEgUhSHkqnfdECFClALvZhUaEq1H5AT8GkhtV1h+d65ysQXWd74j
-         /xqtq18DES1CpuFuxCWMayhACKMdLjz0NXbBRd6JmBKG0HER633hJ7cKi6oYL4/Jbu6m
-         6SdaMZHDdlRjHCtb0mQZXJ8WSVMVyWT/VaFq5r31UgzTuf2GP5mb9J8RepSM5x13g8vG
-         bojBhWJiDUt7EGmcwxxzsP0CRYz1UGqKQQ1zySYIZoRTAJoPdwPGFziyZcFSVMKyeDph
-         4xQg==
-X-Forwarded-Encrypted: i=1; AJvYcCUflUfQXZvQ2zPxQsG8Atr457nvq63V0RujDei1u4OynyjUFVYh10AbbqIBHNEAqTk1IRc0JqgFYkYO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVu37spSS0KxsIay9EtEqGgNclLKQjO+k4IOhZ7LJlT0cJ0rrM
-	hcsPAoJ6QdpK4/aawmLZ0WAK6xC73rlPwujypPSUMuvIyTGnXv3+WH6nHX0Uin83X1Y=
-X-Gm-Gg: AZuq6aJBCyDHApYPwQqP+9ZiTdg3Mk2hSPekYewB///wn51UswvHaBYQUMyThgM/Hx5
-	m0Bjpu0WCMHpe77UWZbDpC5k1zl3VHSoOUkWLl9IrsOY5PYg3pEGXO9fLY/WfhSlKeukJ0hQ+kW
-	qlsGXxpg9inA7goEaSCY4mql/c6KUGQh0IPNSk97cQ3K4JxBBsfJniIZOTZaV1Kn7DSKFFPHK9k
-	U+Xg960nt2KLcG9LsZ+zqJeziz8VS0DU+vzSJSiwyFv4CBjOdcwT+oppd/RafWTb2LssKv2JxF6
-	uCbBziI7j7ACbd4DfD9D0HmNpZ0/XVyOkzqHX3pNMPMkNlS9O+U277m0wU4zYI3T+5lcGfWkAKu
-	hkOSC/83Qy8aOeOTK++RVRYKuRJlkFfeCqW9YzsTgrAk2E+JCAl1f0qxxaTNtPBCO92/hJWKRCo
-	Xv0051buVNGVEnb98NpQ==
-X-Received: by 2002:a05:600c:4fc4:b0:477:63db:c718 with SMTP id 5b1f17b1804b1-4830e95d692mr25283575e9.16.1770187559933;
-        Tue, 03 Feb 2026 22:45:59 -0800 (PST)
-Received: from draszik.lan ([212.129.76.169])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4831088d318sm36527855e9.10.2026.02.03.22.45.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Feb 2026 22:45:59 -0800 (PST)
-Message-ID: <977c081395c664a110389255e0cfa7eaafac912a.camel@linaro.org>
-Subject: Re: [PATCH v5 3/5] mfd: max77759: add register bitmasks and modify
- irq configs for charger
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: amitsd@google.com, Sebastian Reichel <sre@kernel.org>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Greg Kroah-Hartman	
- <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, Peter Griffin
- <peter.griffin@linaro.org>, Tudor Ambarus	 <tudor.ambarus@linaro.org>, Alim
- Akhtar <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, RD
- Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-Date: Wed, 04 Feb 2026 06:46:16 +0000
-In-Reply-To: <20260203-max77759-charger-v5-3-b50395376a5f@google.com>
-References: <20260203-max77759-charger-v5-0-b50395376a5f@google.com>
-	 <20260203-max77759-charger-v5-3-b50395376a5f@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build4 
+	s=arc-20240116; t=1770188526; c=relaxed/simple;
+	bh=xbYtXoLVabpU57x2RmdjqyOY1U9k1ZQ9kSUN4VeCGuY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bojzSb0CDQcuwUo8kP8ZsOFI9637WNnbm6urWIfeam/L1/kbjDqfM0Zpfgh1xLbZ35thAxxDeQZeFr+sh+RBjNS7ryQtg8jocv3/eROlwOQYtp+ASXzfLhBkPDYEh7Kh55wz/lKRrzhJBm36i94nxZoFAJR4fTDEi0jiPICweRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D4IQIb7I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B622AC116C6;
+	Wed,  4 Feb 2026 07:02:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770188525;
+	bh=xbYtXoLVabpU57x2RmdjqyOY1U9k1ZQ9kSUN4VeCGuY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=D4IQIb7IMXKwifUmUHkK9Irdgx30izXSOyO0SyMurNUY4ZdwhtJKveVKVP3v1ZX6T
+	 9BLluq/K/gtiqTqsJN0xmAKTo7Qm8x8CNV75w8N2j6euPllFGG9G/BUnFyaEiL93OW
+	 vFK1gqJxWclxhV1VNdwQfTnkRCs+uEU6XDEeUDPqS4WGpZXulHXLiMSqnVZTT3yHhK
+	 wuNvtnkffxKqhcpFc9hI6c6u+yNa23JP0Mm3ZfuGkKNcc/EGjRd1L8VlDZM2dhXREU
+	 I8jGJou1FRc1fKryxhpcnBc00/Ok9llBB5FqxHtC3z1O22qZ4HLH5CyeI3g3mc2TM0
+	 Af6nPvxD9oYOw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97D56E8B36B;
+	Wed,  4 Feb 2026 07:02:05 +0000 (UTC)
+From: Abdurrahman Hussain via B4 Relay <devnull+abdurrahman.nexthop.ai@kernel.org>
+Subject: [PATCH v10 0/7] i2c: xiic: use generic device property accessors
+Date: Wed, 04 Feb 2026 07:01:57 +0000
+Message-Id: <20260204-i2c-xiic-v10-0-c2b996425235@nexthop.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOXugmkC/3XRPW7DMAwF4KsEnqtAov4z9R5FB1qiag2xA9k1X
+ AS5e+UsVeF2JMHv4QG8dzOVTHN3Od27Qmue8zTWQfCXUxcGHD+I5VgXHXAwXACwDIFtOQcme3Q
+ +JU3oZVfPb4VS3p5Zb+91TmW6smUohE2A0JyDU+YMWjrPBMM+fpaCwxXH15G2ZZhuZ8x73pDnZ
+ Spfz2or7Kl/lFiBcSakSjpaJcn1bcjeYpWtlI2UVVJvQ1SgVUxHqf6TqkqFknqUWvBAB6lbaRq
+ pq3QOhUFwFkQ4SNNK20izt3VAkEwy2h6lbaVvpK3SgiUllfOW0kG6HwlcNNJVGamHGIV2UeBB+
+ la2X/FVBlLG66TB2PhLPh6PbxwkFUh4AgAA
+X-Change-ID: 20260122-i2c-xiic-3ba89ff5ea93
+To: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Abdurrahman Hussain <abdurrahman@nexthop.ai>, Andrew Lunn <andrew@lunn.ch>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770188524; l=3230;
+ i=abdurrahman@nexthop.ai; s=20260119; h=from:subject:message-id;
+ bh=xbYtXoLVabpU57x2RmdjqyOY1U9k1ZQ9kSUN4VeCGuY=;
+ b=L3hRvrEH3VS3iFOO+kmUvZS/6u5JSJI2HiMMyhMV5jEAxk4LETpSeRQlAobKaT+TNSGQjvsFe
+ OBJW7cJajlCBhGGsfekzT+P3uKMs/ROlAFYWaaqB2GAj7vb7agESVZ2
+X-Developer-Key: i=abdurrahman@nexthop.ai; a=ed25519;
+ pk=S+ysnf+NwMcBdHBlyKIUEAtaFGSIhQwcJcgcXhq0osg=
+X-Endpoint-Received: by B4 Relay for abdurrahman@nexthop.ai/20260119 with
+ auth_id=608
+X-Original-From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+Reply-To: abdurrahman@nexthop.ai
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262528-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[linaro.org:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262531-lists,devicetree=lfdr.de,abdurrahman.nexthop.ai];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[abdurrahman@nexthop.ai];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,linaro.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2DC79E2672
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nexthop.ai:replyto,nexthop.ai:email,nexthop.ai:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 897D5E27AA
 X-Rspamd-Action: no action
 
-On Tue, 2026-02-03 at 22:50 +0000, Amit Sunil Dhamne via B4 Relay wrote:
-> From: Amit Sunil Dhamne <amitsd@google.com>
->=20
-> Add register bitmasks for charger function.
-> In addition split the charger IRQs further such that each bit represents
-> an IRQ downstream of charger regmap irq chip. In addition populate the
-> ack_base to offload irq ack to the regmap irq chip framework.
->=20
-> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
-> ---
-> =C2=A0drivers/mfd/max77759.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 =
-91 +++++++++++++++++--
-> =C2=A0include/linux/mfd/max77759.h | 204 ++++++++++++++++++++++++++++++++=
-+++++------
-> =C2=A02 files changed, 258 insertions(+), 37 deletions(-)
+- Switch to generic device property accessors.
+- Switch to managed devm_ functions to simplify error handling.
+- General cleanups.
+- Skip clock setup on non-OF systems where clock is not specified via
+firmware.
 
-Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+Signed-off-by: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+---
+Changes in v10:
+- Moved dev_dbg() change from patch 4 to patch 5.
+- Reworded description in patch 6.
+- Addressed Andy's comment in patch 7 (&pdev->dev -> dev).
+- Link to v9: https://lore.kernel.org/r/20260202-i2c-xiic-v9-0-ce4695f5267d@nexthop.ai
+
+Changes in v9:
+- Fix an issue found by the test robot in the cleanup patch.
+- Reworded the clock change description.
+- Add a patch to switch to i2c_add_numbered_adapter().
+- Link to v8: https://lore.kernel.org/r/20260201-i2c-xiic-v8-0-deb2dd158d1a@nexthop.ai
+
+Changes in v8:
+- Made the clock change the last patch in the series.
+- Reworded the clock change description.
+- Changed dev->fwnode to dev_fwnode(dev).
+- Link to v7: https://lore.kernel.org/r/20260129-i2c-xiic-v7-0-727e434897ef@nexthop.ai
+
+Changes in v7:
+- Drop the dt-bindings patch.
+- Skip clock setup on non-OF systems.
+- Minor commit body rewording.
+- Applied code-review trailers with `b4 trailers -u`
+- Link to v6: https://lore.kernel.org/r/20260127-i2c-xiic-v6-0-e82e2f6f657c@nexthop.ai
+
+Changes in v6:
+- Cosmetic changes to address the comments.
+- Added a patch to use resource format specifier in debug log.
+- Link to v5: https://lore.kernel.org/r/20260126-i2c-xiic-v5-0-88a16a28721c@nexthop.ai
+
+Changes in v5:
+- Reorder the cosmetic patch to be the last in the series.
+- Added a documentation patch to describe the optional clock.
+- Minor commit body rewording.
+- Link to v4: https://lore.kernel.org/r/20260123-i2c-xiic-v4-0-4a3eba3510ce@nexthop.ai
+
+Changes in v4:
+- Reorder the cosmetic patch to be the first in the series.
+- Amend the mutex_init patch to also switch to the managed pm_runtime_
+  variant.
+- Link to v3: https://lore.kernel.org/r/20260123-i2c-xiic-v3-0-eb7cd4254dfb@nexthop.ai
+
+Changes in v3:
+- Reorder the "optional clock" patch to be the first in the series. 
+- Add a patch to switch to devm_mutex_init().
+- Remove dup message in error path.
+- Cosmetic: use temporary dev variable.
+- Link to v2: https://lore.kernel.org/r/20260122-i2c-xiic-v2-0-134f5d743e8b@nexthop.ai
+
+Changes in v2:
+- Split the patch into two independent changes.
+- Added struct device *dev at the top of probe() and remove() to re-use.
+- Switched to device_set_node(...)
+
+---
+Abdurrahman Hussain (7):
+      i2c: xiic: switch to devres managed APIs
+      i2c: xiic: remove duplicate error message
+      i2c: xiic: switch to generic device property accessors
+      i2c: xiic: cosmetic cleanup
+      i2c: xiic: cosmetic: use resource format specifier in debug log
+      i2c: xiic: use numbered adapter registration
+      i2c: xiic: skip input clock setup on non-OF systems
+
+ drivers/i2c/busses/i2c-xiic.c | 99 +++++++++++++++++++------------------------
+ 1 file changed, 43 insertions(+), 56 deletions(-)
+---
+base-commit: 18f7fcd5e69a04df57b563360b88be72471d6b62
+change-id: 20260122-i2c-xiic-3ba89ff5ea93
+
+Best regards,
+-- 
+Abdurrahman Hussain <abdurrahman@nexthop.ai>
+
+
 
