@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-262516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262517-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id TwxwNLPggmnhdwMAu9opvQ
-	(envelope-from <devicetree+bounces-262516-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 07:01:23 +0100
+	id KLPgKsbggmnhdwMAu9opvQ
+	(envelope-from <devicetree+bounces-262517-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 07:01:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FCABE227A
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 07:01:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 255E1E2290
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 07:01:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3BD1E30115A9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 06:01:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4874D302C5C5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 06:01:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7F1C23D7DE;
-	Wed,  4 Feb 2026 06:01:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6931F35EDCD;
+	Wed,  4 Feb 2026 06:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b="LtmwFhXX"
+	dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b="mRQWG3Y9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F0A614A8E
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 06:01:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B50A35E548
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 06:01:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770184879; cv=none; b=DESf+AUidkvZP2GmW5YFtZkeU+rMTGzP/2xwXOiV6DeGc5hg1p7Su/Rkhrppihh4/3Tt3Fmj4dNiighwmvSe1Vz3RlIglXRbj0VHzPpP90zRXzfhwAOaY0vPLufLDV8zKs8w5mK6HLrnjoSlO3yNtsw1d4qB7Vm8HtQPNFdQw1Q=
+	t=1770184881; cv=none; b=YThhU/25gjLiFQstDjy5CF2/fy1NRfoGJvKkeK+cp0OEaVY05CKzI57t74S9BPLMBqeZYoPQfgaTtKnKT280YQldDCDWB867jEWmO9L30oWc82JrIT8U7i2aPYSBejml6mv7Jzi976wEgkN0XmuVNB1W7KAcCz+sniauDZdBjMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770184879; c=relaxed/simple;
-	bh=ohikDSRC/V0X8jSqCoJvOnzwmrRK9zktOa89Mo9cMHs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UK7F5mG5z9I1yR3TLeg8adD7GUknUx30MNmMGn0Y3mDDmfM7oyPjBwMPG5fajpHfbXko8x578R1DVvDG4fMhsphmiskuzUr1CTm/tcu9TLNrpKK9vP3OMIW/Dp3USIPJArQDMV+d+dGpgxoT5pcLeOA/IUvsjvSqgWWbsCtBe14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net; spf=none smtp.mailfrom=dpplabs.com; dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b=LtmwFhXX; arc=none smtp.client-ip=209.85.210.169
+	s=arc-20240116; t=1770184881; c=relaxed/simple;
+	bh=GooVB1lBGm2lHrLrB0usOVbk/QUEoqBpICTYvm2ygcg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=ZABR9YNEr+5YrBOL1dBeuHDGehAeKeVulqLUYWcIskL6UMHV6S7VDjuA61zILvy0ac1QZfCaZmPWUKr8Y0DQ0gH4C0VicMsQUuiZk72kY8IAEfAH0TSBBQjiuyJ2p1QHGwiW2zBAB8rnpdMpaQbUqZZvMQ7+vkUpvh3DShvApV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net; spf=none smtp.mailfrom=dpplabs.com; dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b=mRQWG3Y9; arc=none smtp.client-ip=209.85.210.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=dpplabs.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-81f5381d168so6666219b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 22:01:19 -0800 (PST)
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-81f4e136481so3243129b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 22:01:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=reznichenko.net; s=google; t=1770184878; x=1770789678; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=knmmDy3mJrkVrvhIFIyiki8QNjOHAU78qve5pMcvXg4=;
-        b=LtmwFhXXnXDNjm7jdF6Lyo1wnrhVP2tExm+0NqXjqgdOkgnXVX384mA4+oali/tkoz
-         J1YCc+w0/QQ9/nlgeOduGlJBPkIud6ayIQ7SjftIwJA8lIhAlxEZp5596XkVvj3VPNCp
-         dn9hLnOZZjY4yQcvxw/dmMFxiPApeaY+VnrYddpuK/Jtj/9IKB6JaTTL6p7MDEyfRImk
-         2wik/Uz14wn3L/RmcbAv8yQhYLKUqXI7HC5jMSKBZIcmhnWA0ukRANJIpzMVATMadLfn
-         sjjBgEAnl2xBmgfPUMAJCPlfQJBe69rTpRvBono0+x197d9p2JrSDicbKhoEB2JWEAT7
-         j1Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770184878; x=1770789678;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=reznichenko.net; s=google; t=1770184880; x=1770789680; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=knmmDy3mJrkVrvhIFIyiki8QNjOHAU78qve5pMcvXg4=;
-        b=okMmB5KjNb8lf5cbv+/gCzPsZN9fBVBfrKgvawUb2Wh6VXOYi9ZMwK+6Q5e4HOH6pO
-         piQyB+ZAtPIvsen0aT65ZDa2Va/9rCrIrqy6BpzCD58vmMXKrcOC1vYCxBEScX0Ienvh
-         AUp4m7H83sEZr9oaiTI4R1BJZ1WOSKIFd19dtTSkTScnTTe7EKwrajII1cRr1RMIHBcH
-         GerEuBBSvMqlBypO6KAjxl+4ZI8YGhtn/6sBC1ZJyFSzs78Hc1mLnyaLayZBXQZVNsb4
-         GQrwL2sTus1upsLN/B+sFDlEHPBudJj0YB+Q0ijydVviNCkqzU/WpTlssJbTEts7cmEh
-         tZHA==
-X-Forwarded-Encrypted: i=1; AJvYcCVE0G12iPAM2v9yvI1ZGuZVv1YPG9AqBcNpUr11b/q48+qTHIxh/4pOq2bDAAzHQwSQzGfceWHied7d@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1SKQ7sgXw/P1b5kryFxl8VHpF2kkEO5zUTkmu7tmSakpgUr/Y
-	8/HEMvL+96vq2rHKGhmGtdJlxMtYMtOb0CODdp23dAMUoUga/IB117EqcYClj9wsh7Q=
-X-Gm-Gg: AZuq6aK3SY1MEdxPTAoNcG/sqOFVQcsS/p30m+DAePwzPY9MDke93J0ZBmI5XhowuuV
-	NYl1mIWcbXKjGRQEb5Lfg6aY8UGCY4BJVfmhlVior2zDbt2rsuj9u0gz2uw1zox6hgL9REU/o/x
-	2G5iKR3fod3xN6AzTvLmG/Avi0pMokZ0IjnmROzEuulRb6qwQs3C5hTpJ+PvE7XicgjOo7kHCZb
-	W638FO14/0dCH56QjvMi/w4JcrXOjQhrJn+khw/ccq/oALB6pnJD3s7C8n7NsOcsm8GEdIkAQke
-	k+zRJ6QMpvWxMYDu2M/oKKmaaDFK3QGo/8a4qjj6YSTg2M9HcHaSttbIpnKw2VQ+/2LfHNNfNQp
-	qi6UKr4tYkJt4Pa6BR38Imnrn8apPYsczGGigPAddEVGIEqcTSNEHgDNU3cJ4g/rjrVaQ1JyWfd
-	mcTK0QzhqiZjIoaNh37KK9jl5D00FV
-X-Received: by 2002:a05:6a00:2d03:b0:81e:408e:47d2 with SMTP id d2e1a72fcca58-8241c64c763mr1896419b3a.53.1770184878532;
-        Tue, 03 Feb 2026 22:01:18 -0800 (PST)
+        bh=6lejf+Tzc2IHsly2f4Gw2xYw1HUpif2wvKpNlfP9f2E=;
+        b=mRQWG3Y9UgwG+tQ7j+xSx/mWDU3xQkH3rhvzwNTBxMzMs7ohUeKHBqS9C637Ivj29Y
+         EfICO5ZDF1vePx35i4AHffC6YByoebSAVIBDbo2MnZfzJw6woLemsldNVBEQQ78/JRbo
+         xJUvPgIXZTI2gJ4ts+81s9rNPlMJw42ckydIyzRm9i9FX4N04wP47SY+8HzgmkrsNbUh
+         //P+0UpCv7OHgH0Iw4ecMRTYgCF3+n1O3SSbQgk/9USAtOuLm6aMpNIpkspKnVSdBZLX
+         rrpoU4No/a0YIWAORqsn62yoSdpzh026zz7CJtNhFGtNrkkYjPvc31X2hRD0i5T1DMu6
+         vfrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770184880; x=1770789680;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=6lejf+Tzc2IHsly2f4Gw2xYw1HUpif2wvKpNlfP9f2E=;
+        b=cEbCe/I+Lu0a0xp61ucgOCiIHITnX3ulrhtnTwhPI6TJK2rHU9FsIJ/tbuAsnFAUGr
+         GXMk5m/RuFgR43NCQYfsr5EFxM0BDthBgRYb1bZB52R7ZbgXud8Fo2z8elFAhltBz9ZA
+         vu64JW3aa3fbLZSq1fFngXa7dNHowHgHHP6Ton73JXDgdr6Bstpwb8eUfqot91H5/DVg
+         h2icIFQQIg0UQudisbwVQK6UTHBaySxqAUC5E+2+hLBUBpo7PWFVRN6Ob/cW1uJ/aQse
+         NhuGSlzAyTiNNY6dQgJvNYvnFo8fYx5G6nKns6mCY0KFn2Diso5VPx2KoHX1KbdCG5Wa
+         yX4A==
+X-Forwarded-Encrypted: i=1; AJvYcCWLyR9FOfVwMVjrfKnIIFaZXweMojG66xblDVUx+xK6VSrBPQoFxVWWKUuqbmDOxPbblVI/Hq3rl6Vy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzd+1aDDGiD6m7QDfiDNL6e/iqsv++G8xdArQR9awO5v2WKPM0X
+	d/30jDvkH88K76t/quxTTdfXsP2z59yMKyUqkp/4mzL9kvbT47N3wOrBALyyNPGPFr4=
+X-Gm-Gg: AZuq6aJWPQemae61b4rj9ddqIxQV5PID4BwrzEHgtt4sN1NxDsQkSFUdLOGLvmtDwsa
+	nt3wiNrxnyTXVBjz7LiDym3XBZNm1tjUdVaHtpE95X54aawF8/r+yJFj0vPSCnor4rNfz4JE/jD
+	mYHT45qIggHHLjoYYbaRDq9wXY/1fUUvagesrK7yn6/OzkGf6zLV2AgWSTJ9L7yP380cSfE2lFR
+	tWlt/+bPr77h2N/M0nTiV7X3Fzmis8XFgQ8lQsA8iN+5dgEoTxayAH+KLrHLay47P43V++iEknk
+	FhMC0jIFCDzzQEel2H4LUgVoCixKgByfrAyIDVerBjKi9f8BUpAcu4KlnqhqmDavQ/v1mmZM5GI
+	MfZ5Qa5LnZV5osGGBk8dwGaSpTkivcd4L9f7gu1He0QqZZ9Kh8Gifr/k/Yi/jfyZ9cYSQIvEhbb
+	iY7r0X7jG/PLzL6ObUXA==
+X-Received: by 2002:a05:6a00:a219:b0:81f:15b2:21e3 with SMTP id d2e1a72fcca58-8241c4ea261mr1704367b3a.32.1770184880340;
+        Tue, 03 Feb 2026 22:01:20 -0800 (PST)
 Received: from z440.. ([2601:1c0:4502:2d00:16e9:94c2:69a7:e3c5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8241d163865sm1335710b3a.9.2026.02.03.22.01.15
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8241d163865sm1335710b3a.9.2026.02.03.22.01.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Feb 2026 22:01:17 -0800 (PST)
+        Tue, 03 Feb 2026 22:01:19 -0800 (PST)
 From: Igor Reznichenko <igor@reznichenko.net>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Jessica Zhang <jesszhan0024@gmail.com>,
@@ -92,11 +94,14 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Kever Yang <kever.yang@rock-chips.com>
 Cc: dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 0/2] drm/panel: Add support for the FocusLCDs E35GH-I-MW800CB
-Date: Tue,  3 Feb 2026 22:01:11 -0800
-Message-ID: <20260204060114.345219-1-igor@reznichenko.net>
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v3 1/2] dt-bindings: display: panel: Add Ilitek ILI9488 panel controller
+Date: Tue,  3 Feb 2026 22:01:12 -0800
+Message-ID: <20260204060114.345219-2-igor@reznichenko.net>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260204060114.345219-1-igor@reznichenko.net>
+References: <20260204060114.345219-1-igor@reznichenko.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -111,12 +116,12 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[reznichenko.net:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TAGGED_FROM(0.00)[bounces-262516-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-262517-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[reznichenko.net];
@@ -133,33 +138,105 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2FCABE227A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 255E1E2290
 X-Rspamd-Action: no action
 
-Add support for E35GH-I-MW800CB 320x480 MIPI DSI panel by FocusLCDs.
-The panel uses Ilitek ILI9488 driver IC.
+Add binding for the Ilitek ILI9488 panel controller which is found on
+the FocusLCDs E35GH-I-MW800-CB MIPI DSI panel. Add "focuslcds" to
+vendor-prefixes.yaml as it's a brandname and a website
+(https://focuslcds.com/) for Focus Display Solutions, Inc.
 
-v3: Fixed missing Reviewed-by tag
-v2: Added comment explaining the "focuslcds" vendor prefix
-	https://lore.kernel.org/all/20260203054121.335441-1-igor@reznichenko.net/
-v1:
-	https://lore.kernel.org/all/20260131034101.307486-1-igor@reznichenko.net/
-
-Igor Reznichenko (2):
-  dt-bindings: display: panel: Add Ilitek ILI9488 panel controller
-  drm/panel: Add Ilitek ILI9488 controller driver
-
- .../display/panel/ilitek,ili9488.yaml         |  63 ++++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- MAINTAINERS                                   |   6 +
- drivers/gpu/drm/panel/Kconfig                 |   9 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- drivers/gpu/drm/panel/panel-ilitek-ili9488.c  | 299 ++++++++++++++++++
- 6 files changed, 380 insertions(+)
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Igor Reznichenko <igor@reznichenko.net>
+---
+ .../display/panel/ilitek,ili9488.yaml         | 63 +++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ 2 files changed, 65 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9488.yaml
- create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9488.c
 
+diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9488.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9488.yaml
+new file mode 100644
+index 000000000000..ea7449273022
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9488.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/ilitek,ili9488.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Ilitek ILI9488 based MIPI-DSI panels
++
++maintainers:
++  - Igor Reznichenko <igor@reznichenko.net>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - focuslcds,e35gh-i-mw800cb
++      - const: ilitek,ili9488
++
++  reg:
++    maxItems: 1
++
++  vci-supply: true
++  iovcc-supply: true
++
++required:
++  - compatible
++  - reg
++  - vci-supply
++  - iovcc-supply
++  - reset-gpios
++  - backlight
++  - port
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel@0 {
++            compatible = "focuslcds,e35gh-i-mw800cb", "ilitek,ili9488";
++            reg = <0>;
++            vci-supply = <&reg_vci_panel>;
++            iovcc-supply = <&reg_iovcc_panel>;
++            reset-gpios = <&gpio3 6 GPIO_ACTIVE_LOW>;
++            backlight = <&pwm_bl>;
++
++            port {
++                panel_in: endpoint {
++                    remote-endpoint = <&dsi_out>;
++                };
++            };
++        };
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index c7591b2aec2a..aa3a8fd67155 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -584,6 +584,8 @@ patternProperties:
+     description: Flipkart Inc.
+   "^focaltech,.*":
+     description: FocalTech Systems Co.,Ltd
++  "^focuslcds,.*":
++    description: Focus Display Solutions, Inc.
+   "^forlinx,.*":
+     description: Baoding Forlinx Embedded Technology Co., Ltd.
+   "^foursemi,.*":
 -- 
 2.43.0
 
