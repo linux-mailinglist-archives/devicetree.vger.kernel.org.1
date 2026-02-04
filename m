@@ -1,288 +1,185 @@
-Return-Path: <devicetree+bounces-262504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262505-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4KmUGMbWgml5cQMAu9opvQ
-	(envelope-from <devicetree+bounces-262504-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 06:19:02 +0100
+	id mDjsM9PagmnkcwMAu9opvQ
+	(envelope-from <devicetree+bounces-262505-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 06:36:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CEA6E1DFC
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 06:19:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C26DE204C
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 06:36:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B0CB6301325E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 05:19:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 533AC308C280
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 05:35:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8255735581A;
-	Wed,  4 Feb 2026 05:18:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A56DE318EF4;
+	Wed,  4 Feb 2026 05:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bc5mgXxS";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fDBU3BQp"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="V8GxI8XD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AF8E34D3AD
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 05:18:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53CC3301486;
+	Wed,  4 Feb 2026 05:35:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770182337; cv=none; b=IsqZOjPzYiDtyvVzV//idPkL/vJdfjI8fzIjcykkF6UDDnzV4fwPy7tHHjftRzBcHkxXhepY0/n2vJlYsJNslys0QFch1K7LzeGtM7XbxNbJON4kedeQNW+zV3n8NZ5L/8goZ8gzJkVUiL/Z9+BMy05J7RYsozfYYCbgfwJ4Fio=
+	t=1770183314; cv=none; b=CxH/P/AZWnC42WRyqNGheMIQd6LladFr3SVZscRgXjr9u+Cp2Y0PRt1EAxFUgTWdE9NXL7F9Vo6ceUfu/4qzWdYc5Z4/ME3cJt3BBdWeLjVPB+glGq8yT5WLiIRKICHl753kIGL8LymbWiUeOZ/FPBDpRETNXbNGA9fXYbBeL9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770182337; c=relaxed/simple;
-	bh=pZbP/KDm3d9zf7rWC1WJ+TPqscXWFX0xVrRW0kGXTZI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K4uA9hxvBp9jQeEaivo6abUbvUUpKxP/sqTFmN6pYlJAfHDtaVyuFaglHl/TQ5roF3rfrbG19YQ1NNETyzGAHej/jY3sO6cExAQJN2fEfIbYmfA2CAUTdsSzMqfBVqirMOcxGh8GZXaqgj+ODQRDLusPkMb9qTJcczRHKbHF04s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bc5mgXxS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fDBU3BQp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6144pCKI2829453
-	for <devicetree@vger.kernel.org>; Wed, 4 Feb 2026 05:18:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QTGIdDXWEeHzCVDoRyE9D4/yRVEIvH7oRcS5mXl5a6Y=; b=bc5mgXxSTRsnqNKB
-	J+GM7FQQl/VbKh0idS9Gy2i//haHzHcbruxMz+cfdYKGyw1RgJA/wtYYJEBNhfgO
-	tGOstA6lYLnku+3w5GhSnpmOyXn/cdjoRGPdloQoBLvGs7BnzxmvQt0z73ItQ9lf
-	tmAGntFasgdTyF/amFjvgyTz3m+T3/qCpgXfpjMmTJ3L53FSSduKwwkSuJdGgd9r
-	hwZy7fgwFDQhbVcLaaaqoejrUE/ywq6mEWBBEE3kWsCFicJpg0xqtttrryAMas+3
-	emr/cldusnZe6TGSuU4BIYENqqYiLn0xXv4N1w+Cf1UrOTGpdCuB9cekLiK09j2/
-	ADbCZw==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c3ndvhy3f-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 05:18:55 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-c6136af8e06so4012094a12.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 21:18:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770182335; x=1770787135; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QTGIdDXWEeHzCVDoRyE9D4/yRVEIvH7oRcS5mXl5a6Y=;
-        b=fDBU3BQpfjCu6eW0Z+4HRumg1mU6V4p3IIsRuGxzOGLV7oBZp2iqBzXcnmcSEuek6A
-         rFj/K7Ss28KfCO8rlrD6KhDHduMWt2tz/CsLcOjx68i9JccWsYLk/j0RD8Oz4GWaxkRt
-         ebBAxvcL+o3Xo3nBovKy0kXdQXD4TcPRRUBk6TMMOSwiy27DkcdexQi77A/iLJOhI42b
-         /EMNpzsXGY+SJkbLgIg4mMSgKvrLZadf7JAqjsaWZbrhhQxzsM9UV8CsNk0bfKyBNkU+
-         hbUFfxwxPB3Pm6eQgPtcRAub3/VSWr/uHmYtrRWNiWBY5hZieQYz5RlkDeitKagKAb5E
-         566A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770182335; x=1770787135;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QTGIdDXWEeHzCVDoRyE9D4/yRVEIvH7oRcS5mXl5a6Y=;
-        b=mV0E38X+UZILXnCEaW+0F97p6xuqpJ77nzgsdOZVxZRMLPBvCQ30eT4BnNpfKDrUiK
-         7LfKQdfjZiVnDWPO4ddcYdw0KFV/wTHTsaVgRPUJi9D/sva5ZhgzYniVhlyjTCl6gRH3
-         UUmfvm0ZiJf3b0gTdNld0iZ03cKE9tFfVDqa8Ntu+npaWDB+28lplLGU0TixmEImygJi
-         o8+yhKbrnPiw21laG/Bvfz6nXCCNrc/D9lVFvn38mvgLB8Yp2baCPEwbA7GpRnKwk5ZH
-         TqKjDXWfc0CQHMSrap6LWR935xV5e3IS3OEoNJgSckh5ySLWe285DzPJYGPxaDgOSrkV
-         n6pA==
-X-Forwarded-Encrypted: i=1; AJvYcCULumDh12R11MixpEy7QDQ5zFe4auPj/PrOqeLCu/u13hC5qyqg4cT/4xiTmbilDoWx7jjDkRL9BEgo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5CutyqjaIH6xbDOUND4PlnKvFgKy1nVpQKUlRIghld2Q87H5+
-	zqpIBAOsEtqqy8RxYoEdJU0RJMhJZAXdxGZAzLTCVnTX6jptHBph6E6ENGLnjo/0ceGqMTvQ0e4
-	qjpRyp+0qCfIT4xu0smKYb5GshP1N4r/+Lp7VP8LHyt/Xtjf6ClSTZxEB2OEnXnGX
-X-Gm-Gg: AZuq6aJTt/mhhxOLMpPES0I8yYihu77A4MvViCNQ/qpXOPedvEVbXwZiZ+4mu812703
-	fqQTGHRZLjatorFX8MBrTVsAMkX348PWJLAI9IOS+i1jE6qLZQrM7ev9Y1X4lK/bn3hoUatWoWy
-	obk5BFWy+bMQoUf8MwSvxc5UkQr+Ecmg/Q+6/WbnaOYjwYTy7RVawd1Qey+1jUjppLnLCoM5i7r
-	X1+1C7Dglolk2Gpl5B4tLQ3XAPNsnjldbEfs8EAg4bLOz9xcGYH2R5MEKyuPli1YnHA6/6jw7tr
-	YGdCSLBXXBPeEQuoZW86gs5Y0Vo/9qJkILbeVRmGBq4tbQA8MP+11PAFV2RS0yFlmg0rc0G0VA8
-	3oFkqis5HucdNu5sTA7bVBVvO9RysvKfQ42cvcT9M7A==
-X-Received: by 2002:a05:6a21:4d92:b0:350:7238:7e2e with SMTP id adf61e73a8af0-39372438780mr1706537637.45.1770182335062;
-        Tue, 03 Feb 2026 21:18:55 -0800 (PST)
-X-Received: by 2002:a05:6a21:4d92:b0:350:7238:7e2e with SMTP id adf61e73a8af0-39372438780mr1706504637.45.1770182334502;
-        Tue, 03 Feb 2026 21:18:54 -0800 (PST)
-Received: from [10.218.32.171] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a933854321sm10224445ad.3.2026.02.03.21.18.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Feb 2026 21:18:54 -0800 (PST)
-Message-ID: <06d16c97-5db0-4c2d-9d30-68fc2ef1c5c0@oss.qualcomm.com>
-Date: Wed, 4 Feb 2026 10:48:47 +0530
+	s=arc-20240116; t=1770183314; c=relaxed/simple;
+	bh=UiA+0nIlRA9eZg6V1t1vdhmUp7Yaj6ecIYLUK5A2F+U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fi5elJcBlsHR6CtMPYkTinArJGeYBt+RSGzpSjYNIxEHyKkpqYGEu4buI4yCmsjWEQ8x6dC4Gc/Dfv5GMW9iFYLbF7uxYkcgHY9UC35EKsP8aU8XMfGs6Ce76s5x+vxhFrFRgqi7DrR00+d5KlxgvVZui5BgUOy4RXxM+Tu+tfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=V8GxI8XD; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770183314; x=1801719314;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UiA+0nIlRA9eZg6V1t1vdhmUp7Yaj6ecIYLUK5A2F+U=;
+  b=V8GxI8XDtGAqhImUrs+AByR5KxQ1w4dbR7NFVgUNNTLOk9qP0CXO8X0S
+   unrEBMa2i8aodq9d+0cSo3wEjOa+c8YNtw/rUSRfkWdQ/Y/DFUmaQJyvS
+   KZwJ8Uz6d4JK7sed7LO5x1x6ZP+pvKni6heAQFlq3Nym2fw6uZK23No09
+   GFH3bSVJS9Aq6M+sFjyNWIIt18EzzX/TaiVuinuH8xY2mTFKANQmee9A7
+   slMOoB1dZV1Ewcj0GahvIpXDR0h7RCMKBpUDaHMUDV5J5dYGM2sAX2zzD
+   Y4/Codam/TTyqOW4LfUTZK64lpdPd94P0DM6LEKDxsuLaJ2RJzs5Lkj2u
+   w==;
+X-CSE-ConnectionGUID: ytQR9aXwTL2xHdgb7MIx+A==
+X-CSE-MsgGUID: Qx97iOrvQU6QAlcLSk6Ddw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="82475014"
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; 
+   d="scan'208";a="82475014"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 21:35:14 -0800
+X-CSE-ConnectionGUID: GhG6b3VCQIeq3Y/x6PawtA==
+X-CSE-MsgGUID: dquvDNJpRN6VUWvxIfdVGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; 
+   d="scan'208";a="209447946"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 03 Feb 2026 21:35:08 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vnVXc-00000000hTc-161f;
+	Wed, 04 Feb 2026 05:35:04 +0000
+Date: Wed, 4 Feb 2026 13:34:09 +0800
+From: kernel test robot <lkp@intel.com>
+To: Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Lee Jones <lee@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Badhri Jagan Sridharan <badhri@google.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>,
+	Amit Sunil Dhamne <amitsd@google.com>
+Subject: Re: [PATCH v5 4/5] power: supply: max77759: add charger driver
+Message-ID: <202602041321.6ubHpkpR-lkp@intel.com>
+References: <20260203-max77759-charger-v5-4-b50395376a5f@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 05/13] soc: qcom: geni-se: Add resources
- activation/deactivation helpers
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
-        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, bjorn.andersson@oss.qualcomm.com,
-        dmitry.baryshkov@oss.qualcomm.com
-Cc: prasad.sodagudi@oss.qualcomm.com, quic_vtanuku@quicinc.com,
-        aniket.randive@oss.qualcomm.com, chandana.chiluveru@oss.qualcomm.com,
-        jyothi.seerapu@oss.qualcomm.com
-References: <20260202180922.1692428-1-praveen.talari@oss.qualcomm.com>
- <20260202180922.1692428-6-praveen.talari@oss.qualcomm.com>
- <ff9a2aa3-1b2b-4001-82ce-198c61a4b637@oss.qualcomm.com>
-Content-Language: en-US
-From: Praveen Talari <praveen.talari@oss.qualcomm.com>
-In-Reply-To: <ff9a2aa3-1b2b-4001-82ce-198c61a4b637@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA0MDAzNiBTYWx0ZWRfXxxh0Vlsh+ndW
- Cc97Z81PiVjX3hnXhQz+hS8RULcxGaCpWOcvn07LSNQhJbmSTnacPFI9EaPHZCbyOgaNP2Yx9Ut
- X8uOZ/mB/8kbS09mmmM77Ar/PZQF9gIp+KUQLb90KTlBggK9eFAJ0sfTH0GG4DfqEIgb4SPlLAM
- 4FL1c60t4ep1+Db7hficsI+ZFA2zuaCecr8xcMz5V+ofIZGgu2UK3twYkBnQuYTUEJA1/rBHkM1
- 77wkWLeSbD2CvDCYwvl1Jch2VWGx30y/H/ZMl6GnAhEND0Nya1xbCZArIvnWJjM3avRXVvtYVie
- pb7TO+q44IYgi5RXO9fyO3ET5I2/tXHclFaTzk0Jc9wurKt+i6wDi0w1i6Aiv9v06X809c+Qzdy
- qYhDGnsQYjEONxrhFdlm77AuLwccgQtTZdG/1tJTVlilWLgS8S7ndmH5PjixzyCueLtDfnutqul
- NSad1aBRiqSyg18kX5w==
-X-Proofpoint-ORIG-GUID: VvPG9XQPYGKE8UNJxYfD6LLqQEHt-Kn7
-X-Proofpoint-GUID: VvPG9XQPYGKE8UNJxYfD6LLqQEHt-Kn7
-X-Authority-Analysis: v=2.4 cv=b+W/I9Gx c=1 sm=1 tr=0 ts=6982d6c0 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=_TUg1R5cyTUgEzYIA1EA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-03_07,2026-02-03_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015 malwarescore=0
- suspectscore=0 bulkscore=0 adultscore=0 impostorscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602040036
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260203-max77759-charger-v5-4-b50395376a5f@google.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-262505-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	TAGGED_FROM(0.00)[bounces-262504-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[praveen.talari@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 4CEA6E1DFC
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,amitsd.google.com,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid,01.org:url]
+X-Rspamd-Queue-Id: 7C26DE204C
 X-Rspamd-Action: no action
 
-Hi Konrad,
+Hi Amit,
 
-On 2/3/2026 5:50 PM, Konrad Dybcio wrote:
-> On 2/2/26 7:09 PM, Praveen Talari wrote:
->> The GENI SE protocol drivers (I2C, SPI, UART) implement similar resource
->> activation/deactivation sequences independently, leading to code
->> duplication.
->>
->> Introduce geni_se_resources_activate()/geni_se_resources_deactivate() to
->> power on/off resources.The activate function enables ICC, clocks, and TLMM
->> whereas the deactivate function disables resources in reverse order
->> including OPP rate reset, clocks, ICC and TLMM.
->>
->> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
->> ---
-> 
-> [...]
-> 
->> +int geni_se_resources_deactivate(struct geni_se *se)
->> +{
->> +	int ret;
->> +
->> +	if (has_acpi_companion(se->dev))
->> +		return 0;
->> +
->> +	if (se->has_opp)
->> +		dev_pm_opp_set_rate(se->dev, 0);
-> 
-> This is still unbalanced at this point of abstraction, notably
-> keeping the RPMh vote at 0 permanently after the first
-> geni_se_resources_deactivate()  since there's no counterpart in
-> _activate()
+kernel test robot noticed the following build warnings:
 
-I don’t think we need a counterpart for this in the activate path, since 
-it is specific to dropping the vote during suspend. The vote will anyway 
-be taken again as part of the transfer after the device resumes.
+[auto build test WARNING on 8dfce8991b95d8625d0a1d2896e42f93b9d7f68d]
 
-Thanks,
-Praveen Talari
+url:    https://github.com/intel-lab-lkp/linux/commits/Amit-Sunil-Dhamne-via-B4-Relay/dt-bindings-mfd-maxim-max77759-reference-power-supply-schema-and-add-regulator-property/20260204-065326
+base:   8dfce8991b95d8625d0a1d2896e42f93b9d7f68d
+patch link:    https://lore.kernel.org/r/20260203-max77759-charger-v5-4-b50395376a5f%40google.com
+patch subject: [PATCH v5 4/5] power: supply: max77759: add charger driver
+config: sparc-randconfig-001-20260204 (https://download.01.org/0day-ci/archive/20260204/202602041321.6ubHpkpR-lkp@intel.com/config)
+compiler: sparc-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260204/202602041321.6ubHpkpR-lkp@intel.com/reproduce)
 
-> 
-> That said, the serial and UART drivers do rate calculations internally,
-> so perhaps trying to be overly smart about it wouldn't be a good thing
-> either.. Let's add a note in kerneldoc that the activate must be preceded
-> by a dev_pm_opp_set_xyz()
-> 
-> [...]
-> 
->> +int geni_se_resources_activate(struct geni_se *se)
->> +{
->> +	int ret;
->> +
->> +	if (has_acpi_companion(se->dev))
->> +		return 0;
->> +
->> +	ret = geni_icc_enable(se);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = geni_se_clks_on(se);
->> +	if (ret)
->> +		goto out_icc_disable;
->> +
->> +	ret = pinctrl_pm_select_default_state(se->dev);
->> +	if (ret) {
->> +		geni_se_clks_off(se);
->> +		goto out_icc_disable;
->> +	}
->> +
->> +	return ret;
-> 
-> nit: this 'return' always returns 0
-> 
-> Konrad
-> 
->> +
->> +out_icc_disable:
->> +	geni_icc_disable(se);
->> +	return ret;
->> +}
->> +EXPORT_SYMBOL_GPL(geni_se_resources_activate);
->> +
->>   /**
->>    * geni_se_resources_init() - Initialize resources for a GENI SE device.
->>    * @se: Pointer to the geni_se structure representing the GENI SE device.
->> diff --git a/include/linux/soc/qcom/geni-se.h b/include/linux/soc/qcom/geni-se.h
->> index c182dd0f0bde..36a68149345c 100644
->> --- a/include/linux/soc/qcom/geni-se.h
->> +++ b/include/linux/soc/qcom/geni-se.h
->> @@ -541,6 +541,10 @@ int geni_icc_disable(struct geni_se *se);
->>   
->>   int geni_se_resources_init(struct geni_se *se);
->>   
->> +int geni_se_resources_activate(struct geni_se *se);
->> +
->> +int geni_se_resources_deactivate(struct geni_se *se);
->> +
->>   int geni_load_se_firmware(struct geni_se *se, enum geni_se_protocol_type protocol);
->>   #endif
->>   #endif
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202602041321.6ubHpkpR-lkp@intel.com/
 
+All warnings (new ones prefixed by >>):
+
+   drivers/power/supply/max77759_charger.c: In function 'set_fast_charge_current_limit':
+>> drivers/power/supply/max77759_charger.c:301:6: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+     int ret;
+         ^~~
+   drivers/power/supply/max77759_charger.c: In function 'set_float_voltage_limit':
+   drivers/power/supply/max77759_charger.c:343:6: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+     int ret;
+         ^~~
+
+
+vim +/ret +301 drivers/power/supply/max77759_charger.c
+
+   295	
+   296	static int set_fast_charge_current_limit(struct max77759_charger *chg,
+   297						 u32 cc_max_ua)
+   298	{
+   299		bool found;
+   300		u32 regval;
+ > 301		int ret;
+   302	
+   303		ret = linear_range_get_selector_high(&chg_ranges[MAX77759_CHGR_RANGE_CHGCC],
+   304						     cc_max_ua, &regval, &found);
+   305		if (!found)
+   306			return -EINVAL;
+   307	
+   308		return regmap_update_bits(chg->regmap, MAX77759_CHGR_REG_CHG_CNFG_02,
+   309					  MAX77759_CHGR_REG_CHG_CNFG_02_CHGCC, regval);
+   310	}
+   311	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
