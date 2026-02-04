@@ -1,129 +1,110 @@
-Return-Path: <devicetree+bounces-262698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263216-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UDNkHSVYg2mJlQMAu9opvQ
-	(envelope-from <devicetree+bounces-262698-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:31:01 +0100
+	id uAXiGdlkhWl3BAQAu9opvQ
+	(envelope-from <devicetree+bounces-263216-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 04:49:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCB76E71E7
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:31:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F228BF9DA8
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 04:49:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 37573302AD22
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 14:25:51 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6EE653006F3C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 03:39:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5E11410D2B;
-	Wed,  4 Feb 2026 14:25:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="ttg/iyo9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F6E13321BD;
+	Fri,  6 Feb 2026 03:39:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from pawsdelights.com (unknown [1.237.48.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25F423321B0
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 03:39:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.237.48.182
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770349182; cv=none; b=p2s6l7655iueKH5Hl3BjRMMT/QyM4eHh5EEOwBPD4lb1TPuVnXR+rWD7W0mIRan4uH8cAhH7tNFKGz0FjDTugNNHFszRhQCSPITXMwpuPDdGis/QO3DARouzlevwk+bL9/ORl0aKm4lgTPcTl9gahL6tj7uPZyAchLbQY/x8+W8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770349182; c=relaxed/simple;
+	bh=+un2x8eMJkEysQ7gdtsrBWp58jFrC1SA1/l6MoF0zHQ=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tz+QdByYJvk8nP71nTad45CpEQ1EYPJHivFcxOXKAUZf6U5OTWA92gSvQ2ROGjZcVkrPLSfaH+5UMu6QnWrrahERu9PNFvPvua7zEt0Hv3EQCSlTFjbhUOxxOhp8PmFcIjTCMYBJMiGl3HJWZMDmVrWYP9wFgeHsZURoTeAE7bI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pawsdelights.com; spf=none smtp.mailfrom=pawsdelights.com; arc=none smtp.client-ip=1.237.48.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pawsdelights.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pawsdelights.com
+Received: from [84.233.216.239] (unknown [84.233.216.239])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96CA4410D30;
-	Wed,  4 Feb 2026 14:25:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770215149; cv=none; b=fbS4ISSFFlaa1P0crty4+ldMwtcNc3d/A1psnqK1UybQXImulgyQuErLP6+YG30J0va64wRF1BVLEl/W5wnTbrQ/8ZYXi8HlanVN7QPu2Q7XSR+stHqFRVVrdnurRFS2k3cfaXKf1hPIH2ujtqWxCA3HwADjLUtR4tjASgKm4nM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770215149; c=relaxed/simple;
-	bh=UKQ7n5eRMKm18Jsr0H3xh1Q4lAY3MboBngp44b5vomM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NTLp4y5cBu7Jr3hNGGN10RiOOQmHjU80HOWnleG5HDnMWPdaJ4LhgcARUe6XjY1EySSfpCKPBkECr3E6HOU/fD+6QTOLPVcSm/Zo4E9d+S6EKToT1s6Gv83obpEKhZ0m7sryIzXuyJWeWg0qAgB5rabFnEVJqYVUPw8/MiQaXPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ttg/iyo9; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4f5jLq1gKZz9tfs;
-	Wed,  4 Feb 2026 15:25:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1770215139;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SVuLn4uEJ9+UsDMLkQEqxans2v9GDBjUZCsTXAt53cY=;
-	b=ttg/iyo9PKoY4uTtGqrtVSI/gvHqZR74i0dYPfH+lQ+50ydE0WKZ4mzx7SAKb1syeTd82D
-	W6IXW0CE7oVFhdHaWDnV93kowIja5GtEj6H8YnZksqrMHxHQSOBVeIjpg3PQZbkuK2JiOv
-	bengvoH61IiQJkYhPvhVDyJNJ/BFJ418cdYfXndRmLO9DeHWhBOVBKgSQeK5cAhYiwbkpp
-	p2H8Hpb8h6QY8XwDaK9RxWT3McxYQZ0ugyZX2Fxga+5FkLmgaNyDfeWLygusv8RNuflKGI
-	KgzVWM8+qBHMmaoafIlce/bnjp1eJhkingoF7D/+5o+wi/wLubl2G+nSRQwtpA==
-Message-ID: <a37be87a-e1aa-443a-9005-da62e4f51d63@mailbox.org>
-Date: Wed, 4 Feb 2026 15:25:34 +0100
+	by pawsdelights.com (Postfix) with ESMTPSA id 8DE1467702BB
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 23:54:25 +0900 (KST)
+Reply-To: euromillions9090@gmail.com
+From: "Euro Millions" <music@pawsdelights.com>
+To: devicetree@vger.kernel.org
+Subject: =?UTF-8?B?SGVyemxpY2hlbiBHbMO8Y2t3dW5zY2guLg==?=
+Date: 4 Feb 2026 15:54:20 +0100
+Message-ID: <20260204155419.DE1AD284A6EB028B@pawsdelights.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [net-next,PATCH v3 3/3] net: phy: realtek: Add property to enable
- SSC
-To: netdev@vger.kernel.org
-Cc: "David S. Miller" <davem@davemloft.net>,
- Aleksander Jan Bajkowski <olek2@wp.pl>, Andrew Lunn <andrew@lunn.ch>,
- Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>, Ivan Galkin <ivan.galkin@axis.com>,
- Jakub Kicinski <kuba@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Michael Klein <michael@fossekall.de>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, devicetree@vger.kernel.org
-References: <20251218173718.12878-1-marek.vasut@mailbox.org>
- <20251218173718.12878-3-marek.vasut@mailbox.org>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <20251218173718.12878-3-marek.vasut@mailbox.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: bx97ksdkggcwqo5zkieas9s1xnz73be6
-X-MBO-RS-ID: cd8ea292a1d590c7a53
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [14.84 / 15.00];
+	FUZZY_DENIED(12.00)[1:eda327c2d6:1.00:bin];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+	DATE_IN_PAST(1.00)[36];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-263216-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262698-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	DMARC_NA(0.00)[pawsdelights.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[davemloft.net,wp.pl,lunn.ch,kernel.org,google.com,gmail.com,axis.com,fossekall.de,redhat.com,armlinux.org.uk,nxp.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	GREYLIST(0.00)[pass,body];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_ONE(0.00)[1];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	NEURAL_SPAM(0.00)[0.394];
+	HAS_REPLYTO(0.00)[euromillions9090@gmail.com];
+	TO_DN_NONE(0.00)[];
+	R_DKIM_NA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[mailbox.org:+];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[music@pawsdelights.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mailbox.org:email,mailbox.org:dkim,mailbox.org:mid]
-X-Rspamd-Queue-Id: CCB76E71E7
-X-Rspamd-Action: no action
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F228BF9DA8
+X-Rspamd-Action: add header
+X-Spam: Yes
 
-On 12/18/25 6:36 PM, Marek Vasut wrote:
-> Add support for spread spectrum clocking (SSC) on RTL8211F(D)(I)-CG,
-> RTL8211FS(I)(-VS)-CG, RTL8211FG(I)(-VS)-CG PHYs. The implementation
-> follows EMI improvement application note Rev. 1.2 for these PHYs.
-> 
-> The current implementation enables SSC for both RXC and SYSCLK clock
-> signals. Introduce DT properties 'realtek,clkout-ssc-enable',
-> 'realtek,rxc-ssc-enable' and 'realtek,sysclk-ssc-enable' which control
-> CLKOUT, RXC and SYSCLK SSC spread spectrum clocking enablement on these
-> signals.
-> 
-> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
-Is there anything that should be adjusted in these patches ?
+Herzlichen Gl=C3=BCckwunsch, Sie haben =E2=82=AC650.000,00 bei den monatlic=
+hen=20
+Gewinnspielen von Euro Millions/Google Promo am 1.Januar 2026=20
+gewonnen.
+
+Bitte geben Sie die folgenden Informationen ein, damit Ihr=20
+Gewinnbetrag an Sie =C3=BCberwiesen werden kann.
+
+Vollst=C3=A4ndiger Name:
+Heimatadresse:
+Geschlecht:
+Alter:
+Telefon:
+
+John Andrew
+Online-Koordinator
 
