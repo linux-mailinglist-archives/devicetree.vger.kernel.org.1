@@ -1,264 +1,129 @@
-Return-Path: <devicetree+bounces-262697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262698-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ABhhBHFXg2mJlQMAu9opvQ
-	(envelope-from <devicetree+bounces-262697-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:28:01 +0100
+	id UDNkHSVYg2mJlQMAu9opvQ
+	(envelope-from <devicetree+bounces-262698-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:31:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6492CE7165
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:28:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCB76E71E7
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:31:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 36A05307DD25
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 14:23:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 37573302AD22
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 14:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2057041B35D;
-	Wed,  4 Feb 2026 14:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5E11410D2B;
+	Wed,  4 Feb 2026 14:25:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ECi2anPi"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="ttg/iyo9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C05F841B34E
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 14:23:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96CA4410D30;
+	Wed,  4 Feb 2026 14:25:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770215010; cv=none; b=Z3/wZTvDtQ+OdEBuqd9ApDeyzY++WDAGB5JIr9U14/1qIgwSrQZIZwVurI1O9cnr30Ip6r1AqhM7R8OypNXmm492EdP8SnMrEtwGUnBYEnYkaApSh87Xe2ZXW+PiPLc7EXjombGKr1wmj5dPkkjlvnEtG3oI8CMsOuJV57stIcw=
+	t=1770215149; cv=none; b=fbS4ISSFFlaa1P0crty4+ldMwtcNc3d/A1psnqK1UybQXImulgyQuErLP6+YG30J0va64wRF1BVLEl/W5wnTbrQ/8ZYXi8HlanVN7QPu2Q7XSR+stHqFRVVrdnurRFS2k3cfaXKf1hPIH2ujtqWxCA3HwADjLUtR4tjASgKm4nM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770215010; c=relaxed/simple;
-	bh=UP+9KdRnkLsvToA8MtZEcm32tDDxPt9OHWzvcibE/xg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=W7fuhoQfjnqCQ1sLP53HlKuOh75QRe2rJ8i+7qtv++Ih3pNZj8dIXAe9GaHAvG8NEuKZ3nRAMwMPDlZg6zaqe4okHIYxSCXeKmuGC9DwCbVgu/rAzjwUW8WeZDQgBf/HFfOLOsLd0QSQjheh0VxopyEcc/2lAT+kh/8AZrJcIOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ECi2anPi; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b885d8f4092so1160545966b.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 06:23:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770215008; x=1770819808; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+JoeGOuekatIj2w4dOO9r1vdS0XM/ncxVioEhSKM/u4=;
-        b=ECi2anPiK35Ib9nk7K7fIlJlrxWTRoblRVtVM6uwk3Qlnc/X21HzI+xxOL1BBVWY5m
-         82t3Ue6Zhn5g4IwN97BlX/Ge3opejG4pdU+gY2z1SLkWh8QO/hYPSMN5nTIbATwAtxLZ
-         TUgIIN1pAsWEjnyy2Vuc5Zl5blGP7xVawFNfM5mt9xBeek7f+QPTU2PHEryUvoQL72AW
-         VD5c+6mCEcZ7o79YLzliZ+gpC9/n2k5KtlsMgHUWF7ROU7oz3I1F4t0BdUaC4PNyY0Kq
-         SqzVX4WLjjfUI8LRxgxEZP07aAFSfO7HfCeVeavIn/q2Idt76BWE4yAhu2rD/yEQxdtk
-         wMFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770215008; x=1770819808;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=+JoeGOuekatIj2w4dOO9r1vdS0XM/ncxVioEhSKM/u4=;
-        b=agg7K4JNI9FFLTrspJZYu1hJ8kKVZy4OD7AxP5fweYk0xJPMFxhbgW0eeCT0AVoSBy
-         mdtCThXYnMV+xxcD72Wsc1spCkdQ0/O0MlPH3woaPxdlTzB7IFg0u7KkklsktrqxSarC
-         jmCLhhIucszFmMn2D5H3it4HhuFBJLDjhmy7UNsQMHw1tOLbN7koh8dkrocIgSGgEScw
-         GiwwR5fRGEAo7ANgx59p+yUJUtvFW9q5t4N4LajRcLlrjIpo5Z5Se+PacCFvTE1+GtUE
-         TBkSWBgY04BbsZOePvCpJK9aa0ghQXPjKXl/NUsjJveGkBWC1pPP8/RZpTmyM0jZF68u
-         u/Ng==
-X-Forwarded-Encrypted: i=1; AJvYcCW4nQhF7vu6ubZ7owtD745puLIglhzSQWzr7AN4OiaJwGPXO1iDOboKXNVaT84EVSHlypua0O0OFw8H@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnTXur7UgKyC78rWlc9yJnGQow9TD5uqzk7pQXxu826k8J6LB3
-	VsDHxz9Tsflb/b3YjUstucgaRQRUp3iOpOE2NAQz7LOhPccCfDaHNq0F
-X-Gm-Gg: AZuq6aLaUY0h3I9oRclF3gGnWwFbk70pmyfFF4/rISLdnhOgTWSwGeWt3SkFEVZbnqy
-	DwEMJcHafQ1yphyVWQcgeunbsi9ap/vtIXz6nVkCvvQcCBdo6ySPQ8vXurI3dt1qw9qfUjifqBr
-	EZ6shB6EuYLnH7Us9J6RUM1PjEJ55VBgDCQe+TSfka5TG4AG/J9WTQyoa8xGBL5IkyQMCnJf5du
-	IRVS85v+H5V3XNRfhsJhmsgFEtFji7FaNnfVGZ8D86NWNfRzu26syl7Lcxdhteax6U1kzB9Rj6V
-	MsaYguGMpZohe6a3oIUAIh8oVFdZij9Z/nMZIKIw9kIR/sdo55m+i0ROoW9aT6w2etxscM6QoB3
-	aujZc9bNDD2JqWaGb5b9DVt8mqGzYXEwaieDvCGsk2mwnFdNrHO7JuxfsD8HB3aK81oMmFB64BE
-	byB41Ex9Oeu+Q4i8Hs7SjpH1gLEiwzoaqmcfQ=
-X-Received: by 2002:a17:907:3d0c:b0:b87:63a8:880c with SMTP id a640c23a62f3a-b8e9ef58045mr221168866b.19.1770215007916;
-        Wed, 04 Feb 2026 06:23:27 -0800 (PST)
-Received: from localhost.localdomain ([2a00:23c4:a758:8a01:3c9f:a100:4d45:ebc7])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8ea001ea7dsm129038366b.47.2026.02.04.06.23.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Feb 2026 06:23:27 -0800 (PST)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 8/8] arm64: dts: renesas: r9a08g046: Add ICU node
-Date: Wed,  4 Feb 2026 14:23:16 +0000
-Message-ID: <20260204142320.103184-9-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260204142320.103184-1-biju.das.jz@bp.renesas.com>
-References: <20260204142320.103184-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1770215149; c=relaxed/simple;
+	bh=UKQ7n5eRMKm18Jsr0H3xh1Q4lAY3MboBngp44b5vomM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NTLp4y5cBu7Jr3hNGGN10RiOOQmHjU80HOWnleG5HDnMWPdaJ4LhgcARUe6XjY1EySSfpCKPBkECr3E6HOU/fD+6QTOLPVcSm/Zo4E9d+S6EKToT1s6Gv83obpEKhZ0m7sryIzXuyJWeWg0qAgB5rabFnEVJqYVUPw8/MiQaXPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ttg/iyo9; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4f5jLq1gKZz9tfs;
+	Wed,  4 Feb 2026 15:25:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1770215139;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SVuLn4uEJ9+UsDMLkQEqxans2v9GDBjUZCsTXAt53cY=;
+	b=ttg/iyo9PKoY4uTtGqrtVSI/gvHqZR74i0dYPfH+lQ+50ydE0WKZ4mzx7SAKb1syeTd82D
+	W6IXW0CE7oVFhdHaWDnV93kowIja5GtEj6H8YnZksqrMHxHQSOBVeIjpg3PQZbkuK2JiOv
+	bengvoH61IiQJkYhPvhVDyJNJ/BFJ418cdYfXndRmLO9DeHWhBOVBKgSQeK5cAhYiwbkpp
+	p2H8Hpb8h6QY8XwDaK9RxWT3McxYQZ0ugyZX2Fxga+5FkLmgaNyDfeWLygusv8RNuflKGI
+	KgzVWM8+qBHMmaoafIlce/bnjp1eJhkingoF7D/+5o+wi/wLubl2G+nSRQwtpA==
+Message-ID: <a37be87a-e1aa-443a-9005-da62e4f51d63@mailbox.org>
+Date: Wed, 4 Feb 2026 15:25:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Re: [net-next,PATCH v3 3/3] net: phy: realtek: Add property to enable
+ SSC
+To: netdev@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Aleksander Jan Bajkowski <olek2@wp.pl>, Andrew Lunn <andrew@lunn.ch>,
+ Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Ivan Galkin <ivan.galkin@axis.com>,
+ Jakub Kicinski <kuba@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Michael Klein <michael@fossekall.de>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>, devicetree@vger.kernel.org
+References: <20251218173718.12878-1-marek.vasut@mailbox.org>
+ <20251218173718.12878-3-marek.vasut@mailbox.org>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20251218173718.12878-3-marek.vasut@mailbox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: bx97ksdkggcwqo5zkieas9s1xnz73be6
+X-MBO-RS-ID: cd8ea292a1d590c7a53
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262697-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
+	TAGGED_FROM(0.00)[bounces-262698-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[davemloft.net,wp.pl,lunn.ch,kernel.org,google.com,gmail.com,axis.com,fossekall.de,redhat.com,armlinux.org.uk,nxp.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.168.156.16:email,0.168.77.240:email,0.180.91.224:email];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6492CE7165
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mailbox.org:email,mailbox.org:dkim,mailbox.org:mid]
+X-Rspamd-Queue-Id: CCB76E71E7
 X-Rspamd-Action: no action
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
-
-Add interrupt control node to RZ/G3L ("R9A08G046") SoC DTSI
-and add icu as interrupt-parent of pincontrol.
-
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-This patch depend upon [1]
-[1] https://lore.kernel.org/linux-renesas-soc/20260203131048.421708-9-biju.das.jz@bp.renesas.com/T/#u
----
- arch/arm64/boot/dts/renesas/r9a08g046.dtsi | 91 ++++++++++++++++++++++
- 1 file changed, 91 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a08g046.dtsi b/arch/arm64/boot/dts/renesas/r9a08g046.dtsi
-index a92a4e07cc10..65dfa145ef59 100644
---- a/arch/arm64/boot/dts/renesas/r9a08g046.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a08g046.dtsi
-@@ -188,6 +188,7 @@ pinctrl: pinctrl@11030000 {
- 			gpio-ranges = <&pinctrl 0 0 232>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
-+			interrupt-parent = <&icu>;
- 			clocks = <&cpg CPG_MOD R9A08G046_GPIO_HCLK>;
- 			power-domains = <&cpg>;
- 			resets = <&cpg R9A08G046_GPIO_RSTN>,
-@@ -196,6 +197,96 @@ pinctrl: pinctrl@11030000 {
- 			reset-names = "rstn", "port", "spare";
- 		};
- 
-+		icu: interrupt-controller@11050000 {
-+			compatible = "renesas,r9a08g046-irqc";
-+			#interrupt-cells = <2>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			reg = <0 0x11050000 0 0x10000>;
-+			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 532 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 534 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 505 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 510 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 511 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 512 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 513 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 514 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 515 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 516 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 517 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 518 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 519 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 521 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 522 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 523 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 524 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 525 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 526 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 527 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 528 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 532 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 534 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 236 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 296 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "nmi",
-+					  "irq0", "irq1", "irq2", "irq3",
-+					  "irq4", "irq5", "irq6", "irq7",
-+					  "irq8", "irq9", "irq10", "irq11",
-+					  "irq12", "irq13", "irq14", "irq15",
-+					  "tint0", "tint1", "tint2", "tint3",
-+					  "tint4", "tint5", "tint6", "tint7",
-+					  "tint8", "tint9", "tint10", "tint11",
-+					  "tint12", "tint13", "tint14", "tint15",
-+					  "tint16", "tint17", "tint18", "tint19",
-+					  "tint20", "tint21", "tint22", "tint23",
-+					  "tint24", "tint25", "tint26", "tint27",
-+					  "tint28", "tint29", "tint30", "tint31",
-+					  "bus-err", "ec7tie1-0", "ec7tie2-0", "ec7tiovf-0",
-+					  "ovfunf0", "ovfunf1", "ovfunf2", "ovfunf3",
-+					  "ovfunf4", "ovfunf5", "ovfunf6", "ovfunf7";
-+			clocks = <&cpg CPG_MOD R9A08G046_IA55_CLK>,
-+				 <&cpg CPG_MOD R9A08G046_IA55_PCLK>;
-+			clock-names = "clk", "pclk";
-+			power-domains = <&cpg>;
-+			resets = <&cpg R9A08G046_IA55_RESETN>;
-+		};
-+
- 		dmac: dma-controller@11820000 {
- 			compatible = "renesas,r9a08g046-dmac", "renesas,rz-dmac";
- 			reg = <0 0x11820000 0 0x10000>,
--- 
-2.43.0
-
+On 12/18/25 6:36 PM, Marek Vasut wrote:
+> Add support for spread spectrum clocking (SSC) on RTL8211F(D)(I)-CG,
+> RTL8211FS(I)(-VS)-CG, RTL8211FG(I)(-VS)-CG PHYs. The implementation
+> follows EMI improvement application note Rev. 1.2 for these PHYs.
+> 
+> The current implementation enables SSC for both RXC and SYSCLK clock
+> signals. Introduce DT properties 'realtek,clkout-ssc-enable',
+> 'realtek,rxc-ssc-enable' and 'realtek,sysclk-ssc-enable' which control
+> CLKOUT, RXC and SYSCLK SSC spread spectrum clocking enablement on these
+> signals.
+> 
+> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+Is there anything that should be adjusted in these patches ?
 
