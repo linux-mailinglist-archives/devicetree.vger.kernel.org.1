@@ -1,308 +1,192 @@
-Return-Path: <devicetree+bounces-262647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262648-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wL19J/xHg2mMkwMAu9opvQ
-	(envelope-from <devicetree+bounces-262647-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 14:22:04 +0100
+	id uI5cL0NIg2mMkwMAu9opvQ
+	(envelope-from <devicetree+bounces-262648-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 14:23:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FE16E6589
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 14:22:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E18EE659F
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 14:23:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 84E4A300D146
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 13:21:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0AB5E300C9B3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 13:23:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEF183EDAA5;
-	Wed,  4 Feb 2026 13:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0B0E283FDD;
+	Wed,  4 Feb 2026 13:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="drrZ2Qrd";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="B2GAcTFi"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="O5V2PohT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com [74.125.82.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7BDE3D5223
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 13:21:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B76A2773F0
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 13:23:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770211317; cv=none; b=hQRWaYv7zjq0E7pe7pbtFdG6ctmgvE5GkUoPwC24S7Ceq4xstnbnhcJWPRq7vThNpNWvvChgQ6C0su4iPZC5kDSPfBWBsRdjLsiK6yBhV79kMHdnWom8RIp/FSmWghos7uhonsRs/D58HTiRe4q3sk2OG6NXFvDH4Rj8hsDrNJk=
+	t=1770211392; cv=none; b=EQCh8xJ1YA+UqeJfTH2xbYm+esw2bZqB87jhVmYvVf2S1ZqgH4abxRK8HYMsdW+ECRLEzLmfSNapHn4xqbITnJcUJuqpw6M2QbxpI4YYPWP5GrV3vV/5nl/EmSaFB9oRU2/mJPin173oOwqq8zopKWWOc1FzY4lxLe0WsXXu8c8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770211317; c=relaxed/simple;
-	bh=ejIe9K8TRFAnJxwfJZad45jmqCxHzaXJ8oFdYngj8a0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lOLns3ey4PuWvu9ezQySXFqubQH4ywpj6LWpvN2DXZtF2ZY+8Il9MBXvJCXrTgtPPpO7oqotJAORC7oDv86s547VQkdyOsNTL42LnPSYDu5CpErAKlqLN/IuV/ZD7vkBvOkPxTuT0AIvjpuhXKnQsmeu8FO8jUGhNZlXfG4pFkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=drrZ2Qrd; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=B2GAcTFi; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 614CIOVk1245882
-	for <devicetree@vger.kernel.org>; Wed, 4 Feb 2026 13:21:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aLmS86Gu8Sr2rHXE8XBrADnektSAaASrFSh03li0xM8=; b=drrZ2QrdQlukp5EO
-	8vrrMfmsonosRnfcPLEY+4IvClY2KDH3mOpfMH2E2YrnVVSEkB7gYLU9qPHWkV97
-	vBN2yo+TkjWcWyet3bQeO17nFskwud+Iz7GEkF+Nda0hAJB+PunKNvFxQjO4G0IS
-	saPcC3VYZS4wILsRjUYzJwvFfO31KdmPVMIlVt6X5jA67DUraMoiPZM+cu+CcUMd
-	6wXZQ3aA6/FJ9Df3FcgMiDqGKmOEtGvnRL68N5nUjbra1x89jeDH4rVnDNdMO+Mj
-	J+xE2Ozp+ghOcSaPsxL5wk4w+sOG65/lTaXCpxHMvIaTYgUN5SqGCj7s46AGDKme
-	u9Gv2A==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c3ru9amsv-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 13:21:56 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c7177d4ab4so167100885a.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 05:21:56 -0800 (PST)
+	s=arc-20240116; t=1770211392; c=relaxed/simple;
+	bh=c68fJ7OMpslbItdQ9xgxFuKoYGVE3+0L9MTCQlxzlhs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Bilp2gu1EduYQJ1oFl7Ve5n+s19b5tgNfVyeBYNnFUGBSKqYxRqNEHflVEjI/3jvVCW6xXecHnDpgkBuI0V/PxZFsdx7Rf6Tw9IpQcfkh/mMo+k7MfdJT0Pf55lp84aKpHjEXGM4jlMkpFpW4sXt/PDf5n6yTIjzMJk82hmFy2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=O5V2PohT; arc=none smtp.client-ip=74.125.82.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-dy1-f177.google.com with SMTP id 5a478bee46e88-2b704f08e73so541675eec.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 05:23:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770211316; x=1770816116; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aLmS86Gu8Sr2rHXE8XBrADnektSAaASrFSh03li0xM8=;
-        b=B2GAcTFiNdLsEsaidXhD7XI/4mL3+EBnwuyWQgUFogPwoQS07reqBPb9VjyrL1LY4m
-         wKrruSn1GC/w0QzRW9nEJO6M0+bvpjeFSRAfSAp26VViW1f4CybmHys+OzPz9WOnoQt2
-         0qj/rWl462F2R1ZmIPEH2pXonqR15CVk2V3OGhwdPvJpIJbENMImp6rgryywLt72psQ1
-         LQlQ3EK1mt20DdoWT9doD8tOSoMs6l3z+GQKbVrno7a6vQVtz6XywZwezqa4LOBC4h1/
-         AHjUFpu8JLfSn7a0Cayn7xlSz3QQ4sCuhMy5py6+q5aihrsZIHXx52TaBfVNBwY4MxBh
-         5ONA==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1770211392; x=1770816192; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kIfSdKgtKPIDZe3e+f9p01Ulu42xE4j1piPC/F3kvqE=;
+        b=O5V2PohT7Av5kVh3H2mGN+HPgclIEuRitolJ6KPwXm8yyXgMLBs186i8Ut7uObttUq
+         G12WGqY/5P07IK0MMgENmxWuXYWP/s0P2rSnajAz+lC/+hQuTlQGhh10cvNCpP7bpw3B
+         Poib7BtnxvXFn0tErSzG5dt1mi1/4CA1/XCyHATnG0ZtgiiEDSoGolmq5ivO6yBUR4t4
+         6pMZ3ka2gidt1t+KveNSN4Nx9FUE+6yAEY6HCGexDJAn24zXFYrnviYfcGqIxGDS2uO3
+         lUe8O2vgA5f8fBV3GsR/4gbqwHnFwLDhzuopzX1iaFeCaXajNwIQfxqY3Yg7iNMsooRj
+         a23A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770211316; x=1770816116;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aLmS86Gu8Sr2rHXE8XBrADnektSAaASrFSh03li0xM8=;
-        b=WB6Eghl9RdmIaZK0PLPQ9HmJPR+P18h2MleOant68o3KUCC5QmPdi2HfxzDjuQqbnY
-         Fjyl4vcQHIeosDagzMyyEv02bMAi4A6/jzjlH4gLVsRzfEY1IbsbSQf7JKvnG4jYOKZE
-         hIU5DlCNK+8O8BCqzkqFYWW1XQk3GoVWYwLvtbaZ/c5aNRnxnWT69MEcZtrVHfJOlJZ1
-         myd/nCw1aPOV2BBXye56UiAJocaYr0y58m3u/kkjup0mkG+h2ySfFS/zDoiFwHjWPtnE
-         yoM3TSWGpRe/Q5I5Ls8KQgjjelNJDhylnECdfEEKD6xAWpKiNoSmG2SJbO/BUrwFhmCx
-         stcg==
-X-Forwarded-Encrypted: i=1; AJvYcCXJhthzxCI83XcsLEH9mCuMkqIAoTEd63sZooXVfwF0u39TQfcgzppbuwstKSgggYt515W3CDsK8GVp@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqicPm+BY1YJiLWvln9mMBzAJLO9ajS91T3Xyhnfaz5dY2eUh1
-	s0xz8SXFAWqEI5elpdYiO4KWHtGi4m/Nch3DbcfXWfGFM+K1he1HpXBGkBj96rirgh9SfSR9LlZ
-	UKlU2dTtqgi1SCCvpzmJ4PEKBrXxRFCcmuzmw2PDVtPVmdvfqQWTwDDPM0g5p7wdB
-X-Gm-Gg: AZuq6aIBxSQStOkMLFKl7nk8JAWTa7tpa5A7s2Iv8aaFBcrw7ikCAIq6kLl2SPbksO3
-	La1jjZrrfUHNW/Qnxz89XC0NEIn64kEnG2/mkLDYgu5LfGUpVWee4lXjGLRI1xRp7dM8bMawAvT
-	hpirFXySWjPsi6GyXju0Za6EFE8h/0stUWh5cPCMCSzwz2EcRTP4CqP0A/Y542H30Eq4f7pb8kJ
-	62ObqVxDv0pWzZGHDuHY/klcC1R1uA987gba7hohopFq+c73u7PxaOKvQOYGIaGepYcnP11Xr9v
-	LPXc+cWMn8CoEYV9ANojIwrFaFjCimKKSG/u7gJCM3sJjH7lMuEbFIoO+7IA7i2EGFA/1UE8NrO
-	wgsWUE76JYfXU0Wcn6r75Y4YEwAL+QOhDne7B3zLebdmOOMi+DV6zah/re8h4s16HxAY=
-X-Received: by 2002:a05:620a:2903:b0:8b2:e19c:67cd with SMTP id af79cd13be357-8ca2fa05f05mr300554585a.9.1770211315840;
-        Wed, 04 Feb 2026 05:21:55 -0800 (PST)
-X-Received: by 2002:a05:620a:2903:b0:8b2:e19c:67cd with SMTP id af79cd13be357-8ca2fa05f05mr300549385a.9.1770211315277;
-        Wed, 04 Feb 2026 05:21:55 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8e9fd3d72fsm130989566b.26.2026.02.04.05.21.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Feb 2026 05:21:54 -0800 (PST)
-Message-ID: <9f81c07a-c1c6-4888-975d-528a6181caea@oss.qualcomm.com>
-Date: Wed, 4 Feb 2026 14:21:52 +0100
+        d=1e100.net; s=20230601; t=1770211392; x=1770816192;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kIfSdKgtKPIDZe3e+f9p01Ulu42xE4j1piPC/F3kvqE=;
+        b=r9DxYFURNzZkKP+NavdxqHQkP4tqhsJ84WvQYftIfbrETQXeq0vSjO6mPni0QHVoQK
+         o8nEmlAA6LqHEE7y7kRt6Yhztad420I+eYBp0KudqVMY2ekMZPyVmM6nEbMJPUS+zUio
+         CZCQWRi/NAM4983+Ixwz6reAtyxYZUS+KfAhWO7j8OM5E9VSWzH3RLJNycB7J+t/U5/F
+         k3JkVxSs8wF1wjltIgFhKWhhlqfxqgj0Fb7bbphDwn7knuT83vJAKQBj2oOCZt5MtT51
+         0U3JXQA6UOiYE7u9KxbAdHB/kd2nzrqBqrD69JO2Dttn+/+mcLQDQtdzKnbffNOaRIMJ
+         WzwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXN/L4XAJuu+5j/Jz51PIvLY4cpQ8MoGBTSqHNmNxNIa6tiApNrdZyDr3rZmi7OiEgX5RQ1EReVaxyA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLtc8qY5sPMeKMbOoPztjc7hSIoZ8KPQhyv1XZc843AZrNQh/V
+	/jEDkqB1MLcH62HkydAct7DK36szYdNTB1BFK20dILTpjXavwDjgbD6Qf3j4IZRb0ic=
+X-Gm-Gg: AZuq6aI1hAKqsxi2v8ClfNj+cf3AGUpuA5Oxylz/9kaPEtwPgj39myTtkHgB9bwaSAR
+	HY57ZZO2+GSjxGoejtZupQAUo1dUGglylOxBGnEGZaUyW8BQVX276Uux7/0YxPz3qDRAfqKQ3lj
+	CL65/BA6w8dyrESAG+6UW/s/ZatnBV7+YYMax/665D6H5xMGVlIrpR4uYrvudKnu0ge/e26t6pY
+	ePvHkFbPIkJhtlstCLP6JW6JuxVszzd3/YynoUwUt+ziX489ePp4qsPSuSfbqbxG6u+FC3d7tvO
+	84Vod2MWwDQePteZpBlC7kVM845V+MIsI1LQwq1keufxEn0wB3KQjFd6ry99scmTmJt2z9mXbQk
+	C0dLhJO0RC3dLO0SI5poWCru2zblg7+P1KIStA6kM16HPPi3KUko708y8ajruAeB78bKUc84URC
+	LM9Fo39pYe2L88iGRHmugm6sTtPncCK30=
+X-Received: by 2002:a05:7300:7301:b0:2b7:1dd3:585b with SMTP id 5a478bee46e88-2b820e47fe9mr2509188eec.7.1770211391556;
+        Wed, 04 Feb 2026 05:23:11 -0800 (PST)
+Received: from [127.0.1.1] ([2604:a840:3::303d])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b832fc1d50sm1416731eec.27.2026.02.04.05.23.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Feb 2026 05:23:11 -0800 (PST)
+From: Guodong Xu <guodong@riscstar.com>
+Subject: [PATCH v3 0/3] regulator: spacemit-p1: Support board power tree
+ via DT properties
+Date: Wed, 04 Feb 2026 21:23:00 +0800
+Message-Id: <20260204-spacemit-p1-v3-0-a894b3057026@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/9] usb: misc: qcom_eud: add per-path High-Speed PHY
- control
-To: Elson Serrao <elson.serrao@oss.qualcomm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260126233830.2193816-1-elson.serrao@oss.qualcomm.com>
- <20260126233830.2193816-4-elson.serrao@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260126233830.2193816-4-elson.serrao@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA0MDEwMSBTYWx0ZWRfX25bSTmR0iTDR
- v1C+a5bCosS+lrDxpnAt6MROBWwPPVtVrvOaXxechm0D7ylQkKG4fuoJzGMlaXXAdHZRgcl7Moa
- jdkPSRqgxcQzmtqSfQ9SkVtB1Xm6l1Q3Ki5pxisvDfupl10eqj9IoGEdjYmCoX52i/5Yj7cxi5A
- Ojy09t2ucD7ynTzEnkgCVWCsWEHqrOP2ZVWwyUUvYu4+Kfut3OTZ8SYlU85UEofVT+7kPxL8MQm
- iK3P07NODLGZmbYp8a8OIIqSBOlt8A0qPD3blHzaqpOoFhR4lBw3JTyxgvfFRhSPkgx4w9bM7Oz
- 5tP4DsrIRFoKGC0VEoqzI63xWrB/e9OgBS2WJWw4QNdWdIPdB0ESXGGaiGgX0o+cszPUWB0Kb3Y
- IDt8Wy28/1WRiGn46nOT4aCWjS8e34FFtlCRR9f5uqFJZRBf6/DRif8we03EuC8fP01w24Jp7u+
- djkcZOeTnTtqSfTI2rg==
-X-Authority-Analysis: v=2.4 cv=IJoPywvG c=1 sm=1 tr=0 ts=698347f4 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=eJaOKka8i50yBWU_CzgA:9
- a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-GUID: -cXa3D6cYNd8RoOiQgkqQHjd4-FRZKCY
-X-Proofpoint-ORIG-GUID: -cXa3D6cYNd8RoOiQgkqQHjd4-FRZKCY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-04_04,2026-02-04_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015 impostorscore=0
- spamscore=0 bulkscore=0 malwarescore=0 priorityscore=1501 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602040101
+X-B4-Tracking: v=1; b=H4sIADRIg2kC/22PQW7DIBBFr2KxLhWMGQxe9R5RF4CHmkViB6iVK
+ vLdS5xNW3X5v/Ten7mzQjlRYWN3Z5m2VNJyaaF/6ViY3eWDeJpaZiBACwnAy+oCnVPlq+SO0Gq
+ KZAxG1og1U0y3w3Z6f+ZM188mrc+Sra6GuSnHTqLyk4oDiEAoNE5ovDVmIhNh6EEMXikcgB5e7
+ wrxsJzb7Nih1IosYkN69liZU6lL/jpe2OQx8++1m+SC98J6giH6GO1bTiWU6vJrcx+qDX7i6jc
+ ODYdgtBdaW+XdH3zf928xwq3dTgEAAA==
+X-Change-ID: 20260122-spacemit-p1-ae596efe885f
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Yixun Lan <dlan@gentoo.org>, Alex Elder <elder@riscstar.com>, 
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, devicetree@vger.kernel.org, 
+ Guodong Xu <guodong@riscstar.com>
+X-Mailer: b4 0.14.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.06 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[riscstar-com.20230601.gappssmtp.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262647-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-262648-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[riscstar-com.20230601.gappssmtp.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,gentoo.org,riscstar.com,linux.spacemit.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[guodong@riscstar.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 1FE16E6589
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 2E18EE659F
 X-Rspamd-Action: no action
 
-On 1/27/26 12:38 AM, Elson Serrao wrote:
-> EUD hardware can support multiple High-Speed USB paths, each routed
-> through its own PHY. The active path is selected in hardware via the
-> EUD_PORT_SEL register. As a High-Speed hub, EUD requires access to the
-> High-Speed PHY associated with the active UTMI path. To support this
-> multi-path capability, the driver must manage PHY resources on a per-path
-> basis, ensuring that the PHY for the currently selected path is properly
-> initialized and powered.
-> 
-> This patch restructures the driver to implement per-path PHY management.
-> The driver now powers the appropriate PHY based on the selected and
-> enabled UTMI path, ensuring correct operation when EUD is enabled.
-> 
-> Supporting this requires describing the available UTMI paths and their
-> corresponding PHYs in Device Tree. This updates DT requirements and is
-> not backward compatible with older DTs that lacked this description.
-> Historically, EUD appeared to work on single-path systems because the
-> USB controller kept the PHY initialized. However, EUD is designed to
-> operate independently of the USB controller and therefore requires
-> explicit PHY control.
-> 
-> Signed-off-by: Elson Serrao <elson.serrao@oss.qualcomm.com>
-> ---
+The patch (Patch 1 in v1 and v2) fixing hardware voltage constraints was
+applied to regulator.git for-next, so it is dropped from this series.
 
-[...]
+Patch 1, 2 and 3 (previously 2-4) enables flexible power tree
+configurations for the SpacemiT P1 PMIC. Hardcoded supply assumptions
+are replaced with explicit devicetree properties. PMIC supply connections
+are board-design decisions. Moving this to DT allows supporting varied
+topologies without driver modifications.
 
-> +static int eud_phy_enable(struct eud_chip *chip)
-> +{
-> +	struct eud_path *path;
-> +	struct phy *phy;
-> +	int ret;
-> +
-> +	if (chip->phy_enabled)
-> +		return 0;
-> +
-> +	path = chip->paths[chip->port_idx];
-> +	if (!path || !path->phy) {
+The supply binding change is an ABI change. The breakage is acceptable:
+Yixun Lan checked the DTS tree queued for v6.20 and found no consumers
+of the P1/PMIC regulator yet [1]. For the two K1 boards in-tree
+(BPI-F3 and Jupiter), initial power settings come from boot firmware and
+a probe failure of pmic node "spacemit,p1" has minimal impact.
 
-I think neither are possible - path is != NULL since we can't enter into
-this function without failing the check in _store and !path->phy would error
-out in probe()->eud_init_path()
+Link: https://lore.kernel.org/lkml/20260125110333-GYD71302@gentoo.org/ [1]
 
-[...]
+Changes in v3:
+- Drop Patch 1 of previous series, already applied to regulator.git
+    for-next (commit 41399c5d4761).
+- Patch 1 (previous 2): Mark "vin-supply" as deprecated to avoid
+    cross-tree warnings.
+- Patch 2 (previous 3): Describe the ABI change explicitly. Add
+    justification.
+- Link to v2: https://lore.kernel.org/r/20260124-spacemit-p1-v2-0-2c86b06694ba@riscstar.com
 
-> +static void eud_phy_disable(struct eud_chip *chip)
-> +{
-> +	struct eud_path *path;
-> +	struct phy *phy;
-> +
-> +	if (!chip->phy_enabled)
-> +		return;
-> +
-> +	path = chip->paths[chip->port_idx];
-> +	if (!path || !path->phy)
+Changes in v2:
+- Patch 2: dt-bindings, remove providers from the example dts.
+- Patch 4: Added the pmic supply properties for K1 Milkv Jupiter.
+           Updated the commit message accordingly.
+- Link to v1: https://lore.kernel.org/r/20260122-spacemit-p1-v1-0-309be27fbff9@riscstar.com
 
-Likewise
+Signed-off-by: Guodong Xu <guodong@riscstar.com>
+---
+Guodong Xu (3):
+      dt-bindings: mfd: spacemit,p1: Add individual regulator supply properties
+      regulator: spacemit-p1: Update supply names
+      riscv: dts: spacemit: Update PMIC supply properties for BPI-F3 and Jupiter
 
-[...]
+ .../devicetree/bindings/mfd/spacemit,p1.yaml       | 53 +++++++++++++++++++++-
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    | 12 ++++-
+ arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts  | 12 ++++-
+ drivers/regulator/spacemit-p1.c                    | 25 +++++-----
+ 4 files changed, 86 insertions(+), 16 deletions(-)
+---
+base-commit: 5164e95565d3fd508ca8a95351323f5716dfb695
+change-id: 20260122-spacemit-p1-ae596efe885f
+prerequisite-patch-id: 154bd4f720ce5065d58b988de8f273207b44572e
 
-> +static int eud_init_path(struct eud_chip *chip, struct device_node *np)
-> +{
-> +	struct eud_path *path;
-> +	u32 path_num;
-> +	int ret;
-> +
-> +	ret = of_property_read_u32(np, "reg", &path_num);
-> +	if (ret) {
-> +		dev_err(chip->dev, "Missing 'reg' property in path node\n");
-> +		return ret;
+Best regards,
+-- 
+Guodong Xu <guodong@riscstar.com>
 
-You can use return dev_err_probe like you did a little below
-
-> +	}
-> +
-> +	if (path_num >= EUD_MAX_PORTS) {
-> +		dev_err(chip->dev, "Invalid path number: %u (max %d)\n",
-> +			path_num, EUD_MAX_PORTS - 1);
-> +		return -EINVAL;
-> +	}
-> +
-> +	path = devm_kzalloc(chip->dev, sizeof(*path), GFP_KERNEL);
-> +	if (!path)
-> +		return -ENOMEM;
-> +
-> +	path->chip = chip;
-> +	path->num = path_num;
-> +
-> +	path->phy = devm_of_phy_get(chip->dev, np, NULL);
-> +	if (IS_ERR(path->phy))
-> +		return dev_err_probe(chip->dev, PTR_ERR(path->phy),
-> +				     "Failed to get PHY for path %d\n", path_num);
-> +
-> +	chip->paths[path_num] = path;
-> +
-> +	return 0;
-> +}
-> +
->  static int eud_probe(struct platform_device *pdev)
->  {
-> +	struct device_node *np = pdev->dev.of_node;
-> +	struct device_node *child;
->  	struct eud_chip *chip;
->  	struct resource *res;
->  	int ret;
-> @@ -252,6 +368,18 @@ static int eud_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> +	for_each_child_of_node(np, child) {
-
-With for_each_child_of_node_scoped(), you can dispose of the manual
-_put()
-
-> +		ret = eud_init_path(chip, child);
-> +		if (ret) {
-> +			of_node_put(child);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	/* Primary path is mandatory. Secondary is optional */
-> +	if (!chip->paths[0])
-> +		return -ENODEV;
-
-I'm going to assume we don't have any funny chips that violate this :)
-
-Konrad
 
