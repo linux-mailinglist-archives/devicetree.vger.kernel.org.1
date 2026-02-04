@@ -1,294 +1,203 @@
-Return-Path: <devicetree+bounces-262731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262732-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +HSUCMB1g2mFmwMAu9opvQ
-	(envelope-from <devicetree+bounces-262731-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 17:37:20 +0100
+	id EAh3LzR3g2mFmwMAu9opvQ
+	(envelope-from <devicetree+bounces-262732-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 17:43:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8DF0EA57F
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 17:37:19 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20189EA685
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 17:43:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 21B24300681D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 16:37:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1D1FB305D2B1
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 16:39:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F129C303A1E;
-	Wed,  4 Feb 2026 16:37:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102DB3126A8;
+	Wed,  4 Feb 2026 16:39:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="oGQFDTOJ"
+	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="PjILk1Gx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011060.outbound.protection.outlook.com [52.101.70.60])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72C553033FE;
-	Wed,  4 Feb 2026 16:37:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.60
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770223037; cv=fail; b=Q+6Kf/8XN3ZTqHF9c9VDulNu8UBU6EFtK2xMyh4H1uYbBEpO1a6G1HKu97BpP+tVeinM67jorZyKimRUs4nwFF4oDsu82fzp4Yi+lLIMk5Ix2OLKz6Fh8nGVWSE6jgRBog5dKlqHQNdvM3kBbb7nzauKQchk+G7bv2hcvt12Q+c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770223037; c=relaxed/simple;
-	bh=PkVt7/KbaCuU5rx9YbPy9vsI9L9aohie0SOWna8KIXA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=IqUC09s0ahysQ2Eg8B73Oirz8UeI2RVH+4ESiKMuU1D83vxYIQkSDFTOELjqE+5W82AA9ehg0h5Jn1S1exNs2C9++bSFLDvCp2+p55veI++fbPzoPGWV3q/EGqEsxqDaATPadIDxJ46y/8sF/vDXon+8EAOTz9TNfg9kVY0GU1E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=oGQFDTOJ; arc=fail smtp.client-ip=52.101.70.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oqfxffTCP77FcEAj9TpyHfYKHD0YJmI6nIwgbIuFZdatKjAh+LUmlU1w+VubODVdGbv9Oy9yqywCWOi9UL9uIo037zDmlRQ++9LXMt3ZPa52XWwqvq2FTZ8OIV0rJ9dOuYjIGJgNIT/Mkpp6Vk/q5kfeFY+4fRmWgH2PNEz1Nbp6mCtfIEg6ZP+3WvYi4G5IN+3Wu0dF2Nzpq///8AaJhGzZgsd26byp2abEdHpYxTOCFkBxB3yqFgdGAfXR7qdAzM5Ktl9Th9Fm+xjQCero8qQEWymnEH+Ty1xV84uekSlZHhr0LcDfJOfozrnZgXJTvii/o/Tl2iTwR/cC4/8rCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZmEkU0S0RXIa2OOogZkY6h6TokXUwmUoWTYCwxsFH7U=;
- b=DUJUfpgWRrN5pfDFYCXlOtdIeYWkjsPEPft7KUKOJ5UaOqqA1KCzS+Yr062R36JxqIQO1xMOJ+TFb5fewj+u5CZe4gCpeVg3ut6lnJXJp3IcpVgu6ztboVspzbFhUHr99a9AEVzcQNmlHN9hX23L4grsQQaeg3UsxFPiFqhIQZ8sh0/oyZinV9jAyu4uZvKXiNbvVspXcMymU49fiP90PRR4DitBNYc7gyg33+j4RQX7zDZT49RBEPRuLrKMMmCTzh0bJPm3ehy7QTGuEH/eVETWSZo2Q3XUSUbZejSyTXy72UkB7WXN6EKZlBZX/T1jw8sD7H/+ZdnTX4lqjfBd4Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZmEkU0S0RXIa2OOogZkY6h6TokXUwmUoWTYCwxsFH7U=;
- b=oGQFDTOJ7Wz5e8fR5iwY+gjI+0MGkaCJQDWP5IMA8QHmCc8P+3k6Z4S3OKmoyOx+tDKjuknnDgUcXi8ZX/SPg5BkMuKaQn4UtnoEyolXh1qBG8znLz/YHj6yRfqD6RURXdNxbDw2cTtuVfaVQuBGP85aCnv0e5lmOt8lF848IpojC9QqkkEOFSfneIicJWuqog3gmuEHHusR3vTBEpHNKJYlZdVJ3MhkkeJfmw8kQRQG6oePA+m1i6RcHYfeAlXV3VJZWrARfNwh5NDs/E/iwegSGiSYp6BNxX4nBOXOQkW1V5zzlv4qXsi6pXrb9k0nYQILXQgDDp8Z2N/G5m0W+g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by VI0PR04MB10566.eurprd04.prod.outlook.com (2603:10a6:800:268::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Wed, 4 Feb
- 2026 16:37:13 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Wed, 4 Feb 2026
- 16:37:13 +0000
-Date: Wed, 4 Feb 2026 11:37:03 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, shengjiu.wang@gmail.com,
-	Xiubo.Lee@gmail.com, nicoleotsuka@gmail.com, perex@perex.cz,
-	tiwai@suse.com, linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v3 4/4] ASoC: fsl_asrc_dma: allocate memory from dma
- device
-Message-ID: <aYN1rzjXkot0MY5N@lizhi-Precision-Tower-5810>
-References: <20260203031345.3850533-1-shengjiu.wang@nxp.com>
- <20260203031345.3850533-5-shengjiu.wang@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260203031345.3850533-5-shengjiu.wang@nxp.com>
-X-ClientProxiedBy: BY1P220CA0012.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:59d::8) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD0182F49F6
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 16:38:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770223141; cv=none; b=ny/VSPPHnSYZaUmtsKJvLdZ/ZryXIAwV882FeOZSkFbP+p3s7h57R/opJWZWqHrWpLKtP2SwUIO7E26KgXxtR/VGUopSS005t6fwaPx3F90CF6mBPsZU9z+cc21jl/pU/LYk78gUkoZpGc/6m6/+wMHhrlalLDsgeOAq0KNtimE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770223141; c=relaxed/simple;
+	bh=F853b0KXSPGAcQ9VwtxlP4kGSJnL/qktYMbKK6xPExY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OeAqPVSbpcqXQiUBuF5Vq+x94hrfeFvHjH37Bq9ySML6Fer/9/sO92rbf0Lszf1w9PgGRQGTxUzA+0FLquHykTG8Gf2/un69xkVLaJlLsUnnJk2pYr7DsdEAinZwuqiEFnnfM7tDvJfsTcmvCplRSF6iygQhRkcfy/PNpu4W6qU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=PjILk1Gx; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id F2E1240651
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 16:38:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20251003; t=1770223138;
+	bh=Rp00X+xKKqyCYdahSrblPa7LJgKvIx3gSCIrSAbBoco=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type;
+	b=PjILk1GxyLsxRWx5rgqvKy7WuU8PaDWNIKoIJChCRHNRCUAnW93hXANof4d+eF2tt
+	 1mG4LyHX4u4+ooevRoqbanNFkXQE4EWTzadoAdOsTQz7b4O/RXeMMJMD1+7JOodSTx
+	 jkrV4EJOqjDCN5+AA0DsuxajJRMbqEjVxMIeMOURsCSykbPc/N3TuXWed8h4CHqG6Z
+	 xzHTMAIthKhoRKiJ57l1U/JD/Jw6nxtCESK81mB0BsGHRmi9WG518ua69FftvzIK/W
+	 ZmMhPaFu9DPmJ0dh71N5jwSn6sDk4kYMoxbQbY5DxBBrpgi4D7fsDvvAqU3dw8XdSt
+	 Hv07eOMscx96cb4lWV8xLx8s0oArLOvIl1Xe/oGh7xiRokCf2fGB7AoplrKBEY0Bsd
+	 A4A5n6BUhLO1zzhmxY3n6MwCdKR9NwWf3dtzxuY5jMVhPoibKHjR/3jq5SrsBv1v9x
+	 LK0BzjscBXc6au0rJUVP07iZOl8p8xkf203ylJps7B08jZmbajT20QqmQ5XoPdyM28
+	 ausvhLQpp7VGLTQxzWViVFaaD4BxyiCH3w3uMZ8oBJu511ybFFCQxrFfUHwBeg3D+i
+	 ng8NmmGC0osZDUKvq+G4855xjRRR/9w/HiJmrcFKReE7YNYEv6/CJoOjoDtm9IKD1d
+	 UXvBAQ33+0uPY00Tcju1Ea/Q=
+Received: by mail-wr1-f69.google.com with SMTP id ffacd0b85a97d-42fd46385c0so35257f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 08:38:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770223137; x=1770827937;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Rp00X+xKKqyCYdahSrblPa7LJgKvIx3gSCIrSAbBoco=;
+        b=uebIV00EyVcXJzFtb4tj0kzGMlZIvHvoZGpa+vH9fYjv1SuaQhfJMCYuTftPRFP3a9
+         Wxpl9x2UW5rvQKmn0gUxdG2w4gvCdnhzr5U74ZT2D5cQzglIu3t5ZdJmJmexIaEykWvK
+         3ki+9rkXcQ+q2pMapvywkWqDucOZm+CqMHry8PwMHG2yVFZNQquYK0B56lXXTbSAIWeS
+         9PenRENo4R9BpyPif15Q7Cylg4kabjGnhWYurxeubFSLtoeAuf46vYRgzPA2ZVI+qojE
+         2Es2renparpva7Xp3pTsjxguMsSH8KEg9/9qlmpPOsVETXISMt3eGZ4e33dLw/q1lblR
+         VJMg==
+X-Forwarded-Encrypted: i=1; AJvYcCUapO0UW4cA8t0lHBhVWfRW3zrrg6imjtWtSkbRuKhQwbtjfacVt1mL9P3Riw9yARscel41LD/jQwY2@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywt+REKwfI6CYMqfLPY0w03VC/fEAsdow4byRIHU0yM+aK+IwV9
+	/rOx+qP6dEBU83K3N4/uL9NOsRhPF+4B8VKe2X6blwo/bm3IRBeXMSkakLbeOJpGjqgPsxpcluN
+	lAFBYbpzOgbmImLI+i4gpRfL2nMTJJHR2+fnNDPOyonVXQLrVJ+wLxFz9207fleCpFJSN4fyuc/
+	Olltc=
+X-Gm-Gg: AZuq6aJrjYH7AEZhZFtSaaGQZwgfy/MR4hpf3QkytxAZ2uu0ZvzNC32intMJ8KW2q/E
+	9kA7zYDjlcErLfJv20dU2/8vJlYzW0gQShMsMsNA+xlJ48uAfUL/A7v93x9n3XR7AT90n6fcq5n
+	jBs1VscxFcNKsgEdoe2Og1O5zIOk8OiZn2xTsFwOEJSt7/T/0Z5JDJA+4CT030yjolUn33ku878
+	u0CnbeED3UyIA5zyDY8Tv3QOpTubB1OHJ6CNS3BLCEKMOuu+KzDrDsaGNVpFTtJ8UsR8fpJGC8d
+	qvECDy/N6b0G7N5l4lOg1DMDdAGHIgZrPjohjJ1jqtIBs7ZWifJk5q+qW4NPAhLKG3yeFmf++Dn
+	oEkj72vBN2WwM1ADv5+ZkFgzEQlwkvB6l4o3aDKpTvGlFonREXW8QefaqjAi7jWoy4KLtWwKyyN
+	SCVbBsaPY=
+X-Received: by 2002:a5d:5d0d:0:b0:435:e3bd:5838 with SMTP id ffacd0b85a97d-43617e3c9bemr3476205f8f.25.1770223137434;
+        Wed, 04 Feb 2026 08:38:57 -0800 (PST)
+X-Received: by 2002:a5d:5d0d:0:b0:435:e3bd:5838 with SMTP id ffacd0b85a97d-43617e3c9bemr3476162f8f.25.1770223136979;
+        Wed, 04 Feb 2026 08:38:56 -0800 (PST)
+Received: from [192.168.103.128] (ip-005-147-080-091.um06.pools.vodafone-ip.de. [5.147.80.91])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43618057f9esm6385227f8f.28.2026.02.04.08.38.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Feb 2026 08:38:56 -0800 (PST)
+Message-ID: <46d5d249-8cf2-46d1-a90c-1f2c5f146e15@canonical.com>
+Date: Wed, 4 Feb 2026 17:38:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|VI0PR04MB10566:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0abd5696-b186-44b4-c604-08de640ba69b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|376014|7416014|52116014|19092799006|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Z5Z3xDnMHrQ8/UPkjEuD2JLpy85XWKEXYE4QelQm2JnRPIsPvTi0NTXLUD/S?=
- =?us-ascii?Q?vQvSaQosR2vGR+FdlloZZNN5x/pYBLnebgW7iQ8IQ+4SXrhJ7fb8LPVU0jee?=
- =?us-ascii?Q?ueTT57D3BV4uWVbpL6589ruaEB4PcDTr9/aD2nBChvhOd1QOBLaAGrWusZs5?=
- =?us-ascii?Q?zrvfaV5LCn4KJ16cYavuAikbJyjWMmB6j2pS/XvrAuORfMK6s8Eyl4+RRDpI?=
- =?us-ascii?Q?24mgzwT9wLwuruTVpDYU++CG+2RXVQxIXVaYsVuDrgL1HlDMjbGqvsSMhcll?=
- =?us-ascii?Q?twNeGZQIV75FvYkqF7anenFLXhgSdCCmNzMHJsczxEqKIfSynLmHQ7ftaCNK?=
- =?us-ascii?Q?S7eviuijcaQVJWCwewGkiB7DTAf7AKbzEATi16nVcFfizrpZkzqkcOT3R2hn?=
- =?us-ascii?Q?uGBki/m/NW1rZdKbw2xvXny/SLEThtNF5VXmQXp/IH4E0c47vg+EwNeUaydQ?=
- =?us-ascii?Q?WuL/Dv0883w4AnCBf4jXevEEjSe+EWX6zk6qARq4fqW05kFBI4tOLwte0xPT?=
- =?us-ascii?Q?I7jLGSLtoCELn9uEPYd3t7DEFpSYTdglhh61ogkQuOzpkakJd2JEmslbobjL?=
- =?us-ascii?Q?Zx2D1AGP7XFoXbVNQ0MO2CKqXAZweIiIWiMlQ+fwwiKs5T5pwAFLr2j08KUB?=
- =?us-ascii?Q?OmHXE++LITY85xs6sdU//+5OeWV0Y9unO3k/MFoi51sA6/M60+wurJfRRK3p?=
- =?us-ascii?Q?a+uuUMGvZGvdEjqLNe954s18KUdwG8BJ60N2wkpksHWUMsxgOcSdGabscH9s?=
- =?us-ascii?Q?8dK2daCLVoTBCxPxrEWdW5z/Ig1YF8lbN5t7/Ez+9dOqiXLf5ppfk74aCoy3?=
- =?us-ascii?Q?UWm66MncN9B1bvc5AIkvgSF7FY8dGkKf9cGYfzakmIsvKKw7ESV+WU1S/QAP?=
- =?us-ascii?Q?3fIKMm6PoWifs4ZzPv5nEoCo9QwsOPk1DTg7gFATqSYyOEqbO1Awwq5P1pap?=
- =?us-ascii?Q?eYvp1ca5IAVkNKUEf/LyOPF6/trH1vwUIfJWm1uyVrqW/QxwvSSqqfGFxDQm?=
- =?us-ascii?Q?NGWWOGz6JaJJ/aIKLTl2isciwvQpO7MaSrW5S9gDiUlF1Ot2aowLN//JGmVz?=
- =?us-ascii?Q?H+w8Ui9R0WHhT3/KWLs6uTYijnK66DDTM70FE2LeGuQYJ96ObZdPaDXXuXjB?=
- =?us-ascii?Q?45h3FHXvRUdD0BrhXJsgE2ttWjbc6DlR4peAYiwQAcXDqlh0/MrBVTrVBa4+?=
- =?us-ascii?Q?uJTznVw8pe+rdZPl3gWs+kgafopCtQHW7+9MWLeQyq6j1h/Gh+0zqq65rJNO?=
- =?us-ascii?Q?GyxzpgGvrbLB4rz6OxeIM6EfHEaQT8ZwDnWj0K7inntxZwQ3jmWnMXDgZ+Gk?=
- =?us-ascii?Q?++tv/KtcPXJEvGzxvjKLBRxziWkuVAqqmG/6om2yfSPLF204wNwRA3rKa/2d?=
- =?us-ascii?Q?RkAmYM4YVFVcIqS8iGW0SrRovY66koP9oufPmtaAg1iWHisZPIguJRLTumvx?=
- =?us-ascii?Q?j4EkuT3eb6G51Lop7bj/fbomK36S3H7xf8Z2CErt+1lGb7Rst/Ma8DDd4RsX?=
- =?us-ascii?Q?WHr0uK4IWWMnRmkGcASYs7cFV/43yf1/wT9Btt2/ibzS9qK/GYi3VHtXyAQi?=
- =?us-ascii?Q?JFC5ZI3lGHAc1cz1m3R2hQp5HlNGfAj9LuT1KMJjDoquyKSOEcEO8Gp9rYD4?=
- =?us-ascii?Q?bByWt2l1xE3X2u0fTy0M39E=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(52116014)(19092799006)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?VbPQEltQY0IC7Y0EUF+urJC4WsNZPoLV8t2UWVroO82rhI4JUqMC4C935Vgm?=
- =?us-ascii?Q?D66/U2C+c0111m/UniESkW4Bak0/qSHnxlJH2Vf+brSlGks3gDryARLkf92g?=
- =?us-ascii?Q?AexSgz2Yqd2p8suaCMHalOd7eTGtBCuEe/rLijkpDKz8ZG24ffyDdLM8Luul?=
- =?us-ascii?Q?t/TfWvKgQToZeeWEtNPKgIFuBbqpgTEvjG24t+1cxCIC+adgRiFnUYuXHLVr?=
- =?us-ascii?Q?MoMosXJS4Eeb+uaAshrAmZKhq8m0cZHdsqvbjGO9h5MB1wdadtHjw/Sd+95a?=
- =?us-ascii?Q?+3vxNhheAAG71SLN2ZKxPdORe083Ka1Z++sh6qmg94TTJWt0gEH1Gb7jgKOe?=
- =?us-ascii?Q?0FvvLRNtZMBut+asHU9pkRJpg9buNDL7G82ZqVQqQZs2iMB9zgAcliLd9Cxd?=
- =?us-ascii?Q?ZrwYmfbzk8Ets0PysHT1Qu5/oq5hjXn0bPwYMpfDimFDULubJ93Gd2G/6LVe?=
- =?us-ascii?Q?woe17bA6aolH63dGHLZQbZwKO4X79HTXBD5zXfyKBrkz5qy3Ed+LPNnOSDLI?=
- =?us-ascii?Q?7LSldQnIN01rCk0sT85W7UcW0t+8hncnOsKoMpiLjvsyeGeDlF4fJCXyWOAV?=
- =?us-ascii?Q?5HRASHroqP4LjEU6JM5dxwTSdhqTF6zUAzpKUnxEu8r5TkeKHLAaA7ffGZen?=
- =?us-ascii?Q?rwc/TeQMphSl2TTfA6La+BDUI0q13b/JadE3VbAIF+Ns6prhREUFxKQnKsP5?=
- =?us-ascii?Q?qSA7eUnjlCg2ITS0MU/EUb4QodJ/Y9dkywtCibOgfb3xoftUz64WA7spO654?=
- =?us-ascii?Q?q/PD9nSt0PuLm9qM1deSJTYTwDrG3UCkG3WK25u1cGNQqHyfirLHrch0rRP7?=
- =?us-ascii?Q?bXtAEsvNsGqwBL0ZOZ3vH/swX/sHLsLS7h3Erajyew6uSnD93NLGk7Y2tRgo?=
- =?us-ascii?Q?R27MTstkpdvhfXfng2dIingdN2o/T6CKRH7ZO95zGL5wEQWAEyBG60wr5lq8?=
- =?us-ascii?Q?DOrSfMofM4wrAzk4+P8JPLd4rB5vpeGwntDcd3qTSfmQhucLh32bT6MInY+Y?=
- =?us-ascii?Q?GSo9H7X92az7Yl7e72VruSAY7kHxXFbvDP6FCtD3rBHMC/5/ybvUalWOSOIJ?=
- =?us-ascii?Q?a4uN2Qj0DSM5QbUKRDBqazsn0RMEu8QYBC7KJ+Q8pZgV5yGLf1lYGha+xTc3?=
- =?us-ascii?Q?fQVchIbsybejN+kHdqFN3egCtxU/3AmKMwGvBjafpM7PG9S50hHqQgPuio+a?=
- =?us-ascii?Q?DdSkCrFh15SCeJ0GVatJcspBOxSeiVSRh6WtGU0/v2TIu0LXS+YAoGWEv/ls?=
- =?us-ascii?Q?j5+15ggolPZuSw23cONSXwSS7JFtzke21OF0ZJOuQ0UZZj2/Tfc6ZPkNeNGQ?=
- =?us-ascii?Q?gY9C9vI8X/Ug/3VoLTLXsWYgcfCcFKJeWG/oHPQHCvMBLTJNTeXWxd024iNk?=
- =?us-ascii?Q?1xv4rGw8sBCMqYGyZ+NlKvlHSnUuEhiwIOO2XJzpwKnsbx9aiwL3IreiPU3d?=
- =?us-ascii?Q?4VXRqdsb0ycJ0WlUhuFnPTVv61AbSbQ7rn7AjAfiGrMIZT0hHxGEr9qXvF68?=
- =?us-ascii?Q?npm/8egib/WFjkT6gGJSKiXzXtAys6shoE6eVwYxIkNRYtzO1l8cmpoxolUM?=
- =?us-ascii?Q?gM92nWzTv2qgeXXEyq7Ohuez6nY6SET27c1c/7KhBT7HIWzfQqP8DgBsBoG2?=
- =?us-ascii?Q?Wgd1dmq16c9WDWeybm/b/9P6rsCX83r+lDgTGOEeeYpBN3TmG2zEy17BUqrP?=
- =?us-ascii?Q?Nuv/jGGLE+8tNa5HXufxzU8XEII1K2+8pziIuPX+fjLyKyxh?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0abd5696-b186-44b4-c604-08de640ba69b
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 16:37:13.7411
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kvoGia8l0B5w43mc6cVPlcQX6Kwjhz8FsaBrnM6ADZ0mtAGYwuzsg8BGThGOsGvbWpEnYkDNA7ufdJ5Ff1ZJJQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10566
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] riscv: dts: starfive: Milk-V Mars CM Lite broken-cd
+To: Emil Renner Berthing <kernel@esmil.dk>, Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+ E Shattow <e@freeshell.de>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260204101602.30184-1-heinrich.schuchardt@canonical.com>
+Content-Language: en-US
+From: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+In-Reply-To: <20260204101602.30184-1-heinrich.schuchardt@canonical.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[canonical.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[canonical.com:s=20251003];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262731-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org,perex.cz,suse.com,lists.ozlabs.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	TAGGED_FROM(0.00)[bounces-262732-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[canonical.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[heinrich.schuchardt@canonical.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:email,nxp.com:dkim]
-X-Rspamd-Queue-Id: B8DF0EA57F
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,raspberrypi.com:url,waveshare.com:url,canonical.com:email,canonical.com:dkim,canonical.com:mid]
+X-Rspamd-Queue-Id: 20189EA685
 X-Rspamd-Action: no action
 
-On Tue, Feb 03, 2026 at 11:13:45AM +0800, Shengjiu Wang wrote:
-> The dma-coherent property is used to indicate a device is capable of
-> coherent DMA operations. On i.MX952, one of EDMA devices support such
-> feature, in order to support the EDMA device, the memory needs to be
-> allocated from the DMA device.
->
-> The code change here is to make this driver compatible for non
-> dma-coherent and dma-coherent dma devices.
+On 2/4/26 11:16, Heinrich Schuchardt wrote:
+> The card detect GPIO depends on support by the base board.
+> 
+> Detecting an SD-card did not work for me with a Milk-V Mars CM Lite
+> mounted on an Waveshare CM4-IO-BASE-A board.
 
-Make this driver to support both non dma-coherent and dma-coherent dma
-engine.
+The schematic of the Waveshare CM4-IO-BASE-A board is available at
+https://files.waveshare.com/upload/a/aa/CM4-IO-BASE-A_V4_SchDoc.pdf
+showing pin 76 is not connected.
 
-Remove dma coerce_mask_and coherent() because DMA provider already set it
-according to its capability.
+In https://forums.raspberrypi.com/viewtopic.php?t=291041 the Raspberry 
+Foundation explicitly wrote that pin 76 should not be connected when 
+using a compute module socket.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+E. Shattow pointed me to a board
+https://github.com/NabuCasa/yellow/releases/download/v1.3c/Yellow_v1.3c_Schematic_git.8957b440adda.pdf
+that actually disregarded this advice and uses pin 76 actually as 
+cd-gpio. This usage of GPIO 41 is a property of the specific base board 
+and not of the Milk-V Mars CM and should be described in a device-tree 
+overlay if needed.
 
-Frank
+Best regards
 
->
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+Heinrich
+
+> 
+> According to [1] SD_SDIO0_CD_GPIO41 is connected to pin 76 reserved.
+> The Raspberry Pi Compute Module 4 IO Board documentation marks that pin as
+> reserved. The Raspberry Pi Compute Module 5 IO Board documentation
+> marks the pin as VBAT.
+> 
+> Remove the cd-gpios definition and add broken-cd.
+> 
+> [1]  https://github.com/milkv-mars/mars-files/blob/main/Mars-CM_Hardware_Schematices/Milk-V_Mars-CM_SCH_V1.0-2023-0905_Lite.pdf
+> 
+> Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
 > ---
->  sound/soc/fsl/fsl_asrc_dma.c | 48 ++++++++++++++++++++++++++++++------
->  1 file changed, 41 insertions(+), 7 deletions(-)
->
-> diff --git a/sound/soc/fsl/fsl_asrc_dma.c b/sound/soc/fsl/fsl_asrc_dma.c
-> index 7dacc06b2f02..348b0aabfa68 100644
-> --- a/sound/soc/fsl/fsl_asrc_dma.c
-> +++ b/sound/soc/fsl/fsl_asrc_dma.c
-> @@ -449,18 +449,52 @@ fsl_asrc_dma_pcm_pointer(struct snd_soc_component *component,
->  static int fsl_asrc_dma_pcm_new(struct snd_soc_component *component,
->  				struct snd_soc_pcm_runtime *rtd)
->  {
-> -	struct snd_card *card = rtd->card->snd_card;
-> +	struct device *dev = component->dev;
-> +	struct fsl_asrc *asrc = dev_get_drvdata(dev);
-> +	struct fsl_asrc_pair *pair;
->  	struct snd_pcm *pcm = rtd->pcm;
-> +	struct dma_chan *chan;
->  	int ret;
->
-> -	ret = dma_coerce_mask_and_coherent(card->dev, DMA_BIT_MASK(32));
-> -	if (ret) {
-> -		dev_err(card->dev, "failed to set DMA mask\n");
-> -		return ret;
-> +	pair = kzalloc(size_add(sizeof(*pair), asrc->pair_priv_size), GFP_KERNEL);
-> +	if (!pair)
-> +		return -ENOMEM;
-> +
-> +	pair->asrc = asrc;
-> +	pair->private = (void *)pair + sizeof(struct fsl_asrc_pair);
-> +
-> +	/* Request a pair, which will be released later.
-> +	 * Request pair function needs channel num as input, for this
-> +	 * pair, we just request "1" channel temporarily.
-> +	 */
-> +	ret = asrc->request_pair(1, pair);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to request asrc pair\n");
-> +		goto req_pair_err;
-> +	}
-> +
-> +	/* Request a dma channel, which will be released later. */
-> +	chan = asrc->get_dma_channel(pair, IN);
-> +	if (!chan) {
-> +		dev_err(dev, "failed to get dma channel\n");
-> +		ret = -EINVAL;
-> +		goto dma_chan_err;
->  	}
->
-> -	return snd_pcm_set_fixed_buffer_all(pcm, SNDRV_DMA_TYPE_DEV,
-> -					    card->dev, FSL_ASRC_DMABUF_SIZE);
-> +	ret = snd_pcm_set_fixed_buffer_all(pcm,
-> +					   SNDRV_DMA_TYPE_DEV,
-> +					   chan->device->dev,
-> +					   FSL_ASRC_DMABUF_SIZE);
-> +
-> +	dma_release_channel(chan);
-> +
-> +dma_chan_err:
-> +	asrc->release_pair(pair);
-> +
-> +req_pair_err:
-> +	kfree(pair);
-> +
-> +	return ret;
->  }
->
->  struct snd_soc_component_driver fsl_asrc_component = {
-> --
-> 2.34.1
->
+>   arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+> index 63aa94d65ab55..566b0bdc2800d 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+> @@ -13,7 +13,7 @@ / {
+>   
+>   &mmc0 {
+>   	bus-width = <4>;
+> -	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
+> +	broken-cd;
+>   	disable-wp;
+>   };
+>   
+
+
+
 
