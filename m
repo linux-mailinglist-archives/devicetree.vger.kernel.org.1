@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-262469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262467-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GDfPCfupgmkMXwMAu9opvQ
-	(envelope-from <devicetree+bounces-262469-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 03:07:55 +0100
+	id 0AoeL8mpgmkMXwMAu9opvQ
+	(envelope-from <devicetree+bounces-262467-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 03:07:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87387E0AFE
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 03:07:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61F47E0ADA
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 03:07:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BEB3F30D6488
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 02:06:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4EFD93077566
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 02:06:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DB742877D5;
-	Wed,  4 Feb 2026 02:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39B922874FF;
+	Wed,  4 Feb 2026 02:06:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022138.outbound.protection.outlook.com [40.107.75.138])
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023116.outbound.protection.outlook.com [52.101.127.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C40E28A72F;
-	Wed,  4 Feb 2026 02:06:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ECE321D3D6;
+	Wed,  4 Feb 2026 02:06:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.116
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770170814; cv=fail; b=jG68nNOMcdm6ohN40NVvrmdnm7hleQlWNpP8juLBO6nw1P8IxbnBQ7XvtaOaemA14s37WCsQ3llA6zNSHaI4jW2ntSXM0xWyPUH/T6vFYvQ7+GQ2TepYdXT0cE9l2YtE7oC4tbS0ngDehkx/WNkRjKpO2OB+UYPlY2ZaLiMuscA=
+	t=1770170812; cv=fail; b=tCHI+L7TL6+oVlx1WWII3t8kk0/VqzB4ax8xnSuDw27qw765MtHiuKGsi+mgrML7v6EcJJN3qJjFSLHWDF+07u+3enT8KLK4fRpv93M1ciN0inGjF65AW1mVZ1mNeTk9x3P31zGyIY/V0MMSyWsO4q/YsJPPaY8z6IJI7TQxQgY=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770170814; c=relaxed/simple;
-	bh=P0tX1uQzvCfqnCa39Tw2UweSYWatRwZ1UttQRH2gmI0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UFQPR9IymB/zdlsW4VTz5zwJbzJI/UQL9JF4/jLVKL5/6SFIahOpClWnbKfTqUHCbN3TXrTsrpcNGv/bunvfbmBXnqAMDXysAwRhwLkOmAvcV/esNMdIDeUJf4XlAl0+nSHJwROVAx4Iq6xo8Q4t4qBHubniFOVUxvSOOF8lq2g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.75.138
+	s=arc-20240116; t=1770170812; c=relaxed/simple;
+	bh=ezfzllDu2XK9izFvB/GtUXx77W1D5Zv+Y6D+bVNGjsk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YAPMTILJcvg5mIyYu952Ak6AybSi2rQjZmCE3P8dnCHdFj7rZLhTfQZHQxSUPANOHT4e8CR690PAvUsfXqfFx9lvXS13oaaQgzp8woCvNas1NLfaQNl7KfeOuJC4F3pocjYt0zK/fSfzvuCS1O9yeIaDmHzKXQO6JBM8uXv0TdM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.116
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yLjTuKjak8Kk7GbqUw9UnbVEq6peuNZb/N6kZf4WVQX40YmmspVtiZMXPjbCM+22NzEI92g57iwuPXh7V9gQjKUQ/Rb9fv5k9WwNwId2bfXRFWBzozWjPvfhH5DxoZoEUxqAKUr7r92jqIRWe3XERn+i1BD5dZwxl+k0CEzU1cjqdtkA24cee4eZ0iNcbZtYJjZHmDSgoOXKrBFOAVU7ODiCsXYuC635PGJDcvDlIvrCO2QwcL0YrKMh8FXvdFw/uJFp3GIERliOgQX6uvvaj45YnOVLgz7YJF36/KsbUSLcGTAUmcdooJbuSF9Kwa1G9CDZzmF+qbJhxDbVCKD4YA==
+ b=Ur3a1rUIUAeYFSxmLwqTccoeq/X0bBPf0kZx5kNyrUfEEwPaQCQWMQAp1zuU4ag1ms/RLnkObPKUPaV92xlXn2HujyeY3iYBB7M2xGzCZSgnRbgNhU6ORgqjGpY4cbEij7giE2CEmdugugEK+Zil9/H7/KTL4h0b2ar7Gcke4ArA6PJW9lvMrKJSFm1/qhvHZzkcO26O12O1mp59IX6Y+GnOuE1685d6HcqoTTI8jRBga5PspKFR2EsaADw0sgtIgi3c4VGPwJml+tZWkWHI/YWZBX0c/WlCxZbaVWECe4HXY/mqRGJEoVqKCwE0bU/Jh1jEajAGlycT8GCCBw2ylQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XFJKVy2TCzXFy2XNp9cXoakmX6dK6vQJN/xheg6IUyM=;
- b=ITdjqEWQrqze8Co1tueB2frVqyGWH74ni2Df/Nt2rOoX0ixQfr1o4vCZsXQyW2uUQ/JsBy0jeuNYlQQck5RqfrRYu9vKfyvfy8TgFOOYhSFyhGcYQ2lMGARbL9uhCPtKNJ9lwo1vSQSP7Nqgh+dz9vR9G3DZQgzrVFFym+M/L5nRwt1fctIQg4Rvmsmlo+p7LmdPHEC1RY/XH1ycNGYcGOj9ZPjpQb4trysymjeVS8ejtWjfwIj8iYyPcYzhhKSzchL7mza0brkJW5WImjxmnE12th+uSArT8b/+xakeJDPafbXJo9YeM14hvKMqJQppns8HYCdP/L6VHOLulQ/LxA==
+ bh=X0wHX0iGY+FpWwoiDV4hCWS+Ea/V+9Pd+u+jyqoeHxU=;
+ b=yCtxbFzjiCCpvGoqJRrfeQadFlyu5SPn9jehs2HmeJzOkrDqSoVFTXJYviF8pwlWbZxyx2W4SrvYKNO+vs8JAEc7Q4T7Yx4+3+Gu2fgFmiagUoyA6FHXTfD8OuSRa02F4mAXfhtkVEHeF8lkrijfkkawGWPi+/ogDx2hDEpclOSErL1WmQCfQPMDyq0B2REBHRM0UCp3Whg14YV4fFaMeqtfhIng1jNcEF8qeNmesZLdODU6ozgMB7pBWxzZtXeeYJXocl7kSV0DDVWUMRVGteMTbz/1or4jA9t2DipemDznDRG1+iWYJcMRUeMVNmkNWvzg/VLeVJt3ijQ2kuA71Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
  dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
  not signed); arc=none (0)
-Received: from SL2P216CA0099.KORP216.PROD.OUTLOOK.COM (2603:1096:101:3::14) by
- KL1PR06MB7320.apcprd06.prod.outlook.com (2603:1096:820:140::11) with
+Received: from SEWP216CA0003.KORP216.PROD.OUTLOOK.COM (2603:1096:101:2b4::6)
+ by TYSPR06MB6442.apcprd06.prod.outlook.com (2603:1096:400:483::6) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.12; Wed, 4 Feb
  2026 02:06:46 +0000
-Received: from TY2PEPF0000AB84.apcprd03.prod.outlook.com
- (2603:1096:101:3:cafe::d) by SL2P216CA0099.outlook.office365.com
- (2603:1096:101:3::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.12 via Frontend Transport; Wed,
- 4 Feb 2026 02:06:45 +0000
+Received: from OSA0EPF000000CB.apcprd02.prod.outlook.com
+ (2603:1096:101:2b4:cafe::22) by SEWP216CA0003.outlook.office365.com
+ (2603:1096:101:2b4::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.13 via Frontend Transport; Wed,
+ 4 Feb 2026 02:06:47 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
  smtp.mailfrom=cixtech.com; dkim=none (message not signed)
  header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
@@ -59,11 +60,11 @@ Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
  222.71.101.198 as permitted sender) receiver=protection.outlook.com;
  client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
 Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB84.mail.protection.outlook.com (10.167.253.9) with Microsoft
+ OSA0EPF000000CB.mail.protection.outlook.com (10.167.240.57) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.20.9587.10 via Frontend Transport; Wed, 4 Feb 2026 02:06:45 +0000
 Received: from localhost.localdomain (unknown [172.16.64.196])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 378B941604E2;
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 3B78941604E6;
 	Wed,  4 Feb 2026 10:06:44 +0800 (CST)
 From: Gary Yang <gary.yang@cixtech.com>
 To: robh@kernel.org,
@@ -79,10 +80,12 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	cix-kernel-upstream@cixtech.com,
 	Gary Yang <gary.yang@cixtech.com>
-Subject: [PATCH v7 0/3] Add support for Cix Sky1 resets
-Date: Wed,  4 Feb 2026 10:06:41 +0800
-Message-ID: <20260204020644.155094-1-gary.yang@cixtech.com>
+Subject: [PATCH v7 1/3] dt-bindings: soc: cix: document the simple-mfd syscon on Sky1 SoC
+Date: Wed,  4 Feb 2026 10:06:42 +0800
+Message-ID: <20260204020644.155094-2-gary.yang@cixtech.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20260204020644.155094-1-gary.yang@cixtech.com>
+References: <20260204020644.155094-1-gary.yang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,181 +95,379 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB84:EE_|KL1PR06MB7320:EE_
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000CB:EE_|TYSPR06MB6442:EE_
 Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 068731f3-311b-47c2-7db6-08de63920c59
+X-MS-Office365-Filtering-Correlation-Id: 19f89641-e411-4857-3df6-08de63920c56
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|376014|7416014|32650700017|1800799024;
+	BCL:0;ARA:13230040|1800799024|32650700017|36860700013|7416014|376014|82310400026;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?r5MrA2tHsqBhkZyPUTWVG1HyzqkRE4eSWCrxy2qfc9mD9C1BmDT2OQIZpbb5?=
- =?us-ascii?Q?+it5gzsTvK1nBY9KXDAQbr8x8Y7A6ODdyaS3iR4dx0Ivuq4sKE3TFsVr69gm?=
- =?us-ascii?Q?3gTnIgi8/JBLIhHz5Uw1mxchs6FrgqxLg7tW2G1E+rVhbXkCQ5l2hQb9sXE1?=
- =?us-ascii?Q?BdfhF9Fu0lEfsxQoarS1sKTMAaFL+RxifT12rxkFZ25jiCck6vZrz7m5XR9M?=
- =?us-ascii?Q?IQc+ievYGSnrKRGZuTSfK/NwISgOL9b8plnde56C97c7xyKcHsMZRNIhjPkj?=
- =?us-ascii?Q?jx8mYFUc/d9w7IAkE9iRxOvhQzf+7QKVd6DKj6vrpJz13wRHXnz+xhwSU/yW?=
- =?us-ascii?Q?4qz+LE6EmsZUdFqmMk34DxT0tsNCsQIL+Q9HjyQH7Oep0A8tbJHr1SCZvKeh?=
- =?us-ascii?Q?T/ePvvcIS4dcOvFi1zwhYGXQ2+HAO1AH/MTsDjYxmYsGcfksCsq8pXEDOgpx?=
- =?us-ascii?Q?7rLmegkpIQ1AKI8EaKreR+gviWz2o5ulVKBY6E3r4EzQMltAHMZZAQ3Nczbj?=
- =?us-ascii?Q?TZGWgde2J24SV6fYvDxXo6lLCY+CceyADyVPvC6PffNcGvkIDibFAUZ3VNBj?=
- =?us-ascii?Q?OjMrA7pRPJyewReAHffOocJmAYBe2FeLg5YpvEzvRSHAhRwAwFckwAxg5dvn?=
- =?us-ascii?Q?xS5GLtGGdzy0Nh2cJPQfdTJWdeqSVlGlvPYlD1Xy5cvSLmUEnyU4WqvSX0Jb?=
- =?us-ascii?Q?qs2nlFHnzuOAiD6bsVJsOPMuh1477dQAlfhS4CEh5ILDEennuW1GOOHYfCgB?=
- =?us-ascii?Q?frpakjj4vgDGNCZaqJVAGEKufULIqSK24neUUTspPYJ5ck/FaJctlaXr9IOl?=
- =?us-ascii?Q?ZlBaLoYvx3243PTQ3YruPITP2AqZds1rC3PERhXD2sQDQCpW0ZNPTIHO+75a?=
- =?us-ascii?Q?fBZLrwq3yVwwqEpYwOXqK5g/l5cXUX7pv0LF5aIjLGLnHwJFRIMqGZAyTpLb?=
- =?us-ascii?Q?wBPqiFlKyCx93tScWfC5ddgW6NrIb0Izi8HbUf9nxhnjFfWIwrWbP2tl/w7K?=
- =?us-ascii?Q?0kKlgSgWlCJH1EdnFD+H389bOFtOzXyA7Dbz+94387Xp1iIErSzwY0u+rkMq?=
- =?us-ascii?Q?StxjDMk43Ljr581d4xKpp8VxixTZPnwReNRJD5OBxueYXVs3Hh8vUQq5w6Mf?=
- =?us-ascii?Q?Ge0gLSmbuMeeAjR3gcvUgQ5IvII1vfH2SQ7iCIiqbZnuu6kVUHdLCNdMrnMc?=
- =?us-ascii?Q?52wwhnm5sHs58LDTeut+Ne9dJEur6heTlec2mkdS9RWHUG23uQey8+U04ydR?=
- =?us-ascii?Q?9ZUHl3Ge+WzJGi/bS/8xh8Vw2B+Z0P84VuBi1fBiJLtTYyDPPBKfCPv72qBQ?=
- =?us-ascii?Q?3JiPedwBxp/+6R9PpEUat/qFrHKnTZK9Be8N5y7aUl3yVqatckh9MdRidkhH?=
- =?us-ascii?Q?BbAxdXeM3NNSt6DgyOVs1NNKjxaQUmc4S8/NEQvw+aaPl3u1wb/nPyxeK/3B?=
- =?us-ascii?Q?ywEOUh1neWeuo+MtEafuswjE7IR8gKjezDjnLygE+KNBJ5CX1R8Vg8D/esmH?=
- =?us-ascii?Q?Iw/Nqjta/A3xrR5M5xsGfhUG+EwH2cPCx90MUZomx884I7PWfQj/ZDeH5uvQ?=
- =?us-ascii?Q?/fQFlE4BGGMmMNJAJNpPzc7PqLlFnkinbHiMaI+cqM9rG8nbPuHGBA2UZOb7?=
- =?us-ascii?Q?WdwyW5b0OR8bJYSZ9h1s1VH53beYJXH3IASasfmEXJBKylgBpv2k+4sg6byw?=
- =?us-ascii?Q?0ffC4A=3D=3D?=
+	=?us-ascii?Q?abLGB0J9Xy+2wJrCrsAM99ALvw8+bWmNWgHQ3qhkqc/W6I8hdh6hXobuFQYk?=
+ =?us-ascii?Q?kBqHga4qHHw66CDOaezmhR1J1CioSvQepWD3erS2JleWczyED+kJHQiFsmTp?=
+ =?us-ascii?Q?YIGljzJlAvXnpCe6vHUy9zD1qUi99MkbT+/o7LA2JuIrdtaIKMwG2JnMIlIh?=
+ =?us-ascii?Q?4OC06waaSWN+Yi+HxmezcCaoqYqLAnWNAMqGmGaaKuab9H/iMzP74yqCdTgy?=
+ =?us-ascii?Q?tt/24KeIyDytvORKGnfCAcAOXL82HFD/nW8d1/cgeTYPu9g7v3wNX0WRFewe?=
+ =?us-ascii?Q?4P3+MWGhd5G+4JFIZlNDaF5GeCEz5ZbUpopcs9n0Ot8XLIKkyRLxWDSN7V6E?=
+ =?us-ascii?Q?3IKcL/Jm+id8K2KUA3LqkCUs/aDcCR8Z8Asvhl5lyb6UogXSGQL/Z31lTUfp?=
+ =?us-ascii?Q?0oUmlIJhvEGgEYZNmIXYNuM7H26s2lo0elAn4bdu9Ni4I9WPitfFcJOixDWJ?=
+ =?us-ascii?Q?wDgWKm/8cV2mmpuDdDaEtEfsXBG0j0Dz+YQgHY3d521GRqRE1P24gNNEY7dr?=
+ =?us-ascii?Q?/mMKuvn3TAQJJvgHdtUpZPab89ZPIq/9zhsx8ToozaAULePQXbHOYvYtXPLY?=
+ =?us-ascii?Q?rzNt3OsCLsgto5DyBpSt0UZ+uK8O5Zx7UkR9sm/21b836YApXAC1wcr9X1m8?=
+ =?us-ascii?Q?Bni/PCDMYo8NHodvCgf3Sn6/VBAeud0U8Iv+olDoUFCi+cYfmWVfrh3mAcbw?=
+ =?us-ascii?Q?mv4kPI7y2PHf7qki7axVcqnHVv7lR5Qg7DccyLYaGpwHkuROxayeju7Bl6UJ?=
+ =?us-ascii?Q?ohTEovnNYQ6H6ZbRrDNBgKbfsu0ubZutYf2ibmJOQ2idJWxSlHiRxPu3b53P?=
+ =?us-ascii?Q?cu2FCNKjmuD2k5c0yXWICFVRyoZTZ774THmJSjzeINy6D0chxP2dOmhr7lnZ?=
+ =?us-ascii?Q?kyoja/uez+OJq96ndscauTKCbFdAMJzR9TrK+9fm5E2urKtfxFhh8JZj4iuJ?=
+ =?us-ascii?Q?zfG6BUI23PSTW4tnI1zlU2gKP9fQHIRVBtD1Fem48KTVG5VxhUWE05YwDsgq?=
+ =?us-ascii?Q?Xvs092CEkUZE3abMBdocmkh66hGhi6WlTmhdsTB48B5zGgh7Tis1974ndRmi?=
+ =?us-ascii?Q?dvd2j+Lpw3WmUzQ2g6IuGuiLON3l36MCifNHM+wt8iH2BqP4ZEOv0hQsteYt?=
+ =?us-ascii?Q?bFerXcDgDjl1po2Gbn/ZuZXtl7YBcDhUzeMNjLwKPj4Pun3cYFXdhgHen/zE?=
+ =?us-ascii?Q?3yu4x3YvIxxZlKWQDzAOO8XaVIffcXLseKkKq1YmwJ5VhVvvbAMzDvT6p8lq?=
+ =?us-ascii?Q?FWrUeIueoJfzHv6XKD96D0H1fSbI5iZ8l8u8KjVkwd7VZVUprgj6rj7yt6e9?=
+ =?us-ascii?Q?t4Urxmbuq4GCTXEQu1GK0TwWhJzRZsCEjwXGkuXhUzfzL7H8p1cvlYkTH8Kf?=
+ =?us-ascii?Q?IkCBYvVeB5JLwksXH8jIRn3MkMnex9o6PSypILlfnqq5s4XssP+teHgIrn4V?=
+ =?us-ascii?Q?JYsn/osOBj+u6O7aGkEt3dcxSP3lU+ROzPy2Tie+kVb0Yd6BeX5DXic4AiHe?=
+ =?us-ascii?Q?Z5nOI8TaN7hvSlUkvDYgCEp9i5Sp+NNAd8JXdGlyETnU8aL7LUunT+g1baOR?=
+ =?us-ascii?Q?METikIO6pxy88960R11gNj5uMg8R6Rz0olvhsk50qMPnD0za39Ss50JqYbeN?=
+ =?us-ascii?Q?IZR1h/Gx6zoByoSmLXZdc1Y=3D?=
 X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(7416014)(32650700017)(1800799024);DIR:OUT;SFP:1102;
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(32650700017)(36860700013)(7416014)(376014)(82310400026);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	Ecab7lNTspz4pceWDsBzvbJSYHRvei7bF/0q0hohdOv+sgit7bVo9/WzA4DjbswoFMnkI71iZEnbk0S7oENas6o11doFskiysI6Ho01UNr3kDwdbi28DA8JeiUAPzkJP//gRiDeGaBlkB7nAdF2cSnn+NZ6eFf7x14A+PiVCxeRt/vL4VTB7JwSawPurDuGf/V3glw2jq0st9pQked5HyKrb/1M7HiIWzsD2sdYt2jEpx5QIRucVVjk9dnVou+xiHGHJzXb6rrbRJOUQNxs2ISkgqylWn/vviwHUNNOoV7RNw7VkHIpJfmfaiSvI07n2C7A5zFi780ZKA/fW8/PTXllbCj4zGbClwzjtf1ze3RXWjIFDtLwhvpEfj8jyY9cC48i9NY8kSRqxhJNmMvcUok1p0CjXlO/cEcPPHG3umAv+MGUOl0q36Oe0nHsksizv
+	psUrM6Off62bb6niBIc330xnb2PasNt9rE6m2FqVQ4baa2thlyxAYCP3nRJ0MLapR1FchLofuD8yeoY9WMxOYh+tBz96tCWE78ZEZ+a480pq0Zj3cPND2q2GDmwprHe2JtzVpBSq7v+g+gpZGDhQU6zjCyv2P4TXC95oSaTs6nDPn9NtjKCaCvBvCTy0Abe4AACoo+GCfUuZ2lwEYGDLoOtxmUqmjc+17VL5/Gbbv/uAiryElQz9H2CydW2FDz20dEtvLb9IpN3tgWY8DAfbe/bvhftheiL0t55mbg85Kfg7x1dfWRRYxu0hS8dvv2PjlvvlOdMulwbU8i/vCoTyZIRGoy9s6UEYbbNAwdNwAoMglhb5qcwGiDmWTVlFQbXBfFqfu/pYwi0rEmTBtHZ2W1cDZhEa4wqg95e4XZltF8CtVpxQvwlIoFhScV91UB4e
 X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 02:06:45.4355
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 02:06:45.4067
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 068731f3-311b-47c2-7db6-08de63920c59
+X-MS-Exchange-CrossTenant-Network-Message-Id: 19f89641-e411-4857-3df6-08de63920c56
 X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	TY2PEPF0000AB84.apcprd03.prod.outlook.com
+	OSA0EPF000000CB.apcprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB7320
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR06MB6442
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [3.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-262469-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[cixtech.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262467-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,cixtech.com,outlook.com,gmail.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[gary.yang@cixtech.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,cixtech.com:mid];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.971];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:mid,cixtech.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	NEURAL_HAM(-0.00)[-0.984];
+	DBL_PROHIBIT(0.00)[0.244.36.0:email];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 87387E0AFE
+X-Rspamd-Queue-Id: 61F47E0ADA
 X-Rspamd-Action: no action
 
-Patch 1: Add yaml file for Cix Sky1 resets
-Patch 2: Add driver codes for Cix Sky1 resets
-Patch 3: Add dts nodes for Cix Sky1 resets
+There are two system control on Cix sky1 Soc. One is located in S0 domain,
+and the other is located in S0 and S5 domain. The system control contains
+resets, usb typeC and more. At this point, only the reset controller child
+is described as usb typeC uses it by phandle.
 
-v7 changes:
-- Pass dts build check with below commands:
-make O=$OUTKNL dt_binding_check
-make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-control.yaml
-make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
-scripts/checkpatch.pl 000*.patch
-- fix build warning
-
-v6 changes:
-- Pass dts build check with below commands:
-make O=$OUTKNL dt_binding_check
-make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-control.yaml
-make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
-scripts/checkpatch.pl 000*.patch
-- refine reset driver
-- fix dt-bindings style
-
-v5 changes:
-- Pass dts build check with below commands:
-make O=$OUTKNL dt_binding_check
-make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
-make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-controller.yaml
-make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
-scripts/checkpatch.pl 000*.patch
-- refine reset driver
-- fix dt-bindings style
-
-v4 changes:
-- Pass dts build check with below commands:
-make O=$OUTKNL dt_binding_check
-make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
-make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
-scripts/checkpatch.pl 000*.patch
-- add syscon
-- refine reset driver
-- fix dt-bindings style
-
-v3 changes:
-- Pass dts build check with below commands:
-make O=$OUTKNL dt_binding_check
-make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
-make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
-scripts/checkpatch.pl 000*.patch
-- remove syscon
-
-v2 changes:
-- Pass dts build check with below commands:
-make O=$OUTKNL dt_binding_check
-make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
-make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
-scripts/checkpatch.pl 000*.patch
-- fix dt-bindings style
-- refine reset driver
-
-Gary Yang (3):
-  dt-bindings: soc: cix: document the simple-mfd syscon on Sky1 SoC
-  reset: add Sky1 soc reset support
-  arm64: dts: cix: add support for cix sky1 resets
-
- .../soc/cix/cix,sky1-system-control.yaml      |  49 +++++
- arch/arm64/boot/dts/cix/sky1.dtsi             |  14 ++
- drivers/reset/Kconfig                         |   7 +
- drivers/reset/Makefile                        |   1 +
- drivers/reset/reset-sky1-base.c               | 117 ++++++++++
- drivers/reset/reset-sky1-fch.c                |  78 +++++++
- drivers/reset/reset-sky1.c                    | 204 ++++++++++++++++++
- drivers/soc/Kconfig                           |   1 +
- drivers/soc/Makefile                          |   1 +
- drivers/soc/cix/Kconfig                       |  11 +
- drivers/soc/cix/Makefile                      |   1 +
- drivers/soc/cix/sky1-system-control.c         |  47 ++++
- include/dt-bindings/reset/cix,sky1-rst-fch.h  |  42 ++++
- include/dt-bindings/reset/cix,sky1-rst.h      | 164 ++++++++++++++
- include/linux/reset/sky1.h                    |  18 ++
- 15 files changed, 755 insertions(+)
+Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+---
+ .../soc/cix/cix,sky1-system-control.yaml      |  49 ++++++
+ include/dt-bindings/reset/cix,sky1-rst-fch.h  |  42 +++++
+ include/dt-bindings/reset/cix,sky1-rst.h      | 164 ++++++++++++++++++
+ 3 files changed, 255 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/soc/cix/cix,sky1-system-control.yaml
- create mode 100644 drivers/reset/reset-sky1-base.c
- create mode 100644 drivers/reset/reset-sky1-fch.c
- create mode 100644 drivers/reset/reset-sky1.c
- create mode 100644 drivers/soc/cix/Kconfig
- create mode 100644 drivers/soc/cix/Makefile
- create mode 100644 drivers/soc/cix/sky1-system-control.c
  create mode 100644 include/dt-bindings/reset/cix,sky1-rst-fch.h
  create mode 100644 include/dt-bindings/reset/cix,sky1-rst.h
- create mode 100644 include/linux/reset/sky1.h
 
+diff --git a/Documentation/devicetree/bindings/soc/cix/cix,sky1-system-control.yaml b/Documentation/devicetree/bindings/soc/cix/cix,sky1-system-control.yaml
+new file mode 100644
+index 000000000000..5fb6b97c3c00
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/cix/cix,sky1-system-control.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/cix/cix,sky1-system-control.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cix Sky1 SoC system control register region
++
++maintainers:
++  - Gary Yang <gary.yang@cixtech.com>
++
++description:
++  An wide assortment of registers of the system controller on Sky1 SoC,
++  including resets, usb, wakeup sources and so on.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - cix,sky1-system-control
++          - cix,sky1-s5-system-control
++      - const: syscon
++      - const: simple-mfd
++
++  reg:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 1
++
++  '#reset-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    syscon@16000000 {
++      compatible = "cix,sky1-s5-system-control", "syscon", "simple-mfd";
++      reg = <0x16000000 0x1000>;
++      #reset-cells = <1>;
++    };
+diff --git a/include/dt-bindings/reset/cix,sky1-rst-fch.h b/include/dt-bindings/reset/cix,sky1-rst-fch.h
+new file mode 100644
+index 000000000000..8e67d7eb92aa
+--- /dev/null
++++ b/include/dt-bindings/reset/cix,sky1-rst-fch.h
+@@ -0,0 +1,42 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/* Author: Jerry Zhu <jerry.zhu@cixtech.com> */
++#ifndef DT_BINDING_RESET_FCH_SKY1_H
++#define DT_BINDING_RESET_FCH_SKY1_H
++
++/* func reset for sky1 fch */
++
++#define SW_I3C0_RST_FUNC_G_N	0
++#define SW_I3C0_RST_FUNC_I_N	1
++#define SW_I3C1_RST_FUNC_G_N	2
++#define SW_I3C1_RST_FUNC_I_N	3
++#define SW_UART0_RST_FUNC_N	4
++#define SW_UART1_RST_FUNC_N	5
++#define SW_UART2_RST_FUNC_N	6
++#define SW_UART3_RST_FUNC_N	7
++#define SW_TIMER_RST_FUNC_N	8
++
++/* apb reset for sky1 fch */
++#define SW_I3C0_RST_APB_N	9
++#define SW_I3C1_RST_APB_N	10
++#define SW_DMA_RST_AXI_N	11
++#define SW_UART0_RST_APB_N	12
++#define SW_UART1_RST_APB_N	13
++#define SW_UART2_RST_APB_N	14
++#define SW_UART3_RST_APB_N	15
++#define SW_SPI0_RST_APB_N	16
++#define SW_SPI1_RST_APB_N	17
++#define SW_I2C0_RST_APB_N	18
++#define SW_I2C1_RST_APB_N	19
++#define SW_I2C2_RST_APB_N	20
++#define SW_I2C3_RST_APB_N	21
++#define SW_I2C4_RST_APB_N	22
++#define SW_I2C5_RST_APB_N	23
++#define SW_I2C6_RST_APB_N	24
++#define SW_I2C7_RST_APB_N	25
++#define SW_GPIO_RST_APB_N	26
++
++/* fch rst for xspi */
++#define SW_XSPI_REG_RST_N	27
++#define SW_XSPI_SYS_RST_N	28
++
++#endif
+diff --git a/include/dt-bindings/reset/cix,sky1-rst.h b/include/dt-bindings/reset/cix,sky1-rst.h
+new file mode 100644
+index 000000000000..2f0990922aad
+--- /dev/null
++++ b/include/dt-bindings/reset/cix,sky1-rst.h
+@@ -0,0 +1,164 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/* Author: Jerry Zhu <jerry.zhu@cixtech.com> */
++#ifndef DT_BINDING_RESET_SKY1_H
++#define DT_BINDING_RESET_SKY1_H
++
++/* reset for csu_pm */
++
++#define SKY1_CSU_PM_RESET_N		0
++#define SKY1_SENSORFUSION_RESET_N	1
++#define SKY1_SENSORFUSION_NOC_RESET_N	2
++
++/* reset group0 for s0 domain modules */
++#define SKY1_DDRC_RESET_N		3
++#define SKY1_GIC_RESET_N		4
++#define SKY1_CI700_RESET_N		5
++#define SKY1_SYS_NI700_RESET_N		6
++#define SKY1_MM_NI700_RESET_N		7
++#define SKY1_PCIE_NI700_RESET_N		8
++#define SKY1_GPU_RESET_N		9
++#define SKY1_NPUTOP_RESET_N		10
++#define SKY1_NPUCORE0_RESET_N		11
++#define SKY1_NPUCORE1_RESET_N		12
++#define SKY1_NPUCORE2_RESET_N		13
++#define SKY1_VPU_RESET_N		14
++#define SKY1_ISP_SRESET_N		15
++#define SKY1_ISP_ARESET_N		16
++#define SKY1_ISP_HRESET_N		17
++#define SKY1_ISP_GDCRESET_N		18
++#define SKY1_DPU_RESET0_N		19
++#define SKY1_DPU_RESET1_N		20
++#define SKY1_DPU_RESET2_N		21
++#define SKY1_DPU_RESET3_N		22
++#define SKY1_DPU_RESET4_N		23
++#define SKY1_DP_RESET0_N		24
++#define SKY1_DP_RESET1_N		25
++#define SKY1_DP_RESET2_N		26
++#define SKY1_DP_RESET3_N		27
++#define SKY1_DP_RESET4_N		28
++#define SKY1_DP_PHY_RST_N		29
++
++/* reset group1 for s0 domain modules */
++#define SKY1_AUDIO_HIFI5_RESET_N	30
++#define SKY1_AUDIO_HIFI5_NOC_RESET_N	31
++#define SKY1_CSIDPHY_PRST0_N		32
++#define SKY1_CSIDPHY_CMNRST0_N		33
++#define SKY1_CSI0_RST_N			34
++#define SKY1_CSIDPHY_PRST1_N		35
++#define SKY1_CSIDPHY_CMNRST1_N		36
++#define SKY1_CSI1_RST_N			37
++#define SKY1_CSI2_RST_N			38
++#define SKY1_CSI3_RST_N			39
++#define SKY1_CSIBRDGE0_RST_N		40
++#define SKY1_CSIBRDGE1_RST_N		41
++#define SKY1_CSIBRDGE2_RST_N		42
++#define SKY1_CSIBRDGE3_RST_N		43
++#define SKY1_GMAC0_RST_N		44
++#define SKY1_GMAC1_RST_N		45
++#define SKY1_PCIE0_RESET_N		46
++#define SKY1_PCIE1_RESET_N		47
++#define SKY1_PCIE2_RESET_N		48
++#define SKY1_PCIE3_RESET_N		49
++#define SKY1_PCIE4_RESET_N		50
++
++/* reset group1 for usb phys */
++#define SKY1_USB_DP_PHY0_PRST_N		51
++#define SKY1_USB_DP_PHY1_PRST_N		52
++#define SKY1_USB_DP_PHY2_PRST_N		53
++#define SKY1_USB_DP_PHY3_PRST_N		54
++#define SKY1_USB_DP_PHY0_RST_N		55
++#define SKY1_USB_DP_PHY1_RST_N		56
++#define SKY1_USB_DP_PHY2_RST_N		57
++#define SKY1_USB_DP_PHY3_RST_N		58
++#define SKY1_USBPHY_SS_PST_N		59
++#define SKY1_USBPHY_SS_RST_N		60
++#define SKY1_USBPHY_HS0_PRST_N		61
++#define SKY1_USBPHY_HS1_PRST_N		62
++#define SKY1_USBPHY_HS2_PRST_N		63
++#define SKY1_USBPHY_HS3_PRST_N		64
++#define SKY1_USBPHY_HS4_PRST_N		65
++#define SKY1_USBPHY_HS5_PRST_N		66
++#define SKY1_USBPHY_HS6_PRST_N		67
++#define SKY1_USBPHY_HS7_PRST_N		68
++#define SKY1_USBPHY_HS8_PRST_N		69
++#define SKY1_USBPHY_HS9_PRST_N		70
++
++/* reset group1 for usb controllers */
++#define SKY1_USBC_SS0_PRST_N		71
++#define SKY1_USBC_SS1_PRST_N		72
++#define SKY1_USBC_SS2_PRST_N		73
++#define SKY1_USBC_SS3_PRST_N		74
++#define SKY1_USBC_SS4_PRST_N		75
++#define SKY1_USBC_SS5_PRST_N		76
++#define SKY1_USBC_SS0_RST_N		77
++#define SKY1_USBC_SS1_RST_N		78
++#define SKY1_USBC_SS2_RST_N		79
++#define SKY1_USBC_SS3_RST_N		80
++#define SKY1_USBC_SS4_RST_N		81
++#define SKY1_USBC_SS5_RST_N		82
++#define SKY1_USBC_HS0_PRST_N		83
++#define SKY1_USBC_HS1_PRST_N		84
++#define SKY1_USBC_HS2_PRST_N		85
++#define SKY1_USBC_HS3_PRST_N		86
++#define SKY1_USBC_HS0_RST_N		87
++#define SKY1_USBC_HS1_RST_N		88
++#define SKY1_USBC_HS2_RST_N		89
++#define SKY1_USBC_HS3_RST_N		90
++
++/* reset group0 for rcsu */
++#define SKY1_AUDIO_RCSU_RESET_N			91
++#define SKY1_CI700_RCSU_RESET_N			92
++#define SKY1_CSI_RCSU0_RESET_N			93
++#define SKY1_CSI_RCSU1_RESET_N			94
++#define SKY1_CSU_PM_RCSU_RESET_N		95
++#define SKY1_DDR_BROADCAST_RCSU_RESET_N		96
++#define SKY1_DDR_CTRL_RCSU_0_RESET_N		97
++#define SKY1_DDR_CTRL_RCSU_1_RESET_N		98
++#define SKY1_DDR_CTRL_RCSU_2_RESET_N		99
++#define SKY1_DDR_CTRL_RCSU_3_RESET_N		100
++#define SKY1_DDR_TZC400_RCSU_0_RESET_N		101
++#define SKY1_DDR_TZC400_RCSU_1_RESET_N		102
++#define SKY1_DDR_TZC400_RCSU_2_RESET_N		103
++#define SKY1_DDR_TZC400_RCSU_3_RESET_N		104
++#define SKY1_DP0_RCSU_RESET_N			105
++#define SKY1_DP1_RCSU_RESET_N			106
++#define SKY1_DP2_RCSU_RESET_N			107
++#define SKY1_DP3_RCSU_RESET_N			108
++#define SKY1_DP4_RCSU_RESET_N			109
++#define SKY1_DPU0_RCSU_RESET_N			110
++#define SKY1_DPU1_RCSU_RESET_N			111
++#define SKY1_DPU2_RCSU_RESET_N			112
++#define SKY1_DPU3_RCSU_RESET_N			113
++#define SKY1_DPU4_RCSU_RESET_N			114
++#define SKY1_DSU_RCSU_RESET_N			115
++#define SKY1_FCH_RCSU_RESET_N			116
++#define SKY1_GICD_RCSU_RESET_N			117
++#define SKY1_GMAC_RCSU_RESET_N			118
++#define SKY1_GPU_RCSU_RESET_N			119
++#define SKY1_ISP_RCSU0_RESET_N			120
++#define SKY1_ISP_RCSU1_RESET_N			121
++#define SKY1_NI700_MMHUB_RCSU_RESET_N		122
++
++/* reset group1 for rcsu */
++#define SKY1_NPU_RCSU_RESET_N			123
++#define SKY1_NI700_PCIE_RCSU_RESET_N		124
++#define SKY1_PCIE_X421_RCSU_RESET_N		125
++#define SKY1_PCIE_X8_RCSU_RESET_N		126
++#define SKY1_SF_RCSU_RESET_N			127
++#define SKY1_RCSU_SMMU_MMHUB_RESET_N		128
++#define SKY1_RCSU_SMMU_PCIEHUB_RESET_N		129
++#define SKY1_RCSU_SYSHUB_RESET_N		130
++#define SKY1_NI700_SMN_RCSU_RESET_N		131
++#define SKY1_NI700_SYSHUB_RCSU_RESET_N		132
++#define SKY1_RCSU_USB2_HOST0_RESET_N		133
++#define SKY1_RCSU_USB2_HOST1_RESET_N		134
++#define SKY1_RCSU_USB2_HOST2_RESET_N		135
++#define SKY1_RCSU_USB2_HOST3_RESET_N		136
++#define SKY1_RCSU_USB3_TYPEA_DRD_RESET_N	137
++#define SKY1_RCSU_USB3_TYPEC_DRD_RESET_N	138
++#define SKY1_RCSU_USB3_TYPEC_HOST0_RESET_N	139
++#define SKY1_RCSU_USB3_TYPEC_HOST1_RESET_N	140
++#define SKY1_RCSU_USB3_TYPEC_HOST2_RESET_N	141
++#define SKY1_VPU_RCSU_RESET_N			142
++
++#endif
 -- 
 2.49.0
 
