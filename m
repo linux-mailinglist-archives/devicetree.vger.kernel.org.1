@@ -1,137 +1,142 @@
-Return-Path: <devicetree+bounces-262689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262690-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KBuVGBVUg2mJlQMAu9opvQ
-	(envelope-from <devicetree+bounces-262689-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:13:41 +0100
+	id GD5TGsZUg2mJlQMAu9opvQ
+	(envelope-from <devicetree+bounces-262690-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:16:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE1E2E6E77
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:13:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB20BE6ED9
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:16:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 91EF63019048
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 14:11:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 03D7A302F718
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 14:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57BE940F8E8;
-	Wed,  4 Feb 2026 14:11:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36B4C40FD98;
+	Wed,  4 Feb 2026 14:14:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e70dhP5C"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="k0xQFPhU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30A3740F8D7;
-	Wed,  4 Feb 2026 14:11:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8FFB280A5C;
+	Wed,  4 Feb 2026 14:14:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770214285; cv=none; b=f3wbyLIKoTfnq5SFIPVWyHcw5UAY6JahPXUcNEYHjAYD2HLu6wlGlLdxWHku1H0/APJIjhwRSSzik+vEE0DB/s1nCtasoWQUYflPL9Lr5zdvHrq9os+LF0UOf80B6jG9meoSJ8SgzybbUP3VkJykL+tghOORZ0toEKe+gTNedyc=
+	t=1770214448; cv=none; b=JwMAvhZJ16FIh+hEyTe11HDBXIWq5VsrJXM6vNT9uzt0IAWEwXtl2Up1oItObyv2itKDdtzKln3JHn5Jzi/IxdgFvT0E6pHf8Pm630LzHVq/mH8UU2S5HK1HA75WQA755TlbMYShpBRmzQR+6GLelUbE5VNCy6fjBVJkD6a/D34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770214285; c=relaxed/simple;
-	bh=WH5QahUO7WVTbnWGYJja/z9xS/7meXJGhqhU/1bxuok=;
+	s=arc-20240116; t=1770214448; c=relaxed/simple;
+	bh=DO/NUVL/AFlBtBzwy54pdC8LSgnO7nOvWqq2kHuP68g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HSPuFRgOaIOSNCtYwBBORBQZfmNlQZk+wKS0nH9Bpt5u0+VGVwfgKYmHGRq7Kl7XDOzl98njodNFHcs0Mwg2kj7NrUR4NbmihKSTa8vPfWbzbqxMR4WHSQq3X4tcCp/jB/wUfnxipn8YPQ9stoRrqJ5srGd5NEi9wMvUzKHkbjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e70dhP5C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01DABC19424;
-	Wed,  4 Feb 2026 14:11:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770214284;
-	bh=WH5QahUO7WVTbnWGYJja/z9xS/7meXJGhqhU/1bxuok=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e70dhP5CPwYeTcgaf+EAe9PXl3GthoEElxicQBwIn1zimM81lqnxpEyYqBS2UZhhJ
-	 pAg7k0anT/V/3hIxzVpnV7OL1zI8yXzVrRIZyxSRVkGevzVl7RHg3zGZZ2GdK9pVks
-	 uDETtkjHc50NNZbm4O3Yo6haP8kdVGw0TG/e97c/+qN7CAOeBzoqYv507E5XxmFACV
-	 bpUTSxpvj94cMsNAuEflKlfGyYyltq/wUICXhgHhIjjP0AmndGqOoLjtb0aMEPmDy/
-	 ehVaUHq3oMJJ4PiBKsU64PsDkCaSjL9n3LulOznEOALfPXLNU2ByzJC6u/Xj++qN3M
-	 xsIx6VEakYydQ==
-Date: Wed, 4 Feb 2026 14:11:20 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Linus Walleij <linusw@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=p4kl8PSwZKnt+UMYPMq68psTUZIpY7aPVP+IcDAv2iqxY/m/NmwIEJYRdt+yBshycJVF6M7U4DlmVkMDWQna98rZknHvLQEH7T0lnfndB1hIiFR2Lpf8l9nDyMZQkLP1NTD9VSXpSxHRmLBSds5tfVkocbyACTfUvqb4gKIMfDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=k0xQFPhU; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770214447; x=1801750447;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=DO/NUVL/AFlBtBzwy54pdC8LSgnO7nOvWqq2kHuP68g=;
+  b=k0xQFPhUWi4lu/dpr5IVo8zstBWFmJKSG2FqghyYTGur1ozlf+t55wHY
+   9/d/5NvCdE3uKlcNC4PGwrTOtpk65tL5vZHNpiLtfLTIDp4n7F54DGYPY
+   tTq8TCJ9v80Z4fopsWil1VnVcOEyPE7CaI0uc5BnDcCdGqCjlvY2ISVFl
+   H0vwFxakUhA5ABniCvx1tUoE95+umcR569u92Bxxa3LFd1mkZWQ3T62cW
+   XN73hWPvbSPB3lASQ9Tmq4T2lQ8HwJXb9uI1m68FH488QTkmxA/KldjIe
+   h2FX5PanaktptfSZMSrKg2wqAy0p+tw6Or3qDCoFvOt34pRkI7JN4JyR5
+   A==;
+X-CSE-ConnectionGUID: Y+lz1fU3QSO38yUGe3aOXA==
+X-CSE-MsgGUID: wyZ1w1icQa+Uc9pz4TZIYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71297567"
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; 
+   d="scan'208";a="71297567"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Feb 2026 06:14:05 -0800
+X-CSE-ConnectionGUID: QY1wsCCtQCq4GPOCBMf+OQ==
+X-CSE-MsgGUID: TIrmLjZvRwmuc4W6O3FrKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; 
+   d="scan'208";a="240856365"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.188])
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Feb 2026 06:14:02 -0800
+Date: Wed, 4 Feb 2026 16:13:59 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [rfc 0/2] pinctrl property checks
-Message-ID: <20260204-twentieth-facedown-55eca3d3022c@spud>
-References: <20260203-device-unwashed-ed24f8592d79@spud>
- <CAD++jLnz1r1gnE3B_0MCr0JrfEdT-74nM7wL3ErdrmzHOrnovQ@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, stable@vger.kernel.org,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH v5 01/13] iio: dac: ds4424: reject -128 RAW value
+Message-ID: <aYNUJyASwD67oOcN@smile.fi.intel.com>
+References: <20260204140045.390677-1-o.rempel@pengutronix.de>
+ <20260204140045.390677-2-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="1CSrqGD1uvf0jDND"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAD++jLnz1r1gnE3B_0MCr0JrfEdT-74nM7wL3ErdrmzHOrnovQ@mail.gmail.com>
+In-Reply-To: <20260204140045.390677-2-o.rempel@pengutronix.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262689-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-262690-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BE1E2E6E77
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,smile.fi.intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BB20BE6ED9
 X-Rspamd-Action: no action
 
+On Wed, Feb 04, 2026 at 03:00:33PM +0100, Oleksij Rempel wrote:
+> The DS442x DAC uses sign-magnitude encoding, so -128 cannot be represented
+> in hardware (7-bit magnitude).
+> 
+> Previously, passing -128 resulted in a truncated value that programmed
+> 0mA (magnitude 0) instead of the expected maximum negative current,
+> effectively failing silently.
+> 
+> Reject -128 to avoid producing the wrong current.
 
---1CSrqGD1uvf0jDND
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 
-On Wed, Feb 04, 2026 at 12:30:30AM +0100, Linus Walleij wrote:
-> On Tue, Feb 3, 2026 at 6:30=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
->=20
-> > Finally got around to sending the property stuff that we were talking
-> > about. It's definitely not the best thing I have ever written, but I
-> > think it does an okay job of warning about setups that don't make sense
-> > while adding fairly little complexity wise.
->=20
-> I like what I see and I think we should apply it for the v7.1 kernel cycle
-> post v7.0-rc1.
->=20
-> Are you ready to send a non-RFC version by then?
+(as agreed to use S8_* limits for now)
 
-The rfc tag is was more because of the point in the cycle we are at than
-the question on the driver patch. Sending a non-rtc then should be no
-problem.
+-- 
+With Best Regards,
+Andy Shevchenko
 
---1CSrqGD1uvf0jDND
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaYNTiAAKCRB4tDGHoIJi
-0rO1AQDg2EjTzYP8wXL3AM47YYwKhhkjEFNhP7YVRUnka16L8AD/XkHcx6LuEzeF
-qVo9fhZVhLDlgsnridoejiLDPSQkLgo=
-=icK+
------END PGP SIGNATURE-----
-
---1CSrqGD1uvf0jDND--
 
