@@ -1,68 +1,104 @@
-Return-Path: <devicetree+bounces-262500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262501-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ANG0M9nNgmn/bgMAu9opvQ
-	(envelope-from <devicetree+bounces-262500-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 05:40:57 +0100
+	id QLP3LWfTgml5cQMAu9opvQ
+	(envelope-from <devicetree+bounces-262501-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 06:04:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 401F9E1920
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 05:40:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 452E4E1A71
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 06:04:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 43F9E30C8216
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 04:40:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9038C300C0EF
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 05:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92A6D28750B;
-	Wed,  4 Feb 2026 04:40:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19E9B3502BA;
+	Wed,  4 Feb 2026 05:04:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="Db2cjSqq"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JIdDP+2z";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OQG6tyH+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-57-252.mail.qq.com (out162-62-57-252.mail.qq.com [162.62.57.252])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C64A81632E7
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 04:40:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.252
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C619332D452
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 05:04:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770180048; cv=none; b=CQeBp3pTE7BfLc+JZVBrG2yDv7y6N/CFMf5HH1/6uGO08QsiwS4TAs6FeVgK6fn952IEQfuDm6haA/dkl068hNqda8ZTtrV/ebokQBypoKh+7LQk/ydLsiGM7XlQempgFAXiTcH14dUrLCmyYaC6CEcbdnv8Fkww/nqi7c/SYBs=
+	t=1770181477; cv=none; b=Ria8E0LQrx7F9Dn32LMPvAO3pBSdAGKtYpw5ZxHzMsI/wsnqBk4lJ++qEo2AcHh7vDFyCB97vGrciZ2EENLHdqIk7rmPL8Ae3wlK/yXLoUECZ8iQDipTMTZ59YfKcf0df0mK7PIGhll6+cixUQ0vfJBawi68Ib2LepS5s29AX0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770180048; c=relaxed/simple;
-	bh=Vxn+5M6xi4yFwNw6VAG8UiLWiIJZs8aikNfW4PLm7Po=;
+	s=arc-20240116; t=1770181477; c=relaxed/simple;
+	bh=XmFJIuFS/wd5AVgYfDUJizB7VVk4Xa+TsalDeRCDoW8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W9p0dtmJ2YiZvCrwBvnCrJ/n/dPQA36SsLHbvcR4cjMbOzceaJNv3kbeTUTrURFwDbF7YPqSRAtYcW5PJII6k3D6kKTYz9WyA3/r3At8KNnVkkyvNOd5ofnzMv2OKp2Rn6DZIFReHHSjuT3ALnSBFSgmc9rBYyPkubhRrV+fJJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=pass smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=Db2cjSqq; arc=none smtp.client-ip=162.62.57.252
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1770180039; bh=0k4sYxdy33SWHFV5embihYwhqgjBn6q4PcG3Km5h0l8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=Db2cjSqqJ8Kra25YDz51iCjGEOUxGkRiLt7DtnFFRkeoQL+ZoKFj+BrDHHEoFxZAI
-	 RZ5WqviIAvA+UkfPCbvq1uW09psZWnkjPYXf+4ynHmaTVAtAm6qCHSv4f/CeTDccss
-	 e3jtxwbnqYtC6K924oZJuVKBvepHp+QlZjmt5wd4=
-Received: from [IPV6:240e:379:2263:bd00:8442:9387:e12:ac10] ([240e:379:2263:bd00:8442:9387:e12:ac10])
-	by newxmesmtplogicsvrszb43-0.qq.com (NewEsmtp) with SMTP
-	id A228EAFA; Wed, 04 Feb 2026 12:40:34 +0800
-X-QQ-mid: xmsmtpt1770180034tikn0wn9u
-Message-ID: <tencent_C92E750C550867E30E5FB6E09976A6632A06@qq.com>
-X-QQ-XMAILINFO: OATpkVjS499ugQA5an6hXBP00H8t1gMfSqPIr+x+fRrGP4Dy597MJ5eex0Y2+a
-	 HTw3RmD5NgHYdFVJr5rnoRGz5XkplJfTq1py9xYn4ENxg6TeuDOEMQ9fT/K03NqC++ElWAGJu6Rc
-	 QOU8I3m9N95CO31Tw05qgcL5uTjfv8oHYTHmKfDcw7MuvJFWk6R+QgBH8BiCgzW6zKrUyes22DOC
-	 4/c0CiR3XZsqiZ6/3+L0GIfBIzgVDd7eb4vxcX9M5tLCy0r0vFg1WU8qaSDX7gfZOaB97S53EYvq
-	 tKQOouYZKkEeGIxcAK1yKju0oEWB3Nq7qo7fjZy6Uizfa9D9Qbmu7mCvYiGedWdudm6CmtfjgQdo
-	 JGvc16ea7MFViopOcy0BboOYaAOWtCqdngcLDlgObxKB5MFyi3tn7G7kab8URLJYTy6GU6ynom8h
-	 aAdqqOtYePYjhm2IZ0OtWeca3n7RkOPPO7+BJYksjzh6zJ+Wn+JT1uD6bLex0z6yco6d4g7mMinY
-	 nR87JyvNHFzKeMK17qKnjHKsQVxysjHXticNYC6CUAPP3hBu4il+YdiTMuGGZErdhgi3w8BdgJ/e
-	 RLqCD9JjfvrDOPUS5U2uJef6NHSo7eYyZAErhtPAz9TRgaEbZ0pxadx1LC7fNh7QeuFy9i5IaUSY
-	 /mcDYAZVtPLkyoOY7LmynO3KyMCrHB8Orh6xCfFQp95LSCKrv7q+bVTF5IpDIHLG4qpVMdsyalms
-	 0x3n4rhZrQe+PLDAu5UllkGcVeUGGDJ4ghxqVSHPOVsA2TATggj7AGehtnjPmXl/AlR0sx1VlLHP
-	 hq+zHLVmD26SiacVdmR2HAn1R+rXVOvcAktuRDww5IwZblGl/h9tux4AZOPq1cnjoHEi58RjgL+d
-	 mHQLcHBdR63LH5VXRUJWTTGWZAvITLWKL7oNhJ7YzKtKahiflyoUepK1T9+1S8bW7y8ZYiZLEuOt
-	 b3eopWL4gQQ/gEZ8OhXTAC/bMHTbYEENzOT/wSenMg9Asr628ZWeYtRAaLbbgLc/z3aaD5D11CI4
-	 1u3y53Y9TCqE4fZikg29OiR6kb6baAIexB7tAdGv+7SaTWAJ4097zeTsuo86xc7yLWjUMMzw==
-X-QQ-XMRINFO: M/715EihBoGS47X28/vv4NpnfpeBLnr4Qg==
-X-OQ-MSGID: <401d0d0c-9f09-4202-a8df-acb315d1f6d0@cyyself.name>
-Date: Wed, 4 Feb 2026 12:40:34 +0800
+	 In-Reply-To:Content-Type; b=jLicXEOANYz2Bd3BWhVTbiUAM+mLGxI3jBCeKwcSFZGG86X2RgDtjKlUTOPIUpVx2bmCOnjx+6OMkaIIc2TGgubtM0X5VQVH6bzyZAZ8whRG7w2D1Nks6/Cf8zTtuinNcPtprDPshtBuqEYpPTuJXhOIt62IFp5x2GOi3NOcMmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JIdDP+2z; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OQG6tyH+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 614530Ao2667049
+	for <devicetree@vger.kernel.org>; Wed, 4 Feb 2026 05:04:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xSAiik096X5jYd7cFTlpkzc3bCH7olj7yaJbqdjszcQ=; b=JIdDP+2zh0G3cinc
+	xCiDivaKwRWrpGbRtE0pBRjmA+/EVLUC3ZsS/TziqhA4vcMlP1y/9ffLsxEytEkU
+	a9ZX+AGRm73YI38Si24xFkJRQUsoJ3pTdThfAP66+fbI0qevKaPq2UUlwezgKEvp
+	X5gkQS7YhPXMw+UyPAn2WVNL6WzHT10dTV6o6UnC87j2BXSGZwlCDDsXON/BLPYc
+	Wcs78sqQ/ukfdSIwD8Z8I9QtqhyQV+ztMIpRt4Tu9wQPoJN1N0SvNaq2TBmHi0Se
+	+czWIOl7eDIYqGLkXMrc2astUbcgBuqOxBud1dJ8WwKk78jHNhJ69N88Gb32vzM6
+	jquA5Q==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c3nf61xea-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 05:04:35 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2a0b7eb0a56so57766595ad.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 21:04:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770181475; x=1770786275; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xSAiik096X5jYd7cFTlpkzc3bCH7olj7yaJbqdjszcQ=;
+        b=OQG6tyH+HJnNvh8V00TtMGNWevbAbLyzj4vhc+AeSn12ZbLFxB1Kmh4dR4s5ISVxli
+         3U4mFFPO26Vo8Pftblgw8r1O0vg/3pT0nAFmlP0v5zhpbld9S8sToSJ8nmvi27ZtrHtL
+         L3fy8fwlbaQBy1wUSVomkJblqMib9CXSQnbPCPBwOa8l9ojnd6yxu2zcubBHBUrYiDiK
+         KXKb6awW42uZczoWGx7IzRwlX2CVIocQpi3E57MoK0QHJq4t7m7uwmGckhsi5a61qGxf
+         3IzHPg8/BwPSKdxx+ToJ4JlEo3mt7ThRdkJ0lFpdDWBFvjp9YO8uK4U7sCjW3nPR3e1F
+         OlZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770181475; x=1770786275;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xSAiik096X5jYd7cFTlpkzc3bCH7olj7yaJbqdjszcQ=;
+        b=gwQvN/SEg26gLpL537W3tTK34ALDFm+Yu5VE25L9OVn2MeCKl5pIg9lQCibOQ2N52I
+         kcl1mVDmJ9cF4eeeOIYD20AafqvYN47VFHLoxLLPdOu3nZhuLb3e7wUnoQV0lPM9mlXt
+         WVejf4eol1Bg84lSp5T1OCCwSeE4ObmLIXBCZAPL5H0koT9u+ly8o4L5MAmc8ls/Cbfj
+         KNRyo/QxNC5qzdiVfz+etmlgyF/NZzhUr5xih8kX251ChtjcaZpaQ8v5uvPLSRA+rKmy
+         54bZVniefSMWcseGzftmR/kWCKiIkbRa1Vo1BwkP8qJbkYN/haAJ3uiH38srJjEXG6OJ
+         nzZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVwnP8PZHs9lgTVlt7vhmFm2PqWFnZIgozj7kGRWef6e5tmP0vselOoRkg6UgVObwNpyyik4RYSXYPk@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuLPv6Gh19otn6Ym7QbtUUdvPfZHUK0g3R4v5TNc67XqeYVI61
+	T7/RnUzwCdsplUJxDhJ9YNx4eOdmW/MZumE0it3sxEaFl7DpOvYIHaKNEk4zeqrA7iFqd9IlYY8
+	muh74dO9VEzX4Aq8U4qpMLcvl/9vhdd6emPj0nzoBhenHvu/oK9RfCJxSUICPWYgP
+X-Gm-Gg: AZuq6aJtgpD0Ug+mH2P4J2SpvpQELWFPskiPqvtAYMpTIGogPTFWPHnRAb+xiluYqeD
+	uzJviLWInoQyET8KXaBDezBrIV+w9YVkvTT3mOb3VvKUw1a3n+AmUgqDq/uaxy9cFrM3WUSMHUi
+	2CqiJ4p7AEpD6BmkBAp6kIxIpAyFJllrnc2v3aIEhjDi1crlHhrExLNuMJAFkp6KnxXih+5KGxH
+	ItfE0UIp079VHjJW0W9B8jdDjij7DIzNAlrKFfz1K41a21AdvKB5eCngKw6pgPzXtcFXhDE4NcO
+	dArWzpDTccN/RVttfF+GmkoCtdBzT+QDNqyiYBtsn0QzF4c3XFrI3QzcPCZgTh3h719UWYm0/+A
+	9NyHRLRG+gdqc82M1b3rM85xOGR1hUZjuSzFRJz0g9g==
+X-Received: by 2002:a17:903:3d0c:b0:2a7:5ad3:79eb with SMTP id d9443c01a7336-2a933fa63eamr19784955ad.35.1770181474807;
+        Tue, 03 Feb 2026 21:04:34 -0800 (PST)
+X-Received: by 2002:a17:903:3d0c:b0:2a7:5ad3:79eb with SMTP id d9443c01a7336-2a933fa63eamr19784455ad.35.1770181474231;
+        Tue, 03 Feb 2026 21:04:34 -0800 (PST)
+Received: from [10.218.32.171] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8241d468d73sm954264b3a.49.2026.02.03.21.04.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Feb 2026 21:04:33 -0800 (PST)
+Message-ID: <cf2b7624-eaf9-4ba3-9b2e-81be3adbb53f@oss.qualcomm.com>
+Date: Wed, 4 Feb 2026 10:34:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,346 +106,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] irqchip/sifive-plic: Fix wrong nr_irqs handling
-To: Thomas Gleixner <tglx@kernel.org>, linux-riscv@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org, Anup Patel <anup.patel@oss.qualcomm.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Charles Mirabile <cmirabil@redhat.com>, Lucas Zampieri
- <lzampier@redhat.com>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Mason Huo <mason.huo@starfivetech.com>,
- Zhang Xincheng <zhangxincheng@ultrarisc.com>,
- Charlie Jenkins <charlie@rivosinc.com>, Marc Zyngier <maz@kernel.org>,
- Sia Jee Heng <jeeheng.sia@starfivetech.com>,
- Ley Foon Tan <leyfoon.tan@starfivetech.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
- devicetree@vger.kernel.org, Jia Wang <wangjia@ultrarisc.com>
-References: <tencent_AEBB719FAF49D05B5BDF7118D729463F6405@qq.com>
- <tencent_3927462924B7319F8F4F90447BDC110FB705@qq.com> <87ikcd36i9.ffs@tglx>
+Subject: Re: [PATCH v4 12/13] i2c: qcom-geni: Store of_device_id data in
+ driver private struct
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, bjorn.andersson@oss.qualcomm.com,
+        dmitry.baryshkov@oss.qualcomm.com
+Cc: prasad.sodagudi@oss.qualcomm.com, quic_vtanuku@quicinc.com,
+        aniket.randive@oss.qualcomm.com, chandana.chiluveru@oss.qualcomm.com,
+        jyothi.seerapu@oss.qualcomm.com
+References: <20260202180922.1692428-1-praveen.talari@oss.qualcomm.com>
+ <20260202180922.1692428-13-praveen.talari@oss.qualcomm.com>
+ <df7cbe46-153e-4959-911a-14600b3bea21@oss.qualcomm.com>
 Content-Language: en-US
-From: Yangyu Chen <cyy@cyyself.name>
-In-Reply-To: <87ikcd36i9.ffs@tglx>
+From: Praveen Talari <praveen.talari@oss.qualcomm.com>
+In-Reply-To: <df7cbe46-153e-4959-911a-14600b3bea21@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: qJNGXSUoefcVsBfxfrjJ9Ek4lnwTU1Z7
+X-Proofpoint-ORIG-GUID: qJNGXSUoefcVsBfxfrjJ9Ek4lnwTU1Z7
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA0MDAzNCBTYWx0ZWRfXzaKxyhIPw8KY
+ jqlnDGZiO/6ItW9QCPjonNnz16wf3sZuZqWAlS6qDRfnGxCpVZyq1xteabpTiax05sXCBNGaLT4
+ B5ptJ/aZo8spnIW9vvUZFXENFw43hcsuykuLLycb1tmY2d1p6HRJ4qK17piZMhWkaD9s3rBaNpr
+ /Xz+l2JucUkM1IRgbt1y4ZgGSkExCRFkqkCt9ZO07hRq2aC+x3ekAs+H8Y+PJ7YYXlcV0YudxnI
+ x4JJTfwqF58ID2iYn4UWcnF5v2ioMuGCcFFG95i3H5TtLFvoJRJCByi6XfDeO/nDI8EmyU5TU/c
+ ZFo9FrEcO4eIcra+DtZE0brIg91OB5Dm7qYt2q8AbaIr58q8FKg16Y/jzYnGsmwwe0D0DbaSHBN
+ wcQcoan3Rxsgtppd3SXEYCWb2ygsAlVA6BBTzyvdO3tq5olDq/pyO88oed2/Dwyp4HJQ2+poqSg
+ oX12nHbr0nAkTwjsaZg==
+X-Authority-Analysis: v=2.4 cv=doTWylg4 c=1 sm=1 tr=0 ts=6982d363 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=Xoixdy55EFV0JJdjLs8A:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=zgiPjhLxNE0A:10 a=zZCYzV9kfG8A:10
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-03_07,2026-02-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1015 impostorscore=0 suspectscore=0 spamscore=0
+ priorityscore=1501 bulkscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602040034
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[qq.com:s=s201512];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[cyyself.name];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-262501-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	TAGGED_FROM(0.00)[bounces-262500-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qq.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cyy@cyyself.name,devicetree@vger.kernel.org];
-	FORGED_MUA_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[praveen.talari@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cyyself.name:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 401F9E1920
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 452E4E1A71
 X-Rspamd-Action: no action
 
+Hi Konrad,
 
-
-On 4/2/2026 04:40, Thomas Gleixner wrote:
-> On Wed, Feb 04 2026 at 01:21, Yangyu Chen wrote:
->> @@ -351,7 +351,7 @@ static int plic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
->>   	if (ret)
->>   		return ret;
+On 2/3/2026 5:55 PM, Konrad Dybcio wrote:
+> On 2/2/26 7:09 PM, Praveen Talari wrote:
+>> To avoid repeatedly fetching and checking platform data across various
+>> functions, store the struct of_device_id data directly in the i2c
+>> private structure. This change enhances code maintainability and reduces
+>> redundancy.
+>>
+>> Acked-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+>> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
+>> ---
+> 
+> [...]
+> 
 >>   
->> -	for (i = 0; i < nr_irqs; i++) {
->> +	for (i = 1; i <= nr_irqs; i++) {
->>   		ret = plic_irqdomain_map(domain, virq + i, hwirq + i);
+>> -	desc = device_get_match_data(&pdev->dev);
+>> +	gi2c->dev_data = device_get_match_data(&pdev->dev);
 > 
-> That's just wrong and clearly untested.
-> 
-> @virq and @nr_irqs are provided by the core code and you cannot
-> manipulate them just because.
-> 
-> This instance of nr_irqs has absolutely nothing to do with the problem
-> you are trying to solve. The core invokes this to map
-> 
->      $N (@nr_irqs) Linux interrupt numbers starting from @virq to
->      hardware interrupt numbers.
-> 
-> The fwspec argument (@arg) is used to retrieve the hardware interrupt
-> number from the device tree:
-> 
->      plic_irq_domain_translate(....);
-> 
-> The device tree better contains the real hardware interrupt number and
-> not a 0 based enumeration.
-> 
->>   static irq_hw_number_t cp100_get_hwirq(struct plic_handler *handler, void __iomem *claim)
->>   {
->> -	int nr_irq_groups = DIV_ROUND_UP(handler->priv->nr_irqs, 32);
->> +	int nr_irq_groups = DIV_ROUND_UP(handler->priv->nr_irqs + 1, 32);
-> 
-> Requiring this '+1' muck all over the place is a guarantee for more
-> disaster.
-> 
-> It's not really hard to sit back and think about it instead of
-> mindlessly changing things until it looks about right. I'm tired of
-> wasting my time with reviewing botched up stuff like that.
-> 
+> Because you dereference it unconditionally later, this should be
+> null-checked
 
-Sorry for that. I haven't tested that on QEMU with interrupt enabled at 
-the time of submission, only tested on XiangShan's NEMU [1] without 
-interrupt (serial console is handled by sbi hvc pull) to see if the 
-memory corruption bug is being resolved. Sorry for the missed coverage. 
-And also sorry for my misunderstanding of irq_domain. I have tested it 
-today on QEMU, and it even breaks serial interrupts.
-
-[1] https://github.com/OpenXiangShan/NEMU
-
-> Untested, but defintely correct patch below. If you find a bug, I owe
-> you a beer at the next conference.
-> 
-> Thanks,
-> 
->          tglx
-> ---
-> Subject: irqchip/sifive-plic: Handle number of hardware interrupts correctly
-> From: Thomas Gleixner <tglx@kernel.org>
-> Date: Tue, 03 Feb 2026 20:16:12 +0100
-> 
-> The driver is inconsistently handling the number of hardware interrupts.
-> 
-> The reason is that the firmware enumerates the maximum number of device
-> interrupts, but the actual number of hardware interrupts is one more
-> because hardware interrupt 0 is reserved.
-> 
-> There are two loop variants where this matters:
-> 
->    1) Iterating over the device interrupts
-> 
->       for (irq = 1; irq < total_irqs; irq++)
-> 
->    2) Iterating over the number of interrupt register groups
-> 
->       for (grp = 0; grp < irq_groups; grp++)
-> 
-> The current code stores the number of device interrupts and that requires
-> to write the loops as:
-> 
->    1) for (irq = 1; irq <= device_irqs; irq++)
-> 
->    2) for (grp = 0; grp < DIV_ROUND_UP(device_irqs + 1); grp++)
-> 
-> But the code gets it wrong all over the place. Just fixing up the
-> conditions and off by ones is not a sustainable solution as the next changes
-> will reintroduce the same bugs over and over.
-> 
-> Sanitize it by storing the total number of hardware interrupts during probe
-> and precalculating the number of groups. To future proof it mark
-> priv::total_irqs __private, provide a correct iterator macro and adjust the
-> code to this.
-> 
-
-Your idea is great to prevent future bugs from being produced. Thanks!
-
-> Marking it private allows sparse (C=1 build) to catch direct access to this
-> member:
-> 
->    drivers/irqchip/irq-sifive-plic.c:270:9: warning: dereference of noderef expression
-> 
-> That should prevent at least the most obvious future damage in that area.
-> 
-> Fixes: e80f0b6a2cf3 ("irqchip/irq-sifive-plic: Add syscore callbacks for hibernation")
-> Reported-by: Yangyu Chen <cyy@cyyself.name>
-> Signed-off-by: Thomas Gleixner <tglx@kernel.org>
-> ---
->   drivers/irqchip/irq-sifive-plic.c |   82 ++++++++++++++++++++------------------
->   1 file changed, 45 insertions(+), 37 deletions(-)
-> 
-> --- a/drivers/irqchip/irq-sifive-plic.c
-> +++ b/drivers/irqchip/irq-sifive-plic.c
-> @@ -68,15 +68,17 @@
->   #define PLIC_QUIRK_CP100_CLAIM_REGISTER_ERRATUM	1
->   
->   struct plic_priv {
-> -	struct fwnode_handle *fwnode;
-> -	struct cpumask lmask;
-> -	struct irq_domain *irqdomain;
-> -	void __iomem *regs;
-> -	unsigned long plic_quirks;
-> -	unsigned int nr_irqs;
-> -	unsigned long *prio_save;
-> -	u32 gsi_base;
-> -	int acpi_plic_id;
-> +	struct fwnode_handle	*fwnode;
-> +	struct cpumask		lmask;
-> +	struct irq_domain	*irqdomain;
-> +	void __iomem		*regs;
-> +	unsigned long		plic_quirks;
-> +	/* @device_irqs + 1 to compensate for the reserved hwirq 0 */
-> +	unsigned int __private	total_irqs;
-> +	unsigned int		irq_groups;
-> +	unsigned long		*prio_save;
-> +	u32			gsi_base;
-> +	int			acpi_plic_id;
->   };
->   
->   struct plic_handler {
-> @@ -91,6 +93,12 @@ struct plic_handler {
->   	u32			*enable_save;
->   	struct plic_priv	*priv;
->   };
-> +
-> +/*
-> + * Macro to deal with the insanity of hardware interrupt 0 being reserved */
-> +#define for_each_device_irq(iter, priv)	\
-> +	for (unsigned int iter = 1; iter < ACCESS_PRIVATE(priv, total_irqs); iter++)
-> +
->   static int plic_parent_irq __ro_after_init;
->   static bool plic_global_setup_done __ro_after_init;
->   static DEFINE_PER_CPU(struct plic_handler, plic_handlers);
-> @@ -257,14 +265,11 @@ static int plic_irq_set_type(struct irq_
->   
->   static int plic_irq_suspend(void *data)
->   {
-> -	struct plic_priv *priv;
-> -
-> -	priv = per_cpu_ptr(&plic_handlers, smp_processor_id())->priv;
-> +	struct plic_priv *priv = this_cpu_ptr(&plic_handlers)->priv;
->   
-> -	/* irq ID 0 is reserved */
-> -	for (unsigned int i = 1; i < priv->nr_irqs; i++) {
-> -		__assign_bit(i, priv->prio_save,
-> -			     readl(priv->regs + PRIORITY_BASE + i * PRIORITY_PER_ID));
-> +	for_each_device_irq(irq, priv) {
-> +		__assign_bit(irq, priv->prio_save,
-> +			     readl(priv->regs + PRIORITY_BASE + irq * PRIORITY_PER_ID));
->   	}
->   
->   	return 0;
-> @@ -272,18 +277,15 @@ static int plic_irq_suspend(void *data)
->   
->   static void plic_irq_resume(void *data)
->   {
-> -	unsigned int i, index, cpu;
-> +	struct plic_priv *priv = this_cpu_ptr(&plic_handlers)->priv;
-> +	unsigned int index, cpu;
->   	unsigned long flags;
->   	u32 __iomem *reg;
-> -	struct plic_priv *priv;
-> -
-> -	priv = per_cpu_ptr(&plic_handlers, smp_processor_id())->priv;
->   
-> -	/* irq ID 0 is reserved */
-> -	for (i = 1; i < priv->nr_irqs; i++) {
-> -		index = BIT_WORD(i);
-> -		writel((priv->prio_save[index] & BIT_MASK(i)) ? 1 : 0,
-> -		       priv->regs + PRIORITY_BASE + i * PRIORITY_PER_ID);
-> +	for_each_device_irq(irq, priv) {
-> +		index = BIT_WORD(irq);
-> +		writel((priv->prio_save[index] & BIT_MASK(irq)) ? 1 : 0,
-> +		       priv->regs + PRIORITY_BASE + irq * PRIORITY_PER_ID);
->   	}
->   
->   	for_each_present_cpu(cpu) {
-> @@ -293,7 +295,7 @@ static void plic_irq_resume(void *data)
->   			continue;
->   
->   		raw_spin_lock_irqsave(&handler->enable_lock, flags);
-> -		for (i = 0; i < DIV_ROUND_UP(priv->nr_irqs, 32); i++) {
-> +		for (unsigned int i = 0; i < priv->irq_groups; i++) {
->   			reg = handler->enable_base + i * sizeof(u32);
->   			writel(handler->enable_save[i], reg);
->   		}
-> @@ -431,7 +433,7 @@ static u32 cp100_isolate_pending_irq(int
->   
->   static irq_hw_number_t cp100_get_hwirq(struct plic_handler *handler, void __iomem *claim)
->   {
-> -	int nr_irq_groups = DIV_ROUND_UP(handler->priv->nr_irqs, 32);
-> +	int nr_irq_groups = handler->priv->irq_groups;
->   	u32 __iomem *enable = handler->enable_base;
->   	irq_hw_number_t hwirq = 0;
->   	u32 iso_mask;
-> @@ -614,7 +616,6 @@ static int plic_probe(struct fwnode_hand
->   	struct plic_handler *handler;
->   	u32 nr_irqs, parent_hwirq;
->   	struct plic_priv *priv;
-> -	irq_hw_number_t hwirq;
->   	void __iomem *regs;
->   	int id, context_id;
->   	u32 gsi_base;
-> @@ -647,7 +648,16 @@ static int plic_probe(struct fwnode_hand
->   
->   	priv->fwnode = fwnode;
->   	priv->plic_quirks = plic_quirks;
-> -	priv->nr_irqs = nr_irqs;
-> +	/*
-> +	 * The firmware provides the number of device interrupts. As
-> +	 * hardware interrupt 0 is reserved, the number of total interrupts
-> +	 * is nr_irqs + 1.
-> +	 */
-> +	nr_irqs++;
-> +	ACCESS_PRIVATE(priv, total_irqs) = nr_irqs;
-> +	/* Precalculate the number of register groups */
-> +	priv->irq_groups = DIV_ROUND_UP(nr_irqs, 32);
-> +
->   	priv->regs = regs;
->   	priv->gsi_base = gsi_base;
->   	priv->acpi_plic_id = id;
-> @@ -686,7 +696,7 @@ static int plic_probe(struct fwnode_hand
->   				u32 __iomem *enable_base = priv->regs +	CONTEXT_ENABLE_BASE +
->   							   i * CONTEXT_ENABLE_SIZE;
->   
-> -				for (int j = 0; j <= nr_irqs / 32; j++)
-> +				for (int j = 0; j < priv->irq_groups; j++)
->   					writel(0, enable_base + j);
->   			}
->   			continue;
-> @@ -718,23 +728,21 @@ static int plic_probe(struct fwnode_hand
->   			context_id * CONTEXT_ENABLE_SIZE;
->   		handler->priv = priv;
->   
-> -		handler->enable_save = kcalloc(DIV_ROUND_UP(nr_irqs, 32),
-> -					       sizeof(*handler->enable_save), GFP_KERNEL);
-> +		handler->enable_save = kcalloc(priv->irq_groups, sizeof(*handler->enable_save),
-> +					       GFP_KERNEL);
->   		if (!handler->enable_save) {
->   			error = -ENOMEM;
->   			goto fail_cleanup_contexts;
->   		}
->   done:
-> -		for (hwirq = 1; hwirq <= nr_irqs; hwirq++) {
-> +		for_each_device_irq(hwirq, priv) {
->   			plic_toggle(handler, hwirq, 0);
-> -			writel(1, priv->regs + PRIORITY_BASE +
-> -				  hwirq * PRIORITY_PER_ID);
-> +			writel(1, priv->regs + PRIORITY_BASE + hwirq * PRIORITY_PER_ID);
->   		}
->   		nr_handlers++;
->   	}
->   
-> -	priv->irqdomain = irq_domain_create_linear(fwnode, nr_irqs + 1,
-> -						   &plic_irqdomain_ops, priv);
-> +	priv->irqdomain = irq_domain_create_linear(fwnode, nr_irqs, &plic_irqdomain_ops, priv);
->   	if (WARN_ON(!priv->irqdomain)) {
->   		error = -ENOMEM;
->   		goto fail_cleanup_contexts;
-
-Tested-by: Yangyu Chen <cyy@cyyself.name>
-
-Tested on both QEMU and NEMU, and it works great!
-
-Maybe we can merge this along with the dt-binding updates.
+Initially this was added, but based on Bjorn’s comment like there is no 
+possibility of getting a null value here since we are already adding the 
+platform data to compatibles
 
 Thanks,
-Yangyu Chen
+Praveen Talari
+
+> 
+> Konrad
 
 
