@@ -1,573 +1,353 @@
-Return-Path: <devicetree+bounces-262488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262489-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kLlvAF60gmnwYgMAu9opvQ
-	(envelope-from <devicetree+bounces-262488-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 03:52:14 +0100
+	id IOZbOYq0gmnwYgMAu9opvQ
+	(envelope-from <devicetree+bounces-262489-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 03:52:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35849E101D
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 03:52:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64676E1044
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 03:52:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8BAF930C703F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 02:52:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F246D302294D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 02:52:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F3792D877B;
-	Wed,  4 Feb 2026 02:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7201A2D7DCF;
+	Wed,  4 Feb 2026 02:52:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PtWu74Cw";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EAeedPEG"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BMknmBA1";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="iw2EyR8n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B53322D7DC4
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 02:52:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8A3D29DB88
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 02:52:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770173527; cv=none; b=NvYkZpIcimKRSJ2O7rBGKh/F/TkgeSXca1x29bRDu18+BgSTWC/JXabmejPoUd1fJuzq0CJzMhd/jvgrlkbUj9RojtIy5UWg0y97+M6BqmIk9HJ09W8YBxPWKTbhHecekdScuRPpcZz/0Tm2MVLVUQ8UloqfJpOkCjMR+l4qWjU=
+	t=1770173557; cv=none; b=bcxKXyNxLdeYX1PIZ8gdSIGAWgAhs7Wi6wyxZIO+NI06mc39jmTiYrBde+uljl4xhwyUmEFDf7OLK//0qxsTlMWnIRL5Em76uZU0SiAETBz3tm909BWtiW8x0yRTbTfjFPkoHetGq+wuD1Ed9F4yMldbz4dQmwoh2B13s8aKT5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770173527; c=relaxed/simple;
-	bh=IfDMw+jyi7Gt9ZB8cvYnwZCT80TJJK3O8/ukrv4vXNE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pySM+SCUtjMsA6v+QtWRbMXAQGZtN6TiSz+CQWxuB/Mhql1nnopze2QJ2M41xxlyiV1uDyMl92XdenvCkNhm3bti+XqGf4ANnVLBFQ9O/O8XjSpNfZUxRDw9x1Wjchs8nMxcs9Ug7ODWxOgF9nrUNIeu77HlAQtFjgobTtLuMr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PtWu74Cw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EAeedPEG; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1770173557; c=relaxed/simple;
+	bh=/17zeU/3QFibTzJw8mYNca55uMJgH21nI0Mso52APAA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=W6E34wD2UEVdN/ExsEF5P59sr/Z398qLUHAuwnBffIjYzKz5p2XznA3p9XrMYtEOyQNcQqAM9EuF0IT4X91h8udac/enz9gmS9Drb1TRWFl6+5FFS9j8imEiTsRJaA3eXW36jpmrybpx3E9nqajLqO217XEcec0UP9uQ0qeELfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BMknmBA1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=iw2EyR8n; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 613IlwOi2053611
-	for <devicetree@vger.kernel.org>; Wed, 4 Feb 2026 02:52:03 GMT
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 613ImK1m2732616
+	for <devicetree@vger.kernel.org>; Wed, 4 Feb 2026 02:52:35 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=HMZD68lR0HfPK9qnFpU3OmDV
-	7NygAyOYGHnX12TjT6c=; b=PtWu74Cwb1lAMfk5u4SjCjv6NhUf+NnLMAuQKgT1
-	/1vxgC33mxlDTpVuyd+luTY9UInR02CLr4Hitqvh0+LSc9+5oAMDNGvyy5pzi9WO
-	9flb6dO/RbgCpil00sG1k9ljUO/VN/AoWKI9Ic68609ONfH+eV/P0mcu2v5UFcj6
-	JS26geOtfZSGpvUbAYwyH8TjNpZk91X1RPEerkbzElIREqB2fRgftfLTOFgcrK0x
-	tuqKWVGdm42qFMgk9kgKjA4XG0J0sRTsbOUUAwcnlbzP8ZqTdSIY9G/m048oGbM5
-	r9kUqwgUQjJ9kD7R5jPklpUrxR3fm22Ndmj1C5xV2tFU0Q==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c3gsr2men-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3ee8EaOuEDF7xuiuWnZTbj5fFMCy9idVtet4KPNnHlY=; b=BMknmBA1xc8idPHX
+	tsWOftYa7kUiaYrg+aiAtRz8XO8Gy90nFlYAcQ/urt4MTHEgGOUd70c34sf2Absc
+	6qqXYZS48PnmKx1NcvgRgHsnDyh9+Q7C+x9jpyGU5+OizQq13CWcGIZuPpGgKraE
+	uvaOdAS5DlONppeaet8MXIdzjoG1lkON7dvueNSHWZbV3ghIOYG654g1I+86c12N
+	7SVpoDFEkA6/Mi2BK1xRidE9xjawNYqob6ox/7HtahlnkJ2spMATOqnnK+WoldyP
+	QV2As5VDNo0XsfBQtSerkg+85dlnfRiIl/Hv6NH32JUx/w+o+5WD8XLvLbaeT5OF
+	+U/XOQ==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c3exjk2bq-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 02:52:03 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c6ad709d8fso124693785a.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 18:52:03 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 02:52:34 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-81eef665b49so15019551b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 18:52:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770173523; x=1770778323; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HMZD68lR0HfPK9qnFpU3OmDV7NygAyOYGHnX12TjT6c=;
-        b=EAeedPEGWRQah+RuKjBMpeWWKcp7er7Ntk6OQJMwZbqNsw7QWuc8f174T3AJ9ed/s5
-         z14NVlShvmdSPjXmp44UF09nRerRAo0S1oMpAo5TEO6KW9Y9HtWk4W+ZqJyWGaziF1ZK
-         T1QnvWsoeTY1TgRXICSB1uaVH1XeE2TM69yHFFoDpbVAWptV7ShUBe6cy8Z48gO4U0oG
-         55wVQmtSyXlEPRLL5eyyAos4vdhCDWocM2fHrlSBFcWERfVCHmUQW3j4lOtQnLE+3StD
-         mcr+f8+RZcFoecBLlqRzYpbp86j+RGPBo6T6pCD9e7B0vV8AUzJvmAtIiceyyRhWI/Ry
-         e0lw==
+        d=oss.qualcomm.com; s=google; t=1770173554; x=1770778354; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3ee8EaOuEDF7xuiuWnZTbj5fFMCy9idVtet4KPNnHlY=;
+        b=iw2EyR8nqTH8UufVNCRcFdoZgiPOetOTDdk2f6UDVIRswNO9JQqmiu3Ms3OgcfIFqF
+         IaTG+jN53yk1nPs6MH51KH1IOBCR3YtTnD60oM9aph7sqRTH8wCtYJgSe9+2YwZsJm+C
+         IWY4r5urOtCwmDgv+LGw/9IRpAGWf/AR9KjfN1S34OihPmkRuCFrsDtEQCxsEEEfQY99
+         1yEQc852WTVT3sG2GgmWuGHogTM9QgQK10+Eootks9EVxPyiMm5ULPty0s1W9QF2uagN
+         AcPlF4OoGgvzo9KAwExrJJGCQo+WKJYizqDfap2AdPwGnPCY2dlIwlCtiBjEbLTTJ2ye
+         Ycjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770173523; x=1770778323;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HMZD68lR0HfPK9qnFpU3OmDV7NygAyOYGHnX12TjT6c=;
-        b=F035SgnhRaAzvG4nRo4mX8fECZ5+vtO1wMjikN7VVnR/FCUQq+To8ul/Z4WOLU+7Xr
-         brfh7l8MTsjRtvyZBLxTS8nKlzGr7iT7uChdAI2IbWQKg+UoXZrdOPNP/pc+h+ANINQX
-         KhqTBQZT94x0iUViPT4bagFbGv/M/pQCmLQcHPHVzAVt5TdNirng9krqVNC7NJ8iMqt8
-         EYB16P4gIqdJWyvhVM41MlQIABmMPXD4Qz5YKG0HsGjcBpealHeeYTNg0ZBvgcPblz6P
-         HvsonDarIB3o32k8AaQfecXIHfispptrriPRP+HOy6abDML4yYxPmqEy9SWZmBWL2nIu
-         l+ww==
-X-Forwarded-Encrypted: i=1; AJvYcCXrfwJqvPnC2y2hwtyI6CL+EmqQ06wewOJuXTevwvFvOYh2Nb18Uxofe2IKLNZQAF1bl/j3nq1jdk6P@vger.kernel.org
-X-Gm-Message-State: AOJu0YwYAUKPs9vCzBRet+f2l0DmWOKag9iCYsMW0fp9q6swqrk+3Qjo
-	7CuuoZ2qGJouS9uEUOrNGBliMpwompqmbH6zdiz08bGA87GNrTYVWB3nDJTwG5a1LmCqTMj8mt3
-	OUNkvyUTh11I5c8hvydBHf+9MGy59KyGZhdQajwVayQTcf7UjiGY/QsVOeLBnRCWZwhR1VQfP
-X-Gm-Gg: AZuq6aL+LZ57PQN9NV1yrtAV1PAPgpbV53q7TNRX1DYk7lI03sBhhtTQRb+/uBAEydg
-	I8s18gOzXTq73ipNkKdMJyVj0XKkXY1DZDNpBMT1U8g1sVfwwFkcvXJTIg74AsOYlEoo6qeEdSY
-	ezxMQrHTtvEkL8pcER5FdgcKmzWYMJXE+rk8x4EdMe02vw+OUtziWMckWJxvHyWx5tfD8M9WXHm
-	88neZv5Z7xIeaXiVXXbh62quH6meZFSZIaF97VyTa79fwPdv93uzf3HVvd0Ff3ZF6O67bnY4gIV
-	SkBxyHr5Bzz9w0sklQ+Vr1rddT8PRaI1XG96FOap9bazz8u2eyAZpOoLnHP1qW0PF1iIKJFa6G4
-	0pxjW2cQC4ROi7Z7ixkdhjKPLC7IWRCpD50Lak+ZVqqrrzvnsb7IxkoeqqYreIoz0/6SKKxDROh
-	bJxm2t8YRK5JusLMI98tUE4yM=
-X-Received: by 2002:a05:620a:2a09:b0:8b2:62ae:acba with SMTP id af79cd13be357-8ca20483bbamr591283885a.26.1770173522825;
-        Tue, 03 Feb 2026 18:52:02 -0800 (PST)
-X-Received: by 2002:a05:620a:2a09:b0:8b2:62ae:acba with SMTP id af79cd13be357-8ca20483bbamr591282585a.26.1770173522342;
-        Tue, 03 Feb 2026 18:52:02 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e384df125sm302857e87.0.2026.02.03.18.52.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Feb 2026 18:52:00 -0800 (PST)
-Date: Wed, 4 Feb 2026 04:51:58 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Roger Shimizu <rosh@debian.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: qcs6490: Add Thundercomm AI Mini PC G1
- IoT
-Message-ID: <sjczves57fwsxkaynczcso6h64ucqpppshh7woin5j7iwxtjjg@b6dwmnt42hn5>
-References: <6cd569ad19ae8efb5f4244b3aa185754@gmail.com>
+        d=1e100.net; s=20230601; t=1770173554; x=1770778354;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3ee8EaOuEDF7xuiuWnZTbj5fFMCy9idVtet4KPNnHlY=;
+        b=FXq9G1r5d8YcbG2H2ODyeJNvc8tu/BchHk/wQCPZCpgRuWKFjK3JHXdBFRKAbhqnND
+         XpJXJ0Dt1N+PB6cbzUu+Sx9BtfKb0/cq5+CngT3cV/+4gY2b2qQ2fOP9mNBAWx11r3Yd
+         s7rEdDNxQmqcWBrvxx/leXcb68IAYOzVam+4viboY2koqqF67/J4CVSnYKRzHYALG1PK
+         BGkSyRqW2hm0MRAXEziymuT+ILkaYPpk5liIDI6HgOrrmA0HgVyqjG7jNXKikXmRwGzk
+         TxtxsLnufEw3xAH9riooe3KBCErYJ6zb1bKYBVARsQgpLxPby/IEG2cIqjLpxNaegqqV
+         CCag==
+X-Forwarded-Encrypted: i=1; AJvYcCWL1CfWEIcBlKR5kQJ4neQYuu4JqOFGc85nJnttO/Sj7DwQONNbWsKhodB05h247VOGlG885diBgBWf@vger.kernel.org
+X-Gm-Message-State: AOJu0YwS2a6qR96d3nxG6XvY1s06llYxNqucccK3O5UbvV7lY957Bvdo
+	qHmqwV0juj6Rxfmfp69pTPv2AgLUB9zpLfYq26YFBF3kj+/Jvo4sutPXe/P3Mu+LhjDo0HRIX+9
+	pK8TOwgRtcg7IJC1x0+1vUOxSakeF782GCfRcdvcBCtnTSUClpWtVzMdF32qJBODY
+X-Gm-Gg: AZuq6aJhJrGNmB778MHqBBftSTHTZripkvbwXa2ikftyw37XH+jo3RVkSqfioKaI3gW
+	KAgiSoogB9FKrmO2Wn0G8ibFKugyz0/P/XszsSWrxPug8+34jXN1XdEcgafMhXAkoqmeX6ZFoJT
+	kUgCgXc/Wdnyu2n7v1IvxM+fgf0rucYVOOQCuboPQV1HjECJnnkIn2jP1T+3tMJITq1mI9+z4wk
+	EBG/dUPcUYkRmplBSDQiux0wALZjB/+IdtQSiGMf2Bnfd8of85tqKKzk2D3c81htgcmnAwwcmmu
+	7KNLo3mZQZGwCEMULlOYwsciKapzzNcYPIxQxvLhbJHtgBA5IwRPyk1/9OimWm5Z8//WeWQI0jw
+	D4mVppUt/4cgUYgqSOb4tAzCVoVmbpWk1G+aDwL/Cd0OgMFHdUttgHCHJe3LXvZhuGyvs2ZQaVz
+	t3kA==
+X-Received: by 2002:a05:6a00:c91:b0:81f:9c50:3564 with SMTP id d2e1a72fcca58-8241c649975mr1610445b3a.52.1770173554181;
+        Tue, 03 Feb 2026 18:52:34 -0800 (PST)
+X-Received: by 2002:a05:6a00:c91:b0:81f:9c50:3564 with SMTP id d2e1a72fcca58-8241c649975mr1610421b3a.52.1770173553601;
+        Tue, 03 Feb 2026 18:52:33 -0800 (PST)
+Received: from [10.133.33.36] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8241d163ce2sm804895b3a.13.2026.02.03.18.52.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Feb 2026 18:52:33 -0800 (PST)
+Message-ID: <1035ed36-8659-4fc9-9a4b-aa6bd2c3a286@oss.qualcomm.com>
+Date: Wed, 4 Feb 2026 10:52:27 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6cd569ad19ae8efb5f4244b3aa185754@gmail.com>
-X-Authority-Analysis: v=2.4 cv=A+9h/qWG c=1 sm=1 tr=0 ts=6982b453 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=xNf9USuDAAAA:8 a=Pyvs7UqMSGUOn-iCcdUA:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-ORIG-GUID: BjHuLrO2hbZKtj0CplGl5ewOLg8wAill
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA0MDAxOCBTYWx0ZWRfX3xLVkln4J0pk
- qsKx2wQYte6n0w48fV+23FJ5lZa1/k6Jx1S3g8AS0EtAw2V53GW1UdhiacDvilJZotcF0ucQNWL
- 7juX2CY8m0CLOK8wrd6cA4MgEcYqkmHqjvyxs2zmD4UShdb/4yTREKbhffPz0jRCyG16a5fHprF
- KyBs/Yri3wyf+zwrRUw7MxFLyWdtpa3UOGCdFfUOCpp1mb3V6w9hrkJQ8CIE0jEF5fh+1LBx5TW
- 1l/6pg4uIp1fu2oghjSM4wFEd1oi+CwEo7bTRKjf7t0gGxBI/TJEFw1/SFXWdGG9d98Rspu/fjS
- kqTNXMjBn0K+4k8OkAqVLn4IHEeokW1m2pGgej/o23jMseX/fc4q+fiCwgbHJFeds/G68ElQgrV
- m3IYXNWN9lU88owpUUQfWDiBn36zBLZCKZuHqrztX1D+WY+wh43xAsLv+92gk49YTzuHlbjOkYq
- s/Wv+kQR1Tlcy/r+4ng==
-X-Proofpoint-GUID: BjHuLrO2hbZKtj0CplGl5ewOLg8wAill
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/4] Initial patch set for PURWA-IOT-EVK
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        andersson@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, conor+dt@kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20260202-purwa-v5-0-1f5a93578802@oss.qualcomm.com>
+ <177014002716.3173249.7908353000261603377.robh@kernel.org>
+ <e577c093-0851-48b8-abdb-0aee0479c1e3@oss.qualcomm.com>
+ <d3mvqtyd6dsphkojenpalduty7x2n3yxf6rjazwndisxnktez7@iwb2nnxwvg4d>
+Content-Language: en-US
+From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+In-Reply-To: <d3mvqtyd6dsphkojenpalduty7x2n3yxf6rjazwndisxnktez7@iwb2nnxwvg4d>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=W8c1lBWk c=1 sm=1 tr=0 ts=6982b472 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=gEfo2CItAAAA:8
+ a=-INMJSYfKEsmj5OeW-cA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=IoOABgeZipijB_acs4fv:22 a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-GUID: hMJHfUNLksR553YOgyxZDTz7NBJqb0-f
+X-Proofpoint-ORIG-GUID: hMJHfUNLksR553YOgyxZDTz7NBJqb0-f
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA0MDAxOCBTYWx0ZWRfX34Z0b7xGjANr
+ klRlslMtY5EJ0cLb3qRbv9GuIdNFYVv2lFUKkWgzfjLKmaq7PmfhufuRANFf13kwwo+NWqjvCTn
+ wRClcNznIstFLon0lg3zMp9rUPrQsrRULXHPlGBHBuULtUQ3abVyiFEV8TfBtYKmEO6//8eQSCS
+ YGw41Ymi3Pg01ti1NlgnVg/PM1VKDX4gUZ5TLzLsYF2QU/sSZi/EI1d1idcfQuZFKp35RrK/TTm
+ HiRWjxOEdOexBfcOVuwYvrL8J4etvaJJmDxn2r4Hniar7ZhhZtUdzrdBhf2MD45myc+pCp5QoIO
+ YLx/MpT40bhE8IVL5b9VlGtQYk+MSjgqYQqxpnZdP7vQ3d7uVmHq9uKd1TeutYFBdLYw31u4kgp
+ 1esY2o5gVFeoltLeT35lqtq7w8BrUKwzy5uQg3N4bcmcmh2nEqPwcQ84ydH+q6OgyLLsR0Uli0y
+ rCVoAD05lIfLgQd1fog==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-02-03_07,2026-02-03_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 bulkscore=0 malwarescore=0 priorityscore=1501
- clxscore=1015 impostorscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
+ adultscore=0 malwarescore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
+ phishscore=0 impostorscore=0 clxscore=1015 bulkscore=0 priorityscore=1501
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602040018
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262488-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.1:email,qualcomm.com:dkim,0.0.0.0:email,oss.qualcomm.com:dkim,c0100000:email,8b31a000:email,5.33.200.32:email,4.207.98.96:email,4.224.43.64:email];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_PROHIBIT(0.00)[0.0.0.2:email];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	NEURAL_HAM(-0.00)[-0.999];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:url,qualcomm.com:dkim,1bd4000:email,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262489-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[yijie.yang@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 35849E101D
+X-Rspamd-Queue-Id: 64676E1044
 X-Rspamd-Action: no action
 
-On Sat, Jan 31, 2026 at 02:31:25AM -0800, Roger Shimizu wrote:
-> Thundercomm AI MiniPC G1 IoT is single board computer with
-> AI capability based on Qualcomm QCS6490 platform.
+
+
+On 2/4/2026 10:38 AM, Dmitry Baryshkov wrote:
+> On Wed, Feb 04, 2026 at 09:42:04AM +0800, Yijie Yang wrote:
+>>
+>>
+>> On 2/4/2026 1:37 AM, Rob Herring wrote:
+>>>
+>>> On Mon, 02 Feb 2026 15:35:44 +0800, YijieYang wrote:
+>>>> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+>>>>
+>>>> Introduce the device tree, DT bindings, and driver updates required to enable
+>>>> the bring-up of the PURWA-IOT-EVK evaluation board. Focus is on two key
+>>>> hardware components:
+>>>>
+>>>> PURWA-IOT-SOM — A compact System-on-Module integrating the SoC, GPIOs, and
+>>>> PMICs. Designed for modularity, it can pair with various carrier boards to
+>>>> support diverse use cases.
+>>>>
+>>>> PURWA-IOT-EVK — A carrier board tailored for IoT scenarios, providing
+>>>> essential peripherals such as UART, on-board PMICs, and USB components.
+>>>>
+>>>> Together, these components form a flexible and scalable platform. Initial
+>>>> functionality is achieved through proper device tree configuration and driver
+>>>> support.
+>>>>
+>>>> The PURWA-IOT-EVK/SOM shares most of its hardware design with
+>>>> HAMOA-IOT-EVK/SOM, differing primarily in the BOM. Consequently, the DTS files
+>>>> are largely similar. Both platforms belong to Qualcomm’s IQ-X family. For more
+>>>> details on the IQ-X series, see:
+>>>> https://www.qualcomm.com/internet-of-things/products/iq-x-series
+>>>>
+>>>> Hardware differences between HAMOA-IOT and PURWA-IOT:
+>>>> - Display — PURWA uses a different number of clocks and frequency compared to
+>>>>     HAMOA.
+>>>> - GPU — PURWA integrates a different GPU.
+>>>> - USB0 — PURWA uses a PS8833 retimer, while HAMOA employs an FSUSB42 as the
+>>>>     SBU switch.
+>>>>
+>>>> Features added and enabled:
+>>>> - UART
+>>>> - On-board regulators
+>>>> - Regulators on the SOM
+>>>> - PMIC GLINK
+>>>> - USB0 through USB6 and their PHYs
+>>>> - Embedded USB (eUSB) repeaters
+>>>> - USB Type-C mux
+>>>> - PCIe3, PCIe4, PCIe5, PCIe6a
+>>>> - Reserved memory regions
+>>>> - Pinctrl
+>>>> - NVMe
+>>>> - ADSP, CDSP
+>>>> - WLAN, Bluetooth (M.2 interface)
+>>>> - USB DisplayPort and eDP
+>>>> - Graphics
+>>>> - Audio
+>>>> - TPM
+>>>>
+>>>> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+>>>> ---
+>>>> Changes in v2:
+>>>> - Update the GPU firmware path.
+>>>> - Update the description in the cover letter.
+>>>> - Reorder the patches.
+>>>> - Use separate DTS files for Purwa and Hamoa.
+>>>> - Update base commit.
+>>>> - Link to v1: https://lore.kernel.org/all/20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com/
+>>>>
+>>>> Changes in v3:
+>>>> - Delete unused PMIC and thermal nodes.
+>>>> - Add WiFi node.
+>>>> - Add display backlight node.
+>>>> - Add connectors and VBUS regulators for USB3 and USB6.
+>>>> - Enable PCIe3 and PCIe5; add PCIe ports along with reset and wake-up GPIOs.
+>>>> - Link to v2: https://lore.kernel.org/r/20260109-purwa-v2-0-f39ee10684cb@oss.qualcomm.com
+>>>>
+>>>> Changes in v4:
+>>>> - Enable TPM.
+>>>> - Update the descriptions for video and the USB OF graph.
+>>>> - Link to v3: https://lore.kernel.org/all/20260113-purwa-v3-0-16eefacbdce9@oss.qualcomm.com/
+>>>>
+>>>> Changes in v5:
+>>>> - Reorder nodes in purwa-iot-evk.dts.
+>>>> - Update base commit.
+>>>> - The DT binding change that fixes the DT warning for pcie3_phy is located at: https://lore.kernel.org/linux-arm-msm/20260119-topic-purwa_phy_shutup_warning-v1-1-997a692b31c6@oss.qualcomm.com/T/#u
+>>>> - Link to v4: https://lore.kernel.org/r/20260116-purwa-v4-0-89b2adae9f09@oss.qualcomm.com
+>>>>
+>>>> ---
+>>>> Yijie Yang (4):
+>>>>         dt-bindings: arm: qcom: Document PURWA-IOT-EVK board
+>>>>         firmware: qcom: scm: Allow QSEECOM on PURWA-IOT-EVK
+>>>>         arm64: dts: qcom: Add PURWA-IOT-SOM platform
+>>>>         arm64: dts: qcom: Add base PURWA-IOT-EVK board
+>>>>
+>>>>    Documentation/devicetree/bindings/arm/qcom.yaml |    6 +
+>>>>    arch/arm64/boot/dts/qcom/Makefile               |    1 +
+>>>>    arch/arm64/boot/dts/qcom/purwa-iot-evk.dts      | 1549 +++++++++++++++++++++++
+>>>>    arch/arm64/boot/dts/qcom/purwa-iot-som.dtsi     |  685 ++++++++++
+>>>>    drivers/firmware/qcom/qcom_scm.c                |    1 +
+>>>>    5 files changed, 2242 insertions(+)
+>>>> ---
+>>>> base-commit: 6267b2da1b2d04847a1a8f441e138bc4a89435ee
+>>>> change-id: 20251113-purwa-907ec75b4959
+>>>>
+>>>> Best regards,
+>>>> --
+>>>> Yijie Yang <yijie.yang@oss.qualcomm.com>
+>>>>
+>>>>
+>>>>
+>>>
+>>>
+>>> My bot found DTB warnings on the .dts/.dtsi files added or changed in
+>>> this series.
+>>>
+>>> Some warnings may be existing warnings. Consider fixing existing
+>>> warnings before adding new features.
+>>>
+>>> Perhaps the warnings are fixed by another series. If that is the case,
+>>> please set the base commit and any dependencies for the series using
+>>> "b4".
+>>>
+>>> Ultimately, it is up to the platform maintainer whether these warnings
+>>> are acceptable or not.
+>>>
+>>> If you already ran DT checks and didn't see these error(s), then
+>>> make sure dt-schema is up to date:
+>>>
+>>>     pip3 install dtschema --upgrade
+>>>
+>>>
+>>> This patch series was applied (using b4) to base:
+>>>    Base: 6267b2da1b2d04847a1a8f441e138bc4a89435ee (use --merge-base to override)
+>>>
+>>> If this is not the correct base, please add 'base-commit' tag
+>>> (or use b4 which does this automatically)
+>>>
+>>>
+>>> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20260202-purwa-v5-0-1f5a93578802@oss.qualcomm.com:
+>>>
+>>> arch/arm64/boot/dts/qcom/purwa-iot-evk.dtb: phy@1bd4000 (qcom,x1p42100-qmp-gen4x4-pcie-phy): 'qcom,4ln-config-sel' is a required property
+>>> 	from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+>>>
+>>
+>> I have already listed the fix in the cover letter:
+>> https://lore.kernel.org/linux-arm-msm/20260119-topic-purwa_phy_shutup_warning-v1-1-997a692b31c6@oss.qualcomm.com/T/#u
+>> It is not recommended to list it as a dependency in the latest version.
 > 
-> This device tree is confirmed to work as below:
-> - GPU
-> - HDMI output port
-> - PCIe M.2 port (for external Wi-Fi or 5G connectivity)
-> - UART / serial console port
-> - UFS
-> - USB Type-C port, with Display Port
+> You can use `b4 prep --edit-deps` to mark it as a dependency to be
+> picked up by the bot.
+
+Krzysztof mentioned in v4 that this is not a dependency and only needs 
+to be mentioned in the changelog.
+
+
 > 
-> Signed-off-by: Roger Shimizu <rosh@debian.org>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |    1 +
->  .../qcom/qcs6490-thundercomm-minipc-g1iot.dts | 1110 +++++++++++++++++
->  2 files changed, 1111 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-thundercomm-minipc-g1iot.dts
+>>
+>>
+>>>
+>>>
+>>>
+>>
+>> -- 
+>> Best Regards,
+>> Yijie
+>>
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index f80b5d9cf1e80..b2b62b3eedda4 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -145,6 +145,7 @@ qcs6490-rb3gen2-industrial-mezzanine-dtbs := qcs6490-rb3gen2.dtb qcs6490-rb3gen2
->  
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-industrial-mezzanine.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-vision-mezzanine.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-thundercomm-minipc-g1iot.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-thundercomm-rubikpi3.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-minipc-g1iot.dts b/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-minipc-g1iot.dts
-> new file mode 100644
-> index 0000000000000..0886de928789e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-minipc-g1iot.dts
-> @@ -0,0 +1,1110 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2026, Roger Shimizu <rosh@debian.org>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +/* PM7250B is configured to use SID8/9 */
-> +#define PM7250B_SID 8
-> +#define PM7250B_SID1 9
-> +
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pm7325.h>
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include "kodiak.dtsi"
-> +#include "pm7250b.dtsi"
-> +#include "pm7325.dtsi"
-> +#include "pm8350c.dtsi" /* PM7350C */
-> +#include "pmk8350.dtsi" /* PMK7325 */
-> +
-> +/delete-node/ &adsp_mem;
-> +/delete-node/ &cdsp_mem;
-> +/delete-node/ &ipa_fw_mem;
-> +/delete-node/ &mpss_mem;
-> +/delete-node/ &remoteproc_mpss;
-> +/delete-node/ &remoteproc_wpss;
-> +/delete-node/ &rmtfs_mem;
-> +/delete-node/ &video_mem;
-> +/delete-node/ &wifi;
-> +/delete-node/ &wlan_ce_mem;
-> +/delete-node/ &wlan_fw_mem;
-> +/delete-node/ &wpss_mem;
-> +/delete-node/ &xbl_mem;
-> +
-> +/ {
-> +	model = "Thundercomm AI Mini PC G1 IoT";
-> +	compatible = "qcom,sc7280", "qcom,qcm6490";
-> +	chassis-type = "embedded";
-> +
-> +	aliases {
-> +		serial0 = &uart5;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	hdmi-connector {
-> +		compatible = "hdmi-connector";
-> +		type = "a";
-> +
-> +		port {
-> +			hdmi_con: endpoint {
-> +				remote-endpoint = <&lt9611_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	lt9611_1v2: lt9611-vdd12-regulator {
-
-Please be consistent, regulator-lt9611-vdd12
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "LT9611_1V2";
-> +
-> +		regulator-min-microvolt = <1200000>;
-> +		regulator-max-microvolt = <1200000>;
-> +	};
-> +
-> +	reserved-memory {
-> +		xbl_mem: xbl@80700000 {
-> +			reg = <0x0 0x80700000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		cdsp_secure_heap_mem: cdsp-secure-heap@81800000 {
-> +			reg = <0x0 0x81800000 0x0 0x1e00000>;
-> +			no-map;
-> +		};
-> +
-> +		camera_mem: camera@84300000 {
-> +			reg = <0x0 0x84300000 0x0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		adsp_mem: adsp@86100000 {
-> +			reg = <0x0 0x86100000 0x0 0x2800000>;
-> +			no-map;
-> +		};
-> +
-> +		cdsp_mem: cdsp@88900000 {
-> +			reg = <0x0 0x88900000 0x0 0x1e00000>;
-> +			no-map;
-> +		};
-> +
-> +		video_mem: video@8a700000 {
-> +			reg = <0x0 0x8a700000 0x0 0x700000>;
-> +			no-map;
-> +		};
-> +
-> +		cvp_mem: cvp@8ae00000 {
-> +			reg = <0x0 0x8ae00000 0x0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		gpu_microcode_mem: gpu-microcode@8b31a000 {
-> +			reg = <0x0 0x8b31a000 0x0 0x2000>;
-> +			no-map;
-> +		};
-> +
-> +		tz_stat_mem: tz-stat@c0000000 {
-> +			reg = <0x0 0xc0000000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		tags_mem: tags@c0100000 {
-> +			reg = <0x0 0xc0100000 0x0 0x1200000>;
-> +			no-map;
-> +		};
-> +
-> +		qtee_mem: qtee@c1300000 {
-> +			reg = <0x0 0xc1300000 0x0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		trusted_apps_mem: trusted-apps@c1800000 {
-> +			reg = <0x0 0xc1800000 0x0 0x1c00000>;
-> +			no-map;
-> +		};
-> +
-> +		debug_vm_mem: debug-vm@d0600000 {
-> +			reg = <0x0 0xd0600000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	pmic-glink {
-> +		compatible = "qcom,qcm6490-pmic-glink", "qcom,pmic-glink";
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		orientation-gpios = <&tlmm 140 GPIO_ACTIVE_HIGH>;
-> +
-> +		connector@0 {
-> +			compatible = "usb-c-connector";
-> +			reg = <0>;
-> +			power-role = "dual";
-> +			data-role = "dual";
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					pmic_glink_hs_in: endpoint {
-> +						remote-endpoint = <&usb_1_dwc3_hs>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +
-> +					pmic_glink_ss_in: endpoint {
-> +						remote-endpoint = <&redriver_usb_con_ss>;
-> +					};
-> +				};
-> +
-> +				port@2 {
-> +					reg = <2>;
-> +
-> +					pmic_glink_sbu_in: endpoint {
-> +						remote-endpoint = <&redriver_usb_con_sbu>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	vph_pwr: regulator-vph-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph_pwr";
-> +		regulator-min-microvolt = <3700000>;
-> +		regulator-max-microvolt = <3700000>;
-> +	};
-> +
-> +	thermal-zones {
-> +		sdm-skin-thermal {
-> +			thermal-sensors = <&pmk8350_adc_tm 3>;
-> +
-> +			trips {
-> +				active-config0 {
-> +					temperature = <125000>;
-> +					hysteresis = <1000>;
-> +					type = "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		quiet-thermal {
-> +			thermal-sensors = <&pmk8350_adc_tm 1>;
-> +
-> +			trips {
-> +				active-config0 {
-> +					temperature = <125000>;
-> +					hysteresis = <1000>;
-> +					type = "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		xo-thermal {
-> +			thermal-sensors = <&pmk8350_adc_tm 0>;
-> +
-> +			trips {
-> +				active-config0 {
-> +					temperature = <125000>;
-> +					hysteresis = <1000>;
-> +					type = "passive";
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	vdd_ntn_0p9: regulator-vdd-ntn-0p9 {
-
-regulator < thermal
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDD_NTN_0P9";
-> +		gpio = <&pm8350c_gpios 2 GPIO_ACTIVE_HIGH>;
-> +		regulator-min-microvolt = <899400>;
-> +		regulator-max-microvolt = <899400>;
-> +		enable-active-high;
-> +		pinctrl-0 = <&ntn_0p9_en>;
-> +		pinctrl-names = "default";
-> +		regulator-enable-ramp-delay = <4300>;
-> +	};
-> +
-> +	vdd_ntn_1p8: regulator-vdd-ntn-1p8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDD_NTN_1P8";
-> +		gpio = <&pm8350c_gpios 3 GPIO_ACTIVE_HIGH>;
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		enable-active-high;
-> +		pinctrl-0 = <&ntn_1p8_en>;
-> +		pinctrl-names = "default";
-> +		regulator-enable-ramp-delay = <10000>;
-> +	};
-> +};
-> +
-
-> +
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dp {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dp_out {
-> +	data-lanes = <0 1>;
-> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-> +
-> +	remote-endpoint = <&usb_dp_qmpphy_dp_in>;
-
-It's already a part of kodiak.dtsi
-
-> +};
-> +
-
-> +
-> +&uart5 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1 {
-> +	dr_mode = "otg";
-
-Default, can be dropped
-
-> +	usb-role-switch;
-
-Please move to kodiak.dtsi
-
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_dwc3_hs {
-> +	remote-endpoint = <&pmic_glink_hs_in>;
-> +};
-> +
-> +&usb_1_dwc3_ss {
-> +	remote-endpoint = <&usb_dp_qmpphy_usb_ss_in>;
-
-It's already in kodiak.dtsi
-
-> +};
-> +
-> +&usb_1_hsphy {
-> +	vdda-pll-supply = <&vreg_l10c_0p88>;
-> +	vdda33-supply = <&vreg_l2b_3p072>;
-> +	vdda18-supply = <&vreg_l1c_1p8>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_qmpphy {
-> +	vdda-phy-supply = <&vreg_l6b_1p2>;
-> +	vdda-pll-supply = <&vreg_l1b_0p912>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_dp_qmpphy_out {
-> +	remote-endpoint = <&redriver_phy_con_ss>;
-> +};
-> +
-> +&usb_dp_qmpphy_usb_ss_in {
-> +	remote-endpoint = <&usb_1_dwc3_ss>;
-
-Already there
-
-> +};
-> +
-> +&usb_dp_qmpphy_dp_in {
-> +	remote-endpoint = <&mdss_dp_out>;
-
-Already there
-
-> +};
-> +
-> +&ufs_mem_hc {
-> +	reset-gpios = <&tlmm 175 GPIO_ACTIVE_LOW>;
-> +	vcc-supply = <&vreg_l7b_2p952>;
-> +	vcc-max-microamp = <800000>;
-> +	vccq-supply = <&vreg_l9b_1p2>;
-> +	vccq-max-microamp = <900000>;
-> +	vccq2-supply = <&vreg_l9b_1p2>;
-> +	vccq2-max-microamp = <900000>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_phy {
-> +	vdda-phy-supply = <&vreg_l10c_0p88>;
-> +	vdda-pll-supply = <&vreg_l6b_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&venus {
-> +	status = "okay";
-> +};
 
 -- 
-With best wishes
-Dmitry
+Best Regards,
+Yijie
+
 
