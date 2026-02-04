@@ -1,139 +1,130 @@
-Return-Path: <devicetree+bounces-262585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262586-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6PiKOeodg2nWhwMAu9opvQ
-	(envelope-from <devicetree+bounces-262585-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 11:22:34 +0100
+	id CEZUHPceg2nWhwMAu9opvQ
+	(envelope-from <devicetree+bounces-262586-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 11:27:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DFECE46EA
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 11:22:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09868E478E
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 11:27:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8485A301690D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 10:22:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 44C1E300AB11
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 10:26:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9519B3D903A;
-	Wed,  4 Feb 2026 10:22:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AADA3D9043;
+	Wed,  4 Feb 2026 10:26:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BnG4lkqE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G0XacNdi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7201D3D9030
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 10:22:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB40E3A1E90;
+	Wed,  4 Feb 2026 10:26:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770200547; cv=none; b=NCvP0qnadT5zyzCOm7tYOdyP/uMAl5mfwBeowdyPRdd67H4cWW8oUwozLiMZazj5FS2fDTpC181iaw/hR+w+nwqLxlhHPX1ul2GjXKpg/RSiZ5zHTi8/3CK60rpOheFvVOHcMJgypf5lZhJjDrZPh6dSGT4eEfeSbqFNwcQDkBU=
+	t=1770200789; cv=none; b=qQ7NiTZkOkas91Rq74TUNm4lH0knzopzRmMNQu3RSKmyPrSnvm2CWfsJEGHGPtRWNuQnJo32SM5ON3M6Fcb07VMNesYqYiI/1xDpQaOrgpF81jPHx8qlwuesINAypbuvkVHze7CA4bZrAUYRFDJ0NeehDT4eAefF4yLwuBWScps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770200547; c=relaxed/simple;
-	bh=0XATEAMeBs1Zx9E6NM3rF6bKiyOXGWYkJI4E2lACtlM=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CSleS+sq0j8jiYXuNLJYUUFxgpXNrhfvWuTKPBjO9eqaxE8ys4Y8HgiVdMADMydK/UX4Lfo2jg5LCuVleZUwUyHh0FbdnIfKmdwSZ/QNYvdKGcjtLeOGU5KN4SVd4Eu6bcS41N+gSySIMziUhy/7FxHH1xXik1YMo9l0RviUmCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BnG4lkqE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B01CC2BC87
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 10:22:27 +0000 (UTC)
+	s=arc-20240116; t=1770200789; c=relaxed/simple;
+	bh=d2ORjAFYDx26CCy9qL6CmpUxNx4yL0rMuIyF+swd47c=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=sFJzP1vzVEqYVEILQkPpaTs6aHmr7mvOaCrezWaH/0dK8ch7ztwZOLEepHpZLe3PFSyzd65K/XRwR2UHIRfGYoMgSxgQBONnS0XX3gtfZ8aYAXgetbz8ifJhZNTMVI5ywN054GE9VdhkgKk6WjLe4ULw248bJxxA/qg3hETa+Uw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G0XacNdi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10194C4CEF7;
+	Wed,  4 Feb 2026 10:26:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770200547;
-	bh=0XATEAMeBs1Zx9E6NM3rF6bKiyOXGWYkJI4E2lACtlM=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
-	b=BnG4lkqEu9ed95d/Iqb3Nrs2IS6pjVNwtvK3qgeFjCTSmrcs5EZgnuRF9r1qhiLUC
-	 OczPvUWzUlPHiy2qRX4Z0nJqrLstH/rlFHjjd8PEHgrDE3Ymu4xQsDn4ic+Zc9gi4n
-	 4uZ3nkyJXVNvozNQXz1nDpgDB7tn45GHVzjx1AeT1hwfiCX+MwC7+jV3+lloAgwXiV
-	 Qs/BgKG/Vmeh6Vi/DNBVfX4MJZhSjHIb/kt3ou1lyTY51OrHPGysYHw6QWMESh6Wub
-	 KyrAnWjb2M8I1XcOdOr+AHPO59ROoTMLVtqkC4SpscCLEOcKNaCOY81SQtzVo918rL
-	 vecauk9B2LD9A==
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-59e2cb21520so3248372e87.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 02:22:27 -0800 (PST)
-X-Gm-Message-State: AOJu0Yz7tlyM6B7yWApeVn/4MIzYKwAONxUMoFNqZ3ZbbBfOpKDbPTCa
-	4BlqxOALAOgs1Wb1YsGKJya7h3er7cIyvfKK7idI4/BF7g+QP3KqiGYVuEqXM6TKnmvuEH6cmmB
-	k/Ud2DaNelnYDDbLS8YE9WEW3v7G3X+tTvT+gff8Iag==
-X-Received: by 2002:a05:6512:3991:b0:59d:fe49:7f6d with SMTP id
- 2adb3069b0e04-59e38c023cbmr1138987e87.5.1770200545799; Wed, 04 Feb 2026
- 02:22:25 -0800 (PST)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 4 Feb 2026 05:22:24 -0500
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 4 Feb 2026 05:22:24 -0500
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260203-dev-b4-aaeon-mcu-driver-v3-4-0a19432076ac@bootlin.com>
+	s=k20201202; t=1770200788;
+	bh=d2ORjAFYDx26CCy9qL6CmpUxNx4yL0rMuIyF+swd47c=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=G0XacNdiA2sPN9bZfD51gtADbKtxQu8R/qTGNkZr4YjYt0KUY7g9bp0m6ZNanmclc
+	 xKqjqGs/2VMC0xVXm5Sc7pi1K5NgSsT6oKaK0ukJeSa4Sm8cdf1HECNIergdRekhDd
+	 MzJxZo+h95odzHjxCQjaVeMYWdYOUIU1aIfOBfSo1JbF6YgUjCBH31ZlIjhCB3kcEv
+	 xD7TRJuUF4SpuJengb7BJeXKLzqH4Yt601kU9y7AFCqg2aSCmd+N2qVbQv46YrYAnB
+	 TV3WUjV/IwbCj+f8TMSCnw4ejCN4AyKKqAHrI6Ej6KKBhYDUqpXXAOAVcSOQs7FTfP
+	 lBDFotNRjA1Zw==
+From: Lee Jones <lee@kernel.org>
+To: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
+ Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Kiran Gunda <quic_kgunda@quicinc.com>, Helge Deller <deller@gmx.de>, 
+ Luca Weiss <luca@lucaweiss.eu>, Konrad Dybcio <konradybcio@kernel.org>, 
+ Eugene Lepshy <fekz115@gmail.com>, Gianluca Boiano <morf3089@gmail.com>, 
+ Alejandro Tafalla <atafalla@dnyon.com>, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Cc: dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Daniel Thompson <daniel.thompson@linaro.org>, linux-arm-msm@vger.kernel.org, 
+ linux-fbdev@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20260116-pmi8950-wled-v3-0-e6c93de84079@mainlining.org>
+References: <20260116-pmi8950-wled-v3-0-e6c93de84079@mainlining.org>
+Subject: Re: (subset) [PATCH v3 0/7] Fix PMI8994 WLED ovp values and more
+Message-Id: <177020078282.1122108.15047767273354321830.b4-ty@kernel.org>
+Date: Wed, 04 Feb 2026 10:26:22 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260203-dev-b4-aaeon-mcu-driver-v3-0-0a19432076ac@bootlin.com> <20260203-dev-b4-aaeon-mcu-driver-v3-4-0a19432076ac@bootlin.com>
-Date: Wed, 4 Feb 2026 05:22:24 -0500
-X-Gmail-Original-Message-ID: <CAMRc=Me5WfdQPhW8MSMTRZ=6wm+hKAKEOr_aPLyf=PAKA6_0Qw@mail.gmail.com>
-X-Gm-Features: AZwV_QjA-Mb0Chvn876wYAP45YJOzVMz5MdgG_VnrHm1s9EwIRwKYyInNCPAbPM
-Message-ID: <CAMRc=Me5WfdQPhW8MSMTRZ=6wm+hKAKEOr_aPLyf=PAKA6_0Qw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/5] gpio: aaeon: Add GPIO driver for SRG-IMX8P MCU
-To: "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, 
-	=?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?= <jeremie.dautheribes@bootlin.com>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Lee Jones <lee@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-52d38
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262585-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,lists.infradead.org,bootlin.com,kernel.org,pengutronix.de,gmail.com,linux-watchdog.org,roeck-us.net];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,mail.gmail.com:mid,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-262586-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,quicinc.com,gmx.de,lucaweiss.eu,dnyon.com,mainlining.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 8DFECE46EA
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 09868E478E
 X-Rspamd-Action: no action
 
-On Tue, 3 Feb 2026 17:21:13 +0100, "Thomas Perrot (Schneider
-Electric)" <thomas.perrot@bootlin.com> said:
-> Add GPIO driver for the Aaeon SRG-IMX8P embedded controller. This
-> driver supports 7 GPO (General Purpose Output) pins and 12 GPIO pins
-> that can be configured as inputs or outputs.
->
-> The driver implements proper state management for GPO pins (which are
-> output-only) and full direction control for GPIO pins. During probe,
-> all pins are reset to a known state (GPOs low, GPIOs as inputs) to
-> prevent undefined behavior across system reboots, as the MCU does not
-> reset GPIO states on soft reboot.
->
-> Co-developed-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric) <jere=
-mie.dautheribes@bootlin.com>
-> Signed-off-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric) <jeremi=
-e.dautheribes@bootlin.com>
-> Signed-off-by: Thomas Perrot (Schneider Electric) <thomas.perrot@bootlin.=
-com>
-> ---
+On Fri, 16 Jan 2026 08:07:32 +0100, Barnabás Czémán wrote:
+> This patch series fixes supported ovp values related to pmi8994 wled
+> and set same configuration for pmi8950 wled.
+> It also corrects wled related properties in xiaomi-daisy, xiaomi-land and
+> in xiaomi-vince.
+> 
+> 
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Applied, thanks!
+
+[1/7] dt-bindings: backlight: qcom-wled: Document ovp values for PMI8994
+      commit: 02031064bb8f387d81988a8abb211f1366d87582
+[2/7] backlight: qcom-wled: Support ovp values for PMI8994
+      commit: f29f972a6e7e3f187ea4d89b98a76c1981ca4d53
+[3/7] dt-bindings: backlight: qcom-wled: Document ovp values for PMI8950
+      commit: b2df6cf10d5242bfef2cc957d83738ccb560ed9f
+[4/7] backlight: qcom-wled: Change PM8950 WLED configurations
+      commit: 83333aa97441ba7ce32b91e8a007c72d316a1c67
+
+--
+Lee Jones [李琼斯]
+
 
