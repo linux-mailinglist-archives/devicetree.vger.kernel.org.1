@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-262545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262546-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SFvqJkwEg2njggMAu9opvQ
-	(envelope-from <devicetree+bounces-262545-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 09:33:16 +0100
+	id 2C+hEGQEg2njggMAu9opvQ
+	(envelope-from <devicetree+bounces-262546-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 09:33:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08830E32F4
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 09:33:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1D64E3302
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 09:33:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 809093024130
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 08:32:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ED03A3057E93
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 08:32:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85DF9393DDF;
-	Wed,  4 Feb 2026 08:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9A8B394469;
+	Wed,  4 Feb 2026 08:32:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="EvuKZBXc"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AOcKfgkD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BD303939CE
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 08:32:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55B01393DFE
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 08:32:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770193947; cv=none; b=NdwuhI6HLyfRhpQoEkoa9pgNAO7LrZFsFFg9vMAEwS0rrvNcg3npfUvtAEwaqW8J/expzvbxnkQSw4z+rlaY5uSsX+0CJaCd6nup6A3y5OzUCOZ/hahKn7UzArC7ADJLPoNrpZpUD99ACTdUUqSTAdsQPXOoDgBZO5xF3mPEX1k=
+	t=1770193948; cv=none; b=VnooLBofHXl8mBqVpPpZ0ubx5BfuTQnLVimR5NoiaemjGPJd2Uxi4fzENmcwl96KO3igvh7wa6pbfzgVYVnH1oSjDVrmt7Ya3GGNhL3zkCbyhd8xwshp+aiDvjHOEX3XcPIfXuCQxySEkYD/XXhBb/H3XkMQ4e8Mxh3HE5NMd3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770193947; c=relaxed/simple;
-	bh=GRaJIO0Uo9OwVYJEMvgEbApUtH6b+YgWreZhWWPNcdg=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jHBMfx8iBPWsziHyKkXGyidF4nJqLXlu8I+RrBRTrcYy2g7CJ8YrUgHXRWpX3vfLqTzjjhLlpywlZUZ3jnBGr+F3ZJSKlin0pj6JIyNBnsUAsG9megE2NZmN4GPUkH5GMwv4HPfbXtVeLPnstjcxI9TX90WZKiYr3h7DgA75o4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=EvuKZBXc; arc=none smtp.client-ip=185.246.85.4
+	s=arc-20240116; t=1770193948; c=relaxed/simple;
+	bh=dqka4r6BuBn7lQjOaxkDblcgGRl2sfENyycfL8OQI7U=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=YBXcR4d8nLt1MKzNEbthzJjy/kdwdj2ZloIu4UNr9RJo+g8B3dffFvY09vWfij082ykkcjRE0RxHn7xqNoAw7vym8kiGBCTwtJt4FMJ/fRdcjVW1ZnEL8e5xn7t5aTiIH7nP1ZghRE2FUN22iYWVDkguKc8tfwveGyqu7Fplfbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AOcKfgkD; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id B68A24E423E2;
-	Wed,  4 Feb 2026 08:32:24 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id DC0901A2BEA;
+	Wed,  4 Feb 2026 08:32:26 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8271060745;
-	Wed,  4 Feb 2026 08:32:24 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2590B119A865B;
-	Wed,  4 Feb 2026 09:32:18 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B225C60745;
+	Wed,  4 Feb 2026 08:32:26 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3BAC2119A8891;
+	Wed,  4 Feb 2026 09:32:23 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770193943; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=hQM0TIr5TOug+Gu1+850dLovFgLuhXB/mI5LQnV55nw=;
-	b=EvuKZBXcZAT8TvDE+K9bm7UtxT8SEfUp3krHxULtIvMhJ0DZMP74/13ZHsrb2KBOYwB9bM
-	aZlKTvMLGbsEmRmcWAequIFQiPnK1AKv/mYbtoaiJqfZ1cjpcksnKUrCykAXfv8RsB5hs/
-	wT9XIHPTSmMY32adiPZNGaXaTyNWKZf5kp/EZY7v1JuoFsWvKqFgDNLjZSRJOSR1kLN7R5
-	FpDfWQpKn8HViGeH2ByxT8kT2RFI+zBHN3oHjBn1QWiU4YuQDBRz3RsTePMHaz2f4s5NtI
-	Rpni/EJB6udOW7lYoz+ZXGZ5YYBR76KB4DHe3lipagZdvXr90KAva3S2aTZdYA==
+	t=1770193945; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=BtPoBGuOTOslAVtD4AMARgD4qfustmM5dmvT1q96w9U=;
+	b=AOcKfgkDTJ7rzc0EkCjo06AJMjsyHTxZXBURUS7X9rQcILK1TekbdS65wy4Fd6zOwmiGHx
+	P17eHChNDxNt+UVSWHh/7apcARsFkNctCqMU+nIexZ7ueL1G4sVd1oOidLCTqgTAA7aCn3
+	gz+X1IPjGIOIR4zAl8MEtNImwWbEVuQAHLd2MmWbJv8C2YypFyATP694GGxKy2GH47vdPq
+	Bfwy4b93JeBwQlYDDQ9ar84YCjXD7e+GavVwgTmNiYpBLZQCx70SVVN+k+vbzXhtlrL0of
+	QRWsD2YiTIU/G/7AfAq1WOA12ChfLSQOmGvwuuNvHeDWFw2fpjQ3UPJ1I251Ew==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Subject: [PATCH v17 0/3] mtd: Add support for stacked memories
-Date: Wed, 04 Feb 2026 09:32:15 +0100
-Message-Id: <20260204-mtd-virt-concat-v17-0-5e98239bb55b@bootlin.com>
+Date: Wed, 04 Feb 2026 09:32:16 +0100
+Subject: [PATCH v17 1/3] dt-bindings: mtd: Describe MTD partitions
+ concatenation
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,11 +63,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAA8Eg2kC/3XNQQ7CIBAF0Ks0rMUwQwrWlfcwLiigncQWA4Rom
- t5d2o0x0eX/mf9mZslH8okdm5lFXyhRmGoAvWuYHcx085xcLRgKVAKw42N2vFDM3IbJmsxRK2m
- FBmhdz+rqEf2Vnht5vtQ8UMohvrYPBdq1/o/VAy64bZVBif7aOzz1IeQ7TXsbRrZ6BdTHQCF/G
- KoaBgBNpzt7APltLMvyBpuFF+L3AAAA
-X-Change-ID: 20260129-mtd-virt-concat-2763c07115db
+Message-Id: <20260204-mtd-virt-concat-v17-1-5e98239bb55b@bootlin.com>
+References: <20260204-mtd-virt-concat-v17-0-5e98239bb55b@bootlin.com>
+In-Reply-To: <20260204-mtd-virt-concat-v17-0-5e98239bb55b@bootlin.com>
 To: Miquel Raynal <miquel.raynal@bootlin.com>, 
  Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -84,214 +84,110 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262545-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262546-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_PROHIBIT(0.00)[0.12.53.0:email];
 	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lwn.net:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:email,bootlin.com:dkim,bootlin.com:mid]
-X-Rspamd-Queue-Id: 08830E32F4
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,bootlin.com:dkim,bootlin.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.6.26.128:email,amd.com:url,amd.com:email]
+X-Rspamd-Queue-Id: A1D64E3302
 X-Rspamd-Action: no action
 
-[TL;DR for v15: as agreed with Amit I'm sending a new iteration of his
-patches to fix the build-time failure due to a module dependency
-loop. Original cover follows.]
+From: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
 
-This patch series adds stacked support by enhancing the existing mtd-concat 
-driver to be more generic.
+The AMD QSPI controller supports an advanced connection modes called
+Stacked mode which allow the controller to treat two different flashes
+as one storage.
 
-As background, a few years ago, Bernhard Frauendienst initiated an effort 
-[2] to achieve the same, which was later adapted by Miquel [1] to introduce 
-stacked mode support. In this approach, partitions to be concatenated were 
-specified using a DT property "part-concat" within the partitions 
-definition, allowing two MTD devices to function as a single larger one in 
-order to be able to define partitions across chip boundaries. However, the 
-bindings were not accepted. As a result, the mtd-concat approach was 
-dropped, and alternative DT bindings were introduced [3][4][5], describing 
-the two flash devices as one. Corresponding SPI core changes to support 
-these bindings were later added [6].
+In Stacked connection mode flashes share the same SPI bus, but different CS
+line, controller driver asserts the CS of the flash to which it needs to
+communicate. Stacked mode is a software abstraction rather than a
+controller feature or capability. At any given time, the controller
+communicates with one of the two connected flash devices, as determined by
+the requested address and data length. If an operation starts on one flash
+and ends on the other, the mtd layer needs to split it into two separate
+operations and adjust the data length accordingly. For more information on
+the modes please feel free to go through the controller flash interface
+below [1].
 
-While integrating stacked mode support into SPI-NOR, Tudor provided 
-additional feedback, leading to discussions about updating the existing 
-DT bindings. To address this, I sent an RFC [7] to initiate discussions on 
-adapting the DT bindings as suggested by Miquel in [1]. Following that, 
-I am now submitting this patch series that updates the virtual concat DT
-bindings and the driver referenced in [1], along with some minor mtdcore 
-changes. 
-Since I have taken ownership of this effort, I have included Bernhard and 
-Miquel under the "Suggested-by" tag.
+To support stacked mode, the existing MTD concat driver has been extended
+to be more generic, enabling multiple sets of MTD partitions to be
+virtually concatenated, with each set forming a distinct logical MTD
+device.
 
-[1] https://lore.kernel.org/linux-mtd/20191127105522.31445-1-miquel.raynal@bootlin.com/
-[2] https://lwn.net/ml/linux-kernel/20180907173515.19990-1-kernel@nospam.obeliks.de/
-[3] https://github.com/torvalds/linux/commit/f89504300e94524d5d5846ff8b728592ac72cec4
-[4] https://github.com/torvalds/linux/commit/eba5368503b4291db7819512600fa014ea17c5a8
-[5] https://github.com/torvalds/linux/commit/e2edd1b64f1c79e8abda365149ed62a2a9a494b4
-[6] https://github.com/torvalds/linux/commit/4d8ff6b0991d5e86b17b235fc46ec62e9195cb9b
-[7] https://lore.kernel.org/all/20241026075347.580858-1-amit.kumar-mahapatra@amd.com/
+A new Device Tree property is introduced to facilitate this, containing
+phandles of the partitions to be concatenated with the one where the
+property is defined. This approach supports multiple sets of concatenated
+partitions.
 
+[1] https://docs.amd.com/r/en-US/am011-versal-acap-trm/QSPI-Flash-Device-Interface
+
+Suggested-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Suggested-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
-BRANCH: spi-nor/next
+ .../bindings/mtd/partitions/partition.yaml           | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-Changes in v17:
-- Add my missing SoB line to each patch
-- Link to v16: https://lore.kernel.org/r/20260203-mtd-virt-concat-v16-0-a112a979c813@bootlin.com
-
-Changes in v16:
-- Fix build error when CONFIG_MTD_VIRT_CONCAT is not enabled
-- Link to v15: https://lore.kernel.org/r/20260129-mtd-virt-concat-v15-0-c56a232efbd2@bootlin.com
-
-Changes in v15:
- - Make mtd_virt_concat built into the mtd module, not a separate
-   module. This fixes the build failure [8] caused by the interdependency
-   of virt_concat and mtdcore. Keep VIRT_CONCAT an optional feature though.
-   [8] https://lore.kernel.org/all/874it99f9i.fsf@bootlin.com/
- - Remove 'default n' line from Kconfig
- - Link to v14: https://lore.kernel.org/linux-mtd/20250623105445.2394825-1-amit.kumar-mahapatra@amd.com/
-
-Changes in v14:
- - Updated 1/3 to address review comments.
- - Updated 3/3 to add mtd_virt_concat_destroy() API that would remove a concat
-   incase one of the mtd device, which is part of the concat, is removed.
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+index 80d0452a2a33..c9aba6838b3c 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+@@ -57,6 +57,15 @@ properties:
+       user space from
+     type: boolean
  
-Changes in v13:
- - Updated 1/3 to modify the Device Tree binding to support multiple concatenated devices.
- - Added Rob's "Suggested-by" tag in 1/3.
- - Updated 3/3 to define CONFIG_MTD_VIRT_CONCAT as a boolean and depended on CONFIG_MTD_PARTITIONED_MASTER.
- - Updated 3/3 to remove late_initcall and invoke the API directly from mtdcore instead.
- - Updated 3/3 to add support for concatenating more than two MTD partitions.
- - Updated 3/3 to add support for multiple sets of concatenated devices.
++  part-concat-next:
++    description: List of phandles to MTD partitions that need be concatenated
++      with the current partition.
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    minItems: 1
++    maxItems: 16
++    items:
++      maxItems: 1
++
+   align:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     minimum: 2
+@@ -138,4 +147,15 @@ examples:
+             reg = <0x200000 0x100000>;
+             align = <0x4000>;
+         };
++
++        part0: partition@400000 {
++            part-concat-next = <&part1>;
++            label = "part0_0";
++            reg = <0x400000 0x100000>;
++        };
++
++        part1: partition@800000 {
++            label = "part0_1";
++            reg = <0x800000 0x800000>;
++        };
+     };
 
-Changes in v12:
- - Add stacked mode support throught mtd-concat driver.
-
-Changes in v11:
-- Rebased patch series on top of latest for-next branch.
-- Added a new patch(1/10) to replace spi->chip_select with
-  spi_get_chipselect() call in tps6594-spi.c.
-- Added a new patch(2/10) to replace spi->chip_select with
-  spi_get_chipseletc() call in cs35l56_hda_spi.c.
-- In spi.c initialized unused CS[] to 0xff and spi->cs_index_mask
-  to 0x01 in all flows.
-- Updated spi_dev_check() to compare the CS of old spi device with
-  the new spi device CS.
-- Updated cover letter description to add information regarding GPIO CS
-  testing and added Stefen's Tested-by tag in 3/10 patch.
-
-Changes in v10:
- - Rebased patch series on top of latest for-next branch and fixed
-   merge conflicts.
-
-Changes in v9:
-- Updated 1/8 patch description to add an high-level overview of
-  parallel(multi-cs) & stacked design.
-- Initialized all unused CS to 0xFF.
-- Moved CS check from spi_add_device() to __spi_add_device().
-- Updated __spi_add_device() to check to make sure that multiple logical CS
-  don't map to the same physical CS and same physical CS doesn't map to
-  different logical CS.
-- Updated 1/8, 5/8 & 7/8 to support arbitrary number of flash devices
-  connected in parallel or stacked mode.
-- Updated documentation for chip_select.
-- Added a new spi-nor structure member nor->num_flash to keep track of the
-  number of flashes connected.
-- Added a new patch in the series 4/8 to move write_enable call just before
-  spi_mem ops call in SPI-NOR.
-- Added comments in SPI core & SPI-NOR.
-- Rebased the patch series on top of the latest for-next branch.
-
-Changes in v8:
-- Updated __spi_add_device() and spi_set_cs() to fix spi driver failure
-  with GPIO CS.
-- Rebased the patch series on top of latest for-next branch and fixed
-  merge conflicts.
-- Updated cover letter description to add information regarding GPIO CS
-  testing and request Stefan to provide his Tested-by tag for 1/7 patch.
-- Updated 1/7 patch description.
-
-Changes in v7:
-- Updated spi_dev_check() to avoid failures for spi driver GPIO CS and
-  moved the error message from __spi_add_device() to spi_dev_check().
-- Resolved code indentation issue in spi_set_cs().
-- In spi_set_cs() call spi_delay_exec( ) once if the controller supports
-  multi cs with both the CS backed by GPIO.
-- Updated __spi_validate()to add checks for both the GPIO CS.
-- Replaced cs_index_mask bit mask with SPI_CS_CNT_MAX.
-- Updated struct spi_controller to represent multi CS capability of the
-  spi controller through a flag bit SPI_CONTROLLER_MULTI_CS instead of
-  a boolen structure member "multi_cs_cap".
-- Updated 1/7 patch description .
-
-Changes in v6:
-- Rebased on top of latest v6.3-rc1 and fixed merge conflicts in
-  spi-mpc512x-psc.c, sfdp.c, spansion.c files and removed spi-omap-100k.c.
-- Updated spi_dev_check( ) to reject new devices if any one of the
-  chipselect is used by another device.
-
-Changes in v5:
-- Rebased the patches on top of v6.3-rc1 and fixed the merge conflicts.
-- Fixed compilation warnings in spi-sh-msiof.c with shmobile_defconfig
-
-Changes in v4:
-- Fixed build error in spi-pl022.c file - reported by Mark.
-- Fixed build error in spi-sn-f-ospi.c file.
-- Added Reviewed-by: Serge Semin <fancer.lancer@gmail.com> tag.
-- Added two more patches to replace spi->chip_select with API calls in
-  mpc832x_rdb.c & cs35l41_hda_spi.c files.
-
-Changes in v3:
-- Rebased the patches on top of
-  https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-- Added a patch to convert spi_nor_otp_region_len(nor) &
-  spi_nor_otp_n_regions(nor) macros into inline functions
-- Added Reviewed-by & Acked-by tags
-
-Changes in v2:
-- Rebased the patches on top of v6.2-rc1
-- Created separate patch to add get & set APIs for spi->chip_select &
-  spi->cs_gpiod, and replaced all spi->chip_select and spi->cs_gpiod
-  references with the API calls.
-- Created separate patch to add get & set APIs for nor->params.
-
----
-Amit Kumar Mahapatra (3):
-      dt-bindings: mtd: Describe MTD partitions concatenation
-      mtd: Move struct mtd_concat definition to header file
-      mtd: Add driver for concatenating devices
-
- .../bindings/mtd/partitions/partition.yaml         |  20 ++
- drivers/mtd/Kconfig                                |   9 +
- drivers/mtd/Makefile                               |   1 +
- drivers/mtd/mtd_virt_concat.c                      | 363 +++++++++++++++++++++
- drivers/mtd/mtdconcat.c                            |  12 -
- drivers/mtd/mtdcore.c                              |  21 ++
- drivers/mtd/mtdpart.c                              |   6 +
- include/linux/mtd/concat.h                         |  63 +++-
- 8 files changed, 482 insertions(+), 13 deletions(-)
----
-base-commit: 5a74a464797585e09561e8e367b62c8b4c289ba1
-change-id: 20260129-mtd-virt-concat-2763c07115db
-
-Best regards,
 -- 
-Luca Ceresoli <luca.ceresoli@bootlin.com>
+2.52.0
 
 
