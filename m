@@ -1,751 +1,279 @@
-Return-Path: <devicetree+bounces-262548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262549-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IJI6LDIEg2njggMAu9opvQ
-	(envelope-from <devicetree+bounces-262548-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 09:32:50 +0100
+	id EJcWFdEFg2lLgwMAu9opvQ
+	(envelope-from <devicetree+bounces-262549-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 09:39:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 383BCE32DD
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 09:32:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3764E3400
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 09:39:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 225A63006158
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 08:32:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 93D10306901E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 08:35:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4B2394471;
-	Wed,  4 Feb 2026 08:32:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B89393DFF;
+	Wed,  4 Feb 2026 08:34:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="unzf29jp"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="cKbR6gPm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010046.outbound.protection.outlook.com [52.101.69.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C87539446C;
-	Wed,  4 Feb 2026 08:32:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770193953; cv=none; b=f8OBuNRz3miL4wj6UAPVOTGLiHAWgyTYyVcPkfLXe0Rf23f9QpKvnx5+qSSNoVqFb3QfBoFGTLvbrkkGNgyRcmgBq+K4vNSuC+3D55DfAATJZufzXyk1Cx/yEekt4wTIFUWtjy27qUyISLqWRlUNsv1keyQ8oU7E3Ff6R3ZsTD8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770193953; c=relaxed/simple;
-	bh=pRw8y+IiWZvPFQ/5lKlbi1I3kF5Q/L+ow68lmcAeKQ8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jbsIwkgwun+sC7mU/VmCc5CiX8wtCouEMsP150q6YL/I4yaNSn14YcJ34HP1dYqitzLh0OvfBuUMl9o+EIWRjvig5c0rx9bI3hL+HBiNC+DD/GUYuHXoqG5Pisl2IpDy26jz3i3PayRryou9n7eLG109T68zmEcr8woEtA4q9sc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=unzf29jp; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 07E16C24394;
-	Wed,  4 Feb 2026 08:32:37 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 6D5FF60745;
-	Wed,  4 Feb 2026 08:32:31 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B0959119A88F7;
-	Wed,  4 Feb 2026 09:32:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770193950; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=uGNo9gN91d11misuI4sRqCkOuFl1GGBdD/UkwokvZ2E=;
-	b=unzf29jp5LZX6rsrUWENdqu9bep6acrRXLXKNgO/JAcrtJqDRZGsDgquFhlmFi/ua1Cbhp
-	1t+XIIDkk3nuiC/gbB6vwranklNwkJLXqow3XBnPYhQ4ddBgEP0oEKZC9K4TcunWnOOyqB
-	19pdfZDhb3bPNh6nz6rHP+s07cmjpFPQod19V//iFEjDCLwQYBYY0nidaOctaZQAwdDwdE
-	TqmoOkFK1n1+3DKMeU1lhI9GYSFd4Sca8iaEJeFYtAV2jogQDDyFbPTEJSb2qD1BDN0Jdc
-	Yd6GDn0T54XnZAOek+IEFN50L2OpZJxAW8dowgj98sNpIqSX9kgxZCyqYnJn7w==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 04 Feb 2026 09:32:18 +0100
-Subject: [PATCH v17 3/3] mtd: Add driver for concatenating devices
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11A0A36C597;
+	Wed,  4 Feb 2026 08:34:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770194098; cv=fail; b=CVFsyKv1ulJg7kxrFmk2IX/o5SThJbIhGAyc2dnt0Pohk/cZDcWuwnGAkxjMyXbrukUfMuN8Air84LPhygLY+qKbbz+k1sQy5eiHs/tXRfVoBWqTphD8DR67aLRatADPNLuz47JWtv4K6lAuhL36vNSCK6+WHBZ/0TpTWHRdKIQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770194098; c=relaxed/simple;
+	bh=29Szk8HL6A83tV47pRax2a3aKuhWWgw/7ji7ADMVizc=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=MixMSmnH9gP05CHglQlAxQBVoNOJ27cOnBsnQfSmsSbK8US2+kOtkFKJeGec4yYHAW1fUoxKFFNm+LemxZauTJyJIr2NPf7nxjEAr9QuESB/HHThYXGi9tbqEhGsR7xbfVZqpl8+W8H0p7zhcxfQENew8suh5kegGBp2MmQReyI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=cKbR6gPm; arc=fail smtp.client-ip=52.101.69.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=M3jwhQpvRXzO48K4IdMgbNkCQ0zvV/9irWgJiEc5jz/pUYNEDdjBlDHbiz/o8mu+1wK87zoyKNd6SrYYH0QAsywyoEBjZi4gv3WhXZ4Mz7Bq+djGmwg1S98e06YqAYfgtIywZNkdrlS9DSkfo2i64vWxQIdjvzDa9gdSSK4/bV4nBQ2DvBrMQYW947LCPlDwMetl64XGMR7G35BrjOBKOKT3Fl9iJnC92gE59auurbe9fuEndL4zWdYNP8kQtGtuO2NbZA4dgdbR5AeBpLnPHrvtNqsHZ2DoRyKOxmIIz9uHZnjjUFd/fL3cEQ0h+aFtC+8t3II3NxsX+HlHmu6eIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SA7IlIKRCo7+1x0X2SE1Ps2HAlG6rSGavrypyMNT6oM=;
+ b=TaR02C9k0BiA0/4PqnBQFbRyOyPXUr51zaLMP7s81W0V1yqPfJEj8RwSEm/bNTW1sZxVwSjJj7aVebThprYNDH9xhMgcqgnYNE5b7hpuzDXwa9QfKG8xwYb/H44LsMw5HXACjiYFnjKVojYBx1PFIT575PSR1ALbjwFo1MD6zWncytozEx16qRk/H25OFKhKNcjYWfwwcTJx3Y32reqwZkKn44qGYDNIPYmv4exlao7CuoO+UCzshuAeO3StfeqDdAhhAsEkAq7uRHMW7b5hXN4sQOZt2UTEdiBgLbYIY8r93l7U+iEg6RV8OO+FZw0+8/vbZIH6/qIcfk9SSU4AEg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SA7IlIKRCo7+1x0X2SE1Ps2HAlG6rSGavrypyMNT6oM=;
+ b=cKbR6gPmDP8Xw2CtH8IjHrecWd3BV7gq/rsi7qRoTcUKAxB0XAv5wOnuecRZq4+Gvxp8P568DseYjds37u1stPuWPJA1SnodrWr448/DNggwfk97pKgsxPOelq1lVI2tHw1XWU63plgGeQqKje8jLrivraYpod1Nvjoy2ts90YVYT0NONkRD1VPvfhOsiPZ7oCXuQIJugdJjidSLGDbdq9cFn3GSa4VgUbAKdkK+/Lbxpe1aFRYHVQWSOYFAWafoNRqO6k/XRYki0KhfTEpx+kb1kfLfbmlhHVZGZJsl2ayvNHGbyQs2a+a43c1oFnRsiViedaOk7ZMinQ127maN6A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13) by VI2PR04MB10738.eurprd04.prod.outlook.com
+ (2603:10a6:800:277::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Wed, 4 Feb
+ 2026 08:34:51 +0000
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994%5]) with mapi id 15.20.9587.010; Wed, 4 Feb 2026
+ 08:34:51 +0000
+From: Sherry Sun <sherry.sun@nxp.com>
+To: Frank.Li@nxp.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	s.hauer@pengutronix.de,
+	festevam@gmail.com,
+	shawnguo@kernel.org,
+	daniel.baluta@nxp.com,
+	dario.binacchi@amarulasolutions.com,
+	alexander.stein@ew.tq-group.com,
+	Markus.Niebel@tq-group.com,
+	matthias.schiffer@tq-group.com,
+	y.moog@phytec.de,
+	josua@solid-run.com,
+	francesco.dolcini@toradex.com,
+	primoz.fiser@norik.com
+Cc: imx@lists.linux.dev,
+	kernel@pengutronix.de,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH V6 0/5] arm64: dts: imx93: Add i.MX93 Wireless EVK and refactor common parts
+Date: Wed,  4 Feb 2026 16:35:46 +0800
+Message-Id: <20260204083551.2867263-1-sherry.sun@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR04CA0016.apcprd04.prod.outlook.com
+ (2603:1096:4:197::7) To VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260204-mtd-virt-concat-v17-3-5e98239bb55b@bootlin.com>
-References: <20260204-mtd-virt-concat-v17-0-5e98239bb55b@bootlin.com>
-In-Reply-To: <20260204-mtd-virt-concat-v17-0-5e98239bb55b@bootlin.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-Cc: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>, 
- Michal Simek <monstr@monstr.eu>, 
- Bernhard Frauendienst <kernel@nospam.obeliks.de>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI0PR04MB12114:EE_|VI2PR04MB10738:EE_
+X-MS-Office365-Filtering-Correlation-Id: 72f1f640-41cb-4ad3-20e9-08de63c84379
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|7416014|52116014|366016|1800799024|19092799006|376014|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?ndPMsaEailQkk8jcDqp8wiz8wo+ti8zenbrOMYrPIUBfzSIDmt3dpQLyG2ST?=
+ =?us-ascii?Q?69JkxG9255oQBd174BIx5Fd/DTR+D2IMns/7Zx6AufRF6WPg/ngYkFAlx1Nn?=
+ =?us-ascii?Q?Yx9C2ImTKA5o+Xg1wbs3/deAK/315rohHkbqixZMZqlmDvBDyzl4tiIId6SJ?=
+ =?us-ascii?Q?Na69bkJg0ieQ6ry8qXss9yj9fOtzC4CFVKwSvUP+1Nux2YrJIGFQBWVaHnvE?=
+ =?us-ascii?Q?K38NDWmHnp/Z4J5LczgJGzffDBanAzyKbN+cx8Vtb+GXa/oiGQYUB5MztyOM?=
+ =?us-ascii?Q?Nfxv5l5cWS8hRFIXoc6jmBJAd/Osyd7xePxSZbqT6HxcZVtS/LVkxp2PXvvp?=
+ =?us-ascii?Q?B10ANlaJ4SeLK4a0+C/eX1pLzcnG4j35QNs+Z9yfeMWVVWgXOg7xb18A/IpW?=
+ =?us-ascii?Q?eIh2kAS4HFAnAGdAXxjxZZVXskAoVk/NcDem8wikh6HQ8mTE58Ex7m31Njqw?=
+ =?us-ascii?Q?ROGR8zppiUDBMdNQMO1uvth7osl8iF9DSJmNlNMmqGEJucC1goFQe+3aM7XU?=
+ =?us-ascii?Q?1dHK+kYiOuxByR7yQoKFYHhHGsxCTwdu9H7pLhtXix59QesKp6E67OqmW81n?=
+ =?us-ascii?Q?+1CU0CRQ2QdCSFkKAsyL0RhrEVDJ3UsS5+jBy5WBJg7u22WC0VE4ZwWFdd1D?=
+ =?us-ascii?Q?FCqqRTZlyYjxz0nl7dGoNmifYftUCPoVa+JJeT4GpMniTmpX7NWTA0qjPS0F?=
+ =?us-ascii?Q?RVI2NChm7YhEJM/yqrLn7+9FRXz45tShjDooemHyK4XbvqJ7TK/T+pIW+D5W?=
+ =?us-ascii?Q?u6nPQ4dhfM+MR9cSKZ90A2tYyq8JLVTcIVFYv2FuMomKYLzNv+YiWAFgvWS5?=
+ =?us-ascii?Q?TaG1qAetv2wALCx+ggk5B12jbLwyR+wYsqKhhf/pfnuy37vYn7q6Zfh27WPQ?=
+ =?us-ascii?Q?V4hABp3a+uDdEbW4jCrzg83IAqvZ4ht00VJ0we6+ZP0OxagNkjjwT5q2NT+t?=
+ =?us-ascii?Q?Tklf6vTul/Zf3chnkSBe0p8tM75AD3Yz8bNaLvco4CUJwmKGwiT1BMjZejJA?=
+ =?us-ascii?Q?IRet65ocjqzEEBmQ3m7sEoOvh4Ofhmlir9xGFyVfO2RkgrqeL2PuBmj9kr05?=
+ =?us-ascii?Q?+sBl5JlaTCZZSL7P6cgCpZjC/JgvWf57nSs8WBxSo/AkqvaivVi+AwABIe3a?=
+ =?us-ascii?Q?DBI0/8xgLYI5zDYcpSYi+M8IWldEx8KDaKxu9MPNmAEs+pFTNqE6ejin7DWM?=
+ =?us-ascii?Q?oJ3lwcv8oCxfhZl129aLnBaGofxzGseUPJHo0c8Ml4dpYgW3W3K52CNpwiwp?=
+ =?us-ascii?Q?N83/6TQhpry6DluUhWA93/9guFikvYsfmzte+09PeJdo5rSsfTI1u4sIqv/0?=
+ =?us-ascii?Q?O55Pje6eZm7e8TorxceVJIxnyfeHtAKN+eNqwSQ6341CaCxGl8b0EmpiR4D1?=
+ =?us-ascii?Q?VBJQIu90y42Zb6afWNa2ScqeRj46p6S3gaWfmiR88qi1m30GDgFYHdLSCXhZ?=
+ =?us-ascii?Q?IMerkgxHo982WVEDPLjh4oUX7HuzoWTg6z5dZGS0WY5dDGKNSiA0x8bzqaKd?=
+ =?us-ascii?Q?MVigb+uRe1mQWHlmozjEtn6+UxnpVuuOm8gW7Ur/Qr9cikyzmxuCq0cUqfoe?=
+ =?us-ascii?Q?sl+N6w77pqEtO/qr1L8R82sybX/4THmU4e+tNjIL3q0/WY0W4gdFc/UL2VZ2?=
+ =?us-ascii?Q?ZJwpp2nIakAwc4Ra99CIrU6xVQUZ35Gt0f1W7Z69QRMM?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(366016)(1800799024)(19092799006)(376014)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?sR/8N1uqwnmdHPn2qQtatVylwRlrXqEb+KEEckUlnFh+0bQxThtL9lfOprbL?=
+ =?us-ascii?Q?dHmIJ/JgkExTlz8kR7GjxznmGtquq2CILM7YwGkHadMffB5kyex7BY8T1+iu?=
+ =?us-ascii?Q?Oi37wJBHM7+JzG1lqBy9TTPl3oI+sErOPEOcXGBqC82UG1VOJjayGdSQ4nU+?=
+ =?us-ascii?Q?1B923Jr9HYrp7MsX+NIzzRygBdsVACSSpHYzQMdQwliWsGllKTeFJPX0GJri?=
+ =?us-ascii?Q?PJ88x5RprG4xwUB1jkN1g8WWh3+3HTkXMldRV7lIUk3jAlfuMAOEwm/e6vt5?=
+ =?us-ascii?Q?KODTx5K8+xbDQqqfzkW98ut7j8RtkBKiDP/ufyY2COUEChS7xZNGKabRVbpz?=
+ =?us-ascii?Q?ka0eZtBLrOfeqm0ZYjVtSbnT4DLcNJH20OJnztIGC7MP17WYwCUS7GhtdRYN?=
+ =?us-ascii?Q?ZIld04U7Z/v6KMrJxyf8k8KW6MRs96f/J6vCko5r9zY40TWk9iyckNdWQ0PS?=
+ =?us-ascii?Q?47T7sb0McKuslgC6a79ZGNM8h37DTj8o0Dckrxy2wIgT8ThS2OfwaC2UCGfd?=
+ =?us-ascii?Q?1yMttTZohjaFlwxFhRTQIGq1NXryInVQjnlabmeuvnzN9jFJjMi378GYvEhn?=
+ =?us-ascii?Q?DvkUicmAr5u+4K5FrZYZXjbpNwr5Y0LfkDn22AKn4TgInPH/MHp771xLTJoZ?=
+ =?us-ascii?Q?9FlVRVt/I3ZOYKpN6/dkPKPPDW7vA++YA9TK/fKgVPLCOEG107cNEgagAp8t?=
+ =?us-ascii?Q?KU4vcFym+OahRCtbeBfpYqPYWADJopk8tN1lkDd13TvUJivOvHhRUm0cC2UC?=
+ =?us-ascii?Q?nHvxDo65OtYVkrtoSsd0uSw0sC88gkg45puHas4yA5tA427TZqDiuLUoUVTv?=
+ =?us-ascii?Q?Yg7bBpGe+UGhBOUdV4YOEB/d7cTXyGtCMpx3uQ+O3z2xcpHw7NjF3VaNiig+?=
+ =?us-ascii?Q?hJTubzec+XqgrAOZ3dq3tR9b3E3fMzeAybon+rQObs4X2088vrxFNtiWN5Np?=
+ =?us-ascii?Q?wmwyFmQBa5gQe6SoJ/NE+olMFMHumsffi0q9jHvP7Xzr8TY7WVQgLceZbQUy?=
+ =?us-ascii?Q?r0WN6QQ6ZUVLU/B5khIP8LGK7QVX/RsNwquMxNTJCfl1JFpWslKVLx/AwR6S?=
+ =?us-ascii?Q?mzj0A7QqSOg4atFFE3CEGk0xdnwhEUlMXUz3D8csPwCcWtqnyw0r/fJBze2a?=
+ =?us-ascii?Q?v98PklgyXXggZ7G10pQzc+QKazZDII8476l0an9bESu/arPi0VOnG3Fnbnak?=
+ =?us-ascii?Q?1TmqZcMoSNjWv+kigMSXYI9+x1h4PjuzDt4zhh5cdn2YkLG/NYZ2UZI3pRkm?=
+ =?us-ascii?Q?Pi0GXQLFvm1apDjdCQZk/GHRZh06WA+n0Zi7+cYEUGSx5Ylcyq9qT1BP1bbk?=
+ =?us-ascii?Q?WsdeY2tr93c/Rz74SBBs6Jh8ZTYOl2pQXOlPrFGzvIp8SppBAPOUdwMsqPXG?=
+ =?us-ascii?Q?QNas7OxhRNAINA/IxfL/LSvR6oDsUruq7FtbtJ/9vl0ItZCb23RASGIofWjz?=
+ =?us-ascii?Q?lunfU7+6VqOZBhFly1SVdVX012Xwwxq2qfyoLqf/y4oOqAS0wqaSBSNGED7J?=
+ =?us-ascii?Q?y1EBBNlp9CF5yUcDOawHXIPU9KqVALkDDmg83JQJhBShWHsEh6eAwwS5MzLl?=
+ =?us-ascii?Q?lhXKZemKZRou64EQI1WxCkQF14DOYOmGbDRV+p/9e79kQyIXxKkBjcevayPT?=
+ =?us-ascii?Q?8rB6K02CPtFH6goPSxsD1MbnA9/QtLuvwZnlByIbdu96actsKNDaelkTXvSS?=
+ =?us-ascii?Q?hm2Q5yfkjq7Y5ieRsIASVu29B9wrYWEbT7YhPVw4UKYNW1yHzs15S6H2mhUX?=
+ =?us-ascii?Q?/T21kCLfRw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72f1f640-41cb-4ad3-20e9-08de63c84379
+X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 08:34:51.0845
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: To26tKv3Gr1N1ygQ1WD/I/PAAS8qp798KBDIdeUvoJndVrofIgNsmdmP3j6rNTxe49PMHlRN6pyy3IhNOjVOQg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10738
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262548-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com,amarulasolutions.com,ew.tq-group.com,tq-group.com,phytec.de,solid-run.com,toradex.com,norik.com];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	TAGGED_FROM(0.00)[bounces-262549-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_PROHIBIT(0.00)[0.12.53.0:email];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_NONE(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:email,bootlin.com:dkim,bootlin.com:mid,amd.com:email,0.0.0.0:email,0.15.66.64:email]
-X-Rspamd-Queue-Id: 383BCE32DD
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,nxp.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C3764E3400
 X-Rspamd-Action: no action
 
-From: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+This patch set adds support for the NXP i.MX93 Wireless EVK and refactors
+the existing i.MX93 11x11 EVK DTS to share the common parts via a new
+imx93-11x11-evk-common.dtsi. The Wireless EVK integrates i.MX93 with an
+IW610(WiFi + BLE + 802.15.4) SiP and reuses most of the 11x11 EVK design
+with minor functional and pin connection differences.
 
-Introducing CONFIG_MTD_VIRT_CONCAT to separate the legacy flow from the new
-approach, where only the concatenated partition is registered as an MTD
-device, while the individual partitions that form it are not registered
-independently, as they are typically not required by the user.
-CONFIG_MTD_VIRT_CONCAT is a boolean configuration option that depends on
-CONFIG_MTD_PARTITIONED_MASTER. When enabled, it allows flash nodes to be
-exposed as individual MTD devices along with the other partitions.
+Also introduce imx93w.dtsi to describe the new NXP i.MX93 Wireless SiP so
+that can be reused by multiple boards adopting the i.MX93 Wireless SiP.
 
-The solution focuses on fixed-partitions description only as it depends on
-device boundaries. It supports multiple sets of concatenated devices, each
-comprising two or more partitions.
+Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+---
+Changes in V6:
+1. Rename the imx93-evk-common.dtsi to imx93-11x11-evk-common.dtsi as Frank
+   suggested.
+2. Improve the patch#2 and patch#3 commit message.
+3. Add &lpi2c3 dts node in patch#5 to help understand how pinctrl_lpi2c3 used. 
 
-    flash@0 {
-            reg = <0>;
-            partitions {
-                    compatible = "fixed-partitions";
+Changes in V5:
+1. Add patch#2 that rename the imx93-11x11-evk.dts to imx93-11x11-evk-common.dtsi
+   and patch#3 move 11x11 EVK specific parts back to imx93-11x11-evk.dts for
+   easy review.
+2. Add Reviewed-by for patch#4.
+3. Move the usdhc3 aliases to two EVK DTS files.
+4. Keep imx93w-evk.dtb alphabet order in Makefile in patch#5.
+5. Enable open drain for IW610 PDn pin to allow the IW610 JTAG connector to
+   control the PDn status in patch#4.
 
-                    part0@0 {
-                            part-concat-next = <&flash0_part1>;
-                            label = "part0_0";
-                            reg = <0x0 0x800000>;
-                    };
+Changes in V4:
+1. Add imx93w.dtsi to describe the new NXP i.MX93 Wireless SiP in patch#3 as
+Frank suggested.
+2. Modify imx93w-evk.dts to include the imx93w.dtsi in patch#4.
 
-                    flash0_part1: part1@800000 {
-                            label = "part0_1";
-                            reg = <800000 0x800000>;
-                    };
+Changes in V3:
+1. Delete unnecessary parts in patch#1 commit message as Krzysztof suggested.
+2. Add Acked-by tag.
+3. Add patch#2 to extract the common parts of 11x11 EVK into
+   imx93-11x11-evk-common.dtsi.
 
-                    part2@1000000 {
-                            part-concat-next = <&flash1_part0>;
-                            label = "part0_2";
-                            reg = <0x800000 0x800000>;
-                    };
-            };
-    };
-
-    flash@1 {
-            reg = <1>;
-            partitions {
-                    compatible = "fixed-partitions";
-
-                    flash1_part0: part1@0 {
-                            label = "part1_0";
-                            reg = <0x0 0x800000>;
-                    };
-
-                    part1@800000 {
-                            label = "part1_1";
-                            reg = <0x800000 0x800000>;
-                    };
-            };
-    };
-
-The partitions that gets created are
-
-flash@0
-part0_0-part0_1-concat
-flash@1
-part1_1
-part0_2-part1_0-concat
-
-Suggested-by: Bernhard Frauendienst <kernel@nospam.obeliks.de>
-Suggested-by: Miquel Raynal <miquel.raynal@bootlin.com>
-Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-
+Changes in V2:
+1. Rename the compatible string to fsl,imx93-wireless-evk which is more
+   clearer and better aligned with the naming convention used on previous
+   NXP boards.
+2. Impreove the patch#1 commit message to add more info. 
 ---
 
-Changes in v16:
-- Add missing if (IS_REACHABLE(CONFIG_MTD_VIRT_CONCAT)) to fix build when
-  CONFIG_MTD_VIRT_CONCAT is not enabled
+Sherry Sun (5):
+  dt-bindings: arm: fsl: Add i.MX93 Wireless EVK board
+  arm64: dts: imx93: Extract common EVK description into shared dtsi
+  arm64: dts: imx93: Move 11x11 EVK specific parts back to
+    imx93-11x11-evk.dts
+  arm64: dts: imx93: Add imx93w.dtsi for i.MX93 Wireless SiP
+  arm64: dts: imx93: Add i.MX93 Wireless EVK board support
 
-Changes in v15:
-- Build mdt-concat as part of the mtd module, not a separate module
-  because they are interdependent; make the Konfig a bool instead of a
-  tristate so it is a opt-in feature
-- Remove 'default n' Kconfig line, 'n' is the default anyway
----
- drivers/mtd/Kconfig           |   9 ++
- drivers/mtd/Makefile          |   1 +
- drivers/mtd/mtd_virt_concat.c | 363 ++++++++++++++++++++++++++++++++++++++++++
- drivers/mtd/mtdcore.c         |  21 +++
- drivers/mtd/mtdpart.c         |   6 +
- include/linux/mtd/concat.h    |  51 +++++-
- 6 files changed, 450 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/mtd/Kconfig b/drivers/mtd/Kconfig
-index 796a2eccbef0..0421c6208de7 100644
---- a/drivers/mtd/Kconfig
-+++ b/drivers/mtd/Kconfig
-@@ -206,6 +206,15 @@ config MTD_PARTITIONED_MASTER
- 	  the parent of the partition device be the master device, rather than
- 	  what lies behind the master.
- 
-+config MTD_VIRT_CONCAT
-+	bool "Virtual concatenated MTD devices"
-+	depends on MTD_PARTITIONED_MASTER
-+	help
-+	  The driver enables the creation of virtual MTD device by
-+	  concatenating multiple physical MTD devices into a single
-+	  entity. This allows for the creation of partitions larger than
-+	  the individual physical chips, extending across chip boundaries.
-+
- source "drivers/mtd/chips/Kconfig"
- 
- source "drivers/mtd/maps/Kconfig"
-diff --git a/drivers/mtd/Makefile b/drivers/mtd/Makefile
-index 593d0593a038..7b6dd53e8150 100644
---- a/drivers/mtd/Makefile
-+++ b/drivers/mtd/Makefile
-@@ -6,6 +6,7 @@
- # Core functionality.
- obj-$(CONFIG_MTD)		+= mtd.o
- mtd-y				:= mtdcore.o mtdsuper.o mtdconcat.o mtdpart.o mtdchar.o
-+mtd-$(CONFIG_MTD_VIRT_CONCAT)	+= mtd_virt_concat.o
- 
- obj-y				+= parsers/
- 
-diff --git a/drivers/mtd/mtd_virt_concat.c b/drivers/mtd/mtd_virt_concat.c
-new file mode 100644
-index 000000000000..aea88d1c9bc5
---- /dev/null
-+++ b/drivers/mtd/mtd_virt_concat.c
-@@ -0,0 +1,363 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Virtual concat MTD device driver
-+ *
-+ * Copyright (C) 2018 Bernhard Frauendienst
-+ * Author: Bernhard Frauendienst <kernel@nospam.obeliks.de>
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/mtd/mtd.h>
-+#include "mtdcore.h"
-+#include <linux/mtd/partitions.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/slab.h>
-+#include <linux/mtd/concat.h>
-+
-+#define CONCAT_PROP "part-concat-next"
-+#define CONCAT_POSTFIX "concat"
-+#define MIN_DEV_PER_CONCAT 1
-+
-+static LIST_HEAD(concat_node_list);
-+
-+/**
-+ * struct mtd_virt_concat_node - components of a concatenation
-+ * @head: List handle
-+ * @count: Number of nodes
-+ * @nodes: Pointer to the nodes (partitions) to concatenate
-+ * @concat: Concatenation container
-+ */
-+struct mtd_virt_concat_node {
-+	struct list_head head;
-+	unsigned int count;
-+	struct device_node **nodes;
-+	struct mtd_concat *concat;
-+};
-+
-+/**
-+ * mtd_is_part_concat - Check if the device is already part
-+ *                       of a concatenated device
-+ * @dev:        pointer to 'device_node'
-+ *
-+ * Return: true if the device is already part of a concatenation,
-+ *         false otherwise.
-+ */
-+static bool mtd_is_part_concat(struct device_node *dev)
-+{
-+	struct mtd_virt_concat_node *item;
-+	int idx;
-+
-+	list_for_each_entry(item, &concat_node_list, head) {
-+		for (idx = 0; idx < item->count; idx++) {
-+			if (item->nodes[idx] == dev)
-+				return true;
-+		}
-+	}
-+	return false;
-+}
-+
-+static void mtd_virt_concat_put_mtd_devices(struct mtd_concat *concat)
-+{
-+	int i;
-+
-+	for (i = 0; i < concat->num_subdev; i++)
-+		put_mtd_device(concat->subdev[i]);
-+}
-+
-+void mtd_virt_concat_destroy_joins(void)
-+{
-+	struct mtd_virt_concat_node *item, *tmp;
-+	struct mtd_info *mtd;
-+
-+	list_for_each_entry_safe(item, tmp, &concat_node_list, head) {
-+		mtd = &item->concat->mtd;
-+		if (item->concat) {
-+			mtd_device_unregister(mtd);
-+			kfree(mtd->name);
-+			mtd_concat_destroy(mtd);
-+			mtd_virt_concat_put_mtd_devices(item->concat);
-+		}
-+	}
-+}
-+
-+/**
-+ * mtd_virt_concat_destroy - Destroy the concat that includes the mtd object
-+ * @mtd:        pointer to 'mtd_info'
-+ *
-+ * Return: 0 on success, -error otherwise.
-+ */
-+int mtd_virt_concat_destroy(struct mtd_info *mtd)
-+{
-+	struct mtd_info *child, *master = mtd_get_master(mtd);
-+	struct mtd_virt_concat_node *item, *tmp;
-+	struct mtd_concat *concat;
-+	int idx, ret = 0;
-+	bool is_mtd_found;
-+
-+	list_for_each_entry_safe(item, tmp, &concat_node_list, head) {
-+		is_mtd_found = false;
-+
-+		/* Find the concat item that hold the mtd device */
-+		for (idx = 0; idx < item->count; idx++) {
-+			if (item->nodes[idx] == mtd->dev.of_node) {
-+				is_mtd_found = true;
-+				break;
-+			}
-+		}
-+		if (!is_mtd_found)
-+			continue;
-+		concat = item->concat;
-+
-+		/*
-+		 * Since this concatenated device is being removed, retrieve
-+		 * all MTD devices that are part of it and register them
-+		 * individually.
-+		 */
-+		for (idx = 0; idx < concat->num_subdev; idx++) {
-+			child = concat->subdev[idx];
-+			if (child->dev.of_node != mtd->dev.of_node) {
-+				ret = add_mtd_device(child);
-+				if (ret)
-+					goto out;
-+			}
-+		}
-+		/* Destroy the concat */
-+		if (concat->mtd.name) {
-+			del_mtd_device(&concat->mtd);
-+			kfree(concat->mtd.name);
-+			mtd_concat_destroy(&concat->mtd);
-+			mtd_virt_concat_put_mtd_devices(item->concat);
-+		}
-+
-+		for (idx = 0; idx < item->count; idx++)
-+			of_node_put(item->nodes[idx]);
-+
-+		kfree(item->nodes);
-+		kfree(item);
-+	}
-+	return 0;
-+out:
-+	mutex_lock(&master->master.partitions_lock);
-+	list_del(&child->part.node);
-+	mutex_unlock(&master->master.partitions_lock);
-+	kfree(mtd->name);
-+	kfree(mtd);
-+
-+	return ret;
-+}
-+
-+/**
-+ * mtd_virt_concat_create_item - Create a concat item
-+ * @parts:        pointer to 'device_node'
-+ * @count:        number of mtd devices that make up
-+ *                the concatenated device.
-+ *
-+ * Return: 0 on success, -error otherwise.
-+ */
-+static int mtd_virt_concat_create_item(struct device_node *parts,
-+				       unsigned int count)
-+{
-+	struct mtd_virt_concat_node *item;
-+	struct mtd_concat *concat;
-+	int i;
-+
-+	for (i = 0; i < (count - 1); i++) {
-+		if (mtd_is_part_concat(of_parse_phandle(parts, CONCAT_PROP, i)))
-+			return 0;
-+	}
-+
-+	item = kzalloc(sizeof(*item), GFP_KERNEL);
-+	if (!item)
-+		return -ENOMEM;
-+
-+	item->count = count;
-+	item->nodes = kcalloc(count, sizeof(*item->nodes), GFP_KERNEL);
-+	if (!item->nodes) {
-+		kfree(item);
-+		return -ENOMEM;
-+	}
-+
-+	/*
-+	 * The partition in which "part-concat-next" property
-+	 * is defined is the first device in the list of concat
-+	 * devices.
-+	 */
-+	item->nodes[0] = parts;
-+
-+	for (i = 1; i < count; i++)
-+		item->nodes[i] = of_parse_phandle(parts, CONCAT_PROP, (i - 1));
-+
-+	concat = kzalloc(sizeof(*concat), GFP_KERNEL);
-+	if (!concat) {
-+		kfree(item);
-+		return -ENOMEM;
-+	}
-+
-+	concat->subdev = kcalloc(count, sizeof(*concat->subdev), GFP_KERNEL);
-+	if (!concat->subdev) {
-+		kfree(item);
-+		kfree(concat);
-+		return -ENOMEM;
-+	}
-+	item->concat = concat;
-+
-+	list_add_tail(&item->head, &concat_node_list);
-+
-+	return 0;
-+}
-+
-+void mtd_virt_concat_destroy_items(void)
-+{
-+	struct mtd_virt_concat_node *item, *temp;
-+	int i;
-+
-+	list_for_each_entry_safe(item, temp, &concat_node_list, head) {
-+		for (i = 0; i < item->count; i++)
-+			of_node_put(item->nodes[i]);
-+
-+		kfree(item->nodes);
-+		kfree(item);
-+	}
-+}
-+
-+/**
-+ * mtd_virt_concat_create_add - Add a mtd device to the concat list
-+ * @mtd:        pointer to 'mtd_info'
-+ *
-+ * Return: true on success, false otherwise.
-+ */
-+bool mtd_virt_concat_add(struct mtd_info *mtd)
-+{
-+	struct mtd_virt_concat_node *item;
-+	struct mtd_concat *concat;
-+	int idx;
-+
-+	list_for_each_entry(item, &concat_node_list, head) {
-+		concat = item->concat;
-+		for (idx = 0; idx < item->count; idx++) {
-+			if (item->nodes[idx] == mtd->dev.of_node) {
-+				concat->subdev[concat->num_subdev++] = mtd;
-+				return true;
-+			}
-+		}
-+	}
-+	return false;
-+}
-+
-+/**
-+ * mtd_virt_concat_node_create - List all the concatenations found in DT
-+ *
-+ * Return: 0 on success, -error otherwise.
-+ */
-+int mtd_virt_concat_node_create(void)
-+{
-+	struct device_node *parts = NULL;
-+	int ret = 0, count = 0;
-+
-+	/* List all the concatenations found in DT */
-+	do {
-+		parts = of_find_node_with_property(parts, CONCAT_PROP);
-+		if (!of_device_is_available(parts))
-+			continue;
-+
-+		if (mtd_is_part_concat(parts))
-+			continue;
-+
-+		count = of_count_phandle_with_args(parts, CONCAT_PROP, NULL);
-+		if (count < MIN_DEV_PER_CONCAT)
-+			continue;
-+
-+		/*
-+		 * The partition in which "part-concat-next" property is defined
-+		 * is also part of the concat device, so increament count by 1.
-+		 */
-+		count++;
-+
-+		ret = mtd_virt_concat_create_item(parts, count);
-+		if (ret) {
-+			of_node_put(parts);
-+			goto destroy_items;
-+		}
-+	} while (parts);
-+
-+	return ret;
-+
-+destroy_items:
-+	mtd_virt_concat_destroy_items();
-+
-+	return ret;
-+}
-+
-+/**
-+ * mtd_virt_concat_create_join - Create and register the concatenated
-+ *                                 MTD device.
-+ *
-+ * Return: 0 on success, -error otherwise.
-+ */
-+int mtd_virt_concat_create_join(void)
-+{
-+	struct mtd_virt_concat_node *item;
-+	struct mtd_concat *concat;
-+	struct mtd_info *mtd;
-+	ssize_t name_sz;
-+	int ret, idx;
-+	char *name;
-+
-+	list_for_each_entry(item, &concat_node_list, head) {
-+		concat = item->concat;
-+		/*
-+		 * Check if item->count != concat->num_subdev, it indicates
-+		 * that the MTD information for all devices included in the
-+		 * concatenation are not handy, concat MTD device can't be
-+		 * created hence switch to next concat device.
-+		 */
-+		if (item->count != concat->num_subdev) {
-+			continue;
-+		} else {
-+			/* Calculate the legth of the name of the virtual device */
-+			for (idx = 0, name_sz = 0; idx < concat->num_subdev; idx++)
-+				name_sz += (strlen(concat->subdev[idx]->name) + 1);
-+			name_sz += strlen(CONCAT_POSTFIX);
-+			name = kmalloc(name_sz + 1, GFP_KERNEL);
-+			if (!name) {
-+				mtd_virt_concat_put_mtd_devices(concat);
-+				return -ENOMEM;
-+			}
-+
-+			ret = 0;
-+			for (idx = 0; idx < concat->num_subdev; idx++) {
-+				ret += sprintf((name + ret), "%s-",
-+					       concat->subdev[idx]->name);
-+			}
-+			sprintf((name + ret), CONCAT_POSTFIX);
-+
-+			if (concat->mtd.name) {
-+				ret = memcmp(concat->mtd.name, name, name_sz);
-+				if (ret == 0)
-+					continue;
-+			}
-+			mtd = mtd_concat_create(concat->subdev, concat->num_subdev, name);
-+			if (!mtd) {
-+				kfree(name);
-+				return -ENXIO;
-+			}
-+			concat->mtd = *mtd;
-+			/* Arbitrary set the first device as parent */
-+			concat->mtd.dev.parent = concat->subdev[0]->dev.parent;
-+			concat->mtd.dev = concat->subdev[0]->dev;
-+
-+			/* Add the mtd device */
-+			ret = add_mtd_device(&concat->mtd);
-+			if (ret)
-+				goto destroy_concat;
-+		}
-+	}
-+
-+	return 0;
-+
-+destroy_concat:
-+	mtd_concat_destroy(mtd);
-+
-+	return ret;
-+}
-diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
-index 64808493b4f5..576537774628 100644
---- a/drivers/mtd/mtdcore.c
-+++ b/drivers/mtd/mtdcore.c
-@@ -34,6 +34,7 @@
- 
- #include <linux/mtd/mtd.h>
- #include <linux/mtd/partitions.h>
-+#include <linux/mtd/concat.h>
- 
- #include "mtdcore.h"
- 
-@@ -1120,6 +1121,12 @@ int mtd_device_parse_register(struct mtd_info *mtd, const char * const *types,
- 			goto out;
- 	}
- 
-+	if (IS_REACHABLE(CONFIG_MTD_VIRT_CONCAT)) {
-+		ret = mtd_virt_concat_node_create();
-+		if (ret < 0)
-+			goto out;
-+	}
-+
- 	/* Prefer parsed partitions over driver-provided fallback */
- 	ret = parse_mtd_partitions(mtd, types, parser_data);
- 	if (ret == -EPROBE_DEFER)
-@@ -1137,6 +1144,11 @@ int mtd_device_parse_register(struct mtd_info *mtd, const char * const *types,
- 	if (ret)
- 		goto out;
- 
-+	if (IS_REACHABLE(CONFIG_MTD_VIRT_CONCAT)) {
-+		ret = mtd_virt_concat_create_join();
-+		if (ret < 0)
-+			goto out;
-+	}
- 	/*
- 	 * FIXME: some drivers unfortunately call this function more than once.
- 	 * So we have to check if we've already assigned the reboot notifier.
-@@ -1186,6 +1198,11 @@ int mtd_device_unregister(struct mtd_info *master)
- 	nvmem_unregister(master->otp_user_nvmem);
- 	nvmem_unregister(master->otp_factory_nvmem);
- 
-+	if (IS_REACHABLE(CONFIG_MTD_VIRT_CONCAT)) {
-+		err = mtd_virt_concat_destroy(master);
-+		if (err)
-+			return err;
-+	}
- 	err = del_mtd_partitions(master);
- 	if (err)
- 		return err;
-@@ -2621,6 +2638,10 @@ static int __init init_mtd(void)
- 
- static void __exit cleanup_mtd(void)
- {
-+	if (IS_REACHABLE(CONFIG_MTD_VIRT_CONCAT)) {
-+		mtd_virt_concat_destroy_joins();
-+		mtd_virt_concat_destroy_items();
-+	}
- 	debugfs_remove_recursive(dfs_dir_mtd);
- 	cleanup_mtdchar();
- 	if (proc_mtd)
-diff --git a/drivers/mtd/mtdpart.c b/drivers/mtd/mtdpart.c
-index 2876501a7814..fc4483686242 100644
---- a/drivers/mtd/mtdpart.c
-+++ b/drivers/mtd/mtdpart.c
-@@ -18,6 +18,7 @@
- #include <linux/err.h>
- #include <linux/of.h>
- #include <linux/of_platform.h>
-+#include <linux/mtd/concat.h>
- 
- #include "mtdcore.h"
- 
-@@ -409,6 +410,11 @@ int add_mtd_partitions(struct mtd_info *parent,
- 			goto err_del_partitions;
- 		}
- 
-+		if (IS_REACHABLE(CONFIG_MTD_VIRT_CONCAT)) {
-+			if (mtd_virt_concat_add(child))
-+				continue;
-+		}
-+
- 		mutex_lock(&master->master.partitions_lock);
- 		list_add_tail(&child->part.node, &parent->partitions);
- 		mutex_unlock(&master->master.partitions_lock);
-diff --git a/include/linux/mtd/concat.h b/include/linux/mtd/concat.h
-index b42d9af87c4e..2cd9d48958a8 100644
---- a/include/linux/mtd/concat.h
-+++ b/include/linux/mtd/concat.h
-@@ -28,5 +28,54 @@ struct mtd_info *mtd_concat_create(
- 
- void mtd_concat_destroy(struct mtd_info *mtd);
- 
--#endif
-+/**
-+ * mtd_virt_concat_node_create - Create a component for concatenation
-+ *
-+ * Returns a positive number representing the no. of devices found for
-+ * concatenation, or a negative error code.
-+ *
-+ * List all the devices for concatenations found in DT and create a
-+ * component for concatenation.
-+ */
-+int mtd_virt_concat_node_create(void);
-+
-+/**
-+ * mtd_virt_concat_add - add mtd_info object to the list of subdevices for concatenation
-+ * @mtd: pointer to new MTD device info structure
-+ *
-+ * Returns true if the mtd_info object is added successfully else returns false.
-+ *
-+ * The mtd_info object is added to the list of subdevices for concatenation.
-+ * It returns true if a match is found, and false if all subdevices have
-+ * already been added or if the mtd_info object does not match any of the
-+ * intended MTD devices.
-+ */
-+bool mtd_virt_concat_add(struct mtd_info *mtd);
- 
-+/**
-+ * mtd_virt_concat_create_join - Create and register the concatenated MTD device
-+ *
-+ * Returns 0 on succes, or a negative error code.
-+ *
-+ * Creates and registers the concatenated MTD device
-+ */
-+int mtd_virt_concat_create_join(void);
-+
-+/**
-+ * mtd_virt_concat_destroy - Remove the concat that includes a specific mtd device
-+ *                           as one of its components.
-+ * @mtd: pointer to MTD device info structure.
-+ *
-+ * Returns 0 on succes, or a negative error code.
-+ *
-+ * If the mtd_info object is part of a concatenated device, all other MTD devices
-+ * within that concat are registered individually. The concatenated device is then
-+ * removed, along with its concatenation component.
-+ *
-+ */
-+int mtd_virt_concat_destroy(struct mtd_info *mtd);
-+
-+void mtd_virt_concat_destroy_joins(void);
-+void mtd_virt_concat_destroy_items(void);
-+
-+#endif
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ ...11-evk.dts => imx93-11x11-evk-common.dtsi} | 206 +----
+ .../boot/dts/freescale/imx93-11x11-evk.dts    | 861 +-----------------
+ arch/arm64/boot/dts/freescale/imx93w-evk.dts  |  28 +
+ arch/arm64/boot/dts/freescale/imx93w.dtsi     | 110 +++
+ 6 files changed, 150 insertions(+), 1057 deletions(-)
+ copy arch/arm64/boot/dts/freescale/{imx93-11x11-evk.dts => imx93-11x11-evk-common.dtsi} (79%)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93w-evk.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93w.dtsi
 
 -- 
-2.52.0
+2.37.1
 
 
