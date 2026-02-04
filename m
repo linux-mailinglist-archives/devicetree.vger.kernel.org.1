@@ -1,118 +1,137 @@
-Return-Path: <devicetree+bounces-262688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262689-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6P5QBLtSg2mJlQMAu9opvQ
-	(envelope-from <devicetree+bounces-262688-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:07:55 +0100
+	id KBuVGBVUg2mJlQMAu9opvQ
+	(envelope-from <devicetree+bounces-262689-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:13:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87C11E6DE0
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:07:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE1E2E6E77
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:13:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 95E6430254F4
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 14:06:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 91EF63019048
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 14:11:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD73F40F8C8;
-	Wed,  4 Feb 2026 14:06:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57BE940F8E8;
+	Wed,  4 Feb 2026 14:11:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e70dhP5C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7423D4123;
-	Wed,  4 Feb 2026 14:06:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30A3740F8D7;
+	Wed,  4 Feb 2026 14:11:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770214005; cv=none; b=Md/oS+tMzP/kHPimfktKxUaSvjWeTo12M6xTX2If4KlgGY7ptUT7HX5fLLLma9NHKQsZW1JbJYDtwjiN6qXKW+A0ZZ9aPjVjPovq/GYER3w7rwupoGglU2bLptvlnb9tCWVpOKYf3lwPefGkSr90uL8dG8RgbXbO325cyKIvx0M=
+	t=1770214285; cv=none; b=f3wbyLIKoTfnq5SFIPVWyHcw5UAY6JahPXUcNEYHjAYD2HLu6wlGlLdxWHku1H0/APJIjhwRSSzik+vEE0DB/s1nCtasoWQUYflPL9Lr5zdvHrq9os+LF0UOf80B6jG9meoSJ8SgzybbUP3VkJykL+tghOORZ0toEKe+gTNedyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770214005; c=relaxed/simple;
-	bh=2a2PMz2CFcrYVLKAbwKwcC1JAadEDzIjkq2ccEeYotQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=hDldLrVHe+aWdeLKHam1ksafhnQjQEfuxcFKLafYTZXHaRF8lp6svX8uOEepkiKxFh8GTONYd3QXwlJMFao7Ezc4zFX7l4DCH4yVFG5UB/FfDOK0l3qHMyAFadJENr7eFyrymv72yaIlLKoTTDj/8/b5hpIPl/sYt0kpoEvQZ8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [58.61.141.99])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 331d6ec47;
-	Wed, 4 Feb 2026 22:06:34 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: gaohan@iscas.ac.cn
-Cc: alex@ghiti.fr,
-	aou@eecs.berkeley.edu,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dlan@gentoo.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	palmer@dabbelt.com,
-	pjw@kernel.org,
-	rabenda.cn@gmail.com,
-	robh@kernel.org,
-	spacemit@lists.linux.dev,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: Re: [PATCH 7/7] riscv: dts: spacemit: PCIe and PHY-related updates for OrangePi RV2
-Date: Wed,  4 Feb 2026 22:06:19 +0800
-Message-Id: <20260204140619.47536-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <677085181a4215c517907f44b363ef7777fd407b.1769895215.git.gaohan@iscas.ac.cn>
-References: <677085181a4215c517907f44b363ef7777fd407b.1769895215.git.gaohan@iscas.ac.cn>
+	s=arc-20240116; t=1770214285; c=relaxed/simple;
+	bh=WH5QahUO7WVTbnWGYJja/z9xS/7meXJGhqhU/1bxuok=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HSPuFRgOaIOSNCtYwBBORBQZfmNlQZk+wKS0nH9Bpt5u0+VGVwfgKYmHGRq7Kl7XDOzl98njodNFHcs0Mwg2kj7NrUR4NbmihKSTa8vPfWbzbqxMR4WHSQq3X4tcCp/jB/wUfnxipn8YPQ9stoRrqJ5srGd5NEi9wMvUzKHkbjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e70dhP5C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01DABC19424;
+	Wed,  4 Feb 2026 14:11:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770214284;
+	bh=WH5QahUO7WVTbnWGYJja/z9xS/7meXJGhqhU/1bxuok=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e70dhP5CPwYeTcgaf+EAe9PXl3GthoEElxicQBwIn1zimM81lqnxpEyYqBS2UZhhJ
+	 pAg7k0anT/V/3hIxzVpnV7OL1zI8yXzVrRIZyxSRVkGevzVl7RHg3zGZZ2GdK9pVks
+	 uDETtkjHc50NNZbm4O3Yo6haP8kdVGw0TG/e97c/+qN7CAOeBzoqYv507E5XxmFACV
+	 bpUTSxpvj94cMsNAuEflKlfGyYyltq/wUICXhgHhIjjP0AmndGqOoLjtb0aMEPmDy/
+	 ehVaUHq3oMJJ4PiBKsU64PsDkCaSjL9n3LulOznEOALfPXLNU2ByzJC6u/Xj++qN3M
+	 xsIx6VEakYydQ==
+Date: Wed, 4 Feb 2026 14:11:20 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Linus Walleij <linusw@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [rfc 0/2] pinctrl property checks
+Message-ID: <20260204-twentieth-facedown-55eca3d3022c@spud>
+References: <20260203-device-unwashed-ed24f8592d79@spud>
+ <CAD++jLnz1r1gnE3B_0MCr0JrfEdT-74nM7wL3ErdrmzHOrnovQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9c28f9f01d03a2kunmc61284e02ceb56
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCGEIdVk9KGUpKSh5MTUhDGVYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlOQ1VNSlVKT0pVQkJZV1kWGg8SFR0UWUFZT0tIVUpLSElNT0JVSktLVUpCS0
-	tZBg++
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="1CSrqGD1uvf0jDND"
+Content-Disposition: inline
+In-Reply-To: <CAD++jLnz1r1gnE3B_0MCr0JrfEdT-74nM7wL3ErdrmzHOrnovQ@mail.gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.64 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262688-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[ghiti.fr,eecs.berkeley.edu,kernel.org,vger.kernel.org,gentoo.org,lists.infradead.org,dabbelt.com,gmail.com,lists.linux.dev,jmu.edu.cn];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262689-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.990];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[jmu.edu.cn:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 87C11E6DE0
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BE1E2E6E77
 X-Rspamd-Action: no action
 
-Hi,
 
-> +&combo_phy {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pcie0_3_cfg>;
-> +};
+--1CSrqGD1uvf0jDND
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This pinctrl is clearly incorrect (including BPI-F3).
-Checking the schematic reveals that these pins are for CAM_I2C.
-By the way, combo_phy connects to USB3, so it should be enabled
-in the USB3 patch.
+On Wed, Feb 04, 2026 at 12:30:30AM +0100, Linus Walleij wrote:
+> On Tue, Feb 3, 2026 at 6:30=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+>=20
+> > Finally got around to sending the property stuff that we were talking
+> > about. It's definitely not the best thing I have ever written, but I
+> > think it does an okay job of warning about setups that don't make sense
+> > while adding fairly little complexity wise.
+>=20
+> I like what I see and I think we should apply it for the v7.1 kernel cycle
+> post v7.0-rc1.
+>=20
+> Are you ready to send a non-RFC version by then?
 
-Thanks,
-Chukun
+The rfc tag is was more because of the point in the cycle we are at than
+the question on the driver patch. Sending a non-rtc then should be no
+problem.
+
+--1CSrqGD1uvf0jDND
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaYNTiAAKCRB4tDGHoIJi
+0rO1AQDg2EjTzYP8wXL3AM47YYwKhhkjEFNhP7YVRUnka16L8AD/XkHcx6LuEzeF
+qVo9fhZVhLDlgsnridoejiLDPSQkLgo=
+=icK+
+-----END PGP SIGNATURE-----
+
+--1CSrqGD1uvf0jDND--
 
