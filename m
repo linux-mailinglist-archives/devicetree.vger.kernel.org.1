@@ -1,130 +1,201 @@
-Return-Path: <devicetree+bounces-262586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262587-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CEZUHPceg2nWhwMAu9opvQ
-	(envelope-from <devicetree+bounces-262586-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 11:27:03 +0100
+	id iLEPB3Yfg2nWhwMAu9opvQ
+	(envelope-from <devicetree+bounces-262587-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 11:29:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09868E478E
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 11:27:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A7EAE47E4
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 11:29:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 44C1E300AB11
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 10:26:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D431B300DDCA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 10:28:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AADA3D9043;
-	Wed,  4 Feb 2026 10:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D08BD3DA7C6;
+	Wed,  4 Feb 2026 10:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G0XacNdi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TsY8mwjV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB40E3A1E90;
-	Wed,  4 Feb 2026 10:26:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 626CE3D9059
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 10:28:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770200789; cv=none; b=qQ7NiTZkOkas91Rq74TUNm4lH0knzopzRmMNQu3RSKmyPrSnvm2CWfsJEGHGPtRWNuQnJo32SM5ON3M6Fcb07VMNesYqYiI/1xDpQaOrgpF81jPHx8qlwuesINAypbuvkVHze7CA4bZrAUYRFDJ0NeehDT4eAefF4yLwuBWScps=
+	t=1770200896; cv=none; b=r50/3CSp7vL9VY1XQKjWGb08S4IWXv+o/xsDvg1ru/RRXQ+LodYfBv3mjl5MMoxy0fv1R+tBfjQakWyqEbKmY5o6Yze/8bo6+Wl1gfKfovCBzY5Gg8bFjr+qpyFNy1SY8vVuN/Ski+DzBp/ZRzceYaRYVZFfnccCvdC9CQTkG/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770200789; c=relaxed/simple;
-	bh=d2ORjAFYDx26CCy9qL6CmpUxNx4yL0rMuIyF+swd47c=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=sFJzP1vzVEqYVEILQkPpaTs6aHmr7mvOaCrezWaH/0dK8ch7ztwZOLEepHpZLe3PFSyzd65K/XRwR2UHIRfGYoMgSxgQBONnS0XX3gtfZ8aYAXgetbz8ifJhZNTMVI5ywN054GE9VdhkgKk6WjLe4ULw248bJxxA/qg3hETa+Uw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G0XacNdi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10194C4CEF7;
-	Wed,  4 Feb 2026 10:26:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770200788;
-	bh=d2ORjAFYDx26CCy9qL6CmpUxNx4yL0rMuIyF+swd47c=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=G0XacNdiA2sPN9bZfD51gtADbKtxQu8R/qTGNkZr4YjYt0KUY7g9bp0m6ZNanmclc
-	 xKqjqGs/2VMC0xVXm5Sc7pi1K5NgSsT6oKaK0ukJeSa4Sm8cdf1HECNIergdRekhDd
-	 MzJxZo+h95odzHjxCQjaVeMYWdYOUIU1aIfOBfSo1JbF6YgUjCBH31ZlIjhCB3kcEv
-	 xD7TRJuUF4SpuJengb7BJeXKLzqH4Yt601kU9y7AFCqg2aSCmd+N2qVbQv46YrYAnB
-	 TV3WUjV/IwbCj+f8TMSCnw4ejCN4AyKKqAHrI6Ej6KKBhYDUqpXXAOAVcSOQs7FTfP
-	 lBDFotNRjA1Zw==
-From: Lee Jones <lee@kernel.org>
-To: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
- Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Kiran Gunda <quic_kgunda@quicinc.com>, Helge Deller <deller@gmx.de>, 
- Luca Weiss <luca@lucaweiss.eu>, Konrad Dybcio <konradybcio@kernel.org>, 
- Eugene Lepshy <fekz115@gmail.com>, Gianluca Boiano <morf3089@gmail.com>, 
- Alejandro Tafalla <atafalla@dnyon.com>, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Cc: dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Daniel Thompson <daniel.thompson@linaro.org>, linux-arm-msm@vger.kernel.org, 
- linux-fbdev@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20260116-pmi8950-wled-v3-0-e6c93de84079@mainlining.org>
-References: <20260116-pmi8950-wled-v3-0-e6c93de84079@mainlining.org>
-Subject: Re: (subset) [PATCH v3 0/7] Fix PMI8994 WLED ovp values and more
-Message-Id: <177020078282.1122108.15047767273354321830.b4-ty@kernel.org>
-Date: Wed, 04 Feb 2026 10:26:22 +0000
+	s=arc-20240116; t=1770200896; c=relaxed/simple;
+	bh=JolnKv0qFTOR+o7MUsErJAFOJkrET4c/BlgelBkXp+E=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i+T3NWW8fuS6l/NGGK9xooxGvhkzK343h90/fjOfB+7q3aYMzlAn8VW6/ejczSHkCVUcYkryvHj17Yc2kQZ568NtHmV5QpdeDVDcbAVQA/a9ciOsLqSyioVVGzBrqd4Oj9v8de8XWbOsnVlzonxl2ZdfLjP6ZAR9LtACrkeUmvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TsY8mwjV; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4801d7c72a5so51828535e9.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 02:28:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770200895; x=1770805695; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JYjG7SQO8WEcZbtf5VFi69+C3kGp/XbrFnd6F1SB62M=;
+        b=TsY8mwjVOlERyLMY4xZcL4FpfW2PC0FXYp2YORrLpKNQAFvrDqA9Pv48o6hL9jCRxG
+         ZMXuemwqTxc+RH7GIPsI3WFUfRWKAb6SpGf4EY4O1n6o/cEcG5vTdJnTNtPw7mgxUWb6
+         3HClgwFLhovEYkHr+EvQObn1U8ZFSjrZwruTVQmOZbkkkDg8h9bN9oybHLzY0iUeYa2n
+         Jaly9/P13T98296deoooscmmE6uIKWGYmLYjGQuICWESIgdVTERmh7WcTeKZDlp4Qigz
+         ITF8HT5YhFaBbGIYR7sDw1gEYKigBErj2ITge1JKv7mCxpIsALT8PkQ4PIDnDJf314Pz
+         TnVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770200895; x=1770805695;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JYjG7SQO8WEcZbtf5VFi69+C3kGp/XbrFnd6F1SB62M=;
+        b=mhhNrY6yM6evLtit+IiW+FXICSoxW+lYo2Nyrpuo9PbkD+65U/82WV7igMIrieDpRW
+         LEliH2+AJd5CChe7JalX5jl608qT3cT3yTwZLPYYH56ekS0hxs+K5MyRFg9CFUysEwq8
+         oxA+SU3MoNRUFNTMsC3eu47Ts/sUWo9WoG7xUWPYkdufrVHrX/Zh5fYdfpEraYUhmKU1
+         I5vD22xeOWO42Sxj1ZP37Kclac7WuVye9qlMQQUn3o9hAlFa9rdNjRjdrgnKRsYvpKJR
+         PGXh7xjgqJMkXHxSjjwz5JYoZYkUcOZ1VkT0SPhExZSLerW1zcoM3VcRO/KV+b9Wx/p2
+         cajw==
+X-Forwarded-Encrypted: i=1; AJvYcCUf8PwLOJ/s7sh91jNSdciLKubPMbyAxo2Fom4UTMA3rIf7AoIqpiqWgxmMAiiOioq/P81lgy+LAj+c@vger.kernel.org
+X-Gm-Message-State: AOJu0YxN8gLhXxfJT0l6LlECGggm50gSRfiXdXlYlp1SysaNFb7WJW6s
+	tT9WYqmAfxRfj+46Kdm6x+MkPO3DrHL8lCX6aieO+AG7U1WXUkvvtIRi
+X-Gm-Gg: AZuq6aJvcXPAXIk4mFvO9PQQi/C2r7lg7B69RrOuaffLLTsnML5bSv4vh4stkh39YSd
+	8yM1PswR9Yxth3vbV4obS4tvR0ZaoJ7LBPSO0rY1Qe88E8t5kD7cwCBWplMNKsqMTPfQ+KOKhdf
+	6XZDmmC9gDbaHe0rXh0aZr63XU3IGvnw0NqDV02dJ+DIiLJAehbU//4PoellSsIQo6UdmWSxbdI
+	jEHOxCvmXeEisRigdFKZHlG6rTDm0NNSWwygsPl51OWcr1kEK8v8mijtlrz5wqnp/NumBIi7GnQ
+	a81GwdZ/Wg86Ni/8mhnKkoZOHgmt+vhVma0/ERmGq5zxQ2dhkEJkrppofEQLYVi/JZuoUK+mXa0
+	+XLVJTcdQHfqElf3107+t55/12fbYvxflZvltibujbKhRYuoAH0IO+Mk26bf/YMY/2gyu1X/uWU
+	xl3XyAbzNBvmdtsXYI6Rl5WZ5WO5nGh+JvHEfAui3r9qckkPsugloEmaBK+0LZD+jKNipEKzXTh
+	z9Ym1igo+ZNbNA=
+X-Received: by 2002:a05:600c:35cb:b0:45c:4470:271c with SMTP id 5b1f17b1804b1-4830e968e72mr35786535e9.18.1770200894603;
+        Wed, 04 Feb 2026 02:28:14 -0800 (PST)
+Received: from RDEALENC-L01.ad.analog.com ([24.206.116.131])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4830ec5cc24sm25090045e9.3.2026.02.04.02.28.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Feb 2026 02:28:13 -0800 (PST)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Wed, 4 Feb 2026 10:28:05 +0000
+To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v6 2/8] iio: core: add fixed point parsing with 64-bit
+ parts
+Message-ID: <hrhgmum6zdww7etc6ztchivfqecaaqeeul2bbagzyongkxpaeh@q7x4popwel6d>
+References: <20260130-adf41513-iio-driver-v6-0-cf46239026bc@analog.com>
+ <20260130-adf41513-iio-driver-v6-2-cf46239026bc@analog.com>
+ <aYKkv3dq9Vkm3s_3@smile.fi.intel.com>
+ <7tiv33i65unu5ypk7puj3buzybykyhv2qbwp54bhcem5t4rawq@dpfedqmmxbhx>
+ <aYMYJppigidPeLH4@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-52d38
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aYMYJppigidPeLH4@smile.fi.intel.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262586-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,quicinc.com,gmx.de,lucaweiss.eu,dnyon.com,mainlining.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[25];
+	TAGGED_FROM(0.00)[bounces-262587-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[intel.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 09868E478E
+X-Rspamd-Queue-Id: 6A7EAE47E4
 X-Rspamd-Action: no action
 
-On Fri, 16 Jan 2026 08:07:32 +0100, Barnabás Czémán wrote:
-> This patch series fixes supported ovp values related to pmi8994 wled
-> and set same configuration for pmi8950 wled.
-> It also corrects wled related properties in xiaomi-daisy, xiaomi-land and
-> in xiaomi-vince.
+On 26/02/04 11:57AM, Andy Shevchenko wrote:
+> On Wed, Feb 04, 2026 at 09:42:55AM +0000, Rodrigo Alencar wrote:
+> > On 26/02/04 03:45AM, Andy Shevchenko wrote:
+> > > On Fri, Jan 30, 2026 at 10:06:43AM +0000, Rodrigo Alencar via B4 Relay wrote:
 > 
+> ...
 > 
+> > > > +static ssize_t iio_safe_strntou64(const char *str, const char **endp,
+> > > > +				  u64 *result, size_t max_chars)
+> > > > +{
+> > > > +	u64 digit, acc = 0;
+> > > > +	ssize_t idx = 0;
+> > > > +
+> > > > +	while (isdigit(str[idx]) && idx < max_chars) {
+> > > > +		digit = str[idx] - '0';
+> > > > +		if (unlikely(acc & (~0ull << 60))) {
+> > > > +			if (check_mul_overflow(acc, 10, &acc) ||
+> > > > +			    check_add_overflow(acc, digit, &acc))
+> > > > +				return -ERANGE;
+> > > > +		} else {
+> > > > +			acc = acc * 10 + digit;
+> > > > +		}
+> > > > +		idx++;
+> > > > +	}
+> > > > +
+> > > > +	*endp = str + idx;
+> > > > +	*result = acc;
+> > > > +	return idx;
+> > > > +}
+> > > 
+> > > There is a development in the parse_integer in the lib/. I reviewed that series
+> > > and hopefully it will go in. With that done, we better reuse the lib/ function.
+> > > 
+> > > https://lore.kernel.org/linux-hardening/20260202115451.290173-1-dmantipov@yandex.ru/
+> > 
+> > In this patch, I see that it updates the overflow check, but I am not
+> > seeing that function being exposed to other kernel modules.
+> 
+> Can the IIO be compiled as a module? If so, then we would need to export that
+> function. (Note, we may export only for the exact module(s) in question, so
+> nobody else will be able to use it. See EXPORT_SYMBOL_FOR_MODULES() macro.)
 
-Applied, thanks!
+Yes, one can have an industrialio.ko.
+Then, would it be fine to use:
 
-[1/7] dt-bindings: backlight: qcom-wled: Document ovp values for PMI8994
-      commit: 02031064bb8f387d81988a8abb211f1366d87582
-[2/7] backlight: qcom-wled: Support ovp values for PMI8994
-      commit: f29f972a6e7e3f187ea4d89b98a76c1981ca4d53
-[3/7] dt-bindings: backlight: qcom-wled: Document ovp values for PMI8950
-      commit: b2df6cf10d5242bfef2cc957d83738ccb560ed9f
-[4/7] backlight: qcom-wled: Change PM8950 WLED configurations
-      commit: 83333aa97441ba7ce32b91e8a007c72d316a1c67
+EXPORT_SYMBOL_FOR_MODULES(_parse_integer_limit, "industrialio");
 
---
-Lee Jones [李琼斯]
+in lib/kstrtox.c; and:
 
+#include "../../lib/kstrtox.h"
+
+in drivers/iio/industrialio-core.c
+
+that does not look pretty.
+
+-- 
+Kind regards,
+
+Rodrigo Alencar
 
