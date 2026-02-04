@@ -1,132 +1,142 @@
-Return-Path: <devicetree+bounces-262787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262788-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4E9PJk6Og2lCpQMAu9opvQ
-	(envelope-from <devicetree+bounces-262787-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 19:22:06 +0100
+	id wI9DK7uPg2lCpQMAu9opvQ
+	(envelope-from <devicetree+bounces-262788-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 19:28:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F4053EB93C
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 19:22:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECA46EBA26
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 19:28:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 580AC301110E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 18:14:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1FB703003ED5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 18:25:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2862C34889F;
-	Wed,  4 Feb 2026 18:14:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C1262F5A34;
+	Wed,  4 Feb 2026 18:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CVT9/HVE"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="qnXTEC95"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.166.228])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C3427A465;
-	Wed,  4 Feb 2026 18:14:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 520D6280A3B
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 18:25:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.166.228
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770228843; cv=none; b=ejzYG7lkySlgQT7XxG1YhqPD2VByuakuj8rAR0o2BeWB34IeVL/LHlrilokuDyKFa6v5oyQbmtgrWsXbH/ZJEn5iynm4a1KlqP29E5VhU40dVGjGbrID8LosqOBYhQv7SGVZ9SxmQEWpy4E72DRdFgl+cr4roT5NwGOIAoheO4U=
+	t=1770229516; cv=none; b=d7HlQ2ypJ+fX+fHV38CICM0oUyo4L2vtZTVmHoULH/yv9z89JJq3Wibvw9TJe9hd/rzZeVCzHKy/q7kwFBGBB1zyM840CDn8kYw2FwDTw/6rHJsZnB2QWR1yhFM1XxGYIjfQR632xCIvWEMfD1iAyFNbivQVz0RwTjKufE9uqOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770228843; c=relaxed/simple;
-	bh=OJAn/nk18U9lt++VS0HtzdboxZ3Dns6CqLdxWvpKzb4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zc9rp2HIIzBa5RQ2kcehW1RxifeRZ5/xOhrjS5lYqTM1F/r4uyEEMbxeIyW4gS6QIKPDGPCIAgQmhPdWH6hhrYOvfjv0aaBfEevQ7KqQbqRp2hlvnzHQu94nopPmR3uPdgC0O8I0u/vykZt6d0XwfyWjVM20BdeK1VzKCYGbAIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CVT9/HVE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7BC5C4CEF7;
-	Wed,  4 Feb 2026 18:13:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770228842;
-	bh=OJAn/nk18U9lt++VS0HtzdboxZ3Dns6CqLdxWvpKzb4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CVT9/HVExBrZUevY2tvXU4LY1HfBuAmdORSGIBlCSpcZP6Y8BzJx5ol0yrGmzIY1u
-	 OYA1vOpbmSlxcD/P6zGDrkX9JUCR7FuEjeM5CvYkF2hb4kdyvsEGIgkUqok+oF11hM
-	 8t6mZq8msr6A8zvMcowoBt926PsAfTdWz22H8P5TuYZqbi3WY7qj/vEVDLL5T6+NBn
-	 WDpAv1W3u9XStIOxzDmr5tqGbEAc4Dn9dSRNkwloRU6F5xc5pHaqFvk0Uab1ysrS+9
-	 eivzZdY/UqdKfPeIZYs3Fr3rrm8aTytwS8QKLuHejCsUN2fWWUwnKaaiwvuW53sdgs
-	 CPvIas4RnRy6Q==
-Date: Wed, 4 Feb 2026 11:13:56 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Icenowy Zheng <uwu@icenowy.me>, Nicolas Schier <nsc@kernel.org>,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Abel Vesa <abelvesa@kernel.org>, Mingcong Bai <jeffbai@aosc.io>,
-	WangYuli <wangyuli@uniontech.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	James Le Cuirot <chewi@gentoo.org>, linux-kbuild@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Rong Zhang <i@rong.moe>,
-	Saravana Kannan <saravanak@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] kbuild: install-extmod-build: do not exclude
- scripts/dtc/libfdt/
-Message-ID: <20260204181356.GA2132823@ax162>
-References: <20260201130259.2906768-1-zhengxingda@iscas.ac.cn>
- <20260204021603.GA2646832@ax162>
- <fc757c51cf9412e03df6e379266ae43bad77a5bf.camel@icenowy.me>
- <ed9cd9a5d1f51b83c46ada7adb942e611c0c8a41.camel@icenowy.me>
- <20260204084517.GA3900164@ax162>
- <CAL_JsqJdS77S8VD-smpBi_mSZ6s3C66mvh5OCzQNhWMTyvjp-w@mail.gmail.com>
+	s=arc-20240116; t=1770229516; c=relaxed/simple;
+	bh=lpK1Zrp0KaaCyZ9NMwJqLwpT6YZg0RTNLTEmT781GU0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZCETKLuhU21UF6qVUF7tVvy8IB1xTZSSkI278sB/Hyt51jkATf8Hta/neR9qf5aPDDsmz06IogRz/QMqaZyKtpgiBJ4AqLS/7PU45HR/5SsRF4FdnDq+Mog1AfeSwshLUXcBk6+AW+9Xi3UT0nXZyutHn31jdFLdaKWsG6yAeno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=qnXTEC95; arc=none smtp.client-ip=192.19.166.228
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 9F162C0127E3;
+	Wed,  4 Feb 2026 10:25:15 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 9F162C0127E3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1770229515;
+	bh=lpK1Zrp0KaaCyZ9NMwJqLwpT6YZg0RTNLTEmT781GU0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=qnXTEC95XbN+rlZI1NZEYnU6iXc1zD0iNrAM4LPJcC/wucgNNn/zfS/WepU8ltQNT
+	 4ZqL7pOd4Be6PuIVLD1TNZxXV2eLICYrSDLnBGtK9zr8fYMjykfArBGXEgLnbRXOb1
+	 /oWljLW0vrY0+FqOO+5l0PhZsXKKy6vxfxYqkTtc=
+Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id 7C3B41B854;
+	Wed,  4 Feb 2026 10:25:15 -0800 (PST)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: bcm-kernel-feedback-list@broadcom.com,
+	=?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Hauke Mehrtens <hauke@hauke-m.de>
+Cc: Florian Fainelli <f.fainelli@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	=?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH V2] ARM: dts: BCM5301X: Describe PCIe controllers fully
+Date: Wed,  4 Feb 2026 10:25:15 -0800
+Message-ID: <20260204182515.1154618-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260108224026.3550-1-zajec5@gmail.com>
+References: <20260108224026.3550-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqJdS77S8VD-smpBi_mSZ6s3C66mvh5OCzQNhWMTyvjp-w@mail.gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[broadcom.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[broadcom.com:s=dkimrelay];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,lists.infradead.org,vger.kernel.org,milecki.pl];
+	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262787-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[broadcom.com,gmail.com,hauke-m.de];
+	TAGGED_FROM(0.00)[bounces-262788-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[icenowy.me,kernel.org,aosc.io,uniontech.com,gmail.com,gentoo.org,vger.kernel.org,rong.moe];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nathan@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree];
+	DKIM_TRACE(0.00)[broadcom.com:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[florian.fainelli@broadcom.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.54.176:email];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: F4053EB93C
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[broadcom.com:mid,broadcom.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,0.0.46.224:email,0.0.50.200:email]
+X-Rspamd-Queue-Id: ECA46EBA26
 X-Rspamd-Action: no action
 
-On Wed, Feb 04, 2026 at 07:31:57AM -0600, Rob Herring wrote:
-> On Wed, Feb 4, 2026 at 2:45 AM Nathan Chancellor <nathan@kernel.org> wrote:
-> > Ah, thanks for that information. Moving the libfdt.h bits out of
-> > bootinfo.h does not seem like it would be too difficult but I am less
-> > sure about asm/machine.h. Alternatively, maybe this could be avoided by
-> > separating out what you would need from bootinfo.h into its own header
-> > but I did not look too hard.
-> 
-> There shouldn't be that many locations using libfdt functions. Add the
-> header where it is used. IWYU
-> 
-> > As for a solution within install-extmod-build, maybe the libfdt headers
-> > could be included so that inadvertent inclusions of libfdt.h do not
-> > break the build but the link fails if the module actually tries to use
-> > any libfdt functions?
-> 
-> You do this and then we get to keep the work-around forever as no one
-> will care. MIPS is a mess that needs to be cleaned up.
+From: Florian Fainelli <f.fainelli@gmail.com>
 
-Yeah, that is a valid perspective, I won't push that further. Thanks for
-chiming in.
+On Thu,  8 Jan 2026 23:40:26 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> Tested successfully on BCM47094 SoC using Linux's pcie-iproc-platform
+> driver.
+> 
+> This fixes:
+> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@12000: 'device_type' is a required property
+>         from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@12000: 'ranges' is a required property
+>         from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@13000: 'device_type' is a required property
+>         from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@13000: 'ranges' is a required property
+>         from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@14000: 'device_type' is a required property
+>         from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+> arch/arm/boot/dts/broadcom/bcm4708-asus-rt-ac56u.dtb: pcie@14000: 'ranges' is a required property
+>         from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
 
-Cheers,
-Nathan
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
 
