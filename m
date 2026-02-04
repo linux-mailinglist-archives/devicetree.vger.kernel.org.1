@@ -1,134 +1,183 @@
-Return-Path: <devicetree+bounces-262576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262577-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0GKaCtYTg2nBhQMAu9opvQ
-	(envelope-from <devicetree+bounces-262576-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 10:39:34 +0100
+	id UOyuD7cVg2nihQMAu9opvQ
+	(envelope-from <devicetree+bounces-262577-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 10:47:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59633E3F4F
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 10:39:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95AB8E40B9
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 10:47:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BAD5B30BE122
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 09:35:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 28CB53019BAE
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 09:43:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 237273AE6F5;
-	Wed,  4 Feb 2026 09:35:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A070F3B530D;
+	Wed,  4 Feb 2026 09:43:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gI/B9DSi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gsUc+u/v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3803D3ACEF3;
-	Wed,  4 Feb 2026 09:35:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 435643A9DA8
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 09:43:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770197738; cv=none; b=VwG1H2q83N3QC8z0pbU0NB/nHkomEKgxuMVneDnHHkFbBCeDK5VLoypC7qW1AA7dACFw68MkL8bFwvUr2rOVbigp6YriGoNwaXBY/eveJcKO9g+XKk/W7YbGfz6wUeUVahDiMY2WxHpttgwT9NBQs7Dq3DhiDh1I7XU66EkUNmc=
+	t=1770198181; cv=none; b=ng7wJ2TnWTnRLmEmXyH3MeuaaHoG2x2K+DP4RrHEBfE4e5NZSevlSa2r+Mdv8naDbx32NJsWQOtYbCz1w7+BCHQekA31k/BZw9/xGT5JtjhOtufVs/u3gLmRE05Od/M4VZ62Ql0bNbviywItnrlZWCqZLNIWciBb40nub1tJZz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770197738; c=relaxed/simple;
-	bh=jf4RgzlGdwbUlzDUpBSHMOUi07m+ktoWuB1ArPzud1s=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=SssUKmizUXLAUzF2ns/XYT+iQYvvIPhOUJWXbgC5qR0xVNbWGmRwbwz4Y+BsvtzAXAtiwRpaVAH1NGBayNJmda4xB9o9dc0QJ4vXlaGB3bNdPjW3u08szYWuGiA5EpcuD26NVYcw4AVXdgJdJpO9drxba9u5Ywa32zi8WtVpxGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gI/B9DSi; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 994EAC24391;
-	Wed,  4 Feb 2026 09:35:40 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id F111160745;
-	Wed,  4 Feb 2026 09:35:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 62843119A88F7;
-	Wed,  4 Feb 2026 10:35:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770197733; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=jf4RgzlGdwbUlzDUpBSHMOUi07m+ktoWuB1ArPzud1s=;
-	b=gI/B9DSiD6lHoSUUDety76BjmYRcoVrTdad7OK55xLgm9VECyd9yLcCSJfjEWVongW5vHU
-	RVB/mmg3SdU526tmo7jeUa7rGi2NU9M6fkDWYiyYB/skpem+AnO9UqdnYzOlJJb+wl29iC
-	RI4RUKnAr16Vl0dnEITApJuiAvK/+gc6Beo/DXjMbIiL0dmYgDh7yVUKd0wSj1t1e1nAYE
-	LZxhC7Es54T1lRSIVnuwGGRx6iItGi+3wzPbNdzd7yTJjxF2IFyETnPRMZk0QbZhGeaDw/
-	fkTbomwvIiTeYgZha5Zv2HudnPMw5xeegeO1m/fZC8Mu3OnqGT3OLBTAky4Pfg==
+	s=arc-20240116; t=1770198181; c=relaxed/simple;
+	bh=hGwBf1cUBZVW0moEL2wbt4+Dz7qCO/Yl0iuemeryZME=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eXv1uZM5yc3+Heb6p37Bu4urJ9I+nPvFuBz0c/awarxDHQmU0yrLZ9KWkKZMhQUWDcslkAROp6K5SUV+PW9w4Smo99LUY/J71fAYMtmbvsse1nY6jytBWS39uzEF7PQng6Sj5qv1Ue36Fvl/7Vi1lgtzID4Jq4GIx4/0LJTaKvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gsUc+u/v; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-435a11957f6so5126087f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 01:43:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770198180; x=1770802980; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=s6noyEhcNwk/Aw3tl3/LJ2DrKHWXMyz7JjWPgqeEx4o=;
+        b=gsUc+u/vtiNTkp9t7nP06pMtgtzz7q3dAWjPNuYNpbCLA8FFkTuoXlqh9pjxp1m9i0
+         pd/DyxUr26ND8EoErfFGCkKN2mY0ynopnX9tluDGUG5lg5T3Eiz4SSypA3qaJbXL0BMF
+         4A+dLTGDN3P76vBUv7eVmI/vjjtiOkt+ClOzuivj6kGHEIPVrwXLZDVbf+ieXcyInZP9
+         1SoHCMa5ca75AHg8ypzP/rsAfuf72NrSGTHGlYTl5QsfxRgCBD6bWSem91LkVLnqyO0I
+         ou/tZNwPejpq/koqlhmpHiAqfZ8Je94dR+xzHF/Yq7JyItPYVYB7sAu+5ANuZSNGEcmw
+         bnnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770198180; x=1770802980;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=s6noyEhcNwk/Aw3tl3/LJ2DrKHWXMyz7JjWPgqeEx4o=;
+        b=TnpLfhIV33E/pTweq+WgIY3AEH4VHgMaJQwMX45UK8cFUOi1hTnZeeozhA92Xhl3Ee
+         meck8uPp57Rj9WfzMP3o1iRb4DXBGkenM8LDe15/E4bwJf7YrfMFuG6IYuQdTUgCdNMd
+         tEm0szcbDhwDLjCfPj2gOFsqXaKZ2/VkSlrRV22jWcp4OoToKw6DoXBxPGz63kABc/+x
+         1Eox98bcKmMz+3MzgTVZGI6zug4PL7txtDrldABnzQWQ5Og3wbsUl8qHH2ALJIGhECRn
+         xG1VuM1LieNxD519kG3aH2+0u5JvcsN1CjqH4PI28MmA1H2FQhLclLwg0xK10cGhQQQx
+         H9dQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV7s/WyY8RqmgP+139kadStJimpEy0uGnZkZmB+nHsILuNlVskiEOoS+Klb87TqlNQgWo7Ra0Ur6Z/J@vger.kernel.org
+X-Gm-Message-State: AOJu0YyH1BIbsmYCbmLSN1RduzsykYt/LTOwrasxQQqyfW473WESBXXI
+	LQvqABmdj3BNqKlU40fB6wMDilNxerPJ5j7TODOX0QzKriqaJmwidQiC
+X-Gm-Gg: AZuq6aKg0EDX2qgIoNz6dZh0B9X075hMIJOquHWkrCdMoqUDdV7p+IedeY+0DepbxsT
+	IePPyaqNE5J8lrezulVqlOEDnvSV5fpaEbo8jHDcS6b9JJR4b4tHstxPwpXG/T8y+7QloRq2mEB
+	wXvNDXrkZENE5qhcMjf+sSfGGejJ6BNXyv5pgYzXSbSr4GP7HKS4d0E0Cv+hMrCHj9IFN7tfioP
+	O1L9LKEY/8EWDYzfwPp9Li+Kf6tpA9LojL6mocRbDME1b8SbPy+feMBEKZ87YsPKgX3deFWE4RM
+	TvtVzgDKD59z3dfyMid4VLpCyWweD7mPrtpp2TFHGueo9UE/Un1skio+YmLRfO8dXU2naCcmEow
+	9318pG//+ktiu24mnhYO3Iw8yZoYr14mc0pCaWIKLHruYbN/RC9CvQwO/hpp2SY3Fy4VLKS7Wqu
+	Pr9ILaq0167jHVVcypGPrTDeKxk6IzOeLXooqV8BBgcWMPs6M2iGuW9TKE635VpvTf0lW9CjWfz
+	Zvc
+X-Received: by 2002:a05:6000:400b:b0:432:a9db:f9a2 with SMTP id ffacd0b85a97d-43618053ca8mr3252156f8f.41.1770198179457;
+        Wed, 04 Feb 2026 01:42:59 -0800 (PST)
+Received: from RDEALENC-L01.ad.analog.com ([24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43618057f66sm4791738f8f.25.2026.02.04.01.42.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Feb 2026 01:42:58 -0800 (PST)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Wed, 4 Feb 2026 09:42:55 +0000
+To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+	rodrigo.alencar@analog.com
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v6 2/8] iio: core: add fixed point parsing with 64-bit
+ parts
+Message-ID: <7tiv33i65unu5ypk7puj3buzybykyhv2qbwp54bhcem5t4rawq@dpfedqmmxbhx>
+References: <20260130-adf41513-iio-driver-v6-0-cf46239026bc@analog.com>
+ <20260130-adf41513-iio-driver-v6-2-cf46239026bc@analog.com>
+ <aYKkv3dq9Vkm3s_3@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 04 Feb 2026 10:35:27 +0100
-Message-Id: <DG62Q1L5RK1Y.22BS02J31LJV4@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v6 0/8] Add generic PHY driver used by MACB/GEM on EyeQ5
-Cc: <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
- <linux-clk@vger.kernel.org>, =?utf-8?q?Beno=C3=AEt_Monin?=
- <benoit.monin@bootlin.com>, "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>, "Luca Ceresoli"
- <luca.ceresoli@bootlin.com>, "Conor Dooley" <conor.dooley@microchip.com>,
- "Jerome Brunet" <jbrunet@baylibre.com>, "Andrew Lunn" <andrew@lunn.ch>
-To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, "Vladimir
- Kondratiev" <vladimir.kondratiev@mobileye.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Vinod Koul" <vkoul@kernel.org>,
- "Kishon Vijay Abraham I" <kishon@kernel.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Philipp
- Zabel" <p.zabel@pengutronix.de>, "Thomas Bogendoerfer"
- <tsbogend@alpha.franken.de>, "Neil Armstrong" <neil.armstrong@linaro.org>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260127-macb-phy-v6-0-cdd840588188@bootlin.com>
-In-Reply-To: <20260127-macb-phy-v6-0-cdd840588188@bootlin.com>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aYKkv3dq9Vkm3s_3@smile.fi.intel.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262576-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262577-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[theo.lebrun@bootlin.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:url,bootlin.com:mid]
-X-Rspamd-Queue-Id: 59633E3F4F
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 95AB8E40B9
 X-Rspamd-Action: no action
 
-On Tue Jan 27, 2026 at 6:09 PM CET, Th=C3=A9o Lebrun wrote:
-> EyeQ5 SoCs integrate two GEM instances. A system-controller register
-> region named "OLB" has some control over the Ethernet PHY integration.
+On 26/02/04 03:45AM, Andy Shevchenko wrote:
+> On Fri, Jan 30, 2026 at 10:06:43AM +0000, Rodrigo Alencar via B4 Relay wrote:
+> 
+> > Add iio_str_to_fixpoint64() function that leverages simple_strtoull()
+> > to parse numbers from a string.
+> > A helper function __iio_str_to_fixpoint64() replaces
+> > __iio_str_to_fixpoint() implementation, extending its usage for
+> > 64-bit fixed-point parsing.
 
-Is the plan to take this for the v6.20 merge window or await v7.0?
-The driver has seldom changed since its first revision 3 months ago.
+...
+> > +static ssize_t iio_safe_strntou64(const char *str, const char **endp,
+> > +				  u64 *result, size_t max_chars)
+> > +{
+> > +	u64 digit, acc = 0;
+> > +	ssize_t idx = 0;
+> > +
+> > +	while (isdigit(str[idx]) && idx < max_chars) {
+> > +		digit = str[idx] - '0';
+> > +		if (unlikely(acc & (~0ull << 60))) {
+> > +			if (check_mul_overflow(acc, 10, &acc) ||
+> > +			    check_add_overflow(acc, digit, &acc))
+> > +				return -ERANGE;
+> > +		} else {
+> > +			acc = acc * 10 + digit;
+> > +		}
+> > +		idx++;
+> > +	}
+> > +
+> > +	*endp = str + idx;
+> > +	*result = acc;
+> > +	return idx;
+> > +}
+> 
+> There is a development in the parse_integer in the lib/. I reviewed that series
+> and hopefully it will go in. With that done, we better reuse the lib/ function.
+> 
+> https://lore.kernel.org/linux-hardening/20260202115451.290173-1-dmantipov@yandex.ru/
 
-Thanks!
-Have a nice day,
+In this patch, I see that it updates the overflow check, but I am not
+seeing that function being exposed to other kernel modules.
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-- 
+Kind regards,
 
+Rodrigo Alencar
 
