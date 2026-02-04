@@ -1,82 +1,106 @@
-Return-Path: <devicetree+bounces-262470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262498-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KLHgMeqpgmkMXwMAu9opvQ
-	(envelope-from <devicetree+bounces-262470-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 03:07:38 +0100
+	id KMLCOa3DgmkpaAMAu9opvQ
+	(envelope-from <devicetree+bounces-262498-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 04:57:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B043E0AF7
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 03:07:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B6A6E16F7
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 04:57:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CBC2D301373E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 02:07:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B8A96301FF93
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 03:56:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5187B280014;
-	Wed,  4 Feb 2026 02:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6457A2DF128;
+	Wed,  4 Feb 2026 03:56:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GPTk1Dg+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bDPhD3/t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC016214812;
-	Wed,  4 Feb 2026 02:07:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1B81E25F9
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 03:56:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770170856; cv=none; b=Bk8gjc4PlQfRq4Qx8/uHeRlkEg4nUn0i1UhqLgRZJ70rAkYOTVttqcTyYsuVd9tsSE3VeSRVvcktYJxR0yWKrDvWWUuva4PK8dQlULpup2vG9VsOeRTjN2fb1O8dOhZWPamP1ZE3FkGIXh+tTOEnznYxxCfrwbMWAbWdS5Fr2SE=
+	t=1770177397; cv=none; b=VbP5v8TdSM1036rjQCB6MNRTEyipFvUaXuh09twy4ZopYHxPCjwbsLK+vjD/g20T8vxpHg4GBnOrxorrKQis6elfwQNkPcrx4/cJ/F1oEAp/tojbJxcd1hPb9o+6OUPM5gmsiw6oxpQArumLYGmPcmgFiC7vXkf0vBBX+qjItEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770170856; c=relaxed/simple;
-	bh=zaBouzM87mqtHsfHsFR4z1oOTqxCjLOp+dS3AvxJyTY=;
+	s=arc-20240116; t=1770177397; c=relaxed/simple;
+	bh=AGkaUKeA48k63GxPvSgLYxDOipDNRk5KS3ygY4PCKG8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VBa5s0uF9UdvEJxceGye/O80DdEkJv3lhbe6Fj8rZz1/B7mqw3J47iMKt0C6cEXQ50ZHEIS/AU36BBQ0xJElS3Xptom5+12zyA4n0hLUi+cJwuwSWxil70DLCP7OVfWtUba/vYGrIyMZbtMXfl8rki52Q5SYGwn1DHr4uOrhpok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GPTk1Dg+; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770170855; x=1801706855;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zaBouzM87mqtHsfHsFR4z1oOTqxCjLOp+dS3AvxJyTY=;
-  b=GPTk1Dg+4tQy/iIRGESRM5gOc+S6V8CeKPbwqyY814ock8BMRIXgL08h
-   s5hY07Wdz8OIYtrQKzJksXjymx1/22qZq5P+OgKsQJPe1j3NFaKgEbQ1h
-   c5cPEgT53W3/NDecK1o4W1QQ0gk3IxUcNqsj7zZoLIuII9iBQFbB1mF/Q
-   QmxojXYQQkrFs/yUEd8hVisLH1RljLlzu+7enEo0PCjkiEXysQduleAsb
-   vcU3ww59+ABYRQ08I6MwhHSunlZJe1MEdHAe9i5cXiK1Q4P1Dd+lgZh9n
-   z7zWqLl44z9Dftwl/rYrb8AMWZIv84+wRfjuLgVclgIojZRt+jbJaGrBY
-   Q==;
-X-CSE-ConnectionGUID: 9Dr4KHhbRbKIdMrBfPssRA==
-X-CSE-MsgGUID: 42IfCp+2St+P8CB+LObM2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="75206463"
-X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; 
-   d="scan'208";a="75206463"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 18:07:34 -0800
-X-CSE-ConnectionGUID: 1tjR6wRhSbuhCQUhNU0p6w==
-X-CSE-MsgGUID: AfhpFH7KRXaz1uThqcsxKg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; 
-   d="scan'208";a="247626925"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.168])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 18:07:31 -0800
-Date: Wed, 4 Feb 2026 04:07:29 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: rodrigo.alencar@analog.com
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v3 7/9] iio: amplifiers: ad8366: add device tree support
-Message-ID: <aYKp4UrEhLInNNZZ@smile.fi.intel.com>
-References: <20260203-iio-ad8366-update-v3-0-5d5636b5181a@analog.com>
- <20260203-iio-ad8366-update-v3-7-5d5636b5181a@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=t0KxJ+0trOapNOcMeYmyo6LTpcsliKINmyvCGQDQd4rceIGcbBFlCRfVC2udOPIIaP9gggQbX6oQp7TL3ih5vR2LIEyeZGLP1jULcnTXXk09Fl3PXxHdXmJoQNhq+1HiqY0NGGv9FzhKo6NFf+z2eeplSyinfGIgkLRCk+FaB7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bDPhD3/t; arc=none smtp.client-ip=209.85.160.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-50331ac1fedso77783241cf.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 19:56:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770177395; x=1770782195; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=kCf4lzrMziBndOsmo8GuusOdBN8cx0cDMD3sdQZPXW0=;
+        b=bDPhD3/t+6Jyv1z0La8C381fejCyAbVwzp47Fa1Fhts0mgvbguNkx/ML9yXGp8VaR0
+         VZd81/ptdqjvOs7Mp7MWVfEpIrLOOmefzHW7hZVBbI4ypGsMmg1ivR6VfK/JXGsqsBW2
+         iswxFm5ImOppyEcb1GnSqZOOimMNK0MnYVcD/KfbChbSwIxNd1RnqusjR1uiUS3i9DWT
+         XMx/eg6RTEA6HuQ7VJI82lxp9+GwPijw9thEplqUEIX5f9gjEwMohSgwWDO6mmRE+ajV
+         9awdX4SsLcsJtgAUjmPLoQf+n55b66WXGviX2+QTgr4ZmczvyjV5fmyUgsm7aB1xqApq
+         v8WQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770177395; x=1770782195;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kCf4lzrMziBndOsmo8GuusOdBN8cx0cDMD3sdQZPXW0=;
+        b=tA3pXb1IZRErQzB54sfjkDOejZi63NrCYg0bpyUs7LCJ72vUsTjlU7rDVsNJ0oeKnB
+         lRYKmtvR7WwU8v97n0zWODyA0G2j43BAKadN/aFR4A50JvB3TxJRdC8DDc4SrAMut83I
+         Pppq+RKjI4Xe7mHAV1Sx55yQI4qGi8/FVmOEY7jfg0UhMgqT72o34CYqbrXi1Y3fm5VC
+         Xch2vS0MCAmntjnl8aRUCT6wYSK2lFP3M5W1x/3rx4kv8WBgqBCJFmM5kP0bOL5jXAMF
+         2r2/NvZABUz7luqogDzl5mFaDEazaYJ11ucEJDJNKMS+fHr43d2f+MJbUjmtvP80f7th
+         dUwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX3tu4nKaIiwVPh/rIHF21qyxOV4uhwOXJMExf7+aneYEgy8sBga2gfAx/H+yBjI6OmY3Ik0wdaPT6m@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNxkx0D1/xYuHxc/cdq9hpyGTTv40InuDsP7bLLnhskxw6f9j+
+	CDgChNa+46vjdfYRe50QwCPLCwegsgrrltUAhvWt3w5mv7uLZZrfM4Ha
+X-Gm-Gg: AZuq6aL6FIs+3Tq085Awimqsvcn2rC3+rwRGSqrlwwTntGIsghf1tXDuTS2nEYvvG7h
+	TKCE9xm+kPEgWwV+Ac2zkgMqR7VY6j/HhMH4Em4WBWXcfMyTJweTnKiQymvcbfEq4gjCEBssugN
+	/eDocIqhBOQ40OWFh10znklmKNeIeZgmvOv+MfbYBRY8uwkFnDQZTZPDkjQlk3Jsx0r+KSqMcoT
+	PchwGGUrOiMlWAeROLeJPtQphuV9QHbqU0SFr4+2+97tHgRgnRf5ehPz6PN6AUYqWvXs9LxTCCl
+	A1BDzienrGWHQA7oszg2OiZ0OJcaPg4XlSvXSkzxnoEr7G/VX5qy0ef0zphNfQit4cezzbB2czu
+	keZxf0KxA9H+0fy7Tqcj9UFcNB1z/ftDzg2yeEhgYyMJp/JXLej9w1U7yOOmowBrfA5zcGH5TFL
+	6TQ0aRl3mQ2A==
+X-Received: by 2002:a05:7301:7003:b0:2b7:32fe:4bbb with SMTP id 5a478bee46e88-2b832895197mr603971eec.11.1770171121283;
+        Tue, 03 Feb 2026 18:12:01 -0800 (PST)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b832fafc2fsm746589eec.24.2026.02.03.18.12.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Feb 2026 18:12:00 -0800 (PST)
+Date: Wed, 4 Feb 2026 10:11:36 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>, 
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Yanteng Si <siyanteng@cqsoftware.com.cn>, 
+	Yao Zi <ziyao@disroot.org>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Shangjuan Wei <weishangjuan@eswincomputing.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+	Chen-Yu Tsai <wens@kernel.org>, Zhi Li <lizhi2@eswincomputing.com>, 
+	Boon Khai Ng <boon.khai.ng@altera.com>, Quentin Schulz <quentin.schulz@cherry.de>, 
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	spacemit@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH net-next v4 1/3] dt-bindings: net: Add support for
+ Spacemit K3 dwmac
+Message-ID: <aYKqh7SmoHO83Avr@inochi.infowork>
+References: <20260130022705.1059214-1-inochiama@gmail.com>
+ <20260130022705.1059214-2-inochiama@gmail.com>
+ <aYIyuulFADU_j3V0@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,125 +109,61 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260203-iio-ad8366-update-v3-7-5d5636b5181a@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <aYIyuulFADU_j3V0@shell.armlinux.org.uk>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262470-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-262498-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_TO(0.00)[armlinux.org.uk,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[37];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,cqsoftware.com.cn,disroot.org,bp.renesas.com,eswincomputing.com,bootlin.com,altera.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,smile.fi.intel.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6B043E0AF7
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[inochi.infowork:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4B6A6E16F7
 X-Rspamd-Action: no action
 
-On Tue, Feb 03, 2026 at 11:24:13AM +0000, Rodrigo Alencar via B4 Relay wrote:
-
-> Add device-tree support by dropping the enum ID in favor of extended
-> chip info table, containing:
-> - gain_step, indicating with sign the start of the code range;
-> - num_channels, to indicate the number IIO channels;
-> - pack_code() function to describe how SPI buffer is populated;
+On Tue, Feb 03, 2026 at 05:39:06PM +0000, Russell King (Oracle) wrote:
+> On Fri, Jan 30, 2026 at 10:27:02AM +0800, Inochi Amaoto wrote:
+> > +  clocks:
+> > +    items:
+> > +      - description: GMAC main clock
 > 
-> With this, switch cases on the device type were dropped:
-> - probe() function adjusted accordingly;
-> - Simplified read_raw() and write_raw() callbacks;
+> If you know what this is in terms of dwmac databook clock terms, it
+> would be helpful to use it here. I suspect "application clock" would
+> probably summarise it, that being the clock for the bus interfaces
+> that dwmac provides to the host.
+> 
+> -- 
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
-...
+That's a good point, In fact, I have no dwmac databook now. So if you
+think it is fine, I will change this description to the "application
+clock". Thanks.
 
-> +static size_t ad8366_pack_code(struct ad8366_state *st)
-> +{
-> +	u8 ch_a = bitrev8(st->ch[0]) >> 2;
-> +	u8 ch_b = bitrev8(st->ch[1]) >> 2;
-> +
-> +	put_unaligned_be16((ch_b << 6) | ch_a, &st->data[0]);
-> +	return 2;
-
-With this return it will look better as
-
-	return sizeof(__be16);
-
-Alternatively it can be done via array:
-
-	u8 ch[] = { bitrev8(st->ch[0]) >> 2, bitrev8(st->ch[1]) >> 2 };
-
-but I find it uglier than the original approach.
-
-> +}
-
-...
-
-> +	const struct ad8366_info *inf = st->info;
-> +	size_t len = 1;
->  
-> +	if (inf->pack_code)
-> +		len = inf->pack_code(st);
-> +	else
-> +		st->data[0] = st->ch[0];
->  
-> +	return spi_write(st->spi, st->data, len);
-
-Hmm... What about
-
-	const struct ad8366_info *inf = st->info;
-
-	if (inf->pack_code)
-		return spi_write(st->spi, st->data, inf->pack_code(st));
-
-	st->data[0] = st->ch[0];
-	return spi_write(st->spi, st->data, 1);
-
-?
-
-...
-
->  	struct ad8366_state *st = iio_priv(indio_dev);
-> +	const struct ad8366_info *inf = st->info;
->  	int ret;
-> +	int gain = inf->gain_step > 0 ? inf->gain_min : inf->gain_max;
-
-Please, preserve reversed xmas tree order.
-
-...
-
-> -	{"ada4961", ID_ADA4961},
-> -	{"adl5240", ID_ADL5240},
-> -	{"hmc792a", ID_HMC792},
-> -	{"hmc1119", ID_HMC1119},
-> +	{"ad8366", (kernel_ulong_t)&ad8366_chip_info},
-> +	{"ada4961", (kernel_ulong_t)&ada4961_chip_info},
-> +	{"adl5240", (kernel_ulong_t)&adl5240_chip_info},
-> +	{"hmc792a", (kernel_ulong_t)&hmc792_chip_info},
-> +	{"hmc1119", (kernel_ulong_t)&hmc1119_chip_info},
-
-The conversion to chip_info may be split to a separate patch.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Regards,
+Inochi
 
