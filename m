@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-262695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262696-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YB9NH7hWg2mJlQMAu9opvQ
-	(envelope-from <devicetree+bounces-262695-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:24:56 +0100
+	id ICixKdNWg2mJlQMAu9opvQ
+	(envelope-from <devicetree+bounces-262696-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:25:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6FBEE70AB
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:24:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F7C4E70D9
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:25:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CBF443006157
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 14:23:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1F4EE3012E83
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 14:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F062BE643;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0AB9410D1F;
 	Wed,  4 Feb 2026 14:23:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GSfr7hu5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PhvLEth7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2B0123D288
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 14:23:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7110C40FDB2
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 14:23:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770215005; cv=none; b=uiDcteN86vrIh8LGUSOYObRoKRbi0HPC67sOABoTAJZVLvxnho4HAgqdxhkb21tdITkpcTM4RrX8lAQ7oU15gTX12ELx8X/lxd6CMK/RaJmM9a4HH1CaRVpqBxPOmVE0oPp1Qb9iYsXZ1veQJ8Jn1Y2qYhLnANOkyD7rzKGqax0=
+	t=1770215005; cv=none; b=dghuCyCXOlyXl/RLTPPoYpMgp/V1RLTZPgxmPcrjH7k6tfVnf8mLIX0Z0SRwX5RFPdwDS9sDwrw7U4Bn/Vn9m7fPmjW+caph1cwnhCNTliYy2JFPAlx2tDdFwOBfEwgi22aZmOuxIhRHmWNgfhxzdqbS9E518tUV6/q7xvGwrTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1770215005; c=relaxed/simple;
-	bh=csoDZpmYyjeCMvKV7endx7NY3EpOJ+eAV8UdMpj9mwQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CdUilDuKJSaM7hG8UxMqDXe/G36u5D5ccPquSNVpFDcKYmdcBJgai6DRC8rxTYQ73mi+MhPwPkWckHcWUHB+Lq/YTER7UiiyNQQy9GJrXGKHd+qDn8Zui76NMe37Dsr4SAHmGY9goyYKv6SBky23QWWQ3O8yr/PihopWt+STPQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GSfr7hu5; arc=none smtp.client-ip=209.85.218.42
+	bh=1zX/KmPqe4XbBIXKCE0/BFFxZ+38CAZXt+tLU70EOuc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=qNwMtnZ96LAyV7QNDFymMFo55o1NWXd0fjn0wtgDV3WsBD4CYGzh+/VJIVCsqvAo8HCgn0G7nZn26e2HKVZ5BicywuqJS0YzxcC7vfshPaLUic0Ggoa2yc/6wzMpoX5VmzanfOOVjXwoFPCXDVgBrvuZcmgeLLRtySSMK+2fhok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PhvLEth7; arc=none smtp.client-ip=209.85.208.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b8e9f89a8e3so134868566b.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 06:23:24 -0800 (PST)
+Received: by mail-ed1-f65.google.com with SMTP id 4fb4d7f45d1cf-6581af9c94aso1257149a12.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 06:23:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770215003; x=1770819803; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=lU7ESjXCTwJh2bpXkAkJ/rnLoQ5/T4bIZw6hjLMuYEc=;
-        b=GSfr7hu5K8cb5wkgQbUGt8qhE0rRXbHnIlDjn4fq+tYzYTlCrAiUsKz9troy5nCgKl
-         qDyfkIDk/ECeH7CUHNQaJhye+5zuetrYAGQuGD4k/Vhv16IE8rhFwhjSW8J1cniIiBQq
-         +DYXCcAT9mcu7/nzb6Q+k8TsncAWq75smIBR1N+/yg3mhOPh5/ZtuqgvjjYB95rsyHES
-         hRaPMWyUT+LBOOMTAXZhluKSiIDVMsbPfXh6O68Oh8ma6kddoTORynQd4SqXJpWO+WmW
-         yyGLErK/S8Ee0Zw3B53EJdCGVy4V40HEfokDgMG80JC8Z1TkUwhnnMWQN1Lp01FCHBDp
-         Zukw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770215003; x=1770819803;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1770215004; x=1770819804; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lU7ESjXCTwJh2bpXkAkJ/rnLoQ5/T4bIZw6hjLMuYEc=;
-        b=JcsuqR80yDgYP610/s0QRckAgmLjnk3uqKfYx3gD/uJCGpoMHBuSRrSesOtfCL4M01
-         9z7243JhwZyolYocD0y0OWIsj1/HXpST5/AS/0KSabkKf/S1C7BVAe1E3ZJOOETULjJ1
-         p+NcwM1Jh6HFQe96UUm2TsAko16jv1Cdg+f8PgGaUtFtZtdI7KKaLLYSmk23cTMndybJ
-         yYCETj0xacrtMXbfkpPZOj6cnZoSMUw+avt4B0/SWS1yQULpDqr5BOJnCCufwur/v4Vn
-         9HYOaOeDqRqAzPz3HEXq4M2aslz1uDSig9t+iuvYjjU6EIxtqvni7pxFwIgKW7Ktwb+t
-         0asA==
-X-Forwarded-Encrypted: i=1; AJvYcCWsD1GX5w4L6uXvMKwJAbrIr8u07sJB9CURliV2+NOivAl7/t34WKOMwOcreyXYvjbEIT2MA0WFU74s@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUdcL66At+v8ktUm7XnB5cy/nBTu/irDROlv8pj3FXdYyQAHm7
-	4ifUzi6mQDZDpNF2I3BQoVKKaSt4zOrr9DQUmwUOGpv5rrDTveY6Cuih
-X-Gm-Gg: AZuq6aJYI1Iq4QdzqyqKrMrbVQIUH2/hJyxwd6PdFtw0FRrl36bSAXmVndzegTtxNwy
-	FvyH0OBOIDh9KVxcMVRy50h3sVALmjM0nLmV0qxaMWui0qRg+E8n3BUglet4b9SaRwOUNljDvL9
-	iEKnq0ZZdQ54z3Rhwn/O0VXw3j0XsLMuEcECCbr0rKY1RXj5L/ml9ngK6bJR8y62PvYdbtnXPr/
-	4aQL5Z0ls4ys0crLsxYMLgsMViT3OnTs1erwh+bDq4bl1GSCdo29Q7zCYd8nON2G51gwkWGP6ps
-	6WNgigGgkt4pe7reKfSCx93tLzzImdaysKzs9pJ1Sb3jxNmcyiKLsKX/Q3rBfPDgMbtaR1IvkRH
-	QT60yZ/GxCKn7GI3Kc94P8j7ZppuuE8izveq7gI6sn4hEluD2nLMB0jPvoiII715Z4+K1kktJSj
-	ixLiJ9P7pYlnGtRxNwSVEzXUrQQQXx12pl27E=
-X-Received: by 2002:a17:907:3fa4:b0:b87:2780:1b36 with SMTP id a640c23a62f3a-b8e9ef30624mr255363466b.13.1770215002965;
-        Wed, 04 Feb 2026 06:23:22 -0800 (PST)
+        bh=I1znNX1N3rANUdGlvXWVGWuiuSP52fPEYjbxG/ELNnM=;
+        b=PhvLEth7b1lrYThDBkWEXbvC5QmpmRnrqvGnnhHauVsw6E3kxOGOfGiHPhB6iWpQyv
+         jKrer/l9zPje9JIIhO8P46UeEcUovAT2AlNURGNI/B9JFZm79Us3kPinteNC1/oPPDDK
+         BVYCiUs5ST+pU8OtN+0cYV3R4ot17ZjDGpGbhA1pm5KiRKf98e7rX7hZqx+W9uSbE5h8
+         Z3NMD8Nkiev2VpCf1qClvI+G1KyPmQrRi7fckQL5H/CQ/LdHO7dt3XKz3EPBlkLsIht3
+         EfXKUsG2GZtVgk6gQgVclc0wZRKnC1bRfTMoiPLE5MkD0ewwfj7xe25wBQAEgfbmbf3h
+         I25Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770215004; x=1770819804;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=I1znNX1N3rANUdGlvXWVGWuiuSP52fPEYjbxG/ELNnM=;
+        b=Q8jn0eepv8MVjyhVpDwMdg+/6bwpCoFUwoOfchel0Y8yyrj/2D/AuOyoBNASxarcTc
+         NL5cZsNyFxIEypbOemh1KoTf8563k1yhCrir1YdXUkP6UAP7cE9yxhTaQgjNMIgf5FbH
+         tq0WHdC6dplW1rCJ0tYgk+iUsAESNumkdW+nNZLJYvdHWEEjm2jl1qCckOBwRHOZVgnA
+         kW/NJIUdkLMOJCTRxCX6tKU/OXoEIQXzPG08pDTFdCfNFoweAumDELkJ+P3AK3PqZ52p
+         Pwm9e04BL3aVI56jqJLg5mPdHprA7lqSkthXgr38bMSiBzbEo8L+cGGgMl+k2HvPE713
+         9FfA==
+X-Forwarded-Encrypted: i=1; AJvYcCVb0yuMlYJ/vrVzwhhNNCROFlxH4CM0OZ9kEmVJE+QVPWpaYUHwanuQpRtaQ+Y4Y5XkntWYa/hoCAWh@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCqSsd6D9ok1zar5VWPgkLHgPTotfUgooagdXBDnX9xdghjVnV
+	XFBBmZ7oRNLDHWB0z9g7GnemL+d3Gc2RFiXNHVRXeGvR3w9T1cYLkz2r
+X-Gm-Gg: AZuq6aKsHaz96B9swDa095/ROLBxAzFXjLe1VQEKOAVjBBchT23Yt1LP8dzsY/7xzYL
+	TxM/KA/+6dVey2ysy2cspdQoQLiigVt4NAtLrXiV3CsXG9Fg33wldPj5VVKiwDEY6mVo8697sxf
+	0zu8uocohZZmyfIaJhC2TLuOQoO8V56Rlatz+UXaLM4Y4RFpmVNsbXUhmMFaeE3XiwcHWiWwRCf
+	w+lBnXU9tERXJLDr20nTUSQvcuVIzJGa98OG/BYoWJBK1+/NYDJT/P5ucEdqc76UIr2PVHzszH2
+	6uQEyvq4agiiSe0nGkQfAbe0OijuMZ5D7ut7WkhLCnapXvCtqJww0+hglmV8sm4Mf+vp9JD3gk2
+	3fKwEnul2sGl4iUu5QGHoh9SQQv6sr2X6+X23QzQEyDeE8UemAYyjuSqTc+q+hqgl5GO4peNmwC
+	w788dQ0fXh5tPd6j+wJDYApHl7WW4p10yZKGU=
+X-Received: by 2002:a17:906:eecd:b0:b87:173f:61b with SMTP id a640c23a62f3a-b8e9ef2c012mr215351566b.9.1770215003489;
+        Wed, 04 Feb 2026 06:23:23 -0800 (PST)
 Received: from localhost.localdomain ([2a00:23c4:a758:8a01:3c9f:a100:4d45:ebc7])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8ea001ea7dsm129038366b.47.2026.02.04.06.23.22
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8ea001ea7dsm129038366b.47.2026.02.04.06.23.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Feb 2026 06:23:22 -0800 (PST)
+        Wed, 04 Feb 2026 06:23:23 -0800 (PST)
 From: Biju <biju.das.au@gmail.com>
 X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
 To: Thomas Gleixner <tglx@kernel.org>,
@@ -88,10 +90,12 @@ Cc: Biju Das <biju.das.jz@bp.renesas.com>,
 	devicetree@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
 	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 0/8] Add RZ/G3L IRQC support
-Date: Wed,  4 Feb 2026 14:23:08 +0000
-Message-ID: <20260204142320.103184-1-biju.das.jz@bp.renesas.com>
+Subject: [PATCH 1/8] dt-bindings: interrupt-controller: renesas,rzg2l-irqc: Document RZ/G3L SoC
+Date: Wed,  4 Feb 2026 14:23:09 +0000
+Message-ID: <20260204142320.103184-2-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260204142320.103184-1-biju.das.jz@bp.renesas.com>
+References: <20260204142320.103184-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -110,7 +114,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262695-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262696-lists,devicetree=lfdr.de];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,glider.be,gmail.com];
@@ -128,38 +132,146 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B6FBEE70AB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bp.renesas.com:mid]
+X-Rspamd-Queue-Id: 1F7C4E70D9
 X-Rspamd-Action: no action
 
 From: Biju Das <biju.das.jz@bp.renesas.com>
 
-The IRQC block on RZ/G3L SoC is almost identical to one found on the
-RZ/G3S SoC with the difference like it support more External IRQs, GPT
-Error Interrupts and also has additional registers for GPT/MTU IRQ
-selection, shared IRQ selection between external IRQ and TINT.
+Document RZ/G3L (R9A08G046) IRQC bindings. The IRQC block on RZ/G3L SoC
+is almost identical to one found on the RZ/G3S SoC with the difference
+like it support more External IRQs, GPT Error Interrupts and also has
+additional registers for GPT/MTU IRQ selection, shared IRQ selection
+between external IRQ and TINT. Hence new generic compatible string
+"renesas,r9a08g046-irqc" is added for RZ/G3L SoC.
 
-It has 16 external interrupts of which 8 interrupts are shared with
-TINT[24:31] and are mutually exclusive. The external IRQ/TINT IRQ
-selection is based on a register in the ICU block.
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+ .../renesas,rzg2l-irqc.yaml                   | 66 +++++++++++++++++--
+ 1 file changed, 62 insertions(+), 4 deletions(-)
 
-Biju Das (8):
-  dt-bindings: interrupt-controller: renesas,rzg2l-irqc: Document RZ/G3L
-    SoC
-  irqchip/renesas-rzg2l: Make fwspec variable as pointer in struct
-    rzg2l_irqc_priv
-  irqchip/renesas-rzg2l: Drop IRQC_NUM_IRQ macro
-  irqchip/renesas-rzg2l: Drop IRQC_TINT_START macro
-  irqchip/renesas-rzg2l: Drop IRQC_IRQ_COUNT macro
-  irqchip/renesas-rzg2l: Add RZ/G3L support
-  irqchip/renesas-rzg2l: Add shared irq support
-  arm64: dts: renesas: r9a08g046: Add ICU node
-
- .../renesas,rzg2l-irqc.yaml                   |  66 +++++-
- arch/arm64/boot/dts/renesas/r9a08g046.dtsi    |  91 ++++++++
- drivers/irqchip/irq-renesas-rzg2l.c           | 218 +++++++++++++++---
- 3 files changed, 343 insertions(+), 32 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+index 44b6ae5fc802..6ee81663f0a1 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+@@ -30,7 +30,10 @@ properties:
+               - renesas,r9a08g045-irqc     # RZ/G3S
+           - const: renesas,rzg2l-irqc
+ 
+-      - const: renesas,r9a07g043f-irqc     # RZ/Five
++      - items:
++          - enum:
++              - renesas,r9a07g043f-irqc    # RZ/Five
++              - renesas,r9a08g046-irqc     # RZ/G3L
+ 
+   '#interrupt-cells':
+     description: The first cell should contain a macro RZG2L_{NMI,IRQX} included in the
+@@ -58,6 +61,14 @@ properties:
+       - description: IRQ5 interrupt
+       - description: IRQ6 interrupt
+       - description: IRQ7 interrupt
++      - description: IRQ8 interrupt
++      - description: IRQ9 interrupt
++      - description: IRQ10 interrupt
++      - description: IRQ11 interrupt
++      - description: IRQ12 interrupt
++      - description: IRQ13 interrupt
++      - description: IRQ14 interrupt
++      - description: IRQ15 interrupt
+       - description: GPIO interrupt, TINT0
+       - description: GPIO interrupt, TINT1
+       - description: GPIO interrupt, TINT2
+@@ -97,6 +108,14 @@ properties:
+       - description: ECCRAM1 1bit error interrupt
+       - description: ECCRAM1 2bit error interrupt
+       - description: ECCRAM1 error overflow interrupt
++      - description: Integrated GPT Error interrupt for channel 0, OVFUNF0
++      - description: Integrated GPT Error interrupt for channel 1, OVFUNF1
++      - description: Integrated GPT Error interrupt for channel 2, OVFUNF2
++      - description: Integrated GPT Error interrupt for channel 3, OVFUNF3
++      - description: Integrated GPT Error interrupt for channel 4, OVFUNF4
++      - description: Integrated GPT Error interrupt for channel 5, OVFUNF5
++      - description: Integrated GPT Error interrupt for channel 6, OVFUNF6
++      - description: Integrated GPT Error interrupt for channel 7, OVFUNF7
+ 
+   interrupt-names:
+     minItems: 45
+@@ -110,6 +129,14 @@ properties:
+       - const: irq5
+       - const: irq6
+       - const: irq7
++      - const: irq8
++      - const: irq9
++      - const: irq10
++      - const: irq11
++      - const: irq12
++      - const: irq13
++      - const: irq14
++      - const: irq15
+       - const: tint0
+       - const: tint1
+       - const: tint2
+@@ -149,6 +176,14 @@ properties:
+       - const: ec7tie1-1
+       - const: ec7tie2-1
+       - const: ec7tiovf-1
++      - const: ovfunf0
++      - const: ovfunf1
++      - const: ovfunf2
++      - const: ovfunf3
++      - const: ovfunf4
++      - const: ovfunf5
++      - const: ovfunf6
++      - const: ovfunf7
+ 
+   clocks:
+     maxItems: 2
+@@ -180,6 +215,22 @@ required:
+ allOf:
+   - $ref: /schemas/interrupt-controller.yaml#
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - renesas,r9a07g043f-irqc
++              - renesas,r9a07g043u-irqc
++              - renesas,r9a07g044-irqc
++              - renesas,r9a07g054-irqc
++    then:
++      properties:
++        interrupts:
++          maxItems: 48
++        interrupt-names:
++          maxItems: 48
++
+   - if:
+       properties:
+         compatible:
+@@ -192,12 +243,19 @@ allOf:
+           maxItems: 45
+         interrupt-names:
+           maxItems: 45
+-    else:
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - renesas,r9a08g046-irqc
++    then:
+       properties:
+         interrupts:
+-          minItems: 48
++          maxItems: 61
+         interrupt-names:
+-          minItems: 48
++          maxItems: 61
+ 
+ unevaluatedProperties: false
+ 
 -- 
 2.43.0
 
