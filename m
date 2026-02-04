@@ -1,504 +1,254 @@
-Return-Path: <devicetree+bounces-262656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262657-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gAd9BYhKg2m0kwMAu9opvQ
-	(envelope-from <devicetree+bounces-262656-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 14:32:56 +0100
+	id 4OF5FP9Kg2m0kwMAu9opvQ
+	(envelope-from <devicetree+bounces-262657-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 14:34:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E452E6759
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 14:32:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC101E67FA
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 14:34:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C5E4E3032F43
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 13:27:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 52FCD300C023
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 13:29:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC4523D34B3;
-	Wed,  4 Feb 2026 13:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0D003F075C;
+	Wed,  4 Feb 2026 13:29:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SdKNUUgR"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ENZkcVWi";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="An2jhyaf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E4FC389DEB
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 13:27:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CAB7277CB8
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 13:29:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770211638; cv=none; b=NrAFvoHUUjXt2DWR1NLSRQQ14P0l0AwCLID4s5EzrUDXjRRXyVqbxGoVfns3UpFtdjRkJ/KcTXzuiIi5UFwJHmU310YvSysWrftx8uaC8zZqO5r4MPRcFHTuvrpBGWljeZ+PjFfoGBp7IvCxoeJGU07flw4KVrvbWnrVB6CQebE=
+	t=1770211789; cv=none; b=cdyme2q85UYYqCBBtOzvNIgho/1eJ+Y9FTQ53yxoukQeDROqD1dyhqhW5JE57flTw1qgFq0+52UKnDuvYGnVE2pEwcSAN17pAzxvpyTWT2O9QLiEtHqdmffKEQlCypokKqfnEc64YDO0NTxfCLddDltJHW8CJcvSR+yoxUEeaSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770211638; c=relaxed/simple;
-	bh=eNR8SSUeDMna1VlAyDRSwAd7Z8PjGtjVBCigycQQ8ZU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YaOFvizYX1cqsfhrzN0+cahMtmI6Hms12oPaSEvc4dKm+VW4IwDt6lo5JmwdHX2AaTLF9oUTOrA4izRV9+JDiBsMlWL2KIPEy/ZzED8aXltTB/3Fqgb2HNjoWxywMfMK56lc0v72Gq9HLIc+eyDobuE95L+lwEgipS/46JmGgvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SdKNUUgR; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-82418b0178cso838184b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 05:27:18 -0800 (PST)
+	s=arc-20240116; t=1770211789; c=relaxed/simple;
+	bh=nDewY4WzQzCloMBZYmckqmY2Z9yu54lji//8vuzks/w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FPSs/5j7rTeN9w3CMsB6Ccvb1xAAd1eF6KDz0XHAWJ4/rBM0/TxjJzPsb5Z5DUsSIJtO92AeYZ8YlEuv5dyonrADiehj2Ejx8b/Yw5+yCkpIaUmhe/E+iaoAUr+m64stKOQ2x1AiQcL6GF8II9antAug6uHuzgy2cshu5C6NyjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ENZkcVWi; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=An2jhyaf; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 614CIVoi1246505
+	for <devicetree@vger.kernel.org>; Wed, 4 Feb 2026 13:29:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	73AAjQUo5bvmWChu5cyasnPqzxqcFhKdIix+5otwegQ=; b=ENZkcVWizTO3Ygho
+	eiDryvNlhEyONTN2gZf8d2WuTE2mYUhckgPKERhp/S6SP5zhc+PudSfJ0lGnakN4
+	SWbFdbCLG5MF5LEs30b+XzzPSWWMdVYhJLehWkccFhFpO5JvAfBwpg1Qjj5J4Ymd
+	m0tQxhLvkY75ILby4xJzJPQOhPTMHYAmOEIrjsddQu7eV+EXi0P4IP/eKNCeq3Jq
+	nQjhaGT70v7JBMH3lGbbO26/y8J8J2zLVBiz0VFydlMTCj4NKl+e/h0ZRt8yxaFv
+	75910OboTS8FotyjRQZRlk22KMIGMqAA0ThMlT9wuX7Swm448K3mEIF0LP4TV41v
+	A2Vsew==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c3ru9anbs-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 13:29:48 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c522c44febso170418285a.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 05:29:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770211637; x=1770816437; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KJG5+ILVKGmt9JtEwJJ6zbB4IjqEYgnBpXtMi1ZuCl8=;
-        b=SdKNUUgRidZR76cdpooOGokbj1yjspMgggyX7M3sJGsss66+Hzy3A174GYGjGWnH7S
-         vEp/mp9XpH1CpRUMF2fiYP2/gwKSYJHvRNE+5Lx09oRSIePllNcINFUh5aFoUbl69/WS
-         9NbotlTBQp1rv63JaJOCmtgz2OOBx5DD9xwnrFObDs0Iv2tc814LtILtW4ekJ7D4SKqK
-         ux7p6jOCSqtp09e91+aEnbD3gVCXPHz/QPhmhCE5hvZdGdRi6qbYsoP8eFB6WKayluTj
-         lt5CSsb0j7l3bm085U33RPleSfvFhRg9VYTDTKQFyqmJBIvio+8RH62w20TZC1b1Off8
-         2Xdw==
+        d=oss.qualcomm.com; s=google; t=1770211787; x=1770816587; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=73AAjQUo5bvmWChu5cyasnPqzxqcFhKdIix+5otwegQ=;
+        b=An2jhyafjy87QRkU8hRpeaSACXuevcg9OzuzLbAwplHDXgTZW8tY5Ezi+Olhr3eUx+
+         BRyzVADqE+RQMxHUyGognJc5ZtcXszLJ21sXnELl1AixGeTnwn1YGrlMNFOfBAmNyNX8
+         nrt7qk4Ocl28P4+XioT9uEiEqjDZAP17j/atVxsR052GEhb+h4AgCdXrsXsLtwhtAwEA
+         tWDYIC9D2SuOXDElAbwUdTzE2rFEanH0/9esHEwFY/zN3x23AWqZko6vl2tyuqjL61l8
+         AVxgkxPr22hFbVmWe3fgfCaxpSGcBU60oFWD9gKCN6kFaiyhV2FAkieEvECqjNdAGb8u
+         Chrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770211637; x=1770816437;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=KJG5+ILVKGmt9JtEwJJ6zbB4IjqEYgnBpXtMi1ZuCl8=;
-        b=pJ2Rqn5DeO8ltaFnTahdNnaKz+jmBOc5Au20zKbJBw47PMXtDbcjzzDeV+G54LZ0Vo
-         GA73bhi3GnWpydVUqb7QRQsZB+LpTxM2loMyPHueUNFfjpUcKtGMUrtWCUsZOeUb8qNI
-         FCIiiYH6S2lvcOBhOFOmVOozCPjzUSFI2BPlsNBNzNSJoY1Gj26f6igwkeIY2qzR5KAJ
-         HECAE5VVF8iCxpMqBv8x7OdfG+4GjAsBgy5CxvoR2aA8ES0I2JyPtC+Y+NjKa8LnvStd
-         1pfinzH9Ox7ggH4Mjl66UlHo84GyOD6hdEHrtjbKeRk1fEPaiH0Py0FbOPK+kzwAbPZR
-         98jQ==
-X-Gm-Message-State: AOJu0YwaGKmU9vdtBQB9ytMlrxdpgqaF2MoAxat2yTSwVTYb9vxAnz/4
-	ZoROZjsvmVCpyc6jOXve3NoDxewkyTtXvcPJTFSDTV8vRrpv3R4MznGJZeAna5v7
-X-Gm-Gg: AZuq6aJurZRVzsr1UkVqOCaT+oWKn4nCHigjY7Pvkm7VGSfZss5Hb4YLFoU+vcYNfPv
-	lkXli83dbpAL5S0gBOXAFMDMG5I1hKL6P4oqDIj2dS2kHp6O9dtywBnv83yexJplFG7uYaHESRc
-	DSPeweUYOdQePt61Dr8G3iXSvsDhPN2wQ9gbGAWN84tmQu7fCwNXOrTvcRyMig9tHGGyQHVfFrF
-	wQob3f0cu/gK7fpKHMWmbHCZYt1DjmxY7iPi2Daoqk1wI/n+FpbiadKQ/7hKXnmHovPRlJIyqF+
-	qy0Uj7sdQxgOSb5GwiTlE0defe5pu9iBn3zbFtRuLjku2RbfPUYSb22zu96uVQ1Nx30Rwu/SHpJ
-	gZdXDnlOWcNzPb5HBf5A6p8OGMdIKZeo3iV2SpQpGjQ5olSHMEWO7/19oWtivzbVkE9mMwV8Yjz
-	p1MqI0j/Ym
-X-Received: by 2002:a17:90b:2682:b0:354:5ac4:2d5d with SMTP id 98e67ed59e1d1-354871fbf27mr2411953a91.36.1770211637403;
-        Wed, 04 Feb 2026 05:27:17 -0800 (PST)
-Received: from arch.localdomain ([2409:8a28:a52:d2b1::1004])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35487726e6bsm875763a91.6.2026.02.04.05.27.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Feb 2026 05:27:17 -0800 (PST)
-From: Jun Yan <jerrysteve1101@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	alchark@gmail.com,
-	dsimic@manjaro.org,
-	andyshrk@163.com,
-	Jun Yan <jerrysteve1101@gmail.com>
-Subject: [PATCH v4 3/3] arm64: dts: rockchip: Add OneThing Edge Cube series
-Date: Wed,  4 Feb 2026 21:26:56 +0800
-Message-ID: <20260204132700.329894-4-jerrysteve1101@gmail.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260204132700.329894-1-jerrysteve1101@gmail.com>
-References: <20260204132700.329894-1-jerrysteve1101@gmail.com>
+        d=1e100.net; s=20230601; t=1770211787; x=1770816587;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=73AAjQUo5bvmWChu5cyasnPqzxqcFhKdIix+5otwegQ=;
+        b=Q5dRlN3VctuMIDkXfXNr3ABFQm4Rx0AssdhAnjehbQiI8i3Jw0cbrj6MpRDkjbma2l
+         nDTU1VA/yH1G1+Ica7cluLelgTsaDFIOk2Uy27uYURbH7fTyqOxoD603MDHE2bAHUcdC
+         GIMTXEUX2QlQmKN1XHncE+l+W29I5KPAvbHcI/9FtqYkgAySmOcH/0jY7zPk7xZEP0q6
+         NVBPPp8nYVUSGpHy2vs9hB94Iei6rNDJXitfXRDchqkwt0FUoTyjT5CYZlTycRfTFCf/
+         w65fJb+vmV2zWQ1RnhRBeGdF0XgaQX0lXEyZ1+AiO3Q+hnKYgdeVe8xzRkL9rg8Yfj/L
+         +qfA==
+X-Forwarded-Encrypted: i=1; AJvYcCXeSOCOQuKcfTxFcZFbu30KF1gf8bhYc7PZkgORVzwbUaT9YeNaENSU2Yfv65quVZ0eUuIcb5C2Vk+M@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1Xu9OrD5uS6Uw4yjmTlatU090DJFt9OjgXJeOLEI9tUuRRBcI
+	vqHs5doRUt4y14txbcCyG5MSEsN4ifj7JD+5G/yvvv+BjQjdU6hpeOxXWJTql5WtZT5wDs6qaOt
+	Av473S6gxx/2LbtCL6BzlCEmJEw39vId1QubJvLJlrfxUejTIVygYLAe0LEyoLR97
+X-Gm-Gg: AZuq6aLwSBRYH1BtqRoACOYBnDArwjCxKS1FAwRue5X3EjEoW8EFS//qdpkxSoyZTud
+	WDQTCFxdkLuXTZ5ZIbHAcqyGXtZ3+ddkdCy+3vymJJyTBhgiYJQbNWur7FxWxSrxIGHz/1PJvjW
+	Et2qlUmnRyXXxly0uyREJazWdOst71zptggKP200V+FGMuAWggYYdXkOrr8blUBdrWP8a/tEXhL
+	oREmhsgK25kGnMkwJ641BAB3DRVgoUAqVAV/O190jVBsqWQoFIWhrnX1L+xnwY2PUYmaJLAMcbb
+	pqK7jxfoVT2dFudMWzp1PMFIEfmlm5s1oD38tAhVU3EWW0+t2xSdCSh6eOvSnKY9geVL+b35fHi
+	LJCnCzNF/L1pKCMXSaMpcCURVqo6i6LjkxUou9wjNFgN0Lez7AFY89j/xGCb1i6u1Fh0=
+X-Received: by 2002:a05:620a:178b:b0:8c7:1aea:53b7 with SMTP id af79cd13be357-8ca2f9ce21bmr259794585a.9.1770211787641;
+        Wed, 04 Feb 2026 05:29:47 -0800 (PST)
+X-Received: by 2002:a05:620a:178b:b0:8c7:1aea:53b7 with SMTP id af79cd13be357-8ca2f9ce21bmr259792985a.9.1770211787189;
+        Wed, 04 Feb 2026 05:29:47 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65949fd8721sm1123642a12.15.2026.02.04.05.29.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Feb 2026 05:29:46 -0800 (PST)
+Message-ID: <f8169943-f986-4e9d-9d3b-a470e57f5e6a@oss.qualcomm.com>
+Date: Wed, 4 Feb 2026 14:29:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/9] usb: misc: qcom_eud: add host mode coordination
+To: Elson Serrao <elson.serrao@oss.qualcomm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260126233830.2193816-1-elson.serrao@oss.qualcomm.com>
+ <20260126233830.2193816-7-elson.serrao@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260126233830.2193816-7-elson.serrao@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA0MDEwMiBTYWx0ZWRfX/0+WANeDGToB
+ 6rNZT5RkW2qS+cjLcopQUx1OjVxXxrErBW9Wg2F6NA5Rw2p3cB0bcmUL0fO/6PLjfzJoTGgLZ2o
+ mcMZgoQfFUzpYklB+rBPFI4l7B2cxoQw/B8vlzEdrpw3Bar22g1OaG05Gk+cDvV4GpK1hwWu4H0
+ BfZgu8umb1et1YgDafGb1iN8RuSMQ6q+MV17DjNICRy2Wn1RyiVB3DGr5xcs5I213fRi/P8SmR8
+ 0YYfkwKjDCAGiH2ww3/XoAw/jinOV6/dSRRw7//bSzSIJgTZlgUt6zlqpMBOwjoWJEa2cCUV4jf
+ k42COVKQG9dPMYnR45r/NitEDOhvOXHevbqGp3zcRdPXzOViyzscDWEb4l0kmzSJ5PfVHLUJzoy
+ ydK0t4W90+MrbH4q3KSgKcOVnqWDHYhf1NjLKN1XIx+ChdnxHLVCz/5SYPdZkAV4TjcMV+NOmA8
+ Bf0UCd+QBZCPKHo4cPg==
+X-Authority-Analysis: v=2.4 cv=IJoPywvG c=1 sm=1 tr=0 ts=698349cc cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=q4T-x-_Nixh5at7Gwk8A:9 a=QEXdDO2ut3YA:10
+ a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-GUID: ZWhvg_jkrR6Ps7r25gREBUWm9Snt9bry
+X-Proofpoint-ORIG-GUID: ZWhvg_jkrR6Ps7r25gREBUWm9Snt9bry
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-04_04,2026-02-04_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015 impostorscore=0
+ spamscore=0 bulkscore=0 malwarescore=0 priorityscore=1501 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602040102
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,sntech.de,gmail.com,manjaro.org,163.com];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262656-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262657-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url]
-X-Rspamd-Queue-Id: 6E452E6759
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: EC101E67FA
 X-Rspamd-Action: no action
 
-The OneThing Edge Cube (OEC) series features the RK3566 SoC, 8GB
-eMMC storage, and supports one SATA interface, one Gigabit Ethernet
-port, and one USB 3.0 port.
+On 1/27/26 12:38 AM, Elson Serrao wrote:
+> EUD functions by presenting itself as a USB device to the host PC for
+> debugging, making it incompatible in USB host mode configurations.
+> Enabling EUD, when in host mode can also cause the USB controller to
+> misbehave as the EUD hub can only have one upstream facing port.
 
-Other than the difference in RAM capacity, the OEC and OEC-turbo are
-identical in all other specifications.
+Perhaps that's a silly idea, but would the device itself see
+the debug hub, being able to essentially self-debug in a way?
 
-  Specification:
-    - Rockchip RK3566
-    - LPDDR4X 2GB (OEC) / 4GB (OEC-turbo)
-    - eMMC 8GB
-    - Gigabit Ethernet port x 1
-    - USB 3.0 port x 1
-    - USB-C 2.0 port x 1
-    - 12V DC Power supply
-    - SATA 3.0 connector x 1
+[...]
 
-These devices do not have a PMIC, and their hardware circuit design
-is highly similar to that of the rk3566-box-demo[1]. Hardware schematics
-are not available at this time, with the vendor firmware dts available
-for reference[2].
+> @@ -162,32 +165,66 @@ static ssize_t enable_store(struct device *dev,
+>  		const char *buf, size_t count)
+>  {
+>  	struct eud_chip *chip = dev_get_drvdata(dev);
+> +	struct eud_path *path;
+>  	bool enable;
+>  	int ret;
+>  
+>  	if (kstrtobool(buf, &enable))
+>  		return -EINVAL;
+>  
+> +	mutex_lock(&chip->state_lock);
 
-Ethernet, USB 3.0 and SATA 3.0 ports tested, all working well.
+If you use guard(mutex)(&chip->state-lock), you can waive all these
+conditional mutex_unlock additions
 
-[1] https://elixir.bootlin.com/linux/v6.18.6/source/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-[2] https://archive.org/download/wxy-oec-RK3566-4G-dump/wxy-oec-RK3566-4G-dump.dts
+> +
+>  	/* Skip operation if already in desired state */
+> -	if (chip->enabled == enable)
+> +	if (chip->enabled == enable) {
+> +		mutex_unlock(&chip->state_lock);
+>  		return count;
+> +	}
+> +
+> +	/*
+> +	 * Handle double-disable scenario: User is disabling EUD that was already
+> +	 * disabled due to host mode. Since the hardware is already disabled, we
+> +	 * only need to clear the host-disabled flag to prevent unwanted re-enabling
+> +	 * when exiting host mode. This respects the user's explicit disable request.
+> +	 */
+> +	if (!enable && chip->eud_disabled_for_host) {
+> +		chip->eud_disabled_for_host = false;
+> +		chip->enabled = false;
+> +		mutex_unlock(&chip->state_lock);
+> +		return count;
+> +	}
+>  
+>  	if (enable) {
+> +		/*
+> +		 * EUD functions by presenting itself as a USB device to the host PC for
+> +		 * debugging, making it incompatible in USB host mode configuration.
+> +		 * Prevent enabling EUD in this configuration to avoid hardware conflicts.
+> +		 */
+> +		path = chip->paths[chip->port_idx];
+> +		if (path && path->curr_role == USB_ROLE_HOST) {
+> +			dev_err(chip->dev, "EUD not usable in host mode configuration\n");
 
-Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../rockchip/rk3566-onething-edge-cube.dts    | 312 ++++++++++++++++++
- 2 files changed, 313 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-onething-edge-cube.dts
+"in USB host mode"?
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 4d384f153c13..71a7ab8e7223 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -104,6 +104,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg353v.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg353vs.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg503.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-odroid-m1s.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-onething-edge-cube.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-orangepi-3b-v1.1.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-orangepi-3b-v2.1.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-onething-edge-cube.dts b/arch/arm64/boot/dts/rockchip/rk3566-onething-edge-cube.dts
-new file mode 100644
-index 000000000000..36462ae2848d
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-onething-edge-cube.dts
-@@ -0,0 +1,312 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include "rk3566.dtsi"
-+
-+/ {
-+	model = "OneThing Edge Cube (OEC)/OEC Turbo";
-+	compatible = "onething,edge-cube", "rockchip,rk3566";
-+
-+	aliases {
-+		ethernet0 = &gmac1;
-+		mmc0 = &sdhci;
-+	};
-+
-+	chosen: chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	gmac1_clkin: external-gmac1-clock {
-+		compatible = "fixed-clock";
-+		clock-frequency = <125000000>;
-+		clock-output-names = "gmac1_clkin";
-+		#clock-cells = <0>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		rgb_led_b: led-0 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			default-state = "off";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		rgb_led_g: led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			default-state = "on";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		rgb_led_r: led-2 {
-+			color = <LED_COLOR_ID_RED>;
-+			default-state = "off";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	vcc_1v8: regulator-vcc-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v8";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc_3v3: regulator-vcc-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc12v0_dcin: regulator-vcc12v0-dcin {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc12v0_dcin";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
-+	vcc3v3_sys: regulator-vcc3v3-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc12v0_dcin>;
-+	};
-+
-+	vcc5v0_sys: regulator-vcc5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc12v0_dcin>;
-+	};
-+
-+	vcc5v0_usb_host: regulator-vcc5v0-usb-host {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_usb_host_en>;
-+		regulator-name = "vcc5v0_usb_host";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vdd_cpu: regulator-vdd-cpu {
-+		compatible = "pwm-regulator";
-+		pwms = <&pwm0 0 5000 1>;
-+		regulator-name = "vdd_cpu";
-+		regulator-min-microvolt = <800000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-settling-time-up-us = <250>;
-+		pwm-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vdd_fixed: regulator-vdd-fixed {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_fixed";
-+		regulator-min-microvolt = <950000>;
-+		regulator-max-microvolt = <950000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vdd_logic: regulator-vdd-logic {
-+		compatible = "pwm-regulator";
-+		pwms = <&pwm1 0 5000 1>;
-+		regulator-name = "vdd_logic";
-+		regulator-min-microvolt = <800000>;
-+		regulator-max-microvolt = <1100000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-settling-time-up-us = <250>;
-+		pwm-supply = <&vcc5v0_sys>;
-+	};
-+};
-+
-+
-+/* No hardware video output port */
-+&display_subsystem {
-+	status = "disabled";
-+};
-+
-+&combphy1 {
-+	status = "okay";
-+};
-+
-+&combphy2 {
-+	status = "okay";
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&gmac1 {
-+	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
-+	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>, <&gmac1_clkin>;
-+	clock_in_out = "input";
-+	phy-handle = <&rgmii_phy1>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac1m1_miim
-+		    &gmac1m1_tx_bus2
-+		    &gmac1m1_rx_bus2
-+		    &gmac1m1_rgmii_clk
-+		    &gmac1m1_rgmii_bus
-+		    &gmac1m1_clkinout>;
-+	rx_delay = <0x0>;
-+	tx_delay = <0x0>;
-+	status = "okay";
-+};
-+
-+&gpu {
-+	status = "okay";
-+};
-+
-+&mdio1 {
-+	rgmii_phy1: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x1>;
-+		reset-assert-us = <20000>;
-+		reset-deassert-us = <100000>;
-+		reset-gpios = <&gpio4 RK_PC2 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&pinctrl {
-+	usb {
-+		vcc5v0_usb_host_en: vcc5v0-usb-host-en {
-+			rockchip,pins = <0 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&pmu_io_domains {
-+	pmuio1-supply = <&vcc_3v3>;
-+	pmuio2-supply = <&vcc_3v3>;
-+	vccio1-supply = <&vcc_1v8>;
-+	vccio3-supply = <&vcc_3v3>;
-+	vccio4-supply = <&vcc_1v8>;
-+	vccio5-supply = <&vcc_3v3>;
-+	vccio6-supply = <&vcc_1v8>;
-+	vccio7-supply = <&vcc_3v3>;
-+	status = "okay";
-+};
-+
-+&pwm0 {
-+	status = "okay";
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+};
-+
-+&saradc {
-+	vref-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
-+&sata2 {
-+	status = "okay";
-+};
-+
-+&sdhci {
-+	bus-width = <8>;
-+	mmc-hs200-1_8v;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&tsadc {
-+	rockchip,hw-tshut-mode = <1>;
-+	rockchip,hw-tshut-polarity = <0>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&usb_host0_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host0_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host1_xhci  {
-+	status = "okay";
-+};
-+
-+&usb2phy0 {
-+	status = "okay";
-+};
-+
-+&usb2phy0_host {
-+	phy-supply = <&vcc5v0_usb_host>;
-+	status = "okay";
-+};
-+
-+&usb2phy0_otg {
-+	status = "okay";
-+};
-+
-+&usb2phy1 {
-+	status = "okay";
-+};
-+
-+&usb2phy1_host {
-+	phy-supply = <&vcc5v0_usb_host>;
-+	status = "okay";
-+};
-+
-+&usb2phy1_otg {
-+	phy-supply = <&vcc5v0_usb_host>;
-+	status = "okay";
-+};
--- 
-2.52.0
+[...]
 
+> +	/*
+> +	 * EUD must be disabled when USB operates in host mode. EUD functions by
+> +	 * presenting itself as a USB device to the host PC for debugging, making
+> +	 * it incompatible in host mode configuration.
+			   ^ with
+
+Otherwise the logic looks good, I think this may be desired default
+behavior (so that the user doesn't have to constantly keep re-enabling
+EUD)
+
+Konrad
 
