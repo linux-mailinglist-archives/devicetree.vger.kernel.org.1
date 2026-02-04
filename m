@@ -1,349 +1,439 @@
-Return-Path: <devicetree+bounces-262452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262453-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IH3KH+WhgmlpXAMAu9opvQ
-	(envelope-from <devicetree+bounces-262452-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 02:33:25 +0100
+	id OC1rKhaigmlpXAMAu9opvQ
+	(envelope-from <devicetree+bounces-262453-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 02:34:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0CAEE073B
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 02:33:24 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B136E0771
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 02:34:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 93CA8305DBB6
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 01:33:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6E26F30D00DB
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 01:33:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8369A27BF7D;
-	Wed,  4 Feb 2026 01:33:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9660D26B741;
+	Wed,  4 Feb 2026 01:33:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="S2b92LUk";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Kod/SwB4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jp04Eoog"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0128E20010C
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 01:33:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770168791; cv=none; b=cZIZO1N6qWZQ4zfKeC1UQwEBDJUaVOxkxnm2wFEXF2WVgkYIULZgcIfmcH/CDYalrvNFYRdioC1q/hHe8CVvb8KuL+EkghUwB2jGBZZj1I6Slox76vMGPfCFtTMRDA2xOVS8ij0KbtpyDYBu0Hsay0V5g7z2nQC8GU3QeFMOoHE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770168791; c=relaxed/simple;
-	bh=DqCEPRzDRBfWJ3e2qxHUir0ic4OGREdUPZvV0qWH+Nk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nRRDOQaRIhEsrYaZUWLX05wfKlaBFTTuxMarPg8niRpeh4HgwZDKvy+UYlyK7F1L56FZPdh3IW7IF4vmrpebxjryEa4FgIxQYU5UNGbxaylG45TLH4/eam7sNbx+8C4tTNyBU7Lj9WHOgrRs4od8789r3dK4Q/7KJ8aHS0dn+pY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=S2b92LUk; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Kod/SwB4; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 613Ilj3l2667153
-	for <devicetree@vger.kernel.org>; Wed, 4 Feb 2026 01:33:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	NV+PY45GIHogHrfF+YtFU99CbalLLS8HcVL+/f0rOyE=; b=S2b92LUkS57bqFXD
-	fVaK28oqlnMd32nU3nhrrk5uvX5jgkgQPthGvuAHX30jlzc4HTKAAO96KrK1XcP8
-	jvVs5/rINWJPo4eNadmXMpfYbGnlSNYLox4jk9s7HSJG3h6f5VGYS2lpeLk6+jE3
-	3IdndxnQPDV++wieLiWHjMpLSal2yre/9D/Epn2py7IVanGcWfwTQji/u76SQUbh
-	eWTSszXjw7WZ5Z+G9GIcqlUW5OJTWdK5anKd7V2YNp8y3d0VXFiWyPaskTn5tYX8
-	hKh86Ia7JW/FPmR68VWSkBp3MsxR+qlGNXW9VtFQN6YyVbwJSVLrwt4NjKmlTyz2
-	icZNVA==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c3nf61dha-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 01:33:07 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c52f07fbd0so2793004685a.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 17:33:07 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30860281357
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 01:33:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770168825; cv=pass; b=RaNL3qRxMLd+ATSJNyfB8reCbCQitttFFSAe+ksdH2A69/TFrK93VoXvbJDapx3ZLPWnzrqCrNKOhy5JGFylVSxJN/tMH4Zytb36sZEHDztPm9Piv9GJJBXmgPx5QNKhQtzGwIKYZY7DdkXjKzjnog9LGvSutdvBDI/iXZ4G2is=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770168825; c=relaxed/simple;
+	bh=FuM/do0dpJ20rgHYDmqB/lNEyt2Fm7kFoo5C0HPXjCQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LsbxN0iQY6FQ8Enn6i6SwttK5YEu09CGBxNi8R+0JwF5vRouyb/u0nLazPCIjuCpxJcZhflyZAJ89SfqmGT+PA9W9fSeT2p70W2bDoA1le7hcSf7h2nlpmOhBiL0+Mr3hNTIdcj4S+m7Vm0K1d7qhXz9JdPRrcWpKL6PQcQfr4U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jp04Eoog; arc=pass smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-65815ec51d3so10096105a12.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Feb 2026 17:33:42 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770168821; cv=none;
+        d=google.com; s=arc-20240605;
+        b=IamNttXB5wX3G3U+jEe02Gz081LnSErJ9YPvW9lPY2XTHrH6Pa34kuZp3bk+nv8zQb
+         znL7iIq4YodeLfaTjp8uIy2O8HJpNETQSdn2gvYPP/wBzeY9V+Z0bzSd7IGZXn5d2ob9
+         xm1IUIpqX03Ewj2TVUNgV/ad3oEYMrbTK8tD9gxgC3YdCyxWCHzdCI848TFDXzFrXT0/
+         3rCNrvFP+lBqBkmXxJ9BEUsUzYpJ/6Kp69SQNevwjI9ssRA3TK7HPTl7k5P5tbPUzQmY
+         FhaecLQmPq7k7vc7TnBHhwVLlwVv13kguJKzrNBmJjeSGaFhP8vpJh2s0NFft1U/bdKD
+         IOmQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=CZhCooet7z9z5qQvsjRBpYPvdpvWb9CCCtfRLOX4blc=;
+        fh=jI/3dcAcdB+Ro4ZJ457OHTjGAVbUq+tS+bWAJwl40Fg=;
+        b=kZo2d8Tm7LRln7AP6O8n5BAYnVAym07XEZ1zfLu3c6MV2pH/EMUASrT+2hiNTdZMM8
+         xT0m4KnuhsBcVubnHpVyrRv/3pvQphTKtyG7VUXeemyRIX5KGNT48moNhk8M5wl0f1BE
+         YjSedM2GEfuhOVPoek8pSD06V9hycZKTFkTfTnb+uUzSIRMK5vlSVzP4uQdUDDOMLXVB
+         yPT7R6jGMU7kUUdl47AJTPwBg/ORtoXn3Pjy3CHcxGj716tFbarSi6usUZW/Z7fQT9dj
+         Bz4HBa9UjIuhjuxbnuK05oD+fcirOIjQMxPuGJpsFUiDS0xJX/vhlfVH8InxD8leSiLV
+         5nrA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770168787; x=1770773587; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NV+PY45GIHogHrfF+YtFU99CbalLLS8HcVL+/f0rOyE=;
-        b=Kod/SwB4ZQA2MjcfBN5ZQPkK7LwAJqd/ufP+7pofVQkdXujVRHTaFlvsV4Oa7Tmikb
-         taX8TL88OqZrqXkyJSIEW1PymLw8cJRdFA92ZeyD7CmNc02wGoqP9Hp6BvHmxguhhIUj
-         zrkfWTWshRTAfwca4hb340hAZIuQawPcc1bMHyU2r0030s23HWAf9zcRbL9Z63cDbnT6
-         eLPYUoamco58nDUeXaoj6mH6XdQBFubio2zs1XeISxChpU2vgKSQnE9+mwfaox7hHqnx
-         Z5UlOrrACQxW7G/14JoSo52QI2i9+4Iyu+6o8oEND7vSyNGDufYygSfy6EIP+h9HwYJV
-         OfOA==
+        d=gmail.com; s=20230601; t=1770168821; x=1770773621; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CZhCooet7z9z5qQvsjRBpYPvdpvWb9CCCtfRLOX4blc=;
+        b=Jp04EoogoaOsXhDh0utdawiOe41dPcY1/PmeI57BTWDdwv3veqkhOw7ebxq6rn0XCo
+         nmaNBLLyU9Pj7WAs1FEUJXUypllRhyi7NHxPr51gQBb2b67KUvB1kH//PhB9VDb5mmB8
+         zBjoqTqVt4+2FMrNAvfbr1jB9nBX2UBnHjuedqqCDRgFruoMclipCXOQ3NbczImMgfNG
+         G5VQnuVjWSq7p8iokSdD6l8dsAib17UEEjjWpdtBXcwGDPmiWfMMCaGIheblQrYUU2FS
+         uPOOImmR24hCik3ue2pd5K5+JKxxH6rOLf4RYt/xU/khnd+VrqHdZFGzTa0Ddy+DY4L1
+         +HEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770168787; x=1770773587;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NV+PY45GIHogHrfF+YtFU99CbalLLS8HcVL+/f0rOyE=;
-        b=CkXW3n5gT0x1OZzLFNdrEJijQ5GHiS1Y/VAvm3vP+votJANOpVEm+g6zUuC4j9rq5Z
-         WtuN+xqusCriXf39Ya+49orNbi0IlKkEA2NCFRdyYePMm1yLielvjSMCTo7WB7ulAOro
-         Ppj7HSE36m5iGLC+LiETtcDJDTsLBUr6JdcLLrlzpmjxKfOUmKEKGjwS7m0ZfXxmDOav
-         0YTqYwGUUluzKOMz7NjqbXNQQ6X9Y0tD5lr5otGo/jOiYoXu7HdDru7cFbbaI7YwsnCC
-         GC2N5F3Itv5z3Lw66bBnoe31Pl4Qxk/LhZwzXD8+rxr3jnuJBGWboAzO6kvsTglNRd4t
-         fsRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWKGNCZV20A0E7lShzpg3OtQfh6gk7DsxMJtFJiC7FLd7Rg28i2Tboo4GUwdMc8eOnfYU6thctFFwUg@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKRFmnymu7eZ+zHqLFnC7caiV72B6DMTl7CZ48zqbmt/NCLvGy
-	1tmAhJ4nCuIr4fs8K5KE8xhSpRglYjC9STlQRUh9JMAq0kRG86qWzrSitBqLU6PXnY1sx4XIuE0
-	MpqZpJJHRwuUHGyuc0P5We3Y++hFLYntfFAv+WA3UqmgvMwTSJb8L1sNirQnYonSZ
-X-Gm-Gg: AZuq6aKsUtijr2B4P8IqsRf8fzAGsBSTV3xO5LSuIP8bM4VwysqKmhWoIVBXDELsPtp
-	JKlg6/UbIK6KlNsVHfLppAGkTL224ZGSAjz4mEHDWwDVaeIh0cO8Wn7/xSnbOg6uEiYwetQ25FW
-	2Y6UjhjUoOzZQrfFxVUosx5nu1nf3AZ6+dwdZCArjf8tVTIt2zLQk2Z5kKHmrqBcKfMlXZMGIiH
-	m8q7FXBO4TjQcHnKacBHOwtQp53zpVkPrsfejc8e6naP8isIMeWQ7nXO2krKn4mA1ZLiOGbKJyl
-	3VgDinkvdMan6tFxgyz6IBCFr84qs4aasSnOracw1ovJwyykXYs/2WF95HRKghk0JHErUU4tqcc
-	De1eCoIqNSzGE91OY0pC6s4dh0uBGiyC29X5HCaLT727LrWZdFolOfLcLeogB3Q5B9DohIFlj8y
-	uaNmVc7iu1hvmuW/mbiDFDrJg=
-X-Received: by 2002:a05:620a:372a:b0:84a:d3ce:c749 with SMTP id af79cd13be357-8ca2f9c07d6mr213458985a.64.1770168787145;
-        Tue, 03 Feb 2026 17:33:07 -0800 (PST)
-X-Received: by 2002:a05:620a:372a:b0:84a:d3ce:c749 with SMTP id af79cd13be357-8ca2f9c07d6mr213456285a.64.1770168786610;
-        Tue, 03 Feb 2026 17:33:06 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e3881b307sm263804e87.50.2026.02.03.17.33.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Feb 2026 17:33:05 -0800 (PST)
-Date: Wed, 4 Feb 2026 03:33:03 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
-        Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-        J =?utf-8?Q?=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
-        Pin-yen Lin <treapking@chromium.org>,
-        Catalin Popescu <catalin.popescu@leica-geosystems.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: lemans-evk: Enable secondary
- USB controller in host mode
-Message-ID: <fycr33dqcosay7ake3nbbeaclhqvynwzixas4u3ocaerpqbu5e@shoibdd663vm>
-References: <20260122092852.887624-1-swati.agarwal@oss.qualcomm.com>
- <20260122092852.887624-5-swati.agarwal@oss.qualcomm.com>
- <63fjxtcmpbpna4cuuis332y3p52b6pvh43gyg6m7u5kiwkb2pb@znwfyet4xlpc>
- <CAHz4bYuR_LZXh=tS2FJ4VE9tVB6vN10pd-9i=uOL35sSx_BRzg@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1770168821; x=1770773621;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=CZhCooet7z9z5qQvsjRBpYPvdpvWb9CCCtfRLOX4blc=;
+        b=BBz7kZjIa5hWVhJ6fhYmhM3OZ1zeNvhAHwXklXc6WmwiSScrVrx15eUaMj0DVEXcXT
+         oR3+HMenWe8Ki/q5jOb/xp8+Lqn1SpW9PDJprQ0iQ1MxKCSO4U3IX472X9tOGEFBvT9Q
+         mXcg+QoV8iv+YJF5wvpt4zmXCwQEYk03Qyhnvv7DZa2qXRIfpnPKBCurMDj1UccSy+8Y
+         ACGqvaA5HQ3UaLgA7CNzYKI5jzMRcC6xoQk9X+C62dkRfLVCAL2+QBeZSL8OxVPfOb18
+         kXFHwY1p/RikBFAIBmT60zdB6FJB3JDvRnU6H1emIxRgpdLPS0X77YP2qximYQSP63El
+         wDaw==
+X-Forwarded-Encrypted: i=1; AJvYcCWkZdb4pqHNKgSI1QSv71OKloJOwBYy1w5drV6EtgJrRsFyAQMO6bMzdY+o0Y9iXvNrPF2BH42cJ348@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/XP8XRcWkdV6cJ8Cx9VkL3nWxkRw6KoNrfV49woloHgLAII4P
+	7RwnqQpcjF1psqJRXB1DEUSxFwiQcWqucCNlxtqIAY9nwxu0XZ4dfjSGNEPMbnpAvNpRb5WFSpU
+	D29BfyHPZteFs4cl6KX8zGTamPqbHJF8=
+X-Gm-Gg: AZuq6aI66gTsVjB2K5dRaaXJgVz3amWWb6uj+ORiPn/B7ItRcHZnNpHnusihHta2oHY
+	QoJGslwQx4q22jKh8eeR34hZjgPoazb2eq3yo0eQyguzNyK7CbCRqgTZHjgSfIGNYZTd8+JSDWq
+	+Mi1VC1DTNzQ+6k1u29JPfsl9GjT46fWPlaNochMYdc/l+BDniNTnbQHdiIsU9/G/JoJUrUw6FM
+	mFedTS3WIvxxzpML3GOf73GMwYnP2/GUvbrJNGhe14t0mQ0RhgJPpM2PWHSMCsnXKPvtVY=
+X-Received: by 2002:a17:907:9625:b0:b88:71ec:e7a6 with SMTP id
+ a640c23a62f3a-b8e9f04c989mr93891666b.17.1770168821263; Tue, 03 Feb 2026
+ 17:33:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHz4bYuR_LZXh=tS2FJ4VE9tVB6vN10pd-9i=uOL35sSx_BRzg@mail.gmail.com>
-X-Proofpoint-GUID: qQE4NYwcKAza4ZSCXLGzsQlgQOcns2rm
-X-Proofpoint-ORIG-GUID: qQE4NYwcKAza4ZSCXLGzsQlgQOcns2rm
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA0MDAwOCBTYWx0ZWRfX1cdJMvLGT08u
- m2wn15F5RCrs8Kki8YWlm9RUnvqR3N+oCsRBFP8zDSru3mMPyKtS+e2uJ/8CRfSNsCOc0VSjtau
- VrQtTWBc4vAcf24Bj/3waeUppdriEIwPb8GLubNmzk5MVhAnsZctCm3HrwUALmdTchrbF9u0zq8
- JGaJ5GJaeMnGkmnNlnf8OMtIzscK2g45e1QPwj/HtTIDC9UFizgeh9idBEfKJiiAp0G/69E2z+Q
- jLGQpcR+YABPl8K9CL7ZuPd+ZlSUURPKm4PbCDh6r1AwP2PV+dY6CQhp/2IftNqzZNHFBnu1wVw
- 9WmJx7FPNp74xv1tjSiQiWTFpPEcBhUWNiC1gj8MguSjEXOahHoML77/On6qwQ7Qp1tGGHw5/Vr
- Nu8bCejfDzwuWYQDyn5PmtFnFqqgtcFMYCN1bflWg1fyPfA1HUIPYqTuP2YwhFIEG5l99KO06nv
- xwLvgKQpUBHh+cl6FpA==
-X-Authority-Analysis: v=2.4 cv=doTWylg4 c=1 sm=1 tr=0 ts=6982a1d3 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=rCqLFm6cVfeqKcP3PTwA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-03_07,2026-02-03_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 clxscore=1015 impostorscore=0 suspectscore=0 spamscore=0
- priorityscore=1501 bulkscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602040008
+References: <cover.1770119693.git.zhoubinbin@loongson.cn> <20d52dd26c46f4850e7d5c5443c0efef6c4e4c1c.1770119693.git.zhoubinbin@loongson.cn>
+ <aYJW5+975pmkyjne@lizhi-Precision-Tower-5810>
+In-Reply-To: <aYJW5+975pmkyjne@lizhi-Precision-Tower-5810>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Wed, 4 Feb 2026 09:33:29 +0800
+X-Gm-Features: AZwV_QhzrAc4QPgfNbFzMSiFrzOonyyUvl623orSYYeMHEVb9f00hblyRdIUGyM
+Message-ID: <CAMpQs4L-CJEvCuO_YVuyHaAm_tr+QJ71G5dTVysfFgS1JiMc7Q@mail.gmail.com>
+Subject: Re: [PATCH 3/3] dmaengine: loongson: New driver for the Loongson
+ Multi-Channel DMA controller
+To: Frank Li <Frank.li@nxp.com>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org, 
+	Xiaochuang Mao <maoxiaochuan@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	Keguang Zhang <keguang.zhang@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262452-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-262453-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[loongson.cn,kernel.org,vger.kernel.org,xen0n.name,lists.linux.dev,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.47:email,0.0.0.2:email,0.0.0.1:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: E0CAEE073B
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zhoubbaaron@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,loongson.cn:email]
+X-Rspamd-Queue-Id: 3B136E0771
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 10:53:46AM +0530, Swati Agarwal wrote:
-> On Thu, Jan 22, 2026 at 4:02 PM Dmitry Baryshkov
-> <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> >
-> > On Thu, Jan 22, 2026 at 02:58:52PM +0530, Swati Agarwal wrote:
-> > > Enable secondary USB controller in host mode on lemans EVK Platform.
-> > >
-> > > Secondary USB controller is connected to a Genesys Logic USB HUB GL3590
-> > > having 4 ports. The ports of hub that are present on lemans EVK standalone
-> > > board are used as follows:-
-> > > 1) port-1 is connected to HD3SS3220 Type-C port controller.
-> > > 2) port-4 is used for the M.2 E key on corekit. Standard core kit uses UART
-> > > for Bluetooth. This port is to be used only if user optionally replaces the
-> > > WiFi card with the NFA765 chip which uses USB for Bluetooth.
-> > >
-> > > Remaining 2 ports will become functional when the interface plus mezzanine
-> > > board is stacked on top of corekit:
-> > >
-> > > 3) port-2 is connected to another hub which is present on the mezz through
-> > > which 4 type-A ports are connected.
-> > > 4) port-3 is used for the M.2 B key for a 5G card when the mezz is
-> > > connected.
-> > >
-> > > Mark the second USB controller as host only capable and add the HD3SS3220
-> > > Type-C port controller along with Type-c connector for controlling vbus
-> > > supply.
-> > >
-> > > Signed-off-by: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/lemans-evk.dts | 208 ++++++++++++++++++++++++
-> > >  1 file changed, 208 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-> > > index 074a1edd0334..a549f7fe53a1 100644
-> > > --- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
-> > > +++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-> > > @@ -68,6 +68,45 @@ usb0_con_ss_ep: endpoint {
-> > >               };
-> > >       };
-> > >
-> > > +     connector-1 {
-> > > +             compatible = "usb-c-connector";
-> > > +             label = "USB1-Type-C";
-> > > +             data-role = "host";
-> > > +             power-role = "source";
-> > > +
-> > > +             vbus-supply = <&vbus_supply_regulator_1>;
-> > > +
-> > > +             ports {
-> > > +                     #address-cells = <1>;
-> > > +                     #size-cells = <0>;
-> > > +
-> > > +                     port@0 {
-> > > +                             reg = <0>;
-> > > +
-> > > +                             usb1_con_ss_ep: endpoint {
-> >
-> > This contradicts USB-C connector bindings. Why?
-> >
-> > > +                                     remote-endpoint = <&hd3ss3220_1_in_ep>;
-> > > +                             };
-> > > +                     };
-> > > +
-> > > +                     port@1 {
-> > > +                             reg = <1>;
-> > > +
-> > > +                             usb1_hs_in: endpoint {
-> > > +                                     remote-endpoint = <&usb_hub_2_1>;
-> > > +                             };
-> > > +
-> > > +                     };
-> > > +
-> > > +                     port@2 {
-> > > +                             reg = <2>;
-> > > +
-> > > +                             usb1_ss_in: endpoint {
-> >
-> > port@2 is for the SBU signals. It can't be connected to the hub.
-> >
-> > > +                                     remote-endpoint = <&usb_hub_3_1>;
-> > > +                             };
-> > > +                     };
-> > > +             };
-> > > +     };
-> > > +
-> > >       edp0-connector {
-> > >               compatible = "dp-connector";
-> > >               label = "EDP0";
-> > > @@ -141,6 +180,16 @@ vbus_supply_regulator_0: regulator-vbus-supply-0 {
-> > >               enable-active-high;
-> > >       };
-> > >
-> > > +     vbus_supply_regulator_1: regulator-vbus-supply-1 {
-> > > +             compatible = "regulator-fixed";
-> > > +             regulator-name = "vbus_supply_1";
-> > > +             gpio = <&expander1 3 GPIO_ACTIVE_HIGH>;
-> > > +             regulator-min-microvolt = <5000000>;
-> > > +             regulator-max-microvolt = <5000000>;
-> > > +             regulator-boot-on;
-> > > +             enable-active-high;
-> > > +     };
-> > > +
-> > >       vmmc_sdc: regulator-vmmc-sdc {
-> > >               compatible = "regulator-fixed";
-> > >
-> > > @@ -536,6 +585,39 @@ hd3ss3220_0_out_ep: endpoint {
-> > >                       };
-> > >               };
-> > >       };
-> > > +
-> > > +     usb-typec@47 {
-> > > +             compatible = "ti,hd3ss3220";
-> > > +             reg = <0x47>;
-> > > +
-> > > +             interrupts-extended = <&pmm8654au_2_gpios 6 IRQ_TYPE_EDGE_FALLING>;
-> > > +
-> > > +             id-gpios = <&tlmm 51 GPIO_ACTIVE_HIGH>;
-> > > +
-> > > +             pinctrl-0 = <&usb1_id>, <&usb1_intr>;
-> > > +             pinctrl-names = "default";
-> > > +
-> > > +             ports {
-> > > +                     #address-cells = <1>;
-> > > +                     #size-cells = <0>;
-> > > +
-> > > +                     port@0 {
-> > > +                             reg = <0>;
-> > > +
-> > > +                             hd3ss3220_1_in_ep: endpoint {
-> > > +                                     remote-endpoint = <&usb1_con_ss_ep>;
-> > > +                             };
-> > > +                     };
-> > > +
-> > > +                     port@1 {
-> > > +                             reg = <1>;
-> > > +
-> > > +                             hd3ss3220_1_out_ep: endpoint {
-> > > +                             };
-> >
-> > Why is this port disconnected? It it really N/C?
-> 
-> Hi Dmitry,
-> 
-> Sorry for the confusion, Can we do it as follows:
-> 
-> hub:                    Hd3ss3220   typec-connector
-> 
-> usb_hub_2_1 <-> port@1       port@1 <-> empty
-> usb_hub_3_1 <-> port@2       port@2 <-> <empty>
->                              port@0 <-> port@0
-> 
+Hi Frank:
 
-You still missed the _why_. Why port@1 of HD3SS3220 is not connected?
+Thanks for your reply.
 
--- 
-With best wishes
-Dmitry
+On Wed, Feb 4, 2026 at 4:13=E2=80=AFAM Frank Li <Frank.li@nxp.com> wrote:
+>
+> On Tue, Feb 03, 2026 at 08:30:12PM +0800, Binbin Zhou wrote:
+> > This DMA controller appears in Loongson-2K0300 and Loongson-2K3000.
+> >
+> > It is a multi-channel controller that enables data transfers from memor=
+y
+> > to memory, device to memory, and memory to device, as well as channel
+> > prioritization configurable through the channel configuration registers=
+.
+> >
+> > In addition, there are slight differences between Loongson-2K0300 and
+> > Loongson-2K3000, such as channel register offsets and the number of
+> > channels.
+> >
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > ---
+> >  MAINTAINERS                                 |   1 +
+> >  drivers/dma/loongson/Kconfig                |  10 +
+> >  drivers/dma/loongson/Makefile               |   1 +
+> >  drivers/dma/loongson/loongson2-apb-dma-v2.c | 759 ++++++++++++++++++++
+> >  4 files changed, 771 insertions(+)
+> >  create mode 100644 drivers/dma/loongson/loongson2-apb-dma-v2.c
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 16fe66bebac1..0735a812f61b 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -14777,6 +14777,7 @@ L:    dmaengine@vger.kernel.org
+> >  S:   Maintained
+> >  F:   Documentation/devicetree/bindings/dma/loongson,ls2k0300-dma.yaml
+> >  F:   Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
+> > +F:   drivers/dma/loongson/loongson2-apb-dma-v2.c
+> >  F:   drivers/dma/loongson/loongson2-apb-dma.c
+> >
+> >  LOONGSON LS2X I2C DRIVER
+> > diff --git a/drivers/dma/loongson/Kconfig b/drivers/dma/loongson/Kconfi=
+g
+> > index 9dbdaef5a59f..77eb63d75a05 100644
+> > --- a/drivers/dma/loongson/Kconfig
+> > +++ b/drivers/dma/loongson/Kconfig
+> > @@ -25,4 +25,14 @@ config LOONGSON2_APB_DMA
+> >         This DMA controller transfers data from memory to peripheral fi=
+fo.
+> >         It does not support memory to memory data transfer.
+> >
+> > +config LOONGSON2_APB_DMA_V2
+> > +     tristate "Loongson2 Multi-Channel DMA support"
+> > +     select DMA_ENGINE
+> > +     select DMA_VIRTUAL_CHANNELS
+> > +     help
+> > +       Support for the Loongson Multi-Channel DMA controller driver.
+> > +       It is discovered on the Loongson-2K chip (Loongson-2K0300/Loong=
+son-2K3000),
+> > +       which has 4/8 channels internally, enabling bidirectional data =
+transfer
+> > +       between devices and memory.
+> > +
+> >  endif
+> > diff --git a/drivers/dma/loongson/Makefile b/drivers/dma/loongson/Makef=
+ile
+> > index 6cdd08065e92..f5af8bf537e6 100644
+> > --- a/drivers/dma/loongson/Makefile
+> > +++ b/drivers/dma/loongson/Makefile
+> > @@ -1,3 +1,4 @@
+> >  # SPDX-License-Identifier: GPL-2.0-only
+> >  obj-$(CONFIG_LOONGSON1_APB_DMA) +=3D loongson1-apb-dma.o
+> >  obj-$(CONFIG_LOONGSON2_APB_DMA) +=3D loongson2-apb-dma.o
+> > +obj-$(CONFIG_LOONGSON2_APB_DMA_V2) +=3D loongson2-apb-dma-v2.o
+> > diff --git a/drivers/dma/loongson/loongson2-apb-dma-v2.c b/drivers/dma/=
+loongson/loongson2-apb-dma-v2.c
+> > new file mode 100644
+> > index 000000000000..6533a089d904
+> > --- /dev/null
+> > +++ b/drivers/dma/loongson/loongson2-apb-dma-v2.c
+> > @@ -0,0 +1,759 @@
+> ...
+> > +
+> > +struct loongson2_mdma_chan_reg {
+> > +     u32 dma_ccr;
+> > +     u32 dma_cndtr;
+> > +     u32 dma_cpar;
+> > +     u32 dma_cmar;
+> > +};
+>
+> needn't 'dma_' prefix because it is already in loongson2_mdma_chan_reg.
+
+ok..
+>
+> > +
+> > +struct loongson2_mdma_sg_req {
+> > +     u32 len;
+> > +     struct loongson2_mdma_chan_reg chan_reg;
+> > +};
+> > +
+> ...
+> > +
+> > +static struct loongson2_mdma_desc *loongson2_mdma_alloc_desc(u32 num_s=
+gs)
+> > +{
+> > +     return kzalloc(sizeof(struct loongson2_mdma_desc) +
+> > +                    sizeof(struct loongson2_mdma_sg_req) * num_sgs, GF=
+P_NOWAIT);
+>
+> use struct_size()
+
+I see.
+>
+> > +}
+> > +
+> > +static int loongson2_mdma_slave_config(struct dma_chan *chan, struct d=
+ma_slave_config *config)
+> > +{
+> > +     struct loongson2_mdma_chan *lchan =3D to_lmdma_chan(chan);
+> > +
+> > +     memcpy(&lchan->dma_sconfig, config, sizeof(*config));
+> > +
+> > +     return 0;
+> > +}
+> > +
+> ...
+> > +
+> > +static int loongson2_mdma_probe(struct platform_device *pdev)
+> > +{
+> > +     const struct loongson2_mdma_config *config;
+> > +     struct loongson2_mdma_chan *lchan;
+> > +     struct loongson2_mdma_dev *lddev;
+> > +     struct device *dev =3D &pdev->dev;
+> > +     struct dma_device *ddev;
+> > +     int nr_chans, i, ret;
+> > +
+> > +     config =3D (const struct loongson2_mdma_config *)device_get_match=
+_data(dev);
+> > +     if (!config)
+> > +             return -EINVAL;
+> > +
+> > +     ret =3D device_property_read_u32(dev, "dma-channels", &nr_chans);
+> > +     if (ret || nr_chans > config->max_channels) {
+> > +             dev_err(dev, "missing or invalid dma-channels property\n"=
+);
+> > +             nr_chans =3D config->max_channels;
+> > +     }
+> > +
+> > +     lddev =3D devm_kzalloc(dev, struct_size(lddev, chan, nr_chans), G=
+FP_KERNEL);
+> > +     if (!lddev)
+> > +             return -ENOMEM;
+> > +
+> > +     lddev->base =3D devm_platform_ioremap_resource(pdev, 0);
+> > +     if (IS_ERR(lddev->base))
+> > +             return PTR_ERR(lddev->base);
+> > +
+> > +     platform_set_drvdata(pdev, lddev);
+> > +     lddev->nr_channels =3D nr_chans;
+> > +     lddev->chan_reg_offset =3D config->chan_reg_offset;
+> > +
+> > +     lddev->dma_clk =3D devm_clk_get_optional_enabled(dev, NULL);
+> > +     if (IS_ERR(lddev->dma_clk))
+> > +             return dev_err_probe(dev, PTR_ERR(lddev->dma_clk), "Faile=
+d to get dma clock\n");
+> > +
+> > +     ddev =3D &lddev->ddev;
+> > +     ddev->dev =3D dev;
+> > +
+> > +     dma_cap_zero(ddev->cap_mask);
+> > +     dma_cap_set(DMA_SLAVE, ddev->cap_mask);
+> > +     dma_cap_set(DMA_PRIVATE, ddev->cap_mask);
+> > +     dma_cap_set(DMA_CYCLIC, ddev->cap_mask);
+> > +
+> > +     ddev->device_free_chan_resources =3D loongson2_mdma_free_chan_res=
+ources;
+> > +     ddev->device_config =3D loongson2_mdma_slave_config;
+> > +     ddev->device_prep_slave_sg =3D loongson2_mdma_prep_slave_sg;
+> > +     ddev->device_prep_dma_cyclic =3D loongson2_mdma_prep_dma_cyclic;
+> > +     ddev->device_issue_pending =3D loongson2_mdma_issue_pending;
+> > +     ddev->device_synchronize =3D loongson2_mdma_synchronize;
+> > +     ddev->device_tx_status =3D loongson2_mdma_tx_status;
+> > +     ddev->device_terminate_all =3D loongson2_mdma_terminate_all;
+> > +
+> > +     ddev->src_addr_widths =3D LOONGSON2_MDMA_BUSWIDTHS;
+> > +     ddev->dst_addr_widths =3D LOONGSON2_MDMA_BUSWIDTHS;
+> > +     ddev->directions =3D BIT(DMA_DEV_TO_MEM) | BIT(DMA_MEM_TO_DEV);
+> > +     INIT_LIST_HEAD(&ddev->channels);
+> > +
+> > +     for (i =3D 0; i < nr_chans; i++) {
+> > +             lchan =3D &lddev->chan[i];
+> > +
+> > +             lchan->id =3D i;
+> > +             lchan->vchan.desc_free =3D loongson2_mdma_desc_free;
+> > +             vchan_init(&lchan->vchan, ddev);
+> > +     }
+> > +
+> > +     ret =3D dma_async_device_register(ddev);
+>
+> use dmaenginem_async_device_register() to avoid below goto
+
+ok...
+>
+> Frank
+>
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     for (i =3D 0; i < nr_chans; i++) {
+> > +             lchan =3D &lddev->chan[i];
+> > +
+> > +             lchan->irq =3D platform_get_irq(pdev, i);
+> > +             if (lchan->irq < 0) {
+> > +                     ret =3D -EINVAL;
+> > +                     goto unregister_dmac;
+> > +             }
+> > +
+> > +             ret =3D devm_request_irq(dev, lchan->irq, loongson2_mdma_=
+chan_irq, IRQF_SHARED,
+> > +                                    dev_name(chan2dev(lchan)), lchan);
+> > +             if (ret)
+> > +                     goto unregister_dmac;
+> > +     }
+> > +
+> > +     ret =3D loongson2_mdma_acpi_controller_register(lddev);
+> > +     if (ret)
+> > +             goto unregister_dmac;
+> > +
+> > +     ret =3D loongson2_mdma_of_controller_register(lddev);
+> > +     if (ret)
+> > +             goto unregister_dmac;
+> > +
+> > +     dev_info(dev, "Loongson-2 Multi-Channel DMA Controller driver reg=
+istered successfully.\n");
+> > +     return 0;
+> > +
+> > +unregister_dmac:
+> > +     dma_async_device_unregister(ddev);
+> > +
+> > +     return ret;
+> > +}
+> > +
+> > +static void loongson2_mdma_remove(struct platform_device *pdev)
+> > +{
+> > +     struct loongson2_mdma_dev *lddev =3D platform_get_drvdata(pdev);
+> > +
+> > +     of_dma_controller_free(pdev->dev.of_node);
+> > +     dma_async_device_unregister(&lddev->ddev);
+> > +}
+> > +
+> > +static const struct of_device_id loongson2_mdma_of_match[] =3D {
+> > +     { .compatible =3D "loongson,ls2k0300-dma", .data =3D &ls2k0300_md=
+ma_config },
+> > +     { .compatible =3D "loongson,ls2k3000-dma", .data =3D &ls2k3000_md=
+ma_config },
+> > +     { /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, loongson2_mdma_of_match);
+> > +
+> > +static const struct acpi_device_id loongson2_mdma_acpi_match[] =3D {
+> > +     { "LOON0014", .driver_data =3D (kernel_ulong_t)&ls2k3000_mdma_con=
+fig },
+> > +     { /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(acpi, loongson2_mdma_acpi_match);
+> > +
+> > +static struct platform_driver loongson2_mdma_driver =3D {
+> > +     .driver =3D {
+> > +             .name =3D "loongson2-mdma",
+> > +             .of_match_table =3D loongson2_mdma_of_match,
+> > +             .acpi_match_table =3D loongson2_mdma_acpi_match,
+> > +     },
+> > +     .probe =3D loongson2_mdma_probe,
+> > +     .remove =3D loongson2_mdma_remove,
+> > +};
+> > +
+> > +module_platform_driver(loongson2_mdma_driver);
+> > +
+> > +MODULE_DESCRIPTION("Looongson-2 Multi-Channel DMA Controller driver");
+> > +MODULE_AUTHOR("Loongson Technology Corporation Limited");
+> > +MODULE_LICENSE("GPL");
+> > --
+> > 2.47.3
+> >
+
+--
+Thanks.
+Binbin
 
