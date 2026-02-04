@@ -1,296 +1,297 @@
-Return-Path: <devicetree+bounces-262544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262545-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oJ2IFgsEg2njggMAu9opvQ
-	(envelope-from <devicetree+bounces-262544-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 09:32:11 +0100
+	id SFvqJkwEg2njggMAu9opvQ
+	(envelope-from <devicetree+bounces-262545-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 09:33:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E540E32BE
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 09:32:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08830E32F4
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 09:33:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4C7C43019B82
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 08:32:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 809093024130
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 08:32:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABAC138F23A;
-	Wed,  4 Feb 2026 08:32:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85DF9393DDF;
+	Wed,  4 Feb 2026 08:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="lTy5EYQ8"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="EvuKZBXc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010007.outbound.protection.outlook.com [52.101.61.7])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A0F1917FB;
-	Wed,  4 Feb 2026 08:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.7
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770193926; cv=fail; b=FiT+9/ft4et3ZgJEFOKQYEAM8UiugwtQsjwdBK3g3nnvgDDQ5LvqF4vez/YeKjL/7ZIqCqaszI+Hto7wxN5oLZPr/lFQzdNo1HdRQqzDz7wHCwOQMC4m/gKZMsokJ8BaaOuoIgEdR6Bi3ZdFf8LudBj2uytG5EKAfB7sWvmsh/c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770193926; c=relaxed/simple;
-	bh=Rx1k0hikEg6D8ZLP7uXtitePP27ANfKLvu0wXrz288Y=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=OMcVel5Lt9RvzhW/3fqUiNISQsgBDnFksvBzcMSNCkt48/xWUZ4riLR2TkxM/Uk4S2QFEeKcdB1YNLIYw795b31YeanA6ATsC/qg71YPP2Bu2NZpxBodAXeETO1UO7GTTOPSqqvG3vgUtMBxhYtyRRiNcsprdl8o0UJnhSK6PBc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=lTy5EYQ8; arc=fail smtp.client-ip=52.101.61.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LlNkA0VSe+QC+qBphxoWcrWsShA2WXRBPp/auj+Sdnkekg8h6/kwoqi3j9msxt8jQqErf05h6C/Hhla/vswRVnK9x9+WDR0kogtCqh50dJhQ1SgCrAZ+UDlxlKusa0j4SoXPQhQ4M6Kx0Q64OOCox9q+XNJDN5Im9LAwExUW6XzHnVpo3noee079Z9Mn8U7hgGeqZnxHPZfVGLRMZOUxnpCgd0spgCyze2S/P7c+GEizZnKp83FFRQwASoMXQkALzLsXcufqq4M/YWOjl3K7lqO8H7e2qL8/6ucC5yBMC1wXqueDorGdVWETo9Rv+nrYZw7sfDLVJGopVd1MILiK+A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NCBj3cPxAZ2MWLZLzwYwQAwVpnbK5N+pvGgxtEfjqps=;
- b=BL+wO8bW0NVy34BJB1Q1VJPRiyV9oui9IUnlYXE4qjOqyts5+Y6qEhKd2xzOaAp/C76EcujbyjPPU8kBc7w+AhOHNDkPTGqWtCGG8sd0CyKNjyK00Q3bNsYhyx0Xcb0A4ColKI5O8R2bi0PDnEBpVs9/oBwpAOTJTckH9XdNDxhkNLuRzYz1Su7CAYlMlorRhuxCXb6c2ElrR0x4uZ1nMqzWvuWDPRCDiEAUVRI7chpj2/psD5Ncfx2NovKYdHQW9TTjaXo4CDYYznItQ24MKzjp8++dk16H985IAIT6Pr+rCvGw15ptwI16GIhFPcJPhXu/hkig59xfIvw9pDoXXg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NCBj3cPxAZ2MWLZLzwYwQAwVpnbK5N+pvGgxtEfjqps=;
- b=lTy5EYQ8/YotMNfvqSRvqV6SFxX77N+KK+L+5xPZZvd1zOF3snLPnZa7lVd4vrs6pabxPRgLAnoHQ0Kub09N0CsJmKNL9sAmnatZy+lm/gBo3jKKRmU8R8ghRVJiekdlLXGGjiGQWFU4sICq6KqNxBd5qNYVmd/4xWgxHDN3DZE=
-Received: from MN0PR12MB5953.namprd12.prod.outlook.com (2603:10b6:208:37c::15)
- by IA1PR12MB6355.namprd12.prod.outlook.com (2603:10b6:208:3e1::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.13; Wed, 4 Feb
- 2026 08:32:03 +0000
-Received: from MN0PR12MB5953.namprd12.prod.outlook.com
- ([fe80::5151:8ae3:f31e:4c9c]) by MN0PR12MB5953.namprd12.prod.outlook.com
- ([fe80::5151:8ae3:f31e:4c9c%6]) with mapi id 15.20.9587.010; Wed, 4 Feb 2026
- 08:32:02 +0000
-From: "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
-To: Sean Anderson <sean.anderson@linux.dev>, Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>, Vinod Koul <vkoul@kernel.org>,
-	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>
-CC: =?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kwilczynski@kernel.org>, Lorenzo
- Pieralisi <lpieralisi@kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "Simek, Michal" <michal.simek@amd.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Rob
- Herring <robh@kernel.org>, "Havalige, Thippeswamy"
-	<thippeswamy.havalige@amd.com>, Manivannan Sadhasivam <mani@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-Subject: RE: [PATCH 1/8] dt-bindings: pci: xilinx-nwl: Add resets
-Thread-Topic: [PATCH 1/8] dt-bindings: pci: xilinx-nwl: Add resets
-Thread-Index: AQHclKMaN+gl9NbYb0yLlFjVQ+L6PbVyM+0A
-Date: Wed, 4 Feb 2026 08:32:02 +0000
-Message-ID:
- <MN0PR12MB59537BC8B60D76CCE0B1391CB798A@MN0PR12MB5953.namprd12.prod.outlook.com>
-References: <20260203002128.935842-1-sean.anderson@linux.dev>
- <20260203002128.935842-2-sean.anderson@linux.dev>
-In-Reply-To: <20260203002128.935842-2-sean.anderson@linux.dev>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2026-02-04T08:16:45.0000000Z;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN0PR12MB5953:EE_|IA1PR12MB6355:EE_
-x-ms-office365-filtering-correlation-id: 14cb7612-25d5-4446-9ae0-08de63c7df43
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700021;
-x-microsoft-antispam-message-info:
- =?iso-8859-2?Q?WJMAQ4Y/Y/bZgQeP4h4sxBXYKEh1LlYP+MA2qRgn4/HgB5ci2M+P9RNiOg?=
- =?iso-8859-2?Q?859RU2mha1tio4V9TheP3s2eahwezAzl9VMuF+MHDT1Na5SkLKvXK/K+GA?=
- =?iso-8859-2?Q?szNlVZOY0sM++9OYviFm7DyXNT3RLIqQy7kOu4zbl3KN69JIGaeZxmeR7D?=
- =?iso-8859-2?Q?0RwWOWJBeTq7qULaIscpQzmSSO8n5FebqIK0VbLnTH+jmLp0lfAtqCDa9G?=
- =?iso-8859-2?Q?1miVRjQ2iRkqFde19QYR7Ld+BfCK9nCEAIJ/gsxfYjUTuxmP1FtA7YiQzg?=
- =?iso-8859-2?Q?Q/VASPm47i3LngP40WnsiAo8cFE4oN3myuvUL0z0yJ1BP7AB65SCHsJRBE?=
- =?iso-8859-2?Q?U6dA7kYFEHlKSagHLF0hly4qP+ZJIQ6CyRyY0i8hJo1wgV8NKUQMxUxj1/?=
- =?iso-8859-2?Q?sOQLe4NFAGM383pxdPv+IDdF84QPrimrK36Pcu1VdkWo4daNpVPAmO4Bur?=
- =?iso-8859-2?Q?kTBp6MwfPfwMJbOYcmbTioyiXaJiFNwyPmgoRPMRBpRW7DCyKOFkkmb9+t?=
- =?iso-8859-2?Q?Z9ipamOkBvjmmZAzQgFJy+wYYZKyIH/a/uR+6YfAjsgVFplG2VWgAshL5L?=
- =?iso-8859-2?Q?hAly17a3tLGauGGdh0F5D6KY+0lp1zdWHIE+JRu4FsbhAaNT9tH78fiwCR?=
- =?iso-8859-2?Q?HD6F2X3HJtwBWMg0ktpsvU90jTJvleOk1eIxiVxWZiqeP7zgf6nb53KR/B?=
- =?iso-8859-2?Q?2YkpR6QKEWkLsf/dvkZdMoSeVehmqB3+WHSuhxYHgjGrQolPa6VfHCNeAW?=
- =?iso-8859-2?Q?gLHkD52QrNXXPp2A9iCjeu9UwNUdxoje+EoDJeFJ5u0RCAYAHd3CsScgrI?=
- =?iso-8859-2?Q?+sZwvna0Xj4oc03b6JxA9RkmxBmHGXOF+doqTWFb4vAGQFapyKLtfvnQgf?=
- =?iso-8859-2?Q?cOfIUKUNYMt0lJZp46NcS594e6qfro8oMk9ub6kTJjwKzSpeXuF8GGNh0w?=
- =?iso-8859-2?Q?FL79BP0WUpZDl/KQvZ1GRuGeotB8ItRUyXvmcI1Nzs/1YfgdAdVhXRO9P5?=
- =?iso-8859-2?Q?DVqholL++3SqMmkBBH/TMs8gm0XT0igmIklm2Fq64AMZJjVmL55L1eGjcL?=
- =?iso-8859-2?Q?nZPXJJgGmzxNU9BJrNkbxK7peirInl8HDFwXrEKMQmG2dWoUbVBZPAy0cq?=
- =?iso-8859-2?Q?eoUwWVu2r3fPUN/KRs8+liUe+tBrAmC3qGjc7v9jCqCvD3lKLsxErv0BcM?=
- =?iso-8859-2?Q?dan9NvE1rLI3W96Pgh3VKZ+NpizqiN9N870GvXgSLL0iClFaVfIs9XNRsl?=
- =?iso-8859-2?Q?8Wcsgf1fCk1+5C1MX9FEewTeFnBKPxe4KIYiDVG0Yd5vO5FDsGKm2KhR1I?=
- =?iso-8859-2?Q?Uf8u2GWFvB8d2aE+7IQaYlZf23zEso4VWqaZ6LAbSiKK7gmaVd/1sixmWp?=
- =?iso-8859-2?Q?mdGpuyqssffgdC8HHfcpfuj1nJaXI09ekGGAhr5LZJL2c4VDstBSz9pMEz?=
- =?iso-8859-2?Q?HkOcnkukaXAtRQ6n47oShQ2gV9kRLlt4G00zP/5/CU7/Yv7NV+355uiUvV?=
- =?iso-8859-2?Q?f7dfyGFM4ZaOd4bd6B4DmZZnDmm9O7ZlYddz0nbOVEB9eLMbHD+clHOKNO?=
- =?iso-8859-2?Q?BYM9rYjn0fMP1PnflwsCI4RNAfQwL576Nq2choqg/Ix9PWiNVcGRlM19K9?=
- =?iso-8859-2?Q?xGwHOmltiQPBXr5gOEHZvEhdgyWGB44GXM5wlknvkZB3WGOL1CiFF4ujCS?=
- =?iso-8859-2?Q?4WQFwsRlqAt7H0jgd8c=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR12MB5953.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-2?Q?zreitFkwL7o/4QALIIH6GLZYcKtT1FCcGA76M3IL8RtiAtXL+X06pDaVLd?=
- =?iso-8859-2?Q?EWCo27Bui0UVLTkJ6bKpYBFhMYOboTQhXtnG6Q0BKjVDKniEVd1jJTl/Eq?=
- =?iso-8859-2?Q?FqL5h5MEW+/nPzYNBUg51n0+La7/CkTmt8S4OZx0E15lvG6o7HRVAv7EBQ?=
- =?iso-8859-2?Q?K4mIWYBFIigNr7Ryte9JU5dD8j83FhZmNabUZA+qll3d6EslqiJRSj8gN5?=
- =?iso-8859-2?Q?PiFiFTLDv5H1E+7/9FPt+tcS/Cp5qx9Ho/s/MqIXEzxlq7ICTli3ZJcHdA?=
- =?iso-8859-2?Q?nQm9buASrhViesKTipJgkb+BzfBmWx7iOekOrhjCAIESgWB0v6L6mig4Eu?=
- =?iso-8859-2?Q?wU2VQyAYAcQvJ8Cpi8BR6+6fJYnw3ks9ibfFhPvdkVvGnk+h8WYnfmZeiy?=
- =?iso-8859-2?Q?oqLr1/z346EVw28txt93h9BG2WM6nsMNIuS5ckqJ1AYfB7KBPX7l8R8YqI?=
- =?iso-8859-2?Q?s7q6qr7sNVeogU4onRZlfD5SmZkoTD6txjXVrvSi8lJ0Z2pw4MVyffmVEO?=
- =?iso-8859-2?Q?iPNm6BcmbKdZDeDpBucB4rNFduhBwumkc02BbmpJfZ+1g7xSZWNcqph+ER?=
- =?iso-8859-2?Q?AujN4y7Jc0rklt8kyUlibgEY2dNyRnJzLuZucXyap2Rm8Eh62jp9lgBOVw?=
- =?iso-8859-2?Q?yXTAckyj401z9R0FVZ3OBQ51nRnDb0fjbXtAGa6RfRJ5N8NukanwuEytG9?=
- =?iso-8859-2?Q?WyJ/zNG1u5GwXmthFp4cXNrC86jubKBWH1Wgi84CE+B1tcUImyhuYbLiV1?=
- =?iso-8859-2?Q?3fppMP5N46aS+1g6d8cxDb926nb6OpWVzeApqGCTOor8coWZ6snXBjvIvs?=
- =?iso-8859-2?Q?WA5psDzGXwaOD5PxcNBF+f+fDrA95XdrZDhB3+kg9BWf0dlnAoJroqWzcV?=
- =?iso-8859-2?Q?snKQhqnm0JvLp/nbxQP0lmtMGzpv+fCMe8LQLRtFTXaUdZIeeDta3vy7ZA?=
- =?iso-8859-2?Q?lbKJcpQB5xDBlzaW3V70TloEkDURASGP/bypWf06k5hejdeu2bGQDu1g1o?=
- =?iso-8859-2?Q?acwiBTQBJPJG2f8SnnMUtnsOGGvljDgX6QRRXjWmr00aYkWGW9/hn0/H94?=
- =?iso-8859-2?Q?FLNiAqPXQq9TLEIcbzyY9ZlaH2HqcYy6qwWmu2Ys/Hrwwm+yoFfNS6NVhj?=
- =?iso-8859-2?Q?kiTsd1cAj1+kHyVOF8cEmHDDNxZf2wTOWhnkiFhe49+ToUVdvWlx6NQzYX?=
- =?iso-8859-2?Q?NpGVZYSb0j6P3mxq0lW2dFhe2Hpu3cG+fd2B2ERwf42Phyh6HCpVmaWkO2?=
- =?iso-8859-2?Q?R6ul4Vj5zCxTQrg3BosBJvzpKUuSKKgKryHMeyU2FtpY3kSHlhjyEgKKQq?=
- =?iso-8859-2?Q?L6hyordAWt5GjpeL8EBbEfK2IOxOra9RU0+hXh0skTDN0aDHwA/w1GL33u?=
- =?iso-8859-2?Q?HWxLJjzkWk4NcMsf674QhBENrHlUSnnrnmzO/R961UfILSUFW7A64Vbmny?=
- =?iso-8859-2?Q?Q+ILQFRjjMaI6mZ+GPCYu+k1YEitiG2r4llbDL2qj9fFYtwsSLvt9MpfsH?=
- =?iso-8859-2?Q?XonGlnKwzWt+Pto+1KCunmBnkiP05BfJCcVToOeTCRFJKeUDOB4ofy+IGb?=
- =?iso-8859-2?Q?3N5a2GzWh8XcTes2jj+Hk4F8dpj2VMAp/ejPcc7uwe2I+PtYgYrCcZ65cJ?=
- =?iso-8859-2?Q?TYqHvA+Fk3ik0W4pxEm/mUmJrPjW2ff+19TVmQdi1JfugjV3jxoYqyvyz0?=
- =?iso-8859-2?Q?AgPGmf+7dVBkAUAOCfDXc0Qf7r/QHWN/8L+2fi0TqP0aS9BBOmYJEDeznl?=
- =?iso-8859-2?Q?UO12ZcT4Qq2h2ylAbv0OlQTeEV2GnStZEmZae2UA0KuvBu?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BD303939CE
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 08:32:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770193947; cv=none; b=NdwuhI6HLyfRhpQoEkoa9pgNAO7LrZFsFFg9vMAEwS0rrvNcg3npfUvtAEwaqW8J/expzvbxnkQSw4z+rlaY5uSsX+0CJaCd6nup6A3y5OzUCOZ/hahKn7UzArC7ADJLPoNrpZpUD99ACTdUUqSTAdsQPXOoDgBZO5xF3mPEX1k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770193947; c=relaxed/simple;
+	bh=GRaJIO0Uo9OwVYJEMvgEbApUtH6b+YgWreZhWWPNcdg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jHBMfx8iBPWsziHyKkXGyidF4nJqLXlu8I+RrBRTrcYy2g7CJ8YrUgHXRWpX3vfLqTzjjhLlpywlZUZ3jnBGr+F3ZJSKlin0pj6JIyNBnsUAsG9megE2NZmN4GPUkH5GMwv4HPfbXtVeLPnstjcxI9TX90WZKiYr3h7DgA75o4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=EvuKZBXc; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id B68A24E423E2;
+	Wed,  4 Feb 2026 08:32:24 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 8271060745;
+	Wed,  4 Feb 2026 08:32:24 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2590B119A865B;
+	Wed,  4 Feb 2026 09:32:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1770193943; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=hQM0TIr5TOug+Gu1+850dLovFgLuhXB/mI5LQnV55nw=;
+	b=EvuKZBXcZAT8TvDE+K9bm7UtxT8SEfUp3krHxULtIvMhJ0DZMP74/13ZHsrb2KBOYwB9bM
+	aZlKTvMLGbsEmRmcWAequIFQiPnK1AKv/mYbtoaiJqfZ1cjpcksnKUrCykAXfv8RsB5hs/
+	wT9XIHPTSmMY32adiPZNGaXaTyNWKZf5kp/EZY7v1JuoFsWvKqFgDNLjZSRJOSR1kLN7R5
+	FpDfWQpKn8HViGeH2ByxT8kT2RFI+zBHN3oHjBn1QWiU4YuQDBRz3RsTePMHaz2f4s5NtI
+	Rpni/EJB6udOW7lYoz+ZXGZ5YYBR76KB4DHe3lipagZdvXr90KAva3S2aTZdYA==
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Subject: [PATCH v17 0/3] mtd: Add support for stacked memories
+Date: Wed, 04 Feb 2026 09:32:15 +0100
+Message-Id: <20260204-mtd-virt-concat-v17-0-5e98239bb55b@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB5953.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 14cb7612-25d5-4446-9ae0-08de63c7df43
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Feb 2026 08:32:02.7800
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Y8JSX9k+VcuoCsF9lcY4/xzQs0ZeVriRDCrz9epIfqecvgnQWLJn2ijknztAy9tM
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6355
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA8Eg2kC/3XNQQ7CIBAF0Ks0rMUwQwrWlfcwLiigncQWA4Rom
+ t5d2o0x0eX/mf9mZslH8okdm5lFXyhRmGoAvWuYHcx085xcLRgKVAKw42N2vFDM3IbJmsxRK2m
+ FBmhdz+rqEf2Vnht5vtQ8UMohvrYPBdq1/o/VAy64bZVBif7aOzz1IeQ7TXsbRrZ6BdTHQCF/G
+ KoaBgBNpzt7APltLMvyBpuFF+L3AAAA
+X-Change-ID: 20260129-mtd-virt-concat-2763c07115db
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+Cc: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>, 
+ Michal Simek <monstr@monstr.eu>, 
+ Bernhard Frauendienst <kernel@nospam.obeliks.de>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262544-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[amd.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[radhey.shyam.pandey@amd.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-262545-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,linux.dev:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email,MN0PR12MB5953.namprd12.prod.outlook.com:mid,ideasonboard.com:email]
-X-Rspamd-Queue-Id: 7E540E32BE
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lwn.net:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:email,bootlin.com:dkim,bootlin.com:mid]
+X-Rspamd-Queue-Id: 08830E32F4
 X-Rspamd-Action: no action
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+[TL;DR for v15: as agreed with Amit I'm sending a new iteration of his
+patches to fix the build-time failure due to a module dependency
+loop. Original cover follows.]
 
-> -----Original Message-----
-> From: Sean Anderson <sean.anderson@linux.dev>
-> Sent: Tuesday, February 3, 2026 5:51 AM
-> To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>; Vinod Koul
-> <vkoul@kernel.org>; linux-phy@lists.infradead.org
-> Cc: Krzysztof Wilczy=F1ski <kwilczynski@kernel.org>; Lorenzo Pieralisi
-> <lpieralisi@kernel.org>; Pandey, Radhey Shyam
-> <radhey.shyam.pandey@amd.com>; linux-kernel@vger.kernel.org; Simek, Micha=
-l
-> <michal.simek@amd.com>; linux-arm-kernel@lists.infradead.org; linux-
-> pci@vger.kernel.org; Neil Armstrong <neil.armstrong@linaro.org>; Rob Herr=
-ing
-> <robh@kernel.org>; Havalige, Thippeswamy <thippeswamy.havalige@amd.com>;
-> Manivannan Sadhasivam <mani@kernel.org>; Bjorn Helgaas
-> <bhelgaas@google.com>; Sean Anderson <sean.anderson@linux.dev>; Conor
-> Dooley <conor+dt@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>;
-> devicetree@vger.kernel.org
-> Subject: [PATCH 1/8] dt-bindings: pci: xilinx-nwl: Add resets
->
-> Add resets so we can hold the bridge in reset while we perform phy calibr=
-ation.
+This patch series adds stacked support by enhancing the existing mtd-concat 
+driver to be more generic.
 
-Seems like this should a required property?
+As background, a few years ago, Bernhard Frauendienst initiated an effort 
+[2] to achieve the same, which was later adapted by Miquel [1] to introduce 
+stacked mode support. In this approach, partitions to be concatenated were 
+specified using a DT property "part-concat" within the partitions 
+definition, allowing two MTD devices to function as a single larger one in 
+order to be able to define partitions across chip boundaries. However, the 
+bindings were not accepted. As a result, the mtd-concat approach was 
+dropped, and alternative DT bindings were introduced [3][4][5], describing 
+the two flash devices as one. Corresponding SPI core changes to support 
+these bindings were later added [6].
 
-Rest looks fine to me.
+While integrating stacked mode support into SPI-NOR, Tudor provided 
+additional feedback, leading to discussions about updating the existing 
+DT bindings. To address this, I sent an RFC [7] to initiate discussions on 
+adapting the DT bindings as suggested by Miquel in [1]. Following that, 
+I am now submitting this patch series that updates the virtual concat DT
+bindings and the driver referenced in [1], along with some minor mtdcore 
+changes. 
+Since I have taken ownership of this effort, I have included Bernhard and 
+Miquel under the "Suggested-by" tag.
 
->
-> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
-> ---
->
->  .../devicetree/bindings/pci/xlnx,nwl-pcie.yaml  | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
-> b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
-> index 9de3c09efb6e..7efb3dd9955f 100644
-> --- a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
-> @@ -69,6 +69,18 @@ properties:
->    power-domains:
->      maxItems: 1
->
-> +  resets:
-> +    maxItems: 3
-> +
-> +  reset-names:
-> +    items:
-> +      - description: APB register block reset
-> +        const: cfg
-> +      - description: AXI-PCIe bridge reset
-> +        const: bridge
-> +      - description: PCIe MAC reset
-> +        const: ctrl
-> +
->    iommus:
->      maxItems: 1
->
-> @@ -117,6 +129,7 @@ examples:
->      #include <dt-bindings/interrupt-controller/irq.h>
->      #include <dt-bindings/phy/phy.h>
->      #include <dt-bindings/power/xlnx-zynqmp-power.h>
-> +    #include <dt-bindings/reset/xlnx-zynqmp-resets.h>
->      soc {
->          #address-cells =3D <2>;
->          #size-cells =3D <2>;
-> @@ -146,6 +159,10 @@ examples:
->              msi-parent =3D <&nwl_pcie>;
->              phys =3D <&psgtr 0 PHY_TYPE_PCIE 0 0>;
->              power-domains =3D <&zynqmp_firmware PD_PCIE>;
-> +            resets =3D <&zynqmp_reset ZYNQMP_RESET_PCIE_CFG>,
-> +                     <&zynqmp_reset ZYNQMP_RESET_PCIE_BRIDGE>,
-> +                     <&zynqmp_reset ZYNQMP_RESET_PCIE_CTRL>;
-> +            reset-names =3D "cfg", "bridge", "ctrl";
->              iommus =3D <&smmu 0x4d0>;
->              pcie_intc: legacy-interrupt-controller {
->                  interrupt-controller;
-> --
-> 2.35.1.1320.gc452695387.dirty
+[1] https://lore.kernel.org/linux-mtd/20191127105522.31445-1-miquel.raynal@bootlin.com/
+[2] https://lwn.net/ml/linux-kernel/20180907173515.19990-1-kernel@nospam.obeliks.de/
+[3] https://github.com/torvalds/linux/commit/f89504300e94524d5d5846ff8b728592ac72cec4
+[4] https://github.com/torvalds/linux/commit/eba5368503b4291db7819512600fa014ea17c5a8
+[5] https://github.com/torvalds/linux/commit/e2edd1b64f1c79e8abda365149ed62a2a9a494b4
+[6] https://github.com/torvalds/linux/commit/4d8ff6b0991d5e86b17b235fc46ec62e9195cb9b
+[7] https://lore.kernel.org/all/20241026075347.580858-1-amit.kumar-mahapatra@amd.com/
+
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+---
+BRANCH: spi-nor/next
+
+Changes in v17:
+- Add my missing SoB line to each patch
+- Link to v16: https://lore.kernel.org/r/20260203-mtd-virt-concat-v16-0-a112a979c813@bootlin.com
+
+Changes in v16:
+- Fix build error when CONFIG_MTD_VIRT_CONCAT is not enabled
+- Link to v15: https://lore.kernel.org/r/20260129-mtd-virt-concat-v15-0-c56a232efbd2@bootlin.com
+
+Changes in v15:
+ - Make mtd_virt_concat built into the mtd module, not a separate
+   module. This fixes the build failure [8] caused by the interdependency
+   of virt_concat and mtdcore. Keep VIRT_CONCAT an optional feature though.
+   [8] https://lore.kernel.org/all/874it99f9i.fsf@bootlin.com/
+ - Remove 'default n' line from Kconfig
+ - Link to v14: https://lore.kernel.org/linux-mtd/20250623105445.2394825-1-amit.kumar-mahapatra@amd.com/
+
+Changes in v14:
+ - Updated 1/3 to address review comments.
+ - Updated 3/3 to add mtd_virt_concat_destroy() API that would remove a concat
+   incase one of the mtd device, which is part of the concat, is removed.
+ 
+Changes in v13:
+ - Updated 1/3 to modify the Device Tree binding to support multiple concatenated devices.
+ - Added Rob's "Suggested-by" tag in 1/3.
+ - Updated 3/3 to define CONFIG_MTD_VIRT_CONCAT as a boolean and depended on CONFIG_MTD_PARTITIONED_MASTER.
+ - Updated 3/3 to remove late_initcall and invoke the API directly from mtdcore instead.
+ - Updated 3/3 to add support for concatenating more than two MTD partitions.
+ - Updated 3/3 to add support for multiple sets of concatenated devices.
+
+Changes in v12:
+ - Add stacked mode support throught mtd-concat driver.
+
+Changes in v11:
+- Rebased patch series on top of latest for-next branch.
+- Added a new patch(1/10) to replace spi->chip_select with
+  spi_get_chipselect() call in tps6594-spi.c.
+- Added a new patch(2/10) to replace spi->chip_select with
+  spi_get_chipseletc() call in cs35l56_hda_spi.c.
+- In spi.c initialized unused CS[] to 0xff and spi->cs_index_mask
+  to 0x01 in all flows.
+- Updated spi_dev_check() to compare the CS of old spi device with
+  the new spi device CS.
+- Updated cover letter description to add information regarding GPIO CS
+  testing and added Stefen's Tested-by tag in 3/10 patch.
+
+Changes in v10:
+ - Rebased patch series on top of latest for-next branch and fixed
+   merge conflicts.
+
+Changes in v9:
+- Updated 1/8 patch description to add an high-level overview of
+  parallel(multi-cs) & stacked design.
+- Initialized all unused CS to 0xFF.
+- Moved CS check from spi_add_device() to __spi_add_device().
+- Updated __spi_add_device() to check to make sure that multiple logical CS
+  don't map to the same physical CS and same physical CS doesn't map to
+  different logical CS.
+- Updated 1/8, 5/8 & 7/8 to support arbitrary number of flash devices
+  connected in parallel or stacked mode.
+- Updated documentation for chip_select.
+- Added a new spi-nor structure member nor->num_flash to keep track of the
+  number of flashes connected.
+- Added a new patch in the series 4/8 to move write_enable call just before
+  spi_mem ops call in SPI-NOR.
+- Added comments in SPI core & SPI-NOR.
+- Rebased the patch series on top of the latest for-next branch.
+
+Changes in v8:
+- Updated __spi_add_device() and spi_set_cs() to fix spi driver failure
+  with GPIO CS.
+- Rebased the patch series on top of latest for-next branch and fixed
+  merge conflicts.
+- Updated cover letter description to add information regarding GPIO CS
+  testing and request Stefan to provide his Tested-by tag for 1/7 patch.
+- Updated 1/7 patch description.
+
+Changes in v7:
+- Updated spi_dev_check() to avoid failures for spi driver GPIO CS and
+  moved the error message from __spi_add_device() to spi_dev_check().
+- Resolved code indentation issue in spi_set_cs().
+- In spi_set_cs() call spi_delay_exec( ) once if the controller supports
+  multi cs with both the CS backed by GPIO.
+- Updated __spi_validate()to add checks for both the GPIO CS.
+- Replaced cs_index_mask bit mask with SPI_CS_CNT_MAX.
+- Updated struct spi_controller to represent multi CS capability of the
+  spi controller through a flag bit SPI_CONTROLLER_MULTI_CS instead of
+  a boolen structure member "multi_cs_cap".
+- Updated 1/7 patch description .
+
+Changes in v6:
+- Rebased on top of latest v6.3-rc1 and fixed merge conflicts in
+  spi-mpc512x-psc.c, sfdp.c, spansion.c files and removed spi-omap-100k.c.
+- Updated spi_dev_check( ) to reject new devices if any one of the
+  chipselect is used by another device.
+
+Changes in v5:
+- Rebased the patches on top of v6.3-rc1 and fixed the merge conflicts.
+- Fixed compilation warnings in spi-sh-msiof.c with shmobile_defconfig
+
+Changes in v4:
+- Fixed build error in spi-pl022.c file - reported by Mark.
+- Fixed build error in spi-sn-f-ospi.c file.
+- Added Reviewed-by: Serge Semin <fancer.lancer@gmail.com> tag.
+- Added two more patches to replace spi->chip_select with API calls in
+  mpc832x_rdb.c & cs35l41_hda_spi.c files.
+
+Changes in v3:
+- Rebased the patches on top of
+  https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+- Added a patch to convert spi_nor_otp_region_len(nor) &
+  spi_nor_otp_n_regions(nor) macros into inline functions
+- Added Reviewed-by & Acked-by tags
+
+Changes in v2:
+- Rebased the patches on top of v6.2-rc1
+- Created separate patch to add get & set APIs for spi->chip_select &
+  spi->cs_gpiod, and replaced all spi->chip_select and spi->cs_gpiod
+  references with the API calls.
+- Created separate patch to add get & set APIs for nor->params.
+
+---
+Amit Kumar Mahapatra (3):
+      dt-bindings: mtd: Describe MTD partitions concatenation
+      mtd: Move struct mtd_concat definition to header file
+      mtd: Add driver for concatenating devices
+
+ .../bindings/mtd/partitions/partition.yaml         |  20 ++
+ drivers/mtd/Kconfig                                |   9 +
+ drivers/mtd/Makefile                               |   1 +
+ drivers/mtd/mtd_virt_concat.c                      | 363 +++++++++++++++++++++
+ drivers/mtd/mtdconcat.c                            |  12 -
+ drivers/mtd/mtdcore.c                              |  21 ++
+ drivers/mtd/mtdpart.c                              |   6 +
+ include/linux/mtd/concat.h                         |  63 +++-
+ 8 files changed, 482 insertions(+), 13 deletions(-)
+---
+base-commit: 5a74a464797585e09561e8e367b62c8b4c289ba1
+change-id: 20260129-mtd-virt-concat-2763c07115db
+
+Best regards,
+-- 
+Luca Ceresoli <luca.ceresoli@bootlin.com>
 
 
