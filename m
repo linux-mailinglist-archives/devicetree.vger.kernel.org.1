@@ -1,183 +1,396 @@
-Return-Path: <devicetree+bounces-262582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262584-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +JP8HNAcg2l/hwMAu9opvQ
-	(envelope-from <devicetree+bounces-262582-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 11:17:52 +0100
+	id 8J3VGdcdg2nWhwMAu9opvQ
+	(envelope-from <devicetree+bounces-262584-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 11:22:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1AFEE460B
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 11:17:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05453E46BA
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 11:22:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EDBB9302C640
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 10:16:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A4BF63015A4B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 10:21:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4F333D7D69;
-	Wed,  4 Feb 2026 10:16:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39D663D7D8F;
+	Wed,  4 Feb 2026 10:21:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="e0fIHaCq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OCHL0Dg5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78EEB39C65C
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 10:16:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1759A3D412E
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 10:21:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770200205; cv=none; b=Dc+OgOALasq+e4+GL+e7ZzW43EPxCPPRTDT1vPDqU0CnRg2IdVz561iQHChXz62X9vqasdiacJzMFRLNSOGmsieIMSGEt810Xi3WmuE1UU/By6BAtD9V/jb1qcr1YOVMNi0yJpBrCta9gBeLbgOsWlsBUbHXv0SDbiETOTwIh5I=
+	t=1770200466; cv=none; b=KwDbZhbSEga0y8+0T733aqyvCCjQCbGPYcoZKinIb8hmiH0yfA7nvTt+olFzWaXP5FJneILx4GWeDBY8BTjSI6yDncOzNpyhSmMfiQLR8JyKkMHfLAXhJ30PD+UgmmZLbDkMASpQ1b/M0mYB6s28fU1MABTWDofOyX4PlbDT3kg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770200205; c=relaxed/simple;
-	bh=uLD61vUmSUDY++cQNlzWrzskh/oONOepWiSjgVQbDnw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=X1uQj1dvWo+h+8daZZOMB01KnGe+Na3c9KxEORFKRhtaA1kq2QFW+iCYOKyANAoXu4LXZKjEwZPSzmu1SPZooFhT6nTQIIzngx1UC6qKEn0uBheqEcwlLJlfx9poCPqG0j/y6kGOSmfRgeJy9xjZYVKnpGPcxBMeRyvY8ZlDiso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=e0fIHaCq; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id B57FD3F877
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 10:16:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20251003; t=1770200202;
-	bh=rhq5MsBYR4UI9R+em7ufyvAl7BxW0y3xSf9zAXEJwxs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version;
-	b=e0fIHaCqgCn9xlXR93Nwq7gRyfXf7v/XkpyiieZUfbVb42K7gHBGLFijrqWELK4y1
-	 RpjQ5unXB/003cY/rfNTys+73/wRWttz8gikixSHMLdX64pMsbvpby9u0TX1A+az2a
-	 RQiTLNAXpldg0g8izct/UQE7ipPkQDKUWsPTYvYW/G/bFdJ9gL5bcmLm+TWOVKMmW5
-	 icwDR33pjRoVO/JqlIh7uSlQUWsUMTjdRnBhMWFB/xOrMDcEQwBegU2/rIBbaBbXSY
-	 for35bKHhIsZwQTxxi4GYjsfZd98qjp7Sr1VdqJxEFVLf74jylRAlQXXBJ2SXZO/3C
-	 1afW/90/4LoMBCMmx5s1tnSTHxXHnZafhEH7s3a1GcpMR0sLcngY+nmrSMI017gU1F
-	 hhaJh+iXK851/63uhoEN/kUAd4NkpO1kE+urek80EpE0slLYphkir5D15EUn1XbH/t
-	 dJuO4XVVfVQx+jLR/AlJvSGumflBJLEBAoXwZXkvDr0JVm+VwSBs6xCd10/3KXeyxg
-	 ChuIx2107uCgmkck2YEAAN0x2VLlKXlbkNL8ctJA45lgh6ueeXQmVC9woYYXJuyAaG
-	 jggddYUwyT/AeG8RM1umnEbCIlhbd2tv0ScteieSFK8nIzQ+Wd1Nv78+8YhieHKh/c
-	 aJ8BFfRObvyAHZdgpuVFuUuk=
-Received: by mail-wr1-f72.google.com with SMTP id ffacd0b85a97d-42fdbba545fso592625f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 02:16:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770200202; x=1770805002;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rhq5MsBYR4UI9R+em7ufyvAl7BxW0y3xSf9zAXEJwxs=;
-        b=HBh/smqK4LzRK3+WXskJAuvvzF9yi93An5IG0NkV+1rYW08vbXTLblf+dHhP5Y4hjG
-         Q1GwPmoWXM7WeBKiSGAfUd/kR5WA+RG0hAGNx3BhEPOT4LGWyZLrJELfHmEx4ZdZ+olE
-         X6fWyS7Wyn/W/UqnXSscyo4F0iDm8Xv3fTN4ADUG3fn8mxy6cOj2C0goMUcZopGOhjrl
-         I+PjPjcRmqGuRJxbPVwkP9wZnpjKtzsWwvaAOagAeopqJDhL3a6N/WlxQHZrgsErOwwL
-         hCaHrmXygKGawKfrAwi0gyADPzezumY7XuLrTLQjN7wIKK+tdWQb8Yj/zza1Lv+0EFQz
-         SerA==
-X-Forwarded-Encrypted: i=1; AJvYcCVw2CKfUe/S9LwHkGHkXYiQuj0nFwV8MLn/QFjIs7bdhZxlqGc/tanKM6UlviSe54ma+Tk46IU39pra@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSr3t9IuB4t37xKJFlXeCr/25fdKHI2AyAYj+DQY1+/WGegbkD
-	kzWbBndRQeAOBFsD+X5aZYYYWAV0nU96bVJd6s3TkkxiocY0fXCxodtSyPn8WfMAes9ensJppbD
-	yFi3dumi6oRxOvM0MdhUPayBBhfCiYyKPZOLC4XwRCKg87F51ZUkOvX+RT+PhtUvmSx+R6QGfLs
-	4mnlM=
-X-Gm-Gg: AZuq6aLI4rVkT/mwT0ZDCDxe+u+/k4mMs7XeWp04zg5YRrvxbkv73r7NO+A/NAPL2iA
-	QDM8uhWNif/4pAvlIvIWBLTxcDaQiymCaTvpe0hT9AFfYRA1QLch1M/nJWXt97jLelYzEkIC4dz
-	UwO8+ZyO8vkxTxD2xKXYrslSnB8Yg2De2Ijs81EEQ+0/wxU+h+TGZv8x8QTdU8HJDD3RtmnhccH
-	YZr9RoZbA7eBk0dLeF21kxSX305mXjTJwM2DwfDH1EmcvqPSViVX6o/xBGumK3VIsq+9RNH6xWR
-	c34rvsjX0ywMIU7rwBPTYb32y5O22guEMjpUegBH12jx39FrAXxlF52OuRc6evAndYB0kBvuZG7
-	QlrTaRpQqof7aooVeqXDIYMY5I9Jf3/EV0L6YHoutZEDtljtzxmwfinQv4E9JVFYpoCEHGg5kY7
-	Zu
-X-Received: by 2002:a05:600c:4f4c:b0:47d:6c36:a125 with SMTP id 5b1f17b1804b1-4830eb6712emr32297745e9.17.1770200202220;
-        Wed, 04 Feb 2026 02:16:42 -0800 (PST)
-X-Received: by 2002:a05:600c:4f4c:b0:47d:6c36:a125 with SMTP id 5b1f17b1804b1-4830eb6712emr32297395e9.17.1770200201768;
-        Wed, 04 Feb 2026 02:16:41 -0800 (PST)
-Received: from workstation5 (ip-005-147-080-091.um06.pools.vodafone-ip.de. [5.147.80.91])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48310880598sm30132295e9.0.2026.02.04.02.16.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Feb 2026 02:16:41 -0800 (PST)
-From: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-To: Emil Renner Berthing <kernel@esmil.dk>,
-	Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	E Shattow <e@freeshell.de>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Subject: [PATCH 1/1] riscv: dts: starfive: Milk-V Mars CM Lite broken-cd
-Date: Wed,  4 Feb 2026 11:16:02 +0100
-Message-ID: <20260204101602.30184-1-heinrich.schuchardt@canonical.com>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1770200466; c=relaxed/simple;
+	bh=Hj7x3CQjfXXL9ZenZPjtTI8pLd5bZeX0sDzqTErLSIc=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oOnQUr/GrwdNslzP2szhEh8jbdcUXJPKkRCB+yA08ZvR/JFWxjp8gAX1cWa2BoLj5CC6d4DYm+QdP0K166UxBLdeJA1DTxCw4Tq6cEL5K1nZRyU9xQJrCJ14Xw2C95LV/77v2SE/Sh5FBSPwv4HqEmsJ7UlMCvE16X9gtp4e/tU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OCHL0Dg5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D61DAC2BC87
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 10:21:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770200465;
+	bh=Hj7x3CQjfXXL9ZenZPjtTI8pLd5bZeX0sDzqTErLSIc=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
+	b=OCHL0Dg57GkVCGYR9qxO3dPsPvwFgifBaPbu9AnWVsi3KemLy2RLmImf437IQzjRZ
+	 nw1fY497U5qJCOKpk0B9B17xyzqt1BumJC9qwg7zHPDQ03kwUHwt0XobKk2U3XnG6I
+	 gnVU7BGvLrr9lbTLCnIx8NlNzE51l4JtteRaSswEyh8NW94o8Z8lvpD3Pcq4p0Aa8U
+	 nchLmhs4muCLwNcdOVmCfV4A0cz/7CC7axDxG6JU7jByJTb+i/ZywP7XxuRqza9A8i
+	 kOAQZsCzCS4+y/UKwJ6q1Wdac8GFSvOMpAxOyh2N/E3yEsL5nZ1fYQWRoCP3C6jnyd
+	 zmidxj1HYcgTA==
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-383153e06d6so60276321fa.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 02:21:05 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWmZSE/sdpX697TRZyWIuxRgh29GYa/jmD95e+47LjsYxc6n97MwN5jW3Ceuumm6v1avB3T5yhmmGf4@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFDApKQYPnVkrBc4IRP7VD1K6Qk+Dm0JZHYuLAhdM/aD+ZMFVN
+	5ftNsMsRqzVg9j8KJ4UeLqEqyuS3E9BX3BR2kk8QlhjGFoD6XOTXYS6shtpraUnZ/wnGl1yak9G
+	N+mn8piYSCSCJcgjEt1jNPHvpVvLaeqUO2L4+f7abNA==
+X-Received: by 2002:a05:651c:41d6:b0:383:1232:379a with SMTP id
+ 38308e7fff4ca-38691c5dea5mr11058671fa.2.1770200464304; Wed, 04 Feb 2026
+ 02:21:04 -0800 (PST)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 4 Feb 2026 05:21:02 -0500
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 4 Feb 2026 05:21:02 -0500
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260203-dev-b4-aaeon-mcu-driver-v3-3-0a19432076ac@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260203-dev-b4-aaeon-mcu-driver-v3-0-0a19432076ac@bootlin.com> <20260203-dev-b4-aaeon-mcu-driver-v3-3-0a19432076ac@bootlin.com>
+Date: Wed, 4 Feb 2026 05:21:02 -0500
+X-Gmail-Original-Message-ID: <CAMRc=MeJ+WdsYXpwW2dRVXYQGoXfHw1EQ4TqbHJph6-H6zy-uA@mail.gmail.com>
+X-Gm-Features: AZwV_QilL0KBTJiJFRhGwOT3AJqFCpnUraNwgkBHTK4L_FTOjWvtlMKtC9O-nuQ
+Message-ID: <CAMRc=MeJ+WdsYXpwW2dRVXYQGoXfHw1EQ4TqbHJph6-H6zy-uA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/5] mfd: aaeon: Add SRG-IMX8P MCU driver
+To: "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, 
+	=?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?= <jeremie.dautheribes@bootlin.com>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Lee Jones <lee@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[canonical.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[canonical.com:s=20251003];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-262584-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,bootlin.com,linux-watchdog.org,roeck-us.net,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262582-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[canonical.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heinrich.schuchardt@canonical.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[canonical.com:email,canonical.com:dkim,canonical.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F1AFEE460B
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 05453E46BA
 X-Rspamd-Action: no action
 
-The card detect GPIO depends on support by the base board.
+On Tue, 3 Feb 2026 17:21:12 +0100, "Thomas Perrot (Schneider
+Electric)" <thomas.perrot@bootlin.com> said:
+> Add Multi-Function Device (MFD) driver for the Aaeon SRG-IMX8P
+> embedded controller. This driver provides the core I2C communication
+> interface and registers child devices (GPIO and watchdog controllers).
+>
+> The MCU firmware version is queried during probe and logged for
+> diagnostic purposes. All I2C transactions are serialized using a mutex
+> to ensure proper communication with the microcontroller.
+>
+> Co-developed-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric) <jere=
+mie.dautheribes@bootlin.com>
+> Signed-off-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric) <jeremi=
+e.dautheribes@bootlin.com>
+> Signed-off-by: Thomas Perrot (Schneider Electric) <thomas.perrot@bootlin.=
+com>
+> ---
+>  MAINTAINERS                   |   2 +
+>  drivers/mfd/Kconfig           |  10 +++
+>  drivers/mfd/Makefile          |   2 +
+>  drivers/mfd/aaeon-mcu.c       | 137 ++++++++++++++++++++++++++++++++++++=
+++++++
+>  include/linux/mfd/aaeon-mcu.h |  20 ++++++
+>  5 files changed, 171 insertions(+)
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ea9d55f76f3509c7f6ba6d1bc86ca2e2e71aa954..f91b6a1826d04bef8a0f88221=
+f6c8e8a3652cd77 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -191,6 +191,8 @@ M:	Thomas Perrot <thomas.perrot@bootlin.com>
+>  R:	J=C3=A9r=C3=A9mie Dautheribes <jeremie.dautheribes@bootlin.com>
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/mfd/aaeon,srg-imx8p-mcu.yaml
+> +F:	drivers/mfd/aaeon-mcu.c
+> +F:	include/linux/mfd/aaeon-mcu.h
+>
+>  AAEON UPBOARD FPGA MFD DRIVER
+>  M:	Thomas Richard <thomas.richard@bootlin.com>
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index aace5766b38aa5e46e32a8a7b42eea238159fbcf..7a1ceedece899faad7a03a1fe=
+7b1c91b72253c05 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -1574,6 +1574,16 @@ config AB8500_CORE
+>  	  the irq_chip parts for handling the Mixed Signal chip events.
+>  	  This chip embeds various other multimedia functionalities as well.
+>
+> +config MFD_AAEON_MCU
+> +	tristate "Aaeon SRG-IMX8P MCU Driver"
+> +	depends on I2C || COMPILE_TEST
+> +	select MFD_CORE
+> +	help
+> +	  Select this option to enable support for the Aaeon SRG-IMX8P
+> +	  onboard microcontroller (MCU). This driver provides the core
+> +	  functionality to communicate with the MCU over I2C. The MCU
+> +	  provides GPIO and watchdog functionality.
+> +
+>  config MFD_DB8500_PRCMU
+>  	bool "ST-Ericsson DB8500 Power Reset Control Management Unit"
+>  	depends on UX500_SOC_DB8500
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index e75e8045c28afae975ac61d282b3b85af5440119..0bc3a10c787c55730131224fc=
+1053fe35657dd71 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -304,3 +304,5 @@ obj-$(CONFIG_MFD_RSMU_SPI)	+=3D rsmu_spi.o rsmu_core.=
+o
+>  obj-$(CONFIG_MFD_UPBOARD_FPGA)	+=3D upboard-fpga.o
+>
+>  obj-$(CONFIG_MFD_LOONGSON_SE)	+=3D loongson-se.o
+> +
+> +obj-$(CONFIG_MFD_AAEON_MCU)	+=3D aaeon-mcu.o
+> diff --git a/drivers/mfd/aaeon-mcu.c b/drivers/mfd/aaeon-mcu.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..4f2420668106453549ab42888=
+bbfd50363bdfc45
+> --- /dev/null
+> +++ b/drivers/mfd/aaeon-mcu.c
+> @@ -0,0 +1,137 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Aaeon MCU driver
+> + *
+> + * Copyright (C) 2025 Bootlin
+> + * Author: J=C3=A9r=C3=A9mie Dautheribes <jeremie.dautheribes@bootlin.co=
+m>
+> + * Author: Thomas Perrot <thomas.perrot@bootlin.com>
+> + */
+> +
+> +#include <linux/cleanup.h>
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/mfd/aaeon-mcu.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/mutex.h>
+> +#include <linux/platform_device.h>
+> +
+> +#define AAEON_MCU_FW_VERSION	0x76
+> +
+> +/**
+> + * struct aaeon_mcu_dev - Internal representation of the Aaeon MCU
+> + * @dev: Pointer to kernel device structure
+> + * @i2c_lock: Mutex to serialize I2C bus access
+> + */
+> +struct aaeon_mcu_dev {
+> +	struct device *dev;
+> +	struct mutex i2c_lock;
 
-Detecting an SD-card did not work for me with a Milk-V Mars CM Lite
-mounted on an Waveshare CM4-IO-BASE-A board.
+If you wrapped your client in an i2c regmap, you could drop this mutex and
+subsequently the entire structure making your driver even smaller.
 
-According to [1] SD_SDIO0_CD_GPIO41 is connected to pin 76 reserved.
-The Raspberry Pi Compute Module 4 IO Board documentation marks that pin as
-reserved. The Raspberry Pi Compute Module 5 IO Board documentation
-marks the pin as VBAT.
+> +};
+> +
+> +static const struct mfd_cell aaeon_mcu_devs[] =3D {
+> +	{
+> +		.name =3D "aaeon-mcu-wdt",
+> +	},
+> +	{
+> +		.name =3D "aaeon-mcu-gpio",
+> +	},
+> +};
+> +
+> +static int aaeon_mcu_read_version(struct device *dev, u8 index, u8 *vers=
+ion)
+> +{
+> +	u8 cmd[3] =3D { AAEON_MCU_FW_VERSION, index, 0x00 };
+> +
+> +	return aaeon_mcu_i2c_xfer(dev, cmd, sizeof(cmd), version, sizeof(*versi=
+on));
+> +}
+> +
+> +static int aaeon_mcu_print_fw_version(struct i2c_client *client)
+> +{
+> +	struct device *dev =3D &client->dev;
+> +	u8 major, minor;
+> +	int ret;
+> +
+> +	ret =3D aaeon_mcu_read_version(dev, 0x00, &major);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D aaeon_mcu_read_version(dev, 0x01, &minor);
+> +	if (ret)
+> +		return ret;
+> +
+> +	dev_dbg(dev, "firmware version: v%d.%d\n", major, minor);
+> +
 
-Remove the cd-gpios definition and add broken-cd.
+Do we *really* need this? If you'd at least used this to change the behavio=
+r
+of the driver or check if the version is supported, but you just read it an=
+d
+never use it. I'd drop this and aaeon_mcu_read_version() above. That would =
+make
+the driver even smallerer.
 
-[1]  https://github.com/milkv-mars/mars-files/blob/main/Mars-CM_Hardware_Schematices/Milk-V_Mars-CM_SCH_V1.0-2023-0905_Lite.pdf
+> +	return 0;
+> +}
+> +
+> +int aaeon_mcu_i2c_xfer(struct device *dev,
+> +		       const u8 *cmd, int cmd_len,
+> +		       u8 *rsp, int rsp_len)
+> +{
+> +	struct i2c_client *client =3D to_i2c_client(dev);
+> +	struct aaeon_mcu_dev *mcu =3D i2c_get_clientdata(client);
+> +	int ret;
+> +
+> +	guard(mutex)(&mcu->i2c_lock);
+> +
+> +	ret =3D i2c_master_send(client, cmd, cmd_len);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret =3D i2c_master_recv(client, rsp, rsp_len);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (ret !=3D rsp_len) {
+> +		dev_err(dev,
+> +			"i2c recv count error (expected: %d, actual: %d)\n",
+> +			rsp_len, ret);
+> +		return -EIO;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(aaeon_mcu_i2c_xfer);
+> +
+> +static int aaeon_mcu_probe(struct i2c_client *client)
+> +{
+> +	struct aaeon_mcu_dev *mcu;
+> +	int ret;
+> +
+> +	mcu =3D devm_kzalloc(&client->dev, sizeof(*mcu), GFP_KERNEL);
+> +	if (!mcu)
+> +		return -ENOMEM;
+> +
+> +	i2c_set_clientdata(client, mcu);
+> +	mcu->dev =3D &client->dev;
+> +
+> +	ret =3D devm_mutex_init(&client->dev, &mcu->i2c_lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D aaeon_mcu_print_fw_version(client);
+> +	if (ret) {
+> +		dev_err(&client->dev, "unable to read firmware version\n");
+> +		return ret;
+> +	}
+> +
+> +	return devm_mfd_add_devices(mcu->dev, PLATFORM_DEVID_NONE, aaeon_mcu_de=
+vs,
+> +				    ARRAY_SIZE(aaeon_mcu_devs), NULL, 0, NULL);
+> +}
+> +
+> +static const struct of_device_id aaeon_mcu_of_match[] =3D {
+> +	{ .compatible =3D "aaeon,srg-imx8p-mcu" },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, aaeon_mcu_of_match);
+> +
+> +static struct i2c_driver aaeon_mcu_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "aaeon_mcu",
+> +		.of_match_table =3D aaeon_mcu_of_match,
+> +	},
+> +	.probe =3D aaeon_mcu_probe,
+> +};
+> +module_i2c_driver(aaeon_mcu_driver);
+> +
+> +MODULE_DESCRIPTION("Aaeon MCU Driver");
+> +MODULE_AUTHOR("J=C3=A9r=C3=A9mie Dautheribes <jeremie.dautheribes@bootli=
+n.com>");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/mfd/aaeon-mcu.h b/include/linux/mfd/aaeon-mcu.=
+h
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..2e9f5f316f33b70c732faa850=
+576cee596455dab
+> --- /dev/null
+> +++ b/include/linux/mfd/aaeon-mcu.h
+> @@ -0,0 +1,20 @@
+> +/* SPDX-License-Identifier: GPL-2.0-or-later */
+> +/*
+> + * Aaeon MCU driver definitions
+> + *
+> + * Copyright (C) 2025 Bootlin
+> + * Author: J=C3=A9r=C3=A9mie Dautheribes <jeremie.dautheribes@bootlin.co=
+m>
+> + * Author: Thomas Perrot <thomas.perrot@bootlin.com>
+> + */
+> +
+> +#ifndef __LINUX_MFD_AAEON_MCU_H
+> +#define __LINUX_MFD_AAEON_MCU_H
+> +
+> +#include <linux/device.h>
 
-Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
----
- arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Don't pull this in if you don't need to know the layout of the structure. J=
+ust
+use a forward declaration for struct device.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
-index 63aa94d65ab55..566b0bdc2800d 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
-+++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
-@@ -13,7 +13,7 @@ / {
- 
- &mmc0 {
- 	bus-width = <4>;
--	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
-+	broken-cd;
- 	disable-wp;
- };
- 
--- 
-2.51.0
+> +#include <linux/types.h>
+> +
+> +int aaeon_mcu_i2c_xfer(struct device *dev,
+> +		       const u8 *cmd, int cmd_len,
+> +		       u8 *rsp, int rsp_len);
+> +
+> +#endif /*  __LINUX_MFD_AAEON_MCU_H */
+>
+> --
+> 2.52.0
+>
+>
 
+Bartosz
 
