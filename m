@@ -1,194 +1,656 @@
-Return-Path: <devicetree+bounces-262733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262734-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uBvFOah6g2nyngMAu9opvQ
-	(envelope-from <devicetree+bounces-262733-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 17:58:16 +0100
+	id AJaHDx17g2nyngMAu9opvQ
+	(envelope-from <devicetree+bounces-262734-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 18:00:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C26EAA86
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 17:58:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB41DEAAF5
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 18:00:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A958A300EA8F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 16:53:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DD03430484E5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 16:54:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0020533D6C1;
-	Wed,  4 Feb 2026 16:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1F7733E367;
+	Wed,  4 Feb 2026 16:54:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="QOFBYjMi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QrTz+Iue"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ixit.cz [185.100.197.86])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5616C27A476;
-	Wed,  4 Feb 2026 16:53:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740B333E34B
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 16:54:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770223993; cv=none; b=FaCiaFrRdBPjvelzKEzEjQi5gUiZiGZLsK65D2o51vjze5cm0f4EC9UvRM0BzEeG+H724s5nLgu0EJLzzpu2Im8U9GkcUhg+JEJjRWWvra8iRF3t/AIGQryn05+Cv7cnGMv9ObpuAprA8DQqcNVTTWOoTuU6on1d4SnLY44rGjI=
+	t=1770224096; cv=none; b=CwwZ6x9xKZLUZiO3ejJy7OM6UpVOnp+0t+I3gmk0FP4KtYzzoaYakdGBcEY3FBaX61oNqdVRSqsgb6Bm95hl/nuaGZrfRC/fTNrXWqXtUiB0UsafTHtaKKlVJhrrpGOC6NXneDfSunH2wywsDhfSDFvvxYtHVRWDpLIOrCH/pUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770223993; c=relaxed/simple;
-	bh=KX64g/ktTXmGtngxNyZM2eQ44i+Ycnf1f2IcL6ZCNMc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=URikE32VSjcHYHpRgUlJvAhWxKHIkVi+vaI/wPzKGsVHNKovX4g22D866bp8Xp7SLuyv1ThVywrirbjJfcM5VKFopF76LP/BoIXA6DOLHW/015xggAyB4xd/MAhvr6VozA4CVwVVJAc7J9xGRAa39ZdVvWTDE53BtLoess3GayU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=QOFBYjMi; arc=none smtp.client-ip=185.100.197.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [192.168.162.203] (unknown [176.98.251.102])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id E8D97534087C;
-	Wed, 04 Feb 2026 17:53:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1770223984;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=LCVZV2fyQrR/7m8wwVqxBKKDwuqXM9WmxIZer+bxgak=;
-	b=QOFBYjMiGqc0yllapqAbwLU/+wME+lZ7ZPM0RpkZYN3R/qx2W/GQSd2M4H/VXM2nQRlyE3
-	54sXJB3g6qI5CQZ4WIFPBVQko41DRbbs5VfQQ9ktkR3XO0aGB9bIuDAUpIA5kW67QLxtg7
-	MztLk+k5I08qivGxjsK6lY235yWrXmk=
-Message-ID: <3b27d707-c4d4-4cc7-94f7-f29c2466ff19@ixit.cz>
-Date: Wed, 4 Feb 2026 17:53:02 +0100
+	s=arc-20240116; t=1770224096; c=relaxed/simple;
+	bh=iiapcZ/DGEP/cwCQIyrmgJLGryp0jX6aBFaErKOZYUI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=aCAwPnpmEePcrux9Q9RgF1F10I43O+HV6UyfNgcjxupQOQh+8T43S62q+ErU3m1KINvZuAxDz1UH2xDsaWOaYEZlPCJ+ZKsS+cmvSHYYdqBuhkpVAjfQXwbtt0gHC/B4PfbB06kOk6hJw+lXAMZZkielRy747sFbG4T3bIMYqBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QrTz+Iue; arc=none smtp.client-ip=209.85.219.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-894674a4c4aso493196d6.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 08:54:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1770224095; x=1770828895; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=pj16dI3qaH0YVk42KgqHTQPPBcA62LkSoA1Q8YJmVwU=;
+        b=QrTz+Iuej7m3JtXVBuDN/j3zVnZaMVvrwBcGCoIZzHXXF0X3grWj4n051n0GxuvvBJ
+         TcIcvZkKrCU1pxouG+OuX84eZKBtv7rKrZfZmmLJYbIe2NHTSxWAYyL+Db6S8RSoINeh
+         scifuex8SSK7ITLkwfUFuuPwyLgMYoZDI8kGMeVk6ipOaj20v2no68qxssbombxj9iQ7
+         bLsHeaMskGEbux2dU05tqNIal7RxZFjZeUCwp66VL5QYPS+2HzXLzNw5bWvtdqiCI36a
+         wGLmuzmgqW199JyV6fnuIbpsxoyxlbW/A7zPvXWkwTn3GQ1ucQN3jnzrNp1xT7zhxfQP
+         tw6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770224095; x=1770828895;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pj16dI3qaH0YVk42KgqHTQPPBcA62LkSoA1Q8YJmVwU=;
+        b=ZSLjWoqcoXCI8kaWo2l705VVmUmA+C6VEC3hnZxRs+hZWTNA4t2vw01E7uAhkuxtBv
+         KD9nQFGkucEd3ayn45ubyFkVRxc0jlgvrVBIe9qdP2Cqa45aTdNDHafi88N+YXLn3g9e
+         fNUtVf9lCnp76hJS81qhSWP6nTy+XnwoO1mOOf1Jzyl0rtv6RgiP9nCQ8LFV5WTSh9a8
+         jkI8i+Yu7PVwW/LSL2/kGLGhOFtv3Gq50QaxAn1Uo+zs/25xJ6bnBh8UPc1rts7V90uU
+         0LEyzzzAbXvQroWaIMu+Z1ljjiyQy3VgjXVY3O0FV/FoxLVej5y90IkJnBW1sQAI7qae
+         3rjA==
+X-Forwarded-Encrypted: i=1; AJvYcCWATGxDMDJU0MVgaQ5R8c1iWF6PiO6JY3gsQCbXN9qfrcVJnt+hn0kA1Uzg03GzHfTXF/krooOFQ1V/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXrizxd9utSllYah/6K2KFoqmQtxrVFcKZF2qgaqwId7BRdQhN
+	+95Ef7GwFjKqKxA6xRf12CZvvtd4Swc7hJw9BieFkGQMuSKkm0jByeuzd7VKBKAUAgzr5IBMxlV
+	aF7DH
+X-Gm-Gg: AZuq6aJ9M5hVmPudliKlF9P7JRRqK4god6hLag2XFq3AhC5ScBmeAm5h1P9Zy4v7RFw
+	PnqSyvzqmPWxmDhE17/aM1sNnfRQmlQEMdkubk8eQUCiGA0x6A5kc6yXpVimsm8EGuubsaXY1oH
+	IthCr218UxSNdTiCpz5aFnK2G48+FfvN2uoRPui3y7icz4w8tSWCJdd3psgum832Q5+UdryzzZl
+	WIWB1nLBmh6Jv+ccCsSJnt3shHe6KX2SzHfkhpcoHsKz5AKj0TE2VkXnohKKHGseUJzcfsGm1/4
+	M/wMVY9hQqhAb+89GpH0EGneX8WTdGJjrG2PcMftO80fd8IuadXat00NBL6d4eSro7xgc01vDpu
+	s62sKQ7STj/aOU9+6nySwFl+iqkFJ+SxmHQMlUnIbkWaiLauRKVjKAg9H1CFu9Bfm+qz3O3wopE
+	dtR99NkeHoZLw+sj6zSw==
+X-Received: by 2002:a05:6214:2469:b0:894:7051:bd9d with SMTP id 6a1803df08f44-895220f553bmr47201306d6.9.1770224095252;
+        Wed, 04 Feb 2026 08:54:55 -0800 (PST)
+Received: from draszik.lan ([212.129.76.169])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-89521cf87fcsm25696886d6.30.2026.02.04.08.54.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Feb 2026 08:54:54 -0800 (PST)
+Message-ID: <e34d429e27392eba894b9592724a77fa82fc8009.camel@linaro.org>
+Subject: Re: [PATCH v2 08/12] leds: flash: add support for Samsung S2M
+ series PMIC flash LED device
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>, Lee Jones
+ <lee@kernel.org>,  Pavel Machek <pavel@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
+ <conor+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, Chanwoo
+ Choi	 <cw00.choi@samsung.com>, Sebastian Reichel <sre@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, Jonathan Corbet	 <corbet@lwn.net>, Shuah
+ Khan <skhan@linuxfoundation.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org, 
+	linux-doc@vger.kernel.org
+Date: Wed, 04 Feb 2026 16:55:11 +0000
+In-Reply-To: <20260126-s2mu005-pmic-v2-8-78f1a75f547a@disroot.org>
+References: <20260126-s2mu005-pmic-v2-0-78f1a75f547a@disroot.org>
+	 <20260126-s2mu005-pmic-v2-8-78f1a75f547a@disroot.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: qcom: sdm845: Introduce camera master
- clock pinctrl
-To: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20260114-sdm845-mclk-v3-1-c9351deaf4f2@ixit.cz>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- xsFNBF5v1x4BEADS3EddwsNsvVAI1XF8uQKbdYPY/GhjaSLziwVnbwv5BGwqB1tfXoHnccoA
- 9kTgKAbiXG/CiZFhD6l4WCIskQDKzyQN3JhCUIxh16Xyw0lECI7iqoW9LmMoN1dNKcUmCO9g
- lZxQaOl+1bY/7ttd7DapLh9rmBXJ2lKiMEaIpUwb/Nw0d7Enp4Jy2TpkhPywIpUn8CoJCv3/
- 61qbvI9y5utB/UhfMAUXsaAgwEJyGPAqHlC0YZjaTwOu+YQUE3AFzhCbksq95CwDz4U4gdls
- dmv9tkATfu2OmzERZQ6vJTehK0Pu4l5KmCAzYg42I9Dy4E6b17x6NncKbcByQFOXMtG0qVUk
- F1yeeOQUHwu+8t3ZDMBUhCkRL/juuoqLmyDWKMc0hKNNeZ9BNXgB8fXkRLWEUfgDXsFyEkKp
- NxUy5bDRlivf6XfExnikk5kj9l2gGlNQwqROti/46bfbmlmc/a2GM4k8ZyalHNEAdwtXYSpP
- 8JJmlbQ7hNTLkc3HQLRsIocN5th/ur7pPMz1Beyp0gbE9GcOceqmdZQB80vJ01XDyCAihf6l
- AMnzwpXZsjqIqH9r7T7tM6tVEVbPSwPt4eZYXSoJijEBC/43TBbmxDX+5+3txRaSCRQrG9dY
- k3mMGM3xJLCps2KnaqMcgUnvb1KdTgEFUZQaItw7HyRd6RppewARAQABzSBEYXZpZCBIZWlk
- ZWxiZXJnIDxkYXZpZEBpeGl0LmN6PsLBlAQTAQgAPgIbAwULCQgHAgYVCgkICwIEFgIDAQIe
- AQIXgBYhBNd6Cc/u3Cu9U6cEdGACP8TTSSByBQJl+KksBQkPDaAOAAoJEGACP8TTSSBy6IAQ
- AMqFqVi9LLxCEcUWBn82ssQGiVSDniKpFE/tp7lMXflwhjD5xoftoWOmMYkiWE86t5x5Fsp7
- afALx7SEDz599F1K1bLnaga+budu55JEAYGudD2WwpLJ0kPzRhqBwGFIx8k6F+goZJzxPDsf
- loAtXQE62UvEKa4KRRcZmF0GGoRsgA7vE7OnV8LMeocdD3eb2CuXLzauHAfdvqF50IfPH/sE
- jbzROiAZU+WgrwU946aOzrN8jVU+Cy8XAccGAZxsmPBfhTY5f2VN1IqvfaRdkKKlmWVJWGw+
- ycFpAEJKFRdfcc5PSjUJcALn5C+hxzL2hBpIZJdfdfStn+DWHXNgBeRDiZj1x6vvyaC43RAb
- VXvRzOQfG4EaMVMIOvBjBA/FtIpb1gtXA42ewhvPnd5RVCqD9YYUxsVpJ9d+XsAy7uib3BsV
- W2idAEsPtoqhVhq8bCUs/G4sC2DdyGZK8MRFDJqciJSUbqA+5z1ZCuE8UOPDpZKiW6H/OuOM
- zDcjh0lOzr4p+/1TSg1PbUh7fQ+nbMuiT044sC1lLtJK0+Zyn0GwhR82oNM4fldNsaHRW42w
- QGD35+eNo5Pvb3We5XRMlBdhFnj7Siggp4J8/PJ6MJvRyC+RIJPGtbdMB2/RxWunFLn87e5w
- UgwR9jPMHAstuTR1yR23c4SIYoQ2fzkrRzuazsFNBF5v1x4BEADnlrbta2WL87BlEOotZUh0
- zXANMrNV15WxexsirLetfqbs0AGCaTRNj+uWlTUDJRXOVIwzmF76Us3I2796+Od2ocNpLheZ
- 7EIkq8budtLVd1c06qJ+GMraz51zfgSIazVInNMPk9T6fz0lembji5yEcNPNNBA4sHiFmXfo
- IhepHFOBApjS0CiOPqowYxSTPe/DLcJ/LDwWpTi37doKPhBwlHev1BwVCbrLEIFjY0MLM0aT
- jiBBlyLJaTqvE48gblonu2SGaNmGtkC3VoQUQFcVYDXtlL9CVbNo7BAt5gwPcNqEqkUL60Jh
- FtvVSKyQh6gn7HHsyMtgltjZ3NKjv8S3yQd7zxvCn79tCKwoeNevsvoMq/bzlKxc9QiKaRPO
- aDj3FtW7R/3XoKJBY8Hckyug6uc2qYWRpnuXc0as6S0wfek6gauExUttBKrtSbPPHiuTeNHt
- NsT4+dyvaJtQKPBTbPHkXpTO8e1+YAg7kPj3aKFToE/dakIh8iqUHLNxywDAamRVn8Ha67WO
- AEAA3iklJ49QQk2ZyS1RJ2Ul28ePFDZ3QSr9LoJiOBZv9XkbhXS164iRB7rBZk6ZRVgCz3V6
- hhhjkipYvpJ/fpjXNsVL8jvel1mYNf0a46T4QQDQx4KQj0zXJbC2fFikAtu1AULktF4iEXEI
- rSjFoqhd4euZ+QARAQABwsF8BBgBCAAmAhsMFiEE13oJz+7cK71TpwR0YAI/xNNJIHIFAmX4
- qVAFCQ8NoDIACgkQYAI/xNNJIHKN4A/+Ine2Ii7JiuGITjJkcV6pgKlfwYdEs4eFD1pTRb/K
- 5dprUz3QSLP41u9OJQ23HnESMvn31UENk9ffebNoW7WxZ/8cTQY0JY/cgTTrlNXtyAlGbR3/
- 3Q/VBJptf04Er7I6TaKAmqWzdVeKTw33LljpkHp02vrbOdylb4JQG/SginLV9purGAFptYRO
- 8JNa2J4FAQtQTrfOUjulOWMxy7XRkqK3QqLcPW79/CFn7q1yxamPkpoXUJq9/fVjlhk7P+da
- NYQpe4WQQnktBY29SkFnvfIAwqIVU8ix5Oz8rghuCcAdR7lEJ7hCX9bR0EE05FOXdZy5FWL9
- GHvFa/Opkq3DPmFl/0nt4HJqq1Nwrr+WR6d0414oo1n2hPEllge/6iD3ZYwptTvOFKEw/v0A
- yqOoYSiKX9F7Ko7QO+VnYeVDsDDevKic2T/4GDpcSVd9ipiKxCQvUAzKUH7RUpqDTa+rYurm
- zRKcgRumz2Tc1ouHj6qINlzEe3a5ldctIn/dvR1l2Ko7GBTG+VGp9U5NOAEkGpxHG9yg6eeY
- fFYnMme51H/HKiyUlFiE3yd5LSmv8Dhbf+vsI4x6BOOOq4Iyop/Exavj1owGxW0hpdUGcCl1
- ovlwVPO/6l/XLAmSGwdnGqok5eGZQzSst0tj9RC9O0dXO1TZocOsf0tJ8dR2egX4kxM=
-In-Reply-To: <20260114-sdm845-mclk-v3-1-c9351deaf4f2@ixit.cz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262733-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[ixit.cz:+];
+	TAGGED_FROM(0.00)[bounces-262734-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ixit.cz:email,ixit.cz:dkim,ixit.cz:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email,qualcomm.com:email]
-X-Rspamd-Queue-Id: 49C26EAA86
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,disroot.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DB41DEAAF5
 X-Rspamd-Action: no action
 
-On 14/01/2026 11:08, David Heidelberg via B4 Relay wrote:
-> From: David Heidelberg <david@ixit.cz>
-> 
-> Put clock pins configuration for camera master clock into the dtsi.
-> 
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
-> Inspired by Richard's patch set for SDM670, I noticed that SDM845
-> follows the same pattern. This change prepares for enabling
-> additional cameras.
-> 
-> These pinctrl settings have been verified against the downstream
-> SDM845 kernel.
-> 
-> Since most of these are not yet used in mainline, testing was done
-> on sdm845-next using OnePlus 6 cameras with downstream drivers.
-> 
-> Thank you
-> David
-> ---
-> Changes in v3:
-> - Dropped 2nd patch
->    ("arm64: dts: qcom: sdm845-db845c: Use pad fn instead of defining own")
->    as there is no documentation or people who can answer questions for
->    now, so we can move forward with the main camera work.
-> - Link to v2: https://lore.kernel.org/r/20251217-sdm845-mclk-v2-0-7028c2d09145@ixit.cz
-> 
-> Changes in v2:
-> - Added mclk3. (Vladimir)
-> - Reword commit messages.
-> - Corrected commit msg name. (Konrad)
-> - Link to v1: https://lore.kernel.org/r/20251213-sdm845-mclk-v1-0-197bc947d4c6@ixit.cz
-> ---
->   arch/arm64/boot/dts/qcom/sdm845.dtsi | 56 ++++++++++++++++++++++++++++++++++++
->   1 file changed, 56 insertions(+)
-> 
+Hi,
 
-Hello, reminder this lovely patch exist :)
+On Mon, 2026-01-26 at 00:37 +0530, Kaustabh Chakraborty wrote:
+> Add support for flash LEDs found in certain Samsung S2M series PMICs.
+> The device has two channels for LEDs, typically for the back and front
+> cameras in mobile devices. Both channels can be independently
+> controlled, and can be operated in torch or flash modes.
+>=20
+> The driver includes initial support for the S2MU005 PMIC flash LEDs.
+>=20
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+> =C2=A0drivers/leds/flash/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 12 ++
+> =C2=A0drivers/leds/flash/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> =C2=A0drivers/leds/flash/leds-s2m-flash.c | 410 +++++++++++++++++++++++++=
++++++++++++
+> =C2=A03 files changed, 423 insertions(+)
+>=20
+> diff --git a/drivers/leds/flash/Kconfig b/drivers/leds/flash/Kconfig
+> index 5e08102a67841..be62e05277429 100644
+> --- a/drivers/leds/flash/Kconfig
+> +++ b/drivers/leds/flash/Kconfig
+> @@ -114,6 +114,18 @@ config LEDS_RT8515
+> =C2=A0	=C2=A0 To compile this driver as a module, choose M here: the modu=
+le
+> =C2=A0	=C2=A0 will be called leds-rt8515.
+> =C2=A0
+> +config LEDS_S2M_FLASH
+> +	tristate "Samsung S2M series PMICs flash/torch LED support"
+> +	depends on LEDS_CLASS
+> +	depends on MFD_SEC_CORE
+> +	depends on V4L2_FLASH_LED_CLASS || !V4L2_FLASH_LED_CLASS
+> +	select REGMAP_IRQ
+> +	help
+> +	=C2=A0 This option enables support for the flash/torch LEDs found in
+> +	=C2=A0 certain Samsung S2M series PMICs, such as the S2MU005. It has
+> +	=C2=A0 a LED channel dedicated for every physical LED. The LEDs can
+> +	=C2=A0 be controlled in flash and torch modes.
+> +
+> =C2=A0config LEDS_SGM3140
+> =C2=A0	tristate "LED support for the SGM3140"
+> =C2=A0	depends on V4L2_FLASH_LED_CLASS || !V4L2_FLASH_LED_CLASS
+> diff --git a/drivers/leds/flash/Makefile b/drivers/leds/flash/Makefile
+> index 712fb737a428e..44e6c1b4beb37 100644
+> --- a/drivers/leds/flash/Makefile
+> +++ b/drivers/leds/flash/Makefile
+> @@ -10,6 +10,7 @@ obj-$(CONFIG_LEDS_MAX77693)	+=3D leds-max77693.o
+> =C2=A0obj-$(CONFIG_LEDS_QCOM_FLASH)	+=3D leds-qcom-flash.o
+> =C2=A0obj-$(CONFIG_LEDS_RT4505)	+=3D leds-rt4505.o
+> =C2=A0obj-$(CONFIG_LEDS_RT8515)	+=3D leds-rt8515.o
+> +obj-$(CONFIG_LEDS_S2M_FLASH)	+=3D leds-s2m-flash.o
+> =C2=A0obj-$(CONFIG_LEDS_SGM3140)	+=3D leds-sgm3140.o
+> =C2=A0obj-$(CONFIG_LEDS_SY7802)	+=3D leds-sy7802.o
+> =C2=A0obj-$(CONFIG_LEDS_TPS6131X)	+=3D leds-tps6131x.o
+> diff --git a/drivers/leds/flash/leds-s2m-flash.c b/drivers/leds/flash/led=
+s-s2m-flash.c
+> new file mode 100644
+> index 0000000000000..1be2745c475bf
+> --- /dev/null
+> +++ b/drivers/leds/flash/leds-s2m-flash.c
+> @@ -0,0 +1,410 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Flash and Torch LED Driver for Samsung S2M series PMICs.
+> + *
+> + * Copyright (c) 2015 Samsung Electronics Co., Ltd
+> + * Copyright (c) 2025 Kaustabh Chakraborty <kauschluss@disroot.org>
+> + */
+> +
+> +#include <linux/container_of.h>
+> +#include <linux/led-class-flash.h>
+> +#include <linux/mfd/samsung/core.h>
+> +#include <linux/mfd/samsung/s2mu005.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <media/v4l2-flash-led-class.h>
+> +
+> +#define MAX_CHANNELS	2
+> +
+> +struct s2m_fled {
+> +	struct device *dev;
+> +	struct regmap *regmap;
+> +	struct led_classdev_flash cdev;
+> +	struct v4l2_flash *v4l2_flash;
+> +	struct mutex lock;
 
-Thanks,
-David
+Please add a (brief) comment describing what the mutex protects.
+
+> +	const struct s2m_fled_spec *spec;
+> +	unsigned int pmic_revision;
+> +	u8 channel;
+> +	u8 flash_brightness;
+> +	u8 flash_timeout;
+> +};
+> +
+> +struct s2m_fled_spec {
+> +	u8 num_channels;
+> +	u32 torch_max_brightness;
+> +	u32 flash_min_current_ua;
+> +	u32 flash_max_current_ua;
+> +	u32 flash_min_timeout_us;
+> +	u32 flash_max_timeout_us;
+> +	int (*torch_brightness_set_blocking)(struct led_classdev *led_cdev,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 enum led_brightness brightness);
+> +	const struct led_flash_ops *flash_ops;
+> +};
+> +
+> +static struct led_classdev_flash *to_cdev_flash(struct led_classdev *cde=
+v)
+> +{
+> +	return container_of(cdev, struct led_classdev_flash, led_cdev);
+> +}
+> +
+> +static struct s2m_fled *to_led_priv(struct led_classdev_flash *cdev)
+> +{
+> +	return container_of(cdev, struct s2m_fled, cdev);
+> +}
+> +
+> +static int s2m_fled_flash_brightness_set(struct led_classdev_flash *cdev=
+,
+> +					 u32 brightness)
+> +{
+> +	struct s2m_fled *priv =3D to_led_priv(cdev);
+> +	struct led_flash_setting *setting =3D &cdev->brightness;
+> +
+> +	priv->flash_brightness =3D (brightness - setting->min) / setting->step;
+> +
+> +	return 0;
+> +}
+> +
+> +static int s2m_fled_flash_timeout_set(struct led_classdev_flash *cdev,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 timeout)
+> +{
+> +	struct s2m_fled *priv =3D to_led_priv(cdev);
+> +	struct led_flash_setting *setting =3D &cdev->timeout;
+> +
+> +	priv->flash_timeout =3D (timeout - setting->min) / setting->step;
+> +
+> +	return 0;
+> +}
+> +
+> +#if IS_ENABLED(CONFIG_V4L2_FLASH_LED_CLASS)
+> +static int s2m_fled_flash_external_strobe_set(struct v4l2_flash *v4l2_fl=
+ash,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool enable)
+> +{
+> +	struct s2m_fled *priv =3D to_led_priv(v4l2_flash->fled_cdev);
+> +
+> +	mutex_lock(&priv->lock);
+> +
+> +	priv->cdev.ops->strobe_set(&priv->cdev, enable);
+> +
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct v4l2_flash_ops s2m_fled_v4l2_flash_ops =3D {
+> +	.external_strobe_set =3D s2m_fled_flash_external_strobe_set,
+> +};
+> +#else
+> +static const struct v4l2_flash_ops s2m_fled_v4l2_flash_ops;
+> +#endif
+> +
+> +static int s2mu005_fled_torch_brightness_set(struct led_classdev *cdev,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 enum led_brightness value)
+> +{
+> +	struct s2m_fled *priv =3D to_led_priv(to_cdev_flash(cdev));
+> +	struct regmap *regmap =3D priv->regmap;
+> +	u8 channel =3D priv->channel;
+> +	unsigned int reg_enable;
+> +	int ret;
+> +
+> +	mutex_lock(&priv->lock);
+> +
+> +	/*
+> +	 * Get the LED enable register address. Revision EVT0 has the
+> +	 * register at CTRL4, while EVT1 and higher have it at CTRL6.
+> +	 */
+> +	if (priv->pmic_revision =3D=3D 0)
+> +		reg_enable =3D S2MU005_REG_FLED_CTRL4;
+> +	else
+> +		reg_enable =3D S2MU005_REG_FLED_CTRL6;
+
+You could REG_FIELD() and friends for this and everywhere else with
+similar if / else.
+
+> +
+> +	if (value =3D=3D LED_OFF) {
+> +		ret =3D regmap_clear_bits(regmap, reg_enable,
+> +					S2MU005_FLED_TORCH_EN(channel));
+> +		if (ret < 0)
+> +			dev_err(priv->dev, "failed to disable torch LED\n");
+> +		goto unlock;
+> +	}
+> +
+> +	ret =3D regmap_update_bits(regmap, S2MU005_REG_FLED_CH_CTRL1(channel),
+> +				 S2MU005_FLED_TORCH_IOUT,
+> +				 FIELD_PREP(S2MU005_FLED_TORCH_IOUT, value - 1));
+> +	if (ret < 0) {
+> +		dev_err(priv->dev, "failed to set torch current\n");
+> +		goto unlock;
+> +	}
+> +
+> +	ret =3D regmap_set_bits(regmap, reg_enable, S2MU005_FLED_TORCH_EN(chann=
+el));
+> +	if (ret < 0) {
+> +		dev_err(priv->dev, "failed to enable torch LED\n");
+> +		goto unlock;
+> +	}
+> +
+> +unlock:
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int s2mu005_fled_flash_strobe_set(struct led_classdev_flash *cdev=
+,
+> +					 bool state)
+> +{
+> +	struct s2m_fled *priv =3D to_led_priv(cdev);
+> +	struct regmap *regmap =3D priv->regmap;
+> +	u8 channel =3D priv->channel;
+> +	unsigned int reg_enable;
+> +	int ret;
+> +
+> +	mutex_lock(&priv->lock);
+> +
+> +	/*
+> +	 * Get the LED enable register address. Revision EVT0 has the
+> +	 * register at CTRL4, while EVT1 and higher have it at CTRL6.
+> +	 */
+> +	if (priv->pmic_revision =3D=3D 0)
+> +		reg_enable =3D S2MU005_REG_FLED_CTRL4;
+> +	else
+> +		reg_enable =3D S2MU005_REG_FLED_CTRL6;
+> +
+> +	ret =3D regmap_clear_bits(regmap, reg_enable, S2MU005_FLED_FLASH_EN(cha=
+nnel));
+> +	if (ret < 0) {
+> +		dev_err(priv->dev, "failed to disable flash LED\n");
+> +		goto unlock;
+> +	}
+> +
+> +	if (!state)
+> +		goto unlock;
+> +
+> +	ret =3D regmap_update_bits(regmap, S2MU005_REG_FLED_CH_CTRL0(channel),
+> +				 S2MU005_FLED_FLASH_IOUT,
+> +				 FIELD_PREP(S2MU005_FLED_FLASH_IOUT,
+> +					=C2=A0=C2=A0=C2=A0 priv->flash_brightness));
+> +	if (ret < 0) {
+> +		dev_err(priv->dev, "failed to set flash brightness\n");
+> +		goto unlock;
+> +	}
+> +
+> +	ret =3D regmap_update_bits(regmap, S2MU005_REG_FLED_CH_CTRL3(channel),
+> +				 S2MU005_FLED_FLASH_TIMEOUT,
+> +				 FIELD_PREP(S2MU005_FLED_FLASH_TIMEOUT,
+> +					=C2=A0=C2=A0=C2=A0 priv->flash_timeout));
+> +	if (ret < 0) {
+> +		dev_err(priv->dev, "failed to set flash timeout\n");
+> +		goto unlock;
+> +	}
+> +
+> +	ret =3D regmap_set_bits(regmap, reg_enable, S2MU005_FLED_FLASH_EN(chann=
+el));
+> +	if (ret < 0) {
+> +		dev_err(priv->dev, "failed to enable flash LED\n");
+> +		goto unlock;
+> +	}
+> +
+> +unlock:
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static int s2mu005_fled_flash_strobe_get(struct led_classdev_flash *cdev=
+,
+> +					 bool *state)
+> +{
+> +	struct s2m_fled *priv =3D to_led_priv(cdev);
+> +	struct regmap *regmap =3D priv->regmap;
+> +	u8 channel =3D priv->channel;
+> +	u32 val;
+> +	int ret;
+> +
+> +	mutex_lock(&priv->lock);
+> +
+> +	ret =3D regmap_read(regmap, S2MU005_REG_FLED_STATUS, &val);
+> +	if (ret < 0) {
+> +		dev_err(priv->dev, "failed to fetch LED status");
+> +		goto unlock;
+> +	}
+> +
+> +	*state =3D !!(val & S2MU005_FLED_FLASH_STATUS(channel));
+> +
+> +unlock:
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct led_flash_ops s2mu005_fled_flash_ops =3D {
+> +	.flash_brightness_set =3D s2m_fled_flash_brightness_set,
+> +	.timeout_set =3D s2m_fled_flash_timeout_set,
+> +	.strobe_set =3D s2mu005_fled_flash_strobe_set,
+> +	.strobe_get =3D s2mu005_fled_flash_strobe_get,
+> +};
+> +
+> +static const struct s2m_fled_spec s2mu005_fled_spec =3D {
+> +	.num_channels =3D 2,
+> +	.torch_max_brightness =3D 16,
+> +	.flash_min_current_ua =3D 25000,
+> +	.flash_max_current_ua =3D 375000, /* 400000 causes flickering */
+> +	.flash_min_timeout_us =3D 62000,
+> +	.flash_max_timeout_us =3D 992000,
+> +	.torch_brightness_set_blocking =3D s2mu005_fled_torch_brightness_set,
+> +	.flash_ops =3D &s2mu005_fled_flash_ops,
+> +};
+> +
+> +static int s2m_fled_init_channel(struct device *dev, struct fwnode_handl=
+e *fwnp,
+> +				 struct s2m_fled *priv)
+> +{
+> +	struct led_classdev *led =3D &priv->cdev.led_cdev;
+> +	struct led_init_data init_data =3D {};
+> +	struct v4l2_flash_config v4l2_cfg =3D {};
+> +	int ret;
+> +
+> +	led->max_brightness =3D priv->spec->torch_max_brightness;
+> +	led->brightness_set_blocking =3D priv->spec->torch_brightness_set_block=
+ing;
+> +	led->flags |=3D LED_DEV_CAP_FLASH;
+> +
+> +	priv->cdev.timeout.min =3D priv->spec->flash_min_timeout_us;
+> +	priv->cdev.timeout.step =3D priv->spec->flash_min_timeout_us;
+> +	priv->cdev.timeout.max =3D priv->spec->flash_max_timeout_us;
+> +	priv->cdev.timeout.val =3D priv->spec->flash_max_timeout_us;
+> +
+> +	priv->cdev.brightness.min =3D priv->spec->flash_min_current_ua;
+> +	priv->cdev.brightness.step =3D priv->spec->flash_min_current_ua;
+> +	priv->cdev.brightness.max =3D priv->spec->flash_max_current_ua;
+> +	priv->cdev.brightness.val =3D priv->spec->flash_max_current_ua;
+> +
+> +	s2m_fled_flash_timeout_set(&priv->cdev, priv->cdev.timeout.val);
+> +	s2m_fled_flash_brightness_set(&priv->cdev, priv->cdev.brightness.val);
+> +
+> +	priv->cdev.ops =3D priv->spec->flash_ops;
+> +
+> +	init_data.fwnode =3D fwnp;
+> +	ret =3D devm_led_classdev_flash_register_ext(dev, &priv->cdev, &init_da=
+ta);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to create LED flash device\n");
+> +		return ret;
+
+dev_err_probe()?
+
+> +	}
+> +
+> +	v4l2_cfg.intensity.min =3D priv->spec->flash_min_current_ua;
+> +	v4l2_cfg.intensity.step =3D priv->spec->flash_min_current_ua;
+> +	v4l2_cfg.intensity.max =3D priv->spec->flash_max_current_ua;
+> +	v4l2_cfg.intensity.val =3D priv->spec->flash_max_current_ua;
+> +
+> +	v4l2_cfg.has_external_strobe =3D true;
+> +
+> +	priv->v4l2_flash =3D v4l2_flash_init(dev, fwnp, &priv->cdev,
+> +					=C2=A0=C2=A0 &s2m_fled_v4l2_flash_ops, &v4l2_cfg);
+> +	if (IS_ERR(priv->v4l2_flash)) {
+> +		dev_err(dev, "failed to create V4L2 flash device\n");
+> +		v4l2_flash_release(priv->v4l2_flash);
+> +		return PTR_ERR(priv->v4l2_flash);
+
+dev_err_probe()?
+
+> +	}
+> +
+> +	return devm_add_action_or_reset(dev, (void *)v4l2_flash_release,
+> +					priv->v4l2_flash);
+
+maybe add dev_err_probe() here, and drop the extra message in s2m_fled_prob=
+e().
+
+> +}
+> +
+> +static int s2m_fled_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct sec_pmic_dev *pmic_drvdata =3D dev_get_drvdata(dev->parent);
+> +	struct s2m_fled *priv;
+> +	struct fwnode_handle *child;
+> +	struct regmap *regmap;
+> +	const struct s2m_fled_spec *spec;
+> +	int ret;
+> +
+> +	priv =3D devm_kzalloc(dev, sizeof(*priv) * MAX_CHANNELS, GFP_KERNEL);
+> +	if (!priv)
+> +		return dev_err_probe(dev, -ENOMEM, "failed to allocate driver private\=
+n");
+> +
+> +	platform_set_drvdata(pdev, priv);
+> +	regmap =3D pmic_drvdata->regmap_pmic;
+> +
+> +	switch (platform_get_device_id(pdev)->driver_data) {
+> +	case S2MU005:
+> +		spec =3D &s2mu005_fled_spec;
+> +		/* Enable the LED channels. */
+> +		ret =3D regmap_set_bits(regmap, S2MU005_REG_FLED_CTRL1,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 S2MU005_FLED_CH_EN);
+> +		if (ret < 0)
+> +			return dev_err_probe(dev, ret, "failed to enable LED channels\n");
+> +		break;
+> +	default:
+> +		return dev_err_probe(dev, -ENODEV,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "device type %d is not supported by driver\=
+n",
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 pmic_drvdata->device_type);
+> +	}
+> +
+> +	device_for_each_child_node(dev, child) {
+> +		u32 reg;
+> +
+> +		if (fwnode_property_read_u32(child, "reg", &reg))
+> +			goto next_child;
+> +
+> +		if (reg >=3D spec->num_channels) {
+> +			dev_warn(dev, "channel %d is non-existent\n", reg);
+> +			goto next_child;
+> +		}
+> +
+> +		if (priv[reg].dev) {
+> +			dev_warn(dev, "duplicate node for channel %d\n", reg);
+> +			goto next_child;
+> +		}
+> +
+> +		priv[reg].dev =3D dev;
+> +		priv[reg].regmap =3D regmap;
+> +		priv[reg].channel =3D (u8)reg;
+> +		priv[reg].spec =3D spec;
+> +		priv[reg].pmic_revision =3D pmic_drvdata->revision;
+> +
+> +		ret =3D devm_mutex_init(dev, &priv[reg].lock);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "failed to create mutex lock\n");
+> +
+> +		ret =3D s2m_fled_init_channel(dev, child, &priv[reg]);
+> +		if (ret < 0)
+> +			dev_warn(dev, "channel init failed (%d)\n", ret);
+
+s2m_fled_init_channel() already prints a message on (most) errors, and then
+there's another one here. Also, is it really OK to continue ignoring the
+error?
+
+> +
+> +next_child:
+> +		fwnode_handle_put(child);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct platform_device_id s2m_fled_id_table[] =3D {
+> +	{ "s2mu005-flash", S2MU005 },
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(platform, s2m_fled_id_table);
+> +
+> +#ifdef CONFIG_OF
+
+I believe the general recommendation is to not use ifdef CONFIG_OF
+
+Cheers,
+Andre
+
+> +/*
+> + * Device is instantiated through parent MFD device and device matching
+> + * is done through platform_device_id.
+> + *
+> + * However if device's DT node contains proper compatible and driver is
+> + * built as a module, then the *module* matching will be done through DT
+> + * aliases. This requires of_device_id table. In the same time this will
+> + * not change the actual *device* matching so do not add .of_match_table=
+.
+> + */
+> +static const struct of_device_id s2m_fled_of_match_table[] =3D {
+> +	{
+> +		.compatible =3D "samsung,s2mu005-flash",
+> +		.data =3D (void *)S2MU005,
+> +	}, {
+> +		/* sentinel */
+> +	},
+> +};
+> +MODULE_DEVICE_TABLE(of, s2m_fled_of_match_table);
+> +#endif
+> +
+> +static struct platform_driver s2m_fled_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "s2m-flash",
+> +	},
+> +	.probe =3D s2m_fled_probe,
+> +	.id_table =3D s2m_fled_id_table,
+> +};
+> +module_platform_driver(s2m_fled_driver);
+> +
+> +MODULE_DESCRIPTION("Flash/Torch LED Driver For Samsung S2M Series PMICs"=
+);
+> +MODULE_AUTHOR("Kaustabh Chakraborty <kauschluss@disroot.org>");
+> +MODULE_LICENSE("GPL");
 
