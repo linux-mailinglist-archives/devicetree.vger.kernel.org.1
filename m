@@ -1,387 +1,214 @@
-Return-Path: <devicetree+bounces-262817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262818-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uLDbC+/Vg2kHuwMAu9opvQ
-	(envelope-from <devicetree+bounces-262817-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 00:27:43 +0100
+	id 6CNeJ/bUg2kHuwMAu9opvQ
+	(envelope-from <devicetree+bounces-262818-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 00:23:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96AFEED434
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 00:27:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F6BFED3C1
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 00:23:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 143D93063B59
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 23:22:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6CE223015A62
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 23:23:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3A6939E197;
-	Wed,  4 Feb 2026 23:22:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2079139B491;
+	Wed,  4 Feb 2026 23:23:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="CLyBU674";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="uWHVmFiA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="k5Y1A76i";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QxQSzbQ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55C4439B491;
-	Wed,  4 Feb 2026 23:22:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF46C39E6D7
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 23:23:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770247366; cv=none; b=B49RQCXMjFAQTl5BRfBY+ncnDVVxeUux8Ar/UxEOtAeTHp0lDcA7jfw8AEouNl3u6ZLTRjb8QrUZ00+lIOXRZxEW16xsZOMpz7yum1Km6lRjbZl1+9wLz+Zt+csOzLTkan12ti+NwokZaAGTN6q04LA2mIhuPLw8AC6vKcqgmnM=
+	t=1770247405; cv=none; b=WAoJddL5yfkOhyKGiVp0ssWXG4U7R/9LKk1AIxVVqmNcfkdSYwSXcDOH+KRMAAf/c0/M6ReXYT/bhiiJNkKRkJ1Cr5bFOLrA4Il4noAV0ouzY0FW+YdLQi0VMC9/edJie3sTNKawuMqnpHomBlTmPFay4V8kI5lrI5NdWNVQunU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770247366; c=relaxed/simple;
-	bh=fTOJdaUi5+ewQjL3NAbPqcKxujLEOrAdK4o4cCcUx4Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=jOmIXHO9cdND0vEHS8+RksV1vHWaAO0d+oUphnVE+Jrgc2NXHtQt2f1+wsSG0/gtbxpidj+sO2JsFAqGtAzAKl+1QqY2RH06D7n/MH1e3fFZuk7LTmcEsgWQiqTdZy7zoeAAo3G9KxZA9s4yQoFiSHhnXG793IfSzoWMuTLUZX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=CLyBU674; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=uWHVmFiA; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4f5xGR3yHXz9t5H;
-	Thu,  5 Feb 2026 00:22:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1770247359;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SAiHySxMfaAtoILhLhenop1pdIVM9fDrQ2GwRqxyFRY=;
-	b=CLyBU674jna2Yo3y2TBpTe+5KATrs4J3TaX5tM0WT+pZ+kaeO8PI8aM42aOvaF0QOoAVtd
-	AlJiN3bSMZokN8l4NeTvKj3X1dg7npz7vtSajSEknDMtRaJa63ykGYc+QhBqikc8affp9t
-	Ozsg2gWxmHpwmnF2oefrzXcLDfLiisGBB6T9tEmTQj68Mlg9Ob9GpKUEfqByWjVrBd7YSU
-	9nekFEMfpk4o1W4OVYmwkrV+nMqa+ecyPXXeAiSLV3+NScMdULNwriCl/D3MXJKSsHAxWy
-	cMnThp2/SGKOuxw3UIi0GPH/P9s/dz8J0OtH2BAkFtVcadHTgh8wUsR4CRhHmQ==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=uWHVmFiA;
-	spf=pass (outgoing_mbo_mout: domain of lukasz.majewski@mailbox.org designates 2001:67c:2050:b231:465::1 as permitted sender) smtp.mailfrom=lukasz.majewski@mailbox.org
-From: Lukasz Majewski <lukasz.majewski@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1770247357;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SAiHySxMfaAtoILhLhenop1pdIVM9fDrQ2GwRqxyFRY=;
-	b=uWHVmFiAVj9mjRR1nH+vbXX/Kndqa/KB7zt8uA1SpYImr4z4/ALaf7muJi18roV7s7i/MY
-	AQPD5Am7dEy0XcCUVhcA4o3SdFtKVzJNHocc2BkUg1X1gpxcmZk5cok+an6SQADYxFPZNv
-	j0Q/BUsUHkns0XqqyzWmvI8rJD3NfrSk5cZLlM11mBzzH2yZkX6eW5FZBpg2A5MpzIHAs7
-	+Pm9Hqj0Qm2KG3xLKb2yIex45vm1PhEPvoXaC4BJkGbDtDmSsSLOlkSe5PexPhqu2d2IED
-	cGd98T+S6nguBMSzVnlwUuJNkPaIQtiLYy+E9WVyla0QD8t5RTYajp6S0LaYGw==
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	davem@davemloft.net,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Simon Horman <horms@kernel.org>,
-	Lukasz Majewski <lukasz.majewski@mailbox.org>
-Subject: [net-next v23 7/7] net: mtip: Extend the L2 switch driver for imx287 with bridge operations
-Date: Thu,  5 Feb 2026 00:21:35 +0100
-Message-Id: <20260204232135.1024665-8-lukasz.majewski@mailbox.org>
-In-Reply-To: <20260204232135.1024665-1-lukasz.majewski@mailbox.org>
-References: <20260204232135.1024665-1-lukasz.majewski@mailbox.org>
+	s=arc-20240116; t=1770247405; c=relaxed/simple;
+	bh=vFafNjXxA3QHAp3IHCM4QRJ0CkoJCZu/NyaGiGZsQH8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LBWN1R34xlrPFuL5/S8D1d71OBBk3rxuP7U84/3N9DON8tNzXuo33vyjXN4cb30aaIoW3w9xB0O8d2ca9+VqbuOudYaF/ccVDVhmIfuB3hYDkee1vilZfu3Mex68XUQhoGNO0biK7OTX0EFjqnzxj7BLP4fgDeClA8UytWh7CBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k5Y1A76i; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QxQSzbQ6; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 614MDuUP2188121
+	for <devicetree@vger.kernel.org>; Wed, 4 Feb 2026 23:23:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=F0VqtUTNkw/MR4kxiNcfyxI5
+	XFsKlMvndVSuiRgonqM=; b=k5Y1A76ieZ2744uabJvm5K5U3PHzUzBA+UdJgv6f
+	d4hNsHGNFAcco0y4wFy1OjATkcwzYEFLEGO/Y93OeOmIExw8J43rO28Bpu/UW8wW
+	kCVGHfF2sMZz4zZEVG1sZEqei6luc3yZ63aEpjT2v6Lxr0XiMt2I27GOsaV++po9
+	Z0gqDrj2frQwNg0ljEOlagj8jb6JAQyEJ7Z90PqO3mRp8hxmb3hEqKssvP85eSIz
+	ACclTnEZDnOEnF91pYiZIriDp7rrlnNsv+RNJYoYsYKss3b5O3xBXOLzgnhBTNk0
+	u9ekhbfX/xivy1GcjRi6Vta+u2Y1tilK2+9Rg0S9leu/NQ==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c445wjaf6-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 23:23:23 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c71500f274so30883185a.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 15:23:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770247403; x=1770852203; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=F0VqtUTNkw/MR4kxiNcfyxI5XFsKlMvndVSuiRgonqM=;
+        b=QxQSzbQ6REgIxt60ohy58P9vXP0P6Ji7GqUPyki6/Rb5PyLZwr8oSJkyKIEGcc8x/p
+         9FPasCOTr9i862RcnqhsUXUF/axOctOHYKF2mR6D0c5PzMBnn7z/PURt91DVeur7v5bC
+         SegUBx5TwlwO4QTlX35EXXuzgUGrNKk4FxMqgDILRYtZSk8Ntw3L/sP3j6NtdcFbjS7Y
+         pkcxwqAuE/oisNfl+IOiEKQzreuhvfJ0Snwlw45/Q4V0keJq7FafWrUVfGbAMNoKOggW
+         n6gYq8RReyAcyW8KcihvAkFbaiQyLez6wdvwB6ss7inFa6qbn+wXXivJ0K4YIApuvW2S
+         nxlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770247403; x=1770852203;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=F0VqtUTNkw/MR4kxiNcfyxI5XFsKlMvndVSuiRgonqM=;
+        b=CGj18zhkvGoLqgwM0v0NSGKfvMb5waI2cLWgaKFscxSBJ4HMvpvFHO09khEi2ik3sx
+         KQmhcTPxMtQuuN+y9ZaXvNMp35lj05dapLh+Z0iwazOXts3UADyLQPRdpJFJLtPYrbeZ
+         HpB9+gCaLiIEFlh1mzzJGBdphF7TIyCRk5BhrCqCUAwhvqKfmOnaRin6p6L3hF4IRaee
+         KeXpJSGieGBKhIii1UP3OCE41i8eDmaUtjmIT/aimJ0XNbH5wWRTL8IzFg3epMSDhrP/
+         PxGuys4OJV/2onyS3WuS+2iU7Mz9sQgB4v6Bqeygo/kkgGRyFuKhxYQt2fMVqwNq9T3C
+         fYYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWNLISid729FXASIg5SnRFdbBjOtvJ5LVGu6bRc+ozH1FY7EkrYA3CqTPYmxigUYKuB0JGJnDP3ERz8@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsrFtw73OVlK3znaYvJgbeezmULyNM0+fJ0H2kYo4YlWKdicGw
+	9IFhb5MPmsyTPDiByZFB42XqgrJAih76owig+uv0E3gKDcnLgdLhrU9eurGAcpfqNAyXEDaTyOX
+	3MHeGfW6tBnpRSAxFUkvWQ8RZHeQv4cYiHGswQ2D4D94AtswTIvJlWBU6j4K/ZghQ
+X-Gm-Gg: AZuq6aKkMVvm2YMD+adRL0Jens6sxJbdfm2/VfP9QyG6RVuoYVpURXzjA322anV2DfB
+	OWBcLJOd4HEvfmJgkyQ5DYZT4aJHpbvWdHBtF4dl6wwlArmqRmTG6B6YyvH8Wdcx6C7LhhNrxSc
+	4L6XoxxpZ+P8JVglPlh+9h8vF85Db1ljKiIePcau/htrc98hilufGRb4b2zht7BDKk4IA3p3Syt
+	M6NMS+/tTfvzxdKyNuDyjlQvkyfpNfcf5ijOHae7t/dP87fH3zOYlIDRslBWIIUbyv4NIgajtyh
+	fWiwqIezxh6k9q6MsOv0XZURx4XaaJp4F6k2HBQb/spj0wAyqgDPCaTySArzFAciyzPxaKEpA9Q
+	EiAGF8oobYx5DXYdjqKXmwDf6/w9XvI5cxYBuv5TZWBbqUAEC4A8OjKwbTU8TL43tnk1z7EqkYI
+	vv9xr/IHuctDcXuXa60SPF4LA=
+X-Received: by 2002:a05:620a:3953:b0:8c5:3202:8bb1 with SMTP id af79cd13be357-8ca2f82e2e5mr584373885a.13.1770247403018;
+        Wed, 04 Feb 2026 15:23:23 -0800 (PST)
+X-Received: by 2002:a05:620a:3953:b0:8c5:3202:8bb1 with SMTP id af79cd13be357-8ca2f82e2e5mr584370885a.13.1770247402406;
+        Wed, 04 Feb 2026 15:23:22 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38692040049sm7450971fa.26.2026.02.04.15.23.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Feb 2026 15:23:19 -0800 (PST)
+Date: Thu, 5 Feb 2026 01:23:16 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Cc: andersson@kernel.org, linusw@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
+        srini@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: monaco: add dt entry for lpass lpi
+ pinctrl
+Message-ID: <32hbjz36hdun5gsuoq4ywpjxl27z2rn5d6puontgb2doie4l2t@l7imzn4vyd4w>
+References: <20260204174237.2906-1-srinivas.kandagatla@oss.qualcomm.com>
+ <20260204174237.2906-3-srinivas.kandagatla@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: dc7wqe4y96qcnieyjczohb54d9skqjqg
-X-MBO-RS-ID: 101e7750fe0bb44c897
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260204174237.2906-3-srinivas.kandagatla@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA0MDE3OCBTYWx0ZWRfX2zPtnOc2TBPe
+ Mbj1LN3/hsEBXSyu+5oGVZ8R2Ug82fcHKliPZLA/oTyqLyrwd0lbDmEysWcwdDlrBYXP4yfvV7O
+ IbhsYXh6WvWTGCJzHUrQHdPlEK9vuYkTcFjLAKcImKPROsBnW3OOcAd9H1fWZb4ypAhF5t14vaX
+ XkJUvhd2W3lZgeM9thaSmY2QHw1tE/bzipn+iOUQ2rD7zSStiNf+JWUeYWjxhtLMFjcqZFS0Pce
+ Vc3drJQkE1PzBDHWtFXMpbLng0+dL2ymRRit1iZQPVFI34HbnOxrrmOuiV9X6OWomQx+xg5DOid
+ DqcJy+aeTX9Gp6L5ONVIccOAlnN2O//Bpm01GtXbuoK8mIRnQtxlisQh0uFkP9xe3kUOcmTJbDG
+ Q+poEMke7nz+qP7SH7E4IRxylx/ugbTpTm127hXKQLeEmDFbBK2WshzIgoY+tQPr89W/tL2qT6W
+ tye/dkg8+ZdV8JMbtMA==
+X-Proofpoint-ORIG-GUID: cmEtNHtUdz_vq1gfNREg0mgTwSckkHuq
+X-Authority-Analysis: v=2.4 cv=GvhPO01C c=1 sm=1 tr=0 ts=6983d4eb cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=NEtT6DXtd9CgoZuvRooA:9 a=CjuIK1q_8ugA:10
+ a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-GUID: cmEtNHtUdz_vq1gfNREg0mgTwSckkHuq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-04_08,2026-02-04_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 adultscore=0 suspectscore=0 malwarescore=0
+ priorityscore=1501 spamscore=0 impostorscore=0 clxscore=1015 phishscore=0
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2602040178
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,gmx.net,kernel.org,mailbox.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	TAGGED_FROM(0.00)[bounces-262817-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262818-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lukasz.majewski@mailbox.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nabladev.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mailbox.org:email,mailbox.org:dkim,mailbox.org:mid]
-X-Rspamd-Queue-Id: 96AFEED434
+	DBL_PROHIBIT(0.00)[0.52.125.128:email];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 2F6BFED3C1
 X-Rspamd-Action: no action
 
-After this change the MTIP L2 switch can be configured as offloading
-device for packet switching when bridge on its interfaces is created.
+On Wed, Feb 04, 2026 at 12:42:37PM -0500, Srinivas Kandagatla wrote:
+> Add LPASS LPI pinctrl node used for setting MI2S and soundwire pin
+> configs.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/monaco.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/monaco.dtsi b/arch/arm64/boot/dts/qcom/monaco.dtsi
+> index 5d2df4305d1c..e1ea94d2f0f3 100644
+> --- a/arch/arm64/boot/dts/qcom/monaco.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/monaco.dtsi
+> @@ -20,6 +20,7 @@
+>  #include <dt-bindings/power/qcom-rpmpd.h>
+>  #include <dt-bindings/soc/qcom,gpr.h>
+>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+> +#include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
+>  #include <dt-bindings/thermal/thermal.h>
+>  
+>  / {
+> @@ -2866,6 +2867,21 @@ q6prmcc: clock-controller {
+>  			};
+>  		};
+>  
+> +		lpass_tlmm: pinctrl@3440000 {
+> +			compatible = "qcom,qcs8300-lpass-lpi-pinctrl",
+> +					"qcom,sm8450-lpass-lpi-pinctrl";
 
-Signed-off-by: Lukasz Majewski <lukasz.majewski@mailbox.org>
----
+Please align on the quote mark.
 
-Changes for v13:
-- New patch - created by excluding some code from large (i.e. v12 and
-  earlier) MTIP driver
+> +			reg = <0x0 0x03440000 0x0 0x20000>,
+> +			      <0x0 0x034D0000 0x0 0x10000>;
+> +
 
-Changes for v14 - v15:
-- None
-
-Changes for v16:
-- Enable MTIP ports to support bridge offloading
-
-Changes for v17 - v20:
-- None
-
-Changes for v21:
-- Avoid double call of notifier_from_errno() on -EOPNOTSUPP
-- Rollback changes to driver state when switchdev_bridge_port_offload()
-  fails
-
-Changes for v22:
-- Reorder setting of br_members and master_dev to successful call of
-  switchdev_bridge_port_offload()
-
-Changes for v23:
-- Update copyright notice
-- Clear the br_offload flag and enable switch port separation
----
- .../net/ethernet/freescale/mtipsw/Makefile    |   2 +-
- .../net/ethernet/freescale/mtipsw/mtipl2sw.c  |   9 +-
- .../net/ethernet/freescale/mtipsw/mtipl2sw.h  |   2 +
- .../ethernet/freescale/mtipsw/mtipl2sw_br.c   | 138 ++++++++++++++++++
- 4 files changed, 149 insertions(+), 2 deletions(-)
- create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
-
-diff --git a/drivers/net/ethernet/freescale/mtipsw/Makefile b/drivers/net/ethernet/freescale/mtipsw/Makefile
-index a99aaf6ddfb2..81e2b0e03e6c 100644
---- a/drivers/net/ethernet/freescale/mtipsw/Makefile
-+++ b/drivers/net/ethernet/freescale/mtipsw/Makefile
-@@ -1,4 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
- 
- obj-$(CONFIG_FEC_MTIP_L2SW) += nxp-mtipl2sw.o
--nxp-mtipl2sw-objs := mtipl2sw.o mtipl2sw_mgnt.o
-+nxp-mtipl2sw-objs := mtipl2sw.o mtipl2sw_mgnt.o mtipl2sw_br.o
-diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
-index 31e9ed1c2268..7c2023a33713 100644
---- a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
-+++ b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
-@@ -1947,11 +1947,15 @@ static int mtip_sw_probe(struct platform_device *pdev)
- 		return dev_err_probe(&pdev->dev, ret, "Could not alloc IRQ\n");
- 	}
- 
-+	ret = mtip_register_notifiers(fep);
-+	if (ret)
-+		goto of_free_references;
-+
- 	ret = mtip_switch_dma_init(fep);
- 	if (ret) {
- 		dev_err(&pdev->dev, "%s: ethernet switch init fail (%d)!\n",
- 			__func__, ret);
--		goto of_free_references;
-+		goto unregister_notifiers;
- 	}
- 
- 	ret = mtip_mii_init(fep, pdev);
-@@ -1983,6 +1987,8 @@ static int mtip_sw_probe(struct platform_device *pdev)
- 			  fep->bd_dma);
- 	fep->rx_bd_base = NULL;
- 	fep->tx_bd_base = NULL;
-+ unregister_notifiers:
-+	mtip_unregister_notifiers(fep);
-  of_free_references:
- 	mtip_parse_of_cleanup(fep);
- 
-@@ -1995,6 +2001,7 @@ static void mtip_sw_remove(struct platform_device *pdev)
- 
- 	timer_delete_sync(&fep->timer_mgnt);
- 
-+	mtip_unregister_notifiers(fep);
- 	mtip_ndev_cleanup(fep);
- 
- 	mtip_parse_of_cleanup(fep);
-diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h
-index 72784df6c127..49d8454f7cd1 100644
---- a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h
-+++ b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h
-@@ -640,6 +640,8 @@ int mtip_port_learning_config(struct switch_enet_private *fep, int port,
- int mtip_port_blocking_config(struct switch_enet_private *fep, int port,
- 			      bool enable);
- bool mtip_is_switch_netdev_port(const struct net_device *ndev);
-+int mtip_register_notifiers(struct switch_enet_private *fep);
-+void mtip_unregister_notifiers(struct switch_enet_private *fep);
- int mtip_port_enable_config(struct switch_enet_private *fep, int port,
- 			    bool tx_en, bool rx_en);
- void mtip_clear_atable(struct switch_enet_private *fep);
-diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
-new file mode 100644
-index 000000000000..c9d9151b0e81
---- /dev/null
-+++ b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
-@@ -0,0 +1,138 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ *  L2 switch Controller driver for MTIP block - bridge network interface
-+ *
-+ *  Copyright (C) 2026 NABLADEV Software Engineering GmbH
-+ *  Lukasz Majewski <lukma@nabladev.com>
-+ */
-+
-+#include <linux/etherdevice.h>
-+#include <linux/netdevice.h>
-+#include <linux/platform_device.h>
-+#include <net/switchdev.h>
-+
-+#include "mtipl2sw.h"
-+
-+static int mtip_ndev_port_link(struct net_device *ndev,
-+			       struct net_device *br_ndev,
-+			       struct netlink_ext_ack *extack)
-+{
-+	struct mtip_ndev_priv *priv = netdev_priv(ndev), *other_priv;
-+	struct switch_enet_private *fep = priv->fep;
-+	struct net_device *other_ndev;
-+	int err;
-+
-+	/* Check if one port of MTIP switch is already bridged */
-+	if (fep->br_members && !fep->br_offload) {
-+		/* Get the second bridge ndev */
-+		other_ndev = fep->ndev[fep->br_members - 1];
-+		other_priv = netdev_priv(other_ndev);
-+		if (other_priv->master_dev != br_ndev) {
-+			NL_SET_ERR_MSG_MOD(extack,
-+					   "L2 offloading only possible for the same bridge!");
-+			return -EOPNOTSUPP;
-+		}
-+
-+		fep->br_offload = 1;
-+		mtip_switch_dis_port_separation(fep);
-+		mtip_clear_atable(fep);
-+	}
-+
-+	err = switchdev_bridge_port_offload(ndev, ndev, NULL, NULL, NULL,
-+					    false, extack);
-+	if (err) {
-+		dev_err(&ndev->dev, "can't offload bridge port %s [err: %d]\n",
-+			ndev->name, err);
-+
-+		if (fep->br_members && fep->br_offload) {
-+			fep->br_offload = 0;
-+			mtip_switch_en_port_separation(fep);
-+		}
-+
-+		return err;
-+	}
-+
-+	if (!priv->master_dev)
-+		priv->master_dev = br_ndev;
-+
-+	fep->br_members |= BIT(priv->portnum - 1);
-+
-+	dev_dbg(&ndev->dev,
-+		"%s: ndev: %s br: %s fep: %p members: 0x%x offload: %d\n",
-+		__func__, ndev->name,  br_ndev->name, fep, fep->br_members,
-+		fep->br_offload);
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static void mtip_netdevice_port_unlink(struct net_device *ndev)
-+{
-+	struct mtip_ndev_priv *priv = netdev_priv(ndev);
-+	struct switch_enet_private *fep = priv->fep;
-+
-+	dev_dbg(&ndev->dev, "%s: ndev: %s members: 0x%x\n", __func__,
-+		ndev->name, fep->br_members);
-+
-+	switchdev_bridge_port_unoffload(ndev, NULL, NULL, NULL);
-+
-+	fep->br_members &= ~BIT(priv->portnum - 1);
-+	priv->master_dev = NULL;
-+
-+	if (fep->br_members && fep->br_offload) {
-+		fep->br_offload = 0;
-+		mtip_switch_en_port_separation(fep);
-+		mtip_clear_atable(fep);
-+	}
-+}
-+
-+/* netdev notifier */
-+static int mtip_netdevice_event(struct notifier_block *unused,
-+				unsigned long event, void *ptr)
-+{
-+	struct net_device *ndev = netdev_notifier_info_to_dev(ptr);
-+	struct netdev_notifier_changeupper_info *info = ptr;
-+	struct netlink_ext_ack *extack;
-+	int ret = NOTIFY_DONE;
-+
-+	if (!mtip_is_switch_netdev_port(ndev))
-+		return NOTIFY_DONE;
-+
-+	extack = netdev_notifier_info_to_extack(&info->info);
-+
-+	switch (event) {
-+	case NETDEV_CHANGEUPPER:
-+		if (!netif_is_bridge_master(info->upper_dev))
-+			break;
-+
-+		if (info->linking)
-+			ret = mtip_ndev_port_link(ndev, info->upper_dev,
-+						  extack);
-+		else
-+			mtip_netdevice_port_unlink(ndev);
-+
-+		break;
-+	default:
-+		return NOTIFY_DONE;
-+	}
-+
-+	return notifier_from_errno(ret);
-+}
-+
-+static struct notifier_block mtip_netdevice_nb __read_mostly = {
-+	.notifier_call = mtip_netdevice_event,
-+};
-+
-+int mtip_register_notifiers(struct switch_enet_private *fep)
-+{
-+	int ret = register_netdevice_notifier(&mtip_netdevice_nb);
-+
-+	if (ret)
-+		dev_err(&fep->pdev->dev, "can't register netdevice notifier\n");
-+
-+	return ret;
-+}
-+
-+void mtip_unregister_notifiers(struct switch_enet_private *fep)
-+{
-+	unregister_netdevice_notifier(&mtip_netdevice_nb);
-+}
 -- 
-2.39.5
-
+With best wishes
+Dmitry
 
