@@ -1,382 +1,166 @@
-Return-Path: <devicetree+bounces-262694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262695-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yM7lFBRWg2mJlQMAu9opvQ
-	(envelope-from <devicetree+bounces-262694-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:22:12 +0100
+	id YB9NH7hWg2mJlQMAu9opvQ
+	(envelope-from <devicetree+bounces-262695-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:24:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F083E7028
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:22:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6FBEE70AB
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 15:24:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7C9CF3007B3A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 14:21:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CBF443006157
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 14:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3F83410D1B;
-	Wed,  4 Feb 2026 14:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F062BE643;
+	Wed,  4 Feb 2026 14:23:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hLboUYL5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GSfr7hu5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60972410D1F
-	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 14:21:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770214913; cv=pass; b=VNEl0wBzMByATTGXf5aKKYg0o+jQjFT3+pGQgCEdPDH1UoyIt2XLNzYTaYx/DlBg+eSKT8JutyX+JorvKftrghbG8YkzhazNf/cVdOOvV3ysoAOVQmIYkZyxcgrHJLPSgCI5zXrIVcrsRI5qtQp6J9yXhLUr5HdSk4JEggC12bY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770214913; c=relaxed/simple;
-	bh=psGZzOZbMuFzaU3jqsxMK4GjCf6+fMfPrTbP+wqu1kc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=e4CNURGF0i+RmX/gLCIrZoFHRZghBERC7emqwZlatUIsNHP7e5NQM9DeShI3X/CcRlY8OhlzNuQBrqsxeuO96UrQh3TRBbOGF435Wktmgo2OEQBBtoCTHy66eLp2RZ3zuKLn6Y3BircuR9lmRTOnZE6HYexBaqd49cwt0k+d+W8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hLboUYL5; arc=pass smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-59dd9aef51eso1002947e87.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 06:21:53 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770214912; cv=none;
-        d=google.com; s=arc-20240605;
-        b=kJBrG1QdW1OZq7BKw3ysPtP1jId6F/0b3JDL52nFS1sOd/gH26Ua4lshLsm1zRe5kH
-         JVYqj3tG2HFr1jZoSCcaJkgfMvZMPfv3zLkCrv+/fqGz4uRWPR705Ij/5a0L+XQMaAwA
-         BXSuJ11STPcf9XguckqGoW40AUUi3arR06NR7DX7A0iN6gmZReMc72yDVp+dLUbXpe+c
-         gNFbRdzj7yJuUVr+6nAf/nZfO8kLnEhGU5iJ9NOqbytJhi42FRuQbtZREi8VXHnSQFzq
-         B8m/wGUAVVKtdbz/TINbea83CUCqfIZ4jC3T82oNU86jpjhmvCtuPgKSgUecfDcjBzMA
-         6OTw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=c5qbJkJQB6xAL7Tc+McFdVmhrNTCwyZzzlaLu/NQwoo=;
-        fh=hqdJsSrym4XHLGu5jmtCF7q1Tm/aLdGrgVb91aCP+V0=;
-        b=ixaFPd8DpW4pw0JZugShAPD72X1JmLfVf0wLPGlWrkSbtTSrXZBvGdgd/PIAHTSZUs
-         gr6oCmep0NQFTqNkbqFnVo6BqAS+X81VxluUAC901j0TSBdEJf23D1wVZ8KqwkmLhUdI
-         zzcbdGnpkr98rpv0SXDx0KMMhjKgUxwGKHp2cQJ8qsdtY6LYs+ZmPi8d5D2z8h4Vuyk1
-         WUV9Tp+T0nrH7b7fQHC7HPL9BYwwzsIYEuAqLCu3XIp0E/EuC+nAV0ToBUaNsss6AxHk
-         T40ibFkALrhViRZ2zf8koY3YizabNav2bCFzM+wN7FkJRB/4zRV1lUqYJ/PP/sLmJF67
-         vEuw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2B0123D288
+	for <devicetree@vger.kernel.org>; Wed,  4 Feb 2026 14:23:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770215005; cv=none; b=uiDcteN86vrIh8LGUSOYObRoKRbi0HPC67sOABoTAJZVLvxnho4HAgqdxhkb21tdITkpcTM4RrX8lAQ7oU15gTX12ELx8X/lxd6CMK/RaJmM9a4HH1CaRVpqBxPOmVE0oPp1Qb9iYsXZ1veQJ8Jn1Y2qYhLnANOkyD7rzKGqax0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770215005; c=relaxed/simple;
+	bh=csoDZpmYyjeCMvKV7endx7NY3EpOJ+eAV8UdMpj9mwQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CdUilDuKJSaM7hG8UxMqDXe/G36u5D5ccPquSNVpFDcKYmdcBJgai6DRC8rxTYQ73mi+MhPwPkWckHcWUHB+Lq/YTER7UiiyNQQy9GJrXGKHd+qDn8Zui76NMe37Dsr4SAHmGY9goyYKv6SBky23QWWQ3O8yr/PihopWt+STPQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GSfr7hu5; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b8e9f89a8e3so134868566b.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 06:23:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1770214912; x=1770819712; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=c5qbJkJQB6xAL7Tc+McFdVmhrNTCwyZzzlaLu/NQwoo=;
-        b=hLboUYL5Ua61Nf4kndNvuPEV+ZY+gLxKPPSkqjLGy2erqtK0Wuo9fXDCIKg5ay0jzZ
-         GYcOau1MoTGdkvLD3C3d8Z6u3qTYWR8drR3TJbiwXUtfmmzYJnfRg83fCF2PPGsOsH6R
-         quIJWBHWMWFskCMyX6vUXCCaM6Dpu2lSePvEEtfItZ7L9vA671UpANNyczP6OVGMOerm
-         uyBQtwSAj+HI/NF0Boe7yuJmKasMU5AVLcW+TeD1wLBQqbrAuSqVL5QeAHPip1sOAzbE
-         JqZqVOqtodGHVeD4Byf8lcz1YvqNE7fbrbajMIwMUdk1Qdg4ToIlwv9ZkeTp6H2tT5p2
-         axhA==
+        d=gmail.com; s=20230601; t=1770215003; x=1770819803; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lU7ESjXCTwJh2bpXkAkJ/rnLoQ5/T4bIZw6hjLMuYEc=;
+        b=GSfr7hu5K8cb5wkgQbUGt8qhE0rRXbHnIlDjn4fq+tYzYTlCrAiUsKz9troy5nCgKl
+         qDyfkIDk/ECeH7CUHNQaJhye+5zuetrYAGQuGD4k/Vhv16IE8rhFwhjSW8J1cniIiBQq
+         +DYXCcAT9mcu7/nzb6Q+k8TsncAWq75smIBR1N+/yg3mhOPh5/ZtuqgvjjYB95rsyHES
+         hRaPMWyUT+LBOOMTAXZhluKSiIDVMsbPfXh6O68Oh8ma6kddoTORynQd4SqXJpWO+WmW
+         yyGLErK/S8Ee0Zw3B53EJdCGVy4V40HEfokDgMG80JC8Z1TkUwhnnMWQN1Lp01FCHBDp
+         Zukw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770214912; x=1770819712;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1770215003; x=1770819803;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=c5qbJkJQB6xAL7Tc+McFdVmhrNTCwyZzzlaLu/NQwoo=;
-        b=RzvKnSjj99pznpmN/6F9ExAh4zaCQwbo2sQjZIiFnY4tcX1tyXSB/jmOjMfYu7nJJV
-         sWoVqLy9yYZBHb8DOhhqPZFCsTbZIKG5TM8Nfyffx549P0parXvlVb2VyeZoQL1mOF6r
-         gUPj0UVvGo/sysoCuJLxJJG02iLX+pI1F/fz48TcMzg8sU7jXUsPTDhX/Svf6dJqKToe
-         N0IkIO5KoAYUAVKBp3KJ8Y+h7kYYHcg4xQrfmVeO6EXLMjD+Nr7cLLNTMLq5jTOS6mCR
-         SwPZKidXGYtKW9cMw/L2JQ5FDyfBUOoW3V9+eksEuU47Kgd4+w1d3bbMj30yRlHvjJFG
-         Z1wQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXacCQxCAHoRXmclZVvZbYSx5xlMR5ADUttNjzV4hTsfCZ7ubBOzq4AZsktyNJ+sa303e6JURp+UOEH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzL+mkRa2w5O7QFY1XgZlD4RwOG3nFUoqfKESwTAY3PxJPaEor1
-	NK7MNzmCHztcLFuq5towJyWtiiptfICH3AbIsOPHqS7V/m9NpDCUImsfr7E14dTIrV3SJjKDmCt
-	tr3RdrY6HaKbEwZJosDAp1qJMUVm+vwccnOYFi7nO1A==
-X-Gm-Gg: AZuq6aIsfe2ZmHfNM1B6jfCPZQp6y9REAJlPYlvDNTaSRakswJp9BhkOh+OaJ5jVY4P
-	nXGV+KCNuLnfSrNsrVBaP1snwc38cR0RbY+ZfI2ayenmpP/2DurgosJg094QZKhdh6H0p4rOuwA
-	n0Yvgp6nQGDpul3zTHkaCjatfaNFwWWN0CLRtEwJ69MOFo+BWeSOkqCaf+Gj3wS0JOMtIf9U3Yy
-	GD9UbFgW4fiv97dljItlGIjn6tyzS6cKUMqeR5c1MtYmK0JhCFMUVVlNQGUYYfOgsbAI9K8
-X-Received: by 2002:a05:6512:110d:b0:59e:39af:a70f with SMTP id
- 2adb3069b0e04-59e39afa7aamr832564e87.35.1770214911328; Wed, 04 Feb 2026
- 06:21:51 -0800 (PST)
+        bh=lU7ESjXCTwJh2bpXkAkJ/rnLoQ5/T4bIZw6hjLMuYEc=;
+        b=JcsuqR80yDgYP610/s0QRckAgmLjnk3uqKfYx3gD/uJCGpoMHBuSRrSesOtfCL4M01
+         9z7243JhwZyolYocD0y0OWIsj1/HXpST5/AS/0KSabkKf/S1C7BVAe1E3ZJOOETULjJ1
+         p+NcwM1Jh6HFQe96UUm2TsAko16jv1Cdg+f8PgGaUtFtZtdI7KKaLLYSmk23cTMndybJ
+         yYCETj0xacrtMXbfkpPZOj6cnZoSMUw+avt4B0/SWS1yQULpDqr5BOJnCCufwur/v4Vn
+         9HYOaOeDqRqAzPz3HEXq4M2aslz1uDSig9t+iuvYjjU6EIxtqvni7pxFwIgKW7Ktwb+t
+         0asA==
+X-Forwarded-Encrypted: i=1; AJvYcCWsD1GX5w4L6uXvMKwJAbrIr8u07sJB9CURliV2+NOivAl7/t34WKOMwOcreyXYvjbEIT2MA0WFU74s@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUdcL66At+v8ktUm7XnB5cy/nBTu/irDROlv8pj3FXdYyQAHm7
+	4ifUzi6mQDZDpNF2I3BQoVKKaSt4zOrr9DQUmwUOGpv5rrDTveY6Cuih
+X-Gm-Gg: AZuq6aJYI1Iq4QdzqyqKrMrbVQIUH2/hJyxwd6PdFtw0FRrl36bSAXmVndzegTtxNwy
+	FvyH0OBOIDh9KVxcMVRy50h3sVALmjM0nLmV0qxaMWui0qRg+E8n3BUglet4b9SaRwOUNljDvL9
+	iEKnq0ZZdQ54z3Rhwn/O0VXw3j0XsLMuEcECCbr0rKY1RXj5L/ml9ngK6bJR8y62PvYdbtnXPr/
+	4aQL5Z0ls4ys0crLsxYMLgsMViT3OnTs1erwh+bDq4bl1GSCdo29Q7zCYd8nON2G51gwkWGP6ps
+	6WNgigGgkt4pe7reKfSCx93tLzzImdaysKzs9pJ1Sb3jxNmcyiKLsKX/Q3rBfPDgMbtaR1IvkRH
+	QT60yZ/GxCKn7GI3Kc94P8j7ZppuuE8izveq7gI6sn4hEluD2nLMB0jPvoiII715Z4+K1kktJSj
+	ixLiJ9P7pYlnGtRxNwSVEzXUrQQQXx12pl27E=
+X-Received: by 2002:a17:907:3fa4:b0:b87:2780:1b36 with SMTP id a640c23a62f3a-b8e9ef30624mr255363466b.13.1770215002965;
+        Wed, 04 Feb 2026 06:23:22 -0800 (PST)
+Received: from localhost.localdomain ([2a00:23c4:a758:8a01:3c9f:a100:4d45:ebc7])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8ea001ea7dsm129038366b.47.2026.02.04.06.23.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Feb 2026 06:23:22 -0800 (PST)
+From: Biju <biju.das.au@gmail.com>
+X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
+To: Thomas Gleixner <tglx@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH 0/8] Add RZ/G3L IRQC support
+Date: Wed,  4 Feb 2026 14:23:08 +0000
+Message-ID: <20260204142320.103184-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260203-rz-sdio-mux-v8-0-024ea405863e@solid-run.com>
- <20260203-rz-sdio-mux-v8-2-024ea405863e@solid-run.com> <e6bccab9-79ce-4b9b-942e-01c504228d7b@solid-run.com>
-In-Reply-To: <e6bccab9-79ce-4b9b-942e-01c504228d7b@solid-run.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 4 Feb 2026 15:21:15 +0100
-X-Gm-Features: AZwV_QgpPJOpHagM8bEfHl9m5X84cdk3L263aQ80RGFzSepSmlUAi0xxl4raAF8
-Message-ID: <CAPDyKFqONKvPbtLRXKbF6x5RdNpJDCB1R0-7j-Epksva16Y_-Q@mail.gmail.com>
-Subject: Re: [PATCH v8 2/7] mux: Add helper functions for getting optional and
- selected mux-state
-To: Josua Mayer <josua@solid-run.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Peter Rosin <peda@axentia.se>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
-	Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
-	Janusz Krzysztofik <jmkrzyszt@gmail.com>, Vignesh R <vigneshr@ti.com>, 
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Yazan Shhady <yazan.shhady@solid-run.com>, Jon Nettleton <jon@solid-run.com>, 
-	Mikhail Anikin <mikhail.anikin@solid-run.com>, 
-	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>, 
-	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>, 
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>, 
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	Dan Carpenter <dan.carpenter@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262694-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,solid-run.com,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[32];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-262695-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,glider.be,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linaro.org:dkim,solid-run.com:email]
-X-Rspamd-Queue-Id: 5F083E7028
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B6FBEE70AB
 X-Rspamd-Action: no action
 
-On Tue, 3 Feb 2026 at 16:35, Josua Mayer <josua@solid-run.com> wrote:
->
-> On 03/02/2026 15:01, Josua Mayer wrote:
-> > In-tree phy-can-transceiver driver has already implemented a local
-> > version of devm_mux_state_get_optional.
-> >
-> > The omap-i2c driver gets and selects an optional mux in its probe
-> > function without using any helper.
-> >
-> > Add new helper functions covering both aforementioned use-cases:
-> >
-> > - mux_control_get_optional:
-> >    Get a mux-control if specified in dt, return NULL otherwise.
-> > - devm_mux_state_get_optional:
-> >    Get a mux-state if specified in dt, return NULL otherwise.
-> > - devm_mux_state_get_selected:
-> >    Get and select a mux-state specified in dt, return error otherwise.
-> > - devm_mux_state_get_optional_selected:
-> >    Get and select a mux-state if specified in dt, return error or NULL.
-> >
-> > Existing mux_get helper function is changed to take an extra argument
-> > indicating whether the mux is optional.
-> > In this case no error is printed, and NULL returned in case of ENOENT.
-> >
-> > Calling code is adapted to handle NULL return case, and to pass optional
-> > argument as required.
-> >
-> > To support automatic deselect for _selected helper, a new structure is
-> > created storing an exit pointer similar to clock core which is called on
-> > release.
-> >
-> > To facilitate code sharing between optional/mandatory/selected helpers,
-> > a new internal helper function is added to handle quiet (optional) and
-> > verbose (mandatory) errors, as well as storing the correct callback for
-> > devm release: __devm_mux_state_get
-> >
-> > Due to this structure devm_mux_state_get_*_selected can no longer print
-> > a useful error message when select fails. Instead callers should print
-> > errors where needed.
-> >
-> > Commit e153fdea9db04 ("phy: can-transceiver: Re-instate "mux-states"
-> > property presence check") noted that "mux_get() always prints an error
-> > message in case of an error, including when the property is not present,
-> > confusing the user."
-> >
-> > The first error message covers the case that a mux name is not matched
-> > in dt. The second error message is based on of_parse_phandle_with_args
-> > return value.
-> >
-> > In optional case no error is printed and NULL is returned.
-> > This ensures that the new helper functions will not confuse the user
-> > either.
-> >
-> > With the addition of optional helper functions it became clear that
-> > drivers should compile and link even if CONFIG_MULTIPLEXER was not enabled.
-> > Add stubs for all symbols exported by mux core.
-> >
-> > Signed-off-by: Josua Mayer <josua@solid-run.com>
-> > ---
-> >   drivers/mux/core.c           | 205 ++++++++++++++++++++++++++++++++++++-------
-> >   include/linux/mux/consumer.h | 108 ++++++++++++++++++++++-
-> >   2 files changed, 278 insertions(+), 35 deletions(-)
-> >
-> > diff --git a/drivers/mux/core.c b/drivers/mux/core.c
-> > index a3840fe0995f..2e8295e3aabe 100644
-> > --- a/drivers/mux/core.c
-> > +++ b/drivers/mux/core.c
-> > @@ -46,6 +46,16 @@ static const struct class mux_class = {
-> >       .name = "mux",
-> >   };
-> >
-> > +/**
-> > + * struct devm_mux_state_state -     Tracks managed resources for mux-state objects.
-> > + * @mstate:                          Pointer to a mux state.
-> > + * @exit:                            An optional callback to execute before free.
-> > + */
-> > +struct devm_mux_state_state {
-> > +     struct mux_state *mstate;
-> > +     int (*exit)(struct mux_state *mstate);
-> > +};
-> > +
-> >   static DEFINE_IDA(mux_ida);
-> >
-> >   static int __init mux_init(void)
-> > @@ -516,17 +526,19 @@ static struct mux_chip *of_find_mux_chip_by_node(struct device_node *np)
-> >       return dev ? to_mux_chip(dev) : NULL;
-> >   }
-> >
-> > -/*
-> > +/**
-> >    * mux_get() - Get the mux-control for a device.
-> >    * @dev: The device that needs a mux-control.
-> >    * @mux_name: The name identifying the mux-control.
-> >    * @state: Pointer to where the requested state is returned, or NULL when
-> >    *         the required multiplexer states are handled by other means.
-> > + * @optional: Whether to return NULL and silence errors when mux doesn't exist.
-> >    *
-> > - * Return: A pointer to the mux-control, or an ERR_PTR with a negative errno.
-> > + * Return: Pointer to the mux-control on success, an ERR_PTR with a negative errno on error,
-> > + * or NULL if optional is true and mux doesn't exist.
-> >    */
-> >   static struct mux_control *mux_get(struct device *dev, const char *mux_name,
-> > -                                unsigned int *state)
-> > +                                unsigned int *state, bool optional)
-> >   {
-> >       struct device_node *np = dev->of_node;
-> >       struct of_phandle_args args;
-> > @@ -542,7 +554,9 @@ static struct mux_control *mux_get(struct device *dev, const char *mux_name,
-> >               else
-> >                       index = of_property_match_string(np, "mux-control-names",
-> >                                                        mux_name);
-> > -             if (index < 0) {
-> > +             if (index < 0 && optional) {
-> > +                     return NULL;
-> > +             } else if (index < 0) {
-> >                       dev_err(dev, "mux controller '%s' not found\n",
-> >                               mux_name);
-> >                       return ERR_PTR(index);
-> > @@ -558,8 +572,12 @@ static struct mux_control *mux_get(struct device *dev, const char *mux_name,
-> >                                                "mux-controls", "#mux-control-cells",
-> >                                                index, &args);
-> >       if (ret) {
-> > +             if (optional && ret == -ENOENT)
-> > +                     return NULL;
-> > +
-> >               dev_err(dev, "%pOF: failed to get mux-%s %s(%i)\n",
-> > -                     np, state ? "state" : "control", mux_name ?: "", index);
-> > +                     np, state ? "state" : "control",
-> > +                     mux_name ?: "", index);
-> >               return ERR_PTR(ret);
-> >       }
-> >
-> > @@ -617,10 +635,28 @@ static struct mux_control *mux_get(struct device *dev, const char *mux_name,
-> >    */
-> >   struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
-> >   {
-> > -     return mux_get(dev, mux_name, NULL);
-> > +     struct mux_control *mux = mux_get(dev, mux_name, NULL, false);
-> > +
-> > +     if (!mux)
-> > +             return ERR_PTR(-ENOENT);
-> > +
-> > +     return mux;
-> >   }
-> >   EXPORT_SYMBOL_GPL(mux_control_get);
-> >
-> > +/**
-> > + * mux_control_get_optional() - Get the optional mux-control for a device.
-> > + * @dev: The device that needs a mux-control.
-> > + * @mux_name: The name identifying the mux-control.
-> > + *
-> > + * Return: A pointer to the mux-control, an ERR_PTR with a negative errno.
->   * Return: Pointer to the mux-state on success, an ERR_PTR with a
-> negative errno on error,
->   * or NULL if mux doesn't exist.
->
-> If there will be v9, I shall change this to be more precise similar to
-> other functions.
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
-The series looks good to me!
+The IRQC block on RZ/G3L SoC is almost identical to one found on the
+RZ/G3S SoC with the difference like it support more External IRQs, GPT
+Error Interrupts and also has additional registers for GPT/MTU IRQ
+selection, shared IRQ selection between external IRQ and TINT.
 
-I can queue the series for v7.0 via my mmc tree and amend the change
-according to above when applying, but I need the ack from Wolfram on
-the i2c patch (patch5) first.
+It has 16 external interrupts of which 8 interrupts are shared with
+TINT[24:31] and are mutually exclusive. The external IRQ/TINT IRQ
+selection is based on a register in the ICU block.
 
-If this doesn't make it for v7.0, I suggest you re-spin a v9 after the
-merge window.
+Biju Das (8):
+  dt-bindings: interrupt-controller: renesas,rzg2l-irqc: Document RZ/G3L
+    SoC
+  irqchip/renesas-rzg2l: Make fwspec variable as pointer in struct
+    rzg2l_irqc_priv
+  irqchip/renesas-rzg2l: Drop IRQC_NUM_IRQ macro
+  irqchip/renesas-rzg2l: Drop IRQC_TINT_START macro
+  irqchip/renesas-rzg2l: Drop IRQC_IRQ_COUNT macro
+  irqchip/renesas-rzg2l: Add RZ/G3L support
+  irqchip/renesas-rzg2l: Add shared irq support
+  arm64: dts: renesas: r9a08g046: Add ICU node
 
-Kind regards
-Uffe
+ .../renesas,rzg2l-irqc.yaml                   |  66 +++++-
+ arch/arm64/boot/dts/renesas/r9a08g046.dtsi    |  91 ++++++++
+ drivers/irqchip/irq-renesas-rzg2l.c           | 218 +++++++++++++++---
+ 3 files changed, 343 insertions(+), 32 deletions(-)
 
+-- 
+2.43.0
 
-
-> > + */
-> > +struct mux_control *mux_control_get_optional(struct device *dev, const char *mux_name)
-> > +{
-> > +     return mux_get(dev, mux_name, NULL, true);
-> > +}
-> > +EXPORT_SYMBOL_GPL(mux_control_get_optional);
-> > +
-> >   /**
-> >    * mux_control_put() - Put away the mux-control for good.
-> >    * @mux: The mux-control to put away.
-> > @@ -657,10 +693,13 @@ struct mux_control *devm_mux_control_get(struct device *dev,
-> >       if (!ptr)
-> >               return ERR_PTR(-ENOMEM);
-> >
-> > -     mux = mux_control_get(dev, mux_name);
-> > +     mux = mux_get(dev, mux_name, NULL, false);
-> >       if (IS_ERR(mux)) {
-> >               devres_free(ptr);
-> >               return mux;
-> > +     } else if (!mux) {
-> > +             devres_free(ptr);
-> > +             return ERR_PTR(-ENOENT);
-> >       }
-> >
-> >       *ptr = mux;
-> > @@ -670,14 +709,16 @@ struct mux_control *devm_mux_control_get(struct device *dev,
-> >   }
-> >   EXPORT_SYMBOL_GPL(devm_mux_control_get);
-> >
-> > -/*
-> > +/**
-> >    * mux_state_get() - Get the mux-state for a device.
-> >    * @dev: The device that needs a mux-state.
-> >    * @mux_name: The name identifying the mux-state.
-> > + * @optional: Whether to return NULL and silence errors when mux doesn't exist.
-> >    *
-> > - * Return: A pointer to the mux-state, or an ERR_PTR with a negative errno.
-> > + * Return: Pointer to the mux-state on success, an ERR_PTR with a negative errno on error,
-> > + * or NULL if optional is true and mux doesn't exist.
-> >    */
-> > -static struct mux_state *mux_state_get(struct device *dev, const char *mux_name)
-> > +static struct mux_state *mux_state_get(struct device *dev, const char *mux_name, bool optional)
-> >   {
-> >       struct mux_state *mstate;
-> >
-> ...
 
