@@ -1,449 +1,284 @@
-Return-Path: <devicetree+bounces-262602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262603-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id INkCIvgqg2kxigMAu9opvQ
-	(envelope-from <devicetree+bounces-262602-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 12:18:16 +0100
+	id MEpdCs4sg2kwjAMAu9opvQ
+	(envelope-from <devicetree+bounces-262603-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 12:26:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26855E5004
-	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 12:18:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A1E6E5108
+	for <lists+devicetree@lfdr.de>; Wed, 04 Feb 2026 12:26:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 705C130065E0
-	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 11:18:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 73CDD3019479
+	for <lists+devicetree@lfdr.de>; Wed,  4 Feb 2026 11:25:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92D613D413D;
-	Wed,  4 Feb 2026 11:18:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2681D3E9F92;
+	Wed,  4 Feb 2026 11:25:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="i5FlG6Hf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oBQX0PDs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11012027.outbound.protection.outlook.com [52.101.53.27])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7CD37649C;
-	Wed,  4 Feb 2026 11:18:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.53.27
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770203893; cv=fail; b=JwmX9QyPxAGDocLRsVsWIZuPFD9ELUYAdQwYRlmH8xw7BnkgnCtb7LhZ3XX8RDFVYG6X7D0a6IjYvnyzkubRXLLdigoxdGz97iVne7UI7XfopgmVr0rfaLeDHB/5BlTYPnH7yq6zBxA+D0OwQaKFBeEBfXV85bctxGo+fsVgKaI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770203893; c=relaxed/simple;
-	bh=Jf77n57pjyMwwJ2qleFPUbF84bXAIn/X0qDuDTY+hUI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZOoHrlpB09KwIjfpCqWe+E0Tvm8seqHowPJDRs9ENlA/tdGSohL0nxOYaxOBVFG9fMpFE7bve2EfDyWYHNORmb2m7uZPxa/edk3sWPS+IE+bx8qVKdWVSsB9FN+4QZnJOYQmbZvmsdwC6bZoVkXOs46O85fCxyGxkhqjuiWdY1A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=i5FlG6Hf; arc=fail smtp.client-ip=52.101.53.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=R3tKK3vYz5mifSTQlktZn8kjgSGYmCvlaepRvN/ItfLW0yQKHILd0rf5jQcbVOhVpI4T1cBryhgrN1W058Y0rp0aVUP2pfWhoQ6JNbmQfvO/HWNTHEkAMhD2YHT3PDqFyLo9fgCliuspwnp9JIK6w2L39p5G+LUMtXa0kxcXcGX9uIGwWe9l8v4YpniENnukNLhAlQ6HeY4iOX7HORO06CaH02p7pum12Kebuu/jv6u2nZbVFC5cZLbhu2HJnC8LWXpM2OEjrIMRsLvRux2ZvlowaKRPrQkE4DIfSLXs85vv6vAc8OVzX14nF/+XsV7E8vNsZar3F0rg5o+wpAnA8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6TQ+kpVLySZWsX7+bWAYNEFR62wP3qIKCAJKCgCssiI=;
- b=XeSbiw3zlCL8IJ8Uus9ETftaVI2sqvIAiv39HcAGADhgPbMRbd3/dagA81VCS14barEqFvGQNuOKvcEmWdbBRI60PnfIlC+kIPUyYZQQTkTqn/tIxc+mZ4r2Fci3oFSnCZaysvzy9bzwYph7qMlkP1fiuvvmiQZIQLQzkm/iKVykMTwRyogHci5cAXf+WfQR5tc84+8emVtPOGX2NDBtdGdHn9pmiEBdgVwErYbmgH+h96ldM5ubkMe4vpPfEJRmySw1D2ff3hKnT26RKzn0KiQX759M3QpInKHeLyAoCngQWGnvS19i5CtNZjdJiuSqmIExHZbT5DFv7c1cPwQ3pA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6TQ+kpVLySZWsX7+bWAYNEFR62wP3qIKCAJKCgCssiI=;
- b=i5FlG6HfcaULIyrmB5wwurqu+K/kmlgeb0mqSaL196nz9zq2byt1Vqvj5JvKn6bN27hUqBUfjb7ouI6rloKag0dvwQJg47ibPSJ//ezQVmjFtC+YsMYywZrL6O/VdazywojTcXCwO/by/HSk1vNUCYXq7A3UA2tC8Ck1P1NZLFA=
-Received: from BLAPR03CA0024.namprd03.prod.outlook.com (2603:10b6:208:32b::29)
- by PH3PPF8C8C3D129.namprd10.prod.outlook.com (2603:10b6:518:1::7b6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.13; Wed, 4 Feb
- 2026 11:18:10 +0000
-Received: from BL6PEPF00020E65.namprd04.prod.outlook.com
- (2603:10b6:208:32b:cafe::fb) by BLAPR03CA0024.outlook.office365.com
- (2603:10b6:208:32b::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.12 via Frontend Transport; Wed,
- 4 Feb 2026 11:18:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- BL6PEPF00020E65.mail.protection.outlook.com (10.167.249.26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.10 via Frontend Transport; Wed, 4 Feb 2026 11:18:08 +0000
-Received: from DFLE203.ent.ti.com (10.64.6.61) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Feb
- 2026 05:18:07 -0600
-Received: from DFLE205.ent.ti.com (10.64.6.63) by DFLE203.ent.ti.com
- (10.64.6.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Feb
- 2026 05:18:07 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE205.ent.ti.com
- (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 4 Feb 2026 05:18:07 -0600
-Received: from [172.24.235.46] (moteen-ubuntu-desk.dhcp.ti.com [172.24.235.46])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 614BI3g31445184;
-	Wed, 4 Feb 2026 05:18:04 -0600
-Message-ID: <9a443016-49a9-4e23-b93c-59192a1b5a4c@ti.com>
-Date: Wed, 4 Feb 2026 16:48:03 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011B53E9F87;
+	Wed,  4 Feb 2026 11:25:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770204314; cv=none; b=fsg/aQNudFOt3nqPgPFtjMxufiJYsMpGzerdN8F0fXnfDxY+beH8csyD9wp4ZFH02VpYZh37M4Wnc1nJhjpyzAXqxV90/m6UQbTmm7gepg7Hmkj0frDves9IcRHcQHzkoQD7xc3A6vTmwbwFWSORuD4yv+8aGg5oeH1tEOS5h/E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770204314; c=relaxed/simple;
+	bh=lWoMc7TqQFVxuHYqNXppAV75HA+/N7T/7cdmOpJldZM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=t/MKLjxBCTE2GpuCeC92WlmqTKM950B6t9umWZQ4SeQD7TqST7//PL7Ui2WhIBHOf5+QKGdSF+x+lwTMvJ68cOsR5NH72Ww87Lja/omT1gjyJdcRIkJVSppFrddzqsQfWyKPaTNQWZpuDJFKTQTZzk4YEUD4kTtT6kIj4sempSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oBQX0PDs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 965ACC4CEF7;
+	Wed,  4 Feb 2026 11:25:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770204313;
+	bh=lWoMc7TqQFVxuHYqNXppAV75HA+/N7T/7cdmOpJldZM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=oBQX0PDsRUf3g2spsE3Vq/ySMbB5XJe/2/Mm50sy02WDTLEJPl5rKDCYYtvp97Slk
+	 b1uPOJ3K50zOlRwKBwUbwZ7fMV3d+gZm39LxFasScyPwfV8TPMCS/0VmW7BzlF7VPb
+	 PtX53XChRj+KuRSlnHK0ZzA96XGua/kgz/X6Ol2nXulR2StPggEiooCbgPLCaL49zH
+	 Qg377In53oXz94rtVE3RDi/u59sLY6ceyFUjBlcCFlFydkwGbitTJ8Kc56xd+M7cfr
+	 hbdwiSW759t5pLWS0PaKCUsx3lLZ+r0AnxMtR0WgrO1JX3uB1h4GF2OIRM4ZgoAlgf
+	 Cda/DOTl8dNjg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F3E9E95388;
+	Wed,  4 Feb 2026 11:25:13 +0000 (UTC)
+From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
+Subject: [PATCH v20 0/6] Add PWM support for IPQ chipsets
+Date: Wed, 04 Feb 2026 15:25:06 +0400
+Message-Id: <20260204-ipq-pwm-v20-0-91733011a3d1@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-j721s2-common-proc-board: Enable
- analog audio support
-To: Nishanth Menon <nm@ti.com>
-CC: <krzk+dt@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
-	<vigneshr@ti.com>, <kristo@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<u-kumar1@ti.com>, <gehariprasath@ti.com>, <y-abhilashchandra@ti.com>
-References: <20260112104536.83309-1-m-shah@ti.com>
- <20260112104536.83309-4-m-shah@ti.com>
- <20260116130417.kir4agaxqukaxr57@series>
-Content-Language: en-US
-From: Moteen Shah <m-shah@ti.com>
-In-Reply-To: <20260116130417.kir4agaxqukaxr57@series>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00020E65:EE_|PH3PPF8C8C3D129:EE_
-X-MS-Office365-Filtering-Correlation-Id: 26eaa221-e6bb-4eb8-9a37-08de63df133e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?clI2OWJFMS90TlZCdkV5M0ZSRlorUTAxNmtZalZrMmc4Q2ZjM2pQV2psZ05q?=
- =?utf-8?B?R0Uzb0lWQnJJc0Q3eTZpcS8vaGpXSWdaNW8zV1hkVGJkMVBQTUUzbmlNZ1h1?=
- =?utf-8?B?aEswQ2dDN2xKZnV2ZEMrTE53ZDNibG01cGg4TVQ4UC8wcWpDQnAxZHM0RzE3?=
- =?utf-8?B?WWN3WlRXYzNZTjZQclpjRWp4Z2M0aGh4aEVhbERYSDdNVmVHbkV2UkY0YTlB?=
- =?utf-8?B?d0VtVTNwa3crUWp0Yjc4ZDQ0TEhvRGoyaDdmUWdiaXpLU1hBNU1CNkR3dW9a?=
- =?utf-8?B?WVJnZXBIR05DZjdGUlVVLy9mZGJQY1R1WkNuam1QTm13d1poOHQ0aHA3ZUtj?=
- =?utf-8?B?ci9yMEZha1hjL2hxRU52bk43MnJZT3N0V2Z2VUo3b1JMd016aEtxR0lja2lq?=
- =?utf-8?B?bno4ZDJNaE9pRzFPK25sc1pIbHJkWlk3LzdpUitvbjdCd0lwK0hXaE1VRk5I?=
- =?utf-8?B?dHZFdWFQSWtzN0hLZ1A1Q0V5SFgrai84cHBITk1zTHVjc1dSTk9SbUxTWVBa?=
- =?utf-8?B?UTVRK01Qc1IzbGpsdkUwUThNU2psSC9CVk81Vjg0cVU4Q2hQL1VUR1AreFNW?=
- =?utf-8?B?R0k2ZVF0R3dBemZyekdJaWhqTGg4RlZ4bjQ2eWx1ek9SbUdpMTF4aUNiRUYz?=
- =?utf-8?B?YWdRU0hwQXk0OGFqSGdRazRxVnZwNzQ1NnJxVm5SZ2kvMjdiR2hLbDVjQ3Fs?=
- =?utf-8?B?SGpFSExQUllCMjhyN0oyZmNSeWVyc3RsV3dRVmhGUWJva0lRa043ZEZ2RWpz?=
- =?utf-8?B?N3BYZ0RPbWVTUDNPRGRENm9KZURvcjAvNVRaZHJvREZhYWlqaEpqcmMyNGFt?=
- =?utf-8?B?Y3BrQWNIMjZ1a2tLZzE3dWRmMkNNaVZhNUxWVis2Y2VUZkI1b2liTURCV0ZD?=
- =?utf-8?B?OTBHTDJGaGdSMjNlVHlMTWdzbFBocDF3d1JPRVYzZ2VKaFFkam00VmZ6dXBo?=
- =?utf-8?B?aDBEWjJSbTY2a2hrSEpwVGlLUCtuc2U3Y3pBVlNLSkM1VjJhdDBGQ3hDL1dL?=
- =?utf-8?B?ZEx2VnFKc0NCZ0lLNmMzdGE1c04xc3JUeFozbUdnQUttSGdReEw2em9oTlFJ?=
- =?utf-8?B?U1NNUHp2NVYvWnBJMXRoak9DTWF0bnJRZzdNQVNUOXUwNU5MOStKU1kweWdE?=
- =?utf-8?B?Sk5DUEZmQkswT21uQ2FUQnZHNjBqOUs0R2JEL2hLaGpZRDA4TWhpOHNoRjFh?=
- =?utf-8?B?RmZLamVGSmdmcFRXTGk3Y0FSUjQrSU5TTEFWQ2pQVW5PdDdENDhCMkNoMjUy?=
- =?utf-8?B?aDRtNURlSTZteGpudlowUTdxT3JVSi83MFgzODZBRzVReTBQZXUzVGp4MG05?=
- =?utf-8?B?VDcwendwejlCNk84TGdkQWxMRk9ka0t2cXhjMzZuam5ac2hFU0ZEajZibVZU?=
- =?utf-8?B?TGQ5Y0dYWHgvUUhjQlBkWHpZZTZPVGlUWVR3eitEaU9kRGxSNi9weTkrells?=
- =?utf-8?B?Q2NVdVI2dUJ5TS8zMjlNMXVacDdhMENpM2F4aHZILzVNM3VXKzRnQ2V4RWZs?=
- =?utf-8?B?a2p3TzRnazNBTnJpaWFBTmpqTXg5enkrWmhkME1WeU45Y1gzeC9USjFlK1Vi?=
- =?utf-8?B?Ty95cUVGU0VuMEJtUEJPU3hSeGZwRGUvZERBWGNVNGFTTkhxU1d4M0Q4ME5K?=
- =?utf-8?B?ZnlRaVdmRTR1NVdHT0IwZGYrdHE5aUNXZGJpMEVNV2o1dVpMWm5xeTNFVzBj?=
- =?utf-8?B?cWtlZ3lwN3ZNL0dzVG5ST3dYamtXREFXSUxzK0NocVFXU1E1WGRrUkYzbTAr?=
- =?utf-8?B?Z0JBYUtweE5JTXZLNEZwQ0o2Vk13Zktxd1VsUWNqT05nVGE4UG1nQWdxaTVq?=
- =?utf-8?B?Sm8wZmYxNm9Xc3VZZUZiUXBFTENYNUFQTDBxaDd3azg0aWloMGFPdi9rWUha?=
- =?utf-8?B?UWRRV3hxSUl3WHVoQnZ1dHlVdTYrcHhtZDNTaVpySklrZ3FFZ0pMZk02amZv?=
- =?utf-8?B?cGdUMDZkdy9sUUQ4TU1IMzJQQS9FVDQ5bmErYWUxc29Pdjk0MGRhNDhLY0xT?=
- =?utf-8?B?dWZLWVF1emtiR0FqTlRmYUxjTHk2QjFtZE11Rnh5b1BqKzFDM1ZrT2JBOENG?=
- =?utf-8?B?anBHb1JLdVZtRW1EQTJXZUFIQXFhVXdLenhtTVFVemtYQ2tiYXFpSG9iY0Jz?=
- =?utf-8?B?WHJpSjNpT2piZ1NNK3QwR1AzUVNqTGJCZDNUcFM0OGxwVWxtZElZeVJ5b0Iv?=
- =?utf-8?B?QnNjeDQvZ3dSNVU4M20vQmZGRmFDdkNaZmRSVmZ5QThLWkdySlFWM3drZGRJ?=
- =?utf-8?B?ZnlHQ3p5dzRXcFdtdVUyTmkrZXh3PT0=?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	3YHywCoG499p/zO2+OZ9nq4PgJy3nkqoMipJ4zz0qwBFAnfRcodT9oVlts4t76JQCaVkGq5Esr9qZz1udOct8AZEBUyssb67b0q+KP2DNQXrq/ZaFFWqGLlRr0wgmKQkQ3o88IO4ydNE1wlYOeTijBY6XdalIrbfLxDnQTt3R6YBYl2AEgHpT7BPpro5L0tk3cnoB73W3zH4u3PE6Azpy7ScFAJBnOogDn/3VhmVOQGueiu5M3UWyoZxEDAU5oFv7y0p1UqbK8Q1/fCAOXN2GcCw9kmynj5dEQVZ/FrKYVOlJAUtD9MWNxNXw5pFk95Om9c+Et6rDsTOntVjebnGaiU1Z5YlUtTlJVP1xpiByvdhBMS54T7pvW+S1f0LbvcSHEXwXkedgrPYrBDGArcZWKAP48DQUl1OvxT+vKivyYfjlE0wTHQkqLn8b2r5CrW0
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 11:18:08.3746
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26eaa221-e6bb-4eb8-9a37-08de63df133e
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL6PEPF00020E65.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF8C8C3D129
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAJIsg2kC/23O0W6EIBAF0F/Z8Fw2wyCC+7T/0TSNwlBJq7jo2
+ m42/nvRpK1N9nFgzp17ZyOlQCM7He4s0RzGEPs8IDwdmG3r/o14cPmBIaCCCpGH4cKHz45bY7W
+ yotBOIcvbQyIfvrao55c8+xQ7PrWJ6h8vBYASJSgFRyxQglZc8Ms12FeXTw8p3M7rFHp7tLFbQ
+ 9swTjHdtnqzKNfsrUlOEr9N8gcHLgE8Sk1ApTnH6/QR4/sWs5aZhd5bs7M626pxhSTnrfb6gTU
+ 7i9XOmmzJNeQN+aYx9MBWf1bg/m6VrZCN1VBYW9bqv12W5RuEan9onAEAAA==
+X-Change-ID: 20250922-ipq-pwm-c8c75c147d52
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Baruch Siach <baruch@tkos.co.il>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ George Moussalem <george.moussalem@outlook.com>, 
+ Devi Priya <quic_devipriy@quicinc.com>, 
+ Baruch Siach <baruch.siach@siklu.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770204310; l=6197;
+ i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
+ bh=lWoMc7TqQFVxuHYqNXppAV75HA+/N7T/7cdmOpJldZM=;
+ b=dSgDFKkncIy02owZzwas08bBX4PDhp7M9oeHWkU9NMDHUyt/TvT6y3iut9ygxcA2MRnvVPxst
+ EYkcbmN4yjXAtLnLdv2+tnH8IdpWSswVvFj4+TfRNBAlrRrMeSSxh2/
+X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
+ pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
+X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
+ with auth_id=364
+X-Original-From: George Moussalem <george.moussalem@outlook.com>
+Reply-To: george.moussalem@outlook.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262602-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262603-lists,devicetree=lfdr.de,george.moussalem.outlook.com];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:dkim,ti.com:email,ti.com:url,ti.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.20:email,0.0.0.22:email];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[ti.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m-shah@ti.com,devicetree@vger.kernel.org];
+	FREEMAIL_REPLYTO(0.00)[outlook.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.44:email];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.972];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,outlook.com,quicinc.com,siklu.com,oss.qualcomm.com,kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 26855E5004
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	HAS_REPLYTO(0.00)[george.moussalem@outlook.com];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[outlook.com:replyto,outlook.com:email,outlook.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8A1E6E5108
 X-Rspamd-Action: no action
 
-Hey Nishanth,
+Add PWM driver and binding support for IPQ chipsets.
+Also, add nodes to add support for pwm in ipq6018, ipq5018, ipq5332, and
+ipq9574.
 
-Thanks for the reviews.
+I've picked up work based on Devi's last submission (v15) which dates
+back to 05 October 2023 as below SoCs are still active.
 
-On 16/01/26 18:34, Nishanth Menon wrote:
-> On 16:15-20260112, Moteen Shah wrote:
->> From: Jayesh Choudhary <j-choudhary@ti.com>
->>
->> The audio support on J721S2-EVM is using PCM3168A codec
->> connected to McASP4 serializers.
->>
->> - Add the nodes for sound-card, audio codec, MAIN_I2C3 and
->>    McASP4.
->> - Add pinmux for I2C3, McASP4, AUDIO_EXT_REFCLK1 and
->>    WKUP_GPIO_0.
->> - Add necessary GPIO hogs to route the MAIN_I2C3 lines and
->>    McASP serializer.
->> - Add idle-state as 1 in mux0 and mux1 to route McASP signals
->>
->> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->> Signed-off-by: Moteen Shah <m-shah@ti.com>
->> ---
->>   .../dts/ti/k3-j721s2-common-proc-board.dts    | 131 ++++++++++++++++++
->>   1 file changed, 131 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->> index 4fea99519113..d9269a16956c 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->> @@ -150,6 +150,28 @@ transceiver4: can-phy4 {
->>   		standby-gpios = <&exp_som 7 GPIO_ACTIVE_HIGH>;
->>   		mux-states = <&mux1 1>;
->>   	};
->> +
->> +	codec_audio: sound {
->> +		compatible = "ti,j7200-cpb-audio";
->> +		model = "j721e-cpb";
->> +
->> +		ti,cpb-mcasp = <&mcasp4>;
->> +		ti,cpb-codec = <&pcm3168a_1>;
->> +
->> +		clocks = <&k3_clks 213 0>, <&k3_clks 213 1>,
->> +			 <&k3_clks 157 299>, <&k3_clks 157 328>;
->> +		clock-names = "cpb-mcasp-auxclk", "cpb-mcasp-auxclk-48000",
->> +			      "cpb-codec-scki", "cpb-codec-scki-48000";
->> +	};
->> +
->> +	i2c_mux: mux-controller-2 {
-> There is just a single i2c_mux on processor board/evm? if not, might
-> be good to set this as i2c_mux0 or appropriate naming?
+Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+---
+Changes in v20:
+- Updated IPQ_PWM_MAX_DIV macro definition to use FIELD_MAX
+- Removed clk struct from ipq_pwm struct and added clk_rate field
+  instead which is set during probe.
+- Consolidated config_div_and_duty into ipq_pwm_apply
+- Fixed arithmetic overflows in apply and get_state 
+- Fixed off-by-one in divider calculation
+- Enabled 100% relative duty cycle support
+- Aligned continuation on next lines relative to opening parentheses
+- Return 0 instead of ret in probe
+- Link to v19: https://lore.kernel.org/r/20251128-ipq-pwm-v19-0-13bc704cc6a5@outlook.com
 
-There are others as well, will rename this to i2c_mux0
+Changes in v19:
+- Changed pwm-cells property in dt bindings from 2 to 3 as per Uwe's
+  recommendation
+- Added hardware notes and limitations based on own findings as
+  requested. NOTE: there's no publically available datasheet though.
+- Expanded comment on REG1_UPDATE to indicate that when this bit is set,
+  values for div and pre-div take effect. The hardware automatically
+  unsets it when the change is completed.
+- Added newline between MACRO definition and next comment
+- In config_div_and_duty, used mul_u64_u64_div_u64 to avoid overflow
+- Removed unncessary restriction of pwm_div to MAX_DIV - 1 after testing
+- Constrain pre_div to MAX_DIV is pre_div calculated is > MAX_DIV
+- Use of mul_u64_u64_div_u64 in .apply
+- Skip calculation of period and duty cycle when PWM_ENABLE REG is unset
+- Set duty cycle to period value when calculated duty cycle > period to
+  return a valid config
+- Removed .npwm as it's taken care of in devm_pwmchip_alloc
+- Added call to devm_clk_rate_exclusive_get to lock the clock rate
+- Start all kernel messages with a capital letter and end with \n.
+- Changed pwm-cells property in all dtsi from 2->3 for in scope IPQ SOCs 
+- Link to v18: https://lore.kernel.org/r/20251029-ipq-pwm-v18-0-edbef8efbb8e@outlook.com
 
->
->> +		compatible = "gpio-mux";
->> +		#mux-state-cells = <1>;
->> +		mux-gpios = <&wkup_gpio0 54 GPIO_ACTIVE_HIGH>;
->> +		idle-state = <1>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&main_i2c3_mux_pins_default>;
->> +	};
->>   };
->>   
->>   &main_pmx0 {
->> @@ -224,6 +246,22 @@ J721S2_IOPAD(0x03c, PIN_INPUT, 0) /* (U27) MCASP0_AFSX.MCAN5_RX */
->>   			J721S2_IOPAD(0x038, PIN_OUTPUT, 0) /* (AB28) MCASP0_ACLKX.MCAN5_TX */
->>   		>;
->>   	};
->> +
->> +	mcasp4_pins_default: mcasp4-default-pins {
->> +		pinctrl-single,pins = <
->> +			J721S2_IOPAD(0x0c8, PIN_OUTPUT_PULLDOWN, 1) /* (AD28) MCASP4_ACLKX */
->> +			J721S2_IOPAD(0x06c, PIN_OUTPUT_PULLDOWN, 1) /* (V26) MCASP4_AFSX */
->> +			J721S2_IOPAD(0x068, PIN_INPUT_PULLDOWN, 1) /* (U28) MCASP4_AXR1 */
->> +			J721S2_IOPAD(0x0c4, PIN_OUTPUT_PULLDOWN, 1) /* (AB26) MCASP4_AXR2 */
->> +			J721S2_IOPAD(0x070, PIN_OUTPUT_PULLDOWN, 1) /* (R27) MCASP4_AXR3 */
->> +		>;
->> +	};
->> +
->> +	audio_ext_refclk1_pins_default: audio-ext-refclk1-default-pins {
->> +		pinctrl-single,pins = <
->> +			J721S2_IOPAD(0x078, PIN_OUTPUT, 1) /* (Y25) MCAN2_RX.AUDIO_EXT_REFCLK1 */
->> +		>;
->> +	};
->>   };
->>   
->>   &wkup_pmx2 {
->> @@ -321,6 +359,12 @@ J721S2_WKUP_IOPAD(0x104, PIN_INPUT, 0) /* (N26) MCU_ADC1_AIN6 */
->>   			J721S2_WKUP_IOPAD(0x108, PIN_INPUT, 0) /* (N27) MCU_ADC1_AIN7 */
->>   		>;
->>   	};
->> +
->> +	main_i2c3_mux_pins_default: main-i2c3-mux-default-pins {
->> +		pinctrl-single,pins = <
->> +			J721S2_WKUP_IOPAD(0x038, PIN_OUTPUT, 7) /* (B27) WKUP_GPIO0_54 */
->> +		>;
->> +	};
->>   };
->>   
->>   &wkup_pmx1 {
->> @@ -396,6 +440,22 @@ exp2: gpio@22 {
->>   				  "MLB_MUX_SEL", "MCAN_MUX_SEL", "MCASP2/SPI3_MUX_SEL", "PCIe_CLKREQn_MUX_SEL",
->>   				  "CDCI2_RSTZ", "ENET_EXP_PWRDN", "ENET_EXP_RESETZ", "ENET_I2CMUX_SEL",
->>   				  "ENET_EXP_SPARE2", "M2PCIE_RTSZ", "USER_INPUT1", "USER_LED1", "USER_LED2";
->> +
->> +		p09-hog {
->> +			/* P09 - MCASP/TRACE_MUX_S0 */
->> +			gpio-hog;
->> +			gpios = <9 GPIO_ACTIVE_HIGH>;
->> +			output-low;
->> +			line-name = "MCASP/TRACE_MUX_S0";
->> +		};
->> +
->> +		p10-hog {
->> +			/* P10 - MCASP/TRACE_MUX_S1 */
->> +			gpio-hog;
->> +			gpios = <10 GPIO_ACTIVE_HIGH>;
->> +			output-high;
->> +			line-name = "MCASP/TRACE_MUX_S1";
->> +		};
-> We loose JTAG Trace?
+Changes in v18:
+- Updated maintainer info in binding
+- Squashed dt bindings patches into the first for adding compatibles for
+  IPQ5018, IPQ5332, and IPQ9574
+- Link to v17: https://lore.kernel.org/r/20251008-ipq-pwm-v17-0-9bd43edfc7f7@outlook.com
 
-That is true, will pivot to using the dtbo method instead, out of box we 
-still want the JTAG trace to be active
+Changes in v17:
+- Picked up RB tags from Dmitry and Rob
+- Removed unnecessary code comments
+- Corrected reg property in PWM node in ipq6018 DTS in line with
+  expected nr of bytes for address and size cells
+- Link to v16: https://lore.kernel.org/r/20251001-ipq-pwm-v16-0-300f237e0e68@outlook.com
 
->
->>   	};
->>   };
->>   
->> @@ -657,3 +717,74 @@ &dphy_tx0 {
->>   &dsi0 {
->>   	status = "okay";
->>   };
->> +
->> +&mux0 {
->> +	idle-state = <0>;
->> +};
->> +
->> +&mux1 {
->> +	idle-state = <0>;
-> Commit says:
-> - Add idle-state as 1 in mux0 and mux1 to route McASP signals
->
-> you are adding idle-state = <0> here - which is correct? why?
+Changes in v16:
+- Removed reg description in bindings as the offset is not relative to
+  the TCSR region anymore since simple-mfd support was dropped and PWM
+  nodes defined as their own nodes, not child nodes. Updated the example
+  too.
+- Dropped patch to add simple-mfd support to the qcom,tcsr bindings
+- Simplified code to calculate divs and duty cycle as per Uwe's comments
+- Removed unused pwm_chip struct from ipq_pwm_chip struct
+- Removed unnecessary cast as per Uwe's comment
+- Replaced devm_clk_get & clk_prepare_enable by devm_clk_get_enabled
+- Replaced pwmchip_add by devm_pwmchip_add and removed .remove function
+- Removed .owner from driver struct
+- Added compatibles to the bindings and nodes to the device trees to add
+  PWM support in the IPQ5018, IPQ5332, and IPQ9574 SoCs
+- Link to v15: https://lore.kernel.org/r/20231005160550.2423075-1-quic_devipriy@quicinc.com
 
-I will fix the commit msg in the revision, the state should be 0 for the 
-sound card to get registered.
+Changes in v15:
+- No change
+- Link to v14: https://lore.kernel.org/r/20231005033053.2626465-1-quic_devipriy@quicinc.com
 
->
->> +};
->> +
->> +&exp_som {
->> +	p03-hog {
->> +		/* P03 - CANUART_MUX_SEL1 */
-> and we loose CAN? or UART -> not sure I understand this change and why
-> is it related to audio?
+Changes in v14:
+- Picked up the R-b tag
+- Link to v13: https://lore.kernel.org/r/20231004090449.256229-1-quic_devipriy@quicinc.com
 
-I checked the schematics[0] of the SoM and seems like it is irrelevant, 
-I'll drop this in the revision.
+Changes in v13:
+- Updated the file name to match the compatible
+- Sorted the properties and updated the order in the required field
+- Dropped the syscon node from examples
+- Link to v12: https://lore.kernel.org/r/20230925065915.3467964-1-quic_devipriy@quicinc.com
+
+Changes in v12:
+- Picked up the R-b tag
+
+Changes in v11:
+- No change
+
+Changes in v10:
+- No change
+
+Changes in v9:
+- Add 'ranges' property to example (Rob)
+- Drop label in example (Rob)
+
+Changes in v8:
+- Add size cell to 'reg' (Rob)
+
+Changes in v7:
+- Use 'reg' instead of 'offset' (Rob)
+- Drop 'clock-names' and 'assigned-clock*' (Bjorn)
+- Use single cell address/size in example node (Bjorn)
+- Move '#pwm-cells' lower in example node (Bjorn)
+- List 'reg' as required
+
+Changes in v6:
+- Device node is child of TCSR; remove phandle (Rob Herring)
+- Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
+
+Changes in v5:
+- Use qcom,pwm-regs for phandle instead of direct regs (Bjorn
+    Andersson, Kathiravan T)
+
+Changes in v4:
+- Update the binding example node as well (Rob Herring's bot)
+
+Changes in v3:
+- s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
+
+Changes in v2:
+- Make #pwm-cells const (Rob Herring)
+
+---
+
+---
+Devi Priya (3):
+      dt-bindings: pwm: add IPQ6018 binding
+      pwm: driver for qualcomm ipq6018 pwm block
+      arm64: dts: qcom: ipq6018: add pwm node
+
+George Moussalem (3):
+      arm64: dts: qcom: ipq5018: add pwm node
+      arm64: dts: qcom: ipq5332: add pwm node
+      arm64: dts: qcom: ipq9574: add pwm node
+
+ .../devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml  |  51 +++++
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi              |  10 +
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi              |  10 +
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi              |  10 +
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi              |  10 +
+ drivers/pwm/Kconfig                                |  12 ++
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm-ipq.c                              | 239 +++++++++++++++++++++
+ 8 files changed, 343 insertions(+)
+---
+base-commit: 6db894fcdec4d214812f3e6f656639f1b0081127
+change-id: 20250922-ipq-pwm-c8c75c147d52
+
+Best regards,
+-- 
+George Moussalem <george.moussalem@outlook.com>
 
 
->
->> +		gpio-hog;
->> +		gpios = <3 GPIO_ACTIVE_HIGH>;
->> +		output-high;
->> +		line-name = "CANUART_MUX_SEL1";
->> +	};
->> +};
->> +
->> +&k3_clks {
->> +	/* Confiure AUDIO_EXT_REFCLK1 pin as output */
-> I bet you did'nt run checkpatch --strict --codespell.. :)
-> s/Confiure/Configure
-
-Didn't run it with codespell, will rectify in the revision, apologies.
-
->
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&audio_ext_refclk1_pins_default>;
->> +};
->> +
->> +&main_i2c3 {
->> +	status = "okay";
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&main_i2c3_pins_default>;
->> +	clock-frequency = <400000>;
->> +	mux-states = <&i2c_mux 1>;
->> +
->> +	exp3: gpio@20 {
->> +		compatible = "ti,tca6408";
->> +		reg = <0x20>;
->> +		gpio-controller;
->> +		#gpio-cells = <2>;
-> gpio-line-names please
-
-Noted
-
-[0] https://www.ti.com/lit/zip/SPRR439
-
-Regards,
-Moteen
-
-
->
->> +	};
->> +
->> +	pcm3168a_1: audio-codec@44 {
->> +		compatible = "ti,pcm3168a";
->> +		reg = <0x44>;
->> +		#sound-dai-cells = <1>;
->> +		reset-gpios = <&exp3 0 GPIO_ACTIVE_LOW>;
->> +		/* C_AUDIO_REFCLK1 -> MCAN2_RX (Y25) */
-> What is this comment pertinent to?
->
->> +		clocks = <&audio_refclk1>;
->> +		clock-names = "scki";
->> +		VDD1-supply = <&vsys_3v3>;
->> +		VDD2-supply = <&vsys_3v3>;
->> +		VCCAD1-supply = <&vsys_5v0>;
->> +		VCCAD2-supply = <&vsys_5v0>;
->> +		VCCDA1-supply = <&vsys_5v0>;
->> +		VCCDA2-supply = <&vsys_5v0>;
->> +	};
->> +};
->> +
->> +&mcasp4 {
->> +	status = "okay";
->> +	#sound-dai-cells = <0>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&mcasp4_pins_default>;
->> +	op-mode = <0>;          /* MCASP_IIS_MODE */
->> +	tdm-slots = <2>;
->> +	auxclk-fs-ratio = <256>;
->> +	serial-dir = <	/* 0: INACTIVE, 1: TX, 2: RX */
->> +		0 2 1 1
->> +		0 0 0 0
->> +		0 0 0 0
->> +		0 0 0 0
->> +	>;
->> +};
->> -- 
->> 2.34.1
->>
->>
 
