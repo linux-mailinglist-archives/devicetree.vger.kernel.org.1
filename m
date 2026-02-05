@@ -1,127 +1,120 @@
-Return-Path: <devicetree+bounces-262989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262990-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QBPLHe5/hGl/3AMAu9opvQ
-	(envelope-from <devicetree+bounces-262989-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 12:33:02 +0100
+	id iD9EK6uChGl/3AMAu9opvQ
+	(envelope-from <devicetree+bounces-262990-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 12:44:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09C01F1E78
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 12:33:02 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 528EFF2002
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 12:44:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F2C24300B9B8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 11:33:00 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9ABC0300669A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 11:44:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7B073A9DA7;
-	Thu,  5 Feb 2026 11:32:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43F4E3B52F0;
+	Thu,  5 Feb 2026 11:44:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IEYMDdlK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PXM3efcn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 940E430499A;
-	Thu,  5 Feb 2026 11:32:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 209783A9D95;
+	Thu,  5 Feb 2026 11:44:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770291179; cv=none; b=L1UqZJU8x3RGFV4Rm9szShGPyCYZQIuAZtRk/kYKp3NQ3WOYwHPGw3Kgi0gYjrqkZrsA7wgbCaTf7DguAAbj99UyxxzXHGIEchvVryGqWM0OwwBsFWUiKGRowrXCp+gzL3h20FOc7l+EqsVwCrd3YLBvQJM0cQHKsLzQ15BXE7g=
+	t=1770291879; cv=none; b=gnaImZ8XaIq33gA5YHPuvYf9rfmvTDaog3xlgo9vr4FimdY+n7ngCFNWPhiok4sAJFW1oEcWj/3cAgeLn4YClKaiA4wPo6lxm/ZGaJoru+x8KQPe0AqpEaNe+5MyvRpT0sULAYC1SehsFHOKoMUHrEZr7xKwcEddNYpvUk17QyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770291179; c=relaxed/simple;
-	bh=P4ZwgmEFwWuk9hjrWBwpZjmoLLL/Y/YJAN5ooNOu0uI=;
+	s=arc-20240116; t=1770291879; c=relaxed/simple;
+	bh=hAAHav3T98aKj321vhwrLR2ehXeVSbOmkejkdN37/rY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dZiXsXHGky4efiFJdDw7+nCY1WeoFS6g89cbQjpCaziyj1xE6GQuLKn4Z4Fpt+rAgWV1btaG4J09o4tRE7alcOXaaOiVgWI1oIQv7p9E7YsKEHIDXrJfi180tKdGlctqAg5ZdMyGgTsaF59xf94LqI8woFfRjp67QDpli1r1EYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IEYMDdlK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A41E7C4CEF7;
-	Thu,  5 Feb 2026 11:32:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qRzjMfn3rDPh5N0qXAPrDcoaxCbLlIOAEI3TIbIDznk7syAvBdiDDHYZfby5XFgEFsLVtlGOjhIMgA18aiG4g1JhSJWCE+G1OzN3uuRV6ksDmtbjPIa8vJd3Y96eL5rX5XxJNkhEqSszOGdr6H2HmPIlUAWPo9u5nMC3hSAFTfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PXM3efcn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6F66C4CEF7;
+	Thu,  5 Feb 2026 11:44:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770291179;
-	bh=P4ZwgmEFwWuk9hjrWBwpZjmoLLL/Y/YJAN5ooNOu0uI=;
+	s=k20201202; t=1770291878;
+	bh=hAAHav3T98aKj321vhwrLR2ehXeVSbOmkejkdN37/rY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IEYMDdlKA9PbPNi0vo3ba+Y/Zhy/k8KxDytnoOYJpm7Ftn/gWcD+0RnUhERCw/AWE
-	 C6NXUVB4LegYFVH/l0vPNVkPCyGy0GOnvR8q8p9qzqw/ieouROH6/NwKUyIBQESC1p
-	 q2+wDjfP/ZLs0HD9+URPzrFUzXHmozauTNvw+hmmiXCeLdSeofmAOid1EDBvZ4+ceU
-	 dogT/Xqd8RyT0plrS/bva+gZACVvx9XyIuKG7U13WPGw/z8FADDwULJ6/DRiLQPHu3
-	 5Tnxdi4LVlKAkRH7tUZ9xxyW6WK1shCDs628G3VNMkxpJ0nco0ObA6x0F7PeF/rhPA
-	 +9UM4UwaO3O7w==
-Date: Thu, 5 Feb 2026 12:32:56 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Taniya Das <quic_tdas@quicinc.com>, Jonathan Marek <jonathan@marek.ca>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Bryan O'Donoghue <bod@kernel.org>, Vikash Garodia <vikash.garodia@oss.qualcomm.com>, 
-	Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Stanimir Varbanov <stanimir.varbanov@linaro.org>, Abhinav Kumar <abhinav.kumar@linux.dev>, 
-	Hans Verkuil <hverkuil@kernel.org>, Stefan Schmidt <stefan.schmidt@linaro.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-	Dikshita Agarwal <dikshita@qti.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-media@vger.kernel.org, Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v3 2/7] media: dt-bindings: qcom,sm8250-venus: sort out
- power domains
-Message-ID: <20260205-vermilion-chupacabra-of-teaching-f964eb@quoll>
-References: <20260204-iris-venus-fix-sm8250-v3-0-70fa68e57f96@oss.qualcomm.com>
- <20260204-iris-venus-fix-sm8250-v3-2-70fa68e57f96@oss.qualcomm.com>
+	b=PXM3efcnYFetp6Q+ZBeh1IqjJE3T67ivogdHO0eoMp5Pwgui8vEohgllHkt1f1iva
+	 /JcSeIoZ+Lqcwh57L5XR1sC6o9tE+foxESQTZMyfi/Wuqnm/40q6jawvf+c1SYUUCV
+	 MgbcdZ4GM4klYVaS7W0o6kIk9A/BFg5CHBiBkbTP04wz1wU6IgCxt7WabW8v82OTqP
+	 rTbsuDgJYGTF302TjDFkhVtXpWbq2ID/nK71mFmqbeSJsjIWKo4BzlMns9u3cIinVJ
+	 Qjb2jgCV4AqFMLYOkpL55ldYB549SG9SfOVNQA4Xkbfd5qG6+WzMDp36NgGMr3DrQ2
+	 RmBaZU40iazOQ==
+Date: Thu, 5 Feb 2026 12:44:33 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Danny Kaehn <danny.kaehn@plexus.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Benjamin Tissoires <bentiss@kernel.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Jiri Kosina <jikos@kernel.org>, devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+	Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Leo Huang <leohu@nvidia.com>, Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>, 
+	Ting-Kai Chen <tingkaic@nvidia.com>
+Subject: Re: [PATCH v12 1/3] dt-bindings: i2c: Add CP2112 HID USB to SMBus
+ Bridge
+Message-ID: <aYSCiHf5eFp7m5dQ@zenone.zhora.eu>
+References: <20251126-cp2112-dt-v12-0-2cdba6481db3@plexus.com>
+ <20251126-cp2112-dt-v12-1-2cdba6481db3@plexus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260204-iris-venus-fix-sm8250-v3-2-70fa68e57f96@oss.qualcomm.com>
+In-Reply-To: <20251126-cp2112-dt-v12-1-2cdba6481db3@plexus.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262989-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262990-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
+	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,vger.kernel.org,gmail.com,linaro.org,plexus.com,nvidia.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andi.shyti@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 09C01F1E78
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,zenone.zhora.eu:mid]
+X-Rspamd-Queue-Id: 528EFF2002
 X-Rspamd-Action: no action
 
-On Wed, Feb 04, 2026 at 02:59:50AM +0200, Dmitry Baryshkov wrote:
-> First of all, on SM8250 Iris (ex-Venus) core needs to scale clocks which
-> are powered by the MMCX domain. Add MMCX domain to the list of the power
-> domain to be used on this platform.
+Hi Danny,
+
+On Wed, Nov 26, 2025 at 11:05:24AM -0600, Danny Kaehn wrote:
+> This is a USB HID device which includes an I2C controller and 8 GPIO pins.
 > 
-> While we are at it, drop minItems from both power-domains and
-> power-domains-names, it doesn't make sense from the hardware point of
-> view. There are always 2 GDSCs and two power rails wired to the video
-> clock controller and Venus. Disallow passing just two.
+> The binding allows describing the chip's gpio and i2c controller in DT,
+> with the i2c controller being bound to a subnode named "i2c". This is
+> intended to be used in configurations where the CP2112 is permanently
+> connected in hardware.
+> 
+> Signed-off-by: Danny Kaehn <danny.kaehn@plexus.com>
 
+just this patch, merged to i2c/i2c-host-2.
 
-the min-items were also serving to preserve ABI which you now broke.
-Same comments as previous patch apply.
-
-Best regards,
-Krzysztof
-
+Thanks,
+Andi
 
