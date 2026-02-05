@@ -1,218 +1,220 @@
-Return-Path: <devicetree+bounces-262862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262863-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aHSdHAE0hGll0wMAu9opvQ
-	(envelope-from <devicetree+bounces-262862-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 07:09:05 +0100
+	id sABsLuc0hGnH0wMAu9opvQ
+	(envelope-from <devicetree+bounces-262863-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 07:12:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F312DEEEE2
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 07:09:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3710CEEF4E
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 07:12:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9AFA0303130D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 06:07:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 163F4300DA41
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 06:12:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95219334C33;
-	Thu,  5 Feb 2026 06:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F75234D393;
+	Thu,  5 Feb 2026 06:12:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="xUGscN53"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from smtpbg151.qq.com (smtpbg151.qq.com [18.169.211.239])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E6133506F;
-	Thu,  5 Feb 2026 06:07:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44BEA34D38D;
+	Thu,  5 Feb 2026 06:12:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.169.211.239
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770271662; cv=none; b=eoXNp3irbBs+MMNguIZM5036vFzBfS11PpJBRyz7KAaTiLI6NwcO15YKySXhaauNsPtHPEiEHnG4CXUACLmYsFznoY3Y553nF1MMn3nkZT/+wt1Be9tPe/DlZwKo/90uch3Ebu0n23t+8mTth5+FEbODFmG1+ZXK3QEBgCb+AR0=
+	t=1770271971; cv=none; b=hv0VVV9O3BO4YJH/o2XmXdFrOxjrexaYxJ62jAhotlVw716E9vrFIthgAanuJyIFQWCGQH8yvluuaha/I0XuQq4VuPwP2bLggSEU7pbILWvdThjpiIt7J1NQ2OmK3PcTipRDZTnJCud0iSdA72MzY6alIZ80HlZC9CP4RZx9+ZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770271662; c=relaxed/simple;
-	bh=94kybmSK3L5D9FwcDBryTTemjApRuHICkM61YUdO5vs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=WBw4gArtJqKUKNetg/0G7XIa041VL59Fh1fVkhJ65xK1phUEBWEAldS0Fl4iBCtMtOpSgZg0eB4PSpSTi6dz9Vz0+58CBJ9GK2LcYXvqMtf7Uqco0smm9NxMnenNLdE2wWtRQlGw8LDbBymUIfDtk/Ju9ako6ZSI/tMmFIAMZKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 5 Feb
- 2026 14:07:30 +0800
-Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Thu, 5 Feb 2026 14:07:30 +0800
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-Date: Thu, 5 Feb 2026 14:07:22 +0800
-Subject: [PATCH 4/4] dt-bindings: interrupt-controller: aspeed: Remove
- legacy AST2700 interrupt binding
+	s=arc-20240116; t=1770271971; c=relaxed/simple;
+	bh=uZpneSQWAnsGaiDthCUuC/HDbbKtK6rBmlvSADRD3Z4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JYJRj3LixA07Yz0413WtBNCgliy0Kf5Y9t4BKvtYOMqVJRpsHQ4Frxb9FNb5s9DG68FujPON8ViGij56SsGRKskrvadW/phbXFKbq+yCkeCnZq2nZLD/BXsOqEitFZ/01wWhnq7f9WzFjsGwmCjyXyvWY5Iz2o9i41MVWnAoFTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=xUGscN53; arc=none smtp.client-ip=18.169.211.239
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1770271914;
+	bh=tDgt6vZpYx+8Gxn4WiLvnLAeS2beozPCKmdyy780RYY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=xUGscN53mHEDl3yC3r+TmbaLbq0Wz/U52w7ruz0VsD5ArhG8XFRk88CWhXKbsabsr
+	 qKkAQAJXr7YqIJJvw/IB1VCV08hat8gvsJZGvnXFSccsnPiwV/C7z8ZOTmtuO/Vbr3
+	 WkFY8vsjCoD4JTfg06xuJocwhNGpE/DMOTrss7t0=
+X-QQ-mid: zesmtpsz3t1770271912t7844f74a
+X-QQ-Originating-IP: sH+CVXzMSrAXjiTiHvm7S7Z4jmFxT90oqobPcqXkkTs=
+Received: from [10.3.91.191] ( [101.70.125.34])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 05 Feb 2026 14:11:48 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 6470129798004699414
+Message-ID: <6C65A3873186B07C+29da5dbd-ed27-4ace-a5ca-355b3983d60c@linux.spacemit.com>
+Date: Thu, 5 Feb 2026 14:11:48 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20260205-irqchip-v1-4-b0310e06c087@aspeedtech.com>
-References: <20260205-irqchip-v1-0-b0310e06c087@aspeedtech.com>
-In-Reply-To: <20260205-irqchip-v1-0-b0310e06c087@aspeedtech.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, "Albert
- Ou" <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
-	<linux-riscv@lists.infradead.org>, Ryan Chen <ryan_chen@aspeedtech.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770271649; l=4143;
- i=ryan_chen@aspeedtech.com; s=20251126; h=from:subject:message-id;
- bh=94kybmSK3L5D9FwcDBryTTemjApRuHICkM61YUdO5vs=;
- b=W0brkznpcQsf8wSaCgi65FA86/dT8/rbmt2Kul/YxEM7azEc3tuqfRQbbcJukMHzbV6QsMC9e
- SkcxUdArKffAJKnTsjEsFA3BtWotZjQjgtH2mmdDNTtaW7iPEV8rUzN
-X-Developer-Key: i=ryan_chen@aspeedtech.com; a=ed25519;
- pk=Xe73xY6tcnkuRjjbVAB/oU30KdB3FvG4nuJuILj7ZVc=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/8] iommu/riscv: Add HPM support for performance
+ monitoring
+To: Zong Li <zong.li@sifive.com>
+Cc: Andrew Jones <andrew.jones@oss.qualcomm.com>,
+ Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Jingyu Li <joey.li@spacemit.com>,
+ iommu@lists.linux.dev, linux-perf-users@vger.kernel.org,
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+ devicetree@vger.kernel.org
+References: <cover.1769562575.git.lv.zheng@spacemit.com>
+ <cover.1770195980.git.lv.zheng@linux.spacemit.com>
+ <9C0A2AD4850D179B+524146e74e808db90d5f28fcb6ee791cf1d1bfaa.1770195980.git.lv.zheng@linux.spacemit.com>
+ <p74snip7yykhogvzqld4gyjlygmd2z4kqnat7w3qj63fwebnmm@dlz6tloevgbs>
+ <4D87481E9AABE2C6+72d18f72-9407-4d68-8195-edc6c171df14@linux.spacemit.com>
+ <CANXhq0q8N5eHx9ytabZR97Y7AULKwgS2-uEGhcaOOGp9mvbtRQ@mail.gmail.com>
+Content-Language: en-US
+From: Lv Zheng <lv.zheng@linux.spacemit.com>
+In-Reply-To: <CANXhq0q8N5eHx9ytabZR97Y7AULKwgS2-uEGhcaOOGp9mvbtRQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz5b-1
+X-QQ-XMAILINFO: MTI/6z+04aqCmKtOooE8Ec8p6bzHjOcrb9ijGprdxfZjLV+1DnWF1w6F
+	KgSdvHq29w6GBLYtahni+uA0YOQl1KnLM5xYcU7YPiUANN782jlv+Fawbw/Y/eV1lq20GHH
+	paJ/jE2nX/3tfa1R6XUTleXCK1sF8LERhvx0B+lTrEjzHhBF9kQoRxfgcL8+etiP0UcOYSX
+	l8N0s9qU/WI5vQb5PlWc4nFT8wht06g9hvYN2C3QivJSBTRdj7ouISlvnvRI9rYmjvl7lX1
+	FwfoxUeNSKouIHNvjexGVQJO+jmOXgTCU5MVD5G17AbbB3/9tFS1LP6WiXhsz4XuDWoz9cI
+	/pk0m4ivI2UkcbMRX7o6rxgUeG5Vh/vc4TsygpKU/Ypw2R/ufu5CXwvLrJtb/RatOxDeEzN
+	CSFHbauT/5tU0JI0NpdFDixI/+dqZCUhVfCnRVSypgksvICptFbWp7j0WrRBdAYr3GfrH7r
+	8/SbLin974hlZGtQH1rvh/hOQEsyi93hkO8fR9tHWplLzx7RLWmkkWuiTZcSK1tQXyOw7ay
+	S+M9AFp7+Go49KU0/pwWOHGjhaiSp85lE5YKhbkQa5kHfigzFPC7Q6xut1lyTcF37eUQVk5
+	oYKDs8vtB8qBcfL6Yti05CE4CTizojkWIYNNIsG5BV8ArDnqXO2p63RIQ6LEAuD1Cjcv7Uc
+	bvedWzwtLodcxAS2Bt0e46pTZxWfYvZL8T0EicIKP4MTimCUGjJkGZ3ELZU/yFLl1nGvptE
+	3lT8t2qAZGkWrFM2nGh6eeSgESZfx6CGveKJSggD5nuBBW/6RBWH/OSW6w78D2zSZsgoay4
+	WC0JiAujUnGV/LksKQ+Ce7aQM9225H4KBE8Po+vrnXPOKNjHKbexFM6qKe+ONblLTgqhVqZ
+	atZ0vUCljpERjslYGBHHAwfCbKTFWKzkGHHRQ83wOtzDB4Hj3E3MqXX/QLdn1vn4YylYQKP
+	8FGHIK+CwnKgO5abEm68MdxIafphY2UGxGLv1B4TuHSM0of+7I3tMKJGVeMZK6VW2abGq/D
+	teQc+xKj+ED3h2RyZ1P2DigPuqNZbXAa2COUuBg7v7UyzS98ZD
+X-QQ-XMRINFO: Mp0Kj//9VHAxzExpfF+O8yhSrljjwrznVg==
+X-QQ-RECHKSPAM: 0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[aspeedtech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262862-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_FROM(0.00)[bounces-262863-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ryan_chen@aspeedtech.com,devicetree@vger.kernel.org];
+	DMARC_NA(0.00)[spacemit.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_MUA_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[linux.spacemit.com:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.979];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lv.zheng@linux.spacemit.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[12101b00:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,aspeedtech.com:mid,aspeedtech.com:email]
-X-Rspamd-Queue-Id: F312DEEEE2
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.spacemit.com:mid,linux.spacemit.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,spacemit.com:email]
+X-Rspamd-Queue-Id: 3710CEEF4E
 X-Rspamd-Action: no action
 
-Remove the legacy AST2700 interrupt controller Devicetree binding.
+On 2/5/2026 11:47 AM, Zong Li wrote:
+> On Thu, Feb 5, 2026 at 11:35 AM Lv Zheng <lv.zheng@linux.spacemit.com> wrote:
+>>
+>> On 2/5/2026 2:39 AM, Andrew Jones wrote:
+>>> How does this relate to
+>>>
+>>> https://lore.kernel.org/all/20250115030306.29735-1-zong.li@sifive.com/
+>>>
+>>>   From a quick skim it looks like there's plenty of overlap.
+>>
+>> We developed the driver in 2024 and demonstrated it in China summit. We
+>> didn't notice that a patch is on-going now in the community.
+>>
+>> Now it looks our approach solved more issues, and we'll check and update
+>> if there are any community concerns still not addressed in this patchset.
+>>
+>> We can add Reviewed-by/Tested-by and Signed-off-by of Zong Li to this
+>> patch if he wishes.
+>>
+>> Thanks,
+>> Lv
+>>
+> 
+> Perhaps I can first post my next revision to the mailing list (hope it
+> won't waste the community resource), so that you could have a chance
+> to review it and see whether that version is architecturally closer to
+> what the community is looking for, while also addressing your issue.
+> If you also feel that my next revision meets your needs, perhaps you
+> could append your additional implementations on top of it.
+>
 
-The legacy binding was limited to a PSP-centric view of the interrupt
-architecture and cannot describe interrupt routing and protection for
-the full AST2700 system.
+It seems we all composed the RISC-V iommu HPM support by referencing 
+drivers/perf/arm_smmuv3_pmu.
 
-It is superseded by the new ASPEED AST2700 INTC0/INTC1 binding, which
-describes the interrupt controllers at the block-function level.
+Robin's comments should all be addressed IMHO.
 
-There are no known upstream users of the removed binding.
+> Of course, if the community would prefer to go your version, I’m
+> perfectly fine with that as well.
 
-Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
----
- .../interrupt-controller/aspeed,ast2700-intc.yaml  | 90 ----------------------
- 1 file changed, 90 deletions(-)
+OK. If we send a next version, we will add your SOB and please help to 
+review and test.
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
-deleted file mode 100644
-index 258d21fe6e35..000000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
-+++ /dev/null
-@@ -1,90 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/interrupt-controller/aspeed,ast2700-intc.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Aspeed AST2700 Interrupt Controller
--
--description:
--  This interrupt controller hardware is second level interrupt controller that
--  is hooked to a parent interrupt controller. It's useful to combine multiple
--  interrupt sources into 1 interrupt to parent interrupt controller.
--
--maintainers:
--  - Kevin Chen <kevin_chen@aspeedtech.com>
--
--properties:
--  compatible:
--    enum:
--      - aspeed,ast2700-intc-ic
--
--  reg:
--    maxItems: 1
--
--  interrupt-controller: true
--
--  '#interrupt-cells':
--    const: 1
--    description:
--      The first cell is the IRQ number, the second cell is the trigger
--      type as defined in interrupt.txt in this directory.
--
--  interrupts:
--    minItems: 1
--    maxItems: 10
--    description: |
--      Depend to which INTC0 or INTC1 used.
--      INTC0 and INTC1 are two kinds of interrupt controller with enable and raw
--      status registers for use.
--      INTC0 is used to assert GIC if interrupt in INTC1 asserted.
--      INTC1 is used to assert INTC0 if interrupt of modules asserted.
--      +-----+   +-------+     +---------+---module0
--      | GIC |---| INTC0 |--+--| INTC1_0 |---module2
--      |     |   |       |  |  |         |---...
--      +-----+   +-------+  |  +---------+---module31
--                           |
--                           |   +---------+---module0
--                           +---| INTC1_1 |---module2
--                           |   |         |---...
--                           |   +---------+---module31
--                          ...
--                           |   +---------+---module0
--                           +---| INTC1_5 |---module2
--                               |         |---...
--                               +---------+---module31
--
--required:
--  - compatible
--  - reg
--  - interrupt-controller
--  - '#interrupt-cells'
--  - interrupts
--
--additionalProperties: false
--
--examples:
--  - |
--    #include <dt-bindings/interrupt-controller/arm-gic.h>
--
--    bus {
--        #address-cells = <2>;
--        #size-cells = <2>;
--
--        interrupt-controller@12101b00 {
--            compatible = "aspeed,ast2700-intc-ic";
--            reg = <0 0x12101b00 0 0x10>;
--            #interrupt-cells = <1>;
--            interrupt-controller;
--            interrupts = <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>,
--                         <GIC_SPI 193 IRQ_TYPE_LEVEL_HIGH>,
--                         <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH>,
--                         <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH>,
--                         <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
--                         <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>,
--                         <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH>,
--                         <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>,
--                         <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>,
--                         <GIC_SPI 201 IRQ_TYPE_LEVEL_HIGH>;
--        };
--    };
+Thanks in advance,
+Lv
 
--- 
-2.34.1
+> 
+>>>
+>>> Thanks,
+>>> drew
+>>>
+>>>
+>>> On Wed, Feb 04, 2026 at 05:09:01PM +0800, Lv Zheng wrote:
+>>>> From: Jingyu Li <joey.li@spacemit.com>
+>>>>
+>>>> Introduces perf-based HPM driver for RISC-V IOMMU, enabling performance
+>>>> monitoring capabilities.
+>>>>
+>>>> Note that the RISC-V IOMMU HPM module uses COUNTER_MAX-1 as a static
+>>>> counter index of HPMCYCLES, and 0~COUNTER_MAX-2 as the dynamic counter
+>>>> indexes of other HPMEVENTS in order to correctly index into IOHPMEVT and
+>>>> IOHPMCTR registers that have already been defined in the iommu-bits.h.
+>>>> However the users treat 0 as the index of HPMCYCLES and 1~COUNTER_MAX-1 as
+>>>> the indexes of other HPMEVENTS, thus care should be taken in dealing with
+>>>> counter indexes between userspace and kernel space.
+>>>>
+>>>> Signed-off-by: Jingyu Li <joey.li@spacemit.com>
+>>>> Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
+>>>> Link: https://github.com/riscv-non-isa/riscv-iommu
+>>>> ---
+>>>>    drivers/iommu/riscv/Kconfig          |   9 +
+>>>>    drivers/iommu/riscv/Makefile         |   1 +
+>>>>    drivers/iommu/riscv/iommu-bits.h     |   6 +
+>>>>    drivers/iommu/riscv/iommu-hpm.c      | 843 +++++++++++++++++++++++++++
+>>>>    drivers/iommu/riscv/iommu-pci.c      |  13 +-
+>>>>    drivers/iommu/riscv/iommu-platform.c |   8 +-
+>>>>    drivers/iommu/riscv/iommu.h          |  42 ++
+>>>>    7 files changed, 919 insertions(+), 3 deletions(-)
+>>>>    create mode 100644 drivers/iommu/riscv/iommu-hpm.c
+>>>>
+>>>
+>>
+> 
+
 
 
