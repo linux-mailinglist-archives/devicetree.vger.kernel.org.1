@@ -1,379 +1,171 @@
-Return-Path: <devicetree+bounces-262924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262925-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +H4lNl1ghGny2gMAu9opvQ
-	(envelope-from <devicetree+bounces-262924-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:18:21 +0100
+	id MMYSGmJjhGkM2wMAu9opvQ
+	(envelope-from <devicetree+bounces-262925-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:31:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C3F1F07F3
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:18:21 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9E3EF0C9A
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:31:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 811023029622
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:12:27 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 83FAC3021CCC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:13:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A12387590;
-	Thu,  5 Feb 2026 09:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B637D389E1A;
+	Thu,  5 Feb 2026 09:13:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="lt+kaZBz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bUGlFh4m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CD3037B415;
-	Thu,  5 Feb 2026 09:12:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 941A13876AA;
+	Thu,  5 Feb 2026 09:13:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770282745; cv=none; b=leIxT71jxfkByGuVs7HP+iqU3t7GXseIqgWp9kc2TEqMJOANSqOztg5EuVrTIlYcukyyGYcNClgrrTQyy/ts4u1Y6SahmtzFwqOuJtA6piNfWCGzLSLyDFVYoCCbzTkxIDdhl/EmbvOcbDr1lxbN85Wy0X9j3BojIDzfEzGvUAI=
+	t=1770282785; cv=none; b=sBrNJJtPEXI53crZTPV+oIXH8lD7Ry4T8HKniBDD4ck99mrNOIZ66oInY8toxC3yaGkNrF5GCuN7a9+u0gVua33ziRuUAEs4Yi71MRrbNM/0fhHYo93ehsLOBGKD+ijuhqm52PBMZrqni6yhFH+GtgVqf1RXZ9ajyaguBVy/zSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770282745; c=relaxed/simple;
-	bh=m5P24uh3P60HjC9sCdKoRrJSgUa/ESATqR/OtworwNo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gq4rWZgfKSGwgr2cAzZYJzRgy3XQx8yq8VxyKs2Hd/CpleitbGs5ye6PsE88lPAjbG+gWN0wU3mWzhuwpBso8RrKJFPvBLB+B5KdxKVBxLW9iZ4wQJsvcTjKevzULiKzqkCfRxAizp48KiVTr0KAkKtnevCp3oE4UYdzsSOTmCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=lt+kaZBz; arc=none smtp.client-ip=54.207.19.206
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1770282691;
-	bh=EgJIHnad+b6A2LOWWhy4BtoavbNU0zZtyzPE8zCjc4w=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=lt+kaZBzxAJ6VeyQdi2BanMI3CPXrcpPQzT48fdUrQGDRM/b71DHOnrGut4SqBRLC
-	 Boc8qFimjUo9jd7GLIkxO+FFmJv/lI06tyJFYO8hlmcI56CY7WVuob6/x0H9H9/Rkj
-	 0tCVc+8AnEZfJak9MN6ha447Bodbrn5HTQGsB/FQ=
-X-QQ-mid: esmtpgz15t1770282689t4f2e1d4f
-X-QQ-Originating-IP: gjSembEr54IOZFG1eB0aBlTfNba+EJQW0AsSm/ltcp4=
-Received: from SurfaceBook2-B.localdomain ( [101.70.125.34])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 05 Feb 2026 17:11:26 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 2782802990881728978
-EX-QQ-RecipientCnt: 19
-From: Lv Zheng <lv.zheng@linux.spacemit.com>
-To: Tomasz Jeznach <tjeznach@rivosinc.com>,
-	Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: Jingyu Li <joey.li@spacemit.com>,
-	Lv Zheng <lv.zheng@linux.spacemit.com>,
-	Zhijian Chen <zhijian@spacemit.com>,
-	iommu@lists.linux.dev,
-	linux-perf-users@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: [PATCH v4 7/7] perf vendor events riscv:: Add support for spacemit,riscv-iommu HPM aliasing
-Date: Thu,  5 Feb 2026 17:11:22 +0800
-Message-ID: <762890DF43A3CF05+a58564f568dbbf8ccac8224e33f5e7513e48309e.1770281596.git.lv.zheng@linux.spacemit.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1770281596.git.lv.zheng@linux.spacemit.com>
-References: <cover.1769562575.git.lv.zheng@spacemit.com> <cover.1770281596.git.lv.zheng@linux.spacemit.com>
+	s=arc-20240116; t=1770282785; c=relaxed/simple;
+	bh=6P+RzgxrHHsOPrWorXefV5aQyNrxfF8FiKVM6BWUqvY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=l8l6RZWHC5V9Fp2GNPSdMrDDd6GhzHE/C/77pV7xYxLGgpbgR2LHzexrjHR1IBulF2XyhrQ3jTCX74pRItLLEBI2kmt2V+t+hpde+r7hIC4oo85fv6X2114u4Zu6PSMkPL3JDRweniYi8MiB1qKn80zfZBCRFvnpO7RrULN9CM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bUGlFh4m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 974DEC4CEF7;
+	Thu,  5 Feb 2026 09:13:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770282785;
+	bh=6P+RzgxrHHsOPrWorXefV5aQyNrxfF8FiKVM6BWUqvY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bUGlFh4mLruuaYXSMa3gxriyYIWQvIJ8AjlAozutphkm/d3JIPOm2L+zZDpeLbE/w
+	 76dDqeTt2NMDryN39tzZ29Nx2oU/3bHh5h7twhSqU+pkvPInMUCZZSYOK2mDgfgEmy
+	 G5V5II5boaDubgfr1uPlj5APR3p3Nw+9N29tPWUXBVM8ZgzXo537tJq9Xse0Lgmhxb
+	 P5rVWWUy+I/JImwfRHVR1azONnKGjdc9vnKnmISXcDs06jBhLjPl2Vs7FQsckxLYGH
+	 IYJ3+8p6CAaFNtLOgT/Eg3W1+6Ut43UvyFxp4dsWAJ+O6/4rigGvaoXYtuFchi7/XV
+	 MsrXnJV46H2CA==
+Date: Thu, 5 Feb 2026 10:13:02 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	p.zabel@pengutronix.de, peter.chen@cixtech.com, unicorn_wang@outlook.com, 
+	inochiama@gmail.com, alchark@gmail.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	cix-kernel-upstream@cixtech.com
+Subject: Re: [PATCH v7 1/3] dt-bindings: soc: cix: document the simple-mfd
+ syscon on Sky1 SoC
+Message-ID: <20260205-noisy-fabulous-bumblebee-e0cb32@quoll>
+References: <20260204020644.155094-1-gary.yang@cixtech.com>
+ <20260204020644.155094-2-gary.yang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz5b-1
-X-QQ-XMAILINFO: NcrqiFVQ6ItSSEUpcdL8nNI2KH+LcYeJaB1LQDOpa+IHeW+o3nSrKqkG
-	xfYeKUONs5GMpwEpoiSW7NKwQ3GUnCQl37bqLxOWJ1/1D87qL6JvvqD53XNAjXQWW6G5Ua6
-	H5321K+YTVLBay/Z0aGimN+r9G2mdFGXWTbHvOlMLAZFoD28uVvpTxrFohghS3uoceXKUYk
-	D9svtbesTLXDimaYT80B6A8sb9boXwA4RrFIbHJ+UoPVt9kvmqmdlPWmuFQQk6soPWK0YtN
-	sZu5qpe6TWy+EMuR4jZKdnYFJq0kGrn+nYVmslIzx1Tv356Ip7kFHh3pE4DSz92+68QMSoH
-	qNBAhMY4rAjrDmx6IrPYoQwf4T57jfdolUB760xkE3dFOmDMDzKNQRXzEnRtWdIRSfenuau
-	JaeKLREaIxP5eTTpOWG2Vz57Wb9GC4okHw+8ni9kCHJeVgEXA7yS3Y0jdUShlNJdSUM3AqY
-	bokElju9fCPeL7iCzMT/dGxJT+65Ca1ZutlK2IAgGX4h5V/CbNITuB1Aj5tNxycuG538xub
-	Yj8IxHA0z/nOEsmkJZx4s+NbZfTv6Y5oWA2DKD27h+S/n6hgIfUW6GmX0EtkUf2x1zTtRPd
-	sahnj936EMTdUGKFTZPFeY/nmEvnIWhokMNy9dFKQ9Frkit+6WOidF2sFsju6C+pbF6CzJR
-	8O1ovu1TUp+0i6SUAesKJPcsoI+KJtTZtkB65CnqHabab8OLP8n3LCioMhNNlHo0Uzf3Eyd
-	NKCLVmFWaKKrAYJTgZ1RJmSZ3/osP8EXGWc6P4Xx2v4CRWBhv9peUodrB5aluE3E7MOXJXS
-	nWpKEX+ZH+6Qq9DA0D7oV3tdsZXilFX3giCt8pomB3/LhT79iJLkEV46Om15EbDCdo+F+5J
-	CFj/ipA5j4B1s3SgnQJMjOtpYPjdaoyDXPwlEb87y1K5fL65Eck8EtHRCqdb3M/6Yvj3+rR
-	PVpwtTNMeqeyIlgCo/jcqfE63LBa5q7iULJPjuQodwIjw33XCD3Kogp2sRPv2AJQ9N9gxCm
-	sG051con/l+WidtpnPAD26Lm/tKXxfVdWNb+Mm5BY8pFgMpJ/FUSH9aQ9aV4ZwQ84Cu4sjY
-	V+wAtKyL8tOh84QrRtqH+nlKJ8sbPaQ42lzsf+lWkfzKOMYmiOn68ybhxX8SZ92uxSfHM3d
-	6TPcaE0wODkr8Hs=
-X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260204020644.155094-2-gary.yang@cixtech.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[spacemit.com];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-262925-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TAGGED_FROM(0.00)[bounces-262924-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[linux.spacemit.com:+];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,cixtech.com,outlook.com,gmail.com,vger.kernel.org,lists.infradead.org];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lv.zheng@linux.spacemit.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 5C3F1F07F3
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: A9E3EF0C9A
 X-Rspamd-Action: no action
 
-Add JSON HPM event aliases for SpacemiT distributed IOMMU (T100) which is
-general and compatible for all SpacemiT RISC-V SoCs.
+On Wed, Feb 04, 2026 at 10:06:42AM +0800, Gary Yang wrote:
+> There are two system control on Cix sky1 Soc. One is located in S0 domain,
+> and the other is located in S0 and S5 domain. The system control contains
+> resets, usb typeC and more. At this point, only the reset controller child
+> is described as usb typeC uses it by phandle.
+> 
+> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> ---
+>  .../soc/cix/cix,sky1-system-control.yaml      |  49 ++++++
+>  include/dt-bindings/reset/cix,sky1-rst-fch.h  |  42 +++++
+>  include/dt-bindings/reset/cix,sky1-rst.h      | 164 ++++++++++++++++++
+>  3 files changed, 255 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/cix/cix,sky1-system-control.yaml
+>  create mode 100644 include/dt-bindings/reset/cix,sky1-rst-fch.h
+>  create mode 100644 include/dt-bindings/reset/cix,sky1-rst.h
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/cix/cix,sky1-system-control.yaml b/Documentation/devicetree/bindings/soc/cix/cix,sky1-system-control.yaml
+> new file mode 100644
+> index 000000000000..5fb6b97c3c00
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/cix/cix,sky1-system-control.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/cix/cix,sky1-system-control.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cix Sky1 SoC system control register region
+> +
+> +maintainers:
+> +  - Gary Yang <gary.yang@cixtech.com>
+> +
+> +description:
+> +  An wide assortment of registers of the system controller on Sky1 SoC,
+> +  including resets, usb, wakeup sources and so on.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - cix,sky1-system-control
+> +          - cix,sky1-s5-system-control
+> +      - const: syscon
+> +      - const: simple-mfd
 
-Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
-Signed-off-by: Jingyu Li <joey.li@spacemit.com>
----
- MAINTAINERS                                   |   3 +
- .../arch/riscv/spacemit/iommu/sys/ioatc.json  |  30 ++++
- .../arch/riscv/spacemit/iommu/sys/ioats.json  | 163 ++++++++++++++++++
- 3 files changed, 196 insertions(+)
- create mode 100644 tools/perf/pmu-events/arch/riscv/spacemit/iommu/sys/ioatc.json
- create mode 100644 tools/perf/pmu-events/arch/riscv/spacemit/iommu/sys/ioats.json
+Drop simple-mfd, no children
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7c50701b6001..4d91f99aa742 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22459,12 +22459,15 @@ K:	riscv
- 
- RISC-V IOMMU
- M:	Tomasz Jeznach <tjeznach@rivosinc.com>
-+M:	Lv Zheng <lv.zheng@linux.spacemit.com>
-+M:	Jingyu Li <joey.li@spacemit.com>
- L:	iommu@lists.linux.dev
- L:	linux-riscv@lists.infradead.org
- S:	Maintained
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/iommu/linux.git
- F:	Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
- F:	drivers/iommu/riscv/
-+F:	tools/perf/pmu-events/arch/riscv/spacemit/iommu/
- 
- RISC-V MICROCHIP SUPPORT
- M:	Conor Dooley <conor.dooley@microchip.com>
-diff --git a/tools/perf/pmu-events/arch/riscv/spacemit/iommu/sys/ioatc.json b/tools/perf/pmu-events/arch/riscv/spacemit/iommu/sys/ioatc.json
-new file mode 100644
-index 000000000000..a16610ba2274
---- /dev/null
-+++ b/tools/perf/pmu-events/arch/riscv/spacemit/iommu/sys/ioatc.json
-@@ -0,0 +1,30 @@
-+[
-+  {
-+    "EventName": "mtlb_lkp",
-+    "EventCode": "0x38",
-+    "BriefDescription": "IOATC main TLB (MTLB) lookups",
-+    "Unit": "spacemit_ioatc_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "mtlb_mis",
-+    "EventCode": "0x39",
-+    "BriefDescription": "IOATC main TLB (MTLB) misses",
-+    "Unit": "spacemit_ioatc_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "utlb_lkp",
-+    "EventCode": "0x3A",
-+    "BriefDescription": "IOATC micro TLB (uTLB) lookups",
-+    "Unit": "spacemit_ioatc_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "utlb_mis",
-+    "EventCode": "0x3B",
-+    "BriefDescription": "IOATC micro TLB (uTLB) misses",
-+    "Unit": "spacemit_ioatc_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  }
-+]
-diff --git a/tools/perf/pmu-events/arch/riscv/spacemit/iommu/sys/ioats.json b/tools/perf/pmu-events/arch/riscv/spacemit/iommu/sys/ioats.json
-new file mode 100644
-index 000000000000..e1fea4e8125c
---- /dev/null
-+++ b/tools/perf/pmu-events/arch/riscv/spacemit/iommu/sys/ioats.json
-@@ -0,0 +1,163 @@
-+[
-+  {
-+    "EventName": "pri_rq",
-+    "EventCode": "0x10",
-+    "BriefDescription": "IOATS PCIe page request interface (PRI) requests",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "ptwc_rq",
-+    "EventCode": "0x11",
-+    "BriefDescription": "IOATS page table walk (PTW) cache requests",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "dtwc_rq",
-+    "EventCode": "0x12",
-+    "BriefDescription": "IOATS directory table walk (DTW) cache requests",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "dtwc_mis",
-+    "EventCode": "0x13",
-+    "BriefDescription": "IOATS directory table walk (DTW) cache misses",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "ptwc_mis",
-+    "EventCode": "0x14",
-+    "BriefDescription": "IOATS page table walk (PTW) cache misses",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "all_trans_rq",
-+    "EventCode": "0x15",
-+    "BriefDescription": "IOATS all translation requests",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "dtwc_lkp",
-+    "EventCode": "0x20",
-+    "BriefDescription": "IOATS directory table walk (DTW) cache lookups",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "s0_ptwc_lkp",
-+    "EventCode": "0x28",
-+    "BriefDescription": "IOATS s-stage level-0 PTW cache lookups",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "s0_ptwc_mis",
-+    "EventCode": "0x29",
-+    "BriefDescription": "IOATS s-stage level-0 PTW cache misses",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "s1_ptwc_lkp",
-+    "EventCode": "0x2A",
-+    "BriefDescription": "IOATS s-stage level-1 PTW cache lookups",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "s1_ptwc_mis",
-+    "EventCode": "0x2B",
-+    "BriefDescription": "IOATS s-stage level-1 PTW cache misses",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "s2_ptwc_lkp",
-+    "EventCode": "0x2C",
-+    "BriefDescription": "IOATS s-stage level-2 PTW cache lookups",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "s2_ptwc_mis",
-+    "EventCode": "0x2D",
-+    "BriefDescription": "IOATS s-stage level-2 PTW cache misses",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "s3_ptwc_lkp",
-+    "EventCode": "0x2E",
-+    "BriefDescription": "IOATS s-stage level-3 PTW cache lookups",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "s3_ptwc_mis",
-+    "EventCode": "0x2F",
-+    "BriefDescription": "IOATS s-stage level-3 PTW cache misses",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "g0_ptwc_lkp",
-+    "EventCode": "0x30",
-+    "BriefDescription": "IOATS g-stage level-0 PTW cache lookups",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "g0_ptwc_mis",
-+    "EventCode": "0x31",
-+    "BriefDescription": "IOATS g-stage level-0 PTW cache misses",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "g1_ptwc_lkp",
-+    "EventCode": "0x32",
-+    "BriefDescription": "IOATS g-stage level-1 PTW cache lookups",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "g1_ptwc_mis",
-+    "EventCode": "0x33",
-+    "BriefDescription": "IOATS g-stage level-1 PTW cache misses",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "g2_ptwc_lkp",
-+    "EventCode": "0x34",
-+    "BriefDescription": "IOATS g-stage level-2 PTW cache lookups",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "g2_ptwc_mis",
-+    "EventCode": "0x35",
-+    "BriefDescription": "IOATS g-stage level-2 PTW cache misses",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "g3_ptwc_lkp",
-+    "EventCode": "0x36",
-+    "BriefDescription": "IOATS g-stage level-3 PTW cache lookups",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  },
-+  {
-+    "EventName": "g3_ptwc_mis",
-+    "EventCode": "0x37",
-+    "BriefDescription": "IOATS g-stage level-3 PTW cache misses",
-+    "Unit": "spacemit_ioats_hpm",
-+    "Compat": "spacemit,riscv-iommu"
-+  }
-+]
--- 
-2.43.0
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+
+Drop, no children
+
+> +    const: 1
+> +
+> +  '#size-cells':
+
+Drop
+
+Do you see any recent simple-mfd binding written like this? There are
+no. Did you read any of other bindings before sending this? Or at least
+my slides or amny other resources from vast documentation from
+elinux.org?
+
+Best regards,
+Krzysztof
 
 
