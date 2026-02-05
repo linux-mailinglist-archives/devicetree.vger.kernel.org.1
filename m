@@ -1,305 +1,312 @@
-Return-Path: <devicetree+bounces-262936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262938-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WMsuKxdkhGkK2wMAu9opvQ
-	(envelope-from <devicetree+bounces-262936-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:34:15 +0100
+	id MJkVOk9khGkK2wMAu9opvQ
+	(envelope-from <devicetree+bounces-262938-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:35:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 129A0F0D7F
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:34:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60CEEF0DBB
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:35:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A08233007F4B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:32:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 80F5C3037E7F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:34:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BAC1396B87;
-	Thu,  5 Feb 2026 09:32:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="qBGotRTU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBD2B39B486;
+	Thu,  5 Feb 2026 09:34:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-e105.zoho.com (sender4-pp-e105.zoho.com [136.143.188.105])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0E1435CB86;
-	Thu,  5 Feb 2026 09:32:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.105
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770283973; cv=pass; b=n95eliTAESvOW3LIMEFvHQ3zwCJO/A/yEKddqGduAMIveRatkdiWLJilU/SZ+EvQEE1qRTfjVCI9Sd3sLU+ylASGse4FoXZyDhZmSytiOd3R4zv+8PDI/GAIAEf9HHsHukosf5jEgGM7WUZmj68VcxCSfPUheqkGbENyci1al5c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770283973; c=relaxed/simple;
-	bh=6s3Fiw0IohGEWd3mxUYh7sVioub9N6nKr760G37qtso=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CDlQkc//W2moVYX/lE125b2gWlEc3Ig4lsOWWZ2RL7aXY8pXRRlSNKi5DDe2wRUb+aqdysbPt44yOHfFWqe6W6d3Sj0mlZdEohaGXYJLAw1+242TzliAq/+JSOn5jnzEfOSjGNlP+1knrIduLT8PVkyKx6/VEAbZLg7lY70mzIU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=qBGotRTU; arc=pass smtp.client-ip=136.143.188.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1770283922; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=dt6c+lGTk7TFncQIuSv5MzP6r3530psaQoAjw9ySuJWEkCy1CGqZVxiox53v8AQYnHIuYdxJZxfKYrZbfPOaURzUHD/+Yk7Hc4Rv01RsTDM+dwsZsWdrVGkxbCTqvA6GlOAN61CPjD15gySk/KEr/yZwZbEDrjZe7odvRey6Sfo=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1770283922; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=6s3Fiw0IohGEWd3mxUYh7sVioub9N6nKr760G37qtso=; 
-	b=Vvcub+bCtndQCVN2YRgMcdJP+yUaucF5RJBUafIUi255IQPFLylTF6ECEctIZTJkPKTdAdnQbqqmu1v7XtX5RvDWwXNQlAOKOxcwnsoIR2rfx2R2ieiQSsfD5S3PGQI5Fd3NfLOPsysX1cL2xx/OWj97GCmc9jzhCLNuAyjO3zM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1770283922;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=6s3Fiw0IohGEWd3mxUYh7sVioub9N6nKr760G37qtso=;
-	b=qBGotRTUIVAisc5FCEluUVdBvZ4YXt37q89wHuU8jRbNnllvR3SrgyL7fXSMr4vX
-	TTiDFMQzsJYG8kRddEl9ErMykSIe3LQXP+a6Aka4Bjjl1QgpApZ1wdgiUELVVbKQiSO
-	pPkRvN56hzrIeKpwVmMrBAggoJ34r7egwn0kWp+Y77YS/kb20lEfma875F3KiZT5h9m
-	tH+RiWUK0KF64TQmwW/2tkXFqlRdnRJ5QKfx+TzNn3Iz8u38lZIw11eimW4YpnkXnyV
-	YLOaRZVq9H00KZBjp9UVwhZ2Ue93pjBeDNHhJ+AK1XUoOjJ17bOzCNkVDQm1afOV+Ir
-	wmxF0NjXiA==
-Received: by mx.zohomail.com with SMTPS id 1770283921434896.1591653598891;
-	Thu, 5 Feb 2026 01:32:01 -0800 (PST)
-Message-ID: <7958c0021c7a50c33ffe637ec5ee5b2e2a451ca2.camel@icenowy.me>
-Subject: Re: [PATCH v7 0/8] Verisilicon DC8200 driver (and adaption to
- TH1520)
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob
- Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>, Guo Ren
- <guoren@kernel.org>, Fu Wei <wefu@redhat.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Dmitry Baryshkov
- <lumag@kernel.org>,  Michal Wilczynski <m.wilczynski@samsung.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Han Gao <gaohan@iscas.ac.cn>,  Yao Zi
- <ziyao@disroot.org>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,  devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Date: Thu, 05 Feb 2026 17:31:50 +0800
-In-Reply-To: <ccb973b8-4b13-4a70-be48-06b2cbe0adf8@suse.de>
-References: <20260129023922.1527729-1-zhengxingda@iscas.ac.cn>
-	 <ccb973b8-4b13-4a70-be48-06b2cbe0adf8@suse.de>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+Received: from zg8tmtyylji0my4xnjeumjiw.icoremail.net (zg8tmtyylji0my4xnjeumjiw.icoremail.net [162.243.161.220])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B8A039A800;
+	Thu,  5 Feb 2026 09:34:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.161.220
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770284045; cv=none; b=HJatxBtDrZgzKEBk0RcfBuB7kcHc2FAIQFE4LL7fNruKhWX/Wsh4OCBme5A8hllEWrabk3oY5Vs03Y/1qwD2MK9VA5NEFe1e56d4Yrz0hjNDNj4uD/FX/uGrxC/VoPbb/sxjoSwWTXSosoOQr0WrJwu+oQkMSGIEznipG4XoTvU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770284045; c=relaxed/simple;
+	bh=IetnTOoFQsNTgY3Ig68gNlEueYpTodU9uN8Ya3Vbrng=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HB53Df5yeeBf4fqlJWq5n2z4U1L4WWW5yscYUmihaTdam4B6+zORDtmuEtWOkGSFF1vWiD+imrMzjlzU8nNrcTtaIHAOc+RgqxSFDo7OSyHz+S4wXKSahbj2E/YTfKQtoZVnLj2p92upsczwyMYSQb4QNUcmnmXv2pT5z9codns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=162.243.161.220
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
+	by app2 (Coremail) with SMTP id TQJkCgAncKz8Y4Rpj+8CAA--.10746S2;
+	Thu, 05 Feb 2026 17:33:50 +0800 (CST)
+From: dongxuyang@eswincomputing.com
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	troy.mitchell@linux.dev,
+	bmasney@redhat.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	ganboing@gmail.com,
+	marcel@ziswiler.com,
+	Xuyang Dong <dongxuyang@eswincomputing.com>
+Subject: [PATCH v10 0/3] Add driver support for ESWIN eic700 SoC clock controller
+Date: Thu,  5 Feb 2026 17:33:22 +0800
+Message-Id: <20260205093322.1030-1-dongxuyang@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TQJkCgAncKz8Y4Rpj+8CAA--.10746S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3WF4DKFW3uryfWFyrJr4DXFb_yoWfCr48pa
+	n7Gr98CFs0gryxWan7tayIgFyrXanxJFWUuryxXw10v3W5C34vyrWSvF98AFZrZr1fAw4D
+	JF1aga1jkF4UZFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRkwIhUUUUU=
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[icenowy.me,none];
-	R_DKIM_ALLOW(-0.20)[icenowy.me:s=zmail2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262936-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262938-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,ffwll.ch,redhat.com];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[eswincomputing.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[eswincomputing.com,einfochips.com,gmail.com,ziswiler.com];
+	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[uwu@icenowy.me,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[icenowy.me:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.981];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 129A0F0D7F
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.dev:email,sifive.com:url]
+X-Rspamd-Queue-Id: 60CEEF0DBB
 X-Rspamd-Action: no action
 
-=E5=9C=A8 2026-02-05=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 10:30 +0100=EF=BC=
-=8CThomas Zimmermann=E5=86=99=E9=81=93=EF=BC=9A
-> Hi,
->=20
-> patches 1 to 5 have been merged into drm-misc-next. In patch 3, I=20
-> replaced COMPILER_TEST with COMPILE_TEST in the Kconfig file.
+From: Xuyang Dong <dongxuyang@eswincomputing.com>
 
-Ah, Thanks for correcting this.
+The link [1] provides the official documentation for the EIC7700. Section 3.2
+covers the clock subsystem.
 
-Thanks,
-Icenowy
+[1] https://www.sifive.com/document-file/eic7700x-datasheet
 
->=20
-> Best regards
-> Thomas
->=20
-> Am 29.01.26 um 03:39 schrieb Icenowy Zheng:
-> > This patchset tries to add a driver for Verisilicon DC8200 driver,
-> > and
-> > demonstrates the driver on T-Head TH1520 with its HDMI output.
-> >=20
-> > This display controller IP is used on StarFive JH7110 too, but as
-> > the
-> > HDMI controller used there isn't as common as the DesignWare one, I
-> > choose to use TH1520 in this patchset.
-> >=20
-> > The DC driver is written with other DC-series (mainly DC8000, which
-> > is
-> > known to be used on Eswin EIC7700 SoC) display controllers in mind,
-> > and
-> > uses the identification registers available on all Vivante branded
-> > IPs.
-> > A known exception is DCNano display controller, which is unlikely
-> > to be
-> > supported by this driver because of totally different register map
-> > and
-> > no known identification registers. (P.S. the in-tree loongson DRM
-> > driver
-> > seems to be for some DCNano instances based on the register map.)
-> >=20
-> > The HDMI controller seems to come with some common PHY by Synopsys,
-> > the
-> > DesignWare HDMI TX 2.0 PHY. By searching a few register names from
-> > the
-> > BSP driver of that PHY, that PHY seems to be used by a in-tree dw-
-> > hdmi
-> > glue, rcar_dw_hdmi -- an updated downstream version of rcar_dw_hdmi
-> > contains all 6 registers set here in the th1520-dw-hdmi driver.
-> > Some
-> > more suprising thing is that RK3288 uses the same PHY too, but the
-> > in-tree dw_hdmi-rockchip driver writes the configuration data array
-> > in a
-> > weird way to reuse the HDMI 3D TX PHY configuring function. It
-> > might be
-> > valuable to add common configuring function and configuration data
-> > definition for this HDMI 2.0 PHY too, but the current driver in
-> > this
-> > patchset simply duplicated most configuration logic from
-> > rcar_dw_hdmi
-> > driver (but with 3 extra configuration registers configured, which
-> > is
-> > done by their downstream kernel).
-> >=20
-> > This revision contains only little code change -- only a Kconfig
-> > select
-> > is added. The other purpose is to collect Thomas Zimmermann's tags
-> > and
-> > squash MAINTAINERS change to real driver per his suggestion.
-> >=20
-> > Icenowy Zheng (8):
-> > =C2=A0=C2=A0 dt-bindings: vendor-prefixes: add verisilicon
-> > =C2=A0=C2=A0 dt-bindings: display: add verisilicon,dc
-> > =C2=A0=C2=A0 drm: verisilicon: add a driver for Verisilicon display
-> > controllers
-> > =C2=A0=C2=A0 dt-bindings: display/bridge: add binding for TH1520 HDMI
-> > controller
-> > =C2=A0=C2=A0 drm/bridge: add a driver for T-Head TH1520 HDMI controller
-> > =C2=A0=C2=A0 riscv: dts: thead: add DPU and HDMI device tree nodes
-> > =C2=A0=C2=A0 riscv: dts: thead: lichee-pi-4a: enable HDMI
-> > =C2=A0=C2=A0 mailmap: map all Icenowy Zheng's mail addresses
-> >=20
-> > =C2=A0 .mailmap=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +
-> > =C2=A0 .../display/bridge/thead,th1520-dw-hdmi.yaml=C2=A0 | 120 ++++++
-> > =C2=A0 .../bindings/display/verisilicon,dc.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 122 ++++++
-> > =C2=A0 .../devicetree/bindings/vendor-prefixes.yaml=C2=A0 |=C2=A0=C2=A0=
- 2 +
-> > =C2=A0 MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0=C2=A0 8 +
-> > =C2=A0 .../boot/dts/thead/th1520-lichee-pi-4a.dts=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 25 ++
-> > =C2=A0 arch/riscv/boot/dts/thead/th1520.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 66 ++++
-> > =C2=A0 drivers/gpu/drm/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
-> > =C2=A0 drivers/gpu/drm/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > =C2=A0 drivers/gpu/drm/bridge/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 10 +
-> > =C2=A0 drivers/gpu/drm/bridge/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > =C2=A0 drivers/gpu/drm/bridge/th1520-dw-hdmi.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 173 ++++++++
-> > =C2=A0 drivers/gpu/drm/verisilicon/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 16 +
-> > =C2=A0 drivers/gpu/drm/verisilicon/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_bridge.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 371
-> > ++++++++++++++++++
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_bridge.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0 39 ++
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_bridge_regs.h=C2=A0 |=C2=A0 54 ++=
-+
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_crtc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 | 191 +++++++++
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_crtc.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 31 ++
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_crtc_regs.h=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 60 +++
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_dc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 207 ++++++++++
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_dc.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 38 ++
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_dc_top_regs.h=C2=A0 |=C2=A0 27 ++
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_drm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 182 +++++++++
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_drm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 28 ++
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_hwdb.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 | 150 +++++++
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_hwdb.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 29 ++
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_plane.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 | 124 ++++++
-> > =C2=A0 drivers/gpu/drm/verisilicon/vs_plane.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 72 ++++
-> > =C2=A0 .../gpu/drm/verisilicon/vs_primary_plane.c=C2=A0=C2=A0=C2=A0 | 1=
-73 ++++++++
-> > =C2=A0 .../drm/verisilicon/vs_primary_plane_regs.h=C2=A0=C2=A0 |=C2=A0 =
-53 +++
-> > =C2=A0 31 files changed, 2384 insertions(+)
-> > =C2=A0 create mode 100644
-> > Documentation/devicetree/bindings/display/bridge/thead,th1520-dw-
-> > hdmi.yaml
-> > =C2=A0 create mode 100644
-> > Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > =C2=A0 create mode 100644 drivers/gpu/drm/bridge/th1520-dw-hdmi.c
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/Makefile
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge.c
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge.h
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge_regs.h
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.c
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.h
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc_regs.h
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.c
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.h
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_top_regs.h
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_drm.c
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_drm.h
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_hwdb.c
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_hwdb.h
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.c
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.h
-> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_primary_plane.=
-c
-> > =C2=A0 create mode 100644
-> > drivers/gpu/drm/verisilicon/vs_primary_plane_regs.h
-> >=20
->=20
+Updates:
+  Changes in v10:
+  - Updated driver file
+    - Add a private clock divider API named 'eswin_register_clkdiv' to
+      register divider clocks with private flag.
+      Define 'ESWIN_PRIV_DIV_MIN_2' private flag for registering the clock
+      dividers whose division ratio start from 2.
+      Implement the private set_rate, recalc_rate, and determine_rate accordingly.
+    - Add CLK_DIVIDER_ALLOW_ZERO flag to the clock dividers whose division
+      ratio start from 0.
+    - Replace CONFIG_ARCH_ESWIN with CONFIG_COMMON_CLK_ESWIN in the Makefile.
+    - Modify the help description of COMMON_CLK_EIC7700.
+    - Move register offset definitions from 'clk-eic7700.h' to 'clk-eic7700.c' and
+      remove the 'clk-eic7700.h'. Remove '_CTRL' from the offset names.
+    - Remove all unused headers.
+    - Use devm_platform_ioremap_resource() instead of devm_of_iomap().
+    - Export the functions from clk.c as symbols.
+    - Use readl_poll_timeout().
+    - Use 'clk_parent_data' and '.hw' instead of string parent names.
+    - Rename the header file from clk.h to common.h.
+    - Rename macros from EIC7700_* to ESWIN_* in common.h.
+    - Add a new function, 'eswin_clk_register_clks', which can register
+      divider, mux, gate, and fixed-factor clocks based on their types.
+    - Add structure 'eswin_clk_info' to manage the clocks that need to be registered
+      in a specific order.
+    - Add macros 'ESWIN_*_TYPE' to define divider, mux, gate, and fixed-factor clocks
+      with type. Add enum 'eswin_clk_type' for these types.
+    - Remove 'eswin_clk_register_mux_tbl'. Use 'eswin_clk_register_mux' to register
+      mux clocks with or without table.
+    - Add xtal24m as the parent clock of the PLL.
+    - Change 2025 to 2026 in all files.
+
+  - Link to v9: https://lore.kernel.org/all/20251229105844.1089-1-dongxuyang@eswincomputing.com/
+
+  Changes in v9:
+  - Updated driver file
+    - Checked return values of eswin_clk_register_*() in the probe function.
+    - Removed binding IDs check from pll functions in clk.c, as these functions
+      were exclusively used by pll clocks and did not require ID validation.
+    - The PLL structure has been extended with max_rate and min_rate fields to
+      explicitly define the frequency operating range of the PLL. These limits
+      were now utilized by the clk_pll_determine_rate() function.
+    - Removed __clk_lookup() in clk_pll_set_rate. Added clk_notifier support
+      in clk-eic7700.c.
+    - Added five previously missing clocks from [1].
+
+  - Link to v8: https://lore.kernel.org/all/20251113013637.1109-1-dongxuyang@eswincomputing.com/
+
+  Changes in v8:
+  - Updated YAML file
+    - Added "Acked-by: Troy Mitchell <troy.mitchell@linux.dev>"
+  - Updated driver file
+    - Changed Kconfig from bool to tristate.
+  - Updated MAINTAINERS file
+    - Added "ESWIN SOC SERIES CLOCK DRIVER"
+
+  - Link to v7: https://lore.kernel.org/all/20251023071658.455-1-dongxuyang@eswincomputing.com/
+
+  Changes in v7:
+  - Updated YAML file
+    - Added "Acked-by: Conor Dooley <conor.dooley@microchip.com>" for bindings.
+  - Updated driver file
+    - Added description for clk of eswin_calc_pll().
+    - Added macro EIC7700_MUX_TBL to manage mux clock-tree.
+    - Added eswin_clk_register_mux_tbl() to register mux clocks with
+      discontinuous parent indexes.
+
+  - Link to v6: https://lore.kernel.org/all/20251009092029.140-1-dongxuyang@eswincomputing.com/
+
+  Changes in v6:
+  - Removed config option patch dependency from cover letter, because the patch
+    was applied.
+  - Updated YAML file
+    - Added an oscillator as the clock input, named xtal24m.
+    - Added clocks property.
+  - Updated driver file
+    - Replaced fixed_rate_clk_xtal_24m with xtal24m.
+    - Dropped fixed_rate_clk_xtal_24m from driver. Because clock xtal24m was
+      registered by fixed-clock as oscillator.
+
+  - Link to v5: https://lore.kernel.org/all/20250923084637.1223-1-dongxuyang@eswincomputing.com/
+
+  Changes in v5:
+  - Removed vendor prefix patch dependency from cover letter, because the patch
+    was applied.
+  - Updated YAML file
+    - Placed the required after all properties.
+    - Removed patternProperties. Also removed compatible of eswin,pll-clock,
+      eswin,mux-clock, eswin,divider-clock and eswin,gate-clock as we have moved
+      clock tree from DTS to Linux driver.
+    - Removed the clock tree from DTS. Used clock-controller to manage all
+      clock. Removed all child nodes in clock-controller.
+    - Removed '#address-cells' and '#size-cells' properties, because the clock
+      controller did not need to define these properties.
+    - Removed eic7700-clocks.dtsi.
+    - Added dt-bindings header for clock IDs. Because used the IDs to register
+      clocks.
+  - Updated driver file
+    - Modified the commit for clock driver. Dropped indentation in commit.
+    - Removed CLK_OF_DECLARE(). Used *clk_hw_register* to register clocks. Used
+      devm_of_clk_add_hw_provider.
+    - Dropped singletons.
+    - Checked the value right after obtaining it.
+    - Removed the definitions of macro frequency in clk.h like CLK_FREQ_24M.
+    - Modified description of help in Kconfig.
+    - Added COMPILE_TEST. Added COMMON_CLK_ESWIN for clk.o. And added
+      "select COMMON_CLK_ESWIN" for clk-eic7700.c. Without COMMON_CLK_EIC7700,
+      clk.c could not be compiled.
+    - Used .determined_rate.
+    - Added macro definitions of EIC7700_DIV, EIC7700_FIXED, EIC7700_FACTOR,
+      EIC7700_MUX and EIC7700_PLL to manage clock tree.
+    - Added clk-eic7700.h to place eic7700 SoC clock registers.
+    - Removed refdiv_val and postdiv1_val from clk_pll_recalc_rate(). Because
+      these values were unused.
+
+  - Link to v4: https://lore.kernel.org/all/20250815093539.975-1-dongxuyang@eswincomputing.com/
+
+  Changes in v4:
+  - Updated YAML file
+    - Changed name from cpu-default-frequency to cpu-default-freq-hz.
+    - Dropped $ref of cpu-default-frequency.
+    - Added cpu-default-frequency for required.
+    - Removed cpu-default-frequency in updated file, because there was no
+      need to add cpu-default-frequency.
+    - Moved DIVIDER to DIV.
+    - Arranged the IDs in order.
+    - Dropped EIC7700_NR_CLKS.
+    - Removed dt-bindings eswin,eic7700-clock.h. Because IDs was not used,
+      and used clock device nodes.
+    - According to the updated driver codes, the YAML has been updated.
+  - Updated driver file
+    - Remove undocumented parameters "cpu_no_boost_1_6ghz" and
+      "cpu-default-frequency".
+    - Modified the comment and used the correct Linux coding style.
+    - Removed codes of voltage, because it was not the clock driver.
+    - Updated the formula of clock frequency calculation. Removed the logic
+      that only used register selection.
+    - Used CLK_OF_DECLARE() to register clocks. Registered pll-clock,
+      mux-clock, divider-clock, and gate-clock in clk-eic7700.c.
+      The specific implementation of clock registration was in clk.c.
+    - Added eic7700-clocks.dtsi.
+    - Moved device information to DTS. Put all clocks' node in the
+      eic7700-clocks.dtsi.
+
+  - Link to v3: https://lore.kernel.org/all/20250624103212.287-1-dongxuyang@eswincomputing.com/
+
+  Changes in v3:
+  - Update example, drop child node and add '#clock-cells' to the parent
+    node.
+  - Change parent node from sys-crg to clock-controller for this yaml.
+  - Drop "syscon", "simple-mfd" to clear warnings/errors by using "make
+    dt_binding_check". And these are not necessary.
+  - Add "cpu-default-frequency" definition in yaml for "undocumented ABI".
+  - Drop Reviewed-by, this is misunderstanding. We have not received such
+    an email.
+  - Link to v2: https://lore.kernel.org/all/20250523090747.1830-1-dongxuyang@eswincomputing.com/
+
+  Changes in v2:
+  - Update example, drop child node.
+  - Clear warnings/errors for using "make dt_binding_check".
+  - Change to the correct format.
+  - Drop some non-stanard code.
+  - Use dev_err_probe() in probe functions.
+  - Link to v1: https://lore.kernel.org/all/20250514002233.187-1-dongxuyang@eswincomputing.com/
+
+Xuyang Dong (3):
+  dt-bindings: clock: eswin: Documentation for eic7700 SoC
+  clock: eswin: Add eic7700 clock driver
+  MAINTAINERS: Add entry for ESWIN EIC7700 clock driver
+
+ .../bindings/clock/eswin,eic7700-clock.yaml   |   46 +
+ MAINTAINERS                                   |    8 +
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/eswin/Kconfig                     |   15 +
+ drivers/clk/eswin/Makefile                    |    8 +
+ drivers/clk/eswin/clk-eic7700.c               | 1337 +++++++++++++++++
+ drivers/clk/eswin/clk.c                       |  575 +++++++
+ drivers/clk/eswin/common.h                    |  373 +++++
+ .../dt-bindings/clock/eswin,eic7700-clock.h   |  285 ++++
+ 10 files changed, 2649 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+ create mode 100644 drivers/clk/eswin/Kconfig
+ create mode 100644 drivers/clk/eswin/Makefile
+ create mode 100644 drivers/clk/eswin/clk-eic7700.c
+ create mode 100644 drivers/clk/eswin/clk.c
+ create mode 100644 drivers/clk/eswin/common.h
+ create mode 100644 include/dt-bindings/clock/eswin,eic7700-clock.h
+
+--
+2.34.1
 
 
