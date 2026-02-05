@@ -1,156 +1,156 @@
-Return-Path: <devicetree+bounces-263130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263131-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yFKbCHfdhGkV6AMAu9opvQ
-	(envelope-from <devicetree+bounces-263130-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 19:12:07 +0100
+	id qDckEJXdhGkV6AMAu9opvQ
+	(envelope-from <devicetree+bounces-263131-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 19:12:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E657F6608
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 19:12:06 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A76E0F661E
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 19:12:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3274230579E2
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 18:10:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 670C0300DD61
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 18:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C689306B1B;
-	Thu,  5 Feb 2026 18:10:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E3ED3081A2;
+	Thu,  5 Feb 2026 18:12:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="t+lxdw18"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bBCEQ+f4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9541306B3D;
-	Thu,  5 Feb 2026 18:10:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFF133016E2
+	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 18:12:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770315023; cv=none; b=YWyr0Z2dX2XmT5dePe4ywnYDiqEypKHt2f/Z2JREA/tstSDjsEz8wkpPhMlHRSl/GOSYgpkPoRGpug+xXOrCvpZKrP8TkNx50hpl3TgDyvP/D3lRGZU1cofKDlBb3E7WnSKPmoWi9C8FxELbz8+3o+JTm1g0HOz98Tmp9hmxEwk=
+	t=1770315152; cv=none; b=HqyJMA3gkombizIq0ZAU1WaTGWaQqT6bH2iABMZwy/Q/3DILyj2RS3k6qrRMi3sLeY6ItlaryLSXCgCfCRxcgeIXz71/lwVIz6coXtUCXdy0/PCXHRehXdHTbi0EfNtKJPNrGT/zplm8Wcx5SFreE0po93FSWpDE044sYDJLgW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770315023; c=relaxed/simple;
-	bh=Kp1EiYbHl52gcoo53/+Mm7ZQjp2iu07iybEcu+QABEU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=oha78D9pD8DY7xkWgBsDrmVaLc8lIgCB/vc0cStRcj79Nhk8y1QYR1lSxI4webY2FNQMQwzDH9kja55+tmVqQVU821TU+ZYQC/A9GXJMMlIevNEMyUYs5rE/1TLZxrJxJQEp8RMHTEr32m+xPkZ/f60WEoOZCs7RzHt1NNUiIqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=t+lxdw18; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 75D1B1A2C34;
-	Thu,  5 Feb 2026 18:10:22 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 498466074D;
-	Thu,  5 Feb 2026 18:10:22 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CE2F5119D1708;
-	Thu,  5 Feb 2026 19:10:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770315020; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=WccFrzV37pjQDcMtab7f2QieezsSKecv42H/QrPd54o=;
-	b=t+lxdw18M+1R7h+F5pljwNQw+inxi8Dm8uL8YZcM4mmOzXxVuuv7PMwwfY55sn3+5d/jtb
-	IHzC+NNdEXkDXeU0GMU/N7M4yO2OEdidRYsyJnPum2yAnUuBDhCCWgoqL8bCii5WyLX1+N
-	40w5ziXD7v73gx9IqBuKRNcy/VRqxElzqdi/qso3nUJGf+mBaBPmrPiXEV9gV6EUQh+Ff9
-	C/j/7aAAHW/N62KNUrhIb7ySTrcXJMLON0lELzKCNv4+LhzAG92AwS2+K47u2snA18aiNn
-	A6naD5E2BffC59m5jfUPQEhVLbhJtgQRyqeejK48je84Xk75V3D2ZXI1p7ojTw==
-From: "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
-Date: Thu, 05 Feb 2026 19:09:51 +0100
-Subject: [PATCH v5 4/4] ARM: dts: r9a06g032: Describe the QSPI controller
+	s=arc-20240116; t=1770315152; c=relaxed/simple;
+	bh=XXS3QVcIUaUSfcQ9ULhT3Ej7GXnyl+nRy5BEyXYzciI=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q8Pm7O/qyFeY+PoHMzeoLIBjrcbgxbIeABwEZN5lvobYukdEzF6zcS+IgNUMwIMKUGkuXCFhxsnbuCfleKo1upl/Wiz/eahDGMgERcmcW6L48y8DO0GrCBZHCTJk6J9rLGWL+TCaWO5ovkUb5vPO5in5FOpRiN5SnV+Mi9BWX1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bBCEQ+f4; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47ee07570deso11207435e9.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 10:12:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770315151; x=1770919951; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xR39UmjmxyNbJqgJNfJ53SYTqnUt7hECaIRgM57CWoo=;
+        b=bBCEQ+f4emlZgmjefzuynVqaIUfooaWip8Phg0hCvBbeQ3glnlLNHavZW0pFVT4Fk+
+         56cGnQrjPWYd8Gm+oGcNT4xQTYdv7X73UCpED2YCZZbmMaq6tsUf2hMAQeBtex9b5btX
+         t37YWwivMAlFRJro3AIhFYHKbKakOz5oEi4pXfIkLzhGrbfa2ZR17dhwBwbzZxhVxufH
+         pwst+yHpRd0ggi3aDc/EI1nA7I92cT9ik0iQt9RjF2Xln1R8fTex7TRmflwmeNsoeCp4
+         iY2AHn8cybQ9u2yjNHQ5F0EzoDlKiOzh9EUenXb03qjyNBYpEmNo0mXfMJaGZXovpiJy
+         /i9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770315151; x=1770919951;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xR39UmjmxyNbJqgJNfJ53SYTqnUt7hECaIRgM57CWoo=;
+        b=cVrtFisPLSBbyX5yXLZA4NL1VzwUksdSBLkYZB9+yc7Slwv8IY83r4s+BeVY35vCKi
+         CuJeyPpogNwLtoDbvtHt4chla39YQh8MQbRjetE2RjAKwEGojKRzDqHOCnFGwRr87RAO
+         5BIkwXDceyyKgvG1NXG5lW5wVsHKDv/QhczY5UalLyfamNcnww2MT8gH73o8DmNElpm+
+         mdeDDqkI0I8jq31qNWt111dpmjgkqm88HcaqYk4IuSS1m+zcsbVKU15IWe+tuhyc2IJ5
+         LuhNS6mQVa/ZpZBUVo5MtVoc7yQoDhrgmdApaTTk8owlzihjHVY+urA4mo19hQKU40K/
+         7SBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXev0OJtT0bQp8WcHRJmRuldKIhfKkFlKx8q2s9Be3taYZSF9bso6pqNbOhqkzvY0aznKWtqecbPav3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGhYdVJhYEiWfcqO9sNFbZUPH9jr3lh8vezI/yVH5EcGgq7CDx
+	ZwXbcZsKkXh8mdW5oUiB6G0gHyuy+1mABDgKsyyojchN8dxFvfGmdYcM
+X-Gm-Gg: AZuq6aKPH2ATC1p4MrU7KpE9H/UdIkmLoP1oChesqcrANh0sYm2PED2Je+ZrXusTCY2
+	F/ORIcXeMRX3Mv4x5LEKY+eVhnhd5JZRvjLzZWKhRQxuyzmWqzWtYN8oQkkC3apLj8y6sMYgcLI
+	2ujiZUCP1Ka5Y2BVJARX0mTIcY3OX30aVDhc39QlhjcofkbkFM1x15RvFzMp4BJNxCRmd5jgni5
+	3hRTHVG1O4btevyHEq6YnRtbvIUayOWjsSDQjh04irxFlop4wYWvvMs5rriSAdZhNxPD/4UZ7sW
+	RzRVb16obSQ+4o7sxXodojMBbL3fvWMcrPUBeUvH6zaDOB/ky6wtqtpW1D4Q/MoUFllDNWrZGYT
+	iQQNnontynUs9TFZR07PEr2ZvtKk4io3pkCrrByU6VcdtaN6oJawXmUz6Apu/SUcNXxJcndqA5V
+	yUw6jJN0fOwTLWvQOiCpmb91ThoXOwZgM+Y35DqJ2hgOv5O9j6FD3oTRxzjbXGDbrlfdptsAc08
+	UKS
+X-Received: by 2002:a05:600c:8116:b0:480:1c10:5633 with SMTP id 5b1f17b1804b1-4832021c74cmr3672795e9.26.1770315150969;
+        Thu, 05 Feb 2026 10:12:30 -0800 (PST)
+Received: from RDEALENC-L01.ad.analog.com ([24.206.116.131])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48317d57009sm63665465e9.14.2026.02.05.10.12.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Feb 2026 10:12:29 -0800 (PST)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Thu, 5 Feb 2026 18:12:23 +0000
+To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+	rodrigo.alencar@analog.com
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v3 4/9] iio: amplifiers: ad8366: drop reset_gpio from
+ private struct
+Message-ID: <rp62czb4n3ag64cgluwsodubnqxecod3cuu2agyedqed2vwi3j@qs3e7xhf5ksk>
+References: <20260203-iio-ad8366-update-v3-0-5d5636b5181a@analog.com>
+ <20260203-iio-ad8366-update-v3-4-5d5636b5181a@analog.com>
+ <aYKnIjBS5OT0MxuY@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260205-schneider-6-19-rc1-qspi-v5-4-843632b3c674@bootlin.com>
-References: <20260205-schneider-6-19-rc1-qspi-v5-0-843632b3c674@bootlin.com>
-In-Reply-To: <20260205-schneider-6-19-rc1-qspi-v5-0-843632b3c674@bootlin.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, Vaishnav Achath <vaishnav.a@ti.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Santhosh Kumar K <s-k6@ti.com>, 
- Pratyush Yadav <pratyush@kernel.org>, 
- Pascal Eberhard <pascal.eberhard@se.com>, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-renesas-soc@vger.kernel.org, 
- "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aYKnIjBS5OT0MxuY@smile.fi.intel.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263130-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263131-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,glider.be,gmail.com,ti.com];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 6E657F6608
+X-Rspamd-Queue-Id: A76E0F661E
 X-Rspamd-Action: no action
 
-Add a node describing the QSPI controller.
-There are 2 clocks feeding this controller:
-- one for the reference clock
-- one that feeds both the ahb and the apb interfaces
-As the binding expect either the ref clock, or all three (ref, ahb and
-apb) clocks, it makes sense to provide the same clock twice.
+On 26/02/04 03:55AM, Andy Shevchenko wrote:
+> On Tue, Feb 03, 2026 at 11:24:10AM +0000, Rodrigo Alencar via B4 Relay wrote:
+> 
+> > Remove reset_gpio from the device state struct and turn it
+> > into a local variable, as it is not being used anywhere else.
+> 
+> Why not switching to reset-gpio driver to begin with?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Signed-off-by: Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
----
- arch/arm/boot/dts/renesas/r9a06g032.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+No particular reason, consuming it as gpio was already there!
+Is this a suggestion/recommendation or a mandatory thing for
+now on?
 
-diff --git a/arch/arm/boot/dts/renesas/r9a06g032.dtsi b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-index 8debb77803bb..47143e6636d2 100644
---- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-+++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-@@ -66,6 +66,18 @@ soc {
- 		#size-cells = <1>;
- 		ranges;
+looked over some examples, some are not updating dt-bindings with resets,
+others don't have Kconfig requiring POWER_RESET or POWER_RESET_GPIO config.
+Those things are necessary, right?
  
-+		qspi0: spi@40005000 {
-+			compatible = "renesas,r9a06g032-qspi", "renesas,rzn1-qspi";
-+			reg = <0x40005000 0x1000>, <0x10000000 0x10000000>;
-+			interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&sysctrl R9A06G032_CLK_QSPI0>, <&sysctrl R9A06G032_HCLK_QSPI0>,
-+				 <&sysctrl R9A06G032_HCLK_QSPI0>;
-+			clock-names = "ref", "ahb", "apb";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		rtc0: rtc@40006000 {
- 			compatible = "renesas,r9a06g032-rtc", "renesas,rzn1-rtc";
- 			reg = <0x40006000 0x1000>;
-
 -- 
-2.51.1
+Kind regards,
 
+Rodrigo Alencar
 
