@@ -1,147 +1,293 @@
-Return-Path: <devicetree+bounces-262941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262942-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CL5SGf1khGkh2wMAu9opvQ
-	(envelope-from <devicetree+bounces-262941-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:38:05 +0100
+	id eChgGJ1lhGkh2wMAu9opvQ
+	(envelope-from <devicetree+bounces-262942-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:40:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7F25F0E72
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:38:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B75E9F0EED
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:40:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EBC7B3059AA1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:35:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6903E300820E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:39:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1DC399013;
-	Thu,  5 Feb 2026 09:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64A8939E6EC;
+	Thu,  5 Feb 2026 09:39:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="QHr++8aD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.237.72.81])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9916396B60;
-	Thu,  5 Feb 2026 09:35:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.237.72.81
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9199F1D54FA;
+	Thu,  5 Feb 2026 09:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770284122; cv=none; b=RRee8BT3c/naUOMkFCQdbbFpBXb2VidoY/WFZJS/J0Ko+DXQxCVrsx/W1kCsg1vqNmoreg9owSh3G0Ub8ygBkD4Kx2Lwl8CtDLtJvXBTGSbgR6iIutozde/N9hTVzjJEeH7IopSrz9Bw/qbpT2OLCLQPdJm0L9rV3PBD0pRWobM=
+	t=1770284359; cv=none; b=OZMARobJysErkzcMK6UnkdLQ9hpx6CIKrfksM2ctOBoV4IUXuCmIApoEbMOdyUpU9oDci0UL/p4siAah+UBWLKzB6rTqQ28DwHm+7TBmT+hmlf5fkbF3my1yPTJ0uuMfndU8IeM+I5nspPQjEFyStHXOOFYDZirF5KJMRdszLGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770284122; c=relaxed/simple;
-	bh=yLq3bFVX37P4JURxWwORtA5U3RkdWkJQPKbQinCYEeE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=lo2vU0gfCuFd8l0GLhd0SggmcuM41xwyJrlmdPgNbO1017gupK78cSWvTe3IlseSTFPQwfWc169uMCwjkihjCFwHlrGYS+c+K6wz+MvBevHetHHwnZxT5aT9SSxj9v+/edRZHFDJX9sREO19BqxS8bZDyBqkojyktAZv0knF9hM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.237.72.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app1 (Coremail) with SMTP id TAJkCgCH1zdPZIRpA+8CAA--.13793S2;
-	Thu, 05 Feb 2026 17:35:13 +0800 (CST)
-From: dongxuyang@eswincomputing.com
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	troy.mitchell@linux.dev,
-	bmasney@redhat.com
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	ganboing@gmail.com,
-	marcel@ziswiler.com,
-	Xuyang Dong <dongxuyang@eswincomputing.com>
-Subject: [PATCH v10 3/3] MAINTAINERS: Add entry for ESWIN EIC7700 clock driver
-Date: Thu,  5 Feb 2026 17:35:10 +0800
-Message-Id: <20260205093510.1198-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
-In-Reply-To: <20260205093322.1030-1-dongxuyang@eswincomputing.com>
-References: <20260205093322.1030-1-dongxuyang@eswincomputing.com>
+	s=arc-20240116; t=1770284359; c=relaxed/simple;
+	bh=kb+3kQ580ml4OH6hQlmA3xJo8+oAUlMwpEGFqGt8DlY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CqcLIpJu7qieurci8KSrJAuvN7l7C2Vt4DYUKpbCnUuIO5XjAOuBfk5akbXMSD+SLGnFOqXjzrxbUFvpAwh/5uHgs5Db2TOtHEQYa9XMY+V0JBXtBiBo9JZGseeMpUnJMYIKC/m6xPZ/obm+X6yTcCfyamqUjHbAuAygVQ/WclQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=QHr++8aD; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=dpdEjTwUa2nIvssyS9tGP8C8RHluBGKgaX0/8wOSLqY=; b=QHr++8aDpN/fqF0E0cSew5phMI
+	eOaaHQaJem+IazKxQZH7RxAdBMUpjfUNxVqyhuRscxO36yvJg+GRBQyAoHUH0WcBLhHyiRRsh1RgQ
+	beaCJEKCRn3JxrS1R7cpvCkJXtetHGrGo0Fd9ettY94gAuW7M50+Jt2adpl6dnSqhCPom978IV6W7
+	VAEnODHHo+wjSFRjfnNdunhiVM15F0PIx9pI57/uRyKMaVfYVz/JtqMEmNchlvHblcysBhFfLMpOz
+	s2/Onlz03KvzKqJ2rFt/pZcWV8xcYc2aTEb33F0p+axybcHjHIBmTrf0MB+Ma6NM4tdfDXmJzFoID
+	xij5+MNw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:43544)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vnvpA-0000000077B-0RIT;
+	Thu, 05 Feb 2026 09:38:56 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vnvp4-000000006FN-2Zn1;
+	Thu, 05 Feb 2026 09:38:50 +0000
+Date: Thu, 5 Feb 2026 09:38:50 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Joey Lu <a0987203069@gmail.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
+	richardcochran@gmail.com, alexandre.torgue@foss.st.com,
+	joabreu@synopsys.com, ychuang3@nuvoton.com, schung@nuvoton.com,
+	yclu4@nuvoton.com, peppe.cavallaro@st.com,
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH net-next v11 3/3] net: stmmac: dwmac-nuvoton: Add dwmac
+ glue for Nuvoton MA35 family
+Message-ID: <aYRlKk-cCIhqGWX7@shell.armlinux.org.uk>
+References: <20260205014006.735408-1-a0987203069@gmail.com>
+ <20260205014006.735408-4-a0987203069@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgCH1zdPZIRpA+8CAA--.13793S2
-X-Coremail-Antispam: 1UD129KBjvdXoWruF48XFW7tw47KFy7CryrCrg_yoWfKrb_GF
-	4xAay3XFyrXF1ak3ykZFZ3JFWYkw4xJr4DK3ZFkw42ya4Yyr1DKFWDXw1I9w47GF43W34U
-	uFyrKFZIgF17ujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbhkFF20E14v26ryj6rWUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
-	A2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j
-	6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
-	Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
-	I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
-	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
-	n2kIc2xKxwAKzVCY07xG64k0F24lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK6svPMxAIw2
-	8IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4l
-	x2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrw
-	CI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1l
-	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRmZXOUUUUU=
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260205014006.735408-4-a0987203069@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-262942-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262941-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,synopsys.com,nuvoton.com,st.com,lists.infradead.org,vger.kernel.org,lists.ozlabs.org,st-md-mailman.stormreply.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[eswincomputing.com,einfochips.com,gmail.com,ziswiler.com];
-	FROM_NO_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[armlinux.org.uk:-];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-0.995];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:mid,eswincomputing.com:email]
-X-Rspamd-Queue-Id: B7F25F0E72
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[armlinux.org.uk:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,shell.armlinux.org.uk:mid]
+X-Rspamd-Queue-Id: B75E9F0EED
 X-Rspamd-Action: no action
 
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
+Hi,
 
-Add myself as maintainer of ESWIN EIC7700 clock driver
+On Thu, Feb 05, 2026 at 09:40:05AM +0800, Joey Lu wrote:
+> +
+> +struct nvt_priv_data {
+> +	struct platform_device *pdev;
 
-Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+This looks to me like it's write-only, does it serve a useful purpose?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0efa8cc6775b..dc9881b98574 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9372,6 +9372,14 @@ T:	git https://github.com/eswincomputing/linux-next.git
- F:	Documentation/devicetree/bindings/riscv/eswin.yaml
- F:	arch/riscv/boot/dts/eswin/
- 
-+ESWIN EIC7700 CLOCK DRIVER
-+M:	Yifeng Huang <huangyifeng@eswincomputing.com>
-+M:	Xuyang Dong <dongxuyang@eswincomputing.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
-+F:	drivers/clk/eswin/
-+F:	include/dt-bindings/clock/eswin,eic7700-clock.h
-+
- ET131X NETWORK DRIVER
- M:	Mark Einon <mark.einon@gmail.com>
- S:	Odd Fixes
+> +	struct regmap *regmap;
+
+This doesn't seem to be used outside of nvt_gmac_setup().
+
+> +};
+
+Given the above two comments, do you actually need struct nvt_priv_data ?
+
+> +
+> +static struct nvt_priv_data *
+> +nvt_gmac_setup(struct platform_device *pdev, struct plat_stmmacenet_data *plat)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct nvt_priv_data *bsp_priv;
+> +	phy_interface_t phy_mode;
+> +	u32 macid, arg, reg;
+> +	u32 tx_delay_step;
+> +	u32 rx_delay_step;
+> +	u32 miscr;
+> +
+> +	bsp_priv = devm_kzalloc(dev, sizeof(*bsp_priv), GFP_KERNEL);
+> +	if (!bsp_priv)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	bsp_priv->regmap =
+> +		syscon_regmap_lookup_by_phandle_args(dev->of_node, "nuvoton,sys", 1, &macid);
+> +	if (IS_ERR(bsp_priv->regmap))
+> +		return ERR_PTR(dev_err_probe(dev, PTR_ERR(bsp_priv->regmap),
+> +				     "Failed to get sys register\n"));
+> +	if (macid > 1) {
+> +		dev_err(dev, "Invalid sys arguments\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	if (of_property_read_u32(dev->of_node, "tx-internal-delay-ps", &arg)) {
+> +		tx_delay_step = 0;
+> +	} else {
+> +		if (arg <= 2000) {
+> +			tx_delay_step = (arg == 2000) ? 0xf : (arg / NVT_PATH_DELAY_STEP);
+> +			dev_dbg(dev, "Set Tx path delay to 0x%x\n", tx_delay_step);
+> +		} else {
+> +			dev_err(dev, "Invalid Tx path delay argument.\n");
+> +			return ERR_PTR(-EINVAL);
+> +		}
+> +	}
+> +	if (of_property_read_u32(dev->of_node, "rx-internal-delay-ps", &arg)) {
+> +		rx_delay_step = 0;
+> +	} else {
+> +		if (arg <= 2000) {
+> +			rx_delay_step = (arg == 2000) ? 0xf : (arg / NVT_PATH_DELAY_STEP);
+> +			dev_dbg(dev, "Set Rx path delay to 0x%x\n", rx_delay_step);
+> +		} else {
+> +			dev_err(dev, "Invalid Rx path delay argument.\n");
+> +			return ERR_PTR(-EINVAL);
+> +		}
+> +	}
+
+Each of these could be moved into a separate function:
+
+static int nvt_gmac_get_delay(struct device *dev, const char *property)
+{
+	u32 arg;
+
+	if (of_property_read_u32(dev->of_node, property, &arg))
+		return 0;
+
+	if (arg > 2000) {
+		dev_err(dev, "Invalid %s argument.\n", property);
+		return -EINVAL;
+	}
+
+	if (arg == 2000)
+		return 15;
+
+	return arg / NVT_PATH_DELAY_STEP;
+}
+
+then:
+	int ret;
+
+	ret = nvt_gmac_get_delay(dev, "tx-internal-delay-ps");
+	if (ret < 0)
+		return ERR_PTR(ret);
+
+	tx_delay = ret;
+
+	ret = nvt_gmac_get_delay(dev, "rx-internal-delay-ps");
+	if (ret < 0)
+		return ERR_PTR(ret);
+
+	rx_delay = ret;
+
+> +
+> +	miscr = (macid == 0) ? NVT_REG_SYS_GMAC0MISCR : NVT_REG_SYS_GMAC1MISCR;
+> +	regmap_read(bsp_priv->regmap, miscr, &reg);
+> +	reg &= ~(NVT_TX_DELAY_MASK | NVT_RX_DELAY_MASK);
+> +
+> +	if (of_get_phy_mode(pdev->dev.of_node, &phy_mode)) {
+> +		dev_err(dev, "missing phy mode property\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	switch (phy_mode) {
+> +	case PHY_INTERFACE_MODE_RGMII:
+> +	case PHY_INTERFACE_MODE_RGMII_ID:
+> +	case PHY_INTERFACE_MODE_RGMII_RXID:
+> +	case PHY_INTERFACE_MODE_RGMII_TXID:
+> +		reg &= ~NVT_MISCR_RMII;
+> +		break;
+> +	case PHY_INTERFACE_MODE_RMII:
+> +		reg |= NVT_MISCR_RMII;
+> +		break;
+> +	default:
+> +		dev_err(dev, "Unsupported phy-mode (%d)\n", phy_mode);
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	if (!(reg & NVT_MISCR_RMII)) {
+> +		reg |= FIELD_PREP(NVT_TX_DELAY_MASK, tx_delay_step);
+> +		reg |= FIELD_PREP(NVT_RX_DELAY_MASK, rx_delay_step);
+
+You can move this inside the switch above under the RGMII case. Theses
+delays are, after all, only for RGMII.
+
+> +	}
+> +
+> +	regmap_write(bsp_priv->regmap, miscr, reg);
+
+Consider:
+
+	regmap_update_bits(bsp_priv->regmap, miscr,
+			   NVT_TX_DELAY_MASK | NVT_RX_DELAY_MASK |
+			   NVT_MISCR_RMII, reg);
+
+> +	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
+> +	if (IS_ERR(plat_dat))
+> +		return PTR_ERR(plat_dat);
+> +
+> +	/* Nuvoton DWMAC configs */
+> +	plat_dat->core_type = DWMAC_CORE_GMAC;
+
+Is the hardware not compatible with any of the compatible types that
+devm_stmmac_probe_config_dt() will automatically set this for you?
+Which version of the core do you have?
+
+> +	plat_dat->tx_fifo_size = 2048;
+> +	plat_dat->rx_fifo_size = 4096;
+
+There are tx-fifo-depth / rx-fifo-depth properties that can be used to
+describe these in DT.
+
+> +	plat_dat->multicast_filter_bins = 0;
+> +	plat_dat->unicast_filter_entries = 8;
+
+If this core is v3.50, v3.70 or v3.72, then there are
+snps,multicast-filter-bins and snps,perfect-filter-entries which
+can be used to describe both of these.
+
+Thanks.
+
 -- 
-2.34.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
