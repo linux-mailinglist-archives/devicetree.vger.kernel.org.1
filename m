@@ -1,59 +1,110 @@
-Return-Path: <devicetree+bounces-262938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262937-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MJkVOk9khGkK2wMAu9opvQ
-	(envelope-from <devicetree+bounces-262938-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:35:11 +0100
+	id cK8WBjJkhGkK2wMAu9opvQ
+	(envelope-from <devicetree+bounces-262937-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:34:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60CEEF0DBB
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:35:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DBB8F0D8F
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:34:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 80F5C3037E7F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:34:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 04E503004F61
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBD2B39B486;
-	Thu,  5 Feb 2026 09:34:05 +0000 (UTC)
-X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmtyylji0my4xnjeumjiw.icoremail.net (zg8tmtyylji0my4xnjeumjiw.icoremail.net [162.243.161.220])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B8A039A800;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC4939901B;
 	Thu,  5 Feb 2026 09:34:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.161.220
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Jx8R7AvC";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YSH0nGWF"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 088A83921C8
+	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 09:34:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770284045; cv=none; b=HJatxBtDrZgzKEBk0RcfBuB7kcHc2FAIQFE4LL7fNruKhWX/Wsh4OCBme5A8hllEWrabk3oY5Vs03Y/1qwD2MK9VA5NEFe1e56d4Yrz0hjNDNj4uD/FX/uGrxC/VoPbb/sxjoSwWTXSosoOQr0WrJwu+oQkMSGIEznipG4XoTvU=
+	t=1770284043; cv=none; b=ieeuQzcK7vY0/nl7EC9gaOpKbuamKI/R302fzOysQ4o1H7yGyUcgXek6yhBKFc2Hy3T/nblYA0PeeuFOM+a7lFmtBWipreCxQw9bVncVL7UiFqAY9s+0NeaW/E1/WFShfVKL7MFd44iL66HAPw2atDM/ctOzTBJU2NEYaa2WcFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770284045; c=relaxed/simple;
-	bh=IetnTOoFQsNTgY3Ig68gNlEueYpTodU9uN8Ya3Vbrng=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HB53Df5yeeBf4fqlJWq5n2z4U1L4WWW5yscYUmihaTdam4B6+zORDtmuEtWOkGSFF1vWiD+imrMzjlzU8nNrcTtaIHAOc+RgqxSFDo7OSyHz+S4wXKSahbj2E/YTfKQtoZVnLj2p92upsczwyMYSQb4QNUcmnmXv2pT5z9codns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=162.243.161.220
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app2 (Coremail) with SMTP id TQJkCgAncKz8Y4Rpj+8CAA--.10746S2;
-	Thu, 05 Feb 2026 17:33:50 +0800 (CST)
-From: dongxuyang@eswincomputing.com
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	troy.mitchell@linux.dev,
-	bmasney@redhat.com
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	ganboing@gmail.com,
-	marcel@ziswiler.com,
-	Xuyang Dong <dongxuyang@eswincomputing.com>
-Subject: [PATCH v10 0/3] Add driver support for ESWIN eic700 SoC clock controller
-Date: Thu,  5 Feb 2026 17:33:22 +0800
-Message-Id: <20260205093322.1030-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
+	s=arc-20240116; t=1770284043; c=relaxed/simple;
+	bh=kPs0DtXG+9QUrv1Us0pa6hxYPDLn14oG/QFMp/cxXH0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=SVp2rpwBt7J8rv/vZ0A52QYAlKs6+ek51omFWBz66nS9LQ/f8ezjPAT80TNDEDTYvOyHwCKDU8WZfRcjbiyylBUPlj0ixrma+WAbMCfPJ/wDPpX0QaPzZd3ogtJn4r5FpMIkN7nhtwR85OLhsA7ujJPVj12o+KEaRCXUhNiumfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Jx8R7AvC; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YSH0nGWF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6157Mbv2890162
+	for <devicetree@vger.kernel.org>; Thu, 5 Feb 2026 09:34:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=lvQdTkGdnJIP/VHAznG5qfzYCx3k04ZHT1+
+	Hz9zICkw=; b=Jx8R7AvCqo6p+3yMJ1wn+YrNaTSjHpV02CqXd6EcGHVAOp0T4WW
+	s0pYoMubHwMzR/LobBnSpaNU4QF45LUw5UVv6pngG2p/V+qj1AgWvog1JLbYQWiE
+	0doVzeFUzMHQdbC/oIW78o8HMhihs5Kvnfzp4Z+XHPSO8dGCmru2uWhivNSb5BnL
+	1YZ+YaY9fo/KvA3y0/3u8t++2DJ3/P4eKYamqgHKgO71Kga/z7cZqa8ZpkGKYdU2
+	Yf5JWj3XOKMFP5BRQPuuJWvWV260Z9NsZerV929KGP5yqNESTyr1i3TACY/JpCpm
+	L7hjzocIEoBPWXzxxcha0HKpc1QxIkJwqnA==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c4prx8dus-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 09:34:02 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b630b4d8d52so475268a12.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 01:34:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770284041; x=1770888841; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lvQdTkGdnJIP/VHAznG5qfzYCx3k04ZHT1+Hz9zICkw=;
+        b=YSH0nGWFbxVBrJXZ5UlPgtbRwPs7J2hgYsYZ2slaIU9t7USppIBWlDDi8tkQeKsv2g
+         U1BvPm/9AgBOhSn3HzuPiCmRrVQwSGcpEOUSuhMXhSR8j9A0srw+Xe1mTZKotPz5nIVB
+         zvYLfY+Ml5F5f30KUN6BDzal13c6nG+9C3gjhwgiXcWS1GVefReel3JiNLAFpOwfENKf
+         2FoW1Jq4tRiCny4s0qzHs/wiQsDEFYyeai7O2tCNtGuPktEgl8YN2Gi8IY8qwjhKta9G
+         Q4p/1gotBKPzOzMsvvK37Z1I1vYHTAJ+RHroe8kEOvDCTD1lBNsPsqCyFD4Lht8IKX96
+         xIzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770284041; x=1770888841;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lvQdTkGdnJIP/VHAznG5qfzYCx3k04ZHT1+Hz9zICkw=;
+        b=Z0iYE5/ujnJtGYD6xn8a4HbZ9+0jtycyhuO6yWEJZYjRZtLjl8OS2uH5VU2rqR+02c
+         1hWeCGI/r3v/zy6EU8LZSdYD3uWwtXW1S0TMvGZulJOcEyq6D91DtUIVMd6wFu7yUqOK
+         Zf+XEviKwGGL6u/Xytsk5gszyncQwqGkzjcU54z0BEajcZyB4bD7k3aA8HTF1LI4QHzi
+         qvlCqdlm34deFLfJLKQzV8zT7a9LIuPTSRtV0fcQuQQsXbUe45Sm3QmI5j/JMGouaJmz
+         Lg65BiD5t3f6ZuYNh6NExJ2gv+rLPX6KTA5+7qbtp+XlNlZSTFXMwu5Wc7+gGpjCIxqe
+         rTKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUDFWwp+fIYRQZ7TYZ0NPE4WZ+S1TT5bSmE7XvxgnEIVaoWfFnBEZuYsf+TkwVkub6Qd7S89zDU0yLj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxjx+hAKn0Qyx5amQsZgQQFv6BWoRldCWOP+KtqaYmYmFITeHfY
+	7Ua5N7AhheDNhD6lXKsoSSBHC4ea0X0f8Cb6/fzaHyioIuJT9MvcDqDo9+nsYl4pJM7v0tr0oj7
+	7kxSpUz5eO7Wwa0e362KjTWX7S1iRNcjRNv0uz5MWDujv9vl/7lALXaMYAcgTjBI6
+X-Gm-Gg: AZuq6aKdDSdKryzvBdH6O5YR2dn6m5uEogyQaqT5EzVJMwwU3WGt20nqKDNKKW+K5Qi
+	8Yfg6bSiCZkV10PKsYdejYZxdkM7CuZYA6aulb+D2jGWlwQ/74v0PbT/vMm3mbsl0bdqnhQDvPk
+	jiSlcC38ttFZOeQG1pzWd18AT2YNMDFWns39W5wx7rGaho9dlmyfGzWn0UmsVSgJZ+kWhoSqYas
+	WZKASj5r1sIKrfaXrjXhmpaJYctDa1P0w28N9gJKDZGS9rmQ33TJpgaeAoGcmSzcj787/QShYRP
+	5eZN5tZqxb5rhzhpPjk9j0oTERLXBHO5Hbuu3kIJTjamrTMF7RU2nPF6elgYInnQa02UpUdP6f1
+	/vk3BTt6MpcYCAC7+4/0YTc5noE0b1T3Co+l0iFZfc94f
+X-Received: by 2002:a05:6a00:4b08:b0:822:abcd:db0f with SMTP id d2e1a72fcca58-8241c64fcf5mr6075324b3a.52.1770284041450;
+        Thu, 05 Feb 2026 01:34:01 -0800 (PST)
+X-Received: by 2002:a05:6a00:4b08:b0:822:abcd:db0f with SMTP id d2e1a72fcca58-8241c64fcf5mr6075305b3a.52.1770284040974;
+        Thu, 05 Feb 2026 01:34:00 -0800 (PST)
+Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8241d487886sm6181538b3a.59.2026.02.05.01.33.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Feb 2026 01:34:00 -0800 (PST)
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+To: andersson@kernel.org, robh@kernel.org, mani@kernel.org, krzk@kernel.org,
+        helgaas@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        lpieralisi@kernel.org, kw@linux.com, conor+dt@kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree-spec@vger.kernel.org, krishna.chundru@oss.qualcomm.com,
+        lukas@wunner.de
+Subject: [PATCH v4] schemas: pci: Document PCIe T_POWER_ON
+Date: Thu,  5 Feb 2026 15:03:46 +0530
+Message-Id: <20260205093346.667898-1-krishna.chundru@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,252 +112,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TQJkCgAncKz8Y4Rpj+8CAA--.10746S2
-X-Coremail-Antispam: 1UD129KBjvJXoW3WF4DKFW3uryfWFyrJr4DXFb_yoWfCr48pa
-	n7Gr98CFs0gryxWan7tayIgFyrXanxJFWUuryxXw10v3W5C34vyrWSvF98AFZrZr1fAw4D
-	JF1aga1jkF4UZFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
-	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
-	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
-	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
-	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRkwIhUUUUU=
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
+X-Proofpoint-GUID: CxeQ57pJx6-H1r-fpZUx72ZeWM9mrY6Y
+X-Proofpoint-ORIG-GUID: CxeQ57pJx6-H1r-fpZUx72ZeWM9mrY6Y
+X-Authority-Analysis: v=2.4 cv=eLkeTXp1 c=1 sm=1 tr=0 ts=6984640a cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=ji1uk-MP7uB9YWhOYAAA:9
+ a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA1MDA2OCBTYWx0ZWRfX08W0P8oCxjME
+ O/dHVT0wj88t0V7frfpWGPmDgH2HljKiV/BsSEwO5PzpK9bB5h1tvUVkEeKTWS+nzsbJRM1A04H
+ MI02NFri95RXumdxQKJrIBVWTsONgoe4ZrfL4+Bh5Qve/MHRKXuW3IPPlD7PnM3GDqCW8Al0q9Q
+ PB141s3wvdOLojdsdVIulO+4iGxmoDl/Mj/pS9cAW7xQGNHWnGjbe+9lSlndJ64S8bARrunyzmf
+ mXWGr2r2EwIKyxswfm/TsL3lFs3AO551tai+KJ/tOG2+yoeverGzLXQosjA0qxeIv/y7KAcgROg
+ PI+3orpxhx4NEGu6kja1Mg6dleLpIhvKLiRrKYVc5QFOzMhyvUarUChm2EJkqjioXltjyNdZ3QQ
+ B8rTrHWRwE51PAwOoJ/kewAeYmAphOa9QZUuyznAqtGYxMmX7znV3ePNoUg1mULRMXGCfB5hrxm
+ FQ8IZ6czk+AWby4nv4Q==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-05_01,2026-02-05_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 clxscore=1015 bulkscore=0 suspectscore=0 adultscore=0
+ priorityscore=1501 spamscore=0 malwarescore=0 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602050068
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262938-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[krishna.chundru@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-262937-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[eswincomputing.com,einfochips.com,gmail.com,ziswiler.com];
-	FROM_NO_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.981];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_NONE(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.dev:email,sifive.com:url]
-X-Rspamd-Queue-Id: 60CEEF0DBB
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 0DBB8F0D8F
 X-Rspamd-Action: no action
 
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
+From PCIe r7, sec 5.5.4 & Table 5-11 in sec 5.5.5 T_POWER_ON is the
+minimum amount of time (in us) that each component must wait in L1.2.Exit
+after sampling CLKREQ# asserted before actively driving the interface to
+ensure no device is ever actively driving into an unpowered component and
+these values are based on the components and AC coupling capacitors used
+in the connection linking the two components.
 
-The link [1] provides the official documentation for the EIC7700. Section 3.2
-covers the clock subsystem.
+This property should be used to indicate the T_POWER_ON and drivers using
+this property are responsible for programming both the scale and the value
+of T_POWER_ON to comply with the PCIe specification.
 
-[1] https://www.sifive.com/document-file/eic7700x-datasheet
+Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+---
+Changes in V3.
+- Couple of nits from Mani & Bjorn.
+- Link to v3: https://lore.kernel.org/all/20251126103112.838549-1-krishna.chundru@oss.qualcomm.com/
+Changes in v2:
+- Move the property to pci-device.yaml so that it will be applicable to
+  endpoint devices also (Mani).
+- Use latest spec (Lukas)
+- Link to v2: https://lore.kernel.org/all/20251110112947.2071036-1-krishna.chundru@oss.qualcomm.com/
+Changes in v1:
+- Updated the commiit text (Mani).
+- Link to v1: https://lore.kernel.org/all/20251110112550.2070659-1-krishna.chundru@oss.qualcomm.com/#t
 
-Updates:
-  Changes in v10:
-  - Updated driver file
-    - Add a private clock divider API named 'eswin_register_clkdiv' to
-      register divider clocks with private flag.
-      Define 'ESWIN_PRIV_DIV_MIN_2' private flag for registering the clock
-      dividers whose division ratio start from 2.
-      Implement the private set_rate, recalc_rate, and determine_rate accordingly.
-    - Add CLK_DIVIDER_ALLOW_ZERO flag to the clock dividers whose division
-      ratio start from 0.
-    - Replace CONFIG_ARCH_ESWIN with CONFIG_COMMON_CLK_ESWIN in the Makefile.
-    - Modify the help description of COMMON_CLK_EIC7700.
-    - Move register offset definitions from 'clk-eic7700.h' to 'clk-eic7700.c' and
-      remove the 'clk-eic7700.h'. Remove '_CTRL' from the offset names.
-    - Remove all unused headers.
-    - Use devm_platform_ioremap_resource() instead of devm_of_iomap().
-    - Export the functions from clk.c as symbols.
-    - Use readl_poll_timeout().
-    - Use 'clk_parent_data' and '.hw' instead of string parent names.
-    - Rename the header file from clk.h to common.h.
-    - Rename macros from EIC7700_* to ESWIN_* in common.h.
-    - Add a new function, 'eswin_clk_register_clks', which can register
-      divider, mux, gate, and fixed-factor clocks based on their types.
-    - Add structure 'eswin_clk_info' to manage the clocks that need to be registered
-      in a specific order.
-    - Add macros 'ESWIN_*_TYPE' to define divider, mux, gate, and fixed-factor clocks
-      with type. Add enum 'eswin_clk_type' for these types.
-    - Remove 'eswin_clk_register_mux_tbl'. Use 'eswin_clk_register_mux' to register
-      mux clocks with or without table.
-    - Add xtal24m as the parent clock of the PLL.
-    - Change 2025 to 2026 in all files.
+ dtschema/schemas/pci/pci-device.yaml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-  - Link to v9: https://lore.kernel.org/all/20251229105844.1089-1-dongxuyang@eswincomputing.com/
-
-  Changes in v9:
-  - Updated driver file
-    - Checked return values of eswin_clk_register_*() in the probe function.
-    - Removed binding IDs check from pll functions in clk.c, as these functions
-      were exclusively used by pll clocks and did not require ID validation.
-    - The PLL structure has been extended with max_rate and min_rate fields to
-      explicitly define the frequency operating range of the PLL. These limits
-      were now utilized by the clk_pll_determine_rate() function.
-    - Removed __clk_lookup() in clk_pll_set_rate. Added clk_notifier support
-      in clk-eic7700.c.
-    - Added five previously missing clocks from [1].
-
-  - Link to v8: https://lore.kernel.org/all/20251113013637.1109-1-dongxuyang@eswincomputing.com/
-
-  Changes in v8:
-  - Updated YAML file
-    - Added "Acked-by: Troy Mitchell <troy.mitchell@linux.dev>"
-  - Updated driver file
-    - Changed Kconfig from bool to tristate.
-  - Updated MAINTAINERS file
-    - Added "ESWIN SOC SERIES CLOCK DRIVER"
-
-  - Link to v7: https://lore.kernel.org/all/20251023071658.455-1-dongxuyang@eswincomputing.com/
-
-  Changes in v7:
-  - Updated YAML file
-    - Added "Acked-by: Conor Dooley <conor.dooley@microchip.com>" for bindings.
-  - Updated driver file
-    - Added description for clk of eswin_calc_pll().
-    - Added macro EIC7700_MUX_TBL to manage mux clock-tree.
-    - Added eswin_clk_register_mux_tbl() to register mux clocks with
-      discontinuous parent indexes.
-
-  - Link to v6: https://lore.kernel.org/all/20251009092029.140-1-dongxuyang@eswincomputing.com/
-
-  Changes in v6:
-  - Removed config option patch dependency from cover letter, because the patch
-    was applied.
-  - Updated YAML file
-    - Added an oscillator as the clock input, named xtal24m.
-    - Added clocks property.
-  - Updated driver file
-    - Replaced fixed_rate_clk_xtal_24m with xtal24m.
-    - Dropped fixed_rate_clk_xtal_24m from driver. Because clock xtal24m was
-      registered by fixed-clock as oscillator.
-
-  - Link to v5: https://lore.kernel.org/all/20250923084637.1223-1-dongxuyang@eswincomputing.com/
-
-  Changes in v5:
-  - Removed vendor prefix patch dependency from cover letter, because the patch
-    was applied.
-  - Updated YAML file
-    - Placed the required after all properties.
-    - Removed patternProperties. Also removed compatible of eswin,pll-clock,
-      eswin,mux-clock, eswin,divider-clock and eswin,gate-clock as we have moved
-      clock tree from DTS to Linux driver.
-    - Removed the clock tree from DTS. Used clock-controller to manage all
-      clock. Removed all child nodes in clock-controller.
-    - Removed '#address-cells' and '#size-cells' properties, because the clock
-      controller did not need to define these properties.
-    - Removed eic7700-clocks.dtsi.
-    - Added dt-bindings header for clock IDs. Because used the IDs to register
-      clocks.
-  - Updated driver file
-    - Modified the commit for clock driver. Dropped indentation in commit.
-    - Removed CLK_OF_DECLARE(). Used *clk_hw_register* to register clocks. Used
-      devm_of_clk_add_hw_provider.
-    - Dropped singletons.
-    - Checked the value right after obtaining it.
-    - Removed the definitions of macro frequency in clk.h like CLK_FREQ_24M.
-    - Modified description of help in Kconfig.
-    - Added COMPILE_TEST. Added COMMON_CLK_ESWIN for clk.o. And added
-      "select COMMON_CLK_ESWIN" for clk-eic7700.c. Without COMMON_CLK_EIC7700,
-      clk.c could not be compiled.
-    - Used .determined_rate.
-    - Added macro definitions of EIC7700_DIV, EIC7700_FIXED, EIC7700_FACTOR,
-      EIC7700_MUX and EIC7700_PLL to manage clock tree.
-    - Added clk-eic7700.h to place eic7700 SoC clock registers.
-    - Removed refdiv_val and postdiv1_val from clk_pll_recalc_rate(). Because
-      these values were unused.
-
-  - Link to v4: https://lore.kernel.org/all/20250815093539.975-1-dongxuyang@eswincomputing.com/
-
-  Changes in v4:
-  - Updated YAML file
-    - Changed name from cpu-default-frequency to cpu-default-freq-hz.
-    - Dropped $ref of cpu-default-frequency.
-    - Added cpu-default-frequency for required.
-    - Removed cpu-default-frequency in updated file, because there was no
-      need to add cpu-default-frequency.
-    - Moved DIVIDER to DIV.
-    - Arranged the IDs in order.
-    - Dropped EIC7700_NR_CLKS.
-    - Removed dt-bindings eswin,eic7700-clock.h. Because IDs was not used,
-      and used clock device nodes.
-    - According to the updated driver codes, the YAML has been updated.
-  - Updated driver file
-    - Remove undocumented parameters "cpu_no_boost_1_6ghz" and
-      "cpu-default-frequency".
-    - Modified the comment and used the correct Linux coding style.
-    - Removed codes of voltage, because it was not the clock driver.
-    - Updated the formula of clock frequency calculation. Removed the logic
-      that only used register selection.
-    - Used CLK_OF_DECLARE() to register clocks. Registered pll-clock,
-      mux-clock, divider-clock, and gate-clock in clk-eic7700.c.
-      The specific implementation of clock registration was in clk.c.
-    - Added eic7700-clocks.dtsi.
-    - Moved device information to DTS. Put all clocks' node in the
-      eic7700-clocks.dtsi.
-
-  - Link to v3: https://lore.kernel.org/all/20250624103212.287-1-dongxuyang@eswincomputing.com/
-
-  Changes in v3:
-  - Update example, drop child node and add '#clock-cells' to the parent
-    node.
-  - Change parent node from sys-crg to clock-controller for this yaml.
-  - Drop "syscon", "simple-mfd" to clear warnings/errors by using "make
-    dt_binding_check". And these are not necessary.
-  - Add "cpu-default-frequency" definition in yaml for "undocumented ABI".
-  - Drop Reviewed-by, this is misunderstanding. We have not received such
-    an email.
-  - Link to v2: https://lore.kernel.org/all/20250523090747.1830-1-dongxuyang@eswincomputing.com/
-
-  Changes in v2:
-  - Update example, drop child node.
-  - Clear warnings/errors for using "make dt_binding_check".
-  - Change to the correct format.
-  - Drop some non-stanard code.
-  - Use dev_err_probe() in probe functions.
-  - Link to v1: https://lore.kernel.org/all/20250514002233.187-1-dongxuyang@eswincomputing.com/
-
-Xuyang Dong (3):
-  dt-bindings: clock: eswin: Documentation for eic7700 SoC
-  clock: eswin: Add eic7700 clock driver
-  MAINTAINERS: Add entry for ESWIN EIC7700 clock driver
-
- .../bindings/clock/eswin,eic7700-clock.yaml   |   46 +
- MAINTAINERS                                   |    8 +
- drivers/clk/Kconfig                           |    1 +
- drivers/clk/Makefile                          |    1 +
- drivers/clk/eswin/Kconfig                     |   15 +
- drivers/clk/eswin/Makefile                    |    8 +
- drivers/clk/eswin/clk-eic7700.c               | 1337 +++++++++++++++++
- drivers/clk/eswin/clk.c                       |  575 +++++++
- drivers/clk/eswin/common.h                    |  373 +++++
- .../dt-bindings/clock/eswin,eic7700-clock.h   |  285 ++++
- 10 files changed, 2649 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
- create mode 100644 drivers/clk/eswin/Kconfig
- create mode 100644 drivers/clk/eswin/Makefile
- create mode 100644 drivers/clk/eswin/clk-eic7700.c
- create mode 100644 drivers/clk/eswin/clk.c
- create mode 100644 drivers/clk/eswin/common.h
- create mode 100644 include/dt-bindings/clock/eswin,eic7700-clock.h
-
---
+diff --git a/dtschema/schemas/pci/pci-device.yaml b/dtschema/schemas/pci/pci-device.yaml
+index ca094a0..a847500 100644
+--- a/dtschema/schemas/pci/pci-device.yaml
++++ b/dtschema/schemas/pci/pci-device.yaml
+@@ -63,6 +63,15 @@ properties:
+     description: GPIO controlled connection to WAKE# signal
+     maxItems: 1
+ 
++  t-power-on-us:
++    description:
++      The minimum amount of time that each component must wait in
++      L1.2.Exit after sampling CLKREQ# asserted before actively driving
++      the interface to ensure no device is ever actively driving into an
++      unpowered component. This value is based on the components and AC
++      coupling capacitors used in the connection linking the two
++      components (PCIe r7.0, sec 5.5.4).
++
+ required:
+   - reg
+ 
+-- 
 2.34.1
 
 
