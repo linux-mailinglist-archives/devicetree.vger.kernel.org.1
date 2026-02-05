@@ -1,208 +1,229 @@
-Return-Path: <devicetree+bounces-262849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262850-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8ONSH4EUhGnQyAMAu9opvQ
-	(envelope-from <devicetree+bounces-262849-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 04:54:41 +0100
+	id QNX3M7AmhGlRzwMAu9opvQ
+	(envelope-from <devicetree+bounces-262850-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 06:12:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E878EE6C6
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 04:54:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DD8EEEA58
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 06:12:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5BA303014C10
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 03:53:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BC0E13009B26
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 05:12:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33CAF2E8882;
-	Thu,  5 Feb 2026 03:53:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E6330C371;
+	Thu,  5 Feb 2026 05:12:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="XlenU/tt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lD+XHwB0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 008692DB792;
-	Thu,  5 Feb 2026 03:53:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.59.177.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 101DB2D0C72;
+	Thu,  5 Feb 2026 05:12:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770263635; cv=none; b=nBhiz2zS+djEknbrMec60t9I6wnApHBs4I//Hv8mr8o4ULID6qGYY7ZPBDpETZ7508yPo30SRJWTnHCYAJ8ZmHDuNsnt2BB5qRIMeLBCVr7jtO1/SjzXkrYNuFE+cPMUPRaUK96vX8ur4RaPVHm/Azs3XScRZ/bSm3Kj5RXM3Cc=
+	t=1770268334; cv=none; b=Jz4Fe7QeSQlRCIY0EnT5eDvAzyILba2iBdaj5RcgCvIU80kR5uZUq8yiyLvDlCmE1KrZpY2anndnQeiVJhTFYlR3/FCmsgDl74vTiIQKz4p6nlG+Z1b/eEP2zJPyxUq/4l1pODJLyOTmZ2/e4kS+yj0XwsmVSFUNhLpNM6W6P98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770263635; c=relaxed/simple;
-	bh=j576Tw3IZWEMhrM/QWalhIW+vLOaGfIzwjuYc2xooXY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V9Y/Pi/xhaKjlOXobjfyhAbQtBeyL9U7n4KPDDw8p6+LVjEVnvsaic974f5/VWnja7Ulgxs+PfNKz0n5YV5zAT8VRHzUzsa0VGqZDGZwHeA6iNcWI+QLJjlDkj1YIh7T9hfSsAP1QMxC8R2lCoE8aDHrlijRP69wL07uH/5pp6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=XlenU/tt; arc=none smtp.client-ip=52.59.177.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1770263587;
-	bh=wm69aKVjK11vnsxnHJGFhJ/kRVDFOCLUX2gZdnB/g8I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=XlenU/tt4yQUCIrJDC+2/APViDsEw4d00JQvlV0iwlZ2uuiQF7lDbo9uSlSRCNFMr
-	 hEMphAOcNd3dtaQbzJ6dxTmO5C9wxtItD+Dxi1uG5bdof0ukAqUOE0EGOupBOvGYLM
-	 9iREnwjbv5GQyB688icYQeuRrZkl5gB3n1B6tTnc=
-X-QQ-mid: zesmtpgz9t1770263580t421bb8f8
-X-QQ-Originating-IP: EPC+6trZL3LdU7ynQgp73ZdxqgtF89P3sFaSDK6EZQ0=
-Received: from [10.3.91.191] ( [101.70.125.34])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 05 Feb 2026 11:52:57 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 1569306416083050966
-Message-ID: <927D288E956D61AD+d1488c72-afff-49d2-bb6b-5ef5ea08b627@linux.spacemit.com>
-Date: Thu, 5 Feb 2026 11:52:57 +0800
+	s=arc-20240116; t=1770268334; c=relaxed/simple;
+	bh=+t2FVxb6adlC40C/KN3UcUK2sF3exvhUGqedvKysN04=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SLZcpqEwZnL2aSd7VAdSGSlShJ4oow/mY5il4cx7VY3TV6rXHBHlxkAmrop+L4asEzJuZbKmGBCvNEhNHXDum2++q5BDqLL6KnJqcL2lBOYAx4NYNCEuqPTNqgjJ2P528kAUgtTB66i67jghvMPsCUY6CbX0YDOj/w1zkqOsOCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lD+XHwB0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4393BC4CEF7;
+	Thu,  5 Feb 2026 05:12:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770268333;
+	bh=+t2FVxb6adlC40C/KN3UcUK2sF3exvhUGqedvKysN04=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lD+XHwB07IKQtU1evDvpKo2wO02xGc39H3JoCnA0gUjPzNkgs6S7O3d7IdC87keI9
+	 MuMJtMQ+ijsXXtHgKOd9JP8XjQndA8pG9amuacPup90CKzNByhM2EBBIUAmHYLMoEF
+	 LB8H1b+gbcbcZvGrl0wr+udRwZmjsCmihx1afqeqMt42SlSoBRGvn7S+jWOxWALJPa
+	 uJ+BJETFTiZDA1tftA0iCPdYOxgC70XuW4UGlM59Wn0CkQpxFV9BzDF3M9uKQxVKuc
+	 +Agv2u2xfDmHMCMi6tS9ezjhbvpKip9Tbpwplc+bcuFgHmiB71IcIbBd0GyJtrn6+O
+	 Cz58Y1v5+z1SQ==
+Date: Thu, 5 Feb 2026 10:41:59 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Sherry Sun <sherry.sun@nxp.com>, hongxing.zhu@nxp.com, 
+	l.stach@pengutronix.de, bhelgaas@google.com, lpieralisi@kernel.org, 
+	kwilczynski@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	s.hauer@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de, 
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V3 02/10] PCI: imx6: Add support for parsing the reset
+ property in new Root Port binding
+Message-ID: <geygcp65goaajdy4lxwnux6qw6v2lbbhphk7yqnlsfrutpgszm@vnwqt5ifhmzo>
+References: <20260203015614.2957479-1-sherry.sun@nxp.com>
+ <20260203015614.2957479-3-sherry.sun@nxp.com>
+ <nekxn5osukwkumqfh4qabj6okhtv4tdwrnthza4x54psrhauyf@p3lhia4mkhb4>
+ <aYIztYs/07WBLsAq@lizhi-Precision-Tower-5810>
+ <pz5zmte5dbb23ccwvc2xkl4grptr35bmcwd6ohlzo2arjopgkw@t3euzojtsoyf>
+ <aYNk6C_W_oSFVqbH@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/8] iommu/riscv: Fix WSI mode IRQ number handling
-To: Andrew Jones <andrew.jones@oss.qualcomm.com>
-Cc: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Jingyu Li <joey.li@spacemit.com>,
- iommu@lists.linux.dev, linux-perf-users@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- devicetree@vger.kernel.org
-References: <cover.1769562575.git.lv.zheng@spacemit.com>
- <cover.1770195980.git.lv.zheng@linux.spacemit.com>
- <F77F878EF7C59BD3+a9078997d97dacd05d1271a5390dfd08a402b325.1770195980.git.lv.zheng@linux.spacemit.com>
- <2ueryrki7uzpjn6rbqz7scy46sjhw76jjilddz2naslz3eyfdp@ycwf42eaw5yy>
-Content-Language: en-US
-From: Lv Zheng <lv.zheng@linux.spacemit.com>
-In-Reply-To: <2ueryrki7uzpjn6rbqz7scy46sjhw76jjilddz2naslz3eyfdp@ycwf42eaw5yy>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz5b-1
-X-QQ-XMAILINFO: NkcbD1JCaMYVot0ytSeIR7Dz6bzvlckuXTyS4hOhnUigvUCllm6MGiMN
-	/BLUvEGgC1Stx1pm62pHC8S4zCGpznfJSMRS2ZTrFHXc+6cFN7T6uDveXanpClvzm6K5r/C
-	lmi7fSEfffeQANGGKdohROR+rcsxANxbe6YCgPA8MXWcpM2QfuLD69VWe8NkGBgQQMLXo+A
-	5jqITmrz5dQXSKWZP1dN/X5kU0RyUqoKcWdhDzz/vp1HgKXmvS5s7Yukx8QWgSz/EIN1fAW
-	KDlepZO49gPVFCu1IC3GX/lVjAG09kSTDXjmMOjxjJ7VeaEHZ9Sm1WFFyfacKHynV0wjIcf
-	s2j1uUNvIAh7Oz1QM6y5cEfs8ZBGHcb7yZLB9WK+WwrqDKH3iACiH9nfzZZW1TjPNF3GH5g
-	EnHgsuZPx8Xs8axjTAKSgA8b7Ywf/4iZyMNf3aw3qzOx8RZ3F0bpl6MyVzjW2KoeS0R9i0V
-	ce409LN0yXuVNpElzLmWY5vxRC7CnEi6cKrF+Pf1wjzAMbhTcAbAf22QuVTdmGwZ0trTp1C
-	hVbr+lTcNhRIE6GARbcftpOadWOM7nLwuZKDq8Gdtnhyw8O+73KxKP7fqKF29ByVc8nIWWw
-	ZP1UidPBfBXc9fp04xDVq2JPSOmycZUaQ3Ii3jSBB8TzNa50Kh8ygSpaN/Db1YJwAQWE4uO
-	K8wjJF7DJ6ienD/rVR5GxWsb/RGRp3of3EQMG4k1nmFEOlt6nmhl5ibqJe313ohvquujU6d
-	zDz7QGrCDzMzntK5Txt1fcLvaNPvkLN2c6+Awu4zPWm/TZFg40rOyvtc879pNpqL/dzGvVW
-	TNfCNqcL4z/gBRs8j622dAN+YTldYaW3F6gkPVZf66nsSja9NOecU6GBFYvWvQEIH78B30F
-	eoXInXTP7yVfImX4YrVBgUD1HhPQrTUGEDUFgXnay6nQLS3bpcLT9yfIojkqQL1BE6/lVSK
-	nfw2aXh/Mu0BCtcT4cTGcQVt/8h/wJFvnuuKJw96M/AIsyluDvL2cx1/0mzVkl3hNw4xlFo
-	Kbo3xJVdfAeKtUunaOU86X2n4F9AMZjh3P5Van4bd2c2vTRcNC
-X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aYNk6C_W_oSFVqbH@lizhi-Precision-Tower-5810>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-262850-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262849-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[spacemit.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_MUA_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[linux.spacemit.com:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lv.zheng@linux.spacemit.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[nxp.com,pengutronix.de,google.com,kernel.org,gmail.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.spacemit.com:mid,linux.spacemit.com:dkim]
-X-Rspamd-Queue-Id: 1E878EE6C6
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,i.mx:url]
+X-Rspamd-Queue-Id: 2DD8EEEA58
 X-Rspamd-Action: no action
 
-On 2/5/2026 1:20 AM, Andrew Jones wrote:
-> On Wed, Feb 04, 2026 at 05:08:52PM +0800, Lv Zheng wrote:
->> From: Jingyu Li <joey.li@spacemit.com>
->>
->> In WSI mode, ICVEC doesn't exist, thus reading it returns 0, which
->> causes IOMMU driver to fail to find IRQ numbers from device tree
->> IRQ arrary. The issue is fixed by applying icvec indexes of WSI IRQs.
+On Wed, Feb 04, 2026 at 10:25:28AM -0500, Frank Li wrote:
+> On Wed, Feb 04, 2026 at 05:58:33PM +0530, Manivannan Sadhasivam wrote:
+> > On Tue, Feb 03, 2026 at 12:43:17PM -0500, Frank Li wrote:
+> > > On Tue, Feb 03, 2026 at 06:38:18PM +0530, Manivannan Sadhasivam wrote:
+> > > > On Tue, Feb 03, 2026 at 09:56:06AM +0800, Sherry Sun wrote:
+> > > > > DT binding allows specifying 'reset' property in both host bridge and
+> > > > > Root Port nodes, but specifying in the host bridge node is marked as
+> > > > > deprecated. So add support for parsing the new binding that uses
+> > > > > 'reset-gpios' property for PERST#.
+> > > > >
+> > > > > The initial idea is to add the PCIe M.2 KeyE connector support and PCI
+> > > > > power control framework to the pcie-imx6 driver. Since the new
+> > > > > M.2/pwrctrl model is implemented based on Root Ports and requires the
+> > > > > pwrctrl driver to bind to a Root Port device, we need to introduce a
+> > > > > Root Port child node on i.MX boards that provide an M.2 connector.
+> > > > >
+> > > > > To follow a more standardized DT structure, it also makes sense to move
+> > > > > the reset-gpios and wake-gpios properties into the Root Port node. These
+> > > > > signals logically belong to the Root Port rather than the host bridge,
+> > > > > and placing them there aligns with the new M.2/pwrctrl model.
+> > > > >
+> > > > > To maintain DT backwards compatibility, fallback to the legacy method of
+> > > > > parsing the host bridge node if the reset property is not present in the
+> > > > > Root Port node.
+> > > > >
+> > > > > Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+> > > > > ---
+> > > > >  drivers/pci/controller/dwc/pci-imx6.c | 123 +++++++++++++++++++++++---
+> > > > >  1 file changed, 109 insertions(+), 14 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> > > > > index a5b8d0b71677..e3ba68976bee 100644
+> > > > > --- a/drivers/pci/controller/dwc/pci-imx6.c
+> > > > > +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> > > > > @@ -148,10 +148,15 @@ struct imx_lut_data {
+> > > > >  	u32 data2;
+> > > > >  };
+> > > > >
+> > > > > +struct imx_pcie_port {
+> > > > > +	struct list_head	list;
+> > > > > +	struct gpio_desc	*reset;
+> > > > > +};
+> > > > > +
+> > > >
+> > > > I'd love to abstract the Root Port properties in a generic struct so that we can
+> > > > introduce generic APIs to parse the ports. But I'm not asking you to implement
+> > > > it :)
+> > > >
+> > >
+> > > good idea, where is good place to put it?
+> > >
+> >
+> > drivers/pci/controller/pci-host-common.c
+> >
+> > > > >
+> > > > > @@ -1688,12 +1771,24 @@ static int imx_pcie_probe(struct platform_device *pdev)
+> > > > >  			return PTR_ERR(imx_pcie->phy_base);
+> > > > >  	}
+> > > > >
+> > > > > -	/* Fetch GPIOs */
+> > > > > -	imx_pcie->reset_gpiod = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> > > > > -	if (IS_ERR(imx_pcie->reset_gpiod))
+> > > > > -		return dev_err_probe(dev, PTR_ERR(imx_pcie->reset_gpiod),
+> > > > > -				     "unable to get reset gpio\n");
+> > > > > -	gpiod_set_consumer_name(imx_pcie->reset_gpiod, "PCIe reset");
+> > > > > +	ret = imx_pcie_parse_ports(imx_pcie);
+> > > > > +	if (ret) {
+> > > > > +		if (ret != -ENOENT)
+> > > > > +			return dev_err_probe(dev, ret, "Failed to parse Root Port: %d\n", ret);
+> > > > > +
+> > > > > +		/*
+> > > > > +		 * In the case of properties not populated in Root Port node,
+> > > > > +		 * fallback to the legacy method of parsing the Host Bridge
+> > > > > +		 * node. This is to maintain DT backwards compatibility.
+> > > > > +		 */
+> > > > > +		ret = imx_pcie_parse_legacy_binding(imx_pcie);
+> > > > > +		if (ret)
+> > > > > +			return dev_err_probe(dev, ret, "Unable to get reset gpio: %d\n", ret);
+> > > > > +	}
+> > > > > +
+> > > > > +	ret = devm_add_action_or_reset(dev, imx_pcie_delete_ports, imx_pcie);
+> > > > > +	if (ret)
+> > > > > +		return ret;
+> > > >
+> > > > I'd prefer to do it in err labels.
+> > >
+> > > we just removed err label and module remove.
+> > >
+> >
+> > This driver is always built-in. So the only way 'struct dev' will get freed is
+> > when probe fails. The usual pattern within the host controller drivers is to use
+> > err label to do the cleanup not devm_add_action_or_reset() (there are some
+> > exceptions though).
+> >
+> > It just helps us to keep uniformity across the drivers.
 > 
-> ICVEC always exists, however it may be hardwired to zero when an
-> implementation only supports a single vector. But, that has nothing
-> to do with whether wired interrupts or MSIs are used.
+> Thanks, but err label is quite easy to make mistake. More and more function
+> support devm_*. I think if well design common API at pci-host-common.c,
+> goto can be avoid.
 > 
-> If ICVEC on this IOMMU is always reading as zero, even when 0xf is
-> written to it first, then it should be interpreted as there only
-> being a single vector (or that the IOMMU's ICVEC is broken, if the
-> number of sources is known to be more).
-> 
->>
->> Signed-off-by: Jingyu Li <joey.li@spacemit.com>
->> Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
->> ---
->>   drivers/iommu/riscv/iommu.c | 25 ++++++++++++++++++++-----
->>   1 file changed, 20 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/iommu/riscv/iommu.c b/drivers/iommu/riscv/iommu.c
->> index d9429097a2b5..26630979473b 100644
->> --- a/drivers/iommu/riscv/iommu.c
->> +++ b/drivers/iommu/riscv/iommu.c
->> @@ -1593,11 +1593,26 @@ static int riscv_iommu_init_check(struct riscv_iommu_device *iommu)
->>   		       FIELD_PREP(RISCV_IOMMU_ICVEC_PMIV, 3 % iommu->irqs_count);
->>   	riscv_iommu_writeq(iommu, RISCV_IOMMU_REG_ICVEC, iommu->icvec);
->>   	iommu->icvec = riscv_iommu_readq(iommu, RISCV_IOMMU_REG_ICVEC);
->> -	if (max(max(FIELD_GET(RISCV_IOMMU_ICVEC_CIV, iommu->icvec),
->> -		    FIELD_GET(RISCV_IOMMU_ICVEC_FIV, iommu->icvec)),
->> -		max(FIELD_GET(RISCV_IOMMU_ICVEC_PIV, iommu->icvec),
->> -		    FIELD_GET(RISCV_IOMMU_ICVEC_PMIV, iommu->icvec))) >= iommu->irqs_count)
->> -		return -EINVAL;
->> +	/*
->> +	 * In WSI mode, ICVEC may read as zero. Only validate if using MSI.
->> +	 * Check if FCTL.WSI is set to determine interrupt mode.
->> +	 */
->> +	if (!(iommu->fctl & RISCV_IOMMU_FCTL_WSI)) {
-> 
-> The behavior of ICVEC does not depend on FCTL.WSI
-> 
->> +		if (max(max(FIELD_GET(RISCV_IOMMU_ICVEC_CIV, iommu->icvec),
->> +			    FIELD_GET(RISCV_IOMMU_ICVEC_FIV, iommu->icvec)),
->> +			max(FIELD_GET(RISCV_IOMMU_ICVEC_PIV, iommu->icvec),
->> +			    FIELD_GET(RISCV_IOMMU_ICVEC_PMIV, iommu->icvec))) >= iommu->irqs_count)
->> +			return -EINVAL;
->> +	} else {
->> +		/*
->> +		 * WSI mode: ICVEC is not used. Set to identity mapping for
->> +		 * riscv_iommu_queue_vec() to work correctly.
->> +		 */
->> +		iommu->icvec = FIELD_PREP(RISCV_IOMMU_ICVEC_CIV, 0) |
->> +			       FIELD_PREP(RISCV_IOMMU_ICVEC_FIV, 1) |
->> +			       FIELD_PREP(RISCV_IOMMU_ICVEC_PIV, 2) |
->> +			       FIELD_PREP(RISCV_IOMMU_ICVEC_PMIV, 3);
-> 
-> It's certainly not correct to set iommu->icvec to anything that can't be
-> written to the IOMMU's WARL ICVEC fields and read back again.
 
-Indeed.
-It looks I can keep icvec returned for WSI and keeps the write-and-read 
-check logic only for MSI.
+I don't think there is a need for a common API for cleanup. Moreover,
+devm_add_action_or_reset() will only be executed when the 'struct device' gets
+freed, which only happens during system shutdown. Until then, the cleanup
+handler won't be invoked.
 
-Thanks,
-Lv
+It is probably OK to free the resources like kzalloced memory with
+devm_add_action_or_reset(), but for any other cases like performing resets or
+other actions that unwind the prior probe path, explicit err labels should be
+used.
 
-> 
-> Thanks,
-> drew
-> 
+Though in this driver, only ports are freed in the handler, someone may abuse it
+in the future to perform other cleanups as well. This is why I always perfer
+using explicit err labels.
 
+Hope this clarifies!
 
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
