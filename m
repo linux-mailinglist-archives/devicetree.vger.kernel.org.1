@@ -1,63 +1,67 @@
-Return-Path: <devicetree+bounces-262927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262928-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eNPiCBNhhGng2gMAu9opvQ
-	(envelope-from <devicetree+bounces-262927-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:21:23 +0100
+	id WFsvJ7ZhhGng2gMAu9opvQ
+	(envelope-from <devicetree+bounces-262928-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:24:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDEBCF08E0
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:21:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22450F09B4
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:24:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B2E8F302810B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:18:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1D6863025A61
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:20:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7726638F23A;
-	Thu,  5 Feb 2026 09:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A530838F948;
+	Thu,  5 Feb 2026 09:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZqPt3txF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ez1qzQtT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 509D137B40E;
-	Thu,  5 Feb 2026 09:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8187F35F8A6;
+	Thu,  5 Feb 2026 09:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770283090; cv=none; b=avXD+LWTwO7rlUbHaxE8IL88axdvrlUfZVWWU1qu7Vr1Cbwo/ozqsCVLTHYDxkaqM+TyMsiYY4LN0T53x3saVP3hZEbPls+j/ulhdbDeLR+UTEynnYUs1tkE7owoO0bQZ07ZiRMr8owZj0GEuplovizCbVsZcfbV5fstNF+GMXw=
+	t=1770283253; cv=none; b=IOLt4GO7kHj2GobRXdUm2lN1ydF5YGw+0DRrNArxJl4ow2dm9U1AAlbcW7gEzZVVTuARuYqT/t5umPh9QAHbt82jzOVnDoZkDnMM4ljBEx/n/krw5hjt2SaxjAIjPDUKOxJbZ84geL3iq8EsI6vpYPzJzkV+GTu5FniREdV0F5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770283090; c=relaxed/simple;
-	bh=MIondRexAFNOOZkAfp9HG0MC0jg45UwMMDTDXejN0W4=;
+	s=arc-20240116; t=1770283253; c=relaxed/simple;
+	bh=NRd5oHFvHBd6W3hDw0oXwMkQXN1d4sUNHl26Lk8tCEY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qahRasR74nfjE+cmtg/xFAkGFTtiQcv1YqModTHKUbZNOEPl7GkXcirqfqXF+AblQcTMvQpffWcyxskrrxQVDRL+Yg0uB2BBdG3QT3VGyzAAft0hChtAQsG9Djv6JYq1agCTHXocJfUwKFgVHY1bC1PDDFBa4y/voNxnt/ti7MA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZqPt3txF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A83DC4CEF7;
-	Thu,  5 Feb 2026 09:18:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=g/NhnK/bU1TWPMsR+EUYktgxW5MvAe4BU2g1VJ0Uo/4ORX+BoSwr3YvB08MPC4jlRP0Rt5lIduN+59si0jmabKcaykU/MFg8oBJrnKRWfkfS/T2hpABJwyw/ZisS33YjBVIzohWh+Fd7LLRuc4hes11A5mkZhH61BDPlqChC4sE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ez1qzQtT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EAFBC4CEF7;
+	Thu,  5 Feb 2026 09:20:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770283089;
-	bh=MIondRexAFNOOZkAfp9HG0MC0jg45UwMMDTDXejN0W4=;
+	s=k20201202; t=1770283253;
+	bh=NRd5oHFvHBd6W3hDw0oXwMkQXN1d4sUNHl26Lk8tCEY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZqPt3txFj+aJc2xLHLkLeHaSqTbPO6PH/7h36YygQaNtCFQodBjhp2rOxNJpQSYnm
-	 PLBWe5r2+YX9LeAehSfe9RR/SbrtSMhXgqeBKffjEspgHfAJgzeXTdXkdQtu3aU7X7
-	 xQyV2fVSxjOZ3iwMQ6ZOZ5UjyCXtA9DGT8cpkUy2AnSD/UvYpLC6mv0JcwdAGNykX7
-	 X8PMP7St0ILEGgBwGHu8BQcYPzw6Yz9cbu6ZbsCGcTKAoxG7Ev/V0XfUO0R4xhsU/k
-	 BUgz7BuMeQmCVSPwxoA7mELlktMONTi+ivYqlxugjxHTNKfWWQ3TTAL75KqB2HpEYW
-	 Byvuoo+ETupPw==
-Date: Thu, 5 Feb 2026 10:18:07 +0100
+	b=ez1qzQtTp6tu3mb1Ub20jyWGn7go7h/4yIexj4UGZgLB67tk6Gwl8kWZT+HPQp3uk
+	 rYszlsTGDnAoNuWwirmh/3mO4R9F5w1zeS58t683G+Bjuk+WDWlTV814/k04lv9HMu
+	 FLzuuwisxULTORI2i8G1ol2JBopn0pt9+F3C+GdhoEdi2At1eS6q1bmFsnZSz/JY8M
+	 q1DOEsLfMx8utTbBoVtxTNsZgAmkNYq9s0VxsARK9PfGMTSR5HPxdpUTMaeHKMKs4z
+	 5ARGxy/aS3yOL6oG4CjKYib1vdoBquN1VzidvBxMhjMoYW/1TgJO4O4RwUpK6L9ix+
+	 j6CtcKlz2BBMw==
+Date: Thu, 5 Feb 2026 10:20:50 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, 
+To: "irving.ch.lin" <irving-ch.lin@mediatek.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Rajendra Nayak <quic_rjendra@quicinc.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v6 1/5] dt-bindings: sram: describe the IPQ5424 IMEM as
- mmio-sram
-Message-ID: <20260205-classic-cute-panda-a97bad@quoll>
-References: <20260130-wdt_reset_reason-v6-0-417ab789cd97@oss.qualcomm.com>
- <20260130-wdt_reset_reason-v6-1-417ab789cd97@oss.qualcomm.com>
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Richard Cochran <richardcochran@gmail.com>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>, 
+	Miles Chen <miles.chen@mediatek.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com, Qiqi Wang <qiqi.wang@mediatek.com>, sirius.wang@mediatek.com, 
+	vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
+Subject: Re: [PATCH v5 01/18] dt-bindings: clock: Add MediaTek MT8189 clock
+Message-ID: <20260205-garnet-okapi-of-experience-dd7f84@quoll>
+References: <20260202062840.342707-1-irving-ch.lin@mediatek.com>
+ <20260202062840.342707-2-irving-ch.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,26 +70,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260130-wdt_reset_reason-v6-1-417ab789cd97@oss.qualcomm.com>
+In-Reply-To: <20260202062840.342707-2-irving-ch.lin@mediatek.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262927-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-262928-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,collabora.com,chromium.org,mediatek.com,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
@@ -93,16 +99,23 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: CDEBCF08E0
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 22450F09B4
 X-Rspamd-Action: no action
 
-On Fri, Jan 30, 2026 at 04:14:30PM +0530, Kathiravan Thirumoorthy wrote:
-> Based on the discussion in the linux-arm-msm list, it is not
-> appropriate to define the IMEM (On-Chip SRAM) as syscon or MFD.
+On Mon, Feb 02, 2026 at 02:28:08PM +0800, irving.ch.lin wrote:
+> From: Irving-CH Lin <irving-ch.lin@mediatek.com>
+> 
+> Add dt schema and IDs for the clocks of MediaTek MT8189 SoC.
+> The MT8189 clock IP provide clock control for main system
+> (apmixedsys, topcksys and vlpcksys) and
+> subsys (eg. peri, mfg, venc/vdec ...).
+> 
+> Signed-off-by: Irving-CH Lin <irving-ch.lin@mediatek.com>
+> (cherry picked from commit e2402a4f2db8db0ef3cf8613f42397aaa199ad29)
 
-3rd party discussions without any references are not valid reason. You
+Drop...
 
 Best regards,
 Krzysztof
