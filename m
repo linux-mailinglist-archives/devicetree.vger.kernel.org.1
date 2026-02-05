@@ -1,212 +1,233 @@
-Return-Path: <devicetree+bounces-262881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262880-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mJiPK+ZJhGk/2QMAu9opvQ
-	(envelope-from <devicetree+bounces-262881-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 08:42:30 +0100
+	id KMyxBNhJhGk/2QMAu9opvQ
+	(envelope-from <devicetree+bounces-262880-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 08:42:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C639BEF85B
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 08:42:29 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AF32EF83D
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 08:42:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DA9EF3008454
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 07:42:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6C0B4300E242
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 07:42:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF30035D5F1;
-	Thu,  5 Feb 2026 07:42:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28E4D35B65C;
+	Thu,  5 Feb 2026 07:42:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="beTqNtTE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DiWsUVJW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A1D235D5E0
-	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 07:42:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.173
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770277333; cv=pass; b=WPvR+Fhuei2tknRupjTfGcqHucRbffWsQCgWdbLZP039K/Br/+80d5st3UOXekCXYwLCR8kLDdrNHWCrzpPCbbEdnM0rhlVWsRsnCueD29HuDVw6tp9DIqT1GgSdoaJHFMkMgyHHV8XtLSTrJ8N0wFhba0M4UbI2FmG/8Pn3lQw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770277333; c=relaxed/simple;
-	bh=S/nsTC1/V0Udh3YCNfcgu7V9ClpdOHlVkJ1LUE3M760=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZcY/pW26O0dyuMGbcCTBCWWT5ZEOh7GPzKdSBj4kkPBw44EisgcfMymM2nc+PqxxXFn2dJC5AcGD+lA/PjiOSxV7GI7vnooFieVaULa1+wvpxndrQyJeSMNA56JryNs+B9nNJWS6k03g3Ru3aS4wkMGL/WgWWAQdP45h7EIckNo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=beTqNtTE; arc=pass smtp.client-ip=209.85.128.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-79273a294edso5672387b3.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 23:42:13 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770277332; cv=none;
-        d=google.com; s=arc-20240605;
-        b=TIn8SPIyOQywPYlxCyT2F7BY3Th5htBh5tLE3XtoA4x9leVm5BFp09aFg6tOPi5eIn
-         f1NF3Dxa2vGjpY7CD2X66SBbnJPvbaZ4wySkluixtBO02THrADhOGtHFXyVpq75ZzJkT
-         HP+tltX8Nnv7szbNScYGckLcDcjXJ5FsE+2t3D3FNYt3yLyzw2ATtrGdbWgHrP56WRUP
-         sZvR6VS8oGnJtRpeNe55TWcl6N+DLxdU3kpRxEpRnFBkplsFdRBm2ME9IgdphpJHDlX5
-         sxyog3yIwnC0HLlYyUFyWWaUeSvbncauHYp7noB+GlMs+TVdaIaIWz7fSgkteupkTrtt
-         GEIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=vCsVndFzrtL2hxIQjBbohAaFr2ETBAeGKs4H5l+MANM=;
-        fh=NmWZ+ufS7lLtc8xlH432ngqNhIx7aMyGcKlgtKM4t9Q=;
-        b=al2d7//Uhsm+BoojjQGEdgdju2rwlkvwdu0HSuW2z7mW10PPTxNuJdfJfJPSv48NNO
-         MCARLMf9TxlwYz/XZIybI5tClU8m9jg1SKNFMYH2suObkFNG1f5NpGZcvbyzn3HC4VEE
-         7f6A81jUnRB2Mfz+h4lNwPpEnJ1SzWyxJvjfDW1/rtjGz2oHuWaVVeeLT6Rmv+6rzBBl
-         y1DPyiUJHqrNvPEZ/KdwRS7GLstwMX9FM5Ac+RxNlYg7njxLsEztPFtI7XS4oYWvf/N5
-         w76wimJ5N4qIhFP7wK2RQUhmx/JxfAfcUgclg/40N+l8zdJrGuS9zSEKy9uXxsr85xIO
-         ertQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1770277332; x=1770882132; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vCsVndFzrtL2hxIQjBbohAaFr2ETBAeGKs4H5l+MANM=;
-        b=beTqNtTEL4S07cjGX5zXYk2Pv85KJ0b3Bf2RIhBLmCk4vcMZnhxtsTsWNNM6FG+b+x
-         iYNGoNHyIwvJwBlOcnijUFlFOCMjR441D+i3LLH6Su29GbcNq3tBquAIAeeoAD19HM19
-         mTXBTxc5Q6KjqYlXFRjWZsVcZqKakc/Bvk8MTHGKTCBsBT/1QbX7bnPxSXH8+NA0mo1w
-         fv12llj/9qosYhUbqy8Lpea8U4GE/zamNNnODiYNNzZr5C/Ph08cjzHojSlgAZHrTzes
-         f0pqPeOnbFJdW9fY2xrYDalSpNv15bShiKhcKXGzfw1GHx5MINkn4G/+0JTqS2HsaerY
-         ESkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770277332; x=1770882132;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=vCsVndFzrtL2hxIQjBbohAaFr2ETBAeGKs4H5l+MANM=;
-        b=Y8iiuQHriayzBNucicoww5c/xfMslsUMt7k5Tuq1Hqtott/b8C3QmQQG9vBQrZfn5z
-         DiIhuEvFRRT85Z6uecC7MW7f8geUDksu4XWE/Aiq7l49+Aezy85sXydbueewVEgKUSuq
-         78Nbg2m8yGqqIbqoEjI35UR0MgtJZpn45Z+9dteUo+LwbzYr39tH2G/WBhUn1UsenLNe
-         bYtumLuKO+i381Qm50pNgvIJLW/2co/99bp/igQyJufwIkDUJBgDCrd+NOurKKBEQ4uD
-         FBS9uHs5Pwg68ToHUTksKDdczJ4/j91aryOrXmfpCNp0XC9P/5pdeKXyTdRGl5vCT77q
-         ZDAw==
-X-Forwarded-Encrypted: i=1; AJvYcCUO9fy3PAdfYOlkQWYnXfH/1S0vMsi+jAm4q5fwud5KZohpJVXF2bosXVhXcBLx+Rs259rVx7YjWCqM@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyB6E8BgdL4MzVYpUBbROvBkHwjCTZzSRJWS5Sxe4GzKUF/A+v
-	M/bvXhdeQtb5mHUklHKUkxmrElYyHJW5TTAij4kNNH5j8ogVMdEl5hlBImFDgnXxv9pWREwHiqB
-	Tk4/SFLUiMx4AoZOVQpWdOULv2X2VHs+NlYkPufDyYQ==
-X-Gm-Gg: AZuq6aL+2Ff/1CkC/+U++9mlLc/C/l08qWptLvPXrJ1FgdJ8HoE5KwOFO7fBcRAqzod
-	kWjVNHDRB0fRUZ6KvIloxi76XS+qapwcPaolnZDYHJc4XOYkmCGw7nqZTUlALyOHk0D+ruHxxM4
-	SiC9pZYqLVUtSmpsQq5xZQv/IJmja7L3o7pEG6w8NTGcXoEIVWcNmj2VkvO5M8lUm3LTJWtu8GV
-	c0Q6JTM5vdaT89/wJCGgnA4nKPQVC7zHswyfXfA0G1ATukS8fUCafUzB5X49aqGyFzHKdOcVaa7
-	DjdcEmUs2vpj291xCyPu/6k6W30Rjm+3DXOUY0AdSQg0
-X-Received: by 2002:a05:690c:39b:b0:794:fe8f:ad8b with SMTP id
- 00721157ae682-794fe8fae16mr55216627b3.29.1770277332375; Wed, 04 Feb 2026
- 23:42:12 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04D7731AA82;
+	Thu,  5 Feb 2026 07:42:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770277332; cv=none; b=qL7MpOw9BHiSaSuMvqgG100eMvdr7AZfohez9nhDk2cvNTwpDCnwVLwC8Qf5TLgZpIGRdb4XKDwMeZZupBfAK+tamFGhpEK4rx37q95bUBviX2/DPlFHzur0IXm5f90Bcyl/43KeUPChuwVqceg0Ewfs3VnxftI784i8QoLt2HQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770277332; c=relaxed/simple;
+	bh=vxsRNhhMqsXkIeAaWgISTL5b8JFF5Plf1CZFQkQgz60=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=U63DstmiVeO0zHhY50hcEASJrt18W79uDZzquLShd44DmCC5nxQthYEtnmnvh7G50jH0uIhlk85ZQheUswEpyS7xaUGXy09Gvw2awkbIGVjC/Au1pPj5NDNKTCmWT5tTkcongTgFXZflQhnf5pxVtzo+Gn0/7Aoo8U5gwq/VqfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DiWsUVJW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF6B0C4CEF7;
+	Thu,  5 Feb 2026 07:42:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770277331;
+	bh=vxsRNhhMqsXkIeAaWgISTL5b8JFF5Plf1CZFQkQgz60=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DiWsUVJWWHJIgUBo/R1CgUns3X3kS/lFz8zsXrFOPWG1e+7W7DXTN8iT4gkHra7B+
+	 10UHDDZI90njdvz1wmGTa9A/cb637opg4lTOntRohSWVBkdwjt4mp7ehshnmO4iwSd
+	 +WHqiP/EPP4kbFyBzlgMDdeszRoc/6mxS+hpf6x1LkQKyRo204niNX8DgUZclpw+sj
+	 kqgUopmOXKZmZvXd5c5jH+linCzsMn19mVWrB6vqhhDQTkCAzs5yd+ipponUUvlSwT
+	 a0fGXR8H8kMpFPZq7YDZ3+t883Bse1AeoPSWSUX32+QogMmU32Xmxbes/bzBACush1
+	 EqvanbhiB11iQ==
+Message-ID: <8bd3e01c-80e6-4691-b80e-95457aa92d93@kernel.org>
+Date: Thu, 5 Feb 2026 08:42:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260204-spacemit-p1-v3-0-a894b3057026@riscstar.com>
- <20260204-spacemit-p1-v3-1-a894b3057026@riscstar.com> <20260204-unlucky-raven-1ca0ed8f3392@spud>
-In-Reply-To: <20260204-unlucky-raven-1ca0ed8f3392@spud>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Thu, 5 Feb 2026 15:42:01 +0800
-X-Gm-Features: AZwV_QheG0gYs892iDNFuUkxDWoz1fptgEI2peyofeZxhFHIoYa7PK0YeWnUmlw
-Message-ID: <CAH1PCMZ9S95JHzuZc1hG0hwxjVmCg9RezZ6rNjt_xQ25FokQOQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: mfd: spacemit,p1: Add individual
- regulator supply properties
-To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
-	Alex Elder <elder@riscstar.com>, Lee Jones <lee@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: usb: axiado,ax3000-udc: Add Axiado UDC
+To: Vladimir Moravcevic <vmoravcevic@axiado.com>,
+ Krutik Shah <krutikshah@axiado.com>, Prasad Bolisetty
+ <pbolisetty@axiado.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ openbmc@lists.ozlabs.org
+References: <20260202-axiado-ax3000-usb-device-controller-v1-0-45ce0a8b014f@axiado.com>
+ <20260202-axiado-ax3000-usb-device-controller-v1-1-45ce0a8b014f@axiado.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260202-axiado-ax3000-usb-device-controller-v1-1-45ce0a8b014f@axiado.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.06 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[riscstar-com.20230601.gappssmtp.com:s=20230601];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262880-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-262881-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[riscstar-com.20230601.gappssmtp.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[guodong@riscstar.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,gentoo.org,riscstar.com,linux.spacemit.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,riscstar.com:email,riscstar-com.20230601.gappssmtp.com:dkim,0.0.0.41:email]
-X-Rspamd-Queue-Id: C639BEF85B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,axiado.com:email,devicetree.org:url]
+X-Rspamd-Queue-Id: 7AF32EF83D
 X-Rspamd-Action: no action
 
-On Thu, Feb 5, 2026 at 2:07=E2=80=AFAM Conor Dooley <conor@kernel.org> wrot=
-e:
->
-> On Wed, Feb 04, 2026 at 09:23:01PM +0800, Guodong Xu wrote:
-> > Add supply properties that match the P1 PMIC's actual hardware topology
-> > where each buck converter has its own VIN pin and LDO groups share
-> > common input pins. Supply names are defined according to the pinout
-> > names in the P1 datasheet.
-> >
-> > The existing "vin-supply" is marked as deprecated to avoid warnings
-> > as dts and dt-bindings go via different trees.
-> >
-> > Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> > ---
-> > v3: Mark vin-supply as deprecated.
-> > v2: Remove providers from the dts example.
-> >     Pass the 'make dt_binding_check' test.
-> > ---
-> >  .../devicetree/bindings/mfd/spacemit,p1.yaml       | 53 ++++++++++++++=
-+++++++-
-> >  1 file changed, 52 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml b/D=
-ocumentation/devicetree/bindings/mfd/spacemit,p1.yaml
-> > index c6593ac6ef6a..41f784408e29 100644
-> > --- a/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
-> > @@ -28,7 +28,46 @@ properties:
-> >      maxItems: 1
-> >
-> >    vin-supply:
-> > -    description: Input supply phandle.
-> > +    deprecated: true
-> > +    description:
-> > +      Main power input (deprecated). Use individual vin1-6, aldoin,
-> > +      dldoin1, and dldoin2 supply properties instead.
->
-> What's the point documenting the deprecated version if it doesn't work
-> anymore?
+On 02/02/2026 14:16, Vladimir Moravcevic wrote:
+> Add Axiado ax3000-udc (for USB v2.0 ports) and
+> ax3000-udc-gen3 (for USB v3.0 ports)
+> compatible string for AX3000 SoC.
 
-Keeping "vin-supply" in the binding with "deprecated: true" avoids a cross-=
-tree
-warning. Since dts and dt-bindings go via different trees, the new binding =
-+
-old dts triggers:
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
 
-pmic@41 (spacemit,p1): Unevaluated properties are not allowed
-('vin-supply' was unexpected)
+> 
+> Co-developed-by: Krutik Shah <krutikshah@axiado.com>
+> Signed-off-by: Krutik Shah <krutikshah@axiado.com>
+> Co-developed-by: Prasad Bolisetty <pbolisetty@axiado.com>
+> Signed-off-by: Prasad Bolisetty <pbolisetty@axiado.com>
 
-Rob flagged this in [1] as 'intermittent warnings'.
+Please use only real authors here.
 
-I'm open to dropping the deprecated markup, maybe just accepting the
-transient warning is fine?
+> Signed-off-by: Vladimir Moravcevic <vmoravcevic@axiado.com>
+> ---
+>  .../devicetree/bindings/usb/axiado,ax3000-udc.yaml | 59 ++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/axiado,ax3000-udc.yaml b/Documentation/devicetree/bindings/usb/axiado,ax3000-udc.yaml
+> new file mode 100644
+> index 000000000000..15658b5c924f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/axiado,ax3000-udc.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/axiado,ax3000-udc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Axiado AX3000 USB Device Controller (Corigine-based)
+> +
+> +maintainers:
+> +  - Krutik Shah <krutikshah@axiado.com>
+> +  - Prasad Bolisetty <pbolisetty@axiado.com>
+> +  - Vladimir Moravcevic <vmoravcevic@axiado.com>
+> +
+> +description: |
+> +  Axiado AX3000 USB Device Controller (UDC) is used on
+> +  AX3000 SoCs and evaluation boards. This controller is based on a
+> +  Corigine USB IP core and provides SuperSpeed (5 Gb/s), High-Speed
+> +  (480 Mb/s). It supports control, bulk, interrupt, and isochronous
+> +  transfer types across multiple configurable endpoints. The node
+> +  describes the memory-mapped register region, interrupt line, and
+> +  other required properties for the UDC hardware.
 
-Link: https://lore.kernel.org/all/20260129181604.GA1398997-robh@kernel.org/=
- [1]
+Drop last sentence, completely redundant. There is no point to explain
+what the binding or DT are.
 
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - axiado,ax3000-udc         # AX3000 UDC (USB 2.0/High-Speed)
+
+-gen2
+
+in such case, but I don't like these names. They are awfully
+non-hardware looking.
+
+> +      - axiado,ax3000-udc-gen3    # AX3000 UDC (USB 3.0/SuperSpeed)
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: Base address and size of the UDC register space.
+
+Drop description, redundant
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description: Interrupt line for the UDC.
+
+Drop description
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
 Best regards,
-Guodong Xu
+Krzysztof
 
