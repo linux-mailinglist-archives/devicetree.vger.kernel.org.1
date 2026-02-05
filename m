@@ -1,244 +1,263 @@
-Return-Path: <devicetree+bounces-262887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262888-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AEovBG1QhGkh2gMAu9opvQ
-	(envelope-from <devicetree+bounces-262887-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 09:10:21 +0100
+	id sLyIMtpShGkx2gMAu9opvQ
+	(envelope-from <devicetree+bounces-262888-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 09:20:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E662EEFBF9
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 09:10:20 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF3EDEFD0F
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 09:20:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5C357300D999
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 08:10:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3398F3002B7B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 08:20:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F13B8361DC1;
-	Thu,  5 Feb 2026 08:10:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iEUiPBrO";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EMerfe3Q"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5E9E361DC5;
+	Thu,  5 Feb 2026 08:20:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E660361DA4
-	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 08:10:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from zg8tmtyylji0my4xnjeumjiw.icoremail.net (zg8tmtyylji0my4xnjeumjiw.icoremail.net [162.243.161.220])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFE1D360756;
+	Thu,  5 Feb 2026 08:20:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.161.220
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770279005; cv=none; b=T0eXPOP9wttZRIJpSbrDOxmf+JYI0SGLlQsM3YwbhSdVQyjr7TI+BzKAqLB2GoUW3EkaGmzIklYsAJw2fEDbIvybmE3RKL1E9sC3tu3396kEZ7nPLO33qP+OKQ089S4qkjLOEbBaHF4qhjX5sska7YHWZ2YEWPdrh+/I7rYiIiM=
+	t=1770279636; cv=none; b=oelSZljEZor1WqlZSfBiryQb2BhccxhA/6kI1BwxJ7yEYbv/YKS07UUIahB+joHkC8kZ3nyspk9QMJxBnvHD+7+ZQeWQnszuVZjGiFN0qkFBaXM6z33MzYUU+GdEMg87M6Rfn1QdLqHmABkq6OG3ei8VsamLVq3zKJNNgfTYcWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770279005; c=relaxed/simple;
-	bh=31BKYP0Nlhr52tfXs2A8uGkTeifCfvGi22PcYSAYp/o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dLwrO8+Od+yCnyUDSD8Fyoo/c16Y9OCVh/3qMG2zijrOexs75STNp/FprWzIVxEfp9cGErYfsAr6Qcc2/+4rAshYtRAvkiNxqmU/au1RUvJgZehuVMfw9VCQad7UhYBD/H8nnW3EDxfiYqUhDgjgDMsNLXqdGA9BIl4XlH90yow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iEUiPBrO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EMerfe3Q; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6153dmoR3397128
-	for <devicetree@vger.kernel.org>; Thu, 5 Feb 2026 08:10:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	a8rDuGUPyagZOfVWM+f/BrTixnTf4NeRHC5TK7Tyqkw=; b=iEUiPBrO91RmrhUa
-	NgQ2fl6CgspcdHcFktP7O8JSlhyMfMc11W4F/N03QNnaHvC20g3Zl2YdhuVGkPBj
-	7o0YC8drrm7VbWw9gWSeQUrK7SkC16k5FEeo34GPlpMfOcts4CSgvlbqp2tbCfRf
-	FLQCG8wnorn6YwH5CWUl6ZQGdZs98X48tAE0vqWbtsz2Jo0AT4Gv10yldJLolAUT
-	jCUNOO7Ke2AIwOCiioRA2Yaq3HAs8JEiUzp/LS3qsIro7WB9i94i7uPVtWjX8See
-	OdZiqA41kskQnR352Apb1tX6f/cBtrPiloUCJYZTd2N0QLiA84ozIY0XI0rajO5a
-	Tu+Vpg==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c43dh3qcf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 08:10:04 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-35301003062so1693202a91.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 00:10:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770279003; x=1770883803; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=a8rDuGUPyagZOfVWM+f/BrTixnTf4NeRHC5TK7Tyqkw=;
-        b=EMerfe3Q985LaIxlKWSf08iXTdAIm/7Eqh4zwQTT51Q09dTduWKgdVbnTPeENkiV8e
-         QWFrsNrkkqSYBq5SsmVdaJpwZQ9E9RNIbzBxpEToSvS5jlwTAb54OUOiMmOUGH5eMh5C
-         MoT8dVsAXVUXbfDx8Y8w+vikuJoKn+bly+xsWs31L1SEHQYemsYXpPPVdgWY1z3GmRl+
-         C9mNI2VRSWYO11Zj4Y1pKECZj6K+Lah/E4Fn5hCTi115lmbQxYsAdNzlLQPmB47au9ru
-         FJM5FEUSYWtJU7Zb0wObXUKI4CVPGgwcuK+0ocb/050R3k7U4cI/06Wyy/i+rrNCm0TF
-         iepg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770279003; x=1770883803;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a8rDuGUPyagZOfVWM+f/BrTixnTf4NeRHC5TK7Tyqkw=;
-        b=ewdRMXx1VRp6+ssgtB3iq7eLdHaW8T6bHYBaPOmhUAZFqRdpwDGiMdANXTZpGeHKCw
-         2xOIS+Zwbt9EEvh31psyWef3IO2nAKYehNqe9Bl7i88SMusOz/UegTAdp3u5DkneDSgB
-         QCweO3hLhlxaU/Ohstcxksl6xoqvUDP7sn60/2LcgeCsovrcqGf7uUPZzbYf20g132T0
-         f7TzkGhjMfViKgTcvqGnKK110vkHMSTZOqV0OgzHzHAXyRm2dNXzRAkkNey8of+9Qcrj
-         /x3T+GbMuq39JDWZb8BSYoJCY4rhyvjaM6gHjus/e9mHh0xVKYa++9PGMt1g3KD5e3PA
-         irXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU5DK/7F4Cm9JEPCCCS+aEKnIkXDp1TxPI4uU+0zxmjUWHwGauWk3YTSvMR9Gn8GARzYJ6h4EkNSHzh@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywn5qFsITMI3K/fKXEUgB+l0mfjiT0rZwey/cn1cHjSklvtZlWw
-	ktSXbdEKJxLy72IUnXba3oq3oYRauKryUcIzT8ZD1Tus8HvC4v9zXtR6My15UyEWJHVqouKs4RX
-	hWHkR6n3X2xY4bPM5iQHhzFm9oax39jUk0to7fVZTq0PCeT8BH2FOlQAR+donlWVt
-X-Gm-Gg: AZuq6aLW/9afKhhswoZgvL0HxpCE54L/PvxwgHK2xM8M5Ly3oEUU9vu92+MhTwtGXsV
-	/ogkVfIoSnfMviJpntqEden9sreHIxrvhHu0Ur3vh4AWXUtFB9xCuB22sk45SPsvkuA4UyCzM6j
-	ZnIvDU17y9QzsZPBhcT/BxS8nC6DPB2TKTQ0RtdOZQUWf4xTsa+x2DsQAG8VcINKPSSotck7Ulb
-	d7oygCrEbBU4tY7roYAtCn4w8hDpnU4uy8be62SeDQzFvbYkEeLPWA3QlkjZI1hTBwNLZuYXYbN
-	essKoUK53wj4XUYR2mIJY3tODqRbn2UxH2VSi88+YqHottGr2Do2cpI1jnwWPwE+Qh0KzAjD8Rw
-	8DPd0tP3tcaPhVMaVtEBQ9yokVZLNxmY4FgGpnAWpZX1S
-X-Received: by 2002:a17:90b:1643:b0:345:badf:f1b7 with SMTP id 98e67ed59e1d1-354871db4e8mr4514480a91.28.1770279003364;
-        Thu, 05 Feb 2026 00:10:03 -0800 (PST)
-X-Received: by 2002:a17:90b:1643:b0:345:badf:f1b7 with SMTP id 98e67ed59e1d1-354871db4e8mr4514452a91.28.1770279002912;
-        Thu, 05 Feb 2026 00:10:02 -0800 (PST)
-Received: from [10.219.57.109] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3549c09adffsm1642267a91.4.2026.02.05.00.09.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Feb 2026 00:10:02 -0800 (PST)
-Message-ID: <4835d0b0-06c2-42d1-aa33-34daa0e7a8e7@oss.qualcomm.com>
-Date: Thu, 5 Feb 2026 13:39:54 +0530
+	s=arc-20240116; t=1770279636; c=relaxed/simple;
+	bh=Fkne5tKvGfqa65N4oHdHfaj8yi/BqfaL40XPqCNKv6Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=U4xu5YirteJ2FhxbG1DkbRqx4Ls5TvHtIlYqqWTfipa7XtpI2MOfEzCvhkxvUQRx25rOddO52m4YocMUr5AZflZakVx5EC+twZ9Zz5XnCs++ufa34FUQKzjz2kX/yURPXcCX60izxlqUo1EwHWGbU+lhNwcw1+lWMmcy5E+fSVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=162.243.161.220
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0006800LT.eswin.cn (unknown [10.12.96.77])
+	by app2 (Coremail) with SMTP id TQJkCgAncKy8UoRpw+oCAA--.10662S2;
+	Thu, 05 Feb 2026 16:20:13 +0800 (CST)
+From: Yulin Lu <luyulin@eswincomputing.com>
+To: vkoul@kernel.org,
+	neil.armstrong@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	fenglin@eswincomputing.com,
+	Yulin Lu <luyulin@eswincomputing.com>
+Subject: [PATCH v9 0/2] Add driver support for Eswin EIC7700 SoC SATA PHY
+Date: Thu,  5 Feb 2026 16:20:09 +0800
+Message-Id: <20260205082009.1780-1-luyulin@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] of: factor out of_map_id() code
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Saravana Kannan <saravanak@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Stefan Schmidt <stefan.schmidt@linaro.org>,
-        Hans Verkuil <hverkuil@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
-        Hans Verkuil <hverkuil+cisco@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        iommu@lists.linux.dev,
-        Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
-References: <20260126-kaanapali-iris-v1-0-e2646246bfc1@oss.qualcomm.com>
- <20260126-kaanapali-iris-v1-2-e2646246bfc1@oss.qualcomm.com>
- <47fbba15-6375-40fc-bd2c-8ebf2788837e@linaro.org>
- <7d1b5897-8f17-4213-b893-d99d96afef94@oss.qualcomm.com>
- <j6euiso3pcg7nvewscsfjkqyfl55ajxxybf2pib3622uontj2y@aqj4satyf7b7>
-Content-Language: en-US
-From: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
-In-Reply-To: <j6euiso3pcg7nvewscsfjkqyfl55ajxxybf2pib3622uontj2y@aqj4satyf7b7>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=bMgb4f+Z c=1 sm=1 tr=0 ts=6984505c cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=SBgkrO22ZELSIJHh4VIA:9
- a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
-X-Proofpoint-ORIG-GUID: 8hhxgxG-J19oYClvOy6NMz-k65aT_CG_
-X-Proofpoint-GUID: 8hhxgxG-J19oYClvOy6NMz-k65aT_CG_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA1MDA1NyBTYWx0ZWRfXww0dyngo9qNp
- IQiCPWSkp6vHdEIz4SA5dCCmPMPGMr4co2j2fDi8UQAfPaGwEpW7EAvLMcrYNZHebmo/XJk/emh
- r7s9Sfr1yjLqt5yFHS8YRRT8DKZFbzDFmvzd7ZFM4aBW7Fn/b+AI4nrYJcCwnN8QQCM2h68QPTz
- CFm+CTWnDWo0YUNGd5a4b0MZXdFX8yjG2ZHas09Wg6GbKfZugaHY+SxmQSpj/xnPJlpvLTrGET9
- i4w4+eCxD+7RudIea4RXSH94NZWmDH7jT+UBBiZDnHEIXm2Wk4IVLnU03FuRbH7RiL0KW5lcCxc
- WCeW8VW9GVyzFB9uYEvYJkL9VNH+lCn1czTDFbH/ewPCvMg6MCoJ+ju61tISkwQhFhdRZxnBZNz
- /E2IFyi5bAO9m4z1Q8GJ1nOW+63mulaWvkPkaRG8GabvhjNggP1XNq8EQtI7gHlLpXQMxwMixDQ
- BFH79E22t7za2+6/aug==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-05_01,2026-02-05_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 malwarescore=0 suspectscore=0 adultscore=0
- lowpriorityscore=0 spamscore=0 phishscore=0 clxscore=1015 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602050057
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TQJkCgAncKy8UoRpw+oCAA--.10662S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxKFyxuw4UuF4kZw1rKFWxZwb_yoW3JrWrpa
+	ykGryUGr1vqryIqan2ya109FyIvan7JFW3ur4fJw13uws8Z3ZYyr4Ika1YvF9rA3ykt345
+	tF4aqF98AFWUAFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9G14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFylc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMx
+	C20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAF
+	wI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20x
+	vE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v2
+	0xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxV
+	W8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbGQ6JUUUUU==
+X-CM-SenderInfo: pox13z1lq6v25zlqu0xpsx3x1qjou0bp/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262887-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262888-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2600:3c09:e001:a7::12fc:5321:from];
+	DMARC_NA(0.00)[eswincomputing.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
+	RCVD_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vijayanand.jitta@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[luyulin@eswincomputing.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[100.90.174.1:received,202.46.23.19:received,209.85.216.71:received];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: E662EEFBF9
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.960];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EF3EDEFD0F
 X-Rspamd-Action: no action
 
+Updates:
+  v9 -> v8:
+    - eswin,eic7700-sata-phy.yaml
+      - Modify the format of the "default" field in the
+        "eswin,tx-amplitude-tuning" and "eswin,tx-preemph-tuning"
+        properties.
+    - phy-eic7700-sata.c
+      - Correct the incorrectly formatted symbol "-" in the comments.
+    - Link to v8: https://lore.kernel.org/lkml/20260123024823.1612-1-luyulin@eswincomputing.com/
 
+  v8 -> v7:
+    - eswin,eic7700-sata-phy.yaml
+      - Add "eswin,tx-amplitude-tuning" and "eswin,tx-preemph-tuning"
+        properties, because these parameters may vary across different
+        circuit boards.
+      - Delete reviewed-by tag of Krzysztof Kozlowski, because the tuning
+        properties are introduced.
+    - phy-eic7700-sata.c
+      - Try to get SATA PHY transmitter amplitude and pre-emphasis signal
+        eye diagram tuning parameters from dts instead of hardcoded values
+        in the code. Because, these parameters may vary across different
+        circuit boards. Define default tuning parameters and use it when
+        these properties are not declared in dts.
+      - Add a comment to explain the reason for mapping I/O resources with
+        platform_get_resource and devm_ioremap instead of using the
+        devm_platform_ioremap_resource API.
+    - Link to v7: https://lore.kernel.org/lkml/20260106062944.1529-1-luyulin@eswincomputing.com/
 
-On 2/4/2026 6:41 AM, Dmitry Baryshkov wrote:
-> On Tue, Feb 03, 2026 at 03:43:58PM +0530, Vijayanand Jitta wrote:
->>
->>
->> On 2/2/2026 8:22 PM, Bryan O'Donoghue wrote:
->>> On 26/01/2026 12:25, Vikash Garodia wrote:
->>>> From: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
->>>
->>> This commit message is confusing and inaccurate.
->>>
->>> First up, you're not factoring _out_ of_map_id() - factor out of_map_id() means to remove of_map_id() - you are refactoring of_map_id().
->>>
->>> Your patch title should be something like "refactor of_map_id() to prepare for mapping of multiple IDs to a single device"
->>>
->>
->> Sure, will update the commit.
->>
->>>> Linux interprets multiple mappings for the same input ID as a set of
->>>> equivalent choices to pick one. There exists usecases where these set
->>>> must be maintained in parallel, ex: on ARM, a dynamically created child
->>>> device(s) is referencing multiple input id's in parent iommu-map.
->>>>
->>>> Factor out the code where multiple mappings needs to be maintained in
->>>> parallel can be achieved through callback from this factored out code.
->>>
->>> Which callback ? There is no ->function(pointer, here...); ?!
->>>
->>> Just make some plain and straightforward statements about what you are doing and why. There's no need to resort to dissertation-speak.
->>>
->>
->> The callback in introduced in patch 2 of this series. will update the commit descripition as suggested.
-> 
-> I think, the callback was NAKed already.
-> 
-> 
+  v7 -> v6:
+    - phy-eic7700-sata.c
+      - Rename PHY_READY_TIMEOUT to PLL_LOCK_TIMEOUT_US with value 1000.
+      - Add macro PLL_LOCK_SLEEP_US set to 10.
+      - Add "goto disable_clk" in the eic7700_sata_phy_init function.
+      - Modify Copyright year from 2024 to 2026.
+    - Link to v6: https://lore.kernel.org/lkml/20251201060737.868-1-luyulin@eswincomputing.com/
 
-I'll remove the callback and update change such that all entries of iommu-map are always scanned.
-This would handle the video usecase ( i.e; same input id's mapping to different SIDs ) and in other
-cases it would result in few additional scans in iommu-map compared to existing implementation (where
-it just returns after first input id match) , does this look fine ?
+  v6 -> v5:
+    - eswin,eic7700-ahci.yaml
+      - Delete this file and it has already been applied in reply[1].
+    - eswin,eic7700-sata-phy.yaml
+      - Add clock and reset related properties.
+    - phy-eic7700-sata.c
+      - Map the io resource with platform_get_resource and devm_ioremap
+        instead of devm_platform_ioremap_resource API. Because the address
+        region of sata-phy falls into the region of hsp clock&reset which
+        has been got by hsp clock&reset driver.
+      - Use regmap_read_poll_timeout in wait_for_phy_ready to replace the
+        while loop check.
+      - Use devm_regmap_init_mmio and regmap_write to replace writel.
+      - Adapt to the clock and reset driver framework, replacing the
+        original readl and writel.
+        Because we are implementing the HSP layer clock and reset drivers,
+        the corresponding clock and reset registers can be registered into
+        the driver framework. And I have tested on the Sifive HiFive
+        Premier P550 board.
+    - Link to v5: https://lore.kernel.org/lkml/20250930083754.15-1-luyulin@eswincomputing.com/
 
-Thanks,
-Vijay
+  v5 -> v4:
+    - eswin,eic7700-ahci.yaml
+      - Add "dt-bindings: ata:" prefix to the subject.
+      - Wrap at 80 characters in the YAML description field.
+    - Link to v4: https://lore.kernel.org/lkml/20250915125902.375-1-luyulin@eswincomputing.com/
+
+  v4 -> v3:
+    - eswin,eic7700-ahci.yaml
+      - Fix grammatical errors in patch subject and commit message
+      - Add an explanation in the commit message of patch 1 for retaining
+        the "ports-implemented" field, which Rob Herring suggested to
+        remove in the review comments on v2.
+        Link to Rob Herring's review:
+        https://lore.kernel.org/lkml/CAL_JsqKFotNLZZXwiy7S6K8qXLdGRAnsa-1zvZRDQBE39Gf5kg@mail.gmail.com/
+        Link to my question and Niklas Cassel's reply:
+        https://lore.kernel.org/lkml/aLBUC116MdJqDGIJ@flawful.org/
+        In this reply, Niklas Cassel mentioned his view:
+        If the ports-implemented register gets reset from
+        ahci_platform_assert_rsts(), then it seems acceptable to
+        retain the ports-implemented property in the device tree.
+        This aligns with our design.
+        Link to my reply:
+        https://lore.kernel.org/lkml/4ab70c6a.8be.198f47da494.Coremail.luyulin@eswincomputing.com/
+        Link to Niklas Cassel's question and my further explanation:
+        https://lore.kernel.org/lkml/aLlYkZWBaI5Yz6fo@ryzen/
+        https://lore.kernel.org/lkml/7206383a.d98.19918c22570.Coremail.luyulin@eswincomputing.com/
+    - eswin,eic7700-sata-phy.yaml
+      - Fix grammatical errors in patch subject and commit message
+      - Adjust the position of reg in the properties and required arrays
+      - Add reviewed-by tag of Krzysztof Kozlowski
+    - phy-eic7700-sata.c
+      - Correct the loop condition in wait_for_phy_ready() to use the
+        current jiffies instead of the fixed start time.
+      - Change the return value from -EFAULT to -ETIMEDOUT to correctly
+        indicate a timeout condition.
+      - Remove redundant clock disable handling in probe error path, as
+        SATA_SYS_CLK_EN is managed in phy_init() and phy_exit().
+      - Use dev_err_probe return in probe.
+      - Reorder local variables to follow reverse Xmas tree order.
+      - Wrap each line in the extended comments to 80 columns before
+        splitting lines.
+      - Adjust the position of `#include <linux/io.h>` for proper ordering.
+    - Link to v3: https://lore.kernel.org/lkml/20250904063427.1954-1-luyulin@eswincomputing.com/
+
+  v2 -> v3:
+    - Use full name in "From" and "Signed-off-by" fields information
+    - eswin,eic7700-ahci.yaml
+      - Remove the introduction to the reg, interrupts, phys, and
+        phy-names fields.
+      - Modify the usage of the clocks field in the examples.
+      - Correct the order of dt properties.
+    - phy-eic7700-sata.c
+      - Register operations use the GENMASK macro and FIELD_PREP instead
+        of the original bit offset method, and add
+        "#include <linux/bitfield.h>".
+      - Modify some macro definition names.
+      - Remove the redundant initialization assignments for "ret" and
+        "val".
+      - Delete ".suppress_bind_attrs = true".
+      - Modify the driver name.
+      - Add "#include <linux/io.h>" to fix the robot test issue.
+    - Link to v2: https://lore.kernel.org/lkml/20250819134722.220-1-luyulin@eswincomputing.com/
+
+  v2 -> v1:
+    - Delete the original controller driver and use ahci_dwc.c instead.
+    - Add eswin,eic7700-ahci.yaml
+      - Correct the descriptions of reset, interrupt and other hardware
+        resources for the sata controller on EIC7700 SoC.
+      - The clocks for both sata controller and sata PHY are controlled
+        via a register bit in the HSP bus and are not registered in the
+        clock tree. Clock are managed within the PHY driver, therefore it
+        is not described in this document.
+      - Add $ref: snps,dwc-ahci-common.yaml#.
+    - Add eswin,eic7700-sata-phy.yaml
+      - Add this file to include the description of the PHY on EIC7700 SoC.
+    - Add an eswin directory under the PHY driver path, and include the
+      SATA PHY driver code for EIC7700 SoC.
+    - Link to v1: https://lore.kernel.org/all/20250515085114.1692-1-hehuan1@eswincomputing.com/
+
+Yulin Lu (2):
+  dt-bindings: phy: eswin: Document the EIC7700 SoC SATA PHY
+  phy: eswin: Create eswin directory and add EIC7700 SATA PHY driver
+
+ .../bindings/phy/eswin,eic7700-sata-phy.yaml  |  92 ++++++
+ drivers/phy/Kconfig                           |   1 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/eswin/Kconfig                     |  14 +
+ drivers/phy/eswin/Makefile                    |   2 +
+ drivers/phy/eswin/phy-eic7700-sata.c          | 273 ++++++++++++++++++
+ 6 files changed, 383 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/eswin,eic7700-sata-phy.yaml
+ create mode 100644 drivers/phy/eswin/Kconfig
+ create mode 100644 drivers/phy/eswin/Makefile
+ create mode 100644 drivers/phy/eswin/phy-eic7700-sata.c
+
+-- 
+2.25.1
 
 
