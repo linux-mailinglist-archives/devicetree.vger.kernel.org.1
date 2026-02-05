@@ -1,253 +1,243 @@
-Return-Path: <devicetree+bounces-262967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262968-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cFdZIIZzhGnt2wMAu9opvQ
-	(envelope-from <devicetree+bounces-262967-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 11:40:06 +0100
+	id GL0wBEp0hGn12wMAu9opvQ
+	(envelope-from <devicetree+bounces-262968-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 11:43:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F144AF169E
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 11:40:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76A6DF16F9
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 11:43:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7291F301A7EA
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 10:39:51 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7F495302F6B9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 10:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076D53A7F6B;
-	Thu,  5 Feb 2026 10:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F9753A9014;
+	Thu,  5 Feb 2026 10:42:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XuWkBmsE";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="C6fMOl/C"
+	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="V0HSA2L6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B41CD392800
-	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 10:39:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0B7D3A9628;
+	Thu,  5 Feb 2026 10:42:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770287987; cv=none; b=nNyYl5oOktfoQn6ePGfAj3eAmtqogjw0YhlUQUhRHMMcKbTGANDXS/rQ1u0VtaWhDeQd8QH3jqtzNu/i3u6m5xHzgKjfgfxIP6znFY+YA90V6XJODBBXmA4HEHpkz5hHZo0rczNWDscW3/MhQpEjWX/NNthTbfIMss8T0Nssntw=
+	t=1770288142; cv=none; b=qaZuDepqM4iwyWoTGNQPCAV7gUOOVvFmN1HE74wfSShJS7t5zhOqhMQdCKvcdLWZbRi+eQ6gIGEWxE6aE3frc3fiFHgcdcCp71xWS1KGbQ7au5yaKZdBG5Fb5rLEfYD+vUwcqr4yc1ed4FACk+U5fm9dJbSOBnXPo6heQoySWVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770287987; c=relaxed/simple;
-	bh=rUowSfAed8YTJsnO9Fsdf0eOpSmsCNvNEVmEPmhva/0=;
+	s=arc-20240116; t=1770288142; c=relaxed/simple;
+	bh=EFkQJ/FeaTlYw4ksx0sha0nzYrP020ROsbcL34+2gDo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uBAQHh4WnAf9e8RO6vWaHCaz9u08bChlmVhQiCfDJ+4tM+tvyanrIlGJM0JDBwAxyES5inQFuORTwLp3E7dC330SqjmyUDX5ED90WbNpWW9jHltsRHEp++zHsrAG93Ssy8mMEHuk9fK8U6kWOEQnUYccXKx3WahEjmQdqzSQEJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XuWkBmsE; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=C6fMOl/C; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6153dwSR2713125
-	for <devicetree@vger.kernel.org>; Thu, 5 Feb 2026 10:39:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HI7oLWxgt+tPk2t4ik8yF6dACaxFlG5oAIq00+Clsc0=; b=XuWkBmsEiBo6bfu7
-	uYFonowbo58uEsBPhms0BTm6u2PbZOqBmI/9+VBXOP4JSYoGNV0UWrwpbT9x4tFN
-	+VoR4xDKbWZk5EoMWCURppTly+XcjCX5m0tFj5BW5emQHCN4e7NSZWqxyww5+IFM
-	Sg5zQDst7OFgqAoyz8rnYnjHcYu+IsptLE04le5T7K9yj83T/nSQmm4urs/Y/gsv
-	vdfuEqjIUuibREwGWDAZgFJO8jTGh2RMrMFDMuBlK16Q7oK+d3XUm9rfYQrpFp/P
-	VNLHHBluUTHyUeaLSniRzSCaF/aCS1tumOmgX0VVc66yLKwawRXMYX+2ZbfnhufI
-	Rzp67A==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c47ja3fh6-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 10:39:46 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2a8c54bbe46so18991315ad.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 02:39:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770287986; x=1770892786; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HI7oLWxgt+tPk2t4ik8yF6dACaxFlG5oAIq00+Clsc0=;
-        b=C6fMOl/CL5BmWWUcC5nPyXazGrJ9oAN7kJ4OJptxWSuKLG0yUX6OPXHE2455Pv16xB
-         i2zw7XyORwf5JwXRohwOGMUADIb2OfknGAcHK5iXVU2MvK+vFfe4x6zp2tXxTE+DMdEM
-         3Av1AOLyfgb/yC4d6/cHGKERs8cCiKAPtAD3YG0EqUcf+EKWVLew1XVlatCeRdb3vS0I
-         JOHgIr77ZdaUk11SkIRa/UD+Iog9c+cLZ73te3MLTQynTJHR1SRC+D3KtTo2cCngpNh1
-         kbkCC6tN37N1S5xafciUYxu6GtI1BkNWRbPARXBmaoC7WSbqPGr0IOuaoft1zZ+T8dK4
-         UmKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770287986; x=1770892786;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HI7oLWxgt+tPk2t4ik8yF6dACaxFlG5oAIq00+Clsc0=;
-        b=UY9FdncwpKinOG7yTG1+/qhAe2MVifEuxp920SPxDVrRAxJJpZVw001FWqaWtDtyNt
-         2fwX/uOdHJdyHzLtqTKLORVSSFaEFySL+VumOPbpqRAMM3vc3vYHkSCJfs2/D15eVoW0
-         xzwNroPaTFGoH6DHI9zE8BeWOtwhgD1JsjrHQDfxCl0/OoFqiuxw1rIVLBhf9uHmdyAy
-         SzFF0l4C7QlMUSwW2kgZhruaMG1rjQQWFUMm+F7epUKxRI5HpfYtwk+QeC0pF7fZlqa7
-         CyBbZd0KLA7KGRAb44PoziBhU1x9eEjqm/gsmFe6Tc0WxqwhUJ/XtrdMz/p7XlZ9nWgX
-         thtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWmcPQC0GQqZmRAQGhcGZA1BQmrU7Yyx7faacM1o/Yh3+Gdevv6/Hyz4B4eTWaBmXCVt2LCJyUWtxLK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxccyXo3T0YzsrkJAJ7NtzxlMvf1JxpqyKJ4NiBLCgwuIbpsxPq
-	/R6rhxwvQ/pXuPxlGHojXgC2N53o31pjSVU91viyWm0g3pV/emEx0AZZrlKOKsEe3G3GCdM3ZKn
-	bNOhufKlTzMdl/8JHjn87Y5VWreRNEnQDk6nkjHsKsvuarX6izZIbyQFbp+4REq6h
-X-Gm-Gg: AZuq6aJ9MKelU+Taj3J9AAh8ZCTq9+U0EYX+gb33QTPHPfo8qMDZofqPwm8wfXO34yI
-	TuLGZi1jPEt06OJZtJGM2UqTUYrAbjzV2VbjZde66gAXwAMs+UbmfkTBzIYatmnLo0XDoLBt4Cs
-	oVEIERdnxAkbvrlXZgw3h3vT1wgPNQ4fnLTOeEkRdOeIv7obofN0p50+QXL4319Juywq8IXL14w
-	XJxOOX9JhZ1qKvacxdW5hw+XuF6DOmvJVcAFzghZ2exX9M+qlE4NI8Jnt2A7vhv8TEWYvGUob/J
-	ncWE0HQQSJXrrpmYlXCGk49/9+aXmg3VRYfXavTu4kpxqPT6iqYuML++bLo/snTzRgEQN8Qatqk
-	mUbNJmp+JcbqBTiNzucLZ7/8CF1Q/T+DUfw101AIarZGl
-X-Received: by 2002:a17:903:3d05:b0:2a9:484c:ff1c with SMTP id d9443c01a7336-2a9484d048emr7536935ad.54.1770287985637;
-        Thu, 05 Feb 2026 02:39:45 -0800 (PST)
-X-Received: by 2002:a17:903:3d05:b0:2a9:484c:ff1c with SMTP id d9443c01a7336-2a9484d048emr7536605ad.54.1770287985153;
-        Thu, 05 Feb 2026 02:39:45 -0800 (PST)
-Received: from [10.206.109.90] ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a9338a1309sm49609575ad.37.2026.02.05.02.39.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Feb 2026 02:39:44 -0800 (PST)
-Message-ID: <2740739c-b0db-7248-f9ba-e1a7dd69a5a2@oss.qualcomm.com>
-Date: Thu, 5 Feb 2026 16:09:35 +0530
+	 In-Reply-To:Content-Type; b=Zby9lYY0QoAulNqCAVonySOG7fCw+z3MetxPEKlxkPCDHPP22+osWIJRI/YFv4SYSqfoAb/rDAIj9DpHsc/ii9S9Y528UyI0BSYfDh4ARUOp+c0XUnxjAVmHSJWOP3LIUDwZ7OWXTvHp+OpkVuc1ezlnFy3juOD3+ZqxquHqRZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=V0HSA2L6; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
+	s=s2025; t=1770288112;
+	bh=OObd72dBP8O/pM/sBVA944xFBWgM8aPfDdnd27BOlYs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=V0HSA2L6bWWwofDzB+Xk0gp8PvxfXIkqhTfF8slocfXIK3fT0iHZmrGFRKilD5VNW
+	 4w9uFq5UPKYInaUpnPnOLkd3ht9lRUFzmjwWJfvyOMIg+PHXcenb0IFIaDRLjNaqVw
+	 wSPhnk5DM0KFHq9zEAQVU9ntvuElRtmS7sUf1l055o9nteBLQXRtHld1L9AApf5ZIn
+	 pks2DvvPro2NojkMKDyEkD1dAuQHpax+EUd0+qUEEkLZqOvjgCV4NaIXrUTpoq/umF
+	 ZZIL50/Kj6ax3Wk+8RLx33dJcdXk20BbryAFqqmvKeR8xCOTwCPZ37jlgvTsfmv6EF
+	 bBorVJoPKF0aA==
+Received: from [IPV6:2605:59ca:364f:d400:1b91:6b30:22c2:fffc] (unknown [IPv6:2605:59ca:364f:d400:1b91:6b30:22c2:fffc])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 7DFD9B22014B;
+	Thu,  5 Feb 2026 11:41:50 +0100 (CET)
+Message-ID: <3225628d-2546-44c1-bc9d-1607aa3d6c90@freeshell.de>
+Date: Thu, 5 Feb 2026 02:41:48 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v3 3/7] media: iris: scale MMCX power domain on SM8250
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] riscv: dts: starfive: Milk-V Mars CM Lite broken-cd
+To: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+ Emil Renner Berthing <kernel@esmil.dk>, Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260204101602.30184-1-heinrich.schuchardt@canonical.com>
+ <46d5d249-8cf2-46d1-a90c-1f2c5f146e15@canonical.com>
+ <e2394c64-af36-428f-ad6e-4c7038c0301e@freeshell.de>
+ <3166f7d5-b526-411d-b337-27981a7ed14d@canonical.com>
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>, Jonathan Marek <jonathan@marek.ca>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Hans Verkuil <hverkuil@kernel.org>,
-        Stefan Schmidt <stefan.schmidt@linaro.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Dikshita Agarwal <dikshita@qti.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-References: <20260204-iris-venus-fix-sm8250-v3-0-70fa68e57f96@oss.qualcomm.com>
- <20260204-iris-venus-fix-sm8250-v3-3-70fa68e57f96@oss.qualcomm.com>
-From: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
-In-Reply-To: <20260204-iris-venus-fix-sm8250-v3-3-70fa68e57f96@oss.qualcomm.com>
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <3166f7d5-b526-411d-b337-27981a7ed14d@canonical.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: KGEspytFdogZRdO-1Ivcj0kQOK72zjnb
-X-Proofpoint-GUID: KGEspytFdogZRdO-1Ivcj0kQOK72zjnb
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA1MDA3NyBTYWx0ZWRfX/cReYoPKoRrI
- LW1xJr1tsUJur4YY5fOhkRPKEZMdqcH/+RwVhsUPe8v4Sh/wIMGsHv+cOxo1uJ7z4ZOfHZ6+6x4
- LiwRCpjMxxD0eiaq5IxQXROgoannwHYtUw1nd3ApJE/ryM4OeINtwoQD8g7+jhAwfuMdfdhPydq
- rpDWMn23MOcPAGxGefxyPEZ2phX0p7YOMN0DUyiyG7gkvbpb2cWXdO8CAF/9OzzjhGzJ4RK19Te
- SIrgmREpqdUx8n7wsAxdo6k/jUwLclsOM7ZrvctxHgXvhYJMyQOyAMvsMf1hHCu8j77iCdLwcBL
- lcq7Vpjh9Nv4sqDk6MVFMDfIWGiY0T/QJpq2ETlqFvLch5RjYZ4jsdWsi4NIaf1TliRy7KuXVlg
- nEf7CPJn5/gK3pxOtnj3zhJJFN9bqL5uYjY2s+dyVVRFQX6E9phw4IfHr0ErwG1Z9pgYO7m2Dyg
- ZTrsOK5kS+oxhS118vA==
-X-Authority-Analysis: v=2.4 cv=a8E9NESF c=1 sm=1 tr=0 ts=69847372 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=R0B0fMNruX7Akzlv-IwA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-05_02,2026-02-05_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 priorityscore=1501 bulkscore=0 malwarescore=0
- spamscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602050077
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[freeshell.de,reject];
+	R_DKIM_ALLOW(-0.20)[freeshell.de:s=s2025];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262967-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dikshita.agarwal@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-262968-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[e@freeshell.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[freeshell.de:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: F144AF169E
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[canonical.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,freeshell.de:mid,freeshell.de:dkim,waveshare.com:url,raspberrypi.com:url]
+X-Rspamd-Queue-Id: 76A6DF16F9
 X-Rspamd-Action: no action
 
 
-
-On 2/4/2026 6:29 AM, Dmitry Baryshkov wrote:
-> On SM8250 most of the video clocks are powered by the MMCX domain, while
-> the PLL is powered on by the MX domain. Extend the driver to support
-> scaling both power domains, while keeping compatibility with the
-> existing DTs, which define only the MX domain.
+On 2/4/26 23:50, Heinrich Schuchardt wrote:
+> On 2/5/26 00:16, E Shattow wrote:
+>> Hi,
+>>
+>> I think the correct fix will be device tree overlays per-carrier board
+>> and not this one-size-fits-all workaround with the System-on-Module.
+>> Review below:
+>>
+>> On 2/4/26 08:38, Heinrich Schuchardt wrote:
+>>> On 2/4/26 11:16, Heinrich Schuchardt wrote:
+>>>> The card detect GPIO depends on support by the base board.
+>>>>
+>>>> Detecting an SD-card did not work for me with a Milk-V Mars CM Lite
+>>>> mounted on an Waveshare CM4-IO-BASE-A board.
+>>>
+>>> The schematic of the Waveshare CM4-IO-BASE-A board is available at
+>>> https://files.waveshare.com/upload/a/aa/CM4-IO-BASE-A_V4_SchDoc.pdf
+>>> showing pin 76 is not connected.
+>>>
+>>> In https://forums.raspberrypi.com/viewtopic.php?t=291041 the Raspberry
+>>> Foundation explicitly wrote that pin 76 should not be connected when
+>>> using a compute module socket.
+>>>
+>>> E. Shattow pointed me to a board
+>>> https://github.com/NabuCasa/yellow/releases/download/v1.3c/
+>>> Yellow_v1.3c_Schematic_git.8957b440adda.pdf
+>>> that actually disregarded this advice and uses pin 76 actually as cd-
+>>> gpio. This usage of GPIO 41 is a property of the specific base board and
+>>> not of the Milk-V Mars CM and should be described in a device-tree
+>>> overlay if needed.
+>>>
+>>> Best regards
+>>>
+>>> Heinrich
+>>>
+>>>>
+>>>> According to [1] SD_SDIO0_CD_GPIO41 is connected to pin 76 reserved.
+>>>> The Raspberry Pi Compute Module 4 IO Board documentation marks that
+>>>> pin as
+>>>> reserved. The Raspberry Pi Compute Module 5 IO Board documentation
+>>>> marks the pin as VBAT.
+>>>>
+>>>> Remove the cd-gpios definition and add broken-cd.
+>>>>
+>>>> [1]  https://github.com/milkv-mars/mars-files/blob/main/Mars-
+>>>> CM_Hardware_Schematices/Milk-V_Mars-CM_SCH_V1.0-2023-0905_Lite.pdf
+>>>>
+>>>> Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+>>>> ---
+>>>>    arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts | 2 +-
+>>>>    1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+>>>> b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+>>>> index 63aa94d65ab55..566b0bdc2800d 100644
+>>>> --- a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+>>>> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+>>>> @@ -13,7 +13,7 @@ / {
+>>>>      &mmc0 {
+>>>>        bus-width = <4>;
+>>
+>> + /* Schematic signal SD_SDIO0_CD_GPIO41 to CM4 connector pin 76*/
+>> + /* Raspberry Pi CM4 specification pin 76 reserved do not connect */
+>>
+>>>> -    cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
+>>>> +    broken-cd;
+>>
+>> All schematic documents for Mars CM Lite list this signal name as
+>> `SD_SDIO0_CD_GPIO41`.
+>>
+>>>>        disable-wp;
+>>>>    };
+>>>>    
+>>
+>> The carrier board I have a schematic document for - Home Assistant
+>> Yellow PoE rev 1.3 - lists this as SD_DETECT, apparently ignoring the
+>> Raspberry Pi Foundation document about CM4 Compute IO specification that
+>> explicitly says do not connect this pin to anything.
+>>
+>> The carrier board I do not have a schematic document for - DFRobot
+>> Compute Module 4 IoT Router Board Mini - only has SD Card and is
+>> operational as-is.
+>>
+>> The compatibility issue for carrier boards that more strictly follow the
+>> Raspberry Pi CM4 IO specification may be better handled by device tree
+>> overlays. Though this is not convenient for users and requires more
+>> developer effort, overlays would be best to adopt dtbo per-carrier board
+>> to describe hardware accurately.
+>>
+>> What is needed to introduce overlays?
+>>
+>> - E
 > 
-> Fixes: 79865252acb6 ("media: iris: enable video driver probe of SM8250 SoC")
-> Reviewed-by: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->  drivers/media/platform/qcom/iris/iris_platform_gen1.c | 2 +-
->  drivers/media/platform/qcom/iris/iris_probe.c         | 7 +++++++
->  2 files changed, 8 insertions(+), 1 deletion(-)
+> Device-tree overlays would have to be applied by the firmware, typically
+> U-Boot.
 > 
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_gen1.c b/drivers/media/platform/qcom/iris/iris_platform_gen1.c
-> index df8e6bf9430e..aa71f7f53ee3 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_gen1.c
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_gen1.c
-> @@ -281,7 +281,7 @@ static const struct bw_info sm8250_bw_table_dec[] = {
->  
->  static const char * const sm8250_pmdomain_table[] = { "venus", "vcodec0" };
->  
-> -static const char * const sm8250_opp_pd_table[] = { "mx" };
-> +static const char * const sm8250_opp_pd_table[] = { "mx", "mmcx" };
->  
->  static const struct platform_clk_data sm8250_clk_table[] = {
->  	{IRIS_AXI_CLK,  "iface"        },
-> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
-> index 7b612ad37e4f..74ec81e3d622 100644
-> --- a/drivers/media/platform/qcom/iris/iris_probe.c
-> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
-> @@ -64,6 +64,13 @@ static int iris_init_power_domains(struct iris_core *core)
->  		return ret;
->  
->  	ret =  devm_pm_domain_attach_list(core->dev, &iris_opp_pd_data, &core->opp_pmdomain_tbl);
-> +	/* backwards compatibility for incomplete ABI SM8250 */
-> +	if (ret == -ENODEV &&
-> +	    of_device_is_compatible(core->dev->of_node, "qcom,sm8250-venus")) {
-
-A query here, is it okay to have compatible based checks in driver?
-
-I don't have the links but I remember receiving negative feedback on having
-such compatible based checks.
-
-Thanks,
-Dikshita
-> +		iris_opp_pd_data.num_pd_names--;
-> +		ret = devm_pm_domain_attach_list(core->dev, &iris_opp_pd_data,
-> +						 &core->opp_pmdomain_tbl);
-> +	}
->  	if (ret < 0)
->  		return ret;
->  
+> The firmware has no way to determine if it is running on an IO-board
+> with or without a card detect switch. So the selection of an overlay
+> will be a manual process. In many cases users will not know about the
+> issue of card detect switches and if their board has one or not.
 > 
+> The default value without any overlay should be one that allows to use
+> the SD-card on all IO-boards, i.e. 'broken-cd'.
+
+Where should such overlays be developed?
+
+Does the overlay then get committed to Linux upstream for downstream use
+by U-Boot via devicetree-rebasing tree? Why is this change necessary, here ?
+
+> 
+> This is also the value used be the board support package
+> https://github.com/milkv-mars/mars-buildroot-sdk/
+> blob/1fd6bac9f2efde47fbb8afd28d2903c49f893e3f/linux/arch/riscv/boot/dts/
+> starfive/jh7110-milkv-mars-cm-sdcard.dts#L265
+> 
+> Best regards
+> 
+> Heinrich
+
+I would like to see more of the Mars CM and Mars CM Lite devicetree
+moved down to overlays if not described by the common JH7110 stanzas or
+schematic documentation. In my view, ideally, such extras are not
+functional for users without an overlay applied.
+
+I dislike the idea of trying to chase every possible unknown carrier
+board for broad compatibility by changing the definition of the
+System-on-Module. Compatibility with Raspberry Pi carrier boards sounds
+to me like the purpose of device tree overlay(s).
+
+No objection to, for example, a more generic super-compatible overlay
+that will be the default loaded by firmware, and trim down the dts here
+to remove any carrier board peripheral assumptions.
+
+-E
 
