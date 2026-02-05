@@ -1,43 +1,51 @@
-Return-Path: <devicetree+bounces-262986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262987-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kGf3OBZ+hGl/3AMAu9opvQ
-	(envelope-from <devicetree+bounces-262986-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 12:25:10 +0100
+	id wDE2FI9+hGl/3AMAu9opvQ
+	(envelope-from <devicetree+bounces-262987-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 12:27:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E0B0F1D36
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 12:25:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94510F1DAA
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 12:27:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D377830058F9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 11:25:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7DAA5300821A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 11:26:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6EA13A782D;
-	Thu,  5 Feb 2026 11:25:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD0603ACEE7;
+	Thu,  5 Feb 2026 11:26:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eFz126kF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDEC32DECBA;
-	Thu,  5 Feb 2026 11:25:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A84C2352942;
+	Thu,  5 Feb 2026 11:26:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770290706; cv=none; b=BwlVg+SF3QcbwfH3+Lo3iROtTPA9rPviQnQeqSaANPWSxRyY7uu4c7H71FilbORMf5zD0HSUWJargje4k+56u/9+IZ4CSvpE6flUZBSo5YlHbhzfZy+BEFe2dJHzaGNUoIsfF1yqTSwNnP38QL/AZAftLnBcjEy3ThQ1ltoaAzg=
+	t=1770290791; cv=none; b=Os5lKzZEM4A5NmDwsPJoDy02VuRUahJtMFQ0cFYNlvorHUeorfJufKplPF40NTtS6B8Mt7+ifoUXNwJoUgSN6pla5nBJ5iy9YasSxV0V1uyzNMCQ4EEz6KW2EFybQbKgi73JQ9G6TbA1O7ZhMarBzO6ZmxpwuicaYqZekcwn4bs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770290706; c=relaxed/simple;
-	bh=hqUTCX9IJt5wvMqUFGNs+S1moTu723epdNMj+CIv6xs=;
+	s=arc-20240116; t=1770290791; c=relaxed/simple;
+	bh=pLchQzJFjQ/McjJXV7SHb+btbY3mrd8pEFiTAdVegPc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eI+y7/x5+L4GhBrAV3gcDtwwkHwvFjQp7oPo29PYWcjR0e9OFpKcT8bGKMICAncoeNxbz/8VkgIAzd4A3gXOeKHqtgV9DNCzUkjawTduD4ceLFtQAtz6uQouZxRduBXL2fRpmwyMq4H8M2Xm4BtmG4yymnjia5SpkqXoQn9NTFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 941C8339;
-	Thu,  5 Feb 2026 03:24:58 -0800 (PST)
-Received: from [192.168.178.73] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3E9673F778;
-	Thu,  5 Feb 2026 03:25:03 -0800 (PST)
-Message-ID: <445035bb-71be-4751-a014-9ca67b1c0cb4@arm.com>
-Date: Thu, 5 Feb 2026 12:24:58 +0100
+	 In-Reply-To:Content-Type; b=HCcsh+DoDFFKtO4kar4b68JjfXiKEgM2c9G4DYk14oqIKw+GO6nTG24Y9Dfmftd3JcmTh/NNlsq5HUJDWxj1WyeqvMoWtnOk67Xul2U9cbF/8X7QgNo0K6D4l6GMMDcwa2VrrVPs0X6jcZqIf9qNQAFyKpRM3QbYUrK5iDuupOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eFz126kF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B02F7C4CEF7;
+	Thu,  5 Feb 2026 11:26:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770290791;
+	bh=pLchQzJFjQ/McjJXV7SHb+btbY3mrd8pEFiTAdVegPc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eFz126kF2EmPId3BsE510Vj82wb+Cqt0bE/rm8denDzB3Vyex1olhJNHhw17b1RAo
+	 YwcM5ArgUJfxappBDRdCj/TwI7kWFOMreklCJMFVyNzQHBGIOtWPKL0wTbPAtOM6MZ
+	 FX05aeA4BhcmrHQKG2MX1FUlHnoDH0lyYRqMCO159+Ct0aZqnTu/Iy6memNrUDvkKO
+	 CndPEdABy2x8Q98YFaqPcSBM5shrPtyY41b78y/WqaKKEZZqh/4HDolA+pIEUO41M/
+	 F75OrThxTomcHW/c0LNaqNiSdXXq1fvjJzeqXiuzZIrUU+mLePHbDZWyLNCpc3gjpo
+	 qTjSQuL3frrdA==
+Message-ID: <b556cc32-2b8e-4451-b333-aec2eddee7b1@kernel.org>
+Date: Thu, 5 Feb 2026 12:26:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -45,78 +53,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: zena: Add support for Zena CSS
-To: Sudeep Holla <sudeep.holla@kernel.org>,
- Cristian Marussi <cristian.marussi@arm.com>
-Cc: Debbie Horsfall <debbie.horsfall@arm.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v4 2/4] soc: qcom: ice: Add OPP-based clock scaling
+ support for ICE
+To: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20260123-zena-css-v1-0-34adb95cdf89@arm.com>
- <20260123-zena-css-v1-2-34adb95cdf89@arm.com>
- <20260127132206.036892e4@donnerap.manchester.arm.com>
- <c1259bad-be4d-4489-840d-4ab2f4e466f2@arm.com>
- <8c343e6d-14f8-4f55-8218-bc3f0813e8cf@arm.com>
- <20260130-light-piquant-termite-fcbec4@sudeepholla> <aYHmDTboOtkgac00@pluto>
- <20260205-intelligent-intrepid-robin-df42bd@sudeepholla>
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-crypto@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260128-enable-ufs-ice-clock-scaling-v4-0-260141e8fce6@oss.qualcomm.com>
+ <20260128-enable-ufs-ice-clock-scaling-v4-2-260141e8fce6@oss.qualcomm.com>
+ <20260128-daft-seriema-of-promotion-c50eb5@quoll>
+ <aYBE/VljJTUNx3LK@hu-arakshit-hyd.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <20260205-intelligent-intrepid-robin-df42bd@sudeepholla>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aYBE/VljJTUNx3LK@hu-arakshit-hyd.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.36 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262986-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262987-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andre.przywara@arm.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.982];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,arm.com:mid]
-X-Rspamd-Queue-Id: 7E0B0F1D36
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 94510F1DAA
 X-Rspamd-Action: no action
 
-
-
-On 2/5/26 12:08, Sudeep Holla wrote:
-> On Tue, Feb 03, 2026 at 12:11:57PM +0000, Cristian Marussi wrote:
+On 02/02/2026 07:32, Abhinaba Rakshit wrote:
+> On Wed, Jan 28, 2026 at 12:04:26PM +0100, Krzysztof Kozlowski wrote:
+>> On Wed, Jan 28, 2026 at 02:16:41PM +0530, Abhinaba Rakshit wrote:
+>>>  	struct qcom_ice *engine;
+>>> +	struct dev_pm_opp *opp;
+>>> +	int err;
+>>> +	unsigned long rate;
+>>>  
+>>>  	if (!qcom_scm_is_available())
+>>>  		return ERR_PTR(-EPROBE_DEFER);
+>>> @@ -584,6 +651,46 @@ static struct qcom_ice *qcom_ice_create(struct device *dev,
+>>>  	if (IS_ERR(engine->core_clk))
+>>>  		return ERR_CAST(engine->core_clk);
+>>>  
+>>> +	/* Register the OPP table only when ICE is described as a standalone
 >>
->> All of this madness was the best way I could find to address the problem
->> of supporting such new unidirectional mailboxes in the SCMI while NOT
->> breaking backward compatibility in the absence of mandatory naming from
->> the start.
->>
+>> This is not netdev...
 > 
-> You can attribute this to my expecting an overly ideal scenario with
-> bidirectional mailbox channels across all platforms using SCMI. At the time, I
-> did not anticipate the range of configurations that rely on unidirectional
-> channels.
+> Okay, if I understand it correct, its not conventional to use of_device_is_compatible
+> outside netdev subsystem. Will update as mentioned below.
 
-Would it make sense then to add mbox-names parsing to the code, to 
-accommodate new users? There is precedence in some drivers for 
-introducing xyz-names for clearer and unambiguous resolution, while 
-still falling back to some legacy, fixed associations in case the names 
-property doesn't exist.
+No, please read entire coding style, although the comment was about
+comment style.
 
-Cheers,
-Andre
 
+Best regards,
+Krzysztof
 
