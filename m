@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-263050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263052-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wK/xGy2qhGk14QMAu9opvQ
-	(envelope-from <devicetree+bounces-263050-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 15:33:17 +0100
+	id yKuVCmOrhGk14QMAu9opvQ
+	(envelope-from <devicetree+bounces-263052-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 15:38:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C720F40D6
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 15:33:17 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2C3CF4215
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 15:38:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EC89F3019500
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 14:32:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E37C1304245F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 14:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F60840758B;
-	Thu,  5 Feb 2026 14:32:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34A3140758D;
+	Thu,  5 Feb 2026 14:33:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FtsXkg+s"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rgj6yKJ4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422403F23C3
-	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 14:32:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06E00407578
+	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 14:33:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770301923; cv=none; b=oBBv3ARvCMnpzdh6483feSp4V8eBhDtWYopoHrQw37egDwhjEGVzEPbLQbroEupKO4FHby/tKjlpu2wB6EGZWFFPq7ZnM3NR2FDVYgvV8U4YL9yCVlaXxLFikHHC86UuIT5xB6Eaxa1/x2iUet9jVAg03dTS4RxNCpF4HQ51qQ0=
+	t=1770302020; cv=none; b=rg4sXpLwdohyTNmTNxOvgQmYvDvgoj6uDVJ/m8VowV1UsY88xlBfI8gFmkbXS6Ch6PlKIKJZpem5qFQAPFTbV8cb1XDxVv+oHhwtyImMFZvxKAVGpz+MHUXtxeh6o+aylgAMMzezKnk6H/ARJ8VUAwMSw/fFVuEWn76Fd7pl7TU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770301923; c=relaxed/simple;
-	bh=KrpVq21uAPBgvMwD5bVVvOvj4m0oV3UgX1RtALao//I=;
+	s=arc-20240116; t=1770302020; c=relaxed/simple;
+	bh=8mtHYKz85mrDlNo26Vu/58tRJscT6uBhGIxN5uFSaDE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YCai3GnyUvtOjxf0GT2Tk9lPx+mxSH+m9CwcaTUpqxgzR+itm70+eu7+6K5JqimY0YX5II+FzFiTrrcAwS+uIYJs+ArjRUWOVW7ncD9NZBe+bp9HBjSJIdTvX4vpUUwyZUT5Yf5a/YRIWGPyj9ALflJUZtjoDF9JNUWF/W7VlJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FtsXkg+s; arc=none smtp.client-ip=209.85.216.53
+	 Content-Type:Content-Disposition:In-Reply-To; b=ujvYLK7YOQoDEIt0S3en6ESGXjZ9kENV7DQ0jSUPM5S5fkJJw3tIX/AwY4AcDfvKreE+hJcomynbtdgYPJV78RQmSceeDP6cOtYYxh5gHeL2GXr9P6jZx/QNfAjFmv5jQvPxZC6AKqPOR9zEVDOq9Hsam/XwuzlkLkcXtMb1hiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rgj6yKJ4; arc=none smtp.client-ip=209.85.210.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-354a2a7d90fso445078a91.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 06:32:03 -0800 (PST)
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-823c56765fdso678459b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 06:33:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770301922; x=1770906722; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1770302019; x=1770906819; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PWMAbfW1h3czFpPAr6dxtSn9+/tMTdi7V3empbBhtRA=;
-        b=FtsXkg+sNa0qzWzZpm3Ti8pleS/bqFWS+IWo+QERjEk+ellcBkOmpZT3CmEWmGA4HT
-         nraZDIVCPqt3Il/Hw0IVbkDiH7xXGQdEEW6z71JFI9GqRevVcTRWBgTQLtWbK1MS5OwZ
-         MkDoJA1UD0DB+t8uuUA49Gv4nyo43xe1gunGUhVqqEYMaZfyKYezqNBDLr+wZZH4naHi
-         PNnrbwFLSGlfqu0Yv7RWc7oILrjeEtdvfNEZbf/GXCx5VEmnd+vTVa6PvnFpAgsdmp9m
-         FcD1EIGWqvQ8RR+M40gTKOSzEnZpiyvK1ONCV/ZzFOL8B6Z8sjk+6glKDqpGwGlA9zSa
-         YQ3g==
+        bh=pyK0JQ1lbzkHe30b8rjazNYXS7yd13NCbDJg71YiAfA=;
+        b=Rgj6yKJ4Sq8U1eq1tNAPcfU9LGF4Hci96O9m8P39lS5kYQTBOrZUCodFHBvhEFq/OV
+         rVQw1lAZ7pYjax3XpS2bndJgWtAoDZmAf5TFiewxKEG8WTUpNWDWDc3UYw85gdboIUX/
+         WE1bHNcEgoNx0GVKUkA7FM0bpV4htzke59Px7Ha8Bc3BsA9h/yrqAghqcQoqfcuHvXl1
+         NAO70vMA6jaEXGctKH29ak9rVCMAYEc7P9cUnheeLu1lUh8YYGdKrpGjxg1g0fhRdQuQ
+         YlLHD6MEJHv1Q+d/BjPGT2Ro0J3qRzUt30buN3YdQL1U/rJKC234oYKLQu9WTBKTVRkP
+         fzPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770301922; x=1770906722;
+        d=1e100.net; s=20230601; t=1770302019; x=1770906819;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=PWMAbfW1h3czFpPAr6dxtSn9+/tMTdi7V3empbBhtRA=;
-        b=YdmmlLZDJPR4rK7nQbMUcGoSBkMexwnbDOqzsCkLXEnmUZLA/LPx0sKBTL3Ji9zW1D
-         zw7JODW5krO55OjOum9xNmerNTeEhixpiVzfoWpgkgme+LoRBvnVED1DIHVgrVvQUwj6
-         KXHo3+EgEGzTZjmC5yQulUBTa1BAFl/7EyJRsp2liO6wD4pvZ6nFlieS0Dwn9QhTpHrp
-         s2lnS3PTqRtFyH10jfz3ZS7gn1x2AnLI1bxiRCHCsWFsdSt+G5l10EEs1OaGKEbyV2xq
-         Ie69neeaZFOiW7r+OUHMPzkrMBnvsD3cFxXe/7LyOSWcOVQu0D/buBpI1t2K2DWLr4rB
-         CFHg==
-X-Forwarded-Encrypted: i=1; AJvYcCUNy+L1R2JNW8LsIUToHYU0cNUt18Cjr5s3rNIxS/m8LMjDJHI3PgCdyjQthE4zy+oBKZ8XgblJMgQR@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywx51Awv9F7lF06LoZf//LUCOZOvdxrhaGnDGRinhbk9KyINLYI
-	cA9wxEJbA1CD0czg4xB9gEYLXQ6GPEI0CDDgHliueQ8VE6dTxlk2EU0k
-X-Gm-Gg: AZuq6aJsAeZI6hWDA9KrVVXivqS9b89for8uYvWL0jO/L0Wygx5L3+l4xZ4qXJYSR9w
-	3E0XjL81Q4UV6NO3ofqM8aiAG8Ll4jLyIqY/upL3W57HZx5KG+fn86wFRN9l80w8804V1bFKvA4
-	JorGdjimY3DonDvSjln1DcAb/w/fROLMCo1gIIhjurP491snncFJEVIasLu2x1dxhlu50ElhB26
-	Nstzwmntsx0TpT4aX+Th5zCI6Wo/jsNNxe/8lClzHb1hedDKUOXQyWC5CdyPER6o8knkBWTulFX
-	TrUcvNZ84ai7X6TJY/OwZG2wMPVrSsL2cjTWAvNP3NdSfb+CR/sUIl9Rqp3mHgDXtoC+7HMCIRQ
-	S4JIM3Xsn7WRv94drNc2QdLlpMGnlbtEAo14PfH3iMIJYwYJSoVLTHDd7aCZYwkm55vFiafyi20
-	PXnY5QPEOO5AzeHN5HPCFe7fvULMG0lIcSDzY=
-X-Received: by 2002:a17:90b:5870:b0:353:5595:3247 with SMTP id 98e67ed59e1d1-354870dd823mr6355651a91.12.1770301922346;
-        Thu, 05 Feb 2026 06:32:02 -0800 (PST)
+        bh=pyK0JQ1lbzkHe30b8rjazNYXS7yd13NCbDJg71YiAfA=;
+        b=qYMnTDeXYcm939oXStKv9xILq60fBcunIy0JkfCAKPbDBm3agmSrXYyW/HfiVTUl3v
+         50mPmNkLVjttSVj+frKV0RzsDrLuIU+w7LDo5iF48ukdqdz8bc0nCiKWsKQz09fEVmLb
+         iCzYcm7bchDl4C0yzpYqAfQhEwGYDDvozKeAKXw9KM9NhizY6Bxf1TklmGNW2NCXUioC
+         52dkt0ZJlXRfiSN4rW+E1YAfEIrHwI02xoyAJNirnhCWP+K7i2E+4x5Ozg4gumTR5fF/
+         PJ2Jaz8FBW/jth1tFGxzqyb/ATbdm0ZbcjK+NbHp4gxmOP3p+MJTbUBCne10WigcjcWM
+         slKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVsGNotNWCA8Pf8q4+UVfS18i9GQe45Siuer7o/MAmlAMvz0uGkquYwxNi2R+ICYnl3c9hmrhBv9TZW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAIlN7iufe93bsAo2xsQhRleGce97E9eOTko7bxacD4nJdUzQP
+	nROf+vMob7LspRwNztNK8q7c5TGSh9MIXGoIMqzh9yW7Hu01Jbt1+Om/
+X-Gm-Gg: AZuq6aIt2v/br2hG+ZgI7Nydjks27a0CPXVxKGxBKYm7uYnrcLdQRqE/jETAq72Bc2+
+	dEroQPpbRTX5yUyyvr2S5+r9wAaKY7poazy8YtGHNvD76N1NaH+DL6KZLWGnN/uwC2RyIZy7ufo
+	xZ0DETAsEnamsV7tGJMJki31W1SPkQF1tDP/axGuVREHeD9ndKGe5wN4goYyeICS8xzbuQpcYWD
+	KJh3hRxqVzX23yeec9LLDGBrFNWIfeEOaZsi3nzJ5gqAi47qFJe995kCuBCU2AYQnb70LzTROL5
+	rDR7cksid4VHlnNYPav92zAATwHAn3P3sawI7Gdg8af+NYupjoTgX/VFtwrWvOb9pNu0d+vj1Tu
+	PVD2lgZUCF/yw4O22QRCvuwu6sNStaZVZqU/cu8RsgVDzKltjlQGGPzkRXf5p6RwsyeVUr/nRHy
+	5XSkWQGMAqGoV6zPxUBaS32lgQ
+X-Received: by 2002:a05:6a00:1949:b0:81f:852b:a93a with SMTP id d2e1a72fcca58-8241c19d22dmr6066843b3a.2.1770302019265;
+        Thu, 05 Feb 2026 06:33:39 -0800 (PST)
 Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35487726e6bsm2092960a91.6.2026.02.05.06.32.01
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8241d16f5b9sm7826047b3a.7.2026.02.05.06.33.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Feb 2026 06:32:01 -0800 (PST)
+        Thu, 05 Feb 2026 06:33:38 -0800 (PST)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Thu, 5 Feb 2026 06:32:01 -0800
+Date: Thu, 5 Feb 2026 06:33:38 -0800
 From: Guenter Roeck <linux@roeck-us.net>
 To: Colin Huang <u8813345@gmail.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -86,10 +86,11 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-doc@vger.kernel.org, Colin.Huang2@amd.com, Carl.Lee@amd.com,
 	Peter.Shen@amd.com
-Subject: Re: [PATCH 3/3] docs: hwmon: Add Q54SN120A1 and Q54SW120A7 to index
-Message-ID: <a3094382-087d-4167-900d-1f2c587aaa18@roeck-us.net>
+Subject: Re: [PATCH 2/3] dt-bindings: trivial-devices: Add Delta Q54SN120A1
+ and Q54SW120A7
+Message-ID: <f03ee47e-1f24-4170-9bb7-a83a09d683a8@roeck-us.net>
 References: <20260205-add-q54sn120a1-q54q54sw120a7-v1-0-09061ecacfc7@gmail.com>
- <20260205-add-q54sn120a1-q54q54sw120a7-v1-3-09061ecacfc7@gmail.com>
+ <20260205-add-q54sn120a1-q54q54sw120a7-v1-2-09061ecacfc7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,17 +99,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260205-add-q54sn120a1-q54q54sw120a7-v1-3-09061ecacfc7@gmail.com>
+In-Reply-To: <20260205-add-q54sn120a1-q54q54sw120a7-v1-2-09061ecacfc7@gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263050-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263052-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
@@ -117,7 +118,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -128,40 +129,37 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,roeck-us.net:mid]
-X-Rspamd-Queue-Id: 0C720F40D6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D2C3CF4215
 X-Rspamd-Action: no action
 
-On Thu, Feb 05, 2026 at 09:34:37PM +0800, Colin Huang wrote:
-> Add the Delta Q54SN120A1 and Q54SW120A7 PMBus modules to the hwmon
-> driver index.
+On Thu, Feb 05, 2026 at 09:34:36PM +0800, Colin Huang wrote:
+> Add two additional Delta 1/4-brick DC/DC power modules,
+> Q54SN120A1 and Q54SW120A7, to the trivial-devices list.
 > 
 > Signed-off-by: Colin Huang <u8813345@gmail.com>
+
+This should be the first patch of the series.
+
 > ---
->  Documentation/hwmon/index.rst | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-> index 85d7a686883e..62d6fc0817eb 100644
-> --- a/Documentation/hwmon/index.rst
-> +++ b/Documentation/hwmon/index.rst
-> @@ -216,6 +216,8 @@ Hardware Monitoring Kernel Drivers
->     pxe1610
->     pwm-fan
->     q54sj108a2
-> +   q54sn120a1
-> +   q54sw120a7
-
-Documentations are for drivers, not for chips. There are no such documentation files.
-Add q54sn120a1 and q54sw120a7 to the documentation of the q54sj108a2 driver instead
-and drop this patch.
-
-Thanks,
-Guenter
-
->     qnap-mcu-hwmon
->     raspberrypi-hwmon
->     sa67
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index d0f7dbf15d6f..f430e49b9ec1 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -95,6 +95,10 @@ properties:
+>            - delta,dps920ab
+>              # 1/4 Brick DC/DC Regulated Power Module
+>            - delta,q54sj108a2
+> +            # 1300W 1/4 Brick DC/DC Regulated Power Module
+> +          - delta,q54sn120a1
+> +            # 2000W 1/4 Brick DC/DC Regulated Power Module
+> +          - delta,q54sw120a7
+>              # Devantech SRF02 ultrasonic ranger in I2C mode
+>            - devantech,srf02
+>              # Devantech SRF08 ultrasonic ranger
 > 
 > -- 
 > 2.34.1
