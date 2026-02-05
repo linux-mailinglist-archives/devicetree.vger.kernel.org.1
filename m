@@ -1,209 +1,159 @@
-Return-Path: <devicetree+bounces-262929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262930-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0A6oCuRihGkK2wMAu9opvQ
-	(envelope-from <devicetree+bounces-262929-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:29:08 +0100
+	id AF0QGs9ihGkK2wMAu9opvQ
+	(envelope-from <devicetree+bounces-262930-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:28:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90085F0BE0
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:29:07 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08053F0BAD
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:28:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 29E073095D0A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:24:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 49CB93037AFE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:26:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C727C394493;
-	Thu,  5 Feb 2026 09:23:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DFF93A7F59;
+	Thu,  5 Feb 2026 09:24:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZY0VV/Ym"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LtPlXx3W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f178.google.com (mail-dy1-f178.google.com [74.125.82.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4AEC394487;
-	Thu,  5 Feb 2026 09:23:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 170B33A7F4F
+	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 09:24:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770283423; cv=none; b=mt6GnC+E4bJxB5PiNUVY4gB5VRqpEf1QxEb2oyhhXRBqTqv3WXOxzbGDHBGB/5o/RWc+PfNmCuBrBws3r5RzTUWVRgCQkmlcBax5tOR38CGzKi5Gqvbnp1BP8B2j8b2IoaaC39lU10vivYYvlfyl8eWt8lyL9Cifdo7l8DpWThE=
+	t=1770283450; cv=none; b=Sx94ptUDIr1Q/22dBWb7qrbgW9cHZ+oAw17FhKR+6yeS8iDg27NoChxnxOH0raGZfbE+ZlZftu9ZbXcwq9zfjwdXtSkT5B0dDvgGb/AQbvBc+x/4fgtZkR7Q0SdGvjhlwZhmFar8NsrLn5mXVV52HX9aC4S9vt/7fUvpTUYHZws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770283423; c=relaxed/simple;
-	bh=E/fTeLbfqctiMfvtIIsD2A13p3FJxkamI/aB67QXm90=;
+	s=arc-20240116; t=1770283450; c=relaxed/simple;
+	bh=uhvtURHpuu/te5LxBUQMwf5iBL9DYrQRUsB//1jPby4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nhSklFQWF41MjQYilhjR6Bx4pRnKphG5wrC+sqRncR+Gp0hbrq3rPWr/NyczFczSSVTYq5PT74Oo4EBSCkrcddTeMsKvR+/fNcUZ9PlLQma3BVAkLOO1ENfcw2lECuZo1ULK8/pV6SQiXLDo4oQNq3KsQHDQebQmMc4uk+rcCy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZY0VV/Ym; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1135C19424;
-	Thu,  5 Feb 2026 09:23:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770283423;
-	bh=E/fTeLbfqctiMfvtIIsD2A13p3FJxkamI/aB67QXm90=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZY0VV/YmQw9o3HykKI5oDkB8+0FGY59+TgUOhOg3fTxPl2mWD82zfitDPj8fnTgGe
-	 iXePQbf1JmtXQyVZoEh18wv+dLiyc7Gwnlfw5BmrncDORENE68PpFIJ+s/qhDazbBC
-	 z38/+ZW7yEEDn7kPx/vJ32EkCZF+NiK0Qz8dnRh4TnWBtZrZIKO7fc2ToqCR+bnVyz
-	 H2DnFQMM9d1R9DKoJDzv+j0O3wynB4L+m231TkYQt0lzQlb/sVAXDHw3TtN1P8RU3l
-	 y+Q/IyvvrWsFpC+AA3Ip2IIhnQWNzU1vFAfaODaK+2qbFp4pLGUZCzghYUxya2734M
-	 tsUIKe8Vbjrrw==
-Date: Thu, 5 Feb 2026 10:23:40 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-Cc: Drew Fustini <dfustini@oss.tenstorrent.com>, 
-	Joel Stanley <jms@oss.tenstorrent.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, joel@jms.id.au, fustini@kernel.org, 
-	mpe@kernel.org, mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com, 
-	agross@kernel.org, agross@oss.tenstorrent.com, bmasney@redhat.com
-Subject: Re: [PATCH v5 1/3] dt-bindings: clk: tenstorrent: Add
- tenstorrent,atlantis-prcm
-Message-ID: <20260205-upbeat-tortoise-of-admiration-b3c0eb@quoll>
-References: <20260202-atlantis-clocks-v5-0-0922e43acaba@oss.tenstorrent.com>
- <20260202-atlantis-clocks-v5-1-0922e43acaba@oss.tenstorrent.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=SEvLNqiKNK5DfeRNovPYtrTQcoLcnlXMrHg9wgOCia2ynAexsFoj6D+WViGJaWDHF0aVsWPORFLrL6Q7o1i1Lwe4aNLSSX5AKTK75UcjitLBH4v7fSATuAFmVkbsCVKxSF/vHYcJbBHz+3tgpAaUux5vaJexihYyodqZUsuo2BM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LtPlXx3W; arc=none smtp.client-ip=74.125.82.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f178.google.com with SMTP id 5a478bee46e88-2b751c8b6beso987059eec.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 01:24:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770283449; x=1770888249; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WyVJiV8wOgvQp43Xhj2a8xz1BJoTUmIJmHz4yLDxUWE=;
+        b=LtPlXx3W2rDQ086jPBYoX6DQbVKqSgbGvWtqQQTKIaphVJAHML5ivY8NYXQiA2KRJd
+         lOECYLUDglIMGJpiBZrTiYaU2dpGiSMmpnJyRO1x+n7s0d9PgViZu+VXOa6B5gTl5FzO
+         IgwpWC4wNw2/pvqT929O4elcopbP7+YmUlBVN9tUtygGun+Sw6LQbmYTgqOtiQYZ/9ub
+         fDufo9pkucaERS6EhkZXY72uvoSMAfEge+2v69m3duwUma67GEHwJjmLWpZeescfUAG7
+         5LuvtqfRp01S+Z49rVJmuEuHXqN0h5UhJRnjV166BamcgmwyMJqPRj/IpcimVjFzcLgR
+         vKOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770283449; x=1770888249;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WyVJiV8wOgvQp43Xhj2a8xz1BJoTUmIJmHz4yLDxUWE=;
+        b=tz3urjTTOAZ8Jcm/FaBK/YoNMK99jQvTVTwbw/3+aincUhjADTHf27DZer7OnGMVvG
+         B2vjTN8nnosISO/1iMYzKMFYx66hMbZOiwhJeMd2FvXX42AO5nYANjKc6KfFlzqh/p/V
+         5j1vbi/WVIVgb+p6f1sfYaYPllj+rNiXZ+KAaMm5gLcHIq8xxHj1PcpNg67g2Ku7bK2I
+         WCI4FfU4wJf4IAPFQnYrKGeWx0l2KmMZnlo25lp51ENWJZzuI4pqZ0Wa2toh43ZizDA7
+         UENMKZkJn8yAnGmqc0pEaQpzPWseHBGkhPn9AizBxzUpfwmqVSvYQuY37n7noaopNpeu
+         dzPg==
+X-Forwarded-Encrypted: i=1; AJvYcCWWcdbL3cs3iIUzG4eK2aGp2gOxA0Q6W7u7o6TlvzSMGYxB0Wv12yF76Q+9LP03Tv+VYu5Oc3ZPqASR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+p7wSDRdKVnc1JoHCF+TpsMXl/JycZLRVWPdWVXgcYvNeB36S
+	m503q6OlqIX1XaLfi21QTpt3iI8y6MaobetQK8XkjzI1neUBdbmi487u
+X-Gm-Gg: AZuq6aLgAtRkea9PdNTKssegELMBFvl7yAEvOgPMWtjKSoPYpS6vX7+Img6YAtoVFUK
+	tutQgBvL0THMJkw7BTPSyVvZbH6SKIgLAoetvdAvaOy3RiuEIsAV+w3IPXlQUV5KVXgh0hBgcM8
+	fYmML5yicdPAk80TzahMTqP258dD7GigMIm8mdzjSxVF9pyS+I/I1ftc6iSv+SgVf9wL1qWBX2T
+	2HjDK2mlJbuGL8C5DwUfzzTnp2cUeu+GwragkZusPoxijdT5HN8aceKq7iVSasWMocZ7NPw+yxN
+	dWVZrOrbFxtVs6fRf3HzN9NdIdwaVJAZ0HCIEXJMG07UfdvYhIYhRpnvRi4tjmUuNlc8K9g5HDZ
+	03tLs3RapweO6Y6UivXVlzz5aJ+uSnthRVf/2ibaDemYz76H4VlJIkjrYOp8qSTyWMcNcu6YA6L
+	Weq0KV7rEohksEyOcldPCwDA3M8np6kvKfeofHKQG8YQA5aOpFO0SB
+X-Received: by 2002:a05:7301:2901:b0:2b8:27ec:b2b9 with SMTP id 5a478bee46e88-2b8460fb170mr1056511eec.20.1770283449049;
+        Thu, 05 Feb 2026 01:24:09 -0800 (PST)
+Received: from google.com ([2a00:79e0:2ebe:8:9a9a:afcc:9a68:2606])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b832e1296dsm3012857eec.4.2026.02.05.01.24.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Feb 2026 01:24:08 -0800 (PST)
+Date: Thu, 5 Feb 2026 01:24:05 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Hugo Villeneuve <hugo@hugovil.com>
+Cc: hvilleneuve@dimonoff.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: input: add GPIO charlieplex keypad
+Message-ID: <aYRg2vP4Lfqm61qH@google.com>
+References: <20260203155023.536103-1-hugo@hugovil.com>
+ <20260203155023.536103-2-hugo@hugovil.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260202-atlantis-clocks-v5-1-0922e43acaba@oss.tenstorrent.com>
+In-Reply-To: <20260203155023.536103-2-hugo@hugovil.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262929-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262930-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 90085F0BE0
+	FREEMAIL_FROM(0.00)[gmail.com]
+X-Rspamd-Queue-Id: 08053F0BAD
 X-Rspamd-Action: no action
 
-On Mon, Feb 02, 2026 at 01:46:49PM -0600, Anirudh Srinivasan wrote:
-> Document bindings for Tenstorrent Atlantis PRCM that manages clocks
-> and resets. This block is instantiated multiple times in the SoC.
-> This commit documents the clocks from the RCPU PRCM block.
+Hi Hugo,
+
+On Tue, Feb 03, 2026 at 10:49:47AM -0500, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> Signed-off-by: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-> ---
->  .../bindings/clock/tenstorrent,atlantis-prcm.yaml  |  54 +++++++++++
->  MAINTAINERS                                        |   2 +
->  .../dt-bindings/clock/tenstorrent,atlantis-prcm.h  | 103 +++++++++++++++++++++
->  3 files changed, 159 insertions(+)
+> Add DT bindings for GPIO charlieplex keypad.
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/tenstorrent,atlantis-prcm.yaml b/Documentation/devicetree/bindings/clock/tenstorrent,atlantis-prcm.yaml
-> new file mode 100644
-> index 000000000000..0f3e18f5ea1a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/tenstorrent,atlantis-prcm.yaml
 
-Still wrong name. Look how is your compatible called.
+...
 
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/tenstorrent,atlantis-prcm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Tenstorrent Atlantis PRCM (Power, Reset, Clock Management) Module
-> +
-> +maintainers:
-> +  - Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-> +
-> +description:
-> +  Multifunctional register block found in Tenstorrent Atlantis SoC whose main
-> +  function is to control clocks and resets. This block is instantiated multiple
-> +  times in the SoC, each block controls clock and resets for a different
-> +  subsystem. RCPU prcm serves low speed IO interfaces.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - tenstorrent,atlantis-prcm-rcpu
+> +  linux,no-autorepeat:
+> +    type: boolean
+> +    description: Do not enable autorepeat feature.
 
-Nothing in the changelog explained why 2 other compatibles were dropped.
+Let's use standard "autorepeat" property to enable autorepeat when
+needed.
 
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 1
+> +  gpio-activelow:
+> +    type: boolean
 > +    description:
-> +      See <dt-bindings/clock/tenstorrent,atlantis-prcm.h> for valid indices.
-> +
-> +  "#reset-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - "#clock-cells"
-> +  - "#reset-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clock-controller@a8000000 {
-> +      compatible = "tenstorrent,atlantis-prcm-rcpu";
-> +      reg = <0xa8000000 0x10000>;
-> +      clocks = <&osc_24m>;
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index dc731d37c8fe..0fc7bc6d0458 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -22534,8 +22534,10 @@ M:	Joel Stanley <jms@oss.tenstorrent.com>
->  L:	linux-riscv@lists.infradead.org
->  S:	Maintained
->  T:	git https://github.com/tenstorrent/linux.git
-> +F:	Documentation/devicetree/bindings/clock/tenstorrent,atlantis-prcm.yaml
->  F:	Documentation/devicetree/bindings/riscv/tenstorrent.yaml
->  F:	arch/riscv/boot/dts/tenstorrent/
-> +F:	include/dt-bindings/clock/tenstorrent,atlantis-prcm.h
->  
->  RISC-V THEAD SoC SUPPORT
->  M:	Drew Fustini <fustini@kernel.org>
-> diff --git a/include/dt-bindings/clock/tenstorrent,atlantis-prcm.h b/include/dt-bindings/clock/tenstorrent,atlantis-prcm.h
-> new file mode 100644
-> index 000000000000..3820781127c3
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/tenstorrent,atlantis-prcm.h
+> +      Force GPIO polarity to active low.
+> +      In the absence of this property GPIOs are treated as active high.
 
-Still wrong name... Look at your compatible.
+No, the polarity should be encoded in individual GPIOs, not via a
+separate property.
 
-Please read writing bindings doc in DT dir.
+Thanks.
 
-Best regards,
-Krzysztof
-
+-- 
+Dmitry
 
