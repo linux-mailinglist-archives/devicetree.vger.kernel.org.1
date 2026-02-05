@@ -1,110 +1,63 @@
-Return-Path: <devicetree+bounces-262937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262939-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cK8WBjJkhGkK2wMAu9opvQ
-	(envelope-from <devicetree+bounces-262937-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:34:42 +0100
+	id UBB5FzlkhGkK2wMAu9opvQ
+	(envelope-from <devicetree+bounces-262939-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:34:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DBB8F0D8F
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:34:39 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7B8CF0DA5
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:34:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 04E503004F61
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:34:04 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4BAEE30039A4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:34:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC4939901B;
-	Thu,  5 Feb 2026 09:34:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Jx8R7AvC";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YSH0nGWF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B718392800;
+	Thu,  5 Feb 2026 09:34:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 088A83921C8
-	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 09:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from zg8tmtyylji0my4xnjeumjiw.icoremail.net (zg8tmtyylji0my4xnjeumjiw.icoremail.net [162.243.161.220])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C3D531A7FB;
+	Thu,  5 Feb 2026 09:34:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.161.220
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770284043; cv=none; b=ieeuQzcK7vY0/nl7EC9gaOpKbuamKI/R302fzOysQ4o1H7yGyUcgXek6yhBKFc2Hy3T/nblYA0PeeuFOM+a7lFmtBWipreCxQw9bVncVL7UiFqAY9s+0NeaW/E1/WFShfVKL7MFd44iL66HAPw2atDM/ctOzTBJU2NEYaa2WcFs=
+	t=1770284087; cv=none; b=foecs7QmmwP5PkdIuV2prijYpctNeRob6mC8WfXyAHopmAH/E+yW9/8FfMh4YWPIS1wx0PI45LRWkZfTaRXF+JY60dwSDfjZ96zGPHH0Sewg4t7X1BQ0HuviF/odEMS73DAjEckeAz1uOOZAZ4bPZ9SRoubUBA5FOs5y1xa7mvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770284043; c=relaxed/simple;
-	bh=kPs0DtXG+9QUrv1Us0pa6hxYPDLn14oG/QFMp/cxXH0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=SVp2rpwBt7J8rv/vZ0A52QYAlKs6+ek51omFWBz66nS9LQ/f8ezjPAT80TNDEDTYvOyHwCKDU8WZfRcjbiyylBUPlj0ixrma+WAbMCfPJ/wDPpX0QaPzZd3ogtJn4r5FpMIkN7nhtwR85OLhsA7ujJPVj12o+KEaRCXUhNiumfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Jx8R7AvC; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YSH0nGWF; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6157Mbv2890162
-	for <devicetree@vger.kernel.org>; Thu, 5 Feb 2026 09:34:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=lvQdTkGdnJIP/VHAznG5qfzYCx3k04ZHT1+
-	Hz9zICkw=; b=Jx8R7AvCqo6p+3yMJ1wn+YrNaTSjHpV02CqXd6EcGHVAOp0T4WW
-	s0pYoMubHwMzR/LobBnSpaNU4QF45LUw5UVv6pngG2p/V+qj1AgWvog1JLbYQWiE
-	0doVzeFUzMHQdbC/oIW78o8HMhihs5Kvnfzp4Z+XHPSO8dGCmru2uWhivNSb5BnL
-	1YZ+YaY9fo/KvA3y0/3u8t++2DJ3/P4eKYamqgHKgO71Kga/z7cZqa8ZpkGKYdU2
-	Yf5JWj3XOKMFP5BRQPuuJWvWV260Z9NsZerV929KGP5yqNESTyr1i3TACY/JpCpm
-	L7hjzocIEoBPWXzxxcha0HKpc1QxIkJwqnA==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c4prx8dus-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 09:34:02 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b630b4d8d52so475268a12.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 01:34:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770284041; x=1770888841; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=lvQdTkGdnJIP/VHAznG5qfzYCx3k04ZHT1+Hz9zICkw=;
-        b=YSH0nGWFbxVBrJXZ5UlPgtbRwPs7J2hgYsYZ2slaIU9t7USppIBWlDDi8tkQeKsv2g
-         U1BvPm/9AgBOhSn3HzuPiCmRrVQwSGcpEOUSuhMXhSR8j9A0srw+Xe1mTZKotPz5nIVB
-         zvYLfY+Ml5F5f30KUN6BDzal13c6nG+9C3gjhwgiXcWS1GVefReel3JiNLAFpOwfENKf
-         2FoW1Jq4tRiCny4s0qzHs/wiQsDEFYyeai7O2tCNtGuPktEgl8YN2Gi8IY8qwjhKta9G
-         Q4p/1gotBKPzOzMsvvK37Z1I1vYHTAJ+RHroe8kEOvDCTD1lBNsPsqCyFD4Lht8IKX96
-         xIzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770284041; x=1770888841;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lvQdTkGdnJIP/VHAznG5qfzYCx3k04ZHT1+Hz9zICkw=;
-        b=Z0iYE5/ujnJtGYD6xn8a4HbZ9+0jtycyhuO6yWEJZYjRZtLjl8OS2uH5VU2rqR+02c
-         1hWeCGI/r3v/zy6EU8LZSdYD3uWwtXW1S0TMvGZulJOcEyq6D91DtUIVMd6wFu7yUqOK
-         Zf+XEviKwGGL6u/Xytsk5gszyncQwqGkzjcU54z0BEajcZyB4bD7k3aA8HTF1LI4QHzi
-         qvlCqdlm34deFLfJLKQzV8zT7a9LIuPTSRtV0fcQuQQsXbUe45Sm3QmI5j/JMGouaJmz
-         Lg65BiD5t3f6ZuYNh6NExJ2gv+rLPX6KTA5+7qbtp+XlNlZSTFXMwu5Wc7+gGpjCIxqe
-         rTKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUDFWwp+fIYRQZ7TYZ0NPE4WZ+S1TT5bSmE7XvxgnEIVaoWfFnBEZuYsf+TkwVkub6Qd7S89zDU0yLj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxjx+hAKn0Qyx5amQsZgQQFv6BWoRldCWOP+KtqaYmYmFITeHfY
-	7Ua5N7AhheDNhD6lXKsoSSBHC4ea0X0f8Cb6/fzaHyioIuJT9MvcDqDo9+nsYl4pJM7v0tr0oj7
-	7kxSpUz5eO7Wwa0e362KjTWX7S1iRNcjRNv0uz5MWDujv9vl/7lALXaMYAcgTjBI6
-X-Gm-Gg: AZuq6aKdDSdKryzvBdH6O5YR2dn6m5uEogyQaqT5EzVJMwwU3WGt20nqKDNKKW+K5Qi
-	8Yfg6bSiCZkV10PKsYdejYZxdkM7CuZYA6aulb+D2jGWlwQ/74v0PbT/vMm3mbsl0bdqnhQDvPk
-	jiSlcC38ttFZOeQG1pzWd18AT2YNMDFWns39W5wx7rGaho9dlmyfGzWn0UmsVSgJZ+kWhoSqYas
-	WZKASj5r1sIKrfaXrjXhmpaJYctDa1P0w28N9gJKDZGS9rmQ33TJpgaeAoGcmSzcj787/QShYRP
-	5eZN5tZqxb5rhzhpPjk9j0oTERLXBHO5Hbuu3kIJTjamrTMF7RU2nPF6elgYInnQa02UpUdP6f1
-	/vk3BTt6MpcYCAC7+4/0YTc5noE0b1T3Co+l0iFZfc94f
-X-Received: by 2002:a05:6a00:4b08:b0:822:abcd:db0f with SMTP id d2e1a72fcca58-8241c64fcf5mr6075324b3a.52.1770284041450;
-        Thu, 05 Feb 2026 01:34:01 -0800 (PST)
-X-Received: by 2002:a05:6a00:4b08:b0:822:abcd:db0f with SMTP id d2e1a72fcca58-8241c64fcf5mr6075305b3a.52.1770284040974;
-        Thu, 05 Feb 2026 01:34:00 -0800 (PST)
-Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8241d487886sm6181538b3a.59.2026.02.05.01.33.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Feb 2026 01:34:00 -0800 (PST)
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-To: andersson@kernel.org, robh@kernel.org, mani@kernel.org, krzk@kernel.org,
-        helgaas@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        lpieralisi@kernel.org, kw@linux.com, conor+dt@kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree-spec@vger.kernel.org, krishna.chundru@oss.qualcomm.com,
-        lukas@wunner.de
-Subject: [PATCH v4] schemas: pci: Document PCIe T_POWER_ON
-Date: Thu,  5 Feb 2026 15:03:46 +0530
-Message-Id: <20260205093346.667898-1-krishna.chundru@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1770284087; c=relaxed/simple;
+	bh=JuU97vUpxe6iVLo2Bdf1xPaN+rheMc+24U3H8qDywBU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=dyWeSm8/Cg8IVF0PhMtweZnR3w52xVTrsIBOS6u/37cXTycjm2w25BGOgIpWJDhA4VzbgoI2dzoPqqAQGVby4XAxOkjVHnJmF5Z2J9ccGcCfXaAEQyE8yKY4twsPhQDXuSuo+ypJQSFzs5pfGe6Ft9h/DY/xFv1+YLEtrARfgnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=162.243.161.220
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
+	by app2 (Coremail) with SMTP id TQJkCgDXIK0qZIRpmO8CAA--.15840S2;
+	Thu, 05 Feb 2026 17:34:35 +0800 (CST)
+From: dongxuyang@eswincomputing.com
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	troy.mitchell@linux.dev,
+	bmasney@redhat.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	ganboing@gmail.com,
+	marcel@ziswiler.com,
+	Xuyang Dong <dongxuyang@eswincomputing.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v10 1/3] dt-bindings: clock: eswin: Documentation for eic7700 SoC
+Date: Thu,  5 Feb 2026 17:34:30 +0800
+Message-Id: <20260205093430.1088-1-dongxuyang@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
+In-Reply-To: <20260205093322.1030-1-dongxuyang@eswincomputing.com>
+References: <20260205093322.1030-1-dongxuyang@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -112,109 +65,413 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: CxeQ57pJx6-H1r-fpZUx72ZeWM9mrY6Y
-X-Proofpoint-ORIG-GUID: CxeQ57pJx6-H1r-fpZUx72ZeWM9mrY6Y
-X-Authority-Analysis: v=2.4 cv=eLkeTXp1 c=1 sm=1 tr=0 ts=6984640a cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=ji1uk-MP7uB9YWhOYAAA:9
- a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA1MDA2OCBTYWx0ZWRfX08W0P8oCxjME
- O/dHVT0wj88t0V7frfpWGPmDgH2HljKiV/BsSEwO5PzpK9bB5h1tvUVkEeKTWS+nzsbJRM1A04H
- MI02NFri95RXumdxQKJrIBVWTsONgoe4ZrfL4+Bh5Qve/MHRKXuW3IPPlD7PnM3GDqCW8Al0q9Q
- PB141s3wvdOLojdsdVIulO+4iGxmoDl/Mj/pS9cAW7xQGNHWnGjbe+9lSlndJ64S8bARrunyzmf
- mXWGr2r2EwIKyxswfm/TsL3lFs3AO551tai+KJ/tOG2+yoeverGzLXQosjA0qxeIv/y7KAcgROg
- PI+3orpxhx4NEGu6kja1Mg6dleLpIhvKLiRrKYVc5QFOzMhyvUarUChm2EJkqjioXltjyNdZ3QQ
- B8rTrHWRwE51PAwOoJ/kewAeYmAphOa9QZUuyznAqtGYxMmX7znV3ePNoUg1mULRMXGCfB5hrxm
- FQ8IZ6czk+AWby4nv4Q==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-05_01,2026-02-05_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 clxscore=1015 bulkscore=0 suspectscore=0 adultscore=0
- priorityscore=1501 spamscore=0 malwarescore=0 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602050068
+X-CM-TRANSID:TQJkCgDXIK0qZIRpmO8CAA--.15840S2
+X-Coremail-Antispam: 1UD129KBjvAXoW3ZF4UuF45ur18Zr13Xw15XFb_yoW8Wr45Xo
+	W8C3Zxu3yUKw1IvrsxGw1xX3yYkr47Jr1DXF13Xa4fKF1xJrnFkry8Jr40934ftryj9r90
+	kwsrKwn7ZrWY9FW7n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
+	AaLaJ3UjIYCTnIWjp_UUUYK7AC8VAFwI0_Xr0_Wr1l1xkIjI8I6I8E6xAIw20EY4v20xva
+	j40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2
+	x7M28EF7xvwVC0I7IYx2IY67AKxVWDJVCq3wA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8
+	Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26r
+	xl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
+	6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
+	0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
+	8cxan2IY04v7M4kE6xkIj40Ew7xC0wCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE-syl42
+	xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWU
+	GwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI4
+	8JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4U
+	MIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I
+	8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRENtxDUUUU
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[krishna.chundru@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262937-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-262939-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DMARC_NA(0.00)[eswincomputing.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.987];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[eswincomputing.com,einfochips.com,gmail.com,ziswiler.com,microchip.com];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_NONE(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 0DBB8F0D8F
+	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org]
+X-Rspamd-Queue-Id: D7B8CF0DA5
 X-Rspamd-Action: no action
 
-From PCIe r7, sec 5.5.4 & Table 5-11 in sec 5.5.5 T_POWER_ON is the
-minimum amount of time (in us) that each component must wait in L1.2.Exit
-after sampling CLKREQ# asserted before actively driving the interface to
-ensure no device is ever actively driving into an unpowered component and
-these values are based on the components and AC coupling capacitors used
-in the connection linking the two components.
+From: Xuyang Dong <dongxuyang@eswincomputing.com>
 
-This property should be used to indicate the T_POWER_ON and drivers using
-this property are responsible for programming both the scale and the value
-of T_POWER_ON to comply with the PCIe specification.
+Add device tree binding documentation for the ESWIN eic7700
+clock controller module.
 
-Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Troy Mitchell <troy.mitchell@linux.dev>
+Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
 ---
-Changes in V3.
-- Couple of nits from Mani & Bjorn.
-- Link to v3: https://lore.kernel.org/all/20251126103112.838549-1-krishna.chundru@oss.qualcomm.com/
-Changes in v2:
-- Move the property to pci-device.yaml so that it will be applicable to
-  endpoint devices also (Mani).
-- Use latest spec (Lukas)
-- Link to v2: https://lore.kernel.org/all/20251110112947.2071036-1-krishna.chundru@oss.qualcomm.com/
-Changes in v1:
-- Updated the commiit text (Mani).
-- Link to v1: https://lore.kernel.org/all/20251110112550.2070659-1-krishna.chundru@oss.qualcomm.com/#t
+ .../bindings/clock/eswin,eic7700-clock.yaml   |  46 +++
+ .../dt-bindings/clock/eswin,eic7700-clock.h   | 285 ++++++++++++++++++
+ 2 files changed, 331 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+ create mode 100644 include/dt-bindings/clock/eswin,eic7700-clock.h
 
- dtschema/schemas/pci/pci-device.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/dtschema/schemas/pci/pci-device.yaml b/dtschema/schemas/pci/pci-device.yaml
-index ca094a0..a847500 100644
---- a/dtschema/schemas/pci/pci-device.yaml
-+++ b/dtschema/schemas/pci/pci-device.yaml
-@@ -63,6 +63,15 @@ properties:
-     description: GPIO controlled connection to WAKE# signal
-     maxItems: 1
- 
-+  t-power-on-us:
-+    description:
-+      The minimum amount of time that each component must wait in
-+      L1.2.Exit after sampling CLKREQ# asserted before actively driving
-+      the interface to ensure no device is ever actively driving into an
-+      unpowered component. This value is based on the components and AC
-+      coupling capacitors used in the connection linking the two
-+      components (PCIe r7.0, sec 5.5.4).
+diff --git a/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml b/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+new file mode 100644
+index 000000000000..3125ae52bde6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/eswin,eic7700-clock.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- required:
-   - reg
- 
++title: Eswin EIC7700 SoC clock controller
++
++maintainers:
++  - Yifeng Huang <huangyifeng@eswincomputing.com>
++  - Xuyang Dong <dongxuyang@eswincomputing.com>
++
++description:
++  The clock controller generates and supplies clock to all the modules
++  for eic7700 SoC.
++
++properties:
++  compatible:
++    const: eswin,eic7700-clock
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: External 24MHz oscillator clock
++
++  '#clock-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    clock-controller@51828000 {
++        compatible = "eswin,eic7700-clock";
++        reg = <0x51828000 0x300>;
++        clocks = <&xtal24m>;
++        #clock-cells = <1>;
++    };
+diff --git a/include/dt-bindings/clock/eswin,eic7700-clock.h b/include/dt-bindings/clock/eswin,eic7700-clock.h
+new file mode 100644
+index 000000000000..d7ef697d0f7a
+--- /dev/null
++++ b/include/dt-bindings/clock/eswin,eic7700-clock.h
+@@ -0,0 +1,285 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright 2026, Beijing ESWIN Computing Technology Co., Ltd..
++ * All rights reserved.
++ *
++ * Device Tree binding constants for EIC7700 clock controller.
++ *
++ * Authors:
++ *	Yifeng Huang <huangyifeng@eswincomputing.com>
++ *	Xuyang Dong <dongxuyang@eswincomputing.com>
++ */
++
++#ifndef _DT_BINDINGS_ESWIN_EIC7700_CLOCK_H_
++#define _DT_BINDINGS_ESWIN_EIC7700_CLOCK_H_
++
++#define EIC7700_CLK_XTAL_32K				0
++#define EIC7700_CLK_PLL_CPU				1
++#define EIC7700_CLK_SPLL0_FOUT1				2
++#define EIC7700_CLK_SPLL0_FOUT2				3
++#define EIC7700_CLK_SPLL0_FOUT3				4
++#define EIC7700_CLK_SPLL1_FOUT1				5
++#define EIC7700_CLK_SPLL1_FOUT2				6
++#define EIC7700_CLK_SPLL1_FOUT3				7
++#define EIC7700_CLK_SPLL2_FOUT1				8
++#define EIC7700_CLK_SPLL2_FOUT2				9
++#define EIC7700_CLK_SPLL2_FOUT3				10
++#define EIC7700_CLK_VPLL_FOUT1				11
++#define EIC7700_CLK_VPLL_FOUT2				12
++#define EIC7700_CLK_VPLL_FOUT3				13
++#define EIC7700_CLK_APLL_FOUT1				14
++#define EIC7700_CLK_APLL_FOUT2				15
++#define EIC7700_CLK_APLL_FOUT3				16
++#define EIC7700_CLK_EXT_MCLK				17
++#define EIC7700_CLK_LPDDR_REF_BAK			18
++#define EIC7700_CLK_MUX_CPU_ROOT_3MUX1_GFREE		19
++#define EIC7700_CLK_MUX_CPU_ACLK_2MUX1_GFREE		20
++#define EIC7700_CLK_MUX_DSP_ACLK_ROOT_2MUX1_GFREE	21
++#define EIC7700_CLK_MUX_D2D_ACLK_ROOT_2MUX1_GFREE	22
++#define EIC7700_CLK_MUX_MSHCORE_ROOT_3MUX1_0		23
++#define EIC7700_CLK_MUX_MSHCORE_ROOT_3MUX1_1		24
++#define EIC7700_CLK_MUX_MSHCORE_ROOT_3MUX1_2		25
++#define EIC7700_CLK_MUX_NPU_LLCLK_3MUX1_GFREE		26
++#define EIC7700_CLK_MUX_NPU_CORE_3MUX1_GFREE		27
++#define EIC7700_CLK_MUX_VI_ACLK_ROOT_2MUX1_GFREE	28
++#define EIC7700_CLK_MUX_VI_DVP_ROOT_2MUX1_GFREE		29
++#define EIC7700_CLK_MUX_VI_DIG_ISP_ROOT_2MUX1_GFREE	30
++#define EIC7700_CLK_MUX_VO_ACLK_ROOT_2MUX1_GFREE	31
++#define EIC7700_CLK_MUX_VO_PIXEL_ROOT_2MUX1		32
++#define EIC7700_CLK_MUX_VCDEC_ROOT_2MUX1_GFREE		33
++#define EIC7700_CLK_MUX_VCACLK_ROOT_2MUX1_GFREE		34
++#define EIC7700_CLK_MUX_SATA_PHY_2MUX1			35
++#define EIC7700_CLK_MUX_BOOTSPI_CLK_2MUX1_GFREE		36
++#define EIC7700_CLK_MUX_SCPU_CORE_CLK_2MUX1_GFREE	37
++#define EIC7700_CLK_MUX_LPCPU_CORE_CLK_2MUX1_GFREE	38
++#define EIC7700_CLK_MUX_VO_MCLK_2MUX_EXT_MCLK		39
++#define EIC7700_CLK_MUX_SYSCFG_CLK_ROOT_2MUX1_GFREE	40
++#define EIC7700_CLK_MUX_AONDMA_AXI2MUX1_GFREE		41
++#define EIC7700_CLK_MUX_RMII_REF_2MUX			42
++#define EIC7700_CLK_MUX_ETH_CORE_2MUX1			43
++#define EIC7700_CLK_MUX_VI_DW_ROOT_2MUX1		44
++#define EIC7700_CLK_MUX_NPU_E31_3MUX1_GFREE		45
++#define EIC7700_CLK_MUX_DDR_ACLK_ROOT_2MUX1_GFREE	46
++#define EIC7700_CLK_DIV_SYS_CFG_DYNM			47
++#define EIC7700_CLK_DIV_NOC_NSP_DYNM			48
++#define EIC7700_CLK_DIV_BOOTSPI_DYNM			49
++#define EIC7700_CLK_DIV_SCPU_CORE_DYNM			50
++#define EIC7700_CLK_DIV_LPCPU_CORE_DYNM			51
++#define EIC7700_CLK_DIV_GPU_ACLK_DYNM			52
++#define EIC7700_CLK_DIV_DSP_ACLK_DYNM			53
++#define EIC7700_CLK_DIV_D2D_ACLK_DYNM			54
++#define EIC7700_CLK_DIV_HSP_ACLK_DYNM			55
++#define EIC7700_CLK_DIV_ETH_TXCLK_DYNM_0		56
++#define EIC7700_CLK_DIV_ETH_TXCLK_DYNM_1		57
++#define EIC7700_CLK_DIV_MSHC_CORE_DYNM_0		58
++#define EIC7700_CLK_DIV_MSHC_CORE_DYNM_1		59
++#define EIC7700_CLK_DIV_MSHC_CORE_DYNM_2		60
++#define EIC7700_CLK_DIV_PCIE_ACLK_DYNM			61
++#define EIC7700_CLK_DIV_NPU_ACLK_DYNM			62
++#define EIC7700_CLK_DIV_NPU_LLC_SRC0_DYNM		63
++#define EIC7700_CLK_DIV_NPU_LLC_SRC1_DYNM		64
++#define EIC7700_CLK_DIV_NPU_CORECLK_DYNM		65
++#define EIC7700_CLK_DIV_VI_ACLK_DYNM			66
++#define EIC7700_CLK_DIV_VI_DVP_DYNM			67
++#define EIC7700_CLK_DIV_VI_DIG_ISP_DYNM			68
++#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_0		69
++#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_1		70
++#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_2		71
++#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_3		72
++#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_4		73
++#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_5		74
++#define EIC7700_CLK_DIV_VO_ACLK_DYNM			75
++#define EIC7700_CLK_DIV_IESMCLK_DYNM			76
++#define EIC7700_CLK_DIV_VO_PIXEL_DYNM			77
++#define EIC7700_CLK_DIV_VO_MCLK_DYNM			78
++#define EIC7700_CLK_DIV_VC_ACLK_DYNM			79
++#define EIC7700_CLK_DIV_JD_DYNM				80
++#define EIC7700_CLK_DIV_JE_DYNM				81
++#define EIC7700_CLK_DIV_VE_DYNM				82
++#define EIC7700_CLK_DIV_VD_DYNM				83
++#define EIC7700_CLK_DIV_G2D_DYNM			84
++#define EIC7700_CLK_DIV_AONDMA_AXI_DYNM			85
++#define EIC7700_CLK_DIV_CRYPTO_DYNM			86
++#define EIC7700_CLK_DIV_VI_DW_DYNM			87
++#define EIC7700_CLK_DIV_NPU_E31_DYNM			88
++#define EIC7700_CLK_DIV_SATA_PHY_REF_DYNM		89
++#define EIC7700_CLK_DIV_DSP_0_ACLK_DYNM			90
++#define EIC7700_CLK_DIV_DSP_1_ACLK_DYNM			91
++#define EIC7700_CLK_DIV_DSP_2_ACLK_DYNM			92
++#define EIC7700_CLK_DIV_DSP_3_ACLK_DYNM			93
++#define EIC7700_CLK_DIV_DDR_ACLK_DYNM			94
++#define EIC7700_CLK_DIV_AON_RTC_DYNM			95
++#define EIC7700_CLK_DIV_U84_RTC_TOGGLE_DYNM		96
++#define EIC7700_CLK_DIV_VO_CEC_DYNM			97
++#define EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_0		98
++#define EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_1		99
++#define EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_2		100
++#define EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_3		101
++#define EIC7700_CLK_GATE_CPU_TRACE_CLK_0		102
++#define EIC7700_CLK_GATE_CPU_TRACE_CLK_1		103
++#define EIC7700_CLK_GATE_CPU_TRACE_CLK_2		104
++#define EIC7700_CLK_GATE_CPU_TRACE_CLK_3		105
++#define EIC7700_CLK_GATE_CPU_TRACE_COM_CLK		106
++#define EIC7700_CLK_GATE_SPLL0_FOUT2			107
++#define EIC7700_CLK_GATE_NOC_NSP_CLK			108
++#define EIC7700_CLK_GATE_BOOTSPI			109
++#define EIC7700_CLK_GATE_BOOTSPI_CFG			110
++#define EIC7700_CLK_GATE_SCPU_CORE			111
++#define EIC7700_CLK_GATE_SCPU_BUS			112
++#define EIC7700_CLK_GATE_LPCPU_CORE			113
++#define EIC7700_CLK_GATE_LPCPU_BUS			114
++#define EIC7700_CLK_GATE_GPU_ACLK			115
++#define EIC7700_CLK_GATE_GPU_GRAY_CLK			116
++#define EIC7700_CLK_GATE_GPU_CFG_CLK			117
++#define EIC7700_CLK_GATE_DSPT_ACLK			118
++#define EIC7700_CLK_GATE_DSPT_CFG_CLK			119
++#define EIC7700_CLK_GATE_D2D_ACLK			120
++#define EIC7700_CLK_GATE_D2D_CFG_CLK			121
++#define EIC7700_CLK_GATE_TCU_ACLK			122
++#define EIC7700_CLK_GATE_TCU_CFG_CLK			123
++#define EIC7700_CLK_GATE_DDRT_CFG_CLK			124
++#define EIC7700_CLK_GATE_DDRT0_P0_ACLK			125
++#define EIC7700_CLK_GATE_DDRT0_P1_ACLK			126
++#define EIC7700_CLK_GATE_DDRT0_P2_ACLK			127
++#define EIC7700_CLK_GATE_DDRT0_P3_ACLK			128
++#define EIC7700_CLK_GATE_DDRT0_P4_ACLK			129
++#define EIC7700_CLK_GATE_DDRT1_P0_ACLK			130
++#define EIC7700_CLK_GATE_DDRT1_P1_ACLK			131
++#define EIC7700_CLK_GATE_DDRT1_P2_ACLK			132
++#define EIC7700_CLK_GATE_DDRT1_P3_ACLK			133
++#define EIC7700_CLK_GATE_DDRT1_P4_ACLK			134
++#define EIC7700_CLK_GATE_TIMER_CLK_0			135
++#define EIC7700_CLK_GATE_TIMER_CLK_1			136
++#define EIC7700_CLK_GATE_TIMER_CLK_2			137
++#define EIC7700_CLK_GATE_TIMER_CLK_3			138
++#define EIC7700_CLK_GATE_TIMER_PCLK_0			139
++#define EIC7700_CLK_GATE_TIMER_PCLK_1			140
++#define EIC7700_CLK_GATE_TIMER_PCLK_2			141
++#define EIC7700_CLK_GATE_TIMER_PCLK_3			142
++#define EIC7700_CLK_GATE_TIMER3_CLK8			143
++#define EIC7700_CLK_GATE_PCIET_ACLK			144
++#define EIC7700_CLK_GATE_PCIET_CFG_CLK			145
++#define EIC7700_CLK_GATE_PCIET_CR_CLK			146
++#define EIC7700_CLK_GATE_PCIET_AUX_CLK			147
++#define EIC7700_CLK_GATE_NPU_ACLK			148
++#define EIC7700_CLK_GATE_NPU_CFG_CLK			149
++#define EIC7700_CLK_GATE_NPU_LLC_ACLK			150
++#define EIC7700_CLK_GATE_NPU_CLK			151
++#define EIC7700_CLK_GATE_NPU_E31_CLK			152
++#define EIC7700_CLK_GATE_VI_ACLK			153
++#define EIC7700_CLK_GATE_VI_DVP_CLK			154
++#define EIC7700_CLK_GATE_VI_CFG_CLK			155
++#define EIC7700_CLK_GATE_VI_DIG_DW_CLK			156
++#define EIC7700_CLK_GATE_VI_DIG_ISP_CLK			157
++#define EIC7700_CLK_GATE_VI_SHUTTER_0			158
++#define EIC7700_CLK_GATE_VI_SHUTTER_1			159
++#define EIC7700_CLK_GATE_VI_SHUTTER_2			160
++#define EIC7700_CLK_GATE_VI_SHUTTER_3			161
++#define EIC7700_CLK_GATE_VI_SHUTTER_4			162
++#define EIC7700_CLK_GATE_VI_SHUTTER_5			163
++#define EIC7700_CLK_GATE_VI_PHY_TXCLKESC		164
++#define EIC7700_CLK_GATE_VI_PHY_CFG			165
++#define EIC7700_CLK_GATE_VO_ACLK			166
++#define EIC7700_CLK_GATE_VO_CFG_CLK			167
++#define EIC7700_CLK_GATE_VO_HDMI_IESMCLK		168
++#define EIC7700_CLK_GATE_VO_PIXEL_CLK			169
++#define EIC7700_CLK_GATE_VO_I2S_MCLK			170
++#define EIC7700_CLK_GATE_HSP_CFG_CLK			171
++#define EIC7700_CLK_GATE_VC_ACLK			172
++#define EIC7700_CLK_GATE_VC_CFG_CLK			173
++#define EIC7700_CLK_GATE_VC_JE_CLK			174
++#define EIC7700_CLK_GATE_VC_JD_CLK			175
++#define EIC7700_CLK_GATE_VC_VE_CLK			176
++#define EIC7700_CLK_GATE_VC_VD_CLK			177
++#define EIC7700_CLK_GATE_G2D_CFG_CLK			178
++#define EIC7700_CLK_GATE_G2D_CLK			179
++#define EIC7700_CLK_GATE_G2D_ACLK			180
++#define EIC7700_CLK_GATE_AONDMA_CFG			181
++#define EIC7700_CLK_GATE_AONDMA_ACLK			182
++#define EIC7700_CLK_GATE_AON_ACLK			183
++#define EIC7700_CLK_GATE_HSP_SATA_RBC_CLK		184
++#define EIC7700_CLK_GATE_VO_CR_CLK			185
++#define EIC7700_CLK_GATE_HSP_ACLK			186
++#define EIC7700_CLK_GATE_HSP_SATA_OOB_CLK		187
++#define EIC7700_CLK_GATE_RTC_CFG			188
++#define EIC7700_CLK_GATE_RTC				189
++#define EIC7700_CLK_GATE_HSP_MSHC0_CORE_CLK		190
++#define EIC7700_CLK_GATE_HSP_MSHC1_CORE_CLK		191
++#define EIC7700_CLK_GATE_HSP_MSHC2_CORE_CLK		192
++#define EIC7700_CLK_GATE_HSP_ETH0_CORE_CLK		193
++#define EIC7700_CLK_GATE_HSP_ETH1_CORE_CLK		194
++#define EIC7700_CLK_GATE_HSP_RMII_REF_0			195
++#define EIC7700_CLK_GATE_HSP_RMII_REF_1			196
++#define EIC7700_CLK_GATE_PKA_CFG			197
++#define EIC7700_CLK_GATE_SPACC_CFG			198
++#define EIC7700_CLK_GATE_CRYPTO				199
++#define EIC7700_CLK_GATE_TRNG_CFG			200
++#define EIC7700_CLK_GATE_OTP_CFG			201
++#define EIC7700_CLK_GATE_MAILBOX_0			202
++#define EIC7700_CLK_GATE_MAILBOX_1			203
++#define EIC7700_CLK_GATE_MAILBOX_2			204
++#define EIC7700_CLK_GATE_MAILBOX_3			205
++#define EIC7700_CLK_GATE_MAILBOX_4			206
++#define EIC7700_CLK_GATE_MAILBOX_5			207
++#define EIC7700_CLK_GATE_MAILBOX_6			208
++#define EIC7700_CLK_GATE_MAILBOX_7			209
++#define EIC7700_CLK_GATE_MAILBOX_8			210
++#define EIC7700_CLK_GATE_MAILBOX_9			211
++#define EIC7700_CLK_GATE_MAILBOX_10			212
++#define EIC7700_CLK_GATE_MAILBOX_11			213
++#define EIC7700_CLK_GATE_MAILBOX_12			214
++#define EIC7700_CLK_GATE_MAILBOX_13			215
++#define EIC7700_CLK_GATE_MAILBOX_14			216
++#define EIC7700_CLK_GATE_MAILBOX_15			217
++#define EIC7700_CLK_GATE_LSP_I2C0_PCLK			218
++#define EIC7700_CLK_GATE_LSP_I2C1_PCLK			219
++#define EIC7700_CLK_GATE_LSP_I2C2_PCLK			220
++#define EIC7700_CLK_GATE_LSP_I2C3_PCLK			221
++#define EIC7700_CLK_GATE_LSP_I2C4_PCLK			222
++#define EIC7700_CLK_GATE_LSP_I2C5_PCLK			223
++#define EIC7700_CLK_GATE_LSP_I2C6_PCLK			224
++#define EIC7700_CLK_GATE_LSP_I2C7_PCLK			225
++#define EIC7700_CLK_GATE_LSP_I2C8_PCLK			226
++#define EIC7700_CLK_GATE_LSP_I2C9_PCLK			227
++#define EIC7700_CLK_GATE_LSP_WDT0_PCLK			228
++#define EIC7700_CLK_GATE_LSP_WDT1_PCLK			229
++#define EIC7700_CLK_GATE_LSP_WDT2_PCLK			230
++#define EIC7700_CLK_GATE_LSP_WDT3_PCLK			231
++#define EIC7700_CLK_GATE_LSP_SSI0_PCLK			232
++#define EIC7700_CLK_GATE_LSP_SSI1_PCLK			233
++#define EIC7700_CLK_GATE_LSP_PVT_PCLK			234
++#define EIC7700_CLK_GATE_AON_I2C0_PCLK			235
++#define EIC7700_CLK_GATE_AON_I2C1_PCLK			236
++#define EIC7700_CLK_GATE_LSP_UART0_PCLK			237
++#define EIC7700_CLK_GATE_LSP_UART1_PCLK			238
++#define EIC7700_CLK_GATE_LSP_UART2_PCLK			239
++#define EIC7700_CLK_GATE_LSP_UART3_PCLK			240
++#define EIC7700_CLK_GATE_LSP_UART4_PCLK			241
++#define EIC7700_CLK_GATE_LSP_TIMER_PCLK			242
++#define EIC7700_CLK_GATE_LSP_FAN_PCLK			243
++#define EIC7700_CLK_GATE_LSP_PVT0_CLK			244
++#define EIC7700_CLK_GATE_LSP_PVT1_CLK			245
++#define EIC7700_CLK_GATE_VC_JE_PCLK			246
++#define EIC7700_CLK_GATE_VC_JD_PCLK			247
++#define EIC7700_CLK_GATE_VC_VE_PCLK			248
++#define EIC7700_CLK_GATE_VC_VD_PCLK			249
++#define EIC7700_CLK_GATE_VC_MON_PCLK			250
++#define EIC7700_CLK_GATE_HSP_DMA0_CLK			251
++#define EIC7700_CLK_GATE_HSP_DMA0_CLK_TEST		252
++#define EIC7700_CLK_FIXED_FACTOR_CPU_DIV2		253
++#define EIC7700_CLK_FIXED_FACTOR_CLK_1M_DIV24		254
++#define EIC7700_CLK_FIXED_FACTOR_MIPI_TXESC_DIV10	255
++#define EIC7700_CLK_FIXED_FACTOR_U84_CORE_LP_DIV2	256
++#define EIC7700_CLK_FIXED_FACTOR_SCPU_BUS_DIV2		257
++#define EIC7700_CLK_FIXED_FACTOR_LPCPU_BUS_DIV2		258
++#define EIC7700_CLK_FIXED_FACTOR_PCIE_CR_DIV2		259
++#define EIC7700_CLK_FIXED_FACTOR_PCIE_AUX_DIV4		260
++#define EIC7700_CLK_FIXED_FACTOR_PVT_DIV20		261
++#define EIC7700_CLK_FIXED_FACTOR_HSP_RMII_REF_DIV6	262
++#define EIC7700_CLK_DIV_NOC_WDREF_DYNM			263
++#define EIC7700_CLK_GATE_DDR0_TRACE			264
++#define EIC7700_CLK_GATE_DDR1_TRACE			265
++#define EIC7700_CLK_GATE_RNOC_NSP			266
++#define EIC7700_CLK_GATE_NOC_WDREF			267
++
++#endif /* _DT_BINDINGS_ESWIN_EIC7700_CLOCK_H_ */
 -- 
 2.34.1
 
