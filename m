@@ -1,243 +1,373 @@
-Return-Path: <devicetree+bounces-262968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262969-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GL0wBEp0hGn12wMAu9opvQ
-	(envelope-from <devicetree+bounces-262968-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 11:43:22 +0100
+	id QDuWApt1hGkM3AMAu9opvQ
+	(envelope-from <devicetree+bounces-262969-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 11:48:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76A6DF16F9
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 11:43:21 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7428BF1753
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 11:48:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7F495302F6B9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 10:42:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4CB36300954C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 10:48:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F9753A9014;
-	Thu,  5 Feb 2026 10:42:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 462F83A4F57;
+	Thu,  5 Feb 2026 10:48:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="V0HSA2L6"
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="oEQcqgpL";
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="oEQcqgpL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013004.outbound.protection.outlook.com [52.101.83.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0B7D3A9628;
-	Thu,  5 Feb 2026 10:42:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770288142; cv=none; b=qaZuDepqM4iwyWoTGNQPCAV7gUOOVvFmN1HE74wfSShJS7t5zhOqhMQdCKvcdLWZbRi+eQ6gIGEWxE6aE3frc3fiFHgcdcCp71xWS1KGbQ7au5yaKZdBG5Fb5rLEfYD+vUwcqr4yc1ed4FACk+U5fm9dJbSOBnXPo6heQoySWVk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770288142; c=relaxed/simple;
-	bh=EFkQJ/FeaTlYw4ksx0sha0nzYrP020ROsbcL34+2gDo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zby9lYY0QoAulNqCAVonySOG7fCw+z3MetxPEKlxkPCDHPP22+osWIJRI/YFv4SYSqfoAb/rDAIj9DpHsc/ii9S9Y528UyI0BSYfDh4ARUOp+c0XUnxjAVmHSJWOP3LIUDwZ7OWXTvHp+OpkVuc1ezlnFy3juOD3+ZqxquHqRZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=V0HSA2L6; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
-	s=s2025; t=1770288112;
-	bh=OObd72dBP8O/pM/sBVA944xFBWgM8aPfDdnd27BOlYs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=V0HSA2L6bWWwofDzB+Xk0gp8PvxfXIkqhTfF8slocfXIK3fT0iHZmrGFRKilD5VNW
-	 4w9uFq5UPKYInaUpnPnOLkd3ht9lRUFzmjwWJfvyOMIg+PHXcenb0IFIaDRLjNaqVw
-	 wSPhnk5DM0KFHq9zEAQVU9ntvuElRtmS7sUf1l055o9nteBLQXRtHld1L9AApf5ZIn
-	 pks2DvvPro2NojkMKDyEkD1dAuQHpax+EUd0+qUEEkLZqOvjgCV4NaIXrUTpoq/umF
-	 ZZIL50/Kj6ax3Wk+8RLx33dJcdXk20BbryAFqqmvKeR8xCOTwCPZ37jlgvTsfmv6EF
-	 bBorVJoPKF0aA==
-Received: from [IPV6:2605:59ca:364f:d400:1b91:6b30:22c2:fffc] (unknown [IPv6:2605:59ca:364f:d400:1b91:6b30:22c2:fffc])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 7DFD9B22014B;
-	Thu,  5 Feb 2026 11:41:50 +0100 (CET)
-Message-ID: <3225628d-2546-44c1-bc9d-1607aa3d6c90@freeshell.de>
-Date: Thu, 5 Feb 2026 02:41:48 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CA9936E495;
+	Thu,  5 Feb 2026 10:48:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.4
+ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770288536; cv=fail; b=a0HkkWX8GM1ikSyiT2scRAYqjs9k61KgUISGYTAcnSV/CVLDtNnLCNhCEkUXappo0mRX6NZFt0mZEWb4zgEyWb+xaHaKQibH66MqzqWuGyhJ7OkTJ1el7CXTXOePg7dq7Vc2BKOQxmsakEKdyMoRnWVZB9jDGZBrcPrd9+Y4mtc=
+ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770288536; c=relaxed/simple;
+	bh=jPAw/7l4QjWDGJZrHVw0dkhcdLjbsl+oXzZJ4eKXKI0=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=g6McasYJhuNFNvvl3wcg+isd4XaMrdgEhfeMYFi4NOH8k8Z+fNJJcp++gSf+tnerM6nnYmPIXXzUOQwumGVoaf9MpiVM5arB8kZ6wwUsgxlk40MfrpzF5vhncLEqX9av6KAVk4TKrhvCRAQpi/ZfDcBDhddnpFhoDkEt1rn9b5s=
+ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=oEQcqgpL; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=oEQcqgpL; arc=fail smtp.client-ip=52.101.83.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=kvCcBlq55B4C+yzKdCysKUoEOGRAUv1unHnlvpaxl/dB0YwNzTaN562kpvolFGx6uifqjV+pCSUDs8V8oVRO5IBqPltB4HQm/StruReOEku5G0HzY+iO74Ia6ecbOTs/lNHAiTZ0em67isNaxv1GAG4jb0Re9YKWckqmpFJiY+FgxhF/L1tjx9inpEZgaRD+6MmeA0o/2c6e5rD7AKIwYqasmEZPgIxNI5McIayoZQjzWfhcQxsvyrSqesdbMljNZdlLCY2Jz+YGlKS4xTLdW3I0w1kHp9xZ9M0jGzmEu5UC2yqKPlSNIc14ya7w0de9nTXYHaWfDgwRGyhaTnJZ5g==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=s1luv7R/V9TzNsWEOAXKxuFIK5mK+yi1MzGUcmi1XSM=;
+ b=GPK6imyodWrFdN2ZeNMeb6gqJ+W4EzjuusillOMAy+pMM4xaR0owa/2zNOGCbeEZoYpSqTRQR3PsuGyWq7uOIpXiCzZZRTvlb7rOLuX+aXzWHlVfZhCh04m9uirKIjy3vmjjKN2V4UEh0teFrsYk4VrWYanrWAWbu56e1wu3syIlwizbZw+LeY77+mzL6M6FLQoKmUjk4DvQhZUEthAee5ffEMBD299cvAGjY7EcTAGkIka4NyvXnoRL3pGh6Dy5Prqxbo6IKX9b1LarXRfLh9IqWlXCB8jnnIvcMfI0qemglFe0A1xhTX+cUp6AQmLpqKaAmg1IE+8saCzfmxG/yg==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 4.158.2.129) smtp.rcpttodomain=kernel.org smtp.mailfrom=arm.com; dmarc=pass
+ (p=none sp=none pct=100) action=none header.from=arm.com; dkim=pass
+ (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
+ spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
+ dmarc=[1,1,header.from=arm.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s1luv7R/V9TzNsWEOAXKxuFIK5mK+yi1MzGUcmi1XSM=;
+ b=oEQcqgpL7FVwDy3yxstg3u6JHQaMPP5XmzcUa1uqawM14FNriglqEuN9EswqZqAnl/tGAbmOnd+fGDKEO92WtaiP1u16QhQkWocbz8pnlvXxdPl5EP56cS97dt5iLE5tSZTPf4CtPYEs3wzVGPr0apY5gUhLbY0a9yVpxhTq51g=
+Received: from DU2PR04CA0226.eurprd04.prod.outlook.com (2603:10a6:10:2b1::21)
+ by AS8PR08MB8443.eurprd08.prod.outlook.com (2603:10a6:20b:567::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Thu, 5 Feb
+ 2026 10:48:48 +0000
+Received: from DB1PEPF000509EC.eurprd03.prod.outlook.com
+ (2603:10a6:10:2b1:cafe::52) by DU2PR04CA0226.outlook.office365.com
+ (2603:10a6:10:2b1::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.16 via Frontend Transport; Thu,
+ 5 Feb 2026 10:48:33 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 4.158.2.129)
+ smtp.mailfrom=arm.com; dkim=pass (signature was verified)
+ header.d=arm.com;dmarc=pass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
+ client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
+Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
+ DB1PEPF000509EC.mail.protection.outlook.com (10.167.242.70) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.10
+ via Frontend Transport; Thu, 5 Feb 2026 10:48:48 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IyEZKLixabwnf0ePQspJCePaVSHS2WXjm94tWpgVe6+5hRBK1MHEKdcMGQAasemUm41lAvFWevDURkGsan5aG7Vqg1VPDrhUX6/FhUGxrIELbKSc0N7AzuZuuoxaYrQAjJjqLsvWBLfrQZRZ8vXWw9Ck7ELcr9fvXXy0DqEBljRFfI3Dvbpgw8tPVNru0YTTZ89nxNrfS7iWTdCp9SMjnIyv4lrxja2OfQacQvAqhvxtYp6/F+WHWJYU5NIu1G6P7K2JmK5KHd/sggn81s5NhETq84Wc2XRWfFSS4MVHXcfraA8K0uNDyba9G4n4nA1tXAD633sN2WchikTExbj5qw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=s1luv7R/V9TzNsWEOAXKxuFIK5mK+yi1MzGUcmi1XSM=;
+ b=jILz1BZumjJjy4ETippd3xE3d/Jj6Nb3NFPv9DvAeTpG936CQgJAcG+nq0ajlnJm2EHvHk6DoUmbdgc0qN2KZ7qoUKb02GgnLejSxPCUzb9z02KwXuDLt+9jF8EjJnTIb1F+s/1/B9bKbvn53JEye4bxTIj33YuTA3vfMLKi9rjeAkrwGC52fGQ/FwjrgPaJLSgoWNu15hZ7886ZrZ/Gk6CucvPutEDbYP+eqpBQ/92G9goXi4AgttBREadlSE5BLxXPvlZPEyEipabqtTP3nMwD554BNxSWAERKXk2Qno6ljMnwsC0gkA7SykWv+GABu4RGPnpLEUyplKaTBe9BKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s1luv7R/V9TzNsWEOAXKxuFIK5mK+yi1MzGUcmi1XSM=;
+ b=oEQcqgpL7FVwDy3yxstg3u6JHQaMPP5XmzcUa1uqawM14FNriglqEuN9EswqZqAnl/tGAbmOnd+fGDKEO92WtaiP1u16QhQkWocbz8pnlvXxdPl5EP56cS97dt5iLE5tSZTPf4CtPYEs3wzVGPr0apY5gUhLbY0a9yVpxhTq51g=
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+Received: from AS8PR08MB6502.eurprd08.prod.outlook.com (2603:10a6:20b:335::24)
+ by MRWPR08MB11808.eurprd08.prod.outlook.com (2603:10a6:501:9a::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.14; Thu, 5 Feb
+ 2026 10:47:45 +0000
+Received: from AS8PR08MB6502.eurprd08.prod.outlook.com
+ ([fe80::b605:86d8:45bc:37c5]) by AS8PR08MB6502.eurprd08.prod.outlook.com
+ ([fe80::b605:86d8:45bc:37c5%6]) with mapi id 15.20.9587.013; Thu, 5 Feb 2026
+ 10:47:45 +0000
+Message-ID: <8501be99-e774-4799-ae6a-01ab31020864@arm.com>
+Date: Thu, 5 Feb 2026 10:47:28 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: zena: Add support for Zena CSS
+Content-Language: en-GB
+To: Cristian Marussi <cristian.marussi@arm.com>,
+ Sudeep Holla <sudeep.holla@kernel.org>
+Cc: Andre Przywara <andre.przywara@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20260123-zena-css-v1-0-34adb95cdf89@arm.com>
+ <20260123-zena-css-v1-2-34adb95cdf89@arm.com>
+ <20260127132206.036892e4@donnerap.manchester.arm.com>
+ <c1259bad-be4d-4489-840d-4ab2f4e466f2@arm.com>
+ <8c343e6d-14f8-4f55-8218-bc3f0813e8cf@arm.com>
+ <20260130-light-piquant-termite-fcbec4@sudeepholla> <aYHmDTboOtkgac00@pluto>
+From: Debbie Horsfall <debbie.horsfall@arm.com>
+In-Reply-To: <aYHmDTboOtkgac00@pluto>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO2P123CA0099.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:139::14) To AS8PR08MB6502.eurprd08.prod.outlook.com
+ (2603:10a6:20b:335::24)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] riscv: dts: starfive: Milk-V Mars CM Lite broken-cd
-To: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
- Emil Renner Berthing <kernel@esmil.dk>, Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260204101602.30184-1-heinrich.schuchardt@canonical.com>
- <46d5d249-8cf2-46d1-a90c-1f2c5f146e15@canonical.com>
- <e2394c64-af36-428f-ad6e-4c7038c0301e@freeshell.de>
- <3166f7d5-b526-411d-b337-27981a7ed14d@canonical.com>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <3166f7d5-b526-411d-b337-27981a7ed14d@canonical.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-TrafficTypeDiagnostic:
+	AS8PR08MB6502:EE_|MRWPR08MB11808:EE_|DB1PEPF000509EC:EE_|AS8PR08MB8443:EE_
+X-MS-Office365-Filtering-Correlation-Id: a9c4aa41-936c-4c04-4601-08de64a4247b
+x-checkrecipientrouted: true
+NoDisclaimer: true
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info-Original:
+ =?utf-8?B?TGJRb1hDYk5pUEtOVEVBVGZhbXlwZDZrNktCWDBBV1ltNWp0RU1VQWF3RVh2?=
+ =?utf-8?B?VGc4VE5vZ0hXNnpmenNJWmljRmRwL0orMzMyNUVYaGZCbk4vWnh4SnpkbktY?=
+ =?utf-8?B?VVhlYjV2Y2ExTERBRzVtUFhPbTBRQTRuVXR2Vm4vblYxckl5bG42Y2t5Y25C?=
+ =?utf-8?B?cGNXY0ZSRUJjaENOV24vTXk3MHQ4YzRyOW9GKzJLeEZQekNEZmlKMitDaDZN?=
+ =?utf-8?B?ZjY3MjUrcndCNURMZVAvUXY4MGNHTGg2NllNaHRDcDZHc3BvL085SHlVYi8z?=
+ =?utf-8?B?OFhQNnBDQS9ZS1BZQXU0QzRKSWc4ME1YekUxZERDeEVrNzYyOVhoMzN3dk41?=
+ =?utf-8?B?Q05JTGFZeVd5WUdhalBsY0V0NURBL3ovZ0x1TThBN2JzSkVuVTcyR3RJVjd2?=
+ =?utf-8?B?cnp5YVVmQVBOcUp6M3h2NnZGcmVkbUFkbUJZdFplT1B6RGR3d25XU0czZW5v?=
+ =?utf-8?B?Vk1lZnF6UDZWSzNrQ1I5NkJEMEFqeXl5Y1FWRTJQeUJyMlJBMjJ0NlBna2t2?=
+ =?utf-8?B?dVBsVXNrSlFIYmFLQWRVc0twbHBDb3lSOGg1NU4zd2NPdERoUHhTV0tWbTFh?=
+ =?utf-8?B?UE1RZ0xoaWZKRHlYWFE3SzRtUXkzaFFtanY5dXU3bnpHZzhHMkpvZlVVZkNj?=
+ =?utf-8?B?L0Q4b0tBNlF0M2pnWlRIT1NGUFRmT1d5NFAva2xGK0x3MkxUcis0aU1kdmdr?=
+ =?utf-8?B?Mi90YzZFYTdwcGQ4eWhHNk5yM2tCZG5UNExmSkgxY2xPRTFCMW4zMnl5N0Zy?=
+ =?utf-8?B?N08xY3FrQjZibDZYMTJzK0x4L3duNGNmNnYxMGlTQ3g1QURraDN2ZVJ1cXR1?=
+ =?utf-8?B?MDUyQmhRcWczaG9mTXVWOWEwRi8rOVZnOXFpOG5HeGpta0toRy9OdEdqMmdv?=
+ =?utf-8?B?bkJJTWVjVGVEVlZndHVJNVRKN2M0VkFvMDVXeHNwZzhTSER6ZTE3cFJReFBZ?=
+ =?utf-8?B?endzQXh1dHJsa2lVZklZMnJENzIyK29SamxHc1B1OG4yWGRRTlhDRjJ1bitu?=
+ =?utf-8?B?M1UxYXNGRlNPT1hqMDVFTTByblAzQlZFQ3RISkRIb0p2SDQxSkFCWmk1MHUv?=
+ =?utf-8?B?UlZCTFIybEdMTkduY3ZLZ2tjd2lVYWVFUXdXUVRuVjhCcitRSllzUzVSaXdF?=
+ =?utf-8?B?b241emxKUHFNWSt0T09WUUhUbE02bTh3VTNqQ05jTnU2YTFGaDd5MDVFWENa?=
+ =?utf-8?B?UFp0SHg1K1lDSCs2eHliZmZ4ZjByZU5qWUdpMkRCV0JCRDR5V3krZ2JUUCto?=
+ =?utf-8?B?YUh6YWtQTHQ2emI5RXV1RDJFUkRqNFY5RmllKzU2Tk0zSHF0NGJUUTdzSGZ0?=
+ =?utf-8?B?MTRXMlJYTXNCTnZJKzRVb0xyS0NTRmM4T3h2YXNoa01sRmdyTTh6akFrbEZu?=
+ =?utf-8?B?TVUxSC95UXNjUFkwN2xmQkJxLzR5bi9lcTBSaDI4Qytvd2QwdG9hWDRDb0Fn?=
+ =?utf-8?B?L3NTWmd4WnBxUGV0MzNjR3kyYkhkVGdSb3RlSXU4R3FZWExVVVFXVk15SWtu?=
+ =?utf-8?B?dVB4WmJDTC9PQ0Q2aTJCNG40bFQxN1hpNFhuUmZlbFFSajRVRGF1WEdNQXBZ?=
+ =?utf-8?B?TE5va0pMZkE3ODBya3pzOVh3Z2RwdTl5NzQ3azh3aGMwQm02Z0hNSUExK2Zx?=
+ =?utf-8?B?Um04anIydUk2T2dhV0FlQ25yNmtBZzFtdSt1bjhLei9Yc2tXN1ZXaHdmZEZM?=
+ =?utf-8?B?Y1JWM2JXR1I3dE14L0RZR3hCMEJGM1AwT2c0ZnlDZXZ4VVl4VzhVRzU1RllJ?=
+ =?utf-8?B?SHF3dGoyekVtOGlXbUJSNnkvVWMxZUxPVG45NlVBZU5zQm00K3V5SjVhaGJG?=
+ =?utf-8?B?a0dpTmtBQUNMZDdJS096WmpxdVY4THp6OCsxWVdHalJ0YlQ5Wkd4c2FZK0tR?=
+ =?utf-8?B?bXpsTTRCZk1iVldkQ3VpUXlqYldQQjdHT2oxZFpuSUJVNkJ5RStTMHNUWVBa?=
+ =?utf-8?B?MEdqeEtIamZmc25lVllxczRqbEcwTlA2REc3SnJiSk94b0tJQkovWldGVkhG?=
+ =?utf-8?B?MUpGQm4yTlA4dmFFVmRCV2l6Y3VNaFpJbC83d1hqcjVBSW1CNStVOXl6SnFV?=
+ =?utf-8?B?R0lLUWxrYXljdTZHTUcxZGIzTjdXMkg1L3FGUmF2eFlTK1BzK0xXWnVEck5X?=
+ =?utf-8?Q?QhXc=3D?=
+X-Forefront-Antispam-Report-Untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR08MB6502.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MRWPR08MB11808
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped:
+ DB1PEPF000509EC.eurprd03.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs:
+	4bae4842-98d6-46b8-166e-08de64a3feff
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|35042699022|82310400026|14060799003|1800799024|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?eVhLc1JRY1RSa2E4YUtMcFcxWmVHY3FIWVBIU0UxSExhN1pYQ1Y1b3FnZzRP?=
+ =?utf-8?B?WUxuNkhuT3NzNXVrdW84MXpOa1RmRU5haHlVMThER0VRZkFmR3dBVUtJVm02?=
+ =?utf-8?B?WTc1OHZESUs5ZmYxNmpSbnBmb1ZUR0U1TFJIUkkxdkdPVGQvNWJhZEJjWU1S?=
+ =?utf-8?B?OUhLZFowMENRVTZKTHlOa3hYNXlKNDNkNlpPdVNLelFjdTdMV0lvYnFCYnhO?=
+ =?utf-8?B?MFpDdlhHdDRKTmJHTVBTQWtZZkdJWkt1alJKb0hyVGl0R0dsQkNKUXZkQklB?=
+ =?utf-8?B?bFBYbVZhbFdnMTJaVE5UNktwWUlNc250dFVJUGtKSDl2NEp0K3U3dXpsTW9N?=
+ =?utf-8?B?NHYxaFRyRnk0VHFNYzZLdWxocGlJdlRhVkdRYkZuYjIzVTZWVi9tdnN6WDN5?=
+ =?utf-8?B?cUxMOHVyaXpicTlBeVdzWHQ0ekpicGt2MHdRYUpFQ0psMTYrakFDWkxTUDRm?=
+ =?utf-8?B?TGZRNmtPUXJVclUwZWNtWDNGTGhCOGhydDhuQm5JSDFKemVmU3FjQnptZi8v?=
+ =?utf-8?B?M3NRMWxBZVpqVEtSTlNINzNFMDV0aFJ4MG1DTWNQbUt1Q1BmRFNIMjNicGli?=
+ =?utf-8?B?WVhPUDZ6bS9LTXo1d0Z3M1c3d2R4WU1QZmdqVUpGMStFMHJqRTRnRXFNMTZF?=
+ =?utf-8?B?K04xYmdvSnhmQyt6UktpMFk2NzVPU0pCWDN0UUJ6OGNLMEp2OEJLZG5SQU5D?=
+ =?utf-8?B?S2JzRGR4cWpKeGpjeXdpUlVSc2lMVis5NW9CeVN5dHJJa1VyOEhRb3l1Zmxn?=
+ =?utf-8?B?aUhvVXRac1ExVFVjRG8rRTVkR1BPQWYvV1pLdDk1NldiV3lhd0VPbGhxK0NH?=
+ =?utf-8?B?a0QzbWx5VGtsOTJmNEdPMU1STkZJYjg1WlB3eHVaa2NqNFdNTHpPc25YTXda?=
+ =?utf-8?B?TEtRWGJyQmNNRUo5LzJiL1NwRGlneUZ2OVV2QlQ1MlA5QVo3NGlkODRmU3JY?=
+ =?utf-8?B?M2FOWU5DcjZtbW1QM2Jod1BIaDA3OVBYRlJoMnhDMldNeE80blY2RUhKMDhH?=
+ =?utf-8?B?Q2JseU05RGI3MG9FaWdET0ROWmoxN0drQUNCdG5NRTRibFpkTUdjcWZoOE1V?=
+ =?utf-8?B?dG1saUE1NHArV3dFSXNCVzhBVGRrczZOYUNhNHBCbUwzYXRaak5LM3hEVTZ1?=
+ =?utf-8?B?YTNzL3BySzYrZDhxSzFVMnZZeFFLemdlL0RoKzMrUkNFeDZvd0xSQ2xZaXZs?=
+ =?utf-8?B?T3pjTmVtK0hYaDZ4L0VHL0pxeDdaMTI0MldrOUdFU0djaXBwYTNTS2xVVXIz?=
+ =?utf-8?B?S1V2dnZ4UXFvanFxOVVjaUlzNnZwVzdReDNKYUNDc0J2N05EL3VxY0xVYjR5?=
+ =?utf-8?B?VlFhZ1A5QVU5YVZkcC9rTnM0ekswa20rZ3RON1k0MitPNXZYMHF5TnAveHlF?=
+ =?utf-8?B?a3QyNXJDZ3VwcS9vTnhWWnlOQUJzdEJhaVFHaDBBUTF6UlJJTW9McnBCOTQw?=
+ =?utf-8?B?SHpjVVpkUHpoa1JUaEVubEtmRDdiTW5qVURFQ3Nzc2ZkbEZ3ek9qUFFxdkhG?=
+ =?utf-8?B?bmt1S3RRL25SdTA3bUV5eFVnS29BekhxdWhyamtOTVR5YWFqb3Zab0YxcnBQ?=
+ =?utf-8?B?MXNJV1VpZTRtRDZrTzViVW40d0E3V2xVcFVtcjBEaHNMam9tV1pJZStDU0NW?=
+ =?utf-8?B?OW9yOGMwNm1INnFoZC9zSmtINGxxUmtESXh4c1h0TDkyUXpPSkwwMUk5QVZH?=
+ =?utf-8?B?ZTdxYnErUXhWY1JodVNrSWpnQjJLSFluV3hEWTUrS2Z2QVVHUXg5b3VYbHlr?=
+ =?utf-8?B?RExNY0RMM2FhbEVsTktFQjduQjlBQzMvdXJRcGYxanJwZi9PaGJpTmFtT1dr?=
+ =?utf-8?B?REJVYU9SRVk3bitxQVMzaCsxSzJNSzFnUCszT3NrMEIyV2ZyUnMyMjRtdlRr?=
+ =?utf-8?B?YTFQS1dMR1J1UjlZQkVRbXZKR1RkQTMwcUxwcDJIY0NsQW1Iems1RnBrVHhW?=
+ =?utf-8?B?Wk8wekJ4MHdJMmE5ckNWZzFzRUVNMXNhaGdQV09Xd0lvWmRjUCtzV1dBOHA2?=
+ =?utf-8?B?ZzZYVWljbUJNRFBBMXFQRWgwRmVYRStFY3NXUit1UU1WLzZsd01JRE9CeFdq?=
+ =?utf-8?B?UDh2U2V4QlRDQ3h2NXM2cEJCbWRCZnRzQk0xSjRic1RtVllEaS9YNVowMzZK?=
+ =?utf-8?B?ek5SaENtd1FuQWZmeE9RTXdsTlhqV1lOZjB0SkNGKzJLSk5iY0FidnppNC92?=
+ =?utf-8?B?ZzAzZHlTaVFwRVQybWNFT0liQTN6N3lPRUFFUWNZT0NFZE1mUEltRlVRenly?=
+ =?utf-8?B?VG12cFg5MUNWYVlybG9pOVJBOGtRPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(35042699022)(82310400026)(14060799003)(1800799024)(36860700013);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	r0gTRDJwz09hPAHFfIM5oREscnWKRPNo1UIDiBfXjv1Al+hIJWDPZnlxmeqL8FD1S9Epnj6981koA6rslQ1gGud41jYwNLJveRxV0ONTALrn1pfPuDZJSW7afy5oJnuztYhXLkuo5W17yK7lPqHC5J6k1GtY/Pr7VaGGh1cPpFcgHg2hzVDfJCSnX4Bqzg3mX3JXZ42YfRqZbPhXxRrhdKuTKnqWo7fwSdxxLHywgpPBV2A/Pq9MitAfbhXYbN2K2BuHylvIibagLuXnyW0zaOyV/SWxBnGozWIe6VfP9QpgviWJsUByKfL9vX1vXCSAmzagah7IA5wudVxiTuiesOgahgEnRlvovhjx2VAjHXUQHmz6kfqWgBYDmXfXcxd9enYnJH/PyW5VAtDJOdkpirAQV5ii66FD6BlFMoIETtAGiC48eUNlAoBwreQTLI+I
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2026 10:48:48.1471
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a9c4aa41-936c-4c04-4601-08de64a4247b
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB1PEPF000509EC.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB8443
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[freeshell.de,reject];
-	R_DKIM_ALLOW(-0.20)[freeshell.de:s=s2025];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=3];
+	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[arm.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262968-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-262969-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[arm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[e@freeshell.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[freeshell.de:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[canonical.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,freeshell.de:mid,freeshell.de:dkim,waveshare.com:url,raspberrypi.com:url]
-X-Rspamd-Queue-Id: 76A6DF16F9
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[debbie.horsfall@arm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 7428BF1753
 X-Rspamd-Action: no action
 
-
-On 2/4/26 23:50, Heinrich Schuchardt wrote:
-> On 2/5/26 00:16, E Shattow wrote:
->> Hi,
+On 03/02/2026 12:11, Cristian Marussi wrote:
+> On Fri, Jan 30, 2026 at 12:34:31PM +0000, Sudeep Holla wrote:
 >>
->> I think the correct fix will be device tree overlays per-carrier board
->> and not this one-size-fits-all workaround with the System-on-Module.
->> Review below:
+>> +Cristian(in case I am talking no sense)
 >>
->> On 2/4/26 08:38, Heinrich Schuchardt wrote:
->>> On 2/4/26 11:16, Heinrich Schuchardt wrote:
->>>> The card detect GPIO depends on support by the base board.
->>>>
->>>> Detecting an SD-card did not work for me with a Milk-V Mars CM Lite
->>>> mounted on an Waveshare CM4-IO-BASE-A board.
+>> On Fri, Jan 30, 2026 at 11:31:25AM +0100, Andre Przywara wrote:
 >>>
->>> The schematic of the Waveshare CM4-IO-BASE-A board is available at
->>> https://files.waveshare.com/upload/a/aa/CM4-IO-BASE-A_V4_SchDoc.pdf
->>> showing pin 76 is not connected.
+>>> So do you need just one "tx", but "rx" plus "rx_reply"? Which isn't valid in
+>>> the current binding?
+>>> If that's the case, then we would need a patch to relax the binding and
+>>> allowing this combination as well.
+>>> Looking into the kernel code it looks like the SCMI driver doesn't use
+>>> mbox-names, but explicitly expects assignments depending on the number of
+>>> mboxes? Somewhat confusing ...
+> 
+> Hi,
+> 
+> so the mbox-names are NOT mandatory, since the SCMI stack initially did
+> NOT identify mboxes by names and such decision pre-dates me so I am not
+> sure about the why...
+> 
+> ...anyway, when unidirectional mailboxes hw came along, in order to add
+> clarity, WHILE maintaining backward compatibility, mbox-names were added
+> only as optional and the stack really does NOT use them; the only thing
+> that matters is the number and order of mboxes AND shmem areas: only the
+> combination described in the mboxes binding description are allowed and
+> accepted in order to manage both the case of unidirectional and
+> bidirectional mailboxes while surviving backward compatibility.
+> 
 >>>
->>> In https://forums.raspberrypi.com/viewtopic.php?t=291041 the Raspberry
->>> Foundation explicitly wrote that pin 76 should not be connected when
->>> using a compute module socket.
->>>
->>> E. Shattow pointed me to a board
->>> https://github.com/NabuCasa/yellow/releases/download/v1.3c/
->>> Yellow_v1.3c_Schematic_git.8957b440adda.pdf
->>> that actually disregarded this advice and uses pin 76 actually as cd-
->>> gpio. This usage of GPIO 41 is a property of the specific base board and
->>> not of the Milk-V Mars CM and should be described in a device-tree
->>> overlay if needed.
->>>
->>> Best regards
->>>
->>> Heinrich
->>>
->>>>
->>>> According to [1] SD_SDIO0_CD_GPIO41 is connected to pin 76 reserved.
->>>> The Raspberry Pi Compute Module 4 IO Board documentation marks that
->>>> pin as
->>>> reserved. The Raspberry Pi Compute Module 5 IO Board documentation
->>>> marks the pin as VBAT.
->>>>
->>>> Remove the cd-gpios definition and add broken-cd.
->>>>
->>>> [1]  https://github.com/milkv-mars/mars-files/blob/main/Mars-
->>>> CM_Hardware_Schematices/Milk-V_Mars-CM_SCH_V1.0-2023-0905_Lite.pdf
->>>>
->>>> Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
->>>> ---
->>>>    arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts | 2 +-
->>>>    1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
->>>> b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
->>>> index 63aa94d65ab55..566b0bdc2800d 100644
->>>> --- a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
->>>> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
->>>> @@ -13,7 +13,7 @@ / {
->>>>      &mmc0 {
->>>>        bus-width = <4>;
 >>
->> + /* Schematic signal SD_SDIO0_CD_GPIO41 to CM4 connector pin 76*/
->> + /* Raspberry Pi CM4 specification pin 76 reserved do not connect */
->>
->>>> -    cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
->>>> +    broken-cd;
->>
->> All schematic documents for Mars CM Lite list this signal name as
->> `SD_SDIO0_CD_GPIO41`.
->>
->>>>        disable-wp;
->>>>    };
->>>>    
->>
->> The carrier board I have a schematic document for - Home Assistant
->> Yellow PoE rev 1.3 - lists this as SD_DETECT, apparently ignoring the
->> Raspberry Pi Foundation document about CM4 Compute IO specification that
->> explicitly says do not connect this pin to anything.
->>
->> The carrier board I do not have a schematic document for - DFRobot
->> Compute Module 4 IoT Router Board Mini - only has SD Card and is
->> operational as-is.
->>
->> The compatibility issue for carrier boards that more strictly follow the
->> Raspberry Pi CM4 IO specification may be better handled by device tree
->> overlays. Though this is not convenient for users and requires more
->> developer effort, overlays would be best to adopt dtbo per-carrier board
->> to describe hardware accurately.
->>
->> What is needed to introduce overlays?
->>
->> - E
+>> It is generally transmitted via tx, and tx_reply is necessary when the
+>> platform has unidirectional channels. tx_reply is used to determine when the
+>> synchronization commands have completed, without requiring polling of the
+>> shared memory. rx_reply is necessary only if the platform firmware expects
+>> it and doesn't poll the shared memory for OSPM/agent acknowledgement.
 > 
-> Device-tree overlays would have to be applied by the firmware, typically
-> U-Boot.
+> In SCMI you have generally A2P (Agent-to-Platform) bidirectional channels
+> to send commands and receive related replies using one dedicated shmem and,
+> optionally, a distinct dedicated unidirectional channel P2A, with a
+> distinct dedicated shmem, for receiving notifications and/or delayed
+> responses sent asynchronously by the platform.
 > 
-> The firmware has no way to determine if it is running on an IO-board
-> with or without a card detect switch. So the selection of an overlay
-> will be a manual process. In many cases users will not know about the
-> issue of card detect switches and if their board has one or not.
+> These two channels, A2P and P2A, maps in the SCMI stack (for historical
+> reasons) respectively to TX and RX naming.
 > 
-> The default value without any overlay should be one that allows to use
-> the SD-card on all IO-boards, i.e. 'broken-cd'.
-
-Where should such overlays be developed?
-
-Does the overlay then get committed to Linux upstream for downstream use
-by U-Boot via devicetree-rebasing tree? Why is this change necessary, here ?
-
+> If the underlying transport is based on birectional mailboxes you can
+> happily have 2 mboxes "tx", "rx" with 2 dedicated mbox areas.
 > 
-> This is also the value used be the board support package
-> https://github.com/milkv-mars/mars-buildroot-sdk/
-> blob/1fd6bac9f2efde47fbb8afd28d2903c49f893e3f/linux/arch/riscv/boot/dts/
-> starfive/jh7110-milkv-mars-cm-sdcard.dts#L265
+> Instead if your mailboxes are unidirectional like MHUv3, you will need
+> effectively 2 mboxes to represent the 2 parts of the A2P birectional
+> channel AND one mailbox to represent the P2A unidirectional channel,
+> exactly like you do.
 > 
-> Best regards
+> So, if you want to add the optional mbox-names would be:
 > 
-> Heinrich
+> 	firmware {
+> 	    scmi {
+> 	         compatible = "arm,scmi";
+> 		 mbox-names = "tx", "tx_reply", "rx";
+> 		 mboxes = <&mbox_db_tx 0 0 0 &mbox_db_rx 0 0 0 &mbox_db_rx 0 0 2>
+>                   shmem = <&scmi_shmem_tx &scmi_shmem_rx>;
+> 
+> 
+> ...since the first 2 mboxes effectively represents the 2 unidirectional
+> sides of the A2P channel, with first being the cmd-request direction and
+> the second being the cmd-reply direction, while the third mbox is just the
+> P2A unidrectional channel...
+> 
+> ....so it is fine, even though admittedly fuorviating, that the tx_reply
+> is attached to a db_rx block, since it is exactly what represents: the
+> reply to a previously sent command.
+> 
+> Anyway, being the names optional, the only thing that really matters in all
+> of the above is that the numbers of mboxes and shmems matches:
+> 
+> 	 3 mbox / 2 shmem => SCMI TX and RX over 3 mailbox unidirectional channels
+> 
+> The additional optional rx_reply mboxes was added to represent P2A
+> channels that have an completion interrupt.
+> 
+> All of this madness was the best way I could find to address the problem
+> of supporting such new unidirectional mailboxes in the SCMI while NOT
+> breaking backward compatibility in the absence of mandatory naming from
+> the start.
+> 
+> Hope to have shed a light, beside having annoyed you all with all of the
+> above flood of words :P
+> 
+> Thanks,
+> Cristian
+> 
 
-I would like to see more of the Mars CM and Mars CM Lite devicetree
-moved down to overlays if not described by the common JH7110 stanzas or
-schematic documentation. In my view, ideally, such extras are not
-functional for users without an overlay applied.
+Hi Cristian,
 
-I dislike the idea of trying to chase every possible unknown carrier
-board for broad compatibility by changing the definition of the
-System-on-Module. Compatibility with Raspberry Pi carrier boards sounds
-to me like the purpose of device tree overlay(s).
+Thanks very much for the detailed explanation, all makes sense. I will 
+add those mbox-names in accordance.
 
-No objection to, for example, a more generic super-compatible overlay
-that will be the default loaded by firmware, and trim down the dts here
-to remove any carrier board peripheral assumptions.
+-- 
 
--E
+Kind regards,
+Debbie
 
