@@ -1,292 +1,226 @@
-Return-Path: <devicetree+bounces-262827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262828-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gDyUGMX6g2kXwgMAu9opvQ
-	(envelope-from <devicetree+bounces-262827-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 03:04:53 +0100
+	id eCmYIF38g2kXwgMAu9opvQ
+	(envelope-from <devicetree+bounces-262828-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 03:11:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC067EDD76
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 03:04:52 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F28E6EDE39
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 03:11:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E89A2301918B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 02:03:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C863430143D3
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 02:11:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6634F23F439;
-	Thu,  5 Feb 2026 02:03:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA0E22773EC;
+	Thu,  5 Feb 2026 02:11:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LIr/ye+8"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="VpqndtIB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11013067.outbound.protection.outlook.com [40.93.201.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4C8622CBD9;
-	Thu,  5 Feb 2026 02:03:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.201.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 392B326E6F8
+	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 02:11:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.54
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770257025; cv=fail; b=OJGA/rmA9kWhCwEfA8TVRghNU1I1t090gdsDLMuHwMrTgUOb4AIQtNEU0FuZWcK3CTYAvJGsgqPNKKL7U3n5eEK2WV2DZqqJZSHG4JxGHAB5AevhK3skNmIXRz5VfIYp4GGCFhenKpGggMZ3bc5O9z8hm23MJF+WB6wvgRggloU=
+	t=1770257498; cv=pass; b=rMbmx2igoi1SXgCV5iJSN0B7EBRD+XlduMDc32khlS3mThCAmx11/NQBY4fUxbB9gMq5b4yy5/TsycQTl9CBRTh+Mw9oR7kX/KhtrS/HHsuNjI5xMdzfkCwzTm+QvnEo7dJAG6Yo+madMYDLMsTaZdLEg0oLa5ND8apcGVEK4uQ=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770257025; c=relaxed/simple;
-	bh=W9XMgqOjAE87T+AFCZReBsH6wNbURDtqaXbWeIRiRXc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GuagBQSlkvAznc7QmtcuSgtj1AdfS9x2mKVzkGbQMunBOI026S65yEYG+G7UsoVgNzimR6pz+cf+2K0PAn7+jsl3yyNjydOH8mwHZCQ4wcrpahdoBsTkW+A7+qdJo7T+mxPGf95hM0Yp+N8vJf6tN21j71cv+K+GQFdI1WWLaZw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LIr/ye+8; arc=fail smtp.client-ip=40.93.201.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rQttsgFFUHjEtW5unLABy1cjgFtXAuyiZi+tDTIAJ3Lb02f47l5tMQuiqF74XNL7WbM4FkKERqzwwFTm81XTOApwh5MkEGZtwUiusXnYSW4RVIrbIYy99njDT8DhCs6ElhnITrq1yiRu00tTS5vzj1u/byhJ0H5NLrj+lkbSPMuBsrrGMjBGLOw1GhmIMeKCj9bmm87XBja4zsyPW3qU/JoLURVfwzdNXw5FnzXVdY5k6lLewiFsXNmY7fHPJz7NVMtpjyUTDPny/q3MwqkLDsifCyErrhcB985Z9WoqrqIUsxw8lijNOD3RkTYt1osdPYEzEVThx7no/7tow/O32g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rUOaUBMPdWkjAB7R5+Tv793l9stoIBNtJ1WspfhFyJQ=;
- b=E9aTjpvU/xWr6mcnaHl1r+j3Ql6S0VuxGpC1JhcExyjEvqGlJukLvzBx1t+tYL0jMSy1ivqvSlDIr9U3b9c5i2zTV100k6bG3zacmYFl9lxVf+7zu3lZ4wBqSXcplzFmAqxs2FY7shjaIo8oLpu1OQPuATn7wWgfUdrdQIzem6FxN2igAogYnoKDmPYGfcyA9Fs4AKeOh4G09HshupJuROPIthS6KCMRvNuouZhjDacam+Makuw7ycIEcUvEyBjytg7byeaDgx5JYw+11zywuPuw5ker/9WHAj6RbGqCKTyYUHpc0DiE0yVAMQUOSDvhsfQH47G2ZHMLManWFLYGiw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rUOaUBMPdWkjAB7R5+Tv793l9stoIBNtJ1WspfhFyJQ=;
- b=LIr/ye+8JtXqRYf0LeSjcOK34dlKXN+rPVhuoZGZETUSbTAJ11pWq+gNfPJzERj8zEDZPvvmQYDgChanvUW0aD8GaljDy7iyyffpJ1Uz1omKOD0eeXCENBrkoBbMcFjJ4wxhj0A9hdy2mkXXcBzUHaLJTPHmUD+LOvyX35s94lY=
-Received: from PH0PR07CA0108.namprd07.prod.outlook.com (2603:10b6:510:4::23)
- by DS7PR10MB5165.namprd10.prod.outlook.com (2603:10b6:5:297::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Thu, 5 Feb
- 2026 02:03:42 +0000
-Received: from CY4PEPF0000E9D7.namprd05.prod.outlook.com
- (2603:10b6:510:4:cafe::ed) by PH0PR07CA0108.outlook.office365.com
- (2603:10b6:510:4::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.13 via Frontend Transport; Thu,
- 5 Feb 2026 02:03:28 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- CY4PEPF0000E9D7.mail.protection.outlook.com (10.167.241.70) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.10 via Frontend Transport; Thu, 5 Feb 2026 02:03:40 +0000
-Received: from DLEE203.ent.ti.com (157.170.170.78) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Feb
- 2026 20:03:39 -0600
-Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE203.ent.ti.com
- (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Feb
- 2026 20:03:39 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE202.ent.ti.com
- (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 4 Feb 2026 20:03:39 -0600
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61523dVe2147580;
-	Wed, 4 Feb 2026 20:03:39 -0600
-Message-ID: <7ae7f6a1-0ee1-4d56-b1d0-f038a7d22b4c@ti.com>
-Date: Wed, 4 Feb 2026 20:03:39 -0600
+	s=arc-20240116; t=1770257498; c=relaxed/simple;
+	bh=LzenXCyNDGAV2/s4Mt5xg7gtxO2w2kJ2SKaLgFjq5Hg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ll5t7LvnB2UjvIZK1+bFxaO6ncfo6rw9Wo/EM7Vr7DzBJ4nOTrbtiHshDppVitcDUysssAuWiVVDv6LJ54s2CEMuuN+k+dzHwz8hfbGHlNh1fpwbe3uGnuuXYbQMqP/XgXKGiC8cqA3NLrHHgN+MXg5Dsxm8DMHxnVtshqeS/UQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=VpqndtIB; arc=pass smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b8e9c8ada38so60199766b.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 18:11:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770257496; cv=none;
+        d=google.com; s=arc-20240605;
+        b=K/JnSbdRPKoD/yu0y0qAFWzcnIG3nZd+UihShLdwvhuX6M6vIQjOjGP5FCMr99Vdwi
+         elTWZS23kev/vc7yjs9ZeaJzQVGlPtJMAWAL1WKu5G4T9fyKDMQrE9jbuaYnOoGnAyWX
+         um42B5WShJlgBwJ8walQyEWRsFsOhQpPWYED7w2rOVaNxnKPSi4glNsDNNa9CixyoH6X
+         jhjHJQVUtLlsW9yPF1m+cfjm91aiTJitJly3YGr0n2kNiHruUOl1uom9qY8rBqvktuMy
+         txfE8j3Z1JSybZq5ncYt7c8CX0Okm+WPbDv7bJLtWKK3imlal48r12Vjdz5Qg/04x0D0
+         67Zg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=oXfwfxqJ3Ud1a18EjbgGs6RmrKLEcJt2awiaooMVBjk=;
+        fh=2DEdWd1mRGAVVVwOO0WmmX6XgFzUR8v3G843qRlAmTU=;
+        b=IKyOkFNjslk2u1nKaNCtHiIVW5t9wbNqtVpjhj9cES42NKpqCfrLqJGM8U/InkfWEa
+         XHsPVg3KAwnfcWG8YZe6xT3CP59vOM7+ZyR5hjZ8hpYI4ElpBGTt3lDaYyw2h1lDlM6I
+         0M223fR3giKt2JihdBQ+2k6pQcw2HQDwRHzKJbb3klwWS6j1YJBpYP3quCDfBfvbQ0Oj
+         aFXQGZy8NV2kCxRuvfTP/7uthVMuSj5LmwXy+pUw33UwY3FoUjrw898FM7JNOq6CtYZS
+         tIZWp4mWNmiaml0xqEE/ycgTppwycPaEUTFJBMO3tiiMX+wsze1lDBV+zO8CrZzuIF7B
+         d6sQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1770257496; x=1770862296; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oXfwfxqJ3Ud1a18EjbgGs6RmrKLEcJt2awiaooMVBjk=;
+        b=VpqndtIBXgU0SG+aS6q7loT1IUfX1bDa9Y+L0UOEfh/utyPvXZp71jg92Xf4FwFZjr
+         RtvqWzeHTMoqKPKP+cbu06sL263lJSuq06xRjmF+suFgPk+EcBvvCnoPkTrg/S+fKjUO
+         wl8IM1zWj6llTjkyFIJB3rm6Fz1JfupYHuQ5g2emOAiy6RGVSs2sCR3MnUIBzXp5pdIb
+         nMSUCLSjj+6/WzHT/z59OOKUAwjWWe3yoyCj6Nl6gYmDuJMxa+qAjnz4ZlxgoeMB7Tn/
+         0Pes7Fijj1CCTPWiRXA8Cwlq+YvSyfOe04UhHBu6ili5n+mHozeJ/2ADUn6k68QcrWrg
+         5tZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770257496; x=1770862296;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=oXfwfxqJ3Ud1a18EjbgGs6RmrKLEcJt2awiaooMVBjk=;
+        b=daPp2UeD6hHpwblKLCw0Vw9hFfutr6F/EEF/gNGDkzBCqolxVExWECKABTI9svQGpy
+         TJTXx9qrh5i0/cJ+m2g7CX28map6tOnEAaLlC/WNJR226LePL58efyj+2TWPeVBIQqS2
+         qHYzobRcUcwhzvcP/4ZwdHia/Jn8ZII3cKa8Bx6FhwfzDFlhl1PNYvepJqOIN7E6KSCx
+         ja0OKmeEgHKmAmWw4HkGfI3wOoHk/gHzvsDX4aPFv/VJ6Tm87WqqFlsT4qwvE6UNl0A9
+         fEd3Ho5wrbU+pDGnc/iLxjPZDpprh8hV8xBiStx045NlLoQk47zj5LsYrt6PD5kmm5Gh
+         A0ZA==
+X-Forwarded-Encrypted: i=1; AJvYcCVY9fc7ad2Av4K1RC13BQmcBvQ7jseOg7RwUssxfORDfhdwOdayhjrCgB7B6AkhmFk+K89R5RLbv1aW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUgR1IIrG2+8OoMxZWGqdNBFfagXixP1cLASK+/+HIIJguST98
+	SKmeUkcK+r1M0sQY9na/IYy2JNTRotyVqpP2I4g6One0eHRjh66xge1UBduxe6kOuZGEUq4IuUH
+	hgHa423rrOY9gJqTKsLL/HiLn7vG7v3P0CwO67iLuVA==
+X-Gm-Gg: AZuq6aKm99ugprldselUbjeTGMnu16vjOpwiHS73uCG9TTDNewF5JJb/+Qfsydvqn8J
+	Br8PdKmZ7DjNmcm7nFLldYUqNiMITpEKuQY/o7YQTFq7eDNoGPJ0oh0zbDSZ7YaN+GXO/MKSF7y
+	Jf02qbhPlH+RFb/QpmMYmV+HjTn5o5golQaA269vVSznb0eY74IOleL+qOs6iUclz7h3CnsrmNA
+	4oiWpt03rWJSe+VLZGVZSw2+recc7Fw1qYf7eyMVUPYVMZfJfAgZOpzfxzuwzSZV7vXdIM+rA==
+X-Received: by 2002:a17:907:26c9:b0:b87:892:f43b with SMTP id
+ a640c23a62f3a-b8e9f196585mr325916866b.42.1770257496389; Wed, 04 Feb 2026
+ 18:11:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Disable mmc Schmitt Trigger
-To: Markus Schneider-Pargmann <msp@baylibre.com>, Alexander Sverdlin
-	<alexander.sverdlin@gmail.com>
-CC: Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>,
-	Dhruva Gole <d-gole@ti.com>, Sebin Francis <sebin.francis@ti.com>, "Kendall
- Willis" <k-willis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Rob
- Herring" <robh@kernel.org>, <linux-kernel@vger.kernel.org>, Nishanth Menon
-	<nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo
-	<kristo@kernel.org>
-References: <20260106-topic-am62a-mmc-pinctrl-v6-19-next-v1-1-1190ac29aadb@baylibre.com>
- <c47697b4-6ebb-4af9-be96-c964d990835d@ti.com>
- <DFO764ES0FNP.1SUQK9R0EUUDQ@baylibre.com>
- <1a91fd40-e814-4b4c-8914-d8f0c4768e07@ti.com>
- <DG59D7WGM35A.1WNIIMNCQ8U3C@baylibre.com>
-Content-Language: en-US
-From: Judith Mendez <jm@ti.com>
-In-Reply-To: <DG59D7WGM35A.1WNIIMNCQ8U3C@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D7:EE_|DS7PR10MB5165:EE_
-X-MS-Office365-Filtering-Correlation-Id: acadbdb0-7351-40bb-b986-08de645ac881
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|1800799024|376014|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?eUZqRzFrU0Y3T0R2bk84SjZjV2dBTXh0N1BRaUFYR2d1S2dzV3U0bkcyZkNR?=
- =?utf-8?B?Nm9tRlcrUlhMZ0M2Q3RZbGhBNEx1YWRRbDZ0enJTUzJZQkZtUmRBNHZWUCsy?=
- =?utf-8?B?dEtpaEViRE1vTXJMTzZ5MjRQK09nR1pGYU5JaHJqMGxueWVrc2o3amxpeUpy?=
- =?utf-8?B?aU82ZWI2dDJ1MjdkYlZIWUsxaElvZzk5cWN2elRhNXBtbmpHdkUxUU9GUXpE?=
- =?utf-8?B?NzJMNS9iN2xFVzhCVjlGdUV4aDZqcXlOR0oydDVaQ0pIZ3VwK3FVZU1kRmNz?=
- =?utf-8?B?S0RUZkxadmZVR0NFWGVVSURNNGxOOGc3RC83eXBXMnN4aVZHUlNvWnpNdXZa?=
- =?utf-8?B?TkNodjBuanM0MThJbEdmVWR0alJuemZBRnJpVlAzUll1ZE1MMWFSTlpvTFQv?=
- =?utf-8?B?QlhSMGJ2VWI5bFJpK2I3bm9rQXc4NzdJc0kwcGZOeldjUEJqWDhGeGdlaDFs?=
- =?utf-8?B?bXlKZFMwMGNNakE5VDlyenhPeUs1UEhkeHFQWDNhL05Ob0M0RUxXVVEwN3ov?=
- =?utf-8?B?Q2FVVDhkbnFPSWlibUFnejB1aW55ZnNZTDJFTWZmSzcrc2pTQVhkU3BVdGRU?=
- =?utf-8?B?QUZ0ZVFMdDJNelV4WFZrY2p2ZUFOZ2NiekZia0N5UzRtNS96S3c3T2VIQ3Fh?=
- =?utf-8?B?R1VZZmx0REVyd1ljMm04RUl1c1NvS3dpa3JkQS9wSVI0d3FPNG0rZXZnUDhZ?=
- =?utf-8?B?UWh1LzdQT0pORGVGT1J0ajdYdDJRRXovOGVwVnlGa1pkbnUxZEdETjIvRDJX?=
- =?utf-8?B?YWxzNzkrYmRlN2RaaENyUEhKNWxEUUQ3NEpBdnlHWFluWWJua0dLZkdUT3V4?=
- =?utf-8?B?S2RuSVIwcU5uNlZjSWh4cndwZXBidVdyWC8wYTYxa2JzRU14ckorUHdPelh0?=
- =?utf-8?B?Z1UxWnUyaWY0OWpsVlF6UVg2djFDU1ducElxZnd0SFRXRXRNWmpWWkhjYkxC?=
- =?utf-8?B?MUUranU1YkxTMmNhSms4OVIvVmtQN2F3SFhTT3h0cHZKYTREbDF4Z083L0hB?=
- =?utf-8?B?WWRxZUZvS1NFZURqcjVOSDF3VS9KN0g2WmFDamx6WW9jYVQzam1lWlBCTW8x?=
- =?utf-8?B?UVkyWHJkWTdBRFNvVDlUdzdCVFdFZk9wdVpVUmVVMUw3c1pCaHlINS9zbExU?=
- =?utf-8?B?TTZaeVA0MzZxQmV6b1JqY2JnYkQvcmVRdXBDTUczRWpnbFJqUE1MWVh1eWJa?=
- =?utf-8?B?M0hxVmlpWXZCcG9DTjNPWFJzVGI0dUlYbVZOT3RRN1F4UHNJZnFWVnpEL3gy?=
- =?utf-8?B?NTdJaHkvVndSaG90dHRqTFY5ajkzRDRMOTNPL21ESEdOUGVLenVSM3JOZ0Fk?=
- =?utf-8?B?TmJUZzFIWndjL3pndlU2TWJHbzMwVHNZcDB2N1pKZnRRdERBbUZIMVNoNDEy?=
- =?utf-8?B?SWhOanJlK0xpdis4YkU1QUhKYmdVS0VUSjQydFhob1Zkbmtka2ZYM2NGbDlX?=
- =?utf-8?B?ZEhhTUpUT3FjbTE5RDE3RS9rQWlsaG5FeXIyUGttZHp2R1hTOTJ6TjRTQTVB?=
- =?utf-8?B?eG1uaStOckxIV1hiSG0wbzR5VFN1czNESndYUGkvTGVXcGkvcnE5eGJSOUwv?=
- =?utf-8?B?b2d3MlhPOURtcUZ2NnoycXdsN3hYYWZhcFNicElzQlZKV0JWdm9tNXk5WVBP?=
- =?utf-8?B?enFUTFllazdZS21aeHpEYWdJNmN6R0RVbTQ0Vm0vSWU0TlpOOEhZdG1uS2Ix?=
- =?utf-8?B?NTBIelJ2cUs5andrZzM4TlY5ZDhXSjRUUFBuVkF3a2J4RmtuWmIwOTlLSUZh?=
- =?utf-8?B?T2hXLzIra29vSy9JYkVPcFl1VWl6UkFuanpjN2lWdVVRMzNYRnNnOXpoRzNR?=
- =?utf-8?B?QU1oWWw3cG4rUmZ4MTBKTWRGa1d1TEdsMGJYZENmSld1SmVacEZ0QWkrN1dJ?=
- =?utf-8?B?MUFhRUFYOStFKys0bjJPaHNPMUlCOTNBOHdyL3R6aHFZYXFWM1o5ckhoTUt1?=
- =?utf-8?B?bURIbUJzblIzb3VBMW12dU9yVktxNzdnSis3MlJGZGM5d0JZUThIZHBNSG13?=
- =?utf-8?B?bzM2WHFGZkdKak0xZ0g4V2tpNlF1Y3dkYnFQUFN1QUJ6TU1DbHQ5WEdLZThw?=
- =?utf-8?B?aGpMZHZOZWhGMG1rSmxIS3NiSElKN1JzWmRnbmVsYjR3SkRuUHM2cEh2NzZD?=
- =?utf-8?B?U0dKb2FZdWN3Q2VpcW5CcUd0bDQ4Ym1HOW1yTERvTHZzcHNieUlVYUgvcURP?=
- =?utf-8?Q?v04k3bTtekQWk3XCcVRIxtE=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(1800799024)(376014)(7416014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	sGikcTYdYriwrQy6JKzNSKRPQb5WWFGTSxmrbcDB6R5AcrmC2URbAwbYurvtBkIfieRE0Qa0spayQ//vc11hqhS3rwONTUhXs5cmG4+Ai//SUqaC0jTzTutoexFhKdwqEd1cRrmjo4ADRg4cM7igkkX32vPF2S3Wt5iHnIQoDzCkfUEalj6xktrmRSB06WAgJMPgkG0FwgkAtC42wwM2SQBZkj3RVxnb3yYmLiKEdayfj471qiN9hi59lkU1yTlH1uhICOS3Y4H1GCqqxFOo0rp9QC7cG/omdNM/mX3/hFbRwGvsNtVCorHFxML9KDI5jbok0vPiA4ujQTG0WRYEtCzxZ99stUprBhqWEie/L1vvje4J+9B9AdSPZacMyZXCPQ5yc90E2ruFkO06bsiBa8Oo0tRH0aEJhBcxxC86U8fRC/Dw7h1mISaWyFGiW+LG
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2026 02:03:40.6103
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: acadbdb0-7351-40bb-b986-08de645ac881
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000E9D7.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB5165
+References: <cover.1769562575.git.lv.zheng@spacemit.com> <cover.1770195980.git.lv.zheng@linux.spacemit.com>
+ <9C0A2AD4850D179B+524146e74e808db90d5f28fcb6ee791cf1d1bfaa.1770195980.git.lv.zheng@linux.spacemit.com>
+ <p74snip7yykhogvzqld4gyjlygmd2z4kqnat7w3qj63fwebnmm@dlz6tloevgbs>
+In-Reply-To: <p74snip7yykhogvzqld4gyjlygmd2z4kqnat7w3qj63fwebnmm@dlz6tloevgbs>
+From: Zong Li <zong.li@sifive.com>
+Date: Thu, 5 Feb 2026 10:11:26 +0800
+X-Gm-Features: AZwV_QhMZOXglwbGVqgOIj-KY2N0eLcLOg3n2x9z4Uh395TNa1CEOvBa9sxLG3g
+Message-ID: <CANXhq0oi9nE7ffLGsz5j8GnC1UDTD-4bE4cantRjW2fXHYrjHA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/8] iommu/riscv: Add HPM support for performance monitoring
+To: Andrew Jones <andrew.jones@oss.qualcomm.com>
+Cc: Lv Zheng <lv.zheng@linux.spacemit.com>, Tomasz Jeznach <tjeznach@rivosinc.com>, 
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Jingyu Li <joey.li@spacemit.com>, 
+	Zhijian Chen <zhijian@spacemit.com>, iommu@lists.linux.dev, 
+	linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	spacemit@lists.linux.dev, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[sifive.com,reject];
+	R_DKIM_ALLOW(-0.20)[sifive.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	TAGGED_FROM(0.00)[bounces-262827-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[baylibre.com,gmail.com];
+	TAGGED_FROM(0.00)[bounces-262828-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:dkim,ti.com:url,ti.com:mid];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jm@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[zong.li@sifive.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sifive.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: BC067EDD76
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F28E6EDE39
 X-Rspamd-Action: no action
 
-Hi Markus, Alexander,
+On Thu, Feb 5, 2026 at 2:39=E2=80=AFAM Andrew Jones
+<andrew.jones@oss.qualcomm.com> wrote:
+>
+> How does this relate to
+>
+> https://lore.kernel.org/all/20250115030306.29735-1-zong.li@sifive.com/
+>
+> From a quick skim it looks like there's plenty of overlap.
+>
+> Thanks,
+> drew
+>
 
-On 2/3/26 4:35 AM, Markus Schneider-Pargmann wrote:
-> Hi Judith,
-> 
-> On Wed Jan 14, 2026 at 11:04 PM CET, Judith Mendez wrote:
->> Hi Markus,
->>
->> On 1/14/26 3:16 AM, Markus Schneider-Pargmann wrote:
->>> Hi Judith,
->>>
->>> On Tue Jan 13, 2026 at 1:29 AM CET, Judith Mendez wrote:
->>>> On 1/6/26 10:22 AM, Markus Schneider-Pargmann (TI.com) wrote:
->>>>> Remove Schmitt Trigger from mmc pins. With Schmitt Trigger enabled
->>>>> u-boot SPL is not able to read u-boot from mmc:
->>>>>
->>>>>        Trying to boot from MMC2
->>>>>        Error reading cluster
->>>>>        spl_load_image_fat: error reading image u-boot.img, err - -22
->>>>>        Error: -22
->>>>>        SPL: Unsupported Boot Device!
->>>>>        SPL: failed to boot from all boot devices
->>>>>        ### ERROR ### Please RESET the board ###
->>>>>
->>>>> I bisected this issue between u-boot v2025.10 and v2026.01 and found the
->>>>> devicetree merge to be the problem. At a closer look I found the
->>>>> k3-pinctrl.h changes. Disabling the Schmitt Trigger fixes the u-boot SPL
->>>>> failure to read from mmc.
->>>>
->>>> I have tested 4 AM62A SK boards and I cannot replicate the issue
->>>> you are seeing. I do not see an issue with Schmitt Trigger in U-boot
->>>> nor Linux /:
->>>
->>> Thanks for testing.
->>>
->>>> Can you please run a quick tap sweep on MMC1 and MMC0 interfaces like
->>>> so? https://gist.github.com/jmenti/f4a73a8323e44bf717c6d2c528c499ca
->>>>
->>>> This will give me an idea if whether we should be talking about
->>>> revisiting characterization with ST_ENA=1.
->>>
->>> The patch was a bit broken, but I think I managed to apply it to
->>> v2026.01 as it was supposed to be. (master currently doesn't boot even
->>> SPL, I don't have time right now to debug that).
->>
->> as Nishanth, mentioned, master is missing two patches [0][1]
->>
->>>
->>> I attached the boot log. It does boot with your patch. Also can this be
->>> an issue with different SD cards?
->>
->> Something does not quite add up,
->>
->> Can you try the following 2 commands?
->>
->> # mmc dev 1
->> # md.w 0xfa0810c
-> 
-> Finally here is the output from boot and executing these commands. I am
-> now on v2026.04-rc1 with your sweep patch.
+Hi all,
 
-Thanks for sending over the tap sweep. I compiled a comparison table
-here to show a bit of data for the u-boot tuning step: 
-https://gist.github.com/jmenti/5d42f1e43fb357083eaa813cfee484a8
+Thanks Andrew for bringing me here, and sorry for the long delay on
+the IOMMU PMU driver series.
 
-Based on the data I can conclude the following:
-1. you seem to have more errors than I do
-2. there seems to be an issue with the chosen final tap setting
-3. the chosen final tap setting should still have worked for you
-but did not.
+I=E2=80=99m currently working on the next version to incorporate the feedba=
+ck
+from my earlier series. The main goals are to decouple the IOMMU perf
+driver from the IOMMU driver itself, and to make it easier to add
+custom events.
+The implementation is almost done, but I=E2=80=99m still working on binding=
+  a
+name between the PMU driver with the IOMMU driver on PCIe and ACPI
+cases. This part is related to how custom events should be added.
+That said, I=E2=80=99m thinking that I could submit the current implementat=
+ion
+first, and then send a separate patch series later to handle the
+custom event support.
 
-For #2, something in the tuning results seems off so let me investigate
-this on my end and Ill get back.
-For #3, will have to discuss this internally & test a couple more 
-things, then come back with more information.
+Also, I=E2=80=99d like to mention that Yaxing has a similar implementation.=
+ We
+had some discussion about this last month.
+https://lore.kernel.org/linux-iommu/2ce9d8be-10b3-48dd-b99e-7358347fc171@bo=
+sc.ac.cn/
 
-Meanwhile, I am interested to see what are the tap sweep results for the
-failing Verdin board, if those can be sent as well, that would be great
-info.
+I think I should be able to submit this next week.
 
-~ Judith
+Thanks,
 
+
+>
+> On Wed, Feb 04, 2026 at 05:09:01PM +0800, Lv Zheng wrote:
+> > From: Jingyu Li <joey.li@spacemit.com>
+> >
+> > Introduces perf-based HPM driver for RISC-V IOMMU, enabling performance
+> > monitoring capabilities.
+> >
+> > Note that the RISC-V IOMMU HPM module uses COUNTER_MAX-1 as a static
+> > counter index of HPMCYCLES, and 0~COUNTER_MAX-2 as the dynamic counter
+> > indexes of other HPMEVENTS in order to correctly index into IOHPMEVT an=
+d
+> > IOHPMCTR registers that have already been defined in the iommu-bits.h.
+> > However the users treat 0 as the index of HPMCYCLES and 1~COUNTER_MAX-1=
+ as
+> > the indexes of other HPMEVENTS, thus care should be taken in dealing wi=
+th
+> > counter indexes between userspace and kernel space.
+> >
+> > Signed-off-by: Jingyu Li <joey.li@spacemit.com>
+> > Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
+> > Link: https://github.com/riscv-non-isa/riscv-iommu
+> > ---
+> >  drivers/iommu/riscv/Kconfig          |   9 +
+> >  drivers/iommu/riscv/Makefile         |   1 +
+> >  drivers/iommu/riscv/iommu-bits.h     |   6 +
+> >  drivers/iommu/riscv/iommu-hpm.c      | 843 +++++++++++++++++++++++++++
+> >  drivers/iommu/riscv/iommu-pci.c      |  13 +-
+> >  drivers/iommu/riscv/iommu-platform.c |   8 +-
+> >  drivers/iommu/riscv/iommu.h          |  42 ++
+> >  7 files changed, 919 insertions(+), 3 deletions(-)
+> >  create mode 100644 drivers/iommu/riscv/iommu-hpm.c
+> >
 
