@@ -1,87 +1,131 @@
-Return-Path: <devicetree+bounces-263054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263055-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CO+tBeKuhGk14QMAu9opvQ
-	(envelope-from <devicetree+bounces-263054-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 15:53:22 +0100
+	id kNuqEQKvhGk14QMAu9opvQ
+	(envelope-from <devicetree+bounces-263055-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 15:53:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 695FEF445E
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 15:53:21 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03C8BF447F
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 15:53:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5EB6A3016835
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 14:53:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 60A443019FEB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 14:53:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFF4B3EDADD;
-	Thu,  5 Feb 2026 14:53:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5B241C307;
+	Thu,  5 Feb 2026 14:53:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LxDg3OOz"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="j48/J2jw";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gwf5M0Fu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C96F26E711;
-	Thu,  5 Feb 2026 14:53:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72DDC3A7835
+	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 14:53:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770303197; cv=none; b=E0117dvcnNx6j8YrcYFp29TGUrX+JiLy+GNf2P0O+dkNUz+fZBkamH/BPJqLAzpZqZJ7SKgDm2VPvjVYPxWesKlekxrfGqqmUMFK5JRuK4qGgn4wF7RK2a/5kWEw/jwaH0q3b2j6UcsFEMI4cT3OpbZeOQRh8APoXt2A0+9FM20=
+	t=1770303228; cv=none; b=WEXI6X2cGSx1dM4a65f1B9aLHYDDab5abQGscetEZiop8ZEnH18JnLgq0q/HBt0/iFTYtPRczkqDdAxeQzv0xnltec1aayeRnV42QIJBcT+C5r/m1twH8SGfeN21KkRShRvxezr6RWgPgNCddwUorLZtTjuV4Ud/oIsS5fgpdMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770303197; c=relaxed/simple;
-	bh=aDtyxCs7lbVhLpfGqokT/Ea6Fj/WXq34jH0cnUcPisk=;
+	s=arc-20240116; t=1770303228; c=relaxed/simple;
+	bh=ZwTws5Wp3s/3u+wvh0h7sn7pKfDk+8i3+HfkFTjhvSs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hfQmbYswWFueQNZHzYdJhHG5IXuExqOPwRBHNzxJQBDkfraZhfpWMUILYdYHRjol/1yVXpmxhK5ev4t27VTB3Q7CKe4A3md34p4AHCXLk2rEY/2AZyi7k4opiQv3Ep8UJKnjxbznZqeBFHdqYStsf/c8C7GP2lHEvsB9iKlWC/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LxDg3OOz; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770303197; x=1801839197;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=aDtyxCs7lbVhLpfGqokT/Ea6Fj/WXq34jH0cnUcPisk=;
-  b=LxDg3OOz1/2Jcp2AEefyVdH3RDJ9zxLtU1S2LkrM8lLSeEuJ2PpPHlou
-   DyhHEIxgqdYSl+OUDn5w7QE0NQKQtwqfipQyvUiJCiOU5OzS0JSpobihD
-   s4xuKMpvgAiYF6GSMFRt/Jno8Qbfg46+mFIFYYyeQgv0tZdKHp8xw0Kh8
-   SnK64MT8JbZZ/AZwqEC3cwXRA54BSGurAg2cosyETgqRQQRmyJamqvxcd
-   HrOnLKgN4HFWbVEqqD76XTTXdrZANoDjmSoXU+jcq+hagDJAjodiep1NH
-   EXMi5k1HX99r+Y67RvcwgeKXy2jVELMFGTYZGWb1PJo2DhodqDYcvVnp7
-   g==;
-X-CSE-ConnectionGUID: US5c2E6aQRmi93DYeof3fg==
-X-CSE-MsgGUID: AUcX8pWURtKfBuEfs/Rp9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="59077474"
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; 
-   d="scan'208";a="59077474"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2026 06:53:16 -0800
-X-CSE-ConnectionGUID: 5/YIgV+0RtmfgWCkQ3QVZw==
-X-CSE-MsgGUID: rgbzNb7WRmO4CRpFG8/laQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; 
-   d="scan'208";a="233493595"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 05 Feb 2026 06:53:12 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vo0jF-00000000jto-3WuN;
-	Thu, 05 Feb 2026 14:53:09 +0000
-Date: Thu, 5 Feb 2026 22:52:16 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ryan Chen <ryan_chen@aspeedtech.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-riscv@lists.infradead.org,
-	Ryan Chen <ryan_chen@aspeedtech.com>
-Subject: Re: [PATCH 2/4] irqchip/ast2700-intcx: Add AST2700 INTC0/INTC1
- support
-Message-ID: <202602052233.HNk5pa4R-lkp@intel.com>
-References: <20260205-irqchip-v1-2-b0310e06c087@aspeedtech.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=TJru2t7R2E+dI2QWTx1w5wd68/AGA85GGFmWp6Y9p2DvqsbMnwHwXKppTqaOUdVfxwuWmGumVz8EpXL/3F/PxCpI95faWSBmE7MyXxzMwQ8U1OLaLH1Qs8BkNHa1DTvA/p5wx1UOpXVXeUGqyt4aODnR0YMKz5P70Qw/syxiPFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=j48/J2jw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gwf5M0Fu; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 615EOMIB4126357
+	for <devicetree@vger.kernel.org>; Thu, 5 Feb 2026 14:53:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=3zdqUJw9qtQU1loPiEvujh90
+	oDIRx6jke/+KDijdHPk=; b=j48/J2jwaL8GuMAL7XIaV/2wrifuuuZlbBV2O7Dk
+	4Q95eKsO3sRpl5R0Kr+e6Nkzi+QrPIrW9dw0QQvkIyjusSTkvFw251lf3WN34PRv
+	YhoNJJAw5o/Fcz/8BOQdvVVj8RC/duuQLAINukC88Ve+mHlu4C1ETenxW117jp3W
+	vQyrXHIpkBGvkEbUzxwoYLpPK3DTI9LSWUqU/7r60yWTqeAoaArgIDiS3NQZBteM
+	BtdG2VHynHWRnA/HygnyOgg5Lam0oUy/EV9ans8tVkJXVqvizSjH84n0TUo/KkTv
+	W6raBkfxCJ442Od+YjsAtMZoVfhIjZcL9Njlgik+I34fUg==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c4vxhr2n5-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 14:53:47 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c52f89b415so271722785a.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 06:53:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770303227; x=1770908027; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3zdqUJw9qtQU1loPiEvujh90oDIRx6jke/+KDijdHPk=;
+        b=gwf5M0FuaUL45z+g/DewD6DVidqqS4NRUX72eymR9J+TR2OTCNNZp714nUn7j6JzZB
+         UXF3fhh+p+CIsOJCVjspsucNhbGwvdsXd7Hanh/iP5TyJQcPVIzTJHt5wOB1ZRy5WGzG
+         2yFZlvxCI073AhYbkG4rLtGd4tyl+J9YP+fXFkR4ClKXMQ4TwSyQTkBojJ1BpHThQk0e
+         +4+N5USTkQozPlK4gCz4gPW8hxoawS2Wnoee0+fSsr6aaIptrHoixr6ZiIuKJJsJPY4O
+         2pgLg4CDeqJu/2fsYw+nUbFRrOFRwn7g7VWhPVjU4c4xArCgPrBjLhswqD+rVkKbRqQW
+         ocMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770303227; x=1770908027;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3zdqUJw9qtQU1loPiEvujh90oDIRx6jke/+KDijdHPk=;
+        b=n1/wbemyViU32TyfZMWzARBpCwfTcrIdfmsgS+JI+YebX1T9o4xLuv2h69tQQH81uC
+         4Rnhv2POd2JwKeQfBbnu6E5fcBqRxWkQsaOsryavkC30uJahgoopiOwFxjlJ7nu6A/EB
+         2rA6DjfB7Zc3x37Ah2tZPW9iVyGS+LMFXLX3FgZ9vzQtDhGtffzKSlXWEi/5BGSKNhXy
+         dwH5N5sOtvI5plTu0+SRSEtexGNJDOS1eu9GpcfmGynyY+ohud7jdeO65oG9xPRr8NSe
+         b9LIlIKHl/Md4VL3AB0nLl2syH5vzo+eAbMXOwwTNs5cK5gOIk18rDaU7yJyf7MSPwU8
+         QWIg==
+X-Forwarded-Encrypted: i=1; AJvYcCV+Tauq2srR74Qe3HFX8wcvdZY0o4VPJaj0KELg2QhV7SmyGHiTNxuDwWyw5W3F4WlO7bnwGi2PygdH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1AhS6Qd/mZ0wXqt5PkL2xT518Orqf+j0QC05hy9VvLANfpvKm
+	Ja0UFXe9zc6NTareFwIuxhTC8ThJbbX+rABwB36c2uQq6MMXJyCnqvafe0NdEbH/jfZOKNfuOxA
+	YPFwRepeqMk+Zgb6SWZHPDEos7V1lxhMg2QM5rsewgBkZmsuhL+tZchXfQgp3kXLy
+X-Gm-Gg: AZuq6aIsWwEvGYvH6F8uhXwCvBJfu7juC+uwT0m1em2U5bGix8Xau+vheeA2fIABQew
+	Q1cMsMFM+qi1jf1AAqQ34hNbxQ8UXoQmrHf5p1oJc8/VBWRaQXSUFfkazLgIPM9S2G4igMTYxO6
+	lTkBrO1DuMbaZ9OOenLmyQ5ZRSerJ0KXZAYFmcD/u0oyrXpftYBE0urdeaR74+OAVhs8rW8RZhx
+	tZ+Dp5bjvqhLOiwHdBs5kMWd+tWnx9SpVdqrry+0J9RJ9iPlAHLFZRnF0nzDcEUiYkDa+0eMaIV
+	Ognk0R0bV1ZMC822JKGwDef2qy7EKsBrL2Y/igg39T6uj9hlqeYE/1wjf5wODiT9eEmvePkTYP1
+	rQDV5A+v4UWy2kD1QdD9zdFp14dd1dqvfKoMB03SxXDTbOlTeTpJEKaj0t9K3PQ+sPv3TUfqhs2
+	QCS+qPiYjCNA2myftii/N87dw=
+X-Received: by 2002:a05:620a:17a9:b0:8c6:b14e:655d with SMTP id af79cd13be357-8ca2fa75386mr869027285a.74.1770303226692;
+        Thu, 05 Feb 2026 06:53:46 -0800 (PST)
+X-Received: by 2002:a05:620a:17a9:b0:8c6:b14e:655d with SMTP id af79cd13be357-8ca2fa75386mr869022885a.74.1770303226121;
+        Thu, 05 Feb 2026 06:53:46 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e3881b1a1sm1467745e87.61.2026.02.05.06.53.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Feb 2026 06:53:45 -0800 (PST)
+Date: Thu, 5 Feb 2026 16:53:43 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Saravana Kannan <saravanak@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Stefan Schmidt <stefan.schmidt@linaro.org>,
+        Hans Verkuil <hverkuil@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
+        Hans Verkuil <hverkuil+cisco@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        iommu@lists.linux.dev,
+        Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+Subject: Re: [PATCH 2/7] of: factor out of_map_id() code
+Message-ID: <zz7n3x7e7dsqgfw7qgppeaqnb3uz3i5bzd3tybzbv6q7zmdcgk@pojvxhui7q4v>
+References: <20260126-kaanapali-iris-v1-0-e2646246bfc1@oss.qualcomm.com>
+ <20260126-kaanapali-iris-v1-2-e2646246bfc1@oss.qualcomm.com>
+ <47fbba15-6375-40fc-bd2c-8ebf2788837e@linaro.org>
+ <7d1b5897-8f17-4213-b893-d99d96afef94@oss.qualcomm.com>
+ <j6euiso3pcg7nvewscsfjkqyfl55ajxxybf2pib3622uontj2y@aqj4satyf7b7>
+ <4835d0b0-06c2-42d1-aa33-34daa0e7a8e7@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,410 +134,108 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260205-irqchip-v1-2-b0310e06c087@aspeedtech.com>
+In-Reply-To: <4835d0b0-06c2-42d1-aa33-34daa0e7a8e7@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=GLoF0+NK c=1 sm=1 tr=0 ts=6984aefb cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=8BOpGF2gbpNt03PPG4cA:9 a=CjuIK1q_8ugA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-GUID: 7lc4iSkmmJDlv4wJXQH4E4BrGKHJ27A9
+X-Proofpoint-ORIG-GUID: 7lc4iSkmmJDlv4wJXQH4E4BrGKHJ27A9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA1MDExMiBTYWx0ZWRfXztzLU4C4JDlF
+ TPW+93vDk2X+c+e3ZWzW7uFB81/r9LSnBKGWRLDt54UkluE5Zhh7YYwfS6m/Iqcew87dFHkrhta
+ HBmd8JTRf0dZtmjOxLcq/U+V0vOWwf0s4ZeTECD2+TRwYDGfN7Iw0b9eMh7wJQvvyVATd/iE2uW
+ zu02pW8Q3TN+aiXYpLQ9W2/KY81dxnSuTuji9DxWssjFnCze/VFX+Vx3ueHDE1ddGhBn3ePTsoL
+ LQao7iinkNfsJgEC6iXOLBmr8jeEFg9ytx9mVasaMlg7pGhAneES6Z+8eBDNr8Qiq8NoGd9L8tn
+ I05A+IoSbNCewgoTy+M/3PMxanv4rhW+gAQNVgMbYoB+16sVWxBrYj3fe6KxcieDGwHrmF9NiE4
+ clk0gMiAKLUm1dVMrO10O/4wOLxwaVmW+yY29vA/hebtsXVv6nJfq3rdd4sju03HLwIuIwanq4N
+ /tXvz+3Bgr0WYQYoWuA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-05_03,2026-02-05_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 suspectscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0
+ malwarescore=0 clxscore=1015 impostorscore=0 adultscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602050112
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263055-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263054-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 695FEF445E
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 03C8BF447F
 X-Rspamd-Action: no action
 
-Hi Ryan,
+On Thu, Feb 05, 2026 at 01:39:54PM +0530, Vijayanand Jitta wrote:
+> 
+> 
+> On 2/4/2026 6:41 AM, Dmitry Baryshkov wrote:
+> > On Tue, Feb 03, 2026 at 03:43:58PM +0530, Vijayanand Jitta wrote:
+> >>
+> >>
+> >> On 2/2/2026 8:22 PM, Bryan O'Donoghue wrote:
+> >>> On 26/01/2026 12:25, Vikash Garodia wrote:
+> >>>> From: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+> >>>
+> >>> This commit message is confusing and inaccurate.
+> >>>
+> >>> First up, you're not factoring _out_ of_map_id() - factor out of_map_id() means to remove of_map_id() - you are refactoring of_map_id().
+> >>>
+> >>> Your patch title should be something like "refactor of_map_id() to prepare for mapping of multiple IDs to a single device"
+> >>>
+> >>
+> >> Sure, will update the commit.
+> >>
+> >>>> Linux interprets multiple mappings for the same input ID as a set of
+> >>>> equivalent choices to pick one. There exists usecases where these set
+> >>>> must be maintained in parallel, ex: on ARM, a dynamically created child
+> >>>> device(s) is referencing multiple input id's in parent iommu-map.
+> >>>>
+> >>>> Factor out the code where multiple mappings needs to be maintained in
+> >>>> parallel can be achieved through callback from this factored out code.
+> >>>
+> >>> Which callback ? There is no ->function(pointer, here...); ?!
+> >>>
+> >>> Just make some plain and straightforward statements about what you are doing and why. There's no need to resort to dissertation-speak.
+> >>>
+> >>
+> >> The callback in introduced in patch 2 of this series. will update the commit descripition as suggested.
+> > 
+> > I think, the callback was NAKed already.
+> > 
+> > 
+> 
+> I'll remove the callback and update change such that all entries of iommu-map are always scanned.
+> This would handle the video usecase ( i.e; same input id's mapping to different SIDs ) and in other
+> cases it would result in few additional scans in iommu-map compared to existing implementation (where
+> it just returns after first input id match) , does this look fine ?
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on 8f0b4cce4481fb22653697cced8d0d04027cb1e8]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ryan-Chen/dt-bindings-interrupt-controller-aspeed-Add-ASPEED-AST2700-INTC0-INTC1/20260205-141046
-base:   8f0b4cce4481fb22653697cced8d0d04027cb1e8
-patch link:    https://lore.kernel.org/r/20260205-irqchip-v1-2-b0310e06c087%40aspeedtech.com
-patch subject: [PATCH 2/4] irqchip/ast2700-intcx: Add AST2700 INTC0/INTC1 support
-config: mips-allyesconfig (https://download.01.org/0day-ci/archive/20260205/202602052233.HNk5pa4R-lkp@intel.com/config)
-compiler: mips-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260205/202602052233.HNk5pa4R-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602052233.HNk5pa4R-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from arch/mips/include/asm/errno.h:11,
-                    from include/linux/err.h:8,
-                    from include/linux/cleanup.h:6,
-                    from include/linux/jump_label.h:78,
-                    from include/linux/dynamic_debug.h:6,
-                    from include/linux/printk.h:621,
-                    from include/asm-generic/bug.h:31,
-                    from arch/mips/include/asm/bug.h:42,
-                    from include/linux/bug.h:5,
-                    from include/linux/thread_info.h:13,
-                    from include/asm-generic/current.h:6,
-                    from ./arch/mips/include/generated/asm/current.h:1,
-                    from include/linux/sched.h:12,
-                    from include/linux/ratelimit.h:6,
-                    from include/linux/dev_printk.h:16,
-                    from include/linux/device.h:15,
-                    from drivers/irqchip/irq-ast2700-intc0.c:10:
->> arch/mips/include/uapi/asm/errno.h:18:9: warning: 'ENOMSG' redefined
-      18 | #define ENOMSG          35      /* No message of desired type */
-         |         ^~~~~~
-   In file included from drivers/irqchip/irq-ast2700-intc0.c:8:
-   include/uapi/asm-generic/errno.h:23:9: note: this is the location of the previous definition
-      23 | #define ENOMSG          42      /* No message of desired type */
-         |         ^~~~~~
->> arch/mips/include/uapi/asm/errno.h:19:9: warning: 'EIDRM' redefined
-      19 | #define EIDRM           36      /* Identifier removed */
-         |         ^~~~~
-   include/uapi/asm-generic/errno.h:24:9: note: this is the location of the previous definition
-      24 | #define EIDRM           43      /* Identifier removed */
-         |         ^~~~~
->> arch/mips/include/uapi/asm/errno.h:20:9: warning: 'ECHRNG' redefined
-      20 | #define ECHRNG          37      /* Channel number out of range */
-         |         ^~~~~~
-   include/uapi/asm-generic/errno.h:25:9: note: this is the location of the previous definition
-      25 | #define ECHRNG          44      /* Channel number out of range */
-         |         ^~~~~~
->> arch/mips/include/uapi/asm/errno.h:21:9: warning: 'EL2NSYNC' redefined
-      21 | #define EL2NSYNC        38      /* Level 2 not synchronized */
-         |         ^~~~~~~~
-   include/uapi/asm-generic/errno.h:26:9: note: this is the location of the previous definition
-      26 | #define EL2NSYNC        45      /* Level 2 not synchronized */
-         |         ^~~~~~~~
->> arch/mips/include/uapi/asm/errno.h:22:9: warning: 'EL3HLT' redefined
-      22 | #define EL3HLT          39      /* Level 3 halted */
-         |         ^~~~~~
-   include/uapi/asm-generic/errno.h:27:9: note: this is the location of the previous definition
-      27 | #define EL3HLT          46      /* Level 3 halted */
-         |         ^~~~~~
->> arch/mips/include/uapi/asm/errno.h:23:9: warning: 'EL3RST' redefined
-      23 | #define EL3RST          40      /* Level 3 reset */
-         |         ^~~~~~
-   include/uapi/asm-generic/errno.h:28:9: note: this is the location of the previous definition
-      28 | #define EL3RST          47      /* Level 3 reset */
-         |         ^~~~~~
->> arch/mips/include/uapi/asm/errno.h:24:9: warning: 'ELNRNG' redefined
-      24 | #define ELNRNG          41      /* Link number out of range */
-         |         ^~~~~~
-   include/uapi/asm-generic/errno.h:29:9: note: this is the location of the previous definition
-      29 | #define ELNRNG          48      /* Link number out of range */
-         |         ^~~~~~
->> arch/mips/include/uapi/asm/errno.h:25:9: warning: 'EUNATCH' redefined
-      25 | #define EUNATCH         42      /* Protocol driver not attached */
-         |         ^~~~~~~
-   include/uapi/asm-generic/errno.h:30:9: note: this is the location of the previous definition
-      30 | #define EUNATCH         49      /* Protocol driver not attached */
-         |         ^~~~~~~
->> arch/mips/include/uapi/asm/errno.h:26:9: warning: 'ENOCSI' redefined
-      26 | #define ENOCSI          43      /* No CSI structure available */
-         |         ^~~~~~
-   include/uapi/asm-generic/errno.h:31:9: note: this is the location of the previous definition
-      31 | #define ENOCSI          50      /* No CSI structure available */
-         |         ^~~~~~
->> arch/mips/include/uapi/asm/errno.h:27:9: warning: 'EL2HLT' redefined
-      27 | #define EL2HLT          44      /* Level 2 halted */
-         |         ^~~~~~
-   include/uapi/asm-generic/errno.h:32:9: note: this is the location of the previous definition
-      32 | #define EL2HLT          51      /* Level 2 halted */
-         |         ^~~~~~
->> arch/mips/include/uapi/asm/errno.h:28:9: warning: 'EDEADLK' redefined
-      28 | #define EDEADLK         45      /* Resource deadlock would occur */
-         |         ^~~~~~~
-   include/uapi/asm-generic/errno.h:7:9: note: this is the location of the previous definition
-       7 | #define EDEADLK         35      /* Resource deadlock would occur */
-         |         ^~~~~~~
->> arch/mips/include/uapi/asm/errno.h:29:9: warning: 'ENOLCK' redefined
-      29 | #define ENOLCK          46      /* No record locks available */
-         |         ^~~~~~
-   include/uapi/asm-generic/errno.h:9:9: note: this is the location of the previous definition
-       9 | #define ENOLCK          37      /* No record locks available */
-         |         ^~~~~~
->> arch/mips/include/uapi/asm/errno.h:30:9: warning: 'EBADE' redefined
-      30 | #define EBADE           50      /* Invalid exchange */
-         |         ^~~~~
-   include/uapi/asm-generic/errno.h:33:9: note: this is the location of the previous definition
-      33 | #define EBADE           52      /* Invalid exchange */
-         |         ^~~~~
->> arch/mips/include/uapi/asm/errno.h:31:9: warning: 'EBADR' redefined
-      31 | #define EBADR           51      /* Invalid request descriptor */
-         |         ^~~~~
-   include/uapi/asm-generic/errno.h:34:9: note: this is the location of the previous definition
-      34 | #define EBADR           53      /* Invalid request descriptor */
-         |         ^~~~~
->> arch/mips/include/uapi/asm/errno.h:32:9: warning: 'EXFULL' redefined
-      32 | #define EXFULL          52      /* Exchange full */
-         |         ^~~~~~
-   include/uapi/asm-generic/errno.h:35:9: note: this is the location of the previous definition
-      35 | #define EXFULL          54      /* Exchange full */
-         |         ^~~~~~
->> arch/mips/include/uapi/asm/errno.h:33:9: warning: 'ENOANO' redefined
-      33 | #define ENOANO          53      /* No anode */
-         |         ^~~~~~
-   include/uapi/asm-generic/errno.h:36:9: note: this is the location of the previous definition
-      36 | #define ENOANO          55      /* No anode */
-         |         ^~~~~~
->> arch/mips/include/uapi/asm/errno.h:34:9: warning: 'EBADRQC' redefined
-      34 | #define EBADRQC         54      /* Invalid request code */
-         |         ^~~~~~~
-   include/uapi/asm-generic/errno.h:37:9: note: this is the location of the previous definition
-      37 | #define EBADRQC         56      /* Invalid request code */
-         |         ^~~~~~~
->> arch/mips/include/uapi/asm/errno.h:35:9: warning: 'EBADSLT' redefined
-      35 | #define EBADSLT         55      /* Invalid slot */
-         |         ^~~~~~~
-   include/uapi/asm-generic/errno.h:38:9: note: this is the location of the previous definition
-      38 | #define EBADSLT         57      /* Invalid slot */
-         |         ^~~~~~~
->> arch/mips/include/uapi/asm/errno.h:36:9: warning: 'EDEADLOCK' redefined
-      36 | #define EDEADLOCK       56      /* File locking deadlock error */
-         |         ^~~~~~~~~
-   include/uapi/asm-generic/errno.h:40:9: note: this is the location of the previous definition
-      40 | #define EDEADLOCK       EDEADLK
-         |         ^~~~~~~~~
->> arch/mips/include/uapi/asm/errno.h:51:9: warning: 'EMULTIHOP' redefined
-      51 | #define EMULTIHOP       74      /* Multihop attempted */
-         |         ^~~~~~~~~
-   include/uapi/asm-generic/errno.h:55:9: note: this is the location of the previous definition
-      55 | #define EMULTIHOP       72      /* Multihop attempted */
-         |         ^~~~~~~~~
-   arch/mips/include/uapi/asm/errno.h:52:9: warning: 'EBADMSG' redefined
-      52 | #define EBADMSG         77      /* Not a data message */
-         |         ^~~~~~~
-   include/uapi/asm-generic/errno.h:57:9: note: this is the location of the previous definition
-      57 | #define EBADMSG         74      /* Not a data message */
-         |         ^~~~~~~
-   arch/mips/include/uapi/asm/errno.h:53:9: warning: 'ENAMETOOLONG' redefined
-      53 | #define ENAMETOOLONG    78      /* File name too long */
-         |         ^~~~~~~~~~~~
-   include/uapi/asm-generic/errno.h:8:9: note: this is the location of the previous definition
-       8 | #define ENAMETOOLONG    36      /* File name too long */
-         |         ^~~~~~~~~~~~
-   arch/mips/include/uapi/asm/errno.h:54:9: warning: 'EOVERFLOW' redefined
-      54 | #define EOVERFLOW       79      /* Value too large for defined data type */
-         |         ^~~~~~~~~
-   include/uapi/asm-generic/errno.h:58:9: note: this is the location of the previous definition
-      58 | #define EOVERFLOW       75      /* Value too large for defined data type */
-         |         ^~~~~~~~~
-   arch/mips/include/uapi/asm/errno.h:55:9: warning: 'ENOTUNIQ' redefined
-      55 | #define ENOTUNIQ        80      /* Name not unique on network */
-         |         ^~~~~~~~
-   include/uapi/asm-generic/errno.h:59:9: note: this is the location of the previous definition
-      59 | #define ENOTUNIQ        76      /* Name not unique on network */
-         |         ^~~~~~~~
-   arch/mips/include/uapi/asm/errno.h:56:9: warning: 'EBADFD' redefined
-      56 | #define EBADFD          81      /* File descriptor in bad state */
-         |         ^~~~~~
-   include/uapi/asm-generic/errno.h:60:9: note: this is the location of the previous definition
-      60 | #define EBADFD          77      /* File descriptor in bad state */
-         |         ^~~~~~
-   arch/mips/include/uapi/asm/errno.h:57:9: warning: 'EREMCHG' redefined
-      57 | #define EREMCHG         82      /* Remote address changed */
-         |         ^~~~~~~
-   include/uapi/asm-generic/errno.h:61:9: note: this is the location of the previous definition
-      61 | #define EREMCHG         78      /* Remote address changed */
-         |         ^~~~~~~
-   arch/mips/include/uapi/asm/errno.h:58:9: warning: 'ELIBACC' redefined
-      58 | #define ELIBACC         83      /* Can not access a needed shared library */
-         |         ^~~~~~~
-   include/uapi/asm-generic/errno.h:62:9: note: this is the location of the previous definition
-      62 | #define ELIBACC         79      /* Can not access a needed shared library */
-         |         ^~~~~~~
-   arch/mips/include/uapi/asm/errno.h:59:9: warning: 'ELIBBAD' redefined
-      59 | #define ELIBBAD         84      /* Accessing a corrupted shared library */
-         |         ^~~~~~~
-   include/uapi/asm-generic/errno.h:63:9: note: this is the location of the previous definition
-      63 | #define ELIBBAD         80      /* Accessing a corrupted shared library */
-         |         ^~~~~~~
-   arch/mips/include/uapi/asm/errno.h:60:9: warning: 'ELIBSCN' redefined
-      60 | #define ELIBSCN         85      /* .lib section in a.out corrupted */
-         |         ^~~~~~~
-   include/uapi/asm-generic/errno.h:64:9: note: this is the location of the previous definition
-      64 | #define ELIBSCN         81      /* .lib section in a.out corrupted */
-         |         ^~~~~~~
-   arch/mips/include/uapi/asm/errno.h:61:9: warning: 'ELIBMAX' redefined
-      61 | #define ELIBMAX         86      /* Attempting to link in too many shared libraries */
-         |         ^~~~~~~
-   include/uapi/asm-generic/errno.h:65:9: note: this is the location of the previous definition
-      65 | #define ELIBMAX         82      /* Attempting to link in too many shared libraries */
-         |         ^~~~~~~
-   arch/mips/include/uapi/asm/errno.h:62:9: warning: 'ELIBEXEC' redefined
-      62 | #define ELIBEXEC        87      /* Cannot exec a shared library directly */
-         |         ^~~~~~~~
-   include/uapi/asm-generic/errno.h:66:9: note: this is the location of the previous definition
-      66 | #define ELIBEXEC        83      /* Cannot exec a shared library directly */
-         |         ^~~~~~~~
-   arch/mips/include/uapi/asm/errno.h:63:9: warning: 'EILSEQ' redefined
-      63 | #define EILSEQ          88      /* Illegal byte sequence */
-         |         ^~~~~~
-   include/uapi/asm-generic/errno.h:67:9: note: this is the location of the previous definition
-      67 | #define EILSEQ          84      /* Illegal byte sequence */
-         |         ^~~~~~
-   arch/mips/include/uapi/asm/errno.h:64:9: warning: 'ENOSYS' redefined
-      64 | #define ENOSYS          89      /* Function not implemented */
-         |         ^~~~~~
-   include/uapi/asm-generic/errno.h:18:9: note: this is the location of the previous definition
-      18 | #define ENOSYS          38      /* Invalid system call number */
-         |         ^~~~~~
-   arch/mips/include/uapi/asm/errno.h:65:9: warning: 'ELOOP' redefined
-      65 | #define ELOOP           90      /* Too many symbolic links encountered */
-         |         ^~~~~
-   include/uapi/asm-generic/errno.h:21:9: note: this is the location of the previous definition
-      21 | #define ELOOP           40      /* Too many symbolic links encountered */
-         |         ^~~~~
-   arch/mips/include/uapi/asm/errno.h:66:9: warning: 'ERESTART' redefined
-      66 | #define ERESTART        91      /* Interrupted system call should be restarted */
-         |         ^~~~~~~~
-   include/uapi/asm-generic/errno.h:68:9: note: this is the location of the previous definition
-      68 | #define ERESTART        85      /* Interrupted system call should be restarted */
-         |         ^~~~~~~~
-   arch/mips/include/uapi/asm/errno.h:67:9: warning: 'ESTRPIPE' redefined
-      67 | #define ESTRPIPE        92      /* Streams pipe error */
-         |         ^~~~~~~~
-   include/uapi/asm-generic/errno.h:69:9: note: this is the location of the previous definition
-      69 | #define ESTRPIPE        86      /* Streams pipe error */
-
-
-vim +/ENOMSG +18 arch/mips/include/uapi/asm/errno.h
-
-61730c538f8281 David Howells 2012-10-09   17  
-61730c538f8281 David Howells 2012-10-09  @18  #define ENOMSG		35	/* No message of desired type */
-61730c538f8281 David Howells 2012-10-09  @19  #define EIDRM		36	/* Identifier removed */
-61730c538f8281 David Howells 2012-10-09  @20  #define ECHRNG		37	/* Channel number out of range */
-61730c538f8281 David Howells 2012-10-09  @21  #define EL2NSYNC	38	/* Level 2 not synchronized */
-61730c538f8281 David Howells 2012-10-09  @22  #define EL3HLT		39	/* Level 3 halted */
-61730c538f8281 David Howells 2012-10-09  @23  #define EL3RST		40	/* Level 3 reset */
-61730c538f8281 David Howells 2012-10-09  @24  #define ELNRNG		41	/* Link number out of range */
-61730c538f8281 David Howells 2012-10-09  @25  #define EUNATCH		42	/* Protocol driver not attached */
-61730c538f8281 David Howells 2012-10-09  @26  #define ENOCSI		43	/* No CSI structure available */
-61730c538f8281 David Howells 2012-10-09  @27  #define EL2HLT		44	/* Level 2 halted */
-61730c538f8281 David Howells 2012-10-09  @28  #define EDEADLK		45	/* Resource deadlock would occur */
-61730c538f8281 David Howells 2012-10-09  @29  #define ENOLCK		46	/* No record locks available */
-61730c538f8281 David Howells 2012-10-09  @30  #define EBADE		50	/* Invalid exchange */
-61730c538f8281 David Howells 2012-10-09  @31  #define EBADR		51	/* Invalid request descriptor */
-61730c538f8281 David Howells 2012-10-09  @32  #define EXFULL		52	/* Exchange full */
-61730c538f8281 David Howells 2012-10-09  @33  #define ENOANO		53	/* No anode */
-61730c538f8281 David Howells 2012-10-09  @34  #define EBADRQC		54	/* Invalid request code */
-61730c538f8281 David Howells 2012-10-09  @35  #define EBADSLT		55	/* Invalid slot */
-61730c538f8281 David Howells 2012-10-09  @36  #define EDEADLOCK	56	/* File locking deadlock error */
-61730c538f8281 David Howells 2012-10-09   37  #define EBFONT		59	/* Bad font file format */
-61730c538f8281 David Howells 2012-10-09   38  #define ENOSTR		60	/* Device not a stream */
-61730c538f8281 David Howells 2012-10-09   39  #define ENODATA		61	/* No data available */
-61730c538f8281 David Howells 2012-10-09   40  #define ETIME		62	/* Timer expired */
-61730c538f8281 David Howells 2012-10-09   41  #define ENOSR		63	/* Out of streams resources */
-61730c538f8281 David Howells 2012-10-09   42  #define ENONET		64	/* Machine is not on the network */
-61730c538f8281 David Howells 2012-10-09   43  #define ENOPKG		65	/* Package not installed */
-61730c538f8281 David Howells 2012-10-09   44  #define EREMOTE		66	/* Object is remote */
-61730c538f8281 David Howells 2012-10-09   45  #define ENOLINK		67	/* Link has been severed */
-61730c538f8281 David Howells 2012-10-09   46  #define EADV		68	/* Advertise error */
-61730c538f8281 David Howells 2012-10-09   47  #define ESRMNT		69	/* Srmount error */
-61730c538f8281 David Howells 2012-10-09   48  #define ECOMM		70	/* Communication error on send */
-61730c538f8281 David Howells 2012-10-09   49  #define EPROTO		71	/* Protocol error */
-61730c538f8281 David Howells 2012-10-09   50  #define EDOTDOT		73	/* RFS specific error */
-61730c538f8281 David Howells 2012-10-09  @51  #define EMULTIHOP	74	/* Multihop attempted */
-61730c538f8281 David Howells 2012-10-09  @52  #define EBADMSG		77	/* Not a data message */
-61730c538f8281 David Howells 2012-10-09  @53  #define ENAMETOOLONG	78	/* File name too long */
-61730c538f8281 David Howells 2012-10-09  @54  #define EOVERFLOW	79	/* Value too large for defined data type */
-61730c538f8281 David Howells 2012-10-09  @55  #define ENOTUNIQ	80	/* Name not unique on network */
-61730c538f8281 David Howells 2012-10-09  @56  #define EBADFD		81	/* File descriptor in bad state */
-61730c538f8281 David Howells 2012-10-09  @57  #define EREMCHG		82	/* Remote address changed */
-61730c538f8281 David Howells 2012-10-09  @58  #define ELIBACC		83	/* Can not access a needed shared library */
-61730c538f8281 David Howells 2012-10-09  @59  #define ELIBBAD		84	/* Accessing a corrupted shared library */
-61730c538f8281 David Howells 2012-10-09  @60  #define ELIBSCN		85	/* .lib section in a.out corrupted */
-61730c538f8281 David Howells 2012-10-09  @61  #define ELIBMAX		86	/* Attempting to link in too many shared libraries */
-61730c538f8281 David Howells 2012-10-09  @62  #define ELIBEXEC	87	/* Cannot exec a shared library directly */
-61730c538f8281 David Howells 2012-10-09  @63  #define EILSEQ		88	/* Illegal byte sequence */
-61730c538f8281 David Howells 2012-10-09  @64  #define ENOSYS		89	/* Function not implemented */
-61730c538f8281 David Howells 2012-10-09  @65  #define ELOOP		90	/* Too many symbolic links encountered */
-61730c538f8281 David Howells 2012-10-09  @66  #define ERESTART	91	/* Interrupted system call should be restarted */
-61730c538f8281 David Howells 2012-10-09  @67  #define ESTRPIPE	92	/* Streams pipe error */
-61730c538f8281 David Howells 2012-10-09  @68  #define ENOTEMPTY	93	/* Directory not empty */
-61730c538f8281 David Howells 2012-10-09  @69  #define EUSERS		94	/* Too many users */
-61730c538f8281 David Howells 2012-10-09  @70  #define ENOTSOCK	95	/* Socket operation on non-socket */
-61730c538f8281 David Howells 2012-10-09  @71  #define EDESTADDRREQ	96	/* Destination address required */
-61730c538f8281 David Howells 2012-10-09  @72  #define EMSGSIZE	97	/* Message too long */
-61730c538f8281 David Howells 2012-10-09  @73  #define EPROTOTYPE	98	/* Protocol wrong type for socket */
-61730c538f8281 David Howells 2012-10-09  @74  #define ENOPROTOOPT	99	/* Protocol not available */
-61730c538f8281 David Howells 2012-10-09  @75  #define EPROTONOSUPPORT 120	/* Protocol not supported */
-61730c538f8281 David Howells 2012-10-09  @76  #define ESOCKTNOSUPPORT 121	/* Socket type not supported */
-61730c538f8281 David Howells 2012-10-09  @77  #define EOPNOTSUPP	122	/* Operation not supported on transport endpoint */
-61730c538f8281 David Howells 2012-10-09  @78  #define EPFNOSUPPORT	123	/* Protocol family not supported */
-61730c538f8281 David Howells 2012-10-09  @79  #define EAFNOSUPPORT	124	/* Address family not supported by protocol */
-61730c538f8281 David Howells 2012-10-09  @80  #define EADDRINUSE	125	/* Address already in use */
-61730c538f8281 David Howells 2012-10-09  @81  #define EADDRNOTAVAIL	126	/* Cannot assign requested address */
-61730c538f8281 David Howells 2012-10-09  @82  #define ENETDOWN	127	/* Network is down */
-61730c538f8281 David Howells 2012-10-09  @83  #define ENETUNREACH	128	/* Network is unreachable */
-61730c538f8281 David Howells 2012-10-09  @84  #define ENETRESET	129	/* Network dropped connection because of reset */
-61730c538f8281 David Howells 2012-10-09  @85  #define ECONNABORTED	130	/* Software caused connection abort */
-61730c538f8281 David Howells 2012-10-09  @86  #define ECONNRESET	131	/* Connection reset by peer */
-61730c538f8281 David Howells 2012-10-09  @87  #define ENOBUFS		132	/* No buffer space available */
-61730c538f8281 David Howells 2012-10-09  @88  #define EISCONN		133	/* Transport endpoint is already connected */
-61730c538f8281 David Howells 2012-10-09  @89  #define ENOTCONN	134	/* Transport endpoint is not connected */
-61730c538f8281 David Howells 2012-10-09  @90  #define EUCLEAN		135	/* Structure needs cleaning */
-61730c538f8281 David Howells 2012-10-09  @91  #define ENOTNAM		137	/* Not a XENIX named type file */
-61730c538f8281 David Howells 2012-10-09  @92  #define ENAVAIL		138	/* No XENIX semaphores available */
-61730c538f8281 David Howells 2012-10-09  @93  #define EISNAM		139	/* Is a named type file */
-61730c538f8281 David Howells 2012-10-09  @94  #define EREMOTEIO	140	/* Remote I/O error */
-61730c538f8281 David Howells 2012-10-09   95  #define EINIT		141	/* Reserved */
-61730c538f8281 David Howells 2012-10-09   96  #define EREMDEV		142	/* Error 142 */
-61730c538f8281 David Howells 2012-10-09  @97  #define ESHUTDOWN	143	/* Cannot send after transport endpoint shutdown */
-61730c538f8281 David Howells 2012-10-09  @98  #define ETOOMANYREFS	144	/* Too many references: cannot splice */
-61730c538f8281 David Howells 2012-10-09  @99  #define ETIMEDOUT	145	/* Connection timed out */
-61730c538f8281 David Howells 2012-10-09 @100  #define ECONNREFUSED	146	/* Connection refused */
-61730c538f8281 David Howells 2012-10-09 @101  #define EHOSTDOWN	147	/* Host is down */
-61730c538f8281 David Howells 2012-10-09 @102  #define EHOSTUNREACH	148	/* No route to host */
-61730c538f8281 David Howells 2012-10-09  103  #define EWOULDBLOCK	EAGAIN	/* Operation would block */
-61730c538f8281 David Howells 2012-10-09 @104  #define EALREADY	149	/* Operation already in progress */
-61730c538f8281 David Howells 2012-10-09 @105  #define EINPROGRESS	150	/* Operation now in progress */
-0ca43435188b9f Eric Sandeen  2013-11-12 @106  #define ESTALE		151	/* Stale file handle */
-61730c538f8281 David Howells 2012-10-09 @107  #define ECANCELED	158	/* AIO operation canceled */
-61730c538f8281 David Howells 2012-10-09  108  
-61730c538f8281 David Howells 2012-10-09  109  /*
-61730c538f8281 David Howells 2012-10-09  110   * These error are Linux extensions.
-61730c538f8281 David Howells 2012-10-09  111   */
-61730c538f8281 David Howells 2012-10-09 @112  #define ENOMEDIUM	159	/* No medium found */
-61730c538f8281 David Howells 2012-10-09 @113  #define EMEDIUMTYPE	160	/* Wrong medium type */
-61730c538f8281 David Howells 2012-10-09 @114  #define ENOKEY		161	/* Required key not available */
-61730c538f8281 David Howells 2012-10-09 @115  #define EKEYEXPIRED	162	/* Key has expired */
-61730c538f8281 David Howells 2012-10-09 @116  #define EKEYREVOKED	163	/* Key has been revoked */
-61730c538f8281 David Howells 2012-10-09 @117  #define EKEYREJECTED	164	/* Key was rejected by service */
-61730c538f8281 David Howells 2012-10-09  118  
-61730c538f8281 David Howells 2012-10-09  119  /* for robust mutexes */
-61730c538f8281 David Howells 2012-10-09 @120  #define EOWNERDEAD	165	/* Owner died */
-61730c538f8281 David Howells 2012-10-09 @121  #define ENOTRECOVERABLE 166	/* State not recoverable */
-61730c538f8281 David Howells 2012-10-09  122  
-61730c538f8281 David Howells 2012-10-09 @123  #define ERFKILL		167	/* Operation not possible due to RF-kill */
-61730c538f8281 David Howells 2012-10-09  124  
-61730c538f8281 David Howells 2012-10-09 @125  #define EHWPOISON	168	/* Memory page has hardware error */
-61730c538f8281 David Howells 2012-10-09  126  
-61730c538f8281 David Howells 2012-10-09 @127  #define EDQUOT		1133	/* Quota exceeded */
-61730c538f8281 David Howells 2012-10-09  128  
-61730c538f8281 David Howells 2012-10-09  129  
+This probably means that we can also drop of_map_args.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
