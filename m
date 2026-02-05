@@ -1,141 +1,280 @@
-Return-Path: <devicetree+bounces-263119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263120-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0Aa/N4jXhGlo5gMAu9opvQ
-	(envelope-from <devicetree+bounces-263119-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 18:46:48 +0100
+	id eJ25OsLXhGlo5gMAu9opvQ
+	(envelope-from <devicetree+bounces-263120-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 18:47:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03810F623D
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 18:46:47 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12573F6285
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 18:47:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1C12C3005323
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 17:46:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B039130013BE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 17:47:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 514873002A9;
-	Thu,  5 Feb 2026 17:46:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E913019BE;
+	Thu,  5 Feb 2026 17:47:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tviH4W/X"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OMzGeJTy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11012024.outbound.protection.outlook.com [40.107.200.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3792FD694;
-	Thu,  5 Feb 2026 17:46:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770313599; cv=none; b=AjNELhYkQD6aB15Q02eUgaeLyOGsby6Ol65oTquMrQpPO28+ETs7g6rNQFp9MOiy4TAU5wE5FogGfv7F2Q1uG5gZLtxEXb7Tef3FqNdZ8el0B59lL0UgKZjB62a0Lkwt4n1038tGQFL1lTQtflnwTC9r7bMQomSsFUNnv04u1WI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770313599; c=relaxed/simple;
-	bh=7aSaaOD1wAyXzpiKz5g41lBowXvkYDhSHVoGvS6fwi8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HimwUBGv8vCoFc3jMBcAKK8mCdGApxcOAbROgTcC5XIGG0z3GwCfad6HptlQLkkpBqnFEG9vMp9xinq9VZTiz/K8V/G8LX/e4epKPKuTcnTAKcCm2VM52fX2tvBmSzKFCvfE9iuffdP7lFJtPjRWGEQiwWTUUP9aHTAXBN4zS9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tviH4W/X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EC66C4CEF7;
-	Thu,  5 Feb 2026 17:46:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770313598;
-	bh=7aSaaOD1wAyXzpiKz5g41lBowXvkYDhSHVoGvS6fwi8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tviH4W/XnR2jjICYwA1lADtCmaHEIMH67SSdc84JAJuewl5zJcDBmoONOAIMQjlSF
-	 v/M/moWb69dmJE2tFaIs2tx4NVOlRAeqyLE+BQp0glLFUrEHU6Ah44/YVlO9lW8eOC
-	 20VTHoxdGqu5+2+wzF2JOZDZ3nNWd36fw038i2NuyMN4CLrhCRgNEyInZbyBNsdNP2
-	 ovQTW+gRIFCpFG1077Cdn2p+fNRcTze4RIkzukeqzRAk5NW/9IyjE4aNEIqzqRUweH
-	 TXCiBps/SK5nUtDr4RoqTnsXMjlfq3Kwqy342LcBQtXdIdy/25a4Z99zI7eIKg50ix
-	 JNvYUo6FsU7Ew==
-Date: Thu, 5 Feb 2026 17:46:32 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Cc: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, srini@kernel.org, perex@perex.cz,
-	tiwai@suse.com, alexey.klimov@linaro.org,
-	mohammad.rafi.shaik@oss.qualcomm.com, quic_wcheng@quicinc.com,
-	johan@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
-	konrad.dybcio@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Stable@vger.kernel.org
-Subject: Re: [PATCH 01/10] ASoC: qcom: q6apm: fix array out of bounds on
- lpass ports
-Message-ID: <a8706da6-20fb-456e-a428-4c7b2c5bc26b@sirena.org.uk>
-References: <20260205171411.34908-1-srinivas.kandagatla@oss.qualcomm.com>
- <20260205171411.34908-2-srinivas.kandagatla@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBC8C2F6573;
+	Thu,  5 Feb 2026 17:47:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.200.24
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770313621; cv=fail; b=PZCFA1GPQtxvREsxPbe1qwayGr3tEvaQgNC+BOZRyvf6+mUSWyclcJppn3OEi6JjUKUqgifc4hp+EmAGt4+DHjm3JieGmCT3CpXQe+1bbDDS+K/W7HPxiXcXThCDqGSqfsS5uDaeglGvSzHB7dtLE5l5uZwKLV1OBuBKnAdRjoQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770313621; c=relaxed/simple;
+	bh=mVbrgFs78Ipuas5V6e3nCnXacCwUyRxUMOY9EFr6yFs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=dXovGgpzAU8DK06nua2xR7Xyvxi94b3tF2ZemM91WjhY2j+Yi/NpcP8fxh8MLxE6+5VZrjN/7S/o5Ck3iIm+Y0A06XWknAr35CuPMrXUspNvf8tvhwWU4XjYwhkr5NQmyX6QcDV6jZEg/ILInXWx3sH2MpV4CwpjvVBvzwEcEi8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OMzGeJTy; arc=fail smtp.client-ip=40.107.200.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qDfj+w6koYkjoE2fgSJNRLHioQhhFJu+NL0r0SNSLG+47qX0gho1HhMYH6+9ExQ7QnFcz8gEoTkaOv/n0hDbCLBMU/YrpVWAQw27ABCTpHizKScmANK4PfAiHlNux9UJo5NcqlgqgRWz4X2Zc4b0yqEfoWAGCyiqSThCDzrH9P8umPx4sEX6f2F5s/1EvshLxtLm4t7jBi0ysd7gInRyra2L9yfqfNcQrv005MURn9ggdElmCGpg4IBbR+vvT2NRRn2VY0lckVJh8FL/XrrwPbiLOowZT2+NIWBShxJLFsndWqJLM7lbQgDO0ZQb6s2No+Kj/QG/d5AkAz8LVA8AIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=T4o1jb8q+Yvyj++OA/g+12T/+nLS+yCuij9qLuGhzF0=;
+ b=BCewuUI9imM5Azofk1Xl/IPqstYZlZD+z2ifFlfZ7lDgE39KzczMKoNdjlH1fAAgyRwAriWBNZKP4wXbrfWc9vAc5Dt3gTT2MjhYjbuJpCH7cfToNRruLATpLD+k4PSQk+CkAQJliwmlHwlX69V8tKuMpr1aBjNynfX5nm5Gj2wTSdhuB7/W/H7MqZjCI8KlCqpqrY6WlbCRz+Fm4oeLZVcF9J2jgJvKzg5RHQJpPU1xD5lF+HjTOfMLLFS+za9zG9cF9W+LqMC2GHxJelwQYPPO4tviqsnwjAJLkusaC282Hm7e+K656AH99pj9lNlS6AVImoQHwfVsjvSA2mZIiw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=T4o1jb8q+Yvyj++OA/g+12T/+nLS+yCuij9qLuGhzF0=;
+ b=OMzGeJTyy5lEe9kIRcjIFBBIfKYlh2NZNx3kqyrCKNi2zhNd9SEBWmbiR+uGqyp/BnEUVg9F//11RYJXxMmUeOPc+YLp7UYf7d9abCmufBSBwFYIi/JQbV0k0LAuMTmeb9VEjW2RRQmuhWj6IvjPCBNser/if5D+OusuVR2Qelw=
+Received: from SA9PR13CA0120.namprd13.prod.outlook.com (2603:10b6:806:24::35)
+ by BL3PR10MB6091.namprd10.prod.outlook.com (2603:10b6:208:3b7::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.13; Thu, 5 Feb
+ 2026 17:46:58 +0000
+Received: from SA2PEPF00001505.namprd04.prod.outlook.com
+ (2603:10b6:806:24:cafe::99) by SA9PR13CA0120.outlook.office365.com
+ (2603:10b6:806:24::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.14 via Frontend Transport; Thu,
+ 5 Feb 2026 17:46:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ SA2PEPF00001505.mail.protection.outlook.com (10.167.242.37) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9587.10 via Frontend Transport; Thu, 5 Feb 2026 17:46:56 +0000
+Received: from DFLE209.ent.ti.com (10.64.6.67) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Feb
+ 2026 11:46:53 -0600
+Received: from DFLE205.ent.ti.com (10.64.6.63) by DFLE209.ent.ti.com
+ (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Feb
+ 2026 11:46:52 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE205.ent.ti.com
+ (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 5 Feb 2026 11:46:52 -0600
+Received: from [172.24.233.254] (santhoshkumark.dhcp.ti.com [172.24.233.254])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 615HklpB3832201;
+	Thu, 5 Feb 2026 11:46:48 -0600
+Message-ID: <ba78303e-36aa-4f40-9416-c22ff12b7458@ti.com>
+Date: Thu, 5 Feb 2026 23:16:47 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="JjPNQsqvp/h1upzL"
-Content-Disposition: inline
-In-Reply-To: <20260205171411.34908-2-srinivas.kandagatla@oss.qualcomm.com>
-X-Cookie: Non-sequiturs make me eat lampshades.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2 01/12] spi: dt-bindings: add spi-has-dqs property
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+CC: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <richard@nod.at>, <vigneshr@ti.com>,
+	<tudor.ambarus@linaro.org>, <pratyush@kernel.org>, <mwalle@kernel.org>,
+	<linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+	<praneeth@ti.com>, <u-kumar1@ti.com>, <p-mantena@ti.com>, <a-dutta@ti.com>,
+	<s-k6@ti.com>
+References: <20260113141617.1905039-1-s-k6@ti.com>
+ <20260113141617.1905039-2-s-k6@ti.com> <87wm0sg50q.fsf@bootlin.com>
+Content-Language: en-US
+From: Santhosh Kumar K <s-k6@ti.com>
+In-Reply-To: <87wm0sg50q.fsf@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00001505:EE_|BL3PR10MB6091:EE_
+X-MS-Office365-Filtering-Correlation-Id: 615a2bbb-70e6-4271-9325-08de64de8e7a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|7416014|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?amoxTFd2enJvOWVWUEhQcjJhVVZ4eTliVGx6Z0k2Wk1adlZFMnJKbG5nZGxs?=
+ =?utf-8?B?dUtjNGF0REl4Zi9KSS9WQjRtZW54NWhZaGFubkh4UXR1ZnVyanVDSlE0R0NB?=
+ =?utf-8?B?bFNqai9LcVNUM0pwSXYzaVRaUmRqdnFSR29nV3ZGYzk4NElwRlNJK0ZlbVJs?=
+ =?utf-8?B?SGRUcGNmeHhqZTY3azNXZXUrYlhzMzdoRmNScW5ZSGhEdUcrd0ovdktOMVVz?=
+ =?utf-8?B?c2d1SjBZTTZaRTVackF6Z29RaDZIL3FlQjA1ZG5NaWdFQ3RlaStkTGVhZEYx?=
+ =?utf-8?B?RVhVdGRmTnpyOGRNUjRxNC9WRlcrSVdKMk5NYzl0aWIvcDNaKysxRW5hbktK?=
+ =?utf-8?B?azkwMloweVlXWFhFMGk0YXhiQmFtRmlnbkwyWG4vMjhLaFh2cVM0elQ1bldU?=
+ =?utf-8?B?dG9hZDBwbTFLVnltVG1vREFNb0RPbTNTSTYzblcrYTlzYjBRL3lMZjFrSVRC?=
+ =?utf-8?B?bVVqQzBsSG5NU2FxM25ycXcxT2xzZWZUU0JjSUgvdnRINHh5NzByYkdsdDdk?=
+ =?utf-8?B?ZGZlcjhEblFtMThQR1k3WkJJOW4xMkdyV3ZTTW9qQmhwL1hZNDNVcGp0ZXdZ?=
+ =?utf-8?B?VFVyT2FsaWMwUWptTHhhdFNOa0F3emhFaXlvTnN6aFRlUE1tNnEybk1aMmhi?=
+ =?utf-8?B?dU5iMW1wOFIvRHdyRU5ob0wzV2tWM1o1ZmhKYW95T2dMNG5kMXRFM0Y1cVB2?=
+ =?utf-8?B?ejJEREpVdTJlQVdVaUx3M2JhaUI5cllTa09leTBKTHFBSFh2Q09uSnBEbUZQ?=
+ =?utf-8?B?Z3NuNFpiODZsbEpuZzVETVlGQXdBd3pxZWdDQkZyS2VibEF0eXVUeDg1NVVD?=
+ =?utf-8?B?dHB3UGh0b3VRa0FjVkdidDdsYTZrTE1UNGpVeTdxalk3a1dZdGtpN3dhNVZM?=
+ =?utf-8?B?QnV1T2NlUFNyYm1UUnBrRWxmRk5MbWZMbWNnYVM3eTBJLzU4U2R3M1dud3JY?=
+ =?utf-8?B?QlQwdkhHanNyUk16MlZXNzNJcFh0QUo0ZDZuTHgzaElSdkVqNHlBTXFHL0Z6?=
+ =?utf-8?B?di82Z1BiaEozRU5DazV5YjhBVjczT3FIOXRGajhaZ3pteDhobXFzNm1EdUdB?=
+ =?utf-8?B?TGlSbTlnNFdjL1RhNCsvblg3ck9odm1Vb3d5QlZ2Rlc0K3N1cWNocTZ5bFlI?=
+ =?utf-8?B?T0w2Y1BZUW1mWnA2NUVMR1Uwa1NjZ0xTYm5ncHFwNmhqUGFXa3hVemRtVjk2?=
+ =?utf-8?B?bDUvUlNnU3lqSmFvTStjWFU1S1gzVFQzS2M4OEdhdncvVzJZZ2htdEJwYita?=
+ =?utf-8?B?UnRvZEFGS1UzQytBSzE4K2poNHhKRm5rdU80cjRqV2xOZmRoZGp6U1FaQW5R?=
+ =?utf-8?B?TlNCS1o3TmpQbzdGSUdaVUx4NlZCeGRXUmhESmVCbVRSeWNvUjV0aitISWRN?=
+ =?utf-8?B?SFpQQkJ2dkhRV1NnVWY4cWZKWUY5WHFnY0xSRzd4eGIzVG1mbnZYbnJYRmZW?=
+ =?utf-8?B?UTUvaHd3QmhjM29FMXgrNC9kQ0lpUE0wVE1hV3RnSzNtV3NUL3VKajlZMnlE?=
+ =?utf-8?B?QmFUaFRKQUQxaWZXbVJnRjd1QnpRWFp3MjRJWXBsdTQ4MHJzUW9TeGVtV2FH?=
+ =?utf-8?B?dzdSNVJDR1ZrcTJEQmZmcWlUY3VGREU3aHFFTUY5OU5vajcwZDRHaEgxUEhG?=
+ =?utf-8?B?cEw4dmMwSWxWbFNWR0MvcC9PMGlnM0E1NzFEc1FCOHpodEUwZWU1MW5Tc01L?=
+ =?utf-8?B?dEJwSkEwQjl2NHVmT3JjeU1odE82WnN0b0Rlc0ZmTzlYQlluU3dwTGRUOUNI?=
+ =?utf-8?B?eVBGaEdPTVRwbUIxM1lZSm1MSU42ZStoVTdQeUZ0MC9lQmlBWjM2ZEZoRHRx?=
+ =?utf-8?B?Nys3dUU4N0thRlg5MUV2d1VPTzVQczYvK05ZTkFLS2FIUzg5QTdhM09UcGVC?=
+ =?utf-8?B?VU4rdHRLdFlWb2NwK28xdTczMkFMaThGTmR5TlNGRE1RR0F4Y1gyK0FOa3ha?=
+ =?utf-8?B?WUpnZzMzOHJReXFkMitFaW83dUpIS0VsOXpqTkdia3JTRUx2YUdnNEV3eTRE?=
+ =?utf-8?B?cUhDVkliOXdvRS9rRDZlSjhBaU5jVTBReVd0SkhqTXVFMDJBWXFwMXJkL0Q0?=
+ =?utf-8?B?ekxIN21zRTVmMS9Ha09GMGFwMG5OOHJVWjBya3JsMTlibGErOUI0azUrOFlz?=
+ =?utf-8?B?ODM3YU9GeWd5N1A5YWJLSzZZYVNwVDB0emlZNUhkTWFwRDdhUWRJVEN0YmZI?=
+ =?utf-8?B?VWlnaXNWbHpHWkVtR1U0UmxXOWZ5c3NDbWRneksyZjAzUTR4RkhhN3FZUE1q?=
+ =?utf-8?B?QTNaemh5Ty9uWUhxSFlEQkxkRkRRPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	eRV6ajFUZByQC2y3sBKzMG7VVTNmh4DF8yAaa6lflRAM8hzEc9Doors2NuEDNT5DvWcem5TQ2J8Gu7MkHSn7X299dQa1i3RAZNQo5iDyZ6Y/FB/11AJTA4NhdY9zPeg0D18VFrIsCiUwpk3rivSX9WA8uR7494jGDRUtsw+XYP1UUKV5xtSRZUghuGz+WFztrrba0rQOVppGrqjk7L3QkmDyWF7mhZEmWLRz74m47r5Xe+nXizsVDNge11BaLu/R+v8xm0wr95KRh//+3tL3QIFRCZYfb/7Tmc7kEIBaztUIPVaYlz3XHAqyhhKDEsEuo0oOwltyRTQGelwVLj10d6u+XMASyZzSEZ+riFmxGj20id8KIhkMqxxflIa2i4SejK/t9z5yFtbs31r4q7WMJF7eI7oYBy0/1IS1JbNLQxlImZ4s8nBKtu9TRKj/8RB4
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2026 17:46:56.8343
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 615a2bbb-70e6-4271-9325-08de64de8e7a
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SA2PEPF00001505.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR10MB6091
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263119-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,perex.cz,suse.com,linaro.org,oss.qualcomm.com,quicinc.com,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263120-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,ti.com:dkim,ti.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sirena.org.uk:mid]
-X-Rspamd-Queue-Id: 03810F623D
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[s-k6@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 12573F6285
 X-Rspamd-Action: no action
 
+Hello Miquel,
 
---JjPNQsqvp/h1upzL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 04/02/26 16:16, Miquel Raynal wrote:
+> On 13/01/2026 at 19:46:06 +0530, Santhosh Kumar K <s-k6@ti.com> wrote:
+> 
+>> Add the optional 'spi-has-dqs' boolean property for SPI flash device
+>> subnodes. This property indicates the flash device supports DQS (Data
+>> Strobe) mode, which provides improved timing margins for data capture
+>> in high-speed SPI operations.
+>>
+>> Signed-off-by: Santhosh Kumar K <s-k6@ti.com>
+>> ---
+>>   .../devicetree/bindings/spi/spi-peripheral-props.yaml       | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+>> index 8b6e8fc009db..c6f330fd32aa 100644
+>> --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+>> +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+>> @@ -89,6 +89,12 @@ properties:
+>>       description:
+>>         Delay, in microseconds, after a write transfer.
+>>   
+>> +  spi-has-dqs:
+>> +    description:
+>> +      Indicates the SPI flash device supports DQS (Data Strobe) mode for
+>> +      improved data capture timing.
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+> 
+> This information is currently lacking indeed, mostly because nobody ever
+> cared about it. The DT property is IMO not the correct way to give this
+> information for two reasons:
+> - this is a capability of the chip, we discover the chip dynamically in
+>    both cases (NAND and NOR) and attach many capabilities to the chips
+>    already, so I believe this information should be provided through a
+>    flag.
+> - the fact that the DQS signal might be supported does not indicate it
+>    is actually driven. Winbond chips, for instance, can either enable it
+>    or not depending on their configuration (probably through their VCR
+>    register, I need to check again).
 
-On Thu, Feb 05, 2026 at 12:14:02PM -0500, Srinivas Kandagatla wrote:
-> lpass ports numbers have been added but the apm driver never got updated
-> with new max port value that it uses to store dai specific data.
->=20
-> This will result in array out of bounds and weird driver behaviour.
-> Fix this by adding a new LPASS_MAX_PORT which is can be used by driver
-> instead of using number and any new port additional can only be done in
-> one place, which should avoid these type of mistakes in future.
+I agree. The flash device's capability to provide DQS - whether in SDR,
+DDR or both modes - can be represented as a flag in the flash
+description. We can list out the possible combinations and use them to
+clearly describe the flash's supported capabilities.
 
-It would probably be good to improve the valdiation in the driver when
-it starts using port numbers.
+However, whether the DQS signal is actually connected to the controller
+is a non-discoverable hardware detail and should be described only via
+Device Tree. The DT property is not meant to describe the flash's
+capabilities, but to indicate whether DQS is physically connected to the
+controller.
 
---JjPNQsqvp/h1upzL
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> The question I have is: shall we enable the DQS pin automatically if it
+> is available? Not all controllers support it I suppose, and wiring the
+> line might as well not be done (or incorrectly). For these cases we may
+> need DT properties in the future. But for the DQS presence indication, I
+> bet it is not useful, and should be handled at the core level (not
+> parsed by the driver like you do) because it may have an impact on the
+> chip internal configuration.
 
------BEGIN PGP SIGNATURE-----
+We can handle this in either way: keep DQS disabled by default and
+enable it using a "has-dqs" property, or enable it by default and
+disable it explicitly using a "no-dqs" property.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmE13cACgkQJNaLcl1U
-h9ATEQf/UngOgVnrXCDhmOJZtvNHZOS7HDTpZxoMsAtt3rPrvHjc4RKJDTXBZO8l
-iP8KUwPvKjfI12cQykbMAhBBNsbsQbKCdsZUD+1XnjJqlVg2tQdn0IqGSNGsUuBU
-SckANvagdMprhVxYw7l4iu7ubZSjI/zrBc4TP2vqsdnvVeKXE+hFP1q3PSeszhoj
-9SbR7+jMH8vks6UHMNoBb9BIhD0/8nSrxu+z+iIzwwSBYpq1LbZW+lW8PjwI9dTk
-IgUu371hrv4nAQ1ynToK2KnGbLX47smvexDLUjXLCGRry8NMZluIq9vVfyIbAvxg
-Nwat89cmz6f9FprXSKdzhmFqIY7uoA==
-=oxM2
------END PGP SIGNATURE-----
+Thanks,
+Santhosh.
 
---JjPNQsqvp/h1upzL--
+> 
+> I will try to come up with a proposal soon!
+> 
+> Cheers,
+> Miquèl
+
 
