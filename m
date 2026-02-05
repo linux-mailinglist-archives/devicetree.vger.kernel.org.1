@@ -1,175 +1,186 @@
-Return-Path: <devicetree+bounces-263078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263079-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EAukHULChGnG4wMAu9opvQ
-	(envelope-from <devicetree+bounces-263078-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 17:16:02 +0100
+	id OIgxBE/ChGnG4wMAu9opvQ
+	(envelope-from <devicetree+bounces-263079-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 17:16:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1F5DF5189
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 17:16:01 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A519BF51A5
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 17:16:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7EB063021D29
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 16:14:39 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 06B583005A80
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 16:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2BE3423143;
-	Thu,  5 Feb 2026 16:14:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 741F13ACEEE;
+	Thu,  5 Feb 2026 16:16:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OQc1Cji/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YWgi0vdP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EFE135DCFE
-	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 16:14:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770308076; cv=pass; b=j01IqytGLiHZvfpLvntK/eH6mJq3KPluco4L2Mntw2IUhOpHc6vYoKIftt7orbubrHf6HP2tyHLvFg4RVDIi7TQxur8CrtBP6QLHCUsBbP10GVFThlE1bhx4KR8jhqNbfZJ2yZfFu8LHMXBPI5oYbrN3+E8SBpOeae4obOlz7W0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770308076; c=relaxed/simple;
-	bh=G0AtHxYqGgkr9atHYusGCj4EPeFpWCf6+pfxHUVm8uU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GhJeyr6E2gBJIQM6FEnWFPqOb/VWkFqevNmcufpaOV/Dm86ZY+4VbSs8G/Xn74lO0CgRwjX/olmvbbrta9HQ4bI8K7Ok4m72zJiSKg5dhyZrjVFGNgH+FzC/+R3XqFONM/ADPXbZxBndnTbAfHodjlEk1lzsOZk16uIYK58K08E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OQc1Cji/; arc=pass smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-43624d7256bso532917f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 08:14:36 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770308075; cv=none;
-        d=google.com; s=arc-20240605;
-        b=AbgtwjmwBKPYvnMvXjCNmTc9P+3nQR9KLfKP0lkFoBgv0oTwqiMI3l67eTc9zgiSMb
-         A3G/MVxzUJE54Cl3NMYTMNGPJWTsK/95URGF9mOFm3TIlBQ6y33VCFu0bQxJJOJTztmV
-         hc423vW/zw2u/gh9CIcyAeau6pJ0qLjEmBcOYYu+zxWbNW+cxpQBWIFKjvJmBE6O3cK5
-         mZGXHryDtVseWsfVZsafl1rj7ZNEJ/uZexiRCMUDtzoubJTzjPDFKaoSj38spzPv+coC
-         BhdnYoHuD83DChfT5oEmLusWEtl5K6VUXmp6JSTibneEwi4lAYHk/k5jmTplHPX/spIy
-         1ycg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=TT2eQRvfgO/3XBRFae0T/CpdFBfoJ3maco9Ak5Gp/OY=;
-        fh=EX4xRquJEnI1JczXOZLt5uQ+dqDAvqUYEvTyE1u0oMM=;
-        b=NAlXaN6GkxlMSJfEgeY4gYWDl+RaoXRugkvzZNa18SqHJxEWBxuD+XzHMmmXf6gn8Z
-         8m1Jt5y1Ya//sS7GGO2i+EDGHuuYFUhepinTYluvRTX/tfIcWUTppFOZIKTTtMUv5ufP
-         spsBQ1A3csNgrykUx3d6k8JNxNEslCQStO07r4WONr6LDckxZXB4JV9uqbFDRoVjrjbK
-         085N/P4xyvMxtpUkTgcWWy7S4fbMhFoMN1q47ROHvE2IH8//Dbqvkwb8D/5V+jIiubmM
-         5GDIX9+++tqeDlFa9k5Xh91wjhOYQXyPfbVRpShY7HdIIhW4ATF1egaBam9LKcybpf1k
-         CO5Q==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770308075; x=1770912875; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=TT2eQRvfgO/3XBRFae0T/CpdFBfoJ3maco9Ak5Gp/OY=;
-        b=OQc1Cji/1a/tV/U/QtrGQovLBYg065Sg8myWDiT4WWGo6KZ0nfn5s0xJNdISnk3TEU
-         BkSmc0kpP6WUjMWlPgtFnUWowAZFnaF59SBfKsYGCw9QW65fY3AV9nPg/oLaSWtOh98i
-         CHBbcG3/+MoIUQcRjNIwmVDTSj5l+G124MbQIC6c4WP4Ici0dM7c8nUODtgeMYEQTv3W
-         4nXUCAmdeEuYg26wvXg+oNQ7YSaKDbxGPpZ3tzHoXY1aF8RdpXjC5uZFOMCa469Omndc
-         64FxZ6+xDXkdePCg1Xk+iAQxK0dFyvWKBmYQxvGgQaVLuJpSWcY/WTykF0kzBH2bQ+Gf
-         o02g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770308075; x=1770912875;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TT2eQRvfgO/3XBRFae0T/CpdFBfoJ3maco9Ak5Gp/OY=;
-        b=U60t28xKkuQSokM0oJwl/U4YmrRL9UegOcRGN9/7rZ19w/6SfT0p1qnpGYa7KvC6li
-         jwhw9zPT4ZPAPYk7biVIZEkbh9wcnIlxdLR2/4rFxVdaH9OKV+YMgxfk/wAVecRaHVI7
-         9AOld6unU1eZhBhQBaFHMXC8T9z1yDFAOnzS+H5AwTqRsnOuAAhHd3laWIwKYuE50RjK
-         N9v/MDen1HCgBnh2AA6uzQHEGJjHHm3wtEIAeeKk+iSH+ZMN52+MoMclfICnZNUdeITH
-         X6iqIT6ofLgd3BDib7FqijDMiBexh70ERX9l11xArDqnUq0EqmdeCSRaS6bT7h45jhOl
-         AjWg==
-X-Forwarded-Encrypted: i=1; AJvYcCXgFWkfRynuC7ruvI6E505pI3Ipo3loQVDAfKU4V2wouaGYDs4WbtYd4DEKJ2F6rn2dnPczUf2oIvhQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+8Tusn+JFNQzyTG7gnR3BA6XmsiJPKGE5qwb0nGzA2hOYCVvE
-	Yq69Pg11A07uqsu5xCTHAXo8LB4NelsftRj5JJZLEAGtVtFfKlWa4N/V60H1FeVbk7E9lPYKhfB
-	IO4saX4c0IArztfAj+hrMu6vVh1mUDDw=
-X-Gm-Gg: AZuq6aJ7ulJxVcj5HQ69bSHFDikYQmTn1pRlGnDHZd0NNDrOxqtZbIszTEbLR4akgAV
-	vZrvr0TpUAxfjM0fpNNto34GmmnUg2qml8e35SKk4/mOnWBJ4YYxTziqZwLbWxZYhoRUoIXMaUo
-	16o1Je2dEHgz0tYhWRkuqk8UlJ5qI+Vbkt23hfaiQt9lO2VRFIIPwQbtlgEjDv7fBFk5hjv+u7x
-	QVyG111B72PTxud0icApT0k2lrtLmSPxh5N1+gohDSGlSc9kOHEk5RbIQoSfgatq03+AKDE
-X-Received: by 2002:a05:6000:4008:b0:435:e436:7fb with SMTP id
- ffacd0b85a97d-43618059612mr11097375f8f.50.1770308074748; Thu, 05 Feb 2026
- 08:14:34 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 517062C0F91;
+	Thu,  5 Feb 2026 16:16:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770308172; cv=none; b=aAzLej6L8Q4Ft6q8HPwW0Npu/mUS/gPpzodLJNxzaLj+VoPCoHed2YT2W6vkJH1Nyz8v75lQ9+A7ioLtlLXkNP2yWP2V4JOqsukkB5f5W+Ex0CfRN6Oc1+vL4yfpbCX++o+sjFr+bNcpGgfQpgLjRSIEzuk5ux6dVVrUisg9wWU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770308172; c=relaxed/simple;
+	bh=OuU3w73cXMucvzsfiLP6vH5DxTYnTcrsj2hMDAY7cO4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j7z/GTdXxi1D/6NKSHWevRKD23eqzJwEIGXYRvkd71LLEnUqbby9lijuNgpoUFbl/GjrSa7hFhv2wV1pWswjERj9GgehYko7GlXcsWkwcoOGSsGFUHhMSMCuZNPS2lLrsbIRB2alNaNmT8ez6P2G4umvo6XdPU7r88GbyMF3CNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YWgi0vdP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBD92C4CEF7;
+	Thu,  5 Feb 2026 16:16:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770308171;
+	bh=OuU3w73cXMucvzsfiLP6vH5DxTYnTcrsj2hMDAY7cO4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YWgi0vdPZ06CKg6c7LcgQzsMFc8AeWDUNf/avb6NvbPW3XlJHqw3A1PtspdFcYIQX
+	 /U0ox+/63AlOe6rAXKoObWaj6q/uT6UxfADewa3nvwXbE32F+ItuDJSAoNMbPOR8Bm
+	 +0U9YspLBsZtXMMnVgs4aFaYbDVZEXQWeuPLOLMKsa2r3Jk94F3lFNZ3Y07pMFhfRO
+	 TDrUltAIaCTFmmOCAsQJyU//dEEIIcDgHollKpW7sP1C8Kq/wxUwpN53OtfHaFJyQt
+	 u2m8U+DRpPppmecRz3SpMjcHT/z5/RJb8ADhEMtz2vRahFwir3auD0m364GtwW8cgz
+	 MieJaZej4UMqQ==
+Date: Thu, 5 Feb 2026 10:16:08 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v7 2/4] arm64: defconfig: Enable Glymur configs for boot
+ to shell
+Message-ID: <hegsqmdmf6yey2ubcsyx7i2l77vplwzmthmyrpvmvu2nrpiag7@gxg7bdk7or2o>
+References: <20260205-upstream_v3_glymur_introduction-v7-0-849e7a9e6888@oss.qualcomm.com>
+ <20260205-upstream_v3_glymur_introduction-v7-2-849e7a9e6888@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260129022910.3942028-1-onlywig@gmail.com> <20260129022910.3942028-2-onlywig@gmail.com>
- <aXsdyzZEUaVzC34W@shlinux89>
-In-Reply-To: <aXsdyzZEUaVzC34W@shlinux89>
-From: Wig Cheng <onlywig@gmail.com>
-Date: Fri, 6 Feb 2026 00:14:21 +0800
-X-Gm-Features: AZwV_QhAb-x2AIC9FZ_A0KiIYxUwdfCa-Lm4hiLKANWs8oWf_rB0v7ryvoRkqvg
-Message-ID: <CAPStFe7ASmYxJdDorJ0KAerfTH51ioZ=89F8fRcs6fBVqqhdUw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/1] arm64: dts: freescale: add pixpaper display
- overlay for i.MX93 FRDM
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	zaq14760@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260205-upstream_v3_glymur_introduction-v7-2-849e7a9e6888@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263078-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263079-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[onlywig@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,nxp.com:email]
-X-Rspamd-Queue-Id: E1F5DF5189
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: A519BF51A5
 X-Rspamd-Action: no action
 
->
-> On Thu, Jan 29, 2026 at 10:29:10AM +0800, Wig Cheng wrote:
-> >Add device tree overlay to support the MayQueen PixPaper e-paper display
-> >on the NXP i.MX93 FRDM board. The display is connected via LPSPI3
-> >interface and uses GPIO pins for reset, busy and DC control.
-> >
-> >The overlay configures:
-> >    - LPSPI3 pinmux for SPI communication (MOSI, MISO, CLK, CE0)
-> >    - PixPaper display device with proper GPIO assignments
-> >    - SPI frequency set to 5MHz for stable operation
-> >
-> >Enable Open-EP Community pixpaper-213-c support on NXP i.MX93.
-> >
-> >Signed-off-by: Wig Cheng <onlywig@gmail.com>
->
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+On Thu, Feb 05, 2026 at 05:50:42PM +0530, Pankaj Patil wrote:
+> The serial engine must be properly setup before kernel reaches
+> "init", so UART driver and its dependencies needs to be built in.
+> Enable its dependency clocks,interconnect and pinctrl as built-in
+> to boot Qualcomm's dev platform - Glymur CRD board to UART console with
+> rootfs on nvme storage.
+> DISPCC enabled as module, used for display.
+> 
 
-Hi reviewers,
+I'm sorry I missed this earlier, but what are you actually saying in
+this commit message?
 
-Thanks to Peng for the review.
+Subject is lacking "Qualcomm" and "boot to shell" doesn't mean anything.
 
-Just a gentle ping on this patch.
-Please let me know if any further reviews or changes are needed.
+You're talking about serial engine and init, and how that relates to
+UART needs to be built in. So this must be the most important part of
+your patch? No, those drivers where enabled in November 2018...
 
-Thanks,
-Wig
+Then follows a problem statement (problem statements are good!), saying
+that we're enabling the dependencies of the UART. This is good as it
+allow us to reach "init" with a working /dev/console (the reason for
+=y).
+
+But your mixing this up with "rootfs on NVMe storage", which might
+follow from being able to reach "init" with working UART, but it's not
+the same "problem". What I do believe relates to "rootfs on NVMe
+storage" is the inclusion of GLYMUR_TCSRCC=m though?
+
+Surely there must be a better way to write "Qualcomm's dev platform -
+Glymur CRD board"?
+
+DISPCC is used for display, but should your statement be read to imply
+that we now have all drivers enabled for "boot to shell" on the display?
+Or did you include it just because it was adjacent?
+
+
+The content of the patch looks good, but the commit message is
+incoherent and lacks answers to someone who doesn't already know why the
+options are enabled in the way they are.
+
+
+For comparison look at Jingyi's patch here:
+https://lore.kernel.org/all/20251215-knp-dts-v4-2-1541bebeb89f@oss.qualcomm.com/
+
+Regards,
+Bjorn
+
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> ---
+>  arch/arm64/configs/defconfig | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index b67d5b1fc45b..d3ed35d3e6a4 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -647,6 +647,7 @@ CONFIG_PINCTRL_IMX91=y
+>  CONFIG_PINCTRL_IMX93=y
+>  CONFIG_PINCTRL_IMX_SCMI=y
+>  CONFIG_PINCTRL_MSM=y
+> +CONFIG_PINCTRL_GLYMUR=y
+>  CONFIG_PINCTRL_IPQ5018=y
+>  CONFIG_PINCTRL_IPQ5332=y
+>  CONFIG_PINCTRL_IPQ5424=y
+> @@ -1454,6 +1455,9 @@ CONFIG_COMMON_CLK_MT8192_SCP_ADSP=y
+>  CONFIG_COMMON_CLK_MT8192_VDECSYS=y
+>  CONFIG_COMMON_CLK_MT8192_VENCSYS=y
+>  CONFIG_COMMON_CLK_QCOM=y
+> +CONFIG_CLK_GLYMUR_DISPCC=m
+> +CONFIG_CLK_GLYMUR_GCC=y
+> +CONFIG_CLK_GLYMUR_TCSRCC=m
+>  CONFIG_CLK_KAANAPALI_GCC=y
+>  CONFIG_CLK_KAANAPALI_TCSRCC=m
+>  CONFIG_CLK_X1E80100_CAMCC=m
+> @@ -1846,6 +1850,7 @@ CONFIG_INTERCONNECT_IMX8MN=m
+>  CONFIG_INTERCONNECT_IMX8MQ=m
+>  CONFIG_INTERCONNECT_IMX8MP=y
+>  CONFIG_INTERCONNECT_QCOM=y
+> +CONFIG_INTERCONNECT_QCOM_GLYMUR=y
+>  CONFIG_INTERCONNECT_QCOM_KAANAPALI=y
+>  CONFIG_INTERCONNECT_QCOM_MSM8916=m
+>  CONFIG_INTERCONNECT_QCOM_MSM8953=y
+> 
+> -- 
+> 2.34.1
+> 
 
