@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-262946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262947-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kEoSHbdmhGkh2wMAu9opvQ
-	(envelope-from <devicetree+bounces-262946-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:45:27 +0100
+	id OGpCAipnhGkh2wMAu9opvQ
+	(envelope-from <devicetree+bounces-262947-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:47:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7E42F0FBE
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:45:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F7D5F1026
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:47:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 14D10301829B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:44:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2C5743008740
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:47:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F643A0EA1;
-	Thu,  5 Feb 2026 09:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDE6D36E488;
+	Thu,  5 Feb 2026 09:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GxIhqP4S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s5EQfpNI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCD635C1AF;
-	Thu,  5 Feb 2026 09:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB0C22301;
+	Thu,  5 Feb 2026 09:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770284666; cv=none; b=CiXQART3uoEREr14zvCyKu5ygeLUOVFUFoqancZtq0gR9nMtMvbOaBmB81wxSsCIwIx5I1YU+l7N/tfB8+10CeTyNMLZ2N0r2JH32e8An9gXcONGhddM37jm+0NnOmnnP/gcIDlv0631AeNVrCUC7DKO9jizDMyIzsXdtnKG09E=
+	t=1770284827; cv=none; b=LSzcXZ/HWy66tqcxu4wskaoC1yPDSivN49K+orXBTvgoEtsdagohk0dLlqtEFpo6Cg26xHB5b/i2+KCQBJKS6otVCEbL/ksFGyfzLwXCwY1sH+6WWT5DS5Oc1eYuobC5509o4+lSfgXVfyFP/GdaM+cSXcBA1Vm5BxIfTzHJinQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770284666; c=relaxed/simple;
-	bh=OxvbvoybIarJZt2H9G/2UIGNHfT/4PA1SsoVK1F3DEI=;
+	s=arc-20240116; t=1770284827; c=relaxed/simple;
+	bh=zfalYb5m4jmXJdvgdsS+kkeIDs7H5lnyloDkGHgpMaU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PZ+N7g8pyP7c/a4kAjJ5Bk9XNB+n/V8BSt3d6a2PbmFTt9lwtWP5ZtyUDzBP5pvg24zDJdAVs3v9ucZzElytsUYysp2l3dqV7dbPy2iRTocJI+LVz71tJwQgXbGj5B0RLWz5aqOMl9AzEpzBm0AxWwC+6e7ujPIkYXRPMSQDeMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GxIhqP4S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08137C4CEF7;
-	Thu,  5 Feb 2026 09:44:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=cxotqWpxB07alBDnOLv/UE1VusAy1FB6b0NSlGCxtW+T+56WC7QhsnnMkwtmvHv4fSXTt7fMwWwROK1YamFy0jyBVz811RnXiLyLsg/MhrYswcqRWeZsruc/sJ6EhbZUEk/uEJC2StzaUAbjaBrbGUaFWgvxdjqyLRjD41i/DUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s5EQfpNI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AEE1C4CEF7;
+	Thu,  5 Feb 2026 09:47:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770284666;
-	bh=OxvbvoybIarJZt2H9G/2UIGNHfT/4PA1SsoVK1F3DEI=;
+	s=k20201202; t=1770284827;
+	bh=zfalYb5m4jmXJdvgdsS+kkeIDs7H5lnyloDkGHgpMaU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GxIhqP4SHw4Ca8hSPIv2JSglYt/HKvtty6Vugo3bOPELEBG5yz6OyUdDv1zsy3jX8
-	 B6lcS+USlgT+d/fXctVUBZYyWBQvdvYHgSKiDCMXz6tJsx/+gdXMxjrtAkbcuLvCOF
-	 ihLtVMg2R7kb+EBEzEffPJSt6vGxsqWHMGyTPlGsN71M7+vTNDfiVimvOVM64luA+G
-	 7tfUEPWYbRAFaQnUR28aAdbtq6SVGEZ2ULFF7FelAw4S3kCL7jdmLTzdo7bWSKgWBA
-	 Nx4yjavkna+Lb1a6YUwlL8EVw9LYEvFWBRjm6tUZ+kEQ9BRf/Be2Q0ei0EGplJbRUc
-	 ok+FDH/lEMuXQ==
-Message-ID: <5bfeb05a-dc10-4d66-a395-38537cf2953e@kernel.org>
-Date: Thu, 5 Feb 2026 10:44:19 +0100
+	b=s5EQfpNIk22AtBe6vtAD0GjSFWGJK0obgQNkek5tXC69qTS7oSMcZC9i08SdOnxH4
+	 tXcuyJHcXw7oUBADxRpL8p4jG3T9HK4gqR0QYhdDMPYCABtmmNzIbmi3h9E9lb2JAW
+	 NVkeq/nNGIaadv239wleyCvTtCONLvYEdkCOwIipCkaExHmo5S8m2yBn7a1MyMAEt3
+	 8rlQ4rFrfiMbuj0ZRqjf4TUpoVYDdZC9o09Jhrmn//fPv2OzGxJFjNWBIPV5WfECT3
+	 nejO9V6h7lKid0CM1OEnmOgU9QdxUSH0Fysy+KGJINB67Fe5dUBDAxqVTl6RZgipZy
+	 h3pPzaJRWkJSg==
+Message-ID: <c3cfb8c8-649e-479c-a4b5-186913db1520@kernel.org>
+Date: Thu, 5 Feb 2026 10:47:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,18 +53,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v1 11/11] arm64: dts: freescale: imx95: Add NXP neoisp
- device tree node
-To: Antoine Bouyer <antoine.bouyer@nxp.com>, julien.vuillaumier@nxp.com,
- alexi.birlinger@nxp.com, daniel.baluta@nxp.com, peng.fan@nxp.com,
- frank.li@nxp.com, jacopo.mondi@ideasonboard.com,
- laurent.pinchart@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20260123080938.3367348-1-antoine.bouyer@nxp.com>
- <20260123080938.3367348-12-antoine.bouyer@nxp.com>
+Subject: Re: [PATCH 6/8] mmc: host: axiado: add AX3000 eMMC PHY support to
+ sdhci-of-arasan
+To: Tzu-Hao Wei <twei@axiado.com>
+Cc: SriNavmani A <srinavmani@axiado.com>,
+ Prasad Bolisetty <pbolisetty@axiado.com>, Vinod Koul <vkoul@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Adrian Hunter
+ <adrian.hunter@intel.com>, Michal Simek <michal.simek@amd.com>,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-mmc@vger.kernel.org
+References: <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-0-5457d0ebcdb4@axiado.com>
+ <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-6-5457d0ebcdb4@axiado.com>
+ <20251223-optimal-ochre-kestrel-a8cb1c@quoll>
+ <c96d21ab-2a76-46ca-8392-6edde3b9ce2d@axiado.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,7 +115,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260123080938.3367348-12-antoine.bouyer@nxp.com>
+In-Reply-To: <c96d21ab-2a76-46ca-8392-6edde3b9ce2d@axiado.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -119,20 +124,19 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262946-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[nxp.com,ideasonboard.com,kernel.org,pengutronix.de,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262947-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
@@ -140,49 +144,32 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,4ae00000:email]
-X-Rspamd-Queue-Id: B7E42F0FBE
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5F7D5F1026
 X-Rspamd-Action: no action
 
-On 23/01/2026 09:09, Antoine Bouyer wrote:
-> Add neoisp device tree node to imx95.dtsi and enable it by default in
-> 19x19 evk board.
-> 
-> Signed-off-by: Antoine Bouyer <antoine.bouyer@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts |  4 ++++
->  arch/arm64/boot/dts/freescale/imx95.dtsi          | 11 +++++++++++
->  2 files changed, 15 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> index aaa0da55a22b..9fbf22a57dba 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> @@ -511,6 +511,10 @@ &mu7 {
->  	status = "okay";
->  };
->  
-> +&neoisp0 {
-> +	status = "okay";
-> +};
-> +
->  &netcmix_blk_ctrl {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> index e45014d50abe..03c7f3de6e9c 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> @@ -1765,6 +1765,17 @@ smmu: iommu@490d0000 {
->  			};
->  		};
->  
-> +		neoisp0: isp@4ae00000 {
-> +			compatible = "nxp,imx95-b0-neoisp";
+On 05/02/2026 04:36, Tzu-Hao Wei wrote:
+> On 12/23/2025 10:34 PM, Krzysztof Kozlowski wrote:
+>>> @@ -2019,15 +2023,17 @@ static int sdhci_arasan_probe(struct platform_device *pdev)
+>>>                       goto unreg_clk;
+>>>               }
+>>>
+>>> -             host->mmc_host_ops.hs400_enhanced_strobe =
+>>> +             if (!of_device_is_compatible(np, "axiado,ax3000-sdhci-5.1-emmc")) {
+>>
+>> No, don't sprinkle compatibles all around. You should use driver match
+>> data for this.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> Thanks for suggestion. The new patch uses driver match data instead of sprinkling compatibles.
 
-And where are all other compatibles? Why did you define four compatibles
-in the binding?
+You replied to a review from more than a month ago, even though I gave
+you review after one day. I don't have anything of this in my inbox, so
+in case you asked of something - I still expect all feedback to be
+implemented.
 
 Best regards,
 Krzysztof
