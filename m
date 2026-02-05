@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-263132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263133-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sEemEXrghGmi6AMAu9opvQ
-	(envelope-from <devicetree+bounces-263132-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 19:24:58 +0100
+	id YJVpHt3ghGmi6AMAu9opvQ
+	(envelope-from <devicetree+bounces-263133-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 19:26:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EF1FF66D1
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 19:24:57 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E789DF66F7
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 19:26:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4CA0C3011F1C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 18:24:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CBBC23011793
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 18:26:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90B1230649C;
-	Thu,  5 Feb 2026 18:24:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13D193090C1;
+	Thu,  5 Feb 2026 18:26:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c2uYPBCc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dsac3tkQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ABD22C11E7;
-	Thu,  5 Feb 2026 18:24:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4AD43081A2;
+	Thu,  5 Feb 2026 18:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770315895; cv=none; b=mAQbh5qfTwW33j6Bs8BqRRO6DZiDOgAYnGau1Cd1EPPqyGlR8DtjOvLj0i8dsf2fy5EJN2CgE3sUvZn+ba+FlkydGxbVezWWoMELf0WZdFd6C9uJx5gWiY3GZCJwiOx8UtHtoi98kbcZfe5rkRVrRwgWZG4GsNj50G4uMrQiEqA=
+	t=1770315995; cv=none; b=SKpitOY5GQA9XnEPQmNe0DcIv/2J+wJtsbRnFBrABZ3r/ff7aGXU2pBE5fB570Pm+g+CZSsMCxbgOVw/cg1Y87A4nG8iAJ/bi7GO+b7W+4iFQFDUIl7it70MAcjHWCRiZORAsDmmzLE5nVO9l20y5hicLWEHnAL+jVkPm6wFxuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770315895; c=relaxed/simple;
-	bh=YZdRm6j/1RjK92bL0k3iE9k5fnW/KimFREVqtvMe0ms=;
+	s=arc-20240116; t=1770315995; c=relaxed/simple;
+	bh=NN1BUnMnduStMQdjhiWVthLf60Zi6vxqqFlWRMKB3tk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kZ6UjuDE3A4PDdebDLsmihLHKATMyO3wduc8jzGWuVGWgy8au7VAwT4RoCrupWWmRxuYzjfwfqe/jNStAJ8fE2vgJKCsCQrpFEG+AT44Kvb67obghJ4/Zrgg1y0PShJ7uuOdDfD3Zu4Ohwy/KKnXykfaETgdE3duC6BS9Eu4ZfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c2uYPBCc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F4B5C4CEF7;
-	Thu,  5 Feb 2026 18:24:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DoLJXn9CCYbOx1wp9XluY8LB6L9ODo/ZM2mmJ6afTt4ywdt+TQ8y76+vA7pbRj4b5V9uO+uV7R8O8xeGgPATdMzgfWUygaF16VsfCCaBS2OGMEJ3fulHjhkja0AetIUhSWnMPeRlYwrv3jFiLrqliRF9aCFeDxp7WD+Tz1Vd0gM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dsac3tkQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53717C4CEF7;
+	Thu,  5 Feb 2026 18:26:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770315895;
-	bh=YZdRm6j/1RjK92bL0k3iE9k5fnW/KimFREVqtvMe0ms=;
+	s=k20201202; t=1770315994;
+	bh=NN1BUnMnduStMQdjhiWVthLf60Zi6vxqqFlWRMKB3tk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c2uYPBCcO6b275QVJPFhVdQk1xJY4UZ+W/oDdPgeutXljSp97OgSOFT0T8G0qmWEy
-	 aMa1yKdYBFi6Rt8PBsYoHCylvaHJy/Q8AhTcoXnMV9k4/y1X5l2qwsDkCwLmmyfZ3L
-	 9fzrEd8MFuenABxvkd4oOarbqE2ZKnm8zXymdXLbxX3LCSd4/zrV+fWVTrB/WmWh3l
-	 RyobmoPK6HIb/5C377l6jYNtviWnnqyqY+YD53ovh4nQ5kjDziU7/yte+t2RCCcqpq
-	 KmDNM8r1DJ3YLsK1gNybCsyZ+Fr4TTZ9l/DGW7l/8zfm3AzanLoMDS2m/D2ZpmyLNp
-	 9hDGa0WxO+ROQ==
-Date: Thu, 5 Feb 2026 18:24:49 +0000
+	b=dsac3tkQQvBRe1vcrzaCV+6mQiPlEiyWMw9mPcRLRHivih1hS0FMHXWTafR1nYyLV
+	 7SZuAAhwsJDxLePGS+3jGIQNk4WTFors4R4pcRmZO1BVlgL3ZySLvVkz9YMPptKzgH
+	 xHhv3JvWwpezgSsq0cXaDU6uZ9PilVYmk0jNzgt2OgPFt5C9f74w442HfSA/Y2Qc/s
+	 wlvbbTUr6hVyNbWa8LVs3OTsCzVvMxFOowPZXbD0wSBzIQIMsUKXYry+j7ei59EY3C
+	 mxsH2xV75BgE8l1cUFDlyapVjpGwNqQUvgmwsuaQ3NfGg9ZCKqrRCnE1UvZb9z7iye
+	 HC16rG8XKxsxw==
+Date: Thu, 5 Feb 2026 18:26:29 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Lv Zheng <lv.zheng@linux.spacemit.com>
 Cc: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
@@ -58,13 +58,11 @@ Cc: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
 	Zhijian Chen <zhijian@spacemit.com>, iommu@lists.linux.dev,
 	linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
 	spacemit@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/8] dt-bindings: iommu: Add spacemit/t100 features
-Message-ID: <20260205-attitude-customer-129fe2bd5dc7@spud>
+Subject: Re: [PATCH v4 3/7] dt-bindings: iommu: Add spacemit/t100 features
+Message-ID: <20260205-presoak-reshape-9465d18bca4a@spud>
 References: <cover.1769562575.git.lv.zheng@spacemit.com>
- <cover.1770195980.git.lv.zheng@linux.spacemit.com>
- <A0E91F323138E92F+a27d73b00f3324f0d3885128f5596230b3f1370b.1770195980.git.lv.zheng@linux.spacemit.com>
- <20260204-primer-wrought-6f64b14bf152@spud>
- <53171BEB06F43599+7c1f54bc-e72d-4cbd-9d10-194ae6b13744@linux.spacemit.com>
+ <cover.1770281596.git.lv.zheng@linux.spacemit.com>
+ <B1AEE717CF03B1BB+22fe4be0d3c8d2c6b4c5d3c19736c937cbed3c0d.1770281596.git.lv.zheng@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,9 +70,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7ooHQUgLkDlcZ8EA"
+	protocol="application/pgp-signature"; boundary="Wpxlm2V7JNdyFlL0"
 Content-Disposition: inline
-In-Reply-To: <53171BEB06F43599+7c1f54bc-e72d-4cbd-9d10-194ae6b13744@linux.spacemit.com>
+In-Reply-To: <B1AEE717CF03B1BB+22fe4be0d3c8d2c6b4c5d3c19736c937cbed3c0d.1770281596.git.lv.zheng@linux.spacemit.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -83,12 +81,12 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263132-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263133-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -101,93 +99,42 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bilibili.com:url,spacemit.com:email]
-X-Rspamd-Queue-Id: 9EF1FF66D1
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,spacemit.com:email]
+X-Rspamd-Queue-Id: E789DF66F7
 X-Rspamd-Action: no action
 
 
---7ooHQUgLkDlcZ8EA
+--Wpxlm2V7JNdyFlL0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 05, 2026 at 11:11:51AM +0800, Lv Zheng wrote:
-> On 2/5/2026 1:37 AM, Conor Dooley wrote:
-> > On Wed, Feb 04, 2026 at 05:09:12PM +0800, Lv Zheng wrote:
-> > > Adds device tree bindings for SpacemiT T100 specific features by
-> > > introducing spacemit,100 compatible. T100 contains distributed IOATCs,
-> > > each of which exposes pmiv interrupt.
-> > >=20
-> > > Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
-> > > Signed-off-by: Jingyu Li <joey.li@spacemit.com>
-> > > ---
-> > >   .../bindings/iommu/riscv,iommu.yaml           | 37 ++++++++++++++++=
-+++
-> > >   1 file changed, 37 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml=
- b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
-> > > index d4838c3b3741..2da3456e7402 100644
-> > > --- a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
-> > > +++ b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
-> > > @@ -32,6 +32,12 @@ properties:
-> > >     # should be specified along with 'reg' property providing MMIO lo=
-cation.
-> > >     compatible:
-> > >       oneOf:
-> > > +      - description: SpacemiT distributed IOMMUs
-> > > +        items:
-> > > +          - enum:
-> > > +              - spacemit,t100
-> > > +          - const: spacemit,riscv-iommu
-> >=20
-> > What actually is the t100? Is it an SoC or is it the name of the core
-> > complex IP that spacemit is using in multiple SoCs?
+On Thu, Feb 05, 2026 at 05:10:43PM +0800, Lv Zheng wrote:
+> Adds device tree bindings for SpacemiT T100 specific features by
+> introducing spacemit,100 compatible. T100 contains distributed IOATCs,
+> each of which exposes pmiv interrupt.
 >=20
-> T100 is the name of the IOMMU IP developed by SpacemiT, announced in RISC=
--V
-> 2024 China Summit:
-> https://www.bilibili.com/video/BV1DNtCeiEBk/
-> It's world first server SPEC IOMMU in RISC-V, supports IOTLB placed in
-> adjacent to the DMA masters and supports PCIe ATS and PRI.
-> You can find it shipped in the recent publicly purchasable SoC SpacemiT K=
-3.
+> Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
+> Signed-off-by: Jingyu Li <joey.li@spacemit.com>
 
-Right, then what you need here is something like:
+Please wait until discussion has finished on prior versions before
+sending more. The merge window opens next week, so there's absolutely no
+rush with this series, there's weeks before anything could happen with
+it.
 
-items:
-  - enum:
-      - spacemit,k3-iommu
-  - spacemit,t100-iommu
-  - riscv,iommu
-
-Driver can then match on spacemit,t100-iommu - but you need to have
-soc-specific compatibles.
-I'm not convinced that riscv,iommu is suitable here though, does the
-driver work on your platform without the portions of code that are added
-by this series and enabled by your new compatible? If not, the I don't
-think the riscv,iommu fallback should be here.
-
-Additionally, please stop sending new versions so frequently and in
-response to earlier submissions. I have a v4 in my inbox while we are
-still discussing v3.
-
-Cheers,
-Conor.
-
---7ooHQUgLkDlcZ8EA
+--Wpxlm2V7JNdyFlL0
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaYTgbgAKCRB4tDGHoIJi
-0ssWAPsF5Rd+jQ7R6SGcIrIBk89+5VCaZ95mGoswvO24RrJzZwEAn8dZ/hbPRkc6
-Sf2i1ewjvjvVkP1NrBBbi7NlZH383ws=
-=DdGy
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaYTg1QAKCRB4tDGHoIJi
+0vDeAP9r/oVVVhAJWRxgemIGWRfNsY/zaFj7V/mrthly06/WvgEAxJWFOZkvjIPe
+TaZIC5+OJVGIHnO5PdrGA73zOoKx+gc=
+=unhL
 -----END PGP SIGNATURE-----
 
---7ooHQUgLkDlcZ8EA--
+--Wpxlm2V7JNdyFlL0--
 
