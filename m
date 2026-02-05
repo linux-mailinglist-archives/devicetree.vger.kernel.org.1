@@ -1,51 +1,98 @@
-Return-Path: <devicetree+bounces-262883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262884-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iEXHFTZLhGm82QMAu9opvQ
-	(envelope-from <devicetree+bounces-262883-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 08:48:06 +0100
+	id aFTAHvVLhGm82QMAu9opvQ
+	(envelope-from <devicetree+bounces-262884-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 08:51:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C31C9EF92E
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 08:48:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCB48EF993
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 08:51:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7A7F33015737
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 07:46:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6764730166D6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 07:50:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C1DD35EDBC;
-	Thu,  5 Feb 2026 07:46:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FDA135F8B2;
+	Thu,  5 Feb 2026 07:50:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t6igMoyz"
+	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="Ta84+AVh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB65B31B836;
-	Thu,  5 Feb 2026 07:46:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE47735EDDD
+	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 07:50:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770277611; cv=none; b=O5H0P4yRgqXpFQSgCTx+hHtCrcVdL2PoQXXy6NJOdezvq15nhFs6dZtzS0Mp0OFcFLVJK3YR8N/OJKvrpinzYVsqcy2+ORGMxbL9sThDs4gi9vrn+jMrwUnz8EX1j5Y83WQDWpIn8KW32IXoa71a0sakSdJ8CmL2DGePN5RNs+g=
+	t=1770277808; cv=none; b=CSMtjfU1SKiAsmuRbbByO3cmfkQCd41tWwpgezJ34xzc8s+fB6tsFzsP9Z+wtfJ4UW0hFl7razNw0xJ2Zf9OLj4oOvsa761WkSKHmN/US7ENBRApTGjiPwiesTWnUXZKZhA0meHZpN6IHoIJIHME/MDG4lp8OZQHLewJUug7LzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770277611; c=relaxed/simple;
-	bh=s8L9I7EB/iuzJpgXM9qjt6ubKbWYNVz45wTmfz3GthI=;
+	s=arc-20240116; t=1770277808; c=relaxed/simple;
+	bh=YXAjK+kHr7RRp8uV4R9UZ+srsvhC5cUBXR6u9xlEOnw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sPG7Dv4DEEcf/ko0e6tdKW59GbwVk3Ir5xdEWd85iSZk7W3GbA2WuA/lTPTXyTPeQKWifTEn2PC+vBT/3uJna7T9aykKL1D9kSYa5WPhIX2/4R0ynxa4WeNwd/CExCJbtCVAwm7To2PJ4HFrxytuohbQoXDkeq1kDGi3jDlwRko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t6igMoyz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2075C4CEF7;
-	Thu,  5 Feb 2026 07:46:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770277610;
-	bh=s8L9I7EB/iuzJpgXM9qjt6ubKbWYNVz45wTmfz3GthI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=t6igMoyz6eWo1nPv4cLyjXLRWLPg8/PB3vTuTYgI2xScEVsoZiJaE+1WJ+IXsGND9
-	 8hx+93uFFrtKimz/nIffCt2NCuDVLgNGx5RwQSrAimep0mI9RQahxyCI5An3qF9qMe
-	 nYj1KMOvhnVZaSFZ9sXcvKtAwCMyftb6lTnAxjYJY3wDUL2kAuhjx4jaSgm8xauXuI
-	 fl/aVRfsZIj0sEJtcqbCch3sz56NNNtK23Z0Ys6M7OinyDlwKkgjv6bYAmbaSfL6tt
-	 //rVm3ne7WbAFnmZ4DfkE6hAaxkvsfB43ggAbmqC5PUftyrrqQU4zomzqGsuw8y783
-	 WlJemxmRcrUaQ==
-Message-ID: <82f7f4f4-6f88-4293-ae13-5da9d7252efa@kernel.org>
-Date: Thu, 5 Feb 2026 08:46:46 +0100
+	 In-Reply-To:Content-Type; b=U6RKjEsksG4bpUEBaeVLfCJaVXewMcYqkS3b/SmPaEUnQW1DvDJF0k7X/FdDnvHnUm1BDgaIeFJn5/TobIsq3h8MPw09vO68vErq9/KSnfEXcgbARSi7zPT3+xVgwQ1y8xdnPz6kdxKf0Rne4TQ8BDM/zV3H9pJ3IgYLsgmvvzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=Ta84+AVh; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A9F273F786
+	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 07:50:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20251003; t=1770277806;
+	bh=UnRqSzV04ruJ+1tCzWkMo0BH08JoWQU7+eTA9S+H8e8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type;
+	b=Ta84+AVhL6Dlqmmid5hcUlKj6SgrnUM3SoD+ZriQoNXHeg9c4FKKWRSjj6P8UtC1k
+	 /9t6NOsVD5UbOFNyqnGOgN9jfjkSilhPYfi9rCloUBk6a5K6gA9g115cGr7Q9XTUtY
+	 jzuc79hWrfb4gS9GQcxw0fkcx2B9UK4IsuDjm78EjtPWiY69/nIgjyJewFLP03r0tS
+	 gpB1W8r9X9m5LynrUoI4ETvAt5P3V6AhMkhAcZi6O3UNhF1MeA+Mu0KZX+ejS8o2TK
+	 ojYtgkRgk7bTv393JGWv8+EVhShMUpBxtZ9nTL51+NirTyC3dI7OvD09RhT1kBkRyg
+	 qclWD58iqVI/rsI4gQ609240BuP0tdiRpoTxRw1u2mu4tfoNYH8OMPmemD/lF1iK7S
+	 x0ZBoGOHKEhLcgfjzAVjsEeNSWBdL2ykPtxPWR/v9+uqpHrAYfywlUSFi+bz5ce9qH
+	 aQzV7383kc86DqTTnbbR4QXa3oBtw6ZMdZlG4AnBut0W41g8JsxSFHIbPbhKEt3QF4
+	 zhJVd1ohXSAvmjTTLuXbEWDuROY6+lMc7g9oyvbr0TC2wkTsTkgoMSQ7fE/pLz8txo
+	 wP929/fLtlPiOJwQ9a6dJeD5laduKOc4x59SOsShU3n1cHowEXLyPUZd1j9P6cJ0d3
+	 v3fjZWLdRuFBWj7mmPDamVKU=
+Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-435ab907109so564607f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 23:50:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770277806; x=1770882606;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UnRqSzV04ruJ+1tCzWkMo0BH08JoWQU7+eTA9S+H8e8=;
+        b=sCBWR+ROL52tkVP+YL8qpq01H6mPwaydosYJxXwPw1IK6hulW5Vh5BETKO4HlmTP+i
+         veBLLK8Upb9Gm/KqFVIbmctPVvAo7K6BJTp7Bkm04hbzBfEtRnQZFr/BsFhDyKgGzsPi
+         EMIKMd3NVn1XeGILxtiOl8ggEhaNtjQOp55UGXHqxy/1fHMxMKvbH/kQGabOP+yuWqsN
+         lEgoYeeYPrAEZnp3SRjHKftLC0V3/Tsk2yWgmVIIsLHnWkIBtW8bREyQuB8zLZ8o6vhX
+         rvxC6yxQEWkbnkI07ijKGCABy3M6cyEuYDYdjzXCvZobQPuIId39UJCSxjRJcSFKRbu3
+         EBtA==
+X-Forwarded-Encrypted: i=1; AJvYcCWbBWCj00tfgcWyTsg5QTap/zFNqca8W+X+jNOMSObFDs0cRBNUoCIgO55LFTlZvYx+zxMSugPF8NkD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8WIl8hOOB5A4OVv1tFwe2g+W89TD9TJx0Vim0Fi45fz4z8AnL
+	dGXnjlVqyc7fnZh6iQY7mFnfoqwpDF5aTvNK51C3yf96ka+eVnwGX+zcXyatN1gFZVuM+pjolH8
+	DM98glqmV/uhy6097h7GIdLyw/1QrO/ADDWx8KMuzb/ckpSlsVI5F9q/frb3Atj1fX9VgnmADmG
+	wjEdo=
+X-Gm-Gg: AZuq6aKKezU8V5nIrTt/4NYmn3VzVedFw0cNLxbQl+qIHweSLO4WNKhLQf+Fy0Rk0gy
+	cXG6WugBLv95FdsZ4osnsAxsds4VfEgsit2nzK2/SDPITdBjF/rm+KUp2UHLBXMUqH3LQhIvGju
+	cvFscWCIB/wla1EgAELmium/1dzOHKDJHjjH3Osedhlguu8EKkX3ou20Y3koTpg+MRz1MuhtD50
+	ldvx+d/yWhpQJtlU2v+qGNRGSs6dqR+uLnpu+O88++bcpiua4qGpBWg6O5+JJtAosOKT6x7Nzst
+	kZDNHJFTksdDe2zEZJSnBIkN468GMhBT3M69hcjtDZTyPPowtgliZAp+oJ+PWgIzXpOcZZTLNo8
+	mtUGmjIOxZE3JCtIm70gTu7RUvhdIXPW9hfMLrttrwFT4+TXWgaiRtGdzBuQA4MAzTOzOgHqaWZ
+	j+9wEyRnY=
+X-Received: by 2002:a05:6000:2505:b0:435:95dc:b8ca with SMTP id ffacd0b85a97d-43618052805mr7916335f8f.40.1770277804622;
+        Wed, 04 Feb 2026 23:50:04 -0800 (PST)
+X-Received: by 2002:a05:6000:2505:b0:435:95dc:b8ca with SMTP id ffacd0b85a97d-43618052805mr7916240f8f.40.1770277803126;
+        Wed, 04 Feb 2026 23:50:03 -0800 (PST)
+Received: from [192.168.123.154] (ip-005-147-080-091.um06.pools.vodafone-ip.de. [5.147.80.91])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43617e38ec5sm12764912f8f.14.2026.02.04.23.50.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Feb 2026 23:50:02 -0800 (PST)
+Message-ID: <3166f7d5-b526-411d-b337-27981a7ed14d@canonical.com>
+Date: Thu, 5 Feb 2026 08:50:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,326 +100,160 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] usb: gadget: udc: Add UDC driver for Axiado Device
- controller IP Corigine
-To: Vladimir Moravcevic <vmoravcevic@axiado.com>,
- Krutik Shah <krutikshah@axiado.com>, Prasad Bolisetty
- <pbolisetty@axiado.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- openbmc@lists.ozlabs.org
-References: <20260202-axiado-ax3000-usb-device-controller-v1-0-45ce0a8b014f@axiado.com>
- <20260202-axiado-ax3000-usb-device-controller-v1-2-45ce0a8b014f@axiado.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/1] riscv: dts: starfive: Milk-V Mars CM Lite broken-cd
+To: E Shattow <e@freeshell.de>, Emil Renner Berthing <kernel@esmil.dk>,
+ Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260204101602.30184-1-heinrich.schuchardt@canonical.com>
+ <46d5d249-8cf2-46d1-a90c-1f2c5f146e15@canonical.com>
+ <e2394c64-af36-428f-ad6e-4c7038c0301e@freeshell.de>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260202-axiado-ax3000-usb-device-controller-v1-2-45ce0a8b014f@axiado.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+In-Reply-To: <e2394c64-af36-428f-ad6e-4c7038c0301e@freeshell.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[canonical.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[canonical.com:s=20251003];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-262883-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-262884-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[canonical.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[heinrich.schuchardt@canonical.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C31C9EF92E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[canonical.com:email,canonical.com:dkim,canonical.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,raspberrypi.com:url,waveshare.com:url]
+X-Rspamd-Queue-Id: DCB48EF993
 X-Rspamd-Action: no action
 
-On 02/02/2026 14:16, Vladimir Moravcevic wrote:
-> Add Corigine USB IP Driver for Axiado AX3000 SoC's
-> USB peripheral (USB 2.0/3.0).
-> The driver is based on the Corigine USB IP core with
-> Axiado-specific enhancements including VBUS detection and USB link
-> stability fixes.
+On 2/5/26 00:16, E Shattow wrote:
+> Hi,
+> 
+> I think the correct fix will be device tree overlays per-carrier board
+> and not this one-size-fits-all workaround with the System-on-Module.
+> Review below:
+> 
+> On 2/4/26 08:38, Heinrich Schuchardt wrote:
+>> On 2/4/26 11:16, Heinrich Schuchardt wrote:
+>>> The card detect GPIO depends on support by the base board.
+>>>
+>>> Detecting an SD-card did not work for me with a Milk-V Mars CM Lite
+>>> mounted on an Waveshare CM4-IO-BASE-A board.
+>>
+>> The schematic of the Waveshare CM4-IO-BASE-A board is available at
+>> https://files.waveshare.com/upload/a/aa/CM4-IO-BASE-A_V4_SchDoc.pdf
+>> showing pin 76 is not connected.
+>>
+>> In https://forums.raspberrypi.com/viewtopic.php?t=291041 the Raspberry
+>> Foundation explicitly wrote that pin 76 should not be connected when
+>> using a compute module socket.
+>>
+>> E. Shattow pointed me to a board
+>> https://github.com/NabuCasa/yellow/releases/download/v1.3c/
+>> Yellow_v1.3c_Schematic_git.8957b440adda.pdf
+>> that actually disregarded this advice and uses pin 76 actually as cd-
+>> gpio. This usage of GPIO 41 is a property of the specific base board and
+>> not of the Milk-V Mars CM and should be described in a device-tree
+>> overlay if needed.
+>>
+>> Best regards
+>>
+>> Heinrich
+>>
+>>>
+>>> According to [1] SD_SDIO0_CD_GPIO41 is connected to pin 76 reserved.
+>>> The Raspberry Pi Compute Module 4 IO Board documentation marks that
+>>> pin as
+>>> reserved. The Raspberry Pi Compute Module 5 IO Board documentation
+>>> marks the pin as VBAT.
+>>>
+>>> Remove the cd-gpios definition and add broken-cd.
+>>>
+>>> [1]  https://github.com/milkv-mars/mars-files/blob/main/Mars-
+>>> CM_Hardware_Schematices/Milk-V_Mars-CM_SCH_V1.0-2023-0905_Lite.pdf
+>>>
+>>> Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+>>> ---
+>>>    arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts | 2 +-
+>>>    1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+>>> b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+>>> index 63aa94d65ab55..566b0bdc2800d 100644
+>>> --- a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+>>> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+>>> @@ -13,7 +13,7 @@ / {
+>>>      &mmc0 {
+>>>        bus-width = <4>;
+> 
+> + /* Schematic signal SD_SDIO0_CD_GPIO41 to CM4 connector pin 76*/
+> + /* Raspberry Pi CM4 specification pin 76 reserved do not connect */
+> 
+>>> -    cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
+>>> +    broken-cd;
+> 
+> All schematic documents for Mars CM Lite list this signal name as
+> `SD_SDIO0_CD_GPIO41`.
+> 
+>>>        disable-wp;
+>>>    };
+>>>    
+> 
+> The carrier board I have a schematic document for - Home Assistant
+> Yellow PoE rev 1.3 - lists this as SD_DETECT, apparently ignoring the
+> Raspberry Pi Foundation document about CM4 Compute IO specification that
+> explicitly says do not connect this pin to anything.
+> 
+> The carrier board I do not have a schematic document for - DFRobot
+> Compute Module 4 IoT Router Board Mini - only has SD Card and is
+> operational as-is.
+> 
+> The compatibility issue for carrier boards that more strictly follow the
+> Raspberry Pi CM4 IO specification may be better handled by device tree
+> overlays. Though this is not convenient for users and requires more
+> developer effort, overlays would be best to adopt dtbo per-carrier board
+> to describe hardware accurately.
+> 
+> What is needed to introduce overlays?
+> 
+> - E
 
+Device-tree overlays would have to be applied by the firmware, typically 
+U-Boot.
 
-This driver looks way too complicated for simple USB controller, so I
-guess you just re-implemented a lot of Linux stack or other drivers.
+The firmware has no way to determine if it is running on an IO-board 
+with or without a card detect switch. So the selection of an overlay 
+will be a manual process. In many cases users will not know about the 
+issue of card detect switches and if their board has one or not.
 
-Also did not pass basic litmus test for sending usu 15 year old junk
-code, which disqualifies it from review IMO. There is simply no point to
-review code from 15 yaers ago - you should never start with such code.
+The default value without any overlay should be one that allows to use 
+the SD-card on all IO-boards, i.e. 'broken-cd'.
 
-> +static const struct crg_udc_priv ax3000_plat_setup_gen2 = {
-> +	.plat_setup_gen3 = false,
-> +};
-> +
-> +static const struct crg_udc_priv ax3000_plat_setup_gen3 = {
-> +	.plat_setup_gen3 = true,
-> +};
-> +
-> +/**
-> + * crg_gadget_probe - Initializes gadget driver
-> + *
-> + *
-> + * Returns 0 on success otherwise negative errno.
-> + */
+This is also the value used be the board support package
+https://github.com/milkv-mars/mars-buildroot-sdk/blob/1fd6bac9f2efde47fbb8afd28d2903c49f893e3f/linux/arch/riscv/boot/dts/starfive/jh7110-milkv-mars-cm-sdcard.dts#L265
 
-Completely pointless and wrongly placed comment. Do not ever add such
-comments.
+Best regards
 
-> +
-> +static const struct of_device_id of_crg_udc_match[] = {
-> +	{
-> +		.compatible = "axiado,ax3000-udc",
-> +		.data = &ax3000_plat_setup_gen2
-> +	},
-> +	{
-> +		.compatible = "axiado,ax3000-udc-gen3",
-> +		.data = &ax3000_plat_setup_gen3
-> +	},
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, of_crg_udc_match);
-> +
-> +static int crg_udc_probe(struct platform_device *pdev)
-> +{
-> +	int ret;
-> +	int i;
-> +	struct crg_gadget_dev *crg_udc;
-> +	static int udc_gcnt = INIT_ZERO;
-> +	char udc_gname[10] = {""};
-> +	const struct crg_udc_priv *priv;
-> +
-> +	priv = of_device_get_match_data(&pdev->dev);
-> +	sprintf(udc_gname, "gadget-%d", udc_gcnt);
-> +	crg_udc = devm_kzalloc(&pdev->dev, sizeof(*crg_udc), GFP_KERNEL);
-> +	if (!crg_udc)
-> +		return -ENOMEM;
-> +	crg_udc->dev = &pdev->dev;
-> +
-> +	spin_lock_init(&crg_udc->udc_lock);
-> +	platform_set_drvdata(pdev, crg_udc);
-> +
-> +	dev_set_name(&crg_udc->gadget.dev, udc_gname);
-> +	crg_udc->gadget.ops = &crg_gadget_ops;
-> +	crg_udc->gadget.ep0 = &crg_udc->udc_ep[0].usb_ep;
-> +	crg_udc->gadget.dev.parent = &pdev->dev;
-> +	INIT_LIST_HEAD(&crg_udc->gadget.ep_list);
-> +	if (priv->plat_setup_gen3) {
-> +		crg_udc->gadget.max_speed = USB_SPEED_SUPER;
-> +		crg_udc->gadget.speed = USB_SPEED_SUPER;
-> +	} else {
-> +		crg_udc->gadget.max_speed = USB_SPEED_HIGH;
-> +		crg_udc->gadget.speed = USB_SPEED_HIGH;
-> +	}
-> +	crg_udc->gadget.name = udc_gname;
-> +	crg_udc->gadget.sg_supported = true;
-> +	dev_dbg(crg_udc->dev, "%s sg support\n", __func__);
-> +	crg_udc->connected = 0;
-> +	crg_udc->dev_addr = 0;
-> +
-> +	crg_udc->udc_res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	if (!crg_udc->udc_res) {
-> +		dev_err(&pdev->dev, "missing memory resource\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	crg_udc->mmio_virt_base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(crg_udc->mmio_virt_base)) {
-> +		dev_err(&pdev->dev, "mmio ioremap failed\n");
-> +		return PTR_ERR(crg_udc->mmio_virt_base);
-> +	}
-> +
-> +	/* set controller device role*/
-> +	writel((readl(crg_udc->mmio_virt_base + CRG_UDC_MODE_REG) |
-> +		 CRGUDC_ROLE_DEVICE),
-> +		 crg_udc->mmio_virt_base + CRG_UDC_MODE_REG);
-> +	for (i = 0; i < CRG_RING_NUM; i++) {
-> +		crg_udc->uicr[i] = crg_udc->mmio_virt_base +
-> +				CRG_UICR_OFFSET + i * CRG_UICR_STRIDE;
-> +
-> +		dev_dbg(crg_udc->dev, "crg_udc->uicr[%d] = %p\n", i,
-> +			crg_udc->uicr[i]);
-> +	}
-> +	crg_udc->uccr = crg_udc->mmio_virt_base + CRG_UCCR_OFFSET;
-> +
-> +	crg_udc_reset(crg_udc);
-> +
-> +	crg_udc_clear_portpm(crg_udc);
-> +
-> +	ret = reset_data_struct(crg_udc);
-> +	if (ret) {
-> +		dev_err(crg_udc->dev, "reset_data_struct error\n");
-> +		goto err0;
-> +	}
-> +
-> +	init_ep_info(crg_udc);
-> +	init_ep0(crg_udc);
-> +
-> +	EP0_Start(crg_udc);
-
-Did you read coding style?
-
-> +
-> +	crg_gadget_irq_init(pdev, crg_udc);
-> +
-> +	ret = usb_add_gadget_udc(&pdev->dev, &crg_udc->gadget);
-> +	if (ret)
-> +		goto err0;
-> +
-> +	udc_gcnt++;
-> +
-> +	return 0;
-> +
-> +err0:
-> +	return -1;
-
-What?
-
-> +}
-> +
-> +static void crg_udc_remove(struct platform_device *pdev)
-> +{
-> +	struct crg_gadget_dev *crg_udc = platform_get_drvdata(pdev);
-> +	u32 tmp = 0;
-> +
-> +	dev_dbg(crg_udc->dev, "%s %d called\n", __func__, __LINE__);
-> +
-> +	crg_udc->device_state = USB_STATE_ATTACHED;
-> +	crg_vbus_detect(crg_udc, 0);
-> +
-> +	usb_del_gadget_udc(&crg_udc->gadget);
-> +
-> +	/* set controller host role*/
-> +	tmp = readl(crg_udc->mmio_virt_base + CRG_UDC_MODE_REG) & ~0x1;
-> +	writel(tmp, crg_udc->mmio_virt_base + CRG_UDC_MODE_REG);
-> +
-> +	if (crg_udc->irq)
-> +		free_irq(crg_udc->irq, crg_udc);
-> +
-> +	platform_set_drvdata(pdev, 0);
-> +
-> +	dev_dbg(crg_udc->dev, "%s %d gadget remove\n", __func__, __LINE__);
-
-Drop all such debugs.
-
-> +
-> +}
-> +
-> +static void crg_udc_shutdown(struct platform_device *pdev)
-> +{
-> +	struct crg_gadget_dev *crg_udc = platform_get_drvdata(pdev);
-> +
-> +	dev_dbg(crg_udc->dev, "%s %d called\n", __func__, __LINE__);
-
-It's really pointless code.
-
-> +
-> +	crg_udc->device_state = USB_STATE_ATTACHED;
-> +	crg_vbus_detect(crg_udc, 0);
-> +	usb_del_gadget_udc(&crg_udc->gadget);
-> +
-> +	if (crg_udc->irq)
-> +		free_irq(crg_udc->irq, crg_udc);
-> +	/*
-> +	 * Clear the drvdata pointer.
-> +	 */
-> +	platform_set_drvdata(pdev, 0);
-> +}
-> +
-> +#ifdef CONFIG_PM
-> +static int crg_udc_suspend(struct device *dev)
-> +{
-> +	return 0;
-> +}
-> +
-> +static int crg_udc_resume(struct device *dev)
-> +{
-> +
-> +
-> +	return 0;
-> +}
-> +#else
-> +#define crg_udc_suspend	NULL
-> +#define crg_udc_resume	NULL
-> +#endif
-> +
-> +static const struct dev_pm_ops crg_udc_pm_ops = {
-> +	.suspend = crg_udc_suspend,
-> +	.resume = crg_udc_resume,
-> +};
-> +
-> +static struct platform_driver crg_udc_driver = {
-> +	.probe = crg_udc_probe,
-> +	.remove = crg_udc_remove,
-> +	.shutdown = crg_udc_shutdown,
-> +	.driver			= {
-> +		.name		= "crg_udc",
-> +		.owner		= THIS_MODULE,
-
-Do not upstream 10 or 15 year old driver. Why do we need to repeat all
-the same comments as we repeated for last 15 years? Take newest driver
-as starting point, not 15 year old code. You just replicated all old issues.
-
-
-
-Best regards,
-Krzysztof
+Heinrich
 
