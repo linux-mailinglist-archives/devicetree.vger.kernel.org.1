@@ -1,84 +1,85 @@
-Return-Path: <devicetree+bounces-263026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263027-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ANTEEaKchGmI3wMAu9opvQ
-	(envelope-from <devicetree+bounces-263026-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 14:35:30 +0100
+	id KEHiGDKdhGmI3wMAu9opvQ
+	(envelope-from <devicetree+bounces-263027-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 14:37:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4260F3555
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 14:35:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF304F35EA
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 14:37:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 29B32301A7D0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 13:35:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 50870303FFC8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 13:35:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE15522A80D;
-	Thu,  5 Feb 2026 13:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A8C22264AB;
+	Thu,  5 Feb 2026 13:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U1SbAmf1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fuv5uRqU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA59225775
-	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 13:35:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF09721CC51
+	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 13:35:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770298522; cv=none; b=jemR8rSdbZlHt/5yWeZg8KzgVokAk+cAxMn5H1DAECsTed31CXsyrj+5nN17WlaY4Wy6EoD8cT9ZT6FuErfTyUqG5nxn5pB+Ha9Mq7e3hU0psLE59ASrOYTf6G5GeIbjkbzHEttSz86FATtucbqFG0eZbYaAt2fVhriGAlqnfLc=
+	t=1770298525; cv=none; b=aaPl07C3/SssN2byRDdI4jRivQJM6MKD8/ZOOuwB9qaGYpYnwqOfLtOJKIQzvJTsDlTAUSvEjsA88YdyY+Lc23tXrYSJweeHZJ00Q49pE3W798U6Ow4chwU3aoFVKLJd0SGXjwe7IFWuGCgJ9Fe63XP8nkloYpk+uI84T4oVq/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770298522; c=relaxed/simple;
-	bh=wpkimDav46YFJfJQ9r6mE6i3dTDYKK0zgDWwQx5eOtI=;
+	s=arc-20240116; t=1770298525; c=relaxed/simple;
+	bh=V3ZGNJ0LedluqimvtgZA6qyCxj5uWwOAnO+i36Sv8MM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RXUJ4E9az2jLYsGk7Ven4MRf1AoAjc73Nj9E/yfgAKP+gMeUa78B+8Z1LyQ50WubSP7/e9uEt1I3DDoP8YbXokrGhlLGG+A4QDg4aYEe0b6dnzMxBanniTUcMtG6rab+zLhDi/qYkgnioEWwqI8oVtJoLne1OYkhzOr7wu6LY10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U1SbAmf1; arc=none smtp.client-ip=209.85.214.174
+	 In-Reply-To:To:Cc; b=TOBy7Qb/ZBimVfRL6QK9aeaXksBj2/94Vfq3SYznUIAAmezFOEfBHB07q6eTW41JTdZVrXFGOZZQPBQfXChvvWLpO9wB/DBVS1PB5X5InWXoA9PH6CKCWPtwmVVpWiR3vxqu+ZVcSy5kpSj/3QOxs/GIt/Q46we9YZ15mt+oGbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fuv5uRqU; arc=none smtp.client-ip=209.85.214.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2a12ed4d205so6589475ad.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 05:35:22 -0800 (PST)
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2a7d98c1879so5865485ad.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 05:35:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770298522; x=1770903322; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1770298524; x=1770903324; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=g/NdfuXjST0+v0E9Ees6inVmdG7VSECbbJuJ0e1bFP4=;
-        b=U1SbAmf11qBMa6ke3G8lzS8NNyMTwVCFJXgXH47tudzMeVKOQanG2a+q23X8qRR1hf
-         TLdOrkl37PlwU3qhN0CYvceGBwm6Ga9gAJlV2iiSHTUl1h7dZQOwAGZ72e3kx8GsZt3E
-         HXdxNvO269oMYkXD9K4IYeG3MnM6g5j/eOe61ZKdHRlizKn4lgF2UC8/xMTQPZuTdt9U
-         0shd95q8sUXMBtSCmBHqGlA0OdBJADcxh6vvVVLLxy7aNbzifCfDuSn8PYbaPPVVL9P6
-         G0RYiN6QD9amwy7a0tt6AkqRLUnSvuD55B0MKeCvRFfmJHvzzYzORkBjqpqV7doOWdoE
-         WdBA==
+        bh=A8vYVSxf/f2z49Q0aR+EfpZkckZVO18lUKU02stUhpQ=;
+        b=fuv5uRqUAtsk0b7zYyrJ2eZY+w6eOQs6QEf5P7mLQdBTEfQTb0aA2OxC+ewq/E/0DZ
+         aBaM6BZj0bcEuA8Nf7wxs0mrzyZ0sp+m2iVDTtAvCJWwhdxSQAJnZNjEJM/+/CjFXpHP
+         VlFd6r8rqwGz/PWaZk8mqjBX8fpOHj8VvCkH/JvecOmEoZMMEopjuLhp1RO2cHah2eJt
+         T5coWEpYZ4T5f6nXNVSgkClah5p1azk8tHQapweV8oeywLMHgKYYpGyQGi0A7smE7py3
+         898DV2828LvtCLIVEDQ+acte3zrhyxGhV6+V1p+1Snyu6SzbPDoTJsMsmzf4XXDG513q
+         rNLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770298522; x=1770903322;
+        d=1e100.net; s=20230601; t=1770298524; x=1770903324;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=g/NdfuXjST0+v0E9Ees6inVmdG7VSECbbJuJ0e1bFP4=;
-        b=Hh9iOwYIdC+OPU1u9XsM/TPzWIIulwtxHpWb47wzIe3m+u9osoF87euVke2tdH+EbG
-         iK8QuKKVCYc3C+XQmGEHWf1hDIBlwdERDTazHJfIDn8NUKylhC+UjVXUh1pZOIlafYB/
-         omWBDrEyISCHjBjF+r7xd72DKcFFMm8agGj05EZuXy7mxdQKw5N9g+NGnFb+iYFKuSUQ
-         7ffOWVxeAFQ6k0cwx+QpWg3xZ6ycwkPXGZcIxRuwhRP/7fiNcd27DcT3F2U9xACTj1d7
-         l3Kgg+6LITWazrECBebdQTaANvSNHkpNh/2izNxOAnEJwXPdHqa/17qlQIthKqjIaAOD
-         hokQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWTK3d85X9JhkVccv5DKBXHg39vzzJRLPD0iGE2YkJJoeW4ExHh1IiwmjR658UDF/ooy6XIEQeLik8N@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYiMVX/dJh/5rQtN+IVbM6t4dUFWUV9Mq5OiJScEqDACh95UmC
-	v89m4++9LmeJINxjUZ3JNEEL+xIIyKWf7TfW0Jv3i7tRwhB/+YdLy3jB9Mfj5g==
-X-Gm-Gg: AZuq6aJV6NCxQjQ8lOz4zdTnCZfteF2/CGOO6IgURsEGM30gY1AG/FwvbH1WTunpZ4E
-	5Hh/MrSzCMkmwYEUkxFeDIGqVSoBRasrjKr+KON2OrWeyxYRuC7G8OP3w6331Kq0MCK0iPPPV/W
-	2GuwkI3tJG+pMrtR9rEtJImvmzTattd4TMjKDm8snABY4YFQXr/mHZGXIQx2IeI2wlo7zmkgc2Z
-	hWTmEGUhLd1pLGPx6bG4veQUuRw1ClTCxqXbWZ0y84X5o3bvQxhSUh6p1al72/X+ZnoF8Lbn7tE
-	UMOS1rL4kSOEK1xk3i2DePIbtsq36foNeYPBEK4sggOlxY3xy+O/tP/JH5FeklGkmjU7/XtJed0
-	MEyI6gxmX9CBV6I8u9L0wB/9uBCKSdiYKvu1rVaEHOorwLDtHtjK1O7Xt8NbmYwr4AZYctJrKL+
-	0JYvZrO1k=
-X-Received: by 2002:a17:903:2449:b0:2a9:322e:2473 with SMTP id d9443c01a7336-2a93400297fmr68462355ad.48.1770298521729;
-        Thu, 05 Feb 2026 05:35:21 -0800 (PST)
+        bh=A8vYVSxf/f2z49Q0aR+EfpZkckZVO18lUKU02stUhpQ=;
+        b=u/kGqUojXF6fA7XT3vrZkdxtP3jVVDzBLyv9ZAZYVxwtAD6mInAtP4NsXU2z4jA2xV
+         2xrlyEBPL42OMCzz0xqk74bjd4Vm4zOTR/cJgzpLdGxpfMWnaqvjWm/9RvsSaPQRcFHL
+         PeUDANcc+v+SKWrhzJZ/mQxOaYIYmWcCN8x1jIdQRWfqY/Qs3veOCTF4gREPQMSyXGf+
+         G5PFIvsTeW3ikSEBWXDNMopT7zvS3GsRJ9c9rBEGIV+ryT+xQ9EcDGOM95pNi/XPbjRu
+         bVwOeTenSXJs9fm84NcWAiPQmcxCF9lGQWzN4JQDzTqnjTkgx0bCKfNlDAbWR1Gc+m6R
+         S7Sw==
+X-Forwarded-Encrypted: i=1; AJvYcCUjE7RctOAw7Iedk7Of+0rKYcOdIspByjtLIA85nX5Th9H5PjFrVdSUMwISYtj40iup17YGEO5uaFuw@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFhrp4X3JbsHI5Gh+lDbrU2WTdWUXcJppcyCYEIpw2xZG/2TwV
+	l1iHn9D/B5tLPdFNLGaHgWL3uflez9iEAP2Q6Dv2aAhxxBsXKcMfFFQ1mg7poA==
+X-Gm-Gg: AZuq6aIszRrPxWHdVCXCpuc/LK9QFWjHT6d3EqNboruNPFDCvrVrfkyWFjzxXn5np8f
+	KByTeEUb/EJU/tL40Q6o1blw6wPQZ1QXwYzIoPhX1bdivk8kMQ2wFm1NIjdzLMhC7/XJUdYMIiY
+	bHvx8GkhN5tzfv/0BsKY2fZ5zsbO+NdHfpAeoMagybTDlAYqhNinhDH8ysCMHsAHhgej8cI0ELx
+	d5qhVIy0NfG+ECM7QYc2FfuqMdjaS7eW24HIy6kE+U8irjXOd6FsZPf6/PbO5nPuOUJf4vnr7Eh
+	UIY9i2+gtR0uxbF9iwX3jUKSfPguQ9jI5lI0SCcN3GHJretvEJ021bx/H8GDiBVbhbUW75/nwYb
+	qro7m+X6Qy9awlHFyD0woaWiY9o/bFU1OHvRIwKL/p2m3O0Dl0dw0iEj0AS55oH6HgSk8eELtQ5
+	mOnvWlIYi+6mPtI9OOiw==
+X-Received: by 2002:a17:902:f710:b0:2a9:4bd9:bb8a with SMTP id d9443c01a7336-2a94bd9bd92mr5539275ad.25.1770298524251;
+        Thu, 05 Feb 2026 05:35:24 -0800 (PST)
 Received: from [127.0.1.1] ([218.32.81.133])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a933850f41sm57760505ad.7.2026.02.05.05.35.19
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a933850f41sm57760505ad.7.2026.02.05.05.35.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Feb 2026 05:35:21 -0800 (PST)
+        Thu, 05 Feb 2026 05:35:23 -0800 (PST)
 From: Colin Huang <u8813345@gmail.com>
-Date: Thu, 05 Feb 2026 21:34:35 +0800
-Subject: [PATCH 1/3] hwmon: (pmbus) Add Delta Q54SN120A1 Q54SW120A7 driver
+Date: Thu, 05 Feb 2026 21:34:36 +0800
+Subject: [PATCH 2/3] dt-bindings: trivial-devices: Add Delta Q54SN120A1 and
+ Q54SW120A7
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,7 +88,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260205-add-q54sn120a1-q54q54sw120a7-v1-1-09061ecacfc7@gmail.com>
+Message-Id: <20260205-add-q54sn120a1-q54q54sw120a7-v1-2-09061ecacfc7@gmail.com>
 References: <20260205-add-q54sn120a1-q54q54sw120a7-v1-0-09061ecacfc7@gmail.com>
 In-Reply-To: <20260205-add-q54sn120a1-q54q54sw120a7-v1-0-09061ecacfc7@gmail.com>
 To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
@@ -97,11 +98,11 @@ Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Colin.Huang2@amd.com, 
  Carl.Lee@amd.com, Peter.Shen@amd.com, Colin Huang <u8813345@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770298516; l=3440;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770298516; l=1051;
  i=u8813345@gmail.com; s=20260202; h=from:subject:message-id;
- bh=wpkimDav46YFJfJQ9r6mE6i3dTDYKK0zgDWwQx5eOtI=;
- b=+lC/kRBdv5CB5cGPfsnlTqiRK3DOgwLTb3aC73wBPzJDIKXdvBf2a4qaqPE/mA81eYXGxSQQb
- IXdk9bUaCkGCcBq9DlcRCaOxfusrAeu4eT1nAaYwcItlTcLD2Ae292o
+ bh=V3ZGNJ0LedluqimvtgZA6qyCxj5uWwOAnO+i36Sv8MM=;
+ b=t+XN7WVJhMHTiJpg3h4ud773FQ+U6lnwk83FN5iNuK6ZbEUGL0j2a7xxYrbDKKPVQWILQW3mn
+ 0uh8qHG82LgAYxyGzmRcV2IpoS4IH5R6b28Xi93A0HNjT3wRyNq2QHH
 X-Developer-Key: i=u8813345@gmail.com; a=ed25519;
  pk=Zlg0WqpCw4qbswOqamTBTXIchwR/3SnYZpy7rjaGMdQ=
 X-Rspamd-Server: lfdr
@@ -110,11 +111,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263026-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263027-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -122,7 +123,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -133,118 +134,33 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B4260F3555
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EF304F35EA
 X-Rspamd-Action: no action
 
-Add the pmbus driver for DELTA Q54SN120A1, Q54SW120A7,
-1/4 Brick DC/DC Regulated Power Module with PMBus support
+Add two additional Delta 1/4-brick DC/DC power modules,
+Q54SN120A1 and Q54SW120A7, to the trivial-devices list.
 
 Signed-off-by: Colin Huang <u8813345@gmail.com>
 ---
- drivers/hwmon/pmbus/q54sj108a2.c | 47 ++++++++++++++++++++++++++++++++++++----
- 1 file changed, 43 insertions(+), 4 deletions(-)
+ Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/hwmon/pmbus/q54sj108a2.c b/drivers/hwmon/pmbus/q54sj108a2.c
-index 4d7086d83aa3..dca084c98fba 100644
---- a/drivers/hwmon/pmbus/q54sj108a2.c
-+++ b/drivers/hwmon/pmbus/q54sj108a2.c
-@@ -21,7 +21,9 @@
- #define PMBUS_FLASH_KEY_WRITE		0xEC
- 
- enum chips {
--	q54sj108a2
-+	q54sj108a2,
-+	q54sn120a1,
-+	q54sw120a7
- };
- 
- enum {
-@@ -62,6 +64,34 @@ static struct pmbus_driver_info q54sj108a2_info[] = {
- 		.format[PSC_VOLTAGE_IN] = linear,
- 		.format[PSC_CURRENT_OUT] = linear,
- 
-+		.func[0] = PMBUS_HAVE_VIN |
-+		PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
-+		PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
-+		PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP |
-+		PMBUS_HAVE_STATUS_INPUT,
-+	},
-+	[q54sn120a1] = {
-+		.pages = 1,
-+
-+		/* Source : Delta Q54SN120A1 */
-+		.format[PSC_TEMPERATURE] = linear,
-+		.format[PSC_VOLTAGE_IN] = linear,
-+		.format[PSC_CURRENT_OUT] = linear,
-+
-+		.func[0] = PMBUS_HAVE_VIN |
-+		PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
-+		PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
-+		PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP |
-+		PMBUS_HAVE_STATUS_INPUT,
-+	},
-+	[q54sw120a7] = {
-+		.pages = 1,
-+
-+		/* Source : Delta Q54SW120A7 */
-+		.format[PSC_TEMPERATURE] = linear,
-+		.format[PSC_VOLTAGE_IN] = linear,
-+		.format[PSC_CURRENT_OUT] = linear,
-+
- 		.func[0] = PMBUS_HAVE_VIN |
- 		PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
- 		PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
-@@ -269,6 +299,8 @@ static const struct file_operations q54sj108a2_fops = {
- 
- static const struct i2c_device_id q54sj108a2_id[] = {
- 	{ "q54sj108a2", q54sj108a2 },
-+	{ "q54sn120a1", q54sn120a1 },
-+	{ "q54sw120a7", q54sw120a7 },
- 	{ },
- };
- 
-@@ -278,6 +310,7 @@ static int q54sj108a2_probe(struct i2c_client *client)
- {
- 	struct device *dev = &client->dev;
- 	u8 buf[I2C_SMBUS_BLOCK_MAX + 1];
-+	const struct i2c_device_id *mid;
- 	enum chips chip_id;
- 	int ret, i;
- 	struct dentry *debugfs;
-@@ -314,8 +347,12 @@ static int q54sj108a2_probe(struct i2c_client *client)
- 		dev_err(dev, "Failed to read Manufacturer Model\n");
- 		return ret;
- 	}
--	if (ret != 14 || strncmp(buf, "Q54SJ108A2", 10)) {
--		buf[ret] = '\0';
-+	buf[ret] = '\0';
-+	for (mid = q54sj108a2_id; mid->name[0]; mid++) {
-+		if (!strncasecmp(mid->name, buf, strlen(mid->name)))
-+			break;
-+	}
-+	if (!mid->name[0]) {
- 		dev_err(dev, "Unsupported Manufacturer Model '%s'\n", buf);
- 		return -ENODEV;
- 	}
-@@ -325,7 +362,7 @@ static int q54sj108a2_probe(struct i2c_client *client)
- 		dev_err(dev, "Failed to read Manufacturer Revision\n");
- 		return ret;
- 	}
--	if (ret != 4 || buf[0] != 'S') {
-+	if (buf[0] != 'S') {
- 		buf[ret] = '\0';
- 		dev_err(dev, "Unsupported Manufacturer Revision '%s'\n", buf);
- 		return -ENODEV;
-@@ -402,6 +439,8 @@ static int q54sj108a2_probe(struct i2c_client *client)
- 
- static const struct of_device_id q54sj108a2_of_match[] = {
- 	{ .compatible = "delta,q54sj108a2", .data = (void *)q54sj108a2 },
-+	{ .compatible = "delta,q54sn120a1", .data = (void *)q54sn120a1 },
-+	{ .compatible = "delta,q54sw120a7", .data = (void *)q54sw120a7 },
- 	{ },
- };
- 
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index d0f7dbf15d6f..f430e49b9ec1 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -95,6 +95,10 @@ properties:
+           - delta,dps920ab
+             # 1/4 Brick DC/DC Regulated Power Module
+           - delta,q54sj108a2
++            # 1300W 1/4 Brick DC/DC Regulated Power Module
++          - delta,q54sn120a1
++            # 2000W 1/4 Brick DC/DC Regulated Power Module
++          - delta,q54sw120a7
+             # Devantech SRF02 ultrasonic ranger in I2C mode
+           - devantech,srf02
+             # Devantech SRF08 ultrasonic ranger
 
 -- 
 2.34.1
