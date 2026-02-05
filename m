@@ -1,190 +1,202 @@
-Return-Path: <devicetree+bounces-263143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263144-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sK6RI77phGkj6gMAu9opvQ
-	(envelope-from <devicetree+bounces-263143-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 20:04:30 +0100
+	id KNWTKGzshGkj6gMAu9opvQ
+	(envelope-from <devicetree+bounces-263144-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 20:15:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F852F6AF8
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 20:04:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 062BBF6C27
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 20:15:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 949173004D1D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 19:04:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B0182301AD02
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 19:15:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E5E930DED7;
-	Thu,  5 Feb 2026 19:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CFA9321434;
+	Thu,  5 Feb 2026 19:15:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LnA6PQFL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nz/vXr4F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B3B130171C;
-	Thu,  5 Feb 2026 19:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0D222B584;
+	Thu,  5 Feb 2026 19:15:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770318267; cv=none; b=XuHLV6PgLQFuCwZdqDXq5MIyNWFj5HCcCrUV3DetS4WYzNUbc91jEWmz46h0Lef+56dUTUb/J8esvtKKjLoUGpMvcC9Xw5CR05wmMbOUvFztnONpwBRpShFIQW8vSJul8kU2dPdDg78Kw/KPX/0nGetpZRH9caQaDviGve6q7c4=
+	t=1770318953; cv=none; b=qhT/qBXZY0aBA/W7aJ/8bcDqHF7thjfkMhNIT6d7JVEsNGS22cO4rkwfZOg8u9WayBloMB+q+mHvDLB5zsb5PARlzHeHiM3Q2VqZRD4dY7OXG1J7MdHFCT0Tmyt0+ZLQ50r4gWK4a6iEr3wqzprJuAr3sZ9QlHtDWebuNQiv1JE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770318267; c=relaxed/simple;
-	bh=6Pmfe3sjmAEMwlOPsTNyfR/KimTb80jqLcZCj+AQh4g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Eoxing20O3FXDKHMjKjk4eaPeHjHvdKXMbGnxvF743SBufFpHjHY3e2Sh428xz7CCH6PYAIlgD3MNB7lUcJBLjRVvAoSnapnH8Fy4qhfP1zer0C+6iYv7rEbsSNT2RVjh/nuQf1TFAEkzNVmQng7Mpq7g5DwPxxbou+IsFptDWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LnA6PQFL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3169CC116D0;
-	Thu,  5 Feb 2026 19:04:24 +0000 (UTC)
+	s=arc-20240116; t=1770318953; c=relaxed/simple;
+	bh=8uEK3hrM72xZCPTiaaLxzqe/qtX5ObVcMPrgPoWnT/k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Da+pcNUgUAtiV6U/AY8tzBPeDRO/TzMErFlpklHNpXKCta4TCQOzUp4F1YR/JKDo6xLz9jKBnY9g1dqhXGNIChkez2Vyg+pD1yg4H2PmgDxvHT5RIi4cu/vQd2un9RKdLoIqbsdji/SEk/yxjb8glNcT9kROrdQbYoBvgkxSHOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nz/vXr4F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2907DC4CEF7;
+	Thu,  5 Feb 2026 19:15:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770318267;
-	bh=6Pmfe3sjmAEMwlOPsTNyfR/KimTb80jqLcZCj+AQh4g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LnA6PQFL6sibmYdxJrnyCT09GMIujHS8SpsHmTkM6vObpevD0xpEHkUGcLNl9i58F
-	 MAf21OTsopdXJeP2JbbCdMTOAXDJALGg1L58NeuxSuLIhxSidnksiKiXXYlcDZPOeW
-	 dmi6QskdXWxkZQkRlJnCOIKmbxmgX7hPeKy3A2jgUTfn7kmEb0vONYQVkDFOzFHv2W
-	 JOP1pzzZspLRVZ0Hmm6wPy6Lo7eVLlBZj4cWjBr0Ohw78rvtNOVYuhjpWjHBIVNdYO
-	 p0NK6J9N0JcQE7KFMYDnXsWKm4djgEEi6iQqjUIKW30OP6TUsZqI2eleptCSmMu4Jx
-	 Mvwq2/kjrqzIA==
-Message-ID: <37966c65-69d6-466f-afe3-f17e549e369d@kernel.org>
-Date: Thu, 5 Feb 2026 20:04:22 +0100
+	s=k20201202; t=1770318953;
+	bh=8uEK3hrM72xZCPTiaaLxzqe/qtX5ObVcMPrgPoWnT/k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nz/vXr4FtzIFPK9k9wKlBDa7FlYR+nvHVooKWZlBm8N/jX4BmWx9oZalMq8PmlhL9
+	 nsXlJg/XzPOEjJG4YpxRNGXCvaU+CTasqiF1VFkU0yyjL53ES9avJwAZGx2YRxum8S
+	 sWQUbq6tMsU9VDN/cIoGVcn9OpHfGJIF12LD+n+FpK4rM7p0Y7b2Meo7LAotAjgMMG
+	 An4yTn2czxb+TYuFQIt3yDpekcyhcEV54bfjkTUrQ/0DPJa7PhXvgXAwvzgNe8awI/
+	 sf7RAuhgIaWjSDZSqwtxiOdkn5ZDf/NYpJfZYgyj7Tg5D7O8YvAy+cNQyO3OuscpXh
+	 +ghjf8+VcYznA==
+Date: Thu, 5 Feb 2026 19:15:47 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Alex Elder <elder@riscstar.com>, Lee Jones <lee@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: mfd: spacemit,p1: Add individual
+ regulator supply properties
+Message-ID: <20260205-arrogant-starfish-a7fe8d735c7e@spud>
+References: <20260204-spacemit-p1-v3-0-a894b3057026@riscstar.com>
+ <20260204-spacemit-p1-v3-1-a894b3057026@riscstar.com>
+ <20260204-unlucky-raven-1ca0ed8f3392@spud>
+ <CAH1PCMZ9S95JHzuZc1hG0hwxjVmCg9RezZ6rNjt_xQ25FokQOQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/3] arm64: dts: cix: add support for cix sky1 resets
-To: Gary Yang <gary.yang@cixtech.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, p.zabel@pengutronix.de, peter.chen@cixtech.com,
- unicorn_wang@outlook.com, inochiama@gmail.com, alchark@gmail.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, cix-kernel-upstream@cixtech.com
-References: <20260204020644.155094-1-gary.yang@cixtech.com>
- <20260204020644.155094-4-gary.yang@cixtech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260204020644.155094-4-gary.yang@cixtech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Tut58P+7NR4gmfNd"
+Content-Disposition: inline
+In-Reply-To: <CAH1PCMZ9S95JHzuZc1hG0hwxjVmCg9RezZ6rNjt_xQ25FokQOQ@mail.gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263143-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263144-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[cixtech.com,kernel.org,pengutronix.de,outlook.com,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,gentoo.org,riscstar.com,linux.spacemit.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.244.36.0:email,0.62.143.160:email,0.63.122.0:email];
+	DBL_PROHIBIT(0.00)[0.0.0.41:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,cixtech.com:email,devicetree-specification.readthedocs.io:url,0.63.161.16:email]
-X-Rspamd-Queue-Id: 2F852F6AF8
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 062BBF6C27
 X-Rspamd-Action: no action
 
-On 04/02/2026 03:06, Gary Yang wrote:
-> There are two reset conctrollers on Cix Sky1 Soc. One is located in S0
-> domain, and the other is located in S0 and S5 domain.
-> 
-> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
-> ---
->  arch/arm64/boot/dts/cix/sky1.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-> index 64b76905cbff..37dca97b6b67 100644
-> --- a/arch/arm64/boot/dts/cix/sky1.dtsi
-> +++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-> @@ -348,6 +348,13 @@ i3c1: i3c@4100000 {
->  			status = "disabled";
->  		};
->  
-> +		syscon: syscon@4160000 {
-> +			compatible = "cix,sky1-system-control", "syscon",
-> +				     "simple-mfd";
-> +			reg = <0x0 0x4160000 0x0 0x100>;
-> +			#reset-cells = <1>;
-> +		};
-> +
->  		iomuxc: pinctrl@4170000 {
->  			compatible = "cix,sky1-pinctrl";
->  			reg = <0x0 0x04170000 0x0 0x1000>;
-> @@ -568,6 +575,13 @@ ppi_partition1: interrupt-partition-1 {
->  			};
->  		};
->  
-> +		s5_syscon: s5-syscon@16000000 {
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-If you cannot find a name matching your device, please check in kernel
-sources for similar cases or you can grow the spec (via pull request to
-DT spec repo).
+--Tut58P+7NR4gmfNd
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-e.g. syscon
+On Thu, Feb 05, 2026 at 03:42:01PM +0800, Guodong Xu wrote:
+> On Thu, Feb 5, 2026 at 2:07=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
+ote:
+> >
+> > On Wed, Feb 04, 2026 at 09:23:01PM +0800, Guodong Xu wrote:
+> > > Add supply properties that match the P1 PMIC's actual hardware topolo=
+gy
+> > > where each buck converter has its own VIN pin and LDO groups share
+> > > common input pins. Supply names are defined according to the pinout
+> > > names in the P1 datasheet.
+> > >
+> > > The existing "vin-supply" is marked as deprecated to avoid warnings
+> > > as dts and dt-bindings go via different trees.
+> > >
+> > > Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> > > ---
+> > > v3: Mark vin-supply as deprecated.
+> > > v2: Remove providers from the dts example.
+> > >     Pass the 'make dt_binding_check' test.
+> > > ---
+> > >  .../devicetree/bindings/mfd/spacemit,p1.yaml       | 53 ++++++++++++=
++++++++++-
+> > >  1 file changed, 52 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml b=
+/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
+> > > index c6593ac6ef6a..41f784408e29 100644
+> > > --- a/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
+> > > +++ b/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
+> > > @@ -28,7 +28,46 @@ properties:
+> > >      maxItems: 1
+> > >
+> > >    vin-supply:
+> > > -    description: Input supply phandle.
+> > > +    deprecated: true
+> > > +    description:
+> > > +      Main power input (deprecated). Use individual vin1-6, aldoin,
+> > > +      dldoin1, and dldoin2 supply properties instead.
+> >
+> > What's the point documenting the deprecated version if it doesn't work
+> > anymore?
+>=20
+> Keeping "vin-supply" in the binding with "deprecated: true" avoids a cros=
+s-tree
+> warning. Since dts and dt-bindings go via different trees, the new bindin=
+g +
+> old dts triggers:
+>=20
+> pmic@41 (spacemit,p1): Unevaluated properties are not allowed
+> ('vin-supply' was unexpected)
+>=20
+> Rob flagged this in [1] as 'intermittent warnings'.
+>=20
+> I'm open to dropping the deprecated markup, maybe just accepting the
+> transient warning is fine?
 
+I'd rather have the warning in linux-next or for a short period of time
+in Linus' tree during the merge window, than have the binding document
+something that no longer works. To me, the deprecated tag in a binding
+means "this used to be how things were done, and still works, but we
+don't want you to use it because of xyz reason". Things that don't work
+should produce warnings to stop people using them. You provided a fairly
+good justification for breaking the ABI, just commit to that and remove
+the old/incorrect way of doing things.
 
-Best regards,
-Krzysztof
+>=20
+> Link: https://lore.kernel.org/all/20260129181604.GA1398997-robh@kernel.or=
+g/ [1]
+>=20
+> Best regards,
+> Guodong Xu
+
+--Tut58P+7NR4gmfNd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaYTsYwAKCRB4tDGHoIJi
+0jsFAQC8J9Vo7WBPfUVk997vA0t8NWn2kHR/WK40+BDQEFRXQgEA3kmV2U9c13M6
+VU+e2Gbf3L2/IgxEahWy3eiy0ukYOgI=
+=+ap+
+-----END PGP SIGNATURE-----
+
+--Tut58P+7NR4gmfNd--
 
