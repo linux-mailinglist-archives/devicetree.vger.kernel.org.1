@@ -1,158 +1,227 @@
-Return-Path: <devicetree+bounces-263166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263172-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GM2pIIEJhWmj7gMAu9opvQ
-	(envelope-from <devicetree+bounces-263166-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 22:20:01 +0100
+	id SGILCdAOhWms7wMAu9opvQ
+	(envelope-from <devicetree+bounces-263172-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 22:42:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7C6CF78D7
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 22:20:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D970F7BC9
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 22:42:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 61DA330131FC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 21:19:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9688630075F6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 21:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D88933065B;
-	Thu,  5 Feb 2026 21:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54FD0332909;
+	Thu,  5 Feb 2026 21:42:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="EYyfYt4w"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QQQjYSYJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C372032BF23;
-	Thu,  5 Feb 2026 21:19:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A52308F23
+	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 21:42:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770326397; cv=none; b=kyPitbgrkcCcs33eYdmcri68iSy4oLsdP6coNpMCXvqGsIV1mG1DAL3hEdIRym8nlys3CINVafQZawah4HqV7dbs4jVmL16ZjobKuiHNxtGGRz3fMno2G0qKnBEaOFP9HKGTil1ABxBKv7MR8+WMDgfwF34dv+LmZWDZDdQsSDo=
+	t=1770327754; cv=none; b=B1aGJw5vhzhgAlRLlsHwz1TCpGq10HmoohwowJ6IVqUb1TieWOxgRSMVAqS373ikT6mgUTCa0wYoTrafJKbo5ULFva4za76yKFin6yeW2uwkNy/4ceOvejIYrwz7+na/z5PCQS12wZctPmIWa7pTe7p0DHwUxRkTtK/aOirHMz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770326397; c=relaxed/simple;
-	bh=LxtDRo9j2d9jEPzrf9el54kc9kssnfvVqksCnraeOL8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZL2M44UMdGniBSsYynZlepGndgmlGJMR7ZKhLs3hP5pDYmeTQ1uO8Ryifi04JT6MI5ki2cPhD+RwCN4weupiV5NbP05CKHGQkpGrZr2BR36no+mrJV/NUmtoFYfIjnK8bwRo/J9MMnURyCKc2yZu8n52yY6mflZKjtmXkdFuF1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=EYyfYt4w; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type;
-	bh=1hNV9IUB5w5au3NsTLYYRa1ygl6b7jhZ/NpWWlTkpJI=; b=EYyfYt4wodonT7h7+8rY+/oC0I
-	gBJ8FScAIPK9+39RLp1mRgx34ddagBLoY5NHqkI+JGgFD+HF4boH3ltEQgPNRWeNlibc9URsr1QUz
-	d6fYCQC77CoCXGgAG8szMJT/GCaHtT6zUnH7PPib21HcIIr6gVA525F43T1947jF3kQ+7/VOlCBlh
-	C1kqmuXG+1+OUfUdvGTEYBgjvm0mj3uw7bYchs4+rS1Zp5mwkxeISUEYYPugaY15/qjfOp7NCwOns
-	2nrW5xlWik4Fu622bSBcM4CIgVw3JmVQF8ccp4FMireukQSZIb3YUVo3Y9VVPblh28FZ8+NQOQiNc
-	PV8RZtbQ==;
-Received: from i53875afe.versanet.de ([83.135.90.254] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vo6lQ-007GGK-Aq; Thu, 05 Feb 2026 22:19:48 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: srini@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	kever.yang@rock-chips.com,
-	finley.xiao@rock-chips.com,
-	w@1wt.eu,
-	jonas@kwiboo.se
-Subject: [PATCH v4 6/6] nvmem: rockchip-otp: Add support for RK3528
-Date: Thu,  5 Feb 2026 22:19:01 +0100
-Message-ID: <20260205211901.490181-7-heiko@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20260205211901.490181-1-heiko@sntech.de>
-References: <20260205211901.490181-1-heiko@sntech.de>
+	s=arc-20240116; t=1770327754; c=relaxed/simple;
+	bh=RG/479Qxl4EQWx4UO+uB67bqkziiDabgau+g461xf5w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Caza/2vcSBdcuKl4vFacIHbLB2Jen+VSiQ84v7aJcJD3pCfwzc0066z5qn9AIOsr/UMyG/cZCZZuBYfq+D0KV5COB7AZao7CRqxe6BpwY63H/mL69ZJaClQ3GDQr8dPFav3ucRM6W3uRCtYYN++I1DvA7MPko6U2FEjZB6+hhg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QQQjYSYJ; arc=none smtp.client-ip=209.85.218.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f65.google.com with SMTP id a640c23a62f3a-b79f8f7ea43so284775966b.2
+        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 13:42:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1770327752; x=1770932552; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qXPRumbBfZZxqaCk0CZTR3vdblmJxj3Gzg1b+SHujwo=;
+        b=QQQjYSYJHAYWVPWUfdKdJtdBS5H1BcSqGuNOzOLSC0q1ycUHmpxNtMLHnnhRbDWBSY
+         FqrBbRyj15sEx4fFtejjfZgWm1Y/CC5VO1XyU0PXBDn4UMqo+s3RyppE/jil4JULQf4R
+         IIZEHvLBFaDm5uKjfZlKdJ3I9YJY9n74+ZmwCC0MFdAoBoed2lkhowxg3jjFtA3RAkSo
+         gvH/xk/lbfR0bubyqGPES0qvY8t/vh3YzRFyGJKmS2MwKOJVPptR6MO4nqoGqhry3yfN
+         O2bWBdqnob6z4VQ/x9ul1jRBNB/pDi8+dTOlRXs55kW3eD5zlIQftPSaG1bNffDEDxCk
+         7f5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770327752; x=1770932552;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qXPRumbBfZZxqaCk0CZTR3vdblmJxj3Gzg1b+SHujwo=;
+        b=C86fqgerqNoxGsYYs7DPtAOlTnJyohuiCD8Xk4cWucf2sWqS5D+Z1WZukJ9Pa5qJD5
+         Qu2dWjkvXTPfXIM6SQo4xZcH5CM4ymryLTMv4y7ZUBSTRsk/SyULXxjyzTt806lvGnOc
+         S1L8Fksvw6IIlC0BUBCEZM1irk5XJvSPhaoQHuENcvQB1sre5jcudrDahkt22OMo68wI
+         cYPC7BnBfIuQHKekKG2OKlHbqUQ78clAqgEx/E1hv377uM9n7xU5ERbfBS+dHndLuPmB
+         tZf1L1hybh4NDmKB/9muHB7v4W3DbtmKt8Z7MvwaX0hkEsrIPwjSNmi1TPRhkN0uJlzb
+         YH3w==
+X-Forwarded-Encrypted: i=1; AJvYcCUXpwsDk3QmUFaQE6Y24p9dvxzEZGuYt2rn//aSvjYX9ELrzGzhXroQMSSno5kxXr0LL+WzzFFaZEy5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHtM7nSqSfKCvNzKTY3l0TYkjiFZSl4CSL+eOBdIvUUSFaHef0
+	jBCEWBqpTMFQhwveS+2dXhzm+0bvm8duhAnuVlu5+0xEYe++cGh/r5c2TRjc+3TzUwU=
+X-Gm-Gg: AZuq6aLachL1cTHBH2XO6YOuULxjS2W11fYqZXeRAtds4cmf2GObYezO5UHqkROrO+9
+	UQa2izi3Z/1MFOxy/Pn6tbXhuQc5+dUEm60mAwzM2B/BwAtVj7kTc3xTHc+th6wJ82tYIxf4r7E
+	OgcdjniIT2yAtmv3yTq35r41BabqzsV7mWvZAfgfjP+tSi/dc52ppy3VXr+oiYeKhOEuWMER2Kw
+	rZUE11oj9WPtmhNr2ss6OBAhaEXuwkCc4/rOpVZtenMG+UjuRfWHjB6S0yIfuhDD9zEgThXDGbv
+	stnEGGZg+/Ja+taBaefxoOtGM0k9S//xUcBt9UtVl6JMPEMF1BjvYE5aA5jyUGUFX6nd/0prIrH
+	rv+2HcLWxURGNmes/2A0EXtLJLcCUIzSzhiJWkLKGCo4p4Lfka37zjTDTBbORMNVZQ7x5ObgmlF
+	ZxFWo6nzhGsaE0m9lHza8IhhtEyp0RKTzV2IljaqKCHbN6wj/pMDt4G0KAlfNqPzc4PiI9dAh/c
+	4VXJA==
+X-Received: by 2002:a17:907:a4c:b0:b88:637d:aa75 with SMTP id a640c23a62f3a-b8edf378326mr26959066b.30.1770327752121;
+        Thu, 05 Feb 2026 13:42:32 -0800 (PST)
+Received: from puffmais2.c.googlers.com (244.175.141.34.bc.googleusercontent.com. [34.141.175.244])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8eda7a0074sm21859966b.18.2026.02.05.13.42.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Feb 2026 13:42:31 -0800 (PST)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH v5 00/10] pmdomain: samsung: add support for Google GS101
+Date: Thu, 05 Feb 2026 21:42:28 +0000
+Message-Id: <20260205-gs101-pd-v5-0-ede49cdb57a6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAMUOhWkC/2XN3QqDIByH4VsZHs/x9yPNHe0+xg78qoRRoSM2o
+ nufBTFHJ8JPfF5nlHwMPqHraUbRTyGFoc+jOp+Q7XTfehxc3ogCrQgAwW0i+RwddtxZJZ0EXXO
+ Un4/RN+G9pe6PvLuQXkP8bOWJrLd7RPwiE8GAG7AGLBCvpbk9Q6/jcBlii9bKREupCkmzZA3Xw
+ hmqG6YOkhWSlH+yLKVhIJVkSnh5kHyXAgitC8mztMZL4yrNQcCfXJblCyIOtptPAQAA
+X-Change-ID: 20251001-gs101-pd-d4dc97d70a84
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Ulf Hansson <ulf.hansson@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, 
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-pm@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.2
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[sntech.de,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-263166-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[sntech.de:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-263172-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,samsung.com,linaro.org,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sntech.de:email,sntech.de:dkim,sntech.de:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E7C6CF78D7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,linaro.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5D970F7BC9
 X-Rspamd-Action: no action
 
-From: Jonas Karlman <jonas@kwiboo.se>
+Hi,
 
-Add support for the OTP controller in RK3528. The OTPC is similar to the
-OTPC in RK3562 and RK3568, exept for a missing phy clock and reset.
+This series adds support for the power domains on Google GS101.
 
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+There are a few differences compared to SoCs already supported by this
+driver:
+* register access does not work via plain ioremap() / readl() /
+  writel().
+  Instead, the regmap created by the PMU driver must be used (which
+  uses Arm SMCC calls under the hood).
+* DTZPC: a call needs to be made before and after power domain off/on,
+  to inform the EL3 firmware of the request.
+* power domains can and are fed by a regulator rail and therefore
+  regulator control needed be implemented.
+
+Bullet points 2 and 3 are new since version 4 of this series, and
+related changes are in patches 1, 2, 9, and 10. I can merge patch 9
+(SMC call) into the gs101 patch (patch 7) if preferred, but for now I
+kept them independent to make it easier to see changes compared to
+previous versions of this series, and because patch 9 actually applies
+to not only gs101, but to many newer Exynos SoCs, and to make patches 9
+and 10 themselves easier to review and reason about.
+
+The DT update to add the new required properties on gs101 will be
+posted separately.
+
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
- drivers/nvmem/rockchip-otp.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Changes in v5:
+- add domain-supply to binding (patch 2)
+- Link to v4: https://lore.kernel.org/r/20260128-gs101-pd-v4-0-cbe7bd5a4060@linaro.org
 
-diff --git a/drivers/nvmem/rockchip-otp.c b/drivers/nvmem/rockchip-otp.c
-index 62ce22d72586..0ec78b5e19e7 100644
---- a/drivers/nvmem/rockchip-otp.c
-+++ b/drivers/nvmem/rockchip-otp.c
-@@ -333,6 +333,18 @@ static const struct rockchip_data px30_data = {
- 	.reg_read = px30_otp_read,
- };
- 
-+static const char * const rk3528_otp_clocks[] = {
-+	"otp", "apb_pclk", "sbpi",
-+};
-+
-+static const struct rockchip_data rk3528_data = {
-+	.size = 0x80,
-+	.word_size = sizeof(u16),
-+	.clks = rk3528_otp_clocks,
-+	.num_clks = ARRAY_SIZE(rk3528_otp_clocks),
-+	.reg_read = rk3568_otp_read,
-+};
-+
- static const char * const rk3568_otp_clocks[] = {
- 	"otp", "apb_pclk", "phy", "sbpi",
- };
-@@ -376,6 +388,10 @@ static const struct of_device_id rockchip_otp_match[] = {
- 		.compatible = "rockchip,rk3308-otp",
- 		.data = &px30_data,
- 	},
-+	{
-+		.compatible = "rockchip,rk3528-otp",
-+		.data = &rk3528_data,
-+	},
- 	{
- 		.compatible = "rockchip,rk3562-otp",
- 		.data = &rk3568_data,
+Changes in v4:
+- drop unneeded or already merged patches
+- drop patch "pmdomain: samsung: convert to regmap_read_poll_timeout()"
+  as Marek reported issues on some platforms
+- rebase
+- DTZPC related changes
+- Link to v3: https://lore.kernel.org/r/20251016-gs101-pd-v3-0-7b30797396e7@linaro.org
+
+Changes in v3:
+- use additionalProperties, not unevaluatedProperties in patch 2
+- fix path in $id in patch 2 (Rob)
+- drop comment around 'select' in patch 2 (Rob)
+- collect tags
+- Link to v2: https://lore.kernel.org/r/20251009-gs101-pd-v2-0-3f4a6db2af39@linaro.org
+
+Changes in v2:
+- Krzysztof:
+  - move google,gs101-pmu binding into separate file
+  - mark devm_kstrdup_const() patch as fix
+  - use bool for need_early_sync_state
+  - merge patches 8 and 10 from v1 series into one patch
+- collect tags
+- Link to v1: https://lore.kernel.org/r/20251006-gs101-pd-v1-0-f0cb0c01ea7b@linaro.org
+
+---
+André Draszik (10):
+      dt-bindings: soc: google: add google,gs101-dtzpc
+      dt-bindings: power: samsung: add google,gs101-pd
+      dt-bindings: soc: samsung: exynos-pmu: move gs101-pmu into separate binding
+      dt-bindings: soc: google: gs101-pmu: allow power domains as children
+      pmdomain: samsung: convert to using regmap
+      pmdomain: samsung: don't hard-code offset for registers to 0 and 4
+      pmdomain: samsung: add support for google,gs101-pd
+      pmdomain: samsung: use dev_err() instead of pr_err()
+      pmdomain: samsung: implement SMC to save / restore TZ config
+      pmdomain: samsung: implement domain-supply regulator
+
+ .../devicetree/bindings/power/pd-samsung.yaml      |  33 ++-
+ .../bindings/soc/google/google,gs101-dtzpc.yaml    |  42 ++++
+ .../bindings/soc/google/google,gs101-pmu.yaml      |  97 ++++++++
+ .../bindings/soc/samsung/exynos-pmu.yaml           |  20 --
+ MAINTAINERS                                        |   2 +
+ drivers/pmdomain/samsung/exynos-pm-domains.c       | 254 ++++++++++++++++++---
+ 6 files changed, 399 insertions(+), 49 deletions(-)
+---
+base-commit: 9845cf73f7db6094c0d8419d6adb848028f4a921
+change-id: 20251001-gs101-pd-d4dc97d70a84
+
+Best regards,
 -- 
-2.47.2
+André Draszik <andre.draszik@linaro.org>
 
 
