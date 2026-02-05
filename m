@@ -1,127 +1,161 @@
-Return-Path: <devicetree+bounces-263122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263123-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GIsIE97YhGlo5gMAu9opvQ
-	(envelope-from <devicetree+bounces-263122-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 18:52:30 +0100
+	id qNIBFS/ahGna5wMAu9opvQ
+	(envelope-from <devicetree+bounces-263123-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 18:58:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68057F6356
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 18:52:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0B39F63D5
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 18:58:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DCB3330028DC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 17:52:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0FBB030214E8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 17:57:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 259243009E2;
-	Thu,  5 Feb 2026 17:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 412653033C8;
+	Thu,  5 Feb 2026 17:57:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RPhvRriw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jXJh2vDl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA65A2FFFB8;
-	Thu,  5 Feb 2026 17:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7D630146C
+	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 17:57:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770313922; cv=none; b=qgXIOSQQJtaX119kX6M88lrNTgjnSlQnGfZWm1a+BqDfMXG+78srQdECZBW8dp4RJwBcGqJQlitff1bnxnFDRMC5mbdLo6TzCurHACwgsyOyzeTH+vRmw9TuKfye9x0CrEpiydTFtofj78hri/7YpIFn7grX2LAcQIMzjQBcu7M=
+	t=1770314259; cv=none; b=KmbnAzhgBEBKBRu4R+vKI+zEX5NngSE2wUXV0Hh0PNbTp5Izcl/+7VusdaMR2U13Yx72Xgrso0RtBLkAJdlRrHL60adLkKx+B976akmtCTIGv7iG7kys15NnexivUNrz+P3vDTeB6aV+j/GESwOfh048CsISQiCaxVCAmjGQ7Jk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770313922; c=relaxed/simple;
-	bh=RkGlrX3rK4GiNQXi+0GNluYODZgj5IeRWRRUdOdGIHA=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=H1AM2nsynzen3yQvkF8FIqzAjOWlbPgnfvSxUanRGJyHAaLndktRHx3p42wnMRUd1SY3kIvREiLdpMty3WDq/4VIzl06jPol8iYKUzs+szhURsseK2qjAHxmfwJZyDke9opWxSuiqouIht6HDHAH5oiGDYWuLfi6BypYaKFDatw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RPhvRriw; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 3E9794E42424;
-	Thu,  5 Feb 2026 17:52:00 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 111F86074D;
-	Thu,  5 Feb 2026 17:52:00 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B76E0102F2A49;
-	Thu,  5 Feb 2026 18:51:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770313919; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=RkGlrX3rK4GiNQXi+0GNluYODZgj5IeRWRRUdOdGIHA=;
-	b=RPhvRriwf16jdV+qijBkY++Pd0PrSWuLgz9EDCAwuctF1XeyHjVsWsO6KGWsXzA5jqgvxA
-	4CR2nB+vonFuXPekEHuPdF0FWjcXLGgebg0/hyHebj0bEyKOgLMtcRP96BfMnnrGgNOlAW
-	TUAbwbriRyHi1fJyYDEirqwJFRx2Jv/CBYmMH6xRuRpCGwBjIfbiYuyKjJ/2y2JQEbHL7B
-	ysQsrRGcoqhNlgkE0KdOj9zCJb3ziwD1LeH+PXYNVynkP1vnHGUNkIH61raiI6YhvbsurN
-	KgZgGBv0WSUYyDQB3wJIGgFYlZxU0ApmZMDnA/r/trJj0LXQiV/qt1SGdQUZZA==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Santhosh Kumar K <s-k6@ti.com>
-Cc: <broonie@kernel.org>,  <robh@kernel.org>,  <krzk+dt@kernel.org>,
-  <conor+dt@kernel.org>,  <richard@nod.at>,  <vigneshr@ti.com>,
-  <tudor.ambarus@linaro.org>,  <pratyush@kernel.org>,  <mwalle@kernel.org>,
-  <linux-spi@vger.kernel.org>,  <devicetree@vger.kernel.org>,
-  <linux-kernel@vger.kernel.org>,  <linux-mtd@lists.infradead.org>,
-  <praneeth@ti.com>,  <u-kumar1@ti.com>,  <p-mantena@ti.com>,
-  <a-dutta@ti.com>
-Subject: Re: [RFC PATCH v2 12/12] spi: cadence-quadspi: enable PHY for
- direct reads and writes
-In-Reply-To: <20260113141617.1905039-13-s-k6@ti.com> (Santhosh Kumar K.'s
-	message of "Tue, 13 Jan 2026 19:46:17 +0530")
-References: <20260113141617.1905039-1-s-k6@ti.com>
-	<20260113141617.1905039-13-s-k6@ti.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Thu, 05 Feb 2026 18:51:55 +0100
-Message-ID: <87tsvvf58k.fsf@bootlin.com>
+	s=arc-20240116; t=1770314259; c=relaxed/simple;
+	bh=xG9GlTsOUqrpT1eW0/Cm5JB4EuHVIQb7eAFjTP9/Ne0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ZjiCa59unh069hFqZDY/uYZ3pulwpDJLcJejGd1QagB6btaNHur9YGy5Vy0Hwp+hpKbRHYXbgOB64BhLDs3CZL2rqgKsUIxqA88UaACTPs1cTNDmTsErYBNT5Lgn9+K26HhJK92hCqvY6wMj6mI4jN6jOrojd0+ND/sWzfG7y7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jXJh2vDl; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47ee937ecf2so12180735e9.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 09:57:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770314257; x=1770919057; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=xG9GlTsOUqrpT1eW0/Cm5JB4EuHVIQb7eAFjTP9/Ne0=;
+        b=jXJh2vDlAAerdXTHwIp3BPfZTLZbEIOMFiC586B+hiFE6waKX7J5wOz7/bSaibrHCd
+         xI3RYXwWWGoHt5Ats11CdwSj265bwFLtW2hOHTxkxVI7Nrp5iuE+OHFPBiMsPApqF+c+
+         QZUh851Xq8kf08eZg4ABW8+Uu2z11RyJCKFgwNpUP5kIvIh3rLHYeQxLUF85FsSRXSbN
+         M54OJGwo89drBvGm3K3ZXQej15BwwOmMcBwZuapeXjxJolLKMLtsFWF1ogR6J9wHGxA+
+         FYLt4hbwk73HsG82TR7/ikyNlH53BbeYhQaLFZBP63decyvX2hUNiqmxlGIXiUqjjvvs
+         27Dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770314257; x=1770919057;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xG9GlTsOUqrpT1eW0/Cm5JB4EuHVIQb7eAFjTP9/Ne0=;
+        b=E8dUNDHm8eFIjSw4ZM/F3lNk+5PNPpz/yCqfLxEra3t3UYzvZ1iqLQRUgZOd/VAt2C
+         XhXvGByLgejkw9TwoDsnvbVo6zt0OCjadA3DYZSnvypAoDGeQACYPS4jS7G4mtUA4ucI
+         jjTlCQMyxYbH6bdHWkV7XSik1kkIU0EsE6RNa19EwKjz/QtV2QSDtoFFwKTgIlZHjqKX
+         dCTBWfYpXg0tJeqz+CQaTZ2+r2eP1rXMXBcPK4rgzlEv5nFI5uG9UMd5ucuRAAL+AF3J
+         qSq7Y7GerB2quhINhhh1WwPRlfuLFJkTiNC5kKoDRVrz2sxMCY9eXWTHdT9FqFjMkqa2
+         Hmew==
+X-Forwarded-Encrypted: i=1; AJvYcCUskAEG6uFVEYbmcYK2ItwNI/ti1c+uBVwRiYAbj22TwpoIsp6PoX/l7YpWEnPCIwlSMLDEAT0Zklq1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxsto1xaMxIPb/1+5Ukh4+3DHTAmHBhnvvhUw6+CtlD83bKmKtQ
+	WJgvYCvaetcSSssWZXDZ4iMPOjZ3YmLBRzTkzT/R5FmwrrJY80vqBYKY
+X-Gm-Gg: AZuq6aL05KljM8P7GobQlqsGYkjOEczp29futa9jjcUkiwseKCcq3NDIUqhZlye20Lm
+	pIeoLrapgx+KsKp3QORb5emMn8zilRdFSBN1JQrlFu4+Thvtxj/GRimRfEGd2RDTkMXRjeaZSjQ
+	je50uomvWnx3/FaP7UG65BaNtsdGVNkN8WpClldUKP0S4f2/7MT4eMuNN6wIxqJ9joZbOgl73Mq
+	Ud2UEbnJviqYiFa4LwONALr0OvLZ8c9Ojb/XlxEu5ORaz0ao+mPGSSLWjrieYHRZlJvGx1Oj+x2
+	EdOOdj+huDwmUQTMIRHv38UqFL6VmfOKi/mj50mckZ8pwtSuB1sOPie7lFg5S7UtHcNnZOKlC1S
+	gg7EIbYBbjGsZ0QCMVzG+xVz5EizOUPndkFiaMS6sF+FLvHObi+KhoY2KOThtYnz2DP6W1f+ep/
+	5UI32og96zqd86dlFt2XHyPFBtY7Ro3zyRM/wPBAt5sayya5IbC2m/2QWh2i0Na/9Aiwg=
+X-Received: by 2002:a05:600c:ad7:b0:47d:52ef:c572 with SMTP id 5b1f17b1804b1-483178e303emr35887875e9.1.1770314256958;
+        Thu, 05 Feb 2026 09:57:36 -0800 (PST)
+Received: from giga-mm.home (12.89.194.178.dynamic.cust.swisscom.net. [178.194.89.12])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48317d345c2sm94337185e9.6.2026.02.05.09.57.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Feb 2026 09:57:36 -0800 (PST)
+Message-ID: <abb8fa81c3fc7caec0b232e204af4bce71a7a667.camel@gmail.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Disable mmc Schmitt
+ Trigger
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Judith Mendez <jm@ti.com>, Francesco Dolcini <francesco@dolcini.it>, 
+ Vitor Soares <ivitro@gmail.com>
+Cc: Markus Schneider-Pargmann <msp@baylibre.com>, Vishal Mahaveer	
+ <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, Dhruva Gole
+ <d-gole@ti.com>,  Sebin Francis <sebin.francis@ti.com>, Kendall Willis
+ <k-willis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>, Vignesh
+ Raghavendra	 <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+	alexander.sverdlin@siemens.com
+Date: Thu, 05 Feb 2026 18:57:28 +0100
+In-Reply-To: <fcfcd3fb-2eac-4865-98f3-ef2ae24381bb@ti.com>
+References: 
+	<20260106-topic-am62a-mmc-pinctrl-v6-19-next-v1-1-1190ac29aadb@baylibre.com>
+	 <c47697b4-6ebb-4af9-be96-c964d990835d@ti.com>
+	 <DFO764ES0FNP.1SUQK9R0EUUDQ@baylibre.com>
+	 <1a91fd40-e814-4b4c-8914-d8f0c4768e07@ti.com>
+	 <DG59D7WGM35A.1WNIIMNCQ8U3C@baylibre.com>
+	 <7ae7f6a1-0ee1-4d56-b1d0-f038a7d22b4c@ti.com>
+	 <20260205072439.GA4548@francesco-nb>
+	 <fcfcd3fb-2eac-4865-98f3-ef2ae24381bb@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263122-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263123-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FREEMAIL_TO(0.00)[ti.com,dolcini.it,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[alexandersverdlin@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ti.com:email,bootlin.com:mid,bootlin.com:dkim]
-X-Rspamd-Queue-Id: 68057F6356
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D0B39F63D5
 X-Rspamd-Action: no action
 
-On 13/01/2026 at 19:46:17 +0530, Santhosh Kumar K <s-k6@ti.com> wrote:
+Hi Judith,
 
-> Enable PHY mode for direct memory-mapped reads and large indirect writes
-> (>=3D 1KB) to leverage calibrated RX/TX timing delays for high-frequency
-> operations.
+On Thu, 2026-02-05 at 11:07 -0600, Judith Mendez wrote:
+> > Verdin is now booting fine. The boot failure was related to other U-Boo=
+t
+> > bugs (as Nishanth mentioned) that are now fixed.
+>=20
+> Good to know, that isolates the issue to only one board.
 
-Is enabling the calibration so impacting? Did you measure it? Isn't
-skipping any non read or non write operations enough? Status reads for
-example should have a smaller op->max_freq based on my previous comment,
-so in theory I do not see when we will meet these cases.
+not really, as I mentioned, I had observed some issues with one of our
+internal development boards, but I can only provide the data after couple o=
+f
+weeks, after my vacation.
 
-Fine for the other conditions.
-
-Miqu=C3=A8l
+--=20
+Alexander Sverdlin.
 
