@@ -1,380 +1,292 @@
-Return-Path: <devicetree+bounces-262826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262827-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UGxRKS71g2kwwQMAu9opvQ
-	(envelope-from <devicetree+bounces-262826-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 02:41:02 +0100
+	id gDyUGMX6g2kXwgMAu9opvQ
+	(envelope-from <devicetree+bounces-262827-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 03:04:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9043CEDBCD
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 02:41:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC067EDD76
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 03:04:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EF8EF300461E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 01:40:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E89A2301918B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 02:03:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 894222C08AB;
-	Thu,  5 Feb 2026 01:40:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6634F23F439;
+	Thu,  5 Feb 2026 02:03:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WMd4hE3E"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LIr/ye+8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11013067.outbound.protection.outlook.com [40.93.201.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B1D229BDA2
-	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 01:40:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770255624; cv=none; b=fNlSk0M7fMGVj3snCob61LvbT9NOUQ5zKITVXZ9zUzeNMRcjHbpmS768pEstKVQ2ycMYAOZ3/4u1vBamJSsSvWrJoQnGZxtnfnGw+wccJds8snqJeZvVj3sat7hwZlJi35lJwE2USYXLSioyKhqOGi5+E9A9YGP6vIywpC/puYA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770255624; c=relaxed/simple;
-	bh=6OxCW4/8eX3SpcYcTZYAJWte6AYr5sqqDRBYC5C+QDI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Yhjvuhw6jyzKQ4ppiDU/imIpTdytRKKyE2Ay2CTU5A2P7qcE2yipB1SweVWqIdf1sVb81Ri+11dhvgyqu+PWeFtcJElDr3t9s8pRxPgzSGYnvruQ16XGIXaFIiueo53AcFAaJUToE781LT9s2ndRcsMM2FFVllcXGlXWMqtHkBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WMd4hE3E; arc=none smtp.client-ip=209.85.216.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-3545d66bb3aso155601a91.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Feb 2026 17:40:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770255624; x=1770860424; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ql7XnrRQpwwnuceZEbbuf6WcOeUUcSgZ0nMQ4Ij9Jcw=;
-        b=WMd4hE3E8ddbmXyv75ll9TVh08Z/baImh3wG9e2AKRfe42iCuKkcl/8TSbsjNuNDBa
-         40gmNBKK2QlxbtW82Q3yA+HI0cwQJOkUzbMd2h/EmMne+Dl35vMbNyBmO0WTujz9gny6
-         dRyAH7tdogFEuuwruOr/O0+LHkwH3O6jt3dfOVU4VEm1M5z3K+0KY7sAWE76cZaHru7r
-         Sj4qSGeL9vuhhsWvsFV917IlMb4IHX26Zl9QTjrQFNG0VEhkY7nqg0Fc564uiBL6eCls
-         eD/N4BS/qH8izR4uFgbimh9TNsqTIeWlgnkUESJ2ePLWt0jNxVj0VxCjyRfm1Eo9HTae
-         t2nQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770255624; x=1770860424;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Ql7XnrRQpwwnuceZEbbuf6WcOeUUcSgZ0nMQ4Ij9Jcw=;
-        b=LtGizansCX/TpxQ5nsiAElN6UArPWPlDl11uyZY2kAQSL+n4I0MTbzHe8pxojzNuQQ
-         DCK6NjaM9voporlPlpCG76hKzLrr1GL5jC3cHxKnokDK4FqOkfU9n3YjqlHQhsnx0mxO
-         rlR9nf8JsUmtxwAQRdHi71jUfohbxyeW0P3Pr6iVGzlI+GF4bNPvFQvMUsiLluoSs6li
-         pVRRI9rJnl0Oe4BGP59HCo3vpdLbhwb/on41rl9i9Rt62B9cxsVbATzTcr7emrEUQPlp
-         97JuK/5cU4grhOLqKk+TuJvRy3pqdjwmeNs78ALPiOo5TivurKBE10mr0X1dFEGzPEa6
-         0Uuw==
-X-Forwarded-Encrypted: i=1; AJvYcCWR+Qm0z6kTT0LOiWopSRcHhbWx1S5GhkFqbwvvYyKF8MeHnWl3i+0exJ8anolqymBmEoTUioIebQLr@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoydYrbSx2sqAdmixR+zaPRkeY5y86I/3t8FozYZnjR1WOoo97
-	x8BzTlP91i18icg0jpw0nwZ7dSr8F6qBIBdYZWA7ULtdCdT+3K2nv+SM
-X-Gm-Gg: AZuq6aK8cyXSTG0gw0RpHqg+g6yCz1Gg0LbSfC+anjWMKcrG6DEA/NOxPZ6X6SqjAYG
-	sMlayZ7Dt37ukwQrIVe7ABLqUUutSi4UpJc7hYLlgCmYIUjn8PHWdGMMTVqEO5xuOOtE8labKyl
-	agUQR77h6BiT72777Lk6EkNscZHyNh/zhxYkfc/hJMRUjBnm/wHiCB6MoPAiZhLsoQ/1kdLI7Dk
-	h9KQ2e/gCqfhyiR/vmbF7ZS02dKEn6pq63eSx05LOEFceJ0GFi96oeykPmVqDKRkZnhaw2nKGdF
-	6Q2aVwLNGBoJ1n2PPu6PbIQMsYl3TBl2BJb1tZZG/JEmJzcqSxhDQTAGYcEcXr0jv7WEFhKLVmk
-	SiF/wpaTDrDfmswl97Y4lmgDHnpflr36V4ZJtCOIR3PZmsnbECB6IfjczxS7Y4jrpXgxLaydL3N
-	1Dq+9lMoxDzkaH2lRdiZvc7jGaG9OxN6rF462KIWDwf1PPvoMRwZm5H4pnkkDscctNEhbUl9bb
-X-Received: by 2002:a17:90b:5823:b0:34c:cb3c:f549 with SMTP id 98e67ed59e1d1-35487207d74mr3923205a91.29.1770255623678;
-        Wed, 04 Feb 2026 17:40:23 -0800 (PST)
-Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3549c487a7bsm673571a91.16.2026.02.04.17.40.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Feb 2026 17:40:23 -0800 (PST)
-From: Joey Lu <a0987203069@gmail.com>
-To: andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mcoquelin.stm32@gmail.com,
-	richardcochran@gmail.com
-Cc: alexandre.torgue@foss.st.com,
-	joabreu@synopsys.com,
-	ychuang3@nuvoton.com,
-	schung@nuvoton.com,
-	yclu4@nuvoton.com,
-	peppe.cavallaro@st.com,
-	linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Joey Lu <a0987203069@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH net-next v11 3/3] net: stmmac: dwmac-nuvoton: Add dwmac glue for Nuvoton MA35 family
-Date: Thu,  5 Feb 2026 09:40:05 +0800
-Message-ID: <20260205014006.735408-4-a0987203069@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260205014006.735408-1-a0987203069@gmail.com>
-References: <20260205014006.735408-1-a0987203069@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4C8622CBD9;
+	Thu,  5 Feb 2026 02:03:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.201.67
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770257025; cv=fail; b=OJGA/rmA9kWhCwEfA8TVRghNU1I1t090gdsDLMuHwMrTgUOb4AIQtNEU0FuZWcK3CTYAvJGsgqPNKKL7U3n5eEK2WV2DZqqJZSHG4JxGHAB5AevhK3skNmIXRz5VfIYp4GGCFhenKpGggMZ3bc5O9z8hm23MJF+WB6wvgRggloU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770257025; c=relaxed/simple;
+	bh=W9XMgqOjAE87T+AFCZReBsH6wNbURDtqaXbWeIRiRXc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GuagBQSlkvAznc7QmtcuSgtj1AdfS9x2mKVzkGbQMunBOI026S65yEYG+G7UsoVgNzimR6pz+cf+2K0PAn7+jsl3yyNjydOH8mwHZCQ4wcrpahdoBsTkW+A7+qdJo7T+mxPGf95hM0Yp+N8vJf6tN21j71cv+K+GQFdI1WWLaZw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LIr/ye+8; arc=fail smtp.client-ip=40.93.201.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rQttsgFFUHjEtW5unLABy1cjgFtXAuyiZi+tDTIAJ3Lb02f47l5tMQuiqF74XNL7WbM4FkKERqzwwFTm81XTOApwh5MkEGZtwUiusXnYSW4RVIrbIYy99njDT8DhCs6ElhnITrq1yiRu00tTS5vzj1u/byhJ0H5NLrj+lkbSPMuBsrrGMjBGLOw1GhmIMeKCj9bmm87XBja4zsyPW3qU/JoLURVfwzdNXw5FnzXVdY5k6lLewiFsXNmY7fHPJz7NVMtpjyUTDPny/q3MwqkLDsifCyErrhcB985Z9WoqrqIUsxw8lijNOD3RkTYt1osdPYEzEVThx7no/7tow/O32g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rUOaUBMPdWkjAB7R5+Tv793l9stoIBNtJ1WspfhFyJQ=;
+ b=E9aTjpvU/xWr6mcnaHl1r+j3Ql6S0VuxGpC1JhcExyjEvqGlJukLvzBx1t+tYL0jMSy1ivqvSlDIr9U3b9c5i2zTV100k6bG3zacmYFl9lxVf+7zu3lZ4wBqSXcplzFmAqxs2FY7shjaIo8oLpu1OQPuATn7wWgfUdrdQIzem6FxN2igAogYnoKDmPYGfcyA9Fs4AKeOh4G09HshupJuROPIthS6KCMRvNuouZhjDacam+Makuw7ycIEcUvEyBjytg7byeaDgx5JYw+11zywuPuw5ker/9WHAj6RbGqCKTyYUHpc0DiE0yVAMQUOSDvhsfQH47G2ZHMLManWFLYGiw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rUOaUBMPdWkjAB7R5+Tv793l9stoIBNtJ1WspfhFyJQ=;
+ b=LIr/ye+8JtXqRYf0LeSjcOK34dlKXN+rPVhuoZGZETUSbTAJ11pWq+gNfPJzERj8zEDZPvvmQYDgChanvUW0aD8GaljDy7iyyffpJ1Uz1omKOD0eeXCENBrkoBbMcFjJ4wxhj0A9hdy2mkXXcBzUHaLJTPHmUD+LOvyX35s94lY=
+Received: from PH0PR07CA0108.namprd07.prod.outlook.com (2603:10b6:510:4::23)
+ by DS7PR10MB5165.namprd10.prod.outlook.com (2603:10b6:5:297::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Thu, 5 Feb
+ 2026 02:03:42 +0000
+Received: from CY4PEPF0000E9D7.namprd05.prod.outlook.com
+ (2603:10b6:510:4:cafe::ed) by PH0PR07CA0108.outlook.office365.com
+ (2603:10b6:510:4::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.13 via Frontend Transport; Thu,
+ 5 Feb 2026 02:03:28 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ CY4PEPF0000E9D7.mail.protection.outlook.com (10.167.241.70) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9587.10 via Frontend Transport; Thu, 5 Feb 2026 02:03:40 +0000
+Received: from DLEE203.ent.ti.com (157.170.170.78) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Feb
+ 2026 20:03:39 -0600
+Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE203.ent.ti.com
+ (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Feb
+ 2026 20:03:39 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE202.ent.ti.com
+ (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 4 Feb 2026 20:03:39 -0600
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61523dVe2147580;
+	Wed, 4 Feb 2026 20:03:39 -0600
+Message-ID: <7ae7f6a1-0ee1-4d56-b1d0-f038a7d22b4c@ti.com>
+Date: Wed, 4 Feb 2026 20:03:39 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Disable mmc Schmitt Trigger
+To: Markus Schneider-Pargmann <msp@baylibre.com>, Alexander Sverdlin
+	<alexander.sverdlin@gmail.com>
+CC: Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>,
+	Dhruva Gole <d-gole@ti.com>, Sebin Francis <sebin.francis@ti.com>, "Kendall
+ Willis" <k-willis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, <linux-kernel@vger.kernel.org>, Nishanth Menon
+	<nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo
+	<kristo@kernel.org>
+References: <20260106-topic-am62a-mmc-pinctrl-v6-19-next-v1-1-1190ac29aadb@baylibre.com>
+ <c47697b4-6ebb-4af9-be96-c964d990835d@ti.com>
+ <DFO764ES0FNP.1SUQK9R0EUUDQ@baylibre.com>
+ <1a91fd40-e814-4b4c-8914-d8f0c4768e07@ti.com>
+ <DG59D7WGM35A.1WNIIMNCQ8U3C@baylibre.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <DG59D7WGM35A.1WNIIMNCQ8U3C@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D7:EE_|DS7PR10MB5165:EE_
+X-MS-Office365-Filtering-Correlation-Id: acadbdb0-7351-40bb-b986-08de645ac881
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700013|1800799024|376014|7416014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?eUZqRzFrU0Y3T0R2bk84SjZjV2dBTXh0N1BRaUFYR2d1S2dzV3U0bkcyZkNR?=
+ =?utf-8?B?Nm9tRlcrUlhMZ0M2Q3RZbGhBNEx1YWRRbDZ0enJTUzJZQkZtUmRBNHZWUCsy?=
+ =?utf-8?B?dEtpaEViRE1vTXJMTzZ5MjRQK09nR1pGYU5JaHJqMGxueWVrc2o3amxpeUpy?=
+ =?utf-8?B?aU82ZWI2dDJ1MjdkYlZIWUsxaElvZzk5cWN2elRhNXBtbmpHdkUxUU9GUXpE?=
+ =?utf-8?B?NzJMNS9iN2xFVzhCVjlGdUV4aDZqcXlOR0oydDVaQ0pIZ3VwK3FVZU1kRmNz?=
+ =?utf-8?B?S0RUZkxadmZVR0NFWGVVSURNNGxOOGc3RC83eXBXMnN4aVZHUlNvWnpNdXZa?=
+ =?utf-8?B?TkNodjBuanM0MThJbEdmVWR0alJuemZBRnJpVlAzUll1ZE1MMWFSTlpvTFQv?=
+ =?utf-8?B?QlhSMGJ2VWI5bFJpK2I3bm9rQXc4NzdJc0kwcGZOeldjUEJqWDhGeGdlaDFs?=
+ =?utf-8?B?bXlKZFMwMGNNakE5VDlyenhPeUs1UEhkeHFQWDNhL05Ob0M0RUxXVVEwN3ov?=
+ =?utf-8?B?Q2FVVDhkbnFPSWlibUFnejB1aW55ZnNZTDJFTWZmSzcrc2pTQVhkU3BVdGRU?=
+ =?utf-8?B?QUZ0ZVFMdDJNelV4WFZrY2p2ZUFOZ2NiekZia0N5UzRtNS96S3c3T2VIQ3Fh?=
+ =?utf-8?B?R1VZZmx0REVyd1ljMm04RUl1c1NvS3dpa3JkQS9wSVI0d3FPNG0rZXZnUDhZ?=
+ =?utf-8?B?UWh1LzdQT0pORGVGT1J0ajdYdDJRRXovOGVwVnlGa1pkbnUxZEdETjIvRDJX?=
+ =?utf-8?B?YWxzNzkrYmRlN2RaaENyUEhKNWxEUUQ3NEpBdnlHWFluWWJua0dLZkdUT3V4?=
+ =?utf-8?B?S2RuSVIwcU5uNlZjSWh4cndwZXBidVdyWC8wYTYxa2JzRU14ckorUHdPelh0?=
+ =?utf-8?B?Z1UxWnUyaWY0OWpsVlF6UVg2djFDU1ducElxZnd0SFRXRXRNWmpWWkhjYkxC?=
+ =?utf-8?B?MUUranU1YkxTMmNhSms4OVIvVmtQN2F3SFhTT3h0cHZKYTREbDF4Z083L0hB?=
+ =?utf-8?B?WWRxZUZvS1NFZURqcjVOSDF3VS9KN0g2WmFDamx6WW9jYVQzam1lWlBCTW8x?=
+ =?utf-8?B?UVkyWHJkWTdBRFNvVDlUdzdCVFdFZk9wdVpVUmVVMUw3c1pCaHlINS9zbExU?=
+ =?utf-8?B?TTZaeVA0MzZxQmV6b1JqY2JnYkQvcmVRdXBDTUczRWpnbFJqUE1MWVh1eWJa?=
+ =?utf-8?B?M0hxVmlpWXZCcG9DTjNPWFJzVGI0dUlYbVZOT3RRN1F4UHNJZnFWVnpEL3gy?=
+ =?utf-8?B?NTdJaHkvVndSaG90dHRqTFY5ajkzRDRMOTNPL21ESEdOUGVLenVSM3JOZ0Fk?=
+ =?utf-8?B?TmJUZzFIWndjL3pndlU2TWJHbzMwVHNZcDB2N1pKZnRRdERBbUZIMVNoNDEy?=
+ =?utf-8?B?SWhOanJlK0xpdis4YkU1QUhKYmdVS0VUSjQydFhob1Zkbmtka2ZYM2NGbDlX?=
+ =?utf-8?B?ZEhhTUpUT3FjbTE5RDE3RS9rQWlsaG5FeXIyUGttZHp2R1hTOTJ6TjRTQTVB?=
+ =?utf-8?B?eG1uaStOckxIV1hiSG0wbzR5VFN1czNESndYUGkvTGVXcGkvcnE5eGJSOUwv?=
+ =?utf-8?B?b2d3MlhPOURtcUZ2NnoycXdsN3hYYWZhcFNicElzQlZKV0JWdm9tNXk5WVBP?=
+ =?utf-8?B?enFUTFllazdZS21aeHpEYWdJNmN6R0RVbTQ0Vm0vSWU0TlpOOEhZdG1uS2Ix?=
+ =?utf-8?B?NTBIelJ2cUs5andrZzM4TlY5ZDhXSjRUUFBuVkF3a2J4RmtuWmIwOTlLSUZh?=
+ =?utf-8?B?T2hXLzIra29vSy9JYkVPcFl1VWl6UkFuanpjN2lWdVVRMzNYRnNnOXpoRzNR?=
+ =?utf-8?B?QU1oWWw3cG4rUmZ4MTBKTWRGa1d1TEdsMGJYZENmSld1SmVacEZ0QWkrN1dJ?=
+ =?utf-8?B?MUFhRUFYOStFKys0bjJPaHNPMUlCOTNBOHdyL3R6aHFZYXFWM1o5ckhoTUt1?=
+ =?utf-8?B?bURIbUJzblIzb3VBMW12dU9yVktxNzdnSis3MlJGZGM5d0JZUThIZHBNSG13?=
+ =?utf-8?B?bzM2WHFGZkdKak0xZ0g4V2tpNlF1Y3dkYnFQUFN1QUJ6TU1DbHQ5WEdLZThw?=
+ =?utf-8?B?aGpMZHZOZWhGMG1rSmxIS3NiSElKN1JzWmRnbmVsYjR3SkRuUHM2cEh2NzZD?=
+ =?utf-8?B?U0dKb2FZdWN3Q2VpcW5CcUd0bDQ4Ym1HOW1yTERvTHZzcHNieUlVYUgvcURP?=
+ =?utf-8?Q?v04k3bTtekQWk3XCcVRIxtE=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(1800799024)(376014)(7416014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	sGikcTYdYriwrQy6JKzNSKRPQb5WWFGTSxmrbcDB6R5AcrmC2URbAwbYurvtBkIfieRE0Qa0spayQ//vc11hqhS3rwONTUhXs5cmG4+Ai//SUqaC0jTzTutoexFhKdwqEd1cRrmjo4ADRg4cM7igkkX32vPF2S3Wt5iHnIQoDzCkfUEalj6xktrmRSB06WAgJMPgkG0FwgkAtC42wwM2SQBZkj3RVxnb3yYmLiKEdayfj471qiN9hi59lkU1yTlH1uhICOS3Y4H1GCqqxFOo0rp9QC7cG/omdNM/mX3/hFbRwGvsNtVCorHFxML9KDI5jbok0vPiA4ujQTG0WRYEtCzxZ99stUprBhqWEie/L1vvje4J+9B9AdSPZacMyZXCPQ5yc90E2ruFkO06bsiBa8Oo0tRH0aEJhBcxxC86U8fRC/Dw7h1mISaWyFGiW+LG
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2026 02:03:40.6103
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: acadbdb0-7351-40bb-b986-08de645ac881
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000E9D7.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB5165
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[foss.st.com,synopsys.com,nuvoton.com,st.com,lists.infradead.org,vger.kernel.org,lists.ozlabs.org,st-md-mailman.stormreply.com,gmail.com,lunn.ch];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-262826-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-262827-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_TO(0.00)[baylibre.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:dkim,ti.com:url,ti.com:mid];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[jm@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lunn.ch:email]
-X-Rspamd-Queue-Id: 9043CEDBCD
+	DKIM_TRACE(0.00)[ti.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: BC067EDD76
 X-Rspamd-Action: no action
 
-Add support for Gigabit Ethernet on Nuvoton MA35 series using dwmac driver.
+Hi Markus, Alexander,
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Joey Lu <a0987203069@gmail.com>
----
- drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 ++
- drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
- .../ethernet/stmicro/stmmac/dwmac-nuvoton.c   | 173 ++++++++++++++++++
- 3 files changed, 186 insertions(+)
- create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
+On 2/3/26 4:35 AM, Markus Schneider-Pargmann wrote:
+> Hi Judith,
+> 
+> On Wed Jan 14, 2026 at 11:04 PM CET, Judith Mendez wrote:
+>> Hi Markus,
+>>
+>> On 1/14/26 3:16 AM, Markus Schneider-Pargmann wrote:
+>>> Hi Judith,
+>>>
+>>> On Tue Jan 13, 2026 at 1:29 AM CET, Judith Mendez wrote:
+>>>> On 1/6/26 10:22 AM, Markus Schneider-Pargmann (TI.com) wrote:
+>>>>> Remove Schmitt Trigger from mmc pins. With Schmitt Trigger enabled
+>>>>> u-boot SPL is not able to read u-boot from mmc:
+>>>>>
+>>>>>        Trying to boot from MMC2
+>>>>>        Error reading cluster
+>>>>>        spl_load_image_fat: error reading image u-boot.img, err - -22
+>>>>>        Error: -22
+>>>>>        SPL: Unsupported Boot Device!
+>>>>>        SPL: failed to boot from all boot devices
+>>>>>        ### ERROR ### Please RESET the board ###
+>>>>>
+>>>>> I bisected this issue between u-boot v2025.10 and v2026.01 and found the
+>>>>> devicetree merge to be the problem. At a closer look I found the
+>>>>> k3-pinctrl.h changes. Disabling the Schmitt Trigger fixes the u-boot SPL
+>>>>> failure to read from mmc.
+>>>>
+>>>> I have tested 4 AM62A SK boards and I cannot replicate the issue
+>>>> you are seeing. I do not see an issue with Schmitt Trigger in U-boot
+>>>> nor Linux /:
+>>>
+>>> Thanks for testing.
+>>>
+>>>> Can you please run a quick tap sweep on MMC1 and MMC0 interfaces like
+>>>> so? https://gist.github.com/jmenti/f4a73a8323e44bf717c6d2c528c499ca
+>>>>
+>>>> This will give me an idea if whether we should be talking about
+>>>> revisiting characterization with ST_ENA=1.
+>>>
+>>> The patch was a bit broken, but I think I managed to apply it to
+>>> v2026.01 as it was supposed to be. (master currently doesn't boot even
+>>> SPL, I don't have time right now to debug that).
+>>
+>> as Nishanth, mentioned, master is missing two patches [0][1]
+>>
+>>>
+>>> I attached the boot log. It does boot with your patch. Also can this be
+>>> an issue with different SD cards?
+>>
+>> Something does not quite add up,
+>>
+>> Can you try the following 2 commands?
+>>
+>> # mmc dev 1
+>> # md.w 0xfa0810c
+> 
+> Finally here is the output from boot and executing these commands. I am
+> now on v2026.04-rc1 with your sweep patch.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 07088d03dbab..861f1c6c14f1 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-+++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-@@ -132,6 +132,18 @@ config DWMAC_MESON
- 	  the stmmac device driver. This driver is used for Meson6,
- 	  Meson8, Meson8b and GXBB SoCs.
- 
-+config DWMAC_NUVOTON
-+	tristate "Nuvoton MA35 dwmac support"
-+	default ARCH_MA35
-+	depends on OF && (ARCH_MA35 || COMPILE_TEST)
-+	select MFD_SYSCON
-+	help
-+	  Support for Ethernet controller on Nuvoton MA35 series SoC.
-+
-+	  This selects the Nuvoton MA35 series SoC glue layer support
-+	  for the stmmac device driver. The nuvoton-dwmac driver is
-+	  used for MA35 series SoCs.
-+
- config DWMAC_QCOM_ETHQOS
- 	tristate "Qualcomm ETHQOS support"
- 	default ARCH_QCOM
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-index c9263987ef8d..4ade030b634f 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-+++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-@@ -20,6 +20,7 @@ obj-$(CONFIG_DWMAC_IPQ806X)	+= dwmac-ipq806x.o
- obj-$(CONFIG_DWMAC_LPC18XX)	+= dwmac-lpc18xx.o
- obj-$(CONFIG_DWMAC_MEDIATEK)	+= dwmac-mediatek.o
- obj-$(CONFIG_DWMAC_MESON)	+= dwmac-meson.o dwmac-meson8b.o
-+obj-$(CONFIG_DWMAC_NUVOTON)	+= dwmac-nuvoton.o
- obj-$(CONFIG_DWMAC_QCOM_ETHQOS)	+= dwmac-qcom-ethqos.o
- obj-$(CONFIG_DWMAC_RENESAS_GBETH) += dwmac-renesas-gbeth.o
- obj-$(CONFIG_DWMAC_ROCKCHIP)	+= dwmac-rk.o
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
-new file mode 100644
-index 000000000000..dd233e0a32ee
---- /dev/null
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
-@@ -0,0 +1,173 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Nuvoton DWMAC specific glue layer
-+ *
-+ * Copyright (C) 2025 Nuvoton Technology Corp.
-+ *
-+ * Author: Joey Lu <a0987203069@gmail.com>
-+ */
-+
-+#include <linux/mfd/syscon.h>
-+#include <linux/of_device.h>
-+#include <linux/of_net.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/stmmac.h>
-+
-+#include "stmmac.h"
-+#include "stmmac_platform.h"
-+
-+#define NVT_REG_SYS_GMAC0MISCR  0x108
-+#define NVT_REG_SYS_GMAC1MISCR  0x10C
-+
-+#define NVT_MISCR_RMII          BIT(0)
-+
-+/* Two thousand picoseconds are evenly mapped to a 4-bit field,
-+ * resulting in each step being 2000/15 picoseconds.
-+ */
-+#define NVT_PATH_DELAY_STEP     134
-+#define NVT_TX_DELAY_MASK       GENMASK(19, 16)
-+#define NVT_RX_DELAY_MASK       GENMASK(23, 20)
-+
-+struct nvt_priv_data {
-+	struct platform_device *pdev;
-+	struct regmap *regmap;
-+};
-+
-+static struct nvt_priv_data *
-+nvt_gmac_setup(struct platform_device *pdev, struct plat_stmmacenet_data *plat)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct nvt_priv_data *bsp_priv;
-+	phy_interface_t phy_mode;
-+	u32 macid, arg, reg;
-+	u32 tx_delay_step;
-+	u32 rx_delay_step;
-+	u32 miscr;
-+
-+	bsp_priv = devm_kzalloc(dev, sizeof(*bsp_priv), GFP_KERNEL);
-+	if (!bsp_priv)
-+		return ERR_PTR(-ENOMEM);
-+
-+	bsp_priv->regmap =
-+		syscon_regmap_lookup_by_phandle_args(dev->of_node, "nuvoton,sys", 1, &macid);
-+	if (IS_ERR(bsp_priv->regmap))
-+		return ERR_PTR(dev_err_probe(dev, PTR_ERR(bsp_priv->regmap),
-+				     "Failed to get sys register\n"));
-+	if (macid > 1) {
-+		dev_err(dev, "Invalid sys arguments\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (of_property_read_u32(dev->of_node, "tx-internal-delay-ps", &arg)) {
-+		tx_delay_step = 0;
-+	} else {
-+		if (arg <= 2000) {
-+			tx_delay_step = (arg == 2000) ? 0xf : (arg / NVT_PATH_DELAY_STEP);
-+			dev_dbg(dev, "Set Tx path delay to 0x%x\n", tx_delay_step);
-+		} else {
-+			dev_err(dev, "Invalid Tx path delay argument.\n");
-+			return ERR_PTR(-EINVAL);
-+		}
-+	}
-+	if (of_property_read_u32(dev->of_node, "rx-internal-delay-ps", &arg)) {
-+		rx_delay_step = 0;
-+	} else {
-+		if (arg <= 2000) {
-+			rx_delay_step = (arg == 2000) ? 0xf : (arg / NVT_PATH_DELAY_STEP);
-+			dev_dbg(dev, "Set Rx path delay to 0x%x\n", rx_delay_step);
-+		} else {
-+			dev_err(dev, "Invalid Rx path delay argument.\n");
-+			return ERR_PTR(-EINVAL);
-+		}
-+	}
-+
-+	miscr = (macid == 0) ? NVT_REG_SYS_GMAC0MISCR : NVT_REG_SYS_GMAC1MISCR;
-+	regmap_read(bsp_priv->regmap, miscr, &reg);
-+	reg &= ~(NVT_TX_DELAY_MASK | NVT_RX_DELAY_MASK);
-+
-+	if (of_get_phy_mode(pdev->dev.of_node, &phy_mode)) {
-+		dev_err(dev, "missing phy mode property\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	switch (phy_mode) {
-+	case PHY_INTERFACE_MODE_RGMII:
-+	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
-+		reg &= ~NVT_MISCR_RMII;
-+		break;
-+	case PHY_INTERFACE_MODE_RMII:
-+		reg |= NVT_MISCR_RMII;
-+		break;
-+	default:
-+		dev_err(dev, "Unsupported phy-mode (%d)\n", phy_mode);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (!(reg & NVT_MISCR_RMII)) {
-+		reg |= FIELD_PREP(NVT_TX_DELAY_MASK, tx_delay_step);
-+		reg |= FIELD_PREP(NVT_RX_DELAY_MASK, rx_delay_step);
-+	}
-+
-+	regmap_write(bsp_priv->regmap, miscr, reg);
-+
-+	bsp_priv->pdev = pdev;
-+
-+	return bsp_priv;
-+}
-+
-+static int nvt_gmac_probe(struct platform_device *pdev)
-+{
-+	struct plat_stmmacenet_data *plat_dat;
-+	struct stmmac_resources stmmac_res;
-+	struct nvt_priv_data *priv_data;
-+	int ret;
-+
-+	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-+	if (ret)
-+		return ret;
-+
-+	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-+	if (IS_ERR(plat_dat))
-+		return PTR_ERR(plat_dat);
-+
-+	/* Nuvoton DWMAC configs */
-+	plat_dat->core_type = DWMAC_CORE_GMAC;
-+	plat_dat->tx_fifo_size = 2048;
-+	plat_dat->rx_fifo_size = 4096;
-+	plat_dat->multicast_filter_bins = 0;
-+	plat_dat->unicast_filter_entries = 8;
-+
-+	priv_data = nvt_gmac_setup(pdev, plat_dat);
-+	if (IS_ERR(priv_data))
-+		return PTR_ERR(priv_data);
-+
-+	ret = stmmac_pltfr_probe(pdev, plat_dat, &stmmac_res);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id nvt_dwmac_match[] = {
-+	{ .compatible = "nuvoton,ma35d1-dwmac"},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, nvt_dwmac_match);
-+
-+static struct platform_driver nvt_dwmac_driver = {
-+	.probe  = nvt_gmac_probe,
-+	.remove = stmmac_pltfr_remove,
-+	.driver = {
-+		.name           = "nuvoton-dwmac",
-+		.pm		= &stmmac_pltfr_pm_ops,
-+		.of_match_table = nvt_dwmac_match,
-+	},
-+};
-+module_platform_driver(nvt_dwmac_driver);
-+
-+MODULE_AUTHOR("Joey Lu <a0987203069@gmail.com>");
-+MODULE_DESCRIPTION("Nuvoton DWMAC specific glue layer");
-+MODULE_LICENSE("GPL");
--- 
-2.43.0
+Thanks for sending over the tap sweep. I compiled a comparison table
+here to show a bit of data for the u-boot tuning step: 
+https://gist.github.com/jmenti/5d42f1e43fb357083eaa813cfee484a8
+
+Based on the data I can conclude the following:
+1. you seem to have more errors than I do
+2. there seems to be an issue with the chosen final tap setting
+3. the chosen final tap setting should still have worked for you
+but did not.
+
+For #2, something in the tuning results seems off so let me investigate
+this on my end and Ill get back.
+For #3, will have to discuss this internally & test a couple more 
+things, then come back with more information.
+
+Meanwhile, I am interested to see what are the tap sweep results for the
+failing Verdin board, if those can be sent as well, that would be great
+info.
+
+~ Judith
 
 
