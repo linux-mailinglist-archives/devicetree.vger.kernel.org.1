@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-262901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262902-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EMeMAIBchGmn2gMAu9opvQ
-	(envelope-from <devicetree+bounces-262901-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:01:52 +0100
+	id +M+CBVdfhGng2gMAu9opvQ
+	(envelope-from <devicetree+bounces-262902-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:13:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38206F035B
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:01:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CD1AF06BA
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 10:13:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5F3B2300EBD9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 08:57:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 09E5B30752A4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 09:01:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2B539527E;
-	Thu,  5 Feb 2026 08:56:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9854F36E48C;
+	Thu,  5 Feb 2026 08:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VEqnGVOA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RZGrsfJD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3CF38F92B;
-	Thu,  5 Feb 2026 08:56:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B462BEC5F;
+	Thu,  5 Feb 2026 08:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770281808; cv=none; b=f1EI9nP/lMOwKTEewpOcLYSOyxyy06GOG7ns5Gvq2c4h1d4sTIYu+T/+1qWrxyHGt+kpGwgaRdFetuaPp1SWdPRrtW4+HvthJ4eCq3/Wh++CpYk0pUAiafYRQ9R3jb/bAif6JHp3AjIECVs2pDPUUInJbhBozEpDG1LZeuiUSOg=
+	t=1770281902; cv=none; b=H48/fev+b/4AUnzdIxV9i0LShTdOjmuefqKuUQ0MTAHRDfCLn1KCcZZk/bV9TIeOqqgME4zaxARNezFtfwZn+JGiHbsxCEFz8RAykCQQ78I4nXiJdZdOMSe8SFMtsrr5+p7IJePynUXEXTgqsO5Jg/19wSeud4qXLwetCp+EY6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770281808; c=relaxed/simple;
-	bh=EpeKVSUECcB0qRTU/0YGWj2Tn1oofcM/dtc2qrBjOCE=;
+	s=arc-20240116; t=1770281902; c=relaxed/simple;
+	bh=vEzXCJoRBGkhhZKBFWIH4fhYfwPKyl9r9lvIYdyhKiY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YfkvG89GMLwSBQdfSPbGMgQTUi1Ta9VPz/ofOEmL0VLAINZBFuYWm2L8spddznf6I0Rt20gSEM6c5djEWQwWlNLkTgXXe6gwa3I8GYuZYP5Zq3XK6RPC1jk7XJrWaKhFl9EFTrgyPKNsLmgqsBAZXYM9E3QHTj1Al3BpuODxUBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VEqnGVOA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E1D4C4CEF7;
-	Thu,  5 Feb 2026 08:56:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MfiCdDD/R3SSn3Q7Ie05WH+X5A6iqAKXkML6lx/CGGz8BmyXNBrUGsJs3lYNqNe8UJvMOOXdV5YO/64KfGXwByIeW1P/D3OqyAKEYhdFiFJKVgugJYLZyXrOViZSCpz/KxuaM7fyhzZW6S4+p321+l8QNZX21/OTzRXLDstzck8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RZGrsfJD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7EBAC4CEF7;
+	Thu,  5 Feb 2026 08:58:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770281807;
-	bh=EpeKVSUECcB0qRTU/0YGWj2Tn1oofcM/dtc2qrBjOCE=;
+	s=k20201202; t=1770281902;
+	bh=vEzXCJoRBGkhhZKBFWIH4fhYfwPKyl9r9lvIYdyhKiY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VEqnGVOAoESTGAH1kB0Oty8u2WWao6axm3BidFtcpHznfrpYXSrc/a7v55Q6z+DGh
-	 iOcCxtSKu6pINMwf9h3nbdFgopXZWj2ZtBocy+n/FP3+gEbCio2NJuZPKA4H4L42Qj
-	 wcLsE38wpK1r1L1QRNrkPvyVM0/8ZTpqcfmVeLnMSZ8hAs9iI8ILQe+gJ8ugHtX3ZV
-	 k6UKX/HQ7GcLOlYspbbkhddXgkOtnY3dglQ1jZtlFDbbOF9/yk+8tDOvwkWIgLUwdh
-	 WDQg1xdSnzDg0kIHnBJdRRlIngHV33u6pFR44VxvoSp7Kdy3aJjFf/3Z6QE6XposNS
-	 S5GOd9t+tLwkw==
-Date: Thu, 5 Feb 2026 09:56:45 +0100
+	b=RZGrsfJDGPjlUvn2ynhz01H4syPE8Eq7ODg7Kmdm/Gbe0Ni/Xxpzf/JSUTvazBpTO
+	 BvrFckaeowWBMv4PtddX9mUBUrcZwUSjQdAvNZ8+MrWx79QNHoUub6aTJFzA4JKm7H
+	 eEiM622zW7+H/x7kXZU2HlwXFLAVdR4/h/GTZi9N8s0zR2IWV41ss5NFCprcZVcP5J
+	 UGD7p6qMP9pQvepu/RVkQY99qjZvSEAGmXPH1HMzkxd2X/sG1CtPa42uSSxKOoWKap
+	 56dEbqUHNCP3gZLwLq221QW9beRFj1Pe92hF+cXyhJuG5DOafFUeKxrgxmwWQBGMI+
+	 Ln2vcvW9gv/yQ==
+Date: Thu, 5 Feb 2026 09:58:20 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Ryan Chen <ryan_chen@aspeedtech.com>
 Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
@@ -54,11 +54,9 @@ Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
 	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-kernel@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-aspeed@lists.ozlabs.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 4/4] dt-bindings: interrupt-controller: aspeed: Remove
- legacy AST2700 interrupt binding
-Message-ID: <20260205-neat-honored-monkey-74d37a@quoll>
+Subject: Re: [PATCH 0/4] Add AST2700 INTC0/INTC1 support
+Message-ID: <20260205-intrepid-vengeful-deer-14e2eb@quoll>
 References: <20260205-irqchip-v1-0-b0310e06c087@aspeedtech.com>
- <20260205-irqchip-v1-4-b0310e06c087@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +65,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260205-irqchip-v1-4-b0310e06c087@aspeedtech.com>
+In-Reply-To: <20260205-irqchip-v1-0-b0310e06c087@aspeedtech.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -79,7 +77,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262901-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-262902-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -96,26 +94,35 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 38206F035B
+X-Rspamd-Queue-Id: 4CD1AF06BA
 X-Rspamd-Action: no action
 
-On Thu, Feb 05, 2026 at 02:07:22PM +0800, Ryan Chen wrote:
-> Remove the legacy AST2700 interrupt controller Devicetree binding.
+On Thu, Feb 05, 2026 at 02:07:18PM +0800, Ryan Chen wrote:
+> This series replaces the existing AST2700 interrupt controller binding
+> and driver. The original implementation was focused on a narrow,
+> PSP-centric view and could not fully describe the complexity of the
+> AST2700 interrupt fabric:
 > 
-> The legacy binding was limited to a PSP-centric view of the interrupt
-> architecture and cannot describe interrupt routing and protection for
-> the full AST2700 system.
+> * It was focused primarily on the perspective of the Primary Service
+>   Processor (PSP).
+> * It could not handle interrupt route configuration.
+> * It could not handle interrupt register protection.
 > 
-> It is superseded by the new ASPEED AST2700 INTC0/INTC1 binding, which
-> describes the interrupt controllers at the block-function level.
+> By contrast, the new bindings and drivers describe the interrupt
+> controllers at the block-function level and provide a unified binding
+> design that can be used from the perspective of any of the four
+> integrated processors (the Primary, Secondary and Tertiary Service
+> Processors, and the Boot MCU):
 
-You just added all this ~year ago. I also do not understand how multiple
-previous revisions of patchset [1] were just ignored. No versioning, no
-references.
+Where and how did you address last feedback given to you here:
 
-This is either unprofessional or just wasting our time.
+https://lore.kernel.org/all/20250814-auspicious-thundering-jaybird-b76f4f@kuoka/
 
-[1] https://lore.kernel.org/all/20251030060155.2342604-1-ryan_chen@aspeedtech.com/
+"This binding is not improving. You are not responding to REAL problems
+described to you. What's more, you send it in a way making our life
+difficult, look:"
+
+So how did you make our life easier now?
 
 Best regards,
 Krzysztof
