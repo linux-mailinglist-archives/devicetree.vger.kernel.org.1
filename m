@@ -1,218 +1,224 @@
-Return-Path: <devicetree+bounces-263029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263031-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oJnWFy+ehGmI3wMAu9opvQ
-	(envelope-from <devicetree+bounces-263029-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 14:42:07 +0100
+	id 2GzaK6qehGmI3wMAu9opvQ
+	(envelope-from <devicetree+bounces-263031-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 14:44:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C598DF36FA
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 14:42:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15858F3775
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 14:44:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1DAF330416FC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 13:39:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 14C67306CED9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 13:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA586238C1B;
-	Thu,  5 Feb 2026 13:39:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65AB42367D5;
+	Thu,  5 Feb 2026 13:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Itbsta7c"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="IPpZlLhA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010069.outbound.protection.outlook.com [52.101.69.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5E1922FE11;
-	Thu,  5 Feb 2026 13:39:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770298751; cv=none; b=R4/trLZl0oWqbZcZRQ+GHeKu3bgxn/iVcWBgCwsbwjujKuL9ryOAjmjv/ByMc44reIgidmiUn/TorddODe5dg5OBnDbeggGfpJAiVS9myWTPRywh6rubgbQnwa4OpF1EEwyTteL05QgkjXryXnA4fEl8qQQMuBUq76PNi7yUnDM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770298751; c=relaxed/simple;
-	bh=wN0q/0KPZHRLq6xmnBKir/PT2rWwEvSZPoOZn/Yc3JY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lHAfjNsJcG0sFCV0CFqRLdtMC1DTSUU+8d09bDipy30PwjObZzZIVZldViKEBS1/V3jw1ebyVWL3+Jnedq6/LSPHvaA5dyKrANxASJWUuZquBUtfBoFidSCFfcVEIIzgWyfC2AVAMiv4yhEgWrb1/r9A4CBdBVyvQt3xjKsrsMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Itbsta7c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C2A7C4CEF7;
-	Thu,  5 Feb 2026 13:39:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770298751;
-	bh=wN0q/0KPZHRLq6xmnBKir/PT2rWwEvSZPoOZn/Yc3JY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Itbsta7c4LVDCkw8q4sdyBfuc9CWpzGL8pDHY3+8ngZ6E9HtvZPgHZvoy/oeO8oLY
-	 Mzju2TuVb9HWvRTO4sF/tk2gwDWwhZxgcvpRDvsJXzSu/bYBb/Z7sbNzxVHWeC0EoW
-	 ptvajtV+u1sUrx2wdn3xtti2r04+0V8xylRJ1BAoW8FCFOauM4VmgwD4EHe2JCz7HE
-	 4zcnAyAIhOrAdubW4GnWT5VRW+/LHmhcFl3y5uyct4CevpT1sVXaD3zCS2ciMRb2lU
-	 /y+5Y4LRKkNYruJM6vA/Tot8r5puBHDdXVNLxmC/lU0Leq64ZO48lVsad9ApgQ3mkO
-	 hbTs8f4wVsknQ==
-Date: Thu, 5 Feb 2026 14:39:09 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Biju <biju.das.au@gmail.com>
-Cc: Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 2/9] dt-bindings: interrupt-controller:
- renesas,rzg2l-irqc: Document RZ/G3L SoC
-Message-ID: <20260205-polar-gifted-lionfish-ef8a8d@quoll>
-References: <20260204180632.249139-1-biju.das.jz@bp.renesas.com>
- <20260204180632.249139-3-biju.das.jz@bp.renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C72A422A4D6;
+	Thu,  5 Feb 2026 13:39:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770298786; cv=fail; b=YLWUd7dgbh86lXhDfFDgzBQSQLuGagOmc8PBWv1waMxujr2HBOBq/fpCPyff9fJdChc5qLTYs0GkZddgbJZ7yL48+nZ7nXbpobTJlf/1Y9U3gDt9RaTXf7W/xUk3YHeM/Abvnz/4Q86xx47c1QzZXlfJuXZtOrLGvBOeDq7u/BQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770298786; c=relaxed/simple;
+	bh=T7drfV6TdzdB4WZkfdezf8nURfwnCm1b8ccTD/2AQ50=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=IIb3rQysm4CoM+fQhdR2BarVLCRnvdKGaUp6h5jLtS82pvr1esksSxc0RSf3O0BtqhiKDMqguUgR1k//1Tzh6dWvxleqjOb1AQAu7vRxsOlovxjLbQnzTgnFagzVCmgigN3aSuQd6q+XDZDp0CnYCgTR63USuTriD/pVGY3wjIc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=IPpZlLhA; arc=fail smtp.client-ip=52.101.69.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DX5qGLn4AxAYbbgDjS6R8Avr8MdpH/vFCbB/Ntsjtc16dvPka8i81zx2S2zGyohaj0tm00Z5jJvuOShz5au7HbF+rUp4CWRMI9iZvBlPd4PsIpwlcze7Uh50cfOJIBolY0Mjhz/QTIGOnnU+JtGlpC8GhdNlYLxbtiSetNV7vLjQ+BzJEmObSqLye0g0P8mOv1nF8TQ+sR9s3uLBadQ+ZLH3WtShUBurLpViwcVUW5ne90//Vhzr5iRnJXlkCPB9kxj8Mo12L5hgvglkOvMAu/dqaEQ+esHKzOgdhech87IkPpie0Y2oqhSkTCo80cBvQXvhOw0ulZJ+4pwwSNRa9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=388WzPcc1qexD/0AEeyI3mTDP+gdBLVPlhckg9V1mn0=;
+ b=gzGDTrAenM1DdprdgVFJMukmKwtTd/g7yzmaPBxdNbQmyQPR7sDj0WujH5kvx1RkMi7TQ+KjPbVe927fSglsM3OtvGvrXRfFlstHCEVtjYGxXPh9OcI+wsVQYax8lEqvZuASKaydu0DlyhEv7CaPqlLGlXwENDzrGmV2IAZPj9OSzyDN/Y3hDiJORLTO7ksBhiPrkSnRKBarnG6gHlKgcWsLNcqKBBeoAS69uJ4nzGF7O8Yy8nOujCn5RiXSb/84gz5wW64oEM71Wg48WG5i+NtgWNx35horfRl45n8SZGt/MS1qBni9aXBUceioERBsEdA+h+SDccrzRFYT9X7uwA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=388WzPcc1qexD/0AEeyI3mTDP+gdBLVPlhckg9V1mn0=;
+ b=IPpZlLhANU9bhGXDMtK4WOH7H/fciTpv45dl3w5xwbeI8m85nKYs9oc4epusjPijIFYgXmgUKee4z/X82TTUiRUgd9jmX3GSOh1voYaCfIhA0ZA3J4vvAWhMM82Yft+uvn4IUeQ2BP0iXh1Dxo39Ag7TGFNBGQA10Thq6rsH36C8Z5cd7PpC8m0LaKTKvN4n48elSXN+qRLz9bGHXV9uCAvtif3dTDyhxVi7Wn3/NziMb6VqzFyRGBEnfsofcEguvGwB0eMkSE3apKMVtUZEx1XQKbl18LcndG0oY+JIYNMShkLPkJhzzVxN79F5252LjiaRiRIV8cKFyNjkGYiIYQ==
+Received: from AM6PR10CA0050.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:209:80::27)
+ by DB5PR10MB9737.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:651::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.12; Thu, 5 Feb
+ 2026 13:39:43 +0000
+Received: from AMS0EPF00000191.eurprd05.prod.outlook.com
+ (2603:10a6:209:80:cafe::e9) by AM6PR10CA0050.outlook.office365.com
+ (2603:10a6:209:80::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.13 via Frontend Transport; Thu,
+ 5 Feb 2026 13:39:43 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.60)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ AMS0EPF00000191.mail.protection.outlook.com (10.167.16.216) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9587.10 via Frontend Transport; Thu, 5 Feb 2026 13:39:42 +0000
+Received: from STKDAG1NODE1.st.com (10.75.128.132) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Thu, 5 Feb
+ 2026 14:41:22 +0100
+Received: from localhost (10.252.13.241) by STKDAG1NODE1.st.com
+ (10.75.128.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Thu, 5 Feb
+ 2026 14:39:42 +0100
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+Subject: [PATCH 0/3] Enable display support for STM32MP257F-DK
+Date: Thu, 5 Feb 2026 14:39:39 +0100
+Message-ID: <20260205-master-v1-0-fe6399aa3aab@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260204180632.249139-3-biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJudhGkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDIwNT3dzE4pLUIl0LQ0sTA1PL1CQzEzMloOKCotS0zAqwQdGxtbUADiy
+ h1VgAAAA=
+X-Change-ID: 20260205-master-8194059eb646
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: Philippe Cornu <philippe.cornu@foss.st.com>, Yannick Fertre
+	<yannick.fertre@foss.st.com>, =?utf-8?q?Rapha=C3=ABl_Gallais-Pou?=
+	<rgallaispou@gmail.com>, <devicetree@vger.kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE1.st.com
+ (10.75.128.132)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS0EPF00000191:EE_|DB5PR10MB9737:EE_
+X-MS-Office365-Filtering-Correlation-Id: deeb6cfc-86d9-44b9-94f8-08de64bc04b0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?emRPK3VSOFVUeElhbzhERnVYN3BtMkJCRUtyRzExMnZNd3JUS3dqWVVPYUo5?=
+ =?utf-8?B?Z0tFSjdDWnhzMC9EQlhWVitJLzFKaUVheURxdldhakVHQ0Vvck5ZTHQ4ZlJU?=
+ =?utf-8?B?RFJWeHQyb0hvRTdoYjlQODBQb0FKSDJUVEtXZ3VRaHhKeE5rUm1FRFFwWndZ?=
+ =?utf-8?B?bTljckpFSlZYamxRZ1NIRUsvalJvU1BGVDVlOWkveUVpMjB6WWYwWmR3YlRj?=
+ =?utf-8?B?RlBhV1BoeEJRMTNqZ2JvZHhCVW1DcEtrazF1eFFxeGtnTzRjNG9wbkF5WCtK?=
+ =?utf-8?B?VmxuRjVZSE1BRnpoWEs4c3BHTG1qRWloVWFIU21vdUZQTXdCemJRaG1ncDhS?=
+ =?utf-8?B?NU82ejZiMFJROCtVUlcreG9ITEtmLzU5aGMvcjdjZXpNVnJIVkVsQkRyWXBO?=
+ =?utf-8?B?VGVGZThWdkFHdXd0dWhsaU5DNXB5NmErVlRDcjhLNVFMcnBBcGc3VVM0N003?=
+ =?utf-8?B?ZEJQeUVhQ0JiaG8rYzdCZUtWY25NUUkyRmR1K2Fmd1ppKzlYWnNETzQ0bmhZ?=
+ =?utf-8?B?aTFzZFZ4a0t0ejBOWEN5MTQ0MEwzZW5jaHRHdWJROUNKendkalhTMUJSK3Qy?=
+ =?utf-8?B?UXJyU3hOV0RNOXRtVTBLYUd1M2pEc0JKWVlGQ1RqaUpnSnh4NUdVYW9tUzVU?=
+ =?utf-8?B?UHFueFRXVW5WVXpiYmJXaXJ2ZHdrVE9UWXZDcjFmU0g0bGJrV3VCemFlTk1w?=
+ =?utf-8?B?b3NmcElJOWk4cTBGUXVSa1lSdHl1RE0yMjRjaENQdzltR1NVTWNsRlAyc1ln?=
+ =?utf-8?B?WGFkTzdGUk5RalJRbmwxbEhjMUNtdm5IWmF3QU5TT2J1QnhwckIrUGQyaFh0?=
+ =?utf-8?B?MXVoblhDQnZZd1ZSUTdWWER0NUI1aUpPSStjOEcrRm54bWp6RFc5NXpSQmRu?=
+ =?utf-8?B?Sm51MHAzWFZjQ3Uxb3p1SSs2NEtCU2EyNktlNjJLNzdhSFArSEFQbGRpeVQ4?=
+ =?utf-8?B?N1haWEd3ai8zb3pDNG5PTzBqdGlTUXR5S1BvOEMwR1BsUW5sOU01OHRjWHZW?=
+ =?utf-8?B?eWdkN2I3TVY3RnJJZlFzL0ZVeXNHQWR4VFVMRGJ5cE85N0lxNE9KSk1LcjBH?=
+ =?utf-8?B?K2VhN0Rwc2ZDWVlsemp5VmtuUEorSHhIYzJ2TFlzalc1amNpU0lsT3pXVTdl?=
+ =?utf-8?B?T2dCOVpqdUZFWWhGdlRqZi8wamMzYXoreDhnNWxnR0dOdjB4M2g2eVlvK2tE?=
+ =?utf-8?B?N2RhaUcxMmtOb2VsTmNKZkFNMVNSMGRVVlpWOS8xM1pOcDY1ZmRqdlgzRmNW?=
+ =?utf-8?B?RnY0MjF4UEhlLzFSaXVpbkpRTE9VYTB6ZjJadm9tWTdkUjE2VnNYN3hBa0Jr?=
+ =?utf-8?B?UkZjelJuMEpzK0VtSXFzTWhadCtWRW4zWWVFR2lBcnoyeHVsZHROd2dyc1Nt?=
+ =?utf-8?B?ZjhsaHFLdENIQU80b2NzZ0JKVXpoNDZyN0J3ZjlVTm5YekgzY2cxcGpCcGNX?=
+ =?utf-8?B?UmxUbEdzM2QxeHY0Mytra0pOM1hPaDF0Q3M3UHo5eEx5RzRrbkVkdStoMTZh?=
+ =?utf-8?B?UVpXaWtZYVp1dTRMUGNmb0RWN21HQmpkUU1abWUrMG5FbWU0V1BVYmorSlFx?=
+ =?utf-8?B?cURiTUxyK0NmUWtvZUZPT0ZOTmc0NmRudEJYRW1yWTkvMTF0eUZUQXI4SGVD?=
+ =?utf-8?B?YlRxMFVUV0J1T1hhUnQ0RkprK2paaWVVWnE2THJhRUJsZmF3d3VwVU12SjdX?=
+ =?utf-8?B?THg4TndIY0hHUzl3Y0ZrR1NZSjAwRkI4YnNYNkNJS3JWYlpmTngzNUprMGhY?=
+ =?utf-8?B?K0RxcWdvem5tZDlWUlRCMjFUd2VCdjdVc2dsNWhaUXlXQW5yMDllWDhEOVJk?=
+ =?utf-8?B?bFZmUUV6akZYa05XWlB0QnJOajdZd093UXFqMi9ma0JqSmFwMEtPSVRkY2Z5?=
+ =?utf-8?B?VG1oYzFwQm5CL0RpM3U4R2k2UGxUK3E1THgrZUtqeGVxMnhDR1ZiRXJjUWVQ?=
+ =?utf-8?B?WXlBdTZBZC9wNUVPS0JFWDFhSHRyNUdseTdLWm1VY3d2VmhLRDZBK2x3dTFH?=
+ =?utf-8?B?WmszNnlBbzAvZVdXMmM2SFF0UGJ3K1lwanBrcHh3NFlGVWwrL1h1YVFjNDhu?=
+ =?utf-8?B?TGNxUnkwR21FNmRXaFYyeGQxd1dxRzJOdGZKeE9DVlpLcStwSXp3SGVCeG9F?=
+ =?utf-8?B?VjVROEo2R2RrT3kxaXp5K2VhZmNQUm9UR2IzYjZtV0lYc1JDaUpYa3BhS1Zz?=
+ =?utf-8?B?MGlENVZMeFRFNUlwNG94RU1lTkxSQXRDTEN0aTRKRExKS2FwUkRzRG5LTW5S?=
+ =?utf-8?B?V3VablU3OE5Mb3hzaGJKampSUW9nPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	ubELgBQRjT4T4QLAddnuUFyizDIvaRQW/MURA9ImNUay9CoCm6NMX4cw9enQv3aGZVXFg0mGtoDi745c0peG1GqkZYAtoxinvy0zGrl/Ld1nx70tBB/P9INUshRZN9Rvgq4HsnTLmH7HVGi2VVQ6gKSgua3r79d0dG2nqL2SMjbZLorZ1T63+9B7SD9SLZ2LFlLtX2Kvc5LWfgi7CK2drlS3UqPBIorGTXcoCY1sGsLNGFcE7cwCl0SsJQHWp4eRVgft06XE81cFcAsYd1B4wJZj6fGKy+CWfVI2WcO0Hlw5La1PMdDkwz3oaWMJaSG4v8gkQhgHM+R9Xk3kD6HOVzmER1sJ8AGOo/Sdel1lIaj84ASw+V89r2NdiK2UaOUVkd3DZBmpXu+yQRTVuA+A+/CMkr225uEZF32llgMYIp1UbNf0i97Um24nBi6kY9Py
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2026 13:39:42.7544
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: deeb6cfc-86d9-44b9-94f8-08de64bc04b0
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF00000191.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5PR10MB9737
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263029-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-263031-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,foss.st.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,glider.be,gmail.com,bp.renesas.com,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[foss.st.com:mid,foss.st.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,st.com:email];
+	DKIM_TRACE(0.00)[foss.st.com:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FROM_NEQ_ENVFROM(0.00)[raphael.gallais-pou@foss.st.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[foss.st.com,gmail.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C598DF36FA
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 15858F3775
 X-Rspamd-Action: no action
 
-On Wed, Feb 04, 2026 at 06:06:18PM +0000, Biju wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
-> 
-> Document RZ/G3L (R9A08G046) IRQC bindings. The IRQC block on RZ/G3L SoC
-> is almost identical to one found on the RZ/G3S SoC with the difference
-> like it support more External IRQs, GPT Error Interrupts and also has
-> additional registers for GPT/MTU IRQ selection, shared IRQ selection
-> between external IRQ and TINT. Hence new generic compatible string
-> "renesas,r9a08g046-irqc" is added for RZ/G3L SoC.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v1->v2:
->  * Simplified the binding using pattern
-> ---
->  .../renesas,rzg2l-irqc.yaml                   | 42 +++++++++++++++----
->  1 file changed, 35 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
-> index a0b57d808639..311741122b05 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
-> @@ -30,7 +30,10 @@ properties:
->                - renesas,r9a08g045-irqc     # RZ/G3S
->            - const: renesas,rzg2l-irqc
->  
-> -      - const: renesas,r9a07g043f-irqc     # RZ/Five
-> +      - items:
+This series aims to add and enable sufficient LVDS display support for
+STM32MP257F-DK board.
 
-Drop items. The point was to simplify, so just enum.
+Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+---
+Raphael Gallais-Pou (3):
+      arm64: dts: st: add i2c2 pins for stm32mp25
+      arm64: dts: st: describe power supplies for stm32mp257f-dk board
+      arm64: dts: st: enable display support on stm32mp257f-dk board
 
-> +          - enum:
-> +              - renesas,r9a07g043f-irqc    # RZ/Five
-> +              - renesas,r9a08g046-irqc     # RZ/G3L
->  
->    '#interrupt-cells':
->      description: The first cell should contain a macro RZG2L_{NMI,IRQX} included in the
-> @@ -48,17 +51,17 @@ properties:
->  
->    interrupts:
->      minItems: 45
-> -    maxItems: 48
-> +    maxItems: 61
->  
->    interrupt-names:
->      minItems: 45
-> -    maxItems: 48
-> +    maxItems: 61
->      items:
->        oneOf:
->          - description: NMI interrupt
->            const: nmi
->          - description: External IRQ interrupt
-> -          pattern: '^irq([0-7])$'
-> +          pattern: '^irq([0-9]|1[0-5])$'
->          - description: GPIO interrupt
->            pattern: '^tint([0-9]|1[0-9]|2[0-9]|3[0-1])$'
->          - description: Bus error interrupt
-> @@ -75,6 +78,8 @@ properties:
->            const: ec7tie2-1
->          - description: ECCRAM1 error overflow interrupt
->            const: ec7tiovf-1
-> +        - description: Integrated GPT Error interrupt
-> +          pattern: '^ovfunf([0-7])$'
->  
->    clocks:
->      maxItems: 2
-> @@ -106,6 +111,22 @@ required:
->  allOf:
->    - $ref: /schemas/interrupt-controller.yaml#
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,r9a07g043f-irqc
-> +              - renesas,r9a07g043u-irqc
-> +              - renesas,r9a07g044-irqc
-> +              - renesas,r9a07g054-irqc
-> +    then:
-> +      properties:
-> +        interrupts:
-
-Missing minitems. Previously it was not 45, was it?
-
-> +          maxItems: 48
-> +        interrupt-names:
-> +          maxItems: 48
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -118,12 +139,19 @@ allOf:
->            maxItems: 45
->          interrupt-names:
->            maxItems: 45
-> -    else:
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,r9a08g046-irqc
-> +    then:
->        properties:
->          interrupts:
-> -          minItems: 48
-> +          maxItems: 61
-
-minItems instead. Just like it was in the old code.
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |  17 ++++
+ arch/arm64/boot/dts/st/stm32mp257f-dk.dts     | 118 ++++++++++++++++++++++++++
+ 2 files changed, 135 insertions(+)
+---
+base-commit: f14faaf3a1fb3b9e4cf2e56269711fb85fba9458
+change-id: 20260205-master-8194059eb646
 
 Best regards,
-Krzysztof
+-- 
+Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
 
 
