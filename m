@@ -1,141 +1,230 @@
-Return-Path: <devicetree+bounces-262875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-262876-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8NDIOfJFhGk/2QMAu9opvQ
-	(envelope-from <devicetree+bounces-262875-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 08:25:38 +0100
+	id oH55CPNHhGk/2QMAu9opvQ
+	(envelope-from <devicetree+bounces-262876-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 08:34:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69136EF670
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 08:25:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 781C4EF745
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 08:34:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CB6953012BC7
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 07:25:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CD02D301546A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 07:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24EAE35CB62;
-	Thu,  5 Feb 2026 07:25:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD45733B95C;
+	Thu,  5 Feb 2026 07:33:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NEuiWOoA"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Svjqb7a/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013010.outbound.protection.outlook.com [40.107.162.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0127231B11E;
-	Thu,  5 Feb 2026 07:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770276317; cv=none; b=IVPaf25QqQ0dsDKoe8royL0yJFXXaPUtcf0J+6hki/Fkfq/ukXPnskrUE1Wuin1g1ioKqsONnQ0R82wS7hbLNjdfbq1l0Aix+zx0G7cePGOxUvmPvJqwxtEYAMmURsk+XtEedriZpm5eESrpw0b5xSFZNdljTXLmY3G4ydkMgGY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770276317; c=relaxed/simple;
-	bh=XU5EtDFAlpiOcF192k6bjTw6Y4UVTAujOSvnW603CLI=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=pjvEL10S/YdHBknhcbq4DIjvDBpj6xuhigETDbzm81V7v0HNiOtRzUAA6iHguwS2Zvt6xifsWOYrMlinFSSJURhDGjEH3TNLJVSB7eXKvjsEwiqLWDuuvtxLfG1OU/mL5zuSQp/BqKOMofMPTyf4NBIadwAw3oala6WvRqsKvhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NEuiWOoA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B412BC4CEF7;
-	Thu,  5 Feb 2026 07:25:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770276316;
-	bh=XU5EtDFAlpiOcF192k6bjTw6Y4UVTAujOSvnW603CLI=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=NEuiWOoAcszY0gDKY6U78AtLAaogMF1NFVu11Vf5EBI4RliU3MKTGFeVySCyjSNzS
-	 XneKWztYDq5z558h9OUgy+cuUhjh/OfeE7Qq31VViJiHI5uPtR2W3VcGTzOcoT/6pG
-	 PR/0CIsvFtjegS6Mix0kc8wMinJItVwqiPAq762/3oOSeQvK/OxbB2Rr2P8vb9Olcj
-	 oDrtpLZWZv6biNwp2VP1PFCeVGCS+m3nxeHpMy5/y9iCOpQdkX5+Js7FuoE/ObOMEM
-	 dyloVuNc7zsUsKJmWZzijTEl0tGgwJnTWZdr8gZDZXIA4tq2Qhfj9PIWR4CSwScNhc
-	 /wxgE3dHiUcZw==
-Date: Thu, 05 Feb 2026 01:25:15 -0600
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E261149C6F;
+	Thu,  5 Feb 2026 07:33:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.10
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770276823; cv=fail; b=XR97/DDGCY0ICGneKnkyjl8+DzAHUhoiEbzKe1GvqGWJZNa//Uh/UNVJk7H4AZK7wdWTKYYj6yGkx/BhCEkhYqAB78xOtqDv7EimBsqD4hMT+YBy0hjsturViFixyCVLmOBelwo9BRGg8vYsb0zXDVtlZi17YshB/OjrU0GxP7c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770276823; c=relaxed/simple;
+	bh=Mv/16o8tbBLGIjKCyDt0yzdaMx1a4blGLUOjnaW4oT0=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=a2iJpzPw01vpIyBgr+fqZT1P2g+pDUwqV6DjQIqSmchQjrTOtmJeWRM4kvhlmisW48f8IHBS4ZAk01wxD9JGvJN/urFxoh04fIobg+rFmS0GM+VNca8wemLeIoYv8uyHj4DMRj3w2W7uc/ReWvdCtAbiIsGqAsqQwgmT/Y9nm6M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Svjqb7a/; arc=fail smtp.client-ip=40.107.162.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hIJF2kKpnm1kQtMPvbMFtIcK2S9R3f5LXUptHqLHvpO0nHfuYza8lTKTDg8PtvQAQGgqPB0xFI4AW+mvaOWiaNznCUg4tmmhxrr0VSZSMavmGwfo2o6+bPbKNoYrDwpK0ADxDcdHABAbb/9xjvxEJm0hSzs4X6mhRu1fVN0aY8EEUfnAehVipP3uP0qsF8qpCgKdsgRmsq4YhmLzWcKdtyRbGleHKsSkMbjG6t64HVVduPgf15zkalYIhVzHpSJKcnn3CP5gXoboPPUeunVsAa6hxydB4OMYjujqxACg8b9Q9fB09PUwtOnnChu5iC2T/GGMZL08Zrh+EOv3UH/C7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=od1djlX1THoJqqmk1vJ3FInniKDzm0CwoY+9aMLS3RI=;
+ b=TLuiEKQGBN2xst5aMBbyjsKimK3ve0KDT71eYl640+qT82LUIkqESyreIqFzeHO3WrNxjiDFE/yfdBInkTS4in4mAk0jtVupaNyTbbGRPyDv6xHqVKRp3mpEZDGtY73Qo3GgAjIUA5+nPjykjOiHUv7bAK7pYwaDjjdlFryErS/XFArdTYqzk+6Rv+NqIhF0wxaeiAg3tn2N1uP4r4r7sD7WDa7Mj9djdTzup+X0WSmTnru1DkCsWcjWdaqs0D4jqcdxJpTkEbESL3E5et9EiArVgfETKlzm3QDdBv2Nj3bvE2qIfr3P91xBodJh1ro1dxirIoU59+UWlEN6udwfWg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=od1djlX1THoJqqmk1vJ3FInniKDzm0CwoY+9aMLS3RI=;
+ b=Svjqb7a/rrSA/ffThyjM6Ibk8isqtpdlB3Y4J7vexbyoaGuOkGXzUVgz9jVrAG3Zlz0+CxIjOK45KWGYz9P/HouOz+W9jcDSMatzVOxd6Os6G4vV+AYvSEoEriUEHS/QWu3gcXjxJkF8LRl6y1ZxLEKnOzM5TWEfxSEZIgbz4lR0sDzGPMCMRumevSBHOqFbOgnnjZCSFjM0NzOjw2VguXJZnITRW0pflSgsU+uDhUwsG8pGVu2wUKuMaxAO9uMfXkK89sHaGegs5t9OP0brGq/2uXZpdMHQrOtJgLkaj1yV58Kn4WgnXbiDqogdHWXq0U53KKQlOjiKtNMADt6eGA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13) by AM7PR04MB6806.eurprd04.prod.outlook.com
+ (2603:10a6:20b:103::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.14; Thu, 5 Feb
+ 2026 07:33:40 +0000
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994%5]) with mapi id 15.20.9587.010; Thu, 5 Feb 2026
+ 07:33:40 +0000
+From: Sherry Sun <sherry.sun@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Frank.Li@nxp.com,
+	s.hauer@pengutronix.de,
+	festevam@gmail.com
+Cc: imx@lists.linux.dev,
+	kernel@pengutronix.de,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH V2 0/2] arm64: dts: imx8mp-evk: Add usdhc1 for SDIO WiFi support
+Date: Thu,  5 Feb 2026 15:34:52 +0800
+Message-Id: <20260205073454.3709673-1-sherry.sun@nxp.com>
+X-Mailer: git-send-email 2.37.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0108.apcprd02.prod.outlook.com
+ (2603:1096:4:92::24) To VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Andrew Jeffery <andrew@codeconstruct.com.au>, 
- linux-aspeed@lists.ozlabs.org, linux-riscv@lists.infradead.org, 
- Palmer Dabbelt <palmer@dabbelt.com>, linux-kernel@vger.kernel.org, 
- Albert Ou <aou@eecs.berkeley.edu>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- devicetree@vger.kernel.org, Paul Walmsley <pjw@kernel.org>, 
- Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org, 
- Joel Stanley <joel@jms.id.au>, Alexandre Ghiti <alex@ghiti.fr>, 
- Conor Dooley <conor+dt@kernel.org>
-To: Ryan Chen <ryan_chen@aspeedtech.com>
-In-Reply-To: <20260205-irqchip-v1-1-b0310e06c087@aspeedtech.com>
-References: <20260205-irqchip-v1-0-b0310e06c087@aspeedtech.com>
- <20260205-irqchip-v1-1-b0310e06c087@aspeedtech.com>
-Message-Id: <177027631587.4038923.11644467926032419641.robh@kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: interrupt-controller: aspeed: Add
- ASPEED AST2700 INTC0/INTC1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI0PR04MB12114:EE_|AM7PR04MB6806:EE_
+X-MS-Office365-Filtering-Correlation-Id: ef057e56-c28d-48d4-60f2-08de6488e1e6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|7416014|376014|19092799006|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?I8tW9YbhA+NYAfW49ClYgbbxbtoYVx4cRoVKwavhK4ceIf9nyBx52DBR1007?=
+ =?us-ascii?Q?ZDeU2s8lmVB6sFwzKLAHi9jiwj6Nei3U/rDnoKPL1grGnaK0T9P2OyjP3uxM?=
+ =?us-ascii?Q?UYJ7luObvTeVrRGU1rDRAqax5vqEY/VW+ZsJw7ivFgVOQHzrmtCJVW68YCbR?=
+ =?us-ascii?Q?3Vp2V4+/cP0HE/ezCtKI5bBDOF8IFSybZiJwO4oQDZwcug/Bb/kStOpewGqm?=
+ =?us-ascii?Q?3WVR0FzuYozTElmXrduqmeDamqUx4EEgH/2HrhU76l4O1dlXtOHgx2ngUMnb?=
+ =?us-ascii?Q?upNMv/W1UueZC1KExbuy0r0BWIRVnELzpf313pBF3gMRMwuy4WrZ1ByhYCvt?=
+ =?us-ascii?Q?BAWqEBCnFNNnxzUee1NX1Uy5BztcI5V02r3Y3RA4jNulfoZupK3xjYJgxHKz?=
+ =?us-ascii?Q?HBNu9WhPVBe22qOLGTjjhh1ze6mEweE9V2LANEeOgZX25XFugaePaq2NQTAM?=
+ =?us-ascii?Q?AeO21CfgKSmw11iIwkFjr4XAJW+4mdVQ4CTEkAe686BhQmsk2RLtd6Z0OkHk?=
+ =?us-ascii?Q?wYDhY/zP3dcek8mi1N/vdGVVAorV0GhWcrgMGSodKKd5XiZxLYXFx/zfYcvp?=
+ =?us-ascii?Q?GFGOdD/0CTBpmLSr+gfC+blxHxcqtYhwjkEmchm8p8ALry0ws8nW6o5oqzgA?=
+ =?us-ascii?Q?bqKspWtEOqJqBquEOfw5Vkc41Kc1Y5Y+1S8rqICXPr6ieaO643lWJSe+ImnQ?=
+ =?us-ascii?Q?BdGzkW+7M4UOBeG5m0cpUHx1+Pm80puscg7JiNnNiIWF3+h6/RL1zOAisFpa?=
+ =?us-ascii?Q?sWtRArKkIiO3K5yg4GyefY3ngSTFo3oQ2Uc062UdeV5KGZYwJDU95ignws1h?=
+ =?us-ascii?Q?a4DZw1z+wtk2weB68F3kzmmoXeMrN/TT8MrelcmeT/WeaeOEmECOKFAV0tIk?=
+ =?us-ascii?Q?MLi0fHhDuyKxMZAHdvQ1Tq6LlEYA8qkr9cXgTgIvnwQ13VoeuDGW1WDdZ6cR?=
+ =?us-ascii?Q?RpZ7pzrc5uWlV6CyEROlI6vcPCfSwvJm9PhYfJ6ibjXODt4kaOIBiqoty6DQ?=
+ =?us-ascii?Q?5Nhk+mN/jDUuWV4hrhhw/ZCGGVRRAwzwiaqgo6AxWqNAKBkO9GUPX5ZfFtEW?=
+ =?us-ascii?Q?DLWRipxSp5bzOi8YKl8ZNNv3BIy/+Cn0uE9klptMXIFXtAjVRLi684VZ9bRE?=
+ =?us-ascii?Q?238nnpQmTpQHUmeWLdAW6RL10uswJOKi1fZj1/9c8VKdkZjRdfIpXn1HZKQ3?=
+ =?us-ascii?Q?Y5tZMv5vCs6/dddZk/zfQr/tprUVR3xg5siEkfkXsd3uvtE/mLLp057G59wS?=
+ =?us-ascii?Q?89g9dVxliTauHGUp6as9i4oFbm7f29Qgy1BhbhiFv5E0t7u6bbMfwFgs/3y4?=
+ =?us-ascii?Q?JHYutro+4zXrs3R+0zZyi1N6mgukSrakaAlOwuWHXog4NrOpFNO1B1y06mSv?=
+ =?us-ascii?Q?DxtJ1vv+IUq3cd6ufEaxpwHc7FSlK3TEjneCfzEjRxdKdhnYKoQnjy5I5V8w?=
+ =?us-ascii?Q?T+/MjpnrLWyfOQOqBLcW2yrQIGJY9BCYnTaMPMSfCvfU7AGI3bmJxYn2Y6q+?=
+ =?us-ascii?Q?PXXLZrYLZuJ5N6WudXviZKLTx7qJeRH3AeC4bRCNLHZVBR4hposJhvPdpy43?=
+ =?us-ascii?Q?MnObB62Tjj1RV72bXb1vNA5Hai4jPu43j4ZvJpHWa3TqsUb8/0G9yN+RpMT/?=
+ =?us-ascii?Q?p11cIx0rdJtgNTwpHnORkH0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(19092799006)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?prLhDTcqEzGCGNoO8IV4sF/vbprecys3hcjuclVJNA/ndbEGS7zPSUi69nT6?=
+ =?us-ascii?Q?WbdZ/RxdmGTpEHD+ONoQO00AQQOVnJ35MYOHopQFmnJCHgId6jfWx+GfQMsx?=
+ =?us-ascii?Q?RFgHbPCwXaEfa8gmJRT7je06hAkHJpcpIHEF5y++Y4LdnG0/s04aSQfwmfVy?=
+ =?us-ascii?Q?kGJMQhKi/dVxMJnmYkXS4EksXD2qcH3lDLNVpnyiYQP4IhjAn91bTRQDnjcr?=
+ =?us-ascii?Q?dh2TDRp0JEtcPzY1W73I1Sc10pkQVwnAgO2/O6FXEnKIAEnEQHrmUSDDQ4zV?=
+ =?us-ascii?Q?eDu+fIbHKSMv9glrSqUWooBgH3mIQ5zn0QKjMJp5ZW6oHvi6dEBn+4o8cusV?=
+ =?us-ascii?Q?Z8/6FmzKoqX1v3naTPYdVQKX8sSDqk+bD4yPRcFqa0OOKOFFcxoC4fTFlmx+?=
+ =?us-ascii?Q?Re1StAJ+EHBxLoze60KDr/OQezbRe38BHfKzNM9x8K2yD+/s+nNmVcAjpInE?=
+ =?us-ascii?Q?C6al8vk1lEGxYyfjdymckpcySGdaVWtas5F3iTJj9eq3031qG8oK9QnJOaiu?=
+ =?us-ascii?Q?6Yzv8Cutzvq7Z6XzulQhlhwVACDK2OdLKRNM9Pap9XPxV0O+ehv1ERjV9XQY?=
+ =?us-ascii?Q?xuXW6QI1PZQa8zVqFHjo2DTqRSjpE7JSnKmxzKoaiWq0RNBUVbbW+726SzUh?=
+ =?us-ascii?Q?V02+lCqtZe2yKCuWSSGOOxkWAvLO4KbfUhU06IKHk+UHXA0HFMLs1jtfbce1?=
+ =?us-ascii?Q?/bhIdpgrMehma2cHvdQn7KCoiCFzwx8Ud5OxghoMcGGkrPj92Y8aeqtZfWeQ?=
+ =?us-ascii?Q?C2dUEYCYSL56de1Gz/iX2ATswYXb0BbgRTzhPsXdDnNg5jlqzzu7N34Np55r?=
+ =?us-ascii?Q?jzQl/3L1RToD8nlxFAwSMG2Zy01W/LLtavFZQTpidlVXDh5v+y5Yg5m7J+1H?=
+ =?us-ascii?Q?odOGgOOcG1orWzaqt/zczvyf1L3F/FXfrIM4yH457Lm0PHMK5SMpsFU/aWnu?=
+ =?us-ascii?Q?sDgcX+uCTM9tTX4Wctbt5v5VcCJ7YoUJvicvENrIiF5X5h+bIA4TEIfaLOwN?=
+ =?us-ascii?Q?dOXu0TKW4l7xl7H3FfCCFKqhtdY20IMEhJ2qdh0ObOrbqmqKdtIRdUDAgefm?=
+ =?us-ascii?Q?bGbncXIBsd47jCxDx+c2+6Qr19E2geEBgHpRAD3tpR4Z+KfWIFGbsT1hZjCI?=
+ =?us-ascii?Q?0wvVRdb8ErgOUzFxz+1m0eLBC0wwyD/Kkhuy5+1+iTKDDbBBRIIO8MNuywDX?=
+ =?us-ascii?Q?QT1WYIZ8e8HB42OlgsXzCnjrG6Q3buhMv+Wma4u40g5bOHxORu4d/MszwRPH?=
+ =?us-ascii?Q?cA5H84vLTDy/5D7VtOA0gxmQ/lLaVdmZAub3Xua7VrX5jm46EykEr9laJser?=
+ =?us-ascii?Q?aC4665rgb+aoxs+oMunMn8ZuY02RKoarA+kwHno3NVkmqPhL/3xNrHBDsu2m?=
+ =?us-ascii?Q?SpP8blDM881alzHeT3Lb9b3pBI++NNtkVvl0ugpkoHrBpKxiFahS6JsfgJB5?=
+ =?us-ascii?Q?ob4ychxfR+eiW+cvRkC5Qu1KQKNHxePgvQi7Y0Wy9ZE/qMJ9FQ1zyYhdb6lH?=
+ =?us-ascii?Q?GTTW79hFelMKD9eyFhh/Ct8T7dRYnGP2HLXhEWCJl8FOuG9cBDRi3xTu+Pc+?=
+ =?us-ascii?Q?tsm+nrLujW6g+RhSj5YmUupj1/NKtnpeiVneRDXtyy5onK6tqgDpba++1YCR?=
+ =?us-ascii?Q?i88jp9RSKQhON7U9pml6JZnwomED+kKdv1ijnf+jWnKdH0FiWcKEM5In+wb5?=
+ =?us-ascii?Q?fepg9JrYGWWXD62kWcm9upvnayeMDDV6T/yqN+KcmkHYVQu12TZEbC3AOxZX?=
+ =?us-ascii?Q?AaPhdNUx0g=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ef057e56-c28d-48d4-60f2-08de6488e1e6
+X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2026 07:33:40.2280
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: b4qVvzEy5keDn9/jGf1YeNqm7aPAFqLko8LHpc386yGYtHBAuwJwXFuUfFMlQwI6OLrNEB+Hpsw1n5jxK8s/mQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6806
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-262875-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.184.161.160:email];
+	TAGGED_FROM(0.00)[bounces-262876-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[14c18000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,aspeedtech.com:email]
-X-Rspamd-Queue-Id: 69136EF670
+	RCPT_COUNT_SEVEN(0.00)[11];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:mid,nxp.com:dkim]
+X-Rspamd-Queue-Id: 781C4EF745
 X-Rspamd-Action: no action
 
+This patch set adds usdhc1 support to enable M.2 SDIO WiFi on the
+i.MX8MP EVK. The M.2 connector on this board can operate in both PCIe
+and SDIO modes, and SDIO-based WLAN modules require proper power control
+through the same M.2 WLAN enable line (W_DISABLE1 on pin 56).
 
-On Thu, 05 Feb 2026 14:07:19 +0800, Ryan Chen wrote:
-> INTC0 is used to assert GIC if interrupt in INTC1 asserted.
-> INTC1 is used to assert INTC0 if interrupt of modules asserted.
-> 
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> ---
->  .../aspeed,ast2700-interrupt.yaml                  | 207 +++++++++++++++++++++
->  1 file changed, 207 insertions(+)
-> 
+Patch 1 corrects the IOMUX configuration by enabling the pull-select bit
+for the M.2 regulator GPIO, ensuring that the weak pull-up is actually
+applied.
+Patch 2 enables usdhc1 and associated pinctrl settings needed for SDIO
+WiFi operation on the M.2 connector.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+---
+Changes in V2:
+1. Add fixes tag for patch#1.
+2. Remove the patch which renames the regulator node from reg_pcie0 to
+   reg_m2_wlan, instead add second label reg_m2_wlan to simply code.
+---
 
-yamllint warnings/errors:
+Sherry Sun (2):
+  arm64: dts: imx8mp-evk: Enable pull select bit for PCIe regulator GPIO
+    (M.2 W_DISABLE1)
+  arm64: dts: imx8mp-evk: Add usdhc1 for SDIO WiFi support
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-interrupt.example.dtb: /example-0/interrupt-controller@12100000: failed to match any schema with compatible: ['aspeed,ast2700-intc0-ic']
-Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-interrupt.example.dtb: /example-1/interrupt-controller@14c18000: failed to match any schema with compatible: ['aspeed,ast2700-intc1-ic']
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 63 +++++++++++++++++++-
+ 1 file changed, 61 insertions(+), 2 deletions(-)
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260205-irqchip-v1-1-b0310e06c087@aspeedtech.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.37.1
 
 
