@@ -1,161 +1,194 @@
-Return-Path: <devicetree+bounces-263123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263124-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qNIBFS/ahGna5wMAu9opvQ
-	(envelope-from <devicetree+bounces-263123-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 18:58:07 +0100
+	id csUnFjnbhGkV6AMAu9opvQ
+	(envelope-from <devicetree+bounces-263124-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 19:02:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0B39F63D5
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 18:58:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E37C1F6470
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 19:02:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0FBB030214E8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 17:57:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 16EDF301D68A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 18:01:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 412653033C8;
-	Thu,  5 Feb 2026 17:57:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49DD6303CAA;
+	Thu,  5 Feb 2026 18:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jXJh2vDl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LPLjrAke"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7D630146C
-	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 17:57:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 265432F3C3A;
+	Thu,  5 Feb 2026 18:01:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770314259; cv=none; b=KmbnAzhgBEBKBRu4R+vKI+zEX5NngSE2wUXV0Hh0PNbTp5Izcl/+7VusdaMR2U13Yx72Xgrso0RtBLkAJdlRrHL60adLkKx+B976akmtCTIGv7iG7kys15NnexivUNrz+P3vDTeB6aV+j/GESwOfh048CsISQiCaxVCAmjGQ7Jk=
+	t=1770314516; cv=none; b=PnCU5Ag2FGW2YI5dEFcg2TZW2u868hWbVpvZL3AE3AmslDYktH12r6xZbDkp9FhTEXtDOFNUWpeRk7REO2FA1+2KFHwmJ6+CB/dCLiR6XaMtnDM6CzfHuJr4BZOrqWg2GErcETf4UO9/hsR5o40Efm2ZDqiZvhpVAO+uD9h1L4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770314259; c=relaxed/simple;
-	bh=xG9GlTsOUqrpT1eW0/Cm5JB4EuHVIQb7eAFjTP9/Ne0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ZjiCa59unh069hFqZDY/uYZ3pulwpDJLcJejGd1QagB6btaNHur9YGy5Vy0Hwp+hpKbRHYXbgOB64BhLDs3CZL2rqgKsUIxqA88UaACTPs1cTNDmTsErYBNT5Lgn9+K26HhJK92hCqvY6wMj6mI4jN6jOrojd0+ND/sWzfG7y7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jXJh2vDl; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47ee937ecf2so12180735e9.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 09:57:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770314257; x=1770919057; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=xG9GlTsOUqrpT1eW0/Cm5JB4EuHVIQb7eAFjTP9/Ne0=;
-        b=jXJh2vDlAAerdXTHwIp3BPfZTLZbEIOMFiC586B+hiFE6waKX7J5wOz7/bSaibrHCd
-         xI3RYXwWWGoHt5Ats11CdwSj265bwFLtW2hOHTxkxVI7Nrp5iuE+OHFPBiMsPApqF+c+
-         QZUh851Xq8kf08eZg4ABW8+Uu2z11RyJCKFgwNpUP5kIvIh3rLHYeQxLUF85FsSRXSbN
-         M54OJGwo89drBvGm3K3ZXQej15BwwOmMcBwZuapeXjxJolLKMLtsFWF1ogR6J9wHGxA+
-         FYLt4hbwk73HsG82TR7/ikyNlH53BbeYhQaLFZBP63decyvX2hUNiqmxlGIXiUqjjvvs
-         27Dw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770314257; x=1770919057;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xG9GlTsOUqrpT1eW0/Cm5JB4EuHVIQb7eAFjTP9/Ne0=;
-        b=E8dUNDHm8eFIjSw4ZM/F3lNk+5PNPpz/yCqfLxEra3t3UYzvZ1iqLQRUgZOd/VAt2C
-         XhXvGByLgejkw9TwoDsnvbVo6zt0OCjadA3DYZSnvypAoDGeQACYPS4jS7G4mtUA4ucI
-         jjTlCQMyxYbH6bdHWkV7XSik1kkIU0EsE6RNa19EwKjz/QtV2QSDtoFFwKTgIlZHjqKX
-         dCTBWfYpXg0tJeqz+CQaTZ2+r2eP1rXMXBcPK4rgzlEv5nFI5uG9UMd5ucuRAAL+AF3J
-         qSq7Y7GerB2quhINhhh1WwPRlfuLFJkTiNC5kKoDRVrz2sxMCY9eXWTHdT9FqFjMkqa2
-         Hmew==
-X-Forwarded-Encrypted: i=1; AJvYcCUskAEG6uFVEYbmcYK2ItwNI/ti1c+uBVwRiYAbj22TwpoIsp6PoX/l7YpWEnPCIwlSMLDEAT0Zklq1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxsto1xaMxIPb/1+5Ukh4+3DHTAmHBhnvvhUw6+CtlD83bKmKtQ
-	WJgvYCvaetcSSssWZXDZ4iMPOjZ3YmLBRzTkzT/R5FmwrrJY80vqBYKY
-X-Gm-Gg: AZuq6aL05KljM8P7GobQlqsGYkjOEczp29futa9jjcUkiwseKCcq3NDIUqhZlye20Lm
-	pIeoLrapgx+KsKp3QORb5emMn8zilRdFSBN1JQrlFu4+Thvtxj/GRimRfEGd2RDTkMXRjeaZSjQ
-	je50uomvWnx3/FaP7UG65BaNtsdGVNkN8WpClldUKP0S4f2/7MT4eMuNN6wIxqJ9joZbOgl73Mq
-	Ud2UEbnJviqYiFa4LwONALr0OvLZ8c9Ojb/XlxEu5ORaz0ao+mPGSSLWjrieYHRZlJvGx1Oj+x2
-	EdOOdj+huDwmUQTMIRHv38UqFL6VmfOKi/mj50mckZ8pwtSuB1sOPie7lFg5S7UtHcNnZOKlC1S
-	gg7EIbYBbjGsZ0QCMVzG+xVz5EizOUPndkFiaMS6sF+FLvHObi+KhoY2KOThtYnz2DP6W1f+ep/
-	5UI32og96zqd86dlFt2XHyPFBtY7Ro3zyRM/wPBAt5sayya5IbC2m/2QWh2i0Na/9Aiwg=
-X-Received: by 2002:a05:600c:ad7:b0:47d:52ef:c572 with SMTP id 5b1f17b1804b1-483178e303emr35887875e9.1.1770314256958;
-        Thu, 05 Feb 2026 09:57:36 -0800 (PST)
-Received: from giga-mm.home (12.89.194.178.dynamic.cust.swisscom.net. [178.194.89.12])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48317d345c2sm94337185e9.6.2026.02.05.09.57.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Feb 2026 09:57:36 -0800 (PST)
-Message-ID: <abb8fa81c3fc7caec0b232e204af4bce71a7a667.camel@gmail.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Disable mmc Schmitt
- Trigger
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Judith Mendez <jm@ti.com>, Francesco Dolcini <francesco@dolcini.it>, 
- Vitor Soares <ivitro@gmail.com>
-Cc: Markus Schneider-Pargmann <msp@baylibre.com>, Vishal Mahaveer	
- <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, Dhruva Gole
- <d-gole@ti.com>,  Sebin Francis <sebin.francis@ti.com>, Kendall Willis
- <k-willis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>, Vignesh
- Raghavendra	 <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	alexander.sverdlin@siemens.com
-Date: Thu, 05 Feb 2026 18:57:28 +0100
-In-Reply-To: <fcfcd3fb-2eac-4865-98f3-ef2ae24381bb@ti.com>
-References: 
-	<20260106-topic-am62a-mmc-pinctrl-v6-19-next-v1-1-1190ac29aadb@baylibre.com>
-	 <c47697b4-6ebb-4af9-be96-c964d990835d@ti.com>
-	 <DFO764ES0FNP.1SUQK9R0EUUDQ@baylibre.com>
-	 <1a91fd40-e814-4b4c-8914-d8f0c4768e07@ti.com>
-	 <DG59D7WGM35A.1WNIIMNCQ8U3C@baylibre.com>
-	 <7ae7f6a1-0ee1-4d56-b1d0-f038a7d22b4c@ti.com>
-	 <20260205072439.GA4548@francesco-nb>
-	 <fcfcd3fb-2eac-4865-98f3-ef2ae24381bb@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 
+	s=arc-20240116; t=1770314516; c=relaxed/simple;
+	bh=Jfw7DB/NVA9J+9D9HNJnpKypCog0AebKB2y5FR+C5Go=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YOkX7hwDqrnZ7d259nWMtvADJPXIdjT0o/TvhyL2yjJpiJCDnOBhJI+on0KOMhFzNQeO9hTa3Kj4Gmt0uRJewInO3twmG3W0k1bFGRGaswQvzsbuMl4LavAzjeeE2w013gsNds1W5n6U8eEDDZpDf70EkKEKJFbVozDBtu9z91I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LPLjrAke; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7733AC116D0;
+	Thu,  5 Feb 2026 18:01:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770314515;
+	bh=Jfw7DB/NVA9J+9D9HNJnpKypCog0AebKB2y5FR+C5Go=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LPLjrAke8ush1zNg4q3/Ec1O4OAmeODrMUvL3D2HNorgziz1PEO1r7W7IH9abYzv1
+	 Wom2spzpKHHQQq+QHkNraJ3QymAPTUI5TmNYJWi3AAAyjYcD40ASAUDdmZ+PN/yosc
+	 Z8+N+Ug1K/IoEbsnBI8l7kIEC92sla5iHxM3W+KbdiQid4lsm7LnsVEXA+LPynyAy7
+	 IjMdWlY5bhewwXkdnMswdLBM3xs3tgQStBJr9i18hnFRcD2JCxfabcwgELMs6SYe0Z
+	 Rp1fGRn4cYGIsWDuhU5kyszWQ8ojr1yKxX7YalIiG0vHlKztpQM80oGyiESvdEjiuK
+	 9ZwUvuYopI8PQ==
+Message-ID: <8f506b2b-1309-4f9e-b8e6-4a73064ea2d0@kernel.org>
+Date: Thu, 5 Feb 2026 19:01:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: apple,aic2: Add
+ AICv3
+To: Krzysztof Kozlowski <krzk@kernel.org>, Janne Grunau <j@jannau.net>
+Cc: Neal Gompa <neal@gompa.dev>, Thomas Gleixner <tglx@linutronix.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260128-irq-apple-aic3-v2-0-b4bc8e16c997@jannau.net>
+ <20260128-irq-apple-aic3-v2-1-b4bc8e16c997@jannau.net>
+ <20260205-pastoral-magnificent-cuscus-ce58ad@quoll>
+Content-Language: en-US
+From: Sven Peter <sven@kernel.org>
+In-Reply-To: <20260205-pastoral-magnificent-cuscus-ce58ad@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263123-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263124-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[ti.com,dolcini.it,gmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexandersverdlin@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sven@kernel.org,devicetree@vger.kernel.org];
+	RSPAMD_EMAILBL_FAIL(0.00)[j.jannau.net:query timed out];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D0B39F63D5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,marcan.st:email,devicetree.org:url]
+X-Rspamd-Queue-Id: E37C1F6470
 X-Rspamd-Action: no action
 
-Hi Judith,
+Hi,
 
-On Thu, 2026-02-05 at 11:07 -0600, Judith Mendez wrote:
-> > Verdin is now booting fine. The boot failure was related to other U-Boo=
-t
-> > bugs (as Nishanth mentioned) that are now fixed.
->=20
-> Good to know, that isolates the issue to only one board.
+On 05.02.26 13:50, Krzysztof Kozlowski wrote:
+> On Wed, Jan 28, 2026 at 09:57:08AM +0100, Janne Grunau wrote:
+>> AIC version 3 as found on the Apple M3 (t8122) is very similar to AICv2
+>> in its base functionality. It can use the same device tree bindings as
+>> AICv2 so add it to the AICv2 bindings.
+>> This interrupt controller is used on all Apple SoCs starting with M3 up
+>> to at least M5.
+>> The only apparent difference is the increased IRQ config offset. Apple's
+>> device tree codes this new offset as property of the "aic" node but the
+>> value stayed constant for all SoCs with "aic,3". Since the SoC specific
+>> compatible "apple,t8122-aic3" will be used in the driver this offset can
+>> remain a driver implementation detail.
+>>
+>> Signed-off-by: Janne Grunau <j@jannau.net>
+>> ---
+>>   .../bindings/interrupt-controller/apple,aic2.yaml  | 45 +++++++++++++++++-----
+>>   1 file changed, 36 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml b/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
+>> index ee5a0dfff437816056bda0de5523bf38be4f49ba..a6e2251fcc111340c0a27ab6912452f6b1255be2 100644
+>> --- a/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
+>> +++ b/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
+>> @@ -4,10 +4,10 @@
+>>   $id: http://devicetree.org/schemas/interrupt-controller/apple,aic2.yaml#
+>>   $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>   
+>> -title: Apple Interrupt Controller 2
+>> +title: Apple Interrupt Controller 2 and 3
+>>   
+>>   maintainers:
+>> -  - Hector Martin <marcan@marcan.st>
+>> +  - Janne Grunau <j@jannau.net>
+>>   
+>>   description: |
+>>     The Apple Interrupt Controller 2 is a simple interrupt controller present on
+>> @@ -28,14 +28,24 @@ description: |
+>>     which do not go through a discrete interrupt controller. It also handles
+>>     FIQ-based Fast IPIs.
+>>   
+>> +  The Apple Interrupt Controller 3 is in its base functionality very similar to
+>> +  the Apple Interrupt Controller 2 and uses the same device tree bindings. It is
+>> +  found on Apple ARM SoCs platforms starting with t8122 (M3).
+>> +
+>>   properties:
+>>     compatible:
+>> -    items:
+>> -      - enum:
+>> -          - apple,t8112-aic
+>> -          - apple,t6000-aic
+>> -          - apple,t6020-aic
+>> -      - const: apple,aic2
+>> +    oneOf:
+>> +      - items:
+>> +          - enum:
+>> +              - apple,t8112-aic
+>> +              - apple,t6000-aic
+>> +              - apple,t6020-aic
+> 
+> If you are re-shuffling these, you can as well sort alphanumerically.
 
-not really, as I mentioned, I had observed some issues with one of our
-internal development boards, but I can only provide the data after couple o=
-f
-weeks, after my vacation.
+I don't have a strong opinion here but the last time this came up we 
+agreed that we'd go with release order IIRC for consistency since that 
+order is used in every other binding for this platform.
 
---=20
-Alexander Sverdlin.
+> 
+>> +          - const: apple,aic2
+>> +      - items:
+>> +          - enum:
+>> +              - apple,t6030-aic3
+>> +          - const: apple,t8122-aic3
+>> +      - const: apple,t8122-aic3
+> 
+> Hm? How so this is not aic or aic2? We asked not to use generic compatibles
+> for aic/aic2 - for all your early upstreamings. Our advice and request
+> was in general rejected, although I could make a long term bet that we
+> will be right. And here we are.
+> 
+> Does this patch mean you finally agree with DT maintainers and abandon
+> the generic compatible fiasko?
+
+Yeah, see 
+https://lore.kernel.org/asahi/12ab93b7-1fc2-4ce0-926e-c8141cfe81bf@kernel.org/
+
+
+Best,
+
+Sven
+
 
