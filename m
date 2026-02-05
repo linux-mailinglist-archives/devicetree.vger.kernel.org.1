@@ -1,194 +1,159 @@
-Return-Path: <devicetree+bounces-263124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263125-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id csUnFjnbhGkV6AMAu9opvQ
-	(envelope-from <devicetree+bounces-263124-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 19:02:33 +0100
+	id IKMvHDDchGkV6AMAu9opvQ
+	(envelope-from <devicetree+bounces-263125-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 19:06:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E37C1F6470
-	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 19:02:27 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 195EAF650D
+	for <lists+devicetree@lfdr.de>; Thu, 05 Feb 2026 19:06:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 16EDF301D68A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 18:01:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 695873004919
+	for <lists+devicetree@lfdr.de>; Thu,  5 Feb 2026 18:06:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49DD6303CAA;
-	Thu,  5 Feb 2026 18:01:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ABD430649C;
+	Thu,  5 Feb 2026 18:06:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LPLjrAke"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="E6QMn7gb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 265432F3C3A;
-	Thu,  5 Feb 2026 18:01:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0A0830595B
+	for <devicetree@vger.kernel.org>; Thu,  5 Feb 2026 18:06:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770314516; cv=none; b=PnCU5Ag2FGW2YI5dEFcg2TZW2u868hWbVpvZL3AE3AmslDYktH12r6xZbDkp9FhTEXtDOFNUWpeRk7REO2FA1+2KFHwmJ6+CB/dCLiR6XaMtnDM6CzfHuJr4BZOrqWg2GErcETf4UO9/hsR5o40Efm2ZDqiZvhpVAO+uD9h1L4w=
+	t=1770314797; cv=none; b=GxgQf+0as31HcWHXcxzIuxiohl9UAgnHI3DtbUiSBrpESJJknaJMhjy+dr6vyNLBpzYCTyTZw+aJPRoGt+ui2LrWMu6yQG5/5F7crdVc+PbisUxJuoYrz+illg+o3bbhf6NG4fuwajlDMT6bEa+ko8reboZmfOmi89u1+ircpsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770314516; c=relaxed/simple;
-	bh=Jfw7DB/NVA9J+9D9HNJnpKypCog0AebKB2y5FR+C5Go=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YOkX7hwDqrnZ7d259nWMtvADJPXIdjT0o/TvhyL2yjJpiJCDnOBhJI+on0KOMhFzNQeO9hTa3Kj4Gmt0uRJewInO3twmG3W0k1bFGRGaswQvzsbuMl4LavAzjeeE2w013gsNds1W5n6U8eEDDZpDf70EkKEKJFbVozDBtu9z91I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LPLjrAke; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7733AC116D0;
-	Thu,  5 Feb 2026 18:01:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770314515;
-	bh=Jfw7DB/NVA9J+9D9HNJnpKypCog0AebKB2y5FR+C5Go=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LPLjrAke8ush1zNg4q3/Ec1O4OAmeODrMUvL3D2HNorgziz1PEO1r7W7IH9abYzv1
-	 Wom2spzpKHHQQq+QHkNraJ3QymAPTUI5TmNYJWi3AAAyjYcD40ASAUDdmZ+PN/yosc
-	 Z8+N+Ug1K/IoEbsnBI8l7kIEC92sla5iHxM3W+KbdiQid4lsm7LnsVEXA+LPynyAy7
-	 IjMdWlY5bhewwXkdnMswdLBM3xs3tgQStBJr9i18hnFRcD2JCxfabcwgELMs6SYe0Z
-	 Rp1fGRn4cYGIsWDuhU5kyszWQ8ojr1yKxX7YalIiG0vHlKztpQM80oGyiESvdEjiuK
-	 9ZwUvuYopI8PQ==
-Message-ID: <8f506b2b-1309-4f9e-b8e6-4a73064ea2d0@kernel.org>
-Date: Thu, 5 Feb 2026 19:01:51 +0100
+	s=arc-20240116; t=1770314797; c=relaxed/simple;
+	bh=0dUxcW9jceIcubMHrYt7Er24gx/w4sIXbrHuLAvKMMw=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=MmwgLR9fxuuAME22Miy5UcSbxCaqVFelBmEFNis40g6c91JbVm7J/969LZu0pfr9od1ivPbDdgwSj4W4nVza4RWW3HMqWLRFwNQpcCb5wv4ev+aRKRRimrmAdgmMGZoXjszJ+WZdtPhRN+1E9pzTs34pKnjSD4LSgxiXmRKXrlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=E6QMn7gb; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id DB1FCC243B0;
+	Thu,  5 Feb 2026 18:06:40 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6FD956074D;
+	Thu,  5 Feb 2026 18:06:34 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F2926102F2A49;
+	Thu,  5 Feb 2026 19:06:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1770314793; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=5zGV4Eo/lLwbXu9NHaompHv0eaeIUotj8YObgAjPRAA=;
+	b=E6QMn7gb3JOFKlnXT+UHLYYdqWdbLczkCe1hemUj4Oz1z+NecQAvgWmwhCrkwfkzqYpicA
+	kx4Ce5P84tfJml6Uztv7nDSN1D7App5IXj1xJC0p1A+QvmAj2fWcR2X68Yl/dPcb1WNLn+
+	3RCFTiLLpNZLydCVSSW2WvyYbW1FB+8g8zFth8M7/x5OJzewCZRQpPv1dHDjCm8ZICBuGD
+	HRJXdCdMMi5hTANnHtu9WLOfQO/J7e0Qj7hrNj6RffkMwNXEFnFe3LpjPIXZnfmydirDop
+	YfZ7sWAkt8RaTY33KV9vbuQ+kzAJo2TEoMfK1dpaHHeOJ/trsa1RmcNe/ARxRw==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Santhosh Kumar K <s-k6@ti.com>
+Cc: <broonie@kernel.org>,  <robh@kernel.org>,  <krzk+dt@kernel.org>,
+  <conor+dt@kernel.org>,  <richard@nod.at>,  <vigneshr@ti.com>,
+  <tudor.ambarus@linaro.org>,  <pratyush@kernel.org>,  <mwalle@kernel.org>,
+  <linux-spi@vger.kernel.org>,  <devicetree@vger.kernel.org>,
+  <linux-kernel@vger.kernel.org>,  <linux-mtd@lists.infradead.org>,
+  <praneeth@ti.com>,  <u-kumar1@ti.com>,  <p-mantena@ti.com>,
+  <a-dutta@ti.com>
+Subject: Re: [RFC PATCH v2 01/12] spi: dt-bindings: add spi-has-dqs property
+In-Reply-To: <ba78303e-36aa-4f40-9416-c22ff12b7458@ti.com> (Santhosh Kumar
+	K.'s message of "Thu, 5 Feb 2026 23:16:47 +0530")
+References: <20260113141617.1905039-1-s-k6@ti.com>
+	<20260113141617.1905039-2-s-k6@ti.com> <87wm0sg50q.fsf@bootlin.com>
+	<ba78303e-36aa-4f40-9416-c22ff12b7458@ti.com>
+User-Agent: mu4e 1.12.7; emacs 30.2
+Date: Thu, 05 Feb 2026 19:06:30 +0100
+Message-ID: <87ldh7f4k9.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: apple,aic2: Add
- AICv3
-To: Krzysztof Kozlowski <krzk@kernel.org>, Janne Grunau <j@jannau.net>
-Cc: Neal Gompa <neal@gompa.dev>, Thomas Gleixner <tglx@linutronix.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260128-irq-apple-aic3-v2-0-b4bc8e16c997@jannau.net>
- <20260128-irq-apple-aic3-v2-1-b4bc8e16c997@jannau.net>
- <20260205-pastoral-magnificent-cuscus-ce58ad@quoll>
-Content-Language: en-US
-From: Sven Peter <sven@kernel.org>
-In-Reply-To: <20260205-pastoral-magnificent-cuscus-ce58ad@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263124-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263125-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sven@kernel.org,devicetree@vger.kernel.org];
-	RSPAMD_EMAILBL_FAIL(0.00)[j.jannau.net:query timed out];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,marcan.st:email,devicetree.org:url]
-X-Rspamd-Queue-Id: E37C1F6470
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 195EAF650D
 X-Rspamd-Action: no action
 
-Hi,
+Hi Santhosh,
 
-On 05.02.26 13:50, Krzysztof Kozlowski wrote:
-> On Wed, Jan 28, 2026 at 09:57:08AM +0100, Janne Grunau wrote:
->> AIC version 3 as found on the Apple M3 (t8122) is very similar to AICv2
->> in its base functionality. It can use the same device tree bindings as
->> AICv2 so add it to the AICv2 bindings.
->> This interrupt controller is used on all Apple SoCs starting with M3 up
->> to at least M5.
->> The only apparent difference is the increased IRQ config offset. Apple's
->> device tree codes this new offset as property of the "aic" node but the
->> value stayed constant for all SoCs with "aic,3". Since the SoC specific
->> compatible "apple,t8122-aic3" will be used in the driver this offset can
->> remain a driver implementation detail.
->>
->> Signed-off-by: Janne Grunau <j@jannau.net>
->> ---
->>   .../bindings/interrupt-controller/apple,aic2.yaml  | 45 +++++++++++++++++-----
->>   1 file changed, 36 insertions(+), 9 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml b/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
->> index ee5a0dfff437816056bda0de5523bf38be4f49ba..a6e2251fcc111340c0a27ab6912452f6b1255be2 100644
->> --- a/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
->> +++ b/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
->> @@ -4,10 +4,10 @@
->>   $id: http://devicetree.org/schemas/interrupt-controller/apple,aic2.yaml#
->>   $schema: http://devicetree.org/meta-schemas/core.yaml#
->>   
->> -title: Apple Interrupt Controller 2
->> +title: Apple Interrupt Controller 2 and 3
->>   
->>   maintainers:
->> -  - Hector Martin <marcan@marcan.st>
->> +  - Janne Grunau <j@jannau.net>
->>   
->>   description: |
->>     The Apple Interrupt Controller 2 is a simple interrupt controller present on
->> @@ -28,14 +28,24 @@ description: |
->>     which do not go through a discrete interrupt controller. It also handles
->>     FIQ-based Fast IPIs.
->>   
->> +  The Apple Interrupt Controller 3 is in its base functionality very similar to
->> +  the Apple Interrupt Controller 2 and uses the same device tree bindings. It is
->> +  found on Apple ARM SoCs platforms starting with t8122 (M3).
->> +
->>   properties:
->>     compatible:
->> -    items:
->> -      - enum:
->> -          - apple,t8112-aic
->> -          - apple,t6000-aic
->> -          - apple,t6020-aic
->> -      - const: apple,aic2
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - apple,t8112-aic
->> +              - apple,t6000-aic
->> +              - apple,t6020-aic
-> 
-> If you are re-shuffling these, you can as well sort alphanumerically.
+>> This information is currently lacking indeed, mostly because nobody
+>> ever
+>> cared about it. The DT property is IMO not the correct way to give this
+>> information for two reasons:
+>> - this is a capability of the chip, we discover the chip dynamically in
+>>    both cases (NAND and NOR) and attach many capabilities to the chips
+>>    already, so I believe this information should be provided through a
+>>    flag.
+>> - the fact that the DQS signal might be supported does not indicate it
+>>    is actually driven. Winbond chips, for instance, can either enable it
+>>    or not depending on their configuration (probably through their VCR
+>>    register, I need to check again).
+>
+> I agree. The flash device's capability to provide DQS - whether in SDR,
+> DDR or both modes - can be represented as a flag in the flash
+> description. We can list out the possible combinations and use them to
+> clearly describe the flash's supported capabilities.
+>
+> However, whether the DQS signal is actually connected to the controller
+> is a non-discoverable hardware detail and should be described only via
+> Device Tree. The DT property is not meant to describe the flash's
+> capabilities, but to indicate whether DQS is physically connected to the
+> controller.
+>
+>> The question I have is: shall we enable the DQS pin automatically if
+>> it
+>> is available? Not all controllers support it I suppose, and wiring the
+>> line might as well not be done (or incorrectly). For these cases we may
+>> need DT properties in the future. But for the DQS presence indication, I
+>> bet it is not useful, and should be handled at the core level (not
+>> parsed by the driver like you do) because it may have an impact on the
+>> chip internal configuration.
+>
+> We can handle this in either way: keep DQS disabled by default and
+> enable it using a "has-dqs" property, or enable it by default and
+> disable it explicitly using a "no-dqs" property.
 
-I don't have a strong opinion here but the last time this came up we 
-agreed that we'd go with release order IIRC for consistency since that 
-order is used in every other binding for this platform.
+I know we can be surprised by our hardware colleagues :-), but I would
+consider "not wiring the DQS signal of a (DQS capable) octal DTR SPI
+memory" a bug? Hence I would opt for handling the broken case, when/if
+that need arises.
 
-> 
->> +          - const: apple,aic2
->> +      - items:
->> +          - enum:
->> +              - apple,t6030-aic3
->> +          - const: apple,t8122-aic3
->> +      - const: apple,t8122-aic3
-> 
-> Hm? How so this is not aic or aic2? We asked not to use generic compatibles
-> for aic/aic2 - for all your early upstreamings. Our advice and request
-> was in general rejected, although I could make a long term bet that we
-> will be right. And here we are.
-> 
-> Does this patch mean you finally agree with DT maintainers and abandon
-> the generic compatible fiasko?
-
-Yeah, see 
-https://lore.kernel.org/asahi/12ab93b7-1fc2-4ce0-926e-c8141cfe81bf@kernel.org/
-
-
-Best,
-
-Sven
-
+Thanks,
+Miqu=C3=A8l
 
