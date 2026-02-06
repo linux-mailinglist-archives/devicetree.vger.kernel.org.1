@@ -1,151 +1,228 @@
-Return-Path: <devicetree+bounces-263248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263249-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iAjJBe+fhWlKEAQAu9opvQ
-	(envelope-from <devicetree+bounces-263248-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 09:01:51 +0100
+	id WMiiNwWfhWlKEAQAu9opvQ
+	(envelope-from <devicetree+bounces-263249-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:57:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82426FB369
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 09:01:50 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76724FB2D5
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:57:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D46E330A9ACB
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 07:56:47 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 33B9330168A4
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 07:57:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31219346ADE;
-	Fri,  6 Feb 2026 07:55:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C8GmSfxi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC12734676F;
+	Fri,  6 Feb 2026 07:57:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B92C346795;
-	Fri,  6 Feb 2026 07:55:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EC8A346780
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 07:57:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770364552; cv=none; b=oewwPJnYgUjP44qEEmtBowTOYxidAadtWP4Xt4RRTZx4jnaATeQXqoqR1KFkhckQGeOjiBcyStmPXRLZo/9fzPLkdj+RhNqH7iJ32I9WB6hkhfUXksSZXJVH2VlB+mxcPaYJmpgUoXUA4VwrofO1C0ZMbJ1B2ZVygaHTmsz+dtg=
+	t=1770364637; cv=none; b=euw8oK9ETMFKF0bnuqFqd8CrMYqAgkJApcW6pdP4wbpxF0wX3XzyWGdVS5AVrkVnebLvsDQWue5RpL9U+9U0HM8cSB0IhlX0k817HnfZ4/0Nxg9DiO+xSKLNzH3YpRrxMNVcESF4NtXBDYti6NqqdWdBeqHFyFOfS5FjRQcOQ/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770364552; c=relaxed/simple;
-	bh=MOOKSOlUa/wdGXWqE3vsIYowP/2D3RUisEoy+m3Pix4=;
+	s=arc-20240116; t=1770364637; c=relaxed/simple;
+	bh=Zrm6fZQNVwJWfNL4nHVEXclBkofR1eTPAkyBjFQeq0s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fRYOSPI0FuizcctZnA6Jn5J5I+6+yAzHY2/ses80zJ74jJ7efpqR8c4rEjWkrkOvpNsSJzQbShUidFJKSNqlluBROeT+LS1wJ0Ad6abpMf5oAsszX1tb7n2APR2/lsSMWU1cwhLGCZ9YuwUjmCuEHWk8hDWFVhfnuBRbex1KAkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C8GmSfxi; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770364552; x=1801900552;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MOOKSOlUa/wdGXWqE3vsIYowP/2D3RUisEoy+m3Pix4=;
-  b=C8GmSfxie15SsbKLKng5Nc4jdBQUoHdWIH1U6aNz+zpy0+/TzgLfrSq7
-   9QTGvzoMEoJLRWD59U3jMx0Es1OTqhrfEQPE+TBfjhvAl6GeWUtbLm4/d
-   xdQscsgrbqPmcjz0aP5EOAHcT7X2KB9uuAM0H0NNICrFncGdMCE++n2O6
-   T5DN3Fcr5xbzCM/w3YDjO3FflSirZ3ijT0egF3bTos1+r5YbQ4l6CnQO0
-   oZhh+fhe0wXFKXmDsMVdcUkX/s0IPWYaHkQUUcQsMryn0nKw6UccsKmH3
-   52gBG8YUwTH7HeNst7z7XkOpNYYmIHI93SC++3SOLuBpFnTEHiFaSJVyy
-   w==;
-X-CSE-ConnectionGUID: f6RmNRYDQ9qldq+KlXY5YA==
-X-CSE-MsgGUID: Exbt9Tm1ST+4v1LkUg/adw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="89150783"
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; 
-   d="scan'208";a="89150783"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2026 23:55:51 -0800
-X-CSE-ConnectionGUID: 6TENf+JeR4CKVrl0///noQ==
-X-CSE-MsgGUID: KDPP8U5vQDOI3VyYrlsCFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; 
-   d="scan'208";a="215383972"
-Received: from black.igk.intel.com ([10.91.253.5])
-  by fmviesa004.fm.intel.com with ESMTP; 05 Feb 2026 23:55:47 -0800
-Received: by black.igk.intel.com (Postfix, from userid 1003)
-	id 45DBE95; Fri, 06 Feb 2026 08:55:46 +0100 (CET)
-Date: Fri, 6 Feb 2026 08:55:46 +0100
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Danny Kaehn <danny.kaehn@plexus.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Benjamin Tissoires <bentiss@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
-	Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
-	Ting-Kai Chen <tingkaic@nvidia.com>
-Subject: Re: [PATCH v13 1/3] dt-bindings: i2c: Add CP2112 HID USB to SMBus
- Bridge
-Message-ID: <aYWegvvqsVhJdkCH@black.igk.intel.com>
-References: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
- <20260127-cp2112-dt-v13-1-6448ddd4bf22@plexus.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kMKOln8U3auq5nfSkM/ovjIiiUTz4eZygH8Bf1h+yVVfGIyITPZxSAYYUqWFSYibxSeTCQ0naKiks45ehwH5wHT2oAkU9EyY0rSz2uKT8wJWbqf/xvAauocKXDhAehvplBMFOURjf7X1wygROxGuClq99n4Z6QmcDvdfYr3SM+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1voGiD-0001ot-Ge; Fri, 06 Feb 2026 08:57:09 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1voGiC-004MvV-2F;
+	Fri, 06 Feb 2026 08:57:08 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1voGiB-002Gt0-2x;
+	Fri, 06 Feb 2026 08:57:07 +0100
+Date: Fri, 6 Feb 2026 08:57:07 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>,
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH v4 06/13] iio: dac: ds4424: use device match data for
+ chip info
+Message-ID: <aYWe0-2KMLijFVh6@pengutronix.de>
+References: <20260203093434.2548978-1-o.rempel@pengutronix.de>
+ <20260203093434.2548978-7-o.rempel@pengutronix.de>
+ <aYHH69gXyuwmQR03@smile.fi.intel.com>
+ <aYHLRvfJH54XumUA@pengutronix.de>
+ <aYHhO7pJPEew7QMC@smile.fi.intel.com>
+ <aYHjQhO92yxoy_9o@pengutronix.de>
+ <aYIMgEEDd8ZfLv71@smile.fi.intel.com>
+ <20260205204325.5bd09d97@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260127-cp2112-dt-v13-1-6448ddd4bf22@plexus.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20260205204325.5bd09d97@jic23-huawei>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,linaro.org,plexus.com,nvidia.com];
-	TAGGED_FROM(0.00)[bounces-263248-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-263249-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.988];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim]
-X-Rspamd-Queue-Id: 82426FB369
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email]
+X-Rspamd-Queue-Id: 76724FB2D5
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 08:47:48AM -0600, Danny Kaehn wrote:
-> This is a USB HID device which includes an I2C controller and 8 GPIO pins.
+On Thu, Feb 05, 2026 at 08:43:25PM +0000, Jonathan Cameron wrote:
+> On Tue, 3 Feb 2026 16:56:00 +0200
+> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
 > 
-> The binding allows describing the chip's gpio and i2c controller in DT,
-> with the i2c controller being bound to a subnode named "i2c". This is
-> intended to be used in configurations where the CP2112 is permanently
-> connected in hardware.
+> > On Tue, Feb 03, 2026 at 01:00:02PM +0100, Oleksij Rempel wrote:
+> > > On Tue, Feb 03, 2026 at 01:51:23PM +0200, Andy Shevchenko wrote:  
+> > > > On Tue, Feb 03, 2026 at 11:17:42AM +0100, Oleksij Rempel wrote:  
+> > > > > On Tue, Feb 03, 2026 at 12:03:23PM +0200, Andy Shevchenko wrote:  
+> > > > > > On Tue, Feb 03, 2026 at 10:34:26AM +0100, Oleksij Rempel wrote:  
+> > 
+> > ...
+> > 
+> > > > > > > -	indio_dev->name = id->name;  
+> > > > > >   
+> > > > > > > +	indio_dev->name = client->name;  
+> > > > > > 
+> > > > > > Isn't this an ABI breakage?  
+> > > > > 
+> > > > > I can't confirm it.
+> > > > > 
+> > > > > before all patches:
+> > > > > root@DistroKit:~ cat /sys/bus/iio/devices/iio:device3/name 
+> > > > > ds4424
+> > > > > 
+> > > > > after:
+> > > > > root@DistroKit:~ cat /sys/bus/iio/devices/iio:device3/name 
+> > > > > ds4424  
+> > > > 
+> > > > In ACPI case it might look differently, but I have no means to test this.
+> > > > 
+> > > > id->name comes strictly from an i2c table, while client->name is constructed
+> > > > using specifics of the firmware enumeration. In DT due to some (historical?)
+> > > > reasons the client->name has no vendor substring and hence matches 1:1 to
+> > > > id->name. In ACPI, IIRC, the client->name is ACPI device instance name,
+> > > > something like ABCD0123:00.  
+> > > 
+> > > Ok, I see. Should I revert this line?  
+> > 
+> > Just do not introduce that change (change of the ->name field) in the original
+> > patch, in that case no revert churn would be needed.
+> > 
+> I think this got dealt with in discussion of next version but
+> safest route is just have an extra copy of the name in the
+> chip_info structure.  Then we know it's stable against different
+> firmware types etc.
 
-...
+Something like this?
 
-> +            gpio-line-names = "CP2112_SDA", "CP2112_SCL", "TEST2",
-> +                              "TEST3","TEST4", "TEST5", "TEST6";
+diff --git a/drivers/iio/dac/ds4424.c b/drivers/iio/dac/ds4424.c
+index ccf36d3e0443..ffa65b22a1fd 100644
+--- a/drivers/iio/dac/ds4424.c
++++ b/drivers/iio/dac/ds4424.c
+@@ -50,6 +50,7 @@
+ }
+ 
+ struct ds4424_chip_info {
++	const char *name;
+ 	int vref_mV;
+ 	int scale_denom;
+ 	u8 result_mask;
+@@ -57,6 +58,7 @@ struct ds4424_chip_info {
+ };
+ 
+ static const struct ds4424_chip_info ds4402_info = {
++	.name = "ds4402",
+ 	.vref_mV = 1230,
+ 	.scale_denom = 4,
+ 	.result_mask = DS4404_DAC_MASK,
+@@ -64,6 +66,7 @@ static const struct ds4424_chip_info ds4402_info = {
+ };
+ 
+ static const struct ds4424_chip_info ds4404_info = {
++	.name = "ds4404",
+ 	.vref_mV = 1230,
+ 	.scale_denom = 4,
+ 	.result_mask = DS4404_DAC_MASK,
+@@ -71,6 +74,7 @@ static const struct ds4424_chip_info ds4404_info = {
+ };
+ 
+ static const struct ds4424_chip_info ds4422_info = {
++	.name = "ds4422",
+ 	.vref_mV = 976,
+ 	.scale_denom = 16,
+ 	.result_mask = DS4424_DAC_MASK,
+@@ -78,6 +82,7 @@ static const struct ds4424_chip_info ds4422_info = {
+ };
+ 
+ static const struct ds4424_chip_info ds4424_info = {
++	.name = "ds4424",
+ 	.vref_mV = 976,
+ 	.scale_denom = 16,
+ 	.result_mask = DS4424_DAC_MASK,
+@@ -335,7 +340,7 @@ static int ds4424_probe(struct i2c_client *client)
+ 
+ 	data = iio_priv(indio_dev);
+ 	i2c_set_clientdata(client, indio_dev);
+-	indio_dev->name = id->name;
++	indio_dev->name = chip_info->name;
+ 	data->chip_info = chip_info;
+ 
+ 	data->vcc_reg = devm_regulator_get(&client->dev, "vcc");
 
-
-Seems like missing space. Also I would resplit this logically, id est:
-
-            gpio-line-names = "CP2112_SDA", "CP2112_SCL",
-                              "TEST2", "TEST3", "TEST4", "TEST5", "TEST6";
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
