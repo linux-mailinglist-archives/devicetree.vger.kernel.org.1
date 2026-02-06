@@ -1,264 +1,269 @@
-Return-Path: <devicetree+bounces-263186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263187-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AMk/JHk3hWkd+QMAu9opvQ
-	(envelope-from <devicetree+bounces-263186-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 01:36:09 +0100
+	id uT8dNRg4hWlf+QMAu9opvQ
+	(envelope-from <devicetree+bounces-263187-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 01:38:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8617F8AD4
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 01:36:08 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2657BF8AEF
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 01:38:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 71ACB300D440
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 00:36:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6360230059AC
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 00:38:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D5B4221DAE;
-	Fri,  6 Feb 2026 00:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B24CA221FC6;
+	Fri,  6 Feb 2026 00:38:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziswiler.com header.i=marcel@ziswiler.com header.b="Or49auqq"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pYnrmXlz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.197])
+Received: from MW6PR02CU001.outbound.protection.outlook.com (mail-westus2azon11012041.outbound.protection.outlook.com [52.101.48.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9468D22127B;
-	Fri,  6 Feb 2026 00:36:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.208.4.197
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770338166; cv=none; b=qGDeQXUcllqMKtiklEsOobpCf5GZ4fa9Ln4wureYt9S7ucT8w3P4JTdTcpmO4F1AJrWrX3uJm90Vb+LrRvFfnvQZDYIX9pP/g5RcXcSakJyKApLb6HgDeNpTrOCEri3dCtW6bWZkE+03nBS2S0G9N6YSQJoap2Xvv3lWNpoebX4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770338166; c=relaxed/simple;
-	bh=Xhkea2uuWgsFz5RIwUPCylSMm3n3sBnhjKt3SVa5kPo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JwtIHCVdY6Mtgi0+hYGAaclUmEzENxY7MNPVNBly+pOkfGcB2o0gD7hWlLMAGkP3dDWTLY5UDtvAQ5uULNzHCMye8C3+GLyzGDjrsUVrlpiPGX5x6htApJCiNbjdgt0d+kzaNFaICLuok7H2nQmFpkys19uPe5djTlxfyEiTMxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=ziswiler.com; spf=pass smtp.mailfrom=ziswiler.com; dkim=pass (2048-bit key) header.d=ziswiler.com header.i=marcel@ziswiler.com header.b=Or49auqq; arc=none smtp.client-ip=74.208.4.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=ziswiler.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziswiler.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziswiler.com;
-	s=s1-ionos; t=1770338161; x=1770942961; i=marcel@ziswiler.com;
-	bh=Xhkea2uuWgsFz5RIwUPCylSMm3n3sBnhjKt3SVa5kPo=;
-	h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
-	 References:Content-Type:Content-Transfer-Encoding:MIME-Version:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=Or49auqq5TOaoraO/5JCgpn68ik1a26TfCrvJExzKlykYFC/cxsrbXJyVDaGzC4B
-	 yfzll7ZJs0q2ObW7ffiC+CfmX6u3MabiO1PZgc6LZIJ19WlMJoSwVSaUgux0BHe//
-	 uy3GhXlADtf3pcP8TMO0bnP0cV9B0XH+4KULzPBpPAPDenEImLp0zH3kn/TfJzIdW
-	 1m0hiVZZoiQ/5N6KVYtUUzVxxp1vEP3H9Bbi9lF7iLhk0vhyDTLr+6ftwfS1rdTqq
-	 VYTStUiFD7oaxUthxGRXScCYJu4AjE10C8CDnMjGPeeH4lvFnodfJqFazU7I4AoWI
-	 CMdxKF2eOqfYYJ2HRQ==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [10.10.1.155] ([84.227.68.106]) by mrelay.perfora.net
- (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1MgOMF-1vKrBs3W99-00h0v5;
- Fri, 06 Feb 2026 01:30:20 +0100
-Message-ID: <2931a866f5daf82e57fd0a87c04bd583658db946.camel@ziswiler.com>
-Subject: Re: [PATCH v10 0/3] Add driver support for ESWIN eic700 SoC clock
- controller
-From: Marcel Ziswiler <marcel@ziswiler.com>
-To: dongxuyang@eswincomputing.com, mturquette@baylibre.com,
- sboyd@kernel.org, 	robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, 	linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- troy.mitchell@linux.dev, bmasney@redhat.com
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com, 
-	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com, 
-	ganboing@gmail.com
-Date: Fri, 06 Feb 2026 01:30:11 +0100
-In-Reply-To: <20260205093322.1030-1-dongxuyang@eswincomputing.com>
-References: <20260205093322.1030-1-dongxuyang@eswincomputing.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (by Flathub.org) 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF731E3DCD;
+	Fri,  6 Feb 2026 00:38:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.48.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770338325; cv=fail; b=QhX6l64Wg13js8BhsWpbxucNJcMfO+irHiNzjATPFI27KAWS2vzp3xbl8Lvg7d38kkKgexXum9S/lyLugsjYW0XtHQ4jVUbci02+HlYso3ICsuiGWj6K0S9MWFv2NJymptX+VD64tiN5d3+lUhdf7DYuRlhuwTPahr/mz2vKXp4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770338325; c=relaxed/simple;
+	bh=3+unQgKByk9gF0vlKOlNpS3cU8cqyzBWOLSiJ+Va7NI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Yl+bZO74mO21Iil8dcB3es3HSWbfHMh+ndO5kBZ+lh9zmoyXfQgLt9BKhxZtHJvlGdDTrO49y+mSR1X8y2uanHVvQInTCikXLbIWU3YoXOXSaNfsDLESMdcijuOS/ajcFfzuVUBj9A5CWzH6Kd0wkjvOKKTKeZSK5keRkLqBrjY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pYnrmXlz; arc=fail smtp.client-ip=52.101.48.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zVuEyRAb3zguc6xVz8nwfgKRe49ufgNbsrP8+W3oSvLPaULEs2fKYbjPjwTxFTMp0Zicv8ZYiElUMOlrXE8RO0j3uE16/8hrqe3E3Xt2V1o9/Ywq8Ttz9sCcuOJIboGxEyauKK0/AxmSsP0+GVHkO77rYcp0tLZNgwaedEKz60aaurW445H9ANGV+qxdtTITZNtDyBuwj50tAiaY3djAJq7iluyfjEz0d5gRTl5r9Cym9yFu/3lZCnM/peHQ7I7Fg+VzR0rpheM6unKF8+RgF9A1qpP4fJzJ327OgTToxpwSp4mHZpboSUnX8u4YUbPgjABeM3s8Euzf9YEjrkg3Nw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OvuVK3Nky7VNYEU6r0+dcX/4BplTOO3gkVSmMBZjCNA=;
+ b=mlE/1vmFL4p1pdIFVlIkh8P3rnhT6AhqpQNq7TiWAvNWgeWtQRyza4aghMuoh6VSs8aym2ZFPvOCtlXm/YPFxo0WZbt3SDzuf1G9hgBX7dg8gLkppDbV2ht0Ay7aF3JveqZeKUWglQLRIrR2LnNw+xOJsVGH4VFtwN4GZ+X8Ugga0/eyL3Ck5o0ZjIOWuwMeXV/yMrtCsepyQka71mEUKfro+VioHmczk4TPZhRQj6iECzvbPijCypa8uTNIaanTo+NyA9J4ddw3VlGYbGTGbRCG06BLA/rwzZ/mdqSLQ51/rRVZc61fXDm/+LIbb4BDWSbGobod8eDMMrTc99Trpg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OvuVK3Nky7VNYEU6r0+dcX/4BplTOO3gkVSmMBZjCNA=;
+ b=pYnrmXlzwjHBpShSYKQBPUmC8fh68l29Xvk5SwZcPiQgkY9LMdhKzd+lTZ1N9qqNIshmlho6BI9Oo1ytjkbE2bf+APhekKOjaFoaKg32neCRDKxmIO2LNlsnarLwswyGE5Dp1V8icAVM/IoahHA/x7XtP5wwYUppZuDKO9Fhims=
+Received: from CH2PR04CA0006.namprd04.prod.outlook.com (2603:10b6:610:52::16)
+ by SJ0PR10MB4767.namprd10.prod.outlook.com (2603:10b6:a03:2d1::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.13; Fri, 6 Feb
+ 2026 00:38:43 +0000
+Received: from CH2PEPF00000142.namprd02.prod.outlook.com
+ (2603:10b6:610:52:cafe::fa) by CH2PR04CA0006.outlook.office365.com
+ (2603:10b6:610:52::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.15 via Frontend Transport; Fri,
+ 6 Feb 2026 00:38:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ CH2PEPF00000142.mail.protection.outlook.com (10.167.244.75) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9587.10 via Frontend Transport; Fri, 6 Feb 2026 00:38:41 +0000
+Received: from DFLE204.ent.ti.com (10.64.6.62) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Feb
+ 2026 18:38:41 -0600
+Received: from DFLE211.ent.ti.com (10.64.6.69) by DFLE204.ent.ti.com
+ (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Feb
+ 2026 18:38:41 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE211.ent.ti.com
+ (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 5 Feb 2026 18:38:41 -0600
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6160ce6E177488;
+	Thu, 5 Feb 2026 18:38:40 -0600
+Message-ID: <528b107d-e2ff-4970-9484-24a6acca8308@ti.com>
+Date: Thu, 5 Feb 2026 18:38:40 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:Aug1QhwJRosjBkuLTR2iyMa0FfhDgjzDGkGlqDsWZGtX6GVQBpr
- 7i3Kk36hlnTs8/peZGELUafMN5UHRmlLLNrsu0VCCObr3FHFA5KuSZUELyoXIk5icNkPNn+
- ZjUPevCm52RLDOUdQIBYWUsOPwT2pkd9+N12fMxM/TNjTid/JDUDZPeAhkyTUDNrCHOD41l
- x+KpXCQqznC7n6sNynDfQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:JnqF4fu1XXU=;QhKuutrFwLIzCvdsUg58WbnehJz
- sktUrHSPsOrGQzkgvKsBIbFLWwEE8p5/xiij5aKZJo/msTmv62HZ4RKX72fNhT9CNDtSYMWvz
- xCGylLwaIONMaJR7y4+UBUU2DoONmgEQQ8FgcLIkfHxnsSFefBA/ehbDfbSmYGBvBR1dllCtY
- VBh12jVbPhXNcBSXLVYRzVldbot1AH+v5i+ty25ollzNOI34O3tEMHJq5z5a2EpUHyDjke7qZ
- LqLdAFq21JVqZQbmIJ3IjkVCPtdKj6HKqRocE7u2UeL6P/ZMBEuvtuGpRUdmzhAy1g535fSm3
- VR/Z5GdwkJGT4gQR3e96Lrg67uy8I2PZBOZ2T1wsANWJGNqNScT8eVTl61uGadKKOXkAyxdFR
- lzkb8zEZyy1BDjasTuVq+fhFzSiVch1AIMcp9OMnfVsV+elzkNiP4BjFQaprL+hronwfaXjJu
- 5li0buuMSmbH/MCRrXprp/c7RIAZATs3h1RpsTa3QrOKcVctd3P8qzUKI30+iOI2hsbeAGmd2
- /BtLTJAcq2H5Xp3IrgSRDJcQlBloPHqPMxLfKNKGhxOyoRwt/2WDmZ6d6zzLRxh+NoorY5Fts
- kxhHHx8FtQS3Jkhh2K0pt1cqPgGQjk8X/adbQ6DFi0s/IAOztjDzS5vVs955izVr7SsXgZ15j
- 6tqxmRX8cJpXYSz35PbisoezBfeNWfHJt2MuV1pKX8zFG99av13dH2+ELfUy25C0t6RPjbF7A
- PEXgM6XngWfN7sb/mePnwVMDBWgW3HaQ2yszJNQY0IhBWIJd8uRNeCZ7d6jUPH67ZOKQMyo9x
- 29f9S41Vq0OzW0Vs1Hf7QZrp5qT3adqQ6ylqQ7PUX1jgzxAOcYtnYDpx/yCXlwSTKGEBL3t9t
- zp9OZcwDNz1izxLpBOEjD89fuhhFiZ4IfaaQ5hjMm/92NeTFpbAk6PcXhw06/zMAJixNdxlV4
- RB3P97r4GTImg/1u5hjL5Pw8sghKzQhDe40O9dHoc6gM3hHzJ95x4+yAM7qA8MG3w+OF5+B+L
- BWR0fHtYv6YKbBGwHSWo7T79FCfDq2vwERWRTrhLhjMV5BANCSvQsUchfQrs401PTsByl/n2L
- NFST7ISJJPV/6pnVNg7Gk5FVQOGCy4Qdo14BrPqbUkNsgHp8v9mbvO84uxy2a6typEOg1obsM
- F5i1kpl3GC/Se9OLEDU+zPhXQWmCRTfZz9D4mz0tH/FqRqAA3SQNJ2FIHJgvk7RM1hUQC3nGl
- onpfv3FS2NbSC7zvaqOWJkY7+lmgJyXGRXAjkDF3iok+rzq9RLpLmLUzVAF+7kn6KtRwtz7Dm
- /T1ksD56e5KA9AcrOKwx8SSyc1YiZ5DmNcvDPBEUPioXjSR/TmHrB/Rk0DXrmcgqtX91pNm11
- 1ZIAWT5BrB0RKKZ4qVwEn4om/H9+IwnkObhYgj7YKH1zTFltN8UuHO8aHzFGIssHvbpJ6gLOI
- ZH0cXeO7FbtAK9Se5h7FBjPJjpQxhdZDnQxBiVz9YxkSQXSz1fZURZhrlijMtNO8MOdT6j6zt
- 56hJTWxfp+ZBuLnpfXLWD7J6Ur1oSJv2Q8oH4roWBg91rqddXXGnsOHMcdSXNrN9RkFwqRu8G
- aPclBMBbf7OHZj79LuG2klCrwQifxW1/ZHTigGYe8M5bDbFW0X++EX3Y1YSOHUWGbn8bwRhGH
- u/KhpxDP8SdGvgUs/4JAfalaaY3rCwFTYPgVTPSh8IPmpoIUXy8nTxmGc1RDGtv4XEeCXf8Xb
- J6qRHlaj7YqBRJaqYMpW4a/ve/wNYPLQY4xaMkCOO7ILU/lQWigJmDvs=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] soc: ti: k3-socinfo: Add support for AM62P variants
+ via NVMEM
+To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+	<vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+References: <20260204213746.2589028-1-jm@ti.com>
+ <20260204213746.2589028-3-jm@ti.com>
+ <25ced9af-b103-4cd3-9b31-42b188fcad60@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <25ced9af-b103-4cd3-9b31-42b188fcad60@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PEPF00000142:EE_|SJ0PR10MB4767:EE_
+X-MS-Office365-Filtering-Correlation-Id: 445fa289-1002-4494-cae7-08de651813d7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|36860700013|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bmZXNE9LaG1JWXlGc1RvK2lqV0ZHQkkvZi84SitDMHZrajlnNVdlZ0RSd2My?=
+ =?utf-8?B?TFBBV3ZwWFdKQ09acVg1WVRxR21ZK05UVmVnQlpxNHMwYmQrampGS1RKek9w?=
+ =?utf-8?B?dUhJZFV2VGpKdFhRSEVkZW91MVd5T1pHbER0WVlzYmZqUHg2UHJ5eUZxdHQx?=
+ =?utf-8?B?UFJiVWE2OGNiMzhyUHlVU0Zld1lQcm93aDE1S09sNGEvUHlnY0lkK25Dcldp?=
+ =?utf-8?B?ZHdmaTBxZm9YT2VOYVRRYk9Day9sUThMOEpzRXJZd3pOREd6OG9CUFdiQ0ZE?=
+ =?utf-8?B?RzRtWXEzYW5kUHBBUHZlQjNMTGZGTEdaU3h1MDVyL1EwRXhFVU03d1NEdnh3?=
+ =?utf-8?B?ZGgwS0tTNGs2cG9aVXp1VURXUFJQU1JDbG42eHpWb1pSNVYxQVVhSU93RVlM?=
+ =?utf-8?B?cm1CRU9KMjhicGgvYVJRQkFMTFJSR2JIZWdPTVMxYjhiVVcxNEVLMGR4K3hX?=
+ =?utf-8?B?ZU9kM2c5SzFiOGw4dXRBMkRjRThwRjJtdGRyYklzclVzeUF0OTJTaDZweExz?=
+ =?utf-8?B?eVI3VTYyVzFhSUw0Lzg5SDd0UjUxNXdqb293Y3pjbllURHdaS2dQaGovMU5j?=
+ =?utf-8?B?SWJ0YnFYMG1UVVhUTHNLL3locm1sSkduL0dOZ092RXUvaHRhL0dKTWtIRVZO?=
+ =?utf-8?B?N21ZWFZNenVVZVFpQTFLcldibmxPczF6a2Z1OTRvUDJ3UWhST3FXRFk3QTRC?=
+ =?utf-8?B?cEJpVzNhOW84bjFjNzlET2NpZ1BCaGw3VnBnQUxLQnVTZnRNVUVwNjFnSkht?=
+ =?utf-8?B?bkpBNHhrOUFGdWI3MWhtdjE1bGQzblJOYWtMRkdvU1pYV0FUaWg4ZTVCaFFJ?=
+ =?utf-8?B?WVBiYVV2R25mVmc3VWN5Y2pXUFB5L2thdndSMnBMTXczMzJoTnFzUVBoWjUv?=
+ =?utf-8?B?VjNyVzlSdUZ1Sm41cHJrQmhNcE1UbFpSSk82OW5aQzlOWG5PRTlsK2dmM2tJ?=
+ =?utf-8?B?elBWd1JycERCdUFCbnBaUVIxM0kzTUE0ajlCeWprNy85WnY3cTZnaUluWUhY?=
+ =?utf-8?B?SHlhTWJkTkg1cFZjREI0QzFpV2Jkc2ZkN3hITXZ4SWp0cDhnUFYxd3YwWVoy?=
+ =?utf-8?B?RVMrSG4yanVsY01JdDNwZ0tlVWNhTE9BNW1wNnFvajhWRFVUeUNjVUVTRzVW?=
+ =?utf-8?B?SWs0a2RNOCtBbGwrOHRtSGQyNzUrZEZPMkp1R1VhWDNrR3R3VzllL2N0dDdY?=
+ =?utf-8?B?YXBJQnRJUmFaalh1dGhkZTIrY0E5RHl0ZnRXVFJSNS9La0tNZ1RkSmJ1ZTFh?=
+ =?utf-8?B?NERUbVd2YmhnbDlndEk1WGNyZGtuVDZIT1gxZ1JGRUVBenJ1RmNnV2cyNmUx?=
+ =?utf-8?B?MytlbVErWlpXZnNlbzQwNXFjNStYQ1VkNFVXVElIUWxWdHM3Ri9DN3Jib25y?=
+ =?utf-8?B?dWpNNWpCMlUxZ0R1OFRTRTdzU2U2bXBlamE0ZFlBbmt6M1c2NXp5V3h3SXNx?=
+ =?utf-8?B?QzhvSjN2RWJMQ3hPT2lhamhDMkhjRFhtRmZEWmFSOGNBQUxEYnI4RlZBa28r?=
+ =?utf-8?B?aysxYUp6NXU0T1AvWWRHbFdNamdqdHZBSjlhWnQxTTFtTkI0K3BjTlFzd3Nt?=
+ =?utf-8?B?ZDlaM3dZK0EyMzh4OVZ2NmRnbE9PL3UyaEN5VzBTbEcrK0lHY0FJU29GNWhu?=
+ =?utf-8?B?aFFpdWRKcS83d3JHVnJOKytML0MxYjZJQzJTV1QzOEJYNTdFd3NHbS9wR285?=
+ =?utf-8?B?NThCWEd3cGsrVmtLa0E5V1V2c3ZyWkpLNzVIUDJ5YWlsSHA1d1g4QlZyaEJn?=
+ =?utf-8?B?UnRrTzUyZ0NSTlFTb0hxWDQ3Mk1jNzRENlRXYlZXNlhjM0psbUd6Q0JBZytE?=
+ =?utf-8?B?dTF4VlRkMG9rM2F2WEtlRmxqbEZZRkZNak9FbXRuaEdlRHk3T0RDVHNSS01X?=
+ =?utf-8?B?VWNld2FvcitEcWRHRFRtcXNzUDMyVEdxcldKa0JOQXl6bkN4aHVBRTloSCtJ?=
+ =?utf-8?B?NUlRaDB5RXZUTi95NU1DQ3dtd1k3MGFldFl1SXdsN3BPQjB5VUxWZy9OZmJp?=
+ =?utf-8?B?eS9LS3BIVGhBQmo1MUVma3dxLzVyMVozcjhvM2JxTHcxWkpDWEhHVE1BK1ZZ?=
+ =?utf-8?B?ZVVlZGhoaUk0YUtTWkxDY3lWUTFBaFBrMFRxbzdkUG5PZlNlbjB5aTE5N2Qz?=
+ =?utf-8?B?ajUrSGxnb3pXM2tRSW1mek9rY1RNSWYxS1pGMlVkQnI2cU5hR2tqVGZGK2JM?=
+ =?utf-8?B?Z0hRVVhWNFRxeXpKRVFEN0FDTHRycWRLSHFQUHVGRXRoaDVmdlNoZVg5Q25x?=
+ =?utf-8?B?SFp0dGh0alNzUk5PUTM1SXR2L1ZRPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	di9jolEjw5WYHGQEudng9zxi1AtAfcahcXEaQUBRMrKEaC8hWj6HWb8SV+PDwO+Ygl1kuzj6H7BAkD2nR+jXeI7Q23n8M5VJ1HZwRXFHjGKgHBlLjzRNb+mfO3bzXiFLZyP+E2egMmWTqQE4aQBtIasQY+2pHm/GHWYVOBO3EgqEa40vQobaLwbgJ5qXc8vbcRuYZZN7mA5xWyUJVcMEE2d/thn3dw0en3qIJNYW7VIupcZmB9rgzrhLJhehvIfK2EsPuCxrB9dRU8ESs0Jd8bj2l008PkYe/6AH6iLRAXoDzacXF/4RjMV9VmFa/xAN+nLHIIqe2Qit7f+DvPQnBqzWT0PDqGiliXDuAtJe25R27dbtpLqoSlIE20p+Zr+dMPLlVHE1kHkKX+OjoDZCJiH5dMWQS4M0/ev4hWhc7v9589jGTtU6YCsUuznGW57K
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 00:38:41.8712
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 445fa289-1002-4494-cae7-08de651813d7
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH2PEPF00000142.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB4767
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[ziswiler.com:s=s1-ionos];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263186-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[ziswiler.com: no valid DMARC record];
-	FREEMAIL_CC(0.00)[eswincomputing.com,einfochips.com,gmail.com];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[ziswiler.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marcel@ziswiler.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-263187-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[ti.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jm@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sifive.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:email,ziswiler.com:email,ziswiler.com:dkim,ziswiler.com:mid]
-X-Rspamd-Queue-Id: C8617F8AD4
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 2657BF8AEF
 X-Rspamd-Action: no action
 
-Hi Xuyang Dong
+Andrew,
 
-On Thu, 2026-02-05 at 17:33 +0800, dongxuyang@eswincomputing.com wrote:
-> From: Xuyang Dong <dongxuyang@eswincomputing.com>
+On 2/4/26 3:54 PM, Andrew Davis wrote:
+> On 2/4/26 3:37 PM, Judith Mendez wrote:
+>> Add support for detecting AM62P silicon revisions.
+>>
+>> On AM62P, silicon revision is discovered with GP_SW1 register instead
+>> of JTAGID register. Use the NVMEM framework to read GP_SW1 from the
+>> gpsw-efuse nvmem provider to determine SoC revision.
+>>
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> ---
+>>   drivers/soc/ti/k3-socinfo.c | 48 ++++++++++++++++++++++++++++++++++---
+>>   1 file changed, 45 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/soc/ti/k3-socinfo.c b/drivers/soc/ti/k3-socinfo.c
+>> index 42275cb5ba1c8..4b6947a9ceb4d 100644
+>> --- a/drivers/soc/ti/k3-socinfo.c
+>> +++ b/drivers/soc/ti/k3-socinfo.c
+>> @@ -6,6 +6,7 @@
+>>    */
+>>   #include <linux/mfd/syscon.h>
+>> +#include <linux/nvmem-consumer.h>
+>>   #include <linux/of.h>
+>>   #include <linux/of_address.h>
+>>   #include <linux/regmap.h>
+>> @@ -25,6 +26,9 @@
+>>   #define CTRLMMR_WKUP_JTAGID_VARIANT_SHIFT    (28)
+>>   #define CTRLMMR_WKUP_JTAGID_VARIANT_MASK    GENMASK(31, 28)
+>> +#define GP_SW1_VALID_BIT            BIT(4)
+>> +#define GP_SW1_ADR_MASK            GENMASK(3, 0)
+>> +
+>>   #define CTRLMMR_WKUP_JTAGID_PARTNO_SHIFT    (12)
+>>   #define CTRLMMR_WKUP_JTAGID_PARTNO_MASK        GENMASK(27, 12)
+>> @@ -70,6 +74,29 @@ static const char * const am62lx_rev_string_map[] = {
+>>       "1.0", "1.1",
+>>   };
+>> +static const char * const am62p_gpsw_rev_string_map[] = {
+>> +    "1.0", "1.1", "1.2",
+>> +};
+>> +
+>> +static int
+>> +k3_chipinfo_get_gpsw_variant(struct platform_device *pdev)
+>> +{
+>> +    struct device *dev = &pdev->dev;
+>> +    u32 gpsw_val, adr_val = 0;
+>> +    int ret;
+>> +
+>> +    ret = nvmem_cell_read_u32(dev, "gpsw1", &gpsw_val);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    if (!(gpsw_val & GP_SW1_VALID_BIT))
+>> +        return 0;
+> 
+> Return -1 here so you will get the warning message about setting default 
+> SR1.0.
 
-Thank you very much!
+Actually, thinking about this some more... If valid bit is zero, that
+means that we have detected SR1.0. Id rather return zero instead of
+printing an error to the user and overwriting with zero. What do you
+think?
 
-For the whole series.
-
-Tested-by: Marcel Ziswiler <marcel@ziswiler.com> # ebc77
-
-BTW: Should anybody else want to easily test mainline on EBC77 [1].
-
-[1] https://github.com/riscv/meta-riscv/pull/594
-
-Cheers
-
-Marcel
-
-> The link [1] provides the official documentation for the EIC7700. Section=
- 3.2
-> covers the clock subsystem.
->=20
-> [1] https://www.sifive.com/document-file/eic7700x-datasheet
->=20
-> Updates:
-> =C2=A0 Changes in v10:
-> =C2=A0 - Updated driver file
-> =C2=A0=C2=A0=C2=A0 - Add a private clock divider API named 'eswin_registe=
-r_clkdiv' to
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 register divider clocks with private flag.
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Define 'ESWIN_PRIV_DIV_MIN_2' private flag=
- for registering the clock
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dividers whose division ratio start from 2=
-.
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Implement the private set_rate, recalc_rat=
-e, and determine_rate accordingly.
-> =C2=A0=C2=A0=C2=A0 - Add CLK_DIVIDER_ALLOW_ZERO flag to the clock divider=
-s whose division
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ratio start from 0.
-> =C2=A0=C2=A0=C2=A0 - Replace CONFIG_ARCH_ESWIN with CONFIG_COMMON_CLK_ESW=
-IN in the Makefile.
-> =C2=A0=C2=A0=C2=A0 - Modify the help description of COMMON_CLK_EIC7700.
-> =C2=A0=C2=A0=C2=A0 - Move register offset definitions from 'clk-eic7700.h=
-' to 'clk-eic7700.c' and
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 remove the 'clk-eic7700.h'. Remove '_CTRL'=
- from the offset names.
-> =C2=A0=C2=A0=C2=A0 - Remove all unused headers.
-> =C2=A0=C2=A0=C2=A0 - Use devm_platform_ioremap_resource() instead of devm=
-_of_iomap().
-> =C2=A0=C2=A0=C2=A0 - Export the functions from clk.c as symbols.
-> =C2=A0=C2=A0=C2=A0 - Use readl_poll_timeout().
-> =C2=A0=C2=A0=C2=A0 - Use 'clk_parent_data' and '.hw' instead of string pa=
-rent names.
-> =C2=A0=C2=A0=C2=A0 - Rename the header file from clk.h to common.h.
-> =C2=A0=C2=A0=C2=A0 - Rename macros from EIC7700_* to ESWIN_* in common.h.
-> =C2=A0=C2=A0=C2=A0 - Add a new function, 'eswin_clk_register_clks', which=
- can register
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 divider, mux, gate, and fixed-factor clock=
-s based on their types.
-> =C2=A0=C2=A0=C2=A0 - Add structure 'eswin_clk_info' to manage the clocks =
-that need to be registered
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 in a specific order.
-> =C2=A0=C2=A0=C2=A0 - Add macros 'ESWIN_*_TYPE' to define divider, mux, ga=
-te, and fixed-factor clocks
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 with type. Add enum 'eswin_clk_type' for t=
-hese types.
-> =C2=A0=C2=A0=C2=A0 - Remove 'eswin_clk_register_mux_tbl'. Use 'eswin_clk_=
-register_mux' to register
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mux clocks with or without table.
-> =C2=A0=C2=A0=C2=A0 - Add xtal24m as the parent clock of the PLL.
-> =C2=A0=C2=A0=C2=A0 - Change 2025 to 2026 in all files.
->=20
-> =C2=A0 - Link to v9: https://lore.kernel.org/all/20251229105844.1089-1-do=
-ngxuyang@eswincomputing.com/
-
-[snip]
-
-> Xuyang Dong (3):
-> =C2=A0 dt-bindings: clock: eswin: Documentation for eic7700 SoC
-> =C2=A0 clock: eswin: Add eic7700 clock driver
-> =C2=A0 MAINTAINERS: Add entry for ESWIN EIC7700 clock driver
->=20
-> =C2=A0.../bindings/clock/eswin,eic7700-clock.yaml=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 46 +
-> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0=C2=A0=C2=A0 8 +
-> =C2=A0drivers/clk/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
-> =C2=A0drivers/clk/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
-> =C2=A0drivers/clk/eswin/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0=C2=A0 15 +
-> =C2=A0drivers/clk/eswin/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0=C2=A0=C2=A0 8 +
-> =C2=A0drivers/clk/eswin/clk-eic7700.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1337 +++++++++++++++++
-> =C2=A0drivers/clk/eswin/clk.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 575 +++++++
-> =C2=A0drivers/clk/eswin/common.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0 373 +++++
-> =C2=A0.../dt-bindings/clock/eswin,eic7700-clock.h=C2=A0=C2=A0 |=C2=A0 285=
- ++++
-> =C2=A010 files changed, 2649 insertions(+)
-> =C2=A0create mode 100644 Documentation/devicetree/bindings/clock/eswin,ei=
-c7700-clock.yaml
-> =C2=A0create mode 100644 drivers/clk/eswin/Kconfig
-> =C2=A0create mode 100644 drivers/clk/eswin/Makefile
-> =C2=A0create mode 100644 drivers/clk/eswin/clk-eic7700.c
-> =C2=A0create mode 100644 drivers/clk/eswin/clk.c
-> =C2=A0create mode 100644 drivers/clk/eswin/common.h
-> =C2=A0create mode 100644 include/dt-bindings/clock/eswin,eic7700-clock.h
->=20
-> --
-> 2.34.1
+~ Judith
 
