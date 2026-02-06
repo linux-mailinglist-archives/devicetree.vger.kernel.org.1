@@ -1,100 +1,100 @@
-Return-Path: <devicetree+bounces-263471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263472-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KFYQMFcphmmuKAQAu9opvQ
-	(envelope-from <devicetree+bounces-263471-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:48:07 +0100
+	id wCtNOiEphmmSKAQAu9opvQ
+	(envelope-from <devicetree+bounces-263472-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:47:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C9A101627
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:48:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE4641015EA
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:47:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EECC330B5A5B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 17:43:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AA3923093E8C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 17:43:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28F3C421F1E;
-	Fri,  6 Feb 2026 17:42:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A752425CCD;
+	Fri,  6 Feb 2026 17:43:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oHEAzNIX";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="acEcr2x1"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FYBpiziP";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bSPebR3N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC146421EF2
-	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 17:42:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3759542188A
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 17:43:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770399774; cv=none; b=OGRvSct726xlKGuOVVzl+/gmN0Yml7+4KBHOLNGSKJFxugXf6LFD32KDTFASqV4+5cUST7yf96dSS0rY2CRmJjBbUTE4tNNx3UeWL9XgwIJSa1xCZldf9a/+duOxOdPC4v8OQLtwhv9vZo7OaC6xq1AQyhFu2J8FBdRiBIEBFkA=
+	t=1770399781; cv=none; b=MR8MEVDj4r12LNdD8XJ1RohFkEnQPa9TEc3aNeMzWiOWVqjr1nfT84NhJ0GGUNFt9F9m+ow1jMVbsK4Vuug/bgZujPrPkXYNwVCgDMtkZ7M4ZV5wzbz7eC0iDRdL9UJ0cgF09J+t2EFZYqMyVaBzUBhbdLHnT3Imm/ihOiYANFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770399774; c=relaxed/simple;
-	bh=BbBD5tNkBQrd31zYVx7NjYHcGjoQsLjnUX+bRHK0MRM=;
+	s=arc-20240116; t=1770399781; c=relaxed/simple;
+	bh=vLJsaTbwLSxqS35M14DCmMeySl42SBb+4n+kKoraVRE=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=qhJmmQZ6iTHxZfk7c4d5Yc2TudSbvi/RE+03sQkYJwlQITvjrfCYkkE6oP1LU/+XYtW+LuCum3wyn0JE49xi2j9Lz1Fe6xqpG9RdoqyzAdNDAnf4R3OXKRWPS0peOzdOA4SmfkeHNMWsRyMjXt7xx31oL8sXMhalJKrRDHf0H04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oHEAzNIX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=acEcr2x1; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=AKk18QwAHxp1tigq0z1Xjxq/GSvR3Z/k7HU4uJ3Geju+ZcQqOTISPYNbfOc+SbdixgNjQokdRJMJ2ZmSUzS4JFuIiCUHXh4qMc7a8Clm79zuz9o6/h6tQcviJcAZh/lr+CeTooVbUg0Gl24xuJarGcDMILlFWmY7tUjMIfyPWzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FYBpiziP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bSPebR3N; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 616B4SIq3764250
-	for <devicetree@vger.kernel.org>; Fri, 6 Feb 2026 17:42:52 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 616GllU5694780
+	for <devicetree@vger.kernel.org>; Fri, 6 Feb 2026 17:43:00 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=2xdIWjPvFPu
-	WeaF1ghJotVpCXxOBg3ohkTZp+i91ty8=; b=oHEAzNIXXfYjfDDZC5U+wj2rtj8
-	FxziysDKKFears/mcM2gzH2YRQ27n/JjVN7irbCH7emZh+Pz5D3FJY7FxkjfAvI4
-	UplIwCvJMyis1f2++BPtzApetx2P7i1RGPEjYV1e9a9k6su1Nnzmyvg60I9oTTUe
-	aq058mqVpooKCFST6lD+5dB/mjVVqr2bH+dd+cbQcLpcjbrgDn46capIT6MHYbeO
-	Z3yUuqBX2FNkz69E7qQdl+OhqUeEIi73RzsDyYmXFdVHZK++4PEL+qRDFvycyVlT
-	1TUV3O8+I2Jt9fLMoB0Wza4ogkLMlGS1q9yeg0AE5ppxBkMEf+hyys7TB7g==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c5f3wh4un-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=JdbbozLruhe
+	G7fmmV59QuHISGYrAXtPnLDfWr1IiNvs=; b=FYBpiziPoG2ziU+D3kD3JAkOW++
+	ghsXw4Z+MZ6d+zhsE2IYY+cBbgSEcprlx0qk1XVR37hJVUJAlzUZPv0QOkDRd/uq
+	pVBBzszFKs2pupH5ohb4jgc9WGqu7Dvbn61PRT58qXWzsvTxSk4zXM+5M9UieyaA
+	c2tWZM1oE6a5Wa7EpASmLAVlanpq73fXT54HbRGmyU1MgfhKOlsrL6HpR2aXfnnz
+	y52aMULyRcjmevMUB21m6UCmwtjqLJcEzDZhRFtUvMoJ8pCiljrOM5vHtc5zrWHq
+	sLNrElTF0eaw7F0CuZnvvkQiguyaaHwKgTe6A7aK+X7CI0WLgwfSCp4vT2A==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c53qvbcu7-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 17:42:52 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-c54e81eeab9so1516533a12.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 09:42:52 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 17:43:00 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b62da7602a0so576611a12.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 09:42:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770399772; x=1771004572; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1770399779; x=1771004579; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2xdIWjPvFPuWeaF1ghJotVpCXxOBg3ohkTZp+i91ty8=;
-        b=acEcr2x1ofCvwftyacNsPPt0SAgFIAU6LfpTYytkD7OboMIZiZW+dhc9P/91Pfogn4
-         P803X6fMGWRHvWRAfcwlkIIJhW0qSynphBTMWgt39vewkIpbaG90VEtLkk+uBQKOFDUG
-         eK9KoCTpdpyY/Mn74+EdighDHm/Xfi6I72zU9pUIwhnOamEtLwmVOCeetBp1pUNQ2Usl
-         /bwmcEvCaZ7w8fYu7OCRtyzNAqcuFdyxN7iVkOEBwigtbM2FQKUDSxwRYa2sn38iOHc2
-         6a+/TJtpVh23lhZkIRVqtfb/epv8SxICoDTg9v1x9cF6jU42a5TcNcBcyDGppXRH+MoI
-         CiVw==
+        bh=JdbbozLruheG7fmmV59QuHISGYrAXtPnLDfWr1IiNvs=;
+        b=bSPebR3NlObwsE61fbrt6xAMltXRCQ6TEnnWimCiBQhlfBiVHQdCwABlzeIyvtJiEn
+         /KYkPfTPu3QASc9ByVj8Wq5MX7Xubqxnpx8kQ0XjVBPp6ZZ6b/t6Po8UZUj/za/Vs2Kc
+         E7ddCP1Tm31wg1trCSAc174k+QHSNsrIVwD3Qam+v9DTVhrkJNJu2TLEvUROkj2UyI9M
+         yHRl91GJCgXjZ1dGYb2tjioT1mT1fEnFZQrzPkXQLd+aaq1y1N0Nj2uHxAN9Q3dpvFXL
+         TpjAmb3bugfxE228goIO2KozNnhE+gZq03vAJGs87bRnx6htKBOcLBfhkjJirLJJBMWE
+         tcRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770399772; x=1771004572;
+        d=1e100.net; s=20230601; t=1770399779; x=1771004579;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=2xdIWjPvFPuWeaF1ghJotVpCXxOBg3ohkTZp+i91ty8=;
-        b=v/gY5PL8kHpD2U0toAg4zCgn/DQvDvIeY/l1n+4mRk212NEwr3cbIFTMgwGc7fzABM
-         ihqAjia0iwoghl02Aa1idDm+SbkX0AFCLKU8PfL0MzCdZizLjkJuVL1JfMbxEL16yHCC
-         7nwkeylbQd0aDzOgYBAl+FJpW/x9YF2jxp/nu+2w0OFDU6CCy9nXlEL9fIL6//vsRlDP
-         yJSiFH7/51bUZDWB0Nwi/xJaEjyh08InSL7+eBsBl3Y+q+SyZmN+yQtBY0k3lNz2wqO9
-         GAyWRWllmYOyc5hA6MOCARZvwGWKDHfZzqqExC/58Jc6Q5P/owkVM6Drq0VNjp6rQz3G
-         6jTw==
-X-Forwarded-Encrypted: i=1; AJvYcCVGFrm/2dxdVFfnhguxv+rl4/YRP8MEenOkK5t1uagxq+L3md1/3nNvJ9Gz8iqBZwjWUHq6ze2kF6Hn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2b7SB7Qydj/ov9SLrSj1W5EX2cNxUWfZOqBy69Oe7siwB38SB
-	fmZla2oowhtkCypIoA0DfAfhE+gnft+N3Vt7QurDj68z51GZjVDL13jUDnunIkx3AQCtu56BlmE
-	f4rOsAXj9mQcQGvdIxF+/Hk+jyztCnJwlb49aUOWL6Xp4gxHYeh464jNsjVT8c3fF
-X-Gm-Gg: AZuq6aJMRdwxky6eUxKFQZgMd3DqGhaQa8WY1aIP+qOlMa+prtHZEF+9JFuAWpzPxNw
-	wMIvXEbP1/ninDj57gz5LJ49+cqz3EQQw3z+8k3r5jO8PwtcYSaW+MOhMRzjAYzNONAyzNnHU5N
-	oAFgCSeJXHp/pVpuE/J7LqUNfGZezTHS7bD6CojHk5PhMyac7if8ZvND00X6L/Y/aRLL3VMzQaF
-	9tNZRgmmvW0wnTIWv5dbJA0DOhf/4DT356rXXgPDlqqp4LbvCDw163QTruI7IKVZ0Wj+fnCL4En
-	8fvBia80HvLyY7ssA/PNa0ZHOF8tIpyPJMIbatmghOF87h7BLuMbP8P9J4CAVcGLTxRrrLE4SHV
-	0Dt0OfzI2JN1399264iO+hQ6IfqhVtUL001nqi2H2uds=
-X-Received: by 2002:a05:6a20:5481:b0:38b:e55a:97c9 with SMTP id adf61e73a8af0-393aef57a70mr3241483637.28.1770399771679;
-        Fri, 06 Feb 2026 09:42:51 -0800 (PST)
-X-Received: by 2002:a05:6a20:5481:b0:38b:e55a:97c9 with SMTP id adf61e73a8af0-393aef57a70mr3241454637.28.1770399771109;
-        Fri, 06 Feb 2026 09:42:51 -0800 (PST)
+        bh=JdbbozLruheG7fmmV59QuHISGYrAXtPnLDfWr1IiNvs=;
+        b=Gh/QIh1ql/8m5rr1J+o/z/WZgfwpvj0bfgLdzaaJdX2N7VCz+DPLRvHFQQOM/5m1vW
+         8KeTdq7lmEkCzH/Japh/dlDO8AfsaywRuiLc0rALWxrVJa7reDgQ95CGerTndJEiKSXU
+         wjfzRCTO5ArMEbbxMtWXiijuWa73Jt4bjrBUP8MOOxKUVlBGmqUG+9EHSoWRvGsk7+Tr
+         UIgU0FPdooYCvUAw73EHx4XDB8OqF3F4cG2p+HQrKH61oL9Z1N3JBc+OkPOIqeI8eRBQ
+         rhJiKaDODSJAQA2DGhAWvzbFJ32LaeuYmbbWLTdTq+OmXSthq0JUJp1fkSQySrYfE5wL
+         oipw==
+X-Forwarded-Encrypted: i=1; AJvYcCV1T7to3Jk4OlpbL+iEEIZAcp1QCEPS74ns9UikmLEEfCSfNB0yzPgmu+//ZamR5LbKVbdXJJ5WJOG3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAvSrrY4GgELiX4WGNrhf8HrIS7msSLyuAxSLqQm43Et7kLqOP
+	N3a9WHgV8ePLm87BxFgeBgyhm0tZH6G+w9DgqUrchqZ5366EEBkS7z+iv69fZ4i/zsFLxw/C+lo
+	EI462YBCDm9IB7GT/xyJ6b4coLskKt+I+yVUlCE08Iuv53GHjc4aSF6I4YUXITFQp
+X-Gm-Gg: AZuq6aKH3iHDNINnzOGy8eu/sve+UumoiJbjdcaIawE7ehPF9qx8ej9/0J57QQiuXDm
+	Ob1BnFww1Q3JfDze+a1v9X2Q/9b+19OPryNmcM8cq/yAko6PPD6z1HUezaINndE5ammCNDqkjzY
+	kQBU3bgJzs7CnVutZ2AQ0jabDVKsQbdFeDmr4zpW2IkZEe/m+LUSEK78n9+RQcH5ZkKqCkOgzCr
+	Iqsw3WhnYftIt9ebAM5cJ9oH2NErRxKhR+XvrkmF7Qsyuhjd8b2y/n6RnFjuxeVYisgcYzYgUKJ
+	T+7QugwEv9Ldwr2atUz7+vL8VzBn3WlaYTFpHXCu0q4AUb81vbxZNMXTgw6TjoU/I6gCvMIFsYk
+	3I4QZGToLFaOJso9qkcWgeVzRtS1Hl6Pf3mVWSd/Uxrg=
+X-Received: by 2002:a05:6a21:1fc1:b0:38d:f405:709f with SMTP id adf61e73a8af0-393ad33a8cemr3428821637.48.1770399778896;
+        Fri, 06 Feb 2026 09:42:58 -0800 (PST)
+X-Received: by 2002:a05:6a21:1fc1:b0:38d:f405:709f with SMTP id adf61e73a8af0-393ad33a8cemr3428782637.48.1770399778305;
+        Fri, 06 Feb 2026 09:42:58 -0800 (PST)
 Received: from hu-ptalari-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c6dcb5eccbdsm2639387a12.19.2026.02.06.09.42.45
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c6dcb5eccbdsm2639387a12.19.2026.02.06.09.42.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Feb 2026 09:42:50 -0800 (PST)
+        Fri, 06 Feb 2026 09:42:57 -0800 (PST)
 From: Praveen Talari <praveen.talari@oss.qualcomm.com>
 To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -111,9 +111,9 @@ To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
 Cc: prasad.sodagudi@oss.qualcomm.com, quic_vtanuku@quicinc.com,
         aniket.randive@oss.qualcomm.com, chandana.chiluveru@oss.qualcomm.com,
         jyothi.seerapu@oss.qualcomm.com, chiluka.harish@oss.qualcomm.com
-Subject: [PATCH v5 12/13] i2c: qcom-geni: Store of_device_id data in driver private struct
-Date: Fri,  6 Feb 2026 23:11:11 +0530
-Message-Id: <20260206174112.4149893-13-praveen.talari@oss.qualcomm.com>
+Subject: [PATCH v5 13/13] i2c: qcom-geni: Enable I2C on SA8255p Qualcomm platforms
+Date: Fri,  6 Feb 2026 23:11:12 +0530
+Message-Id: <20260206174112.4149893-14-praveen.talari@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260206174112.4149893-1-praveen.talari@oss.qualcomm.com>
 References: <20260206174112.4149893-1-praveen.talari@oss.qualcomm.com>
@@ -124,47 +124,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA2MDEyOSBTYWx0ZWRfX6Gsv/qRZ3GJl
- YRkkQdVyH13PE469bBVwy0L/fvkwG6NUgpeIIDJWCoeSJdy9+YA46t1N9AOHFD07HAZvqv628Kp
- fxs92WyRK05a2l8dNTGd3UONkQ6geYaWvqUHMeoMrraBxAsxbKzT5ovAeDU1BZNdkGqAMdPruqR
- c3nT3xNGb0WFztcxzglCGH/dWbc1pCaDmUjAyINiavr1V1Ep0MYzK+jtCdDbD/30RG41TvPaUem
- s/1FkO0XLJ0vT9msDk8rAT21jIBqq2AJYMaRXaBAfYE27sgrT6+3CO3yvddbIMngCgIQLFWbPZA
- Jl+wF0JMxwP5VU/wpcU+nGK1oM1cnDWm+HWTHV+ryvbTGWu59Wb08eewdgvIXJO/2PrDMT6GQp6
- jdIUV5nQNJu4iMUOb1tEUiYG/N88P8cXevB5QZMByksWq86wlgyZIthkTeLE2DdZEcRQQ/Lc5y8
- 0jiG3PTQ89SXUBhsd8Q==
-X-Proofpoint-ORIG-GUID: HWfVQFgHySQXepVta_DhU9UczLHKknRw
-X-Authority-Analysis: v=2.4 cv=NajrFmD4 c=1 sm=1 tr=0 ts=6986281c cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+X-Authority-Analysis: v=2.4 cv=TsPrRTXh c=1 sm=1 tr=0 ts=69862824 cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
  a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
  a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=EUspDBNiAAAA:8
- a=VoGDZ86lKm6tgvVT7R0A:9 a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-GUID: HWfVQFgHySQXepVta_DhU9UczLHKknRw
+ a=zgZzUwpPmSg69XYvEVoA:9 a=3WC7DwWrALyhR5TkjVHa:22
+X-Proofpoint-ORIG-GUID: gwqH8WQKVxO-BdYpxJtYJ5cvbx6wYbbp
+X-Proofpoint-GUID: gwqH8WQKVxO-BdYpxJtYJ5cvbx6wYbbp
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA2MDEyOSBTYWx0ZWRfX2x+JmlAPQp4M
+ jKLgUkz7rHgZcnYNiji7NOaPT6i53rt/Api/xXPr0WCAdNoz6V8xvZO3jhMRkNefC3v6qCKbTsj
+ wvJlu5Z9lVHZdEZntVf+0VERvzNJHibEI4IqJeOLVAXffH4oozuNoN/wVlZ3ulLj+nBG19+8nyv
+ P4ispUEfJKxrS9aGMErsbAoq0sjA0Go1lGsQ3G2xysAOzZZEl20nwNl32d5nJKWoNF2v57NNybj
+ V5UNhx8EqnpvEhQZtzT8GpUYkNfQscNbwAvdlDME0giOGLEXjDHJDNRpjRkGPtfql5KXhwjx4Ia
+ jySPv+5yVBQHORX0J/iIquVEdA9QYBAf9+WJhWSmRXhy8nWUy9Ca3MXqkVUDXfWFxoKuB/8xrk/
+ dLoxTKuLalfrRU4Sz2MxEywikSVPexncPNqFwAxwslUjj/qaC76pItONsn608hCLALGO+yakOl0
+ TjbvRR4S3d53s9EjJRA==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-02-06_05,2026-02-05_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 suspectscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
- malwarescore=0 lowpriorityscore=0 clxscore=1015 spamscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602060129
+ adultscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501
+ suspectscore=0 malwarescore=0 bulkscore=0 spamscore=0 clxscore=1015
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2602060129
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[22];
-	TAGGED_FROM(0.00)[bounces-263471-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263472-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[praveen.talari@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
@@ -174,124 +175,182 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 49C9A101627
+X-Rspamd-Queue-Id: AE4641015EA
 X-Rspamd-Action: no action
 
-To avoid repeatedly fetching and checking platform data across various
-functions, store the struct of_device_id data directly in the i2c
-private structure. This change enhances code maintainability and reduces
-redundancy.
+The Qualcomm automotive SA8255p SoC relies on firmware to configure
+platform resources, including clocks, interconnects and TLMM.
+The driver requests resources operations over SCMI using power
+and performance protocols.
+
+The SCMI power protocol enables or disables resources like clocks,
+interconnect paths, and TLMM (GPIOs) using runtime PM framework APIs,
+such as resume/suspend, to control power on/off.
+
+The SCMI performance protocol manages I2C frequency, with each
+frequency rate represented by a performance level. The driver uses
+geni_se_set_perf_opp() API to request the desired frequency rate..
+
+As part of geni_se_set_perf_opp(), the OPP for the requested frequency
+is obtained using dev_pm_opp_find_freq_floor() and the performance
+level is set using dev_pm_opp_set_opp().
 
 Acked-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
 Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
 ---
-v4->v5
-Konrad
-- Added a null check after platform data struct.
-
-v3->v4
+v3->v4:
 - Added Acked-by tag.
 
-Konrad
-- Removed icc_ddr from platfrom data struct
+V1->v2:
+From kernel test robot:
+- Initialized ret to "0" in resume/suspend callbacks.
+
+Bjorn:
+- Used seperate APIs for the resouces enable/disable.
 ---
- drivers/i2c/busses/i2c-qcom-geni.c | 28 +++++++++++++++-------------
- 1 file changed, 15 insertions(+), 13 deletions(-)
+ drivers/i2c/busses/i2c-qcom-geni.c | 56 ++++++++++++++++++++++--------
+ 1 file changed, 42 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
-index 0ddfeef6d1b2..9045187ad0b5 100644
+index 9045187ad0b5..6b936c7552c9 100644
 --- a/drivers/i2c/busses/i2c-qcom-geni.c
 +++ b/drivers/i2c/busses/i2c-qcom-geni.c
-@@ -77,6 +77,11 @@ enum geni_i2c_err_code {
- #define XFER_TIMEOUT		HZ
- #define RST_TIMEOUT		HZ
- 
-+struct geni_i2c_desc {
-+	bool no_dma_support;
-+	unsigned int tx_fifo_depth;
-+};
-+
- #define QCOM_I2C_MIN_NUM_OF_MSGS_MULTI_DESC	2
- 
- /**
-@@ -121,11 +126,7 @@ struct geni_i2c_dev {
- 	bool is_tx_multi_desc_xfer;
- 	u32 num_msgs;
- 	struct geni_i2c_gpi_multi_desc_xfer i2c_multi_desc_config;
--};
--
--struct geni_i2c_desc {
--	bool no_dma_support;
--	unsigned int tx_fifo_depth;
-+	const struct geni_i2c_desc *dev_data;
+@@ -80,6 +80,10 @@ enum geni_i2c_err_code {
+ struct geni_i2c_desc {
+ 	bool no_dma_support;
+ 	unsigned int tx_fifo_depth;
++	int (*resources_init)(struct geni_se *se);
++	int (*set_rate)(struct geni_se *se, unsigned long freq);
++	int (*power_on)(struct geni_se *se);
++	int (*power_off)(struct geni_se *se);
  };
  
- struct geni_i2c_err_log {
-@@ -976,7 +977,6 @@ static int setup_gpi_dma(struct geni_i2c_dev *gi2c)
+ #define QCOM_I2C_MIN_NUM_OF_MSGS_MULTI_DESC	2
+@@ -201,8 +205,9 @@ static int geni_i2c_clk_map_idx(struct geni_i2c_dev *gi2c)
+ 	return -EINVAL;
+ }
  
- static int geni_i2c_init(struct geni_i2c_dev *gi2c)
+-static void qcom_geni_i2c_conf(struct geni_i2c_dev *gi2c)
++static int qcom_geni_i2c_conf(struct geni_se *se, unsigned long freq)
  {
--	const struct geni_i2c_desc *desc = NULL;
- 	u32 proto, tx_depth;
- 	bool fifo_disable;
- 	int ret;
-@@ -999,8 +999,7 @@ static int geni_i2c_init(struct geni_i2c_dev *gi2c)
- 		goto err;
++	struct geni_i2c_dev *gi2c = dev_get_drvdata(se->dev);
+ 	const struct geni_i2c_clk_fld *itr = gi2c->clk_fld;
+ 	u32 val;
+ 
+@@ -215,6 +220,7 @@ static void qcom_geni_i2c_conf(struct geni_i2c_dev *gi2c)
+ 	val |= itr->t_low_cnt << LOW_COUNTER_SHFT;
+ 	val |= itr->t_cycle_cnt;
+ 	writel_relaxed(val, gi2c->se.base + SE_I2C_SCL_COUNTERS);
++	return 0;
+ }
+ 
+ static void geni_i2c_err_misc(struct geni_i2c_dev *gi2c)
+@@ -906,7 +912,9 @@ static int geni_i2c_xfer(struct i2c_adapter *adap,
+ 		return ret;
  	}
  
--	desc = device_get_match_data(gi2c->se.dev);
--	if (desc && desc->no_dma_support) {
-+	if (gi2c->dev_data->no_dma_support) {
- 		fifo_disable = false;
- 		gi2c->no_dma = true;
- 	} else {
-@@ -1020,8 +1019,8 @@ static int geni_i2c_init(struct geni_i2c_dev *gi2c)
- 		tx_depth = geni_se_get_tx_fifo_depth(&gi2c->se);
+-	qcom_geni_i2c_conf(gi2c);
++	ret = gi2c->dev_data->set_rate(&gi2c->se, gi2c->clk_freq_out);
++	if (ret)
++		return ret;
  
- 		/* I2C Master Hub Serial Elements doesn't have the HW_PARAM_0 register */
--		if (!tx_depth && desc)
--			tx_depth = desc->tx_fifo_depth;
-+		if (!tx_depth && gi2c->se.core_clk)
-+			tx_depth = gi2c->dev_data->tx_fifo_depth;
+ 	if (gi2c->gpi_mode)
+ 		ret = geni_i2c_gpi_xfer(gi2c, msgs, num);
+@@ -1041,8 +1049,9 @@ static int geni_i2c_init(struct geni_i2c_dev *gi2c)
+ 	return ret;
+ }
  
- 		if (!tx_depth) {
- 			ret = dev_err_probe(gi2c->se.dev, -EINVAL,
-@@ -1064,7 +1063,6 @@ static int geni_i2c_probe(struct platform_device *pdev)
- 	struct geni_i2c_dev *gi2c;
+-static int geni_i2c_resources_init(struct geni_i2c_dev *gi2c)
++static int geni_i2c_resources_init(struct geni_se *se)
+ {
++	struct geni_i2c_dev *gi2c = dev_get_drvdata(se->dev);
  	int ret;
- 	struct device *dev = &pdev->dev;
--	const struct geni_i2c_desc *desc = NULL;
  
- 	gi2c = devm_kzalloc(dev, sizeof(*gi2c), GFP_KERNEL);
- 	if (!gi2c)
-@@ -1076,7 +1074,9 @@ static int geni_i2c_probe(struct platform_device *pdev)
- 	if (IS_ERR(gi2c->se.base))
- 		return PTR_ERR(gi2c->se.base);
+ 	ret = geni_se_resources_init(&gi2c->se);
+@@ -1097,7 +1106,7 @@ static int geni_i2c_probe(struct platform_device *pdev)
+ 	spin_lock_init(&gi2c->lock);
+ 	platform_set_drvdata(pdev, gi2c);
  
--	desc = device_get_match_data(&pdev->dev);
-+	gi2c->dev_data = device_get_match_data(&pdev->dev);
-+	if (!gi2c->dev_data)
-+		return -EINVAL;
+-	ret = geni_i2c_resources_init(gi2c);
++	ret = gi2c->dev_data->resources_init(&gi2c->se);
+ 	if (ret)
+ 		return ret;
  
- 	ret = device_property_read_u32(dev, "clock-frequency",
- 				       &gi2c->clk_freq_out);
-@@ -1215,13 +1215,15 @@ static const struct dev_pm_ops geni_i2c_pm_ops = {
+@@ -1156,15 +1165,17 @@ static void geni_i2c_shutdown(struct platform_device *pdev)
+ 
+ static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
+ {
+-	int ret;
++	int ret = 0;
+ 	struct geni_i2c_dev *gi2c = dev_get_drvdata(dev);
+ 
+ 	disable_irq(gi2c->irq);
+ 
+-	ret = geni_se_resources_deactivate(&gi2c->se);
+-	if (ret) {
+-		enable_irq(gi2c->irq);
+-		return ret;
++	if (gi2c->dev_data->power_off) {
++		ret = gi2c->dev_data->power_off(&gi2c->se);
++		if (ret) {
++			enable_irq(gi2c->irq);
++			return ret;
++		}
+ 	}
+ 
+ 	gi2c->suspended = 1;
+@@ -1173,12 +1184,14 @@ static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
+ 
+ static int __maybe_unused geni_i2c_runtime_resume(struct device *dev)
+ {
+-	int ret;
++	int ret = 0;
+ 	struct geni_i2c_dev *gi2c = dev_get_drvdata(dev);
+ 
+-	ret = geni_se_resources_activate(&gi2c->se);
+-	if (ret)
+-		return ret;
++	if (gi2c->dev_data->power_on) {
++		ret = gi2c->dev_data->power_on(&gi2c->se);
++		if (ret)
++			return ret;
++	}
+ 
+ 	enable_irq(gi2c->irq);
+ 	gi2c->suspended = 0;
+@@ -1215,16 +1228,31 @@ static const struct dev_pm_ops geni_i2c_pm_ops = {
  									NULL)
  };
  
-+static const struct geni_i2c_desc geni_i2c = {};
-+
+-static const struct geni_i2c_desc geni_i2c = {};
++static const struct geni_i2c_desc geni_i2c = {
++	.resources_init = geni_i2c_resources_init,
++	.set_rate = qcom_geni_i2c_conf,
++	.power_on = geni_se_resources_activate,
++	.power_off = geni_se_resources_deactivate,
++};
+ 
  static const struct geni_i2c_desc i2c_master_hub = {
  	.no_dma_support = true,
  	.tx_fifo_depth = 16,
++	.resources_init = geni_i2c_resources_init,
++	.set_rate = qcom_geni_i2c_conf,
++	.power_on = geni_se_resources_activate,
++	.power_off = geni_se_resources_deactivate,
++};
++
++static const struct geni_i2c_desc sa8255p_geni_i2c = {
++	.resources_init = geni_se_domain_attach,
++	.set_rate = geni_se_set_perf_opp,
  };
  
  static const struct of_device_id geni_i2c_dt_match[] = {
--	{ .compatible = "qcom,geni-i2c" },
-+	{ .compatible = "qcom,geni-i2c", .data = &geni_i2c },
+ 	{ .compatible = "qcom,geni-i2c", .data = &geni_i2c },
  	{ .compatible = "qcom,geni-i2c-master-hub", .data = &i2c_master_hub },
++	{ .compatible = "qcom,sa8255p-geni-i2c", .data = &sa8255p_geni_i2c },
  	{}
  };
+ MODULE_DEVICE_TABLE(of, geni_i2c_dt_match);
 -- 
 2.34.1
 
