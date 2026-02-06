@@ -1,176 +1,238 @@
-Return-Path: <devicetree+bounces-263349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263350-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gAEAGvnmhWnCHwQAu9opvQ
-	(envelope-from <devicetree+bounces-263349-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 14:04:57 +0100
+	id SP7YITvnhWnCHwQAu9opvQ
+	(envelope-from <devicetree+bounces-263350-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 14:06:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE052FDD5F
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 14:04:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E07EEFDD7E
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 14:06:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BB521301CC73
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 13:04:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8CD77301C154
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 13:06:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA99039B4AA;
-	Fri,  6 Feb 2026 13:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF053793C8;
+	Fri,  6 Feb 2026 13:06:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="X49wI0kX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UHpeYPUX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A19FD313E10;
-	Fri,  6 Feb 2026 13:04:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F03055B5AB;
+	Fri,  6 Feb 2026 13:06:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770383094; cv=none; b=Ebnd5T+1H3eGJ0ENRlGCJ2bMYyJZ90/EnArNh2+JqNeiloU7MB7XaD7++7p6XpwSDVIdNmfmwGUHrq2W8XIt2inJQYCneIwqJFB/3VQXBGNpx7oiAUtu5Fxur+l7rmNMEw6Pkt0sHM9c/4/4H1qegMei8ZN+o8+LNjZ91KpUw/w=
+	t=1770383161; cv=none; b=os+Gwz/YRUI/PS6sB79ACf4Ze3Dd9j3BgAZeHwe77F4m1EIAyOxBp7jU0gCWl4i6VFDiVRyG0r+1OmN/hayWsT8XgLodw4GTA4D1bTtDHvtqPd1qOD6jPRFO7yZJdICl3f+/apCkesxZ0RtNIny1upVhWmMcUSNuZpRqwa44hek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770383094; c=relaxed/simple;
-	bh=ApWPhL6JQBKOjYvyWVNeD4gaRhQWHkve1pRyR2n+Sdo=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=FQYoJzPThKsVksvmbihBOT3KMtDJKU8MejN1O9KZmqArgPjjxQEK9NqAP4iVT7T51VLMTfyFp9iMS2qmzv+TfL/Xr+HTI2K7OYuBMOJGGViVBtUn7/adf1tDDvgXlPDkQcp9WnTGzPUdsHtCtOvVc1Z/sD60zQe+plrX5ppcBJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=X49wI0kX; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id A90A525F3F;
-	Fri,  6 Feb 2026 14:04:51 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id cfgujahYoJKc; Fri,  6 Feb 2026 14:04:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1770383091; bh=ApWPhL6JQBKOjYvyWVNeD4gaRhQWHkve1pRyR2n+Sdo=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To;
-	b=X49wI0kX9/xFhK147Q1nKOBVuMw59bC30WOKQwfWva0RLzTbdUe1L8LgIuGApjbcF
-	 1I548ua2067P1/kaDqtD55RV7/x+5fA67RxtAajfdHvSJkhIbgSv9FjUI05fTWyl0G
-	 kmkgbIGEQlrExgUASdflLJP1nVubJwDf1thQ3X6rBQi190pgb1R6vX3wgQy68qQQec
-	 n5ffj9hetUofNH8G3tF6r9SRtVdMEUVvD0EVloIGSB9dJ2YDfP4BqqBTmWknzqdTh4
-	 yUaL1esaswwpSMijGLGqIWUf5INPVnO8jSoO6SKTp+uCmI7Ts7blad3TG4k3VQJ4KU
-	 4RUN5TEGfGH7g==
+	s=arc-20240116; t=1770383161; c=relaxed/simple;
+	bh=T3ezfEtlx8wx+dPQAozxmush5kOuQwr+6KjLAqzdkqs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SEJ0cTAnEXg9Fvq0qaL33yHGrJTshMGZEO4fBClVUgSO8NYHzQCQu/FmR1k1otfiSbmJXX2eZP8oDweyMv4nkdYDiPK14+WWcGfKHOt9Qi7Q25IMhLEJchVY/lzDwRBY140S8ZTd2oNS43Unp+1GqRJ0yC7AtdNlkaPXqfSyRCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UHpeYPUX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DBC9C116C6;
+	Fri,  6 Feb 2026 13:06:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770383160;
+	bh=T3ezfEtlx8wx+dPQAozxmush5kOuQwr+6KjLAqzdkqs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UHpeYPUXB+BWsKaYOYEy867dRtgMyvNnRwugbHnvVlEaQ72WxfLRDzLiHoD/RQvFo
+	 9di36gC906aBOm9KAFobXjh0WgJ4sZl3r85kQtJgZXOLFa0u71Z+GoCnk37RmoNhTL
+	 wpam3tKYoY6EuBUJbt4zWPK7hhQcuI7GyMrhZ86nK2MevOIkzDSFzjBOZLFVpr2Bob
+	 SemC5hhQEQOmqyhiX66aF2eK2NpmTTRFyhm9uBrRB6T/VNBxeZq/knTuh+Eb47Xi8f
+	 fZX5ATSoCya9cnrMmxUXmhyAAP2clADU6EVaEOduIFxJFa6FOoDmlVQtniiXZq1sFh
+	 b9IprCmsA2hLw==
+Date: Fri, 6 Feb 2026 07:05:59 -0600
+From: Rob Herring <robh@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	jic23@kernel.org, michael.hennerich@analog.com, nuno.sa@analog.com,
+	eblanc@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
+	marcelo.schmitt1@gmail.com,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v7 6/8] dt-bindings: iio: adc: adi,ad4030: Add ADAQ4216
+ and ADAQ4224
+Message-ID: <20260206130559.GA30712-robh@kernel.org>
+References: <cover.1770309522.git.marcelo.schmitt@analog.com>
+ <4b879f53450e87739afc0dbd832dab5a3f83efb1.1770309522.git.marcelo.schmitt@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 06 Feb 2026 18:34:45 +0530
-Message-Id: <DG7WFDLZ3J68.2PGGTXYAB777A@disroot.org>
-Cc: "Yassine Oudjana" <y.oudjana@protonmail.com>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, <linux-pm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] power: supply: add support for S2MU005 battery fuel
- gauge device
-From: "Kaustabh Chakraborty" <kauschluss@disroot.org>
-To: "Sebastian Reichel" <sebastian.reichel@collabora.com>, "Kaustabh
- Chakraborty" <kauschluss@disroot.org>
-References: <20260126-s2mu005-fuelgauge-v1-0-68a146ed0819@disroot.org>
- <20260126-s2mu005-fuelgauge-v1-2-68a146ed0819@disroot.org>
- <aXq7NohfIy3c5AWL@venus> <DG2QBROWWMLI.2EE3CBLLPAJHR@disroot.org>
- <aX8yPp2JVubxHNFJ@venus>
-In-Reply-To: <aX8yPp2JVubxHNFJ@venus>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4b879f53450e87739afc0dbd832dab5a3f83efb1.1770309522.git.marcelo.schmitt@analog.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[protonmail.com,kernel.org,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263349-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[disroot.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,lwn.net,gmail.com,microchip.com];
+	TAGGED_FROM(0.00)[bounces-263350-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CE052FDD5F
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:email]
+X-Rspamd-Queue-Id: E07EEFDD7E
 X-Rspamd-Action: no action
 
-On 2026-02-01 12:14 +01:00, Sebastian Reichel wrote:
-> Hi,
->
-> On Sat, Jan 31, 2026 at 04:44:36PM +0530, Kaustabh Chakraborty wrote:
->> On 2026-01-29 02:59 +01:00, Sebastian Reichel wrote:
->> >> +static int s2mu005_fg_get_status(struct s2mu005_fg *priv, int *value=
-)
->> >> +{
->> >> +	int current_now;
->> >> +	int capacity;
->> >> +	int ret;
->> >> +
->> >> +	ret =3D s2mu005_fg_get_current_now(priv, &current_now);
->> >> +	if (ret)
->> >> +		return ret;
->> >> +
->> >> +	if (current_now <=3D 0) {
->> >> +		*value =3D POWER_SUPPLY_STATUS_DISCHARGING;
->> >> +		return 0;
->> >> +	}
->> >> +
->> >> +	ret =3D s2mu005_fg_get_capacity(priv, &capacity);
->> >> +	if (ret)
->> >> +		return ret;
->> >> +
->> >> +	if (capacity < 90)
->> >> +		*value =3D POWER_SUPPLY_STATUS_CHARGING;
->> >> +	else
->> >> +		*value =3D POWER_SUPPLY_STATUS_FULL;
+On Thu, Feb 05, 2026 at 01:48:55PM -0300, Marcelo Schmitt wrote:
+> ADAQ4216 and ADAQ4224 are similar to AD4030 except that ADAQ devices have a
+> PGA (programmable gain amplifier) that scales the input signal prior to it
+> reaching the ADC inputs. The PGA is controlled through a couple of pins (A0
+> and A1) that set one of four possible signal gain configurations.
+> 
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
+> Change log v6 -> v7
+> - No changes.
+> 
+>  .../bindings/iio/adc/adi,ad4030.yaml          | 70 +++++++++++++++++--
+>  1 file changed, 65 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
+> index 564b6f67a96e..3890cd4ba93e 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
+> @@ -19,6 +19,8 @@ description: |
+>    * https://www.analog.com/media/en/technical-documentation/data-sheets/ad4030-24-4032-24.pdf
+>    * https://www.analog.com/media/en/technical-documentation/data-sheets/ad4630-24_ad4632-24.pdf
+>    * https://www.analog.com/media/en/technical-documentation/data-sheets/ad4630-16-4632-16.pdf
+> +  * https://www.analog.com/media/en/technical-documentation/data-sheets/adaq4216.pdf
+> +  * https://www.analog.com/media/en/technical-documentation/data-sheets/adaq4224.pdf
+>  
+>  $ref: /schemas/spi/spi-peripheral-props.yaml#
+>  
+> @@ -31,6 +33,8 @@ properties:
+>        - adi,ad4630-24
+>        - adi,ad4632-16
+>        - adi,ad4632-24
+> +      - adi,adaq4216
+> +      - adi,adaq4224
+>  
+>    reg:
+>      maxItems: 1
+> @@ -54,6 +58,14 @@ properties:
+>      description:
+>        Internal buffered Reference. Used when ref-supply is not connected.
+>  
+> +  vddh-supply:
+> +    description:
+> +      PGIA Positive Power Supply.
+> +
+> +  vdd-fda-supply:
+> +    description:
+> +      FDA Positive Power Supply.
+> +
+>    cnv-gpios:
+>      description:
+>        The Convert Input (CNV). It initiates the sampling conversions.
+> @@ -64,6 +76,13 @@ properties:
+>        The Reset Input (/RST). Used for asynchronous device reset.
+>      maxItems: 1
+>  
+> +  pga-gpios:
+> +    description:
+> +      A0 and A1 pins for gain selection. For devices that have PGA configuration
+> +      input pins, pga-gpios should be defined.
+> +    minItems: 2
+> +    maxItems: 2
+> +
+>    pwms:
+>      description: PWM signal connected to the CNV pin.
+>      maxItems: 1
+> @@ -86,11 +105,29 @@ required:
+>    - vio-supply
+>    - cnv-gpios
+>  
+> -oneOf:
+> -  - required:
+> -      - ref-supply
+> -  - required:
+> -      - refin-supply
+> +allOf:
+> +  - oneOf:
+> +      - required:
+> +          - ref-supply
+> +      - required:
+> +          - refin-supply
 
-[...]
+Why is this moved under the allOf?
 
->> An older revision of this driver (I don't have it anymore) used to add
->> up the consecutive values of current in order to reduce the effect of
->> this inconsistency, but it was still unreliable.
->>=20
->> Moreover, I do not possess any documentation for this device, so it's
->> not possible for me to know what or how.
->
-> For the setup I described above, you consider everything above the
-> treshold as POWER_SUPPLY_STATUS_FULL independent of the current
-> direction. So you need to reorder:
->
-> if (capacity >=3D 90)
->     return POWER_SUPPLY_STATUS_FULL;
-
-So I have tested this. Should it not be discharging when power is not
-connected (current_now > 0). Doing this shows 'fully-charged' in upower,
-with the charging symbol in GNOME even if the charger is not connected.
-
-In such case, the logic in the current revision of the driver is
-correct, where it assumes the battery to be full ONLY if it is charging.
-
->
-> if (current_now < 0)
->     return POWER_SUPPLY_STATUS_DISCHARGING;
-> else if (current_now =3D=3D 0)
->     return POWER_SUPPLY_STATUS_NOT_CHARGING;
-> else
->     return POWER_SUPPLY_STATUS_CHARGING;
->
-> Greetings,
->
-> -- Sebastian
-
+> +  # ADAQ devices require a gain property to indicate how hardware PGA is set
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            pattern: ^adi,adaq
+> +    then:
+> +      required:
+> +        - vddh-supply
+> +        - vdd-fda-supply
+> +        - pga-gpios
+> +      properties:
+> +        ref-supply: false
+> +    else:
+> +      properties:
+> +        pga-gpios: false
+> +
+>  
+>  unevaluatedProperties: false
+>  
+> @@ -114,3 +151,26 @@ examples:
+>              reset-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
+>          };
+>      };
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        adc@0 {
+> +            compatible = "adi,adaq4216";
+> +            reg = <0>;
+> +            spi-max-frequency = <80000000>;
+> +            vdd-5v-supply = <&supply_5V>;
+> +            vdd-1v8-supply = <&supply_1_8V>;
+> +            vio-supply = <&supply_1_8V>;
+> +            refin-supply = <&refin_sup>;
+> +            vddh-supply = <&vddh>;
+> +            vdd-fda-supply = <&vdd_fda>;
+> +            cnv-gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
+> +            reset-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
+> +            pga-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>,
+> +                        <&gpio0 3 GPIO_ACTIVE_HIGH>;
+> +        };
+> +    };
+> +...
+> -- 
+> 2.39.2
+> 
 
