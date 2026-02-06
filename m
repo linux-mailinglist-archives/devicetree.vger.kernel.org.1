@@ -1,167 +1,280 @@
-Return-Path: <devicetree+bounces-263514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263516-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uHfyKE9QhmmuLwQAu9opvQ
-	(envelope-from <devicetree+bounces-263514-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 21:34:23 +0100
+	id oC60MQ5UhmmEMAQAu9opvQ
+	(envelope-from <devicetree+bounces-263516-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 21:50:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 069F1103228
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 21:34:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 673811033E1
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 21:50:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1A873302AC17
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 20:34:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B40913012506
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 20:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A9D330DEDD;
-	Fri,  6 Feb 2026 20:34:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 198F830BB9B;
+	Fri,  6 Feb 2026 20:50:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="B2Z8zoPy"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="TjtoYbQg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF8A728469F;
-	Fri,  6 Feb 2026 20:34:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5420F286D5C
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 20:50:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770410060; cv=none; b=NfO74nxibnt+IvRU3KFNdaU57dTjfCTXjmwa8ApxfgzaOa1rK3BQG+2kjbHkhZGWUHF/KuGYwCPyatFq9nsDqaJIdrWLLNrqblA6nljTHcr4sOfd2ZnqEOOX/uj/IHK8JAuvehHEb/dYCk7+PKOcwBwJdp9WYg57HZafSp//rTc=
+	t=1770411019; cv=none; b=As8KCOe7UW9gjDtkM/1vtTzQJmF412eDFJnUP+lQUUdsLpmxPoRVokLFg+1hIgJ+GX2R0EpOXcsI0NPVvVHyEu9m0jS3APrKvrCmEgrzV0+ZFVDXvBCYgntmCiz7uQi+oB+g/QNUXcm7aiJ2STdDyulwxmXKtwyV0oXKNKckKd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770410060; c=relaxed/simple;
-	bh=cHEh53/ktr4DOFZLnEwI3MqaHj/xZvem+tB575M2M1U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jbr44rvnvgAY2KSA01eznX919cu7hD7SxMx63Xvo8gMJRz9tG3jVgEk9tZrx79fjAaTucj88I6uodGdVw3X9eKNtG1eQspxQ+xXiWLzYh++MSkdXwI4o+4xtEoYgjr1Pe3ZZQ1oCvYhIY2gO/vTBT7oSvcD65/hNGAf2Ugn7QYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=B2Z8zoPy; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770410060; x=1801946060;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cHEh53/ktr4DOFZLnEwI3MqaHj/xZvem+tB575M2M1U=;
-  b=B2Z8zoPyn3ctIBneejP/FA5C0fheLThiMWrp/FC8FZAVS1peK3285jUy
-   krPq8JzI9/F0eIxyy8/4rI5wcTNs/53UUDE+U4ETCHQthgKWN6TpkEJd1
-   +l+ggfxngPAwuz9sXxr/gsf3pR2yCfnr5lbUDdXM4MajOAYsvF1PLqw81
-   4Qa1y0SAQijVe204EjzYeRxFPDktCjB+CAMPwED+4nDErBEgstayJh8Ca
-   0MrbaUrrRCEJPitKhKnshngTZlN0sZzcFKXqyabVoMIG2kkMApL6V3lnN
-   kLb33bQVURF5TY9b2PUZBh14BlfrMkDfMi+pRZzBpUdBWL+28xHpzv8Y+
-   Q==;
-X-CSE-ConnectionGUID: F/+AXB+YTx681YpczUgM9g==
-X-CSE-MsgGUID: p1y2LrESTS2iW06sqttdog==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="97080977"
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; 
-   d="scan'208";a="97080977"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2026 12:34:19 -0800
-X-CSE-ConnectionGUID: XtsNt/lmSTqAjTkKm0geLw==
-X-CSE-MsgGUID: mMMetEEoSaeK5NPx/J9RbA==
-X-ExtLoop1: 1
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 06 Feb 2026 12:34:15 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1voSWr-00000000l7Q-26gA;
-	Fri, 06 Feb 2026 20:34:13 +0000
-Date: Sat, 7 Feb 2026 04:33:26 +0800
-From: kernel test robot <lkp@intel.com>
-To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH v3 2/3] dma: amlogic: Add general DMA driver for A9
-Message-ID: <202602070404.wKMJf0YW-lkp@intel.com>
-References: <20260206-amlogic-dma-v3-2-56fb9f59ed22@amlogic.com>
+	s=arc-20240116; t=1770411019; c=relaxed/simple;
+	bh=tUB2Bgc66nVc0nsOK2ZmrZDjmqDmjP+6evd++P1JHVE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=as66ksJPFU3QbA7OBA6zHMXnYIs1CgOp3rXkzIBjGtyQTL6tq1rN3Z7mVvvC3+I91p9iNr9PDs+uioymPN6Dfwgw9HlnDR8SN8DV94LTqbh4F0wysnwMsb9a5/m5EWxM4o5/aj/Hyr0Ly/eBdET8RerL5/DUdZ8XCEvufID5Sy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=TjtoYbQg; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1770411017;
+ bh=KjKy0DEi9PeeKMA6cFOEmoz6i/HCq6Rp2FX4gRpNp7s=;
+ b=TjtoYbQgFHG+3sRSJu9bQkEN1DUIzE8GXgajysIC/Wf5K+hyrKr+397yuznZu6ybtcsJjlNUl
+ Roe5Aqs4zF+yLqObh/H9Yj4MwRYzk5dKnGLtn7MqEcRmSRt8SotW8v96iiDgg+XpMs79S4gSisV
+ k6LZxoBqgGygGtZIeUB0l7sA9Ush+eGOPdif0TG+vY8yd+HLvfBdPBgTSksQIGaNiHqtUmkxTkp
+ tELelAWzgOQlUu4LXDZXwXeeBU2U+0uNaWL6sAXlwxkO1QlzZNdBNV/lOWJD+wjreXF/DI2Fs/D
+ M2y43cELNJe4WpxuKtaFFOC3oZtM0Hjf74BEIJ55dzfA==
+X-Forward-Email-ID: 69865405a0945f6de12eac74
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 2.6.1
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <36248f00-1ffe-43a1-bdc7-24738389f1ce@kwiboo.se>
+Date: Fri, 6 Feb 2026 21:50:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260206-amlogic-dma-v3-2-56fb9f59ed22@amlogic.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 11/11] ARM: dts: rockchip: Add Onion RV1103B Omega4
+To: Fabio Estevam <festevam@gmail.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Fabio Estevam <festevam@nabladev.com>
+References: <20260206181309.2696095-1-festevam@gmail.com>
+ <20260206181309.2696095-12-festevam@gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20260206181309.2696095-12-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kwiboo.se,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kwiboo.se:s=fe-e1b5cab7be];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263514-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-263516-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.992];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.961];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,xianwei.zhao.amlogic.com,dt];
+	FROM_NEQ_ENVFROM(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kwiboo.se:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 069F1103228
+	DBL_BLOCKED_OPENRESOLVER(0.00)[kwiboo.se:mid,kwiboo.se:dkim,0.2.34.224:email,0.3.169.128:email,nabladev.com:email,0.0.156.64:email,0.0.0.0:email,a40000:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,plan44.ch:url]
+X-Rspamd-Queue-Id: 673811033E1
 X-Rspamd-Action: no action
 
-Hi Xianwei,
+Hi Fabio,
 
-kernel test robot noticed the following build warnings:
+On 2/6/2026 7:13 PM, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@nabladev.com>
+> 
+> Onion Omega4 board is a board based on the RV1103B SoC that has:
+> 
+> - 256 MB of RAM
+> - 256 MB of SPI-NAND
+> - Ethernet
+> - USB OTG
+> - Wifi
+> - SD card
+> - Camera connector
+> 
+> Add the initial support for this board so that it can fully boot into
+> Linux with the root file system stored in the SPI NAND.
+> 
+> Signed-off-by: Fabio Estevam <festevam@nabladev.com>
+> ---
+>  arch/arm/boot/dts/rockchip/Makefile           |  1 +
+>  arch/arm/boot/dts/rockchip/rv1103b-omega4.dts | 92 +++++++++++++++++++
+>  2 files changed, 93 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/rockchip/rv1103b-omega4.dts
+> 
+> diff --git a/arch/arm/boot/dts/rockchip/Makefile b/arch/arm/boot/dts/rockchip/Makefile
+> index 716f5540e438..d8cd5df138cc 100644
+> --- a/arch/arm/boot/dts/rockchip/Makefile
+> +++ b/arch/arm/boot/dts/rockchip/Makefile
+> @@ -1,5 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += \
+> +	rv1103b-omega4.dtb \
+>  	rv1108-elgin-r1.dtb \
+>  	rv1108-evb.dtb \
+>  	rv1109-relfor-saib.dtb \
+> diff --git a/arch/arm/boot/dts/rockchip/rv1103b-omega4.dts b/arch/arm/boot/dts/rockchip/rv1103b-omega4.dts
+> new file mode 100644
+> index 000000000000..512b063bceb1
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/rockchip/rv1103b-omega4.dts
+> @@ -0,0 +1,92 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2022 Rockchip Electronics Co., Ltd.
+> + * Copyright (c) 2025 plan44.ch/luz
+> + * Copyright (c) 2025 Onion Corporation
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "rv1103b.dtsi"
+> +
+> +/ {
+> +	model = "Onion RV1103 Omega4 Board";
+> +	compatible = "onion,rv1103b-omega4", "rockchip,rv1103b";
+> +
+> +	chosen {
+> +		stdout-path = &uart0;
 
-[auto build test WARNING on 3c8a86ed002ab8fb287ee4ec92f0fd6ac5b291d2]
+Please add a serial0 alias and use the following form to match most
+other Rockchip boards.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Xianwei-Zhao-via-B4-Relay/dt-bindings-dma-Add-Amlogic-A9-SoC-DMA/20260206-170903
-base:   3c8a86ed002ab8fb287ee4ec92f0fd6ac5b291d2
-patch link:    https://lore.kernel.org/r/20260206-amlogic-dma-v3-2-56fb9f59ed22%40amlogic.com
-patch subject: [PATCH v3 2/3] dma: amlogic: Add general DMA driver for A9
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20260207/202602070404.wKMJf0YW-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260207/202602070404.wKMJf0YW-lkp@intel.com/reproduce)
+ 		stdout-path = "serial0:115200n8";
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602070404.wKMJf0YW-lkp@intel.com/
+> +	};
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x10000000>;
+> +	};
 
-All warnings (new ones prefixed by >>):
+Memory nodes is typically added by firmware on Rockchip platform.
 
-   In file included from drivers/dma/amlogic-dma.c:7:
->> arch/x86/include/asm/irq.h:39:56: warning: declaration of 'struct pt_regs' will not be visible outside of this function [-Wvisibility]
-      39 | extern void __handle_irq(struct irq_desc *desc, struct pt_regs *regs);
-         |                                                        ^
->> arch/x86/include/asm/irq.h:44:50: warning: declaration of 'struct cpumask' will not be visible outside of this function [-Wvisibility]
-      44 | void arch_trigger_cpumask_backtrace(const struct cpumask *mask,
-         |                                                  ^
-   2 warnings generated.
+Size of the DRAM is typically encoded in OS_REG2 by the DRAM init
+code and can/should be picked up from there for next boot stages.
 
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-0	{
+> +			gpios = <&gpio0 RK_PA2 GPIO_ACTIVE_HIGH>;
 
-vim +39 arch/x86/include/asm/irq.h
+Please add pinctrl props for this pin. Also please add function and
+color props.
 
-a782a7e46bb508 arch/x86/include/asm/irq.h Thomas Gleixner   2015-08-02  38  
-7c2a57364cae0f arch/x86/include/asm/irq.h Thomas Gleixner   2020-05-21 @39  extern void __handle_irq(struct irq_desc *desc, struct pt_regs *regs);
-22067d4501bfb4 include/asm-x86/irq.h      Thomas Gleixner   2008-05-02  40  
-d9112f43021554 arch/x86/include/asm/irq.h Thomas Gleixner   2009-08-20  41  extern void init_ISA_irqs(void);
-d9112f43021554 arch/x86/include/asm/irq.h Thomas Gleixner   2009-08-20  42  
-b52e0a7c4e4100 arch/x86/include/asm/irq.h Michel Lespinasse 2013-06-06  43  #ifdef CONFIG_X86_LOCAL_APIC
-9a01c3ed5cdb35 arch/x86/include/asm/irq.h Chris Metcalf     2016-10-07 @44  void arch_trigger_cpumask_backtrace(const struct cpumask *mask,
-8d539b84f1e347 arch/x86/include/asm/irq.h Douglas Anderson  2023-08-04  45  				    int exclude_cpu);
-89f579ce99f7e0 arch/x86/include/asm/irq.h Yi Wang           2018-11-22  46  
+> +			label = "sys";
+> +			default-state = "on";
+> +		};
+> +	};
+> +};
+> +
+> +&fspi0 {
+> +	bootph-all;
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+This is not really needed in all boot phases, the initial phase only
+initialize DRAM and then return to BootROM so does not need to know
+about the spi flash.
+
+Also adding it here is not enough, please instead add bootph props to
+the flash@0 or possible partitions node.
+
+For optimal boot performance and size consideration you should drop
+this and add following bootph props.
+
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		compatible = "spi-nand";
+> +		reg = <0>;
+
+		bootph-pre-ram;
+		bootph-some-ram;
+
+Adding these here ensure that this and the parent node is included in
+the second stage and the pre-relocation boot-phase, the only phases they
+are needed.
+
+Regards,
+Jonas
+
+> +		spi-max-frequency = <75000000>;
+> +		spi-rx-bus-width = <4>;
+> +		spi-tx-bus-width = <1>;
+> +
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			partition@0 {
+> +				label = "env";
+> +				reg = <0x00000000 0x00040000>;
+> +			};
+> +
+> +			partition@40000 {
+> +				label = "idblock";
+> +				reg = <0x00040000 0x00100000>;
+> +				read-only;
+> +			};
+> +
+> +			partition@140000 {
+> +				label = "uboot";
+> +				reg = <0x00140000 0x00100000>;
+> +				read-only;
+> +			};
+> +
+> +			partition@240000 {
+> +				label = "boot";
+> +				reg = <0x00240000 0x00800000>;
+> +			};
+> +
+> +			partition@a40000 {
+> +				label = "ubi";
+> +				reg = <0x00a40000 0x0f5c0000>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0m0_xfer_pins>;
+> +	bootph-all;
+> +	status = "okay";
+> +};
+> +
+> +&wdt {
+> +	bootph-all;
+> +	status = "okay";
+> +};
+
 
