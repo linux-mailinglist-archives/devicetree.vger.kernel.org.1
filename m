@@ -1,153 +1,127 @@
-Return-Path: <devicetree+bounces-263286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263296-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OGd7AwO8hWmOFgQAu9opvQ
-	(envelope-from <devicetree+bounces-263286-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:01:39 +0100
+	id OEZYKfq8hWmpFwQAu9opvQ
+	(envelope-from <devicetree+bounces-263296-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:05:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1385FC5F8
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:01:33 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46ACAFC6E4
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:05:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 113203019F37
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 09:59:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E76B3302C64E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 10:05:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9BE36402A;
-	Fri,  6 Feb 2026 09:59:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mADMgl+v"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1046636403A;
+	Fri,  6 Feb 2026 10:05:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9702E541E;
-	Fri,  6 Feb 2026 09:59:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF5C83612EE;
+	Fri,  6 Feb 2026 10:05:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770371997; cv=none; b=cy/bVwDarNK9do0TavsmLJlexyBHK+02GhjSQCdf/FsZvQUQClPD1SlQOUaVAYLZyyCOI2UBFdnYVS80+EhOqxUOXknKhCvrxDFHbkjXu2gYtsKbNAM+e0f+pti53EPFKdzKSFPO3wEocl3iWsovHdo04w+PFUvDGKdv0vun2es=
+	t=1770372319; cv=none; b=VJM2mb/ClZjb765GhWoVSlHLPrdFTX/LN5N9o1+scydeYjzkoV+tjuksWEm8ZzpXBj49Ktqia5beSH5jAFwZLNicxpWdf0q3FrUptMyDB1heUjTnYbDoPCcDcuwyLOZi97V4PjP8CXHKz5sXZ814wF2jPMYa1OEnSIK602mrJBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770371997; c=relaxed/simple;
-	bh=Ioc9p5YtiEcqW35zdtv23sb8Ov+SAaY8D3LlCTi6cxM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HKj0uw/81M4bFag639Dx2ReM7VWGtFAmup/Lo1roOivrxXB92B1RxEaLF7goGh8GrqmJUUJ02djX9HbkpDekv2a8MdjjhXRJBJQi1pqQVDkNfpbngC1yrNAs7wPjr42nxeR4ei7L68wrL/H5KOsB3bxnlrFkj17/BOL+dSPPyOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mADMgl+v; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770371996; x=1801907996;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Ioc9p5YtiEcqW35zdtv23sb8Ov+SAaY8D3LlCTi6cxM=;
-  b=mADMgl+vjJ5TZnOR6xyQ9nA381S0/vfr0NCyX5LJSkh9dyRdVGwxpIC/
-   ZKNO52SBZwazt77HoXpxqu4KTWB61xtHQXoSGoeUWctpHzolhQnmr2TnG
-   MAMEvtFdo5sTDs+UB8HJLj6proFSeigmaQycqxkIMiVwAmpwQgfwdUCFl
-   KESWY1GXaeBWurmqsbRc1OEC4mRM2YIK0aMMuEcO2yl9zRKxCh6tkIU40
-   YuUaG5aQ84AX7RQIRd2d9g2q2vvmG6VnRAxlpcqpR8pTfUxUhrjVPOnN7
-   +i07Kpxw7Rzu8UnYZQtU/sjJvSAYnnhzzM8/PY3V46r2KfjiP8Utj0pas
-   A==;
-X-CSE-ConnectionGUID: QtyTshI2SgGsqh9mfDIFGw==
-X-CSE-MsgGUID: MTJaaWLPQpqgrFajCFm6kw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="71471989"
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; 
-   d="scan'208";a="71471989"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2026 01:59:55 -0800
-X-CSE-ConnectionGUID: 7XfmnIOyRe+izLyvUeZh0g==
-X-CSE-MsgGUID: MvymTBfvR0yl9xgGOwXM7A==
-X-ExtLoop1: 1
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.202])
-  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2026 01:59:51 -0800
-Date: Fri, 6 Feb 2026 11:59:50 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1770372319; c=relaxed/simple;
+	bh=dfQgKbLFhsTBFHP+p5lQ/Vb0PrfTuSVawKw/RRbFklU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Xwd//+Ap2fpMkbrWa0KcxKwc3I6aeEcyVC8JBGdLfu18fDCro7VJuLUdVmfMLUn2Td6C7YpxHgivAeFTq+8r7NXcAZG/wB68YBuIs1es3TvH5d73ojor6EcPg+QFpO/c9V6Y3AVmG3CarVpIRD/jatv1NrSVacW8zVhPT7buWRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [58.61.141.99])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 335ee3599;
+	Fri, 6 Feb 2026 18:05:07 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Yixun Lan <dlan@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Ze Huang <huang.ze@linux.dev>
+Cc: Rob Herring <robh@kernel.org>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	Mark Brown <broonie@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	David Jander <david@protonic.nl>
-Subject: Re: [PATCH v4 06/13] iio: dac: ds4424: use device match data for
- chip info
-Message-ID: <aYW7lt26Tn-6Fgno@smile.fi.intel.com>
-References: <20260203093434.2548978-1-o.rempel@pengutronix.de>
- <20260203093434.2548978-7-o.rempel@pengutronix.de>
- <aYHH69gXyuwmQR03@smile.fi.intel.com>
- <aYHLRvfJH54XumUA@pengutronix.de>
- <aYHhO7pJPEew7QMC@smile.fi.intel.com>
- <aYHjQhO92yxoy_9o@pengutronix.de>
- <aYIMgEEDd8ZfLv71@smile.fi.intel.com>
- <20260205204325.5bd09d97@jic23-huawei>
- <aYWe0-2KMLijFVh6@pengutronix.de>
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-riscv@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	spacemit@lists.linux.dev
+Subject: [PATCH 1/2] dt-bindings: phy: spacemit: add regulator support to K1 USB2 PHY
+Date: Fri,  6 Feb 2026 18:00:08 +0800
+Message-Id: <20260206100009.873182-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aYWe0-2KMLijFVh6@pengutronix.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9c326999a603a2kunmb90599ad38e347
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCTEoaVk8ZSU1JTh8fQ05NT1YeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlOQ1VNSlVKT0pVQkJZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE5VSktLVUpCS0
+	tZBg++
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263286-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263296-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RSPAMD_URIBL_FAIL(0.00)[intel.com:query timed out];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,jmu.edu.cn,gmail.com,linaro.org,lists.infradead.org,vger.kernel.org,lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.988];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,intel.com:dkim]
-X-Rspamd-Queue-Id: A1385FC5F8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 46ACAFC6E4
 X-Rspamd-Action: no action
 
-On Fri, Feb 06, 2026 at 08:57:07AM +0100, Oleksij Rempel wrote:
-> On Thu, Feb 05, 2026 at 08:43:25PM +0000, Jonathan Cameron wrote:
-> > On Tue, 3 Feb 2026 16:56:00 +0200
-> > Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+Add an optional phy-supply property to describe the regulator
+supplying for USB VBUS.
 
-...
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+ Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> > > Just do not introduce that change (change of the ->name field) in the original
-> > > patch, in that case no revert churn would be needed.
-> > > 
-> > I think this got dealt with in discussion of next version but
-> > safest route is just have an extra copy of the name in the
-> > chip_info structure.  Then we know it's stable against different
-> > firmware types etc.
-> 
-> Something like this?
-
-Yes, but make it in the patch that introduces DT support.
-
+diff --git a/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml b/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
+index 43eaca90d88c..74a1cd5bcdbe 100644
+--- a/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
+@@ -19,6 +19,10 @@ properties:
+   clocks:
+     maxItems: 1
+ 
++  phy-supply:
++    description:
++      Phandle to a regulator that provides power to VBUS.
++
+   "#phy-cells":
+     const: 0
+ 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
 
