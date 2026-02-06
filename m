@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-263221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263222-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wz+AIzRnhWknBQQAu9opvQ
-	(envelope-from <devicetree+bounces-263221-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 04:59:48 +0100
+	id KLBnHz1vhWnqBQQAu9opvQ
+	(envelope-from <devicetree+bounces-263222-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 05:34:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A46F9DF6
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 04:59:47 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3B88FA1CD
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 05:34:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 223993004D19
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 03:59:44 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0FDEE30638BA
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 04:26:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EFC0335096;
-	Fri,  6 Feb 2026 03:59:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFFC32E040D;
+	Fri,  6 Feb 2026 04:24:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="DauKu45s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lgeamrelo13.lge.com (lgeamrelo13.lge.com [156.147.23.53])
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F882334683
-	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 03:59:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.147.23.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ED472DB79C;
+	Fri,  6 Feb 2026 04:24:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770350381; cv=none; b=ZOwKI3OME6VOq+c7X3FI8qFYL1wNVpQpGAapvkXFUCLfnppMhouoS1gHJ3AwtDnpzP5ivdSlkWrt1cNtZ2uEz7qvMn4J+jrKalN0OuvNXnjwzk7MWKSe6iNRJjZBP+8Ac8XT6atQeul5SUXlh9uh0ZPoqjvSKUFe0r4yS/wr4lA=
+	t=1770351896; cv=none; b=bw3UpjdPtmkOs91Stwtcwd77IODOkZf7S0cXUAMM3++RB/jMxFV8C2MG5VfvuQMrSu5svcMUtV3Maj/5QTFw8Xq9glerZujcVzVzEdvYeUWKX6IKABH2guCOk8a1nT3yffkffm+inyFqpYRqPdGoD0QA7daFO/Jzmvxa6yXKFqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770350381; c=relaxed/simple;
-	bh=thWW67JVlurzQRV3L2G5kZ/NYJiFqqge+0N0zVioDiw=;
+	s=arc-20240116; t=1770351896; c=relaxed/simple;
+	bh=oCAKsvXt8uZY203fBKI3gjJz6X6a7pHd3R1zvMeozgI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pcA2bBqELDxHPqcCqcH8wz0jBqG9KRjekSp/3Qoa9QQ5qKuOWjZNlEq+9zOODE9nph05ILR3lyimxdCR5S5X3DWkYuUH5tPVM5nFPejMPsPopnUbkIfNP4xwE/0GkPmw30nQ3Xw/sXwAVun1qYgSSDzSCzicd6OXybaw2f6nXBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com; spf=pass smtp.mailfrom=lge.com; arc=none smtp.client-ip=156.147.23.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lge.com
-Received: from unknown (HELO lgeamrelo04.lge.com) (156.147.1.127)
-	by 156.147.23.53 with ESMTP; 6 Feb 2026 12:59:32 +0900
-X-Original-SENDERIP: 156.147.1.127
-X-Original-MAILFROM: chanho.min@lge.com
-Received: from unknown (HELO BRUNHILD) (10.178.31.97)
-	by 156.147.1.127 with ESMTP; 6 Feb 2026 12:59:32 +0900
-X-Original-SENDERIP: 10.178.31.97
-X-Original-MAILFROM: chanho.min@lge.com
-Date: Fri, 6 Feb 2026 12:59:32 +0900
-From: Chanho Min <chanho.min@lge.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Kael D'Alcamo <dev@kael-k.io>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2 v3] dt-bindings: arm: lg: Add compatible for LG1215
- SoC and reference board
-Message-ID: <aYVnJKDO9PYiqje5@BRUNHILD>
-References: <20260112053421.3185738-2-chanho.min@lge.com>
- <20260112-agile-elite-tuatara-dea08d@quoll>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NC1cOHUyYDyBnqZFHDNpi+qNPnJlvKCWGwPMLKdCatJ4qGyttq5mq56aCrLG95E40H5k4hlMjTtA+uQFZNk2zQsc/T8YU2/lY9Bp96AfmTo87nvXHHjMhNjY0tPEkFpXbDtashXa+zbnu9iAswxycW4YVhqBJTTDnYQkupSJFCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=DauKu45s; arc=none smtp.client-ip=74.50.62.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
+Received: from localhost (84-231-56-127.elisa-mobile.fi [84.231.56.127])
+	by mail5.25mail.st (Postfix) with ESMTPSA id 32A1260B1A;
+	Fri,  6 Feb 2026 04:24:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
+	s=25mailst; t=1770351895;
+	bh=oCAKsvXt8uZY203fBKI3gjJz6X6a7pHd3R1zvMeozgI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DauKu45sll2ojZjepiJH9Jenf680K86qCh5AFSyUA4sUZyRnUoKAB431+OkS4NO7/
+	 jL6zSyrKHc5eC/GdbN9Bv4aDPAYq7Indzrz604fGEUylt6yVBfbIhXfCCVbFyOBr5i
+	 VpUe0N7Lfg+335tBuwLyPIyIKijA7PZvCSJjVViNjrZb5ahtD/kDB64VlZaABdo6Ge
+	 dBeI8m5qY4RJ2qolwD+T/qeZ1dVjyaUaL250mqZpM6iwz7iY9YFDE88O6UGBYfcrXJ
+	 D49B15Pg1Ia1J6ySImAXTskkm48VfqUV2C7uw7QaPt3cibEJ+Vfy37r6s3C/OmkNUO
+	 clocgXunw+wYw==
+Date: Fri, 6 Feb 2026 06:24:36 +0200
+From: Tony Lindgren <tony@atomide.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] power: supply: cpcap-battery: pass static battery
+ cell data from device tree
+Message-ID: <20260206042436.GB5376@atomide.com>
+References: <20260130134021.353688-1-clamor95@gmail.com>
+ <20260130134021.353688-3-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,72 +67,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260112-agile-elite-tuatara-dea08d@quoll>
+In-Reply-To: <20260130134021.353688-3-clamor95@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.64 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[atomide.com:s=25mailst];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[lge.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263221-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-263222-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chanho.min@lge.com,devicetree@vger.kernel.org];
+	DMARC_NA(0.00)[atomide.com];
+	DKIM_TRACE(0.00)[atomide.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.965];
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tony@atomide.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lge.com:email,qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A9A46F9DF6
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[atomide.com:email,atomide.com:dkim,atomide.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C3B88FA1CD
 X-Rspamd-Action: no action
 
-On Mon, Jan 12, 2026 at 10:07:05AM +0100, Krzysztof Kozlowski wrote:
-> On Mon, Jan 12, 2026 at 02:34:20PM +0900, Chanho Min wrote:
-> > Add compatible strings for the LG1215 SoC and its reference board
-> > (lg,lg1215 and lg,lg1215-ref).
-> > 
-> > This SoC is the next SoC following the LG1313 series, developed
-> > by LG Electronics.
-> > 
-> > Signed-off-by: Chanho Min <chanho.min@lge.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/lge.yaml | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/lge.yaml b/Documentation/devicetree/bindings/arm/lge.yaml
-> > index d983ef7fcbd6..0d0661470eaa 100644
-> > --- a/Documentation/devicetree/bindings/arm/lge.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/lge.yaml
-> > @@ -24,5 +24,10 @@ properties:
-> >            - const: lge,lg1313-ref
-> >            - const: lge,lg1313
-> >  
-> > +      - description: Boards with LG1215 SoC
-> 
-> 1215 < 1313, so this looks oddly sorted.
-> 
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+* Svyatoslav Ryhel <clamor95@gmail.com> [260130 13:40]:
+> Add an option to populate battery cell properties from the device tree if
+> the driver cannot access the battery's NVMEM.
 
-Hi, Krzysztof
+Makes sense to me:
 
-Ping, Any update or is it waiting in a queue somewhere?
-
-Chanho
-> 
-> Best regards,
-> Krzysztof
-> 
+Reviewed-by: Tony Lindgren <tony@atomide.com>
 
