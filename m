@@ -1,75 +1,63 @@
-Return-Path: <devicetree+bounces-263249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263250-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WMiiNwWfhWlKEAQAu9opvQ
-	(envelope-from <devicetree+bounces-263249-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:57:57 +0100
+	id 8Mr6HHOghWlKEAQAu9opvQ
+	(envelope-from <devicetree+bounces-263250-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 09:04:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76724FB2D5
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:57:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C19E3FB3BC
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 09:04:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 33B9330168A4
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 07:57:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 48F13300A74E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 08:00:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC12734676F;
-	Fri,  6 Feb 2026 07:57:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84B6433F390;
+	Fri,  6 Feb 2026 08:00:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YlWn99IG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EC8A346780
-	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 07:57:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6025733F37F;
+	Fri,  6 Feb 2026 08:00:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770364637; cv=none; b=euw8oK9ETMFKF0bnuqFqd8CrMYqAgkJApcW6pdP4wbpxF0wX3XzyWGdVS5AVrkVnebLvsDQWue5RpL9U+9U0HM8cSB0IhlX0k817HnfZ4/0Nxg9DiO+xSKLNzH3YpRrxMNVcESF4NtXBDYti6NqqdWdBeqHFyFOfS5FjRQcOQ/M=
+	t=1770364812; cv=none; b=l7vtVkUwO3VADSAdG7yR9EFRkaNTm4ExagMZ94Sq4uayFTKScEqcw9q0JzmDYtCcdHpf/gmuwewkJuuIEV6DJGbva6OI/yjvD6NR3GhZYoDTKiW4ZW15g3TE32cuNTv5jZx19zsqQcU7cMBPLjqUDEgbECrsWM6HcQWU/8XFXlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770364637; c=relaxed/simple;
-	bh=Zrm6fZQNVwJWfNL4nHVEXclBkofR1eTPAkyBjFQeq0s=;
+	s=arc-20240116; t=1770364812; c=relaxed/simple;
+	bh=QYQxMJpseoM1Pjg/ppDkYzFEx9y2SCTxdUniu1od0g4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kMKOln8U3auq5nfSkM/ovjIiiUTz4eZygH8Bf1h+yVVfGIyITPZxSAYYUqWFSYibxSeTCQ0naKiks45ehwH5wHT2oAkU9EyY0rSz2uKT8wJWbqf/xvAauocKXDhAehvplBMFOURjf7X1wygROxGuClq99n4Z6QmcDvdfYr3SM+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1voGiD-0001ot-Ge; Fri, 06 Feb 2026 08:57:09 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1voGiC-004MvV-2F;
-	Fri, 06 Feb 2026 08:57:08 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1voGiB-002Gt0-2x;
-	Fri, 06 Feb 2026 08:57:07 +0100
-Date: Fri, 6 Feb 2026 08:57:07 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>,
-	David Jander <david@protonic.nl>
-Subject: Re: [PATCH v4 06/13] iio: dac: ds4424: use device match data for
- chip info
-Message-ID: <aYWe0-2KMLijFVh6@pengutronix.de>
-References: <20260203093434.2548978-1-o.rempel@pengutronix.de>
- <20260203093434.2548978-7-o.rempel@pengutronix.de>
- <aYHH69gXyuwmQR03@smile.fi.intel.com>
- <aYHLRvfJH54XumUA@pengutronix.de>
- <aYHhO7pJPEew7QMC@smile.fi.intel.com>
- <aYHjQhO92yxoy_9o@pengutronix.de>
- <aYIMgEEDd8ZfLv71@smile.fi.intel.com>
- <20260205204325.5bd09d97@jic23-huawei>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bjoyx5TiMkoCIIAk11oPqHPQkAIr6OCftLGwcbpCABGfyWVhMfMM0Fztbb4NRQG1RYbUaLfqocWDkeeE8TJCpJ/bl50YtE4gcYq6R5X/NwEC+usOJHi6UQ5UJoF53SKCMakzFg+ML7sjSJEyR/NX4VU8dflv1PXM7bQGLH6zkpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YlWn99IG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39DA9C116C6;
+	Fri,  6 Feb 2026 08:00:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770364811;
+	bh=QYQxMJpseoM1Pjg/ppDkYzFEx9y2SCTxdUniu1od0g4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YlWn99IG2UbCJd0tPwymWE00YeNRIWyvSyDeO3n2OypA+Hd3ItfcjBvZf2lQBrDjW
+	 /RBqj8OL9nUonPbW6Ob1nsuqjxY5qYqDYvrZXYvoa04mHNoY/v7PlgHTIxwFuBViBL
+	 Wlk1Xpk3FevA5eKTZeiCG3/Ll49DQHyTWAVK5DEaqvMdfMmIg5DAr80c3efq2cNKCA
+	 kfL2DHMKTg1NtUvx/NSAX9yBXFGlqNznzroZYBLq4vuBJLWWlxvu1jA0XiazLuDEuA
+	 Y3HwsZwwg5UQiap5xgsrrTlRjhYm4LJqgEPbOOUK08PsgMhkZJwkDRQLF9B9BTuqci
+	 5BKiL47ukLnAA==
+Date: Fri, 6 Feb 2026 09:00:09 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Cc: broonie@kernel.org, lgirdwood@gmail.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, srini@kernel.org, perex@perex.cz, 
+	tiwai@suse.com, alexey.klimov@linaro.org, mohammad.rafi.shaik@oss.qualcomm.com, 
+	quic_wcheng@quicinc.com, johan@kernel.org, dmitry.baryshkov@oss.qualcomm.com, 
+	konrad.dybcio@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 05/10] ASoC: qcom: q6dsp: add support for LPASS LPI MI2S
+ dais
+Message-ID: <20260206-petite-tireless-iguana-addf9e@quoll>
+References: <20260205171411.34908-1-srinivas.kandagatla@oss.qualcomm.com>
+ <20260205171411.34908-6-srinivas.kandagatla@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,151 +66,86 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260205204325.5bd09d97@jic23-huawei>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20260205171411.34908-6-srinivas.kandagatla@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-263249-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263250-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,perex.cz,suse.com,linaro.org,oss.qualcomm.com,quicinc.com,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.988];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email]
-X-Rspamd-Queue-Id: 76724FB2D5
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C19E3FB3BC
 X-Rspamd-Action: no action
 
-On Thu, Feb 05, 2026 at 08:43:25PM +0000, Jonathan Cameron wrote:
-> On Tue, 3 Feb 2026 16:56:00 +0200
-> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+On Thu, Feb 05, 2026 at 12:14:06PM -0500, Srinivas Kandagatla wrote:
+> Add new dai ids and dai driver entries ior LPASS LPI MI2S lines
 > 
-> > On Tue, Feb 03, 2026 at 01:00:02PM +0100, Oleksij Rempel wrote:
-> > > On Tue, Feb 03, 2026 at 01:51:23PM +0200, Andy Shevchenko wrote:  
-> > > > On Tue, Feb 03, 2026 at 11:17:42AM +0100, Oleksij Rempel wrote:  
-> > > > > On Tue, Feb 03, 2026 at 12:03:23PM +0200, Andy Shevchenko wrote:  
-> > > > > > On Tue, Feb 03, 2026 at 10:34:26AM +0100, Oleksij Rempel wrote:  
-> > 
-> > ...
-> > 
-> > > > > > > -	indio_dev->name = id->name;  
-> > > > > >   
-> > > > > > > +	indio_dev->name = client->name;  
-> > > > > > 
-> > > > > > Isn't this an ABI breakage?  
-> > > > > 
-> > > > > I can't confirm it.
-> > > > > 
-> > > > > before all patches:
-> > > > > root@DistroKit:~ cat /sys/bus/iio/devices/iio:device3/name 
-> > > > > ds4424
-> > > > > 
-> > > > > after:
-> > > > > root@DistroKit:~ cat /sys/bus/iio/devices/iio:device3/name 
-> > > > > ds4424  
-> > > > 
-> > > > In ACPI case it might look differently, but I have no means to test this.
-> > > > 
-> > > > id->name comes strictly from an i2c table, while client->name is constructed
-> > > > using specifics of the firmware enumeration. In DT due to some (historical?)
-> > > > reasons the client->name has no vendor substring and hence matches 1:1 to
-> > > > id->name. In ACPI, IIRC, the client->name is ACPI device instance name,
-> > > > something like ABCD0123:00.  
-> > > 
-> > > Ok, I see. Should I revert this line?  
-> > 
-> > Just do not introduce that change (change of the ->name field) in the original
-> > patch, in that case no revert churn would be needed.
-> > 
-> I think this got dealt with in discussion of next version but
-> safest route is just have an extra copy of the name in the
-> chip_info structure.  Then we know it's stable against different
-> firmware types etc.
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+> ---
+>  .../sound/qcom,q6dsp-lpass-ports.h            | 12 ++++-
+>  sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c      | 47 +++++++++++++++++++
+>  2 files changed, 58 insertions(+), 1 deletion(-)
+> 
 
-Something like this?
+It's impossible to reply via korg - wrong address of Conor...
 
-diff --git a/drivers/iio/dac/ds4424.c b/drivers/iio/dac/ds4424.c
-index ccf36d3e0443..ffa65b22a1fd 100644
---- a/drivers/iio/dac/ds4424.c
-+++ b/drivers/iio/dac/ds4424.c
-@@ -50,6 +50,7 @@
- }
- 
- struct ds4424_chip_info {
-+	const char *name;
- 	int vref_mV;
- 	int scale_denom;
- 	u8 result_mask;
-@@ -57,6 +58,7 @@ struct ds4424_chip_info {
- };
- 
- static const struct ds4424_chip_info ds4402_info = {
-+	.name = "ds4402",
- 	.vref_mV = 1230,
- 	.scale_denom = 4,
- 	.result_mask = DS4404_DAC_MASK,
-@@ -64,6 +66,7 @@ static const struct ds4424_chip_info ds4402_info = {
- };
- 
- static const struct ds4424_chip_info ds4404_info = {
-+	.name = "ds4404",
- 	.vref_mV = 1230,
- 	.scale_denom = 4,
- 	.result_mask = DS4404_DAC_MASK,
-@@ -71,6 +74,7 @@ static const struct ds4424_chip_info ds4404_info = {
- };
- 
- static const struct ds4424_chip_info ds4422_info = {
-+	.name = "ds4422",
- 	.vref_mV = 976,
- 	.scale_denom = 16,
- 	.result_mask = DS4424_DAC_MASK,
-@@ -78,6 +82,7 @@ static const struct ds4424_chip_info ds4422_info = {
- };
- 
- static const struct ds4424_chip_info ds4424_info = {
-+	.name = "ds4424",
- 	.vref_mV = 976,
- 	.scale_denom = 16,
- 	.result_mask = DS4424_DAC_MASK,
-@@ -335,7 +340,7 @@ static int ds4424_probe(struct i2c_client *client)
- 
- 	data = iio_priv(indio_dev);
- 	i2c_set_clientdata(client, indio_dev);
--	indio_dev->name = id->name;
-+	indio_dev->name = chip_info->name;
- 	data->chip_info = chip_info;
- 
- 	data->vcc_reg = devm_regulator_get(&client->dev, "vcc");
+> diff --git a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+> index 609bc278f726..0febc641f351 100644
+> --- a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+> +++ b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+> @@ -140,7 +140,17 @@
+>  #define DISPLAY_PORT_RX_6	134
+>  #define DISPLAY_PORT_RX_7	135
+>  #define USB_RX			136
+> -#define LPASS_MAX_PORT		(USB_RX + 1)
+> +#define	LPI_MI2S_RX_0		137
 
+Odd indentation appeared.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> +#define	LPI_MI2S_TX_0		138
+> +#define	LPI_MI2S_RX_1		139
+> +#define	LPI_MI2S_TX_1		140
+> +#define	LPI_MI2S_RX_2		141
+> +#define	LPI_MI2S_TX_2		142
+> +#define	LPI_MI2S_RX_3		143
+> +#define	LPI_MI2S_TX_3		144
+> +#define	LPI_MI2S_RX_4		145
+> +#define	LPI_MI2S_TX_4		146
+> +#define	LPASS_MAX_PORT		(LPI_MI2S_TX_4 + 1)
+
+Confusing change or actual proof that my previous comments for similar
+patch are valid:
+1. not a binding
+or
+2. you cannot change this, because you break ABI.
+Choose only one from these options.
+
+Drop.
+
+Best regards,
+Krzysztof
+
 
