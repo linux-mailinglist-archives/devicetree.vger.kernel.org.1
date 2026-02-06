@@ -1,270 +1,399 @@
-Return-Path: <devicetree+bounces-263431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263432-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MPivNrUdhmmTJwQAu9opvQ
-	(envelope-from <devicetree+bounces-263431-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 17:58:29 +0100
+	id OJwQAsQfhmm/JwQAu9opvQ
+	(envelope-from <devicetree+bounces-263432-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:07:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42A90100A40
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 17:58:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F3EB100BC2
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:07:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9215A300E713
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 16:58:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 80A983003EFD
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 17:06:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B6D92DCF7B;
-	Fri,  6 Feb 2026 16:58:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB5123644DA;
+	Fri,  6 Feb 2026 17:06:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PkZSOwu6"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="OaASM9Eb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011002.outbound.protection.outlook.com [52.101.65.2])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D75792DC765
-	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 16:58:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770397083; cv=none; b=OTRb++NywRlGbdVkCDi4NwlCItHzzmz3NCoHYSZDDTdJXVqAEk8SRMQg0VtX1Yn7zofspkiFRxLUU3JMaCTGsghqangpFGgcxjf9kmiNC2HiOC7unZcydhVGe+wH8g5O5IslWDAfxzFCxRakhfq4RQaaMYhdGH8uTmOVm/nEhws=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770397083; c=relaxed/simple;
-	bh=szsAM9UMao+YRDWQS9ADaOjevBE9aCJe7TyoQaU8wME=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ZWVDaHvhyzzSO3HvEget6TXryvfF4bsP9WzQf9GfGmgg8p3EQ8kFH/A6rBKvJ+3ZMRYpH03/k+pB7Owez58NeJfaxpe+owTIIkGbRyixUYe65UJFA+daLiN9t44mT0bbyL5o2XZpCJlC27fsOCZcMfpdIk3rZQDO6OuXacpN+Dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PkZSOwu6; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-354c19bf64bso137991a91.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 08:58:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770397082; x=1771001882; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5/uZWRYd/Hy2800O/jPSfyWNQwuWahapBaTQzGJ1Al4=;
-        b=PkZSOwu6QLtqDQTcVYaMoueEEg8wAj3GSv9P6lWPFyZE9l/E93J9OHzPcsCR7LhaXW
-         LOQo3d7dvd0mSfaYyI+aZVjk/03W9wdhMP0GxfnvJhS93Jr4Y6qP4glgxFLUO+Ggg5Uw
-         YFeIbwDMcsrjW0c/a6aVi9Wz1f38ADy+b3hwG44RxqEcaEJFMLA1QLA9cWRp7H8vJS4l
-         m+k9MOWNtyHnGT4YFW/0YHzO7an6e0NsAQ8Ih7odi15WRbJ2DqCEe+CNU5tLFtA0IfSB
-         hnvy1WKwD/WnL/r/C2rX5c/LEweZZk31ubytyJPuvmRhP97tsOcBAR/He8i983c+rFD3
-         zmjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770397082; x=1771001882;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5/uZWRYd/Hy2800O/jPSfyWNQwuWahapBaTQzGJ1Al4=;
-        b=HhDG5uH6NnnPLSbKX16Y1eh5em2e+htP3ZUldkzK0hCw8Ar68RplgdaM3bZYTtvwUp
-         JLlL26jzLSTJVgaTiFFTQKk2JTNErriEUbZblRKCFXxqIPdO4QM0wCqes848nY5iUOCt
-         lvCn4ezsLSxaqQGOcii+ojpz/+13HBaVYRRdigQWN4zBPqS3rq75Gb0pynBUiwpqri+v
-         jWgBIzF1uVUKaVbNCaWABO2LAQr93nWfm2FwKsuCQ0fYHO9zKdfY9qmj7hUJQTQNI5hm
-         DFPGyTvGbsXME6/B35yAIaGr0dTIo76DPhrdsEHNYsEa0nws4wWYtMTMcAjg8Z30RORe
-         PFIA==
-X-Gm-Message-State: AOJu0YxRjEIVLXYA3nZ0ZyhJHxVxNjihI3dcZAC5CSQx9D9c2tfReZ9F
-	z/7UnB9/Oo3bJCEitR4ZXA4IqbLaYOTXiDdxwg4E4ewQ+wGyYSkCiPl1qUmQJQ==
-X-Gm-Gg: AZuq6aJjpkxXIQDJwk94+kd2j7/aP39max1XgmyqvERvEGAb/SEskVvQ5ILL2JlwupC
-	q5jsttUQSSsXQF/6etId1uoYNy8ts7KKPxw30TsEoxA1rzNJngOGioJR9KJcBpkzAU+eqip4dhy
-	tnprkmhv4eQyQyJjI73cc/1CT78gCgB5agg1uwW//7X9BLj5mt7LwDj78uO4GbnwtZfhBkQuMCB
-	ZubBa/PQQgdAriSDezd7MS9qec0bclyrWazmIQrnGHvV2CV33uXTa7I6wsdcPLrTtX/wNDhjUWT
-	3DerJa2h45OUgiHd4DL8OzL3v6I+RzVl/8vheH2KnlZQD7JllbgrR38DdkA8hGUax6eGNS3e5fb
-	DrXgyaLgAEl7qiDR86UKJieQnsunx85qdZoGucZd5TQgYMzOvhxt9nI96CFP2xiGb7E6xwgO3RP
-	7X1i13hn2fumPwaBICUs9d18Bd6CY5ayFylCpz
-X-Received: by 2002:a17:90b:4b12:b0:343:e692:f8d7 with SMTP id 98e67ed59e1d1-354b3069dddmr2779319a91.11.1770397082114;
-        Fri, 06 Feb 2026 08:58:02 -0800 (PST)
-Received: from LAPTOP-872M7T80.localdomain ([223.181.105.219])
-        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-354b1e3d056sm3005131a91.3.2026.02.06.08.57.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Feb 2026 08:58:01 -0800 (PST)
-From: Akhila YS <akhilayalmati@gmail.com>
-Date: Fri, 06 Feb 2026 16:57:54 +0000
-Subject: [PATCH v2] dt-bindings: power: ti,omap3-smartreflex-core: convert
- to DT schema
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6961C364023;
+	Fri,  6 Feb 2026 17:06:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.2
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770397601; cv=fail; b=ILwnBa7CPJiuCWx3Yk3DjV+zQsUK3tQ4Vi1RhoBoA6qChoX8/jvndnZkMRSRQ/D1zSVs7KpXW6kW4XXXtMKEeNAPu+zdfaC6pZljHhTsDUVGNHgJrMPDi0lCL3SVxEodHaL6+pkBOomtC/ifltox3V+kthcCqCZ5xhL63XbqX4E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770397601; c=relaxed/simple;
+	bh=M1z+B8Q5i+c3AgK5wRdcQmZG8y4XFLs7Rivj1YxPS/c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=rUgM/n45e3scQVHNAhwiF/bdyOorbzmF9ToWuYZGsN9dWPNNLGKEMCheFf35y3A3yhIcDXljm6F1O79zcsRC27hY/eNZVIlEIeZIJ3DwAp8Mtoz3Wqif87FXGXUijX2yt0+IAIiZeUDdbCiLNajYJiYny3ou0PVjNvKASJC99rI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=OaASM9Eb; arc=fail smtp.client-ip=52.101.65.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FPB30uif6ZjbaWoKNMsijRArOuBtqv7u83T5CfYaVKoj66aHtn/Kgn9IE1ITkjT249Z1IFI7jDAAbZHF6vdlH52dNEVZte74PIR+ap+Dql7T0JBUSEJSaM6ppRYNO6gOURGmM27+VkJTJu3ue8FA5Pu02BFBDtWHzdwr8pLxprbrwxPgvd53e90tk4J8uQDJXPgS3jOighF4ZL858KbXVAqh76Bf+D/EsFPMoCnCLQBv61muputLUAMu2LtMm+y+to9woQPqaJSrRybAwWEGt0bE8dW8UgXxo4SwRNHV4XXC5qdXocIa6dtLIoLoDjJqNMSZwSAZ0FB4/9THCxRrJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9dtJpBpaJj/eQbsN8iHnp1hkp5NLcNb0UGi2fEoGzlM=;
+ b=FfPQMik2DEKXDRP7zn6aH0vF5ghsVJPDHYwOlL1SskbnF9HziKpNSukUo1n9nkudlTm7icc0SSxxb79Nrht5naLhUsFzBUggDwlX7BnKrX3rQai8BXEQNbjpK5/ishYC0IPMb7moyWnNsj2lQYxif5gQw1nPyzHZL6kUgswZIzDkn00SYxhiz/dU+AikFfhyEP8oZumjizJ0G33FG1syLL0zfhwS5jI44wzFx40oGrfsHRMcXsIsW1fIoL1v7cPDfYnuJm4lmJERSja7lBz3H8lobCWIpWsMgn/s6K8meVfijlTHdahBmHX0x3uYppQTlHq59jUqxIZtKsb6slnPow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9dtJpBpaJj/eQbsN8iHnp1hkp5NLcNb0UGi2fEoGzlM=;
+ b=OaASM9EbKZSG9rRTRq+JU1k4HvG0v2jFf28gp2+M+fCXJb7MngpzilB/6MKRPxRIuF/kMyPC+72fhECxoXsOdJoVXBTW5v4ok0PcGXmTJnNRGWoEbcOyB5wHU3Zc3094OWaiku2+4u11FtxXVObKFEqAkMSy70Pe313ZjBXHVrv3BntrXV8Jrbh3FVbHirgE0FOgq2ELxZmBhNzzM330cVwOlDLMQPA4LL03TL5oZhGt9bIBzuNWvG3OTd1pJhHjqAajim6S1ZHjddb8svhM8dyn5KNxIgiZdwCQFdo1XVYk7PTV4VZtXBx3ip5y1eUS45hS/jzGNg3+hz8kZLwMFw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by AM9PR04MB8922.eurprd04.prod.outlook.com (2603:10a6:20b:409::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.15; Fri, 6 Feb
+ 2026 17:06:38 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Fri, 6 Feb 2026
+ 17:06:38 +0000
+Date: Fri, 6 Feb 2026 12:06:29 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+Cc: linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
+	alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, broonie@kernel.org,
+	lee@kernel.org, lgirdwood@gmail.com, vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com, shashank.rebbapragada@nxp.com
+Subject: Re: [PATCH v5 1/5] i3c: master: Expose the APIs to support I3C hub
+Message-ID: <aYYflbET_ZE1QPDT@lizhi-Precision-Tower-5810>
+References: <20260206120121.856471-1-aman.kumarpandey@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260206120121.856471-1-aman.kumarpandey@nxp.com>
+X-ClientProxiedBy: PH8P221CA0058.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:510:349::7) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260206-smartreflex-v2-1-b258498917a4@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAJEdhmkC/1XMQQrDIBCF4auEWdeiltimq96jZGF1TAZiDBokJ
- Xj32kAXXf4P3rdDwkiY4N7sEDFTojDXkKcGzKjnARnZ2iC5VFxIxZLXcY3oJtxYZ21r0DpnuIX
- 6WOpO26E9+9ojpTXE94Fn8V1/zu3PyYIJJvXrqi+tUB3ax+A1TWcTPPSllA9PrhRLpgAAAA==
-X-Change-ID: 20260126-smartreflex-9dd5cedffc0d
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Akhila YS <akhilayalmati@gmail.com>
-X-Mailer: b4 0.14.3
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AM9PR04MB8922:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3e5436e4-68c2-4e60-0a63-08de65a216ef
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|52116014|376014|7416014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?UJB+s+8LmvAJ8lZK6JA8CMvqYp96sk7mmHlPAjkzjDZmuE45Kr3c2Tc9HvOa?=
+ =?us-ascii?Q?8UGMCphS5W+W4PZJir54qbPibTtjUo2LvyapNxzPaQcXH7E3HGWCk/70izTU?=
+ =?us-ascii?Q?KLIVunQvV5Lr2OT7kpmwVmoSLh5vUbOj2Uj6aZ1kgYxH3nyEbMWbNJNtT8uG?=
+ =?us-ascii?Q?lsp8Xy8hlgDQ1oSAFZM+D1zo1JR52/fZeO2h4fLQM3B2QDYyB2yTRvxiJt9n?=
+ =?us-ascii?Q?k3oA/vjxCRE7CWBSl8b0TSm6pL6jcmmOvQdzbh4twDvFotX+3BvV57ARfUjg?=
+ =?us-ascii?Q?5JKn24ZqeMscmwM7/jbY64Rd1kFVuqWbpy2g2nXA0/1hpgfciP/5fNW50kEV?=
+ =?us-ascii?Q?b5TVpV9Fc+j8/v7dLloSLX59mK73OaWHAICzDOM5qr0jIAfluZKttEM3vn6k?=
+ =?us-ascii?Q?SNadC7PTTHuH3xYWCuJB4kwuGgn0XIvn6l1KoFwfqfJCQQtq2ov4j7kJfdnj?=
+ =?us-ascii?Q?8pywiGCbWtwuGqg9fUb7O8oJ8Fl5WdaWuxroyaI1JKKeEPbypP9fKRnwvscn?=
+ =?us-ascii?Q?nbU7tabkFcjDrXLfZoNvRS/kF3P3RcF87JJfTEennv5qWrIHjbVHRt9wSvbL?=
+ =?us-ascii?Q?POenzW6GONrb05lvQdAle5hFMPjX7bdm1PwDB/WJDkE6reaFZW39K5yAls4s?=
+ =?us-ascii?Q?5QxhR5vh+QJpKFiTuJCArQv1LjUBOLwyKOyEnzsCHUCjJiC5BKhzY6bJdcHf?=
+ =?us-ascii?Q?iR7LOipBvoUv/sgPkQPKKwyHDWL+tj7DJ7Sosx9JIIkmfZGxPUpbbahyOxQX?=
+ =?us-ascii?Q?paGprpyYDK3FROnpeCuxiyerOGiL5VKGmiLvb6FY1c/lkxcSXgZN0TbIj+CH?=
+ =?us-ascii?Q?gjn9hzSBk/NVy8/BK0XEvUt0mMGfxjv0uRo3wCxFXmmtjRUg6nuHfhGftuZz?=
+ =?us-ascii?Q?PgfAvc4jXU9J23yUh0p/zOxfjYrcdMpNmJIUCNikp+oAp9ZF6nZk1MtmDQ/O?=
+ =?us-ascii?Q?NVgng9c18EHecpSuyAFv7R4Oo7vhwHP/5yLMV9Xw3T/qEf/wqmfLuzy4LboM?=
+ =?us-ascii?Q?49C1mC7R1skiYblAxphsDMLbn2H6vA8T6Bxe8hj5T/iujBiVzp1fW4zFyxxd?=
+ =?us-ascii?Q?MJtABxuD1saOmRn0QdpWibvdE5GSPpYNvSqMgB2JPUlGG0KU24Enu7OauDIA?=
+ =?us-ascii?Q?JWxBnb9LRGQ/aoBL5l/tKO2rFaU7CWbrrWQz3BbRf8DSs9YkjIV++4BDMRX6?=
+ =?us-ascii?Q?Up4n16c0L4APxnlJ6uqV25AU2QQZkf6bn7Y+uKPG19HtFXts6vAH7tnFoG/e?=
+ =?us-ascii?Q?PJWgNbP7b7WKKrtB0RJ5/ZG4BfbF+udDpaDViU7gRd9pf8zlMc181RuY2C+s?=
+ =?us-ascii?Q?QlH9J2+DU6VoJkXFikBBV3uP7eahsTO44eN3R1fWo//bKaCc8pc35ALWj9nu?=
+ =?us-ascii?Q?l8BN0RBND3H0gyQwFeO1xLnzoD5h6uUMfxMQTnfatp6Kw7l3lW2sJWVkyBhx?=
+ =?us-ascii?Q?KNMO0ipfSomFz4dCHr1LwmqkJk54KwGwvlPRJkOE9KLJDdceS7TLH/pYdvX6?=
+ =?us-ascii?Q?pW1c+6CmDx8YRXWZcVzji273Y0G/Ihoa+SYzoHDIhrxBPNm7qJybDW5Zt5bl?=
+ =?us-ascii?Q?pLzwH3WU/ys+NT7rTJJH84nYUXvKD8Bgc+VanmTxzrbBD7TXs4BbuU5UQwTW?=
+ =?us-ascii?Q?JRjy5LoIArxORZlmJ3s3yus=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(52116014)(376014)(7416014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?R/uFLyG7TjlrRjgBMRUvCqY7AnKX/fbZPeEX2piZx7VCFgRqdnVzSQ9926Q3?=
+ =?us-ascii?Q?D5z940A55F9tUsIli+gPxdhiFc7Ib9PH7Xsemf8qW8Q0AvQHJ8QIR0qw5DfF?=
+ =?us-ascii?Q?Zm2GA//sMw8vYRNdgZe4mWJ4mmOoQ/5c5XyljkcSDataPcDxXk9e6l3Mz/vW?=
+ =?us-ascii?Q?1w9ENSOS/gOB0BMuyRIiQcdgZaaHMMvUfaB1I34iwXL9uOd2WkfCTxAV1qJC?=
+ =?us-ascii?Q?dTWi/3ytoN+z3IHREGtRu7RLWFCtnlbnfb0/N/1I/gShu0IHBxDKqnCJTStZ?=
+ =?us-ascii?Q?CIHMzIKhCkU70LNC38dbN2TlxFRniuNEFJXfKhv8q99geCTHuaiMqbOUOBw8?=
+ =?us-ascii?Q?+Im9/jzL28w0Y8Z2NxaUafjD9hWFyX173nkGMWdvsuIckxCmNMn/QjPTZHrY?=
+ =?us-ascii?Q?UuFVMFkkhMd0mjWI78VIex+HKnBX569wEp0S7+rsdkei1DmIiqi0rX4TELtS?=
+ =?us-ascii?Q?S0aqhuJibwxkT5HSlh8PUOGDUXlRKpsQGcaL68ev3ZgnMrLK35faeHPZFo9+?=
+ =?us-ascii?Q?tMIRwwckaVJVPMscq6lAL69sOsBQTi2vxBxlWzhzMp4XOMB2LXn97FVjvvZN?=
+ =?us-ascii?Q?53XAaZdn5nhBCEh+ACmfbhmWYiEVGG33QwV6i/EKW31E0c66WK4vEE90G7Go?=
+ =?us-ascii?Q?fnO/EOZAeM86P5d7+dHYWh2O/x4Uh9YxCyqCNtGRvdNoCbLFiqW/j+QVPXd4?=
+ =?us-ascii?Q?SJaQeyQEddYPfcEu2tESnbb4Mca7I42qLCQGQWE+xgNdxvL3m0e1LWzdFg0W?=
+ =?us-ascii?Q?wbkdxqAwkjzQazRDYyglTWxBgRlgQ15m5v9+f1BweUNsrslz5/M8KhI9sWEr?=
+ =?us-ascii?Q?bTWu6EUBD28Dd7kNLmhY9V6TIgJGasspo5jzPQUxaehbDr+dMC+sdFar8k6v?=
+ =?us-ascii?Q?vK6gAHeQ9cNQ7hZwOgIvF73OAFFWfOEuqxjbNzX8J2ojZnYi78Pz5FLJrUxX?=
+ =?us-ascii?Q?XvfU9TKPZkzYUkPPGBlnSaCucBTEIgal9vwC1dqZKW4hfGGmRQOhAulGTZ2I?=
+ =?us-ascii?Q?XoohV4DqB3fF8laXKFKh2V6EtEDiZDokwalliSRb82o4cUg9HgMxn/cWQwvL?=
+ =?us-ascii?Q?mLcxLDy/BUImEcST3csvxEFPWAq3nJUmCEqfdaYPK+a9odZ7FolZnfcZdgvg?=
+ =?us-ascii?Q?GY610bWC806Za1i34wmhIJ71XCnKRnFZSNQaMn29sPaoY0wkZ9ZoIXugFoFq?=
+ =?us-ascii?Q?qgVL07yRVN3HfImHV8BhF2c/KY//zTubwshnvkk7oFk7WheGe+C36PSw2Fwb?=
+ =?us-ascii?Q?0whxYNBmxXM1hqN+wqmaHSFe0nNPQ4x8RYZ6/o7LS1DHDe4AGIIrhrQGwlK2?=
+ =?us-ascii?Q?BCfPHCdlOU0Qoh9Ptc2NRXyAocdYUsu43GWFzVGLUNjaU2J/XIQM4HHGZggH?=
+ =?us-ascii?Q?+PqPhLsZ6UgpaxG/GQx4T2UbKn91lwUGdvXpDPEv+3/E88/z+JWuK7szZaHf?=
+ =?us-ascii?Q?tZEb/SOz+IbWC1I2sY/JwoSbYjZqp8XaC5XdwlCv1txD+rz292T0CByAxd7x?=
+ =?us-ascii?Q?S0givkT8QUwXOi4BFWp/lTcerckHc9IOcFxaocq5JMid1SM8ekW445NKrzEq?=
+ =?us-ascii?Q?DBdLyZ2StwpNJcuoZOFCFQ3hXvWdP4nfv+If+0rydtBMtQJdiRhM/G9mBLFS?=
+ =?us-ascii?Q?pjUJXAfGOMPrBqBaE92uBZNSLe8AALMQ1jJZykF+IGfYx1UrNjiEhc9tiekB?=
+ =?us-ascii?Q?avqeIQT77YFH9XF6tspMdguVaqcaCoMwDaVgNz8IyHSqwFTd0c3tiu8qe8/T?=
+ =?us-ascii?Q?rjZQuaeD/g=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e5436e4-68c2-4e60-0a63-08de65a216ef
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 17:06:37.9772
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kQlgEH1/K6JWoLTBToa0YFrU4YZtESFBxV03+qFxsCVbhUa+GZzqaKmXV3Q8yR1pWyFQNFOAvs4YK4obRRE1vA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8922
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263432-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263431-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,gmail.com,nxp.com];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akhilayalmati@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[atomide.com:email,4a0d9000:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,4a0db000:email]
-X-Rspamd-Queue-Id: 42A90100A40
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,nxp.com:dkim]
+X-Rspamd-Queue-Id: 0F3EB100BC2
 X-Rspamd-Action: no action
 
-Convert Texas Instruments SmartReflex module binding to YAML format.
+On Fri, Feb 06, 2026 at 02:01:17PM +0200, Aman Kumar Pandey wrote:
+> Expose i3c_master_send_ccc_cmd(), i3c_master_supports_ccc_cmd(),
+> i3c_master_reattach_i3c_dev(), i3c_master_direct_attach_i3c_dev(),
+> and i3c_master_direct_detach_i3c_dev() to support I3C hub.
+>
+> Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+>
+> ---
+> Changes in v5:
+>  - No change
+>
+> Changes in v4:
+>  - Updated I3C master to handle hub support
+> ---
+> ---
+>  drivers/i3c/master.c       | 123 ++++++++++++++++++++++++++++++++++++-
+>  include/linux/i3c/master.h |  11 ++++
+>  2 files changed, 132 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/i3c/master.c b/drivers/i3c/master.c
+> index 7f606c871648..c92152ff795f 100644
+> --- a/drivers/i3c/master.c
+> +++ b/drivers/i3c/master.c
+> @@ -1544,8 +1544,76 @@ static int i3c_master_attach_i3c_dev(struct i3c_master_controller *master,
+>  	return 0;
+>  }
+>
+> -static int i3c_master_reattach_i3c_dev(struct i3c_dev_desc *dev,
+> -				       u8 old_dyn_addr)
+> +/**
+> + * i3c_master_direct_attach_i3c_dev() - attach an I3C device to a master
+> + * @master: I3C master controller to attach the device to
+> + * @dev: I3C device descriptor representing the device
+> + *
+> + * This function attaches an I3C device to its master controller once the
+> + * device has a valid address on the bus. Devices without
+> + * an assigned address are ignored. The master device itself is never
+> + * attached through this bus.
+> + *
+> + * Return: 0 on success, or a negative error code if the attach operation
+> + *         fails in the master controller driver.
+> + */
+> +int i3c_master_direct_attach_i3c_dev(struct i3c_master_controller *master,
+> +				     struct i3c_dev_desc *dev)
+> +{
+> +	int ret = 0;
+> +
+> +	/*
+> +	 * We don't attach devices to the controller until they are
+> +	 * addressable on the bus.
+> +	 */
+> +
+> +	if (!dev->info.static_addr && !dev->info.dyn_addr)
+> +		return 0;
 
-Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
----
-Changes in v2:
-- Remove unnecessary examples.
-- Remove "ti,hwmods" property from example.
-- Link to v1: https://lore.kernel.org/r/20260128-smartreflex-v1-1-2ab7a35169ed@gmail.com
----
- .../bindings/power/ti,omap3-smartreflex-core.yaml  | 58 ++++++++++++++++++++++
- .../devicetree/bindings/power/ti-smartreflex.txt   | 47 ------------------
- 2 files changed, 58 insertions(+), 47 deletions(-)
+AI: - Silent success on invalid input is questionable - should this be -EINVAL?
 
-diff --git a/Documentation/devicetree/bindings/power/ti,omap3-smartreflex-core.yaml b/Documentation/devicetree/bindings/power/ti,omap3-smartreflex-core.yaml
-new file mode 100644
-index 000000000000..9e8761b54976
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/ti,omap3-smartreflex-core.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/ti,omap3-smartreflex-core.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments SmartReflex module
-+
-+maintainers:
-+  - Tony Lindgren <tony@atomide.com>
-+
-+description:
-+  Texas Instruments SmartReflex is an on-chip adaptive power management
-+  technology integrated into TI's OMAP and other SoCs. It dynamically
-+  adjusts voltage and frequency for different chip domains in real time
-+  to compensate for process, voltage, and temperature (PVT) variations.
-+  Dedicated hardware sensors and control logic continuously monitor
-+  conditions and apply the lowest safe voltage for the required performance
-+  level.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,omap3-smartreflex-core
-+      - ti,omap3-smartreflex-mpu-iva
-+      - ti,omap4-smartreflex-core
-+      - ti,omap4-smartreflex-mpu
-+      - ti,omap4-smartreflex-iva
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  ti,hwmods:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    deprecated: true
-+    description:
-+      It was required by the OMAP interconnect/PRCM code to automatically
-+      initialize hardware modules using TI's internal database.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    smartreflex@4a0db000 {
-+        compatible = "ti,omap4-smartreflex-iva";
-+        reg = <0x4a0db000 0x80>;
-+        interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/power/ti-smartreflex.txt b/Documentation/devicetree/bindings/power/ti-smartreflex.txt
-deleted file mode 100644
-index 21ef14d6af12..000000000000
---- a/Documentation/devicetree/bindings/power/ti-smartreflex.txt
-+++ /dev/null
-@@ -1,47 +0,0 @@
--Texas Instruments SmartReflex binding
--
--SmartReflex is used to set and adjust the SoC operating points.
--
--
--Required properties:
--
--compatible: Shall be one of the following:
--	    "ti,omap3-smartreflex-core"
--	    "ti,omap3-smartreflex-mpu-iva"
--	    "ti,omap4-smartreflex-core"
--	    "ti,omap4-smartreflex-mpu"
--	    "ti,omap4-smartreflex-iva"
--
--reg: Shall contain the device instance IO range
--
--interrupts: Shall contain the device instance interrupt
--
--
--Optional properties:
--
--ti,hwmods: Shall contain the TI interconnect module name if needed
--	   by the SoC
--
--
--Example:
--
--	smartreflex_iva: smartreflex@4a0db000 {
--		compatible = "ti,omap4-smartreflex-iva";
--		reg = <0x4a0db000 0x80>;
--		interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
--		ti,hwmods = "smartreflex_iva";
--	};
--
--	smartreflex_core: smartreflex@4a0dd000 {
--		compatible = "ti,omap4-smartreflex-core";
--		reg = <0x4a0dd000 0x80>;
--		interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
--		ti,hwmods = "smartreflex_core";
--	};
--
--	smartreflex_mpu: smartreflex@4a0d9000 {
--		compatible = "ti,omap4-smartreflex-mpu";
--		reg = <0x4a0d9000 0x80>;
--		interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
--		ti,hwmods = "smartreflex_mpu";
--	};
+> +
+> +	/* Do not attach the master device itself. */
+> +	if (master->this != dev && master->ops->attach_i3c_dev)
+> +		ret = master->ops->attach_i3c_dev(dev);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(i3c_master_direct_attach_i3c_dev);
+> +
+> +/**
+> + * i3c_master_direct_detach_i3c_dev - Detach an I3C device from its master
+> + * @dev: I3C device descriptor to be detached
+> + *
+> + * This function detaches an I3C device from its master controller.
+> + * It ensures that the master itself is not detached. If the device is not
+> + * the master and the master controller provides a detach operation,
+> + * the detach callback is invoked to perform the actual removal.
+> + */
+> +void i3c_master_direct_detach_i3c_dev(struct i3c_dev_desc *dev)
+> +{
+> +	struct i3c_master_controller *master = i3c_dev_get_master(dev);
+> +
+> +	/* Do not detach the master device itself. */
+> +	if (master->this != dev && master->ops->detach_i3c_dev)
+> +		master->ops->detach_i3c_dev(dev);
+> +}
+> +EXPORT_SYMBOL_GPL(i3c_master_direct_detach_i3c_dev);
 
----
-base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
-change-id: 20260126-smartreflex-9dd5cedffc0d
+Can you create two patch,
+- change existed static function to API.
+- add new APIs.
 
-Best regards,
--- 
-Akhila YS <akhilayalmati@gmail.com>
-
+Frank
+> +
+> +/**
+> + * i3c_master_reattach_i3c_dev() - reattach an I3C device with a new address
+> + * @dev: I3C device descriptor to reattach
+> + * @old_dyn_addr: previous dynamic address of the device
+> + *
+> + * This function reattaches an existing I3C device to the bus when its dynamic
+> + * address has changed. It updates the bus address slot status accordingly:
+> + * - Marks the new dynamic address as occupied by an I3C device.
+> + * - Frees the old dynamic address slot if applicable.
+> + *
+> + * This function must be called with the bus lock held in write mode.
+> + *
+> + * Return: 0 on success, or a negative error code if reattachment fails
+> + *         (e.g. -EBUSY if the new address slot is not free).
+> + */
+> +int i3c_master_reattach_i3c_dev(struct i3c_dev_desc *dev,
+> +				u8 old_dyn_addr)
+>  {
+>  	struct i3c_master_controller *master = i3c_dev_get_master(dev);
+>  	int ret;
+> @@ -1569,6 +1637,7 @@ static int i3c_master_reattach_i3c_dev(struct i3c_dev_desc *dev,
+>
+>  	return 0;
+>  }
+> +EXPORT_SYMBOL_GPL(i3c_master_reattach_i3c_dev);
+>
+>  static void i3c_master_detach_i3c_dev(struct i3c_dev_desc *dev)
+>  {
+> @@ -1692,6 +1761,56 @@ i3c_master_register_new_i3c_devs(struct i3c_master_controller *master)
+>  	}
+>  }
+>
+> +/**
+> + * i3c_master_supports_ccc_cmd() - check CCC command support
+> + * @master: I3C master controller
+> + * @cmd: CCC command to verify
+> + *
+> + * This function verifies whether the given I3C master controller supports
+> + * the specified Common Command Code (CCC).
+> + *
+> + * Return: 0 if the CCC command is supported and executed successfully,
+> + *         -EINVAL if arguments are invalid,
+> + *         -EOPNOTSUPP if the master does not support CCC commands,
+> + *         or another negative error code from the master's operation.
+> + */
+> +int i3c_master_supports_ccc_cmd(struct i3c_master_controller *master,
+> +				const struct i3c_ccc_cmd *cmd)
+> +{
+> +	if (!cmd || !master)
+> +		return -EINVAL;
+> +
+> +	if (!master->ops->supports_ccc_cmd)
+> +		return -EOPNOTSUPP;
+> +
+> +	return master->ops->supports_ccc_cmd(master, cmd);
+> +}
+> +EXPORT_SYMBOL_GPL(i3c_master_supports_ccc_cmd);
+> +
+> +/**
+> + * i3c_master_send_ccc_cmd() - send a CCC command
+> + * @master: I3C master controller issuing the command
+> + * @cmd: CCC command to be sent
+> + *
+> + * This function sends a Common Command Code (CCC) command to devices on the
+> + * I3C bus. It acquires the bus maintenance lock, executes the command, and
+> + * then releases the lock to ensure safe access to the bus.
+> + *
+> + * Return: 0 on success, or a negative error code on failure.
+> + */
+> +int i3c_master_send_ccc_cmd(struct i3c_master_controller *master,
+> +			    struct i3c_ccc_cmd *cmd)
+> +{
+> +	int ret;
+> +
+> +	i3c_bus_maintenance_lock(&master->bus);
+> +	ret = i3c_master_send_ccc_cmd_locked(master, cmd);
+> +	i3c_bus_maintenance_unlock(&master->bus);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(i3c_master_send_ccc_cmd);
+> +
+>  /**
+>   * i3c_master_do_daa() - do a DAA (Dynamic Address Assignment)
+>   * @master: master doing the DAA
+> diff --git a/include/linux/i3c/master.h b/include/linux/i3c/master.h
+> index 58d01ed4cce7..b059da7777d7 100644
+> --- a/include/linux/i3c/master.h
+> +++ b/include/linux/i3c/master.h
+> @@ -602,6 +602,17 @@ void i3c_master_dma_unmap_single(struct i3c_dma *dma_xfer);
+>  DEFINE_FREE(i3c_master_dma_unmap_single, void *,
+>  	    if (_T) i3c_master_dma_unmap_single(_T))
+>
+> +int i3c_master_send_ccc_cmd(struct i3c_master_controller *master,
+> +			    struct i3c_ccc_cmd *cmd);
+> +
+> +int i3c_master_supports_ccc_cmd(struct i3c_master_controller *master,
+> +				const struct i3c_ccc_cmd *cmd);
+> +
+> +int i3c_master_reattach_i3c_dev(struct i3c_dev_desc *dev,
+> +				u8 old_dyn_addr);
+> +int i3c_master_direct_attach_i3c_dev(struct i3c_master_controller *master,
+> +				     struct i3c_dev_desc *dev);
+> +void i3c_master_direct_detach_i3c_dev(struct i3c_dev_desc *dev);
+>  int i3c_master_set_info(struct i3c_master_controller *master,
+>  			const struct i3c_device_info *info);
+>
+> --
+> 2.25.1
+>
 
