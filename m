@@ -1,119 +1,149 @@
-Return-Path: <devicetree+bounces-263522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263523-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UPQoMz5phmnwMwQAu9opvQ
-	(envelope-from <devicetree+bounces-263522-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 23:20:46 +0100
+	id MMU+KyFyhmlINQQAu9opvQ
+	(envelope-from <devicetree+bounces-263523-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 23:58:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B18A103B6D
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 23:20:46 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDBE6103FA0
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 23:58:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C2A723030137
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 22:20:44 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B99E33004C98
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 22:58:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D5F82F5A0D;
-	Fri,  6 Feb 2026 22:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E784309EE9;
+	Fri,  6 Feb 2026 22:58:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zclw/4cB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nBrvaWzJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF2FB2EAB6F;
-	Fri,  6 Feb 2026 22:20:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 495A32E1C7C;
+	Fri,  6 Feb 2026 22:58:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770416444; cv=none; b=g0WGcHYMlzT2lMtrh+B7lQq9lUDrifx0LNgtakRZ9gyoD8oEfao2SUSwSUwdYhBJvOhqOqPimIac6gT3+0v6d17xduPJpi5QboG+VgRcQyrPtmhkW1IaOtfcNYUx/H5QhpRSqFtJVy9A5+ZYTChMeaXUul2KrdfSWN56PcwcSEM=
+	t=1770418716; cv=none; b=btl4Whxg3lNaD5duBH5glnoqaF972Pqhgruiiy0M8TaPoKRjswpRTvTR1YLJi7wHFrrjqVoXBWdk0IC0NGTWnIidOJ2ppSvgGBPgq7UBAm6YGVdpTIPrOtz+10nAepCcT7WMPooVg36B2b7z4rjv4qngT+xyBNtvxw4nY44dL8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770416444; c=relaxed/simple;
-	bh=D4Ok5G++q0iR50/YiceCtR+1ZBWN8UcnMbIyW1O+OxA=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=MeQsZQS5Q5anH0G2UPB86COGMEFylgzALOo2mI+UKvF8mnVIthYBtb8Yml1+dAWd1HScArtVljw/R4MXTOA7b/CR7vT+k/I3MyDQkX58U3TCD+hEiUpSGc55c1JVDosVzmvX2KZKzigbWWXk0fPdkAzBYwvw1RGnrqEmkTCZkhg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zclw/4cB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6935CC116C6;
-	Fri,  6 Feb 2026 22:20:43 +0000 (UTC)
+	s=arc-20240116; t=1770418716; c=relaxed/simple;
+	bh=BnBoe2spNt1Qo9I10slFhR8MgHQTo2hECyRQwGPmp0I=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=r8HVC16VeA3CFqaD//ZjZ3CbTdl9FgcK6kQbhWX+r4GBmqneoTS1IE7o5bAcftxKddZh6R8metUrHfn2KUM47GkcGS9RETzlJnshR/Twv+GVIhzXBvMfZGjCyFkaO8DhH7iK8Ybxoy+8qs7WHNwW8QivxgjgVZrw7tXpw930in4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nBrvaWzJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A039FC116C6;
+	Fri,  6 Feb 2026 22:58:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770416443;
-	bh=D4Ok5G++q0iR50/YiceCtR+1ZBWN8UcnMbIyW1O+OxA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=Zclw/4cB1+mzqd738ejy9QCxt3plgU7D6sHBMMTyyH/k+eX0qioSo4TJSfWTloj5S
-	 nBK5bRNVy2tOzzopKS1MNzZONdB6Aq7+aYvrZJFlUdaAgiONevDOC8cSJi7K2+jPBk
-	 ZCkKnmlMwiXcjeNZOM5BqMW1F7ToZUkV/yKIxG68675RgrNxJcc2mBsVAjr/XRg05M
-	 WS5rXq/YBi04cViI2y7IsRKIGeu+vodT3/GW7oNVTvVEceFkUoBTpCc6UGx4XLgaNR
-	 emqN+WS3y7TWuK0qszvZdoa9RMKCQLHU2WI98wG3UuYiSc3i3eX7EOd/FrAlzoH9sO
-	 Lrn/E8d1HzCKg==
-Date: Fri, 6 Feb 2026 16:20:42 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: zhangsenchuan@eswincomputing.com, bhelgaas@google.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org,
-	kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, christian.bruel@foss.st.com,
-	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
-	thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
-Subject: Re: [PATCH v10 0/2] Add driver support for Eswin EIC7700 SoC PCIe
- controller
-Message-ID: <20260206222042.GA98065@bhelgaas>
+	s=k20201202; t=1770418715;
+	bh=BnBoe2spNt1Qo9I10slFhR8MgHQTo2hECyRQwGPmp0I=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=nBrvaWzJz7f0/O4UXMAUtExuE9xVo9pUp1WU7+YC4V7e6XV8bislcO1zByslD82ww
+	 z7dZd0m2PGcKJjG07YzWHcsSambzm9PdRh+jg+7ouHzEuydL0CoGMC+T7T7E3VGX+I
+	 zdvaFKqEL6XK5NdNmIliCAYIwVz0MFwH2KO+1AcVGhWzuobOQ6RRLjz2nVd9ZXmflY
+	 49ogKlS+zkuZg++Q4JNNgfWRBFrUJnbd4zD9APvMPotHbTZzHKLrCoXlpY/Aao/aLZ
+	 ZGckNdLnPo6L3rhkLpOytTCjwgSF9xm7HOmjRwtej5QAGsEbM+6VxXg4jacmV3Z1Sv
+	 AM60ood8PyTQQ==
+Date: Fri, 06 Feb 2026 16:58:30 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4vqlkw2cr3caqj7whlld7r2d5nenrxsufuc72zwwy5a6a5wmza@3haxytsqqigj>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, devicetree@vger.kernel.org, 
+ David Lechner <dlechner@baylibre.com>, Conor Dooley <conor+dt@kernel.org>, 
+ linux-input@vger.kernel.org, Andy Shevchenko <andy@kernel.org>, 
+ Lee Jones <lee@kernel.org>, =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Tony Lindgren <tony@atomide.com>, Pavel Machek <pavel@kernel.org>, 
+ linux-iio@vger.kernel.org, linux-leds@vger.kernel.org, 
+ Dixit Parmar <dixitparmar19@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+In-Reply-To: <20260206172845.145407-2-clamor95@gmail.com>
+References: <20260206172845.145407-1-clamor95@gmail.com>
+ <20260206172845.145407-2-clamor95@gmail.com>
+Message-Id: <177041870628.250069.891260159674830369.robh@kernel.org>
+Subject: Re: [PATCH v2 01/11] dt-bindings: regulator: cpcap-regulator:
+ convert to DT schema
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263522-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[eswincomputing.com,google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,einfochips.com];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,baylibre.com,kernel.org,analog.com,atomide.com];
+	TAGGED_FROM(0.00)[bounces-263523-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:email]
-X-Rspamd-Queue-Id: 2B18A103B6D
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: CDBE6103FA0
 X-Rspamd-Action: no action
 
-On Mon, Feb 02, 2026 at 04:29:51PM +0530, Manivannan Sadhasivam wrote:
-> On Thu, Jan 29, 2026 at 05:26:28PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > 
-> > Changes in v10:
-> > - Updates: eswin,eic7700-pcie.yaml
-> >   - None
-> > 
-> 
-> This version looks good to me, but it'd be good if Bjorn could give
-> an Ack since there were previous reviews from him. Also, this week
-> is -rc8, so it is too late for 7.0. I hope we can merge this series
-> early, once v7.0-rc1 is released.
 
-Will do, ping me after v7.0-rc1 to remind me.
+On Fri, 06 Feb 2026 19:28:35 +0200, Svyatoslav Ryhel wrote:
+> Convert devicetree bindings for the Motorola CPCAP MFD regulator subnode
+> from TXT to YAML format. Main functionality preserved.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  .../bindings/regulator/cpcap-regulator.txt    | 35 -------------
+>  .../regulator/motorola,cpcap-regulator.yaml   | 50 +++++++++++++++++++
+>  2 files changed, 50 insertions(+), 35 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/regulator/cpcap-regulator.txt
+>  create mode 100644 Documentation/devicetree/bindings/regulator/motorola,cpcap-regulator.yaml
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+
+
+doc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/mfd/motorola-cpcap.txt references a file that doesn't exist: Documentation/devicetree/bindings/regulator/cpcap-regulator.txt
+Warning: Documentation/devicetree/bindings/regulator/motorola,cpcap-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml
+Documentation/devicetree/bindings/mfd/motorola-cpcap.txt: Documentation/devicetree/bindings/regulator/cpcap-regulator.txt
+Documentation/devicetree/bindings/regulator/motorola,cpcap-regulator.yaml: Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260206172845.145407-2-clamor95@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
