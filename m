@@ -1,104 +1,104 @@
-Return-Path: <devicetree+bounces-263287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263298-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sCIhAiu8hWmOFgQAu9opvQ
-	(envelope-from <devicetree+bounces-263287-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:02:19 +0100
+	id 6AABNJ69hWmpFwQAu9opvQ
+	(envelope-from <devicetree+bounces-263298-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:08:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B638FC618
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:02:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75BC3FC7D2
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:08:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4503630074A4
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 10:02:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A839F300E587
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 10:08:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7046361DB3;
-	Fri,  6 Feb 2026 10:02:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE37364EAE;
+	Fri,  6 Feb 2026 10:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="azAZqXR9";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aGjGzg+z"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Dcn5YSV3";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="il2iCOeu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A3D035D604
-	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 10:02:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A91D3624A1
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 10:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770372135; cv=none; b=nvdiuWav0s71qb1Bo/K2OzFUfJYGIsYESayUfKpcG1ztsODKORyABAi7599Brss1yq/PdKBZ2eHALoroD1Qr/KQ3/C+1p1NxBTmVnwA16xKQOqonXQjdetCThCM7exOuh16GEriZ1ANHFRY6H2TSufvbUdTKww2EmrtJFnXtl0k=
+	t=1770372477; cv=none; b=LfeJOLFwfG35qEInwlchW4t4pF9hP6oJmQCUQegsVrtgDNWdI0gVACoQ+huCs03/6J9Fjw7isE3c8YAlfbLP58CyCFFFKI0MC8eFZf+5aFLu/CcNUOlMtwtgcxKAa4ugIpForH3Tk63T4F5ZdncxRv0bR38UsVTSK+bQp3Xkizc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770372135; c=relaxed/simple;
-	bh=i1sNXNPVMosYuGD8AAGDq7TJNCYr0jvjHq4JfafYQ20=;
+	s=arc-20240116; t=1770372477; c=relaxed/simple;
+	bh=0E9mo9DN1FKW4XT+FTAM1wtcU1yuO3ioUMePcL/S1n0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ax1/CAoaCi2sLxRj0oj1pn3pM0DZbdLWdAqshutgOO4pRs4urkRmx4hrswgijW37ClEcieG1Pzt6yqCxyC5adBhmJmK8ARE4om8O08JlA4rzkXWhjkSkbFh5rtBWSNnkxw0I0LKarO0i9vGQKPY7RrX0zzAGH8sR+6KmOGVtQbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=azAZqXR9; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aGjGzg+z; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=ifl9PIp9ZNV+Km4KHdAtUBLVH2ZonPUvcgFdG6z3pL6OQt9pBoLYaHPnUYYB/Qwa8W5V5kNJCcE2TOVki2M7dKCaztz1ykhloeBg5eDoI1q2O1Lw2apUBCLmy6fhisUfJa0yZg5u8Hm6CvQ9wslOaO1XBZm9qRasgAPX8zUheIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Dcn5YSV3; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=il2iCOeu; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6167bqwg4042340
-	for <devicetree@vger.kernel.org>; Fri, 6 Feb 2026 10:02:14 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6167bcSG4042041
+	for <devicetree@vger.kernel.org>; Fri, 6 Feb 2026 10:07:56 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aDHuUROVLA849sayomHF4y/80YyzohWdoaGg7+6EwmQ=; b=azAZqXR98t0B5LMK
-	aRJ21DVvBj6Vy8Jl0LFCV076NSyEdVASRIYW2r3qxgABmho7yI3Mk/VS7CG2BrSj
-	NFgNw4aHfvJQtcmWg/ATAHHV6FNWq/fX1q9FobH+IgZ5w95ZGqXXCNO2efKTVEH9
-	2gAT/+5VwGEXmVA3QmdfhIJq/VYaKeu71/9uvkG0LQPEEH2bSiaGBjSOzSGo1SgQ
-	s9/3v+1qayoQAk3ctnLAofgl9ywSIQ1irgNNO0GWKINApJqCZpRealrQCb0uznui
-	UiJZYEUTMJba4BBv/il58K/OSxiNjpJSSMLTYHDfxWq25zMycaoOb4xKTfm3fWO9
-	qGo4uA==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c5c2w0gdm-1
+	GBAVQJHWkIYxF69dv/EgYfX5c7wHd9L4aO+a81IvwWs=; b=Dcn5YSV3SFQbb68g
+	Nqh5z0qTdFpB5uQIZ23t6mk0FjvE9hLI/HfBhIIQ+gRaNYvYR7K3vR2j0H9L62EU
+	GHQMNuPh+ujWPExEuRhaAsyHtGm2igGxuBDzXWM14l/hYCpeMq3cc3exUVsVlM6b
+	GgHQAVQSl8DbthWO4v6W21y/4GyKD3nas7oS+l+ai/eq+HIwc1Jy040h0IYblIka
+	8MCRyAF6dJLM7ovh+KYOV/MVPa/4l7QwgB8u1YPVc0dnxgcWmh4E6dQp3wrezqhr
+	awSpg1l/NguiwZCCEnR7Pgv7SCBddsowip3y2nQPbaWR8QWM/0Z1+J23TMLynwRc
+	XeqJMA==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c5c2w0h4u-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 10:02:14 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c71655aa11so670657785a.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 02:02:14 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 10:07:56 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-c6124a9fb86so1042731a12.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 02:07:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770372134; x=1770976934; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1770372476; x=1770977276; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aDHuUROVLA849sayomHF4y/80YyzohWdoaGg7+6EwmQ=;
-        b=aGjGzg+zFFzko6BFVFtiwnvcDxHydfElLAJh/+8Ig3H4MN56l2yTy6hunCa4KvLna2
-         U5AaKTVZshrjf3nVdkwaXWVyXz9d2AJqKFaWTpr0CkKrvu+CHGj0JGwAFKqUneasBvMg
-         giJ/2jx/7ro2JPZtU/7wntLBLsUiZS9cbgRQwxZjCKA2ecmNWYP5XKhtdFgDse2vcPrJ
-         0/E/uQyisghfk6A31bqjZUSKqgKKOwybiDc4eZ8vTauEYKBq4ENsbUojzw1uPhP4zmAu
-         7BMQM6Gwa0OHk1Akef2wkuqrbwlNhcKtuBgniJTjjz8DteunYNRmM5sJdMJ7AHzS2bMK
-         wWNA==
+        bh=GBAVQJHWkIYxF69dv/EgYfX5c7wHd9L4aO+a81IvwWs=;
+        b=il2iCOeuBlKCzqsKPFhFdZE6JytqDt6AGZZIieigSH4yPft/bF6QzA/y7l9MZ2SK0M
+         DDXq2FORJZaWp1LCMLrTiP5zyzNaqu/t5iWhog/x5QCAv6LNkGdc53UV8tEW3G4LitLA
+         d2N6ZJIBsOhlBARnRB3Va/ESDtwnyjnuPvujb8HrG6s4tbUrkYTQC2laUPguL7r5UCCz
+         OY995vCFQk8dmALOy36cs5kFMHosfite20O834D0y7eWcpgQegnKz+Wt4LEe4RJaCpPx
+         auEEhq9AVvM/xCR8a5ojtI4yten832SHTQKryi3BnMXmuSMOe/djuVlnka/UVyeBjXPU
+         WN8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770372134; x=1770976934;
+        d=1e100.net; s=20230601; t=1770372476; x=1770977276;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=aDHuUROVLA849sayomHF4y/80YyzohWdoaGg7+6EwmQ=;
-        b=ECSe7kukfvSE7hJQAuMmwkVW6tOjLQHvrv69TaJ+yMzSrzXomt8YtUhO+otUj8aEtT
-         BlLNI0HMtlZCnIURZLlejtQ7UvrptjsP1kzkdKh5Q6m/0lxUU8wzKqlOeC0IDLmB2aXq
-         Nys7nmGfHb0ep133u5gdXV0nsgbB7QPOapAjbTcdlHO+ohSNYSPoYA6YWlCYieFj4YxC
-         AGKuKABjzU36O3Sw5FFuUfxDPS7ynUjqFfok8sebEVVoLzL0ICkFVB/qyhH6ukzdZqru
-         ZHd2v9V+jwLoN+TwoM3sotGxzaz75EKF51sXTFqFByCDo08891iU4BlmzNMG0k4vTcih
-         xy0w==
-X-Forwarded-Encrypted: i=1; AJvYcCVpShlW8So4yFQw+wEhm7padJvJdOdWOKLHI3D+m3unPd1ZhUZayByM2UkCSaKabCVhUbSCRE2YgQmb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyyfjrZwZyWLGCLFNavhIz1fSJ9/k9gU/6EzZ7wdbXyZ84POiZg
-	QRN9oBa0WKIXRNGP4oOejKZtFCnrsLyJD8ZY7zac9tuSsoY3v8gVx4jXPV7FYO5haCZmao6FsOp
-	tddyEsCBldlf8ohJKjWwOM2EEQcW9cOB+Qw0KDAUKvjq0Wsk0AlnhQ7Xu0k7Zv/cF
-X-Gm-Gg: AZuq6aLj7Oh2MrbPW8jmug674/dR8cVRf1GetlBIrZyXh4Aa9cWkjo6BjizfbiFvZff
-	xDOgtgA06Z3vgtWjqTGKEM7zxG5ir+xnmVKyH2wZRm2syEaBq/NM5gSmUZVZq6gt/wgE5N0FgDX
-	UE3jQ8JONqFb++lSRemELHinob7POdvJQNwloj3HKJQ9wDA9lg5fYOp1WFVsQZ+YZB/ft3/vJtS
-	eS9bU/pk38Egyw6y9wv8gW3CfhCojm91R15g3Xvpw4EWGBFh9WSiyZr3MQ73KpFWX2RldV+NtIX
-	aJvi2+Gdb+PV4BKnzcIfeBt7w+4ZjLCUIiQRWzPIwWWjTzWA3wsasDsrzRZhaJqvf9c1ocim2nT
-	NScNwdV1fDbxTCtemv8IRzx7WkO7OBY4swerCp9H+F2vraRCG
-X-Received: by 2002:a05:620a:190e:b0:8c6:abc5:f169 with SMTP id af79cd13be357-8caf17e48b3mr240223185a.73.1770372133647;
-        Fri, 06 Feb 2026 02:02:13 -0800 (PST)
-X-Received: by 2002:a05:620a:190e:b0:8c6:abc5:f169 with SMTP id af79cd13be357-8caf17e48b3mr240220285a.73.1770372133249;
-        Fri, 06 Feb 2026 02:02:13 -0800 (PST)
-Received: from [192.168.68.118] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-483206b8ebbsm62560865e9.1.2026.02.06.02.02.12
+        bh=GBAVQJHWkIYxF69dv/EgYfX5c7wHd9L4aO+a81IvwWs=;
+        b=MVsuDELo/2nTU3ab4NFWY4SurS5cgpyMQTbk0yEysXt35wbLh7PYwl+rT3C+hTCBbT
+         RNrSJdD16N6odv6sGpFhvlUtZbAKB00qLLjFkZvVckDGZD5u4HSQBE00ynbru0+GjFDf
+         Yz10sDLe+iEtnmA6nGQY08vrECeM6YyqwzPzsSfLH3siteHqOLTp6VDV7OiXwGLBgvJW
+         420Gy4nyS7u5q41VUFpPMsFDRmegEyCl/fCkZ0s/I5g6iThgqleKMu5KKJc7au9uVThx
+         gvJ5WwSHboAzYCS4h3jP1GLK/qqn4Qe/uGG790UkumKGBNCpKd48syj3K4vliPzp52Ca
+         XAdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWQW4jnuIxD6YNRmNn8FHh3tOz6Won0ntgDY0Ravhv2bpXzlN2mi6Gv5j26KAHHLhWT5nylq4ALlzxS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzfy6BfskO2D8vVU45GWgxmMZf6xyVU//7BcTjXZiNjpOeRZjBH
+	kQdVrhw2B4ZGiEALBhGdFbSnqs746Ywyk6Q38+qdbk5hEaPhryrBTjOJdfOAP76mb3191JRp1rN
+	OVFFAbZGZREEZBN2GPrAp/vGNhV/ojhQeyd7SWV4Nk34vsE1TlCjtebo1oYKJ5fYm
+X-Gm-Gg: AZuq6aIy58xH6ZVswke2Gi0E4mWy58OOKxPX93VmekYabxGpmrw8P+wfQjDXvpoQZEF
+	gZu3lm/2v7O54fWW+RJ7dcfQTKqzmjqXaG0iSURoEwPRHXNNT0Ll6PdcsJFQlxOX1SfYEkRvchP
+	Hzzuepw8AWPfrWOcJ7LBiIuAqdqUNH4cN40DvApwVKuWeSbr9FU0BIBoB127jLQJXk5H6irxMZB
+	5Kbq6WrnSDcZ96FQZsjhz45Kh33KJO8mcfUtXbwkdABF2thGAUoIhSRzK+f7bR6fz2ZHNUTUNNI
+	L57zzBEMjMLl/EAjp53d2RaB4MIv6lP7MdJmXFW1dBMZ9MdkUPOlQGohszFpczUvFSKiV1hnTb1
+	hXnFNOOdJsQuGX3TLFMt3W8ijUNRbgpxgbeRHe+4=
+X-Received: by 2002:a05:6a21:6d9b:b0:38d:f661:9940 with SMTP id adf61e73a8af0-393ad37760dmr2428835637.60.1770372475898;
+        Fri, 06 Feb 2026 02:07:55 -0800 (PST)
+X-Received: by 2002:a05:6a21:6d9b:b0:38d:f661:9940 with SMTP id adf61e73a8af0-393ad37760dmr2428801637.60.1770372475334;
+        Fri, 06 Feb 2026 02:07:55 -0800 (PST)
+Received: from [10.217.223.121] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-354b4607243sm1148402a91.6.2026.02.06.02.07.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Feb 2026 02:02:12 -0800 (PST)
-Message-ID: <8f61563d-8875-4aaa-b94f-1866454367aa@oss.qualcomm.com>
-Date: Fri, 6 Feb 2026 05:02:11 -0500
+        Fri, 06 Feb 2026 02:07:54 -0800 (PST)
+Message-ID: <2830a189-a5ce-45a0-92fe-7a01c3b012a7@oss.qualcomm.com>
+Date: Fri, 6 Feb 2026 15:37:48 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,41 +106,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/10] ASoC: qcom: q6dsp: add support for LPASS LPI MI2S
- dais
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: broonie@kernel.org, lgirdwood@gmail.com, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, srini@kernel.org,
-        perex@perex.cz, tiwai@suse.com, alexey.klimov@linaro.org,
-        mohammad.rafi.shaik@oss.qualcomm.com, quic_wcheng@quicinc.com,
-        johan@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
-        konrad.dybcio@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
-        linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260205171411.34908-1-srinivas.kandagatla@oss.qualcomm.com>
- <20260205171411.34908-6-srinivas.kandagatla@oss.qualcomm.com>
- <20260206-petite-tireless-iguana-addf9e@quoll>
+Subject: Re: [PATCH 01/11] dt-bindings: crypto: qcom,ice: Require power-domain
+ and iface clk
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        cros-qcom-dts-watchers@chromium.org
+Cc: Brian Masney <bmasney@redhat.com>,
+        Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
+        Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260123-qcom_ice_power_and_clk_vote-v1-0-e9059776f85c@qti.qualcomm.com>
+ <20260123-qcom_ice_power_and_clk_vote-v1-1-e9059776f85c@qti.qualcomm.com>
+ <14a71b33-4c10-41b0-a6cb-585a38e05f56@kernel.org>
+ <06160c6c-a945-467a-be82-7b33c5285d0f@oss.qualcomm.com>
+ <7216c86d-2b87-496c-9548-ccdcb3c98b6b@oss.qualcomm.com>
+ <1f99db18-d76c-4b87-9e30-423eee7037e1@oss.qualcomm.com>
+ <dd34525c-0a25-47ae-9061-c4c7ab708306@kernel.org>
 Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <20260206-petite-tireless-iguana-addf9e@quoll>
+From: Harshal Dev <harshal.dev@oss.qualcomm.com>
+In-Reply-To: <dd34525c-0a25-47ae-9061-c4c7ab708306@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA2MDA2NyBTYWx0ZWRfX9Xa+K8nIC1FW
- jgQihC/zHwzqV5Mh/ev1hHMETkg21ZVUwewJGLpFuiTXioGHgoAc82IxlxWQVRbotgtpIWL+qCo
- 2WhgmoM/PgpZ9p3MfoIBLI/Hnhs5Zcmr3DmAqBVpW9km6OnvkhpLB87xvr+bk/9+jVzlQIt53Cb
- b7t33fOTPduD4TihzBSgBOrfV1SMTYJj/w2QVHts2QYxeiodEgAXS6XmMe6WtKYg+ZqFW0tOYqM
- pc49cX14kpaWcSOEu7jqsvunqSJaClX2yQfmL+81E0sMXx9AktWA4RGqRa7+z70So9PLb/pybVO
- 8ywqz4QJHUhvyKSIkaAP56qDsDcm9ghNKLQzDMoavRf8+MAzKQ+mGXG7ZN6YKT9DTuw4X/UheyP
- XJQZtRivG3ItQvpAETF4jQWwYwyI2FXVIQWnblWMufz3NGvhyVqKuA9bHUd+/xX4denmNMgN5Lw
- F16Aham/rOfxTMW4K0A==
-X-Authority-Analysis: v=2.4 cv=Wtom8Nfv c=1 sm=1 tr=0 ts=6985bc26 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA2MDA2OCBTYWx0ZWRfX9YMerLCp+clD
+ hlD4N8VhGKHItTfzfpgMGJyOWrXlWV3o/RtQaQKG6skPNHuRzAsoRJkXiMv6LxwuUWq2a/KPZDJ
+ mHH09h0Pdk6508+CAL6fapn1OTLKtKCBF7ID64VuHIO1oXp1B4GXiyuLLNDYEJB+PzKllP0bPlv
+ ctidGmlDdnmNQXLWMkacHAulQikXZPBGAo57waFtZz82GywQdNBLG40YnlEIrsTC1FI/HrwHdbZ
+ hu8QBhvsjjdACTUxoZ81z2f+z2H5f75vwYP+2kaD3fCYg2c5OHdHt8GJbOVPeR5qovFgPaMmoBk
+ JwJsJeAv54KRqOG7kfHCpdaGt9QSh+fjlKbYB5XNIN1ZCFyy9DdJNwdfIayL36yw32n4u98y2yd
+ zAxXz11tvFO7/0HsgpIzSClLAp+x/MGhNc4NYeFJRrQlN/J+yY4cN3G62lCW7y8+XYcWkSQP9UU
+ oUhgKyCMGgjpbcyHNsQ==
+X-Authority-Analysis: v=2.4 cv=Wtom8Nfv c=1 sm=1 tr=0 ts=6985bd7c cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
  a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
  a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=EUspDBNiAAAA:8 a=M8LtWt04ibze1OfZ8MQA:9 a=QEXdDO2ut3YA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-GUID: Yl5GaTd5MIgUmqW-9sCMeY1cDuZnxxLl
-X-Proofpoint-ORIG-GUID: Yl5GaTd5MIgUmqW-9sCMeY1cDuZnxxLl
+ a=EUspDBNiAAAA:8 a=lLI43KLFf-FV-pE1sQEA:9 a=QEXdDO2ut3YA:10
+ a=3WC7DwWrALyhR5TkjVHa:22
+X-Proofpoint-GUID: f368iQzddpQAwj_GP0-Fb_N5TBvstk0P
+X-Proofpoint-ORIG-GUID: f368iQzddpQAwj_GP0-Fb_N5TBvstk0P
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-02-06_03,2026-02-05_03,2025-10-01_01
@@ -148,92 +159,164 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  bulkscore=0 priorityscore=1501 impostorscore=0 spamscore=0 lowpriorityscore=0
  suspectscore=0 malwarescore=0 clxscore=1015 adultscore=0 phishscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602060067
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602060068
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,perex.cz,suse.com,linaro.org,oss.qualcomm.com,quicinc.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-263287-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263298-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[srinivas.kandagatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[harshal.dev@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 8B638FC618
+X-Rspamd-Queue-Id: 75BC3FC7D2
 X-Rspamd-Action: no action
 
-On 2/6/26 3:00 AM, Krzysztof Kozlowski wrote:
-> On Thu, Feb 05, 2026 at 12:14:06PM -0500, Srinivas Kandagatla wrote:
->> Add new dai ids and dai driver entries ior LPASS LPI MI2S lines
+Hi Krzysztof,
+
+On 2/5/2026 4:47 PM, Krzysztof Kozlowski wrote:
+> On 03/02/2026 10:26, Harshal Dev wrote:
+>> Hi Krzysztof and Konrad,
 >>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
->> ---
->>  .../sound/qcom,q6dsp-lpass-ports.h            | 12 ++++-
->>  sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c      | 47 +++++++++++++++++++
->>  2 files changed, 58 insertions(+), 1 deletion(-)
+>> On 1/26/2026 3:59 PM, Konrad Dybcio wrote:
+>>> On 1/23/26 12:04 PM, Harshal Dev wrote:
+>>>> Hi Krzysztof,
+>>>>
+>>>> On 1/23/2026 2:27 PM, Krzysztof Kozlowski wrote:
+>>>>> On 23/01/2026 08:11, Harshal Dev wrote:
+>>>>>> Update the inline-crypto engine DT binding to reflect that power-domain and
+>>>>>> clock-names are now mandatory. Also update the maximum number of clocks
+>>>>>> that can be specified to two. These new fields are mandatory because ICE
+>>>>>> needs to vote on the power domain before it attempts to vote on the core
+>>>>>> and iface clocks to avoid clock 'stuck' issues.
+>>>>>>
+>>>>>> Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
+>>>>>> ---
+>>>>>>  .../bindings/crypto/qcom,inline-crypto-engine.yaml         | 14 +++++++++++++-
+>>>>>>  1 file changed, 13 insertions(+), 1 deletion(-)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+>>>>>> index c3408dcf5d20..1c2416117d4c 100644
+>>>>>> --- a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+>>>>>> @@ -28,12 +28,20 @@ properties:
+>>>>>>      maxItems: 1
+>>>>>>  
+>>>>>>    clocks:
+>>>>>> +    maxItems: 2
+>>>>>
+>>>>> This is ABI break and your commit msg suggests things were not perfect,
+>>>>> but it is not explicit - was this working or not? How is it that ICE was
+>>>>> never tested?
+>>>>>
+>>>>
+>>>> I took some time to educate myself on the point of DT bindings stability being a
+>>>> strict requirement now, so I understand how these changes are breaking ABI, I'll
+>>>> send a better version of this again.
+>>>>
+>>>> As for your question of how it was working till now, it seems that
+>>>> things were tested with the 'clk_ignore_unused' flag, or with CONFIG_SCSI_UFS_QCOM
+>>>> flag being override set to 'y'. When this is done, QCOM-ICE (on which QCOM-UFS
+>>>> depends) initiates probe _before_ the unused clocks and power-domains are
+>>>> disabled by the kernel. And so, the un-clocked register access or clock 'stuck'
+>>>> isn't observed (since the clocks and power domains are already enabled).
+>>>> Perhaps I should write this scenario explicitly in the commit message?
+>>>>
+>>>> To maintain backward compatibility, let me introduce minItems and maxItems for clocks.
+>>>> When the Linux distro uses CONFIG_SCSI_UFS_QCOM=y, we can do with just 1 clock as
+>>>> before.
+>>>
+>>> You must not assume any particular kernel configuration
+>>>
+>>> clk_ignore_unused is a hack which leads to situations like this, since
+>>> the bootloader doesn't clean up clocks it turned on, which leads to
+>>> situations like this where someone who previously wrote this binding
+>>> didn't care enough to **actually** test whether this device can operate
+>>> with only the set of clocks it requires
+>>>
+>>> I believe in this case it absolutely makes sense to break things, but
+>>> you must put the backstory in writing, in the commit message
+>>>
 >>
+>> I took some more time to think this through, and I agree with you now Konrad.
+>>
+>> These DT bindings appear to be invalid from day-1. ICE being an independent
+>> and common IP for both UFS and SDCC, it cannot operate correctly without its
+>> power-domain and clocks being enabled first. Hence, it should be mandatory for
+>> them to be specified in the DT-node and the same should be reflected in the DT
+>> binding.
+>>
+>> The only reason I can think of for omitting the 'power-domain' and 'iface' clock
+>> in the original DT-binding for ICE is because we failed to test the driver on
+>> a production kernel where the 'clk_ignore_unused' flag is not passed on the cmdline.
 > 
-> It's impossible to reply via korg - wrong address of Conor...
+> That's a reason to change ABI in the bindings, but not a reason to break
+> in-kernel or out of tree DTS.
 > 
->> diff --git a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
->> index 609bc278f726..0febc641f351 100644
->> --- a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
->> +++ b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
->> @@ -140,7 +140,17 @@
->>  #define DISPLAY_PORT_RX_6	134
->>  #define DISPLAY_PORT_RX_7	135
->>  #define USB_RX			136
->> -#define LPASS_MAX_PORT		(USB_RX + 1)
->> +#define	LPI_MI2S_RX_0		137
+>> Or if we did test that way, we were just lucky to not run into a timing scenario
+>> where the probe for the driver is attempted _after_ the clocks are turned off by the
+>> kernel.
+>>
+>> Sending a new patch, which makes these two resources optional (to preserve the DT
+>> binding) would either imply that we are make this bug fix optional as well or
+>> asking the reporter to resort to some workaround such as overriding
+>> CONFIG_SCSI_UFS_QCOM to 'y'.
 > 
-> Odd indentation appeared.
+> Either I do not understand the point or you still insist on breaking a
+> working DTS on kernels with clk_ignore_unused, just because what
+> exactly? You claim it did not work, but in fact it did work. So you
+> claim it worked by luck, right? And what this patchset achieves? It
+> breaks this "work by luck" into "100% not working and broken". I do not
+> see how is this an improvement.
 > 
 
->> +#define	LPI_MI2S_TX_0		138
->> +#define	LPI_MI2S_RX_1		139
->> +#define	LPI_MI2S_TX_1		140
->> +#define	LPI_MI2S_RX_2		141
->> +#define	LPI_MI2S_TX_2		142
->> +#define	LPI_MI2S_RX_3		143
->> +#define	LPI_MI2S_TX_3		144
->> +#define	LPI_MI2S_RX_4		145
->> +#define	LPI_MI2S_TX_4		146
->> +#define	LPASS_MAX_PORT		(LPI_MI2S_TX_4 + 1)
-> 
-> Confusing change or actual proof that my previous comments for similar
-> patch are valid:
-> 1. not a binding> or
-> 2. you cannot change this, because you break ABI.
-> Choose only one from these options.
-Is this because the max port keeps changing?, I can try to see how this
-can be dealt within the drivers in next version without adding
-LPASS_MAX_PORT to bindings.
+My point is something more fundamental. It worked before and it will still continue
+to work if:
+1. We pass the 'clk_ignore_unused' flag. or,
+2. If the Linux distro is overriding CONFIG_SCSI_UFS_QCOM to 'y'.
 
---srini
+But that does not change the fact that the current DT binding does not fully describe all
+the resources required by the hardware block to function correctly.
+
+> My NAK for driver change stays. This is wrong approach - you cannot
+> break working DTS.
 > 
-> Drop.
-> 
+
+I agree that this patch in it's current form will break both the in-kernel and
+out of tree DTS written in accordance with the old binding. If this isn't acceptable
+at all then like you said we need to move forward in a way that preserves them.
+
+But I am trying to highlight that if we go forward this way, we are all agreeing that
+kernels with these old DTS can only work under the two conditions I described above. If the
+kernel doesn't obey either of those conditions, the kernel won't boot.
+
+If we are all aligned that preserving the older DTS is very important, since they
+still 'work' under certain conditions, then sure. I'm fine with sending a new patch
+that doesn't break the ABI as per my initial response. Let me know your thoughts.
+
+Cheers,
+Harshal
+
 > Best regards,
 > Krzysztof
-> 
 
 
