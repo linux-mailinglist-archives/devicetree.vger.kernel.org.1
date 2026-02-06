@@ -1,86 +1,85 @@
-Return-Path: <devicetree+bounces-263390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263388-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id dleNOMkAhml0JAQAu9opvQ
-	(envelope-from <devicetree+bounces-263390-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 15:55:05 +0100
+	id QGIPDScAhmlXJAQAu9opvQ
+	(envelope-from <devicetree+bounces-263388-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 15:52:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60434FF507
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 15:55:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE3FDFF3EE
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 15:52:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 280CB302C5EE
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 14:51:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5A59B3058AAD
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 14:51:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52BB142884A;
-	Fri,  6 Feb 2026 14:50:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D4B4428830;
+	Fri,  6 Feb 2026 14:50:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i0aorkFC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w61DOjpC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C80D425CD0
-	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 14:50:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C09C42846D
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 14:50:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770389451; cv=none; b=jQPqXW4wSXBiMs7MCYYEZkKygHvv75nDyuAmGnB9E1MESlohY4hZuW4fzf6gsVlRc/gv61ZSeeFocgMpsH737HOsbf4Lz5gohcl80jiMtjFDN37+/Skb2MlyriXbY5045fdwIGohonRotQiiccCYzJ0fZk6YEaY4cu31G3CNsPc=
+	t=1770389449; cv=none; b=fMs5cBz/KFIj6Q9solWZBdjOF26cmVbEiCVz3Xwz6k9SwsQYBKMlwkFwMgCY3gJ4QBjhGINqMZbC2V8j0mRCC2NHsUHoOw0udw/yEj0O6hCsNOU6BwrTu682v7KA+AZlW6BgPlQt7YGdh40pc1TnNCV+Zi/Jk1+1Q9t4UZI81rM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770389451; c=relaxed/simple;
-	bh=xjSbwzZtG5gO7c0c14CObzQrxd0ynl2lj1Czc800QEA=;
+	s=arc-20240116; t=1770389449; c=relaxed/simple;
+	bh=pirzvUMS8i50SX74B9DHasjEK/A+JFKmccu8rvH6JXg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fm2tvga/8I2F6iZTQpzGOuhPyfM9aINijHoCSURKOPM/7Cyt1YcG5rw0lMY9Sw6Xx8jbhHmZOBIYVKN0Vpm9QxTzcSZPvfoi8tVbqzO6Hj9G07OYE/sq0tlChPaUoO8CyzOrAA4D1R7kOQORnbqoSElHQyw14GtxSjQE0HD+hZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i0aorkFC; arc=none smtp.client-ip=209.85.128.66
+	 In-Reply-To:To:Cc; b=LF9SVet+9rSVwO8OMFqfu/X0kLmJWnnta74e5PuYACjg8rZ3F/W0OdZW5EvsxduBJxYQRGLk68DiOglSrk7aDtDkSIb3+xFqoHNrmaGYUYDwOwZqr1ZyUUt3gb9WJqAjAhi+TnfyVVi7j/V/MOsTq3P1n97KcJnDW8uz1WrawNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w61DOjpC; arc=none smtp.client-ip=209.85.128.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f66.google.com with SMTP id 5b1f17b1804b1-47ee2715254so14278475e9.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 06:50:47 -0800 (PST)
+Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-4806bf39419so20008515e9.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 06:50:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1770389446; x=1770994246; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1770389447; x=1770994247; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/S0eg0m7isWhJo/g2N8HxsSID1GAb0gdwF9PpLKomXQ=;
-        b=i0aorkFCznCoPibSub6kpOKyeDFgw5BAx5m46zB8uf0JmChu/HrIa6mLHKmJSJfY+m
-         6rBYFgwgO0q6FG4WvR+q8EtB7oJaWn17GJ/GZIkWleOmyDAyj4mJmJ0uaIrPMVkR2Soc
-         VSYQMxUvKzoMw5S5Y/H6hHwckh7Fok8SghmJRtbxu1TO/8bno7LNk3ZNQWEjdWwRJdLB
-         tCV2tKH5QlzL1k6BRhICQmzaToV0BX3vvKZLfWCkFoHeGYHZZug+1nrqIioAFo6A3B0J
-         XC0r9UvK9B9VcxGoOKByiKXfSAcupguIGoF6aoIQu/sGan3So7ZLYq5hM0VNsanF74L8
-         hEjw==
+        bh=/72d5PFTHkT60QbelpzW/GReN1mxIpLMWRlkdIN95Hk=;
+        b=w61DOjpCrOOldTj6kJXzEcy1+RRqFagslwNCBl72Zl/jsH1KYwsFNTyvalNVrab77b
+         dLSLS/PGXKdiGhcy9nFPNuv/9HLZKafdVEMcHzRxPSd/G4fUHdkwlqZpyqa2RjavY+sL
+         0a//fMMERPBcKzGX79TsjVJfuVZ8BCDoVBQnRKu2uuGIQVC6tLsXTtINL3cEZRPf49Mr
+         M+yCjBpIVIUXLLsfVdAFHijfVIL2QXtR69ZVsPyn6J5gR3G1iheH9jMMRNslrYFtxccZ
+         /lnc/xYVhV42xUOpR5u5jN1RnSDEu52cI3vQJFxJiyOhih13FHVv41+ok3JviTMjMSAd
+         9uqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770389446; x=1770994246;
+        d=1e100.net; s=20230601; t=1770389447; x=1770994247;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=/S0eg0m7isWhJo/g2N8HxsSID1GAb0gdwF9PpLKomXQ=;
-        b=uDH2aPh3zyAiHVJQ53H2cdBwgmGUAwKTyTmSzSW7dv23rmVgTxVFnW8j1cI+c60D2P
-         cFK8zHCQWNQ2iysgZZ5H8fu+WqZSFH4Cjq4JMUT/ivqb8GTAhXCqYcOOV2KN0jV0nWRJ
-         J5o8GE+b4cGybQvbaaK2nFWhY6Rot+gkk8h2WO6zApPePalw5hJWIkWIPq56UkZYjDKu
-         6fF8Ab3Alsjjg14Gmgt9EodC/b7cCh/4yP27y+aqOHchIelokEyZE/dAqfptZLWdg3tk
-         rs9xOq9oIOrRbTvQHgjebvM2GSQ/7SLyq0xbjdGFNB6aRgAckTeQ/DZDRj+6OXZ7mWim
-         0N/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV1jKH8Gzgt+EKXSLIDYeSox9Di9+N4PGMlHjBnbXruO0KmHdm2Vx+eQ7r1tAvJKh35/npBFXD4/Oph@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3dXsRj7cVpWCKNXSLsI6G8sXcBCmkXz3b91qc1rGjAYh7MVh7
-	T1V15ogzLYWtSLnX/OB1SsyFo8vSDxIfaMEY1fmt1jdgyhDcYIJi/BnL/bQhRLfhpJbq+ENE7S2
-	xb/9ChOE=
-X-Gm-Gg: AZuq6aL6T2keOxKyF3LGDyqRXVJSN+ZbDEPVZy0LOq3g7ojRzUQQ7VvXOTcqNJKS1rF
-	YN5T4rHmHb3TO5CaXoaHDiNoGiuAqAZSx7u73ysuqIQPWHyHu+9Tf4eduo3xc/5w630AgT7aenN
-	xdRQRooq8s03NGmco+PT9GGBXdLNDbOk1lokVDPo5PEGIju+gHgvhPHeiPDtlnPinbBscQVNJK/
-	1+mibZwWwwSTD4dnfn+Ex0BeUkXtGUOXCGdO/ZsHmSj75zY+KPL5iGlcjiumIwetFazMYmY2G6K
-	UFcxCcM0wR0Ns6FsvoPIP8LcAN+SSyAFdCwNbHE69voRkdrq/v8dsfZ+6ILye7ZGSw4KMXDtwku
-	zfRpSH6QH+9MT2m0lSTnlRfJTLPDod/3nqalM0PSZ+pivl8L774d5vSPCPzx7GRexJgXf21q2hm
-	YtpQNOzzfwxIEGp/uudQWTtQvHt4gmeZ5t
-X-Received: by 2002:a05:600c:3f08:b0:477:a246:8398 with SMTP id 5b1f17b1804b1-483201dcfc4mr45291315e9.2.1770389445562;
-        Fri, 06 Feb 2026 06:50:45 -0800 (PST)
+        bh=/72d5PFTHkT60QbelpzW/GReN1mxIpLMWRlkdIN95Hk=;
+        b=Ke+LakxYMsUxusb2Y5V9EoIA8z4VVT92AST+GQ2qk/ArT4MaDWJWY0EKhk1OrmEndt
+         fO7a6qVVGzAENQx4voT6l2wkdqJsCJeMNicAqwgOn6HoCeVSDm5rB6+3myAPGnRjrV0O
+         rxMQ9AZUeAXijaC+bGBninJs7sQinpf9b0pxWp1Cyhodl8NV6B98iDKgu6foji0pMQnn
+         bFFpMlNij4nuXci+QcwKEZiqkCuyUY4qZuH0X7+0wolDSs2jDh1pO8cpl9lBz/j87mlC
+         lIWKR5rB934M6Je+AFAuPpexCSn780j6zEBSj07se1SK178s7qHAuRNT6rcIfNhT9DUd
+         3ajg==
+X-Forwarded-Encrypted: i=1; AJvYcCXLwW4rGR3v4PyOBjR/4Y9g3xtCiPToR66Z397GHI4ZnXzfrTiyaJCgWQs74HtUGuK+GnXaqjZ5E8nJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxnf3yNqi1mrCaBnqz9YoRuCX4Ic+hCrA2feej2/fFM40aRS5be
+	whPqq10QsVRpjl/4Kt30PeUodRycVh38ACrvoYWHJXPz2c4TbFIb9YNSXYnOaT1/ZVo=
+X-Gm-Gg: AZuq6aI1SaD83pLQ1n7YL6zFBu3WpaA9iXG2aG7Mh99jKgLqE8LVkvzxvoHcA85RHOF
+	ghNZg9o864p7Z9zc+E22O1rgQhDnjny5Oelsu23qFQxDIS+/5SUv0pNRpot8ENQa8BgtqC9wHkG
+	7QyZAM2LA7mnPdrRzXTvRLUmV0FRoyvRb7X1nR9wOCH/ihdEpfXEU/FygPQjr/5AetHEYO2p5sr
+	S6bAnpKtrWcaBglqNK496eWoWbs9cPlzBNlHUwurNbP3dcxVQ9qXi73i7Dj/buicXHNBGA4tyQH
+	0UdNZLY3oEEleexK7VeBPIHX7kxFjBFKIfmceyPC9HU7g9CgsXYFF4G+vapKGd8BBYEf7cqBBq5
+	GFjMi/Oii4HH9IvThbrUrXM4fKEf0knkDM2MPURBDaAzccbAgvNnZUYG21jzQe4v+hhPAz9P8Z5
+	m8x7Ww8WqfRItZgpNLvyzCJQwbhhNSggGa
+X-Received: by 2002:a05:600c:3e14:b0:46f:a2ba:581f with SMTP id 5b1f17b1804b1-483203db77emr42394815e9.16.1770389446464;
+        Fri, 06 Feb 2026 06:50:46 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4832a38425asm3825805e9.7.2026.02.06.06.50.44
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4832a38425asm3825805e9.7.2026.02.06.06.50.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Feb 2026 06:50:45 -0800 (PST)
+        Fri, 06 Feb 2026 06:50:46 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Fri, 06 Feb 2026 15:50:34 +0100
-Subject: [PATCH v3 6/9] dt-binding: vendor-prefixes: document the Ayaneo
- brand
+Date: Fri, 06 Feb 2026 15:50:35 +0100
+Subject: [PATCH v3 7/9] dt-bindings: arm: qcom: document the Ayaneo Pocket
+ S2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +88,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-6-5b79c5d61a03@linaro.org>
+Message-Id: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-7-5b79c5d61a03@linaro.org>
 References: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-0-5b79c5d61a03@linaro.org>
 In-Reply-To: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-0-5b79c5d61a03@linaro.org>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
@@ -103,23 +102,22 @@ To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
  linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+ Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=982;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=716;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=xjSbwzZtG5gO7c0c14CObzQrxd0ynl2lj1Czc800QEA=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBphf+8g+1NPjgeJYwBAdgU+CA8HJk/PsNY/WtwXdyu
- i3Q1KXSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaYX/vAAKCRB33NvayMhJ0TJiEA
- DK9zFBLu9rmXyXa5in0iqKaKheQVxSDqnHAbfbf3BXqiEmnHuedAe9egyNmclZSJ4NOohRn8GVe3pk
- ztmewIdHh/6pQLHWjZMt8i5/l2vXZ0wosRXVom0ot+22LwCh5oufi/RMCiJff+JhdM9Ru+epbf3KFM
- J1s1rIUMDnF/fd5N0Eu6BVklVQh2UIQCn0C1Ya4kAhj/6ElouepZllyAR/jaK5H6z4pNuu14imyfSW
- 38xlF8sBmpyXsoYXTZMRqe61qh5eR02Q4tZHjrK9QGPMWJkUtbKf1WzwJZ87M5O5aLuqnJtjTlv+j2
- NTy4RCxKQzMRLMK8qUOFZ+bsapALsB1ZOstCRRPKPCZRJgwLhkiT9kWltlsVqgj2yb1gaALM4MndTc
- 32X2SgvyxLg2lrxXoqBZUdxRx1ZJDSShwWZdZo8OyISYBoPbwEx2ZuwhWtXft1BHvjpvQlFLhkS1mP
- nvyF+1u5TbBY39cCom+gUh1Kkwx5o9Tz+w2+pQCAm0gUNuakVgGe8ABOHnPo7m6TrDtP2mHZByH3oC
- +7hvPhq+a1J6jKmkjqQbJCYRkZvAYykYHoU81FiPo4+EaOU4yVZkFXxOqX1Cm45FDeFk7N6MbpniOk
- zRFxYjShLB6j8itkdh1lveosi+F0TgjtrGcm82hsfNFR3yFBVTGjWvO+b7og==
+ bh=pirzvUMS8i50SX74B9DHasjEK/A+JFKmccu8rvH6JXg=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBphf+8LIVwVOGfaj8vA8kiyspuw1o2XKUl5qHvBU3G
+ YjPBJeOJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaYX/vAAKCRB33NvayMhJ0a4ZD/
+ kBUC8ByNS0Z8Z5TN3IU/BTmOXJ0muNmK93A0saVzteh71XXt1UYFxQdDpGOVUgGS17Ml7LDcCSpnDy
+ n8DkQkQQuUQYbZAS7zKZqMft0O6D0ABRS9CW5HNqPIhwyJHXhoibqLs1KrSY2xFzZhwxdyLHgcDUrW
+ dlrRch7T7JdIygSFiTWzsc1BCaOC44MzEZQQ2hA9avqObcNKHrMrjlbAqcuY3u9JNXD8TXK6PNFsKc
+ 1x17X7B7ZWdh9xVvT6dwZqXaNCejL94wWvEYFjVqo70YgFPcsmDYcw2dCSEKH/pV/7Z8UOmdl2Plbr
+ O3WOBhlozx04I8XWSrKkQ0KZJ3OREgz0LqfOgVVTSOKeUbRMwSN0mUzRxEWuDItyxTndSMvgDKaEPX
+ pXygzstIhoYOGMar8ZlcJApMhT7xq9iW+JVLfdNIHoWQfU2+Wgc+zYES1gXBV23C2X5X5eadvwHk5m
+ 8c/aDlNqYiDW/z0Gi6FxTCL0wHo+8KKD59/SIoQRBpO2AfWiyc7lJR+VAaDsf7a+lJMHz7hfbdUtIg
+ rJ6C+T0YKfzjO0ak/CMsGPIEEFFyMASlz661ELcYdJqEskI4+4udHvh3DY8KPntKPjehmrmbp93j7I
+ J6/0ra7CTmZdAQ9G1jx5gSfAAqS92j1AjdxlANKszyhOSLylRTF7+Wio06kQ==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Rspamd-Server: lfdr
@@ -128,55 +126,51 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263390-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263388-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com,google.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
+	NEURAL_HAM(-0.00)[-0.984];
 	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ayaneo.com:url,linaro.org:email,linaro.org:dkim,linaro.org:mid]
-X-Rspamd-Queue-Id: 60434FF507
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,linaro.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DE3FDFF3EE
 X-Rspamd-Action: no action
 
-Document the Ayaneo from the Anyun Intelligent Technology
-(Hong Kong) Co., Ltd company.
-Website: https://www.ayaneo.com/product/ayaneobrand.html
+Document the Qualcomm SM8650 based Ayaneo Pocket S2 gaming console.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index c7591b2aec2a..45fb1a3a3a06 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -217,6 +217,8 @@ patternProperties:
-     description: Axiado Corporation
-   "^axis,.*":
-     description: Axis Communications AB
-+  "^ayaneo,.*":
-+    description: Anyun Intelligent Technology (Hong Kong) Co., Ltd
-   "^azoteq,.*":
-     description: Azoteq (Pty) Ltd
-   "^azw,.*":
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index d84bd3bca201..351cc2eff14a 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -1042,6 +1042,7 @@ properties:
+ 
+       - items:
+           - enum:
++              - ayaneo,pocket-s2
+               - qcom,sm8650-hdk
+               - qcom,sm8650-mtp
+               - qcom,sm8650-qrd
 
 -- 
 2.34.1
