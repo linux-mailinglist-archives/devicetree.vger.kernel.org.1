@@ -1,56 +1,65 @@
-Return-Path: <devicetree+bounces-263213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263214-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kB78E2pYhWkhAQQAu9opvQ
-	(envelope-from <devicetree+bounces-263213-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 03:56:42 +0100
+	id oHhQD69chWmfAgQAu9opvQ
+	(envelope-from <devicetree+bounces-263214-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 04:14:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 286E0F9796
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 03:56:41 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE900F998C
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 04:14:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EBB86300FB6E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 02:56:39 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1407B30041C6
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 03:14:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B85182989B0;
-	Fri,  6 Feb 2026 02:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2EE730EF71;
+	Fri,  6 Feb 2026 03:14:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C20F1DE8BF;
-	Fri,  6 Feb 2026 02:56:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 461B72FE04D;
+	Fri,  6 Feb 2026 03:14:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770346597; cv=none; b=D3KOtW/yjsHGfpC8AOBpkoJma1EDmfXp/59U5Q+3m6LoHkjLrz8vUqPrDfCfXo7G6zPkrlei7hgc5sBdDZ6JAyl//2wDq5U3fJL4aSP5JsBbcnzA4oli/sVR8r353bSKKSrgEEnOTfsY/1CrdbBMgVT+PNJgubt18C+PJA/2z9o=
+	t=1770347690; cv=none; b=KCYk5PGB9xYuJhhuEDYUF0NRh6tQdynaAcNWfD9RvmvzrI80ARGccQR7L2bNKdFMChykCtuWRrTinc9w0N6QkgQ2BKs4WsmlhBIZacm76dusvgdkPqYg85r5+0hZ8o7Hl/AneWcO43QdoXCWmBKxBj2SqAhSqxUd1bA7atUh5bo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770346597; c=relaxed/simple;
-	bh=5U4Aa+9ffX2aQoyRKD4XohbecZEdjm9gcxPHiYmriqs=;
+	s=arc-20240116; t=1770347690; c=relaxed/simple;
+	bh=Jc3IZcYW2rB1qgV1vPDAlqvxWXgP++0p0Sj1wrvla9Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B8WVxEIdTxaDjGCrEv9hW/rEvIzfIkXVx1FABcv82jOh6U73yUK5e1L+dKrLLEjl7TbjppF9jMXtEssrj/oqTaAEIq0GFLNGwZash/GIUvD/jgezc0fYMbG/OiuR8AyaAdbBw+b6wec5pI6e0AVInCNrQBm/L24M8z5WquCqVKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from duge-virtual-machine (unknown [183.192.223.177])
-	by APP-01 (Coremail) with SMTP id qwCowACHLmpTWIVpqMY9Bw--.33109S2;
-	Fri, 06 Feb 2026 10:56:21 +0800 (CST)
-Date: Fri, 6 Feb 2026 10:56:19 +0800
-From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-To: Conor Dooley <conor@kernel.org>
-Cc: ulf.hansson@linaro.org, adrian.hunter@intel.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, pjw@kernel.org,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	gaohan@iscas.ac.cn, me@ziyao.cc
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: Add sdhci support for Canaan k230
-Message-ID: <aYVYU5ZwK1pfhumY@duge-virtual-machine>
-References: <20260204082908.27501-1-jiayu.riscv@isrc.iscas.ac.cn>
- <20260204082908.27501-2-jiayu.riscv@isrc.iscas.ac.cn>
- <20260204-imperfect-blitz-55fe5a85590f@spud>
- <aYRC/JVvyI6znWS6@duge-virtual-machine>
- <20260205-choice-require-1794796b10e5@spud>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BWLT25zFh7QwFv380MqWZBfPkwen5uKVx1TSCsHvPTKQWVJfS+0q+eJcRtd30XdCeIaBThv6J1dv43UY27mlgG/iMwRMU7IjyRzHvi4TidnjNaAze/l4AI3c/BGWEVkxrV4oP++fG2e+x9ypfRjki0naFN+xDDfYYrctuXBfd6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1voCIk-000000005tg-3Mqr;
+	Fri, 06 Feb 2026 03:14:34 +0000
+Date: Fri, 6 Feb 2026 03:14:26 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Liang Xu <lxu@maxlinear.com>, John Crispin <john@phrozen.org>
+Subject: Re: [PATCH net-next v13 4/4] net: dsa: add basic initial driver for
+ MxL862xx switches
+Message-ID: <aYVckqToPwzR75EO@makrotopia.org>
+References: <cover.1770211259.git.daniel@makrotopia.org>
+ <2da8267175bfe7b8ff92d67ba5aa88755fab1710.1770211259.git.daniel@makrotopia.org>
+ <20260205182117.41618f8d@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,154 +68,120 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260205-choice-require-1794796b10e5@spud>
-X-CM-TRANSID:qwCowACHLmpTWIVpqMY9Bw--.33109S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxZF4kWFyfZw4UCF4DtryfCrg_yoW5KrWUpF
-	ZxAF98KF1vgF1Yy34Fv3WkC3ZIyr4ktr1kXrn8try7XFsYgF13Kr47Kw1Y9r1xXF1xJr4a
-	9ayjg343Gw1ayFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
-	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
-	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
-	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
-	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
-	14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
-	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
-	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
-	IFyTuYvjxUqiFxDUUUU
-X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+In-Reply-To: <20260205182117.41618f8d@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263213-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-263214-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[lunn.ch,gmail.com,davemloft.net,google.com,redhat.com,kernel.org,armlinux.org.uk,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	DMARC_NA(0.00)[makrotopia.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.982];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.984];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
 	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,iscas.ac.cn:email]
-X-Rspamd-Queue-Id: 286E0F9796
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,makrotopia.org:mid]
+X-Rspamd-Queue-Id: DE900F998C
 X-Rspamd-Action: no action
 
-On Thu, Feb 05, 2026 at 07:19:36PM +0000, Conor Dooley wrote:
-> On Thu, Feb 05, 2026 at 03:13:00PM +0800, Jiayu Du wrote:
-> > On Wed, Feb 04, 2026 at 06:10:25PM +0000, Conor Dooley wrote:
-> > > On Wed, Feb 04, 2026 at 04:29:06PM +0800, Jiayu Du wrote:
-> > > > The Canaan k230 uses the SDHCI from Synopsys. Add compatible strings
-> > > > to the k230. The k230 has two controllers. MMC0 supports eMMC, while
-> > > > MMC1 supports SDIO.
-> > > > 
-> > > > Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-> > > > ---
-> > > >  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 22 +++++++++++++++++++
-> > > >  1 file changed, 22 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > > > index 7e7c55dc2440..cab33da3af7d 100644
-> > > > --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > > > +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > > > @@ -23,6 +23,8 @@ properties:
-> > > >            - const: sophgo,sg2044-dwcmshc
-> > > >            - const: sophgo,sg2042-dwcmshc
-> > > >        - enum:
-> > > > +          - canaan,k230-emmc
-> > > > +          - canaan,k230-sdio
-> > > 
-> > > I don't understand why there are two compatibles here, when the driver
-> > > is able to handle them both identically, using the common properties for
-> > > mmc controllers to differentiate. Is which is emmc and which sdio
-> > > actually just determined by how the k230 boards use them?
-> > > 
-> > > Or, if there are pinout differences, would pinctrl allow each to be used
-> > > for either?
-> > 
-> > Hi, Thanks for the review!
-> > 
-> > Actually, the two compatibles aren't just board choices. They come from
-> > real SoC-level differences between the two MMC controllers.
-> > 
-> > From the K230 Hardware Guide [1]:
-> > - MMC0 supports eMMC5.0 and SDIO3.0, usually for eMMC chips.
-> > - MMC1 only does SDIO3.0 in 4/1-bit mode up to SDR104, and the manual
-> >   clearly says it can't handle eMMC because of pin count and limits.
-> > 
-> > And the driver treats them a bit differently, such as whether there
-> > is a phy and the initialization method. So I think keeping separate
-> > compatibles makes sense to show these hardware differences clearly.
+Hi Jakub,
+
+thank you for looking into this driver another time.
+
+On Thu, Feb 05, 2026 at 06:21:17PM -0800, Jakub Kicinski wrote:
+> On Wed, 4 Feb 2026 13:33:19 +0000 Daniel Golle wrote:
+> > +/* The switch firmware expects all structs to be byte-aligned */
+> > +#pragma pack(push, 1)
 > 
-> Ah, I didn't notice that there was some logic, I just checked the match
-> data and I missed that. What you have is fine then I think.
-> 
-> > 
-> > About pinctrl, MMC1 pins can mux to other things like GPIO, but MMC0
-> > pins are fixed in hardware. In next version, I will add pinctrl node
-> > for MMC1 in the board dts.
-> > 
-> > Link: https://github.com/kendryte/k230_docs/blob/main/en/00_hardware/K230_Hardware_Design_Guide.md#mmc-circuit [1]
-> > > 
-> > > >            - rockchip,rk3568-dwcmshc
-> > > >            - rockchip,rk3588-dwcmshc
-> > > >            - snps,dwcmshc-sdhci
-> > > > @@ -87,6 +89,26 @@ required:
-> > > >  allOf:
-> > > >    - $ref: mmc-controller.yaml#
-> > > >  
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          contains:
-> > > > +            enum:
-> > > > +              - canaan,k230-emmc
-> > > > +              - canaan,k230-sdio
-> > > > +    then:
-> > > > +      properties:
-> > > > +        clocks:
-> > > > +          minItems: 2
-> > > > +          maxItems: 5
-> 
-> Additionally, why does this have a range? Why is it not minItems: 5?
-> You've got only one instance per compatible, so the number of clocks for
-> each compatible is not variable.
+> "Byte-aligned" means..? Generally aligned means that it starts
+> at an address which is multiple of X. All addresses are multiple of 1
 
-You're right. In the next version, I will change it to minItems: 5.
-Thank you for your review!
+In case fo the firmware running on this switch it means that data types
+used in structures used as input and output parameters for firmware
+functions should be aligned to 8 bits, without any additional padding in
+between.
 
-Regards,
-Jiayu Du
+struct foo {
+	u8	var1;
+	__le16	var2;
+	__le32	var3;
+} __packed;
 
-> > > > +        clock-names:
-> > > > +          items:
-> > > > +            - const: core
-> > > > +            - const: bus
-> > > > +            - const: axi
-> > > > +            - const: block
-> > > > +            - const: timer
-> > > > +
-> > > >    - if:
-> > > >        properties:
-> > > >          compatible:
-> > > > -- 
-> > > > 2.52.0
-> > > > 
+It's size is 7 bytes and it looks like this:
 
+.||||||||.||||||||.||||||||.||||||||.||||||||.||||||||.||||||||.
+|  var1  |       var2      |                var3               |
+.        .   LSB  .   MSB  .  LSB                         MSB  .
+
+
+This is what the firmware on the other end expects, from all data sent
+to it and what the Linux host has to expect from all data received from
+it.
+
+> We used you push back against blanket __packed because it's forcing
+> all *host* accesses to also assume that the structures are unaligned.
+
+Understand that in general, and of course know that using packed structs
+without a hardware requirement of doing so needlessly wastes CPU cycles
+on each access to struct members.
+
+However, in this case this is a header file which exclusively defines
+structs which are only used to communicate with the firmware running on
+the switch. Using them for anything else, such as storing or processing
+data the driver deals with internally is, very inconvenient because all
+types are also defined as little-endian, so not only unaligned access,
+but also endian conversion burdens every access (in the sense that it
+burdens the programmer on little-endian machines, but the CPU as well on
+big-endian machines).
+
+tl;dr: This whole file is only API definition. And this is how the
+firmware API is defined, and that's the only way to deal with that
+switch.
+
+(I would have preferred if they just exposed the internal 16-bit
+registers of the switch via MDIO, and have asked MxL for that several
+times, without success)
+
+> The best practice is to pack only specific structs which need it
+> and add compile_assert()s to make sure that the compiler doesn't add
+> any padding.
+
+Imho checking whether each of these structs is naturally packed (ie.
+8-bit aligned without padding between 8-bit aligned members) is prone to
+human errors which only become visible when testing on the real
+hardware, and hence complicates maintainance.
+
+Other drivers which operate on similar APIs (many GPU drivers, for
+example) also use #pragma pack(push, 1) in header files defining
+external API. Also there all external API definitions are kept in a
+separate file, away from any of the datastructures used by the driver
+internally at runtime.
+
+Anyway, if you really really want me to set individual __packed for each
+struct which isn't naturally packed in this whole file, please tell me
+clearly that this is what you would like, and I will of course do it
+despite disagreeing with the reasoning.
+
+
+Cheers
+
+
+Daniel
 
