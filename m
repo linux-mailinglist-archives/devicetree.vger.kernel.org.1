@@ -1,399 +1,155 @@
-Return-Path: <devicetree+bounces-263432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263433-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OJwQAsQfhmm/JwQAu9opvQ
-	(envelope-from <devicetree+bounces-263432-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:07:16 +0100
+	id 0LIULBcghmm/JwQAu9opvQ
+	(envelope-from <devicetree+bounces-263433-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:08:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3EB100BC2
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:07:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A630100BDB
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:08:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 80A983003EFD
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 17:06:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CA4C830097CD
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 17:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB5123644DA;
-	Fri,  6 Feb 2026 17:06:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D4BB36C0C7;
+	Fri,  6 Feb 2026 17:08:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="OaASM9Eb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r+FbUDxV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011002.outbound.protection.outlook.com [52.101.65.2])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6961C364023;
-	Fri,  6 Feb 2026 17:06:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.2
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770397601; cv=fail; b=ILwnBa7CPJiuCWx3Yk3DjV+zQsUK3tQ4Vi1RhoBoA6qChoX8/jvndnZkMRSRQ/D1zSVs7KpXW6kW4XXXtMKEeNAPu+zdfaC6pZljHhTsDUVGNHgJrMPDi0lCL3SVxEodHaL6+pkBOomtC/ifltox3V+kthcCqCZ5xhL63XbqX4E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770397601; c=relaxed/simple;
-	bh=M1z+B8Q5i+c3AgK5wRdcQmZG8y4XFLs7Rivj1YxPS/c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=rUgM/n45e3scQVHNAhwiF/bdyOorbzmF9ToWuYZGsN9dWPNNLGKEMCheFf35y3A3yhIcDXljm6F1O79zcsRC27hY/eNZVIlEIeZIJ3DwAp8Mtoz3Wqif87FXGXUijX2yt0+IAIiZeUDdbCiLNajYJiYny3ou0PVjNvKASJC99rI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=OaASM9Eb; arc=fail smtp.client-ip=52.101.65.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FPB30uif6ZjbaWoKNMsijRArOuBtqv7u83T5CfYaVKoj66aHtn/Kgn9IE1ITkjT249Z1IFI7jDAAbZHF6vdlH52dNEVZte74PIR+ap+Dql7T0JBUSEJSaM6ppRYNO6gOURGmM27+VkJTJu3ue8FA5Pu02BFBDtWHzdwr8pLxprbrwxPgvd53e90tk4J8uQDJXPgS3jOighF4ZL858KbXVAqh76Bf+D/EsFPMoCnCLQBv61muputLUAMu2LtMm+y+to9woQPqaJSrRybAwWEGt0bE8dW8UgXxo4SwRNHV4XXC5qdXocIa6dtLIoLoDjJqNMSZwSAZ0FB4/9THCxRrJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9dtJpBpaJj/eQbsN8iHnp1hkp5NLcNb0UGi2fEoGzlM=;
- b=FfPQMik2DEKXDRP7zn6aH0vF5ghsVJPDHYwOlL1SskbnF9HziKpNSukUo1n9nkudlTm7icc0SSxxb79Nrht5naLhUsFzBUggDwlX7BnKrX3rQai8BXEQNbjpK5/ishYC0IPMb7moyWnNsj2lQYxif5gQw1nPyzHZL6kUgswZIzDkn00SYxhiz/dU+AikFfhyEP8oZumjizJ0G33FG1syLL0zfhwS5jI44wzFx40oGrfsHRMcXsIsW1fIoL1v7cPDfYnuJm4lmJERSja7lBz3H8lobCWIpWsMgn/s6K8meVfijlTHdahBmHX0x3uYppQTlHq59jUqxIZtKsb6slnPow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9dtJpBpaJj/eQbsN8iHnp1hkp5NLcNb0UGi2fEoGzlM=;
- b=OaASM9EbKZSG9rRTRq+JU1k4HvG0v2jFf28gp2+M+fCXJb7MngpzilB/6MKRPxRIuF/kMyPC+72fhECxoXsOdJoVXBTW5v4ok0PcGXmTJnNRGWoEbcOyB5wHU3Zc3094OWaiku2+4u11FtxXVObKFEqAkMSy70Pe313ZjBXHVrv3BntrXV8Jrbh3FVbHirgE0FOgq2ELxZmBhNzzM330cVwOlDLMQPA4LL03TL5oZhGt9bIBzuNWvG3OTd1pJhHjqAajim6S1ZHjddb8svhM8dyn5KNxIgiZdwCQFdo1XVYk7PTV4VZtXBx3ip5y1eUS45hS/jzGNg3+hz8kZLwMFw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by AM9PR04MB8922.eurprd04.prod.outlook.com (2603:10a6:20b:409::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.15; Fri, 6 Feb
- 2026 17:06:38 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Fri, 6 Feb 2026
- 17:06:38 +0000
-Date: Fri, 6 Feb 2026 12:06:29 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
-Cc: linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
-	alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, broonie@kernel.org,
-	lee@kernel.org, lgirdwood@gmail.com, vikash.bansal@nxp.com,
-	priyanka.jain@nxp.com, shashank.rebbapragada@nxp.com
-Subject: Re: [PATCH v5 1/5] i3c: master: Expose the APIs to support I3C hub
-Message-ID: <aYYflbET_ZE1QPDT@lizhi-Precision-Tower-5810>
-References: <20260206120121.856471-1-aman.kumarpandey@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260206120121.856471-1-aman.kumarpandey@nxp.com>
-X-ClientProxiedBy: PH8P221CA0058.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:510:349::7) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09FE2368276;
+	Fri,  6 Feb 2026 17:08:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770397717; cv=none; b=O8+TokliNic+HHrsGqhBKVsETErTp86LuJbzUIBAAqGNrMMHAJmqmTyBRI/tefQzlgYK0wBDtm/v/pGSdJdbmaJIZgDKXjmCwBmXv2Q0dR+xzO/CbR5ZYAJioIorqatM/Vdl5kGDaZU8vL5shZCc07WMDS/I8MvI51y2ABmWnrU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770397717; c=relaxed/simple;
+	bh=LpI7KpatvGJ0S8fdp0AU5DPeYXCacXy7mJsdFtd8VAI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WIn5bulfarQtf+5UIWwAXbB+BhSPJR8dsN0Pyd0WukphLZqrs395KEm1z4zrPcOBEqmVq3L/5nGPCApTjm3NOahL8lIWPc1h/orvxXU+QzNK5oAkYQiY+uRd3vm2EWBhkMrdtaBMPgHIRloilNsndACvbxhkbFSN3BsM60VFGS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r+FbUDxV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83EF7C116C6;
+	Fri,  6 Feb 2026 17:08:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770397716;
+	bh=LpI7KpatvGJ0S8fdp0AU5DPeYXCacXy7mJsdFtd8VAI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=r+FbUDxVkjm5RSpsXQxF/mSRsC/RpUu+tVDBIpxdhIiyouk6YjxYe+PPH4dXJerl+
+	 VJToxtKgqW54CGqpgIOoZRAWbuEIvrQXt86yj1SgiErSwo+iIgpOYDwx4hqaPeZNio
+	 AiICAOR4fvtDv8qLVk2HoHuR0l1e8vtjQEQegsI0DFr33PXjDOPxYeycs96ZbrCrxm
+	 +G7c7VwHXrYaKMmB5ws1mFe1I8pcObQezK1Zy4bAgysbkWZXW5UoK8F/tM3aUUtua7
+	 Cl6LCkESUIUiJDar31eG5/j4i7rfzN80QjPDoIoYCjBEOU7Bv3qoGrq4orZ7SqWU99
+	 Khr2eehQcuEkg==
+Message-ID: <76a35ff1-5b6a-439a-9bd8-81fef945e3a5@kernel.org>
+Date: Fri, 6 Feb 2026 18:08:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AM9PR04MB8922:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3e5436e4-68c2-4e60-0a63-08de65a216ef
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|52116014|376014|7416014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?UJB+s+8LmvAJ8lZK6JA8CMvqYp96sk7mmHlPAjkzjDZmuE45Kr3c2Tc9HvOa?=
- =?us-ascii?Q?8UGMCphS5W+W4PZJir54qbPibTtjUo2LvyapNxzPaQcXH7E3HGWCk/70izTU?=
- =?us-ascii?Q?KLIVunQvV5Lr2OT7kpmwVmoSLh5vUbOj2Uj6aZ1kgYxH3nyEbMWbNJNtT8uG?=
- =?us-ascii?Q?lsp8Xy8hlgDQ1oSAFZM+D1zo1JR52/fZeO2h4fLQM3B2QDYyB2yTRvxiJt9n?=
- =?us-ascii?Q?k3oA/vjxCRE7CWBSl8b0TSm6pL6jcmmOvQdzbh4twDvFotX+3BvV57ARfUjg?=
- =?us-ascii?Q?5JKn24ZqeMscmwM7/jbY64Rd1kFVuqWbpy2g2nXA0/1hpgfciP/5fNW50kEV?=
- =?us-ascii?Q?b5TVpV9Fc+j8/v7dLloSLX59mK73OaWHAICzDOM5qr0jIAfluZKttEM3vn6k?=
- =?us-ascii?Q?SNadC7PTTHuH3xYWCuJB4kwuGgn0XIvn6l1KoFwfqfJCQQtq2ov4j7kJfdnj?=
- =?us-ascii?Q?8pywiGCbWtwuGqg9fUb7O8oJ8Fl5WdaWuxroyaI1JKKeEPbypP9fKRnwvscn?=
- =?us-ascii?Q?nbU7tabkFcjDrXLfZoNvRS/kF3P3RcF87JJfTEennv5qWrIHjbVHRt9wSvbL?=
- =?us-ascii?Q?POenzW6GONrb05lvQdAle5hFMPjX7bdm1PwDB/WJDkE6reaFZW39K5yAls4s?=
- =?us-ascii?Q?5QxhR5vh+QJpKFiTuJCArQv1LjUBOLwyKOyEnzsCHUCjJiC5BKhzY6bJdcHf?=
- =?us-ascii?Q?iR7LOipBvoUv/sgPkQPKKwyHDWL+tj7DJ7Sosx9JIIkmfZGxPUpbbahyOxQX?=
- =?us-ascii?Q?paGprpyYDK3FROnpeCuxiyerOGiL5VKGmiLvb6FY1c/lkxcSXgZN0TbIj+CH?=
- =?us-ascii?Q?gjn9hzSBk/NVy8/BK0XEvUt0mMGfxjv0uRo3wCxFXmmtjRUg6nuHfhGftuZz?=
- =?us-ascii?Q?PgfAvc4jXU9J23yUh0p/zOxfjYrcdMpNmJIUCNikp+oAp9ZF6nZk1MtmDQ/O?=
- =?us-ascii?Q?NVgng9c18EHecpSuyAFv7R4Oo7vhwHP/5yLMV9Xw3T/qEf/wqmfLuzy4LboM?=
- =?us-ascii?Q?49C1mC7R1skiYblAxphsDMLbn2H6vA8T6Bxe8hj5T/iujBiVzp1fW4zFyxxd?=
- =?us-ascii?Q?MJtABxuD1saOmRn0QdpWibvdE5GSPpYNvSqMgB2JPUlGG0KU24Enu7OauDIA?=
- =?us-ascii?Q?JWxBnb9LRGQ/aoBL5l/tKO2rFaU7CWbrrWQz3BbRf8DSs9YkjIV++4BDMRX6?=
- =?us-ascii?Q?Up4n16c0L4APxnlJ6uqV25AU2QQZkf6bn7Y+uKPG19HtFXts6vAH7tnFoG/e?=
- =?us-ascii?Q?PJWgNbP7b7WKKrtB0RJ5/ZG4BfbF+udDpaDViU7gRd9pf8zlMc181RuY2C+s?=
- =?us-ascii?Q?QlH9J2+DU6VoJkXFikBBV3uP7eahsTO44eN3R1fWo//bKaCc8pc35ALWj9nu?=
- =?us-ascii?Q?l8BN0RBND3H0gyQwFeO1xLnzoD5h6uUMfxMQTnfatp6Kw7l3lW2sJWVkyBhx?=
- =?us-ascii?Q?KNMO0ipfSomFz4dCHr1LwmqkJk54KwGwvlPRJkOE9KLJDdceS7TLH/pYdvX6?=
- =?us-ascii?Q?pW1c+6CmDx8YRXWZcVzji273Y0G/Ihoa+SYzoHDIhrxBPNm7qJybDW5Zt5bl?=
- =?us-ascii?Q?pLzwH3WU/ys+NT7rTJJH84nYUXvKD8Bgc+VanmTxzrbBD7TXs4BbuU5UQwTW?=
- =?us-ascii?Q?JRjy5LoIArxORZlmJ3s3yus=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(52116014)(376014)(7416014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?R/uFLyG7TjlrRjgBMRUvCqY7AnKX/fbZPeEX2piZx7VCFgRqdnVzSQ9926Q3?=
- =?us-ascii?Q?D5z940A55F9tUsIli+gPxdhiFc7Ib9PH7Xsemf8qW8Q0AvQHJ8QIR0qw5DfF?=
- =?us-ascii?Q?Zm2GA//sMw8vYRNdgZe4mWJ4mmOoQ/5c5XyljkcSDataPcDxXk9e6l3Mz/vW?=
- =?us-ascii?Q?1w9ENSOS/gOB0BMuyRIiQcdgZaaHMMvUfaB1I34iwXL9uOd2WkfCTxAV1qJC?=
- =?us-ascii?Q?dTWi/3ytoN+z3IHREGtRu7RLWFCtnlbnfb0/N/1I/gShu0IHBxDKqnCJTStZ?=
- =?us-ascii?Q?CIHMzIKhCkU70LNC38dbN2TlxFRniuNEFJXfKhv8q99geCTHuaiMqbOUOBw8?=
- =?us-ascii?Q?+Im9/jzL28w0Y8Z2NxaUafjD9hWFyX173nkGMWdvsuIckxCmNMn/QjPTZHrY?=
- =?us-ascii?Q?UuFVMFkkhMd0mjWI78VIex+HKnBX569wEp0S7+rsdkei1DmIiqi0rX4TELtS?=
- =?us-ascii?Q?S0aqhuJibwxkT5HSlh8PUOGDUXlRKpsQGcaL68ev3ZgnMrLK35faeHPZFo9+?=
- =?us-ascii?Q?tMIRwwckaVJVPMscq6lAL69sOsBQTi2vxBxlWzhzMp4XOMB2LXn97FVjvvZN?=
- =?us-ascii?Q?53XAaZdn5nhBCEh+ACmfbhmWYiEVGG33QwV6i/EKW31E0c66WK4vEE90G7Go?=
- =?us-ascii?Q?fnO/EOZAeM86P5d7+dHYWh2O/x4Uh9YxCyqCNtGRvdNoCbLFiqW/j+QVPXd4?=
- =?us-ascii?Q?SJaQeyQEddYPfcEu2tESnbb4Mca7I42qLCQGQWE+xgNdxvL3m0e1LWzdFg0W?=
- =?us-ascii?Q?wbkdxqAwkjzQazRDYyglTWxBgRlgQ15m5v9+f1BweUNsrslz5/M8KhI9sWEr?=
- =?us-ascii?Q?bTWu6EUBD28Dd7kNLmhY9V6TIgJGasspo5jzPQUxaehbDr+dMC+sdFar8k6v?=
- =?us-ascii?Q?vK6gAHeQ9cNQ7hZwOgIvF73OAFFWfOEuqxjbNzX8J2ojZnYi78Pz5FLJrUxX?=
- =?us-ascii?Q?XvfU9TKPZkzYUkPPGBlnSaCucBTEIgal9vwC1dqZKW4hfGGmRQOhAulGTZ2I?=
- =?us-ascii?Q?XoohV4DqB3fF8laXKFKh2V6EtEDiZDokwalliSRb82o4cUg9HgMxn/cWQwvL?=
- =?us-ascii?Q?mLcxLDy/BUImEcST3csvxEFPWAq3nJUmCEqfdaYPK+a9odZ7FolZnfcZdgvg?=
- =?us-ascii?Q?GY610bWC806Za1i34wmhIJ71XCnKRnFZSNQaMn29sPaoY0wkZ9ZoIXugFoFq?=
- =?us-ascii?Q?qgVL07yRVN3HfImHV8BhF2c/KY//zTubwshnvkk7oFk7WheGe+C36PSw2Fwb?=
- =?us-ascii?Q?0whxYNBmxXM1hqN+wqmaHSFe0nNPQ4x8RYZ6/o7LS1DHDe4AGIIrhrQGwlK2?=
- =?us-ascii?Q?BCfPHCdlOU0Qoh9Ptc2NRXyAocdYUsu43GWFzVGLUNjaU2J/XIQM4HHGZggH?=
- =?us-ascii?Q?+PqPhLsZ6UgpaxG/GQx4T2UbKn91lwUGdvXpDPEv+3/E88/z+JWuK7szZaHf?=
- =?us-ascii?Q?tZEb/SOz+IbWC1I2sY/JwoSbYjZqp8XaC5XdwlCv1txD+rz292T0CByAxd7x?=
- =?us-ascii?Q?S0givkT8QUwXOi4BFWp/lTcerckHc9IOcFxaocq5JMid1SM8ekW445NKrzEq?=
- =?us-ascii?Q?DBdLyZ2StwpNJcuoZOFCFQ3hXvWdP4nfv+If+0rydtBMtQJdiRhM/G9mBLFS?=
- =?us-ascii?Q?pjUJXAfGOMPrBqBaE92uBZNSLe8AALMQ1jJZykF+IGfYx1UrNjiEhc9tiekB?=
- =?us-ascii?Q?avqeIQT77YFH9XF6tspMdguVaqcaCoMwDaVgNz8IyHSqwFTd0c3tiu8qe8/T?=
- =?us-ascii?Q?rjZQuaeD/g=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e5436e4-68c2-4e60-0a63-08de65a216ef
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 17:06:37.9772
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kQlgEH1/K6JWoLTBToa0YFrU4YZtESFBxV03+qFxsCVbhUa+GZzqaKmXV3Q8yR1pWyFQNFOAvs4YK4obRRE1vA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8922
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: remove msm8996-v3.0.dtsi
+To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260206134506.72679-1-bartosz.golaszewski@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260206134506.72679-1-bartosz.golaszewski@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263432-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263433-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,gmail.com,nxp.com];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,nxp.com:dkim]
-X-Rspamd-Queue-Id: 0F3EB100BC2
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2A630100BDB
 X-Rspamd-Action: no action
 
-On Fri, Feb 06, 2026 at 02:01:17PM +0200, Aman Kumar Pandey wrote:
-> Expose i3c_master_send_ccc_cmd(), i3c_master_supports_ccc_cmd(),
-> i3c_master_reattach_i3c_dev(), i3c_master_direct_attach_i3c_dev(),
-> and i3c_master_direct_detach_i3c_dev() to support I3C hub.
->
-> Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
->
-> ---
-> Changes in v5:
->  - No change
->
-> Changes in v4:
->  - Updated I3C master to handle hub support
-> ---
-> ---
->  drivers/i3c/master.c       | 123 ++++++++++++++++++++++++++++++++++++-
->  include/linux/i3c/master.h |  11 ++++
->  2 files changed, 132 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/i3c/master.c b/drivers/i3c/master.c
-> index 7f606c871648..c92152ff795f 100644
-> --- a/drivers/i3c/master.c
-> +++ b/drivers/i3c/master.c
-> @@ -1544,8 +1544,76 @@ static int i3c_master_attach_i3c_dev(struct i3c_master_controller *master,
->  	return 0;
->  }
->
-> -static int i3c_master_reattach_i3c_dev(struct i3c_dev_desc *dev,
-> -				       u8 old_dyn_addr)
-> +/**
-> + * i3c_master_direct_attach_i3c_dev() - attach an I3C device to a master
-> + * @master: I3C master controller to attach the device to
-> + * @dev: I3C device descriptor representing the device
-> + *
-> + * This function attaches an I3C device to its master controller once the
-> + * device has a valid address on the bus. Devices without
-> + * an assigned address are ignored. The master device itself is never
-> + * attached through this bus.
-> + *
-> + * Return: 0 on success, or a negative error code if the attach operation
-> + *         fails in the master controller driver.
-> + */
-> +int i3c_master_direct_attach_i3c_dev(struct i3c_master_controller *master,
-> +				     struct i3c_dev_desc *dev)
-> +{
-> +	int ret = 0;
-> +
-> +	/*
-> +	 * We don't attach devices to the controller until they are
-> +	 * addressable on the bus.
-> +	 */
-> +
-> +	if (!dev->info.static_addr && !dev->info.dyn_addr)
-> +		return 0;
+On 06/02/2026 14:45, Bartosz Golaszewski wrote:
+> This file is not used anywhere. Remove it.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
-AI: - Silent success on invalid input is questionable - should this be -EINVAL?
+Rob already cleaned up all of them:
+https://lore.kernel.org/all/20251212203226.458694-3-robh@kernel.org/
 
-> +
-> +	/* Do not attach the master device itself. */
-> +	if (master->this != dev && master->ops->attach_i3c_dev)
-> +		ret = master->ops->attach_i3c_dev(dev);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(i3c_master_direct_attach_i3c_dev);
-> +
-> +/**
-> + * i3c_master_direct_detach_i3c_dev - Detach an I3C device from its master
-> + * @dev: I3C device descriptor to be detached
-> + *
-> + * This function detaches an I3C device from its master controller.
-> + * It ensures that the master itself is not detached. If the device is not
-> + * the master and the master controller provides a detach operation,
-> + * the detach callback is invoked to perform the actual removal.
-> + */
-> +void i3c_master_direct_detach_i3c_dev(struct i3c_dev_desc *dev)
-> +{
-> +	struct i3c_master_controller *master = i3c_dev_get_master(dev);
-> +
-> +	/* Do not detach the master device itself. */
-> +	if (master->this != dev && master->ops->detach_i3c_dev)
-> +		master->ops->detach_i3c_dev(dev);
-> +}
-> +EXPORT_SYMBOL_GPL(i3c_master_direct_detach_i3c_dev);
+at least reported-by could go to him, especially that I told you about
+this removal on yesterday's meeting.
 
-Can you create two patch,
-- change existed static function to API.
-- add new APIs.
-
-Frank
-> +
-> +/**
-> + * i3c_master_reattach_i3c_dev() - reattach an I3C device with a new address
-> + * @dev: I3C device descriptor to reattach
-> + * @old_dyn_addr: previous dynamic address of the device
-> + *
-> + * This function reattaches an existing I3C device to the bus when its dynamic
-> + * address has changed. It updates the bus address slot status accordingly:
-> + * - Marks the new dynamic address as occupied by an I3C device.
-> + * - Frees the old dynamic address slot if applicable.
-> + *
-> + * This function must be called with the bus lock held in write mode.
-> + *
-> + * Return: 0 on success, or a negative error code if reattachment fails
-> + *         (e.g. -EBUSY if the new address slot is not free).
-> + */
-> +int i3c_master_reattach_i3c_dev(struct i3c_dev_desc *dev,
-> +				u8 old_dyn_addr)
->  {
->  	struct i3c_master_controller *master = i3c_dev_get_master(dev);
->  	int ret;
-> @@ -1569,6 +1637,7 @@ static int i3c_master_reattach_i3c_dev(struct i3c_dev_desc *dev,
->
->  	return 0;
->  }
-> +EXPORT_SYMBOL_GPL(i3c_master_reattach_i3c_dev);
->
->  static void i3c_master_detach_i3c_dev(struct i3c_dev_desc *dev)
->  {
-> @@ -1692,6 +1761,56 @@ i3c_master_register_new_i3c_devs(struct i3c_master_controller *master)
->  	}
->  }
->
-> +/**
-> + * i3c_master_supports_ccc_cmd() - check CCC command support
-> + * @master: I3C master controller
-> + * @cmd: CCC command to verify
-> + *
-> + * This function verifies whether the given I3C master controller supports
-> + * the specified Common Command Code (CCC).
-> + *
-> + * Return: 0 if the CCC command is supported and executed successfully,
-> + *         -EINVAL if arguments are invalid,
-> + *         -EOPNOTSUPP if the master does not support CCC commands,
-> + *         or another negative error code from the master's operation.
-> + */
-> +int i3c_master_supports_ccc_cmd(struct i3c_master_controller *master,
-> +				const struct i3c_ccc_cmd *cmd)
-> +{
-> +	if (!cmd || !master)
-> +		return -EINVAL;
-> +
-> +	if (!master->ops->supports_ccc_cmd)
-> +		return -EOPNOTSUPP;
-> +
-> +	return master->ops->supports_ccc_cmd(master, cmd);
-> +}
-> +EXPORT_SYMBOL_GPL(i3c_master_supports_ccc_cmd);
-> +
-> +/**
-> + * i3c_master_send_ccc_cmd() - send a CCC command
-> + * @master: I3C master controller issuing the command
-> + * @cmd: CCC command to be sent
-> + *
-> + * This function sends a Common Command Code (CCC) command to devices on the
-> + * I3C bus. It acquires the bus maintenance lock, executes the command, and
-> + * then releases the lock to ensure safe access to the bus.
-> + *
-> + * Return: 0 on success, or a negative error code on failure.
-> + */
-> +int i3c_master_send_ccc_cmd(struct i3c_master_controller *master,
-> +			    struct i3c_ccc_cmd *cmd)
-> +{
-> +	int ret;
-> +
-> +	i3c_bus_maintenance_lock(&master->bus);
-> +	ret = i3c_master_send_ccc_cmd_locked(master, cmd);
-> +	i3c_bus_maintenance_unlock(&master->bus);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(i3c_master_send_ccc_cmd);
-> +
->  /**
->   * i3c_master_do_daa() - do a DAA (Dynamic Address Assignment)
->   * @master: master doing the DAA
-> diff --git a/include/linux/i3c/master.h b/include/linux/i3c/master.h
-> index 58d01ed4cce7..b059da7777d7 100644
-> --- a/include/linux/i3c/master.h
-> +++ b/include/linux/i3c/master.h
-> @@ -602,6 +602,17 @@ void i3c_master_dma_unmap_single(struct i3c_dma *dma_xfer);
->  DEFINE_FREE(i3c_master_dma_unmap_single, void *,
->  	    if (_T) i3c_master_dma_unmap_single(_T))
->
-> +int i3c_master_send_ccc_cmd(struct i3c_master_controller *master,
-> +			    struct i3c_ccc_cmd *cmd);
-> +
-> +int i3c_master_supports_ccc_cmd(struct i3c_master_controller *master,
-> +				const struct i3c_ccc_cmd *cmd);
-> +
-> +int i3c_master_reattach_i3c_dev(struct i3c_dev_desc *dev,
-> +				u8 old_dyn_addr);
-> +int i3c_master_direct_attach_i3c_dev(struct i3c_master_controller *master,
-> +				     struct i3c_dev_desc *dev);
-> +void i3c_master_direct_detach_i3c_dev(struct i3c_dev_desc *dev);
->  int i3c_master_set_info(struct i3c_master_controller *master,
->  			const struct i3c_device_info *info);
->
-> --
-> 2.25.1
->
+Best regards,
+Krzysztof
 
