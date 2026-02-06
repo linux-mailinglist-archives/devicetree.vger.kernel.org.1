@@ -1,141 +1,233 @@
-Return-Path: <devicetree+bounces-263306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263303-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mM20EhvChWltGAQAu9opvQ
-	(envelope-from <devicetree+bounces-263306-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:27:39 +0100
+	id cD6WGn3BhWnEFwQAu9opvQ
+	(envelope-from <devicetree+bounces-263303-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:25:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE389FC9F5
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:27:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B928DFC9D3
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:25:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 49C303006818
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 10:27:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 57A7C302B39B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 10:24:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 479F6372B31;
-	Fri,  6 Feb 2026 10:27:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DEAB36F429;
+	Fri,  6 Feb 2026 10:24:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="drbMME86"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qd6XDHLl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D1F308F3B;
-	Fri,  6 Feb 2026 10:27:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F053009F6;
+	Fri,  6 Feb 2026 10:24:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770373654; cv=none; b=JGnxktyBQopcOAcmMXoBOK/dWVmacNhMwj8OJ0d5/zhwxQW3yEAyj3NP3sxqAUEOCfX4/kSkAMxI9eUqIFUsd5fL+BGqX7i4Hns6WTzbDe9JR4Lal12+ZpmVy+0nPN/WJpJ+29mL7f10qPVTSs51573SLCt4aE/gPu19gzNNyrA=
+	t=1770373498; cv=none; b=LmnIrIC/ptT0O5g/hcpf4Wjq7PKtnyowwJxgMKgCCI6o9gVMDF18+2AVk0228Q4vU324gIC9aZX+/n2UC5X664zvQgfpECfsnY0YJkgQrTtaM8bmMmXgADdmeq5ItygFTFzwrRBtKMbn1HQfqxTuNraqgrOOY9rTna/fqN0loTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770373654; c=relaxed/simple;
-	bh=hW1y+4RnYCDFlCJ8eDAD1QUcPOaENLmR0lDQL12MGuY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=sxb5aRx1Sgojk+ljEGV8kFYd7PlpGRRgxwfbxDh3zFLRf/tg4HFLovhu/iCqDJ6Z2tnTJfd9Ad4B0HAqZKxYnBLnVtQpiK5Qg5gdl5Y3gGWNk1eHJtF3UACw1JZtQWwQ02v5U9sZ8aRHON+PSJVH4IcRtFEl+agAK026LnBUIv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=drbMME86; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1770373253; bh=hW1y+4RnYCDFlCJ8eDAD1QUcPOaENLmR0lDQL12MGuY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=drbMME86Ogl6L0kBG53NS+yYgz/ZBTwwfzzrSrqxh8R2glF0mCy0RvYJBrlcoDP65
-	 K8L3RipJxfuvRM4EbZIZ+RiffnwWDU2uHw+oBnCfBi0xprHg9CSoTjtEhYyAZpfiAw
-	 8nPv17RebT3pWr4T8G2lfy1Mx51sliNeTPdAQaCM=
-From: Luca Weiss <luca@lucaweiss.eu>
-Date: Fri, 06 Feb 2026 11:20:49 +0100
-Subject: [PATCH 2/2] arm64: dts: mediatek: mt8516: fix syscfg-pctl
- compatible
+	s=arc-20240116; t=1770373498; c=relaxed/simple;
+	bh=nSlDqHzMQr152avoDT8llEAGQVSmXKKZSUd4Xq6kY2M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=im+n260P8UVmwcpBa7po/JabDZVTkDOOA5Z39fSEy1LU18CtPpSo75CAKbkX4eQWlNIrNyNOk0LssJS29JwBwdnQ5IrSZFsZOYHW1QsmwPT9ApcKu8AVZsw6AYQWAxetFjqbMy9u7FhgHimooyiv9znmrAR7cgNUFqXCVWIM6wY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qd6XDHLl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C47FC116C6;
+	Fri,  6 Feb 2026 10:24:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770373497;
+	bh=nSlDqHzMQr152avoDT8llEAGQVSmXKKZSUd4Xq6kY2M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qd6XDHLl3otd4l7745FgtPHKCh+28ET+4Gh4od6CGkx9KS7Rmrnkuzrnifg94r/rN
+	 OLjfInm8mgJh7ONidOWK8Gh54/rKF5snHY8nmT4Q4rMwo4SMe0HxDvtC4zbTBBC+e4
+	 zsyr/lwEOHpNtwSNo56ArmBaMDE4QvCgrJqonWp4CUmMGXLAeJUaMUe9VxH0u/xiYT
+	 dy/j+hH186tZh0Y5Ys1YxM8w8QfAoSSH3ZITUu59upINGLkB1Aze4mRHoP1RhTTyWL
+	 SP+MmDr0FSVqiQj0GIN3bxtbFhxX7Q2wVHBlvgqfRPoInqSTYpWc1ytvp+bh9ts4Eo
+	 ueh0byIlBA+0A==
+Date: Fri, 6 Feb 2026 10:24:52 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Lv Zheng <lv.zheng@linux.spacemit.com>
+Cc: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Jingyu Li <joey.li@spacemit.com>, iommu@lists.linux.dev,
+	linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 4/8] dt-bindings: iommu: Add spacemit/t100 features
+Message-ID: <20260206-buffed-scrubbed-36fc49ada496@spud>
+References: <cover.1769562575.git.lv.zheng@spacemit.com>
+ <cover.1770195980.git.lv.zheng@linux.spacemit.com>
+ <A0E91F323138E92F+a27d73b00f3324f0d3885128f5596230b3f1370b.1770195980.git.lv.zheng@linux.spacemit.com>
+ <20260204-primer-wrought-6f64b14bf152@spud>
+ <53171BEB06F43599+7c1f54bc-e72d-4cbd-9d10-194ae6b13744@linux.spacemit.com>
+ <20260205-attitude-customer-129fe2bd5dc7@spud>
+ <B8005DB6301AACB4+374512e1-f561-4d2f-afd6-7a4b51012501@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260206-mt8516-syscfg-syscon-v1-2-96dcb37acdb4@lucaweiss.eu>
-References: <20260206-mt8516-syscfg-syscon-v1-0-96dcb37acdb4@lucaweiss.eu>
-In-Reply-To: <20260206-mt8516-syscfg-syscon-v1-0-96dcb37acdb4@lucaweiss.eu>
-To: ~postmarketos/upstreaming@lists.sr.ht, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- phone-devel@vger.kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Luca Weiss <luca@lucaweiss.eu>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=717; i=luca@lucaweiss.eu;
- h=from:subject:message-id; bh=hW1y+4RnYCDFlCJ8eDAD1QUcPOaENLmR0lDQL12MGuY=;
- b=owEBbQKS/ZANAwAKAXLYQ7idTddWAcsmYgBphcCDpTDBsjyGZzws0QiiLO+nk5cJ1JdGUiv+k
- AzmT03sAi6JAjMEAAEKAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCaYXAgwAKCRBy2EO4nU3X
- VptJEAC3YRzi+gckFaL3vgrMJio1ngXDFN0ka3GWygwg52KRviu5Fv0S7Tx5K5QbV3v67pvQ0/7
- Iqosb6q5/bTFYA8t8bfiOyY75dLKtqnGcX03Cd2BfBJ50iFTgbAfbcUnnqWo7h03ubjBg/TVkVc
- W/Y+zZs/U7cpBpc40n07uFbEga0iIYhiYLlM2L/tviT47JeEi2SroXZi26JvuvbkkmeYAAnlUYs
- 8iaWiQ/MWHXvmh7/T0NmxmozxqJt+4rSi1LU+shAIlLVvHeucBQ600ssN+YMBuCOsOOQRXEhj2d
- /MxEDHzmRFwsjXCHkerz7zaDVEgV2UAXicalqfp7TdM9ni3SGQ48XcuK8MsydauQ0XqyIlwMaiw
- 590VZEZy4UDcLgurZi2HUapLga6Pd5RQ+5793C4Skkar4LA5Gy7fgB+9BbyyBGdUAVfvMCwUr4j
- yjSU6eXDWAC8I3l582kjFDjmCM6zUt+X0F7YNPLRC9BOvQ/YQAthryd5vYdOymsMMVC9Ti1vKUI
- uwS33bz+O9jugI5LBAkArXfiB1/3CDiugx7/eM9dy2FxpIfY0rHP7MXYt2t0VNxGRV4noTOqQf0
- r/PPto1A4J/NCKps5713VuriXeWLTjaWeCBeWHnyp+i9xAb1VfGpVoPEB0laDiU8C9FLgxh2DDU
- bdduudg3GXgZJCA==
-X-Developer-Key: i=luca@lucaweiss.eu; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="8z5ZdYiefbay1YtF"
+Content-Disposition: inline
+In-Reply-To: <B8005DB6301AACB4+374512e1-f561-4d2f-afd6-7a4b51012501@linux.spacemit.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lucaweiss.eu,reject];
-	R_DKIM_ALLOW(-0.20)[lucaweiss.eu:s=s1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263306-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[lists.sr.ht,kernel.org,gmail.com,collabora.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-263303-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.152.158.80:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca@lucaweiss.eu,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lucaweiss.eu:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lucaweiss.eu:email,lucaweiss.eu:dkim,lucaweiss.eu:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.152.170.8:email]
-X-Rspamd-Queue-Id: DE389FC9F5
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,spacemit.com:email,bilibili.com:url]
+X-Rspamd-Queue-Id: B928DFC9D3
 X-Rspamd-Action: no action
 
-Just 'syscon' is not allowed by the dt-bindings, so add
-mediatek,mt8516-syscfg to it.
 
-Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
----
- arch/arm64/boot/dts/mediatek/mt8516.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--8z5ZdYiefbay1YtF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-index b5e753759465..67836407d0cc 100644
---- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-@@ -232,7 +232,7 @@ keypad: keypad@10002000 {
- 		};
- 
- 		syscfg_pctl: syscfg-pctl@10005000 {
--			compatible = "syscon";
-+			compatible = "mediatek,mt8516-syscfg", "syscon";
- 			reg = <0 0x10005000 0 0x1000>;
- 		};
- 
+On Fri, Feb 06, 2026 at 09:33:09AM +0800, Lv Zheng wrote:
+> On 2/6/2026 2:24 AM, Conor Dooley wrote:
+> > On Thu, Feb 05, 2026 at 11:11:51AM +0800, Lv Zheng wrote:
+> > > On 2/5/2026 1:37 AM, Conor Dooley wrote:
+> > > > On Wed, Feb 04, 2026 at 05:09:12PM +0800, Lv Zheng wrote:
+> > > > > Adds device tree bindings for SpacemiT T100 specific features by
+> > > > > introducing spacemit,100 compatible. T100 contains distributed IO=
+ATCs,
+> > > > > each of which exposes pmiv interrupt.
+> > > > >=20
+> > > > > Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
+> > > > > Signed-off-by: Jingyu Li <joey.li@spacemit.com>
+> > > > > ---
+> > > > >    .../bindings/iommu/riscv,iommu.yaml           | 37 +++++++++++=
+++++++++
+> > > > >    1 file changed, 37 insertions(+)
+> > > > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/iommu/riscv,iommu.=
+yaml b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+> > > > > index d4838c3b3741..2da3456e7402 100644
+> > > > > --- a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+> > > > > @@ -32,6 +32,12 @@ properties:
+> > > > >      # should be specified along with 'reg' property providing MM=
+IO location.
+> > > > >      compatible:
+> > > > >        oneOf:
+> > > > > +      - description: SpacemiT distributed IOMMUs
+> > > > > +        items:
+> > > > > +          - enum:
+> > > > > +              - spacemit,t100
+> > > > > +          - const: spacemit,riscv-iommu
+> > > >=20
+> > > > What actually is the t100? Is it an SoC or is it the name of the co=
+re
+> > > > complex IP that spacemit is using in multiple SoCs?
+> > >=20
+> > > T100 is the name of the IOMMU IP developed by SpacemiT, announced in =
+RISC-V
+> > > 2024 China Summit:
+> > > https://www.bilibili.com/video/BV1DNtCeiEBk/
+> > > It's world first server SPEC IOMMU in RISC-V, supports IOTLB placed in
+> > > adjacent to the DMA masters and supports PCIe ATS and PRI.
+> > > You can find it shipped in the recent publicly purchasable SoC Spacem=
+iT K3.
+> >=20
+> > Right, then what you need here is something like:
+> >=20
+> > items:
+> >    - enum:
+> >        - spacemit,k3-iommu
+> >    - spacemit,t100-iommu
+> >    - riscv,iommu
+> >=20
+> > Driver can then match on spacemit,t100-iommu - but you need to have
+> > soc-specific compatibles.
+> > I'm not convinced that riscv,iommu is suitable here though, does the
+> > driver work on your platform without the portions of code that are added
+> > by this series and enabled by your new compatible? If not, the I don't
+> > think the riscv,iommu fallback should be here.
+> >=20
+> > Additionally, please stop sending new versions so frequently and in
+> > response to earlier submissions. I have a v4 in my inbox while we are
+> > still discussing v3.
+>=20
+> SpacemiT provides RISC-V IOMMU implementation, T100 is the first
+> generation of the this IP product line, we have plan to develop T200,
+> T300, etc., with more features introduced to be adoptive to new
+> RISC-V IOMMU specifications.
+> Besides, T100 is not only shipped in K3, but also shipped in V100 and
+> the follow-up SoCs, like Kn, Vn00, they will likely use the same
+> synthesis result of T100 RTLs.
+>=20
+> From SpacemiT's point of view, we need a common sense of this IP
+> series for something like IOATCs, that's why spacemit,riscv-iommu
+> (this is same like qemu,riscv-iommu) is introduced. And a common sense
 
--- 
-2.52.0
+No, it's not the same as qemu,riscv-iommu. That exists to avoid
+riscv,iommu being allowed in isolation and as a "SoC"/integration
+specific compatible. The driver matches against riscv,iommu not
+qemu,riscv-iommu and has no qemu,riscv-iommu specific behaviours.
+It is akin to having spacemit,k3-iommu.
 
+> of T100 for all SoCs shipped T100 (like global filters, vendor events
+> and etc.,).
+>=20
+> IMO, the current compatible is proper to reflect these concerns.
+> What do you think?
+
+I pretty much already told you what I think, that you need SoC-specific
+compatibles for SoCs that integrate this IP and that the you should drop
+the spacemit,riscv-iommu compatible. The spacemit,riscv-iommu compatible
+doesn't provide any additional value over spacemit,t100-iommu, and has
+the downside of maybe being confusing in the future if spacemit
+produces a iommu that doesn't have the IOATC behaviour.
+
+Also, I don't see an answer to my question about whether the hardware
+will work without the driver changes this series introduces and enables
+with the new compatible?
+
+Cheers,
+Conor.
+
+--8z5ZdYiefbay1YtF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaYXBcwAKCRB4tDGHoIJi
+0jyPAP9isV7zyFlG71V/A10awaNoOnM6vetdkFyMEwJt5Yj2ZgD/U8AKoodPKvnt
+PY1aMEIn8pr+p3KARKfZhb9DFBcT2w0=
+=XWl+
+-----END PGP SIGNATURE-----
+
+--8z5ZdYiefbay1YtF--
 
