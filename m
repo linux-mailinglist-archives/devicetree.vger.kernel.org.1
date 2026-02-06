@@ -1,263 +1,353 @@
-Return-Path: <devicetree+bounces-263346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263347-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OLBCB5LkhWnCHwQAu9opvQ
-	(envelope-from <devicetree+bounces-263346-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 13:54:42 +0100
+	id iPmjFvjkhWnCHwQAu9opvQ
+	(envelope-from <devicetree+bounces-263347-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 13:56:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D77EFFDBFA
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 13:54:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D79DFFDC38
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 13:56:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CAF413033E59
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 12:52:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9E6723031AD1
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 12:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73B363A4F25;
-	Fri,  6 Feb 2026 12:52:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8824B3A1E76;
+	Fri,  6 Feb 2026 12:55:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G0fIfl9s"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="emTlEypS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50B4E30B53C;
-	Fri,  6 Feb 2026 12:52:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770382329; cv=none; b=Ti4ebJCFGFBb7Z3pGAOePJew4PAdTraScA9xdCK+/tYlskRnYSGtgxgYUc1LqkjULdcW2UtxZFKIrFNW+RRk0R1WExhMHjijewH+DhPlPoBqDvKkPcI1Vr90c8ui4QNif2KFJmfBTVNmPDeuhrP6yjoD5tfLhgPTDV2HkDaVRWc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770382329; c=relaxed/simple;
-	bh=OGptEICIGLa47vlC/W31fejC1n9U11EbiT0bJZ0xgac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FYW2Mxl/xOqcYMT2L9d9M2jmV5QPI4LrckbYFhU+yytmzaVBaXDpQfadkzrbPNb2bj6uOIzzorSfFIEYkPb18WkAmsHoBhxK7WQjUEq/SV9RKMPzK7zz5kwxY7ZaG2juQFeJd1nFF5ZDQv3KQTZFEZh5JK+MaAAzm+eLPGQVgAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G0fIfl9s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4ADBC116C6;
-	Fri,  6 Feb 2026 12:52:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770382328;
-	bh=OGptEICIGLa47vlC/W31fejC1n9U11EbiT0bJZ0xgac=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=G0fIfl9s0l3b+4F2xHCMM1wbAs+iOu9Fg5GEYNdAW6RMU1rn5fh2TsY4CHeI1P7+4
-	 9QmBnpPv36gXMUW0UzsqdDGwQT7balvk0siYS3AyLE9wRb7wIpccZoZC15Z3bpghup
-	 NTfh/vDk/iveu9Sd2A1iOKmwQ7cPRyTfZnmmX9j3N+Q3O00uKdxtTIOof3h9QC1ajL
-	 G+EwdZl9QdKhejbtbbzOYWt9UAzOj5AnOfKSmt6mmu96K80F8Vjr3bZ1gmEtXEWTlq
-	 QaVKjgEWIpiEOYSRwWOUHjSBqU6f8LzhwP6nVbQxUJ9Lam6Z3FICVJctk2FO0zXN/O
-	 pCE4Kymm7fYHg==
-Message-ID: <ffb00660-9fb4-4c89-9032-f003d002e989@kernel.org>
-Date: Fri, 6 Feb 2026 13:52:03 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D58C378D7E
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 12:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.173
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770382526; cv=pass; b=C1+ohlW1LS139v2GXO/5SZiZMQHSnh5K4Z9nbRc9G1FEy5Z4wIUyWEqfcxXp26gR+KrNyTYkTm0fRyEzKJW27YfGKNEJ4beYA7jiDrPjc7hHpguUSGN5QsqNGPkt6cZTSLAWyGYlY9YHg45xtzLSMBTrE55ukb/MiRc+6bOw/DA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770382526; c=relaxed/simple;
+	bh=BDTtWPTizyYtSol/7OgLr7kVP/c+rbaAPZvwv6NI6sw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ca18mt9mXMW0NGrA/7k0PgQG07D1gC6IAp/fcuhCBEzJ21Fvz9U3b9/LDn3O3Jxb6rZLj8tZertEh9aYnk9/1udB0cOh1UCsExcMHmue2cpHiZetQNRsguPsFbn8PyQFeT9jZLND36wJq9ZbA9yF0lnlFBf9JQqf6XFrNY4t7YU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=emTlEypS; arc=pass smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-38316d0c26eso6120111fa.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 04:55:25 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770382524; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ETc7w5iTW2OEgla7dNBxgWxQFZQQyihYxwSwamUhiqfHTG5le60VFoUDQ8bmMPpZZV
+         1IluqXu+IdG0vZI+INGRe9HdnIceEXHARPOkqFrox7+NHk/GLZEltet3P1vG5kOhLyLR
+         sbGDXHIorO4zudSfhIoNsX2rfB7wd4CQutesqIiFNpBM+kTAkye6KgcrpMphSoVzR0WF
+         K8TPCdZT4f+l8p4Akl/WDWxjfUjqmvPigdC+RHGohWXYG/RIbrt2WaTVcl2cieEpk8EE
+         fXUTCcPyyLeow6SCC5obHbDEvLuQSeh+7CDd6b6kZ39skeimE8TfI7TM9+plluNNz+bp
+         5/fQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=dWG8MiKgoGDaUL/5SxjX7qejFCIkmY0v5IG2Vfw68JE=;
+        fh=Td5Cu6qRcgiZhzDxruycgR1qrw4dqyVUkc/f2FmpC98=;
+        b=VIUGCSVfDwOTqKjop6HGN2WnwHJieig4JnHRNkIZOWlGj6bivphZVUDgdgPS3P1kYJ
+         diFsoATD8eM7W2YqwZ2SLm7XbsStfYiHOoizTGnuGEManUpXsIGhDxc079XU1ymTpP6R
+         P73pcDKNcRB00TQ6gGdGEZeKNzlKmXdN1TDnHPkGrr8xg1UgjmvvTLHUQ8C37jlBD5z4
+         UOYqPybxQsd+UD2kyKfCRBoOCQpSPPbyzkjGR3O9WANVdL9O/F+tJ6TCOPsxqpeyHjbX
+         K9A7HV3BMhHhEgiMx88P0gkpLROrbm6Zjdly1wn+vKBmN1Ss7BBIgY+LaDg4c8IK7zlx
+         3CtA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1770382524; x=1770987324; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dWG8MiKgoGDaUL/5SxjX7qejFCIkmY0v5IG2Vfw68JE=;
+        b=emTlEypSOSo/GQIaCG5bPbGKcOLb97ZK8km+UmUY4R/4PXoi6jssdeqqBrZzfo+XwD
+         5ixyxfGqMkxCod3sQoZiaBrzvzr4B8atC0b9PwGzOdt27/RUKeOQztW8wt6PCQ0z3SN3
+         okBTesp9bqTnuYWP20uI2kcc/fnqJ8gqo+HX45yPnxtA+fMTXDQ7sA6z/dwv1EEwyUGo
+         znml4qrXzdxea+YJIrW5GIEOdv7exBw5qNB0sJjtg4qYUmsDzYn6mSm3Y/E0pQ1ci6/K
+         bqvLs7t0H5vV6MRoeBtbtGlvIzCy3LLSV9bjL/ePTQHzkasJTF2NbNj4YecvduB8QYyJ
+         QZ4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770382524; x=1770987324;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=dWG8MiKgoGDaUL/5SxjX7qejFCIkmY0v5IG2Vfw68JE=;
+        b=PcX1tho9EtPmL/6LMLQoUHQ13yg45oNIVyBlzF/+Kj8dMgSWIaX//fx8LIxAVULytx
+         5I1yWRnL8SLTzesJA4/KcgS6sWeHMem+cWWn2Db2tU4m417TMxPscOVm+pWVTaPxI1w2
+         D381/W3Xdh2GcwnHkdvFDpjEhjM42jG4gxEcpqrnfOtEOtqLbH7yHCGfG+MUP0YLhAmp
+         cwE3wsstJZ/TpCUL7+/wS+ZCiPPOzZqhqLDDpWvOKVScVBlOr6cwgsCuYUtDKIQlnuND
+         kuKFxvItz78n1tyNvIPd2euIL3RMMuGvx4je/N3mBdgA7s8Xkhn8eCDku2yIfLUtZFhv
+         moDg==
+X-Forwarded-Encrypted: i=1; AJvYcCWPn3ygbg2OL2ozYfT6ASXbofhFmWERWUjhrSX7Jq33GQVVZTCXQm3Z3epQgVYTL8slBYLvvuX4HJtO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxa0b0Fb6NRzYLGz5DLvxBfwlgiqjMCBGEvIafs3H0ObGI1tyKD
+	Cr5UuYj6MVDBZeYsK5EfCkcpe0OQQHAFT7T6PN7xzQhmk3AYHo1M/Ed5bA0c/lXSJR1cluAUF6e
+	WzUkKjzp0R6pi6SRm9yTQU7rlg0jK1CwMXgZ5RzprcQ==
+X-Gm-Gg: AZuq6aIYc+/Jx2vQanxABsbgzLZnyndpNuLS71vQ/6VlZf1BafEp0meLN3Gr5Asj42v
+	r0BGv1EWyP/65fD08vgt6rWxCeu8CFVfWSfK48SlwgJ+bulKdWdZZwHXqRJT6aDx3iBizv1JOPQ
+	ayfYVqoe3CGbOCIjQ9LLE/VC/cENODqh1eVaTZc5X4KnsM5HKAxz8C/y48lbDuGYXeJgXvvKodf
+	JaspouHZas2CHY6sJ7di6M4pgNu8dh5XR5rr0GRopN2M0HdcMjwH1ZQTvXqoc4jV5BUh535YA==
+X-Received: by 2002:a2e:9a15:0:b0:37f:c5ca:72f0 with SMTP id
+ 38308e7fff4ca-386b4e7d8d8mr9491481fa.8.1770382524147; Fri, 06 Feb 2026
+ 04:55:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/5] mfd: p3h2x4x: Add driver for NXP P3H2x4x i3c hub
- and on-die regulator
-To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>,
- linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
- alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, broonie@kernel.org,
- lee@kernel.org, Frank.Li@nxp.com, lgirdwood@gmail.com
-Cc: vikash.bansal@nxp.com, priyanka.jain@nxp.com,
- shashank.rebbapragada@nxp.com
-References: <20260206120121.856471-1-aman.kumarpandey@nxp.com>
- <20260206120121.856471-3-aman.kumarpandey@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260206120121.856471-3-aman.kumarpandey@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251101154245.162492-1-apatel@ventanamicro.com> <20251101154245.162492-12-apatel@ventanamicro.com>
+In-Reply-To: <20251101154245.162492-12-apatel@ventanamicro.com>
+From: Eric Lin <eric.lin@sifive.com>
+Date: Fri, 6 Feb 2026 20:55:12 +0800
+X-Gm-Features: AZwV_QhI9tzwE3oQcQDzEEcs4kH1Y8KeyrODiC00ZJu2Ksk08hjM7uuYWFodWpE
+Message-ID: <CAPqJEFodbAyHcLTL3UCQ6rKvRmbVDNm-zK9D5esg-ek9n4VeUw@mail.gmail.com>
+Subject: Re: [PATCH v2 11/12] perf tools: Initial support for RISC-V trace decoder
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Greg KH <gregkh@linuxfoundation.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Ian Rogers <irogers@google.com>, 
+	Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org, 
+	Alexandre Ghiti <alex@ghiti.fr>, Atish Patra <atish.patra@linux.dev>, 
+	Peter Zijlstra <peterz@infradead.org>, Anup Patel <anup@brainfault.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, linux-kernel@vger.kernel.org, 
+	Mayuresh Chitale <mchitale@ventanamicro.com>, Ingo Molnar <mingo@redhat.com>, 
+	Jiri Olsa <jolsa@kernel.org>, Mayuresh Chitale <mchitale@gmail.com>, 
+	Namhyung Kim <namhyung@kernel.org>, linux-riscv@lists.infradead.org, 
+	Andrew Jones <ajones@ventanamicro.com>, Liang Kan <kan.liang@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[sifive.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[sifive.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263346-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[nxp.com,vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-263347-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	FREEMAIL_CC(0.00)[kernel.org,sifive.com,dabbelt.com,linuxfoundation.org,linux.intel.com,google.com,arm.com,vger.kernel.org,ghiti.fr,linux.dev,infradead.org,brainfault.org,intel.com,ventanamicro.com,redhat.com,gmail.com,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[eric.lin@sifive.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sifive.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:url]
-X-Rspamd-Queue-Id: D77EFFDBFA
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,ventanamicro.com:email,infradead.org:url,infradead.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sifive.com:dkim]
+X-Rspamd-Queue-Id: D79DFFDC38
 X-Rspamd-Action: no action
 
-On 06/02/2026 13:01, Aman Kumar Pandey wrote:
-> Add core MFD support for the NXP P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841)
-> family of multiport I3C hub devices. These devices connect to a host via
-> I3C/I2C/SMBus and expose multiple downstream target ports.
-> 
-> This patch introduces the MFD driver that registers sub-devices for the
-> I3C hub and on-die regulators.
+Hi Anup,
 
-Drop sentence. You already said it in the first place, didn't you?
-
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
-
-...
-
-
-> +
-> +	i2c_set_clientdata(client, p3h2x4x);
-> +
-> +	p3h2x4x->regmap = devm_regmap_init_i2c(client, &p3h2x4x_regmap_config);
-> +	if (IS_ERR(p3h2x4x->regmap)) {
-
-Drop {} now. When you change piece of the code, fix rest as well.
-
-See Linux coding style.
-
-> +		return dev_err_probe(&client->dev, PTR_ERR(p3h2x4x->regmap),
-> +				     "Failed to register I3C HUB regmap\n");
-> +	}
-> +
-> +	p3h2x4x->is_p3h2x4x_in_i3c = false;
-> +	p3h2x4x->i2c_client = client;
-> +
-> +	ret = devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_NONE,
-> +				   p3h2x4x_devs, ARRAY_SIZE(p3h2x4x_devs),
-> +				   NULL, 0, NULL);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret, "Failed to add sub devices\n");
-> +
-> +	return 0;
-> +}
-> +
-> +/* p3h2x4x ids (i3c) */
-> +static const struct i3c_device_id p3h2x4x_i3c_ids[] = {
-> +	I3C_CLASS(I3C_DCR_HUB, NULL),
-> +	{ /* sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(i3c, p3h2x4x_i3c_ids);
-> +
-> +/* p3h2x4x ids (i2c) */
-> +static const struct i2c_device_id p3h2x4x_i2c_id_table[] = {
-> +	{ "nxp-i3c-hub" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, p3h2x4x_i2c_id_table);
-> +
-> +static const struct of_device_id  p3h2x4x_i2c_of_match[] = {
-> +	{ .compatible = "nxp,p3h2840", },
-> +	{ /* sentinel */ }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, p3h2x4x_i2c_of_match);
-> +static struct i3c_driver p3h2x4x_i3c = {
-> +	.driver = {
-> +		.name = "p3h2x4x_i3c_drv",
-> +	},
-> +	.probe = p3h2x4x_device_probe_i3c,
-> +	.id_table = p3h2x4x_i3c_ids,
-> +};
-> +
-> +static struct i2c_driver p3h2x4x_i2c = {
-> +	.driver = {
-> +		.name = "p3h2x4x_i2c_drv",
-> +		.of_match_table = p3h2x4x_i2c_of_match,
-> +	},
-> +	.probe =  p3h2x4x_device_probe_i2c,
-> +	.id_table = p3h2x4x_i2c_id_table,
-> +};
-> +
-> +module_i3c_i2c_driver(p3h2x4x_i3c, &p3h2x4x_i2c);
-> +
-> +MODULE_AUTHOR("Aman Kumar Pandey <aman.kumarpandey@nxp.com>");
-> +MODULE_AUTHOR("vikash Bansal <vikash.bansal@nxp.com>");
-> +MODULE_DESCRIPTION("P3H2x4x I3C HUB multi function driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/mfd/p3h2840.h b/include/linux/mfd/p3h2840.h
+On Sat, Nov 1, 2025 at 11:45=E2=80=AFPM Anup Patel <apatel@ventanamicro.com=
+> wrote:
+>
+> From: Mayuresh Chitale <mchitale@ventanamicro.com>
+>
+> Add bare bones support for RISC-V trace decoder so that the data received
+> from the hardware by the RISC-V trace perf driver can be written to the
+> perf record output file.
+>
+> Co-developed-by: Anup Patel <apatel@ventanamicro.com>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
+> ---
+>  tools/perf/util/Build             |  1 +
+>  tools/perf/util/auxtrace.c        |  3 +
+>  tools/perf/util/rvtrace-decoder.c | 91 +++++++++++++++++++++++++++++++
+>  tools/perf/util/rvtrace.h         |  2 +
+>  4 files changed, 97 insertions(+)
+>  create mode 100644 tools/perf/util/rvtrace-decoder.c
+>
+> diff --git a/tools/perf/util/Build b/tools/perf/util/Build
+> index 4be313cd115a..f736cea51fd8 100644
+> --- a/tools/perf/util/Build
+> +++ b/tools/perf/util/Build
+> @@ -145,6 +145,7 @@ perf-util-$(CONFIG_AUXTRACE) +=3D cs-etm.o
+>  perf-util-$(CONFIG_AUXTRACE) +=3D cs-etm-decoder/
+>  endif
+>  perf-util-$(CONFIG_AUXTRACE) +=3D cs-etm-base.o
+> +perf-util-$(CONFIG_AUXTRACE) +=3D rvtrace-decoder.o
+>
+>  perf-util-y +=3D parse-branch-options.o
+>  perf-util-y +=3D dump-insn.o
+> diff --git a/tools/perf/util/auxtrace.c b/tools/perf/util/auxtrace.c
+> index c905563e0d8a..299991d5d305 100644
+> --- a/tools/perf/util/auxtrace.c
+> +++ b/tools/perf/util/auxtrace.c
+> @@ -54,6 +54,7 @@
+>  #include "arm-spe.h"
+>  #include "hisi-ptt.h"
+>  #include "s390-cpumsf.h"
+> +#include "rvtrace.h"
+>  #include "util/mmap.h"
+>  #include "powerpc-vpadtl.h"
+>
+> @@ -1395,6 +1396,8 @@ int perf_event__process_auxtrace_info(struct perf_s=
+ession *session,
+>                 err =3D powerpc_vpadtl_process_auxtrace_info(event, sessi=
+on);
+>                 break;
+>         case PERF_AUXTRACE_RISCV_TRACE:
+> +               err =3D rvtrace__process_auxtrace_info(event, session);
+> +               break;
+>         case PERF_AUXTRACE_UNKNOWN:
+>         default:
+>                 return -EINVAL;
+> diff --git a/tools/perf/util/rvtrace-decoder.c b/tools/perf/util/rvtrace-=
+decoder.c
 > new file mode 100644
-> index 000000000000..b7a9c7f3aa4d
+> index 000000000000..58db5ca62c1a
 > --- /dev/null
-> +++ b/include/linux/mfd/p3h2840.h
-> @@ -0,0 +1,28 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
+> +++ b/tools/perf/util/rvtrace-decoder.c
+> @@ -0,0 +1,91 @@
+> +// SPDX-License-Identifier: GPL-2.0
 > +/*
-> + * Copyright 2025 NXP
-> + * This header file contain private Reg address and its bit mapping etc.
+> + * RISC-V trace Decoder
 > + */
 > +
-> +#ifndef P3H2840_H
-> +#define P3H2840_H
-
-That's pretty poor (too simple) guard for a global header.
-
+> +#include <errno.h>
+> +#include <inttypes.h>
+> +#include "evlist.h"
+> +#include <internal/lib.h>
+> +#include "rvtrace.h"
 > +
-> +#include <linux/types.h>
+> +struct rvtrace_decoder {
+> +       struct auxtrace auxtrace;
+> +       u32 auxtrace_type;
+> +       struct perf_session *session;
+> +       struct machine *machine;
+> +       u32 pmu_type;
+> +};
 > +
-> +/* Device Configuration Registers */
-> +#define P3H2x4x_DEV_REG_PROTECTION_CODE				0x10
-> +#define P3H2x4x_REGISTERS_LOCK_CODE				0x00
-> +#define P3H2x4x_REGISTERS_UNLOCK_CODE				0x69
-> +#define P3H2x4x_CP1_REGISTERS_UNLOCK_CODE			0x6a
+> +static int rvtrace_process_event(struct perf_session *session __maybe_un=
+used,
+> +                                union perf_event *event __maybe_unused,
+> +                                struct perf_sample *sample __maybe_unuse=
+d,
+> +                                const struct perf_tool *tool __maybe_unu=
+sed)
+> +{
+> +       return 0;
+> +}
 > +
+> +static int rvtrace_process_auxtrace_event(struct perf_session *session _=
+_maybe_unused,
+> +                                         union perf_event *event __maybe=
+_unused,
+> +                                         const struct perf_tool *tool __=
+maybe_unused)
+> +{
+> +       return 0;
+> +}
+> +
+> +static int rvtrace_flush(struct perf_session *session __maybe_unused,
+> +                        const struct perf_tool *tool __maybe_unused)
+> +{
+> +       return 0;
+> +}
+> +
+> +static void rvtrace_free_events(struct perf_session *session __maybe_unu=
+sed)
+> +{
+> +}
+> +
+> +static void rvtrace_free(struct perf_session *session)
+> +{
+> +       struct rvtrace_decoder *ptr =3D container_of(session->auxtrace, s=
+truct rvtrace_decoder,
+> +                                           auxtrace);
+> +
+> +       session->auxtrace =3D NULL;
+> +       free(ptr);
+> +}
+> +
+> +static bool rvtrace_evsel_is_auxtrace(struct perf_session *session,
+> +                                     struct evsel *evsel)
+> +{
+> +       struct rvtrace_decoder *ptr =3D container_of(session->auxtrace,
+> +                                                  struct rvtrace_decoder=
+, auxtrace);
+> +
+> +       return evsel->core.attr.type =3D=3D ptr->pmu_type;
+> +}
+> +
+> +int rvtrace__process_auxtrace_info(union perf_event *event,
+> +                                  struct perf_session *session)
+> +{
+> +       struct perf_record_auxtrace_info *auxtrace_info =3D &event->auxtr=
+ace_info;
+> +       struct rvtrace_decoder *ptr;
+> +
+> +       if (auxtrace_info->header.size < RVTRACE_AUXTRACE_PRIV_SIZE +
+> +           sizeof(struct perf_record_auxtrace_info))
+> +               return -EINVAL;
+> +
+> +       ptr =3D zalloc(sizeof(*ptr));
+> +       if (!ptr)
+> +               return -ENOMEM;
+> +
+> +       ptr->session =3D session;
+> +       ptr->machine =3D &session->machines.host;
+> +       ptr->auxtrace_type =3D auxtrace_info->type;
+> +       ptr->pmu_type =3D auxtrace_info->priv[0];
+> +
+> +       ptr->auxtrace.process_event =3D rvtrace_process_event;
+> +       ptr->auxtrace.process_auxtrace_event =3D rvtrace_process_auxtrace=
+_event;
+> +       ptr->auxtrace.flush_events =3D rvtrace_flush;
+> +       ptr->auxtrace.free_events =3D rvtrace_free_events;
+> +       ptr->auxtrace.free =3D rvtrace_free;
+> +       ptr->auxtrace.evsel_is_auxtrace =3D rvtrace_evsel_is_auxtrace;
+> +       session->auxtrace =3D &ptr->auxtrace;
+> +
+> +       return 0;
+> +}
+> diff --git a/tools/perf/util/rvtrace.h b/tools/perf/util/rvtrace.h
+> index 93c041db8660..fdf2e5866c85 100644
+> --- a/tools/perf/util/rvtrace.h
+> +++ b/tools/perf/util/rvtrace.h
+> @@ -15,4 +15,6 @@
+>
+>  #define RVTRACE_AUXTRACE_PRIV_SIZE     sizeof(u64)
+>
+> +int rvtrace__process_auxtrace_info(union perf_event *event, struct perf_=
+session *session);
+> +struct auxtrace_record *rvtrace_record_init(int *err);
 
+It looks like the implementation of `rvtrace_recording_init` in the
+auxtrace.c file is static (private), and the arguments don't match
+this declaration.
+Should we remove "static" from auxtrace.c and update this prototype
+to: "struct auxtrace_record *rvtrace_recording_init(int *err, struct
+perf_pmu *rvtrace_pmu);"?
 
-Best regards,
-Krzysztof
+Or should we simply remove this declaration from the header? Thanks.
+
+Regards,
+Eric Lin,
+
+>  #endif
+> --
+> 2.43.0
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
