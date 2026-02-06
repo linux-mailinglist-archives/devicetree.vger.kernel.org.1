@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-263305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263307-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OKHwDhvChWltGAQAu9opvQ
-	(envelope-from <devicetree+bounces-263305-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:27:39 +0100
+	id wG4zORzChWltGAQAu9opvQ
+	(envelope-from <devicetree+bounces-263307-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:27:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2373FC9F4
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:27:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F129FCA02
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:27:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0130B300898F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 10:27:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 23A69301CC70
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 10:27:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E2F37104D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A867372B38;
 	Fri,  6 Feb 2026 10:27:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="c9xEOKQ/"
+	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="Bitv0eth"
 X-Original-To: devicetree@vger.kernel.org
 Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5CB92F290A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5DA430BB81;
 	Fri,  6 Feb 2026 10:27:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770373654; cv=none; b=fimz8FObCggPxUzr17KI7YvwttUAB+j4LkeYZ5usN6l/sGyZLianpnCg/DmeHOViVnO45ek40/O7ryvM1SCXxHffc7HcEX6TMDVwHmHzsmsHjqpX5PVQU0guIOEt7k9rf1yFGPZgjjpp7LkFvcK4ranFlQAT55Vd5TCjcZQ9bY8=
+	t=1770373654; cv=none; b=Bdm7D24gOmt2IETmT6GxKTFIZGo9giMbqmdCTZPqw3KZR2Kik//DZW7geVA49YvlYdi7MTS4DSA02k1x8KBAAGpN729P1IS3WgMdRcRyaXpX63mViRMCP+ANpuVnyhyIE6OdBA50nnxFUETJSrhmG8bVjddfl9z1QXZqdEIYBkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1770373654; c=relaxed/simple;
-	bh=R6d6LOYx1acrZEfT768rwpy3DqJ5O4GGUCRhdfOAiOs=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JbbZK0knwOPZEZB8DAN8QqqlPig4+Wpzc9V2C/hA9uwPf+oUr0qK62mzW98Ys8b8qf5eE9N16aS2ev9sO51FCdP4bTUjeXKNi0D3PUwNHCzHfzhvqMiOPj2WNr9KppFer+oh/XteJDU5FtWjhqonW9kM/t2u2G12DBqfgNzP//0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=c9xEOKQ/; arc=none smtp.client-ip=128.199.32.197
+	bh=bb8AkHZnGIuJ+7cT+GCvgzq7B3H5p2MohzntibPFGLo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=sGS4InmY9dDARaPrOtjdYFujSjvlRkGUy1jOI5Hq3kis5IL+AM36HY0YuY4D9M7RYsJ/Gly+9OSZgIwRHnUSi227AJhf0eWRR7ni1u68Av+AefMi96P9dRzWYErI38dfa7zCDKKrBDZjqDaJg332sxQexGOf7IxreYJZ/DhInH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=Bitv0eth; arc=none smtp.client-ip=128.199.32.197
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1770373253; bh=R6d6LOYx1acrZEfT768rwpy3DqJ5O4GGUCRhdfOAiOs=;
-	h=From:Subject:Date:To:Cc;
-	b=c9xEOKQ/su2/QSb8Z4jYID+ZTdPzW74lDLaWIT/7ZSAI9HcA6ZtBtv6a+Vb0AAhMi
-	 Z7XcvChmWFJQTpLFvydDN21rBPSqWOCwPkfJtn28eohMzJmJYU8ab8ws5GZFa2R1r1
-	 KvFpNCOJlwwg/yKBEV4wwfX/ru9b0PGT05czLSNI=
+	t=1770373253; bh=bb8AkHZnGIuJ+7cT+GCvgzq7B3H5p2MohzntibPFGLo=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=Bitv0eth9udeuN4/o0MSc/pUM1TUsF/2YJRHeb7drQGu4DwoXoE2rZscU4f1qe/5G
+	 9UYbiJBXLd7pA4nWXUH8r6oW8koEkRVVrmX84L1aZeXOhqaHeE5+MZTxOxsnMZxOeq
+	 FNYb+PEs9n0E43PfLT86hvHMO9jNPgUEJyRplOT4=
 From: Luca Weiss <luca@lucaweiss.eu>
-Subject: [PATCH 0/2] Fix syscfg-pctl compatible for MT8516
-Date: Fri, 06 Feb 2026 11:20:47 +0100
-Message-Id: <20260206-mt8516-syscfg-syscon-v1-0-96dcb37acdb4@lucaweiss.eu>
+Date: Fri, 06 Feb 2026 11:20:48 +0100
+Subject: [PATCH 1/2] dt-bindings: mfd: syscon: Add mt8516-syscfg
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,10 +51,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MywqAIBAAfyX2nKCCi/Qr0aHHZnvIwo0opH9PP
- A1zmMkglJgEuiZDopuFj1jEtA3M2xgDKV6Kg9UWtdWo9ss7g0pemddQcUSF5BYz6RE9WSjpmWj
- lp2774ft+maRIpmYAAAA=
-X-Change-ID: 20260206-mt8516-syscfg-syscon-6e5d1b0a68e2
+Message-Id: <20260206-mt8516-syscfg-syscon-v1-1-96dcb37acdb4@lucaweiss.eu>
+References: <20260206-mt8516-syscfg-syscon-v1-0-96dcb37acdb4@lucaweiss.eu>
+In-Reply-To: <20260206-mt8516-syscfg-syscon-v1-0-96dcb37acdb4@lucaweiss.eu>
 To: ~postmarketos/upstreaming@lists.sr.ht, Lee Jones <lee@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
@@ -65,20 +64,20 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
  Luca Weiss <luca@lucaweiss.eu>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=614; i=luca@lucaweiss.eu;
- h=from:subject:message-id; bh=R6d6LOYx1acrZEfT768rwpy3DqJ5O4GGUCRhdfOAiOs=;
- b=owEBbQKS/ZANAwAKAXLYQ7idTddWAcsmYgBphcCCle6WQVY8NfJ/FMmSJUdEibM9IZeseQXgt
- WZADv8RTTqJAjMEAAEKAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCaYXAggAKCRBy2EO4nU3X
- Vs+eD/9LBSIv48EKjvhOdZoTFAt94zO89FZiJosZwfat8w8XNmaWa66EC2YdT4YjRiYeXn40Q6e
- D+h+Yo/szBLSwT4vWDU382eTBV8HhAoExnDPnH6hsIqgkfETc4B4kdefOkMXlGht8+jvNZOSb71
- dFxKEKNruMiWnvn4KAe5mDso9V0PZf5Dau2lzyIsUKKBHmft3RgXoJxCj78TK66vPF746VJIPub
- rmZgWZrhbPGsfve91HoWnXUUKd3JMENpNfQ2l+e1jLm6Cy2niFYAAoHKeiKsjkvnicqRCQK6yIu
- gHs89P2adwGFyjKZMBx1hg9AJfPliBNMfaYOP7E99FXSBdMMSR/LljV39hAtSmLZY0G2A4ETLym
- uE61xzKqL2IhlSWLicVqk/as5WNCGEmed2W+8AN755ABnswylamh8Jwwj+pr3g6GyWWmmAX+N1v
- 3as7Gid5JHwaVBjtkYs7xBwNJacLuXS2H85EaVcDXz5svfvhSy08D17QFcH9nL33jq6Nt5tOx+E
- WbNoj7kI1qIUepNGqIWfAU6lAVelA3I+uSn0htfkE2Jktu0Z5Y/GQxuP9Y1jF6QQMQZFUThql28
- ywK4WMHLtrcjDGnfY6h2mUTb7Ejx4IULWOx1JS+UHQZz7tUOh73WSzmwcuPLIkMVrswzpPkaqk+
- B1Dp6RguibkHjaA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1132; i=luca@lucaweiss.eu;
+ h=from:subject:message-id; bh=bb8AkHZnGIuJ+7cT+GCvgzq7B3H5p2MohzntibPFGLo=;
+ b=owEBbQKS/ZANAwAKAXLYQ7idTddWAcsmYgBphcCDzskBqy9v4qpP4BZJ+QhF2ite7JcmFWQ47
+ Rf5eqBdO7KJAjMEAAEKAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCaYXAgwAKCRBy2EO4nU3X
+ Vpm3EADKOM4gT8umZZLojsk3B6h0DJE7Tej45JE3RwK1GLaTnTzhgGCasz0NlSlBf6QHbbuys0y
+ tinBkBWQZe1LQ2kaq8lmggjVRouB2fpwr3ZnbtAcYpe4Kd0rwzsiFIrJ7U8cN8knxEv7Rv2L2U4
+ PCjoJQ/buOzxweAfRGYjx/2lVhUm0yRZO1iN6eQEu57fvYX3S03VzVdLnQTL1uj05+jd/drdI4U
+ icjTUrLEpyzA9dAUiZu/vUfFaPJIOuoBIjejKUgol90NE7ZMAQwSCdwO0WYlDGlCXdBg4MxBtmk
+ CIZ9RS4kyeVp8WKSoFPcMDz4Vcv0JJalNj7lH85rTH55b0Z6erVJOJ6kjRMUh5jv6h+wbzHupDL
+ u1LaYV8QTD8eiAMP56ojtZg07c4DdpVlV5dQHVC8XP5v34g1brVQAvux4Gnq/aYCKieMaLDIXj9
+ 6BEiu8pqNT9R4xrgDtMEJAtw8BrC0YpTZJRBj5bIItcHAmTM02pKXD8a3EEZmRj3pV7x/mgoM0e
+ FMEaH90ItwQuWzDDxyQR7EWoTrqJuDWoTRRw/aUaEf3hVAFNIOfVMGL6Se/AEP+8gNGXteaNaGm
+ NS6lbPpPUMyRQYL1MqsJzOUxjvBLtf/rz4qQ1IZfzOOCWY9fx6sSaQ2p2UFeciWFeT48vVuYRqb
+ svPYqQfRynsGScg==
 X-Developer-Key: i=luca@lucaweiss.eu; a=openpgp;
  fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 X-Rspamd-Server: lfdr
@@ -87,12 +86,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[lucaweiss.eu,reject];
 	R_DKIM_ALLOW(-0.20)[lucaweiss.eu:s=s1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263305-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263307-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[lists.sr.ht,kernel.org,gmail.com,collabora.com,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
@@ -107,29 +106,40 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lucaweiss.eu:email,lucaweiss.eu:dkim,lucaweiss.eu:mid]
-X-Rspamd-Queue-Id: C2373FC9F4
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lucaweiss.eu:email,lucaweiss.eu:dkim,lucaweiss.eu:mid]
+X-Rspamd-Queue-Id: 5F129FCA02
 X-Rspamd-Action: no action
 
-Address a dtbs_check warning on MT8516 by introducing a new compatible
-for the syscon.
+Document the Mediatek mt8516-syscfg.
 
 Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
 ---
-Luca Weiss (2):
-      dt-bindings: mfd: syscon: Add mt8516-syscfg
-      arm64: dts: mediatek: mt8516: fix syscfg-pctl compatible
-
  Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
- arch/arm64/boot/dts/mediatek/mt8516.dtsi          | 2 +-
- 2 files changed, 3 insertions(+), 1 deletion(-)
----
-base-commit: 9845cf73f7db6094c0d8419d6adb848028f4a921
-change-id: 20260206-mt8516-syscfg-syscon-6e5d1b0a68e2
+ 1 file changed, 2 insertions(+)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+index e57add2bacd3..a67699f1faee 100644
+--- a/Documentation/devicetree/bindings/mfd/syscon.yaml
++++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+@@ -91,6 +91,7 @@ select:
+           - mediatek,mt8135-pctl-b-syscfg
+           - mediatek,mt8173-pctl-a-syscfg
+           - mediatek,mt8365-syscfg
++          - mediatek,mt8516-syscfg
+           - microchip,lan966x-cpu-syscon
+           - microchip,mpfs-control-scb
+           - microchip,mpfs-sysreg-scb
+@@ -204,6 +205,7 @@ properties:
+               - mediatek,mt8173-pctl-a-syscfg
+               - mediatek,mt8365-infracfg-nao
+               - mediatek,mt8365-syscfg
++              - mediatek,mt8516-syscfg
+               - microchip,lan966x-cpu-syscon
+               - microchip,mpfs-control-scb
+               - microchip,mpfs-sysreg-scb
+
 -- 
-Luca Weiss <luca@lucaweiss.eu>
+2.52.0
 
 
