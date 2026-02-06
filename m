@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-263476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263477-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +F8dEksvhmkTKQQAu9opvQ
-	(envelope-from <devicetree+bounces-263476-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 19:13:31 +0100
+	id OC5cKU4vhmkTKQQAu9opvQ
+	(envelope-from <devicetree+bounces-263477-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 19:13:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BADBD101A88
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 19:13:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18ADE101A8F
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 19:13:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 72B0D300C018
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 18:13:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C036D300D165
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 18:13:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25535426D1B;
-	Fri,  6 Feb 2026 18:13:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E3C6426D23;
+	Fri,  6 Feb 2026 18:13:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AWHKbh/W"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SFW9i1Zi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f171.google.com (mail-dy1-f171.google.com [74.125.82.171])
+Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE38635DCEF
-	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 18:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 160D535DCEF
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 18:13:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770401608; cv=none; b=hFLAUJ14PL8U8YqWmGa6Jj7FyDsILBw4ZQgI+rui7WV0vzBX2Pdv2cvLABRuG8Cb787eOGPKj+Mk5VuEeG5zkcZVGI7eupZphbviuE8Uu705wOKFM49hJu4XBLjUlINj/ZwOO0O/8a+D7kA+xVpm2Czu3kGvWBsIyjj/YAkqoNw=
+	t=1770401611; cv=none; b=uR232I4FRcjl5sC9Mu7cM9BgTmcAG+g7bfAR7GEM1tW7vEr61CR3al2HY7gOtG8IdtyK3M4VEQkB/YMGc6HsS3n9aegOItiWUY5pJa01kUVnSoNNlfr1ChUwBBXqW5R6WCNd19wF/4u7utTBjiusHQCn4/3PrThLIU2IazEjF+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770401608; c=relaxed/simple;
-	bh=6F+YZNTSCWhoJnW7Vk6iRKJNMX1Ia92cxtw/w5w8Zk0=;
+	s=arc-20240116; t=1770401611; c=relaxed/simple;
+	bh=wXLQ8kb5ciQ/zUnseHKclyhPL8eih+uzayLKrTRIRk8=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=H8IFnOZuZeW6bbzVKv4YKQqyorz5+MuYngQydYibqF0JN/GujEy+HIYynFn9IgYf4T9pyGilTi3mIVc+/rMvZKMz3E/+rsYGMeO3n9xO2niUz1k2n6CQ+ZiblYSSms4VuwDncq2xXnmpyIpgD+0APRF38cd4mgHYTaC8o+N//4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AWHKbh/W; arc=none smtp.client-ip=74.125.82.171
+	 MIME-Version; b=Hm2S96tTsQk6nYqoD10wfEgvU1U0QxQA7PCWImmQcOklg5IBulc0S0npz6vm+nGzemUwcr9LMygTu56SY62ebWPd2950bq0hqcSL6D20LN04kFTROPcCV+aKPNYS8cTCazEZSVxpXNrMSpIryFhkjA1MXzRIGgeWV8b0OhWNzaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SFW9i1Zi; arc=none smtp.client-ip=74.125.82.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f171.google.com with SMTP id 5a478bee46e88-2b6b0500e06so2529264eec.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 10:13:27 -0800 (PST)
+Received: by mail-dl1-f52.google.com with SMTP id a92af1059eb24-1248d27f2b9so2894976c88.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 10:13:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770401607; x=1771006407; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1770401610; x=1771006410; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=d2ofjIyvWI7SYrlV1RzeV2oUOz3gOrrE6AU6yxfprIc=;
-        b=AWHKbh/W9F16AX7qTBQRurE+ILGETaTsfm0csco5hnNsycXO2CUTkvz/NSt5JcB6bn
-         tVXxFkE85k6ureO6snvLjjKonYb600EY92NEY7KxiwsDaT+Cy8Vu3BlpXU7H2HZA9UUZ
-         h6xyWKROunB6t+9QiB8I3hvBxfjxjrqiKzu15hJqZNbY9Y0ZsLjYlEWawpa4RJVZt1F+
-         rCW9i5X2XRUdzg0NMZX47260hFqpSl41dj5EAW5jdjimDekwx8oIxi04M1o/P0SzT/Ye
-         O3jonAg4cLscTqXLYd5fyXumRO6BaHNVQfLDxt+GBrtcjBi3j5/Vrb2pK/ekHHse695Z
-         GiJg==
+        bh=Mq2ZUQtLgdotVPV/MWHZ2hsWXxlAMLG17MB/T4x+r+s=;
+        b=SFW9i1ZiSvo+p1CaoMbZt4bT3Ez2/5iXGiraPCtbbL+SiZKqS/7NdFPk576OexxSmY
+         3Uw9ByDjRJXMuvxi3uezKpBvQCTjMcKO5OvJ0PZSZmXQjI3j5a/dP1yCssy+gcwBeTZO
+         CRqsi8mBCv5mdPaob5ye3GhdIKA1KFzjBUF45tS3Pq0R3Z2DIoSp8ZtZ5yKPrwWBNaA8
+         VwGllgj3BolmcWqapi70zLKSBbQD20Jd2IhbTa37c/iku6wjBK9QWraxRkmFDfRh6w7h
+         FHH/s9zXt+nxo2wSPrNbK2IJgZJSgwf4ug3DqEROcn9fwf+P0R9Pxpqbjx8RSWqovjvj
+         i8ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770401607; x=1771006407;
+        d=1e100.net; s=20230601; t=1770401610; x=1771006410;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=d2ofjIyvWI7SYrlV1RzeV2oUOz3gOrrE6AU6yxfprIc=;
-        b=iilQUc62vEBdUUVyOITorI3Kse6krTw0VaM7xdN0sxUNdfe4hTGBWqK1x7NiE4MteB
-         V30eV47LfzHdjnF8XkZbVTQGpKxOExcS8ZGxHbBg/DVP8eyFEEZFBvzoo3Ua4yDcHlh/
-         lK3taicRDtdVmkUg+KzbIGOdNmea4JCt98juUaELqI+dbJd3AAw9b6oAs2q1ofqfcxRs
-         6gcj8GPyp+Pz07UBmplLH42nDMol9wk8tytlqB/Fw01pJZXGGqRGfueBja+2r34olyIx
-         /OgwkRvGVhf3wIoBmozdLxuLbfs6QYISQMTZd0DJ8jsmxiHfN0ljql1ihga/AiOFcSHT
-         kHLg==
-X-Forwarded-Encrypted: i=1; AJvYcCX5epcyA4CqL5MB7wS6bqRprAPa0WqccT9Hm8wyNnur9ma5KAOLfTr0ZVK0w1d+pacb14TrFCbsYPEg@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVI5TwZXZGsTGrN3IvGCkzz6QfQubKYK/GjeQgNz4yNYHxaJZD
-	Kp0YpJDaEIhTFYMxnYXksGMcemSP6Vpe0FQRcrcSsDIpqlH+GxtEnCf5
-X-Gm-Gg: AZuq6aJFsyCBrx7HherngFPpTOWOc7NSSX85YzBgHVa3jJAsbkwyd1/ipZEcbR4lt5W
-	iLj3MhuSUxWjJXfHIKuTBfdjCv8JysQJcPSHRD3tz5NrCfuhdzwaqXc/l9dWChjWp/qTn4brLMy
-	GqiNked6LySnO93P6riP5IpdMBPVNourT5IoQKZmwPLxKihzEvfZOri0gdmSup2X/6lXfD+9/PG
-	QV0LYvcX1szeYAnefskh7EXBddFX7CUxVW6qvanmGw+99CJDkoGB5QXEaIseZNXwwqMNWuG7QVm
-	DkRn6G1S68BbfQEKvuQoU5A0a6CcGVwsCvweGP74nYSXs3tC4sojE467/qZw/HQw+yV3JigQRUe
-	ageBF4Xi+WdT27UfQ3gJ7wcAmigJLGPTy6+ZJvUu06E7WWKaSa0Ictb1qSCsDXDHBn3enyEQdKt
-	4TRQ/70WkU3MMQcULTc2tcEDEE
-X-Received: by 2002:a05:7300:d705:b0:2b7:30a4:8ce6 with SMTP id 5a478bee46e88-2b856722da2mr1562770eec.38.1770401606715;
-        Fri, 06 Feb 2026 10:13:26 -0800 (PST)
+        bh=Mq2ZUQtLgdotVPV/MWHZ2hsWXxlAMLG17MB/T4x+r+s=;
+        b=BrRaybntG3V/kX7wNiUOBdiGtfEgKOQ14gNwSLWiUY46Kd02FjhS1Rs+0MR3GizZR3
+         4zsKeWhSyzBXbkFZzkneSRbGSFvxqTuC5wpb3qrzRsXgTsKtDaFm/HJiejsqobHmPQRH
+         yx+rhwmsfLHsBYYnYxVUPkMHjtBqvH7rC5tYd7Hjy+cylG5EnaWnG2dzXofnaxRGZL3Y
+         1sd2iEoWUajCmJZyrEMsKY6O0xTIetCg1sjwzOSlC0eQPmSPKcjr3OZt5m8mKUjQxRm9
+         qhqtA5xIJUTqVihnq6p/DrHFSkaBv9XHMvqDLaBgYgKx+2/PD73xO0gaEaAt3hoa3mWX
+         vXWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXnvwtfNKAY/rbiYtpjj4DAdaPLGQ8pLN06DefoQblYSMMvDg0FcpJf/r7OcD7a6IEJvjHZyjWg716b@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwAZiSRZ5dhUr2uChRksVwxRQgMgcj+yAn6eyK9Ih9AXmNVR1v
+	J8ouo8eyze+791ZSv6CqnlGX5xQcDEfY/a3LwbBalJyxPcu7EKe4haRZ
+X-Gm-Gg: AZuq6aLZcv2scUiEGHVHkGkXh8SyZwQ4lLVns5EswlYVZvL8Bte3brSQAoly2E6zg1O
+	Porzv3vYkc1bjwQkoR/wNFzbnWJxNHmSIGF1AwLU1RhhduTLMROL9qKheAdXmDWhjt3ZFcHwGlN
+	tkl3aS4duDse+Et7XP4XuyzsZzigR2t4vyCLF2XoUyAVTz5yMQW7HKlX8FCjH+aynzNxhYKJf6o
+	bhPgDvHuHpFnXCm5uwWLdYuxtLOxeCAWaU7UUTBUZGmaDvb+Cul+qZncAd8+0TOpEXIURCcVx64
+	VJ56PZ1+n5c83JK7znFwF6fPAKCt8z2Xhum9wzqOT6KpzWOc+95ceKom5QIOR05TJAw7QhKPlF2
+	+H6kMYxKOHN6ipIX3FrBds+5h1No+m0qTNbOlB9VwbC9wDKMDbsZVhRARzI+DmWEBvZHbAPQkWw
+	dem+z1IQdE2eWiTjEU27gR21iQ
+X-Received: by 2002:a05:7022:525:b0:124:64a7:db0c with SMTP id a92af1059eb24-1270402c7a7mr1476222c88.45.1770401609886;
+        Fri, 06 Feb 2026 10:13:29 -0800 (PST)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:44a3:2bb7:a035:fd7e])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1270433ab31sm2782500c88.11.2026.02.06.10.13.24
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1270433ab31sm2782500c88.11.2026.02.06.10.13.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Feb 2026 10:13:26 -0800 (PST)
+        Fri, 06 Feb 2026 10:13:29 -0800 (PST)
 From: Fabio Estevam <festevam@gmail.com>
 To: heiko@sntech.de
 Cc: robh@kernel.org,
@@ -86,9 +86,9 @@ Cc: robh@kernel.org,
 	linux-rockchip@lists.infradead.org,
 	Fabio Estevam <festevam@nabladev.com>,
 	Stephen Boyd <sboyd@kernel.org>
-Subject: [PATCH 02/11] dt-bindings: clk: rockchip: Add RV1103B clock header
-Date: Fri,  6 Feb 2026 15:13:00 -0300
-Message-Id: <20260206181309.2696095-3-festevam@gmail.com>
+Subject: [PATCH 03/11] clk: rockchip: Add clock controller for the RV1103B
+Date: Fri,  6 Feb 2026 15:13:01 -0300
+Message-Id: <20260206181309.2696095-4-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260206181309.2696095-1-festevam@gmail.com>
 References: <20260206181309.2696095-1-festevam@gmail.com>
@@ -112,7 +112,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263476-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263477-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
@@ -129,514 +129,791 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BADBD101A88
+X-Rspamd-Queue-Id: 18ADE101A8F
 X-Rspamd-Action: no action
 
 From: Fabio Estevam <festevam@nabladev.com>
 
-Add the RV1103B clock and reset IDs.
+Add the clock and reset tree definitions for the RV1103B SoC.
+
+Based on the 5.10 Rockchip vendor kernel driver.
 
 Cc: Stephen Boyd <sboyd@kernel.org>
 Signed-off-by: Fabio Estevam <festevam@nabladev.com>
 ---
- .../dt-bindings/clock/rockchip,rv1103b-cru.h  | 488 ++++++++++++++++++
- 1 file changed, 488 insertions(+)
- create mode 100644 include/dt-bindings/clock/rockchip,rv1103b-cru.h
+ drivers/clk/rockchip/Kconfig       |   7 +
+ drivers/clk/rockchip/Makefile      |   1 +
+ drivers/clk/rockchip/clk-rv1103b.c | 670 +++++++++++++++++++++++++++++
+ drivers/clk/rockchip/clk.h         |  49 +++
+ 4 files changed, 727 insertions(+)
+ create mode 100644 drivers/clk/rockchip/clk-rv1103b.c
 
-diff --git a/include/dt-bindings/clock/rockchip,rv1103b-cru.h b/include/dt-bindings/clock/rockchip,rv1103b-cru.h
+diff --git a/drivers/clk/rockchip/Kconfig b/drivers/clk/rockchip/Kconfig
+index 5cf1e0fd6fb3..3fc91f3c2453 100644
+--- a/drivers/clk/rockchip/Kconfig
++++ b/drivers/clk/rockchip/Kconfig
+@@ -23,6 +23,13 @@ config CLK_RV110X
+ 	help
+ 	  Build the driver for RV110x Clock Driver.
+ 
++config CLK_RV1103B
++	tristate "Rockchip RV1103B clock controller support"
++	depends on ARM || COMPILE_TEST
++	default y
++	help
++	  Build the driver for RV1103B Clock Driver.
++
+ config CLK_RV1126
+ 	bool "Rockchip RV1126 clock controller support"
+ 	depends on ARM || COMPILE_TEST
+diff --git a/drivers/clk/rockchip/Makefile b/drivers/clk/rockchip/Makefile
+index 4d8cbb2044c7..7c984ee006c6 100644
+--- a/drivers/clk/rockchip/Makefile
++++ b/drivers/clk/rockchip/Makefile
+@@ -18,6 +18,7 @@ clk-rockchip-y += gate-link.o
+ clk-rockchip-$(CONFIG_RESET_CONTROLLER) += softrst.o
+ 
+ obj-$(CONFIG_CLK_PX30)          += clk-px30.o
++obj-$(CONFIG_CLK_RV1103B)	+= clk-rv1103b.o
+ obj-$(CONFIG_CLK_RV110X)        += clk-rv1108.o
+ obj-$(CONFIG_CLK_RV1126)        += clk-rv1126.o
+ obj-$(CONFIG_CLK_RV1126B)	+= clk-rv1126b.o rst-rv1126b.o
+diff --git a/drivers/clk/rockchip/clk-rv1103b.c b/drivers/clk/rockchip/clk-rv1103b.c
 new file mode 100644
-index 000000000000..92c994185354
+index 000000000000..40e04a7e2b1c
 --- /dev/null
-+++ b/include/dt-bindings/clock/rockchip,rv1103b-cru.h
-@@ -0,0 +1,488 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
++++ b/drivers/clk/rockchip/clk-rv1103b.c
+@@ -0,0 +1,670 @@
++// SPDX-License-Identifier: GPL-2.0
 +/*
 + * Copyright (c) 2024 Rockchip Electronics Co. Ltd.
 + * Author: Elaine Zhang <zhangqing@rock-chips.com>
 + */
 +
-+#ifndef _DT_BINDINGS_CLK_ROCKCHIP_RV1103B_H
-+#define _DT_BINDINGS_CLK_ROCKCHIP_RV1103B_H
++#include <linux/clk.h>
++#include <linux/clk-provider.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/of_address.h>
++#include <linux/of_device.h>
++#include <linux/regmap.h>
++#include <linux/syscore_ops.h>
++#include <dt-bindings/clock/rockchip,rv1103b-cru.h>
++#include "clk.h"
 +
-+/* pll clocks */
-+#define PLL_GPLL				1
-+#define ARMCLK					2
-+#define PLL_DPLL				3
++#define RV1103B_GRF_SOC_STATUS0		0x10
++#define RV1103B_FRAC_MAX_PRATE		1200000000
++#define PVTPLL_SRC_SEL_PVTPLL		(BIT(0) | BIT(16))
 +
-+/* clk (clocks) */
-+#define XIN_OSC0_HALF				5
-+#define CLK_GPLL_DIV24				6
-+#define CLK_GPLL_DIV12				7
-+#define CLK_GPLL_DIV6				8
-+#define CLK_GPLL_DIV4				9
-+#define CLK_GPLL_DIV3				10
-+#define CLK_GPLL_DIV2P5				11
-+#define CLK_GPLL_DIV2				12
-+#define CLK_UART0_SRC				13
-+#define CLK_UART1_SRC				14
-+#define CLK_UART2_SRC				15
-+#define CLK_UART0_FRAC				16
-+#define CLK_UART1_FRAC				17
-+#define CLK_UART2_FRAC				18
-+#define CLK_SAI_SRC				19
-+#define CLK_SAI_FRAC				20
-+#define LSCLK_NPU_SRC				21
-+#define CLK_NPU_SRC				22
-+#define ACLK_VEPU_SRC				23
-+#define CLK_VEPU_SRC				24
-+#define ACLK_VI_SRC				25
-+#define CLK_ISP_SRC				26
-+#define DCLK_VICAP				27
-+#define CCLK_EMMC				28
-+#define CCLK_SDMMC0				29
-+#define SCLK_SFC_2X				30
-+#define LSCLK_PERI_SRC				31
-+#define ACLK_PERI_SRC				32
-+#define HCLK_HPMCU				33
-+#define SCLK_UART0				34
-+#define SCLK_UART1				35
-+#define SCLK_UART2				36
-+#define CLK_I2C_PMU				37
-+#define CLK_I2C_PERI				38
-+#define CLK_SPI0				39
-+#define CLK_PWM0_SRC				40
-+#define CLK_PWM1				41
-+#define CLK_PWM2				42
-+#define DCLK_DECOM_SRC				43
-+#define CCLK_SDMMC1				44
-+#define CLK_CORE_CRYPTO				45
-+#define CLK_PKA_CRYPTO				46
-+#define CLK_CORE_RGA				47
-+#define MCLK_SAI_SRC				48
-+#define CLK_FREQ_PWM0_SRC			49
-+#define CLK_COUNTER_PWM0_SRC			50
-+#define PCLK_TOP_ROOT				51
-+#define CLK_REF_MIPI0				52
-+#define CLK_MIPI0_OUT2IO			53
-+#define CLK_REF_MIPI1				54
-+#define CLK_MIPI1_OUT2IO			55
-+#define MCLK_SAI_OUT2IO				56
-+#define ACLK_NPU_ROOT				57
-+#define HCLK_RKNN				58
-+#define ACLK_RKNN				59
-+#define LSCLK_VEPU_ROOT				60
-+#define HCLK_VEPU				61
-+#define ACLK_VEPU				62
-+#define CLK_CORE_VEPU				63
-+#define PCLK_IOC_VCCIO3				64
-+#define PCLK_ACODEC				65
-+#define PCLK_USBPHY				66
-+#define LSCLK_VI_100M				67
-+#define LSCLK_VI_ROOT				68
-+#define HCLK_ISP				69
-+#define ACLK_ISP				70
-+#define CLK_CORE_ISP				71
-+#define ACLK_VICAP				72
-+#define HCLK_VICAP				73
-+#define ISP0CLK_VICAP				74
-+#define PCLK_CSI2HOST0				75
-+#define PCLK_CSI2HOST1				76
-+#define HCLK_EMMC				77
-+#define HCLK_SFC				78
-+#define HCLK_SFC_XIP				79
-+#define HCLK_SDMMC0				80
-+#define PCLK_CSIPHY				81
-+#define PCLK_GPIO1				82
-+#define DBCLK_GPIO1				83
-+#define PCLK_IOC_VCCIO47			84
-+#define LSCLK_DDR_ROOT				85
-+#define CLK_TIMER_DDRMON			86
-+#define LSCLK_PMU_ROOT				87
-+#define PCLK_PMU				88
-+#define XIN_RC_DIV				89
-+#define CLK_32K					90
-+#define PCLK_PMU_GPIO0				91
-+#define DBCLK_PMU_GPIO0				92
-+#define CLK_DDR_FAIL_SAFE			93
-+#define PCLK_PMU_HP_TIMER			94
-+#define CLK_PMU_32K_HP_TIMER			95
-+#define PCLK_PWM0				96
-+#define CLK_PWM0				97
-+#define CLK_OSC_PWM0				98
-+#define CLK_RC_PWM0				99
-+#define CLK_FREQ_PWM0				100
-+#define CLK_COUNTER_PWM0			101
-+#define PCLK_I2C0				102
-+#define CLK_I2C0				103
-+#define PCLK_UART0				104
-+#define PCLK_IOC_PMUIO0				105
-+#define CLK_REFOUT				106
-+#define CLK_PREROLL				107
-+#define CLK_PREROLL_32K				108
-+#define CLK_LPMCU_PMU				109
-+#define PCLK_SPI2AHB				110
-+#define HCLK_SPI2AHB				111
-+#define SCLK_SPI2AHB				112
-+#define PCLK_WDT_LPMCU				113
-+#define TCLK_WDT_LPMCU				114
-+#define HCLK_SFC_PMU1				115
-+#define HCLK_SFC_XIP_PMU1			116
-+#define SCLK_SFC_2X_PMU1			117
-+#define CLK_LPMCU				118
-+#define CLK_LPMCU_RTC				119
-+#define PCLK_LPMCU_MAILBOX			120
-+#define PCLK_IOC_PMUIO1				121
-+#define PCLK_CRU_PMU1				122
-+#define PCLK_PERI_ROOT				123
-+#define PCLK_RTC_ROOT				124
-+#define CLK_TIMER_ROOT				125
-+#define PCLK_TIMER				126
-+#define CLK_TIMER0				127
-+#define CLK_TIMER1				128
-+#define CLK_TIMER2				129
-+#define CLK_TIMER3				130
-+#define CLK_TIMER4				131
-+#define CLK_TIMER5				132
-+#define PCLK_STIMER				133
-+#define CLK_STIMER0				134
-+#define CLK_STIMER1				135
-+#define PCLK_WDT_NS				136
-+#define TCLK_WDT_NS				137
-+#define PCLK_WDT_S				138
-+#define TCLK_WDT_S				139
-+#define PCLK_WDT_HPMCU				140
-+#define TCLK_WDT_HPMCU				141
-+#define PCLK_I2C1				142
-+#define CLK_I2C1				143
-+#define PCLK_I2C2				144
-+#define CLK_I2C2				145
-+#define PCLK_I2C3				146
-+#define CLK_I2C3				147
-+#define PCLK_I2C4				148
-+#define CLK_I2C4				149
-+#define PCLK_SPI0				150
-+#define PCLK_PWM1				151
-+#define CLK_OSC_PWM1				152
-+#define PCLK_PWM2				153
-+#define CLK_OSC_PWM2				154
-+#define PCLK_UART2				155
-+#define PCLK_UART1				156
-+#define ACLK_RKDMA				157
-+#define PCLK_TSADC				158
-+#define CLK_TSADC				159
-+#define CLK_TSADC_TSEN				160
-+#define PCLK_SARADC				161
-+#define CLK_SARADC				162
-+#define PCLK_GPIO2				163
-+#define DBCLK_GPIO2				164
-+#define PCLK_IOC_VCCIO6				165
-+#define ACLK_USBOTG				166
-+#define CLK_REF_USBOTG				167
-+#define HCLK_SDMMC1				168
-+#define HCLK_SAI				169
-+#define MCLK_SAI				170
-+#define ACLK_CRYPTO				171
-+#define HCLK_CRYPTO				172
-+#define HCLK_RK_RNG_NS				173
-+#define HCLK_RK_RNG_S				174
-+#define PCLK_OTPC_NS				175
-+#define CLK_OTPC_ROOT_NS			176
-+#define CLK_SBPI_OTPC_NS			177
-+#define CLK_USER_OTPC_NS			178
-+#define PCLK_OTPC_S				179
-+#define CLK_OTPC_ROOT_S				180
-+#define CLK_SBPI_OTPC_S				181
-+#define CLK_USER_OTPC_S				182
-+#define CLK_OTPC_ARB				183
-+#define PCLK_OTP_MASK				184
-+#define HCLK_RGA				185
-+#define ACLK_RGA				186
-+#define ACLK_MAC				187
-+#define PCLK_MAC				188
-+#define CLK_MACPHY				189
-+#define ACLK_SPINLOCK				190
-+#define HCLK_CACHE				191
-+#define PCLK_HPMCU_MAILBOX			192
-+#define PCLK_HPMCU_INTMUX			193
-+#define CLK_HPMCU				194
-+#define CLK_HPMCU_RTC				195
-+#define DCLK_DECOM				196
-+#define ACLK_DECOM				197
-+#define PCLK_DECOM				198
-+#define ACLK_SYS_SRAM				199
-+#define PCLK_DMA2DDR				200
-+#define ACLK_DMA2DDR				201
-+#define PCLK_DCF				202
-+#define ACLK_DCF				203
-+#define MCLK_ACODEC_TX				204
-+#define SCLK_UART0_SRC				205
-+#define SCLK_UART1_SRC				206
-+#define SCLK_UART2_SRC				207
-+#define XIN_RC_SRC				208
-+#define CLK_UTMI_USBOTG				209
-+#define CLK_REF_USBPHY				230
++enum rv1103b_plls {
++	dpll,
++	gpll,
++};
 +
-+// PERICRU_SOFTRST_CON00(Offset:0xA00)
-+#define SRST_ARESETN_PERI_BIU			0x00000002
-+#define SRST_HRESETN_HPMCU_BIU			0x00000003
-+#define SRST_LSRESETN_PERI_BIU			0x00000004
-+#define SRST_PRESETN_PERI_BIU			0x00000005
-+#define SRST_PRESETN_RTC_BIU			0x00000006
-+#define SRST_HRESETN_BOOTROM			0x00000007
++static struct rockchip_pll_rate_table rv1103b_pll_rates[] = {
++	/* _mhz, _refdiv, _fbdiv, _postdiv1, _postdiv2, _dsmpd, _frac */
++	RK3036_PLL_RATE(1200000000, 1, 100, 2, 1, 1, 0),
++	RK3036_PLL_RATE(1188000000, 1, 99, 2, 1, 1, 0),
++	RK3036_PLL_RATE(1000000000, 3, 250, 2, 1, 1, 0),
++	{ /* sentinel */ },
++};
 +
-+// PERICRU_SOFTRST_CON01(Offset:0xA04)
-+#define SRST_PRESETN_TIMER			0x00000010
-+#define SRST_RESETN_TIMER0			0x00000011
-+#define SRST_RESETN_TIMER1			0x00000012
-+#define SRST_RESETN_TIMER2			0x00000013
-+#define SRST_RESETN_TIMER3			0x00000014
-+#define SRST_RESETN_TIMER4			0x00000015
-+#define SRST_RESETN_TIMER5			0x00000016
-+#define SRST_PRESETN_STIMER			0x00000017
-+#define SRST_RESETN_STIMER0			0x00000018
-+#define SRST_RESETN_STIMER1			0x00000019
++#define RV1103B_DIV_ACLK_CORE_MASK	0x1f
++#define RV1103B_DIV_ACLK_CORE_SHIFT	0
++#define RV1103B_DIV_PCLK_DBG_MASK	0x1f
++#define RV1103B_DIV_PCLK_DBG_SHIFT	8
++#define RV1103B_CORE_SEL_MASK		0x1
++#define RV1103B_CORE_SEL_SHIFT		1
++#define RV1103B_ALT_DIV_MASK		0x7
++#define RV1103B_ALT_DIV_SHIFT		13
 +
-+// PERICRU_SOFTRST_CON02(Offset:0xA08)
-+#define SRST_PRESETN_WDT_NS			0x00000020
-+#define SRST_TRESETN_WDT_NS			0x00000021
-+#define SRST_PRESETN_WDT_S			0x00000022
-+#define SRST_TRESETN_WDT_S			0x00000023
-+#define SRST_PRESETN_WDT_HPMCU			0x00000024
-+#define SRST_TRESETN_WDT_HPMCU			0x00000025
-+#define SRST_PRESETN_I2C1			0x00000026
-+#define SRST_RESETN_I2C1			0x00000027
-+#define SRST_PRESETN_I2C2			0x00000028
-+#define SRST_RESETN_I2C2			0x00000029
-+#define SRST_PRESETN_I2C3			0x0000002A
-+#define SRST_RESETN_I2C3			0x0000002B
-+#define SRST_PRESETN_I2C4			0x0000002C
-+#define SRST_RESETN_I2C4			0x0000002D
++#define RV1103B_CLKSEL0(_aclk_core)						\
++{										\
++	.reg = RV1103B_CORECLKSEL_CON(2),					\
++	.val = HIWORD_UPDATE(_aclk_core - 1, RV1103B_DIV_ACLK_CORE_MASK,	\
++			     RV1103B_DIV_ACLK_CORE_SHIFT),			\
++}
 +
-+// PERICRU_SOFTRST_CON03(Offset:0xA0C)
-+#define SRST_PRESETN_UART2			0x00000030
-+#define SRST_SRESETN_UART2			0x00000031
-+#define SRST_PRESETN_UART1			0x00000032
-+#define SRST_SRESETN_UART1			0x00000033
-+#define SRST_PRESETN_SPI0			0x0000003A
-+#define SRST_RESETN_SPI0			0x0000003B
++#define RV1103B_CLKSEL1(_pclk_dbg)						\
++{										\
++	.reg = RV1103B_CORECLKSEL_CON(2),					\
++	.val = HIWORD_UPDATE(_pclk_dbg - 1, RV1103B_DIV_PCLK_DBG_MASK,		\
++			     RV1103B_DIV_PCLK_DBG_SHIFT),			\
++}
 +
-+// PERICRU_SOFTRST_CON04(Offset:0xA10)
-+#define SRST_PRESETN_PWM1			0x00000046
-+#define SRST_RESETN_PWM1			0x00000047
-+#define SRST_PRESETN_PWM2			0x0000004C
-+#define SRST_RESETN_PWM2			0x0000004D
++#define RV1103B_CPUCLK_RATE(_prate, _aclk_core, _pclk_dbg)			\
++{										\
++	.prate = _prate,							\
++	.divs = {								\
++		RV1103B_CLKSEL0(_aclk_core),					\
++		RV1103B_CLKSEL1(_pclk_dbg),					\
++	},									\
++}
 +
-+// PERICRU_SOFTRST_CON05(Offset:0xA14)
-+#define SRST_ARESETN_RKDMA			0x00000058
-+#define SRST_PRESETN_TSADC			0x00000059
-+#define SRST_RESETN_TSADC			0x0000005A
-+#define SRST_PRESETN_SARADC			0x0000005C
-+#define SRST_RESETN_SARADC			0x0000005D
++static struct rockchip_cpuclk_rate_table rv1103b_cpuclk_rates[] __initdata = {
++	RV1103B_CPUCLK_RATE(1608000000, 4, 10),
++	RV1103B_CPUCLK_RATE(1512000000, 4, 10),
++	RV1103B_CPUCLK_RATE(1416000000, 4, 10),
++	RV1103B_CPUCLK_RATE(1296000000, 3, 10),
++	RV1103B_CPUCLK_RATE(1200000000, 3, 10),
++	RV1103B_CPUCLK_RATE(1188000000, 3, 8),
++	RV1103B_CPUCLK_RATE(1104000000, 2, 8),
++	RV1103B_CPUCLK_RATE(1008000000, 2, 8),
++	RV1103B_CPUCLK_RATE(816000000, 2, 6),
++	RV1103B_CPUCLK_RATE(600000000, 2, 4),
++	RV1103B_CPUCLK_RATE(594000000, 2, 4),
++	RV1103B_CPUCLK_RATE(408000000, 1, 3),
++	RV1103B_CPUCLK_RATE(396000000, 1, 3),
++};
 +
-+// PERICRU_SOFTRST_CON06(Offset:0xA18)
-+#define SRST_RESETN_SARADC_PHY			0x00000060
-+#define SRST_PRESETN_RTC_TEST			0x00000061
-+#define SRST_PRESETN_GPIO2			0x00000063
-+#define SRST_DBRESETN_GPIO2			0x00000064
-+#define SRST_PRESETN_IOC_VCCIO6			0x00000065
-+#define SRST_PRESETN_PERI_SGRF			0x00000066
-+#define SRST_PRESETN_PERI_GRF			0x00000067
-+#define SRST_PRESETN_CRU_PERI			0x00000068
-+#define SRST_ARESETN_USBOTG			0x00000069
++PNAME(mux_pll_p)			= { "xin24m" };
++PNAME(mux_200m_100m_p)			= { "clk_gpll_div6", "clk_gpll_div12" };
++PNAME(mux_gpll_24m_p)			= { "gpll", "xin24m" };
++PNAME(mux_480m_400m_300m_200m_p)	= { "clk_gpll_div2p5", "clk_gpll_div3", "clk_gpll_div4", "clk_gpll_div6" };
++PNAME(mux_480m_400m_300m_p)		= { "clk_gpll_div2p5", "clk_gpll_div3", "clk_gpll_div4" };
++PNAME(mux_300m_200m_p)			= { "clk_gpll_div4", "clk_gpll_div6" };
++PNAME(mux_600m_480m_400m_p)		= { "clk_gpll_div2", "clk_gpll_div2p5", "clk_gpll_div3" };
++PNAME(mux_400m_300m_p)			= { "clk_gpll_div3", "clk_gpll_div4" };
++PNAME(mux_100m_24m_p)			= { "clk_gpll_div12", "xin24m" };
++PNAME(mux_200m_24m_p)			= { "clk_gpll_div6", "xin24m" };
++PNAME(mux_200m_100m_50m_24m_p)		= { "clk_gpll_div6", "clk_gpll_div12", "clk_gpll_div24", "xin24m" };
++PNAME(mux_300m_200m_100m_p)		= { "clk_gpll_div4", "clk_gpll_div6", "clk_gpll_div12" };
++PNAME(sclk_uart0_src_p)			= { "clk_uart0_src", "clk_uart0_frac", "xin24m" };
++PNAME(sclk_uart1_src_p)			= { "clk_uart1_src", "clk_uart1_frac", "xin24m" };
++PNAME(sclk_uart2_src_p)			= { "clk_uart2_src", "clk_uart2_frac", "xin24m" };
++PNAME(mclk_sai_src_p)			= { "clk_sai_src", "clk_sai_frac", "mclk_sai_from_io", "xin_osc0_half" };
++PNAME(clk_freq_pwm0_src_p)		= { "sclk_sai_from_io", "mclk_sai_from_io", "clk_testout_out" };
++PNAME(clk_counter_pwm0_src_p)		= { "sclk_sai_from_io", "mclk_sai_from_io", "clk_testout_out" };
++PNAME(clk_mipi0_out2io_p)		= { "clk_ref_mipi0", "xin24m" };
++PNAME(clk_mipi1_out2io_p)		= { "clk_ref_mipi1", "xin24m" };
++PNAME(mclk_sai_out2io_p)		= { "mclk_sai_src", "xin_osc0_half" };
++PNAME(aclk_npu_root_p)			= { "clk_npu_src", "clk_npu_pvtpll" };
++PNAME(clk_core_vepu_p)			= { "clk_vepu_src", "clk_vepu_pvtpll" };
++PNAME(lsclk_vi_root_p)			= { "clk_gpll_div6", "lsclk_vi_100m" };
++PNAME(clk_core_isp_p)			= { "clk_isp_src", "clk_isp_pvtpll_src" };
++PNAME(lsclk_pmu_root_p)			= { "xin24m", "clk_rc_osc_io" };
++PNAME(xin_rc_div_p)			= { "xin24m", "clk_rc_osc_io" };
++PNAME(clk_32k_p)			= { "xin_rc_div", "clk_32k_rtc", "clk_32k_io" };
++PNAME(dbclk_pmu_gpio0_p)		= { "xin24m", "clk_32k" };
++PNAME(sclk_sfc_2x_pmu1_p)		= { "clk_gpll_div12", "clk_rc_osc_io" };
++PNAME(mux_armclk_p)			= { "armclk_gpll", "clk_core_pvtpll" };
 +
-+// PERICRU_SOFTRST_CON07(Offset:0xA1C)
-+#define SRST_HRESETN_SDMMC1			0x00000070
-+#define SRST_HRESETN_SAI			0x00000071
-+#define SRST_MRESETN_SAI			0x00000072
++static struct rockchip_pll_clock rv1103b_pll_clks[] __initdata = {
++	[dpll] = PLL(pll_rk3328, PLL_DPLL, "dpll", mux_pll_p,
++		     CLK_IS_CRITICAL, RV1103B_PLL_CON(16),
++		     RV1103B_MODE_CON, 0, 10, 0, rv1103b_pll_rates),
++	[gpll] = PLL(pll_rk3328, PLL_GPLL, "gpll", mux_pll_p,
++		     CLK_IS_CRITICAL, RV1103B_PLL_CON(24),
++		     RV1103B_MODE_CON, 0, 10, 0, rv1103b_pll_rates),
++};
 +
-+// PERICRU_SOFTRST_CON08(Offset:0xA20)
-+#define SRST_RESETN_CORE_CRYPTO			0x00000080
-+#define SRST_RESETN_PKA_CRYPTO			0x00000081
-+#define SRST_ARESETN_CRYPTO			0x00000082
-+#define SRST_HRESETN_CRYPTO			0x00000083
-+#define SRST_HRESETN_RK_RNG_NS			0x00000084
-+#define SRST_HRESETN_RK_RNG_S			0x00000085
-+#define SRST_PRESETN_OTPC_NS			0x00000086
-+#define SRST_RESETN_SBPI_OTPC_NS		0x00000088
-+#define SRST_RESETN_USER_OTPC_NS		0x00000089
-+#define SRST_PRESETN_OTPC_S			0x0000008A
-+#define SRST_RESETN_SBPI_OTPC_S			0x0000008C
-+#define SRST_RESETN_USER_OTPC_S			0x0000008D
-+#define SRST_RESETN_OTPC_ARB			0x0000008E
-+#define SRST_PRESETN_OTP_MASK			0x0000008F
++#define MFLAGS CLK_MUX_HIWORD_MASK
++#define DFLAGS CLK_DIVIDER_HIWORD_MASK
++#define GFLAGS (CLK_GATE_HIWORD_MASK | CLK_GATE_SET_TO_DISABLE)
 +
-+// PERICRU_SOFTRST_CON09(Offset:0xA24)
-+#define SRST_HRESETN_RGA			0x00000090
-+#define SRST_ARESETN_RGA			0x00000091
-+#define SRST_RESETN_CORE_RGA			0x00000092
-+#define SRST_ARESETN_MAC			0x00000093
-+#define SRST_RESETN_MACPHY			0x0000009B
++static struct rockchip_clk_branch rv1103b_clk_uart0_fracmux __initdata =
++	MUX(SCLK_UART0_SRC, "sclk_uart0_src", sclk_uart0_src_p, CLK_SET_RATE_PARENT,
++			RV1103B_CLKSEL_CON(32), 8, 2, MFLAGS);
 +
-+// PERICRU_SOFTRST_CON10(Offset:0xA28)
-+#define SRST_ARESETN_SPINLOCK			0x000000A0
-+#define SRST_HRESETN_CACHE			0x000000A1
-+#define SRST_PRESETN_HPMCU_MAILBOX		0x000000A2
-+#define SRST_PRESETN_HPMCU_INTMUX		0x000000A3
-+#define SRST_RESETN_HPMCU_FULL_CLUSTER		0x000000A4
-+#define SRST_RESETN_HPMCU_PWUP			0x000000A5
-+#define SRST_RESETN_HPMCU_ONLY_CORE		0x000000A6
-+#define SRST_TRESETN_HPMCU_JTAG			0x000000A7
++static struct rockchip_clk_branch rv1103b_clk_uart1_fracmux __initdata =
++	MUX(SCLK_UART1_SRC, "sclk_uart1_src", sclk_uart1_src_p, CLK_SET_RATE_PARENT,
++			RV1103B_CLKSEL_CON(32), 10, 2, MFLAGS);
 +
-+// PERICRU_SOFTRST_CON11(Offset:0xA2C)
-+#define SRST_DRESETN_DECOM			0x000000B0
-+#define SRST_ARESETN_DECOM			0x000000B1
-+#define SRST_PRESETN_DECOM			0x000000B2
-+#define SRST_ARESETN_SYS_SRAM			0x000000B3
-+#define SRST_PRESETN_DMA2DDR			0x000000B4
-+#define SRST_ARESETN_DMA2DDR			0x000000B5
-+#define SRST_PRESETN_DCF			0x000000B6
-+#define SRST_ARESETN_DCF			0x000000B7
-+#define SRST_RESETN_USBPHY_POR			0x000000BC
-+#define SRST_RESETN_USBPHY_OTG			0x000000BD
++static struct rockchip_clk_branch rv1103b_clk_uart2_fracmux __initdata =
++	MUX(SCLK_UART2_SRC, "sclk_uart2_src", sclk_uart2_src_p, CLK_SET_RATE_PARENT,
++			RV1103B_CLKSEL_CON(32), 12, 2, MFLAGS);
 +
-+// ======================= VEPUCRU module definition bank=1 =======================
-+// VEPUCRU_SOFTRST_CON00(Offset:0xA00)
-+#define SRST_ARESETN_VEPU_BIU			0x00040001
-+#define SRST_LSRESETN_VEPU_BIU			0x00040002
-+#define SRST_RESETN_REF_PVTPLL_VEPU		0x00040003
-+#define SRST_HRESETN_VEPU			0x00040004
-+#define SRST_ARESETN_VEPU			0x00040005
-+#define SRST_RESETN_CORE_VEPU			0x00040006
-+#define SRST_PRESETN_VEPU_PVTPLL		0x00040007
-+#define SRST_PRESETN_CRU_VEPU			0x00040008
-+#define SRST_PRESETN_VEPU_GRF			0x0004000A
-+#define SRST_PRESETN_IOC_VCCIO3			0x0004000B
-+#define SRST_PRESETN_ACODEC			0x0004000D
-+#define SRST_PRESETN_USBPHY			0x0004000E
++static struct rockchip_clk_branch rv1103b_rcdiv_pmu_fracmux __initdata =
++	MUX(CLK_32K, "clk_32k", clk_32k_p, CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
++			RK3568_PMU_CLKSEL_CON(0), 0, 2, MFLAGS);
 +
-+// ======================= NPUCRU module definition bank=2 ========================
-+// NPUCRU_SOFTRST_CON00(Offset:0xA00)
-+#define SRST_RESETN_REF_PVTPLL_NPU		0x00080000
-+#define SRST_ARESETN_NPU_BIU			0x00080002
-+#define SRST_LSRESETN_NPU_BIU			0x00080003
-+#define SRST_HRESETN_RKNN			0x00080004
-+#define SRST_ARESETN_RKNN			0x00080005
-+#define SRST_PRESETN_NPU_PVTPLL			0x00080006
-+#define SRST_PRESETN_CRU_NPU			0x00080007
-+#define SRST_PRESETN_NPU_GRF			0x00080009
++static struct rockchip_clk_branch rv1103b_clk_branches[] __initdata = {
 +
-+// ======================== VICRU module definition bank=3 ========================
-+// VICRU_SOFTRST_CON00(Offset:0xA00)
-+#define SRST_LSRESETN_VI_BIU			0x000c0001
-+#define SRST_ARESETN_VI_BIU			0x000c0002
-+#define SRST_RESETN_REF_PVTPLL_ISP		0x000c0003
-+#define SRST_RESETN_CORE_ISP			0x000c0006
++	/*       Clock Definition       */
++	FACTOR(XIN_OSC0_HALF, "xin_osc0_half", "xin24m", 0, 1, 2),
 +
-+// VICRU_SOFTRST_CON01(Offset:0xA04)
-+#define SRST_DRESETN_VICAP			0x000c0010
-+#define SRST_ARESETN_VICAP			0x000c0012
-+#define SRST_HRESETN_VICAP			0x000c0013
-+#define SRST_ISP0RESETN_VICAP			0x000c0018
-+#define SRST_PRESETN_CSI2HOST0			0x000c0019
-+#define SRST_PRESETN_CSI2HOST1			0x000c001B
-+#define SRST_SRESETN_SFC_2X			0x000c001C
-+#define SRST_HRESETN_EMMC			0x000c001D
-+#define SRST_HRESETN_SFC			0x000c001E
-+#define SRST_HRESETN_SFC_XIP			0x000c001F
++	COMPOSITE_NOGATE(0, "armclk_gpll", mux_gpll_24m_p, CLK_IS_CRITICAL,
++			RV1103B_CLKSEL_CON(37), 12, 1, MFLAGS, 13, 3, DFLAGS),
 +
-+// VICRU_SOFTRST_CON02(Offset:0xA08)
-+#define SRST_HRESETN_SDMMC0			0x000c0020
-+#define SRST_PRESETN_CSIPHY			0x000c0022
-+#define SRST_PRESETN_GPIO1			0x000c0023
-+#define SRST_DBRESETN_GPIO1			0x000c0024
-+#define SRST_PRESETN_IOC_VCCIO47		0x000c0025
-+#define SRST_PRESETN_VI_GRF			0x000c0026
-+#define SRST_PRESETN_CRU_VI			0x000c0028
-+#define SRST_PRESETN_VI_PVTPLL			0x000c0029
++	/* pd_top */
++	COMPOSITE_NOMUX(CLK_GPLL_DIV24, "clk_gpll_div24", "gpll", 0,
++			RV1103B_CLKSEL_CON(0), 0, 5, DFLAGS,
++			RV1103B_CLKGATE_CON(0), 0, GFLAGS),
++	COMPOSITE_NOMUX(CLK_GPLL_DIV12, "clk_gpll_div12", "gpll", 0,
++			RV1103B_CLKSEL_CON(0), 5, 5, DFLAGS,
++			RV1103B_CLKGATE_CON(0), 1, GFLAGS),
++	COMPOSITE_NOMUX(CLK_GPLL_DIV6, "clk_gpll_div6", "gpll", 0,
++			RV1103B_CLKSEL_CON(1), 0, 5, DFLAGS,
++			RV1103B_CLKGATE_CON(0), 3, GFLAGS),
++	COMPOSITE_NOMUX(CLK_GPLL_DIV4, "clk_gpll_div4", "gpll", 0,
++			RV1103B_CLKSEL_CON(1), 10, 5, DFLAGS,
++			RV1103B_CLKGATE_CON(0), 5, GFLAGS),
++	COMPOSITE_NOMUX(CLK_GPLL_DIV3, "clk_gpll_div3", "gpll", 0,
++			RV1103B_CLKSEL_CON(2), 0, 5, DFLAGS,
++			RV1103B_CLKGATE_CON(0), 7, GFLAGS),
++	COMPOSITE_NOMUX_HALFDIV(CLK_GPLL_DIV2P5, "clk_gpll_div2p5", "gpll", 0,
++			RV1103B_CLKSEL_CON(2), 5, 5, DFLAGS,
++			RV1103B_CLKGATE_CON(0), 8, GFLAGS),
++	COMPOSITE_NOMUX(CLK_GPLL_DIV2, "clk_gpll_div2", "gpll", 0,
++			RV1103B_CLKSEL_CON(2), 10, 5, DFLAGS,
++			RV1103B_CLKGATE_CON(0), 9, GFLAGS),
++	COMPOSITE_NOMUX(CLK_UART0_SRC, "clk_uart0_src", "gpll", 0,
++			RV1103B_CLKSEL_CON(5), 0, 5, DFLAGS,
++			RV1103B_CLKGATE_CON(1), 0, GFLAGS),
++	COMPOSITE_NOMUX(CLK_UART1_SRC, "clk_uart1_src", "gpll", 0,
++			RV1103B_CLKSEL_CON(5), 5, 5, DFLAGS,
++			RV1103B_CLKGATE_CON(1), 1, GFLAGS),
++	COMPOSITE_NOMUX(CLK_UART2_SRC, "clk_uart2_src", "gpll", 0,
++			RV1103B_CLKSEL_CON(5), 10, 5, DFLAGS,
++			RV1103B_CLKGATE_CON(1), 2, GFLAGS),
++	COMPOSITE_FRACMUX(CLK_UART0_FRAC, "clk_uart0_frac", "clk_uart0_src", 0,
++			RV1103B_CLKSEL_CON(10), 0,
++			RV1103B_CLKGATE_CON(1), 6, GFLAGS,
++			&rv1103b_clk_uart0_fracmux),
++	COMPOSITE_FRACMUX(CLK_UART1_FRAC, "clk_uart1_frac", "clk_uart1_src", 0,
++			RV1103B_CLKSEL_CON(11), 0,
++			RV1103B_CLKGATE_CON(1), 7, GFLAGS,
++			&rv1103b_clk_uart1_fracmux),
++	COMPOSITE_FRACMUX(CLK_UART2_FRAC, "clk_uart2_frac", "clk_uart2_src", 0,
++			RV1103B_CLKSEL_CON(12), 0,
++			RV1103B_CLKGATE_CON(1), 8, GFLAGS,
++			&rv1103b_clk_uart2_fracmux),
++	GATE(SCLK_UART0, "sclk_uart0", "sclk_uart0_src", 0,
++			RV1103B_CLKGATE_CON(3), 3, GFLAGS),
++	GATE(SCLK_UART1, "sclk_uart1", "sclk_uart1_src", 0,
++			RV1103B_CLKGATE_CON(3), 4, GFLAGS),
++	GATE(SCLK_UART2, "sclk_uart2", "sclk_uart2_src", 0,
++			RV1103B_CLKGATE_CON(3), 8, GFLAGS),
 +
-+// ======================= CORECRU module definition bank=4 =======================
-+// CORECRU_SOFTRST_CON00(Offset:0xA00)
-+#define SRST_RESETN_REF_PVTPLL_CORE		0x00100000
-+#define SRST_NCOREPORESET			0x00100001
-+#define SRST_NCORESET				0x00100002
-+#define SRST_NDBGRESET				0x00100003
-+#define SRST_NL2RESET				0x00100004
-+#define SRST_ARESETN_CORE_BIU			0x00100005
-+#define SRST_PRESETN_CORE_BIU			0x00100006
-+#define SRST_HRESETN_CORE_BIU			0x00100007
-+#define SRST_PRESETN_DBG			0x00100008
-+#define SRST_POTRESETN_DBG			0x00100009
-+#define SRST_NTRESETN_DBG			0x0010000A
++	COMPOSITE_NOMUX(CLK_SAI_SRC, "clk_sai_src", "gpll", 0,
++			RV1103B_CLKSEL_CON(20), 0, 5, DFLAGS,
++			RV1103B_CLKGATE_CON(1), 12, GFLAGS),
++	MUX(MCLK_SAI_SRC, "mclk_sai_src", mclk_sai_src_p, CLK_SET_RATE_PARENT,
++			RV1103B_CLKSEL_CON(35), 10, 2, MFLAGS),
++	GATE(MCLK_SAI, "mclk_sai", "mclk_sai_src", 0,
++			RV1103B_CLKGATE_CON(5), 5, GFLAGS),
 +
-+// ======================= DDRCRU module definition bank=5 ========================
-+// DDRCRU_SOFTRST_CON00(Offset:0xA00)
-+#define SRST_LSRESETN_DDR_BIU			0x00140001
-+#define SRST_PRESETN_DDRC			0x00140002
-+#define SRST_PRESETN_DDRMON			0x00140003
-+#define SRST_RESETN_TIMER_DDRMON		0x00140004
-+#define SRST_PRESETN_DFICTRL			0x00140005
-+#define SRST_PRESETN_DDR_GRF			0x00140006
-+#define SRST_PRESETN_CRU_DDR			0x00140007
-+#define SRST_HRESETN_DDRPHY			0x00140008
++	COMPOSITE_NODIV(LSCLK_NPU_SRC, "lsclk_npu_src", mux_200m_100m_p, CLK_IS_CRITICAL,
++			RV1103B_CLKSEL_CON(30), 0, 1, MFLAGS,
++			RV1103B_CLKGATE_CON(2), 0, GFLAGS),
++	COMPOSITE(CLK_NPU_SRC, "clk_npu_src", mux_gpll_24m_p, 0,
++			RV1103B_CLKSEL_CON(37), 0, 1, MFLAGS, 1, 2, DFLAGS,
++			RV1103B_CLKGATE_CON(5), 12, GFLAGS),
++	COMPOSITE_NODIV(ACLK_VEPU_SRC, "aclk_vepu_src", mux_480m_400m_300m_200m_p, 0,
++			RV1103B_CLKSEL_CON(30), 8, 2, MFLAGS,
++			RV1103B_CLKGATE_CON(2), 4, GFLAGS),
++	COMPOSITE(CLK_VEPU_SRC, "clk_vepu_src", mux_gpll_24m_p, 0,
++			RV1103B_CLKSEL_CON(37), 4, 1, MFLAGS, 5, 2, DFLAGS,
++			RV1103B_CLKGATE_CON(5), 13, GFLAGS),
++	COMPOSITE_NODIV(ACLK_VI_SRC, "aclk_vi_src", mux_480m_400m_300m_p, CLK_IS_CRITICAL,
++			RV1103B_CLKSEL_CON(30), 12, 2, MFLAGS,
++			RV1103B_CLKGATE_CON(2), 8, GFLAGS),
++	COMPOSITE(CLK_ISP_SRC, "clk_isp_src", mux_gpll_24m_p, 0,
++			RV1103B_CLKSEL_CON(37), 8, 1, MFLAGS, 9, 2, DFLAGS,
++			RV1103B_CLKGATE_CON(5), 14, GFLAGS),
++	COMPOSITE_NODIV(DCLK_VICAP, "dclk_vicap", mux_300m_200m_p, 0,
++			RV1103B_CLKSEL_CON(30), 14, 1, MFLAGS,
++			RV1103B_CLKGATE_CON(2), 9, GFLAGS),
++	COMPOSITE(CCLK_EMMC, "cclk_emmc", mux_gpll_24m_p, 0,
++			RV1103B_CLKSEL_CON(31), 15, 1, MFLAGS, 0, 8, DFLAGS,
++			RV1103B_CLKGATE_CON(2), 10, GFLAGS),
++	COMPOSITE(CCLK_SDMMC0, "cclk_sdmmc0", mux_gpll_24m_p, 0,
++			RV1103B_CLKSEL_CON(32), 15, 1, MFLAGS, 0, 8, DFLAGS,
++			RV1103B_CLKGATE_CON(2), 11, GFLAGS),
++	COMPOSITE(SCLK_SFC_2X, "sclk_sfc_2x", mux_gpll_24m_p, 0,
++			RV1103B_CLKSEL_CON(33), 15, 1, MFLAGS, 0, 8, DFLAGS,
++			RV1103B_CLKGATE_CON(2), 12, GFLAGS),
++	COMPOSITE_NODIV(LSCLK_PERI_SRC, "lsclk_peri_src", mux_300m_200m_p, CLK_IS_CRITICAL,
++			RV1103B_CLKSEL_CON(31), 9, 1, MFLAGS,
++			RV1103B_CLKGATE_CON(3), 0, GFLAGS),
++	COMPOSITE_NODIV(ACLK_PERI_SRC, "aclk_peri_src", mux_600m_480m_400m_p, CLK_IS_CRITICAL,
++			RV1103B_CLKSEL_CON(31), 10, 2, MFLAGS,
++			RV1103B_CLKGATE_CON(3), 1, GFLAGS),
++	COMPOSITE_NODIV(HCLK_HPMCU, "hclk_hpmcu", mux_400m_300m_p, 0,
++			RV1103B_CLKSEL_CON(31), 12, 1, MFLAGS,
++			RV1103B_CLKGATE_CON(3), 2, GFLAGS),
++		COMPOSITE_NODIV(CLK_I2C_PMU, "clk_i2c_pmu", mux_100m_24m_p, 0,
++			RV1103B_CLKSEL_CON(34), 0, 1, MFLAGS,
++			RV1103B_CLKGATE_CON(4), 0, GFLAGS),
++	COMPOSITE_NODIV(CLK_I2C_PERI, "clk_i2c_peri", mux_200m_24m_p, 0,
++			RV1103B_CLKSEL_CON(34), 1, 1, MFLAGS,
++			RV1103B_CLKGATE_CON(4), 4, GFLAGS),
++	COMPOSITE_NODIV(CLK_SPI0, "clk_spi0", mux_200m_100m_50m_24m_p, 0,
++			RV1103B_CLKSEL_CON(34), 2, 2, MFLAGS,
++			RV1103B_CLKGATE_CON(4), 5, GFLAGS),
++	COMPOSITE_NODIV(CLK_PWM0_SRC, "clk_pwm0_src", mux_100m_24m_p, 0,
++			RV1103B_CLKSEL_CON(34), 12, 1, MFLAGS,
++			RV1103B_CLKGATE_CON(4), 10, GFLAGS),
++	COMPOSITE_NODIV(CLK_PWM1, "clk_pwm1", mux_100m_24m_p, 0,
++			RV1103B_CLKSEL_CON(34), 13, 1, MFLAGS,
++			RV1103B_CLKGATE_CON(4), 11, GFLAGS),
++	COMPOSITE_NODIV(CLK_PWM2, "clk_pwm2", mux_100m_24m_p, 0,
++			RV1103B_CLKSEL_CON(34), 14, 1, MFLAGS,
++			RV1103B_CLKGATE_CON(4), 12, GFLAGS),
++	COMPOSITE_NODIV(DCLK_DECOM_SRC, "dclk_decom_src", mux_480m_400m_300m_p, 0,
++			RV1103B_CLKSEL_CON(35), 0, 2, MFLAGS,
++			RV1103B_CLKGATE_CON(5), 0, GFLAGS),
++	COMPOSITE(CCLK_SDMMC1, "cclk_sdmmc1", mux_gpll_24m_p, 0,
++			RV1103B_CLKSEL_CON(36), 15, 1, MFLAGS, 0, 8, DFLAGS,
++			RV1103B_CLKGATE_CON(5), 1, GFLAGS),
++	COMPOSITE_NODIV(CLK_CORE_CRYPTO, "clk_core_crypto", mux_300m_200m_100m_p, 0,
++			RV1103B_CLKSEL_CON(35), 2, 2, MFLAGS,
++			RV1103B_CLKGATE_CON(5), 2, GFLAGS),
++	COMPOSITE_NODIV(CLK_PKA_CRYPTO, "clk_pka_crypto", mux_300m_200m_100m_p, 0,
++			RV1103B_CLKSEL_CON(35), 4, 2, MFLAGS,
++			RV1103B_CLKGATE_CON(5), 3, GFLAGS),
++	COMPOSITE_NODIV(CLK_CORE_RGA, "clk_core_rga", mux_400m_300m_p, 0,
++			RV1103B_CLKSEL_CON(35), 8, 1, MFLAGS,
++			RV1103B_CLKGATE_CON(5), 4, GFLAGS),
 +
-+// ====================== SUBDDRCRU module definition bank=6 ======================
-+// SUBDDRCRU_SOFTRST_CON00(Offset:0xA00)
-+#define SRST_RESETN_DDR_BIU			0x00160001
-+#define SRST_ARESETN_DDRSCH_CPU			0x00160002
-+#define SRST_ARESETN_DDRSCH_VI			0x00160004
-+#define SRST_ARESETN_DDRSCH_NPVD		0x00160005
-+#define SRST_RESETN_CORE_DDRC			0x00160006
-+#define SRST_RESETN_DDRMON			0x00160007
-+#define SRST_RESETN_DFICTRL			0x00160008
-+#define SRST_RESETN_DFI_SCRAMBLE		0x00160009
++	GATE(PCLK_TOP_ROOT, "pclk_top_root", "clk_gpll_div12", CLK_IS_CRITICAL,
++			RV1103B_CLKGATE_CON(6), 0, GFLAGS),
++	COMPOSITE_NOMUX(CLK_REF_MIPI0, "clk_ref_mipi0", "clk_gpll_div2", 0,
++			RV1103B_CLKSEL_CON(40), 0, 5, DFLAGS,
++			RV1103B_CLKGATE_CON(6), 3, GFLAGS),
++	COMPOSITE_NODIV(CLK_MIPI0_OUT2IO, "clk_mipi0_out2io", clk_mipi0_out2io_p, CLK_SET_RATE_PARENT,
++			RV1103B_CLKSEL_CON(40), 6, 1, MFLAGS,
++			RV1103B_CLKGATE_CON(6), 4, GFLAGS),
++	COMPOSITE_NOMUX(CLK_REF_MIPI1, "clk_ref_mipi1", "clk_gpll_div2", 0,
++			RV1103B_CLKSEL_CON(40), 8, 5, DFLAGS,
++			RV1103B_CLKGATE_CON(6), 5, GFLAGS),
++	COMPOSITE_NODIV(CLK_MIPI1_OUT2IO, "clk_mipi1_out2io", clk_mipi1_out2io_p, CLK_SET_RATE_PARENT,
++			RV1103B_CLKSEL_CON(40), 14, 1, MFLAGS,
++			RV1103B_CLKGATE_CON(6), 6, GFLAGS),
++	COMPOSITE(MCLK_SAI_OUT2IO, "mclk_sai_out2io", mclk_sai_out2io_p, 0,
++			RV1103B_CLKSEL_CON(41), 7, 1, MFLAGS, 13, 3, DFLAGS,
++			RV1103B_CLKGATE_CON(6), 9, GFLAGS),
 +
-+// ======================= TOPCRU module definition bank=7 ========================
-+// TOPCRU_SOFTRST_CON00(Offset:0xA00)
-+#define SRST_PRESETN_CRU			0x00180000
-+#define SRST_PRESETN_CRU_BIU			0x00180001
-+#define SRST_RESETN_DDRPHY			0x0018000C
++	/* pd_vpu */
++	COMPOSITE_NODIV(ACLK_NPU_ROOT, "aclk_npu_root", aclk_npu_root_p, CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
++			RV1103B_NPUCLKSEL_CON(0), 1, 1, MFLAGS,
++			RV1103B_NPUCLKGATE_CON(0), 1, GFLAGS),
++	GATE(HCLK_RKNN, "hclk_rknn", "lsclk_npu_src", 0,
++			RV1103B_NPUCLKGATE_CON(0), 4, GFLAGS),
++	GATE(ACLK_RKNN, "aclk_rknn", "aclk_npu_root", 0,
++			RV1103B_NPUCLKGATE_CON(0), 5, GFLAGS),
 +
-+//======================= PMUCRU module definition bank=8 ========================
-+// PMUCRU_SOFTRST_CON00(Offset:0xA00)
-+#define SRST_PRESETN_PMU_GPIO0			0x001c0004
-+#define SRST_DBRESETN_PMU_GPIO0			0x001c0005
-+#define SRST_RESETN_DDR_FAIL_SAFE		0x001c0008
-+#define SRST_PRESETN_PMU_HP_TIMER		0x001c0009
-+#define SRST_RESETN_PMU_HP_TIMER		0x001c000A
-+#define SRST_RESETN_PMU_32K_HP_TIMER		0x001c000B
-+#define SRST_PRESETN_I2C0			0x001c000C
-+#define SRST_RESETN_I2C0			0x001c000D
-+#define SRST_PRESETN_UART0			0x001c000E
-+#define SRST_SRESETN_UART0			0x001c000F
++	/* pd_vepu */
++	COMPOSITE_NOMUX(LSCLK_VEPU_ROOT, "lsclk_vepu_root", "aclk_vepu_src", CLK_IS_CRITICAL,
++			RV1103B_VEPUCLKSEL_CON(0), 2, 2, DFLAGS,
++			RV1103B_VEPUCLKGATE_CON(0), 0, GFLAGS),
++	GATE(HCLK_VEPU, "hclk_vepu", "lsclk_vepu_root", 0,
++			RV1103B_VEPUCLKGATE_CON(0), 4, GFLAGS),
++	GATE(ACLK_VEPU, "aclk_vepu", "aclk_vepu_src", 0,
++			RV1103B_VEPUCLKGATE_CON(0), 5, GFLAGS),
++	COMPOSITE_NODIV(CLK_CORE_VEPU, "clk_core_vepu", clk_core_vepu_p, 0,
++			RV1103B_VEPUCLKSEL_CON(0), 1, 1, MFLAGS,
++			RV1103B_VEPUCLKGATE_CON(0), 6, GFLAGS),
++	GATE(PCLK_ACODEC, "pclk_acodec", "lsclk_vepu_root", 0,
++			RV1103B_VEPUCLKGATE_CON(0), 13, GFLAGS),
++	GATE(PCLK_USBPHY, "pclk_usbphy", "lsclk_vepu_root", 0,
++			RV1103B_VEPUCLKGATE_CON(0), 14, GFLAGS),
 +
-+// PMUCRU_SOFTRST_CON01(Offset:0xA04)
-+#define SRST_PRESETN_IOC_PMUIO0			0x001c0010
-+#define SRST_PRESETN_CRU_PMU			0x001c0011
-+#define SRST_PRESETN_PMU_GRF			0x001c0012
-+#define SRST_PRESETN_PMU_SGRF			0x001c0013
-+#define SRST_PRESETN_PMU_SGRF_REMAP		0x001c0014
-+#define SRST_RESETN_PREROLL			0x001c0016
-+#define SRST_RESETN_PREROLL_32K			0x001c0017
-+#define SRST_HRESETN_PMU_SRAM			0x001c0018
-+#define SRST_PRESETN_PWM0			0x001c0019
-+#define SRST_RESETN_PWM0			0x001c001A
++	/* pd_vi */
++	FACTOR(LSCLK_VI_100M, "lsclk_vi_100m", "clk_gpll_div6", 0, 1, 2),
++	COMPOSITE_NODIV(LSCLK_VI_ROOT, "lsclk_vi_root", lsclk_vi_root_p, CLK_IS_CRITICAL,
++			RV1103B_VICLKSEL_CON(0), 3, 1, MFLAGS,
++			RV1103B_VICLKGATE_CON(0), 0, GFLAGS),
++	GATE(HCLK_ISP, "hclk_isp", "lsclk_vi_root", 0,
++			RV1103B_VICLKGATE_CON(0), 4, GFLAGS),
++	GATE(ACLK_ISP, "aclk_isp", "aclk_vi_src", 0,
++			RV1103B_VICLKGATE_CON(0), 5, GFLAGS),
++	COMPOSITE_NODIV(CLK_CORE_ISP, "clk_core_isp", clk_core_isp_p, 0,
++			RV1103B_VICLKSEL_CON(0), 1, 1, MFLAGS,
++			RV1103B_VICLKGATE_CON(0), 6, GFLAGS),
++	GATE(ACLK_VICAP, "aclk_vicap", "aclk_vi_src", 0,
++			RV1103B_VICLKGATE_CON(1), 2, GFLAGS),
++	GATE(HCLK_VICAP, "hclk_vicap", "lsclk_vi_root", 0,
++			RV1103B_VICLKGATE_CON(1), 3, GFLAGS),
++	GATE(ISP0CLK_VICAP, "isp0clk_vicap", "clk_core_isp", 0,
++			RV1103B_VICLKGATE_CON(1), 8, GFLAGS),
++	GATE(PCLK_CSI2HOST0, "pclk_csi2host0", "lsclk_vi_root", 0,
++			RV1103B_VICLKGATE_CON(1), 9, GFLAGS),
++	GATE(PCLK_CSI2HOST1, "pclk_csi2host1", "lsclk_vi_root", 0,
++			RV1103B_VICLKGATE_CON(1), 11, GFLAGS),
++	GATE(HCLK_EMMC, "hclk_emmc", "lsclk_vi_root", 0,
++			RV1103B_VICLKGATE_CON(1), 13, GFLAGS),
++	GATE(HCLK_SFC, "hclk_sfc", "lsclk_vi_root", 0,
++			RV1103B_VICLKGATE_CON(1), 14, GFLAGS),
++	GATE(HCLK_SFC_XIP, "hclk_sfc_xip", "lsclk_vi_root", 0,
++			RV1103B_VICLKGATE_CON(1), 15, GFLAGS),
++	GATE(HCLK_SDMMC0, "hclk_sdmmc0", "lsclk_vi_root", 0,
++			RV1103B_VICLKGATE_CON(2), 0, GFLAGS),
++	GATE(PCLK_CSIPHY, "pclk_csiphy", "lsclk_vi_root", 0,
++			RV1103B_VICLKGATE_CON(2), 2, GFLAGS),
++	GATE(PCLK_GPIO1, "pclk_gpio1", "lsclk_vi_root", 0,
++			RV1103B_VICLKGATE_CON(2), 3, GFLAGS),
++	GATE(DBCLK_GPIO1, "dbclk_gpio1", "xin24m", 0,
++			RV1103B_VICLKGATE_CON(2), 4, GFLAGS),
 +
-+// PMUCRU_SOFTRST_CON02(Offset:0xA08)
-+#define SRST_RESETN_LPMCU			0x001c0020
-+#define SRST_RESETN_LPMCU_PWRUP			0x001c0021
-+#define SRST_RESETN_LPMCU_CPU			0x001c0022
-+#define SRST_TRESETN_LPMCU_CPU			0x001c0023
++	/* pd_ddr */
++	GATE(LSCLK_DDR_ROOT, "lsclk_ddr_root", "clk_gpll_div12", CLK_IS_CRITICAL,
++			RV1103B_DDRCLKGATE_CON(0), 0, GFLAGS),
++	GATE(CLK_TIMER_DDRMON, "clk_timer_ddrmon", "xin24m", 0,
++			RV1103B_DDRCLKGATE_CON(0), 4, GFLAGS),
++	FACTOR(0, "sclk_ddr", "dpll", 0, 1, 2),
 +
-+// ======================= PMU1CRU module definition bank=9 =======================
-+// PMU1CRU_SOFTRST_CON00(Offset:0xA00)
-+#define SRST_PRESETN_SPI2AHB			0x00200000
-+#define SRST_HRESETN_SPI2AHB			0x00200001
-+#define SRST_SRESETN_SPI2AHB			0x00200002
-+#define SRST_LSRESETN_PMU_BIU			0x00200003
-+#define SRST_PRESETN_WDT_LPMCU			0x00200009
-+#define SRST_TRESETN_WDT_LPMCU			0x0020000A
-+#define SRST_HRESETN_SFC_PMU1			0x0020000C
-+#define SRST_HRESETN_SFC_XIP_PMU1		0x0020000D
-+#define SRST_SRESETN_SFC_2X_PMU1		0x0020000E
++	/* pd_pmu */
++	COMPOSITE(LSCLK_PMU_ROOT, "lsclk_pmu_root", lsclk_pmu_root_p, CLK_IS_CRITICAL,
++			RV1103B_PMUCLKSEL_CON(2), 4, 1, MFLAGS, 0, 2, DFLAGS,
++			RV1103B_PMUCLKGATE_CON(0), 0, GFLAGS),
++	GATE(PCLK_PMU, "pclk_pmu", "lsclk_pmu_root", CLK_IS_CRITICAL,
++			RV1103B_PMUCLKGATE_CON(0), 2, GFLAGS),
++	MUX(XIN_RC_SRC, "xin_rc_src", xin_rc_div_p, 0,
++			RV1103B_PMUCLKSEL_CON(0), 2, 1, MFLAGS),
++	COMPOSITE_FRACMUX(XIN_RC_DIV, "xin_rc_div", "xin_rc_src", CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
++			RV1103B_PMUCLKSEL_CON(1), 0,
++			RV1103B_PMUCLKGATE_CON(0), 3, GFLAGS,
++			&rv1103b_rcdiv_pmu_fracmux),
++	GATE(PCLK_PMU_GPIO0, "pclk_pmu_gpio0", "lsclk_pmu_root", 0,
++			RV1103B_PMUCLKGATE_CON(0), 4, GFLAGS),
++	COMPOSITE_NODIV(DBCLK_PMU_GPIO0, "dbclk_pmu_gpio0", dbclk_pmu_gpio0_p, 0,
++			RK3568_PMU_CLKSEL_CON(0), 3, 1, MFLAGS,
++			RV1103B_PMUCLKGATE_CON(0), 5, GFLAGS),
++	GATE(PCLK_PWM0, "pclk_pwm0", "lsclk_pmu_root", 0,
++			RV1103B_PMUCLKGATE_CON(2), 0, GFLAGS),
++	GATE(CLK_PWM0, "clk_pwm0", "clk_pwm0_src", 0,
++			RV1103B_PMUCLKGATE_CON(2), 1, GFLAGS),
++	GATE(CLK_OSC_PWM0, "clk_osc_pwm0", "xin24m", 0,
++			RV1103B_PMUCLKGATE_CON(2), 2, GFLAGS),
++	GATE(CLK_RC_PWM0, "clk_rc_pwm0", "clk_32k", 0,
++			RV1103B_PMUCLKGATE_CON(2), 3, GFLAGS),
++	GATE(PCLK_I2C0, "pclk_i2c0", "lsclk_pmu_root", 0,
++			RV1103B_PMUCLKGATE_CON(0), 12, GFLAGS),
++	GATE(CLK_I2C0, "clk_i2c0", "clk_i2c_pmu", 0,
++			RV1103B_PMUCLKGATE_CON(0), 13, GFLAGS),
++	GATE(PCLK_UART0, "pclk_uart0", "lsclk_pmu_root", 0,
++			RV1103B_PMUCLKGATE_CON(0), 14, GFLAGS),
++	GATE(CLK_REFOUT, "clk_refout", "xin24m", 0,
++			RV1103B_PMUCLKGATE_CON(1), 4, GFLAGS),
++	GATE(CLK_PREROLL, "clk_preroll", "lsclk_pmu_root", 0,
++			RV1103B_PMUCLKGATE_CON(1), 6, GFLAGS),
++	GATE(CLK_PREROLL_32K, "clk_preroll_32k", "clk_32k", 0,
++			RV1103B_PMUCLKGATE_CON(1), 7, GFLAGS),
++	GATE(CLK_LPMCU_PMU, "clk_lpmcu_pmu", "lsclk_pmu_root", 0,
++			RV1103B_PMUCLKGATE_CON(2), 12, GFLAGS),
 +
-+// PMU1CRU_SOFTRST_CON01(Offset:0xA04)
-+#define SRST_PRESETN_LPMCU_MAILBOX		0x00200018
-+#define SRST_PRESETN_IOC_PMUIO1			0x00200019
-+#define SRST_PRESETN_CRU_PMU1			0x0020001A
++	/* pd_pmu1 */
++	GATE(PCLK_SPI2AHB, "pclk_spi2ahb", "lsclk_pmu_root", 0,
++			RV1103B_PMU1CLKGATE_CON(0), 0, GFLAGS),
++	GATE(HCLK_SPI2AHB, "hclk_spi2ahb", "lsclk_pmu_root", 0,
++			RV1103B_PMU1CLKGATE_CON(0), 1, GFLAGS),
++	GATE(PCLK_WDT_LPMCU, "pclk_wdt_lpmcu", "lsclk_pmu_root", 0,
++			RV1103B_PMU1CLKGATE_CON(0), 9, GFLAGS),
++	GATE(TCLK_WDT_LPMCU, "tclk_wdt_lpmcu", "xin24m", 0,
++			RV1103B_PMU1CLKGATE_CON(0), 10, GFLAGS),
++	GATE(HCLK_SFC_PMU1, "hclk_sfc_pmu1", "lsclk_pmu_root", 0,
++			RV1103B_PMU1CLKGATE_CON(0), 12, GFLAGS),
++	GATE(HCLK_SFC_XIP_PMU1, "hclk_sfc_xip_pmu1", "lsclk_pmu_root", 0,
++			RV1103B_PMU1CLKGATE_CON(0), 13, GFLAGS),
++	COMPOSITE_NODIV(SCLK_SFC_2X_PMU1, "sclk_sfc_2x_pmu1", sclk_sfc_2x_pmu1_p, 0,
++			RV1103B_PMU1CLKSEL_CON(0), 8, 1, MFLAGS,
++			RV1103B_PMU1CLKGATE_CON(0), 14, GFLAGS),
++	GATE(CLK_LPMCU, "clk_lpmcu", "lsclk_pmu_root", 0,
++			RV1103B_PMU1CLKGATE_CON(1), 0, GFLAGS),
++	GATE(CLK_LPMCU_RTC, "clk_lpmcu_rtc", "xin24m", 0,
++			RV1103B_PMU1CLKGATE_CON(1), 4, GFLAGS),
++	GATE(PCLK_LPMCU_MAILBOX, "pclk_lpmcu_mailbox", "lsclk_pmu_root", 0,
++			RV1103B_PMU1CLKGATE_CON(1), 8, GFLAGS),
 +
-+#define CLK_NR_SRST				(SRST_PRESETN_CRU_PMU1 + 1)
++	/* pd_peri */
++	COMPOSITE_NOMUX(PCLK_PERI_ROOT, "pclk_peri_root", "lsclk_peri_src", CLK_IS_CRITICAL,
++			RV1103B_PERICLKSEL_CON(0), 0, 2, DFLAGS,
++			RV1103B_PERICLKGATE_CON(0), 0, GFLAGS),
++	COMPOSITE_NOMUX(PCLK_RTC_ROOT, "pclk_rtc_root", "lsclk_peri_src", CLK_IS_CRITICAL,
++			RV1103B_PERICLKSEL_CON(2), 12, 4, DFLAGS,
++			RV1103B_PERICLKGATE_CON(0), 8, GFLAGS),
++	GATE(CLK_TIMER_ROOT, "clk_timer_root", "xin24m", 0,
++			RV1103B_PERICLKGATE_CON(0), 1, GFLAGS),
++	GATE(PCLK_TIMER, "pclk_timer", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(1), 0, GFLAGS),
++	GATE(CLK_TIMER0, "clk_timer0", "clk_timer_root", 0,
++			RV1103B_PERICLKGATE_CON(1), 1, GFLAGS),
++	GATE(CLK_TIMER1, "clk_timer1", "clk_timer_root", 0,
++			RV1103B_PERICLKGATE_CON(1), 2, GFLAGS),
++	GATE(CLK_TIMER2, "clk_timer2", "clk_timer_root", 0,
++			RV1103B_PERICLKGATE_CON(1), 3, GFLAGS),
++	GATE(CLK_TIMER3, "clk_timer3", "clk_timer_root", 0,
++			RV1103B_PERICLKGATE_CON(1), 4, GFLAGS),
++	GATE(CLK_TIMER4, "clk_timer4", "clk_timer_root", 0,
++			RV1103B_PERICLKGATE_CON(1), 5, GFLAGS),
++	GATE(CLK_TIMER5, "clk_timer5", "clk_timer_root", 0,
++			RV1103B_PERICLKGATE_CON(1), 6, GFLAGS),
++	GATE(PCLK_STIMER, "pclk_stimer", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(1), 7, GFLAGS),
++	GATE(CLK_STIMER0, "clk_stimer0", "clk_timer_root", 0,
++			RV1103B_PERICLKGATE_CON(1), 8, GFLAGS),
++	GATE(CLK_STIMER1, "clk_stimer1", "clk_timer_root", 0,
++			RV1103B_PERICLKGATE_CON(1), 9, GFLAGS),
++	GATE(PCLK_WDT_NS, "pclk_wdt_ns", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(2), 0, GFLAGS),
++	GATE(TCLK_WDT_NS, "tclk_wdt_ns", "xin24m", 0,
++			RV1103B_PERICLKGATE_CON(2), 1, GFLAGS),
++	GATE(PCLK_WDT_S, "pclk_wdt_s", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(2), 2, GFLAGS),
++	GATE(TCLK_WDT_S, "tclk_wdt_s", "xin24m", 0,
++			RV1103B_PERICLKGATE_CON(2), 3, GFLAGS),
++	GATE(PCLK_WDT_HPMCU, "pclk_wdt_hpmcu", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(2), 4, GFLAGS),
++	GATE(TCLK_WDT_HPMCU, "tclk_wdt_hpmcu", "xin24m", 0,
++			RV1103B_PERICLKGATE_CON(2), 5, GFLAGS),
++	GATE(PCLK_I2C1, "pclk_i2c1", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(2), 6, GFLAGS),
++	GATE(CLK_I2C1, "clk_i2c1", "clk_i2c_peri", 0,
++			RV1103B_PERICLKGATE_CON(2), 7, GFLAGS),
++	GATE(PCLK_I2C2, "pclk_i2c2", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(2), 8, GFLAGS),
++	GATE(CLK_I2C2, "clk_i2c2", "clk_i2c_peri", 0,
++			RV1103B_PERICLKGATE_CON(2), 9, GFLAGS),
++	GATE(PCLK_I2C3, "pclk_i2c3", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(2), 10, GFLAGS),
++	GATE(CLK_I2C3, "clk_i2c3", "clk_i2c_peri", 0,
++			RV1103B_PERICLKGATE_CON(2), 11, GFLAGS),
++	GATE(PCLK_I2C4, "pclk_i2c4", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(2), 12, GFLAGS),
++	GATE(CLK_I2C4, "clk_i2c4", "clk_i2c_peri", 0,
++			RV1103B_PERICLKGATE_CON(2), 13, GFLAGS),
++	GATE(PCLK_SPI0, "pclk_spi0", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(3), 10, GFLAGS),
++	GATE(PCLK_PWM1, "pclk_pwm1", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(4), 6, GFLAGS),
++	GATE(CLK_OSC_PWM1, "clk_osc_pwm1", "xin24m", 0,
++			RV1103B_PERICLKGATE_CON(4), 8, GFLAGS),
++	GATE(PCLK_PWM2, "pclk_pwm2", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(4), 12, GFLAGS),
++	GATE(CLK_OSC_PWM2, "clk_osc_pwm2", "xin24m", 0,
++			RV1103B_PERICLKGATE_CON(4), 13, GFLAGS),
++	GATE(PCLK_UART2, "pclk_uart2", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(3), 0, GFLAGS),
++	GATE(PCLK_UART1, "pclk_uart1", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(3), 2, GFLAGS),
++	GATE(ACLK_RKDMA, "aclk_rkdma", "lsclk_peri_src", 0,
++			RV1103B_PERICLKGATE_CON(5), 8, GFLAGS),
++	GATE(PCLK_TSADC, "pclk_tsadc", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(5), 9, GFLAGS),
++	COMPOSITE_NOMUX(CLK_TSADC, "clk_tsadc", "xin24m", 0,
++			RV1103B_PERICLKSEL_CON(0), 4, 5, DFLAGS,
++			RV1103B_PERICLKGATE_CON(5), 10, GFLAGS),
++	COMPOSITE_NOMUX(CLK_TSADC_TSEN, "clk_tsadc_tsen", "xin24m", 0,
++			RV1103B_PERICLKSEL_CON(0), 10, 5, DFLAGS,
++			RV1103B_PERICLKGATE_CON(5), 11, GFLAGS),
++	GATE(PCLK_SARADC, "pclk_saradc", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(5), 12, GFLAGS),
++	COMPOSITE_NOMUX(CLK_SARADC, "clk_saradc", "xin24m", 0,
++			RV1103B_PERICLKSEL_CON(1), 0, 3, DFLAGS,
++			RV1103B_PERICLKGATE_CON(5), 13, GFLAGS),
++	GATE(PCLK_GPIO2, "pclk_gpio2", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(6), 3, GFLAGS),
++	GATE(DBCLK_GPIO2, "dbclk_gpio2", "xin24m", 0,
++			RV1103B_PERICLKGATE_CON(6), 4, GFLAGS),
++	GATE(ACLK_USBOTG, "aclk_usbotg", "lsclk_peri_src", 0,
++			RV1103B_PERICLKGATE_CON(6), 9, GFLAGS),
++	GATE(CLK_REF_USBOTG, "clk_ref_usbotg", "xin24m", 0,
++			RV1103B_PERICLKGATE_CON(6), 10, GFLAGS),
++	GATE(HCLK_SDMMC1, "hclk_sdmmc1", "lsclk_peri_src", 0,
++			RV1103B_PERICLKGATE_CON(7), 0, GFLAGS),
++	GATE(HCLK_SAI, "hclk_sai", "lsclk_peri_src", 0,
++			RV1103B_PERICLKGATE_CON(7), 1, GFLAGS),
++	GATE(ACLK_CRYPTO, "aclk_crypto", "lsclk_peri_src", 0,
++			RV1103B_PERICLKGATE_CON(8), 2, GFLAGS),
++	GATE(HCLK_CRYPTO, "hclk_crypto", "lsclk_peri_src", 0,
++			RV1103B_PERICLKGATE_CON(8), 3, GFLAGS),
++	GATE(HCLK_RK_RNG_S, "hclk_rk_rng_s", "lsclk_peri_src", 0,
++			RV1103B_PERICLKGATE_CON(8), 5, GFLAGS),
++	GATE(HCLK_RK_RNG_NS, "hclk_rk_rng_ns", "hclk_rk_rng_s", 0,
++			RV1103B_PERICLKGATE_CON(8), 4, GFLAGS),
++	GATE(PCLK_OTPC_NS, "pclk_otpc_ns", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(8), 6, GFLAGS),
++	GATE(CLK_OTPC_ROOT_NS, "clk_otpc_root_ns", "xin24m", 0,
++			RV1103B_PERICLKGATE_CON(8), 7, GFLAGS),
++	GATE(CLK_SBPI_OTPC_NS, "clk_sbpi_otpc_ns", "clk_otpc_root_ns", 0,
++			RV1103B_PERICLKGATE_CON(8), 8, GFLAGS),
++	COMPOSITE_NOMUX(CLK_USER_OTPC_NS, "clk_user_otpc_ns", "clk_otpc_root_ns", 0,
++			RV1103B_PERICLKSEL_CON(1), 4, 3, DFLAGS,
++			RV1103B_PERICLKGATE_CON(8), 9, GFLAGS),
++	GATE(PCLK_OTPC_S, "pclk_otpc_s", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(8), 10, GFLAGS),
++	GATE(CLK_OTPC_ROOT_S, "clk_otpc_root_s", "xin24m", 0,
++			RV1103B_PERICLKGATE_CON(8), 11, GFLAGS),
++	GATE(CLK_SBPI_OTPC_S, "clk_sbpi_otpc_s", "clk_otpc_root_s", 0,
++			RV1103B_PERICLKGATE_CON(8), 12, GFLAGS),
++	COMPOSITE_NOMUX(CLK_USER_OTPC_S, "clk_user_otpc_s", "clk_otpc_root_s", 0,
++			RV1103B_PERICLKSEL_CON(1), 8, 3, DFLAGS,
++			RV1103B_PERICLKGATE_CON(8), 13, GFLAGS),
++	GATE(PCLK_OTP_MASK, "pclk_otp_mask", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(8), 15, GFLAGS),
++	GATE(HCLK_RGA, "hclk_rga", "lsclk_peri_src", 0,
++			RV1103B_PERICLKGATE_CON(9), 0, GFLAGS),
++	GATE(ACLK_RGA, "aclk_rga", "aclk_peri_src", 0,
++			RV1103B_PERICLKGATE_CON(9), 1, GFLAGS),
++	GATE(ACLK_MAC, "aclk_mac", "lsclk_peri_src", 0,
++			RV1103B_PERICLKGATE_CON(9), 3, GFLAGS),
++	GATE(PCLK_MAC, "pclk_mac", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(9), 4, GFLAGS),
++	GATE(CLK_MACPHY, "clk_macphy", "xin24m", 0,
++			RV1103B_PERICLKGATE_CON(9), 11, GFLAGS),
++	GATE(ACLK_SPINLOCK, "aclk_spinlock", "lsclk_peri_src", 0,
++			RV1103B_PERICLKGATE_CON(10), 0, GFLAGS),
++	GATE(HCLK_CACHE, "hclk_cache", "hclk_hpmcu", 0,
++			RV1103B_PERICLKGATE_CON(10), 1, GFLAGS),
++	GATE(PCLK_HPMCU_MAILBOX, "pclk_hpmcu_mailbox", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(10), 2, GFLAGS),
++	GATE(PCLK_HPMCU_INTMUX, "pclk_hpmcu_intmux", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(10), 3, GFLAGS),
++	GATE(CLK_HPMCU, "clk_hpmcu", "hclk_hpmcu", 0,
++			RV1103B_PERICLKGATE_CON(10), 4, GFLAGS),
++	GATE(CLK_HPMCU_RTC, "clk_hpmcu_rtc", "xin24m", 0,
++			RV1103B_PERICLKGATE_CON(10), 8, GFLAGS),
++	GATE(DCLK_DECOM, "dclk_decom", "dclk_decom_src", 0,
++			RV1103B_PERICLKGATE_CON(11), 0, GFLAGS),
++	GATE(ACLK_DECOM, "aclk_decom", "aclk_peri_src", 0,
++			RV1103B_PERICLKGATE_CON(11), 1, GFLAGS),
++	GATE(PCLK_DECOM, "pclk_decom", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(11), 2, GFLAGS),
++	GATE(ACLK_SYS_SRAM, "aclk_sys_sram", "lsclk_peri_src", CLK_IS_CRITICAL,
++			RV1103B_PERICLKGATE_CON(11), 3, GFLAGS),
++	GATE(PCLK_DMA2DDR, "pclk_dma2ddr", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(11), 4, GFLAGS),
++	GATE(ACLK_DMA2DDR, "aclk_dma2ddr", "aclk_peri_src", 0,
++			RV1103B_PERICLKGATE_CON(11), 5, GFLAGS),
++	GATE(PCLK_DCF, "pclk_dcf", "pclk_peri_root", 0,
++			RV1103B_PERICLKGATE_CON(11), 6, GFLAGS),
++	GATE(ACLK_DCF, "aclk_dcf", "lsclk_peri_src", 0,
++			RV1103B_PERICLKGATE_CON(11), 7, GFLAGS),
++	COMPOSITE_NOMUX(MCLK_ACODEC_TX, "mclk_acodec_tx", "mclk_sai_src", 0,
++			RV1103B_PERICLKSEL_CON(2), 0, 3, DFLAGS,
++			RV1103B_PERICLKGATE_CON(11), 9, GFLAGS),
++	GATE(CLK_REF_USBPHY, "clk_ref_usbphy", "xin24m", 0,
++			RV1103B_PERICLKGATE_CON(11), 12, GFLAGS),
 +
-+#endif
++	/* io */
++	COMPOSITE_NODIV(CLK_FREQ_PWM0_SRC, "clk_freq_pwm0_src", clk_freq_pwm0_src_p, 0,
++			RV1103B_CLKSEL_CON(35), 12, 2, MFLAGS,
++			RV1103B_CLKGATE_CON(5), 6, GFLAGS),
++	GATE(CLK_FREQ_PWM0, "clk_freq_pwm0", "clk_freq_pwm0_src", 0,
++			RV1103B_PMUCLKGATE_CON(2), 4, GFLAGS),
++	COMPOSITE_NODIV(CLK_COUNTER_PWM0_SRC, "clk_counter_pwm0_src", clk_counter_pwm0_src_p, 0,
++			RV1103B_CLKSEL_CON(35), 14, 2, MFLAGS,
++			RV1103B_CLKGATE_CON(5), 7, GFLAGS),
++	GATE(CLK_COUNTER_PWM0, "clk_counter_pwm0", "clk_counter_pwm0_src", 0,
++			RV1103B_PMUCLKGATE_CON(2), 5, GFLAGS),
++	GATE(SCLK_SPI2AHB, "sclk_spi2ahb", "sclk_spi2ahb_io", 0,
++			RV1103B_PMU1CLKGATE_CON(0), 2, GFLAGS),
++	GATE(CLK_UTMI_USBOTG, "clk_utmi_usbotg", "clk_utmi_usbotg_io", 0,
++			RV1103B_PERICRU_IP_CON, 14, GFLAGS),
++};
++
++static struct rockchip_clk_branch rv1103b_armclk __initdata =
++	MUX(ARMCLK, "armclk", mux_armclk_p, CLK_IS_CRITICAL | CLK_SET_RATE_PARENT,
++			RV1103B_CORECLKSEL_CON(0), 1, 1, MFLAGS);
++
++static void __init rv1103b_clk_init(struct device_node *np)
++{
++	struct rockchip_clk_provider *ctx;
++	unsigned long clk_nr;
++	void __iomem *reg_base;
++
++	clk_nr = rockchip_clk_find_max_clk_id(rv1103b_clk_branches,
++					      ARRAY_SIZE(rv1103b_clk_branches)) + 1;
++	reg_base = of_iomap(np, 0);
++	if (!reg_base) {
++		pr_err("%s: could not map cru region\n", __func__);
++		return;
++	}
++
++	ctx = rockchip_clk_init(np, reg_base, clk_nr);
++	if (IS_ERR(ctx)) {
++		pr_err("%s: rockchip clk init failed\n", __func__);
++		iounmap(reg_base);
++		return;
++	}
++
++	rockchip_clk_register_plls(ctx, rv1103b_pll_clks,
++				   ARRAY_SIZE(rv1103b_pll_clks),
++				   RV1103B_GRF_SOC_STATUS0);
++
++	rockchip_clk_register_branches(ctx, rv1103b_clk_branches,
++				       ARRAY_SIZE(rv1103b_clk_branches));
++
++	rockchip_clk_register_armclk_multi_pll(ctx, &rv1103b_armclk,
++					rv1103b_cpuclk_rates,
++					ARRAY_SIZE(rv1103b_cpuclk_rates));
++
++	rockchip_register_softrst(np, CLK_NR_SRST, reg_base + RV1103B_PERISOFTRST_CON(0),
++				  ROCKCHIP_SOFTRST_HIWORD_MASK);
++
++	rockchip_register_restart_notifier(ctx, RV1103B_GLB_SRST_FST, NULL);
++
++	rockchip_clk_of_add_provider(np, ctx);
++
++	/* pvtpll src init */
++	writel_relaxed(PVTPLL_SRC_SEL_PVTPLL, reg_base + RV1103B_CORECLKSEL_CON(0));
++	writel_relaxed(PVTPLL_SRC_SEL_PVTPLL, reg_base + RV1103B_NPUCLKSEL_CON(0));
++	writel_relaxed(PVTPLL_SRC_SEL_PVTPLL, reg_base + RV1103B_VICLKSEL_CON(0));
++	writel_relaxed(PVTPLL_SRC_SEL_PVTPLL, reg_base + RV1103B_VEPUCLKSEL_CON(0));
++}
++
++CLK_OF_DECLARE(rv1103b_cru, "rockchip,rv1103b-cru", rv1103b_clk_init);
+diff --git a/drivers/clk/rockchip/clk.h b/drivers/clk/rockchip/clk.h
+index b2fff1d13a4a..cf0f5f11c34b 100644
+--- a/drivers/clk/rockchip/clk.h
++++ b/drivers/clk/rockchip/clk.h
+@@ -66,6 +66,55 @@ struct clk;
+ #define PX30_PMU_CLKGATE_CON(x)		((x) * 0x4 + 0x80)
+ #define PX30_PMU_MODE			0x0020
+ 
++#define RV1103B_TOPCRU_BASE		0x60000
++#define RV1103B_PERICRU_BASE		0x0
++#define RV1103B_VICRU_BASE		0x30000
++#define RV1103B_NPUCRU_BASE		0x20000
++#define RV1103B_CORECRU_BASE		0x40000
++#define RV1103B_VEPUCRU_BASE		0x10000
++#define RV1103B_DDRCRU_BASE		0x50000
++#define RV1103B_SUBDDRCRU_BASE		0x58000
++#define RV1103B_PMUCRU_BASE		0x70000
++#define RV1103B_PMU1CRU_BASE		0x80000
++
++#define RV1103B_PMUCLKSEL_CON(x)	((x) * 0x4 + 0x300 + RV1103B_PMUCRU_BASE)
++#define RV1103B_PMUCLKGATE_CON(x)	((x) * 0x4 + 0x800 + RV1103B_PMUCRU_BASE)
++#define RV1103B_PMUSOFTRST_CON(x)	((x) * 0x4 + 0xa00 + RV1103B_PMUCRU_BASE)
++#define RV1103B_PMU1CLKSEL_CON(x)	((x) * 0x4 + 0x300 + RV1103B_PMU1CRU_BASE)
++#define RV1103B_PMU1CLKGATE_CON(x)	((x) * 0x4 + 0x800 + RV1103B_PMU1CRU_BASE)
++#define RV1103B_PMU1SOFTRST_CON(x)	((x) * 0x4 + 0xa00 + RV1103B_PMU1CRU_BASE)
++#define RV1103B_PLL_CON(x)		((x) * 0x4 + RV1103B_TOPCRU_BASE)
++#define RV1103B_MODE_CON		(0x280 + RV1103B_TOPCRU_BASE)
++#define RV1103B_CLKSEL_CON(x)		((x) * 0x4 + 0x300 + RV1103B_TOPCRU_BASE)
++#define RV1103B_CLKGATE_CON(x)		((x) * 0x4 + 0x800 + RV1103B_TOPCRU_BASE)
++#define RV1103B_SOFTRST_CON(x)		((x) * 0x4 + 0xa00 + RV1103B_TOPCRU_BASE)
++#define RV1103B_GLB_SRST_FST		(0xc08 + RV1103B_TOPCRU_BASE)
++#define RV1103B_GLB_SRST_SND		(0xc0c + RV1103B_TOPCRU_BASE)
++#define RV1103B_CLK_SAI_FRAC_DIV_HIGH	(0xcc0 + RV1103B_TOPCRU_BASE)
++#define RV1103B_PERICLKSEL_CON(x)	((x) * 0x4 + 0x300 + RV1103B_PERICRU_BASE)
++#define RV1103B_PERICLKGATE_CON(x)	((x) * 0x4 + 0x800 + RV1103B_PERICRU_BASE)
++#define RV1103B_PERISOFTRST_CON(x)	((x) * 0x4 + 0xa00 + RV1103B_PERICRU_BASE)
++#define RV1103B_PERICRU_IP_CON		(0xc08 + RV1103B_PERICRU_BASE)
++#define RV1103B_VICLKSEL_CON(x)		((x) * 0x4 + 0x300 + RV1103B_VICRU_BASE)
++#define RV1103B_VICLKGATE_CON(x)	((x) * 0x4 + 0x800 + RV1103B_VICRU_BASE)
++#define RV1103B_VISOFTRST_CON(x)	((x) * 0x4 + 0xa00 + RV1103B_VICRU_BASE)
++#define RV1103B_NPUCLKSEL_CON(x)	((x) * 0x4 + 0x300 + RV1103B_NPUCRU_BASE)
++#define RV1103B_NPUCLKGATE_CON(x)	((x) * 0x4 + 0x800 + RV1103B_NPUCRU_BASE)
++#define RV1103B_NPUSOFTRST_CON(x)	((x) * 0x4 + 0xa00 + RV1103B_NPUCRU_BASE)
++#define RV1103B_CORECLKSEL_CON(x)	((x) * 0x4 + 0x300 + RV1103B_CORECRU_BASE)
++#define RV1103B_CORECLKGATE_CON(x)	((x) * 0x4 + 0x800 + RV1103B_CORECRU_BASE)
++#define RV1103B_CORESOFTRST_CON(x)	((x) * 0x4 + 0xa00 + RV1103B_CORECRU_BASE)
++#define RV1103B_VEPUCLKSEL_CON(x)	((x) * 0x4 + 0x300 + RV1103B_VEPUCRU_BASE)
++#define RV1103B_VEPUCLKGATE_CON(x)	((x) * 0x4 + 0x800 + RV1103B_VEPUCRU_BASE)
++#define RV1103B_VEPUSOFTRST_CON(x)	((x) * 0x4 + 0xa00 + RV1103B_VEPUCRU_BASE)
++#define RV1103B_DDRCLKSEL_CON(x)	((x) * 0x4 + 0x300 + RV1103B_DDRCRU_BASE)
++#define RV1103B_DDRCLKGATE_CON(x)	((x) * 0x4 + 0x800 + RV1103B_DDRCRU_BASE)
++#define RV1103B_DDRSOFTRST_CON(x)	((x) * 0x4 + 0xa00 + RV1103B_DDRCRU_BASE)
++#define RV1103B_SUBDDRCLKSEL_CON(x)	((x) * 0x4 + 0x300 + RV1103B_SUBDDRCRU_BASE)
++#define RV1103B_SUBDDRCLKGATE_CON(x)	((x) * 0x4 + 0x800 + RV1103B_SUBDDRCRU_BASE)
++#define RV1103B_SUBDDRSOFTRST_CON(x)	((x) * 0x4 + 0xa00 + RV1103B_SUBDDRCRU_BASE)
++#define RV1103B_SUBDDRMODE_CON		(0x280 + RV1103B_SUBDDRCRU_BASE)
++
+ #define RV1108_PLL_CON(x)		((x) * 0x4)
+ #define RV1108_CLKSEL_CON(x)		((x) * 0x4 + 0x60)
+ #define RV1108_CLKGATE_CON(x)		((x) * 0x4 + 0x120)
 -- 
 2.34.1
 
