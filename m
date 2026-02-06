@@ -1,319 +1,166 @@
-Return-Path: <devicetree+bounces-263495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263496-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gNZKJ5Y7hmnzLAQAu9opvQ
-	(envelope-from <devicetree+bounces-263495-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 20:05:58 +0100
+	id oRsGKbQ8hmkvLQQAu9opvQ
+	(envelope-from <devicetree+bounces-263496-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 20:10:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0468E1026AA
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 20:05:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06E28102788
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 20:10:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6E812301C88A
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 19:03:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 51FED30210D4
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 19:08:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6097A42883D;
-	Fri,  6 Feb 2026 19:03:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C534A428847;
+	Fri,  6 Feb 2026 19:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="Qxt0yCYi"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MPr3oF03"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1545E2ECE9B;
-	Fri,  6 Feb 2026 19:03:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69E0D2ECE9B;
+	Fri,  6 Feb 2026 19:08:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770404587; cv=none; b=UHaOhJSnR5nTq9W5smDuRkdZnmCahBpCvGXGGpR00oo3Y0isG157cyyPqImS7qIIvxoaVRW9LJzxTvyGCtuWw1Ihcpv+4scDucHvMOINDjJyScWE5nSYyODgInW2krDEXI3upLndPv3qYkUXj8seQyntQ+fJrZVly6ZmpDqD1ko=
+	t=1770404895; cv=none; b=ZmHTXbb9wX7SuPvvuHfXdBG5KLFsqLy1x9VnOAxkQBqphzSoKNjS8vyox2bU9bDM5c+4tHQNuPZkWgrJ2bATnw1BXgpaXCBjAPp046Tjw7PeaZy8YFlxtMTEgknS4LgloQaufdYv9rIzdjAJzroDKUfs3d9CLdnUy1YoeqL1ULk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770404587; c=relaxed/simple;
-	bh=Bqi5X3Fl96aSAe7WAZ+QKYpT0CAaBnsogGi3nqTHNcE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Bo0vkKJzx8r2aKL3awvU829E/skolQYhNdiEBzMTTp4s0CHJeeDl98kHWbit09d7J5u2GtD4YZuzrKnWYj/fHKLSHQBXULxWf5HfO1nDYzSYXtPwf7A+PAvN4LtpONS6gpj1JjIRec12rz2x8W4rCDHU9+8hYHkr4Wy0kzctgPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=Qxt0yCYi; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 616GLdRK1708603;
-	Fri, 6 Feb 2026 14:02:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=5VfS+
-	xuMEAFCuweibrGSN/E/3cX1tZ3ZL3gV6TVDKxI=; b=Qxt0yCYiqtS/pMRcKFL/Z
-	jxheDz0xFEoJlRhQsOR5slijLJsKTasIEYEI6hseyBRd7doGOkK0ObGU1us+AnIe
-	ySiw9xLwjIGrDSFS12GkEEKDVxgdEIn1lpA2dIOu1tokIovOMbaOcMireNuQXSsc
-	CM9Qvc8GpZTLMghwiCNH5uwcuf45KduZtIiCh2/m1G+vez6xwxb8DCTFUS1AuBG4
-	/Ia9XfKaDwL8mACTAXUUgOHBCd0VKmYkEKj6MZhRs56K9PXrrRrYK/G+9wN1xZdG
-	4/uDYymiDrgloi1l7pmcY1YHhtpqnTDD1igc+FZVrnB/GYAEgGinMHa77M4EBVJ7
-	g==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4c4q2fex8j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Feb 2026 14:02:59 -0500 (EST)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 616J2uVU012977
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 6 Feb 2026 14:02:56 -0500
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 6 Feb 2026 14:02:56 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 6 Feb 2026 14:02:56 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Fri, 6 Feb 2026 14:02:56 -0500
-Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 616J2hlm009044;
-	Fri, 6 Feb 2026 14:02:45 -0500
-From: Marcelo Schmitt <marcelo.schmitt@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <jic23@kernel.org>, <michael.hennerich@analog.com>, <nuno.sa@analog.com>,
-        <eblanc@baylibre.com>, <dlechner@baylibre.com>, <andy@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <corbet@lwn.net>, <marcelo.schmitt1@gmail.com>
-Subject: [PATCH v8 8/8] iio: adc: ad4030: Support common-mode channels with SPI offloading
-Date: Fri, 6 Feb 2026 16:02:42 -0300
-Message-ID: <1f05069e25e9ea28db2cef9fa3856456be3c2614.1770403407.git.marcelo.schmitt@analog.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1770403407.git.marcelo.schmitt@analog.com>
-References: <cover.1770403407.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1770404895; c=relaxed/simple;
+	bh=rD12jZNWPdLcwK9Chg3S5oef/etzrdqixcbLXgsH0rQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yp0O90tovIDFhaDim21F4wQBl1N/fbwL5KEcnpPEgN/E5945TlFpE4s7Vb5n/9FeLgAdx4p1bgZklPvtuR8v/c+eyoQiy9shH4jrzQijdvs3eYSdA5/9RpX1ACek1IRVGrPikAr23Uk6tLNvC885G4OS5jowIqPCihS4UW9C7rg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MPr3oF03; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770404895; x=1801940895;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=rD12jZNWPdLcwK9Chg3S5oef/etzrdqixcbLXgsH0rQ=;
+  b=MPr3oF03yJPg+cb3Gu2oFU1BmvPN3Zu7j9ipSetbsukruzIdLEPkAe+F
+   Ik+5aQFYp2OtKFcr1v55/as567JVTwIETFZg2Xs0x1eFvK45y5uqyKJ4e
+   Z0vZuoKirZV7pSPWHLSteHxTx9FzRWTRPrj1hQVr64JgWT0O/PCd1n9Fu
+   UwOS3PlB6qf6ixR9XAt/At2tzr4A4/EwMcHMyVX4e51H8sZAwirGu5W0M
+   v6CA0BgBoWcvCUkyp2eTV9s4aThclprGx8wnhRydwj3Xub1F1boPparl2
+   Tzm9EeC25H6HLX0OGmfp9i+wNG0p4p0VeilvXu1ABfburi/Qtfpkq005a
+   Q==;
+X-CSE-ConnectionGUID: v8+33BxySwaBvsVKlqiyyQ==
+X-CSE-MsgGUID: Vgx/9i/gTfekrR8nalSbkA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="75239314"
+X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; 
+   d="scan'208";a="75239314"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2026 11:08:15 -0800
+X-CSE-ConnectionGUID: 5AXItfbKTdefetpi8q88Cw==
+X-CSE-MsgGUID: 3Xh8yCxSS/STtLkwnSHfFg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; 
+   d="scan'208";a="210819971"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 06 Feb 2026 11:08:11 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1voRBZ-00000000l32-1kjn;
+	Fri, 06 Feb 2026 19:08:09 +0000
+Date: Sat, 7 Feb 2026 03:08:01 +0800
+From: kernel test robot <lkp@intel.com>
+To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-amlogic@lists.infradead.org,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+	Xianwei Zhao <xianwei.zhao@amlogic.com>
+Subject: Re: [PATCH v3 2/3] dma: amlogic: Add general DMA driver for A9
+Message-ID: <202602070253.hZ9PqUeB-lkp@intel.com>
+References: <20260206-amlogic-dma-v3-2-56fb9f59ed22@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: vLfxdeRIQH6_FmjH6sQHTQkZfeFbo1b2
-X-Proofpoint-GUID: vLfxdeRIQH6_FmjH6sQHTQkZfeFbo1b2
-X-Authority-Analysis: v=2.4 cv=MpVfKmae c=1 sm=1 tr=0 ts=69863ae3 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22
- a=GgsMoib0sEa3-_RKJdDe:22 a=gAnH3GRIAAAA:8 a=nLo5uX867Eh3Y58ELpAA:9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA2MDE0MCBTYWx0ZWRfX81hwtO20lLzB
- qX/7/nHp2RIrr6/dSN1B7xj8oUCRwa5yVYwE332WnsULtt1QgzdNGcNH39FT5aNdcB2mjM3qmDI
- n3JSQHDKab9bxlP8j+GEc8Pgse2WmYpwWH6KQl4pa5UmxRjaqeeMoG7S4eM7C5mPwTKhQSqzrng
- 146YyHVDGgcnVeVwSzCbn6TJrjobnypHSbvQe6RAYc0rvbOaTep1uwaw8soTSaGGHf456RmZ3mr
- LcWtlmL8BJxK2HK2kkThFFjGDkXhQkVAvm4s/H43reDlKMBWYlDIHXd7mWYxR9fsFqj2G+PsO1a
- YdW7/R1dt8Lm01UER/cCmgy5R5x3uR/Y9UmJOMDBduSDUGPn5MUb5XmUEJkffHdripkehUF16yH
- KtqziqQkkRDBFsQ6dA9dEu+L2rEmHWFp9ozKNzNftKL61DcH2+uFVg9mH9H3wq4y52gqR6e33MV
- /1cp1GmiDDk7nNPYfJg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-06_05,2026-02-05_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 priorityscore=1501 lowpriorityscore=0
- adultscore=0 phishscore=0 spamscore=0 bulkscore=0 suspectscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602060140
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260206-amlogic-dma-v3-2-56fb9f59ed22@amlogic.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263495-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,lwn.net,gmail.com];
-	TO_DN_NONE(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263496-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[marcelo.schmitt@analog.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	PRECEDENCE_BULK(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,analog.com:dkim,analog.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	DKIM_TRACE(0.00)[analog.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 0468E1026AA
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,xianwei.zhao.amlogic.com,dt];
+	NEURAL_HAM(-0.00)[-0.962];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 06E28102788
 X-Rspamd-Action: no action
 
-AD4030 and similar devices can read common-mode voltage together with
-ADC sample data. When enabled, common-mode voltage data is provided in a
-separate IIO channel since it measures something other than the primary
-ADC input signal and requires separate scaling to convert to voltage
-units. The initial SPI offload support patch for AD4030 only provided
-differential channels. Now, extend the AD4030 driver to also provide
-common-mode IIO channels when setup with SPI offloading capability.
+Hi Xianwei,
 
-Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
----
- drivers/iio/adc/ad4030.c | 49 ++++++++++++++++++++++++++++++++--------
- 1 file changed, 40 insertions(+), 9 deletions(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/drivers/iio/adc/ad4030.c b/drivers/iio/adc/ad4030.c
-index 3e4eb7ce6185..500a68944458 100644
---- a/drivers/iio/adc/ad4030.c
-+++ b/drivers/iio/adc/ad4030.c
-@@ -193,7 +193,7 @@ struct ad4030_state {
- 	unsigned int avg_log2;
- 	enum ad4030_out_mode mode;
- 	/* Offload sampling */
--	struct spi_transfer offload_xfer;
-+	struct spi_transfer offload_xfer[2];
- 	struct spi_message offload_msg;
- 	struct spi_offload *offload;
- 	struct spi_offload_trigger *offload_trigger;
-@@ -238,7 +238,7 @@ struct ad4030_state {
-  * - _idx - _ch * 2 + _ch gives the channel number for this specific common-mode
-  *   channel
-  */
--#define AD4030_CHAN_CMO(_idx, _ch)  {					\
-+#define __AD4030_CHAN_CMO(_idx, _ch, _offload)  {			\
- 	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
- 		BIT(IIO_CHAN_INFO_SCALE),				\
- 	.type = IIO_VOLTAGE,						\
-@@ -248,12 +248,18 @@ struct ad4030_state {
- 	.scan_index = (_idx),						\
- 	.scan_type = {							\
- 		.sign = 'u',						\
--		.storagebits = 8,					\
-+		.storagebits = (_offload ? 32 : 8),			\
- 		.realbits = 8,						\
--		.endianness = IIO_BE,					\
-+		.endianness = (_offload ? IIO_CPU : IIO_BE),		\
- 	},								\
- }
- 
-+#define AD4030_CHAN_CMO(_idx, _ch)					\
-+	__AD4030_CHAN_CMO(_idx, _ch, 0)
-+
-+#define AD4030_OFFLOAD_CHAN_CMO(_idx, _ch)				\
-+	__AD4030_CHAN_CMO(_idx, _ch, 1)
-+
- /*
-  * For a chip with 2 hardware channel this will be used to create 2 differential
-  * channels:
-@@ -1178,6 +1184,7 @@ static const struct iio_buffer_setup_ops ad4030_buffer_setup_ops = {
- static void ad4030_prepare_offload_msg(struct iio_dev *indio_dev)
- {
- 	struct ad4030_state *st = iio_priv(indio_dev);
-+	bool common_mode;
- 	u8 offload_bpw;
- 
- 	if (st->mode == AD4030_OUT_DATA_MD_30_AVERAGED_DIFF)
-@@ -1185,10 +1192,22 @@ static void ad4030_prepare_offload_msg(struct iio_dev *indio_dev)
- 	else
- 		offload_bpw = st->chip->precision_bits;
- 
--	st->offload_xfer.bits_per_word = offload_bpw;
--	st->offload_xfer.len = spi_bpw_to_bytes(offload_bpw);
--	st->offload_xfer.offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
--	spi_message_init_with_transfers(&st->offload_msg, &st->offload_xfer, 1);
-+	st->offload_xfer[0].bits_per_word = offload_bpw;
-+	st->offload_xfer[0].len = spi_bpw_to_bytes(offload_bpw);
-+	st->offload_xfer[0].offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
-+
-+	common_mode = st->mode == AD4030_OUT_DATA_MD_24_DIFF_8_COM ||
-+		      st->mode == AD4030_OUT_DATA_MD_16_DIFF_8_COM;
-+
-+	if (common_mode) {
-+		offload_bpw = 8;
-+		st->offload_xfer[1].bits_per_word = offload_bpw;
-+		st->offload_xfer[1].len = spi_bpw_to_bytes(offload_bpw);
-+		st->offload_xfer[1].offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
-+	}
-+
-+	spi_message_init_with_transfers(&st->offload_msg, st->offload_xfer,
-+					common_mode ? 2 : 1);
- }
- 
- static int ad4030_offload_buffer_postenable(struct iio_dev *indio_dev)
-@@ -1253,6 +1272,7 @@ static int ad4030_offload_buffer_predisable(struct iio_dev *indio_dev)
- static const struct iio_buffer_setup_ops ad4030_offload_buffer_setup_ops = {
- 	.postenable = &ad4030_offload_buffer_postenable,
- 	.predisable = &ad4030_offload_buffer_predisable,
-+	.validate_scan_mask = ad4030_validate_scan_mask,
- };
- 
- static int ad4030_regulators_get(struct ad4030_state *st)
-@@ -1503,7 +1523,7 @@ static int ad4030_probe(struct spi_device *spi)
- 		 * Offloaded SPI transfers can't support software timestamp so
- 		 * no additional timestamp channel is added.
- 		 */
--		indio_dev->num_channels = st->chip->num_voltage_inputs;
-+		indio_dev->num_channels = 2 * st->chip->num_voltage_inputs;
- 		indio_dev->channels = st->chip->offload_channels;
- 		ret = ad4030_spi_offload_setup(indio_dev, st);
- 		if (ret)
-@@ -1623,6 +1643,7 @@ static const struct ad4030_chip_info ad4030_24_chip_info = {
- 	},
- 	.offload_channels = {
- 		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_24_offload_scan_types),
-+		AD4030_OFFLOAD_CHAN_CMO(1, 0),
- 	},
- 	.grade = AD4030_REG_CHIP_GRADE_AD4030_24_GRADE,
- 	.precision_bits = 24,
-@@ -1644,6 +1665,8 @@ static const struct ad4030_chip_info ad4630_16_chip_info = {
- 	.offload_channels = {
- 		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_16_offload_scan_types),
- 		AD4030_OFFLOAD_CHAN_DIFF(1, ad4030_16_offload_scan_types),
-+		AD4030_OFFLOAD_CHAN_CMO(2, 0),
-+		AD4030_OFFLOAD_CHAN_CMO(3, 1),
- 	},
- 	.grade = AD4030_REG_CHIP_GRADE_AD4630_16_GRADE,
- 	.precision_bits = 16,
-@@ -1665,6 +1688,8 @@ static const struct ad4030_chip_info ad4630_24_chip_info = {
- 	.offload_channels = {
- 		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_24_offload_scan_types),
- 		AD4030_OFFLOAD_CHAN_DIFF(1, ad4030_24_offload_scan_types),
-+		AD4030_OFFLOAD_CHAN_CMO(2, 0),
-+		AD4030_OFFLOAD_CHAN_CMO(3, 1),
- 	},
- 	.grade = AD4030_REG_CHIP_GRADE_AD4630_24_GRADE,
- 	.precision_bits = 24,
-@@ -1686,6 +1711,8 @@ static const struct ad4030_chip_info ad4632_16_chip_info = {
- 	.offload_channels = {
- 		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_16_offload_scan_types),
- 		AD4030_OFFLOAD_CHAN_DIFF(1, ad4030_16_offload_scan_types),
-+		AD4030_OFFLOAD_CHAN_CMO(2, 0),
-+		AD4030_OFFLOAD_CHAN_CMO(3, 1),
- 	},
- 	.grade = AD4030_REG_CHIP_GRADE_AD4632_16_GRADE,
- 	.precision_bits = 16,
-@@ -1707,6 +1734,8 @@ static const struct ad4030_chip_info ad4632_24_chip_info = {
- 	.offload_channels = {
- 		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_24_offload_scan_types),
- 		AD4030_OFFLOAD_CHAN_DIFF(1, ad4030_24_offload_scan_types),
-+		AD4030_OFFLOAD_CHAN_CMO(2, 0),
-+		AD4030_OFFLOAD_CHAN_CMO(3, 1),
- 	},
- 	.grade = AD4030_REG_CHIP_GRADE_AD4632_24_GRADE,
- 	.precision_bits = 24,
-@@ -1725,6 +1754,7 @@ static const struct ad4030_chip_info adaq4216_chip_info = {
- 	},
- 	.offload_channels = {
- 		ADAQ4216_OFFLOAD_CHAN_DIFF(0, ad4030_16_offload_scan_types),
-+		AD4030_OFFLOAD_CHAN_CMO(1, 0),
- 	},
- 	.grade = AD4030_REG_CHIP_GRADE_ADAQ4216_GRADE,
- 	.precision_bits = 16,
-@@ -1744,6 +1774,7 @@ static const struct ad4030_chip_info adaq4224_chip_info = {
- 	},
- 	.offload_channels = {
- 		ADAQ4216_OFFLOAD_CHAN_DIFF(0, ad4030_24_offload_scan_types),
-+		AD4030_OFFLOAD_CHAN_CMO(1, 0),
- 	},
- 	.grade = AD4030_REG_CHIP_GRADE_ADAQ4224_GRADE,
- 	.precision_bits = 24,
+[auto build test WARNING on 3c8a86ed002ab8fb287ee4ec92f0fd6ac5b291d2]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Xianwei-Zhao-via-B4-Relay/dt-bindings-dma-Add-Amlogic-A9-SoC-DMA/20260206-170903
+base:   3c8a86ed002ab8fb287ee4ec92f0fd6ac5b291d2
+patch link:    https://lore.kernel.org/r/20260206-amlogic-dma-v3-2-56fb9f59ed22%40amlogic.com
+patch subject: [PATCH v3 2/3] dma: amlogic: Add general DMA driver for A9
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20260207/202602070253.hZ9PqUeB-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260207/202602070253.hZ9PqUeB-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202602070253.hZ9PqUeB-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/dma/amlogic-dma.c:7:
+>> arch/x86/include/asm/irq.h:39:56: warning: 'struct pt_regs' declared inside parameter list will not be visible outside of this definition or declaration
+      39 | extern void __handle_irq(struct irq_desc *desc, struct pt_regs *regs);
+         |                                                        ^~~~~~~
+>> arch/x86/include/asm/irq.h:44:50: warning: 'struct cpumask' declared inside parameter list will not be visible outside of this definition or declaration
+      44 | void arch_trigger_cpumask_backtrace(const struct cpumask *mask,
+         |                                                  ^~~~~~~
+
+
+vim +39 arch/x86/include/asm/irq.h
+
+a782a7e46bb508 arch/x86/include/asm/irq.h Thomas Gleixner   2015-08-02  38  
+7c2a57364cae0f arch/x86/include/asm/irq.h Thomas Gleixner   2020-05-21 @39  extern void __handle_irq(struct irq_desc *desc, struct pt_regs *regs);
+22067d4501bfb4 include/asm-x86/irq.h      Thomas Gleixner   2008-05-02  40  
+d9112f43021554 arch/x86/include/asm/irq.h Thomas Gleixner   2009-08-20  41  extern void init_ISA_irqs(void);
+d9112f43021554 arch/x86/include/asm/irq.h Thomas Gleixner   2009-08-20  42  
+b52e0a7c4e4100 arch/x86/include/asm/irq.h Michel Lespinasse 2013-06-06  43  #ifdef CONFIG_X86_LOCAL_APIC
+9a01c3ed5cdb35 arch/x86/include/asm/irq.h Chris Metcalf     2016-10-07 @44  void arch_trigger_cpumask_backtrace(const struct cpumask *mask,
+8d539b84f1e347 arch/x86/include/asm/irq.h Douglas Anderson  2023-08-04  45  				    int exclude_cpu);
+89f579ce99f7e0 arch/x86/include/asm/irq.h Yi Wang           2018-11-22  46  
+
 -- 
-2.39.2
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
