@@ -1,153 +1,264 @@
-Return-Path: <devicetree+bounces-263185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263186-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gJq/KoMzhWkl+AMAu9opvQ
-	(envelope-from <devicetree+bounces-263185-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 01:19:15 +0100
+	id AMk/JHk3hWkd+QMAu9opvQ
+	(envelope-from <devicetree+bounces-263186-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 01:36:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 296FAF88D2
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 01:19:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8617F8AD4
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 01:36:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EEBDF3016CB7
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 00:19:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 71ACB300D440
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 00:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 259951DF273;
-	Fri,  6 Feb 2026 00:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D5B4221DAE;
+	Fri,  6 Feb 2026 00:36:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zrgdw+iR"
+	dkim=pass (2048-bit key) header.d=ziswiler.com header.i=marcel@ziswiler.com header.b="Or49auqq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02104CA4E;
-	Fri,  6 Feb 2026 00:19:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9468D22127B;
+	Fri,  6 Feb 2026 00:36:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.208.4.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770337141; cv=none; b=lweKwvuXKcQDuOt6cekBjW1nv33bkgyh6mY7KDCBpDcqgIDXnLlrjctHoIswCvPquzb9pekUIDbDJpVmAViCPmR++VhLyDkVc0IG176XMbd42EHwB5Bqp7iJWNHHhcC0/md5Wd1D3YE0dXdkEhm+/tbM5+UpWhbwQHtAIJSBIN0=
+	t=1770338166; cv=none; b=qGDeQXUcllqMKtiklEsOobpCf5GZ4fa9Ln4wureYt9S7ucT8w3P4JTdTcpmO4F1AJrWrX3uJm90Vb+LrRvFfnvQZDYIX9pP/g5RcXcSakJyKApLb6HgDeNpTrOCEri3dCtW6bWZkE+03nBS2S0G9N6YSQJoap2Xvv3lWNpoebX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770337141; c=relaxed/simple;
-	bh=V8opFpQ39R30vQfM2h6i3ZrP+S7JGt1EHVc/iQHSGPI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=VkZuC8KDqkqRdugVWbNs3kd+W1PXg9cq6AcTJz5tCEHljNSK70xjDpPep4XSKhd4mYi8pSWwj2fKNbDa8FEKOqZcRKVzm7NUdhyCJNYK2r8qcB7r6CSNHlyp3BEhW/vcaBhxV2XYYY/+hQD+Pne1h5exJUXjuPVUazls0KioHCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zrgdw+iR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70F94C4CEF7;
-	Fri,  6 Feb 2026 00:18:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770337140;
-	bh=V8opFpQ39R30vQfM2h6i3ZrP+S7JGt1EHVc/iQHSGPI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Zrgdw+iRA1ATXi9YtrIOUNfoEGQyYcVZflrperRFRa7onPiiZVy/Z2Uh5CCr6oqxT
-	 2mzx/Fb2hQDFQT42VmM9KoTfxJUFSyhrmj7SxJe4t6By/burc8tdjmHVORQjS2G6/j
-	 B8vUO912/d/BKqOQRmV+9F0H78jmRLwiTBcAc5dh7kfZk9YYwjiSrNKqF/euwtwk2O
-	 P2HXmmrNc7Pjktu9GEtFNFvRnKELssJKl5oj5Ujb3mQVnZfZYNsi45FWnsDGPmej4B
-	 8qhksnacuaRzyzN5ayXz6WkjiDBiT1VJR4wcNxi6xWDdjTBzCOZooiueUT8EKUS35b
-	 cwhrWilWdVDCw==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, Vaishnav Achath <vaishnav.a@ti.com>, 
- "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Santhosh Kumar K <s-k6@ti.com>, 
- Pratyush Yadav <pratyush@kernel.org>, 
- Pascal Eberhard <pascal.eberhard@se.com>, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-renesas-soc@vger.kernel.org
-In-Reply-To: <20260205-schneider-6-19-rc1-qspi-v5-0-843632b3c674@bootlin.com>
-References: <20260205-schneider-6-19-rc1-qspi-v5-0-843632b3c674@bootlin.com>
-Subject: Re: (subset) [PATCH v5 0/4] spi: cadence-qspi: Add Renesas RZ/N1
- support
-Message-Id: <177033713720.233295.10091402789767547570.b4-ty@kernel.org>
-Date: Fri, 06 Feb 2026 00:18:57 +0000
+	s=arc-20240116; t=1770338166; c=relaxed/simple;
+	bh=Xhkea2uuWgsFz5RIwUPCylSMm3n3sBnhjKt3SVa5kPo=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=JwtIHCVdY6Mtgi0+hYGAaclUmEzENxY7MNPVNBly+pOkfGcB2o0gD7hWlLMAGkP3dDWTLY5UDtvAQ5uULNzHCMye8C3+GLyzGDjrsUVrlpiPGX5x6htApJCiNbjdgt0d+kzaNFaICLuok7H2nQmFpkys19uPe5djTlxfyEiTMxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=ziswiler.com; spf=pass smtp.mailfrom=ziswiler.com; dkim=pass (2048-bit key) header.d=ziswiler.com header.i=marcel@ziswiler.com header.b=Or49auqq; arc=none smtp.client-ip=74.208.4.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=ziswiler.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziswiler.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziswiler.com;
+	s=s1-ionos; t=1770338161; x=1770942961; i=marcel@ziswiler.com;
+	bh=Xhkea2uuWgsFz5RIwUPCylSMm3n3sBnhjKt3SVa5kPo=;
+	h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+	 References:Content-Type:Content-Transfer-Encoding:MIME-Version:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=Or49auqq5TOaoraO/5JCgpn68ik1a26TfCrvJExzKlykYFC/cxsrbXJyVDaGzC4B
+	 yfzll7ZJs0q2ObW7ffiC+CfmX6u3MabiO1PZgc6LZIJ19WlMJoSwVSaUgux0BHe//
+	 uy3GhXlADtf3pcP8TMO0bnP0cV9B0XH+4KULzPBpPAPDenEImLp0zH3kn/TfJzIdW
+	 1m0hiVZZoiQ/5N6KVYtUUzVxxp1vEP3H9Bbi9lF7iLhk0vhyDTLr+6ftwfS1rdTqq
+	 VYTStUiFD7oaxUthxGRXScCYJu4AjE10C8CDnMjGPeeH4lvFnodfJqFazU7I4AoWI
+	 CMdxKF2eOqfYYJ2HRQ==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [10.10.1.155] ([84.227.68.106]) by mrelay.perfora.net
+ (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1MgOMF-1vKrBs3W99-00h0v5;
+ Fri, 06 Feb 2026 01:30:20 +0100
+Message-ID: <2931a866f5daf82e57fd0a87c04bd583658db946.camel@ziswiler.com>
+Subject: Re: [PATCH v10 0/3] Add driver support for ESWIN eic700 SoC clock
+ controller
+From: Marcel Ziswiler <marcel@ziswiler.com>
+To: dongxuyang@eswincomputing.com, mturquette@baylibre.com,
+ sboyd@kernel.org, 	robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, 	linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ troy.mitchell@linux.dev, bmasney@redhat.com
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com, 
+	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com, 
+	ganboing@gmail.com
+Date: Fri, 06 Feb 2026 01:30:11 +0100
+In-Reply-To: <20260205093322.1030-1-dongxuyang@eswincomputing.com>
+References: <20260205093322.1030-1-dongxuyang@eswincomputing.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (by Flathub.org) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-47773
+X-Provags-ID: V03:K1:Aug1QhwJRosjBkuLTR2iyMa0FfhDgjzDGkGlqDsWZGtX6GVQBpr
+ 7i3Kk36hlnTs8/peZGELUafMN5UHRmlLLNrsu0VCCObr3FHFA5KuSZUELyoXIk5icNkPNn+
+ ZjUPevCm52RLDOUdQIBYWUsOPwT2pkd9+N12fMxM/TNjTid/JDUDZPeAhkyTUDNrCHOD41l
+ x+KpXCQqznC7n6sNynDfQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:JnqF4fu1XXU=;QhKuutrFwLIzCvdsUg58WbnehJz
+ sktUrHSPsOrGQzkgvKsBIbFLWwEE8p5/xiij5aKZJo/msTmv62HZ4RKX72fNhT9CNDtSYMWvz
+ xCGylLwaIONMaJR7y4+UBUU2DoONmgEQQ8FgcLIkfHxnsSFefBA/ehbDfbSmYGBvBR1dllCtY
+ VBh12jVbPhXNcBSXLVYRzVldbot1AH+v5i+ty25ollzNOI34O3tEMHJq5z5a2EpUHyDjke7qZ
+ LqLdAFq21JVqZQbmIJ3IjkVCPtdKj6HKqRocE7u2UeL6P/ZMBEuvtuGpRUdmzhAy1g535fSm3
+ VR/Z5GdwkJGT4gQR3e96Lrg67uy8I2PZBOZ2T1wsANWJGNqNScT8eVTl61uGadKKOXkAyxdFR
+ lzkb8zEZyy1BDjasTuVq+fhFzSiVch1AIMcp9OMnfVsV+elzkNiP4BjFQaprL+hronwfaXjJu
+ 5li0buuMSmbH/MCRrXprp/c7RIAZATs3h1RpsTa3QrOKcVctd3P8qzUKI30+iOI2hsbeAGmd2
+ /BtLTJAcq2H5Xp3IrgSRDJcQlBloPHqPMxLfKNKGhxOyoRwt/2WDmZ6d6zzLRxh+NoorY5Fts
+ kxhHHx8FtQS3Jkhh2K0pt1cqPgGQjk8X/adbQ6DFi0s/IAOztjDzS5vVs955izVr7SsXgZ15j
+ 6tqxmRX8cJpXYSz35PbisoezBfeNWfHJt2MuV1pKX8zFG99av13dH2+ELfUy25C0t6RPjbF7A
+ PEXgM6XngWfN7sb/mePnwVMDBWgW3HaQ2yszJNQY0IhBWIJd8uRNeCZ7d6jUPH67ZOKQMyo9x
+ 29f9S41Vq0OzW0Vs1Hf7QZrp5qT3adqQ6ylqQ7PUX1jgzxAOcYtnYDpx/yCXlwSTKGEBL3t9t
+ zp9OZcwDNz1izxLpBOEjD89fuhhFiZ4IfaaQ5hjMm/92NeTFpbAk6PcXhw06/zMAJixNdxlV4
+ RB3P97r4GTImg/1u5hjL5Pw8sghKzQhDe40O9dHoc6gM3hHzJ95x4+yAM7qA8MG3w+OF5+B+L
+ BWR0fHtYv6YKbBGwHSWo7T79FCfDq2vwERWRTrhLhjMV5BANCSvQsUchfQrs401PTsByl/n2L
+ NFST7ISJJPV/6pnVNg7Gk5FVQOGCy4Qdo14BrPqbUkNsgHp8v9mbvO84uxy2a6typEOg1obsM
+ F5i1kpl3GC/Se9OLEDU+zPhXQWmCRTfZz9D4mz0tH/FqRqAA3SQNJ2FIHJgvk7RM1hUQC3nGl
+ onpfv3FS2NbSC7zvaqOWJkY7+lmgJyXGRXAjkDF3iok+rzq9RLpLmLUzVAF+7kn6KtRwtz7Dm
+ /T1ksD56e5KA9AcrOKwx8SSyc1YiZ5DmNcvDPBEUPioXjSR/TmHrB/Rk0DXrmcgqtX91pNm11
+ 1ZIAWT5BrB0RKKZ4qVwEn4om/H9+IwnkObhYgj7YKH1zTFltN8UuHO8aHzFGIssHvbpJ6gLOI
+ ZH0cXeO7FbtAK9Se5h7FBjPJjpQxhdZDnQxBiVz9YxkSQXSz1fZURZhrlijMtNO8MOdT6j6zt
+ 56hJTWxfp+ZBuLnpfXLWD7J6Ur1oSJv2Q8oH4roWBg91rqddXXGnsOHMcdSXNrN9RkFwqRu8G
+ aPclBMBbf7OHZj79LuG2klCrwQifxW1/ZHTigGYe8M5bDbFW0X++EX3Y1YSOHUWGbn8bwRhGH
+ u/KhpxDP8SdGvgUs/4JAfalaaY3rCwFTYPgVTPSh8IPmpoIUXy8nTxmGc1RDGtv4XEeCXf8Xb
+ J6qRHlaj7YqBRJaqYMpW4a/ve/wNYPLQY4xaMkCOO7ILU/lQWigJmDvs=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[ziswiler.com:s=s1-ionos];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263186-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[kernel.org,glider.be,gmail.com,ti.com,bootlin.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263185-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	DMARC_NA(0.00)[ziswiler.com: no valid DMARC record];
+	FREEMAIL_CC(0.00)[eswincomputing.com,einfochips.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[ziswiler.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marcel@ziswiler.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 296FAF88D2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sifive.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:email,ziswiler.com:email,ziswiler.com:dkim,ziswiler.com:mid]
+X-Rspamd-Queue-Id: C8617F8AD4
 X-Rspamd-Action: no action
 
-On Thu, 05 Feb 2026 19:09:47 +0100, Miquel Raynal (Schneider Electric) wrote:
-> This series adds support for the QSPI controller available on Renesas
-> RZ/N1S and RZ/N1D SoC. It has been tested with a custom board (see last
-> SPI patch for details), but has been tested by Wolfram (thank you!) on
-> the DB board.
-> Link: https://lore.kernel.org/linux-devicetree/20260116114852.52948-2-wsa+renesas@sang-engineering.com/
-> 
-> Adding support for this SoC required a few adaptations to the Cadence
-> QSPI driver which have already been merged (except one regarding clocks
-> handling). This series contains the remaining patches, the ones actually
-> adding support for the RZ/N1 flavour.
-> 
-> [...]
+Hi Xuyang Dong
 
-Applied to
+On Thu, 2026-02-05 at 17:33 +0800, dongxuyang@eswincomputing.com wrote:
+> From: Xuyang Dong <dongxuyang@eswincomputing.com>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Thank you very much!
 
-Thanks!
+For the whole series.
 
-[1/4] spi: dt-bindings: cdns,qspi-nor: Add Renesas RZ/N1D400 to the list
-      commit: 2b97f5cd1a956a9ac948ec57775600158988dadd
-[2/4] spi: cadence-qspi: Kill cqspi_jh7110_clk_init
-      commit: 324ecc7788c2e21d0d9197a8c015ff75382122d9
-[3/4] spi: cadence-qspi: Add support for the Renesas RZ/N1 controller
-      commit: a40236feb62ccbf2b36d288550a483122b3205e5
+Tested-by: Marcel Ziswiler <marcel@ziswiler.com> # ebc77
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+BTW: Should anybody else want to easily test mainline on EBC77 [1].
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+[1] https://github.com/riscv/meta-riscv/pull/594
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Cheers
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Marcel
 
-Thanks,
-Mark
+> The link [1] provides the official documentation for the EIC7700. Section=
+ 3.2
+> covers the clock subsystem.
+>=20
+> [1] https://www.sifive.com/document-file/eic7700x-datasheet
+>=20
+> Updates:
+> =C2=A0 Changes in v10:
+> =C2=A0 - Updated driver file
+> =C2=A0=C2=A0=C2=A0 - Add a private clock divider API named 'eswin_registe=
+r_clkdiv' to
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 register divider clocks with private flag.
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Define 'ESWIN_PRIV_DIV_MIN_2' private flag=
+ for registering the clock
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dividers whose division ratio start from 2=
+.
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Implement the private set_rate, recalc_rat=
+e, and determine_rate accordingly.
+> =C2=A0=C2=A0=C2=A0 - Add CLK_DIVIDER_ALLOW_ZERO flag to the clock divider=
+s whose division
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ratio start from 0.
+> =C2=A0=C2=A0=C2=A0 - Replace CONFIG_ARCH_ESWIN with CONFIG_COMMON_CLK_ESW=
+IN in the Makefile.
+> =C2=A0=C2=A0=C2=A0 - Modify the help description of COMMON_CLK_EIC7700.
+> =C2=A0=C2=A0=C2=A0 - Move register offset definitions from 'clk-eic7700.h=
+' to 'clk-eic7700.c' and
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 remove the 'clk-eic7700.h'. Remove '_CTRL'=
+ from the offset names.
+> =C2=A0=C2=A0=C2=A0 - Remove all unused headers.
+> =C2=A0=C2=A0=C2=A0 - Use devm_platform_ioremap_resource() instead of devm=
+_of_iomap().
+> =C2=A0=C2=A0=C2=A0 - Export the functions from clk.c as symbols.
+> =C2=A0=C2=A0=C2=A0 - Use readl_poll_timeout().
+> =C2=A0=C2=A0=C2=A0 - Use 'clk_parent_data' and '.hw' instead of string pa=
+rent names.
+> =C2=A0=C2=A0=C2=A0 - Rename the header file from clk.h to common.h.
+> =C2=A0=C2=A0=C2=A0 - Rename macros from EIC7700_* to ESWIN_* in common.h.
+> =C2=A0=C2=A0=C2=A0 - Add a new function, 'eswin_clk_register_clks', which=
+ can register
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 divider, mux, gate, and fixed-factor clock=
+s based on their types.
+> =C2=A0=C2=A0=C2=A0 - Add structure 'eswin_clk_info' to manage the clocks =
+that need to be registered
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 in a specific order.
+> =C2=A0=C2=A0=C2=A0 - Add macros 'ESWIN_*_TYPE' to define divider, mux, ga=
+te, and fixed-factor clocks
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 with type. Add enum 'eswin_clk_type' for t=
+hese types.
+> =C2=A0=C2=A0=C2=A0 - Remove 'eswin_clk_register_mux_tbl'. Use 'eswin_clk_=
+register_mux' to register
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mux clocks with or without table.
+> =C2=A0=C2=A0=C2=A0 - Add xtal24m as the parent clock of the PLL.
+> =C2=A0=C2=A0=C2=A0 - Change 2025 to 2026 in all files.
+>=20
+> =C2=A0 - Link to v9: https://lore.kernel.org/all/20251229105844.1089-1-do=
+ngxuyang@eswincomputing.com/
 
+[snip]
+
+> Xuyang Dong (3):
+> =C2=A0 dt-bindings: clock: eswin: Documentation for eic7700 SoC
+> =C2=A0 clock: eswin: Add eic7700 clock driver
+> =C2=A0 MAINTAINERS: Add entry for ESWIN EIC7700 clock driver
+>=20
+> =C2=A0.../bindings/clock/eswin,eic7700-clock.yaml=C2=A0=C2=A0 |=C2=A0=C2=
+=A0 46 +
+> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0=C2=A0=C2=A0 8 +
+> =C2=A0drivers/clk/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
+> =C2=A0drivers/clk/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
+> =C2=A0drivers/clk/eswin/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0=C2=A0 15 +
+> =C2=A0drivers/clk/eswin/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0=C2=A0=C2=A0 8 +
+> =C2=A0drivers/clk/eswin/clk-eic7700.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1337 +++++++++++++++++
+> =C2=A0drivers/clk/eswin/clk.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 575 +++++++
+> =C2=A0drivers/clk/eswin/common.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0 373 +++++
+> =C2=A0.../dt-bindings/clock/eswin,eic7700-clock.h=C2=A0=C2=A0 |=C2=A0 285=
+ ++++
+> =C2=A010 files changed, 2649 insertions(+)
+> =C2=A0create mode 100644 Documentation/devicetree/bindings/clock/eswin,ei=
+c7700-clock.yaml
+> =C2=A0create mode 100644 drivers/clk/eswin/Kconfig
+> =C2=A0create mode 100644 drivers/clk/eswin/Makefile
+> =C2=A0create mode 100644 drivers/clk/eswin/clk-eic7700.c
+> =C2=A0create mode 100644 drivers/clk/eswin/clk.c
+> =C2=A0create mode 100644 drivers/clk/eswin/common.h
+> =C2=A0create mode 100644 include/dt-bindings/clock/eswin,eic7700-clock.h
+>=20
+> --
+> 2.34.1
 
