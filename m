@@ -1,185 +1,424 @@
-Return-Path: <devicetree+bounces-263192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263194-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2P9zBLY+hWme+gMAu9opvQ
-	(envelope-from <devicetree+bounces-263192-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 02:07:02 +0100
+	id 2HpuDGM/hWme+gMAu9opvQ
+	(envelope-from <devicetree+bounces-263194-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 02:09:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CD4FF8D59
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 02:07:01 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99FDAF8DC9
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 02:09:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EED303037450
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 01:06:00 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3E0343004682
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 01:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCF8423507C;
-	Fri,  6 Feb 2026 01:05:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E320230BF6;
+	Fri,  6 Feb 2026 01:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="CCUr0na3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CYqNmQI+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f49.google.com (mail-dl1-f49.google.com [74.125.82.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A2E022D792;
-	Fri,  6 Feb 2026 01:05:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C11EF22D4D3
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 01:09:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770339959; cv=none; b=ExXDXc1F6WUKm0wc/uFZoOYRaQr1g94DlTT3gCh1CV0LRI2BNUvDnZtZzTKvnXvRRj4dkCHq44xmm1QByB+MX7oNWDoi8l753TGyh80gRRP7gaxifnAQ1jiwrDe+5r9N2dCgkvXieSpW6CUhqmYexRhdHeu+WwtL/Z9NBcyUcao=
+	t=1770340189; cv=none; b=TkwgTMcjR/moKXOEu2q4BBKhGdBEjvPpt6DKDpJSt8FWYZA2FOomhUyKRv6l0odrjvm8sLP97nolzDyoPApjgpFn4vkDEjCaEvTli9TbAERLR3JaeTvMdUA8SvqtDRJMkvF5o/+h3FHB8uQKmao6gSvTQzLROMxie794hDVbYXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770339959; c=relaxed/simple;
-	bh=IQ3VBUyHfRI7AVat1eAyS2GBBUMGItL1ljmcK0zzFgw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pnlmjLSpFpAqgK+ydnmglolmZiZFcIZRCQSy0Cq/EVDHjS0d4cylfbBiPkI9zB6dnzk/w2T3dAHBDO3vFfpRdWI4WVDVSLJtwaA8IJWAEeoVWfoPFkU2IPuaj3DsSEGVFSySgkOrVBLRYBAOyCuceXqqNZyE9znx9A5eM5cyAtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=CCUr0na3; arc=none smtp.client-ip=117.135.210.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Wz
-	wM2ArMD64npYqUjIHiP47mOx5vlp8sCjNTdzEO+7c=; b=CCUr0na3TV3VM/2yCl
-	C5rRfusXn5L/goqO+TuFfCcEjrcx5VTt7ozl/Razj4rBCRZj5kuZBBH4HDQw9JwY
-	5JXDC2td+hc8r0lFYd2f8vxhdyRtHUeBsNsj6oTNk2XewMncvra5eJekj1aLeUqD
-	w0miGe8Cqy9wClEzR3hDAkSZg=
-Received: from ProDesk-480.. (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id PSgvCgD3_+0XPoVpQ5VfQQ--.20291S7;
-	Fri, 06 Feb 2026 09:04:35 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: dmitry.baryshkov@oss.qualcomm.com,
-	heiko@sntech.de
-Cc: alchark@gmail.com,
-	andrzej.hajda@intel.com,
-	conor+dt@kernel.org,
-	cristian.ciocaltea@collabora.com,
-	airlied@gmail.com,
-	jernej.skrabec@gmail.com,
-	jonas@kwiboo.se,
-	kever.yang@rock-chips.com,
-	krzk+dt@kernel.org,
-	Laurent.pinchart@ideasonboard.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	neil.armstrong@linaro.org,
-	nicolas.frattaroli@collabora.com,
-	robh@kernel.org,
-	rfoss@kernel.org,
-	hjc@rock-chips.com,
-	sebastian.reichel@collabora.com,
-	simona@ffwll.ch,
-	tzimmermann@suse.de,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: [PATCH v3 5/5] arm64: dts: rockchip: Add DisplayPort dt node for rk3576
-Date: Fri,  6 Feb 2026 09:04:15 +0800
-Message-ID: <20260206010421.443605-6-andyshrk@163.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260206010421.443605-1-andyshrk@163.com>
-References: <20260206010421.443605-1-andyshrk@163.com>
+	s=arc-20240116; t=1770340189; c=relaxed/simple;
+	bh=rNuWtRvMB0NRy8EVLOoIZ2tDJW/Huf0pVpEpPTseNOo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=psRndoHuS05tkajWx2qaX/TN5EUbN+8HWmeZmMUMGJk3DmMmaHFlKiJUopF+RlYTnnT3GoRXCB2OseJjPIOlzkGW6kylyQcArU8RAd7/cFpA8gt2pgGoENS5rLOB8rbK50QcVpZlyL2FVEDzsDGOpKi7+nj8wmp27ZqjffKrZjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CYqNmQI+; arc=none smtp.client-ip=74.125.82.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f49.google.com with SMTP id a92af1059eb24-11f1fb91996so274622c88.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 17:09:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770340188; x=1770944988; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Vs2QcgRbbbiP9STmkUY5xRdKIA29w4m7lTues8D5avc=;
+        b=CYqNmQI+bOQFSWHbeNVufCRxXX31uX8uJ4Q6/VbpzmaPE8Lo3TqHDyTBDwWs2NvOPu
+         /nz9ZVcstSVFnAZoHsE2WRYrsGxTc4Y8+93zbruluQCIxZHvUNHnztpWqGowR1mfkww0
+         uOG0EwsBRlrSSR9Vb44d8ZCWOZ9xpaS2hBiRxpfgt12gjO71dYE2fcaM9x4FyujfPLoV
+         mhQvWR+40g7iRkrYz/T2GLthUVHikQ3UsQ3VJFvGTHM/R2wVG/SirDcC4hOv3K/z3zsP
+         m1yh/7i0QjyJSwG7pvNe7TtcJLBWaYw6WwbIbSLV2NrByK2ubZ4Qi1KYf4AgenAqxy/g
+         8pmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770340188; x=1770944988;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Vs2QcgRbbbiP9STmkUY5xRdKIA29w4m7lTues8D5avc=;
+        b=p9otJVWsHMYlSgFDp6t/TxGvuzphm8d6WrweqPRspbh2pjJTzUP5BpFr6fws9aLwgH
+         5FoCpRl3utiybhrbXFnTztkIyieINvcdDlaUVgdfSXop8iOpT1p/39DM1axw70SU1VB2
+         wRQRaP9LSAIlv1ryrKKv8//ui/m3e/OWq+jJPf9Recq7od4lJ3QOMpVtkzAU8YQFq4wD
+         Ng12rw88hP4Z5Ej9fUrl/NnQdrb5mFdVQjV2tDb/JqGUfakNZoCfbOSqDLZh4sq30IH6
+         DUN+h9IjzywwlrXZBsH3kYfNgieElTCOPuwjJthIq6ri9ye/uQgiV1wEh8eddaL2JQZq
+         hvaA==
+X-Forwarded-Encrypted: i=1; AJvYcCXSPe9Qa+nbCB9u47rMnAeW9S6XJiVDmARW5qeIz2r0RTXNd0LGXYXY2i4YwcTpTvBIzUgzleZgzWmw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz84WN8/1V1OtZPt1LHrqKCCwfIivecnvR8NANmG03sPWQvkTeW
+	cqGANzdkz4gQ70rdgBudSNX/oe6THSWlGZWWfv/3kluojpMaGLAa/fq27oPoFA==
+X-Gm-Gg: AZuq6aJNUgHls/2ejgXWcMxhow/ddxrqTx9/8izoiEJtwdKyJFuANzAzUxZ5d7ebpon
+	gb41L7wy+i/iqukXgr3Y9qq0s2Ozu5ywgwUaE23MVn3DH7xqfzJ2Z/hggWYi1ZTO/sAWa/XbEnJ
+	HcM/qvZHiJBO6A4abfW6vL9TDwrQVFJbXkx6aZGG7JvZoiKMoDQrf8FoQA+mQY0rSzaI6YcwBDo
+	Ndxj6I+c3Hp259lWQiyAAyLeZiWHPJxE/JM+xDuP+sMFpfHHIGYUSYRjaWBLQfdwSYQxF2r42gO
+	GR1z6qU+wkbaxBdVi9sFPeXX9Y6Fuf56ALyXmSqVP/ZCU/88Hgidj/UwOlh3mbNz5TI62GzneUZ
+	IpxMH08Ig8U+rS5m1SFFpJAIlK/jdBTumvQ43RVTNeo/x+Y8/+bVNjViNwiCF+oZDTcwKZKDG+e
+	C7GlFjigoaH1s35PWICHQyFxTc
+X-Received: by 2002:a05:7022:6ba6:b0:123:330b:390 with SMTP id a92af1059eb24-127040083femr589392c88.20.1770340187659;
+        Thu, 05 Feb 2026 17:09:47 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b855ad9a42sm881029eec.1.2026.02.05.17.09.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Feb 2026 17:09:47 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Thu, 5 Feb 2026 17:09:45 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Marius Cristea <marius.cristea@microchip.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] hwmon: temperature: add support for EMC1812
+Message-ID: <402ba937-226d-44be-8411-428a8842a35c@roeck-us.net>
+References: <20260205-hw_mon-emc1812-v5-0-232835aefe8f@microchip.com>
+ <20260205-hw_mon-emc1812-v5-2-232835aefe8f@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PSgvCgD3_+0XPoVpQ5VfQQ--.20291S7
-X-Coremail-Antispam: 1Uf129KBjvJXoW7uw4fZFWkAryfAryDZFW5Jrb_yoW8Wr13p3
-	ZrC395X3y8Wr12qwnxt34vvrZ5Jan5JFs0kr17JFyUtr4Sqry7Kr13Krn3A34DJr47Z3ya
-	vFsavry7KFs0y3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jSrWrUUUUU=
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbC7QNTsWmFPiNuBQAA3W
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260205-hw_mon-emc1812-v5-2-232835aefe8f@microchip.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263192-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[163.com];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[163.com:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andyshrk@163.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,intel.com,kernel.org,collabora.com,kwiboo.se,rock-chips.com,ideasonboard.com,linux.intel.com,linaro.org,ffwll.ch,suse.de,vger.kernel.org,lists.freedesktop.org,lists.infradead.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263194-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,0.0.0.0:email,0.0.0.1:email]
-X-Rspamd-Queue-Id: 5CD4FF8D59
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,microchip.com:email]
+X-Rspamd-Queue-Id: 99FDAF8DC9
 X-Rspamd-Action: no action
 
-From: Andy Yan <andy.yan@rock-chips.com>
+On Thu, Feb 05, 2026 at 09:09:04AM +0200, Marius Cristea wrote:
+> This is the hwmon driver for Microchip EMC1812/13/14/15/33
+> Multichannel Low-Voltage Remote Diode Sensor Family.
+> 
+> EMC1812 has one external remote temperature monitoring channel.
+> EMC1813 has two external remote temperature monitoring channels.
+> EMC1814 has three external remote temperature monitoring channels and
+> channels 2 and 3 supports anti parallel diode.
+> EMC1815 has four external remote temperature monitoring channels and
+> channels 1/2  and 3/4 supports anti parallel diode.
+> EMC1833 has two external remote temperature monitoring channels and
+> channels 1 and 2 supports anti parallel diode.
+> 
+> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
+> ---
 
-The DisplayPort on rk3576 is compliant with DisplayPort Specification
-Version 1.4 with MST support, and share the USBDP combo PHY with USB 3.1
-OTG0 controller.
+Additional AI generated review feedback below. Please address.
 
-Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-Tested-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Thanks,
+Guenter
+
 ---
 
-(no changes since v1)
+# Task
+Date: 2026-02-05 16:00:08
+Model: gemini-3-flash-preview
+Prompts SHA: 52e5df6 ("various changes")
+Commits to review:
+- 0f6303cffaab ("dt-bindings: hwmon: temperature: add support for EMC1812")
+- c5a5b0f370f0 ("hwmon: temperature: add support for EMC1812")
 
- arch/arm64/boot/dts/rockchip/rk3576.dtsi | 28 ++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-index a86fc6b4e8c4..a153c3976cb3 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-@@ -1446,6 +1446,34 @@ hdmi_out: port@1 {
- 			};
- 		};
- 
-+		dp: dp@27e40000 {
-+			compatible = "rockchip,rk3576-dp";
-+			reg = <0x0 0x27e40000 0x0 0x30000>;
-+			interrupts = <GIC_SPI 337 IRQ_TYPE_LEVEL_HIGH>;
-+			assigned-clocks = <&cru CLK_AUX16MHZ_0>;
-+			assigned-clock-rates = <16000000>;
-+			clocks = <&cru PCLK_DP0>, <&cru CLK_AUX16MHZ_0>,
-+				 <&cru ACLK_DP0>;
-+			clock-names = "apb", "aux", "hdcp";
-+			resets = <&cru SRST_DP0>;
-+			phys = <&usbdp_phy PHY_TYPE_DP>;
-+			power-domains = <&power RK3576_PD_VO1>;
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				dp0_in: port@0 {
-+					reg = <0>;
-+				};
-+
-+				dp0_out: port@1 {
-+					reg = <1>;
-+				};
-+			};
-+		};
-+
- 		sai7: sai@27ed0000 {
- 			compatible = "rockchip,rk3576-sai";
- 			reg = <0x0 0x27ed0000 0x0 0x1000>;
--- 
-2.43.0
+# Commit 0f6303cffaab ("dt-bindings: hwmon: temperature: add support for EMC1812")
+commit 0f6303cffaabd0f20f74335ad88e6e3ec5876d93
+Author: Marius Cristea <marius.cristea@microchip.com>
 
+dt-bindings: hwmon: temperature: add support for EMC1812
+
+This commit adds the DeviceTree schema for the Microchip EMC1812 family
+of temperature sensors and updates the MAINTAINERS file.
+
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc1812.yaml
+[ ... ]
+> +  interrupts:
+> +    items:
+> +      - description: alert-therm2 asserts when the ALERT limit is exceeded.
+> +      - description: therm-addr asserts when the THERM limit is exceeded.
+> +    minItems: 1
+> +
+> +  interrupt-names:
+> +    items:
+> +      - enum: [alert-therm2, therm-addr]
+
+Is the interrupt-names schema intended to be this flexible?
+
+The current items definition only constrains the first element of the list.
+If a second interrupt is provided, it remains unconstrained.
+
+Additionally, if only one interrupt is provided, the interrupts property
+enforces it to be alert-therm2 (the first positional item), but the
+interrupt-names enum allows it to be named therm-addr.
+
+Should it be defined as:
+  interrupt-names:
+    items:
+      - const: alert-therm2
+      - const: therm-addr
+    minItems: 1
+
+[ ... ]
+> +  microchip,parasitic-res-on-channel1-2:
+> +    description:
+> +      Indicates that the chip and the diodes/transistors are sufficiently
+> +      far apart that a parasitic resistance is added to the wires, which can
+> +      affect the measurements. Due to the anti-parallel diode connections,
+> +      channels 1 and 2 are affected together.
+> +    type: boolean
+
+Is this description accurate for all supported models?
+
+For the EMC1812, there is only one external channel, so it seems
+unlikely that "channels 1 and 2 are affected together".
+
+Also, the EMC1813 does not appear to support anti-parallel diodes
+according to the commit message and driver documentation, yet this
+description attributes the property to anti-parallel diode connections.
+
+[ ... ]
+> +patternProperties:
+> +  "^channel@[1-4]$":
+[ ... ]
+> +    properties:
+> +      reg:
+> +        items:
+> +          minimum: 1
+> +          maximum: 4
+
+Does the reg property for channels need a maxItems: 1 constraint?
+
+Without it, the schema allows reg to be an array of multiple values,
+whereas a channel node reg should typically be a single value.
+
+[ ... ]
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - microchip,emc1812
+> +              - microchip,emc1813
+> +              - microchip,emc1833
+> +    then:
+> +      properties:
+> +        microchip,parasitic-res-on-channel3-4: false
+
+The EMC1814 supports anti-parallel diodes on channels 2 and 3, but only
+has three external channels in total.
+
+Should microchip,parasitic-res-on-channel3-4 also be disabled for the
+EMC1814, since it doesn't have a fourth channel?
+
+If the EMC1814 uses this property for its anti-parallel pair (2 and 3),
+the property name appears to be a mismatch.
+
+[ ... ]
+
+The driver added in commit c5a5b0f370f0 references a property named
+"microchip,enable-anti-parallel", but it is missing from this schema.
+
+Should "microchip,enable-anti-parallel" be added to the bindings?
+
+[ ... ]
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 0efa8cc6775b..c807025d911e 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+
+# Commit c5a5b0f370f0 ("hwmon: temperature: add support for EMC1812")
+commit c5a5b0f370f04e9e4ae78ae82077cfb684461d8e
+Author: Marius Cristea <marius.cristea@microchip.com>
+
+hwmon: temperature: add support for EMC1812
+
+This commit adds a new hwmon driver for the Microchip EMC1812 family of
+temperature sensors, including support for EMC1812, EMC1813, EMC1814,
+EMC1815, and EMC1833 chips.
+
+> diff --git a/Documentation/hwmon/emc1812.rst b/Documentation/hwmon/emc1812.rst
+> new file mode 100644
+> index 000000000000..799111a89541
+> --- /dev/null
+> +++ b/Documentation/hwmon/emc1812.rst
+> @@ -0,0 +1,68 @@
+> +.. SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +Kernel driver emc1802
+> +=====================
+
+Should this be emc1812?
+
+> +Author:
+> +    Marius Cristea <marius.cristea@microchip.com
+
+The closing angle bracket seems to be missing from the email address.
+
+[ ... ]
+
+> diff --git a/drivers/hwmon/emc1812.c b/drivers/hwmon/emc1812.c
+> new file mode 100644
+> index 000000000000..30bbc377d592
+> --- /dev/null
+> +++ b/drivers/hwmon/emc1812.c
+
+[ ... ]
+
+> +static int emc1812_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+> +			int channel, long *val)
+> +{
+> +	struct emc1812_data *data = dev_get_drvdata(dev);
+> +	unsigned int convrate;
+> +	int ret;
+> +
+> +	switch (type) {
+> +	case hwmon_temp:
+> +		return emc1812_read_reg(dev, data, attr, channel, val);
+> +	case hwmon_chip:
+> +		switch (attr) {
+> +		case hwmon_chip_update_interval:
+> +			ret = regmap_read(data->regmap, EMC1812_CONV_ADDR, &convrate);
+> +			if (ret < 0)
+> +				return ret;
+> +
+> +			if (convrate > 10)
+> +				convrate = 4;
+> +
+> +			*val = 16000 >> convrate;
+
+If convrate is 10, *val becomes 15. However, emc1812_conv_time[10] is 16.
+This results in a slight discrepancy where writing 16ms and reading it back
+returns 15ms.
+
+> +			return 0;
+> +		default:
+> +			return -EOPNOTSUPP;
+> +		}
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+
+[ ... ]
+
+> +static int emc1812_set_temp(struct device *dev, struct emc1812_data *data, int channel,
+> +			    enum emc1812_limit_type map, long val)
+> +{
+> +	long valh, vall;
+> +	u8 regh, regl;
+> +	int ret;
+> +
+> +	regh = emc1812_limit_regs[channel][map];
+> +	regl = emc1812_limit_regs_low[channel][map];
+> +
+> +	if (channel) {
+> +		val = DIV_ROUND_CLOSEST(val, 125);
+> +		valh = (val >> 3) & 0xff;
+> +		vall = (val & 0x07) << 5;
+> +	} else {
+> +		/* internal channel limit is stored on 8bits */
+> +		valh = DIV_ROUND_CLOSEST(val, 1000);
+> +	}
+> +
+> +	ret = regmap_write(data->regmap, regh, valh);
+
+Can this write overflow the 8-bit register for the internal channel?
+
+In emc1812_write(), val is clamped to a maximum of 191875 and then offset
+by 64000, resulting in 255875.
+
+emc1812_write()
+    val = clamp_val(val, -64000, 191875);
+    val = val + 64000; // val is 255875
+
+emc1812_set_temp()
+    valh = DIV_ROUND_CLOSEST(255875, 1000); // valh is 256
+
+Since the register is 8 bits wide, writing 256 (0x100) will be truncated
+to 0x00, setting the limit to -64.0 C instead of the requested 191.875 C.
+
+[ ... ]
+
+> +static int emc1812_init(struct emc1812_data *priv)
+> +{
+> +	int ret;
+> +	u8 val;
+
+[ ... ]
+
+> +	/* Set ideality factor for all external channels */
+> +	ret = regmap_write(priv->regmap, EMC1812_EXT1_IDEALITY_FACTOR_ADDR,
+> +			   EMC1812_DEFAULT_IDEALITY_FACTOR);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(priv->regmap, EMC1812_EXT2_IDEALITY_FACTOR_ADDR,
+> +			   EMC1812_DEFAULT_IDEALITY_FACTOR);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(priv->regmap, EMC1812_EXT3_IDEALITY_FACTOR_ADDR,
+> +			   EMC1812_DEFAULT_IDEALITY_FACTOR);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(priv->regmap, EMC1812_EXT4_IDEALITY_FACTOR_ADDR,
+> +			   EMC1812_DEFAULT_IDEALITY_FACTOR);
+> +	if (ret)
+> +		return ret;
+
+Does this code need to write to EXT2/3/4 ideality factor registers if the
+chip (like EMC1812) does not support those channels? While likely ignored
+by the hardware, it seems redundant.
+
+
+# Summary
+
+| Commit                                                                    | Regressions |
+| :------------------------------------------------------------------------ | :---------- |
+| 0f6303cffaab ("dt-bindings: hwmon: temperature: add support for EMC1812") | 6           |
+| c5a5b0f370f0 ("hwmon: temperature: add support for EMC1812")              | 5           |
 
