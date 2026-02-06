@@ -1,194 +1,126 @@
-Return-Path: <devicetree+bounces-263366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263367-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iEMmIrXshWlvIQQAu9opvQ
-	(envelope-from <devicetree+bounces-263366-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 14:29:25 +0100
+	id CAy4BljthWlvIQQAu9opvQ
+	(envelope-from <devicetree+bounces-263367-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 14:32:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EA66FE1F6
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 14:29:24 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28E86FE249
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 14:32:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A2595302B204
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 13:26:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 701E73006D4B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 13:32:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E80553AEF5B;
-	Fri,  6 Feb 2026 13:26:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FD203A1E73;
+	Fri,  6 Feb 2026 13:31:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zdrie+5P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FjQQ1YIG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3B7936C5BB;
-	Fri,  6 Feb 2026 13:26:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A4E938FA3;
+	Fri,  6 Feb 2026 13:31:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770384405; cv=none; b=KpEAHjbEHl0wm7Lt49o3InDwVS2sCknCLcqLQB5Rm3Ia33o9f2ipnGNUDcVNIRlBesIDx4GPikjCIKUxRL7kt/pCZoqm2lhK4BHrsZiKSu4sjIcqbDZAys6XJLoiIiFIdFZtcin9xiTVkVyK1v68+R31I4FvI0yCqPFlCBcv/iA=
+	t=1770384718; cv=none; b=rOpsYj1IEUztyl1vwZ9sZ7XLZnywQxF/wgcfT3Ut87vozMsb+gt8TmvUhjSmnCOf71mW+jqzQ+fE9w/fgCd/Gcbv0+tgaWgDR2+qeYYMmUdA0OTc8j6bDZsm4tVKBukIba6nGnKiAYf81SjaB3+CtK5UfL2OQGDdIxCjqhuFo/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770384405; c=relaxed/simple;
-	bh=oJHVy75SFVRMUlFGhtQOJ6ZioOzAKeIEQtFpWlVXd60=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=syDdu5gOHtC0ezV+4iefRl3GLC4BQ0lB7wADoIAfi1qhhHsZts3Z3dI2k6vU+fT9qXpd/MAbFxiXnaaQhylVmWnnvL1SCwlzlrFfyKgPE/JQrHlOeLCUUv1A3h75bVICU2e5q8lUn3UX0zrNKrn4G6OKHtZuG7bOUMnqNZUGIBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zdrie+5P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 363B9C116C6;
-	Fri,  6 Feb 2026 13:26:42 +0000 (UTC)
+	s=arc-20240116; t=1770384718; c=relaxed/simple;
+	bh=v8CodHgF9zNyn1am7FQ4QRln8vrKuSpEBZmyeMLwtLA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uI4ANuZJzLrbyTKq4l6Jl/LwsP3rXc+ln36Z030Xt/RNctiayLsRtAIsyf7SjtiUh6+aHV9fYZLIV5Telsu0P940r4vcZ0OniWeSwRkElQtkEKYLxxCJ5zhOJnno5E8ADpFoTdY/rSfuTJlrFFQLyTTxjCi5WG4kZzyz1RzB5ng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FjQQ1YIG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF94AC116C6;
+	Fri,  6 Feb 2026 13:31:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770384405;
-	bh=oJHVy75SFVRMUlFGhtQOJ6ZioOzAKeIEQtFpWlVXd60=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Zdrie+5PnfGAKyXQ8OTEdnV88LjAQpW3IHYK1FcvqLnZzBXU2mcKZuWu6IT/knTBN
-	 gQUq9eX8sVQhU+uz99KJ5ZmekM7CjA0TR1dgrAnxkeHMJgiDuhLQ5fDs26VzXLABRV
-	 eHBq3ZnYzXyFIOFgRx2F3XiQksoX/CY+QSL2uGf2AnidzvhdNz0eVwla1Xq56evvY4
-	 Mk2Up4KWRp5Km7UEW3RWxARXXo8lKxUpwKqKdez9h3+oHSv/+dK/eGzCAA1uYMqL1N
-	 fV6vuQLFH4S3q4yjYFA6/t8Rq9Exl4YPE0XTQ1oOsd+omFAu8P5kx9uIPCOmK7YhKg
-	 +6A/HqUckGrJw==
-Message-ID: <e06bd9ca-11bb-4d87-9db5-87139731f181@kernel.org>
-Date: Fri, 6 Feb 2026 14:26:40 +0100
+	s=k20201202; t=1770384718;
+	bh=v8CodHgF9zNyn1am7FQ4QRln8vrKuSpEBZmyeMLwtLA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FjQQ1YIGbraZkUPGUn1+wyq1kntSlLeYMlikbYGTb9pKDjtdKIXcGtdH9MiFd4GR8
+	 fsMQ8cmnZ7oDQld766YqlZNHKAxE/IS4Nueybd7qyUBLyYLz8S1YNuw0PoeS63THAJ
+	 BUh9h3pRSiGdoQAxfHy/xg2HeYTEpNnWq5YMq1dlcODMdlPDovbkgbvZ23PBSB0/Pw
+	 O+/wU0y9ZuOuiqgkC7K1ThJpkkby5BR3eoung9+eQGSUFTlPVjE4RrhJLpk3KmXXkf
+	 5lI8p9gOOTRV5rBTW4jf3z/tFO7OZQ1fVmxL31bGLV45Eor+3fb4vjkB0bl0785Mp+
+	 w5cLCEbOXztBw==
+Date: Fri, 6 Feb 2026 07:31:57 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-input@vger.kernel.org, Tony Lindgren <tony@atomide.com>,
+	Dixit Parmar <dixitparmar19@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, linux-leds@vger.kernel.org,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-iio@vger.kernel.org,
+	David Lechner <dlechner@baylibre.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 03/10] dt-bindings: iio: adc: cpcap-adc: document Mot
+ ADC
+Message-ID: <177038471641.154307.7773046855985679621.robh@kernel.org>
+References: <20260125134302.45958-1-clamor95@gmail.com>
+ <20260125134302.45958-4-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] mmc: sdhci-dwcmshc: Add Canaan K230 DWCMSHC
- controller support
-To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>, ulf.hansson@linaro.org,
- adrian.hunter@intel.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- gaohan@iscas.ac.cn, me@ziyao.cc
-References: <20260204082908.27501-1-jiayu.riscv@isrc.iscas.ac.cn>
- <20260204082908.27501-3-jiayu.riscv@isrc.iscas.ac.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260204082908.27501-3-jiayu.riscv@isrc.iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260125134302.45958-4-clamor95@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263366-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263367-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.989];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,bootlin.com,atomide.com,gmail.com,analog.com,baylibre.com];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0EA66FE1F6
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 28E86FE249
 X-Rspamd-Action: no action
 
-On 04/02/2026 09:29, Jiayu Du wrote:
-> +static int dwcmshc_k230_init(struct device *dev, struct sdhci_host *host,
-> +			     struct dwcmshc_priv *dwc_priv)
-> +{
-> +	static const char * const clk_ids[] = {"base", "timer", "ahb"};
-> +	struct device_node *usb_phy_node;
-> +	struct k230_priv *k230_priv;
-> +	u32 data;
-> +	int ret;
-> +
-> +	k230_priv = devm_kzalloc(dev, sizeof(struct k230_priv), GFP_KERNEL);
-> +	if (!k230_priv)
-> +		return -ENOMEM;
-> +	dwc_priv->priv = k230_priv;
-> +
-> +	usb_phy_node = of_find_compatible_node(NULL, NULL, "canaan,k230-usb-phy");
 
-Hm? You should use phandles, not look for various nodes.
+On Sun, 25 Jan 2026 15:42:55 +0200, Svyatoslav Ryhel wrote:
+> Add compatible for ADC used in Mot board. Separate compatible is required
+> since ADC in the Mot board uses a unique set of configurations.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  .../devicetree/bindings/iio/adc/motorola,cpcap-adc.yaml          | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-> +	if (!usb_phy_node) {
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Please follow Linux coding style.
-
-> +		return dev_err_probe(dev, -ENODEV,
-> +				     "Failed to find k230-usb-phy node\n");
-> +	}
-> +
-> +	k230_priv->hi_sys_regmap = device_node_to_regmap(usb_phy_node);
-> +	of_node_put(usb_phy_node);
-> +	if (IS_ERR(k230_priv->hi_sys_regmap)) {
-> +		return dev_err_probe(dev, PTR_ERR(k230_priv->hi_sys_regmap),
-> +				     "Failed to get k230-usb-phy regmap\n");
-> +	}
-> +
-> +	ret = dwcmshc_get_enable_other_clks(mmc_dev(host->mmc), dwc_priv,
-> +					    ARRAY_SIZE(clk_ids), clk_ids);
-> +	if (ret) {
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to get/enable k230 mmc other clocks\n");
-> +	}
-> +
-> +	if (of_device_is_compatible(dev->of_node, "canaan,k230-sdio")) {
-
-Driver match data is for this.
-
-
-Best regards,
-Krzysztof
 
