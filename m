@@ -1,100 +1,100 @@
-Return-Path: <devicetree+bounces-263469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263470-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qPdRGNAohmmSKAQAu9opvQ
-	(envelope-from <devicetree+bounces-263469-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:45:52 +0100
+	id sBgWEn0phmmuKAQAu9opvQ
+	(envelope-from <devicetree+bounces-263470-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:48:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3092101549
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:45:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A324910167A
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:48:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A42AD3043212
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 17:42:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1535B303A8D5
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 17:42:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB99F421EE2;
-	Fri,  6 Feb 2026 17:42:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EDFD423A92;
+	Fri,  6 Feb 2026 17:42:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hIEQ/jv+";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bbXHqWwI"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cgMXsDSv";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ApzYFOhX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C4293EDAA5
-	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 17:42:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C18942315D
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 17:42:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770399759; cv=none; b=qljN8Z+35lXrmth/Ri2mfvH0V3kz6AzzBsku9m25J8wGUPdImwAwTC42ohTCYcMFMk/FHumXQxB3uwOI6NJGP2GW7KbRZFYf257B6c/5VJZYACs770C3Pmd0CDE6NpYtEt5kCncDSt+Sl8EWgZv2ueBVBvsiPh/RLbeaZ6d1K6U=
+	t=1770399766; cv=none; b=SZy0SNWqs1ywk/8DzI28xuSuJn13soKwRACI5/OTlRKNKx/ufI8ndmuLFQ40O1C1bNiSeHQ9idSlEfafSUrtIDTJBXjXccnxCmYxlEXCn8InIdNaa9EvOFNnVJqkUxqfKaQ2KoXb67QUfqdItH44k3qb5b9P2J3jA2S8PMSafhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770399759; c=relaxed/simple;
-	bh=9fl8bfjYxtflTrpwQ+JEsijZ7KkoNEhoY7/L5W7VcgE=;
+	s=arc-20240116; t=1770399766; c=relaxed/simple;
+	bh=INGstpgJLmbXtSQabWLbgnYYayWnJH8f7H+COx7b8d8=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=bMElUbZxD0eFXxCgvZstUgUXzV/OGuUauexHm/ceivkzt6U6XGD7UboegO62r0j5wekHTfJGEaCcDg1DgziizMzmpJtAc4sLm9UBPvV9f8cAcK4vPTgKnRG1VJQRUJEDQ0iZye/DqcZcH3+uSHzpeV2n+/qx8Cjb96gt9pq8Fu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hIEQ/jv+; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bbXHqWwI; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=RNy5uQhXw7iGvw5MgGEmbIMeIsAchqYWbBrGYiQ6tKn2HvL89xEKDw/E1MTEJsNwt+X8fclg3/geY1KUmT6Me2KeSqthsDenfDe0kyOqF3wIoijaXvIJGXMW6O9gKamGRQEE4cTs5Z6QucRXJI3xFqRfw9+IhJIp5TPKNI6WVno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cgMXsDSv; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ApzYFOhX; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 616H73Rv3924332
-	for <devicetree@vger.kernel.org>; Fri, 6 Feb 2026 17:42:38 GMT
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 616FPaOc1852748
+	for <devicetree@vger.kernel.org>; Fri, 6 Feb 2026 17:42:45 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=eq1swinsB23
-	3N5IrjE+XE6BW0OuGc5vycgIlzP3MrF4=; b=hIEQ/jv+dToj7p+dn9SfH2dyODr
-	kv+F5qk5SxsjRWamieih51Z+414NVJ0stADfNad8YNBZAT35cZT1X01jfeOtP6U0
-	QQnPrv15Sy0QhAfVzZZLC+SJpNsJHdPFjbS21fTNKy0W0rKvYRnximz3a0eB3PAT
-	W1WTyhBSvFVOwOe3ipI57IhXE7IYxBFwWqioP1ONYS5i0Ot1M/7Bq/aT3OQ7QB5u
-	dvRzX5mDfVWi66sPwrpouaskxg6RuKFMPkB30AtzzfosDovSlRpKzA/93GtkR3N6
-	R61+/L2uDCVGHhAuhyJBJVGfekylltVlhUEUyYR3H5QZJ3aEZQL4fKzFdpg==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c5mdur31x-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=WwOaKjslk41
+	m/3sPlhy3wTfRdNt9ldvgK3Mn5lILziQ=; b=cgMXsDSvVDF+BrT7dY/t2F1V2PW
+	AMGcVPcSr334O4cIH6ccS/YV6EvY5m/xlz7cIdeG7Xzn65/0r2MfhzbCmkfH7ENG
+	BZ548M6nibpNAYLLMfQQz38t8ERIuXGWAJGhiLGlcaoruHaUV9gm0f02XQA1UFsj
+	Y9qxEXfUB5FkWrUqZZacLq0TLwJGrEEccnhVdqBDotGeQrynvZ9R2VDbJ6XBoN+h
+	C6y3/3IeGLKVYL4gYOrEuSaevaHrSsyXvnuZvzhUkwlTimPli9Oy4MS/atOz2h70
+	R0cbsqux2Ll40ESXu2W9/hXe+XMNaF6pMu+a9mvEdSCS48Gw0vteeQPTu5g==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c5c149t6u-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 17:42:38 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-c61dee98720so576917a12.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 09:42:38 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 17:42:45 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-c5269fcecdeso559995a12.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 09:42:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770399758; x=1771004558; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1770399765; x=1771004565; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=eq1swinsB233N5IrjE+XE6BW0OuGc5vycgIlzP3MrF4=;
-        b=bbXHqWwI9j917j9VEqT042F5maucyPH4tbn2neeyoeCh72eDxSMEiajZkmqWSKtFn/
-         1yInq9UikfzM6AR5KngOkQ9uGPFPIcUjw3SgO+++zjE7IN2+cCXGVh9cxxdgeLR2U4SX
-         fhjLtRoMUCJh+Okex+FWTkP2PqzpTxYQnkMcBKE56Z+ceAZqF6p7rRtV7NYqgKTDaUOd
-         03x3xvzVq06Xv9NzvGK4i+ohYB94rZHAPaAanoyU14HEogFcg0Q7Ey/2bjvlDj9pjQTg
-         aH9AjC/J88GUGsDoBrlCdX5dXPXxBqZrCtRM9Qj4PhWBlw3q32qpVeTXQC5QPukko0/M
-         oeZg==
+        bh=WwOaKjslk41m/3sPlhy3wTfRdNt9ldvgK3Mn5lILziQ=;
+        b=ApzYFOhXaIyRECKPCtL9xHJbZFeVFqkNvzUpUdJ/wcd+0iMK71S4vnxb9W9zUlpQ5t
+         +3vG0kGYQT6gb0z544Kk6xsMIjAF449C2vJXexbIMX+XHJnEt62CfVVXYu4AUopDmYZj
+         GXOqMh3km90yFCbev3fzsa69BhHQwRBxbnJAFtK/5CE7XGDya2sds3g7aXO54PuJTEpD
+         9J+aAisPLveIPTdLGiRkkuEp4lzx0dKEMK7zkNGGZ+xKTuQrz/KjJNFhyhGl55TjBCzA
+         CiMQxMo5ztZ5mCN8ZSRL4AhdlF78z1AQpaharUsSXwdrpWaX6WSP0qU8rTxE2wQAtiYm
+         yfOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770399758; x=1771004558;
+        d=1e100.net; s=20230601; t=1770399765; x=1771004565;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=eq1swinsB233N5IrjE+XE6BW0OuGc5vycgIlzP3MrF4=;
-        b=uiUVJEK4cg/OJdEU8Yjv01qQAc6E+VOQ6oLR8FSKyHpxIQFwnT1pJDCheewBbskZNr
-         zT0WvetiP93lRz3+e/0UBYPrhwZxLEwM3ij6XPO2wwpT0ZHqy8vG2MMnkXVTZEUHQDnx
-         XL05csodJQD0trmbSVdvHdco+dZfqdvEF3iJMFOdJNqeY7h1f3GjukOqXkn3g/itQf/I
-         e350ytEII4DDFqJo4QTmjHvpHLo5u92oGDQ795I4QlHlMyYh5kncS40xOnJNnauyg/yM
-         ZTEhcoYmlcLPtRok9dPzK0qJFbOplm9BwObLFh4d9B/mMmPcu1N6NShaGcYYGuDU/Iu0
-         yxoA==
-X-Forwarded-Encrypted: i=1; AJvYcCVlTErmy5wZyC1thi5LOp7VXlCc9gVqDwbHfW1JDRR/o/YU08TIQw6g4QI2ZACE773UUrmPZL28Utdr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9MVIRdCHbEec7sEEPlC8OaKPdNMpTkr0hYFRvYi91bg8YkLMN
-	DwjL8H5ac3hzEuNgNa9EK7Lk/dtwmL6px/2pKrwZLjOtF9y3KoH864hDKOOBWdMZDjWEYQaJQSh
-	J13+qDQOCiG6RuvuuiBp8mCcZAUZT/I3dX9x51yEfxZV6iTvoM5GKgweYQYhpK7FJ
-X-Gm-Gg: AZuq6aLduLHcZmTVnuzZyKYyml8tvedsVcArDpDmdUhVwKbUm8kXY01shUqyBxpPCQj
-	k3Rc9DBhk06AJx0wh3Qc592cgkTnQPnXQS95pYTcM3wJxmQCtnNK6fIbUN1oYVZTZOYPbZknGUN
-	5juj/cYlIiK3RhzcMj/re8IOntMiWyvNi77DpVpZGYOu46MaW4rMu+Jtc5rdVm9Tsoco3sJ/C2e
-	SfSu2CHNJkV7HvO10eR8MdiEIngTkmbFQA2JmmITJEi/Xid4gThtUXJGroxTc5cv9qWVhOW6eUD
-	3IBbgXTavzwLx2kzenijYi550taSPIXa9dXpOjEQaUUGkRujvEaWmkSpdpsVyPH1XS8ID4X9qFH
-	fDVCQHgXQNbahynNjVWtIJ+h/vGG0VleuZ0x+aUM9ND0=
-X-Received: by 2002:a05:6a20:d526:b0:38d:e674:b60a with SMTP id adf61e73a8af0-393ad029dc7mr3808101637.36.1770399757493;
-        Fri, 06 Feb 2026 09:42:37 -0800 (PST)
-X-Received: by 2002:a05:6a20:d526:b0:38d:e674:b60a with SMTP id adf61e73a8af0-393ad029dc7mr3808056637.36.1770399756714;
-        Fri, 06 Feb 2026 09:42:36 -0800 (PST)
+        bh=WwOaKjslk41m/3sPlhy3wTfRdNt9ldvgK3Mn5lILziQ=;
+        b=B1eSBXpb46cKl07hSTHINXDCjrM1VMU+tOT+9ifgiOq5fJByHn6ftVxgG3IPRA/D+P
+         uMoh2mLclmvbaFxA7E/8442hHAoq7AOHAmeDjc9tGeU7K7YVRo9JBaDiwF3Q5h250hWM
+         hMTDGiwlzRZaMyJAgf7ZNJtJ6LUGvznvsPIKdTe5OK/YONJUaXAFFkD6t4KPmcGdl4Oi
+         DiTCtnYENltN3m/hMrMRA2UrK2KWiFuSGwBGNNeFaw+bplpclEGGV8a3LGaNB8r0137r
+         kwK1yrQcGnKtMrbF/iwDizZeB3lVRuhRa5vjz6tzADCEiWVW5MZEto9+IkucAeR6gbUe
+         OZFw==
+X-Forwarded-Encrypted: i=1; AJvYcCVxkHApzSmGzTzVJ2YnigotEvoMKi1INkDJPM+13BckhucXqapWMWb3mIVh9+tBaFbUVJ4LFfaHCHrN@vger.kernel.org
+X-Gm-Message-State: AOJu0YwU7rhrWRg8UQc9M0x6w33/EzN2NkiMCmEv4OUVzmALRLGKd5+/
+	gbm6e1IOwWa0H/CYkWQa7c9yOwNN1c1S5hZZlhJan/Sleh8Wd9izgDFFvT4sd2izC4ykV3Oa5jt
+	HZvpKkBNHs5hC9xk+TIiPmkmyQlWHYnNUleLvy2ZbFqhPTgy53aXEf9klmevae/mn77FnWT07
+X-Gm-Gg: AZuq6aLUa6qOz1y9zOCEqsMkrdO8zdwNa0k0jWKYqbdCq3rw9mlRV00qWyO4L0Jr9Qb
+	aCwN04H1R3fiMhSoYVS4+fKQcNcIStsRyF1m3fc0GjJ0RX2LWlc829yJrh4BjIVfnpxbplwG3/H
+	crNKBtv/uDiypT8R4Eg7U8swedGxsaNv9c0s7D0ugChe7s3bijB5t4nqLlAlG7KD1w4rOd3Hs1B
+	mafEPyha+eWtYcyAbrfZ84+M6fhrNeiR9rRV8JnT6e/rCAyCe4B2HPMeJtqrRgbmYufA3LfrpiE
+	X946ffM5sZg/6z0UyQ02GjSCioZp3MeQWoCRvBsgzajvs+H3v7SGyT92jyMcdzqo2X+491X3TDW
+	iGGs0denFVeD43zyzpMXwVXWlmTospSz7zXt82ihgXs4=
+X-Received: by 2002:a05:6a21:6f09:b0:38e:9ebe:5267 with SMTP id adf61e73a8af0-393ad366d21mr3564240637.57.1770399764537;
+        Fri, 06 Feb 2026 09:42:44 -0800 (PST)
+X-Received: by 2002:a05:6a21:6f09:b0:38e:9ebe:5267 with SMTP id adf61e73a8af0-393ad366d21mr3564217637.57.1770399763929;
+        Fri, 06 Feb 2026 09:42:43 -0800 (PST)
 Received: from hu-ptalari-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c6dcb5eccbdsm2639387a12.19.2026.02.06.09.42.30
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c6dcb5eccbdsm2639387a12.19.2026.02.06.09.42.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Feb 2026 09:42:36 -0800 (PST)
+        Fri, 06 Feb 2026 09:42:43 -0800 (PST)
 From: Praveen Talari <praveen.talari@oss.qualcomm.com>
 To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -111,9 +111,9 @@ To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
 Cc: prasad.sodagudi@oss.qualcomm.com, quic_vtanuku@quicinc.com,
         aniket.randive@oss.qualcomm.com, chandana.chiluveru@oss.qualcomm.com,
         jyothi.seerapu@oss.qualcomm.com, chiluka.harish@oss.qualcomm.com
-Subject: [PATCH v5 10/13] i2c: qcom-geni: Move resource initialization to separate function
-Date: Fri,  6 Feb 2026 23:11:09 +0530
-Message-Id: <20260206174112.4149893-11-praveen.talari@oss.qualcomm.com>
+Subject: [PATCH v5 11/13] i2c: qcom-geni: Use resources helper APIs in runtime PM functions
+Date: Fri,  6 Feb 2026 23:11:10 +0530
+Message-Id: <20260206174112.4149893-12-praveen.talari@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260206174112.4149893-1-praveen.talari@oss.qualcomm.com>
 References: <20260206174112.4149893-1-praveen.talari@oss.qualcomm.com>
@@ -124,48 +124,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: hR0lpH-1ISDmLC7X-06zSrxzDM_OxRr8
-X-Authority-Analysis: v=2.4 cv=Nu7cssdJ c=1 sm=1 tr=0 ts=6986280e cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+X-Authority-Analysis: v=2.4 cv=P5k3RyAu c=1 sm=1 tr=0 ts=69862815 cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
  a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
  a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=EUspDBNiAAAA:8
- a=T4QVXHuY6bPIseVWQ88A:9 a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-GUID: hR0lpH-1ISDmLC7X-06zSrxzDM_OxRr8
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA2MDEyOSBTYWx0ZWRfX33YmI7C8jpmj
- yBMQEG7Sp/NdRTHU/i8cGIh5GGLsKkqKZhVl7gs968laKpY6yCL6XrCEXVRy3kfW49eUYAwCmbW
- 6d7wsVgYo562sQfDthL2fL6uEi/8jvLfENcDvV9XMN9T8h+Ie0TW8O50mGsKrHZ2thy7qB6vTVM
- atVcGrK/4CFpDgForqRQGSkkdCm2nb2Mztkxgau3cxB+/cJ/BvQyxt4lPEkIPwax0dOp5FZzcKb
- VS2EeHiWzAJFFFxz9KUFMh6bjUV8FtfsnFdq/yzbo28lFfLfPmlvXAdhjjFa5NJzJYR/kY9dyXd
- rJEh9AHOUBm1GMqal51Tu6d9hjXf9a1j/mKn8e66WVUZluv+P7Hr4xWMTyoRoqj/VX4eGocmVFz
- ct+L6Gt3j6f6H1oSVac9/VQft+C47Um0UgWDAp519E1Xf0ynrTCF50DzC8V5hBPGbWXj2tDrD/v
- x6rkJmadHyGkJ5174eA==
+ a=3PeDo36KSfG0vlEF63sA:9 a=3WC7DwWrALyhR5TkjVHa:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA2MDEyOSBTYWx0ZWRfXzKeI3KmlPccU
+ QjlgHtoZyRK+izYbuNwnQFE/K9TUx1k9P7OGz+TWIRkAYpvJEV30amBnJFm2VUkhmv5ewbWedN7
+ VQB7Nf0vCTUL4+6jV0jH5huKMV6dWr0ufpUgiWAf9gR/wOY5ntrBhKtO7WifrKFXMW3VcL/fPXv
+ f8CMS1Uyz24r0wioSUbijHy1R2ydmOCa0e1lvEZHRzbtnPfJEm+KipPH10TRbgnXQNyLRpo/zQs
+ iGGlj0V6kLIL014uab3FN83gB5ArqnM6h4GJMkvuAks5CQSBDwSeRpBHKF4w0C9NYOGqjH2X/gy
+ YQ/1TQ6+fTFH1B9uKgrCeiIYEMRseIPjcR8d+Ru2h9otaC5tl62oKmLISBGBgEeWankmBwbIMLH
+ 4OzRQ2+XHpUA/khffP/nz5g4N7lRmFEX2djH4br7QW+c32FuQDrJQI+NAQ3cf2yWVkavwkbd5pN
+ HnWLw7F2P6XM5SeDh5g==
+X-Proofpoint-ORIG-GUID: qUz4wcsLDuVniKs9CKGUwI4cNFRBxQus
+X-Proofpoint-GUID: qUz4wcsLDuVniKs9CKGUwI4cNFRBxQus
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-02-06_05,2026-02-05_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
- lowpriorityscore=0 malwarescore=0 adultscore=0 impostorscore=0 phishscore=0
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602060129
+ impostorscore=0 bulkscore=0 priorityscore=1501 phishscore=0 suspectscore=0
+ malwarescore=0 adultscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602060129
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[22];
-	TAGGED_FROM(0.00)[bounces-263469-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263470-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[praveen.talari@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
@@ -175,174 +174,91 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: D3092101549
+X-Rspamd-Queue-Id: A324910167A
 X-Rspamd-Action: no action
 
-Refactor the resource initialization in geni_i2c_probe() by introducing
-a new geni_i2c_resources_init() function and utilizing the common
-geni_se_resources_init() framework and clock frequency mapping, making the
-probe function cleaner.
+To manage GENI serial engine resources during runtime power management,
+drivers currently need to call functions for ICC, clock, and
+SE resource operations in both suspend and resume paths, resulting in
+code duplication across drivers.
+
+The new geni_se_resources_activate() and geni_se_resources_deactivate()
+helper APIs addresses this issue by providing a streamlined method to
+enable or disable all resources based, thereby eliminating redundancy
+across drivers.
 
 Acked-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
 ---
-v4->v5:
-- Added a Reviewed-by tag.
-- Removed core clk, has_core_clk and icc_ddr variable.
-
 v3->v4:
 - Added Acked-by tag.
 
 v1->v2:
-- Updated commit text.
+Bjorn:
+- Remove geni_se_resources_state() API.
+- Used geni_se_resources_activate() and geni_se_resources_deactivate()
+  to enable/disable resources.
 ---
- drivers/i2c/busses/i2c-qcom-geni.c | 64 +++++++++++-------------------
- 1 file changed, 24 insertions(+), 40 deletions(-)
+ drivers/i2c/busses/i2c-qcom-geni.c | 28 +++++-----------------------
+ 1 file changed, 5 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
-index 81ed1596ac9f..05f5705b0319 100644
+index 05f5705b0319..0ddfeef6d1b2 100644
 --- a/drivers/i2c/busses/i2c-qcom-geni.c
 +++ b/drivers/i2c/busses/i2c-qcom-geni.c
-@@ -107,7 +107,6 @@ struct geni_i2c_dev {
- 	int cur_wr;
- 	int cur_rd;
- 	spinlock_t lock;
--	struct clk *core_clk;
- 	u32 clk_freq_out;
- 	const struct geni_i2c_clk_fld *clk_fld;
- 	int suspended;
-@@ -125,8 +124,6 @@ struct geni_i2c_dev {
- };
+@@ -1160,18 +1160,15 @@ static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
+ 	struct geni_i2c_dev *gi2c = dev_get_drvdata(dev);
  
- struct geni_i2c_desc {
--	bool has_core_clk;
--	char *icc_ddr;
- 	bool no_dma_support;
- 	unsigned int tx_fifo_depth;
- };
-@@ -1045,6 +1042,23 @@ static int geni_i2c_init(struct geni_i2c_dev *gi2c)
- 	return ret;
- }
- 
-+static int geni_i2c_resources_init(struct geni_i2c_dev *gi2c)
-+{
-+	int ret;
+ 	disable_irq(gi2c->irq);
+-	ret = geni_se_resources_off(&gi2c->se);
 +
-+	ret = geni_se_resources_init(&gi2c->se);
-+	if (ret)
-+		return ret;
-+
-+	ret = geni_i2c_clk_map_idx(gi2c);
-+	if (ret)
-+		return dev_err_probe(gi2c->se.dev, ret, "Invalid clk frequency %d Hz\n",
-+				     gi2c->clk_freq_out);
-+
-+	return geni_icc_set_bw_ab(&gi2c->se, GENI_DEFAULT_BW, GENI_DEFAULT_BW,
-+				  Bps_to_icc(gi2c->clk_freq_out));
-+}
-+
- static int geni_i2c_probe(struct platform_device *pdev)
- {
- 	struct geni_i2c_dev *gi2c;
-@@ -1064,16 +1078,6 @@ static int geni_i2c_probe(struct platform_device *pdev)
- 
- 	desc = device_get_match_data(&pdev->dev);
- 
--	if (desc && desc->has_core_clk) {
--		gi2c->core_clk = devm_clk_get(dev, "core");
--		if (IS_ERR(gi2c->core_clk))
--			return PTR_ERR(gi2c->core_clk);
--	}
--
--	gi2c->se.clk = devm_clk_get(dev, "se");
--	if (IS_ERR(gi2c->se.clk) && !has_acpi_companion(dev))
--		return PTR_ERR(gi2c->se.clk);
--
- 	ret = device_property_read_u32(dev, "clock-frequency",
- 				       &gi2c->clk_freq_out);
++	ret = geni_se_resources_deactivate(&gi2c->se);
  	if (ret) {
-@@ -1088,16 +1092,15 @@ static int geni_i2c_probe(struct platform_device *pdev)
- 	if (gi2c->irq < 0)
- 		return gi2c->irq;
- 
--	ret = geni_i2c_clk_map_idx(gi2c);
--	if (ret)
--		return dev_err_probe(dev, ret, "Invalid clk frequency %d Hz\n",
--				     gi2c->clk_freq_out);
+ 		enable_irq(gi2c->irq);
+ 		return ret;
 -
- 	gi2c->adap.algo = &geni_i2c_algo;
- 	init_completion(&gi2c->done);
- 	spin_lock_init(&gi2c->lock);
- 	platform_set_drvdata(pdev, gi2c);
- 
-+	ret = geni_i2c_resources_init(gi2c);
-+	if (ret)
-+		return ret;
-+
- 	/* Keep interrupts disabled initially to allow for low-power modes */
- 	ret = devm_request_irq(dev, gi2c->irq, geni_i2c_irq, IRQF_NO_AUTOEN,
- 			       dev_name(dev), gi2c);
-@@ -1110,23 +1113,6 @@ static int geni_i2c_probe(struct platform_device *pdev)
- 	gi2c->adap.dev.of_node = dev->of_node;
- 	strscpy(gi2c->adap.name, "Geni-I2C", sizeof(gi2c->adap.name));
- 
--	ret = geni_icc_get(&gi2c->se, desc ? desc->icc_ddr : "qup-memory");
--	if (ret)
--		return ret;
--	/*
--	 * Set the bus quota for core and cpu to a reasonable value for
--	 * register access.
--	 * Set quota for DDR based on bus speed.
--	 */
--	gi2c->se.icc_paths[GENI_TO_CORE].avg_bw = GENI_DEFAULT_BW;
--	gi2c->se.icc_paths[CPU_TO_GENI].avg_bw = GENI_DEFAULT_BW;
--	if (!desc || desc->icc_ddr)
--		gi2c->se.icc_paths[GENI_TO_DDR].avg_bw = Bps_to_icc(gi2c->clk_freq_out);
--
--	ret = geni_icc_set_bw(&gi2c->se);
--	if (ret)
--		return ret;
--
- 	gi2c->suspended = 1;
- 	pm_runtime_set_suspended(gi2c->se.dev);
- 	pm_runtime_set_autosuspend_delay(gi2c->se.dev, I2C_AUTO_SUSPEND_DELAY);
-@@ -1183,7 +1169,7 @@ static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
- 		gi2c->suspended = 1;
+-	} else {
+-		gi2c->suspended = 1;
  	}
  
--	clk_disable_unprepare(gi2c->core_clk);
-+	clk_disable_unprepare(gi2c->se.core_clk);
- 
- 	return geni_icc_disable(&gi2c->se);
+-	clk_disable_unprepare(gi2c->se.core_clk);
+-
+-	return geni_icc_disable(&gi2c->se);
++	gi2c->suspended = 1;
++	return ret;
  }
-@@ -1197,7 +1183,7 @@ static int __maybe_unused geni_i2c_runtime_resume(struct device *dev)
+ 
+ static int __maybe_unused geni_i2c_runtime_resume(struct device *dev)
+@@ -1179,28 +1176,13 @@ static int __maybe_unused geni_i2c_runtime_resume(struct device *dev)
+ 	int ret;
+ 	struct geni_i2c_dev *gi2c = dev_get_drvdata(dev);
+ 
+-	ret = geni_icc_enable(&gi2c->se);
++	ret = geni_se_resources_activate(&gi2c->se);
  	if (ret)
  		return ret;
  
--	ret = clk_prepare_enable(gi2c->core_clk);
-+	ret = clk_prepare_enable(gi2c->se.core_clk);
- 	if (ret)
- 		goto out_icc_disable;
+-	ret = clk_prepare_enable(gi2c->se.core_clk);
+-	if (ret)
+-		goto out_icc_disable;
+-
+-	ret = geni_se_resources_on(&gi2c->se);
+-	if (ret)
+-		goto out_clk_disable;
+-
+ 	enable_irq(gi2c->irq);
+ 	gi2c->suspended = 0;
  
-@@ -1211,7 +1197,7 @@ static int __maybe_unused geni_i2c_runtime_resume(struct device *dev)
- 	return 0;
+-	return 0;
+-
+-out_clk_disable:
+-	clk_disable_unprepare(gi2c->se.core_clk);
+-out_icc_disable:
+-	geni_icc_disable(&gi2c->se);
+-
+ 	return ret;
+ }
  
- out_clk_disable:
--	clk_disable_unprepare(gi2c->core_clk);
-+	clk_disable_unprepare(gi2c->se.core_clk);
- out_icc_disable:
- 	geni_icc_disable(&gi2c->se);
- 
-@@ -1248,8 +1234,6 @@ static const struct dev_pm_ops geni_i2c_pm_ops = {
- };
- 
- static const struct geni_i2c_desc i2c_master_hub = {
--	.has_core_clk = true,
--	.icc_ddr = NULL,
- 	.no_dma_support = true,
- 	.tx_fifo_depth = 16,
- };
 -- 
 2.34.1
 
