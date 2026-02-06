@@ -1,227 +1,366 @@
-Return-Path: <devicetree+bounces-263422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263423-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OLr/A2YbhmlNJwQAu9opvQ
-	(envelope-from <devicetree+bounces-263422-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 17:48:38 +0100
+	id WA+JKKgbhmlNJwQAu9opvQ
+	(envelope-from <devicetree+bounces-263423-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 17:49:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C814100876
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 17:48:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CD191008AB
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 17:49:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BAEA630048F3
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 16:43:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D0C3630580BB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 16:44:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 585DB32D42D;
-	Fri,  6 Feb 2026 16:43:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A44432F770;
+	Fri,  6 Feb 2026 16:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="jsDRl2uo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011067.outbound.protection.outlook.com [52.101.70.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8A3427E1D7;
-	Fri,  6 Feb 2026 16:43:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770396213; cv=none; b=PcISIOI38XZ8YxU721ZzKVffTV3G/9eIwnb+u+9YWDVmMLSdXZPE7n7pU6UL1Ln7HNTvb6CavBkHqfDoqUdYpOumRz25LeRhgg8gQ5tW9bTie9S7ZAHaoWndoUUkYYjMuHJgA9JBYV3q8Cwstf1DxxRZ1ETcMMpMLwxd7L5wLH0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770396213; c=relaxed/simple;
-	bh=4D+j56nscZZ81Cfld4fZ5xRP/szgePCMLc1/wT12BJI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oI8zlspkRr52kgGFZVo/nX1kbNHDmZQTEbGFNxzQeuDX5BPc9rT7lB09NA3rZoCOpFl5kvf4L7ulFn6hU5A7ZpMDff9rYL/uE+AtPf/ThNJ2HIZ1wTIYNjPDnUIE2+6yGoul++pIrIR5Bb0SszF8HhZhqspMpNkDch+w0Q704y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.99)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1voOvT-0000000013J-1XmG;
-	Fri, 06 Feb 2026 16:43:23 +0000
-Date: Fri, 6 Feb 2026 16:43:19 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
-	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
-	Liang Xu <lxu@maxlinear.com>, John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v13 4/4] net: dsa: add basic initial driver for
- MxL862xx switches
-Message-ID: <aYYaJ4Yp_MAQ0eqw@makrotopia.org>
-References: <cover.1770211259.git.daniel@makrotopia.org>
- <2da8267175bfe7b8ff92d67ba5aa88755fab1710.1770211259.git.daniel@makrotopia.org>
- <20260205182117.41618f8d@kernel.org>
- <aYVckqToPwzR75EO@makrotopia.org>
- <20260206133418.vxui223u4d6jdpql@skbuf>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2C4632E132;
+	Fri,  6 Feb 2026 16:43:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.67
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770396240; cv=fail; b=uP9xKctH+J4GpQ2mOgWBM10aLYZH1IoIwjt6NMOkYLl4ftoG4IQRLST+yIsaAoqNqGsRdEl7+PPU7bn8OglZ7pBOE9B+9sNEPaENGhWdNgakcj0UKiYxWniuLAX0okcPu4+c89F0FgzAtdxSBAsAQVQ8AFQ0OUDFFuupDu6mtZY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770396240; c=relaxed/simple;
+	bh=VdOteclqLhcEJ0CUiEmc/ch2OKeUVcPGHqjCqBnEKgE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=qPa2m/KqD5v9ZBFTbcWjQuTgB5Jt6p0mOHpyz87i+OUMIVOnhY/h50OjIlPYQmdn7xxRViYNR4p+N11FMOFuKt5VAmQp2q60SaUlHtasS56uZWdrfAO6POtzqHJNdnyFugMJ3GVzzCBOM7Z8QS0SzKxqQulXbBSSh4/dYt8DCqk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=jsDRl2uo; arc=fail smtp.client-ip=52.101.70.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TTbExGVlYS78Q2yudSYWCfBhXIqbqINxxRtQgdh72EBAw6yNL8bVbl9we7A7heYnmpLwZ/akQSaG8iS2rfoL2sMacKA80rbfvV0p92F6ODqnxLe2hxu0M/ASn2KixQOG/8T9NnZmnm9AyRzRBMFwkcgcfRVbGklFprG7dTTo+22RaHLu5+L11VYwkMbIjNhIdUNVn2OsW6JwXiqsZ1jRCctXAXXcbpvZtj2MoxFBak0Pyho07BhvrM+7nKJdeT4+pFseWFIkNPqiUhVaWfwFJ/C/CAFaWc4oJX0RzlgK5Zymu7dRMF5qHKaiOdnpB39xwibTJfOOL8mk2aRQ9JDq0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nFLaBjjK09rniIiVhCXK3VZjRMWijSK6xBMP31roE4M=;
+ b=pg9aCTDhFEmiQf6qQ+NvWKDGmYFGNcQQdSoAu/hLNYkSD9rnYH30tSyO8kAqIHS4i7JL6iaMXxDbJtcnNu0j09DpdmS4C+9op1pYlldnmcGp6W93Gs7M174y3kb5toz/Te5KYRRiPgNImhtR548mTIFHhdRHWWqHwO20hwmHgDZPHbnzKIBSJQsOSr51HDAD5XAVkkoEBgtIee2BJrGNe8stDo4VnJjc4HV2kzupTBgXdXjn1hHyeC0cF8PvuKihCOPeATim2vJ0zgFnNde17wIbwh+v0LBjxZpglDHN6eEsmCFNj7h4wH7qCYhM2jG/4m1AceVHNHWp/2xoasjxNw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nFLaBjjK09rniIiVhCXK3VZjRMWijSK6xBMP31roE4M=;
+ b=jsDRl2uoL35Go1NzcUPfUIA1h3syfiY6pnrb9Y6PTyPz6PV6x4xCkZkmBLntvZ7x4Gnc8k1/ox/slut43oTmZcxi0FISMZqPPRYkLzi7FHF4aqHW14x7RBrFrskx3Mn6ctDxGlvs5lMASyA7LL09mK8Pq/5/A4tUrlSpXkEyMKPenZXBJPuph02hBDHU49h6ucJOlvs6nk7ar0Xew/0ZZTjGwTjFHuseWeuwrs4qewroB7RnhaLKn5zBPVRhzqmVoHvXB5Kqv497DE5C7GF4QSHOErB+lm8S1AJLr1I3t3I8AOnLhPCzIVrJNztw9lwOY/5KG5z+p4FAvWLcY1lYnw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by DB9PR04MB9844.eurprd04.prod.outlook.com (2603:10a6:10:4c4::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.13; Fri, 6 Feb
+ 2026 16:43:56 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Fri, 6 Feb 2026
+ 16:43:55 +0000
+Date: Fri, 6 Feb 2026 11:43:46 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, shengjiu.wang@gmail.com,
+	Xiubo.Lee@gmail.com, nicoleotsuka@gmail.com, perex@perex.cz,
+	tiwai@suse.com, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v4 2/4] ASoC: fsl_asrc_m2m: Add option to start ASRC
+ before DMA device for M2M
+Message-ID: <aYYaQtF46oDTR-Mi@lizhi-Precision-Tower-5810>
+References: <20260206014805.3897764-1-shengjiu.wang@nxp.com>
+ <20260206014805.3897764-3-shengjiu.wang@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260206014805.3897764-3-shengjiu.wang@nxp.com>
+X-ClientProxiedBy: PH7P220CA0064.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:32c::8) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260206133418.vxui223u4d6jdpql@skbuf>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DB9PR04MB9844:EE_
+X-MS-Office365-Filtering-Correlation-Id: 62647d6c-c46c-42e5-9785-08de659eea84
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|7416014|1800799024|366016|52116014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?k4/+y/DhfxsaUyqK1UBcAVF3to3gDxCu6GEZl3j5rRRDwwwQTf7cMii+5KaW?=
+ =?us-ascii?Q?BvkEY1rF9dhMEKzc5UQ4Tz5Jjto/FX+NF8BB5jQn6eJXWnhp3YqgFa+cUeZp?=
+ =?us-ascii?Q?bfK5LczKf4nsa7nOL+cjOhUGbwpQxQMcjQH6C4oRVN+e+eXl6HqeVambAXiJ?=
+ =?us-ascii?Q?eUfu+Gn9RvaCVJIVMUbOPVjjA45scFhDUfU9B/fc+GjT5ZdgABEMRMebNCLd?=
+ =?us-ascii?Q?yTkKRVw05z4dHCrgch9TF6EmYK6bakMzVnSOXhXiWRrweNSKlOsYfI1EbQx/?=
+ =?us-ascii?Q?klKSB+oUGOtrHK2TyfVGGsF019XGnYlVUHqo4s+AjtBzGV3IT6l9mnzbp6Eu?=
+ =?us-ascii?Q?nH96hUWbqiPV3NLv0j830PfYzdM0wLQwiTWqD2WUOR/BX0TUcIMU9WY9RpxW?=
+ =?us-ascii?Q?epGa/zZrZKizxWc9S13QkX7UqDihdh/50uzuXFn7gYovpUCsWlhIglF2k49l?=
+ =?us-ascii?Q?3QVEpwG49njMuorSshC/Kw5eRvg3Xu7x4aXPcwYIkse/vAvxNA+XTxmynDkh?=
+ =?us-ascii?Q?F7x18pUb7pG18icOsJiX3tXvFYREO9x0V647ufischTCrLLN9TyMF1txVgWO?=
+ =?us-ascii?Q?v5KXTpzqJUY5V8UeDYYNPBC8v9qnDu/IwVITtLW8eweeLlFKKDnv8cRCQBWV?=
+ =?us-ascii?Q?WGpxzPzb45eu/qThZpq1mzeg0LcEus/klfMWDV1EPD42ezDzv7r3B6LODVMc?=
+ =?us-ascii?Q?Kzwq0ypsLzcJIlzHLfqGBTABjvbPvPJaEPQJUYuRgVHcu5IQllMBxo1KVgNm?=
+ =?us-ascii?Q?V559xQqp1f8CiQwz3FDwiARFIhbnweaIxzAXVKXfRgVGAuWr0dYbjSppjjUr?=
+ =?us-ascii?Q?zpmwvc2qLPLqLPjg5s1B0tF0EtPlgDeBxPY3atrq59dkqQDOikuoLrjqe0IV?=
+ =?us-ascii?Q?ei231/C52uquDz7q4yE/AFVUPYihP5eUANgHzujFi3Yh0zpzHgXBd9Ekgp02?=
+ =?us-ascii?Q?chX9wbpeE2ro+hpqUJAFKd+4OCtoroW+dqqX/Lz7o7XYEdS9CDS4GoYGnobd?=
+ =?us-ascii?Q?HVf2E2kO4LWhDxg8Uv1xkSXXCbJjF2EQ56F1iAdwRxHUCrjt3S65md+O6RNQ?=
+ =?us-ascii?Q?x6i6mDSX5uVL7s3z8NpA2RqGPTqWMHttgrRv/qXd45pYnXh38aUZGS2dpbf5?=
+ =?us-ascii?Q?01PtFXlEgxH35AYBHKOsWi+zrkVYygEn/q8RKHwXV+WAI8M/+RlSWi/rk17v?=
+ =?us-ascii?Q?3v6t2VcFMbKqWd1cGGblB9Fu/l4hc2qPqzminnNjIbCbyYjX9ufejWjNLPsD?=
+ =?us-ascii?Q?jNbTUQsHsJ4DkvGquH+hI1PU5gkOaE/3A5s1NZOL1q3LV2lULPC3BkhQwyGs?=
+ =?us-ascii?Q?XkPeomMoc8ItqzIkX1XX3Hybek+tcAj6qwN2Iw/RFHG88nTgjSdY1cAwNJI7?=
+ =?us-ascii?Q?Wa1iTJhv59J6SGAwUoiNDC7/5ZSek79JeZfENB4tZmMQs3polKn0FZkP4QGN?=
+ =?us-ascii?Q?+M8S8SXAsnI3bJjg3C3lZsCZvtLJ2ewx9X7U1w4+yf3m7IyD72bM94GJ+bFW?=
+ =?us-ascii?Q?w9GL0E0Mh7jjE3fnoxlAQzdj/TxsreHAfPhRLBckMT9Af4YlXiMrQgzCov3k?=
+ =?us-ascii?Q?bDwyrKIf/j6kkB1brMZylgc3NjXRY0QnRFlDFHaQkzWUsroxVl1ObxEmnHj2?=
+ =?us-ascii?Q?KbCV3xZZvnLETREmvYxgn5A=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(1800799024)(366016)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?CgmLadXGnmZK8lbzveZDpS2+GGqPjtw+5PccBgtX2r9NcpShWThyRy4HhlQ1?=
+ =?us-ascii?Q?C0FT4MWBKQwGiYQ5fHZR+weGUWpA3JNJOEdstFroGBjAgynCt7J5iIxTkQO/?=
+ =?us-ascii?Q?3ZDS+boS2SQl+9JXDcbnovu6irkD+TXy6b8tymk15KHQpI4NGbcRb+fFsp6S?=
+ =?us-ascii?Q?9onA5bWpeamQz+hLbUTBS3nqieMBwdwRIUD+7BhKb8mq3A7hidT65bCifi3S?=
+ =?us-ascii?Q?fKwxtOJf9bpdAWNjc0PSFSjRHLUmgGkjYI5AWHWNH3K8SZ30IWNrDx2xSqYa?=
+ =?us-ascii?Q?zzQFZ+AbBxH5H5cu6IJeEpIZ0GN42WvudnBEzxqZNqpishHzpcGPFwPDH5iB?=
+ =?us-ascii?Q?wvH7sqGSQa1ZGsuljZJcJT3B6TMkP6w34alHkC/EqblHAue2sSEYWHjp1fh9?=
+ =?us-ascii?Q?wzDG6aml7KXoxhS9pX4SRNDsbpayfPkXwopgiB3pXcNyAIZ7isvGJSfFEU00?=
+ =?us-ascii?Q?YRdRsHvDgkNsRFvxWggW6HBe9kLFV03wJIgmVq3/EP7zhaBLxQ/amkoP8xvR?=
+ =?us-ascii?Q?OL59+8Zb5uhOZiuEeb/Fl+la6cFhZxq5tWxQGBX0+W8k8Rt3SxVV1bF0CRHK?=
+ =?us-ascii?Q?dD6Ia0lct1CC4u02FZ/nRsHuxpRSpC6fmiAO8/PnE1q/kGPsKYRmcrcsQP1f?=
+ =?us-ascii?Q?MfmrHhmQ1TJPz+oOzj00hiMiBt2J43Gex2znH+orsNxqLLezMPMc7NVJ7cJb?=
+ =?us-ascii?Q?SqAzespW/LvtuYYjFStB5i9EEEzDI6SdrFv9GTnXqe9Qo/A+PFHtY1Blno/9?=
+ =?us-ascii?Q?T0/yDrKhAB11uEDgBwxnkh+MpTXDp7kUV7bfTusKKJvTEe+BYMeTWp1Ny7bI?=
+ =?us-ascii?Q?vyrREblAHYwQMVw5Wuw+zOOnhIeBUMH4gOSvP0nfZqXQCaSnKkWsRjuOQX+V?=
+ =?us-ascii?Q?GbpoXPvByAN2/MHW19JWvE0erdOTxldnaqsxnMOH9FaJ49gLWF2RIj62H5sD?=
+ =?us-ascii?Q?oATBiPl+YYokcQNoCWkIbJeP3CcrWv2ewPVgnFC0uaLpO8XojflNjNDPcUPg?=
+ =?us-ascii?Q?Q69+UDtJ7XGLCCmbHr5X6L0vAFsYq/4U6A1GBHToAD0dlwI3lM5hAdxkciHN?=
+ =?us-ascii?Q?2CUz7tdCgsgNYQI3FQKTzsm4lnE68CjfYZI6G3wNtHERMS1mUNxd+2tAXR6n?=
+ =?us-ascii?Q?/YUpdS05LbIWBdzjNCEBrfswkrFd90BgGFA4g2oP/c7DS5cUszuBDmMkjM2q?=
+ =?us-ascii?Q?2EW2RZPMgVrp6piS8h6deSzkvokmQHGyftEL5SycMFcjgGp4mrA9fLE23NJL?=
+ =?us-ascii?Q?1bnE343+2Rlp7zXnog3G2hXzwU6AP8sI/3KFyIA3C7QbHofoxinRjq16Uzza?=
+ =?us-ascii?Q?2UpaUVVMV236iPGwTcM9dnttmsnz+LaCv9zdPHGSUPb+KixT7r+yhaXSd8PM?=
+ =?us-ascii?Q?hEh5e0TWcUN0hK8hPNHF8PdW+cOOT2b9h3DUgkXnDgAdHCb+PeVcYUvDdOzs?=
+ =?us-ascii?Q?Dtz2bk4yYGIYh4DT5AhW78S2z6Ugi+RSx+eRrZVfOOSsBXxSRQbBSShl0Yig?=
+ =?us-ascii?Q?nqRjWakIZaPD8UU00dtatuTEtYijjifntJGFqpN9sEvzHj8g/CMPHgjm8xq/?=
+ =?us-ascii?Q?Sgvq7qxAQGgPBZcZOqSgpZgxOifidKkPg8dBAXZpca133YdhYIvb9gb4kymP?=
+ =?us-ascii?Q?dE9M6jYkolGNfK7BBBWZ/jtkboJFBJUfAgcCuyNtW4VU7FDSzeNp6ge1unZr?=
+ =?us-ascii?Q?7UL3KqzJZr6K59MgsLMuZXAszz9KQIbZzl0HlhLZcrY1EoBn?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 62647d6c-c46c-42e5-9785-08de659eea84
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 16:43:54.9399
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3vhyf4uNPP0Noe269heaO1U/WUUq/mV+NBBV9FHCKUDSnoeygM9cxHjo2zo/kC5Xz6xr09zQ5krNR+4OWEH16Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9844
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-263423-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263422-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[makrotopia.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,armlinux.org.uk,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.920];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org,perex.cz,suse.com,lists.ozlabs.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5C814100876
+	NEURAL_HAM(-0.00)[-0.995];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,nxp.com:dkim]
+X-Rspamd-Queue-Id: 1CD191008AB
 X-Rspamd-Action: no action
 
-On Fri, Feb 06, 2026 at 03:34:18PM +0200, Vladimir Oltean wrote:
-> On Fri, Feb 06, 2026 at 03:14:26AM +0000, Daniel Golle wrote:
-> > Hi Jakub,
-> > 
-> > thank you for looking into this driver another time.
-> > 
-> > On Thu, Feb 05, 2026 at 06:21:17PM -0800, Jakub Kicinski wrote:
-> > > On Wed, 4 Feb 2026 13:33:19 +0000 Daniel Golle wrote:
-> > > > +/* The switch firmware expects all structs to be byte-aligned */
-> > > > +#pragma pack(push, 1)
-> > > 
-> > > "Byte-aligned" means..? Generally aligned means that it starts
-> > > at an address which is multiple of X. All addresses are multiple of 1
-> > 
-> > In case fo the firmware running on this switch it means that data types
-> > used in structures used as input and output parameters for firmware
-> > functions should be aligned to 8 bits, without any additional padding in
-> > between.
-> > 
-> > struct foo {
-> > 	u8	var1;
-> > 	__le16	var2;
-> > 	__le32	var3;
-> > } __packed;
-> > 
-> > It's size is 7 bytes and it looks like this:
-> > 
-> > .||||||||.||||||||.||||||||.||||||||.||||||||.||||||||.||||||||.
-> > |  var1  |       var2      |                var3               |
-> > .        .   LSB  .   MSB  .  LSB                         MSB  .
-> > 
-> > 
-> > This is what the firmware on the other end expects, from all data sent
-> > to it and what the Linux host has to expect from all data received from
-> > it.
-> > 
-> > > We used you push back against blanket __packed because it's forcing
-> > > all *host* accesses to also assume that the structures are unaligned.
-> > 
-> > Understand that in general, and of course know that using packed structs
-> > without a hardware requirement of doing so needlessly wastes CPU cycles
-> > on each access to struct members.
-> > 
-> > However, in this case this is a header file which exclusively defines
-> > structs which are only used to communicate with the firmware running on
-> > the switch. Using them for anything else, such as storing or processing
-> > data the driver deals with internally is, very inconvenient because all
-> > types are also defined as little-endian, so not only unaligned access,
-> > but also endian conversion burdens every access (in the sense that it
-> > burdens the programmer on little-endian machines, but the CPU as well on
-> > big-endian machines).
-> > 
-> > tl;dr: This whole file is only API definition. And this is how the
-> > firmware API is defined, and that's the only way to deal with that
-> > switch.
-> > 
-> > (I would have preferred if they just exposed the internal 16-bit
-> > registers of the switch via MDIO, and have asked MxL for that several
-> > times, without success)
-> > 
-> > > The best practice is to pack only specific structs which need it
-> > > and add compile_assert()s to make sure that the compiler doesn't add
-> > > any padding.
-> > 
-> > Imho checking whether each of these structs is naturally packed (ie.
-> > 8-bit aligned without padding between 8-bit aligned members) is prone to
-> > human errors which only become visible when testing on the real
-> > hardware, and hence complicates maintainance.
-> > 
-> > Other drivers which operate on similar APIs (many GPU drivers, for
-> > example) also use #pragma pack(push, 1) in header files defining
-> > external API. Also there all external API definitions are kept in a
-> > separate file, away from any of the datastructures used by the driver
-> > internally at runtime.
-> > 
-> > Anyway, if you really really want me to set individual __packed for each
-> > struct which isn't naturally packed in this whole file, please tell me
-> > clearly that this is what you would like, and I will of course do it
-> > despite disagreeing with the reasoning.
-> 
-> When I created the pack_fields() API it was exactly for situations like
-> this. It helps you keep naturally aligned structures in native CPU
-> endianness while adapting to whatever quirks the peripheral you're
-> talking to has.
+On Fri, Feb 06, 2026 at 09:48:03AM +0800, Shengjiu Wang wrote:
+> There is a limitation on i.MX952 that dma request is not cleared at the
+> end of conversion with dma slave mode. Which causes sample is dropped
+> from the input fifo on the second time if dma is triggered before the
+> client device and EDMA may copy wrong data from output fifo as the output
+> fifo is not ready in the beginning.
+>
+> The solution is to trigger asrc before dma on i.MX952, and add delay to
+> wait output data is generated then start the EDMA for output, otherwise
+> the m2m function has noise issues.
+>
+> So add an option to start ASRC first for M2M before ASRC is enabled on
+> i.MX952.
+>
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+> ---
 
-I've spent an hour studying the pack_fields() API and it's (well
-written) documentation. The only example of it's use in the current
-kernel I could find is the Intel E800 (ICE) driver. And there it does
-make sense as it is handling conversion between CPU and hardware formats
-in the hotpath for DMA descriptors, a total of 3 different structs, each
-with their individual accessor functions.
-
-Using this approach for this switch driver would require writing a lot
-of boilerplate code, accessor functions for each and every struct,
-and a struct definition once unpacked for the host platform and then
-again using the PACKED_FIELD(...) notation for the hardware format.
-Surely, most of that could be auto-generated using the existing
-vendor drivers API definition. Yet (at least to me) it feels like
-over-engineering and also it would require rewriting most of the driver
-which has been discussed for almost 2 months now.
-
-Also note that the driver doesn't need the naturally aligned version of
-all these structs in native CPU endian -- they are not used for further
-processing anything, you can see that because they aren't ever used as a
-function parameters, but only ever as exchange formats when
-communicating with the firmware.
-
-Maybe I'm missing something obvious here and there is a more simple way
-to use this API, some generic macros using compiler introspection to
-magically handle everything without needing to write packed and unpacked
-struct definitions and individual pack/unpack boiler-plate functions for
-each struct. If so, please provide me with an example or explain how you
-imagine the pack_fields() API to be used in the context of this driver
-and it's total of at more than 30 different structs which will be used
-for all the different firmware function I will need to use in order to
-implement phylink_pcs as well as the various offloading and VLAN-related
-functionality the driver should have in the end (ie. the structs you
-currently see in the mxl862xx-api.h file are just a fraction of what I
-hope to add there by follow-up series)
-
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+>  sound/soc/fsl/fsl_asrc.c        | 22 ++++++++++++++++++++++
+>  sound/soc/fsl/fsl_asrc.h        |  4 ++++
+>  sound/soc/fsl/fsl_asrc_common.h |  4 ++++
+>  sound/soc/fsl/fsl_asrc_m2m.c    |  8 +++++++-
+>  4 files changed, 37 insertions(+), 1 deletion(-)
+>
+> diff --git a/sound/soc/fsl/fsl_asrc.c b/sound/soc/fsl/fsl_asrc.c
+> index 92fb16f7be45..2fe25667c888 100644
+> --- a/sound/soc/fsl/fsl_asrc.c
+> +++ b/sound/soc/fsl/fsl_asrc.c
+> @@ -1078,6 +1078,26 @@ static unsigned int fsl_asrc_get_output_fifo_size(struct fsl_asrc_pair *pair)
+>  	return val >> ASRFSTi_OUTPUT_FIFO_SHIFT;
+>  }
+>
+> +static bool fsl_asrc_m2m_output_ready(struct fsl_asrc_pair *pair)
+> +{
+> +	struct fsl_asrc *asrc = pair->asrc;
+> +	enum asrc_pair_index index = pair->index;
+> +	u32 val;
+> +	int ret;
+> +
+> +	/* Check output fifo status if it exceeds the watermark. */
+> +	ret = regmap_read_poll_timeout(asrc->regmap, REG_ASRFST(index), val,
+> +				       (ASRFSTi_OUTPUT_FIFO_FILL(val) >= ASRC_M2M_OUTPUTFIFO_WML),
+> +				       1, 1000);
+> +
+> +	if (ret) {
+> +		pair_warn("output is not ready\n");
+> +		return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+>  static int fsl_asrc_m2m_prepare(struct fsl_asrc_pair *pair)
+>  {
+>  	struct fsl_asrc_pair_priv *pair_priv = pair->private;
+> @@ -1275,6 +1295,7 @@ static int fsl_asrc_probe(struct platform_device *pdev)
+>
+>  	asrc_priv->soc = of_device_get_match_data(&pdev->dev);
+>  	asrc->use_edma = asrc_priv->soc->use_edma;
+> +	asrc->start_before_dma = asrc_priv->soc->start_before_dma;
+>  	asrc->get_dma_channel = fsl_asrc_get_dma_channel;
+>  	asrc->request_pair = fsl_asrc_request_pair;
+>  	asrc->release_pair = fsl_asrc_release_pair;
+> @@ -1289,6 +1310,7 @@ static int fsl_asrc_probe(struct platform_device *pdev)
+>  	asrc->m2m_get_maxburst = fsl_asrc_m2m_get_maxburst;
+>  	asrc->m2m_pair_resume = fsl_asrc_m2m_pair_resume;
+>  	asrc->m2m_get_cap = fsl_asrc_m2m_get_cap;
+> +	asrc->m2m_output_ready = fsl_asrc_m2m_output_ready;
+>
+>  	if (of_device_is_compatible(np, "fsl,imx35-asrc")) {
+>  		asrc_priv->clk_map[IN] = input_clk_map_imx35;
+> diff --git a/sound/soc/fsl/fsl_asrc.h b/sound/soc/fsl/fsl_asrc.h
+> index 1c492eb237f5..60b6865ca952 100644
+> --- a/sound/soc/fsl/fsl_asrc.h
+> +++ b/sound/soc/fsl/fsl_asrc.h
+> @@ -257,6 +257,8 @@
+>  #define ASRFSTi_OUTPUT_FIFO_WIDTH	7
+>  #define ASRFSTi_OUTPUT_FIFO_SHIFT	12
+>  #define ASRFSTi_OUTPUT_FIFO_MASK	(((1 << ASRFSTi_OUTPUT_FIFO_WIDTH) - 1) << ASRFSTi_OUTPUT_FIFO_SHIFT)
+> +#define ASRFSTi_OUTPUT_FIFO_FILL(v)	\
+> +	(((v) & ASRFSTi_OUTPUT_FIFO_MASK) >> ASRFSTi_OUTPUT_FIFO_SHIFT)
+>  #define ASRFSTi_IAEi_SHIFT		11
+>  #define ASRFSTi_IAEi_MASK		(1 << ASRFSTi_IAEi_SHIFT)
+>  #define ASRFSTi_IAEi			(1 << ASRFSTi_IAEi_SHIFT)
+> @@ -432,10 +434,12 @@ struct dma_block {
+>   *
+>   * @use_edma: using edma as dma device or not
+>   * @channel_bits: width of ASRCNCR register for each pair
+> + * @start_before_dma: start asrc before dma
+>   */
+>  struct fsl_asrc_soc_data {
+>  	bool use_edma;
+>  	unsigned int channel_bits;
+> +	bool start_before_dma;
+>  };
+>
+>  /**
+> diff --git a/sound/soc/fsl/fsl_asrc_common.h b/sound/soc/fsl/fsl_asrc_common.h
+> index 0cd595b0f629..c8a1a2b5915d 100644
+> --- a/sound/soc/fsl/fsl_asrc_common.h
+> +++ b/sound/soc/fsl/fsl_asrc_common.h
+> @@ -107,6 +107,7 @@ struct fsl_asrc_pair {
+>   * @asrc_rate: default sample rate for ASoC Back-Ends
+>   * @asrc_format: default sample format for ASoC Back-Ends
+>   * @use_edma: edma is used
+> + * @start_before_dma: start asrc before dma
+>   * @get_dma_channel: function pointer
+>   * @request_pair: function pointer
+>   * @release_pair: function pointer
+> @@ -116,6 +117,7 @@ struct fsl_asrc_pair {
+>   * @m2m_start: function pointer
+>   * @m2m_unprepare: function pointer
+>   * @m2m_stop: function pointer
+> + * @m2m_output_ready: function pointer, check output fifo ready or not
+>   * @m2m_calc_out_len: function pointer
+>   * @m2m_get_maxburst: function pointer
+>   * @m2m_pair_suspend: function pointer
+> @@ -143,6 +145,7 @@ struct fsl_asrc {
+>  	int asrc_rate;
+>  	snd_pcm_format_t asrc_format;
+>  	bool use_edma;
+> +	bool start_before_dma;
+>
+>  	struct dma_chan *(*get_dma_channel)(struct fsl_asrc_pair *pair, bool dir);
+>  	int (*request_pair)(int channels, struct fsl_asrc_pair *pair);
+> @@ -154,6 +157,7 @@ struct fsl_asrc {
+>  	int (*m2m_start)(struct fsl_asrc_pair *pair);
+>  	int (*m2m_unprepare)(struct fsl_asrc_pair *pair);
+>  	int (*m2m_stop)(struct fsl_asrc_pair *pair);
+> +	bool (*m2m_output_ready)(struct fsl_asrc_pair *pair);
+>
+>  	int (*m2m_calc_out_len)(struct fsl_asrc_pair *pair, int input_buffer_length);
+>  	int (*m2m_get_maxburst)(u8 dir, struct fsl_asrc_pair *pair);
+> diff --git a/sound/soc/fsl/fsl_asrc_m2m.c b/sound/soc/fsl/fsl_asrc_m2m.c
+> index f46881f71e43..77999526dd9e 100644
+> --- a/sound/soc/fsl/fsl_asrc_m2m.c
+> +++ b/sound/soc/fsl/fsl_asrc_m2m.c
+> @@ -253,15 +253,21 @@ static int asrc_m2m_device_run(struct fsl_asrc_pair *pair, struct snd_compr_task
+>  	reinit_completion(&pair->complete[IN]);
+>  	reinit_completion(&pair->complete[OUT]);
+>
+> +	if (asrc->start_before_dma)
+> +		asrc->m2m_start(pair);
+> +
+>  	/* Submit DMA request */
+>  	dmaengine_submit(pair->desc[IN]);
+>  	dma_async_issue_pending(pair->desc[IN]->chan);
+>  	if (out_dma_len > 0) {
+> +		if (asrc->start_before_dma && asrc->m2m_output_ready)
+> +			asrc->m2m_output_ready(pair);
+>  		dmaengine_submit(pair->desc[OUT]);
+>  		dma_async_issue_pending(pair->desc[OUT]->chan);
+>  	}
+>
+> -	asrc->m2m_start(pair);
+> +	if (!asrc->start_before_dma)
+> +		asrc->m2m_start(pair);
+>
+>  	if (!wait_for_completion_interruptible_timeout(&pair->complete[IN], 10 * HZ)) {
+>  		dev_err(dev, "out DMA task timeout\n");
+> --
+> 2.34.1
+>
 
