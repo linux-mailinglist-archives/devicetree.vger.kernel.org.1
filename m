@@ -1,84 +1,73 @@
-Return-Path: <devicetree+bounces-263519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263520-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SJ32N5BchmlfMQQAu9opvQ
-	(envelope-from <devicetree+bounces-263519-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 22:26:40 +0100
+	id AFaSCNJehmnMMQQAu9opvQ
+	(envelope-from <devicetree+bounces-263520-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 22:36:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF6A103683
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 22:26:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 857F0103778
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 22:36:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7CB0F3011774
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 21:26:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 90E31304044B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 21:36:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BAAC30FF08;
-	Fri,  6 Feb 2026 21:26:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2122331280C;
+	Fri,  6 Feb 2026 21:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="oDqs+SRu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BKiBd6UV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EAF53033F0;
-	Fri,  6 Feb 2026 21:26:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA7D53126D0;
+	Fri,  6 Feb 2026 21:35:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770413182; cv=none; b=IvQAxvhQA/sXXr2uJPHM9HmIaToz9TP9QqDBRWgIY2cmIDJaRKtKANYYG1+0URVLzj0qJGvYPkTnPCMmsO4+1U8O8m+hDwNRq2/UF2wXO6Bh1s/X4mJU2DED+piw+7U8qZnwa3LFyOj+nUNPRX1IedG+fNhTbQdHrrNIBexAeoA=
+	t=1770413759; cv=none; b=YSVRZgElFkcfMFHgRglGo4oHx5sCGrqKTpduSIU1oXQ/Iv87aL2Sd0tkgkv6tcPj3ecP90VZh1Qiw84RT5dBu9oz27FMUG5IPZvNu7qyNuyEO/AKB3zpSeP5J6XeJZdKB3BWYgNPMMFr+iqho46rDp52iA9LuXVoO+21nNxRlLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770413182; c=relaxed/simple;
-	bh=2T07od/0Y6hzmkDiX1RLD/SCXRXmrAUlAOAgu0nEST4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JDJCADZf7rKcQiacjSm4ztILlIRqCjsAonQXe7MuiW79kIUZqokDVYh0wLzy90ME9WNgRywlvRVFjvuj1gX20ojciwbvNKq1ar3oRSYzvhIBFpUxAKDCYfdRBkr7snQjR3TpaipGoaB/HQmu1r8H0UucHycFlLEToat2qW2uGCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=oDqs+SRu; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770413182; x=1801949182;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2T07od/0Y6hzmkDiX1RLD/SCXRXmrAUlAOAgu0nEST4=;
-  b=oDqs+SRu8eanLvAcXJ+aFm9GjTHbKI/gFoHqWetfBzEejDgPiqpmEpBB
-   GfswT9ygGsL+gq4IDMinrjlqmmRfU01PYzZ14j2TJErUlbMMsZ96BC/Zr
-   73youLmplD1fekhE3+DBqU69YOcv5WyT1FHlhnTrKHTbhXaxzA+FS0km5
-   vJa4dSsWSoGO7nKYrv/zNb9/h1vktBc0OOiG8RyCG8CqkS6eNRosBFnVz
-   KbiPDrBn1fCBv47tPtZvxbLbXcOmtYz7L2t7rp7Dsr1vsHksXPtYSsd9u
-   Ip8L1uAPddmqu8JwhF/N1uMZmAGwyqX9bcM8EVgb7Ax6/m5MR+WTaw8NX
-   w==;
-X-CSE-ConnectionGUID: hplSTQNSSh+cRYQVdM9maA==
-X-CSE-MsgGUID: nYeHQZvxRSuiMIv1GpJu/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="71690743"
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; 
-   d="scan'208";a="71690743"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2026 13:26:21 -0800
-X-CSE-ConnectionGUID: IvDzmKR4Rx2FZA72u2qnFA==
-X-CSE-MsgGUID: q0BiZXafSBiwMCI4inN3xw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; 
-   d="scan'208";a="215470966"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 06 Feb 2026 13:26:18 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1voTLE-00000000lAi-03Ux;
-	Fri, 06 Feb 2026 21:26:16 +0000
-Date: Sat, 7 Feb 2026 05:25:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>,
-	linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
-	alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, broonie@kernel.org,
-	lee@kernel.org, Frank.Li@nxp.com, lgirdwood@gmail.com
-Cc: oe-kbuild-all@lists.linux.dev, vikash.bansal@nxp.com,
-	priyanka.jain@nxp.com, shashank.rebbapragada@nxp.com,
-	Aman Kumar Pandey <aman.kumarpandey@nxp.com>
-Subject: Re: [PATCH v5 5/5] i3c: hub: p3h2x4x: Add support for NXP P3H2x4x
- I3C hub functionality
-Message-ID: <202602070522.fcoiqtPw-lkp@intel.com>
-References: <20260206120121.856471-5-aman.kumarpandey@nxp.com>
+	s=arc-20240116; t=1770413759; c=relaxed/simple;
+	bh=dpuixKPaca+z8P7KSWpyhbK+TCmFkMQ2hPyCbIIOrUY=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=uBmOtBQdfT9X/pGfE0x6OIHyzoesmBGjnNu40Q5CWo1x9HiojJ5pcq7We+Gh2+4uAsF+xDDM3+t4b0fjA956TSK5jHSm+6zdf2MISlDjQsvjbpIx6J24htmqKP+dmaMKJGmnduWnREYzri4Y7ZN/BpANOpedx+Ulj1vw6+d4FeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BKiBd6UV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72974C116C6;
+	Fri,  6 Feb 2026 21:35:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770413758;
+	bh=dpuixKPaca+z8P7KSWpyhbK+TCmFkMQ2hPyCbIIOrUY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=BKiBd6UVFOmZNUiHi2ArQZp6AzI1ZrlrM9SNXzmgl+t7WJuSArxlD4FdOYc8AJZo8
+	 +qwQK2mdyhRYbUeTqdcA5JpJteLTkmd7BFXnLWEiHJEezOTF9EVR/tW85Fgd3cJ/OP
+	 oOGCr+4q1b62itZFKe//qgBpokRzQNPb868MGVL7u5Hkeitnsaan4ZL+peh9jF5uXE
+	 TqN6dWn4shdcUlyC+ibaZyhlP/4nZlnGjGfFqfh9bpvTb6Lb2OTcjnhohyaeeFrVuU
+	 RJ9cfFcYrLy0mWfjAhoF0zvMOQSjy6Na61f8PCbosimTIttf5kVJxqgfZTYJEpVxIQ
+	 GK8hVIHYLXexg==
+Date: Fri, 6 Feb 2026 15:35:57 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	KancyJoe <kancy2333@outlook.com>
+Subject: Re: [PATCH v3 0/9] arm64: dts: qcom: Add support for the Ayaneo
+ Pocket S2
+Message-ID: <20260206213557.GA83922@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,107 +76,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260206120121.856471-5-aman.kumarpandey@nxp.com>
+In-Reply-To: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-0-5b79c5d61a03@linaro.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-263520-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263519-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[nxp.com,vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com,google.com,vger.kernel.org,oss.qualcomm.com,outlook.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.953];
+	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,01.org:url]
-X-Rspamd-Queue-Id: 3AF6A103683
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 857F0103778
 X-Rspamd-Action: no action
 
-Hi Aman,
+On Fri, Feb 06, 2026 at 03:50:28PM +0100, Neil Armstrong wrote:
+> The Ayaneo Pocket S2 is a gaming console based on the Qualcomm
+> Snapdragon 8 Gen 3. It has an internal UFS storage, WiFi,
+> Bluetooth, gaming buttons, SDCard, 2K display and USB-C
+> connector.
 
-kernel test robot noticed the following build warnings:
+>       pci: pwrctrl: slot: fix dev_err_probe() usage
+>       pci: pwrctrl: rename pci-pwrctrl-slot as generic
 
-[auto build test WARNING on lee-mfd/for-mfd-next]
-[also build test WARNING on lee-mfd/for-mfd-fixes broonie-regulator/for-next linus/master v6.19-rc8]
-[cannot apply to i3c/i3c/next next-20260205]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+These look fine (but please update subject lines to follow past
+history).
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Aman-Kumar-Pandey/dt-bindings-i3c-Add-NXP-P3H2x4x-i3c-hub-support/20260206-200552
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-patch link:    https://lore.kernel.org/r/20260206120121.856471-5-aman.kumarpandey%40nxp.com
-patch subject: [PATCH v5 5/5] i3c: hub: p3h2x4x: Add support for NXP P3H2x4x I3C hub functionality
-config: m68k-randconfig-r054-20260207 (https://download.01.org/0day-ci/archive/20260207/202602070522.fcoiqtPw-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260207/202602070522.fcoiqtPw-lkp@intel.com/reproduce)
+>       pci: pwrctrl: generic: support for the UPD720201/UPD720202 USB 3.0 xHCI Host Controller
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602070522.fcoiqtPw-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/i3c/hub/p3h2840_i3c_hub_smbus.c: In function 'p3h2x4x_ibi_handler':
->> drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:87:11: warning: unused variable 'i' [-Wunused-variable]
-     u32 ret, i;
-              ^
->> drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:87:6: warning: unused variable 'ret' [-Wunused-variable]
-     u32 ret, i;
-         ^~~
->> drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:86:44: warning: variable 'payload_byte_two' set but not used [-Wunused-but-set-variable]
-     u32 target_port_status, payload_byte_one, payload_byte_two;
-                                               ^~~~~~~~~~~~~~~~
->> drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:86:6: warning: unused variable 'target_port_status' [-Wunused-variable]
-     u32 target_port_status, payload_byte_one, payload_byte_two;
-         ^~~~~~~~~~~~~~~~~~
->> drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:85:30: warning: unused variable 'p3h2x4x_i3c_hub' [-Wunused-variable]
-     struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = dev_get_drvdata(&i3cdev->dev);
-                                 ^~~~~~~~~~~~~~~
-
-
-vim +/i +87 drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-
-    75	
-    76	/**
-    77	 * p3h2x4x_ibi_handler - IBI handler.
-    78	 * @i3cdev: i3c device.
-    79	 * @payload: two byte IBI payload data.
-    80	 *
-    81	 */
-    82	void p3h2x4x_ibi_handler(struct i3c_device *i3cdev,
-    83				 const struct i3c_ibi_payload *payload)
-    84	{
-  > 85		struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = dev_get_drvdata(&i3cdev->dev);
-  > 86		u32 target_port_status, payload_byte_one, payload_byte_two;
-  > 87		u32 ret, i;
-    88	
-    89		payload_byte_one = (*(int *)payload->data);
-    90		payload_byte_two = (*(int *)(payload->data + 4));
-    91	
-    92		if (!(payload_byte_one & P3H2x4x_SMBUS_AGENT_EVENT_FLAG_STATUS))
-    93			return;
-    94	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+I don't see anything here specific to UPD720201/UPD720202.  I don't
+want a stream of patches to add more devices in the future.  Is there
+any better design?
 
