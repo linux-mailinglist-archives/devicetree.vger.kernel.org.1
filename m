@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263436-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eA7DJOgghmkCKAQAu9opvQ
-	(envelope-from <devicetree+bounces-263435-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:12:08 +0100
+	id UExWMM0hhmm/JwQAu9opvQ
+	(envelope-from <devicetree+bounces-263436-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:15:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA976100C36
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:12:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A6D5100D5D
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:15:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 911CB300F5FA
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 17:12:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C8A5A30238E8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 17:13:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D814D38B9B3;
-	Fri,  6 Feb 2026 17:12:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FA5B393DE9;
+	Fri,  6 Feb 2026 17:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZN6Yyck2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ufy++o0b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B42E7363C46;
-	Fri,  6 Feb 2026 17:12:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C2F936C0C7;
+	Fri,  6 Feb 2026 17:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770397925; cv=none; b=EwXBxoONJ1o/UkehIgZ6tECDqaDEccCEQX0Z2RjWS54Yx3NmyqOVNWyFRuMaqIaXFCvXkh12X7sWGmPxOWXOYrwKrg8nROXJywHdNcP7ufaB7r2Cs+O1HbkZxpYf8DwVG0fvXJP9KeFKXYBtM6XQzKElapjnP0ts6quwz5G24rI=
+	t=1770398023; cv=none; b=lnND/6/IzpbF/0DsXlNyi59wb83KZV+bFEh5K620uz6jDevuBBt7iN3Wz0H48GeyeNmpGjTz+R62hfLNqewDqXUsQ5yGXYTC+31WZ/sEuvXL2XWMw/pR6iqRzXASWCX617r/UWt3y32KOv2ioQBIj/jRHZHE1dRdG5GLqUyTnyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770397925; c=relaxed/simple;
-	bh=JJYA0CyMbrQfqxdD13IkQJd8o+a5hbxd+Cesee+tMYE=;
+	s=arc-20240116; t=1770398023; c=relaxed/simple;
+	bh=4JQ/VAyGxvToQCMgyKQgtA8Vl8Bqrz1gldYQ6Aw9eYg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gWMYNAsgsKTdB1bv7pNIiM+mMpt4TgJDLBcvQFsM2YwQC2Y4upthm4/g7K+Z3n34+7hoORPHd1KYkOUnHO9bE8Ndh42u1BKHyPOr79krOg9G6hmiEssHJ4LjIJcTRg0GiNRpPCAPMFRsafB99ZT2A/QuOaiirBQcbtDzzOS/0Ts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZN6Yyck2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68F1AC116C6;
-	Fri,  6 Feb 2026 17:12:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=fjEBXA4giZbYoVFC2tPmBgDTqgm7dffGwFI8BQ+pJgptEc377cPAUXCafSyuy6fOgQLTnyy15AukgFnBPApzop+VzULq9fWGZsIZivTos1dNyjPIhhS8xKlU6tOwmMmI8Oa5jqaSF8/SQrGaP4J0d0ziPSvrifvb1SiKGc7aQi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ufy++o0b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 246A8C116C6;
+	Fri,  6 Feb 2026 17:13:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770397925;
-	bh=JJYA0CyMbrQfqxdD13IkQJd8o+a5hbxd+Cesee+tMYE=;
+	s=k20201202; t=1770398022;
+	bh=4JQ/VAyGxvToQCMgyKQgtA8Vl8Bqrz1gldYQ6Aw9eYg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZN6Yyck2EkCRVTggdQ24qLdN9ElaHecbDivf+totIaA+xcVyTeJAxjcg106YLUOW6
-	 WhxpzZqkSpeDEcFTCrlvz/efj/JOqU1n4ht0BSn0UEB/GwouLhdk6aeEWx+nWJ1Nsa
-	 s+qBzerGkLcUplSHG1Y4f9mI6dG6CXUGBGgggL1r5GQs5dKPAr2l/FXI1xXcnglfjb
-	 o6hDczXBnO49xqHZaYOY3kUY1U636Cr5TGDtEl584ZWZzxJvYFN/EEmxJHFRFlKpfj
-	 qxl9hUjEA/Lu/8iQwU+BN+uYEe2Ecm+VwqDLcU3PVNGsgRQEA4vjoOKm5IJjn4up4q
-	 vussIcXCZx4pQ==
-Message-ID: <409c2e5f-1bf2-44ed-9c0f-df762320e068@kernel.org>
-Date: Fri, 6 Feb 2026 18:12:00 +0100
+	b=Ufy++o0bwlhON78Cv2rkzw+iX3oKC9aqUaMZJwHCKJ9huuyQjdB/H5belF7Sy3DWG
+	 Soa4YB/a1Wmo7Fwqcej7rwX7tp8YZ7Qvihjp9HBJ50lDqv3GCo+DWHNneS6Ha0nvBz
+	 ZIDqjTQ9+feWzAaZP8mJ4gh9n+vGDvz0Z0/M1KQBJaZKcGQj9o+8HYJQhj3Un3cqD4
+	 vmVcjkGZ1bL3ja7qac5G3gFS0XqhB55CDGXgh9ISnfXEjJjvT7Wk2yItc0pXo6VsdD
+	 vx0fX2D2PKmX+e8IQt9UX78JZh6nyw2arsUGmZ3WYMtgS3uD+y2C7A44VvLHMU9Tgp
+	 rNdpybdOjHEIQ==
+Message-ID: <af35d335-96f2-4404-a6e2-e85c68cb2757@kernel.org>
+Date: Fri, 6 Feb 2026 18:13:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,16 +53,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/7] dma: qcom: bam_dma: Fix command element mask field
- for BAM v1.6.0+
-To: Md Sadre Alam <quic_mdalam@quicinc.com>, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, vkoul@kernel.org, Frank.Li@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org
-Cc: quic_varada@quicinc.com
-References: <20260206100202.413834-1-quic_mdalam@quicinc.com>
- <20260206100202.413834-2-quic_mdalam@quicinc.com>
+Subject: Re: [PATCH v3 0/2] arm64: dts: Initial support for LG1215 TV SoC
+To: Chanho Min <chanho.min@lge.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kever Yang <kever.yang@rock-chips.com>, Kael D'Alcamo <dev@kael-k.io>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260112053421.3185738-1-chanho.min@lge.com>
+ <aYFM+mHqhfCuWgRP@BRUNHILD>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,21 +110,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260206100202.413834-2-quic_mdalam@quicinc.com>
+In-Reply-To: <aYFM+mHqhfCuWgRP@BRUNHILD>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263435-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263436-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -130,7 +132,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
+	NEURAL_HAM(-0.00)[-0.990];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
@@ -138,45 +140,25 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url]
-X-Rspamd-Queue-Id: DA976100C36
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2A6D5100D5D
 X-Rspamd-Action: no action
 
-On 06/02/2026 11:01, Md Sadre Alam wrote:
-> BAM version 1.6.0 and later changed the behavior of the mask field in
-> command elements for read operations. In newer BAM versions, the mask
-> field for read commands contains the upper 4 bits of the destination
-> address to support 36-bit addressing, while for write commands it
-> continues to function as a traditional write mask.
+On 03/02/2026 02:18, Chanho Min wrote:
+>>  .../devicetree/bindings/arm/lge.yaml          |   5 +
+>>  arch/arm64/boot/dts/lg/Makefile               |   1 +
+>>  arch/arm64/boot/dts/lg/lg1215-ref.dts         |  50 +++
+>>  arch/arm64/boot/dts/lg/lg1215.dtsi            | 290 ++++++++++++++++++
+>>  4 files changed, 346 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/lg/lg1215-ref.dts
+>>  create mode 100644 arch/arm64/boot/dts/lg/lg1215.dtsi
+> Hi,
 > 
-> This change causes NAND enumeration failures on platforms like IPQ5424
+> Gentle ping on the LG1215 series (v3) — Acked-by received, but still not picked up.
+> Any update or is it waiting in a queue somewhere?
 
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
 
-> that use BAM v1.6.0+, because the current code sets mask=0xffffffff
-> for all commands. For read commands on newer BAM versions, this results
-> in the hardware interpreting the destination address as 0xf_xxxxxxxx
-> (invalid high memory) instead of the intended 0x0_xxxxxxxx address.
-> 
-> Fixed this issue by:
-> 1. Updating the bam_cmd_element structure documentation to reflect the
->    dual purpose of the mask field
-> 2. Modifying bam_prep_ce_le32() to set appropriate mask values based on
->    command type:
->    - For read commands: mask = 0 (32-bit addressing, upper bits = 0)
->    - For write commands: mask = 0xffffffff (traditional write mask)
-> 3. Maintaining backward compatibility with older BAM versions
-> 
-> This fix enables proper NAND functionality on IPQ5424 and other platforms
-> using BAM v1.6.0+ while preserving compatibility with existing systems.
-
-Fixes tag? CC-stable?
-
-Why is this part of DTS patchset? Do not combine independent work, you
-only make it difficult for maintainers to handle your work.
-
+Why are you pinging yourself?
 
 Best regards,
 Krzysztof
