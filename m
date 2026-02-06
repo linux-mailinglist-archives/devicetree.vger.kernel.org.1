@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263240-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uJAhHVGThWm3DgQAu9opvQ
-	(envelope-from <devicetree+bounces-263239-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:08:01 +0100
+	id CLojGtaThWm3DgQAu9opvQ
+	(envelope-from <devicetree+bounces-263240-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:10:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E7B8FAD5A
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:08:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F22ABFAD9D
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:10:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BA440304D154
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 07:06:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1503630886F2
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 07:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 525B133B6C7;
-	Fri,  6 Feb 2026 07:06:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40E4F302756;
+	Fri,  6 Feb 2026 07:07:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YrWnAwr2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nq4wTOd+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F00332FA10;
-	Fri,  6 Feb 2026 07:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D44133BBA4;
+	Fri,  6 Feb 2026 07:07:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770361576; cv=none; b=Nup8CC3y/07EvEHZ9ktQGhkcSpfRqpuPAbAkkeGI0PQsble02zp+kUyZXzZBdc5Fc11c3Rg5mwbmPKgCysJx0STHPdCFlNDkPEfxGTcfX+ZxF8To5vAv4yF72ZHsJOfK0SqZ9qVVl4IlKME3BGRC61Zm9zQZAGL9TIm3+ukdch8=
+	t=1770361626; cv=none; b=DpjmCdbQH3Pgv3RowxeF10IrUgu2HgtjITYXX4jzm2JNH/eKl9sQKY6oeDSzCb0QrB9v1yi2N2Dx1B0V0UVs2UfN2td19urmA/4aFSix18dVXi/2NFElMpBNTs7CGA2JkDPXpEmFTfvx6HiHYyaLuNMrar2ZQZP9jluf9vK4EAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770361576; c=relaxed/simple;
-	bh=TSdl/PVmPMQn0yepPG9x3KjiFpqxVryrESYPYJjLBn4=;
+	s=arc-20240116; t=1770361626; c=relaxed/simple;
+	bh=WvZw8TZEb3SgW+/70HUmxFJO34AgPehjojDeWdDjWhI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AEMgqsnZQgiyGrW4ZshuJQOcsVCOPm8rmEnq+HPHpw8LqzH1gXxt4PCuXRRlH6pw2ML3X3UnaO8buxp6q/KtCx06yHKlCYt0dfb1HE3N77Bptzzc6rUVM1dJROvQpRkluSYVHEAViknOZMxYE7z9DRAXEt2VUK60lUNELRoLoew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YrWnAwr2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E096DC116C6;
-	Fri,  6 Feb 2026 07:06:12 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=FtZGABjthd8H/CUfm3kMWvfy87B2BLZ7PK065sQ/wXL8rD1ZbGDvRrNHYAFkuaoHEhFAtV4eCNp9+WAzH3XsOs43isEJHKY7QwmLucvr9WRLSA4e5S0M54knYKvlLkvnTo3IAebisjSphdGl9nVhCUFcASfUQyW59FwiHBiDaZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nq4wTOd+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 027DDC116C6;
+	Fri,  6 Feb 2026 07:07:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770361575;
-	bh=TSdl/PVmPMQn0yepPG9x3KjiFpqxVryrESYPYJjLBn4=;
+	s=k20201202; t=1770361625;
+	bh=WvZw8TZEb3SgW+/70HUmxFJO34AgPehjojDeWdDjWhI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YrWnAwr2n5737grph65u7yCbuCOdXQuFi4LcoL4p1UNiOUHH2ir26ahZoRP3fuobT
-	 2gC6kvHGQV8XU5CqAYrjJgqBQWlrL/nLe7OaPCK5c2d5QakWT1a5i5/FX5hGrrr4/j
-	 qemevQ59DHZZ7y/hLFExfTY/MTmZUTY5Q4awMf9dQGyabxni9RYZ4v9nXFYkHCrWvX
-	 8WNsfFFC5VPS1mXTmZ6DLN9+PsLb6FKAnz/8ZU1doxYHTDF0Fr4S+37NDrJyEJ7W6L
-	 qKtY1Olgod+eWqLfDmEKuouCmHFsgst+C6YgX9U3burNnNUxEUPXTUfkEI/HrGOkh4
-	 ZQknZFQbYZq7Q==
-Message-ID: <a7ea63b0-f787-49f2-8e31-d3849b6b0518@kernel.org>
-Date: Fri, 6 Feb 2026 08:06:10 +0100
+	b=Nq4wTOd+caqPrkzH9QxmqBvkYO1ADtEBtEyURjcb7Tp51nkrI/cZ0mNJiUWjTBYtz
+	 +2Us9GW6ejgWjko3lvVYkSPC708UEtQT8g0hFpAr1UopavX7aLCz7HeAX5MH3lJ/8r
+	 yaPzAhBEkYaHn99kUF0bBgq/+rlzW7fQbiuS2+xi5TT+QasMbx50sQs8nUZ7Fzfuoi
+	 sio6NS0lrRtSHyPn+6/sChkqHfpWqfVfUj9ZP6J2OOCCWAHbg2C5w3MLIkuPJMGdM4
+	 NUKp9Q+s7jFjCQPqP1PqFEXNwreOragKNqGD0T260B+EnVmiyArEI4+t02uq+k0Wvq
+	 P27yGe9ETMcrA==
+Message-ID: <36383e80-fcf2-4d7b-8036-58a1e72236cd@kernel.org>
+Date: Fri, 6 Feb 2026 08:07:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,28 +53,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?B?UmU6IOWbnuWkjTog5Zue5aSNOiBbUEFUQ0ggdjcgMS8zXSBkdC1iaW5k?=
- =?UTF-8?Q?ings=3A_soc=3A_cix=3A_document_the_simple-mfd_syscon_on_Sky1_SoC?=
-To: Gary Yang <gary.yang@cixtech.com>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- Peter Chen <peter.chen@cixtech.com>,
- "unicorn_wang@outlook.com" <unicorn_wang@outlook.com>,
- "inochiama@gmail.com" <inochiama@gmail.com>,
- "alchark@gmail.com" <alchark@gmail.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
-References: <20260204020644.155094-1-gary.yang@cixtech.com>
- <20260204020644.155094-2-gary.yang@cixtech.com>
- <20260205-noisy-fabulous-bumblebee-e0cb32@quoll>
- <TYUPR06MB587652FD43724BE26B15975DEF99A@TYUPR06MB5876.apcprd06.prod.outlook.com>
- <f8ac62ad-5b04-4148-aee6-cd401a2143cd@kernel.org>
- <PUZPR06MB5887AA9C68D11448A3125E58EF66A@PUZPR06MB5887.apcprd06.prod.outlook.com>
+Subject: Re: [PATCH 1/2 v3] dt-bindings: arm: lg: Add compatible for LG1215
+ SoC and reference board
+To: Chanho Min <chanho.min@lge.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kever Yang <kever.yang@rock-chips.com>, Kael D'Alcamo <dev@kael-k.io>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260112053421.3185738-2-chanho.min@lge.com>
+ <20260112-agile-elite-tuatara-dea08d@quoll> <aYVnJKDO9PYiqje5@BRUNHILD>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -120,7 +111,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <PUZPR06MB5887AA9C68D11448A3125E58EF66A@PUZPR06MB5887.apcprd06.prod.outlook.com>
+In-Reply-To: <aYVnJKDO9PYiqje5@BRUNHILD>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -133,56 +124,61 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263239-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263240-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,cixtech.com,outlook.com,gmail.com,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,cixtech.com:email]
-X-Rspamd-Queue-Id: 0E7B8FAD5A
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F22ABFAD9D
 X-Rspamd-Action: no action
 
-On 06/02/2026 06:42, Gary Yang wrote:
+On 06/02/2026 04:59, Chanho Min wrote:
+> On Mon, Jan 12, 2026 at 10:07:05AM +0100, Krzysztof Kozlowski wrote:
+>> On Mon, Jan 12, 2026 at 02:34:20PM +0900, Chanho Min wrote:
+>>> Add compatible strings for the LG1215 SoC and its reference board
+>>> (lg,lg1215 and lg,lg1215-ref).
 >>>
->>> This yaml comes from microchip,mpfs-mss-top-sysreg.yaml as conor's
->> suggestions on V3.
->>> More info:
->>> https://patchwork.kernel.org/project/linux-arm-kernel/patch/2025112406
->>> 3235.952136-2-gary.yang@cixtech.com/
+>>> This SoC is the next SoC following the LG1313 series, developed
+>>> by LG Electronics.
+>>>
+>>> Signed-off-by: Chanho Min <chanho.min@lge.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/arm/lge.yaml | 5 +++++
+>>>  1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/lge.yaml b/Documentation/devicetree/bindings/arm/lge.yaml
+>>> index d983ef7fcbd6..0d0661470eaa 100644
+>>> --- a/Documentation/devicetree/bindings/arm/lge.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/lge.yaml
+>>> @@ -24,5 +24,10 @@ properties:
+>>>            - const: lge,lg1313-ref
+>>>            - const: lge,lg1313
+>>>  
+>>> +      - description: Boards with LG1215 SoC
 >>
->> Please point to a specific message, not entire thread of 8 untrimmed replies.
+>> 1215 < 1313, so this looks oddly sorted.
 >>
+>>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 > 
-> Please pay attention to these below:
+> Hi, Krzysztof
 > 
->> Three, In corresponding driver files, we can get the regmap pointers via syscon API.
->> All right? By the way, How should we describe syscon in yaml file? Are there some files used to refer?
-> 
-> microchip,mpfs-mss-top-sysreg.yaml is one I wrote recently. Going to the
+> Ping, Any update or is it waiting in a queue somewhere?
 
-I do not understand why you are referring to this example. You did
-nothing like that.
-
-If you followed that example, it would be obviously fine because it is
-correct. You did not follow that one - you have no children here - thus
-you just proven that you received review which you just ignored. Sorry,
-that's waste of our time. If you go that way, don't be surprised we are
-grumpy. How many examples we need to give you which you can ignore...
-
+You received my comment and review. It is waiting on you.
 
 Best regards,
 Krzysztof
