@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-263445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263446-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wPpfEjolhmlSKAQAu9opvQ
-	(envelope-from <devicetree+bounces-263445-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:30:34 +0100
+	id ACqMJj4lhmlSKAQAu9opvQ
+	(envelope-from <devicetree+bounces-263446-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:30:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B043310108A
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:30:33 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E422E101099
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 18:30:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4127E3028C06
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 17:29:33 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BCF00301490A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 17:29:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0C2C423A80;
-	Fri,  6 Feb 2026 17:29:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ABE4425CD9;
+	Fri,  6 Feb 2026 17:29:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fdN5I5wj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KCwh3bIb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E82742317D
-	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 17:29:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 113E342317D
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 17:29:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770398957; cv=none; b=mRDarWp9qbkFJJOPnbBQ1gXE4XIZX7VrxXyV6ldfzOnt/EuOK1DxftcwA9/i3GwJd/c2aqYl8Zqckq7vPBzrKj+X9HPZ9BB5fJK/55aZrDH5B8YUsAzsg2wphHE04L9Ng2ITrZc2YyBRZC7Qr3U9TjxGLrEi60tWQGQPOZ7ECcQ=
+	t=1770398959; cv=none; b=ue0AA5A5omyNExiXccz4FIUPRxKWw/IIef+3pTf7GJXWIUuFv6dOa3ltbc8V6FfNaNJXymt5agH9pGHZppEJoybU7ZIHdZf6mBClsp0qql7aw1Vo1eg3d5/Cl5/rGoKv3zyzinKVnCESwyCTrcQQ0TEL/k1PtMBawIIfB5kbqXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770398957; c=relaxed/simple;
-	bh=zDdA6Z/8E3qzcgVxUJG9XgVMg2hV9AEwM6u4bLx3TbM=;
+	s=arc-20240116; t=1770398959; c=relaxed/simple;
+	bh=DrNGeBlRxTjZoXBtwt3WHPiWKByZ7OZ+6oYAQENqEx8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=S/3M7fKFIqsOTDfqO84+7ajEcP+YZth7EXEtYJaM5ueJ9YcqYio3UAVVBT/5WpnA79G2zg0TOY836b82nlgqpymE0qFmDhOQr4ajF8zvLdGYZXQf3pi0krthUQIGYAr00xzhXzvV/uU4IROg24s9i+DWRC6WGTIZTd2DcPJuw3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fdN5I5wj; arc=none smtp.client-ip=209.85.221.41
+	 MIME-Version; b=gtTfNd/sbrWJZSBUyUQS/2Sx5XBDwyRsdySdHwaKjuSq2qJLFx3u3gLNRZakKm8E1JbcL7/rnA3BWz+VkLETz9Iw0hqZ0Y3j+6Q93hLTzDWDL0H3zaiUjX3A32uJP/EEsZxU4MJg1NBTOajtvteuoLFmFkYP2Cjg1OAmhuNbaiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KCwh3bIb; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-4362507f396so1720307f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 09:29:17 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-482f454be5bso28429825e9.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 09:29:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770398956; x=1771003756; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1770398957; x=1771003757; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3NXIB170Miy5U8AUdI7je1qnmIqOJUqz+7CF8NtEdwM=;
-        b=fdN5I5wjE2WPpeZmJrs2RKKds7Z8CciRyzg9TQKKINNc3TbY51b3CHbwd5CRsO8Fdl
-         D/bRgw6zij3btttKrnf4ku31E5FKVm0Olu1OOtQFA6NnD+I0IXleCXTQQ1L3ACuAN/mX
-         uVCvxs64sBHXq7EGyt2RgD05BkCNHJp+DqZPfXsdJDqkC4B9swNLgRrV04XKxqcbvVNA
-         6ukFI3yJRxYkS5U/jAvINak46f1XVQZ/COOqhUv3JaDCSpAk0W6PQBSvx7zpbvQGtWMU
-         iKhcKY7LUEi8QWvbr/lq+Pwh0OgnmrwSfpI9cKAgz3rBKqA3BHWaGupA3jzdXhiT6l4/
-         RDlQ==
+        bh=KFT7mMG9k0k/BXen8CQg8hnB8vdYe60xOPZB+uYBrVs=;
+        b=KCwh3bIb//zvZ6x8Eeqi5oW96xjKRphn+S3INdExR7uEdNzwn+8MXX0oKYd/fWC+Pc
+         Ldsig3m7gudUyEkHw/2hQrq7aolu3ph++Fcx+xFeoZHvft9Bddbe5vvl1hjB34G2jX+G
+         nOBWK99hiO7EnOwJykvohpC30hcGmKqDtw9U41A+F6R/PaRQ/KfxIPzwagY7a0NZgOlj
+         vzC/Kx1+VeBHwD41lAklcBc9vHqkMFZDk1Cv5kqy0Esrs5Y93r1ZZ3g9bXcEMVR9jocA
+         VUww/ntgzXmlpM9hUn/DmzwDApcI5b/FRRJfalYKZyHVzOv5n9qQ3FpZKEmGWhYXgcSQ
+         UbQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770398956; x=1771003756;
+        d=1e100.net; s=20230601; t=1770398957; x=1771003757;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=3NXIB170Miy5U8AUdI7je1qnmIqOJUqz+7CF8NtEdwM=;
-        b=rdKWgfDOklsowPIR+AY1BtoBqwe5SrXMmJRlQZ1vMDiI8oOCtc1i0AqQA66IefwJ5L
-         ar6OYaKBaRT6GmaB7XBuAT6dh5I4kd1EXNECBHKoDHhbU5ryRc9bjhffAYwUA4Dz9QMn
-         Y68bWDgXRkfCgR51cs2W/fKZG4mWW8l82W6surLv1tReImCAxP/STRMDVnf4zpEkk1Ht
-         hLc97nSJDkdlos2NTwZkitzjo3qyTlpBcGCOdXWwNZHNKKRpHh5cUqwHAg9Ze5rc7Oe7
-         f7Yam0N43yEBcyDdGYGwX5cmkyeAnZzIYKQR6GiWL+GP8WnZyUrBbXhtAZwzLvy5fzrO
-         XIXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXCBYoqyzZq4bP9qWeySleF5oVie2NgIxbgj9xSvLyTuaandnp2CMJw3HyYNjHcHwXRIO0QlpJrah4+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLyvTSU/aBEMOAbCmO6oQ5/yHaiC/+cEY6Bzl3SHcnblPPu2re
-	rRuXXPUmtUd5iKCwvF/INVoHbWudj01U5JBCqXhy2qU4+2r0mzCbpcB3
-X-Gm-Gg: AZuq6aJojFsPnDfgqkk2MK2RyuGRmqeJm3BsvaWGn8QXlYGTYHKzbtZ3hTE9WubI5VX
-	xrjdXBzh/9itGLV1iG2Jy8FX6MiZc/FNqnQNA4ADrnu/WwWD03s9cM6DwikXtZxKTcP9R+lsePR
-	XrX/aE5DfaBHe3RryXHVkfdIEXJVYpPEsgOg40kWHUezFnRVFPL+ez1NU68O22GD/9ragNcYsZi
-	B1WrKo6XWd4nL/hs3pbiYCjJdlK4Jmt/eZsA+LYXgXIbrgFiRYEje525tsOrROXrYHgmyy8xXcm
-	yBAPe0QyOnAC3lvtc7vqEnnm6Fk/ACole2igL15IzsjpkU1PtkMdAh59HVC/qlYvcS50hGqV7//
-	LBdEzsdEt1CgEXIMFFCfxu7T/hNiY5PgT/ZBRVRdbl/v90q/thz9+tWPOzt/iHzfrx/r6Oup2CI
-	pI
-X-Received: by 2002:a05:6000:603:b0:435:dbe3:c6b1 with SMTP id ffacd0b85a97d-436293413e2mr5847642f8f.25.1770398955843;
-        Fri, 06 Feb 2026 09:29:15 -0800 (PST)
+        bh=KFT7mMG9k0k/BXen8CQg8hnB8vdYe60xOPZB+uYBrVs=;
+        b=RYFyXvZ1kzVGk4w3uzkgvhmT0gXmsXNlXV4bzP7ZdJ7xUFbEyUYEVqpZS3HYFP7U6K
+         cuGbht8JX4Rsz+aMbMNHX/V30V+bOq1+26rBX3c4RtwA1o9Wa+avN27xflRUuX5MIljV
+         tqjgQUBkZ0MTUYVpSWTf7aHYMUsXmhlTMkguSEaRr+Cu4333CdZ0AbHJ8f1BFWNHCyHJ
+         Zm3choewcKmwGOPu8qNKbD71sgrzVWFwKV2QMv8+amGNxWTwmAg65Has/7m7hMd0YgtV
+         SdY5Jkbi9HnS75wGSdASTzeCNoo0dFC9WtYYM7/kUVlRxgJ7/079+zlQlTkrIl4g91pG
+         MssQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXH3zO9wTNoYidwVxGzcKva9ca8gN3tiV/VEuSbLm6OqeJi1PeuCCkATmhg9XtDTb3Y9XG1AfwQlDc5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEql8mCdoJRSsbo+zrHXoZ7uabFoNCEW09OUOHkcErhunnIJ98
+	A4gaQc4xg4baAh+qp7qw9xcftBeEVsz9F/f5mqJq/OsD1EsM3njLKl/Q
+X-Gm-Gg: AZuq6aIFNes9bWnXbCdYy6xDgdQ36LQLHQTyrnEQ9ibQ3CH3OkFCz7HGCUkNJwY8YrQ
+	6KSBNgosxgnpGuaOUsVcvRSK8vKiayw+ZmETN99548mN7Ii7VsJMGblyd2zPWIB+c1/A0N25Siv
+	yL0R8ltdvQC7PkVtSH04dXdYTU8yzvqrcJ5arp0Bd3lIghGmFDpaSl38FoCm9kscclfWNgaWk+z
+	Pfi3RR67AlUtcQLmNcEOaOBliwtp5po0CONk9hoH5WjFjiHeWvKePLU0NOYZ2R8nJ7fUIAVktJ2
+	ulwGKdgTbIQW7ezOjB+6Wx89lzdFF0AiGqVy0UA1k+aLeWeqy/lf5Yo0N3fRZJMujfbC35bAnQG
+	G8yWjAkczSn69a/ube6ubjSt49CNsx1W+jhUsI3/U7eHdwEjdQlyVNs8LPVUa8Gt+7ajHq2tcY/
+	QX
+X-Received: by 2002:a05:6000:288b:b0:430:fd0e:a502 with SMTP id ffacd0b85a97d-436209c9865mr10673215f8f.22.1770398957349;
+        Fri, 06 Feb 2026 09:29:17 -0800 (PST)
 Received: from xeon ([188.163.112.49])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43629734268sm6846033f8f.24.2026.02.06.09.29.13
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43629734268sm6846033f8f.24.2026.02.06.09.29.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Feb 2026 09:29:15 -0800 (PST)
+        Fri, 06 Feb 2026 09:29:16 -0800 (PST)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Jonathan Cameron <jic23@kernel.org>,
 	David Lechner <dlechner@baylibre.com>,
@@ -97,9 +97,9 @@ Cc: linux-iio@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-input@vger.kernel.org,
 	linux-leds@vger.kernel.org
-Subject: [PATCH v2 05/11] iio: adc: cpcap-adc: add support for Mot ADC
-Date: Fri,  6 Feb 2026 19:28:39 +0200
-Message-ID: <20260206172845.145407-6-clamor95@gmail.com>
+Subject: [PATCH v2 06/11] dt-bindings: leds: leds-cpcap: convert to DT schema
+Date: Fri,  6 Feb 2026 19:28:40 +0200
+Message-ID: <20260206172845.145407-7-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260206172845.145407-1-clamor95@gmail.com>
 References: <20260206172845.145407-1-clamor95@gmail.com>
@@ -118,13 +118,13 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263445-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263446-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
@@ -135,55 +135,110 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.990];
+	NEURAL_HAM(-0.00)[-0.994];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: B043310108A
+X-Rspamd-Queue-Id: E422E101099
 X-Rspamd-Action: no action
 
-Add support for ADC found in Motorola Mot board, used as a base for
-Atrix 4G and Droid X2 smartphones.
+Convert LEDs devicetree bindings for the Motorola CPCAP MFD from TXT to
+YAML format. This patch does not change any functionality; the bindings
+remain the same.
 
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- drivers/iio/adc/cpcap-adc.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ .../devicetree/bindings/leds/leds-cpcap.txt   | 29 -------------
+ .../bindings/leds/motorola,cpcap-leds.yaml    | 42 +++++++++++++++++++
+ 2 files changed, 42 insertions(+), 29 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-cpcap.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/motorola,cpcap-leds.yaml
 
-diff --git a/drivers/iio/adc/cpcap-adc.c b/drivers/iio/adc/cpcap-adc.c
-index d9ee2ea116a7..f6f72efcc6ed 100644
---- a/drivers/iio/adc/cpcap-adc.c
-+++ b/drivers/iio/adc/cpcap-adc.c
-@@ -934,6 +934,17 @@ static const struct cpcap_adc_ato mapphone_adc = {
- 	.atox_ps_factor_out = 0,
- };
- 
-+static const struct cpcap_adc_ato mot_adc = {
-+	.ato_in = 0x0300,
-+	.atox_in = 0,
-+	.adc_ps_factor_in = 0x0200,
-+	.atox_ps_factor_in = 0,
-+	.ato_out = 0x0780,
-+	.atox_out = 0,
-+	.adc_ps_factor_out = 0x0600,
-+	.atox_ps_factor_out = 0,
-+};
+diff --git a/Documentation/devicetree/bindings/leds/leds-cpcap.txt b/Documentation/devicetree/bindings/leds/leds-cpcap.txt
+deleted file mode 100644
+index ebf7cdc7f70c..000000000000
+--- a/Documentation/devicetree/bindings/leds/leds-cpcap.txt
++++ /dev/null
+@@ -1,29 +0,0 @@
+-Motorola CPCAP PMIC LEDs
+-------------------------
+-
+-This module is part of the CPCAP. For more details about the whole
+-chip see Documentation/devicetree/bindings/mfd/motorola-cpcap.txt.
+-
+-Requires node properties:
+-- compatible: should be one of
+-   * "motorola,cpcap-led-mdl"		(Main Display Lighting)
+-   * "motorola,cpcap-led-kl"		(Keyboard Lighting)
+-   * "motorola,cpcap-led-adl"		(Aux Display Lighting)
+-   * "motorola,cpcap-led-red"		(Red Triode)
+-   * "motorola,cpcap-led-green"		(Green Triode)
+-   * "motorola,cpcap-led-blue"		(Blue Triode)
+-   * "motorola,cpcap-led-cf"		(Camera Flash)
+-   * "motorola,cpcap-led-bt"		(Bluetooth)
+-   * "motorola,cpcap-led-cp"		(Camera Privacy LED)
+-- label: see Documentation/devicetree/bindings/leds/common.txt
+-- vdd-supply: A phandle to the regulator powering the LED
+-
+-Example:
+-
+-&cpcap {
+-	cpcap_led_red: red-led {
+-		compatible = "motorola,cpcap-led-red";
+-		label = "cpcap:red";
+-		vdd-supply = <&sw5>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/leds/motorola,cpcap-leds.yaml b/Documentation/devicetree/bindings/leds/motorola,cpcap-leds.yaml
+new file mode 100644
+index 000000000000..c8e7b88a05cc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/motorola,cpcap-leds.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/motorola,cpcap-leds.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- static const struct of_device_id cpcap_adc_id_table[] = {
- 	{
- 		.compatible = "motorola,cpcap-adc",
-@@ -942,6 +953,10 @@ static const struct of_device_id cpcap_adc_id_table[] = {
- 		.compatible = "motorola,mapphone-cpcap-adc",
- 		.data = &mapphone_adc,
- 	},
-+	{
-+		.compatible = "motorola,mot-cpcap-adc",
-+		.data = &mot_adc,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, cpcap_adc_id_table);
++title: Motorola CPCAP PMIC LEDs
++
++maintainers:
++  - Svyatoslav Ryhel <clamor95@gmail.com>
++
++description:
++  This module is part of the Motorola CPCAP MFD device. For more details
++  see Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml. LEDs are
++  represented as sub-nodes of the PMIC node on the device tree.
++
++allOf:
++  - $ref: /schemas/leds/common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - motorola,cpcap-led-adl # Display Lighting
++      - motorola,cpcap-led-blue # Blue Triode
++      - motorola,cpcap-led-bt # Bluetooth
++      - motorola,cpcap-led-cf # Camera Flash
++      - motorola,cpcap-led-cp # Camera Privacy LED
++      - motorola,cpcap-led-green # Green Triode
++      - motorola,cpcap-led-kl # Keyboard Lighting
++      - motorola,cpcap-led-mdl # Main Display Lighting
++      - motorola,cpcap-led-red # Red Triode
++
++  vdd-supply: true
++
++required:
++  - compatible
++  - label
++  - vdd-supply
++
++unevaluatedProperties: false
++
++...
 -- 
 2.51.0
 
