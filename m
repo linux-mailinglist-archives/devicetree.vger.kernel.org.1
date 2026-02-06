@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-263406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263408-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +DwsDekRhmk1JgQAu9opvQ
-	(envelope-from <devicetree+bounces-263406-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 17:08:09 +0100
+	id GAKdOUoThmk1JgQAu9opvQ
+	(envelope-from <devicetree+bounces-263408-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 17:14:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8FE610008C
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 17:08:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94F381001A3
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 17:14:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1EC20300908E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 16:08:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 535393051AAB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 16:08:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9386D30EF92;
-	Fri,  6 Feb 2026 16:08:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BED41318EE2;
+	Fri,  6 Feb 2026 16:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="T0GRh+1e"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="RBjayxo5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 442CE30B515;
-	Fri,  6 Feb 2026 16:08:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83969318BA5;
+	Fri,  6 Feb 2026 16:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770394085; cv=none; b=GSMJ9VrwSMZnDcD+pVvq1cxc/FOfMSgnksZgkxfaHCXYoQ7oTfuMU4ArmEircxutl9mQlFzadzSh9PGG66LPTQbqsYDsgMlAocDvYNr0EqAsFDCt81ejk795s4zMKDnV1yXtMrNfRMvk5DALZ6ZKhePLpzfQti+3j98GmvyiyFE=
+	t=1770394088; cv=none; b=mO+kRM93cMWrUHHBMkWxhh8GC9ib2OhXVJ7IhbNR1zjBHiUXsjyGtNxKP/hiTPtVgrXfn7gtEQjBLerD4OoSoRcfzKUd75A5bjpJzzkol/Ow1G5xnIZIm4kx6MouDz63UOD4us8HPfykRUrNf/rELtvAqzxdq9DjrrMaElLrPrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770394085; c=relaxed/simple;
-	bh=112NwewjqgbtMoj2SSFq82/xqJDx/6QVkQ5u1fXAkcY=;
+	s=arc-20240116; t=1770394088; c=relaxed/simple;
+	bh=gUFNeiRe8VlWcTt7/ZpjKDl9rspSkpeHKX+epwrPkMY=;
 	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I0pBvE99B29QbFe4qheaUBV+XUHjriktj6T9pFGWmaGmW6iA66swuCWcbgTYQbt/SOTQbdDAEiOTuYT2R0mMuOBsOMhe88UbqXbU5JNxesnu41qjYS/+pJeah9oD3R0bPSpqMjQCOiR+SKwtBOi64oQ25O328NzuJ4Tzb3cMpcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=T0GRh+1e; arc=none smtp.client-ip=148.163.135.77
+	 MIME-Version:Content-Type; b=mYm+RkSqU8BFltXa0rMeyRf12Dtyz3tkcg7YylAJ0SrQsc22pzLlNLWDCxGkSShLnWUmMHtJiZHwwsuLu5QBdHJuzs3iqtwKA2dlJixt0P9WPf9nSOA0DCleipMIMUhnWEabDGw/tNUOgtm8acCetZXJ1Ygr8kHBUUWKhzjlw20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=RBjayxo5; arc=none smtp.client-ip=148.163.135.77
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
 Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6169skFw898157;
-	Fri, 6 Feb 2026 11:07:42 -0500
+	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6169sMkQ897366;
+	Fri, 6 Feb 2026 11:07:45 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
 	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=j9iZO
-	AvdPrymJ+lBxZCmFd7tXgQrCAjgxtPn/t1x1ug=; b=T0GRh+1ekO3BiXxOdOA+J
-	+cv3XZEBRKxrdukagKPUTQ2QPXAwJ0fRNdz2nDjBiHB5R0qX+Bbef3Vmyl0IUGnQ
-	/58hymKZoSoDIxF5qI3ytDZ2FJ3yEQqNFwIssRc+78qyzMdhYvdmfUEwBFCHAN5W
-	qMBbQM38KAKKZymDr9KxHw/JIuhmo247kFOfbEVjHsPmRxyn1nhho1cWksogt4Qe
-	ZABN4C2DDhsI1YSbITosa5ak4RoJVlZ4lEoSbYeBJRTOxNsK9NV/N3CKxzldW6Hf
-	RJ5yjjk5+Omb8LBO3/ARdCKuNP+d8ww8lDfHmM4SmAytWKx/9+tAIwquydADHj8U
-	A==
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=VFbCV
+	GNdv2yThIeAGDi2mdyQ+gW2WPqNqQTksbU/6Jk=; b=RBjayxo5bFhvJpUZuW+8F
+	3OusLlJcF4aVQ4Fh+Rda9kYjggb6hOCvVsx1KF3ROCOD3F7htRUVPYMMJVJpjvZS
+	vKtLtL516MZrDI4BRKhY2oSHq2U4ulpE9KEMmUZxh0IMujpOTC63YEYJrZ90veSq
+	tqWz8216GmcOG3I07eKv8mzZi0BqtprBXO4fn202iYV33DrpvKNjTEgyEtjms8A/
+	pq9Gnnqcg1RLw8LRoOKeR+WWgNHnDc3BjecDOsUhxDKPsM0n1idRbdKIHSmPbK+p
+	awb+F4CszLhGzbFXyDeT3GyT151+I/GIev3xPpyGzlzpnczmIiri1Co6XGldaBvh
+	w==
 Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4c5e32h4y4-1
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4c5e32h4ya-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Feb 2026 11:07:41 -0500 (EST)
+	Fri, 06 Feb 2026 11:07:44 -0500 (EST)
 Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 616G7ela057139
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 616G7h3P057147
 	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 6 Feb 2026 11:07:40 -0500
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+	Fri, 6 Feb 2026 11:07:43 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
  ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 6 Feb 2026 11:07:40 -0500
+ 15.2.1748.37; Fri, 6 Feb 2026 11:07:43 -0500
 Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 6 Feb 2026 11:07:40 -0500
+ 15.2.1748.37; Fri, 6 Feb 2026 11:07:43 -0500
 Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
  (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Fri, 6 Feb 2026 11:07:40 -0500
+ Transport; Fri, 6 Feb 2026 11:07:43 -0500
 Received: from HYB-b1tGeUj4GP1.ad.analog.com (HYB-b1tGeUj4GP1.ad.analog.com [10.48.65.247])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 616G7MAl000370;
-	Fri, 6 Feb 2026 11:07:33 -0500
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 616G7MAm000370;
+	Fri, 6 Feb 2026 11:07:36 -0500
 From: Antoniu Miclaus <antoniu.miclaus@analog.com>
 To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
         Lars-Peter Clausen
@@ -87,9 +87,9 @@ To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
         Mark Brown <broonie@kernel.org>, <linux-iio@vger.kernel.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-spi@vger.kernel.org>
-Subject: [PATCH v2 1/4] spi: allow ancillary devices to share parent's chip selects
-Date: Fri, 6 Feb 2026 18:07:13 +0200
-Message-ID: <bcb1eb34fc5e86fd5dbb4472ad1d3ea3cf3e9779.1770393792.git.antoniu.miclaus@analog.com>
+Subject: [PATCH v2 2/4] iio: backend: add devm_iio_backend_get_by_index()
+Date: Fri, 6 Feb 2026 18:07:14 +0200
+Message-ID: <550323d752213f177b7673bdd42e667f1d2228cb.1770393792.git.antoniu.miclaus@analog.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1770393792.git.antoniu.miclaus@analog.com>
 References: <cover.1770393792.git.antoniu.miclaus@analog.com>
@@ -102,25 +102,25 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: 4jPEXfSFDyf0Wbqf1ombZa4X_Xekf8NQ
-X-Proofpoint-ORIG-GUID: 4jPEXfSFDyf0Wbqf1ombZa4X_Xekf8NQ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA2MDExNyBTYWx0ZWRfX5Jv4fedEQvtm
- C7VM4WeufDMwxATjeK9hZhkzoSyMsYCayxjk3tzW3nj7NPkYbVRocPFHylDzDuEg4fnvxUNpGiD
- LMq2sgRpwCJSsSdkNP/76yaluY2OLAi6msPtu7fQFIU1F+mWS0WDuwssOe4pAk5idfAy5e6OaOA
- uksHGC6hicaTEobwi8lzjYKeqAv5uppvGcPI+OEp0++3hwmzv0utu7f+1/SAO0bayTjN/Cb2lP5
- Z7Z3A8M1faTK1PfYk0QV7gSbUVD7KcjT3ssQ1ftNFr5xg7n/xqjRNPHGZKKacot7yQSEFqPHHoB
- BSU3eGgmISWRQR3QvzXo7+xNy6AJ+aGJuGPj3NJdj9Fp4qA/sd5o6MpkWYTszutcp3ePVFoKPA/
- wwtaBycO9m6BuWh0v5ulHWBMKje+tiHc7zYnf/VJBsLpNMJiCGTnS2wQq5U0GMA6nv82LV4QvfG
- zW495ToqvxWpg6iOraA==
-X-Authority-Analysis: v=2.4 cv=NPzYOk6g c=1 sm=1 tr=0 ts=698611cd cx=c_pps
+X-Proofpoint-GUID: JJ-AgCM_M_qyH0cFBrszPr9GlaYrv-wB
+X-Proofpoint-ORIG-GUID: JJ-AgCM_M_qyH0cFBrszPr9GlaYrv-wB
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA2MDExNyBTYWx0ZWRfXyGfleE23ghY6
+ dWOwcRS4F75XVjwfFjOSUCfoYSaB/9OENdQmH6+nvf2EZORgcihnZvdDbz5CFh6lMo7W9NM0wfq
+ ern4XD6cqU/li2OuU5DcbfwPpfLgRCKjaMvrmvyZEla5tX2ZQ5imfaqkg1qFYrfR3B63YgKJgku
+ 8CZs2MWwiWF2n4QXZYtDM/LHjTg1Kez8BD5lkXizi+qq72+xfzrmLdwdefOQv2VvSpn7jN0bVvp
+ VngA8dbFbF4+l+le224lBJsJeHjQ7rKNKvgxrnNKfq8ZXcrReeyp/GCC7E2NtRG/Z7f4LxF8O5o
+ R5+YNJEks+upnIKGYQi89g1rotkUZ9ZhXDBVwFllyGXjzyDyvVsYYGHaMNVRxxp3R8UK/MakO62
+ ej+h5RIG8jUp0FYbr1orhJWnPhoQYAngmVO/rDIPp1avACjT/3SIMrsFMAbl/HK99xwjxSm99Uc
+ JP/ewpu1h1SCAfwRTYg==
+X-Authority-Analysis: v=2.4 cv=NPzYOk6g c=1 sm=1 tr=0 ts=698611d0 cx=c_pps
  a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
  a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22
- a=GgsMoib0sEa3-_RKJdDe:22 a=gAnH3GRIAAAA:8 a=Brvx10Sw2QwnUvu3_sIA:9
+ a=GgsMoib0sEa3-_RKJdDe:22 a=gAnH3GRIAAAA:8 a=uDLBfjgilch4dD8VpdgA:9
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-02-06_04,2026-02-05_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1011 spamscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0
+ clxscore=1015 spamscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0
  suspectscore=0 adultscore=0 malwarescore=0 impostorscore=0 priorityscore=1501
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602060117
@@ -132,7 +132,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
 	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -140,111 +140,110 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-263406-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_FROM(0.00)[bounces-263408-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[antoniu.miclaus@analog.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[analog.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,analog.com:dkim,analog.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-0.980];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: C8FE610008C
+X-Rspamd-Queue-Id: 94F381001A3
 X-Rspamd-Action: no action
 
-When registering an ancillary SPI device, the current code flags a chip
-select conflict with the parent device. This happens because the
-ancillary device intentionally uses one of the parent's chip selects,
-but __spi_add_device() checks against all existing devices including
-the parent.
+Add a new function to get an IIO backend by its index in the
+io-backends device tree property. This is useful for multi-channel
+devices that have multiple backends, where looking up by index is
+more straightforward than using named backends.
 
-Allow this by passing the parent device pointer to __spi_add_device()
-and skipping the conflict check when the existing device is the parent.
+The new function directly uses the index to find the backend reference
+in the io-backends property, avoiding the need for io-backend-names.
 
 Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 ---
- drivers/spi/spi.c | 29 +++++++++++++++++++++++------
- 1 file changed, 23 insertions(+), 6 deletions(-)
+ drivers/iio/industrialio-backend.c | 51 ++++++++++++++++++++++++++++++
+ include/linux/iio/backend.h        |  2 ++
+ 2 files changed, 53 insertions(+)
 
-diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-index e25df9990f82..18ca3c7bad6b 100644
---- a/drivers/spi/spi.c
-+++ b/drivers/spi/spi.c
-@@ -641,12 +641,26 @@ static inline int spi_dev_check_cs(struct device *dev,
- 	return 0;
+diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industrialio-backend.c
+index 447b694d6d5f..3b692d48481e 100644
+--- a/drivers/iio/industrialio-backend.c
++++ b/drivers/iio/industrialio-backend.c
+@@ -1008,6 +1008,57 @@ struct iio_backend *devm_iio_backend_get(struct device *dev, const char *name)
  }
+ EXPORT_SYMBOL_NS_GPL(devm_iio_backend_get, "IIO_BACKEND");
  
-+struct spi_dev_check_info {
-+	struct spi_device *new_spi;
-+	struct spi_device *parent;	/* set for ancillary devices */
-+};
++static struct iio_backend *
++__devm_iio_backend_fwnode_get_by_index(struct device *dev,
++				       struct fwnode_handle *fwnode,
++				       unsigned int index)
++{
++	struct fwnode_handle *fwnode_back;
++	struct iio_backend *back;
++	int ret;
 +
- static int spi_dev_check(struct device *dev, void *data)
- {
- 	struct spi_device *spi = to_spi_device(dev);
--	struct spi_device *new_spi = data;
-+	struct spi_dev_check_info *info = data;
-+	struct spi_device *new_spi = info->new_spi;
- 	int status, idx;
- 
-+	/*
-+	 * When registering an ancillary device, skip checking against the
-+	 * parent device since the ancillary is intentionally using one of
-+	 * the parent's chip selects.
-+	 */
-+	if (info->parent && spi == info->parent)
-+		return 0;
++	fwnode_back = fwnode_find_reference(fwnode, "io-backends", index);
++	if (IS_ERR(fwnode_back))
++		return dev_err_cast_probe(dev, fwnode_back,
++					  "Cannot get Firmware reference\n");
 +
- 	if (spi->controller == new_spi->controller) {
- 		for (idx = 0; idx < spi->num_chipselect; idx++) {
- 			status = spi_dev_check_cs(dev, spi, idx, new_spi, 0);
-@@ -663,10 +677,11 @@ static void spi_cleanup(struct spi_device *spi)
- 		spi->controller->cleanup(spi);
- }
- 
--static int __spi_add_device(struct spi_device *spi)
-+static int __spi_add_device(struct spi_device *spi, struct spi_device *parent)
- {
- 	struct spi_controller *ctlr = spi->controller;
- 	struct device *dev = ctlr->dev.parent;
-+	struct spi_dev_check_info check_info;
- 	int status, idx;
- 	u8 cs;
- 
-@@ -710,7 +725,9 @@ static int __spi_add_device(struct spi_device *spi)
- 	 * chipselect **BEFORE** we call setup(), else we'll trash
- 	 * its configuration.
- 	 */
--	status = bus_for_each_dev(&spi_bus_type, NULL, spi, spi_dev_check);
-+	check_info.new_spi = spi;
-+	check_info.parent = parent;
-+	status = bus_for_each_dev(&spi_bus_type, NULL, &check_info, spi_dev_check);
- 	if (status)
- 		return status;
- 
-@@ -772,7 +789,7 @@ int spi_add_device(struct spi_device *spi)
- 	spi_dev_set_name(spi);
- 
- 	mutex_lock(&ctlr->add_lock);
--	status = __spi_add_device(spi);
-+	status = __spi_add_device(spi, NULL);
- 	mutex_unlock(&ctlr->add_lock);
- 	return status;
- }
-@@ -2580,8 +2597,8 @@ struct spi_device *spi_new_ancillary_device(struct spi_device *spi,
- 
- 	WARN_ON(!mutex_is_locked(&ctlr->add_lock));
- 
--	/* Register the new device */
--	rc = __spi_add_device(ancillary);
-+	/* Register the new device, passing the parent to skip CS conflict check */
-+	rc = __spi_add_device(ancillary, spi);
- 	if (rc) {
- 		dev_err(&spi->dev, "failed to register ancillary device\n");
- 		goto err_out;
++	guard(mutex)(&iio_back_lock);
++	list_for_each_entry(back, &iio_back_list, entry) {
++		if (!device_match_fwnode(back->dev, fwnode_back))
++			continue;
++
++		fwnode_handle_put(fwnode_back);
++		ret = __devm_iio_backend_get(dev, back);
++		if (ret)
++			return ERR_PTR(ret);
++
++		back->idx = index;
++
++		return back;
++	}
++
++	fwnode_handle_put(fwnode_back);
++	return ERR_PTR(-EPROBE_DEFER);
++}
++
++/**
++ * devm_iio_backend_get_by_index - Device managed backend device get by index
++ * @dev: Consumer device for the backend
++ * @index: Index of the backend in the io-backends property
++ *
++ * Get's the backend at @index associated with @dev.
++ *
++ * RETURNS:
++ * A backend pointer, negative error pointer otherwise.
++ */
++struct iio_backend *devm_iio_backend_get_by_index(struct device *dev,
++						  unsigned int index)
++{
++	return __devm_iio_backend_fwnode_get_by_index(dev, dev_fwnode(dev),
++						      index);
++}
++EXPORT_SYMBOL_NS_GPL(devm_iio_backend_get_by_index, "IIO_BACKEND");
++
+ /**
+  * devm_iio_backend_fwnode_get - Device managed backend firmware node get
+  * @dev: Consumer device for the backend
+diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
+index 7f815f3fed6a..8f18df0ca896 100644
+--- a/include/linux/iio/backend.h
++++ b/include/linux/iio/backend.h
+@@ -237,6 +237,8 @@ int iio_backend_extend_chan_spec(struct iio_backend *back,
+ 				 struct iio_chan_spec *chan);
+ void *iio_backend_get_priv(const struct iio_backend *conv);
+ struct iio_backend *devm_iio_backend_get(struct device *dev, const char *name);
++struct iio_backend *devm_iio_backend_get_by_index(struct device *dev,
++						  unsigned int index);
+ struct iio_backend *devm_iio_backend_fwnode_get(struct device *dev,
+ 						const char *name,
+ 						struct fwnode_handle *fwnode);
 -- 
 2.43.0
 
