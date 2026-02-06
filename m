@@ -1,233 +1,161 @@
-Return-Path: <devicetree+bounces-263303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263304-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cD6WGn3BhWnEFwQAu9opvQ
-	(envelope-from <devicetree+bounces-263303-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:25:01 +0100
+	id 6LZoAorBhWnEFwQAu9opvQ
+	(envelope-from <devicetree+bounces-263304-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:25:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B928DFC9D3
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:25:00 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EEEEFC9DB
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:25:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 57A7C302B39B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 10:24:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5E3CD3006792
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 10:25:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DEAB36F429;
-	Fri,  6 Feb 2026 10:24:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6B7B37104C;
+	Fri,  6 Feb 2026 10:25:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qd6XDHLl"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Q+guTtEN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F053009F6;
-	Fri,  6 Feb 2026 10:24:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9A83624C4;
+	Fri,  6 Feb 2026 10:25:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770373498; cv=none; b=LmnIrIC/ptT0O5g/hcpf4Wjq7PKtnyowwJxgMKgCCI6o9gVMDF18+2AVk0228Q4vU324gIC9aZX+/n2UC5X664zvQgfpECfsnY0YJkgQrTtaM8bmMmXgADdmeq5ItygFTFzwrRBtKMbn1HQfqxTuNraqgrOOY9rTna/fqN0loTw=
+	t=1770373509; cv=none; b=G2kCvvVRzFpdF76fIxWk1XHCETy37qU0lUQZsFxBVMs89EnGe/KOlqn/dczmvAqkYx0WAAWuKivl8NE9xRQPc4Ts6palj6ObfzfRLn/I0KR4UOTAPQcfFJL1fqCeiurbwik0MFZ6/lRQsqzi0eJDJbKZfji8wJqsvGZUByTqg7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770373498; c=relaxed/simple;
-	bh=nSlDqHzMQr152avoDT8llEAGQVSmXKKZSUd4Xq6kY2M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=im+n260P8UVmwcpBa7po/JabDZVTkDOOA5Z39fSEy1LU18CtPpSo75CAKbkX4eQWlNIrNyNOk0LssJS29JwBwdnQ5IrSZFsZOYHW1QsmwPT9ApcKu8AVZsw6AYQWAxetFjqbMy9u7FhgHimooyiv9znmrAR7cgNUFqXCVWIM6wY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qd6XDHLl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C47FC116C6;
-	Fri,  6 Feb 2026 10:24:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770373497;
-	bh=nSlDqHzMQr152avoDT8llEAGQVSmXKKZSUd4Xq6kY2M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qd6XDHLl3otd4l7745FgtPHKCh+28ET+4Gh4od6CGkx9KS7Rmrnkuzrnifg94r/rN
-	 OLjfInm8mgJh7ONidOWK8Gh54/rKF5snHY8nmT4Q4rMwo4SMe0HxDvtC4zbTBBC+e4
-	 zsyr/lwEOHpNtwSNo56ArmBaMDE4QvCgrJqonWp4CUmMGXLAeJUaMUe9VxH0u/xiYT
-	 dy/j+hH186tZh0Y5Ys1YxM8w8QfAoSSH3ZITUu59upINGLkB1Aze4mRHoP1RhTTyWL
-	 SP+MmDr0FSVqiQj0GIN3bxtbFhxX7Q2wVHBlvgqfRPoInqSTYpWc1ytvp+bh9ts4Eo
-	 ueh0byIlBA+0A==
-Date: Fri, 6 Feb 2026 10:24:52 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Lv Zheng <lv.zheng@linux.spacemit.com>
-Cc: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Jingyu Li <joey.li@spacemit.com>, iommu@lists.linux.dev,
-	linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/8] dt-bindings: iommu: Add spacemit/t100 features
-Message-ID: <20260206-buffed-scrubbed-36fc49ada496@spud>
-References: <cover.1769562575.git.lv.zheng@spacemit.com>
- <cover.1770195980.git.lv.zheng@linux.spacemit.com>
- <A0E91F323138E92F+a27d73b00f3324f0d3885128f5596230b3f1370b.1770195980.git.lv.zheng@linux.spacemit.com>
- <20260204-primer-wrought-6f64b14bf152@spud>
- <53171BEB06F43599+7c1f54bc-e72d-4cbd-9d10-194ae6b13744@linux.spacemit.com>
- <20260205-attitude-customer-129fe2bd5dc7@spud>
- <B8005DB6301AACB4+374512e1-f561-4d2f-afd6-7a4b51012501@linux.spacemit.com>
+	s=arc-20240116; t=1770373509; c=relaxed/simple;
+	bh=/MrCMk1XqmJv4v+raVshn8mmcHW5OWo2dw/7KEjMkUI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TIq4IftngT5K6Adhe4JnKlL2WycORKjQVb0Ed8tjIU+wdGIiAEP+nviG0fu+O/u10hGXfLw6Kfk21M/yaVaaTBXmw8azQ5COey7KjnDDRg/0IabJxLdXa8sMlTd+1KWosJokzY9gBNVnSuohFeZM67ooe+0tCxEDoirOGows8FA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Q+guTtEN; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4f6qwK2Bl2z9tp0;
+	Fri,  6 Feb 2026 11:25:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1770373505;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MOfHMKbNXy3MxrUvKuYFlc2euBi7oH7iiv3EqWTkTe0=;
+	b=Q+guTtENwgC5TbwQgdx1Frin7BHRBTLNH+jgV8zl/vj7XoqV/IVMLIGrfcA1N7f0zodGNf
+	f1SOpF8U8TqIwqcLPhN7MwDaaV3nLmuYFalA5LwH9nG5QgWkaGr8ibG1uiM49PAJCo1FRc
+	1UebMpyjMe0IkZjc9VhNpLJTyl4VKbpL82p+GkYxXoqUvLBd9Y7sBAxfusunf+U4aJM7ih
+	6imcTswZXvX/En7KJXYxP7bH01uL3d516agiwxtsNvHrNtmZJZmcsdQ7Y34BAwHL8svGUB
+	CHxNTfBJVKnmMQr0txQQe9v5OJCpX5gX88MCrPhurOeHz9X3aNhrRmcLVSYsXA==
+Date: Fri, 6 Feb 2026 11:24:54 +0100
+From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukasz.majewski@mailbox.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Richard Cochran
+ <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
+ <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>, Andrew Lunn
+ <andrew@lunn.ch>
+Subject: Re: [net-next v23 2/7] net: mtip: The L2 switch driver for imx287
+Message-ID: <20260206112454.2e9a686f@wsk>
+In-Reply-To: <20260205182805.196fd832@kernel.org>
+References: <20260204232135.1024665-1-lukasz.majewski@mailbox.org>
+	<20260204232135.1024665-3-lukasz.majewski@mailbox.org>
+	<20260205182805.196fd832@kernel.org>
+Organization: mailbox.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8z5ZdYiefbay1YtF"
-Content-Disposition: inline
-In-Reply-To: <B8005DB6301AACB4+374512e1-f561-4d2f-afd6-7a4b51012501@linux.spacemit.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-MBO-RS-ID: db1cc35f512114a3232
+X-MBO-RS-META: w9x5nk7bybc1tfbnhh3ap1diw3eq7r7n
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263303-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-263304-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,redhat.com,kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,gmx.net];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,spacemit.com:email,bilibili.com:url]
-X-Rspamd-Queue-Id: B928DFC9D3
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lukasz.majewski@mailbox.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mailbox.org:email,mailbox.org:dkim]
+X-Rspamd-Queue-Id: 8EEEEFC9DB
 X-Rspamd-Action: no action
 
+Hi Jakub,
 
---8z5ZdYiefbay1YtF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Feb 06, 2026 at 09:33:09AM +0800, Lv Zheng wrote:
-> On 2/6/2026 2:24 AM, Conor Dooley wrote:
-> > On Thu, Feb 05, 2026 at 11:11:51AM +0800, Lv Zheng wrote:
-> > > On 2/5/2026 1:37 AM, Conor Dooley wrote:
-> > > > On Wed, Feb 04, 2026 at 05:09:12PM +0800, Lv Zheng wrote:
-> > > > > Adds device tree bindings for SpacemiT T100 specific features by
-> > > > > introducing spacemit,100 compatible. T100 contains distributed IO=
-ATCs,
-> > > > > each of which exposes pmiv interrupt.
-> > > > >=20
-> > > > > Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
-> > > > > Signed-off-by: Jingyu Li <joey.li@spacemit.com>
-> > > > > ---
-> > > > >    .../bindings/iommu/riscv,iommu.yaml           | 37 +++++++++++=
-++++++++
-> > > > >    1 file changed, 37 insertions(+)
-> > > > >=20
-> > > > > diff --git a/Documentation/devicetree/bindings/iommu/riscv,iommu.=
-yaml b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
-> > > > > index d4838c3b3741..2da3456e7402 100644
-> > > > > --- a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
-> > > > > @@ -32,6 +32,12 @@ properties:
-> > > > >      # should be specified along with 'reg' property providing MM=
-IO location.
-> > > > >      compatible:
-> > > > >        oneOf:
-> > > > > +      - description: SpacemiT distributed IOMMUs
-> > > > > +        items:
-> > > > > +          - enum:
-> > > > > +              - spacemit,t100
-> > > > > +          - const: spacemit,riscv-iommu
-> > > >=20
-> > > > What actually is the t100? Is it an SoC or is it the name of the co=
-re
-> > > > complex IP that spacemit is using in multiple SoCs?
-> > >=20
-> > > T100 is the name of the IOMMU IP developed by SpacemiT, announced in =
-RISC-V
-> > > 2024 China Summit:
-> > > https://www.bilibili.com/video/BV1DNtCeiEBk/
-> > > It's world first server SPEC IOMMU in RISC-V, supports IOTLB placed in
-> > > adjacent to the DMA masters and supports PCIe ATS and PRI.
-> > > You can find it shipped in the recent publicly purchasable SoC Spacem=
-iT K3.
+> On Thu,  5 Feb 2026 00:21:30 +0100 Lukasz Majewski wrote:
+> > This patch series provides support for More Than IP L2 switch
+> > embedded in the imx287 SoC.
 > >=20
-> > Right, then what you need here is something like:
+> > This is a two port switch (placed between uDMA[01] and MAC-NET[01]),
+> > which can be used for offloading the network traffic.
 > >=20
-> > items:
-> >    - enum:
-> >        - spacemit,k3-iommu
-> >    - spacemit,t100-iommu
-> >    - riscv,iommu
+> > It can be used interchangeably with current FEC driver - to be more
+> > specific: one can use either of it, depending on the requirements.
 > >=20
-> > Driver can then match on spacemit,t100-iommu - but you need to have
-> > soc-specific compatibles.
-> > I'm not convinced that riscv,iommu is suitable here though, does the
-> > driver work on your platform without the portions of code that are added
-> > by this series and enabled by your new compatible? If not, the I don't
-> > think the riscv,iommu fallback should be here.
+> > The biggest difference is the usage of DMA - when FEC is used,
+> > separate DMAs are available for each ENET-MAC block.
+> > However, with switch enabled - only the DMA0 is used to
+> > send/receive data to/form switch (and then switch sends them to
+> > respecitive ports).
 > >=20
-> > Additionally, please stop sending new versions so frequently and in
-> > response to earlier submissions. I have a v4 in my inbox while we are
-> > still discussing v3.
+> > Signed-off-by: Lukasz Majewski <lukasz.majewski@mailbox.org>
+> > Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
+> > Reviewed-by: Andrew Lunn <andrew@lunn.ch> =20
 >=20
-> SpacemiT provides RISC-V IOMMU implementation, T100 is the first
-> generation of the this IP product line, we have plan to develop T200,
-> T300, etc., with more features introduced to be adoptive to new
-> RISC-V IOMMU specifications.
-> Besides, T100 is not only shipped in K3, but also shipped in V100 and
-> the follow-up SoCs, like Kn, Vn00, they will likely use the same
-> synthesis result of T100 RTLs.
+> Transient build failure here:
 >=20
-> From SpacemiT's point of view, we need a common sense of this IP
-> series for something like IOATCs, that's why spacemit,riscv-iommu
-> (this is same like qemu,riscv-iommu) is introduced. And a common sense
-
-No, it's not the same as qemu,riscv-iommu. That exists to avoid
-riscv,iommu being allowed in isolation and as a "SoC"/integration
-specific compatible. The driver matches against riscv,iommu not
-qemu,riscv-iommu and has no qemu,riscv-iommu specific behaviours.
-It is akin to having spacemit,k3-iommu.
-
-> of T100 for all SoCs shipped T100 (like global filters, vendor events
-> and etc.,).
+> drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c:1072:32: warning:
+> variable =E2=80=98priv=E2=80=99 set but not used [-Wunused-but-set-variab=
+le] 1072 |
+>       struct mtip_ndev_priv *priv; |
+> ^~~~
 >=20
-> IMO, the current compatible is proper to reflect these concerns.
-> What do you think?
+> I sent out the AI code reviews while at it, without looking at them.
+> So please approach them with caution..
 
-I pretty much already told you what I think, that you need SoC-specific
-compatibles for SoCs that integrate this IP and that the you should drop
-the spacemit,riscv-iommu compatible. The spacemit,riscv-iommu compatible
-doesn't provide any additional value over spacemit,t100-iommu, and has
-the downside of maybe being confusing in the future if spacemit
-produces a iommu that doesn't have the IOATC behaviour.
+IMHO, issues pointed with AI review have been at discussed and
+(to my best knowledge) addressed.
 
-Also, I don't see an answer to my question about whether the hardware
-will work without the driver changes this series introduces and enables
-with the new compatible?
+Shall I prepare next version of this patch set?
 
-Cheers,
-Conor.
+--=20
+Best regards,
 
---8z5ZdYiefbay1YtF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaYXBcwAKCRB4tDGHoIJi
-0jyPAP9isV7zyFlG71V/A10awaNoOnM6vetdkFyMEwJt5Yj2ZgD/U8AKoodPKvnt
-PY1aMEIn8pr+p3KARKfZhb9DFBcT2w0=
-=XWl+
------END PGP SIGNATURE-----
-
---8z5ZdYiefbay1YtF--
+=C5=81ukasz Majewski
 
