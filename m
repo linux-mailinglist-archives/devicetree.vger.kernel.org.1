@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263241-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CLojGtaThWm3DgQAu9opvQ
-	(envelope-from <devicetree+bounces-263240-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:10:14 +0100
+	id MO+cL++ThWm3DgQAu9opvQ
+	(envelope-from <devicetree+bounces-263241-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:10:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F22ABFAD9D
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:10:13 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C8B8FADAB
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:10:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1503630886F2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 07:07:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C8B3C3032DE9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 07:08:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40E4F302756;
-	Fri,  6 Feb 2026 07:07:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5D8B30BB8D;
+	Fri,  6 Feb 2026 07:08:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nq4wTOd+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YrNAFJVA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D44133BBA4;
-	Fri,  6 Feb 2026 07:07:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1BE530AACF;
+	Fri,  6 Feb 2026 07:08:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770361626; cv=none; b=DpjmCdbQH3Pgv3RowxeF10IrUgu2HgtjITYXX4jzm2JNH/eKl9sQKY6oeDSzCb0QrB9v1yi2N2Dx1B0V0UVs2UfN2td19urmA/4aFSix18dVXi/2NFElMpBNTs7CGA2JkDPXpEmFTfvx6HiHYyaLuNMrar2ZQZP9jluf9vK4EAQ=
+	t=1770361693; cv=none; b=denO01MTcdF1I3SnJki0fS9iXLQPdvflzfQZl+e3Vh22190NmDE5yRW8oRzg9wUwlBj/7Yh4CNzyC3DcICYeZv7ckOXW5pUzB/nqO182B6NqUyvNU2vjdx6tvEwz1ZeNGZjyz29zuAvBJUDq1zGAkxq0kMlDtO8mfzn+YX8j3Z4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770361626; c=relaxed/simple;
-	bh=WvZw8TZEb3SgW+/70HUmxFJO34AgPehjojDeWdDjWhI=;
+	s=arc-20240116; t=1770361693; c=relaxed/simple;
+	bh=9TCzEfxMV7CHDiMeebC4Fkp8Q2GKzqvqiEiVuobvAZQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FtZGABjthd8H/CUfm3kMWvfy87B2BLZ7PK065sQ/wXL8rD1ZbGDvRrNHYAFkuaoHEhFAtV4eCNp9+WAzH3XsOs43isEJHKY7QwmLucvr9WRLSA4e5S0M54knYKvlLkvnTo3IAebisjSphdGl9nVhCUFcASfUQyW59FwiHBiDaZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nq4wTOd+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 027DDC116C6;
-	Fri,  6 Feb 2026 07:07:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=X/UAS2wnUjEilTHKXBpVW8FVNVnc4qYIRAtvN6f+EFC1F1KZa3dv5HCio116DwPUTtGhhC1+B9MTV0cabaQcLHk//uVO3E2sKvBHgpxxGMxMa28j4SEXiVaW2Oi2pasNjz3MkPWIrA7gmEQUiIDm1IF7Kfy2ucROpJqjGIuRbEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YrNAFJVA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFB5CC116C6;
+	Fri,  6 Feb 2026 07:08:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770361625;
-	bh=WvZw8TZEb3SgW+/70HUmxFJO34AgPehjojDeWdDjWhI=;
+	s=k20201202; t=1770361693;
+	bh=9TCzEfxMV7CHDiMeebC4Fkp8Q2GKzqvqiEiVuobvAZQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Nq4wTOd+caqPrkzH9QxmqBvkYO1ADtEBtEyURjcb7Tp51nkrI/cZ0mNJiUWjTBYtz
-	 +2Us9GW6ejgWjko3lvVYkSPC708UEtQT8g0hFpAr1UopavX7aLCz7HeAX5MH3lJ/8r
-	 yaPzAhBEkYaHn99kUF0bBgq/+rlzW7fQbiuS2+xi5TT+QasMbx50sQs8nUZ7Fzfuoi
-	 sio6NS0lrRtSHyPn+6/sChkqHfpWqfVfUj9ZP6J2OOCCWAHbg2C5w3MLIkuPJMGdM4
-	 NUKp9Q+s7jFjCQPqP1PqFEXNwreOragKNqGD0T260B+EnVmiyArEI4+t02uq+k0Wvq
-	 P27yGe9ETMcrA==
-Message-ID: <36383e80-fcf2-4d7b-8036-58a1e72236cd@kernel.org>
-Date: Fri, 6 Feb 2026 08:07:01 +0100
+	b=YrNAFJVA7S2/rpOPOSbwaYDarWol6MnehwhqawQcW8RWrSScUNzcKkLoDNcC0CC6l
+	 kehhFVbDkURJFGzoX1P6yspiX25/HgJ9PyBUh1bvYRzp2bn3EVQ//b5FK5qVHcLoIs
+	 wf/1nQ55+kfBuLCaw3mZ9TFvlKzDau8hLvvJREPEmk21QwYytmemWFAS4XU36AuqYZ
+	 YXwDusfZnDWkOGqtmQIUx6M4NidfnnXgQ77ugkGRzg9GhTO5uoKs+qqEGaJ66xtUW1
+	 8x9wQMlYSrIDjiSdWvYfwD/zN7/VKjMdu2Ac2NKDpKbxfu37JV4tKyX5SwYqSBx1OG
+	 Ee1OCVc1uNBxQ==
+Message-ID: <0bcd3cb0-9231-4cb0-a726-c439d01f63e5@kernel.org>
+Date: Fri, 6 Feb 2026 08:08:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,19 +53,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2 v3] dt-bindings: arm: lg: Add compatible for LG1215
- SoC and reference board
-To: Chanho Min <chanho.min@lge.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kever Yang <kever.yang@rock-chips.com>, Kael D'Alcamo <dev@kael-k.io>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: lt9611: Support single Port
+ B input
+To: Roger Shimizu <rosh@debian.org>
+Cc: Hongyang Zhao <hongyang.zhao@thundersoft.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260112053421.3185738-2-chanho.min@lge.com>
- <20260112-agile-elite-tuatara-dea08d@quoll> <aYVnJKDO9PYiqje5@BRUNHILD>
+ linux-arm-msm@vger.kernel.org
+References: <20260128-rubikpi-next-20260116-v2-0-ba51ce8d2bd2@thundersoft.com>
+ <20260128-rubikpi-next-20260116-v2-1-ba51ce8d2bd2@thundersoft.com>
+ <20260205-winged-alligator-of-sorcery-aada21@quoll>
+ <CAEQ9gEkkK_qBCq__oSJb1D5J=gLyw-kVDx1OD4SMPry6z-F7nA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,28 +119,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aYVnJKDO9PYiqje5@BRUNHILD>
+In-Reply-To: <CAEQ9gEkkK_qBCq__oSJb1D5J=gLyw-kVDx1OD4SMPry6z-F7nA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-263241-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263240-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[thundersoft.com,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,lists.freedesktop.org,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
@@ -140,45 +149,37 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F22ABFAD9D
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.1:email,thundersoft.com:email]
+X-Rspamd-Queue-Id: 3C8B8FADAB
 X-Rspamd-Action: no action
 
-On 06/02/2026 04:59, Chanho Min wrote:
-> On Mon, Jan 12, 2026 at 10:07:05AM +0100, Krzysztof Kozlowski wrote:
->> On Mon, Jan 12, 2026 at 02:34:20PM +0900, Chanho Min wrote:
->>> Add compatible strings for the LG1215 SoC and its reference board
->>> (lg,lg1215 and lg,lg1215-ref).
->>>
->>> This SoC is the next SoC following the LG1313 series, developed
->>> by LG Electronics.
->>>
->>> Signed-off-by: Chanho Min <chanho.min@lge.com>
->>> ---
->>>  Documentation/devicetree/bindings/arm/lge.yaml | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/lge.yaml b/Documentation/devicetree/bindings/arm/lge.yaml
->>> index d983ef7fcbd6..0d0661470eaa 100644
->>> --- a/Documentation/devicetree/bindings/arm/lge.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/lge.yaml
->>> @@ -24,5 +24,10 @@ properties:
->>>            - const: lge,lg1313-ref
->>>            - const: lge,lg1313
->>>  
->>> +      - description: Boards with LG1215 SoC
+On 05/02/2026 21:31, Roger Shimizu wrote:
+> On Thu, Feb 5, 2026 at 5:07 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >>
->> 1215 < 1313, so this looks oddly sorted.
+>> On Wed, Jan 28, 2026 at 07:15:45PM +0800, Hongyang Zhao wrote:
+>>> The LT9611 has two DSI input ports (Port A and Port B). Update the
+>>> binding to clearly document the port mapping and allow using Port B
+>>> alone when DSI is physically connected to Port B only.
+>>>
+>>> Changes:
+>>> - Clarify port@0 corresponds to DSI Port A input
+>>> - Clarify port@1 corresponds to DSI Port B input
+>>> - Change port requirement from mandatory port@0 to anyOf port@0/port@1,
+>>>   allowing either port to be used independently
+>>>
+>>> Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
+>>> Reviewed-by: Roger Shimizu <rosh@debian.org>
 >>
->>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>> Where did this review happen? V1 had this tag, but the patch was
+>> completely different, which means you were supposed to drop the tag.
+>> Please perform review in public.
 > 
-> Hi, Krzysztof
-> 
-> Ping, Any update or is it waiting in a queue somewhere?
+> FYI. v2 was updated per review feedback, which is public:
+> https://lore.kernel.org/all/7d9041a3-9d2b-469a-9fa7-89d53bbd2a1f@linaro.org/
 
-You received my comment and review. It is waiting on you.
+Link above is not from Roger, so again - where did the review leading to
+above tag happen?
 
 Best regards,
 Krzysztof
