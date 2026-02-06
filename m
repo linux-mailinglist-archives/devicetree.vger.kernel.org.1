@@ -1,196 +1,127 @@
-Return-Path: <devicetree+bounces-263398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263400-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kN8DCl8EhmmyJAQAu9opvQ
-	(envelope-from <devicetree+bounces-263398-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 16:10:23 +0100
+	id KPGJG1UGhmkRJQQAu9opvQ
+	(envelope-from <devicetree+bounces-263400-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 16:18:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0866FF80E
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 16:10:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FBF2FFA30
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 16:18:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A383B3009094
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 15:10:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EAC52301A720
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 15:13:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73893279907;
-	Fri,  6 Feb 2026 15:10:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16D45283FE3;
+	Fri,  6 Feb 2026 15:13:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s0wL+JOp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b3vUzNgI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 512FD26FA60;
-	Fri,  6 Feb 2026 15:10:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7B7B278E5D
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 15:13:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770390602; cv=none; b=QeP892JY2kC3KCRZkf3w3iL0aIiFf4JSR92fT1pJAF85/GcXryIHmJCpq+NkgDXxS3HeViwujwqyBkfz7hdDSIjdoHJ1wwCiixsk0jZ5YipZngStzHiQmkjjlhR340IphcQocV40L+cRL8wQNW0+ANxR5Igg/M6i0Hi8J0sb/Z0=
+	t=1770390784; cv=none; b=t4SXPSU6CNWuhAg1zzQrEjvtnGwMh4z6wV0sV5W2yXlTnvL+QhicYpl09sGXyNGe4meHCD6IwCVOClmeUVMKqCwM0FTpURq/5JhAabbmRpf4ewDOF5wP6g2jK5zQde2GfaKaswaNlHGNSxH9BUrMT9wmZHO6N4VPf7WLrdiGe9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770390602; c=relaxed/simple;
-	bh=tylKFPizBFVHR9SQ9HkBo1IBdDn9pqMpWIkRgxIWJuw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KtELUujlkBw0keETmzM8lHnm1TnI0o2ottDucUdeaOlYL7SRL10iNB4tXYIL8ILItA6a424nhdOyUua442EJ8Opz9L1pkMysOFjiF8rUdroyAmg3KKaDzi7rOR1wygd1wE3m6kXtifWgDf1C94DEkSK/JUN0OK9bbrR3t3ggnV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s0wL+JOp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF579C19424;
-	Fri,  6 Feb 2026 15:10:01 +0000 (UTC)
+	s=arc-20240116; t=1770390784; c=relaxed/simple;
+	bh=xjOVDKT/gqOUJFAfsyaZBX7X9mW0mQLPkR+mW2ZCvqI=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=flfuBpZO6T8v2le7sHkFjA/Tyitua9BcHqWoA8ZkbuWKuazNv6nN/kOJcSnahJZnO8ZhL83L342nKQdfJDqUQ/0CYBbtrAXohdToNMfKtWxFiL18iP+f55VzhgKOblYA3OTeWTCZgaous8CkpbiSR0GqJp23RIF/9vAx/YiMSLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b3vUzNgI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0524C2BCB1
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 15:13:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770390601;
-	bh=tylKFPizBFVHR9SQ9HkBo1IBdDn9pqMpWIkRgxIWJuw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s0wL+JOpf4m6DBLk3QGw8E79VmC1tNhNtCDGKAd4y8cAnvqr39AMG+4UKdH+3a26N
-	 ArDR9hjuAxLDk+vTxzAM9WGcQg4JqTziRy6k9r34BJ207E2IE8YLnlW0t2yOJYjIMo
-	 N/EpCU4cK6PJ8LbuQdVXmc3wm117WGpmavwABteoPG0lOqNHuaocRKyYgOCqQTjQCJ
-	 C8YLxa/b+l8LtKXiVy/9G5uqpkLdUmX2M6mzQ97aU6Ynk3wx4BNqwy5MYYKGuL471M
-	 erDaTnykxuc4loJTiAb6EeErD9xvCRdAiKex6ldokdgidmyGD7mLSUNo5rYisyg3yY
-	 T5GHyhPvFeXtg==
-Date: Fri, 6 Feb 2026 09:10:01 -0600
-From: Rob Herring <robh@kernel.org>
-To: Akhila YS <akhilayalmati@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: power: ti,omap3-smartreflex-core: convert
- to DT schema
-Message-ID: <20260206151001.GA229184-robh@kernel.org>
-References: <20260128-smartreflex-v1-1-2ab7a35169ed@gmail.com>
+	s=k20201202; t=1770390783;
+	bh=xjOVDKT/gqOUJFAfsyaZBX7X9mW0mQLPkR+mW2ZCvqI=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
+	b=b3vUzNgIAtOaZZf05U3bggBD32H6RnAUcP6ZjyLLeqZB9x7ltvEZJvDWvBxDYqcgx
+	 p/4DoZ/enUHDfrD5U96usZ2AHUWk9QGorP+XaROP9J6qVqK9vcuaXDydqfXgbbiMNx
+	 nJ1uocRdlngudeiHcAS9zR0eCQbNDW51/E9yqJpoF5B9NQZau0LecdPA4fE8UU9bk5
+	 upuauK/WXN14JD4KHbfEedOtRAa4JLV++JIy3QPNBeKnNAnJhoqLPx7ssb0TCYjYAQ
+	 DFlFMYJqDbFd4TEnTwJpogeUyGcRyCRuYn/CP3YMkxf6MwUJBATRt5JTM2GLAl5jbN
+	 QPqoBfLiPZBxA==
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-385baa8afaaso20288591fa.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 07:13:03 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVfbvqQt2jdVKraHSyO7Sc4gTsYspxnXIXpznuNNVOwTed9/Obp6f1EP3j9GuE4OfN+eEpqNXa3+NMy@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzQA4FrAf+PFunkE3/h0omzd86fIupO8teAPe6vF+m+6xhGWkV
+	cS0wRrtNe5R4hr7Y22GgMqZix2ksbx8OLC41vcg4rvsg+lFtvLvQf6s363FEIEAW/pZ687jJmV9
+	P9hgFonRDUxEkWstoPxucTia+ANkH7z0T5BGoVM0Rhg==
+X-Received: by 2002:a2e:be0d:0:b0:383:1c5f:84c7 with SMTP id
+ 38308e7fff4ca-386b68180fbmr9558811fa.12.1770390782264; Fri, 06 Feb 2026
+ 07:13:02 -0800 (PST)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 6 Feb 2026 07:13:00 -0800
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 6 Feb 2026 07:13:00 -0800
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-2-5b79c5d61a03@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260128-smartreflex-v1-1-2ab7a35169ed@gmail.com>
+References: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-0-5b79c5d61a03@linaro.org>
+ <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-2-5b79c5d61a03@linaro.org>
+Date: Fri, 6 Feb 2026 07:13:00 -0800
+X-Gmail-Original-Message-ID: <CAMRc=MdkPZQOze=A_orwCLRpu5s=GA=HOvSjpU72o-p3BhREdQ@mail.gmail.com>
+X-Gm-Features: AZwV_QjSWizfT3josb5AhWS6l_uEgzoWQTjoTt1Hi3foFihUPkEQ01zIgsoa2yQ
+Message-ID: <CAMRc=MdkPZQOze=A_orwCLRpu5s=GA=HOvSjpU72o-p3BhREdQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/9] pci: pwrctrl: slot: fix dev_err_probe() usage
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-263400-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,linuxfoundation.org,kernel.org,glider.be,gmail.com,google.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email,mail.gmail.com:mid];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263398-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	NEURAL_HAM(-0.00)[-0.987];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.997];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,devicetree.org:url]
-X-Rspamd-Queue-Id: C0866FF80E
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 0FBF2FFA30
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 08:11:55AM +0000, Akhila YS wrote:
-> Convert Texas Instruments SmartReflex module binding to YAML format.
-> 
-> Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
+On Fri, 6 Feb 2026 15:50:30 +0100, Neil Armstrong
+<neil.armstrong@linaro.org> said:
+> The code was not returning dev_err_probe() but dev_err_probe()
+> returns the error code, so simplify the code.
+>
+> Suggested-by: Bartosz Golaszewski <brgl@kernel.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  .../bindings/power/ti,omap3-smartreflex-core.yaml  | 75 ++++++++++++++++++++++
->  .../devicetree/bindings/power/ti-smartreflex.txt   | 47 --------------
->  2 files changed, 75 insertions(+), 47 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/power/ti,omap3-smartreflex-core.yaml b/Documentation/devicetree/bindings/power/ti,omap3-smartreflex-core.yaml
-> new file mode 100644
-> index 000000000000..ad4094f15a63
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/ti,omap3-smartreflex-core.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/ti,omap3-smartreflex-core.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments SmartReflex module
-> +
-> +maintainers:
-> +  - Tony Lindgren <tony@atomide.com>
-> +
-> +description:
-> +  Texas Instruments SmartReflex is an on-chip adaptive power management
-> +  technology integrated into TI's OMAP and other SoCs. It dynamically
-> +  adjusts voltage and frequency for different chip domains in real time
-> +  to compensate for process, voltage, and temperature (PVT) variations.
-> +  Dedicated hardware sensors and control logic continuously monitor
-> +  conditions and apply the lowest safe voltage for the required performance
-> +  level.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,omap3-smartreflex-core
-> +      - ti,omap3-smartreflex-mpu-iva
-> +      - ti,omap4-smartreflex-core
-> +      - ti,omap4-smartreflex-mpu
-> +      - ti,omap4-smartreflex-iva
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  ti,hwmods:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    deprecated: true
-> +    description:
-> +      It was required by the OMAP interconnect/PRCM code to automatically
-> +      initialize hardware modules using TI's internal database.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    smartreflex@4a0db000 {
-> +        compatible = "ti,omap4-smartreflex-iva";
-> +        reg = <0x4a0db000 0x80>;
-> +        interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-> +        ti,hwmods = "smartreflex_iva";
 
-IIRC, ti,hwmods has been removed on omap4.
-
-> +    };
-> +
-> +  - |
-> +    smartreflex@4a0dd000 {
-> +        compatible = "ti,omap4-smartreflex-core";
-> +        reg = <0x4a0dd000 0x80>;
-> +        interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-> +        ti,hwmods = "smartreflex_core";
-> +    };
-> +
-> +  - |
-> +    smartreflex@4a0d9000 {
-> +        compatible = "ti,omap4-smartreflex-mpu";
-> +        reg = <0x4a0d9000 0x80>;
-> +        interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-> +        ti,hwmods = "smartreflex_mpu";
-> +    };
-
-Just one example is enough.
-
-Rob
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
