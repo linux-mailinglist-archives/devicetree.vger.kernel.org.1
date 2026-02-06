@@ -1,301 +1,242 @@
-Return-Path: <devicetree+bounces-263424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263425-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CDZABOUbhmlNJwQAu9opvQ
-	(envelope-from <devicetree+bounces-263424-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 17:50:45 +0100
+	id gEemLf4bhmlNJwQAu9opvQ
+	(envelope-from <devicetree+bounces-263425-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 17:51:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BDEB1008D9
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 17:50:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60A701008F8
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 17:51:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F2A7130869FF
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 16:44:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BEC4F3045C0A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 16:47:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6B7B337B9A;
-	Fri,  6 Feb 2026 16:44:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDAA22DAFAC;
+	Fri,  6 Feb 2026 16:47:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hgmOkYre"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KEWrQfhB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012065.outbound.protection.outlook.com [52.101.66.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 322BC335BA7;
-	Fri,  6 Feb 2026 16:44:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.65
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770396291; cv=fail; b=AMiq00mfiDzzrc1arXFlPnNL6UwI6A5iJKG3GmIBYIUSx/JDosv/tvPmLgpcKZv5Y7/T5kB4s9xEZrcN1wDCCtXCznyOSEoDHWcibc11LJKZd3UGfJ/BBIELcKC2zCdWCD2B6beaJifUf/wy+ai/EwKdZzj4p87wqIFYiJf08Zk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770396291; c=relaxed/simple;
-	bh=szqbfhw6f1F/N0Fn3ry854Lu7lEd3UH+U1OF3mD33iQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Sn8B9wQCdIv21Gmot6YCv5pd3QOKGnK/8VqZ3z17gZAcsP8bbrXy8H+pnG1Crv+ThnrWDuwO2S/maGxma1Idz1HGZkrN7zHEvjjBn2nQUCwPcXdS/1Y/kSnJTbmcar2SPLzLQzWesFid1fKlCzm8Dw+kr7ISHiZ2NOPBo2Kbk48=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hgmOkYre; arc=fail smtp.client-ip=52.101.66.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PKp51l0aNon+AeZVdNkRUmCbUtU5fWVr6c0WRbylItvpefqcFOXSe9vgkZPQHnQY6qO7nKV0mKiN8W/hewtIszG2Hf4u57qIQIonNy8KMTuRJCUw3bt9e00YVUBouNYXV5otxapX0CXCnJuHafAilQBovMdAHKXv1M5gA5tL06mnqCHU6iJo6cM7DB8gP1Ml5miq9dqW2orIx2f3PWGsVDLOy6XEBVYliu3QapHBZOftLaSKjvyyfwdOd8QXsSTujaKFLhkOZDZEHFqTL2d8BHfRVnbKWBeI/nfSJQ4O5tgxCVhvylWHLDss1yCYM6TPlQXxN6RE0HN06d/jgB9j3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=foHg2tQ0zSb1FzrQf/Ka3CjCtl5RmuUnpNQFED2rINk=;
- b=BtTwX+KfI5PyjWLFY65Lzzuu77m20HORVx1AdtBaINbb4FvSyOufnMgZgAdOfyD8XH9NNyeaAQuNuoEjYYNeK5T/ZKFcgw4J1qG4JhWuLbBQ7uyrNCsGWHlbePk0JxuEkc0/WgZ7Cy0RPLzlmHcTIn0V0EH6/ERkTofgpLRTYlv3RYIRI/6VZ2sk1lqD/fTv6dAFgcsJ+l5zDXc/xDiPWK91i3w9VW6G7W9OxFaTzd95gLfuDeVFOe7g0Q42/GnU8ldRDDPX0qtwFYIhfeMut0WmV2DSfgb0pNZF6QEMXzx8kogb0vV1HxeqYDmr1Xu9ZIHd0gY/m+7fQ7BkhVir8Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=foHg2tQ0zSb1FzrQf/Ka3CjCtl5RmuUnpNQFED2rINk=;
- b=hgmOkYreGiiLtbzua4oK/+do/HxDLk/pJfS7kUd6tUDLQE50d+voR5GWtFY90ugG+VF7xMcG3SyXRtWSBFSmqb9eko5ruFNmmwJRDc3B+9UKLWp3Ks1tnFFNfIh6hz3Xca0dhuNUmgDBHlu1F3OBsBv24/CmkWOJGWT/PE5mxPO6fTwlcMU3RGWH33p4yrqaGyeT7TeZQPAtB+q0g/IvCNImR9/kwaGUsKmnbywsjKHUWr4InTJ9IIlhOu7MRLA7EKRsBCgEl6fXK/ezu3iLMaW1u2hatsGOjHNTxE+hjEWflDXiLqVLKA31FCz3Eu1HCxhsAWfVkPWyqGAjJNSH8Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by DB9PR04MB9844.eurprd04.prod.outlook.com (2603:10a6:10:4c4::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.13; Fri, 6 Feb
- 2026 16:44:48 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Fri, 6 Feb 2026
- 16:44:48 +0000
-Date: Fri, 6 Feb 2026 11:44:38 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, shengjiu.wang@gmail.com,
-	Xiubo.Lee@gmail.com, nicoleotsuka@gmail.com, perex@perex.cz,
-	tiwai@suse.com, linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v4 3/4] ASoC: fsl_asrc: Add support for i.MX952 platform
-Message-ID: <aYYadvQtq5psChBn@lizhi-Precision-Tower-5810>
-References: <20260206014805.3897764-1-shengjiu.wang@nxp.com>
- <20260206014805.3897764-4-shengjiu.wang@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260206014805.3897764-4-shengjiu.wang@nxp.com>
-X-ClientProxiedBy: PH5P222CA0011.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:510:34b::15) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B82282367CF;
+	Fri,  6 Feb 2026 16:47:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770396456; cv=none; b=oBg3QCup8CLL0dp41F+wQ6uJMazy/7Tn5iebLU05UrRrLC2fQtGLnEFRXcQSWk7qx7kYNDV3oZ0V7M3/4jn+5S6lkiDaVOWpNz8haRxlffX0AVRlcdAxTaceWa02kyL86YnOjxG3XfDc4qpYBmfIfrQojMO+QWd5o2WQTtMXH1s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770396456; c=relaxed/simple;
+	bh=8ni2wyMhJ8YY1Q56zt2R6P4WRq1z9vdPykPrpeyDO00=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oDjj0gpP7kUYM/IowLfTkTlvoZtzquvL3QsfruVleLYT7yan5YtJGm80s8xPFhRh5Ki8mhUFZmGjvOZLZkJozATDuP3Qhsq+fbxpeWT887T/NtZcf+qczC4sxiINd3bvOD4DzNvwP4RMpL2RTWIdy/5+EnHqRimvkvx4zIWbZvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KEWrQfhB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D253EC116C6;
+	Fri,  6 Feb 2026 16:47:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770396456;
+	bh=8ni2wyMhJ8YY1Q56zt2R6P4WRq1z9vdPykPrpeyDO00=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KEWrQfhB8ij0qK+sIIb2mdun5UyVkmF8NKV+EWRP1aF4QA317jEHXzKZZCS7b5ud5
+	 AW9aDZEJjcTPRJMQw61eMxc/1zMWtdafPIeLtrdhEdt4sL7jQL5tUrJphD5/HLvlGS
+	 ASXN5KjW9AtK6X+WCeeAPl6sziJkycl63+s+Jh65BOABWdeDENB1ZSxRucHxMmZPvb
+	 7R62ZzYfKrthDXJTQnCqQxCS3zZ74vLXKBsaKlJGdoKcVhrWmTf5cTv0DmKms2szEG
+	 JoprrHLGHY07h2/22YSQ0ec5cgMMif0h+BAq7zXwD4urQ+frqvOtlUZ/xlduSw5je5
+	 DwkquriYlGL4Q==
+Message-ID: <a9d4b53f-d8c2-4b31-aa13-901838c2933c@kernel.org>
+Date: Fri, 6 Feb 2026 17:47:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DB9PR04MB9844:EE_
-X-MS-Office365-Filtering-Correlation-Id: a9b44382-0a1d-4c39-ec20-08de659f0a3a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|7416014|1800799024|366016|52116014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?U0vGSLD7ZX4dcXK34OrQMHI8YYb9eBdZYcfdjkGGLqZ3JIoItfVs3RvNQCiO?=
- =?us-ascii?Q?BjwUmhNeHroPjTtr9J9Dmode1ER/f88NVzO8wgYJ5QDfivFlcESuN1f3lUvm?=
- =?us-ascii?Q?s5718p5Yq7P5nH3L5nKtzLkVQpPxzEs2bGSOlgq4tZwSGo3I2pZoet1t1BfV?=
- =?us-ascii?Q?DDj0RfATshIIz1eNtqJjlNj3mtqhEY73L/PSCsVW3rE7ZSJF2q5Gr7oZUY6D?=
- =?us-ascii?Q?ykEXGH2Npe/lTO3h64Q0NfWQkuvNJ+al7uEhzPXm6sAcz1fMOHwYIG92Zkuz?=
- =?us-ascii?Q?fSrkNCEMj1Q6Fjf+zlHnflUDW/qCgwDzULupL8MhkjtjkEkuIr4eoOYhk1v6?=
- =?us-ascii?Q?AFYR0WtC8ymE4VIGp73P0nRv7FHsUyf4SAZMmHUuN1jWyt63yifB5NYH7+tr?=
- =?us-ascii?Q?trVVMrkwTQzQ4pQ5SjMaVYB36fl8Sx4tx/gAPPrpd2ZZRDBtm8wpoNelfowk?=
- =?us-ascii?Q?IlRz5ERaMiA5712EmlQ5AATAIDG/Ljp1WlJuqj5akuNVQku4Dkdx8p26S4Qn?=
- =?us-ascii?Q?mR9ncRglVnO1Mv/iImQzQP5rNK3bw45P59X4uKnZqHY1jROq+KnTJNAXbw6+?=
- =?us-ascii?Q?J+nn3osUW2Fgj7Yd0VDUa3ckNVY25xuvVKpRUMR+a6weG+/0K95aliatN8FK?=
- =?us-ascii?Q?VBr+Lp3+UoO4+RUHGFI9QKaFxc4mANyFNBkytan+JJcbQ6ScHjkADgJiPUrO?=
- =?us-ascii?Q?7YehKGRO1uyZ068m4U3ewn8y68RZ2upIf+Dib1NYTqWj5KX5n8ZSsyTvyzO1?=
- =?us-ascii?Q?bgkKDShuNDsHGNf6Od4DCKMB5micqR1CVUdn8ot74ZchTmZjHUxrFEbyws2O?=
- =?us-ascii?Q?Hp0FvF6bLajDFOq4YaZKMEmo7ciT5fbwYHvBfCyYWXgbmF82sa1x2gpliCz4?=
- =?us-ascii?Q?KwhYLayHoT2iELaHxZnzXDIqkfDs7J0l/sqGMXol7xBQ/0EJ0rLBjRMBdQoP?=
- =?us-ascii?Q?3HrhK1z2GCAC0lR/qAQEjaDGns55h63vx0g3v3fT5hToH7LjqanTvE4vjymU?=
- =?us-ascii?Q?1Xblbc12ACme36EgVhkn5Fj1mz/OMGERTnObjSK2kZrx02VStNsINGyxCnHS?=
- =?us-ascii?Q?6Z4MbB5bqbTa7JnEBy5uwUwavkKPa3iJIcXRIqF1D5Vq/+tCk5be50CnhSBO?=
- =?us-ascii?Q?UXeKlQCgbhdQMWY2nNuARytdzLJg4wq8qKMjd71cYE7HxOJuck1nNOK0SVgM?=
- =?us-ascii?Q?Hao1GxtoBv+xorDSVGRRxG0IFxwZ5ZhMvj17FUbd7QC8Us+fGNleZhFGqnS0?=
- =?us-ascii?Q?Sy4Qfjmdth0XCk/lg0Z2iC9er4k2f4RZKmnW1pZDr6IHZIj6Po7w/a/OsC2b?=
- =?us-ascii?Q?GFHQAcBcud8TcSlnpgcBA0p5Md0V+Lc+jfQvH/qwBI4lVk/kocWHqNO255Ck?=
- =?us-ascii?Q?plCqSJqbNb/7BzknnEDsMeL4rK7n3JHkIqn6J/yx5uORIzW5moMRJFbg7uXh?=
- =?us-ascii?Q?ht9d2dpDDdecryb2PcSFOA8JsODM1EUPpHvkAB0J2ah/QXZi7YSMI6k1vRBg?=
- =?us-ascii?Q?jWCJofrZ1RLmOC8xDWrsIIwTy4/llesD4C3TUWpHp2qwiPMVVds3On1sNak/?=
- =?us-ascii?Q?/CQBBVQwGlz/rmUvrFBkY7sbZAJ7IYag2ppYVGziTZH8zNt/jGuuIp03Jokx?=
- =?us-ascii?Q?/68MDGj8dexmPDZFMN0xaO8=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(1800799024)(366016)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?RZTo0cb9SeP1o7Mr17/BCQ60gDLISWBQLpLQ72Tn+ZCj4hQY4LNID94asAKj?=
- =?us-ascii?Q?cYl+n4OA5aiu8UTrzh/F/U8zXcbSdoYvgwIm/sUoiuJXesfoCnDDiqumhqhZ?=
- =?us-ascii?Q?iMTYw4Z46WABaht0egyccAFPPg0nqkK97Ar0pQc0tc6Aixd8M1FoeX1hdKy3?=
- =?us-ascii?Q?EgyNuOHyXEUNk8dXhBZIvV32jrMPpfRrYCuC+7ie5HA1mPa3DC6IjZqRzYmq?=
- =?us-ascii?Q?3NzsytfMyeC3M6WvUdbwlK7eogdg7NNOGrWmeUjuTbwcAM1T7SUFQp5+WfVz?=
- =?us-ascii?Q?ibR/rPzrMxcqcH3K4btxqlA4T5lnFvhLp/BtOdXdhw+/MhMWSZ+LyRKtl9u7?=
- =?us-ascii?Q?1398sVf0erZn34o4vRhq0403z+TDhk2NxaJ2j7UVRulETjnUERUNrQe+zV/a?=
- =?us-ascii?Q?TLlsmqzDpsef2+RS+p1c8zbtlEF/dIMJcWE+aaHjysy6U/Ol8eioZNMdn752?=
- =?us-ascii?Q?uz3JrV0oIInmTTfLSa5H4P+ED8jB7XqFB0Ox2U+pw11QQviQwbQYa25p10Wi?=
- =?us-ascii?Q?cacc3hYc2wnEK9m3k1wVxcciXduI35BqTP1Rl1fGeayqueh5T5c9vXWl/1qk?=
- =?us-ascii?Q?B0O/eckphlKhvMbmK1Pa+uyAslBB9SQekJowO18RD7LwKby7J0K/DF5UD0KE?=
- =?us-ascii?Q?HcdFTQs2YQwqBtTYdIqWmrPciR8LhPTkUg1V1McwGiTD0ye0Y1GVSWcRtw4+?=
- =?us-ascii?Q?pDTGGgrzo5LVf/DLUdXZ+qMERxpg5Fl/tSHa7WvR9Bk5uJh/JcJWRsfMD7Fm?=
- =?us-ascii?Q?hGQeEiHOOOeebXYjKIdfXshrqkN+CLK8zEaWLpNDVJ6/nChCY8Ed7rwMM+9F?=
- =?us-ascii?Q?Y4UyWu3KDl/yrxandNEuAKp3lhUxJrjJbv+s24id38PiVEJbsNmdhU0L2FmQ?=
- =?us-ascii?Q?t/Dwtu0kkCLN/mjVhOMiCVKpAPZuQjYGMlEOxo4s72ckMdAUpr/345LGuu5q?=
- =?us-ascii?Q?vAmd1FYUV255SbJhd0qSsft546M6cmUhbBzp5xoJDRNWaprwQ987aUJBEPAb?=
- =?us-ascii?Q?kv7QAYnbuoHYG52Ar5J5XiyUZPe64GDtXwuRWwbiTqb7rHrNPFF6l4e+UUuM?=
- =?us-ascii?Q?5Gl1mjymdlZocyaI0UvNe5vMLpBJqNWAG4lJq8a2dJd8ACEOVveCunnGLLZd?=
- =?us-ascii?Q?fDXVi/pQ3HkrY6yZSQirYncqvRcJoKd80OTt8EsBEhgMVXZr2RJkqWDfDu6U?=
- =?us-ascii?Q?6K6kv8DsUnEwWQGpgTlVuN1V0pFoiFbHTIVziA1krkCGCyrjwgc8hHCgdFLr?=
- =?us-ascii?Q?2N8ZqaKUt3+jBuT5crlmp3byG1SM+uLlMbzEiCArksuCs9QwRB0TgSh7h54o?=
- =?us-ascii?Q?xIrasOu0JmjoM3qOa1C2y2IYvvzX8wSf+YxP6rlxnzOzYU7Zjzhq+TykGlF+?=
- =?us-ascii?Q?I1yWvfecJ3MfGTQiVTQYuM6C6GN796xOfyrDlDAYbH7QjGQf57pfWgvVw3kO?=
- =?us-ascii?Q?aFbooLsfbNOGJ81giZIjd3y5iSjfmpHVUZV4kpMnd9unVU3g1GbwlkfiMUaB?=
- =?us-ascii?Q?oH8BAHzNv0W47AJOoqqc5/6IgFIxQ/Mjt/kC8a4D/RmBzpPw2WZEqxw3VCtz?=
- =?us-ascii?Q?hCBWWoLGo5ORsdO31weoZHYQyUsxTExDbZiVrR2+460A2K9THSKLRsvg7K4v?=
- =?us-ascii?Q?9fcnjaI0x4b6CSrtggXPfg9UTUG8NQ/QT9PKkq4dIOmEnphb3IN8Xm90wjLM?=
- =?us-ascii?Q?0KpeHKMXA5nGjpzRuSpzdJaPPXnvdJB1TFDMbCxYH8pZtHEU8BwBSG7JwVWO?=
- =?us-ascii?Q?asVbmtqRBw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a9b44382-0a1d-4c39-ec20-08de659f0a3a
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 16:44:48.1026
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QtDlLbgl5kUWUtfn04OYn76LYQIaFMk32d7VhahzRLk0bWa1j6LQ69iXzHaFrg1ZYgLODyxsC4yadl2y05qtzQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9844
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: add support for MCP998X
+To: victor.duicu@microchip.com, linux@roeck-us.net, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net
+Cc: marius.cristea@microchip.com, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20260127151823.9728-1-victor.duicu@microchip.com>
+ <20260127151823.9728-2-victor.duicu@microchip.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260127151823.9728-2-victor.duicu@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263424-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-263425-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org,perex.cz,suse.com,lists.ozlabs.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.992];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,nxp.com:dkim]
-X-Rspamd-Queue-Id: 8BDEB1008D9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:url,microchip.com:email]
+X-Rspamd-Queue-Id: 60A701008F8
 X-Rspamd-Action: no action
 
-On Fri, Feb 06, 2026 at 09:48:04AM +0800, Shengjiu Wang wrote:
-> Add a compatible string, clock mapping table and enable the option
-> 'start_before_dma' to support ASRC on the i.MX952 platform.
->
-> The clock mapping table is to map the clock sources on i.MX952 to the
-> clock ids in the driver, the clock ids are for all the clock sources on
-> all supported platforms.
->
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+On 27/01/2026 16:18, victor.duicu@microchip.com wrote:
+> From: Victor Duicu <victor.duicu@microchip.com>
+> 
+> This is the devicetree schema for Microchip MCP998X/33 and
+> MCP998XD/33D Multichannel Automotive Temperature Monitor Family.
+> 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Victor Duicu <victor.duicu@microchip.com>
 > ---
+>  .../bindings/hwmon/microchip,mcp9982.yaml     | 205 ++++++++++++++++++
+>  MAINTAINERS                                   |   6 +
+>  2 files changed, 211 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,mcp9982.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/microchip,mcp9982.yaml b/Documentation/devicetree/bindings/hwmon/microchip,mcp9982.yaml
+> new file mode 100644
+> index 000000000000..05ea3c6a5618
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/microchip,mcp9982.yaml
+> @@ -0,0 +1,205 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/microchip,mcp9982.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip MCP998X/33 and MCP998XD/33D Temperature Monitor
+> +
+> +maintainers:
+> +  - Victor Duicu <victor.duicu@microchip.com>
+> +
+> +description: |
+> +  The MCP998X/33 and MCP998XD/33D family is a high-accuracy 2-wire
+> +  multichannel automotive temperature monitor.
+> +  The datasheet can be found here:
+> +    https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP998X-Family-Data-Sheet-DS20006827.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - microchip,mcp9933
+> +      - microchip,mcp9933d
+> +      - microchip,mcp9982
+> +      - microchip,mcp9982d
+> +      - microchip,mcp9983
+> +      - microchip,mcp9983d
+> +      - microchip,mcp9984
+> +      - microchip,mcp9984d
+> +      - microchip,mcp9985
+> +      - microchip,mcp9985d
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Signal coming from ALERT/THERM pin.
+> +      - description: Signal coming from THERM/ADDR pin.
+> +      - description: Signal coming from SYS_SHDN pin.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+As Guenter pointed out - code is wrong (thanks Guenter!)
 
->  sound/soc/fsl/fsl_asrc.c | 16 ++++++++++++++++
->  sound/soc/fsl/fsl_asrc.h | 14 ++++++++++++++
->  2 files changed, 30 insertions(+)
->
-> diff --git a/sound/soc/fsl/fsl_asrc.c b/sound/soc/fsl/fsl_asrc.c
-> index 2fe25667c888..5fda9b647c70 100644
-> --- a/sound/soc/fsl/fsl_asrc.c
-> +++ b/sound/soc/fsl/fsl_asrc.c
-> @@ -106,6 +106,12 @@ static unsigned char clk_map_imx8qxp[2][ASRC_CLK_MAP_LEN] = {
->  	},
->  };
->
-> +static unsigned char clk_map_imx952[ASRC_CLK_MAP_LEN] = {
-> +	0xf, 0xf, 0xf, 0xf, 0xf, 0xf, 0xf, 0xf, 0xf, 0xf, 0xf, 0xf, 0xf, 0xf, 0xf, 0x0,
-> +	0x0, 0x1, 0x2, 0x3, 0xf, 0xf, 0xf, 0xf, 0xf, 0xf, 0x4, 0x5, 0x6, 0x8, 0xf, 0xf,
-> +	0xf, 0xf, 0xf, 0xf, 0xf, 0xf, 0x7, 0x9, 0xa, 0xb, 0xc, 0xd, 0xf, 0xf, 0xf, 0xf,
-> +};
+This does not match your if:then:.
+
 > +
->  /*
->   * According to RM, the divider range is 1 ~ 8,
->   * prescaler is power of 2 from 1 ~ 128.
-> @@ -1337,6 +1343,9 @@ static int fsl_asrc_probe(struct platform_device *pdev)
->  			asrc_priv->clk_map[IN] = clk_map_imx8qxp[map_idx];
->  			asrc_priv->clk_map[OUT] = clk_map_imx8qxp[map_idx];
->  		}
-> +	} else if (of_device_is_compatible(np, "fsl,imx952-asrc")) {
-> +		asrc_priv->clk_map[IN] = clk_map_imx952;
-> +		asrc_priv->clk_map[OUT] = clk_map_imx952;
->  	}
->
->  	asrc->channel_avail = 10;
-> @@ -1575,11 +1584,18 @@ static const struct fsl_asrc_soc_data fsl_asrc_imx8qxp_data = {
->  	.channel_bits = 4,
->  };
->
-> +static const struct fsl_asrc_soc_data fsl_asrc_imx952_data = {
-> +	.use_edma = true,
-> +	.channel_bits = 4,
-> +	.start_before_dma = true,
-> +};
-> +
->  static const struct of_device_id fsl_asrc_ids[] = {
->  	{ .compatible = "fsl,imx35-asrc", .data = &fsl_asrc_imx35_data },
->  	{ .compatible = "fsl,imx53-asrc", .data = &fsl_asrc_imx53_data },
->  	{ .compatible = "fsl,imx8qm-asrc", .data = &fsl_asrc_imx8qm_data },
->  	{ .compatible = "fsl,imx8qxp-asrc", .data = &fsl_asrc_imx8qxp_data },
-> +	{ .compatible = "fsl,imx952-asrc", .data = &fsl_asrc_imx952_data },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, fsl_asrc_ids);
-> diff --git a/sound/soc/fsl/fsl_asrc.h b/sound/soc/fsl/fsl_asrc.h
-> index 60b6865ca952..7a81366a0ee4 100644
-> --- a/sound/soc/fsl/fsl_asrc.h
-> +++ b/sound/soc/fsl/fsl_asrc.h
-> @@ -326,6 +326,13 @@ enum asrc_inclk {
->  	INCLK_SAI6_TX_BCLK     = 0x22,
->  	INCLK_HDMI_RX_SAI0_RX_BCLK     = 0x24,
->  	INCLK_HDMI_TX_SAI0_TX_BCLK     = 0x25,
-> +
-> +	INCLK_SAI2_TX_BCLK	= 0x26,
-> +	INCLK_SAI3_TX_BCLK	= 0x27,
-> +	INCLK_SAI4_RX_BCLK	= 0x28,
-> +	INCLK_SAI4_TX_BCLK	= 0x29,
-> +	INCLK_SAI5_RX_BCLK	= 0x2a,
-> +	INCLK_SAI5_TX_BCLK	= 0x2b,
->  };
->
->  enum asrc_outclk {
-> @@ -366,6 +373,13 @@ enum asrc_outclk {
->  	OUTCLK_SAI6_TX_BCLK     = 0x22,
->  	OUTCLK_HDMI_RX_SAI0_RX_BCLK     = 0x24,
->  	OUTCLK_HDMI_TX_SAI0_TX_BCLK     = 0x25,
-> +
-> +	OUTCLK_SAI2_TX_BCLK	= 0x26,
-> +	OUTCLK_SAI3_TX_BCLK	= 0x27,
-> +	OUTCLK_SAI4_RX_BCLK	= 0x28,
-> +	OUTCLK_SAI4_TX_BCLK	= 0x29,
-> +	OUTCLK_SAI5_RX_BCLK	= 0x2a,
-> +	OUTCLK_SAI5_TX_BCLK	= 0x2b,
->  };
->
->  #define ASRC_CLK_MAX_NUM	16
-> --
-> 2.34.1
->
+> +  interrupt-names:
+> +    items:
+> +      - const: alert-therm
+> +      - const: therm-addr
+> +      - const: sys-shutdown
+
+Neither this.
+
+
+...
+
+> +    then:
+> +      properties:
+> +        interrupts-names:
+> +          items:
+> +            - const: alert-therm
+> +            - const: sys-shutdown
+
+So three interrupts, but two AND three interrupt-names? This is mess.
+
+> +      required:
+> +        - microchip,power-state
+> +    else:
+> +      properties:
+> +        interrupts-names:
+> +          items:
+> +            - const: alert-therm
+> +            - const: therm-addr
+
+Where are all b4 lore links for previous versions so I can trace the
+actual review happening here? Why aren't you using b4?
+
+Best regards,
+Krzysztof
 
