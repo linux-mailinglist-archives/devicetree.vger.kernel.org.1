@@ -1,189 +1,230 @@
-Return-Path: <devicetree+bounces-263381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263382-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eP7RG7L+hWnUIwQAu9opvQ
-	(envelope-from <devicetree+bounces-263381-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 15:46:10 +0100
+	id KPRnK8r/hWnUIwQAu9opvQ
+	(envelope-from <devicetree+bounces-263382-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 15:50:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76BE7FF268
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 15:46:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EFF6FF2DB
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 15:50:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BB1113055BE4
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 14:44:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E99E53014124
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 14:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 460DB41B37D;
-	Fri,  6 Feb 2026 14:44:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DDA24219F7;
+	Fri,  6 Feb 2026 14:50:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ItY2jYQb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YhoWeGpQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 229883043CE;
-	Fri,  6 Feb 2026 14:44:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873C43EFD03
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 14:50:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770389075; cv=none; b=Gcs1k0/n+gA1N48XAkhd5g1MNpUaTnjm1SRnlO76DH9ja4n58F6gGVto5yE2By8wZN7KMRfG87Ij6e3IQl/jAzuVLFGTCSqJ//lHX6phBkTDi1BhM6wT3uGjwAdA84oMpWB0nxEo6o9LwASIQXta1p2bnFhQgRxcUQdkQsb+EvA=
+	t=1770389442; cv=none; b=G0vYbHcBKn8D5jh7sLwP7+vzmQ4zuAS1dSWanR5ufmvAFpMWCVO1/28xpXv6LjvmB6o5rqcwft02Do8HaLSzl7rXNe8quzg2S94xWbQ9fjRNN7ZUXOQiMPxtNZduhy0hiyzvBy4yQF/PMUbD7V2Sg6D5G5O7IFEqykT7sH9YrtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770389075; c=relaxed/simple;
-	bh=WqpH7NpECmNqf7k95aSVChL/z7Nah2bI6O93+EyEo9Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oUShVqxscCYUmZzZKsH8kAN6JF36QiVfntLX/GtkCpgRL5E8sBuSbqbTG6YNudJA7zTAOtwKo027S9j5vnZl1jE4dodi9I0Bt0EwAkD4W/VkhY/gv/hEgX0TLGKDOweeFH3ELATEO6v2lUdeDu0AjOlKGXqu0Hk5zZxMrNihsJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ItY2jYQb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E1BAC116C6;
-	Fri,  6 Feb 2026 14:44:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770389074;
-	bh=WqpH7NpECmNqf7k95aSVChL/z7Nah2bI6O93+EyEo9Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ItY2jYQbzKhJiyfaUgZikEhxeI200qgma2/oQRBED77Nvb/Kwxg743/k0e1o3vpcU
-	 Ikh/o8uHonnwZ0wrJGjElk9/PWZlh3yc1YyIvOzD89H9caq2JDJpL8AeDv6LoQAYnZ
-	 H7+LtYuc28+rv+C3AoN+dshLZYL8CI1RpcognkYFmyx4ElSZBHMVvjaGsTvYOxIjGY
-	 O9Q/agczwnnUeP6i+Cv7nP9Wci1vJPdmsWFn17o6zGvBmmegESyrQlGVkYzsZSbKxy
-	 vGDYAuR6Qls8kKQFBp1Vjx8wY8EjsQ7x1obsWxkSt5gchtXRij0n/f87c4c6tFez0C
-	 GLoaC1Q+eSnfw==
-Message-ID: <0cc9bd0a-958b-4e63-b2ed-959a3ea43440@kernel.org>
-Date: Fri, 6 Feb 2026 15:44:30 +0100
+	s=arc-20240116; t=1770389442; c=relaxed/simple;
+	bh=m8IkutoYSK4AIftCStgEEiEuj916nm6elMyF2PBGCKU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dlu/NvcIeu9rx18NM5Cma3PKKiv6pw/cneeorkRbSdtGr79u5630EpjHCy2pMvN8zeNAqx6DPQaSxJPzCpzUyZlpifsGkPBT6cQKgCzALG4VcUb5CNjHGoD/2CsfYkY+FtyyponTuLp/zm5rH230wqHfSp540JQwWjB5khw6tiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YhoWeGpQ; arc=none smtp.client-ip=209.85.128.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f66.google.com with SMTP id 5b1f17b1804b1-4806f3fc50bso9049615e9.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 06:50:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1770389440; x=1770994240; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zebTzi77QURIJ5j1GBNLImGicnWPF8kidr8VfF/wJNk=;
+        b=YhoWeGpQip+GZtrpTwdbadjMSPRI+BoKU/UJc+EnpBXxZlP5qq38KWfKn39e4IP0NK
+         pVMlYE6jTFLPaFzo3eMAggzQ9X+hVG/T0I5mXOvh3xq5K0TNLRCARWGNwnAuLCkac2x+
+         VDOfomavkA0rdph7+4gb/0Cv70Ct0wRFyrDA+zPw9tpVbBKjOxRQG56Wx6Xj3Bbfx1Hq
+         3GPFZySXyb3Yzl9hZKu2hM/Vcg0trQV7QL+vQ6n5wqAam6t2j5qXcPafnsCtqjzd7E6T
+         02QMPIz2UAtHJ+s4+zmgHn+SqL30U3t8y0dubeGXUuVB3McOLGoiNEXJQUjFV3ljFE+F
+         Q/pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770389440; x=1770994240;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zebTzi77QURIJ5j1GBNLImGicnWPF8kidr8VfF/wJNk=;
+        b=djnommDkx6Z20NIxbTeEFlzVKuOUcCwedxeUMkQx0N95I2FknO7C34HIEuOtwLtx6a
+         N7tzP8R3sZtekhk1aJrwvQCi3vjnWXmBNzVIBn6F7PacUOexmT5nmM4nfRg0WuCfKGDh
+         CSoaC0ca4nCqmQNQlSYwg9MR0CGcZOKM5O5+HQ5xyqVxAIEzmv3JVqL0FhHiMmvPzJV6
+         1kMubzYI0bohms/+t8RrOMpR+BMJ2X87t4cBe69x5dqhDS4yFcZW8E3iR/5dNi2PLjpl
+         NQzshgMsR9VS+SkpdVCIah6NeOdL4/4n/kr9xFS2aSYJ57+4XAEzgdoHWAMQah3QSvYH
+         CQkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXTPM6u49FtFO46KEfJDMlvzDVxL3vGmlKuqN4lXOpe/gDEYnHbBWlllW61V/uX4RFUPIYggPuOeKUp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1m7kqkWkgA5vIVJ+YO8DtYlefNhqZPDi3xGWAz80c2Vzg+64Q
+	eVe62SuyO7Cdg0AlFwsJXe9XV7f37Slt+tUYHfmKaIxEkjtcai2cW+L9tetxwhazsLfHWEkdzcg
+	CSnO3ciQ=
+X-Gm-Gg: AZuq6aL08VFHReEwgvVGR8CcUgW/IHi4sEXPl9r4xyz7ULr1fenUOMW1aY06A9RxVUZ
+	4/au5yLKfc5oWmQS6OXSguVhg31TdSe2nI0M/FEmZyzJMwf5P/UBGAWebd+gd+PfGpec9v5eE+e
+	qIak8PfWBS72qj6975PfQH9SYWFD9ZsXCFo4f9be531VZ+bbnS/QUgQdRuBHl3maJD0o+qoFIzu
+	0GIXNRSvNihWpjzYOg1Y23KFX3fIk7L6KAD2LDJWgKvBtTRLO4LMfsKBes+7VEuP1A22qd7clJY
+	+qfmn2z08cZMmv2V0MG2ShfMSsJZZU5ONtG49PGRbftmk7+rFH3UHCQLyDBbfBmiVYFEAAnih2U
+	ldwYeG9599fSli8x2LbxFMepqIWY11Jwc1VXHFmgiRAi0AEBOnbPtE1ylG+mzifUwo3xN1AWJvG
+	slQNr492l2/d+bjgNsm3NwQDRwD9YApMvx
+X-Received: by 2002:a05:600c:c16d:b0:475:dd89:acb with SMTP id 5b1f17b1804b1-48320216097mr42013185e9.22.1770389439304;
+        Fri, 06 Feb 2026 06:50:39 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4832a38425asm3825805e9.7.2026.02.06.06.50.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Feb 2026 06:50:38 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v3 0/9] arm64: dts: qcom: Add support for the Ayaneo Pocket
+ S2
+Date: Fri, 06 Feb 2026 15:50:28 +0100
+Message-Id: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-0-5b79c5d61a03@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: apple,aic2: Add
- AICv3
-To: Janne Grunau <j@jannau.net>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Neal Gompa <neal@gompa.dev>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260128-irq-apple-aic3-v2-0-b4bc8e16c997@jannau.net>
- <20260128-irq-apple-aic3-v2-1-b4bc8e16c997@jannau.net>
- <20260205-pastoral-magnificent-cuscus-ce58ad@quoll>
- <8f506b2b-1309-4f9e-b8e6-4a73064ea2d0@kernel.org>
- <20260205221918.GA71415@robin.jannau.net>
-Content-Language: en-US
-From: Sven Peter <sven@kernel.org>
-In-Reply-To: <20260205221918.GA71415@robin.jannau.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALT/hWkC/5XNvQ7CIBiF4VtpmP0MUKno5H0YB34+WqJCA01j0
+ /TepZ100/E9w3NmkjF5zORczSTh6LOPoUS9q4jpVGgRvC1NOOUNZZzBEHtvID9lIyioSQWM0Ed
+ zxwEyB60yAhWmPkh0VjaWFKhP6PxrO7neSnc+DzFN2+fI1vUvfmRAQevanYRjhkpxefigUtzH1
+ JLVH/mnefzJ5MU0QqBhWlip3Ze5LMsbT2lrZCkBAAA=
+X-Change-ID: 20260121-topic-sm8650-ayaneo-pocket-s2-base-05c348efd86d
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ KancyJoe <kancy2333@outlook.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2986;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=m8IkutoYSK4AIftCStgEEiEuj916nm6elMyF2PBGCKU=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBphf+5mybkj4M8sjAXKBnfpNIYlbRXcC6v1cTVndyF
+ W4GcPhqJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaYX/uQAKCRB33NvayMhJ0RptD/
+ 4vRDG/iYugtoeGRKl3eTTpWxV0eguyVr+qA0ihqqHccxhcAqOlZP7m1hXzQeGi7G95dnxdWmwVcdcL
+ w6zQyrl5UCC/UkJ1HJm8RVpb0znKXYKlWZ+E+1n1T12Jlt6P2b0hys/G3owZ3fIkrkkYXaZqGsRcQr
+ VcDs4VN3njViJUSDrvhj97YL9OkrnYJ3ZcxXjLfbIL/J2Y9WXZ1l59nGjEPD8CjC2ay1dId6yWoRRM
+ lLzURG4u4OHubjrXFrZASUR6es1G9N8087pHBIko2v5u7IK4PnLHd63USpHaR6kZkexpKh2LyKWka2
+ YpDu0iMSxkIxRIvTvxS2ihm+YHt8shfoDDPl686GDJhN5DOnrQlmLg/OTU5QE2vHJxb7VdvLfI7qPN
+ GFAcsNlAVmBJltrorVynMJLhsFfOpB+LRoeY+E7rCo7yRf0oSrrjPIP8xNrveo1A8SOqOl2RdQGQ9+
+ bfFttpUJoeBbIl1Obpp6eRbsgPp0hJ2qIBAkkt/dMiQD6FwhX20OmDlpocwOoj+WK+8PUKp37nJAzR
+ ttlHmtt57G6811bAKFzE+ZXoVBy6Z1UvJ0c/dms4YChZmbqJ9pfKFWFFw9CNfcjqa/qOY7Fxbt1iBL
+ 1BOxeUDm4lTxnYyu/AZBGE/CRKME7dAWc2DhXXL2VlS2JLctTThu66b5/dgQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263381-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-263382-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com,google.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,linaro.org,oss.qualcomm.com,outlook.com];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sven@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,marcan.st:email,jannau.net:email]
-X-Rspamd-Queue-Id: 76BE7FF268
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,msgid.link:url,ayaneo.com:url]
+X-Rspamd-Queue-Id: 4EFF6FF2DB
 X-Rspamd-Action: no action
 
-On 05.02.26 23:19, Janne Grunau wrote:
-> On Thu, Feb 05, 2026 at 07:01:51PM +0100, Sven Peter wrote:
->> Hi,
->>
->> On 05.02.26 13:50, Krzysztof Kozlowski wrote:
->>> On Wed, Jan 28, 2026 at 09:57:08AM +0100, Janne Grunau wrote:
->>>> AIC version 3 as found on the Apple M3 (t8122) is very similar to AICv2
->>>> in its base functionality. It can use the same device tree bindings as
->>>> AICv2 so add it to the AICv2 bindings.
->>>> This interrupt controller is used on all Apple SoCs starting with M3 up
->>>> to at least M5.
->>>> The only apparent difference is the increased IRQ config offset. Apple's
->>>> device tree codes this new offset as property of the "aic" node but the
->>>> value stayed constant for all SoCs with "aic,3". Since the SoC specific
->>>> compatible "apple,t8122-aic3" will be used in the driver this offset can
->>>> remain a driver implementation detail.
->>>>
->>>> Signed-off-by: Janne Grunau <j@jannau.net>
->>>> ---
->>>>    .../bindings/interrupt-controller/apple,aic2.yaml  | 45 +++++++++++++++++-----
->>>>    1 file changed, 36 insertions(+), 9 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml b/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
->>>> index ee5a0dfff437816056bda0de5523bf38be4f49ba..a6e2251fcc111340c0a27ab6912452f6b1255be2 100644
->>>> --- a/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
->>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
->>>> @@ -4,10 +4,10 @@
->>>>    $id: http://devicetree.org/schemas/interrupt-controller/apple,aic2.yaml#
->>>>    $schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>    
->>>> -title: Apple Interrupt Controller 2
->>>> +title: Apple Interrupt Controller 2 and 3
->>>>    
->>>>    maintainers:
->>>> -  - Hector Martin <marcan@marcan.st>
->>>> +  - Janne Grunau <j@jannau.net>
->>>>    
->>>>    description: |
->>>>      The Apple Interrupt Controller 2 is a simple interrupt controller present on
->>>> @@ -28,14 +28,24 @@ description: |
->>>>      which do not go through a discrete interrupt controller. It also handles
->>>>      FIQ-based Fast IPIs.
->>>>    
->>>> +  The Apple Interrupt Controller 3 is in its base functionality very similar to
->>>> +  the Apple Interrupt Controller 2 and uses the same device tree bindings. It is
->>>> +  found on Apple ARM SoCs platforms starting with t8122 (M3).
->>>> +
->>>>    properties:
->>>>      compatible:
->>>> -    items:
->>>> -      - enum:
->>>> -          - apple,t8112-aic
->>>> -          - apple,t6000-aic
->>>> -          - apple,t6020-aic
->>>> -      - const: apple,aic2
->>>> +    oneOf:
->>>> +      - items:
->>>> +          - enum:
->>>> +              - apple,t8112-aic
->>>> +              - apple,t6000-aic
->>>> +              - apple,t6020-aic
->>>
->>> If you are re-shuffling these, you can as well sort alphanumerically.
->>
->> I don't have a strong opinion here but the last time this came up we
->> agreed that we'd go with release order IIRC for consistency since that
->> order is used in every other binding for this platform.
-> 
-> The intended scheme as documented in some commit messages is first base
-> Mx SoCs in release order and then Mx Pro/Max/Ultra SoCs in release
-> order. This scheme isn't used consistently though. I think I fixed that
-> in one or two bindings already but there are other using a different
-> order.
-> I think these unecessarily complex rules are guaranteed to lead to
-> inconsistencies. I'll resort the entries alphabetically as that's the
-> only rule with a chance of consistent use.
+The Ayaneo Pocket S2 is a gaming console based on the Qualcomm
+Snapdragon 8 Gen 3. It has an internal UFS storage, WiFi,
+Bluetooth, gaming buttons, SDCard, 2K display and USB-C
+connector.
 
-Sure, I'm totally fine with just using alphanumeric order everywhere as 
-well.
+Product Page [1].
 
+The Initial linux port was done by KancyJoe (Sunflower2333)
+at [2].
 
-Sven
+[1] https://www.ayaneo.com/goods/9344082149621
+[2] https://github.com/sunflower2333/linux/tree/master
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v3:
+- Made renesas,upd720201-pci bindings supplies required
+- Fixed description and example of renesas,upd720201-pci bindings
+- Renamed slot to generic, added renesas,upd720201-pci entry
+- Used PMIC_GPIO_STRENGTH_LOW instead of numbers
+- Removed all output-low in pinconf
+- Link to v2: https://patch.msgid.link/20260127-topic-sm8650-ayaneo-pocket-s2-base-v2-0-c55ec1b5d8bf@linaro.org
+
+Changes in v2:
+- Add proper regulators for the USB controller, with bindings & power ctrl
+- Add proper regulators for FAN
+- Dropped support for headset over USB-C, audio is connected to a jack port
+- Cleaned up Audio routing and fixed the DP endpoint index
+- Added i2c clk frequencies
+- Renamed fan node and used interrupts-extended
+- Dropped the usb-c self-powered
+- Reordered nodes alphabetically
+- Renamed pcieport1 to pcie1_port0
+- Link to v1: https://patch.msgid.link/20260121-topic-sm8650-ayaneo-pocket-s2-base-v1-0-bb3f95f1c085@linaro.org
+
+---
+KancyJoe (1):
+      arm64: dts: qcom: add basic devicetree for Ayaneo Pocket S2 gaming console
+
+Neil Armstrong (8):
+      dt-bindings: usb: document the Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller
+      pci: pwrctrl: slot: fix dev_err_probe() usage
+      pci: pwrctrl: rename pci-pwrctrl-slot as generic
+      pci: pwrctrl: generic: support for the UPD720201/UPD720202 USB 3.0 xHCI Host Controller
+      arm64: defconfig: enable pci-pwrctrl-generic as module
+      dt-binding: vendor-prefixes: document the Ayaneo brand
+      dt-bindings: arm: qcom: document the Ayaneo Pocket S2
+      arm64: dts: qcom: sm8650: Add sound DAI prefix for DP
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    1 +
+ .../bindings/usb/renesas,upd720201-pci.yaml        |   61 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ .../boot/dts/qcom/sm8650-ayaneo-pocket-s2.dts      | 1551 ++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8650.dtsi               |   47 +-
+ arch/arm64/configs/defconfig                       |    1 +
+ drivers/pci/pwrctrl/Kconfig                        |    8 +-
+ drivers/pci/pwrctrl/Makefile                       |    4 +-
+ drivers/pci/pwrctrl/{slot.c => generic.c}          |   16 +-
+ 10 files changed, 1655 insertions(+), 37 deletions(-)
+---
+base-commit: 8efd812b03edcd5fff1b3a36c0277b2d1397712d
+change-id: 20260121-topic-sm8650-ayaneo-pocket-s2-base-05c348efd86d
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
