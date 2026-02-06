@@ -1,148 +1,138 @@
-Return-Path: <devicetree+bounces-263270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263271-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8MqULTquhWkRFAQAu9opvQ
-	(envelope-from <devicetree+bounces-263270-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 10:02:50 +0100
+	id SDJ2N9muhWkRFAQAu9opvQ
+	(envelope-from <devicetree+bounces-263271-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 10:05:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF824FBC62
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 10:02:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F3A8FBCAC
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 10:05:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7E9DA30304BE
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 09:02:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A44343014C47
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 09:05:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F403C355815;
-	Fri,  6 Feb 2026 09:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDD65355023;
+	Fri,  6 Feb 2026 09:05:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BJhuVVz9"
+	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="pMJase59"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from m16.mail.126.com (m16.mail.126.com [220.197.31.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB769352C4D;
-	Fri,  6 Feb 2026 09:02:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77863279DB6
+	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 09:05:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770368565; cv=none; b=XRir92rQXZPaUDdjmuhtgun/gRBFxO2PuDsh6P/cRuxg47K4e0YbJJeK3Fai0AaYPbF2IyoTtwVDfNM+FYgYBHm4DtLK8Sml9H78FqcFlYUkHvP+EricpHtHy47iG6WP5s21spubiwXp0prHOJTygQDKNlMgUjMO+ujpJ+F5nhk=
+	t=1770368726; cv=none; b=NmtO0vEJZ+DRlh4b0ncrugvAhedI21zkEZGPVntlM9Ah1PLI0xmk+a/2emduCowCSpWAldrkiHJRgk2tk8g1Rq/yHX7CMWrOt+nsrz7t6tlQSq6vQfjznb8eef8EJb31wjmACFk8B2Gu6ttx3WF3LuNcP8iefeCHdzIrp/PlAGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770368565; c=relaxed/simple;
-	bh=EDernAL12A1n+hBwQmDnp+GejoVHgA1r/zF1Ns85j5k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=HN72MrPBjx6p9y5MB+/FU6Q4MvDj/nVoM/XgmCLtlZI7fFm/emDfe7tJHuKC18I/Snbta15wVVprQ44Q6C7hNEfOgtbbAZpzqr/jzr7W5xWpVoFFYQretjPkKwjIuk15k9MZWUCq5skl5UBdR6HjrsWmE1w2QmaeUj/+w8ZP190=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BJhuVVz9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A18A4C19424;
-	Fri,  6 Feb 2026 09:02:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770368565;
-	bh=EDernAL12A1n+hBwQmDnp+GejoVHgA1r/zF1Ns85j5k=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=BJhuVVz9IfiJrFbQq2qG759QHV+qSTleqIJeAlgpJonkQGl7ERqRGYuTiivpYrfkL
-	 nVk8nDU7yCMfety0+/Kwu0lNPW1wPeDubCURRLhRSZZweBJSNpsKTp93lovTJyj4UI
-	 654m2FfOfTPpOXkhp5yWBqUYBp678MZg/GVMecPFqyqNQFyIl4q3pA72cqGO5GKX5U
-	 A2MNONn0v4vRrB/0QulLeZ4B9saajTXVD7Tr+CFp/l3IU9qBKUKMV0dnBoUaDFPVxX
-	 er62j47qV/S6SeOuTqjfPW1m8wLPta+Ruqxum3SnoX1FRVbHlAvhvT2R5BS9CjY5Cs
-	 ms0936TwO+g4Q==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 94F9EEB28FB;
-	Fri,  6 Feb 2026 09:02:45 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 06 Feb 2026 09:02:34 +0000
-Subject: [PATCH v3 3/3] MAINTAINERS: Add an entry for Amlogic DMA driver
+	s=arc-20240116; t=1770368726; c=relaxed/simple;
+	bh=dpaiKsF5J3+8xIUDJSsTkKK0qTbiLTYdjqEj1XIQetk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PlqN83/VNjH79VJimh70508kpBs8wGocOrgHTAGeUWzdmN/5zCchKGyPJplV8fwjZEmTc3rSSybrcUPAnRK/k2bgpIfQFcEYQf3Hf5lliVUAxgiISeEuQFcF1P2JXFsnPADwtpl/g+sQQnDdrcwQZXSJ+9DcDAtEVSyPvwY0NLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=pMJase59; arc=none smtp.client-ip=220.197.31.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Zg
+	Kz7HPp4QjyuxNJfzfCpjL5pzGtVKS4Dpr6le7LrjA=; b=pMJase594freXt0FEJ
+	PoSfaIJy8LOHJ46oc439NAybVkxqDIzT1QFT5IWE39741coZXMzGHlmrtVHMXhG8
+	qUGrPr6rWBI1/k8jWTfTc7QpzuudVx863j5x6wGJx3xZZgzoAqZ+hxQ79nijBBM3
+	MiLS4gSCE1L8Qmr/RsEsdHbeY=
+Received: from neon.loongson.cn (unknown [])
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3VzK3roVpOSW_AA--.28653S2;
+	Fri, 06 Feb 2026 17:04:57 +0800 (CST)
+From: wming126@126.com
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Ming Wang <wangming5719@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Fix Bluetooth stability on LCKFB TaiShan Pi
+Date: Fri,  6 Feb 2026 17:04:53 +0800
+Message-ID: <20260206090453.1041919-1-wming126@126.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260206-amlogic-dma-v3-3-56fb9f59ed22@amlogic.com>
-References: <20260206-amlogic-dma-v3-0-56fb9f59ed22@amlogic.com>
-In-Reply-To: <20260206-amlogic-dma-v3-0-56fb9f59ed22@amlogic.com>
-To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-hardening@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770368563; l=791;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=bfzmsANkUP7tvKv82qbR7mHmRjOKAGovJZX8tW/lzN0=;
- b=ibTM7uQ/SuIxAsMoozUwilzAdgQsvoxrC98l/A9kQZZRNDgosQt675/GZBWPGR2qQQBXUz9bY
- AF7gb4E6k6fAY+tCnUAqMhYqqvRD51UOZiqQdUYn2qASbpMuiiVMV8r
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD3VzK3roVpOSW_AA--.28653S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7tFW8Wry8Wr1fXw1kXry3XFb_yoW8Xr43pw
+	4xC398Wr93WrWUX3Z8t3Z7XrZ8ua9agFs8ArWDua4FqFsxt3WDuF1ag3saya1DXFZ3Xw45
+	uF1Yqry7tF1ku3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UdgAcUUUUU=
+X-CM-SenderInfo: xzpl0wqrswqiyswou0bp/xtbBshmV72mFrrkV6gAA3V
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[126.com,none];
+	R_DKIM_ALLOW(-0.20)[126.com:s=s110527];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263270-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-263271-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[126.com];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[sntech.de,lists.infradead.org,vger.kernel.org,gmail.com];
+	DKIM_TRACE(0.00)[126.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[wming126@126.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,amlogic.com:replyto,amlogic.com:email,amlogic.com:mid]
-X-Rspamd-Queue-Id: AF824FBC62
+	TAGGED_RCPT(0.00)[devicetree];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5F3A8FBCAC
 X-Rspamd-Action: no action
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+From: Ming Wang <wangming5719@gmail.com>
 
-Add Amlogic DMA controller entry to MAINTAINERS to clarify
-the maintainers.
+The AP6212 WiFi/BT module on the LCKFB TaiShan Pi (RK3566) is prone to
+communication timeouts and reset failures (error -110) when operating at
+3 Mbps.
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+This patch stabilizes the Bluetooth interface by:
+1. Updating the compatible string to 'brcm,bcm43430a1-bt' to better reflect
+   the actual chip revision used in the AP6212 module.
+2. Lowering the maximum UART baud rate from 3,000,000 to 1,500,000 bps.
+   Tests show that 1.5 Mbps is the reliable upper limit for this board's
+   UART configuration, eliminating the initialization timeouts.
+
+Signed-off-by: Ming Wang <wangming5719@gmail.com>
 ---
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3566-lckfb-tspi.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5b11839cba9d..9b471d580b32 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1305,6 +1305,13 @@ F:	Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
- F:	drivers/perf/amlogic/
- F:	include/soc/amlogic/
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-lckfb-tspi.dts b/arch/arm64/boot/dts/rockchip/rk3566-lckfb-tspi.dts
+index ed65d3120..18a560a6e 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-lckfb-tspi.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-lckfb-tspi.dts
+@@ -635,10 +635,10 @@ &uart1 {
+ 	status = "okay";
  
-+AMLOGIC DMA DRIVER
-+M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
-+L:	linux-amlogic@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
-+F:	drivers/dma/amlogic-dma.c
-+
- AMLOGIC ISP DRIVER
- M:	Keke Li <keke.li@amlogic.com>
- L:	linux-media@vger.kernel.org
-
+ 	bluetooth: bluetooth {
+-		compatible = "brcm,bcm43438-bt";
++		compatible = "brcm,bcm43430a1-bt";
+ 		clocks = <&rk809 1>;
+ 		clock-names = "lpo";
+-		max-speed = <3000000>;
++		max-speed = <1500000>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
+ 		shutdown-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
 -- 
-2.52.0
-
+2.43.0
 
 
