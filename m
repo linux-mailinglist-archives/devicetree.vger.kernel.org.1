@@ -1,84 +1,64 @@
-Return-Path: <devicetree+bounces-263521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263522-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id H/o8DPJohmnaMwQAu9opvQ
-	(envelope-from <devicetree+bounces-263521-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 23:19:30 +0100
+	id UPQoMz5phmnwMwQAu9opvQ
+	(envelope-from <devicetree+bounces-263522-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 23:20:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE026103B24
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 23:19:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B18A103B6D
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 23:20:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F0D193012879
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 22:19:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C2A723030137
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 22:20:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 835D42C2374;
-	Fri,  6 Feb 2026 22:19:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D5F82F5A0D;
+	Fri,  6 Feb 2026 22:20:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="itFBL4Wn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zclw/4cB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEEEA35975;
-	Fri,  6 Feb 2026 22:19:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF2FB2EAB6F;
+	Fri,  6 Feb 2026 22:20:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770416367; cv=none; b=gOrcyGYT6HkM4NrIxNfA5y4eM8Zx48Ly4C6nb68COHmK6t2q2DF3WcVodWGkLXUmWe3DRChXSI1rUy6uIjfCWa/X1tmp/Cy4zviI+Rz/TqH5BZ18a0oVRhDQpj+Ej/kljbgWFLgtvd8IFt9H9OUNtqcs8+B+Pp6Z+U3WxYGENhE=
+	t=1770416444; cv=none; b=g0WGcHYMlzT2lMtrh+B7lQq9lUDrifx0LNgtakRZ9gyoD8oEfao2SUSwSUwdYhBJvOhqOqPimIac6gT3+0v6d17xduPJpi5QboG+VgRcQyrPtmhkW1IaOtfcNYUx/H5QhpRSqFtJVy9A5+ZYTChMeaXUul2KrdfSWN56PcwcSEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770416367; c=relaxed/simple;
-	bh=w31vsdRBjm0QKr2D1dVuazXtVtYRnzWC05Egb125YC8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ElUhvLWfPGudq8FpRGELtCYkAeJ3Dv5JtRB+kAVjlTwtiFof1wPFUHHLhxhoryzC27faaQPK4swyERQYwfdRr41+tTZGweLpJVs2Y9zrJ5tOAvzSjTgToTDABmjwXAvOmIO8d2+V/cHOXyOF2ATKaLYlxGhdAyOVBTqnMcfFi7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=itFBL4Wn; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770416367; x=1801952367;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=w31vsdRBjm0QKr2D1dVuazXtVtYRnzWC05Egb125YC8=;
-  b=itFBL4WndCgotC1KC19akZRqQp+YcBxaA5+0lmEaZD5IIbV/3S4KWZDL
-   kL4WppYT++xLfXUyXTk+4WIokZrESsGJFNAaeprcahyHN48IFgrjQx6+1
-   JznPSdOGw9CLxJyJC1atsfxAb18CBwZM+Tw6gsEEpFkpbQaKTYKTvtmKp
-   z1dC43x+wiV4tdtjc/cCuF5nOjCFLZUnWynjCYiTIJzoUR1ikAgrRCuy2
-   LsKGzxSqREJH4m7RNqLjy32jAHVxfvAWq7FKZOtD7FA5JG2jOpZopvADj
-   XYTWdlisIVrrVOPsOKfoZVKvIQ++5Q4qOzDZXmQ8rNO7dLo9FRx160UMN
-   A==;
-X-CSE-ConnectionGUID: xSs41JftQxeIxOnm80K4gA==
-X-CSE-MsgGUID: LCG6i8a0S8m8FXuYpIvGvQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="71519942"
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; 
-   d="scan'208";a="71519942"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2026 14:19:26 -0800
-X-CSE-ConnectionGUID: 5CUiIvRNQmi421Ugcvu8UQ==
-X-CSE-MsgGUID: 6FS7kGE2Qb2ziy9IyQsASg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; 
-   d="scan'208";a="210288070"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 06 Feb 2026 14:19:22 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1voUAX-00000000lCu-1Lrh;
-	Fri, 06 Feb 2026 22:19:17 +0000
-Date: Sat, 7 Feb 2026 06:19:11 +0800
-From: kernel test robot <lkp@intel.com>
-To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>,
-	linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
-	alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, broonie@kernel.org,
-	lee@kernel.org, Frank.Li@nxp.com, lgirdwood@gmail.com
-Cc: oe-kbuild-all@lists.linux.dev, vikash.bansal@nxp.com,
-	priyanka.jain@nxp.com, shashank.rebbapragada@nxp.com,
-	Aman Kumar Pandey <aman.kumarpandey@nxp.com>
-Subject: Re: [PATCH v5 4/5] regulator: p3h2x4x: Add driver for on-die
- regulators in NXP P3H2x4x i3c hub
-Message-ID: <202602070610.sRd2Eapf-lkp@intel.com>
-References: <20260206120121.856471-4-aman.kumarpandey@nxp.com>
+	s=arc-20240116; t=1770416444; c=relaxed/simple;
+	bh=D4Ok5G++q0iR50/YiceCtR+1ZBWN8UcnMbIyW1O+OxA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=MeQsZQS5Q5anH0G2UPB86COGMEFylgzALOo2mI+UKvF8mnVIthYBtb8Yml1+dAWd1HScArtVljw/R4MXTOA7b/CR7vT+k/I3MyDQkX58U3TCD+hEiUpSGc55c1JVDosVzmvX2KZKzigbWWXk0fPdkAzBYwvw1RGnrqEmkTCZkhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zclw/4cB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6935CC116C6;
+	Fri,  6 Feb 2026 22:20:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770416443;
+	bh=D4Ok5G++q0iR50/YiceCtR+1ZBWN8UcnMbIyW1O+OxA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=Zclw/4cB1+mzqd738ejy9QCxt3plgU7D6sHBMMTyyH/k+eX0qioSo4TJSfWTloj5S
+	 nBK5bRNVy2tOzzopKS1MNzZONdB6Aq7+aYvrZJFlUdaAgiONevDOC8cSJi7K2+jPBk
+	 ZCkKnmlMwiXcjeNZOM5BqMW1F7ToZUkV/yKIxG68675RgrNxJcc2mBsVAjr/XRg05M
+	 WS5rXq/YBi04cViI2y7IsRKIGeu+vodT3/GW7oNVTvVEceFkUoBTpCc6UGx4XLgaNR
+	 emqN+WS3y7TWuK0qszvZdoa9RMKCQLHU2WI98wG3UuYiSc3i3eX7EOd/FrAlzoH9sO
+	 Lrn/E8d1HzCKg==
+Date: Fri, 6 Feb 2026 16:20:42 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: zhangsenchuan@eswincomputing.com, bhelgaas@google.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org,
+	kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, christian.bruel@foss.st.com,
+	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
+	thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
+Subject: Re: [PATCH v10 0/2] Add driver support for Eswin EIC7700 SoC PCIe
+ controller
+Message-ID: <20260206222042.GA98065@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,110 +67,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260206120121.856471-4-aman.kumarpandey@nxp.com>
+In-Reply-To: <4vqlkw2cr3caqj7whlld7r2d5nenrxsufuc72zwwy5a6a5wmza@3haxytsqqigj>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-263522-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263521-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[nxp.com,vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[eswincomputing.com,google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,einfochips.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.952];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,intel.com:email,intel.com:dkim,intel.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,rcfg.dev:url]
-X-Rspamd-Queue-Id: BE026103B24
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:email]
+X-Rspamd-Queue-Id: 2B18A103B6D
 X-Rspamd-Action: no action
 
-Hi Aman,
+On Mon, Feb 02, 2026 at 04:29:51PM +0530, Manivannan Sadhasivam wrote:
+> On Thu, Jan 29, 2026 at 05:26:28PM +0800, zhangsenchuan@eswincomputing.com wrote:
+> > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+> > 
+> > Changes in v10:
+> > - Updates: eswin,eic7700-pcie.yaml
+> >   - None
+> > 
+> 
+> This version looks good to me, but it'd be good if Bjorn could give
+> an Ack since there were previous reviews from him. Also, this week
+> is -rc8, so it is too late for 7.0. I hope we can merge this series
+> early, once v7.0-rc1 is released.
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on lee-mfd/for-mfd-next]
-[also build test WARNING on lee-mfd/for-mfd-fixes broonie-regulator/for-next linus/master v6.19-rc8]
-[cannot apply to i3c/i3c/next next-20260205]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Aman-Kumar-Pandey/dt-bindings-i3c-Add-NXP-P3H2x4x-i3c-hub-support/20260206-200552
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-patch link:    https://lore.kernel.org/r/20260206120121.856471-4-aman.kumarpandey%40nxp.com
-patch subject: [PATCH v5 4/5] regulator: p3h2x4x: Add driver for on-die regulators in NXP P3H2x4x i3c hub
-config: nios2-allmodconfig (https://download.01.org/0day-ci/archive/20260207/202602070610.sRd2Eapf-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 11.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260207/202602070610.sRd2Eapf-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602070610.sRd2Eapf-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/regulator/p3h2840_i3c_hub_regulator.c: In function 'p3h2x4x_regulator_probe':
->> drivers/regulator/p3h2840_i3c_hub_regulator.c:208:13: warning: unused variable 'ret' [-Wunused-variable]
-     208 |         int ret, i;
-         |             ^~~
-
-
-vim +/ret +208 drivers/regulator/p3h2840_i3c_hub_regulator.c
-
-   200	
-   201	static int p3h2x4x_regulator_probe(struct platform_device *pdev)
-   202	{
-   203		struct p3h2x4x_dev *p3h2x4x = dev_get_drvdata(pdev->dev.parent);
-   204		struct p3h2x4x_regulator_dev *p3h2x4x_regulator;
-   205		struct regulator_config rcfg = { };
-   206		struct device *dev = &pdev->dev;
-   207		struct regulator_dev *rdev;
- > 208		int ret, i;
-   209	
-   210		p3h2x4x_regulator = devm_kzalloc(dev, sizeof(*p3h2x4x_regulator), GFP_KERNEL);
-   211		if (!p3h2x4x_regulator)
-   212			return -ENOMEM;
-   213	
-   214		platform_set_drvdata(pdev, p3h2x4x_regulator);
-   215	
-   216		p3h2x4x_regulator->regmap = p3h2x4x->regmap;
-   217		device_set_of_node_from_dev(dev, dev->parent);
-   218	
-   219		rcfg.dev = dev;
-   220		rcfg.dev->of_node = dev->of_node;
-   221		rcfg.regmap = p3h2x4x_regulator->regmap;
-   222		rcfg.driver_data = p3h2x4x_regulator;
-   223	
-   224		for (i = 0; i < ARRAY_SIZE(p3h2x4x_regulators); i++) {
-   225			rdev = devm_regulator_register(&pdev->dev, &p3h2x4x_regulators[i], &rcfg);
-   226			if (IS_ERR(rdev)) {
-   227				return dev_err_probe(dev, PTR_ERR(rdev), "Failed to register %s\n",
-   228						     p3h2x4x_regulators[i].name);
-   229			}
-   230			p3h2x4x_regulator->rp3h2x4x_dev[i] = rdev;
-   231		}
-   232		return 0;
-   233	}
-   234	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Will do, ping me after v7.0-rc1 to remind me.
 
