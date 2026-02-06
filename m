@@ -1,117 +1,139 @@
-Return-Path: <devicetree+bounces-263331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263332-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8OxNKpXShWmOGwQAu9opvQ
-	(envelope-from <devicetree+bounces-263331-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 12:37:57 +0100
+	id CAaUBh/VhWmuHAQAu9opvQ
+	(envelope-from <devicetree+bounces-263332-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 12:48:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1790FFD4F6
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 12:37:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89A77FD5A5
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 12:48:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 809DE3018C2E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 11:37:55 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CB2093006B40
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 11:48:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70BEB3624A6;
-	Fri,  6 Feb 2026 11:37:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2906E33D6CA;
+	Fri,  6 Feb 2026 11:48:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="luMJ1rXK"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="glAf5kpN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DEA12EA732;
-	Fri,  6 Feb 2026 11:37:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F8042F6571;
+	Fri,  6 Feb 2026 11:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770377874; cv=none; b=ZdC2tlMnANiZ4iwyF/suepZvJw+biMhwMoCciGG3wZecaT4bZB8oTR6DMC7WmIE5Dnw0/vUNAMjcrhWGmcPzWMt7SyC3HO09B1zqTYoQ9ebuMOiLZyVRREfRiB3X9fKZSpgpbB6N9lWFHQG5g5NKk1qkrMamypRP2kZsNcNBK+M=
+	t=1770378524; cv=none; b=f2xgkfxFagNioxx9qoHg7DnEcEfR7w0swsDVeodeQYTEOlzjEVl0+7OYvVc4jL1d/CRVj7bN+aRoYjakinsoXnG9N2pZI0ek79vNZmbLYlkFIlgUl70MHPbH2g9VIk8jyPi5dnK6v2UeIez9T2ktAbrFlLq3mb+QJV3T7t6/6tY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770377874; c=relaxed/simple;
-	bh=mX5w8lugLrf2LBWCQUJ6TbtGkFRbF7AGqyR5uQcf2Os=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=SuUNKR0FYCF0y8/xlPfT81KrUMv13gUtWbuzu2O7XR49JQoFSN9aZWveqRpvsTcapaJPOAuSf0jrMZfvC9HDuY+eiTCSwlTomW+zPEFXYi2O7NYfoVIw/FztetFwqsDJQWij+7z+GD2ZaazAPq6w3U97UOMEaAfUke61EgU6yUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=luMJ1rXK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2A46C116C6;
-	Fri,  6 Feb 2026 11:37:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770377873;
-	bh=mX5w8lugLrf2LBWCQUJ6TbtGkFRbF7AGqyR5uQcf2Os=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=luMJ1rXKJiatk74DJ2W62M9bSLGVAOEVnu4eAoBrf2D7gGa08CgE3Lm4brffeR8oe
-	 lM7Oe4sGBESzyVpSLOcnZ6DQ5F/VS2rGSDBv50K3nU9bm9i5ey7+8YYAmJm1qtS16G
-	 n273Lr1EFx91+wFyvxdpzXlvl0467tpbYNxuxZdHwlDkP0hhfzHjiJ+NfVF0R7767n
-	 dinYy3SDiN9VgZBNjidQHCHNE+taPICtIOrj6Gax5tjpVvPMWUNemKwlWoSyorKvqy
-	 vwHFoyycronKEjsMhvcwEMQhuXXXKA7FwaAQlIrkH7GWA4AonW+292hjlHk6N9n5bb
-	 E5s3Ece7eUvIw==
-From: Thomas Gleixner <tglx@kernel.org>
-To: Biju <biju.das.au@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
- <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Biju Das
- <biju.das.au@gmail.com>
-Subject: Re: [PATCH v3 0/9] Add RZ/G3L IRQC support
-In-Reply-To: <20260206111658.231934-1-biju.das.jz@bp.renesas.com>
-References: <20260206111658.231934-1-biju.das.jz@bp.renesas.com>
-Date: Fri, 06 Feb 2026 12:37:49 +0100
-Message-ID: <87ecmy14s2.ffs@tglx>
+	s=arc-20240116; t=1770378524; c=relaxed/simple;
+	bh=GPvpyrpBR8Z6rWSfBFtJ5gCU6aloazozc4rXxp0AOzM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nhRZ3kIl1DOE02P1pbPk7lbNSg0yMXAARAJ8sCELyvFJd4egTsiLu0YA/KiBzs+uTek0zqjBuyg9PtU2fIGaqf+swooc4O0KyFvjcJEm07KgI+z93fxQq3Ky1cus677eXIP3uTrN6VHddLXv0kgzcTK6wmyVOiyAptgtI1exJ0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=glAf5kpN; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4f6sml4PpWz9sGT;
+	Fri,  6 Feb 2026 12:48:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1770378519;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=cvI4siTU8KLYE21eDySdcS4XJV/PDx+9McxS7rdud24=;
+	b=glAf5kpNvJsQrX3wkQizqgcl7EqhET73QwE4zmVDjs8ogF9lDjD2WGn6A/sCAnBKNI1QzM
+	ZKsRbzTrF9KctjNMILggT2zQHvcXtxI2/OSxzQ4OqvaB/RI5aog9VDeiCNoDTAi7gfwuh7
+	ygPHXRG/7nLeAB/5Du+bKaDIDxvUmNFvGyUMjlwYQLWjYoo8cd02tkhL/2kEqrnVsSclel
+	zX+UUL6F3GhzjltVxvGElXSACONZRdv2wu5FLlfuu0Lu11+2Z7foqXO3rVvB4UBnOHnklp
+	6Q1+oEBmcw5nNlIIWIh+R+ZVggKvmz9xs+saq7vGXnEZURBLf5qwmmd5E7AWcw==
+Message-ID: <3af09657-78ce-4bc6-b8d5-b346a3b86c5b@mailbox.org>
+Date: Fri, 6 Feb 2026 12:48:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: Re: [PATCH v2 2/2] drm/bridge: waveshare-dsi: Add support for 1..4
+ DSI data lanes
+To: dri-devel@lists.freedesktop.org
+Cc: Joseph Guo <qijian.guo@nxp.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20260115024004.660986-1-marek.vasut+renesas@mailbox.org>
+ <20260115024004.660986-2-marek.vasut+renesas@mailbox.org>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20260115024004.660986-2-marek.vasut+renesas@mailbox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 84c76eacb8dc1122efd
+X-MBO-RS-META: ybz1e11ur8a5cccb9omstkb1abh8b1hk
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263331-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263332-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[nxp.com,intel.com,kernel.org,gmail.com,kwiboo.se,ideasonboard.com,linux.intel.com,linaro.org,ffwll.ch,suse.de,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,glider.be];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tglx@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1790FFD4F6
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:email,mailbox.org:dkim,mailbox.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:email]
+X-Rspamd-Queue-Id: 89A77FD5A5
 X-Rspamd-Action: no action
 
-On Fri, Feb 06 2026 at 11:16, Biju wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
->
-> The IRQC block on RZ/G3L SoC is almost identical to one found on the
-> RZ/G3S SoC with the difference like it support more External IRQs, GPT
-> Error Interrupts and also has additional registers for GPT/MTU IRQ
-> selection, shared IRQ selection between external IRQ and TINT.
->
-> It has 16 external interrupts of which 8 interrupts are shared with
-> TINT[24:31] and are mutually exclusive. The external IRQ/TINT IRQ
-> selection is based on a register in the ICU block.
+On 1/15/26 3:39 AM, Marek Vasut wrote:
+> Parse the data lane count out of DT. Limit the supported data lanes
+> to 1..4 which is the maximum available DSI pairs on the connector of
+> any known panels which may use this bridge. Internally, this bridge
+> is an ChipOne ICN6211 which loads its register configuration from a
+> dedicated storage and its I2C does not seem to be accessible. The
+> ICN6211 also supports up to 4 DSI lanes, so this is a hard limit.
+> 
+> To avoid any breakage on old DTs where the parsing of data lanes from
+> DT may fail, fall back to the original hard-coded value of 2 lanes and
+> warn user.
+> 
+> The lane configuration is preconfigured in the bridge for each of the
+> WaveShare panels. The 13.3" DSI panel works with 4-lane configuration,
+> others seem to use 2-lane configuration. This is a hardware property,
+> so the actual count should come from DT.
+> 
+> Reviewed-by: Joseph Guo <qijian.guo@nxp.com>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-Can you please give people the time to actually look at your patches
-before you repost the full series every other day?
+Is it OK to apply these two patches now ?
 
