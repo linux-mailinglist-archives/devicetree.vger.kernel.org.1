@@ -1,260 +1,263 @@
-Return-Path: <devicetree+bounces-263345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263346-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kKjfFFzkhWnCHwQAu9opvQ
-	(envelope-from <devicetree+bounces-263345-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 13:53:48 +0100
+	id OLBCB5LkhWnCHwQAu9opvQ
+	(envelope-from <devicetree+bounces-263346-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 13:54:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD964FDBE4
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 13:53:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D77EFFDBFA
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 13:54:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A022D306F468
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 12:51:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CAF413033E59
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 12:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 761BC3AEF4F;
-	Fri,  6 Feb 2026 12:50:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73B363A4F25;
+	Fri,  6 Feb 2026 12:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bswXsaaC";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="G+dwJWqo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G0fIfl9s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2685D3B52E2
-	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 12:50:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50B4E30B53C;
+	Fri,  6 Feb 2026 12:52:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770382252; cv=none; b=h3f7Z1HerCffQl3rzhpaA1lXKIAWwfsCsRwBr0n8n47ETHxe2U6wegrAiXGsRqyZ0vtGMBUpV9QfYyNW3rRbbLWQUV8Xdimh+Aw95/IVgdBjy1G1lej2ZvfpjTk9zCG7Kiq66MXkj0tAsWt7qYJwSs30/Yj8MPoRedh74SzVKV4=
+	t=1770382329; cv=none; b=Ti4ebJCFGFBb7Z3pGAOePJew4PAdTraScA9xdCK+/tYlskRnYSGtgxgYUc1LqkjULdcW2UtxZFKIrFNW+RRk0R1WExhMHjijewH+DhPlPoBqDvKkPcI1Vr90c8ui4QNif2KFJmfBTVNmPDeuhrP6yjoD5tfLhgPTDV2HkDaVRWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770382252; c=relaxed/simple;
-	bh=ZWUSfutXGKCikBMX8Q0Ep5H0GBuz5LUQSJTdCNe1x38=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NBm7trJW+MC6t2BjSDX6b4cChAxSpZ1OvkJg9+KW/jDBNoYMSA21wZbtOGFSZo+48LI04eBWnzs9Kv+LtzXL+ReF9hDX+5S76vWbrTiTuU3vBjhRNG+rd5bjf2xPORAqVy2EkUFgSf6d1CZHyS9i9wEACMiqCr9KIyTtL6mbMSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bswXsaaC; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=G+dwJWqo; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 616B4XlC3764804
-	for <devicetree@vger.kernel.org>; Fri, 6 Feb 2026 12:50:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=gfeubtNFCdvI+87VUZgOtTYw
-	db+qMLhkzHGY85l1U64=; b=bswXsaaCXm30mtGk5aL5RjF9A9prwuCedxiKZQag
-	JSYMoTgIrN83VkA9+FGu92lmrnHlRY3MffDi0jtqKoxb3DvjiNOVJWwZm3MS+DEQ
-	WuDt6xG5SZJuNTEIzbye86JUzH8GEg9lwRN7qMnHAFyjHBc1wqmKuqsOnQjv2D6W
-	zGY/ihAatRJv5d9k9MISHFEXPmII+hbQD6WPx2vdxV0aooc/5azsGq7RU3DktO+S
-	oi+4zs2j4CSYezIWbsWhOT7653cmXJByhbEJGi9L6ZQ40re7yoTNJ+q5i52lW+YH
-	dq4xB3EFDmkcsUfJ6WUl/6N57IpqqtrHJWp8RRr1OpD9AA==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c5f3wg9jk-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 12:50:50 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c881d0c617so146985485a.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 04:50:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770382250; x=1770987050; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=gfeubtNFCdvI+87VUZgOtTYwdb+qMLhkzHGY85l1U64=;
-        b=G+dwJWqoV5o5/FfOXi7/GboZHqz1I21ZLvziJTfb8PInkpDRriAttMHuM/rEYgOP1x
-         mYJdWQmgzkDtd1+TzdfAzMYSU99qLYPpwd2myDNj5QB7GxQklWq3mY3FN2UXwaqh/eus
-         0VMFHYpRL0tgYhNhqnm+EalqprKm6WCAq6kCG8PKz8N61JeE04eSRy/dpyn5mnIaWa+w
-         cX+TI5GmHda+eBWR5txyVvPn2J1/7KK9sPj618XxaESCjrA0RsAfJkiKzeVSvnqfJ2/V
-         2ji8zJMdr+h9Q2ty35a+jf+4GcwchzgKSj4ggPAYdSm8Rmk+xJqUDVe+ayOJ6CsoOLxt
-         KLpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770382250; x=1770987050;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gfeubtNFCdvI+87VUZgOtTYwdb+qMLhkzHGY85l1U64=;
-        b=tv711sX/kjtCouu2d1JtF0ESrWLeuGpX/7yRcr6DVczPY88qYAk1qgTrFMTXStPEL1
-         XPruEdElqlbw/tbDZWCK/s0Zc/eXZjyPbZkYgoOixgchNDKOsqAJ438vspzACxbzmL2N
-         DPiyQH8N3FZD/WsaHCw9AkKL5fzUQ8+ocobDx/9GM1QjvzmHY65WQ2KUy041SgAGdEvr
-         IT3u3BP/TyGYXN6Pd3Vq6i2cGtbdt/mQIj0EtWxRZgBT8zIrkz3WJubXm/Bb5RbVuRpI
-         77CD00vFPePHwrRxQNWiDMXQuFbHQ7OdzhHXpV21bNDFcDPIOcKgX12Bia6qXArgpnbk
-         RoUg==
-X-Forwarded-Encrypted: i=1; AJvYcCUZ5IsYNga+V0fa+1I2rBKnSlPML6vdQpN3yz2ch7BANPD1SeVxzc9c7pXco/4Ur5xG/uZ8V/XGbbRj@vger.kernel.org
-X-Gm-Message-State: AOJu0YynRUnzNttYSejx3usmJCf6Tv7iJ5tGVyHS56VMzM2pzCQefAtj
-	GgkvattZCwkRzbsJS6WV4GR49IPhBQmjE6QKjgWSEf/cDXXzn0V+B3sRHebqILrNl+FfTX6xeCH
-	GSlmKJRxDZ3X34XupJdE3eqM6FWBL23ZI6s9kwIMOqq/0rwZY3mA7pLUasRtDb2Gq
-X-Gm-Gg: AZuq6aKcNV2A/W7MyuNe27GGbLeiqvCaAnbJ6PEVhOioyE3XmytctD8n89Q1fQ8RFSv
-	Y3yphC0uMGMOxZpyEzOpu6cV/OV4Xms5oF/hSdDj0nmlyqxebUSXv3ai3nt/D0RJoqag82arL+y
-	zTTo+YbwE8/0C2XWqym4+ntBTXZHe43gW10r0a1wUIhtFdQf3Q4Ogby1+hfCSMWHH8rgfIPQAOG
-	6tEwsR8dRYeEXIzI+f6NK61JC5Mbx+u+oCVh8YZSiArIJbdYO66dEc3ASpOUtdkeRMD/e6B+24U
-	J/yKVMMqPbTmc8LC5yuHWE8fYkkZT0QgMbLuhUOVKDmUd7ldWaDXtA45eeCKSaA7b9fFyqZnpZk
-	cbLhCXFRul3qUIWz0cYaVXAuSLgykIIU9Zihh
-X-Received: by 2002:a05:620a:40d2:b0:8c9:eb7d:cd94 with SMTP id af79cd13be357-8caf1acb608mr309509785a.88.1770382249962;
-        Fri, 06 Feb 2026 04:50:49 -0800 (PST)
-X-Received: by 2002:a05:620a:40d2:b0:8c9:eb7d:cd94 with SMTP id af79cd13be357-8caf1acb608mr309505485a.88.1770382249289;
-        Fri, 06 Feb 2026 04:50:49 -0800 (PST)
-Received: from oss.qualcomm.com ([86.121.162.109])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48323c0296dsm38981985e9.1.2026.02.06.04.50.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Feb 2026 04:50:48 -0800 (PST)
-Date: Fri, 6 Feb 2026 14:50:44 +0200
-From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/6] clk: qcom: Add TCSR clock driver for Eliza
-Message-ID: <w2zz36w7jpxafunxhan4jvdh47kx2mhxunazig3ubrvwe4yfhk@6sbi7rqo7lul>
-References: <20260127-eliza-clocks-v2-0-ccee9438b5c8@oss.qualcomm.com>
- <20260127-eliza-clocks-v2-6-ccee9438b5c8@oss.qualcomm.com>
- <fb7bd7de-61ee-46f7-826a-2c9c32aa9c2d@oss.qualcomm.com>
- <44k56h4yjjknc5xnwlrmlpgj2hpf6rvdsv7fhrhb4qnzsz7goi@o6qz7im62kg3>
- <e5e42350-813a-4f6b-9ace-368f2a31cf7a@oss.qualcomm.com>
- <2j3oraektgiphuj7akss3ytxgqt6e5kqt5gorkncjoiibol32e@aueznegzge2s>
- <krn4ncotwny65eu5p36wr5dyrw2pc2ophs6g6yqo52ogi34gah@6uxeccbed3vf>
- <2abe345c-ba9c-492c-8684-0d7f4e6b8c0e@oss.qualcomm.com>
+	s=arc-20240116; t=1770382329; c=relaxed/simple;
+	bh=OGptEICIGLa47vlC/W31fejC1n9U11EbiT0bJZ0xgac=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FYW2Mxl/xOqcYMT2L9d9M2jmV5QPI4LrckbYFhU+yytmzaVBaXDpQfadkzrbPNb2bj6uOIzzorSfFIEYkPb18WkAmsHoBhxK7WQjUEq/SV9RKMPzK7zz5kwxY7ZaG2juQFeJd1nFF5ZDQv3KQTZFEZh5JK+MaAAzm+eLPGQVgAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G0fIfl9s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4ADBC116C6;
+	Fri,  6 Feb 2026 12:52:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770382328;
+	bh=OGptEICIGLa47vlC/W31fejC1n9U11EbiT0bJZ0xgac=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=G0fIfl9s0l3b+4F2xHCMM1wbAs+iOu9Fg5GEYNdAW6RMU1rn5fh2TsY4CHeI1P7+4
+	 9QmBnpPv36gXMUW0UzsqdDGwQT7balvk0siYS3AyLE9wRb7wIpccZoZC15Z3bpghup
+	 NTfh/vDk/iveu9Sd2A1iOKmwQ7cPRyTfZnmmX9j3N+Q3O00uKdxtTIOof3h9QC1ajL
+	 G+EwdZl9QdKhejbtbbzOYWt9UAzOj5AnOfKSmt6mmu96K80F8Vjr3bZ1gmEtXEWTlq
+	 QaVKjgEWIpiEOYSRwWOUHjSBqU6f8LzhwP6nVbQxUJ9Lam6Z3FICVJctk2FO0zXN/O
+	 pCE4Kymm7fYHg==
+Message-ID: <ffb00660-9fb4-4c89-9032-f003d002e989@kernel.org>
+Date: Fri, 6 Feb 2026 13:52:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2abe345c-ba9c-492c-8684-0d7f4e6b8c0e@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA2MDA4OSBTYWx0ZWRfX9jnzjxCL7LT3
- G+mp+6STr83H8QTXNgyfHW0ias7NeOUJ3R5nuHgniQdL2IapzYuv0D3nRcaFVwb4uQ6Qy2AqiKS
- m7vj8b6JThDRAXg1G+w2I/6Pw/eTex4IPTyFO/fAZ/He1xMrB76/a1fLwIlN7ymGs7UmPF0fO5F
- nTwF+Nc3Bh/BYfeSHzrLULZ2FyzRMOIVKVmNmDDmT54Xojp2sNTVMI2edj4I9ci660dPlnXZoPj
- P1UT0FkYPLGWnLAbVW07Wk2PTF49Cvuc/8GZerCnUedkTTdlgJadzlHGlvl7ly5Yg+yzKegk/bl
- Np6xoxxcK/iLPWRwmUPw4xBFE+Tc0BtLSfBsE9/H7+vq3YmcYBFWaJRGB9Ki2YBOZ02oW5lBo2B
- YgbR7HDWgxnlDzizMiBMV1K8ebVPf9d4bye73it9l4KTlnGYjUsi5W1nPtTUWNPtR3ide2aYcvi
- GCOn55RXeL9odntt2wA==
-X-Proofpoint-ORIG-GUID: eK4FS9W2RcsBzddjzbHoBrR9Eu66d2E5
-X-Authority-Analysis: v=2.4 cv=NajrFmD4 c=1 sm=1 tr=0 ts=6985e3aa cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
- a=kj9zAlcOel0A:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=EUspDBNiAAAA:8 a=0XEvXGck0KlApgr3KlUA:9 a=CjuIK1q_8ugA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-GUID: eK4FS9W2RcsBzddjzbHoBrR9Eu66d2E5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-06_03,2026-02-05_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 suspectscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
- malwarescore=0 lowpriorityscore=0 clxscore=1015 spamscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602060089
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/5] mfd: p3h2x4x: Add driver for NXP P3H2x4x i3c hub
+ and on-die regulator
+To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>,
+ linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
+ alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, broonie@kernel.org,
+ lee@kernel.org, Frank.Li@nxp.com, lgirdwood@gmail.com
+Cc: vikash.bansal@nxp.com, priyanka.jain@nxp.com,
+ shashank.rebbapragada@nxp.com
+References: <20260206120121.856471-1-aman.kumarpandey@nxp.com>
+ <20260206120121.856471-3-aman.kumarpandey@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260206120121.856471-3-aman.kumarpandey@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263345-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-263346-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[nxp.com,vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.975];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: BD964FDBE4
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:url]
+X-Rspamd-Queue-Id: D77EFFDBFA
 X-Rspamd-Action: no action
 
-On 26-02-04 13:36:57, Konrad Dybcio wrote:
-> On 2/2/26 9:53 PM, Abel Vesa wrote:
-> > On 26-01-30 22:40:32, Abel Vesa wrote:
-> >> On 26-01-30 10:43:44, Konrad Dybcio wrote:
-> >>> On 1/28/26 3:10 PM, Abel Vesa wrote:
-> >>>> On 26-01-28 11:34:49, Konrad Dybcio wrote:
-> >>>>> On 1/27/26 4:03 PM, Abel Vesa wrote:
-> >>>>>> Add the TCSR clock controller that provides the refclks on Eliza
-> >>>>>> platform for PCIe, USB and UFS subsystems.
-> >>>>>>
-> >>>>>> Co-developed-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> >>>>>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> >>>>>> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-> >>>>>> ---
-> >>>>>
-> >>>>> [...]
-> >>>>>
-> >>>>>> +++ b/drivers/clk/qcom/tcsrcc-eliza.c
-> >>>>>> @@ -0,0 +1,144 @@
-> >>>>>> +// SPDX-License-Identifier: GPL-2.0-only
-> >>>>>> +/*
-> >>>>>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> >>>>>> + */
-> >>>>>> +
-> >>>>>> +#include <linux/clk-provider.h>
-> >>>>>> +#include <linux/mod_devicetable.h>
-> >>>>>> +#include <linux/module.h>
-> >>>>>> +#include <linux/of.h>
-> >>>>>> +#include <linux/platform_device.h>
-> >>>>>> +#include <linux/regmap.h>
-> >>>>>> +
-> >>>>>> +#include <dt-bindings/clock/qcom,eliza-tcsr.h>
-> >>>>>> +
-> >>>>>> +#include "clk-branch.h"
-> >>>>>> +#include "clk-regmap.h"
-> >>>>>> +#include "common.h"
-> >>>>>> +
-> >>>>>> +enum {
-> >>>>>> +	DT_BI_TCXO_PAD,
-> >>>>>> +};
-> >>>>>> +
-> >>>>>> +static struct clk_branch tcsr_pcie_0_clkref_en = {
-> >>>>>> +	.halt_reg = 0x0,
-> >>>>>
-> >>>>> These regs certainly aren't at +0x0 to what we normally expect to
-> >>>>> be the start of the TCSR node
-> >>>>
-> >>>> They are if we add the TCSR node with reg range starting at 0x1fbf000.
-> >>>
-> >>> "if we take the wrong base, the wrong offset is right" ;)
-> >>>
-> >>> The docs for Eliza don't have the nice separation like on e.g. Hamoa,
-> >>> but 0x01fc0000 is what we generally agreed upon to be "tcsr".
-> >>>
-> >>> The registers that first appear in that region are the same as on Hamoa,
-> >>> and so is the address, so let's continue that tradition
-> > 
-> > Actually, the 0x1fbf000 is the right base address.
+On 06/02/2026 13:01, Aman Kumar Pandey wrote:
+> Add core MFD support for the NXP P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841)
+> family of multiport I3C hub devices. These devices connect to a host via
+> I3C/I2C/SMBus and expose multiple downstream target ports.
 > 
-> Actually, I think it's 0x1fb_2000 ;)
+> This patch introduces the MFD driver that registers sub-devices for the
+> I3C hub and on-die regulators.
 
-As discussed off-list, using 0x1fb_2000 would include regs that Kaanapali for example
-doesn't. So will use the 0x1fc_0000.
+Drop sentence. You already said it in the first place, didn't you?
 
-> 
-> > TCSR mutex starts at 0x1f40000, and everything between 0x1fb2000 and 0xfbf000
-> > doesn't really look like they belong in a clock controller.
-> 
-> Correct, and that's because TCSR is not a clock controller.
+Please do not use "This commit/patch/change", but imperative mood. See
+longer explanation here:
+https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
 
-Correct, but as agreed off-list, for consistency reasons w.r.t. other SoCs,
-it should not include that gap.
+...
 
-Thanks,
-Abel
+
+> +
+> +	i2c_set_clientdata(client, p3h2x4x);
+> +
+> +	p3h2x4x->regmap = devm_regmap_init_i2c(client, &p3h2x4x_regmap_config);
+> +	if (IS_ERR(p3h2x4x->regmap)) {
+
+Drop {} now. When you change piece of the code, fix rest as well.
+
+See Linux coding style.
+
+> +		return dev_err_probe(&client->dev, PTR_ERR(p3h2x4x->regmap),
+> +				     "Failed to register I3C HUB regmap\n");
+> +	}
+> +
+> +	p3h2x4x->is_p3h2x4x_in_i3c = false;
+> +	p3h2x4x->i2c_client = client;
+> +
+> +	ret = devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_NONE,
+> +				   p3h2x4x_devs, ARRAY_SIZE(p3h2x4x_devs),
+> +				   NULL, 0, NULL);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret, "Failed to add sub devices\n");
+> +
+> +	return 0;
+> +}
+> +
+> +/* p3h2x4x ids (i3c) */
+> +static const struct i3c_device_id p3h2x4x_i3c_ids[] = {
+> +	I3C_CLASS(I3C_DCR_HUB, NULL),
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(i3c, p3h2x4x_i3c_ids);
+> +
+> +/* p3h2x4x ids (i2c) */
+> +static const struct i2c_device_id p3h2x4x_i2c_id_table[] = {
+> +	{ "nxp-i3c-hub" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, p3h2x4x_i2c_id_table);
+> +
+> +static const struct of_device_id  p3h2x4x_i2c_of_match[] = {
+> +	{ .compatible = "nxp,p3h2840", },
+> +	{ /* sentinel */ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, p3h2x4x_i2c_of_match);
+> +static struct i3c_driver p3h2x4x_i3c = {
+> +	.driver = {
+> +		.name = "p3h2x4x_i3c_drv",
+> +	},
+> +	.probe = p3h2x4x_device_probe_i3c,
+> +	.id_table = p3h2x4x_i3c_ids,
+> +};
+> +
+> +static struct i2c_driver p3h2x4x_i2c = {
+> +	.driver = {
+> +		.name = "p3h2x4x_i2c_drv",
+> +		.of_match_table = p3h2x4x_i2c_of_match,
+> +	},
+> +	.probe =  p3h2x4x_device_probe_i2c,
+> +	.id_table = p3h2x4x_i2c_id_table,
+> +};
+> +
+> +module_i3c_i2c_driver(p3h2x4x_i3c, &p3h2x4x_i2c);
+> +
+> +MODULE_AUTHOR("Aman Kumar Pandey <aman.kumarpandey@nxp.com>");
+> +MODULE_AUTHOR("vikash Bansal <vikash.bansal@nxp.com>");
+> +MODULE_DESCRIPTION("P3H2x4x I3C HUB multi function driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/mfd/p3h2840.h b/include/linux/mfd/p3h2840.h
+> new file mode 100644
+> index 000000000000..b7a9c7f3aa4d
+> --- /dev/null
+> +++ b/include/linux/mfd/p3h2840.h
+> @@ -0,0 +1,28 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright 2025 NXP
+> + * This header file contain private Reg address and its bit mapping etc.
+> + */
+> +
+> +#ifndef P3H2840_H
+> +#define P3H2840_H
+
+That's pretty poor (too simple) guard for a global header.
+
+> +
+> +#include <linux/types.h>
+> +
+> +/* Device Configuration Registers */
+> +#define P3H2x4x_DEV_REG_PROTECTION_CODE				0x10
+> +#define P3H2x4x_REGISTERS_LOCK_CODE				0x00
+> +#define P3H2x4x_REGISTERS_UNLOCK_CODE				0x69
+> +#define P3H2x4x_CP1_REGISTERS_UNLOCK_CODE			0x6a
+> +
+
+
+Best regards,
+Krzysztof
 
