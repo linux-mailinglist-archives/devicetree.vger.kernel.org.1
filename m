@@ -1,343 +1,154 @@
-Return-Path: <devicetree+bounces-263244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263246-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GOgxFBWXhWk7DwQAu9opvQ
-	(envelope-from <devicetree+bounces-263244-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:24:05 +0100
+	id WOllIQqZhWmUDwQAu9opvQ
+	(envelope-from <devicetree+bounces-263246-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:32:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB25DFAEE8
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:24:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31BE2FB03C
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 08:32:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 37D093008253
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 07:24:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 33D2630347B5
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 07:32:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D370230B510;
-	Fri,  6 Feb 2026 07:24:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D60213101C6;
+	Fri,  6 Feb 2026 07:32:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jVNXwGue"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="R7f/go1r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5FC22D0635
-	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 07:24:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B9F030F921;
+	Fri,  6 Feb 2026 07:32:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770362643; cv=none; b=Rxd1zatG+uQN2pusEMQfzQrm2TQOPwLXAzXKjUsAvu2pcV0/R2afzxX7xG3ByG4rB8ukv3aT4t912gn87nTLI+4d9K2vf7HKe5JB2LYVZ8mUwyYBVHHF7XrCyLUlE/R8VabSGpRinv76lIrkdI90CeaUZaLIu16APb05jaZLALU=
+	t=1770363140; cv=none; b=uu7W1k8lOf4ZfQYTFqTX6cOW7IJJBbGhxRnwF1tctpfGAgZjEEaND4yr+4XAX4pYhTvvNDYNg+2d64j9szk3Xd5SX+oSAltpYpybTdbVX4M3uOF0PtyNcBzYAKNJzCZeyQgUR05CMrkbyjCB6s1TybcTkowimOdoSEKZGzeJ/2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770362643; c=relaxed/simple;
-	bh=A9sw8gQ4DbOw1Fcm2jX/M1L64CeftV5KmgJ5KjNv2OU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oTLPlAXC3XOW6OqJjMC6NSV8JD+3hI5GdrpPon3uOnOSo1Cq/rgENze+kMMik+PpSEpZISYttrTtDCS1v2+VajI9KjS1IEXYwIk9UsdE8pSMH1c6sn6etw/hiC2Fd7qDE5N8sG1w+opaTlIwbyGYfW/HY2CW8O5T64tEAW6GO4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jVNXwGue; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2a7bced39cfso19426545ad.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 23:24:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770362643; x=1770967443; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GlI/MBV6xozWTc1OM4u2SGSvVebdjrM1lCT9WkwRC+M=;
-        b=jVNXwGueN6IckB5L6bTtJYe+3ELukwMvv0SyuJCFXjPCcE2U9z9164SHOUG6fHjtFp
-         wkk13bXdu9u/P9l77nn7rm028Jt44dWHk5zc4cwSjSl/K56VKnVjNSqF5VO9x7xaGrIq
-         f1XAdoZ+KXcT+7IwV2xuEr7VbUDriuvwRXGrLgOQxRkj+zYzBeRXpX00HR6boipoMEqw
-         3nu9g8twpXxJvs8utVjqvum3wiyTucF0vDH4I1k/Q6NeKZkKxruJ9ZchIgP0xYH9jAGC
-         SPpzFaVdDL2z89WFfRsvC8AGrb0/En00AELtRf2KUn1ugt+PC2apU2a6aRTOxc+HQQzA
-         JCmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770362643; x=1770967443;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GlI/MBV6xozWTc1OM4u2SGSvVebdjrM1lCT9WkwRC+M=;
-        b=koTdCzAIT9wmWOXNZne/g0XqEdZ5Rl1nzgMH56ZpTNutcJTIXPXa8U5ID8l2BF2xFq
-         f8bh72kvseWFZ9CNHPY8C01KEwPMrmJVe9vVon1h7yzYu85O2ahJs6nicX/T/64aVwDM
-         3Y3Xysq2f5kdOetIyVxDklAvjliskfN7cQtOEy6jmHS0JLWvrDnZ+P+xYxOELM+bxJrc
-         RzBEuIWeKPvVC2HnrKfiQTcJ5i7lAW1f0FWABGVY4yjbxERVnhKFAXC5NPlI7USPdcPE
-         dwTXs/GNvaRvab2LCsUZ7ISb4dGQKgTvBQ7IxkcbGzAu15ykahQboti0eNn00IxZdb8C
-         TXXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX4hfQmZ8z34UJkNAJDEhCimqHU2NYr/WxU5BP7ltxNelYqThwfLikJZmgmb1obTwO0qc3l0A0Y81OQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuRjX5taAn1pkGj8WPoBgknN3uy+lPY5uZFalGtR9GVM9fTD+t
-	PXqcP1KNSAWL+L4+ORPa9t4n5D/t6dkWQJ8/JyajsQP17L3UoLf0yj4vBJVvO1F2
-X-Gm-Gg: AZuq6aJz2/eeTxTLMhmnZIqYZ4vHAoqQ1Ytdyt4kHawg27Tymhjl1kyf1LIY7fEjX3H
-	tBPlNcPZQruB5PNPMQYcT8S780VTEOZoaFind2vcl0g1P0cSKGMypPg/YPc5/l2jEN8eOHVH8BS
-	raeu3zzwqbfsbGBCrnYsKmgGLR7irXemNaR/WCgomOo/CeFbPEghMh5vfBIH4tVEUEbJancIPfX
-	UtbPTJPqMGuiGTyjwoElXvRGt7IEyR65jI5+nQL5Pr+GWJpb3dOHfaUiKRhra/jlK0W+qB7z1AI
-	2Hcs4cH/eo1FB+DkVvCSkI/lYoSIV97oSDh/LHbTZrFT1AL2wU6yCq6CL+YNwrgUokI8b+BkamB
-	L4QGavvlAyLt7i0pt8PmrVWqrJNySCYBuCzxKVWyTAkaPPjsnC+NJHKcgi4lpvY14DTFvQMtC/M
-	9dewzV3tJT4tznH5v+RLzI5C2vKSAPC3z6T1UVhj022alhlo+JUIyZAzFAodLXWJBQ
-X-Received: by 2002:a17:903:ad0:b0:2a8:fbfa:e825 with SMTP id d9443c01a7336-2a95194693emr18851275ad.37.1770362643089;
-        Thu, 05 Feb 2026 23:24:03 -0800 (PST)
-Received: from [192.168.0.100] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a951c50206sm14481175ad.19.2026.02.05.23.24.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Feb 2026 23:24:02 -0800 (PST)
-Message-ID: <0a1a8f92-860f-4f4e-aad0-f743f099efc1@gmail.com>
-Date: Fri, 6 Feb 2026 15:23:59 +0800
+	s=arc-20240116; t=1770363140; c=relaxed/simple;
+	bh=IY6m5C4I7UkfBFeMhxudZcsP+Qzs++eKo2eWARdfXWw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hOfvgG29rGyT+UoxbxlVbb9ku2/mXvahZNJv8W7lNoQIRJ0XEIrlQ7IHLI10Pyb7QVWWOrYwx4XANkBL8kGysuoBhPB7/R/8EsckC100WRxYr85erEM/vti0otl4yvILzI6g0vK3E8Slhtpu+veoAhq8CeTtvX0BQHsx/BJZhxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=R7f/go1r; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770363141; x=1801899141;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=IY6m5C4I7UkfBFeMhxudZcsP+Qzs++eKo2eWARdfXWw=;
+  b=R7f/go1rA/9JYGoXKpBArXY1kOuJplMIGJbuNguJPtYbB3H605jZ/bfF
+   1Nmpcrq4rCX9855YryYkwUKSCY/bsPYi2wCA+mwxgJzhC/clQVbiGLvGH
+   PykTi5g6bdVw3rF1Qqg19WCq/p+gFIXdOd0jxBaIBR1vcabOt/B18/vio
+   YdiNnv0PXpLoQPiiW+mjKsfm7nrrX6I/hnp3SmQF6COeUtDV/v1+OFyVa
+   zCWSpUS0PgP7eCKHjZ+rjau7aYErYQeuLZyG7DcqZrSEThsJRA0U/KbpV
+   uneMCZ4mkGDTO/YPWfPQVPMng0dr4WDgaCJqWtvL3mh3q5xnAcWEIe6ph
+   A==;
+X-CSE-ConnectionGUID: v/vrMHvER76udwk4ehqm1g==
+X-CSE-MsgGUID: rtOEoHElT8SB/7Y3ADy4oQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="70585448"
+X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; 
+   d="scan'208";a="70585448"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2026 23:32:20 -0800
+X-CSE-ConnectionGUID: STN1VNxDRxmE9YLDNRfnWA==
+X-CSE-MsgGUID: u3aK/zvDQ7qVDRsKAMGI0w==
+X-ExtLoop1: 1
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.202])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2026 23:32:16 -0800
+Date: Fri, 6 Feb 2026 09:32:14 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v3 4/9] iio: amplifiers: ad8366: drop reset_gpio from
+ private struct
+Message-ID: <aYWY_jJ7JopVZoeq@smile.fi.intel.com>
+References: <20260203-iio-ad8366-update-v3-0-5d5636b5181a@analog.com>
+ <20260203-iio-ad8366-update-v3-4-5d5636b5181a@analog.com>
+ <aYKnIjBS5OT0MxuY@smile.fi.intel.com>
+ <rp62czb4n3ag64cgluwsodubnqxecod3cuu2agyedqed2vwi3j@qs3e7xhf5ksk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drm/nuvoton: add MA35D1 display controller driver
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, ychuang3@nuvoton.com,
- schung@nuvoton.com, yclu4@nuvoton.com, linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260129040532.382693-1-a0987203069@gmail.com>
- <20260129040532.382693-4-a0987203069@gmail.com>
- <20260205-classic-innocent-angelfish-5c3cd2@quoll>
-Content-Language: en-US
-From: Joey Lu <a0987203069@gmail.com>
-In-Reply-To: <20260205-classic-innocent-angelfish-5c3cd2@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <rp62czb4n3ag64cgluwsodubnqxecod3cuu2agyedqed2vwi3j@qs3e7xhf5ksk>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263244-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263246-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,nuvoton.com,lists.infradead.org,lists.freedesktop.org,vger.kernel.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DB25DFAEE8
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: 31BE2FB03C
 X-Rspamd-Action: no action
 
+On Thu, Feb 05, 2026 at 06:12:23PM +0000, Rodrigo Alencar wrote:
+> On 26/02/04 03:55AM, Andy Shevchenko wrote:
+> > On Tue, Feb 03, 2026 at 11:24:10AM +0000, Rodrigo Alencar via B4 Relay wrote:
+> > 
+> > > Remove reset_gpio from the device state struct and turn it
+> > > into a local variable, as it is not being used anywhere else.
+> > 
+> > Why not switching to reset-gpio driver to begin with?
+> 
+> No particular reason, consuming it as gpio was already there!
+> Is this a suggestion/recommendation or a mandatory thing for
+> now on?
 
-On 2/5/2026 9:22 PM, Krzysztof Kozlowski wrote:
-> On Thu, Jan 29, 2026 at 12:05:32PM +0800, Joey Lu wrote:
->> Add DRM driver support for the Display Control Unit (DCU)
->> found in Nuvoton MA35D1 SoCs.
->>
->> Signed-off-by: Joey Lu <a0987203069@gmail.com>
->> ---
->>   drivers/gpu/drm/Kconfig                  |   1 +
->>   drivers/gpu/drm/Makefile                 |   1 +
->>   drivers/gpu/drm/nuvoton/Kconfig          |  21 +
->>   drivers/gpu/drm/nuvoton/Makefile         |   7 +
->>   drivers/gpu/drm/nuvoton/ma35_crtc.c      | 372 ++++++++++++++
->>   drivers/gpu/drm/nuvoton/ma35_crtc.h      |  67 +++
->>   drivers/gpu/drm/nuvoton/ma35_drm.c       | 371 ++++++++++++++
->>   drivers/gpu/drm/nuvoton/ma35_drm.h       |  48 ++
->>   drivers/gpu/drm/nuvoton/ma35_interface.c | 193 ++++++++
->>   drivers/gpu/drm/nuvoton/ma35_interface.h |  30 ++
->>   drivers/gpu/drm/nuvoton/ma35_plane.c     | 603 +++++++++++++++++++++++
->>   drivers/gpu/drm/nuvoton/ma35_plane.h     | 115 +++++
->>   drivers/gpu/drm/nuvoton/ma35_regs.h      |  88 ++++
-> No maintainers? Why would we want to take unmaintained code?
-I'll add an entry in MAINTAINERS file.
->
->> +static void ma35_mode_fini(struct ma35_drm *priv)
->> +{
->> +	struct drm_device *drm_dev = &priv->drm_dev;
->> +
->> +	drm_kms_helper_poll_fini(drm_dev);
->> +}
->> +
->> +static int ma35_clocks_prepare(struct ma35_drm *priv)
->> +{
->> +	struct drm_device *drm_dev = &priv->drm_dev;
->> +	struct device *dev = drm_dev->dev;
->> +	int ret;
->> +
->> +	priv->dcuclk = devm_clk_get(dev, "dcu_gate");
->> +	if (IS_ERR(priv->dcuclk)) {
->> +		dev_err(dev, "Failed to get display core clock\n");
-> Don't spam logs on defers. Syntax is in entire probe path: return
-> dev_err_probe
->
->> +		return PTR_ERR(priv->dcuclk);
->> +	}
->> +
->> +	ret = clk_prepare_enable(priv->dcuclk);
-> Why this cannot be devm_clk_get_enabled?
-I'll fix it.
->> +	if (ret) {
->> +		dev_err(dev, "Failed to enable display core clock\n");
->> +		return ret;
->> +	}
->> +
->> +	priv->dcupclk = devm_clk_get(dev, "dcup_div");
->> +	if (IS_ERR(priv->dcupclk)) {
->> +		dev_err(dev, "Failed to get display pixel clock\n");
->> +		return PTR_ERR(priv->dcupclk);
->> +	}
->> +
->> +	ret = clk_prepare_enable(priv->dcupclk);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to enable display pixel clock\n");
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int ma35_clocks_unprepare(struct ma35_drm *priv)
->> +{
->> +	struct clk **clocks[] = {
->> +		&priv->dcuclk,
->> +		&priv->dcupclk,
->> +	};
->> +	unsigned int i;
->> +
->> +	for (i = 0; i < ARRAY_SIZE(clocks); i++) {
->> +		if (!*clocks[i])
->> +			continue;
->> +
->> +		clk_disable_unprepare(*clocks[i]);
->> +		*clocks[i] = NULL;
-> Huh, pretty complicated and pointless code. This should be devm and bulk
-> API...
-I'll use memory safe helpers instead.
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int ma35_drm_probe(struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct ma35_drm *priv;
->> +	struct drm_device *drm_dev;
->> +	void __iomem *base;
->> +	struct regmap *regmap = NULL;
->> +	int irq;
->> +	int ret;
->> +
->> +	ret = of_reserved_mem_device_init(dev);
->> +	if (ret && ret != -ENODEV) {
->> +		dev_err(dev, "Failed to get optional reserved memory: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	base = devm_platform_ioremap_resource(pdev, 0);
->> +	if (IS_ERR(base)) {
->> +		dev_err(dev, "Failed to map I/O base\n");
-> Why aren't you using dev_err_probe?
->
->> +		ret = PTR_ERR(base);
->> +		goto error_reserved_mem;
->> +	}
->> +	regmap = devm_regmap_init_mmio(dev, base, &ma35_drm_regmap_config);
->> +	if (IS_ERR(regmap)) {
->> +		dev_err(dev, "Failed to create regmap for I/O\n");
->> +		ret = PTR_ERR(regmap);
->> +		goto error_reserved_mem;
->> +	}
->> +
->> +	irq = platform_get_irq(pdev, 0);
->> +	if (irq < 0) {
->> +		ret = -ENODEV;
->> +		goto error_reserved_mem;
->> +	}
->> +
->> +	priv = devm_drm_dev_alloc(dev, &ma35_drm_driver,
->> +				     struct ma35_drm, drm_dev);
->> +	if (IS_ERR(priv)) {
->> +		ret = PTR_ERR(priv);
->> +		goto error_reserved_mem;
->> +	}
->> +
->> +	platform_set_drvdata(pdev, priv);
->> +	drm_dev = &priv->drm_dev;
->> +	priv->regmap = regmap;
->> +	INIT_LIST_HEAD(&priv->layers_list);
->> +
->> +	ret = ma35_clocks_prepare(priv);
->> +	if (ret) {
->> +		drm_err(drm_dev, "Failed to prepare clocks\n");
-> Why do you print error twice? Once in the function, second time here?
->
->> +		goto error_reserved_mem;
->> +	}
->> +
->> +	ret = devm_request_irq(dev, irq, ma35_drm_irq_handler, 0,
->> +			       dev_name(dev), priv);
->> +	if (ret) {
->> +		drm_err(drm_dev, "Failed to request IRQ\n");
->> +		goto error_clocks;
->> +	}
->> +
->> +	/* modeset */
->> +	ret = ma35_mode_init(priv);
->> +	if (ret) {
->> +		drm_err(drm_dev, "Failed to initialize KMS\n");
->> +		goto error_clocks;
->> +	}
->> +
->> +	/* plane */
->> +	ret = ma35_plane_init(priv);
->> +	if (ret) {
->> +		drm_err(drm_dev, "Failed to initialize layers\n");
->> +		goto error_clocks;
->> +	}
->> +
->> +	/* crtc */
->> +	ret = ma35_crtc_init(priv);
->> +	if (ret) {
->> +		drm_err(drm_dev, "Failed to initialize CRTC\n");
->> +		goto error_clocks;
->> +	}
->> +
->> +	/* interface */
->> +	ret = ma35_interface_init(priv);
->> +	if (ret) {
->> +		if (ret != -EPROBE_DEFER)
->> +			drm_err(drm_dev, "Failed to initialize interface\n");
->> +
->> +		goto error_clocks;
->> +	}
->> +
->> +	drm_mode_config_reset(drm_dev);
->> +
->> +	ret = drm_dev_register(drm_dev, 0);
->> +	if (ret) {
->> +		drm_err(drm_dev, "Failed to register DRM device\n");
->> +		goto error_mode;
->> +	}
->> +
->> +	drm_client_setup(drm_dev, NULL);
-> Best regards,
-> Krzysztof
+Not mandatory, just preferable since the reset line might be shared in some
+(future) PCB designs, with the reset-gpio in place, there will be no need
+to take care of that in the driver.
 
-I'll  return raw error codes and let probe wrap them with dev_err_probe().
+> looked over some examples, some are not updating dt-bindings with resets,
+> others don't have Kconfig requiring POWER_RESET or POWER_RESET_GPIO config.
+> Those things are necessary, right?
 
-Thanks for the review.
+Depends on the optionality. If this resource is mandatory to have,
+the mentioned options will be needed, indeed.
 
-Best regards,
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Joey
 
 
