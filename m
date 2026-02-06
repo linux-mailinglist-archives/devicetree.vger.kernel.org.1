@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-263214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263215-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oHhQD69chWmfAgQAu9opvQ
-	(envelope-from <devicetree+bounces-263214-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 04:14:55 +0100
+	id iDvVDF9ghWmbAwQAu9opvQ
+	(envelope-from <devicetree+bounces-263215-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 04:30:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE900F998C
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 04:14:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 875AFF9C00
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 04:30:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1407B30041C6
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 03:14:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 39A72300FEE3
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 03:30:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2EE730EF71;
-	Fri,  6 Feb 2026 03:14:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB5192D0635;
+	Fri,  6 Feb 2026 03:30:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 461B72FE04D;
-	Fri,  6 Feb 2026 03:14:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B36717AE11;
+	Fri,  6 Feb 2026 03:30:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770347690; cv=none; b=KCYk5PGB9xYuJhhuEDYUF0NRh6tQdynaAcNWfD9RvmvzrI80ARGccQR7L2bNKdFMChykCtuWRrTinc9w0N6QkgQ2BKs4WsmlhBIZacm76dusvgdkPqYg85r5+0hZ8o7Hl/AneWcO43QdoXCWmBKxBj2SqAhSqxUd1bA7atUh5bo=
+	t=1770348636; cv=none; b=M+trGJpUCbTH7hEHcAFUv7EZhp8/mxpFioSgx6coBc2yaxaDqW7vC6orOvAqk8mfEBOQNeVrCSLZJlCz4VOtP+KyjHUYdRxRmHsfV/qTH9L6QtwfEzC8bwPsf76o1wKGn/RkjhoGhIf13LwTwTNaGKncD8X8c/AtkGQvbDWKK0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770347690; c=relaxed/simple;
-	bh=Jc3IZcYW2rB1qgV1vPDAlqvxWXgP++0p0Sj1wrvla9Q=;
+	s=arc-20240116; t=1770348636; c=relaxed/simple;
+	bh=OlW2KzbKt1EZxW2BMZFxxdZ/fOjAgLS0vc9+chSiew0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BWLT25zFh7QwFv380MqWZBfPkwen5uKVx1TSCsHvPTKQWVJfS+0q+eJcRtd30XdCeIaBThv6J1dv43UY27mlgG/iMwRMU7IjyRzHvi4TidnjNaAze/l4AI3c/BGWEVkxrV4oP++fG2e+x9ypfRjki0naFN+xDDfYYrctuXBfd6w=
+	 Content-Type:Content-Disposition:In-Reply-To; b=nOJpJQK7UQVo/ReTDHhf76g6arq2SegAbA/PRhSTFGsA7wkfh+dAWcPgYQqOvOK2G4gfiwlE2aLNyhh5HoEcZO49sDg9+wanOBH029UkSR5b9qGKyDGmwBvpTI8j9Rg/tiT5p5hX8jiagzHPmkQhl5J0J4kr5UpFD2NnzRZaDO4=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
@@ -36,30 +36,22 @@ Received: from local
 	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
 	 (Exim 4.99)
 	(envelope-from <daniel@makrotopia.org>)
-	id 1voCIk-000000005tg-3Mqr;
-	Fri, 06 Feb 2026 03:14:34 +0000
-Date: Fri, 6 Feb 2026 03:14:26 +0000
+	id 1voCYD-000000005yz-2S0t;
+	Fri, 06 Feb 2026 03:30:33 +0000
+Date: Fri, 6 Feb 2026 03:30:30 +0000
 From: Daniel Golle <daniel@makrotopia.org>
 To: Jakub Kicinski <kuba@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
-	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
-	Liang Xu <lxu@maxlinear.com>, John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v13 4/4] net: dsa: add basic initial driver for
- MxL862xx switches
-Message-ID: <aYVckqToPwzR75EO@makrotopia.org>
-References: <cover.1770211259.git.daniel@makrotopia.org>
- <2da8267175bfe7b8ff92d67ba5aa88755fab1710.1770211259.git.daniel@makrotopia.org>
- <20260205182117.41618f8d@kernel.org>
+Cc: netdev@vger.kernel.org, andrew@lunn.ch, davem@davemloft.net,
+	conor+dt@kernel.org, krzk+dt@kernel.org, chad@monroe.io,
+	devicetree@vger.kernel.org, lxu@maxlinear.com, frankwu@gmx.de,
+	linux@armlinux.org.uk, john@phrozen.org, robh@kernel.org,
+	cezary.wilmanski@adtran.com, hkallweit1@gmail.com, horms@kernel.org,
+	edumazet@google.com, linux-kernel@vger.kernel.org,
+	pabeni@redhat.com, olteanv@gmail.com
+Subject: Re: [net-next,v13,2/4] net: dsa: add tag format for MxL862xx switches
+Message-ID: <aYVgVgf3nemHNSEF@makrotopia.org>
+References: <82706bbd489b5c68699060630ec6577f9aefb849.1770211259.git.daniel@makrotopia.org>
+ <20260206022134.3185316-1-kuba@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,28 +60,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260205182117.41618f8d@kernel.org>
+In-Reply-To: <20260206022134.3185316-1-kuba@kernel.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263214-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263215-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[lunn.ch,gmail.com,davemloft.net,google.com,redhat.com,kernel.org,armlinux.org.uk,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,davemloft.net,kernel.org,monroe.io,maxlinear.com,gmx.de,armlinux.org.uk,phrozen.org,adtran.com,gmail.com,google.com,redhat.com];
 	RCPT_COUNT_TWELVE(0.00)[20];
 	DMARC_NA(0.00)[makrotopia.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.984];
+	NEURAL_HAM(-0.00)[-0.995];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
@@ -97,91 +89,112 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,makrotopia.org:mid]
-X-Rspamd-Queue-Id: DE900F998C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,makrotopia.org:mid]
+X-Rspamd-Queue-Id: 875AFF9C00
 X-Rspamd-Action: no action
 
-Hi Jakub,
-
-thank you for looking into this driver another time.
-
-On Thu, Feb 05, 2026 at 06:21:17PM -0800, Jakub Kicinski wrote:
-> On Wed, 4 Feb 2026 13:33:19 +0000 Daniel Golle wrote:
-> > +/* The switch firmware expects all structs to be byte-aligned */
-> > +#pragma pack(push, 1)
+On Thu, Feb 05, 2026 at 06:21:34PM -0800, Jakub Kicinski wrote:
+> This is an AI-generated review of your patch. The human sending this
+> email has considered the AI review valid, or at least plausible.
 > 
-> "Byte-aligned" means..? Generally aligned means that it starts
-> at an address which is multiple of X. All addresses are multiple of 1
+> For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
+> ---
+> net: dsa: add tag format for MxL862xx switches
+> 
+> This patch adds a DSA tag driver for MaxLinear MxL862xx switches. The
+> tag format uses an 8-byte header with an ethertype marker that is shared
+> with GSW1xx switches, though the format itself differs.
+> 
+> > diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
+> > --- a/net/dsa/Kconfig
+> > +++ b/net/dsa/Kconfig
+> > @@ -104,6 +104,13 @@
+> 
+> [ ... ]
+> 
+> > +config NET_DSA_TAG_MXL_862XX
+> > +	tristate "Tag driver for MxL862xx switches"
+> > +	help
+> > +	  Say Y or M if you want to enable support for tagging frames for the
+> > +	  Maxlinear MxL86252 and MxL86282 switches using their native 8-byte
+>           ^^^^^^^^^
+> 
+> This isn't a bug, but there's inconsistent capitalization here. The help
+> text uses "Maxlinear" while the adjacent NET_DSA_TAG_MXL_GSW1XX entry uses
+> "MaxLinear" (with capital L). The MODULE_DESCRIPTION in tag_mxl862xx.c also
+> uses "MaxLinear".
 
-In case fo the firmware running on this switch it means that data types
-used in structures used as input and output parameters for firmware
-functions should be aligned to 8 bits, without any additional padding in
-between.
++1 Will fix that.
 
-struct foo {
-	u8	var1;
-	__le16	var2;
-	__le32	var3;
-} __packed;
+> 
+> > +	  tagging protocol.
+> 
+> > diff --git a/net/dsa/tag_mxl862xx.c b/net/dsa/tag_mxl862xx.c
+> > --- /dev/null
+> > +++ b/net/dsa/tag_mxl862xx.c
+> > @@ -0,0 +1,110 @@
+> 
+> [ ... ]
+> 
+> > +static struct sk_buff *mxl862_tag_xmit(struct sk_buff *skb,
+> > +				       struct net_device *dev)
+> > +{
+> > +	struct dsa_port *dp = dsa_user_to_port(dev);
+> > +	struct dsa_port *cpu_dp = dp->cpu_dp;
+> > +	unsigned int cpu_port, sub_interface;
+> > +	__be16 *mxl862_tag;
+> > +
+> > +	cpu_port = cpu_dp->index;
+> > +
+> > +	/* target port sub-interface ID relative to the CPU port */
+> > +	sub_interface = dp->index + 16 - cpu_port;
+>                         ^^^^^^^^^^^^^^^^^^^^^^^^
+> 
+> Can sub_interface overflow the 5-bit MXL862_SUBIF_ID field here? With
+> dp->index = 16 and cpu_port = 0, the calculation would yield 32 which
+> exceeds the valid range (0-31) for GENMASK(4, 0). FIELD_PREP would silently
+> truncate this to 0 via masking. Is there a constraint on port configurations
+> that prevents this from occurring?
 
-It's size is 7 bytes and it looks like this:
+Yes. Only the two SerDes interfaces (port 9 and port 13) can be used as
+CPU ports. Also, when using a USXGMII-M 4-port PHY, it is recommended to
+connect the PHY to SerDes 1 (port 9 to 12) while using port 13 as CPU
+port.
 
-.||||||||.||||||||.||||||||.||||||||.||||||||.||||||||.||||||||.
-|  var1  |       var2      |                var3               |
-.        .   LSB  .   MSB  .  LSB                         MSB  .
+Addressing port 16 is problematic when using the switch with DSA also
+because the 4-bit EGP/IGP field used in the receive function can only
+present port 0 to 15 obviously. There is a way to do it by also using
+the sub-interface ID on switch-to-host tagged frames, but it is worth
+avoiding that due to the performance hit which comes with the additional
+lookup and multiple pointer dereference steps required when doing so.
 
+As there are only disadvantages when using SerDes 1 for a USXGMII-M
+quad-PHY while using SerDes 0 as CPU port it is reasonable to expect
+that board designers will opt for the convenient and also
+vendor-recommended way and use SerDes 0 for the quad-PHY while using
+SerDes 1 as CPU port.
 
-This is what the firmware on the other end expects, from all data sent
-to it and what the Linux host has to expect from all data received from
-it.
+Hence this theoretical limitation will play no role in practise.
 
-> We used you push back against blanket __packed because it's forcing
-> all *host* accesses to also assume that the structures are unaligned.
+> 
+> > +
+> > +	/* provide additional space 'MXL862_HEADER_LEN' bytes */
+> > +	skb_push(skb, MXL862_HEADER_LEN);
+> 
+> [ ... ]
+> 
+> > +	dsa_alloc_etype_header(skb, MXL862_HEADER_LEN);
+> > +
+> > +	/* special tag ingress */
+>                       ^^^^^^^
+> 
+> This comment says "ingress" but mxl862_tag_xmit() is the TX/egress path.
+> Should this say "egress" instead?
 
-Understand that in general, and of course know that using packed structs
-without a hardware requirement of doing so needlessly wastes CPU cycles
-on each access to struct members.
+"ingress" is the perspective of the switch, and how the tag to be used
+to send frames from the host to the switch is called in the datasheet[1]
 
-However, in this case this is a header file which exclusively defines
-structs which are only used to communicate with the firmware running on
-the switch. Using them for anything else, such as storing or processing
-data the driver deals with internally is, very inconvenient because all
-types are also defined as little-endian, so not only unaligned access,
-but also endian conversion burdens every access (in the sense that it
-burdens the programmer on little-endian machines, but the CPU as well on
-big-endian machines).
+[1]: https://www.mouser.com/datasheet/2/146/621181_MxL86282I_DS_Rev1_1-3675315.pdf
+     page 95
 
-tl;dr: This whole file is only API definition. And this is how the
-firmware API is defined, and that's the only way to deal with that
-switch.
-
-(I would have preferred if they just exposed the internal 16-bit
-registers of the switch via MDIO, and have asked MxL for that several
-times, without success)
-
-> The best practice is to pack only specific structs which need it
-> and add compile_assert()s to make sure that the compiler doesn't add
-> any padding.
-
-Imho checking whether each of these structs is naturally packed (ie.
-8-bit aligned without padding between 8-bit aligned members) is prone to
-human errors which only become visible when testing on the real
-hardware, and hence complicates maintainance.
-
-Other drivers which operate on similar APIs (many GPU drivers, for
-example) also use #pragma pack(push, 1) in header files defining
-external API. Also there all external API definitions are kept in a
-separate file, away from any of the datastructures used by the driver
-internally at runtime.
-
-Anyway, if you really really want me to set individual __packed for each
-struct which isn't naturally packed in this whole file, please tell me
-clearly that this is what you would like, and I will of course do it
-despite disagreeing with the reasoning.
-
-
-Cheers
-
-
-Daniel
 
