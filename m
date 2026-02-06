@@ -1,424 +1,215 @@
-Return-Path: <devicetree+bounces-263194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263195-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2HpuDGM/hWme+gMAu9opvQ
-	(envelope-from <devicetree+bounces-263194-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 02:09:55 +0100
+	id 2AWyOBNFhWl//AMAu9opvQ
+	(envelope-from <devicetree+bounces-263195-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 02:34:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99FDAF8DC9
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 02:09:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A41DF8FA6
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 02:34:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3E0343004682
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 01:09:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D5E613013A59
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 01:34:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E320230BF6;
-	Fri,  6 Feb 2026 01:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14BF823B632;
+	Fri,  6 Feb 2026 01:34:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CYqNmQI+"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="QD07RnPO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f49.google.com (mail-dl1-f49.google.com [74.125.82.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C11EF22D4D3
-	for <devicetree@vger.kernel.org>; Fri,  6 Feb 2026 01:09:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A35401DE8BF;
+	Fri,  6 Feb 2026 01:34:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.22.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770340189; cv=none; b=TkwgTMcjR/moKXOEu2q4BBKhGdBEjvPpt6DKDpJSt8FWYZA2FOomhUyKRv6l0odrjvm8sLP97nolzDyoPApjgpFn4vkDEjCaEvTli9TbAERLR3JaeTvMdUA8SvqtDRJMkvF5o/+h3FHB8uQKmao6gSvTQzLROMxie794hDVbYXk=
+	t=1770341649; cv=none; b=iUwMeahVN1TrqBqBW+f/fNfA99PapmFbxWd3eLLLWvF3wO4pvwjX3u/Qi8Ro9etGOLu5ws3KxDwmG6w2/voyxJNBUVk/pInJCZwnBYyZOa8j/1QOw62F8oRWiHtBqTE01UYF3rB2bN97QWXtdk+ipe+tWBvCKepL+hFieHilhVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770340189; c=relaxed/simple;
-	bh=rNuWtRvMB0NRy8EVLOoIZ2tDJW/Huf0pVpEpPTseNOo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=psRndoHuS05tkajWx2qaX/TN5EUbN+8HWmeZmMUMGJk3DmMmaHFlKiJUopF+RlYTnnT3GoRXCB2OseJjPIOlzkGW6kylyQcArU8RAd7/cFpA8gt2pgGoENS5rLOB8rbK50QcVpZlyL2FVEDzsDGOpKi7+nj8wmp27ZqjffKrZjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CYqNmQI+; arc=none smtp.client-ip=74.125.82.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f49.google.com with SMTP id a92af1059eb24-11f1fb91996so274622c88.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Feb 2026 17:09:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770340188; x=1770944988; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Vs2QcgRbbbiP9STmkUY5xRdKIA29w4m7lTues8D5avc=;
-        b=CYqNmQI+bOQFSWHbeNVufCRxXX31uX8uJ4Q6/VbpzmaPE8Lo3TqHDyTBDwWs2NvOPu
-         /nz9ZVcstSVFnAZoHsE2WRYrsGxTc4Y8+93zbruluQCIxZHvUNHnztpWqGowR1mfkww0
-         uOG0EwsBRlrSSR9Vb44d8ZCWOZ9xpaS2hBiRxpfgt12gjO71dYE2fcaM9x4FyujfPLoV
-         mhQvWR+40g7iRkrYz/T2GLthUVHikQ3UsQ3VJFvGTHM/R2wVG/SirDcC4hOv3K/z3zsP
-         m1yh/7i0QjyJSwG7pvNe7TtcJLBWaYw6WwbIbSLV2NrByK2ubZ4Qi1KYf4AgenAqxy/g
-         8pmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770340188; x=1770944988;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Vs2QcgRbbbiP9STmkUY5xRdKIA29w4m7lTues8D5avc=;
-        b=p9otJVWsHMYlSgFDp6t/TxGvuzphm8d6WrweqPRspbh2pjJTzUP5BpFr6fws9aLwgH
-         5FoCpRl3utiybhrbXFnTztkIyieINvcdDlaUVgdfSXop8iOpT1p/39DM1axw70SU1VB2
-         wRQRaP9LSAIlv1ryrKKv8//ui/m3e/OWq+jJPf9Recq7od4lJ3QOMpVtkzAU8YQFq4wD
-         Ng12rw88hP4Z5Ej9fUrl/NnQdrb5mFdVQjV2tDb/JqGUfakNZoCfbOSqDLZh4sq30IH6
-         DUN+h9IjzywwlrXZBsH3kYfNgieElTCOPuwjJthIq6ri9ye/uQgiV1wEh8eddaL2JQZq
-         hvaA==
-X-Forwarded-Encrypted: i=1; AJvYcCXSPe9Qa+nbCB9u47rMnAeW9S6XJiVDmARW5qeIz2r0RTXNd0LGXYXY2i4YwcTpTvBIzUgzleZgzWmw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz84WN8/1V1OtZPt1LHrqKCCwfIivecnvR8NANmG03sPWQvkTeW
-	cqGANzdkz4gQ70rdgBudSNX/oe6THSWlGZWWfv/3kluojpMaGLAa/fq27oPoFA==
-X-Gm-Gg: AZuq6aJNUgHls/2ejgXWcMxhow/ddxrqTx9/8izoiEJtwdKyJFuANzAzUxZ5d7ebpon
-	gb41L7wy+i/iqukXgr3Y9qq0s2Ozu5ywgwUaE23MVn3DH7xqfzJ2Z/hggWYi1ZTO/sAWa/XbEnJ
-	HcM/qvZHiJBO6A4abfW6vL9TDwrQVFJbXkx6aZGG7JvZoiKMoDQrf8FoQA+mQY0rSzaI6YcwBDo
-	Ndxj6I+c3Hp259lWQiyAAyLeZiWHPJxE/JM+xDuP+sMFpfHHIGYUSYRjaWBLQfdwSYQxF2r42gO
-	GR1z6qU+wkbaxBdVi9sFPeXX9Y6Fuf56ALyXmSqVP/ZCU/88Hgidj/UwOlh3mbNz5TI62GzneUZ
-	IpxMH08Ig8U+rS5m1SFFpJAIlK/jdBTumvQ43RVTNeo/x+Y8/+bVNjViNwiCF+oZDTcwKZKDG+e
-	C7GlFjigoaH1s35PWICHQyFxTc
-X-Received: by 2002:a05:7022:6ba6:b0:123:330b:390 with SMTP id a92af1059eb24-127040083femr589392c88.20.1770340187659;
-        Thu, 05 Feb 2026 17:09:47 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b855ad9a42sm881029eec.1.2026.02.05.17.09.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Feb 2026 17:09:47 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Thu, 5 Feb 2026 17:09:45 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Marius Cristea <marius.cristea@microchip.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] hwmon: temperature: add support for EMC1812
-Message-ID: <402ba937-226d-44be-8411-428a8842a35c@roeck-us.net>
-References: <20260205-hw_mon-emc1812-v5-0-232835aefe8f@microchip.com>
- <20260205-hw_mon-emc1812-v5-2-232835aefe8f@microchip.com>
+	s=arc-20240116; t=1770341649; c=relaxed/simple;
+	bh=fFxcGT+L+JV19ydZ/XgG+QQkeU9MT4E1xbVZAmElpX8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f3bQObOVAsPshi81d3AU8NzA8QrlQRs8ppTs+aiy19/zofZtyxwVjY03Bu5XOFO/n5TrWn/tu0GicILuTMoXxnkegpessaBSM9rFo6ImN5pEAXAEMZaDgr/wrgPOLsaOSN/2K8hOdNC4U0VWEwm5JTWy187GVAE4w5BqKFMcplM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=QD07RnPO; arc=none smtp.client-ip=54.207.22.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1770341599;
+	bh=omyy70O3OuJ3VKPU2PzEKTpT9f6MeOhreIgYvWT0TaY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=QD07RnPOCILFHz50XHH5mqEvGqH4YyF8vrjecOwWB9+UQtVrpJr7beu84OBiXP2cI
+	 m/IZF0D+KARp95TSv69fwBIkHd3T3sgzCDeNPqDVk3zp+wc5dkp7+9U00mP4wyd4GP
+	 NiyZfimfKhs0dCNNloCHqaFY28tN9qX/gS/MjyeI=
+X-QQ-mid: zesmtpsz2t1770341592t1b2531e8
+X-QQ-Originating-IP: IGc2qSSjBPifceWa0Fo5f41QcQ3coZKZBB3/OIZklF4=
+Received: from [10.3.91.191] ( [101.70.125.34])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 06 Feb 2026 09:33:09 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 3718362222748311692
+Message-ID: <B8005DB6301AACB4+374512e1-f561-4d2f-afd6-7a4b51012501@linux.spacemit.com>
+Date: Fri, 6 Feb 2026 09:33:09 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260205-hw_mon-emc1812-v5-2-232835aefe8f@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/8] dt-bindings: iommu: Add spacemit/t100 features
+To: Conor Dooley <conor@kernel.org>
+Cc: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Jingyu Li <joey.li@spacemit.com>,
+ iommu@lists.linux.dev, linux-perf-users@vger.kernel.org,
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+ devicetree@vger.kernel.org
+References: <cover.1769562575.git.lv.zheng@spacemit.com>
+ <cover.1770195980.git.lv.zheng@linux.spacemit.com>
+ <A0E91F323138E92F+a27d73b00f3324f0d3885128f5596230b3f1370b.1770195980.git.lv.zheng@linux.spacemit.com>
+ <20260204-primer-wrought-6f64b14bf152@spud>
+ <53171BEB06F43599+7c1f54bc-e72d-4cbd-9d10-194ae6b13744@linux.spacemit.com>
+ <20260205-attitude-customer-129fe2bd5dc7@spud>
+Content-Language: en-US
+From: Lv Zheng <lv.zheng@linux.spacemit.com>
+In-Reply-To: <20260205-attitude-customer-129fe2bd5dc7@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz5b-1
+X-QQ-XMAILINFO: NpfbsqbTlzxUCzfq5/Ht/zQVJr3Bf4NUwUOdJ0yKuokkmbVjA4paMjQL
+	4P+y5Sb/x2r4ENt8IPN+u1sNaRtD6J0QQprHOFmsn/aDCg61UG9d/e8vgplO24EYYmzrD1K
+	8LkWC6kRc1rTWVDJIs7IZp9cdyOYkmsxQIzj9qpVLUlySQkio9Epye1AyvWYDx5DN3lvyv7
+	gexLk6MLENDqFrrGFMmwxDruTGzgB54S6dn9Nyb9MLNRaDtFZFCjGh8g1apqmYothR39zN4
+	OARlarPovAHNEYhFw6g9r1aac5Cn/SqpieglMBygIUdmBBQZzCREDp4e/0cNyPssA3Fed8n
+	MELiOn1wvmuNLDe8If8RsHOfPs6638OrIrAOYkSnfhc5tqwBjaBseuImDZl16NaU/ktFqXt
+	pZ5BarfNsWr+z0rSmzah3bUJEH+uqXdMx5hK+wXI2p6NZoy8oeTnp0TzqO8RwlyrB+JQ3LC
+	tzc4fFgJKLFODbWTMqwhj21nq3+08mVZzsyKnlO6L64avZNCqlfATYSkkAOX0M99ADxvcX6
+	mAPgVbvzt5dV1AAsJFRGGQHeVWoNbtc0zqPCy7iDugjqwQi5VkUhjHbXijy/Eg3YmmeRl4R
+	L7MLtzN8w4llS/srGye5InBXNbv0q+urusZJvd9jahfsKGJSlzUSLT37mQjXXMVt6ueGbou
+	kdzg4tj7xX9PO9HwHLWof65dC4Km6ziD+hOVCAYL88QPAwZZvBkcRVWb1KRFdWcxJAoMrWz
+	ghWrlscjUfb5Q8HUhGWUsXhNHDNJUREyDD3/pNf/DbgQhYFcjpUMcwb1DG+dVy9YG0lfnWc
+	Z49zEUvc1j7ZECtJD+F2fyWrs8t2gUromBwZtCD0CuB7z9HCzNxj+btctKZkCgNFEdeAFfe
+	i3fud1EWG3g5qZN94w3KIHl2heZMI826kPInG+0OKlIfpqOy4BRP8qh2Iev2PU9ZcUrsRd8
+	6/LpRAdtAXORLMEfNhghXSHzMdH6HtAhMhjDYPCPv14B65LC57k8QaiFO1HCq52woYqEiZ0
+	GcxksBJfeocoJz+3xw/aprWTNHdYU=
+X-QQ-XMRINFO: OD9hHCdaPRBwH5bRRRw8tsiH4UAatJqXfg==
+X-QQ-RECHKSPAM: 0
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263194-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263195-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[spacemit.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_MUA_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[linux.spacemit.com:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[lv.zheng@linux.spacemit.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,microchip.com:email]
-X-Rspamd-Queue-Id: 99FDAF8DC9
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[spacemit.com:email,linux.spacemit.com:mid,linux.spacemit.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4A41DF8FA6
 X-Rspamd-Action: no action
 
-On Thu, Feb 05, 2026 at 09:09:04AM +0200, Marius Cristea wrote:
-> This is the hwmon driver for Microchip EMC1812/13/14/15/33
-> Multichannel Low-Voltage Remote Diode Sensor Family.
+On 2/6/2026 2:24 AM, Conor Dooley wrote:
+> On Thu, Feb 05, 2026 at 11:11:51AM +0800, Lv Zheng wrote:
+>> On 2/5/2026 1:37 AM, Conor Dooley wrote:
+>>> On Wed, Feb 04, 2026 at 05:09:12PM +0800, Lv Zheng wrote:
+>>>> Adds device tree bindings for SpacemiT T100 specific features by
+>>>> introducing spacemit,100 compatible. T100 contains distributed IOATCs,
+>>>> each of which exposes pmiv interrupt.
+>>>>
+>>>> Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
+>>>> Signed-off-by: Jingyu Li <joey.li@spacemit.com>
+>>>> ---
+>>>>    .../bindings/iommu/riscv,iommu.yaml           | 37 +++++++++++++++++++
+>>>>    1 file changed, 37 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+>>>> index d4838c3b3741..2da3456e7402 100644
+>>>> --- a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+>>>> +++ b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+>>>> @@ -32,6 +32,12 @@ properties:
+>>>>      # should be specified along with 'reg' property providing MMIO location.
+>>>>      compatible:
+>>>>        oneOf:
+>>>> +      - description: SpacemiT distributed IOMMUs
+>>>> +        items:
+>>>> +          - enum:
+>>>> +              - spacemit,t100
+>>>> +          - const: spacemit,riscv-iommu
+>>>
+>>> What actually is the t100? Is it an SoC or is it the name of the core
+>>> complex IP that spacemit is using in multiple SoCs?
+>>
+>> T100 is the name of the IOMMU IP developed by SpacemiT, announced in RISC-V
+>> 2024 China Summit:
+>> https://www.bilibili.com/video/BV1DNtCeiEBk/
+>> It's world first server SPEC IOMMU in RISC-V, supports IOTLB placed in
+>> adjacent to the DMA masters and supports PCIe ATS and PRI.
+>> You can find it shipped in the recent publicly purchasable SoC SpacemiT K3.
 > 
-> EMC1812 has one external remote temperature monitoring channel.
-> EMC1813 has two external remote temperature monitoring channels.
-> EMC1814 has three external remote temperature monitoring channels and
-> channels 2 and 3 supports anti parallel diode.
-> EMC1815 has four external remote temperature monitoring channels and
-> channels 1/2  and 3/4 supports anti parallel diode.
-> EMC1833 has two external remote temperature monitoring channels and
-> channels 1 and 2 supports anti parallel diode.
+> Right, then what you need here is something like:
 > 
-> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
-> ---
+> items:
+>    - enum:
+>        - spacemit,k3-iommu
+>    - spacemit,t100-iommu
+>    - riscv,iommu
+> 
+> Driver can then match on spacemit,t100-iommu - but you need to have
+> soc-specific compatibles.
+> I'm not convinced that riscv,iommu is suitable here though, does the
+> driver work on your platform without the portions of code that are added
+> by this series and enabled by your new compatible? If not, the I don't
+> think the riscv,iommu fallback should be here.
+> 
+> Additionally, please stop sending new versions so frequently and in
+> response to earlier submissions. I have a v4 in my inbox while we are
+> still discussing v3.
 
-Additional AI generated review feedback below. Please address.
+SpacemiT provides RISC-V IOMMU implementation, T100 is the first
+generation of the this IP product line, we have plan to develop T200,
+T300, etc., with more features introduced to be adoptive to new
+RISC-V IOMMU specifications.
+Besides, T100 is not only shipped in K3, but also shipped in V100 and
+the follow-up SoCs, like Kn, Vn00, they will likely use the same
+synthesis result of T100 RTLs.
 
-Thanks,
-Guenter
+ From SpacemiT's point of view, we need a common sense of this IP
+series for something like IOATCs, that's why spacemit,riscv-iommu
+(this is same like qemu,riscv-iommu) is introduced. And a common sense
+of T100 for all SoCs shipped T100 (like global filters, vendor events
+and etc.,).
 
----
+IMO, the current compatible is proper to reflect these concerns.
+What do you think?
 
-# Task
-Date: 2026-02-05 16:00:08
-Model: gemini-3-flash-preview
-Prompts SHA: 52e5df6 ("various changes")
-Commits to review:
-- 0f6303cffaab ("dt-bindings: hwmon: temperature: add support for EMC1812")
-- c5a5b0f370f0 ("hwmon: temperature: add support for EMC1812")
+Cheers,
+Lv
 
+> 
+> Cheers,
+> Conor.
 
-# Commit 0f6303cffaab ("dt-bindings: hwmon: temperature: add support for EMC1812")
-commit 0f6303cffaabd0f20f74335ad88e6e3ec5876d93
-Author: Marius Cristea <marius.cristea@microchip.com>
-
-dt-bindings: hwmon: temperature: add support for EMC1812
-
-This commit adds the DeviceTree schema for the Microchip EMC1812 family
-of temperature sensors and updates the MAINTAINERS file.
-
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc1812.yaml
-[ ... ]
-> +  interrupts:
-> +    items:
-> +      - description: alert-therm2 asserts when the ALERT limit is exceeded.
-> +      - description: therm-addr asserts when the THERM limit is exceeded.
-> +    minItems: 1
-> +
-> +  interrupt-names:
-> +    items:
-> +      - enum: [alert-therm2, therm-addr]
-
-Is the interrupt-names schema intended to be this flexible?
-
-The current items definition only constrains the first element of the list.
-If a second interrupt is provided, it remains unconstrained.
-
-Additionally, if only one interrupt is provided, the interrupts property
-enforces it to be alert-therm2 (the first positional item), but the
-interrupt-names enum allows it to be named therm-addr.
-
-Should it be defined as:
-  interrupt-names:
-    items:
-      - const: alert-therm2
-      - const: therm-addr
-    minItems: 1
-
-[ ... ]
-> +  microchip,parasitic-res-on-channel1-2:
-> +    description:
-> +      Indicates that the chip and the diodes/transistors are sufficiently
-> +      far apart that a parasitic resistance is added to the wires, which can
-> +      affect the measurements. Due to the anti-parallel diode connections,
-> +      channels 1 and 2 are affected together.
-> +    type: boolean
-
-Is this description accurate for all supported models?
-
-For the EMC1812, there is only one external channel, so it seems
-unlikely that "channels 1 and 2 are affected together".
-
-Also, the EMC1813 does not appear to support anti-parallel diodes
-according to the commit message and driver documentation, yet this
-description attributes the property to anti-parallel diode connections.
-
-[ ... ]
-> +patternProperties:
-> +  "^channel@[1-4]$":
-[ ... ]
-> +    properties:
-> +      reg:
-> +        items:
-> +          minimum: 1
-> +          maximum: 4
-
-Does the reg property for channels need a maxItems: 1 constraint?
-
-Without it, the schema allows reg to be an array of multiple values,
-whereas a channel node reg should typically be a single value.
-
-[ ... ]
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - microchip,emc1812
-> +              - microchip,emc1813
-> +              - microchip,emc1833
-> +    then:
-> +      properties:
-> +        microchip,parasitic-res-on-channel3-4: false
-
-The EMC1814 supports anti-parallel diodes on channels 2 and 3, but only
-has three external channels in total.
-
-Should microchip,parasitic-res-on-channel3-4 also be disabled for the
-EMC1814, since it doesn't have a fourth channel?
-
-If the EMC1814 uses this property for its anti-parallel pair (2 and 3),
-the property name appears to be a mismatch.
-
-[ ... ]
-
-The driver added in commit c5a5b0f370f0 references a property named
-"microchip,enable-anti-parallel", but it is missing from this schema.
-
-Should "microchip,enable-anti-parallel" be added to the bindings?
-
-[ ... ]
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 0efa8cc6775b..c807025d911e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-
-# Commit c5a5b0f370f0 ("hwmon: temperature: add support for EMC1812")
-commit c5a5b0f370f04e9e4ae78ae82077cfb684461d8e
-Author: Marius Cristea <marius.cristea@microchip.com>
-
-hwmon: temperature: add support for EMC1812
-
-This commit adds a new hwmon driver for the Microchip EMC1812 family of
-temperature sensors, including support for EMC1812, EMC1813, EMC1814,
-EMC1815, and EMC1833 chips.
-
-> diff --git a/Documentation/hwmon/emc1812.rst b/Documentation/hwmon/emc1812.rst
-> new file mode 100644
-> index 000000000000..799111a89541
-> --- /dev/null
-> +++ b/Documentation/hwmon/emc1812.rst
-> @@ -0,0 +1,68 @@
-> +.. SPDX-License-Identifier: GPL-2.0-or-later
-> +
-> +Kernel driver emc1802
-> +=====================
-
-Should this be emc1812?
-
-> +Author:
-> +    Marius Cristea <marius.cristea@microchip.com
-
-The closing angle bracket seems to be missing from the email address.
-
-[ ... ]
-
-> diff --git a/drivers/hwmon/emc1812.c b/drivers/hwmon/emc1812.c
-> new file mode 100644
-> index 000000000000..30bbc377d592
-> --- /dev/null
-> +++ b/drivers/hwmon/emc1812.c
-
-[ ... ]
-
-> +static int emc1812_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
-> +			int channel, long *val)
-> +{
-> +	struct emc1812_data *data = dev_get_drvdata(dev);
-> +	unsigned int convrate;
-> +	int ret;
-> +
-> +	switch (type) {
-> +	case hwmon_temp:
-> +		return emc1812_read_reg(dev, data, attr, channel, val);
-> +	case hwmon_chip:
-> +		switch (attr) {
-> +		case hwmon_chip_update_interval:
-> +			ret = regmap_read(data->regmap, EMC1812_CONV_ADDR, &convrate);
-> +			if (ret < 0)
-> +				return ret;
-> +
-> +			if (convrate > 10)
-> +				convrate = 4;
-> +
-> +			*val = 16000 >> convrate;
-
-If convrate is 10, *val becomes 15. However, emc1812_conv_time[10] is 16.
-This results in a slight discrepancy where writing 16ms and reading it back
-returns 15ms.
-
-> +			return 0;
-> +		default:
-> +			return -EOPNOTSUPP;
-> +		}
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-
-[ ... ]
-
-> +static int emc1812_set_temp(struct device *dev, struct emc1812_data *data, int channel,
-> +			    enum emc1812_limit_type map, long val)
-> +{
-> +	long valh, vall;
-> +	u8 regh, regl;
-> +	int ret;
-> +
-> +	regh = emc1812_limit_regs[channel][map];
-> +	regl = emc1812_limit_regs_low[channel][map];
-> +
-> +	if (channel) {
-> +		val = DIV_ROUND_CLOSEST(val, 125);
-> +		valh = (val >> 3) & 0xff;
-> +		vall = (val & 0x07) << 5;
-> +	} else {
-> +		/* internal channel limit is stored on 8bits */
-> +		valh = DIV_ROUND_CLOSEST(val, 1000);
-> +	}
-> +
-> +	ret = regmap_write(data->regmap, regh, valh);
-
-Can this write overflow the 8-bit register for the internal channel?
-
-In emc1812_write(), val is clamped to a maximum of 191875 and then offset
-by 64000, resulting in 255875.
-
-emc1812_write()
-    val = clamp_val(val, -64000, 191875);
-    val = val + 64000; // val is 255875
-
-emc1812_set_temp()
-    valh = DIV_ROUND_CLOSEST(255875, 1000); // valh is 256
-
-Since the register is 8 bits wide, writing 256 (0x100) will be truncated
-to 0x00, setting the limit to -64.0 C instead of the requested 191.875 C.
-
-[ ... ]
-
-> +static int emc1812_init(struct emc1812_data *priv)
-> +{
-> +	int ret;
-> +	u8 val;
-
-[ ... ]
-
-> +	/* Set ideality factor for all external channels */
-> +	ret = regmap_write(priv->regmap, EMC1812_EXT1_IDEALITY_FACTOR_ADDR,
-> +			   EMC1812_DEFAULT_IDEALITY_FACTOR);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(priv->regmap, EMC1812_EXT2_IDEALITY_FACTOR_ADDR,
-> +			   EMC1812_DEFAULT_IDEALITY_FACTOR);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(priv->regmap, EMC1812_EXT3_IDEALITY_FACTOR_ADDR,
-> +			   EMC1812_DEFAULT_IDEALITY_FACTOR);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(priv->regmap, EMC1812_EXT4_IDEALITY_FACTOR_ADDR,
-> +			   EMC1812_DEFAULT_IDEALITY_FACTOR);
-> +	if (ret)
-> +		return ret;
-
-Does this code need to write to EXT2/3/4 ideality factor registers if the
-chip (like EMC1812) does not support those channels? While likely ignored
-by the hardware, it seems redundant.
-
-
-# Summary
-
-| Commit                                                                    | Regressions |
-| :------------------------------------------------------------------------ | :---------- |
-| 0f6303cffaab ("dt-bindings: hwmon: temperature: add support for EMC1812") | 6           |
-| c5a5b0f370f0 ("hwmon: temperature: add support for EMC1812")              | 5           |
 
