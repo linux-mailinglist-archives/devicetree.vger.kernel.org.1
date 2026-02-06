@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263317-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aJV4AvrIhWnAGAQAu9opvQ
-	(envelope-from <devicetree+bounces-263316-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:56:58 +0100
+	id IHQQH8TIhWnAGAQAu9opvQ
+	(envelope-from <devicetree+bounces-263317-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:56:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66307FCE21
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:56:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D57AFCDE6
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 11:56:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D438B303A258
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 10:52:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6CEEE3004DE9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 10:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA1E938F943;
-	Fri,  6 Feb 2026 10:52:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33BD9392814;
+	Fri,  6 Feb 2026 10:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ql+R0Ozb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SrD6JIw7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A703612FE;
-	Fri,  6 Feb 2026 10:52:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E66732ED57;
+	Fri,  6 Feb 2026 10:56:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770375168; cv=none; b=drz9Sn77Y3+OpTiFyVPsr5LWEo3cijSqS7gUTDNXtogkKKEHcjax0Kg0ZyaIIOXB475VepjxwjamdCwwszfVdanOmfJCjd5PV8CU78pDEUFBe0ti0ijMi4dM4qBc9K3u7W19KWfBMR/5CoVC7tqGcRw0uOX7xCj4Mhzma/AbRNI=
+	t=1770375361; cv=none; b=TpY+CQZTw6GcJ5+AKaU+R05I72P4esxx1WtkCor7LdpVJLNT6XTw4sFnEGOLxJ4LOp7nxvJ1H8FJlIHW/BKlk0XFyTTAmqUYLX0hv5AEb5FrazBc6BxXbqejlpvUD4b2GPXpsHLtQbrv4MF7Jw6KTOxjSF0hJvhYNQrRzrj595A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770375168; c=relaxed/simple;
-	bh=bQIbx0jzCGYY95Wu3743INeD+jyhetLVWU3vQ1Vjemc=;
+	s=arc-20240116; t=1770375361; c=relaxed/simple;
+	bh=MIJ1rJ3rdFrKmHw1qRQ8dJfbU/8c4CB/TZAg9LUnKVY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TJpNMCScGLMYbztyEpjL15h9CGURvTlRMdE05FMgFCddyqmMlj464Sj2PzJAytfgvyh5lx/0iltkfg50+GOIxYKG6dCN8f9gn+mkNxK+4KzvCDn7q1Cwuajil9OV5O/F7PTCmc5Uit/68VvYZ63LCzeEIG7tveFhbERDY5v6uY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ql+R0Ozb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EEA1C19421;
-	Fri,  6 Feb 2026 10:52:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oMGfJegU6E8KLRDCevqGS4/b9nFamFLsd2j9ijesybHuUIep95quTXos4xDi50IKrB1jA/Z6QEbcX5MfXelOMrWxylOLJ5VithHPQCPTp3ksn1b5kEgDhA34JDpQrdvAC/8rYBjlbF7uxDxRJ296e2UOCBZ8H7g65crNv7q4aZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SrD6JIw7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1D1CC116C6;
+	Fri,  6 Feb 2026 10:55:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770375168;
-	bh=bQIbx0jzCGYY95Wu3743INeD+jyhetLVWU3vQ1Vjemc=;
+	s=k20201202; t=1770375360;
+	bh=MIJ1rJ3rdFrKmHw1qRQ8dJfbU/8c4CB/TZAg9LUnKVY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ql+R0OzbtyvZAeOivYFn+52ariL1yQJyBbv/rgEp1OObE8cbJG/DQIcJp7Wse7rFS
-	 qQwGVQrMD4HkfN9+vjsYTwnS1vaYIKhFrYUwKvAyPwXIhtj7d5BkvRV0hUzmZhfA/t
-	 MzdvwGva+mzfWYR07Nq6OXGMNIV/zg2xZ2dSUm4PH//M2Rir7GeonjlukIEmP/GIUN
-	 +s/EMJ7UMmqQ/P72Z8pHyOpw/VmxDNCPiOG9Kdw17w/WMWwXUYOOBuKKbk1wezRGqR
-	 +gKvYdKjJiQlNCUijBUXLc969OYLJ4ZYOGTZ7Q54fyuM3BQwrGyXYcOUd6f/7CNfQg
-	 3EyVArgzkcZyg==
-Message-ID: <e9fd0da1-90b2-43bc-8c1b-95f2e147a39b@kernel.org>
-Date: Fri, 6 Feb 2026 11:52:42 +0100
+	b=SrD6JIw7godmDvGQ4uU7FfyujifawEltCyAI2Z7AiyQ+MZ2Yt5yJ+boaT1BHM+H3j
+	 CzGEpOthjufhm33abDAC1Ij2P4kuG0LwALsKMxQabFeLAZfxCQu5gebLNOEYEGvB/y
+	 Y21nURnwLn6K5bZ+A+WWcHMD048Du0PR/1V2cZMp6B7ACMuGBA2tClhvag3PH2y+LD
+	 zPEp/AEmoV1BibsgoDPtlogc9luBrPPFOiV/5fGJV6MFNUzQelPmQPeV/zgJXogtZ7
+	 2ydpxeko2xev0TCggx8HpvPuiVIx+aMxeIeL49L7OXZFDcz7D7Bse81Tkl2bOkmrCM
+	 FLvgSaKCeqrRA==
+Message-ID: <1fee1990-f525-4559-b121-46fd1e1c9fef@kernel.org>
+Date: Fri, 6 Feb 2026 11:55:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,21 +53,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/10] ASoC: qcom: q6dsp: add support for LPASS LPI MI2S
- dais
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Cc: broonie@kernel.org, lgirdwood@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, srini@kernel.org, perex@perex.cz,
- tiwai@suse.com, alexey.klimov@linaro.org,
- mohammad.rafi.shaik@oss.qualcomm.com, quic_wcheng@quicinc.com,
- johan@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
- konrad.dybcio@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260205171411.34908-1-srinivas.kandagatla@oss.qualcomm.com>
- <20260205171411.34908-6-srinivas.kandagatla@oss.qualcomm.com>
- <20260206-petite-tireless-iguana-addf9e@quoll>
- <8f61563d-8875-4aaa-b94f-1866454367aa@oss.qualcomm.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: lt9611: Support single Port
+ B input
+To: Roger Shimizu <rosh@debian.org>
+Cc: Hongyang Zhao <hongyang.zhao@thundersoft.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20260128-rubikpi-next-20260116-v2-0-ba51ce8d2bd2@thundersoft.com>
+ <20260128-rubikpi-next-20260116-v2-1-ba51ce8d2bd2@thundersoft.com>
+ <20260205-winged-alligator-of-sorcery-aada21@quoll>
+ <CAEQ9gEkkK_qBCq__oSJb1D5J=gLyw-kVDx1OD4SMPry6z-F7nA@mail.gmail.com>
+ <0bcd3cb0-9231-4cb0-a726-c439d01f63e5@kernel.org>
+ <CAEQ9gEnvM1x9zP2RDPpEs3TMZ2Jcah7OU6s0y9zJY-7qFUJJTw@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,50 +121,83 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <8f61563d-8875-4aaa-b94f-1866454367aa@oss.qualcomm.com>
+In-Reply-To: <CAEQ9gEnvM1x9zP2RDPpEs3TMZ2Jcah7OU6s0y9zJY-7qFUJJTw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263316-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263317-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,perex.cz,suse.com,linaro.org,oss.qualcomm.com,quicinc.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[thundersoft.com,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,lists.freedesktop.org,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DBL_PROHIBIT(0.00)[0.0.0.1:email];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 66307FCE21
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,0.0.0.0:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,thundersoft.com:email]
+X-Rspamd-Queue-Id: 1D57AFCDE6
 X-Rspamd-Action: no action
 
-On 06/02/2026 11:02, Srinivas Kandagatla wrote:
->> Confusing change or actual proof that my previous comments for similar
->> patch are valid:
->> 1. not a binding> or
->> 2. you cannot change this, because you break ABI.
->> Choose only one from these options.
-> Is this because the max port keeps changing?, I can try to see how this
+On 06/02/2026 10:49, Roger Shimizu wrote:
+> On Thu, Feb 5, 2026 at 11:08 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 05/02/2026 21:31, Roger Shimizu wrote:
+>>> On Thu, Feb 5, 2026 at 5:07 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>>
+>>>> On Wed, Jan 28, 2026 at 07:15:45PM +0800, Hongyang Zhao wrote:
+>>>>> The LT9611 has two DSI input ports (Port A and Port B). Update the
+>>>>> binding to clearly document the port mapping and allow using Port B
+>>>>> alone when DSI is physically connected to Port B only.
+>>>>>
+>>>>> Changes:
+>>>>> - Clarify port@0 corresponds to DSI Port A input
+>>>>> - Clarify port@1 corresponds to DSI Port B input
+>>>>> - Change port requirement from mandatory port@0 to anyOf port@0/port@1,
+>>>>>   allowing either port to be used independently
+>>>>>
+>>>>> Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
+>>>>> Reviewed-by: Roger Shimizu <rosh@debian.org>
+>>>>
+>>>> Where did this review happen? V1 had this tag, but the patch was
+>>>> completely different, which means you were supposed to drop the tag.
+>>>> Please perform review in public.
+>>>
+>>> FYI. v2 was updated per review feedback, which is public:
+>>> https://lore.kernel.org/all/7d9041a3-9d2b-469a-9fa7-89d53bbd2a1f@linaro.org/
+>>
+>> Link above is not from Roger, so again - where did the review leading to
+>> above tag happen?
+> 
+> Per feedback of v1, v2 was quite different than v1.
+> For v2, it's close to initial review, because it looks like a new patch.
 
-Yes.
+Where was the review of v2 given?
+
+The patch is entirely different. I already said it. I also said what is
+expected in such case. It is also documented:
+
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+
 
 Best regards,
 Krzysztof
