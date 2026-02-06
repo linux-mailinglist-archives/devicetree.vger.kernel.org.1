@@ -1,149 +1,190 @@
-Return-Path: <devicetree+bounces-263374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263375-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eASEEw7zhWk+IgQAu9opvQ
-	(envelope-from <devicetree+bounces-263374-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 14:56:30 +0100
+	id QPQHLZbzhWk+IgQAu9opvQ
+	(envelope-from <devicetree+bounces-263375-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 14:58:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CB11FE7F4
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 14:56:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 612ADFE87B
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 14:58:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A0A81301DE22
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 13:56:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B73FB304F359
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 13:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F307F3EDAB4;
-	Fri,  6 Feb 2026 13:56:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1D53EF0A0;
+	Fri,  6 Feb 2026 13:57:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nbxsCK7G"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="RnjrGqLT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2268936C593;
-	Fri,  6 Feb 2026 13:56:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78013EDAD0;
+	Fri,  6 Feb 2026 13:57:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770386174; cv=none; b=WFUUa0/r2eYE3mHN4BSjldgVRMFI/CGiqC6hY0OfO6asjNR3xrY6M+4sS//vnDGNwDjXsBT4NRZFuQahFj5cnZ0H8aEp5loY178q6c4B/pCwKUfnyUnuriyK0tvqLNetw+5iIhFUjtvpSMCvkHMN7S4cS4jPuQMXuj8rvscUo64=
+	t=1770386222; cv=none; b=ab8bYrUBIENFJAII9vwf/2UUogHz5tZY0Qrl56ybMOmO2aXAL1qJ6k5fNxSZ1g8uAogDQJxpSz58uT1B4xGAErld4oNPAZ+zxbUcsYANnEjaUxBKlLnPZwipzUlJ9cc+kwC58IBrN0opM/G6kP2kKYcJTZMcntIbS1f4icssuQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770386174; c=relaxed/simple;
-	bh=I00eWFunBrXqPES26Gqkr70fAVbraKO2s8fjnHb+7jg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jR6WO+qnIUEE4GAhRDO1aYwj7pLBZtcOSJvrdCkRIK/QyyHNvded0oYRqJuQWBQgAyxgBr88nisCGQsv/qg8aw1L6vsP+XOB0cf6wfJLWb6meQ59pWPQQaE/FkwX6qyjp7ipit/aFSXtDTjKq+qy8Y11Buw/O9TwraYkrVMwSJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nbxsCK7G; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770386174; x=1801922174;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=I00eWFunBrXqPES26Gqkr70fAVbraKO2s8fjnHb+7jg=;
-  b=nbxsCK7Gt2CsEkYk7zHLGwwbRBkxHhfl6m8wLu64dvrs+ZxTa1gpY+oN
-   6SQNs2X73cBO7BH2/dsF1ayGFJeCX6oGfH3kImtkwb0938KYodM5rXsX9
-   cH7peIiPp++7gpvbXNA4nTPy807TBhYn+drroEqdRwDjtCHcocC1z34SG
-   6iiIA4A8cx56BHqOcpGKz4411z12PFP7/Ll+kDI8NjOEprJMpRNQGlJxy
-   8HYnbjsIlJfE6tyHncvCqJLAFCwDdG7E9BeZ7l09IwT1rlnbH0BvsmAfH
-   bWeam/TwZRpcuTKf6vDHbvZLAQjMc1PYKaF1GBb692pdvmr/5KCLqGpkW
-   w==;
-X-CSE-ConnectionGUID: wrmKu2VPR0ax+eejYN2fng==
-X-CSE-MsgGUID: rKPYAUZ4Rg+7cKeFQoeJFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="59164119"
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; 
-   d="scan'208";a="59164119"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2026 05:56:14 -0800
-X-CSE-ConnectionGUID: Iw2MqoxrSbK6YXxD6yVpqg==
-X-CSE-MsgGUID: e0LrdNdrQ0KE7RZDu6BRVQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; 
-   d="scan'208";a="210153369"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.202])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2026 05:56:10 -0800
-Date: Fri, 6 Feb 2026 15:56:08 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/6] iio: adc: ad4080: add support for AD4082
-Message-ID: <aYXy-B-b9CpUKZ7C@smile.fi.intel.com>
-References: <cover.1770382796.git.antoniu.miclaus@analog.com>
- <51281e19fe2955cb10ffb77b62b0d7738e9b5a93.1770382796.git.antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1770386222; c=relaxed/simple;
+	bh=iCQs9/U9+glUsZEZh/mQ2rGTcA5RV3U0cGhyVL/4Wys=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=fFIVK+eMiEhKM4p4dojcDwzbn0Ql2zk130kcCwfDb7oMpmydu3CzpwLhhHGfGfjWXQhUMIJlww815M/iHFqt9nOxf71GUw/uI6H6Yo2GCL95P3nq8lWaB/zBSxaPwkE6KPzv/HHRdlq2lojKRm+jjM82KLB7pxd7FM9sMFxkE4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=RnjrGqLT; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 74AE6264CF;
+	Fri,  6 Feb 2026 14:57:00 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id isdLqqON35nD; Fri,  6 Feb 2026 14:56:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1770386219; bh=iCQs9/U9+glUsZEZh/mQ2rGTcA5RV3U0cGhyVL/4Wys=;
+	h=Date:To:Cc:Subject:From:References:In-Reply-To;
+	b=RnjrGqLT0uCo6v8FItV0Z/mAebYuAltYRPE/ET4XUaOM5UYvs35VIqLOUO1TBLbTo
+	 07cLJ6QfxSwKNSIDbOsyMHg57GfckkG5ayQUl7KQGw7A1aXm3qosol8S4+8TcOJ1dE
+	 GUtVvU6mZ7TR0AdOPTETNDTwioMbnNVwQg81P8y304+RyxBIkVlqvvxB6oKnSsDUHT
+	 DwTM+2NUKHP6h3TB2Nfx8+xKHInDBaMh4cSCq2qDEZbrc5kINR5RiJJ6zJpGzUUEyC
+	 T26+rNYnGN8xskJXGwB1VOyyY3QiARttScBdFmn0v8jv1zDRi+8YaFJmm6lYTeaK22
+	 qBrbS+FirE53Q==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <51281e19fe2955cb10ffb77b62b0d7738e9b5a93.1770382796.git.antoniu.miclaus@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 06 Feb 2026 19:26:45 +0530
+Message-Id: <DG7XJ6T9I7HU.1UVHH2QWX31O1@disroot.org>
+To: "Rob Herring" <robh@kernel.org>, "Kaustabh Chakraborty"
+ <kauschluss@disroot.org>
+Cc: "Lee Jones" <lee@kernel.org>, "Pavel Machek" <pavel@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "MyungJoo Ham" <myungjoo.ham@samsung.com>, "Chanwoo
+ Choi" <cw00.choi@samsung.com>, "Sebastian Reichel" <sre@kernel.org>,
+ "Krzysztof Kozlowski" <krzk@kernel.org>, =?utf-8?q?Andr=C3=A9_Draszik?=
+ <andre.draszik@linaro.org>, "Alexandre Belloni"
+ <alexandre.belloni@bootlin.com>, "Jonathan Corbet" <corbet@lwn.net>, "Shuah
+ Khan" <skhan@linuxfoundation.org>, <linux-leds@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-pm@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
+ <linux-rtc@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: Re: [PATCH v2 02/12] dt-bindings: leds: document Samsung S2M series
+ PMIC RGB LED device
+From: "Kaustabh Chakraborty" <kauschluss@disroot.org>
+References: <20260126-s2mu005-pmic-v2-0-78f1a75f547a@disroot.org>
+ <20260126-s2mu005-pmic-v2-2-78f1a75f547a@disroot.org>
+ <20260206133837.GA157817-robh@kernel.org>
+In-Reply-To: <20260206133837.GA157817-robh@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263374-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-263375-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[disroot.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: 9CB11FE7F4
+	NEURAL_HAM(-0.00)[-0.995];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:email,disroot.org:dkim,disroot.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: 612ADFE87B
 X-Rspamd-Action: no action
 
-On Fri, Feb 06, 2026 at 03:08:21PM +0200, Antoniu Miclaus wrote:
-> Add support for AD4082 20-bit SAR ADC. The AD4082 has the same
-> resolution as AD4080 (20-bit) but differs in LVDS CNV clock count
-> maximum (8 vs 7).
+On 2026-02-06 07:38 -06:00, Rob Herring wrote:
+> On Mon, Jan 26, 2026 at 12:37:09AM +0530, Kaustabh Chakraborty wrote:
+>> Certain Samsung S2M series PMICs have a three-channel LED device with
+>> independent brightness control for each channel, typically used as
+>> status indicators in mobile phones. Document the devicetree schema from
+>> this device.
+>>=20
+>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+>> ---
+>>  .../bindings/leds/samsung,s2mu005-rgb.yaml         | 34 +++++++++++++++=
++++++++
+>>  1 file changed, 34 insertions(+)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/leds/samsung,s2mu005-rgb.=
+yaml b/Documentation/devicetree/bindings/leds/samsung,s2mu005-rgb.yaml
+>> new file mode 100644
+>> index 0000000000000..6806b6d869ff7
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/leds/samsung,s2mu005-rgb.yaml
+>> @@ -0,0 +1,34 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/leds/samsung,s2mu005-rgb.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: RGB LED Controller for Samsung S2M series PMICs
+>> +
+>> +maintainers:
+>> +  - Kaustabh Chakraborty <kauschluss@disroot.org>
+>> +
+>> +description: |
+>> +  The Samsung S2M series PMIC RGB LED is a three-channel LED device wit=
+h
+>> +  8-bit brightness control for each channel, typically used as status
+>> +  indicators in mobile phones.
+>> +
+>> +  This is a part of device tree bindings for S2M and S5M family of Powe=
+r
+>> +  Management IC (PMIC).
+>> +
+>> +  See also Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml f=
+or
+>> +  additional information and example.
+>> +
+>> +allOf:
+>> +  - $ref: common.yaml#
+>
+> This looks a bit lacking. Don't you need 3 child nodes for each or=20
+> reference to the multi-color schema?
 
-> Changes:
-> - Add AD4082_CHIP_ID definition (0x0052)
-> - Create ad4082_channel with 20-bit resolution and 32-bit storage
-> - Add ad4082_chip_info with lvds_cnv_clk_cnt_max = 8
-> - Register AD4082 in device ID and OF match tables
+	rgb {
+		compatible =3D "samsung,s2mu005-rgb";
+		label =3D "notification:rgb:indicator";
+		color =3D <LED_COLOR_ID_RGB>;
+		function =3D LED_FUNCTION_INDICATOR;
+		linux,default-trigger =3D "pattern";
+	};
 
-TBH, I think this section is too much for the commit message...
-
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-
-...and just as good to be placed here.
-
-Otherwise, LGTM,
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - samsung,s2mu005-rgb
+>> +
+>> +required:
+>> +  - compatible
+>> +
+>> +unevaluatedProperties: false
+>>=20
+>> --=20
+>> 2.52.0
+>>=20
 
 
