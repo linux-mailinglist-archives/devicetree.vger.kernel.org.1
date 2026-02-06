@@ -1,280 +1,307 @@
-Return-Path: <devicetree+bounces-263500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263501-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id bM9CBNVAhmmbLQQAu9opvQ
-	(envelope-from <devicetree+bounces-263500-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 20:28:21 +0100
+	id kPleCPdAhmmbLQQAu9opvQ
+	(envelope-from <devicetree+bounces-263501-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 20:28:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B016102BD0
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 20:28:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71221102BDF
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 20:28:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 72906300D178
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 19:23:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D493C30037E8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 19:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25FA928725F;
-	Fri,  6 Feb 2026 19:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4238D30649C;
+	Fri,  6 Feb 2026 19:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sv5/tgwB"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="LsS8s50s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010058.outbound.protection.outlook.com [52.101.201.58])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013060.outbound.protection.outlook.com [40.107.159.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD0CA23D7E3;
-	Fri,  6 Feb 2026 19:23:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.58
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B45C4302CBA;
+	Fri,  6 Feb 2026 19:24:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.60
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770405798; cv=fail; b=mEbbkNdQm0j1AClik1KWFdKNCx/YaIuJCzoaNh8WRDg0fCZ3KpLJl+xIjU1UOOOOKP7fgo5IHM7M+yLQpISFAjTHtjefp6ZU70QVfz8dbkFxp9yZ81RAPkfXw1X4+S+/5VK9HFmCZh292BjWZUCJoTQDTEpCs4lgwnXxl0WWdJ8=
+	t=1770405882; cv=fail; b=DvN1KzMxZyDQYaejq7k3o2awMT5ApEzN1RsqY70hltKhbRD3DmzfJsue3Zf/vRxZvcw4hXgBiASxfPfCctl4uUnl+bi0nPq1VxNKXw5hUW2jSKwCZQ5+Wm22RvXSsl0HCEEp40BNW3rJsP2demBFUn3eMW7PmDImftRIxQJl8fc=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770405798; c=relaxed/simple;
-	bh=IAZYNFsPuIpFD8fRCkGl+6MG6dJVcPq7/iFItG+nHus=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=jQB5wGl00KhmjaHvdlNTKWbXZ98TMWDzG4wZgC3wk8EBFjk+myuhob/Bak0p6dPhTKsVi8h6OfgL6m4LG4xtJLzORxkJxqqnCUh3Z6T991eUGG+Ha6Usx4ozJEtjiLGKKgdcOMeompeBcvJxopWQPB637XoBV6FCRTrMP+qbNi8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sv5/tgwB; arc=fail smtp.client-ip=52.101.201.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+	s=arc-20240116; t=1770405882; c=relaxed/simple;
+	bh=sbHs4uQ3q1K/Qocrc9vtjA6ZoeeCxXHPcHpDuXPs9Ok=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=ruUBfDmG3cxodMkovg6pRUSVitc0a+XBJ/QmdZ01kM0ceIssNgvLA9IrgpUhC8xyQtnFL5IL2yZj0JxprGCG4GrYJvIC1Xr/kq90rShUKXBl18q7x3MV4pDyEgsgZbemosC/EmoOs2hiznPz/Ad9hl3P8nRDlGJ3gKTSvkzFS3Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=LsS8s50s; arc=fail smtp.client-ip=40.107.159.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PFoxLQbRn32+g6MkxORbNVdU3pHCxYr7zusHmiZ3NDJzEXO3+mv90bEDrnb1vPdAqcRBsffSj+e2lVcjPo8bFdCYgm+kKg7qM/fVuvUu4T9F1TRP9aPkG9MkqN0xbbN5XdSMdW3a2c8UDO6HOUk8qQ+4inCye2B7IkQ4RzJJPEyKgSVKoo3DknIvdcpSpz/nHrMY0jlhZHZtwyH0iMByRD5APR2wpOpoLSk30mrl7scw0v+lJz3OewSCIFvY6Ua1O2NchtHZWkA52KVkOmw0uJia0hCJ6AdpAmKa2wRs0WtIYqjRCDWmjQIQbYqL3wReitzMa5Tu9AWqu4uMyUjMKA==
+ b=MQd7uWfqP2GweoelBCUSesYT6bYgHkzehDCog7ZbcYoUToGjwb9yW11fHXtcw4NVpQjBKTE0wE8qo8E9VWuPUfcz4kbHhjaQvAzgf4rf/b+TFriZlh/CjbnaqAv/aJmoIveHEQDFvSnvYf8Z6zB000NUam6mbGkFBxT6DwWNd/8kLu3KnhzaopwIj0L/3YydWYmLLZ85wTjHOGjU47poIfFFatuq20r9e6IDSxhkuwHuMHDxvqJts8s69eayxiz9ujUoIaIVq66aCM8ciKb7ejsckK2GJl1vpu6lm59gb3XLoVgdHwT3ldJ9TEASdEQk5rFcEecbamiyGZ8UHaP1eA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cgoOM6lAV3k64IYQQGV5llq9GZJioKG2YUcoxIP9IyU=;
- b=ut5DMmMYzFc+upMjZl55pVjYwgsN7kLnWFOsXLGwE3K5iljZ35Q2lLyqqAECsnzyXqlcgNSU7cJqL/HBitNifSacsYKOI3I9WMEi581PPOWZpzJPK9Mrz/GNeSPE5xbzWksnfzK9jUq6wlDN0xwxY4BaZU9DD7h0zHWqxrQIV9WvKgSFXr2kGw7goBREyaTafjDAL1GBQgm/nm2IC03Z82Pt83WpDsAU7F9lW8Rd/5IyMnHZYopzqH4GJ/zkCc7PLe6b/aBLK5lHx/Os0F59rR9WKHuXV/qQWhR3MggMRlGCqdo4XMXQ8pvOW8KcvYiMA7YXMgDTlQG5Wj2dNArIpQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ bh=1EvuhBNQK6DTDG1Le8Xam3LIRzr1H4LhR5FGvoX4GGU=;
+ b=Csxee6t3eiflUC95Q2kW1lcJepywbdptmYan0YqPD/ZFe/CbFdhJ5CvUlilGZRicAEyxV2q9giKdqePcVef4hOazcDOwxOHq0ra4V3clkEjL85RL7AuTUzZZONzpy3/htY/d4u5MDdPklwWzZUwW4JtOcrbMYuF/hevgabSFcC59961xaYXX+QztJ0SXd2wxc+0ciz9hsYxjmMrMW4XRthqMKwgNmCP+Zyx4LxJfQWFn7Vc4Fxxk/wdvvulwlhi/Ou7mO5+OdK2cZZLw4hgF9VzNl9v1UdUxqAQLR5QFBWZlF8hWOVnyoFfl293dZNGgQR3vWrMu0gYfqNLv2isWuw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cgoOM6lAV3k64IYQQGV5llq9GZJioKG2YUcoxIP9IyU=;
- b=sv5/tgwBFIrGWx/T9wAZLq25hhL2dbLhjmV2M8dFyqujakuJKWCQi7I8ZytPG9TvHkjxAqWwcr7+klNIRaI9R/vgJ1J/AfFAMkvBSOEvPqJGeZoHKZ5qoW4v7RUh9u/9k0or2bliT5WWf14MK88x1f9sRBKALWjZkHX+BxP/l/s=
-Received: from SN6PR2101CA0005.namprd21.prod.outlook.com
- (2603:10b6:805:106::15) by DS7PR10MB5184.namprd10.prod.outlook.com
- (2603:10b6:5:38e::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.15; Fri, 6 Feb
- 2026 19:23:14 +0000
-Received: from SA2PEPF00001508.namprd04.prod.outlook.com
- (2603:10b6:805:106:cafe::bf) by SN6PR2101CA0005.outlook.office365.com
- (2603:10b6:805:106::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9611.3 via Frontend Transport; Fri, 6
- Feb 2026 19:23:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- SA2PEPF00001508.mail.protection.outlook.com (10.167.242.40) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.10 via Frontend Transport; Fri, 6 Feb 2026 19:23:13 +0000
-Received: from DLEE215.ent.ti.com (157.170.170.118) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 6 Feb
- 2026 13:23:11 -0600
-Received: from DLEE205.ent.ti.com (157.170.170.85) by DLEE215.ent.ti.com
- (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 6 Feb
- 2026 13:23:11 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE205.ent.ti.com
- (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 6 Feb 2026 13:23:11 -0600
-Received: from [172.24.233.254] (santhoshkumark.dhcp.ti.com [172.24.233.254])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 616JN6J51835842;
-	Fri, 6 Feb 2026 13:23:06 -0600
-Message-ID: <fc8d1ac0-c713-40ee-b818-47548f9d1818@ti.com>
-Date: Sat, 7 Feb 2026 00:53:05 +0530
+ bh=1EvuhBNQK6DTDG1Le8Xam3LIRzr1H4LhR5FGvoX4GGU=;
+ b=LsS8s50sNChUweEHvZqJZIsSpdn+jbJ4of/a4GYGuSYhgSxUMX3C22bG6V9jDMJDpOdEFACQH4FycnO75OcmEcFE2bUI9hF2gxGCPoMyX3sUbdVRh+FFgk3EIW5ZjzlqZqDDfqCCiYBjGVdm31w7F22w+s9pylJuxxo/JBu1wR2MSSleeKYP0F3cVd2kUVVTTtAwIdXs1QPmlOF9VxZkAyShKDEeY142YOcnrkISsPElIfWOBTxlX0NNi7m02cDTpDQHITQsSN2ZeFhwWXrYZIJ8JJ72cb2aRCwk3xlnkZglf+IJM0Sco8rPjVvNOl0hSa+y9pvdrKAPuBhdYJ10qA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by DU4PR04MB10402.eurprd04.prod.outlook.com (2603:10a6:10:55b::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.13; Fri, 6 Feb
+ 2026 19:24:39 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Fri, 6 Feb 2026
+ 19:24:39 +0000
+Date: Fri, 6 Feb 2026 14:24:31 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Md Sadre Alam <quic_mdalam@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
+	Frank.Li@kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	dmaengine@vger.kernel.org, quic_varada@quicinc.com
+Subject: Re: [PATCH v4 1/7] dma: qcom: bam_dma: Fix command element mask
+ field for BAM v1.6.0+
+Message-ID: <aYY_72kT63lH1h2r@lizhi-Precision-Tower-5810>
+References: <20260206100202.413834-1-quic_mdalam@quicinc.com>
+ <20260206100202.413834-2-quic_mdalam@quicinc.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260206100202.413834-2-quic_mdalam@quicinc.com>
+X-ClientProxiedBy: PH1PEPF000132ED.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:518:1::32) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 03/12] mtd: spinand: perform controller tuning
- during probe
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-CC: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <richard@nod.at>, <vigneshr@ti.com>,
-	<tudor.ambarus@linaro.org>, <pratyush@kernel.org>, <mwalle@kernel.org>,
-	<linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-	<praneeth@ti.com>, <u-kumar1@ti.com>, <p-mantena@ti.com>, <a-dutta@ti.com>,
-	<s-k6@ti.com>
-References: <20260113141617.1905039-1-s-k6@ti.com>
- <20260113141617.1905039-4-s-k6@ti.com> <87tsvvgkks.fsf@bootlin.com>
-Content-Language: en-US
-From: Santhosh Kumar K <s-k6@ti.com>
-In-Reply-To: <87tsvvgkks.fsf@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00001508:EE_|DS7PR10MB5184:EE_
-X-MS-Office365-Filtering-Correlation-Id: df51f4a3-eb77-4a09-8265-08de65b52c4f
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DU4PR04MB10402:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7f0d43f3-767e-4365-4ba2-08de65b55ee2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|82310400026|376014|7416014;
+	BCL:0;ARA:13230040|52116014|7416014|376014|1800799024|19092799006|366016|38350700014|7053199007;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TEVsSTIrajVub1BJU2d5OCtIQkU3dmpLSDZrOElzNkJOdCtodFdnd01GYzIy?=
- =?utf-8?B?RWpDK1JpYnVyWVBMOG9tbHNUOU93ZWsvWXpvOHZaVUt2UmhZSFpGSU5ocC9V?=
- =?utf-8?B?RFZJbUhqMkdUTDZzN2t5N3BwOTFTNEtTT2VpUzFENk5LUVp0Rm16aEZVODNi?=
- =?utf-8?B?YTh4OU1pRnpDdTNyM1VZMnVsaURKMVVCWkVrYmszZFF6cHZQOUdXRUJqbDky?=
- =?utf-8?B?ZGdGTTMwZnFIY0xmZmU2d25ENUprWjFTbTQ3MzhTZ2VTUmt3MXJHSG5LRzNC?=
- =?utf-8?B?TzhWU0Z6WW9lK3NMZjg2VkJiR29oV2JrcmY5MFdoeEpndUFtemlSSG9WeEpp?=
- =?utf-8?B?anIwMURtZk80a09LRGhKUjdxS1FJenExVkRmUTlLMW9zclFjSmQxK2xMNWxZ?=
- =?utf-8?B?QVh4ZVl4MjQ0Ukd5RHdBc1YzZEZ6TXluTmpkNjk4MDB1Q3hxU0NEdGljM2pp?=
- =?utf-8?B?WWVtWDlaN1UvNEthVEllVlpWM1IvZ1RPYzdNcG1VY21jeTFTODN2MmRPYzlH?=
- =?utf-8?B?WnA3dDh4enZkWGN3eDAyTGtSNFh4OWZWZE5YL1ZGYlROaXZCaTNKSVljUnNa?=
- =?utf-8?B?Q1NGbUtJNUExTjdJa2U0c3pkOU9VTWhqcDhYcUU0dThsYnlEOUpsMWFuKzBM?=
- =?utf-8?B?K0tjckFtUnFWMytuN0U5NEE0TCtnRDE2eHJTWVdRY2htbzl0KzN6dkEyUENx?=
- =?utf-8?B?THpreEIySmNjQTV0WkdzNmtJclR6M1BZOGJPakV5UEVvWGtOVWVFMDAwQlN4?=
- =?utf-8?B?b2ViWlB2VTZiYUxtd3IrMkRxNTlKUHZjMDE5ZXdzLzJVSWtiSXg5Vlp1U3E4?=
- =?utf-8?B?SE4zM0xFTUlyQmpLYml4VGtUdVZzWG1vNU12VXFtaVE0dkxtcy9pV3c5Rlhi?=
- =?utf-8?B?NE1SQjlCUHIyaEZqaWpCcENnUUs5czBYSThCL25nem1kVVpGNVNvUEVuanlQ?=
- =?utf-8?B?cVEwTThzL1Q1STRhUlVET01acjdUSm13YXFGeHV4Q3g2SC9Vb1V5alVTMXNX?=
- =?utf-8?B?NXJ3ZnUxdkJ4c0c4cEh4WktvMFRWOFZWU3NpR2FDanNBOFAxMk1HSC91dDVX?=
- =?utf-8?B?Tlh4eTdXOWFPUXdhR3I2QXNZamdvR05acEhyeFkyOWV4bG9xRkhGWldTVXV6?=
- =?utf-8?B?UEJjUnd6aUQvdzRhdFpHMXQzL2txdmtZNEFKc3AzWnVzcmoxa0k4MzN2VGxJ?=
- =?utf-8?B?Szk3djFBcWtob2R2NlA5VG9SOFZGUzNobUo3ZjJFTFhsckRIWXU1UUkrcFVF?=
- =?utf-8?B?bkt1aS9JeVJ2ZTExK3JyQ0pvb3RXWHlyY0cwWXdhUEoyVmEzellnNlQ4MXF1?=
- =?utf-8?B?VHJEdGVQNnowaDFldkdvT0ZiMkxqUkZPRkdXMUIyRVp3c3JJbWF3Zk5CeXly?=
- =?utf-8?B?SHU5RzBEaWhvblZoR1FjcWJuVUExV2NYemV4NDRlZnB0NnlyUjIrN1FBdE9D?=
- =?utf-8?B?T24wcE5iNjg3Y1RLQUFRUU9FKzJ0cWtQWGlnMUlSYUV0QXRnNDQ0NmQrc0hJ?=
- =?utf-8?B?WEpHNmM1WThPTXlNTURRVXFuUk5ZbDVndSt1VmJueVVZOGZJamFjMVFneEt2?=
- =?utf-8?B?UFlMNS8xcEN1c1ozOEVXWGVBQmlHV2FFN1F0aXkzUHpqclB6cjJxa0V0bnlM?=
- =?utf-8?B?N3ZMeTdqQWRpcHh5VGViZ252VzBFVXF1UXlWUzBlTTI5Tlh2dmx2VzVwZ3Jz?=
- =?utf-8?B?VWgvNkx0aVFwckZ4OW1jM1hzeFFIV2tJeXFmOXk1WXBXa1Zad2hUZkRoRmts?=
- =?utf-8?B?NlZEallnekhSN0xVNUxOMW9qM2p3L0RVUThVVHVzejhacGJ0TVgzbnJpaGRv?=
- =?utf-8?B?c0JxeVlmbWgzM1k5MWVlZE9iWlN6ZWRacFJ0cDNWb1pudERuVmtJV1ZucHV4?=
- =?utf-8?B?alBEV2xOb2w0STk1RHRxRS9WYmlURDcrelk2Ym1iem05TFptL2VKcWZrRGFo?=
- =?utf-8?B?OXNZckFlclR2QjR2VjM2Y0llcmdaKzNFK2g1VGZRRnl1T3lCK2c0ZkVlT2ll?=
- =?utf-8?B?UW5oQzk3WThJYTZPZzZ6WldBZFhOTlpaMkF6OEJQVU8zWHZncCsyek1ydCtk?=
- =?utf-8?B?ek9UakVvaVIvOU0vY0dMYTFtSjlra1ZGWmNUM0pLWHRlc2VvQlUrWmFmNmpM?=
- =?utf-8?B?SkVoWFpBOXN4dHR5c1A5Yzc2dVpLT2hPdXFjR2xobjBsVTV2VWoxRlRQKzE5?=
- =?utf-8?B?WVYvbmFHaWJGS1lCTXYxNGZHSnp6aU8yejFURDlOdWtUM2RyVFY0UHRheFZK?=
- =?utf-8?B?N1VUaEpSV1VXZkJnWjNPWDN5ejN3PT0=?=
+	=?us-ascii?Q?91oKj6M0v5tMeRLQzDKuAHICWmVV+ZNwQ+RCYR6Wc9zItfeEcywNrXX6akfM?=
+ =?us-ascii?Q?b9dbAit3FqTq7k9iKJcEO0Gc0PMAGPJ5D6Yc3nv0IAbLndVmQ9eg9FMzXJoV?=
+ =?us-ascii?Q?MZESW4aqSvy6FrXQch3Io8NsLlIojcXSOyNKx2Lhq2mppPHdFlhEIDs1GtjV?=
+ =?us-ascii?Q?TUE/DW0XSegMI9WRVmKyFCfy8hIOKIePkIR4IkVRFmdjYy4/4d0bNe6bQycK?=
+ =?us-ascii?Q?4zhzLkLWmW8h1NfKnXC1ehGAyTe/7mouJzT0wfGri9O/ZFbu1cUfWEGxRhfJ?=
+ =?us-ascii?Q?zhlD2dyq1xsVtqZpJe7CSk37nPW2QgLaXsQr7Rtj04st8SSgNZMCy0nBJ/9S?=
+ =?us-ascii?Q?8s3TTAzMiwTrGp/vwT5Zfw303A8KPSyJY3Y5rgWII2fnIWQfPzriTvVQA3Jx?=
+ =?us-ascii?Q?p0znMmdIz8EBXx25oG0aAgP/Sx1aP8vvTjIc1wbpym8FA2xI5EEZahH85u9y?=
+ =?us-ascii?Q?/R74kV4OU3QK0PIPnEIrb/u979Txh/L3yd77X0h7gBv7HTOkuMrnVuDFum4s?=
+ =?us-ascii?Q?5VWKMepHpIIJuROgAxh8xDBj0D6JVVmhx8yoJ4pR6Q7oj3BxmIbSVWdjKe8c?=
+ =?us-ascii?Q?LDv+p4OXGTHpHkOpWkIwHV9e5t9jLQ9WXsBbcAOAG5MoJF7JkllTe0Nrl+N9?=
+ =?us-ascii?Q?ZaxtVmIfr4IJ0q58i3eV0dTOzCKqPsgzXWXepR901u87adhrBMRiPjoKZ4ym?=
+ =?us-ascii?Q?64X9Ha40l2UrHf3aCNekHZX+w9zz4pFZjF+1QHfA2r5lqIkLPHER85bgYkZy?=
+ =?us-ascii?Q?aG3oGot1rZ6wjQ21agxwxBgi7M0Y0gewkr6pO0y8sivmkSHwJuaHu9zAxSPC?=
+ =?us-ascii?Q?2BDqtE8Rdc8+S9hKxLqGWw+0iJyDiKFg0DyD/tdQiNfuMUZdfV5Pv/Z1qKO2?=
+ =?us-ascii?Q?mFPZmy6Jv3hNNj3TK7gn4que1eil+73cY7FfI9fiy0pq3Dq+xKu82fHtzFn8?=
+ =?us-ascii?Q?8UKPjpJ6czqoNp6CYK3M3nnG8Y2lB9l3ZEiyTyjBBLvWduv0kGDSHMMb0XXW?=
+ =?us-ascii?Q?gD/hAYz5na69AcNQKkVEbkyVZguJ6KCeOQZMrH0/KhFuYBglXzsx3RHQmKMb?=
+ =?us-ascii?Q?jN7YVX57ngjNuUlV55YBU7R7b6FSOrGu6ISSM4RYm69kAxVZk5VbF1+1qweE?=
+ =?us-ascii?Q?fhAov0ffi2widnNgEaGtcoLZaOxnlcBIlr/eOI+bGYxUtWiuvN1yqW8xU8WB?=
+ =?us-ascii?Q?DwLxTgiKrkPJ5EvzYfpRN3x/pb2zCJs9ubq8DJ57UWGHcg6cQrNoocF58EwE?=
+ =?us-ascii?Q?17voe3f0MiSms21mHbXrRPT5jG3pzMxGrf5q7MXe2b3b8QmhtaFcs5Jl0Hch?=
+ =?us-ascii?Q?gjUtjJaw2TDboO+0xdWQd4IXMSxJ+xbzQzkR+uBtDocPRNLgm7UlW+KC6R8E?=
+ =?us-ascii?Q?/LPkEHN5qAj780NZVDW6LxXp3w8YGGXX2cWZPaF4bUQOTGCZHmxkTM0hCLjV?=
+ =?us-ascii?Q?UlWTvFTfKYlUozuOpTvRssqM+3fT1BGIvKdnW/6oRAHdk41ax3Iw3GDGHBQI?=
+ =?us-ascii?Q?3pB4H4+TRKLFLiDflM0b7IExlNlUNmjShja4QH8uWqi8veerkSg0PLhI53Io?=
+ =?us-ascii?Q?VnIuhf2S/vtVLZrlgvmEM/V7Ur7AFPasssRiUxJjJW/EAGIhs6qbAtLZbzkK?=
+ =?us-ascii?Q?btvn/IapTN/QdToF0TQbqEg=3D?=
 X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014)(7416014);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(1800799024)(19092799006)(366016)(38350700014)(7053199007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	d0BTbG3IPxfD1Odg+20owAN3l30ZZr1WdMZPBcKhuOkc2F6M2SessOqzqEEsatOpviRsdzpjsj31YfBb2LiIryMDTwQMQUcoJd1iMZghLswGeE05PfRpi+oz7vIN5xG7MCoRgHVsA/xE3xVuVgOYJLPNkstvu0WivG2E/xXUaR5mPeQaoLm5wcDhKqX6v+evqQDKnvtItRSfJokKxOlQSmZPexvSsL0PQ5s2ICz5bDnHZeaWVELUsG4/0sRJsde0TJifJF8u+in6CknGCvPLvxQxSss8WH8+nA5YN5UXh47mO8mWbc/HwYmiDiGR+qltlfvPHSIwAVYqiACL0mTQCtk5skfOBSbxylh60nI/mVYTWqHRCK6eE4Ei8/6Q/hrH4Wr+vtu81F/JYL6h41F+mADkluWr0aT99RMqS9EGR0/S4R0I0+m6xe7Xe8X+iwTi
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 19:23:13.9375
+	=?us-ascii?Q?o81GObGtU8QSnAbq24iOtgrDla5v8nvjYCgT9BZhA3HTsjXaLPulXWwVP6Ud?=
+ =?us-ascii?Q?9FQ4KatA9NMEoFzvnVKrRRpaJJ/sgC76Mlw4Vf/miyibG2T2s0QgUm6q7Jnc?=
+ =?us-ascii?Q?zBRyiB02NFi/fnuurisM/M1rH0PsoDPfXHplrbnmZ4BoNthK8WhXE19/s4jj?=
+ =?us-ascii?Q?4EbZlZo1rN115AWg/QkaUg85ZJbURhMS9k/j77s+l5Yop+5trrC7BnKhww9R?=
+ =?us-ascii?Q?QaTY8EZSXXOPyfj3ASqUBG/kp69ASE3N+tHM69ZJ5Io2jV5Vlj3drm3p/k7y?=
+ =?us-ascii?Q?QYic5DJrQsW1K1FJfRrsnAxhw+lOD3OjXO5y2CjKIpuH1WYK3F4Ggryudsq1?=
+ =?us-ascii?Q?6YjsfDlLtNXsA9hP3WsaEZRJAbYp7hKlvGyNsWeW/2oCYB09U1BoxKwxXs5R?=
+ =?us-ascii?Q?nQrb+xflxMfBvXBAKmJH8UdOMFuKPpnmphsFltgpoC0jCMQVwM77bZc3eh97?=
+ =?us-ascii?Q?qIx1FnmSMI99HCpUjldWRJNB3Www2NnNEGf/uv9dDtpIJgOGC/EM+vjI6hyd?=
+ =?us-ascii?Q?1LtWg57zBvy0dAq3ScqIsRDxFOPa8JGlXR7yhaLqgbAD9bxQyGE+c7eyZGAs?=
+ =?us-ascii?Q?cgh8QEM+G1UXoxyTUP+BTu0ZydD2AW+YD6et0Ja8LltYtvzqhXXAXh2AbeQW?=
+ =?us-ascii?Q?TewEZYM57J02kiLJ1vihGloNKXSSUpM2APRFZz71A4u1QttGpGCWEbBs8oBg?=
+ =?us-ascii?Q?zf6zKmF+Nq55Cu4gpkQW1E7DgOYPFL0hDarxQhCRHmEYOLTZ1KczKp6vdTBY?=
+ =?us-ascii?Q?LlNtLykRK7C3L6Dhew03wJly4IM+R1XUxwRqBJ1yVQ/x8OMZMJYEJAj9pc6L?=
+ =?us-ascii?Q?pWJXa/CzjYyN2ZWKNnMXCNrI081P8LKcrwLCAAYWVaM/CzTlwkn0Xg7+itRh?=
+ =?us-ascii?Q?sIq6XPCbQ9jbSDSbaRwMDZVzRdyn8W7MoMra/nZXy+DiF6Hy47j14mgpJemd?=
+ =?us-ascii?Q?58bBW3rEwyUVHQHOG/WMY68mvvzPdJcu5+W0WODeba6guxT5kCKJ/TDYUN1b?=
+ =?us-ascii?Q?Sq91VPD4wMmAZRtmn5x3a5hC6RKJUrUEHruUkEpfRbYkM5i3wimRu+LhbzhL?=
+ =?us-ascii?Q?8RfD1vWww4e3LdpKCALYAJ7C4+tNumz/KgEWB6zHSGkLsgj+kvQURErt2z56?=
+ =?us-ascii?Q?pUSAFiE6JNYpORh52CBDJ2HknRi49LQfb504DrLFxJ5H+W2IM4V4q+Tbmpc5?=
+ =?us-ascii?Q?VU7fopsZosFK2HEUi148mRkwsQCXR69BA5m77wjpkBK9iQ3mOBFDkxwBFiYf?=
+ =?us-ascii?Q?LOHCQi2hbatjKU2XKb46V6GXUuKSB6Chct+NMR1aiDjTXerO5GHI7DxdCst3?=
+ =?us-ascii?Q?x3W1BFWsELjBcwh1/YDky91SErpKbgqik84CKGkgHk+YrOYaOo4+SoBXUBkk?=
+ =?us-ascii?Q?XpBjQCF/t2BNgUmbOw5lTQIYI//79VjEpmtRq/xJh0l6HoQT/yjj1rRxab1Z?=
+ =?us-ascii?Q?HItchuxpmi43mNx8fGZUttc5xFz1or6X6H4LFcR3XagZHc90IBFvqufecQHp?=
+ =?us-ascii?Q?6T41DS405xDiKi2c2G4eJOGS1q3bzoMv3mDruOOTSruiyyRT4M/S56ozQFkx?=
+ =?us-ascii?Q?3k6nmWNpCDiOMpwykv7ISxVdlwZnYJQrEjKGISYYMMOAOmLo284/nzSCzzbm?=
+ =?us-ascii?Q?j7AcTLt0aIIbYFwlMacs6lns8VS/pP9Oxe0Tv3xaKjOKuTAespK690TUwsyQ?=
+ =?us-ascii?Q?XNqDuVjq51osOnDWKrzrCJw/0ST9B3p0w6DBMSJK8q5zRt5c?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f0d43f3-767e-4365-4ba2-08de65b55ee2
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 19:24:39.0246
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: df51f4a3-eb77-4a09-8265-08de65b52c4f
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SA2PEPF00001508.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB5184
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NgqBMppN0F6gz3XAg8zUXk7dLNhKY5McYegIs+XsopgNgw4YrB8JEn5BoQIIoZnWDY4p1LDPw5WG/zHEx9MlIw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10402
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TAGGED_FROM(0.00)[bounces-263500-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263501-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,ti.com:dkim,ti.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[s-k6@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	NEURAL_HAM(-0.00)[-0.967];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	NEURAL_HAM(-0.00)[-0.959];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 7B016102BD0
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 71221102BDF
 X-Rspamd-Action: no action
 
-Hi Miquel,
+On Fri, Feb 06, 2026 at 03:31:56PM +0530, Md Sadre Alam wrote:
+> BAM version 1.6.0 and later changed the behavior of the mask field in
+> command elements for read operations. In newer BAM versions, the mask
+> field for read commands contains the upper 4 bits of the destination
+> address to support 36-bit addressing, while for write commands it
+> continues to function as a traditional write mask.
+>
+> This change causes NAND enumeration failures on platforms like IPQ5424
+> that use BAM v1.6.0+, because the current code sets mask=0xffffffff
+> for all commands. For read commands on newer BAM versions, this results
+> in the hardware interpreting the destination address as 0xf_xxxxxxxx
+> (invalid high memory) instead of the intended 0x0_xxxxxxxx address.
+>
+> Fixed this issue by:
+> 1. Updating the bam_cmd_element structure documentation to reflect the
+>    dual purpose of the mask field
+> 2. Modifying bam_prep_ce_le32() to set appropriate mask values based on
+>    command type:
+>    - For read commands: mask = 0 (32-bit addressing, upper bits = 0)
+>    - For write commands: mask = 0xffffffff (traditional write mask)
+> 3. Maintaining backward compatibility with older BAM versions
+>
+> This fix enables proper NAND functionality on IPQ5424 and other platforms
+> using BAM v1.6.0+ while preserving compatibility with existing systems.
+>
+> Tested-by: Lakshmi Sowjanya D <quic_laksd@quicinc.com>
+> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+> ---
+>
+> Change in [v4]
 
-On 05/02/26 23:05, Miquel Raynal wrote:
-> Hi Santhosh,
-> 
-> On 13/01/2026 at 19:46:08 +0530, Santhosh Kumar K <s-k6@ti.com> wrote:
-> 
->> SPI controllers may need tuning for reliable high-speed operation.
->> Without it, controllers use conservative timing that limits performance.
->>
->> Call spi_mem_execute_tuning() during probe to optimize timing for
->> the device's read and write operations. Failures are non-fatal as
->> controllers fall back to default timing.
->>
->> Signed-off-by: Santhosh Kumar K <s-k6@ti.com>
->> ---
->>   drivers/mtd/nand/spi/core.c | 14 ++++++++++++++
->>   1 file changed, 14 insertions(+)
->>
->> diff --git a/drivers/mtd/nand/spi/core.c b/drivers/mtd/nand/spi/core.c
->> index 0346916b032b..2a45d1047736 100644
->> --- a/drivers/mtd/nand/spi/core.c
->> +++ b/drivers/mtd/nand/spi/core.c
->> @@ -1658,6 +1658,7 @@ static int spinand_probe(struct spi_mem *mem)
->>   {
->>   	struct spinand_device *spinand;
->>   	struct mtd_info *mtd;
->> +	struct spi_mem_op read_op, write_op;
->>   	int ret;
->>   
->>   	spinand = devm_kzalloc(&mem->spi->dev, sizeof(*spinand),
->> @@ -1676,6 +1677,19 @@ static int spinand_probe(struct spi_mem *mem)
->>   	if (ret)
->>   		return ret;
->>   
->> +	read_op = *spinand->op_templates.read_cache;
->> +	write_op = *spinand->op_templates.write_cache;
-> 
-> These will become:
-> 
->   +	read_op = *spinand->op_templates->read_cache;
->   +	write_op = *spinand->op_templates->write_cache;
-> 
-> after rebasing on nand/next or next -rc1.
-
-Noted!
-
-> 
->> +
->> +	ret = spi_mem_execute_tuning(mem, &read_op, &write_op);
->> +	if (ret && ret != -EOPNOTSUPP) {
->> +		dev_warn(&mem->spi->dev, "Failed to execute PHY tuning: %d\n",
->> +			 ret);
->> +		/*
->> +		 * Tuning failure is non-fatal; the controller falls back to
->> +		 * default timing, reducing speed but ensuring operation.
->> +		 */
->> +	}
-> 
-> Can we move the comment before spi_mem_execute_timing()? Then no more
-> brackets needed and it will be easier to read (imo).
-
-Yeah, I agree on the readability concern - will move them in v3.
-
-Thanks,
-Santhosh.
-
-> 
-> LGTM otherwise.
-> 
-> Thanks,
-> Miquèl
-
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+>
+> * No change
+>
+> Change in [v3]
+>
+> * Added Tested-by tag
+>
+> Change in [v2]
+>
+> * No change
+>
+> Change in [v1]
+>
+> * Updated bam_prep_ce_le32() to set the mask field conditionally based on
+>   command type
+>
+> * Enhanced kernel-doc comments to clarify mask behavior for BAM v1.6.0+
+>
+>  include/linux/dma/qcom_bam_dma.h | 21 ++++++++++++++++-----
+>  1 file changed, 16 insertions(+), 5 deletions(-)
+>
+> diff --git a/include/linux/dma/qcom_bam_dma.h b/include/linux/dma/qcom_bam_dma.h
+> index 68fc0e643b1b..d9d07a9ab313 100644
+> --- a/include/linux/dma/qcom_bam_dma.h
+> +++ b/include/linux/dma/qcom_bam_dma.h
+> @@ -13,9 +13,12 @@
+>   * supported by BAM DMA Engine.
+>   *
+>   * @cmd_and_addr - upper 8 bits command and lower 24 bits register address.
+> - * @data - for write command: content to be written into peripheral register.
+> - *	   for read command: dest addr to write peripheral register value.
+> - * @mask - register mask.
+> + * @data - For write command: content to be written into peripheral register.
+> + *	   For read command: lower 32 bits of destination address.
+> + * @mask - For write command: register write mask.
+> + *	   For read command on BAM v1.6.0+: upper 4 bits of destination address.
+> + *	   For read command on BAM < v1.6.0: ignored by hardware.
+> + *	   Setting to 0 ensures 32-bit addressing compatibility.
+>   * @reserved - for future usage.
+>   *
+>   */
+> @@ -42,6 +45,10 @@ enum bam_command_type {
+>   * @addr: target address
+>   * @cmd: BAM command
+>   * @data: actual data for write and dest addr for read in le32
+> + *
+> + * For BAM v1.6.0+, the mask field behavior depends on command type:
+> + * - Write commands: mask = write mask (typically 0xffffffff)
+> + * - Read commands: mask = upper 4 bits of destination address (0 for 32-bit)
+>   */
+>  static inline void
+>  bam_prep_ce_le32(struct bam_cmd_element *bam_ce, u32 addr,
+> @@ -50,7 +57,11 @@ bam_prep_ce_le32(struct bam_cmd_element *bam_ce, u32 addr,
+>  	bam_ce->cmd_and_addr =
+>  		cpu_to_le32((addr & 0xffffff) | ((cmd & 0xff) << 24));
+>  	bam_ce->data = data;
+> -	bam_ce->mask = cpu_to_le32(0xffffffff);
+> +	if (cmd == BAM_READ_COMMAND)
+> +		bam_ce->mask = cpu_to_le32(0x0); /* 32-bit addressing */
+> +	else
+> +		bam_ce->mask = cpu_to_le32(0xffffffff); /* Write mask */
+> +	bam_ce->reserved = 0;
+>  }
+>
+>  /*
+> @@ -60,7 +71,7 @@ bam_prep_ce_le32(struct bam_cmd_element *bam_ce, u32 addr,
+>   * @bam_ce: BAM command element
+>   * @addr: target address
+>   * @cmd: BAM command
+> - * @data: actual data for write and dest addr for read
+> + * @data: actual data for write and destination address for read
+>   */
+>  static inline void
+>  bam_prep_ce(struct bam_cmd_element *bam_ce, u32 addr,
+> --
+> 2.34.1
+>
 
