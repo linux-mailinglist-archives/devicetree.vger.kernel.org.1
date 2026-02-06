@@ -1,67 +1,79 @@
-Return-Path: <devicetree+bounces-263393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263394-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mME/EcUBhmlhJAQAu9opvQ
-	(envelope-from <devicetree+bounces-263393-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 15:59:17 +0100
+	id eOcqNF4EhmmyJAQAu9opvQ
+	(envelope-from <devicetree+bounces-263394-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 16:10:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E61B8FF61B
-	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 15:59:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CD36FF80D
+	for <lists+devicetree@lfdr.de>; Fri, 06 Feb 2026 16:10:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E7E4630193B7
-	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 14:58:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CCC423021E77
+	for <lists+devicetree@lfdr.de>; Fri,  6 Feb 2026 15:05:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7204241B34B;
-	Fri,  6 Feb 2026 14:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0829F2798EA;
+	Fri,  6 Feb 2026 15:05:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rD33lXQx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WtS2+Nxh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F38521FF2E;
-	Fri,  6 Feb 2026 14:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D700027603A;
+	Fri,  6 Feb 2026 15:05:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770389912; cv=none; b=f3dlqpaONMT/W7Zp3qkNjmJWPg//sgrbr6XafERXCMquc1OQ8X10H2ThnSPHIstD8mScvtIndwPIjTqYToFhrzAOlC+hLP5jJmUNfOFTxd5MohTfvHeEABsjd2/FymDzxwRLkGWDnj344e0Bujl8Zwm1RDOu3Pt/BGjXQhYvXWM=
+	t=1770390349; cv=none; b=We0dhDD8KU9wMsUdyYulJF1hBtCTDsgu1LMbFsyVcKJkirCLr2onL9c519Pa2zBjrd6qNuv7taitHfoIe5TwC07zxBmMhFYoyIT5Q5bP/0F9FtLiKUlrjbP7/Cz7dV+D2l2TGf8fQmB8Lev/ZiTVzk7R6HlK9wkHD6IhQTBOa0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770389912; c=relaxed/simple;
-	bh=A7w99RlUohTzQbjniag2fcE+Kru5TGI2LXHZ+g9fFqc=;
+	s=arc-20240116; t=1770390349; c=relaxed/simple;
+	bh=RSB2OFRe/6/DcmzMzPHjQ+Zxxl5zXroyGePOEXEehJs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JyocnvDfgSg7p/own8MMBX13lJ3rjD+/VvkCMyfN0MsF79y22yY+LcR4Vni1CkgTzr0psfyZmGNa9VsRZPUXZ9GWXurBTZfM8BKIlzj5ALI5+gmoLsZVXfTysItFPqmRzEygW6ggwVoVzHwbBvnma/hxkHYj/aUtKMK0K7Wqn2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rD33lXQx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C12E6C116C6;
-	Fri,  6 Feb 2026 14:58:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PmDqz7kSSCnKKMtHaYc7Jx19l3kd/qMXDIXFmVoJX6mh38D3e+M0g7h2V/lZmzSv8kasoD45yPptgxp6NhQcVSnsXqvtgCBitvBc7T9IKu7PMsfyr0SJd+dynM/bmn520SKyF4L/LpsXRiM+ylCytqQTPxHI5hk83Vawz4E66aI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WtS2+Nxh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61D9CC19422;
+	Fri,  6 Feb 2026 15:05:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770389912;
-	bh=A7w99RlUohTzQbjniag2fcE+Kru5TGI2LXHZ+g9fFqc=;
+	s=k20201202; t=1770390349;
+	bh=RSB2OFRe/6/DcmzMzPHjQ+Zxxl5zXroyGePOEXEehJs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rD33lXQx5ZbnaKEuI7uEMJJnSP96Z1sGjyJ9++bwE3VUw9WB6R7+iJO/98tAqpbGH
-	 0QTnYyE7GzEABW/WdAK/HP2XwHWxbseklwiiranyrjOJSw1vKCEBhKrDIMH77izd1k
-	 Y0UogBrTdYHcWoC00E3CowxDWVzDPkn72Gzaa8DJOTvsSMUEbLlvld7vQZCXlGqBB9
-	 jVeX30A6Apsh0vYDGH3qor2zOUDOaVTD5tMi9JjkyKaeO1+rUGInPeUbIZcRFSSpDc
-	 YlWZTRLsh6U5BzG4ODIJqe3nqtJwrvoXhDPZPt6kdrTkm8O8qDJmrGqOYjHC2RUFcU
-	 x6phyRTD6U+8Q==
-Date: Fri, 6 Feb 2026 08:58:31 -0600
+	b=WtS2+Nxh55Adz0xYAf0PByzHQ6s6C/C9nq7MaYSOmHTfvsrH8peYshYKPMR1av/A1
+	 bNtZxlPTieyMxfR/oUu5tYkKnM1Is7YF8E5Q93LLJOhVIjLIrIdEVROjTAsuWAy4y1
+	 9YoxCQ0RJ2aWs9mpAH3fcLA4Bs9y6S80h01srWvaXtE64Aql6ya84wwWDzlQJCEeAA
+	 +Z+DungMjosbrvE1frGGvt8dtQQymTMVYPUD1Yt110TpF2luyRzlCdXd1X5r+3att/
+	 00dT60TBwiYTA5pZn848oEaCdRoJu43Or0HnQHzR7v8CMQhax8JYjn/CwmABdevwNK
+	 OF6JMHeAFfEqA==
+Date: Fri, 6 Feb 2026 09:05:48 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Taniya Das <taniya.das@oss.qualcomm.com>
-Cc: linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-	Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
-	devicetree@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Dmitry Baryshkov <lumag@kernel.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-usb@vger.kernel.org, linux-pci@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Imran Shaik <imran.shaik@oss.qualcomm.com>,
-	Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
 	Bjorn Andersson <andersson@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: qcom: document the Glymur GPU
- Clock Controller
-Message-ID: <177038991044.218483.745119211272432032.robh@kernel.org>
-References: <20260127-glymur_gpucc-v1-0-547334c81ba2@oss.qualcomm.com>
- <20260127-glymur_gpucc-v1-1-547334c81ba2@oss.qualcomm.com>
+	freedreno@lists.freedesktop.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	David Airlie <airlied@gmail.com>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	Rob Clark <robin.clark@oss.qualcomm.com>,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-arm-msm@vger.kernel.org,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Sean Paul <sean@poorly.run>, Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org, Simona Vetter <simona@ffwll.ch>
+Subject: Re: [PATCH v2 5/7] dt-bindings: arm: qcom: document the Ayaneo
+ Pocket S2
+Message-ID: <177039029875.225465.9560671235103288038.robh@kernel.org>
+References: <20260127-topic-sm8650-ayaneo-pocket-s2-base-v2-0-c55ec1b5d8bf@linaro.org>
+ <20260127-topic-sm8650-ayaneo-pocket-s2-base-v2-5-c55ec1b5d8bf@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,53 +82,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260127-glymur_gpucc-v1-1-547334c81ba2@oss.qualcomm.com>
+In-Reply-To: <20260127-topic-sm8650-ayaneo-pocket-s2-base-v2-5-c55ec1b5d8bf@linaro.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,somainline.org,vger.kernel.org,linux.dev,lists.freedesktop.org,linuxfoundation.org,gmail.com,google.com,oss.qualcomm.com,glider.be,poorly.run,ffwll.ch];
+	TAGGED_FROM(0.00)[bounces-263394-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263393-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: E61B8FF61B
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email]
+X-Rspamd-Queue-Id: 6CD36FF80D
 X-Rspamd-Action: no action
 
 
-On Tue, 27 Jan 2026 12:45:49 +0530, Taniya Das wrote:
-> Glymur SoC has Qualcomm GX(graphics) clock controller and also the
-> Graphics clock controller. The GX graphics clock controller helps in the
-> recovery of the Graphics subsystem.
+On Tue, 27 Jan 2026 10:57:32 +0100, Neil Armstrong wrote:
+> Document the Qualcomm SM8650 based Ayaneo Pocket S2 gaming console.
 > 
-> Add bindings documentation for the Glymur Graphics Clock and Graphics
-> power domain Controller for Glymur SoC.
-> 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  .../bindings/clock/qcom,kaanapali-gxclkctl.yaml    |  1 +
->  .../bindings/clock/qcom,sm8450-gpucc.yaml          |  4 +-
->  include/dt-bindings/clock/qcom,glymur-gpucc.h      | 51 ++++++++++++++++++++++
->  3 files changed, 55 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
