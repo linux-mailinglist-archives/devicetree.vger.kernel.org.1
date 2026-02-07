@@ -1,852 +1,188 @@
-Return-Path: <devicetree+bounces-263543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263544-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id xERwEKC2hmm+QQQAu9opvQ
-	(envelope-from <devicetree+bounces-263543-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 04:50:56 +0100
+	id vi9RCrG3hmnMQQQAu9opvQ
+	(envelope-from <devicetree+bounces-263544-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 04:55:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B37D8104CDF
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 04:50:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5960F104CFA
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 04:55:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 59928301585C
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 03:50:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A4BF8302837C
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 03:55:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A5727E07E;
-	Sat,  7 Feb 2026 03:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF7DD33554D;
+	Sat,  7 Feb 2026 03:55:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="gG0VN3oX"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="OC0itHKe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023104.outbound.protection.outlook.com [40.107.44.104])
+Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E64288AD;
-	Sat,  7 Feb 2026 03:50:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.104
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770436250; cv=fail; b=H6MADkNgO2CozORnuYwgAjqBS9o5AyYRvy83Tud7yLfar7OLKW0mRe3M/ffr/BQwhxT3TciEC1RFfvWDyU11MUzpBjtUcg+B0rzQpnd5Gt9fmsWmmzKOa7yexa+lPFmhboxwcAV4+Ozpk1IBeK3fG29dslTrZ7XbudTk9jkscRQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770436250; c=relaxed/simple;
-	bh=89qt2hxgT+pQdvQ+hQugSN/xFhqJYlAGvqYD6WcW5bM=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=jlCZY3H/68lddKMS+nq0BLHJt2Pp5o1zg8dAODHRa2qcVg0ttGBDEVm+J4e35IkifE1JqIiFa6Yc6oKnH4RpjOjtom1HwpAWYR0qZlN3w32TPRuK844Xmg3IWG2n+3/qUZcURqI24SP3R2zhlZsTplTMSvkTYsTAjMd2rPcGTdI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=gG0VN3oX; arc=fail smtp.client-ip=40.107.44.104
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YkMZh+hPDxINmhn/MHe5LyTc52VluSDdQFvuWVAlH47fWhvEYZeQcfLH4SY1uZWnvjoVY82a+Ayz+UgAiXrPgBypiSRRy1OKWPilMpJzRt5vSlHl+t3swD2x+lBuw5sQXhBLdC0e2TEfF5thd+1VD4oDRH0WC5z/TtqdY9o1T2PLtWxSMWt3At7Lac1HXezQL4iFrXXyQlkKJBjeHuf9karMjTa+f/kJmKY65T7aum2Jbn0N/9NoTzL4DlcTe4x09wslFMoMHxm7qC1a5AAC1ETVO5WG3UnhXY5R6+RscvuKUg8kAD/zEFATDn30ByP2k2UPk3wXMWIiDIX28tUmCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LvumoGd73ag9Gn2xMJtPKZZmvF9yjhFI7SAWLwkSIe4=;
- b=fMBiV9jMGzdDK5S1k8FU9QoaTO0LcF/evVdB6hy+uEoC8zgrLeoFLoo2zAQiirYc0DtsCezK4+ING7MSCAfP1yPijSmPly4Yz2xBN5rAFhSokyFnd1RbF9Wuyqugwph5oYT6Q2q0vn61aAgFEn4dNq5S8KrkiOph7dKYppYqisIJPeH3PJ+KV4iaEBt0+ODHpZ2t00VAqICNUhSRsRe5zX+Ip/GouADF7eTguc/E2RRe1H7Fr+GgHL0oVaMehUuGpkUB2QCpBgHMXRWdNDEnic1RxvRzNgNWC6omTyGcdUHiQQ497FfQS0zf143KIvBcJI4eXpQjTbBN/lI1S5YWvw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LvumoGd73ag9Gn2xMJtPKZZmvF9yjhFI7SAWLwkSIe4=;
- b=gG0VN3oXrHaEzCsYt5ZvTBpjwdEOwT0FT8Z9rX0CmsbTrZwHmoBwfVRkRjN/zwLCMKAZn4b/Cu2VaJ1hFY+STHuAZOcAke6GdtUq1UpVQd8n1VdU34hI1WO0HR9ufxbaZmB18TS0TwDB/h/pHjqE1DSEVb5/lhC1/sB/YrN7MOflX1PKc8HOZqBD0TbvMBg2Am3szccf/ket1jionqlYYfK26njIY6hCRnLP5wpjDQ/Penxw0Z0X8ASYi5gA6+msLM7OMo7h8hIRDgeKGT0F8J42fzbCfAUXXkBKqH7qj2BDkeJshMkQ4BarubdxYx4QgS3rXqpY52OWy7+BCKXgNA==
-Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com (2603:1096:408::791)
- by OSNPR06MB8330.apcprd06.prod.outlook.com (2603:1096:604:472::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.15; Sat, 7 Feb
- 2026 03:50:45 +0000
-Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
- ([fe80::8c70:cb01:78fb:d9c0]) by TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
- ([fe80::8c70:cb01:78fb:d9c0%7]) with mapi id 15.20.9587.013; Sat, 7 Feb 2026
- 03:50:45 +0000
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert
- Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH 2/4] irqchip/ast2700-intcx: Add AST2700 INTC0/INTC1
- support
-Thread-Topic: [PATCH 2/4] irqchip/ast2700-intcx: Add AST2700 INTC0/INTC1
- support
-Thread-Index: AQHclmW5rzV03X0Kg0SxRPeN+45NtrV1jEMAgAD5ciA=
-Date: Sat, 7 Feb 2026 03:50:45 +0000
-Message-ID:
- <TY2PPF5CB9A1BE6CC5EEC90EBF13B083D1EF267A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
-References: <20260205-irqchip-v1-0-b0310e06c087@aspeedtech.com>
- <20260205-irqchip-v1-2-b0310e06c087@aspeedtech.com> <87h5ru14xx.ffs@tglx>
-In-Reply-To: <87h5ru14xx.ffs@tglx>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY2PPF5CB9A1BE6:EE_|OSNPR06MB8330:EE_
-x-ms-office365-filtering-correlation-id: a9a666fa-130c-483d-7f13-08de65fc12e4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700021|921020;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?5wgdWry5AS0TpuZ3DptSCv1lfasjzg4P6hjct6f46iRZSXWszBEKY1EeMtC+?=
- =?us-ascii?Q?ZB+wIChx1TYT8iI45QSVelgpeWaWyfuQDAa1ouTqJEnTDW87FNQwIAbCtY/e?=
- =?us-ascii?Q?VGlZKj7DjlTceQIHhm4OhCNxjb7DYlzf8/vIcjmGHsMvGshFoUmPhpS2Sqjl?=
- =?us-ascii?Q?Q4lAi3go35k91UGf2zLWkXv+jl5jdpVKOS+jTLWrSC/WIujQ4wgu6ly6Etb7?=
- =?us-ascii?Q?h6fKlZja5+r6GYdkpO4w+DSlg3Hn9Kl1zqMJlFF6pdHirj8MDTd1lEOf0+tR?=
- =?us-ascii?Q?SMzGdFJfs0aXYVTqlXST3Kpv0en4yiRH3CZEKoXkmYcJG5rqI7Kj0K3TNast?=
- =?us-ascii?Q?8cip22cZ60sD4isvCha5xmKk4FhxbK2e5/v2/BR3YB2uBnDKCw3tTQPheGk6?=
- =?us-ascii?Q?e70/EsiKQZr0Cn6DeIxpOxfyoxf2Y+kvtaJlxtb1dm0ygvadJAJpUfFGsYoY?=
- =?us-ascii?Q?V+pE1Gutz67aQ8UeWWwk1A+6j3Iv9T0b4X06FlaAKAmKx/wZ9TR6UyM3TS/l?=
- =?us-ascii?Q?Yd8uvqryHpmvPFzQRO9u6ZTV65aQ0Q+GfyHXRiC4en2jSXJdUGhkWUiqDLkH?=
- =?us-ascii?Q?Wm97fStnRkvgcitqdHQs6VRdo7vkJtMXL0hqKebNgeC8SpGVB/ANmIV64mSb?=
- =?us-ascii?Q?JJRuq8HJEu8UIxCr30d9v3SBhAd3+ZOZ+8pkoRIR897Ua6Xsq/x7fC4qNcbT?=
- =?us-ascii?Q?7/d8bf0FvA5DrSwNwHmXitqWGfwK745+ER2CObsJttNwo0sZ3mmZbNNhMtVA?=
- =?us-ascii?Q?ljtelofWmZu//orFRZN97xo1rymVGrkf+Te9aWbeB2KN3opHcbgZDvKLwq12?=
- =?us-ascii?Q?z2ZdnAb6AxaMLoNnFiSQRZaviIUcwi3VZnwWuV+WrxNch6JNuZZ9K2OYs45n?=
- =?us-ascii?Q?Uvt2MW4bkFJLIKIGs8wODxrOVr7ySe3N95CFOM2aTFdwK0TjgjaOTpoIVwR6?=
- =?us-ascii?Q?MAiFRWYYkB6rToVYyDiHJjPLJXQtOg2Si18okVMKzcJpLv13mVemHX27LhWW?=
- =?us-ascii?Q?spOA1M4OItTrSO6tVcsCUZXfLHJXvE1nz41reiC1R3VpMTltVkDJfOFrm/7o?=
- =?us-ascii?Q?4YRtSKVraOC2kJxBS06KyKFC3dbed/rlY5EtToC2KAiDusttC1P4c55L029o?=
- =?us-ascii?Q?nFiey9aeU0LMtizc4+fgS4WGdcyS77mxfmT5TfK6f8tOzKD7S3IxGCuwsqx+?=
- =?us-ascii?Q?lwMvmq62VZ10Y49Yte6kzIrbtXDtx8Anyzl/mgMpZVubhpGjHHO9xBNrIlxt?=
- =?us-ascii?Q?M3c1ImqhLyzN529Lw2cE3c1Imp8ccvIk497nV6e6obPzSVVURZKtGyFv6FmV?=
- =?us-ascii?Q?UM8h6FgYSS7Uj5gDPk8gKSQrJzHgJmFpab2sFH3yHdYg7kNJ/mEtNpHc6/ff?=
- =?us-ascii?Q?KOGkqAnMNFIioak+yAXhNGJVHfcVEVDY6NDKIuC/Or0P6pHffqoepLOXJ52v?=
- =?us-ascii?Q?Ny6Mz2rqFxnTL1BPTyN/Fdp7Gtuae+aV4j3BO/XaWMSQQEaSmOBwshRX3exc?=
- =?us-ascii?Q?dDG5c57ghXMfMRjnx1a5gHwdZdcFk2ObTOT/v54fYFyKz4uEq8X0tr+p5E3e?=
- =?us-ascii?Q?zXqaqm6vkIeEtLBW7C53ohELIUT6gA6P5HI9gaawcL10ojw6hV9aOq3p/6K+?=
- =?us-ascii?Q?G6a4pS9e7EmUuj0ttddSN2rcVocVrszuAVl7x63OMFV1?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700021)(921020);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?2YaMyAlsHwBWHqE6tVhTQrQAL27iROSWcB6oWfUint2VmPhCALThjweeFfgc?=
- =?us-ascii?Q?fXhNQ6tap9lyw6i/8jH/7FKO98acqZh0PJBOusiTQt+kAe1ebbc7dPfYuP4i?=
- =?us-ascii?Q?gKtca1p2ZlKNg1m0bzYDJY5P+ovs6PNXKAXDWfgkX0tUwSmtRdj0/zusuKdB?=
- =?us-ascii?Q?5A5zL9nY5K4KjDqaNUhfKXt7YcEM3wf3hroOBHks2xRkYEec2fqN5RscCmWb?=
- =?us-ascii?Q?RbF/+ZoHNSeaByeN+gh9NOZSYM3wjPllxQeOypxCagJJxAZueofZ1pqXzue+?=
- =?us-ascii?Q?gIhcQkLfeotbjoCNkfRIoELZcd/VJodv2kq66w3KGW9tBae24Sho9JnKMzNf?=
- =?us-ascii?Q?zWr/AglixFu+eNK/LtosFd7U4JznfzIp2K22gXIyqWSXx4CSB2XGfWe/UpZu?=
- =?us-ascii?Q?/4miwqzjKskPzomzlct1Bp5zoPEl3E0buQsv6CA5rX5n04EKJpv8lWhTsl5L?=
- =?us-ascii?Q?lx6p+pb5VDyCL0/BbeRh61VCYS5aoaGqjNJPoJOBeUv4E9RaFVkvFTa5NtuN?=
- =?us-ascii?Q?VZXw4RJ9BY5xu5l2r1OcsNuo1PicSXAYEubTBbTmG8A/q9QCRlnmRySJ2esq?=
- =?us-ascii?Q?JPYASN1gv4xpe6Z6v2OZdIwAFmVqdrjFc9WpHvr2NZL8mPVA7ziNVroSow7H?=
- =?us-ascii?Q?cjiV1WCH/7dwHoOnE7x8Ox871s7S8Fg/AyvcG3cDllBF6y2DrMS9S3ZtXM1m?=
- =?us-ascii?Q?7Vhk1LpIsBzUseUJpGNAH9bH+eCqMmklzWwgaId5UV78Cw+bLNPb5yBeKAwL?=
- =?us-ascii?Q?g7WU519RhowmZwLPg/Z7YhIWpd/lGSRgiGSr/Ifcf3mKEgsWrhKsfew31Jpd?=
- =?us-ascii?Q?eIrVsqvGmfFW+25SHuQLFxSqt8gTGrJIBCWKKPxY0KR5a2GanfMMJlHLNX5g?=
- =?us-ascii?Q?GIxmny0zCcQiUr3AECREVI8kC2ns2co1bdiMyvUqUPdbsaTPvnHEjnVi/rft?=
- =?us-ascii?Q?MIWgLC2sTqqxlYQY1WTaAgRmgfMsOmqU6g2n6xt1NbME+LrlIsEOdGDMNXDy?=
- =?us-ascii?Q?/v0TAmDrZPjmPF7zRjMVaMwy5J05R58oqQ8568p3MyyZsxSg+9uMNFrkhsFp?=
- =?us-ascii?Q?aETw0d2Jl4MRIFBJwU9C/L7lmPTtNovY6bkTbou9jOPeRTTDas/XaBcJASDI?=
- =?us-ascii?Q?FLYVN0PPbsmZ1c6T3FzafLdy+5+5j3TKFrq1ACG55ZD13TxUF/qzFHtYROY2?=
- =?us-ascii?Q?w7z62pC8SjNHV1rd3teZtfuB5a90zcegcbflSPqIYCzjx/UfRdrl8SkB1Al8?=
- =?us-ascii?Q?5wMkg0Bofk0jybympII+qtzQOOjgH56iB+g2cmeYSgbXSI8VZtGSrOreJBH/?=
- =?us-ascii?Q?OQ6CkEmjMnRFIZ3Ki9NDl0ioxgnNBcbkOJq9A5GhkfADDYOHiibm2fAZc2if?=
- =?us-ascii?Q?5b8esqso+v/pY20OU049d7xIBE4AGps8Kkz0TEy+nddBzub3H+W9lqVZOaPt?=
- =?us-ascii?Q?ILfP6afXVDQ1wMLJbi4iaKIfqEO4B/kDJ+BDHxnZhmU91/UjgZjEqXczvOVi?=
- =?us-ascii?Q?8zdYUI9MPEqfr36oUVSkKEiuIB2jQAQSLaD5uBOTv3sb5abQZDnbKx2N+H9S?=
- =?us-ascii?Q?nPjZCwW7dSfFPl7mzFIdWepR5Gl6J85wtcodV70hfYPOGu+94bul0GAZ15iM?=
- =?us-ascii?Q?USmOWXAedKu9Li2tRILfUPAwTejx1UTlmbG+mlwPkHF9B73r+mRR8hswHd+k?=
- =?us-ascii?Q?rJfH2g7Xg+P8fzpoh9nkN66+nq/5iG0kZvNF+M+0QS7RydpzUasup57PMuiz?=
- =?us-ascii?Q?m8rrQb+TgA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1235288AD;
+	Sat,  7 Feb 2026 03:55:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770436525; cv=none; b=dP9WuhGMBcpWfQ0/huSJEORAdk0nnoKOHDWSc+sDOU0NgQMc26zl0S0F4SCqc+XA/U12oTqwqf7maaJ7d8LhvhzPiT1xt5gdxSVb/9ZvEBgx0maFjtUJcqq48Rwl8aI49TXUu0KvzznP+YoPET4Jh4RQj7c+ttX45mWT8ppEbIg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770436525; c=relaxed/simple;
+	bh=FOlIW79m8Z5AYcRAoUTaV83tL8DuIRgwulFm0cS+uww=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WNo6bbWMrbdGHBareMsM27bcDO/v4k7YqGfjdC9gkN54HQRrITaTrViaHO/ndi7QTS7TkXDfNtALTFrb+ufIAdLJRKJdPeKHpdbJdHOkebORkahUeVjrGepd3smGFQmqUAkrB4E/0rCc1fAYMxPYr0cKkoKYgiMy8si6f7HlHEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=OC0itHKe; arc=none smtp.client-ip=54.254.200.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1770436453;
+	bh=J5ZSE1GIfBN++3YlnIcdmmjUUZ0MWIkwDcWOs6Ub3KE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=OC0itHKeB4x9KLeiW7f1wKuggjOlM66yn6HlR2BpJOxaaGbTeLpPsyAxVOirUdMBw
+	 AobJ2/yuh0rwCT2ZzDRVvYsQJNaYF36Y+qIIpTNfFt8Mn4Ubdtgscpajbu9iAfVeFF
+	 /MITwCyF32HQ+A6s3tI1eBzlLZ4JuWMxFwcpcBL4=
+X-QQ-mid: zesmtpip4t1770436447t033e705e
+X-QQ-Originating-IP: InkARYtvTyo7byCMx1GYV0Tt+ZJOew4mqa1Uytomdj4=
+Received: from [IPV6:2409:8a1e:3015:50f0:29fb: ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Sat, 07 Feb 2026 11:54:03 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 13533491367221936113
+Message-ID: <30C7AD351DB55276+a8b03dac-c5af-4034-8631-ac1c352a469f@linux.spacemit.com>
+Date: Sat, 7 Feb 2026 11:54:03 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a9a666fa-130c-483d-7f13-08de65fc12e4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Feb 2026 03:50:45.5744
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /x6QItHwzLS++5NKa4rIsjZ/NY15nB1KwXFI/lM6MXAlJ+gva2rKXnEopfkC2mNMWdypLO0qYvpesFE1ClEmSdUF0MUAnWEIPtBb7uZxXIU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSNPR06MB8330
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/7] iommu/riscv: Add HPM support for RISC-V IOMMU
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: Jingyu Li <joey.li@spacemit.com>, iommu@lists.linux.dev,
+ linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, devicetree@vger.kernel.org
+References: <cover.1769562575.git.lv.zheng@spacemit.com>
+ <DACC013F46A47459+cover.1770281596.git.lv.zheng@linux.spacemit.com>
+ <2ca4a5c1-9267-4177-b339-e1ac28812c46@kernel.org>
+Content-Language: en-US
+From: Lv Zheng <lv.zheng@linux.spacemit.com>
+In-Reply-To: <2ca4a5c1-9267-4177-b339-e1ac28812c46@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz5b-1
+X-QQ-XMAILINFO: NYn//GmO2LAjm1xUTRKQcHMV0bFBBVdZlg7LZHW5hdHohI6EkdPMbTXX
+	hrs/7rb6N1cws7pz3N7WCTbVswMygFmf5jOUoGYmbtvJUItYNfTknQerS0N5n21LGc8r5zg
+	GwxdEoYpR+bjkxAFLjDlBhWBY9MMezaE+4IB8SK5PpSRhCbvmFbyTTxA14GBGtIjj2n6sLq
+	GxP5LWDwm3ZvozI2Mgo2QsA5ug2dlGPHxUroMaHj/M2UH1NXelX3XwPv/QyIz0C3+IS7oo5
+	xurOHqArUSOOadwT50jFtomP+MgSie4xe+yLPhdKHMYtbLxYOwrw0y8pjA/uCaXZpJl9STI
+	RXsK5PQnXBcwsFv7/uUJeCQm5nXrEremoiRenZxhtFSTzSUt8Q9R5rXnpY3ybYOM4szl2p+
+	Q6SU9J/u6/vP6jdwLyXuBpF9WOaNish277MtLjVStZqAubkYOwlZn+OL7LVCQtZy9TmOyMk
+	2qJHIch3p0FlfxKZ63Rs+BfF+DIWIM36m1PM60vggWJ+3pnWmNy3EzqXevh2pSCUqREjTUQ
+	pm4I6yvHo1O1lX05lDqsWVrx56oPlSOrL1T4A/QZdEvCT+cAecqtcPrVqwsLPC4AT6HZFDO
+	vUScCtNjvfBbhNbkYJA0oKQeVIVlMPlzbQYQKmOJTG1+GDWynQ4eKscWq4yMxz2ODd8n0u4
+	7FPDpYJYvEBJpc3wWPor/w8x3DvnwXYDU9AzIEptbALG3G5QXqcLFRdgTOsstL1pxTIHmCX
+	co11/0+3Q1DL+jYC2BAi1QBHZvs8cIKuiMJ6JbPxVrS+w412laqEaRha7VkZsLAzKPw0Jj/
+	HnXg3B6Txotux3IL1XlieVnyOl9a/Zk9SJLA/RczLSI5g2jTjUkY7FtmrWCcaYTaN0qDT3X
+	SVjhUKFJogCfvX7kVnuP4Z8lTZXLmgsVZhTEEE1hxAv1NHge1XUO+f2iq0laxX1Gg3tgG7z
+	LKzc2aWudA+gUmqX1/rPdk36CQg5UUFksdrGVJcY916iqW3+vP85WWgtfJaZiD9ih29a2Cx
+	lAVK7JQWC3Ton9gn5+Q/WAZXqOd+3SID9N+00/MJyOZdCmVop7
+X-QQ-XMRINFO: MSVp+SPm3vtSI1QTLgDHQqIV1w2oNKDqfg==
+X-QQ-RECHKSPAM: 0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[aspeedtech.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
-	R_DKIM_ALLOW(-0.20)[aspeedtech.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263543-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-263544-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[spacemit.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[aspeedtech.com:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_MUA_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[linux.spacemit.com:+];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ryan_chen@aspeedtech.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lv.zheng@linux.spacemit.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.973];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.981];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linutronix.de:email,ozlabs.org:email,ghiti.fr:email,TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com:mid,jms.id.au:email,codeconstruct.com.au:email,infradead.org:email,berkeley.edu:email]
-X-Rspamd-Queue-Id: B37D8104CDF
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.spacemit.com:mid,linux.spacemit.com:dkim]
+X-Rspamd-Queue-Id: 5960F104CFA
 X-Rspamd-Action: no action
 
-Hello Thomas,
-	Thanks your feedback.
+On 2/6/2026 6:46 PM, Krzysztof Kozlowski wrote:
+> On 05/02/2026 10:09, Lv Zheng wrote:
+>> Includes HPM support for RISC-V IOMMU. The HPM hardware mechanism can be
+>> found in the recent announced SpacemiT SoCs (K3, V100), where T100
+>> (SpacemiT distributed IOMMU) is shipped.
+>>
+>> Revisions:
+>> v1
+>>   Initial release.
+>> v2 (sent as v1.1)
+>>   Split and cleanup DT-bindings.
+>> v3
+>>   1. Refactor using vendor specific compatible.
+>>   2. Implement vendor events with a userspace identifier.
+>> v4
+> 
+> And now also v4 is in the same thread? This is total mess!
+> 
+> How tools are supposed to handle this?
 
-> -----Original Message-----
-> From: Thomas Gleixner <tglx@linutronix.de>
-> Sent: Friday, February 6, 2026 7:34 PM
-> To: Ryan Chen <ryan_chen@aspeedtech.com>; Rob Herring <robh@kernel.org>;
-> Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
-> <conor+dt@kernel.org>; Joel Stanley <joel@jms.id.au>; Andrew Jeffery
-> <andrew@codeconstruct.com.au>; Paul Walmsley <pjw@kernel.org>; Palmer
-> Dabbelt <palmer@dabbelt.com>; Albert Ou <aou@eecs.berkeley.edu>;
-> Alexandre Ghiti <alex@ghiti.fr>
-> Cc: linux-kernel@vger.kernel.org; devicetree@vger.kernel.org;
-> linux-arm-kernel@lists.infradead.org; linux-aspeed@lists.ozlabs.org;
-> linux-riscv@lists.infradead.org; Ryan Chen <ryan_chen@aspeedtech.com>
-> Subject: Re: [PATCH 2/4] irqchip/ast2700-intcx: Add AST2700 INTC0/INTC1
-> support
->=20
-> On Thu, Feb 05 2026 at 14:07, Ryan Chen wrote:
-> > @@ -88,6 +88,7 @@ obj-$(CONFIG_MVEBU_PIC)			+=3D
-> irq-mvebu-pic.o
-> >  obj-$(CONFIG_MVEBU_SEI)			+=3D irq-mvebu-sei.o
-> >  obj-$(CONFIG_LS_EXTIRQ)			+=3D irq-ls-extirq.o
-> >  obj-$(CONFIG_LS_SCFG_MSI)		+=3D irq-ls-scfg-msi.o
-> > +obj-$(CONFIG_ASPEED_AST2700_INTC)	+=3D irq-ast2700.o
-> irq-ast2700-intc0.o irq-ast2700-intc1.o
-> >  obj-$(CONFIG_ARCH_ASPEED)		+=3D irq-aspeed-vic.o irq-aspeed-i2c-ic.o
-> irq-aspeed-scu-ic.o
-> >  obj-$(CONFIG_ARCH_ASPEED)		+=3D irq-aspeed-intc.o
-> >  obj-$(CONFIG_STM32MP_EXTI)		+=3D irq-stm32mp-exti.o
-> > diff --git a/drivers/irqchip/irq-ast2700-intc0-test.c
-> > b/drivers/irqchip/irq-ast2700-intc0-test.c
->=20
-> How is this kunit test supposed to be built?
-Sorry, do you mean split it with Makefile?
-obj-$(CONFIG_ASPEED_AST2700_INTC_TEST)	+=3D irq-ast2700-intc0-test.o
->=20
-> Also split this kunit thing out into a separate patch. It is not relevant=
- for the
-> functional part.
-Will update to separate patch
+I'm using the tools I was using several years ago.
 
->=20
-> > new file mode 100644
-> > index 000000000000..d6bc19676b2e
-> > --- /dev/null
-> > +++ b/drivers/irqchip/irq-ast2700-intc0-test.c
-> > @@ -0,0 +1,474 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + *  Copyright (C) 2026 Code Construct  */ #include <kunit/test.h>
-> > +#include "irq-ast2700.h"
-> > +
-> > +static void aspeed_intc0_resolve_route_bad_args(struct kunit *test) {
-> > +	static const struct aspeed_intc_interrupt_range c1ranges[] =3D { 0 };
-> > +	static const aspeed_intc_output_t c1outs[] =3D { 0 };
-> > +	struct aspeed_intc_interrupt_range resolved;
-> > +	const struct irq_domain c0domain =3D { 0 };
-> > +
->=20
-> Pointless newline
-Will update.
+It's able to handle revisions using one single thread if a "msgid" is
+provided via its command line:
 
->=20
-> > +	int rc;
-> > +
-> > +	rc =3D aspeed_intc0_resolve_route(NULL, 0, c1outs, 0, c1ranges, NULL)=
-;
-> > +	KUNIT_EXPECT_EQ(test, rc, -EINVAL);
-> > +
-> > +	rc =3D aspeed_intc0_resolve_route(&c0domain, 0, c1outs,
-> > +					ARRAY_SIZE(c1ranges), c1ranges,
-> > +					&resolved);
-> > +	KUNIT_EXPECT_EQ(test, rc, -ENODEV);
-> > +
-> > +	rc =3D aspeed_intc0_resolve_route(&c0domain, ARRAY_SIZE(c1outs), c1ou=
-ts,
-> > +					0, c1ranges, &resolved);
-> > +	KUNIT_EXPECT_EQ(test, rc, -ENODEV);
-> > +}
-> > +
-> > +static int
-> > +arm_gicv3_fwnode_read_string_array(const struct fwnode_handle
-> *fwnode_handle,
-> > +				   const char *propname, const char **val,
-> > +				   size_t nval)
->=20
-> Please use the full 100 character you have available and avoid extra line=
- breaks.
-> It fits nicely into two lines:
->=20
-> static int arm_gicv3_fwnode_read_string_array(const struct fwnode_handle
-> *fwnode_handle,
-> 			                      const char *propname, const char
-> **val, size_t nval)
->=20
-> There is also no real point to have these overly long function and argume=
-nt
-> names.
+# Prepare --in-reply-to argument of git-format-patch
+if [ "x$1" != "x" -a "x$1" != "xnone" ]; then
+         echo "Found Message-Id: <$msgid>."
+         GFPFLAGS="$GFPFLAGS --in-reply-to=$msgid"
+fi
 
-Will update
-static int gicv3_fwnode_read_string_array(const struct fwnode_handle *fwnod=
-e,
-					  const char *propname, const char **val, size_t nval)
->=20
-> > +#include <asm-generic/errno.h>
->=20
-> That's wrong. Include <linux/errno.h>
-Will update.
->=20
-> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +#include "irq-ast2700.h"
->=20
-> Missing newline
-Will update
->=20
-> > +#define INT_NUM 480
-> > +#define INTM_NUM 50
-> > +#define SWINT_NUM 16
-> > +
-> > +#define INTM_BASE (INT_NUM)
-> > +#define SWINT_BASE (INT_NUM + INTM_NUM) #define INT0_NUM
-> (INT_NUM +
-> > +INTM_NUM + SWINT_NUM)
-> > +
-> > +#define GIC_P2P_SPI_END 128
-> > +
-> > +#define INTC0_SWINT_IER 0x10
-> > +#define INTC0_SWINT_ISR 0x14
-> > +#define INTC0_INTBANKX_IER 0x1000
-> > +#define INTC0_INTBANK_GROUPS 11
-> > +#define INTC0_INTBANKS_PER_GRP 3
-> > +#define INTC0_INTMX_IER 0x1b00
-> > +#define INTC0_INTMX_ISR 0x1b04
-> > +#define INTC0_INTM_BANK_NUM 3
-> > +#define INTM_IRQS_PER_BANK 10
->=20
-> If you make these defines tabular and they become readable:
+And I have a configuration file in my $HOME collecting all patchsets'
+first msgid:
 
-Will update
->=20
-> #define INT_NUM			480
-> #define INTM_NUM		50
-> ...
-> #define INTM_BASE 		(INT_NUM)
-> ...
-> #define GIC_P2P_SPI_END		128
-> ...
-> #define INTC0_SWINT_IER		0x10
->=20
-> See?
-Sorry, do you mean tab?=20
-If yes, I will update all with tab
+         if [ "x$require_msgid" = "xno" ]; then
+                 fatal "Invalid Message-Id: $1 shouldn't be specified 
+for v${MAJOR}.${MINOR}."
+         fi
+         msgid=`cat $MSGIDS | grep $1 | cut -f2`
+         if [ "x$msgid" = "x" ]; then
+                 fatal "Invalid Message-Id: cannot find $1 in $MSGIDS."
+         fi
 
-#define INT_NUM         480
-#define INTM_NUM        50
-#define SWINT_NUM       16
+That's the old fashion I was doing upstream related work, as some online
+tools was able to update patchsets automatically if the thread top
+matched and then showed the new revision up in their web portal.
 
-#define INTM_BASE       (INT_NUM)
-#define SWINT_BASE      (INT_NUM + INTM_NUM)
-#define INT0_NUM        (INT_NUM + INTM_NUM + SWINT_NUM)
+Will stop using such single thread style as what you suggested.
 
-#define GIC_P2P_SPI_END         128
+Thanks,
+Lv
 
-#define INTC0_SWINT_IER         0x10
-#define INTC0_SWINT_ISR         0x14
-#define INTC0_INTBANKX_IER      0x1000
-#define INTC0_INTBANK_GROUPS    11
-#define INTC0_INTBANKS_PER_GRP  3
-#define INTC0_INTMX_IER         0x1b00
-#define INTC0_INTMX_ISR         0x1b04
-#define INTC0_INTM_BANK_NUM     3
-#define INTM_IRQS_PER_BANK      10
+> 
+> Best regards,
+> Krzysztof
+> 
 
->=20
-> > +struct aspeed_intc0 {
-> > +	struct device *dev;
-> > +	void __iomem *base;
-> > +	raw_spinlock_t intc_lock;
-> > +	struct irq_domain *local;
-> > +	struct device_node *parent;
-> > +	struct aspeed_intc_interrupt_ranges ranges; };
->=20
-> https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct=
--de
-> clarations-and-initializers
->=20
-> I pointed you to that documentation before. Do I really have to remind yo=
-u
-> every couple of week?
-Sorry, my fault, will update.
->=20
-> > +
-> > +static void aspeed_swint_irq_mask(struct irq_data *data) {
-> > +	struct aspeed_intc0 *intc0 =3D irq_data_get_irq_chip_data(data);
-> > +	int bit =3D data->hwirq - SWINT_BASE;
-> > +	unsigned int mask;
-> > +
-> > +	guard(raw_spinlock_irqsave)(&intc0->intc_lock);
->=20
-> s/_irqsave// Interrupts are disabled when this is invoked.
-Sorry, do you mean when this function been call.
-Ther have desc->lock to do the raw_spin_lock_irqsave.
-Am I right?
-
->=20
-> > +	mask =3D readl(intc0->base + INTC0_SWINT_IER) & ~BIT(bit);
-> > +	writel(mask, intc0->base + INTC0_SWINT_IER);
-> > +	irq_chip_mask_parent(data);
-> > +}
-> > +
-> > +static void aspeed_swint_irq_unmask(struct irq_data *data) {
-> > +	struct aspeed_intc0 *intc0 =3D irq_data_get_irq_chip_data(data);
-> > +	int bit =3D data->hwirq - SWINT_BASE;
-> > +	unsigned int unmask;
-> > +
-> > +	guard(raw_spinlock_irqsave)(&intc0->intc_lock);
-> > +	unmask =3D readl(intc0->base + INTC0_SWINT_IER) | BIT(bit);
->=20
-> These unmask/mask variable are simply not helpful. What's wrong with
-> naming them 'ier' because that's what this is about. And while at it the =
-data
-> type for hardware related variables is u32 not unsigned int to make it cl=
-ear.
->=20
-Thanks, Will use
-u32 ier;
-
-> > +static struct irq_chip aspeed_swint_chip =3D {
-> > +	.name =3D "ast2700-swint",
-> > +	.irq_eoi =3D aspeed_swint_irq_eoi,
-> > +	.irq_mask =3D aspeed_swint_irq_mask,
-> > +	.irq_unmask =3D aspeed_swint_irq_unmask,
-> > +	.irq_set_affinity =3D irq_chip_set_affinity_parent,
-> > +	.flags =3D IRQCHIP_SET_TYPE_MASKED,
->=20
-> See above
-All those will review it again. Thanks.=20
->=20
-> > +
-> > +#define INTC0_IN_NUM 480
-> > +#define INTC0_ROUTE_NUM 5
->=20
-> Those should be at the top of the file next to the other constants.
-Will update.
-
->=20
-> > +static const aspeed_intc_output_t aspeed_intc0_routes[INTC0_IN_NUM /
-> 32][INTC0_ROUTE_NUM] =3D {
-> > +	[0] =3D {
-> > +		[0b000] =3D 0,
-> > +		[0b001] =3D 256,
-> > +		[0b010] =3D 426,
-> > +		[0b011] =3D AST2700_INTC_INVALID_ROUTE,
-> > +		[0b100] =3D AST2700_INTC_INVALID_ROUTE,
->=20
-> Seriously? What's the point of this binary notation and the insane amount=
- of
-> space this table occupies?
->=20
-> 	[0] =3D {   0, 256, 426, AST2700_INTC_INVALID_ROUTE,
-> AST2700_INTC_INVALID_ROUTE },
-> 	[1] =3D {  32, 288, 458, AST2700_INTC_INVALID_ROUTE,
-> AST2700_INTC_INVALID_ROUTE },
-> 	[4] =3D { 128, 384, 554, 160, 176 },
->         ...
->=20
-Thanks, will update.
->=20
-> > +
-> > +#define INTC0_INTM_NUM 50
-> > +
-> > +static const aspeed_intc_output_t
-> > +	aspeed_intc0_intm_routes[INTC0_INTM_NUM / 10] =3D {
->=20
-> pointless line break
->=20
-> > +		[0] =3D 192, /* INTM00 ~ INTM09 */
-> > +		[1] =3D 416, /* INTM10 ~ INTM19 */
-> > +		[2] =3D 586, /* INTM20 ~ INTM29 */
-> > +		[3] =3D 208, /* INTM30 ~ INTM39 */
-> > +		[4] =3D 224, /* INTM40 ~ INTM49 */
-> > +	};
-> > +
-> > +static bool range_contains_element(u32 start, u32 count, u32 value)
->=20
-> in_range32() provides that already
-Will update.
-
->=20
-> > +{
-> > +	if (WARN_ON_ONCE((U32_MAX - count) < start))
-> > +		return false;
-> > +
-> > +	return value >=3D start && value < start + count; }
-> > +
-> > +static int
-> > +resolve_input_from_child_ranges(const struct aspeed_intc0 *intc0,
-> > +				const struct aspeed_intc_interrupt_range *range,
-> > +				u32 outpin, u32 *input)
-> > +{
-> > +	u32 offset;
-> > +	u32 base;
->=20
-> One line
-Will update
->=20
-> > +
-> > +	if (!range_contains_element(range->start, range->count, outpin))
-> > +		return -ENOENT;
-> > +
-> > +	if (range->upstream.param_count =3D=3D 0)
-> > +		return -EINVAL;
-> > +
-> > +	base =3D range->upstream.param[0];
-> > +	offset =3D outpin - range->start;
-> > +	if ((U32_MAX - offset) < base) {
->=20
->         if (!in_range32(...)
-Will update
-	if (offset && !in_range32(base, 0, U32_MAX - offset + 1)) {
->=20
->=20
-> > +		dev_warn(intc0->dev,
-> > +			 "%s: Arithmetic overflow for input derivation: %u + %u\n",
->=20
-> Pointless line break. Please fix them all over the place.
-Will update
-		dev_warn(intc0->dev, "%s: Arithmetic overflow for input derivation: %u + =
-%u\n",
-			 __func__, base, offset);
-
->=20
-> > +			 __func__, base, offset);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	*input =3D base + offset;
-> > +	return 0;
-> > +static int resolve_parent_route_for_input(const struct aspeed_intc0 *i=
-ntc0,
-> > +					  const struct fwnode_handle *parent, u32 input,
-> > +					  struct aspeed_intc_interrupt_range *resolved) {
-> > +	aspeed_intc_output_t c0o;
-> > +	int rc =3D -ENOENT;
-> > +
-> > +	if (input < INT_NUM) {
-> > +		bool found;
-> > +
-> > +		dev_dbg(intc0->dev, "%s: Resolving parent route for linear input
-> %u\n",
-> > +			__func__, input);
->=20
-> Do you really still need all those debug prints or are you trusting your =
-code by
-> now?
->=20
-> If they still are considered valuable then shorten them in a sensible way=
- so they
-> nicely hide in the code instead of cluttering it to the point of making i=
-t
-> unreadable.
-
-Will try to remove dev_dbg.
->=20
-> > +{
-> > +	struct aspeed_intc0 *intc0;
-> > +	struct fwnode_handle *parent_fwnode;
-> > +	int ret;
->=20
-> See Documentation about variable declarations...
-
-Will update
-	struct fwnode_handle *parent_fwnode;
-	struct aspeed_intc0 *intc0;
-	int ret;
-
->=20
-> > +	for (size_t i =3D 0; i < nc1outs; i++) {
-> > +		aspeed_intc_output_t c1o =3D c1outs[i];
-> > +
-> > +		if (c1o =3D=3D AST2700_INTC_INVALID_ROUTE) {
-> > +			dev_dbg(intc0->dev, "%s: Invalid output at route index %zu\n",
-> > +				__func__, i);
-> > +			continue;
-> > +		}
-> > +
-> > +		dev_dbg(intc0->dev, "%s: Have output %u for route index %zu\n",
-> > +			__func__, c1o, i);
-> > +
-> > +		for (size_t j =3D 0; j < nc1ranges; j++) {
-> > +			struct aspeed_intc_interrupt_range c1r =3D c1ranges[j];
-> > +			u32 input;
-> > +
-> > +			dev_dbg(intc0->dev,
-> > +				"%s: Inspecting candidate range %zu starting at %u for
-> %u\n",
-> > +				__func__, j, c1r.start, c1r.count);
-> > +
-> > +			/*
-> > +			 * Range match for intc1 output pin
-> > +			 *
-> > +			 * Assume a failed match is still a match for the purpose of
-> testing,
-> > +			 * saves a bunch of mess in the test fixtures
-> > +			 */
-> > +			if (!(c0domain =3D=3D irq_find_matching_fwspec(&c1r.upstream,
-> > +								   c0domain->bus_token) ||
-> > +			      IS_ENABLED(CONFIG_ASPEED_AST2700_INTC_TEST))) {
-> > +				dev_dbg(intc0->dev, "%s: Parent mismatch for candidate
-> range %zu\n",
-> > +					__func__, j);
-> > +				continue;
-> > +			}
-> > +
-> > +			ret =3D resolve_input_from_child_ranges(intc0, &c1r, c1o, &input);
-> > +			if (ret) {
-> > +				if (ret =3D=3D -ENOENT)
-> > +					dev_dbg(intc0->dev,
-> > +						"%s: Output %u not in candidate range %zu
-> starting at %u for %u\n",
-> > +						__func__, c1o, j, c1r.start, c1r.count);
-> > +				continue;
->=20
-> All of this is unreadable and I told you about the bracket rules before, =
-no?
-
-Will remove dev_dbg with following
-			ret =3D resolve_input_from_child_ranges(intc0, &c1r, c1o, &input);
-			if (ret)
-				continue;
-
->=20
-> > +			}
-> > +			dev_dbg(intc0->dev,
-> > +				"%s: Resolved INTC0 input to %u using candidate range %zu:
-> [%u, %u)\n",
-> > +				__func__, input, j, c1r.start, c1r.start + c1r.count);
-> > +
-> > +			/*
-> > +			 * INTC1 should never request routes for peripheral interrupt
-> sources
-> > +			 * directly attached to INTC0.
-> > +			 */
-> > +			if (input < GIC_P2P_SPI_END) {
-> > +				dev_dbg(intc0->dev,
-> > +					"%s: Invalid range specification at index %zu routed
-> INTC1 output to unreachable INTC0 input\n",
-> > +					__func__, j);
-> > +				continue;
-> > +			}
-> > +
-> > +			ret =3D resolve_parent_route_for_input(intc0, parent_fwnode,
-> input, NULL);
-> > +			if (ret < 0)
-> > +				continue;
-> > +
-> > +			/* Route resolution succeeded */
-> > +			resolved->start =3D c1o;
-> > +			resolved->count =3D 1;
-> > +			resolved->upstream =3D c1r.upstream;
-> > +			resolved->upstream.param[0] =3D input;
-> > +			dev_dbg(intc0->dev,
-> > +				"%s: Route resolution selected INTC1 output %u via index
-> %zu\n",
-> > +				__func__, c1o, i);
-> > +			/* Cast protected by prior test against nc1outs */
-> > +			return (int)i;
-> > +		}
-> > +	}
-> > +
-> > +	ret =3D -EHOSTUNREACH;
-> > +	return ret;
->=20
-> Impressive.
-Will try to improve this function.=20
-
->=20
-> > +}
-> > +EXPORT_SYMBOL_GPL(aspeed_intc0_resolve_route);
->=20
-> What is this export for? All usage sites are built in, no?
-Will remove this.
-
->=20
-> > +static int aspeed_intc0_irq_domain_map(struct irq_domain *domain,
-> > +				       unsigned int irq, irq_hw_number_t hwirq) {
-> > +	if (hwirq < GIC_P2P_SPI_END)
-> > +		irq_set_chip_and_handler(irq, &linear_intr_irq_chip,
-> > +					 handle_level_irq);
->=20
-> Make this one line. Otherwise you need brackets.
-Will update all
-	if (hwirq < GIC_P2P_SPI_END)
-		irq_set_chip_and_handler(irq, &linear_intr_irq_chip, handle_level_irq);
-	else if (hwirq < INTM_BASE)
-		return -EINVAL;
-	else if (hwirq < SWINT_BASE)
-		irq_set_chip_and_handler(irq, &aspeed_intm_chip, handle_level_irq);
-	else if (hwirq < INT0_NUM)
-		irq_set_chip_and_handler(irq, &aspeed_swint_chip, handle_level_irq);
-	else
-		return -EINVAL;
->=20
-> > +	else if (hwirq < INTM_BASE)
-> > +		return -EINVAL;
-> > +	else if (hwirq < SWINT_BASE)
-> > +		irq_set_chip_and_handler(irq, &aspeed_intm_chip,
-> > +					 handle_level_irq);
-> > +	else if (hwirq < INT0_NUM)
-> > +		irq_set_chip_and_handler(irq, &aspeed_swint_chip,
-> > +					 handle_level_irq);
-> > +	else
-> > +		return -EINVAL;
-> > +
-> > +	irq_set_chip_data(irq, domain->host_data);
-> > +	return 0;
-> > +}
->=20
-> > +static int aspeed_intc0_irq_domain_activate(struct irq_domain *domain,
-> > +					    struct irq_data *data, bool reserve) {
-> > +	struct aspeed_intc0 *intc0 =3D irq_data_get_irq_chip_data(data);
-> > +
-> > +	if (data->hwirq < INT_NUM) {
-> > +		int bank =3D data->hwirq / 32;
-> > +		int bit =3D data->hwirq % 32;
-> > +		u32 mask =3D BIT(bit);
-> > +		int route;
-> > +
-> > +		route =3D resolve_parent_route_for_input(intc0,
-> > +						       intc0->local->parent->fwnode,
-> > +						       data->hwirq, NULL);
-> > +		if (route < 0)
-> > +			return route;
-> > +
-> > +		guard(raw_spinlock_irqsave)(&intc0->intc_lock);
-> > +		for (int i =3D 0; i < 3; i++) {
-> > +			void __iomem *sel =3D intc0->base + 0x200 + bank * 4 + 0x100 *
-> i;
->=20
-> Magic constants 0x200 4 and 0x100. Use proper defines and a macro/inline =
-to
-> calculate the register address and not this incomprehensible garbage.
-
-Will update with #define
->=20
-> > +			u32 reg =3D readl(sel);
-> > +
-> > +			if (route & BIT(i))
-> > +				reg |=3D mask;
-> > +			else
-> > +				reg &=3D ~mask;
-> > +
-> > +			writel(reg, sel);
-> > +			if (readl(sel) !=3D reg)
-> > +				return -EACCES;
-> > +		}
-> > +	} else if (data->hwirq < INT0_NUM) {
-> > +		return 0;
-> > +	} else {
-> > +		return -EINVAL;
-> > +	}
->=20
-> If you rearrange those conditions you can avoid the indentation all toget=
-her
->=20
->         if (in_range32(data->hwirq, INTM_BASE, INTM_NUM +
-> SWINT_NUM))
->         	return 0;
->         if (data->hwirq >=3D INT_NUM)
->         	return -EINVAL;
->=20
-> No?
-Got it will update
-
->=20
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void aspeed_intc0_disable_intbank(struct aspeed_intc0 *intc0)
-> > +{
-> > +	int i, j;
-> > +
-> > +	for (i =3D 0; i < INTC0_INTBANK_GROUPS; i++) {
-> > +		for (j =3D 0; j < INTC0_INTBANKS_PER_GRP; j++) {
->=20
-> Both i and j should be declared in the for () statement. Your coding styl=
-e is so
-> inconsistent it's not even funny anymore.
-Will update.
->=20
-> > +			u32 base =3D INTC0_INTBANKX_IER + (0x100 * i) + (0x10 * j);
-> > +
-> > +			writel(0, intc0->base + base);
-> > +		}
-> > +	}
-> > +}
-> > +IRQCHIP_PLATFORM_DRIVER_BEGIN(ast2700_intc0)
-> > +IRQCHIP_MATCH("aspeed,ast2700-intc0-ic", aspeed_intc0_ic_probe)
-> > +IRQCHIP_PLATFORM_DRIVER_END(ast2700_intc0)
-> > +
-> > +#ifdef CONFIG_ASPEED_AST2700_INTC_TEST #include
-> > +"irq-ast2700-intc0-test.c"
-> > +#endif
->=20
-> Yikes. What's wrong with Makefile?
-
-Will remove it.=20
-And add it in Makefile
-obj-$(CONFIG_ASPEED_AST2700_INTC_TEST)	+=3D irq-ast2700-intc0-test.o
->=20
-> > diff --git a/drivers/irqchip/irq-ast2700-intc1.c
-> > b/drivers/irqchip/irq-ast2700-intc1.c
-> > +static void aspeed_intc1_ic_irq_handler(struct irq_desc *desc) {
-> > +	struct aspeed_intc1 *intc1 =3D irq_desc_get_handler_data(desc);
-> > +	struct irq_chip *chip =3D irq_desc_get_chip(desc);
-> > +	unsigned long bit, status;
-> > +
-> > +	chained_irq_enter(chip, desc);
-> > +
-> > +	for (int bank =3D 0; bank < INTC1_BANK_NUM; bank++) {
-> > +		status =3D readl(intc1->base + INTC1_ISR + (0x10 * bank));
-> > +		if (!status)
-> > +			continue;
-> > +
-> > +		for_each_set_bit(bit, &status, INTC1_IRQS_PER_BANK) {
-> > +			generic_handle_domain_irq(intc1->local,
-> > +						  (bank * INTC1_IRQS_PER_BANK) +
-> > +							  bit);
-> > +			writel(BIT(bit),
-> > +			       intc1->base + INTC1_ISR + (0x10 * bank));
->=20
-> My eyes bleed by now.
-I will modify the some input in intc1.c=20
-
-Thanks your review.
->=20
-> Thanks,
->=20
->         tglx
 
