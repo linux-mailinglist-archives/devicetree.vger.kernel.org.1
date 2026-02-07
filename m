@@ -1,165 +1,175 @@
-Return-Path: <devicetree+bounces-263552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263554-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GOiiFnzuhmnwSAQAu9opvQ
-	(envelope-from <devicetree+bounces-263552-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 08:49:16 +0100
+	id qJy0Dq77hmm7SgQAu9opvQ
+	(envelope-from <devicetree+bounces-263554-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 09:45:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE39610528E
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 08:49:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDF8B1053FE
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 09:45:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 01E50301ECE9
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 07:49:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F0EB23013A53
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 08:45:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 243AA2DB7B4;
-	Sat,  7 Feb 2026 07:49:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="T18FM7MY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C986280A58;
+	Sat,  7 Feb 2026 08:45:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15592.qiye.163.com (mail-m15592.qiye.163.com [101.71.155.92])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EB9721FF33;
-	Sat,  7 Feb 2026 07:49:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.92
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7405B21A;
+	Sat,  7 Feb 2026 08:45:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770450547; cv=none; b=R5E8fAVzggCnLrl7E2tXAixFxaCRD9yA8omr/tARi16OVfbdu0kqoE0mR6BSsrUvHflrrExfIdLZ7Sd7GNyeLFEGoobT/TgiLXiOYf5pQIG/OSvqBjaD4dtB6g8YgZoHpa6IXE0lHGh5FWANEWvxsACwVkyJHEkhgwnQczGNW+M=
+	t=1770453929; cv=none; b=pJ1idf3fb7aNiCRbXu7KOYwepLbUM+ct+YOkrgTawArcbjGWWCE111VlqB7LULAnUIFlegnexOG4wrLDF1GOI72hgulaRoTJbH4BmqtM9kO3MUaWd7/2t0RXNn35FyAFj3RRBONHBB5gYwfPH5ZgcQI7xWlTvgzbpjgZCkLSN+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770450547; c=relaxed/simple;
-	bh=fu44a5Nrxbaq/3c0j5h6mH4JXqEVTeb6HUHM1eNJgRw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XXOJNmlyJdDgexibohTUxNUjhRn1iUKPSIbBK/yJMBBfzWOoN7y+nKpBb1Pup8z9RdW96Yi/EHHyAH5lmIJ27HvWHkXipa7n2xwX7+dg1pJc0eFnouxaKT1aeWSN2qtb11w5yUovEZfBLc/oij/s+dvKCaOz6sGX9fe11px066U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=T18FM7MY; arc=none smtp.client-ip=101.71.155.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
-Received: from [127.0.1.1] (unknown [113.235.123.225])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3372cf673;
-	Sat, 7 Feb 2026 15:33:43 +0800 (GMT+08:00)
-From: Hongyang Zhao <hongyang.zhao@thundersoft.com>
-Date: Sat, 07 Feb 2026 15:32:56 +0800
-Subject: [PATCH v3 3/3] arm64: dts: qcom: qcs6490-rubikpi3: Use lt9611 DSI
- Port B
+	s=arc-20240116; t=1770453929; c=relaxed/simple;
+	bh=/vRmSo3ylGZuMVGf9dI+Y6aYrNLzZaOCcztKgeDcQbM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T8lufYkYNCIEcSYS8nW2e0YmoDTyYmsdufsASrR7e3CikyTIXOAOPzsLjasTPvZz3bOH2u0uB2esVZ0IyKP/Yv3gjXLQ8yW6G4WPaSRrQQ4EuLotwAyiPVKyt1PBte5aDothUcqeSzeT5CsBBiZFmg7URlbkbRqROTppUjgdYXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [112.53.146.143])
+	by APP-01 (Coremail) with SMTP id qwCowACnUm6b+4ZpnYJXBw--.38548S2;
+	Sat, 07 Feb 2026 16:45:16 +0800 (CST)
+Date: Sat, 7 Feb 2026 16:45:15 +0800
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: Krzysztof Kozlowski <krzk@kernel.org>, ulf.hansson@linaro.org,
+	adrian.hunter@intel.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	gaohan@iscas.ac.cn, me@ziyao.cc
+Subject: Re: [PATCH 2/3] mmc: sdhci-dwcmshc: Add Canaan K230 DWCMSHC
+ controller support
+Message-ID: <aYb7m+ioAmqXFhWX@duge-virtual-machine>
+References: <20260204082908.27501-1-jiayu.riscv@isrc.iscas.ac.cn>
+ <20260204082908.27501-3-jiayu.riscv@isrc.iscas.ac.cn>
+ <e06bd9ca-11bb-4d87-9db5-87139731f181@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260207-rubikpi-next-20260116-v3-3-23b9aa189a3a@thundersoft.com>
-References: <20260207-rubikpi-next-20260116-v3-0-23b9aa189a3a@thundersoft.com>
-In-Reply-To: <20260207-rubikpi-next-20260116-v3-0-23b9aa189a3a@thundersoft.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Christopher Obbard <christopher.obbard@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Roger Shimizu <rosh@debian.org>, 
- linux-arm-msm@vger.kernel.org, 
- Hongyang Zhao <hongyang.zhao@thundersoft.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.15-dev-47773
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770449616; l=1237;
- i=hongyang.zhao@thundersoft.com; s=20251115; h=from:subject:message-id;
- bh=fu44a5Nrxbaq/3c0j5h6mH4JXqEVTeb6HUHM1eNJgRw=;
- b=6qEdGRUjpCqCxVgstf+KZM5Uoe1GS1Woa/pKvR1KbJ4154JVS1V4zrzCUm1hynVcyv7hz91Qt
- hBsdjSiYJ/FBcL//q1YotBFuUFiE9r//VkUimUKPYnGpNW7qvYJl0fb
-X-Developer-Key: i=hongyang.zhao@thundersoft.com; a=ed25519;
- pk=0M0CJ1s9WiFZwli2JsxLB9ykikp5WkpKzCWgpdANKNI=
-X-HM-Tid: 0a9c37055a9309d5kunm3723250e7f3099
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDHhhIVh4YH0geSk9NTENDTFYVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlKSkhVSUhOVUpJSFVJSU5ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0hVSk
-	tLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=T18FM7MYhSpJCc2lBBDqfKUsDq+3tK+Mt0vkQ3CafLPRoQNENHjyBQvQpQvVhkziOLtAXmXxLVUErakQ7UvtlSfVDMT+yq9HS66yLVFzinf3U9C5NyS54vNaYUCXw1p/njRpdwtLzthj0IDb9T8tcN5T+frMrW8JpUm10ZeRg1Q=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
-	bh=rNJm1pw1MJ+tDs+OiCb0O6LZDD2uJo+8H3bMNDp7wN0=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e06bd9ca-11bb-4d87-9db5-87139731f181@kernel.org>
+X-CM-TRANSID:qwCowACnUm6b+4ZpnYJXBw--.38548S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7KryDKw18Zr1UJF4UXr47Arb_yoW8uF1fpF
+	ykJFW5tFy8JF1Sgw1ktF4kCa4ayw1DGF4aqw4ft34UKwnFyryxWF40gryY9as5AFW5CF4Y
+	v3yjqr9rCanrGrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
+	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
+	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
+	14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
+	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
+	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
+	IFyTuYvjxUqiFxDUUUU
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[thundersoft.com,none];
-	R_DKIM_ALLOW(-0.20)[thundersoft.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263552-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,oss.qualcomm.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[26];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263554-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hongyang.zhao@thundersoft.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[thundersoft.com:+];
-	NEURAL_HAM(-0.00)[-0.973];
+	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.159];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,thundersoft.com:email,thundersoft.com:dkim,thundersoft.com:mid,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EE39610528E
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DDF8B1053FE
 X-Rspamd-Action: no action
 
-The LT9611 HDMI bridge on RubikPi3 has DSI physically connected to
-Port B. Update the devicetree to use port@1 which corresponds to
-Port B input on the LT9611.
+On Fri, Feb 06, 2026 at 02:26:40PM +0100, Krzysztof Kozlowski wrote:
+> On 04/02/2026 09:29, Jiayu Du wrote:
+> > +static int dwcmshc_k230_init(struct device *dev, struct sdhci_host *host,
+> > +			     struct dwcmshc_priv *dwc_priv)
+> > +{
+> > +	static const char * const clk_ids[] = {"base", "timer", "ahb"};
+> > +	struct device_node *usb_phy_node;
+> > +	struct k230_priv *k230_priv;
+> > +	u32 data;
+> > +	int ret;
+> > +
+> > +	k230_priv = devm_kzalloc(dev, sizeof(struct k230_priv), GFP_KERNEL);
+> > +	if (!k230_priv)
+> > +		return -ENOMEM;
+> > +	dwc_priv->priv = k230_priv;
+> > +
+> > +	usb_phy_node = of_find_compatible_node(NULL, NULL, "canaan,k230-usb-phy");
+> 
+> Hm? You should use phandles, not look for various nodes.
 
-Fixes: f055a39f6874 ("arm64: dts: qcom: Add qcs6490-rubikpi3 board dts")
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
----
- arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Only one usbphy node has the canaan, k230-usb-phy compatibility.
+So in this situation, is it ok to continue using of_find_compatible_node?
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts b/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts
-index 0b64a0b91202..f47efca42d48 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts
-@@ -755,10 +755,10 @@ ports {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 
--			port@0 {
--				reg = <0>;
-+			port@1 {
-+				reg = <1>;
- 
--				lt9611_a: endpoint {
-+				lt9611_b: endpoint {
- 					remote-endpoint = <&mdss_dsi0_out>;
- 				};
- 			};
-@@ -801,7 +801,7 @@ &mdss_dsi {
- };
- 
- &mdss_dsi0_out {
--	remote-endpoint = <&lt9611_a>;
-+	remote-endpoint = <&lt9611_b>;
- 	data-lanes = <0 1 2 3>;
- };
- 
+> > +	if (!usb_phy_node) {
+> 
+> Please follow Linux coding style.
 
--- 
-2.43.0
+I will fix it in next version.
+
+> > +		return dev_err_probe(dev, -ENODEV,
+> > +				     "Failed to find k230-usb-phy node\n");
+> > +	}
+> > +
+> > +	k230_priv->hi_sys_regmap = device_node_to_regmap(usb_phy_node);
+> > +	of_node_put(usb_phy_node);
+> > +	if (IS_ERR(k230_priv->hi_sys_regmap)) {
+> > +		return dev_err_probe(dev, PTR_ERR(k230_priv->hi_sys_regmap),
+> > +				     "Failed to get k230-usb-phy regmap\n");
+> > +	}
+> > +
+> > +	ret = dwcmshc_get_enable_other_clks(mmc_dev(host->mmc), dwc_priv,
+> > +					    ARRAY_SIZE(clk_ids), clk_ids);
+> > +	if (ret) {
+> > +		return dev_err_probe(dev, ret,
+> > +				     "Failed to get/enable k230 mmc other clocks\n");
+> > +	}
+> > +
+> > +	if (of_device_is_compatible(dev->of_node, "canaan,k230-sdio")) {
+> 
+> Driver match data is for this.
+
+What you mean is that I shouldn't use of_find_compatible_node, but I can
+use device_get_match_data instead? Then I can continue to distinguish
+between SDIO and eMMC to do parameter configuration
+
+Or do you mean that I should put the parameters to be adjusted into the
+pdata structure? But currently, the dwcmshc structure is not suitable for
+containing vendor-specific properties.
+
+Regards,
+Jiayu Du
+> 
+> Best regards,
+> Krzysztof
 
 
