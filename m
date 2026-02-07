@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263565-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id RfARBdEGh2kPTAQAu9opvQ
-	(envelope-from <devicetree+bounces-263564-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 10:33:05 +0100
+	id oOU4EnQHh2koTAQAu9opvQ
+	(envelope-from <devicetree+bounces-263565-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 10:35:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1549C1055B0
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 10:33:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D22E71055CA
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 10:35:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6789F301A72B
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 09:33:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BAEB130158AA
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 09:35:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EC922EBDD3;
-	Sat,  7 Feb 2026 09:33:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1DFA3090EE;
+	Sat,  7 Feb 2026 09:35:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bpm7RajQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oJS9zmL6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5916E2882C9;
-	Sat,  7 Feb 2026 09:33:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC0022DC32A;
+	Sat,  7 Feb 2026 09:35:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770456781; cv=none; b=HofEdD8U6sjXl3w7/VeqROae6TFxtPlBuyA/SqBlqy/hMB4uZp7ycNW+9hxEkOyDUnk7Oi+/m9V8tFPv+1Fg/E/ivD7ZoESgISlFBvcMnnUiBxD2jTPJYXnELq5SBGJwqGnl9BRNdJxPJU6liULra3MAXp5TtJwCFQtCpiTGVdU=
+	t=1770456943; cv=none; b=jIq8Xd709EsuIyVKHW3x8S18P4pCDFpF0uA4NBF3q1fXiROAGI1nBlP7uelFNPE6nfSiTRwPdXJoQYh92eJy2bUxOlTvvih1Atu1qI8u4qWpu0Pp2k7KsbxBVNUIo07AnttKL/H92MEvNRRKtkhc4iG4sdH8RgccMC7/iU9bHps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770456781; c=relaxed/simple;
-	bh=m28hVEoYGXGdSVHJTvId02ur1GW69gv/fYpnU07qYLQ=;
+	s=arc-20240116; t=1770456943; c=relaxed/simple;
+	bh=7e1o0Smy1PHMk3P5/hdlq6oczCuitxzlPMVzDy+Y9aM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gm3Z6DUHN78IAALzXIZoHjH5SsWOk8QClJPEpne4hyCXC8i7vv2UOxfPts5ix82LVRZ4/8BLAUbd/TG9N24fGqkB+Aoe6+GwL9eC0i0hamnFjiZA/8VRAo1N7AF+1l8wwpagSsya0JD+TOV0XD66hNhECwzO22veecm7uM+8V1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bpm7RajQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE907C116D0;
-	Sat,  7 Feb 2026 09:32:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=HcAKv5/efqOb2doNPQs6gWuREQiGg3eLzSao1jOD7Cni+k3hY7Wiu9PpOpbsjvj0yVCL+h9RNwtRL6u1Y2NrhKmAhZ3/p7jtHOGp3Q+RytnQrxIrm949CJ6rCxm7rwkgRF4zf9ChqiSMLqjAwvu8PBOML+826N2U8M/spn6YCYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oJS9zmL6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90652C116D0;
+	Sat,  7 Feb 2026 09:35:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770456780;
-	bh=m28hVEoYGXGdSVHJTvId02ur1GW69gv/fYpnU07qYLQ=;
+	s=k20201202; t=1770456943;
+	bh=7e1o0Smy1PHMk3P5/hdlq6oczCuitxzlPMVzDy+Y9aM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Bpm7RajQ4+/4DDwLZQcG/B8g2SwBqBUzD4TeGeQ7YaPOWJSX+79wk5sePsPFxy2VV
-	 k+Yegsu2dAGMeIcSJWkQUvS+Z9aKD8GNMbPDfUE6Vo8/At4J8JAWgtUMayQYtdCAPt
-	 VsAG6HVRu7ZvUd72+TGT/vHm3hwKHz5JljfIc4R7hKIJ8MLJYulYgPVWbwNKSUecMz
-	 0FGVxietb0gqpbMTfxhbCnUIJiTdjX4TH1qaIka5QF7cxEXrq83BhG6gs7I/9ocGbs
-	 Y6FSkdo5S7MDCHc7R6RBdzNSWbikJJceG03KlBGf9jlLAOD3ceDNYKvgcRDAO8uB6N
-	 ehS4b83JwKQHg==
-Message-ID: <def032d1-b1c5-4a75-88de-cbb7c1293e61@kernel.org>
-Date: Sat, 7 Feb 2026 10:32:55 +0100
+	b=oJS9zmL6bBJDjIRpbDZxYLwP122P1h8a0n6jJS/ssnBlHVzLi/95d13cq/Pis6WQT
+	 bx6dWCUZ1GqtEKWPTLIv1Zc4oY500oYDnKKK64zDHfIhOCGtjYWROGRqBM30SVG0s/
+	 e7awShsESHhwJFnf0IDHlfgqYsq7Qy8OLcxw0D30zjSyzGBQ4yrIAuNH42Bfr8x4N0
+	 1yvElR9Y0k0bQLt+mlCcgSV41wg5b+POLeU8tqMN6Gvgpfo8M50N1SHBEnUWymUOK0
+	 p/bAVCBjhqANHLS499A2VU9GztAfek8V1ACqMXaOAdzY6ecKaLm3qJhEW6Lby0Te/7
+	 0fibG29DUxARw==
+Message-ID: <f1e0d724-4d71-4003-b690-9bbab3a01cd0@kernel.org>
+Date: Sat, 7 Feb 2026 10:35:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,19 +53,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] mmc: sdhci-dwcmshc: Add Canaan K230 DWCMSHC
- controller support
-To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>, ulf.hansson@linaro.org,
- adrian.hunter@intel.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- gaohan@iscas.ac.cn, me@ziyao.cc
-References: <20260204082908.27501-1-jiayu.riscv@isrc.iscas.ac.cn>
- <20260204082908.27501-3-jiayu.riscv@isrc.iscas.ac.cn>
- <e06bd9ca-11bb-4d87-9db5-87139731f181@kernel.org>
- <aYb7m+ioAmqXFhWX@duge-virtual-machine>
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: lt9611: Support single Port
+ B input
+To: Roger Shimizu <rosh@debian.org>
+Cc: Hongyang Zhao <hongyang.zhao@thundersoft.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20260128-rubikpi-next-20260116-v2-0-ba51ce8d2bd2@thundersoft.com>
+ <20260128-rubikpi-next-20260116-v2-1-ba51ce8d2bd2@thundersoft.com>
+ <20260205-winged-alligator-of-sorcery-aada21@quoll>
+ <CAEQ9gEkkK_qBCq__oSJb1D5J=gLyw-kVDx1OD4SMPry6z-F7nA@mail.gmail.com>
+ <0bcd3cb0-9231-4cb0-a726-c439d01f63e5@kernel.org>
+ <CAEQ9gEnvM1x9zP2RDPpEs3TMZ2Jcah7OU6s0y9zJY-7qFUJJTw@mail.gmail.com>
+ <1fee1990-f525-4559-b121-46fd1e1c9fef@kernel.org>
+ <CAEQ9gE=L3gsnyMtbVDbvHo-jhTSPw-8DJ7L2n9c=SKc6jOAHrg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,108 +123,99 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aYb7m+ioAmqXFhWX@duge-virtual-machine>
+In-Reply-To: <CAEQ9gE=L3gsnyMtbVDbvHo-jhTSPw-8DJ7L2n9c=SKc6jOAHrg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-263565-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263564-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[thundersoft.com,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,lists.freedesktop.org,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.989];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1549C1055B0
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.1:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D22E71055CA
 X-Rspamd-Action: no action
 
-On 07/02/2026 09:45, Jiayu Du wrote:
-> On Fri, Feb 06, 2026 at 02:26:40PM +0100, Krzysztof Kozlowski wrote:
->> On 04/02/2026 09:29, Jiayu Du wrote:
->>> +static int dwcmshc_k230_init(struct device *dev, struct sdhci_host *host,
->>> +			     struct dwcmshc_priv *dwc_priv)
->>> +{
->>> +	static const char * const clk_ids[] = {"base", "timer", "ahb"};
->>> +	struct device_node *usb_phy_node;
->>> +	struct k230_priv *k230_priv;
->>> +	u32 data;
->>> +	int ret;
->>> +
->>> +	k230_priv = devm_kzalloc(dev, sizeof(struct k230_priv), GFP_KERNEL);
->>> +	if (!k230_priv)
->>> +		return -ENOMEM;
->>> +	dwc_priv->priv = k230_priv;
->>> +
->>> +	usb_phy_node = of_find_compatible_node(NULL, NULL, "canaan,k230-usb-phy");
+On 07/02/2026 06:22, Roger Shimizu wrote:
+> On Fri, Feb 6, 2026 at 2:56 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >>
->> Hm? You should use phandles, not look for various nodes.
-> 
-> Only one usbphy node has the canaan, k230-usb-phy compatibility.
-> So in this situation, is it ok to continue using of_find_compatible_node?
-
-Amount of nodes does not matter. This is not how you express
-links/dependencies between devices. Phandle is for this. This is wrong
-on many levels, including missing device links, bypassing kernel API/layers.
-
-
-> 
->>> +	if (!usb_phy_node) {
+>> On 06/02/2026 10:49, Roger Shimizu wrote:
+>>> On Thu, Feb 5, 2026 at 11:08 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>>
+>>>> On 05/02/2026 21:31, Roger Shimizu wrote:
+>>>>> On Thu, Feb 5, 2026 at 5:07 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>>>>
+>>>>>> On Wed, Jan 28, 2026 at 07:15:45PM +0800, Hongyang Zhao wrote:
+>>>>>>> The LT9611 has two DSI input ports (Port A and Port B). Update the
+>>>>>>> binding to clearly document the port mapping and allow using Port B
+>>>>>>> alone when DSI is physically connected to Port B only.
+>>>>>>>
+>>>>>>> Changes:
+>>>>>>> - Clarify port@0 corresponds to DSI Port A input
+>>>>>>> - Clarify port@1 corresponds to DSI Port B input
+>>>>>>> - Change port requirement from mandatory port@0 to anyOf port@0/port@1,
+>>>>>>>   allowing either port to be used independently
+>>>>>>>
+>>>>>>> Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
+>>>>>>> Reviewed-by: Roger Shimizu <rosh@debian.org>
+>>>>>>
+>>>>>> Where did this review happen? V1 had this tag, but the patch was
+>>>>>> completely different, which means you were supposed to drop the tag.
+>>>>>> Please perform review in public.
+>>>>>
+>>>>> FYI. v2 was updated per review feedback, which is public:
+>>>>> https://lore.kernel.org/all/7d9041a3-9d2b-469a-9fa7-89d53bbd2a1f@linaro.org/
+>>>>
+>>>> Link above is not from Roger, so again - where did the review leading to
+>>>> above tag happen?
+>>>
+>>> Per feedback of v1, v2 was quite different than v1.
+>>> For v2, it's close to initial review, because it looks like a new patch.
 >>
->> Please follow Linux coding style.
-> 
-> I will fix it in next version.
-> 
->>> +		return dev_err_probe(dev, -ENODEV,
->>> +				     "Failed to find k230-usb-phy node\n");
->>> +	}
->>> +
->>> +	k230_priv->hi_sys_regmap = device_node_to_regmap(usb_phy_node);
->>> +	of_node_put(usb_phy_node);
->>> +	if (IS_ERR(k230_priv->hi_sys_regmap)) {
->>> +		return dev_err_probe(dev, PTR_ERR(k230_priv->hi_sys_regmap),
->>> +				     "Failed to get k230-usb-phy regmap\n");
->>> +	}
->>> +
->>> +	ret = dwcmshc_get_enable_other_clks(mmc_dev(host->mmc), dwc_priv,
->>> +					    ARRAY_SIZE(clk_ids), clk_ids);
->>> +	if (ret) {
->>> +		return dev_err_probe(dev, ret,
->>> +				     "Failed to get/enable k230 mmc other clocks\n");
->>> +	}
->>> +
->>> +	if (of_device_is_compatible(dev->of_node, "canaan,k230-sdio")) {
+>> Where was the review of v2 given?
 >>
->> Driver match data is for this.
+>> The patch is entirely different. I already said it. I also said what is
+>> expected in such case. It is also documented:
+>>
+>> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
 > 
-> What you mean is that I shouldn't use of_find_compatible_node, but I can
-> use device_get_match_data instead? Then I can continue to distinguish
-> between SDIO and eMMC to do parameter configuration
-> 
-> Or do you mean that I should put the parameters to be adjusted into the
-> pdata structure? But currently, the dwcmshc structure is not suitable for
-> containing vendor-specific properties.
+> Thanks for the guide!
+> Yes, v2 was reviewed in private. I'll inform Hongyang to remove the
+> tag when he sends the next series.
 
-Parameters should go to driver match data. I already requested this for
-some other driver and this has to be fixed.
+I am repeating myself but only because you really avoid answering.
+
+I understand v1 was reviewed in private, before posting, but why are you
+developing in private also v2? After v1 was posted, this should be all
+done in public.
+
+I have no trust in private reviews happening between versions.
+Especially if v1 is send on 27th Jan and next day v2 is sent supposedly
+reviewed in private. Really?
+
+
 
 Best regards,
 Krzysztof
