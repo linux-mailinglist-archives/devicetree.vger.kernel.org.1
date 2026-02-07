@@ -1,162 +1,193 @@
-Return-Path: <devicetree+bounces-263629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263630-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4HuDKjRwh2kuYAQAu9opvQ
-	(envelope-from <devicetree+bounces-263629-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 18:02:44 +0100
+	id sLfaIU90h2kqYQQAu9opvQ
+	(envelope-from <devicetree+bounces-263630-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 18:20:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2242E1069A1
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 18:02:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9191106A82
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 18:20:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A2A5F3012CA5
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 17:02:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A7769301AA44
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 17:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 123D8333727;
-	Sat,  7 Feb 2026 17:02:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16100333421;
+	Sat,  7 Feb 2026 17:19:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nxjUxY5c"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="bFv0bPUA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E12791DE3B5;
-	Sat,  7 Feb 2026 17:02:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A9D31C84C0
+	for <devicetree@vger.kernel.org>; Sat,  7 Feb 2026 17:19:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770483759; cv=none; b=GzJUyRWgYSn7vGlWZ3GhgfPid6YzF5KqzKbIG8Ifm/DzJpXo6QL8mkx4/ak93ve2094qECDja5Otp94ChnC8sdCUws4uWfv+/ThjrfPLIP7653Fg6Cs5Vvbi47Rs6+QEjMTxCCFO9Tmm9NAxWUeSsSts6EDcHeRj7zMxMbIgMao=
+	t=1770484783; cv=none; b=n1SEIQHcecWR5j2Sc7i3MK6dWlJrhwo2NWVc5St1ggWv08gbEWTqxPQwCwM56Cm8vKF8m54eCBpTvvUi8eyZvLc2ZsKUSF1h+orjEqZZpxRUpk7PaQfUAcc0cqBGhQGHYHOtZmF5wIYIJMLHXzL0e1+7EpRKk3hnEcI8vcmarjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770483759; c=relaxed/simple;
-	bh=s40Hrrm4dNIEKwWoQ4agNmRWxze8FatK53eM+4F3lVo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Dh09OiSOdEqSFreisSMSbiRfuoQHKYoQ11rhwRzzM3AHeM1FssVUhNTbeEWZHQcMmm+sBEcPLPxC9LYoOskwWJN4Yf2XJtauwQX2VeQzxu6r0L7BavLjEhM7CftbSuQ746cEPKsBH26D1+BDMAH03rf2XWOI/krPSk1Bg7MskG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nxjUxY5c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A28CC116D0;
-	Sat,  7 Feb 2026 17:02:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770483758;
-	bh=s40Hrrm4dNIEKwWoQ4agNmRWxze8FatK53eM+4F3lVo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=nxjUxY5c9A25VX63WElHWm3+MW2nfwy/qUm9YXGHDYbfWd+RovP1PoJuMpvCooGDj
-	 m8QmgdyBTk+Q9xjNJUhrf4IppV7FShHIVt0Agf/Hq3hetatKoUPdLhOYRod0sfy7+8
-	 UAq9ooUkmguvL7Ttzi07OwlJpP21KNBFFDqADljj/6S2JXpbuwcqKnK4TNaDdRICHI
-	 pCxr4F1SWrzz/g8EjQbFHYSUkD/zjrUS9Y10Lj+4KriUSpnf+A7VoJpofL6tKrwima
-	 EJ39TJfInyk6yn2hSIwqHAbYOjL0BjmMoVcAaWrMI5qvkuL8tjKnlJKy5XROtOs3xx
-	 VTOcD6kVw7Kcw==
-Date: Sat, 7 Feb 2026 17:02:28 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>,
- rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v6 2/8] iio: core: add fixed point parsing with 64-bit
- parts
-Message-ID: <20260207170228.2f2bfb35@jic23-huawei>
-In-Reply-To: <aYMgzMVcv_QALJtF@smile.fi.intel.com>
-References: <20260130-adf41513-iio-driver-v6-0-cf46239026bc@analog.com>
-	<20260130-adf41513-iio-driver-v6-2-cf46239026bc@analog.com>
-	<aYKkv3dq9Vkm3s_3@smile.fi.intel.com>
-	<7tiv33i65unu5ypk7puj3buzybykyhv2qbwp54bhcem5t4rawq@dpfedqmmxbhx>
-	<aYMYJppigidPeLH4@smile.fi.intel.com>
-	<hrhgmum6zdww7etc6ztchivfqecaaqeeul2bbagzyongkxpaeh@q7x4popwel6d>
-	<aYMgzMVcv_QALJtF@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1770484783; c=relaxed/simple;
+	bh=5tSv0K2xPLmp03qZ0ySPg6fhMYjNHkDNBp7DBZrnlwI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qxYpAOMsszOxKYAELgZg3o79n0od7UqM1IWPESz25zyr03no6KNsK/Z7TPgDhGBH8PgcqNiwpqEpbj4WcaeL2D3HjtO33y92Ro5+qC4s/KCUkrFBMsgBmQWpIaqyu2luq1+D77qpHjfWy/Zzm3FO/DnEVfYqDzdqS2bx/z7S72U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=bFv0bPUA; arc=none smtp.client-ip=209.85.161.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-662f30d3f1fso2314173eaf.1
+        for <devicetree@vger.kernel.org>; Sat, 07 Feb 2026 09:19:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1770484781; x=1771089581; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1W00zz5qVNYTH6MgjHmIYO/oSZsXOTum5yin9z3CGMg=;
+        b=bFv0bPUA4Ofv6wEr0EqxOkBc+vmD3AnYnxyA0Qk678SHkvpIeT6265hZHeFxKWvqHB
+         01AQi+I05chJ8BXxIclTtCpvXTyjdDUDIglhdoIkn2IzXlgc+A4WtlE3sfbQCHcB4P4e
+         e9DWPSGSpzONL2PwMxYgjUej94lrrTfGtO+HtaiuVdK8tnUPLBe53VkTm8HPaJjmVnr9
+         HKKUhDfweDqql9FQ68HGL5mLyMuOW4IWlwwBNSCcv+Gcchy2/oejnt/W2y7gSnZgKj1Q
+         xd3VHBk9S6FMfPANuG66d6cea1hLt7aeWCdBRykH6AGPjbaQWNNgeHmTFiII45/LSvAx
+         7DaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770484781; x=1771089581;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1W00zz5qVNYTH6MgjHmIYO/oSZsXOTum5yin9z3CGMg=;
+        b=hqXScSd+J0awGj1Mi6wAb0+Dr1DH6x9LblloJg+ObhmJq7qGGa7uN/tbqB52GS9akW
+         z6HqNFym9NWvPeQjgDPgcJ3K0EAEbTYIdVfCH3UxzFIBxRDz3DB0VYVgL0eaWBfwEWWg
+         RZlAjx4BOC+VQZCLS7p30mpJVEMBb73Goz15PL34pfuA1UECJkFhSyXXrbqXK4jckUlh
+         aZxKxaRMfrtZZfcVinsIoGzLvV5Je87uBHDzkaOeXvi/He8MdRuVnWTtRVyUkXEdrcHX
+         u8Zp5Qor+z7KqxU3PeVV6yZmFAzGFigJOXlUAPk4Sb6gBJULrC7eSKaqwrVCIy38NhqN
+         +sKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX30M+bd8XokClRidhaNJiZRV8kXc896hIzTGvAM+/AJRKGUONuBVm1/pKfR6ovTBFMBiJ21zozza7n@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzds+OzH6m0DAgsX7L51dNrm3QVV5CJclPUC1zBDeqMQvn8GJ90
+	Ng/Hoc5imjIr8EHF86NZ4kNwg5A2wcC4cRD+CcPdK7+AkNPj7gJG7tDiJSPDu2NaSRk=
+X-Gm-Gg: AZuq6aKDmvXkAo11HwpOm4gx+Kv+c6Fy02eXYPImRsU1CHLNoLZJcKa+797YVbBlXqf
+	/dXVFPis3iw7KBsWPke/Wvp2kXkkInVPfxxCstxA12NdRowYvD/yFm0ZeS9qVl5k1zQfFP+X+sv
+	BgrDbkVzwYJyKbCpkKernHCygZ10Hi5SAzCZxcmBlsQZKuqA8WvkEOctHOkGlLLY+54zs9NyWRZ
+	dP7rRWIgXeP7+9bhkcCexqEB2KVg8nr6IKNTHV2E59ItXHlYnsZbz1O3JcUVy0LhXQbb/T0Wozc
+	8+Q9NcsIfrwDO1t85UBJedyqVVfuw4CnqGtMj8cwThys+TAmnGMwkNCKwo6fCP5E9rkwUQknCXr
+	l9ykK9LKy7kYiv7yga9aSqn+PUoEEinXgAVtY36TDyBLMr7stxeFDJ7N7wKRbgb6EakEYeqYkjN
+	6OcVLU9gUWs9TDzYJ1DX5rKgR0odtMCd722ZXFva0gmnaEJWETnmekHJGzRfkT2vZpMEj4sw==
+X-Received: by 2002:a05:6820:3101:b0:662:bffb:41fc with SMTP id 006d021491bc7-66d13059c28mr2419479eaf.15.1770484781465;
+        Sat, 07 Feb 2026 09:19:41 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:74a6:843b:f33:21ae? ([2600:8803:e7e4:500:74a6:843b:f33:21ae])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-66d38bdeed5sm3004756eaf.4.2026.02.07.09.19.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 07 Feb 2026 09:19:39 -0800 (PST)
+Message-ID: <db9115ca-2c8f-4b5e-89ce-f3b934071a59@baylibre.com>
+Date: Sat, 7 Feb 2026 11:19:37 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/11] dt-bindings: regulator: cpcap-regulator: convert
+ to DT schema
+To: Svyatoslav Ryhel <clamor95@gmail.com>, Rob Herring <robh@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Dixit Parmar <dixitparmar19@gmail.com>, Tony Lindgren <tony@atomide.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-leds@vger.kernel.org
+References: <20260206172845.145407-1-clamor95@gmail.com>
+ <20260206172845.145407-2-clamor95@gmail.com>
+ <20260206230922.GA254792-robh@kernel.org>
+ <CAPVz0n3EGCSLUX7jTLve0x0z4uW1yexViCwkSQLY2d_4r4qkjg@mail.gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <CAPVz0n3EGCSLUX7jTLve0x0z4uW1yexViCwkSQLY2d_4r4qkjg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263629-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263630-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,analog.com,vger.kernel.org,baylibre.com,kernel.org,metafoo.de,lwn.net];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,gmail.com,atomide.com,vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email]
-X-Rspamd-Queue-Id: 2242E1069A1
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre-com.20230601.gappssmtp.com:dkim]
+X-Rspamd-Queue-Id: D9191106A82
 X-Rspamd-Action: no action
 
-On Wed, 4 Feb 2026 12:34:52 +0200
-Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+On 2/7/26 3:20 AM, Svyatoslav Ryhel wrote:
+> сб, 7 лют. 2026 р. о 01:09 Rob Herring <robh@kernel.org> пише:
+>>
+>> On Fri, Feb 06, 2026 at 07:28:35PM +0200, Svyatoslav Ryhel wrote:
+>>> Convert devicetree bindings for the Motorola CPCAP MFD regulator subnode
+>>> from TXT to YAML format. Main functionality preserved.
+>>>
 
-> On Wed, Feb 04, 2026 at 10:28:05AM +0000, Rodrigo Alencar wrote:
-> > On 26/02/04 11:57AM, Andy Shevchenko wrote:  
-> > > On Wed, Feb 04, 2026 at 09:42:55AM +0000, Rodrigo Alencar wrote:  
-> > > > On 26/02/04 03:45AM, Andy Shevchenko wrote:  
-> > > > > On Fri, Jan 30, 2026 at 10:06:43AM +0000, Rodrigo Alencar via B4 Relay wrote:  
+...
+
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - motorola,cpcap-regulator
+>>> +      - motorola,mapphone-cpcap-regulator
+>>> +      - motorola,xoom-cpcap-regulator
+>>> +
+>>> +  regulators:
+>>> +    type: object
+>>> +
+>>> +    patternProperties:
+>>> +      "$[A-Z0-9]+^":
+>>
+>> I thought it was said on the last version to list the names. Considering
+>> you already have them below, better to put them in schema than prose.
+>> And pretty much all regulator bindings define the names.
+>>
 > 
-> ...
-> 
-> > > > > There is a development in the parse_integer in the lib/. I reviewed that series
-> > > > > and hopefully it will go in. With that done, we better reuse the lib/ function.
-> > > > > 
-> > > > > https://lore.kernel.org/linux-hardening/20260202115451.290173-1-dmantipov@yandex.ru/  
-> > > > 
-> > > > In this patch, I see that it updates the overflow check, but I am not
-> > > > seeing that function being exposed to other kernel modules.  
-> > > 
-> > > Can the IIO be compiled as a module? If so, then we would need to export that
-> > > function. (Note, we may export only for the exact module(s) in question, so
-> > > nobody else will be able to use it. See EXPORT_SYMBOL_FOR_MODULES() macro.)  
-> > 
-> > Yes, one can have an industrialio.ko.
-> > Then, would it be fine to use:
-> > 
-> > EXPORT_SYMBOL_FOR_MODULES(_parse_integer_limit, "industrialio");
-> > 
-> > in lib/kstrtox.c; and:
-> > 
-> > #include "../../lib/kstrtox.h"
-> > 
-> > in drivers/iio/industrialio-core.c
-> > 
-> > that does not look pretty.  
-> 
-> Yeah, but I think it's fine as long as we have an associated FIXME.
-> In any case Jonathan is the one who makes a decision here.
+> What exactly do you propose? All those names will not fit into a
+> single unbreakable line (more than 125 columns in length btw). Patch
+> checker will complain about this. Duplicate pattern properties for
+> every few names? Please be a bit more specific. Thank you!
 
-You've lost me. Why do we need to restrict this function to use
-by specific modules?  We normally only bother with that dance when
-there is a big footgun or something deep in core kernel code where
-we want to be very careful who uses it.
+Making checkpatch happy is not a hard requirement. If you have to
+go over 125 characters for technical reasons, no one is going to
+complain.
 
-To me it doesn't seem appropriate here.
+I already gave an example on the last version. It is just a regex
+expression. (And note that you didn't fix the $ and ^ either. ^
+means beginning of the line and $ means the end of the line. So
+the pattern currently won't match anything.)
 
-Jonathan
+patternProperties:
+  "^(SW1|SW2|SW3|SW4|SW5|...)$":
 
 
-
-> 
+And I hope it is obvious that you are meant to replace ... with the
+rest of the names separated by |.
 
 
