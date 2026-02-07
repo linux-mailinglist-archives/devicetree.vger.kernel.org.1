@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-263548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263549-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id Qd4GMsbNhmkRRAQAu9opvQ
-	(envelope-from <devicetree+bounces-263548-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 06:29:42 +0100
+	id MOe2HWPOhmkRRAQAu9opvQ
+	(envelope-from <devicetree+bounces-263549-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 06:32:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2175310505A
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 06:29:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C947610507E
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 06:32:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9ECC8301AF61
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 05:29:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 59407300DDCD
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 05:32:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20A092F0C70;
-	Sat,  7 Feb 2026 05:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DB442701C4;
+	Sat,  7 Feb 2026 05:32:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBBC023D2A3
-	for <devicetree@vger.kernel.org>; Sat,  7 Feb 2026 05:29:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED82150276
+	for <devicetree@vger.kernel.org>; Sat,  7 Feb 2026 05:32:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770442180; cv=none; b=uuLzNkAeTUryAhjZSs3Yugx09hYHjLbR2464CcVYO5lMHp3xn9/YNCrF6TzjTKRq1v41U/3gg+YXYU6nYJ8bc+hhSNyC7mZoc8nRXc+gSS7gpsFxXsCHa0Q0WiM0BuiueH/XbXKEyW6Pv6+BXGG5c5lrxJKj+p7Z9/xn1Pg/dNI=
+	t=1770442336; cv=none; b=miS/vNWp1pN0nymyvNELfqeu/V/CpzurXrlWCfSwFJSyAkFd1mO52Al/1BbaVigBXOUIegxWYF7LPDy0sDyDh33t9OLQuLLvVO4DJgFZAC/NjzXrQtc+6FWiJWilb++HnpUIcg04Z7QmrSNtvPlJFaaWPv/xC/W3B8VXQ+sUCdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770442180; c=relaxed/simple;
-	bh=E5WS1EMk4WOA9/NiAFSXPnIITqHBHquNATRdykjjDnY=;
+	s=arc-20240116; t=1770442336; c=relaxed/simple;
+	bh=krDiaFFyS6239XZlJf6eTMcTjCZxo7YCdKbQY2cFgFs=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KZwLGVJTleBDVkLS8bOqq+C/0yYELN7q9rPM9zN4Ymko969tE35yFwAzR7++U06QvYA8NlYCbdWPSSJ9Qgj5lnR6ogClgHF64nuw19E8Y+NaaVwkJRwa2u72rTh4+frG91ILHhXkccSDrVPdjUFXlqNbgWmC9aanAMiwCODHL9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.181
+	 To:Cc:Content-Type; b=EwonCDBzBRDph3PUBgansE6Hvy4vTpfIGrH6MKru4K3Eg+9+j+h3yEWUDHmYgG9kaAosoXm609XwWE3iwzW6DLPF6+QeVPkAihm5iMR42Pr3IrWVlBEAWFIZzlGQwQ58s6vCFqBy7LD1uNx1cK/h+FopMD9bSpNyK9ChWHCFWIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-45c889aba0dso2443430b6e.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 21:29:39 -0800 (PST)
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-7d18d0e6d71so938872a34.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 21:32:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770442178; x=1771046978;
+        d=1e100.net; s=20230601; t=1770442335; x=1771047135;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=17OCwG6i1wi5ke5GRpB0Eh3X9L8aGMj6rgAo4LSUjdE=;
-        b=pJ2/A1E3SeFfmhrEl09dzTP03PsbhjVS0vv9udk05kNhveceZSjapUzq/FMcXDbTvL
-         BOjqFw6EBTXcUUhPSALtUST8nK+/SXjcMpQQ+WWDqjvqUauafvsEx4K/WAE7QHV8A6NF
-         g7K3/wHbUuzyYscOBaWorfHduDz8fiAWXhR1lv0sK8BV9vaSWZuU4xpC4QQ5vnvmS3x6
-         8cIYNN1bjhzPSJsFrU2I6Ffi2qGsgFM6W27IRQDPSoY9HmGje+Cu4sWllx4hQw0WILFr
-         zD6aZxBXyZGOOlpxVCZ7RQGBsRLHJM2DiOZQpTXaTg62Iy0Ao58XZBRHLI+dxq8SkStd
-         SXTA==
-X-Forwarded-Encrypted: i=1; AJvYcCXxWLnlu7muesKhQGTsszJhaHKGTjK29FpfDOpOYxYVeaSj8O47JvNewidhOaEaLGsCcMKTFGcpM8iu@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMmgY3a1F4mFWJgpKg7CAL2eC+apPS/+wnATTxAFZikZUVpI2F
-	dI/02eaZXwSqm/iheLERoZXqsKcB1qEqMRml6LtP6TPX94nAXPYR2DzDFIUDuA==
-X-Gm-Gg: AZuq6aLaqDGtX+Mqe6DMTThCKeNLY7NafX8qSL+kJBtLPo+CVDlpf8VDDVf9qHYZ4X1
-	qbY0fSy9zwYzM2INZd/CAUKqqkyCM1KxG8hoCSJl+iy3Qe468it+0LP2amc+QRRMe2MDdQqRCmr
-	4ktF1gNXjiEaRcfeQfNKC2upB9j+IknT9eFUqU7VrE6dQX0Xm3ziGThIb6s4RoenOZA4S7F3SE2
-	x+Ut+XMPvGQ6mAx6fySVivlUOC8WS3mx6Z2+2Pwy0LsgYh2OF5tDrN9QCj0DwCyj3ZdpZ2HDtcj
-	mGd7FRGlqeGt3UL86cPeFoHIiDfK24WOeDbJTS3bcN0qtcvDP9t9f7ynLs25CEiM7T9szG/O6Gw
-	tjDQyGlHzGRLeUOiW500X09ojDKQPa/kKW/gOejquWVN6oQflA8BWFB94ja11iUiBkQ9jS7xoc6
-	oWPIlx6QMNnxDLZbnqiEs/67gMm+b3cUX93WpjzBhiLQ==
-X-Received: by 2002:a05:6808:320c:b0:457:a9bc:dbf7 with SMTP id 5614622812f47-462fcbb39dfmr2687214b6e.20.1770442178400;
-        Fri, 06 Feb 2026 21:29:38 -0800 (PST)
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com. [209.85.210.54])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-462fe6ee926sm2648296b6e.0.2026.02.06.21.29.37
+        bh=krDiaFFyS6239XZlJf6eTMcTjCZxo7YCdKbQY2cFgFs=;
+        b=Re06oNkCYGmeYEgcU0y34QTNKYaPFktpw96GYj1Wr8FF1RWrpYlFbIhxjOEklUq3/r
+         4UzD3semnBXMjtEuB4QuVwApqCYFyCbVvnsTU5XKNudkA7sEhiDOAi3MGvjIDs0JMHKP
+         TX8OQx2tFquWFIW7utKDTggP3S8I7jziOReXwxevkK6kZXAPVt/acnfMfhFjnxx4SaCs
+         Z29ZCTW9RE8XxMNLFHncEBQzhTDwJkaPXDUTaDFT4kx31JktV3ZANV0LluyVZixinKyo
+         /IlWpivTLu+TBWcmN4/UkzAz+FND2YFO73FrAeTe7V1ClH3OCUdyOEWzZtN6EPeLU+Xq
+         77Mg==
+X-Forwarded-Encrypted: i=1; AJvYcCXABKl3YipzqJylUv2ixqaa6dlJaRijMdbXeFfbNZQAArkoDFzO9Cv3iQi3kSgGLtg0mevDe5fXlpK/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlBZLTbph6GcYuRjdmAjaMwjZG5cm/9YBCMSNk+UbFwcMrGYfH
+	KewNI7MPVlXU9oTv6/9lTj+ECuknFKeOsMkum7JS1sJYyQWLHcnON+e+xCOjUw==
+X-Gm-Gg: AZuq6aK6Pgbojar2g4ezrRnVrt3tb7mJKjXsxRKNJAjEgcInaeCIlWhvi5ohRNgYPTH
+	1eRFf5qzkmPhmvraQ06nPzzacUqpbf32SRM/0z79JOwg+SDa2Cnp0MyZfLmLPhjVlP+0a2EvTCQ
+	5PnhCYJU8X7nOSU0uWQTYCfgpT1uQRcsCHgVf7927nqGXmEPhcSDr3ciNLdgs7sOlqY2WSp0nbq
+	qMSzg2R6GShrpUbw3P18z3rHWgZksK2/WoY5pY68GVIpMuVsYmkRNxrEa/JAMQs/Xlz+wF7KVEV
+	g/ur5O4/sIot0+ilSdBjRi74Abo9+xdvLrE1V5vhC9d657Ve0Qipf6O85Zigk5VVmZ9nbZAE/MQ
+	F7fLwTjbg0+DdZAt65T2v9jNb2xagH8PGI4gnuxs76DFTCPUyTEd4PNLh4VqDjiBTpqY7SN5epN
+	u3qV97V/7MDFCUgue5pi5cvgR429GjNv0XFkztfaWWgg==
+X-Received: by 2002:a05:6830:6214:b0:7cf:dbb4:3210 with SMTP id 46e09a7af769-7d464422696mr2999186a34.15.1770442334761;
+        Fri, 06 Feb 2026 21:32:14 -0800 (PST)
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com. [209.85.160.43])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d464785f68sm2927292a34.16.2026.02.06.21.32.14
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Feb 2026 21:29:38 -0800 (PST)
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-7cfd53a8c31so2151216a34.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 21:29:37 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXhQ9OnjyzNfT7+zBOJLocGsHhlpUP1yW/yycLlin8z0Zx3ZCrzMMfV2GP23qCm//SIRES8qsjwmVQe@vger.kernel.org
-X-Received: by 2002:a05:690e:1508:b0:649:61b6:8a97 with SMTP id
- 956f58d0204a3-649e87e21f8mr6826337d50.42.1770441740068; Fri, 06 Feb 2026
- 21:22:20 -0800 (PST)
+        Fri, 06 Feb 2026 21:32:14 -0800 (PST)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-4096aab5521so1182396fac.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 21:32:14 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXkcV5OhEtbC9nFkR21dwkWFLFKs+JCEtn1C90MfT1JOE6fvPkktked/IdGOEqe5Ix+qsT5qN4WieDc@vger.kernel.org
+X-Received: by 2002:a05:690e:d8c:b0:64a:d9f2:ad6c with SMTP id
+ 956f58d0204a3-64ad9f2b2ffmr102741d50.35.1770441868920; Fri, 06 Feb 2026
+ 21:24:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,18 +76,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20260128-rubikpi-next-20260116-v2-0-ba51ce8d2bd2@thundersoft.com>
- <20260128-rubikpi-next-20260116-v2-1-ba51ce8d2bd2@thundersoft.com>
- <20260205-winged-alligator-of-sorcery-aada21@quoll> <CAEQ9gEkkK_qBCq__oSJb1D5J=gLyw-kVDx1OD4SMPry6z-F7nA@mail.gmail.com>
- <0bcd3cb0-9231-4cb0-a726-c439d01f63e5@kernel.org> <CAEQ9gEnvM1x9zP2RDPpEs3TMZ2Jcah7OU6s0y9zJY-7qFUJJTw@mail.gmail.com>
- <1fee1990-f525-4559-b121-46fd1e1c9fef@kernel.org>
-In-Reply-To: <1fee1990-f525-4559-b121-46fd1e1c9fef@kernel.org>
+ <20260128-rubikpi-next-20260116-v2-3-ba51ce8d2bd2@thundersoft.com>
+ <20260205-calm-aboriginal-mastiff-b07eb3@quoll> <CAEQ9gEm-A8mDS=6V3h=2gHOhtM39q+bR79sSFhDTvbEJbDJRWA@mail.gmail.com>
+ <7c6ebf5f-ed13-46f3-88c8-a33205388d74@kernel.org>
+In-Reply-To: <7c6ebf5f-ed13-46f3-88c8-a33205388d74@kernel.org>
 From: Roger Shimizu <rosh@debian.org>
-Date: Fri, 6 Feb 2026 21:22:08 -0800
-X-Gmail-Original-Message-ID: <CAEQ9gE=L3gsnyMtbVDbvHo-jhTSPw-8DJ7L2n9c=SKc6jOAHrg@mail.gmail.com>
-X-Gm-Features: AZwV_QieKd_ZP4aFD5f_DxifB_sLkcMLB0SwbwiEzLFTZaXP5WcquLwWVuCYe7k
-Message-ID: <CAEQ9gE=L3gsnyMtbVDbvHo-jhTSPw-8DJ7L2n9c=SKc6jOAHrg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: lt9611: Support single Port
- B input
+Date: Fri, 6 Feb 2026 21:24:17 -0800
+X-Gmail-Original-Message-ID: <CAEQ9gEm=6kLFz5bdY9wtVd2ZLtmPape-GUrY_dJT8OYhzBB-nw@mail.gmail.com>
+X-Gm-Features: AZwV_Qgf0EMQyeIKx49_m9UW5WfF6Aam9IpQCMPUe92xYzVqHTDk6dw3j6f9MCM
+Message-ID: <CAEQ9gEm=6kLFz5bdY9wtVd2ZLtmPape-GUrY_dJT8OYhzBB-nw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: qcs6490-rubikpi3: Use lt9611 DSI
+ Port B
 To: Krzysztof Kozlowski <krzk@kernel.org>
 Cc: Hongyang Zhao <hongyang.zhao@thundersoft.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
 	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
@@ -105,12 +104,12 @@ X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[thundersoft.com,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,lists.freedesktop.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-263548-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263549-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[debian.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -124,67 +123,48 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[rosh@debian.org,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.947];
+	NEURAL_HAM(-0.00)[-0.948];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,thundersoft.com:email,0.0.0.0:email,mail.gmail.com:mid,bootlin.com:url]
-X-Rspamd-Queue-Id: 2175310505A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,thundersoft.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: C947610507E
 X-Rspamd-Action: no action
 
-On Fri, Feb 6, 2026 at 2:56=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
+On Thu, Feb 5, 2026 at 11:08=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
 >
-> On 06/02/2026 10:49, Roger Shimizu wrote:
-> > On Thu, Feb 5, 2026 at 11:08=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
+> On 05/02/2026 20:36, Roger Shimizu wrote:
+> > On Thu, Feb 5, 2026 at 5:09=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel=
+.org> wrote:
 > >>
-> >> On 05/02/2026 21:31, Roger Shimizu wrote:
-> >>> On Thu, Feb 5, 2026 at 5:07=E2=80=AFAM Krzysztof Kozlowski <krzk@kern=
-el.org> wrote:
-> >>>>
-> >>>> On Wed, Jan 28, 2026 at 07:15:45PM +0800, Hongyang Zhao wrote:
-> >>>>> The LT9611 has two DSI input ports (Port A and Port B). Update the
-> >>>>> binding to clearly document the port mapping and allow using Port B
-> >>>>> alone when DSI is physically connected to Port B only.
-> >>>>>
-> >>>>> Changes:
-> >>>>> - Clarify port@0 corresponds to DSI Port A input
-> >>>>> - Clarify port@1 corresponds to DSI Port B input
-> >>>>> - Change port requirement from mandatory port@0 to anyOf port@0/por=
-t@1,
-> >>>>>   allowing either port to be used independently
-> >>>>>
-> >>>>> Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
-> >>>>> Reviewed-by: Roger Shimizu <rosh@debian.org>
-> >>>>
-> >>>> Where did this review happen? V1 had this tag, but the patch was
-> >>>> completely different, which means you were supposed to drop the tag.
-> >>>> Please perform review in public.
+> >> On Wed, Jan 28, 2026 at 07:15:47PM +0800, Hongyang Zhao wrote:
+> >>> The LT9611 HDMI bridge on RubikPi3 has DSI physically connected to
+> >>> Port B. Update the devicetree to use port@1 which corresponds to
+> >>> Port B input on the LT9611.
 > >>>
-> >>> FYI. v2 was updated per review feedback, which is public:
-> >>> https://lore.kernel.org/all/7d9041a3-9d2b-469a-9fa7-89d53bbd2a1f@lina=
-ro.org/
+> >>> Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
+> >>> Reviewed-by: Roger Shimizu <rosh@debian.org>
 > >>
-> >> Link above is not from Roger, so again - where did the review leading =
-to
-> >> above tag happen?
+> >> Where did this happen?
+> >>
+> >> https://lore.kernel.org/all/?q=3Df%3Arosh%40debian.org
+> >>
+> >> And again, v1 was completely different so how pre-v1-internal-review
+> >> could be applied to this v2?
+> >>
+> >> Honestly, initial guidance is useful but continuous development behind
+> >> the closed doors is not.
 > >
-> > Per feedback of v1, v2 was quite different than v1.
-> > For v2, it's close to initial review, because it looks like a new patch=
-.
+> > FYI. v2 was updated per review feedback, which is public:
+> > https://lore.kernel.org/all/7d9041a3-9d2b-469a-9fa7-89d53bbd2a1f@linaro=
+.org/
 >
-> Where was the review of v2 given?
->
-> The patch is entirely different. I already said it. I also said what is
-> expected in such case. It is also documented:
->
-> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/s=
-ubmitting-patches.rst#L577
+> What? I asked about the tag. Do you understand how kernel review process
+> works?
 
-Thanks for the guide!
-Yes, v2 was reviewed in private. I'll inform Hongyang to remove the
-tag when he sends the next series.
+Yes, v2 was reviewed in private.
+I'll inform Hongyang to remove the tag when he sends the next series.
 
 -Roger
 
