@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263566-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oOU4EnQHh2koTAQAu9opvQ
-	(envelope-from <devicetree+bounces-263565-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 10:35:48 +0100
+	id kveDCckHh2kwTAQAu9opvQ
+	(envelope-from <devicetree+bounces-263566-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 10:37:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D22E71055CA
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 10:35:47 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1C401055EC
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 10:37:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BAEB130158AA
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 09:35:46 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 088933005597
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 09:37:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1DFA3090EE;
-	Sat,  7 Feb 2026 09:35:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CCD730C606;
+	Sat,  7 Feb 2026 09:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oJS9zmL6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gozu+8U+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC0022DC32A;
-	Sat,  7 Feb 2026 09:35:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480F62DC32A;
+	Sat,  7 Feb 2026 09:37:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770456943; cv=none; b=jIq8Xd709EsuIyVKHW3x8S18P4pCDFpF0uA4NBF3q1fXiROAGI1nBlP7uelFNPE6nfSiTRwPdXJoQYh92eJy2bUxOlTvvih1Atu1qI8u4qWpu0Pp2k7KsbxBVNUIo07AnttKL/H92MEvNRRKtkhc4iG4sdH8RgccMC7/iU9bHps=
+	t=1770457029; cv=none; b=g6aKlw3y92uznvJG4OMu3id9yiVqRUWkgmwimpUPpbtABM6k1IN37Np4AHZpfh9SbYP07ub89XlkOmbgp6aoyyWiSr4sT1/LrAy0Sv4pFvhTxV+gnTS5Juhj6OTvlk8EickdjIQkwdj71/euCLfHyEwiygx7pUj8xKL7gGyg5Tg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770456943; c=relaxed/simple;
-	bh=7e1o0Smy1PHMk3P5/hdlq6oczCuitxzlPMVzDy+Y9aM=;
+	s=arc-20240116; t=1770457029; c=relaxed/simple;
+	bh=35J3+W6jdlsGjix4fs8E3xu0wjRISw5Oh69jYh09yXw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HcAKv5/efqOb2doNPQs6gWuREQiGg3eLzSao1jOD7Cni+k3hY7Wiu9PpOpbsjvj0yVCL+h9RNwtRL6u1Y2NrhKmAhZ3/p7jtHOGp3Q+RytnQrxIrm949CJ6rCxm7rwkgRF4zf9ChqiSMLqjAwvu8PBOML+826N2U8M/spn6YCYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oJS9zmL6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90652C116D0;
-	Sat,  7 Feb 2026 09:35:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Ki4OKAMTxXBs93YgktdHSZltLBGC7NqqSCW4GAWz+3IBurx77VdNwamADnpDmEDDsGFpOZCAdLJUlm2ROdM+0iI4tOL2lYtzXxttS2vAR4bWwV2lp/iRzSPJ+OFLrxWh0TCHrQLebHS5QYQihn0vVdkbP40YQn1Or3fdBN7Q1z4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gozu+8U+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DD3CC116D0;
+	Sat,  7 Feb 2026 09:37:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770456943;
-	bh=7e1o0Smy1PHMk3P5/hdlq6oczCuitxzlPMVzDy+Y9aM=;
+	s=k20201202; t=1770457028;
+	bh=35J3+W6jdlsGjix4fs8E3xu0wjRISw5Oh69jYh09yXw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oJS9zmL6bBJDjIRpbDZxYLwP122P1h8a0n6jJS/ssnBlHVzLi/95d13cq/Pis6WQT
-	 bx6dWCUZ1GqtEKWPTLIv1Zc4oY500oYDnKKK64zDHfIhOCGtjYWROGRqBM30SVG0s/
-	 e7awShsESHhwJFnf0IDHlfgqYsq7Qy8OLcxw0D30zjSyzGBQ4yrIAuNH42Bfr8x4N0
-	 1yvElR9Y0k0bQLt+mlCcgSV41wg5b+POLeU8tqMN6Gvgpfo8M50N1SHBEnUWymUOK0
-	 p/bAVCBjhqANHLS499A2VU9GztAfek8V1ACqMXaOAdzY6ecKaLm3qJhEW6Lby0Te/7
-	 0fibG29DUxARw==
-Message-ID: <f1e0d724-4d71-4003-b690-9bbab3a01cd0@kernel.org>
-Date: Sat, 7 Feb 2026 10:35:36 +0100
+	b=gozu+8U+B0SRx/qzzzkVKaUsBpkVWXT2xJpbxQwX7mDPuQ7ZUF06AUTntnKz2xqCR
+	 kQUtrZBSnMLqfs9YIXTQNxgEFZo2yI+iF25XBt2pPKVv3/kkkMIXq5paQJkRm29M9w
+	 XwBM8V1678+HVkQPhUiVNWU8H3Kx43i5F74J09YODL58FzByhjLb/fnLcK6Rl7cPUR
+	 gc01QgGktVl5B92RSgzI94YX8hpg1SRiJvkYOYlPAoNwHNYelvFgaTIwSWvMBUm6RU
+	 ChT9T/n0ddi9yEGSUumNicpgyD6K8KmExvYk3pP4TVeNBhRCSkEcOZ9WalBs68+PH9
+	 uYHy/rh/LM8Ag==
+Message-ID: <e242a327-b53e-4b24-a9c1-9ae990de901e@kernel.org>
+Date: Sat, 7 Feb 2026 10:37:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,31 +53,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: lt9611: Support single Port
- B input
-To: Roger Shimizu <rosh@debian.org>
-Cc: Hongyang Zhao <hongyang.zhao@thundersoft.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20260128-rubikpi-next-20260116-v2-0-ba51ce8d2bd2@thundersoft.com>
- <20260128-rubikpi-next-20260116-v2-1-ba51ce8d2bd2@thundersoft.com>
- <20260205-winged-alligator-of-sorcery-aada21@quoll>
- <CAEQ9gEkkK_qBCq__oSJb1D5J=gLyw-kVDx1OD4SMPry6z-F7nA@mail.gmail.com>
- <0bcd3cb0-9231-4cb0-a726-c439d01f63e5@kernel.org>
- <CAEQ9gEnvM1x9zP2RDPpEs3TMZ2Jcah7OU6s0y9zJY-7qFUJJTw@mail.gmail.com>
- <1fee1990-f525-4559-b121-46fd1e1c9fef@kernel.org>
- <CAEQ9gE=L3gsnyMtbVDbvHo-jhTSPw-8DJ7L2n9c=SKc6jOAHrg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: clk: tenstorrent: Add
+ tenstorrent,atlantis-prcm
+To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
+Cc: Drew Fustini <dfustini@oss.tenstorrent.com>,
+ Joel Stanley <jms@oss.tenstorrent.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, joel@jms.id.au,
+ fustini@kernel.org, mpe@kernel.org, mpe@oss.tenstorrent.com,
+ npiggin@oss.tenstorrent.com, agross@kernel.org, agross@oss.tenstorrent.com,
+ bmasney@redhat.com
+References: <20260202-atlantis-clocks-v5-0-0922e43acaba@oss.tenstorrent.com>
+ <20260202-atlantis-clocks-v5-1-0922e43acaba@oss.tenstorrent.com>
+ <20260205-upbeat-tortoise-of-admiration-b3c0eb@quoll>
+ <CAEev2e8_4LSLNvHsiC4d7Rrd2GmjQ_5GRHU6b9-Ha69+yvn5cA@mail.gmail.com>
+ <92512903-4651-4ac3-b3ea-c9297e866a3a@kernel.org>
+ <CAEev2e99LEoi83_d09NEJwzcSiYdFFZvLOFZUTRRrYtL_qCErw@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -123,99 +117,69 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAEQ9gE=L3gsnyMtbVDbvHo-jhTSPw-8DJ7L2n9c=SKc6jOAHrg@mail.gmail.com>
+In-Reply-To: <CAEev2e99LEoi83_d09NEJwzcSiYdFFZvLOFZUTRRrYtL_qCErw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263565-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263566-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[thundersoft.com,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,lists.freedesktop.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-0.989];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.1:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D22E71055CA
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B1C401055EC
 X-Rspamd-Action: no action
 
-On 07/02/2026 06:22, Roger Shimizu wrote:
-> On Fri, Feb 6, 2026 at 2:56 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 07/02/2026 05:18, Anirudh Srinivasan wrote:
 >>
->> On 06/02/2026 10:49, Roger Shimizu wrote:
->>> On Thu, Feb 5, 2026 at 11:08 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>
->>>> On 05/02/2026 21:31, Roger Shimizu wrote:
->>>>> On Thu, Feb 5, 2026 at 5:07 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>>>
->>>>>> On Wed, Jan 28, 2026 at 07:15:45PM +0800, Hongyang Zhao wrote:
->>>>>>> The LT9611 has two DSI input ports (Port A and Port B). Update the
->>>>>>> binding to clearly document the port mapping and allow using Port B
->>>>>>> alone when DSI is physically connected to Port B only.
->>>>>>>
->>>>>>> Changes:
->>>>>>> - Clarify port@0 corresponds to DSI Port A input
->>>>>>> - Clarify port@1 corresponds to DSI Port B input
->>>>>>> - Change port requirement from mandatory port@0 to anyOf port@0/port@1,
->>>>>>>   allowing either port to be used independently
->>>>>>>
->>>>>>> Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
->>>>>>> Reviewed-by: Roger Shimizu <rosh@debian.org>
->>>>>>
->>>>>> Where did this review happen? V1 had this tag, but the patch was
->>>>>> completely different, which means you were supposed to drop the tag.
->>>>>> Please perform review in public.
->>>>>
->>>>> FYI. v2 was updated per review feedback, which is public:
->>>>> https://lore.kernel.org/all/7d9041a3-9d2b-469a-9fa7-89d53bbd2a1f@linaro.org/
->>>>
->>>> Link above is not from Roger, so again - where did the review leading to
->>>> above tag happen?
->>>
->>> Per feedback of v1, v2 was quite different than v1.
->>> For v2, it's close to initial review, because it looks like a new patch.
+>>> this version and I have mentioned this in the changelog in the cover
+>>> letter) named "tenstorrent,atlantis-prcm-xyz". The bindings document
 >>
->> Where was the review of v2 given?
->>
->> The patch is entirely different. I already said it. I also said what is
->> expected in such case. It is also documented:
->>
->> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+>> Where did you mention it? I went TWICE through it.
 > 
-> Thanks for the guide!
-> Yes, v2 was reviewed in private. I'll inform Hongyang to remove the
-> tag when he sends the next series.
+> Conor and I were discussing these in a previous series and were
+> referring to them as rcpu prcm and !rcpu prcms. I use these terms to
+> refer to it in "Changes in v4".
 
-I am repeating myself but only because you really avoid answering.
+There is no way I could have guessed it. If you remove a compatible you
+say "removed compatible" not "removed !rcpu".
 
-I understand v1 was reviewed in private, before posting, but why are you
-developing in private also v2? After v1 was posted, this should be all
-done in public.
+> 
+>>
+>>> suggests picking a more generic name in this case, so isn't
+>>> "tenstorrent,atlantis-prcm" okay for that?
+>>
+>> No, because I don't want to keep guessing this. The docs clearly ask you
+>> to post complete bindings, which now became less-complete, but fine.
+>> Then the next rule asks you to use compatible as filename. You cannot
+>> keep skipping the rules.
+> 
+> I will add all the compatibles back, so there will be 4 of them named
+> "tenstorrent,atlantis-prcm-xyz". In that case is it appropriate for
+> the filename to be "tenstorrent,atlantis-prcm.yaml"?
 
-I have no trust in private reviews happening between versions.
-Especially if v1 is send on 27th Jan and next day v2 is sent supposedly
-reviewed in private. Really?
-
-
+Yes
 
 Best regards,
 Krzysztof
