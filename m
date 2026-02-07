@@ -1,218 +1,291 @@
-Return-Path: <devicetree+bounces-263557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263558-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gADgDZMDh2mpSwQAu9opvQ
-	(envelope-from <devicetree+bounces-263557-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 10:19:15 +0100
+	id GWtUFuEDh2m/SwQAu9opvQ
+	(envelope-from <devicetree+bounces-263558-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 10:20:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7BCB1054EB
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 10:19:14 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ABBC105502
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 10:20:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 503323005339
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 09:19:12 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 71D633006681
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 09:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15C6030E0D6;
-	Sat,  7 Feb 2026 09:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C21B30E826;
+	Sat,  7 Feb 2026 09:20:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KJboHJmw";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="imx9Y3Sc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M9mit3MZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C261B2FDC26
-	for <devicetree@vger.kernel.org>; Sat,  7 Feb 2026 09:19:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770455951; cv=none; b=qVnDkRrNacoN88aLBYTlLktZNyAyGbdI6v5xBhrxtR3vbowCXIdadUrXc7rCbGJ+oOc3opvFBic2k6UbTFBzEZOlD/gmrR6qGKCDsn5ToHYCVks/onFR2tF+Mfx3io1jVbopP7sc79PHHjH5ET5qI2bcDZ3htdZ68vOxIYhLapg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770455951; c=relaxed/simple;
-	bh=DDF7P37GUvWF77NFQmoJPtnpWBxrXc6+qGMn0YAvKlo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E+CJsW2YUAN8ssnAHgoORYWtez1W+bHvc6JdgTDpzC6RaIqdjzkELwuI+0MTHWVZXXVfpe5WU3AICe+OsCHflWI7RoKlkfkeqPP0//mLrnH/0nti+FVUlfeTQxIut5D6VfApJRpxB5/MguR5Z6mmlxqv+pppHNyUJaImj0MeR6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KJboHJmw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=imx9Y3Sc; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6174NAdE1117443
-	for <devicetree@vger.kernel.org>; Sat, 7 Feb 2026 09:19:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=YUonyW6a557wLmzLM1XA/ZQe
-	RIm/x19FFkubBMJmca8=; b=KJboHJmwQtyQem8OlCKj0BQmLrJHRo9p0va/kWW/
-	ZASWELckndJ+kYDeJPW5cUvHxCW5cq6XT6YtwSkD5NloQbYn6G+WlkZRYjeGp/eM
-	5meIpeGjnDIzuwJixApOUhqMyn+W7lhfrGqUV20WthaL8ltavGQVzbrLCHBJLZon
-	0hRv1TeIut628eTkHKt3rwrcgT/LeHEXlbo6KVjbOgxLAhLIev1tY8og3GFJ2WXJ
-	K1vosSaPpw2X6YbKnGSynAijkMct67mt6Izal4N+d3+muvtuAN6HyXlum7ywZjT3
-	dwyaKuZbOuBZQZdMeGMuTKZkp8qwtUU6CIZAaG2YbrI1bw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c5xamrdwj-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 07 Feb 2026 09:19:09 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c71304beb4so696891585a.3
-        for <devicetree@vger.kernel.org>; Sat, 07 Feb 2026 01:19:09 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 118272E889C
+	for <devicetree@vger.kernel.org>; Sat,  7 Feb 2026 09:20:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770456030; cv=pass; b=MVYqiFg7FQ1TMruHgnFCZRSq34agIVSM3Jtg0fr3uK/qttkIPU4x29H0XtMlaidH/Ks0LZjzL403LvvL7FuQ2UlkfuFicZxk6QrmZDFHoJVcZgiPcUuJYc7wGLnS4xR4dUHvxsCV4vbaDhLekq2KTXrHIYRz3gc/3ln/PQyQdwk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770456030; c=relaxed/simple;
+	bh=cy4A7rvGum9/P7zJXPm/8IWM6o1KPiGpFPtqRktj2bo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GCsInZ7aDYThWCjHAEFxNE1yuLRgXv0g/ppb2t5c5AyLyqLBe8bn3BQbJwyR1OJGtDEFpUkooqrRFvAcMK1dMxJYBqbODUHppjWXwtsmEWHOEBuCuDCaiprkqQ0kULKhssEucZnIBhF0Q2u1+Z+QINRURuYJA7kpvBW3At+UNYk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M9mit3MZ; arc=pass smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-436e87589e8so31214f8f.3
+        for <devicetree@vger.kernel.org>; Sat, 07 Feb 2026 01:20:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770456028; cv=none;
+        d=google.com; s=arc-20240605;
+        b=JJu5rD67giccMpSo+dTysLqPDJw3l4oM5ZsIT7yAzxxISLQa34reMZD6qnUGlhcRI+
+         C1YaFA2ZP2+oBjm47yEBusnmm5A7pmpChU3PwiBv1PoScqBEqnBnXIRcS+woEB/tvpLL
+         qnTsT7kt3G/0JAo3aoSNWt8n4NU4saPexF5pA/BA/DG4Oo3txtrprfGvGTr3j+MeFPv9
+         ewZZvl7WGhTPfhSo7JQOylf7Na1kssjThi16A14n9qkWzrLTE7u/A5tzGVYdvh/DlsuQ
+         MQAuLBJr0KHh5mmqjXyLHyGJgFmKv2NRUm+8WeVr0BDyTVgG4ldoUwm2ApF6gn8j33I4
+         qj9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=5IniXECrOUfTc9Ybm/eSbm1Y2H5SJTil/wMGC8X/eL8=;
+        fh=I/7+VCGPKWVEUqcWDSxERavV+N/5o6TBQr0K0NOXI0I=;
+        b=f7sp2CLdh1s1IcLd+HaDVkNStziY7hSi5rU0MEULP5CWK9Dj7PyHBkM6NF5YAQEBjl
+         xrDy1vKhMdv6HDxglmNyGI+szCNcBRwQ96pSD4mRXw/1UCDXVrvE61ovRZfsYIpqyGBL
+         tBUk22vS88cc7AJ4tzffFq78tr7D6cetBwaBQs1qda+lda7C8zdvkli/sRUafzirVhzX
+         VfmuhtBsCojzzBQJ1PMmT90Ug8rLoYUjEGvaz2aI4wGT18q0gO+XKD9XOVxZOlWXmW1N
+         d76BmIUDmmwFGQI2Am3HgJKhGB6hLj3B6StmGsSy3cFFO0dy71koCbYmL8K0r7oqgkBt
+         9TJw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770455949; x=1771060749; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YUonyW6a557wLmzLM1XA/ZQeRIm/x19FFkubBMJmca8=;
-        b=imx9Y3ScYXGraYXX0zVE4wUSJXO58Sxf452RhoXtODZzfTcvsCQSNRuELMAQCuirDX
-         ok99HV2NJhNIF5u7xE2RuwMCqaT7XPLHnpk29yGU013KeZfNellKuIPGohGeXoB48ZfY
-         3a/L6L/BLY7yjL3Ol9WSyzNH+MJfeUvwPRjob7cQC9b7PCW+rbFbkQb/F7KtIDSNHh6T
-         sQ7W+f32FzMw959FRQLyLKBD/cTdFXuuySDbPdxtuFjy4gFpGBZ0Kb9EuWBKEMSfGN/W
-         a51W138qCmNZGcPZs2lYWbi4X7K+2yLX102P7Cjh+Z/D0f+MN2l5e2V5/DTrCrSt22pe
-         +sqw==
+        d=gmail.com; s=20230601; t=1770456028; x=1771060828; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5IniXECrOUfTc9Ybm/eSbm1Y2H5SJTil/wMGC8X/eL8=;
+        b=M9mit3MZkAsemcuc0rx+tkFJRXH41lDCpolqqqmcfzoAziQ7iZjf2hNp14NjkNGi1e
+         znDdtO0EsfcFMPJAJIWhvEVpNaCnsyuiR57grujXQ5NF9fqX20NFe1Ch8YFN5B9/sBCw
+         gMrIDDWMJxD9JuwQwGVloWUymTCZ0LF2Mpvou8kyZM6G0u1KGsj2aXyZW9vqyoFj3v6s
+         Rch6GLnAEiCjUIryml15QasvQ9USVuZrScLw5bmRGBMGB0O3eX8UR0w3M/kBrQi2d8vl
+         zke/BRX+BwQuwOwBfdvH/auRKEAdwyn+LVR924ZdSMzCvWGTsRfBXcx72p0i1Co5zynU
+         Hz9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770455949; x=1771060749;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YUonyW6a557wLmzLM1XA/ZQeRIm/x19FFkubBMJmca8=;
-        b=SZjPUUp9K8FfClGWPEfHPie1ObqlAwpbDfpR3imBqBsXF3yvwjuIi9us3DawlwQ7hT
-         Pd9hoRvSsivByW5HNL2cK4z4sDjJVRp/QJpcVxYoICI/lxvyXeqP1ny4ZGtG4S0RH4XS
-         gkEcHjb2tPWyGvYwJzzoMxSkleS8SHc3m69fk2vzGh90ovNRpJPZLAyxg0H6zy0SgAa8
-         dcODaAC+WBciX3R/JNSO/QNzJFwjoRj/jAS8II8YSuvvq+g8gpLieM9+CKKhm6ZWkLnk
-         Fe7RnKFcIDYuVxZlJOWTjJhB5QkyJrtyLWHRit3PfABvLl6GsejC7qFrryxl95kUrcVX
-         nNNA==
-X-Forwarded-Encrypted: i=1; AJvYcCXbKjR+eFF0gm3z2dC8J10ecDhOYHQ8amYZXD5b6L95h4A2M4yecMHL+ZzRkxuGh07Hu9hkBDIa5ppv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSA70F3YsPMGx6L4zG6+xs/eriQjMD1UGbOhHkXoD5fK745Muu
-	W7eXWkWvqGZld+mBXIMKDNJiE3tzXpYx6vuLd5J/opRx9aInQLeHydOcAUS15yMZFlMZJuUavZc
-	T6i+szReJXYMmrO/y93bvcsxG2rcUrnqIhOyOpPV2sUloaG8hNy8P/2Bgd/GF8e0b
-X-Gm-Gg: AZuq6aJRu2KXlJzbXZ/H6QaDr6SyFbhe5ByHkg1HOIyfrTkdN0Y/46gU/YRAukX3Jds
-	6Go+57zXCF6/NDMZHTMlbj1c895k7PDcZ8TkTDVpJ5BxUk+gjj/t8sf4oHvlMIyQY9NQ7B7Jxyh
-	v0AlCmaiMeBOOjFOSOFcZcPJjObz3okMFnJhPCkLZe/O5eN/cyrtt5pmoYJ0sP6TPaPo04Fkciu
-	tHn7Y0bZeBqy2OM1XWtxxdmUO6mli7DG44v37a3ql6HwfUAHqh4+JBp+Gxjq7W1XeKQOr5VAIN9
-	LO2wAFA+sS5ByysNbLxzoVaxqfB1Au06SLOvRzE43LTQnQ0HqeADHJmpOf7wN4GWEvQ9xNKoewN
-	XlBrYeFM38s0kKRJVmNWSgz2N+8z8jJ8YpIxuWM5flUmlSti+ZFYciCYkaZjAOIpUGiKvpO8lwE
-	0kh4THKqCq7lH6KSm7WTBI6Kw=
-X-Received: by 2002:a05:620a:2982:b0:8b1:2fab:30a8 with SMTP id af79cd13be357-8caf15efe18mr649692685a.74.1770455949098;
-        Sat, 07 Feb 2026 01:19:09 -0800 (PST)
-X-Received: by 2002:a05:620a:2982:b0:8b1:2fab:30a8 with SMTP id af79cd13be357-8caf15efe18mr649691585a.74.1770455948662;
-        Sat, 07 Feb 2026 01:19:08 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e44cf6e8fsm1179017e87.9.2026.02.07.01.19.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Feb 2026 01:19:08 -0800 (PST)
-Date: Sat, 7 Feb 2026 11:19:06 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Cc: broonie@kernel.org, lgirdwood@gmail.com, robh@kernel.org,
-        krzk+dt@kernel.org, cnor+dt@kernel.org, srini@kernel.org,
-        perex@perex.cz, tiwai@suse.com, alexey.klimov@linaro.org,
-        mohammad.rafi.shaik@oss.qualcomm.com, quic_wcheng@quicinc.com,
-        johan@kernel.org, konrad.dybcio@oss.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 06/10] ASoC: dt-bindings: qcom,q6dsp-lpass-ports: Add
- Senary MI2S port
-Message-ID: <jloqgua3e2lub2daplqlie6fhrsxntwepfwoa5csxdababstib@lp7b2uy3jqos>
-References: <20260205171411.34908-1-srinivas.kandagatla@oss.qualcomm.com>
- <20260205171411.34908-7-srinivas.kandagatla@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1770456028; x=1771060828;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=5IniXECrOUfTc9Ybm/eSbm1Y2H5SJTil/wMGC8X/eL8=;
+        b=PophGemZtC7WRW/Jqh9MRFKTn+Ilxp5pQNt8qBHr16mKrggoLBcI3xbOp0tr4mqi2T
+         F4MsWrRQHtvYkmzlJw+fB0KPytxS0SQCmHOnWndjUFqVDDLoBluemVNogxeMqho3liRs
+         vPGRU+ycgL992ISwK5ZA2rJoAQlqn6Ug/PSO08CWuPdmL0ZAdrUbuvrZY5iqVEWC1+Qu
+         df0Ej0nOE84vwAp/V0h+lEH18FEKLOY2a1Mil6AVRX9VNhaiCZ1Ctwv4yVRMxneCEhBK
+         i+uxoDGTZoHJDaKKzlCQeiswMznkmewlGLir7jsMJDOLi1wAz1CWYxjnzzowpRn2HtS3
+         lRzg==
+X-Forwarded-Encrypted: i=1; AJvYcCVS5HFzP7Il2cviXFrC1xIv/ARVc7AVTQ/fqGZuUu26NhsadqabPIsgvTZcEs6AZAqUEZfcpYStJsO3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdnXdgQ0BwBk3Z7y1CWD2tnO4t+t2INww4dqxIPzBX8RDIc/Og
+	Ig3DITTWaywmksEJQQ21QB+69wNmrxyC0uu8mXjprgnUWkh5iRIfdw8i8unqjlbUlf4OArRYAFf
+	BZkyi6e4H0oNG30snDrk+5z2CBkciKtU=
+X-Gm-Gg: AZuq6aKhVG1a7l2x2/i5qVHcsyeoU6nmzv8doHZ8HUEimqWrmjb/BBeCdryHJWCV07s
+	CTczOIX5NJFxHJYv+syVVLPkMlRwodFZkE6A0Qr1AVZeYCijzZbz5SvtOnTiX/Q38OPzz7OlS27
+	CovQXzb9gyqqwjBbujdR97mC5Y0jr6BSkN4F6LORwy0c58hiKHDRv9DhlkhzcGVvKcUXt+mLu1p
+	76wCKfXo/AMrPx8I+RhXf4BZ1Wmg5ff67yNPKIltwgNnCNCK8MXFuCxBbHAjwlmq1fRHq9C
+X-Received: by 2002:a05:6000:420e:b0:435:d84f:4853 with SMTP id
+ ffacd0b85a97d-4362938b24dmr7580007f8f.35.1770456028155; Sat, 07 Feb 2026
+ 01:20:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260205171411.34908-7-srinivas.kandagatla@oss.qualcomm.com>
-X-Proofpoint-GUID: WuLth6QZhoO1pS-OC7tL9Jq-L8hTIxuv
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA3MDA3MiBTYWx0ZWRfX7l3W611MEEsR
- /fBX2p+9vZ6uIgetGqmlAJF9U0VEGdUwrhMJdoe41yDDU49KanG6xStHV29qa/g/nspDRe6PYik
- xg3YehHl5pHRehlw1i2aaFuvRmmN6WIby8gcVUfVKP6epUWvk3rd96G/Jjw2AMmWWSPUjp/Sozy
- rZjuBzrmTS4YZZmyOWAdvw5a1DqMfENlCsZjeYzvcrZgYmU7FVv0Pu4eUvxXXVg5R9k7Sv+L/Um
- hxBfFuYVth+E5kuIZxe3ShFYo/L/0RkqpM6Oj39mPC88OkgSbyNxCGq2FFaBzjz6i8GvScl7qDg
- 4EVr9KZTQXDw01zBiq5Qyq5wDZcEsSIQwDhR29qK5aGSv0mqjYJH1FPgIOoSY/ilfB63/fdabO5
- g3xAh5kCNHLpsztAWxwZBDNVQsPac9UoS6GCVoeoAXbdCBzffqpfoG7O8Uss3TTa//EIm05xmr7
- l0Gs2UuPamaffNY33xg==
-X-Proofpoint-ORIG-GUID: WuLth6QZhoO1pS-OC7tL9Jq-L8hTIxuv
-X-Authority-Analysis: v=2.4 cv=Or1CCi/t c=1 sm=1 tr=0 ts=6987038d cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=EUspDBNiAAAA:8
- a=h-dCiIZhG8S0YCyILTQA:9 a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-06_05,2026-02-05_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 impostorscore=0 priorityscore=1501 bulkscore=0
- malwarescore=0 clxscore=1015 suspectscore=0 phishscore=0 adultscore=0
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602070072
+References: <20260206172845.145407-1-clamor95@gmail.com> <20260206172845.145407-2-clamor95@gmail.com>
+ <20260206230922.GA254792-robh@kernel.org>
+In-Reply-To: <20260206230922.GA254792-robh@kernel.org>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Sat, 7 Feb 2026 11:20:15 +0200
+X-Gm-Features: AZwV_QgS3-zSft7PiK4Y7AUbYQceyqA5VWBqSZgT2tr_s54EIIDfm21b-58zfy0
+Message-ID: <CAPVz0n3EGCSLUX7jTLve0x0z4uW1yexViCwkSQLY2d_4r4qkjg@mail.gmail.com>
+Subject: Re: [PATCH v2 01/11] dt-bindings: regulator: cpcap-regulator: convert
+ to DT schema
+To: Rob Herring <robh@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Lee Jones <lee@kernel.org>, 
+	Pavel Machek <pavel@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Dixit Parmar <dixitparmar19@gmail.com>, Tony Lindgren <tony@atomide.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263557-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,perex.cz,suse.com,linaro.org,oss.qualcomm.com,quicinc.com,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:dkim];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-263558-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,atomide.com,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: A7BCB1054EB
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,devicetree.org:url]
+X-Rspamd-Queue-Id: 0ABBC105502
 X-Rspamd-Action: no action
 
-On Thu, Feb 05, 2026 at 12:14:07PM -0500, Srinivas Kandagatla wrote:
-> From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> 
-> Qualcomm platforms support the Senary MI2S interface for audio playback
+=D1=81=D0=B1, 7 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 01:09 Rob H=
+erring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Fri, Feb 06, 2026 at 07:28:35PM +0200, Svyatoslav Ryhel wrote:
+> > Convert devicetree bindings for the Motorola CPCAP MFD regulator subnod=
+e
+> > from TXT to YAML format. Main functionality preserved.
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+> >  .../bindings/regulator/cpcap-regulator.txt    | 35 -------------
+> >  .../regulator/motorola,cpcap-regulator.yaml   | 50 +++++++++++++++++++
+> >  2 files changed, 50 insertions(+), 35 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/regulator/cpcap-r=
+egulator.txt
+> >  create mode 100644 Documentation/devicetree/bindings/regulator/motorol=
+a,cpcap-regulator.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/regulator/cpcap-regulato=
+r.txt b/Documentation/devicetree/bindings/regulator/cpcap-regulator.txt
+> > deleted file mode 100644
+> > index 36f5e2f5cc0f..000000000000
+> > --- a/Documentation/devicetree/bindings/regulator/cpcap-regulator.txt
+> > +++ /dev/null
+> > @@ -1,35 +0,0 @@
+> > -Motorola CPCAP PMIC voltage regulators
+> > -------------------------------------
+> > -
+> > -Requires node properties:
+> > -- "compatible" value one of:
+> > -    "motorola,cpcap-regulator"
+> > -    "motorola,mapphone-cpcap-regulator"
+> > -    "motorola,xoom-cpcap-regulator"
+> > -
+> > -Required regulator properties:
+> > -- "regulator-name"
+> > -- "regulator-enable-ramp-delay"
+> > -- "regulator-min-microvolt"
+> > -- "regulator-max-microvolt"
+> > -
+> > -Optional regulator properties:
+> > -- "regulator-boot-on"
+> > -
+> > -See Documentation/devicetree/bindings/regulator/regulator.txt
+> > -for more details about the regulator properties.
+> > -
+> > -Example:
+> > -
+> > -cpcap_regulator: regulator {
+> > -     compatible =3D "motorola,cpcap-regulator";
+> > -
+> > -     cpcap_regulators: regulators {
+> > -             sw5: SW5 {
+> > -                     regulator-min-microvolt =3D <5050000>;
+> > -                     regulator-max-microvolt =3D <5050000>;
+> > -                     regulator-enable-ramp-delay =3D <50000>;
+> > -                     regulator-boot-on;
+> > -             };
+> > -     };
+> > -};
+> > diff --git a/Documentation/devicetree/bindings/regulator/motorola,cpcap=
+-regulator.yaml b/Documentation/devicetree/bindings/regulator/motorola,cpca=
+p-regulator.yaml
+> > new file mode 100644
+> > index 000000000000..50bc57f06b51
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/regulator/motorola,cpcap-regula=
+tor.yaml
+> > @@ -0,0 +1,50 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/regulator/motorola,cpcap-regulator.=
+yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Motorola CPCAP PMIC regulators
+> > +
+> > +maintainers:
+> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> > +
+> > +description:
+> > +  This module is part of the Motorola CPCAP MFD device. For more detai=
+ls
+> > +  see Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml. The
+> > +  regulator controller is represented as a sub-node of the PMIC node
+> > +  on the device tree.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - motorola,cpcap-regulator
+> > +      - motorola,mapphone-cpcap-regulator
+> > +      - motorola,xoom-cpcap-regulator
+> > +
+> > +  regulators:
+> > +    type: object
+> > +
+> > +    patternProperties:
+> > +      "$[A-Z0-9]+^":
+>
+> I thought it was said on the last version to list the names. Considering
+> you already have them below, better to put them in schema than prose.
+> And pretty much all regulator bindings define the names.
+>
 
-What is Senary MI2S?
+What exactly do you propose? All those names will not fit into a
+single unbreakable line (more than 125 columns in length btw). Patch
+checker will complain about this. Duplicate pattern properties for
+every few names? Please be a bit more specific. Thank you!
 
-> and capture. Add a new definitions for the Senary MI2S RX and TX ports,
-> which are required for boards that utilize the Senary MI2S interface
-> for audio routing.
-> 
-> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-> ---
->  include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
-> index 0febc641f351..715bcf1bccdd 100644
-> --- a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
-> +++ b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
-> @@ -150,7 +150,9 @@
->  #define	LPI_MI2S_TX_3		144
->  #define	LPI_MI2S_RX_4		145
->  #define	LPI_MI2S_TX_4		146
-> -#define	LPASS_MAX_PORT		(LPI_MI2S_TX_4 + 1)
-> +#define	SENARY_MI2S_RX		147
-> +#define	SENARY_MI2S_TX		148
-> +#define	LPASS_MAX_PORT		(SENARY_MI2S_TX + 1)
->  
->  #define LPASS_CLK_ID_PRI_MI2S_IBIT	1
->  #define LPASS_CLK_ID_PRI_MI2S_EBIT	2
-> -- 
-> 2.47.3
-> 
-
--- 
-With best wishes
-Dmitry
+> > +        $ref: /schemas/regulator/regulator.yaml#
+> > +        type: object
+> > +        description:
+> > +          Valid regulator names are SW1, SW2, SW3, SW4, SW5, VCAM, VCS=
+I,
+> > +          VDAC, VDIG, VFUSE, VHVIO, VSDIO, VPLL, VRF1, VRF2, VRFREF, V=
+WLAN1,
+> > +          VWLAN2, VSIM, VSIMCARD, VVIB, VUSB, VAUDIO
+> > +
+> > +        required:
+> > +          - regulator-name
+> > +          - regulator-enable-ramp-delay
+> > +          - regulator-min-microvolt
+> > +          - regulator-max-microvolt
+> > +
+> > +        unevaluatedProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +additionalProperties: false
+> > +
+> > +...
+> > --
+> > 2.51.0
+> >
 
