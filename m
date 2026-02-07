@@ -1,146 +1,206 @@
-Return-Path: <devicetree+bounces-263617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263618-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QMQdAV1Sh2kvWgQAu9opvQ
-	(envelope-from <devicetree+bounces-263617-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 15:55:25 +0100
+	id qGfCHupSh2kvWgQAu9opvQ
+	(envelope-from <devicetree+bounces-263618-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 15:57:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63023106451
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 15:55:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFC5310646B
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 15:57:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 570FD300E60B
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 14:55:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 90320300DDC8
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 14:57:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A53D834F27A;
-	Sat,  7 Feb 2026 14:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB73E3502B1;
+	Sat,  7 Feb 2026 14:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rei9Oyl4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fRmyFrDe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 808481DE3DB;
-	Sat,  7 Feb 2026 14:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7188255E43;
+	Sat,  7 Feb 2026 14:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770476122; cv=none; b=jFW9lR63wJfbth44iYi+/5z8opP7xWkYWJfXnKdO2SCyF4BqOxCRyycNgq3a1iSp6V1NVeSlleVJh+B7DHHWRmG7XAjM6Mu1+Rvx3xhPj1sFG0yPVHPjLw4doBEceiIJX1f2yoITW0hiuDRNn+E+HsHSwvgkUxDNLeRHd/Ic1jE=
+	t=1770476261; cv=none; b=O7x9oZFgR9gm7bIBD0lAMJHOfsET7tAPjBXyclWWhkKT9uAyHGw6yhizsZbXNG1F8NQ99+lmLa/A3n/6Rqb6msqwew451r2XJWns9nPMVlEh8YEg2Yn9c15SFgULZ3ojOe5hwQyrW0Lj2iXJDaE2eTdJq5V7y1Ucl58nlOqmPMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770476122; c=relaxed/simple;
-	bh=/Vn1e2hoVlCMMBL+WFkQl4UcnH2Hfa5hsCRlW3VBLWs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dZ3GCp+H1CTOhQsSRVBFzCjN9boyWOacmMlJYm0CVm5OpV1s59zPtYWwoEvlvawnUUMzvtRznNNvFSUlOP6ms9KqwQOyUq30kihgxgikDvJLDUOLUqfBvPy05TAxt6uXbGsS0UGFlSKHJaim570XA79FB2YQbkhmAMqtg/JOzYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rei9Oyl4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD3EDC116D0;
-	Sat,  7 Feb 2026 14:55:18 +0000 (UTC)
+	s=arc-20240116; t=1770476261; c=relaxed/simple;
+	bh=mhEwiYTQDjhTQppnhNZ0pw2vQBCifA3Qj1CAtJyYjsE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qTr1zSeua4rd7VCKPwl5AHvJGzOIYMPci9140UwyGHsizPlQKfTErXASTa+RpN0t/lwkfxT9gS8gFT51EVIB7dtrqbLetEvc/cOxA8YTncEveEK5ZzvMqpUpUFRDYsplcOD4kndYk5S7e0URNGMaa/g7a0aijbFYObvwjU5rCfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fRmyFrDe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 207B7C116D0;
+	Sat,  7 Feb 2026 14:57:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770476122;
-	bh=/Vn1e2hoVlCMMBL+WFkQl4UcnH2Hfa5hsCRlW3VBLWs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Rei9Oyl4Wxf2xzDBJ9LwHboVDd0CBlU2GARJoyFyj1VldpMGSmc/r1sHbhjwVzbFQ
-	 jA5mH24TAFNtiLcE22pTKmo/kg/qFkk1I1ONJWyKeRTvlpF5jKV/CsQhwW+MvgxXCU
-	 PlHwaWzAjcYXzlIQt+CVOqXycKWu5encomi/wDThmt9jgL9dK1eY2hi6e1Jb1Vzgfp
-	 nJDulxCwkAYxInL0vypevNk8UyeGxW3zwq/oUUuKUpevEmZB6s3+QL2h+Qtz3IYU63
-	 NUv1zUKNkOhvQMpAIyBP+9BKM0hbwNCl4wvkiDRxWzngc0/B5Ycuja/ckHK+SqrnsO
-	 xGt0RX3aqKNog==
-Date: Sat, 7 Feb 2026 14:55:16 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Lv Zheng <lv.zheng@linux.spacemit.com>
-Cc: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Jingyu Li <joey.li@spacemit.com>, iommu@lists.linux.dev,
-	linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/8] dt-bindings: iommu: Add spacemit/t100 features
-Message-ID: <20260207-gap-taekwondo-40c0661eaa08@spud>
-References: <cover.1769562575.git.lv.zheng@spacemit.com>
- <cover.1770195980.git.lv.zheng@linux.spacemit.com>
- <A0E91F323138E92F+a27d73b00f3324f0d3885128f5596230b3f1370b.1770195980.git.lv.zheng@linux.spacemit.com>
- <20260204-primer-wrought-6f64b14bf152@spud>
- <53171BEB06F43599+7c1f54bc-e72d-4cbd-9d10-194ae6b13744@linux.spacemit.com>
- <20260205-attitude-customer-129fe2bd5dc7@spud>
- <B8005DB6301AACB4+374512e1-f561-4d2f-afd6-7a4b51012501@linux.spacemit.com>
- <20260206-buffed-scrubbed-36fc49ada496@spud>
- <7433DA16B96EE987+9b6398e6-edad-4a2e-814d-921483e5f1da@linux.spacemit.com>
+	s=k20201202; t=1770476261;
+	bh=mhEwiYTQDjhTQppnhNZ0pw2vQBCifA3Qj1CAtJyYjsE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=fRmyFrDea4g6KRfylJdeTBaXN1QASY7GEMIfJmDDsyQBRPa+IlsJDJAA9OPdG5Ili
+	 PYqzOtG9ykxneYHFOVgg9o5eK87+uWCseMLu7AWFL2ixyGUBH+V7RSP5X/rBSBBWDa
+	 aLSUV1yqmY53PMTqzzuNrD/K1cIN+5nXJFF2OLydqlsKHGyFEkhFU8C8W1u4UMZ+Vd
+	 GnzcffwMgZnmeEO0q812y+8W+EEChCpCGUpXV9sapf4ELKSMU5qrNSiE/J3zxHGbkv
+	 Zbqij841rqVdRnWIRAA8X+8kpUUujer4zUQSXo/FtD7CfUrI390HctFwlGjXPIfCz+
+	 fmKsrEOM69mEw==
+Date: Sat, 7 Feb 2026 14:57:31 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
+ <olivier.moysan@foss.st.com>, Mark Brown <broonie@kernel.org>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>
+Subject: Re: [PATCH v2 2/4] iio: backend: add
+ devm_iio_backend_get_by_index()
+Message-ID: <20260207145731.69c8d842@jic23-huawei>
+In-Reply-To: <550323d752213f177b7673bdd42e667f1d2228cb.1770393792.git.antoniu.miclaus@analog.com>
+References: <cover.1770393792.git.antoniu.miclaus@analog.com>
+	<550323d752213f177b7673bdd42e667f1d2228cb.1770393792.git.antoniu.miclaus@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mN4chUiAHJni2zvS"
-Content-Disposition: inline
-In-Reply-To: <7433DA16B96EE987+9b6398e6-edad-4a2e-814d-921483e5f1da@linux.spacemit.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-263618-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263617-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.988];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 63023106451
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.989];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:email]
+X-Rspamd-Queue-Id: CFC5310646B
 X-Rspamd-Action: no action
 
+On Fri, 6 Feb 2026 18:07:14 +0200
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
---mN4chUiAHJni2zvS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Add a new function to get an IIO backend by its index in the
+> io-backends device tree property. This is useful for multi-channel
+> devices that have multiple backends, where looking up by index is
+> more straightforward than using named backends.
+> 
+> The new function directly uses the index to find the backend reference
+> in the io-backends property, avoiding the need for io-backend-names.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+One thing inline.
 
-On Sat, Feb 07, 2026 at 12:24:30PM +0800, Lv Zheng wrote:
->=20
-> >=20
-> > Also, I don't see an answer to my question about whether the hardware
-> > will work without the driver changes this series introduces and enables
-> > with the new compatible?
->=20
-> Basically, T100 is riscv,iommu compatible, its IOATS part should be able
-> to work using standard HPM events with standard riscv,iommu HPM
-> compatible driver.
+> ---
+>  drivers/iio/industrialio-backend.c | 51 ++++++++++++++++++++++++++++++
+>  include/linux/iio/backend.h        |  2 ++
+>  2 files changed, 53 insertions(+)
+> 
+> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industrialio-backend.c
+> index 447b694d6d5f..3b692d48481e 100644
+> --- a/drivers/iio/industrialio-backend.c
+> +++ b/drivers/iio/industrialio-backend.c
+> @@ -1008,6 +1008,57 @@ struct iio_backend *devm_iio_backend_get(struct device *dev, const char *name)
+>  }
+>  EXPORT_SYMBOL_NS_GPL(devm_iio_backend_get, "IIO_BACKEND");
+>  
+> +static struct iio_backend *
+> +__devm_iio_backend_fwnode_get_by_index(struct device *dev,
+> +				       struct fwnode_handle *fwnode,
+> +				       unsigned int index)
+> +{
+> +	struct fwnode_handle *fwnode_back;
+> +	struct iio_backend *back;
+> +	int ret;
+> +
+> +	fwnode_back = fwnode_find_reference(fwnode, "io-backends", index);
+Applies more generally in this file, but does holding the fwnode over the
+__dev_iio_backed_get() below matter?  If not
+	struct fwnode_handle *fwnode_back __free(fwnode_handle) =
+		fwnode_find_reference(fwnode, "io-backends", index);
 
-That's fine, that's all I wanted to know. The riscv,iommu compatible can
-stay :)
+and you can drop the various fwnode_handle_put() calls.
 
---mN4chUiAHJni2zvS
-Content-Type: application/pgp-signature; name="signature.asc"
+> +	if (IS_ERR(fwnode_back))
+> +		return dev_err_cast_probe(dev, fwnode_back,
+> +					  "Cannot get Firmware reference\n");
+> +
+> +	guard(mutex)(&iio_back_lock);
+> +	list_for_each_entry(back, &iio_back_list, entry) {
+> +		if (!device_match_fwnode(back->dev, fwnode_back))
+> +			continue;
+> +
+> +		fwnode_handle_put(fwnode_back);
+> +		ret = __devm_iio_backend_get(dev, back);
+> +		if (ret)
+> +			return ERR_PTR(ret);
+> +
+> +		back->idx = index;
+> +
+> +		return back;
+> +	}
+> +
+> +	fwnode_handle_put(fwnode_back);
+> +	return ERR_PTR(-EPROBE_DEFER);
+> +}
+> +
+> +/**
+> + * devm_iio_backend_get_by_index - Device managed backend device get by index
+> + * @dev: Consumer device for the backend
+> + * @index: Index of the backend in the io-backends property
+> + *
+> + * Get's the backend at @index associated with @dev.
+> + *
+> + * RETURNS:
+> + * A backend pointer, negative error pointer otherwise.
+> + */
+> +struct iio_backend *devm_iio_backend_get_by_index(struct device *dev,
+> +						  unsigned int index)
+> +{
+> +	return __devm_iio_backend_fwnode_get_by_index(dev, dev_fwnode(dev),
+> +						      index);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(devm_iio_backend_get_by_index, "IIO_BACKEND");
+> +
+>  /**
+>   * devm_iio_backend_fwnode_get - Device managed backend firmware node get
+>   * @dev: Consumer device for the backend
+> diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
+> index 7f815f3fed6a..8f18df0ca896 100644
+> --- a/include/linux/iio/backend.h
+> +++ b/include/linux/iio/backend.h
+> @@ -237,6 +237,8 @@ int iio_backend_extend_chan_spec(struct iio_backend *back,
+>  				 struct iio_chan_spec *chan);
+>  void *iio_backend_get_priv(const struct iio_backend *conv);
+>  struct iio_backend *devm_iio_backend_get(struct device *dev, const char *name);
+> +struct iio_backend *devm_iio_backend_get_by_index(struct device *dev,
+> +						  unsigned int index);
+>  struct iio_backend *devm_iio_backend_fwnode_get(struct device *dev,
+>  						const char *name,
+>  						struct fwnode_handle *fwnode);
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaYdSVAAKCRB4tDGHoIJi
-0n51AP4035S/CKCxinCsG9YuPN4rFYU+scihXululGWkNe1FfwEAi9PnqZh5dPw+
-dqNXvYjrQVtAVZ215qZDKcazpcqFHAI=
-=pm4A
------END PGP SIGNATURE-----
-
---mN4chUiAHJni2zvS--
 
