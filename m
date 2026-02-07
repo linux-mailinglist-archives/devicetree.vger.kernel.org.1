@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263641-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SMrKCYeGh2lRZAQAu9opvQ
-	(envelope-from <devicetree+bounces-263640-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 19:37:59 +0100
+	id +AgVNdOGh2lRZAQAu9opvQ
+	(envelope-from <devicetree+bounces-263641-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 19:39:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 868FD106E0A
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 19:37:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B9A2106E1B
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 19:39:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9CE6A3017035
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 18:37:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D76D13018757
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 18:39:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6901D2FB0B4;
-	Sat,  7 Feb 2026 18:37:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 523042FDC5E;
+	Sat,  7 Feb 2026 18:39:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WAykkCsw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EzvjPWDf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459F12E090B;
-	Sat,  7 Feb 2026 18:37:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DCD11482E8;
+	Sat,  7 Feb 2026 18:39:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770489458; cv=none; b=CcNPF1rnUfK0et6tRSQARSFVYbbva8ZU1069kE1DkK1PO7cbSCYnKoltU7j+mAKSddTFc8vuBDC/btbFKVlD3oF154cQXxHeVzX7uDe3MjtgYd30JUNljzvHkoF1CgMDeMpMveOWXvj7olkVB99bD+29F/pvVp130VZJx7wCmOw=
+	t=1770489553; cv=none; b=KYijKhDIyY2OHzFMaVAstseLiD1aOdSaEDO/LLCb0+e/iw7Vii4HNFnHcQ1E5Pecyr7OvAQhQf1R+TsVPGixEeQJWyZ5TkhFIJdhLYRLMgsjkPLrUCoSGxTgAT96cQo+1/plMKlNB0f70QdKAAbeCZAscd4amgDhqG6hwXN5X8E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770489458; c=relaxed/simple;
-	bh=ac7vzoSEyu7lsaAnCxcmmL7MRlzaRS6eYKF4ZG0uVQ4=;
+	s=arc-20240116; t=1770489553; c=relaxed/simple;
+	bh=+8E97UeZ45mZTEbOw9quJKyQz9OBhBugGRt1EOHMSWk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WEO1FtHGdqt7g2vza0O5IXcLwee0Z2pyUGR++oh0Ba0pvzq0/yJQ0i3KMd3BkJP1JCKxSZcH9OMa8o5NFxjq7vDk1slreKqH4Vv4B22Me/Ttk3CXoCPVDh1RHuhc8g9z7c1xSyyysYgjWBhXjwN1vYvAlFjCltR5iOqksmJ2pFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WAykkCsw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 359A6C116D0;
-	Sat,  7 Feb 2026 18:37:36 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=uT29EH3TIFknudz3ppml8fOfiASVvKejvza+7WhUtd6/iBiEf2t1D0+uF4mNLhxpWwIkq4gS8spkg88hzERQWwXsqiNTI3v2FK3/z57ierxaqTw7gaIfOLJoowdgU2BmdCnunQ8+rBUaLu8mlx1aTpcKPLgZ2FaCw3le4a1TRvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EzvjPWDf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82D04C116D0;
+	Sat,  7 Feb 2026 18:39:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770489457;
-	bh=ac7vzoSEyu7lsaAnCxcmmL7MRlzaRS6eYKF4ZG0uVQ4=;
+	s=k20201202; t=1770489552;
+	bh=+8E97UeZ45mZTEbOw9quJKyQz9OBhBugGRt1EOHMSWk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WAykkCsw4ZcAWlXnjdSSW9gaar/bFdF69WxLxnokikHrlARq5xw+xXuQ1eAyDRAMc
-	 BZuKX1TzRVdM6iVhwkjWCdlsnohv9/0hd3uOA5uUEf5/0mEbUyAlSr1z/0RCe9t5uM
-	 vlNIZIH8sj4cqpExaJBuQRjCLRltrqn+6fQIiVKcD8N+h4EYfoL/rZmJtwwKCZYw3e
-	 H1VH3SFZl48w0/8kBT2nbeTISxxwyS2ijzt27mVtfm1kGLu7rs0uo2+UIXbTMLEyQR
-	 /qMZR70HDDD7+VcEnTmslNThwKL1qk9oo7S2z5UyUsFEF2JOQliKCXj9DuSHpjvqwq
-	 zdqNI2ntoypeA==
-Message-ID: <a2be67b7-a33a-4d72-b5b7-fa900063b599@kernel.org>
-Date: Sat, 7 Feb 2026 19:37:34 +0100
+	b=EzvjPWDf4ETYL0Uebfa5618ijPAGgAV/JEDQZggTlgf4NDV4etnKFyOiKuq3DfAX6
+	 JvMKL9wc7zqGuC3Y2nB0qNoM1xs1+B7D9ENp+ptE+v1HHl12KCMkxEHVt54V49y5mk
+	 TdZW3coj9j4OaQywiX7tDdevORaqE5yuFyi7MHtlqkDYZdL4K3LxEhyqX5dLMoshqc
+	 rTm6DDWRC7qjzwYDcIAERBBqbC2+6uXPcE4341o5UMlVzFtOczv+8j0XpsoBBhvSwJ
+	 jUTK773Zjvatob8xU8wf1TlJ9/VLJ8488KllEBuv3weHOACfn9/TCR4SlqSvAw3pFu
+	 A/eUvx1kA4yaQ==
+Message-ID: <6ebcb1a9-78ca-4734-8723-758f79e6819e@kernel.org>
+Date: Sat, 7 Feb 2026 19:39:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,13 +53,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: serial: snps-dw-apb-uart: Add RV1103B
- compatible
-To: Fabio Estevam <festevam@gmail.com>, gregkh@linuxfoundation.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- Fabio Estevam <festevam@nabladev.com>
-References: <20260207130848.2833599-1-festevam@gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: clk: tenstorrent: Add
+ tenstorrent,atlantis-prcm
+To: Conor Dooley <conor@kernel.org>
+Cc: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>,
+ Drew Fustini <dfustini@oss.tenstorrent.com>,
+ Joel Stanley <jms@oss.tenstorrent.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, joel@jms.id.au,
+ fustini@kernel.org, mpe@kernel.org, mpe@oss.tenstorrent.com,
+ npiggin@oss.tenstorrent.com, agross@kernel.org, agross@oss.tenstorrent.com,
+ bmasney@redhat.com
+References: <20260202-atlantis-clocks-v5-0-0922e43acaba@oss.tenstorrent.com>
+ <20260202-atlantis-clocks-v5-1-0922e43acaba@oss.tenstorrent.com>
+ <20260205-upbeat-tortoise-of-admiration-b3c0eb@quoll>
+ <CAEev2e8_4LSLNvHsiC4d7Rrd2GmjQ_5GRHU6b9-Ha69+yvn5cA@mail.gmail.com>
+ <92512903-4651-4ac3-b3ea-c9297e866a3a@kernel.org>
+ <CAEev2e99LEoi83_d09NEJwzcSiYdFFZvLOFZUTRRrYtL_qCErw@mail.gmail.com>
+ <e242a327-b53e-4b24-a9c1-9ae990de901e@kernel.org>
+ <20260207-stifle-chowtime-8502c0a57f70@spud>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,7 +120,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260207130848.2833599-1-festevam@gmail.com>
+In-Reply-To: <20260207-stifle-chowtime-8502c0a57f70@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -113,43 +128,49 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263640-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,linuxfoundation.org];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263641-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.988];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.990];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 868FD106E0A
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3B9A2106E1B
 X-Rspamd-Action: no action
 
-On 07/02/2026 14:08, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@nabladev.com>
+On 07/02/2026 15:54, Conor Dooley wrote:
+>>>>> suggests picking a more generic name in this case, so isn't
+>>>>> "tenstorrent,atlantis-prcm" okay for that?
+>>>>
+>>>> No, because I don't want to keep guessing this. The docs clearly ask you
+>>>> to post complete bindings, which now became less-complete, but fine.
 > 
-> The RV1103B UART is compatible with the existing DesignWare APB UART
-> binding. Add the rockchip,rv1103b-uart compatible string.
-> 
-> Signed-off-by: Fabio Estevam <festevam@nabladev.com>
+> I don't think it actually is "less complete" without the other
+> compatibles. The non-rcpu prcms function differently to the rcpu prcm
+> (they seem to be consumers of clocks that the rcpu produces) and are not
+> supported by the drivers in this series. They're different devices and I
+> think should only be documented when support for them comes along. v4
+> had problems that were caused by trying to document them without
+> actually having driver support figured out.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+It's fine without them, but then let's just name the file after that
+only sole compatible.
 
 Best regards,
 Krzysztof
