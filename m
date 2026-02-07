@@ -1,325 +1,306 @@
-Return-Path: <devicetree+bounces-263612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263613-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aAcvIHw/h2nVVQQAu9opvQ
-	(envelope-from <devicetree+bounces-263612-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 14:34:52 +0100
+	id qM5yJe1Bh2keVgQAu9opvQ
+	(envelope-from <devicetree+bounces-263613-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 14:45:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6F73105FE7
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 14:34:51 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9C0210608D
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 14:45:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5FC7D30191B7
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 13:34:45 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A789C3001F97
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 13:45:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87C391F0991;
-	Sat,  7 Feb 2026 13:34:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8724627B352;
+	Sat,  7 Feb 2026 13:45:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qbn1qHc6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022129.outbound.protection.outlook.com [52.101.126.129])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E482433DEE0;
-	Sat,  7 Feb 2026 13:34:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.129
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770471284; cv=fail; b=igMneXbFPrPnNgmQLA2msdGPGLasOgPBzvm0+CqoK44y5U9/5dvIBMlLs+PYT4Q5/zISp/+0SlvRyz+f6iGRTNkpiu7RUM+8Yro5+eppKBKHpq5Aq40CNoItAvRrHRNyidKSKgv7/D1CDieiqbRkIUt94d+tOpxmbZ7w5QdC1go=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770471284; c=relaxed/simple;
-	bh=HyAP2l+3KVTLZoIyNm4ru1rhFBSN4BlQU+dbq1G2EGU=;
-	h=Message-ID:Date:Cc:Subject:To:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=O7lEq9MZUrD+PSitD7IUfmigPXdwtKqP0DcTlTe0ErBh/JpYw+YU2zimvh3xLnhro3clWHlQ92vQAMAOwdh1XB1osKXMjGttE4scL3EvAAksGq2PZr5PwyKt/zRIcmXAh0D/VrXOCSlNACax2bNSBSNPvnw2Y4i3N4BJ0ivnVJo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; arc=fail smtp.client-ip=52.101.126.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UiMtmLbHIDsAM3V7L5n7Sjmvd+8sUWmZwqHUBBLsjSRK5qhJHFN5LdoF9SKin+U7QVDjOPg2A1uw26NGndqlEZIoeYZYnfQQX8nxhKJogdQRnco4NkVOJCYrNUXrIJPBKbspl5y0xu89KrKdKU9FcQbDVCLjMEKbGGR44Qw+3s9tQSI4kbWo9/VFpx90lbSvFQbjEXQVQE84FN3yAA/h9sQ6y60UbJJNO+r+kjNdzp/a5XDEqSEfgNMNnHVFuFAWADHEQuA2VPT71hRdsYM9YTCh2utdOJ8rgI3asCrLvHPXDG+88LbskKJWd0+NOFxTOg9vWnAf7iqGwbIWbY4Zbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ggxBO0RAGHsQYgBfJWYEmCjdNWHDmZ30KQFTuzpoUvo=;
- b=h3Lul9P62ad/TmWD//OS2X2X4nv8r8vckhe8ZVolf5wovg4IbfLUfvyXAc5O85C8v/Pad4a7DQNNDiT3Kt7I/s47eyoORuWwO7qYCFTbv8WyRH1LMlESElJB8lhgXCwitpBzCtAB2wIap46lsCe7GCyyGTtO4akbSQeelHDn2x3fyzto6ugnKztHoLuBovuLXkEkJAab5tLwwMcVx4OeZulhA6AQ8npK7TCQKANUrCjbiL2WhajAFMS9wC6EnXojHZCh74yYnmDqiyXdqOx/nX2PKb7VfI2DhTNXLuRKofW8qCnf49jUb2iv65H/siQriDV68yzJ+S5OrGJGwupPOA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=linumiz.com; dmarc=pass action=none header.from=linumiz.com;
- dkim=pass header.d=linumiz.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=linumiz.com;
-Received: from TYZPR06MB6935.apcprd06.prod.outlook.com (2603:1096:405:3c::9)
- by JH0PR06MB6559.apcprd06.prod.outlook.com (2603:1096:990:2f::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.15; Sat, 7 Feb
- 2026 13:34:38 +0000
-Received: from TYZPR06MB6935.apcprd06.prod.outlook.com
- ([fe80::30b6:5b0d:1b00:5a01]) by TYZPR06MB6935.apcprd06.prod.outlook.com
- ([fe80::30b6:5b0d:1b00:5a01%6]) with mapi id 15.20.9587.013; Sat, 7 Feb 2026
- 13:34:36 +0000
-Message-ID: <a5f6aeb1-b038-462e-8989-c4da65966134@linumiz.com>
-Date: Sat, 7 Feb 2026 14:34:05 +0100
-User-Agent: Mozilla Thunderbird
-Cc: parthiban@linumiz.com, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- paulk@sys-base.io
-Subject: Re: [PATCH v3 0/6] drm/sun4i: Support LVDS on D1s/T113 combo D-PHY
-To: =?UTF-8?Q?Kuba_Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>,
- Maxime Ripard <mripard@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
- <20251116134609.447043-1-kuba@szczodrzynski.pl>
-Content-Language: en-US
-From: Parthiban <parthiban@linumiz.com>
-Organization: Linumiz
-In-Reply-To: <20251116134609.447043-1-kuba@szczodrzynski.pl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BMXPR01CA0096.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:54::36) To TYZPR06MB6935.apcprd06.prod.outlook.com
- (2603:1096:405:3c::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6328D26E6F9;
+	Sat,  7 Feb 2026 13:45:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770471905; cv=none; b=tf5brWJlGNF055xzrxB7IkJYin37VdkF0ODkLHLLcKUtTm5p8+PXQa2feNTMxxcXSymPGPuJg3gUglfcNLOBbLfM2yx4izeu1nNbLwWhFEKbeNLh1npVFo1YmiCWdkdi9CH3pHqGm5w0wWzrKOhspr8g4DvpXc09Nf33kjGHcoM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770471905; c=relaxed/simple;
+	bh=Fcg7QBGlOtQbed/3P4oI5lcao5EQQ/HrCDZfMumyuCI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AgwodSM1FMJOLLqhy/X/LEGgnpEgxzsEp7z+E+RtBY5Teg7wuUXg33MGImuWDpXaqhIxRbWQt266KpALIjKGmQSQYhd3GNmZ4KJT2sMz/Ajq7Pz54YixsyxQymtbhBBvgl+EH19P70QsEsQp80W7ON9jt+QAfC8cULmZ2CUwDSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qbn1qHc6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F835C116D0;
+	Sat,  7 Feb 2026 13:45:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770471904;
+	bh=Fcg7QBGlOtQbed/3P4oI5lcao5EQQ/HrCDZfMumyuCI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Qbn1qHc6lUrKbMPzzgWKq9vZPEJ5bUGVPedLhLKD8PPzQnk0mdZH17CAxFkqIDSyr
+	 Q86aVZWIWFBugvb4g7P1TqzbBJKV/gd0c8h607JUgZeQry/qJdcUWVcGTyOvq0JQur
+	 KEjV1Hm3ercnG7hQFageEvR0B2ADXlDs52EcThKNZ556SZRyhCy48SfbQ1uO56ScL0
+	 Xww7xd1BYxMFIy6A47C/k8zgIMbjhsiQS5/kWiqu6ScnAGSdcH+PajhipN398yjiZp
+	 Q5mZHckqvj/BHfQl0i+THKnyD24AnFcuVEppEaZc/A8wgegLmwynzeDfd6F0gu1tYF
+	 Cnav442jy+/Fg==
+Message-ID: <8c3835c4-3602-4cee-9631-0551b0341918@kernel.org>
+Date: Sat, 7 Feb 2026 14:44:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR06MB6935:EE_|JH0PR06MB6559:EE_
-X-MS-Office365-Filtering-Correlation-Id: 394bd2ff-3f90-4616-03e1-08de664da294
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|376014|7416014|1800799024|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ckY2RitXRU04WnVXS2k3K2p1WUhWbDZ0a0poRGNVeEJnY2JZZTRlYVNCV2o4?=
- =?utf-8?B?YlRjdnRMZjFlWWErQmo4ZTFNNFBxQWMzNWgrcG50dkZFekQ5Nys4SUJwWThV?=
- =?utf-8?B?bTRnZnZDc0NnUzNtTU1LNnpNcm1lZzRBSU5DSkIzTmpMMEJCMkp3NEVxbnhB?=
- =?utf-8?B?WWZuQSt1bERCYkVUNlRNTlZrcnBFOGdBdTNZalFsK1JqbFJVK2xtbnJVZ3Zy?=
- =?utf-8?B?bE83Mkd6bUhBK2ZPU1ROU0RTWWd4Mm9PclhXUmVWemxWSXFiOEdQUnlMelAz?=
- =?utf-8?B?a3Z5dUl3UnFDa1hFSmxDdFdiNnVYeU1DaEF5ck1pM3dRTHVnNXN5a3BlblZq?=
- =?utf-8?B?cDNsRWdML0RhYXB0RXZNRGRRRTJKTS8zMkFpTnJZRi9Dd3BhY2lXYTNNR0JX?=
- =?utf-8?B?bXdLSUtqKzUyd3NJWnBTS0FHZzRUcEV1dU5nbDdMbXNUbnFnVlFVQ0pXbHpL?=
- =?utf-8?B?ZytQOUdXaExIOXZBWGtrOUhqUTd0RnkxbS9rdTlFQXprVjVPMjkxYi9KNnJL?=
- =?utf-8?B?U3ZoYllhMkJGRVRYc0VRaW5UMHZqTzNyMlVNeVN1bWRVdFg5QmR2OTY4NGxO?=
- =?utf-8?B?Q1BTTFFhaXoyUlJnMm5haGxKL0EwcGZUR2V4aGZQM21Lc2hwcGJMN0V6elBa?=
- =?utf-8?B?RVcrck5tMEVsRUFuOVZiTnEvekZZZWN0TXQvVEk4cVdrZzhBV1dpWTFQbko5?=
- =?utf-8?B?VXNwcFE2elUxWnFlWjl2VWVtUVFoTmFkRjZxY3FyL0ptQytWU1RzL3J4Vmth?=
- =?utf-8?B?bjlhV3U2VW5nRkdERnNtM0tJWHNuNUtJNnFKcGFvQkpmM2ZJT05HbmM3blY0?=
- =?utf-8?B?Z3B2dUZwekJ0dUhucC9MTTM4R0ZPdFlNVXI3YkNWMkovZ2NmR3l5c2c4QzR1?=
- =?utf-8?B?SUswdU5WZG1FWFd0TUdhNzY4YTVTbU42cGY3VVJxdXdRTXhpUXBicVNibzU3?=
- =?utf-8?B?MTFoWElqY3F2M01uWkxvTWw2SEgzcDNkWFhVSWxTK3FLVkZoazZSQnNRY0kr?=
- =?utf-8?B?V2JBSWtJci9FWXdnNndQUkdvdmZIVVhBVTkxNGprQjRxaXBiNG11bG00QUJq?=
- =?utf-8?B?bmx4d1czcmJlaFgyc2M1ZDlURFQyUit2ell4c1EvUlFEd1FZR3gzMzRrcktQ?=
- =?utf-8?B?ZldEbThnYTdENjk5U2ZhOFdYTjZyUVN6UWxWU1F5ZE0xZFh3V3R4K2NoS1Y1?=
- =?utf-8?B?eDNBcUlTeCtJL0lzdlVOQlo3Rjd5MkFwYTNFQVJVVWR4NHRGWHNBVE82Tlk5?=
- =?utf-8?B?dW1LTGlxZ2JKRUpYY0d5Vkh0aW4zZkkrdWxxU3p0OEFpdnRrdUZaSzgvY0dZ?=
- =?utf-8?B?Q2pQN1VqdnpPNzFxZmVEMzBjL2lGZzhlSGVNNGpHZkVyNDdtS0NmTS9ERTJU?=
- =?utf-8?B?Z3huK2pRaEQ5a0UySVNBV2ZUSE84V1lZQVR6bEhLTTVaNG9DM1UzVnJUeUVO?=
- =?utf-8?B?VHA0d0RKYUtlbEdMM1dJekxjckR2V2FHV2piSHM3WUtUaERjRFA3Unh3d1JP?=
- =?utf-8?B?VGJYay80Wk5MWllXZCtnaHdSRkRkWVFBM0JINlMrVS9qZlZvQ0EzdjNxa2hP?=
- =?utf-8?B?TVNtKzNWbzJpeTBSWXpMalFWTHdEM0NLRFY2Y1FzRE5mbFE2dnVtOUpncTZG?=
- =?utf-8?B?dGQwcVdpVDRYSW9QcHVpVUxvTllHK2MwR0J6YUV0OUpyMVBCNW9QN1puRTZJ?=
- =?utf-8?B?ajBDKzB3TE1mUnNNTythcy9qU1EvOTdSVktLSGhKTUtqZEs2OGFEKzNTNGdW?=
- =?utf-8?B?bG9sS25XTjFmazg1NSs5clZ2c3N1Y0RFZ2hPdFQrcVpnT0M0TGpMOFg0bnp5?=
- =?utf-8?B?L2ZxVnFOVUdheEc4Ri9adUZSTnFpUWNaTlBxeEhmaGdRbzlTL2ZLY3dEZy8z?=
- =?utf-8?B?NFhkdktDc0o1WndlTlNyRXB1TnAvSDBxVWJSVkl5Yit2QzNJamZpcnBSU21w?=
- =?utf-8?B?ZzZpUDBtQ3BTdkVoNUx5MlpNWkJkd3VjSnRSNmpSUzFLdi9WdHRuTGFGdzJB?=
- =?utf-8?B?aU9vdXhFVXJ0em1yL0tuVDgxaE53a2hSdjg4eWliV013alR3RkJubzQ4bktl?=
- =?utf-8?B?YU1CSEh6ZVFQNFZUSnc5UFR0U1NBaTJtRzRyRDIrUG8wZzdFSG92ZDZKRTBr?=
- =?utf-8?Q?Z7N0=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR06MB6935.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?dVdibUJVaDE5YTg5a2xuMzVBazlpdUJDazIyQ3JtakVBWlRvWkY2MmR1Y3ZG?=
- =?utf-8?B?eHhGVmRYVjJoRDhDdTNiRGwramZrTFdxZ2xCQWpCUFRUdEFsTjhSZ1MzQWd4?=
- =?utf-8?B?UElyOEpPWXFkRkZ0QVd3R1lHcC9JNzVHQ2g1cEtEVFltWHN3YTBvV2JQT1F5?=
- =?utf-8?B?dXFVZXh0cWcxVmVVU1QrNW9PV3JxekVJNDRseHROVTdydzNXV2JBZzFUd2Zt?=
- =?utf-8?B?QVExS3kwdWRQUExtTFRIQVkxWU9uYmlwRnczMVRPd2ZsSzdLVlUvb09udHlj?=
- =?utf-8?B?WDJZN29sYXh3Tzkyc2FBL2dhM2RaYVlVMmFrczVNZkpQUzM1alo5Z3ViVzAz?=
- =?utf-8?B?SzZObVAydHBVZWRHaGxEdHViUHNoU3JvRGJBTzRZdWNTWkNCUzB1bVdUZXJD?=
- =?utf-8?B?VTVyVW01S0tMTG90Lzg3SDZuUU5Wdzh5b3YrUkw5bEhaMFJWOUFUM3djWEV0?=
- =?utf-8?B?VmliMTkzQmFWSklUdVJacEd0bk1WZ0VxR1hlYzRBUlAzR2UrN1pUSlpONnRy?=
- =?utf-8?B?NDA2YnNNQ2x6cnFkNElFNXh0NG5VMzhEMkk5cjZvY3BaQmsvU1VEa3oxRHFz?=
- =?utf-8?B?Wll3MHgxRE1TaFhpQ2dXNGpWOFptdHAxbmpyTnN6V1U3eTlxRC95RE53TlBy?=
- =?utf-8?B?SUZpdm1LcW5iMWdJTDR2TVA2RDMrVm92YXVHbmpDbXhyeFc1SzhUdmYyU05N?=
- =?utf-8?B?VDYrY3pab1kyOFJUNysxU2x5enEvL205ck10c2tkN1IxZ0NEOWRMQ1NMYUVw?=
- =?utf-8?B?Und4SW9KckNXd3VudC9IRitYSVBvTlNUZEhXMjJlK21LWXFvenVHY05Nd0Jm?=
- =?utf-8?B?L25oSklYbnF2UDF6KzU5SVdkN3Nsc2ZrdnI2dkZrakZGLzBna3Ric2xod1hS?=
- =?utf-8?B?MGVUdlJjNXpPU0FKQjR2Z1dQcUNLNFkxNTFPbFdoYy91U0lDQnp0SlFWdDli?=
- =?utf-8?B?MDNHZ0EzQ1ZlZUUvRTBwSVp4ODF0Q3Q2bjVyM3NHZXVTTGNkajcwS0tSV0hW?=
- =?utf-8?B?VS9HNGtLVUFCZ09OLy9Ed0dBNUdUUWJJcml1Mmx2ODZiWjQxbTVwMERsVHRl?=
- =?utf-8?B?QXJUZUNrOUljb2s4dzRad0dzZEJUZ1FtWFRoVFVYTzBFQXI4Vlh3Smxjd01F?=
- =?utf-8?B?VXpDb3hpSVcrYlJQTTRBZS9HZFZLNlR2YWJXV1hXVitnb3V2SmorUm9BUUVy?=
- =?utf-8?B?TGNDYUdrNFZ2Q0FTSk1ZQ2sxSnpWcGhSbml0TVNPSG5vTW0yZHRhcUcwSHRo?=
- =?utf-8?B?cS93R3NjR2FLMC9ldDVxd25YUFlRaVhMRHcxbGNHa3J1SXluZEgrVlprWExG?=
- =?utf-8?B?NVp6Q0N0a0NDR3p4UW9rS1M0azhxZFU5MzNiTDhOL2xLaDY4RE9tU3dNSWMv?=
- =?utf-8?B?QXpaRkRvTlRITlJTYnVGbER4aHVNQlNhYzUyVGpydHFlV092Q1l4NUVMZWdx?=
- =?utf-8?B?SnF4OE5IQmVnWDBXVGFua1ozdFZMR1hTblNyTlgvaDZsRHRBK1JOQ0p2emIv?=
- =?utf-8?B?RW5rTDhEQ3ZNV002UUtzNUt0a1J6ZFFaYTllL0FTbkdFOTJEaGVxVzNVSFE1?=
- =?utf-8?B?Q09EQTV6Zklpc05tZXZCNEdpWVFOTjZRNFUvdloxenJ1cHpvTmhNL08zcnhI?=
- =?utf-8?B?d3J5UysxaGw4M1d6ZER5bFhpTUZpc1JnajZ3eWRVMlBoL2pWYlU3VTRxS2Nq?=
- =?utf-8?B?Znh3VjFJbVFwQ0E3Qi9LY0NBV3Uwa0p1cHAzbWswT3p0YkthNHdVY2tSRWxO?=
- =?utf-8?B?Vk1FeXllMERsZWJxL0ducDIyeFM1TFZNR2JLNGtqYWw2MzdJcHhrQ1dVdlky?=
- =?utf-8?B?VE9OUGhxbDJXdUdadEV0TXg3L25XVzJIQmNwaW40czAxanFhVlpYQ0g1ZVJ1?=
- =?utf-8?B?K3dsYSs5ckxFMTMxZ3lXQy8rQm9LUS9FYmx4ZS8rTzVzZnZ6dGU4UTZISExz?=
- =?utf-8?B?ZnZSTGZhZURST1Vsem42cmNYVTE3M3AvOTRBa3pCaVJUZzhMUGw1K3JDdnNQ?=
- =?utf-8?B?UUgvanJBWW9lK1RQVU13QWJOU2hoSXY5UXgrR3JycHREQ3hyTVljQVpWdWtD?=
- =?utf-8?B?WlFjMmlWM0VkQ212L2RSYVhNQUpSenpiUjdDVldkTC9zemVXM243Ny81TWpq?=
- =?utf-8?B?NHJUVTBCdlBtWS9nZ1UzSUs4ZUZNVE84K2NlZGRzZWZ6cnZzV0x4c1kza3g1?=
- =?utf-8?B?N2EwcGZBWUpVbFJSYkJkSEtmbVBBbkxDSFJVOTJKTC8rYk5kNUlDMFJmSktM?=
- =?utf-8?B?Kyt1ZVFwR2s1T1Q2TnBpMmdUbEF6djBrR3JxTjVLbnZYVk00NG5IY29FZHdT?=
- =?utf-8?B?VDZDZkxHYTJnam9XNGp1NmZWcWdjckMxWHg4ZWg1dXdBUkZYZVZEdz09?=
-X-OriginatorOrg: linumiz.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 394bd2ff-3f90-4616-03e1-08de664da294
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR06MB6935.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2026 13:34:36.1636
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 808466aa-232a-41f4-ac23-289e3a6840d4
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VLw9u+OCIFXKK1yYpNMka2Ndee5zcfV9ZDzIU0CJV5yWx9i0uZs3MJ2ZvsgT5LzCfT5zYwsnEnHhKQkR4O9ydA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB6559
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: phy: spacemit: add regulator support to
+ K1 USB2 PHY
+To: Ze Huang <huang.ze@linux.dev>, Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Yixun Lan <dlan@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, linux-riscv@lists.infradead.org,
+ linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, spacemit@lists.linux.dev
+References: <20260206100009.873182-1-amadeus@jmu.edu.cn>
+ <20260207-dancing-finch-of-chemistry-f98cf2@quoll>
+ <DG8QBWSJ79MP.2MVIHFRBX3WXX@linux.dev>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <DG8QBWSJ79MP.2MVIHFRBX3WXX@linux.dev>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263612-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[linumiz.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[szczodrzynski.pl,kernel.org,sholland.org,csie.org,gmail.com,linux.intel.com,suse.de];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linumiz.com,gmail.com,ffwll.ch,lists.infradead.org,lists.linux.dev,vger.kernel.org,lists.freedesktop.org,sys-base.io];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[parthiban@linumiz.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linaro.org,lists.infradead.org,vger.kernel.org,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-263613-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	MSBL_EBL_FAIL(0.00)[hub@0.0.0.2:query timed out];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_PROHIBIT(0.00)[0.0.0.1:email];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linkedin.com:url]
-X-Rspamd-Queue-Id: D6F73105FE7
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.2:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,jmu.edu.cn:email]
+X-Rspamd-Queue-Id: B9C0210608D
 X-Rspamd-Action: no action
 
-On 11/16/25 2:46 PM, Kuba Szczodrzyński wrote:
-> Some Allwinner chips (notably the D1s/T113 and the A100) have a "combo
-> MIPI DSI D-PHY" which is required when using single-link LVDS0. The same
-> PD0..PD9 pins are used for either DSI or LVDS.
+On 07/02/2026 13:30, Ze Huang wrote:
+> On Sat Feb 7, 2026 at 6:48 PM CST, Krzysztof Kozlowski wrote:
+>> On Fri, Feb 06, 2026 at 06:00:08PM +0800, Chukun Pan wrote:
+>>> Add an optional phy-supply property to describe the regulator
+>>> supplying for USB VBUS.
+>>
+>> Why wasn't it there before? USB did not have VBUS?
 > 
-> Other than having to use the combo D-PHY, LVDS output is configured in
-> the same way as on older chips.
+> Previously, the VBUS regulator was defined as regulator-always-on in
+> the device tree as a workaround.
+
+Bindings are supposed to be complete regardless what driver does (or
+does not).
+
+You must list all supplies with proper names.
+
+If this regulator was missing, then what else?
+
 > 
-> This series enables the sun6i MIPI D-PHY to also work in LVDS mode. It
-> is then configured by the LCD TCON, which allows connecting a
-> single-link LVDS display panel.
+>>
+>> Explanation is so incomplete I suspect you are patching broken things,
+>> so as well this could be completely different hardware (e.g. there is no
+>> regulator for this block but e.g. connector).
+>>
+> 
+> usb ports under usb hub node can describe the topology well, but
+> still regulator always-on is necessary as no driver toggles it.
+> 
+>     usb3 {
+>      dr_mode = "host";
+>      #address-cells = <1>;
+>      #size-cells = <0>;
+>      status = "okay";
+> 
+>      hub_2_0: hub@1 {
+>       compatible = "usb2109,2817";
+>       reg = <0x1>;
+>       #address-cells = <1>;
+>       #size-cells = <0>;
+>       vdd-supply = <&usb3_vhub>;
+>       peer-hub = <&hub_3_0>;
+>       reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
+> 
+>       port@1 {
+>        reg = <1>;
+>        vbus-supply = <&usb3_vbus>;
+>       };
+> 
+>       port@2 {
+>        reg = <2>;
+>        vbus-supply = <&usb3_vbus>;
+>       };
+> 
+>       ...
+> 
+>       hub_3_0: hub@2 {
+>         ...
+>       };
+>     };
+> 
+> Here is the diagram for the USB2, USB3 controller on K1 Jupiter board [1] (page 21)
+> 
+>     +-----------------------+
+>     |        K1 SoC         |
+>     |                       |
+>     |  +-----------------+  |   (USB 3.0)
+>     |  | USB3 Controller |--|---------------------------------->+--------------------------+
+>     |  +-----------------+  |                                   |        VL817 Hub         |
+>     |                       |                                   |                          |---> [USB3 Ports]
+>     |      HUB_PWREN        |                                   | +----------------------+ |     ^
+>     |       (GPIO)  --------|---------------------------------->| | Enable Chip Power    | |     |
+>     |                       |                                   | +----------------------+ |     |
+>     |                       |                                   +--------------------------+     |
+>     |      USB3_PWREN       |                                                                    |
+>     |       (GPIO)   -------|----------------------------------------------------------> [VBUS of USB3 Ports]
+>     |                       |
+>     |                       |
+>     |~~~~~~~~~~~~~~~~~~~~~~~|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>     |                       |
+>     |  +-----------------+  |   (USB 2.0)
+>     |  | USB2 Controller |--|---------------------------------->+--------------------------+
+>     |  +-----------------+  |                                   |      FE1_1S Hub          |---> [USB2 Ports]
+>     |                       |                                   +--------------------------+     ^
+>     |   USB_HOST_PWREN_H    |                                                                    |
+>     |       (GPIO)      ----|-----------------------------------------------------------> [VBUS of USB2 Ports]
+>     |                       |
+>     |                       |
+>     +-----------------------+
 
-Also one additional note is, current LVDS implementation in tcon doesn't
-handle LVDS mode in "0x0084 LCD LVDS Configure". We have only bitwidth
-handled. When using smaller LVDS panels vesa & jeida needs to be handled
-separately. Not sure if the mode support bit is same across all the SoC's TCON,
-but here is the diff which I have used to make it work for vesa-24 by tweaking
-the a133 lvds hook.
 
-commit 1f2d8983f78a11adab759160957a9cf6dc4296aa
-Author: Parthiban Nallathambi <parthiban@linumiz.com>
-Date:   Tue Feb 3 21:55:48 2026 +0530
+I do not see here a "phy" regulator supply. Are you sure this is how
+your pin or supply is called?
 
-    drm/sunxi: a133 add support for LVDS mode handling
-    
-    A133 supports both NS and JEIDA mode. Add support depends on the
-    mode selected from the devicetree data mapping.
-    
-    Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
+> 
+> [1] https://github.com/milkv-jupiter/jupiter-files/blob/main/hardware/v1_0/jupiter-sch-v1_0.pdf
 
-diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-index 3bacc897217f..98a2fb7ed015 100644
---- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
-+++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-@@ -175,8 +175,34 @@ static void sun6i_tcon_setup_lvds_phy(struct sun4i_tcon *tcon,
- static void sun20i_tcon_setup_lvds_dphy(struct sun4i_tcon *tcon,
-                                        const struct drm_encoder *encoder)
- {
-+       struct drm_connector *connector;
-+       struct drm_display_info *info;
-        union phy_configure_opts opts = { };
- 
-+       connector = sun4i_tcon_get_connector(encoder);
-+       if (!connector)
-+               return;
-+
-+       info = &connector->display_info;
-+       if (info->num_bus_formats != 1)
-+               return;
-+
-+       switch (info->bus_formats[0]) {
-+       case MEDIA_BUS_FMT_RGB666_1X7X3_SPWG:
-+       case MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA:
-+       case MEDIA_BUS_FMT_RGB101010_1X7X5_JEIDA:
-+               regmap_update_bits(tcon->regs, SUN4I_TCON0_LVDS_IF_REG,
-+                                  SUN4I_TCON0_LVDS_IF_MODE,
-+                                  SUN4I_TCON0_LVDS_IF_MODE);
-+               break;
-+       case MEDIA_BUS_FMT_RGB888_1X7X4_SPWG:
-+       case MEDIA_BUS_FMT_RGB101010_1X7X5_SPWG:
-+               regmap_update_bits(tcon->regs, SUN4I_TCON0_LVDS_IF_REG,
-+                                  SUN4I_TCON0_LVDS_IF_MODE,
-+                                  0);
-+               break;
-+       }
-+
-        if (!tcon->quirks->has_combo_dphy || !tcon->dphy)
-                return;
- 
-@@ -550,7 +576,9 @@ static void sun4i_tcon0_mode_set_lvds(struct sun4i_tcon *tcon,
-        else
-                reg |= SUN4I_TCON0_LVDS_IF_BITWIDTH_18BITS;
- 
--       regmap_write(tcon->regs, SUN4I_TCON0_LVDS_IF_REG, reg);
-+       regmap_update_bits(tcon->regs, SUN4I_TCON0_LVDS_IF_REG,
-+                          SUN4I_TCON0_LVDS_IF_CLK_SEL_TCON0 | SUN4I_TCON0_LVDS_IF_BITWIDTH_MASK,
-+                          reg);
- 
-        /* Setup the polarity of the various signals */
-        if (!(mode->flags & DRM_MODE_FLAG_PHSYNC))
-diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.h b/drivers/gpu/drm/sun4i/sun4i_tcon.h
-index 7e6a5f500d37..fa45b070def2 100644
---- a/drivers/gpu/drm/sun4i/sun4i_tcon.h
-+++ b/drivers/gpu/drm/sun4i/sun4i_tcon.h
-@@ -101,11 +101,12 @@
- 
- #define SUN4I_TCON0_LVDS_IF_REG                        0x84
- #define SUN4I_TCON0_LVDS_IF_EN                         BIT(31)
-+#define SUN4I_TCON0_LVDS_IF_MODE                       BIT(27)
- #define SUN4I_TCON0_LVDS_IF_BITWIDTH_MASK              BIT(26)
- #define SUN4I_TCON0_LVDS_IF_BITWIDTH_18BITS            (1 << 26)
- #define SUN4I_TCON0_LVDS_IF_BITWIDTH_24BITS            (0 << 26)
- #define SUN4I_TCON0_LVDS_IF_CLK_SEL_MASK               BIT(20)
--#define SUN4I_TCON0_LVDS_IF_CLK_SEL_TCON0              (1 << 20)
-+#define SUN4I_TCON0_LVDS_IF_CLK_SEL_TCON0              BIT(20)
- #define SUN4I_TCON0_LVDS_IF_CLK_POL_MASK               BIT(4)
- #define SUN4I_TCON0_LVDS_IF_CLK_POL_NORMAL             (1 << 4)
- #define SUN4I_TCON0_LVDS_IF_CLK_POL_INV                        (0 << 4)
+This page shows the connector, so not the phy.
 
-Shall this be same for all the TCON?
+> 
+>>
+>>>
+>>> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+>>> ---
+>>>  Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml | 4 ++++
+>>>  1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml b/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
+>>> index 43eaca90d88c..74a1cd5bcdbe 100644
+>>> --- a/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
+>>> +++ b/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
+>>> @@ -19,6 +19,10 @@ properties:
+>>>    clocks:
+>>>      maxItems: 1
+>>>  
+>>> +  phy-supply:
+>>> +    description:
+>>> +      Phandle to a regulator that provides power to VBUS.
+>>
+> 
+> "vbus-supply" should be more accurate.
+> 
+>> Drop redundant part. This cannot be anything else than phandle and
+>> regulator.
+>>
+>> "VBUS power supply" for example.
+>>
+> 
+>> But anyway, I don't have certainty that
+>> this is correct hardware representation. It's your task to provide that.
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> I initially considered handling VBUS via the onboard_usb_dev driver, as
+> we discussed previously for the BananaPi-F3 board (which uses a VL817
+> Hub) [2]. I was waiting for Marco Felsch's patch series "onboard-dev USB
+> hub host managed vbus" to land [3].
+> 
+> [2] https://lore.kernel.org/linux-riscv/aWJAT3n_KcND8bOz@monica.localdomain/
+> [3] https://lore.kernel.org/all/20250911-v6-16-topic-usb-onboard-dev-v4-0-1af288125d74@pengutronix.de/
+> 
+> I am not certain if managing VBUS in the PHY driver (e.g.,
+> phy-stm32-usbphyc.c and phy-rockchip-usb.c) is the standard method.
+> I would not insist on the "onboard_usb_dev managed vbus" if this patch
+> (PHY managed) is considered proper way.
 
---
-Thanks,
-Parthiban
-https://linumiz.com
-https://www.linkedin.com/company/linumiz
+I am not talking about driver here at all.
+
+Please start describing in the bindings your complete hardware, not your
+drivers.
+
+That's a no for this patch, because phy does not have such supply.
+
+Best regards,
+Krzysztof
 
