@@ -1,63 +1,62 @@
-Return-Path: <devicetree+bounces-263573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263574-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sB1GN/oWh2nBTQQAu9opvQ
-	(envelope-from <devicetree+bounces-263573-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 11:42:02 +0100
+	id YCkWGqwXh2nBTQQAu9opvQ
+	(envelope-from <devicetree+bounces-263574-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 11:45:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 461F9105962
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 11:42:02 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE42F1059AE
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 11:44:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 72B1E301C892
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 10:41:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5EE9130065D1
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 10:44:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865B033E34B;
-	Sat,  7 Feb 2026 10:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C81933E352;
+	Sat,  7 Feb 2026 10:44:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FcrciDW5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bCAsms6q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63A243242AA;
-	Sat,  7 Feb 2026 10:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0757733E34C;
+	Sat,  7 Feb 2026 10:44:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770460908; cv=none; b=s1sbGxFyGCBRu3Boi7iqnbAWsTLODo2+XlqKUpq9+JibIH/rVO7tqylgybyJ4ONtOeWobppKO+k9kMEI5dyQvMqH81TEJRPjXAbof3akqOZWkGjCTV7xz5gabk69T5bmuNULXS2mqyM/TNY1BIWSu9Vh19FjO426erENGtgEihw=
+	t=1770461096; cv=none; b=VGcBuX16j+zFYWNRY6ncMrWkC6SIgelSlABnvTOBh3WbhCCk2sjDBpm3Gc4qTRVMo91srRBTefKCvaABWhsgrVyJYXWonTMSSSUSTcdv1F9+uV38hhnrZBr1ynHhYmYSVdKopwJnFkuosJ5e9N2cQvEVjZJogX5gkRSmExmi+Jc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770460908; c=relaxed/simple;
-	bh=JFn5XByg+LkSSHOnxd5LTp3rBc3AjzTjLsHUyvk/Szw=;
+	s=arc-20240116; t=1770461096; c=relaxed/simple;
+	bh=6cOaTZGKJjrtSSk0AAQbqk7GenswhEuaH5sr7s77y6Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CcXQvk0MAJKGTsHjL+DnpcEoapKjNG2/+zSgqqPGvTo6xj2x0YGBzIASWzXmhECNwpP8h1nj8m4z+lK7Ug4V0AmxxgahIjqodKVizR1UOHu6sUpqUHMvYImZHR6I25JNSrPBQWDU8wzN63MDcyt2J2/9d5xhMx3ehO3qqBwjAE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FcrciDW5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 823E4C116D0;
-	Sat,  7 Feb 2026 10:41:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IK6n1BYWehP5KSjPbQhm0Bb8sxQr+SGsgkVbOSv587PTgdv5dJFFYb5JYr/91jPwO5jOlInjNJW/0IMh+wajz9P1mlWCV4qvIXLOCoY8QiYklcKRk88nwoWa3Nn3TjCQLEls7z+MJzIz1jUXm726Ymz4yzgU4tIeOV4PkCBY0/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bCAsms6q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D5C2C116D0;
+	Sat,  7 Feb 2026 10:44:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770460908;
-	bh=JFn5XByg+LkSSHOnxd5LTp3rBc3AjzTjLsHUyvk/Szw=;
+	s=k20201202; t=1770461095;
+	bh=6cOaTZGKJjrtSSk0AAQbqk7GenswhEuaH5sr7s77y6Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FcrciDW5Rfzo9FII8PA8KEe609jdNZxD5APEVrmL2SVisLslKqID7yeT6AwXWQHB2
-	 fyf62qb8hMsZWMtJxe5TOaUA7kZQCbaC1md3ehz9I8CVbl1qqD0Pa/hNFkzkVt/SrL
-	 7xNOEezmVzOtPws63OcPQHPvvf2h1B+CD+Q0q5mRbUrqylnNbjbg+l6PfHyYqvHntA
-	 UL3J4FnIraV3n97NiJe9gmH34pX5tZkGZtzKZfqyj8AuqFEvlC7FOTAbmtIWXo0C6S
-	 rLLbWJI5khA3zt/2aQiR7e6aXqR4yLdWGzH1CNWyf31aV2r5Mr1kq4brxft4Deypp0
-	 Ovc/JowuyZ9XQ==
-Date: Sat, 7 Feb 2026 11:41:45 +0100
+	b=bCAsms6qe4d8dsRcI0XEJTEdlTwUIODywaGcNWHhhXswGBg2t4kpZueVw435itkC5
+	 St6uzRaFBL80zgOA+Oi98GpVM7AE63/exTP6/9RbB4tyqVFyPSYaN9i4cqwuNYDr4O
+	 hWh21vTDQABVd50Pd1DZD3Rfx4ai7h9XCe3HZh/Ph28MnB1qLQOyRq8mXXhLuO9OjG
+	 Eag2X8Bko51+ya53MFzjBIP8EUgNJXh8+jsnsGhhYRw3YPPMjouHx97pRRjgjaDBb3
+	 enl6qHr+7ymZch0IBCkMLETJruQ5HmV2MySi8Z7aXfwbXY4u88kp4Ws8LZ+aUx+i8U
+	 CNA7oeQtWcaoQ==
+Date: Sat, 7 Feb 2026 11:44:53 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Judith Mendez <jm@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Olivier Moysan <olivier.moysan@foss.st.com>, Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] dt-bindings: iio: adc: ad4080: add AD4880 support
-Message-ID: <20260207-evasive-mastodon-of-apotheosis-e663a1@quoll>
-References: <cover.1770393792.git.antoniu.miclaus@analog.com>
- <290f35bcbd2f1ee68333ff65f89b54ec7fbb9c53.1770393792.git.antoniu.miclaus@analog.com>
+	Santosh Shilimkar <ssantosh@kernel.org>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Andrew Davis <afd@ti.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwinfo: ti,k3-socinfo: Add
+ nvmem-cells support
+Message-ID: <20260207-armored-diligent-grasshopper-b58d3f@quoll>
+References: <20260206191914.52878-1-jm@ti.com>
+ <20260206191914.52878-2-jm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,155 +65,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <290f35bcbd2f1ee68333ff65f89b54ec7fbb9c53.1770393792.git.antoniu.miclaus@analog.com>
+In-Reply-To: <20260206191914.52878-2-jm@ti.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263573-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263574-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.990];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 461F9105962
+X-Rspamd-Queue-Id: EE42F1059AE
 X-Rspamd-Action: no action
 
-On Fri, Feb 06, 2026 at 06:07:15PM +0200, Antoniu Miclaus wrote:
-> Add support for the AD4880, a dual-channel 20-bit 40MSPS SAR ADC
-> with integrated fully differential amplifiers (FDA).
+On Fri, Feb 06, 2026 at 01:19:13PM -0600, Judith Mendez wrote:
+> Add optional nvmem-cells and nvmem-cell-names properties to support
+> reading silicon revision information from alternate location using
+> NVMEM providers. This is used on AM62P to read GP_SW1 register for
+> accurate silicon revision detection.
 > 
-> The AD4880 has two independent ADC channels, each with its own SPI
-> configuration interface. This requires:
-> - Two entries in reg property for primary and secondary channel chip selects
-
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings.
-
-> - Two io-backends entries for the two data channels
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Signed-off-by: Judith Mendez <jm@ti.com>
 > ---
-> Changes in v2:
->   - Replace custom adi,aux-spi-cs property with standard reg property
->     containing two entries for multi-channel devices
->   - Add conditional schema validation for reg and io-backends based on
->     compatible string
->   - Update example to use reg = <0 1> instead of adi,aux-spi-cs
->   - Add AD4880 datasheet link
+> Changes since v1:
+> - no change
+> ---
+>  .../devicetree/bindings/hwinfo/ti,k3-socinfo.yaml    | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
->  .../bindings/iio/adc/adi,ad4080.yaml          | 51 ++++++++++++++++++-
->  1 file changed, 49 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
-> index ccd6a0ac1539..7108a91bb0bf 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
-> @@ -18,7 +18,11 @@ description: |
->    service a wide variety of precision, wide bandwidth data acquisition
->    applications.
+> diff --git a/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml b/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
+> index dada28b47ea07..58cc937e13351 100644
+> --- a/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
+> +++ b/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
+> @@ -15,6 +15,9 @@ description: |
+>    represented by CTRLMMR_xxx_JTAGID register which contains information about
+>    SoC id and revision.
 >  
-> +  The AD4880 is a dual-channel variant with two independent ADC channels,
-> +  each with its own SPI configuration interface.
+> +  On some SoCs like AM62P, the silicon revision is determined by reading
+> +  alternative registers via NVMEM cells.
 > +
->    https://www.analog.com/media/en/technical-documentation/data-sheets/ad4080.pdf
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad4880.pdf
->  
->  $ref: /schemas/spi/spi-peripheral-props.yaml#
->  
-> @@ -31,9 +35,15 @@ properties:
->        - adi,ad4084
->        - adi,ad4086
->        - adi,ad4087
-> +      - adi,ad4880
->  
+>  properties:
+>    $nodename:
+>      pattern: "^chipid@[0-9a-f]+$"
+> @@ -26,6 +29,15 @@ properties:
 >    reg:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
+>      maxItems: 1
+>  
+> +  nvmem-cells:
+> +    maxItems: 1
 > +    description:
-> +      SPI chip select(s). For single-channel devices, one chip select.
-> +      For multi-channel devices like AD4880, two chip selects are required
-> +      as each channel has its own SPI configuration interface.
->  
->    spi-max-frequency:
->      description: Configuration of the SPI bus.
-> @@ -57,7 +67,8 @@ properties:
->    vrefin-supply: true
->  
->    io-backends:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
+> +      Reference to NVMEM node containing revision information.
 
-Instead list the items with minItems, so the order is defined.
+Intead items with description. And drop 'Reference to NVMEM node
+containing', redundant. Just say what NVMEM it is supposed to be.
 
->  
->    adi,lvds-cnv-enable:
->      description: Enable the LVDS signal type on the CNV pin. Default is CMOS.
-> @@ -78,6 +89,25 @@ required:
->    - vdd33-supply
->    - vrefin-supply
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: adi,ad4880
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 2
-> +        io-backends:
-> +          minItems: 2
-> +    else:
-> +      properties:
-> +        reg:
-> +          maxItems: 1
-> +        io-backends:
-> +          maxItems: 1
-> +
->  additionalProperties: false
->  
->  examples:
-> @@ -98,4 +128,21 @@ examples:
->            io-backends = <&iio_backend>;
->          };
->      };
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        adc@0 {
-> +          compatible = "adi,ad4880";
-> +          reg = <0 1>;
-
-<0>, <1>, no? You want two separate chip selects, right? (size-cells is
-0).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
