@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263640-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YEU1G2iGh2lRZAQAu9opvQ
-	(envelope-from <devicetree+bounces-263639-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 19:37:28 +0100
+	id SMrKCYeGh2lRZAQAu9opvQ
+	(envelope-from <devicetree+bounces-263640-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 19:37:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7F04106DE3
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 19:37:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 868FD106E0A
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 19:37:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 36E003018283
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 18:37:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9CE6A3017035
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 18:37:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ED142E090B;
-	Sat,  7 Feb 2026 18:37:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6901D2FB0B4;
+	Sat,  7 Feb 2026 18:37:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SkVLljhz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WAykkCsw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE1F16DEB1;
-	Sat,  7 Feb 2026 18:37:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459F12E090B;
+	Sat,  7 Feb 2026 18:37:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770489445; cv=none; b=LIGAqliSh9idGEojUmypj0gLq7LetRSGzz8WaQ2T8KxHJE7oVIpb2IMyCtIGRoMnUwjOZT9e48C8pTlPqUHyV7rdqoXBlACMFovZRXBgcUOhloaXM+wbM2Az5VbD2Vh4yz7KAVFoJB67NgoxxMtvsHnJygAxKIEW349JWvncVzs=
+	t=1770489458; cv=none; b=CcNPF1rnUfK0et6tRSQARSFVYbbva8ZU1069kE1DkK1PO7cbSCYnKoltU7j+mAKSddTFc8vuBDC/btbFKVlD3oF154cQXxHeVzX7uDe3MjtgYd30JUNljzvHkoF1CgMDeMpMveOWXvj7olkVB99bD+29F/pvVp130VZJx7wCmOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770489445; c=relaxed/simple;
-	bh=o8SjpZPv4O+u8riUBMmWTOxPi8j0Dd4XhOcRUe8FF+4=;
+	s=arc-20240116; t=1770489458; c=relaxed/simple;
+	bh=ac7vzoSEyu7lsaAnCxcmmL7MRlzaRS6eYKF4ZG0uVQ4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aOrET6on51FJWHepXjet2Oc563NBVXxzheZrzuy0F/fI8bn7k7urUYMlbll6WgKYfDxmQvstjXkI4rOVy3cDoOdWYIMxsJpHbiVOIaxAGiWE9SUoOy9+95CdwkNd62UR+YfpVo6BUxv4hqEfQSDVAuRZJaxeM+6przd4RhM9Vy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SkVLljhz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47D77C116D0;
-	Sat,  7 Feb 2026 18:37:22 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=WEO1FtHGdqt7g2vza0O5IXcLwee0Z2pyUGR++oh0Ba0pvzq0/yJQ0i3KMd3BkJP1JCKxSZcH9OMa8o5NFxjq7vDk1slreKqH4Vv4B22Me/Ttk3CXoCPVDh1RHuhc8g9z7c1xSyyysYgjWBhXjwN1vYvAlFjCltR5iOqksmJ2pFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WAykkCsw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 359A6C116D0;
+	Sat,  7 Feb 2026 18:37:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770489444;
-	bh=o8SjpZPv4O+u8riUBMmWTOxPi8j0Dd4XhOcRUe8FF+4=;
+	s=k20201202; t=1770489457;
+	bh=ac7vzoSEyu7lsaAnCxcmmL7MRlzaRS6eYKF4ZG0uVQ4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SkVLljhzJ+JtEVvyCcHSFTVcZyzog36/eF0HmhMdE5UUllwhkl2VdSHsmn1bbq7Bt
-	 HCIPFIcRi0SqAc0iQHVJ4LVjuun+Lr8TobiUYmSpIcxiHCCrbmyOjrybcPq6VbG2ce
-	 zLy2UP+olrKd5SROjKE6MEDoUQu9BLsEN9JszLC3qRXAyiZw3OAgojdPsnfJxuH/rd
-	 fvxCpbl//yuRVkR+mBh6fz9QUszITyUZasC2hBj2dBq96e+bqgdv0M/aW1g0Q7XPGk
-	 UmhknZ8priLexJKZWGszs3RmykH0P2eftAVBfBjr61UeY/+vxzAY6OoHxiB4Zlsn6Q
-	 VeFqB00X+ZwyA==
-Message-ID: <cadee46d-589b-4833-8650-691f7a0f8321@kernel.org>
-Date: Sat, 7 Feb 2026 19:37:20 +0100
+	b=WAykkCsw4ZcAWlXnjdSSW9gaar/bFdF69WxLxnokikHrlARq5xw+xXuQ1eAyDRAMc
+	 BZuKX1TzRVdM6iVhwkjWCdlsnohv9/0hd3uOA5uUEf5/0mEbUyAlSr1z/0RCe9t5uM
+	 vlNIZIH8sj4cqpExaJBuQRjCLRltrqn+6fQIiVKcD8N+h4EYfoL/rZmJtwwKCZYw3e
+	 H1VH3SFZl48w0/8kBT2nbeTISxxwyS2ijzt27mVtfm1kGLu7rs0uo2+UIXbTMLEyQR
+	 /qMZR70HDDD7+VcEnTmslNThwKL1qk9oo7S2z5UyUsFEF2JOQliKCXj9DuSHpjvqwq
+	 zdqNI2ntoypeA==
+Message-ID: <a2be67b7-a33a-4d72-b5b7-fa900063b599@kernel.org>
+Date: Sat, 7 Feb 2026 19:37:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,14 +53,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: rockchip: Add RV1103B
+Subject: Re: [PATCH v2] dt-bindings: serial: snps-dw-apb-uart: Add RV1103B
  compatible
-To: Fabio Estevam <festevam@gmail.com>, linusw@kernel.org
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, jonas@kwiboo.se,
+To: Fabio Estevam <festevam@gmail.com>, gregkh@linuxfoundation.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
  Fabio Estevam <festevam@nabladev.com>
-References: <20260207130642.2833312-1-festevam@gmail.com>
+References: <20260207130848.2833599-1-festevam@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,7 +105,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260207130642.2833312-1-festevam@gmail.com>
+In-Reply-To: <20260207130848.2833599-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -119,10 +118,10 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263639-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263640-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com,linuxfoundation.org];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -135,21 +134,19 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B7F04106DE3
+X-Rspamd-Queue-Id: 868FD106E0A
 X-Rspamd-Action: no action
 
-On 07/02/2026 14:06, Fabio Estevam wrote:
+On 07/02/2026 14:08, Fabio Estevam wrote:
 > From: Fabio Estevam <festevam@nabladev.com>
 > 
-> Document the compatible string for the RV1103B SoC.
+> The RV1103B UART is compatible with the existing DesignWare APB UART
+> binding. Add the rockchip,rv1103b-uart compatible string.
 > 
 > Signed-off-by: Fabio Estevam <festevam@nabladev.com>
-> ---
-> Changes since v1:
->  - None
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
