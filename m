@@ -1,306 +1,139 @@
-Return-Path: <devicetree+bounces-263613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263614-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qM5yJe1Bh2keVgQAu9opvQ
-	(envelope-from <devicetree+bounces-263613-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 14:45:17 +0100
+	id EN3UJGpEh2luVgQAu9opvQ
+	(envelope-from <devicetree+bounces-263614-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 14:55:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9C0210608D
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 14:45:10 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A177310615D
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 14:55:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A789C3001F97
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 13:45:06 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 18E33300460A
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 13:55:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8724627B352;
-	Sat,  7 Feb 2026 13:45:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40E6E262FE7;
+	Sat,  7 Feb 2026 13:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qbn1qHc6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d0tjHTyD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6328D26E6F9;
-	Sat,  7 Feb 2026 13:45:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE91243964;
+	Sat,  7 Feb 2026 13:55:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770471905; cv=none; b=tf5brWJlGNF055xzrxB7IkJYin37VdkF0ODkLHLLcKUtTm5p8+PXQa2feNTMxxcXSymPGPuJg3gUglfcNLOBbLfM2yx4izeu1nNbLwWhFEKbeNLh1npVFo1YmiCWdkdi9CH3pHqGm5w0wWzrKOhspr8g4DvpXc09Nf33kjGHcoM=
+	t=1770472547; cv=none; b=HHrNmZkSLEgtJg+B2dk1FSyU/X4hujSE7UGy8brKGULdA6hFaJ8o7ogtUapKWaH+FjND8q/75hdeClNk1J2nvpeNk8K46/oHlJQcmvpuHLR6MvAuwDCFhCU4oVCqTXGVUgybO9wzeIxO4/tgL5vDD02hhI5vPgDiVGPJhyUG34Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770471905; c=relaxed/simple;
-	bh=Fcg7QBGlOtQbed/3P4oI5lcao5EQQ/HrCDZfMumyuCI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AgwodSM1FMJOLLqhy/X/LEGgnpEgxzsEp7z+E+RtBY5Teg7wuUXg33MGImuWDpXaqhIxRbWQt266KpALIjKGmQSQYhd3GNmZ4KJT2sMz/Ajq7Pz54YixsyxQymtbhBBvgl+EH19P70QsEsQp80W7ON9jt+QAfC8cULmZ2CUwDSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qbn1qHc6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F835C116D0;
-	Sat,  7 Feb 2026 13:45:01 +0000 (UTC)
+	s=arc-20240116; t=1770472547; c=relaxed/simple;
+	bh=52HdvhLl+Rj+D0U25RyCmlrmaka83KzgV6WDZKvInCM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=B4uaNHxgXrsiQkWjEjwMTXtWe6QIxxEj6s//+o+3V77JSHSYC0dgXMabMy845ve4FSuAqFiYapBE1zaIkT0sNy9MEk4LlZYDSQoGSMMuLtE3f5xwcQOg2c83e9aMeC4wBA3SRwJG4eQfwgW5bhwMxJBKSDELZsI2MajKmLx1tXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d0tjHTyD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 150A4C19422;
+	Sat,  7 Feb 2026 13:55:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770471904;
-	bh=Fcg7QBGlOtQbed/3P4oI5lcao5EQQ/HrCDZfMumyuCI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Qbn1qHc6lUrKbMPzzgWKq9vZPEJ5bUGVPedLhLKD8PPzQnk0mdZH17CAxFkqIDSyr
-	 Q86aVZWIWFBugvb4g7P1TqzbBJKV/gd0c8h607JUgZeQry/qJdcUWVcGTyOvq0JQur
-	 KEjV1Hm3ercnG7hQFageEvR0B2ADXlDs52EcThKNZ556SZRyhCy48SfbQ1uO56ScL0
-	 Xww7xd1BYxMFIy6A47C/k8zgIMbjhsiQS5/kWiqu6ScnAGSdcH+PajhipN398yjiZp
-	 Q5mZHckqvj/BHfQl0i+THKnyD24AnFcuVEppEaZc/A8wgegLmwynzeDfd6F0gu1tYF
-	 Cnav442jy+/Fg==
-Message-ID: <8c3835c4-3602-4cee-9631-0551b0341918@kernel.org>
-Date: Sat, 7 Feb 2026 14:44:59 +0100
+	s=k20201202; t=1770472546;
+	bh=52HdvhLl+Rj+D0U25RyCmlrmaka83KzgV6WDZKvInCM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=d0tjHTyD1T6o2BOyOj7ViDjHcJOtDAY6Gb3/UGwKhQupAzwbpPDgQwYM77lkVPuP0
+	 QGLj7H33NMjV2aes42SwROXx0UU91vOVLlVL0oskrAfWzGdlGxTPkVtZnvWfOCWfml
+	 CcglOzzXzrCWf6em1eCk7JlMDy6rlTHden2FzhzBdiQoOeemnOPf7tt11Rp5DAbyeY
+	 1YyTMn7bEUrXB24pTqct72WabARXvGqVZPKz2CMXOHIojpZ8VTtpde2r4UE23Wp3nY
+	 RjjKFNFDhMhEf8JELUnzIdUXtVX7KlYXAjWajesxvufDaa/Km9696GYtZtg5n6SS7I
+	 9kd0jkGjj2vgw==
+Date: Sat, 7 Feb 2026 13:55:34 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Lee
+ Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Dixit Parmar
+ <dixitparmar19@gmail.com>, Tony Lindgren <tony@atomide.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-leds@vger.kernel.org
+Subject: Re: [PATCH v2 04/11] dt-bindings: iio: adc: cpcap-adc: document Mot
+ ADC
+Message-ID: <20260207135534.074af78d@jic23-huawei>
+In-Reply-To: <20260206172845.145407-5-clamor95@gmail.com>
+References: <20260206172845.145407-1-clamor95@gmail.com>
+	<20260206172845.145407-5-clamor95@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: phy: spacemit: add regulator support to
- K1 USB2 PHY
-To: Ze Huang <huang.ze@linux.dev>, Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Yixun Lan <dlan@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-riscv@lists.infradead.org,
- linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, spacemit@lists.linux.dev
-References: <20260206100009.873182-1-amadeus@jmu.edu.cn>
- <20260207-dancing-finch-of-chemistry-f98cf2@quoll>
- <DG8QBWSJ79MP.2MVIHFRBX3WXX@linux.dev>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <DG8QBWSJ79MP.2MVIHFRBX3WXX@linux.dev>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linaro.org,lists.infradead.org,vger.kernel.org,lists.linux.dev];
-	TAGGED_FROM(0.00)[bounces-263613-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263614-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	MSBL_EBL_FAIL(0.00)[hub@0.0.0.2:query timed out];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
-	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,gmail.com,atomide.com,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.2:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,jmu.edu.cn:email]
-X-Rspamd-Queue-Id: B9C0210608D
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A177310615D
 X-Rspamd-Action: no action
 
-On 07/02/2026 13:30, Ze Huang wrote:
-> On Sat Feb 7, 2026 at 6:48 PM CST, Krzysztof Kozlowski wrote:
->> On Fri, Feb 06, 2026 at 06:00:08PM +0800, Chukun Pan wrote:
->>> Add an optional phy-supply property to describe the regulator
->>> supplying for USB VBUS.
->>
->> Why wasn't it there before? USB did not have VBUS?
-> 
-> Previously, the VBUS regulator was defined as regulator-always-on in
-> the device tree as a workaround.
+On Fri,  6 Feb 2026 19:28:38 +0200
+Svyatoslav Ryhel <clamor95@gmail.com> wrote:
 
-Bindings are supposed to be complete regardless what driver does (or
-does not).
+> Add compatible for ADC used in Mot board. Separate compatible is required
+> since ADC in the Mot board uses a unique set of configurations.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Applied to the testing branch of iio.git.
 
-You must list all supplies with proper names.
+Thanks,
 
-If this regulator was missing, then what else?
+Jonathan
 
+> ---
+>  .../devicetree/bindings/iio/adc/motorola,cpcap-adc.yaml          | 1 +
+>  1 file changed, 1 insertion(+)
 > 
->>
->> Explanation is so incomplete I suspect you are patching broken things,
->> so as well this could be completely different hardware (e.g. there is no
->> regulator for this block but e.g. connector).
->>
-> 
-> usb ports under usb hub node can describe the topology well, but
-> still regulator always-on is necessary as no driver toggles it.
-> 
->     usb3 {
->      dr_mode = "host";
->      #address-cells = <1>;
->      #size-cells = <0>;
->      status = "okay";
-> 
->      hub_2_0: hub@1 {
->       compatible = "usb2109,2817";
->       reg = <0x1>;
->       #address-cells = <1>;
->       #size-cells = <0>;
->       vdd-supply = <&usb3_vhub>;
->       peer-hub = <&hub_3_0>;
->       reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
-> 
->       port@1 {
->        reg = <1>;
->        vbus-supply = <&usb3_vbus>;
->       };
-> 
->       port@2 {
->        reg = <2>;
->        vbus-supply = <&usb3_vbus>;
->       };
-> 
->       ...
-> 
->       hub_3_0: hub@2 {
->         ...
->       };
->     };
-> 
-> Here is the diagram for the USB2, USB3 controller on K1 Jupiter board [1] (page 21)
-> 
->     +-----------------------+
->     |        K1 SoC         |
->     |                       |
->     |  +-----------------+  |   (USB 3.0)
->     |  | USB3 Controller |--|---------------------------------->+--------------------------+
->     |  +-----------------+  |                                   |        VL817 Hub         |
->     |                       |                                   |                          |---> [USB3 Ports]
->     |      HUB_PWREN        |                                   | +----------------------+ |     ^
->     |       (GPIO)  --------|---------------------------------->| | Enable Chip Power    | |     |
->     |                       |                                   | +----------------------+ |     |
->     |                       |                                   +--------------------------+     |
->     |      USB3_PWREN       |                                                                    |
->     |       (GPIO)   -------|----------------------------------------------------------> [VBUS of USB3 Ports]
->     |                       |
->     |                       |
->     |~~~~~~~~~~~~~~~~~~~~~~~|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->     |                       |
->     |  +-----------------+  |   (USB 2.0)
->     |  | USB2 Controller |--|---------------------------------->+--------------------------+
->     |  +-----------------+  |                                   |      FE1_1S Hub          |---> [USB2 Ports]
->     |                       |                                   +--------------------------+     ^
->     |   USB_HOST_PWREN_H    |                                                                    |
->     |       (GPIO)      ----|-----------------------------------------------------------> [VBUS of USB2 Ports]
->     |                       |
->     |                       |
->     +-----------------------+
+> diff --git a/Documentation/devicetree/bindings/iio/adc/motorola,cpcap-adc.yaml b/Documentation/devicetree/bindings/iio/adc/motorola,cpcap-adc.yaml
+> index 9ceb6f18c854..1f77da7f8e06 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/motorola,cpcap-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/motorola,cpcap-adc.yaml
+> @@ -19,6 +19,7 @@ properties:
+>      enum:
+>        - motorola,cpcap-adc
+>        - motorola,mapphone-cpcap-adc
+> +      - motorola,mot-cpcap-adc
+>  
+>    interrupts:
+>      maxItems: 1
 
-
-I do not see here a "phy" regulator supply. Are you sure this is how
-your pin or supply is called?
-
-> 
-> [1] https://github.com/milkv-jupiter/jupiter-files/blob/main/hardware/v1_0/jupiter-sch-v1_0.pdf
-
-This page shows the connector, so not the phy.
-
-> 
->>
->>>
->>> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
->>> ---
->>>  Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml b/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
->>> index 43eaca90d88c..74a1cd5bcdbe 100644
->>> --- a/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
->>> +++ b/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
->>> @@ -19,6 +19,10 @@ properties:
->>>    clocks:
->>>      maxItems: 1
->>>  
->>> +  phy-supply:
->>> +    description:
->>> +      Phandle to a regulator that provides power to VBUS.
->>
-> 
-> "vbus-supply" should be more accurate.
-> 
->> Drop redundant part. This cannot be anything else than phandle and
->> regulator.
->>
->> "VBUS power supply" for example.
->>
-> 
->> But anyway, I don't have certainty that
->> this is correct hardware representation. It's your task to provide that.
->>
->> Best regards,
->> Krzysztof
-> 
-> I initially considered handling VBUS via the onboard_usb_dev driver, as
-> we discussed previously for the BananaPi-F3 board (which uses a VL817
-> Hub) [2]. I was waiting for Marco Felsch's patch series "onboard-dev USB
-> hub host managed vbus" to land [3].
-> 
-> [2] https://lore.kernel.org/linux-riscv/aWJAT3n_KcND8bOz@monica.localdomain/
-> [3] https://lore.kernel.org/all/20250911-v6-16-topic-usb-onboard-dev-v4-0-1af288125d74@pengutronix.de/
-> 
-> I am not certain if managing VBUS in the PHY driver (e.g.,
-> phy-stm32-usbphyc.c and phy-rockchip-usb.c) is the standard method.
-> I would not insist on the "onboard_usb_dev managed vbus" if this patch
-> (PHY managed) is considered proper way.
-
-I am not talking about driver here at all.
-
-Please start describing in the bindings your complete hardware, not your
-drivers.
-
-That's a no for this patch, because phy does not have such supply.
-
-Best regards,
-Krzysztof
 
