@@ -1,65 +1,72 @@
-Return-Path: <devicetree+bounces-263625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263626-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aJjYJslrh2kYXwQAu9opvQ
-	(envelope-from <devicetree+bounces-263625-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 17:43:53 +0100
+	id CM3VIpBuh2nQXwQAu9opvQ
+	(envelope-from <devicetree+bounces-263626-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 17:55:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2EB11068BC
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 17:43:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B87F106936
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 17:55:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3817A3004C88
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 16:43:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9339330210F6
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 16:55:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F732332EB5;
-	Sat,  7 Feb 2026 16:43:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7F18338592;
+	Sat,  7 Feb 2026 16:55:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aGSwa3G5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xm/EAPH0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 662ABF513;
-	Sat,  7 Feb 2026 16:43:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83AAD2032D;
+	Sat,  7 Feb 2026 16:55:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770482625; cv=none; b=EXzPpiaVGuTKoQAB3Rx3Ouz2VZJbAkjXBXryoV8doySH7ZZOGdtK8q68Yz1yJn/0GTFRaO/cSBYyDizze3waK9blChjGZDLTzb8byG8TD1gvWTEiexIOsKZydacV4DiMTTsD9gXRX5HN9HK/ZAZUNS2cWH9A2kmqfTpuEyC09rM=
+	t=1770483337; cv=none; b=uFZTxQ/DdVyM4WlNWFxVH3364XUfupvUJrjfNW9o7FTxILPI9ciBG3iowQw3E2ck49MrLEj8cuxmjaOaNbmBOVxFDFs94te231oTc6HVGt6xQU50+WzdGAzeZ1tjD/awplzD8mLI+JuPqDi0n44gAgVI9N78r3iXY5VKMgwiM3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770482625; c=relaxed/simple;
-	bh=Axy4xoxt6KBeuhKTrrSBHiBupfnCUJJYBVb3gDBu7q0=;
+	s=arc-20240116; t=1770483337; c=relaxed/simple;
+	bh=XF9COcQaEIHxmp/l00Iy1/CqeeTFCLR4L/6pxLAwvvg=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fAAEOhLFyxBtNu7CWE/4ZpNyRetEY5ovP/OPwuPFuCGRg54CWBwAhl4LtQXwxBFoZfaDdqhJIGOSmBOi7fxmRBWPFWViwNrj2Qw2E6Hs08PfTXCwJLy5tKRH+/k9RrTblUXkgS3+iPY8vs74AlE64RgMJ3RwjAeP8e6PN/mgwoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aGSwa3G5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CE07C116D0;
-	Sat,  7 Feb 2026 16:43:39 +0000 (UTC)
+	 MIME-Version:Content-Type; b=oC3AmEj9WDpJUN62xZkxmhqnF1ApiVRD6NN3YGO6HnvyZYiTbsAHSbnbPYooOCmmM2sdhwS8pOhkqucYSYStOwocTbMiMltgEl2NYgIzJvk4lz4JG/sXBGIkq39HUF2Jnzr9tvrUNZsr+UKUTZVmBSrUG4jzF1IBrWA/6tgrZpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xm/EAPH0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FC5DC116D0;
+	Sat,  7 Feb 2026 16:55:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770482625;
-	bh=Axy4xoxt6KBeuhKTrrSBHiBupfnCUJJYBVb3gDBu7q0=;
+	s=k20201202; t=1770483337;
+	bh=XF9COcQaEIHxmp/l00Iy1/CqeeTFCLR4L/6pxLAwvvg=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=aGSwa3G5CAEYMJwyPRLY6nZ5m3HFcnCuOjqjlCm35ekZy8bLDSHEp7ysLadn77i12
-	 RDHvuETw+UtDgtmlHbBbNF0sYE9VB/8mYcwB0vsdpW2Yaq7RXLYktcVvC3JA691hPh
-	 /SJf056oQXFo7u+D7c2tnWj0d9QfqBgqSn3xKOQ+nQnBo0yFT31lqeOS6n9XpnJFuX
-	 0JeCDuLR8bh2skAqbW/LX/2goozsu/+myxXpMoXnCNUAPiMrJDxI7HGZcRWg01cb6d
-	 vopfyp5Uyc4jbJRIWIDiKQxoFE3fkVokk0f+BDGmsphluzfNIn/sq5v/wpm+J86U2g
-	 FpQCqiefpdgZg==
-Date: Sat, 7 Feb 2026 16:43:35 +0000
+	b=Xm/EAPH0UFspdYzw4r7tfbOG5sOHicbWcvjbhhnimUgf4hWVzA4BQd6DCFteRRyRW
+	 h3Dkf06CwEtLgfm7z+mZbkYTxWX3EGeNjU4rtak2JHGiGI6XtNhmLaEti1KUjDxJga
+	 lVkgy2y57prp8QWlNpQhSx9XJc59yQzulT3dm6hJ8Xrxd5kCt4QCbqUT79gdftSwK+
+	 jE6rn5oMuTcgrUPW22cKUJtYp5V5P45VA7rA2/lK8GD4yEhRu0wt4qTaRWUEa6SQx2
+	 enDcFT8YH6YC8YN36fWwrbxkKTuP5ybYaZ90eg3nhYpcTZPz407Zvos2OLysvgXTg3
+	 BBkVsfRzmJRkQ==
+Date: Sat, 7 Feb 2026 16:55:21 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Erikas Bitovtas <xerikasxx@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Tsai <ktsai@capellamicro.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: light: Add support for Capella cm36686 and
- cm36672p sensors
-Message-ID: <20260207164335.72ddf049@jic23-huawei>
-In-Reply-To: <20260201-cm36686-v1-2-4949a2a9ba63@gmail.com>
-References: <20260201-cm36686-v1-0-4949a2a9ba63@gmail.com>
-	<20260201-cm36686-v1-2-4949a2a9ba63@gmail.com>
+To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ agross@kernel.org, andersson@kernel.org, lumag@kernel.org,
+ dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
+ daniel.lezcano@linaro.org, sboyd@kernel.org, amitk@kernel.org,
+ thara.gopinath@gmail.com, lee@kernel.org, rafael@kernel.org,
+ subbaraman.narayanamurthy@oss.qualcomm.com, david.collins@oss.qualcomm.com,
+ anjelique.melendez@oss.qualcomm.com, kamal.wadhwa@oss.qualcomm.com,
+ rui.zhang@intel.com, lukasz.luba@arm.com, devicetree@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ cros-qcom-dts-watchers@chromium.org, quic_kotarake@quicinc.com,
+ neil.armstrong@linaro.org, stephan.gerhold@linaro.org
+Subject: Re: [PATCH V10 4/4] thermal: qcom: add support for PMIC5 Gen3 ADC
+ thermal monitoring
+Message-ID: <20260207165521.357c1fb0@jic23-huawei>
+In-Reply-To: <def530e3-3a5d-41cd-9f1a-1dc3f98747f9@oss.qualcomm.com>
+References: <20260130115421.2197892-1-jishnu.prakash@oss.qualcomm.com>
+	<20260130115421.2197892-5-jishnu.prakash@oss.qualcomm.com>
+	<20260131175412.0ded39d4@jic23-huawei>
+	<def530e3-3a5d-41cd-9f1a-1dc3f98747f9@oss.qualcomm.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -75,277 +82,71 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-263626-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263625-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.986];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,linaro.org,gmail.com,intel.com,arm.com,vger.kernel.org,chromium.org,quicinc.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B2EB11068BC
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,huawei.com:email,qualcomm.com:email]
+X-Rspamd-Queue-Id: 2B87F106936
 X-Rspamd-Action: no action
 
-On Sun, 01 Feb 2026 19:03:49 +0200
-Erikas Bitovtas <xerikasxx@gmail.com> wrote:
+On Fri, 6 Feb 2026 18:45:22 +0530
+Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
 
-> This driver adds the initial support for the Capella cm36686
-> ambient light and proximity sensor and cm36672p proximity sensor.
+> Hi Jonathan,
 > 
-> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
-Hi Erikas
+> On 1/31/2026 11:24 PM, Jonathan Cameron wrote:
+> > On Fri, 30 Jan 2026 17:24:21 +0530
+> > Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
+> >   
+> >> Add support for ADC_TM part of PMIC5 Gen3.
+> >>
+> >> This is an auxiliary driver under the Gen3 ADC driver, which implements the
+> >> threshold setting and interrupt generating functionalities of QCOM ADC_TM
+> >> drivers, used to support thermal trip points.
+> >>
+> >> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>  
+> > 
+> > Hi Jishnu.
+> > 
+> > Some minor editorial style stuff below if you are spinning again.
+> > Otherwise this looks good to me
+> > 
+> > Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
+> > Given I expect this patch will go through the thermal tree and not IIO.  
+> 
+> Just to confirm, would it be fine to keep your Reviewed-by tag in place
+> if I only make changes in this patch to address your comments, in the
+> next patch series?
+When you say next patch series do you mean a v11? Or a separate follow up series?
+We have time now as the necessary immutable branch won't be for at least 2 weeks
+(need rc1 to be released).
 
-Welcome to IIO.
-A few comments from me to supplement existing review from David.
-There may be some overlap!
+Yes.  You only need to drop tags if making significant changes from what
+was tagged.  If you do drop them once given, call out why under the --- for the
+new patch.
 
 Jonathan
 
 
+> 
 
-> diff --git a/drivers/iio/light/cm36686.c b/drivers/iio/light/cm36686.c
-> new file mode 100644
-> index 000000000000..eb108af7226d
-> --- /dev/null
-> +++ b/drivers/iio/light/cm36686.c
-
-> +/* PS_CONF3 */
-> +#define CM36686_PS_SMART_PERS_ENABLE	BIT(4)
-> +
-> +#define CM36686_LED_I			GENMASK(10, 8)
-> +
-> +/* INT_FLAG */
-> +#define CM36686_PS_IF			GENMASK(9, 8)
-Use field names that incorporate the register and that they are masks
-
-#define CM36686_INT_FLAG_PS_IF_MASK		GENMASK(9, 8)
-
-That way it is easy to see they are being written to the right register.
-
-> +
-> +/* Default values */
-> +#define CM36686_ALS_ENABLE		0x00
-> +#define CM36686_PS_DR_1_320		FIELD_PREP(CM36686_PS_DR, 3)
-> +#define CM36686_PS_PERS_2		FIELD_PREP(CM36686_PS_PERS, 1)
-> +#define CM36686_PS_IT_2_5T		FIELD_PREP(CM36686_PS_IT, 3)
-> +#define CM36686_LED_I_100		FIELD_PREP(CM36686_LED_I, 2)
-I'd just put the FIELD_PREP() calls inline rather than having these macros
-for defaults.  Looks like the values being written maybe want defines.
-Not obvious 2 means 100 as per this last one for instance.
-
-
-> +enum {
-> +	CM36686_SUPPLY_VDD,
-> +	CM36686_SUPPLY_VDDIO,
-> +	CM36686_SUPPLY_VLED,
-> +	CM36686_SUPPLY_NUM,
-I'm not sure this enum really helps as you just
-enable them all in one go anyway. Just use indexes there.
-
-> +};
-> +
-> +static const int cm36686_als_it_times[][2] = {
-> +	{0, 80000},
-> +	{0, 160000},
-> +	{0, 320000},
-> +	{0, 640000}
-> +};
-> +
-> +static const int cm36686_ps_it_times[][2] = {
-> +	{0, 320},
-> +	{0, 480},
-> +	{0, 640},
-> +	{0, 800},
-> +	{0, 960},
-> +	{0, 1120},
-> +	{0, 1280},
-> +	{0, 2560}
-	{ 0, 2560 },
-preferred style for these.
-
-> +};
-
-> +static const struct iio_chan_spec_ext_info cm36686_ext_info[] = {
-> +	{
-> +		.name = "nearlevel",
-> +		.shared = IIO_SEPARATE,
-> +		.read = cm36686_read_near_level,
-> +	},
-> +	{}
-	{ }
-
-> +};
-
-> +
->
-> +
-> +static void cm36686_shutdown(void *data)
-> +{
-> +	struct cm36686_data *chip = data;
-> +	struct i2c_client *client = chip->client;
-> +	int ret, als_shutdown, ps_shutdown;
-> +
-> +	als_shutdown = chip->als_conf | CM36686_ALS_SD;
-> +
-> +	ret = i2c_smbus_write_word_data(client, CM36686_REG_ALS_CONF,
-> +					als_shutdown);
-
-If I'm not missing anything, it would be easy to convert this driver
-to regmap + enable regcache.  At that point you can use the rich
-set of registration RMW functions in there and avoid need to do
-your own caching like you have in als_conf / ps_conf etc.
-
-> +	if (ret < 0)
-> +		dev_err(&client->dev, "Failed to shutdown ALS");
-> +
-> +	ps_shutdown = chip->ps_conf[CM36686_PS_CONF1] | CM36686_PS_SD;
-> +
-> +	ret = i2c_smbus_write_word_data(client, CM36686_REG_PS_CONF1,
-> +					ps_shutdown);
-> +	if (ret < 0)
-> +		dev_err(&client->dev, "Failed to shutdown PS");
-> +
-> +	ret = regulator_bulk_disable(ARRAY_SIZE(chip->supplies), chip->supplies);
-> +	if (ret < 0)
-> +		dev_err(&client->dev, "Failed to disable regulators");
-> +}
-> +
-> +static int cm36686_probe(struct i2c_client *client)
-> +{
-I'd have
-	struct device *dev = &client->dev;
-just because it gets used a lot in probe.
-
-> +	struct iio_dev *indio_dev;
-> +	struct cm36686_data *chip;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&client->dev,
-> +					  sizeof(struct cm36686_data));
-
-sizeof(*chip)
-is more compact and directly relates to us getting that space in 
-chip = iio_priv() just below.
-
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	chip = iio_priv(indio_dev);
-> +
-> +	const struct i2c_device_id *id = i2c_client_get_device_id(client);
-Keep declarations to the top of functions unless we are using
-cleanup.h stuff or there is some other strong reason we can't.
-
-Otherwise, this should move to getting the structs directly as David
-called out.
-
-> +
-> +	const struct cm36686_chip_info *info =
-> +		&cm36686_chip_info_tbl[id->driver_data];
-> +
-> +	ret = i2c_smbus_read_byte_data(client, CM36686_REG_ID_FLAG);
-> +	if (ret < 0)
-> +		return dev_err_probe(&client->dev, ret, "Failed to read device ID");
-> +
-> +	if (ret != CM36686_DEVICE_ID)
-> +		return dev_err_probe(&client->dev, -ENODEV, "Device not recognized!");
-As David said already, we don't error out on this in modern drivers
-because of DT fallback compatibles.  We have a long tail of old
-drivers that do still check this and error out that really want updating.
-
-> +
-> +	i2c_set_clientdata(client, indio_dev);
-
-Used?
-
-> +	chip->client = client;
-> +	ret = devm_mutex_init(&client->dev, &chip->lock);
-> +	if (ret < 0)
-> +		return dev_err_probe(&client->dev, ret,
-> +		       "Failed to initialize mutex");
-I'm fairly sure that can only fail with -ENOMEM due to the devres bit
-failing and in that case we don't print messages with dev_err_probe()
-anyway so you can drop this print.
-
-> +
-> +	chip->supplies[CM36686_SUPPLY_VDD].supply = "vdd";
-> +	chip->supplies[CM36686_SUPPLY_VDDIO].supply = "vddio";
-> +	chip->supplies[CM36686_SUPPLY_VLED].supply = "vled";
-> +
-> +	ret = devm_regulator_bulk_get(&client->dev,
-> +		ARRAY_SIZE(chip->supplies), chip->supplies);
-> +	if (ret < 0)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "Failed to enable regulators");
-> +
-> +	ret = devm_add_action_or_reset(&client->dev, cm36686_shutdown, chip);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "Failed to set shutdown action");
-> +
-> +	ret = cm36686_setup(chip);
-> +	if (ret < 0)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "Failed to set up registers");
-> +
-> +	indio_dev->name = info->name;
-> +	indio_dev->channels = info->channels;
-> +	indio_dev->num_channels = info->num_channels;
-> +	indio_dev->info = &cm36686_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +	ret = devm_request_threaded_irq(&client->dev, client->irq, NULL,
-> +					cm36686_irq_handler,
-> +					IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-> +					indio_dev->name, indio_dev);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "Failed to request irq");
-> +
-> +	ret = devm_iio_device_register(&client->dev, indio_dev);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "Failed to register iio device");
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct i2c_device_id cm36686_id[] = {
-> +	{ "cm36686", CM36686 },
-> +	{ "cm36672p", CM36672P },
-> +	{}
-As below.
-
-> +};
-> +
-> +MODULE_DEVICE_TABLE(i2c, cm36686_id);
-> +
-> +static const struct of_device_id cm36686_of_match[] = {
-> +	{ .compatible = "capella,cm36686" },
-> +	{ .compatible = "capella,cm36672p" },
-> +	{}
-Really trivial style preference for IIO of
-	{ }
-
-A while back I wanted to have a consistent answer to how we
-should format these and pretty much randomly selected that
-one..
-
-> +};
-> +MODULE_DEVICE_TABLE(of, cm36686_of_match);
 
