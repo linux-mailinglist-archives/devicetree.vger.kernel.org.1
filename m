@@ -1,193 +1,322 @@
-Return-Path: <devicetree+bounces-263630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263631-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sLfaIU90h2kqYQQAu9opvQ
-	(envelope-from <devicetree+bounces-263630-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 18:20:15 +0100
+	id /Fc1Frt0h2lNYQQAu9opvQ
+	(envelope-from <devicetree+bounces-263631-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 18:22:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9191106A82
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 18:20:14 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C1AD106AB3
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 18:22:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A7769301AA44
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 17:19:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1AD9E3001181
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 17:21:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16100333421;
-	Sat,  7 Feb 2026 17:19:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C59333733;
+	Sat,  7 Feb 2026 17:21:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="bFv0bPUA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tNfI52V2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A9D31C84C0
-	for <devicetree@vger.kernel.org>; Sat,  7 Feb 2026 17:19:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 205E633120D;
+	Sat,  7 Feb 2026 17:21:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770484783; cv=none; b=n1SEIQHcecWR5j2Sc7i3MK6dWlJrhwo2NWVc5St1ggWv08gbEWTqxPQwCwM56Cm8vKF8m54eCBpTvvUi8eyZvLc2ZsKUSF1h+orjEqZZpxRUpk7PaQfUAcc0cqBGhQGHYHOtZmF5wIYIJMLHXzL0e1+7EpRKk3hnEcI8vcmarjU=
+	t=1770484916; cv=none; b=rzXrSphWB7MUb9yEG9IrpFwfBTG/Zg1n8nXxNbdJtpmCT4gydYXKTtx0WLYMhagKJpdgPdlAUrZa9iOceSybGNvOz4Yt2qmFi1Xn4nn7JwrBLPmuwd9WgSHZb3Jqp4TI8nl73NcxtZvNih58i9Hw9sOotx7eB8kfD9+zKjwcYpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770484783; c=relaxed/simple;
-	bh=5tSv0K2xPLmp03qZ0ySPg6fhMYjNHkDNBp7DBZrnlwI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qxYpAOMsszOxKYAELgZg3o79n0od7UqM1IWPESz25zyr03no6KNsK/Z7TPgDhGBH8PgcqNiwpqEpbj4WcaeL2D3HjtO33y92Ro5+qC4s/KCUkrFBMsgBmQWpIaqyu2luq1+D77qpHjfWy/Zzm3FO/DnEVfYqDzdqS2bx/z7S72U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=bFv0bPUA; arc=none smtp.client-ip=209.85.161.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-662f30d3f1fso2314173eaf.1
-        for <devicetree@vger.kernel.org>; Sat, 07 Feb 2026 09:19:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1770484781; x=1771089581; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1W00zz5qVNYTH6MgjHmIYO/oSZsXOTum5yin9z3CGMg=;
-        b=bFv0bPUA4Ofv6wEr0EqxOkBc+vmD3AnYnxyA0Qk678SHkvpIeT6265hZHeFxKWvqHB
-         01AQi+I05chJ8BXxIclTtCpvXTyjdDUDIglhdoIkn2IzXlgc+A4WtlE3sfbQCHcB4P4e
-         e9DWPSGSpzONL2PwMxYgjUej94lrrTfGtO+HtaiuVdK8tnUPLBe53VkTm8HPaJjmVnr9
-         HKKUhDfweDqql9FQ68HGL5mLyMuOW4IWlwwBNSCcv+Gcchy2/oejnt/W2y7gSnZgKj1Q
-         xd3VHBk9S6FMfPANuG66d6cea1hLt7aeWCdBRykH6AGPjbaQWNNgeHmTFiII45/LSvAx
-         7DaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770484781; x=1771089581;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1W00zz5qVNYTH6MgjHmIYO/oSZsXOTum5yin9z3CGMg=;
-        b=hqXScSd+J0awGj1Mi6wAb0+Dr1DH6x9LblloJg+ObhmJq7qGGa7uN/tbqB52GS9akW
-         z6HqNFym9NWvPeQjgDPgcJ3K0EAEbTYIdVfCH3UxzFIBxRDz3DB0VYVgL0eaWBfwEWWg
-         RZlAjx4BOC+VQZCLS7p30mpJVEMBb73Goz15PL34pfuA1UECJkFhSyXXrbqXK4jckUlh
-         aZxKxaRMfrtZZfcVinsIoGzLvV5Je87uBHDzkaOeXvi/He8MdRuVnWTtRVyUkXEdrcHX
-         u8Zp5Qor+z7KqxU3PeVV6yZmFAzGFigJOXlUAPk4Sb6gBJULrC7eSKaqwrVCIy38NhqN
-         +sKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX30M+bd8XokClRidhaNJiZRV8kXc896hIzTGvAM+/AJRKGUONuBVm1/pKfR6ovTBFMBiJ21zozza7n@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzds+OzH6m0DAgsX7L51dNrm3QVV5CJclPUC1zBDeqMQvn8GJ90
-	Ng/Hoc5imjIr8EHF86NZ4kNwg5A2wcC4cRD+CcPdK7+AkNPj7gJG7tDiJSPDu2NaSRk=
-X-Gm-Gg: AZuq6aKDmvXkAo11HwpOm4gx+Kv+c6Fy02eXYPImRsU1CHLNoLZJcKa+797YVbBlXqf
-	/dXVFPis3iw7KBsWPke/Wvp2kXkkInVPfxxCstxA12NdRowYvD/yFm0ZeS9qVl5k1zQfFP+X+sv
-	BgrDbkVzwYJyKbCpkKernHCygZ10Hi5SAzCZxcmBlsQZKuqA8WvkEOctHOkGlLLY+54zs9NyWRZ
-	dP7rRWIgXeP7+9bhkcCexqEB2KVg8nr6IKNTHV2E59ItXHlYnsZbz1O3JcUVy0LhXQbb/T0Wozc
-	8+Q9NcsIfrwDO1t85UBJedyqVVfuw4CnqGtMj8cwThys+TAmnGMwkNCKwo6fCP5E9rkwUQknCXr
-	l9ykK9LKy7kYiv7yga9aSqn+PUoEEinXgAVtY36TDyBLMr7stxeFDJ7N7wKRbgb6EakEYeqYkjN
-	6OcVLU9gUWs9TDzYJ1DX5rKgR0odtMCd722ZXFva0gmnaEJWETnmekHJGzRfkT2vZpMEj4sw==
-X-Received: by 2002:a05:6820:3101:b0:662:bffb:41fc with SMTP id 006d021491bc7-66d13059c28mr2419479eaf.15.1770484781465;
-        Sat, 07 Feb 2026 09:19:41 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:74a6:843b:f33:21ae? ([2600:8803:e7e4:500:74a6:843b:f33:21ae])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-66d38bdeed5sm3004756eaf.4.2026.02.07.09.19.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Feb 2026 09:19:39 -0800 (PST)
-Message-ID: <db9115ca-2c8f-4b5e-89ce-f3b934071a59@baylibre.com>
-Date: Sat, 7 Feb 2026 11:19:37 -0600
+	s=arc-20240116; t=1770484916; c=relaxed/simple;
+	bh=Aqpo56yk+mxHb8J1mIsr07bTon0Kq4cNgEgu5WcNQz0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qe6wydxgDKl2koZi5HwTSJIZQbOk2rUStRZ8FSZKSoLqcA1AvGV00hSWzkWDqDmOj35v0otXKuHN40yjm/DdW2e1jkxEG845uvCB1+/RvNjYBWzVo6USuZrHxv8YamDdpOKMzT0pcNjPsiv5HphBUiRN9+UcfSgEC+0nEg5GeJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tNfI52V2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74EC2C116D0;
+	Sat,  7 Feb 2026 17:21:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770484915;
+	bh=Aqpo56yk+mxHb8J1mIsr07bTon0Kq4cNgEgu5WcNQz0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=tNfI52V2WgNu+x7JPzuCkMQCeVE5rxkBPku163NmM4ZLF1LPRTtDPgzujP0jp4hqf
+	 h7pOxWtzTSU0Zl71S1BjDtBj2WR6McdxmnkqCSaRSJOMhroiTakC8OoXF5QlqWv8/p
+	 2Y/20tZPhcIV9cKKesZC5UlVY/nSr2H15In4WHTGaNKQ8t9jtu+uu+lS8hmd29ey4i
+	 YHBGmGwb0e4R6ZukKeEjG733i5yzLo8G214YsyB9Kil6TRDyQaddAICtuJ/XCAUCtr
+	 //96mjkqE/qHuLnY7Jxcj3QLt0Iz5WrZ7GI1nZIMpsV1NACntyT09ePQfxH9+QpUX4
+	 REtNh+CDGukpA==
+Date: Sat, 7 Feb 2026 17:21:45 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rodrigo Alencar via B4 Relay
+ <devnull+rodrigo.alencar.analog.com@kernel.org>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Andy
+ Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v6 4/8] iio: frequency: adf41513: driver implementation
+Message-ID: <20260207172145.3e69ac06@jic23-huawei>
+In-Reply-To: <20260130-adf41513-iio-driver-v6-4-cf46239026bc@analog.com>
+References: <20260130-adf41513-iio-driver-v6-0-cf46239026bc@analog.com>
+	<20260130-adf41513-iio-driver-v6-4-cf46239026bc@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/11] dt-bindings: regulator: cpcap-regulator: convert
- to DT schema
-To: Svyatoslav Ryhel <clamor95@gmail.com>, Rob Herring <robh@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Dixit Parmar <dixitparmar19@gmail.com>, Tony Lindgren <tony@atomide.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
- linux-leds@vger.kernel.org
-References: <20260206172845.145407-1-clamor95@gmail.com>
- <20260206172845.145407-2-clamor95@gmail.com>
- <20260206230922.GA254792-robh@kernel.org>
- <CAPVz0n3EGCSLUX7jTLve0x0z4uW1yexViCwkSQLY2d_4r4qkjg@mail.gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <CAPVz0n3EGCSLUX7jTLve0x0z4uW1yexViCwkSQLY2d_4r4qkjg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263630-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263631-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,gmail.com,atomide.com,vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.988];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre-com.20230601.gappssmtp.com:dkim]
-X-Rspamd-Queue-Id: D9191106A82
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6C1AD106AB3
 X-Rspamd-Action: no action
 
-On 2/7/26 3:20 AM, Svyatoslav Ryhel wrote:
-> сб, 7 лют. 2026 р. о 01:09 Rob Herring <robh@kernel.org> пише:
->>
->> On Fri, Feb 06, 2026 at 07:28:35PM +0200, Svyatoslav Ryhel wrote:
->>> Convert devicetree bindings for the Motorola CPCAP MFD regulator subnode
->>> from TXT to YAML format. Main functionality preserved.
->>>
+On Fri, 30 Jan 2026 10:06:45 +0000
+Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org=
+> wrote:
+
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+>=20
+> The driver is based on existing PLL drivers in the IIO subsystem and
+> implements the following key features:
+>=20
+> - Integer-N and fractional-N (fixed/variable modulus) synthesis modes
+> - High-resolution frequency calculations using microhertz (=C2=B5Hz) prec=
+ision
+>   to handle sub-Hz resolution across multi-GHz frequency ranges
+> - IIO debugfs interface for direct register access
+> - FW property parsing from devicetree including charge pump settings,
+>   reference path configuration and muxout options
+> - Power management support with suspend/resume callbacks
+> - Lock detect GPIO monitoring
+>=20
+> The driver uses 64-bit microhertz values throughout PLL calculations to
+> maintain precision when working with frequencies that exceed 32-bit Hz
+> representation while requiring fractional Hz resolution.
+>=20
+> When merging, ADF41513_HZ_PER_GHZ must be dropped in favor of
+> HZ_PER_GHZ defined in linux/units.h.
+>=20
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Hi Rodrigo
+
+A few minor suggestions inline from a reread.
+
+Thanks
+
+Jonathan
+
+> diff --git a/drivers/iio/frequency/adf41513.c b/drivers/iio/frequency/adf=
+41513.c
+> new file mode 100644
+> index 000000000000..b2efd545c885
+> --- /dev/null
+> +++ b/drivers/iio/frequency/adf41513.c
+
+> +
+> +struct adf41513_state {
+> +	const struct adf41513_chip_info *chip_info;
+> +	struct spi_device *spi;
+> +	struct gpio_desc *lock_detect;
+> +	struct gpio_desc *chip_enable;
+> +	struct clk *ref_clk;
+> +	u32 ref_freq_hz;
+> +
+> +	/*
+> +	 * Lock for accessing device registers. Some operations require
+> +	 * multiple consecutive R/W operations, during which the device
+> +	 * shouldn't be interrupted. The buffers are also shared across
+> +	 * all operations so need to be protected on stand alone reads and
+> +	 * writes.
+> +	 */
+> +	struct mutex lock;
+> +
+> +	/* Cached register values */
+> +	u32 regs[ADF41513_REG_NUM];
+> +	u32 regs_hw[ADF41513_REG_NUM];
+> +
+> +	struct adf41513_data data;
+> +	struct adf41513_pll_settings settings;
+> +
+> +	/*
+> +	 * DMA (thus cache coherency maintenance) may require that
+> +	 * transfer buffers live in their own cache lines.
+> +	 */
+> +	__be32 buf __aligned(IIO_DMA_MINALIGN);
+
+Given this is very small, you could just use spi_write_the_read() with=20
+zero length reads. That bounces the data anyway so doesn't need a DMA safe =
+buffer.
+
+> +};
+
+
+> +
+> +static int adf41513_calc_pll_settings(struct adf41513_state *st,
+> +				      struct adf41513_pll_settings *result,
+> +				      u64 rf_out_uhz)
+> +{
+> +	u64 max_rf_freq_uhz =3D st->chip_info->max_rf_freq_hz * MICRO;
+> +	u64 min_rf_freq_uhz =3D ADF41513_MIN_RF_FREQ_HZ * MICRO;
+> +	u64 pfd_freq_limit_uhz;
+> +	int ret;
+> +
+> +	if (rf_out_uhz < min_rf_freq_uhz || rf_out_uhz > max_rf_freq_uhz) {
+> +		dev_err(&st->spi->dev, "RF frequency %llu uHz out of range [%llu, %llu=
+] uHz\n",
+> +			rf_out_uhz, min_rf_freq_uhz, max_rf_freq_uhz);
+> +		return -EINVAL;
+> +	}
+> +
+> +	result->target_frequency_uhz =3D rf_out_uhz;
+> +
+> +	/* try integer-N first (best phase noise performance) */
+> +	pfd_freq_limit_uhz =3D min(div_u64(rf_out_uhz, ADF41513_MIN_INT_4_5),
+> +				 ADF41513_MAX_PFD_FREQ_INT_N_UHZ);
+> +	ret =3D adf41513_calc_pfd_frequency(st, result, pfd_freq_limit_uhz);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret =3D adf41513_calc_integer_n(st, result);
+
+When we have a series of methods to try it can be cleaner to return early in
+the good paths. Given you don't return early error values, but rther just
+try the next method you can do.
+
+	if (adf41513_calc_integer_n(st, result) =3D=3D 0)
+		return 0;
+
+	/* try fractional-N: recompute pfd frequency if necessary */
+	pfd_freq_limit_uhz =3D min(div_u64(rf_out_uhz, ADF41513_MIN_INT_FRAC_4_5),
+				 ADF41513_MAX_PFD_FREQ_FRAC_N_UHZ);
+	if (pfd_freq_limit_uhz < result->pfd_frequency_uhz) {
+		ret =3D adf41513_calc_pfd_frequency(st, result, pfd_freq_limit_uhz);
+		if (ret < 0)
+			return ret;
+	}
+
+	/* fixed-modulus attempt */
+	if (adf41513_calc_fixed_mod(st, result) =3D=3D 0)
+		return 0;
+
+	/* variable-modulus attempt */
+	ret =3D adf41513_calc_variable_mod(st, result);
+	if (ret < 0) {
+		dev_err(&st->spi->dev,
+			"no valid PLL configuration found for %llu uHz\n",
+			rf_out_uhz);
+		return -EINVAL;
+	}
+
+	return 0;
+}
+	=09
+> +	if (ret < 0) {
+> +		/* try fractional-N: recompute pfd frequency if necessary */
+> +		pfd_freq_limit_uhz =3D min(div_u64(rf_out_uhz, ADF41513_MIN_INT_FRAC_4=
+_5),
+> +					 ADF41513_MAX_PFD_FREQ_FRAC_N_UHZ);
+> +		if (pfd_freq_limit_uhz < result->pfd_frequency_uhz) {
+> +			ret =3D adf41513_calc_pfd_frequency(st, result, pfd_freq_limit_uhz);
+> +			if (ret < 0)
+> +				return ret;
+> +		}
+> +
+> +		/* fixed-modulus attempt */
+> +		ret =3D adf41513_calc_fixed_mod(st, result);
+> +		if (ret < 0) {
+> +			/* variable-modulus attempt */
+> +			ret =3D adf41513_calc_variable_mod(st, result);
+> +			if (ret < 0) {
+> +				dev_err(&st->spi->dev,
+> +					"no valid PLL configuration found for %llu uHz\n",
+> +					rf_out_uhz);
+> +				return -EINVAL;
+> +			}
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+
+
+> +
+> +static int adf41513_parse_fw(struct adf41513_state *st)
+> +{
+> +	struct device *dev =3D &st->spi->dev;
+> +	int ret;
+
+Trivial:
+Where no other reason for a particular order of declarations, nice to just =
+use
+reverse xmas tree.
+
+> +	u32 tmp, cp_resistance, cp_current;
+> +
 
 ...
 
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - motorola,cpcap-regulator
->>> +      - motorola,mapphone-cpcap-regulator
->>> +      - motorola,xoom-cpcap-regulator
->>> +
->>> +  regulators:
->>> +    type: object
->>> +
->>> +    patternProperties:
->>> +      "$[A-Z0-9]+^":
->>
->> I thought it was said on the last version to list the names. Considering
->> you already have them below, better to put them in schema than prose.
->> And pretty much all regulator bindings define the names.
->>
-> 
-> What exactly do you propose? All those names will not fit into a
-> single unbreakable line (more than 125 columns in length btw). Patch
-> checker will complain about this. Duplicate pattern properties for
-> every few names? Please be a bit more specific. Thank you!
+> +static int adf41513_probe(struct spi_device *spi)
+> +{
+...
 
-Making checkpatch happy is not a hard requirement. If you have to
-go over 125 characters for technical reasons, no one is going to
-complain.
+> +	ret =3D devm_mutex_init(dev, &st->lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	indio_dev->name =3D spi_get_device_id(spi)->name;
 
-I already gave an example on the last version. It is just a regex
-expression. (And note that you didn't fix the $ and ^ either. ^
-means beginning of the line and $ means the end of the line. So
-the pattern currently won't match anything.)
+I'd prefer we avoided this look up in the the device_id and instead
+just put the name string for each part in the chip_info structure.
 
-patternProperties:
-  "^(SW1|SW2|SW3|SW4|SW5|...)$":
+We've had far too many odd bugs around mismatches between firmware
+tables to try to use any of the match tables for this. Better to have
+one source of truth that we can get form any match table.
 
-
-And I hope it is obvious that you are meant to replace ... with the
-rest of the names separated by |.
+> +	indio_dev->info =3D &adf41513_info;
+> +	indio_dev->modes =3D INDIO_DIRECT_MODE;
+> +	indio_dev->channels =3D &adf41513_chan;
+> +	indio_dev->num_channels =3D 1;
+> +
+> +	ret =3D adf41513_setup(st);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to setup device\n");
+> +
+> +	ret =3D devm_add_action_or_reset(dev, adf41513_power_down, st);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to add power down action\n");
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
 
 
