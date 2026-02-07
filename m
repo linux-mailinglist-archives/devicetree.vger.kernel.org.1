@@ -1,109 +1,140 @@
-Return-Path: <devicetree+bounces-263621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263622-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mLhtFFRWh2kRWwQAu9opvQ
-	(envelope-from <devicetree+bounces-263621-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 16:12:20 +0100
+	id DB4RCJRfh2l+XQQAu9opvQ
+	(envelope-from <devicetree+bounces-263622-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 16:51:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5CC5106570
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 16:12:19 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADFD41066C5
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 16:51:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6F3C0300EFB9
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 15:12:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D7F193005580
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 15:51:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 082F8352FA9;
-	Sat,  7 Feb 2026 15:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB24E30F958;
+	Sat,  7 Feb 2026 15:51:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hL2vbnWt"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="swvlT/Ur"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA2C5352C3C;
-	Sat,  7 Feb 2026 15:12:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D5CA286417;
+	Sat,  7 Feb 2026 15:51:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770477136; cv=none; b=igJMbMbHtbPwj0nQWkcrGx1Gykn1jaQk3JpfN/SoKhOaGxSBSZLbmhfuCsWXv2cJUVD07y7PjrYxpHWm8S99LtIAcBrvK93ZfLaNnvv4kyheljF+GO0iNy3gkzT/mMWPtER+Bq9nCsH0BVF5s9Ol7e2x0sSeWH5RvA5JNZFlfWE=
+	t=1770479505; cv=none; b=puN3aokfwy/hskceEuRXOn9LTyw3A6LUSTRkVkBD9glC3hmQHKygEC9e+oXkSwPbgsC1JKyreJH8r3NCWP/uO9BV64VpyoWGGDj8vz/wr4knl+udBwkZEMT7A8uLSPNivTDi4ewfVuu8Yrn7HCaRpl9j2kemqqP64MlZPpFoXlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770477136; c=relaxed/simple;
-	bh=JvBlJSuksOwxQJtMnmTxIS5cYgDEGQDbFrw/p87UcLE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=j89mIjHwMalJ0HeoROHxwaJuSVebHxu15K4oK89YKkNi6Hbd2pCXfrvKgon5nFE3I0QPuJgkNR6EjXRpa34tSpZpZklYcEnX9Sn+9fb0FRtAqHonuGBrS1lSGJ1oki5zLJzTuUt2/ElLbwtLc/yg1IAfb1pV0D+KcmQ7YFhBM3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hL2vbnWt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B01EBC116D0;
-	Sat,  7 Feb 2026 15:12:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770477136;
-	bh=JvBlJSuksOwxQJtMnmTxIS5cYgDEGQDbFrw/p87UcLE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=hL2vbnWtAk1ZDu5Hw7RUibKoKzbsoT9o9mRpSAwF9wr06w7eRMHAbxSrMxthG/s9A
-	 fsQ67+kh8Mu8ReaqOOBS/uieYz2xW2Ab/CwXrnBxnpYG10F+LwSJCVGgG9aUpF42dR
-	 ASobJ2vQN1cbnmZl8OEW9J1LnGAZR7X8HoWKOTXZKgEb+gz4sLZzTb6/aWTd0FUrw5
-	 sU82dp2nrNmXNKY1+BtHKCaC5zyt0xK6MB9E4aiS/QgDMNz/09oSyosinmnaK0XtoZ
-	 jr5dUX7XnZPKV7Sz/K8sE+NXJdk7rR3OqSFS6zuppX/Auk5KSJE3XbfqIhALBwXDwN
-	 myqgnG7F/y0DQ==
-Date: Sat, 7 Feb 2026 15:12:07 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Jun Yan <jerrysteve1101@gmail.com>, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, linusw@kernel.org, stephan@gerhold.net,
- hns@goldelico.com
-Subject: Re: [PATCH v4 0/3]  iio: add support for Bosch BMX055 IMU
-Message-ID: <20260207151207.0df7493d@jic23-huawei>
-In-Reply-To: <20260205-greedy-uninstall-a23f2e0e9a01@spud>
-References: <20260205150734.525947-1-jerrysteve1101@gmail.com>
-	<20260205-greedy-uninstall-a23f2e0e9a01@spud>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1770479505; c=relaxed/simple;
+	bh=K1GMEmHwvabSXKd7mho1Mbhlbf+jhk57iB1fEiec0OM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=M4ewRo9mNQUQudEBxPA44csAhex8iUrY4gXHhg2E4lhfaN9DSn7Oxrizcds1xAphsoSptzfnHNIqnxW8T6JYCEpm/uv9fpvXqvWtcm3rpjNx0HNGcJ3LMzoSGQiUBN/JRU8NpoKuajDOADMkSMWyfG18NbZzPvLrztE+iHpGAjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=swvlT/Ur; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=AoggaiyVAyb8QjmFP6pOfv4pN97nDngEM6ydYz9BLbk=; b=swvlT/Ur7F9XYtdzm8HrB8aF0q
+	fXor2IMXOgUfQkIOnEgCR8wJTVYHZkldX4JlQ11nFSReubwKNxobw4YUN8EVdcLhBJD4G39SViFyr
+	7g+3SMlQulVIzw0ycDo+TxNNen43joYxMcu47+BxGHxuxh9VyFC9ovmKn4Vo2zHhTCPKfbADBxjPA
+	qUTyiXFW7fckYwUHjkZ5P0vpnCS9hAV8XASjOTo3JGfrFtu91cJLyVHlWH0TYzTCJxT15SqrEzj64
+	WlxokL55YH5pmmOhWt8zVLv88/osb6vzGdy3gRgrDZD7k4wtGILavWa0M2A+YdEVPLkioeA78LFoQ
+	wqqPYKZw==;
+Received: from i53875bef.versanet.de ([83.135.91.239] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1vok5p-007SEG-Nh; Sat, 07 Feb 2026 16:19:30 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: ulf.hansson@linaro.org, Fabio Estevam <festevam@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, Fabio Estevam <festevam@nabladev.com>
+Subject:
+ Re: [PATCH v2] dt-bindings: mmc: rockchip-dw-mshc: Add RV1103B compatible
+Date: Sat, 07 Feb 2026 16:19:29 +0100
+Message-ID: <7496856.UjTJXf6HLC@diego>
+In-Reply-To: <20260207131041.2833840-1-festevam@gmail.com>
+References: <20260207131041.2833840-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-263621-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263622-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org,gerhold.net,goldelico.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.975];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:email]
-X-Rspamd-Queue-Id: C5CC5106570
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sntech.de:email,sntech.de:dkim]
+X-Rspamd-Queue-Id: ADFD41066C5
 X-Rspamd-Action: no action
 
-On Thu, 5 Feb 2026 18:39:18 +0000
-Conor Dooley <conor@kernel.org> wrote:
+Am Samstag, 7. Februar 2026, 14:10:41 Mitteleurop=C3=A4ische Normalzeit sch=
+rieb Fabio Estevam:
+> From: Fabio Estevam <festevam@nabladev.com>
+>=20
+> The RV1103B uses the DesignWare MSHC controller compatible with the
+> existing Rockchip RK3288 variant. Add the rockchip,rv1103b-dw-mshc
+> compatible string.
+>=20
+> Signed-off-by: Fabio Estevam <festevam@nabladev.com>
 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> pw-bot: not-applicable
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
-Applied to the testing branch of iio.git
+> ---
+> Changes since v1:
+> - Make commit log more concise.
+>=20
+>  Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml =
+b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+> index acb9fb9a92cd..a75209bd2710 100644
+> --- a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+> @@ -43,6 +43,7 @@ properties:
+>                - rockchip,rk3562-dw-mshc
+>                - rockchip,rk3568-dw-mshc
+>                - rockchip,rk3588-dw-mshc
+> +              - rockchip,rv1103b-dw-mshc
+>                - rockchip,rv1108-dw-mshc
+>                - rockchip,rv1126-dw-mshc
+>            - const: rockchip,rk3288-dw-mshc
+>=20
 
-Thanks,
 
-Jonathan
+
+
 
