@@ -1,190 +1,133 @@
-Return-Path: <devicetree+bounces-263580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263581-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GFTLNrkYh2nBTQQAu9opvQ
-	(envelope-from <devicetree+bounces-263580-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 11:49:29 +0100
+	id sEjHCC4Zh2nBTQQAu9opvQ
+	(envelope-from <devicetree+bounces-263581-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 11:51:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0059E105A38
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 11:49:28 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D85B9105A57
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 11:51:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 420703002B76
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 10:49:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3ADAB3003605
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 10:51:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA263301718;
-	Sat,  7 Feb 2026 10:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 356D233DEC8;
+	Sat,  7 Feb 2026 10:51:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o/AmsU2P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oMdpeVeG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85C9022301;
-	Sat,  7 Feb 2026 10:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12928302756;
+	Sat,  7 Feb 2026 10:51:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770461363; cv=none; b=eaz0HfHhMoM8hHR5NpPzjazmglIMuH5/SHttdto/UcV7mb+zJZyYA2Oq92EsdzyuIIrZf1BC96YnZ5oinLG5hP6p5/iaROFdw1wTbD9DQ/5pzQjXGCGuoYaztaEJGV0KCbrY5OBWRG0N31s1bD4R1ywSktRHfWTxVmt5Dyxh1l4=
+	t=1770461482; cv=none; b=RbOVrSuZEjephP2YwRO08xytO5TfQ83srnZ0HzcqZdxASXowiA85qmhZbPBW5ZZFpwzC3I5QeDp9zGeox4Lx6PdjL1YIv5TN0INfUU6HVciF+kNCiFgN0zUjp/fNycWD2uV1NusQ8HR+abeqTwLt4SX99qD1ZLwn/qavsSl6D8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770461363; c=relaxed/simple;
-	bh=vR/diDxqa1OFN1W0xmqG5HflpJfwRP+WkZ+7TLOMKGM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=EO8vN1BXnKXrkb6meWbAjn30INDHybXBkJaqA/g+Oo2MJDbT/CpUO8xCeJZfO724RtI5IWcTvQurphIFCG0KNlkn7RKrLYhlY+kxoJr+s9Ot8/vGVgtIa9ciWm4bs/HfOa+osIPb+OYmDK9LrxTYhAbfTS5qm+4T+me4hYe5j2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o/AmsU2P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F20C7C116D0;
-	Sat,  7 Feb 2026 10:49:19 +0000 (UTC)
+	s=arc-20240116; t=1770461482; c=relaxed/simple;
+	bh=7COmJBYpWmIF+5G8iwqi9ALnilsYuZL0dPcrXEBiApI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fCKPuRzlYu3VrE8wwRmVMAHMXvUV1eHIU/CQISnufciBuwu0tmj01I8SrJAlgBlsgSSQkEeQrnSBiTUHcwV+9wzPFK972T8KvGfUdzC46rS57lAteL+bKHaXqPAydB6VVBpcWpffMuzXJBASEaeyIanrHuXp/7baXkLwEPNbSv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oMdpeVeG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1835BC116D0;
+	Sat,  7 Feb 2026 10:51:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770461363;
-	bh=vR/diDxqa1OFN1W0xmqG5HflpJfwRP+WkZ+7TLOMKGM=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=o/AmsU2Parvgl6nqB3SiA0GGC4av+vWpc3R+nvqMn8KlDtUges2+5IJ25ViRmAA3g
-	 dH8YQc4RXIeKoLjoCual9KA9bfKbEgNmRBwOpS+BKE7fL2jHsjfmg3VAaYQQvEs/UL
-	 fhpnudCcRIYjeriweBngewAgKFm6JUeIgSOV/rBlk8vWuZILpIZRHlO3jykX487Cq0
-	 ATohj0PWTg9lhcDF/xLcA8W/JtFkUjCwcn9UgVTAYqo0q6hAaa8fRy58uY5wNugn/1
-	 4hibOyUS+MD3NfB6BM2fE0BmjW5UpFutqlrZ61QfIG8JfhZHju5m0tPgax4fP8t/Hc
-	 oYzXFw8gqPrVQ==
-Message-ID: <89882b75-dc80-479b-b2b2-199bebe4ecc3@kernel.org>
-Date: Sat, 7 Feb 2026 11:49:17 +0100
+	s=k20201202; t=1770461481;
+	bh=7COmJBYpWmIF+5G8iwqi9ALnilsYuZL0dPcrXEBiApI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oMdpeVeG2KfNHqGHHL3EZdIsvT6oUuqLWyD/NGEud31NGYw43m8gl0v2l00aasrQW
+	 dNluG2PF6XlhU04zbLO+cX2Zq60WYPUP0lFvs+XC9zES5KwdUf8JAMA6GDY1SPXoeR
+	 X34w4ceosX7mkJRZ9SisEZvxUJlg5z9CwfCKaXRlEnOGiN3mSMlGrpB11pvudbbedB
+	 qGE3CkYzQJrDPKxwos3fUa4eUnlo95WsZANikd5Bnk6SPQkMOKy+xHhNm1V5gUR3kB
+	 r3EGcmmMWbHw3LJVph5pTWNqqpTALgW+xsTXbV5dNOOQ7pK2/3Vve9KPbpLmF5hJSq
+	 lG7uo1P6H2eLQ==
+Date: Sat, 7 Feb 2026 11:51:19 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Luca Weiss <luca@lucaweiss.eu>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, Lee Jones <lee@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, phone-devel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: syscon: Add mt8516-syscfg
+Message-ID: <20260207-tricky-strange-swan-6f11b0@quoll>
+References: <20260206-mt8516-syscfg-syscon-v1-0-96dcb37acdb4@lucaweiss.eu>
+ <20260206-mt8516-syscfg-syscon-v1-1-96dcb37acdb4@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: phy: spacemit: add regulator support to
- K1 USB2 PHY
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Yixun Lan <dlan@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Ze Huang <huang.ze@linux.dev>, Rob Herring <robh@kernel.org>,
- Mark Brown <broonie@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- linux-riscv@lists.infradead.org, linux-phy@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- spacemit@lists.linux.dev
-References: <20260206100009.873182-1-amadeus@jmu.edu.cn>
- <20260207-dancing-finch-of-chemistry-f98cf2@quoll>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260207-dancing-finch-of-chemistry-f98cf2@quoll>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260206-mt8516-syscfg-syscon-v1-1-96dcb37acdb4@lucaweiss.eu>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-263581-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,linux.dev,gmail.com,linaro.org,lists.infradead.org,vger.kernel.org,lists.linux.dev];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-263580-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lists.sr.ht,kernel.org,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 0059E105A38
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lucaweiss.eu:email]
+X-Rspamd-Queue-Id: D85B9105A57
 X-Rspamd-Action: no action
 
-On 07/02/2026 11:48, Krzysztof Kozlowski wrote:
-> On Fri, Feb 06, 2026 at 06:00:08PM +0800, Chukun Pan wrote:
->> Add an optional phy-supply property to describe the regulator
->> supplying for USB VBUS.
-> 
-> Why wasn't it there before? USB did not have VBUS?
-> 
-> Explanation is so incomplete I suspect you are patching broken things,
-> so as well this could be completely different hardware (e.g. there is no
-> regulator for this block but e.g. connector).
-> 
-> 
->>
->> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
->> ---
->>  Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml | 4 ++++
->>  1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml b/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
->> index 43eaca90d88c..74a1cd5bcdbe 100644
->> --- a/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
->> +++ b/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
->> @@ -19,6 +19,10 @@ properties:
->>    clocks:
->>      maxItems: 1
->>  
->> +  phy-supply:
->> +    description:
->> +      Phandle to a regulator that provides power to VBUS.
-> 
-> Drop redundant part. This cannot be anything else than phandle and
-> regulator.
-> 
-> "VBUS power supply" for example. But anyway, I don't have certainty that
-> this is correct hardware representation. It's your task to provide that.
+On Fri, Feb 06, 2026 at 11:20:48AM +0100, Luca Weiss wrote:
+> Document the Mediatek mt8516-syscfg.
 
+Which is what? What is syscfg block?
 
-Plus, if this was a vbus regulator it would not be called "phy"... Even
-more confusing.
+> 
+> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+> ---
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> index e57add2bacd3..a67699f1faee 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -91,6 +91,7 @@ select:
+>            - mediatek,mt8135-pctl-b-syscfg
+>            - mediatek,mt8173-pctl-a-syscfg
+>            - mediatek,mt8365-syscfg
+> +          - mediatek,mt8516-syscfg
+
+Why aren't you placing it with all others mediatek,mt8516 syscons?
+
+Why this is so generically called "syscfg", completely not looking like
+a real name from datasheet unlike the others in this device.
+
+You have entire commit msg to explain that.
 
 Best regards,
 Krzysztof
+
 
