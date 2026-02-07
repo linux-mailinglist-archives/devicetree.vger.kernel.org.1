@@ -1,256 +1,150 @@
-Return-Path: <devicetree+bounces-263600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263601-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6DyZGbcwh2nLUwQAu9opvQ
-	(envelope-from <devicetree+bounces-263600-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 13:31:51 +0100
+	id MDH3MyA0h2l/VAQAu9opvQ
+	(envelope-from <devicetree+bounces-263601-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 13:46:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF841105DB8
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 13:31:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34EC8105E45
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 13:46:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DA845301A703
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 12:31:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CA456301053B
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 12:40:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2DC930C600;
-	Sat,  7 Feb 2026 12:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71DF933EB0A;
+	Sat,  7 Feb 2026 12:40:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="mtoRgVw7"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="IHUEfbEs";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="QRPaRJuX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-173.mta1.migadu.com (out-173.mta1.migadu.com [95.215.58.173])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E1E3153BE9
-	for <devicetree@vger.kernel.org>; Sat,  7 Feb 2026 12:31:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2001C2AD37;
+	Sat,  7 Feb 2026 12:40:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770467505; cv=none; b=ouXBkCY99PYzL7PwtJoxjwvNtuaP4Y6ggQ6JdsqFlpULAywNQR6ByQyXKGbQAfUqwMGOmkl3jM+xl6OoPrrvFd+Ie3271iEqL57nA5JoDETIYqdSwN0uEe8yVjwGyC1qg/3q8Cb2ZW5k6CYujQ655OtUoLib36FS/vSRkg0UZ2U=
+	t=1770468047; cv=none; b=n6BPk//Q9hN3bfru/mIiCsTP7njRyKIuPdAXQAfFtyz8dMEi1+jSSg9xMsI8nSVts4FPV4qKHGJGJ20myyWiyiTyyD1TLvsp2hdWf+ikM3hDOVTXdUcADGhjAlZpDxfAJfzMAc7ThyMKSvmr15p9OI4SFP0OBTfagIqHZAMFiVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770467505; c=relaxed/simple;
-	bh=m1C9FPRbw9KBPa64Bur9Ed+3xqTYwqf2+usx6txNpL4=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=AdT2zAYEUETvnJg5E8QAUVKc8/DDAnCrvCanV6KhMGmb1BEOcuob0u5oMtvIThk9QPKSQcL9HWP23XRmxgpxeW6FNBA76PxmbKSrKdyGXsnavqCuVupY4wQ1fhuY2Wb14PKi/KUt763Hb8GW4hsRTsNs5x2XKFePQWlRtKugHiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=mtoRgVw7; arc=none smtp.client-ip=95.215.58.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+	s=arc-20240116; t=1770468047; c=relaxed/simple;
+	bh=KOORmID8yt4Yoxy3qIraV6R3a0xDi89MMWmjlOPviZA=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=fMBLc00mXfdXRHuNPiBrs9XvEAhNJIHthbUgBgOOd94tp1mhiuHf8N57g5xNuYclOkiEO7v+rQBKxlSRGyugoUr6pCcKI7/eQFlEHqwpDiFIAQ0vnuDhmIdQd4El6k0wyd8g2WkWtkP10Z+J85NOgk+5kiAEP/2jdXrC2v90ny4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=IHUEfbEs; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=QRPaRJuX; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1770468039;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=u7mw2REIi5YvReIN1++C/n4doj/HVhTauIRAe2doeMY=;
+	b=IHUEfbEs7jatAyG0QJUXYH7tn0JLEYfYurUxGzjGRBE5e/M9QAME/qZ7DMNVU5XfxXe65N
+	f9JmkBPSVMEEpywPQHJlcAHkoea0xia8FeK1YwmlHfg5SM/Q69haYUN/oIIUq+Y8TIifmg
+	O1e3UdPaw/6WwgB9BH2nDW+Vv8ZvdQ/NXAoAZ9GOBi1KpVg7uenYmJ+o77Dm4KJYRxK0a2
+	hD3R0XP6AmRTUpJIa+Fer1KHRIazZqiquew3rMZdN9FUwaTMu4Zwy0B3g2rFqAi8JxlzDr
+	YYYivOb1WjwDFuNz/lLzSxgeOyDgRBipZqqfA/B5NakR621s/EYifdFxOZzDZA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1770468039;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=u7mw2REIi5YvReIN1++C/n4doj/HVhTauIRAe2doeMY=;
+	b=QRPaRJuX/plnEzL6PBt2E45uECSGwK6YLL3plNVB/bNviWky8Y5y7+9Uu94qN9CMnFSj6E
+	XRbiA86rYYsGjXAA==
+To: Ryan Chen <ryan_chen@aspeedtech.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+ <andrew@codeconstruct.com.au>, Paul Walmsley <pjw@kernel.org>, Palmer
+ Dabbelt <palmer@dabbelt.com>, Albert
+ Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+ <linux-aspeed@lists.ozlabs.org>, "linux-riscv@lists.infradead.org"
+ <linux-riscv@lists.infradead.org>
+Subject: RE: [PATCH 2/4] irqchip/ast2700-intcx: Add AST2700 INTC0/INTC1 support
+In-Reply-To: <TY2PPF5CB9A1BE6CC5EEC90EBF13B083D1EF267A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+References: <20260205-irqchip-v1-0-b0310e06c087@aspeedtech.com>
+ <20260205-irqchip-v1-2-b0310e06c087@aspeedtech.com> <87h5ru14xx.ffs@tglx>
+ <TY2PPF5CB9A1BE6CC5EEC90EBF13B083D1EF267A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+Date: Sat, 07 Feb 2026 13:40:38 +0100
+Message-ID: <87sebczpyx.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1770467493;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pB+X+PWw8QCoTpJZbKm2C6xwzgDKvSJVp3esmH7Th0k=;
-	b=mtoRgVw7cigQNvXJg2nqObj8oCs3TD6FhNT63amvnjOLvgx+4q12SyyVDlccKHlbDG7bUQ
-	lILhOMW8TyLwbC12aAaffkExQHErU8N/CIdwn1L3TWGOabxoZcT3TNL32nTSz3tL83zYtZ
-	+NiyWiWSKOwMNId0UbDM7/XaAbmSwqU=
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sat, 07 Feb 2026 20:30:46 +0800
-Message-Id: <DG8QBWSJ79MP.2MVIHFRBX3WXX@linux.dev>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Chukun Pan"
- <amadeus@jmu.edu.cn>
-Cc: "Yixun Lan" <dlan@kernel.org>, "Vinod Koul" <vkoul@kernel.org>, "Ze
- Huang" <huang.ze@linux.dev>, "Rob Herring" <robh@kernel.org>, "Mark Brown"
- <broonie@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Liam Girdwood"
- <lgirdwood@gmail.com>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Neil
- Armstrong" <neil.armstrong@linaro.org>, <linux-riscv@lists.infradead.org>,
- <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <spacemit@lists.linux.dev>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: spacemit: add regulator support
- to K1 USB2 PHY
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Ze Huang" <huang.ze@linux.dev>
-References: <20260206100009.873182-1-amadeus@jmu.edu.cn>
- <20260207-dancing-finch-of-chemistry-f98cf2@quoll>
-In-Reply-To: <20260207-dancing-finch-of-chemistry-f98cf2@quoll>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [4.34 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[linutronix.de,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linutronix.de:s=2020,linutronix.de:s=2020e];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263600-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,linux.dev,gmail.com,linaro.org,lists.infradead.org,vger.kernel.org,lists.linux.dev];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-263601-lists,devicetree=lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	GREYLIST(0.00)[pass,body];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.2:email,0.0.0.1:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[huang.ze@linux.dev,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linux.dev:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tglx@linutronix.de,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[linutronix.de:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.996];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[jmu.edu.cn:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.dev:mid,linux.dev:dkim]
-X-Rspamd-Queue-Id: BF841105DB8
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linutronix.de:email,linutronix.de:dkim,infradead.org:email,jms.id.au:email,ghiti.fr:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ozlabs.org:email,dabbelt.com:email]
+X-Rspamd-Queue-Id: 34EC8105E45
 X-Rspamd-Action: no action
 
-On Sat Feb 7, 2026 at 6:48 PM CST, Krzysztof Kozlowski wrote:
-> On Fri, Feb 06, 2026 at 06:00:08PM +0800, Chukun Pan wrote:
->> Add an optional phy-supply property to describe the regulator
->> supplying for USB VBUS.
->
-> Why wasn't it there before? USB did not have VBUS?
+On Sat, Feb 07 2026 at 03:50, Ryan Chen wrote:
+>> -----Original Message-----
+>> From: Thomas Gleixner <tglx@linutronix.de>
+>> Sent: Friday, February 6, 2026 7:34 PM
+>> To: Ryan Chen <ryan_chen@aspeedtech.com>; Rob Herring <robh@kernel.org>;
+>> Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+>> <conor+dt@kernel.org>; Joel Stanley <joel@jms.id.au>; Andrew Jeffery
+>> <andrew@codeconstruct.com.au>; Paul Walmsley <pjw@kernel.org>; Palmer
+>> Dabbelt <palmer@dabbelt.com>; Albert Ou <aou@eecs.berkeley.edu>;
+>> Alexandre Ghiti <alex@ghiti.fr>
+>> Cc: linux-kernel@vger.kernel.org; devicetree@vger.kernel.org;
+>> linux-arm-kernel@lists.infradead.org; linux-aspeed@lists.ozlabs.org;
+>> linux-riscv@lists.infradead.org; Ryan Chen <ryan_chen@aspeedtech.com>
+>> Subject: Re: [PATCH 2/4] irqchip/ast2700-intcx: Add AST2700 INTC0/INTC1
+>> support
 
-Previously, the VBUS regulator was defined as regulator-always-on in
-the device tree as a workaround.
+Please fix your email client to not copy all mail headers. If you can't
+fix it, remove them manually and replace it with the usual:
 
->
-> Explanation is so incomplete I suspect you are patching broken things,
-> so as well this could be completely different hardware (e.g. there is no
-> regulator for this block but e.g. connector).
->
+On Fri, Feb 06 2026 at ...., Thomas Gleixner wrote:
+>> > +	guard(raw_spinlock_irqsave)(&intc0->intc_lock);
+>> 
+>> s/_irqsave// Interrupts are disabled when this is invoked.
+> Sorry, do you mean when this function been call.
+> Ther have desc->lock to do the raw_spin_lock_irqsave.
 
-usb ports under usb hub node can describe the topology well, but
-still regulator always-on is necessary as no driver toggles it.
+The core always holds irq_desc::lock with interrupts disabled when it
+invokes those irqchip callbacks. So trying to disable interrupts in them
+again is a pointless exercise.
 
-    usb3 {
-     dr_mode =3D "host";
-     #address-cells =3D <1>;
-     #size-cells =3D <0>;
-     status =3D "okay";
 
-     hub_2_0: hub@1 {
-      compatible =3D "usb2109,2817";
-      reg =3D <0x1>;
-      #address-cells =3D <1>;
-      #size-cells =3D <0>;
-      vdd-supply =3D <&usb3_vhub>;
-      peer-hub =3D <&hub_3_0>;
-      reset-gpios =3D <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
-
-      port@1 {
-       reg =3D <1>;
-       vbus-supply =3D <&usb3_vbus>;
-      };
-
-      port@2 {
-       reg =3D <2>;
-       vbus-supply =3D <&usb3_vbus>;
-      };
-
-      ...
-
-      hub_3_0: hub@2 {
-        ...
-      };
-    };
-
-Here is the diagram for the USB2, USB3 controller on K1 Jupiter board [1] (=
-page 21)
-
-    +-----------------------+
-    |        K1 SoC         |
-    |                       |
-    |  +-----------------+  |   (USB 3.0)
-    |  | USB3 Controller |--|---------------------------------->+----------=
-----------------+
-    |  +-----------------+  |                                   |        VL=
-817 Hub         |
-    |                       |                                   |          =
-                |---> [USB3 Ports]
-    |      HUB_PWREN        |                                   | +--------=
---------------+ |     ^
-    |       (GPIO)  --------|---------------------------------->| | Enable =
-Chip Power    | |     |
-    |                       |                                   | +--------=
---------------+ |     |
-    |                       |                                   +----------=
-----------------+     |
-    |      USB3_PWREN       |                                              =
-                      |
-    |       (GPIO)   -------|----------------------------------------------=
-------------> [VBUS of USB3 Ports]
-    |                       |
-    |                       |
-    |~~~~~~~~~~~~~~~~~~~~~~~|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
-~~~~~~~~~~~~~~~~~~~
-    |                       |
-    |  +-----------------+  |   (USB 2.0)
-    |  | USB2 Controller |--|---------------------------------->+----------=
-----------------+
-    |  +-----------------+  |                                   |      FE1_=
-1S Hub          |---> [USB2 Ports]
-    |                       |                                   +----------=
-----------------+     ^
-    |   USB_HOST_PWREN_H    |                                              =
-                      |
-    |       (GPIO)      ----|----------------------------------------------=
--------------> [VBUS of USB2 Ports]
-    |                       |
-    |                       |
-    +-----------------------+
-
-[1] https://github.com/milkv-jupiter/jupiter-files/blob/main/hardware/v1_0/=
-jupiter-sch-v1_0.pdf
-
->
->>=20
->> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
->> ---
->>  Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml | 4 ++++
->>  1 file changed, 4 insertions(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yam=
-l b/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
->> index 43eaca90d88c..74a1cd5bcdbe 100644
->> --- a/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
->> +++ b/Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml
->> @@ -19,6 +19,10 @@ properties:
->>    clocks:
->>      maxItems: 1
->> =20
->> +  phy-supply:
->> +    description:
->> +      Phandle to a regulator that provides power to VBUS.
->
-
-"vbus-supply" should be more accurate.
-
-> Drop redundant part. This cannot be anything else than phandle and
-> regulator.
->
-> "VBUS power supply" for example.
->
-
-> But anyway, I don't have certainty that
-> this is correct hardware representation. It's your task to provide that.
->
-> Best regards,
-> Krzysztof
-
-I initially considered handling VBUS via the onboard_usb_dev driver, as
-we discussed previously for the BananaPi-F3 board (which uses a VL817
-Hub) [2]. I was waiting for Marco Felsch's patch series "onboard-dev USB
-hub host managed vbus" to land [3].
-
-[2] https://lore.kernel.org/linux-riscv/aWJAT3n_KcND8bOz@monica.localdomain=
-/
-[3] https://lore.kernel.org/all/20250911-v6-16-topic-usb-onboard-dev-v4-0-1=
-af288125d74@pengutronix.de/
-
-I am not certain if managing VBUS in the PHY driver (e.g.,
-phy-stm32-usbphyc.c and phy-rockchip-usb.c) is the standard method.
-I would not insist on the "onboard_usb_dev managed vbus" if this patch
-(PHY managed) is considered proper way.
 
