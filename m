@@ -1,167 +1,170 @@
-Return-Path: <devicetree+bounces-263550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263551-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2RzINq3RhmnORAQAu9opvQ
-	(envelope-from <devicetree+bounces-263550-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 06:46:21 +0100
+	id K4qwOhjshmnDRwQAu9opvQ
+	(envelope-from <devicetree+bounces-263551-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 08:39:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D9C31050B3
-	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 06:46:21 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6048105237
+	for <lists+devicetree@lfdr.de>; Sat, 07 Feb 2026 08:39:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6F31C301B720
-	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 05:46:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 17E443013EED
+	for <lists+devicetree@lfdr.de>; Sat,  7 Feb 2026 07:39:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88A5628643C;
-	Sat,  7 Feb 2026 05:46:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 830CA2EC090;
+	Sat,  7 Feb 2026 07:38:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="No0SgX4S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f41.google.com (mail-yx1-f41.google.com [74.125.224.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m21467.qiye.163.com (mail-m21467.qiye.163.com [117.135.214.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4652D23EAB7
-	for <devicetree@vger.kernel.org>; Sat,  7 Feb 2026 05:46:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 580842857C7;
+	Sat,  7 Feb 2026 07:38:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.214.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770443178; cv=none; b=dfzY1+B0iO3a7fcyn+5gTFdRsx4q3RGynEkgPgJMbOJk7mfugKSMzmEiw93H516GjKlC9EeUtP3uQdYiZkqDPymdpszDBKfMsSEfYmMvTpHouSkZO60JmDomLhFgAHb93j58rKsX1PoVkyq+XFo6c/pnUshDDSfo3hu3NVcZ9Ds=
+	t=1770449939; cv=none; b=LJ1jgzIN33S7d4Sfshy8mXo0jr1oWtbQ2E69/+C5LbuoQcZJuDO6kE63dsISkONLE3ymN5bVNGCDpkD3klZYF17MI97/t5omehHkF92ei6Ja8ZO72HfeZhFb8ggOfZIHymgGed1FkHiH56HXxvCdvZf9R14w1JRHdvX6gffEAIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770443178; c=relaxed/simple;
-	bh=YOQlCZHHbbZyJPUzjKktvVxHrWwacE2uT1p/aLLvyc8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ujaf3qkjx/MGEVY1Jay+wXFJl+aUaDmYSUUCWSajJ6rt4K5Z4dIYqnk2+TD4YLQYYXSsn1i4Cpd0BY60ors+XZkE1xGyXz8ypqROv1u52SJ9m7aGnal0C1xJifbradWg3affE+QqIsbLIgeXU5dQmqPb0zDTCFXYopjEZhULbnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=74.125.224.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f41.google.com with SMTP id 956f58d0204a3-64ad79dfb6eso266487d50.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 21:46:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770443177; x=1771047977;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=d8l2EHUnJJX9Xx1XHYB+bf7GBC5MQRG6MKCmKfcP4wg=;
-        b=RSHBqjGbaJ8YGC6Dr+phAPyMsid6Ty6s2lAGOlmZnpyGLTKJUYYYrFhq76QLbmMZ/D
-         hiqYEEzX751V2VzfSPMqkO9UOmyIvy0+F5mc3Ig+hvt/0RvJrwO/XNLk6XoL9tYQgxb7
-         uwIPnlZS4Pboo59+Nkl7mB+AMgJZ8ywkW/m/L6WWxSilze8LgQorLJrqprOd/bfO5pjL
-         V2Xc9vPUhbLOvLly77EPPmj4dK9SgMbbdT2tNBNz2BgWh+HnQnpLrneChK00i7ModrDF
-         K3IjnFaEixWXl2sQphrMRC0SrRVTBY9TyV0tqO8pjDMqyGaYu3HdrdPnBo1Tdv2vIxeJ
-         DuSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVKu9KuRcPwe542aLbMkUUgwoEp80K1zHqEEWunpdKoIQ8gz1tM1DVK//GNgT7FVmVUEC6w270v47Hx@vger.kernel.org
-X-Gm-Message-State: AOJu0YySmoCKp8znjJtprakNlmjPGr/IK+wMB8gLM/akTiWu3Az8FrSe
-	z/23E3nH8XWo9XSemFzIVdafwUqQiJ3ldWMegGgJuqSHZvQuTixuyivpjbGQ8A==
-X-Gm-Gg: AZuq6aJD0Ywus9IL2fnIWYO+6kmoTZ/m8T462mCImq1HLLz8ovjb4P2faoxIKqF2eR4
-	QXuFjqcY3u/oeTgMJvBsoNZ+MmilP0OYkgUUDAUZCCYeRdDR4JELfLe9+nN5F4njeIma+L5tgHU
-	pzoNtsx+rMZq2eRn1V1dgNkPsOmECclaSSXiNeD1vCvmp3v5uVFrf9ybDiY3DO0iAWZmBJlwBBW
-	V86gMCRnKuwVqPOExZ5LwFBr1+CwDFjI8s9EPPi2CHN64Ws7fSixR8Gy4xt7rv59D91A03XLk5o
-	zWCq/5JBXDtkt6uzgV2l0jIQz5KGYAe+Ny9DNUb9E9wjGTYI1uyR5zjhHcmRWeruE/vowtAezM3
-	x122w06f4oK4o4uz/4D94MmUbNvG2wESNhBQh/k9GCQVfQS6lmBeBmV0bARrJ1qHXMh/Vu1VHBh
-	weFlReDMM7RXXAiYsMwyRvtWo4i7ClcxUwcXU7uWSuBQ==
-X-Received: by 2002:a81:b813:0:b0:794:b8c0:5a96 with SMTP id 00721157ae682-7952ab53824mr39551087b3.56.1770443177358;
-        Fri, 06 Feb 2026 21:46:17 -0800 (PST)
-Received: from mail-yx1-f47.google.com (mail-yx1-f47.google.com. [74.125.224.47])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-7952a2417d7sm39720227b3.41.2026.02.06.21.46.15
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Feb 2026 21:46:15 -0800 (PST)
-Received: by mail-yx1-f47.google.com with SMTP id 956f58d0204a3-649bff225d4so2579976d50.2
-        for <devicetree@vger.kernel.org>; Fri, 06 Feb 2026 21:46:15 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVLri2E4mwqvaMrO6vDKoVoLNw2vPgzyklsljvCVtuHakECwmYo51w59A9rblAsimAyRslku09qLsX6@vger.kernel.org
-X-Received: by 2002:a53:d8cb:0:b0:644:702c:3c02 with SMTP id
- 956f58d0204a3-649f217a97bmr3572480d50.70.1770443175479; Fri, 06 Feb 2026
- 21:46:15 -0800 (PST)
+	s=arc-20240116; t=1770449939; c=relaxed/simple;
+	bh=bDP3hx0259pprjh+K2o5PYpEoQCe2saFDVKumA7/C9A=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=T7ejv8c/dv+tPbYpo3pDsBNjXML7U0EHuTrQy39NC1ZxJ8RL4MCeXRMmhfCtXgVleydK5od6MKgkFCfzP+dqfo+RTJAmzmEoCdGAG6BGs+kIyh1YWiF2GTeLDrU7R6JHtxaHjreTH6H6xFybLjkES3I9OTgoTlerwiKu6gOqm5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=No0SgX4S; arc=none smtp.client-ip=117.135.214.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
+Received: from [127.0.1.1] (unknown [113.235.123.225])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3372cf65d;
+	Sat, 7 Feb 2026 15:33:36 +0800 (GMT+08:00)
+From: Hongyang Zhao <hongyang.zhao@thundersoft.com>
+Subject: [PATCH v3 0/3] Add DSI Port B input support for LT9611 HDMI bridge
+Date: Sat, 07 Feb 2026 15:32:53 +0800
+Message-Id: <20260207-rubikpi-next-20260116-v3-0-23b9aa189a3a@thundersoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <6cd569ad19ae8efb5f4244b3aa185754@gmail.com> <eb9c1489-4496-48b3-8709-739cd45c11b0@oss.qualcomm.com>
- <d398cd57-41b8-4646-834e-ff0c0b7ff749@kernel.org> <CAEQ9gE=kH4Np32xZdp+jzaTo9TMjtLVRD+xaimuKWxdag2Whew@mail.gmail.com>
- <b1d791e3-849e-4d76-bda0-816418f98e39@oss.qualcomm.com>
-In-Reply-To: <b1d791e3-849e-4d76-bda0-816418f98e39@oss.qualcomm.com>
-From: Roger Shimizu <rosh@debian.org>
-Date: Fri, 6 Feb 2026 21:46:04 -0800
-X-Gmail-Original-Message-ID: <CAEQ9gEkA-Gw=96LJe3vf3S6ada5o-mDqjY9B6NNpSaO8saSfvg@mail.gmail.com>
-X-Gm-Features: AZwV_QihtJp0QSpnV28G3pEcBRo5BUt4aTaxPVtga7w2YcS8hqXq7wTYtfmaWv4
-Message-ID: <CAEQ9gEkA-Gw=96LJe3vf3S6ada5o-mDqjY9B6NNpSaO8saSfvg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: qcs6490: Add Thundercomm AI Mini PC G1 IoT
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAKXqhmkC/4XNTQ7CIBCG4as0rMXAKP1x5T2MiwJTS4zQACU1T
+ e8urRsTY1y+XzLPzCSgNxjIqZiJx2SCcTbHYVcQ1bf2htTo3AQYlIxDRf0ozX0w1OIU6XvlJW0
+ axbXEVjA8knw7eOzMtLmXa+7ehOj8c3uT+Lr+ExOnjDKoS1UJLpgS59iPVqMProt75R5kdRN8W
+ vUvC7IlW8EV1hqkhm9rWZYX8790qQwBAAA=
+X-Change-ID: 20260127-rubikpi-next-20260116-99c1dbea50e4
+To: Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Christopher Obbard <christopher.obbard@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Roger Shimizu <rosh@debian.org>, 
+ linux-arm-msm@vger.kernel.org, 
+ Hongyang Zhao <hongyang.zhao@thundersoft.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-47773
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770449616; l=1956;
+ i=hongyang.zhao@thundersoft.com; s=20251115; h=from:subject:message-id;
+ bh=bDP3hx0259pprjh+K2o5PYpEoQCe2saFDVKumA7/C9A=;
+ b=eetxF5m3iGkUNwCp/TkyTHsix9a8PMxhFPpOO5nYZ6xEAGzyAZ4KwkCh1z7NA1joPPXGOWPPZ
+ HyS9SwA32JqCMiP3Y7cLkfzAf0l57CaxawWkh3qz7rGxUBty/oSjdnQ
+X-Developer-Key: i=hongyang.zhao@thundersoft.com; a=ed25519;
+ pk=0M0CJ1s9WiFZwli2JsxLB9ykikp5WkpKzCWgpdANKNI=
+X-HM-Tid: 0a9c37053cb009d5kunm3723250e7f3055
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaQh1OVhpNQhlMGUNOGhkaGVYVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlKSkhVSUhOVUpJSFVJSU5ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0hVSk
+	tLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=No0SgX4SD3TvjSIs1OmDLkBosQ9BsOhjElWSp1RpBWyjnaP7DswSaACfl0Vcevl28l9hzAXIiAbPCxnrNpHP5VmHwj5vfHEmuuXJDjIhqzRtHn8v459jU7/Dtsv0D0PABoGzFWE5whYGYyJ+UCWxXIOgqB5/dvjKOTd5jkt9lNM=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
+	bh=/A8bo6qfto91b4n9cieuLRsSkhHM9gJRuxTe8hTLdC8=;
+	h=date:mime-version:subject:message-id:from;
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[thundersoft.com,none];
+	R_DKIM_ALLOW(-0.20)[thundersoft.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263550-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263551-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[debian.org];
+	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,oss.qualcomm.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	DBL_PROHIBIT(0.00)[0.0.0.1:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rosh@debian.org,devicetree@vger.kernel.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-0.912];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hongyang.zhao@thundersoft.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[thundersoft.com:+];
+	NEURAL_HAM(-0.00)[-0.983];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: 2D9C31050B3
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,thundersoft.com:email,thundersoft.com:dkim,thundersoft.com:mid,msgid.link:url]
+X-Rspamd-Queue-Id: E6048105237
 X-Rspamd-Action: no action
 
-On Fri, Feb 6, 2026 at 2:20=E2=80=AFAM Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 2/6/26 10:55 AM, Roger Shimizu wrote:
-> > On Fri, Feb 6, 2026 at 1:41=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel=
-.org> wrote:
-> >>
-> >> On 04/02/2026 10:20, Konrad Dybcio wrote:
-> >>> On 1/31/26 11:31 AM, Roger Shimizu wrote:
-> >>>> ---
-> >>>
-> >>> [...]
-> >>>
-> >>>> +/ {
-> >>>> +    model =3D "Thundercomm AI Mini PC G1 IoT";
-> >>>> +    compatible =3D "qcom,sc7280", "qcom,qcm6490";
-> >>>
-> >>> You need to add a board-specific compatible here, see:
-> >>>
-> >>> Documentation/devicetree/bindings/arm/qcom.yaml
-> >>
-> >> The true problem is that this would probably fail validation, so I
-> >> suspect this was never tested/checked.
-> >
-> > Thanks for the review!
-> > I did test this device-tree with the board.
-> > If you mean some other test, please let me know in detail.
->
-> make ... CHECK_DTBS=3D1 qcom/qcs6490-thundercomm-minipc-g1iot.dtb
+The LT9611 HDMI bridge has two DSI input ports (Port A and Port B).
+The current driver only supports Port A or dual-port (A+B) mode, but
+some boards like RubikPi3 connect DSI to Port B only.
 
-Thanks for the guide!
-I tested above command, it was passed for my v1.
-Sure, it also passes after I add the board-specific compatible. (not send y=
-et)
+This series adds support for using DSI Port B as the input source by
+utilizing the existing ports mechanism in devicetree:
 
-> make ... dt_binding_check
+- port@0 corresponds to LT9611 DSI Port A input
+- port@1 corresponds to LT9611 DSI Port B input
 
-Sorry, I never can run this check command. It reports many python syntax er=
-ror.
-I guess the script has issue, or it needs patch to run on my Debian system.
-I'll report the issue to upstream separately.
+The driver detects which ports are populated and configures the hardware
+accordingly. When only port@1 is present, it configures port swap
+(register 0x8303 bit 6) and byte_clk source (register 0x8250 bit 3:2)
+for Port B operation.
 
--Roger
+Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
+---
+Changes in v3:
+- v2 incorporates significant changes based on Neil's review of v1,
+  so remove Roger’s Reviewed-by tag from the v2 commit message.
+- Link to v2: https://patch.msgid.link/20260128-rubikpi-next-20260116-v2-0-ba51ce8d2bd2@thundersoft.com
+
+Changes in v2:
+- Use ports mechanism instead of boolean property
+- port@0 corresponds to LT9611 Port A, port@1 to Port B
+- Driver detects which port is populated and configures accordingly
+- Link to v1: https://lore.kernel.org/r/20260127-rubikpi-next-20260116-v1-0-0286c75150c5@thundersoft.com
+
+---
+Hongyang Zhao (3):
+      dt-bindings: display: lt9611: Support single Port B input
+      drm/bridge: lt9611: Add support for single Port B input
+      arm64: dts: qcom: qcs6490-rubikpi3: Use lt9611 DSI Port B
+
+ .../bindings/display/bridge/lontium,lt9611.yaml    | 15 +++++--
+ .../boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts |  8 ++--
+ drivers/gpu/drm/bridge/lontium-lt9611.c            | 46 +++++++++++++++-------
+ 3 files changed, 47 insertions(+), 22 deletions(-)
+---
+base-commit: 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b
+change-id: 20260127-rubikpi-next-20260116-99c1dbea50e4
+
+Best regards,
+--  
+Hongyang Zhao <hongyang.zhao@thundersoft.com>
+
 
