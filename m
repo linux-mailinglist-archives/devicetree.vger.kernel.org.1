@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263681-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KFqwMQxiiGl/pAQAu9opvQ
-	(envelope-from <devicetree+bounces-263680-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:14:36 +0100
+	id SHSpA1tkiGmnpAQAu9opvQ
+	(envelope-from <devicetree+bounces-263681-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:24:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 366B2108558
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:14:36 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A41B61085AE
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:24:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9F81B3028EFA
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 10:14:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 71FB4300337D
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 10:24:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29F1B346765;
-	Sun,  8 Feb 2026 10:14:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 607FB34676E;
+	Sun,  8 Feb 2026 10:24:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fKGVWImE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XT1TprO4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05F9238DF9;
-	Sun,  8 Feb 2026 10:14:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A90E4C6C;
+	Sun,  8 Feb 2026 10:24:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770545642; cv=none; b=kwJKM/heUNdAA0FcjSwCDzBHbjF7WMUrW3dgJ4PVO3gGvwLJNwI6r88Ei+C095nZtEyw0imLAuXvgF4cUuzrffz5XwQnlo4KxU5IxRCtRtog+L4jMpHCfWD84GusMsHmwQSUOVAmg6YKOGTKwtyd5ipNTOeXzIm8PKdxkMM0u+s=
+	t=1770546264; cv=none; b=ERwzjkKwZihCdPHHrlMghhpNYLiLnWbaO88JAv34ilaEYz4g+r+7QgDtQSrn4C2iboZ7VGdHwZp4l8cZmHvohglIBiKDUzvR4vnVoHluWmZu6zC5HfRNkJ/vbgn3jn7xReAvCeRCTwPpVRxGvj2hNomxehlFiRdA71CujsNFllY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770545642; c=relaxed/simple;
-	bh=Z+qUZk92XMKNYKU4MRo7MRc1HzPCF+wu3gFTAcnax1E=;
+	s=arc-20240116; t=1770546264; c=relaxed/simple;
+	bh=76L6sj/ZbLNs6H7pO+qSYRr0AEiBZoSRz3QqA2vnTPM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ktf2mQmqXb+LkahaWt5eiCTrQBF6t0FXrB1umucA50TslvhSUAcp2w+OjbIs0hJf6ru0qNyeeNJa+vcf58Y+X6g8/74NFJuXRnuLZni2fFKfWp+of/zRjf5fvOIo5BmnlR+lXO2XFWVCV6W1Q3uPCiiJpBGr3gstCuxjy9kIFx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fKGVWImE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CDFEC116C6;
-	Sun,  8 Feb 2026 10:13:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=j4LbYnLuZiFIz31U8d0huXrVXw8xYQHtF+bmjv17QvgdolNkCOVezLNWRazCgM7NQIfgXnulFBMxfe/aX8F3jM34nHWU4kDdSmcVVvlx56HgD5sc5Jf3LzhOTqKylk3GE4EXWJ0vuy5bxednwoxbX44eJ0+lgrmlDYOYXBllfdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XT1TprO4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88D24C4CEF7;
+	Sun,  8 Feb 2026 10:24:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770545641;
-	bh=Z+qUZk92XMKNYKU4MRo7MRc1HzPCF+wu3gFTAcnax1E=;
+	s=k20201202; t=1770546263;
+	bh=76L6sj/ZbLNs6H7pO+qSYRr0AEiBZoSRz3QqA2vnTPM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fKGVWImEoyRjCjfXIhA1Yd7x/+38UVvzX3cwscXiZ6umwlS8ICOGBfMZHiJ9YCwoS
-	 4XwOqHD24Bju4M5HVwjAtujajbL4Oa9is6K/xJOl6Vs1qd78e/q8Taz4FM5VKmIgcq
-	 IcIsF4jGqumZJQ8ZaVhzRUzoN1c2xHQCVm0Wmf+A+2C+P5kTkSrO/pFejv0Pt531I7
-	 6u2iv6omPJtjOeIn4FrtRYS4hmNGuAmkx6F6PcTK/7m3AWiWz8QqVdz72SuRSjnuLH
-	 p98aOwGgqDKOF/+5mruRk50Fge3wvmqciJeIv6Wihot8j3N/WcFoYaXzOQoVv1Sqh+
-	 pjqL6w4H5cNtA==
-Message-ID: <9c852962-fe86-4f36-b7a5-651f43c4f338@kernel.org>
-Date: Sun, 8 Feb 2026 11:13:55 +0100
+	b=XT1TprO4NIV04qmfy/peL3F8iFiYcuZ2tRCT05h0CVQNo5fQyWrXaH4Be1LmrVY+X
+	 HWkyFSuBj3Q8YAEgalsYL1KJlg+v+M67MMVHjHtT+lu9MSPMYYGbBmcYQVPlwhCGsO
+	 HEbySIdLR/N4K5hwCf0gOVH5Ru+xyWewkL2vf+JC/EUMGH6S6gprjZa/eVSJV5v5n1
+	 0HLy0SGTufc+VVJKSZAHPOaLwVpk5DMZaMECePAVQnaQ38tDG+ZHfFUF3U/nbD8jiY
+	 w2liUTLFx7+pOOaffEauMGT4NiHHalQkSJ03FR8yLMOBPMjHOVZRl1GeGRqwXMh6mW
+	 oBdBxHLXxrwlQ==
+Message-ID: <04018e01-6aa0-4a7e-9c8b-59d868099f83@kernel.org>
+Date: Sun, 8 Feb 2026 11:24:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,19 +53,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V6 2/5] arm64: dts: imx93: Extract common EVK description
- into shared dtsi
-To: Sherry Sun <sherry.sun@nxp.com>, Frank.Li@nxp.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, s.hauer@pengutronix.de,
- festevam@gmail.com, shawnguo@kernel.org, daniel.baluta@nxp.com,
- dario.binacchi@amarulasolutions.com, alexander.stein@ew.tq-group.com,
- Markus.Niebel@tq-group.com, matthias.schiffer@tq-group.com,
- y.moog@phytec.de, josua@solid-run.com, francesco.dolcini@toradex.com,
- primoz.fiser@norik.com
-Cc: imx@lists.linux.dev, kernel@pengutronix.de, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20260204083551.2867263-1-sherry.sun@nxp.com>
- <20260204083551.2867263-3-sherry.sun@nxp.com>
+Subject: Re: [PATCH 1/3] spi: dt-bindings: nxp,imx94-xspi: add nxp,imx952-xspi
+To: Frank Li <Frank.li@nxp.com>
+Cc: Haibo Chen <haibo.chen@nxp.com>, Han Xu <han.xu@nxp.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, linux-spi@vger.kernel.org,
+ imx@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260114-xspi-imx952-v1-0-acc60a5a2a9d@nxp.com>
+ <20260114-xspi-imx952-v1-1-acc60a5a2a9d@nxp.com>
+ <c605c5f7-45b7-4e15-9d80-8bd224624b27@kernel.org>
+ <aWlXLzBri8o4YQ1t@lizhi-Precision-Tower-5810>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,7 +113,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260204083551.2867263-3-sherry.sun@nxp.com>
+In-Reply-To: <aWlXLzBri8o4YQ1t@lizhi-Precision-Tower-5810>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -120,46 +122,52 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-263681-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263680-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com,amarulasolutions.com,ew.tq-group.com,tq-group.com,phytec.de,solid-run.com,toradex.com,norik.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.989];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: 366B2108558
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,nxp.com:email]
+X-Rspamd-Queue-Id: A41B61085AE
 X-Rspamd-Action: no action
 
-On 04/02/2026 09:35, Sherry Sun wrote:
-> The i.MX93 Wireless EVK reuses most of the 11x11 EVK design. To avoid
-> duplication and DTS-to-DTS includes, extract the common parts into a new
-> imx93-11x11-evk-common.dtsi shared by both boards.
+On 15/01/2026 22:07, Frank Li wrote:
+> On Thu, Jan 15, 2026 at 09:55:57PM +0100, Krzysztof Kozlowski wrote:
+>> On 14/01/2026 07:49, Haibo Chen wrote:
+>>> Document i.MX952 XSPI compatible, which is derived from
+>>> i.MX94 XSPI.
+>>>
+>>> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/spi/nxp,imx94-xspi.yaml | 4 ++++
+>>>  1 file changed, 4 insertions(+)
+>>
 > 
-> Rename imx93-11x11-evk.dts to imx93-11x11-evk-common.dtsi and include it
-> from imx93-11x11-evk.dts.
+> Krzysztof:
 > 
-> Only structural changes are introduced, with no intended functional
-> impact.
+> 	You sent an empty message here.
 > 
-> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-> ---
+> Frank
+>>
 
+Thanks, second try:
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
