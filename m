@@ -1,162 +1,143 @@
-Return-Path: <devicetree+bounces-263687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263688-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QBc1KKl1iGmwpgQAu9opvQ
-	(envelope-from <devicetree+bounces-263687-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 12:38:17 +0100
+	id NuzUOZqGiGn/qQQAu9opvQ
+	(envelope-from <devicetree+bounces-263688-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 13:50:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECDA91088B0
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 12:38:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 338C3108A1C
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 13:50:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A3715300F5DC
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 11:38:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C4AF3300EAB0
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 12:50:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2DC346AC0;
-	Sun,  8 Feb 2026 11:38:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4C481FC101;
+	Sun,  8 Feb 2026 12:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mTgX4lJP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="a3ag4DHr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 467F223D7EC;
-	Sun,  8 Feb 2026 11:38:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB6FA15539A;
+	Sun,  8 Feb 2026 12:50:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770550692; cv=none; b=DSvCRfL69XYIXur0fz/i9FE2IE3LPOCFnG+IQDky9FXZbVmlsO5LAGbQVPfKYfMpR8HVDPPKej5E9+/1y4lLqPKC9H+ju2xKMTFy7RzCtaXhDqY9/RJrIKuMHoHx5OTa31rF258vbtYPjcws+qkpCyMaviViKdTnKvHvY29mOpw=
+	t=1770555030; cv=none; b=cPCsevAFir3ZHawC94vxCdfG9TgX/dN/LnBMY6WA6B3yJQmPG140k0ZN+0OGA05Hl7/YkZ7oSu9+Kq9/g9GRb16W2AkWkur/D16rH9y5A3ZvamUsnK/Mwc7ve6AlB8MAsJk4T94RKxd9EYGI3BlQrpmeYNV9bXG1wQMQiRCFRy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770550692; c=relaxed/simple;
-	bh=Otsv2hhWWXfzPOEXDIDyWe5r/Zr/yGDR9ck6A6xi8qE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IC+cw79HLtm8DcaKfEROyaNtHbHmNSUH2uW7X0SU445n/wYjknY/vVBpYUHXn0ydUx9WIlLOBvAENs7UWkNJtmNOD5Ov+8PhXACSUyCPZQswsw4QVtAhTO04BtRm43JP6K/XdjZqP59+Y02nLB6blLycJYEtj+Nw4LrNidizQco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mTgX4lJP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D076AC4CEF7;
-	Sun,  8 Feb 2026 11:38:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770550691;
-	bh=Otsv2hhWWXfzPOEXDIDyWe5r/Zr/yGDR9ck6A6xi8qE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mTgX4lJPwZlXyXOYnLKYPQE63CGGNkQqmY50R9JUseP5pDaCRAQYWulyaymZW31v8
-	 Wpb3ocGWDKV1oN9bZiVqJsnDWkakft1TNtfFObB6NfnjDm1ZoVZ/yJm3suhpE45qOb
-	 fx0OjfJwcz9JsFIFDGyXs1nT7kkckv54Gas8PUSr/eNObcQyPFcrVSjJ0EG+9cfvgQ
-	 vrnHcwO8ze/N5mSPa2s12gQyEYKkPG2FgMpvG76QJQLYuL5bH73yvtYV1BoL5l48ue
-	 //+eDSy6J7Zt8xeJVbjuSeCibPidhgnicOs0quHDnXPMkADJ5Vzq4BBgdDaC9fcW4z
-	 4NxV83nhkGcsQ==
-Message-ID: <93bff61b-ffc3-4b09-ac97-99f576e6d48f@kernel.org>
-Date: Sun, 8 Feb 2026 12:38:06 +0100
+	s=arc-20240116; t=1770555030; c=relaxed/simple;
+	bh=JDhBqjGxxCVe2GelWRzpb8jVah7+fsaWHDvNEZtLR+U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ukVsRKKZhQeHUEickScxLo6spEjWFpUYmjFHhYuelVNuiwdNQfsC4zDBA1YADJEzZa0wC+Pf2NM3ZJMAaneH6YHpSnhbGLRDvctcTvtwYxMHsA74Vj/1Tb8YA1yvtgE9pRi9wFGv+YKNik+Xr7nCZ+AVnJYlV4bn1j5rLAp2Hy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=a3ag4DHr; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770555030; x=1802091030;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JDhBqjGxxCVe2GelWRzpb8jVah7+fsaWHDvNEZtLR+U=;
+  b=a3ag4DHrS+CTeiJdbUaRL7Fe6uyA8m1P8151INinE7oEPVwWgr6DXQwI
+   N6mYHHQ8m5MjNWz8ywk4XNQRBJpNfZOhnrkqG3z16TyGU5GQDQtIQKIMC
+   X1LmRbeA3RVBacJK0qne6DB3HabC34vKMrTn6pb/h773oFeu9SJCXPoPx
+   MaKqpaiq1IwUqkNZSF9+4HRTP+eQZ2fxrY1YdxBI/0tMVmxDgOUqna+z5
+   zQ30DlcFWpEgD0YBYmCLks23uxC6EHS4SGtkjxt+o683H/xYEZNDpjp3p
+   HEzr6NUN34LSXwreOlkrRt56fTLHVljDKTZo0Bn7nyDmh5/q6ZLhhLwnh
+   g==;
+X-CSE-ConnectionGUID: XYrkzJ57S2+unEtT3m+8Kg==
+X-CSE-MsgGUID: WsP0G5OPTgevuDR9lJpZgQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11694"; a="75309503"
+X-IronPort-AV: E=Sophos;i="6.21,280,1763452800"; 
+   d="scan'208";a="75309503"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2026 04:50:30 -0800
+X-CSE-ConnectionGUID: 2W9zX3N1RGOQFowoOS+jFQ==
+X-CSE-MsgGUID: +UKhbakQQVWSUaYyghdvXQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,280,1763452800"; 
+   d="scan'208";a="215510793"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost) ([10.245.245.100])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2026 04:50:25 -0800
+Date: Sun, 8 Feb 2026 14:50:23 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org
+Subject: Re: [PATCH v2 0/4] iio: adc: ad4080: add support for AD4880
+ dual-channel ADC
+Message-ID: <aYiGj_TYelvJdVaR@smile.fi.intel.com>
+References: <cover.1770393792.git.antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/6] arm64: defconfig: enable BST SDHCI controller
-To: Albert Yang <yangzh0906@thundersoft.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Adrian Hunter
- <adrian.hunter@intel.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Ge Gordon <gordon.ge@bst.ai>,
- Arnd Bergmann <arnd@arndb.de>
-Cc: BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260123095342.272505-1-yangzh0906@thundersoft.com>
- <20260123095342.272505-6-yangzh0906@thundersoft.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260123095342.272505-6-yangzh0906@thundersoft.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1770393792.git.antoniu.miclaus@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263687-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-263688-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.990];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: ECDA91088B0
+X-Rspamd-Queue-Id: 338C3108A1C
 X-Rspamd-Action: no action
 
-On 23/01/2026 10:53, Albert Yang wrote:
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 45288ec9eaf7..7f4da3117329 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -1222,6 +1222,7 @@ CONFIG_MMC_BLOCK_MINORS=32
->  CONFIG_MMC_ARMMMCI=y
->  CONFIG_MMC_SDHCI=y
->  CONFIG_MMC_SDHCI_ACPI=y
-> +CONFIG_MMC_SDHCI_BST=y
+On Fri, Feb 06, 2026 at 06:07:12PM +0200, Antoniu Miclaus wrote:
+> Add support for the AD4880, a dual-channel 20-bit 40MSPS SAR ADC from
+> the same family as AD4080.
+> 
+> The AD4880 has two independent ADC channels, each with its own SPI
+> configuration interface and LVDS data output. The driver uses
+> spi_new_ancillary_device() for the second channel's SPI and requires
+> two io-backend instances for the data interfaces.
 
-This is still wrongly ordered. Look at your Kconfig. Run savedefconfig.
+I believe there is a better approach, what you need is rather a flag
+to SPI core to tell that this is the device with shared CS.
 
-Best regards,
-Krzysztof
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
