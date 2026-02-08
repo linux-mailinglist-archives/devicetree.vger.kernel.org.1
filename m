@@ -1,576 +1,185 @@
-Return-Path: <devicetree+bounces-263762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263763-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aLSROBgTiWmx2AQAu9opvQ
-	(envelope-from <devicetree+bounces-263762-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:50:00 +0100
+	id SBJeLnAViWko2QQAu9opvQ
+	(envelope-from <devicetree+bounces-263763-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 00:00:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62BCE10A861
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:50:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B62D10A8C4
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:59:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3C4433005672
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 22:49:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BCE8E3005640
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 22:59:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00F323816E5;
-	Sun,  8 Feb 2026 22:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C08CB3816FC;
+	Sun,  8 Feb 2026 22:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="jBDZuyxM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f7kKFMII"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 860CD342C9E
-	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 22:49:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A7A3342C8F;
+	Sun,  8 Feb 2026 22:59:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770590996; cv=none; b=oH4Yy+rhtvu2YKNrtOLK0SAiPiJ/nIc6SD4Ko5AuzoE58JQIZWI5Rd3FRwk70e8Fr0/utlUSpW4nwIrED6VhL9HheUTZxkSI0MV4O0YXHGrjhb4v+ngX5nXU1b/NsEfGy7VfgBsTrP10SdpqOcHkTg0UT9Lu9XyCNNKRCqK7/TU=
+	t=1770591597; cv=none; b=I5K1dE9868j2urR+fMq/XqjQ1FaADKOUk6rCwFXoH3LP5hQ4KBNy+1FTfL6dp7RCp0opxwCvQZRUXPLHiiSq/jSVoRQJIjL8H42okzrgyVpz4SWk9Gt8qtybJH8dIXfNmZU390R1+8dli9e7+3tQCgIkEVFRv7WAa0sk6fTOG2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770590996; c=relaxed/simple;
-	bh=XUTaRo04Qe2dgkmO8qMv7tj6uvrVGsYKdAfq4lN3Ag0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lFobwrXvqo/bzisL16Ms7dHLx13XlQBGg8JFLn2VV+s98evjvueLTLbPDs6V6uEEibljvHQyGejEMTmJygKkx1pQfVR/qLCrZrfAiXR6Z/GTEa88hfvZ7t8jha8/jE4nlZaqYXmIB8MHJ1giU+8n2oucO9/Yx8tXmsWz7qoG/Fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=jBDZuyxM; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1770590996;
- bh=qO2n1t+o89ZZeIRUp8YAof/887drGtlHh59NH+3vQVI=;
- b=jBDZuyxMMSmqGAMmhzvyHKF4F9bq3Y8WttpOFvOSmW8kFUWOZ/huA/RTtPimBzEWXFPXMVTWK
- Xl5QULexpo2WRH786cFwLnhDMAlOAFxzt1WslKXl4cryIG00la5U3/OJmhWeR7I5YAgKulDmoHM
- KVbamxaMBwbM6GX8BA270uCDACXdQi9ev2vHsdf+fDxCqjp4qfXJfKhmKFFTwlpB/iiprg+fXbM
- oUFOiFgSqi7wlYAqs/28Q9/XGh/kUtpsf/S0Kw/JaAFzh8rHrn0acq8ax0v0iT+/1iRH51gWyFX
- n7tPNlK9y8Hh8VjIjDrfTsmlf9+Zt4kMxjJXrBmIuHpg==
-X-Forward-Email-ID: 6989130ea6487c2810b1bc60
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 2.6.2
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <bd1827ed-76dd-493f-a74b-d38ad1dac605@kwiboo.se>
-Date: Sun, 8 Feb 2026 23:49:47 +0100
+	s=arc-20240116; t=1770591597; c=relaxed/simple;
+	bh=vrozi+Ia7SoQnbXsLpZ/HefKMDz8FKkknmXv/NhTnNk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o23ljadQM/Eafr1V8z7H0QCLarpGHYrHl8be5d5Ab+0Q5SByTV8V+VXjBS8PUqYzPCPk1Vte9ay45eblOAlD7xi5MGJ430BiRtFCyC7RkaOc4G/8N+k+iiXVMwOysCX42VjstJDlAQbcxRKsl1mWaO4DpyhKKjMaMNpCBzzOpJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f7kKFMII; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62172C4CEF7;
+	Sun,  8 Feb 2026 22:59:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770591597;
+	bh=vrozi+Ia7SoQnbXsLpZ/HefKMDz8FKkknmXv/NhTnNk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f7kKFMIIt+HMPV/OgdLXgcRq5x8bbzlCVhDSz54ERsK2D3byzwIJiHGSom6k8hNjl
+	 woSzGXskgodzqYXh0pUNsY+xCAE4oW9SRX/htCE6gsktOZTu+f0f2A9vNo3ILiVxql
+	 dybEM5swVwOIx3OPmIGRGNlHPmFJ7QnCaquvp04FAB8ALNjfzsAXzmhe6+L+zvqScb
+	 irqJ8qAQkTVX3TKoLPbrSqHsnEPYIHjgTMDhTFSQ8KM5nnUinU/XzpuZEOEGw64pnE
+	 L0wb++ImugmoQjojTx6htP6FkqwN2eNuzXVwr7ueNfuew7d1eAHSHtTvyXFEnUFcYG
+	 B6+0naDJeGZTw==
+Date: Sun, 8 Feb 2026 16:59:54 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: webgeek1234@gmail.com
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kumar Sharma <quic_vksharma@quicinc.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550: Fix DTBO boot failure
+Message-ID: <73mvlkbwem3rt7kd6udyenazfufgb4zkt2kggiihihincjc6ry@53ztcljmqxnd>
+References: <20260207-sm8550-abl-dtbo-v2-1-83afaa6f3ce9@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] ARM: dts: rockchip: Add support for RV1103B
-To: Fabio Estevam <festevam@gmail.com>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- Fabio Estevam <festevam@nabladev.com>
-References: <20260207131803.2834749-1-festevam@gmail.com>
- <20260207131803.2834749-2-festevam@gmail.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20260207131803.2834749-2-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260207-sm8550-abl-dtbo-v2-1-83afaa6f3ce9@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kwiboo.se,quarantine];
-	R_DKIM_ALLOW(-0.20)[kwiboo.se:s=fe-e1b5cab7be];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263762-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-263763-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kwiboo.se:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[1.57.28.64:email,1.62.115.112:email,1.51.197.16:email,1.57.106.96:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.978];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.993];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,20d80000:email,0.0.0.0:email,nabladev.com:email,kwiboo.se:mid,kwiboo.se:dkim,20d30000:email,1.62.154.128:email,1.61.254.64:email,1.49.45.0:email,1.59.24.16:email,1.55.114.120:email,1.50.179.160:email]
-X-Rspamd-Queue-Id: 62BCE10A861
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 1B62D10A8C4
 X-Rspamd-Action: no action
 
-Hi Fabio,
+On Sat, Feb 07, 2026 at 07:16:03PM -0600, Aaron Kling via B4 Relay wrote:
+> From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
+> 
+> ABL requires certain things in the base dtb to apply a dtbo.
 
-On 2/7/2026 2:18 PM, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@nabladev.com>
+What if I don't need/want a dtbo? Or are you referring to some specific
+overlay that ABL attempts to apply?
+
+> Namely:
 > 
-> Add the initial RV1103B devicetree.
+> * A label named qcom_tzlog must exist, but doesn't have to contain any
+>   specific properties
+> * The timer node must have a label named arch_timer
 > 
-> Based on the 5.10 Rockchip vendor kernel driver.
+> This aligns the sm8550 soc dtsi with those requirements. Without these
+> in the base dtb, when ABL attempts to apply any dtbo, it will fail to
+> the bootloader menu.
 > 
-> Signed-off-by: Fabio Estevam <festevam@nabladev.com>
+
+I don't consider this to be a property of the SM8550 SoC, but rather
+ABL shipping on specific devices - where ABL can't be replaced/fixed.
+
+It's been a while since I booted SM8550 with the unmodified ABL (as I
+always use abl2esp these days), but I don't remember having this problem
+on the MTP...
+
+Can we push this down to those specific devices that manifest this
+problem and does not allow replacing ABL?
+
+> Co-authored-by: Aaron Kling <webgeek1234@gmail.com>
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
 > ---
-> Changes since v1:
-> - None.
+> With a current mainline sm8550 base dtb, ABL will fail to apply any dtbo
+> and fail back to the bootloader menu. There are two changes needed:
 > 
->  .../boot/dts/rockchip/rv1103b-pinctrl.dtsi    | 831 ++++++++++++++++++
->  arch/arm/boot/dts/rockchip/rv1103b.dtsi       | 266 ++++++
->  2 files changed, 1097 insertions(+)
->  create mode 100644 arch/arm/boot/dts/rockchip/rv1103b-pinctrl.dtsi
->  create mode 100644 arch/arm/boot/dts/rockchip/rv1103b.dtsi
-> 
-> diff --git a/arch/arm/boot/dts/rockchip/rv1103b-pinctrl.dtsi b/arch/arm/boot/dts/rockchip/rv1103b-pinctrl.dtsi
-> new file mode 100644
-> index 000000000000..bc4d8fcdfaf7
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/rockchip/rv1103b-pinctrl.dtsi
-> @@ -0,0 +1,831 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2024 Rockchip Electronics Co., Ltd.
-> + */
-> +
-> +#include <dt-bindings/pinctrl/rockchip.h>
-> +#include <arm64/rockchip/rockchip-pinconf.dtsi>
-> +
-> +/*
-> + * This file is auto generated by pin2dts tool, please keep these code
-> + * by adding changes at end of this file.
-> + */
-> +&pinctrl {
-> +	cam_clk0 {
+> * Add a label named qcom_tzlog
+> * Add a label named arch_timer to the timer node
 
-This is missing omit-if-no-ref, please add for all:
-
-		/omit-if-no-ref/
-
-> +		cam_clk0_pins: cam-clk0-pins {
-> +			rockchip,pins =
-> +				/* cam_clk0_out */
-> +				<1 RK_PB5 1 &pcfg_pull_none>;
-> +		};
-> +	};
-> +
-> +	cam_clk1 {
-> +		cam_clk1_pins: cam-clk1-pins {
-> +			rockchip,pins =
-> +				/* cam_clk1_out */
-> +				<1 RK_PB6 1 &pcfg_pull_none>;
-> +		};
-> +	};
-> +
-> +	cam_spi {
-> +		cam_spi_bus4_pins: cam-spi-bus4-pins {
-> +			rockchip,pins =
-> +				/* cam_spi_d0 */
-> +				<0 RK_PB5 4 &pcfg_pull_up_drv_level_2>,
-> +				/* cam_spi_d1 */
-> +				<0 RK_PB2 4 &pcfg_pull_up_drv_level_2>,
-> +				/* cam_spi_d2 */
-> +				<0 RK_PB1 4 &pcfg_pull_up_drv_level_2>,
-> +				/* cam_spi_d3 */
-> +				<0 RK_PB0 4 &pcfg_pull_up_drv_level_2>;
-> +		};
-> +		cam_spi_clk_pins: cam-spi-clk-pins {
-> +			rockchip,pins =
-> +				/* cam_spi_clk */
-> +				<0 RK_PB4 4 &pcfg_pull_none>;
-> +		};
-> +		cam_spi_cs0n_pins: cam-spi-cs0n-pins {
-> +			rockchip,pins =
-> +				/* cam_spi_cs0n */
-> +				<0 RK_PB3 4 &pcfg_pull_none>;
-> +		};
-> +	};
-> +
-> +	clk {
-> +		clk_32k_pins: clk-32k-pins {
-> +			rockchip,pins =
-> +				/* clk_32k */
-> +				<0 RK_PA0 2 &pcfg_pull_none>;
-> +		};
-> +	};
-> +
-> +	clk_24m {
-> +		clk_24m_out_pins: clk-24m-out-pins {
-> +			rockchip,pins =
-> +				/* clk_24m_out */
-> +				<0 RK_PA0 3 &pcfg_pull_none>;
-> +		};
-> +	};
-> +
-> +	cpu {
-> +		cpu_pins: cpu-pins {
-> +			rockchip,pins =
-> +				/* cpu_avs */
-> +				<0 RK_PA1 2 &pcfg_pull_none>;
-> +		};
-> +	};
-> +
-> +	emmc {
-> +		emmc_bus4_pins: emmc-bus4-pins {
-> +			rockchip,pins =
-> +				/* emmc_d0 */
-> +				<1 RK_PA1 1 &pcfg_pull_up_drv_level_2>,
-> +				/* emmc_d1 */
-> +				<1 RK_PA2 1 &pcfg_pull_up_drv_level_2>,
-> +				/* emmc_d2 */
-> +				<1 RK_PA3 1 &pcfg_pull_up_drv_level_2>,
-> +				/* emmc_d3 */
-> +				<1 RK_PA0 1 &pcfg_pull_up_drv_level_2>;
-> +		};
-> +		emmc_clk_pins: emmc-clk-pins {
-> +			rockchip,pins =
-> +				/* emmc_clk */
-> +				<1 RK_PA4 1 &pcfg_pull_up_drv_level_2>;
-> +		};
-> +		emmc_cmd_pins: emmc-cmd-pins {
-> +			rockchip,pins =
-> +				/* emmc_cmd */
-> +				<1 RK_PA5 1 &pcfg_pull_up_drv_level_2>;
-> +		};
-
-The _pins suffix seem reduntant, at least where there is only a single
-pin in the group?
-
-> +	};
-> +
-> +	emmc_testclk {
-> +		emmc_testclk_clk_pins: emmc-testclk-clk-pins {
-> +			rockchip,pins =
-> +				/* emmc_testclk_out */
-> +				<1 RK_PA7 3 &pcfg_pull_up_drv_level_2>;
-> +		};
-> +	};
-> +
-> +	emmc_testdata {
-> +		emmc_testdata_out_pins: emmc-testdata-out-pins {
-> +			rockchip,pins =
-> +				/* emmc_testdata_out */
-> +				<1 RK_PB0 3 &pcfg_pull_none>;
-> +		};
-> +	};
-
-[snip]
-
-> diff --git a/arch/arm/boot/dts/rockchip/rv1103b.dtsi b/arch/arm/boot/dts/rockchip/rv1103b.dtsi
-> new file mode 100644
-> index 000000000000..380637b63ef5
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/rockchip/rv1103b.dtsi
-> @@ -0,0 +1,266 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2024 Rockchip Electronics Co., Ltd.
-> + */
-> +
-> +#include <dt-bindings/clock/rockchip,rv1103b-cru.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/pinctrl/rockchip.h>
-> +
-> +/ {
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +
-> +	compatible = "rockchip,rv1103b";
-> +
-> +	interrupt-parent = <&gic>;
-> +
-> +	arm-pmu {
-> +		compatible = "arm,cortex-a7-pmu";
-> +		interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-affinity = <&cpu0>;
-> +	};
-> +
-> +	xin32k: oscillator-32k {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <32768>;
-> +		clock-output-names = "xin32k";
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	xin24m: oscillator-24m {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <24000000>;
-> +		clock-output-names = "xin24m";
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a7";
-> +			reg = <0x0>;
-> +			clocks = <&cru ARMCLK>;
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv7-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_HIGH)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_HIGH)>;
-> +		clock-frequency = <24000000>;
-> +	};
-> +
-> +	cru: clock-controller@20000000 {
-> +		compatible = "rockchip,rv1103b-cru";
-> +		reg = <0x20000000 0x81000>;
-> +		#clock-cells = <1>;
-> +		#reset-cells = <1>;
-> +
-> +		assigned-clocks = <&cru PLL_GPLL>, <&cru CLK_GPLL_DIV12>;
-> +		assigned-clock-rates = <1188000000>, <100000000>;
-> +	};
-
-This and all other MIMO nodes should be places inside a /soc node,
-please see other recent Rockchip SoCs, like RK3576, RK3528 and RK3562.
-
-> +	/*
-> +	 * Merge all GRF, each independent GRF offset is shown as bellow:
-> +	 * VEPU_GRF:		0x20100000
-> +	 * NPU_GRF:		0x20110000
-> +	 * VI_GRF:		0x20120000
-> +	 * CPU_GRF:		0x20130000
-> +	 * DDR_GRF:		0x20140000
-> +	 * SYS_GRF:		0x20150000
-> +	 * PMU_GRF:		0x20160000
-
-This merge is something we have avoided for other Rockchip SoCs and is
-something downstream mostly have done to simplify software not to 
-accurately represent the hw.
-
-Please split the GRFs like has been done on other recent Rockchip SoCs.
-
-> +	 */
-> +	grf: syscon@20100000 {
-> +		compatible = "rockchip,rv1103b-grf", "syscon", "simple-mfd";
-> +		reg = <0x20100000 0x61000>;
-> +
-> +		reboot_mode: reboot-mode {
-> +			compatible = "syscon-reboot-mode";
-> +			offset = <0x60200>;
-> +		};
-> +	};
-> +
-> +	ioc: syscon@20170000 {
-> +		compatible = "rockchip,rv1103b-ioc", "syscon";
-> +		reg = <0x20170000 0x60000>;
-> +	};
-> +
-> +	gic: interrupt-controller@20411000 {
-> +		compatible = "arm,gic-400";
-> +		interrupt-controller;
-> +		#interrupt-cells = <3>;
-> +		#address-cells = <0>;
-> +
-> +		reg = <0x20411000 0x1000>,
-> +		      <0x20412000 0x2000>,
-> +		      <0x20414000 0x2000>,
-> +		      <0x20416000 0x2000>;
-> +		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_HIGH)>;
-> +	};
-> +
-> +	uart0: serial@20540000 {
-> +		compatible = "rockchip,rv1103b-uart", "snps,dw-apb-uart";
-> +		reg = <0x20540000 0x100>;
-> +		interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-> +		reg-shift = <2>;
-> +		reg-io-width = <4>;
-> +		clock-frequency = <24000000>;
-
-Any reason to define the clock rate here, the clock already report this
-rate?
-
-> +		clocks = <&cru SCLK_UART0>, <&cru PCLK_UART0>;
-> +		clock-names = "baudclk", "apb_pclk";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&uart0m0_xfer_pins>;
-> +		status = "disabled";
-> +	};
-> +
-> +	sdmmc1: mmc@20650000 {
-> +		compatible = "rockchip,rv1103b-dw-mshc", "rockchip,rk3288-dw-mshc";
-> +		reg = <0x20650000 0x4000>;
-> +		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru HCLK_SDMMC1>, <&cru CCLK_SDMMC1>;
-> +		clock-names = "biu", "ciu";
-> +		fifo-depth = <0x100>;
-> +		max-frequency = <150000000>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&sdmmc1_clk_pins &sdmmc1_cmd_pins &sdmmc1_bus4_pins>;
-> +		status = "disabled";
-> +	};
-> +
-> +	uart1: serial@20870000 {
-> +		compatible = "rockchip,rv1103b-uart", "snps,dw-apb-uart";
-> +		reg = <0x20870000 0x100>;
-> +		interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
-> +		reg-shift = <2>;
-> +		reg-io-width = <4>;
-> +		clock-frequency = <24000000>;
-> +		clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
-> +		clock-names = "baudclk", "apb_pclk";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&uart1m0_xfer_pins>;
-> +		status = "disabled";
-> +	};
-> +
-> +	uart2: serial@20880000 {
-> +		compatible = "rockchip,rv1103b-uart", "snps,dw-apb-uart";
-> +		reg = <0x20880000 0x100>;
-> +		interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
-> +		reg-shift = <2>;
-> +		reg-io-width = <4>;
-> +		clock-frequency = <24000000>;
-> +		clocks = <&cru SCLK_UART2>, <&cru PCLK_UART2>;
-> +		clock-names = "baudclk", "apb_pclk";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&uart2m0_xfer_pins>;
-> +		status = "disabled";
-> +	};
-> +
-> +	wdt: watchdog@208d0000 {
-> +		compatible = "snps,dw-wdt";
-> +		reg = <0x208d0000 0x100>;
-> +		clocks = <&cru TCLK_WDT_NS>, <&cru PCLK_WDT_NS>;
-> +		clock-names = "tclk", "pclk";
-> +		interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
-> +		status = "disabled";
-> +	};
-> +
-> +	sdmmc0: mmc@20d20000 {
-> +		compatible = "rockchip,rv1103b-dw-mshc", "rockchip,rk3288-dw-mshc";
-> +		reg = <0x20d20000 0x4000>;
-> +		interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru HCLK_SDMMC0>, <&cru CCLK_SDMMC0>;
-> +		clock-names = "biu", "ciu";
-> +		fifo-depth = <0x100>;
-> +		max-frequency = <150000000>;
-> +		pinctrl-names = "normal", "idle";
-
-What is "normal" and "idle" and how are they used, something downstream
-specific? Should probably just be "default".
-
-> +		pinctrl-0 = <&sdmmc0_det_pins
-> +			     &sdmmc0_clk_pins
-> +			     &sdmmc0_cmd_pins
-> +			     &sdmmc0_bus4_pins>;
-> +		pinctrl-1 = <&sdmmc0_det_pins
-> +			     &sdmmc0_clk_idle_pins
-> +			     &sdmmc0_cmd_idle_pins
-> +			     &sdmmc0_bus4_idle_pins>;
-> +		status = "disabled";
-> +	};
-> +
-> +	emmc: mmc@20d30000 {
-> +		compatible = "rockchip,rv1103b-dw-mshc", "rockchip,rk3288-dw-mshc";
-> +		reg = <0x20d30000 0x4000>;
-> +		interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru HCLK_EMMC>, <&cru CCLK_EMMC>;
-> +		clock-names = "biu", "ciu";
-> +		fifo-depth = <0x100>;
-> +		max-frequency = <150000000>;
-
-This seem to be missing the default pinctrl, any reason they are?
-
-> +		status = "disabled";
-> +	};
-> +
-> +	fspi0: spi@20d40000 {
-> +		compatible = "rockchip,sfc";
-> +		reg = <0x20d40000 0x4000>;
-> +		interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru SCLK_SFC_2X>, <&cru HCLK_SFC>;
-> +		clock-names = "clk_sfc", "hclk_sfc";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-
-Same here.
-
-> +		status = "disabled";
-> +	};
-> +
-> +	system_sram: sram@210f6000 {
-> +		compatible = "mmio-sram";
-> +		reg = <0x210f6000 0x8000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0 0x210f6000 0x8000>;
-> +	};
-> +
-> +	pinctrl: pinctrl {
-> +		compatible = "rockchip,rv1103b-pinctrl";
-> +		rockchip,grf = <&ioc>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		gpio0: gpio@20520000 {
-> +			compatible = "rockchip,gpio-bank";
-> +			reg = <0x20520000 0x200>;
-> +			interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cru PCLK_PMU_GPIO0>, <&cru DBCLK_PMU_GPIO0>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&pinctrl 0 0 32>;
-
-Looking at the datasheet and code for rv1103b/rv1106b there does not
-seem to be full use of the 32 pins, and only up to 14 pins are routed?
-
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +
-> +		gpio1: gpio@20d80000 {
-> +			compatible = "rockchip,gpio-bank";
-> +			reg = <0x20d80000 0x200>;
-> +			interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cru PCLK_GPIO1>, <&cru DBCLK_GPIO1>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&pinctrl 0 32 32>;
-
-Similar here, only up to pin 29 is routed?
-
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +
-> +		gpio2: gpio@20840000 {
-> +			compatible = "rockchip,gpio-bank";
-> +			reg = <0x20840000 0x200>;
-> +			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cru PCLK_GPIO2>, <&cru DBCLK_GPIO2>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&pinctrl 0 64 32>;
-
-And here only up to 16 pins.
-
-I would recommend you drop the gpio-ranges for now until this has been
-cleared up.
+You said that in the commit message.
 
 Regards,
-Jonas
+Bjorn
 
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +};
-> +
-> +#include "rv1103b-pinctrl.dtsi"
-
+> ---
+> Changes in v2:
+> - Drop tz log changes
+> - Add tz log label to a generic node
+> - Link to v1: https://lore.kernel.org/r/20260129-sm8550-abl-dtbo-v1-0-abca3be14024@gmail.com
+> ---
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index e3f93f4f412ded9583a6bc9215185a0daf5f1b57..04ea1a4a015aa5a4fd615e068b6f18b7c336607c 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -32,7 +32,8 @@ / {
+>  	#address-cells = <2>;
+>  	#size-cells = <2>;
+>  
+> -	chosen { };
+> +	// This label is required by ABL to apply a dtbo
+> +	qcom_tzlog: chosen { };
+>  
+>  	clocks {
+>  		xo_board: xo-board {
+> @@ -6756,7 +6757,8 @@ trip-point2 {
+>  		};
+>  	};
+>  
+> -	timer {
+> +	// This label is required by ABL to apply a dtbo
+> +	arch_timer: timer {
+>  		compatible = "arm,armv8-timer";
+>  		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>,
+>  			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>,
+> 
+> ---
+> base-commit: 3f24e4edcd1b8981c6b448ea2680726dedd87279
+> change-id: 20260128-sm8550-abl-dtbo-96288634f00d
+> 
+> Best regards,
+> -- 
+> Aaron Kling <webgeek1234@gmail.com>
+> 
+> 
 
