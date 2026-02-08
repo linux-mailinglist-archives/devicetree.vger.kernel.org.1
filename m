@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263687-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UAFaJ/1yiGlZpgQAu9opvQ
-	(envelope-from <devicetree+bounces-263686-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 12:26:53 +0100
+	id QBc1KKl1iGmwpgQAu9opvQ
+	(envelope-from <devicetree+bounces-263687-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 12:38:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 191D510886A
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 12:26:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECDA91088B0
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 12:38:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6E0E6300EA84
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 11:26:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A3715300F5DC
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 11:38:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 812523451C1;
-	Sun,  8 Feb 2026 11:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2DC346AC0;
+	Sun,  8 Feb 2026 11:38:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PEHDPc8I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mTgX4lJP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E19023D7CE;
-	Sun,  8 Feb 2026 11:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 467F223D7EC;
+	Sun,  8 Feb 2026 11:38:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770550006; cv=none; b=bLN77zd6/oCwbVZx45ySV6NFtoeBnO2esZHCx8k0xyVJmHgYSzGzklQmNTbJDt5F0BxRFbJI6RawfOKdSjDW3Wm0yj0XkB4kf6Hcz+fXmdIJcJkbwN6rH35Gr4+5ZzCEOxVhaWKb7dEPFH0mnuKioHuZF/WzsTwEt2Ivy2DrBd0=
+	t=1770550692; cv=none; b=DSvCRfL69XYIXur0fz/i9FE2IE3LPOCFnG+IQDky9FXZbVmlsO5LAGbQVPfKYfMpR8HVDPPKej5E9+/1y4lLqPKC9H+ju2xKMTFy7RzCtaXhDqY9/RJrIKuMHoHx5OTa31rF258vbtYPjcws+qkpCyMaviViKdTnKvHvY29mOpw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770550006; c=relaxed/simple;
-	bh=GHrfKq5xCOGP09EmpizdVPiu6ZM5KQJXJJ+zxLJYBDY=;
+	s=arc-20240116; t=1770550692; c=relaxed/simple;
+	bh=Otsv2hhWWXfzPOEXDIDyWe5r/Zr/yGDR9ck6A6xi8qE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qTVvRlfbGHoHCQS2pIWqqNJu3C31wKWucqen9FsQT4k6/Oru0yMQyArUxB4QWI3ist6cmXLezUm11Dp1uwxZRcQ2nWN2zy5BL8Mq5meorimcGaYB/O/h7bbzyYupo0NsKhy7z/2jgEKw6PxpV/X28jVQfIqRNjIh9u3BdTnelvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PEHDPc8I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 497E8C4CEF7;
-	Sun,  8 Feb 2026 11:26:43 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IC+cw79HLtm8DcaKfEROyaNtHbHmNSUH2uW7X0SU445n/wYjknY/vVBpYUHXn0ydUx9WIlLOBvAENs7UWkNJtmNOD5Ov+8PhXACSUyCPZQswsw4QVtAhTO04BtRm43JP6K/XdjZqP59+Y02nLB6blLycJYEtj+Nw4LrNidizQco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mTgX4lJP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D076AC4CEF7;
+	Sun,  8 Feb 2026 11:38:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770550006;
-	bh=GHrfKq5xCOGP09EmpizdVPiu6ZM5KQJXJJ+zxLJYBDY=;
+	s=k20201202; t=1770550691;
+	bh=Otsv2hhWWXfzPOEXDIDyWe5r/Zr/yGDR9ck6A6xi8qE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PEHDPc8ICJwAFda4aOrfBqnytamjFUIhOEDm7jdk/tNYaflrk9nLqUApnL97z+3lf
-	 52sEllAg4gBPN1PKz9WTzz23H1opDmNaPpUDgCmbZmZK2qNMc+E9o9zNGwwFOFEJrT
-	 //S7v9XUmc7nk+BIo9CZRddJ/PUOkvtOnyIjGgWFsZsM3GWuB0VkrNHe/Xe7tCsZWl
-	 TdwJT4ZN+PmWYoXoHZTzjKJSRIXa0WicCSJuhGTbABjxHbf0yQWPQALBL6njiK9wlY
-	 3FEJVT6Gv+6Qs6+8EDZuZJY3KCQsj2Ch0gvsXtodRmrSOY0r+/d4dl6yiXWF2vGxeE
-	 bWbaipjjOG3MQ==
-Message-ID: <0a38766b-2244-436c-ac1b-714e51af3a28@kernel.org>
-Date: Sun, 8 Feb 2026 12:26:41 +0100
+	b=mTgX4lJPwZlXyXOYnLKYPQE63CGGNkQqmY50R9JUseP5pDaCRAQYWulyaymZW31v8
+	 Wpb3ocGWDKV1oN9bZiVqJsnDWkakft1TNtfFObB6NfnjDm1ZoVZ/yJm3suhpE45qOb
+	 fx0OjfJwcz9JsFIFDGyXs1nT7kkckv54Gas8PUSr/eNObcQyPFcrVSjJ0EG+9cfvgQ
+	 vrnHcwO8ze/N5mSPa2s12gQyEYKkPG2FgMpvG76QJQLYuL5bH73yvtYV1BoL5l48ue
+	 //+eDSy6J7Zt8xeJVbjuSeCibPidhgnicOs0quHDnXPMkADJ5Vzq4BBgdDaC9fcW4z
+	 4NxV83nhkGcsQ==
+Message-ID: <93bff61b-ffc3-4b09-ac97-99f576e6d48f@kernel.org>
+Date: Sun, 8 Feb 2026 12:38:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,17 +53,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: configs: Update defconfig for DSI-LVDS
- bridge support
-To: Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, venkata.valluru@oss.qualcomm.com,
- jessica.zhang@oss.qualcomm.com, Yi Zhang <zhanyi@qti.qualcomm.com>
-References: <20260130-add-lt9211c-bridge-for-rb3gen2-industrial-mezzanine-v2-0-a98714fa1531@oss.qualcomm.com>
- <20260130-add-lt9211c-bridge-for-rb3gen2-industrial-mezzanine-v2-2-a98714fa1531@oss.qualcomm.com>
+Subject: Re: [PATCH v5 5/6] arm64: defconfig: enable BST SDHCI controller
+To: Albert Yang <yangzh0906@thundersoft.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Adrian Hunter
+ <adrian.hunter@intel.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ge Gordon <gordon.ge@bst.ai>,
+ Arnd Bergmann <arnd@arndb.de>
+Cc: BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260123095342.272505-1-yangzh0906@thundersoft.com>
+ <20260123095342.272505-6-yangzh0906@thundersoft.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,49 +110,52 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260130-add-lt9211c-bridge-for-rb3gen2-industrial-mezzanine-v2-2-a98714fa1531@oss.qualcomm.com>
+In-Reply-To: <20260123095342.272505-6-yangzh0906@thundersoft.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263686-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263687-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.990];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 191D510886A
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: ECDA91088B0
 X-Rspamd-Action: no action
 
-On 30/01/2026 11:27, Gopi Botlagunta wrote:
-> Enable the LT9211 bridge driver to support DSI-to-LVDS conversion
-> on the Qualcomm RB3GEN2 Industrial Kit.
-> 
-> Signed-off-by: Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
-> Co-developed-by: Yi Zhang <zhanyi@qti.qualcomm.com>
-> Signed-off-by: Yi Zhang <zhanyi@qti.qualcomm.com>
+On 23/01/2026 10:53, Albert Yang wrote:
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index 45288ec9eaf7..7f4da3117329 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -1222,6 +1222,7 @@ CONFIG_MMC_BLOCK_MINORS=32
+>  CONFIG_MMC_ARMMMCI=y
+>  CONFIG_MMC_SDHCI=y
+>  CONFIG_MMC_SDHCI_ACPI=y
+> +CONFIG_MMC_SDHCI_BST=y
 
-Incorrect DCO chain.
-
+This is still wrongly ordered. Look at your Kconfig. Run savedefconfig.
 
 Best regards,
 Krzysztof
