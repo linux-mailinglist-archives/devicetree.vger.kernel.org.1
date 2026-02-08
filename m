@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263682-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SHSpA1tkiGmnpAQAu9opvQ
-	(envelope-from <devicetree+bounces-263681-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:24:27 +0100
+	id BpPqCg9miGnFpAQAu9opvQ
+	(envelope-from <devicetree+bounces-263682-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:31:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A41B61085AE
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:24:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71AE51085EB
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:31:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 71FB4300337D
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 10:24:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AF7C63009FBA
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 10:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 607FB34676E;
-	Sun,  8 Feb 2026 10:24:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE10626E71F;
+	Sun,  8 Feb 2026 10:31:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XT1TprO4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cMW9J1f3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A90E4C6C;
-	Sun,  8 Feb 2026 10:24:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C98A14086A;
+	Sun,  8 Feb 2026 10:31:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770546264; cv=none; b=ERwzjkKwZihCdPHHrlMghhpNYLiLnWbaO88JAv34ilaEYz4g+r+7QgDtQSrn4C2iboZ7VGdHwZp4l8cZmHvohglIBiKDUzvR4vnVoHluWmZu6zC5HfRNkJ/vbgn3jn7xReAvCeRCTwPpVRxGvj2hNomxehlFiRdA71CujsNFllY=
+	t=1770546699; cv=none; b=OwthnkqGeGIzxVnogtzFnJm4I2xAUn6ElaJa+U4D+Y3j9w1u+K9OYRcbuqUrqCMTUaQIBSQzJ+5On+lDSWw5M0N/vQ9gZvvyaDkuyjxCeWKgJg0WHNbgshuNzE50z8k6bjSrIGFVedb8XMjoXU21aW6m085V9b72LKHITdZCN8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770546264; c=relaxed/simple;
-	bh=76L6sj/ZbLNs6H7pO+qSYRr0AEiBZoSRz3QqA2vnTPM=;
+	s=arc-20240116; t=1770546699; c=relaxed/simple;
+	bh=GUAXOcrm41ITrljNUEdNmAemB4EIj2N7q4Z7fBaiNO8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j4LbYnLuZiFIz31U8d0huXrVXw8xYQHtF+bmjv17QvgdolNkCOVezLNWRazCgM7NQIfgXnulFBMxfe/aX8F3jM34nHWU4kDdSmcVVvlx56HgD5sc5Jf3LzhOTqKylk3GE4EXWJ0vuy5bxednwoxbX44eJ0+lgrmlDYOYXBllfdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XT1TprO4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88D24C4CEF7;
-	Sun,  8 Feb 2026 10:24:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=m0WyEmXtD6gEJeeUBxSigCitM0Nas8PmBFoNb+dt0l/7jnpoYCm0S5mukjVMcdikk0iAoX78AXmDa50yhcpIpKWdkOa40R0gj9p28NGrGNHslOwNn6YF0aCBbuiIH8XtMUK7nAN4sEdtH6Re0QFVLclWbyaEg/VnmkMS6uz+FQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cMW9J1f3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DB49C4CEF7;
+	Sun,  8 Feb 2026 10:31:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770546263;
-	bh=76L6sj/ZbLNs6H7pO+qSYRr0AEiBZoSRz3QqA2vnTPM=;
+	s=k20201202; t=1770546699;
+	bh=GUAXOcrm41ITrljNUEdNmAemB4EIj2N7q4Z7fBaiNO8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XT1TprO4NIV04qmfy/peL3F8iFiYcuZ2tRCT05h0CVQNo5fQyWrXaH4Be1LmrVY+X
-	 HWkyFSuBj3Q8YAEgalsYL1KJlg+v+M67MMVHjHtT+lu9MSPMYYGbBmcYQVPlwhCGsO
-	 HEbySIdLR/N4K5hwCf0gOVH5Ru+xyWewkL2vf+JC/EUMGH6S6gprjZa/eVSJV5v5n1
-	 0HLy0SGTufc+VVJKSZAHPOaLwVpk5DMZaMECePAVQnaQ38tDG+ZHfFUF3U/nbD8jiY
-	 w2liUTLFx7+pOOaffEauMGT4NiHHalQkSJ03FR8yLMOBPMjHOVZRl1GeGRqwXMh6mW
-	 oBdBxHLXxrwlQ==
-Message-ID: <04018e01-6aa0-4a7e-9c8b-59d868099f83@kernel.org>
-Date: Sun, 8 Feb 2026 11:24:18 +0100
+	b=cMW9J1f39HYiWlkvSNw8muEYC99v3zB8fCt98m2AF4bS1RHuIaBoxB1iwdQmbI/Pz
+	 RswStGsi0Y0GXhMOfRZHCj01Tw0stq5JXpLVZTUEoBy6QaIyimCZWQssKYHeP5DuE3
+	 R2nn1C/Hu+a3vqAybQLNCEegdNHEdqzD1bwJHinEugAf8v6QHwn58FUlQ8TmfokVAc
+	 kk8a36xFCZqHoymsmUgfkC2nLtFoEeIJPcJB+t2JzhN3gLvJ0gAV9jtnDdHSzGyjRk
+	 ysaP+eeR1pJ+12hOm9m/pB1qhacEkZwBUX/qlj7XiLiuYE1PR0B4nbzgwsinEYf7kf
+	 EOOkFCKoGsKDg==
+Message-ID: <b9e275cf-7c16-47cf-9699-82bc79aa7f90@kernel.org>
+Date: Sun, 8 Feb 2026 11:31:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,21 +53,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] spi: dt-bindings: nxp,imx94-xspi: add nxp,imx952-xspi
-To: Frank Li <Frank.li@nxp.com>
-Cc: Haibo Chen <haibo.chen@nxp.com>, Han Xu <han.xu@nxp.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v4 7/7] ARM: dts: rockchip: rk3506: Add pinctrl and rmio
+ dtsi for rk3506
+To: Ye Zhang <ye.zhang@rock-chips.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, linux-spi@vger.kernel.org,
- imx@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260114-xspi-imx952-v1-0-acc60a5a2a9d@nxp.com>
- <20260114-xspi-imx952-v1-1-acc60a5a2a9d@nxp.com>
- <c605c5f7-45b7-4e15-9d80-8bd224624b27@kernel.org>
- <aWlXLzBri8o4YQ1t@lizhi-Precision-Tower-5810>
+ <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ tao.huang@rock-chips.com
+References: <20251227114957.3287944-1-ye.zhang@rock-chips.com>
+ <20251227114957.3287944-8-ye.zhang@rock-chips.com>
+ <ebb720f6-4756-437f-a71a-d94f45d732e8@kernel.org>
+ <543e7200-2126-490a-a7a8-4898362a910d@rock-chips.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,7 +112,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aWlXLzBri8o4YQ1t@lizhi-Precision-Tower-5810>
+In-Reply-To: <543e7200-2126-490a-a7a8-4898362a910d@rock-chips.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -122,54 +121,56 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263681-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263682-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-0.989];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,nxp.com:email]
-X-Rspamd-Queue-Id: A41B61085AE
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 71AE51085EB
 X-Rspamd-Action: no action
 
-On 15/01/2026 22:07, Frank Li wrote:
-> On Thu, Jan 15, 2026 at 09:55:57PM +0100, Krzysztof Kozlowski wrote:
->> On 14/01/2026 07:49, Haibo Chen wrote:
->>> Document i.MX952 XSPI compatible, which is derived from
->>> i.MX94 XSPI.
->>>
->>> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
->>> ---
->>>  Documentation/devicetree/bindings/spi/nxp,imx94-xspi.yaml | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>
+On 29/12/2025 10:00, Ye Zhang wrote:
+>>> +
+>>> +		/omit-if-no-ref/
+>>> +		rm_io28_sai0_sdi0: rm-io28-sai0-sdi0 {
+>>> +			rockchip,pins =
+>>> +				<1 RK_PC3 7 &pcfg_pull_none>;
+>>> +			rockchip,rmio-pins =
+>>> +				<0 28 54>;
+>>> +		};
+>> Why are you defining all pins? This is wrong, your driver has to do it,
+>> not DTS. All these definitions when not used are just pointless.
 > 
-> Krzysztof:
+> This file is auto-generated to provide a complete set of RMIO configurations.   Our intention is to offer a generic library for all future board developers, so they can simply pick the needed nodes by phandle without manually looking up register values in the datasheet every time.   This improves usability and standardization.
 > 
-> 	You sent an empty message here.
+> We also used the /omit-if-no-ref/ tag, so this will strictly not increase the size of the compiled DTB binary at all.
 > 
-> Frank
->>
+> Could you please reconsider if this  approach is acceptable given the usability benefits?
 
-Thanks, second try:
+What usability benefits? This is review and maintenance nightmare.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> 
+> If you still consider the ~25k lines of source code bloat unacceptable for upstream, we will have to drop this generic dtsi file and let users (and ourselves) manually define only the required nodes when adding board support."
+> 
+
+I see no point in having such code. Upstream is not your SDK.
 
 Best regards,
 Krzysztof
