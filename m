@@ -1,176 +1,199 @@
-Return-Path: <devicetree+bounces-263699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263700-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cL4iDqWgiGnSsgQAu9opvQ
-	(envelope-from <devicetree+bounces-263699-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 15:41:41 +0100
+	id YEKjKHeiiGn9swQAu9opvQ
+	(envelope-from <devicetree+bounces-263700-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 15:49:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2A8E108F39
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 15:41:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2E2E108FAB
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 15:49:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5CB983009568
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 14:41:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B4D633012C4D
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 14:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67F223587DD;
-	Sun,  8 Feb 2026 14:41:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E59F1359FB3;
+	Sun,  8 Feb 2026 14:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iuSFG1Rp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T+hiCOLF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1045A2D3A75
-	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 14:41:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770561696; cv=none; b=OpHwsHNea/jtqGaDfW2VLSpVr76Gy3gePAOWvwYXPlp/9ZQlqgPaCtol4AtjyNng+lftzrXVFksuvFlAm92Pyhv0PvIvAECPj3xckZFSIsy5aDi4YOkwAWqEQlzIUdNeyQ6YiKdHXxkIv5M9HXRWxOHp7SNFrMtZAjEK1dTHVZ4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770561696; c=relaxed/simple;
-	bh=CZs6W4qtgovICtv3aQ4MI/35xymWjYMW9FmKLgGvuPQ=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=B0gO7KjU8dp1uBwBo/S9NsFLCo9w7sIeou7bjdRjsTpeCNsfDCaCH8VrMFc06TkjEcOjnYdN9XW8FVIE3H1oYlcIAcjXt52juVuoY9I8gOlbRSDnLqD5pyufXt0dzv0PkDZ2wigIoVdzHXh8jXs//4SG3Bkdd0mkX9i5hGnzEjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iuSFG1Rp; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92A442BE625
+	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 14:49:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770562162; cv=pass; b=R4bWAJ+2Hxlge3d0ovsnPtmoaA+cmIh6DOeuzptx/aNSZ+YEsbvkZfZY3BDoSJPyfRvU1V3h0eXioPd1JRqSrxCzKesybrOBg6usjPJ4RBwW4DGCsbgUB02fQxf3zjqbrZUhzMROcLRCaNAPqP4RvY4iYoKmbAKH3SIO3FZcnHY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770562162; c=relaxed/simple;
+	bh=FmHJHscw4UGRqf6tadsbey53/7alBZ0goPH23uKBsZc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qYNyKUWE1JXkZfdToyhkgGtrEREDTIWs9j2sJTyWUz9vt3ssP7G0vTi857+2i/6TKk9JHs8j1AVuyfzUUZ+KnUWARgApCYjbryzfaB4+tNXE3CbWHOlK91y+OFGfBH109S4s8QhdWseqELN6mIkm0gDSsEg6FmQJB6VDhd5I4sg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T+hiCOLF; arc=pass smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-59dd9aef51eso4816258e87.2
-        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 06:41:35 -0800 (PST)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b884ad1026cso557834766b.2
+        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 06:49:22 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770562161; cv=none;
+        d=google.com; s=arc-20240605;
+        b=RiJPPuGjR6ND2zEWGrhnhallrNbdhqoa/XgQZ0yIQq1ZqfDyyWWaBpyMYioFGW1770
+         xg76VWSbx1ZhdVovbX6YH4DQhyTlofA6R0pzMrLgtdJjQzc7FEh7QcVhepzsMCTu1SOc
+         Z1k5E6aVG15AGjTlC09gDzWhvyydDFlbd6L+rHRAsrH92Bn24ZT8sGt1tNnQ6Atgrdl1
+         ZrarPgPYBJIXEzo2he1yraRB9FbKADKpU7vzbd2YlAY4vl5kdpDFumaOa1MHWsBn3xPc
+         GtWAX2sPB872CyqSHLFpe5sWTsizUADujPo3Mg7PD5MNlwvqyY81E3RRxVudCbxGiALs
+         j8xw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=7QS0VkNqOpSXotrnDMRD5sTIzzQObxdRFOn5/qTfAgQ=;
+        fh=jt9XRfn2TraQj9VWnrmEUOwHUXyqqWmJMji/n8r4Hzk=;
+        b=Nbu+VarwVG7I7Ra7rgATaHFEjeCeHmNJaLMFlgqn6IxY5TLuHHn6Dnb15Ugi6LrRaA
+         3ycBOCd44bRPmupWkTWBt9dBMpUEl9Nyc9FM283lWWD4SLDv3gXX+XjB4HkRS/qioPdA
+         8JqoZBNS+BAhNsRBTziXQD/dOJSyyOPbdOqN5REroBeOmfvAhknJEc02SIk9Y5P4CDMs
+         gOqg8qNO1u4IpUKKzlbfSh3mYy/EwfBOg71yOKmtBjY7wAKEu3HtiGxkdEtkZQEYWD5f
+         144bKmvvhPMi7CXfeLvO557mfXYRcZU81+tETg86roI0uJLOv/AYkLcYugC1vERPwyQK
+         pfFA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770561694; x=1771166494; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=rYIWPdf9Ppa+RCJ5xZ0bnUhEJapRTVibnTDn3MDdLKE=;
-        b=iuSFG1Rp7qDdoQS1exGm06yTiEKE8Ut9Sby3ZZLF/zCWH4LkssqaC3tX0QAvid2tDZ
-         VnSHPoGkzaL+5sn2ZUpiaMdEjLhk53Nm2u2SyT1u1KyMVFz8swBc8zQz7RVPbK/fOJ56
-         pEQOvQFR+dfhtTOTfHVmo2apfkd8UMJD7IajkDhVKME/rByfKkbfB9mle0n8li2B+E6P
-         DPi7HGy3NVWGdWqFeGnjQkxhq2ZhzNR3xPl0lifC556ugcm0En8cd7ia7TAXTqjv9Pf7
-         xnk/ay0/30ZjEGbiUoa+ejygg92xWM6xypLs/rRzgWt9C/856NQMTxWCoYnEPNpZLJWM
-         c1Xg==
+        d=gmail.com; s=20230601; t=1770562161; x=1771166961; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7QS0VkNqOpSXotrnDMRD5sTIzzQObxdRFOn5/qTfAgQ=;
+        b=T+hiCOLFdGVaRU4AS5E60jFWT27jFP/yUq2q3RU/DhEQvXsB1HWbwojWFVn0RONcCp
+         NwbnVVVBX6OIIFMZqcOsEw3co9xxpT90WlSLJyxJ3NGMOVB62Enn5j6zCGRusNX412ak
+         qABLXe/BFjyrEkc5xm+/zRs8iYkDtx0zzIn/uQwTafbKKEPjfBc4pBHir3EcnyOoQtfB
+         mAGmM7X2Uu1yChZkbh8shRxdHkyTzaHe/Z0mWcByCsUY9zTu/SSlPy7RRvApo7i9wzmD
+         YqCJaBuJU5kWkPUvv0kUbFIbwU9PenncD04ST7UxABy6dhVB4eaHP83SSZPR1Nic1S7m
+         hdLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770561694; x=1771166494;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rYIWPdf9Ppa+RCJ5xZ0bnUhEJapRTVibnTDn3MDdLKE=;
-        b=Tg5swTyVPeOSyN/Xn85MZpHuudkZwDu5akhzfe6eJ5LAd1RUJbh+AVLlfC7wwT7iN+
-         F2Rvti1DVSYvlf/WLh/2BSC8AynDksOYop+2ATATTE3Zy2P23gltVuSlsok5zIAwr3fT
-         QS68J7TRQ0BifCdv+r6UgT8hzdaiBWwnmIszCvob6aWmjiYUnTppciMD+k0NskuZdU8a
-         e17aXfrQw0AbEwVt6HMNuWIEZidSlRKpY4SGz6B8XNVpT5N8jU2hf9VPllgQzYirif1D
-         +nDuXGGQCiMB0qqEK+LKKasxUQBxldfLXkwawjlkf6gKDdp9psem/eRKv8VClOk1WUhe
-         QrAw==
-X-Forwarded-Encrypted: i=1; AJvYcCVr9ShnxF1LrNV8JubUOovfq1EPJEl0DuicsK27GnWnrEX8ldqCC82I9Ch0Ao162e7tWfyg603TLGaW@vger.kernel.org
-X-Gm-Message-State: AOJu0YycLXdrom1QY0uSjW66OQZYKZUxrIZBaHiTmaXzZxzX2m+ZClKN
-	DFDPaOdi+syxXhptyUHtkXyMoLrKGY6ONjLhIGdVrhC1uxe1EJu7uHFp
-X-Gm-Gg: AZuq6aIKpOiL8kO+1m76g3SOZ2rKAteJmwGL4QaL7jL48qXSkJVyYaPbwFV23UzpyFk
-	/SMSDvMt3Q+eiHBTh8uL+LFeuepF/3LVYnzFuZ0zzuRT3nJDDQBv7t4v4+wrjzLtq6td2iS8yF4
-	P6u4ltQPV+YrO9uhEOibsl4NhboIWwogFxXdIPBJ409vDOAdLSBr+QDnSXIoCJ6BvVwek7SWg1L
-	gz/f0ii5/37Co1K3cdTDzQBx5UKBNo82EZbtKomKi8fipdCUJBde1RA8nkRO522Jky5pL+klbqm
-	U6qk4b12ZxHp4OW0tTXXL8x8pcXitINwuqTJx/6sU6JJpPhVaTcCxY5+Gu+qj6UPgDkHaH0FRTo
-	tygsU1K++ktr/aKq/7XwLbKayI86HLmJHjwPiKmXDcr4gxO5eAepJ8wvumc4xMQEYeshTLMgDuf
-	hfX+q04ZKXwEpPuzp+GpAJUOz7EtFIoEo=
-X-Received: by 2002:a05:6512:1302:b0:59e:39af:a70f with SMTP id 2adb3069b0e04-59e45156d7emr2557460e87.35.1770561693903;
-        Sun, 08 Feb 2026 06:41:33 -0800 (PST)
-Received: from ehlo.thunderbird.net ([178.137.246.208])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e44cfd475sm1948495e87.29.2026.02.08.06.41.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Feb 2026 06:41:33 -0800 (PST)
-Date: Sun, 08 Feb 2026 16:41:32 +0200
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-CC: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
- =?ISO-8859-1?Q?Nuno_S=E1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Lee Jones <lee@kernel.org>,
- Pavel Machek <pavel@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Dixit Parmar <dixitparmar19@gmail.com>,
- Tony Lindgren <tony@atomide.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-input@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2_11/11=5D_mfd=3A_motorola-cpca?=
- =?US-ASCII?Q?p=3A_add_support_for_Mot_CPCAP_composition?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <aYiH8iwetvRfWxGI@smile.fi.intel.com>
-References: <20260206172845.145407-1-clamor95@gmail.com> <20260206172845.145407-12-clamor95@gmail.com> <aYiH8iwetvRfWxGI@smile.fi.intel.com>
-Message-ID: <39B7F089-5B4A-47F7-B2EA-A526B290FA77@gmail.com>
+        d=1e100.net; s=20230601; t=1770562161; x=1771166961;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=7QS0VkNqOpSXotrnDMRD5sTIzzQObxdRFOn5/qTfAgQ=;
+        b=ZxTfKaVgAV80NCQGwxVirCqMPePFUriiKkyzEdQVU2B8+VK0+ocqjWg7GkVSpQ1ZO5
+         HMwjADJy/H9WihiBlFyUGYhRV3jIpyHiinIATlnp8fkiuUogwSVNoRd2WAlcvkdF2RZY
+         r1ra0U296clnCuf/pHEbOGPRW0Hhdk9gVzu740an3H3+9OLBkUMUrEamZxUUwWGPPstr
+         YFAHv+bF4SsgmI9GqpQHP07rLohlCMhg87m0M14c9XsjS6p9J27xI2YT1GFaD0xyLwks
+         tD/6IR6M6Yhxmc0at4gYcoGiPHiu0kNqk+jCrMqHw6RuDX9f7sHWt5i62UyTztC7y1Cq
+         DHTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVp44iRUteXt0hl8dlftFHfETo4oMXIS0eBSw5tqWUTft8ePhR/SlTFppHbx8OJ+uaSJYpF0JHuejYr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFekyyT3Tu2Is0/GzhDYD53DU6e44Eiwq81D+GvyqyaFGpGpHv
+	3UkbS/TIgwcnGql2UZhDnE0alGhf+DUgz1Oqhj0n89uC0OV1DD7gmYjPQXa//bRiLEWAQTuwTAu
+	vdx/Z83nxC0NmN9Kz7oVUnY42lgwje9M=
+X-Gm-Gg: AZuq6aJNFW5WZeX6gfEgzlOCu5dfMrK0qvcyoZQVhLdfgzWhemr98K2U+ddOzZJO4gq
+	DAqzTq9dSahL+rKByc8lr73NtqamQwRBbDAC+cILEr59Tchy+lALv6EC3XKxLNkiW4yKAwMq2YE
+	luMfAVJyYjkQ2n4l0++AyxSoqx0WMywsrquoZ1ktAOAO57orKHOIIyoHXVo1FoGEi1waF7iNRDu
+	tX8xN2IUEti1ncMsDqirpME/MKjrWgSQzv0cvWBGUqnj+/fO49iF3Y+Fq1pFUMuqyYC1SIo230M
+	Pf6n3tNanrxx9iGWbhcyfSmfnlxx1Zp/iM3aiJXT3BcfiSAPoXJtdIfTBNDNo3KITrUk2yw=
+X-Received: by 2002:a17:907:9413:b0:b7a:2ba7:197e with SMTP id
+ a640c23a62f3a-b8edf25c528mr436693266b.29.1770562160683; Sun, 08 Feb 2026
+ 06:49:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+References: <20260206172845.145407-1-clamor95@gmail.com> <20260206172845.145407-12-clamor95@gmail.com>
+ <aYiH8iwetvRfWxGI@smile.fi.intel.com> <39B7F089-5B4A-47F7-B2EA-A526B290FA77@gmail.com>
+In-Reply-To: <39B7F089-5B4A-47F7-B2EA-A526B290FA77@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sun, 8 Feb 2026 16:48:43 +0200
+X-Gm-Features: AZwV_QinSJks_QhB591HGO3jm53Tp3IPIh1wwVGFN0DYduqCRz4P0_2il4ahi50
+Message-ID: <CAHp75VdatO1c5DvFghpSOLvr9PomrT3=tEADHJ7U8Xf2tgN2ag@mail.gmail.com>
+Subject: Re: [PATCH v2 11/11] mfd: motorola-cpcap: add support for Mot CPCAP composition
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Lee Jones <lee@kernel.org>, 
+	Pavel Machek <pavel@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Dixit Parmar <dixitparmar19@gmail.com>, Tony Lindgren <tony@atomide.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	SUBJ_EXCESS_QP(1.20)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,atomide.com,vger.kernel.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	TAGGED_FROM(0.00)[bounces-263699-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_FROM(0.00)[bounces-263700-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[intel.com,kernel.org,baylibre.com,analog.com,gmail.com,atomide.com,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andyshevchenko@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A2A8E108F39
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: F2E2E108FAB
 X-Rspamd-Action: no action
 
+On Sun, Feb 8, 2026 at 4:41=E2=80=AFPM Svyatoslav Ryhel <clamor95@gmail.com=
+> wrote:
+> 8 =D0=BB=D1=8E=D1=82=D0=BE=D0=B3=D0=BE 2026=E2=80=AF=D1=80. 14:56:18 GMT+=
+02:00, Andy Shevchenko <andriy.shevchenko@intel.com> =D0=BF=D0=B8=D1=88=D0=
+=B5:
+> >On Fri, Feb 06, 2026 at 07:28:45PM +0200, Svyatoslav Ryhel wrote:
 
+...
 
-8 =D0=BB=D1=8E=D1=82=D0=BE=D0=B3=D0=BE 2026=E2=80=AF=D1=80=2E 14:56:18 GMT=
-+02:00, Andy Shevchenko <andriy=2Eshevchenko@intel=2Ecom> =D0=BF=D0=B8=D1=
-=88=D0=B5:
->On Fri, Feb 06, 2026 at 07:28:45PM +0200, Svyatoslav Ryhel wrote:
->> Add a MFD subdevice composition used in Tegra20 based Mot board
->> (Motorola Atrix 4G and Droid X2)=2E
+> >>      { .name =3D "cpcap", },
+> >>      { .name =3D "6556002", },
+> >>      { .name =3D "mapphone-cpcap", },
+> >> +    { .name =3D "mot-cpcap", },
+> >
+> >Drop inner trailing comma.
+> >
 >
->=2E=2E=2E
->
->>  	{ =2Ename =3D "cpcap", },
->>  	{ =2Ename =3D "6556002", },
->>  	{ =2Ename =3D "mapphone-cpcap", },
->> +	{ =2Ename =3D "mot-cpcap", },
->
->Drop inner trailing comma=2E
->
+> That would be a stray change, wouldn't it?
 
-That would be a stray change, wouldn't it?
+Have you read below?
 
->>  	{},
+> >>      {},
+> >
+> >Drop a comma at the terminator.
+> >
 >
->Drop a comma at the terminator=2E
->
+> That would be a stray change as well, wouldn't it?
 
-That would be a stray change as well, wouldn't it?
+Have you read below?
 
->>  };
->>  MODULE_DEVICE_TABLE(spi, cpcap_spi_ids);
->
->This can be done in the patch that adds driver data=2E
->
+> >>  };
+> >>  MODULE_DEVICE_TABLE(spi, cpcap_spi_ids);
+> >
+> >This can be done in the patch that adds driver data.
 
-Then lets move there=2E
+^^^
+
+> Then lets move there.
+
+Exactly!
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
