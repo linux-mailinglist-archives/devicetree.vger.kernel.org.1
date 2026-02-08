@@ -1,201 +1,556 @@
-Return-Path: <devicetree+bounces-263755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263756-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GFA3M3cMiWng1gQAu9opvQ
-	(envelope-from <devicetree+bounces-263755-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:21:43 +0100
+	id cHbyF7oMiWng1gQAu9opvQ
+	(envelope-from <devicetree+bounces-263756-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:22:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E6DE10A6ED
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:21:43 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE55410A706
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:22:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D9EFE30078FA
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 22:21:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 53F2E3001FE1
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 22:22:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77CDF35D613;
-	Sun,  8 Feb 2026 22:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0601E35E53E;
+	Sun,  8 Feb 2026 22:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Lzn2udmM";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ayqnLRoR"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="djOHuHtC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31101341657
-	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 22:21:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65F09341657
+	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 22:22:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770589301; cv=none; b=OFC1rtoMTE2Bd8+YdmIBLZtC+8i3YuSpX0ErwamYx/Cu8sGOJ2uU5LzAPybWun6k0SKP/XK5cfBtwwVavWNjN0wLiF2srOJVTY4ZideOlHuqxjOL2HhAVO6NoCTDgXSlQnOVHEDruQ4+Tkxzm9R4u7s47YE4TS6/M7j1//o3udE=
+	t=1770589367; cv=none; b=fDEzn0yLXzEU9WylKLGUsCbk5S4y+NDRBiYI0CxpxkeWlcH1lyvAkMZC3AHDSdjOCZB02aJOogF7yw3ONEjjbU951z8DGameBigpir9Bni0Z7wyhOunrxcl8Cdd3GjALY80BXmOOWAtjK2m762Wb6KG/paovKYyAQ++j2DvQWxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770589301; c=relaxed/simple;
-	bh=fqL4MexeECx+vkwEA1F/BuCH0L2heCPFV1NXUEcOGJ8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AXDm03sXWwjIYcgVVaJpXfX+gLuqeDHWuWOuWg/bP+GnKWhceDrflMNmcoKBF5I3ZBSiN4QAM0e3YwyOM6sGGqpA8EPrKFxlILkMCydCuakzyPf//C05Gv2q2GMy/a7w6WD7UAAJHtCeltU87D75LunPck4XiE7AytTF6uqakrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Lzn2udmM; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ayqnLRoR; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 618B0f4A1636827
-	for <devicetree@vger.kernel.org>; Sun, 8 Feb 2026 22:21:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ZKKCfL4j+Kw7qRAdk0gTGEl7
-	2FgrEL8wLEcL3SRPoTE=; b=Lzn2udmMEn7HLTwq1LbJVn/paRy3c+HWs2TIH9cJ
-	r77IqmwxaWKf3O0fEeDw7nlx6Wl9Huv+TXprq5ZWSODcpcLuMam9MGTPEYC5/pVg
-	GA1i95073p/FXgtITaWw8HzgdS18d6qgoYRHx47FGZf3nGc2nF0aKXauf31csJOb
-	fSyv7/eot1LLz6Zj7r49BPCNafOdPQi5uebks5UJE7ZQw3PTBNeYK3m2DM1e4N73
-	1ipjtE51LhVQwmboPUGg7UOSaQZTTRGLKXWwIXlTIetX+eqxH5x84pUgbsncQhlV
-	i6IzeckKmQi+cME3upy3+kqPqhu8jYGsFzg5k7EmZTC7Rg==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c6g659bur-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 22:21:40 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-896f8dde688so17607416d6.0
-        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 14:21:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770589299; x=1771194099; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZKKCfL4j+Kw7qRAdk0gTGEl72FgrEL8wLEcL3SRPoTE=;
-        b=ayqnLRoRhD2Goj4xS7oZIqFPABpEZfAFg7Pq2GufsT5uLXsjYjFfu01eJgApQ9KsJw
-         5zUBbAyI0bmKe+MQsqvqBsOyDseRxl4k6NsrKty8X69WqplItKIIlbTiUJrLuoCf6ckG
-         L8xoQqTE8fTdGZoEeDE/4KFXz50m35fs1OBAb8bdEiEsqqyz3XDyAhGcUzvzSvNKScjU
-         InjKEAMLihS1PqpkE4Gh5Edsfw5ch6w5chXfvc1WH3FgyVHXaXcFeXPau8goDTeYUJIS
-         N7Jhu/CEsKPY/NRy+J7lsbypRWYN2sSS767EElEwAMZlls2jYmVze/bidCdEu/G+NVA5
-         Rwsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770589299; x=1771194099;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZKKCfL4j+Kw7qRAdk0gTGEl72FgrEL8wLEcL3SRPoTE=;
-        b=t9kx0dWoOeW0TQvkN1SNgKNh2XmhPZGwbA6I1+Sn/HQXnHnyuNw0VH9coD+Pejs9j8
-         4xbKbJMMSCmUgzvKC/jfNjGyQm5Z8TgfTonifaUQeEGvvQ9L8JnQkify2XCzK6EU6zp2
-         AkoR1T8BB90O50oIgwbPlBYzNxwO5tIi364hlg/Kpoil+koQ76Sh2Vj7ly2/9MCXGtjW
-         cYQTeL4uXFlk3xqtOkDYA0rz6oF6AaHj6N+xTc/Di930LdAg6kr4YnC8nFjLiYJmWrpA
-         1XI0QYc2DGCTxedchqifS20qtkzOQvDIyM+l4bCBf5i/IEwYxbrfl+10moFqE46NBqfj
-         JNCA==
-X-Forwarded-Encrypted: i=1; AJvYcCUcRJtLpm8lVedlMOOUHU/qxnCKFMHA9XEWDBhJwb9PD2YJMuKoElSGMJ9G4Xr99CIVbQsgF/nDdtlG@vger.kernel.org
-X-Gm-Message-State: AOJu0YyK9mmzMVOLmx7CZj0xLvPM+nOJsC/pkmkiFo86R1+z/jtSUeiA
-	5Kkj832ej4Od//dZ/n+bdiZeigRio09uhoJGm2LJ8tyifNH2sFB6Buw7aT7J1vmIvjtvj4cq7M5
-	PObqRzYWhJ1/3wZDh8oMZd0VVI+Gt3xcKgkfaOaBAKGkkHX3dzvNIjZABFBzeBf5D
-X-Gm-Gg: AZuq6aJrhXzXuJp2+T13F3+wjls92PMkwpCj4RWTJirHDgRVJE0/xcjo6mEYp/YYxq9
-	kWWTLqfjvE74ICHbBhtbukfcVkPUlUDcbfPHVWw2fqq1uCA7nSrCDrrbjKIGM5SGCQ8K7rxE41L
-	R9hdM0V+9xuHUgX9e1yYw05iyBlE5ml3V4iY/cqGPJ1ezocXaIW+Tw9yw+2n9RFwl49Tr7YtL0Q
-	9b0EUr54YQMD/HUvoeQOGqoVJCRKmcRu3hvQUCVfpYlQPQ0qDXUm/Go1ClL7pUvba4YVb2xCn1D
-	mcKQV4Scmf8k/SwBXgkb2e80nk7KP8l2TR7AGRto0keEdaxsdfItEhcX4MVpJhlRgkEwXWdWY5J
-	yV2LMhQuqxrcRpZ4jmWHg3PZESOcFyQ3+Il9V7xrt2jC6A8zxlacuadmaTWn2OGORBO+gvgZOTX
-	LjmyLhR8u+D2m16ATfbKI49rM=
-X-Received: by 2002:a05:620a:1929:b0:8b2:f29e:3af8 with SMTP id af79cd13be357-8caf1fa635emr1193996285a.59.1770589299476;
-        Sun, 08 Feb 2026 14:21:39 -0800 (PST)
-X-Received: by 2002:a05:620a:1929:b0:8b2:f29e:3af8 with SMTP id af79cd13be357-8caf1fa635emr1193994185a.59.1770589299025;
-        Sun, 08 Feb 2026 14:21:39 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e44cf6feasm2201807e87.7.2026.02.08.14.21.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Feb 2026 14:21:38 -0800 (PST)
-Date: Mon, 9 Feb 2026 00:21:36 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: webgeek1234@gmail.com
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Xilin Wu <wuxilin123@gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: pmk8550: Add PWM controller
-Message-ID: <4qs5xm23x7qsyijjkkftcpen2d5at3hclbogtgvxxoorrctvk3@elfrpbhky4i4>
-References: <20260207-pmk8550-pwm-v1-1-f2b26ab98d8b@gmail.com>
+	s=arc-20240116; t=1770589367; c=relaxed/simple;
+	bh=a8K7gK1IeOYPo+N47SGzN7ysjbqx9pbIooPB7+PdatA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Nmxm+ct+IAe62Vvzw+y7VfF+xdqxpv1ZBFSe3qcsyWHqMD676ggNu9ZSJfaZwk0Jo4MnHFEbjcQnJop4C47oTnyINnaf/cnAkLuZ90RHYiw9CgcOQHZBoQmxyDKNbruhawN7anuRKhtaGeI10tIneISb5X8+J43Y4GWvVDyXkMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=djOHuHtC; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1770589366;
+ bh=L2aNrlKPZvg+AUjYVCqkyqFsXqfOmQTY4HLKMlMQjCQ=;
+ b=djOHuHtCgeAHxP1KzQjp/JTpKraaYer68k40ekduARGBwfm+VUsWv36lPcQfJwRrnA84Ld5bg
+ myXM4+1gj1CY6DDriJUDE/wP5imnG6KVbcZUnuPIF18CxJFfmy4evyMvjB6d3obx72LvnFu/idc
+ TFvLXU7yeQ7KKEd6S9B1FCNLlX7xgjlbC1TN3omMEdrRHngjAIYujrr7Z07HqR+aZGjHwpP1BRt
+ gyewUVlwUX5RBPkJ3qQlMYf7TBCrAU5mWJfkhqHZYU20YK3Yb5g9rcVteMDVgqxAoRYhCqV5v2r
+ 9PVrtd4Bg6YmMUQBwVRT7VLY8kzck1B7RfTfCzNHk31w==
+X-Forward-Email-ID: 69890cafa6487c2810b19df6
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 2.6.2
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <3a2f5dad-84de-4afd-baaf-42f7d68cba7b@kwiboo.se>
+Date: Sun, 8 Feb 2026 23:22:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260207-pmk8550-pwm-v1-1-f2b26ab98d8b@gmail.com>
-X-Authority-Analysis: v=2.4 cv=GqNPO01C c=1 sm=1 tr=0 ts=69890c74 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=VwQbUJbxAAAA:8
- a=pGLkceISAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=d3Fc6ww0Fr534fpUGg8A:9
- a=CjuIK1q_8ugA:10 a=1HOtulTD9v-eNWfpl4qZ:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: U_p9b-U5l9LOUpBXX1d2Je16INf-7RqF
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA4MDE5MyBTYWx0ZWRfXyASGvo4drjJX
- jNl/9w/f0StsR4Alrfya62BLJK6O75AKCc6aSqShoYEn7Gb0WzXszoQ+6l6LDRCbw+hlgwHKKbk
- i6eDnaOkd6nvsDiVtEF5cl2SxIF73g/Y0Npcx4s95cpVgO3w1l9jUT+Ek0xByvZiMmCpGEG/NoD
- MwjlPuLvViNzG2YLeoWDje2pwKSAVd0vwTgFTQIAETtzhZhXIRyp7D4Uzfzg/N0YhtMa7PESY4x
- GGrZJLLVPrb0H5P+lYduUhTylXp90Xm+WJiIPiY6ksJVN7I8Zf9hoR/iGulSawWLamMA2VIjRXm
- krfF97xzFvKYgl5cex6Is0UFrRyyNpw0RDhkdrkMiByPNDl7ZDGL6m8cTD4ozFgvKVznli8ru5k
- TaYmawredhyW52keZjgx14sgJhrACswT0fo0aMuK1hZgGK6DGKbG4xbSjcm33Lwxf/PKv206IvG
- knzwbBIMv5gA3ZhsnYg==
-X-Proofpoint-GUID: U_p9b-U5l9LOUpBXX1d2Je16INf-7RqF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-08_05,2026-02-05_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 malwarescore=0 adultscore=0 spamscore=0
- bulkscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602080193
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: rockchip: Add RV1103B CRU
+ support
+To: Fabio Estevam <festevam@gmail.com>
+Cc: sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, Fabio Estevam <festevam@nabladev.com>
+References: <20260207130256.2832815-1-festevam@gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20260207130256.2832815-1-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kwiboo.se,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kwiboo.se:s=fe-e1b5cab7be];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263755-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,linaro.org:email,qualcomm.com:email,qualcomm.com:dkim];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-263756-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.978];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kwiboo.se:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 2E6DE10A6ED
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nabladev.com:email]
+X-Rspamd-Queue-Id: EE55410A706
 X-Rspamd-Action: no action
 
-On Sat, Feb 07, 2026 at 08:12:11PM -0600, Aaron Kling via B4 Relay wrote:
-> From: Xilin Wu <wuxilin123@gmail.com>
+Hi Fabio,
+
+On 2/7/2026 2:02 PM, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@nabladev.com>
 > 
-> Add the PWM function to the pmk8550 dtsi, which is usually used
-> to control PWM backlight on platforms using this PMIC.
+> Add support for the Rockchip RV1103B Clock and Reset Unit (CRU).
 > 
-> Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> The RV1103B CRU is compatible with the existing RV1126B binding.
+> Add the compatible string to the schema and introduce the
+> corresponding clock ID definitions.
+> 
+> Signed-off-by: Fabio Estevam <festevam@nabladev.com>
 > ---
-> This patch was originally submitted as part of a series to support the
-> AYN Odin 2 [0]. That series stalled, so submitting separately.
+> Changes since v1:
+> - Make it a separate series.
+> - Start the clock index from zero and without gaps.
+> - Remove the reset definitions as there is no consumer for them yet.
+> - Squash yaml and dt-bindings.
 > 
-> [0] https://lore.kernel.org/all/20240424-ayn-odin2-initial-v1-0-e0aa05c991fd@gmail.com/
-> ---
->  arch/arm64/boot/dts/qcom/pmk8550.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
+>  .../bindings/clock/rockchip,rv1126b-cru.yaml  |   1 +
+>  .../dt-bindings/clock/rockchip,rv1103b-cru.h  | 220 ++++++++++++++++++
+>  2 files changed, 221 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/rockchip,rv1103b-cru.h
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+This should probably also include the reset indices or will that be a
+separate series to extend this clock and reset dt-binding?
 
+Below is the indices decoded and renumbered from vendor kernel, along
+with some macros that can possible be used with the reset driver part.
 
--- 
-With best wishes
-Dmitry
+Generated by a small script I used with resets for e.g. rk3528.
+
+#define SRST_A_PERI_BIU			0
+#define SRST_H_HPMCU_BIU		1
+#define SRST_LS_PERI_BIU		2
+#define SRST_P_PERI_BIU			3
+#define SRST_P_RTC_BIU			4
+#define SRST_H_BOOTROM			5
+#define SRST_P_TIMER			6
+#define SRST_TIMER0			7
+#define SRST_TIMER1			8
+#define SRST_TIMER2			9
+#define SRST_TIMER3			10
+#define SRST_TIMER4			11
+#define SRST_TIMER5			12
+#define SRST_P_STIMER			13
+#define SRST_STIMER0			14
+#define SRST_STIMER1			15
+#define SRST_P_WDT_NS			16
+#define SRST_T_WDT_NS			17
+#define SRST_P_WDT_S			18
+#define SRST_T_WDT_S			19
+#define SRST_P_WDT_HPMCU		20
+#define SRST_T_WDT_HPMCU		21
+#define SRST_P_I2C1			22
+#define SRST_I2C1			23
+#define SRST_P_I2C2			24
+#define SRST_I2C2			25
+#define SRST_P_I2C3			26
+#define SRST_I2C3			27
+#define SRST_P_I2C4			28
+#define SRST_I2C4			29
+#define SRST_P_UART2			30
+#define SRST_S_UART2			31
+#define SRST_P_UART1			32
+#define SRST_S_UART1			33
+#define SRST_P_SPI0			34
+#define SRST_SPI0			35
+#define SRST_P_PWM1			36
+#define SRST_PWM1			37
+#define SRST_P_PWM2			38
+#define SRST_PWM2			39
+#define SRST_A_RKDMA			40
+#define SRST_P_TSADC			41
+#define SRST_TSADC			42
+#define SRST_P_SARADC			43
+#define SRST_SARADC			44
+#define SRST_SARADC_PHY			45
+#define SRST_P_RTC_TEST			46
+#define SRST_P_GPIO2			47
+#define SRST_DB_GPIO2			48
+#define SRST_P_IOC_VCCIO6		49
+#define SRST_P_PERI_SGRF		50
+#define SRST_P_PERI_GRF			51
+#define SRST_P_CRU_PERI			52
+#define SRST_A_USBOTG			53
+#define SRST_H_SDMMC1			54
+#define SRST_H_SAI			55
+#define SRST_M_SAI			56
+#define SRST_CORE_CRYPTO		57
+#define SRST_PKA_CRYPTO			58
+#define SRST_A_CRYPTO			59
+#define SRST_H_CRYPTO			60
+#define SRST_H_RK_RNG_NS		61
+#define SRST_H_RK_RNG_S			62
+#define SRST_P_OTPC_NS			63
+#define SRST_SBPI_OTPC_NS		64
+#define SRST_USER_OTPC_NS		65
+#define SRST_P_OTPC_S			66
+#define SRST_SBPI_OTPC_S		67
+#define SRST_USER_OTPC_S		68
+#define SRST_OTPC_ARB			69
+#define SRST_P_OTP_MASK			70
+#define SRST_H_RGA			71
+#define SRST_A_RGA			72
+#define SRST_CORE_RGA			73
+#define SRST_A_MAC			74
+#define SRST_MACPHY			75
+#define SRST_A_SPINLOCK			76
+#define SRST_H_CACHE			77
+#define SRST_P_HPMCU_MAILBOX		78
+#define SRST_P_HPMCU_INTMUX		79
+#define SRST_HPMCU_FULL_CLUSTER		80
+#define SRST_HPMCU_PWUP			81
+#define SRST_HPMCU_ONLY_CORE		82
+#define SRST_T_HPMCU_JTAG		83
+#define SRST_D_DECOM			84
+#define SRST_A_DECOM			85
+#define SRST_P_DECOM			86
+#define SRST_A_SYS_SRAM			87
+#define SRST_P_DMA2DDR			88
+#define SRST_A_DMA2DDR			89
+#define SRST_P_DCF			90
+#define SRST_A_DCF			91
+#define SRST_USBPHY_POR			92
+#define SRST_USBPHY_OTG			93
+#define SRST_A_VEPU_BIU			94
+#define SRST_LS_VEPU_BIU		95
+#define SRST_REF_PVTPLL_VEPU		96
+#define SRST_H_VEPU			97
+#define SRST_A_VEPU			98
+#define SRST_CORE_VEPU			99
+#define SRST_P_VEPU_PVTPLL		100
+#define SRST_P_CRU_VEPU			101
+#define SRST_P_VEPU_GRF			102
+#define SRST_P_IOC_VCCIO3		103
+#define SRST_P_ACODEC			104
+#define SRST_P_USBPHY			105
+#define SRST_REF_PVTPLL_NPU		106
+#define SRST_A_NPU_BIU			107
+#define SRST_LS_NPU_BIU			108
+#define SRST_H_RKNN			109
+#define SRST_A_RKNN			110
+#define SRST_P_NPU_PVTPLL		111
+#define SRST_P_CRU_NPU			112
+#define SRST_P_NPU_GRF			113
+#define SRST_LS_VI_BIU			114
+#define SRST_A_VI_BIU			115
+#define SRST_REF_PVTPLL_ISP		116
+#define SRST_CORE_ISP			117
+#define SRST_D_VICAP			118
+#define SRST_A_VICAP			119
+#define SRST_H_VICAP			120
+#define SRST_ISP0RESETN_VICAP		121
+#define SRST_P_CSI2HOST0		122
+#define SRST_P_CSI2HOST1		123
+#define SRST_S_SFC_2X			124
+#define SRST_H_EMMC			125
+#define SRST_H_SFC			126
+#define SRST_H_SFC_XIP			127
+#define SRST_H_SDMMC0			128
+#define SRST_P_CSIPHY			129
+#define SRST_P_GPIO1			130
+#define SRST_DB_GPIO1			131
+#define SRST_P_IOC_VCCIO47		132
+#define SRST_P_VI_GRF			133
+#define SRST_P_CRU_VI			134
+#define SRST_P_VI_PVTPLL		135
+#define SRST_REF_PVTPLL_CORE		136
+#define SRST_NCOREPORESET		137
+#define SRST_NCORESET			138
+#define SRST_NDBGRESET			139
+#define SRST_NL2RESET			140
+#define SRST_A_CORE_BIU			141
+#define SRST_P_CORE_BIU			142
+#define SRST_H_CORE_BIU			143
+#define SRST_P_DBG			144
+#define SRST_POT_DBG			145
+#define SRST_NT_DBG			146
+#define SRST_LS_DDR_BIU			147
+#define SRST_P_DDRC			148
+#define SRST_P_DDRMON			149
+#define SRST_TIMER_DDRMON		150
+#define SRST_P_DFICTRL			151
+#define SRST_P_DDR_GRF			152
+#define SRST_P_CRU_DDR			153
+#define SRST_H_DDRPHY			154
+#define SRST_DDR_BIU			155
+#define SRST_A_DDRSCH_CPU		156
+#define SRST_A_DDRSCH_VI		157
+#define SRST_A_DDRSCH_NPVD		158
+#define SRST_CORE_DDRC			159
+#define SRST_DDRMON			160
+#define SRST_DFICTRL			161
+#define SRST_DFI_SCRAMBLE		162
+#define SRST_P_CRU			163
+#define SRST_P_CRU_BIU			164
+#define SRST_DDRPHY			165
+#define SRST_P_PMU_GPIO0		166
+#define SRST_DB_PMU_GPIO0		167
+#define SRST_DDR_FAIL_SAFE		168
+#define SRST_P_PMU_HP_TIMER		169
+#define SRST_PMU_HP_TIMER		170
+#define SRST_PMU_32K_HP_TIMER		171
+#define SRST_P_I2C0			172
+#define SRST_I2C0			173
+#define SRST_P_UART0			174
+#define SRST_S_UART0			175
+#define SRST_P_IOC_PMUIO0		176
+#define SRST_P_CRU_PMU			177
+#define SRST_P_PMU_GRF			178
+#define SRST_P_PMU_SGRF			179
+#define SRST_P_PMU_SGRF_REMAP		180
+#define SRST_PREROLL			181
+#define SRST_PREROLL_32K		182
+#define SRST_H_PMU_SRAM			183
+#define SRST_P_PWM0			184
+#define SRST_PWM0			185
+#define SRST_LPMCU			186
+#define SRST_LPMCU_PWRUP		187
+#define SRST_LPMCU_CPU			188
+#define SRST_T_LPMCU_CPU		189
+#define SRST_P_SPI2AHB			190
+#define SRST_H_SPI2AHB			191
+#define SRST_S_SPI2AHB			192
+#define SRST_LS_PMU_BIU			193
+#define SRST_P_WDT_LPMCU		194
+#define SRST_T_WDT_LPMCU		195
+#define SRST_H_SFC_PMU1			196
+#define SRST_H_SFC_XIP_PMU1		197
+#define SRST_S_SFC_2X_PMU1		198
+#define SRST_P_LPMCU_MAILBOX		199
+#define SRST_P_IOC_PMUIO1		200
+#define SRST_P_CRU_PMU1			201
+
+	CRU_RESET_OFFSET(SRST_A_PERI_BIU, 0, 2),
+	CRU_RESET_OFFSET(SRST_H_HPMCU_BIU, 0, 3),
+	CRU_RESET_OFFSET(SRST_LS_PERI_BIU, 0, 4),
+	CRU_RESET_OFFSET(SRST_P_PERI_BIU, 0, 5),
+	CRU_RESET_OFFSET(SRST_P_RTC_BIU, 0, 6),
+	CRU_RESET_OFFSET(SRST_H_BOOTROM, 0, 7),
+	CRU_RESET_OFFSET(SRST_P_TIMER, 1, 0),
+	CRU_RESET_OFFSET(SRST_TIMER0, 1, 1),
+	CRU_RESET_OFFSET(SRST_TIMER1, 1, 2),
+	CRU_RESET_OFFSET(SRST_TIMER2, 1, 3),
+	CRU_RESET_OFFSET(SRST_TIMER3, 1, 4),
+	CRU_RESET_OFFSET(SRST_TIMER4, 1, 5),
+	CRU_RESET_OFFSET(SRST_TIMER5, 1, 6),
+	CRU_RESET_OFFSET(SRST_P_STIMER, 1, 7),
+	CRU_RESET_OFFSET(SRST_STIMER0, 1, 8),
+	CRU_RESET_OFFSET(SRST_STIMER1, 1, 9),
+	CRU_RESET_OFFSET(SRST_P_WDT_NS, 2, 0),
+	CRU_RESET_OFFSET(SRST_T_WDT_NS, 2, 1),
+	CRU_RESET_OFFSET(SRST_P_WDT_S, 2, 2),
+	CRU_RESET_OFFSET(SRST_T_WDT_S, 2, 3),
+	CRU_RESET_OFFSET(SRST_P_WDT_HPMCU, 2, 4),
+	CRU_RESET_OFFSET(SRST_T_WDT_HPMCU, 2, 5),
+	CRU_RESET_OFFSET(SRST_P_I2C1, 2, 6),
+	CRU_RESET_OFFSET(SRST_I2C1, 2, 7),
+	CRU_RESET_OFFSET(SRST_P_I2C2, 2, 8),
+	CRU_RESET_OFFSET(SRST_I2C2, 2, 9),
+	CRU_RESET_OFFSET(SRST_P_I2C3, 2, 10),
+	CRU_RESET_OFFSET(SRST_I2C3, 2, 11),
+	CRU_RESET_OFFSET(SRST_P_I2C4, 2, 12),
+	CRU_RESET_OFFSET(SRST_I2C4, 2, 13),
+	CRU_RESET_OFFSET(SRST_P_UART2, 3, 0),
+	CRU_RESET_OFFSET(SRST_S_UART2, 3, 1),
+	CRU_RESET_OFFSET(SRST_P_UART1, 3, 2),
+	CRU_RESET_OFFSET(SRST_S_UART1, 3, 3),
+	CRU_RESET_OFFSET(SRST_P_SPI0, 3, 10),
+	CRU_RESET_OFFSET(SRST_SPI0, 3, 11),
+	CRU_RESET_OFFSET(SRST_P_PWM1, 4, 6),
+	CRU_RESET_OFFSET(SRST_PWM1, 4, 7),
+	CRU_RESET_OFFSET(SRST_P_PWM2, 4, 12),
+	CRU_RESET_OFFSET(SRST_PWM2, 4, 13),
+	CRU_RESET_OFFSET(SRST_A_RKDMA, 5, 8),
+	CRU_RESET_OFFSET(SRST_P_TSADC, 5, 9),
+	CRU_RESET_OFFSET(SRST_TSADC, 5, 10),
+	CRU_RESET_OFFSET(SRST_P_SARADC, 5, 12),
+	CRU_RESET_OFFSET(SRST_SARADC, 5, 13),
+	CRU_RESET_OFFSET(SRST_SARADC_PHY, 6, 0),
+	CRU_RESET_OFFSET(SRST_P_RTC_TEST, 6, 1),
+	CRU_RESET_OFFSET(SRST_P_GPIO2, 6, 3),
+	CRU_RESET_OFFSET(SRST_DB_GPIO2, 6, 4),
+	CRU_RESET_OFFSET(SRST_P_IOC_VCCIO6, 6, 5),
+	CRU_RESET_OFFSET(SRST_P_PERI_SGRF, 6, 6),
+	CRU_RESET_OFFSET(SRST_P_PERI_GRF, 6, 7),
+	CRU_RESET_OFFSET(SRST_P_CRU_PERI, 6, 8),
+	CRU_RESET_OFFSET(SRST_A_USBOTG, 6, 9),
+	CRU_RESET_OFFSET(SRST_H_SDMMC1, 7, 0),
+	CRU_RESET_OFFSET(SRST_H_SAI, 7, 1),
+	CRU_RESET_OFFSET(SRST_M_SAI, 7, 2),
+	CRU_RESET_OFFSET(SRST_CORE_CRYPTO, 8, 0),
+	CRU_RESET_OFFSET(SRST_PKA_CRYPTO, 8, 1),
+	CRU_RESET_OFFSET(SRST_A_CRYPTO, 8, 2),
+	CRU_RESET_OFFSET(SRST_H_CRYPTO, 8, 3),
+	CRU_RESET_OFFSET(SRST_H_RK_RNG_NS, 8, 4),
+	CRU_RESET_OFFSET(SRST_H_RK_RNG_S, 8, 5),
+	CRU_RESET_OFFSET(SRST_P_OTPC_NS, 8, 6),
+	CRU_RESET_OFFSET(SRST_SBPI_OTPC_NS, 8, 8),
+	CRU_RESET_OFFSET(SRST_USER_OTPC_NS, 8, 9),
+	CRU_RESET_OFFSET(SRST_P_OTPC_S, 8, 10),
+	CRU_RESET_OFFSET(SRST_SBPI_OTPC_S, 8, 12),
+	CRU_RESET_OFFSET(SRST_USER_OTPC_S, 8, 13),
+	CRU_RESET_OFFSET(SRST_OTPC_ARB, 8, 14),
+	CRU_RESET_OFFSET(SRST_P_OTP_MASK, 8, 15),
+	CRU_RESET_OFFSET(SRST_H_RGA, 9, 0),
+	CRU_RESET_OFFSET(SRST_A_RGA, 9, 1),
+	CRU_RESET_OFFSET(SRST_CORE_RGA, 9, 2),
+	CRU_RESET_OFFSET(SRST_A_MAC, 9, 3),
+	CRU_RESET_OFFSET(SRST_MACPHY, 9, 11),
+	CRU_RESET_OFFSET(SRST_A_SPINLOCK, 10, 0),
+	CRU_RESET_OFFSET(SRST_H_CACHE, 10, 1),
+	CRU_RESET_OFFSET(SRST_P_HPMCU_MAILBOX, 10, 2),
+	CRU_RESET_OFFSET(SRST_P_HPMCU_INTMUX, 10, 3),
+	CRU_RESET_OFFSET(SRST_HPMCU_FULL_CLUSTER, 10, 4),
+	CRU_RESET_OFFSET(SRST_HPMCU_PWUP, 10, 5),
+	CRU_RESET_OFFSET(SRST_HPMCU_ONLY_CORE, 10, 6),
+	CRU_RESET_OFFSET(SRST_T_HPMCU_JTAG, 10, 7),
+	CRU_RESET_OFFSET(SRST_D_DECOM, 11, 0),
+	CRU_RESET_OFFSET(SRST_A_DECOM, 11, 1),
+	CRU_RESET_OFFSET(SRST_P_DECOM, 11, 2),
+	CRU_RESET_OFFSET(SRST_A_SYS_SRAM, 11, 3),
+	CRU_RESET_OFFSET(SRST_P_DMA2DDR, 11, 4),
+	CRU_RESET_OFFSET(SRST_A_DMA2DDR, 11, 5),
+	CRU_RESET_OFFSET(SRST_P_DCF, 11, 6),
+	CRU_RESET_OFFSET(SRST_A_DCF, 11, 7),
+	CRU_RESET_OFFSET(SRST_USBPHY_POR, 11, 12),
+	CRU_RESET_OFFSET(SRST_USBPHY_OTG, 11, 13),
+	
+	CRU_RESET_OFFSET(SRST_A_VEPU_BIU, 16384, 1),
+	CRU_RESET_OFFSET(SRST_LS_VEPU_BIU, 16384, 2),
+	CRU_RESET_OFFSET(SRST_REF_PVTPLL_VEPU, 16384, 3),
+	CRU_RESET_OFFSET(SRST_H_VEPU, 16384, 4),
+	CRU_RESET_OFFSET(SRST_A_VEPU, 16384, 5),
+	CRU_RESET_OFFSET(SRST_CORE_VEPU, 16384, 6),
+	CRU_RESET_OFFSET(SRST_P_VEPU_PVTPLL, 16384, 7),
+	CRU_RESET_OFFSET(SRST_P_CRU_VEPU, 16384, 8),
+	CRU_RESET_OFFSET(SRST_P_VEPU_GRF, 16384, 10),
+	CRU_RESET_OFFSET(SRST_P_IOC_VCCIO3, 16384, 11),
+	CRU_RESET_OFFSET(SRST_P_ACODEC, 16384, 13),
+	CRU_RESET_OFFSET(SRST_P_USBPHY, 16384, 14),
+	
+	CRU_RESET_OFFSET(SRST_REF_PVTPLL_NPU, 32768, 0),
+	CRU_RESET_OFFSET(SRST_A_NPU_BIU, 32768, 2),
+	CRU_RESET_OFFSET(SRST_LS_NPU_BIU, 32768, 3),
+	CRU_RESET_OFFSET(SRST_H_RKNN, 32768, 4),
+	CRU_RESET_OFFSET(SRST_A_RKNN, 32768, 5),
+	CRU_RESET_OFFSET(SRST_P_NPU_PVTPLL, 32768, 6),
+	CRU_RESET_OFFSET(SRST_P_CRU_NPU, 32768, 7),
+	CRU_RESET_OFFSET(SRST_P_NPU_GRF, 32768, 9),
+	
+	CRU_RESET_OFFSET(SRST_LS_VI_BIU, 49152, 1),
+	CRU_RESET_OFFSET(SRST_A_VI_BIU, 49152, 2),
+	CRU_RESET_OFFSET(SRST_REF_PVTPLL_ISP, 49152, 3),
+	CRU_RESET_OFFSET(SRST_CORE_ISP, 49152, 6),
+	CRU_RESET_OFFSET(SRST_D_VICAP, 49153, 0),
+	CRU_RESET_OFFSET(SRST_A_VICAP, 49153, 2),
+	CRU_RESET_OFFSET(SRST_H_VICAP, 49153, 3),
+	CRU_RESET_OFFSET(SRST_ISP0RESETN_VICAP, 49153, 8),
+	CRU_RESET_OFFSET(SRST_P_CSI2HOST0, 49153, 9),
+	CRU_RESET_OFFSET(SRST_P_CSI2HOST1, 49153, 11),
+	CRU_RESET_OFFSET(SRST_S_SFC_2X, 49153, 12),
+	CRU_RESET_OFFSET(SRST_H_EMMC, 49153, 13),
+	CRU_RESET_OFFSET(SRST_H_SFC, 49153, 14),
+	CRU_RESET_OFFSET(SRST_H_SFC_XIP, 49153, 15),
+	CRU_RESET_OFFSET(SRST_H_SDMMC0, 49154, 0),
+	CRU_RESET_OFFSET(SRST_P_CSIPHY, 49154, 2),
+	CRU_RESET_OFFSET(SRST_P_GPIO1, 49154, 3),
+	CRU_RESET_OFFSET(SRST_DB_GPIO1, 49154, 4),
+	CRU_RESET_OFFSET(SRST_P_IOC_VCCIO47, 49154, 5),
+	CRU_RESET_OFFSET(SRST_P_VI_GRF, 49154, 6),
+	CRU_RESET_OFFSET(SRST_P_CRU_VI, 49154, 8),
+	CRU_RESET_OFFSET(SRST_P_VI_PVTPLL, 49154, 9),
+	
+	CRU_RESET_OFFSET(SRST_REF_PVTPLL_CORE, 65536, 0),
+	CRU_RESET_OFFSET(SRST_NCOREPORESET, 65536, 1),
+	CRU_RESET_OFFSET(SRST_NCORESET, 65536, 2),
+	CRU_RESET_OFFSET(SRST_NDBGRESET, 65536, 3),
+	CRU_RESET_OFFSET(SRST_NL2RESET, 65536, 4),
+	CRU_RESET_OFFSET(SRST_A_CORE_BIU, 65536, 5),
+	CRU_RESET_OFFSET(SRST_P_CORE_BIU, 65536, 6),
+	CRU_RESET_OFFSET(SRST_H_CORE_BIU, 65536, 7),
+	CRU_RESET_OFFSET(SRST_P_DBG, 65536, 8),
+	CRU_RESET_OFFSET(SRST_POT_DBG, 65536, 9),
+	CRU_RESET_OFFSET(SRST_NT_DBG, 65536, 10),
+	
+	CRU_RESET_OFFSET(SRST_LS_DDR_BIU, 81920, 1),
+	CRU_RESET_OFFSET(SRST_P_DDRC, 81920, 2),
+	CRU_RESET_OFFSET(SRST_P_DDRMON, 81920, 3),
+	CRU_RESET_OFFSET(SRST_TIMER_DDRMON, 81920, 4),
+	CRU_RESET_OFFSET(SRST_P_DFICTRL, 81920, 5),
+	CRU_RESET_OFFSET(SRST_P_DDR_GRF, 81920, 6),
+	CRU_RESET_OFFSET(SRST_P_CRU_DDR, 81920, 7),
+	CRU_RESET_OFFSET(SRST_H_DDRPHY, 81920, 8),
+	
+	CRU_RESET_OFFSET(SRST_DDR_BIU, 90112, 1),
+	CRU_RESET_OFFSET(SRST_A_DDRSCH_CPU, 90112, 2),
+	CRU_RESET_OFFSET(SRST_A_DDRSCH_VI, 90112, 4),
+	CRU_RESET_OFFSET(SRST_A_DDRSCH_NPVD, 90112, 5),
+	CRU_RESET_OFFSET(SRST_CORE_DDRC, 90112, 6),
+	CRU_RESET_OFFSET(SRST_DDRMON, 90112, 7),
+	CRU_RESET_OFFSET(SRST_DFICTRL, 90112, 8),
+	CRU_RESET_OFFSET(SRST_DFI_SCRAMBLE, 90112, 9),
+	
+	CRU_RESET_OFFSET(SRST_P_CRU, 98304, 0),
+	CRU_RESET_OFFSET(SRST_P_CRU_BIU, 98304, 1),
+	CRU_RESET_OFFSET(SRST_DDRPHY, 98304, 12),
+	
+	CRU_RESET_OFFSET(SRST_P_PMU_GPIO0, 114688, 4),
+	CRU_RESET_OFFSET(SRST_DB_PMU_GPIO0, 114688, 5),
+	CRU_RESET_OFFSET(SRST_DDR_FAIL_SAFE, 114688, 8),
+	CRU_RESET_OFFSET(SRST_P_PMU_HP_TIMER, 114688, 9),
+	CRU_RESET_OFFSET(SRST_PMU_HP_TIMER, 114688, 10),
+	CRU_RESET_OFFSET(SRST_PMU_32K_HP_TIMER, 114688, 11),
+	CRU_RESET_OFFSET(SRST_P_I2C0, 114688, 12),
+	CRU_RESET_OFFSET(SRST_I2C0, 114688, 13),
+	CRU_RESET_OFFSET(SRST_P_UART0, 114688, 14),
+	CRU_RESET_OFFSET(SRST_S_UART0, 114688, 15),
+	CRU_RESET_OFFSET(SRST_P_IOC_PMUIO0, 114689, 0),
+	CRU_RESET_OFFSET(SRST_P_CRU_PMU, 114689, 1),
+	CRU_RESET_OFFSET(SRST_P_PMU_GRF, 114689, 2),
+	CRU_RESET_OFFSET(SRST_P_PMU_SGRF, 114689, 3),
+	CRU_RESET_OFFSET(SRST_P_PMU_SGRF_REMAP, 114689, 4),
+	CRU_RESET_OFFSET(SRST_PREROLL, 114689, 6),
+	CRU_RESET_OFFSET(SRST_PREROLL_32K, 114689, 7),
+	CRU_RESET_OFFSET(SRST_H_PMU_SRAM, 114689, 8),
+	CRU_RESET_OFFSET(SRST_P_PWM0, 114689, 9),
+	CRU_RESET_OFFSET(SRST_PWM0, 114689, 10),
+	CRU_RESET_OFFSET(SRST_LPMCU, 114690, 0),
+	CRU_RESET_OFFSET(SRST_LPMCU_PWRUP, 114690, 1),
+	CRU_RESET_OFFSET(SRST_LPMCU_CPU, 114690, 2),
+	CRU_RESET_OFFSET(SRST_T_LPMCU_CPU, 114690, 3),
+	
+	CRU_RESET_OFFSET(SRST_P_SPI2AHB, 131072, 0),
+	CRU_RESET_OFFSET(SRST_H_SPI2AHB, 131072, 1),
+	CRU_RESET_OFFSET(SRST_S_SPI2AHB, 131072, 2),
+	CRU_RESET_OFFSET(SRST_LS_PMU_BIU, 131072, 3),
+	CRU_RESET_OFFSET(SRST_P_WDT_LPMCU, 131072, 9),
+	CRU_RESET_OFFSET(SRST_T_WDT_LPMCU, 131072, 10),
+	CRU_RESET_OFFSET(SRST_H_SFC_PMU1, 131072, 12),
+	CRU_RESET_OFFSET(SRST_H_SFC_XIP_PMU1, 131072, 13),
+	CRU_RESET_OFFSET(SRST_S_SFC_2X_PMU1, 131072, 14),
+	CRU_RESET_OFFSET(SRST_P_LPMCU_MAILBOX, 131073, 8),
+	CRU_RESET_OFFSET(SRST_P_IOC_PMUIO1, 131073, 9),
+	CRU_RESET_OFFSET(SRST_P_CRU_PMU1, 131073, 10),
+
+Regards,
+Jonas
 
