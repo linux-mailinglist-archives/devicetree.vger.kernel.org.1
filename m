@@ -1,556 +1,171 @@
-Return-Path: <devicetree+bounces-263756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263757-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cHbyF7oMiWng1gQAu9opvQ
-	(envelope-from <devicetree+bounces-263756-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:22:50 +0100
+	id AHf7AAsOiWlf1wQAu9opvQ
+	(envelope-from <devicetree+bounces-263757-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:28:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE55410A706
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:22:49 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AC7310A72D
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:28:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 53F2E3001FE1
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 22:22:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EE87330086C4
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 22:28:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0601E35E53E;
-	Sun,  8 Feb 2026 22:22:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6963C35EDC1;
+	Sun,  8 Feb 2026 22:28:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="djOHuHtC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hiY2rx6Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65F09341657
-	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 22:22:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770589367; cv=none; b=fDEzn0yLXzEU9WylKLGUsCbk5S4y+NDRBiYI0CxpxkeWlcH1lyvAkMZC3AHDSdjOCZB02aJOogF7yw3ONEjjbU951z8DGameBigpir9Bni0Z7wyhOunrxcl8Cdd3GjALY80BXmOOWAtjK2m762Wb6KG/paovKYyAQ++j2DvQWxw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770589367; c=relaxed/simple;
-	bh=a8K7gK1IeOYPo+N47SGzN7ysjbqx9pbIooPB7+PdatA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Nmxm+ct+IAe62Vvzw+y7VfF+xdqxpv1ZBFSe3qcsyWHqMD676ggNu9ZSJfaZwk0Jo4MnHFEbjcQnJop4C47oTnyINnaf/cnAkLuZ90RHYiw9CgcOQHZBoQmxyDKNbruhawN7anuRKhtaGeI10tIneISb5X8+J43Y4GWvVDyXkMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=djOHuHtC; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1770589366;
- bh=L2aNrlKPZvg+AUjYVCqkyqFsXqfOmQTY4HLKMlMQjCQ=;
- b=djOHuHtCgeAHxP1KzQjp/JTpKraaYer68k40ekduARGBwfm+VUsWv36lPcQfJwRrnA84Ld5bg
- myXM4+1gj1CY6DDriJUDE/wP5imnG6KVbcZUnuPIF18CxJFfmy4evyMvjB6d3obx72LvnFu/idc
- TFvLXU7yeQ7KKEd6S9B1FCNLlX7xgjlbC1TN3omMEdrRHngjAIYujrr7Z07HqR+aZGjHwpP1BRt
- gyewUVlwUX5RBPkJ3qQlMYf7TBCrAU5mWJfkhqHZYU20YK3Yb5g9rcVteMDVgqxAoRYhCqV5v2r
- 9PVrtd4Bg6YmMUQBwVRT7VLY8kzck1B7RfTfCzNHk31w==
-X-Forward-Email-ID: 69890cafa6487c2810b19df6
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 2.6.2
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <3a2f5dad-84de-4afd-baaf-42f7d68cba7b@kwiboo.se>
-Date: Sun, 8 Feb 2026 23:22:36 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1497B3587A1
+	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 22:28:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.182
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770589704; cv=pass; b=cWj/9g47fconHhUmvVF4w6ygH217488lPv8z10fB1S9k5s+2XwoT0bKGBg0xwqo+Zb+2XLIMpalpzdEiaLqghWN6rEkt6Mtyy1Z3YMwmfH5E+TAcU5YI6vUemO8ofqdCpS+gvNk+43uJqp08U6MkI+dNdLBccEA2S6lolZMpv6o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770589704; c=relaxed/simple;
+	bh=1gictA2z8mxa3FAaIPiCoFxaAIxZYRwRZHyPQFpbO9c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KflFvkD6tVpKa/PoxGCyjswJYJfw/ipvDj4apOo8Ao7Zy1p1eS/in4IEhYHy4pJKvGRlT9qHSsO8ctxjMSkRK+XLD1GsyqWsI4VWP6tSZweazWqvJS5PhetofKkpveGrYz/oX2fFFDynlFKn/n333IFR7ziuPfQHvrCn4Fpb4Ds=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hiY2rx6Q; arc=pass smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-383153e06d6so35021481fa.0
+        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 14:28:23 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770589702; cv=none;
+        d=google.com; s=arc-20240605;
+        b=RPe1tNw8svT5uF2/RkuGTzAHXunlyGIEslQYELKLmwJRsJcDTJTCHsjs5oKoLR/IL/
+         RElcr0QZgbT7/iuQeJMk7xSKrKM0Qd4rM5tfl6BFehda2dzI89xreVj8mRcYeKRysQs+
+         gd7FYAwwb1TmpBU9wJnhzwQKOMq1hG23iCanjBcC/lYrUOZkYihd8UTD1bOpbU0QmazC
+         dr8sxfUCdWff/8GflmXJlWCNAoIo+bg3v3Vi8YN3Drkjkhrm7+Y3lmuq8XR1OXNrJaM5
+         kH5LfqYnnDNiUbKHWV2FZU1Y/duhia9bonYiZrqsK64pFk7wCJdlICTeB7X3Yb3L6JfX
+         VWVA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=1gictA2z8mxa3FAaIPiCoFxaAIxZYRwRZHyPQFpbO9c=;
+        fh=ZTNbNT3DDXjZvHYYw1h9Qj3kGEUGj2CEufi3onj3BIY=;
+        b=CdYr7H1MY3CumP0VioZAUV0lfe6xSPRfuZsZNHe0PgEwRj0xgWiPNcZvtCdCx4ZWBw
+         OwiXkIjtiSlRYNTGElHeNw+XLfHYD6upmGEHtdxonWjkc9/pws/6EZ4DmoisY3CJ7rdt
+         gq49LmSqpZIvZ/vGBhPCo9PG91txY3j9N0BmgFKyCiiAdBs2jBVXgU7/C6cJzjIPf6dF
+         2BTjhRO6jdqGsbBI9gpvRIiH2K2/aESU9t1Z/Y/asH1HBn6iMCR0KMW0NDOozWtAEQza
+         mrDO4GE2LfOpn/dOIobiICdhrbYDihwwPAmxPnQHAYr+AFQlnmQ2B9Cqrp8dNswnrjB/
+         fwJQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770589702; x=1771194502; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1gictA2z8mxa3FAaIPiCoFxaAIxZYRwRZHyPQFpbO9c=;
+        b=hiY2rx6QsT99GGqdZN3YN7lm8pyGsIJMnvVDJ/7+IbcF6lz30HpPUJKpHx6ylprgQU
+         e+VDpJEjh1vTWHQO+MJz5UMAwkJs+UlIKrzh6dVehBWOTZ6piya/vTSLEQqlVTopBeTf
+         52fy8oXbzIqRnJbd74aM+yf6VGTBywTU0XJBjZRJS9O5M2Mp9+nqKmdum3DYonGzqQYN
+         qevq2xTVI7htz4w7ya78gwPAMWTDvO81WptqaE3B/EGPsHXxHs32vfb6/sOewo+b3weE
+         ewOy92LN4KTX69Q3lWB0IxwM7pDFsrSvdQCqK9IkjK2x9xFt3DA6DjOFFa6gs60loz9g
+         6bRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770589702; x=1771194502;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=1gictA2z8mxa3FAaIPiCoFxaAIxZYRwRZHyPQFpbO9c=;
+        b=mbYSRixRWvc9toXMTNHE4jMfYYwjD52yPLdoMRIFrWV0G5k1BUdl034T66ppJLFjS9
+         rxasvVjP1fyt3xZfTkewlPy99SZ2KPFQ0wTgelx8FaQ51C92BAL82rnMUu+gsXrt4IuQ
+         witvsolIXjAVhib+JzBRxopWLEsbty8rZIixlWT+SVgmhD2PQyB7U+jFmziA92R2r+Zj
+         r3E0wDpy+sKVD3ijROHsWDfO3Hi2jIgT1lDMhwkSV257E+TkklonpFoNZX5w2iSWT3/q
+         9WswNTQRxBHtUIUaNm7c/C8BcFqGPbbmaHtEFdDMg4boxQKR7BMIUELzY2XVT/XZ1nk+
+         MilQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXE8pRfrKqOOIjJoDAGjZAcBgAfGkJxbmZkw51LhzrF4jTKeBXPWHiAeRmevuYrjn0k8SDmS6okXVVS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcnALrP2AW9I0pCOe4ZiG/M/lu3UGM+sH2WdQAUrgbp4E53gcK
+	V83+Wn/YBnDVncdfjW8SGbfMns+IpJ3/rdkAgtUK6h8U1FVh4VU6sGS0ZG2n4xGGfVL4nZF+kbj
+	6Wa/HoAfJEna85O56FMF9+F95Krb8jw8=
+X-Gm-Gg: AZuq6aILKpzoLbNQdGBbmQpkqryEhCtyN0aLVZDsWefosOBtTNvGlI0YzVm/jqnT6kF
+	IEM8CWb9H/m7riKaHyOvH0FI6fM9n5DCWeMChcRWd5WmCLMM/aK0895/oH/20fNqVrRKGiH4YCt
+	Tsrp9zGnWtmYH7E7PcscUJQAByOLDgNbaIlLNv0uBrR2MTcFWR75cEpfcSnZ03iHb6soP6JKFxG
+	uhTRKqHDM2a0tG52zcXZW4yZzLPRbKI+yRLxpmbb74cZVbt5wFq4mgvCLU+6M7qxIJrUmPpgPyl
+	iOcOMtU+vNn49ryMxYQYBzsNvaM=
+X-Received: by 2002:a2e:a99e:0:b0:37c:c84a:99b9 with SMTP id
+ 38308e7fff4ca-386b51021c8mr30790411fa.24.1770589702112; Sun, 08 Feb 2026
+ 14:28:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: rockchip: Add RV1103B CRU
- support
-To: Fabio Estevam <festevam@gmail.com>
-Cc: sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, Fabio Estevam <festevam@nabladev.com>
-References: <20260207130256.2832815-1-festevam@gmail.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20260207130256.2832815-1-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260207130256.2832815-1-festevam@gmail.com> <3a2f5dad-84de-4afd-baaf-42f7d68cba7b@kwiboo.se>
+In-Reply-To: <3a2f5dad-84de-4afd-baaf-42f7d68cba7b@kwiboo.se>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Sun, 8 Feb 2026 19:28:11 -0300
+X-Gm-Features: AZwV_Qg6wsoSm7cqb4mIkth99O4iiDNLzMYIcaRuYUhewzGI5MxNyrD6qDZWrzE
+Message-ID: <CAOMZO5BCbcENT3oDF94XVOxbze7O2A-0Aje0+zy1wj+Dm_3k7Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: rockchip: Add RV1103B CRU support
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, Fabio Estevam <festevam@nabladev.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kwiboo.se,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kwiboo.se:s=fe-e1b5cab7be];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263756-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-263757-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.978];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	NEURAL_HAM(-0.00)[-0.981];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kwiboo.se:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[9];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nabladev.com:email]
-X-Rspamd-Queue-Id: EE55410A706
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,kwiboo.se:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 5AC7310A72D
 X-Rspamd-Action: no action
 
-Hi Fabio,
+Hi Jonas,
 
-On 2/7/2026 2:02 PM, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@nabladev.com>
-> 
-> Add support for the Rockchip RV1103B Clock and Reset Unit (CRU).
-> 
-> The RV1103B CRU is compatible with the existing RV1126B binding.
-> Add the compatible string to the schema and introduce the
-> corresponding clock ID definitions.
-> 
-> Signed-off-by: Fabio Estevam <festevam@nabladev.com>
-> ---
-> Changes since v1:
-> - Make it a separate series.
-> - Start the clock index from zero and without gaps.
-> - Remove the reset definitions as there is no consumer for them yet.
-> - Squash yaml and dt-bindings.
-> 
->  .../bindings/clock/rockchip,rv1126b-cru.yaml  |   1 +
->  .../dt-bindings/clock/rockchip,rv1103b-cru.h  | 220 ++++++++++++++++++
->  2 files changed, 221 insertions(+)
->  create mode 100644 include/dt-bindings/clock/rockchip,rv1103b-cru.h
+On Sun, Feb 8, 2026 at 7:22=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se> wrot=
+e:
 
-This should probably also include the reset indices or will that be a
-separate series to extend this clock and reset dt-binding?
+> This should probably also include the reset indices or will that be a
+> separate series to extend this clock and reset dt-binding?
 
-Below is the indices decoded and renumbered from vendor kernel, along
-with some macros that can possible be used with the reset driver part.
+The current RV1103B devicetree I'm using is a minimal one to provide
+minimal boot support in both U-Boot and Linux.
 
-Generated by a small script I used with resets for e.g. rk3528.
+The current supported devices do not need the reset dt-bindings. When
+more peripherals are added, the reset dt-bindings will be added.
 
-#define SRST_A_PERI_BIU			0
-#define SRST_H_HPMCU_BIU		1
-#define SRST_LS_PERI_BIU		2
-#define SRST_P_PERI_BIU			3
-#define SRST_P_RTC_BIU			4
-#define SRST_H_BOOTROM			5
-#define SRST_P_TIMER			6
-#define SRST_TIMER0			7
-#define SRST_TIMER1			8
-#define SRST_TIMER2			9
-#define SRST_TIMER3			10
-#define SRST_TIMER4			11
-#define SRST_TIMER5			12
-#define SRST_P_STIMER			13
-#define SRST_STIMER0			14
-#define SRST_STIMER1			15
-#define SRST_P_WDT_NS			16
-#define SRST_T_WDT_NS			17
-#define SRST_P_WDT_S			18
-#define SRST_T_WDT_S			19
-#define SRST_P_WDT_HPMCU		20
-#define SRST_T_WDT_HPMCU		21
-#define SRST_P_I2C1			22
-#define SRST_I2C1			23
-#define SRST_P_I2C2			24
-#define SRST_I2C2			25
-#define SRST_P_I2C3			26
-#define SRST_I2C3			27
-#define SRST_P_I2C4			28
-#define SRST_I2C4			29
-#define SRST_P_UART2			30
-#define SRST_S_UART2			31
-#define SRST_P_UART1			32
-#define SRST_S_UART1			33
-#define SRST_P_SPI0			34
-#define SRST_SPI0			35
-#define SRST_P_PWM1			36
-#define SRST_PWM1			37
-#define SRST_P_PWM2			38
-#define SRST_PWM2			39
-#define SRST_A_RKDMA			40
-#define SRST_P_TSADC			41
-#define SRST_TSADC			42
-#define SRST_P_SARADC			43
-#define SRST_SARADC			44
-#define SRST_SARADC_PHY			45
-#define SRST_P_RTC_TEST			46
-#define SRST_P_GPIO2			47
-#define SRST_DB_GPIO2			48
-#define SRST_P_IOC_VCCIO6		49
-#define SRST_P_PERI_SGRF		50
-#define SRST_P_PERI_GRF			51
-#define SRST_P_CRU_PERI			52
-#define SRST_A_USBOTG			53
-#define SRST_H_SDMMC1			54
-#define SRST_H_SAI			55
-#define SRST_M_SAI			56
-#define SRST_CORE_CRYPTO		57
-#define SRST_PKA_CRYPTO			58
-#define SRST_A_CRYPTO			59
-#define SRST_H_CRYPTO			60
-#define SRST_H_RK_RNG_NS		61
-#define SRST_H_RK_RNG_S			62
-#define SRST_P_OTPC_NS			63
-#define SRST_SBPI_OTPC_NS		64
-#define SRST_USER_OTPC_NS		65
-#define SRST_P_OTPC_S			66
-#define SRST_SBPI_OTPC_S		67
-#define SRST_USER_OTPC_S		68
-#define SRST_OTPC_ARB			69
-#define SRST_P_OTP_MASK			70
-#define SRST_H_RGA			71
-#define SRST_A_RGA			72
-#define SRST_CORE_RGA			73
-#define SRST_A_MAC			74
-#define SRST_MACPHY			75
-#define SRST_A_SPINLOCK			76
-#define SRST_H_CACHE			77
-#define SRST_P_HPMCU_MAILBOX		78
-#define SRST_P_HPMCU_INTMUX		79
-#define SRST_HPMCU_FULL_CLUSTER		80
-#define SRST_HPMCU_PWUP			81
-#define SRST_HPMCU_ONLY_CORE		82
-#define SRST_T_HPMCU_JTAG		83
-#define SRST_D_DECOM			84
-#define SRST_A_DECOM			85
-#define SRST_P_DECOM			86
-#define SRST_A_SYS_SRAM			87
-#define SRST_P_DMA2DDR			88
-#define SRST_A_DMA2DDR			89
-#define SRST_P_DCF			90
-#define SRST_A_DCF			91
-#define SRST_USBPHY_POR			92
-#define SRST_USBPHY_OTG			93
-#define SRST_A_VEPU_BIU			94
-#define SRST_LS_VEPU_BIU		95
-#define SRST_REF_PVTPLL_VEPU		96
-#define SRST_H_VEPU			97
-#define SRST_A_VEPU			98
-#define SRST_CORE_VEPU			99
-#define SRST_P_VEPU_PVTPLL		100
-#define SRST_P_CRU_VEPU			101
-#define SRST_P_VEPU_GRF			102
-#define SRST_P_IOC_VCCIO3		103
-#define SRST_P_ACODEC			104
-#define SRST_P_USBPHY			105
-#define SRST_REF_PVTPLL_NPU		106
-#define SRST_A_NPU_BIU			107
-#define SRST_LS_NPU_BIU			108
-#define SRST_H_RKNN			109
-#define SRST_A_RKNN			110
-#define SRST_P_NPU_PVTPLL		111
-#define SRST_P_CRU_NPU			112
-#define SRST_P_NPU_GRF			113
-#define SRST_LS_VI_BIU			114
-#define SRST_A_VI_BIU			115
-#define SRST_REF_PVTPLL_ISP		116
-#define SRST_CORE_ISP			117
-#define SRST_D_VICAP			118
-#define SRST_A_VICAP			119
-#define SRST_H_VICAP			120
-#define SRST_ISP0RESETN_VICAP		121
-#define SRST_P_CSI2HOST0		122
-#define SRST_P_CSI2HOST1		123
-#define SRST_S_SFC_2X			124
-#define SRST_H_EMMC			125
-#define SRST_H_SFC			126
-#define SRST_H_SFC_XIP			127
-#define SRST_H_SDMMC0			128
-#define SRST_P_CSIPHY			129
-#define SRST_P_GPIO1			130
-#define SRST_DB_GPIO1			131
-#define SRST_P_IOC_VCCIO47		132
-#define SRST_P_VI_GRF			133
-#define SRST_P_CRU_VI			134
-#define SRST_P_VI_PVTPLL		135
-#define SRST_REF_PVTPLL_CORE		136
-#define SRST_NCOREPORESET		137
-#define SRST_NCORESET			138
-#define SRST_NDBGRESET			139
-#define SRST_NL2RESET			140
-#define SRST_A_CORE_BIU			141
-#define SRST_P_CORE_BIU			142
-#define SRST_H_CORE_BIU			143
-#define SRST_P_DBG			144
-#define SRST_POT_DBG			145
-#define SRST_NT_DBG			146
-#define SRST_LS_DDR_BIU			147
-#define SRST_P_DDRC			148
-#define SRST_P_DDRMON			149
-#define SRST_TIMER_DDRMON		150
-#define SRST_P_DFICTRL			151
-#define SRST_P_DDR_GRF			152
-#define SRST_P_CRU_DDR			153
-#define SRST_H_DDRPHY			154
-#define SRST_DDR_BIU			155
-#define SRST_A_DDRSCH_CPU		156
-#define SRST_A_DDRSCH_VI		157
-#define SRST_A_DDRSCH_NPVD		158
-#define SRST_CORE_DDRC			159
-#define SRST_DDRMON			160
-#define SRST_DFICTRL			161
-#define SRST_DFI_SCRAMBLE		162
-#define SRST_P_CRU			163
-#define SRST_P_CRU_BIU			164
-#define SRST_DDRPHY			165
-#define SRST_P_PMU_GPIO0		166
-#define SRST_DB_PMU_GPIO0		167
-#define SRST_DDR_FAIL_SAFE		168
-#define SRST_P_PMU_HP_TIMER		169
-#define SRST_PMU_HP_TIMER		170
-#define SRST_PMU_32K_HP_TIMER		171
-#define SRST_P_I2C0			172
-#define SRST_I2C0			173
-#define SRST_P_UART0			174
-#define SRST_S_UART0			175
-#define SRST_P_IOC_PMUIO0		176
-#define SRST_P_CRU_PMU			177
-#define SRST_P_PMU_GRF			178
-#define SRST_P_PMU_SGRF			179
-#define SRST_P_PMU_SGRF_REMAP		180
-#define SRST_PREROLL			181
-#define SRST_PREROLL_32K		182
-#define SRST_H_PMU_SRAM			183
-#define SRST_P_PWM0			184
-#define SRST_PWM0			185
-#define SRST_LPMCU			186
-#define SRST_LPMCU_PWRUP		187
-#define SRST_LPMCU_CPU			188
-#define SRST_T_LPMCU_CPU		189
-#define SRST_P_SPI2AHB			190
-#define SRST_H_SPI2AHB			191
-#define SRST_S_SPI2AHB			192
-#define SRST_LS_PMU_BIU			193
-#define SRST_P_WDT_LPMCU		194
-#define SRST_T_WDT_LPMCU		195
-#define SRST_H_SFC_PMU1			196
-#define SRST_H_SFC_XIP_PMU1		197
-#define SRST_S_SFC_2X_PMU1		198
-#define SRST_P_LPMCU_MAILBOX		199
-#define SRST_P_IOC_PMUIO1		200
-#define SRST_P_CRU_PMU1			201
+> Below is the indices decoded and renumbered from vendor kernel, along
+> with some macros that can possible be used with the reset driver part.
+>
+> Generated by a small script I used with resets for e.g. rk3528.
 
-	CRU_RESET_OFFSET(SRST_A_PERI_BIU, 0, 2),
-	CRU_RESET_OFFSET(SRST_H_HPMCU_BIU, 0, 3),
-	CRU_RESET_OFFSET(SRST_LS_PERI_BIU, 0, 4),
-	CRU_RESET_OFFSET(SRST_P_PERI_BIU, 0, 5),
-	CRU_RESET_OFFSET(SRST_P_RTC_BIU, 0, 6),
-	CRU_RESET_OFFSET(SRST_H_BOOTROM, 0, 7),
-	CRU_RESET_OFFSET(SRST_P_TIMER, 1, 0),
-	CRU_RESET_OFFSET(SRST_TIMER0, 1, 1),
-	CRU_RESET_OFFSET(SRST_TIMER1, 1, 2),
-	CRU_RESET_OFFSET(SRST_TIMER2, 1, 3),
-	CRU_RESET_OFFSET(SRST_TIMER3, 1, 4),
-	CRU_RESET_OFFSET(SRST_TIMER4, 1, 5),
-	CRU_RESET_OFFSET(SRST_TIMER5, 1, 6),
-	CRU_RESET_OFFSET(SRST_P_STIMER, 1, 7),
-	CRU_RESET_OFFSET(SRST_STIMER0, 1, 8),
-	CRU_RESET_OFFSET(SRST_STIMER1, 1, 9),
-	CRU_RESET_OFFSET(SRST_P_WDT_NS, 2, 0),
-	CRU_RESET_OFFSET(SRST_T_WDT_NS, 2, 1),
-	CRU_RESET_OFFSET(SRST_P_WDT_S, 2, 2),
-	CRU_RESET_OFFSET(SRST_T_WDT_S, 2, 3),
-	CRU_RESET_OFFSET(SRST_P_WDT_HPMCU, 2, 4),
-	CRU_RESET_OFFSET(SRST_T_WDT_HPMCU, 2, 5),
-	CRU_RESET_OFFSET(SRST_P_I2C1, 2, 6),
-	CRU_RESET_OFFSET(SRST_I2C1, 2, 7),
-	CRU_RESET_OFFSET(SRST_P_I2C2, 2, 8),
-	CRU_RESET_OFFSET(SRST_I2C2, 2, 9),
-	CRU_RESET_OFFSET(SRST_P_I2C3, 2, 10),
-	CRU_RESET_OFFSET(SRST_I2C3, 2, 11),
-	CRU_RESET_OFFSET(SRST_P_I2C4, 2, 12),
-	CRU_RESET_OFFSET(SRST_I2C4, 2, 13),
-	CRU_RESET_OFFSET(SRST_P_UART2, 3, 0),
-	CRU_RESET_OFFSET(SRST_S_UART2, 3, 1),
-	CRU_RESET_OFFSET(SRST_P_UART1, 3, 2),
-	CRU_RESET_OFFSET(SRST_S_UART1, 3, 3),
-	CRU_RESET_OFFSET(SRST_P_SPI0, 3, 10),
-	CRU_RESET_OFFSET(SRST_SPI0, 3, 11),
-	CRU_RESET_OFFSET(SRST_P_PWM1, 4, 6),
-	CRU_RESET_OFFSET(SRST_PWM1, 4, 7),
-	CRU_RESET_OFFSET(SRST_P_PWM2, 4, 12),
-	CRU_RESET_OFFSET(SRST_PWM2, 4, 13),
-	CRU_RESET_OFFSET(SRST_A_RKDMA, 5, 8),
-	CRU_RESET_OFFSET(SRST_P_TSADC, 5, 9),
-	CRU_RESET_OFFSET(SRST_TSADC, 5, 10),
-	CRU_RESET_OFFSET(SRST_P_SARADC, 5, 12),
-	CRU_RESET_OFFSET(SRST_SARADC, 5, 13),
-	CRU_RESET_OFFSET(SRST_SARADC_PHY, 6, 0),
-	CRU_RESET_OFFSET(SRST_P_RTC_TEST, 6, 1),
-	CRU_RESET_OFFSET(SRST_P_GPIO2, 6, 3),
-	CRU_RESET_OFFSET(SRST_DB_GPIO2, 6, 4),
-	CRU_RESET_OFFSET(SRST_P_IOC_VCCIO6, 6, 5),
-	CRU_RESET_OFFSET(SRST_P_PERI_SGRF, 6, 6),
-	CRU_RESET_OFFSET(SRST_P_PERI_GRF, 6, 7),
-	CRU_RESET_OFFSET(SRST_P_CRU_PERI, 6, 8),
-	CRU_RESET_OFFSET(SRST_A_USBOTG, 6, 9),
-	CRU_RESET_OFFSET(SRST_H_SDMMC1, 7, 0),
-	CRU_RESET_OFFSET(SRST_H_SAI, 7, 1),
-	CRU_RESET_OFFSET(SRST_M_SAI, 7, 2),
-	CRU_RESET_OFFSET(SRST_CORE_CRYPTO, 8, 0),
-	CRU_RESET_OFFSET(SRST_PKA_CRYPTO, 8, 1),
-	CRU_RESET_OFFSET(SRST_A_CRYPTO, 8, 2),
-	CRU_RESET_OFFSET(SRST_H_CRYPTO, 8, 3),
-	CRU_RESET_OFFSET(SRST_H_RK_RNG_NS, 8, 4),
-	CRU_RESET_OFFSET(SRST_H_RK_RNG_S, 8, 5),
-	CRU_RESET_OFFSET(SRST_P_OTPC_NS, 8, 6),
-	CRU_RESET_OFFSET(SRST_SBPI_OTPC_NS, 8, 8),
-	CRU_RESET_OFFSET(SRST_USER_OTPC_NS, 8, 9),
-	CRU_RESET_OFFSET(SRST_P_OTPC_S, 8, 10),
-	CRU_RESET_OFFSET(SRST_SBPI_OTPC_S, 8, 12),
-	CRU_RESET_OFFSET(SRST_USER_OTPC_S, 8, 13),
-	CRU_RESET_OFFSET(SRST_OTPC_ARB, 8, 14),
-	CRU_RESET_OFFSET(SRST_P_OTP_MASK, 8, 15),
-	CRU_RESET_OFFSET(SRST_H_RGA, 9, 0),
-	CRU_RESET_OFFSET(SRST_A_RGA, 9, 1),
-	CRU_RESET_OFFSET(SRST_CORE_RGA, 9, 2),
-	CRU_RESET_OFFSET(SRST_A_MAC, 9, 3),
-	CRU_RESET_OFFSET(SRST_MACPHY, 9, 11),
-	CRU_RESET_OFFSET(SRST_A_SPINLOCK, 10, 0),
-	CRU_RESET_OFFSET(SRST_H_CACHE, 10, 1),
-	CRU_RESET_OFFSET(SRST_P_HPMCU_MAILBOX, 10, 2),
-	CRU_RESET_OFFSET(SRST_P_HPMCU_INTMUX, 10, 3),
-	CRU_RESET_OFFSET(SRST_HPMCU_FULL_CLUSTER, 10, 4),
-	CRU_RESET_OFFSET(SRST_HPMCU_PWUP, 10, 5),
-	CRU_RESET_OFFSET(SRST_HPMCU_ONLY_CORE, 10, 6),
-	CRU_RESET_OFFSET(SRST_T_HPMCU_JTAG, 10, 7),
-	CRU_RESET_OFFSET(SRST_D_DECOM, 11, 0),
-	CRU_RESET_OFFSET(SRST_A_DECOM, 11, 1),
-	CRU_RESET_OFFSET(SRST_P_DECOM, 11, 2),
-	CRU_RESET_OFFSET(SRST_A_SYS_SRAM, 11, 3),
-	CRU_RESET_OFFSET(SRST_P_DMA2DDR, 11, 4),
-	CRU_RESET_OFFSET(SRST_A_DMA2DDR, 11, 5),
-	CRU_RESET_OFFSET(SRST_P_DCF, 11, 6),
-	CRU_RESET_OFFSET(SRST_A_DCF, 11, 7),
-	CRU_RESET_OFFSET(SRST_USBPHY_POR, 11, 12),
-	CRU_RESET_OFFSET(SRST_USBPHY_OTG, 11, 13),
-	
-	CRU_RESET_OFFSET(SRST_A_VEPU_BIU, 16384, 1),
-	CRU_RESET_OFFSET(SRST_LS_VEPU_BIU, 16384, 2),
-	CRU_RESET_OFFSET(SRST_REF_PVTPLL_VEPU, 16384, 3),
-	CRU_RESET_OFFSET(SRST_H_VEPU, 16384, 4),
-	CRU_RESET_OFFSET(SRST_A_VEPU, 16384, 5),
-	CRU_RESET_OFFSET(SRST_CORE_VEPU, 16384, 6),
-	CRU_RESET_OFFSET(SRST_P_VEPU_PVTPLL, 16384, 7),
-	CRU_RESET_OFFSET(SRST_P_CRU_VEPU, 16384, 8),
-	CRU_RESET_OFFSET(SRST_P_VEPU_GRF, 16384, 10),
-	CRU_RESET_OFFSET(SRST_P_IOC_VCCIO3, 16384, 11),
-	CRU_RESET_OFFSET(SRST_P_ACODEC, 16384, 13),
-	CRU_RESET_OFFSET(SRST_P_USBPHY, 16384, 14),
-	
-	CRU_RESET_OFFSET(SRST_REF_PVTPLL_NPU, 32768, 0),
-	CRU_RESET_OFFSET(SRST_A_NPU_BIU, 32768, 2),
-	CRU_RESET_OFFSET(SRST_LS_NPU_BIU, 32768, 3),
-	CRU_RESET_OFFSET(SRST_H_RKNN, 32768, 4),
-	CRU_RESET_OFFSET(SRST_A_RKNN, 32768, 5),
-	CRU_RESET_OFFSET(SRST_P_NPU_PVTPLL, 32768, 6),
-	CRU_RESET_OFFSET(SRST_P_CRU_NPU, 32768, 7),
-	CRU_RESET_OFFSET(SRST_P_NPU_GRF, 32768, 9),
-	
-	CRU_RESET_OFFSET(SRST_LS_VI_BIU, 49152, 1),
-	CRU_RESET_OFFSET(SRST_A_VI_BIU, 49152, 2),
-	CRU_RESET_OFFSET(SRST_REF_PVTPLL_ISP, 49152, 3),
-	CRU_RESET_OFFSET(SRST_CORE_ISP, 49152, 6),
-	CRU_RESET_OFFSET(SRST_D_VICAP, 49153, 0),
-	CRU_RESET_OFFSET(SRST_A_VICAP, 49153, 2),
-	CRU_RESET_OFFSET(SRST_H_VICAP, 49153, 3),
-	CRU_RESET_OFFSET(SRST_ISP0RESETN_VICAP, 49153, 8),
-	CRU_RESET_OFFSET(SRST_P_CSI2HOST0, 49153, 9),
-	CRU_RESET_OFFSET(SRST_P_CSI2HOST1, 49153, 11),
-	CRU_RESET_OFFSET(SRST_S_SFC_2X, 49153, 12),
-	CRU_RESET_OFFSET(SRST_H_EMMC, 49153, 13),
-	CRU_RESET_OFFSET(SRST_H_SFC, 49153, 14),
-	CRU_RESET_OFFSET(SRST_H_SFC_XIP, 49153, 15),
-	CRU_RESET_OFFSET(SRST_H_SDMMC0, 49154, 0),
-	CRU_RESET_OFFSET(SRST_P_CSIPHY, 49154, 2),
-	CRU_RESET_OFFSET(SRST_P_GPIO1, 49154, 3),
-	CRU_RESET_OFFSET(SRST_DB_GPIO1, 49154, 4),
-	CRU_RESET_OFFSET(SRST_P_IOC_VCCIO47, 49154, 5),
-	CRU_RESET_OFFSET(SRST_P_VI_GRF, 49154, 6),
-	CRU_RESET_OFFSET(SRST_P_CRU_VI, 49154, 8),
-	CRU_RESET_OFFSET(SRST_P_VI_PVTPLL, 49154, 9),
-	
-	CRU_RESET_OFFSET(SRST_REF_PVTPLL_CORE, 65536, 0),
-	CRU_RESET_OFFSET(SRST_NCOREPORESET, 65536, 1),
-	CRU_RESET_OFFSET(SRST_NCORESET, 65536, 2),
-	CRU_RESET_OFFSET(SRST_NDBGRESET, 65536, 3),
-	CRU_RESET_OFFSET(SRST_NL2RESET, 65536, 4),
-	CRU_RESET_OFFSET(SRST_A_CORE_BIU, 65536, 5),
-	CRU_RESET_OFFSET(SRST_P_CORE_BIU, 65536, 6),
-	CRU_RESET_OFFSET(SRST_H_CORE_BIU, 65536, 7),
-	CRU_RESET_OFFSET(SRST_P_DBG, 65536, 8),
-	CRU_RESET_OFFSET(SRST_POT_DBG, 65536, 9),
-	CRU_RESET_OFFSET(SRST_NT_DBG, 65536, 10),
-	
-	CRU_RESET_OFFSET(SRST_LS_DDR_BIU, 81920, 1),
-	CRU_RESET_OFFSET(SRST_P_DDRC, 81920, 2),
-	CRU_RESET_OFFSET(SRST_P_DDRMON, 81920, 3),
-	CRU_RESET_OFFSET(SRST_TIMER_DDRMON, 81920, 4),
-	CRU_RESET_OFFSET(SRST_P_DFICTRL, 81920, 5),
-	CRU_RESET_OFFSET(SRST_P_DDR_GRF, 81920, 6),
-	CRU_RESET_OFFSET(SRST_P_CRU_DDR, 81920, 7),
-	CRU_RESET_OFFSET(SRST_H_DDRPHY, 81920, 8),
-	
-	CRU_RESET_OFFSET(SRST_DDR_BIU, 90112, 1),
-	CRU_RESET_OFFSET(SRST_A_DDRSCH_CPU, 90112, 2),
-	CRU_RESET_OFFSET(SRST_A_DDRSCH_VI, 90112, 4),
-	CRU_RESET_OFFSET(SRST_A_DDRSCH_NPVD, 90112, 5),
-	CRU_RESET_OFFSET(SRST_CORE_DDRC, 90112, 6),
-	CRU_RESET_OFFSET(SRST_DDRMON, 90112, 7),
-	CRU_RESET_OFFSET(SRST_DFICTRL, 90112, 8),
-	CRU_RESET_OFFSET(SRST_DFI_SCRAMBLE, 90112, 9),
-	
-	CRU_RESET_OFFSET(SRST_P_CRU, 98304, 0),
-	CRU_RESET_OFFSET(SRST_P_CRU_BIU, 98304, 1),
-	CRU_RESET_OFFSET(SRST_DDRPHY, 98304, 12),
-	
-	CRU_RESET_OFFSET(SRST_P_PMU_GPIO0, 114688, 4),
-	CRU_RESET_OFFSET(SRST_DB_PMU_GPIO0, 114688, 5),
-	CRU_RESET_OFFSET(SRST_DDR_FAIL_SAFE, 114688, 8),
-	CRU_RESET_OFFSET(SRST_P_PMU_HP_TIMER, 114688, 9),
-	CRU_RESET_OFFSET(SRST_PMU_HP_TIMER, 114688, 10),
-	CRU_RESET_OFFSET(SRST_PMU_32K_HP_TIMER, 114688, 11),
-	CRU_RESET_OFFSET(SRST_P_I2C0, 114688, 12),
-	CRU_RESET_OFFSET(SRST_I2C0, 114688, 13),
-	CRU_RESET_OFFSET(SRST_P_UART0, 114688, 14),
-	CRU_RESET_OFFSET(SRST_S_UART0, 114688, 15),
-	CRU_RESET_OFFSET(SRST_P_IOC_PMUIO0, 114689, 0),
-	CRU_RESET_OFFSET(SRST_P_CRU_PMU, 114689, 1),
-	CRU_RESET_OFFSET(SRST_P_PMU_GRF, 114689, 2),
-	CRU_RESET_OFFSET(SRST_P_PMU_SGRF, 114689, 3),
-	CRU_RESET_OFFSET(SRST_P_PMU_SGRF_REMAP, 114689, 4),
-	CRU_RESET_OFFSET(SRST_PREROLL, 114689, 6),
-	CRU_RESET_OFFSET(SRST_PREROLL_32K, 114689, 7),
-	CRU_RESET_OFFSET(SRST_H_PMU_SRAM, 114689, 8),
-	CRU_RESET_OFFSET(SRST_P_PWM0, 114689, 9),
-	CRU_RESET_OFFSET(SRST_PWM0, 114689, 10),
-	CRU_RESET_OFFSET(SRST_LPMCU, 114690, 0),
-	CRU_RESET_OFFSET(SRST_LPMCU_PWRUP, 114690, 1),
-	CRU_RESET_OFFSET(SRST_LPMCU_CPU, 114690, 2),
-	CRU_RESET_OFFSET(SRST_T_LPMCU_CPU, 114690, 3),
-	
-	CRU_RESET_OFFSET(SRST_P_SPI2AHB, 131072, 0),
-	CRU_RESET_OFFSET(SRST_H_SPI2AHB, 131072, 1),
-	CRU_RESET_OFFSET(SRST_S_SPI2AHB, 131072, 2),
-	CRU_RESET_OFFSET(SRST_LS_PMU_BIU, 131072, 3),
-	CRU_RESET_OFFSET(SRST_P_WDT_LPMCU, 131072, 9),
-	CRU_RESET_OFFSET(SRST_T_WDT_LPMCU, 131072, 10),
-	CRU_RESET_OFFSET(SRST_H_SFC_PMU1, 131072, 12),
-	CRU_RESET_OFFSET(SRST_H_SFC_XIP_PMU1, 131072, 13),
-	CRU_RESET_OFFSET(SRST_S_SFC_2X_PMU1, 131072, 14),
-	CRU_RESET_OFFSET(SRST_P_LPMCU_MAILBOX, 131073, 8),
-	CRU_RESET_OFFSET(SRST_P_IOC_PMUIO1, 131073, 9),
-	CRU_RESET_OFFSET(SRST_P_CRU_PMU1, 131073, 10),
+Thanks a lot for sharing the reset indices. I appreciate it.
 
-Regards,
-Jonas
+Will use them when extending support for the RV1103 B.
+
+Thanks
 
