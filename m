@@ -1,63 +1,55 @@
-Return-Path: <devicetree+bounces-263741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263742-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kL32GmD+iGkY0QQAu9opvQ
-	(envelope-from <devicetree+bounces-263741-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 22:21:36 +0100
+	id 2PRUBg//iGkY0QQAu9opvQ
+	(envelope-from <devicetree+bounces-263742-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 22:24:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB4A310A2EA
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 22:21:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EEFD10A332
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 22:24:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 113963005E80
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 21:21:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2845B3007F69
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 21:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 452E73491C8;
-	Sun,  8 Feb 2026 21:21:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FCF934A3C5;
+	Sun,  8 Feb 2026 21:24:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OL0cmPMG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G7T3Pvnq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22BBD346E7A;
-	Sun,  8 Feb 2026 21:21:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B9AD248F5A;
+	Sun,  8 Feb 2026 21:24:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770585693; cv=none; b=DYt8RJI6cKBVHOEdE0Vij88kgO/9es/7Byxprcg8cFC3cNcRHZEp9XvVZuolzAQILcXHFZ6ti7EFuEEdb170qGhxhV53OC48iZQWly8itU+wGnepJnerkLWy2U+dp1mqgj0yz0I9cYjsEVUH3fbhDmNTumpn5l31lsEDR0pi57s=
+	t=1770585868; cv=none; b=J0E/rtpdF8QTPdZVQX+bmGC7VO/mmDW5Nu4GbceRe68jpYZeT/KKkgjFuRciCfVTNb1AXtKC2ARqLkH7EpUyi3pkLnFmCDA1Bog81z7RYv882tWLAtA+nK+K4GIwgc1UuerqNd5eVrm/foQkeTuBH80H/cu2eZW2XIFeZMdCL6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770585693; c=relaxed/simple;
-	bh=WniId9rylPyWCg6DYb8OFQ8yG1Mf1fld/+NjW0lsf8k=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=OiozTt6rC/ypISXz58bbNVtfLzUzj1i73KUoSlHjvkz20+NAyNjpoDrtlCKGLQ6MkLFQDGp1eoLfRG0wPFmNFBwGozqF66uj/jNNKW7jGDdjH1TJyGnVJfolFzTk9Un1w8dnKTXXrLVkgqbLOLcILlEDOQaAtBb87BLsmgPwank=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OL0cmPMG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16A8BC4CEF7;
-	Sun,  8 Feb 2026 21:21:28 +0000 (UTC)
+	s=arc-20240116; t=1770585868; c=relaxed/simple;
+	bh=3IJy81RzZhoLUFLAjVQt3bGniMa7XC8oSFJTkR7zy9k=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=tIEujKfIC791OgoF/sEr2IvOtCjVMgtJbixNfANp45gXjBTA3FYSA+aVivNQkvnK4Zbz7QOoYs7BHkRDCDZRBKDHvyyeUAPL2CZ7irkwqChr9e8BCU2sXHFYNypupSKUcJWhZ8CtumGTEPAa4wM1WN+QvxU6MIm1EQDU88BnDSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G7T3Pvnq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CF5E8C4CEF7;
+	Sun,  8 Feb 2026 21:24:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770585692;
-	bh=WniId9rylPyWCg6DYb8OFQ8yG1Mf1fld/+NjW0lsf8k=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=OL0cmPMGq5hb4ML2UnBGJ7XL+Cd2QuvbF2LHCwzNxbt2D5NdVfL1HUi1K2BJFm7qe
-	 FO6ErvhzO/VPNdM00QJdKkXJThRqPgNp7pgtPAQo/is0wG00tWKu3YsT/8AmKsB/1W
-	 Zi1lF6Y52pNAoJeqjcGO58ozFPqmmkB78ZPpN5gF7Rm4ov7vZt63BXQhH90d9GhH+x
-	 H91figU7ZpSIpGrvLTiHduM/rwS4K7YyONIs7mDupxe+jsBe89IhoDPyt9tfHYoH1B
-	 st2sf9XgeYYZK0mZpaXpkvQ6oZ9d6j8K+a05oJGBzVFy/Pwc3s2M24i/5M6I0M6eHX
-	 rdhZtuE3oXrrg==
-From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
- kernel@pengutronix.de, festevam@gmail.com, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, nicoleotsuka@gmail.com, 
- perex@perex.cz, tiwai@suse.com, linuxppc-dev@lists.ozlabs.org, 
- Shengjiu Wang <shengjiu.wang@nxp.com>
-In-Reply-To: <20260206014805.3897764-1-shengjiu.wang@nxp.com>
-References: <20260206014805.3897764-1-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH v4 0/4] ASoC: fsl_asrc: support the i.MX952 platform
-Message-Id: <177058568882.654564.1085917355716546232.b4-ty@kernel.org>
-Date: Sun, 08 Feb 2026 21:21:28 +0000
+	s=k20201202; t=1770585867;
+	bh=3IJy81RzZhoLUFLAjVQt3bGniMa7XC8oSFJTkR7zy9k=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=G7T3Pvnqo+/MsaLK6vQjIcGNSaBoyARESbefHe/6IBeqcy+sEf1k2J2PhOuROdvqk
+	 WG0PGvGhDYWr+dVHRNAJTy7mXrwT6hiASds8VF7+breixLt+Sl7ghqe7IXR+8rVQLX
+	 nGEa+RU8vgQwhjexboPGQGkOGYHRetaQ7XrDBprl57qRkfVfx7VETqvFAxxa60+e4Q
+	 Cd/7M74whpcq52mxCZMvvpQOIK0E+BQLDzT2y0NLJqA3v5887vft/aw5tG1YIMQDdQ
+	 emAiVDmQnOLYQ1Ap32LM4w9bG9/+WPKGKiHNDuabtLwr74molveOaik6XmcfZgxJJ/
+	 L+uRw9BnGHNaQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C3E8CEF06E2;
+	Sun,  8 Feb 2026 21:24:27 +0000 (UTC)
+From: Yedaya Katsman via B4 Relay <devnull+yedaya.ka.gmail.com@kernel.org>
+Date: Sun, 08 Feb 2026 23:24:23 +0200
+Subject: [PATCH v5] arm64: dts: qcom: sm6125-xiaomi-laurel-sprout: Add
+ Focaltech FT3518 touchscreen
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,83 +57,228 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-47773
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260208-touchscreen-patches-v5-1-5821dff9c9a2@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33NywqDMBCF4VeRrJuSTBKrXfU9She5jDVQLyRWW
+ sR3b3QlIl3+B+abiUQMHiO5ZhMJOProuzaFOmXE1rp9IvUuNQEGOeNc0KF72zragNjSXg+2xkg
+ NGlCQG6cqQ9JlH7Dyn1W9P1LXPg5d+K5PRr6s/72RU0Y1Z6W6VAKcK27PRvvX2XYNWbwRtoY8N
+ iAZEriqSmkLbfTeEFujODZEMrjN9QVKq9DIvSE3BrBjQyZDMC6V06XLndga8zz/ADzwCLGCAQA
+ A
+X-Change-ID: 20260113-touchscreen-patches-beb2526bd5fb
+To: =?utf-8?q?Kamil_Go=C5=82da?= <kamil.golda@protonmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Yedaya Katsman <yedaya.ka@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770585866; l=4549;
+ i=yedaya.ka@gmail.com; s=20260113; h=from:subject:message-id;
+ bh=uLRuSW3FC71D/g2v0anek3bfb3SM5Go5/FJtCdtd5IE=;
+ b=mQa7ISvungOxBQDzqmmXfERfev6zdun29Y6R+kimhVMkciPeBpHc9CH1u1ruIThgIPQBcaIzN
+ nY4HS5FZByIAvMKCNVACNwhVG2xLO/Vh/7pP3JHW6VYZsNdbo2DQjgA
+X-Developer-Key: i=yedaya.ka@gmail.com; a=ed25519;
+ pk=CgNmxD3tYSws5dZfpmJfc6re/bV/f47veVijddHLytk=
+X-Endpoint-Received: by B4 Relay for yedaya.ka@gmail.com/20260113 with
+ auth_id=601
+X-Original-From: Yedaya Katsman <yedaya.ka@gmail.com>
+Reply-To: yedaya.ka@gmail.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-263742-lists,devicetree=lfdr.de,yedaya.ka.gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263741-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org,perex.cz,suse.com,lists.ozlabs.org,nxp.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[protonmail.com,kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[yedaya.ka@gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[0.0.0.38:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CB4A310A2EA
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,protonmail.com:email]
+X-Rspamd-Queue-Id: 6EEFD10A332
 X-Rspamd-Action: no action
 
-On Fri, 06 Feb 2026 09:48:01 +0800, Shengjiu Wang wrote:
-> Update dt binding document and update driver to suppot ASRC on i.MX952.
-> 
-> Changes in v4:
-> - add Reviewed-by from Daniel in patch 2/4, 3/4
-> - add Reviewed-by from Frank in patch 4/4
-> - update the commit message for patch 4/4
-> - remove 'retry' in patch 2/4, reduce the threshold for timeout.
-> 
-> [...]
+From: Yedaya Katsman <yedaya.ka@gmail.com>
 
-Applied to
+Add device tree node for the Focaltech FT3518 touchscreen on
+Xiaomi Mi A3 (laurel-sprout).
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Enable qupv3_id_0 and i2c2 bus that the touchscreen is on.
 
-Thanks!
+Downstream references:
+Link: https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/laurel-r-oss/arch/arm64/boot/dts/qcom/trinket-pinctrl.dtsi
+Link: https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/laurel-r-oss/arch/arm64/boot/dts/qcom/laurel_sprout-qrd.dtsi
 
-[1/4] ASoC: dt-bindings: fsl,imx-asrc: Add support for i.MX952 platform
-      commit: 37bb773b4a5a5107b92beda3447a7c6c0cfc1237
-[2/4] ASoC: fsl_asrc_m2m: Add option to start ASRC before DMA device for M2M
-      commit: 83447a38ba9abac52bc110566d3e117753899f69
-[3/4] ASoC: fsl_asrc: Add support for i.MX952 platform
-      commit: 6a8c6f5587337eceb387812b6f47bc16c125b883
-[4/4] ASoC: fsl_asrc_dma: allocate memory from dma device
-      commit: b010c782341b79edbeb80706360b772db908daa6
+Co-developed-by: Kamil Gołda <kamil.golda@protonmail.com>
+Signed-off-by: Kamil Gołda <kamil.golda@protonmail.com>
+Signed-off-by: Yedaya Katsman <yedaya.ka@gmail.com>
+---
+Adds support for the touchscreen in the Xiaomi Mi A3 (xiaomi-laurel)
+ smartphone, FocalTech FT3518
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Original tree was here:
+ Link: https://gitlab.postmarketos.org/SzczurekYT/linux/-/commits/laurel
+---
+Changes in v5:
+- Add pin config for ts vdd
+- Reorder some properties
+- Drop applied patches
+- Link to v4: https://lore.kernel.org/r/20260120-touchscreen-patches-v4-0-30145da9d6d3@gmail.com
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Changes in v4:
+- Follow dts coding style for pinctrl nodes
+- Don't refrence touchscreen "release" gpio config
+- Link to v3: https://lore.kernel.org/r/20260118-touchscreen-patches-v3-0-1c6a729c5eb4@gmail.com
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Changes in v3:
+- Rename regulator node and reorder nodes
+- Add gpio pin configuration for pmx_ts_* in sm6125, and reference in the
+  touchscreen configuration as pinctrl-*. Doesn't have configuration for
+  the gpio 83 pin since it isn't documented downstream.
+- Link to v2: https://lore.kernel.org/r/20260114-touchscreen-patches-v2-0-4215f94c8aba@gmail.com
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Changes in v2:
+- Fixed name and email in signoffs
+- Link to v1: https://lore.kernel.org/r/20260113-touchscreen-patches-v1-0-a10957f32dd8@gmail.com
+---
+ .../boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts  | 73 ++++++++++++++++++++++
+ 1 file changed, 73 insertions(+)
 
-Thanks,
-Mark
+diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
+index 994fb0412fcbdf5466f87a325c48b697a37b514b..97f64cb5d570e018ef666612f3839c4e6759ac7b 100644
+--- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
++++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
+@@ -82,6 +82,19 @@ key-volume-up {
+ 		};
+ 	};
+ 
++	ts_vdd_supply: regulator-ts-vdd {
++		compatible = "regulator-fixed";
++		regulator-name = "ts_vdd_supply";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		startup-delay-us = <70000>;
++
++		enable-active-high;
++		gpio = <&tlmm 83 GPIO_ACTIVE_HIGH>;
++		pinctrl-0 = <&ts_vdd_en>;
++		pinctrl-names = "default";
++	};
++
+ 	thermal-zones {
+ 		rf-pa0-thermal {
+ 			thermal-sensors = <&pm6125_adc_tm 0>;
+@@ -128,6 +141,27 @@ &hsusb_phy1 {
+ 	status = "okay";
+ };
+ 
++&i2c2 {
++	status = "okay";
++
++	touchscreen@38 {
++		compatible = "focaltech,ft3518";
++		reg = <0x38>;
++		interrupts-extended = <&tlmm 88 IRQ_TYPE_EDGE_FALLING>;
++
++		vcc-supply = <&ts_vdd_supply>;
++
++		pinctrl-0 = <&ts_int_active &ts_reset_active>;
++		pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
++		pinctrl-names = "default","sleep";
++
++		reset-gpios = <&tlmm 87 GPIO_ACTIVE_LOW>;
++
++		touchscreen-size-x = <720>;
++		touchscreen-size-y = <1560>;
++	};
++};
++
+ &pm6125_adc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&camera_flash_therm &emmc_ufs_therm>;
+@@ -220,6 +254,10 @@ &pon_resin {
+ 	status = "okay";
+ };
+ 
++&qupv3_id_0 {
++	status = "okay";
++};
++
+ &rpm_requests {
+ 	regulators-0 {
+ 		compatible = "qcom,rpm-pm6125-regulators";
+@@ -387,6 +425,41 @@ &sdhc_2 {
+ 
+ &tlmm {
+ 	gpio-reserved-ranges = <22 2>, <28 6>;
++
++	ts_vdd_en: ts-vdd-default-state {
++		pins = "gpio83";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
++	ts_reset_active: pmx-ts-reset-active-state {
++		pins = "gpio87";
++		function = "gpio";
++		drive-strength = <8>;
++		bias-pull-up;
++	};
++
++	ts_reset_suspend: pmx-ts-reset-suspend-state {
++		pins = "gpio87";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-pull-down;
++	};
++
++	ts_int_active: pmx-ts-int-active-state {
++		pins = "gpio88";
++		function = "gpio";
++		drive-strength = <8>;
++		bias-pull-up;
++	};
++
++	ts_int_suspend: pmx-ts-int-suspend-state {
++		pins = "gpio88";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-pull-down;
++	};
+ };
+ 
+ &ufs_mem_hc {
+
+---
+base-commit: 9845cf73f7db6094c0d8419d6adb848028f4a921
+change-id: 20260113-touchscreen-patches-beb2526bd5fb
+
+Best regards,
+-- 
+Yedaya Katsman <yedaya.ka@gmail.com>
+
 
 
