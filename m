@@ -1,471 +1,238 @@
-Return-Path: <devicetree+bounces-263715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263717-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KAcmMsPNiGn6wAQAu9opvQ
-	(envelope-from <devicetree+bounces-263715-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 18:54:11 +0100
+	id uAv6ACLRiGlQwgQAu9opvQ
+	(envelope-from <devicetree+bounces-263717-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 19:08:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 295611099C1
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 18:54:11 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17112109A96
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 19:08:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 102DC302A6DA
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 17:53:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C36543001FA2
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 18:08:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D17DD2E7621;
-	Sun,  8 Feb 2026 17:53:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54A2D2E7F39;
+	Sun,  8 Feb 2026 18:08:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="gOnb2qps"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="bJbdAoaB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (mail-westusazon11012049.outbound.protection.outlook.com [52.101.43.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C83B23A9B3;
-	Sun,  8 Feb 2026 17:53:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770573208; cv=none; b=Fa4B1vWk4Tdv0aGy3IlieTOzo5qcbN413C4wmzx09BVSoU/X+CAGvkAg739EcKWoDlVpopbItmRdnAhaVIMy1gt4IA+zYK3TDzPFvj6/EmgCQYdfeqiB9eN1/Sjkle0uAY71sbs6wfEN6DroGpDXCeQ1WQy81AdrBRRuFYFMtyM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770573208; c=relaxed/simple;
-	bh=FVHQemfIdm+Q00d5KN1Zv3xGl+cDBnwe1nAkGqycZ2I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Sn/iyuthgtE4aeyadVe/b54hgBc3pepHk08pSl20PVRiDi8JDUpY0sR3jWvUljB/qPaFQIwt/g+wAIIeQKLbJYccXycl1xCdIBPTieRH8Ye48vmJJoUWQaIOoHW+AD6ruQg88HwhzVoOi8FLBS4bgs8/UZ87L39UTFYLhXGVn5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=gOnb2qps; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 01F3A26443;
-	Sun,  8 Feb 2026 18:53:27 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id t_0cD2vztTAg; Sun,  8 Feb 2026 18:53:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1770573206; bh=FVHQemfIdm+Q00d5KN1Zv3xGl+cDBnwe1nAkGqycZ2I=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=gOnb2qpsXbwEOpLyAZqMWqNjFLJyopokJ4zon8UmO9vxdHRHxDWOMKUmHtyKVHxpx
-	 D0UM6+k6Q3/Q8xgeuvzACrKFKfkLUlksCfvrg5hIDpjNMiUQ9F7QG5sQBsvi6QIboR
-	 qD+OmNBnlKIeyiqokYHBfmL0z2gYW/r73FEozjD9Xe+yXGyWmxNoFXxJvvvDgEBc4g
-	 eMk2JhcISaobAb0aEX1MIboCyelJVzxsN1hxxSSFaOV3KVSO2d77p3qEAgx6tnLQ2f
-	 uUpsUUBGjQ9B4vkWwdKdnY0OngLJWgOvQ1n7sxCZ/+O9NNe4rcxYoBYkD6zZyUErco
-	 PWhMFZnIzV4Lw==
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-Date: Sun, 08 Feb 2026 23:22:31 +0530
-Subject: [PATCH v2 2/2] power: supply: add support for S2MU005 battery fuel
- gauge device
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 098E4284665;
+	Sun,  8 Feb 2026 18:08:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.43.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770574106; cv=fail; b=ARxgc6SZUy0UrioxXaTV33jt/kbOwGqzjEpMwDTL3Gkkpr+2WBu47NT3/wkWatKBRhgDOe9X1pizEis8VVovVzUmZu0neUWE54yayx1SeHsmS7VxSbiB2oc2qHrGpmzLUKwDlLSZiZ5zmRC2Vs2pHFGPUZ9IPzndN5bi/n25nsU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770574106; c=relaxed/simple;
+	bh=WM7TFR3PU7sMXkmnp6ZiuKbCFkzCA4tkRI0TfMiTHsM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=K5MJMCOToe4gQKLex18PN3SpUap0TbZ6OFZg9GEdno0RzM8O8PiaTXCou7SJX2BeHjYS35/raapmgBdSZxI1ggfOZv66CLWI9BHTLomG0XdEKJE2a3Qatf2p32KnaLgHcJEC0zsr6ebKMnv4QhdQbWBixpVdRM+FROc5/eutiaQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=bJbdAoaB; arc=fail smtp.client-ip=52.101.43.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=MVVh54eqCiC39m/Kjvwb+r3VpPGVqZthulkr1QI2DDUWNF/PrSqCx92shWt/1guGEdSr9TcZmRoLeozS63zmHYExFCy2W8w1Qj/OW1ciK2t467d8j4kY71ah3I9YdEOE5ucjntpj4BzNHdjAvRarVhZu5uoiUjDSWffKhPnVrMM+iupDQaBkMdupv/3DFv+rTYtsnBS6xtxJP79uoRqqkX0BrA9BYQWOGAGPNYy8rR7hcG9n36g3iLD6mi8bGcr9lMUtpHV/G+UUQeCvtksJn04JNcudb3zpXmrD34yWA8XG0zznDlapASkQyGbAaApAk0YOOuxeDFNMOkusjSAsdg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7tfpjlbJzyW36moThZ2D77jsN1rV/8mMuZVJtIE0iUs=;
+ b=LLdgb1zP8giS2NGBO1LHsr2RkXuls+eiVH+O0U2KXL6aD6ypjp5DANZTgNv7LXJLOcKUSdgFnq0bDRgfk6nTiApPniu8i7LRnRoMhcem4dfxd3sNCgawk7cyp2GOvF6whbyCp3djQ9R2MPeosPQgqrvAEF4Kbz95dhPrZD8B2UG9WE89XpubnWpUC5gxcma1MydssVaYfhiWUXG0nKOmQWbO0l20+SxWmE/rD5f9Gka3jb+xyHLQyYLFklgrNg6ddWYu3pXiuDncK51KbFfD1I3HRFvGILP4671ql2BTp1WS7bfBpHi1AY5C0A515Nn3QGxQEe+++SgrxzUKMP/BjA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=google.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7tfpjlbJzyW36moThZ2D77jsN1rV/8mMuZVJtIE0iUs=;
+ b=bJbdAoaBmXG6Y9dGKb3wQWBt3gxAajQn6t930q4q/DmtczVWOfu9GZaTr6mxgvnlfx6UzekyhxkS+dStOr68dyi0INXv9QewSj7MD6nNc+6gcWaQevY7uzlIFGa5rjvvsvkHz8G3a0NG9jBKujB10NBSfBAXFOYQEbN1iadUCP0H8PNYzjOn/CnJMuFQZxQO7hWZskz6h9Vm481kQ21biv8UJ2OkAZAGTAZ1RlDkZx9hfcn2Okt20EhCI4P6H7yEfW6g6wrqzA+KGSGUyiYqf7EEW+T+Dj357YfIZyjGZUrSwfWlg+2ZQCzILSCQjVGRrkcy6aCNshqtwslzhDEIqw==
+Received: from BYAPR07CA0048.namprd07.prod.outlook.com (2603:10b6:a03:60::25)
+ by MW4PR12MB8611.namprd12.prod.outlook.com (2603:10b6:303:1ed::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.17; Sun, 8 Feb
+ 2026 18:08:20 +0000
+Received: from SJ1PEPF000023D9.namprd21.prod.outlook.com
+ (2603:10b6:a03:60:cafe::91) by BYAPR07CA0048.outlook.office365.com
+ (2603:10b6:a03:60::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.17 via Frontend Transport; Sun,
+ 8 Feb 2026 18:08:21 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ SJ1PEPF000023D9.mail.protection.outlook.com (10.167.244.74) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.0 via Frontend Transport; Sun, 8 Feb 2026 18:08:19 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sun, 8 Feb
+ 2026 10:08:08 -0800
+Received: from mmaddireddy-ubuntu.nvidia.com (10.126.231.35) by
+ rnnvmail201.nvidia.com (10.129.68.8) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.20; Sun, 8 Feb 2026 10:08:03 -0800
+From: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kwilczynski@kernel.org>,
+	<mani@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+	<jingoohan1@gmail.com>, <vidyas@nvidia.com>, <cassel@kernel.org>,
+	<18255117159@163.com>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Manikanta
+ Maddireddy" <mmaddireddy@nvidia.com>
+Subject: [V5,00/13] Fixes to pcie-tegra194 driver
+Date: Sun, 8 Feb 2026 23:37:33 +0530
+Message-ID: <20260208180746.2024338-1-mmaddireddy@nvidia.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260208-s2mu005-fuelgauge-v2-2-be3af8969291@disroot.org>
-References: <20260208-s2mu005-fuelgauge-v2-0-be3af8969291@disroot.org>
-In-Reply-To: <20260208-s2mu005-fuelgauge-v2-0-be3af8969291@disroot.org>
-To: Yassine Oudjana <y.oudjana@protonmail.com>, 
- Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D9:EE_|MW4PR12MB8611:EE_
+X-MS-Office365-Filtering-Correlation-Id: 190e6482-26a2-4376-acb4-08de673d0a73
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|36860700013|82310400026|1800799024|921020|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?QYNVL6QW4mWeHonCz1SNQZBrSVC3pNc5QYztP1v3TBb6L9eLVNnxdRIa0K8T?=
+ =?us-ascii?Q?PlmfRTG+4wboa65IxcRUgiNQ14nfHP34oJ3hIhYCbFGSgEpMCsmK8rNO+thJ?=
+ =?us-ascii?Q?cWYpHxf0+32qeb3+KCrrdN2N+3Cw4olQFKhDySkDB2sVgE82Jprmyveb8WKG?=
+ =?us-ascii?Q?2r4gaKDPJIt8e73KEKQjx+4DbbXKA50kHHlusFPQI8wsm602dYVywxVe2wyn?=
+ =?us-ascii?Q?Q/9zUvTNGUW50C4xF/4Bl6l0mHcjy89385lVhGoerrhMRQQtR4n53T5vTFm4?=
+ =?us-ascii?Q?rNTrgkTUnA7wOl4qMosbWzrN1XsGWnSyvzTazTdtlkP8ptC0s/8JIiHcJZBq?=
+ =?us-ascii?Q?L5Pwa5Jftw1SuPsrSkvkqo+UHYSQ2PfQZFE0Eyesy5Enee7XE15fOrg20F0i?=
+ =?us-ascii?Q?kzEy9CBybssoQt6oBRdOKJ7hCOIbUZUTkjCcXNFxDnxQcXAH+xYxIj4CGu/l?=
+ =?us-ascii?Q?9yf+oHiVwpNmVsDeEp96ilMdgq0erYYGqzFLkvVghziGtjy8jFBeE/Rp2gHk?=
+ =?us-ascii?Q?6Kc74KYeBNMJGmSmxtmuTPSctO7xevf47hrlErUQdutx3cwJkHcK6h7mxVr4?=
+ =?us-ascii?Q?ky0UBRLN+fC405w49iLi5Wo1ScFftotkySGIhuhlZYJHHWdg95gbAyGo028v?=
+ =?us-ascii?Q?AYCQXU9K+iiRBtsv5XMUpCgx8Jwk5XWIDzpdVtkQunLVU5KGe7vJR6I/q5fH?=
+ =?us-ascii?Q?CUvdSw/70Hz2h/mC2ztxjcBX5/At5KRFWYpfC30nn/L9JsIPt9nkX40FraIc?=
+ =?us-ascii?Q?IoTgAGf3VsR/FKIUVmvET/WFtwbS0SwoieYOYupZ61/GJ0SkgyxlwjdpvirN?=
+ =?us-ascii?Q?I7R1IaFDpbeK2qdhHh1sZFWLOWT5s0LAhdAB8TcJRpYzPolx8Ch2wvjIV8jA?=
+ =?us-ascii?Q?/K7zK/4HZxQ9KWVVEIJefKmvzRy8HS0mu+fL2u9xRuIZhpYfSavVmWNul4vy?=
+ =?us-ascii?Q?3nCgaIxOZRPDZ+3UAC8IHv5trLgUQ7u0PiL+vItckynl20aR27W/7vU9KvA8?=
+ =?us-ascii?Q?2Bnl5+E/M33dAQqyJi43Hb4zoyO8/7M1V09RBQScKu+1q3bZwMBH2pbxvYfG?=
+ =?us-ascii?Q?qhqc58wpbnjfYOwqYwLOBHVYR/Y0FT7dw3PWeq7Y0ZJ6FiUXNimm0jKlASFG?=
+ =?us-ascii?Q?JB16afWEUTJthtr3teJ8VMz3QA0akpsJpgr7NGOaUVzGDl3uWsHpZxcgmANz?=
+ =?us-ascii?Q?ZNBVDOTwSLK4uxxlEJPSaxw8AVLhC+XDq3bUx5EgeQu9aNa606cBO4CEwfFR?=
+ =?us-ascii?Q?iQWcVV5VeettApdwdgQ16z/tHeN3vvkYWGaDHa/qJakWJZ9kMKTgd5LY0eom?=
+ =?us-ascii?Q?R7X5RY6BQFrb8rJ8+WbjEG0NfGfYnJTjGTe0EOkBTwAgBnhNvsFPs6E5LAA8?=
+ =?us-ascii?Q?bZdxZ5/n9Bk57Nk1MjEyVfaBOfCnA+hLjYF3gCLIu5uPXshb3iaI5o92Y2DH?=
+ =?us-ascii?Q?aH0OHI9N/pUesaT8zPlsfJFn+PBf6HF3U89v9yj8Yvy6Srl7FBsefcQ/3puD?=
+ =?us-ascii?Q?QaQ+77axnXzGXVbcrVBxqaQvq0KetR7QIrlXh+DjbcnDfTmjNVBCvVsmwZ6Q?=
+ =?us-ascii?Q?96Du8RGPn4U9pN30qAxiSGiAjs9V8xj33paW+/9Fcf/8uMy4gxX08FKiyTr5?=
+ =?us-ascii?Q?ZrNP5Q8JExO9fZx/nL+Ann1Q/FFBlJ98pDZ7a2gicVyk/W10AfmPL/t9/dih?=
+ =?us-ascii?Q?8by7fynv3cN7iQTulCFCMbNnKH0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(376014)(7416014)(36860700013)(82310400026)(1800799024)(921020)(13003099007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	151BDBqi/ogs46g4L2pbIxhJMQ1JHST68zrgBPuHkS3TkTOzuoXYqyKMb+Gu8Le6Md3RnYMVbVB1EisMfqfo3oT+cNSZ5/JHzj9hWMJbEvweEnRDzJ3fbCYe8t9YiV9cnGWk1xofhqWkS8VTbmZbb2EDosJgnYcTWjtGMgonHyH/ZL48EjBYUMLHpdmt7KqZ9bkVjlgLCexxGWRBrn3gNrjwY/7DiGE3vwSGZS2vBBzTWWugpq1QJaV3urpysa95GeLT+vfGx+Kk+x4izFmD/PnQW5KILz1bozg1uAkJOppyHjxtrrEgzHS1yIQERRPBUGW2iZn85j3/v5z2NHVZrrYwk+f6eumaUvQUPPIqrrVmk4aeax4wqa+2Z79YMi8RyFm4btm7QfLP1hhn38RSzg8AECUaE7aDXIvsJK0H5w9fp8Z28RqUHCodh3Db0aV2
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2026 18:08:19.8939
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 190e6482-26a2-4376-acb4-08de673d0a73
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF000023D9.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB8611
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263715-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[protonmail.com,kernel.org];
-	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[disroot.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-263717-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[google.com,kernel.org,gmail.com,nvidia.com,163.com];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.935];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mmaddireddy@nvidia.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[protonmail.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,disroot.org:email,disroot.org:dkim,disroot.org:mid]
-X-Rspamd-Queue-Id: 295611099C1
+	NEURAL_HAM(-0.00)[-0.989];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 17112109A96
 X-Rspamd-Action: no action
 
-From: Yassine Oudjana <y.oudjana@protonmail.com>
+This series[1] was originally posted by Vidya Sagar, and I have rebased
+it onto 6.19.0-rc6-next. I addressed review comments and split this into
+two series, one for fixes(current) and the other is for enhancements.
+I verified these patches on Jetson AGX Orin(Tegra234 SoC).
 
-Samsung's S2MU005 PMIC, which contains battery charger functionality
-also includes a battery fuel gauge device, which is separate from the
-PMIC itself, and typically connected to an I2C bus. Add a generic driver
-to support said device.
+I added below four new patches to fix bugs, commit message of each
+patch has the details on the bug and fix.
+ - PCI: tegra194: Use HW version number
+ - PCI: tegra194: Fix CBB timeout caused by DBI access before core power-on
+ - PCI: tegra194: Disable PERST IRQ only in Endpoint mode 
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-Co-developed-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
----
- drivers/power/supply/Kconfig           |   9 +
- drivers/power/supply/Makefile          |   1 +
- drivers/power/supply/s2mu005-battery.c | 306 +++++++++++++++++++++++++++++++++
- 3 files changed, 316 insertions(+)
+Rest of the patches are same as the original V3 series, just rebased them on
+6.19.0-rc6-next.
 
-diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-index 92f9f7aae92f2..a5777309b1f62 100644
---- a/drivers/power/supply/Kconfig
-+++ b/drivers/power/supply/Kconfig
-@@ -229,6 +229,15 @@ config BATTERY_SAMSUNG_SDI
- 	  Say Y to enable support for Samsung SDI battery data.
- 	  These batteries are used in Samsung mobile phones.
- 
-+config BATTERY_S2MU005
-+	tristate "Samsung S2MU005 PMIC fuel gauge driver"
-+	help
-+	  Say Y to enable support for the Samsung S2MU005 PMIC integrated
-+	  fuel gauge, which works indepenently of the PMIC battery charger
-+	  counterpart, and reports battery metrics.
-+
-+	  This driver, if built as a module, will be called s2mu005-fuel-gauge.
-+
- config BATTERY_COLLIE
- 	tristate "Sharp SL-5500 (collie) battery"
- 	depends on SA1100_COLLIE && MCP_UCB1200
-diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-index 4b79d5abc49a7..cd061887c1727 100644
---- a/drivers/power/supply/Makefile
-+++ b/drivers/power/supply/Makefile
-@@ -40,6 +40,7 @@ obj-$(CONFIG_BATTERY_PMU)	+= pmu_battery.o
- obj-$(CONFIG_BATTERY_QCOM_BATTMGR)	+= qcom_battmgr.o
- obj-$(CONFIG_BATTERY_OLPC)	+= olpc_battery.o
- obj-$(CONFIG_BATTERY_SAMSUNG_SDI)	+= samsung-sdi-battery.o
-+obj-$(CONFIG_BATTERY_S2MU005)	+= s2mu005-battery.o
- obj-$(CONFIG_BATTERY_COLLIE)	+= collie_battery.o
- obj-$(CONFIG_BATTERY_INGENIC)	+= ingenic-battery.o
- obj-$(CONFIG_BATTERY_INTEL_DC_TI) += intel_dc_ti_battery.o
-diff --git a/drivers/power/supply/s2mu005-battery.c b/drivers/power/supply/s2mu005-battery.c
-new file mode 100644
-index 0000000000000..f0e414407d3b5
---- /dev/null
-+++ b/drivers/power/supply/s2mu005-battery.c
-@@ -0,0 +1,306 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Battery Fuel Gauge Driver for Samsung S2MU005 PMIC.
-+ *
-+ * Copyright (C) 2015 Samsung Electronics
-+ * Copyright (C) 2023 Yassine Oudjana <y.oudjana@protonmail.com>
-+ * Copyright (C) 2025 Kaustabh Chakraborty <kauschluss@disroot.org>
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/irq.h>
-+#include <linux/mutex.h>
-+#include <linux/of.h>
-+#include <linux/power_supply.h>
-+#include <linux/regmap.h>
-+#include <linux/units.h>
-+
-+#define S2MU005_FG_REG_STATUS		0x00
-+#define S2MU005_FG_REG_IRQ		0x02
-+#define S2MU005_FG_REG_RVBAT		0x04
-+#define S2MU005_FG_REG_RCURCC		0x06
-+#define S2MU005_FG_REG_RSOC		0x08
-+#define S2MU005_FG_REG_MONOUT		0x0a
-+#define S2MU005_FG_REG_MONOUTSEL	0x0c
-+#define S2MU005_FG_REG_RBATCAP		0x0e
-+#define S2MU005_FG_REG_RZADJ		0x12
-+#define S2MU005_FG_REG_RBATZ0		0x16
-+#define S2MU005_FG_REG_RBATZ1		0x18
-+#define S2MU005_FG_REG_IRQLVL		0x1a
-+#define S2MU005_FG_REG_START		0x1e
-+
-+#define S2MU005_FG_MONOUTSEL_AVGCURRENT		0x26
-+#define S2MU005_FG_MONOUTSEL_AVGVOLTAGE		0x27
-+
-+struct s2mu005_fg {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	struct power_supply *psy;
-+	struct mutex monout_mutex;
-+};
-+
-+static const struct regmap_config s2mu005_fg_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 16,
-+	.val_format_endian = REGMAP_ENDIAN_LITTLE,
-+};
-+
-+static irqreturn_t s2mu005_handle_irq(int irq, void *data)
-+{
-+	struct s2mu005_fg *priv = data;
-+
-+	msleep(100);
-+	power_supply_changed(priv->psy);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int s2mu005_fg_get_voltage_now(struct s2mu005_fg *priv, int *value)
-+{
-+	struct regmap *regmap = priv->regmap;
-+	u32 val;
-+	int ret;
-+
-+	ret = regmap_read(regmap, S2MU005_FG_REG_RVBAT, &val);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "failed to read voltage register (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	*value = (val * MICRO) >> 13;
-+
-+	return 0;
-+}
-+
-+static int s2mu005_fg_get_voltage_avg(struct s2mu005_fg *priv, int *value)
-+{
-+	struct regmap *regmap = priv->regmap;
-+	u32 val;
-+	int ret;
-+
-+	mutex_lock(&priv->monout_mutex);
-+
-+	ret = regmap_write(regmap, S2MU005_FG_REG_MONOUTSEL,
-+			   S2MU005_FG_MONOUTSEL_AVGVOLTAGE);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "failed to enable average voltage monitoring (%d)\n",
-+			ret);
-+		goto unlock;
-+	}
-+
-+	ret = regmap_read(regmap, S2MU005_FG_REG_MONOUT, &val);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "failed to read current register (%d)\n", ret);
-+		goto unlock;
-+	}
-+
-+	*value = (val * MICRO) >> 12;
-+
-+unlock:
-+	mutex_unlock(&priv->monout_mutex);
-+
-+	return ret;
-+}
-+static int s2mu005_fg_get_current_now(struct s2mu005_fg *priv, int *value)
-+{
-+	struct regmap *regmap = priv->regmap;
-+	u32 val;
-+	int ret;
-+
-+	ret = regmap_read(regmap, S2MU005_FG_REG_RCURCC, &val);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "failed to read current register (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	*value = -((s16)val * MICRO) >> 12;
-+
-+	return 0;
-+}
-+
-+static int s2mu005_fg_get_current_avg(struct s2mu005_fg *priv, int *value)
-+{
-+	struct regmap *regmap = priv->regmap;
-+	u32 val;
-+	int ret;
-+
-+	mutex_lock(&priv->monout_mutex);
-+
-+	ret = regmap_write(regmap, S2MU005_FG_REG_MONOUTSEL,
-+			   S2MU005_FG_MONOUTSEL_AVGCURRENT);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "failed to enable average current monitoring (%d)\n",
-+			ret);
-+		goto unlock;
-+	}
-+
-+	ret = regmap_read(regmap, S2MU005_FG_REG_MONOUT, &val);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "failed to read current register (%d)\n", ret);
-+		goto unlock;
-+	}
-+
-+	*value = -((s16)val * MICRO) >> 12;
-+
-+unlock:
-+	mutex_unlock(&priv->monout_mutex);
-+
-+	return ret;
-+}
-+
-+static int s2mu005_fg_get_capacity(struct s2mu005_fg *priv, int *value)
-+{
-+	struct regmap *regmap = priv->regmap;
-+	u32 val;
-+	int ret;
-+
-+	ret = regmap_read(regmap, S2MU005_FG_REG_RSOC, &val);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "failed to read capacity register (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	*value = (val * CENTI) >> 14;
-+
-+	return 0;
-+}
-+
-+static int s2mu005_fg_get_status(struct s2mu005_fg *priv, int *value)
-+{
-+	int current_now, current_avg, capacity;
-+	int ret;
-+
-+	ret = s2mu005_fg_get_current_now(priv, &current_now);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = s2mu005_fg_get_current_avg(priv, &current_avg);
-+	if (ret < 0)
-+		return ret;
-+
-+	/*
-+	 * Verify both current values reported to reduce inaccuracies due to
-+	 * internal hysteresis.
-+	 */
-+	if (current_now < 0 && current_avg < 0) {
-+		*value = POWER_SUPPLY_STATUS_DISCHARGING;
-+	} else if (current_now == 0) {
-+		*value = POWER_SUPPLY_STATUS_NOT_CHARGING;
-+	} else {
-+		*value = POWER_SUPPLY_STATUS_CHARGING;
-+
-+		ret = s2mu005_fg_get_capacity(priv, &capacity);
-+		if (!ret && capacity > 98)
-+			*value = POWER_SUPPLY_STATUS_FULL;
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static const enum power_supply_property s2mu005_fg_properties[] = {
-+	POWER_SUPPLY_PROP_VOLTAGE_NOW,
-+	POWER_SUPPLY_PROP_VOLTAGE_AVG,
-+	POWER_SUPPLY_PROP_CURRENT_NOW,
-+	POWER_SUPPLY_PROP_CURRENT_AVG,
-+	POWER_SUPPLY_PROP_CAPACITY,
-+	POWER_SUPPLY_PROP_STATUS,
-+};
-+
-+static int s2mu005_fg_get_property(struct power_supply *psy,
-+				   enum power_supply_property psp,
-+				   union power_supply_propval *val)
-+{
-+	struct s2mu005_fg *priv = power_supply_get_drvdata(psy);
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-+		return s2mu005_fg_get_voltage_now(priv, &val->intval);
-+	case POWER_SUPPLY_PROP_VOLTAGE_AVG:
-+		return s2mu005_fg_get_voltage_avg(priv, &val->intval);
-+	case POWER_SUPPLY_PROP_CURRENT_NOW:
-+		return s2mu005_fg_get_current_now(priv, &val->intval);
-+	case POWER_SUPPLY_PROP_CURRENT_AVG:
-+		return s2mu005_fg_get_current_avg(priv, &val->intval);
-+	case POWER_SUPPLY_PROP_CAPACITY:
-+		return s2mu005_fg_get_capacity(priv, &val->intval);
-+	case POWER_SUPPLY_PROP_STATUS:
-+		return s2mu005_fg_get_status(priv, &val->intval);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct power_supply_desc s2mu005_fg_desc = {
-+	.name = "s2mu005-fuel-gauge",
-+	.type = POWER_SUPPLY_TYPE_BATTERY,
-+	.properties = s2mu005_fg_properties,
-+	.num_properties = ARRAY_SIZE(s2mu005_fg_properties),
-+	.get_property = s2mu005_fg_get_property,
-+};
-+
-+static int s2mu005_fg_i2c_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct s2mu005_fg *priv;
-+	struct power_supply_config psy_cfg = {};
-+	const struct power_supply_desc *psy_desc;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	dev_set_drvdata(dev, priv);
-+	priv->dev = dev;
-+
-+	priv->regmap = devm_regmap_init_i2c(client, &s2mu005_fg_regmap_config);
-+	if (IS_ERR(priv->regmap))
-+		return dev_err_probe(dev, PTR_ERR(priv->regmap),
-+				     "failed to initialize regmap\n");
-+
-+	psy_desc = device_get_match_data(dev);
-+
-+	psy_cfg.drv_data = priv;
-+	priv->psy = devm_power_supply_register(priv->dev, psy_desc, &psy_cfg);
-+	if (IS_ERR(priv->psy))
-+		return dev_err_probe(dev, PTR_ERR(priv->psy),
-+				     "failed to register power supply subsystem\n");
-+
-+	ret = devm_mutex_init(dev, &priv->monout_mutex);
-+	if (ret)
-+		dev_err_probe(dev, ret, "failed to initialize MONOUT mutex\n");
-+
-+	ret = devm_request_threaded_irq(priv->dev, client->irq, NULL,
-+					s2mu005_handle_irq, IRQF_ONESHOT,
-+					psy_desc->name, priv);
-+	if (ret)
-+		dev_err_probe(dev, ret, "failed to request IRQ\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id s2mu005_fg_of_match_table[] = {
-+	{
-+		.compatible = "samsung,s2mu005-fuel-gauge",
-+		.data = &s2mu005_fg_desc,
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, s2mu005_fg_of_match_table);
-+
-+static struct i2c_driver s2mu005_fg_i2c_driver = {
-+	.probe = s2mu005_fg_i2c_probe,
-+	.driver = {
-+		.name = "s2mu005-fuel-gauge",
-+		.of_match_table = s2mu005_fg_of_match_table,
-+	},
-+};
-+module_i2c_driver(s2mu005_fg_i2c_driver);
-+
-+MODULE_DESCRIPTION("Samsung S2MU005 PMIC Battery Fuel Gauge Driver");
-+MODULE_AUTHOR("Yassine Oudjana <y.oudjana@protonmail.com>");
-+MODULE_AUTHOR("Kaustabh Chakraborty <kauschluss@disroot.org>");
-+MODULE_LICENSE("GPL");
+Verification details.
+ - I verified both Root port and Endpoint mode controllers on Tegra234 SoC.
+ - Basic sanity Link up, configuration space access and BAR access are verified.
+ - I verified that ASPM L1.2 capability is disabled for Endpoint mode.
+ - I verified suspend to RAM tests with Endpoint mode.
+
+[1] https://patchwork.kernel.org/project/linux-pci/patch/20221013183854.21087-1-vidyas@nvidia.com/
+
+Manikanta Maddireddy (3):
+  PCI: tegra194: Use HW version number
+  PCI: tegra194: Fix CBB timeout caused by DBI access before core
+    power-on
+  PCI: tegra194: Disable PERST IRQ only in Endpoint mode
+
+Vidya Sagar (10):
+  PCI: tegra194: Fix polling delay for L2 state
+  PCI: tegra194: Refactor LTSSM state polling on surprise down
+  PCI: tegra194: Don't force the device into the D0 state before L2
+  PCI: tegra194: Free up EP resources during remove()
+  PCI: tegra194: Disable direct speed change for EP
+  PCI: tegra194: Use devm_gpiod_get_optional() to parse
+    "nvidia,refclk-select"
+  PCI: tegra194: Apply pinctrl settings for both PCIe RP and EP
+  PCI: tegra194: Free resources during controller deinitialization
+  PCI: tegra194: Allow system suspend when the Endpoint link is not up
+  PCI: tegra194: Set LTR message request before PCIe link up
+
+ drivers/pci/controller/dwc/pcie-designware.c |   2 +-
+ drivers/pci/controller/dwc/pcie-designware.h |   2 +
+ drivers/pci/controller/dwc/pcie-tegra194.c   | 191 +++++++++----------
+ 3 files changed, 95 insertions(+), 100 deletions(-)
 
 -- 
-2.52.0
+2.34.1
 
 
