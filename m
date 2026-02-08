@@ -1,207 +1,330 @@
-Return-Path: <devicetree+bounces-263662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263663-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CODyLnTnh2mRewQAu9opvQ
-	(envelope-from <devicetree+bounces-263662-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 02:31:32 +0100
+	id oM5eLSzrh2lxfAQAu9opvQ
+	(envelope-from <devicetree+bounces-263663-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 02:47:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26D831078E6
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 02:31:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25501107932
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 02:47:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1F987300B469
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 01:31:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 49EB33033519
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 01:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 441D22FCBE3;
-	Sun,  8 Feb 2026 01:31:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AA81309DC0;
+	Sun,  8 Feb 2026 01:46:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aNvowwG9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M5lgCr+M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 206DB156F20;
-	Sun,  8 Feb 2026 01:31:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36CF13093C7
+	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 01:46:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770514288; cv=none; b=RJFhBxr4l3aiu//pa2EBt+I2JmaVhnwttbTHU1zVKYsIMFu99PmaHU1TQraxw7rx1DqTHX9w0I3WuOmW+J0MOwLJO1+Saw7u+UUrhg0ZfqFhnzEHqK4BChUZ4JKy48xXHhHFtalzn4/k+qzbpLQZ5rSTq2FZZ+ZCGUcCYau9PiI=
+	t=1770515201; cv=none; b=Su6Ztmj3w8cPdD0lzGcgaOfKamxxBBFry9S7qYDngkTjCXYdbFJ9jlFOGoMgi8Pu6690Zj8dYzdQb5xpYvhczpJPyD5M4uWYWeXhZvGm7B5xsoHyj3Vjgc2XrPTV2ys4TamClhbDebvdGjzlD0DI6AYQwsMg9jajsH7XfefY9uo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770514288; c=relaxed/simple;
-	bh=RylA3pGv8inVH/Bl08iuiJfbF8raWZhZT1pwh10HYkE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KVUvDMrdkeNx7wZyRn6iFdFSTgXLdrghlK+4m/fM+LzKnT8PeGMDScWUxG2z2doDq8NsfylVL15sQgBnoohnCNP9TvVWB4eSZslKZVknKJaeOTJDvsQfwYc5/o9V/m0r/p4c1rxxOfI+/H2HO0paU2rnMifns5oWuW0WNlkrqyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aNvowwG9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B5FFC116D0;
-	Sun,  8 Feb 2026 01:31:27 +0000 (UTC)
+	s=arc-20240116; t=1770515201; c=relaxed/simple;
+	bh=tyWxKxHsau3OE/oOgqAMGEezSdgdUNWkxIfNxt57e0o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Jv806aWdLEWwIRnsllEbqnTTuOZeE6PThktWlG9zXk/TpbtzBzzTSNpohkdPUYdqlv5MEzLMWBapHLzDXG2sXAEcRlzrgvlEiTMC54/seqmllRoStzzP2FykVWEI1aQ19VY5MY2dooQfEHyYKwkSptZMtQgw1ruaQEVfr9+lYoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M5lgCr+M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 041B0C116D0
+	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 01:46:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770514287;
-	bh=RylA3pGv8inVH/Bl08iuiJfbF8raWZhZT1pwh10HYkE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aNvowwG9YhSNrhXyOQ+sw+jn8QnzzIuXXbwoddP8uOcEJnnXbhDuQ2v8RNLRaZM3o
-	 HkZQT/djWZF28qNC54+FfsiCIBhB2zcB//AQYlYlkyNCZty5Salk2DWOmE2wlZW2Vd
-	 PM+619Tz/CvRd/b5iF5vADCAK1d46BcT3YlQ0+rdT4tdIYwXp+GVqzu7vtDPWnk+fQ
-	 vrFjjyv5S7hqoVP3X6XW6OVb3sJPH5/ZbJAIzSzO9FBAr+1hPvBW01FqPojUKtIRPH
-	 lABidUNG72UKryO3wyJtcTGSuQNgZ87p8/unIgVWBVcjy+YkzAFzo3oMW1J/Mik+Ca
-	 8Tb0c6GwA87dQ==
-Date: Sat, 7 Feb 2026 17:31:25 -0800
-From: Drew Fustini <fustini@kernel.org>
-To: yunhui cui <cuiyunhui@bytedance.com>
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Adrien Ricciardi <aricciardi@baylibre.com>,
-	Nicolas Pitre <npitre@baylibre.com>,
-	Kornel =?utf-8?Q?Dul=C4=99ba?= <mindal@semihalf.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Atish Kumar Patra <atishp@rivosinc.com>,
-	Vasudevan Srinivasan <vasu@rivosinc.com>,
-	Ved Shanbhogue <ved@rivosinc.com>,
-	Chen Pei <cp0613@linux.alibaba.com>,
-	Liu Zhiwei <zhiwei_liu@linux.alibaba.com>,
-	Weiwei Li <liwei1518@gmail.com>, guo.wenjia23@zte.com.cn,
-	liu.qingtao2@zte.com.cn,
-	Reinette Chatre <reinette.chatre@intel.com>,
-	Tony Luck <tony.luck@intel.com>, Babu Moger <babu.moger@amd.com>,
-	Peter Newman <peternewman@google.com>,
-	Fenghua Yu <fenghua.yu@intel.com>,
-	James Morse <james.morse@arm.com>, Ben Horgan <ben.horgan@arm.com>,
-	Dave Martin <Dave.Martin@arm.com>, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, x86@kernel.org,
-	Rob Herring <robh@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Robert Moore <robert.moore@intel.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: Re: [External] [PATCH RFC v2 03/17] RISC-V: Add support for srmcfg
- CSR from Ssqosid ext
-Message-ID: <aYfnbc3T81RRxz5r@gen8>
-References: <20260128-ssqosid-cbqri-v2-0-dca586b091b9@kernel.org>
- <20260128-ssqosid-cbqri-v2-3-dca586b091b9@kernel.org>
- <CAEEQ3wkqC4jFf1LGgh2c6dgGwT=tuvpFV+D4fiw40P3LZ7_8hg@mail.gmail.com>
+	s=k20201202; t=1770515201;
+	bh=tyWxKxHsau3OE/oOgqAMGEezSdgdUNWkxIfNxt57e0o=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=M5lgCr+M3YtPYldRvqBjATVelShdN1vrsGH6zrK5Wob7rBPJDMzh1ypCtgCVVJOUs
+	 1Hx1b2jwhsYxZssAxtEMNjWz15tWrPS+25/mTBIirS5rN1IrDD4KsJp/bzwIIWPm6O
+	 XNS5tIwvBOTXW4AmzbxAllBvbLl3ETEm2ce24EfU7BuHkxerc5JEAhZFKmM+M4JoCM
+	 VTfKSMWpOtWDtLmWVmkLZ9LnrFghOkLE0aKCyBc4gsuOWiWzvtJ3yXALCIx1W6DKFn
+	 qU/GgN0Lg4mWvpkZ5jwpVYNMJkIDSM/mIKL8ZjpK94s+7qTeCFnkfsqwdhlFgLtB8t
+	 upam6I870AK+Q==
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-658f1fde4bfso6853706a12.1
+        for <devicetree@vger.kernel.org>; Sat, 07 Feb 2026 17:46:39 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVTif3jM6KB8M7O72PZv8X1+I7avdh55xIhhhMIcrTUX89p54COjpKPeB4wuXp6VPg+QRd1mr/JdO9Z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/ssB9dBxvUEGfQkHFemP3hUm6lOz3DORzf+PZWd1GYWsLkv2X
+	Kg4C1IQZa6chZeeXFzzkQlJ0r81ntjClm84O/mDs4D3AVal9oEPPCRvcQj0YxYudaJZMq/g4Nqv
+	QfRVEYTqvRwfMA2XeSRr+efDqiJeUxUE=
+X-Received: by 2002:a17:907:3f26:b0:b80:1403:764c with SMTP id
+ a640c23a62f3a-b8eba262322mr666655266b.24.1770515198428; Sat, 07 Feb 2026
+ 17:46:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAEEQ3wkqC4jFf1LGgh2c6dgGwT=tuvpFV+D4fiw40P3LZ7_8hg@mail.gmail.com>
+References: <20260116184610.147591-1-ivecera@redhat.com> <20260116184610.147591-4-ivecera@redhat.com>
+In-Reply-To: <20260116184610.147591-4-ivecera@redhat.com>
+From: Saravana Kannan <saravanak@kernel.org>
+Date: Sat, 7 Feb 2026 17:46:27 -0800
+X-Gmail-Original-Message-ID: <CACRMN=dy3eosPYSne3UKBL+ArOT-pzd3N5k3e7GPwSXJQ=6UwA@mail.gmail.com>
+X-Gm-Features: AZwV_Qg_RIFSoCTTzuceW6K6a5A6HDh2-N6dPY7F917i1v3mTVT5QWLwoY0jwlk
+Message-ID: <CACRMN=dy3eosPYSne3UKBL+ArOT-pzd3N5k3e7GPwSXJQ=6UwA@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 03/12] dpll: Add helpers to find DPLL pin fwnode
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Alexander Lobakin <aleksander.lobakin@intel.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, 
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Grzegorz Nitka <grzegorz.nitka@intel.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Jiri Pirko <jiri@resnulli.us>, Jonathan Lemon <jonathan.lemon@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Leon Romanovsky <leon@kernel.org>, Mark Bloch <mbloch@nvidia.com>, 
+	Michal Schmidt <mschmidt@redhat.com>, Paolo Abeni <pabeni@redhat.com>, Petr Oros <poros@redhat.com>, 
+	Prathosh Satish <Prathosh.Satish@microchip.com>, 
+	Przemek Kitszel <przemyslaw.kitszel@intel.com>, Richard Cochran <richardcochran@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Saeed Mahameed <saeedm@nvidia.com>, 
+	Saravana Kannan <saravanak@kernel.org>, Tariq Toukan <tariqt@nvidia.com>, 
+	Tony Nguyen <anthony.l.nguyen@intel.com>, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
+	devicetree@vger.kernel.org, intel-wired-lan@lists.osuosl.org, 
+	linux-kernel@vger.kernel.org, linux-rdma@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263662-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263663-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,intel.com,lunn.ch,kernel.org,davemloft.net,google.com,resnulli.us,gmail.com,nvidia.com,redhat.com,microchip.com,linux.dev,lists.osuosl.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[41];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,linux.alibaba.com,gmail.com,zte.com.cn,intel.com,amd.com,google.com,arm.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,semihalf.com:email,arm.com:url]
-X-Rspamd-Queue-Id: 26D831078E6
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[saravanak@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 25501107932
 X-Rspamd-Action: no action
 
-On Mon, Feb 02, 2026 at 11:17:52AM +0800, yunhui cui wrote:
-> Hi Drew,
-> 
-> On Thu, Jan 29, 2026 at 4:28 AM Drew Fustini <fustini@kernel.org> wrote:
-> >
-> > Add support for the srmcfg CSR defined in the Ssqosid ISA extension
-> > (Supervisor-mode Quality of Service ID). The CSR contains two fields:
-> >
-> >   - Resource Control ID (RCID) used determine resource allocation
-> >   - Monitoring Counter ID (MCID) used to track resource usage
-> >
-> > Requests from a hart to shared resources like cache will be tagged with
-> > these IDs. This allows the usage of shared resources to be associated
-> > with the task currently running on the hart.
-> >
-> > A srmcfg field is added to thread_struct and has the same format as the
-> > srmcfg CSR. This allows the scheduler to set the hart's srmcfg CSR to
-> > contain the RCID and MCID for the task that is being scheduled in. The
-> > srmcfg CSR is only written to if the thread_struct.srmcfg is different
-> > than the current value of the CSR.
-> >
-> > A per-cpu variable cpu_srmcfg is used to mirror that state of the CSR.
-> > This is because access to L1D hot memory should be several times faster
-> > than a CSR read. Also, in the case of virtualization, accesses to this
-> > CSR are trapped in the hypervisor.
-> >
-> > Link: https://github.com/riscv/riscv-ssqosid/releases/tag/v1.0
-> > Co-developed-by: Kornel Dulęba <mindal@semihalf.com>
-> > Signed-off-by: Kornel Dulęba <mindal@semihalf.com>
-> > [fustini: rename csr, refactor switch_to, rebase on upstream]
-> > Signed-off-by: Drew Fustini <fustini@kernel.org>
-[..]
-> > diff --git a/arch/riscv/include/asm/qos.h b/arch/riscv/include/asm/qos.h
-> > new file mode 100644
-> > index 000000000000..84830d7c6dc4
-> > --- /dev/null
-> > +++ b/arch/riscv/include/asm/qos.h
-> > @@ -0,0 +1,41 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +#ifndef _ASM_RISCV_QOS_H
-> > +#define _ASM_RISCV_QOS_H
-> > +
-> > +#ifdef CONFIG_RISCV_ISA_SSQOSID
-> > +
-> > +#include <linux/sched.h>
-> > +#include <linux/jump_label.h>
-> > +
-> > +#include <asm/barrier.h>
-> > +#include <asm/csr.h>
-> > +#include <asm/hwcap.h>
-> > +
-> > +/* cached value of srmcfg csr for each cpu */
-> > +DECLARE_PER_CPU(u32, cpu_srmcfg);
-> > +
-> > +static inline void __switch_to_srmcfg(struct task_struct *next)
-> > +{
-> > +       u32 *cpu_srmcfg_ptr = this_cpu_ptr(&cpu_srmcfg);
-> > +       u32 thread_srmcfg;
-> > +
-> > +       thread_srmcfg = READ_ONCE(next->thread.srmcfg);
-> 
-> 
-> First set the cpu_list, and then the condition thread_srmcfg !=
-> *cpu_srmcfg_ptr will not be satisfied. Is a default value required
-> here? Both code paths for cpu_list and tasks are compared against the
-> default value; you may refer to the implementation of mpam.
+On Fri, Jan 16, 2026 at 10:46=E2=80=AFAM Ivan Vecera <ivecera@redhat.com> w=
+rote:
+>
+> dpll: core: add helpers to find DPLL pin fwnode
+>
+> Add helper functions to the DPLL core to retrieve a DPLL pin's firmware
+> node handle based on the 'dpll-pins' and 'dpll-pin-names' properties.
+>
+> Unlike simple phandle arrays, 'dpll-pins' entries typically contain
+> a pin specifier (index and direction) as defined by '#dpll-pin-cells'.
+> The new helper fwnode_dpll_pin_node_get() parses these specifiers
+> using fwnode_property_get_reference_args(). It resolves the target
+> pin by:
+> 1. Identifying the DPLL device node from the phandle.
+> 2. Selecting the correct sub-node ('input-pins' or 'output-pins') based
+>    on the direction argument.
+> 3. Matching the pin index argument against the 'reg' property of
+>    the child nodes.
+>
+> Additionally, register 'dpll-pins' in drivers/of/property.c to enable
+> proper parsing of the supplier bindings by the OF core.
+>
+> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+> ---
+> v2:
+> * added check for fwnode_property_match_string() return value
+> * reworked searching for the pin using dpll device phandle and
+>   pin specifier
+> * added dpll-pins into OF core supplier_bindings
+> ---
+>  drivers/dpll/dpll_core.c | 74 ++++++++++++++++++++++++++++++++++++++++
+>  drivers/of/property.c    |  2 ++
+>  include/linux/dpll.h     | 15 ++++++++
+>  3 files changed, 91 insertions(+)
+>
+> diff --git a/drivers/dpll/dpll_core.c b/drivers/dpll/dpll_core.c
+> index fb68b5e19b480..b0083b5c10aa4 100644
+> --- a/drivers/dpll/dpll_core.c
+> +++ b/drivers/dpll/dpll_core.c
+> @@ -13,6 +13,7 @@
+>  #include <linux/property.h>
+>  #include <linux/slab.h>
+>  #include <linux/string.h>
+> +#include <dt-bindings/dpll/dpll.h>
+>
+>  #include "dpll_core.h"
+>  #include "dpll_netlink.h"
+> @@ -654,6 +655,79 @@ struct dpll_pin *fwnode_dpll_pin_find(struct fwnode_=
+handle *fwnode)
+>  }
+>  EXPORT_SYMBOL_GPL(fwnode_dpll_pin_find);
+>
+> +/**
+> + * fwnode_dpll_pin_node_get - get dpll pin node from given fw node and p=
+in name
+> + * @fwnode: firmware node that uses the dpll pin
+> + * @name: dpll pin name from dpll-pin-names property
+> + *
+> + * Return: ERR_PTR() on error or a valid firmware node handle on success=
+.
+> + */
+> +struct fwnode_handle *fwnode_dpll_pin_node_get(struct fwnode_handle *fwn=
+ode,
+> +                                              const char *name)
+> +{
+> +       struct fwnode_handle *parent_node, *pin_node;
+> +       struct fwnode_reference_args args;
+> +       const char *parent_name;
+> +       int ret, index =3D 0;
+> +
+> +       if (name) {
+> +               index =3D fwnode_property_match_string(fwnode, "dpll-pin-=
+names",
+> +                                                    name);
+> +               if (index < 0)
+> +                       return ERR_PTR(-ENOENT);
+> +       }
+> +
+> +       ret =3D fwnode_property_get_reference_args(fwnode, "dpll-pins",
+> +                                                "#dpll-pin-cells", 2, in=
+dex,
+> +                                                &args);
+> +       if (ret)
+> +               return ERR_PTR(ret);
+> +
+> +       /* We support only 2 cell DPLL bindings in the kernel currently. =
+*/
+> +       if (args.nargs !=3D 2) {
+> +               fwnode_handle_put(args.fwnode);
+> +               return ERR_PTR(-ENOENT);
+> +       }
+> +
+> +       /* Resolve parent node name according pin direction type */
+> +       switch (args.args[1]) {
+> +       case DPLL_PIN_INPUT:
+> +               parent_name =3D "input-pins";
+> +               break;
+> +       case DPLL_PIN_OUTPUT:
+> +               parent_name =3D "output-pins";
+> +               break;
+> +       default:
+> +               fwnode_handle_put(args.fwnode);
+> +               return ERR_PTR(-EINVAL);
+> +       }
+> +
+> +       /* Get pin's parent sub-node */
+> +       parent_node =3D fwnode_get_named_child_node(args.fwnode, parent_n=
+ame);
+> +       if (!parent_node) {
+> +               fwnode_handle_put(args.fwnode);
+> +               return ERR_PTR(-ENOENT);
+> +       }
+> +
+> +       /* Enumerate child pin nodes and find the requested one */
+> +       fwnode_for_each_child_node(parent_node, pin_node) {
+> +               u32 reg;
+> +
+> +               if (fwnode_property_read_u32(pin_node, "reg", &reg))
+> +                       continue;
+> +
+> +               if (reg =3D=3D args.args[0])
+> +                       break;
+> +       }
+> +
+> +       /* Release pin's parent and dpll device node */
+> +       fwnode_handle_put(parent_node);
+> +       fwnode_handle_put(args.fwnode);
+> +
+> +       return pin_node ? pin_node : ERR_PTR(-ENOENT);
+> +}
+> +EXPORT_SYMBOL_GPL(fwnode_dpll_pin_node_get);
+> +
+>  static int
+>  __dpll_pin_register(struct dpll_device *dpll, struct dpll_pin *pin,
+>                     const struct dpll_pin_ops *ops, void *priv, void *coo=
+kie)
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 4e3524227720a..8571c8bb71ade 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1410,6 +1410,7 @@ DEFINE_SIMPLE_PROP(post_init_providers, "post-init-=
+providers", NULL)
+>  DEFINE_SIMPLE_PROP(access_controllers, "access-controllers", "#access-co=
+ntroller-cells")
+>  DEFINE_SIMPLE_PROP(pses, "pses", "#pse-cells")
+>  DEFINE_SIMPLE_PROP(power_supplies, "power-supplies", NULL)
+> +DEFINE_SIMPLE_PROP(dpll_pins, "dpll-pins", "#dpll-pin-cells")
+>  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+>  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+>
+> @@ -1568,6 +1569,7 @@ static const struct supplier_bindings of_supplier_b=
+indings[] =3D {
+>                 .parse_prop =3D parse_post_init_providers,
+>                 .fwlink_flags =3D FWLINK_FLAG_IGNORE,
+>         },
+> +       { .parse_prop =3D parse_dpll_pins, },
 
-I'm having trouble finding cpu_list but I think that it does make sense
-to set the initial value.
+Keep the same order as the other table please.
 
-Were you thinking I should look at mpam_set_cpu_defaults() in
-the mpam_resctrl_glue_v4 [1] branch?
-
-Thanks,
-Drew
-
-[1] https://gitlab.arm.com/linux-arm/linux-bh.git
+-Saravana
+>         {}
+>  };
+>
+> diff --git a/include/linux/dpll.h b/include/linux/dpll.h
+> index f0c31a111c304..755c36d1ef45a 100644
+> --- a/include/linux/dpll.h
+> +++ b/include/linux/dpll.h
+> @@ -11,6 +11,7 @@
+>  #include <linux/device.h>
+>  #include <linux/netlink.h>
+>  #include <linux/netdevice.h>
+> +#include <linux/property.h>
+>  #include <linux/rtnetlink.h>
+>
+>  struct dpll_device;
+> @@ -176,6 +177,8 @@ int dpll_netdev_add_pin_handle(struct sk_buff *msg,
+>                                const struct net_device *dev);
+>
+>  struct dpll_pin *fwnode_dpll_pin_find(struct fwnode_handle *fwnode);
+> +struct fwnode_handle *fwnode_dpll_pin_node_get(struct fwnode_handle *fwn=
+ode,
+> +                                              const char *name);
+>  #else
+>  static inline void
+>  dpll_netdev_pin_set(struct net_device *dev, struct dpll_pin *dpll_pin) {=
+ }
+> @@ -197,8 +200,20 @@ fwnode_dpll_pin_find(struct fwnode_handle *fwnode)
+>  {
+>         return NULL;
+>  }
+> +
+> +static inline struct fwnode_handle *
+> +fwnode_dpll_pin_node_get(struct fwnode_handle *fwnode, const char *name)
+> +{
+> +       return NULL;
+> +}
+>  #endif
+>
+> +static inline struct fwnode_handle *
+> +device_dpll_pin_node_get(struct device *dev, const char *name)
+> +{
+> +       return fwnode_dpll_pin_node_get(dev_fwnode(dev), name);
+> +}
+> +
+>  struct dpll_device *
+>  dpll_device_get(u64 clock_id, u32 dev_driver_id, struct module *module);
+>
+> --
+> 2.52.0
+>
 
