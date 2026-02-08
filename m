@@ -1,194 +1,576 @@
-Return-Path: <devicetree+bounces-263761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263762-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mMVbKLIQiWnG1wQAu9opvQ
-	(envelope-from <devicetree+bounces-263761-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:39:46 +0100
+	id aLSROBgTiWmx2AQAu9opvQ
+	(envelope-from <devicetree+bounces-263762-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:50:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0558C10A7FB
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:39:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62BCE10A861
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:50:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B4F403009504
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 22:39:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3C4433005672
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 22:49:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C0037B41E;
-	Sun,  8 Feb 2026 22:39:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00F323816E5;
+	Sun,  8 Feb 2026 22:49:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BsoOHanp";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="KBIOQ4sN"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="jBDZuyxM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE09137B407
-	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 22:39:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 860CD342C9E
+	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 22:49:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770590384; cv=none; b=pRTAYncBloE8wD1F1OWE0jhcA5+Mis7GAPZU+Du8g87BvT0mVSSTbTByt2gFPt4YZZcv+Iacm9oR9c/8n5jh7/6SueMdxpqydcVE0FNvDJgdeP8dcAuDoE1ytYl/Jh3vj82WY4t/O11on7+AOhPE1WegQVVNoyom8cCJG7uHC18=
+	t=1770590996; cv=none; b=oH4Yy+rhtvu2YKNrtOLK0SAiPiJ/nIc6SD4Ko5AuzoE58JQIZWI5Rd3FRwk70e8Fr0/utlUSpW4nwIrED6VhL9HheUTZxkSI0MV4O0YXHGrjhb4v+ngX5nXU1b/NsEfGy7VfgBsTrP10SdpqOcHkTg0UT9Lu9XyCNNKRCqK7/TU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770590384; c=relaxed/simple;
-	bh=KhnA001cmBLiTRge7QTvHeHXPdKnZKFDaOU9xp5P1vU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RtvD/kDtHaX8UA0kGotPQdy+rnYR5mpoqFiwCMHQbLkfki3SB3+ZF05gB6I4gkV9j9399hXmv0jOzgoqSH2odxmesm9aT2Su1GaDQbQCdDp0Bk9EQLO6LYMHSisCoIzzBifbEzyGU3SpX+VWHQR4dLuobk/SJG5kfW28NwcR8h8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BsoOHanp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=KBIOQ4sN; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 618CRMuG689804
-	for <devicetree@vger.kernel.org>; Sun, 8 Feb 2026 22:39:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=i0hvmNwVbup3K9BA0emVZrbq
-	AEBF7OKynNgcKe/QTQU=; b=BsoOHanp2YYlZQyfPOSX8qes8cIF6jkdue6iA8ih
-	AX4xmQTagDs27gP0n+VQhPBHfWHlyrSvjcBO2tzgK0By4Oesb9HvkpZksDVAIe8g
-	p82t+PCnABSGOTqTII/D0X6/jg7QDYsn9nNgBHehCE+gayKQ+10UtbjhltwbNvdA
-	sMvfFqksE0qUF+KXb0Fz89nB03dM660aVO87aFCsUeawnCE7TKxljyvpTQ1djCTi
-	5j/m4RdYLZj8XKtOuuB5Ra7SZRb/gmZkzCSLSWake780ssDlv5nVX1iku1Exdlvn
-	4Nf2TcYr/GtdIY+hPG/V1HITf+ELYIkdsVJ4yI8JOGZrkw==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c5xamu25b-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 22:39:42 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c52f07fbd0so1061102785a.2
-        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 14:39:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770590382; x=1771195182; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=i0hvmNwVbup3K9BA0emVZrbqAEBF7OKynNgcKe/QTQU=;
-        b=KBIOQ4sNiAwfVMKLppWRQDdGE/IYTqRUWcsg3EVPmFwZGB+pEFpC/+ghjc7G4t2lF6
-         Q4hIrfeve2eDHT7IxsRdNL+QuxNh9UpkIG4OcuQKDvvKhH2IZNrLIzii6KgCoqnGloUV
-         /aiPP/cz1CyWwqLbartlYExNAO12zabXaJsroYtXMOLWsfXijbTpKZyAICadnOK4mKoS
-         fV2fMGcFWfKfF4Wja7SW1vnMjXS4ZzclKAi/i/+jU+v0WM1A2UNcskXA5oRhNlJ6wCEU
-         ny72QFozgWPbS/UNvM4CXTEZVojuB1jpq+CL+BIQSlJdroY0WIHygY5K5e8rjSv4vqxI
-         o6bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770590382; x=1771195182;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i0hvmNwVbup3K9BA0emVZrbqAEBF7OKynNgcKe/QTQU=;
-        b=FhuhZ5bpMivmw6eBInctNCFxl0kttqwOYpXoJ33XtCgdAPKnDTBmr1QR2gdjr64C5j
-         eMeoyvos8u2JmoXc/bpSSekg2LJcT9h1vHSSw8o/p5mD2tQZumtsghrCFJOxhI9DEKR9
-         PzQKFk0D5D75RVqZWhgsf6wAS00UXEHbiSLP9g54gehgnWQLJFotPOunUybI7OCNf9ff
-         u/3sWcYabrExORHq7qCx9SnSxBvOszZWFElnFFdLgJEwHQGef9Z2gJFDw6rdfFSCD/HA
-         sr6Y1JYwN1nBvYK6rJSy5jnhUT52ONCKti/84Ry8WgXzXUkESUHzEHvKfKBflmxI8S77
-         W9mA==
-X-Forwarded-Encrypted: i=1; AJvYcCU4xaj6gjWlohQ06Ib6qPNncLOrlEoD0qgZSCX3rJZDGhXqgLrKFr5b6TqDhN4SU1cvsUkw9tPgnPhy@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWdcUyagGZbG4gVytEQsL2I8idK2CPbmf7IavIfYxV2dpepbuu
-	sbNbu5zA1h1NVsTnp3Bsg69RoPls3R78Lk/vBf7+GVmjlRr2Hf92x6X7xik+kKT+autsaZbXiHy
-	ZQwlpjp+h0rlbgaLEzKw/wwJYXMs6VrVJC9wk+iRwWClbiaGhvVUL5dGmdZWrWEDE
-X-Gm-Gg: AZuq6aKy6mFrpVBCzrkulKG+LZWRgAFw31ZXgCFpJ0w7J4FYZd9kA4GZxCpxOxyBgpp
-	kO1Eo8GM4OHS2RaUwlT9A2cFQ3DIyzJsEQB3JZ/YlEqLGC7VzmxKFQce8gG2J1rQLNcq//OG+cC
-	WBnc9GeX7oKp6259RyqLR36k1GuvBbkTuf9Bp8LPRnuJS0OjKGZfM4HbU9zt+/0r5HoPviO6qL2
-	zpAiGk+MLG4Y33CEpgi7ohUR5G+YHFApVQaoEqQIdGQjEny1b+i7r4fvA8Haw+aZRzb1qwlAkWS
-	4LxwlgryBvGtRurL9rQLZb0+cZZLaON4IEQgNNmxBJxqqfXvckzNyN57X1n0ZjhNoX9MQuNtQT5
-	m75BYs106/LuKmji9CtRJRAuYzrM3OP5hPAzxvHT8iMZ+IlgP9pqf3/n6aCKSdOlfcOua3Lpkwr
-	plJhHdeo7HYZx8o1MS5OeEF58=
-X-Received: by 2002:a05:620a:28c6:b0:8c6:bbfa:36af with SMTP id af79cd13be357-8caefebe3f3mr1203180685a.40.1770590382200;
-        Sun, 08 Feb 2026 14:39:42 -0800 (PST)
-X-Received: by 2002:a05:620a:28c6:b0:8c6:bbfa:36af with SMTP id af79cd13be357-8caefebe3f3mr1203179485a.40.1770590381705;
-        Sun, 08 Feb 2026 14:39:41 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e44cf6f67sm2170402e87.13.2026.02.08.14.39.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Feb 2026 14:39:41 -0800 (PST)
-Date: Mon, 9 Feb 2026 00:39:39 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Roger Shimizu <rosh@debian.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: kodiak: Add missing
- usb-role-switch property
-Message-ID: <pd7hvx3e4zyvvxwozdid7mhuodjfjdpudpcq5a4e3jysndagwh@erft3vzaukh7>
-References: <20260207-next-20260130_rosh-v2-0-548bbe0c7742@debian.org>
- <20260207-next-20260130_rosh-v2-2-548bbe0c7742@debian.org>
+	s=arc-20240116; t=1770590996; c=relaxed/simple;
+	bh=XUTaRo04Qe2dgkmO8qMv7tj6uvrVGsYKdAfq4lN3Ag0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lFobwrXvqo/bzisL16Ms7dHLx13XlQBGg8JFLn2VV+s98evjvueLTLbPDs6V6uEEibljvHQyGejEMTmJygKkx1pQfVR/qLCrZrfAiXR6Z/GTEa88hfvZ7t8jha8/jE4nlZaqYXmIB8MHJ1giU+8n2oucO9/Yx8tXmsWz7qoG/Fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=jBDZuyxM; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1770590996;
+ bh=qO2n1t+o89ZZeIRUp8YAof/887drGtlHh59NH+3vQVI=;
+ b=jBDZuyxMMSmqGAMmhzvyHKF4F9bq3Y8WttpOFvOSmW8kFUWOZ/huA/RTtPimBzEWXFPXMVTWK
+ Xl5QULexpo2WRH786cFwLnhDMAlOAFxzt1WslKXl4cryIG00la5U3/OJmhWeR7I5YAgKulDmoHM
+ KVbamxaMBwbM6GX8BA270uCDACXdQi9ev2vHsdf+fDxCqjp4qfXJfKhmKFFTwlpB/iiprg+fXbM
+ oUFOiFgSqi7wlYAqs/28Q9/XGh/kUtpsf/S0Kw/JaAFzh8rHrn0acq8ax0v0iT+/1iRH51gWyFX
+ n7tPNlK9y8Hh8VjIjDrfTsmlf9+Zt4kMxjJXrBmIuHpg==
+X-Forward-Email-ID: 6989130ea6487c2810b1bc60
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 2.6.2
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <bd1827ed-76dd-493f-a74b-d38ad1dac605@kwiboo.se>
+Date: Sun, 8 Feb 2026 23:49:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260207-next-20260130_rosh-v2-2-548bbe0c7742@debian.org>
-X-Proofpoint-GUID: g6Ypy-bp6qhfigAGickLdl_n2RNefdlw
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA4MDE5NSBTYWx0ZWRfX63tCRQWG45Lu
- XKeAG//e5yi8taFq0Re5L/J7/ElC47HQzqwWoHZrNwWIz/hdDJu6ZnGrb77795m0bgrx2iB7TbF
- hnE6UEs6ODamjj8R+ZZT3Vh0UBUWWlC5SjaffmflkTQ6Vxretbjrz+ZFZ3OJRV6kmyyj/oiFXWp
- s+JUwQzqMAY4If2HddftyrjXaISk7U/5dwwRpcGaBlKY3HqEwKoTiUjlHpZXDbi++CVd+AzsPLg
- l3g/ZphnVmnnJksqBrR49Gik1jXPHHCb5GK0CkH/sehsbSkIVocn4iWjC/zy1KPKW2PkcybxBnf
- Vn6OSxBtm8adyKqni5GH8UCDLjeAqCUYUkSfhZ2XrgUJVraFyPe6UoiNfHgarih9wG3ToqpOvjY
- moepLjknubQl47uf4UhGS2NwtmvKa77siPB15yNvr7cL7bff2QP9eTD+/Qydnl592Dr45dhxmZ1
- SctfARXpqbQFLQR+hJQ==
-X-Proofpoint-ORIG-GUID: g6Ypy-bp6qhfigAGickLdl_n2RNefdlw
-X-Authority-Analysis: v=2.4 cv=Or1CCi/t c=1 sm=1 tr=0 ts=698910ae cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=xNf9USuDAAAA:8
- a=EUspDBNiAAAA:8 a=ag6Ko0Kqwrd2Y-IbJhwA:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-08_05,2026-02-05_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 impostorscore=0 priorityscore=1501 bulkscore=0
- malwarescore=0 clxscore=1015 suspectscore=0 phishscore=0 adultscore=0
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602080195
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] ARM: dts: rockchip: Add support for RV1103B
+To: Fabio Estevam <festevam@gmail.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Fabio Estevam <festevam@nabladev.com>
+References: <20260207131803.2834749-1-festevam@gmail.com>
+ <20260207131803.2834749-2-festevam@gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20260207131803.2834749-2-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kwiboo.se,quarantine];
+	R_DKIM_ALLOW(-0.20)[kwiboo.se:s=fe-e1b5cab7be];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263761-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263762-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DKIM_TRACE(0.00)[kwiboo.se:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[1.57.28.64:email,1.62.115.112:email,1.51.197.16:email,1.57.106.96:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.981];
+	FROM_NEQ_ENVFROM(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.978];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 0558C10A7FB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,20d80000:email,0.0.0.0:email,nabladev.com:email,kwiboo.se:mid,kwiboo.se:dkim,20d30000:email,1.62.154.128:email,1.61.254.64:email,1.49.45.0:email,1.59.24.16:email,1.55.114.120:email,1.50.179.160:email]
+X-Rspamd-Queue-Id: 62BCE10A861
 X-Rspamd-Action: no action
 
-On Sat, Feb 07, 2026 at 02:45:27AM -0800, Roger Shimizu wrote:
-> Add missing usb-role-switch property to usb_1 node.
+Hi Fabio,
+
+On 2/7/2026 2:18 PM, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@nabladev.com>
 > 
-> Signed-off-by: Roger Shimizu <rosh@debian.org>
+> Add the initial RV1103B devicetree.
+> 
+> Based on the 5.10 Rockchip vendor kernel driver.
+> 
+> Signed-off-by: Fabio Estevam <festevam@nabladev.com>
 > ---
->  arch/arm64/boot/dts/qcom/kodiak.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+> Changes since v1:
+> - None.
 > 
+>  .../boot/dts/rockchip/rv1103b-pinctrl.dtsi    | 831 ++++++++++++++++++
+>  arch/arm/boot/dts/rockchip/rv1103b.dtsi       | 266 ++++++
+>  2 files changed, 1097 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/rockchip/rv1103b-pinctrl.dtsi
+>  create mode 100644 arch/arm/boot/dts/rockchip/rv1103b.dtsi
+> 
+> diff --git a/arch/arm/boot/dts/rockchip/rv1103b-pinctrl.dtsi b/arch/arm/boot/dts/rockchip/rv1103b-pinctrl.dtsi
+> new file mode 100644
+> index 000000000000..bc4d8fcdfaf7
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/rockchip/rv1103b-pinctrl.dtsi
+> @@ -0,0 +1,831 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2024 Rockchip Electronics Co., Ltd.
+> + */
+> +
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include <arm64/rockchip/rockchip-pinconf.dtsi>
+> +
+> +/*
+> + * This file is auto generated by pin2dts tool, please keep these code
+> + * by adding changes at end of this file.
+> + */
+> +&pinctrl {
+> +	cam_clk0 {
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+This is missing omit-if-no-ref, please add for all:
 
+		/omit-if-no-ref/
 
--- 
-With best wishes
-Dmitry
+> +		cam_clk0_pins: cam-clk0-pins {
+> +			rockchip,pins =
+> +				/* cam_clk0_out */
+> +				<1 RK_PB5 1 &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	cam_clk1 {
+> +		cam_clk1_pins: cam-clk1-pins {
+> +			rockchip,pins =
+> +				/* cam_clk1_out */
+> +				<1 RK_PB6 1 &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	cam_spi {
+> +		cam_spi_bus4_pins: cam-spi-bus4-pins {
+> +			rockchip,pins =
+> +				/* cam_spi_d0 */
+> +				<0 RK_PB5 4 &pcfg_pull_up_drv_level_2>,
+> +				/* cam_spi_d1 */
+> +				<0 RK_PB2 4 &pcfg_pull_up_drv_level_2>,
+> +				/* cam_spi_d2 */
+> +				<0 RK_PB1 4 &pcfg_pull_up_drv_level_2>,
+> +				/* cam_spi_d3 */
+> +				<0 RK_PB0 4 &pcfg_pull_up_drv_level_2>;
+> +		};
+> +		cam_spi_clk_pins: cam-spi-clk-pins {
+> +			rockchip,pins =
+> +				/* cam_spi_clk */
+> +				<0 RK_PB4 4 &pcfg_pull_none>;
+> +		};
+> +		cam_spi_cs0n_pins: cam-spi-cs0n-pins {
+> +			rockchip,pins =
+> +				/* cam_spi_cs0n */
+> +				<0 RK_PB3 4 &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	clk {
+> +		clk_32k_pins: clk-32k-pins {
+> +			rockchip,pins =
+> +				/* clk_32k */
+> +				<0 RK_PA0 2 &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	clk_24m {
+> +		clk_24m_out_pins: clk-24m-out-pins {
+> +			rockchip,pins =
+> +				/* clk_24m_out */
+> +				<0 RK_PA0 3 &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	cpu {
+> +		cpu_pins: cpu-pins {
+> +			rockchip,pins =
+> +				/* cpu_avs */
+> +				<0 RK_PA1 2 &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	emmc {
+> +		emmc_bus4_pins: emmc-bus4-pins {
+> +			rockchip,pins =
+> +				/* emmc_d0 */
+> +				<1 RK_PA1 1 &pcfg_pull_up_drv_level_2>,
+> +				/* emmc_d1 */
+> +				<1 RK_PA2 1 &pcfg_pull_up_drv_level_2>,
+> +				/* emmc_d2 */
+> +				<1 RK_PA3 1 &pcfg_pull_up_drv_level_2>,
+> +				/* emmc_d3 */
+> +				<1 RK_PA0 1 &pcfg_pull_up_drv_level_2>;
+> +		};
+> +		emmc_clk_pins: emmc-clk-pins {
+> +			rockchip,pins =
+> +				/* emmc_clk */
+> +				<1 RK_PA4 1 &pcfg_pull_up_drv_level_2>;
+> +		};
+> +		emmc_cmd_pins: emmc-cmd-pins {
+> +			rockchip,pins =
+> +				/* emmc_cmd */
+> +				<1 RK_PA5 1 &pcfg_pull_up_drv_level_2>;
+> +		};
+
+The _pins suffix seem reduntant, at least where there is only a single
+pin in the group?
+
+> +	};
+> +
+> +	emmc_testclk {
+> +		emmc_testclk_clk_pins: emmc-testclk-clk-pins {
+> +			rockchip,pins =
+> +				/* emmc_testclk_out */
+> +				<1 RK_PA7 3 &pcfg_pull_up_drv_level_2>;
+> +		};
+> +	};
+> +
+> +	emmc_testdata {
+> +		emmc_testdata_out_pins: emmc-testdata-out-pins {
+> +			rockchip,pins =
+> +				/* emmc_testdata_out */
+> +				<1 RK_PB0 3 &pcfg_pull_none>;
+> +		};
+> +	};
+
+[snip]
+
+> diff --git a/arch/arm/boot/dts/rockchip/rv1103b.dtsi b/arch/arm/boot/dts/rockchip/rv1103b.dtsi
+> new file mode 100644
+> index 000000000000..380637b63ef5
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/rockchip/rv1103b.dtsi
+> @@ -0,0 +1,266 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2024 Rockchip Electronics Co., Ltd.
+> + */
+> +
+> +#include <dt-bindings/clock/rockchip,rv1103b-cru.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +
+> +/ {
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +
+> +	compatible = "rockchip,rv1103b";
+> +
+> +	interrupt-parent = <&gic>;
+> +
+> +	arm-pmu {
+> +		compatible = "arm,cortex-a7-pmu";
+> +		interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-affinity = <&cpu0>;
+> +	};
+> +
+> +	xin32k: oscillator-32k {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <32768>;
+> +		clock-output-names = "xin32k";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	xin24m: oscillator-24m {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <24000000>;
+> +		clock-output-names = "xin24m";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a7";
+> +			reg = <0x0>;
+> +			clocks = <&cru ARMCLK>;
+> +		};
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv7-timer";
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_HIGH)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_HIGH)>;
+> +		clock-frequency = <24000000>;
+> +	};
+> +
+> +	cru: clock-controller@20000000 {
+> +		compatible = "rockchip,rv1103b-cru";
+> +		reg = <0x20000000 0x81000>;
+> +		#clock-cells = <1>;
+> +		#reset-cells = <1>;
+> +
+> +		assigned-clocks = <&cru PLL_GPLL>, <&cru CLK_GPLL_DIV12>;
+> +		assigned-clock-rates = <1188000000>, <100000000>;
+> +	};
+
+This and all other MIMO nodes should be places inside a /soc node,
+please see other recent Rockchip SoCs, like RK3576, RK3528 and RK3562.
+
+> +	/*
+> +	 * Merge all GRF, each independent GRF offset is shown as bellow:
+> +	 * VEPU_GRF:		0x20100000
+> +	 * NPU_GRF:		0x20110000
+> +	 * VI_GRF:		0x20120000
+> +	 * CPU_GRF:		0x20130000
+> +	 * DDR_GRF:		0x20140000
+> +	 * SYS_GRF:		0x20150000
+> +	 * PMU_GRF:		0x20160000
+
+This merge is something we have avoided for other Rockchip SoCs and is
+something downstream mostly have done to simplify software not to 
+accurately represent the hw.
+
+Please split the GRFs like has been done on other recent Rockchip SoCs.
+
+> +	 */
+> +	grf: syscon@20100000 {
+> +		compatible = "rockchip,rv1103b-grf", "syscon", "simple-mfd";
+> +		reg = <0x20100000 0x61000>;
+> +
+> +		reboot_mode: reboot-mode {
+> +			compatible = "syscon-reboot-mode";
+> +			offset = <0x60200>;
+> +		};
+> +	};
+> +
+> +	ioc: syscon@20170000 {
+> +		compatible = "rockchip,rv1103b-ioc", "syscon";
+> +		reg = <0x20170000 0x60000>;
+> +	};
+> +
+> +	gic: interrupt-controller@20411000 {
+> +		compatible = "arm,gic-400";
+> +		interrupt-controller;
+> +		#interrupt-cells = <3>;
+> +		#address-cells = <0>;
+> +
+> +		reg = <0x20411000 0x1000>,
+> +		      <0x20412000 0x2000>,
+> +		      <0x20414000 0x2000>,
+> +		      <0x20416000 0x2000>;
+> +		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_HIGH)>;
+> +	};
+> +
+> +	uart0: serial@20540000 {
+> +		compatible = "rockchip,rv1103b-uart", "snps,dw-apb-uart";
+> +		reg = <0x20540000 0x100>;
+> +		interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		clock-frequency = <24000000>;
+
+Any reason to define the clock rate here, the clock already report this
+rate?
+
+> +		clocks = <&cru SCLK_UART0>, <&cru PCLK_UART0>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart0m0_xfer_pins>;
+> +		status = "disabled";
+> +	};
+> +
+> +	sdmmc1: mmc@20650000 {
+> +		compatible = "rockchip,rv1103b-dw-mshc", "rockchip,rk3288-dw-mshc";
+> +		reg = <0x20650000 0x4000>;
+> +		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru HCLK_SDMMC1>, <&cru CCLK_SDMMC1>;
+> +		clock-names = "biu", "ciu";
+> +		fifo-depth = <0x100>;
+> +		max-frequency = <150000000>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&sdmmc1_clk_pins &sdmmc1_cmd_pins &sdmmc1_bus4_pins>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart1: serial@20870000 {
+> +		compatible = "rockchip,rv1103b-uart", "snps,dw-apb-uart";
+> +		reg = <0x20870000 0x100>;
+> +		interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		clock-frequency = <24000000>;
+> +		clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart1m0_xfer_pins>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart2: serial@20880000 {
+> +		compatible = "rockchip,rv1103b-uart", "snps,dw-apb-uart";
+> +		reg = <0x20880000 0x100>;
+> +		interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		clock-frequency = <24000000>;
+> +		clocks = <&cru SCLK_UART2>, <&cru PCLK_UART2>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart2m0_xfer_pins>;
+> +		status = "disabled";
+> +	};
+> +
+> +	wdt: watchdog@208d0000 {
+> +		compatible = "snps,dw-wdt";
+> +		reg = <0x208d0000 0x100>;
+> +		clocks = <&cru TCLK_WDT_NS>, <&cru PCLK_WDT_NS>;
+> +		clock-names = "tclk", "pclk";
+> +		interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
+> +		status = "disabled";
+> +	};
+> +
+> +	sdmmc0: mmc@20d20000 {
+> +		compatible = "rockchip,rv1103b-dw-mshc", "rockchip,rk3288-dw-mshc";
+> +		reg = <0x20d20000 0x4000>;
+> +		interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru HCLK_SDMMC0>, <&cru CCLK_SDMMC0>;
+> +		clock-names = "biu", "ciu";
+> +		fifo-depth = <0x100>;
+> +		max-frequency = <150000000>;
+> +		pinctrl-names = "normal", "idle";
+
+What is "normal" and "idle" and how are they used, something downstream
+specific? Should probably just be "default".
+
+> +		pinctrl-0 = <&sdmmc0_det_pins
+> +			     &sdmmc0_clk_pins
+> +			     &sdmmc0_cmd_pins
+> +			     &sdmmc0_bus4_pins>;
+> +		pinctrl-1 = <&sdmmc0_det_pins
+> +			     &sdmmc0_clk_idle_pins
+> +			     &sdmmc0_cmd_idle_pins
+> +			     &sdmmc0_bus4_idle_pins>;
+> +		status = "disabled";
+> +	};
+> +
+> +	emmc: mmc@20d30000 {
+> +		compatible = "rockchip,rv1103b-dw-mshc", "rockchip,rk3288-dw-mshc";
+> +		reg = <0x20d30000 0x4000>;
+> +		interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru HCLK_EMMC>, <&cru CCLK_EMMC>;
+> +		clock-names = "biu", "ciu";
+> +		fifo-depth = <0x100>;
+> +		max-frequency = <150000000>;
+
+This seem to be missing the default pinctrl, any reason they are?
+
+> +		status = "disabled";
+> +	};
+> +
+> +	fspi0: spi@20d40000 {
+> +		compatible = "rockchip,sfc";
+> +		reg = <0x20d40000 0x4000>;
+> +		interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru SCLK_SFC_2X>, <&cru HCLK_SFC>;
+> +		clock-names = "clk_sfc", "hclk_sfc";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+
+Same here.
+
+> +		status = "disabled";
+> +	};
+> +
+> +	system_sram: sram@210f6000 {
+> +		compatible = "mmio-sram";
+> +		reg = <0x210f6000 0x8000>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0 0x210f6000 0x8000>;
+> +	};
+> +
+> +	pinctrl: pinctrl {
+> +		compatible = "rockchip,rv1103b-pinctrl";
+> +		rockchip,grf = <&ioc>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		gpio0: gpio@20520000 {
+> +			compatible = "rockchip,gpio-bank";
+> +			reg = <0x20520000 0x200>;
+> +			interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cru PCLK_PMU_GPIO0>, <&cru DBCLK_PMU_GPIO0>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&pinctrl 0 0 32>;
+
+Looking at the datasheet and code for rv1103b/rv1106b there does not
+seem to be full use of the 32 pins, and only up to 14 pins are routed?
+
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		gpio1: gpio@20d80000 {
+> +			compatible = "rockchip,gpio-bank";
+> +			reg = <0x20d80000 0x200>;
+> +			interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cru PCLK_GPIO1>, <&cru DBCLK_GPIO1>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&pinctrl 0 32 32>;
+
+Similar here, only up to pin 29 is routed?
+
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		gpio2: gpio@20840000 {
+> +			compatible = "rockchip,gpio-bank";
+> +			reg = <0x20840000 0x200>;
+> +			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cru PCLK_GPIO2>, <&cru DBCLK_GPIO2>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&pinctrl 0 64 32>;
+
+And here only up to 16 pins.
+
+I would recommend you drop the gpio-ranges for now until this has been
+cleared up.
+
+Regards,
+Jonas
+
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +};
+> +
+> +#include "rv1103b-pinctrl.dtsi"
+
 
