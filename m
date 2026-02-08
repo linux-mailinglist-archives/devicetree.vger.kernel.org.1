@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263685-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eNFwInRniGnepAQAu9opvQ
-	(envelope-from <devicetree+bounces-263683-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:37:40 +0100
+	id XkNCM9xyiGlZpgQAu9opvQ
+	(envelope-from <devicetree+bounces-263685-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 12:26:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E30B810863F
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:37:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2831910883A
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 12:26:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7A4473003EFA
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 10:36:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 848FF300E73D
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 11:26:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 177A7346797;
-	Sun,  8 Feb 2026 10:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 057983148B8;
+	Sun,  8 Feb 2026 11:26:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XyOb958d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WKXbfjHg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E825E20DE3;
-	Sun,  8 Feb 2026 10:36:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D348B2D8797;
+	Sun,  8 Feb 2026 11:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770547017; cv=none; b=i5XElPUoMYJC632jrXqUKn0lvslixBXbAEg5n6kHSQc1LtJbyiPtXXSGKHeghbCWDgONY2/3h+dn8z9ifc9n7pHZfb4/ul8NcInT6nYok/RZM7NN2OlrxymnBNb82EIYR7LAq6azugMmzExmvhvIgmUChGUmUSepgrpKUvUabd8=
+	t=1770549977; cv=none; b=lmwjL+fU7CzyBf2R1kH0TsqJLSHCid/WHEFEvpF/wz/V4m15Z+jaFJm9n//6Y4rfUAQJPfY4VFBr/wONVqZTxA0RCVFNQB4mtoeFCG9dJ9/q8OCipsmplgFIzbGBTih4byYtxPZNNjLCYR/x5JE4xkwe94X5sfSGm3Hzq4MRuck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770547017; c=relaxed/simple;
-	bh=ZJcNQC83teh7+Vsu+y7dgbRiRrWJD7su7SWlEPJlW1M=;
+	s=arc-20240116; t=1770549977; c=relaxed/simple;
+	bh=MIQaFm+mVYPbMUThq0gQqfvnOU8g9x8m9zL9ClrzgwA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B5iUmWUZMn1z6hd/KKPyhZOoyO3krSFl7jcKuFLxcCgEPaVYmlUpLcmGNFSJdCjDhadTUDNTjROfRkssKsjsX9TdrfOeBE4x+YsB6H+y6TNVXkiJ2nMDP0DDur7caDyC/WFEOkqvl0ydsmf8dLpvq9z08IBG9XS21F3R9QPWHC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XyOb958d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA43AC4CEF7;
-	Sun,  8 Feb 2026 10:36:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=YAWeTC7ZSzD3PyAwzWGA7EnqJlsW/f0tVw6Y6OCkcv7v00bZfa48P/+RiGa92lebdd6PK1ZcTfwjKKjJXwSgtNdvadLenwgCWPVuq2Nsv65SnEzWddUYkYdMvsrTG3fwbH9NcOo3ZsvDQtTaCcOa8aIEZ8fXteJk7sKYS1B/rA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WKXbfjHg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9D6CC4CEF7;
+	Sun,  8 Feb 2026 11:26:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770547016;
-	bh=ZJcNQC83teh7+Vsu+y7dgbRiRrWJD7su7SWlEPJlW1M=;
+	s=k20201202; t=1770549977;
+	bh=MIQaFm+mVYPbMUThq0gQqfvnOU8g9x8m9zL9ClrzgwA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XyOb958dXTZfuEfbYtFB67DGgAvKYnFxNTUpXJ5cXTe4FROOCAA10L/6g9QQCDPeS
-	 UVgL5PPSTuQ1Sz+vJXaCAn0vZrISkIArThW+IsV+nTwWgDJVie63a6PSBw8x63QMZK
-	 pEwxYJEcSN5tqIIM/XZZWKN2kcjasw9ZhMyGJyyTmW0pBMmBh6WxaVMKPLkm13Icgk
-	 J9jCUEDAcV9z/rAmon3e1hQhJshqUUrTOr83uDlr0FPMppFo369wAljb9p+YvcfW4K
-	 NT50YceUpUTAel0mHUJGS2T9XNytu8o379k7AnUPlIk/mGHVhhAMiqijOYKO05dwfi
-	 FIbVo9IEltAkA==
-Message-ID: <a3504101-e516-461b-8ad3-8075e0edd879@kernel.org>
-Date: Sun, 8 Feb 2026 11:36:51 +0100
+	b=WKXbfjHg3WAtptJ0gH0xheEvs2PPkv/gXLJlQ4gZF7kfJRzzsjDQcUTXaSaBX6/Pw
+	 mWVxIEV3Bqa5QOApaOmVKzjwRmMhHXNI0R9L9Wd+9Ybjd45+XEW0sxcTIwLB+s/o6Z
+	 94k9Q9XquJzK7G+vkMdJR7BieWhN2sGTKc1hnj7I9VaVSnHWA7odZwr4qmL5pXkMty
+	 L9hS9MtQv0Hg2LpX2A6Cv6aOGhs/4mDa+4G1EpxbDYuUwlP9aWQXv1KB4HZDVcxDpM
+	 RkNd8W38aRmC/69YRtsbTjkKN8Ly/TLfSMuszsN8HEUGbGu79xsDo9wCWdIf80COZx
+	 tA3e9WR4oHSaA==
+Message-ID: <007a761a-a419-43c3-981b-13e2cd977972@kernel.org>
+Date: Sun, 8 Feb 2026 12:26:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,21 +53,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mailbox: xlnx,zynqmp-ipi-mailbox: Document
- msg region requirement
-To: "T, Harini" <Harini.T@amd.com>
-Cc: "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "Simek, Michal" <michal.simek@amd.com>,
- "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "git (AMD-Xilinx)" <git@amd.com>
-References: <20251222044653.1757886-1-harini.t@amd.com>
- <20251222-funny-aspiring-seal-05c4ae@quoll>
- <LV5PR12MB980465BAF86F179E5638016A92B5A@LV5PR12MB9804.namprd12.prod.outlook.com>
+Subject: Re: [PATCH 8/8] arm64: defconfig: Enable VIDEOCC and CAMCC drivers on
+ Qualcomm X1P42100
+To: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+ Imran Shaik <imran.shaik@oss.qualcomm.com>,
+ Taniya Das <taniya.das@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260128-purwa-videocc-camcc-v1-0-b23de57df5ba@oss.qualcomm.com>
+ <20260128-purwa-videocc-camcc-v1-8-b23de57df5ba@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,7 +115,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <LV5PR12MB980465BAF86F179E5638016A92B5A@LV5PR12MB9804.namprd12.prod.outlook.com>
+In-Reply-To: <20260128-purwa-videocc-camcc-v1-8-b23de57df5ba@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -121,123 +123,42 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263683-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263685-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,amd.com,vger.kernel.org,lists.infradead.org];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-0.990];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,amd.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E30B810863F
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 2831910883A
 X-Rspamd-Action: no action
 
-On 23/12/2025 11:48, T, Harini wrote:
-> [Public]
-
-What? Fix your email client, so we wan't be dealing with your corporate
-rules.
-
-[Private]
-
-or rather let's mess with corporate systems:
-
-[Confidential]
-
+On 27/01/2026 20:26, Jagadeesh Kona wrote:
+> Enable video and camera clock controller drivers for their respective
+> functionalities on Qualcomm X1P42100-CRD and similar other platforms
+> with Snapdragon X1P42100 SoC.
 > 
-> Hi,
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Monday, December 22, 2025 2:39 PM
->> To: T, Harini <Harini.T@amd.com>
->> Cc: jassisinghbrar@gmail.com; robh@kernel.org; krzk+dt@kernel.org;
->> conor+dt@kernel.org; Simek, Michal <michal.simek@amd.com>; Datta,
->> Shubhrajyoti <shubhrajyoti.datta@amd.com>; linux-kernel@vger.kernel.org;
->> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; git (AMD-
->> Xilinx) <git@amd.com>
->> Subject: Re: [PATCH] dt-bindings: mailbox: xlnx,zynqmp-ipi-mailbox:
->> Document msg region requirement
->>
->> Caution: This message originated from an External Source. Use proper caution
->> when opening attachments, clicking links, or responding.
->>
->>
->> On Mon, Dec 22, 2025 at 10:16:53AM +0530, Harini T wrote:
->>> Add description clarifying that for Versal IPI mailboxes, both host
->>> and remote agents must have the "msg" register region defined for
->>> successful message passing. Without both, only notification-based
->>> communication works.
->>>
->>> Signed-off-by: Harini T <harini.t@amd.com>
->>> ---
->>>  .../bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml           | 6 ++++++
->>>  1 file changed, 6 insertions(+)
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.ya
->>> ml
->>> b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.ya
->>> ml index 04d6473d666f..8fdf77c7935c 100644
->>> ---
->>> a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.ya
->>> ml
->>> +++ b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbo
->>> +++ x.yaml
->>> @@ -165,6 +165,12 @@ allOf:
->>>          reg-names: false
->>>
->>>      else:
->>> +      description:
->>
->> Else block cannot have description.
-> 
-> Can I remove the description from else block and move the clarifying text to the top-level description field?
-> 
->>
->>> +        For Versal IPI mailboxes, the "msg" register region is optional.
->>
->> So it is optional...
-> 
-> The schema marks "msg" as optional to support both notification-only and message-passing use-cases. In hardware, some mailbox channels may be designed for notification only (no buffer), while others support full message passing (with buffer). The schema allows both, but for message passing, "msg" is required on both ends
-
-This is not wrapped. Again, fix your email client.
-
-> 
->>
->>> +        However, for successful message passing via mailbox, both the
->>> + host IPI
->>
->> And it is not optional. If nothing works, then it is not optional.
->>
->> And why would it be optional in the first place? You generate your same IP
->> with different settings?
-> 
-> There are 2 types of IPI channels (Buffered and Buffer-less)
-> Some IPI channels are used only for notification (no message buffer, so "msg" is omitted).
+> Signed-off-by: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
+> ---
 
 
-Confusing description then.
-
-> 
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
