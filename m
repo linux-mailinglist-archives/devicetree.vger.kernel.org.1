@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263683-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id BpPqCg9miGnFpAQAu9opvQ
-	(envelope-from <devicetree+bounces-263682-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:31:43 +0100
+	id eNFwInRniGnepAQAu9opvQ
+	(envelope-from <devicetree+bounces-263683-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:37:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71AE51085EB
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:31:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E30B810863F
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:37:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AF7C63009FBA
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 10:31:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7A4473003EFA
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 10:36:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE10626E71F;
-	Sun,  8 Feb 2026 10:31:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 177A7346797;
+	Sun,  8 Feb 2026 10:36:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cMW9J1f3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XyOb958d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C98A14086A;
-	Sun,  8 Feb 2026 10:31:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E825E20DE3;
+	Sun,  8 Feb 2026 10:36:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770546699; cv=none; b=OwthnkqGeGIzxVnogtzFnJm4I2xAUn6ElaJa+U4D+Y3j9w1u+K9OYRcbuqUrqCMTUaQIBSQzJ+5On+lDSWw5M0N/vQ9gZvvyaDkuyjxCeWKgJg0WHNbgshuNzE50z8k6bjSrIGFVedb8XMjoXU21aW6m085V9b72LKHITdZCN8M=
+	t=1770547017; cv=none; b=i5XElPUoMYJC632jrXqUKn0lvslixBXbAEg5n6kHSQc1LtJbyiPtXXSGKHeghbCWDgONY2/3h+dn8z9ifc9n7pHZfb4/ul8NcInT6nYok/RZM7NN2OlrxymnBNb82EIYR7LAq6azugMmzExmvhvIgmUChGUmUSepgrpKUvUabd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770546699; c=relaxed/simple;
-	bh=GUAXOcrm41ITrljNUEdNmAemB4EIj2N7q4Z7fBaiNO8=;
+	s=arc-20240116; t=1770547017; c=relaxed/simple;
+	bh=ZJcNQC83teh7+Vsu+y7dgbRiRrWJD7su7SWlEPJlW1M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m0WyEmXtD6gEJeeUBxSigCitM0Nas8PmBFoNb+dt0l/7jnpoYCm0S5mukjVMcdikk0iAoX78AXmDa50yhcpIpKWdkOa40R0gj9p28NGrGNHslOwNn6YF0aCBbuiIH8XtMUK7nAN4sEdtH6Re0QFVLclWbyaEg/VnmkMS6uz+FQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cMW9J1f3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DB49C4CEF7;
-	Sun,  8 Feb 2026 10:31:36 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=B5iUmWUZMn1z6hd/KKPyhZOoyO3krSFl7jcKuFLxcCgEPaVYmlUpLcmGNFSJdCjDhadTUDNTjROfRkssKsjsX9TdrfOeBE4x+YsB6H+y6TNVXkiJ2nMDP0DDur7caDyC/WFEOkqvl0ydsmf8dLpvq9z08IBG9XS21F3R9QPWHC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XyOb958d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA43AC4CEF7;
+	Sun,  8 Feb 2026 10:36:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770546699;
-	bh=GUAXOcrm41ITrljNUEdNmAemB4EIj2N7q4Z7fBaiNO8=;
+	s=k20201202; t=1770547016;
+	bh=ZJcNQC83teh7+Vsu+y7dgbRiRrWJD7su7SWlEPJlW1M=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cMW9J1f39HYiWlkvSNw8muEYC99v3zB8fCt98m2AF4bS1RHuIaBoxB1iwdQmbI/Pz
-	 RswStGsi0Y0GXhMOfRZHCj01Tw0stq5JXpLVZTUEoBy6QaIyimCZWQssKYHeP5DuE3
-	 R2nn1C/Hu+a3vqAybQLNCEegdNHEdqzD1bwJHinEugAf8v6QHwn58FUlQ8TmfokVAc
-	 kk8a36xFCZqHoymsmUgfkC2nLtFoEeIJPcJB+t2JzhN3gLvJ0gAV9jtnDdHSzGyjRk
-	 ysaP+eeR1pJ+12hOm9m/pB1qhacEkZwBUX/qlj7XiLiuYE1PR0B4nbzgwsinEYf7kf
-	 EOOkFCKoGsKDg==
-Message-ID: <b9e275cf-7c16-47cf-9699-82bc79aa7f90@kernel.org>
-Date: Sun, 8 Feb 2026 11:31:34 +0100
+	b=XyOb958dXTZfuEfbYtFB67DGgAvKYnFxNTUpXJ5cXTe4FROOCAA10L/6g9QQCDPeS
+	 UVgL5PPSTuQ1Sz+vJXaCAn0vZrISkIArThW+IsV+nTwWgDJVie63a6PSBw8x63QMZK
+	 pEwxYJEcSN5tqIIM/XZZWKN2kcjasw9ZhMyGJyyTmW0pBMmBh6WxaVMKPLkm13Icgk
+	 J9jCUEDAcV9z/rAmon3e1hQhJshqUUrTOr83uDlr0FPMppFo369wAljb9p+YvcfW4K
+	 NT50YceUpUTAel0mHUJGS2T9XNytu8o379k7AnUPlIk/mGHVhhAMiqijOYKO05dwfi
+	 FIbVo9IEltAkA==
+Message-ID: <a3504101-e516-461b-8ad3-8075e0edd879@kernel.org>
+Date: Sun, 8 Feb 2026 11:36:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,20 +53,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 7/7] ARM: dts: rockchip: rk3506: Add pinctrl and rmio
- dtsi for rk3506
-To: Ye Zhang <ye.zhang@rock-chips.com>,
- Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- tao.huang@rock-chips.com
-References: <20251227114957.3287944-1-ye.zhang@rock-chips.com>
- <20251227114957.3287944-8-ye.zhang@rock-chips.com>
- <ebb720f6-4756-437f-a71a-d94f45d732e8@kernel.org>
- <543e7200-2126-490a-a7a8-4898362a910d@rock-chips.com>
+Subject: Re: [PATCH] dt-bindings: mailbox: xlnx,zynqmp-ipi-mailbox: Document
+ msg region requirement
+To: "T, Harini" <Harini.T@amd.com>
+Cc: "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "Simek, Michal" <michal.simek@amd.com>,
+ "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "git (AMD-Xilinx)" <git@amd.com>
+References: <20251222044653.1757886-1-harini.t@amd.com>
+ <20251222-funny-aspiring-seal-05c4ae@quoll>
+ <LV5PR12MB980465BAF86F179E5638016A92B5A@LV5PR12MB9804.namprd12.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,7 +113,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <543e7200-2126-490a-a7a8-4898362a910d@rock-chips.com>
+In-Reply-To: <LV5PR12MB980465BAF86F179E5638016A92B5A@LV5PR12MB9804.namprd12.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -120,57 +121,123 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-263683-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263682-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,amd.com,vger.kernel.org,lists.infradead.org];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.989];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 71AE51085EB
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,amd.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E30B810863F
 X-Rspamd-Action: no action
 
-On 29/12/2025 10:00, Ye Zhang wrote:
->>> +
->>> +		/omit-if-no-ref/
->>> +		rm_io28_sai0_sdi0: rm-io28-sai0-sdi0 {
->>> +			rockchip,pins =
->>> +				<1 RK_PC3 7 &pcfg_pull_none>;
->>> +			rockchip,rmio-pins =
->>> +				<0 28 54>;
->>> +		};
->> Why are you defining all pins? This is wrong, your driver has to do it,
->> not DTS. All these definitions when not used are just pointless.
-> 
-> This file is auto-generated to provide a complete set of RMIO configurations.   Our intention is to offer a generic library for all future board developers, so they can simply pick the needed nodes by phandle without manually looking up register values in the datasheet every time.   This improves usability and standardization.
-> 
-> We also used the /omit-if-no-ref/ tag, so this will strictly not increase the size of the compiled DTB binary at all.
-> 
-> Could you please reconsider if this  approach is acceptable given the usability benefits?
+On 23/12/2025 11:48, T, Harini wrote:
+> [Public]
 
-What usability benefits? This is review and maintenance nightmare.
+What? Fix your email client, so we wan't be dealing with your corporate
+rules.
+
+[Private]
+
+or rather let's mess with corporate systems:
+
+[Confidential]
 
 > 
-> If you still consider the ~25k lines of source code bloat unacceptable for upstream, we will have to drop this generic dtsi file and let users (and ourselves) manually define only the required nodes when adding board support."
+> Hi,
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Monday, December 22, 2025 2:39 PM
+>> To: T, Harini <Harini.T@amd.com>
+>> Cc: jassisinghbrar@gmail.com; robh@kernel.org; krzk+dt@kernel.org;
+>> conor+dt@kernel.org; Simek, Michal <michal.simek@amd.com>; Datta,
+>> Shubhrajyoti <shubhrajyoti.datta@amd.com>; linux-kernel@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; git (AMD-
+>> Xilinx) <git@amd.com>
+>> Subject: Re: [PATCH] dt-bindings: mailbox: xlnx,zynqmp-ipi-mailbox:
+>> Document msg region requirement
+>>
+>> Caution: This message originated from an External Source. Use proper caution
+>> when opening attachments, clicking links, or responding.
+>>
+>>
+>> On Mon, Dec 22, 2025 at 10:16:53AM +0530, Harini T wrote:
+>>> Add description clarifying that for Versal IPI mailboxes, both host
+>>> and remote agents must have the "msg" register region defined for
+>>> successful message passing. Without both, only notification-based
+>>> communication works.
+>>>
+>>> Signed-off-by: Harini T <harini.t@amd.com>
+>>> ---
+>>>  .../bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml           | 6 ++++++
+>>>  1 file changed, 6 insertions(+)
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.ya
+>>> ml
+>>> b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.ya
+>>> ml index 04d6473d666f..8fdf77c7935c 100644
+>>> ---
+>>> a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.ya
+>>> ml
+>>> +++ b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbo
+>>> +++ x.yaml
+>>> @@ -165,6 +165,12 @@ allOf:
+>>>          reg-names: false
+>>>
+>>>      else:
+>>> +      description:
+>>
+>> Else block cannot have description.
+> 
+> Can I remove the description from else block and move the clarifying text to the top-level description field?
+> 
+>>
+>>> +        For Versal IPI mailboxes, the "msg" register region is optional.
+>>
+>> So it is optional...
+> 
+> The schema marks "msg" as optional to support both notification-only and message-passing use-cases. In hardware, some mailbox channels may be designed for notification only (no buffer), while others support full message passing (with buffer). The schema allows both, but for message passing, "msg" is required on both ends
+
+This is not wrapped. Again, fix your email client.
+
+> 
+>>
+>>> +        However, for successful message passing via mailbox, both the
+>>> + host IPI
+>>
+>> And it is not optional. If nothing works, then it is not optional.
+>>
+>> And why would it be optional in the first place? You generate your same IP
+>> with different settings?
+> 
+> There are 2 types of IPI channels (Buffered and Buffer-less)
+> Some IPI channels are used only for notification (no message buffer, so "msg" is omitted).
+
+
+Confusing description then.
+
 > 
 
-I see no point in having such code. Upstream is not your SDK.
 
 Best regards,
 Krzysztof
