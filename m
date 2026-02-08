@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263680-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EKecMLJgiGlZpAQAu9opvQ
-	(envelope-from <devicetree+bounces-263679-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:08:50 +0100
+	id KFqwMQxiiGl/pAQAu9opvQ
+	(envelope-from <devicetree+bounces-263680-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:14:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15B5D10850F
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:08:49 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 366B2108558
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 11:14:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8C87E3006B09
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 10:08:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9F81B3028EFA
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 10:14:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2F2B33CEAF;
-	Sun,  8 Feb 2026 10:08:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29F1B346765;
+	Sun,  8 Feb 2026 10:14:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LiO7+nQO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fKGVWImE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE7FE284B3B;
-	Sun,  8 Feb 2026 10:08:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05F9238DF9;
+	Sun,  8 Feb 2026 10:14:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770545327; cv=none; b=LUB+mar7uAcKQn9vaxXie7DDQNONHs5eXnyqybdzTYBmAaNd9APB4pzk7tVFgZYvtoZ3kq6mqENh8TiRvSEa/TlJ8vGVSc1zCxcIjNnu4gvZ6RFfHrwO9voGzlxOXDLYXTOlCiEmVom2VU9BrHeC61WC/CZuSIYr0em8vBm/M0U=
+	t=1770545642; cv=none; b=kwJKM/heUNdAA0FcjSwCDzBHbjF7WMUrW3dgJ4PVO3gGvwLJNwI6r88Ei+C095nZtEyw0imLAuXvgF4cUuzrffz5XwQnlo4KxU5IxRCtRtog+L4jMpHCfWD84GusMsHmwQSUOVAmg6YKOGTKwtyd5ipNTOeXzIm8PKdxkMM0u+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770545327; c=relaxed/simple;
-	bh=ybEw8cwiMV5YqSbJ4WdE3s3bVcsxVAkb6iG/LTgfT5I=;
+	s=arc-20240116; t=1770545642; c=relaxed/simple;
+	bh=Z+qUZk92XMKNYKU4MRo7MRc1HzPCF+wu3gFTAcnax1E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sk1RoA8cHo0MiclSWhDq8WYHce2zUG3EE0V1AOQh1XXMp8vHSRtMeW2B0BG5SfpxXOnjoRfu0VUNPielB4bFrjPjWOjI0rJIa4Fc5gvtnNjQiafF873jnI4K696B9FF4qfsm1vaoNoWFP20ZSMEO8PiRWnio7wY1xXIfmzI9gmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LiO7+nQO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D55EFC4CEF7;
-	Sun,  8 Feb 2026 10:08:43 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ktf2mQmqXb+LkahaWt5eiCTrQBF6t0FXrB1umucA50TslvhSUAcp2w+OjbIs0hJf6ru0qNyeeNJa+vcf58Y+X6g8/74NFJuXRnuLZni2fFKfWp+of/zRjf5fvOIo5BmnlR+lXO2XFWVCV6W1Q3uPCiiJpBGr3gstCuxjy9kIFx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fKGVWImE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CDFEC116C6;
+	Sun,  8 Feb 2026 10:13:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770545327;
-	bh=ybEw8cwiMV5YqSbJ4WdE3s3bVcsxVAkb6iG/LTgfT5I=;
+	s=k20201202; t=1770545641;
+	bh=Z+qUZk92XMKNYKU4MRo7MRc1HzPCF+wu3gFTAcnax1E=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LiO7+nQOq9UM7+7TbSc3f6nNYbLOCvcu56l36ymWYxvLBhCoa5PrS3kBWF+mcfZb8
-	 RbhPMAcDezJQT3bKct7JxSeeqFphmSVMoOe5ejG0NUkGdwdOUFt7DT5k5ToSKDQXJ3
-	 hAFYuoE8xLuK3V6aoYjMLP2a/Ij02T+NP3CHgnU4UZ74bpzoEaBvcZ457uDwkwMgx1
-	 cRAzDU+cDQvqhzLtfakEcq+Y6TNAxwrnZseT6bkI0UE+xUN3kpymSf9dLX3Ar6YZK7
-	 2xZtFQQjn7Gu3B0agMGyhonNyuUh0lHYYHNBiyk69VDC9WhnX3hziVQN+lP8DM+IKp
-	 0GQ0iNKlHvb9g==
-Message-ID: <a830f913-e5ea-4754-912f-612e178a7282@kernel.org>
-Date: Sun, 8 Feb 2026 11:08:42 +0100
+	b=fKGVWImEoyRjCjfXIhA1Yd7x/+38UVvzX3cwscXiZ6umwlS8ICOGBfMZHiJ9YCwoS
+	 4XwOqHD24Bju4M5HVwjAtujajbL4Oa9is6K/xJOl6Vs1qd78e/q8Taz4FM5VKmIgcq
+	 IcIsF4jGqumZJQ8ZaVhzRUzoN1c2xHQCVm0Wmf+A+2C+P5kTkSrO/pFejv0Pt531I7
+	 6u2iv6omPJtjOeIn4FrtRYS4hmNGuAmkx6F6PcTK/7m3AWiWz8QqVdz72SuRSjnuLH
+	 p98aOwGgqDKOF/+5mruRk50Fge3wvmqciJeIv6Wihot8j3N/WcFoYaXzOQoVv1Sqh+
+	 pjqL6w4H5cNtA==
+Message-ID: <9c852962-fe86-4f36-b7a5-651f43c4f338@kernel.org>
+Date: Sun, 8 Feb 2026 11:13:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,19 +53,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/8] thermal: Add Remote Proc cooling driver
-To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, rui.zhang@intel.com,
- lukasz.luba@arm.com, konradybcio@kernel.org, mani@kernel.org,
- casey.connolly@linaro.org, amit.kucheria@oss.qualcomm.com,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- manaf.pallikunhi@oss.qualcomm.com
-References: <20260127155722.2797783-1-gaurav.kohli@oss.qualcomm.com>
- <20260127155722.2797783-2-gaurav.kohli@oss.qualcomm.com>
- <20260128-quick-maroon-dragon-d832c8@quoll>
- <6fb993f3-4479-4b37-ab57-91807eeea988@oss.qualcomm.com>
+Subject: Re: [PATCH V6 2/5] arm64: dts: imx93: Extract common EVK description
+ into shared dtsi
+To: Sherry Sun <sherry.sun@nxp.com>, Frank.Li@nxp.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, s.hauer@pengutronix.de,
+ festevam@gmail.com, shawnguo@kernel.org, daniel.baluta@nxp.com,
+ dario.binacchi@amarulasolutions.com, alexander.stein@ew.tq-group.com,
+ Markus.Niebel@tq-group.com, matthias.schiffer@tq-group.com,
+ y.moog@phytec.de, josua@solid-run.com, francesco.dolcini@toradex.com,
+ primoz.fiser@norik.com
+Cc: imx@lists.linux.dev, kernel@pengutronix.de, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20260204083551.2867263-1-sherry.sun@nxp.com>
+ <20260204083551.2867263-3-sherry.sun@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,7 +111,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <6fb993f3-4479-4b37-ab57-91807eeea988@oss.qualcomm.com>
+In-Reply-To: <20260204083551.2867263-3-sherry.sun@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -120,19 +120,20 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263679-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-263680-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com,amarulasolutions.com,ew.tq-group.com,tq-group.com,phytec.de,solid-run.com,toradex.com,norik.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.989];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
@@ -140,40 +141,27 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 15B5D10850F
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 366B2108558
 X-Rspamd-Action: no action
 
-On 30/01/2026 07:39, Gaurav Kohli wrote:
->>> +
->>> +MODULE_LICENSE("GPL");
->>> +MODULE_DESCRIPTION("Remote Processor Cooling Device");
->> I do not see any driver here, just bunch of exported functions. I do not
->> see point in this abstraction/wrapping layer.
->>
->> Another abstraction layer, NAK.
+On 04/02/2026 09:35, Sherry Sun wrote:
+> The i.MX93 Wireless EVK reuses most of the 11x11 EVK design. To avoid
+> duplication and DTS-to-DTS includes, extract the common parts into a new
+> imx93-11x11-evk-common.dtsi shared by both boards.
 > 
+> Rename imx93-11x11-evk.dts to imx93-11x11-evk-common.dtsi and include it
+> from imx93-11x11-evk.dts.
 > 
-> Thanks Krzysztof for review.
+> Only structural changes are introduced, with no intended functional
+> impact.
 > 
-> We need this abstraction layer to provide a common interface that 
-> multiple vendors can rely on for
-
-Why do you keep inserting blank lines inside sentences?
-
-> 
-> their remote processor based cooling communication. If we use 
-> QMI-cooling driver only, then solution will
-
-So you just ignored my comment and repeat the same mantra. You don't
-even use any arguments, just push own position. This will get you nowhere.
-
-Read the comment again.
-
-NAK
+> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+> ---
 
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
