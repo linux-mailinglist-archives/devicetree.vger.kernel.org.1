@@ -1,184 +1,283 @@
-Return-Path: <devicetree+bounces-263752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263751-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QN4kDXsLiWm+1gQAu9opvQ
-	(envelope-from <devicetree+bounces-263752-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:17:31 +0100
+	id 5SkdG+4KiWmw1gQAu9opvQ
+	(envelope-from <devicetree+bounces-263751-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:15:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB72B10A6BA
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:17:30 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72CBD10A699
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 23:15:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E3D8E30087B3
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 22:17:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 32F8330053A0
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 22:15:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14D57343216;
-	Sun,  8 Feb 2026 22:17:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E41E35CBA3;
+	Sun,  8 Feb 2026 22:15:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="jYSUCZlG"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="uZuyO9qM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB203019B2;
-	Sun,  8 Feb 2026 22:17:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.126.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F68C2F8BD3
+	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 22:15:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770589047; cv=none; b=uDichIlTbEufKlpov80aHOL1E52in92RN00dhjNMrHKxdUXzFzH9p5/iYP60tIDkI+GKOOHIiGqD9Tra6EbvNNJBw+I/CqBH1hlR0UP77/7znP5RG/IONGHZp+mK+WHWHD1OIGM70nv420CPKxMnOey3cM8N7x/TIewP4Iw4Pq8=
+	t=1770588907; cv=none; b=tFOC80ti3HOhvWSorjFGUxetnCyyMv6dfZBja0FGLQTEM9EbHeS01P71UCcEtgjKGlgTW2jFWrMvqgjJ+bavjr8inBU19xyuMOHmtBuqnOgdISUHbhKhM94n5X3n56Y9cgS1URp8WI+dbPn1r8DLtsRAVL534e5H+6NVMXrHnfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770589047; c=relaxed/simple;
-	bh=fM/kEI14kSqI7NhvfISk0A9R8MeXAynbDOi797/bEvM=;
+	s=arc-20240116; t=1770588907; c=relaxed/simple;
+	bh=lYUq1TpipuXLGJI0G8segUPMNOFg3gEzdrxDmQ0SkcI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DbOyTLmZgM9ViFVMC/zIaFUOvnyfqMT7JEbEb6436s0+wKoNKlvtx79EzKsEEbQzxi5vy5MA9P3laeXwADGTC1TjbxScMRo0UQtPxT19CM8ryFiPUQ6A7AK2MKQTBSRVtlOS/TL3/nKVWx/RcXoDi/UHm3/cV8Xz8/biQqVPYOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=jYSUCZlG; arc=none smtp.client-ip=212.227.126.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=oldschoolsolutions.biz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=oldschoolsolutions.biz; s=s1-ionos; t=1770589044; x=1771193844;
-	i=jens.glathe@oldschoolsolutions.biz;
-	bh=ZHJn9k/wzslPKQUUGgsoa/8pnelKL59hdVyjpcUcW1c=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=jYSUCZlG9oYr/t1QjzKtXos0tsnFNqDnsRyJrwlqs0VBN95IWQfkvReCsq6YPWIb
-	 R3wAH6SgLbKPQFIG4Eh99TpTiO9biy0ZRYIdpImPuCW14taj+Kh9H8kbP6JOSNg5m
-	 yFsluDhqUS9CArW7C+Pol17wLiRwyimoUZ5qAApxmg4vXvAvXML+lR+7+wLbUD8z1
-	 8nook14+E4Ow/epCsNiQhaMzQR3PWw/MlhPhJHQ9EJtby1mdQ9auKw6wkfK6B/clK
-	 pJ7cgB6oOm3fCGMDGADK4UIyEKdts3l2OQpkmSollwfU7wBKcdbrMaOno0qPF2JI3
-	 /ichG2L0HED1KSM5XA==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [192.168.0.174] ([80.128.164.2]) by mrelayeu.kundenserver.de
- (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MhlbM-1vKYpE1nJw-00fDkD; Sun, 08 Feb 2026 22:51:12 +0100
-Message-ID: <dad0940a-9cca-41f3-871a-fca48c8c868a@oldschoolsolutions.biz>
-Date: Sun, 8 Feb 2026 22:51:11 +0100
+	 In-Reply-To:Content-Type; b=As57wjK4rlWAQ/EPOnm4WSkKG5M2in3T1OcHJdvFfUIab2G6EKtFsASavoZRDHP03w0bFmQfAKUKvIPpJu2rTARi7JcXA6EsUTC/K38vNf1BRUKkRf91j7IElUcM1ZgDLxmMaLn/Y3Li2BxXjDPFYlFZbFI1A7tfwrGY2EosYLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=uZuyO9qM; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1770588905;
+ bh=7dSjZHT2Dl4grmYJRUZgGDEO0U0HL5eO/bColsBuxcA=;
+ b=uZuyO9qMpc/Bg+d1n2vOX6HYkpJr7BTCchUYQZ1Qdw9NP8VNsMgiw0ZJO+cNdLxRR6V6CzxO0
+ a3gJdTdeuAOmJYIyUcTvOgWRuFrCyD54PpHxe5WzM8gS5aK8O7IxRfDfmRlUq+dynmkZCLP5p1O
+ BIzlacad1GkA+4NWFW8nF1oEELY91ZCzPV7505JCUF47BP+P44XUzcCwLhGoaGgQ1eY97n8osmo
+ jg+ylifcNvOmbps9sDefSme3SBqgLJeyLGb8Do3SJImm+ug4VaRcglBPJA65CWtOkG8xVgw0bqq
+ iJcgD08UJ6C2tbuKxf/CCuPwDnWwNEA8MqPyEI984R8w==
+X-Forward-Email-ID: 69890ae4a6487c2810b18fa7
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 2.6.2
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <d41492a9-bb59-4999-8497-e28d03d3a13f@kwiboo.se>
+Date: Sun, 8 Feb 2026 23:14:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom: Add ASUS Vivobook X1P42100
- variant
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Maud Spierings <maud_spierings@hotmail.com>
-References: <20260208-b4-vivobook-v1-0-3a9b5e153909@oldschoolsolutions.biz>
- <20260208-b4-vivobook-v1-1-3a9b5e153909@oldschoolsolutions.biz>
- <75glzfxcgnjr52mexcbas3zzm5rykgzuhv3bflui4zrmnvov7w@gmfwegaziikp>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] ARM: dts: rockchip: Add Onion RV1103B Omega4
+To: Fabio Estevam <festevam@gmail.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Fabio Estevam <festevam@nabladev.com>
+References: <20260207131803.2834749-1-festevam@gmail.com>
+ <20260207131803.2834749-4-festevam@gmail.com>
 Content-Language: en-US
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-In-Reply-To: <75glzfxcgnjr52mexcbas3zzm5rykgzuhv3bflui4zrmnvov7w@gmfwegaziikp>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:WxjN1hbkToLMD5KuLMVLFRl48cS0BbGH5LaFEX4j5n+CtdfSBvk
- SUe55zNSkzPqfIv/UcmFayUcOyDrzRtk8+f6+52c+czH2c9rV9OII3/QrXt6oR3DrWjQwGn
- THCxbk4Ip47WFDBmT2WjK/WoIoMcjUCcE3oFexvAEoP+OKU2lj9zu0elmBJXbBeojDbCp8y
- DxBUOz0WcWxCDEKvGKPGg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:YbxEryZNGPc=;2nZ0eJLzx5l3o2wCld1RvN/XAto
- 3qItgxLcQJUD5XCcI+muxD4DQ9JD6QJg4QELW+jo1KDbP9FF4nGGOlTWUcHcNQuxFlcUD0KBY
- zWNAtFCPCRXwoh7Z4bXp79S+zFO1krD7K8tjZE91aGUaWRw+V0qwWWSZic1+mCTPydTyb76T+
- DeuGfCkRL3NnKs1GwXqJKXVgK2KeSV03O3cUdoqa0WIlVcQXzsSUSqcdsY4JFv1KLFpx7lM38
- 52qrVdpJmxJMmkfTyAD4uHGSqoQFelVh3ETYY/O4qNWEAobUuyBLob85YORYDpwvjJkQog+W9
- EqOtHCq1iay1F7wwyZ+8d6/BsfYefnd4F0w2uS5CDePT7FLHY86WZTjmb9VIN3FRwc5ts8M14
- 123l5qq2NdcSXJ2h0Vs7KA6+YqQTblgsVHaGZhkekubl03InT/585wmP9M1ruhVoCRXiTGiXp
- /ResRt3ggCd2G5Ss2JvFIi4Y+f1KGGmuqM/MpCWvIkNhQ75IrY+191Wgbj6VaoS/UksWYA+Bv
- jDvCh9nUv/KQPibhDCnTWBr8O2mxqtQxWRspZRhD9CugA5UVTyWm4uNqGLrcy6aUVTb6sOs3Y
- /RFpzT1WeYEKhOitYIZcL03KAIlqPzj91xcl8QJaHD88vYzNx1ajlHHzrOeWJQppqi5metOjt
- IskXUXjH2AUiUqcF70192OUIZ9UCDxFGCCHXajOnYho1m2ly26ytX7+devr2cr9M7XXDo2nqe
- 9eR/B8NMTFDX3jftQP8v/iu2ilGcaZ/gBXg2ajMFlas0CpZtsFhQeJ52GigXUTAtZ2zx/zzs1
- cMeG073ofrO+FATJ3TaHs4MDV5KPW3SThWGIvNMTdZpx6hl+1kRZOdjflk3E41X9hTYsdoFPv
- L9FyV4IW7g3IyCerZQyq2P4ow73Mk8y8eG/JToOhZyPuVhX3icIxZLU4Ca1VWp0dRVREs33Y8
- 9GuAssE1TddVDP9aQ9OMHlB5E/x7sf+q2VABMcAFOQUwPytFWHUxS6+WUJ45UFiZYDPUY2aJW
- bqPD3vvrDinP0IyRSO7+noTtMudM16v6VVU+Zspy93+BQn18r5Jp62GRP5o+uza5FYH6a8e2/
- M5eutJNQcV+U+D5UZZdd5dQ05QeZ3zzFfVoIvRtzJHM0O0Gdqa0ZyaVjCuBbEHDCH14vqx272
- CUuBcqk42bcfa1VsOcJ72eZ3xz2qReEtnV0LSh5CPypXTZmhCsLedZcNJ+8U+HQ/qnXiqAaZQ
- w/rfTinfPcx+iBSl5D1mQ+jCyoR4GtxYWOdC+eNH8WM29e4R9rkAjKfBnaiov3YSm+sM2RSRE
- tfYX/x+3OISvkc4h7zTKP+WQ2LKmeHUu682WZRL/RzpwB+vA20MK4Z31oPxHUPhY3mDXIj0Pl
- GfwbWtDw5dRzUPF/R9/v1VzBxeWRuaJg1ZOnzYLKmPRj+bWJvCXH99k8jrRIIsP3yE06iS2UK
- KQXr7AgOEJT+eoA2sE5lK2lWNwsyzMjBhU/oSQA5llaZm3KR6rGNIvscuwioXrAboYPKmAvo+
- +yKULgFpSVmAexPmHEDdQKt7WhqCrNTz1GFawcsYvdLydUXJZQwGhzd0uco5E0+VbiCh0eowh
- 0Vy7lyEXG8A0EU0J1I3Iq9t0/DJCq5VBjlrsVHYlOIexUbunxlq5pOC4QFg73DcbDr/RamA+b
- FTN1AeNrYqyCtvjXlJwd2tetB4OXUGs74HzJZThMOIQtYwMBeJvsRN+QUaAbkCsgiYBzEjgFb
- J1nqmJTeUFu5npf3b5/f85j6EUzo8zJR/0s595mlQLDpZNGx1gcfvMhs=
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20260207131803.2834749-4-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[oldschoolsolutions.biz:s=s1-ionos];
+	DMARC_POLICY_ALLOW(-0.50)[kwiboo.se,quarantine];
+	R_DKIM_ALLOW(-0.20)[kwiboo.se:s=fe-e1b5cab7be];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263752-lists,devicetree=lfdr.de];
+	URIBL_MULTI_FAIL(0.00)[tor.lore.kernel.org:server fail];
+	TAGGED_FROM(0.00)[bounces-263751-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[oldschoolsolutions.biz: no valid DMARC record];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,hotmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[oldschoolsolutions.biz:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jens.glathe@oldschoolsolutions.biz,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.0:email,0.2.34.224:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kwiboo.se:+];
+	NEURAL_HAM(-0.00)[-0.987];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BB72B10A6BA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.156.64:email,0.3.169.128:email]
+X-Rspamd-Queue-Id: 72CBD10A699
 X-Rspamd-Action: no action
 
-On 08.02.26 22:47, Dmitry Baryshkov wrote:
-> On Sun, Feb 08, 2026 at 10:25:38PM +0100, Jens Glathe via B4 Relay wrote=
-:
->> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
->>
->> The ASUS Vivobook S15 (S5507) [1] is available with Hamoa and Purwa SoC=
-.
->> Add the Purwa-based variant:
->>
->> asus,vivobook-s15-x1p4 compatible to Purwa SoC
->>
->> [1]: https://www.asus.com/de/laptops/for-home/vivobook/asus-vivobook-s-=
-15-s5507/techspec/
->>
->> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
->> ---
->>   Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Document=
-ation/devicetree/bindings/arm/qcom.yaml
->> index d48c625d3fc42f1a90f76a020753ae4daec8c5ea..5eaeda2c85bdc189d650bba=
-82f173810854f5d1e 100644
->> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->> @@ -1124,6 +1124,7 @@ properties:
->>  =20
->>         - items:
->>             - enum:
->> +              - asus,vivobook-s15-x1p4
-> Is it really compatible with the ZenBook A14?
+Hi Fabio,
 
-Ouch, thanks for the hint. Will correct this, it is not. Will be in the V2=
-.
+On 2/7/2026 2:18 PM, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@nabladev.com>
+> 
+> Onion Omega4 board is a board based on the RV1103B SoC that has:
+> 
+>  - 256 MB of RAM
+>  - 256 MB of SPI-NAND
+>  - Ethernet
+>  - USB OTG
+>  - Wifi
+>  - SD card
+>  - Camera connector
+> 
+> Add the initial support for this board so that it can fully boot into
+> Linux with the root file system stored in the SPI NAND.
+> 
+> Signed-off-by: Fabio Estevam <festevam@nabladev.com>
+> ---
+> Changes since v1:
+> - Removed memory node.
+> - Added serial0 alias and used stdout-path = "serial0:115200n8";
+> - Added color, function and pinctrl entries to the LED node.
+> - Used bootph-pre-ram and bootph-some-ram.
+> 
+>  arch/arm/boot/dts/rockchip/Makefile           |   1 +
+>  arch/arm/boot/dts/rockchip/rv1103b-omega4.dts | 106 ++++++++++++++++++
+>  2 files changed, 107 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/rockchip/rv1103b-omega4.dts
+> 
+> diff --git a/arch/arm/boot/dts/rockchip/Makefile b/arch/arm/boot/dts/rockchip/Makefile
+> index 716f5540e438..d8cd5df138cc 100644
+> --- a/arch/arm/boot/dts/rockchip/Makefile
+> +++ b/arch/arm/boot/dts/rockchip/Makefile
+> @@ -1,5 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += \
+> +	rv1103b-omega4.dtb \
+>  	rv1108-elgin-r1.dtb \
+>  	rv1108-evb.dtb \
+>  	rv1109-relfor-saib.dtb \
+> diff --git a/arch/arm/boot/dts/rockchip/rv1103b-omega4.dts b/arch/arm/boot/dts/rockchip/rv1103b-omega4.dts
+> new file mode 100644
+> index 000000000000..bcfc9b321dd6
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/rockchip/rv1103b-omega4.dts
+> @@ -0,0 +1,106 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2022 Rockchip Electronics Co., Ltd.
+> + * Copyright (c) 2025 plan44.ch/luz
+> + * Copyright (c) 2025 Onion Corporation
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include "rv1103b.dtsi"
+> +
+> +/ {
+> +	model = "Onion RV1103 Omega4 Board";
+> +	compatible = "onion,rv1103b-omega4", "rockchip,rv1103b";
 
-with best regards
+Am I correct in that this is the Omega-4 Evaluation Board (EVB) [1] and
+that the Omega-4 is a System-on-Module?
 
-Jens
+The model should probably not mention the RV1103, as this is a RV1103B
+board. I also think this probably should be split up into a SOM dtsi and
+a board dts similar to how other Rockchip SOM boards are handled, e.g.
+
+	model = "Onion Omega-4 Evaluation Board";
+	compatible = "onion,omega4-evb", "onion,omega4", "rockchip,rv1103b";
+
+and split into rv1103b-omega4.dtsi and rv1103b-omega4-evb.dts or similar?
+
+[1] https://documentation.onioniot.com/omega4/getting-started/
+
+Regards,
+Jonas
+
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-0	{
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&led_pin>;
+> +			gpios = <&gpio0 RK_PA2 GPIO_ACTIVE_HIGH>;
+> +			function = LED_FUNCTION_STATUS;
+> +			color = <LED_COLOR_ID_BLUE>;
+> +			label = "sys";
+> +			default-state = "on";
+> +		};
+> +	};
+> +};
+> +
+> +&fspi0 {
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		compatible = "spi-nand";
+> +		reg = <0>;
+> +		bootph-pre-ram;
+> +		bootph-some-ram;
+> +		spi-max-frequency = <75000000>;
+> +		spi-rx-bus-width = <4>;
+> +		spi-tx-bus-width = <1>;
+> +
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			partition@0 {
+> +				label = "env";
+> +				reg = <0x00000000 0x00040000>;
+> +			};
+> +
+> +			partition@40000 {
+> +				label = "idblock";
+> +				reg = <0x00040000 0x00100000>;
+> +				read-only;
+> +			};
+> +
+> +			partition@140000 {
+> +				label = "uboot";
+> +				reg = <0x00140000 0x00100000>;
+> +				read-only;
+> +			};
+> +
+> +			partition@240000 {
+> +				label = "boot";
+> +				reg = <0x00240000 0x00800000>;
+> +			};
+> +
+> +			partition@a40000 {
+> +				label = "ubi";
+> +				reg = <0x00a40000 0x0f5c0000>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0m0_xfer_pins>;
+> +	bootph-all;
+> +	status = "okay";
+> +};
+> +
+> +&wdt {
+> +	bootph-all;
+> +	status = "okay";
+> +};
+> +
+> +&pinctrl {
+> +	leds {
+> +		led_pin: led-pin {
+> +			rockchip,pins = <0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +};
 
 
