@@ -1,634 +1,261 @@
-Return-Path: <devicetree+bounces-263765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263766-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id BW+kIQEaiWlW2gQAu9opvQ
-	(envelope-from <devicetree+bounces-263765-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 00:19:29 +0100
+	id IBoMN4MiiWn/2wQAu9opvQ
+	(envelope-from <devicetree+bounces-263766-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 00:55:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02D5D10A961
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 00:19:28 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3309110AA38
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 00:55:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 447E33001FD7
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 23:19:28 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8F1A430015BA
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 23:55:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 316D834FF69;
-	Sun,  8 Feb 2026 23:19:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19E533859F0;
+	Sun,  8 Feb 2026 23:55:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="hXn9oCmS"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XpB+IgQQ";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aYSysiOt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A6052FD7A3
-	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 23:19:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D90E13859E0
+	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 23:55:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770592765; cv=none; b=l8pUi9s4k+Ool3DUX9G6fKdz87RShUoBNE/sf/zcAx3Qo2xo2Y+7lqA+84F/XRBh/YiYCAy5i5QFtWZTWFW7uTjkAJztvSVIO0JHCToEXFTmb7zVuQm211sbO6C5Rs3qa+9D2UGauigceeV+QfUA/7bj8eWpTwxT4GXpG4SDf8c=
+	t=1770594943; cv=none; b=MHWB+Pat0NwkhB51pq7GtHCWWo0T25n4KvVpVpVwCad6c8y6S+GPAdoEBp9OvG2lfhBCxqYHgWQ0nNqkKL9HUBn73Z2klvRMgTURRrtaRZyvh4DU0x6cBl0KvjkAO5w8UN0BrxBC83FCNOmrUjyPaxWvU1dfhy0bsipI3AICXtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770592765; c=relaxed/simple;
-	bh=LRnuii2POXaY3gBTjCueGtwzVUhtQ2N1aQfKbUvIdys=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AFgdQ6orMxDdtU8jhQW7R1qkZ0U0pSPDmlZuq7dyqUb8toaBusoA9n4bqWLc99L2N5RPLheCUGuz4m/UOs9rv6gpzI03R+HN3/nHIc9rcxSrga+jpXVTQUBbMrqS1MVZTwndB+/dmkrs6wsHGTrkgtQ8+RN/ITRuuqvZRSztSqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=hXn9oCmS; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1770592758;
- bh=6DVcU5BMCxLiztutJKgnnqr8rLk1m/R23lPUOG4D52A=;
- b=hXn9oCmSEWeCMKPZnJqi88oBDTHRMweaLz+CtF+F/bB1cD+13Fgv8dlJPT65Rs3+wIYMcOduD
- RJ/XaXh8MCqjGFIdr2bgFFN2CEkc8qsb7By90ZIQ8k/LbfdX7KhskuAK+bqrKTUPnbMp3SmTECj
- tStism7Wa6d46pCWcswY8ZeYJg8RWMJKwMGdbk1X5OM1qrGNSdxELVBKmTz71P/NLErEgkNk7t+
- UOMoDn6vClxGR56v8kUFa51MRY1rU8H5XbqLP1EYG/RC+BHGUL6eucZ3aJKyDch4WeVuI4BZUyf
- 0vUZ/KmiAUkayq5/yeDBT4JLrebfZB85z8DDgw2DQlEg==
-X-Forward-Email-ID: 698919f1a6487c2810b1e73c
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 2.6.2
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <b2990fff-1b93-4a6a-9bfb-fae71ae72a33@kwiboo.se>
-Date: Mon, 9 Feb 2026 00:19:10 +0100
+	s=arc-20240116; t=1770594943; c=relaxed/simple;
+	bh=QHhMVC8Ba5BOMF+mfpbI2ACbKzjNYug4cucxI+TmuSM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=GbIuubXIYDfdBEnG1TZVR2lCdyrEL/yccvjsOo0io2j0tXh8rSP0U5wDQrMMr99PojIWGZWU7sHLr1d7T0Dg6oJBHcb3Dd8zH4Illeebq1sQs4Vd6TGaWZBUtmFgeAPVHaPVariZCNzAjqwRE6XctXAcJ/88xehSRuZQobylxng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XpB+IgQQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aYSysiOt; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 618L08NA1494003
+	for <devicetree@vger.kernel.org>; Sun, 8 Feb 2026 23:55:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=WWrIAGbD+swm1Y8eE8Ndqc
+	BisV5nldwTY2Z/dAcM4aY=; b=XpB+IgQQCZTHrwCL/2TI3CL74zFK5LNM2vVMjV
+	WPQb0R9Ji2YrmvTFEQTiCLXOVAuvtxBUuPxa1s3+VxOCj3/NSnI8X7OfnIge1Tvu
+	FjGTASuKeUP8oitdWFATbC4G2mwx8awXWY+ZyFqf/xQaw06EAsqL4880aT1mGsU/
+	qAf7QXK9SNdPBig5HwqSTmGMy2OAebU/ftJrxqwzS2hGGOiOb9R3QNOcIj5zwDPG
+	gQ+gtudoq5I2Pny9ALTsSxjOn9dqANzvyJXFHaNBQT3D8vNNMwD4rSd6oXimnvdT
+	FGJp58G9NPL82WwYbPb/X9+Fs7KZHAXnkTxtNJdFMnGD1Krg==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c5xccu33s-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 23:55:42 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c52f07fbd0so1075548885a.2
+        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 15:55:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770594941; x=1771199741; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WWrIAGbD+swm1Y8eE8NdqcBisV5nldwTY2Z/dAcM4aY=;
+        b=aYSysiOthVXhgu7fE1lvlGcdaWI8hC77RvAlx6Gm3OfbCJNmZWHtV0iUhx4oUcWlhx
+         w4cHNNxHaGtL7xnN3B28vbB3WzSUA4wGv7iSLvha+B23UlBoC9goyGdn6XLDI+FzjbkI
+         IwcdmFQbQ0+XRARcI+9zjVobbmSW2BieOHOJLXZvv/L78eZ6BwDXqpTIRGGADNzylHCt
+         X65TrxKfROgf9b/wH4xNulmnB9VbGC7l2xEES9yMDq6evFd+gWI0Lc4eQIYuOsz9NXTJ
+         qvMntbWi9BfxqcbaUSzekde5KDOyY12uZDPyk43uJvMQNc5+TjzM1ts5FByD0TonfDwJ
+         CEnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770594941; x=1771199741;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WWrIAGbD+swm1Y8eE8NdqcBisV5nldwTY2Z/dAcM4aY=;
+        b=cVGTF3YVXHpMX75053TUw2/dFHkili76svU44o7MQvcmVLJ9tbVODPfLiQU/eUnCYu
+         mljsG2auApRfvj1+HmuJltqoBqbMopkZeiS8D5STxiZsVlZZRJbdb5+/gIYc3Maxadkz
+         sqN2Z4TWFgtSR/ZvcfD7HRw7vjtzVwKw67/YEtsi9wj0x7q44HV6TLsyyZ6ngSbbjUa7
+         O2uSo1fB8+IN7sRSfBKxQsel0q93daJmNWl+wf5fVhIeODfkai3cz+0siaqwnbpp8ihM
+         Ly1ABduiKxjl6uQvti9oAlLno4b8R5hBpZKOmUT0YV8LjFLYh9FbI62nKiv8ufXP2DE/
+         +qug==
+X-Forwarded-Encrypted: i=1; AJvYcCXWhBGn1ZIwXK7IcLx4ZDy50JKBDxBElmgtGjv8VjUHKslH8s0KUYFmKDXPrD6LPjBRLwINoKyVqXgB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPg1iXNVOcR/tMnMohfBZrfikX68HmGsFXhbYJylWKvJb4ANtK
+	pyaGKse5Sl4cui+DUqggNWgSYPU6gvD9yKFmaMrmBdb7boiT42zoO8KB+2JSgRsBBmBJ8ynjXZ9
+	50ff7ui/WrMXwMo/5Yi2Dwxv2PPhNQTRoL23Lxxw+VbBvSYQVH8u5Cul9Moh3+sZq
+X-Gm-Gg: AZuq6aL0xjDurDSE+XFUqydTUMAEvFVPT/thocv4sBsGb2d8zrF/5PBSFHPPTO6c1o1
+	fuVA8ABP2DLwJD9VceDhohZrcdFYBtTt34PBkG75G+1v5tKg7LQ0TN9YTetneD72naOKiOc81Lg
+	RjqDZ7Vyq9rXpWRTuKqyay/HcAfIStIU4Q4JODkO61nF/1v79v/xsQ4miMG1h5fy+vCJ4PHZuZH
+	Wu3WD9yWfc9/abcv5gPVrKrOMLL0P/OhqwS7UNwMv9Foe+vw2QACdcJAkZy9+GEB2Oh4Q764Rdg
+	cbeJ7mFi40NW+01k2WpWTqRYRl8AXN1BJhYEQxy8lnZMBHnGV1I9b99Jg8048NfZrXJr3PQV5Xs
+	rHjPuBUlyiTM+tv8SwA1KmTUYocNP3GM2W0qAJG/cLX8JwwWkN7r7iYUyMataxFgPOB6QaVXUpD
+	b3pkZA52pqfHDGEB5aAx4+gLs=
+X-Received: by 2002:a05:620a:4728:b0:8b2:ef2d:f74b with SMTP id af79cd13be357-8caef7e772amr1312214985a.29.1770594941053;
+        Sun, 08 Feb 2026 15:55:41 -0800 (PST)
+X-Received: by 2002:a05:620a:4728:b0:8b2:ef2d:f74b with SMTP id af79cd13be357-8caef7e772amr1312212285a.29.1770594940463;
+        Sun, 08 Feb 2026 15:55:40 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e44cf6ee4sm2188074e87.4.2026.02.08.15.55.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Feb 2026 15:55:39 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH v4 0/5] media: qcom: iris/venus: fix power domain handling
+ on SM8250
+Date: Mon, 09 Feb 2026 01:55:34 +0200
+Message-Id: <20260209-iris-venus-fix-sm8250-v4-0-9662a0471d82@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] pinctrl: rockchip: Add RV1103B pinctrl support
-To: Fabio Estevam <festevam@gmail.com>
-Cc: linusw@kernel.org, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, Fabio Estevam <festevam@nabladev.com>
-References: <20260207130642.2833312-1-festevam@gmail.com>
- <20260207130642.2833312-2-festevam@gmail.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20260207130642.2833312-2-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHciiWkC/4XQQW7DIBAF0KtYrDspBowhq96j6oI4Q4NU2w2DU
+ aood+84WbSLWt0gffi8keYqCHNCEvvmKjLWRGmeOJinRgynML0jpCNnoaSystUtpJwIKk4LQUw
+ XoNGpTkL02qHy2BvfC/77mZFf7+7rG+dTojLnr/uY2q63/4m1BQkHqztEa5Uzw8tMtDsv4WOYx
+ 3HHh1jhqn4wJTcxxZiNRh651g3Ob2D6N2a2MM1YL2OwDrs+evsHdnvsION54ZWWxyLEIRDCWkp
+ l30x4Kc9joIKZ+7dv6veefooBAAA=
+X-Change-ID: 20260131-iris-venus-fix-sm8250-f938e29e7497
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Hans Verkuil <hverkuil@kernel.org>,
+        Stefan Schmidt <stefan.schmidt@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Dikshita Agarwal <dikshita@qti.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2267;
+ i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
+ bh=QHhMVC8Ba5BOMF+mfpbI2ACbKzjNYug4cucxI+TmuSM=;
+ b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ2anUtVde48/n0W25PT6hJ57pR5mo/s8svDBIdPAxDcnj
+ sRb2RzsZDRmYWDkYpAVU2TxKWiZGrMpOezDjqn1MINYmUCmMHBxCsBE2PPY/2fFBU+SuP3+iLpw
+ hY3/jH2GJ4UnCJn1vDm/dOmWXdeMLDLLM+ZySW794mEozThVdedsG4eK9Gob97/5L3/NruxU/xe
+ 4sTyhcvo9pYvFW/X5n/sE7XP91HghuPTZ43l7XjNeVvFcclHr3HcXU6HOwGsuHmWVkxeu4NCVur
+ 5XvlJnXWJecWlUwul5iux9l06t8YuxbDVI9zAr9951OMRpT1qWQZNLolAxs1PmTV21Cfc3hVxjL
+ H98wuRJ+Blv5r3/dmZE75uXvPtzsfeHLjcZ3qfMFQduegc7Lql8UXrs5fmHiq+9Aj/338qKC+kt
+ 2b9JTzSwPuC+dFy81Xr+3MhDL2S8KhO35/PyCP68tSsOAA==
+X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA4MDIwNiBTYWx0ZWRfX2S/VhMHeqIFQ
+ TKL8yBxws5GOaO5CvX9V6Qt0uKzTSBPkyAWDIo4u8A2ji6QMO/ejo4hhsvEQHrJL5jLJZz7JRJV
+ cTOaEROrrrWKP4UCKPeOrFYCyqydKNX+7HcILixSnl2cuYXsF/2R0PVBMXd5lVl1AmQfYxYLuH9
+ ioD4KUxlq4j+yvwU119SPvkTF943bWqMiIMtHdT7cnizemElPk0VNn7ldNO22zIyNChSjqrYL4O
+ 75/ZVwv94V0HmQJMcPYcGXnogiwGmDjNnGUTAorEcx/5wBjxiQIHfy4rLelZbizA+f/vPkhLRQv
+ nYNywUyQHgKK97WaGJ2HKzk0ZzMCVUyy1iHdMwDPnD7vrb/vOG90Wqr8/VvRfP69Mse1V2RwtUZ
+ HpVic5CwCSOsAZhxemie3SXkRqEX21gdnSY7Zl61gwHxC/o35lsveGh1TnHBuK6UR5HBFk/8Tya
+ mx35gpfpuEOC6Yyd1bQ==
+X-Proofpoint-GUID: KmZ3fDmsk1NGYT2DtMfDfLCG8A5ipZa7
+X-Authority-Analysis: v=2.4 cv=ft/RpV4f c=1 sm=1 tr=0 ts=6989227e cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=cvYA71F9yvrgsMZaK7wA:9 a=QEXdDO2ut3YA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-ORIG-GUID: KmZ3fDmsk1NGYT2DtMfDfLCG8A5ipZa7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-08_05,2026-02-05_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 phishscore=0 clxscore=1015 malwarescore=0
+ lowpriorityscore=0 adultscore=0 bulkscore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602080206
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kwiboo.se,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
-	R_DKIM_ALLOW(-0.20)[kwiboo.se:s=fe-e1b5cab7be];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263765-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263766-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.977];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kwiboo.se:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 02D5D10A961
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.992];
+	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 3309110AA38
 X-Rspamd-Action: no action
 
-Hi Fabio,
+As pointed out by Konrad during the review of SM8350 / SC8280XP
+patchset, Iris aka Venus description has several flows. It doesn't scale
+MMCX, the frequencies in the OPP table are wrong, etc.
 
-On 2/7/2026 2:06 PM, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@nabladev.com>
-> 
-> Add pinctrl support for the RV1103B.
-> 
-> Based on the 5.10 Rockchip vendor kernel driver.
-> 
-> Signed-off-by: Fabio Estevam <festevam@nabladev.com>
-> ---
-> Changes since v1:
->  - None.
->  
->  drivers/pinctrl/pinctrl-rockchip.c | 313 ++++++++++++++++++++++++++++-
->  drivers/pinctrl/pinctrl-rockchip.h |   1 +
->  2 files changed, 313 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pinctrl/pinctrl-rockchip.c b/drivers/pinctrl/pinctrl-rockchip.c
-> index 2fc67aeafdb3..092ce4cac9cf 100644
-> --- a/drivers/pinctrl/pinctrl-rockchip.c
-> +++ b/drivers/pinctrl/pinctrl-rockchip.c
-> @@ -467,6 +467,22 @@ static const struct pinctrl_ops rockchip_pctrl_ops = {
->   * Hardware access
->   */
->  
-> +static struct rockchip_mux_recalced_data rv1103b_mux_recalced_data[] = {
-> +	{
-> +		.num = 1,
-> +		.pin = 6,
-> +		.reg = 0x10024,
-> +		.bit = 8,
-> +		.mask = 0xf
-> +	}, {
-> +		.num = 1,
-> +		.pin = 7,
-> +		.reg = 0x10024,
-> +		.bit = 12,
-> +		.mask = 0xf
-> +	},
-> +};
-> +
->  static struct rockchip_mux_recalced_data rv1108_mux_recalced_data[] = {
->  	{
->  		.num = 1,
-> @@ -1172,6 +1188,9 @@ static int rockchip_get_mux(struct rockchip_pin_bank *bank, int pin)
->  	else
->  		regmap = info->regmap_base;
->  
-> +	if (ctrl->type == RV1103B && bank->bank_num == 2 && pin >= 12)
-> +		return 0;
+Let's correct the Iris/Venus enablement for SM8250 (unfortunately also
+stopping it from being overclocked).
 
-There should not be any need for this special handling here, please use
-e.g. IOMUX_UNROUTED or IOMUX_GPIO_ONLY flags for the gpio2 bank.
+The videocc patches (DT, DTS) can be applied during -rc, the rest of the
+patches should go for the next -rc1.
 
-It also only looks like up to 12 or 13 pins are usable/routed so that
-should also be properly described in the bank info.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+---
+Changes in v4:
+- Dropped MX voting by videocc: it's almost-always-on (Krzysztof)
+- Restored minItems for the venus device, preserving the ABI (Krzysztof)
+- Link to v3: https://lore.kernel.org/r/20260204-iris-venus-fix-sm8250-v3-0-70fa68e57f96@oss.qualcomm.com
 
-> +
->  	if (ctrl->type == RK3506) {
->  		if (bank->bank_num == 1)
->  			regmap = info->regmap_ioc1;
-> @@ -1298,6 +1317,9 @@ static int rockchip_set_mux(struct rockchip_pin_bank *bank, int pin, int mux)
->  	else
->  		regmap = info->regmap_base;
->  
-> +	if (ctrl->type == RV1103B && bank->bank_num == 2 && pin >= 12)
-> +		return 0;
+Changes in v3:
+- Dropped applied patch
+- Fixed typos in the commit messages (Dikshita, Konrad)
+- Corrected MX OPP levels (Dikshita)
+- Switched Konrad from Suggested-by to Reported-by (Konrad)
+- Link to v2: https://lore.kernel.org/r/20260201-iris-venus-fix-sm8250-v2-0-6f40d2605c89@oss.qualcomm.com
 
-Same here, existing flags and/or limit the number of pins exposed for
-the bank.
+Changes in v2:
+- Fixed example in the new sm8250-videocc schema
+- Link to v1: https://lore.kernel.org/r/20260131-iris-venus-fix-sm8250-v1-0-b635ee66284c@oss.qualcomm.com
 
-> +
->  	if (ctrl->type == RK3506) {
->  		if (bank->bank_num == 1)
->  			regmap = info->regmap_ioc1;
-> @@ -1495,6 +1517,214 @@ static int px30_calc_schmitt_reg_and_bit(struct rockchip_pin_bank *bank,
->  	return 0;
->  }
->  
-> +#define RV1103B_DRV_BITS_PER_PIN		8
-> +#define RV1103B_DRV_PINS_PER_REG		2
-> +#define RV1103B_DRV_GPIO0_A_OFFSET		0x40100
-> +#define RV1103B_DRV_GPIO0_B_OFFSET		0x50110
-> +#define RV1103B_DRV_GPIO1_A01_OFFSET		0x140
-> +#define RV1103B_DRV_GPIO1_A67_OFFSET		0x1014C
-> +#define RV1103B_DRV_GPIO2_OFFSET		0x30180
-> +#define RV1103B_DRV_GPIO2_SARADC_OFFSET		0x3080C
-> +
-> +static int rv1103b_calc_drv_reg_and_bit(struct rockchip_pin_bank *bank,
-> +				       int pin_num, struct regmap **regmap,
-> +				       int *reg, u8 *bit)
-> +{
-> +	struct rockchip_pinctrl *info = bank->drvdata;
-> +	int ret = 0;
-> +
-> +	*regmap = info->regmap_base;
-> +	switch (bank->bank_num) {
-> +	case 0:
-> +		if (pin_num < 7)
-> +			*reg = RV1103B_DRV_GPIO0_A_OFFSET;
-> +		else if (pin_num > 7 && pin_num < 14)
-> +			*reg = RV1103B_DRV_GPIO0_B_OFFSET - 0x10;
+---
+Dmitry Baryshkov (5):
+      media: dt-bindings: qcom,sm8250-venus: sort out power domains
+      media: iris: scale MMCX power domain on SM8250
+      media: venus: scale MMCX power domain on SM8250
+      arm64: dts: qcom: sm8250: sort out Iris power domains
+      arm64: dts: qcom: sm8250: correct frequencies in the Iris OPP table
 
-Why define a constant and then substract another constant from it?
+ .../bindings/media/qcom,sm8250-venus.yaml          | 15 ++++++---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               | 36 +++++++++++++---------
+ .../media/platform/qcom/iris/iris_platform_gen1.c  |  2 +-
+ drivers/media/platform/qcom/iris/iris_probe.c      |  7 +++++
+ drivers/media/platform/qcom/venus/core.c           |  7 ++++-
+ drivers/media/platform/qcom/venus/core.h           |  1 +
+ drivers/media/platform/qcom/venus/pm_helpers.c     |  8 ++++-
+ 7 files changed, 54 insertions(+), 22 deletions(-)
+---
+base-commit: 9845cf73f7db6094c0d8419d6adb848028f4a921
+change-id: 20260131-iris-venus-fix-sm8250-f938e29e7497
 
-> +		else
-> +			ret = -EINVAL;
-> +		break;
-> +
-> +	case 1:
-> +		if (pin_num < 6)
-> +			*reg = RV1103B_DRV_GPIO1_A01_OFFSET;
-> +		else if (pin_num >= 6 && pin_num < 23)
-> +			*reg = RV1103B_DRV_GPIO1_A67_OFFSET - 0xc;
-> +		else if (pin_num >= 24 && pin_num < 30)
-> +			*reg = RV1103B_DRV_GPIO1_A67_OFFSET - 0xc;
-> +		else
-> +			ret = -EINVAL;
-
-The bank should probably only report up to 29 pins?
-
-> +		break;
-> +
-> +	case 2:
-> +		if (pin_num < 12) {
-> +			*reg = RV1103B_DRV_GPIO2_OFFSET;
-> +		} else if (pin_num >= 16) {
-> +			ret = -EINVAL;
-
-Similar here, gpio2 only seem to support up to 16 pins.
-
-> +		} else {
-> +			*reg = RV1103B_DRV_GPIO2_SARADC_OFFSET;
-> +			*bit = 10;
-> +
-> +			return 0;
-> +		}
-> +		break;
-> +
-> +	default:
-> +		ret = -EINVAL;
-> +		break;
-> +	}
-> +
-> +	if (ret) {
-> +		dev_err(info->dev, "unsupported bank_num %d pin_num %d\n", bank->bank_num, pin_num);
-> +
-> +		return ret;
-> +	}
-> +
-> +	*reg += ((pin_num / RV1103B_DRV_PINS_PER_REG) * 4);
-> +	*bit = pin_num % RV1103B_DRV_PINS_PER_REG;
-> +	*bit *= RV1103B_DRV_BITS_PER_PIN;
-> +
-> +	return 0;
-> +}
-> +
-> +#define RV1103B_PULL_BITS_PER_PIN		2
-> +#define RV1103B_PULL_PINS_PER_REG		8
-> +#define RV1103B_PULL_GPIO0_A_OFFSET		0x40200
-> +#define RV1103B_PULL_GPIO0_B_OFFSET		0x50204
-> +#define RV1103B_PULL_GPIO1_A01_OFFSET		0x210
-> +#define RV1103B_PULL_GPIO1_A67_OFFSET		0x10210
-> +#define RV1103B_PULL_GPIO2_OFFSET		0x30220
-> +#define RV1103B_PULL_GPIO2_SARADC_OFFSET	0x3080C
-> +
-> +static int rv1103b_calc_pull_reg_and_bit(struct rockchip_pin_bank *bank,
-> +					int pin_num, struct regmap **regmap,
-> +					int *reg, u8 *bit)
-> +{
-> +	struct rockchip_pinctrl *info = bank->drvdata;
-> +	int ret = 0;
-> +
-> +	*regmap = info->regmap_base;
-> +	switch (bank->bank_num) {
-> +	case 0:
-> +		if (pin_num < 7)
-> +			*reg = RV1103B_PULL_GPIO0_A_OFFSET;
-> +		else if (pin_num > 7 && pin_num < 14)
-> +			*reg = RV1103B_PULL_GPIO0_B_OFFSET - 0x4;
-> +		else
-> +			ret = -EINVAL;
-> +		break;
-> +
-> +	case 1:
-> +		if (pin_num < 6)
-> +			*reg = RV1103B_PULL_GPIO1_A01_OFFSET;
-> +		else if (pin_num >= 6 && pin_num < 23)
-> +			*reg = RV1103B_PULL_GPIO1_A67_OFFSET;
-> +		else if (pin_num >= 24 && pin_num < 30)
-> +			*reg = RV1103B_PULL_GPIO1_A67_OFFSET;
-> +		else
-> +			ret = -EINVAL;
-> +		break;
-> +
-> +	case 2:
-> +		if (pin_num < 12) {
-> +			*reg = RV1103B_PULL_GPIO2_OFFSET;
-> +		} else if (pin_num >= 16) {
-> +			ret = -EINVAL;
-> +		} else {
-> +			*reg = RV1103B_PULL_GPIO2_SARADC_OFFSET;
-> +			*bit = 13;
-> +
-> +			return 0;
-> +		}
-> +		break;
-> +
-> +	default:
-> +		ret = -EINVAL;
-> +		break;
-> +	}
-> +
-> +	if (ret) {
-> +		dev_err(info->dev, "unsupported bank_num %d pin_num %d\n", bank->bank_num, pin_num);
-> +
-> +		return ret;
-> +	}
-> +
-> +	*reg += ((pin_num / RV1103B_PULL_PINS_PER_REG) * 4);
-> +	*bit = pin_num % RV1103B_PULL_PINS_PER_REG;
-> +	*bit *= RV1103B_PULL_BITS_PER_PIN;
-> +
-> +	return 0;
-> +}
-> +
-> +#define RV1103B_SMT_BITS_PER_PIN		1
-> +#define RV1103B_SMT_PINS_PER_REG		8
-> +#define RV1103B_SMT_GPIO0_A_OFFSET		0x40400
-> +#define RV1103B_SMT_GPIO0_B_OFFSET		0x50404
-> +#define RV1103B_SMT_GPIO1_A01_OFFSET		0x410
-> +#define RV1103B_SMT_GPIO1_A67_OFFSET		0x10410
-> +#define RV1103B_SMT_GPIO2_OFFSET		0x30420
-> +#define RV1103B_SMT_GPIO2_SARADC_OFFSET		0x3080C
-> +
-> +static int rv1103b_calc_schmitt_reg_and_bit(struct rockchip_pin_bank *bank,
-> +					   int pin_num,
-> +					   struct regmap **regmap,
-> +					   int *reg, u8 *bit)
-> +{
-> +	struct rockchip_pinctrl *info = bank->drvdata;
-> +	int ret = 0;
-> +
-> +	*regmap = info->regmap_base;
-> +	switch (bank->bank_num) {
-> +	case 0:
-> +		if (pin_num < 7)
-> +			*reg = RV1103B_SMT_GPIO0_A_OFFSET;
-> +		else if (pin_num > 7 && pin_num < 14)
-> +			*reg = RV1103B_SMT_GPIO0_B_OFFSET - 0x4;
-> +		else
-> +			ret = -EINVAL;
-> +		break;
-> +
-> +	case 1:
-> +		if (pin_num < 6)
-> +			*reg = RV1103B_SMT_GPIO1_A01_OFFSET;
-> +		else if (pin_num >= 6 && pin_num < 23)
-> +			*reg = RV1103B_SMT_GPIO1_A67_OFFSET;
-> +		else if (pin_num >= 24 && pin_num < 30)
-> +			*reg = RV1103B_SMT_GPIO1_A67_OFFSET;
-> +		else
-> +			ret = -EINVAL;
-> +		break;
-> +
-> +	case 2:
-> +		if (pin_num < 12) {
-> +			*reg = RV1103B_SMT_GPIO2_OFFSET;
-> +		} else if (pin_num >= 16) {
-> +			ret = -EINVAL;
-> +		} else {
-> +			*reg = RV1103B_SMT_GPIO2_SARADC_OFFSET;
-> +			*bit = 8;
-> +
-> +			return 0;
-> +		}
-> +		break;
-> +
-> +	default:
-> +		ret = -EINVAL;
-> +		break;
-> +	}
-> +
-> +	if (ret) {
-> +		dev_err(info->dev, "unsupported bank_num %d pin_num %d\n", bank->bank_num, pin_num);
-> +
-> +		return ret;
-> +	}
-> +
-> +	*reg += ((pin_num / RV1103B_SMT_PINS_PER_REG) * 4);
-> +	*bit = pin_num % RV1103B_SMT_PINS_PER_REG;
-> +	*bit *= RV1103B_SMT_BITS_PER_PIN;
-> +
-> +	return 0;
-> +}
-> +
->  #define RV1108_PULL_PMU_OFFSET		0x10
->  #define RV1108_PULL_OFFSET		0x110
->  #define RV1108_PULL_PINS_PER_REG	8
-> @@ -2982,6 +3212,9 @@ static int rockchip_get_drive_perpin(struct rockchip_pin_bank *bank,
->  	u8 bit;
->  	int drv_type = bank->drv[pin_num / 8].drv_type;
->  
-> +	if (ctrl->type == RV1103B && pin_num >= 12)
-> +		drv_type = DRV_TYPE_IO_LEVEL_2_BIT;
-
-Why is this not properly handled with correct drv_type
-
-> +
->  	ret = ctrl->drv_calc_reg(bank, pin_num, &regmap, &reg, &bit);
->  	if (ret)
->  		return ret;
-> @@ -3043,6 +3276,11 @@ static int rockchip_get_drive_perpin(struct rockchip_pin_bank *bank,
->  	if (ret)
->  		return ret;
->  
-> +	if (ctrl->type == RV1103B && bank->bank_num == 2 && pin_num >= 12) {
-> +		data = data >> 10;
-> +		return data & 0x3;
-
-This is only for gpio2 pin 12 and 13 if I read code correct.
-
-Maybe using drv_calc_reg ops and possible a new DRV_TYPE flag could
-remove all the soc-specific hacks/workarounds?
-
-> +	}
-> +
->  	data >>= bit;
->  	data &= (1 << rmask_bits) - 1;
->  
-> @@ -3071,7 +3309,8 @@ static int rockchip_set_drive_perpin(struct rockchip_pin_bank *bank,
->  		rmask_bits = RK3588_DRV_BITS_PER_PIN;
->  		ret = strength;
->  		goto config;
-> -	} else if (ctrl->type == RK3506 ||
-> +	} else if (ctrl->type == RV1103B ||
-> +		   ctrl->type == RK3506 ||
->  		   ctrl->type == RK3528 ||
->  		   ctrl->type == RK3562 ||
->  		   ctrl->type == RK3568) {
-> @@ -3182,6 +3421,12 @@ static int rockchip_set_drive_perpin(struct rockchip_pin_bank *bank,
->  			ret = strength;
->  		}
->  	}
-> +
-> +	if (ctrl->type == RV1103B && bank->bank_num == 2 && pin_num >= 12) {
-> +		rmask_bits = 2;
-> +		ret = strength;
-> +	}
-> +
->  	/* enable the write to the equivalent lower bits */
->  	data = ((1 << rmask_bits) - 1) << (bit + 16);
->  	rmask = data | (data >> 16);
-> @@ -3236,6 +3481,7 @@ static int rockchip_get_pull(struct rockchip_pin_bank *bank, int pin_num)
->  				? PIN_CONFIG_BIAS_PULL_PIN_DEFAULT
->  				: PIN_CONFIG_BIAS_DISABLE;
->  	case PX30:
-> +	case RV1103B:
->  	case RV1108:
->  	case RK3188:
->  	case RK3288:
-> @@ -3251,6 +3497,9 @@ static int rockchip_get_pull(struct rockchip_pin_bank *bank, int pin_num)
->  		pull_type = bank->pull_type[pin_num / 8];
->  		data >>= bit;
->  		data &= (1 << RK3188_PULL_BITS_PER_PIN) - 1;
-> +
-> +		if (ctrl->type == RV1103B && bank->bank_num == 2 && pin_num >= 12)
-> +			pull_type = 1;
-
-Please include comment similar to below descibing why these pins differs.
-
->  		/*
->  		 * In the TRM, pull-up being 1 for everything except the GPIO0_D3-D6,
->  		 * where that pull up value becomes 3.
-> @@ -3297,6 +3546,7 @@ static int rockchip_set_pull(struct rockchip_pin_bank *bank,
->  		ret = regmap_write(regmap, reg, data);
->  		break;
->  	case PX30:
-> +	case RV1103B:
->  	case RV1108:
->  	case RV1126:
->  	case RK3188:
-> @@ -3312,6 +3562,8 @@ static int rockchip_set_pull(struct rockchip_pin_bank *bank,
->  	case RK3576:
->  	case RK3588:
->  		pull_type = bank->pull_type[pin_num / 8];
-> +		if (ctrl->type == RV1103B && bank->bank_num == 2 && pin_num >= 12)
-> +			pull_type = 1;
-
-Same here as the RK3568 workaround, please include a comment why this is
-needed.
-
->  		ret = -EINVAL;
->  		for (i = 0; i < ARRAY_SIZE(rockchip_pull_list[pull_type]);
->  			i++) {
-> @@ -3417,6 +3669,11 @@ static int rockchip_get_schmitt(struct rockchip_pin_bank *bank, int pin_num)
->  	if (ret)
->  		return ret;
->  
-> +	if (ctrl->type == RV1103B && bank->bank_num == 2 && pin_num >= 12) {
-> +		data >>= 8;
-> +		return data & 0x3;
-
-This workaround should probably be moved into the switch and use
-schmitt_calc_reg ops to return correct bit=8.
-
-> +	}
-> +
->  	data >>= bit;
->  	switch (ctrl->type) {
->  	case RK3562:
-> @@ -3473,6 +3730,12 @@ static int rockchip_set_schmitt(struct rockchip_pin_bank *bank,
->  		}
->  	}
->  
-> +	if (ctrl->type == RV1103B && bank->bank_num == 2 && pin_num >= 12) {
-> +		data = 0x3 << (bit + 16);
-> +		rmask = data | (data >> 16);
-> +		data |= ((enable ? 0x3 : 0) << bit);
-> +	}
-
-Similar here, please move to the switch.
-
-Looks like there are some RK3506 code that also should be cleaned up
-here :-)
-
-> +
->  	return regmap_update_bits(regmap, reg, rmask, data);
->  }
->  
-> @@ -3579,6 +3842,7 @@ static bool rockchip_pinconf_pull_valid(struct rockchip_pin_ctrl *ctrl,
->  	case RK3066B:
->  		return pull ? false : true;
->  	case PX30:
-> +	case RV1103B:
->  	case RV1108:
->  	case RV1126:
->  	case RK3188:
-> @@ -4319,6 +4583,51 @@ static struct rockchip_pin_ctrl px30_pin_ctrl = {
->  		.schmitt_calc_reg	= px30_calc_schmitt_reg_and_bit,
->  };
->  
-> +static struct rockchip_pin_bank rv1103b_pin_banks[] = {
-> +	PIN_BANK_IOMUX_FLAGS_OFFSET_DRV_FLAGS(0, 32, "gpio0",
-
-The code above and the 32 here does not seem to match, how many pins are
-routed? It does not seem to be more than 12-14.
-
-> +				    IOMUX_WIDTH_4BIT,
-> +				    IOMUX_WIDTH_4BIT,
-> +				    IOMUX_WIDTH_4BIT,
-> +				    IOMUX_WIDTH_4BIT,
-> +				    0x40000, 0x50008, 0x50010, 0x50018,
-> +				    DRV_TYPE_IO_LEVEL_8_BIT,
-> +				    DRV_TYPE_IO_LEVEL_8_BIT,
-> +				    DRV_TYPE_IO_LEVEL_8_BIT,
-> +				    DRV_TYPE_IO_LEVEL_8_BIT),
-> +	PIN_BANK_IOMUX_FLAGS_OFFSET_DRV_FLAGS(1, 32, "gpio1",
-
-Here it is possible all are routed but there are some checks for < 30
-above.
-
-> +				    IOMUX_WIDTH_4BIT,
-> +				    IOMUX_WIDTH_4BIT,
-> +				    IOMUX_WIDTH_4BIT,
-> +				    IOMUX_WIDTH_4BIT,
-> +				    0x20, 0x10028, 0x10030, 0x10038,
-> +				    DRV_TYPE_IO_LEVEL_8_BIT,
-> +				    DRV_TYPE_IO_LEVEL_8_BIT,
-> +				    DRV_TYPE_IO_LEVEL_8_BIT,
-> +				    DRV_TYPE_IO_LEVEL_8_BIT),
-> +	PIN_BANK_IOMUX_FLAGS_OFFSET_DRV_FLAGS(2, 32, "gpio2",
-
-This should likely only be 16 pins.
-
-Regards,
-Jonas
-
-> +				    IOMUX_WIDTH_4BIT,
-> +				    IOMUX_WIDTH_4BIT,
-> +				    IOMUX_WIDTH_4BIT,
-> +				    IOMUX_WIDTH_4BIT,
-> +				    0x30040, 0x30048, 0x30050, 0x30058,
-> +				    DRV_TYPE_IO_LEVEL_8_BIT,
-> +				    DRV_TYPE_IO_LEVEL_8_BIT,
-> +				    DRV_TYPE_IO_LEVEL_8_BIT,
-> +				    DRV_TYPE_IO_LEVEL_8_BIT),
-> +};
-> +
-> +static struct rockchip_pin_ctrl rv1103b_pin_ctrl __maybe_unused = {
-> +	.pin_banks		= rv1103b_pin_banks,
-> +	.nr_banks		= ARRAY_SIZE(rv1103b_pin_banks),
-> +	.label			= "RV1103B-GPIO",
-> +	.type			= RV1103B,
-> +	.iomux_recalced		= rv1103b_mux_recalced_data,
-> +	.niomux_recalced	= ARRAY_SIZE(rv1103b_mux_recalced_data),
-> +	.pull_calc_reg		= rv1103b_calc_pull_reg_and_bit,
-> +	.drv_calc_reg		= rv1103b_calc_drv_reg_and_bit,
-> +	.schmitt_calc_reg	= rv1103b_calc_schmitt_reg_and_bit,
-> +};
-> +
->  static struct rockchip_pin_bank rv1108_pin_banks[] = {
->  	PIN_BANK_IOMUX_FLAGS(0, 32, "gpio0", IOMUX_SOURCE_PMU,
->  					     IOMUX_SOURCE_PMU,
-> @@ -4955,6 +5264,8 @@ static struct rockchip_pin_ctrl rk3588_pin_ctrl = {
->  static const struct of_device_id rockchip_pinctrl_dt_match[] = {
->  	{ .compatible = "rockchip,px30-pinctrl",
->  		.data = &px30_pin_ctrl },
-> +	{ .compatible = "rockchip,rv1103b-pinctrl",
-> +		.data = &rv1103b_pin_ctrl },
->  	{ .compatible = "rockchip,rv1108-pinctrl",
->  		.data = &rv1108_pin_ctrl },
->  	{ .compatible = "rockchip,rv1126-pinctrl",
-> diff --git a/drivers/pinctrl/pinctrl-rockchip.h b/drivers/pinctrl/pinctrl-rockchip.h
-> index 4f4aff42a80a..bb0e803e3b8a 100644
-> --- a/drivers/pinctrl/pinctrl-rockchip.h
-> +++ b/drivers/pinctrl/pinctrl-rockchip.h
-> @@ -185,6 +185,7 @@
->  
->  enum rockchip_pinctrl_type {
->  	PX30,
-> +	RV1103B,
->  	RV1108,
->  	RV1126,
->  	RK2928,
+Best regards,
+-- 
+With best wishes
+Dmitry
 
 
