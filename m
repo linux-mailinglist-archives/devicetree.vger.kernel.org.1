@@ -1,193 +1,149 @@
-Return-Path: <devicetree+bounces-263713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263714-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cKsPKnuviGlTuQQAu9opvQ
-	(envelope-from <devicetree+bounces-263713-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 16:44:59 +0100
+	id 8EI6JKDNiGn6wAQAu9opvQ
+	(envelope-from <devicetree+bounces-263714-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 18:53:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF0AD1094DD
-	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 16:44:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA7DC1099A9
+	for <lists+devicetree@lfdr.de>; Sun, 08 Feb 2026 18:53:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6E3B33011C60
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 15:44:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 877E23008A63
+	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 17:53:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 843F636828B;
-	Sun,  8 Feb 2026 15:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9981A2E5B09;
+	Sun,  8 Feb 2026 17:53:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="kT3oJbop"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65AB2368284;
-	Sun,  8 Feb 2026 15:44:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC35F23A9B3;
+	Sun,  8 Feb 2026 17:53:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770565495; cv=none; b=Zc781fup6H9RKLwBNn37I+4puUiR1TFL8ns8ZKWu8pREmDutCYbOfXT10/UnR1cFdD9n+NDhcJYpGLUtMaBPUCh9qfTipH1wCnHIpBxEngy29Qvhwxy6GP/IPW5QzNquYhKThDzpfSJMJIeQf4j2sKv9MYqRFmBtQVN9TlvoqIc=
+	t=1770573205; cv=none; b=rzp0uw3StzBa/gQlipflhg1ycP7iN87eX3aWaliGmu54RIcIhwrlxQD+oFWT9l8WDDpZGN3+K9xWrJbsTVAkYjQg+wQOzIfczuTK90np08XUxO5688rX8RndP3LxrVwIhuhkedNZ4JRz1BzYB6NMm5y80ojqjLwHpNdBYxDMYEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770565495; c=relaxed/simple;
-	bh=z5OJZCmVudQOwiMBl2Zl8cnI9SUvpifHV3ljj91AbcU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lNTRjiGbDV+xdc7ce73XtWkZZwFbBgPRPJTfC7xUti3Rcm1KpUcsOkCMOis0QOr829DG4ShY0FkJM/x+QddrYUkpS8dQjf/er9QqwzC8sDm5agLpmI9XILjKVXlwEk648cv/p7WdN1ID/An3W+Wu+WFhAirhqz6l3TUhQcIWTx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from duge-virtual-machine (unknown [223.66.170.192])
-	by APP-05 (Coremail) with SMTP id zQCowAAnvA9jr4hp9bvOBw--.26116S2;
-	Sun, 08 Feb 2026 23:44:37 +0800 (CST)
-Date: Sun, 8 Feb 2026 23:44:35 +0800
-From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-To: Krzysztof Kozlowski <krzk@kernel.org>, ulf.hansson@linaro.org,
-	adrian.hunter@intel.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	gaohan@iscas.ac.cn, me@ziyao.cc
-Subject: Re: [PATCH 2/3] mmc: sdhci-dwcmshc: Add Canaan K230 DWCMSHC
- controller support
-Message-ID: <aYivY6jh3aEQCkAr@duge-virtual-machine>
-References: <20260204082908.27501-1-jiayu.riscv@isrc.iscas.ac.cn>
- <20260204082908.27501-3-jiayu.riscv@isrc.iscas.ac.cn>
- <e06bd9ca-11bb-4d87-9db5-87139731f181@kernel.org>
- <aYb7m+ioAmqXFhWX@duge-virtual-machine>
- <def032d1-b1c5-4a75-88de-cbb7c1293e61@kernel.org>
+	s=arc-20240116; t=1770573205; c=relaxed/simple;
+	bh=Pu+m854baPlsj4/F+h1GYe5y3YUWvgvtyTFNfAh4qAs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ML4rnel7ZYZfeEk/jFzCVz5ufLWPrKZbCrWSBkw0XlY5+/gpfMdwO+7aLz67dlCZDY4dvS+Mxx1vCTIHTIbinT6vz2b+T1JiEUvkP1sCQEVsyhuJNrlYeJBWjgAWJa9RR7IpwDF8RJyYtxUHRyAJqfJgK7xlnlR61hjqufF1mVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=kT3oJbop; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 38877276CF;
+	Sun,  8 Feb 2026 18:53:17 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id qFa9nsA_yZ2F; Sun,  8 Feb 2026 18:53:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1770573196; bh=Pu+m854baPlsj4/F+h1GYe5y3YUWvgvtyTFNfAh4qAs=;
+	h=From:Subject:Date:To:Cc;
+	b=kT3oJbopiX3ioUiGxC/zfDP2omZyLYPUt2ShHidtjJylrHTaBLbHlT4F4U6k3lRP+
+	 y4ovpWyhFp391QqA0+U/zU3rBknkhmog0cXOtVqQdZxFf9/M1zb9yRUw4aNZPHLcr8
+	 IC9LTgMQngLlXYMqtlcmP6c0rLyMCJmOi3hG9JlX6H2c1PjLHG4Z0F7NgOZGCn4h6F
+	 w0Wc0a/lJ31S03LxjD+bAnh8qvf0bQaMIMQPzOK8iA535ad6EULmB/Bv8kyXqbzPsV
+	 r+ZOP7Z2Z7h8uubpSIHKk4Cip0IbSeOdROmtnKfMmpW/uVzqc3jtweP4k7alkgfdUe
+	 PO1xXY97kKFhw==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH v2 0/2] Add support for Samsung S2MU005 battery fuel gauge
+ device
+Date: Sun, 08 Feb 2026 23:22:29 +0530
+Message-Id: <20260208-s2mu005-fuelgauge-v2-0-be3af8969291@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <def032d1-b1c5-4a75-88de-cbb7c1293e61@kernel.org>
-X-CM-TRANSID:zQCowAAnvA9jr4hp9bvOBw--.26116S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxWw1xuF4fWFWrWr4fKw1ftFb_yoW5Ar17pr
-	W8JFWUKr48JF1Ygw1vgw18GasIyw1DGFW3Xr1fG34UWw1qyr17Gr40gr1Y9as5uF13AF1Y
-	vayUtr9xCFsxJrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
-	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
-	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
-	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
-	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
-	14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
-	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
-	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
-	IFyTuYvjxUqiFxDUUUU
-X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF3NiGkC/32NQQ7CIBBFr9LMWsyAlhRX3sN0UWVKJ9HSQCGah
+ ruLPYDL9/P/+xtECkwRLs0GgTJH9nMFdWjgMQ2zI8G2MihUGqXSIqpXQmzFmOjphlQLqiVjTUs
+ nvGuouyXQyO/deesrTxxXHz77RZa/9J8tS4FCd4M8a7LYSXO1HIP369EHB30p5QtLTz9btAAAA
+ A==
+X-Change-ID: 20260126-s2mu005-fuelgauge-25e9d95e30b6
+To: Yassine Oudjana <y.oudjana@protonmail.com>, 
+ Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263713-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263714-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[protonmail.com,kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[disroot.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.145];
+	NEURAL_HAM(-0.00)[-0.972];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DF0AD1094DD
+	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:email,disroot.org:dkim,disroot.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EA7DC1099A9
 X-Rspamd-Action: no action
 
-On Sat, Feb 07, 2026 at 10:32:55AM +0100, Krzysztof Kozlowski wrote:
-> On 07/02/2026 09:45, Jiayu Du wrote:
-> > On Fri, Feb 06, 2026 at 02:26:40PM +0100, Krzysztof Kozlowski wrote:
-> >> On 04/02/2026 09:29, Jiayu Du wrote:
-> >>> +static int dwcmshc_k230_init(struct device *dev, struct sdhci_host *host,
-> >>> +			     struct dwcmshc_priv *dwc_priv)
-> >>> +{
-> >>> +	static const char * const clk_ids[] = {"base", "timer", "ahb"};
-> >>> +	struct device_node *usb_phy_node;
-> >>> +	struct k230_priv *k230_priv;
-> >>> +	u32 data;
-> >>> +	int ret;
-> >>> +
-> >>> +	k230_priv = devm_kzalloc(dev, sizeof(struct k230_priv), GFP_KERNEL);
-> >>> +	if (!k230_priv)
-> >>> +		return -ENOMEM;
-> >>> +	dwc_priv->priv = k230_priv;
-> >>> +
-> >>> +	usb_phy_node = of_find_compatible_node(NULL, NULL, "canaan,k230-usb-phy");
-> >>
-> >> Hm? You should use phandles, not look for various nodes.
-> > 
-> > Only one usbphy node has the canaan, k230-usb-phy compatibility.
-> > So in this situation, is it ok to continue using of_find_compatible_node?
-> 
-> Amount of nodes does not matter. This is not how you express
-> links/dependencies between devices. Phandle is for this. This is wrong
-> on many levels, including missing device links, bypassing kernel API/layers.
+This patch series adds supports for the battery fuel gauge device for
+Samsung S2MU005 PMIC battery chargers. It reports various metrics,
+including incoming voltage, current, battery capacity, etc.
 
-Thank you for your review. I will fix it.
+Although this device is independent of the actual PMIC which it
+accompanies in functionality, it is used in conjunction with the PMIC's
+charger sub-device to provide complete battery status.
 
-> 
-> 
-> > 
-> >>> +	if (!usb_phy_node) {
-> >>
-> >> Please follow Linux coding style.
-> > 
-> > I will fix it in next version.
-> > 
-> >>> +		return dev_err_probe(dev, -ENODEV,
-> >>> +				     "Failed to find k230-usb-phy node\n");
-> >>> +	}
-> >>> +
-> >>> +	k230_priv->hi_sys_regmap = device_node_to_regmap(usb_phy_node);
-> >>> +	of_node_put(usb_phy_node);
-> >>> +	if (IS_ERR(k230_priv->hi_sys_regmap)) {
-> >>> +		return dev_err_probe(dev, PTR_ERR(k230_priv->hi_sys_regmap),
-> >>> +				     "Failed to get k230-usb-phy regmap\n");
-> >>> +	}
-> >>> +
-> >>> +	ret = dwcmshc_get_enable_other_clks(mmc_dev(host->mmc), dwc_priv,
-> >>> +					    ARRAY_SIZE(clk_ids), clk_ids);
-> >>> +	if (ret) {
-> >>> +		return dev_err_probe(dev, ret,
-> >>> +				     "Failed to get/enable k230 mmc other clocks\n");
-> >>> +	}
-> >>> +
-> >>> +	if (of_device_is_compatible(dev->of_node, "canaan,k230-sdio")) {
-> >>
-> >> Driver match data is for this.
-> > 
-> > What you mean is that I shouldn't use of_find_compatible_node, but I can
-> > use device_get_match_data instead? Then I can continue to distinguish
-> > between SDIO and eMMC to do parameter configuration
-> > 
-> > Or do you mean that I should put the parameters to be adjusted into the
-> > pdata structure? But currently, the dwcmshc structure is not suitable for
-> > containing vendor-specific properties.
-> 
-> Parameters should go to driver match data. I already requested this for
-> some other driver and this has to be fixed.
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+Changes in v2:
+- s/fuelgauge/fuel-gauge in dt-bindings (Conor Dooley)
+- do not print error messages for -ENOMEM (Sebastian Reichel)
+- remove redundant irq_get_trigger_type() (Sebastian Reichel)
+- set regmap val_bits to 16 (Sebastian Reichel)
+- switch to regmap_{read,write}()
+- add current_avg and voltage_avg properties
+- implement workaround for false positives due to hysteresis
+- Link to v1: https://lore.kernel.org/r/20260126-s2mu005-fuelgauge-v1-0-68a146ed0819@disroot.org
 
-I will make fix to enable dwcmshc_pltfm_data to support the addition of
-vendor-specific properties. And if possible, could you give me with some
-examples? I would be very grateful.
+---
+Kaustabh Chakraborty (1):
+      dt-bindings: power: supply: document Samsung S2MU005 battery fuel gauge
 
-> 
-> Best regards,
-> Krzysztof
+Yassine Oudjana (1):
+      power: supply: add support for S2MU005 battery fuel gauge device
+
+ .../power/supply/samsung,s2mu005-fuel-gauge.yaml   |  49 ++++
+ drivers/power/supply/Kconfig                       |   9 +
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/s2mu005-battery.c             | 306 +++++++++++++++++++++
+ 4 files changed, 365 insertions(+)
+---
+base-commit: 9845cf73f7db6094c0d8419d6adb848028f4a921
+change-id: 20260126-s2mu005-fuelgauge-25e9d95e30b6
+
+Best regards,
+-- 
+Kaustabh Chakraborty <kauschluss@disroot.org>
 
 
