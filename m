@@ -1,64 +1,83 @@
-Return-Path: <devicetree+bounces-264102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264103-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EJNSGWcfimnLHQAAu9opvQ
-	(envelope-from <devicetree+bounces-264102-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:54:47 +0100
+	id 0OEDMXIgimnLHQAAu9opvQ
+	(envelope-from <devicetree+bounces-264103-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:59:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03F581133F3
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:54:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70846113542
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:59:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6542630057A1
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 17:51:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0D37D30752DC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 17:55:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8669D285060;
-	Mon,  9 Feb 2026 17:51:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB7F13803ED;
+	Mon,  9 Feb 2026 17:55:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g2m7mGrT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zgj/maFW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63ABD261B80;
-	Mon,  9 Feb 2026 17:51:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 983AB2D5C97;
+	Mon,  9 Feb 2026 17:55:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770659470; cv=none; b=iy2Jnj4r66cesrrBoW9Yw25YLtow/QPww4+0aUsrfWfShmOYSX1fg7bkghIH4Ull7HHuC/fq9lqrJ6Spa0qXdQJyXpNK9rwZXDTkpdjUHnKsutD2fS5WA/daal01L+8nVASxWsvOef5z/5KJVaGb3bGvkJmL+dxkOFwLXjXPZN4=
+	t=1770659715; cv=none; b=gMa4RP8PUswfGxUX2vVZHRp1lyDSBNGCX7TE2F9SiGzeyXyRCvGTadBHpG8vRr7BfmxX74aIgPp8SSePxcTDjANGoGChYliOtkXnLaTjz2Z59Th/ichy0EuZ5zdxcyGuhdjCciZTcr6/51cTyUY1rnNH8EfMtAhmZwAlRgrJBrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770659470; c=relaxed/simple;
-	bh=D9qye8Uxudw7pba8RqAtU3SE9Z3U0zqyBMjr9Rjbb3k=;
+	s=arc-20240116; t=1770659715; c=relaxed/simple;
+	bh=EnTNUJHmSxT2WRAs+oWYX8bdwlK9D+48BwdN8Orgt7I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g5/9ID+xSubDhh8sQ40VrJmkiwCoJwPIyjJnBI4A6WbvzfI9qE9zphWx/qjgCnnvgFdUngxrZrM6glaYzXTm3O9mGO6CqTKTh6N8te8fMmGxfiT849WqhwNCVP+Gn3WkO+j/DABQSwhhm11VXPNCkdTkQh6fr1Vx0QTG1ZgDaK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g2m7mGrT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBA89C16AAE;
-	Mon,  9 Feb 2026 17:51:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VonZvRZ0yymNHtGWRT1EEYh2RTIdh65qvToLuTJ13pPDGkOAL6K+WLt6C1AZmNWgnrhmwdIgTH8UESSCP31rVx+IvioV4UGpcW9HOkHSwZu1UXs1LRISCTDj5PHBUnB64EZsOanJnLg2FNVrAvUwRXapCOBsAOpztSEIyclMiQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zgj/maFW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02A6FC116C6;
+	Mon,  9 Feb 2026 17:55:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770659469;
-	bh=D9qye8Uxudw7pba8RqAtU3SE9Z3U0zqyBMjr9Rjbb3k=;
+	s=k20201202; t=1770659715;
+	bh=EnTNUJHmSxT2WRAs+oWYX8bdwlK9D+48BwdN8Orgt7I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=g2m7mGrT2s/v2PNVkLTc/ISc/mS6/2Hhzv0zKgs/tRU2e11MLHHGO668aGke642TV
-	 SogB9zhYGTiRo/lAxsYF2jej8BVxCLjrFsOTFwuyHwhdbs2i1l0uAEzBZKM3mM2w18
-	 hzpfFaD0IgGO25BjDJt690y9BTJT3aURMN3udd/FOV34iZZge4MzEZ0cDBt1fgOh+i
-	 Bql5IH3oQJKFF/zQBrhh8muw4+ZetYG9yB8xHdR7CNvLR8DU9dVxi9Kd3NvK2G2uxd
-	 UHKIM2prdg/1g15fWKrQXsMCds4jdID2J/KChGfhdZA/mNtB4jmEIp2d0TlBi2Eh86
-	 hKw/iPycAey6A==
-Date: Mon, 9 Feb 2026 11:51:08 -0600
+	b=Zgj/maFW5QBdpanoskzhhOvikPz/Ns+ctuK+nd23tjE39S637yYBNIdYcQV1xLoEs
+	 MAvtPqQJ96P2MTGMIooSvlQ/HM7RAEIF6Ebj4eVEON3Qcz6FblOPFj9VpqMP6aVRq7
+	 1vHRNgEMLU+ttI8tLmoN9NC0AvbxXOfpWP7QTQtbtZ8SHlt5hcnvvKCGmOwxj/eNeL
+	 dk3FN6gNnj5XhTov798gmAT7dFgVNNx4CmaRUbCAQYA8dZF/zEebnM0aEt6UkXwQX1
+	 Isq8XWO/xVJxHsvlX+nERQP1BkQ8deSp40wNxcUcreLYay7zzYt4yRtGd/VRzOvIDW
+	 gZMmZjvQdNfLg==
+Date: Mon, 9 Feb 2026 11:55:14 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: john.madieu@gmail.com, linux-pci@vger.kernel.org,
-	claudiu.beznea.uj@bp.renesas.com, mani@kernel.org,
-	bhelgaas@google.com, conor+dt@kernel.org, magnus.damm@gmail.com,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	krzk+dt@kernel.org, linux-clk@vger.kernel.org,
-	lpieralisi@kernel.org, biju.das.jz@bp.renesas.com,
-	kwilczynski@kernel.org, geert+renesas@glider.be
-Subject: Re: [PATCH v4 06/15] dt-bindings: PCI: renesas,r9a08g045s33-pcie:
- Document RZ/G3E SoC
-Message-ID: <177065946815.1483460.5325418308441015245.robh@kernel.org>
-References: <20260129214130.16067-1-john.madieu.xa@bp.renesas.com>
- <20260129214130.16067-7-john.madieu.xa@bp.renesas.com>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Yanteng Si <siyanteng@cqsoftware.com.cn>, devicetree@vger.kernel.org,
+	Jose Abreu <joabreu@synopsys.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	linux-riscv@lists.infradead.org,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>, Yao Zi <ziyao@disroot.org>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, spacemit@lists.linux.dev,
+	Richard Cochran <richardcochran@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Paolo Abeni <pabeni@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+	Boon Khai Ng <boon.khai.ng@altera.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Zhi Li <lizhi2@eswincomputing.com>, Alexandre Ghiti <alex@ghiti.fr>,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Longbin Li <looong.bin@gmail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	linux-kernel@vger.kernel.org, Yixun Lan <dlan@gentoo.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, netdev@vger.kernel.org,
+	Chen-Yu Tsai <wens@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Paul Walmsley <pjw@kernel.org>
+Subject: Re: [PATCH net-next v4 1/3] dt-bindings: net: Add support for
+ Spacemit K3 dwmac
+Message-ID: <177065971340.1488943.5040519418733629528.robh@kernel.org>
+References: <20260130022705.1059214-1-inochiama@gmail.com>
+ <20260130022705.1059214-2-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,69 +86,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260129214130.16067-7-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20260130022705.1059214-2-inochiama@gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264102-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264103-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,bp.renesas.com,kernel.org,google.com,glider.be];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[36];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,kernel,netdev,dt];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_CC(0.00)[cqsoftware.com.cn,vger.kernel.org,synopsys.com,davemloft.net,lists.infradead.org,armlinux.org.uk,bp.renesas.com,lunn.ch,disroot.org,bootlin.com,st.com,dabbelt.com,lists.linux.dev,gmail.com,foss.st.com,redhat.com,kernel.org,altera.com,eswincomputing.com,ghiti.fr,st-md-mailman.stormreply.com,cherry.de,gentoo.org,google.com,eecs.berkeley.edu];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 03F581133F3
+X-Rspamd-Queue-Id: 70846113542
 X-Rspamd-Action: no action
 
 
-On Thu, 29 Jan 2026 22:41:20 +0100, John Madieu wrote:
-> Extend the existing device tree bindings for Renesas RZ/G3S PCIe
-> controller to include support for the RZ/G3E (renesas,r9a09g047e57-pcie) PCIe
-> controller. The RZ/G3E PCIe controller is similar to RZ/G3S but has some key
-> differences:
+On Fri, 30 Jan 2026 10:27:02 +0800, Inochi Amaoto wrote:
+> The GMAC IP on Spacemit K3 is almost a standard Synopsys DesignWare
+> MAC (version 5.40a) with some extra clock.
 > 
->  - Uses a different device ID
->  - Supports PCIe Gen3 (8.0 GT/s) link speeds
->  - Uses a different clock naming (clkpmu vs clkl1pm)
->  - Has a different set of interrupts, interrupt ordering, and reset signals
+> Add necessary compatible string for this device.
 > 
-> Add device tree bindings for renesas,r9a09g047e57-pcie compatible IPs.
-> 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
 > ---
-> 
-> Changes:
-> 
-> v4: Fixed clock name constraint using enum
-> 
-> v3:
->  - Moved interrupt/clock description in distinct PATCH
->  - Fixed clock name constraints
->  - Updated clock descriptions
-> 
-> v2: Reuse G3S names
-> 
->  .../bindings/pci/renesas,r9a08g045-pcie.yaml  | 73 +++++++++++++++++--
->  1 file changed, 67 insertions(+), 6 deletions(-)
+>  .../devicetree/bindings/net/snps,dwmac.yaml   |   2 +
+>  .../bindings/net/spacemit,k3-dwmac.yaml       | 103 ++++++++++++++++++
+>  2 files changed, 105 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
