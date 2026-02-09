@@ -1,104 +1,85 @@
-Return-Path: <devicetree+bounces-264054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264055-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CH4bHeIAimluFQAAu9opvQ
-	(envelope-from <devicetree+bounces-264054-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:44:34 +0100
+	id 6Be5LQkBimluFQAAu9opvQ
+	(envelope-from <devicetree+bounces-264055-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:45:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22302112105
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:44:34 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id F220F11213F
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:45:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9964A302731A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 15:43:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D2F28300382E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 15:44:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07D2D37FF60;
-	Mon,  9 Feb 2026 15:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B68637FF54;
+	Mon,  9 Feb 2026 15:44:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FQtse8AY";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HcuKkMbb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hbQRsvgK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C80D037F8DD
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 15:43:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2909C36BCCC
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 15:44:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770651833; cv=none; b=gfy7q2Gp3aFbbb6ra26Nx1PMPiIO/sG+UNjWz8Hulfqve2YKG4YgVaw3v7glTJwKKPE2mQPzJZ2caMY97RHdIWu1TH3g/VxsEoUz290w7DqPwas8O+ViTGLHPc/1JosuPtgxWc4KJbKbBG5TZXSzsscZKphepExxx7iCTYcaauo=
+	t=1770651875; cv=none; b=UXzTRs0HSb2znbwrJbGqLt5N0dGWalzaISW65EOf4iRFlm96veVAdgCmkoZgwVgeUbA6i86LbGZ784iMb6R7RlYYaAn9oXjYe4Ain/JZBE90sylJPNlgVBL8gMSo1GdvUSVQMcdXHCeGeqFZxrjmWHUmBScFwjDoEunepvq7BhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770651833; c=relaxed/simple;
-	bh=pejDHyWUpgYcyOlJ64FLXWGKSBF60+zMdKwBdwSIais=;
+	s=arc-20240116; t=1770651875; c=relaxed/simple;
+	bh=KbQ1DR7eIjUwgWiTwhYGN3wCp8ERiDAQnoS/oIvZWRg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fISr0EX0aYm966vVMCC3t6BvyJ2dd+e7QAqu2CZtLNbgTxZMjwstr7T3wMcoHsQ7LKodjli8L4fxWFFzS82vCs0ilCEypoA+UzrQFHdaBCInL7Mu+ZCeCt6NjaG5boIUbHgupFG89yIY/fvLkkOHe290o8+T9tbN+7RmL3xG3Fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FQtse8AY; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HcuKkMbb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 619CGt5b3436734
-	for <devicetree@vger.kernel.org>; Mon, 9 Feb 2026 15:43:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FOtvKz5XsYK8DeBlcq3YrSmTR4LSM+UOfrV33PKISmk=; b=FQtse8AYZRVjF3UU
-	JSgByOh9HyACVFbNxBxv/6j6M9BMPiXtUmOTYEz9Ua+MPkIqPMRNRM/M35JneDkW
-	oPtG8956EBfUH1b5yFZGymhkXrqhhrosF4wDkmaOKhAVZnuh8b3NtuXzEzQoLYzD
-	OC3Zb4ofdv6im6MM8ummEos1dyVwNH3UYm34BYkg+RYFdsRx3QTnTmKLT51CGjez
-	dGmTccjZOwXb03NLp0fPEb8tcCIU3U40ptYsWjr35tjn8QxxdQhsfKqzffjYxG2S
-	+3Bb7dOpmyuZn8GkP22iMsdG7QxTwMWf2jjxkFlAa3yzSnD3vjnCpetfsgQesINz
-	fYn9RQ==
-Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c7fev8nbs-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 15:43:53 +0000 (GMT)
-Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-2ba66faa692so1046771eec.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 07:43:52 -0800 (PST)
+	 In-Reply-To:Content-Type; b=cO5ODq/N8DxYyQaPL8TXvAew3dILFGVyO4EQ7rMfMOo8JHnEQ0LMHUoCZpBG2eIRyxiVFQ+Ta39CJNtWXmPaNtfSAk500fvWc21CRTiLoOaoVYinfEvsIzfmlJ1+H9m2OzYpGXJH6FtDYE/MJSnj1q3tzbICu7pioY0so16DxFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hbQRsvgK; arc=none smtp.client-ip=74.125.82.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f48.google.com with SMTP id a92af1059eb24-12721cd256bso579551c88.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 07:44:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770651832; x=1771256632; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FOtvKz5XsYK8DeBlcq3YrSmTR4LSM+UOfrV33PKISmk=;
-        b=HcuKkMbbMZD0JcJ1d8LoqNGMQf04uSD1eOmIUW0RnMIWGJVG/QJrocqOcbjl23JHmA
-         IvVCzp8qgzmOqUeoM7G5LlLY327qoiLR4h9/G5DcExmsrUBV+l5xmWlT/ylrDxV0IfVe
-         70zJ+oNCrxvGcohYRDc3lT/lUeefGBMEFig89moGjeDEODHm0YI5FWGTWAd/BXB3Hoxe
-         13f560iWALRMq/fFkRz/SJ7FHDJX94MkgqQ3+okTQgqLB0odJfLpUKgfFK6FpCLOaK2d
-         HYofxajUrJuYQ8ioeFYmKydOW0aYoGsB6aVcR52bnci2Lepb+meQOrHC7WWKEIdCuXrG
-         A/og==
+        d=gmail.com; s=20230601; t=1770651874; x=1771256674; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=c3Bl4JPOZwyRHkiDx2Lqy82QSiWS6py48zegDEINFNE=;
+        b=hbQRsvgKwkoly4XJKwJvOa447rzBIeREH+LMd8vQPsFFy6mFgj1X1/lJh9VYYnwKWi
+         nwKuqnKYNsxI2WNXMsqhssmJ0bR+TGDE73wHJMvl7BTuAr6kJB8liayXQhiWlZdYqGIF
+         RczVX2OOI1h9h6pvgv5bavUpW5JTtgNBaWTRihnecfXTcm/IqJX/DgsIkrgFvdZlo4cY
+         BhmCKl1CVzJkdtLYicqc2GsC+9tm2O58RcFdQeLhCkaiz1fhn7FrWkeYnHEIaOTVW294
+         SHR371XOmz5v34YihU7bOp2+O8QqtKvA5Wdr+n5mVe4f9bqrfS3k/hpE1leXpVukQqF6
+         F5OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770651832; x=1771256632;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FOtvKz5XsYK8DeBlcq3YrSmTR4LSM+UOfrV33PKISmk=;
-        b=cCSqfGq7xjcaU8EK/geHT4hklFCT0gZ7CQiJMdbxb5FYLpN7o1M5vNONm+y5iCdrRf
-         OukWBRD1CcMYmpUWS6lFr7RvrHMu5SIYGBc0NUips7zGIaKN4SGPWt/ZUjv4sJ9jWvPL
-         eschS2cSCuLDZPGGyOK6HHgoKfFcCCp9QEzBlooM97oVAYwtJUcrgtbFz62dfnVF0TnZ
-         Fw6YYlHFmA54C7VW/L/gm8USQdbVFXufCHibO9S6UHOl4GHgPlPA/DlnE3pFqepjv6IG
-         X5p62LqSPgV3o8Ikg4qhA426jSCYZfM7IqPgsPFevX+uJcG5fuczunRSldfM9+RfSEFQ
-         6Aig==
-X-Forwarded-Encrypted: i=1; AJvYcCVu+L3snfmutvjbwlbQB4jHQtlHfAk4hvv+yjDs6dH9/culFFJzdmJ6BQ2RRlsrDGJ2It9gg4HK45RV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtqQHc8rXOJzxAvSZ5tFKiJzHliPfRuhBHew5wB9U2hYKXTAQQ
-	yri1t2rf32q8asJOh+JoNnNCNCPU/D42uz5LiKCE5w3hOSU2087oHBR1BGLbmc5tIDK0MJXBWMd
-	TLCKIHUIWdrWq5uGWXLvQALiwJnXQvb0AfgxG7aDF6vy3iLJb+/7OYIBVUD/RvBVS
-X-Gm-Gg: AZuq6aLvBjCM4gc+spu+A4uwBG0edRnOpY+HSaTv75QAgkgbu3h1w/KZsQtCt4xGD95
-	7kB+qEbGoWuA1F7bPgVeRpMpMO/M0ijDeHZX4GXyyTuUq7VSTjjDSwDYYVe/UEwoKJ1x7grggRW
-	/hkdj16lPEfJIIFj8ay4AAdrqSd5k1KjLDwMzwN+pqLUokMOIoAcKHqcDtY1gH9Mmx0HSKca4vq
-	qqTaCsj9rFYAK1dHu7E9Wi0d4y3VSplSIig933rCzlYYHaYk4ItHob+HZlhHOTJMwEWuRF663l6
-	EC7Ag0IFh3LGdrRPikZxWKjNo7mSFWK5jdoaceuEDXPSSXEjVo5Ux9pwmVjHp7tkstZbrXig2nn
-	rwEnwTh4EBppCmj1j/t71gXkOHHY1uj1jJYM8nPc=
-X-Received: by 2002:a05:7300:54a:b0:2ae:5d3b:e1c6 with SMTP id 5a478bee46e88-2b856724153mr5412648eec.21.1770651832078;
-        Mon, 09 Feb 2026 07:43:52 -0800 (PST)
-X-Received: by 2002:a05:7300:54a:b0:2ae:5d3b:e1c6 with SMTP id 5a478bee46e88-2b856724153mr5412625eec.21.1770651831309;
-        Mon, 09 Feb 2026 07:43:51 -0800 (PST)
-Received: from [192.168.29.235] ([49.37.135.254])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b855b0f624sm8742742eec.14.2026.02.09.07.43.45
+        d=1e100.net; s=20230601; t=1770651874; x=1771256674;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=c3Bl4JPOZwyRHkiDx2Lqy82QSiWS6py48zegDEINFNE=;
+        b=gaHbPArPyYSANjQ7b+x6atplMqJLk3IC64ZcyiRzWgxKP5dDZhX75rsYID0tAY6gT3
+         FlsXrNo709WQbGE4OkSESsUHRDw0xu4GpAYM1b8ZmWgcuKEczzmOaBSrLimUjhwkB5l7
+         f5noORiFtWfDAuIBEbuLRy7jML0m4VgThhofBzqDpdxm1zIr19JhoEfKqScCLRamF4DM
+         2eSvWgrudiJEu7A1KjGSnH1B4y87vu4sb7nbGtHJOwci37gzYPSYmHYWAewhYc3cVrhu
+         8bUm/An/Sk+x9U3gRyNBE027/K/qqMarBr2pbRzL6bXDj0h3tTBmNzZ2/s3negKArJ1A
+         d8rQ==
+X-Forwarded-Encrypted: i=1; AJvYcCULdYio8a9Tn/ZL/d/Ku3Oi/LHTiW/v8W0vWuxrJwT60XpSiOHZXtSHkZxEx/8W8yxpvavFXsT88b1/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwakYDubq2QJ7RQ6YocIgDSWpn4mNIx+aqgNivoYKUvefg47Akw
+	Z/jYrJSNmDPd9I/iGsm+gHOcB4dcjylSK8LvevJVHVp5kj0QzRMqTvqI
+X-Gm-Gg: AZuq6aLhcXUq3h9TDftfffVK/EDL2s+3GYa7ikVXn0xuqif3ft0dIbgeqEMNUuyIiqV
+	f+/7UliDhKWWuxuxWXLXwfbiKvtzeVoTe+lcVUi1LcmtY+SX0KaQ/S/QxVwdDthKTUiKq6a+lF8
+	Tx1nRBqndJTb53iyNvI5b5GI70qoSX5GUyx9AXPF/lBrNNcWxO0l8SW9xNZjTGdZ+OK2vNQFAHC
+	PggGd16BuOgQaZoHNZWZMCeuKGXxBCNm/A2nzRKMOo0JQ81HmZbtBXGNiv9Z0rshkO/yDIK3Tet
+	MvN47YZR/qJ8id8FcQFLp8sSev3rq9HZBGTR/d7cvVj1uH8+DgOJzK/Fo5LBqG0cu/fr0wybzBN
+	cW76rknbflfhY5KOm/jn1QQ0HrLurC8Ya5ZMmjvyVdTeHi7QndMtskpe8f68BQ6KYaEtWSB5qCc
+	ihlMoyyPnuX7Yt2RjKqmXSSxpQDZX/GsvLcc3DW4vWs4bcazT6rBTfnXgZcCxZ
+X-Received: by 2002:a05:7022:6997:b0:11d:f440:b757 with SMTP id a92af1059eb24-12703fcfed1mr5405150c88.26.1770651874127;
+        Mon, 09 Feb 2026 07:44:34 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1270414f28bsm9681347c88.0.2026.02.09.07.44.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Feb 2026 07:43:50 -0800 (PST)
-Message-ID: <8fab20ba-9924-48a6-b417-5ebd28b77cd9@oss.qualcomm.com>
-Date: Mon, 9 Feb 2026 21:13:43 +0530
+        Mon, 09 Feb 2026 07:44:32 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <c640192d-e0ca-49ce-8316-b6216a9a18f8@roeck-us.net>
+Date: Mon, 9 Feb 2026 07:44:30 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,102 +87,209 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: net: bluetooth: qualcomm: add
- bindings for QCC2072
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Rob Herring
- <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bartosz Golaszewski <brgl@kernel.org>,
-        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
-        Rocky Liao <quic_rjliao@quicinc.com>
-Cc: quic_mohamull@quicinc.com, quic_hbandi@quicinc.com,
-        linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20260209080613.217578-1-vivek.sahu@oss.qualcomm.com>
- <20260209080613.217578-2-vivek.sahu@oss.qualcomm.com>
- <7cb9a945-651c-426d-8cc7-1ec1174ac68b@kernel.org>
+Subject: Re: [PATCH v2 3/3] hwmon: pmbus: mpq8785: force direct mode for VID
+ VOUT on MPQ8785/MPQ8786
+To: Carl Lee <carl.lee@amd.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Charles Hsu <ythsu0511@gmail.com>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, peter.shen@amd.com, colin.huang2@amd.com
+References: <20260205-dt-bindings-hwmon-pmbus-mpq8785-add-mpq8786-support-v2-0-3744cd9b2850@amd.com>
+ <20260205-dt-bindings-hwmon-pmbus-mpq8785-add-mpq8786-support-v2-3-3744cd9b2850@amd.com>
+ <07c39c3e-f82d-4ec0-b7fc-6ca9721d246d@roeck-us.net>
+ <aYl+pTlG9rEuE59h@carl-amd>
 Content-Language: en-US
-From: Vivek Sahu <vivek.sahu@oss.qualcomm.com>
-In-Reply-To: <7cb9a945-651c-426d-8cc7-1ec1174ac68b@kernel.org>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
+ RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
+ nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
+ 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
+ gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
+ IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
+ kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
+ VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
+ jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
+ BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
+ ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
+ CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAmgrMyQFCSbODQkACgkQyx8mb86fmYGcWRAA
+ oRwrk7V8fULqnGGpBIjp7pvR187Yzx+lhMGUHuM5H56TFEqeVwCMLWB2x1YRolYbY4MEFlQg
+ VUFcfeW0OknSr1s6wtrtQm0gdkolM8OcCL9ptTHOg1mmXa4YpW8QJiL0AVtbpE9BroeWGl9v
+ 2TGILPm9mVp+GmMQgkNeCS7Jonq5f5pDUGumAMguWzMFEg+Imt9wr2YA7aGen7KPSqJeQPpj
+ onPKhu7O/KJKkuC50ylxizHzmGx+IUSmOZxN950pZUFvVZH9CwhAAl+NYUtcF5ry/uSYG2U7
+ DCvpzqOryJRemKN63qt1bjF6cltsXwxjKOw6CvdjJYA3n6xCWLuJ6yk6CAy1Ukh545NhgBAs
+ rGGVkl6TUBi0ixL3EF3RWLa9IMDcHN32r7OBhw6vbul8HqyTFZWY2ksTvlTl+qG3zV6AJuzT
+ WdXmbcKN+TdhO5XlxVlbZoCm7ViBj1+PvIFQZCnLAhqSd/DJlhaq8fFXx1dCUPgQDcD+wo65
+ qulV/NijfU8bzFfEPgYP/3LP+BSAyFs33y/mdP8kbMxSCjnLEhimQMrSSo/To1Gxp5C97fw5
+ 3m1CaMILGKCmfI1B8iA8zd8ib7t1Rg0qCwcAnvsM36SkrID32GfFbv873bNskJCHAISK3Xkz
+ qo7IYZmjk/IJGbsiGzxUhvicwkgKE9r7a1rOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
+ 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
+ pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
+ J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
+ pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
+ 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
+ ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
+ I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
+ nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
+ HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
+ JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAmgrMyQFCSbODQkACgkQyx8mb86fmYHlgg/9
+ H5JeDmB4jsreE9Bn621wZk7NMzxy9STxiVKSh8Mq4pb+IDu1RU2iLyetCY1TiJlcxnE362kj
+ njrfAdqyPteHM+LU59NtEbGwrfcXdQoh4XdMuPA5ADetPLma3YiRa3VsVkLwpnR7ilgwQw6u
+ dycEaOxQ7LUXCs0JaGVVP25Z2hMkHBwx6BlW6EZLNgzGI2rswSZ7SKcsBd1IRHVf0miwIFYy
+ j/UEfAFNW+tbtKPNn3xZTLs3quQN7GdYLh+J0XxITpBZaFOpwEKV+VS36pSLnNl0T5wm0E/y
+ scPJ0OVY7ly5Vm1nnoH4licaU5Y1nSkFR/j2douI5P7Cj687WuNMC6CcFd6j72kRfxklOqXw
+ zvy+2NEcXyziiLXp84130yxAKXfluax9sZhhrhKT6VrD45S6N3HxJpXQ/RY/EX35neH2/F7B
+ RgSloce2+zWfpELyS1qRkCUTt1tlGV2p+y2BPfXzrHn2vxvbhEn1QpQ6t+85FKN8YEhJEygJ
+ F0WaMvQMNrk9UAUziVcUkLU52NS9SXqpVg8vgrO0JKx97IXFPcNh0DWsSj/0Y8HO/RDkGXYn
+ FDMj7fZSPKyPQPmEHg+W/KzxSSfdgWIHF2QaQ0b2q1wOSec4Rti52ohmNSY+KNIW/zODhugJ
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <aYl+pTlG9rEuE59h@carl-amd>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: ZA_s4i3-xa2AeMAogFOm2UYtcSaWzm9l
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDEzMiBTYWx0ZWRfX/tHa4GN0O0Wv
- WCbUpDWf8n88hMOHRW2F+s7c97MAo/ZWytsCXVpH9SfJ+Ym350i4yCQmjo2K4onD6HGNABckRX4
- HFfuBLGGjETJYdpKON8sNYLGZkWtVJCKGlqjRclVOyMBd7LnHHLJ8sGHUudt+ejShooR/vYJ8ty
- BgfFZ/rDAmcWxfb7i/Nk0Ym8NYNGqvTmvNjpEHjD1A8V/j2Y6aCer74emnU0zhhvS6B+sMquWVK
- LBtr6vZWx5Un7IsPvbMqeVxcabGYQGdI4lPMCxfHuicPWnReS8ro9BbubilpSTdayi9cCevKYjN
- erHbjJmbEZ0DH1cNXovR0c873xx875ZLgRqQyjQAGT4hQ6b98AyNrhV1IwdFM+hgf6DmNnR8J9X
- eZCrv259u2PZ8ide1Xc/BG/IM/Y2s3tLS+DWUS/Du2np/9FHshkl+HpPxGovFzvqdj6bUqPnDLG
- 8Ku7qVlV70ZRJvD+FnA==
-X-Authority-Analysis: v=2.4 cv=F6Rat6hN c=1 sm=1 tr=0 ts=698a00b9 cx=c_pps
- a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=z/GpFUkVOss2g+jQkJ5YVA==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=OcUlRVwiwL7_3OGRxjQA:9 a=QEXdDO2ut3YA:10
- a=bBxd6f-gb0O0v-kibOvt:22
-X-Proofpoint-GUID: ZA_s4i3-xa2AeMAogFOm2UYtcSaWzm9l
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-09_01,2026-02-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 spamscore=0 clxscore=1015 lowpriorityscore=0 priorityscore=1501
- phishscore=0 suspectscore=0 malwarescore=0 bulkscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602090132
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264054-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	FREEMAIL_TO(0.00)[kernel.org,holtmann.org,gmail.com,quicinc.com];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,amd.com];
+	TAGGED_FROM(0.00)[bounces-264055-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vivek.sahu@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 22302112105
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,roeck-us.net:mid,amd.com:email]
+X-Rspamd-Queue-Id: F220F11213F
 X-Rspamd-Action: no action
 
+On 2/8/26 22:28, Carl Lee wrote:
+> On Thu, Feb 05, 2026 at 08:58:37AM -0800, Guenter Roeck wrote:
+>> On Thu, Feb 05, 2026 at 06:01:39PM +0800, Carl Lee via B4 Relay wrote:
+>>> From: Carl Lee <carl.lee@amd.com>
+>>>
+>>> According to MPQ8785/MPQ8786 datasheet, VID mode configuration is
+>>> the same as direct mode configuration. Therefore, when VOUT is
+>>> reported in VID mode, it must be forced to use direct format.
+>>>
+>>
+>> Why "must" ? Yes, the LSB is the same, at least for MPQ8785,
+>> but that doesn't mean that the mode _must_ be overwritten. Maybe
+>> I am missing it, but as far as I can see the datasheet doesn't
+>> say that the VID mode configuration is the same as direct mode
+>> configuration. It says that the _LSB_ is the same for both modes.
+>>
+>> I _think_ the problem may be that the output voltages are not really
+>> reported as VID values but as raw voltages, but the datasheet is a bit
+>> vague in that regard. It talks about LSB values but doesn't exactly
+>> say how voltages are reported, and for READ_VIN it is most definitely
+>> wrong ("This bit is in VID mode with 25mv/LSB" doesn't make any sense).
+>>
+>> Thanks,
+>> Guenter
+> 
+> Thanks for your feedback. I see your point about “must.”
+> The datasheet only says the LSB is the same for VID and direct modes;
+> it doesn’t state that VID mode configuration is identical to direct mode.
+> 
+> Based on current hardware testing where the chip reports VOUT Mode as VID,
+> Observations on actual hardware:
+> 
+> 1.Without forcing the mode: driver fails to initialize.
+> dmesg | grep -i mpq8785
+> mpq8785 58-0046: Failed to identify chip capabilities
+> 
 
-On 2/9/2026 1:37 PM, Krzysztof Kozlowski wrote:
-> On 09/02/2026 09:06, Vivek Sahu wrote:
->> QCC2072 is a WiFi/BT connectivity chip.
->> It requires different firmware, so document it as a new compat string.
->>
->> Correct the sorting of other chipsets for better readability.
->>
->> Signed-off-by: Vivek Sahu <vivek.sahu@oss.qualcomm.com>
->> ---
->>   .../devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml  | 3 ++-
-> There is no such file.
->
-> Best regards,
-> Krzysztof
-The patch is updated on 
-"git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git" repo 
-but it appears that CI build is running on 
-"kernel/git/next/linux-next.git" where this file is not present. Let me 
-check linux-next branch and see how binding doc file is created. Will 
-upload a new patch set based on that.
+Wrong conclusion. That message means that the chip reports to be in VID mode,
+while the configuration data disagrees.
+
+That has nothing to do with how voltages are actually reported by the chip.
+
+As it turns out, mpq8785_identify() already translates VID mode to direct
+mode. Here is the real problem: The identify function knows that VID mode
+is handled wrongly by the chip, and configures the driver for direct mode.
+pmbus_identify_common(), however, does not take that into account and bails
+out if the mode read from the chip does not match the configured mode.
+
+That is what needs to be fixed, and until I find a cleaner solution the
+patch is indeed acceptable. However, the above needs to be explained in
+a comment and in the patch description.
+
+Thanks,
+Guenter
+
+> 2.Forcing direct mode: voltage readings are consistent and as expected.
+> cat /sys/bus/i2c/devices/58-0046/hwmon/hwmon2/in2_input
+> 3293
+> 
+> This suggests that the issue is related to how the chip reports voltages in VID mode,
+> rather than a datasheet requirement to overwrite the mode.
+> I’ll revise the patch and update the wording accordingly.
+> 
+> Thanks,
+> Carl
+> 
+>   
+>>> Signed-off-by: Carl Lee <carl.lee@amd.com>
+>>> ---
+>>>   drivers/hwmon/pmbus/mpq8785.c | 20 ++++++++++++++++++++
+>>>   1 file changed, 20 insertions(+)
+>>>
+>>> diff --git a/drivers/hwmon/pmbus/mpq8785.c b/drivers/hwmon/pmbus/mpq8785.c
+>>> index f35534836cb8..d6624af076c3 100644
+>>> --- a/drivers/hwmon/pmbus/mpq8785.c
+>>> +++ b/drivers/hwmon/pmbus/mpq8785.c
+>>> @@ -48,6 +48,25 @@ static int mpq8785_identify(struct i2c_client *client,
+>>>   	return 0;
+>>>   };
+>>>   
+>>> +static int mpq8785_read_byte_data(struct i2c_client *client, int page, int reg)
+>>> +{
+>>> +	int ret;
+>>> +
+>>> +	switch (reg) {
+>>> +	case PMBUS_VOUT_MODE:
+>>> +		ret = pmbus_read_byte_data(client, page, reg);
+>>> +		if (ret < 0)
+>>> +			return ret;
+>>> +
+>>> +		if ((ret >> 5) == 1)
+>>> +			return PB_VOUT_MODE_DIRECT;
+>>> +	default:
+>>> +		return -ENODATA;
+>>> +	}
+>>> +
+>>> +	return ret;
+>>> +}
+>>> +
+>>>   static int mpm82504_read_word_data(struct i2c_client *client, int page,
+>>>   				   int phase, int reg)
+>>>   {
+>>> @@ -133,6 +152,7 @@ static int mpq8785_probe(struct i2c_client *client)
+>>>   	case mpq8785:
+>>>   	case mpq8786:
+>>>   		info->identify = mpq8785_identify;
+>>> +		info->read_byte_data = mpq8785_read_byte_data;
+>>>   		break;
+>>>   	default:
+>>>   		return -ENODEV;
+>>>
+>>> -- 
+>>> 2.34.1
+>>>
+>>>
+
 
