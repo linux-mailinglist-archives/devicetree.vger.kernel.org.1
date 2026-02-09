@@ -1,367 +1,193 @@
-Return-Path: <devicetree+bounces-264072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264073-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cIUXB98MimkQGAAAu9opvQ
-	(envelope-from <devicetree+bounces-264072-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 17:35:43 +0100
+	id qA3MCuoNimlrGAAAu9opvQ
+	(envelope-from <devicetree+bounces-264073-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 17:40:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 815D61128A6
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 17:35:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F78D11296D
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 17:40:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6B1D930166FB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 16:35:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C84030547C3
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 16:37:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCC553816F4;
-	Mon,  9 Feb 2026 16:35:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E65D6381703;
+	Mon,  9 Feb 2026 16:37:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="VOvKC/XX"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZSzRM3Sa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013006.outbound.protection.outlook.com [40.107.162.6])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32A3D3815FE;
-	Mon,  9 Feb 2026 16:35:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.6
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770654940; cv=fail; b=V8ZBPYkHHLnCfufzNuLZkgaXOQEMLxDLeiijAlE1lzR1lZq9Tuox682hZ6sd3noY4l3oLCsUBrG4/LNipr3lBmsdo/RBJfWCs7GOeUWxlPjHh8h2flgsDlf4Hp2HHpPk9ThCJYiAQqyR7dhYGASX4xZ1kerGX8VCFr6ZNcJ8TBw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770654940; c=relaxed/simple;
-	bh=D1ooaMpMzhtSNMlszRq1nXhYmAzAIvn0soLVYEpCjTM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=khSpS5AbvpMfzKiUvSL7d7sCaV2jLo94Fzdf7yBlqSYlh0CJ1xuoGzrvYt6dX4ljpz5X9pNnGjRACYKlqOJIrb9Xp6gxZFoPm8YL6TaHZCrdOyn+JmZ2er3B5CPzeYfSdaRNCQJNwR0uS2ljUrDTjtKl3SUxIc7yrM98++gA9/w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=VOvKC/XX; arc=fail smtp.client-ip=40.107.162.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZFKe7UWbsr+ADruhRThnhwbnglqb44I6uSEZjwp6s/sngZ+lSAMKuI4snQO+mfV/iVMZU/lntNknyZxvz36Wd/RD285xgVh0VgG83RucW6Y78OjYfR7ExyngC4eubGPBycYRufjU0LWlKxHTZfzlO1IGNbXBjXasMJ7OYKjYhgqNMCM+KS/gEgsK2/XJzJQyfTtXc4gAe8b5G+30YMcI68JuEkJhisYhRYg+ilq1ICW94zk114CYguxshQZ4QITcIj17VDZh0RLNdhJ1R33udz37Fu8ZSokjKhCLa+Tv+Qi0Qb220G64POZr2+Gzjuks/6Bxs5J0q1g5f4HPaQagSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aGpyJxFHeumfOGoucH3WKy8T8Gi4HOi6ZrStS0+4XXA=;
- b=pXNfizlVolp2GbT3dkldoA2Yg2QeW7zGhw2sVerUj9N1hBdxE+QpuEwuPaNbBwJIRsiyRDhQIZ+/1k7Gbsizm6qosrXGHXosH6QTzlSqLiu3C6PxGU+GYvMH3moSAxuFKGQViX2Ef8pjLx9TAwZITQdcUBfHTtDU6jDfcN0wPDLni7eTZ4sLuuh9+k4BOkNnPGyLMHx3oGs9Ab8tc4PxMbmx2U8Vx2UtirxMKZrHTD9wnKWjbzuDC+YYkcblAqPMc5lx8aV/zvR34QueUEPJpDASRi4ZkPLoyrZbzgMLKi/i3opfbxNEb8JMWptZuT8BuyasRwG1Wf3mxgH7UVemSA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aGpyJxFHeumfOGoucH3WKy8T8Gi4HOi6ZrStS0+4XXA=;
- b=VOvKC/XXB3PO/TSdej30AS3Dlg2uWm6Tvw19Ixg+jDt/s7AMIgzHGGHQB2SyIaFlH0KYRA984OwcWLlCuxfzsh8YKLFFmrlOIBbkauoKc6A+NGEHE8ILjtqy9qYxjuhNMUY5x+18+u6KnaZgscLv2TRRTzrgbAxWuF+u2u+WcdosxRu4vTAY6zXOb17BKRiIEdIYjC0CNPELGcr4jGFri5Le0wQPdFb/EsdoJ9l31jzWftI0ZaZkt1L3OcW6qyRvgS4Y84nQlm29qCXWInkwIphE/2UZSlsq+4ZTqi2f45Xa0umoe2pqfqVB4Ulh+tz9iBR8UR9pA27mU4624c8+Cg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by DU4PR04MB10575.eurprd04.prod.outlook.com (2603:10a6:10:585::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.19; Mon, 9 Feb
- 2026 16:35:33 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Mon, 9 Feb 2026
- 16:35:33 +0000
-Date: Mon, 9 Feb 2026 11:35:24 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Sherry Sun <sherry.sun@nxp.com>
-Cc: hongxing.zhu@nxp.com, l.stach@pengutronix.de, bhelgaas@google.com,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	s.hauer@pengutronix.de, festevam@gmail.com, will@kernel.org,
-	imx@lists.linux.dev, kernel@pengutronix.de,
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V4 03/11] PCI: imx6: Add support for parsing the reset
- property in new Root Port binding
-Message-ID: <aYoMzM4omurMaJw5@lizhi-Precision-Tower-5810>
-References: <20260209082454.2097628-1-sherry.sun@nxp.com>
- <20260209082454.2097628-4-sherry.sun@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260209082454.2097628-4-sherry.sun@nxp.com>
-X-ClientProxiedBy: PH8PR21CA0003.namprd21.prod.outlook.com
- (2603:10b6:510:2ce::14) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0EE33815FF;
+	Mon,  9 Feb 2026 16:37:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770655037; cv=none; b=BNHdwmnFQMlZeSa0jdSNCTskY+QSQhh8EjieyPp7UjntloH1KyO5ralQrpK5eKdo5CcQFsFQZ2wBJAy/GYltiSS17kdh4X2bWEsOsJSjfp7s6Ewmq1p41TLhSOOMpBUzZn7uLhir9grWXZoMHdQoirlD5RsjvFJfgW8c7NbdEC8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770655037; c=relaxed/simple;
+	bh=ms6SQjObH32t7lGplru/llQZaGHGi3TfQBKhiy+KO0E=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=K/xFjpmOzA0W6LYqaRtZDr8P/9hbm4BTi70o0Dcfg0g0P+tg1isghoIOuaH4yiWPRa498WjLSnx0IqPbJ7JQoQo9xnIyiEIyp2ZjGHIxwIvylLgS8/s1sbmxsVa7Yuo1PNVBX7vEbQ/2fENm6/j6aBkU863tZdEFMqguMSbUVn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZSzRM3Sa; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 619GYkF81656107;
+	Mon, 9 Feb 2026 16:37:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	tnt8tuErBc2u3xhygOYyhhf2vGOcScZNMe3mwfLG/+Q=; b=ZSzRM3SalK9jfD5M
+	5Zq7h9lumi0fLGSi2jJjenFVDrD19SPcF5vyD4Fz9sqIJxSwW7iXjg1JTL87kmEH
+	pHMdNEWskSup+0CYEkJdTtfcHym1+1SDIdAd83RV2U/ekxu8VBFTal3YX5T2w85O
+	ltyR9CLINqUbTQ92YLBTbGdsCT7tbRBua+oB7v/XWK5O5X9JzRqOHTTs5vWS7w9M
+	YE2jcj83Cdgr2pCoq1CB0AN4X2ss1DJdnLH2c1v4bRRRJ7Wxi+uNC1YpvCIprFpR
+	Cn8YqXuqF6KUXWLMwwUbHbIYXUZhvgCBhVUbafF9BUHXqaJoCn3ZGbTmZnvItVpP
+	DtACSQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c7862tff4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Feb 2026 16:37:09 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 619Gb8nH029896
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 9 Feb 2026 16:37:08 GMT
+Received: from [10.216.23.47] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 9 Feb
+ 2026 08:37:01 -0800
+Message-ID: <7889e13e-fd81-42aa-873c-92de641e1979@quicinc.com>
+Date: Mon, 9 Feb 2026 22:06:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DU4PR04MB10575:EE_
-X-MS-Office365-Filtering-Correlation-Id: d198b6a6-7311-4898-e797-08de67f93ee0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|7416014|52116014|366016|19092799006|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?CHsjlB9VP12+Z2ALU6JiYjIXapGgWdNeDvojQlRsSCN/Rcj86JA/V55jwUUb?=
- =?us-ascii?Q?lHHB8Q/LIUwgKgzO2YKTL3tvDLlfezowewo8V6LMewKwszEX1oiXFVkpP+99?=
- =?us-ascii?Q?oFTKBTnKmAwxCf5CNy6QnP7WxnAZknljACTHsukuj2QHItwKq+18FH986GAr?=
- =?us-ascii?Q?nfW3pgLklsT7IXigxl+T7dUN+5HWDVscglgQ6koW/u7jXkAb1xgiqEdHGlDj?=
- =?us-ascii?Q?yUn9cw7bM8rzubuyY+E3QMm+rJm0SQvBF9YdTVnH5BWG3/Gq3fN1+VzwM7GP?=
- =?us-ascii?Q?phvLchtcmAWaIM8XQerAtZpgH+UTzjAI6QPQekgB7XtcjMpf4KhWkVzf8Zqo?=
- =?us-ascii?Q?xxHLcer95JN64RtLlEfIHCJGO3E7hfIdXo0itU94xRgZbSFkkG5RHTBPLIKW?=
- =?us-ascii?Q?Fpsqik8KrP5+tbk6v8njdnvn95PBgyLtNXutQr2P1j1ijsblcVmibJfNBc8e?=
- =?us-ascii?Q?FB29b9zS92YOtaDIr5IO3oy706ra+wNPM2zr7WXd8MzzCAGIgapgtOjODj/O?=
- =?us-ascii?Q?gZmdAHkrm8S6ubYUBPbrARJyKhfH0u/JUfNtV+Xkft9FdN/J06NMZN6U398Q?=
- =?us-ascii?Q?PscLcP2iuYJYJQKZITZjMtgyx7GfgawOFgMZdMOi9C0rZtio8drcRZFCtodO?=
- =?us-ascii?Q?S95PSzN3+AkmprBFWaiHEvJNx4gb5L+SRZHnXPlvnPVy9k9KSLz7a+Loq3PF?=
- =?us-ascii?Q?po52jgSWNWoqjebIE3j9Ud5+e0G3Kaqq/SbC8V+aKWAuHmtiOMgGm/EBb6xN?=
- =?us-ascii?Q?gJrT1lph4xv6DpErT18vAEpANvnJGviaNzMHBFZBnWmUQYbnKu91XS2/qpN3?=
- =?us-ascii?Q?Z30XvxriClmrrRgWmKODM8rhuJInggkhp6DJPr5XSYC5CMHks0mDqO8znLTc?=
- =?us-ascii?Q?Dd9in9Bldxixp1RNGkU0fIQwsw81I4b8FHpyjel5IetGbD6D4Hid1tiAflsi?=
- =?us-ascii?Q?mgIXejDJTYGdyNihJ7emTT9u607WfOp9XqguSm1eJinoUvkMMhYS8HIJ/EI7?=
- =?us-ascii?Q?D2ktemtX3HvphaLP4Z9T42LMTdupHAeRZtSd5FDmMqYFPXLNfDja42kE7wv9?=
- =?us-ascii?Q?oQzCaXr/xZlMUM73JrfnydHQJWgwkLpTJEFoBXlB2gMjHyGDUOdbGnKw3rvY?=
- =?us-ascii?Q?r5ov3uwJnyrm+sUt2zGTLs8+ijiKqGfQDsMKzu0omeq3C7127GoYd2HIB9ee?=
- =?us-ascii?Q?Ep4RQmOHPeuWcz+TazFn9bq7B+gi0w5YF6NPBfp//vNKBpcyOrfi92OdeHtM?=
- =?us-ascii?Q?4VZT9AVviqsWcHpa1gs51T525vfcCWv/+6K/I9Qm2vn0PozR3ktEkFh/jyeb?=
- =?us-ascii?Q?RQM83gQBrMNP3fIJDI1hY9ARRMRWMd/H3b7Yg7nQbxN8OMDbwQqdRGgCDgOs?=
- =?us-ascii?Q?A97fW/IATSYW9bLaTHTqD8Gn3Vsio1dtb52dSs60kKRQivpcnyK+ZaV8NsoW?=
- =?us-ascii?Q?8iAcB3WaSoxoDaeJ/OcS3HUyJplrJxHZocqkoHowuRzyiEYCOAdrKHjUlVdN?=
- =?us-ascii?Q?zmc4/ih41M59kvFaJCTigdaUa5Fr6L2Po2gzV7HWd8zDamG4hzMxzphLygnE?=
- =?us-ascii?Q?u5LFVBcrCT3KQJSazKiaD+qTtWX0uK5p8MT/ha54h1s/311F9cIJxNh5H18F?=
- =?us-ascii?Q?r0iJ7J2FD5isstfGK2AZjGU=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(52116014)(366016)(19092799006)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?t3cLE7t1icUwcfQ99mkowbUBJiAxkDlL79lwYuxGitRmKZ+E0AIRpQTE3bY6?=
- =?us-ascii?Q?o5ry16Wb8R+N5Ecwzwbtbk2xORWm/v3cRW3W+bI5iBAD2VfUefXbbm/+TM/t?=
- =?us-ascii?Q?9rxxqGp3Sg4BwhikRMaTUTn8d+SG1nwva1GxWVjtvt1xEfPrwkH2qGFKHP3o?=
- =?us-ascii?Q?NMZzKDdkA50Trzuf96nB+CvH5I54eEZ6yD+WUSWz9ps8+oCf3941hFwxg6y0?=
- =?us-ascii?Q?Yst61zpzQkv2FvYYGBrwpH0erh5EJAikFttIcFt6/pUXvRl3wOj1W8ThIYkH?=
- =?us-ascii?Q?/eN5hwKn3pRHJbuxr6T2s+q0bkRq4cJrECDtuWWh17xGX0YoEnIAegWERkSI?=
- =?us-ascii?Q?BEGT71WBPBjMblGpPmyV+fMtekYhF/kDk6VvstozRdQkZCMt2KK5TZGCcrpy?=
- =?us-ascii?Q?VO83wy7nrrupDZJ/VAkuGrv/vMyij08i7JEEtuK0TCrEmiADPNy8AshA4ofk?=
- =?us-ascii?Q?WWCJXanIUcblc8+tD6yPOGJfvrT//URdrfNxA+N7G6TvhZE1MbWS6+txhQrE?=
- =?us-ascii?Q?8jTxB596lu44P/G7KJU/KVxthvEDub69UhcX6GBmTsGOEG2uMg2Mn3GtWgLe?=
- =?us-ascii?Q?WqRq4S08dnMyVdDSloHEUw38Vzhlz+dznJJyxzFy7VoM8TR4WP5GwleeI0uY?=
- =?us-ascii?Q?8ft76Kj78NUnaHgkijLUWmvWLBW6UdV0IDu2A5NsPKudHCn9lJRgdJNU3ogf?=
- =?us-ascii?Q?beIaCKLD+fJ1kjYWvsiPKZcCgSw/mEJVq+rZr9oaTHnq/T8ba5itav5MOdC5?=
- =?us-ascii?Q?LyfSbVFZQBz6NFNtwbX+ko4VMTAIZ9YEV8p+KYDmR10uNQI7FZPgVAPUmWbs?=
- =?us-ascii?Q?m8pVeaWbtFyDZUq/F6PcCiOPKAReQazIGauNA0SSVpb0loQiUqqWeCwoF0i6?=
- =?us-ascii?Q?cN3S3utakQUx1Ljg8poTOCxUufrUjXVeGP4GZVpVAj3Ye+z+UtYJmb0T2uqa?=
- =?us-ascii?Q?/08AfV1XigeMQ+ZEWGVsa5yTYKrhs3HqC/TaWB9/x08QBvwVfv5AAoY/vm/6?=
- =?us-ascii?Q?UKtoR2nhYiElKXMDqfc8eRKWHzercmPsmQ02gvgx7bBX+fhmhZRvoXF06+Q7?=
- =?us-ascii?Q?l9HrCuEDwXrMBusgqCxiK/6jKYomh0FGdFBUkvBCJqTE+WJD1ZMjgPPCsj27?=
- =?us-ascii?Q?wSCN+BBBf0rbU3MCUgf2N6VzEmz00ZPOCAVwb+Syh/Ar5+6tQrgRv4t7D/hH?=
- =?us-ascii?Q?d/dnaixhalMzDRz+cVLFOJBppD1iOPjfyypIs/R4zEY7Vmx6hL7+ec1vTb6H?=
- =?us-ascii?Q?X7liY+PPogBp6SzJDIN9IFsJFlmQgVEVxX2kFMrURvvSQ/bZexWX+5HE+d7s?=
- =?us-ascii?Q?BE/3Cw+WeOr0voQm7AVy+AnCILRaOEIN8sVirRmERzuYW19uAJ7zGwqMF3UK?=
- =?us-ascii?Q?oPRzEH5xiGQIAletU6rJ6nKl/Iim7RhfP/FBYKDC98YNfA5zVemzCCFx6EJc?=
- =?us-ascii?Q?g2CEM+ejJ7TyZVTFX388oLavpr2HvdyLpvqxnm6mHG0VdMtm18QHwCnh3F4U?=
- =?us-ascii?Q?OHR9jOEuE19DCKeZKW1UL6ZjdglAV0EMRoY3fxHPp5W0nSaugsAsYh7Jhzpq?=
- =?us-ascii?Q?E4EmsRuVhZIM2teLuTGXat+T9JOn/M1MZFlyIj+ExBCww4vOxjo/L6ERCp3f?=
- =?us-ascii?Q?edxvCU6jUAtIRnNNPx+1IWRsCGh4O4J6taSJ2Q5boLZNMNnrBskDWnJlK1oU?=
- =?us-ascii?Q?akJI9j6p/2lEkM/0eL3vW2mT6w1JHIIX/vxyoqcxaRj01puk?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d198b6a6-7311-4898-e797-08de67f93ee0
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2026 16:35:33.5118
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GapZT1BKimp9OTTG6rjC6BmT0BbqgMPcPnerk996BOnjxNVL4CtV+fGcCNlYusAZlWfAYleeXk4bi1xzGbyVzA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10575
+User-Agent: Mozilla Thunderbird
+From: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+Subject: Re: [PATCH v9 5/5] arm64: dts: qcom: monaco-evk-camera: Add DT
+ overlay
+To: Krzysztof Kozlowski <krzk@kernel.org>, <bryan.odonoghue@linaro.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <hverkuil-cisco@xs4all.nl>, <loic.poulain@oss.qualcomm.com>,
+        <rfoss@kernel.org>, <andi.shyti@kernel.org>,
+        <linux-i2c@vger.kernel.org>, <cros-qcom-dts-watchers@chromium.org>
+CC: <quic_svankada@quicinc.com>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Ravi Shankar <quic_rshankar@quicinc.com>,
+        Vishal Verma <quic_vishverm@quicinc.com>,
+        Vladimir Zapolskiy
+	<vladimir.zapolskiy@linaro.org>,
+        Konrad Dybcio
+	<konrad.dybcio@oss.qualcomm.com>
+References: <20260121183142.1867199-1-quic_nihalkum@quicinc.com>
+ <20260121183142.1867199-6-quic_nihalkum@quicinc.com>
+ <32c4d3c3-6cbc-42cc-8c6e-7f1d0d35cc2c@kernel.org>
+Content-Language: en-US
+In-Reply-To: <32c4d3c3-6cbc-42cc-8c6e-7f1d0d35cc2c@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDE0MCBTYWx0ZWRfX1vqUd0QUv/rE
+ dsO0oZ1vX6Fv23ieFNPef02lkA3vfV3AYsndz9HP0MbFTZQpj4z58XEDwmr2JaNwLZDnCtaF0yf
+ UxV34CCQsGpDmLoHEygqpUCh0v6WWMXC3VAWdSSt5bAeO/VzV1m1ddAsXqpsEh7u9EZIYnXKllx
+ IRJ1W8vGvsraRsS3vwkpBK7OOmNNiFFbb4xERIdp4bJ0DdbPHS3frI80xZkXSXNk9AU9ihVwU5l
+ gs8SyFmgK9/rg+EWS6YttG/L7ZuIZewMglk+rQMAsXkJzNvIFETU8jcmOjO8JOKVJaKly/rM0XP
+ cxqOuJeoE1A9+9+mWnBrkDZD7KCEI0oP6oTPxhXD4ZSP7GK/TdA5I37ICvt9KtSSuoH/vXU1OR+
+ BK11Sf/ZVycDv7fHxZINkC4lRmXOtdFzxB+gNcb2ck9Y3JDBSlwrFn2FNhGs+m8YHwbYX/LZ76u
+ MTc3wZAm8/IYuutmBzg==
+X-Authority-Analysis: v=2.4 cv=bZhmkePB c=1 sm=1 tr=0 ts=698a0d35 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=BjyQy4h12ZiA_7grzfYA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: xnJ-14g5FjEonoGLr6d6l3VJeKwvLMEu
+X-Proofpoint-GUID: xnJ-14g5FjEonoGLr6d6l3VJeKwvLMEu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-09_01,2026-02-09_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 impostorscore=0 bulkscore=0
+ lowpriorityscore=0 malwarescore=0 spamscore=0 phishscore=0 suspectscore=0
+ clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2602090140
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[quicinc.com,none];
+	R_DKIM_ALLOW(-0.20)[quicinc.com:s=qcppdkim1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264072-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264073-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,xs4all.nl,oss.qualcomm.com,vger.kernel.org,chromium.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[nxp.com,pengutronix.de,google.com,kernel.org,gmail.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email,qualcomm.com:email,quicinc.com:mid,quicinc.com:dkim,quicinc.com:email];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,i.mx:url]
-X-Rspamd-Queue-Id: 815D61128A6
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[quic_nihalkum@quicinc.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[quicinc.com:+];
+	PRECEDENCE_BULK(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 7F78D11296D
 X-Rspamd-Action: no action
 
-On Mon, Feb 09, 2026 at 04:24:46PM +0800, Sherry Sun wrote:
-> DT binding allows specifying 'reset' property in both host bridge and
-> Root Port nodes, but specifying in the host bridge node is marked as
-> deprecated. So add support for parsing the new binding that uses
-> 'reset-gpios' property for PERST#.
->
-> The initial idea is to add the PCIe M.2 KeyE connector support and PCI
-> power control framework to the pcie-imx6 driver. Since the new
-> M.2/pwrctrl model is implemented based on Root Ports and requires the
-> pwrctrl driver to bind to a Root Port device, we need to introduce a
-> Root Port child node on i.MX boards that provide an M.2 connector.
->
-> To follow a more standardized DT structure, it also makes sense to move
-> the reset-gpios and wake-gpios properties into the Root Port node. These
-> signals logically belong to the Root Port rather than the host bridge,
-> and placing them there aligns with the new M.2/pwrctrl model.
->
-> To maintain DT backwards compatibility, fallback to the legacy method of
-> parsing the host bridge node if the reset property is not present in the
-> Root Port node.
->
-> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-> ---
->  drivers/pci/controller/dwc/pci-imx6.c | 69 +++++++++++++++++++++------
->  1 file changed, 55 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index a5b8d0b71677..317a969da96b 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -34,6 +34,7 @@
->  #include <linux/pm_runtime.h>
->
->  #include "../../pci.h"
-> +#include "../pci-host-common.h"
->  #include "pcie-designware.h"
->
->  #define IMX8MQ_GPR_PCIE_REF_USE_PAD		BIT(9)
-> @@ -150,8 +151,8 @@ struct imx_lut_data {
->
->  struct imx_pcie {
->  	struct dw_pcie		*pci;
-> -	struct gpio_desc	*reset_gpiod;
->  	struct clk_bulk_data	*clks;
-> +	struct list_head	ports;
->  	int			num_clks;
->  	bool			supports_clkreq;
->  	bool			enable_ext_refclk;
-> @@ -897,29 +898,34 @@ static int imx95_pcie_core_reset(struct imx_pcie *imx_pcie, bool assert)
->
->  static void imx_pcie_assert_core_reset(struct imx_pcie *imx_pcie)
->  {
-> +	struct pci_host_port *port;
-> +
->  	reset_control_assert(imx_pcie->pciephy_reset);
->
->  	if (imx_pcie->drvdata->core_reset)
->  		imx_pcie->drvdata->core_reset(imx_pcie, true);
->
->  	/* Some boards don't have PCIe reset GPIO. */
-> -	gpiod_set_value_cansleep(imx_pcie->reset_gpiod, 1);
-> +	list_for_each_entry(port, &imx_pcie->ports, list)
-> +		gpiod_set_value_cansleep(port->reset, 1);
->  }
->
->  static int imx_pcie_deassert_core_reset(struct imx_pcie *imx_pcie)
->  {
-> +	struct pci_host_port *port;
-> +
->  	reset_control_deassert(imx_pcie->pciephy_reset);
->
->  	if (imx_pcie->drvdata->core_reset)
->  		imx_pcie->drvdata->core_reset(imx_pcie, false);
->
->  	/* Some boards don't have PCIe reset GPIO. */
-> -	if (imx_pcie->reset_gpiod) {
-> -		msleep(100);
-> -		gpiod_set_value_cansleep(imx_pcie->reset_gpiod, 0);
-> -		/* Wait for 100ms after PERST# deassertion (PCIe r5.0, 6.6.1) */
-> -		msleep(100);
-> -	}
-> +	list_for_each_entry(port, &imx_pcie->ports, list)
-> +		if (port->reset) {
-> +			msleep(PCIE_T_PVPERL_MS);
-> +			gpiod_set_value_cansleep(port->reset, 0);
-> +			msleep(PCIE_RESET_CONFIG_WAIT_MS);
-> +		}
->
->  	return 0;
->  }
-> @@ -1642,6 +1648,27 @@ static const struct dev_pm_ops imx_pcie_pm_ops = {
->  				  imx_pcie_resume_noirq)
->  };
->
-> +static int imx_pcie_parse_legacy_binding(struct imx_pcie *pcie)
-> +{
-> +	struct device *dev = pcie->pci->dev;
-> +	struct pci_host_port *port;
-> +	struct gpio_desc *reset;
-> +
-> +	reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(reset))
-> +		return PTR_ERR(reset);
-> +
-> +	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
-> +	if (!port)
-> +		return -ENOMEM;
-> +
-> +	port->reset = reset;
-> +	INIT_LIST_HEAD(&port->list);
-> +	list_add_tail(&port->list, &pcie->ports);
-> +
-> +	return 0;
-> +}
-> +
->  static int imx_pcie_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> @@ -1660,6 +1687,8 @@ static int imx_pcie_probe(struct platform_device *pdev)
->  	if (!pci)
->  		return -ENOMEM;
->
-> +	INIT_LIST_HEAD(&imx_pcie->ports);
-> +
->  	pci->dev = dev;
->  	pci->ops = &dw_pcie_ops;
->
-> @@ -1688,12 +1717,24 @@ static int imx_pcie_probe(struct platform_device *pdev)
->  			return PTR_ERR(imx_pcie->phy_base);
->  	}
->
-> -	/* Fetch GPIOs */
-> -	imx_pcie->reset_gpiod = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> -	if (IS_ERR(imx_pcie->reset_gpiod))
-> -		return dev_err_probe(dev, PTR_ERR(imx_pcie->reset_gpiod),
-> -				     "unable to get reset gpio\n");
-> -	gpiod_set_consumer_name(imx_pcie->reset_gpiod, "PCIe reset");
-> +	ret = pci_host_common_parse_ports(dev, &imx_pcie->ports);
 
-if API provided pcim_host_common_parse_ports(), needn't below
-devm_add_action_or_reset().
 
-Frank.
+On 06-02-2026 22:09, Krzysztof Kozlowski wrote:
+>> Signed-off-by: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+>> Co-developed-by: Ravi Shankar <quic_rshankar@quicinc.com>
+>> Signed-off-by: Ravi Shankar <quic_rshankar@quicinc.com>
+>> Co-developed-by: Vishal Verma <quic_vishverm@quicinc.com>
+>> Signed-off-by: Vishal Verma <quic_vishverm@quicinc.com>
+>> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+>> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/Makefile             |  4 ++
+>>  .../dts/qcom/monaco-evk-camera-imx577.dtso    | 66 +++++++++++++++++++
+>>  2 files changed, 70 insertions(+)
+> 
+> So many people developed it, three people reviewed it, patch is at v9 and...
+> 
+> still was not build-tested by the author. At this point this is big
+> surprise.
+> 
+> NAK
 
-> +	if (ret) {
-> +		if (ret != -ENOENT)
-> +			return dev_err_probe(dev, ret, "Failed to parse Root Port: %d\n", ret);
-> +
-> +		/*
-> +		 * In the case of properties not populated in Root Port node,
-> +		 * fallback to the legacy method of parsing the Host Bridge
-> +		 * node. This is to maintain DT backwards compatibility.
-> +		 */
-> +		ret = imx_pcie_parse_legacy_binding(imx_pcie);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "Unable to get reset gpio: %d\n", ret);
-> +	}
-> +
-> +	ret = devm_add_action_or_reset(dev, pci_host_common_delete_ports, &imx_pcie->ports);
-> +	if (ret)
-> +		return ret;
->
->  	/* Fetch clocks */
->  	imx_pcie->num_clks = devm_clk_bulk_get_all(dev, &imx_pcie->clks);
-> --
-> 2.37.1
->
+Krzysztof, Thanks for your review.
+All patches posted here were build‑tested and verified by the author. On the current master tip, I am seeing an unrelated issue where RB4 fails to boot due to a rootfs mount error.
+From next time, I’ll include the exact SHA on which the patches were validated.
+
+Rootfs mount error log snippet:
+Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)
+[Firmware Bug]: Unable to handle paging request in EFI runtime service
+[ end Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0) ]
+
+-- 
+Regards,
+Nihal Kumar Gupta
+
 
