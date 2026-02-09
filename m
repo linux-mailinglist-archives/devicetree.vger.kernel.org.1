@@ -1,208 +1,161 @@
-Return-Path: <devicetree+bounces-263888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263889-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AD8/E2ifiWlU/wQAu9opvQ
-	(envelope-from <devicetree+bounces-263888-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 09:48:40 +0100
+	id IDNqOO6fiWlU/wQAu9opvQ
+	(envelope-from <devicetree+bounces-263889-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 09:50:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A279110D2CC
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 09:48:39 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7547110D37F
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 09:50:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 351073010D9F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 08:47:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B90F63013A41
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 08:50:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63E16321420;
-	Mon,  9 Feb 2026 08:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79BA7325720;
+	Mon,  9 Feb 2026 08:50:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oK+sqqOB";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="H6fMDpo6"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cXVXoTuu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 185DE30BBBA
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 08:47:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A72F325719;
+	Mon,  9 Feb 2026 08:50:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770626831; cv=none; b=cY+ii15P56kL0jD7TMklrewog7wmxxhFzNY0A9IOTYCu2bsGCo9dQetYQIMJwiEhL3r99Kus/m2G3JPCIzUOMB7C9ZKMKKf73y4m2UTKrP5QZZLC++Hv2bM1giQCZ67wiqF3yh6/Tjy/saB4DIjndP1sSQqRnYkIWw3ehwzlpKk=
+	t=1770627047; cv=none; b=CESjJp5EL0Z11Gi+4A/g7V6+m7bDRpSV5Oy+kt9BPrzYPHrHE2AR8hyvKdqg72jAR7Wu+8vASfxgb0czfxVNZXH7e3NAg6Zs5qoY29f16es1oHfYwghr3XYzIBOKA27aoaCWpU7EJw2WjqBuBd+xAOlFLu44IBDOBaq0lFxqJJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770626831; c=relaxed/simple;
-	bh=EVLGzhY/+vxGk8rPYzHxopjt+2ZHWMPVia/mAK3eOcU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kK9Ih1g3OGeY0bR8ifCCGO1Ed34/gpPHpkBVFkkvkconO6bB2sNF8OXYXz1hRw2aU+QCqh6kqQ6CybShyEG6xruklSN6ePEJV64unCHjGTtzxSce1Q1jAg8ngdf+02U09UGGoOmlLJ8v6DLxrIc8EvJ1Ua3J+SU5ojMbfydI5Uk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oK+sqqOB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=H6fMDpo6; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6195Nc1T3347589
-	for <devicetree@vger.kernel.org>; Mon, 9 Feb 2026 08:47:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rXZgtXa39/CsxXGVgii7CPd9eEnYYHbZY4wT3BLJSgw=; b=oK+sqqOB/ZIuZrmB
-	j/+emV79CTQyVFfF+0lPArsPTBwNSgV++tctmboLW12//cIDDZxLFYqnsagDgIdB
-	T6IYgsM0nOHZjv/ec3IZGB7x5Zx+TdZ4g6cHbgDvkJLC+UHqqpCZNa7Hj9k1MnwA
-	mCyq+2gO9+YDn62Jf5t3DC0lpHFatH6j6sKq1a0Ixo7u/QD+KpT8ZDddpQ+YeF7K
-	iOO4G8WIcLpVNnjYBe0BOdm++U/MzLjiM9dMoqMXAj0D3b5I/Mx1OovNdg24hFgj
-	zZRysW4APpjNQoA+lhCtbwEyWd9iUCMkReTx6e/FH9WpygJMD5eiVqgfx5LFZ80j
-	0l9Emw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c79cy0nyk-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 08:47:09 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c53892a195so69110385a.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 00:47:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770626829; x=1771231629; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rXZgtXa39/CsxXGVgii7CPd9eEnYYHbZY4wT3BLJSgw=;
-        b=H6fMDpo6ph9Vn9n69chxCHj1EQky9QpkdNMgSs48WENWrlGbe7mKgDFtMykMRYJTWi
-         bKi0zZOoJmAT2WI0fRbuTx1+vCBbJrYERvXANfryD8EusOlfV65k8LOrub91MrSxflUt
-         0h2nrXCynFAp5w/CmegG158GeGpS2yRPxCgQz/AMX/JXC9dfNQlzHKQBvrlGdwt8Xap9
-         b6Sh6q+jG2uBsbhdAKvSEXbndisSGIkyFDPC3LN4lTtGy51OuYUwwuvgRUrTutU8Z2cF
-         lSK0TTqhQ6rtW7+VekPywkuHLCZgr1If9KOrtGp2ci6uwxUBlsO8Wkwii7He0mIFJr8E
-         a8yQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770626829; x=1771231629;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rXZgtXa39/CsxXGVgii7CPd9eEnYYHbZY4wT3BLJSgw=;
-        b=UjbQ2gehanLwKbHkf0Li2f+Ag3jnYjTV3RmMuTtodVYOeMMhstkxFZ0ji75wdk/pdd
-         zPydBTGW0hmeOPFT0caZZqTXAUUekFyuTD3SmLCMt+o72PQBSBMEoR4WlirvYbikG3Eq
-         U8kFXNpY/3kwP/Bu5PPzarNGInRFuKYZOBSCwSo45vwWtySvJWUiYjGJXhAgYoUIWIWA
-         67NcHQj2qUlqCxXEVDGDBW6kC7wINrzbRMF3bGaIOXMiCSVYxDO6b7m1Sv8UOHB6O0QZ
-         pMTxttWj6z0XWcxFwlbFO+H/4aQR/XfM2Q88xOzWuso9fmprcvc4O6Zm06ARAJIM51d8
-         xB5A==
-X-Forwarded-Encrypted: i=1; AJvYcCUoXar8YdLZ1Nr4G5QMr+SUKAAtly6wH1rrLEv420oXKMQJ8/w84RVRrcpHS7d32rEC2uo9uGvtsEK5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxCebmp51+lV3LJIUL3Ju5P3TUSwoL0DI18GAM8UCiIJgxI7nT
-	51G6idkJjU/84cOQjHyGpoQhzDcGoqwFTbR8OOqggzDwbYXOOmhyFHTaZnFH+zUnlL728m38bcq
-	Rxb5MDqfrQBUtjrfG/Rh8Ts+EcbeTk6aRaxJrH+gs4vTmqKBMM8AAe4HaMnoYVw0x
-X-Gm-Gg: AZuq6aJWtCKJMwDEoirFSXrebWwN9R1RgeVgNTvro09haX+gbhoYP8xNk6nvvhK9jVb
-	8kpPHYUkNhj8pRAX74a+i35UDJaVVi60c5TQghZEZZWfAZrqGhIDlMwz576sMEd2gztPYk3Xh62
-	Qpon5krVYO4aECp4M1WK1GGryrt3O8B/5TNYm9GNEkOwgkTU9dXyKZ24Mu8fQXzMFtRkhbHvT77
-	IZAoRMA03DUvg86ny9BKH1dpZoN29PkIRNaZxQFk4XQ0qCtkVnyuEi9eBQPk3R/bDtg42D1i2N2
-	ClNGXireg7rZW4PwaAL/FmalsfZagu9v8RTNsfa6F6uarSBy/PVv3E3GMEeqE3+g98iESnizlUR
-	sagSjIKlea2P3NoZdDubz/UoZQFzDraAqxBZ6vuZiD9kx0z/mEvTaYQ3RhJDwcjsnFX8=
-X-Received: by 2002:a05:620a:4110:b0:8c5:305e:ea16 with SMTP id af79cd13be357-8caf0d3d550mr1062520585a.8.1770626829319;
-        Mon, 09 Feb 2026 00:47:09 -0800 (PST)
-X-Received: by 2002:a05:620a:4110:b0:8c5:305e:ea16 with SMTP id af79cd13be357-8caf0d3d550mr1062519785a.8.1770626828954;
-        Mon, 09 Feb 2026 00:47:08 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8edacb0015sm359157466b.44.2026.02.09.00.47.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Feb 2026 00:47:08 -0800 (PST)
-Message-ID: <86444bf0-4672-4f64-89a1-9a830b04a5be@oss.qualcomm.com>
-Date: Mon, 9 Feb 2026 09:47:06 +0100
+	s=arc-20240116; t=1770627047; c=relaxed/simple;
+	bh=lj6W1szQUTDXezIAILgDU/w7Of5smisYy6l7lA/tDR4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bxRdlS1rw5vsKzCJQHyNMbbEVZi97iixWkClMc0KGDLKW/E4QdNB/pUTxqxG3pV8cNVPOf9//1+aNNasR95m1+O9lycZMRRkSRiNgyNHoJP7mOygI4zVnQ22aUCRGX8WIYTvaRdDYE+EsSYNsZDYBmrJwOqjt6q/1CNZRCo1wq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cXVXoTuu; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770627047; x=1802163047;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=lj6W1szQUTDXezIAILgDU/w7Of5smisYy6l7lA/tDR4=;
+  b=cXVXoTuuBMT8J/UILYFNoDQ7I4Sa8baJA9F5Q5athKZvAH1r/pQTUZMv
+   3vbtcvFBU7V0YClSlo+uUYbTi1eYbtd4VyQuBaIFt532NIlSDNnksOaIc
+   0JSYz3Nz7XvriATe9Y14hDKKrPU92v7RcMS4/ksaCwyR37gFItOAXprut
+   olODWyKpttwxbrxCFmMIjOXtVvVdJb2Q5HlCuXxCIIfhgDzBjABCEmINl
+   3y+Jj5p9s/eDUXWYODt/kLKgvzzopXIsAWHMqLJFFgzpm3AIGf6nfKvcC
+   XOEp6X7VFx5n0IG27fbehQFHfNtkCS1SbfMHabKFpsCzyZmMbxlwjKHtP
+   g==;
+X-CSE-ConnectionGUID: GmsTvolIRI6Xd4SqqCJ4hA==
+X-CSE-MsgGUID: b/6ovBD1Q6epWKEO9DC9Sg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11695"; a="75581944"
+X-IronPort-AV: E=Sophos;i="6.21,281,1763452800"; 
+   d="scan'208";a="75581944"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 00:50:46 -0800
+X-CSE-ConnectionGUID: aXbEPP7CRPuRIWP/LrkjwQ==
+X-CSE-MsgGUID: zxAzCHH1TeyvXPQV8UIUrg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,281,1763452800"; 
+   d="scan'208";a="211586481"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.128])
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 00:50:42 -0800
+Date: Mon, 9 Feb 2026 10:50:40 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Yasin Lee <yasin.lee.x@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, yasin.lee.x@outlook.com,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/5] iio: proximity: hx9023s: support firmware-name
+ property
+Message-ID: <aYmf4MtCBmwZBuAV@smile.fi.intel.com>
+References: <20260209-upstream-20260219-v1-0-2b4d74e309d1@gmail.com>
+ <20260209-upstream-20260219-v1-3-2b4d74e309d1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: hamoa: Add PSCI SYSTEM_RESET2 types
-To: Xin Liu <xin.liu@oss.qualcomm.com>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        tingwei.zhang@oss.qualcomm.com, jie.gan@oss.qualcomm.com
-References: <20260209042700.1186392-1-xin.liu@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260209042700.1186392-1-xin.liu@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: FyPgJA1X7Nk1xOeDIESyYdvYkaHL1qtp
-X-Proofpoint-GUID: FyPgJA1X7Nk1xOeDIESyYdvYkaHL1qtp
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDA3MiBTYWx0ZWRfXzbJQKvwCp2tT
- TnY8JcB/tH20n77Sj++4J5VqaX9KQ4o7k2oVQS9tRXk5U4u+Rl0JOkM1S0WxW3Y95cCbtk1YOLb
- F/gTdc12WAatQSVYH8YMpE50+mt4BUak9LIhTzuNEgXYyXUvPy2Ct5UFbHN2CcZBgIGcMS51c+e
- vcfgrkhzMJdUmxn6haVQ2UrhDsA/3HvtYVvb8pkqyYQ62auiN10Qre/IDUT5k0nkKlb8/0Jhih4
- RzdPvNSvfKseUXJ8w7Vx0gEnGuIz+o4oeyBchZVYW5zdL4ao5J/SAe5LqUoHewWCr2Re3bU9KZx
- 04+eUAcujMFgN4oXZHTpyjLF7lG79yfKG5hwplpCSbMisRI33/kYcNTEwRkC6kuqjkE5JLUe0e+
- N/ZsAy8rAY7ARIqpoaXAThmgCcGbIo2xgDkM5jjuO/DE3VIvBaXWjfz2UbYTX3MhoCgRBieJSjC
- CBVhWbDRfX2z+ircpXg==
-X-Authority-Analysis: v=2.4 cv=EtvfbCcA c=1 sm=1 tr=0 ts=69899f0d cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=EUspDBNiAAAA:8 a=U5OHXPGs9fPUQxsCYwcA:9 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-08_05,2026-02-09_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 impostorscore=0 bulkscore=0 priorityscore=1501 phishscore=0
- malwarescore=0 clxscore=1015 lowpriorityscore=0 spamscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602090072
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260209-upstream-20260219-v1-3-2b4d74e309d1@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,outlook.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-263889-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263888-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: A279110D2CC
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 7547110D37F
 X-Rspamd-Action: no action
 
-On 2/9/26 5:27 AM, Xin Liu wrote:
-> Add support for SYSTEM_RESET2 vendor-specific resets as
-> reboot-modes in the psci node.  Describe the resets: "bootloader"
-> will cause device to reboot and stop in the bootloader's fastboot
-> mode.  "edl" will cause device to reboot into "emergency download
-> mode", which permits loading images via the Firehose protocol.
-> 
-> Signed-off-by: Xin Liu <xin.liu@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/hamoa.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> index db65c392e618..2a490e0a8b5d 100644
-> --- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> @@ -450,6 +450,11 @@ system_pd: power-domain-system {
->  			#power-domain-cells = <0>;
->  			/* TODO: system-wide idle states */
->  		};
-> +
-> +		reboot-mode {
-> +			mode-bootloader = <0x10001 0x2>;
-> +			mode-edl = <0 0x1>;
-> +		};
+On Mon, Feb 09, 2026 at 11:37:04AM +0800, Yasin Lee wrote:
+> Add an optional firmware-name property to specify the firmware file.
+> If not provided, the driver falls back to the default firmware name.
 
-Will this work on any hamoa device, or is this dependent upon the
-IoT firmware?
+...
 
-Konrad
+>  	struct device *dev = &client->dev;
+>  	struct iio_dev *indio_dev;
+>  	struct hx9023s_data *data;
+
+> +	const char *fw_name = "hx9023s.bin";
+
+Preserve reversed xmas tree order.
+And looking at the usage, please split the definition and assignment.
+
+>  	int ret;
+
+...
+
+> +	ret = device_property_read_string(dev, "firmware-name", &fw_name);
+> +	if (ret && ret != -EINVAL)
+
+Why is this special error code check?
+
+> +		return dev_err_probe(dev, ret, "failed to read firmware-name\n");
+
+	fw_name = "...";
+	device_property_read_string(dev, "firmware-name", &fw_name);
+
+I believe if wondering one can get a debug information from
+request_firmware_nowait() on what firmware file has been actually used.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
