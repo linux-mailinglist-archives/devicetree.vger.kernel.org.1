@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263997-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wLu5JPDeiWnGCwAAu9opvQ
-	(envelope-from <devicetree+bounces-263996-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 14:19:44 +0100
+	id UL0GFCjfiWnGCwAAu9opvQ
+	(envelope-from <devicetree+bounces-263997-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 14:20:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00CBE10F918
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 14:19:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A894910F946
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 14:20:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E4D6C30329BB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 13:18:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 53D24300BDB2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 13:18:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A5E3783D3;
-	Mon,  9 Feb 2026 13:18:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF933783BD;
+	Mon,  9 Feb 2026 13:18:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xm1168Wl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l6K6IDDs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22FCD2040B6;
-	Mon,  9 Feb 2026 13:18:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ADC62040B6;
+	Mon,  9 Feb 2026 13:18:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770643088; cv=none; b=E+ATp8JRfDcxh+YQcJkwuq1U2jZxpxEePcCvZi6QD+aLY5LP8Std/AspZMtXPwZubMz2MOTjvRepd60xJP7LEBLZmXFFBdFVH1VvfnYvth97ShhxNE/qhRUQAr1zPS7vErRsoPxlzEkgSACYLxealRvu4NLKZj3Vu3cBYq+evsA=
+	t=1770643122; cv=none; b=PEP9ExKE3HX34mj35DZIYFwlPcr3KOZ2ALAATCBDI8dYHjvrW44BhOKM7waIVfu9KuRvB9B4eVkmtptEi/rV0S0Eqc7XcVkUV+GM4WRHCsupabSzyIy3NdtSO2Axepah5oUYYILALmYX5mTzsbEp/SCimIT3NnFh9Hj1gvKSdz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770643088; c=relaxed/simple;
-	bh=n2sx2kjs/GQnPUGJjQo/yI4rxUcrSFwT9I1XazZibjE=;
+	s=arc-20240116; t=1770643122; c=relaxed/simple;
+	bh=tspf+dZIq5x+tREgKHnBEYdV+MaRpD+POKR8lg9U9Bo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LAT4OTlAyUQ1z4XFxYTQN3MyLH5Y/S3EONgT33cRQuCiuDc9AjHOYTu3f+MkqYvwm5oYui8MA9kBh0uIBGArIASYxWi9JefVodaL/V9MrhnGnG/OA7gYxVxQ/ciAuZUUzuJrqTAhmGJghlk8nfC21DqMevr/9khTiYzHBy/QtX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xm1168Wl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93570C116C6;
-	Mon,  9 Feb 2026 13:18:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CeKAQ95lYxsrKuwZYXzEOwl9sYAfRTweXGrcDfBGXtpHCF6aVB9f7E93v7t++Z4tw/8Ij1Cj5yKGE7Fcf2BfzPFFGl8fc33/5a992UxvOeRoix00qpgU4rUZ6+sfFtIzKUd27DOt5Y3ycmVmVYq119O/vzyaQUmd0WvvwKdRsko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l6K6IDDs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B517C116C6;
+	Mon,  9 Feb 2026 13:18:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770643087;
-	bh=n2sx2kjs/GQnPUGJjQo/yI4rxUcrSFwT9I1XazZibjE=;
+	s=k20201202; t=1770643122;
+	bh=tspf+dZIq5x+tREgKHnBEYdV+MaRpD+POKR8lg9U9Bo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Xm1168WlX/wCNkH3YPL1x6qxwTC7PUq/sJwx0kCGnyG5dJg+uptoOjfWEkqtCOUKx
-	 u3ouSB23vyvqYKGAJlSnzGQbvzvOM5sYqLraL+ckFu8gAON0kpUcGf4FcRZy+ofz0d
-	 wFT4vGlVy2h/qfIDtRY3wfCdFk1tPp2gUd7h0MKFsQEmALc7yTFHa/ohMSc9nMNokP
-	 cC4fPqt0BEQj24ho6jyC9kFxS/4t2hl2Ps5/c68u1X3/829Bhnfk7JGr7Zfh/c4zWE
-	 fpWR1gPuSetpS+TncVWzu3eGZ+2rDAt74j7b6Swm3NkwW7qwD00PUiVQrSyygtPZ2M
-	 iw/HbzkBfrTQQ==
-Message-ID: <63b2b403-53ea-465c-832d-8ee6099239aa@kernel.org>
-Date: Mon, 9 Feb 2026 14:18:03 +0100
+	b=l6K6IDDspNacwVyrMLRrPneXwf2aEYg/lL96WezPv3Kz6bnLmZd3fjluf2Zk9JpcX
+	 uH43WpV5BHzaDuCWm609iU9e7ywyAB6P5oZgUHW9CZR6W2VDZ3SEtXWCldqRGO5Tf0
+	 XGxlBaERylkOz1Qlq7Hc87PulSfRnZjjb+gssuCDfL2D7aezDq5i1SZSDqu0F8St0h
+	 q7ufRFLHeqgxQHxOG7domHvDlDHXLczlNjYgF8QALUFNE7fjdVgKhAj8MET10Qexbn
+	 cV30hWaHVUQqSuh+xsl/45VdvF5uhlJYQPdwMimIPseOszwmFak12dbWZ+YXcK1bZL
+	 cQCCgjtbDYTXw==
+Message-ID: <b5922f14-55de-4e7a-ad94-f8045dcc770a@kernel.org>
+Date: Mon, 9 Feb 2026 14:18:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,7 +53,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/13] clk: amlogic: Add composite clock driver
+Subject: Re: [PATCH 01/13] dt-bindings: clock: Add Amlogic A9 standardized
+ model clock control units
 To: chuan.liu@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
  <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -61,7 +62,7 @@ To: chuan.liu@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
 Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
- <20260209-a9_clock_driver-v1-5-a9198dc03d2a@amlogic.com>
+ <20260209-a9_clock_driver-v1-1-a9198dc03d2a@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,7 +108,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260209-a9_clock_driver-v1-5-a9198dc03d2a@amlogic.com>
+In-Reply-To: <20260209-a9_clock_driver-v1-1-a9198dc03d2a@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -120,7 +121,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263996-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263997-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
@@ -136,27 +137,24 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amlogic.com:email]
-X-Rspamd-Queue-Id: 00CBE10F918
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A894910F946
 X-Rspamd-Action: no action
 
 On 09/02/2026 06:48, Chuan Liu via B4 Relay wrote:
-> From: Chuan Liu <chuan.liu@amlogic.com>
-> 
-> Implement clk_ops support for Amlogic composite clocks. Composite clocks
-> are commonly used clock control units in Amlogic SoCs that integrate
-> multiplexer, divider, and gate functionality into a single block.
-> 
-> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
-> ---
->  drivers/clk/amlogic/Makefile        |   1 +
->  drivers/clk/amlogic/clk-composite.c | 280 ++++++++++++++++++++++++++++++++++++
->  drivers/clk/amlogic/clk-composite.h |  20 +++
->  drivers/clk/amlogic/clk.c           |   7 +
->  drivers/clk/amlogic/clk.h           |   1 +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clk_dummy: clock-dummy {
+> +        compatible = "fixed-clock";
+> +        #clock-cells = <0>;
+> +        clock-frequency = <0>;
+> +        clock-output-names = "dummy";
+> +        status = "disabled";
 
-Why did you duplicate the directory? It's already there under name
-meson. That's your vendor.
+Eee, nope. Please review this internally so you won't be making such
+trivial mistakes.
 
 Best regards,
 Krzysztof
