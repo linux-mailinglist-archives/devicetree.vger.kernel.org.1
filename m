@@ -1,96 +1,112 @@
-Return-Path: <devicetree+bounces-264049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264050-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UJX6JEn4iWn7FAAAu9opvQ
-	(envelope-from <devicetree+bounces-264049-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:07:53 +0100
+	id kIj3Az7+iWluFQAAu9opvQ
+	(envelope-from <devicetree+bounces-264050-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:33:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 385A911190E
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:07:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EA7E111EF6
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:33:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 95C953005A9A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 15:07:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BA2DE3076504
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 15:27:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5749E37C106;
-	Mon,  9 Feb 2026 15:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2084637F724;
+	Mon,  9 Feb 2026 15:27:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TsnS4VfO"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KIRwknVf";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hXaJdI4F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12B761A2545
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 15:07:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9ED537F115
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 15:26:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770649670; cv=none; b=RThZn00XVUwIjiHxl3VNzYw4W278QCDSbyGSnp2/skLjlpXqUHJ7BLa1ZHDCVv/OnPaiksOYrVCoLDUOrXEF6HqAx7Llivoldq1UYhVQYtLwtugfVVoZRafhVagdwkdNTVDkuFA77XiE3AhDzA//CTZInvBfhrtELpQ/TIc6dc4=
+	t=1770650820; cv=none; b=asRZzCbeJhzvmOl+H/LrfqT5NYbsUUARJW4FNbvCFf/sLYjRDLFp80B78packEbp/eyBCIxgL0K/FjnxtnGeX9l6Mpsxnvz42KXMZ+aM4kGnXdV8h1WWawnQ+s/xezIelRgz/Jvh8FE0lT9IbmxiLFRbCoB3ZHda2JqY3MlogWA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770649670; c=relaxed/simple;
-	bh=nKQd8+9i68Gtr8N+mWaKdJG1XrBMfVdStaWsoSmWIaY=;
+	s=arc-20240116; t=1770650820; c=relaxed/simple;
+	bh=ZhKPgY/ok6tI6LT0kTgE+bryaFImUWk9Msy8DHA1TvI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qoNE1+5haVgpGkfH2rniQezlxXnKEahbODi0i1z7Ja8oczNtI/apdmVIzjblpgGDyAxU/DpDamx+9XvYJtL6DXYq5iYPSAkwWOOUETKg6hXHj2ueg0i/3VTnYGAtHfzMys7++BpaEjFSyyimsac29YMaQWt6LWGLhtx/CP8lfwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TsnS4VfO; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-794fe16d032so36018587b3.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 07:07:49 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nB/7NuQv75B777gbNaBtUFyVjQzYCFTFyFL9d24KX2EvG+iNe4K6yl7deCn38ySWMJUI68GmeEhh85+HZ0udqWeM/mWe/M93LYCDI8rLN1hOo4zBe0cvNbrfR0KaTqf6CB5ODNO+TRktGLrvAqZzq0TyZqBewFprGlzUW/dNG2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KIRwknVf; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hXaJdI4F; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 619AOdfg2381295
+	for <devicetree@vger.kernel.org>; Mon, 9 Feb 2026 15:26:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Nrb9jUqmDkSXq+1Jp5iSrLtt
+	FVewPb8+LDQpVvObx2o=; b=KIRwknVft7mLsGtswJU5lJQerpGQJRx+C++3moSd
+	MUHpMCWYX8QFxRRWPnik7QHXZ0HulO312aTKAYHoKd0oqEKtdFgvq0xajlt63OJ+
+	tCBx0uqTRdxbhI9DlYxw+t0qb8iC1nKulH5PNZfMv38tPkbDzC8DYIxEWGHwRDlz
+	21KABv7NTSHqTYhqLRSVM346OEptq8IiJPZ4XzuQXA1Rb8unchK4Xn/u+bxgLbS3
+	MlZN8/bVKVpQdlrqEW2P+s0tVy3FQiytKhvKfcuvE4F0SHGbMSQNuMFr3/2VETkz
+	dIpN7g55IBFnTfCBgcmDLjlU3r96EIdVK53CzpWEU8424Q==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c78gdt5vs-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 15:26:59 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c71500f274so506636785a.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 07:26:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770649669; x=1771254469; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1770650818; x=1771255618; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3umIUrvoVFMcqhsX0diux6puJqsZRUyyQBsPVdUoAFg=;
-        b=TsnS4VfOjaHW/R5FuW4NeH/WVXsuXY5RAb+PWS/OfGS5pV2pWXJ/UhbB9ml8hyCGQY
-         TNRd1YSVrN3/pSxznukBawS+UuJum4CoT6q1kgP3m0xW5qTX6qjWSgxR/ZXOlu6NAXYP
-         WQ73IhzI3PwKozstsiSbMTBI9CTfV+0WkYiXPjKXvIA85tuIRUwo3eKEKhrECAziHgXy
-         UffzRpFNcbaTneYTIFde3bucAAcaGmRGmmruaEEjNrjFnzShcyDILkQP2dehDanVyayG
-         3T5IIbd14H8lBOMiHEYHcjq3VWl81iF949ZzsKe913a09Pr3hO5mJsaKL4BRXMBvsptn
-         Ml8A==
+        bh=Nrb9jUqmDkSXq+1Jp5iSrLttFVewPb8+LDQpVvObx2o=;
+        b=hXaJdI4F0mPAxRCq/pTo70K/GnD8qIv/9co9arggTIuvtYrOcVADwonKleafMsO5qV
+         fKC4nkPIurtaxm5jDR++4Rb3wzRbo8Uh8iz5Ytsux2EdkHEN+u8SewVVVSC0jBtimbwM
+         QL4Ab2JqiWDdhLqCWZUEmJLx/+CtCgwKRoT5apXu5FDpnYjaKCfujTxWVONGU1+PCd9t
+         cBVk0ETAMKBHtRNU65UyCi1ZpUvsE//Yv+trgc3ThVbPFIHtLzJkBM5GwEvgakJMVSOU
+         4Ox9Fa+EZEEvuy2XAJwVkiEKIErpnwC78j8UFQ616cYTFL1SWoisHB7DRMj3r9BiRk8v
+         4LIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770649669; x=1771254469;
+        d=1e100.net; s=20230601; t=1770650818; x=1771255618;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3umIUrvoVFMcqhsX0diux6puJqsZRUyyQBsPVdUoAFg=;
-        b=BRxmDTxYbDZtRU0bTQ5NWQo0RGdfe7Do5WcVnvVf07qaHMrLsh0Ln2y6uHIL05CYTQ
-         aVBYaw94CW1xfK/mSceslNXfjgrn3ixPUzj4oMvzOp0Jf8GCkwciVAMCZ5AlpoBs38mB
-         Hxdqsd4r50oOZQCqoLPuKbW00n/ApDiLbCw1UjJh10DwK/DlOaHZib5O3lIhQvnYvipU
-         xgdnpE2aTS3dh+KjYJPYKcJGLVot+kGnoMTGn6F8qbzGmAcC2IGe3FC5ZaVL0NXpysBK
-         z17akMjuliYXzed5jVn7205Ld08j1xhfNnFuoYGteFW9G4GkMoSiCsjBQ/0g8Q5SW5hN
-         XiNw==
-X-Forwarded-Encrypted: i=1; AJvYcCXkZ0/qz340iiqaHrFvmEHhbFJgJzGrl+27p6LCH6pmd/rGvldrYn8toLGACJs4Q//HN1Eet4Tze7cr@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLUsCni6Ke5NGf/qryX9jUO9eoCMuJnceUn8UfcAgV34eOVvjn
-	epewmr8mxC/BOL+7V7ntLcAyO0tLqRr2b7Xki/8GZGUHfSzQL3OiWJKT
-X-Gm-Gg: AZuq6aItwRPRq8my3UP9rSAl03Eho/lQxAYVb7glBqDhe96Y3Uk2uUUB3aFmwVWXCNR
-	NaS4Re87ZbjRVJ0zpWNjKygM32kbwMk18xl2P8lepfzHVrMaREGZLwAZbf2OX9Uo28MK7EyuIKm
-	2Vfcpw8YEut08+7RhBG5lS2fJb17X0jS4zs7r9dOpkuZn5+i76r7zZ2uCbe260TnC5xatcXGrjz
-	HpLqNlj86Q3xT+D+GKJekqpsu1s2l1tc8u8PE4HXw711N294qm60+d4pcGpU/NsHXj8Imhj6aiF
-	L0HXea2PYvi7H5EijygCyAnkJyGwXXRTeZK4Cbv1hWkWNDCaT6kJVjKquZXQBSTfEFjYQNvwcma
-	QHt6KGrKoSMxqWJFbxjJ90i4vVKwuewaYmKsien/CdGmQ0vYd6U2/x4Mkdv17w9apPBntcLKkJj
-	4KdEOWHFLsjF/1pCcCf2rt
-X-Received: by 2002:a05:690c:399:b0:78f:c2f3:141 with SMTP id 00721157ae682-7952ab20ff0mr124248997b3.35.1770649669011;
-        Mon, 09 Feb 2026 07:07:49 -0800 (PST)
-Received: from localhost ([2804:30c:163a:1300:9b68:dd2c:feb4:459b])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-7965705d5a1sm7741137b3.46.2026.02.09.07.07.47
+        bh=Nrb9jUqmDkSXq+1Jp5iSrLttFVewPb8+LDQpVvObx2o=;
+        b=kRQKIbbUTJtKq1Twkfc3m0Bofsdn23qdK8TyQrCYcBKlVZ9sVD/7rw1Zv8Wl/p3BWH
+         ttvMB0I/1r9izuPa8UdzdzxMecYtbQvK+Sgt+h+ExVtKczUm/tfsGUi2/yMuGVzj8MsY
+         25iEy7WMM14jjejLq0EftsJDsFL9kUn9tTg1wVntKjxjf41J/1ZersEtRUQ6RkVUSItO
+         nXZaDzEENIrSAqpnFJfIP6nvsKsJcRRWc8osvtFkKW4d/ZQACUl+7iDLUy0SZnYdcTVR
+         dOwYYYwcCuIdlodq8sRjArh4sOxA5qoMUCrEujQUvYQACuFDFo1bqggWuKfTPnddV20V
+         mx1w==
+X-Forwarded-Encrypted: i=1; AJvYcCXVzx2E8inzhOZ9e7MqBOjaxxUY0Zu/S9cUKpBxqRAHA25LOEo0XVmESChoy1KAI6CWPI2R2at805sA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPysh1RnReEGhUQN+iZOIiqTTG03QnIdBw3107DhfuU2E1PJzG
+	ot3m4gyTLABm4EiOe79IGVc8rhyfc27zfoQtQSIvmSGh46+ovSLyQ1XtCF+EJSKoV+G1IvPqdvi
+	ZjODnL0JGJnAbrWbfoPoYq7AVXY2RiPj6DZL8vNsMnRVwD6/Br2wSRVoXbVbRs8G22AFhpXLb
+X-Gm-Gg: AZuq6aJ0GWqMq9l5bxOydSkhUsuovsMEZ493NnrIyZXvj4i9u9fvYqJ6AguiwWQQEH0
+	dCydfaS0S02JiTl9ZQlo2g83uEuPrwpTVzGlHsx3GO+xL5YvxG4waW/DnlYMVhXJZUbSl6R6gdP
+	k9DcQiDAxl/4jmfo/isQjSjNUjKDOIwwwi3TfMTbEin4Y9o7CD6F5h7ROG41uNRHHHIWLRqcWlT
+	g/LJoeTcH28uV7798HS7fmMk+nNUkFF2stwdiK7KZRy6Lyl+MLAVd1YMLbgIo9NkCCul9xUx2tT
+	fG4L+VNnO7cTNvrzxLFd62g5Vyx61oznAdZ7wURBcLuGusvf385ScCIGeWuT6d6Sl2ZUbT7GYSV
+	Jb1yfKmtv0rMuYpTVDVPbLy+j2eibeWITAZdq6AuXwWMJI0g3Ygh4aDN59+BTRObrK44lgJvDpN
+	Gh4Jjy/q7PBaiTZkVtrMzyt3Q=
+X-Received: by 2002:a05:620a:372b:b0:8c5:2ce6:dae with SMTP id af79cd13be357-8caef409a31mr1527704585a.29.1770650817790;
+        Mon, 09 Feb 2026 07:26:57 -0800 (PST)
+X-Received: by 2002:a05:620a:372b:b0:8c5:2ce6:dae with SMTP id af79cd13be357-8caef409a31mr1527700085a.29.1770650817277;
+        Mon, 09 Feb 2026 07:26:57 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e44e21c9fsm2674085e87.77.2026.02.09.07.26.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Feb 2026 07:07:48 -0800 (PST)
-Date: Mon, 9 Feb 2026 12:08:15 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, jic23@kernel.org,
-	michael.hennerich@analog.com, nuno.sa@analog.com,
-	eblanc@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	corbet@lwn.net
-Subject: Re: [PATCH v8 8/8] iio: adc: ad4030: Support common-mode channels
- with SPI offloading
-Message-ID: <aYn4Xxj9TIXvYn7z@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1770403407.git.marcelo.schmitt@analog.com>
- <1f05069e25e9ea28db2cef9fa3856456be3c2614.1770403407.git.marcelo.schmitt@analog.com>
- <aYiXjCpiMQ_h9Ao4@smile.fi.intel.com>
+        Mon, 09 Feb 2026 07:26:56 -0800 (PST)
+Date: Mon, 9 Feb 2026 17:26:55 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org, sboyd@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alexey.klimov@linaro.org,
+        r.mereu@arduino.cc
+Subject: Re: [PATCH 4/4] arm64: defconfig: Enable Agatti audio drivers
+Message-ID: <ddvxacge7zkez2zjyrxz2ux7zztc67rn2gtiizhuzhl6ggnl7k@2t2amskhk65j>
+References: <20260209142428.214428-1-srinivas.kandagatla@oss.qualcomm.com>
+ <20260209142428.214428-5-srinivas.kandagatla@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,89 +115,99 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aYiXjCpiMQ_h9Ao4@smile.fi.intel.com>
+In-Reply-To: <20260209142428.214428-5-srinivas.kandagatla@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDEzMCBTYWx0ZWRfX00uA8WxBd41Q
+ Y0bCQPiYYIv3+wck9oSc0BuIjOeC6R0MqNf8agnxjJR8A1wG+5B0C8rHjvkeqRD3dMCPTIWa17h
+ 6AIAqgOBSIAPfvM4GwdM5X0Ez0/d7SNphw+p1UyYyEBZVESH5tw9V8q75G60xSv2woqb3b24Ces
+ 4yjMc5qM4p96g5t/QVe14u70prCKf6lsnFGQQgoHUqJ+M6LmpsgoInQv8WBODQatxblwkxE9a+n
+ H7tq346XifEkwUWpslCchUp58hAB1s/RLcdT7BZBgaOWE1UU/mf0zLaLLHdT2aishwDFlOy25P/
+ FxjogNRrQ+OpW803gMcaIp6LHWRPWHPZpjXuZ098tjdBQoSa8IQXHVU1HMgcvV95spaINAmvO1G
+ lBf/H7GlBA5rqFtqNf5e9skmc2hBv3E2ajP0Ji0VHB18jb8iH0elN0gQjNkggz1quTYW4Mk3mrw
+ Py7ztC2fbTD+K4M3P4A==
+X-Authority-Analysis: v=2.4 cv=Fv0IPmrq c=1 sm=1 tr=0 ts=6989fcc3 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=EUspDBNiAAAA:8
+ a=SW5gx9wwwNEQv_Y7kvkA:9 a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-ORIG-GUID: KLPjH0BmGlUItdtoTUPravmVM__ngg31
+X-Proofpoint-GUID: KLPjH0BmGlUItdtoTUPravmVM__ngg31
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-09_01,2026-02-09_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 lowpriorityscore=0 adultscore=0 suspectscore=0 spamscore=0
+ phishscore=0 bulkscore=0 priorityscore=1501 clxscore=1015 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602090130
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264049-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-264050-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marceloschmitt1@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 385A911190E
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 5EA7E111EF6
 X-Rspamd-Action: no action
 
-On 02/08, Andy Shevchenko wrote:
-> On Fri, Feb 06, 2026 at 04:02:42PM -0300, Marcelo Schmitt wrote:
-> > AD4030 and similar devices can read common-mode voltage together with
-> > ADC sample data. When enabled, common-mode voltage data is provided in a
-> > separate IIO channel since it measures something other than the primary
-> > ADC input signal and requires separate scaling to convert to voltage
-> > units. The initial SPI offload support patch for AD4030 only provided
-> > differential channels. Now, extend the AD4030 driver to also provide
-> > common-mode IIO channels when setup with SPI offloading capability.
-> 
-> ...
-> 
-> > -#define AD4030_CHAN_CMO(_idx, _ch)  {					\
-> > +#define __AD4030_CHAN_CMO(_idx, _ch, _offload)  {			\
-> >  	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
-> >  		BIT(IIO_CHAN_INFO_SCALE),				\
-> >  	.type = IIO_VOLTAGE,						\
-> 
-> >  	.scan_index = (_idx),						\
-> >  	.scan_type = {							\
-> >  		.sign = 'u',						\
-> > -		.storagebits = 8,					\
-> > +		.storagebits = (_offload ? 32 : 8),			\
-> >  		.realbits = 8,						\
-> > -		.endianness = IIO_BE,					\
-> > +		.endianness = (_offload ? IIO_CPU : IIO_BE),		\
-> 
-> Hmm... This is interesting. Does it mean it's designed like this for any
-> offloaded SPI case? Wouldn't be better to follow the same endianess in both?
+On Mon, Feb 09, 2026 at 02:24:28PM +0000, Srinivas Kandagatla wrote:
+> Enable reset controller and pm4125 audio codec driver that are required
+> to enable audio support on Qualcomm Agatti SoC based platforms.
 
-Yes, as far as I'm aware of, the only SPI controller supporting offloading is
-SPI Engine. And SPI Engine offloading pushes data to DMA in CPU endianness.
-It would be easier to deal with only one endianness (BE in this case since the
-device pushes out data in BE). But BE is currently not an oppion for offloaded
-transfers. Making it IIO_CPU for all cases/setups would make it unsuable in
-some setups that don't have SPI offload (e.g. raspberry pi only supports 8
-bits_per_word would push data in BE to IIO buffers). Ideally, we would check
-what are the endiannesses the controller supports for offload tranfers but there
-is no offload provider other than SPI Engine so driver have been having it like
-that so far.
+defconfig usually is described in terms of a board rather than
+platforms.
 
 > 
-> >  	},								\
-> >  }
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+> ---
+>  arch/arm64/configs/defconfig | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> 
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index b67d5b1fc45b..6db35c1605a0 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -1146,6 +1146,7 @@ CONFIG_SND_SOC_ES8328_I2C=m
+>  CONFIG_SND_SOC_GTM601=m
+>  CONFIG_SND_SOC_MSM8916_WCD_ANALOG=m
+>  CONFIG_SND_SOC_MSM8916_WCD_DIGITAL=m
+> +CONFIG_SND_SOC_PM4125_SDW=m
+>  CONFIG_SND_SOC_PCM3168A_I2C=m
+>  CONFIG_SND_SOC_RK3308=m
+>  CONFIG_SND_SOC_RK817=m
+> @@ -1550,6 +1551,7 @@ CONFIG_SM_GPUCC_8350=m
+>  CONFIG_SM_GPUCC_8450=m
+>  CONFIG_SM_GPUCC_8550=m
+>  CONFIG_SM_GPUCC_8650=m
+> +CONFIG_SM_LPASSCC_6115=m
+>  CONFIG_SM_TCSRCC_8550=y
+>  CONFIG_SM_TCSRCC_8650=y
+>  CONFIG_SM_TCSRCC_8750=m
 > -- 
-> With Best Regards,
-> Andy Shevchenko
+> 2.47.3
 > 
-> 
+
+-- 
+With best wishes
+Dmitry
 
