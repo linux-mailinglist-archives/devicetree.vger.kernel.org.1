@@ -1,254 +1,393 @@
-Return-Path: <devicetree+bounces-264076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264077-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YKcrE6EQimlrGAAAu9opvQ
-	(envelope-from <devicetree+bounces-264076-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 17:51:45 +0100
+	id IO1wHd8PimlrGAAAu9opvQ
+	(envelope-from <devicetree+bounces-264077-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 17:48:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCDD0112ADE
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 17:51:44 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89BF2112A75
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 17:48:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5F5B23035259
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 16:46:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5E9A03006025
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 16:48:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E1F3859D5;
-	Mon,  9 Feb 2026 16:46:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BDDE38552A;
+	Mon,  9 Feb 2026 16:48:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CtyEMc4G"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="QrzubQ+X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011067.outbound.protection.outlook.com [52.101.65.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA1BA3859CA
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 16:46:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770655586; cv=none; b=MKCW2ocxxlfqAYke3j0cvwibd4BsIHdvy1MMRl2O8HNvWnRldDkKw+mO/+IXl3BjJdXTeNkc7xq6vYOPTc/FKLCNe38binvf1wgtOT1wvfrr4fnL7bAjY8ggp/5fikIoxAF8/OxOO3EcySaq4NyNq2VYAG5t+Nobx2/scqQtWac=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770655586; c=relaxed/simple;
-	bh=CwohizHSnVaA2NNgNrCByNQlZ1oJaWWA0GxEuHaseKg=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Ea5g4bI41N/5JrmC94h7aAixrChk0L0s5gDYSZAdVE2F4+OIUMHJ6jjWt8gCyUK9UAvDuRY+BVoS8HzNy5XDZb1v0GuS4nB4IAIK5hlHbW8GPGbpMJxIPnPq8Y9P4Z8puWlWV7I88lGt/o/c59LX4Dm5QiA9RS0ZldHja8cygC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CtyEMc4G; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-482f2599980so54238135e9.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 08:46:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770655584; x=1771260384; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lLb8ag3ra6IO++ksPTcs7qsE4fbhw6boR1CyaCV8y8M=;
-        b=CtyEMc4GwyVBEzvrQEIciduy2i4+EtGAxYgjt3wFjCosVAoyBNl7oOKNDjIz9W3sT7
-         84syF377CGo9ImIx2b9ZGlR0qZ/wIsbxCHqENnSUfjviyYRz6wb5nE7mgS3ZdafYH0hw
-         b4D0E1IbYYVS8y9XAYyKMDuKhHAx/y6yYFL73FJbDPOZuXq0ztVG4OoG7zG+Lr8hOfa0
-         iKubVufqn/GVW7UuRmuR5Ry+bJ0NyuZQnzgREWMmzepaNbBZV5zXGddC3+uzz7TVSOgc
-         2ZTlXC+1EBoh1THLXy9T+l+m+w/102Mjkj6HfGrORZA2qt0FtOoTzaL/vifxxdBH2Fdv
-         1IVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770655584; x=1771260384;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lLb8ag3ra6IO++ksPTcs7qsE4fbhw6boR1CyaCV8y8M=;
-        b=AqAqWytZ2+tQrb7SPUBr+YBQ3z2ycysAdW24xjZBcAMBauzfzjfryeepfhEXW7lREw
-         jJ1RiUFV//iSd8Gqin8qRtbg6NWcerAaPuOF6Lm7wlAW8yMMRGe1Or2uxoL4n+UeWryw
-         GJeyjS6zfHcJqpufZ79dWoqgt1x3JRXAOmBK9YQpfym2cKibdz/Zs68vmC/pRfK9qyri
-         pR8yPGbZbtJLtg+st2woWtDXJC6EoWenwFh/9tu7yCZsGjkgo50P57+LYmHpaWCsFj4+
-         ZmitEm9pyf426lCZKqqYtBz17TaUysmb7wr9cyp4q2zt2pfJlt+2a19VeSbeHlHSiI84
-         pujA==
-X-Forwarded-Encrypted: i=1; AJvYcCW/vr6JDWvshKYvpy2RJZouRsLrUaDwL45ODUfjN9S6Fx/Ojhes96caOuPA2i1Z4e6lIkMG1WLUhg6m@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVWMT22ZuK1FBDFrpaB7mRqz86ti8yjslpLTY07Z0VlcDpoINF
-	QBCrxrxtNfH6RXVBsljEnHMwM4wsnRmyqVNrqbdMvscOrlIyJznEeKPE
-X-Gm-Gg: AZuq6aLhbL/Bja5uXm8PjCAiomx+7Q/erCwRohIwKy+ktBavgcw6A35lI4jcWplJctL
-	CgoPEOtsrVCrP6tvwHNgePhJbLpPtVmxBvHVinZ5TIJoiKsj5QHy4bQ2BXKdIaDEaaVL5aRychZ
-	aq3q7ZQMb93ivvPauLRDBJk5wODlcbtWKQX3VHT097K46i/PFmTunPFDEW2c/z3YIemF9IrGDKH
-	3pr3JQDKDd8JJ5nVUaEXmCzf3OZSmm2m9KOYNkFCtQQRuiODTJSSsjUBjwatoPTbFO4cGJMuvGV
-	d1Cca+69Lh60azHRvM5zxqRbrKIRuSzpkDBMYT6iLUIVLbYRiqOPPGA6FS8Nlj0JiZ6cnRuLZfo
-	KlI8GZ3wpIXaUGySJajkRec4z+VXUYU3EqcglJwJwkTlUhQBRviCuXMTpVRcW5UJK6BfWCg02rb
-	iWTnmetCmOuQWSLWlRW4PaO84qXi/8Byo=
-X-Received: by 2002:a05:600c:45cb:b0:477:8985:4036 with SMTP id 5b1f17b1804b1-483201dd216mr157441135e9.1.1770655584079;
-        Mon, 09 Feb 2026 08:46:24 -0800 (PST)
-Received: from [192.168.1.187] ([148.63.225.166])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4834d5d78cfsm1924275e9.1.2026.02.09.08.46.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Feb 2026 08:46:23 -0800 (PST)
-Message-ID: <be8457799b32d420228df5e2841c5547023ec515.camel@gmail.com>
-Subject: Re: [PATCH v2 2/4] iio: backend: add devm_iio_backend_get_by_index()
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Antoniu Miclaus	
- <antoniu.miclaus@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron
- <jic23@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?=	 <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring	 <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>,
- Olivier Moysan <olivier.moysan@foss.st.com>, Mark Brown	
- <broonie@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org
-Date: Mon, 09 Feb 2026 16:47:06 +0000
-In-Reply-To: <becd9db1-818f-4aa8-8362-91a711861839@baylibre.com>
-References: <cover.1770393792.git.antoniu.miclaus@analog.com>
-	 <550323d752213f177b7673bdd42e667f1d2228cb.1770393792.git.antoniu.miclaus@analog.com>
-	 <c731b6fba72286707821ea6e7722835ba45f089c.camel@gmail.com>
-	 <becd9db1-818f-4aa8-8362-91a711861839@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7C6B3816F5;
+	Mon,  9 Feb 2026 16:48:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.67
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770655705; cv=fail; b=C58PZPcN8R2WwqQYOPeVyWjjOdNBt8l08J6YsqhZmEiIwmivCxXx7ZJXI9D9q5m7acdGg1nl0Eq2JDd4V8T3a/Dj+f7VJkp5+hPKLYkKjfz0+UnWr6cS1w5/0k59hvDyEsR+i7AUCCfVtL1NRiQxaPemsQuExbDOapUQJ0orhtY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770655705; c=relaxed/simple;
+	bh=lkHSn6B8wDdqZyvc3DYe66Aq1dlWejhnPOwTlBEiArY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=I7/sYJ7k1fHGAnlsVQukkrnjO8s3gK1mZYZ1svULPJOwKREOFlWLWPu0HrVMUWu9I0fM3kYsxSgPQzWTZUkrhXKBLE2glZGzoqVrSxJ6l3rzvdKA/mzv5bhSiB85t7IDkVhHb6enn/WnTdHlRILEFTEsu/Kgy4872OCRp5Tu0Vs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=QrzubQ+X; arc=fail smtp.client-ip=52.101.65.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GBcRgQZuEYa5mFJK0cIyoQ0dGFZmPXA+zs31jYL6j33doA/nJeYdEOR3WBHBWGY3Lmmh9yN+XbLfA/MktkbpoLuhHk7T+DeMIFB9uiye6PtUq4OBNdBKUNWjqwAoU0Jg6DmYVVPCtpkexgFNzbJ5/jARJk6y12cGkxdyTLbd4LqPH/IzZylHiV49C13iFXzTDbUGoZkJOxBDgwl9HOOzqK4DAZObdVWMSI26LYvU2/DkyocTHqGHN1gWMPBIsKk1euOt6BnN1YYWoKNMGcUJPjwhDoYzaqe5NAipsKv08RjscIu9gQcPUKHA5tZ+No/5FIabKR5jRUqZ2ZKiiLlNvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Q6ZCAQZjrf23K0qnN/0FK9RQcdEaSqS+ztf2Q+Wea+Q=;
+ b=OBP1fPvb3HvccqrLbv8Iru/6OIkGQCBrXjRFOPj7D2cwY0akSrr9QX0TC9TN3JOz6J9MqydFgSkbVpW51EGLH6lgda0fdAhl5Wt0NOjrMs3UzIXBw0aJJvcS33flRBHnWdUY/81+6iYk681WdqLaewE27fmO7Loq581G5IytHRuZ4XnV+Blh9+1cn+8Xo2TzqnE56iUf+Li6QEgoRLusCrIvIDNnYJ+RjV1dC4TTnjhawiuxxt5Q0WA9iAjYCqN+NCfxx0bjB8tfgT6JJP/zZp83uXPYL6SbZjJHpDraSF/6ENc25vnPHUNWs3xMOObZrcvgQBgjI881h/BFT9C5XA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Q6ZCAQZjrf23K0qnN/0FK9RQcdEaSqS+ztf2Q+Wea+Q=;
+ b=QrzubQ+XfqyQEq3uMiwGSuqq5Tga9iClnm6HeT4X100YqtVlWTCRLfGHdkaXAYcfq3/yYdYNHLV3Yv5mIdihayh70rCish2ccyrzRiK1g3q+scPuyTtuyDSyYNnRv1TCGAOZzOgoYsHuP3qGKjKPguDlVappAvJA9Oa9DLGrmwuFGkfr6/Q1fBN3MYc8KflttvJYkXRTJYqvY7FgtqtvgEaok0Li+ocmgai2uPtQiEkmDVQaCNljVQppVG1CZ0arHXmeR19JJHmued9+qY6SQ95gRwgwK8yUAAj1Z2MNnOA7D/YNA/4SdCVuKbjCYuNgOOyFTzEpWcGj8LtLbgrT8A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by GVXPR04MB10561.eurprd04.prod.outlook.com (2603:10a6:150:227::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.14; Mon, 9 Feb
+ 2026 16:48:20 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Mon, 9 Feb 2026
+ 16:48:19 +0000
+Date: Mon, 9 Feb 2026 11:48:09 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	dmaengine@vger.kernel.org,
+	Xiaochuang Mao <maoxiaochuan@loongson.cn>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org, Keguang Zhang <keguang.zhang@gmail.com>,
+	linux-mips@vger.kernel.org, jeffbai@aosc.io
+Subject: Re: [PATCH v2 1/4] dmaengine: loongson: New directory for Loongson
+ DMA controllers drivers
+Message-ID: <aYoPyWS7o27G-AHh@lizhi-Precision-Tower-5810>
+References: <cover.1770605931.git.zhoubinbin@loongson.cn>
+ <d62faafc653efab602c8d6bfcdcee1cb217171b9.1770605931.git.zhoubinbin@loongson.cn>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d62faafc653efab602c8d6bfcdcee1cb217171b9.1770605931.git.zhoubinbin@loongson.cn>
+X-ClientProxiedBy: BY5PR13CA0001.namprd13.prod.outlook.com
+ (2603:10b6:a03:180::14) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|GVXPR04MB10561:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4ab0b3a6-dedf-46ef-ff1a-08de67fb07aa
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|376014|52116014|366016|19092799006|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?zgULMXwN4GiCeKOxuQZ3HmT8JKc0vAPxhbajuo3nYI7l7mqaDbrBMhSpJ0Ky?=
+ =?us-ascii?Q?5jsTzVbnJCRw5/fuNPdIV96kcf/2sG4zKyiC9ju1Uis4z9UXFuZV0yVigxwD?=
+ =?us-ascii?Q?JRN6aK3fbKq1pB51kBK7xKsztU5e6MSmIfQlvYuuklwcsRAaOHr4cVqJMqZ5?=
+ =?us-ascii?Q?Oy0N/EX3Bl1XyOV53s3DqsgrcnelffMSy8FBOT5K5KtOTB7XxEF/ScnbTYN+?=
+ =?us-ascii?Q?9J/l+y1g01R67/mAQO/yrhBXdM6dhuwAPIeV12xe0jT1pbtmOGa3UyF4jm8q?=
+ =?us-ascii?Q?1trGQazJRCJoU+QQfwf/9TouvxVg4fFzu9g+N8pVAFbuoOuAVltq46KVWeMY?=
+ =?us-ascii?Q?LKajYCnGvCInduvRf8C9WBz5+lq1V+EBYO9Lz8Y70rvd/iFx9fNrhdWPUHHm?=
+ =?us-ascii?Q?bMJnqk0ESuQcnp3QDIcG8R1EzMT0kIg8ouXXa5lO24Lh1KoDDim0z4sXMLfZ?=
+ =?us-ascii?Q?n2pdqB4+Qso++xBrnvN+I/DMdEusYJ/kmj9dGuMwEm8KMTVjncDe7FsIGFTs?=
+ =?us-ascii?Q?MyA8Hohqy2fDDvViOOsxuWNMJ1KCfu8qqF8j6RM+uP0PLD5cU2pNJVvUh/RJ?=
+ =?us-ascii?Q?T6WHezJHn6BdM6P/Ixwmd+TU558nP0BnO5SxW69fxQKDj4H8EGd9z7ktg79k?=
+ =?us-ascii?Q?qcDgWcOzFiAis/zY/3H5LClUXSkPZLYlmev2N76s8nuX+BFIglite+HUYKhf?=
+ =?us-ascii?Q?SsBfMjjB9ocqxp0x7eOh9lcgulS30csCM91ZNcLtLD4X6VI8UQ6eYkSV1cVG?=
+ =?us-ascii?Q?xjyNVCbsbB3Lkv5jInF/pBPk65qf/kVBK34plY2Lx8GpBH9+WLiOAUjajc+/?=
+ =?us-ascii?Q?sU3eSVGwoupjP9qhHavUAzMq+yDYcXSH8x4WCnPRBgylZMUE3NeqY2hoXVmF?=
+ =?us-ascii?Q?bS3t9B2hO8gidyYKL2/1tPOrUY5R+M36M9VIYLkfQmp2LaMspp5Vp/D437lN?=
+ =?us-ascii?Q?RKvzpuLiCv9ERc0fRSiaatMv3662pB0g2VE/3iWSpkKDK/t0eQWMJXtBLfMy?=
+ =?us-ascii?Q?eeHzyViCQ38SO3lec1VygpcNekVNnEi5uQWwsUnn7HlyZMop09id3KHzrCZ+?=
+ =?us-ascii?Q?UoZvSdCngNfYIIenF7OJBHxtoIzR6qjEdrQl0wNKJzoaacXTuAGN29lKACBU?=
+ =?us-ascii?Q?lEr7zOJxduisdScbvKYq58MpDPGyEp6C/yNf3GswbveDO3sPb4NDIVnf0t+T?=
+ =?us-ascii?Q?Wrvou0HAUh8NeU0ivBzvRkpCbk6UnG8TzRw+WNIRS/sDJok5UOXPRLiEUyC9?=
+ =?us-ascii?Q?WjrhtJ9DPudEhnmxilrxuX+wwpaTyIiuD32LA+EApeXwNjcz8ZwSFuA5tq/H?=
+ =?us-ascii?Q?gyKS3Z/TPPaf2dr1N7N7g6BIYVOf9jzGrbqkKfCvGAPwBYs5qlcpUwBRDHWj?=
+ =?us-ascii?Q?JrEVROGaB+oc+mik8gvOKS50BjMxhNRFZIO/8p0HVwNe7QIEzEk0Utw1pkqw?=
+ =?us-ascii?Q?q4gihtRzkh9EJoJkmdaAXI5lQaAUSBZtq4b2dFxEydWQjkwh0vPEtqD0x00S?=
+ =?us-ascii?Q?/NY//n09knAYPPR3M+PJ9Cf/Q6gg/DQk8QqTUBZjpHdlKMfSC3s8ITpMrcra?=
+ =?us-ascii?Q?VdAfmoJyNwXGlY2/18aPxQ8Sj0GZsEWOCQFFc7XEw7SjERX5q0HlOqBNonxm?=
+ =?us-ascii?Q?fg06oObTpIZYu9IAHhNECXg=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(52116014)(366016)(19092799006)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?dGDpjeYD1Fe2fbzM+KwdmRwoseHrfWufX18ZNUYgrj2qHB3w2Tw9jmxoekaG?=
+ =?us-ascii?Q?60w5+w3X1Qdx+XJ16pt13S5n5FCCuNJRmv9PrdcTtzorX0aa7kJAADa4EnHe?=
+ =?us-ascii?Q?fA5FtJRFTuOKEr8M+wM9b+TUyheJPzLsqH4qB+VZdW4/i+TvZAvCUFiMdryE?=
+ =?us-ascii?Q?/rcyCQ3u4OsBg582bsJ+LP6fFX71xAGlWkAcxMnthOwhiQCHQpuwgC0ZTHSO?=
+ =?us-ascii?Q?ixCM5l8PrruNarEcQCnGOhSE4MmaPICC6DWmeBsi3fGP4OJgG069llWrVX2P?=
+ =?us-ascii?Q?cxz2VROIczYrydrOp474XKVtDpfd34Pfft5l8QJdET/LCmG8ORX+08cC2QtC?=
+ =?us-ascii?Q?23QDWXQ8FM/A+oQ6vNmkEXiVrxhkU9j8da08Q8mmUHUgh5+7L9ac6zW4jek2?=
+ =?us-ascii?Q?vze6xZazGS1Dh2lZVCgKGsCsVKqO3mKWh+zJWMXNzccg5GXmYwgfdunFZ69X?=
+ =?us-ascii?Q?hKzQ8q8iY9LGlMDapVAeY+hlrb1tP4HC5DexSANi+2CMCb6QFe9eGovdltDj?=
+ =?us-ascii?Q?9gwxqnRlJBVI+e0fDr5t5E9BXwjlSPhFuuo2okOqwnsMQZ3WTGYM6lk8EY/7?=
+ =?us-ascii?Q?BDHr5KJM66pz+iazpdSCRXX93XxBOtjfgpBIaJOzj4JaI53hN81U2URkpyk7?=
+ =?us-ascii?Q?Uo37F68HcV6QVdoVs1RTEXNCB8q3nxi9wgeXdnUV1GYcotEU1XyFiozZ8fv/?=
+ =?us-ascii?Q?fLwu6n4fbI/O3ApmoQlr3E7vVhA/ET6AGNUx0OZ1qTlmtGnUK00p35jkQu7z?=
+ =?us-ascii?Q?h2eefmZT96naKv6dq+rWRZWQcwJmyZDXnS1WLz1iQithT78fadiPWDNMyJW9?=
+ =?us-ascii?Q?zhBUbj9RYoNd6keVAF19+IEQxdGSH8xyCVNlfEy2bjLwUeI5QqLhxOrL9z0W?=
+ =?us-ascii?Q?L022qLMh5swLBeEiYtTWPPyuStyskdYMYVLe6Z+cPzm701r+CQZBlZVDVcfo?=
+ =?us-ascii?Q?GQTG8OlA35q5vJi8m2hYh/TOss1truUi3bOJBWRTxMhDbIXMKR15C4DbGA4L?=
+ =?us-ascii?Q?fuMaNvoWtuhsdjYos6E4d2PHxmNzt1lcnNFbYSO/kSZePmWecpcWLZguhbDm?=
+ =?us-ascii?Q?tjHMa9qMeu2h7G7aSpLQVOI0LRp4fXVhsyuX8KdKBew6m/bFHwjUlMtMzHT5?=
+ =?us-ascii?Q?GBaS5nTR9sRovdfPoCClGxNz2g+S2G72j9T/kbEOs289zBJVkZOeeRZ28Fyx?=
+ =?us-ascii?Q?4egVsLGzdD2ghTZV7x2kVv033tf1HWWkXwI9ajcvX5rjh9ihKWZb2915IDq3?=
+ =?us-ascii?Q?sC6KyeiTc6XaLplxfqBr8wa+hyQfoKY3B9v78MRvlaHbzidxEyuq0LYS/K8D?=
+ =?us-ascii?Q?ciLWfFzyMIRezDGDO2hP4A7idaIUeIOXOn/4TPHqSk84GBjFaJXDb3gek3NJ?=
+ =?us-ascii?Q?dXhdo+uJumf4wg6Hb9ah6F9PM30p/KreYwm1Trmk21LJuYvl4eezuY+1TkPm?=
+ =?us-ascii?Q?gkfisQil69kmlRaiJUWi5WACSEVTASgkHpYROg7BRehT0YtQ1PfY74yxjfP/?=
+ =?us-ascii?Q?c0v7lG+V+3/OohH9a9i/CxtU1Ce5GVfYuJ81j9Cxp9S2WSEjeEnxINoPDUHI?=
+ =?us-ascii?Q?buleKOFPXCKfGid0GW8BgPGtq/mwxoFzPEIUN89CdnNtDc7uFjDzfDOEWUiJ?=
+ =?us-ascii?Q?J8/W31VX6HUaVO0+PAbzRs1wFs+17PaiLTgI1aCeVHywDzmvkvqgUxYkAksK?=
+ =?us-ascii?Q?q3Q+iz3d9Jez6ywrsDXsjjhGBSWibJgBrCXFwiRA9UcuV6EvKwQ0nWIZg965?=
+ =?us-ascii?Q?TrJKcwuyCg=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ab0b3a6-dedf-46ef-ff1a-08de67fb07aa
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2026 16:48:19.8528
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: heogAK2OqCWn27cvpRhfc+P80276rA2tWPUxn5CdRJ+o/S1QpeG+DFGClbP8IeIujMKDe/Ys8A9+OLLvaOXRUg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10561
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264076-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264077-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,loongson.cn,kernel.org,vger.kernel.org,xen0n.name,lists.linux.dev,aosc.io];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:email]
-X-Rspamd-Queue-Id: CCDD0112ADE
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 89BF2112A75
 X-Rspamd-Action: no action
 
-On Mon, 2026-02-09 at 09:28 -0600, David Lechner wrote:
-> On 2/8/26 3:24 AM, Nuno S=C3=A1 wrote:
-> > On Fri, 2026-02-06 at 18:07 +0200, Antoniu Miclaus wrote:
-> > > Add a new function to get an IIO backend by its index in the
-> > > io-backends device tree property. This is useful for multi-channel
-> > > devices that have multiple backends, where looking up by index is
-> > > more straightforward than using named backends.
-> > >=20
-> > > The new function directly uses the index to find the backend referenc=
-e
-> > > in the io-backends property, avoiding the need for io-backend-names.
-> > >=20
-> > > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > > ---
-> > > =C2=A0drivers/iio/industrialio-backend.c | 51 +++++++++++++++++++++++=
-+++++++
-> > > =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 2 ++
-> > > =C2=A02 files changed, 53 insertions(+)
-> > >=20
-> > > diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industr=
-ialio-
-> > > backend.c
-> > > index 447b694d6d5f..3b692d48481e 100644
-> > > --- a/drivers/iio/industrialio-backend.c
-> > > +++ b/drivers/iio/industrialio-backend.c
-> > > @@ -1008,6 +1008,57 @@ struct iio_backend *devm_iio_backend_get(struc=
-t device *dev,
-> > > const char *name)
-> > > =C2=A0}
-> > > =C2=A0EXPORT_SYMBOL_NS_GPL(devm_iio_backend_get, "IIO_BACKEND");
-> > > =C2=A0
-> > > +static struct iio_backend *
-> > > +__devm_iio_backend_fwnode_get_by_index(struct device *dev,
-> > > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct fwnode_handle *fwnod=
-e,
-> > > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int index)
-> > > +{
-> > > +	struct fwnode_handle *fwnode_back;
-> > > +	struct iio_backend *back;
-> > > +	int ret;
-> > > +
-> > > +	fwnode_back =3D fwnode_find_reference(fwnode, "io-backends", index)=
-;
-> > > +	if (IS_ERR(fwnode_back))
-> > > +		return dev_err_cast_probe(dev, fwnode_back,
-> > > +					=C2=A0 "Cannot get Firmware reference\n");
-> > > +
-> > > +	guard(mutex)(&iio_back_lock);
-> > > +	list_for_each_entry(back, &iio_back_list, entry) {
-> > > +		if (!device_match_fwnode(back->dev, fwnode_back))
-> > > +			continue;
-> > > +
-> > > +		fwnode_handle_put(fwnode_back);
-> > > +		ret =3D __devm_iio_backend_get(dev, back);
-> > > +		if (ret)
-> > > +			return ERR_PTR(ret);
-> > > +
-> > > +		back->idx =3D index;
-> > > +
-> > > +		return back;
-> > > +	}
-> > > +
-> > > +	fwnode_handle_put(fwnode_back);
-> > > +	return ERR_PTR(-EPROBE_DEFER);
-> > > +}
-> >=20
-> > I believe we don't necessarily need this. Why can't we use io-backend-n=
-ames? I get
-> > that in here we just want something matching the number of channels we =
-have so giving
-> > names is probably does not add much added value. But still, I would pre=
-fer t have
-> > more simplicity in the API and it should be fairly easy for the fronten=
-d to use the
-> > names argument.
-> >=20
-> > _ Nuno S=C3=A1
-> >=20
->=20
-> IMHO, using names in this case would just be annoying because we would ha=
-ve to
-> sprintf the string to add the index to the string. And also have to spend=
- time
-> coming up with more complex DT bindings. Using the index seems much simpl=
-er.
->=20
-> If you really feel strongly about it though, maybe we could make a
-> devm_iio_backend_fwnode_get_fmt() function instead that handles the
-> sprintf() part so that we only have to write that once?
->=20
+On Mon, Feb 09, 2026 at 11:04:18AM +0800, Binbin Zhou wrote:
+> Gather the Loongson DMA controllers under drivers/dma/loongson/
+>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  MAINTAINERS                                   |  3 +-
+>  drivers/dma/Kconfig                           | 25 ++---------------
+>  drivers/dma/Makefile                          |  3 +-
+>  drivers/dma/loongson/Kconfig                  | 28 +++++++++++++++++++
+>  drivers/dma/loongson/Makefile                 |  3 ++
+>  .../dma/{ => loongson}/loongson1-apb-dma.c    |  4 +--
+>  .../dma/{ => loongson}/loongson2-apb-dma.c    |  4 +--
+>  7 files changed, 40 insertions(+), 30 deletions(-)
+>  create mode 100644 drivers/dma/loongson/Kconfig
+>  create mode 100644 drivers/dma/loongson/Makefile
+>  rename drivers/dma/{ => loongson}/loongson1-apb-dma.c (99%)
+>  rename drivers/dma/{ => loongson}/loongson2-apb-dma.c (99%)
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index f630328ca6ae..27f77b68d596 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14777,7 +14777,7 @@ M:	Binbin Zhou <zhoubinbin@loongson.cn>
+>  L:	dmaengine@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
+> -F:	drivers/dma/loongson2-apb-dma.c
+> +F:	drivers/dma/loongson/loongson2-apb-dma.c
+>
+>  LOONGSON LS2X I2C DRIVER
+>  M:	Binbin Zhou <zhoubinbin@loongson.cn>
+> @@ -17515,6 +17515,7 @@ F:	arch/mips/boot/dts/loongson/loongson1*
+>  F:	arch/mips/configs/loongson1_defconfig
+>  F:	arch/mips/loongson32/
+>  F:	drivers/*/*loongson1*
+> +F:	drivers/dma/loongson/loongson1-apb-dma.c
+>  F:	drivers/mtd/nand/raw/loongson-nand-controller.c
+>  F:	drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
+>  F:	sound/soc/loongson/loongson1_ac97.c
+> diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+> index 66cda7cc9f7a..1b84c5b11654 100644
+> --- a/drivers/dma/Kconfig
+> +++ b/drivers/dma/Kconfig
+> @@ -376,29 +376,6 @@ config K3_DMA
+>  	  Support the DMA engine for Hisilicon K3 platform
+>  	  devices.
+>
+> -config LOONGSON1_APB_DMA
+> -	tristate "Loongson1 APB DMA support"
+> -	depends on MACH_LOONGSON32 || COMPILE_TEST
+> -	select DMA_ENGINE
+> -	select DMA_VIRTUAL_CHANNELS
+> -	help
+> -	  This selects support for the APB DMA controller in Loongson1 SoCs,
+> -	  which is required by Loongson1 NAND and audio support.
+> -
+> -config LOONGSON2_APB_DMA
+> -	tristate "Loongson2 APB DMA support"
+> -	depends on LOONGARCH || COMPILE_TEST
+> -	select DMA_ENGINE
+> -	select DMA_VIRTUAL_CHANNELS
+> -	help
+> -	  Support for the Loongson2 APB DMA controller driver. The
+> -	  DMA controller is having single DMA channel which can be
+> -	  configured for different peripherals like audio, nand, sdio
+> -	  etc which is in APB bus.
+> -
+> -	  This DMA controller transfers data from memory to peripheral fifo.
+> -	  It does not support memory to memory data transfer.
+> -
+>  config LPC18XX_DMAMUX
+>  	bool "NXP LPC18xx/43xx DMA MUX for PL080"
+>  	depends on ARCH_LPC18XX || COMPILE_TEST
+> @@ -774,6 +751,8 @@ source "drivers/dma/fsl-dpaa2-qdma/Kconfig"
+>
+>  source "drivers/dma/lgm/Kconfig"
+>
+> +source "drivers/dma/loongson/Kconfig"
+> +
+>  source "drivers/dma/stm32/Kconfig"
+>
+>  # clients
+> diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
+> index a54d7688392b..a1c73415b79f 100644
+> --- a/drivers/dma/Makefile
+> +++ b/drivers/dma/Makefile
+> @@ -49,8 +49,6 @@ obj-$(CONFIG_INTEL_IDMA64) += idma64.o
+>  obj-$(CONFIG_INTEL_IOATDMA) += ioat/
+>  obj-y += idxd/
+>  obj-$(CONFIG_K3_DMA) += k3dma.o
+> -obj-$(CONFIG_LOONGSON1_APB_DMA) += loongson1-apb-dma.o
+> -obj-$(CONFIG_LOONGSON2_APB_DMA) += loongson2-apb-dma.o
+>  obj-$(CONFIG_LPC18XX_DMAMUX) += lpc18xx-dmamux.o
+>  obj-$(CONFIG_LPC32XX_DMAMUX) += lpc32xx-dmamux.o
+>  obj-$(CONFIG_MILBEAUT_HDMAC) += milbeaut-hdmac.o
+> @@ -88,6 +86,7 @@ obj-$(CONFIG_INTEL_LDMA) += lgm/
+>
+>  obj-y += amd/
+>  obj-y += mediatek/
+> +obj-y += loongson/
 
-uHu? Maybe I'm completely missing your point but what I had in mind was jus=
-t something like:=C2=A0
+keep alphabet order
 
-
-// from the frontend:
-
-static const char * const names[] =3D { "adc1", "adc2" }
-
-for (c =3D 0; c < ARRAY_SIZE(names); c++) {
-	back =3D devm_iio_backend_get(dev, names[c]);
-}
-
-So yes, I agree we would have a bit more complex bindings and more complexi=
-ty in the
-frontend. But on the bright side, no need to change backend code at all. An=
-d the
--names property is already used like the above fairly often If I'm not mist=
-aken.
-
-But again, I can agree that for this usecase getting things by index makes =
-sense. Given
-that we just want n backends for n channels, the name does not add much.
-
-- Nuno S=C3=A1
+Frank
+>  obj-y += qcom/
+>  obj-y += stm32/
+>  obj-y += ti/
+> diff --git a/drivers/dma/loongson/Kconfig b/drivers/dma/loongson/Kconfig
+> new file mode 100644
+> index 000000000000..9dbdaef5a59f
+> --- /dev/null
+> +++ b/drivers/dma/loongson/Kconfig
+> @@ -0,0 +1,28 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +#
+> +# Loongson DMA controllers drivers
+> +#
+> +if MACH_LOONGSON32 || MACH_LOONGSON64 || COMPILE_TEST
+> +
+> +config LOONGSON1_APB_DMA
+> +	tristate "Loongson1 APB DMA support"
+> +	select DMA_ENGINE
+> +	select DMA_VIRTUAL_CHANNELS
+> +	help
+> +	  This selects support for the APB DMA controller in Loongson1 SoCs,
+> +	  which is required by Loongson1 NAND and audio support.
+> +
+> +config LOONGSON2_APB_DMA
+> +	tristate "Loongson2 APB DMA support"
+> +	select DMA_ENGINE
+> +	select DMA_VIRTUAL_CHANNELS
+> +	help
+> +	  Support for the Loongson2 APB DMA controller driver. The
+> +	  DMA controller is having single DMA channel which can be
+> +	  configured for different peripherals like audio, nand, sdio
+> +	  etc which is in APB bus.
+> +
+> +	  This DMA controller transfers data from memory to peripheral fifo.
+> +	  It does not support memory to memory data transfer.
+> +
+> +endif
+> diff --git a/drivers/dma/loongson/Makefile b/drivers/dma/loongson/Makefile
+> new file mode 100644
+> index 000000000000..6cdd08065e92
+> --- /dev/null
+> +++ b/drivers/dma/loongson/Makefile
+> @@ -0,0 +1,3 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +obj-$(CONFIG_LOONGSON1_APB_DMA) += loongson1-apb-dma.o
+> +obj-$(CONFIG_LOONGSON2_APB_DMA) += loongson2-apb-dma.o
+> diff --git a/drivers/dma/loongson1-apb-dma.c b/drivers/dma/loongson/loongson1-apb-dma.c
+> similarity index 99%
+> rename from drivers/dma/loongson1-apb-dma.c
+> rename to drivers/dma/loongson/loongson1-apb-dma.c
+> index 255fe7eca212..e99247cf90c1 100644
+> --- a/drivers/dma/loongson1-apb-dma.c
+> +++ b/drivers/dma/loongson/loongson1-apb-dma.c
+> @@ -16,8 +16,8 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/slab.h>
+>
+> -#include "dmaengine.h"
+> -#include "virt-dma.h"
+> +#include "../dmaengine.h"
+> +#include "../virt-dma.h"
+>
+>  /* Loongson-1 DMA Control Register */
+>  #define LS1X_DMA_CTRL		0x0
+> diff --git a/drivers/dma/loongson2-apb-dma.c b/drivers/dma/loongson/loongson2-apb-dma.c
+> similarity index 99%
+> rename from drivers/dma/loongson2-apb-dma.c
+> rename to drivers/dma/loongson/loongson2-apb-dma.c
+> index c528f02b9f84..0cb607595d04 100644
+> --- a/drivers/dma/loongson2-apb-dma.c
+> +++ b/drivers/dma/loongson/loongson2-apb-dma.c
+> @@ -17,8 +17,8 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/slab.h>
+>
+> -#include "dmaengine.h"
+> -#include "virt-dma.h"
+> +#include "../dmaengine.h"
+> +#include "../virt-dma.h"
+>
+>  /* Global Configuration Register */
+>  #define LDMA_ORDER_ERG		0x0
+> --
+> 2.52.0
+>
 
