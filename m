@@ -1,265 +1,257 @@
-Return-Path: <devicetree+bounces-263923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263924-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8E3oHxewiWndAgUAu9opvQ
-	(envelope-from <devicetree+bounces-263923-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 10:59:51 +0100
+	id kN3AMEGwiWndAgUAu9opvQ
+	(envelope-from <devicetree+bounces-263924-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 11:00:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2818C10DE5D
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 10:59:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F15210DE76
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 11:00:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7CE6B302D968
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 09:56:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 12E6530063B8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 09:57:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD6A2366069;
-	Mon,  9 Feb 2026 09:56:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9527836604D;
+	Mon,  9 Feb 2026 09:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="knuPHvmx";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OApkki3y"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="WjBB5FRg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96912366051
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 09:56:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D7973093CF;
+	Mon,  9 Feb 2026 09:57:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770631002; cv=none; b=O6DRHbUoQiteuT7W6AVmbd0mPlRi+z0aXIzi0A3OygzpvMW98xdxSQTTt/wSV1Zr4E/+DH6xbemo6cq8hYGkHn1VUPHZJGoolXqEWFVt2LPmo/au0V2ZpBNYcorEE0UuSNpyjW897un2aAD1O70VaiChVYV+eoOmwnhyiZxYACU=
+	t=1770631061; cv=none; b=NwGUiH4FTR93CcR2yKBBrKkysjP2bGwzfiXtjOcGUop0mu0XJIq4H71LPUaf0itqyI2N6r4CyOKp5pjTJKCEo70Ph86PrvoiZhlGObBHj3Z+r8MS7uKkeecPJ0qPF5qc1IdYmwRTxGgZGv9qItleBtYd4CQb+FJiOfsRrB2ggwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770631002; c=relaxed/simple;
-	bh=7mapK2X55WbIYf2UtRc2j6u64tXfI6q7JJP+8o/0gZE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=csIjAQKIn53s9ZVmV0UvepQ8sqM6TizI0rpEENEWJG7EQ25J7hDrV4evfGKj51hwTiDtNsoEAjtar9bmZ02u9q/m/9JRNBGV2G3h42GEzT3Qqe+F3tIW0Fn8opvlDKadNkmzop8fUCZD4FW9tDMOlyToMD5Hz4L02J7kZw1M32s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=knuPHvmx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OApkki3y; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61959axf1922817
-	for <devicetree@vger.kernel.org>; Mon, 9 Feb 2026 09:56:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	c+dT33J0qsy4bIwiR8JxdCIwandYipwLy0Sqp15mE0M=; b=knuPHvmxJvqOtLrV
-	tEo2ugSXanQl/crUS9e6zIuKxuU3NwU/O+9BD9SNArqJo8sVuMhUG1DtG/1uZo1p
-	+gesCRJpk0fo0gjc0ZY/tDe0rb93rEB6FI71Z4BwLt0SfuV4Cp/eqgo/QOkaDjCs
-	nS0XV017yolo5Ho+9lWPKHMyZ+yuzy3G2Z5EnTGBEXBEr5UVnL4NRs/ORN6bQyUI
-	XYndVVotaGvLdaerjxiG2+E/HkrnRtKoO+37FeDN33ayHz/frJb/C3M3bnWiP23s
-	cB7Ku6o9FipWssxmOYKRGfvY66nKbAN0hIYmVe7B5DjHgYeXk5vShkKuqDfEJ1Je
-	xY9m4w==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c796kry95-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 09:56:41 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2aad3380076so11612195ad.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 01:56:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770631000; x=1771235800; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c+dT33J0qsy4bIwiR8JxdCIwandYipwLy0Sqp15mE0M=;
-        b=OApkki3yvnBLta+UPbMuCM0UC3yOU+0FubUaO8YaWmNgCLY1BIrI4WhSSZa5GMWeei
-         ofSU/ddUiiP2cOJNuTi6lH4UDcRsQGv0kNhcJOAMoJh7nJd/YGlbZ3k/KGHyyutw/n/9
-         LeEXPaI9RhpJIT8pooiG5vbdp3RMSHeaNi84zSb9nQeErE4XyX0fJa8QiflkGej6vhvt
-         bP67x9LOakrdlwLRLP2fhK4zmmTGrEfdop9lJLsh7+bUCwMfuOpHvuxGMLXa71jQy5q9
-         Fe6blPCPO89VqkFhpPg9sw2Nf++lqbjDUewme+PkAA0EEz0eH9Rz9NiLdDON/43MlgyX
-         hn3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770631000; x=1771235800;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=c+dT33J0qsy4bIwiR8JxdCIwandYipwLy0Sqp15mE0M=;
-        b=S4YiP1Qcv1mqeCQT/NLSGwMU/tMf2U17u3SVhEhsC3GH6fZytEvyQbK+m6l5JcdxuT
-         cnAdZdxt8ey/3LcvnrqYwQPfuVMI9CliZWRaBv+ZuM6RYv+ylYeNSkBA/nH2AXNAkysW
-         u+MxSZhssD9URw6ZVoH+ksYtcTenF8Q7Ag6iS1TppdvTZCj2IGAgncI2Ij3rmfKRBWZ5
-         shsHKKrVDEwUNEcc/Qhj386Y0cY4ZGM0UX/BQG33Gu/QESStETUyrNRiKAUauqkci6CY
-         +thThgO5OPdkS7jpN707FPD7kxVLL26L3pZm5MOSExFNvLZGVoxWw2GqcLN8rOS7tsHQ
-         gZbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW0u2XS2aY96P3xkwpZbu8wSGWfe+uJl79axkJ7ZKwR+XT6Mf3y0DTxesZHs50SbBK7bZLUDTF/iubU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyStT3/jLrAC2kNHEswntH0OaTCWgq3/dstZbDwPt9B3Nwz0kOO
-	9tK2aYd/s97QNYSFqbH62hb/tHGe1b5wLuHYSChF5bwril5WXhyqxbZurunQIJwO/5JZiVqguqm
-	nRfk8lMZuw317AdqF+SnlaVoe3G/bHQEMeZnYcZV+ericlq2aqSfaJlmQed/h6RWU
-X-Gm-Gg: AZuq6aIk1E772qx6Z3bJr4A9nlHoaJPl5VNzmGXV3hRW6ZLgIu7RgshStKpS0bgvCKm
-	22R3CyNZMzG74EyFVf8vCMkeryjqCBw6dhsnO1dVwxMX1nHVjIRBvWhPFzGa/Y9RFq6LyqcKItx
-	76hiHKCWjc0bXiznEMz0wKcn40Gx+eAxlH4eW5ZKVQrlDch2Hu1l7lLm1G5Fh6sqkVurIAEZOoU
-	9h3dqzgsHabSK1wMTVNo9XygRxb7GW2MLXe5ybCMX7ZqaxjluEPDXfvGVcJsjSf0uz0v5QcM6sh
-	Q6gtYlgIYX1d53lGKFS4UdSpG09J2B0lZbMdjw5XlSm1dNWIU3yCLMsrj92e81+fbw71kY89ffP
-	obZbXkeoL1NlmsaWkH8aVWdQtze1UpfTTrE3LahUvERA=
-X-Received: by 2002:a17:903:2405:b0:2a9:5ac3:a925 with SMTP id d9443c01a7336-2a95ac3b04emr91548305ad.3.1770631000040;
-        Mon, 09 Feb 2026 01:56:40 -0800 (PST)
-X-Received: by 2002:a17:903:2405:b0:2a9:5ac3:a925 with SMTP id d9443c01a7336-2a95ac3b04emr91548085ad.3.1770630999508;
-        Mon, 09 Feb 2026 01:56:39 -0800 (PST)
-Received: from [10.204.100.187] ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a951c4d8dcsm105331445ad.9.2026.02.09.01.56.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Feb 2026 01:56:39 -0800 (PST)
-Message-ID: <33a7ecc1-9268-4178-9ce2-25cc69fa5bbe@oss.qualcomm.com>
-Date: Mon, 9 Feb 2026 15:26:32 +0530
+	s=arc-20240116; t=1770631061; c=relaxed/simple;
+	bh=3vJBi65zjQr9zwXIJ042XY0LXmk+DQOt0/Gvj3YLFWA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=bbh83DLcOsFwG6KV0qL294vDH35knaTEV8OBV11qT7HcpBo9Pya1pPyrLylXmp8aqMdA7hpQI0lLncFKDW70fq5DGbXtyWY3+p9pTRqNhxXHHWlPleqggnywLxAvDpU+AzJJGXKTlXi2yu2JXViya9bURSCbq58tbvweRk0ntBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=WjBB5FRg; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1770631060; x=1802167060;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=3vJBi65zjQr9zwXIJ042XY0LXmk+DQOt0/Gvj3YLFWA=;
+  b=WjBB5FRg1/VGhlXKi4aKobJFg0nG0L64r5szT1pFjPOMgFtrlKd7CbXw
+   +zCdfOgRoiel2YlsCrUWKq2SgZjAJHQJ038JxJMGbc4aYkGA/88oRU4P4
+   L8eHb00jjCg769Yxeu74zrFed/pkYi+ATuIBNH6d8c+H2/2ZjVgdoZnQ1
+   uFp4Ul1M6uL6PPH2onKAm+uHhHMB1OslrtHhPfKhHxHFIBk1fj3HSdzDz
+   v4ZLoP6F4QsGqAPDdWRpoRydH/1KRVFC2NuJwHsce+U2dZoMALmkPzqtZ
+   MrtCYeOyRl4z4KPNoVVMfb6hXljhZ1IotlzM5Fesr18btkKWMZVl8cR2d
+   g==;
+X-CSE-ConnectionGUID: ndl2L5WnRr+m1f1i6lcTaw==
+X-CSE-MsgGUID: 3rNjupS5QO2sdybTg4p4pA==
+X-IronPort-AV: E=Sophos;i="6.21,281,1763449200"; 
+   d="scan'208";a="60386960"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 02:57:39 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.87.151) by
+ chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.35; Mon, 9 Feb 2026 02:57:09 -0700
+Received: from ROU-LL-M19942.mpu32.int (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Mon, 9 Feb 2026 02:57:06 -0700
+From: Cyrille Pitchen <cyrille.pitchen@microchip.com>
+Subject: [PATCH v7 0/5] drm/microchip: add GFX2D support for SAM9X60 and
+ SAM9X75
+Date: Mon, 9 Feb 2026 10:56:43 +0100
+Message-ID: <20260209-cpitchen-mainline_gfx2d-v7-0-0c12e64a0950@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] media: iris: add support for purwa platform
-To: Wangao Wang <wangao.wang@oss.qualcomm.com>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260209-enable_iris_on_purwa-v1-0-537c410f604f@oss.qualcomm.com>
-Content-Language: en-US
-From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-In-Reply-To: <20260209-enable_iris_on_purwa-v1-0-537c410f604f@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=IeyKmGqa c=1 sm=1 tr=0 ts=6989af59 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=UW35HsMoKDRfkflbz0EA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-ORIG-GUID: FyTu9SHsxK-huQL3gnlYpdrtS07LjQzI
-X-Proofpoint-GUID: FyTu9SHsxK-huQL3gnlYpdrtS07LjQzI
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDA4MyBTYWx0ZWRfX3aycMETUWjsq
- N5PJ8jtxUhlblV6A7lNF32D3WMEC7VaWP43Tzne1+be1FsbbX6bcXS/GrVEc/pYUAETdsNPplcx
- edp11KOtrotqGKBfmTGsCEyOCWCsg7M75SpdyiEHqffzdObiQ8ybyFJzw3jMvLvYH3jFMobpRdK
- gYVLmfQX6F74ofbdoeoWJtQRihrR8leI7bzS0vqLe/KBS8WLa06Y7Fu5Q8Yn9+iENWNlENgTMYe
- PJcQqOEDH0mMkqOaoxn+rUoKtkZcKJUhDy1U6Hj/IjYAbZtINpy227DlYth09yjhmdiKH1O3QYX
- A4ORI4k3BijWv05wPDyRoUqmLQh4fmDU0t4OtCjAJTy7xRaj+m8w0T/3WU7PqIfduy3S16XLzLi
- /FCi8qOdcO5IfpBUrm/wXlr/Rgz/F+lTgDOZPcRG0Z7sSGFLdj0nkiSlKt9043AZRv/3/IPbMuz
- OP8WYHs61sx1I7FnIwg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-08_05,2026-02-09_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 adultscore=0 priorityscore=1501 malwarescore=0
- lowpriorityscore=0 bulkscore=0 impostorscore=0 spamscore=0 clxscore=1015
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602090083
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFuviWkC/4XNy2rDMBCF4VcJWldFM5JHUld9j1KCrEssqC/Yw
+ SQEv3vlQIspNl3+B+abB5vimOPE3k4PNsY5T7nvSuiXE/ON6y6R51CaocBKWADuh3z1Tex463L
+ 3lbt4vqQbBk4kIVpZoUualethjCnfnvLHZ+kmT9d+vD8fzbCu/5szcMGDTq4GJw3E+N5mP/a+y
+ cOr71u2ujNuLXNsYbHIJ+dtqIgA9yz5awGgOrbkagmdjFdCo6E9S/1YJAp2bKliJQQhFLggldy
+ zqq0lj62qWNYHV5vkyNp6z6KNheLYomKBA/IBgha1+Wsty/INnroz0j4CAAA=
+X-Change-ID: 20250911-cpitchen-mainline_gfx2d-6631e9352af7
+To: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	"Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
+	"Alexandre Belloni" <alexandre.belloni@bootlin.com>, Claudiu Beznea
+	<claudiu.beznea@tuxon.dev>, Russell King <linux@armlinux.org.uk>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	Cyrille Pitchen <cyrille.pitchen@microchip.com>, Conor Dooley
+	<conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5771;
+ i=cyrille.pitchen@microchip.com; h=from:subject:message-id;
+ bh=3vJBi65zjQr9zwXIJ042XY0LXmk+DQOt0/Gvj3YLFWA=;
+ b=owGbwMvMwCXmf6yzKqEsVIbxtFoSQ2bn+qwLGwvVeKe0aNhfthEJ33myNj9jx9pNTY/rFdOa/
+ 1mFmod0lLIwiHExyIopshx6s7U38/irx3avRKVg5rAygQxh4OIUgInMN2X4K/CAR2cRE2e20zTO
+ Bhfr8y7b1DZ4K24ov63brCAonR2ZwfCT8arqlNzUg0yKXzeGRjhGhywyV2FLX3Je+svXpWeLY1f
+ zAAA=
+X-Developer-Key: i=cyrille.pitchen@microchip.com; a=openpgp;
+ fpr=7A21115D7D6026585D0E183E0EF12AA1BFAC073D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-263923-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263924-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,microchip.com,bootlin.com,tuxon.dev,armlinux.org.uk];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cyrille.pitchen@microchip.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	NEURAL_HAM(-0.00)[-0.969];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 2818C10DE5D
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:email,microchip.com:dkim,microchip.com:mid]
+X-Rspamd-Queue-Id: 5F15210DE76
 X-Rspamd-Action: no action
 
+Hi all,
 
+This series of patches adds GFX2D support.
+The GFX2D is a 2D GPU embedded in some Microchip SoCs such as the
+SAM9X60 and SAM9X75.
 
-On 2/9/2026 1:09 PM, Wangao Wang wrote:
-> This series enables the Iris video codec on purwa, allowing purwa to
-> use hardware‑accelerated video encoding and decoding.
-> 
-> The Iris codec on purwa is nearly identical to the one on hamoa(X1E),
-> except that it requires one additional clock and uses a different OPP
-> table.
-> 
-> Therefore, purwa can reuse the Iris node from hamoa, but the clocks
-> and OPP table need to be redefined.
-> 
-> Dependencies:
-> https://lore.kernel.org/all/20260202-purwa-v5-0-1f5a93578802@oss.qualcomm.com/
-> https://lore.kernel.org/all/20260128-purwa-videocc-camcc-v1-0-b23de57df5ba@oss.qualcomm.com/
-> 
-> All patches have been tested with v4l2-compliance and v4l2-ctl on
-> purwa. And it does not affect existing targets.
-> 
-> The result of v4l2-compliance on purwa:
-> v4l2-compliance 1.31.0-5379, 64 bits, 64-bit time_t
-> v4l2-compliance SHA: 14c988631ad4 2025-11-11 11:19:35
-> 
-> Compliance test for iris_driver device /dev/video0:
-<snip>
+Patches have been developped on top the 'linux-6.12-mchp' branch of the
+https://github.com/linux4microchip/linux.git repository and tested on
+mainly on a sam9x75-curiosity board and also on a sam9x60-ek board.
 
-> 
-> Total for iris_driver device /dev/video1: 54, Succeeded: 54, Failed: 0, Warnings: 0
-> 
-> fluster result:
-> H.264:
-> Ran 77/135 tests successfully               in 31.521 secs
-> 
-> H.265:
-> Ran 131/147 tests successfully               in 23.490 secs
-> 
-> VP9:
-> Ran 235/305 tests successfully               in 78.181 secs
-> 
+Then patches have been rebased on top of the 'drm-misc-next' branch
+of the https://gitlab.freedesktop.org/drm/misc/kernel.git repository
+for mainlining.
 
-list the failing tests here
+Moreover, the patches have also been rebased on the WIP 'linux-6.18-mchp'
+branch of the https://github.com/linux4microchip/linux.git repository
+then tested on a sam9x75-curiosity board.
 
-> Signed-off-by: Wangao Wang <wangao.wang@oss.qualcomm.com>
-> ---
-> Wangao Wang (5):
->        dt-bindings: media: qcom,sm8550-iris: Add X1P42100 compatible
->        arm64: dts: qcom: purwa: Override Iris clocks and operating points
->        media: iris: Add IRIS_BSE_HW_CLK handling in power on/off sequence
->        media: iris: Add platform data for X1P42100
->        arm64: dts: qcom: purwa-iot-som: enable video
-> 
->   .../bindings/media/qcom,sm8550-iris.yaml           | 23 +++++-
->   arch/arm64/boot/dts/qcom/purwa-iot-som.dtsi        |  4 +
->   arch/arm64/boot/dts/qcom/purwa.dtsi                | 53 +++++++++++++
->   .../platform/qcom/iris/iris_platform_common.h      |  1 +
->   .../media/platform/qcom/iris/iris_platform_gen2.c  | 86 ++++++++++++++++++++++
->   .../platform/qcom/iris/iris_platform_x1p42100.h    | 22 ++++++
->   drivers/media/platform/qcom/iris/iris_probe.c      |  4 +
->   drivers/media/platform/qcom/iris/iris_vpu_common.c |  9 ++-
->   8 files changed, 200 insertions(+), 2 deletions(-)
-> ---
-> base-commit: 9845cf73f7db6094c0d8419d6adb848028f4a921
-> change-id: 20260209-enable_iris_on_purwa-a000527a098d
-> prerequisite-change-id: 20251113-purwa-907ec75b4959:v5
-> prerequisite-patch-id: 2ea4d3d7fbac51bbe48d22b5c58935b3ac96cde1
-> prerequisite-patch-id: 66cdb67c1bcc2519610764ccd90b551fb8713493
-> prerequisite-patch-id: ca9086bbde147db45705752a7ae259c76659d988
-> prerequisite-patch-id: 472b96f74b6d14eab239a551f005f601af9633e8
-> prerequisite-change-id: 20260126-purwa-videocc-camcc-00e709474bef:v1
-> prerequisite-patch-id: 9884a11a7a39ea49ea4c6ac72adb95240c6788e8
-> prerequisite-patch-id: b5be9dcbb612a14108f890b2782860847edfcbe4
-> prerequisite-patch-id: 2f4d4c5c118e057c76e6d2785479df01d5bc1c7b
-> prerequisite-patch-id: 026db5dd71d5b0472225ba72c8ba2781334143a9
-> prerequisite-patch-id: 615e6f38e528de35dc206f1c7f3eaf78ff04afe2
-> prerequisite-patch-id: 8732f9b7fdce567cdca57e6b8520d0279469edf1
-> prerequisite-patch-id: 1162da1ca0a8467c41141a5a0bf58b85b7777c38
-> prerequisite-patch-id: ee26e00cdde21ddb070af713230082ad3454422c
-> 
-> Best regards,
+About the tests, the GFX2D driver was used with the M2D (Multi 2D)
+library: https://github.com/linux4sam/libm2d
+
+This is an open source library that abstracts 2D GPUs like the Microchip
+GFX2D (and later the Vivante GC520UL), providing graphics applications
+of libraries with a unified API, inspired from OpenGL but focused on 2D
+GPUs. The libm2d library itself relies on the libdrm library to send
+commands to the relevant DRM driver in the Linux kernel.
+
+M2D comes with a m2d_test program to run basic unitary tests.
+In addition, libm2d has been integrated to two graphics frameworks:
+- EGT: https://github.com/linux4sam/egt
+- LVGL: https://github.com/lvgl/lvgl/pull/8729
+
+BR,
+
+Cyrille
+
+Signed-off-by: Cyrille Pitchen <cyrille.pitchen@microchip.com>
+---
+Changes in v7:
+- Rebased onto the 'drm-misc-next' branch on 2026-02-09.
+- Rewored patch 2:
+  + Reworked the former valid_pixel_format() function into the new
+    mchp_gfx2d_valid_buffer_params() function, which is called from both
+    the mchp_gfx2d_ioctl_{alloc,import}_buffer() functions and now checks
+    the `width` and `stride` parameters in addition to the `format` one.
+  + Added the mchp_gfx2d_valid_size() function, which is called from both
+    the mchp_gfx2d_ioctl_{alloc,import}_buffer() functions and checks
+    (`stride` * `height`) against `size` as suggested by Daniel Stone.
+- Link to v6: https://lore.kernel.org/r/20260120-cpitchen-mainline_gfx2d-v6-0-1a16cd1d70b8@microchip.com
+
+Changes in v6:
+- Shrank the size of the register set in the device tree from 0x4000
+  down to 0x100 (patches 1, 3 and 4).
+- Collected Reviewed-by and Acked-by tags from Nicolas Ferre on patches
+  1 and 5.
+- Rebased onto the 'drm-misc-next' branch on 2026-01-20.
+- Link to v5: https://lore.kernel.org/r/20260113-cpitchen-mainline_gfx2d-v5-0-9cdab8fa699b@microchip.com
+
+Changes in v5:
+- Fixed compilation issues in patch 2:
+  + Included <drm/drm_print.h> from mchp_gfx2d_cmd.c, mchp_gfx2d_drv.c
+    and mchp_gfx2d_gem.c.
+  + Replaced '.remove_new' with '.remove' in definition of 'struct
+    platform_driver mchp_gfx2d_platform_driver' to match the latest
+    definition of 'struct platform_driver'.
+  + Removed the '.date' member from the definition of 'struct drm_driver
+    mchp_gfx2d_drm_driver' since this 'date' member has been removed from
+    'struct drm_driver'.
+- Fixed typos in doxygen documentations of two functions:
+  + mchp_gfx2d_process_completed_commands()
+  + mchp_gfx2d_init_command_queue()
+- Link to v4: https://lore.kernel.org/r/20260112-cpitchen-mainline_gfx2d-v4-0-f210041ad343@microchip.com
+
+Changes in v4:
+- Rebased onto the 'drm-misc-next' branch on 2026-01-12.
+- Link to v3: https://lore.kernel.org/r/20251124-cpitchen-mainline_gfx2d-v3-0-607f8c407286@microchip.com
+
+Changes in v3:
+- Collected Acked-by tag from Conor Dooley on patch 1
+- Rebased onto the 'drm-misc-next' branch on 2025-11-24.
+- Link to v2: https://lore.kernel.org/r/20250918-cpitchen-mainline_gfx2d-v2-0-6cfac9d56612@microchip.com
+
+Changes in v2:
+- Renamed microchip,gfx2d.yaml into microchip,sam9x60-gfx2d.yaml.
+- Removed the 'clock-names' property from the DT bindings.
+- Renamed the GPU node from 'gfx2d' to 'gpu' in sam9x{60,7}.dtsi files.
+- Link to v1: https://lore.kernel.org/r/20250911-cpitchen-mainline_gfx2d-v1-0-d7fab1a381ee@microchip.com
+
+---
+Cyrille Pitchen (5):
+      dt-bindings: gpu: add bindings for the Microchip GFX2D GPU
+      drm/microchip: add a driver for the Microchip GFX2D GPU
+      ARM: dts: microchip: sam9x60: Add GFX2D GPU
+      ARM: dts: microchip: sam9x7: Add GFX2D GPU
+      ARM: configs: at91_dt_defconfig: enable GFX2D driver
+
+ .../bindings/gpu/microchip,sam9x60-gfx2d.yaml      |   46 +
+ MAINTAINERS                                        |   10 +
+ arch/arm/boot/dts/microchip/sam9x60.dtsi           |    8 +
+ arch/arm/boot/dts/microchip/sam9x7.dtsi            |    8 +
+ arch/arm/configs/at91_dt_defconfig                 |    1 +
+ drivers/gpu/drm/Kconfig                            |    1 +
+ drivers/gpu/drm/Makefile                           |    1 +
+ drivers/gpu/drm/microchip/Kconfig                  |   21 +
+ drivers/gpu/drm/microchip/Makefile                 |    8 +
+ drivers/gpu/drm/microchip/mchp_gfx2d_cmd.c         | 1809 ++++++++++++++++++++
+ drivers/gpu/drm/microchip/mchp_gfx2d_cmd.h         |  169 ++
+ drivers/gpu/drm/microchip/mchp_gfx2d_drv.c         |  350 ++++
+ drivers/gpu/drm/microchip/mchp_gfx2d_drv.h         |  132 ++
+ drivers/gpu/drm/microchip/mchp_gfx2d_gem.c         |  264 +++
+ drivers/gpu/drm/microchip/mchp_gfx2d_gem.h         |   90 +
+ drivers/gpu/drm/microchip/mchp_gfx2d_ioctl.c       |  302 ++++
+ drivers/gpu/drm/microchip/mchp_gfx2d_ioctl.h       |   17 +
+ include/uapi/drm/microchip_drm.h                   |  286 ++++
+ 18 files changed, 3523 insertions(+)
+---
+base-commit: f2edbafc6cb905caec2b231e8e2226b4c75daad9
+change-id: 20250911-cpitchen-mainline_gfx2d-6631e9352af7
+
+Best regards,
+-- 
+Cyrille Pitchen <cyrille.pitchen@microchip.com>
 
 
