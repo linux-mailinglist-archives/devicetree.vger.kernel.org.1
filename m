@@ -1,199 +1,325 @@
-Return-Path: <devicetree+bounces-263952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263953-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4FyBBeG8iWmkBQUAu9opvQ
-	(envelope-from <devicetree+bounces-263952-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 11:54:25 +0100
+	id ABSuGpm9iWmkBQUAu9opvQ
+	(envelope-from <devicetree+bounces-263953-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 11:57:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AD9010E63E
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 11:54:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C631610E6E2
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 11:57:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EEA2B3003ECC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 10:53:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C2AD83018286
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 10:55:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FFF736606B;
-	Mon,  9 Feb 2026 10:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 796E436922B;
+	Mon,  9 Feb 2026 10:55:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="uZQEmMMn"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="V2f8s4QP";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gBBwbs6W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C03AE86277;
-	Mon,  9 Feb 2026 10:53:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 439E7369216
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 10:55:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770634409; cv=none; b=rjeLxZWybw63ln0ROkCmgOPxXY3QWZUS3yVYQZb+N/FDe6148E625FYx002bSPIVWRfyk2PriIof6guqlrE8lX8ezPNPO85DC3Cunpu0j6+ofCV4aiscZAWglOlaExra9QcZa8QKgE/UzgUsXMmPZRuL9yQpqNdhZ0Flzrdrugg=
+	t=1770634531; cv=none; b=mQz3b/i0K6jkH5z5e5dkNpoNthEDNE4+8iNfl+7R40qoPdMSlnthvzVEUy/QNIU89yfFnZvRFFEncmvTvDrBxcXOBN8vc1aHDnRVD4TkyVvKDuMJIei15yAhjgQxZiqjWlzMS4TfIMwtGVl9pR4vfWoYumKYMalW62Cutkw0pEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770634409; c=relaxed/simple;
-	bh=uDuWzyBl4dA9pi/IOlkf021Hxqs2hiMrQfiIO8VANVE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h11MTFGOcQvf1iwZGe8fCT6nrOzOmPDejCea4+ShUN8Nvm5aGsOtryJsZGU0vHy8QNjBGIDl1V9wVpiffqF+QG+yH/BVvhfl8aSabyJ6wfvrCyN0fkhjgwQ2JpWta+38+MUfki/LDcoCtOM74/icViS0L+6ipFtpbNItU1i1YBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=uZQEmMMn; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4f8hPb5V7kz9thJ;
-	Mon,  9 Feb 2026 11:53:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1770634403;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zydFrzJH+96vd0MZWYoBxPrLaZzn7gyZbiDZtRmiFmw=;
-	b=uZQEmMMnqu+KKkZ6j/RoqENlHAYih92qjoTX2RaoOITAcMDFjc6Cln1dOivYcTvBwCo7Bx
-	/b2FwwI4Ib4T7smuNHNINr6GWzQXiRHenm3gDr52is6xKWqgnc53uE3ve6WudEEU/mbY7d
-	Wl75V0PZ4Mr53AD2oOnPvtMWnzskEdg3cby0JXhUQeZrXKayveXIz38/GYTpkK3rE4aEhs
-	NEaUbUZA9WNyf2DYt+1AgsV5FS6lm3Sb5lQuMy38SKERsrDTTUnabxV57I1YS+Tg8JHtlo
-	BFjD9OR+i411hQmxi436AgQqspwEZLlfOgLNLjJE+abCbisNU7+UVI9O8nxvVg==
-Message-ID: <9175b8aa-18c6-4dc1-8904-c26fa1dc7428@mailbox.org>
-Date: Mon, 9 Feb 2026 11:53:19 +0100
+	s=arc-20240116; t=1770634531; c=relaxed/simple;
+	bh=2FWZb65X8mx18YH9h8vMRViW9qAP67jaLh6l/pLRM98=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=uDjz34tbxYTE1fri4+FlUApjFvLTufVqhX4XQ7ydJzOggMGTBbffJYfvn2z+yaMRL3g/3T6nNWWznGzFyuI726iV90+n4YsNeeKocd4AQiRk9ONaZXc/5ffkkdY0lesAsOLr7Wppgcqn3rdqYx3bC2Tq+FMUz28RIPNsBPaeRlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=V2f8s4QP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gBBwbs6W; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 619Akjwj3699944
+	for <devicetree@vger.kernel.org>; Mon, 9 Feb 2026 10:55:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=WK0ylVF4GwQX20f4H+s8CJYlFpp8VJaq11P
+	Zdrcjft8=; b=V2f8s4QPfNIBmLm6u/ozo1qJQcDmFYmrPYaI7FjJMG3pwNtVhQp
+	eaHn+tJP/tgGa9LTiu1oFbmTz2CgrFlJVH1DPBq0ZcU6QcythTYBPswHLMUrvBXF
+	teJM7h48kpU5MDXmOcXeqIAcVhI5lb89Bx+xulfzLvG4Z99VMGtDGe6T2+zAFcax
+	Q8o6fF8HTRXV7k0F2M1Kq52YsQ5xAI86QVVYLsciK+Su67778gyl5PKn6Cc8ZlNI
+	hfoIAdy9NcD1R37UODQhiknNOGqtQDVO6CfW2YlKXuVEbCtN9DetF+zunjcyS55R
+	ESCzTcDfRtWSPiIbmaVL+VwtBb/8VorrPIA==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c7e4m8104-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 10:55:30 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-c6dded42ec4so1340204a12.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 02:55:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770634530; x=1771239330; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WK0ylVF4GwQX20f4H+s8CJYlFpp8VJaq11PZdrcjft8=;
+        b=gBBwbs6W+0Jv4UtLHNk8J/slvIyPexwsRglnSApAcU6Fu5EZdKK9AqQpZTAz66Ns+q
+         KN+PSr4h4Pavjq0OzLs+yr68oXab4NGaWRXaxAyDtrBv8+JVkcr4yRC0wNaVNwvW44eC
+         tSIOMfLA3iDK2HR+b+SL3FnKzAeaSgyN+3BnP/lE/1O+R80pMYZC1jDMefdvs+oPP18h
+         5NUteknldb/L4e5i1g63vPtgiE2JbT6vPA4n0Da6xNirV77XZ/aUPwl1MYJ3oMUeO+CM
+         70X+TSoDGKqXzA88JrAYxhmDUUYQ74dWSz5zIAOamG7n6VXj5EeDsrBKWyJJ9hQTbN0x
+         sZvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770634530; x=1771239330;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WK0ylVF4GwQX20f4H+s8CJYlFpp8VJaq11PZdrcjft8=;
+        b=uS9iRKrPjFyhyazBOTZEB820HKK9rVK+f0YJDOiBErgOTcxqoKgqxX2KfwpZSySxNp
+         yvRTMNPqPYqifAgkieD0JZ9XvNxFGFPMPM7tOaVYXrv4th5cIC01XAhl7v3LsRaEJkz7
+         2u7PJhyQexZUkDhk71rrKQR0WuOB5gs659aau9q1XG9ZzqUL/fvTR0BA8O2iqwHkjvRd
+         oASkoz7A2QK4SQ25WPX2uBnAbi9RFTaYe8FRiNyLiWg5aDJG5dHK8zdQ4jCh1vOTWcUk
+         ZaBe3e0gCvam35CtNcM5bCNyMVlfwOuMs0UdTnCC49NYwhqfiDjKD+bZvju+s3xhaLAv
+         lNiw==
+X-Forwarded-Encrypted: i=1; AJvYcCVbpO/STVVfJgVfxHQSg1eELUTb1Spi0ycjZd7j1Eu2tvQkRhsVTukxBSgF5tM34Rzkk0GcTvqEEIk8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw37qCHC7aFhTqYvkYknWdKhLCgCdvRTZbFxeSvO7y/Nc7TszJ7
+	ItLYZpriNDJCMuEA/XxSYLfSZ5ZJqN+RLibI0XysgbN8LC5DsMoaozePa4gi3hnSYafHnGSzF0P
+	grr8Lxua8FedIdWg3RSbsU7tVdyF+0THvzbowDBD2bVxIQvP0Aag2Nt+n1Az/1Enz
+X-Gm-Gg: AZuq6aK5DxgwVtw1LIp6b3sVp4WHe/GT6JjrMbCvpgWkXeAIfzB7coqHbsXoI12GSsI
+	cIP1Rfdua8dGU+8nERe7HSDda1EDqPkY8gK5kQVbe/9T9lBDblAe6koCrSqZnBXntAxExNanBTB
+	fMWIH9b6J9rj4Tj7CFsI3QS86unPvBtIKBEabzHbvOYqtBen9DHu7M8m/wT3tReqCj5ixIsLKkH
+	a/fWgBrChTE/YNNa1Va17ufsm0vHHEGy9v0exYs8jvnt6KPmS0+3EhZeEdbN54EMgUTVVPH1SnW
+	jQAptnhDrT4pjfOv7alf59EP9Ldgj2Bo6njo7Fc6RmdUR0o0g2aHa7AOmHHDBa/Y6+n8fKURI64
+	LIrnfiLZMFyt02+c6CDE/475abGMqOKbPd32yil3B8pNk
+X-Received: by 2002:a05:6a20:d524:b0:2bf:183c:ac86 with SMTP id adf61e73a8af0-393ad00062amr10309845637.25.1770634529444;
+        Mon, 09 Feb 2026 02:55:29 -0800 (PST)
+X-Received: by 2002:a05:6a20:d524:b0:2bf:183c:ac86 with SMTP id adf61e73a8af0-393ad00062amr10309818637.25.1770634528866;
+        Mon, 09 Feb 2026 02:55:28 -0800 (PST)
+Received: from hu-jprakash-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c6dcb5e5f6bsm8358837a12.20.2026.02.09.02.55.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Feb 2026 02:55:28 -0800 (PST)
+From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+To: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        agross@kernel.org, andersson@kernel.org, lumag@kernel.org,
+        dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
+        daniel.lezcano@linaro.org, sboyd@kernel.org, amitk@kernel.org,
+        thara.gopinath@gmail.com, lee@kernel.org, rafael@kernel.org,
+        subbaraman.narayanamurthy@oss.qualcomm.com,
+        david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
+        kamal.wadhwa@oss.qualcomm.com
+Cc: rui.zhang@intel.com, lukasz.luba@arm.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        cros-qcom-dts-watchers@chromium.org, jishnu.prakash@oss.qualcomm.com,
+        quic_kotarake@quicinc.com, neil.armstrong@linaro.org,
+        stephan.gerhold@linaro.org
+Subject: [PATCH V11 0/4] Add support for QCOM SPMI PMIC5 Gen3 ADC
+Date: Mon,  9 Feb 2026 16:24:34 +0530
+Message-Id: <20260209105438.596339-1-jishnu.prakash@oss.qualcomm.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v4 2/2] firmware: arm_scmi: Implement
- arm,no-completion-irq property
-To: Cristian Marussi <cristian.marussi@arm.com>,
- Sudeep Holla <sudeep.holla@arm.com>
-Cc: arm-scmi@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-renesas-soc@vger.kernel.org,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-References: <20260117010241.186685-1-marek.vasut+renesas@mailbox.org>
- <20260117010241.186685-2-marek.vasut+renesas@mailbox.org>
- <aW5ifVcxVf6uux3m@pluto>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aW5ifVcxVf6uux3m@pluto>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: cbaba4dbcdf869d6e0d
-X-MBO-RS-META: wetqpb4rrqtabw7urz9ywxbqnbzbkuq4
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: gu0aKBwezcJHdQlyer2GO-xgrYgEoFL_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDA4OSBTYWx0ZWRfX0623xSk9CjFw
+ nYrdXZUMWfRn02/A8ce4pP+4DMXXnAcSi4UIPCq6ANgGhpruG3ivZ+hdLaXWFzABoiYTlmsl/KB
+ mZ7B75HnsODdXJhzG4sKm3z+PnDC6Q3hsM04yLwluxUOdxXTADYQZj+kVYdmekM0Juf1Xk3akl/
+ o9cYUDhBcUJVy+1BsNtzlIuMRNvf5MyB/IzPagolSzTmxYgTzDIr1BrPijGQ5uAC+FkTmdpa/1b
+ wyOEKbdq4sZs6Ot66bovWJeDB9r4TulFJ4wdnba4X19tZVQ6/wT2ycJP9kr1XbGpZ0vy61vINE9
+ 3ZxKvANGUjdpMFS11oLxEqxWxouGk+sEZhLVAEjzLkK+yc6r6VjHSdldCO/kkDEzS0mc7Yf6hmM
+ TYSdbsbOgG0Dq/+Xr5kKYFS7r9DiQCL5DomKSDe7uP4DyQsGJeDpDs5ClaKcu2CbfG/upfdUbng
+ FvfuLkCQshGschE7PrA==
+X-Proofpoint-ORIG-GUID: gu0aKBwezcJHdQlyer2GO-xgrYgEoFL_
+X-Authority-Analysis: v=2.4 cv=WecBqkhX c=1 sm=1 tr=0 ts=6989bd22 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=XccleKrqIk_kMzO7r2MA:9
+ a=_Vgx9l1VpLgwpw_dHYaR:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-08_05,2026-02-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 impostorscore=0 malwarescore=0 bulkscore=0 phishscore=0
+ spamscore=0 priorityscore=1501 adultscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602090089
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263952-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,oss.qualcomm.com,linaro.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-263953-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.980];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jishnu.prakash@oss.qualcomm.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[broadcom.com:email,infradead.org:email,mailbox.org:email,mailbox.org:dkim,mailbox.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arm.com:email]
-X-Rspamd-Queue-Id: 5AD9010E63E
+	NEURAL_HAM(-0.00)[-0.992];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: C631610E6E2
 X-Rspamd-Action: no action
 
-On 1/19/26 5:57 PM, Cristian Marussi wrote:
-> On Sat, Jan 17, 2026 at 02:02:29AM +0100, Marek Vasut wrote:
->> Implement new property arm,no-completion-irq, which sets all SCMI
->> operation into poll mode. This is meant to work around uncooperative
->> SCP implementations, which do not generate completion interrupts.
->> This applies to mbox/shmem based implementations.
->>
->> With this property set, such implementations which do not generate
->> interrupts can be interacted with, until they are fixed to generate
->> interrupts properly.
->>
->> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
->> ---
->> Cc: Conor Dooley <conor+dt@kernel.org>
->> Cc: Cristian Marussi <cristian.marussi@arm.com>
->> Cc: Florian Fainelli <florian.fainelli@broadcom.com>
->> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->> Cc: Rob Herring <robh@kernel.org>
->> Cc: Sudeep Holla <sudeep.holla@arm.com>
->> Cc: arm-scmi@vger.kernel.org
->> Cc: devicetree@vger.kernel.org
->> Cc: linux-arm-kernel@lists.infradead.org
->> Cc: linux-renesas-soc@vger.kernel.org
->> ---
->> V2: Drop no IRQ handling from SMC transport and update commit message
->> V3: Rename property from arm,poll-transport to arm,no-completion-irq
->> V4: No change
->> ---
->>   drivers/firmware/arm_scmi/common.h | 4 ++++
->>   drivers/firmware/arm_scmi/driver.c | 4 ++++
->>   2 files changed, 8 insertions(+)
->>
->> diff --git a/drivers/firmware/arm_scmi/common.h b/drivers/firmware/arm_scmi/common.h
->> index 7c35c95fddbaf..7c9617d080a02 100644
->> --- a/drivers/firmware/arm_scmi/common.h
->> +++ b/drivers/firmware/arm_scmi/common.h
->> @@ -235,6 +235,9 @@ struct scmi_transport_ops {
->>    *		      to have an execution latency lesser-equal to the threshold
->>    *		      should be considered for atomic mode operation: such
->>    *		      decision is finally left up to the SCMI drivers.
->> + * @no_completion_irq: Flag to indicate that this transport has no completion
->> + *		       interrupt and has to be polled. This is similar to the
->> + *		       force_polling below, except this is set via DT property.
->>    * @force_polling: Flag to force this whole transport to use SCMI core polling
->>    *		   mechanism instead of completion interrupts even if available.
->>    * @sync_cmds_completed_on_ret: Flag to indicate that the transport assures
->> @@ -254,6 +257,7 @@ struct scmi_desc {
->>   	int max_msg;
->>   	int max_msg_size;
->>   	unsigned int atomic_threshold;
->> +	bool no_completion_irq;
->>   	const bool force_polling;
->>   	const bool sync_cmds_completed_on_ret;
->>   	const bool atomic_enabled;
->> diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
->> index 3e76a3204ba4f..f167194f7cf67 100644
->> --- a/drivers/firmware/arm_scmi/driver.c
->> +++ b/drivers/firmware/arm_scmi/driver.c
->> @@ -2735,6 +2735,7 @@ static int scmi_chan_setup(struct scmi_info *info, struct device_node *of_node,
->>   	cinfo->is_p2a = !tx;
->>   	cinfo->rx_timeout_ms = info->desc->max_rx_timeout_ms;
->>   	cinfo->max_msg_size = info->desc->max_msg_size;
->> +	cinfo->no_completion_irq = info->desc->no_completion_irq;
->>   
->>   	/* Create a unique name for this transport device */
->>   	snprintf(name, 32, "__scmi_transport_device_%s_%02X",
->> @@ -3150,6 +3151,9 @@ static const struct scmi_desc *scmi_transport_setup(struct device *dev)
->>   	if (ret && ret != -EINVAL)
->>   		dev_err(dev, "Malformed arm,max-msg DT property.\n");
->>   
->> +	trans->desc.no_completion_irq = of_property_read_bool(dev->of_node,
->> +							      "arm,no-completion-irq");
->> +
->>   	dev_info(dev,
->>   		 "SCMI max-rx-timeout: %dms / max-msg-size: %dbytes / max-msg: %d\n",
->>   		 trans->desc.max_rx_timeout_ms, trans->desc.max_msg_size,
-> 
-> LGTM.
-> 
-> Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
+PMIC5 Gen3 has a similar ADC architecture to that on PMIC5 Gen2,
+with all SW communication to ADC going through PMK8550 which
+communicates with other PMICs through PBS. The major difference is
+that the register interface used here is that of an SDAM present on
+PMK8550, rather than a dedicated ADC peripheral. There may be more than one
+SDAM used for ADC5 Gen3. Each ADC SDAM has eight channels, each of which may
+be used for either immediate reads (same functionality as previous PMIC5 and
+PMIC5 Gen2 ADC peripherals) or recurring measurements (same as PMIC5 and PMIC5
+Gen2 ADC_TM functionality). In this case, we have VADC and ADC_TM functionality
+combined into the same module.
 
-Is there anything left to do with these patches, or can this now be 
-picked up ?
+Patch 1 splits out the common ADC channel properties used on older
+VADC devices, which would also be reused on ADC5 Gen3, into a common 
+binding file, to be referenced in Gen3 and other ADC binding files.
 
-Thank you.
+Patch 2 adds bindings for ADC5 Gen3 peripheral.
+
+Patch 3 adds the main driver for ADC5 Gen3.
+
+Patch 4 adds the auxiliary thermal driver which supports the ADC_TM
+functionality of ADC5 Gen3.
+
+Changes since v10:
+- Replaced inclusion of device.h header file with forwards declaration of
+  struct device in two files and updated all for() loops to declare and
+  initialize the loop iterator in for() statement as suggested by Jonathan.
+- Addressed some more comments from Jonathan for some minor style changes.
+- More details about all changes are present in per-patch change logs.
+- Link to v10: https://lore.kernel.org/all/20260130115421.2197892-1-jishnu.prakash@oss.qualcomm.com/
+
+Changes since v9:
+- In patch 4, replaced the break statement within scoped_guard() in tm_handler_work()
+  with return statement to fix the error reported by kernel test robot.
+- Link to v9: https://lore.kernel.org/all/20260128112420.695518-1-jishnu.prakash@oss.qualcomm.com/
+
+Changes since v8:
+- Collected Reviewed-by tag from Krzysztof on patch 2.
+- Dropped the common module (drivers/iio/adc/qcom-adc5-gen3-common.c) as suggested
+  by Dmitry.
+- Made changes in patches 3 and 4 to simplify auxiliary device structure to use
+  module_auxiliary_driver() as requested by Dmitry.
+- Updated header files included in all newly added files to follow IWYU
+  (include-what-you-use) principles as requested by Jonathan.
+- Addressed all remaining comments from Jonathan in patches 3 and 4, for
+  refactoring some code.
+- More details about all changes are present in per-patch change logs.
+- Link to v8: https://lore.kernel.org/all/20251127134036.209905-1-jishnu.prakash@oss.qualcomm.com/
+
+Changes since v7:
+- Based on a discussion with Krzysztof concluded here: 
+  https://lore.kernel.org/all/d10e2eea-4b86-4e1a-b7a0-54c55907a605@oss.qualcomm.com/,
+  patch 1 in the previous series is updated to move ADC header files from binding to
+  devicetree folders, as they contain HW constants, not exactly bindings.
+  Earlier in series v7, patches 3 (Gen3 binding) and 4 (driver) were dependent on
+  patch 1, as it updated the location of include/dt-bindings/iio/qcom,spmi-vadc.h,
+  which was used in patches 3 and 4 for Gen3 channel macros. In v8, these macros
+  will be added in other new files, so the former patch 1 will now be a standalone
+  change separate from this series, as the other patches here are no longer
+  dependent on it.
+- Patches 2/3/4/5 of v7 are now patches 1/2/3/4 in v8. Below comments refer to
+  v7 patch numbers.
+- Updated description of `reg` property in patch 2 to completely drop mentions of binding
+  file paths, to simplify it and avoid any dependencies with patch 1.
+- Dropped all ADC channel macro definitions from patch 3, updated binding example
+  correspondingly and fixed formatting inconsistancies in property names, to address
+  Krzysztof's comments.
+- Addressed all comments from Jonathan in driver patches 4 and 5, for fixing formatting
+  and refactoring some code.
+- In patch 4, added ADC5 Gen3 channel macros in qcom-adc5-gen3-common.h, for use in main
+  driver file. Also added a check to fail probe in case ADC channel value obtained
+  from devicetree is not among list of supported channels.
+- More details about all changes are present in per-patch change logs.
+- Link to v7: https://lore.kernel.org/all/20250826083657.4005727-1-jishnu.prakash@oss.qualcomm.com/
+
+Changes since v6:
+- Collected Acked-by tags from Jonathan on patches 1, 2 and 3.
+- Addressed Neil's comment in patch 3.
+- Updated copyright to yearless one in newly added files, following new internal guidelines.
+- Addressed all comments from Jonathan on patches 4 and 5 (most importantly for updating
+  auxiliary device cleanup handling to fix memory freeing issues).
+- More details about all changes are present in per-patch change logs.
+- Link to v6: https://lore.kernel.org/all/20250509110959.3384306-1-jishnu.prakash@oss.qualcomm.com/
+
+Changes since v5:
+- Collected Reviewed-by tag from Krzysztof on patch 2.
+- Addressed all comments from Krzysztof and Jonathan on patch 3.
+- Addressed all comments from Jonathan on patches 4 and 5.
+- More details about all changes are present in per-patch change logs.
+- Link to v5: https://lore.kernel.org/all/20250131183242.3653595-1-jishnu.prakash@oss.qualcomm.com/
+
+Changes since v4:
+- Split common ADC channel properties out into a separate file to use as 
+  ref for ADC5 Gen3 and moved ADC5 Gen3 documentation into a separate
+  file as suggested by reviewers.
+- Addressed few reviewer comments in driver patches.
+- Link to v4: https://lore.kernel.org/all/20241030185854.4015348-1-quic_jprakash@quicinc.com/
+
+Changes since v3:
+- Updated files affected by adc file path change in /arch/arm folder,
+  which were missed earlier.
+- Added ADC5 Gen3 documentation changes in existing qcom,spmi-vadc.yaml file
+  instead of adding separate file and addressed reviewer comments for all bindings.
+- Addressed review comments in driver patch. Split out TM functionality into
+  auxiliary driver in separate patch and added required changes in main driver, as
+  suggested by Dmitry.
+- Link to v3: https://lore.kernel.org/all/20231231171237.3322376-1-quic_jprakash@quicinc.com/
+
+Changes since v2:
+- Reordered patches to keep cleanup change for ADC files first.
+- Moved ADC5 Gen3 documentation into a separate file
+
+Changes since v1:
+- Dropped patches 1-5 for changing 'ADC7' peripheral name to 'ADC5 Gen2'.
+- Addressed reviewer comments for binding and driver patches for ADC5 Gen3.
+- Combined patches 8-11 into a single patch as requested by reviewers to make
+  the change clearer and made all fixes required in same patch.
+
+Jishnu Prakash (4):
+  dt-bindings: iio: adc: Split out QCOM VADC channel properties
+  dt-bindings: iio: adc: Add support for QCOM PMIC5 Gen3 ADC
+  iio: adc: Add support for QCOM PMIC5 Gen3 ADC
+  thermal: qcom: add support for PMIC5 Gen3 ADC thermal monitoring
+
+ .../bindings/iio/adc/qcom,spmi-adc5-gen3.yaml | 151 +++
+ .../iio/adc/qcom,spmi-vadc-common.yaml        |  84 ++
+ .../bindings/iio/adc/qcom,spmi-vadc.yaml      |  78 +-
+ .../bindings/mfd/qcom,spmi-pmic.yaml          |   1 +
+ drivers/iio/adc/Kconfig                       |  26 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/qcom-spmi-adc5-gen3.c         | 860 ++++++++++++++++++
+ drivers/thermal/qcom/Kconfig                  |   9 +
+ drivers/thermal/qcom/Makefile                 |   1 +
+ drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c | 507 +++++++++++
+ include/linux/iio/adc/qcom-adc5-gen3-common.h | 212 +++++
+ 11 files changed, 1856 insertions(+), 74 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-adc5-gen3.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc-common.yaml
+ create mode 100644 drivers/iio/adc/qcom-spmi-adc5-gen3.c
+ create mode 100644 drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c
+ create mode 100644 include/linux/iio/adc/qcom-adc5-gen3-common.h
+
+
+base-commit: 18f7fcd5e69a04df57b563360b88be72471d6b62
+-- 
+2.25.1
+
 
