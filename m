@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-264058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264059-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8JsABSwCimluFQAAu9opvQ
-	(envelope-from <devicetree+bounces-264058-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:50:04 +0100
+	id SNUqEj0CimluFQAAu9opvQ
+	(envelope-from <devicetree+bounces-264059-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:50:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89BA211228F
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:50:03 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 694A511229D
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:50:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B713D3025C76
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 15:48:26 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 10B9F3004D96
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 15:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C44437BE89;
-	Mon,  9 Feb 2026 15:48:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 485FC3803CD;
+	Mon,  9 Feb 2026 15:50:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ABuyQX0g"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IYYOvKVr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1B65378D72;
-	Mon,  9 Feb 2026 15:48:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0484E2BEC55;
+	Mon,  9 Feb 2026 15:50:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770652103; cv=none; b=Avb8RSOliE8pE9FW7EylnKfhCb6aqNGfmO02FEshjHjROwyq+NkiMou8sE1Zhvi1nyZZcC6+ZAx2GimuBQKSG/hw0m0Cunw6a2YlkJGO6nwyN15WR6PMoEHHK1yDdjG7IRuHQ/SmHmdryBF33W7LLz/P6YNbDPG3QjxdNvvLFlk=
+	t=1770652202; cv=none; b=JodHJ5W+It26IWERIzgOXgTeJwb+7gnkrdpxlbH5u/aUnlb6aZ6UoqSHd2Wr+UB/BeGBLOoVc43PzyxN6ivNAWoGrTGGIanbH1q0/twrJi4vACNT2aErEznpPmTZ/XTccuksTb6/R5peum4gjVi2Bf1CQA/pbh8sxC3pXcp3XTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770652103; c=relaxed/simple;
-	bh=b1r0+pb4BqBOL+hijKwyixcsftgMqG2aE47GllsbZTc=;
+	s=arc-20240116; t=1770652202; c=relaxed/simple;
+	bh=vDq+j7s8pXIuY3vStz+3sTq2vM/V+muJnmG0jZ6xh/o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lxLsS6G/qo8Rk673C/rLo+S+jR9z7ZIWnbdHosV7MzxQDv/El1Z8jICWUD2CiW9zkrzKzmFevBaJmiJWR2umSXyV60o1Y2EDl6i9pM6D64Xcj/FipPYnKYjzsYKwiLgLX8MTZQik+FMTRbUpeNl7o7T+Vv+UznlXGs0USkSBBGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ABuyQX0g; arc=none smtp.client-ip=198.175.65.14
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zxve8p3zUd7TSnRCdQjpB1m9QBG8SQTbFCUvpeRCdUsWm8MVmnrYtrQvRpe6n8Km/VtRmbcs3+Zupc4ykYXRKnZE3iuwywyJVDRz2jS7jLdwt2m/N+KCV7KVcyFGscfbiFuBwZCCoHEZp9BF5wZ31yuDQqCPR7amPsSlHVdD9hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IYYOvKVr; arc=none smtp.client-ip=198.175.65.14
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770652103; x=1802188103;
+  t=1770652202; x=1802188202;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=b1r0+pb4BqBOL+hijKwyixcsftgMqG2aE47GllsbZTc=;
-  b=ABuyQX0gAKjQjfrJ7PQ+ABWYu7qaJyxHSogXA7TwisfSXAq5frWzLs/v
-   Ygn/IOQVgc/tYhVJIeW/lc+kyjuYnt5XabwHVqHuopWN3biZe4zKv+RcA
-   qzNgnwCpe4xcLvDNTw4rt4j+lb+cjLX86R0A0wZCDyoKbRy5Qr6uMYM0l
-   iR8PkhFkzIfih9mK25KzLkNcaCwIMOTvZcD8yeUr4hhEX5MUQ2O4ZW4si
-   U+CdDmZOQVtRljjyXpEuoL5P0AEdCnGsRccSxdGhljxxCxdWps03XteMV
-   iF6pRlLcJN0ZO8izFh0BErb+K0yiKfuNybx2zAjesbuk+47y1oHuG90IG
-   Q==;
-X-CSE-ConnectionGUID: FPvbropHSEaZHbj484hFbg==
-X-CSE-MsgGUID: CdTkRb3mQQuM3Ry9kmA7sA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="75612988"
+  bh=vDq+j7s8pXIuY3vStz+3sTq2vM/V+muJnmG0jZ6xh/o=;
+  b=IYYOvKVrI2rwZD4bj/1ZqICVY2tN+zr9gkLEc22ht6YGcbf6EMaezO7j
+   px8holUbHQwFFk6q3qJOfiuWUhQ6R0/TB+wiT9iZEw2baHgjQE8zbDvt3
+   e5BfoSrvweRWKwAoHKv+Qu8LOlR9Pgyykm5btqqZrox4hQF+92nslR/87
+   pKJB53JmaVUCxUWPouvnXx3Fg/+ko5uhvu/1n1KXF2JPUfpSEdsaTV3tj
+   9s61EFtwnAyyM7eZatP603Kkg0d322lZQzBE9G0wFv0NLTHzW5YeGED4P
+   KBVaFIHcqCDqCXaepf0qo/TYXaWhWmJk5KocwgpwSDIND7W1GZ1++1k9u
+   w==;
+X-CSE-ConnectionGUID: F7B8ubsXS4+89tqADvlogw==
+X-CSE-MsgGUID: sr3TBT/QT6mo1iYq4rgpng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="75613123"
 X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; 
-   d="scan'208";a="75612988"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 07:48:23 -0800
-X-CSE-ConnectionGUID: TWviWV6EQfWVW6dzzBD3fA==
-X-CSE-MsgGUID: 8NUa6r9nSxKwiuFpVQGr+w==
+   d="scan'208";a="75613123"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 07:50:02 -0800
+X-CSE-ConnectionGUID: S/DrPbkWSqK6IY/rSdAIiw==
+X-CSE-MsgGUID: lEW3Y0aTS6iKhmQVCmbnKA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; 
-   d="scan'208";a="216144473"
+   d="scan'208";a="242239437"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.128])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 07:48:19 -0800
-Date: Mon, 9 Feb 2026 17:48:16 +0200
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 07:49:58 -0800
+Date: Mon, 9 Feb 2026 17:49:56 +0200
 From: Andy Shevchenko <andriy.shevchenko@intel.com>
 To: Erikas Bitovtas <xerikasxx@gmail.com>
 Cc: Jonathan Cameron <jic23@kernel.org>,
@@ -75,8 +75,9 @@ Cc: Jonathan Cameron <jic23@kernel.org>,
 	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
 Subject: Re: [PATCH v2 0/2] iio: light: Add support for Capella cm36686 and
  cm36672p sensors
-Message-ID: <aYoBwFW4ZDFhmlvy@smile.fi.intel.com>
+Message-ID: <aYoCJMlaaPO8auIm@smile.fi.intel.com>
 References: <20260209-cm36686-v2-0-a48126d2b124@gmail.com>
+ <aYoBwFW4ZDFhmlvy@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +86,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260209-cm36686-v2-0-a48126d2b124@gmail.com>
+In-Reply-To: <aYoBwFW4ZDFhmlvy@smile.fi.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
@@ -93,12 +94,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264058-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264059-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
@@ -115,22 +116,26 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smile.fi.intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: 89BA211228F
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,smile.fi.intel.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 694A511229D
 X-Rspamd-Action: no action
 
-On Mon, Feb 09, 2026 at 04:23:40PM +0200, Erikas Bitovtas wrote:
-> This patch series adds support for Capella cm36686 and cm36672p ambient
-> light and proximity sensors.
+On Mon, Feb 09, 2026 at 05:48:22PM +0200, Andy Shevchenko wrote:
+> On Mon, Feb 09, 2026 at 04:23:40PM +0200, Erikas Bitovtas wrote:
+> > This patch series adds support for Capella cm36686 and cm36672p ambient
+> > light and proximity sensors.
+> > 
+> > Capella cm36686 is a combined ambient light and proximity sensor with
+> > adjustable integration time, interrupt and hysteresis support. It has
+> > the slave address of 0x60. cm36672p is fully compatible with cm36686,
+> > except that it is a proximity-only sensor.
 > 
-> Capella cm36686 is a combined ambient light and proximity sensor with
-> adjustable integration time, interrupt and hysteresis support. It has
-> the slave address of 0x60. cm36672p is fully compatible with cm36686,
-> except that it is a proximity-only sensor.
+> So, can we share the code (assuming there is a driver and it already
+> uses or may be converted to regmap APIs)?
 
-So, can we share the code (assuming there is a driver and it already
-uses or may be converted to regmap APIs)?
+Ah, it's being added with the same driver... So, have you checked if there is
+any similar HW with the available driver in upstream?
 
 -- 
 With Best Regards,
