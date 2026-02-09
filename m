@@ -1,265 +1,275 @@
-Return-Path: <devicetree+bounces-263911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263913-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OLrOIMOpiWnfAQUAu9opvQ
-	(envelope-from <devicetree+bounces-263911-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 10:32:51 +0100
+	id yAHNNgGqiWnfAQUAu9opvQ
+	(envelope-from <devicetree+bounces-263913-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 10:33:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C0410D95B
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 10:32:50 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F41B10D981
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 10:33:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 03E65300119B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 09:32:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2113B3008296
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 09:33:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA3D03033F4;
-	Mon,  9 Feb 2026 09:32:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Y619W/lx";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="UDYyeXO9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3795C338F26;
+	Mon,  9 Feb 2026 09:33:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023129.outbound.protection.outlook.com [40.107.44.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3A3F258CDF
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 09:32:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770629565; cv=none; b=XSB5J7IboXSA27NGNYZfwxfYouIXZyaQQosnO7dx59m+BwGUxagQX8lIYqI4J3F6QouSLmEyTkvYAQF7PBYLvhzoc8UFFVKR9f7vjLMxX0IKc6T0FpgnEuAp66TowiWNCuJUCB8rtRnbhwWggyY0bnfHxNDy1YxSLy8ORYJqJVM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770629565; c=relaxed/simple;
-	bh=aJQyZ5faOnML2T8pOGQwy0WuTsCSlXllFoC+pkPEAyA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UJlIBpNfQtBW0ymWhraFBJceTEK25SXgSnVmUPLf1oVAp0+InxVKaiSk1hf3LTK3qDypaRmzdjmnjycpZ2B7l9AFiWfj3XocDA+xKvSSCnkujSjSPTQVQxMRgd4o1zd/l4zldu8TYz2aAU3PzEF5C6mxcW3H7RPiSc8OP+u7V4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Y619W/lx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=UDYyeXO9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61952mCA2586946
-	for <devicetree@vger.kernel.org>; Mon, 9 Feb 2026 09:32:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=Vg5kb3rjYjORfGzAsEr4ibn5dKi93LG2sOc
-	0yOm90Pc=; b=Y619W/lx19e462pZifxdXSBKdfojqpH21naBxiomKiwd0hwvhlN
-	UsiBgkbG+MkOJMdnh2oQgUajPWryBG3bRqEuZviSXyElYIseSFPrE430VpZirJ/C
-	yy4ETXyRRd+N/qvcjb7RMAk45RKyyTUbl6+vjrxYvDS5ThzpT32CEdNIB4FgcSvE
-	cpoX/8s+lH/Qr5g21JcUvnjtBcVbmWg44QjM1o1Ss20LuIeLxD3oiz6hhXlJ6Jmf
-	1JXnxv0QnNSfgQanSwAolz7kUSaks5S+kAu34gLA6DQwTsI56sIlHXqCAfARHqKE
-	noswxKdJR7RcQAzauSXnQFlXTq7jMwyz6Tw==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c793bgw0v-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 09:32:44 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c6ad709d8fso1001133385a.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 01:32:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770629564; x=1771234364; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vg5kb3rjYjORfGzAsEr4ibn5dKi93LG2sOc0yOm90Pc=;
-        b=UDYyeXO9AsOsyFWDucAnFm4B2+yzScJxG+xoq5XYLS2+Qb7VFkneqP1ZXrIq34NQwI
-         JcR/XejwdgvEDlVoq2gn4+xbpjQBZHwodolwvqnHARUw2lgdom9rMyjnoEGC3MpkUr5K
-         nKmMFAL2nwuJYSENFlKdb/hSEJ/tf3byWtYeWxDjaSruMktpq9z43kA0JcYWW8bICy6t
-         LT/M3yi+lRcLxlbpqH9zwYQizjikzO1/4h8tTewaEh7+ffNV0YVOK55OmGoeu6Aqzsrq
-         zdoIJM7ecDcmBA5A8fDl2r37eIffNFx6M0/3LzpgSRXY8SySz2KN8VxH+7uL16pw64B1
-         VLOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770629564; x=1771234364;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Vg5kb3rjYjORfGzAsEr4ibn5dKi93LG2sOc0yOm90Pc=;
-        b=qsdd3MfeBE/K5lCyN6pFlyGzEiBQ/FmgIHNw0dDruSuzgi+wB+ShXphnN4/mYV9II+
-         fbJOiNM3c2kkcW/x+co6VD2Qa4eGrdKuUFA7PYg9af18h1RydRPkzSNKwO5JbHTRJnHn
-         gP/ZNE+sdQN4cCtMkN/VWicXmXevYcX3epsqMUq71uI+Q0GM0aQF82V02BLy2YTdILtC
-         8/OnqpQgzC22zdb92NuMUQyTvqKV1t0apKN2ccBrVRubK6dGvf1HXMBi90OfRobHx8Ak
-         0TIprrQB99lh0UV0W28UTDj4Lc542JUc36Cyn12rN7Fi0gQVz6Is6vvz72jo5tdpxZ2K
-         cvyg==
-X-Forwarded-Encrypted: i=1; AJvYcCUCI8kE7AmYNfDmsvIAxx7Colsbd8vO5sf0lqZakoGImt39dTvWWkBJmqWFyY6saCA5KzmeMSW81ooQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpfflPsnvafzt7A+6TtdN9nqXY6JYAHv8E70u6FlWFVbCFWp1M
-	ZSt4g0+cjAtXsBjlSk6qR/mkAnsBt8sS4xOESaWeYJ8yy/0HoUz95T+xcxffC1bKhyPe3BLEaDs
-	IdajeEEJEc3oMdiFwv61Mpe009SixGVLe/FrDaZJW0u/VEeCQ/qWqleVrIoAUURqx
-X-Gm-Gg: AZuq6aL3cgZyorNszFMbOedcOgZJir7diSDOk4+Qj15JyObsNGFpnnNYFTMHKu51EY8
-	vhYhpl8DYIGhQlIolwPupYw1QVw9QCmfr2eRoJiS5IvYY64UYvbeOxu9iP0ogLuZbROeqx+cIR8
-	GHrMTARgoTHjWbZ1GD2wwWak8vxhXs6TZsVMOzNznIctejmDZ6rxeb3NVSpxW1tyQMj9cUql1hm
-	F6vcdaicN6R35o48R+OTQJ0+xTsRwblHGilZoTrUiv0N9IGwb8t346evq16hJfvdww7fG6DRwbE
-	uCX5CGGCSwMev0kasYk3qvX56gUs4bhXfm3xOdTS3xcNA3h0UQuJP5wsH3hgaqioHo70GtcqPdR
-	ZNTrjIfHdatF7wqUJV5CmJY8Ocw==
-X-Received: by 2002:a05:620a:2846:b0:8c7:a39a:d51 with SMTP id af79cd13be357-8ca40b91540mr1930171785a.13.1770629563936;
-        Mon, 09 Feb 2026 01:32:43 -0800 (PST)
-X-Received: by 2002:a05:620a:2846:b0:8c7:a39a:d51 with SMTP id af79cd13be357-8ca40b91540mr1930169385a.13.1770629563514;
-        Mon, 09 Feb 2026 01:32:43 -0800 (PST)
-Received: from quoll ([178.197.218.229])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4376806626fsm12001050f8f.37.2026.02.09.01.32.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Feb 2026 01:32:43 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: [PATCH v4] arm64: dts: qcom: x1-crd: add USB DisplayPort audio
-Date: Mon,  9 Feb 2026 10:32:38 +0100
-Message-ID: <20260209093237.33287-2-krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: git-send-email 2.51.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC57330AAAF;
+	Mon,  9 Feb 2026 09:33:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.129
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770629630; cv=fail; b=EUBf0VF9+OVES46zEuOIpUNodGwfoh3yjkh0JqmaPAgWYfyjGQ2nYSsG1SOQ+UQOtb4YQK/Jq26s6fIB6mQjqIGPPPH3qsqhr3oKQbGEXIv+pIrmlsBDfklKHTqagwagM89LPi76TzMpafdfmxuPe4LUXVP8xg6VhqL7LIsGFd4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770629630; c=relaxed/simple;
+	bh=TQ/BxHLws5OjN0/8Pfe2Vnp782pQ2ggTQHbxOxkRhWE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Wj7DxFRrBtB707dzP989/Qi42Fj/Ws4mtMb5YB9ILMoifmucMq+0UdUr4a7n58M0llvnxIMZhol0o8adLCX2vtXyPloNmuU3VnWw58pi4cFkOsAHX6ns4JAc9PETT6zNPpvRWF5lhdB6r1C4hv7WEotmlJyWYK7R3F9Bv6oW+xg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=T1UmHWoPLmkIObthZmBiyVwkKx2JNXLiHS7A9BXdsB5S9AHCR9l9IChmh43ij9mN/Z8q1XO3zOmaS7DiBKKPgxc5T8dqioL4iACddVvJNhUsO5fAX4mru/L+482uvdPDWUXEucJsoFWsMRgQhkmqyzfq+ZOEIoiNsclQfoWedQos0yVdRSJdo0Q6HaajuNF2bbiUgOC0PZdQ/tC4Mjg4YYkaaPh8X2CsqrFz511+7mT7Vx8hrOfP4/AlNAXnDZurWW2pM8IBew64WQ/7OeenGe2HhLIhVDNxYgzWA5Kz2ElBwbHFYYwALyXrFk8J3lCq4MqoVu6by+qXyMmHu7BUwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yuP4FFAcWSmwxVAI5XTLwQ1yoGc6U2KN8yNk+i62Ey0=;
+ b=y12XfYxWwPvDKjTslgAqaSfB5v8iYjtLiDBqTxfdpeJs6gPNwCrtXHkHCCFGj92kVDp7ZXSGOs4c1Bt9Pf4janov0zrKGQKI2dKGM65gtwESDC8m5k6rORea0PiO+MMOXQPW7sNGx0Uq3wPuXVE+nJD4CPTC4cZ2xv/FwicB9gU+R0l2EoRUBRGTzaEkt6lZIcCKjA5e7jlnEZBVdygsuIVRAz33s0CvLLIXKhkL4yTBEqf/MNwgskDle9MuUs+i/6iX/l30wyq5YOQiAP1qw8gHu9un8QQGdzrQuLwn+Sk+O+h+YgVyjmrYiF4YaEKVXvquwLNmSRZ0jlMAw6Cc3w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SE2P216CA0014.KORP216.PROD.OUTLOOK.COM (2603:1096:101:117::11)
+ by TYPPR06MB8328.apcprd06.prod.outlook.com (2603:1096:405:396::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.18; Mon, 9 Feb
+ 2026 09:33:46 +0000
+Received: from OSA0EPF000000C6.apcprd02.prod.outlook.com
+ (2603:1096:101:117:cafe::9c) by SE2P216CA0014.outlook.office365.com
+ (2603:1096:101:117::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.18 via Frontend Transport; Mon,
+ 9 Feb 2026 09:33:36 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000C6.mail.protection.outlook.com (10.167.240.52) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9587.10 via Frontend Transport; Mon, 9 Feb 2026 09:33:45 +0000
+Received: from localhost.localdomain (unknown [172.16.64.196])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 8F82740A5BD7;
+	Mon,  9 Feb 2026 17:33:44 +0800 (CST)
+From: Gary Yang <gary.yang@cixtech.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	peter.chen@cixtech.com,
+	unicorn_wang@outlook.com,
+	inochiama@gmail.com,
+	alchark@gmail.com
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	cix-kernel-upstream@cixtech.com,
+	Gary Yang <gary.yang@cixtech.com>
+Subject: [PATCH v8 0/3] Add support for Cix Sky1 resets
+Date: Mon,  9 Feb 2026 17:33:41 +0800
+Message-ID: <20260209093344.2013693-1-gary.yang@cixtech.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2092; i=krzysztof.kozlowski@oss.qualcomm.com;
- h=from:subject; bh=aJQyZ5faOnML2T8pOGQwy0WuTsCSlXllFoC+pkPEAyA=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpiam177bjsLBqgijhJ/uwK48G+jxo29gB0ByTf
- J/EKlPcQqqJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaYmptQAKCRDBN2bmhouD
- 12dWD/0RH6h7yR5+CPc8BIIBO9RxwSv0Um0z9Axo9QpCcSxem8hMEJE3Ql5nS8kOeywNM5Wm/fO
- ygmUQVRNVXGJiBN/eHOwj79+Y61XT//5+sQ4kpvC5sh83hb293eY38kdatAILE8IdsmP+Btn5yV
- jDecGlSzivzvLsqzOJMa8pzEcI4o26YLfd4FlvHd8pTr8s0RE1b2ChOjLF8f+mBiOxtxz4hTIjw
- li4FTfy3QYB35x/yyXfcCZZ8bJTJGAq2pakbL0Jtd8D5Yhjhpkmlvef3zYpm0PRrfhv+2vdO1rZ
- inchX6D1oI6sG1gaamCv35ux6V3S/AMfwd4ZaR1n5RiicSq6cFS9rXPGzSF1d/4f5fIEgt/WTBE
- QxFBT2KoJbTb/Xf2Bpo3iijdRwYfqBCBseAx2hoIz+ZdjPHVBbRcURhnotildnhCUfuLPztWDU1
- 4QKrzkrZOauctRLcj4G7bUN/E3eiPsy8lMHBjgwWWXmoL2+561JOcCB50teDn5z7Ye65PEr5y5r
- hnzjPUfv4DCmtGttNYXDs07oeSrlRjCvXbbeSbGGbB6h7fGWvGH3H5DQH2QlQTaZLeSbw+Gmsh+
- U8Wn1KCSSOraMRrabc3ls/UHSWdj/lRuNSXUlz+FFu1lDm1gfK6xU83vASuHXds/DzcBCupNm3v c3qhtRRuvJIeufg==
-X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=ctOWUl4i c=1 sm=1 tr=0 ts=6989a9bc cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=Eb9f15NH/cHKzfGOmZSO4Q==:17
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=bC-a23v3AAAA:8
- a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=6ODwBvgpoHaQwxifY08A:9
- a=IoWCM6iH3mJn3m4BftBB:22 a=FO4_E8m0qiDe52t0p3_H:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: doHKwczc3Pc-weUxvDwe7-QOrh8exel4
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDA3OSBTYWx0ZWRfX3MhS99ZspSXI
- W0Gh5x4LuatV82ToEr880HDXSnh3fYq7H7wpV4d2vx/Pm7zTK3Cq+w/MLb5XWtOLT/utygfGhae
- qBT5vgxotvfBZJepyAmlYX0GKh6vb10MWoon9u2r+JHdJfmQbnHuAF2jUXENAsk/0sKzCR1tUOh
- m/wiR4NM9wSCFmhnm/rlgHSWUfjU9Meh8HJQBViZXlfTnU1OvwY2xjpX4oEwhUGCZIzmPT82bmv
- DhRcnYqDXmeaYq89IYd3sAiUcxuCpaN644mAJm7wJXIepjNDFhH7AcdZBoTf3T4J0I8/omL+Go8
- x5442XTkquU3Bkme/FplBOHTEyMUDxnyJtIjAvXtFh2Ek1KXDSxpSQ/OHeiUINN7lpAhWKhrEHT
- 3009uy6rmspwAdMjUq00sWtpFmCxxdvf4hRik1SKlkRqJfG5iw/xAGpfUuG9Gz4AxJS0FFnC+Yv
- JTnkLmfL7S+wSgtB6+Q==
-X-Proofpoint-GUID: doHKwczc3Pc-weUxvDwe7-QOrh8exel4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-08_05,2026-02-09_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 suspectscore=0 spamscore=0 adultscore=0
- malwarescore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602090079
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000C6:EE_|TYPPR06MB8328:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: dec37069-2c5a-41e2-41b3-08de67be5254
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|7416014|82310400026|36860700013|32650700017;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?uxbxEJRapnkHa4j9oVa2R2p4PCP8hGkUIQGqDfSo3C3JKUBu+GIf4Xx2DA9x?=
+ =?us-ascii?Q?Ttt0CUGc82Qbw0v2p50/bwaZ9BfXfuzT0i3xzxAWD8gSKH9mWrvzYEcIjkdH?=
+ =?us-ascii?Q?bGFtGe0AmDRUrGOWWkBr/VRlsDgBF3OWavzCMbTAgi7wDOKFJ5BpkCrzy/dj?=
+ =?us-ascii?Q?kX6gNZn02lewuJh8yTOmYwrc02ztAQaDEntHKUzag6aDFs6KkagBcm91Wg+J?=
+ =?us-ascii?Q?nec6lOsTZRni8G42EdvCbeu9KKamzARWpMghU5maAHSqUEMjZfrvBWebqSwK?=
+ =?us-ascii?Q?XA20wQZDEoztQ3Crsa8ge5CjC5eXapkN13s8pUok0nrf7NgXeK8ahDroSvHO?=
+ =?us-ascii?Q?k05cpZugQ8dj4ZolRE2enxTANoWGB0wUn0h2i14BxeTgoe8OFefl2ek1io8r?=
+ =?us-ascii?Q?ZT+9Z/ig/z5ZhtNbZ4O1sOE1dnIR7XGqxeI7fDhESKA5HUEXplrHn+ArSqOo?=
+ =?us-ascii?Q?q5iRbKBCNWpm1uCEa+1S5/EeCAwdX0k/Qu9IRUKzs0A8Oqcjgszg2/8EBHdH?=
+ =?us-ascii?Q?cYFrBlhbiPCfX1iV8OGQi56kR5sKs2Zrg827Bv5JktIJbiv0cSDxd3S6ZUbC?=
+ =?us-ascii?Q?xQEiajGLudmo8rilBYXF31KJdVmqRuIrtVz/tqWqy+fppHhEXeeHMyiBFIgh?=
+ =?us-ascii?Q?EmkP8YpXtimdJ/OZNP1T4Zc0JqYIovMN04qqEPoifO9yQ9wetYEV8CMAIKXJ?=
+ =?us-ascii?Q?wujPK03MMtpMRUdgWZxg4azbRMzuESlH1pcJCiX0+2nDkrHwA5cPrmGVU1Uc?=
+ =?us-ascii?Q?GRPUAd5VB6MAV+24jLhZxx5nd2/435biQKuTzrpOubrcP+yfse7yUCGFInMa?=
+ =?us-ascii?Q?WAOQ8reft4LqX6wGbfXIhy5ddGm7o8diQ62tQbdfjNUlcYxpdQwwoAetNChN?=
+ =?us-ascii?Q?7odWoKIeu259p73CLMaKSXrOmW2ihIJTktgnfU/642+7NMygo0NxY0VwpRNb?=
+ =?us-ascii?Q?d3iobOiqvQtnXexV4WFCJLO6mqdpis76x5AAD8cbkJKF2FB4We3Yu5DjHjUu?=
+ =?us-ascii?Q?9M9Nvs0HgGU849sAbDpWa5K9Qx+VNTiOan58Z0BZ1JQHHANPB4qgg1liziui?=
+ =?us-ascii?Q?Y86cKWn6d4uxGAfySeh497J9WiFXgCqdVFz51+N8ptSnpJcbiRG1RCcwWC8u?=
+ =?us-ascii?Q?IwVZoKbiwmv8JikXLFHUamFhdleKKYSrP/Z7mh9uWHL6cIL4x3vV2CHj0x7M?=
+ =?us-ascii?Q?sK9DynG95oXkzDuY9GvhuVQIolby7TelIiOf1CajfzOVdL+oaQwnmnfPLq7j?=
+ =?us-ascii?Q?/yhN0VgCavvgpO56DGMip2e2pRRvHnq+F5x3aJsGJFy57rDu0kpGbIJ5eCpu?=
+ =?us-ascii?Q?kPgMM2qBVL6TyZ037OcZqyFisblxSFIWtOJrGL/HRgw3/+WhKf7WQzsJ6wzb?=
+ =?us-ascii?Q?m13whE7wKDmn6fXKDhU5viDgTUBMiGOhKvy/hc0dVf6aVGkJS0hBi8nRvauu?=
+ =?us-ascii?Q?/mWV+WwyQ3dEoYM8/biSj/aGVpHI234mLON4H8X5z4Rs6gibytz71AHVSzTo?=
+ =?us-ascii?Q?ZOUmM3pP5mkSJi5z5UE+ebsnG7XTE+zkG1oRMvgXHNzIUzQ2tfHR1zDp17/s?=
+ =?us-ascii?Q?1jGY3302j83OLxzU4hOvF4AA2NdgtD46ps0JEg254i9uAusmcbLqTR4BLjBD?=
+ =?us-ascii?Q?DQuin7QnDyqHXfevKfBBIJeyiZqkdpyzsXJ5WJfUQfFS+2YZqB+rSVZXzrYO?=
+ =?us-ascii?Q?Yigq4Q=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(82310400026)(36860700013)(32650700017);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	mSVbFmfjVY6f0KN07fcA/YC+uXHJvc2mldbcDjPbH/obqxaJBFOUqyWuj7kbp55Muw1D2GljcjNzNzhTOQiqpMND8a2BAFPcFwisirHeX3F7Cr1suO14OoMlE+u/kInEjmn4kYA6ERhbmNlDB/6+QO3AySaPfe/xlGcaiJurEuQvcQUDx7zrAoCFb1TMIaDnN/kYRRk0WF2Bac3pnJmU/VfZLMyFDFQfYRUDEmIv88ZodYnqoWZ7F03qjNDWESNeJqk0Npim+p2BrGk6et/Z0DHmN6EQPmKKCniBrZepaFJzAnWWK11fQb7leePB1wF1stWlW/IER35ZhVhp6yefW/0MIzUViHGvi+Z2V9MqokbmjFc3yY6QZ5IJjEsG6oHkCcA1j1prGpmBJcTZUtCRZAu3hI5RCXhTJYwv+zfL5YHtvefe8u1bgFrSWvc+2nxK
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2026 09:33:45.3819
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dec37069-2c5a-41e2-41b3-08de67be5254
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	OSA0EPF000000C6.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYPPR06MB8328
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [3.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263911-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-263913-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,msgid.link:url,linaro.org:email,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	NEURAL_HAM(-0.00)[-0.996];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DMARC_NA(0.00)[cixtech.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,cixtech.com,outlook.com,gmail.com];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gary.yang@cixtech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.521];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: C0C0410D95B
+X-Rspamd-Queue-Id: 2F41B10D981
 X-Rspamd-Action: no action
 
-Add support for playing audio over USB DisplayPort (the two left USB-C
-ports on the CRD device).
+Patch 1: Add yaml file for Cix Sky1 resets
+Patch 2: Add driver codes for Cix Sky1 resets
+Patch 3: Add dts nodes for Cix Sky1 resets
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+v8 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-control.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- refine reset driver
+- remove "simple-mfd" strings
 
----
+v7 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-control.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- fix build warning
 
-Changes since v3:
-1. This time really drop sound-name-prefix. Forgot to actually implement
-   this in v3.
-v2: https://patch.msgid.link/20250624122933.54776-2-krzysztof.kozlowski@linaro.org
+v6 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-control.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- refine reset driver
+- fix dt-bindings style
 
-Answering comments:
-1. No clue about third port. I do not have a reliable working CRD
-   device, so I cannot test it. I add what I tested.
+v5 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-controller.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- refine reset driver
+- fix dt-bindings style
 
-2. Topology and Alsa UCM were merged long time ago, so btw without this
-   patch CRD is negativelly affected or even broken (ALSA tries to
-   configure non-existing DAI links)...
+v4 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- add syscon
+- refine reset driver
+- fix dt-bindings style
 
-Changes since v2:
-1. Rebase - sound-name-prefix are now part of DTSI.
-v2: https://patch.msgid.link/20250624122933.54776-2-krzysztof.kozlowski@linaro.org
+v3 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- remove syscon
 
-Changes since v1:
-1. Rebase (x1-crd.dtsi appeared)
-2. Re-order cpu/codec
-3. Add blank line before status for mdss_dp
-4. Tags
----
- arch/arm64/boot/dts/qcom/x1-crd.dtsi | 32 ++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+v2 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- fix dt-bindings style
+- refine reset driver
 
-diff --git a/arch/arm64/boot/dts/qcom/x1-crd.dtsi b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-index ded96fb43489..c0c7ddabd8fc 100644
---- a/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-@@ -226,6 +226,38 @@ sound {
- 				"VA DMIC3", "MIC BIAS1",
- 				"TX SWR_INPUT1", "ADC2_OUTPUT";
- 
-+		displayport-0-dai-link {
-+			link-name = "DisplayPort0 Playback";
-+
-+			codec {
-+				sound-dai = <&mdss_dp0>;
-+			};
-+
-+			cpu {
-+				sound-dai = <&q6apmbedai DISPLAY_PORT_RX_0>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6apm>;
-+			};
-+		};
-+
-+		displayport-1-dai-link {
-+			link-name = "DisplayPort1 Playback";
-+
-+			codec {
-+				sound-dai = <&mdss_dp1>;
-+			};
-+
-+			cpu {
-+				sound-dai = <&q6apmbedai DISPLAY_PORT_RX_1>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6apm>;
-+			};
-+		};
-+
- 		wcd-playback-dai-link {
- 			link-name = "WCD Playback";
- 
+Gary Yang (3):
+  dt-bindings: soc: cix: document the simple-mfd syscon on Sky1 SoC
+  reset: add Sky1 soc reset support
+  arm64: dts: cix: add support for cix sky1 resets
+
+ .../soc/cix/cix,sky1-system-control.yaml      |  42 ++
+ arch/arm64/boot/dts/cix/sky1.dtsi             |  12 +
+ drivers/reset/Kconfig                         |   7 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-sky1.c                    | 374 ++++++++++++++++++
+ drivers/soc/Kconfig                           |   1 +
+ drivers/soc/Makefile                          |   1 +
+ drivers/soc/cix/Kconfig                       |  11 +
+ drivers/soc/cix/Makefile                      |   1 +
+ drivers/soc/cix/sky1-system-control.c         |  47 +++
+ include/dt-bindings/reset/cix,sky1-rst-fch.h  |  42 ++
+ include/dt-bindings/reset/cix,sky1-rst.h      | 164 ++++++++
+ 12 files changed, 703 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/cix/cix,sky1-system-control.yaml
+ create mode 100644 drivers/reset/reset-sky1.c
+ create mode 100644 drivers/soc/cix/Kconfig
+ create mode 100644 drivers/soc/cix/Makefile
+ create mode 100644 drivers/soc/cix/sky1-system-control.c
+ create mode 100644 include/dt-bindings/reset/cix,sky1-rst-fch.h
+ create mode 100644 include/dt-bindings/reset/cix,sky1-rst.h
+
 -- 
-2.51.0
+2.49.0
 
 
