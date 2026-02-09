@@ -1,200 +1,133 @@
-Return-Path: <devicetree+bounces-263961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263963-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id zHq9Jr7WiWkzCQAAu9opvQ
-	(envelope-from <devicetree+bounces-263961-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 13:44:46 +0100
+	id KCBbJeDZiWlFCgAAu9opvQ
+	(envelope-from <devicetree+bounces-263963-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 13:58:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11BA110EE4A
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 13:44:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE76310F421
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 13:58:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 632EA30143D4
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 11:25:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 46D51301174A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 11:30:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5524E36EAA4;
-	Mon,  9 Feb 2026 11:25:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10C2536CE0F;
+	Mon,  9 Feb 2026 11:30:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aMI75chK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DOMrHilP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D53E36D4FB
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 11:25:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E070E3019A4;
+	Mon,  9 Feb 2026 11:30:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770636357; cv=none; b=tu7bBJMmpJnu7WGvwVKWgo1fXM1aQsS02GG+ZqMWifRfTTZvxjyX5KiOsA5PIa3hvrkGuqtQVPZSu/6xggGVyBW2ApbYO+03PYSHyc/lWk/9ClIoswGFs1tCTfVa4hE3dQr7M5wpgI7q4QDWFl6kRdq5f6R8QHMxSJcJGGtV0J8=
+	t=1770636612; cv=none; b=E7SeFGydsAh/HhtBVAU4faMu1fMmj/nqQj0JdRvHyOZEXQiNndNSRzm64I/8VoRQdApt6bkTj7NuVFwIq5YcNBK1S5lf63ot8/UeVW5y176Qko4t5irVA3qkvwar8yRFStfdmJGMfhZFHpCQQskqRXq/wtI5nENFHGn+NhNNbOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770636357; c=relaxed/simple;
-	bh=04N/0A+BfnpRyNElBUEeVBI3HIJAHdzkZSaHOq+Qbf4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Th2Br3zlFERXg3iyD9+EJh124pCPQyW4bacxVKza/k5BuO0u4xjb0jM2Y+SzY8gM0/ArXOJmYh6DFInzOdxP+lp2RVbyjfT/R0Mw1es2UbrnTMxsingIflyQ5NNXMxZlCd2Rwo/lYInzyMO43946vVOjYp2o+mBgrh/R/wLucAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aMI75chK; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2a8fba3f769so19133215ad.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 03:25:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770636356; x=1771241156; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=taZpZ0oWLGP6Au0CiSuaC2iygIHIhUD2iwTBS1mdzoA=;
-        b=aMI75chK9t1F2JQLZnpErX4bWNUVpjFvGV/0mFI/ZGjgqxWSIBd/8LN+OT+m03yD13
-         xnKAd7BDDC5uF2bGMeEqYbJDn/vfw2klTEfEzHhkMQmoJQmiDlnU2wsb3VWCbicQgne4
-         Dw48VfSIcE8QdKzNd1OAYJ7eZ3p45dC9M/3qyim21uh2KZlJn4yhb0rV2dKQ5FeH+oWI
-         UprXaW9/mTv924usN/nLJNSEuO9ll16N1F47JBf+lZkXIjOFwKZ0atV2fEHDGW5wLSw7
-         OYKlUkpCxwfvgtsBD+MpsfgeXj8DpHLB3wgJVdtng5UAYMATXgnRwBBJXWvrG/VG9WuQ
-         AdNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770636356; x=1771241156;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=taZpZ0oWLGP6Au0CiSuaC2iygIHIhUD2iwTBS1mdzoA=;
-        b=gIXqxk4b3ntU9wiK1y6VLeEQ3rIVN0TZHAnYsJ/sldZW1xp2WFYrG+X35O09ghpYBn
-         n3noJhjCdSKJeITHbVDU/ou+9jSbOtgX5o2mkmJwX8sSsxGYPqllTZ1eaBIWkI32GxLG
-         pMZf0AqbOST6AH3QH3T5Xv5RceHxrGHT/CaZ8srpGhwpj2EJi6tYpuTyk8dnHYW4G2Ob
-         W2h/njnf1oCPN2ii/GnbBSGSejpE9Lbuqi0mvnnjTpZ+BtRWyeUNHBV+PAgmDk/w+pEn
-         Zak6ip5wx/Ub3L1ZY88nMSsDh/v07coRlO7bBhIXM96uXBw5uKpx9+sVBoPiIMXehi/r
-         6GhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUng0p2YfVZnj5jPPfWymhxZgmL+jjXDJQ3HkguT8L/UdnhM4vTxWE342/F+xvmTkEjEB2rgIxdlX+z@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLNvuXVLdtZjziqAMNtf5znNi9Re/EwJvdPxJSYsP7yjEuwyU2
-	PiiQxiajkndsArRdw7hi88mIDrrC4YhfKzYF0RUIUqOEW6duPtvtJsfA
-X-Gm-Gg: AZuq6aKZX0mFhNb9zPtWnsvB9yXZT859njo1mKAcoVuBDqnNpn/w2BaVR7MlbBCHxIH
-	WEjDUhMPrwfbS8yJzxPn9Qkdp+67AWwHn8zLBwAgNUjplfEydbsls5uOo03WW2rUUXmxxnjQ3Pa
-	jJTfphfvbcZTtz6LFvVgolL3zG0T6fmVgOc6AWjpAKeUEcYytze4benElx9nwKZGW/7Xxm/DI+X
-	Ro591P9QbQoItruxT/rOvHkIEpG8vHUDa3bTlr5BjuJp/mddxpoHWNrw865BkjaNTJphGvTq66R
-	qIPyxvueHjdKYBtvvYQ/larJuBABUlLV52Bwf1a6ETUo74JUPgjmcqfwwYb07MtQ6aPHHOWIDjF
-	lZq0Zhhw166oCd8PLmRnD26mWXmCcXUAqPFx1YpGKwMVH0gX9/8yGY5TERUSJtk/tvGNig2q86L
-	TW5DaIDaoN+Dm1XbwZlxEEUz4QwtOXuxbX9Q==
-X-Received: by 2002:a17:902:c945:b0:2a9:30d4:2af3 with SMTP id d9443c01a7336-2a951937e91mr93409705ad.49.1770636356365;
-        Mon, 09 Feb 2026 03:25:56 -0800 (PST)
-Received: from [172.16.20.12] ([136.226.253.21])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2aaf2f8472esm25460445ad.5.2026.02.09.03.25.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Feb 2026 03:25:55 -0800 (PST)
-Message-ID: <317e9030-849a-4a54-a4e6-75fc93b78935@gmail.com>
-Date: Mon, 9 Feb 2026 16:56:18 +0530
+	s=arc-20240116; t=1770636612; c=relaxed/simple;
+	bh=Hi7ilo70CFTkqykeOAkoyGSwFc8pSkUL59at+5pwCV4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VtDaCwHkVGc/iL38zSDLLNTEUKztqfUDFbCwKPC7vV5lOApPED6QtWIlxIkb7QHrEvGeWJKpf9U76Q1SlCk0n4KfW4vej8qm4norKjJlYyiUaYdK50Yq4QsCIMixLNwo8nNPjISWsbHB6KFzG6xnN3XL4FBJs2p7sUt+PBCMh40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DOMrHilP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA7A3C116C6;
+	Mon,  9 Feb 2026 11:30:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770636611;
+	bh=Hi7ilo70CFTkqykeOAkoyGSwFc8pSkUL59at+5pwCV4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DOMrHilPeJHUyFgpWoJZ8TvbJCpjgxGrRgI3mJkv+NlkFcjV3XIQpOEt6RwnZVRhJ
+	 gPFv6PWNOvt6qGrbh6bDMpC/3VY2ZXaUHJDqPrrrKP5PR3u0oivFtMU5Sm1c8SLX4f
+	 SFT/xgr4fR3g1YB45AO9xdJGCmIuNo38da5KbNNZrxl+GNogbrm8dmvUmf3tbGM/pR
+	 QmhesuGEqZM6caiEZIxcZIIx5gw8Q+w1OkqvZ4cs9PIMucAdp1oxdL7p5JIZOwvEhw
+	 SH6J21dZMhOvJs+GLNgho4kmkRgaw12gdOaAkCN9akWvOdrod09VppyigqgcJPuCTY
+	 5u95G2POKXWxQ==
+Date: Mon, 9 Feb 2026 17:00:02 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v3 4/9] pci: pwrctrl: generic: support for the
+ UPD720201/UPD720202 USB 3.0 xHCI Host Controller
+Message-ID: <fbxbnou5mdlhaq5dpxr3wdzmjetwdp7auaaqeunc67tgk5ej2m@cnnkr2pcwy77>
+References: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-0-5b79c5d61a03@linaro.org>
+ <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-4-5b79c5d61a03@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 3/3] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
- konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20260114100043.1310164-1-tessolveupstream@gmail.com>
- <20260114100043.1310164-4-tessolveupstream@gmail.com>
- <169f7c2b-51cb-468d-a492-3b880ef1bd2e@oss.qualcomm.com>
-Content-Language: en-US
-From: tessolveupstream@gmail.com
-In-Reply-To: <169f7c2b-51cb-468d-a492-3b880ef1bd2e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-4-5b79c5d61a03@linaro.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263961-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tessolveupstream@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263963-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NO_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com,google.com,vger.kernel.org];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 11BA110EE4A
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EE76310F421
 X-Rspamd-Action: no action
 
+On Fri, Feb 06, 2026 at 03:50:32PM +0100, Neil Armstrong wrote:
+> Enable the generic pwrctrl driver to control the power of the
+> PCIe UPD720201/UPD720202 USB 3.0 xHCI Host Controller.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  drivers/pci/pwrctrl/generic.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/pci/pwrctrl/generic.c b/drivers/pci/pwrctrl/generic.c
+> index 08e53243cdbd..4a57a631362f 100644
+> --- a/drivers/pci/pwrctrl/generic.c
+> +++ b/drivers/pci/pwrctrl/generic.c
+> @@ -73,6 +73,10 @@ static const struct of_device_id pci_pwrctrl_slot_of_match[] = {
+>  	{
+>  		.compatible = "pciclass,0604",
+>  	},
+> +	/* Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller */
+> +	{
+> +		.compatible = "pci1912,0014",
 
+No need to add the compatible to the driver. Just use the existing compatible as
+fallback in the binding/dts.
 
-On 28-01-2026 17:29, Konrad Dybcio wrote:
-> On 1/14/26 11:00 AM, Sudarshan Shetty wrote:
->> Add the device tree for the QCS615-based Talos EVK platform. The
->> platform is composed of a System-on-Module following the SMARC
->> standard, and a Carrier Board.
->>
->> The Carrier Board supports several display configurations, HDMI and
->> LVDS. Both configurations use the same base hardware, with the display
->> selection controlled by a DIP switch.
->>
->> Use a DTBO file, talos-evk-lvds-auo,g133han01.dtso, which defines an
->> overlay that disables HDMI and adds LVDS. The DTs file talos-evk
->> can describe the HDMI display configurations.
->>
->> The initial device tree includes support for:
->> - CPU and memory
->> - UART
->> - GPIOs
->> - Regulators
->> - PMIC
->> - Early console
->> - AT24MAC602 EEPROM
->> - MCP2515 SPI to CAN
->> - ADV7535 DSI-to-HDMI bridge
->> - DisplayPort interface
->> - SN65DSI84ZXHR DSI-to-LVDS bridge
->> - Wi-Fi/BT
->>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
->> ---
-> 
-> [...]
-> 
->> +	wifi_reg_en_pins_state: wifi-reg-en-pins-state {
->> +		pins = "gpio91";
->> +		function = "gpio";
->> +		drive-strength = <8>;
->> +		output-high;
->> +		bias-pull-up;
->> +	};
->> +
->> +	wlan_en_state: wlan-en-state {
->> +		pins = "gpio84";
->> +		function = "gpio";
->> +		drive-strength = <16>;
->> +		bias-pull-down;
->> +		output-low;
->> +	};
-> 
-> The output-low/high properties should be unnecessary since the
-> drivers that requests the connected GPIOs control their state
-> 
-> otherwise, I think it's time to finally close in on this..
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->
+- Mani
 
-Sure, will take care in the next patch.
-Thank you.
- 
-> Konrad
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
