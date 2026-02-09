@@ -1,270 +1,174 @@
-Return-Path: <devicetree+bounces-264098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264099-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0D+vBF4bimmtHAAAu9opvQ
-	(envelope-from <devicetree+bounces-264098-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:37:34 +0100
+	id KHTEJrsdimmtHAAAu9opvQ
+	(envelope-from <devicetree+bounces-264099-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:47:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3029A113196
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:37:29 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DE7A11331A
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:47:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0174C301468F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 17:37:28 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EA42730095C2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 17:45:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A422385EC3;
-	Mon,  9 Feb 2026 17:37:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B69D2FDC27;
+	Mon,  9 Feb 2026 17:45:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HCi+EnSh";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BBRWvG3Q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kXIeLWjc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F2753859DC
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 17:37:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C7D22F530A
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 17:45:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770658647; cv=none; b=bOEaNoYcmh+Hvp7Q6S43Dq2zWULhbNmcwXIHlVIhJ4qVbO6VDjean6ULF48zA8ApccAR3M0AsG/1HawtsqHxjp9qaAXARpoaDV4XocxHgslVWW42Dfve6itIcG5yqwVJh3vr7gW4Bsmg5Bption60b52WfMLCKEpntFBxkkiPVo=
+	t=1770659113; cv=none; b=JyeXYmRB5/Z69XWTrTYcu7ejdChEganMK11oyDKuqiajDDth3E1nWS8GTxjHbwN0DhDK/HRpotDXoTOZ/GY57F5PlFV3Ue/GNUW5lPaT0yoA4bjpNOWwE/aMI4xtoiKOYKCwm5De0utozlg5TPcHt97sB/e6YpJFkdrxOKWfjrU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770658647; c=relaxed/simple;
-	bh=ruAb+YJnPiGKrRfp5hfmrNCENht6oLYwyWb0jNuqtBM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JmHxxf5MiAkHlzMYH/hbHzVqWKYSPceK69Dmha3QbmL1Gr5O9tJglJtbZNGsUUCOTqfic4nFojX8etCkshxzNC/PD+cI+gEf5KzQ4nJf1K3QTyx/EoteWFpMYY70v0dA9h8iHWmyyUPz8omlmqlk9gpeuYL58OlOdK1PWe15eMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HCi+EnSh; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BBRWvG3Q; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 619GVW4M4102209
-	for <devicetree@vger.kernel.org>; Mon, 9 Feb 2026 17:37:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	sD9YwJRjBNvLNizTHttUH+m/zd+VkP3M8QIGPSJul7Y=; b=HCi+EnShNxLBNRo3
-	AsfKUZ4LPYmhr25kXLmnTtYgzVy/58ew78bMdpSWxt2vBCoQ0f8zULku4ESinljA
-	xJ6HAavAYvdJ0kdaVYp7EPMUt7929U1ZghQ11i65a4NDyH3VwQTJtPH7gU2Wa3fO
-	CP1xbZeTx4eCjSee9f+wYn1Igc82iytxNMj73WAow62kfr2V38Fm2F6M0UoI4o8z
-	by7ALFIKE34ksMnprbQEtBr4iSqd1y3d17f5oQrQtF5AGMskqfb/FtsWhg/2eLUW
-	8jNRD7/DHYz4/wLT6DCJio3/+JRTYvlNT7OXUwfwbB2lBK3j7DOoEI9KDIj/fM3e
-	AEgAqw==
-Received: from mail-dl1-f70.google.com (mail-dl1-f70.google.com [74.125.82.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c7k61g7j4-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 17:37:25 +0000 (GMT)
-Received: by mail-dl1-f70.google.com with SMTP id a92af1059eb24-12721cd1a2aso3193207c88.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 09:37:25 -0800 (PST)
+	s=arc-20240116; t=1770659113; c=relaxed/simple;
+	bh=cP/aES/NTJjVDeOefporUKftVqdwwO/cWLa+8v8dHgI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=SIH8UKCAG8cyOPWpQQ2v1Dy2Ryq/4QrR/RHWXFu1Sq/AJOGUde3PCf6/ph40HPVgc1oMVX4ancC99HMlifMlnBhXUeSZlrneULPBHp0wIYw0aDvjS1sAUAIVcGMFEflx6f5iC1C0ZCcrB3IDrSdpn5R0E9iEYkvEvPVnHWxjP8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kXIeLWjc; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47edd9024b1so40921125e9.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 09:45:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770658645; x=1771263445; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sD9YwJRjBNvLNizTHttUH+m/zd+VkP3M8QIGPSJul7Y=;
-        b=BBRWvG3QgYvUqJOKB0AOGT/MO1xM7+XjE5FZtIappgwsgzyV4NGhmBR1yh9VR9I0+j
-         NqxPyK9d+BJAxyR+fR/RUQ1B2Op/O/Ey/AD0zoCOTzyHgECPUYgPrmA1SjxFe8/30Gze
-         kjnGVV5saXjeXShYG2GYoFxq9cFMoOumWcQf1Yr7MlyZKKuCeQCHn3klhzEDdrO34fIV
-         GYv+ZVwHb1yybPc63snsJg04isebXpI0PBizECFTKZtx0LW18Cvrtin23dKvNj4U8/aH
-         1L38rj/GXv2wusj9f93M7dQNYGvfLJAEjzUlV8xfxhqx++HlT+yJhCMqoLow4m4c7DQ7
-         TX1Q==
+        d=gmail.com; s=20230601; t=1770659111; x=1771263911; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=cP/aES/NTJjVDeOefporUKftVqdwwO/cWLa+8v8dHgI=;
+        b=kXIeLWjcKXz1h8eOJfl+yKM/oFMrXsv7l3k0WBurPswbX4ODT/2UtqqGRYaM85shdt
+         UV1DhyQgabv9B4appezvMYr4NkNuBlPRagy5mpaszpolWRr+s8zVop6zQ9+giNofhxb3
+         Vrvx8XH7/zyD9nq8lxS+1WJ6YhXxVnQP5Pa4JF2NO2F9QnimamV4W/sjX9vqyCNMCeXh
+         PlE6VpAUqnxdEU9cI9JplOizDDZFRSclK6aUCYqjegDWZqdQUJ4f2roUd9p+QIkMFOns
+         qEvdCYUHtvNsfsXlL+24aIgH9KqBgHc1aViqrc2dIeJQfKsXQEWQAdcTQaCLV2Es55vD
+         bLBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770658645; x=1771263445;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sD9YwJRjBNvLNizTHttUH+m/zd+VkP3M8QIGPSJul7Y=;
-        b=emkorM3cqdEn1UEvv2ddJyTqRA/ogOIqU6nqQyxpOuGkM2tcy+xA84eYs9zz333F2b
-         adnf11c1otkeUajs7rw5bHxuNmQjdLdhPpd614W880b6WTCdCxKdx0O6OPu5EaaS+FGi
-         Vl7taaActs/CMFrxALJ3IAtkyRubUrzCFcPwN5Lelo0W67p9ni2ITy4FkotvkXaevwBa
-         kFANc18muph4obyLEgXX9u1cBtuX2rbAjgarW522A4FzIkMT2QRZ7v/Ny4XyXO36FbJC
-         cM2b9QSXWzj2VKLw77vnXo9BP+j0uazZk76699TPhu+YXWx1rHhr7cBtdrJt9Q9baS4g
-         MdRA==
-X-Forwarded-Encrypted: i=1; AJvYcCUK2YDcTSMSDeb68mpsglEZtuJnMSyUj2LJxGmv6UZyuEJDhBefkCqDg014fQUqjxTuIs9FI8YLeogS@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqED3m8GVdloyvVKv/hL2y3aMRD0/NTWLxe45Y1fXKEkG56PPH
-	qHiUSRWxH+pOTC+2fgcsobc99t3714E7639W172WjxSD+uC3z219ayYGzAYKs1Ed7qnPxlOlA28
-	85bfgwYtXjEqmXSuORW2uqxbI1M6qYDllzRef16F5nOwrAkr80qamgiJM4OSd7jWO
-X-Gm-Gg: AZuq6aIrEKGNWZrUQDBixPSv/kxnT0VfPDwn2EK/JrQFsQ/fJme5yo/JgG8MwGIXZZK
-	mLFXqqYASWn8SW5x7ZoNQ6BDi/qNU0ppS9HeMKfeI4sP9QSTcHoy9nWDekvu54gfw4JjUx4XHJJ
-	U1iSUfc5OQ/Xy7jJfEZTMNGNhTwKpDQ8R22YtxLHutItReNpb321IISZzc2joDQDC0CRswtNkQj
-	Q4VrTM6eq3xPjvFGtgLANKBKKjC8KxZFQG5oSQKNlGoNXVoUcD14irrMS74slN9vXxS3RTx+OS6
-	s4yNqnG8SteVdJSiNLEoE4IaXfKpCziJH6fFjiuKk/sSbRF6AIXi87/0qH1Fw0Dxv3AB2ZRGamd
-	KbpIx4kWB4IdwhCYVGBSd4flmZPc6GHhgROY7Hg8=
-X-Received: by 2002:a05:7022:910:b0:123:3461:99be with SMTP id a92af1059eb24-127040153ffmr7020812c88.21.1770658644880;
-        Mon, 09 Feb 2026 09:37:24 -0800 (PST)
-X-Received: by 2002:a05:7022:910:b0:123:3461:99be with SMTP id a92af1059eb24-127040153ffmr7020799c88.21.1770658644269;
-        Mon, 09 Feb 2026 09:37:24 -0800 (PST)
-Received: from [192.168.1.133] ([70.95.199.79])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-127041e61b9sm10759398c88.8.2026.02.09.09.37.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Feb 2026 09:37:23 -0800 (PST)
-Message-ID: <0fd2cff2-176e-419d-9e11-a98150266fee@oss.qualcomm.com>
-Date: Mon, 9 Feb 2026 09:37:22 -0800
+        d=1e100.net; s=20230601; t=1770659111; x=1771263911;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cP/aES/NTJjVDeOefporUKftVqdwwO/cWLa+8v8dHgI=;
+        b=nTktTOiu5qYtMMz4Ypp61wlRiJhPjtSQV3FmQcwquc/cc2sLv06Lsm2zUqoTGQ/gyT
+         h9chM7N3/R/fH3+fF5JX2vuM7F75FhweqnHdJBRGrZzUMLxzRQfsqxZcywOMvqJfUJYP
+         RFj0zDcAhn8MC2/s3FE8U31oFcMV5Y1qOAtLGrOxH9DBg7y7b4VLzt9AfJEo0mida3MV
+         Xxc2q794Pya4PGtnwtzQjf50F1rwQyTJT1g1IEh82jtYk5AbyQy3aqLz6hsIwoUqLNiZ
+         GvUT4Ek8FH+TEZ/H4vLR5EWLnBM50Nq/k3v8q3lvtalUVUyT6tBxgoS8fa+mq+7nm4Jt
+         CKkg==
+X-Forwarded-Encrypted: i=1; AJvYcCXA4G7+ZUSOcJgBJuHWsUtAUqnTF2cVaug21kGjcbxt14M96F3Vf3y96aIrmt4/9IdMsmAwGwWHzcOM@vger.kernel.org
+X-Gm-Message-State: AOJu0YyS8uLerzzDhlTsjzKamcRtD7uomJ9EUoE3UKTnlJCcQtOi1+EZ
+	WUbupEZ/fr/aAK8WA84zrBPd7eJqZnXWgwWui7hI22qRcVK/ratEJl5y
+X-Gm-Gg: AZuq6aKOiMLAje78wm1HJUJFD5upSX28lmosQ7iSyEyylpj62e/Otn/kX33IX/LN9ej
+	08UOri4+mvgC19Ifb5/2z2MxbOefVGq5wCoHJbuFeYAUISiX+NBD2amwUTI9NC2UbFrujBqp36t
+	+jjAab00bayG+qMM0qdLup6VgCScicTYmn8hRUbIGqnKjM3oTCfikFgZTWKLQZT+l5D9DHA5Z12
+	wy80/EVh1xY10UyQwxVU2sLuA23ASoCSBnXFEXaqksEeput+R31dXKS/YTd8oDVn72dui2zITuX
+	qfNCHNK7/xdrOdjamg0cUUaDIIDmn1vN9TfKm9RPGPHwROfZGqM8ElqdnwgR/L02b94JTaJzWyl
+	s6JzGvFnpIFu8jN2aK5jQlpqaC+3GIVTDW+PYBi+be6MHfOflDs7foI8lvD4AdWVU61HM3DK+qF
+	HNETMpcIDLnbF8Hw8W91zq3ADPxiWipg==
+X-Received: by 2002:a05:600c:83c5:b0:477:7af8:c8ad with SMTP id 5b1f17b1804b1-483202264f6mr166657725e9.31.1770659111039;
+        Mon, 09 Feb 2026 09:45:11 -0800 (PST)
+Received: from [192.168.1.187] ([148.63.225.166])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4834d5e1a5esm3867345e9.4.2026.02.09.09.45.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Feb 2026 09:45:10 -0800 (PST)
+Message-ID: <10822a56a8d85d0b079a2a17fde403aca8d102c7.camel@gmail.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: iio: adc: ad4080: add AD4880 support
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Antoniu Miclaus
+	 <antoniu.miclaus@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich	
+ <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, David
+ Lechner <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+ <nuno.sa@analog.com>, Andy Shevchenko	 <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Olivier Moysan	 <olivier.moysan@foss.st.com>, Mark
+ Brown <broonie@kernel.org>, 	linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-spi@vger.kernel.org
+Date: Mon, 09 Feb 2026 17:45:53 +0000
+In-Reply-To: <79c21d77-32c0-401a-94e2-ba4349a7a616@kernel.org>
+References: <cover.1770393792.git.antoniu.miclaus@analog.com>
+	 <290f35bcbd2f1ee68333ff65f89b54ec7fbb9c53.1770393792.git.antoniu.miclaus@analog.com>
+	 <20260207-evasive-mastodon-of-apotheosis-e663a1@quoll>
+	 <b3571244f058133a7a0f3b5ca6ef7dc377e3fac8.camel@gmail.com>
+	 <be3808e2-ef17-4191-8c1c-5acb53114863@kernel.org>
+	 <6b33ddfce874006bd10e223701802dec52fdddf9.camel@gmail.com>
+	 <79c21d77-32c0-401a-94e2-ba4349a7a616@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/9] usb: misc: qcom_eud: add host mode coordination
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260126233830.2193816-1-elson.serrao@oss.qualcomm.com>
- <20260126233830.2193816-7-elson.serrao@oss.qualcomm.com>
- <f8169943-f986-4e9d-9d3b-a470e57f5e6a@oss.qualcomm.com>
-Content-Language: en-US
-From: Elson Serrao <elson.serrao@oss.qualcomm.com>
-In-Reply-To: <f8169943-f986-4e9d-9d3b-a470e57f5e6a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=M8lA6iws c=1 sm=1 tr=0 ts=698a1b55 cx=c_pps
- a=SvEPeNj+VMjHSW//kvnxuw==:117 a=uHxescsG3rBdxcXwcPaeSg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=6af5tV_Bv1u5mitncRMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=Kq8ClHjjuc5pcCNDwlU0:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDE0OCBTYWx0ZWRfXxj4D2Ia3azdL
- +e2dmb1G0fZH87g4RFIvDAZbB5q9SktEKaZUa0hLJE1WsRMkSr5pbfhtgDOST5rvspwthjzukpz
- z9ouMyZNMY4RN92D2IOzyEfXCmdDvi2xLMLJ+VE4yLS1F7ta3GM7biHwhj9XoZS0ESkGL6VIZzw
- C3G4l1GX1L7WtIL8PgegtVmlqA1xW0lSrmB2nT2HeVo8q5vbn/oKQfbmgRDdenxOzs4H4WMgnhc
- Ll+A3uKY0dRn8gScpnnNJ2AhhMeqG3FRY11spsNXiGgnDRlX+Kh5kUrQTAzuvDvVOjj2SHzkxzO
- 0xYaiDJpbbX6tD27ytOQFIP0j85f2E89HS54XSnm8ZfuwdC8VwtNZLMSceLwZXFHgqSwQY5qknG
- fKDHO8HTziFFOCNHtPToKrzIX3iDqP7y608do9WsyA5wLuga4WG6KJ1kMPTyeDgKNI09ZSVz6An
- ZkiQEDhkDkcwOmYmk7Q==
-X-Proofpoint-GUID: Ja92Bpr5TPSB72H53autF14_y3ywFfMP
-X-Proofpoint-ORIG-GUID: Ja92Bpr5TPSB72H53autF14_y3ywFfMP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-09_01,2026-02-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 malwarescore=0 suspectscore=0 spamscore=0
- bulkscore=0 adultscore=0 clxscore=1015 impostorscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602090148
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264098-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-264099-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[elson.serrao@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 3029A113196
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4DE7A11331A
 X-Rspamd-Action: no action
 
+On Mon, 2026-02-09 at 18:13 +0100, Krzysztof Kozlowski wrote:
+> On 09/02/2026 17:43, Nuno S=C3=A1 wrote:
+> > On Sun, 2026-02-08 at 10:20 +0100, Krzysztof Kozlowski wrote:
+> > > On 08/02/2026 10:16, Nuno S=C3=A1 wrote:
+> > > > > > =C2=A0
+> > > > > > =C2=A0=C2=A0 io-backends:
+> > > > > > -=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > > > > > +=C2=A0=C2=A0=C2=A0 minItems: 1
+> > > > > > +=C2=A0=C2=A0=C2=A0 maxItems: 2
+> > > > >=20
+> > > > > Instead list the items with minItems, so the order is defined.
+> > > > >=20
+> > > >=20
+> > > > Also looks like we now need 'io-backend-names'.
+> > >=20
+> > > No. Just define the order here.
+> > >=20
+> >=20
+> > Things are still not really defined on the code side (I know bindings d=
+on't care about the
+> > driver
+> > side) but io-backend-names is a standard property and we might actually=
+ end up using it so that
+>=20
+> And names do not change that at all. Actually they might make it worse,
+> because they allow drivers to fetch item by name which people think
+> means "order is flexible".
 
+Fair and makes sense.
 
-On 2/4/2026 5:29 AM, Konrad Dybcio wrote:
-> On 1/27/26 12:38 AM, Elson Serrao wrote:
->> EUD functions by presenting itself as a USB device to the host PC for
->> debugging, making it incompatible in USB host mode configurations.
->> Enabling EUD, when in host mode can also cause the USB controller to
->> misbehave as the EUD hub can only have one upstream facing port.
-> 
-> Perhaps that's a silly idea, but would the device itself see
-> the debug hub, being able to essentially self-debug in a way?
-> 
+- Nuno S=C3=A1
 
-This isn’t supported by the current hardware topology.
-
-When EUD is enabled, it enumerates as a USB device to an external host via its
-upstream-facing port, while the SoC USB controller sits behind the hub’s
-downstream-facing port. As a result, the controller cannot enumerate or
-interact with the EUD device itself, and host mode is mutually exclusive with
-EUD debug on this path.
-
-Thanks
-Elson
-
-> [...]
-> 
->> @@ -162,32 +165,66 @@ static ssize_t enable_store(struct device *dev,
->>  		const char *buf, size_t count)
->>  {
->>  	struct eud_chip *chip = dev_get_drvdata(dev);
->> +	struct eud_path *path;
->>  	bool enable;
->>  	int ret;
->>  
->>  	if (kstrtobool(buf, &enable))
->>  		return -EINVAL;
->>  
->> +	mutex_lock(&chip->state_lock);
-> 
-> If you use guard(mutex)(&chip->state-lock), you can waive all these
-> conditional mutex_unlock additions
-> 
->> +
->>  	/* Skip operation if already in desired state */
->> -	if (chip->enabled == enable)
->> +	if (chip->enabled == enable) {
->> +		mutex_unlock(&chip->state_lock);
->>  		return count;
->> +	}
->> +
->> +	/*
->> +	 * Handle double-disable scenario: User is disabling EUD that was already
->> +	 * disabled due to host mode. Since the hardware is already disabled, we
->> +	 * only need to clear the host-disabled flag to prevent unwanted re-enabling
->> +	 * when exiting host mode. This respects the user's explicit disable request.
->> +	 */
->> +	if (!enable && chip->eud_disabled_for_host) {
->> +		chip->eud_disabled_for_host = false;
->> +		chip->enabled = false;
->> +		mutex_unlock(&chip->state_lock);
->> +		return count;
->> +	}
->>  
->>  	if (enable) {
->> +		/*
->> +		 * EUD functions by presenting itself as a USB device to the host PC for
->> +		 * debugging, making it incompatible in USB host mode configuration.
->> +		 * Prevent enabling EUD in this configuration to avoid hardware conflicts.
->> +		 */
->> +		path = chip->paths[chip->port_idx];
->> +		if (path && path->curr_role == USB_ROLE_HOST) {
->> +			dev_err(chip->dev, "EUD not usable in host mode configuration\n");
-> 
-> "in USB host mode"?
-> 
-> [...]
-> 
->> +	/*
->> +	 * EUD must be disabled when USB operates in host mode. EUD functions by
->> +	 * presenting itself as a USB device to the host PC for debugging, making
->> +	 * it incompatible in host mode configuration.
-> 			   ^ with
-> 
-> Otherwise the logic looks good, I think this may be desired default
-> behavior (so that the user doesn't have to constantly keep re-enabling
-> EUD)
-> 
-> Konrad
 
