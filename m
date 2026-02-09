@@ -1,200 +1,270 @@
-Return-Path: <devicetree+bounces-264097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264098-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SDy2MwEbimmtHAAAu9opvQ
-	(envelope-from <devicetree+bounces-264097-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:36:01 +0100
+	id 0D+vBF4bimmtHAAAu9opvQ
+	(envelope-from <devicetree+bounces-264098-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:37:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84FAD113152
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:36:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3029A113196
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:37:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0844D301CFEF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 17:35:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0174C301468F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 17:37:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FA9337BE6B;
-	Mon,  9 Feb 2026 17:35:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A422385EC3;
+	Mon,  9 Feb 2026 17:37:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SEX7tpO8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HCi+EnSh";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BBRWvG3Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A2230595C;
-	Mon,  9 Feb 2026 17:35:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F2753859DC
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 17:37:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770658558; cv=none; b=nNXwHm7gfaTTz+o1WXMi0auV2zK0/JmbeBQFQMQfqbFaLrFafKZ5u0uYVMDITbUfmjBOP8LvWUc5jSidVrzrpbML100c6DRHKOFbd9yFM+DoYHB6gFbTO1VTIoaLtjsumY9VWZaBb5w1SZP8QhUDwmxEJ6RV2z4cxZNtR1qSh8M=
+	t=1770658647; cv=none; b=bOEaNoYcmh+Hvp7Q6S43Dq2zWULhbNmcwXIHlVIhJ4qVbO6VDjean6ULF48zA8ApccAR3M0AsG/1HawtsqHxjp9qaAXARpoaDV4XocxHgslVWW42Dfve6itIcG5yqwVJh3vr7gW4Bsmg5Bption60b52WfMLCKEpntFBxkkiPVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770658558; c=relaxed/simple;
-	bh=73LGh3J5tomwn6vZ9HuVNxSPnB+51GM8Nl0zJ+5ENEU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XOfFdE5XYvqn+LJMh5a4NNxXlsV0j/iOgXSIAN0FYkMMn+nJ01n3rj1gYSy6hqh//w1U1t7d+sP3nSvjvh6bzonQDcUUSd3Q+dNczzlqV4GoD91YezI+//74MK+4mo4vQNPxGn4FDX5aHY8eip0KW3LIF/drD8JtU4BB4ZkP3GE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SEX7tpO8; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770658558; x=1802194558;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=73LGh3J5tomwn6vZ9HuVNxSPnB+51GM8Nl0zJ+5ENEU=;
-  b=SEX7tpO8CmbzEAP+nryMOWeRWujNPKb+7Z5OQMKiwKPX9tbVbUKkPj0B
-   I2/+1skkHthV+ICG5WcBCFh+T3pZz5/3RDbnovitsUbkLU9T7orNvS/IC
-   GnY7UjpYP2ELSitJIF7GaA6mCVLbOZNoOk3z/5dHNmcmjLLZSM6iyKMr+
-   V/5sfqyQmhj6q/AA6vjXxCAUTpR6hYtg23QgYnKE/KGIOMfORsqkZpMqi
-   WgQroeKECpUIFNl4IFdXbPu3SGFNlZHg9lA1Q+tTRUMAG856PBoEn2BP3
-   nIqBErQPqXhReWP0208XIz6zXqDdmbYvWOHUpJlRDw3FX9ItuiYB3L0/g
-   w==;
-X-CSE-ConnectionGUID: nJN+b69cTKW0qZHrmQULFg==
-X-CSE-MsgGUID: aENm772HTpmU748COYtY7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="74375250"
-X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; 
-   d="scan'208";a="74375250"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 09:35:56 -0800
-X-CSE-ConnectionGUID: zfdlWZZpTma6abgQOL91Bw==
-X-CSE-MsgGUID: 5kpuJEo+TR6RTYSj1OKZ9g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; 
-   d="scan'208";a="216622484"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 09 Feb 2026 09:35:50 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vpVAp-00000000oB2-2v2D;
-	Mon, 09 Feb 2026 17:35:47 +0000
-Date: Tue, 10 Feb 2026 01:35:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-amlogic@lists.infradead.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Chuan Liu <chuan.liu@amlogic.com>
-Subject: Re: [PATCH 08/13] clk: amlogic: Add PLL driver
-Message-ID: <202602100115.ykL6A0lh-lkp@intel.com>
-References: <20260209-a9_clock_driver-v1-8-a9198dc03d2a@amlogic.com>
+	s=arc-20240116; t=1770658647; c=relaxed/simple;
+	bh=ruAb+YJnPiGKrRfp5hfmrNCENht6oLYwyWb0jNuqtBM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JmHxxf5MiAkHlzMYH/hbHzVqWKYSPceK69Dmha3QbmL1Gr5O9tJglJtbZNGsUUCOTqfic4nFojX8etCkshxzNC/PD+cI+gEf5KzQ4nJf1K3QTyx/EoteWFpMYY70v0dA9h8iHWmyyUPz8omlmqlk9gpeuYL58OlOdK1PWe15eMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HCi+EnSh; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BBRWvG3Q; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 619GVW4M4102209
+	for <devicetree@vger.kernel.org>; Mon, 9 Feb 2026 17:37:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	sD9YwJRjBNvLNizTHttUH+m/zd+VkP3M8QIGPSJul7Y=; b=HCi+EnShNxLBNRo3
+	AsfKUZ4LPYmhr25kXLmnTtYgzVy/58ew78bMdpSWxt2vBCoQ0f8zULku4ESinljA
+	xJ6HAavAYvdJ0kdaVYp7EPMUt7929U1ZghQ11i65a4NDyH3VwQTJtPH7gU2Wa3fO
+	CP1xbZeTx4eCjSee9f+wYn1Igc82iytxNMj73WAow62kfr2V38Fm2F6M0UoI4o8z
+	by7ALFIKE34ksMnprbQEtBr4iSqd1y3d17f5oQrQtF5AGMskqfb/FtsWhg/2eLUW
+	8jNRD7/DHYz4/wLT6DCJio3/+JRTYvlNT7OXUwfwbB2lBK3j7DOoEI9KDIj/fM3e
+	AEgAqw==
+Received: from mail-dl1-f70.google.com (mail-dl1-f70.google.com [74.125.82.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c7k61g7j4-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 17:37:25 +0000 (GMT)
+Received: by mail-dl1-f70.google.com with SMTP id a92af1059eb24-12721cd1a2aso3193207c88.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 09:37:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770658645; x=1771263445; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sD9YwJRjBNvLNizTHttUH+m/zd+VkP3M8QIGPSJul7Y=;
+        b=BBRWvG3QgYvUqJOKB0AOGT/MO1xM7+XjE5FZtIappgwsgzyV4NGhmBR1yh9VR9I0+j
+         NqxPyK9d+BJAxyR+fR/RUQ1B2Op/O/Ey/AD0zoCOTzyHgECPUYgPrmA1SjxFe8/30Gze
+         kjnGVV5saXjeXShYG2GYoFxq9cFMoOumWcQf1Yr7MlyZKKuCeQCHn3klhzEDdrO34fIV
+         GYv+ZVwHb1yybPc63snsJg04isebXpI0PBizECFTKZtx0LW18Cvrtin23dKvNj4U8/aH
+         1L38rj/GXv2wusj9f93M7dQNYGvfLJAEjzUlV8xfxhqx++HlT+yJhCMqoLow4m4c7DQ7
+         TX1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770658645; x=1771263445;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sD9YwJRjBNvLNizTHttUH+m/zd+VkP3M8QIGPSJul7Y=;
+        b=emkorM3cqdEn1UEvv2ddJyTqRA/ogOIqU6nqQyxpOuGkM2tcy+xA84eYs9zz333F2b
+         adnf11c1otkeUajs7rw5bHxuNmQjdLdhPpd614W880b6WTCdCxKdx0O6OPu5EaaS+FGi
+         Vl7taaActs/CMFrxALJ3IAtkyRubUrzCFcPwN5Lelo0W67p9ni2ITy4FkotvkXaevwBa
+         kFANc18muph4obyLEgXX9u1cBtuX2rbAjgarW522A4FzIkMT2QRZ7v/Ny4XyXO36FbJC
+         cM2b9QSXWzj2VKLw77vnXo9BP+j0uazZk76699TPhu+YXWx1rHhr7cBtdrJt9Q9baS4g
+         MdRA==
+X-Forwarded-Encrypted: i=1; AJvYcCUK2YDcTSMSDeb68mpsglEZtuJnMSyUj2LJxGmv6UZyuEJDhBefkCqDg014fQUqjxTuIs9FI8YLeogS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqED3m8GVdloyvVKv/hL2y3aMRD0/NTWLxe45Y1fXKEkG56PPH
+	qHiUSRWxH+pOTC+2fgcsobc99t3714E7639W172WjxSD+uC3z219ayYGzAYKs1Ed7qnPxlOlA28
+	85bfgwYtXjEqmXSuORW2uqxbI1M6qYDllzRef16F5nOwrAkr80qamgiJM4OSd7jWO
+X-Gm-Gg: AZuq6aIrEKGNWZrUQDBixPSv/kxnT0VfPDwn2EK/JrQFsQ/fJme5yo/JgG8MwGIXZZK
+	mLFXqqYASWn8SW5x7ZoNQ6BDi/qNU0ppS9HeMKfeI4sP9QSTcHoy9nWDekvu54gfw4JjUx4XHJJ
+	U1iSUfc5OQ/Xy7jJfEZTMNGNhTwKpDQ8R22YtxLHutItReNpb321IISZzc2joDQDC0CRswtNkQj
+	Q4VrTM6eq3xPjvFGtgLANKBKKjC8KxZFQG5oSQKNlGoNXVoUcD14irrMS74slN9vXxS3RTx+OS6
+	s4yNqnG8SteVdJSiNLEoE4IaXfKpCziJH6fFjiuKk/sSbRF6AIXi87/0qH1Fw0Dxv3AB2ZRGamd
+	KbpIx4kWB4IdwhCYVGBSd4flmZPc6GHhgROY7Hg8=
+X-Received: by 2002:a05:7022:910:b0:123:3461:99be with SMTP id a92af1059eb24-127040153ffmr7020812c88.21.1770658644880;
+        Mon, 09 Feb 2026 09:37:24 -0800 (PST)
+X-Received: by 2002:a05:7022:910:b0:123:3461:99be with SMTP id a92af1059eb24-127040153ffmr7020799c88.21.1770658644269;
+        Mon, 09 Feb 2026 09:37:24 -0800 (PST)
+Received: from [192.168.1.133] ([70.95.199.79])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-127041e61b9sm10759398c88.8.2026.02.09.09.37.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Feb 2026 09:37:23 -0800 (PST)
+Message-ID: <0fd2cff2-176e-419d-9e11-a98150266fee@oss.qualcomm.com>
+Date: Mon, 9 Feb 2026 09:37:22 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260209-a9_clock_driver-v1-8-a9198dc03d2a@amlogic.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/9] usb: misc: qcom_eud: add host mode coordination
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260126233830.2193816-1-elson.serrao@oss.qualcomm.com>
+ <20260126233830.2193816-7-elson.serrao@oss.qualcomm.com>
+ <f8169943-f986-4e9d-9d3b-a470e57f5e6a@oss.qualcomm.com>
+Content-Language: en-US
+From: Elson Serrao <elson.serrao@oss.qualcomm.com>
+In-Reply-To: <f8169943-f986-4e9d-9d3b-a470e57f5e6a@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=M8lA6iws c=1 sm=1 tr=0 ts=698a1b55 cx=c_pps
+ a=SvEPeNj+VMjHSW//kvnxuw==:117 a=uHxescsG3rBdxcXwcPaeSg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=6af5tV_Bv1u5mitncRMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=Kq8ClHjjuc5pcCNDwlU0:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDE0OCBTYWx0ZWRfXxj4D2Ia3azdL
+ +e2dmb1G0fZH87g4RFIvDAZbB5q9SktEKaZUa0hLJE1WsRMkSr5pbfhtgDOST5rvspwthjzukpz
+ z9ouMyZNMY4RN92D2IOzyEfXCmdDvi2xLMLJ+VE4yLS1F7ta3GM7biHwhj9XoZS0ESkGL6VIZzw
+ C3G4l1GX1L7WtIL8PgegtVmlqA1xW0lSrmB2nT2HeVo8q5vbn/oKQfbmgRDdenxOzs4H4WMgnhc
+ Ll+A3uKY0dRn8gScpnnNJ2AhhMeqG3FRY11spsNXiGgnDRlX+Kh5kUrQTAzuvDvVOjj2SHzkxzO
+ 0xYaiDJpbbX6tD27ytOQFIP0j85f2E89HS54XSnm8ZfuwdC8VwtNZLMSceLwZXFHgqSwQY5qknG
+ fKDHO8HTziFFOCNHtPToKrzIX3iDqP7y608do9WsyA5wLuga4WG6KJ1kMPTyeDgKNI09ZSVz6An
+ ZkiQEDhkDkcwOmYmk7Q==
+X-Proofpoint-GUID: Ja92Bpr5TPSB72H53autF14_y3ywFfMP
+X-Proofpoint-ORIG-GUID: Ja92Bpr5TPSB72H53autF14_y3ywFfMP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-09_01,2026-02-09_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 malwarescore=0 suspectscore=0 spamscore=0
+ bulkscore=0 adultscore=0 clxscore=1015 impostorscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602090148
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264097-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264098-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[elson.serrao@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,chuan.liu.amlogic.com,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,01.org:url]
-X-Rspamd-Queue-Id: 84FAD113152
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 3029A113196
 X-Rspamd-Action: no action
 
-Hi Chuan,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on 4d310797262f0ddf129e76c2aad2b950adaf1fda]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Chuan-Liu-via-B4-Relay/dt-bindings-clock-Add-Amlogic-A9-standardized-model-clock-control-units/20260209-135334
-base:   4d310797262f0ddf129e76c2aad2b950adaf1fda
-patch link:    https://lore.kernel.org/r/20260209-a9_clock_driver-v1-8-a9198dc03d2a%40amlogic.com
-patch subject: [PATCH 08/13] clk: amlogic: Add PLL driver
-config: arm-randconfig-004-20260209 (https://download.01.org/0day-ci/archive/20260210/202602100115.ykL6A0lh-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 14.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260210/202602100115.ykL6A0lh-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602100115.ykL6A0lh-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   arm-linux-gnueabi-ld: drivers/clk/amlogic/clk-pll.o: in function `aml_pll_get_rate_range':
->> drivers/clk/amlogic/clk-pll.c:554:(.text+0x700): undefined reference to `__aeabi_uldivmod'
->> arm-linux-gnueabi-ld: drivers/clk/amlogic/clk-pll.c:567:(.text+0x728): undefined reference to `__aeabi_uldivmod'
-   arm-linux-gnueabi-ld: drivers/clk/amlogic/clk-pll.c:554:(.text+0x814): undefined reference to `__aeabi_uldivmod'
 
 
-vim +554 drivers/clk/amlogic/clk-pll.c
+On 2/4/2026 5:29 AM, Konrad Dybcio wrote:
+> On 1/27/26 12:38 AM, Elson Serrao wrote:
+>> EUD functions by presenting itself as a USB device to the host PC for
+>> debugging, making it incompatible in USB host mode configurations.
+>> Enabling EUD, when in host mode can also cause the USB controller to
+>> misbehave as the EUD hub can only have one upstream facing port.
+> 
+> Perhaps that's a silly idea, but would the device itself see
+> the debug hub, being able to essentially self-debug in a way?
+> 
 
-   536	
-   537	static int aml_pll_get_best_rate(unsigned long rate, unsigned long step_rate,
-   538					 u64 min_vco_rate, u64 max_vco_rate,
-   539					 u8 od_max, enum round_type round,
-   540					 unsigned long *out_rate)
-   541	{
-   542		int i;
-   543		u64 vco_rate;
-   544		unsigned long now_rate, best_rate = 0;
-   545	
-   546		for (i = 0; i <= od_max; i++) {
-   547			vco_rate = rate << i;
-   548			if (vco_rate < min_vco_rate)
-   549				continue;
-   550	
-   551			if (vco_rate > max_vco_rate)
-   552				break;
-   553	
- > 554			if (vco_rate % step_rate == 0) {
-   555				best_rate = rate;
-   556	
-   557				break;
-   558			}
-   559	
-   560			if (round == ROUND_DOWN) {
-   561				vco_rate = vco_rate - (vco_rate % step_rate);
-   562				now_rate = vco_rate >> i;
-   563				if ((rate - now_rate) < (rate - best_rate))
-   564					best_rate = now_rate;
-   565			} else {
-   566				vco_rate = vco_rate + step_rate;
- > 567				vco_rate = vco_rate - (vco_rate % step_rate);
-   568				now_rate = vco_rate >> i;
-   569				if ((now_rate - rate) < (best_rate - rate))
-   570					best_rate = now_rate;
-   571			}
-   572		}
-   573	
-   574		if (!best_rate)
-   575			return -EINVAL;
-   576	
-   577		*out_rate = best_rate;
-   578	
-   579		return 0;
-   580	}
-   581	
+This isn’t supported by the current hardware topology.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+When EUD is enabled, it enumerates as a USB device to an external host via its
+upstream-facing port, while the SoC USB controller sits behind the hub’s
+downstream-facing port. As a result, the controller cannot enumerate or
+interact with the EUD device itself, and host mode is mutually exclusive with
+EUD debug on this path.
+
+Thanks
+Elson
+
+> [...]
+> 
+>> @@ -162,32 +165,66 @@ static ssize_t enable_store(struct device *dev,
+>>  		const char *buf, size_t count)
+>>  {
+>>  	struct eud_chip *chip = dev_get_drvdata(dev);
+>> +	struct eud_path *path;
+>>  	bool enable;
+>>  	int ret;
+>>  
+>>  	if (kstrtobool(buf, &enable))
+>>  		return -EINVAL;
+>>  
+>> +	mutex_lock(&chip->state_lock);
+> 
+> If you use guard(mutex)(&chip->state-lock), you can waive all these
+> conditional mutex_unlock additions
+> 
+>> +
+>>  	/* Skip operation if already in desired state */
+>> -	if (chip->enabled == enable)
+>> +	if (chip->enabled == enable) {
+>> +		mutex_unlock(&chip->state_lock);
+>>  		return count;
+>> +	}
+>> +
+>> +	/*
+>> +	 * Handle double-disable scenario: User is disabling EUD that was already
+>> +	 * disabled due to host mode. Since the hardware is already disabled, we
+>> +	 * only need to clear the host-disabled flag to prevent unwanted re-enabling
+>> +	 * when exiting host mode. This respects the user's explicit disable request.
+>> +	 */
+>> +	if (!enable && chip->eud_disabled_for_host) {
+>> +		chip->eud_disabled_for_host = false;
+>> +		chip->enabled = false;
+>> +		mutex_unlock(&chip->state_lock);
+>> +		return count;
+>> +	}
+>>  
+>>  	if (enable) {
+>> +		/*
+>> +		 * EUD functions by presenting itself as a USB device to the host PC for
+>> +		 * debugging, making it incompatible in USB host mode configuration.
+>> +		 * Prevent enabling EUD in this configuration to avoid hardware conflicts.
+>> +		 */
+>> +		path = chip->paths[chip->port_idx];
+>> +		if (path && path->curr_role == USB_ROLE_HOST) {
+>> +			dev_err(chip->dev, "EUD not usable in host mode configuration\n");
+> 
+> "in USB host mode"?
+> 
+> [...]
+> 
+>> +	/*
+>> +	 * EUD must be disabled when USB operates in host mode. EUD functions by
+>> +	 * presenting itself as a USB device to the host PC for debugging, making
+>> +	 * it incompatible in host mode configuration.
+> 			   ^ with
+> 
+> Otherwise the logic looks good, I think this may be desired default
+> behavior (so that the user doesn't have to constantly keep re-enabling
+> EUD)
+> 
+> Konrad
 
