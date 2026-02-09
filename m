@@ -1,263 +1,188 @@
-Return-Path: <devicetree+bounces-263788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263789-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AExpHWRWiWlQ7AQAu9opvQ
-	(envelope-from <devicetree+bounces-263788-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 04:37:08 +0100
+	id IALoEwJXiWlQ7AQAu9opvQ
+	(envelope-from <devicetree+bounces-263789-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 04:39:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A26BF10B653
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 04:37:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A992510B683
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 04:39:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CD54B3002F89
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 03:36:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 32FBF3002B7E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 03:39:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87A3B236A73;
-	Mon,  9 Feb 2026 03:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC85C286891;
+	Mon,  9 Feb 2026 03:39:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="ANV6cLDv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lq/+pCc8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-dy1-f171.google.com (mail-dy1-f171.google.com [74.125.82.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F04E51F9F70
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 03:36:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.54
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770608189; cv=pass; b=TDkPgvTjWBFm4rPQ2endS6gJ3pywPkpk3zBEkqD+78UEHJxkNOzNvKYNG5Ga+kJ+TcAIhye2EPh/hCqRX3STZRhWcZqey8xbjGWJiR74to01Uh/FahkX2YvEteNpZRFChb8pX+K0GtiDSgJ+PbsN5UbwpYxSYPyY6WWe/T33Drg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770608189; c=relaxed/simple;
-	bh=2F/jK64bec8jgwPV36b7Law8rG2yJcwj4/Qs/wreGxI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mopRO2I3s/9g5wlovHnhFUKwZzZnKGAHlnrRgZ0Tolste8+nLPvMKfbff9GrmcH+LC7Af++yXRHJ5E1HkJl2PF9Fr0gbXwGh90+AZoh5RABGVE0xdjuzjEihIZiPwrsALGyc8aNimf27voMo9FdiWisxhiHxn3ExexACspzA4i4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=ANV6cLDv; arc=pass smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-6594382a264so4724169a12.1
-        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 19:36:28 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770608187; cv=none;
-        d=google.com; s=arc-20240605;
-        b=JHxvZxFwDDiwRQU3hKcLL43epAaceXQRZfxrLIVEVBfF3eHg9u/enZls/up+Oojrj4
-         1m8agWm7F4unV3+uYHHCYor/4MgTPflZW4KUVkRA/9oWmnxfH5l344TN6K/EiIbdt49Z
-         S/4U23to66wQjnHl1yF4ziK18BgcNg4guO/5+Gqo1XDSMMjDe+Ca2boWDCUEf/pE8M6/
-         DApq6hCmINIcRJ63R8czpREXK4bugFxY5QwGkpp/5i35gKbIAWQvXQukYa3aGNvPNp32
-         tMIC+RknxqjTllaGzkl4aR7K6+5UZHmv9WVlFDZJZbdm7gg4CUv6zlm1IrauqSbENI8g
-         F3Ew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=dgf3bFVZrp6swEDkel5fmNbp8R9hFafE4rfJYRWPjoA=;
-        fh=snqanUtgCYcuaIsOfxdT206pfyeC0CK5vUvwALsE1J8=;
-        b=DHhFy0L7agyCiVJXpWbgo4y9uQK6vuEVci6EUHBQtB85sdOaoxt6yqAOHR3RlT+bxC
-         AqljppcuxjKp8KVkuHOvVol3HOuLGeju+JMJ1mKhOCh4gfqGGNXQM25kh80RRvWf6xn2
-         3QWkrX4+jWQ8yEAB/euj8f5a41/p8Xa0nWIUsMUTVcb8WMkvJmmGWCBlOb/Pyd24QHC0
-         Q4P0KZtCoUrdtwTj7f/8NQcfwCdPd6iIQNoAG3y3UyPNEo7bJi1ckM0pMouJ++AiVb56
-         4wbayrj72Vt7WJhrILQYodmUQtMoLF98LLTqU5YfqyeGrHRXS4++U7Gpj8ucJ8eY9vlx
-         3Bcw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72448221F15
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 03:39:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770608383; cv=none; b=Iu97uShMwtwgnNu/suwy3W9PL/RLMK/yYbfAgmStR9tDiOZxSzA3n9bEp3Z68a+kIVyI7rsDZxKuF/WfZKYsxfvd+qf1i5YJK/IUJG34x7J2eH8oscbboQafbL6mgMyAMxq9mxqOaJ6nLK+jcJfccFrELuH4ug+xXdbcCXyua9Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770608383; c=relaxed/simple;
+	bh=mDWfQ5TQ7IKx3Jx2J+iH2KbYzclhCi7bvFUdjWsVD2Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=I6PvafcFJpVBw/MZr9SxCHmcMvlkDXsLUk8YuiLoSi6r+/tKZcQsIgiTV0jbA1UtccYH9+ZQ+yYT0QaG9f8OtextA75f2+oMdpEDCL9hHLyTvuM/xY/mRIM2tG/hk8hrZMtmID7PMyK68AY9xhwaMdC2+vTdiNnfX3KFuEZ9yQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lq/+pCc8; arc=none smtp.client-ip=74.125.82.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f171.google.com with SMTP id 5a478bee46e88-2ba4f9df1b4so44805eec.3
+        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 19:39:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance.com; s=google; t=1770608187; x=1771212987; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dgf3bFVZrp6swEDkel5fmNbp8R9hFafE4rfJYRWPjoA=;
-        b=ANV6cLDvyl9uZvESer9fGgwQopb2/MhgJszPzEdp5FuwfGP5B/gteR22RaWqs+9dzU
-         QU9jxAq7nnUIY4vFjNwLCU03e0lfWKOWt3hUALdUtAVhJEleSXcSDtycNEJQMHkAwAns
-         b1Qvk7+Qr4FSZve5Bke05MJb5PG5A064NFvxREYE1TJfFhPLgJ3YwivceldIkAglEe7H
-         dGfN+t7Wv6AyEcaZbZurfnZs1Mn0oYW1y8TymAnpaDWDb4ovE74qOqjqrZd9Swy6y5Ai
-         HcF6Ei3OusYwsAwRuwGZfSpSS31IX0lZDfGC7Ze3OLrt/ani0zcWoBHVZkp0IAt3GnwV
-         fHPA==
+        d=gmail.com; s=20230601; t=1770608382; x=1771213182; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gyuiG6Pl+KcjgV30EMZ/m11jRo1aHxOMp16zLwhY/U8=;
+        b=Lq/+pCc8i12/lyVdX3xUL8dnSFEIEKwjiJsQJu0HnjJ7pwO1hhuYsLB57ue6UmaRPF
+         vyTMBKTf8Fh8y6YXF2FYPaUrwhffpBA6TnTIMpi0Mo68ki1Zg2MqIrW/tVLzpju7Y2hV
+         +wgD7YOE8xS6NfcTEv2Om38ldajjxC6M1Fi+Br0CchTHeo3g1AYHcHWPRzYlQWiWdivm
+         f5f8n77O0dYSM9iwZY9mfcWV5RwWK0iGzV+VQ+Vhn/LWmH9LuxWlm621/rCGoRaoNr3e
+         xvbtA54I5nZgCOTXwWJttGtYewL7xCKts0oB9/+r+tzTpq7G7GxYaksA8Y0mft/quYln
+         sngQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770608187; x=1771212987;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=dgf3bFVZrp6swEDkel5fmNbp8R9hFafE4rfJYRWPjoA=;
-        b=xD+9j1atuRayye18sFcKKN8d/ccNUTSq9jNau6dJZJMui20/+L8Wx3bdSCJ0ZSUFyZ
-         grxuraPdy0vQkUEW6MyXrgvgM4OshjW8j4TlTbJr/v1V1xOyqgM8DI5cCLIWvJzljVXr
-         0jGAHHpxwKHdJ3SbTpEH8KK9oevf3eIZACuXMOPwY8MQyr1cuqX0+PNBrLQhnTtwL3Tn
-         jVOOgM8X8W05FI0KJSmmwtX6lO0M4MpqwLJ0r7WXQJhcy8VY0NpZgMQaRbvN9tgVY2bb
-         j0S2G5XEsEqFYwTzm0/icZZLwsFcLWtsoGhFcMClGJfyBmjdu33gxmLtevXRkrGTRDRz
-         z/cw==
-X-Forwarded-Encrypted: i=1; AJvYcCUsiaYOV2KphAcpB/bFvUJdsKOx+fP/o31YjLQCQdbpQt4/dk9RBfMLlSXxKa63D95PvcTVu58vB6QO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxfkem4laBXbIz+p9ZHtlhbp5V5dL27JY4xMoKaTnP+kMW659JG
-	18XWOKftENCce3n9l1rn2SWodYojwwap9AqoHMKdpa18inFD+BnYYEz730gbIiyFNYJEgNkDnom
-	bIwPpJU23WATc9v5SVWuF9Ahg5woTMVF3Iz+wFnu3sA==
-X-Gm-Gg: AZuq6aL758zSDxX3jjJ3v1UmCrJ4w2ZBgWafTGji2cWpmiHF/2rYZ0xbldgFoyA70+Y
-	vdWqn4M06zI3sqNLkp88clCEQL45nkGBrGaDGpDuiW2sTleoYydYZIoXhL5yrBHuvX8bvW9XdLf
-	d3dRMIuxvE0j4I8gZ4NXC2HAGBPMS/f1lcVc2/BZ44yJHH/wH53erMIZyeWlaRJhQtinCkiFZKz
-	zROi0w0tS+3fGZGmT/vEQe05bHVWmQZkA02nmfCIPizeIEsv85C4mLHoe0B+dXwOVF72Dd4WE3H
-	qJ7O
-X-Received: by 2002:a05:6402:5188:b0:658:cc59:1624 with SMTP id
- 4fb4d7f45d1cf-65984116e20mr4771993a12.5.1770608187211; Sun, 08 Feb 2026
- 19:36:27 -0800 (PST)
+        d=1e100.net; s=20230601; t=1770608382; x=1771213182;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gyuiG6Pl+KcjgV30EMZ/m11jRo1aHxOMp16zLwhY/U8=;
+        b=Pv6CYS6UuHMDrO0e34JbE1qTR6+ROuY7WW/QOVXUaq11/djpfrtDE1APrCLqkv9Uaw
+         Y6VaT0FWXDPf8ALeKFi28CLVyKrxar8DEJVPvD8/B/HtrhoXgLw4baBkDvnxxYhZzvig
+         WLu9bm2peKn2bzNcM2d95n2nxy2my0oY3d70xhVi+rZsOWFP5Yb2afA2i56fHRBQsLwF
+         KCPL4DHIYBFTwQdtSxD/srLXYrwIRbYT/UWDrgWIAWOGpmEwGtyBskTWFFb7M9pD+hjI
+         mOcqfLQ7huxKQO6PexCRH3ovrMR9EnTLDleoMZHznp7r43qAb6DHibRoSGSaO1V55Nwe
+         98dQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWQQCh2XnC+33ufKrUOWqfA2qgNTBCrIBgv4DKNv0RN4LrgKMlxnOgnDUUUhTrAD12L1pVPOxLjgHkH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzh3N0eg0opxSYiTTR1lwdz6+fbODQ530s69pLYoCBAHB1jQ9mG
+	B7I0KPmvoePSwtrUm2vckIqU+G2BfRiLcr89u3txL6NZd1YAvpGnrnbyKHtvTw==
+X-Gm-Gg: AZuq6aJvgQc01VxeUNlhaElXAIMFIx2k79vQI3ypkg+oyHMuQEOTunVL7Jt9iyhztvs
+	hmazg7Z3Qp8TXkiGEYBIqSiTJbFmWdF3k9f18ZicS83nyMP9N3d63KwAUi9z84S5D1GYv2gFRgw
+	nXpaG7BK2qPJPuvqTXoFezFFUTrnEAuz9uXvgERaZCeZqL/a71uC7hxc466orNtc/lJmN3CpgBU
+	gs7Zfjn9kdRSLGkzTycZqnnZYwTUPD7aWfzPkreixTymWhkW7oPHW4x/PeJRY+V67PMxZF2sjNr
+	xsVK8n7mSJLghBaA8glW0Vz8JvGOmyhcbpocHyEMM5wKkyXpu7CzHfDeniHjP7Zh6NSIIHz5sM9
+	od6fXgWXOUEm44kaD6y4QR+AQBTL4bLAUc299M7iKuml6UDgP2wUt13En7XIVRUbcwI0xO9gV1u
+	MiDnkICXirhgU=
+X-Received: by 2002:a05:7301:3d12:b0:2b7:e929:856b with SMTP id 5a478bee46e88-2b8564e83d1mr2149490eec.5.1770608382489;
+        Sun, 08 Feb 2026 19:39:42 -0800 (PST)
+Received: from [127.0.1.1] ([45.32.86.188])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b855af5ca2sm7682073eec.8.2026.02.08.19.39.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Feb 2026 19:39:42 -0800 (PST)
+From: Yasin Lee <yasin.lee.x@gmail.com>
+Subject: [PATCH 0/5] iio: proximity: hx9023s: firmware property, safety
+ fixes, and ACPI support
+Date: Mon, 09 Feb 2026 11:37:01 +0800
+Message-Id: <20260209-upstream-20260219-v1-0-2b4d74e309d1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260128-ssqosid-cbqri-v2-0-dca586b091b9@kernel.org>
- <20260128-ssqosid-cbqri-v2-3-dca586b091b9@kernel.org> <CAEEQ3wkqC4jFf1LGgh2c6dgGwT=tuvpFV+D4fiw40P3LZ7_8hg@mail.gmail.com>
- <aYfnbc3T81RRxz5r@gen8>
-In-Reply-To: <aYfnbc3T81RRxz5r@gen8>
-From: yunhui cui <cuiyunhui@bytedance.com>
-Date: Mon, 9 Feb 2026 11:36:16 +0800
-X-Gm-Features: AZwV_QgwWHnA5m1kxr57YAvjsSYdUx_1aHt2EEPh2W2BDaodUZAsXnYDqE8xcQ8
-Message-ID: <CAEEQ3wntQWi_itwA716qjaFBMd18FR3nb6rMz5STw+DGtYjp+A@mail.gmail.com>
-Subject: Re: [External] [PATCH RFC v2 03/17] RISC-V: Add support for srmcfg
- CSR from Ssqosid ext
-To: Drew Fustini <fustini@kernel.org>
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	=?UTF-8?B?UmFkaW0gS3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Adrien Ricciardi <aricciardi@baylibre.com>, 
-	Nicolas Pitre <npitre@baylibre.com>, =?UTF-8?Q?Kornel_Dul=C4=99ba?= <mindal@semihalf.com>, 
-	Atish Patra <atish.patra@linux.dev>, Atish Kumar Patra <atishp@rivosinc.com>, 
-	Vasudevan Srinivasan <vasu@rivosinc.com>, Ved Shanbhogue <ved@rivosinc.com>, 
-	Chen Pei <cp0613@linux.alibaba.com>, Liu Zhiwei <zhiwei_liu@linux.alibaba.com>, 
-	Weiwei Li <liwei1518@gmail.com>, guo.wenjia23@zte.com.cn, liu.qingtao2@zte.com.cn, 
-	Reinette Chatre <reinette.chatre@intel.com>, Tony Luck <tony.luck@intel.com>, 
-	Babu Moger <babu.moger@amd.com>, Peter Newman <peternewman@google.com>, 
-	Fenghua Yu <fenghua.yu@intel.com>, James Morse <james.morse@arm.com>, 
-	Ben Horgan <ben.horgan@arm.com>, Dave Martin <Dave.Martin@arm.com>, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, x86@kernel.org, 
-	Rob Herring <robh@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Robert Moore <robert.moore@intel.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, linux-acpi@vger.kernel.org, 
-	acpica-devel@lists.linux.dev, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF1WiWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDIwNL3dKC4pKi1MRcXYiIoaVuonlimlmKZaKFaWKKElBfQVFqWmYF2Mz
+ o2NpaAADk5V5jAAAA
+X-Change-ID: 20260209-upstream-20260219-a7af6d9a85ad
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, yasin.lee.x@outlook.com
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Yasin Lee <yasin.lee.x@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1540; i=yasin.lee.x@gmail.com;
+ h=from:subject:message-id; bh=mDWfQ5TQ7IKx3Jx2J+iH2KbYzclhCi7bvFUdjWsVD2Y=;
+ b=owGbwMvMwCEYyfeRr6Zs90zG02pJDJmdYW9qnu5U3pikNe1Szo9PV15dcQt6c2TSWk/LVBX5D
+ 7s/H15xuqOEhUGQg0FWTJHlzOs3rPmqD/cE/3bNgJnDygQyhIGLUwAmcomR4X/qUssz07Tu1h1c
+ vcPui3hf1OK1a7TfHuhe98PspHRE762lDD9ul/Cpc23drTEl4EXXq38pvLv+fWL66W19lJvr9rE
+ Zah0A
+X-Developer-Key: i=yasin.lee.x@gmail.com; a=openpgp;
+ fpr=CCEBEC056F25E1BC53FB4568590EF10E7C76BB99
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[bytedance.com,quarantine];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[bytedance.com:s=google];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-263789-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263788-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,outlook.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[41];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,linux.alibaba.com,gmail.com,zte.com.cn,intel.com,amd.com,google.com,arm.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cuiyunhui@bytedance.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bytedance.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[yasinleex@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bytedance.com:dkim,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arm.com:url,semihalf.com:email]
-X-Rspamd-Queue-Id: A26BF10B653
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A992510B683
 X-Rspamd-Action: no action
 
-Hi Drew,
+Hi,
 
-On Sun, Feb 8, 2026 at 9:31=E2=80=AFAM Drew Fustini <fustini@kernel.org> wr=
-ote:
->
-> On Mon, Feb 02, 2026 at 11:17:52AM +0800, yunhui cui wrote:
-> > Hi Drew,
-> >
-> > On Thu, Jan 29, 2026 at 4:28=E2=80=AFAM Drew Fustini <fustini@kernel.or=
-g> wrote:
-> > >
-> > > Add support for the srmcfg CSR defined in the Ssqosid ISA extension
-> > > (Supervisor-mode Quality of Service ID). The CSR contains two fields:
-> > >
-> > >   - Resource Control ID (RCID) used determine resource allocation
-> > >   - Monitoring Counter ID (MCID) used to track resource usage
-> > >
-> > > Requests from a hart to shared resources like cache will be tagged wi=
-th
-> > > these IDs. This allows the usage of shared resources to be associated
-> > > with the task currently running on the hart.
-> > >
-> > > A srmcfg field is added to thread_struct and has the same format as t=
-he
-> > > srmcfg CSR. This allows the scheduler to set the hart's srmcfg CSR to
-> > > contain the RCID and MCID for the task that is being scheduled in. Th=
-e
-> > > srmcfg CSR is only written to if the thread_struct.srmcfg is differen=
-t
-> > > than the current value of the CSR.
-> > >
-> > > A per-cpu variable cpu_srmcfg is used to mirror that state of the CSR=
-.
-> > > This is because access to L1D hot memory should be several times fast=
-er
-> > > than a CSR read. Also, in the case of virtualization, accesses to thi=
-s
-> > > CSR are trapped in the hypervisor.
-> > >
-> > > Link: https://github.com/riscv/riscv-ssqosid/releases/tag/v1.0
-> > > Co-developed-by: Kornel Dul=C4=99ba <mindal@semihalf.com>
-> > > Signed-off-by: Kornel Dul=C4=99ba <mindal@semihalf.com>
-> > > [fustini: rename csr, refactor switch_to, rebase on upstream]
-> > > Signed-off-by: Drew Fustini <fustini@kernel.org>
-> [..]
-> > > diff --git a/arch/riscv/include/asm/qos.h b/arch/riscv/include/asm/qo=
-s.h
-> > > new file mode 100644
-> > > index 000000000000..84830d7c6dc4
-> > > --- /dev/null
-> > > +++ b/arch/riscv/include/asm/qos.h
-> > > @@ -0,0 +1,41 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0 */
-> > > +#ifndef _ASM_RISCV_QOS_H
-> > > +#define _ASM_RISCV_QOS_H
-> > > +
-> > > +#ifdef CONFIG_RISCV_ISA_SSQOSID
-> > > +
-> > > +#include <linux/sched.h>
-> > > +#include <linux/jump_label.h>
-> > > +
-> > > +#include <asm/barrier.h>
-> > > +#include <asm/csr.h>
-> > > +#include <asm/hwcap.h>
-> > > +
-> > > +/* cached value of srmcfg csr for each cpu */
-> > > +DECLARE_PER_CPU(u32, cpu_srmcfg);
-> > > +
-> > > +static inline void __switch_to_srmcfg(struct task_struct *next)
-> > > +{
-> > > +       u32 *cpu_srmcfg_ptr =3D this_cpu_ptr(&cpu_srmcfg);
-> > > +       u32 thread_srmcfg;
-> > > +
-> > > +       thread_srmcfg =3D READ_ONCE(next->thread.srmcfg);
-> >
-> >
-> > First set the cpu_list, and then the condition thread_srmcfg !=3D
-> > *cpu_srmcfg_ptr will not be satisfied. Is a default value required
-> > here? Both code paths for cpu_list and tasks are compared against the
-> > default value; you may refer to the implementation of mpam.
->
-> I'm having trouble finding cpu_list but I think that it does make sense
-> to set the initial value.
->
-> Were you thinking I should look at mpam_set_cpu_defaults() in
-> the mpam_resctrl_glue_v4 [1] branch?
+This series contains a set of small fixes and improvements for the hx9023s
+proximity sensor driver.
 
-To be exact, it's "cpus_list".  yep, we need logic similar to that of
-arm64_mpam_default.
+The changes include:
 
->
-> Thanks,
-> Drew
->
-> [1] https://gitlab.arm.com/linux-arm/linux-bh.git
+ - Fixing a potential out-of-bounds access when copying firmware data.
+ - Avoiding a division-by-zero case when the sampling frequency is unspecified.
+ - Allowing the firmware file name to be specified via firmware-name property,
+   along with the corresponding DT binding update.
+ - Adding ACPI device ID support to enable hx9023s on ACPI-based platforms.
 
-Thanks,
-Yunhui
+All changes are independent but related to robustness and platform support,
+and are grouped together for easier review.
+
+Tested on a DT-based platform with firmware loading enabled.
+
+Thanks for your time and review.
+
+Best regards,
+Yasin Lee
+
+Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
+---
+Yasin Lee (5):
+      iio: proximity: hx9023s: fix out-of-bounds access when copying firmware
+      iio: proximity: hx9023s: Protect against division by zero in set_samp_freq
+      iio: proximity: hx9023s: support firmware-name property
+      dt-bindings: iio: proximity: hx9023s: support firmware-name property
+      iio: proximity: hx9023s: add ACPI support
+
+ .../bindings/iio/proximity/tyhx,hx9023s.yaml       |  7 ++++++
+ drivers/iio/proximity/hx9023s.c                    | 26 +++++++++++++++++-----
+ 2 files changed, 28 insertions(+), 5 deletions(-)
+---
+base-commit: c8bfb63c902678228a0a265e22a5f55404988a43
+change-id: 20260209-upstream-20260219-a7af6d9a85ad
+
+Best regards,
+-- 
+Yasin Lee <yasin.lee.x@gmail.com>
+
 
