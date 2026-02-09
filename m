@@ -1,188 +1,507 @@
-Return-Path: <devicetree+bounces-263978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263979-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SIuoBvbaiWndCgAAu9opvQ
-	(envelope-from <devicetree+bounces-263978-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 14:02:46 +0100
+	id bhZnKG7biWkGCwAAu9opvQ
+	(envelope-from <devicetree+bounces-263979-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 14:04:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7044C10F57F
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 14:02:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1552A10F632
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 14:04:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 37A00303AF08
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 11:45:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9278930143D1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 11:48:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EB82372B35;
-	Mon,  9 Feb 2026 11:45:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77022372B32;
+	Mon,  9 Feb 2026 11:48:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TsjWuyEd"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="l2oUibkH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f53.google.com (mail-dl1-f53.google.com [74.125.82.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BEA9371077;
-	Mon,  9 Feb 2026 11:45:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770637507; cv=none; b=TvAPWsW/Ukz6YMoPkVl1cMAQ+rZmT1bYh3soHtunBOvdHjVAw5fvnKogMwIs74wMy1YrHudPpz1T9EtEE29YMkDNaOM2xExf6sVjR++61NlBnED6eemvjqOxUBLBXr2Cs7SV6qUch/aCO9kjFGRvi+U7lRaWfWmzeq5nYyUCQn8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770637507; c=relaxed/simple;
-	bh=4vKDVmW21AQ+zC5qRsqXra28w9t4s1wH9BgMYP9+A1s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WstxEZfDZVhQ0zA8tw2WAM2OXHNHe2rpoHlInRm4CZbMQiWgy1DT56aMEaad1Jnsc836R79IjdTCg1sxPHpFBNXakCKs6JfVTlRL9yJwI+7TkziLX49npSC29iSQuS7hha2d3rqexrVxevdR2AcQ+wb2ysbBnOww3ZPLBphWo00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TsjWuyEd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 619AuBl03347429;
-	Mon, 9 Feb 2026 11:45:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	hLjqd5uEA8YSSjmMu3+o9AxO1zvy9PHUmy4oN//FlV4=; b=TsjWuyEd/cF1k5sl
-	ScYsT/5Pf3yYoBjznMA8Dxry0zUeioPdF1DNS0lqGGPed2GkEQxUTf9TP8WVnUrD
-	enysOZ+HmCMFs1mg2dIn+0wQLmEaJm7VAalkUoYz99TSytTNraLnFUijrf83jS2Y
-	MXUaKKbQXEY4t6PUdxmEdkr+pwPxh0zMUahgrxlaMXeExm3+T9K2LTCNHbkFNzDb
-	OwyWGvg9skAnF6zkBeybfPx7V3+fMgkb+zLna4K2VJiSQWZ2OZ4QHZIR6aTIxbPN
-	nNMskbQrKoFtzrfSElipaGdR8iqA3w2eVRmcAMjWUrir0V4LDvxOoX2qENOSAeMl
-	xXKW3g==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c79cy18dx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Feb 2026 11:45:03 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 619Bj2sk005716
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Feb 2026 11:45:02 GMT
-Received: from [10.151.36.184] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 9 Feb
- 2026 03:44:58 -0800
-Message-ID: <0315074e-72f3-1bc4-83b1-e60d5e4aef2a@quicinc.com>
-Date: Mon, 9 Feb 2026 17:14:55 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D2E8371059
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 11:48:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770637716; cv=pass; b=l4HY9UFGlazfhjTUKglU8HUz9A1vlVX2HMk1+2sQYB3orJX68lzvqFcV3gUPGnNlW85vDRe+3V2ewYoYoR81Ssh4f6KhwjI3Pbf75RVOv6BwTIrnTdAgaHU6P79XAkIUxRBY3aFfoKLXdyJyaEzRCnLpArOb3BpqKqZmb98E4zI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770637716; c=relaxed/simple;
+	bh=ep28r/RfcWOQ/lrDJ5+HVAI/ah9QEzHIx0s8WwFXuA8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aCp7VpYnshyUo+IVi8fm0zu9vP3ryaUST9+yy09ISWwFIwOb4iMxyfZOYhhvp2xUC43SYZ5H8RtGEmsm/sY0uBy+9BWmQw8T4rHn5CP6i7MQ1fww5A3SoD2iOwQCIs9ffENtrDw4OBTtU4nVygLiRALnUANmlh1cxUuMZB9TsKc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=l2oUibkH; arc=pass smtp.client-ip=74.125.82.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-dl1-f53.google.com with SMTP id a92af1059eb24-124a635476fso5641689c88.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 03:48:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770637715; cv=none;
+        d=google.com; s=arc-20240605;
+        b=BY9P8XJ40hJpBSirhxHN+lM685hKqHf6q9hTtlWYERWffXa+KwS5YJu0qGjKxphgiu
+         sBjgGu7G4owggZfU5UyFQOrHxqdysnfBIZ406X1UiPNXMTbb4fSMCxG1bDmz+Vnbxh0L
+         S4XoAqOfJX/bHy5xz7ZMF/aLqf2Hy2KOggyjkwHqPqGqUMSymJGc6nB1WRLJh2+ZuLVJ
+         2EwaFf/S+O17qM/a6ijnGTskLejFWM/JRX5zY0n6X5YPbOt0Qmai1PyoZ/bcMlunKhhE
+         v7ZQrt4oGs/dsX+UORbVCZlTEgjzS4i4YObMIUlAasmJHyxq3eQ3W/r9JsGFxa9yn5vK
+         TEfA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=6kbRpDe+srcEPzZmh6u9NOQDeh6P1J8cpE5rRHKJoCA=;
+        fh=ofceSi2FpiApWnO1/p0S2rNN42957BtxGbcXL/Mo4oo=;
+        b=chmbEn4J/fOYZmv5ND3/nxmgPprcqduvbEaCa+rh8qyPPWpsX05W6gkq8uzXXk2+8i
+         qE/ir7VGvXiPtGdGErY5u3xgJcfOFYj5uGscfqJQXUZQESaonP0X+nhVg/QH74QfdslD
+         1WQ9YF1Kl30Ww3eAF+GjlIyXhl/wHTGgcMyDkrJTaRXdADl3KoACb5FX9LPRu77LHQGx
+         5QOEvtxakC9koAjQKI61K/be6TtAUI1Sb5KOA7ykVGaZHhB2uHMGpPNG828Jlp7rr631
+         GZDqcoKIiRDZ6aSUseiqj7DGI7vgAZYKC6u0ChaHog7X82Xu7xxeN8+6w0lAIqz5Ldd6
+         M6mg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1770637715; x=1771242515; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6kbRpDe+srcEPzZmh6u9NOQDeh6P1J8cpE5rRHKJoCA=;
+        b=l2oUibkHJZe0yn6atxDGdffiI8moG+Bx5UAmAr/9dyV6ag903ucQa+bjC8kc68Vzev
+         7DnO6PHLjgpcfxnnnc+G5cT3bVPNsopdpbdiA6XF5E4qPmgncGvSOt/WAu20W4ZRLqHQ
+         o6djUD9pqL0woytfJg8Y4a2ShfYWBFojQ6Yk+sbpwj2x9JZX3LstW6IRyZkwexwxcmVx
+         K5tZEokcxJV23t2DyOtYyBEe7spK4WtYbuYGJIciIKLsW5yaAkIAHEc1gr/dsfjRjCnp
+         mZmTEkg8XIK8WP0Hb+cPDEDKI/jhm93RT759hYooh4aru4GNA+rDOD0VStxHb5litrTV
+         H8Mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770637715; x=1771242515;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=6kbRpDe+srcEPzZmh6u9NOQDeh6P1J8cpE5rRHKJoCA=;
+        b=kOfoh3DYdNlE9hQwMWtiCbJ6It6VprgrIHjDMaL28AcSAF3AyZ3uK2TufajscFiXkD
+         /+ofMQBDDcXzptUBbF9L/JI0oIYIYnaX8/3kUGQZlCyGCMgfEpLIr7G27U9+7MXjiGcl
+         OdjkMvznaeJc7s2kfNlEJINlXkAMC+qADTNm0q1ebEn1AqSa4qH7pl4u6ouebBG9HVHx
+         1QuENGodvbCv7rX40NruUh+v4zIyBCcgDLSRfv4VlMeiFlccdWG13EJ3wlilS8A+YyXY
+         Ma3TobruK9dbefI82FPBfx98Wd+He3qZC4Zs/RykrAdXNybCsQP6wAK8Hb8qocGXsyas
+         LmQw==
+X-Forwarded-Encrypted: i=1; AJvYcCUaZjtdZfrFOaI+NfxoskwRWS+qW+6L8Gdep12HLoBEh88tzsPE4GOHZsjih+zO8TLPTVmjC9yBsM78@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNk7xVCJ+tV5TMq6VV/7Bo8L31IyTX44epy8aFuzKJtcXHDZJ8
+	labF0PC7IFbWxT5UdrcVoU+NHJozgSXHD0Y1Iw65gJ3Y5CcTW09l9DA5fLSNs0iBVyJZ1iLuAyS
+	R/k51lR8A7ZH9J2Kt/WalsY+8u7DZJTGZAwYfezQApA==
+X-Gm-Gg: AZuq6aKw2XdS53hWkIQRQMys63Q4ZjMSv8LKspY3WyjtL0QcZ0xJql9lBeZlM1+KF8e
+	ct0/5TizZAzSAL6JfAJv9+SfKNjSKgrkiYXRvqmWtaB/opZ8NayawG60OFtq+Wt1hFKJhV+nfcs
+	qAJ829wmgkNKWj3mMedMabyGx/LmR2psj5UgK9bQr9S4VQc9vbjWJ/FCq3qmmD2kZu9prBNA0Gz
+	86VMAq3JDcqhV1uhPZECCkWorBtHg9nJr+Rlsy5rtniqOpN2An160fDex3gficEcDV/XRnacHuW
+	B6gH3iA56kQW7N9LxtNutuBFMGwPE6moQ+tbIglc
+X-Received: by 2002:a05:693c:40d3:b0:2b8:f1b4:ca57 with SMTP id
+ 5a478bee46e88-2b8f1b4d6c1mr1753805eec.20.1770637715286; Mon, 09 Feb 2026
+ 03:48:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v4 1/7] dma: qcom: bam_dma: Fix command element mask field
- for BAM v1.6.0+
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <vkoul@kernel.org>, <Frank.Li@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dmaengine@vger.kernel.org>
-CC: <quic_varada@quicinc.com>
-References: <20260206100202.413834-1-quic_mdalam@quicinc.com>
- <20260206100202.413834-2-quic_mdalam@quicinc.com>
- <409c2e5f-1bf2-44ed-9c0f-df762320e068@kernel.org>
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <409c2e5f-1bf2-44ed-9c0f-df762320e068@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: fZjSGdeb_O8xHaqW4yYrbdPw2vRqMI_N
-X-Proofpoint-GUID: fZjSGdeb_O8xHaqW4yYrbdPw2vRqMI_N
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDA5OCBTYWx0ZWRfX26Qu4SD7nPcI
- m7/bPF2NdWvjjg6l1TCzcNRwI9zf9SsGOjI+TbfBR+FcF+dZ/rzCPIjxEZEUaU2Q7qBlcAW6OJB
- dVQYFN0mvASWHCVFMlZhsnCVTWrk/37p+oPFH0j+YUueRGKK+6qwhyOKgPj9t4hLJunKAnA9xkv
- /YXelP22AEyvos/wIoxb+rZT3fBBeYag8z3NSEhR+j5Da5mH2GZ61QLAVHn6JI6t6OfYqeXHIev
- 9r1ztfPkYZRZwjtJtD5XIx133/t9sytI0VKItKgaWdyC9VXtD/eTrpT5xmAGyEZYEkBRbBuAyr4
- 9DaN13V7bju6apzEjiSetlB73zGyYhc3pfU/1itjg/63lMLuELQKKN8Pi+sj4RnV+o9HpmlT/eV
- idgmeM/35rWRUZCSAt7YtX0YnG1Dz/Omkdyd8Ei4aGpUX+lkbWNPU0VG4WtfZV8/LC/uMOCsHxh
- 4HhDZPSsqLE6dLWK0Kg==
-X-Authority-Analysis: v=2.4 cv=EtvfbCcA c=1 sm=1 tr=0 ts=6989c8bf cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=P-IC7800AAAA:8 a=RW8aISsyu9ixVNnXDUoA:9 a=QEXdDO2ut3YA:10
- a=d3PnA9EDa4IxuAV0gXij:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-08_05,2026-02-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 impostorscore=0 bulkscore=0 priorityscore=1501 phishscore=0
- malwarescore=0 clxscore=1015 lowpriorityscore=0 spamscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602090098
+References: <20251101154245.162492-1-apatel@ventanamicro.com>
+ <20251101154245.162492-11-apatel@ventanamicro.com> <CAPqJEFoTy3B2bc3OPa8WZWphra+2X9-oaQwDkD6UG4gViFy92Q@mail.gmail.com>
+In-Reply-To: <CAPqJEFoTy3B2bc3OPa8WZWphra+2X9-oaQwDkD6UG4gViFy92Q@mail.gmail.com>
+From: Mayuresh Chitale <mchitale@ventanamicro.com>
+Date: Mon, 9 Feb 2026 17:17:59 +0530
+X-Gm-Features: AZwV_Qgkq8TcKWOsXNOr_6Lm7MdTrNj8uNdVrl0K4BK07Z-CPHYUw08lk0KKizc
+Message-ID: <CAN37VV73ok=g1kXN3npCZ4k49C9PVdDbOYSMH=y3VyeUGBG_7A@mail.gmail.com>
+Subject: Re: [PATCH v2 10/12] perf tools: Add RISC-V trace PMU record capabilities
+To: Eric Lin <eric.lin@sifive.com>
+Cc: Anup Patel <apatel@ventanamicro.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Greg KH <gregkh@linuxfoundation.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Ian Rogers <irogers@google.com>, 
+	Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org, 
+	Alexandre Ghiti <alex@ghiti.fr>, Atish Patra <atish.patra@linux.dev>, 
+	Peter Zijlstra <peterz@infradead.org>, Anup Patel <anup@brainfault.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, linux-kernel@vger.kernel.org, 
+	Ingo Molnar <mingo@redhat.com>, Jiri Olsa <jolsa@kernel.org>, 
+	Mayuresh Chitale <mchitale@gmail.com>, Namhyung Kim <namhyung@kernel.org>, 
+	linux-riscv@lists.infradead.org, Andrew Jones <ajones@ventanamicro.com>, 
+	Liang Kan <kan.liang@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[quicinc.com,none];
-	R_DKIM_ALLOW(-0.20)[quicinc.com:s=qcppdkim1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	R_DKIM_ALLOW(-0.20)[ventanamicro.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[quic_mdalam@quicinc.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263978-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[quicinc.com:+]
-X-Rspamd-Queue-Id: 7044C10F57F
+	DMARC_NA(0.00)[ventanamicro.com];
+	TAGGED_FROM(0.00)[bounces-263979-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ventanamicro.com:+];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mchitale@ventanamicro.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[ventanamicro.com,kernel.org,sifive.com,dabbelt.com,linuxfoundation.org,linux.intel.com,google.com,arm.com,vger.kernel.org,ghiti.fr,linux.dev,infradead.org,brainfault.org,intel.com,redhat.com,gmail.com,lists.infradead.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,infradead.org:url,infradead.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:email,sifive.com:email,ventanamicro.com:email,ventanamicro.com:dkim]
+X-Rspamd-Queue-Id: 1552A10F632
 X-Rspamd-Action: no action
 
-Hi,
+Hi Eric,
 
-On 2/6/2026 10:42 PM, Krzysztof Kozlowski wrote:
-> On 06/02/2026 11:01, Md Sadre Alam wrote:
->> BAM version 1.6.0 and later changed the behavior of the mask field in
->> command elements for read operations. In newer BAM versions, the mask
->> field for read commands contains the upper 4 bits of the destination
->> address to support 36-bit addressing, while for write commands it
->> continues to function as a traditional write mask.
->>
->> This change causes NAND enumeration failures on platforms like IPQ5424
-> 
-> Please do not use "This commit/patch/change", but imperative mood. See
-> longer explanation here:
-> https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
-Ok
-> 
->> that use BAM v1.6.0+, because the current code sets mask=0xffffffff
->> for all commands. For read commands on newer BAM versions, this results
->> in the hardware interpreting the destination address as 0xf_xxxxxxxx
->> (invalid high memory) instead of the intended 0x0_xxxxxxxx address.
->>
->> Fixed this issue by:
->> 1. Updating the bam_cmd_element structure documentation to reflect the
->>     dual purpose of the mask field
->> 2. Modifying bam_prep_ce_le32() to set appropriate mask values based on
->>     command type:
->>     - For read commands: mask = 0 (32-bit addressing, upper bits = 0)
->>     - For write commands: mask = 0xffffffff (traditional write mask)
->> 3. Maintaining backward compatibility with older BAM versions
->>
->> This fix enables proper NAND functionality on IPQ5424 and other platforms
->> using BAM v1.6.0+ while preserving compatibility with existing systems.
-> 
-> Fixes tag? CC-stable?
-This patch is not fixing an existing commit. This is to address the 
-update in the newer version of the hardware.
-> 
-> Why is this part of DTS patchset? Do not combine independent work, you
-> only make it difficult for maintainers to handle your work.
-Will post a new version with the driver change as a separate patch.
+On Fri, Feb 6, 2026 at 4:52=E2=80=AFPM Eric Lin <eric.lin@sifive.com> wrote=
+:
+>
+> Hi Anup,
+>
+> On Sat, Nov 1, 2025 at 11:45=E2=80=AFPM Anup Patel <apatel@ventanamicro.c=
+om> wrote:
+> >
+> > From: Mayuresh Chitale <mchitale@ventanamicro.com>
+> >
+> > Introduce the required auxiliary API functions allowing the perf core
+> > to interact with RISC-V trace perf driver.
+> >
+> > Co-developed-by: Anup Patel <apatel@ventanamicro.com>
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
+> > ---
+> >  tools/perf/arch/riscv/util/Build      |   1 +
+> >  tools/perf/arch/riscv/util/auxtrace.c | 218 ++++++++++++++++++++++++++
+> >  tools/perf/util/auxtrace.c            |   1 +
+> >  tools/perf/util/auxtrace.h            |   1 +
+> >  tools/perf/util/rvtrace.h             |  18 +++
+> >  5 files changed, 239 insertions(+)
+> >  create mode 100644 tools/perf/arch/riscv/util/auxtrace.c
+> >  create mode 100644 tools/perf/util/rvtrace.h
+> >
+> > diff --git a/tools/perf/arch/riscv/util/Build b/tools/perf/arch/riscv/u=
+til/Build
+> > index 58a672246024..2ba1fb98a0ad 100644
+> > --- a/tools/perf/arch/riscv/util/Build
+> > +++ b/tools/perf/arch/riscv/util/Build
+> > @@ -3,3 +3,4 @@ perf-util-y +=3D header.o
+> >
+> >  perf-util-$(CONFIG_LIBTRACEEVENT) +=3D kvm-stat.o
+> >  perf-util-$(CONFIG_LIBDW_DWARF_UNWIND) +=3D unwind-libdw.o
+> > +perf-util-$(CONFIG_AUXTRACE) +=3D auxtrace.o
+> > diff --git a/tools/perf/arch/riscv/util/auxtrace.c b/tools/perf/arch/ri=
+scv/util/auxtrace.c
+> > new file mode 100644
+> > index 000000000000..adc86bd38998
+> > --- /dev/null
+> > +++ b/tools/perf/arch/riscv/util/auxtrace.c
+> > @@ -0,0 +1,218 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Risc-V E-Trace support
+> > + */
+> > +
+> > +#include <linux/kernel.h>
+> > +#include <linux/types.h>
+> > +#include <linux/bitops.h>
+> > +#include <linux/log2.h>
+> > +#include <linux/zalloc.h>
+> > +#include <time.h>
+> > +
+> > +#include <internal/lib.h> // page_size
+> > +#include "../../../util/auxtrace.h"
+> > +#include "../../../util/cpumap.h"
+> > +#include "../../../util/debug.h"
+> > +#include "../../../util/event.h"
+> > +#include "../../../util/evlist.h"
+> > +#include "../../../util/evsel.h"
+> > +#include "../../../util/rvtrace.h"
+> > +#include "../../../util/pmu.h"
+> > +#include "../../../util/record.h"
+> > +#include "../../../util/session.h"
+> > +#include "../../../util/tsc.h"
+> > +
+> > +#define RVTRACE_PMU_NAME "rvtrace"
+> > +#define KiB(x) ((x) * 1024)
+> > +#define MiB(x) ((x) * 1024 * 1024)
+> > +
+> > +struct rvtrace_recording {
+> > +       struct auxtrace_record  itr;
+> > +       struct perf_pmu *rvtrace_pmu;
+> > +       struct evlist *evlist;
+> > +};
+> > +
+> > +static size_t rvtrace_info_priv_size(struct auxtrace_record *itr __may=
+be_unused,
+> > +                                    struct evlist *evlist __maybe_unus=
+ed)
+> > +{
+> > +       return RVTRACE_AUXTRACE_PRIV_SIZE;
+> > +}
+> > +
+> > +static int rvtrace_info_fill(struct auxtrace_record *itr, struct perf_=
+session *session,
+> > +                            struct perf_record_auxtrace_info *auxtrace=
+_info, size_t priv_size)
+> > +{
+> > +       struct rvtrace_recording *ptr =3D container_of(itr, struct rvtr=
+ace_recording, itr);
+> > +       struct perf_pmu *rvtrace_pmu =3D ptr->rvtrace_pmu;
+> > +
+> > +       if (priv_size !=3D RVTRACE_AUXTRACE_PRIV_SIZE)
+> > +               return -EINVAL;
+> > +
+> > +       if (!session->evlist->core.nr_mmaps)
+> > +               return -EINVAL;
+> > +
+> > +       auxtrace_info->type =3D PERF_AUXTRACE_RISCV_TRACE;
+> > +       auxtrace_info->priv[0] =3D rvtrace_pmu->type;
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static int rvtrace_set_auxtrace_mmap_page(struct record_opts *opts)
+> > +{
+> > +       bool privileged =3D perf_event_paranoid_check(-1);
+> > +
+> > +       if (!opts->full_auxtrace)
+> > +               return 0;
+> > +
+> > +       if (opts->full_auxtrace && !opts->auxtrace_mmap_pages) {
+> > +               if (privileged) {
+> > +                       opts->auxtrace_mmap_pages =3D MiB(16) / page_si=
+ze;
+> > +               } else {
+> > +                       opts->auxtrace_mmap_pages =3D KiB(128) / page_s=
+ize;
+> > +                       if (opts->mmap_pages =3D=3D UINT_MAX)
+> > +                               opts->mmap_pages =3D KiB(256) / page_si=
+ze;
+> > +               }
+> > +       }
+> > +
+> > +       /* Validate auxtrace_mmap_pages */
+> > +       if (opts->auxtrace_mmap_pages) {
+> > +               size_t sz =3D opts->auxtrace_mmap_pages * (size_t)page_=
+size;
+> > +               size_t min_sz =3D KiB(8);
+> > +
+> > +               if (sz < min_sz || !is_power_of_2(sz)) {
+> > +                       pr_err("Invalid mmap size : must be at least %z=
+uKiB and a power of 2\n",
+> > +                              min_sz / 1024);
+> > +                       return -EINVAL;
+> > +               }
+> > +       }
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static int rvtrace_recording_options(struct auxtrace_record *itr, stru=
+ct evlist *evlist,
+> > +                                    struct record_opts *opts)
+> > +{
+> > +       struct rvtrace_recording *ptr =3D container_of(itr, struct rvtr=
+ace_recording, itr);
+> > +       struct perf_pmu *rvtrace_pmu =3D ptr->rvtrace_pmu;
+> > +       struct evsel *evsel, *rvtrace_evsel =3D NULL;
+> > +       struct evsel *tracking_evsel;
+> > +       int err;
+> > +
+> > +       ptr->evlist =3D evlist;
+> > +       evlist__for_each_entry(evlist, evsel) {
+> > +               if (evsel->core.attr.type =3D=3D rvtrace_pmu->type) {
+> > +                       if (rvtrace_evsel) {
+> > +                               pr_err("There may be only one " RVTRACE=
+_PMU_NAME "x event\n");
+> > +                               return -EINVAL;
+> > +                       }
+> > +                       evsel->core.attr.freq =3D 0;
+> > +                       evsel->core.attr.sample_period =3D 1;
+> > +                       evsel->needs_auxtrace_mmap =3D true;
+> > +                       rvtrace_evsel =3D evsel;
+> > +                       opts->full_auxtrace =3D true;
+> > +               }
+> > +       }
+> > +
+> > +       err =3D rvtrace_set_auxtrace_mmap_page(opts);
+> > +       if (err)
+> > +               return err;
+> > +       /*
+> > +        * To obtain the auxtrace buffer file descriptor, the auxtrace =
+event
+> > +        * must come first.
+> > +        */
+> > +       evlist__to_front(evlist, rvtrace_evsel);
+> > +       evsel__set_sample_bit(rvtrace_evsel, TIME);
+> > +
+> > +       /* Add dummy event to keep tracking */
+> > +       err =3D parse_event(evlist, "dummy:u");
+> > +       if (err)
+> > +               return err;
+> > +
+> > +       tracking_evsel =3D evlist__last(evlist);
+> > +       evlist__set_tracking_event(evlist, tracking_evsel);
+> > +
+> > +       tracking_evsel->core.attr.freq =3D 0;
+> > +       tracking_evsel->core.attr.sample_period =3D 1;
+> > +       evsel__set_sample_bit(tracking_evsel, TIME);
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static u64 rvtrace_reference(struct auxtrace_record *itr __maybe_unuse=
+d)
+> > +{
+> > +       return rdtsc();
+> > +}
+> > +
+> > +static void rvtrace_recording_free(struct auxtrace_record *itr)
+> > +{
+> > +       struct rvtrace_recording *ptr =3D
+> > +                       container_of(itr, struct rvtrace_recording, itr=
+);
+> > +
+> > +       free(ptr);
+> > +}
+> > +
+> > +static struct auxtrace_record *rvtrace_recording_init(int *err, struct=
+ perf_pmu *rvtrace_pmu)
+> > +{
+> > +       struct rvtrace_recording *ptr;
+> > +
+> > +       if (!rvtrace_pmu) {
+> > +               *err =3D -ENODEV;
+> > +               return NULL;
+> > +       }
+> > +
+> > +       ptr =3D zalloc(sizeof(*ptr));
+> > +       if (!ptr) {
+> > +               *err =3D -ENOMEM;
+> > +               return NULL;
+> > +       }
+> > +
+> > +       ptr->rvtrace_pmu =3D rvtrace_pmu;
+> > +       ptr->itr.recording_options =3D rvtrace_recording_options;
+> > +       ptr->itr.info_priv_size =3D rvtrace_info_priv_size;
+> > +       ptr->itr.info_fill =3D rvtrace_info_fill;
+> > +       ptr->itr.free =3D rvtrace_recording_free;
+> > +       ptr->itr.reference =3D rvtrace_reference;
+> > +       ptr->itr.read_finish =3D auxtrace_record__read_finish;
+> > +       ptr->itr.alignment =3D 0;
+> > +
+> > +       *err =3D 0;
+> > +       return &ptr->itr;
+> > +}
+> > +
+> > +static struct perf_pmu *find_pmu_for_event(struct perf_pmu **pmus,
+> > +                                          int pmu_nr, struct evsel *ev=
+sel)
+> > +{
+> > +       int i;
+> > +
+> > +       if (!pmus)
+> > +               return NULL;
+> > +
+> > +       for (i =3D 0; i < pmu_nr; i++) {
+> > +               if (evsel->core.attr.type =3D=3D pmus[i]->type)
+> > +                       return pmus[i];
+> > +       }
+> > +
+> > +       return NULL;
+> > +}
+> > +
+> > +struct auxtrace_record *auxtrace_record__init(struct evlist *evlist, i=
+nt *err)
+> > +{
+> > +       struct perf_pmu *rvtrace_pmu =3D NULL;
+> > +       struct perf_pmu *found_etm =3D NULL;
+>                                         ^^^^^^^^^
+> Nit: it seems "found_etm" implies ARM CoreSight ETM. Since this is for
+> RISC-V, should we rename this to "found_rvtrace" or simply "found_pmu"
+> to avoid confusion? Thanks
 
-Thanks,
-Alam.
+Yes, this should be renamed as found_pmu.
+>
+> Regards,
+> Eric Lin
+>
+> > +       struct evsel *evsel;
+> > +
+> > +       if (!evlist)
+> > +               return NULL;
+> > +
+> > +       rvtrace_pmu =3D perf_pmus__find(RVTRACE_PMU_NAME);
+> > +       evlist__for_each_entry(evlist, evsel) {
+> > +               if (rvtrace_pmu && !found_etm)
+> > +                       found_etm =3D find_pmu_for_event(&rvtrace_pmu, =
+1, evsel);
+> > +       }
+> > +
+> > +       if (found_etm)
+> > +               return rvtrace_recording_init(err, rvtrace_pmu);
+> > +
+> > +       *err =3D 0;
+> > +       return NULL;
+> > +}
+> > diff --git a/tools/perf/util/auxtrace.c b/tools/perf/util/auxtrace.c
+> > index 1539c1dc823c..c905563e0d8a 100644
+> > --- a/tools/perf/util/auxtrace.c
+> > +++ b/tools/perf/util/auxtrace.c
+> > @@ -1394,6 +1394,7 @@ int perf_event__process_auxtrace_info(struct perf=
+_session *session,
+> >         case PERF_AUXTRACE_VPA_DTL:
+> >                 err =3D powerpc_vpadtl_process_auxtrace_info(event, ses=
+sion);
+> >                 break;
+> > +       case PERF_AUXTRACE_RISCV_TRACE:
+> >         case PERF_AUXTRACE_UNKNOWN:
+> >         default:
+> >                 return -EINVAL;
+> > diff --git a/tools/perf/util/auxtrace.h b/tools/perf/util/auxtrace.h
+> > index e0a5b39fed12..1c89a281a06c 100644
+> > --- a/tools/perf/util/auxtrace.h
+> > +++ b/tools/perf/util/auxtrace.h
+> > @@ -51,6 +51,7 @@ enum auxtrace_type {
+> >         PERF_AUXTRACE_S390_CPUMSF,
+> >         PERF_AUXTRACE_HISI_PTT,
+> >         PERF_AUXTRACE_VPA_DTL,
+> > +       PERF_AUXTRACE_RISCV_TRACE,
+> >  };
+> >
+> >  enum itrace_period_type {
+> > diff --git a/tools/perf/util/rvtrace.h b/tools/perf/util/rvtrace.h
+> > new file mode 100644
+> > index 000000000000..93c041db8660
+> > --- /dev/null
+> > +++ b/tools/perf/util/rvtrace.h
+> > @@ -0,0 +1,18 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * Copyright(C) 2015 Linaro Limited. All rights reserved.
+> > + * Author: Mathieu Poirier <mathieu.poirier@linaro.org>
+> > + */
+> > +
+> > +#ifndef INCLUDE__UTIL_PERF_RVTRACE_H__
+> > +#define INCLUDE__UTIL_PERF_RVTRACE_H__
+> > +
+> > +#include "debug.h"
+> > +#include "auxtrace.h"
+> > +#include "util/event.h"
+> > +#include "util/session.h"
+> > +#include <linux/bits.h>
+> > +
+> > +#define RVTRACE_AUXTRACE_PRIV_SIZE     sizeof(u64)
+> > +
+> > +#endif
+> > --
+> > 2.43.0
+> >
+> >
+> > _______________________________________________
+> > linux-riscv mailing list
+> > linux-riscv@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-riscv
 
