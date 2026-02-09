@@ -1,247 +1,157 @@
-Return-Path: <devicetree+bounces-264086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264088-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mJP4K9sUimlrGAAAu9opvQ
-	(envelope-from <devicetree+bounces-264086-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:09:47 +0100
+	id WC6YNoEVimlrGAAAu9opvQ
+	(envelope-from <devicetree+bounces-264088-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:12:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B1F4112E2C
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:09:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22DB3112ED5
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 18:12:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C2F06304B5AF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 17:06:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 262C53082076
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 17:07:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7DE53859EE;
-	Mon,  9 Feb 2026 17:06:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16518385EC0;
+	Mon,  9 Feb 2026 17:07:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nGaEvK5K";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LZKmeVq8"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="Z+6wmsaX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B32FC25D216
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 17:06:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CABF3859DE;
+	Mon,  9 Feb 2026 17:07:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770656792; cv=none; b=OdU72bCt+0TrXpBTNPJzmAIgx6e5CecknYdW9yQKtfuPY0xOh0FKQUfJcNl/BczPqma0oGwXz1XNp5HUEp2g1+vSVXI4/ocwhILOYXppA/yXrxg/KoVW4LnshAPMMGxo/D24XehUkOCCk15+klmB3uIEgM2DuQjw/5QsDb5Ctb8=
+	t=1770656872; cv=none; b=l4FjVejnD6XTRgebYnv3vTMB56TF6sla9RH4yJWqQn59Kl3RL2gWYHSSjezWZmPqYSrNGq1N6W5s62ic6xYNiXFgz20dVuimX4vAx0eBvhGExi5Eq9GT4FOmnuIGorlkibmyEDmm4RXFth9OVrgS2mkQWRfPyOa4E59/LN5wr1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770656792; c=relaxed/simple;
-	bh=UAQVw0p7nIQKtlUlnpqKnYWhhx8/FRQv7+nacN3pa8w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CLwulLOQLSI81p9/h0YnpLYWhi3/YKjZeDUuMiurEAcyrTzyrUqqdCD2XWGEFqAQDh3x7wTY3PyK+oVDsXjBlVaIJcj2eYRk+vQyXoTbHsiqKeMeOFsuN4fUMUNPuml9SMxB2HzQ2Poc/MKblDL6eKwZNWns3mhQ/O4zsWoA/vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nGaEvK5K; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LZKmeVq8; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 619Akq8L3699994
-	for <devicetree@vger.kernel.org>; Mon, 9 Feb 2026 17:06:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gOOfRo18YOQA6z+N+sJl7m96yfWTbsEAzU89XIpFLrw=; b=nGaEvK5Ke+BSYPqn
-	oVQYnadxPC+6rVkkHAnSAanFIfrr9ltkW1Y5wWnIrn0lnQLZ3eCkMj9FP0+m2HNf
-	UvxYvi3ySndHTS6mLvGieUb7qpDoRh5jr5+iR1R+/CHlSRlDopah64ow95tZvoMx
-	Ypbe1oxlxZ80UCSjwK6LMjgL/VKEWK3SzeT11XgVoeXJElhyTx7i8tcv3jor78Hd
-	RIGk6UAzPQBx/MU0QxeD7fTj7wLRuMfjqEHapuXrh9fC40gY0/2G76BHqONuxISQ
-	55lERUOQ8AlGohi0f45aQbLVC/O3lu5+Pa3AQRqMwR0OdnfrsDoz9NXg9NAz3saW
-	1Q6XJA==
-Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c7e4m98y6-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 17:06:31 +0000 (GMT)
-Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-2ba7719ba86so4062425eec.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 09:06:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770656791; x=1771261591; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gOOfRo18YOQA6z+N+sJl7m96yfWTbsEAzU89XIpFLrw=;
-        b=LZKmeVq89aMlAlOW/ErqH6e3oDUMxqRZX9kKCiFu62A6+iQIPcWv6BXaZMY+fmH2q1
-         wxj1Pj7GeMfpOUyYvr0aalVDjSnjQl4AyUZkbqMtCpc0iNNKo3C/z0B4UCryfVUNTdnz
-         JiboM5feHg0hn6YllEUtNdolGSw8ppdYMLNyhtB6JSpaR+6uM1gsBHn/IpDV3tVP4V84
-         Rq7pI2maI0eb/LW8s09dcRSrTNx3mAYhiLt++WTxwwhje+GbGrX7Uy5R8+1OeE5Kkdb2
-         B6aWn6i+iBBtwtiRne+u7c5IVR4vTcgRQ2x7275g/DOUhfRad4WrXjSqKxkeox8F+aNK
-         b8Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770656791; x=1771261591;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gOOfRo18YOQA6z+N+sJl7m96yfWTbsEAzU89XIpFLrw=;
-        b=kky3duvDWjswDDJwjNRQYM/U3WH/8VAlaH6Jx79pCdObUxQp2RIgQoNls8rR9XBFPM
-         +FthrSJC0Y/FULi91rP1CtHLK7QSLG/Aaefks9p4DjUEHez62xwgMGLf2ioyQgLTYV5f
-         QF7yOYUh4S8MpTG3bLncAasGcwpKxtjZgDAOXvtH7cgISbTe2ugbTnBZ+cZQLM4MX564
-         dLl69SmG5RDbnqC8Glx2S5LbDOvl/hVMmvhSGAZuXoY/iBUCVwxiD+Y4ZmYARmEUmdaW
-         gvr44CeQ0Hfatwj4JlS05UheYn/65bOFCsqCTpW+1sFuBgv8lFv9XPZD454BCaNY/Uc7
-         v0BA==
-X-Forwarded-Encrypted: i=1; AJvYcCWxkxeGY66cvj+kFtlnlFJEidye/Uw7DS/qtXHvZ7oEM7bGSnz3RkT0ghUH0rwt/SkVSpOFOU+qjpmi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6249AceHa49vUr/Eicoz1ni519dVE/J7qMw6+6mWOfRKTnHcR
-	2TWbu62HtXWCI+3tEEV+tlzgr6MbWNOdapQ71gWywJD7NhLgK9XAgkfHCkj9hBmRIFiDHKtO+Gc
-	5CIpVU481411FSSRgo8r4s856Vr6h5/tH8HDnH7k71G4PAd5SmxUz/zX1YGv5H3aA
-X-Gm-Gg: AZuq6aJ78FItHhUuaay8pPBQNDXJWzobmHcy/4CPbKvuOYSFDUbldXrXhqvfc4Imk5g
-	Q4Cspat/43yJlEChaN/hJF0fXkvFVMKWQIyz2+9GR84TD+zAKdgHTzNxIkwYuNee/Ibxs8xnCgR
-	GjWwrkx+aOZWBmJ5skDolB4W73DyeSLrisF16SNfPsW3eV8toJnmMWukfQIumgY88R3x26EGfNc
-	Jp+U6cr5XfYzfGxSNpgLltTRmgYOHSKn8Ld99EOqTH37ch4hhAMgWIi9HGNyF9Vd2bONWiLyqek
-	gcn1z1fy3MHoqCtZXqZC86N8bv28mdxbDDrb6CZQCcjCPsQVZKnjFpIOXcEpQRW6Kiyo8B8+YJ4
-	OSdJcu5D9KM7Z7bm5JUJFRzfO0+7CyaPUP82o1hg=
-X-Received: by 2002:a05:693c:3114:b0:2b7:f522:9964 with SMTP id 5a478bee46e88-2b85642afb6mr5813787eec.7.1770656791138;
-        Mon, 09 Feb 2026 09:06:31 -0800 (PST)
-X-Received: by 2002:a05:693c:3114:b0:2b7:f522:9964 with SMTP id 5a478bee46e88-2b85642afb6mr5813766eec.7.1770656790491;
-        Mon, 09 Feb 2026 09:06:30 -0800 (PST)
-Received: from [192.168.1.133] ([70.95.199.79])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2ba6c85831asm3091367eec.11.2026.02.09.09.06.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Feb 2026 09:06:30 -0800 (PST)
-Message-ID: <e8d9e822-0482-408d-aef7-ebdd3fc87d96@oss.qualcomm.com>
-Date: Mon, 9 Feb 2026 09:06:28 -0800
+	s=arc-20240116; t=1770656872; c=relaxed/simple;
+	bh=0nNpkFJON7kBw1dD4CyfKOcoZ2lLIMZEDZx9r4/Xr+M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=goOLIkrZyE1EwGnZLFXMbjqGAKu1RJFQgADHJ2rkryLCCedH4/A3lihIoNNkYe+lHEHWUrOcQf6vlQBdTcQelbko8IpOtFIGq260AnKH4u+6tYWW1PQduX06nujv4oJw+j3X1BuTR6CcW8Th1kxGnkx5QibEcDV5TbbKCTQSlJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=Z+6wmsaX; arc=none smtp.client-ip=178.251.229.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 26B5B10DE1B;
+	Mon,  9 Feb 2026 18:07:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1770656863; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=XauIuDFellsiYlY7XWlolM5IHJifLVytCti9detJRC8=;
+	b=Z+6wmsaX4cctLjCUWcBKqic934tnDNnma6VM6I7BCvMR/ajpSkh3mgsMBucpMP0nF9Gqqh
+	0p4ldLhPXtkCVzinvoCsoG1b8F108QEJ/hWqRfGScd0qd1N2FF7dGLjREg3/OUbz2RXsLP
+	NAbhj+wxT2bvTXGJkdEgleJryvt09dhGyNfaB6+6sjqeaBynNMdPimS5px5Xgzk5MAt5px
+	jw1QF3EjavUyo7UzO8h+YRQNidYBgJjqjUVcwvFc6TQBWv5X0BmX3beHXJkH0yLNwXsid2
+	H0ZcsW5ayThcsbj/ege58ZMv9bozsVkQWUWy8CW8gfFduxi+4Nzko8HZoEZzNg==
+From: Marek Vasut <marex@nabladev.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marex@nabladev.com>,
+	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	kernel@dh-electronics.com,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: imx6ull-dhcor: Handle both 1DX and 1YN WiFi on i.MX6ULL DHCOR
+Date: Mon,  9 Feb 2026 18:07:04 +0100
+Message-ID: <20260209170739.22379-1-marex@nabladev.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 9/9] arm64: dts: qcom: qcs6490-rb3gen2: Enable EUD
- debug functionality
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260126233830.2193816-1-elson.serrao@oss.qualcomm.com>
- <20260126233830.2193816-10-elson.serrao@oss.qualcomm.com>
- <ee0fe165-1764-460f-ad6a-9633b06776b2@oss.qualcomm.com>
-Content-Language: en-US
-From: Elson Serrao <elson.serrao@oss.qualcomm.com>
-In-Reply-To: <ee0fe165-1764-460f-ad6a-9633b06776b2@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: atViDexYyIZLHEweUaYPszOpxTCsNpy7
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDE0NCBTYWx0ZWRfXyvNDbNxPVfYY
- wM00te4x/l81L/uCmo905S8sss0osjgg52t9WzUHpgWqDCmXfzJNv5BflJxEv1KbupbWwXryZkH
- 0shOXyxdf+SqIU5v9b6COy2sd1KPioRj4aizvswa2hEG21D8HrIP0+ZNuLhtjikreRcU9hrwgSo
- pOVtCYFW8iUEQtoxbUnbd0zIbQK0n4EP+64ySZpIRrzDUp63Kku6OL8akF5y9sLpJsxtSip7Rsc
- 3BBYEnpqqQolTUN4yH/UWhPEhPcGQVMu80Mwp+jyNzq0tCxw+c9Q9g7krycS8UWxi8Z1p7XBxYF
- fMtxITvYA2mbaexrQdvi9aduvukudy5HLqh2UxMH5RMJULCziqtSgia8E1nj2ipktYPDCFc6vLZ
- BGszOdRnCsvcOD0/VY32CB5maQS+I+7spTIK8uAiYbRP4ESUfNfRgtJhJE1iyDE/oal62QXcqXS
- LVe87tmnfb0G4NLrPZg==
-X-Proofpoint-ORIG-GUID: atViDexYyIZLHEweUaYPszOpxTCsNpy7
-X-Authority-Analysis: v=2.4 cv=WecBqkhX c=1 sm=1 tr=0 ts=698a1417 cx=c_pps
- a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=uHxescsG3rBdxcXwcPaeSg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=EUspDBNiAAAA:8 a=ZzF_L4zmYv5kpwg0Tc8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=bBxd6f-gb0O0v-kibOvt:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-09_01,2026-02-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 malwarescore=0 bulkscore=0 phishscore=0
- spamscore=0 priorityscore=1501 adultscore=0 lowpriorityscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602090144
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264086-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,0.0.0.0:email];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-264088-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DKIM_TRACE(0.00)[nabladev.com:+];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[elson.serrao@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[nabladev.com,dh-electronics.com,kernel.org,gmail.com,pengutronix.de,vger.kernel.org,lists.linux.dev];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 4B1F4112E2C
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 22DB3112ED5
 X-Rspamd-Action: no action
 
+The muRata 1DX WiFi/BT chip is mounted on the DHCOM i.MX6ULL. This chip
+has been discontinued and replaced by the muRata 1YN chip. The new chip
+is a drop-in replacement of the old chip. To support both chips for the
+i.MX6ULL DHCOR, drop the more specific compatible string and let the
+driver auto-detect the chip type. Currently, there are no known quirks
+that would apply only to one or the other chip.
 
+Signed-off-by: Marek Vasut <marex@nabladev.com>
+---
+Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: kernel@dh-electronics.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+---
+ arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On 2/3/2026 5:38 AM, Konrad Dybcio wrote:
-> On 1/27/26 12:38 AM, Elson Serrao wrote:
->> On this board, EUD resides on the primary High-Speed USB data path between
->> the connector and the DWC3 controller. Update the device tree connections
->> to correctly map the connector and controller endpoints, and describe
->> role-switch capability on the EUD primary path.
->>
->> Signed-off-by: Elson Serrao <elson.serrao@oss.qualcomm.com>
->> ---
->>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 20 ++++++++++++++++++--
->>  1 file changed, 18 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> index f29a352b0288..2fc2d0aed8dd 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> @@ -194,7 +194,7 @@ port@0 {
->>  					reg = <0>;
->>  
->>  					pmic_glink_hs_in: endpoint {
->> -						remote-endpoint = <&usb_1_dwc3_hs>;
->> +						remote-endpoint = <&eud_con0>;
->>  					};
->>  				};
->>  
->> @@ -1176,13 +1176,29 @@ &usb_1 {
->>  };
->>  
->>  &usb_1_dwc3_hs {
->> -	remote-endpoint = <&pmic_glink_hs_in>;
->> +	remote-endpoint = <&eud_usb0>;
->>  };
->>  
->>  &usb_1_dwc3_ss {
->>  	remote-endpoint = <&usb_dp_qmpphy_usb_ss_in>;
-> 
-> The on-SoC links can be deferred to the common DTSI
-> 
-> 
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi
+index 75486e1b0c15f..a0adcd3fe1229 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi
+@@ -201,7 +201,7 @@ &uart2 {
+ 	 * the speed can be increased accordingly.
+ 	 */
+ 	bluetooth: bluetooth {
+-		compatible = "brcm,bcm43430a1-bt"; /* muRata 1DX */
++		compatible = "brcm,bcm4329-bt"; /* muRata 1DX or 1YN */
+ 		max-speed = <3000000>;
+ 		vbat-supply = <&vcc_3v3>;
+ 		vddio-supply = <&vcc_3v3>;
+@@ -222,7 +222,7 @@ &usdhc1 {
+ 	status = "okay";
+ 
+ 	brcmf: wifi@1 {
+-		compatible = "brcm,bcm43430a1-fmac", "brcm,bcm4329-fmac"; /* muRata 1DX */
++		compatible = "brcm,bcm4329-fmac"; /* muRata 1DX or 1YN */
+ 		reg = <1>;
+ 	};
+ };
+-- 
+2.51.0
 
-Thanks Konrad for the detailed review.
-I’ll defer the on‑SoC USB controller to EUD node mapping to the common DTSI.
-
->>  };
->>  
->> +&eud_con0 {
->> +	remote-endpoint = <&pmic_glink_hs_in>;
->> +};
->> +
->> +&eud_usb0 {
->> +	remote-endpoint = <&usb_1_dwc3_hs>;
->> +};
->> +
->> +&eud {
->> +	status = "okay";
-> 
-> And I think it should be okay to keep it enabled by default
-> 
-Ack
-
-Thanks
-Elson
 
