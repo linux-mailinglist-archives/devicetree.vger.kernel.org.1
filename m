@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-263792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263793-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QLaINWRXiWlQ7AQAu9opvQ
-	(envelope-from <devicetree+bounces-263792-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 04:41:24 +0100
+	id gCo4E4JXiWlQ7AQAu9opvQ
+	(envelope-from <devicetree+bounces-263793-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 04:41:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53E6210B6D6
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 04:41:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A484710B6E5
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 04:41:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DFE8B300B100
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 03:40:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 421E230048FC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 03:40:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1535B2C0261;
-	Mon,  9 Feb 2026 03:40:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A54462C08C8;
+	Mon,  9 Feb 2026 03:40:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EmW02srT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AcjeOIit"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com [74.125.82.179])
+Received: from mail-dl1-f50.google.com (mail-dl1-f50.google.com [74.125.82.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D47241F0E25
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 03:40:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD801F0E25
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 03:40:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770608410; cv=none; b=S8z4eGc4ZKM/yI0zHNwn/KjwEK8cbgNEjTU+oeKniGlWIxy9axRLOdAe+7b+NouOeVVYw0KinSFC5qiAM0c9fUlKqgvrGN/RNz12jLZQi516NDOV25bF869nqeLChwJM7Y/N5E6AfmVAX502piztxVIiq/XIAEbV4hjZLqckxTM=
+	t=1770608417; cv=none; b=OlKpGUQY0vNj/riyUWjHMzpQKSaF2H1tbfHgD0m0dTLOtRfbnZYMUFKC5lpZVBcK0ItwNtU6r3TaC+ieet+SECnAJjVxFuMwL0BDvpDn2iik9FDDkq1sTFfjjTVZMcI56XdecTia/p0ctKy3uEiRMMu4Q0RFh+QQ/IukfX6EEyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770608410; c=relaxed/simple;
-	bh=FRQMDMtmr6RuDCT3QnoTS6pq66M/4574XQAa6lYWU3w=;
+	s=arc-20240116; t=1770608417; c=relaxed/simple;
+	bh=lTyWo1eRqW5DX8yvyPANL+LdjOU0rOclI0glDjp/zjY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BstnDWESDE1zN4hE0sRtfQ3rYSwPAcN4fCnpiqZ+OGg9f9clxwfQTZjsJdXLDwcFV+XXDa22sNJNd0FGHDhQq3NeNq2INBrYko7vCRGe4+Puwp0gQ3kE4XsERiwqx3ZIb+198FVvJZg/T8LimdN22bTBokgWBOv1lMORokrsNU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EmW02srT; arc=none smtp.client-ip=74.125.82.179
+	 In-Reply-To:To:Cc; b=JI/TVpnkSZjMVIl2iwWze6sYXwhcy3BexzLjgM8YLWCnaYFSQnPSFpIxcIwy44rOW6DqPbOsx6tAZh8O9rKnt23aiyvYPCr9iAvG3Kaso0OUT2yK2NPTI2oVkydjx4wF8iFRd+mWO50w3G0c/uaxVUFra+qPY48uXulT9MxDfFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AcjeOIit; arc=none smtp.client-ip=74.125.82.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f179.google.com with SMTP id 5a478bee46e88-2b836208f23so121772eec.1
-        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 19:40:09 -0800 (PST)
+Received: by mail-dl1-f50.google.com with SMTP id a92af1059eb24-1233be8d537so110139c88.2
+        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 19:40:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770608409; x=1771213209; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1770608417; x=1771213217; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=MXcQdRWHKbSzK5H4HbSkBU6Vxa0xKwilMdxaH54zctE=;
-        b=EmW02srTNKFQJucAEdWl49q1JdPXFhhu6cc9UTEEgo9ORrdA693kqDbX0+MjF96+GT
-         vuAXNghzLPtMP3r7cO+vdiFk9xZi20b2RKDpOzeBcqieDHnPWbZGHW100ZxxFFBQTt81
-         cL5lGfJCsOcJX+fM56bdu6uWLNEWs6BkCPw/9ItlWEpPe67d3dWYRTCqD0Mf+KnWLrYL
-         Onsvmfz0pU5dZ+Af3ehsC2TeK7nULwv6HrxgLSLHTuHrjSGDkTYMvQgzqVtriGWQb5Sj
-         6oqv4PuYQ8CAC1ZXaTWAR8IXzEUA4b+KZXKoxn06C3bYsNYCEQ11sO7dnLlv8r9mR/Mi
-         uvbQ==
+        bh=Q7q7E97msZ/8P2TSodtOWgOAxfPDU8GUA1EnXOIGpS0=;
+        b=AcjeOIitcgH4PTipgb36UlpWjPr3pfFP435xd67nQnD6fnGOHYaUuehbjAS8SBmfJ3
+         WBli1qqapoExjSDKRP3UmfbL3qONON96HviGg9I/RoQ2oln0gwHkkp/yC2V2WI8eq+Zd
+         7asZGWyPz5ncY6kzbXAJ0FnLbJhUvh5D6jPBBITEqY6STbnOG4uqDIkFy35orOjRPN/C
+         9X2BOLSJ+5SvWkh60uTS9Qy1ZNXfXu3AM1NGiXq2E/ArDztCAeZd4tvs4PxIxUo57Mc8
+         H8QuAeJ63bLeDHmh0qi7haH6T7NhsSnoyNwzct5lgfkvvF+2u6U43minvfxNXIW+7WB4
+         iNgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770608409; x=1771213209;
+        d=1e100.net; s=20230601; t=1770608417; x=1771213217;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=MXcQdRWHKbSzK5H4HbSkBU6Vxa0xKwilMdxaH54zctE=;
-        b=LxtsVXWGUooUet70G2edp1faPQz+A8KPK606/5tjE3hm8Lojth/g+Cg1qQTB+r9i37
-         q4OUuD7Iiujw2X+/6m41gtg3zhAv9EuyXpRrJOukF7EYznlS8TyKlT8R8PrOuUBbpZox
-         aiTEf3I4D+h4XVTSg4s91bbjXZa0+bqckpv/yH+NeBFOlqF84kvyPtzROzZWLboPIl4I
-         HCGnAheklzLcHF7StgIG3XBY4As33TLjxNADDugARA4EWWzLoUFoLkOOnxn24j6/7kno
-         AQVJvyOe2tUnmdMON3FnPIS1F1Cwnc+NskT6hKmjD0XQtAbHdQuJRY8Xvt4RTVBb2AF6
-         OO2w==
-X-Forwarded-Encrypted: i=1; AJvYcCVfiAH6wTEIIL6TkEMHnuUeF0cRB4185bZdU6yE/kpuoKGcc+e9VKIjCUTNhYivSRjpbD84Vh1OTG3s@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy78fputuSN9lErTNC9ZTkpoF2vtBHxN2G9oKC57OfiHkRIZXC3
-	AgfnQWy618JB4+JqmKIoOhKZ/ifIqpy/PAzTpduGfzqeceG1UIlXNGmM
-X-Gm-Gg: AZuq6aLs3owoa1JjY17rrkuISAKK4jBYOiWfy3GlBEXtlTfGQwEWLGFmrTpCqKVcaeo
-	f3ccQxKNG0JHjFL2L/Rutszhh5gmLIDKn/RgnYqB9nNo50aOQZWtosK4sQbtFgv/QKRHK9vJMuS
-	RP7rX8Y1yJvUO0tjF6CcNeitx7U7E5gjVIfGyf8yXi2VEC6zMW9UMKxeavb3jeEysbKbZeX6V8A
-	cHxV/oS1FfaewzIAkJO8R36Wu/Vz8mD/EdrCiZ0Aq2ZCfyE6fu5uYALXR/sKCxUfTZsQazCvobG
-	mRN/cmpU3DjPvhxgap9mu75srqPlFqqUTbHobdXMgxIbvV/o7rnKT5k5v/v4Gkw8xr9iPZHkw0v
-	/eW5bUPv+aPoOmecjaHE6BdiEiIkd/PUPO8yNlvJWmYbU4oYqOPaQPaVNSpYXTMhUBFN5bi1bmC
-	oNb5HPfarqVHAYolPnM1WO5A==
-X-Received: by 2002:a05:7300:6425:b0:2ba:7321:cf91 with SMTP id 5a478bee46e88-2ba7321d1fcmr339913eec.3.1770608408975;
-        Sun, 08 Feb 2026 19:40:08 -0800 (PST)
+        bh=Q7q7E97msZ/8P2TSodtOWgOAxfPDU8GUA1EnXOIGpS0=;
+        b=PUccBF7b+dM62se+v/TE31oIy/NUbqsPNF0y8t86IVHrU9SA1JgkFpyXI03138RY5D
+         K3XLO70yM+6DAaebNYY6vv4H1v2hCfUI9N2I8hFV2pBNKIPCe7UNBOajU9RBW1Bt9I4o
+         uDhx3/1C/jzLP9Kdd9ao2hJUQwoV8gFB+tNbMw3RNGob8U3x5s0aziwidkHxTimD8CLA
+         5kLgI32WSaIimLxlisOSLZTXIk6lHd1OLkNPhlsiJqfjHm9GpclVvXzD701CUYZ9K6JO
+         OINDIVQbOfob7Xrs3XdXyUqZeGqheQQH0H+I8lucGD42lyLZ1Vb2uR5BYnpE8lVJN8bB
+         HDUA==
+X-Forwarded-Encrypted: i=1; AJvYcCX+rnwvSJimYcs+BSAbvKxnodxGAZc+Nie0EdziPHsRFgZgZ4KCLfSINs3DjhJ8ZMcsKbSbJLZSxxMt@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiM1E4jWOGuHKXDpTaZAEkMna9pn+/K6iDie7X9FsBcfOauvuq
+	YCL180hQKyMjYHT9SuXc08/pfW6nIf2k+kWhVxprp+HRLWpBIm184jBq
+X-Gm-Gg: AZuq6aKy35e6J+/Ki2V8wBx03l7/fGfR1FXkcK7q1qqKKQdn+13O+PbBkmrf739mHj6
+	fXWZ6jZBwCP1MWWKGJI1OWdnrA78ghIBEfVugoXG+Z12A3socjMl0Hm5gaXCXsWr4omLdnIpLiR
+	lphRtZtdlgJWrOKV5W2OPkxFAO99/TvNi7AoPQJ9lJ7Uh9ql/6tk5Y15rEKPUOmc+hnhiqX6W1C
+	0gHUz9G2w1LZTNOvRawrdSG7c4GAqjWcxkclXsZO2lru8H3TAM3olfHX7ilrej9PQW6cZveMUv7
+	hotnkdc71eja1QLwogQRQaLLrKK2yh8y4SGUtDIGHrsBGCSSGp7nctA8VzxOdyDpKdEWKbf5Mf2
+	dtIIaOX9WRBrLlCC1gCXQ2ZZgbOqVZI4guenP2jbdZ6O/bNxf1j0UwnYQxRdhcyLBO6Sn7Alvn/
+	2C+MC1PafW7Dc=
+X-Received: by 2002:a05:693c:37c7:b0:2b7:3678:2d1a with SMTP id 5a478bee46e88-2b8565160dcmr2739568eec.6.1770608416595;
+        Sun, 08 Feb 2026 19:40:16 -0800 (PST)
 Received: from [127.0.1.1] ([45.32.86.188])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b855af5ca2sm7682073eec.8.2026.02.08.19.39.58
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b855af5ca2sm7682073eec.8.2026.02.08.19.40.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Feb 2026 19:40:08 -0800 (PST)
+        Sun, 08 Feb 2026 19:40:16 -0800 (PST)
 From: Yasin Lee <yasin.lee.x@gmail.com>
-Date: Mon, 09 Feb 2026 11:37:04 +0800
-Subject: [PATCH 3/5] iio: proximity: hx9023s: support firmware-name
- property
+Date: Mon, 09 Feb 2026 11:37:05 +0800
+Subject: [PATCH 4/5] dt-bindings: iio: proximity: hx9023s: support
+ firmware-name property
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,7 +88,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260209-upstream-20260219-v1-3-2b4d74e309d1@gmail.com>
+Message-Id: <20260209-upstream-20260219-v1-4-2b4d74e309d1@gmail.com>
 References: <20260209-upstream-20260219-v1-0-2b4d74e309d1@gmail.com>
 In-Reply-To: <20260209-upstream-20260219-v1-0-2b4d74e309d1@gmail.com>
 To: Jonathan Cameron <jic23@kernel.org>, 
@@ -100,12 +100,12 @@ To: Jonathan Cameron <jic23@kernel.org>,
 Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org, Yasin Lee <yasin.lee.x@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1640; i=yasin.lee.x@gmail.com;
- h=from:subject:message-id; bh=FRQMDMtmr6RuDCT3QnoTS6pq66M/4574XQAa6lYWU3w=;
- b=owGbwMvMwCEYyfeRr6Zs90zG02pJDJmdYT9XLZPkMXd4Fc5muEj5n9jMcJv8RdauEZ88sjm2P
- OIKsCrqKGFhEORgkBVTZDnz+g1rvurDPcG/XTNg5rAygQxh4OIUgIn8nszwVdphqxlbD7+US1DF
- houvVJ4c/BywSiS/59nSG1uVmpyWMjJcLt3tMzfmz/8XlvOWLfu3vdrM7PYMa5a5/qVvHx/iWid
- UDwA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1109; i=yasin.lee.x@gmail.com;
+ h=from:subject:message-id; bh=lTyWo1eRqW5DX8yvyPANL+LdjOU0rOclI0glDjp/zjY=;
+ b=owGbwMvMwCEYyfeRr6Zs90zG02pJDJmdYT83dhi0L6wvDXt1ef2nXU4L13tc0D/84NH54J7DB
+ 9War5j6dpSyMAhyMMiKKbKcef2GNV/14Z7g364ZMHNYmUCGMHBxCsBEnLMZGY65WFbFXOsWKJic
+ 8cJN4hHv45tWj/rWnbohrfGJrfPY3I8M/6zluT5WbLlV/ZTf6qYGz+HrAW7LeA6fOsV9+TWHSM/
+ r7SEA
 X-Developer-Key: i=yasin.lee.x@gmail.com; a=openpgp;
  fpr=CCEBEC056F25E1BC53FB4568590EF10E7C76BB99
 X-Rspamd-Server: lfdr
@@ -113,12 +113,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263792-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263793-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,outlook.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -139,49 +139,41 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 53E6210B6D6
+X-Rspamd-Queue-Id: A484710B6E5
 X-Rspamd-Action: no action
 
-Add an optional firmware-name property to specify the firmware file.
-If not provided, the driver falls back to the default firmware name.
+Allow specifying the firmware file name via device tree.
 
 Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
 ---
- drivers/iio/proximity/hx9023s.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/iio/proximity/hx9023s.c b/drivers/iio/proximity/hx9023s.c
-index eb4902d18d74..b680b89956bd 100644
---- a/drivers/iio/proximity/hx9023s.c
-+++ b/drivers/iio/proximity/hx9023s.c
-@@ -1089,6 +1089,7 @@ static int hx9023s_probe(struct i2c_client *client)
- 	struct device *dev = &client->dev;
- 	struct iio_dev *indio_dev;
- 	struct hx9023s_data *data;
-+	const char *fw_name = "hx9023s.bin";
- 	int ret;
+diff --git a/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml b/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
+index 64ce8bc8bd36..7e516fc011c6 100644
+--- a/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
++++ b/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
+@@ -28,6 +28,12 @@ properties:
  
- 	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-@@ -1111,6 +1112,10 @@ static int hx9023s_probe(struct i2c_client *client)
- 	if (ret)
- 		return dev_err_probe(dev, ret, "regulator get failed\n");
+   vdd-supply: true
  
-+	ret = device_property_read_string(dev, "firmware-name", &fw_name);
-+	if (ret && ret != -EINVAL)
-+		return dev_err_probe(dev, ret, "failed to read firmware-name\n");
++  firmware-name:
++    description:
++      Name of the firmware file to be requested by the driver using
++      the firmware loader interface.
++    maxItems: 1
 +
- 	ret = hx9023s_id_check(indio_dev);
- 	if (ret)
- 		return dev_err_probe(dev, ret, "id check failed\n");
-@@ -1126,7 +1131,7 @@ static int hx9023s_probe(struct i2c_client *client)
- 	if (ret)
- 		return dev_err_probe(dev, ret, "channel config failed\n");
+   "#address-cells":
+     const: 1
  
--	ret = request_firmware_nowait(THIS_MODULE, true, "hx9023s.bin", dev,
-+	ret = request_firmware_nowait(THIS_MODULE, true, fw_name, dev,
- 				      GFP_KERNEL, data, hx9023s_cfg_update);
- 	if (ret)
- 		return dev_err_probe(dev, ret, "reg config failed\n");
+@@ -65,6 +71,7 @@ examples:
+         interrupt-parent = <&pio>;
+         interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
+         vdd-supply = <&pp1800_prox>;
++        firmware-name = "hx9023s.bin";
+ 
+         #address-cells = <1>;
+         #size-cells = <0>;
 
 -- 
 2.43.0
