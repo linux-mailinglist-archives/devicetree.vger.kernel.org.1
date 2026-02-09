@@ -1,59 +1,65 @@
-Return-Path: <devicetree+bounces-264160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264161-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id jpilCAVzimknKgAAu9opvQ
-	(envelope-from <devicetree+bounces-264160-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 00:51:33 +0100
+	id QFJGJ6tzimknKgAAu9opvQ
+	(envelope-from <devicetree+bounces-264161-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 00:54:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9569E11574B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 00:51:32 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 427871157B7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 00:54:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5BBE7301A717
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 23:51:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 63E30300C303
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 23:54:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A627D314B8E;
-	Mon,  9 Feb 2026 23:51:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18843318BB9;
+	Mon,  9 Feb 2026 23:54:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JJA8qXSp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Za2rzV5T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82A363033DE;
-	Mon,  9 Feb 2026 23:51:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E972F1FCFFC;
+	Mon,  9 Feb 2026 23:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770681083; cv=none; b=A2nLNThYbgPTGTLcgHhP7+iq0uLXYv+2PyYZ2kCsiJFZjG2E8FjCnDkxhnJRNLXEiJUVDDpd/LQXnnTa0y0LyJVP02unVg+ZOE7mKI8Qx0CmwePrCFg2thEVrD4GBK7Lob6SW155zF+SOoy4VnC98ZSv8jU1MfBiUAKJOgIO3oM=
+	t=1770681255; cv=none; b=q6v0Sleyw3gfvOUA+noAdHsnHTZygqrRiNXzPAskxhV+NGIY+MD7RkJlWeCDLfIkgMU/R2IKX6OLmjRsN8v9y8y/IfvcIyJoY5vWvtWHUmn2POtgC9KagnBRL73gM5T03y6Eyb5cQvLqz/EthAAPsxh0wy7kfYMBC6fravB0C4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770681083; c=relaxed/simple;
-	bh=bsixGke1hf8jsC2lbY+jfdw5/Z3wiHssdbSANJKDnYA=;
+	s=arc-20240116; t=1770681255; c=relaxed/simple;
+	bh=NZeaXHzcATLCjnxzHKmzopOHAZxQu7m2ypdhfCmLcMA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b5rdCsjDeOz2U3evuBmdJevCpDwEUc1W+DL6YvB/nBo62ZTPMbk15bZdN2L1c+KovaOdnRIUYlc6C/8vxkKJlcZEyoGFk7b3/2oNIqYGRdNFyCssaxg8+XpVbMaMFJ71vN3E7MShpD3xQMgIs/PtZUZFa/5EhOvQ7hrS1VcUsDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JJA8qXSp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42B48C116C6;
-	Mon,  9 Feb 2026 23:51:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fdD5PhI7R8W16Blbh3FdVufUqlyYKCp8Nsi6VsCPejBh0u/EHoJNMcYGOaGaftW4+HxZdIUXc7T1DN7ltdz6VFzjswauOLxCoMW6gv+reFaatw+gh3pIr86se9Z2Ar6cGYIOumgXQs+bgEVklAO4PCZdw3PAYMlg8Br1wSSFeRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Za2rzV5T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 586BCC116C6;
+	Mon,  9 Feb 2026 23:54:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770681083;
-	bh=bsixGke1hf8jsC2lbY+jfdw5/Z3wiHssdbSANJKDnYA=;
+	s=k20201202; t=1770681254;
+	bh=NZeaXHzcATLCjnxzHKmzopOHAZxQu7m2ypdhfCmLcMA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JJA8qXSpN7cMYVlKDK673OujyjWo9NC6xvM//l4Ci6azdb0sCRdCHy4M3gdHQTFHL
-	 keht2yaCDEM8iIPHW53Piyz6Haz1ObZVX9RPZsgg1jpnIn9Ij0/WNpozm5hfoyiWS0
-	 uBquyTxoCjw1KRvTxUUnNsUZL3yjrOPHXzroayoZirl4v6cJbh2Iw5IkloEjLQNYDC
-	 cFuqy61Yf1I+0uVols2edkPe6xLy7MUV9kuOGguLqmqNUN7jClvPHBzBysB58ZCNEc
-	 +6tJfN0IjTUl2QCOVfMi2d6Cr893EzzjqIpND43cBnGl4cRuB7NSXUuUI39scPsRhz
-	 SaW/4P8R1OBeQ==
-Date: Mon, 9 Feb 2026 17:51:22 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH 1/1] dt-bindings: soc: imx: add fsl,aips and fsl,emi
- compatible strings
-Message-ID: <177068108180.2136981.14673421457748646497.robh@kernel.org>
-References: <20260201011913.2419626-1-Frank.Li@nxp.com>
+	b=Za2rzV5TbIqCsV5tmF4Ql2CKGBA6Q/w4z8zbeEkEvy7wWqGCX7CcnRdoVRxy/6Goj
+	 Fv6xuZcDeOSHk+ngjpSwbDE9AWzn9UF6Xc+rjr1zlciyZ9fGuxFznVowdRWhuvUbc8
+	 W5qwjTslOrz/EEGA1eZP+GIJD9g1o4vtRqUSbmimdmE9LkAwl/nK/sTG2RJ4zL25Pu
+	 BB2YfxS0Mx/Vfvae2ChwnW3jUZClYu5iL3b39tE0nBMXgXIi2Wt4xl2Hd1ululam99
+	 Li98uTPCfL8aIrK8DS154pfKJR0WaKggC5lBWKEjDD7+U1kD3tVDhpMEcRjdvrRi9w
+	 bT785tIYlyUHg==
+Date: Mon, 9 Feb 2026 17:54:13 -0600
+From: Rob Herring <robh@kernel.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 1/3] dt-bindings: net: dsa: lantiq,gswip:
+ reference common PHY properties
+Message-ID: <20260209235413.GA2137170-robh@kernel.org>
+References: <cover.1769916962.git.daniel@makrotopia.org>
+ <f556ef8be75e37a2f864b9d905a78962bbe76d18.1769916962.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,49 +68,86 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260201011913.2419626-1-Frank.Li@nxp.com>
+In-Reply-To: <f556ef8be75e37a2f864b9d905a78962bbe76d18.1769916962.git.daniel@makrotopia.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-264160-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264161-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[hauke-m.de,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email]
-X-Rspamd-Queue-Id: 9569E11574B
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.5:email]
+X-Rspamd-Queue-Id: 427871157B7
 X-Rspamd-Action: no action
 
-
-On Sat, 31 Jan 2026 20:19:13 -0500, Frank Li wrote:
-> Add the fsl,aips and fsl,emi compatible strings for legacy i.MX3 SoCs
-> (over 15 years old).
+On Sun, Feb 01, 2026 at 03:41:53AM +0000, Daniel Golle wrote:
+> Reference the common PHY properties so RX and TX SerDes lane polarity
+> of the SGMII/1000Base-X/2500Base-X port can be configured.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 > ---
->  .../devicetree/bindings/bus/fsl,spba-bus.yaml      | 14 +++++++++++---
->  1 file changed, 11 insertions(+), 3 deletions(-)
+> v3: commit message: clarify that the intention is to configure polarity
+>     at port level, as opposed to the internal polarity of the PCS component
+> v2: use allOf to include PHY common properties, add example use
+> ---
+>  Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
+> index f601e5f9fa6a..b4a31cde4322 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
+> @@ -105,6 +105,8 @@ patternProperties:
+>      patternProperties:
+>        "^(ethernet-)?port@[0-6]$":
+>          $ref: dsa-port.yaml#
+> +        allOf:
+> +          - $ref: /schemas/phy/phy-common-props.yaml#
 
-Applied, thanks!
+If you respin, put both $ref's under the allOf.
 
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
+>          unevaluatedProperties: false
+>  
+>          properties:
+> @@ -288,6 +290,7 @@ examples:
+>  
+>    - |
+>      #include <dt-bindings/leds/common.h>
+> +    #include <dt-bindings/phy/phy.h>
+>  
+>      mdio {
+>          #address-cells = <1>;
+> @@ -320,6 +323,7 @@ examples:
+>                      label = "wan";
+>                      phy-mode = "1000base-x";
+>                      managed = "in-band-status";
+> +                    tx-polarity = <PHY_POL_INVERT>;
+>                  };
+>  
+>                  port@5 {
+> -- 
+> 2.52.0
 
