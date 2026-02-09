@@ -1,208 +1,318 @@
-Return-Path: <devicetree+bounces-264153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264154-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id rYAbIV5gimlIJwAAu9opvQ
-	(envelope-from <devicetree+bounces-264153-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 23:31:58 +0100
+	id kKvJIhxnimkHKAAAu9opvQ
+	(envelope-from <devicetree+bounces-264154-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 00:00:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D7A11510E
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 23:31:57 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F405A1154A4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 00:00:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6ECE2300908E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 22:31:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EA2D6301DEE7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 23:00:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 133E930E0ED;
-	Mon,  9 Feb 2026 22:31:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 424EF31062D;
+	Mon,  9 Feb 2026 23:00:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="GYKm162+"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="A0D+n8k8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A34022DF3F2
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 22:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.170
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770676315; cv=pass; b=MhIWQNKu+PWGjmcIj3kBGob2b3/I4hSJ5zN9kMmwO9onVtZdhR7LYxUmtZWR6N7Ge0X65YHA8woJuLRtQuIwbecfwQ5ly6PZ7BJYxysuH7yphrfpwqn9+0fDhHHEQRguAzf7+Eu+NIvf6HPggiPeiGByv04+Ke/km1LLS832XNA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770676315; c=relaxed/simple;
-	bh=d08/Nt43bjOjQktFsYenGbHQUA7+zLDH0pYMagY5598=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=P75G5UwUANK8CHhd6LtdITgURW1xxlfTm9GRVtYwVRhQ9sGrpO5exTu1CaH2YznWknmJ6FznlsLe51fQql7/L6oof8c/ygmsqKblZdV9eJh2oUO39uRwyH+4t+kKqGqyQtjMGd+BPP/9nI7gBD1+Uo6TLSVOa0T1YQzOC3M0FhA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=GYKm162+; arc=pass smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2a9057b2ec3so700175ad.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 14:31:53 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770676313; cv=none;
-        d=google.com; s=arc-20240605;
-        b=CcS3Xz3T05ZrPHLhcpazSxHwCZiBpqf3OS/2wF/ysBIenj8FctUOiQrwHPXucTZF+M
-         rwE7CxUikaJ46nCouBG3bzU7uPPkrSJePKYr3lHjpSaejBIBqCbuTrIvCEwfSSBpJ3iB
-         IK9ICMZskRUtMmdFKYSxbwNVGPb9qpyIUBIsbWFUsanu7AQqAPs0mR5Tqbw30mSSvHXU
-         7OIVj8bcI0TtCiHVEafpgKa7yutUWxmB6KExKiGHTCl8j+P3aByKIUp7aKu1TVt78Er/
-         /BRpBPvGMVdvb9Mq+SWHDZLesA2N9bbH/rOUo5P1kjZqBh9a9PH6zYfJeEXrLjeTsRmz
-         e4oA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=d08/Nt43bjOjQktFsYenGbHQUA7+zLDH0pYMagY5598=;
-        fh=LA3zbDxq0edrtYD8HgwYc4mizdMPE9FFIiNrTEjOR1s=;
-        b=Hdy6e8ju6IxjdYc5xbjsuKnct8EVvC6Hxn0w3qdsBHeJSGwkuqDbz3peaIEostp9/D
-         WE0gt9eBLIkzn4CfiRwYl8FGP1XrelsVGD8Jz15t68eZYlvlfJAB9McjZ+0CMaIvv1WL
-         oMtYEf7OPIxbA2lSgGT880tFyK+06dfl+ZOARV8y/8s/d8/vyJomfqsfIZ7nMQ1OkvKQ
-         GvpVkHRLPsdmVs125S6KlIv5qY0B7uMCdMTpKMi1nZXtI5OMjhUjTYxXL9UKnm4sR78o
-         iFmSctN8Es1B8za6QA6lhvypHS/+j0phpRyUmASQjn7vwdPt8DGY3+5gGMoAAAfak567
-         jIJQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1770676313; x=1771281113; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d08/Nt43bjOjQktFsYenGbHQUA7+zLDH0pYMagY5598=;
-        b=GYKm162+ZVzMcdaFVFOOADyro3hN7TbF9xGJRoIzHluML6qEh3haz+c6xr3+lOO8R1
-         Z2vJrORk2Ser02newjlwubV8ZhiG7H6paO1rwRhn0vc/q39M4ZsTb1ClZbP3MUIbgQCi
-         kzeC2GuRoqn/mNF55eSjTSB9xTOIEVG5NLfX7xABcZJGr5Blxzv8EE4+vs1sryFhsjLz
-         WL42kww8v3XJzyIPrL0vQVIS0QwtUydPEiuET2CLGTHpvI9zKCcjOxOraCZr17rfgUhi
-         C1xIJVixu7ZBm7G2Nx5PcPQwPoqAU/8egj92cBMNXTVzkUwNqhUCizmMn9J9U9v7y5gB
-         k1IQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770676313; x=1771281113;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=d08/Nt43bjOjQktFsYenGbHQUA7+zLDH0pYMagY5598=;
-        b=PnOgOMasWRUQ31efdQfTYMmoMd5/iRKXju3Of6ruhX+iXgV6Zm0e8VHy8UAZGuvg5P
-         1ztlKdlLAZBrWFEV2BDp+x8G7fkk5x5OViokdPFDbGhZsZ3CRJ5LXh5Xjouebp+ZyKCo
-         TEzO4I05FDN3bx/tU0R4IgQjxA3JQyeOGUDw/bhX8/eYImT8rhztjvwhzTVI1e8YT8WW
-         SeALC6CouDKYRfs54o3OTh91b9jLAVucdMcJIBv/IHKmWFQqs2i6TC3tjjIcnZYYzs35
-         yk2C2uh6iPkeLRpJmtZJ/i76VkpsYhjQi9nsRCIM2xdy+9FueLHtbW6o+amL/T1ZuIGb
-         dCsg==
-X-Forwarded-Encrypted: i=1; AJvYcCUfYpoD1uOxDnfzNTwjV2EuTkmC3qiCdrnxC8e03A+L5sCSJdtAGyLZ/dKAegKLRL4GeAsLX2OcnUoO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNPvfAtfNOO0w5zUcfyrAQiw7yR+HinmelGYqQ+0Sb9tgMlSej
-	w1iAMnuDEVl65/Co9SA39E5fctwgkHuLLTATpjnYmYLUd3MqYbbAOyFAIRGExVydw/WdcLpCHWl
-	Mq05iRHJY1OvgjiSwVh84VIVcz71JpaY=
-X-Gm-Gg: AZuq6aJVg6NYtgBwE9QE9Jn+oM30UxG18iBNTWzqivAPb7Js6TW0L4PGYZ5uy9qlrXE
-	sfCx2VkIRKsUuRpvLsGSI4JVumxxNVCyCKipw4KndqO03LkCd7IOcy1lCs1lfygVoVckm6t7/C7
-	P6A8g6pT1Npjc6XntnysCUR3pxo6bERxwyaJigtKlqc7JFQatslEei150Ybmcjw9/SuabcJlvRy
-	3jfci+r/sYRZ0rz/KKRWgsifoaYRbBjAVUq6KnR7mALGrUAKvMYcyUOiq+Kk0aXQUa+Mtch8tl0
-	XkoZMn1KOohLMA2ujSNsruaXQeGQ
-X-Received: by 2002:a17:902:ce91:b0:2a3:1d78:7505 with SMTP id
- d9443c01a7336-2a951924f55mr126359035ad.56.1770676312902; Mon, 09 Feb 2026
- 14:31:52 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C2652EE5FD;
+	Mon,  9 Feb 2026 23:00:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770678042; cv=none; b=Pkg5AompE0a3sx+QHMgSYQ0kukpCjitVIRwQ1pu9myKgk51kvnGoT0T8GC/FYm7TBwYTQ0zme9yCu12uwgZ76kHbJILywesfV9VECX4Me4W5wj0jqE2NM8dGi7uJdEM5R3O6TrV1wg1zwXWUfoyYGGrHgPTDykXgRS+2bp1RMLk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770678042; c=relaxed/simple;
+	bh=aEa28yAFFKkaR2+a00Xs4xJ02fWqh/HxPq/wkNXx+xU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kn7NwWdfJ0I/RjXOidWEib+fOIPQ/EdZ3EOt1iZoISzzJsAUzu6e6U+juL5dyl1CRO94LuburXBq4k0Mp0zp5k/qIRvXW2Ef8zyLX6CGaHe1eIjkxaxClMf3dhYgVNZYS1esi03dm5gHtuc9Lkfwp/JIroXsvSvffmShT1Hh7jU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=A0D+n8k8; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from killaraus.ideasonboard.com (2001-14ba-703d-e500--2a1.rev.dnainternet.fi [IPv6:2001:14ba:703d:e500::2a1])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 34B8363F;
+	Mon,  9 Feb 2026 23:59:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1770677992;
+	bh=aEa28yAFFKkaR2+a00Xs4xJ02fWqh/HxPq/wkNXx+xU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=A0D+n8k8HVrcAzI3CfEvd3K3M6OX18jdX2DjQrHqOzIeT+FO/s+ZcaC8S4QFCeODB
+	 8lVdwzRV9eJDfQwWVwwKbxl54po1kzRHm5VXUYzCtgBo0gvU07cDrckNlL8dWTmF+9
+	 UT1CJramAH5Xdt4jqbCOZhv4NArQOUnlvrZonuxY=
+Date: Tue, 10 Feb 2026 01:00:36 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Antoine Bouyer <antoine.bouyer@nxp.com>, julien.vuillaumier@nxp.com,
+	alexi.birlinger@nxp.com, daniel.baluta@nxp.com, peng.fan@nxp.com,
+	frank.li@nxp.com, mchehab@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC v1 01/11] media: uapi: v4l2-isp: Add v4l2 ISP extensible
+ statistics definitions
+Message-ID: <20260209230036.GF2405149@killaraus.ideasonboard.com>
+References: <20260123080938.3367348-1-antoine.bouyer@nxp.com>
+ <20260123080938.3367348-2-antoine.bouyer@nxp.com>
+ <aYIb8ZIZDfCJZEZ9@zed>
+ <71b57f1c-be22-46a2-89a2-5abae11e0436@nxp.com>
+ <aYNEtmJwnAtYitHO@zed>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260115030015.1334517-1-nick@khadas.com> <20260115030015.1334517-4-nick@khadas.com>
- <09df45e1-90b5-4618-9197-c724142bd83a@salutedevices.com> <PS1PPF62EEA9B1D287E26DFE619BB840508AE93A@PS1PPF62EEA9B1D.apcprd03.prod.outlook.com>
- <88a0395b-1ab3-4ef0-96c4-440b3a5c96f4@salutedevices.com>
-In-Reply-To: <88a0395b-1ab3-4ef0-96c4-440b3a5c96f4@salutedevices.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 9 Feb 2026 23:31:40 +0100
-X-Gm-Features: AZwV_Qg9-pSrN0eULTrynbIuhC886DIQHj3VdC6tJoFAxqLkGIhfsb5jWDc-CwI
-Message-ID: <CAFBinCDcDy4M79+mM+axsqXLfoQ56Ucd1C-OHkGLxwNkpfZ-zQ@mail.gmail.com>
-Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW0RNQVJDIGVycm9yXSBbUEFUQ0ggdjMgMy8zXSBhcm02NDogZHRzOg==?=
-	=?UTF-8?B?IG1lc29uLXM0LXM5MDV5NC1raGFkYXMtdmltMXM6IGFkZCBpbml0aWFsIGRldmljZSB0cmVl?=
-To: George Stark <gnstark@salutedevices.com>
-Cc: Nick Xie <nick@khadas.com>, "robh@kernel.org" <robh@kernel.org>, 
-	"khilman@baylibre.com" <khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>, 
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "kernel@salutedevices.com" <kernel@salutedevices.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "xianwei.zhao@amlogic.com" <xianwei.zhao@amlogic.com>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aYNEtmJwnAtYitHO@zed>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.06 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_DKIM_ALLOW(-0.20)[googlemail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264154-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-264153-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[googlemail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[martinblumenstingl@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[googlemail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid,googlemail.com:dkim,bootlin.com:url,salutedevices.com:email,iu.edu:url]
-X-Rspamd-Queue-Id: 16D7A11510E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ideasonboard.com:dkim,nxp.com:email]
+X-Rspamd-Queue-Id: F405A1154A4
 X-Rspamd-Action: no action
 
-Hi George,
-
-sorry for the late reply.
-
-On Thu, Jan 29, 2026 at 3:48=E2=80=AFPM George Stark <gnstark@salutedevices=
-.com> wrote:
->
->
->
-> On 1/26/26 12:35, Nick Xie wrote:
-> >> Thanks for the patch. Since you have khadas mail I'm pretty sure you'v=
-e
-> >> had the possibility to test it on the real vim board and I just don't
-> >> get it how it works with the voltage table above. The problem is that
-> >> pwm is calculated incorrectly in the upstream pwm-meson driver. That
-> >> voltage table appeared to be used in early amlogic bl loader and
-> >> appropriate pwm is initialized from a table's record. Duty cycle value
-> >> is translated to pwm regs correctly. Later when kernel start running
-> >> pwm-regulator driver is probed. It reads the pwm regs, calculates back
-> >> duty-cyle and search it in the table. Since calculation algos are not
-> >> match and the table doesn't contain full range of 0-100% values
-> >> regulator driver doesn't find current voltage. In such case regulator
-> >> core sets the minimum voltage from the table [1] and the SoC may hang
-> >> (depending on board) due to minimum voltage may be too low for the
-> >> current frequency SoC uses.
-Nick likely didn't spot any issues on S4 since CPU frequency scaling
-is not upstreamed yet (as there's no way to control the CPU clock
-yet).
-The lack of a OPP table means: the PWM and CPU clock will just stay at
-whatever the bootloader provides
-
-> >> Or I'm missing something?
+On Wed, Feb 04, 2026 at 02:14:50PM +0100, Jacopo Mondi wrote:
+> On Wed, Feb 04, 2026 at 12:07:41PM +0100, Antoine Bouyer wrote:
+> > On 2/3/26 5:15 PM, Jacopo Mondi wrote:
+> > > On Fri, Jan 23, 2026 at 09:09:28AM +0100, Antoine Bouyer wrote:
+> > > > Extend the v4l2-isp extensible format introduced for isp parameters buffer
+> > > > to the statistics buffer as well.
+> > > >
+> > > > Like for ISP configuration purpose, that will help supporting various ISP
+> > > > hardware versions reporting different statistics data with less impact on
+> > > > userspace.
+> > > >
+> > > > The `v4l2_isp_stats_buffer` reuses the `v4l2_isp_params_buffer` container
+> > > > definitions, with similar header, versions and flags. V0 and V1 versions
+> > >
+> > > Why do you need two flags ?
+> > >
+> > > Params had to introduce two because we had two drivers already
+> > > mainlined using the pre-v4l2-isp version of extensible params which
+> > > had defined their version identifier as 1 and 0 and we didn't want to
+> > > break existing userspace using those identifiers. So we had to accept
+> > > both V0 and V1 as "first version of the v4l2-isp extensible parameters
+> > > format".
+> > >
+> > > For stats we don't have users, so I guess we can start with V1 == 0 ?
 > >
+> > I wanted to keep it aligned with params, so that any driver/userspace can
+> > use the same API version value for both params and stats buffers, and limit
+> > headache.
 > >
-> >> There's not-yet-reviewed patch that fixes pwm algo [2]. There's
-> >> calculation example in the cover letter.
-> >> [1] https://elixir.bootlin.com/linux/v6.19-rc5/source/drivers/regulato=
-r/core.c#L1227
-> >> [2] https://lkml.iu.edu/2412.3/00826.html
+> > > > are provided to match with params versions. On the other side, ENABLE and
+> > > > DISABLE flags are not really meaningfull for statistics purpose. So VALID
+> > > > and INVALID flags are introduced. Purpose is to force ISP driver to
+> > > > validate a statistics buffer, before it is consumed by userspace.
+> > >
+> > > Interesting. What do you mean with "validate a statistics buffer" ?
+> > > And if a driver has to do validation, why would it send upstream a
+> > > non-validated buffer ?
 > >
-> > What's the status of such patches?
->
-> the patch is ready for review. It's seems like nobody is interested
-I'm sorry to see that the patch had it's first anniversary.
-I'll need to bring out my logic analyzer and test your patch (I hope
-it's precise enough to show the impact of your changes).
-Are your plans then to re-send the patches or have you moved on and
-need someone else to take care of it?
+> > Like for version, I wanted to keep same header structure, including flags.
+> > Since ENABLE/DISABLE is not relevant for statistics, I thought about using a
+> > "validation" flag, to force driver confirming statistics blocks are valid or
+> > not.
+> 
+> See the question on the documentation patches.
+> 
+> > If you feel it is useless, I'm fine with removing it. Should I keep a flag
+> > field anyway to stay aligned with params then ?
+> 
+> RkISP1 has support for both "legacy" and "extensible" formats because
+> it has been mainline for a long time with the legacy format only. We
+> couldn't simply replace the existing format with the new one because
+> we would break existing users.
+> 
+> All the other drivers that have been upstreamed with extensible only
+> (Amlogic C3 and Mali C55) do not expose a legacy format as there was
+> not prior version in mainline on which userspace might depend on.
+> 
+> Unless you have very convincing reason, I would certainly drop the
+> legacy format and only use extensible.
 
+I agree with that, for upstream we shouldn't carry legacy formats in new
+drivers. I've read elsewhere in this thread that it won't cause issues,
+otherwise I would have recommended carrying an extra patch in the BSP
+kernel to implement legacy formats, and only use extensible formats
+upstream.
 
-Best regards,
-Martin
+> > > > Signed-off-by: Antoine Bouyer <antoine.bouyer@nxp.com>
+> > > > ---
+> > > >   include/uapi/linux/media/v4l2-isp.h | 85 +++++++++++++++++++++++++++++
+> > > >   1 file changed, 85 insertions(+)
+> > > >
+> > > > diff --git a/include/uapi/linux/media/v4l2-isp.h b/include/uapi/linux/media/v4l2-isp.h
+> > > > index 779168f9058e..ed1279b86694 100644
+> > > > --- a/include/uapi/linux/media/v4l2-isp.h
+> > > > +++ b/include/uapi/linux/media/v4l2-isp.h
+> > > > @@ -99,4 +99,89 @@ struct v4l2_isp_params_buffer {
+> > > >        __u8 data[] __counted_by(data_size);
+> > > >   };
+> > > >
+> > > > +/**
+> > > > + * enum v4l2_isp_stats_version - V4L2 ISP statistics versioning
+> > > > + *
+> > > > + * @V4L2_ISP_STATS_VERSION_V0: First version of the V4L2 ISP statistics format
+> > > > + *                          (for compatibility)
+> > > > + * @V4L2_ISP_STATS_VERSION_V1: First version of the V4L2 ISP statistics format
+> > > > + *
+> > > > + * V0 and V1 are identical, and comply with V4l2 ISP parameters versions. So
+> > > > + * both V0 and V1 refers to the first version of the V4L2 ISP statistics
+> > > > + * format.
+> > > > + *
+> > > > + * Future revisions of the V4L2 ISP statistics format should start from the
+> > > > + * value of 2.
+> > > > + */
+> > > > +enum v4l2_isp_stats_version {
+> > > > +     V4L2_ISP_STATS_VERSION_V0 = 0,
+> > > > +     V4L2_ISP_STATS_VERSION_V1,
+> > >
+> > > As suggested I would make V1 == 0
+> > >
+> > > > +};
+> > > > +
+> > > > +#define V4L2_ISP_PARAMS_FL_BLOCK_VALID               (1U << 0)
+> > > > +#define V4L2_ISP_PARAMS_FL_BLOCK_INVALID     (1U << 1)
+> > > > +
+> > > > +/*
+> > > > + * Reserve the first 8 bits for V4L2_ISP_STATS_FL_* flag.
+> > > > + *
+> > > > + * Driver-specific flags should be defined as:
+> > > > + * #define DRIVER_SPECIFIC_FLAG0     ((1U << V4L2_ISP_STATS_FL_DRIVER_FLAGS(0))
+> > > > + * #define DRIVER_SPECIFIC_FLAG1     ((1U << V4L2_ISP_STATS_FL_DRIVER_FLAGS(1))
+> > > > + */
+> > > > +#define V4L2_ISP_STATS_FL_DRIVER_FLAGS(n)       ((n) + 8)
+> > >
+> > > Currently we have no users of V4L2_ISP_PARAMS_FL_DRIVER_FLAGS so we
+> > > could even consider making it a V4L2_ISP_FL_DRIVER_FLAGS
+> > >
+> > > Or do you think it is worth creating a new symbol ?
+> >
+> > To limit impact on potential on-going development, and future conflict,
+> > creating new symbol may be safer IMO. But I'm fine with using a single
+> > symbol if you prefer. Most probably this flag customization is not used yet
+> > by any driver.
+> >
+> > > > +
+> > > > +/**
+> > > > + * struct v4l2_isp_stats_block_header - V4L2 extensible statistics block header
+> > > > + * @type: The statistics block type (driver-specific)
+> > > > + * @flags: A bitmask of block flags (driver-specific)
+> > > > + * @size: Size (in bytes) of the statistics block, including this header
+> > > > + *
+> > > > + * This structure represents the common part of all the ISP statistics blocks.
+> > > > + * Each statistics block shall embed an instance of this structure type as its
+> > > > + * first member, followed by the block-specific statistics data.
+> > > > + *
+> > > > + * The @type field is an ISP driver-specific value that identifies the block
+> > > > + * type. The @size field specifies the size of the parameters block.
+> > > > + *
+> > > > + * The @flags field is a bitmask of per-block flags V4L2_STATS_ISP_FL_* and
+> > > > + * driver-specific flags specified by the driver header.
+> > > > + */
+> > > > +struct v4l2_isp_stats_block_header {
+> > > > +     __u16 type;
+> > > > +     __u16 flags;
+> > > > +     __u32 size;
+> > > > +} __attribute__((aligned(8)));
+> > > > +
+> > >
+> > > This is currently identical to v4l2_isp_params_block_header.
+> > >
+> > > Can we create a single header for both stats and params and provide a
+> > >
+> > > #define v4l2_isp_params_block_header v4l2_isp_block_header
+> > >
+> > > for maintaining compatibility with existing users ?
+> > >
+> > > Or do you expect stats and params to eventually need different headers ?
+> >
+> > Current approach is to use same structure definitions as for params. So I'm
+> > fine with creating a single header as suggested, and provide symbols to keep
+> > compatibility.
+> >
+> > > > +/**
+> > > > + * struct v4l2_isp_stats_buffer - V4L2 extensible statistics data
+> > > > + * @version: The statistics buffer version (driver-specific)
+> > > > + * @data_size: The statistics data effective size, excluding this header
+> > > > + * @data: The statistics data
+> > > > + *
+> > > > + * This structure contains the statistics information of the ISP hardware,
+> > > > + * serialized for userspace into a data buffer. Each statistics block is
+> > > > + * represented by a block-specific structure which contains a
+> > > > + * :c:type:`v4l2_isp_stats_block_header` entry as first member. Driver
+> > > > + * populates the @data buffer with statistics information of the ISP blocks it
+> > > > + * intends to share to userspace. As a consequence, the data buffer effective
+> > > > + * size changes according to the number of ISP blocks that driver intends to
+> > > > + * provide and is set by the driver in the @data_size field.
+> > > > + *
+> > > > + * The statistics buffer is versioned by the @version field to allow modifying
+> > > > + * and extending its definition. Driver shall populate the @version field to
+> > > > + * inform the userpsace about the version it intends to use. The userspace will
+> > > > + * parse and handle the @data buffer according to the data layout specific to
+> > > > + * the indicated version.
+> > > > + *
+> > > > + * For each ISP block that driver wants to report, a block-specific structure
+> > > > + * is appended to the @data buffer, one after the other without gaps in
+> > > > + * between. Driver shall populate the @data_size field with the effective
+> > > > + * size, in bytes, of the @data buffer.
+> > > > + */
+> > > > +struct v4l2_isp_stats_buffer {
+> > > > +     __u32 version;
+> > > > +     __u32 data_size;
+> > > > +     __u8 data[] __counted_by(data_size);
+> > > > +};
+> > > > +
+> > >
+> > > Same question. Should we introduce a struct v4l2_isp_buffer ?
+> >
+> > Yes, sounds reasonable.
+
+That seems to make sense. Once we'll have a driver using
+v4l2_isp_stats_buffer the structure will become ABI. If it then is an
+exact copy of v4l2_isp_params_buffer, it would make sense to unify them.
+Let's see what will happen after a few review rounds, if we end up
+requiring separate fields in the stats buffer header.
+
+It would also be nice to implement support for extensible stats in a
+second driver to test the API.
+
+> > > >   #endif /* _UAPI_V4L2_ISP_H_ */
+
+-- 
+Regards,
+
+Laurent Pinchart
 
