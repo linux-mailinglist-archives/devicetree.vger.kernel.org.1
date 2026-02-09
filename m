@@ -1,295 +1,199 @@
-Return-Path: <devicetree+bounces-264055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264056-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6Be5LQkBimluFQAAu9opvQ
-	(envelope-from <devicetree+bounces-264055-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:45:13 +0100
+	id +DxzFhsBimluFQAAu9opvQ
+	(envelope-from <devicetree+bounces-264056-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:45:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id F220F11213F
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:45:12 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7821A11214E
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:45:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D2F28300382E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 15:44:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B8C2330074E1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 15:44:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B68637FF54;
-	Mon,  9 Feb 2026 15:44:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D895236BCCC;
+	Mon,  9 Feb 2026 15:44:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hbQRsvgK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yg2EXP+I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2909C36BCCC
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 15:44:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B61B523D291;
+	Mon,  9 Feb 2026 15:44:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770651875; cv=none; b=UXzTRs0HSb2znbwrJbGqLt5N0dGWalzaISW65EOf4iRFlm96veVAdgCmkoZgwVgeUbA6i86LbGZ784iMb6R7RlYYaAn9oXjYe4Ain/JZBE90sylJPNlgVBL8gMSo1GdvUSVQMcdXHCeGeqFZxrjmWHUmBScFwjDoEunepvq7BhM=
+	t=1770651885; cv=none; b=IKcv29xwqug2o9Ie8zL7Ty83Ybc4b8J9tMhzogwuYg4NHWTbYCk7XwIDixE7AI/ciKrZmyU0rtIW1RZEWuBr5CRoMmpy7mbZjHP3ZiMqaCBKZF2vIQ2v6MV/5QIjPRKAr6hihaAoKizHTSGHugV3oX0IqGWFEsHKFUMUK4LhCqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770651875; c=relaxed/simple;
-	bh=KbQ1DR7eIjUwgWiTwhYGN3wCp8ERiDAQnoS/oIvZWRg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cO5ODq/N8DxYyQaPL8TXvAew3dILFGVyO4EQ7rMfMOo8JHnEQ0LMHUoCZpBG2eIRyxiVFQ+Ta39CJNtWXmPaNtfSAk500fvWc21CRTiLoOaoVYinfEvsIzfmlJ1+H9m2OzYpGXJH6FtDYE/MJSnj1q3tzbICu7pioY0so16DxFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hbQRsvgK; arc=none smtp.client-ip=74.125.82.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f48.google.com with SMTP id a92af1059eb24-12721cd256bso579551c88.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 07:44:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770651874; x=1771256674; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=c3Bl4JPOZwyRHkiDx2Lqy82QSiWS6py48zegDEINFNE=;
-        b=hbQRsvgKwkoly4XJKwJvOa447rzBIeREH+LMd8vQPsFFy6mFgj1X1/lJh9VYYnwKWi
-         nwKuqnKYNsxI2WNXMsqhssmJ0bR+TGDE73wHJMvl7BTuAr6kJB8liayXQhiWlZdYqGIF
-         RczVX2OOI1h9h6pvgv5bavUpW5JTtgNBaWTRihnecfXTcm/IqJX/DgsIkrgFvdZlo4cY
-         BhmCKl1CVzJkdtLYicqc2GsC+9tm2O58RcFdQeLhCkaiz1fhn7FrWkeYnHEIaOTVW294
-         SHR371XOmz5v34YihU7bOp2+O8QqtKvA5Wdr+n5mVe4f9bqrfS3k/hpE1leXpVukQqF6
-         F5OA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770651874; x=1771256674;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c3Bl4JPOZwyRHkiDx2Lqy82QSiWS6py48zegDEINFNE=;
-        b=gaHbPArPyYSANjQ7b+x6atplMqJLk3IC64ZcyiRzWgxKP5dDZhX75rsYID0tAY6gT3
-         FlsXrNo709WQbGE4OkSESsUHRDw0xu4GpAYM1b8ZmWgcuKEczzmOaBSrLimUjhwkB5l7
-         f5noORiFtWfDAuIBEbuLRy7jML0m4VgThhofBzqDpdxm1zIr19JhoEfKqScCLRamF4DM
-         2eSvWgrudiJEu7A1KjGSnH1B4y87vu4sb7nbGtHJOwci37gzYPSYmHYWAewhYc3cVrhu
-         8bUm/An/Sk+x9U3gRyNBE027/K/qqMarBr2pbRzL6bXDj0h3tTBmNzZ2/s3negKArJ1A
-         d8rQ==
-X-Forwarded-Encrypted: i=1; AJvYcCULdYio8a9Tn/ZL/d/Ku3Oi/LHTiW/v8W0vWuxrJwT60XpSiOHZXtSHkZxEx/8W8yxpvavFXsT88b1/@vger.kernel.org
-X-Gm-Message-State: AOJu0YwakYDubq2QJ7RQ6YocIgDSWpn4mNIx+aqgNivoYKUvefg47Akw
-	Z/jYrJSNmDPd9I/iGsm+gHOcB4dcjylSK8LvevJVHVp5kj0QzRMqTvqI
-X-Gm-Gg: AZuq6aLhcXUq3h9TDftfffVK/EDL2s+3GYa7ikVXn0xuqif3ft0dIbgeqEMNUuyIiqV
-	f+/7UliDhKWWuxuxWXLXwfbiKvtzeVoTe+lcVUi1LcmtY+SX0KaQ/S/QxVwdDthKTUiKq6a+lF8
-	Tx1nRBqndJTb53iyNvI5b5GI70qoSX5GUyx9AXPF/lBrNNcWxO0l8SW9xNZjTGdZ+OK2vNQFAHC
-	PggGd16BuOgQaZoHNZWZMCeuKGXxBCNm/A2nzRKMOo0JQ81HmZbtBXGNiv9Z0rshkO/yDIK3Tet
-	MvN47YZR/qJ8id8FcQFLp8sSev3rq9HZBGTR/d7cvVj1uH8+DgOJzK/Fo5LBqG0cu/fr0wybzBN
-	cW76rknbflfhY5KOm/jn1QQ0HrLurC8Ya5ZMmjvyVdTeHi7QndMtskpe8f68BQ6KYaEtWSB5qCc
-	ihlMoyyPnuX7Yt2RjKqmXSSxpQDZX/GsvLcc3DW4vWs4bcazT6rBTfnXgZcCxZ
-X-Received: by 2002:a05:7022:6997:b0:11d:f440:b757 with SMTP id a92af1059eb24-12703fcfed1mr5405150c88.26.1770651874127;
-        Mon, 09 Feb 2026 07:44:34 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1270414f28bsm9681347c88.0.2026.02.09.07.44.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Feb 2026 07:44:32 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <c640192d-e0ca-49ce-8316-b6216a9a18f8@roeck-us.net>
-Date: Mon, 9 Feb 2026 07:44:30 -0800
+	s=arc-20240116; t=1770651885; c=relaxed/simple;
+	bh=GvM3s2O65gK18I39hGtyeztUQDYF3w7gL7m0UjnQuUU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sICuAvD+ucOq1JkqW14V96OzpJJIOLU8T50UnbXMvtW2nSAd5uxUlOfy4rOBEGqjtXcwnn07m4WbjF7N3e82+BA7HYriUHEyQ/amOU17Z9Bucqx1y6jcq7wlMEx+ICEaOGhxNG2Qd8nGWUr3CG4kum4TKKWKvU+CsbXCVAiI/FE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yg2EXP+I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38CA3C116C6;
+	Mon,  9 Feb 2026 15:44:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770651885;
+	bh=GvM3s2O65gK18I39hGtyeztUQDYF3w7gL7m0UjnQuUU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Yg2EXP+ILq2Rn3fxB8/j/piTRYrTNUkCe+a83cTkPyC/FMaEilXcQdwkNVESBrANc
+	 +CdInaoIS/MEi5p3dfJ3ebMk2/T5IMoWCyUrKMVIj04Rq3O9+glJ9hnl6cVNjSXF1a
+	 oOR53ceZ6rAxbCL97uM5NF+OvseHqBDZ2G8xSUPWt50zgXUIvRPVrj+26TYdKfoKa4
+	 CbXq43fRfONLa4N/rneSu/jcaNFhR4QS5iVUJXNBftu2Yr1+44V/thLRp2t4CTrSLx
+	 RKzC5s64Tqlv9JQEdotMQAOrk9l6Q3sCsHARe2sp29lYyPvhunXwyBOvVi5+nR1dYk
+	 av29WcKbKYhSA==
+Date: Mon, 9 Feb 2026 15:44:39 +0000
+From: Sudeep Holla <sudeep.holla@kernel.org>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: Cristian Marussi <cristian.marussi@arm.com>, arm-scmi@vger.kernel.org,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH v4 2/2] firmware: arm_scmi: Implement
+ arm,no-completion-irq property
+Message-ID: <20260209-quixotic-offbeat-stork-f1d310@sudeepholla>
+References: <20260117010241.186685-1-marek.vasut+renesas@mailbox.org>
+ <20260117010241.186685-2-marek.vasut+renesas@mailbox.org>
+ <aW5ifVcxVf6uux3m@pluto>
+ <9175b8aa-18c6-4dc1-8904-c26fa1dc7428@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] hwmon: pmbus: mpq8785: force direct mode for VID
- VOUT on MPQ8785/MPQ8786
-To: Carl Lee <carl.lee@amd.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Charles Hsu <ythsu0511@gmail.com>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, peter.shen@amd.com, colin.huang2@amd.com
-References: <20260205-dt-bindings-hwmon-pmbus-mpq8785-add-mpq8786-support-v2-0-3744cd9b2850@amd.com>
- <20260205-dt-bindings-hwmon-pmbus-mpq8785-add-mpq8786-support-v2-3-3744cd9b2850@amd.com>
- <07c39c3e-f82d-4ec0-b7fc-6ca9721d246d@roeck-us.net>
- <aYl+pTlG9rEuE59h@carl-amd>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <aYl+pTlG9rEuE59h@carl-amd>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9175b8aa-18c6-4dc1-8904-c26fa1dc7428@mailbox.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,amd.com];
-	TAGGED_FROM(0.00)[bounces-264055-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264056-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FROM_NEQ_ENVFROM(0.00)[sudeep.holla@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,roeck-us.net:mid,amd.com:email]
-X-Rspamd-Queue-Id: F220F11213F
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,broadcom.com:email,mailbox.org:email,infradead.org:email]
+X-Rspamd-Queue-Id: 7821A11214E
 X-Rspamd-Action: no action
 
-On 2/8/26 22:28, Carl Lee wrote:
-> On Thu, Feb 05, 2026 at 08:58:37AM -0800, Guenter Roeck wrote:
->> On Thu, Feb 05, 2026 at 06:01:39PM +0800, Carl Lee via B4 Relay wrote:
->>> From: Carl Lee <carl.lee@amd.com>
->>>
->>> According to MPQ8785/MPQ8786 datasheet, VID mode configuration is
->>> the same as direct mode configuration. Therefore, when VOUT is
->>> reported in VID mode, it must be forced to use direct format.
->>>
->>
->> Why "must" ? Yes, the LSB is the same, at least for MPQ8785,
->> but that doesn't mean that the mode _must_ be overwritten. Maybe
->> I am missing it, but as far as I can see the datasheet doesn't
->> say that the VID mode configuration is the same as direct mode
->> configuration. It says that the _LSB_ is the same for both modes.
->>
->> I _think_ the problem may be that the output voltages are not really
->> reported as VID values but as raw voltages, but the datasheet is a bit
->> vague in that regard. It talks about LSB values but doesn't exactly
->> say how voltages are reported, and for READ_VIN it is most definitely
->> wrong ("This bit is in VID mode with 25mv/LSB" doesn't make any sense).
->>
->> Thanks,
->> Guenter
+On Mon, Feb 09, 2026 at 11:53:19AM +0100, Marek Vasut wrote:
+> On 1/19/26 5:57 PM, Cristian Marussi wrote:
+> > On Sat, Jan 17, 2026 at 02:02:29AM +0100, Marek Vasut wrote:
+> > > Implement new property arm,no-completion-irq, which sets all SCMI
+> > > operation into poll mode. This is meant to work around uncooperative
+> > > SCP implementations, which do not generate completion interrupts.
+> > > This applies to mbox/shmem based implementations.
+> > > 
+> > > With this property set, such implementations which do not generate
+> > > interrupts can be interacted with, until they are fixed to generate
+> > > interrupts properly.
+> > > 
+> > > Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> > > ---
+> > > Cc: Conor Dooley <conor+dt@kernel.org>
+> > > Cc: Cristian Marussi <cristian.marussi@arm.com>
+> > > Cc: Florian Fainelli <florian.fainelli@broadcom.com>
+> > > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> > > Cc: Rob Herring <robh@kernel.org>
+> > > Cc: Sudeep Holla <sudeep.holla@arm.com>
+> > > Cc: arm-scmi@vger.kernel.org
+> > > Cc: devicetree@vger.kernel.org
+> > > Cc: linux-arm-kernel@lists.infradead.org
+> > > Cc: linux-renesas-soc@vger.kernel.org
+> > > ---
+> > > V2: Drop no IRQ handling from SMC transport and update commit message
+> > > V3: Rename property from arm,poll-transport to arm,no-completion-irq
+> > > V4: No change
+> > > ---
+> > >   drivers/firmware/arm_scmi/common.h | 4 ++++
+> > >   drivers/firmware/arm_scmi/driver.c | 4 ++++
+> > >   2 files changed, 8 insertions(+)
+> > > 
+> > > diff --git a/drivers/firmware/arm_scmi/common.h b/drivers/firmware/arm_scmi/common.h
+> > > index 7c35c95fddbaf..7c9617d080a02 100644
+> > > --- a/drivers/firmware/arm_scmi/common.h
+> > > +++ b/drivers/firmware/arm_scmi/common.h
+> > > @@ -235,6 +235,9 @@ struct scmi_transport_ops {
+> > >    *		      to have an execution latency lesser-equal to the threshold
+> > >    *		      should be considered for atomic mode operation: such
+> > >    *		      decision is finally left up to the SCMI drivers.
+> > > + * @no_completion_irq: Flag to indicate that this transport has no completion
+> > > + *		       interrupt and has to be polled. This is similar to the
+> > > + *		       force_polling below, except this is set via DT property.
+> > >    * @force_polling: Flag to force this whole transport to use SCMI core polling
+> > >    *		   mechanism instead of completion interrupts even if available.
+> > >    * @sync_cmds_completed_on_ret: Flag to indicate that the transport assures
+> > > @@ -254,6 +257,7 @@ struct scmi_desc {
+> > >   	int max_msg;
+> > >   	int max_msg_size;
+> > >   	unsigned int atomic_threshold;
+> > > +	bool no_completion_irq;
+> > >   	const bool force_polling;
+> > >   	const bool sync_cmds_completed_on_ret;
+> > >   	const bool atomic_enabled;
+> > > diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
+> > > index 3e76a3204ba4f..f167194f7cf67 100644
+> > > --- a/drivers/firmware/arm_scmi/driver.c
+> > > +++ b/drivers/firmware/arm_scmi/driver.c
+> > > @@ -2735,6 +2735,7 @@ static int scmi_chan_setup(struct scmi_info *info, struct device_node *of_node,
+> > >   	cinfo->is_p2a = !tx;
+> > >   	cinfo->rx_timeout_ms = info->desc->max_rx_timeout_ms;
+> > >   	cinfo->max_msg_size = info->desc->max_msg_size;
+> > > +	cinfo->no_completion_irq = info->desc->no_completion_irq;
+> > >   	/* Create a unique name for this transport device */
+> > >   	snprintf(name, 32, "__scmi_transport_device_%s_%02X",
+> > > @@ -3150,6 +3151,9 @@ static const struct scmi_desc *scmi_transport_setup(struct device *dev)
+> > >   	if (ret && ret != -EINVAL)
+> > >   		dev_err(dev, "Malformed arm,max-msg DT property.\n");
+> > > +	trans->desc.no_completion_irq = of_property_read_bool(dev->of_node,
+> > > +							      "arm,no-completion-irq");
+> > > +
+> > >   	dev_info(dev,
+> > >   		 "SCMI max-rx-timeout: %dms / max-msg-size: %dbytes / max-msg: %d\n",
+> > >   		 trans->desc.max_rx_timeout_ms, trans->desc.max_msg_size,
+> > 
+> > LGTM.
+> > 
+> > Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
 > 
-> Thanks for your feedback. I see your point about “must.”
-> The datasheet only says the LSB is the same for VID and direct modes;
-> it doesn’t state that VID mode configuration is identical to direct mode.
-> 
-> Based on current hardware testing where the chip reports VOUT Mode as VID,
-> Observations on actual hardware:
-> 
-> 1.Without forcing the mode: driver fails to initialize.
-> dmesg | grep -i mpq8785
-> mpq8785 58-0046: Failed to identify chip capabilities
+> Is there anything left to do with these patches, or can this now be picked
+> up ?
 > 
 
-Wrong conclusion. That message means that the chip reports to be in VID mode,
-while the configuration data disagrees.
+As I had mentioned here[1], I am happy with it and I will pick it up for
+v7.1 once I start collecting the patches after v7.0-rc1. It just came in after
+I had sent my PR to SoC team for v7.0
 
-That has nothing to do with how voltages are actually reported by the chip.
+-- 
+Regards,
+Sudeep
 
-As it turns out, mpq8785_identify() already translates VID mode to direct
-mode. Here is the real problem: The identify function knows that VID mode
-is handled wrongly by the chip, and configures the driver for direct mode.
-pmbus_identify_common(), however, does not take that into account and bails
-out if the mode read from the chip does not match the configured mode.
-
-That is what needs to be fixed, and until I find a cleaner solution the
-patch is indeed acceptable. However, the above needs to be explained in
-a comment and in the patch description.
-
-Thanks,
-Guenter
-
-> 2.Forcing direct mode: voltage readings are consistent and as expected.
-> cat /sys/bus/i2c/devices/58-0046/hwmon/hwmon2/in2_input
-> 3293
-> 
-> This suggests that the issue is related to how the chip reports voltages in VID mode,
-> rather than a datasheet requirement to overwrite the mode.
-> I’ll revise the patch and update the wording accordingly.
-> 
-> Thanks,
-> Carl
-> 
->   
->>> Signed-off-by: Carl Lee <carl.lee@amd.com>
->>> ---
->>>   drivers/hwmon/pmbus/mpq8785.c | 20 ++++++++++++++++++++
->>>   1 file changed, 20 insertions(+)
->>>
->>> diff --git a/drivers/hwmon/pmbus/mpq8785.c b/drivers/hwmon/pmbus/mpq8785.c
->>> index f35534836cb8..d6624af076c3 100644
->>> --- a/drivers/hwmon/pmbus/mpq8785.c
->>> +++ b/drivers/hwmon/pmbus/mpq8785.c
->>> @@ -48,6 +48,25 @@ static int mpq8785_identify(struct i2c_client *client,
->>>   	return 0;
->>>   };
->>>   
->>> +static int mpq8785_read_byte_data(struct i2c_client *client, int page, int reg)
->>> +{
->>> +	int ret;
->>> +
->>> +	switch (reg) {
->>> +	case PMBUS_VOUT_MODE:
->>> +		ret = pmbus_read_byte_data(client, page, reg);
->>> +		if (ret < 0)
->>> +			return ret;
->>> +
->>> +		if ((ret >> 5) == 1)
->>> +			return PB_VOUT_MODE_DIRECT;
->>> +	default:
->>> +		return -ENODATA;
->>> +	}
->>> +
->>> +	return ret;
->>> +}
->>> +
->>>   static int mpm82504_read_word_data(struct i2c_client *client, int page,
->>>   				   int phase, int reg)
->>>   {
->>> @@ -133,6 +152,7 @@ static int mpq8785_probe(struct i2c_client *client)
->>>   	case mpq8785:
->>>   	case mpq8786:
->>>   		info->identify = mpq8785_identify;
->>> +		info->read_byte_data = mpq8785_read_byte_data;
->>>   		break;
->>>   	default:
->>>   		return -ENODEV;
->>>
->>> -- 
->>> 2.34.1
->>>
->>>
-
+[1] https://lore.kernel.org/all/aW5jwtoYCFs-Pzpk@bogus/
 
