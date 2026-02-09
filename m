@@ -1,401 +1,264 @@
-Return-Path: <devicetree+bounces-264133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264134-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ENj1MIIximkPIQAAu9opvQ
-	(envelope-from <devicetree+bounces-264133-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 20:12:02 +0100
+	id sJ2WNNIyimkPIQAAu9opvQ
+	(envelope-from <devicetree+bounces-264134-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 20:17:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB022113FBC
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 20:12:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 377F711406A
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 20:17:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1F8833008337
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 19:12:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 039B430063BC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 19:17:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3486410D3F;
-	Mon,  9 Feb 2026 19:11:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8CDA3A7F59;
+	Mon,  9 Feb 2026 19:17:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bffKQ7QW"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="IzvOFnQq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011014.outbound.protection.outlook.com [40.107.130.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DB9E3F23D7;
-	Mon,  9 Feb 2026 19:11:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770664319; cv=none; b=ObBkHJ8BKYNVq8By7o8ixMK1HRACY8XUtEU66XJz2zpQyixwuRHc6oIh57RYlrYJlBfZjzEZXuonLUHnTchgU0QiYLhmoNCBEchMAL3ivEGm/UWIu/kdugaVBQlLSA8bYr0ENjw/tPfu67K/ykXO6V4oAL/i8dGWP0vTEx3e7nM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770664319; c=relaxed/simple;
-	bh=zR+Zs5URN3kh9VajH7r1F2ORsv8Ow7hJRaFQ/xw8DHg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HnkbOMmkh1LEVdXEuAk83FWggOQFCP6sJ6OiH9sCk3XF/mVC90Mrj2eVQNmpq634LzALDXNrqZD5y3ots/SRJTzq3WsqDEdFE3GdYJCjFTa7IkbqHZGB8LKnDu5bm0wWmQyX3ifhl7ao0yF8I5H/dWCsWtbbdJor8ySWT0S/k5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bffKQ7QW; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770664319; x=1802200319;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zR+Zs5URN3kh9VajH7r1F2ORsv8Ow7hJRaFQ/xw8DHg=;
-  b=bffKQ7QWY3z/npHnkbi2OL5Cc487Hj5D3TgVAjm9IgpMGJg+pJmYowQo
-   slOvpuXRHzQxE8owxxb2blm3fwbtfmO6M/Ky1+oIiHg0I2Vt1JUOlpqY2
-   igXu2dRSX/R2qhTdbpyi6TB3ZZcSeamquoYloyOQLsXON+cs+Yyslcfhl
-   T1bwH0fTu+qWVOwDMU3oJEeF21YG8bw3sDy/LCBFtQwOIvpqVaIHKQ435
-   H1ac7N9qdATsBqM3FshXtYM6eiB6rsmRb+CFnyMlvvklv6QSXjtaMB7y6
-   x6MUY1wV9+SdJq1ZjtP7C+7tBeTlkGEE1Wh+XhyZd54PHo0chwVLrrVj/
-   A==;
-X-CSE-ConnectionGUID: 3dn7LXgxQXq7J5dWlhy0AA==
-X-CSE-MsgGUID: csB2vvbzTkmBSX2WOVt47A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="71684217"
-X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; 
-   d="scan'208";a="71684217"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 11:11:58 -0800
-X-CSE-ConnectionGUID: m71o2vQQR7yq8r6Iwm20Sw==
-X-CSE-MsgGUID: 05QVkUVNSpS/0UAIJnP/uQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; 
-   d="scan'208";a="210780646"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 09 Feb 2026 11:11:54 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vpWfo-00000000oGC-1lQM;
-	Mon, 09 Feb 2026 19:11:52 +0000
-Date: Tue, 10 Feb 2026 03:11:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: Vivek Sahu <vivek.sahu@oss.qualcomm.com>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C413064A0;
+	Mon,  9 Feb 2026 19:17:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770664636; cv=fail; b=mGDXRnywe2g8dvrIe/T5WHZyxx+CI/wTFmHCbRgki/U3Ot6G1KuxzpxU13vDvrrQ/wT+IeZJLzN6mmBNJN4esUNBkiwMpzsucMkUFyutuSy3VokXXKjuNPStS5O7ho9Uf4SbCwS4kEH+u4hj6CIQhoTPiemVdnI8bSqi7iceU+Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770664636; c=relaxed/simple;
+	bh=/T11KR+yBmJEeTbXJTjoWa52Iv7zRp4h1vs+gqvwZ18=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=jzJdYC2qwtUQI30eUSQHE8vpCH7n8McURhwW0aLl+Uzan0dsPPtsLRbMFPT1dfi04ZfPoqo/bsoDcG2+jJSgUYyKf7I9glW5Js8WUSPoL9qJWAf0DV2iQlGYbU7eE5yGXSWP2d+8tQqQvg8cwcke30DwK10MKFSgfsQoj93zJaM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=IzvOFnQq; arc=fail smtp.client-ip=40.107.130.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=k++LTpDBhu4ZiS+t5A+uNX2twQs7F/kB5SCDCYSXTwL3aZbIiJnoWVhmOXOpKoFWu/x83bjBN/jiuHvvxEaVVtL70rHV8Anhu3OZxZFbIV24eRzCfNnYSz/OGsnZkpcYzStEARFRcAm2sXsc8eJGagZnrWWNsiGSsJ+larMJTshoH+PHzU93lkyXnpPKK4k+Th+lwyc3TjKat3w/NfsapB+6z06WEZOKaL4zptaOIWXSSX4ssmQWjsdAVPgdz39pHRwV4QI4DYYlES+H971TZ6ZpnM8z4ZlUreha88A9pqfeZPEMTM2foIGqfRnjykPBunEivrEay4W+1nax7HgWvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6a4HF4DHwTRy7WwkMOg8PVUee0yJhBV+rZo3mW19Puw=;
+ b=Pkh86RYjz5M34V1k3IanILCOQzac9m9WchuL2iiLlw8hCqI4jL+BW5rai2JV4S5BZnJrpVgfYMyCkwiSV7IzG8vLw3DFJO/i6ZlW+RqOnZ+n9w+Ldb7fAnCwpa2e7s8XzuVdoCsPp9wmC7dPT9tfNjsvLv4t3znpozJ3usvEoQdi6x5XP+/MA+lSYNSAeRBVeZKFXB+fin9G/O2sf1OATSU3w+7ukJHQvqORyM3sc39euLyoQE85B+xlev3q1Jaa8GeAVaTP4PckoTpKo3GEe2gJfUTzsObN3TE/ZHetaT0RO2neeXGH6nx01Y6o5RYe50BUORgVrYTeZ7rwtm4G0A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6a4HF4DHwTRy7WwkMOg8PVUee0yJhBV+rZo3mW19Puw=;
+ b=IzvOFnQqdr6dDZOkQlobrXnk7FUEkAUO2mCQg9kT+cXUf6AuurWmfUuPfb3Ok+Rg5x66S6Jcvbdqfd2ht3EyRIaP8XVIwqzTdTNMeBvUjilDyozMLemT0VWNhqS16iCRiRMLxfdhoP8DA6S2SDgrT94TrT7PQLqWjX0jFm5/D+Q3e75pFzmxGs+BPRsLJRy/z3OTEQsuGp2v8VnqB8CRkkpuUcKHvgURluH2O6fBSRlePVou6lyku97DrLA2S+rfUc/7ige0XicArQXg3HeXsNq1SPsYnFxTLVZj1thJ6ByS7xn7yZd+LNN+uRVxl57vMNFXhCdggGd2HiYQt5hETA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by DU0PR04MB9495.eurprd04.prod.outlook.com (2603:10a6:10:32f::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.19; Mon, 9 Feb
+ 2026 19:17:12 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Mon, 9 Feb 2026
+ 19:17:11 +0000
+Date: Mon, 9 Feb 2026 14:17:02 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Marek Vasut <marex@nabladev.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
-	Rocky Liao <quic_rjliao@quicinc.com>
-Cc: oe-kbuild-all@lists.linux.dev, quic_mohamull@quicinc.com,
-	quic_hbandi@quicinc.com, linux-bluetooth@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Vivek Sahu <vivek.sahu@oss.qualcomm.com>
-Subject: Re: [PATCH v2 2/2] Bluetooth: qca: add QCC2072 support
-Message-ID: <202602100332.6QKGVLHq-lkp@intel.com>
-References: <20260209070356.187301-2-vivek.sahu@oss.qualcomm.com>
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, kernel@dh-electronics.com,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: imx6ull-dhcor: Handle both 1DX and 1YN WiFi on
+ i.MX6ULL DHCOR
+Message-ID: <aYoyrqV2lSJetls5@lizhi-Precision-Tower-5810>
+References: <20260209170739.22379-1-marex@nabladev.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260209170739.22379-1-marex@nabladev.com>
+X-ClientProxiedBy: BY3PR03CA0025.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a::30) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260209070356.187301-2-vivek.sahu@oss.qualcomm.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DU0PR04MB9495:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3264c264-01f4-4772-9ddf-08de680fd381
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|19092799006|7416014|52116014|376014|1800799024|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?dj8h61gpSTfdr7pSPf9NF2cg7DNDUj4pUcKNduaiPpZtziVpe/Ay+LEWm4lU?=
+ =?us-ascii?Q?OW+igqFLgOzOGck0Y4lAkm3WKfCnf448E9PYjjGHfFxqbpLG497in5GhFc1C?=
+ =?us-ascii?Q?Tix2wY+VlBFvJ+k98v8ss5ZZS6/fKsZrRIshdnzzVAm7q8fq/cwJhEuCnZ1S?=
+ =?us-ascii?Q?YmIJr1jEedcjeaDJ+3ffL3SRqmGYJUeL4wL0kwWDgJSzzNuHADRt+Jd+uf1H?=
+ =?us-ascii?Q?BdByeN8YYn+6OvC4ZT/HfUom3odscGw85WMIsX4uo3D41bUBVM7CCA4SFB0D?=
+ =?us-ascii?Q?Jx6k+QLDGyeTNQGr88DODhPkgWBhIXeY7RwPQzmxyE7aEhRz8cyeER9Vaof8?=
+ =?us-ascii?Q?CWDmWUFlAeanzRdQpkKYR3IJWJdOsTWR0v51/vTx+UxqElpFC6K3F5dre4Mi?=
+ =?us-ascii?Q?Qcu1+M08mQQOTUavZ2qD4COzlQ7pW+hLUgsCEQmdJaL2vZmhbA8NjQhqVBs5?=
+ =?us-ascii?Q?t4hvCFwZVlDwwalUBQuOYjpG29GNCsqINbYvdQgXv7BnZsTJb/atn5HFoLsH?=
+ =?us-ascii?Q?32VU7CytBeP0tJpJVehQhW9U2ExjJrCLS3iOLYXYY3kOj6CHYMj65T9LyrmQ?=
+ =?us-ascii?Q?UIFkB7xHfhfL972HNny4Euaq1paFI09KZYozsM4LRlyp39wepBlGz51nxptB?=
+ =?us-ascii?Q?EYhxj+rhVmZkGXZ2VaH3fuBKUH5BiGYBJUP6irugS4lbdF5HOyAMFpdRAcjW?=
+ =?us-ascii?Q?H5qgzZQsBETEceOC/ipG4QCuhl06JC+0rOa7cZdTnU7kbCWgLBuhqdWL2BXO?=
+ =?us-ascii?Q?9/jfT4viy9+8cGLSuBLJDqZLQUBNm0F1t1OsVEE8bCwKhX2aFMz7LdO7Ekwh?=
+ =?us-ascii?Q?hoXtQU4U51QF1Ku+vDc6r1dW4GwsS7ctRX4+aQYZdUtdgFl4SAzN2sEQILbC?=
+ =?us-ascii?Q?Ad8Y/ZXdtYWS8cgz3qNs44KT4CpUNNtuGnpqs90rOWhxGdu3HBBwvIqxrCCQ?=
+ =?us-ascii?Q?UYu/C4luMDny1mdUQPIHYLldkdfbTshl5Gt/xVGizGPnAPevPwr4NquVxiIG?=
+ =?us-ascii?Q?ggFQxUHBiFtR1w/lyx2zkLJTVxdLfbKawCohzomFYgOjfsdQe8zwHwfh2BLi?=
+ =?us-ascii?Q?WJVIINQUUEx9nIWDu/21rDJSPov148ikrrbrzQL00HeIcbVPNOzbBQQJTRN6?=
+ =?us-ascii?Q?JKr5c4O19VEOHhuk5le0vM2H8MZCaH6C6RT+89rVT3ucAaumVTUkkjg3o+2c?=
+ =?us-ascii?Q?yuCv0hqsCqAy+RqMhVI+rFr5D1C+nkbkdME6m0iYPhI/e6DDW4n/NyDbS10X?=
+ =?us-ascii?Q?LkEEfuxgrVFNP4tolXmN3Q1/V0GTc1TW5TuqSTlAsx1bDB4QnHqdszM1/sha?=
+ =?us-ascii?Q?44HmGWNZYH6r4VLqbXDHZzUdDuq2V/8VXHDySr5S9ASqk2CwrJv+49qu0PP2?=
+ =?us-ascii?Q?T9NKCpiszttGDGMnNNh+mbROug0cjA1AzInwhfu/msW9xRZuosBjHV1xoMa4?=
+ =?us-ascii?Q?dSrLsOggKYfdbpWfZaUeilSqjOiYch1v8je8zQ8N3pvHPwvgA0bJAkCz+rdR?=
+ =?us-ascii?Q?JXL4tFUqrqXYxTClb5YKXc7fkNKq6EPvvKfdZJnJeS6WllUhzjDn6bJ49/Jw?=
+ =?us-ascii?Q?3rQuvNqKx9iRDIONnZi7HwW90ufwd06JKn3ysBToXJoIVMHzPLU2NV9wknsp?=
+ =?us-ascii?Q?jwyaJY+QgGJZOlQSDNu5NXc=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(7416014)(52116014)(376014)(1800799024)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?8MGIA4/YYPmAv8VLnKNy5n45HAHtuaq9d+VO8VWvsWafPc/sYUUFwjUfByxl?=
+ =?us-ascii?Q?3rXp0qq/1JwiOKkdnMTWtTWmz86E04t/SO2qqsXV/bUAp8/bwTiVd+MFmMb5?=
+ =?us-ascii?Q?6DO52BHFQ31MJAkTs0linkW5Qbx2UDDmaM4X+kUc7RQOXaMLSkzGgk5foLZ6?=
+ =?us-ascii?Q?8tb5eEPz/fhYZ1iqR6IlK4Qb9tnl6hUh71ErgnJJaivNr8rvtHuiXiS+PFd0?=
+ =?us-ascii?Q?Ws3BFXsMecm42uBrT3ZyS2s+7vbWwnCRxXoNU3T9K/yML7Z9pxLw/CCABDJ5?=
+ =?us-ascii?Q?5/s83TV56bNrjZKXcQHauazphQzx3sfP0Rn5SZzZx3G3n6PKOs9U5OyaHIvY?=
+ =?us-ascii?Q?8H+y/hAtoIAx2PfGWmevOkNyF3jIjSPSb1Pl9c1nHteWcpT/V/rkX6fbVDsy?=
+ =?us-ascii?Q?syyUNH5XUVYj0PQHi2/jGXD2GZv4DW/21Udwlp2dHtO8R8IvOUH1v19nQMm5?=
+ =?us-ascii?Q?SuEjxrtqCks0aC9ETlz1Jux1RuTGxs1A0s/tzwtXuw6fz0jNZo4Mogkdq2tt?=
+ =?us-ascii?Q?V+0Z0lG3aU1ydc+cW2P+HVEzcOEf1nFLAX/WhiwPRbRApiJe6/Qh7gbs+OA7?=
+ =?us-ascii?Q?G5X8ELnTG18+t87xIBbD0oHgg6KCmqt6OFn7scv1hw9lrabFn4Qgem57HDlq?=
+ =?us-ascii?Q?NyhR1GJzYXAhSPNuIN0znPzJwABOdxnADmfPaQpm3zv2tsRoXmsyYJDs+8wK?=
+ =?us-ascii?Q?y9VBglCd7SEC/u5Yjb67hsG0If22bB4DEczOwEPT6okFZ2ES/j+ypVbd48bO?=
+ =?us-ascii?Q?3Sc11vW6wLczR2uPwJBb4DQQL+xTG2vMmxiDRwYREdYqeDFiI4A5zehfp2vW?=
+ =?us-ascii?Q?A8vhPPpogl2e0ME2C6waOrFwDAvsejoOGiTxpZdVipXtKeW0dO0iDIMAFGLC?=
+ =?us-ascii?Q?GXKVF636UC0WCRQrYyRgcUFUf2q8IO4MOdrvC60Lx6deLyhRroxmDrfNABDw?=
+ =?us-ascii?Q?11rVMmsjdFr1yD9jCWl+LFtw/pJ3spXMLhrTXzBnuJBdXMfybdOqpE3PGl2C?=
+ =?us-ascii?Q?0lBWoXdm2Yr1YXr/LFaPUtWyVNxTZCG9lpkeumUeBBgqs4SB1WLhk4eP5u3N?=
+ =?us-ascii?Q?pKegr2K1jBEedFfu8ijOIqdqSehwkCh2q4iR42qhTpH0rInwOFL9EZvTyW5L?=
+ =?us-ascii?Q?k9DGr98VN4qAy5oyjso5Mh7ThfI2MpgojVYwekMcDZremnbYOjJAcIPYzqgS?=
+ =?us-ascii?Q?dUc7hRLahZaY23RJzDiU/GNILUyLifCvnZLjIs6fzkYBBt+Bx0mUCkVBEynn?=
+ =?us-ascii?Q?qiBNIWeCjDs2HgkaTBKnOTzfNZtGAmY+n/Non0hKzKKzjrHOZaF4LoI+jSK7?=
+ =?us-ascii?Q?i9uLazfEWhFycWm4LRz7jUNZ3BWkGl8WpadasXfgZsus2/IwQjvePD3MrE+f?=
+ =?us-ascii?Q?JLN0RHcgx26pYSdJQztXPeWASX1NCcClvopgokyFqVjtxA6fThhpi72/nclF?=
+ =?us-ascii?Q?/OPiUeysmtDVynZAjhhSMjBKZ99AQ/UV+dIDW32AjnBklamEf6o/sR50+Tf7?=
+ =?us-ascii?Q?Cy/cMYDfryPbYtrt4F5KPcobUrOaA+QsXq/Sg0Qr00CFBkFVwYZRVGt6eHK+?=
+ =?us-ascii?Q?acWw5FZCPF1Ui0pfwZ8jjdC8HGs2h+7DEVGCJEupZOecqB5bDHNDHrJaP8mC?=
+ =?us-ascii?Q?kgv46HyY3lOULNzxzPVZ3vufodSLfEWSeCGbyVuvno6vm4p3ooYVcZOuqDzf?=
+ =?us-ascii?Q?PtHoxE4vKD8yDMkCVDXb/Ic2ZtKyTa5Usg/CjDZf9ktwRQwt?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3264c264-01f4-4772-9ddf-08de680fd381
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2026 19:17:11.7972
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fLsH8zV4G23pxHagEq5EiTvcwcpX9OI9XJ4p5I3OysRjcdp6Zo3WgYLgBOmft6vqLt0EZivrav4GPfqbQ4SaqQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9495
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-264134-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264133-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,holtmann.org,gmail.com,kernel.org,quicinc.com];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.infradead.org,dh-electronics.com,kernel.org,gmail.com,pengutronix.de,vger.kernel.org,lists.linux.dev];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,git-scm.com:url]
-X-Rspamd-Queue-Id: CB022113FBC
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 377F711406A
 X-Rspamd-Action: no action
 
-Hi Vivek,
+On Mon, Feb 09, 2026 at 06:07:04PM +0100, Marek Vasut wrote:
+> The muRata 1DX WiFi/BT chip is mounted on the DHCOM i.MX6ULL. This chip
+> has been discontinued and replaced by the muRata 1YN chip. The new chip
+> is a drop-in replacement of the old chip. To support both chips for the
+> i.MX6ULL DHCOR, drop the more specific compatible string and let the
+> driver auto-detect the chip type. Currently, there are no known quirks
+> that would apply only to one or the other chip.
+>
+> Signed-off-by: Marek Vasut <marex@nabladev.com>
+> ---
+> Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: imx@lists.linux.dev
+> Cc: kernel@dh-electronics.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-kernel@vger.kernel.org
+> ---
+>  arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi
+> index 75486e1b0c15f..a0adcd3fe1229 100644
+> --- a/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi
+> +++ b/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi
+> @@ -201,7 +201,7 @@ &uart2 {
+>  	 * the speed can be increased accordingly.
+>  	 */
+>  	bluetooth: bluetooth {
+> -		compatible = "brcm,bcm43430a1-bt"; /* muRata 1DX */
+> +		compatible = "brcm,bcm4329-bt"; /* muRata 1DX or 1YN */
 
-kernel test robot noticed the following build warnings:
+in driver, brcm,bcm43430a1-bt and brcm,bcm4329-bt should be the same.
 
-[auto build test WARNING on bluetooth/master]
-[also build test WARNING on robh/for-next linus/master v6.19]
-[cannot apply to bluetooth-next/master next-20260205]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>  		max-speed = <3000000>;
+>  		vbat-supply = <&vcc_3v3>;
+>  		vddio-supply = <&vcc_3v3>;
+> @@ -222,7 +222,7 @@ &usdhc1 {
+>  	status = "okay";
+>
+>  	brcmf: wifi@1 {
+> -		compatible = "brcm,bcm43430a1-fmac", "brcm,bcm4329-fmac"; /* muRata 1DX */
+> +		compatible = "brcm,bcm4329-fmac"; /* muRata 1DX or 1YN */
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vivek-Sahu/Bluetooth-qca-add-QCC2072-support/20260209-150905
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth.git master
-patch link:    https://lore.kernel.org/r/20260209070356.187301-2-vivek.sahu%40oss.qualcomm.com
-patch subject: [PATCH v2 2/2] Bluetooth: qca: add QCC2072 support
-config: alpha-allmodconfig (https://download.01.org/0day-ci/archive/20260210/202602100332.6QKGVLHq-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260210/202602100332.6QKGVLHq-lkp@intel.com/reproduce)
+driver have not check "brcm,bcm43430a1-fmac".
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602100332.6QKGVLHq-lkp@intel.com/
+Look like driver can work for both CHIP without modify dts.
 
-All warnings (new ones prefixed by >>):
-
-   drivers/bluetooth/btqca.c: In function 'qca_uart_setup':
->> drivers/bluetooth/btqca.c:828:25: warning: this statement may fall through [-Wimplicit-fallthrough=]
-     828 |                         snprintf(config.fwname, sizeof(config.fwname),
-         |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     829 |                                  "qca/ornbtfw%02x.tlv", rom_ver);
-         |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/bluetooth/btqca.c:830:17: note: here
-     830 |                 case QCA_WCN3950:
-         |                 ^~~~
-
-
-vim +828 drivers/bluetooth/btqca.c
-
-   782	
-   783	int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
-   784			   enum qca_btsoc_type soc_type, struct qca_btsoc_version ver,
-   785			   const char *firmware_name, const char *rampatch_name)
-   786	{
-   787		struct qca_fw_config config = {};
-   788		const char *variant = "";
-   789		int err;
-   790		u8 rom_ver = 0;
-   791		u32 soc_ver;
-   792		u16 boardid = 0;
-   793	
-   794		bt_dev_dbg(hdev, "QCA setup on UART");
-   795	
-   796		soc_ver = get_soc_ver(ver.soc_id, ver.rom_ver);
-   797	
-   798		bt_dev_info(hdev, "QCA controller version 0x%08x", soc_ver);
-   799	
-   800		config.user_baud_rate = baudrate;
-   801	
-   802		/* Firmware files to download are based on ROM version.
-   803		 * ROM version is derived from last two bytes of soc_ver.
-   804		 */
-   805		if (soc_type == QCA_WCN3988)
-   806			rom_ver = ((soc_ver & 0x00000f00) >> 0x05) | (soc_ver & 0x0000000f);
-   807		else
-   808			rom_ver = ((soc_ver & 0x00000f00) >> 0x04) | (soc_ver & 0x0000000f);
-   809	
-   810		if (soc_type == QCA_WCN6750)
-   811			qca_send_patch_config_cmd(hdev);
-   812	
-   813		/* Download rampatch file */
-   814		config.type = TLV_TYPE_PATCH;
-   815		if (rampatch_name) {
-   816			snprintf(config.fwname, sizeof(config.fwname), "qca/%s", rampatch_name);
-   817		} else {
-   818			switch (soc_type) {
-   819			case QCA_QCA2066:
-   820				snprintf(config.fwname, sizeof(config.fwname),
-   821					 "qca/hpbtfw%02x.tlv", rom_ver);
-   822				break;
-   823			case QCA_QCA6390:
-   824				snprintf(config.fwname, sizeof(config.fwname),
-   825					 "qca/htbtfw%02x.tlv", rom_ver);
-   826				break;
-   827			case QCA_QCC2072:
- > 828				snprintf(config.fwname, sizeof(config.fwname),
-   829					 "qca/ornbtfw%02x.tlv", rom_ver);
-   830			case QCA_WCN3950:
-   831				snprintf(config.fwname, sizeof(config.fwname),
-   832					 "qca/cmbtfw%02x.tlv", rom_ver);
-   833				break;
-   834			case QCA_WCN3990:
-   835			case QCA_WCN3991:
-   836			case QCA_WCN3998:
-   837				snprintf(config.fwname, sizeof(config.fwname),
-   838					 "qca/crbtfw%02x.tlv", rom_ver);
-   839				break;
-   840			case QCA_WCN3988:
-   841				snprintf(config.fwname, sizeof(config.fwname),
-   842					 "qca/apbtfw%02x.tlv", rom_ver);
-   843				break;
-   844			case QCA_WCN6750:
-   845				/* Choose mbn file by default.If mbn file is not found
-   846				 * then choose tlv file
-   847				 */
-   848				config.type = ELF_TYPE_PATCH;
-   849				snprintf(config.fwname, sizeof(config.fwname),
-   850					 "qca/msbtfw%02x.mbn", rom_ver);
-   851				break;
-   852			case QCA_WCN6855:
-   853				snprintf(config.fwname, sizeof(config.fwname),
-   854					 "qca/hpbtfw%02x.tlv", rom_ver);
-   855				break;
-   856			case QCA_WCN7850:
-   857				snprintf(config.fwname, sizeof(config.fwname),
-   858					 "qca/hmtbtfw%02x.tlv", rom_ver);
-   859				break;
-   860			default:
-   861				snprintf(config.fwname, sizeof(config.fwname),
-   862					 "qca/rampatch_%08x.bin", soc_ver);
-   863			}
-   864		}
-   865	
-   866		err = qca_download_firmware(hdev, &config, soc_type, rom_ver);
-   867		if (err < 0) {
-   868			bt_dev_err(hdev, "QCA Failed to download patch (%d)", err);
-   869			return err;
-   870		}
-   871	
-   872		/* Give the controller some time to get ready to receive the NVM */
-   873		msleep(10);
-   874	
-   875		if (soc_type == QCA_QCA2066 || soc_type == QCA_WCN7850)
-   876			qca_read_fw_board_id(hdev, &boardid);
-   877	
-   878		/* Download NVM configuration */
-   879		config.type = TLV_TYPE_NVM;
-   880		if (firmware_name) {
-   881			/* The firmware name has an extension, use it directly */
-   882			if (qca_filename_has_extension(firmware_name)) {
-   883				snprintf(config.fwname, sizeof(config.fwname), "qca/%s", firmware_name);
-   884			} else {
-   885				qca_read_fw_board_id(hdev, &boardid);
-   886				qca_get_nvm_name_by_board(config.fwname, sizeof(config.fwname),
-   887					 firmware_name, soc_type, ver, 0, boardid);
-   888			}
-   889		} else {
-   890			switch (soc_type) {
-   891			case QCA_QCA2066:
-   892				qca_get_nvm_name_by_board(config.fwname,
-   893					sizeof(config.fwname), "hpnv", soc_type, ver,
-   894					rom_ver, boardid);
-   895				break;
-   896			case QCA_QCA6390:
-   897				snprintf(config.fwname, sizeof(config.fwname),
-   898					 "qca/htnv%02x.bin", rom_ver);
-   899				break;
-   900			case QCA_QCC2072:
-   901				snprintf(config.fwname, sizeof(config.fwname),
-   902					 "qca/ornnv%02x.bin", rom_ver);
-   903				break;
-   904			case QCA_WCN3950:
-   905				if (le32_to_cpu(ver.soc_id) == QCA_WCN3950_SOC_ID_T)
-   906					variant = "t";
-   907				else if (le32_to_cpu(ver.soc_id) == QCA_WCN3950_SOC_ID_S)
-   908					variant = "s";
-   909	
-   910				snprintf(config.fwname, sizeof(config.fwname),
-   911					 "qca/cmnv%02x%s.bin", rom_ver, variant);
-   912				break;
-   913			case QCA_WCN3990:
-   914			case QCA_WCN3991:
-   915			case QCA_WCN3998:
-   916				if (le32_to_cpu(ver.soc_id) == QCA_WCN3991_SOC_ID)
-   917					variant = "u";
-   918	
-   919				snprintf(config.fwname, sizeof(config.fwname),
-   920					 "qca/crnv%02x%s.bin", rom_ver, variant);
-   921				break;
-   922			case QCA_WCN3988:
-   923				snprintf(config.fwname, sizeof(config.fwname),
-   924					 "qca/apnv%02x.bin", rom_ver);
-   925				break;
-   926			case QCA_WCN6750:
-   927				snprintf(config.fwname, sizeof(config.fwname),
-   928					 "qca/msnv%02x.bin", rom_ver);
-   929				break;
-   930			case QCA_WCN6855:
-   931				qca_read_fw_board_id(hdev, &boardid);
-   932				qca_get_nvm_name_by_board(config.fwname, sizeof(config.fwname),
-   933							  "hpnv", soc_type, ver, rom_ver, boardid);
-   934				break;
-   935			case QCA_WCN7850:
-   936				qca_get_nvm_name_by_board(config.fwname, sizeof(config.fwname),
-   937					 "hmtnv", soc_type, ver, rom_ver, boardid);
-   938				break;
-   939			default:
-   940				snprintf(config.fwname, sizeof(config.fwname),
-   941					 "qca/nvm_%08x.bin", soc_ver);
-   942			}
-   943		}
-   944	
-   945		err = qca_download_firmware(hdev, &config, soc_type, rom_ver);
-   946		if (err < 0) {
-   947			bt_dev_err(hdev, "QCA Failed to download NVM (%d)", err);
-   948			return err;
-   949		}
-   950	
-   951		switch (soc_type) {
-   952		case QCA_WCN3991:
-   953		case QCA_QCA2066:
-   954		case QCA_QCA6390:
-   955		case QCA_WCN6750:
-   956		case QCA_WCN6855:
-   957		case QCA_WCN7850:
-   958			err = qca_disable_soc_logging(hdev);
-   959			if (err < 0)
-   960				return err;
-   961			break;
-   962		default:
-   963			break;
-   964		}
-   965	
-   966		/* WCN399x and WCN6750 supports the Microsoft vendor extension with 0xFD70 as the
-   967		 * VsMsftOpCode.
-   968		 */
-   969		switch (soc_type) {
-   970		case QCA_WCN3950:
-   971		case QCA_WCN3988:
-   972		case QCA_WCN3990:
-   973		case QCA_WCN3991:
-   974		case QCA_WCN3998:
-   975		case QCA_WCN6750:
-   976			hci_set_msft_opcode(hdev, 0xFD70);
-   977			break;
-   978		default:
-   979			break;
-   980		}
-   981	
-   982		/* Perform HCI reset */
-   983		err = qca_send_reset(hdev);
-   984		if (err < 0) {
-   985			bt_dev_err(hdev, "QCA Failed to run HCI_RESET (%d)", err);
-   986			return err;
-   987		}
-   988	
-   989		switch (soc_type) {
-   990		case QCA_WCN3991:
-   991		case QCA_WCN6750:
-   992		case QCA_WCN6855:
-   993		case QCA_WCN7850:
-   994			/* get fw build info */
-   995			err = qca_read_fw_build_info(hdev);
-   996			if (err < 0)
-   997				return err;
-   998			break;
-   999		default:
-  1000			break;
-  1001		}
-  1002	
-  1003		err = qca_check_bdaddr(hdev, &config);
-  1004		if (err)
-  1005			return err;
-  1006	
-  1007		bt_dev_info(hdev, "QCA setup on UART is completed");
-  1008	
-  1009		return 0;
-  1010	}
-  1011	EXPORT_SYMBOL_GPL(qca_uart_setup);
-  1012	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Frank
+>  		reg = <1>;
+>  	};
+>  };
+> --
+> 2.51.0
+>
 
