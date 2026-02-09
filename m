@@ -1,1130 +1,204 @@
-Return-Path: <devicetree+bounces-264024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264025-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CBmOHi7uiWnDEQAAu9opvQ
-	(envelope-from <devicetree+bounces-264024-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 15:24:46 +0100
+	id QFKsFjvuiWn4EQAAu9opvQ
+	(envelope-from <devicetree+bounces-264025-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 15:24:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D576C11033F
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 15:24:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C41AB11034E
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 15:24:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C01583010532
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 14:24:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 31BAF30185AC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 14:24:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52BF337AA91;
-	Mon,  9 Feb 2026 14:24:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ADFD37AA9D;
+	Mon,  9 Feb 2026 14:24:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ji/ruMaM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bSt0fA11";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZgT4Byll"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00CDD37997D
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 14:24:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09A2D37AA8A
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 14:24:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770647041; cv=none; b=bt4VuVIJrp7LmWg+E2bXxOrKfAJXoz0LuzJzoM4jPcm9iLEQh6ZZ0YHaV3TPFcVE7z+DVPNPP86EwT0218n2djnCJPTDTfPokdR/jnZ8XKLnAOmDC3em2UIfNEwo+TNDYmj2fG/o5JYgxNaNmPUlvEbCUjlY7QrETN8XI5O8o6M=
+	t=1770647096; cv=none; b=YbYtTx0bmSx/kECKjiB4bNhDZpeIl46HRZJYLeUY1HOrL+3ytVL9RxsRawoV2xpld4gUz7YS0gwpoQk04z4kg3tk/6jULdgM1zlPJWc4n9NEYl58sI7Bz9GQkBPye2o/QFBAs/coKPFiQMMlLpAKguePgKqw0/V0r8r9WciYbpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770647041; c=relaxed/simple;
-	bh=OsyREM0IV+qSYUyN1YqdjI5DwBELKrM+6tIWZ17m6xU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=A3zH0LVh8SIZRGbXAS/C9GgrB/+FSBFcPks/oGvGeijDFW6eyBnOOFODqJPuEEYKZXz/KwVSLai3RL+Ru0JFXUI8aTFRbj4Zx4SvPTXcaBROpmLnpahd0LNNOAdBBS7svidXsCSKuuYzWVNbs+5gSsV6y+9YaGjfoZ1DR//V15U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ji/ruMaM; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-790b7b3e594so48331897b3.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 06:24:00 -0800 (PST)
+	s=arc-20240116; t=1770647096; c=relaxed/simple;
+	bh=aSeuZvg9YWqekhKFo6ft9TwwRmbebmq5nYdvyjxxwV8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XI3Eb+fOn0wyeti4j6OK+gkTL9LfxMb+1HMYIfWVC2TUJdasnUiefLS5BOj+bTIMG+vrBO1Gd97PaPnYVzHsiGrsyRqIauo26d9n2KB2XnWow8THtJV6VDBJom67qILvEKQ6e0zt2OS0/1tZOA61wCT4Z+CjqfGNtcXOwT6u7io=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bSt0fA11; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZgT4Byll; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 619B9D0n3251831
+	for <devicetree@vger.kernel.org>; Mon, 9 Feb 2026 14:24:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=jZDoWCD5ogpVapP8awsgfluVPPIgcNUhPJZ
+	WtTC6528=; b=bSt0fA11UqBntolY6wxzZzgxmLjORaYWVvOnq2hr7i5NqVS+msc
+	yUTMj1ZAshw95Ciq/6G29zdII0tzFwJcPVKv5skC5EqBbTQjNf5jSawOglfx/vR6
+	HiQ3xXDvPgfYqtxosDOJ3k3lSTHJ45VLhCcdIHNPpwOPsLOwDkzmhiWZ1QveBbZL
+	upM+m0jciwCrHFOAXTS3FHLEdO0HEm/C4qMH0+v5HheDd2mlX2rDhfNAqM3dWENL
+	3Syd1Hs4KfT26LKfa/3VieZFRujc6vUjpeXUEsg4MlTIBk8ePYjjgDcCLlV8FAEG
+	NhJegM3qlvdYcDKvKPwNI1A54E96D9K50tw==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c79f69sfu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 14:24:55 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c711251ac5so1264805985a.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 06:24:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770647040; x=1771251840; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5wBgvUlwBUB6vkvtfXcKzCy8Dov2bTNiJHxepGKqHWc=;
-        b=Ji/ruMaMHDTb4gdPuvt94nMhNYEgU3SgIh+EKaubQBMtHVRN0aC3Ca8uw0QslSI/WN
-         wupUWl/xrGJ00pxCdJYb/PMlgsn1izIA8eJalSq0/aEtA+5cfpEx8rs5lZP6napVcXTB
-         CwmsTYs/8VfjbQVmexV9JhFDZf+1uj8IB4sWurR+C1PdGv6MYXiAqeZificWnw4U9kw8
-         bHAPzhzzj8DMCyGPpC3NjYbNgBUA/hHpGrH+vzFQLSHbcDZQBEc2Q/O+8o8rf4BC4KHE
-         8ZTX/gpk1sRXZ3lyADqvD4tUCttSRzChWsQCIdQ31rRfWq0FrpxJZYYhZVtFiMC9e/s3
-         JgVg==
+        d=oss.qualcomm.com; s=google; t=1770647094; x=1771251894; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jZDoWCD5ogpVapP8awsgfluVPPIgcNUhPJZWtTC6528=;
+        b=ZgT4Byllvy71njnwE48WHQ7tSFA7XNmb3HtxHUmBCUt6cU0Otq1HZY1pLDnqIdPIae
+         7hlsJuicfEPLebqMbceo5PXE8yrekKCJo2xYTLdRwawxKQV09JEbH+wDzLzsx/t+JypK
+         FdhDWYym1BaFgwAeckK3bRR5gMICaCGMiisSxumCWFYMEpL0mw7A3W+0mXLITumuMNvC
+         EU2qPvT7UGyEdxOOQTvKzyzTVlUR16rGLYKLbOLuDUcE0Ezex9hMfC1EpcuIhyFBqsoC
+         5OP8dCjx2mSX1yVCPGT/1bLVTX/mm5tyjf1J/4SgtpbvX2O6QQSfz1jwAEStb2VIFk4i
+         Dtvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770647040; x=1771251840;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5wBgvUlwBUB6vkvtfXcKzCy8Dov2bTNiJHxepGKqHWc=;
-        b=Dz/nApZkfkG5Fzkr6SdZehTj5YV3VgU19n6lA4diAbKxgMF/j9zF06vQcZSIdfuHRg
-         sPhIkny/0/ncWWBKaTXCx3UWbWAVjKCkp0f9oEF4TbDe8/UE6T1BmPvcE8QFgCVnSe9O
-         uJjXVS75VuKUFHaKcUEUj/A3bjs7f0DBbWPvLMlu/RApMJdW0Mn77XsCINyPMuNrotXo
-         6EUGnrmsbjQXLgc+K9U0hqe2nAGrKgM0eSMxiY6c8jM5t107WTmlfmixIS7Po9grIj3h
-         +VN2b8Znz1YqLZJc9/+abCJRrmdJYKehz532my5sZPr0b4r9/7D1O9KquRC9uwC9Bmug
-         Q4yA==
-X-Forwarded-Encrypted: i=1; AJvYcCVs4Ep/HFPpmrRzPHRNELx66XjWI2mclmL9pXvnRzoQbRNadLCAyXvu0JBflcKgGP938A6MqrFnN0Ap@vger.kernel.org
-X-Gm-Message-State: AOJu0YxElDJS09UkbfS8laErfddD7ADqJbf/wjjKJVOwuBVCWdxHFJ4c
-	YVYpn1fmaMhrv4Kjw9FVB+jLKOpHhQSjVr/dPbcPJ2mo0MqXAxMGGc9F
-X-Gm-Gg: AZuq6aJYcrB9x5kRQ2e+t+oEwK/4TT2bap7ehOeHdYXS1lrU0ko4iJv5VaVHaNK06YU
-	jm8fU9TwJIoiLAykKc7vJ7eiH/TrYHmhKIZChcQQTVqsh5Uha854alhGzky9LZPmDWHmC8W0sIT
-	jLIe9Ww9DCVXvJRne7G3swfJ+mg2QsrGrsdtY9iGqV8t7Rl8b1q8mqW9Uvwjl7TQVs93UzK8rKL
-	+3JO4Mvxc8r009Y+/TDWlTeZF7YN7Pk2UHIVMF2GxHcYSw+icyhllLpZXmJFjRJP/+GBKgAo614
-	uDOnw0xJlRUMhxJ77si3JqQmUnC8j9A1Tv1wbKVgKpMW0cJYgHpQxWN6QkCmENzut7tjwgeVYlM
-	fh1hEMq/JIBPkZX474gma8NE/wGqzR0NJozIFE8Qb5eB4uLpnaLAQ79bMMcggtvN+ClHXzJ3dB1
-	RXUiSlOjqviIu9hQ==
-X-Received: by 2002:a05:690c:c85:b0:794:ef94:122e with SMTP id 00721157ae682-7952aa92b37mr125181757b3.25.1770647039900;
-        Mon, 09 Feb 2026 06:23:59 -0800 (PST)
-Received: from [192.168.0.40] ([79.133.247.80])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-7952a0467easm92497947b3.13.2026.02.09.06.23.56
+        d=1e100.net; s=20230601; t=1770647094; x=1771251894;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jZDoWCD5ogpVapP8awsgfluVPPIgcNUhPJZWtTC6528=;
+        b=u+gJJ6oiRwmDxKMXBTOBRgf5RCgV8BvAsi2zAX7pKIHskZu60UmOtsXJeSci6aPt/3
+         i3NAJuopHdPSAMAJ2U0Vzil81yLlKyvA/TO4ng4d1d4TAcjTCS9GpV2oIpfAlnzPLYAa
+         AAX0SZt8oFWHfDI5Ofii23UqUkQbWmVvpyPnuI2aNYfFD3AGrrI1bc1qhx6s97WTGIIJ
+         tjp4YXFKKxfu7d5bbZGlnzS4mT93+xmcvFf+45lVem5+/WkzI312rLy6/zWuDiuLxxbs
+         spry7Y+X8D33l12AaSWIstkd63U8sqVJoqqGx508N2PzcdPdzaBO+kKurfT+6ZLLvyU1
+         ugRw==
+X-Forwarded-Encrypted: i=1; AJvYcCVWQ+9/WYwObJETmU8rrZafU7Ybgai2SCdKoIAwjEmF2rINyxoZ1lpj/Yby2z/+WSEu5/pjz5esN7qx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyO1bjUT3x8c0oogQZ2LHNWHP1CW84U3IQKZ/nY2TQW6V6JYhbz
+	krXSIiZclNcy9HoNvjWVX7WC3Rd8blgeU6zK5Aq64IZi+MR+hP5FeipAWakEcLptrDIHq3g/1UE
+	B5/TQFiEryeji0ud6Vb/y7M5+/7ugWbBSSglvJ80TNcd41Uhl5HW6Ud46N1EWPXs2dNVnrcPG
+X-Gm-Gg: AZuq6aIvM0dGGYSNzd3jUg9VzUvUYs+Hdl6RRnq7WXAPKEYrLq3+OtuAKefXaWOZkKS
+	KXM16h9H2uC/vapKjyCjEnRX7XElC2BzWjQZVaxCgEtQySHlQFC5qunePIjs+BOk7cslO4hQOsG
+	7ePf5oJVtKd+kR+DQgqAwA9e7lQKGZYLpgXcHwFoS6yE9ZoY7tHqyxoaSuBHkzPAM4GHt6o2887
+	HAKxIWTTluKuzzTHVXwHdY07+Ra6avHcQGSXqnlYEg6Q2FdNPupkRGGDTl/eBjBJRpSj0RMkZwX
+	1iawl/hrVJ0Tb4aPeIqOt7P6v1sN24rUzMppG+eoWW2bR2+o6pMhk3I0zWCYVI0YMKOqI9+Rqh+
+	L4/2j5pqTghAvq9Pln+k+G9+k214FXR9cRcPFjbTHPAs=
+X-Received: by 2002:a05:620a:1790:b0:8c7:b0d:df23 with SMTP id af79cd13be357-8caf1db65a1mr1568473385a.79.1770647093993;
+        Mon, 09 Feb 2026 06:24:53 -0800 (PST)
+X-Received: by 2002:a05:620a:1790:b0:8c7:b0d:df23 with SMTP id af79cd13be357-8caf1db65a1mr1568468185a.79.1770647093535;
+        Mon, 09 Feb 2026 06:24:53 -0800 (PST)
+Received: from localhost.localdomain ([5.133.47.210])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4362972fc1bsm28296634f8f.28.2026.02.09.06.24.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Feb 2026 06:23:59 -0800 (PST)
-From: Erikas Bitovtas <xerikasxx@gmail.com>
-Date: Mon, 09 Feb 2026 16:23:42 +0200
-Subject: [PATCH v2 2/2] iio: light: Add support for Capella cm36686 and
- cm36672p sensors
+        Mon, 09 Feb 2026 06:24:53 -0800 (PST)
+From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+To: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org, sboyd@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alexey.klimov@linaro.org,
+        r.mereu@arduino.cc,
+        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Subject: [PATCH 0/4] arm64: dts: arduino-imola: add support for sound
+Date: Mon,  9 Feb 2026 14:24:24 +0000
+Message-ID: <20260209142428.214428-1-srinivas.kandagatla@oss.qualcomm.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260209-cm36686-v2-2-a48126d2b124@gmail.com>
-References: <20260209-cm36686-v2-0-a48126d2b124@gmail.com>
-In-Reply-To: <20260209-cm36686-v2-0-a48126d2b124@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Tsai <ktsai@capellamicro.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- phone-devel@vger.kernel.org, Erikas Bitovtas <xerikasxx@gmail.com>
-X-Mailer: b4 0.14.3
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: AR406F0Rp61ZwwL6yBuRLOerOdgDXYuL
+X-Proofpoint-ORIG-GUID: AR406F0Rp61ZwwL6yBuRLOerOdgDXYuL
+X-Authority-Analysis: v=2.4 cv=W581lBWk c=1 sm=1 tr=0 ts=6989ee37 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
+ a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=qC_FGOx9AAAA:8
+ a=Z4lo2LbhZw9Xzx777ooA:9 a=bTQJ7kPSJx9SKPbeHEYW:22 a=fsdK_YakeE02zTmptMdW:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDExOSBTYWx0ZWRfXwkNLbG9F4w91
+ fPT2Q9vK7kSzZJ4Xegw8bxY6SRxyh/NhfN/PGQ6cDm1NRuXdCanmyv1dfUYCWg6Yp+VnAthvPW9
+ RXxJnkIjm/vDuXT/TxSK5qTUA8Pi5A7mjSCagARQ6v9YUyiuGC8+YDYlu6khlySOa8dK99dnB6/
+ tfI1eQJQ1TpNwCOegdneCMgTB2SgFXUHNu4bIb1pC+iJXRADw1vuSv+weo27FiH3aHEiIKWWZ9O
+ V1hBMBKAT0WFLRsjGp0H+GNPdVRp5N3JHGTAXwho+n6qS84LOU0+gdT2P+Tjhz8Ber/B2dLlFSo
+ nyGl+sSLtUAJzxYsFFsfG5MRdZmPckpmktFb+4QOmBB9qmJDasqQG73jesV0syxoOOqdfQIlQNE
+ u8Nw0S59NjEpwBvbPlFxRwDZinKz2uYzLkPYkCpZrRmCD4JorR0B+lDFMG5sEw8eXWIoZOeTLgK
+ PLHWUJUW5V5zOnDRcXg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-08_05,2026-02-09_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 spamscore=0 bulkscore=0 lowpriorityscore=0 phishscore=0
+ impostorscore=0 adultscore=0 malwarescore=0 clxscore=1015 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602090119
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264024-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264025-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[srinivas.kandagatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:dkim];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D576C11033F
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: C41AB11034E
 X-Rspamd-Action: no action
 
-This driver adds the initial support for the Capella cm36686
-ambient light and proximity sensor and cm36672p proximity sensor.
+This patchset adds support for audio on Arduino-Imola platform which is
+based on Agatti SoC. As part of series a some of the patches worked by
+Alexey are reworked and sent as per previous comments, mainly on the
+dt-bindings part.
 
-Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
----
- drivers/iio/light/Kconfig   |  11 +
- drivers/iio/light/Makefile  |   1 +
- drivers/iio/light/cm36686.c | 940 ++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 952 insertions(+)
+Other base soc level dtsi change is picked up from 
+https://git.codelinaro.org/alexey.klimov/linux_next_tracking/-/commits/rb1_audio_wip_v3?ref_type=HEADS
 
-diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
-index ac1408d374c9..b1d1943dec33 100644
---- a/drivers/iio/light/Kconfig
-+++ b/drivers/iio/light/Kconfig
-@@ -220,6 +220,17 @@ config CM36651
- 	  To compile this driver as a module, choose M here:
- 	  the module will be called cm36651.
+Along with these changes, add sound nodes for the Imola alongi with
+defconfig changes.
+
+It made more sense to carry the previously sent v5 version of dt-bindings
+patch into this series as the dts changes have dependency on this
+binding change. If this is not okay, am happy to send the dt-bindings patch
+seperately.
+
+thanks,
+Srini
  
-+config CM36686
-+	depends on I2C
-+	tristate "CM36686 driver"
-+	help
-+	  Say Y here if you use cm36686.
-+	  This option enables ambient light & proximity sensor using
-+	  Capella cm36686 device driver.
-+
-+	  To compile this driver as a module, choose M here:
-+	  the module will be called cm36686.
-+
- config IIO_CROS_EC_LIGHT_PROX
- 	tristate "ChromeOS EC Light and Proximity Sensors"
- 	depends on IIO_CROS_EC_SENSORS_CORE
-diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
-index c0048e0d5ca8..806df80f6454 100644
---- a/drivers/iio/light/Makefile
-+++ b/drivers/iio/light/Makefile
-@@ -23,6 +23,7 @@ obj-$(CONFIG_CM3232)		+= cm3232.o
- obj-$(CONFIG_CM3323)		+= cm3323.o
- obj-$(CONFIG_CM3605)		+= cm3605.o
- obj-$(CONFIG_CM36651)		+= cm36651.o
-+obj-$(CONFIG_CM36686)		+= cm36686.o
- obj-$(CONFIG_IIO_CROS_EC_LIGHT_PROX) += cros_ec_light_prox.o
- obj-$(CONFIG_GP2AP002)		+= gp2ap002.o
- obj-$(CONFIG_GP2AP020A00F)	+= gp2ap020a00f.o
-diff --git a/drivers/iio/light/cm36686.c b/drivers/iio/light/cm36686.c
-new file mode 100644
-index 000000000000..aa1958cb0d7d
---- /dev/null
-+++ b/drivers/iio/light/cm36686.c
-@@ -0,0 +1,940 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/**
-+ * Copyright (C) 2026 Erikas Bitovtas <xerikasxx@gmail.com>
-+ *
-+ * Based on downstream driver created by Capella Microsystems and modified
-+ * by ASUS in drivers/misc/input/cm36283.c found in android_kernel_asus_msm8916
-+ * Based on downstream IIO driver created by Qian Wenfa of Xiaomi
-+ * in android_kernel_xiaomi_msm8992 in drivers/iio/light/cm36686.c
-+ * Based on previous mailing list submission for cm36672p by Kevin Tsai:
-+ * https://lore.kernel.org/linux-iio/1465462845-1571-1-git-send-email-capellamicro@gmail.com/
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/bitfield.h>
-+#include <linux/cleanup.h>
-+#include <linux/dev_printk.h>
-+#include <linux/device/devres.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/sysfs.h>
-+
-+#include <linux/iio/events.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/sysfs.h>
-+#include <linux/iio/types.h>
-+
-+/* Device registers */
-+#define CM36686_REG_ALS_CONF		0x00
-+#define CM36686_REG_PS_CONF1		0x03
-+#define CM36686_REG_PS_CONF3		0x04
-+#define CM36686_REG_PS_THDL		0x06
-+#define CM36686_REG_PS_THDH		0x07
-+#define CM36686_REG_PS_DATA		0x08
-+#define CM36686_REG_ALS_DATA		0x09
-+#define CM36686_REG_INT_FLAG		0x0B
-+#define CM36686_REG_ID_FLAG		0x0C
-+#define CM36686_MAX_REG		0x0D
-+
-+/* ALS_CONF */
-+#define CM36686_ALS_IT			GENMASK(7, 6)
-+#define CM36686_ALS_GAIN		GENMASK(3, 2)
-+#define CM36686_ALS_INT_EN		BIT(1)
-+#define CM36686_ALS_SD			BIT(0)
-+
-+/* PS_CONF1 */
-+#define CM36686_PS_DR			GENMASK(7, 6)
-+#define CM36686_PS_PERS		GENMASK(5, 4)
-+#define CM36686_PS_IT			GENMASK(3, 1)
-+#define CM36686_PS_SD			BIT(0)
-+
-+#define CM36686_PS_INT_OUT		BIT(9)
-+#define CM36686_PS_INT_IN		BIT(8)
-+
-+/* PS_CONF3 */
-+#define CM36686_PS_SMART_PERS_ENABLE	BIT(4)
-+
-+#define CM36686_LED_I			GENMASK(10, 8)
-+
-+/* INT_FLAG */
-+#define CM36686_INT_FLAG_PS_IF_MASK	GENMASK(9, 8)
-+
-+/* Default values */
-+#define CM36686_ALS_ENABLE		0x00
-+#define CM36686_PS_PERS_2		1
-+#define CM36686_LED_I_50		0
-+
-+/* Max proximity thresholds */
-+#define CM36686_MAX_PS_VALUE		(BIT(12) - 1)
-+
-+#define CM36686_DEVICE_ID		0x86
-+
-+static const struct reg_field reg_field_als_it =
-+				REG_FIELD(CM36686_REG_ALS_CONF, 6, 7);
-+static const struct reg_field reg_field_ps_it =
-+				REG_FIELD(CM36686_REG_PS_CONF1, 1, 3);
-+static const struct reg_field reg_field_ps_int_in =
-+				REG_FIELD(CM36686_REG_PS_CONF1, 8, 8);
-+static const struct reg_field reg_field_ps_int_out =
-+				REG_FIELD(CM36686_REG_PS_CONF1, 9, 9);
-+
-+enum cm36686_distance {
-+	CM36686_AWAY = 1,
-+	CM36686_CLOSE,
-+	CM36686_BOTH,
-+};
-+
-+static const int cm36686_als_it_times[][2] = {
-+	{ 0, 80000 },
-+	{ 0, 160000 },
-+	{ 0, 320000 },
-+	{ 0, 640000 },
-+};
-+
-+static const int cm36686_ps_it_times[][2] = {
-+	{ 0, 80 },
-+	{ 0, 120 },
-+	{ 0, 160 },
-+	{ 0, 200 },
-+	{ 0, 240 },
-+	{ 0, 280 },
-+	{ 0, 320 },
-+	{ 0, 640 },
-+};
-+
-+static const int cm36686_ps_led_current_uA[] = {
-+	50000,
-+	75000,
-+	100000,
-+	120000,
-+	140000,
-+	160000,
-+	180000,
-+	200000
-+};
-+
-+struct cm36686_data {
-+	/* Mutex lock to prevent simultaneous reads/writes into registers */
-+	struct mutex lock;
-+	struct i2c_client *client;
-+	struct regmap *regmap;
-+	struct regmap_field *reg_als_it;
-+	struct regmap_field *reg_ps_it;
-+	struct regmap_field *reg_ps_int_in;
-+	struct regmap_field *reg_ps_int_out;
-+	int glass_factor;
-+};
-+
-+struct cm366xx_chip_info {
-+	const char *name;
-+	const struct iio_info *indio_info;
-+	const struct iio_info *indio_info_no_irq;
-+	const struct iio_chan_spec *channels;
-+	const int num_channels;
-+	const struct iio_chan_spec *channels_no_events;
-+	const int num_channels_no_events;
-+};
-+
-+static int cm36686_current_to_index(int led_current)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(cm36686_ps_led_current_uA); i++)
-+		if (led_current <= cm36686_ps_led_current_uA[i])
-+			return i;
-+
-+	return -EINVAL;
-+}
-+
-+static ssize_t cm36686_read_near_level(struct iio_dev *indio_dev,
-+				       uintptr_t priv,
-+				       const struct iio_chan_spec *chan,
-+				       char *buf)
-+{
-+	struct cm36686_data *chip = iio_priv(indio_dev);
-+	struct regmap *regmap = chip->regmap;
-+	struct device *dev = &chip->client->dev;
-+
-+	int ps_close;
-+	int ret = regmap_read(regmap, CM36686_REG_PS_THDH, &ps_close);
-+
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to read proximity near level");
-+		return ret;
-+	}
-+
-+	return sysfs_emit(buf, "%u\n", ps_close);
-+}
-+
-+static const struct iio_chan_spec_ext_info cm36686_ext_info[] = {
-+	{
-+		.name = "nearlevel",
-+		.shared = IIO_SEPARATE,
-+		.read = cm36686_read_near_level,
-+	},
-+	{ }
-+};
-+
-+static const struct iio_event_spec cm36686_proximity_event_spec[] = {
-+	{
-+		.type = IIO_EV_TYPE_THRESH,
-+		.dir = IIO_EV_DIR_FALLING,
-+		.mask_separate = BIT(IIO_EV_INFO_VALUE) |
-+				 BIT(IIO_EV_INFO_ENABLE),
-+	},
-+	{
-+		.type = IIO_EV_TYPE_THRESH,
-+		.dir = IIO_EV_DIR_RISING,
-+		.mask_separate = BIT(IIO_EV_INFO_VALUE) |
-+				 BIT(IIO_EV_INFO_ENABLE),
-+	},
-+};
-+
-+static const struct iio_chan_spec cm36686_channels[] = {
-+	{
-+		.type = IIO_LIGHT,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_INT_TIME) |
-+				      BIT(IIO_CHAN_INFO_SCALE),
-+		.info_mask_separate_available = BIT(IIO_CHAN_INFO_INT_TIME),
-+		.address = CM36686_REG_ALS_DATA,
-+	},
-+	{
-+		.type = IIO_PROXIMITY,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_INT_TIME),
-+		.info_mask_separate_available = BIT(IIO_CHAN_INFO_INT_TIME),
-+		.address = CM36686_REG_PS_DATA,
-+		.event_spec = cm36686_proximity_event_spec,
-+		.num_event_specs = ARRAY_SIZE(cm36686_proximity_event_spec),
-+		.ext_info = cm36686_ext_info,
-+	},
-+};
-+
-+static const struct iio_chan_spec cm36686_channels_no_events[] = {
-+	{
-+		.type = IIO_LIGHT,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_INT_TIME) |
-+				      BIT(IIO_CHAN_INFO_SCALE),
-+		.info_mask_separate_available = BIT(IIO_CHAN_INFO_INT_TIME),
-+		.address = CM36686_REG_ALS_DATA,
-+	},
-+	{
-+		.type = IIO_PROXIMITY,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_INT_TIME),
-+		.info_mask_separate_available = BIT(IIO_CHAN_INFO_INT_TIME),
-+		.address = CM36686_REG_PS_DATA,
-+		.ext_info = cm36686_ext_info,
-+	},
-+};
-+
-+static const struct iio_chan_spec cm36672p_channels[] = {
-+	{
-+		.type = IIO_PROXIMITY,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_INT_TIME),
-+		.info_mask_separate_available = BIT(IIO_CHAN_INFO_INT_TIME),
-+		.address = CM36686_REG_PS_DATA,
-+		.event_spec = cm36686_proximity_event_spec,
-+		.num_event_specs = ARRAY_SIZE(cm36686_proximity_event_spec),
-+		.ext_info = cm36686_ext_info,
-+	},
-+};
-+
-+static const struct iio_chan_spec cm36672p_channels_no_events[] = {
-+	{
-+		.type = IIO_PROXIMITY,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_INT_TIME),
-+		.info_mask_separate_available = BIT(IIO_CHAN_INFO_INT_TIME),
-+		.address = CM36686_REG_PS_DATA,
-+		.ext_info = cm36686_ext_info,
-+	},
-+};
-+
-+static int cm36686_read_avail(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan,
-+			      const int **vals, int *type, int *length,
-+			      long mask)
-+{
-+	if (mask != IIO_CHAN_INFO_INT_TIME)
-+		return -EINVAL;
-+
-+	switch (chan->type) {
-+	case IIO_LIGHT:
-+		*vals = (int *)(cm36686_als_it_times);
-+		*length = 2 * ARRAY_SIZE(cm36686_als_it_times);
-+		*type = IIO_VAL_INT_PLUS_MICRO;
-+		return IIO_AVAIL_LIST;
-+	case IIO_PROXIMITY:
-+		*vals = (int *)(cm36686_ps_it_times);
-+		*length = 2 * ARRAY_SIZE(cm36686_ps_it_times);
-+		*type = IIO_VAL_INT_PLUS_MICRO;
-+		return IIO_AVAIL_LIST;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int cm36686_read_channel(struct cm36686_data *chip,
-+				struct iio_chan_spec const *chan, int *val)
-+{
-+	struct regmap *regmap = chip->regmap;
-+	int ret = regmap_read(regmap, chan->address, val);
-+
-+	if (ret < 0)
-+		return -EIO;
-+
-+	return IIO_VAL_INT;
-+}
-+
-+/**
-+ * This is taken from Xiaomi's driver for cm36686. The device tree for cm36686
-+ * in android_kernel_xiaomi_msm8992 includes a property called
-+ * "als_trans_ratio". This property seems to be a number by which the actual
-+ * device lux scale is multiplied. What we know for sure is that it is
-+ * set to 16, and integration time in downstream is set to 160ms. Using this
-+ * "als_trans_ratio" property, Xiaomi calculates scale like this:
-+ * scale = als_trans_ratio * 40,000
-+ * val = scale / 1,000,000
-+ * val2 = scale % 1,000,000
-+ * In our driver, however, integration time can be adjusted, so if it changes
-+ * during runtime, the scale will be incorrect and lux value will be reported
-+ * double or half what it actually is, depending on whether we increase or
-+ * decrease integration time. In order to preserve the proportion by which the
-+ * scale is calculated, we multiply "als_trans_ratio" (16) by 160ms and then
-+ * divide it by our current integration time. This gives us new
-+ * "als_trans_ratio" by which the scale will be calculated.
-+ * Unfortunately, since the datasheet for this sensor is unavailable, this
-+ * guess is the best we have at the moment.
-+ */
-+static int cm36686_read_scale(struct cm36686_data *chip,
-+			      struct iio_chan_spec const *chan, int *val,
-+			      int *val2)
-+{
-+	int als_index;
-+	int ret;
-+
-+	if (chan->type != IIO_LIGHT)
-+		return -EINVAL;
-+
-+	ret = regmap_field_read(chip->reg_als_it, &als_index);
-+	if (ret < 0)
-+		return ret;
-+
-+	int als_it = cm36686_als_it_times[als_index][1];
-+	int scale = (chip->glass_factor * 160000 / als_it) * 40000;
-+
-+	*val = scale / 1000000;
-+	*val2 = scale % 1000000;
-+
-+	return IIO_VAL_INT_PLUS_MICRO;
-+}
-+
-+static int cm36686_read_int_time(struct cm36686_data *chip,
-+				 struct iio_chan_spec const *chan, int *val,
-+				 int *val2)
-+{
-+	int als_it_index, ps_it_index;
-+	int ret;
-+
-+	switch (chan->type) {
-+	case IIO_LIGHT:
-+		ret = regmap_field_read(chip->reg_als_it, &als_it_index);
-+		if (ret < 0)
-+			return ret;
-+		*val = cm36686_als_it_times[als_it_index][0];
-+		*val2 = cm36686_als_it_times[als_it_index][1];
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	case IIO_PROXIMITY:
-+		ret = regmap_field_read(chip->reg_ps_it, &ps_it_index);
-+		if (ret < 0)
-+			return ret;
-+		*val = cm36686_ps_it_times[ps_it_index][0];
-+		*val2 = cm36686_ps_it_times[ps_it_index][1];
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int cm36686_write_light_int_time(struct cm36686_data *chip, int val2)
-+{
-+	int index = -1, ret;
-+
-+	for (int i = 0; i < ARRAY_SIZE(cm36686_als_it_times); i++) {
-+		if (cm36686_als_it_times[i][1] == val2) {
-+			index = i;
-+			break;
-+		}
-+	}
-+
-+	if (index == -1)
-+		return -EINVAL;
-+
-+	ret = regmap_field_write(chip->reg_als_it, index);
-+	return ret;
-+}
-+
-+static int cm36686_write_prox_int_time(struct cm36686_data *chip, int val2)
-+{
-+	int index = -1, ret;
-+
-+	for (int i = 0; i < ARRAY_SIZE(cm36686_ps_it_times); i++) {
-+		if (cm36686_ps_it_times[i][1] == val2) {
-+			index = i;
-+			break;
-+		}
-+	}
-+
-+	if (index == -1)
-+		return -EINVAL;
-+
-+	ret = regmap_field_write(chip->reg_ps_it, index);
-+	return ret;
-+}
-+
-+static int cm36686_read_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan, int *val,
-+			    int *val2, long mask)
-+{
-+	struct cm36686_data *chip = iio_priv(indio_dev);
-+
-+	guard(mutex)(&chip->lock);
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		return cm36686_read_channel(chip, chan, val);
-+	case IIO_CHAN_INFO_SCALE:
-+		return cm36686_read_scale(chip, chan, val, val2);
-+	case IIO_CHAN_INFO_INT_TIME:
-+		return cm36686_read_int_time(chip, chan, val, val2);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int cm36686_write_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan, int val,
-+			     int val2, long mask)
-+{
-+	struct cm36686_data *chip = iio_priv(indio_dev);
-+
-+	if (val) /* Integration time more than 1s is not supported */
-+		return -EINVAL;
-+
-+	if (mask != IIO_CHAN_INFO_INT_TIME)
-+		return -EINVAL;
-+
-+	guard(mutex)(&chip->lock);
-+	switch (chan->type) {
-+	case IIO_LIGHT:
-+		return cm36686_write_light_int_time(chip, val2);
-+	case IIO_PROXIMITY:
-+		return cm36686_write_prox_int_time(chip, val2);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int cm36686_read_prox_thresh(struct iio_dev *indio_dev,
-+				    const struct iio_chan_spec *chan,
-+				    enum iio_event_type type,
-+				    enum iio_event_direction dir,
-+				    enum iio_event_info info, int *val,
-+				    int *val2)
-+{
-+	struct cm36686_data *chip = iio_priv(indio_dev);
-+	struct regmap *regmap = chip->regmap;
-+	int ret;
-+
-+	if (chan->type != IIO_PROXIMITY)
-+		return -EINVAL;
-+
-+	guard(mutex)(&chip->lock);
-+	switch (dir) {
-+	case IIO_EV_DIR_RISING:
-+		ret = regmap_read(regmap, CM36686_REG_PS_THDH, val);
-+		break;
-+	case IIO_EV_DIR_FALLING:
-+		ret = regmap_read(regmap, CM36686_REG_PS_THDL, val);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	if (ret < 0)
-+		return ret;
-+
-+	return IIO_VAL_INT;
-+}
-+
-+static int cm36686_write_prox_thresh(struct iio_dev *indio_dev,
-+				     const struct iio_chan_spec *chan,
-+				     enum iio_event_type type,
-+				     enum iio_event_direction dir,
-+				     enum iio_event_info info, int val,
-+				     int val2)
-+{
-+	struct cm36686_data *chip = iio_priv(indio_dev);
-+	struct regmap *regmap = chip->regmap;
-+	int ps_close, ps_away, address;
-+	int ret;
-+
-+	if (chan->type != IIO_PROXIMITY)
-+		return -EINVAL;
-+
-+	ret = regmap_read(regmap, CM36686_REG_PS_THDH, &ps_close);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = regmap_read(regmap, CM36686_REG_PS_THDL, &ps_away);
-+	if (ret < 0)
-+		return ret;
-+
-+	switch (dir) {
-+	case IIO_EV_DIR_FALLING:
-+		if (val > ps_close || val < 0)
-+			return -EINVAL;
-+
-+		address = CM36686_REG_PS_THDL;
-+		break;
-+	case IIO_EV_DIR_RISING:
-+		if (val < ps_away || val > CM36686_MAX_PS_VALUE)
-+			return -EINVAL;
-+
-+		address = CM36686_REG_PS_THDH;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	guard(mutex)(&chip->lock);
-+	ret = regmap_write(regmap, address, val);
-+
-+	return ret;
-+}
-+
-+static int cm36686_read_prox_event_config(struct iio_dev *indio_dev,
-+					  const struct iio_chan_spec *chan,
-+					  enum iio_event_type type,
-+					  enum iio_event_direction dir)
-+{
-+	struct cm36686_data *chip = iio_priv(indio_dev);
-+	struct regmap_field *reg_field;
-+	int state;
-+	int ret;
-+
-+	if (chan->type != IIO_PROXIMITY)
-+		return -EINVAL;
-+
-+	switch (dir) {
-+	case IIO_EV_DIR_FALLING:
-+		reg_field = chip->reg_ps_int_out;
-+		break;
-+	case IIO_EV_DIR_RISING:
-+		reg_field = chip->reg_ps_int_in;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	guard(mutex)(&chip->lock);
-+	ret = regmap_field_read(reg_field, &state);
-+	if (ret < 0)
-+		return ret;
-+
-+	return state;
-+}
-+
-+static int cm36686_write_prox_event_config(struct iio_dev *indio_dev,
-+					   const struct iio_chan_spec *chan,
-+					   enum iio_event_type type,
-+					   enum iio_event_direction dir,
-+					   bool state)
-+{
-+	struct cm36686_data *chip = iio_priv(indio_dev);
-+	struct regmap_field *reg_field;
-+	int ret;
-+
-+	if (chan->type != IIO_PROXIMITY)
-+		return -EINVAL;
-+
-+	switch (dir) {
-+	case IIO_EV_DIR_FALLING:
-+		reg_field = chip->reg_ps_int_out;
-+		break;
-+	case IIO_EV_DIR_RISING:
-+		reg_field = chip->reg_ps_int_in;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	guard(mutex)(&chip->lock);
-+	ret = regmap_field_write(reg_field, state);
-+
-+	return ret;
-+}
-+
-+static int cm36686_fallback_read_ps(struct iio_dev *indio_dev)
-+{
-+	struct cm36686_data *chip = iio_priv(indio_dev);
-+	struct regmap *regmap = chip->regmap;
-+	int ps_close, ps_away, data;
-+	int ret;
-+
-+	ret = regmap_read(regmap, CM36686_REG_PS_THDH, &ps_close);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = regmap_read(regmap, CM36686_REG_PS_THDL, &ps_away);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = regmap_read(regmap, CM36686_REG_PS_DATA, &data);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (data < ps_away)
-+		return IIO_EV_DIR_FALLING;
-+	else if (data > ps_close)
-+		return IIO_EV_DIR_RISING;
-+	return IIO_EV_DIR_EITHER;
-+}
-+
-+static irqreturn_t cm36686_irq_handler(int irq, void *data)
-+{
-+	struct iio_dev *indio_dev = data;
-+	struct cm36686_data *chip = iio_priv(indio_dev);
-+	struct i2c_client *client = chip->client;
-+	struct regmap *regmap = chip->regmap;
-+	int ev_dir, ret, status;
-+	u64 ev_code;
-+
-+	/* Reading the interrupt flag acknowledges the interrupt */
-+	ret = regmap_read(regmap, CM36686_REG_INT_FLAG, &status);
-+	if (ret < 0) {
-+		dev_err_ratelimited(&client->dev,
-+			"Interrupt flag register read failed: %pe",
-+			ERR_PTR(ret));
-+		return IRQ_HANDLED;
-+	}
-+
-+	status = FIELD_GET(CM36686_INT_FLAG_PS_IF_MASK, status);
-+	switch (status) {
-+	case CM36686_CLOSE:
-+		ev_dir = IIO_EV_DIR_RISING;
-+		break;
-+	case CM36686_AWAY:
-+		ev_dir = IIO_EV_DIR_FALLING;
-+		break;
-+	case CM36686_BOTH:
-+		ev_dir = cm36686_fallback_read_ps(indio_dev);
-+		if (ev_dir < 0) {
-+			dev_err_ratelimited(&client->dev,
-+				"Failed to settle interrupt state: %pe",
-+				ERR_PTR(ret));
-+			return IRQ_HANDLED;
-+		}
-+		break;
-+	default:
-+		dev_err_ratelimited(&client->dev,
-+		      "Unknown interrupt state: %x", status);
-+		return IRQ_HANDLED;
-+	}
-+	ev_code = IIO_UNMOD_EVENT_CODE(IIO_PROXIMITY, IIO_EV_INFO_VALUE,
-+				       IIO_EV_TYPE_THRESH, ev_dir);
-+
-+	iio_push_event(indio_dev, ev_code, iio_get_time_ns(indio_dev));
-+	return IRQ_HANDLED;
-+}
-+
-+static const struct iio_info cm36686_info = {
-+	.read_avail =		cm36686_read_avail,
-+	.read_raw =		cm36686_read_raw,
-+	.write_raw =		cm36686_write_raw,
-+	.read_event_value =	cm36686_read_prox_thresh,
-+	.write_event_value =	cm36686_write_prox_thresh,
-+	.read_event_config =	cm36686_read_prox_event_config,
-+	.write_event_config =	cm36686_write_prox_event_config,
-+};
-+
-+static const struct iio_info cm36686_info_no_irq = {
-+	.read_avail =		cm36686_read_avail,
-+	.read_raw =		cm36686_read_raw,
-+	.write_raw =		cm36686_write_raw,
-+};
-+
-+static const struct cm366xx_chip_info cm36686_chip_info = {
-+	.name = "cm36686",
-+	.indio_info = &cm36686_info,
-+	.indio_info_no_irq = &cm36686_info_no_irq,
-+	.channels = cm36686_channels,
-+	.num_channels = ARRAY_SIZE(cm36686_channels),
-+	.channels_no_events = cm36686_channels_no_events,
-+	.num_channels_no_events = ARRAY_SIZE(cm36686_channels_no_events),
-+};
-+
-+static const struct cm366xx_chip_info cm36672p_chip_info = {
-+	.name = "cm36672p",
-+	.indio_info = &cm36686_info,
-+	.indio_info_no_irq = &cm36686_info_no_irq,
-+	.channels = cm36672p_channels,
-+	.num_channels = ARRAY_SIZE(cm36672p_channels),
-+	.channels_no_events = cm36672p_channels_no_events,
-+	.num_channels_no_events = ARRAY_SIZE(cm36672p_channels_no_events),
-+};
-+
-+static bool cm36686_is_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	if (reg >= CM36686_REG_PS_DATA)
-+		return true;
-+	return false;
-+}
-+
-+static bool cm36686_is_precious_reg(struct device *dev, unsigned int reg)
-+{
-+	if (reg == CM36686_REG_INT_FLAG)
-+		return true;
-+	return false;
-+}
-+
-+static const struct regmap_config cm36686_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 16,
-+	.cache_type = REGCACHE_MAPLE,
-+	.max_register = CM36686_MAX_REG,
-+	.volatile_reg = cm36686_is_volatile_reg,
-+	.precious_reg = cm36686_is_precious_reg,
-+	.val_format_endian = REGMAP_ENDIAN_LITTLE,
-+};
-+
-+static int cm36686_setup(struct cm36686_data *chip, struct iio_dev *indio_dev)
-+{
-+	struct i2c_client *client = chip->client;
-+	struct regmap *regmap = chip->regmap;
-+	struct device *dev = &client->dev;
-+	const struct cm366xx_chip_info *info = i2c_get_match_data(client);
-+	int led_current, led_index;
-+	int als_conf;
-+	int ps_conf1, ps_conf3;
-+	int ps_close, ps_away;
-+	int ret;
-+
-+	als_conf = CM36686_ALS_ENABLE;
-+
-+	ret = regmap_write(regmap, CM36686_REG_ALS_CONF, als_conf);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret,
-+			"Failed to enable ambient light sensor");
-+
-+	/* Set proximity sensor persistence to two to prevent
-+	 * false triggering of the interrupt when probing the
-+	 * driver.
-+	 */
-+	ps_conf1 = FIELD_PREP(CM36686_PS_PERS, CM36686_PS_PERS_2);
-+	if (client->irq)
-+		ps_conf1 |= CM36686_PS_INT_IN | CM36686_PS_INT_OUT;
-+
-+	ret = regmap_write(regmap, CM36686_REG_PS_CONF1, ps_conf1);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret,
-+		       "Failed to enable proximity sensor");
-+
-+	ps_conf3 = CM36686_PS_SMART_PERS_ENABLE;
-+
-+	led_index = CM36686_LED_I_50;
-+	ret = device_property_read_u32(dev,
-+		"capella,proximity-led-current-milliamp", &led_current);
-+	if (!ret) {
-+		led_index = cm36686_current_to_index(led_current);
-+		if (led_index < 0)
-+			return dev_err_probe(dev, led_index,
-+				"Failed to find appropriate IR LED current.");
-+	} else if (ret != -EINVAL) {
-+		return dev_err_probe(dev, ret,
-+		       "Failed to read IR LED current.");
-+	}
-+
-+	FIELD_MODIFY(CM36686_LED_I, &ps_conf3, led_index);
-+
-+	ret = regmap_write(regmap, CM36686_REG_PS_CONF3, ps_conf3);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret,
-+			"Failed to enable proximity sensor");
-+
-+	if (device_property_read_u32(dev, "capella,glass-factor",
-+			      &chip->glass_factor))
-+		chip->glass_factor = 1;
-+
-+	if (device_property_read_u32(dev, "proximity-near-level", &ps_close))
-+		ps_close = 0;
-+	ps_away = ps_close;
-+
-+	ret = regmap_write(regmap, CM36686_REG_PS_THDH, ps_close);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret,
-+			"Failed to set close proximity threshold");
-+
-+	ret = regmap_write(regmap, CM36686_REG_PS_THDL, ps_away);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret,
-+			"Failed to set away proximity threshold");
-+
-+	indio_dev->name = info->name;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	if (client->irq) {
-+		indio_dev->info = info->indio_info;
-+		indio_dev->channels = info->channels;
-+		indio_dev->num_channels = info->num_channels;
-+
-+		ret = devm_request_threaded_irq(dev, client->irq,
-+						NULL, cm36686_irq_handler,
-+						IRQF_TRIGGER_FALLING |
-+						IRQF_ONESHOT,
-+						indio_dev->name, indio_dev);
-+		if (ret < 0)
-+			return dev_err_probe(dev, ret,
-+			       "Failed to request irq");
-+	} else {
-+		indio_dev->info = info->indio_info_no_irq;
-+		indio_dev->channels = info->channels_no_events;
-+		indio_dev->num_channels = info->num_channels_no_events;
-+	}
-+
-+	return 0;
-+}
-+
-+static void cm36686_shutdown(void *data)
-+{
-+	struct cm36686_data *chip = data;
-+	struct i2c_client *client = chip->client;
-+	int ret;
-+
-+	ret = regmap_set_bits(chip->regmap, CM36686_REG_ALS_CONF,
-+			      CM36686_ALS_SD);
-+	if (ret < 0)
-+		dev_err(&client->dev, "Failed to shutdown ALS");
-+
-+	ret = regmap_set_bits(chip->regmap, CM36686_REG_PS_CONF1,
-+			      CM36686_PS_SD);
-+	if (ret < 0)
-+		dev_err(&client->dev, "Failed to shutdown PS");
-+}
-+
-+static int cm36686_probe(struct i2c_client *client)
-+{
-+	struct iio_dev *indio_dev;
-+	struct cm36686_data *chip;
-+	struct device *dev = &client->dev;
-+	struct regmap *regmap;
-+	int ret, partid;
-+	static const char * const regulator_names[] = { "vdd", "vddio",
-+		"vled" };
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*chip));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	chip = iio_priv(indio_dev);
-+
-+	regmap = devm_regmap_init_i2c(client, &cm36686_regmap_config);
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap),
-+				     "Failed to initialize regmap");
-+
-+	chip->client = client;
-+	chip->regmap = regmap;
-+
-+	ret = devm_mutex_init(dev, &chip->lock);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = devm_regulator_bulk_get_enable(dev,
-+					     ARRAY_SIZE(regulator_names),
-+					     regulator_names);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Failed to enable regulators");
-+
-+	chip->reg_als_it = devm_regmap_field_alloc(dev, regmap,
-+		reg_field_als_it);
-+	if (IS_ERR(chip->reg_als_it))
-+		return dev_err_probe(dev, PTR_ERR(chip->reg_als_it),
-+			"Failed to initialize ALS it reg field");
-+
-+	chip->reg_ps_it = devm_regmap_field_alloc(dev, regmap,
-+		reg_field_ps_it);
-+	if (IS_ERR(chip->reg_ps_it))
-+		return dev_err_probe(dev, PTR_ERR(chip->reg_ps_it),
-+			"Failed to initialize PS it reg field");
-+
-+	chip->reg_ps_int_in = devm_regmap_field_alloc(dev, regmap,
-+		reg_field_ps_int_in);
-+	if (IS_ERR(chip->reg_ps_int_in))
-+		return dev_err_probe(dev, PTR_ERR(chip->reg_ps_int_in),
-+			"Failed to initialize PS int in field");
-+
-+	chip->reg_ps_int_out = devm_regmap_field_alloc(dev, regmap,
-+		reg_field_ps_int_out);
-+	if (IS_ERR(chip->reg_ps_int_out))
-+		return dev_err_probe(dev, PTR_ERR(chip->reg_ps_int_out),
-+			"Failed to initialize PS int out field");
-+
-+	ret = regmap_read(chip->regmap, CM36686_REG_ID_FLAG, &partid);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Failed to read device ID");
-+
-+	partid &= 0xff;
-+	if (partid != CM36686_DEVICE_ID)
-+		dev_warn(dev, "Device ID: %02x, expected: %02x", partid,
-+			CM36686_DEVICE_ID);
-+
-+
-+	ret = cm36686_setup(chip, indio_dev);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = devm_add_action_or_reset(dev, cm36686_shutdown, chip);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+			"Failed to set shutdown action");
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
-+static const struct i2c_device_id cm36686_id[] = {
-+	{ "cm36686", (kernel_ulong_t)&cm36686_chip_info },
-+	{ "cm36672p", (kernel_ulong_t)&cm36672p_chip_info },
-+	{ }
-+};
-+
-+MODULE_DEVICE_TABLE(i2c, cm36686_id);
-+
-+static const struct of_device_id cm36686_of_match[] = {
-+	{ .compatible = "capella,cm36686", .data = &cm36686_chip_info, },
-+	{ .compatible = "capella,cm36672p", .data = &cm36672p_chip_info, },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, cm36686_of_match);
-+
-+static struct i2c_driver cm36686_driver = {
-+	.driver = {
-+		.name = "cm36686",
-+		.of_match_table = cm36686_of_match,
-+	},
-+	.probe = cm36686_probe,
-+	.id_table = cm36686_id,
-+};
-+module_i2c_driver(cm36686_driver);
-+
-+MODULE_AUTHOR("Erikas Bitovtas <xerikasxx@gmail.com>");
-+MODULE_DESCRIPTION("CM36686 ambient light and proximity sensor driver");
-+MODULE_LICENSE("GPL");
+Alexey Klimov (2):
+  dt-bindings: mfd: qcom,spmi-pmic: add compatibles for pm4124-codec
+  arm64: dts: qcom: agatti: add LPASS devices
+
+Srinivas Kandagatla (2):
+  arm64: dts: arduino-imola: add support for sound
+  arm64: defconfig: Enable Agatti audio drivers
+
+ .../bindings/mfd/qcom,spmi-pmic.yaml          |   6 +-
+ arch/arm64/boot/dts/qcom/agatti.dtsi          | 189 ++++++++++++++++++
+ .../boot/dts/qcom/qrb2210-arduino-imola.dts   | 137 +++++++++++++
+ arch/arm64/configs/defconfig                  |   2 +
+ 4 files changed, 333 insertions(+), 1 deletion(-)
 
 -- 
-2.53.0
+2.47.3
 
 
