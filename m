@@ -1,165 +1,134 @@
-Return-Path: <devicetree+bounces-263972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263973-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wC8qHU7YiWnUCQAAu9opvQ:T2
-	(envelope-from <devicetree+bounces-263972-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 13:51:28 +0100
+	id wC8qHU7YiWnUCQAAu9opvQ
+	(envelope-from <devicetree+bounces-263973-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 13:51:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4476F10F0AE
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 13:51:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9F2510F080
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 13:51:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 78B283033D32
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 11:34:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4ED823038F67
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 11:35:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A35F36F427;
-	Mon,  9 Feb 2026 11:34:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BA9C37106C;
+	Mon,  9 Feb 2026 11:35:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WwrKdaXG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Iyc4b7cj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22C7436F42A;
-	Mon,  9 Feb 2026 11:34:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 383DC371060
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 11:35:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770636885; cv=none; b=KHLpJwaGEFJMpLD6MBL6MuQKrUaf6s0ReqUKL8luxzh5EVraE9zEHO1oWMg7goUs02fpasHBw6DZVSjW9YC4cfB1B0GXb6jsITaM3robU5e8oR4QnpQblpx0sesoBx5EtV1Fdl/YjAsUDkIj+1iIOYS+bJLcPWHFzBqV1K8g84c=
+	t=1770636927; cv=none; b=TfsM06cbbIqP0JwhW0LgoXjw5/YFIWOzB0eO3RObDR+sQYIz4uTjXymCW1rryfywlLO3nAp9gf0DnpH5eh6AtvJNxsEw57KxlWE/N291wCWzQmWd2J4jZFzFM0nSHGEtM2oPdztmB9ghSBMb/fBdlBBjG079JmKJDrS7/uUtp9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770636885; c=relaxed/simple;
-	bh=4QrS573yngF8n4NJk1Mnael+xbLQy+ZP/mKMuKo0Ysc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lpgaFXstiWhnGYiZMGBu788PPENvzYGmgaqdzEgHcTneIfIzIohOXzpj/pcP9GSn2a/q9ON7t8Yd+czyYRd0JKJO/uE/ud+NbndBbusnSRQ1bAg8nAuDe27IvPLUe8S0pLRnWPZLFJhIKKfPoNS3VGksLefgh0gPP5FxaUgcics=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WwrKdaXG; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1770636883;
-	bh=4QrS573yngF8n4NJk1Mnael+xbLQy+ZP/mKMuKo0Ysc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WwrKdaXGqV2ja4v3TQhhSZpBckr3H70ZFVczJeL8EUXvlZNRaLuI6fQTTSG0CVVHW
-	 8lPe2ABwjsv3/lAwLiVYsRvnHYowhnbIKcImczfEuW9bQYiPha9vUAgel8vydBNojY
-	 MOjhtHgVXRPWHDWMw7/AP1BCtVv7+7RcIXv3oUfJZ9aytAHR+KC+iqdrfneufQf492
-	 2SxvFpjVn/4escftOJgZQO1kESdWPtZLsPBZjZ8PrfO60ABooWv6aPyA66ERArfUlJ
-	 qRIsqMwI+pXkBgU5j2WI203EaPGl1C4gYci4Rprc9CsNcN+xs2XDR7awRE/KMEXZ9w
-	 tbDXFgwbTrrfw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C60BA17E0699;
-	Mon,  9 Feb 2026 12:34:42 +0100 (CET)
-Message-ID: <3476c51b-9293-40f1-8b5c-9ac9802d7d97@collabora.com>
-Date: Mon, 9 Feb 2026 12:34:42 +0100
+	s=arc-20240116; t=1770636927; c=relaxed/simple;
+	bh=52ZnTTwCU6ma5VGHBGZTKykJyZwNc2akaww0BZAxEwM=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lITSMpiNOJ9NGsanugxejS6oXv0Gafq+XPPPcu+vcD3ofnFv5+m4w2XPvPtOWAT6SnO8iqJ2m+LyG8pcxqVZoUC8IwJY0LC0wYSM+aYxmCvsOttJPXD7I7iFoAWwD+S6L/P5xlUnMbh4gDwI/W/D/gsz/SGXP2edqt67OGqay+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Iyc4b7cj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA789C19424
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 11:35:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770636927;
+	bh=52ZnTTwCU6ma5VGHBGZTKykJyZwNc2akaww0BZAxEwM=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
+	b=Iyc4b7cjpQ0xc4d7KPFC1NzS/nadMYwOxPiqGwgFY5ZjEV/N7+qU4l0bx+ymaAlJ+
+	 isupo1FIVNnO9bmHKI/D+XPoWoZA4jN56DzvvfmLIhsH1ft/8/IkW1y18S3JFYKAos
+	 lcefWhjtG11Jknz3WkR+EvKsEFdmoQKfeIiRFRMAoBqW0xFzV3/xa2jh0uhRhnWGog
+	 wz5ghjTJ2ntRxraSWO0t2fVZMyfu7m9DvAicwZCax7QEuQ8I4N6DrABm8HzUB8U5hZ
+	 4VajzJ1oq44L229V34kF1dlkAVropxNynu+VUJdbwORvn8CWKw+CAJQFLJUrXakOiz
+	 YE5+9U1ddP+Zw==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-386914b8e81so39048501fa.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 03:35:26 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU3/QssSB8UMCelfiO2GXY8jDEmlhgpZMqU6XqwKEtu/kMECOJ/8rSOZKHZpiMy1zxLoTs5qRZvO7cB@vger.kernel.org
+X-Gm-Message-State: AOJu0YysseX1V1vdXuVAJXANH4vM9hTmZGrV56mBlka7Nw27xu7WFp8y
+	nBsP+8HeGWmacMMGz3EGgj82VxFKx+f/ypaNGdZ1NPDnlxK/91pbdrxeeS8DZzwKgtug6hkDtQF
+	xOkLQvCRw4yBw+qVsaqD5cRKnBbZUpMDO6xvWKLzoTQ==
+X-Received: by 2002:a05:651c:548:b0:385:f202:a787 with SMTP id
+ 38308e7fff4ca-386b5547738mr43444311fa.9.1770636925624; Mon, 09 Feb 2026
+ 03:35:25 -0800 (PST)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 9 Feb 2026 05:35:23 -0600
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 9 Feb 2026 05:35:23 -0600
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <7cb9a945-651c-426d-8cc7-1ec1174ac68b@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: syscon: Add mt8516-syscfg
-To: Krzysztof Kozlowski <krzk@kernel.org>, Luca Weiss <luca@lucaweiss.eu>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, phone-devel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20260206-mt8516-syscfg-syscon-v1-0-96dcb37acdb4@lucaweiss.eu>
- <20260206-mt8516-syscfg-syscon-v1-1-96dcb37acdb4@lucaweiss.eu>
- <20260207-tricky-strange-swan-6f11b0@quoll>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20260207-tricky-strange-swan-6f11b0@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20260209080613.217578-1-vivek.sahu@oss.qualcomm.com>
+ <20260209080613.217578-2-vivek.sahu@oss.qualcomm.com> <7cb9a945-651c-426d-8cc7-1ec1174ac68b@kernel.org>
+Date: Mon, 9 Feb 2026 05:35:23 -0600
+X-Gmail-Original-Message-ID: <CAMRc=Md=f_fpfZ6i2PKOvhtgVs_H_XL9u_uRsjF1OfryR-0aVQ@mail.gmail.com>
+X-Gm-Features: AZwV_Qg5yf4vIpdAfGn9f7D0Ri5TRZ26eMgjRzKm34rnqwn3a6graqhIH0vI0Nk
+Message-ID: <CAMRc=Md=f_fpfZ6i2PKOvhtgVs_H_XL9u_uRsjF1OfryR-0aVQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: bluetooth: qualcomm: add
+ bindings for QCC2072
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: quic_mohamull@quicinc.com, quic_hbandi@quicinc.com, 
+	linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Vivek Sahu <vivek.sahu@oss.qualcomm.com>, Marcel Holtmann <marcel@holtmann.org>, 
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
+	Rocky Liao <quic_rjliao@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263972-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-263973-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[quicinc.com,vger.kernel.org,oss.qualcomm.com,holtmann.org,gmail.com,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[lists.sr.ht,kernel.org,gmail.com,vger.kernel.org,lists.infradead.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim]
-X-Rspamd-Queue-Id: 4476F10F0AE
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: E9F2510F080
 X-Rspamd-Action: no action
 
-Il 07/02/26 11:51, Krzysztof Kozlowski ha scritto:
-> On Fri, Feb 06, 2026 at 11:20:48AM +0100, Luca Weiss wrote:
->> Document the Mediatek mt8516-syscfg.
-> 
-> Which is what? What is syscfg block?
-> 
-
-Not sure this is really a SYSCFG block.
-
-This should be a GPIO controller range, which is split between IOCFG and EINT.
-Now, the legacy drivers are declaring the EINT iospace in the pinctrl node, and
-getting the GPIO controller (IOCFG) iospace from a regmap.
-
-I don't have any board with MT8516... but well, the really-right-thing to do
-would be to migrate that SoC off of the legacy driver, to the new-style one
-that *properly* takes two iospaces:
-"base" -> (0x10005000)
-"eint" -> (0x1000b000)
-
-Luca, if you've got such a board, could you please try to migrate this SoC out
-of the improper (but working good) driver and bindings?
-
-If not... well, I think this block is IOCFG, not SYSCFG...
-
-Cheers,
-Angelo
-
+On Mon, 9 Feb 2026 09:07:58 +0100, Krzysztof Kozlowski <krzk@kernel.org> said:
+> On 09/02/2026 09:06, Vivek Sahu wrote:
+>> QCC2072 is a WiFi/BT connectivity chip.
+>> It requires different firmware, so document it as a new compat string.
 >>
->> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+>> Correct the sorting of other chipsets for better readability.
+>>
+>> Signed-off-by: Vivek Sahu <vivek.sahu@oss.qualcomm.com>
 >> ---
->>   Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
->> index e57add2bacd3..a67699f1faee 100644
->> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
->> @@ -91,6 +91,7 @@ select:
->>             - mediatek,mt8135-pctl-b-syscfg
->>             - mediatek,mt8173-pctl-a-syscfg
->>             - mediatek,mt8365-syscfg
->> +          - mediatek,mt8516-syscfg
-> 
-> Why aren't you placing it with all others mediatek,mt8516 syscons?
-> 
-> Why this is so generically called "syscfg", completely not looking like
-> a real name from datasheet unlike the others in this device.
-> 
-> You have entire commit msg to explain that.
-> 
-> Best regards,
-> Krzysztof
-> 
+>>  .../devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml  | 3 ++-
+>
+> There is no such file.
+>
 
+Ah, -ETOOFAST, I'm retracting by R-b. Thanks Krzysztof for catching it.
 
+Bartosz
 
