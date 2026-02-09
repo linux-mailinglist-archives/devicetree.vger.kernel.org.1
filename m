@@ -1,139 +1,171 @@
-Return-Path: <devicetree+bounces-264110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264111-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OOFPAHYmimlKHwAAu9opvQ
-	(envelope-from <devicetree+bounces-264110-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 19:24:54 +0100
+	id UAyYCwgnimlKHwAAu9opvQ
+	(envelope-from <devicetree+bounces-264111-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 19:27:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFF1B11381D
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 19:24:52 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 864E0113880
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 19:27:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D6A3B3008452
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 18:24:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3941B30060B9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 18:27:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E472F6907;
-	Mon,  9 Feb 2026 18:24:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 113AE32693E;
+	Mon,  9 Feb 2026 18:27:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ysk9N2ch"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55427134CF;
-	Mon,  9 Feb 2026 18:24:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E346E2701C4
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 18:27:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770661480; cv=none; b=BnKZzkb5RoNf/AJAWHNtkJRRB68o2tdanrBgBswADPX9hpXE9QJS4w/XEU6xtdxjNwBr7ckXc0wRYlZtvMUM9h8o5A3WsLszjtYyWldPh2rTbS6JaAPo5/Ouh1VfSi4p5Wk3c2YVAvC932XVJeZSJ3aDNnJdInt+DKWJpcM6mEk=
+	t=1770661633; cv=none; b=Lohm5zjh6ItN5gqh2a7OBUkQHg5WVxCOA2VY3fYsz8EkjG1tMOmGJkQ2L5MySn8/vR9gvrw/+844UlWYmwotSzjQ+t8XJ/ZltH0rRhh2+zjZqyeEBhcz9tsg434ZYXmXRCRuSlnFsm/inKzgsqbVMbSfLivLBsWATVpU6E82CBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770661480; c=relaxed/simple;
-	bh=teCIQL1B+FcantvtJtxCOxoGHWBxuefGxsv13LO4zP0=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XMw+a8aLhDOt7aisefZwFwmq/OXMIkcoANVYWWYxqCs9joQwN94gEfBdLL/Rprtl0slE6SSYOol0ZiFzh2JsHnzaFfkfi6lPTMYVT7KSzzSg6cWOrSasOiBizH9FZCzuj4xy71yu7uia8vVJ1NNVfiEphNfV5+W7duRPVPBCafY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.224.107])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4f8tP70mznzJ46Dq;
-	Tue, 10 Feb 2026 02:23:39 +0800 (CST)
-Received: from dubpeml500005.china.huawei.com (unknown [7.214.145.207])
-	by mail.maildlp.com (Postfix) with ESMTPS id B1CB940570;
-	Tue, 10 Feb 2026 02:24:36 +0800 (CST)
-Received: from localhost (10.48.156.2) by dubpeml500005.china.huawei.com
- (7.214.145.207) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Mon, 9 Feb
- 2026 18:24:35 +0000
-Date: Mon, 9 Feb 2026 18:24:32 +0000
-From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: Erikas Bitovtas <xerikasxx@gmail.com>
-CC: Andy Shevchenko <andriy.shevchenko@intel.com>, Jonathan Cameron
-	<jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
- =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Andy Shevchenko
-	<andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kevin Tsai
-	<ktsai@capellamicro.com>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/2] iio: light: Add support for Capella cm36686 and
- cm36672p sensors
-Message-ID: <20260209182432.00006c3c@huawei.com>
-In-Reply-To: <73ec81de-86f8-477c-a5ca-aae83528dfab@gmail.com>
-References: <20260209-cm36686-v2-0-a48126d2b124@gmail.com>
-	<aYoBwFW4ZDFhmlvy@smile.fi.intel.com>
-	<aYoCJMlaaPO8auIm@smile.fi.intel.com>
-	<73ec81de-86f8-477c-a5ca-aae83528dfab@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1770661633; c=relaxed/simple;
+	bh=eOXOAe9ngpOVhoSs4SanKXrR9o9gzH+dT8URS8aJ/P4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BEbe2eBGTfj9OxTFa62QtgxBOwWpaXThZPNxuyo20t/XOOxogcFWWnHhizG2w6FtobDCvud/FHZ/wr65u+IpClOnQCZOE2EFNXC+P2TlJFZDcvNDMuTThv17Zbf5TiSeMg7w9esKKL9g2y9gFqgcaM/RDnJsj3mSrPu3Wnnez/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ysk9N2ch; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2946C2BC9E
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 18:27:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770661632;
+	bh=eOXOAe9ngpOVhoSs4SanKXrR9o9gzH+dT8URS8aJ/P4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Ysk9N2ch6ivY1YjEV5/8/+45MkbrCML54PJdyNcniBvBJMJBpOgj73osA9dggXvu/
+	 zJsczdwlnaNo85YUFQx27sFFY66Djvdec2x36BRKGVQZjo+fL57z1kA+1XIXx6Qo1P
+	 FiuSaaltmFduuy2Hcay3GCOVZd2fdGJxJVMK0uu+zRd+B3h5qUHUwmJeKqfr3YFowH
+	 r9CeTStLWxkp02mz2tKGz3DeT4kQRtkXH3y/xHHo0THEbnALOl52HKAUmUdNhFS+2h
+	 FFsgoVhIttiqQI2CfZeCKab2UH8npGbYXfyOIMtzpFMxRm/UPdR8o/ViROuZk6gK+e
+	 H+B4JejXYKp5w==
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b8869cd7bb1so601477066b.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 10:27:12 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWK2reszAsAwi86oxyWX7IRxhjsLWqPH24UyIWHiIo/pT2cm7l1eFW1kU/j3N+XXBMaYq99Up4Pp7u7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzr06Tw2vDJJy3yp09A9EraouRSwkhvwWFdU+KE1+/QjfypUCHw
+	YS0JNGKXsVcgLwCIDqhWbJQUylyfliI2jg1Ok+Utzunj8C6yiHGlBmD2kjc4lZXdJ+/7sq9YCil
+	JtZ2X3XvycSAsDV02XaJ9aCR2vuVzcA==
+X-Received: by 2002:a17:907:d15:b0:b8a:fd04:c789 with SMTP id
+ a640c23a62f3a-b8edf19de11mr672783666b.22.1770661631173; Mon, 09 Feb 2026
+ 10:27:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100010.china.huawei.com (7.191.174.197) To
- dubpeml500005.china.huawei.com (7.214.145.207)
+References: <20260205070640.10653-1-manivannan.sadhasivam@oss.qualcomm.com>
+ <bfba9d62-2741-47b8-8325-2d932c20c9e7@oss.qualcomm.com> <lnzmgsdjckbf6u5hxfqm4kzlmcg2cqvszcg7otmkqxaj3yzdfq@vu232xx5kts3>
+In-Reply-To: <lnzmgsdjckbf6u5hxfqm4kzlmcg2cqvszcg7otmkqxaj3yzdfq@vu232xx5kts3>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 9 Feb 2026 12:26:59 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLgTriMgQaL_Nbi72nOD=AFdHggKXs3RkKA0UzzChhTUQ@mail.gmail.com>
+X-Gm-Features: AZwV_QiouFq8bjEKlZatGSqr2rYaJl9y245UvE6g1661Y42aCiANp3WtZlqOBBo
+Message-ID: <CAL_JsqLgTriMgQaL_Nbi72nOD=AFdHggKXs3RkKA0UzzChhTUQ@mail.gmail.com>
+Subject: Re: [PATCH] of: property: Create devlink between PCI Host bridge and
+ Root Port suppliers
+To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, saravanak@kernel.org, 
+	andersson@kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	qiang.yu@oss.qualcomm.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_QUARANTINE(1.50)[huawei.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264110-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264111-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonathan.cameron@huawei.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EFF1B11381D
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,mail.gmail.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 864E0113880
 X-Rspamd-Action: no action
 
-On Mon, 9 Feb 2026 20:20:07 +0200
-Erikas Bitovtas <xerikasxx@gmail.com> wrote:
+On Thu, Feb 5, 2026 at 3:01=E2=80=AFAM Manivannan Sadhasivam
+<manivannan.sadhasivam@oss.qualcomm.com> wrote:
+>
+> On Thu, Feb 05, 2026 at 09:50:20AM +0100, Konrad Dybcio wrote:
+> > On 2/5/26 8:06 AM, Manivannan Sadhasivam wrote:
+> > > In the recent times, devicetree started to represent the PCI Host bri=
+dge
+> > > supplies like PHY in the Root Port nodes as seen in commit 38fcbfbd42=
+07
+> > > ("dt-bindings: PCI: qcom: Move PHY & reset GPIO to Root Port node"). =
+But
+> > > the Host bridge drivers still need to control these supplies as a par=
+t of
+> > > their controller initialization/deinitialization sequence.
+> > >
+> > > So the Host bridge drivers end up parsing the Root Port supplies in t=
+heir
+> > > probe() and controlled them. A downside to this approach is that the
+> > > devlink dependency between the suppliers and Host bridge is completel=
+y
+> > > broken. Due to this, the driver core probes the Host bridge drivers e=
+ven if
+> > > the suppliers are not ready, causing probe deferrals and setup teardo=
+wns in
+> > > probe().
+> > >
+> > > These probe deferrals sometime happen over 1000 times (as reported in=
+ Qcom
+> > > Glymur platform) leading to a waste of CPU resources and increase in =
+boot
+> > > time. So to fix these unnecessary deferrals, create devlink between t=
+he
+> > > Host bridge and Root Port suppliers in of_fwnode_add_links(). This wi=
+ll
+> > > allow the driver core to probe the Host bridge drivers only when all =
+Root
+> > > Port suppliers are available.
+> > >
+> > > Reported-by: Bjorn Andersson <andersson@kernel.org>
+> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualc=
+omm.com>
+> > > ---
+> >
+> > [...]
+> >
+> > This is not 'required' in bindings and device_type=3D"pci" doesn't uniq=
+uely
+> > identify root complexes (as can be seen below).. but I suppose this is =
+the
+> > best delimiter we've got
+> >
+>
+> Yeah. There is no way to uniquely identify the Host bridges in DT. So I h=
+ad to
+> settle for this.
+>
+> Maybe I can check for 'device_type', but that will create devlink between=
+ switch
+> port supplies and Root Ports.
 
-> On 2/9/26 5:49 PM, Andy Shevchenko wrote:
-> > On Mon, Feb 09, 2026 at 05:48:22PM +0200, Andy Shevchenko wrote:  
-> >> On Mon, Feb 09, 2026 at 04:23:40PM +0200, Erikas Bitovtas wrote:  
-> >>> This patch series adds support for Capella cm36686 and cm36672p ambient
-> >>> light and proximity sensors.
-> >>>
-> >>> Capella cm36686 is a combined ambient light and proximity sensor with
-> >>> adjustable integration time, interrupt and hysteresis support. It has
-> >>> the slave address of 0x60. cm36672p is fully compatible with cm36686,
-> >>> except that it is a proximity-only sensor.  
-> >>
-> >> So, can we share the code (assuming there is a driver and it already
-> >> uses or may be converted to regmap APIs)?  
-> > 
-> > Ah, it's being added with the same driver... So, have you checked if there is
-> > any similar HW with the available driver in upstream?
-> >   
-> 
-> I checked only for other Capella sensors, I forgot that Vishay acquired Capella
-> Microsystems. Now that I checked, vcnl4040 uses the same registers and regfields
-> as cm36686 and can be used instead...
-> I am sorry for wasting your time. Should I add a fallback to vcnl4040's
-> devicetree schema and add cm36672p support by excluding the light channels instead?
-> 
+You can also check the parent is not PCI to exclude that case.
 
-Sounds good to me.
-
-Jonathan
-
-> 
-
+Rob
 
