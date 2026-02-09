@@ -1,88 +1,114 @@
-Return-Path: <devicetree+bounces-263973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263974-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wC8qHU7YiWnUCQAAu9opvQ
-	(envelope-from <devicetree+bounces-263973-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 13:51:26 +0100
+	id 4EuqEE7YiWlUCQAAu9opvQ:T2
+	(envelope-from <devicetree+bounces-263974-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 13:51:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9F2510F080
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 13:51:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47F7510F0B1
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 13:51:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4ED823038F67
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 11:35:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B15A230490F5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 11:35:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BA9C37106C;
-	Mon,  9 Feb 2026 11:35:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B43237106B;
+	Mon,  9 Feb 2026 11:35:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Iyc4b7cj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aGXi8a26"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 383DC371060
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 11:35:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1788F37104D;
+	Mon,  9 Feb 2026 11:35:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770636927; cv=none; b=TfsM06cbbIqP0JwhW0LgoXjw5/YFIWOzB0eO3RObDR+sQYIz4uTjXymCW1rryfywlLO3nAp9gf0DnpH5eh6AtvJNxsEw57KxlWE/N291wCWzQmWd2J4jZFzFM0nSHGEtM2oPdztmB9ghSBMb/fBdlBBjG079JmKJDrS7/uUtp9I=
+	t=1770636931; cv=none; b=KIJNLp8G/uXDwDImV2G3J0HQwappZyqO04MEWaCJmStsWOok2QDF+MZdcFivIxKj4oI0D24vgI7PGHF9iiXUAGw4A5D2fIbgDZLIKcbJJuPsvsIa9BAd9LsNA2KoOuchPLnUXXIDiUDfWLxaV/y1PqUBudmtIhYdHyvkeRtaylA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770636927; c=relaxed/simple;
-	bh=52ZnTTwCU6ma5VGHBGZTKykJyZwNc2akaww0BZAxEwM=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lITSMpiNOJ9NGsanugxejS6oXv0Gafq+XPPPcu+vcD3ofnFv5+m4w2XPvPtOWAT6SnO8iqJ2m+LyG8pcxqVZoUC8IwJY0LC0wYSM+aYxmCvsOttJPXD7I7iFoAWwD+S6L/P5xlUnMbh4gDwI/W/D/gsz/SGXP2edqt67OGqay+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Iyc4b7cj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA789C19424
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 11:35:26 +0000 (UTC)
+	s=arc-20240116; t=1770636931; c=relaxed/simple;
+	bh=2HmGK1FsgHNnDioYwrMsK1Bbaax/0z4nMO6vG8Dr6co=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p7FNRbQDjHnPwMYHNUyfFLB+3NveXfvXTcSTTSfZPLGVhB8OiSuXv3lLTGGAITW7TwydZuvRyS8udQkFQFsZdQ1iFoJD5/rPvTqufSACaWzESR9uIBRxOyDT8kdK+kDDvE9lVhb/P3f0y9/I+ih0uIBcbRf+ra/ITiCS9tuIwbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aGXi8a26; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31EE8C19423;
+	Mon,  9 Feb 2026 11:35:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770636927;
-	bh=52ZnTTwCU6ma5VGHBGZTKykJyZwNc2akaww0BZAxEwM=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
-	b=Iyc4b7cjpQ0xc4d7KPFC1NzS/nadMYwOxPiqGwgFY5ZjEV/N7+qU4l0bx+ymaAlJ+
-	 isupo1FIVNnO9bmHKI/D+XPoWoZA4jN56DzvvfmLIhsH1ft/8/IkW1y18S3JFYKAos
-	 lcefWhjtG11Jknz3WkR+EvKsEFdmoQKfeIiRFRMAoBqW0xFzV3/xa2jh0uhRhnWGog
-	 wz5ghjTJ2ntRxraSWO0t2fVZMyfu7m9DvAicwZCax7QEuQ8I4N6DrABm8HzUB8U5hZ
-	 4VajzJ1oq44L229V34kF1dlkAVropxNynu+VUJdbwORvn8CWKw+CAJQFLJUrXakOiz
-	 YE5+9U1ddP+Zw==
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-386914b8e81so39048501fa.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 03:35:26 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU3/QssSB8UMCelfiO2GXY8jDEmlhgpZMqU6XqwKEtu/kMECOJ/8rSOZKHZpiMy1zxLoTs5qRZvO7cB@vger.kernel.org
-X-Gm-Message-State: AOJu0YysseX1V1vdXuVAJXANH4vM9hTmZGrV56mBlka7Nw27xu7WFp8y
-	nBsP+8HeGWmacMMGz3EGgj82VxFKx+f/ypaNGdZ1NPDnlxK/91pbdrxeeS8DZzwKgtug6hkDtQF
-	xOkLQvCRw4yBw+qVsaqD5cRKnBbZUpMDO6xvWKLzoTQ==
-X-Received: by 2002:a05:651c:548:b0:385:f202:a787 with SMTP id
- 38308e7fff4ca-386b5547738mr43444311fa.9.1770636925624; Mon, 09 Feb 2026
- 03:35:25 -0800 (PST)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 9 Feb 2026 05:35:23 -0600
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 9 Feb 2026 05:35:23 -0600
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <7cb9a945-651c-426d-8cc7-1ec1174ac68b@kernel.org>
+	s=k20201202; t=1770636931;
+	bh=2HmGK1FsgHNnDioYwrMsK1Bbaax/0z4nMO6vG8Dr6co=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aGXi8a26Yb2UeXzJrISstLpRMdhmQ1hOBXbhJTqvUHbanE6MQr4caFXcX9c68UJH9
+	 dSqR0n2NKG1BJ8qjBDF4sDL/DBFCrV4gdNH/enfgyMbOMwcEmb+Sh6a4KFFksFfCBw
+	 0TE/wKUT4KI4bENIC8imrAirTvijkRlg4z6jIg3ylg0GEVshAF9wcHwYB/AWEDBA8q
+	 8ucrZ3diXB9e67eC5ntVRPzxtVSM/fgCoqRFQKKiJaC2K/3XJKPA/O8RV/MO792/89
+	 fb/hdjxKznnGCLZUTzPw/ZjWMHOuMp/aOqBiU36KarA4YmYZWo/l6Q29fy/Na3kO3x
+	 WojVmkc/T+F2Q==
+Message-ID: <656acb84-ed6d-4251-8f0d-ef5602d3bf19@kernel.org>
+Date: Mon, 9 Feb 2026 12:35:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260209080613.217578-1-vivek.sahu@oss.qualcomm.com>
- <20260209080613.217578-2-vivek.sahu@oss.qualcomm.com> <7cb9a945-651c-426d-8cc7-1ec1174ac68b@kernel.org>
-Date: Mon, 9 Feb 2026 05:35:23 -0600
-X-Gmail-Original-Message-ID: <CAMRc=Md=f_fpfZ6i2PKOvhtgVs_H_XL9u_uRsjF1OfryR-0aVQ@mail.gmail.com>
-X-Gm-Features: AZwV_Qg5yf4vIpdAfGn9f7D0Ri5TRZ26eMgjRzKm34rnqwn3a6graqhIH0vI0Nk
-Message-ID: <CAMRc=Md=f_fpfZ6i2PKOvhtgVs_H_XL9u_uRsjF1OfryR-0aVQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: net: bluetooth: qualcomm: add
- bindings for QCC2072
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: quic_mohamull@quicinc.com, quic_hbandi@quicinc.com, 
-	linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Vivek Sahu <vivek.sahu@oss.qualcomm.com>, Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
-	Rocky Liao <quic_rjliao@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/3] reset: add Sky1 soc reset support
+To: Gary Yang <gary.yang@cixtech.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, p.zabel@pengutronix.de, peter.chen@cixtech.com,
+ unicorn_wang@outlook.com, inochiama@gmail.com, alchark@gmail.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, cix-kernel-upstream@cixtech.com
+References: <20260209093344.2013693-1-gary.yang@cixtech.com>
+ <20260209093344.2013693-3-gary.yang@cixtech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260209093344.2013693-3-gary.yang@cixtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -93,42 +119,59 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263973-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-263974-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[quicinc.com,vger.kernel.org,oss.qualcomm.com,holtmann.org,gmail.com,kernel.org];
+	FREEMAIL_TO(0.00)[cixtech.com,kernel.org,pengutronix.de,outlook.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: E9F2510F080
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 47F7510F0B1
 X-Rspamd-Action: no action
 
-On Mon, 9 Feb 2026 09:07:58 +0100, Krzysztof Kozlowski <krzk@kernel.org> said:
-> On 09/02/2026 09:06, Vivek Sahu wrote:
->> QCC2072 is a WiFi/BT connectivity chip.
->> It requires different firmware, so document it as a new compat string.
->>
->> Correct the sorting of other chipsets for better readability.
->>
->> Signed-off-by: Vivek Sahu <vivek.sahu@oss.qualcomm.com>
->> ---
->>  .../devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml  | 3 ++-
->
-> There is no such file.
->
+On 09/02/2026 10:33, Gary Yang wrote:
+> +static int sky1_system_control_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	const struct mfd_cell *cell =
+> +			(struct mfd_cell *)of_device_get_match_data(dev);
+> +
+> +	return mfd_add_devices(dev, PLATFORM_DEVID_NONE, cell, 1, NULL, 0, NULL);
+> +}
+> +
+> +static const struct of_device_id sky1_system_control_of_match[] = {
+> +	{ .compatible = "cix,sky1-system-control",
+> +	  .data = sky1_system_control_devs},
+> +	{ .compatible = "cix,sky1-s5-system-control",
+> +	  .data = sky1_s5_system_control_devs},
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, sky1_system_control_of_match);
+> +
+> +static struct platform_driver sky1_system_control_driver = {
+> +	.driver = {
+> +		.name = "sky1-system-control",
+> +		.of_match_table = sky1_system_control_of_match,
+> +	},
+> +	.probe = sky1_system_control_probe,
 
-Ah, -ETOOFAST, I'm retracting by R-b. Thanks Krzysztof for catching it.
+I do not understand why do you need thish driver in the first place.
+It's completely empty - just spawns reset driver, so you only need a
+reset driver.
 
-Bartosz
+Layers of indirection are never helpful.
+
+Best regards,
+Krzysztof
 
