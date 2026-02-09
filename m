@@ -1,188 +1,569 @@
-Return-Path: <devicetree+bounces-263990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263991-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yCL8Du3ciWkGCwAAu9opvQ
-	(envelope-from <devicetree+bounces-263990-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 14:11:09 +0100
+	id eAGlGALeiWnGCwAAu9opvQ
+	(envelope-from <devicetree+bounces-263991-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 14:15:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93A6F10F741
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 14:11:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0168010F7F8
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 14:15:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6972830157E2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 13:11:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 14A96301CFB4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 13:14:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9190F372B50;
-	Mon,  9 Feb 2026 13:11:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F72F377543;
+	Mon,  9 Feb 2026 13:14:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="m/3uEtQI";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="RREOBtSM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e1Mxnd7F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D425238C29
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 13:11:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B76623373D;
+	Mon,  9 Feb 2026 13:14:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770642666; cv=none; b=Pisgvely6u7TXaHs/C5bkAVHMczvObk0jlAJYaAkqBMwwG66GtcBhGDPV/7IhKWWUViPsVJkr4WPHU0dwx8sIGEZrt0/PPPCf77tkJaJKb0+fUK4UU5xigIXqBS11Rb+u5R5SyVVaWCBVLbxaXcO9zJab8lOCVBXucLJoemSwag=
+	t=1770642874; cv=none; b=NDhNuS6uMdFb6qTQF/XJG8iuGKHcaZ3k7RZH9lF+ijDUDqqQJ+m6fABATa3Ho8lxGx2A6QTQACEb3RhvqAg/ovbIj7xz0xQA/21BEvJcRnLLHdwTbd0UjtKhBw1/SStCNMAmTHsNAs6vO2Li/2TWYhtDKKqbRVQc0Tt7AXz/49A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770642666; c=relaxed/simple;
-	bh=ttosiTeLep3a/0yqYZODsLAArithrXWgifWuWEeKHmM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V52Ivh56lkuFfR2oVVhzcccMqg8ooT4OCZpqHcEANWn1pCcawbO4+tEzWOZAhXnK12yKnoC3XFnD5qtb6y3cYUMK9qHsiH+LycsKFbNIGdB2yoVC9OLpPTKN7TK1WiYPgSeizX1WX1rSTzE7Xf1GmSttduAzhAJi+PvI+gQTa2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=m/3uEtQI; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=RREOBtSM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 619AVqk31476771
-	for <devicetree@vger.kernel.org>; Mon, 9 Feb 2026 13:11:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=RM9D0erFU6KFIPXwqdXYSlNe
-	Ku+Wim8uj//nd7mXEwQ=; b=m/3uEtQIilEqacPRJHC0is2psLVesjypc1dGofH5
-	61JTO9WyIXj3hfNA6Zw2pwkzvqiqg4TlVswi8N+cP8d+gz2fFIbct1LaUEi6IR7B
-	dHGV5dZ0xlGLHY7jSmIicrSTRkgERn39f1sDSZXLdHdxbUYBwMm1fkti3Ht4Yxtz
-	bQanQBX7KPfYsdSQ8Lv4RtqrYR53WBjQ0Bxa/XiDK1Qia9GLeWW03/fJDLzoQQRS
-	2IyCQVsWyVCgZLT7GCagKkiPv5bw+Hv3yapZXWZjC/8kxECHDDtzHLg8Hhv6RApE
-	yHHUpznsK9WcbpjlcT6ab1aEtkdgj7LHcSBliwhXfb8MSQ==
-Received: from mail-vs1-f71.google.com (mail-vs1-f71.google.com [209.85.217.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c64hnmrej-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 13:11:05 +0000 (GMT)
-Received: by mail-vs1-f71.google.com with SMTP id ada2fe7eead31-5fb5bb202a7so7595069137.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 05:11:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770642664; x=1771247464; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=RM9D0erFU6KFIPXwqdXYSlNeKu+Wim8uj//nd7mXEwQ=;
-        b=RREOBtSM7Ne+yPMjiGNQLucfgDZ7iaOTzVdCF4Obh0HTRgmhxYK9ScDDI9VUFgbu8f
-         8FLTVdGqVVZqUFcPEs7koZph8mJ0ZRGAW/NDtaTE5ZnhQalwLuklIywVgMBJCQbbGB+e
-         aKpBHKtYm0oM2+i660E18rPTyQJE0GYnzraTGeFs7WbGwdW5XgPzb8F4chayu7BH470b
-         DUMmUTxEQ8k1jYIUIPAfSpdxpqaQWHhXLo+9xhbY2+AIPol7LIY4+zfQVRx3DnaAh/A5
-         3BZAOxHopw6svI4iX9c895JjZYT4Z+OHXOOTj4y3GF7xBnrZz6pD9b4+HHTzu1RFlTUW
-         Gotg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770642664; x=1771247464;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RM9D0erFU6KFIPXwqdXYSlNeKu+Wim8uj//nd7mXEwQ=;
-        b=FoQ7FJ/CLJHdoDOk+/pYF02YQmTTdS3k5A6SQG9tInvWJSBq8t56Sbuz5FZJHfTz95
-         sHmXcOCxf5GTB7CtPIvge69PMgNBUSm0hV8AwAOhMK0geIxgZYYb3E9ZGovVPvj3FI/e
-         42wl6oltpWvgsoGgbHSMGdMC201YS/v48FtLtoQ+wRqHreAtvlcXY4mtudXB0ppManV9
-         VdM9VXSJOVuYSjO8Bqlab5dJ1dUn88jf9ioDM0mY1pB0em0E1gv3bz/TE0Op7gblGixb
-         QP23WwyHwvYQTmKWW4UU68S2cHgXcW195yU11u9zwYGX61tHwI/gfPqN4YCntphbxB9r
-         yO5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWgHHvDzlFdOLZTIkRjjg92LN85GUGpiRAbBoHRH6iiJpKT+USpBynkKf1lheZgmA3zK5uBGB5ldBqG@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzpvrugdpKV7bC/EfZNNaTVZwLAAYXN3ozrsO8hfYOjgLtQkoQ
-	D59pIP3R+TD3bYdDClXZa1HobFKP8925mmh1tbn5bWqH+HzEpv/4itqgSxLP6/XvDlKCPrMoH9q
-	Cq45cVHXVAt+rlLtm6BfpbA0tdLyXUz6btZTXpk2OZtmQQc1RCZLOCCMDiDVY0vXo
-X-Gm-Gg: AZuq6aJAUxVLonTvCyBTJGYd3IV1sU7U3P4qMEGd+q7jmzmbeCPmESHUU/FkZ6SOhCI
-	K4wpCYOlpl8STxv4P12YDV3D9xVlarZhWQmb+XJzOkWC/1dS2zhdtL2omtvC3yCNRs9698iXpWK
-	dvfGc6S7KqwzVQcG4tmcHBzMH2IwIcxg8+uwOgZnhXMT58d65ulRNHROmxh0NWztL79TSEtUDBA
-	9oc5qTl1VYeSiY+hcaG8lr2ozchrjgnO6xZu5Weij1GCBCQ8pWinDkEY0p2LtrfXa40ncVuiHzY
-	tuvOy5bCZmfIrVKxFgomkccZ4a5T+ljGJpfc0vNQ+xe6WrNSI6Lm6rdi76qxjpoDjPr+J86RQIw
-	5PJcxiv8uu1IgQgiQ480LKqErhQyksM6XItRXt4eZzYfiXY/KxROi5bpAWjUiK0nYMoHEf6Bhvu
-	HA8dg8ds9AuXE8CQJkofB4IoU=
-X-Received: by 2002:a05:6102:160d:b0:5ee:a3eb:2854 with SMTP id ada2fe7eead31-5fae8cbbac2mr3080834137.45.1770642664551;
-        Mon, 09 Feb 2026 05:11:04 -0800 (PST)
-X-Received: by 2002:a05:6102:160d:b0:5ee:a3eb:2854 with SMTP id ada2fe7eead31-5fae8cbbac2mr3080825137.45.1770642664102;
-        Mon, 09 Feb 2026 05:11:04 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e44d2995fsm2635434e87.49.2026.02.09.05.11.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Feb 2026 05:11:03 -0800 (PST)
-Date: Mon, 9 Feb 2026 15:11:01 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH v4] arm64: dts: qcom: x1-crd: add USB DisplayPort audio
-Message-ID: <eop445dzscrlag3lzh7d7erbjoit4d74uwusqs5lykcucgmfrt@u5uyweg5nimo>
-References: <20260209093237.33287-2-krzysztof.kozlowski@oss.qualcomm.com>
+	s=arc-20240116; t=1770642874; c=relaxed/simple;
+	bh=564k2LnoApszpIPBy6pIXAzs/P2R7AhJFsF2c/0eiNs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d26h3/PysX6VSlslCeHi8b8CrR6oUNNUParFJfGTt+0mKIeLUK/kOYfwYH79ojBwRB+PP1bzY6IRC4gcQfzVuluv3NvNdQCT232IoRrAJpuCY6i1OkuFchhm15TaxaB4Rp4mcGBAl7FT6TmCYr7ombMgAiUwpeyitssvCFPP9xk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e1Mxnd7F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0AFFC116C6;
+	Mon,  9 Feb 2026 13:14:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770642873;
+	bh=564k2LnoApszpIPBy6pIXAzs/P2R7AhJFsF2c/0eiNs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=e1Mxnd7FrLR/nBfDYZ8/Xt5QjPS+7uAz0eK2b3vZgJS3H8O+t/OhnLqspmhipgXli
+	 EnokWJyQhYhnEIFDhvUqFhkfaJLW8mcbA9RtOVbSMbpdq/vijsWzZN4mKUZ3qalGSX
+	 sllVmEPyVTa83HsCBT6jEL9aLHXqnW7wbYFd1ia22bui4/2V1TYuSGny0Ircph4HvF
+	 lHR+pJpOlSHtKY3Zg5swfEgQhxifuC4gEkEngFxJsA60PoPQ08+Nv0STvRbZtrE0+G
+	 nFBCgx4scCA/6HN4kodTwdvWfi+UWACc2xYUdw8yxsmkG9hqu/HRJuEMDAioIGjiI9
+	 vIXPgmAd9lf+g==
+Message-ID: <10caac08-1a1d-4fe9-8df8-e0b75c532e8f@kernel.org>
+Date: Mon, 9 Feb 2026 14:14:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260209093237.33287-2-krzysztof.kozlowski@oss.qualcomm.com>
-X-Proofpoint-GUID: ulH2oFPEejJxnBauPhp-GUdEbR-fyD57
-X-Proofpoint-ORIG-GUID: ulH2oFPEejJxnBauPhp-GUdEbR-fyD57
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDExMSBTYWx0ZWRfX01BcrlkutUQL
- 3b1vEdHAcCs+P2lITAzcksgSOIP2t+voyagW2cUm4oR064gDNvPfo1KOvRhzkYYWKSkHiegQn5/
- lzCQsmLxIOL5q+Yuc+fqAvNk4uz4AwEz+CxpYR73O9igEjGRFSegM7Ib1c68j10zqf5ZleAoKuR
- /Yy69xXwyMOBGz8+d954vQU4BQZ2E1i3w8xITRqvaIU9B9x6YWxtqBqWSRq6Np05jbjGB/xVjb0
- HXbAXy6GPfgAsTvoD/j4yTbyx5zNQM+mlTZChJkqxqO75Xc7iJ1y1bQzJeoSLQb+5+RZTDe1qAQ
- uX/6iH7C7BPkcONf1DKd2u1pghAJxSZSAXSLpNRRzNFb3O+VV84S0CbRYlYqCWamk+Vz8FB8g/0
- Qt9Qy+K/TXRloNdN+VfG8GJUjmd5ux5GJrEgyGIyvM7VzuyBw+m2ezmAM7Yy9NyNvTXCvX8k6As
- SMl+kzZAJLCj5NSDGUw==
-X-Authority-Analysis: v=2.4 cv=SNlPlevH c=1 sm=1 tr=0 ts=6989dce9 cx=c_pps
- a=P2rfLEam3zuxRRdjJWA2cw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=KKAkSRfTAAAA:8
- a=EUspDBNiAAAA:8 a=iTZVlg6EzTYP-dx1yXAA:9 a=CjuIK1q_8ugA:10
- a=ODZdjJIeia2B_SHc_B0f:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-08_05,2026-02-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 priorityscore=1501 impostorscore=0 suspectscore=0
- adultscore=0 lowpriorityscore=0 spamscore=0 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602090111
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/13] dt-bindings: clock: Add Amlogic A9 standardized
+ model clock control units
+To: chuan.liu@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
+ <20260209-a9_clock_driver-v1-1-a9198dc03d2a@amlogic.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260209-a9_clock_driver-v1-1-a9198dc03d2a@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263990-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263991-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 93A6F10F741
+	DBL_PROHIBIT(0.00)[0.0.1.34:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,amlogic.com:email,0.0.1.94:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0168010F7F8
 X-Rspamd-Action: no action
 
-On Mon, Feb 09, 2026 at 10:32:38AM +0100, Krzysztof Kozlowski wrote:
-> Add support for playing audio over USB DisplayPort (the two left USB-C
-> ports on the CRD device).
+On 09/02/2026 06:48, Chuan Liu via B4 Relay wrote:
+> From: Chuan Liu <chuan.liu@amlogic.com>
 > 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Add dt-binding documentation for standardized model clock control units
+> in A9 SoC family.
+> 
+> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+> ---
+>  .../bindings/clock/amlogic,a9-model-ccu.yaml       | 435 +++++++++++++++++++++
+>  1 file changed, 435 insertions(+)
+
+Brief review, you still have to read basic guidelines to not repeat the
+basic mistakes.
+
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a9-model-ccu.yaml b/Documentation/devicetree/bindings/clock/amlogic,a9-model-ccu.yaml
+> new file mode 100644
+> index 000000000000..56c5cbe1b246
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,a9-model-ccu.yaml
+> @@ -0,0 +1,435 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2026 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/amlogic,a9-model-ccu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic A9 Family Standardized Model Clock Control Unit
+> +
+> +maintainers:
+> +  - Chuan Liu <chuan.liu@amlogic.com>
+> +
+> +description:
+> +  The clock tree within the A9 is composed of numerous instances of these
+> +  standardized model CCU (Clock Control Units).
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+
+Drop
+
+> +          - const: amlogic,a9-composite-ccu
+> +        description: Supports clock source selection, frequency division, and
+> +                     clock gating.
+
+This is just one big enum. You can add comments if you insist...
+
+
+> +      - items:
+> +          - const: amlogic,a9-composite-ccu-mult
+> +        description: Some modules have multiple input clocks and contain
+> +                     multiple composite-ccus internally.
+> +      - items:
+> +          - const: amlogic,a9-noglitch-ccu
+> +        description: Provides the same functionality as composite-ccu but
+> +                     includes glitch suppression during frequency transitions.
+> +      - items:
+> +          - const: amlogic,a9-noglitch-ccu-mult
+> +        description: Some modules have multiple input clocks and contain
+> +                     multiple noglitch-ccus internally.
+> +      - items:
+> +          - const: amlogic,a9-sysbus-ccu
+> +        description: Consists of multiple gating arrays, commonly used for
+> +                     Amlogic's sys_clk and axi_clk.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 16
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 16
+> +
+> +  clock-output-names:
+> +    minItems: 1
+> +    # The sysbus-ccu of A9 supports up to 128 gates
+> +    maxItems: 128
+> +
+> +  '#clock-cells':
+> +    description:
+> +      The clock controller of a module may contain one or more CCU(s). When a
+> +      clock controller has multiple CCUs, an index is required to specify a
+> +      particular CCU within the clock controller.
+
+Drop
+
+> +    oneOf:
+> +      - const: 0
+> +        description: Single clock output, no specifier needed
+> +      - const: 1
+> +        description: Multiple clocks, index selects specific output
+
+Drop all descriptions. That's enum. Do not explain usu how DT works.
+
+> +
+> +  amlogic,clock-max-frequency:
+
+Drop property. So many wrong things here... First, start from basic
+guidelines like talks or docs in kernel and understand the suffixes.
+
+Second not a DT property.
+
+> +    description: |
+> +      Each clock's maximum output frequency is constrained during hardware
+> +      design to ensure proper timing requirements for the clock network. If the
+> +      clock frequency configured exceeds this design limit, it can lead to
+> +      abnormal behavior in modules relying on that clock and may even cause
+> +      cross-talk that affects other modules.
+> +
+> +      In the driver, this property is parsed, and interface functions from the
+
+Why would we care about driver?
+
+This is binding, we talk about hardware.
+
+
+> +      CCF are called to enforce the clock's maximum frequency, preventing
+> +      potential issues caused by excessive clock frequency configurations.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +
+> +  amlogic,reg-layout:
+
+No, drop. Compatible defines it.
+
+> +    description:
+> +      These standardized model CCUs require register configuration for their
+> +      clock functions. This property node describes the register layout
+> +      parameters for each model's CCU.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          anyOf:
+> +            - contains:
+> +                const: amlogic,a9-composite-ccu
+> +            - contains:
+> +                const: amlogic,a9-noglitch-ccu
+> +    then:
+> +      properties:
+> +        '#clock-cells':
+> +          const: 0
+> +        clock-output-names:
+> +          minItems: 1
+> +          maxItems: 1
+> +    else:
+> +      properties:
+> +        '#clock-cells':
+> +          const: 1
+> +        clock-output-names:
+> +          minItems: 2
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: amlogic,a9-composite-ccu
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 1
+> +          items:
+> +            - description: input clock source 0
+> +            - description: input clock source 1 (optional)
+> +            - description: input clock source 2 (optional)
+> +            - description: input clock source 3 (optional)
+> +            - description: input clock source 4 (optional)
+> +            - description: input clock source 5 (optional)
+> +            - description: input clock source 6 (optional)
+> +            - description: input clock source 7 (optional)
+> +        clock-names:
+> +          minItems: 1
+> +          items:
+> +            - const: clkin0
+> +            - const: clkin1
+> +            - const: clkin2
+> +            - const: clkin3
+> +            - const: clkin4
+> +            - const: clkin5
+> +            - const: clkin6
+> +            - const: clkin7
+> +        amlogic,reg-layout:
+> +          description: |
+> +            composite-ccu contains three register layout parameters:
+> +              * register offset
+> +              * bit offset
+> +              * divider effective bit width
+> +      required:
+> +        - amlogic,reg-layout
+> +        - clock-names
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: amlogic,a9-composite-ccu-mult
+> +    then:
+> +      properties:
+> +        clocks:
+> +          description:
+> +            Some clock controllers contain two composite-ccus (labeled
+> +            composite_a and composite_b). In certain controllers, composite_a
+> +            and composite_b share a common clock source, while in others they
+> +            have independent clock sources.
+> +          minItems: 1
+> +          items:
+> +            - description: composite_a/b's input clock source 0
+> +            - description: composite_a/b's input clock source 1 (optional)
+> +            - description: composite_a/b's input clock source 2 (optional)
+> +            - description: composite_a/b's input clock source 3 (optional)
+> +            - description: composite_a/b's input clock source 4 (optional)
+> +            - description: composite_a/b's input clock source 5 (optional)
+> +            - description: composite_a/b's input clock source 6 (optional)
+> +            - description: composite_a/b's input clock source 7 (optional)
+> +            - description: composite_b's input clock source 0 (optional)
+> +            - description: composite_b's input clock source 1 (optional)
+> +            - description: composite_b's input clock source 2 (optional)
+> +            - description: composite_b's input clock source 3 (optional)
+> +            - description: composite_b's input clock source 4 (optional)
+> +            - description: composite_b's input clock source 5 (optional)
+> +            - description: composite_b's input clock source 6 (optional)
+> +            - description: composite_b's input clock source 7 (optional)
+> +        clock-names:
+> +          minItems: 1
+> +          items:
+> +            - const: clkin0
+> +            - const: clkin1
+> +            - const: clkin2
+> +            - const: clkin3
+> +            - const: clkin4
+> +            - const: clkin5
+> +            - const: clkin6
+> +            - const: clkin7
+> +            - const: bclkin0
+> +            - const: bclkin1
+> +            - const: bclkin2
+> +            - const: bclkin3
+> +            - const: bclkin4
+> +            - const: bclkin5
+> +            - const: bclkin6
+> +            - const: bclkin7
+> +        amlogic,reg-layout:
+> +          description: |
+> +            composite-ccu contains three register layout parameters:
+> +              * register offset
+> +              * bit offset
+> +              * divider effective bit width
+> +      required:
+> +        - amlogic,reg-layout
+> +        - clock-names
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: amlogic,a9-noglitch-ccu
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 1
+> +          items:
+> +            - description: input clock source 0
+> +            - description: input clock source 1 (optional)
+> +            - description: input clock source 2 (optional)
+> +            - description: input clock source 3 (optional)
+> +            - description: input clock source 4 (optional)
+> +            - description: input clock source 5 (optional)
+> +            - description: input clock source 6 (optional)
+> +            - description: input clock source 7 (optional)
+> +        clock-names:
+> +          minItems: 1
+> +          items:
+> +            - const: clkin0
+> +            - const: clkin1
+> +            - const: clkin2
+> +            - const: clkin3
+> +            - const: clkin4
+> +            - const: clkin5
+> +            - const: clkin6
+> +            - const: clkin7
+> +      required:
+> +        - clock-names
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: amlogic,a9-noglitch-ccu-mult
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 1
+
+Why?
+
+> +          items:
+> +            - description: input clock source 0
+> +            - description: input clock source 1 (optional)
+
+Drop optional. Don't repeat constraints in free form text.
+
+> +            - description: input clock source 2 (optional)
+> +            - description: input clock source 3 (optional)
+> +            - description: input clock source 4 (optional)
+> +            - description: input clock source 5 (optional)
+> +            - description: input clock source 6 (optional)
+> +            - description: input clock source 7 (optional)
+> +        clock-names:
+> +          minItems: 1
+> +          items:
+> +            - const: clkin0
+> +            - const: clkin1
+> +            - const: clkin2
+> +            - const: clkin3
+> +            - const: clkin4
+> +            - const: clkin5
+> +            - const: clkin6
+> +            - const: clkin7
+> +        amlogic,reg-layout:
+> +          description: |
+> +            composite-ccu contains one register layout parameters:
+> +              * register offset
+> +      required:
+> +        - amlogic,reg-layout
+> +        - clock-names
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: amlogic,a9-sysbus-ccu
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 1
+> +          description: input clock of sysbus-ccu
+
+list the items with description instead.
+
+> +        amlogic,reg-layout:
+> +          description: |
+> +            composite-ccu contains two register layout parameters:
+> +              * register offset
+> +              * bit offset
+> +      required:
+> +        - amlogic,reg-layout
+
+This is huge and amount of ifs is clearly suggesting you combined way
+too much into one file.
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-output-names
+> +  - "#clock-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clk_dummy: clock-dummy {
+> +        compatible = "fixed-clock";
+> +        #clock-cells = <0>;
+> +        clock-frequency = <0>;
+> +        clock-output-names = "dummy";
+> +        status = "disabled";
+> +    };
+
+Not relevant, drop entire node.
+
+> +
+> +    apb {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        clock-controller@350 {
+> +            compatible = "amlogic,a9-composite-ccu";
+> +            reg = <0x0 0x350 0x0 0x4>;
+> +            #clock-cells = <0>;
+> +            amlogic,clock-max-frequency = <50000000>;
+> +            amlogic,reg-layout = <0x0 0  7>;
+> +            clock-output-names = "sar_adc";
+> +            clocks = <&xtal_24m>,
+> +                     <&scmi_clk 17>;
+> +            clock-names = "clkin0", "clkin1";
+> +        };
+> +
+> +        clock-controller@290 {
+> +            compatible = "amlogic,a9-composite-ccu-mult";
+> +            reg = <0x0 0x290 0x0 0x8>;
+> +            #clock-cells = <1>;
+> +            amlogic,clock-max-frequency = <250000000>,
+> +                                          <250000000>,
+> +                                          <1200000000>;
+> +            amlogic,reg-layout = <0x0 0  7>,
+> +                                 <0x0 16 7>,
+> +                                 <0x4 0  7>;
+> +            clock-output-names = "sd_emmc_a",
+> +                                 "sd_emmc_b",
+> +                                 "sd_emmc_c";
+> +            clocks = <&xtal_24m>,
+> +                     <&scmi_clk 6>,
+> +                     <&scmi_clk 10>;
+> +            clock-names = "clkin0",
+> +                          "clkin1",
+> +                          "clkin2";
+> +        };
+
+One or two are enough. Drop the rest.
+
 > 
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
