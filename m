@@ -1,170 +1,181 @@
-Return-Path: <devicetree+bounces-263851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263852-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yBxbKTGRiWlz+wQAu9opvQ
-	(envelope-from <devicetree+bounces-263851-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:48:01 +0100
+	id iPT0GpCRiWlz+wQAu9opvQ
+	(envelope-from <devicetree+bounces-263852-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:49:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 051A210C96D
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:48:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAD4110C994
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:49:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9938030053EE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 07:47:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8370C3006158
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 07:49:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2939F2FFF97;
-	Mon,  9 Feb 2026 07:47:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y35rhwkZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92393254B4;
+	Mon,  9 Feb 2026 07:49:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044601C2AA;
-	Mon,  9 Feb 2026 07:47:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 328AE1EA7DB;
+	Mon,  9 Feb 2026 07:49:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770623221; cv=none; b=KJPGN0+K6za7yZq0tykdlpHcfNIW1ohRRa9U1cvrka2sYzmmkYL5uo6GGG030v5DN5vE6juyn4pGj83uZGKi9MpwqFnWDAny1iPxThmVbzEYTcKbN5fTAfxIhTCJ6l77iSpW8sFMzOrrO7iexL9EigGUehycJJaiNU02D8mWqHc=
+	t=1770623373; cv=none; b=Ig1Z3m3QLgk7U7lAAE0eOAYEwj9qgvS0L9WBW5CUuM3EL8jXWDrNTY1lcVdT1V65ibr2vXAFjj4FIuqJ5x4V6jAJy7YJ+fd40/CniPdPAvalprAlXXjZiaQ+UrBVi/xyfGa640jdoP0KJSxmNfPnjGnpuV8wWquWYlCwKF6PrSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770623221; c=relaxed/simple;
-	bh=IndfL7PE/WdXaxUDEwnvO7U+aOUsMdwiM6o/wVwo3mA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H6124N/RW6vkBVa+MCw/G7EzVO1GqReKkOROUXwLnTROMKQuLMRnh380ufaBvnTa5mWsIu2khH3WGtDUWYeVOtfzEcek7OuPt0rQ1iH39qkFCJWMFI2ZfSfIx50yVqhdT0iuzOlsLJ/0rrVH70r9M6ncxcRXMPUuWvavfwjc6po=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y35rhwkZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAA45C116C6;
-	Mon,  9 Feb 2026 07:46:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770623220;
-	bh=IndfL7PE/WdXaxUDEwnvO7U+aOUsMdwiM6o/wVwo3mA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y35rhwkZqiZcyrO/jZVJ9yFuMHbKDay/OtzMn/OTdPXvFsik1B2Eb6UO2nMTczeQl
-	 AGoWCrY91EBEsSDTxWfXVL60k7EV2j+Nlt4GzYKfoUhqlYKlACZUOLMDLF5J+JJuva
-	 YzBnqnKa+L/cmZXze+woLRIUI3wA2tx8GcKGUno57PseBp7GEkqeXuPBaJaNobPCYo
-	 gtHSRA0sK08pkU9mKwPy03SDEiEW5kr4zXrbcn8g1ywFno7m4wbKsHb5ojp19gKanc
-	 1J1/2Fw7N4Lad2QrOOfqbFG1lfpuOijUgfqr2g4T24qJ6/nhf7bjfac1N9kKoVx4Az
-	 3z7u5r61c1L0A==
-Message-ID: <cf87856e-13f9-4d94-aa07-eed7fb4a2309@kernel.org>
-Date: Mon, 9 Feb 2026 08:46:54 +0100
+	s=arc-20240116; t=1770623373; c=relaxed/simple;
+	bh=apqqrfRf8L8OmubOlBUz0Vme7jcRaRgyxJoAEkBsXr0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mo7M10Eml5IMVvkQMbHRhMBAl/O+jdzRJcLLBdpeJRHDSEbUnMT8POnvzR7bPK9tZwz1mdZ8SC1/i7YBUyvUJ9qZNXWV3i8jkfbGSDzLDb2aq5t0wyw9Gpsuv0O2JQa5B+ntP+iuCxvjwT6GjrR+TBOaM0n9LpBWfmkOqgDfKRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 13A981A231C;
+	Mon,  9 Feb 2026 08:49:26 +0100 (CET)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id CF7021A0442;
+	Mon,  9 Feb 2026 08:49:25 +0100 (CET)
+Received: from lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com (lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com [10.52.9.11])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id A46F71800095;
+	Mon,  9 Feb 2026 15:49:23 +0800 (+08)
+Date: Mon, 9 Feb 2026 16:49:22 +0900
+From: Yanan Yang <yanan.yang@nxp.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, qijian.guo@nxp.com,
+	justin.jiang@nxp.com, Lei Xu <lei.xu@nxp.com>,
+	Xiaofeng Wei <xiaofeng.wei@nxp.com>
+Subject: Re: [PATCH v4 2/2] arm64: dts: freescale: add NXP FRDM-IMX91S board
+ support
+Message-ID: <aYmRgsEoARQG8OQC@lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com>
+References: <20260123-imx91s-frdm-v4-0-1bab038faee9@nxp.com>
+ <20260123-imx91s-frdm-v4-2-1bab038faee9@nxp.com>
+ <aXOTzHaLn6hFdMtR@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [V5,00/13] Fixes to pcie-tegra194 driver
-To: Manikanta Maddireddy <mmaddireddy@nvidia.com>, bhelgaas@google.com,
- lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- thierry.reding@gmail.com, jonathanh@nvidia.com, jingoohan1@gmail.com,
- vidyas@nvidia.com, cassel@kernel.org, 18255117159@163.com
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260208180746.2024338-1-mmaddireddy@nvidia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260208180746.2024338-1-mmaddireddy@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aXOTzHaLn6hFdMtR@lizhi-Precision-Tower-5810>
+X-Virus-Scanned: ClamAV using ClamSMTP
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263851-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[nvidia.com,google.com,kernel.org,gmail.com,163.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,nxp.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263852-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.988];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[yanan.yang@nxp.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.895];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 051A210C96D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com:mid]
+X-Rspamd-Queue-Id: CAD4110C994
 X-Rspamd-Action: no action
 
-On 08/02/2026 19:07, Manikanta Maddireddy wrote:
-> This series[1] was originally posted by Vidya Sagar, and I have rebased
-> it onto 6.19.0-rc6-next. I addressed review comments and split this into
-> two series, one for fixes(current) and the other is for enhancements.
-> I verified these patches on Jetson AGX Orin(Tegra234 SoC).
+On Fri, Jan 23, 2026 at 10:29:16AM -0500, Frank Li wrote:
+> On Fri, Jan 23, 2026 at 03:42:00PM +0900, Yanan Yang wrote:
+> > Add DeviceTree support for the NXP FRDM-IMX91S development board based
+> > on the i.MX91 SoC. FRDM-IMX91S is a cost-optimized variant of FRDM-IMX91
+> > and differs in memory, storage, Ethernet, and PMIC configuration:
+> >
+> > - 512MB LPDDR4 (FRDM-IMX91 uses 1GB)
+> > - 256MB FlexSPI-NAND (FRDM-IMX91 uses 8GB eMMC)
+> > - Single GbE port (FRDM-IMX91 has dual GbE)
+> > - PMIC PF9453 (FRDM-IMX91 uses PCA9451A)
+> >
+> > This DT enables:
+> > - ADC1
+> > - UART1 and UART5
+> > - I2C bus and children nodes
+> > - USB and related nodes
+> > - uSDHC1 and uSDHC2
+> > - FlexSPI NAND flash
+> > - Watchdog3
+> > - Ethernet (eqos)
+> > - FlexCAN
+> > - MQS
+> >
+> > Link: https://www.nxp.com/design/design-center/development-boards-and-designs/FRDM-IMX91S
+> > (FRDM-IMX91S board page)
+> > Link: https://www.nxp.com/design/design-center/development-boards-and-designs/FRDM-IMX91
+> > (FRDM-IMX91 board page)
+> >
+> > Co-developed-by: Lei Xu <lei.xu@nxp.com>
+> > Signed-off-by: Lei Xu <lei.xu@nxp.com>
+> > Co-developed-by: Xiaofeng Wei <xiaofeng.wei@nxp.com>
+> > Signed-off-by: Xiaofeng Wei <xiaofeng.wei@nxp.com>
+> > Signed-off-by: Yanan Yang <yanan.yang@nxp.com>
+> >
+> > ---
+> ...
+> > +
+> > +&iomuxc {
+> > +	bootph-pre-ram;
+> > +	bootph-some-ram;
+> > +
+> > +	pinctrl_eqos: eqosgrp {
+> > +		fsl,pins = <
+> > +			MX91_PAD_ENET1_MDC__ENET1_MDC                           0x57e
+> > +			MX91_PAD_ENET1_MDIO__ENET_QOS_MDIO                      0x57e
+> > +			MX91_PAD_ENET1_RD0__ENET_QOS_RGMII_RD0                  0x57e
+> > +			MX91_PAD_ENET1_RD1__ENET_QOS_RGMII_RD1                  0x57e
+> > +			MX91_PAD_ENET1_RD2__ENET_QOS_RGMII_RD2                  0x57e
+> > +			MX91_PAD_ENET1_RD3__ENET_QOS_RGMII_RD3                  0x57e
+> > +			MX91_PAD_ENET1_RXC__ENET_QOS_RGMII_RXC                  0x5fe
+> > +			MX91_PAD_ENET1_RX_CTL__ENET_QOS_RGMII_RX_CTL            0x57e
+> > +			MX91_PAD_ENET1_TD0__ENET_QOS_RGMII_TD0                  0x57e
+> > +			MX91_PAD_ENET1_TD1__ENET1_RGMII_TD1                     0x57e
+> > +			MX91_PAD_ENET1_TD2__ENET_QOS_RGMII_TD2                  0x57e
+> > +			MX91_PAD_ENET1_TD3__ENET_QOS_RGMII_TD3                  0x57e
+> > +			MX91_PAD_ENET1_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK  0x5fe
+> > +			MX91_PAD_ENET1_TX_CTL__ENET_QOS_RGMII_TX_CTL            0x57e
+> > +		>;
+> > +	};
 > 
-> I added below four new patches to fix bugs, commit message of each
-> patch has the details on the bug and fix.
->  - PCI: tegra194: Use HW version number
->  - PCI: tegra194: Fix CBB timeout caused by DBI access before core power-on
->  - PCI: tegra194: Disable PERST IRQ only in Endpoint mode 
+> Plese usb tab before number.
 > 
+> Frank
 
+Will fix it in v5, thanks
 
-Please use standard email subjects, so with the PATCH keyword in the
-title. `git format-patch -vX` helps here to create proper versioned
-patches. Another useful tool is b4. Skipping the PATCH keyword makes
-filtering of emails more difficult thus making the review process less
-convenient.
-
-I really do not get why such big patchset is still not with b4, but if
-you insist, then at least do it correct.
-
-Best regards,
-Krzysztof
+> > +
+> ...
+> > +&wdog3 {
+> > +	pinctrl-0 = <&pinctrl_wdog>;
+> > +	pinctrl-names = "default";
+> > +	fsl,ext-reset-output;
+> > +	status = "okay";
+> > +};
+> >
+> > --
+> > 2.43.0
+> >
 
