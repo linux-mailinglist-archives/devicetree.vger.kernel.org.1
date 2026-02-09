@@ -1,162 +1,139 @@
-Return-Path: <devicetree+bounces-264108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264110-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gOGxGbElimlKHwAAu9opvQ
-	(envelope-from <devicetree+bounces-264108-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 19:21:37 +0100
+	id OOFPAHYmimlKHwAAu9opvQ
+	(envelope-from <devicetree+bounces-264110-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 19:24:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C72E1137BB
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 19:21:36 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFF1B11381D
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 19:24:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 09B58300BC6D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 18:20:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D6A3B3008452
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 18:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0F229C321;
-	Mon,  9 Feb 2026 18:20:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="vTThX6qp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E472F6907;
+	Mon,  9 Feb 2026 18:24:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA7DB2D7DED
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 18:20:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55427134CF;
+	Mon,  9 Feb 2026 18:24:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770661245; cv=none; b=UloVbHq+3cbXkCn7P8n9+0R1ZYhGERN78QVSJANKWkgmgwghOJzEqe2uqLeFUz3TbMrqGD3rxtxKtEylwf6I5DZPEfzj6d5zXsaMueqqVDRUDiBj1KX56zBk9iPkIdojytK1XkkM8mhGpOn83+Wjnhdi7fdBa/X7NxMa9ZXsiMw=
+	t=1770661480; cv=none; b=BnKZzkb5RoNf/AJAWHNtkJRRB68o2tdanrBgBswADPX9hpXE9QJS4w/XEU6xtdxjNwBr7ckXc0wRYlZtvMUM9h8o5A3WsLszjtYyWldPh2rTbS6JaAPo5/Ouh1VfSi4p5Wk3c2YVAvC932XVJeZSJ3aDNnJdInt+DKWJpcM6mEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770661245; c=relaxed/simple;
-	bh=nHvEOtk0p/bx0nGCHDaxJahqOxGYrkQfZxMGweFLXmQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=u2bgYqkS4gQq3Mm0BnEzLEcbl50xpXuraqxtrGEw4mQGd9vGvneisJoMXP6OhnDwlxKf2zKDwy6BQ8WMGrCs2XQAOQ87ryj8Xf1bacrKK+mWWeFECIfVO3RZT20Wmr/vuCtJ9lIQNQjk/q4o6Q2CbpWylVDqhusDSp9aezgqToE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=vTThX6qp; arc=none smtp.client-ip=209.85.210.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7d1866473b0so2728262a34.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 10:20:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1770661244; x=1771266044; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=EqLmn4mbdLcrRVXVKVq2iS1TAqysNFH2oGNdN4Z4ID4=;
-        b=vTThX6qpgrFYCEsMMT6mHDZZEUJGWsnAJiXAd37TOdqw8S0B99qipvohLk3IZyBm2u
-         jHvcQHav3ksljMIpg1jfqwX5phCO8AsEm8nfma+ZrpFvy8S2tEpUfUACAodebf/WmMc4
-         4q4Y93mqOAhFZoeaOhfsCNhwgv0AEPy5E3BZ7PbXYVye1bpCk+LjJfw3Z1oGfartOj+Z
-         09HDmvsmcLqpulI5/uy/mUF/5Chl5/EMBZKSdO3cmoX4XQHxZlnaa5tpx7a9YohDe4/v
-         Yrtk0/n+0PtLFUda8zF3qOCvEprLWFx4FvEAQ4cFAPtXHbgpjDyF43Gdy9tWxwTY2xKU
-         aO6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770661244; x=1771266044;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EqLmn4mbdLcrRVXVKVq2iS1TAqysNFH2oGNdN4Z4ID4=;
-        b=MyuuDJ2xtYNYmOdL6fG7zgfgpzDx6ulz/cGnGedw1CVRW9ikiYa1Z3is+z0GrWKIki
-         7RHWmTn5va+xVpNS86cwiRiwxBeJUtETOrOkpfqFaYxfy47RgC5ITW57cFYYExaVvqZ5
-         WxB4UN5+M4ZqaYmSNMVmjeZNnz13618Bv+ROWsxOoo5JwJo5ndiQ8X1ZhQIhiDvgJPlA
-         jxbEzs9bxyzQpuSHbhI6s5kD+HUK3qZWf+8uXBwPQLka9qnMx9iMhP9Hkt7f/gPpkjHf
-         yeTM1NVk6/5Kms1JpyKVkZHUdG7dyeIU6wZKYixlzZJQrht7JOTCOVQREaXNs4JX5O1V
-         IqOw==
-X-Forwarded-Encrypted: i=1; AJvYcCXmhZVtaJsyUnHKHfp/nzAXtlJIDEAuj1c99g0pP9FWQrtKhUwJhUfDpIhG8n4mgiicNxinMQZYGrSV@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIemsNEvQ9NcC6fa+hmwjLfHXxKC32oTQQVBN3gZAsB6bSY8ms
-	Wo6+giZTZvXyTw8ojRlZ087XnCcU8IwT1NMVoPeuYYHNl3j9t/OGvhFUPrXbRqS+wiA=
-X-Gm-Gg: AZuq6aI6Jx5q9pIa79QfvzjT4Vg/THtEv3y9t1SiFyesVpSvDzbJ1Yu5uKHbYcp8CRh
-	u6+4bxh//GV9zRYQJoAjPu+oDcvCCbuDoiUMCMUz+N3evlNcdLIFd9o0I1otLsqkM+AJcv7kpzy
-	8hHV1WfrKYwxewCwjPcC+q4Ci5Oge0CX/fA+Q7iuP3pchI9ufjsgrB1mVJ9rXKWhVNuX067tAcq
-	iL1A7ELxmxoNw9lTu2SLltzQ3z3hkKF2Fkrpp00OS1LEF6C32JvYaETanIihXTh7gGebPKVW3IW
-	spG5auREFcLPYb+M3o2niNvf85KpbDm9awksB53Sok8Fi4tGtLA2QRChON/EgUcyfLBhqdFHf+Y
-	oJG7/PQaYNoDdXsumGO/oIrRK6e28THOTgjb3+auo+wk+0RoHAJEKWPakWfzy1axp7BEad3RsG2
-	SKKMKjR68V32LMSrr5OMkiv4qYicVoFZ1qVOkHiZ5wRhobrBxadnrAJFIdjC82
-X-Received: by 2002:a05:6830:6319:b0:7c7:2df4:faa3 with SMTP id 46e09a7af769-7d464679084mr7705868a34.33.1770661243787;
-        Mon, 09 Feb 2026 10:20:43 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:cee0:eb0c:b683:ad1d? ([2600:8803:e7e4:500:cee0:eb0c:b683:ad1d])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d464710c95sm7791470a34.12.2026.02.09.10.20.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Feb 2026 10:20:41 -0800 (PST)
-Message-ID: <7842eb25-9d6b-4218-9a23-f8758b819987@baylibre.com>
-Date: Mon, 9 Feb 2026 12:20:40 -0600
+	s=arc-20240116; t=1770661480; c=relaxed/simple;
+	bh=teCIQL1B+FcantvtJtxCOxoGHWBxuefGxsv13LO4zP0=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XMw+a8aLhDOt7aisefZwFwmq/OXMIkcoANVYWWYxqCs9joQwN94gEfBdLL/Rprtl0slE6SSYOol0ZiFzh2JsHnzaFfkfi6lPTMYVT7KSzzSg6cWOrSasOiBizH9FZCzuj4xy71yu7uia8vVJ1NNVfiEphNfV5+W7duRPVPBCafY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.224.107])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4f8tP70mznzJ46Dq;
+	Tue, 10 Feb 2026 02:23:39 +0800 (CST)
+Received: from dubpeml500005.china.huawei.com (unknown [7.214.145.207])
+	by mail.maildlp.com (Postfix) with ESMTPS id B1CB940570;
+	Tue, 10 Feb 2026 02:24:36 +0800 (CST)
+Received: from localhost (10.48.156.2) by dubpeml500005.china.huawei.com
+ (7.214.145.207) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Mon, 9 Feb
+ 2026 18:24:35 +0000
+Date: Mon, 9 Feb 2026 18:24:32 +0000
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Erikas Bitovtas <xerikasxx@gmail.com>
+CC: Andy Shevchenko <andriy.shevchenko@intel.com>, Jonathan Cameron
+	<jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Andy Shevchenko
+	<andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kevin Tsai
+	<ktsai@capellamicro.com>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/2] iio: light: Add support for Capella cm36686 and
+ cm36672p sensors
+Message-ID: <20260209182432.00006c3c@huawei.com>
+In-Reply-To: <73ec81de-86f8-477c-a5ca-aae83528dfab@gmail.com>
+References: <20260209-cm36686-v2-0-a48126d2b124@gmail.com>
+	<aYoBwFW4ZDFhmlvy@smile.fi.intel.com>
+	<aYoCJMlaaPO8auIm@smile.fi.intel.com>
+	<73ec81de-86f8-477c-a5ca-aae83528dfab@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] iio: backend: add devm_iio_backend_get_by_index()
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Olivier Moysan <olivier.moysan@foss.st.com>, Mark Brown
- <broonie@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org
-References: <cover.1770393792.git.antoniu.miclaus@analog.com>
- <550323d752213f177b7673bdd42e667f1d2228cb.1770393792.git.antoniu.miclaus@analog.com>
- <c731b6fba72286707821ea6e7722835ba45f089c.camel@gmail.com>
- <becd9db1-818f-4aa8-8362-91a711861839@baylibre.com>
- <be8457799b32d420228df5e2841c5547023ec515.camel@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <be8457799b32d420228df5e2841c5547023ec515.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100010.china.huawei.com (7.191.174.197) To
+ dubpeml500005.china.huawei.com (7.214.145.207)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_QUARANTINE(1.50)[huawei.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-264110-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	FREEMAIL_TO(0.00)[gmail.com,analog.com,metafoo.de,kernel.org,foss.st.com,vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264108-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,baylibre.com:mid,baylibre-com.20230601.gappssmtp.com:dkim]
-X-Rspamd-Queue-Id: 7C72E1137BB
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jonathan.cameron@huawei.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EFF1B11381D
 X-Rspamd-Action: no action
 
-On 2/9/26 10:47 AM, Nuno Sá wrote:
+On Mon, 9 Feb 2026 20:20:07 +0200
+Erikas Bitovtas <xerikasxx@gmail.com> wrote:
 
-...
+> On 2/9/26 5:49 PM, Andy Shevchenko wrote:
+> > On Mon, Feb 09, 2026 at 05:48:22PM +0200, Andy Shevchenko wrote:  
+> >> On Mon, Feb 09, 2026 at 04:23:40PM +0200, Erikas Bitovtas wrote:  
+> >>> This patch series adds support for Capella cm36686 and cm36672p ambient
+> >>> light and proximity sensors.
+> >>>
+> >>> Capella cm36686 is a combined ambient light and proximity sensor with
+> >>> adjustable integration time, interrupt and hysteresis support. It has
+> >>> the slave address of 0x60. cm36672p is fully compatible with cm36686,
+> >>> except that it is a proximity-only sensor.  
+> >>
+> >> So, can we share the code (assuming there is a driver and it already
+> >> uses or may be converted to regmap APIs)?  
+> > 
+> > Ah, it's being added with the same driver... So, have you checked if there is
+> > any similar HW with the available driver in upstream?
+> >   
+> 
+> I checked only for other Capella sensors, I forgot that Vishay acquired Capella
+> Microsystems. Now that I checked, vcnl4040 uses the same registers and regfields
+> as cm36686 and can be used instead...
+> I am sorry for wasting your time. Should I add a fallback to vcnl4040's
+> devicetree schema and add cm36672p support by excluding the light channels instead?
+> 
 
-> uHu? Maybe I'm completely missing your point but what I had in mind was just something like: 
-> 
-> 
-> // from the frontend:
-> 
-> static const char * const names[] = { "adc1", "adc2" }
+Sounds good to me.
 
-Yeah, that isn't so bad. (A "why didn't I think of that moment").
-
-And I saw the other replies already, so a moot point anyway.
+Jonathan
 
 > 
-> for (c = 0; c < ARRAY_SIZE(names); c++) {
-> 	back = devm_iio_backend_get(dev, names[c]);
-> }
-> 
+
 
