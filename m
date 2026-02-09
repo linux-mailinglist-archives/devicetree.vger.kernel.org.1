@@ -1,402 +1,269 @@
-Return-Path: <devicetree+bounces-263838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263839-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wHcwGviGiWkn+gQAu9opvQ
-	(envelope-from <devicetree+bounces-263838-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:04:24 +0100
+	id qEQrCyeJiWl1+gQAu9opvQ
+	(envelope-from <devicetree+bounces-263839-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:13:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC32510C4FA
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:04:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6428D10C5B1
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:13:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CAFBC3006533
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 07:04:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C91CA3006B77
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 07:13:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CE8A2ECD37;
-	Mon,  9 Feb 2026 07:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3742FFDDC;
+	Mon,  9 Feb 2026 07:13:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EMgtvyeQ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="kLmSSQYZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eRooKwF0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B3922D0C62
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 07:04:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAECE1A724C
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 07:13:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770620659; cv=none; b=Oed9r6vXd8S3dwmSbexAWUcsWZcO5k9IOgPlP8Kpvymwzc5UQh4blvtEFZTuimxN1NYqFX0TAXlhLlYqoLYVjzl05yaJT87HQYbTZFNc3pRSYl23Mn3qf+9w4jvrCb8MZndM4g5dBohw/zJWYdfHAfotg6I5e4J5uMcWDk4H/O4=
+	t=1770621220; cv=none; b=q9AVZaJyIOwi8Spa8qVYkTmlHE2tZNTP1/SjVf7oAAa2Ea9Q+dW0H+x/FQqE/s2INvuvN3FVTOR5FGAuEayCkSCfxlM7LJKi/0uQrrPy5Bj63Oul9D439tNbkpLhewZVNyjkP47P5CP30eIVIVGZQv5Oj+c+sGQOqRgyhV9Yda4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770620659; c=relaxed/simple;
-	bh=xb8QQiurBcnfRoBFty2cXeFBdhv91+YucQIMzbX790c=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=rVbgUq6ud/svgOjlZ0NYs+QRyg5qGN4+pNsc6hd+4k29P1udGO91otO8HRdLEMyXwXYwK9Y9wUanGAqts0BaaE9Ynp/nNeDnBoQig1dF3Fg68BzuWm4y61C4OWOi+DecsnBlfXxnN86ctOJOJu2JwE+GfhswFOR0VNcCPBEK33s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EMgtvyeQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kLmSSQYZ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6195QWMA1476711
-	for <devicetree@vger.kernel.org>; Mon, 9 Feb 2026 07:04:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=kZonQ/Hf4RM
-	TFJqi7V7NAZlLyxjmciWWHd+w04kBxtw=; b=EMgtvyeQPgtUa1/Oxlf4kELuWk3
-	5rUcATVeNAx+WowTtrOMHU6YvH+ayX+pdBxOPZ0ZcYdzU6X6oiTTlh9QqQBhdy/V
-	7yUVCKFZ1jBxXPRC9GwGzXPJNbY7UsHnheDh2W5gyMq0qVWFE43ppUmmgQ4wGL5Z
-	pJgZhE+U2WaYjfgdwMv0ctyib6v17UAAB/mssnFr4mUg3QIRFXT8BXW8lJL7hTzj
-	VHsBUjE71PlMGMnsygN8Cquw/DHPldkaG9Ty6sAruvt914RmU2UY7N0aIJSEA/05
-	ysuq2VIkVXdyfR93gqN/tucdX6IY/TyZZIeH5OrpqD5y/09Ar+gIHcx7TUw==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c64hnkhcw-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 07:04:18 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-81f5381d17dso2697254b3a.1
-        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 23:04:18 -0800 (PST)
+	s=arc-20240116; t=1770621220; c=relaxed/simple;
+	bh=wjhPJySClgeUMyCJuXTdPR22ZbR2363nYldOD0ul2/0=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=q2mxrtxuSoCfGPl8j8C9tLFbHgFVnRBr+aaMUTv4rRQh5z+RrLbWRA/JtRV/7KQRweXAzo+G6wujgo5N3wwZvSAHqx8qAJ2MBhqb/KioitAl6oJPEMxrPH6cfa4UrNjf2Lg6/cHK2EnQ9G+14Mh5AUqLCKDbXyb5cH2ynTVJBXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eRooKwF0; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-59ddb31ddcaso4616334e87.2
+        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 23:13:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770620658; x=1771225458; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kZonQ/Hf4RMTFJqi7V7NAZlLyxjmciWWHd+w04kBxtw=;
-        b=kLmSSQYZWPPtGmGmAcmJDkHc6kePm4Au7z5SAaorln3ixo5A7omCXz4oXX1T6N/ERs
-         gOCTDHcY7DemcyVlaNCKCrM8JqftajDJfzSQ5oJnezck5Z+rv7QH/PM9+CJMeNc3NrWu
-         UIWL42GSzLdDrrcAuljxi9J8JkYb7iSA4iVsLKtED8jV+mOveM846r7731492tbbV3l0
-         3Q9NxCI4cVQlQH9BrpmvPwZNSe84ZJwTYh5qONK/0Gd+3mLKXhvG8/peCfmcK4LY8MV3
-         9JBPuo8y0I/cZdQo1s2lKH5+pt3f16+TIgdDrPghMhY0Ne2N7oJMSKh2Y9JOi3jvfxR+
-         Uk2A==
+        d=gmail.com; s=20230601; t=1770621218; x=1771226018; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=gJTcZlZbFHgUhIybFH4cWwk7Nh3ta/uxgKGllk07sVY=;
+        b=eRooKwF0vCfpmtbR5z7o7JrYBoQ3suRDgEGIIh3ia554zWhryLlSc5nwMgjkVIuivr
+         l2kbaO6rE2HXqw2VoJwORSshlBHbFw2gmKRMFRBuMY4wvbwmlxgZBWhQecUZPnBQNquu
+         w8B4o19nfDZbaIJ1j4+OgNLmk42FhSmxFKhEv7ZBhSvE8oD0T/QcEsM+lLWlqv15ZdN6
+         Et+FsptXbXtwLYo4t3Urk2UTpPZO+kdyU9z+0bAmonHSlHqwzI5FEIN3wiVeno2GfTrb
+         /ZXOrk9I8WBhTEifYiyEuC6sP6+pOBhqS7Z/wK23E7u3bleduzQAm++OPs7xl8AvSLZ/
+         eSHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770620658; x=1771225458;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=kZonQ/Hf4RMTFJqi7V7NAZlLyxjmciWWHd+w04kBxtw=;
-        b=RI9uU0eG7H1yjSayBhJYBuBu0aUuwnTltZ500TSRIvC064X0zpkkLiM/IWigJUX/+h
-         hqEAUJVygJFhmInom5FyQoM5rE3Ong3usRSnGF0GLsRpjuaEaDCMXQ6uoQXN8CE8wdcw
-         mIq1zPQeo+UXZRgazIcjBl4Vy8ZtUVsFS+utnblviCI/u3AN8xl70//Czg8ZowfInV+K
-         FxdcNGnFFz0NeUPY69NamSAaO4edivdRN8QOr7NWaFwY0nvNOXazWxq0CKxrTq/ziXLH
-         HIU/q2pXLHoSdRB0z6u4SxqW0Y2v1rzwcqManSGLo1nG7ctO/8BgVq9NzhdgychSu6dj
-         puTA==
-X-Forwarded-Encrypted: i=1; AJvYcCWdsvUB6gZexky9QGiEqHrWMwGFKc8WxXMeGW5y4HBa4Od7+Q0W2uyWiiKRTqxAw5ED12kWQLoeYIlq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfJK9Yy9LUDR7gFeybU8BhVciTmBDD25DXeA6Wcwqb36RGuheo
-	razZdXW5tDFhZfmRYcdBqb4NTuFkbAK31LZeuu1tkBp65uWf0NUvRY9QPFQ2i6jdzCcxbUWR+Tf
-	GK+awPJ+l5rbAPV9H0wXLNoOfh4i7/EdjKBxOWKOQYDnuEI44F/RTGN3FAz+kZLUb
-X-Gm-Gg: AZuq6aJc0ck7xcuyUxPIXZGm2F5sIDynnE+YNmpS3zzANLVfDUHHAewvUkeGNtWHTxp
-	ZONerytmzUdqwcgvTsMXypPjbIAUNQnzwimbIjmH7FG+RC6A08X9UkY6W3WWy5SZmqSgfThzvQv
-	N3vtOvb8j1pM75nA8Us9eu+Tlvk6AWKrqsKwxKwjsZysm9eCDHpGZlV+/Wy4TcaYURNs3nQ700R
-	5g0WnjmIy4pdWgjhHICgONoIbvjL4vQLfOsjfbriD4YMC5JG5rhJ4ALWdkRq+4l5N2ZX42xa8o2
-	sAIkjgCBRjHajG8wyZEd34rdyzeEA5lldfzgZyWEi6SwSj6ncuXmWLqKBAuMPT6uUJNPsVqaEhC
-	q8nWlO8KL4kMSPiQSZDzchZmAvcbysKmL+telB1c=
-X-Received: by 2002:a05:6a00:464e:b0:824:3eb9:11e2 with SMTP id d2e1a72fcca58-82441720e68mr8641238b3a.46.1770620657568;
-        Sun, 08 Feb 2026 23:04:17 -0800 (PST)
-X-Received: by 2002:a05:6a00:464e:b0:824:3eb9:11e2 with SMTP id d2e1a72fcca58-82441720e68mr8641212b3a.46.1770620657097;
-        Sun, 08 Feb 2026 23:04:17 -0800 (PST)
-Received: from hu-vivesahu-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8244169804bsm9176950b3a.27.2026.02.08.23.04.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Feb 2026 23:04:16 -0800 (PST)
-From: Vivek Sahu <vivek.sahu@oss.qualcomm.com>
-To: Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bartosz Golaszewski <brgl@kernel.org>,
-        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
-        Rocky Liao <quic_rjliao@quicinc.com>
-Cc: quic_mohamull@quicinc.com, quic_hbandi@quicinc.com,
-        linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Vivek Sahu <vivek.sahu@oss.qualcomm.com>
-Subject: [PATCH v2 2/2] Bluetooth: qca: add QCC2072 support
-Date: Mon,  9 Feb 2026 12:33:56 +0530
-Message-Id: <20260209070356.187301-2-vivek.sahu@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260209070356.187301-1-vivek.sahu@oss.qualcomm.com>
-References: <20260209070356.187301-1-vivek.sahu@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1770621218; x=1771226018;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gJTcZlZbFHgUhIybFH4cWwk7Nh3ta/uxgKGllk07sVY=;
+        b=cbxPeGYnBFeqhkMY/Se9N4aC0DkzkmicGTFxFMpCd3b/GFlejbGXSUDmIrrmTtGnnD
+         Pzw12MsWKMxBrUcHBvUFQyp3SLzXsTC4zTgeknLzIQIXfClP2F3xESgrvCA5YIfW5mKx
+         6SzvZOiqlsUhHRyHxJ13MfH5DN6vSd5ntswUWB1Dqq9pR2INQPp0Kf8DDmyWiKDjXme3
+         H2A9aCg/bZ+EjV3hCHh6Hw3IJWApQhPolyhpL1Gfcu32/wB2mDaw2Wsl/jS5TdqTSOWA
+         NLOvFgUzvxSvE2hDr8z1N0FAxQ2qAa/GjzFv9bwQ09mVVY/gg/GZIITqZgD6M10K7Smj
+         CNdA==
+X-Forwarded-Encrypted: i=1; AJvYcCXp5gCmz9+b7rp2hhZH30nJo0Tjg6kZ9MXlJSqix5vf+jKNQena0eeXPAHbedJtJ5KpcR8vg9qgxV2w@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTIQRb/+XxFagu4xznhLHSd42EpLsxorLl3FLDVnX/YnsCtLlU
+	yHzwFOuWqMdxT8lIG4IAREPWO04dpS1oQzU+iPJeA5fv1goRhw/tOqeX
+X-Gm-Gg: AZuq6aL9jm+ZVEHch2au8fdek7GixxzP8zNqX3tsrsi6PucV/n85/HXKF/O50JHpKxE
+	SAq0PzyGD9+751vHEYvLzROuBTkuwjW9F3vG0ONYrj3atKapH/LQxP19XFXj2H3PWTTPSiiVLu1
+	hWL3JFQUOYbiUt0q2oG8r9qoa/Q0CWSWIEIYboQwX1C/urKdUMezRerAIxTnY6P8baX0E7hcuAe
+	HUl6maRo3aB5d27zRUCyRO6hh9jR+2LRjdIe+cWkWAgF3jGGydyxqfqBFLDNTH3wZkmUk8STsZV
+	+Sz00F44/6Hs7O4HLJ0xUT2r03D2W2ckwbKc9wVnlzXTn0tn1Be24tgPwMliFT9x8H7GZI9ZTIf
+	SZt92fbIMatGeGraHlMazjYwfyrJq+lgdhfoAxJspe1j1ztVVGXcqq2QR7zGjCJp5UL0nzyaZsC
+	STJxNiHVkijrzX/31RLLre
+X-Received: by 2002:a05:6512:a90:b0:59e:49f3:658c with SMTP id 2adb3069b0e04-59e49f36647mr2144179e87.49.1770621217578;
+        Sun, 08 Feb 2026 23:13:37 -0800 (PST)
+Received: from ehlo.thunderbird.net ([178.137.105.239])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e44d29975sm2395771e87.66.2026.02.08.23.13.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 08 Feb 2026 23:13:36 -0800 (PST)
+Date: Mon, 09 Feb 2026 09:13:35 +0200
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Rob Herring <robh@kernel.org>, David Lechner <dlechner@baylibre.com>
+CC: Jonathan Cameron <jic23@kernel.org>,
+ =?ISO-8859-1?Q?Nuno_S=E1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Lee Jones <lee@kernel.org>,
+ Pavel Machek <pavel@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Dixit Parmar <dixitparmar19@gmail.com>,
+ Tony Lindgren <tony@atomide.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2_01/11=5D_dt-bindings=3A_regulat?=
+ =?US-ASCII?Q?or=3A_cpcap-regulator=3A_convert_to_DT_schema?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <CAL_Jsq+JzAnvW3zSC7Y=dpWTKMUwFfTOuAnMS21d+F_W=5ONeg@mail.gmail.com>
+References: <20260206172845.145407-1-clamor95@gmail.com> <20260206172845.145407-2-clamor95@gmail.com> <20260206230922.GA254792-robh@kernel.org> <CAPVz0n3EGCSLUX7jTLve0x0z4uW1yexViCwkSQLY2d_4r4qkjg@mail.gmail.com> <db9115ca-2c8f-4b5e-89ce-f3b934071a59@baylibre.com> <CAPVz0n2KwqPw88JVcPzhTQ2n+GKzahkrEThjjrqm0CSdjKTEOw@mail.gmail.com> <51eddfc0-9f23-4a7f-8729-19775d834c0b@baylibre.com> <CAL_Jsq+JzAnvW3zSC7Y=dpWTKMUwFfTOuAnMS21d+F_W=5ONeg@mail.gmail.com>
+Message-ID: <20E2821E-3A3B-425B-8E5A-AEC36A2AB9CE@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: QLKaMLGgRuk8-M6OBz_AWj5Tg6HtVl1T
-X-Proofpoint-ORIG-GUID: QLKaMLGgRuk8-M6OBz_AWj5Tg6HtVl1T
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDA1NyBTYWx0ZWRfXyRTRx7WIEmId
- ep+4IFLR+QaQIBbsw5ajJXYYzSEnZYRiLnqKo3v4Zwx08KaFJRvxRmpUQR5BNwwq545+eWyzWcj
- OQNkVzq1ptP3jg7Y5DlBLpzzR2dZ4xannYvWgY2nymNbKQXHyMfg64Jl+bh0VLgJmfe65UF55JJ
- Qeq7dJT+/882YtlqBityszmQx9yP5MIIrnRqRNlX6Ti8SbMqw3rwPSQABzPC6iEDmzGZLCHEpUO
- vTZaCkpvY260anTnbwzEBhxJjui4xgtkYpCsY3wnm5BteaaLwqV1+466G9RtV+zCcRSIWVoq1Xv
- a8rYUHt+ICklEqRsR/82zLhzw5ecOM9vpgLea6z7XMn9gqQvyEFieaPcJEVzWiB2plH/sG4552h
- oilVEIJ14d/4TNPhwxRmR7B5QKzjtvV6tPv1LwPg4HleyEYRml+iJZXyN6RbftUOsNz6xPsLEnH
- MZ/kSGMHZU35BpcIhZw==
-X-Authority-Analysis: v=2.4 cv=SNlPlevH c=1 sm=1 tr=0 ts=698986f2 cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=EUspDBNiAAAA:8
- a=74lwPKb8uR0TJS9oFJ4A:9 a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-08_05,2026-02-05_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 priorityscore=1501 impostorscore=0 suspectscore=0
- adultscore=0 lowpriorityscore=0 spamscore=0 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602090057
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	SUBJ_EXCESS_QP(1.20)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[holtmann.org,gmail.com,kernel.org,quicinc.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,gmail.com,atomide.com,vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-263839-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263838-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vivek.sahu@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.990];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: CC32510C4FA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6428D10C5B1
 X-Rspamd-Action: no action
 
-QCC2072 is a WiFi/BT connectivity chip.
-It requires different firmware files and has different
-configurations , so add it as a separate SoC type.
 
-Correct the sorting of other chipsets for better readability.
 
-Signed-off-by: Vivek Sahu <vivek.sahu@oss.qualcomm.com>
----
- drivers/bluetooth/btqca.c   | 41 ++++++++++++++++++++++---------------
- drivers/bluetooth/btqca.h   |  1 +
- drivers/bluetooth/hci_qca.c | 40 ++++++++++++++++++++++++++----------
- 3 files changed, 54 insertions(+), 28 deletions(-)
+9 =D0=BB=D1=8E=D1=82=D0=BE=D0=B3=D0=BE 2026=E2=80=AF=D1=80=2E 00:37:41 GMT=
++02:00, Rob Herring <robh@kernel=2Eorg> =D0=BF=D0=B8=D1=88=D0=B5:
+>On Sat, Feb 7, 2026 at 11:32=E2=80=AFAM David Lechner <dlechner@baylibre=
+=2Ecom> wrote:
+>>
+>> On 2/7/26 11:25 AM, Svyatoslav Ryhel wrote:
+>> > =D1=81=D0=B1, 7 =D0=BB=D1=8E=D1=82=2E 2026=E2=80=AF=D1=80=2E =D0=BE 1=
+9:19 David Lechner <dlechner@baylibre=2Ecom> =D0=BF=D0=B8=D1=88=D0=B5:
+>> >>
+>> >> On 2/7/26 3:20 AM, Svyatoslav Ryhel wrote:
+>> >>> =D1=81=D0=B1, 7 =D0=BB=D1=8E=D1=82=2E 2026=E2=80=AF=D1=80=2E =D0=BE=
+ 01:09 Rob Herring <robh@kernel=2Eorg> =D0=BF=D0=B8=D1=88=D0=B5:
+>> >>>>
+>> >>>> On Fri, Feb 06, 2026 at 07:28:35PM +0200, Svyatoslav Ryhel wrote:
+>> >>>>> Convert devicetree bindings for the Motorola CPCAP MFD regulator =
+subnode
+>> >>>>> from TXT to YAML format=2E Main functionality preserved=2E
+>> >>>>>
+>> >>
+>> >> =2E=2E=2E
+>> >>
+>> >>>>> +properties:
+>> >>>>> +  compatible:
+>> >>>>> +    enum:
+>> >>>>> +      - motorola,cpcap-regulator
+>> >>>>> +      - motorola,mapphone-cpcap-regulator
+>> >>>>> +      - motorola,xoom-cpcap-regulator
+>> >>>>> +
+>> >>>>> +  regulators:
+>> >>>>> +    type: object
+>> >>>>> +
+>> >>>>> +    patternProperties:
+>> >>>>> +      "$[A-Z0-9]+^":
+>> >>>>
+>> >>>> I thought it was said on the last version to list the names=2E Con=
+sidering
+>> >>>> you already have them below, better to put them in schema than pro=
+se=2E
+>> >>>> And pretty much all regulator bindings define the names=2E
+>> >>>>
+>> >>>
+>> >>> What exactly do you propose? All those names will not fit into a
+>> >>> single unbreakable line (more than 125 columns in length btw)=2E Pa=
+tch
+>> >>> checker will complain about this=2E Duplicate pattern properties fo=
+r
+>> >>> every few names? Please be a bit more specific=2E Thank you!
+>> >>
+>> >> Making checkpatch happy is not a hard requirement=2E If you have to
+>> >> go over 125 characters for technical reasons, no one is going to
+>> >> complain=2E
+>> >>
+>> >> I already gave an example on the last version=2E It is just a regex
+>> >> expression=2E (And note that you didn't fix the $ and ^ either=2E ^
+>> >> means beginning of the line and $ means the end of the line=2E So
+>> >> the pattern currently won't match anything=2E)
+>> >>
+>> >> patternProperties:
+>> >>   "^(SW1|SW2|SW3|SW4|SW5|=2E=2E=2E)$":
+>> >>
+>> >>
+>> >> And I hope it is obvious that you are meant to replace =2E=2E=2E wit=
+h the
+>> >> rest of the names separated by |=2E
+>> >>
+>> >
+>> > David, thank you for your suggestions and I did not want to offend yo=
+u
+>> > nor Rob, or ignore=2E Using this large string IMHO feels a bit wrong=
+=2E No
+>> > offence, I will use it if required=2E At the same time I was
+>> > experimenting with possible representation and come up with smth like
+>> > this:
+>> >
+>> >     patternProperties:
+>> >       "^SW[1-6]$":
+>> >         type: object
+>> >         $ref: /schemas/regulator/regulator=2Eyaml#
+>> >         unevaluatedProperties: false
+>> >
+>> >         required:
+>> >           - regulator-name
+>> >           - regulator-enable-ramp-delay
+>> >           - regulator-min-microvolt
+>> >           - regulator-max-microvolt
+>> >
+>> >       "^V(CAM|CSI|DAC|DIG|FUSE|HVIO|SDIO|PLL|RF1|RF2|RFREF)$":
+>> >         type: object
+>> >         $ref: /schemas/regulator/regulator=2Eyaml#
+>> >         unevaluatedProperties: false
+>> >
+>> >         required:
+>> >           - regulator-name
+>> >           - regulator-enable-ramp-delay
+>> >           - regulator-min-microvolt
+>> >           - regulator-max-microvolt
+>> >
+>> >       "^V(WLAN1|WLAN2|SIM|SIMCARD|VIB|USB|AUDIO)$":
+>> >         type: object
+>> >         $ref: /schemas/regulator/regulator=2Eyaml#
+>> >         unevaluatedProperties: false
+>> >
+>> >         required:
+>> >           - regulator-name
+>> >           - regulator-enable-ramp-delay
+>> >           - regulator-min-microvolt
+>> >           - regulator-max-microvolt
+>> >
+>> > Will this be acceptable? It passes checks
+>>
+>> I think we would rather have the long match string instead of
+>> repeating the rest of it multiple times=2E
+>
+>Yes=2E
+>
+>105 chars:
+>
+>    "^(SW[1-6]|V(CAM|CSI|DAC|DIG|FUSE|HVIO|SDIO|PLL|RF[12]|RFREF|WLAN[12]=
+|SIM|SIMCARD|VIB|USB|AUDIO))$":
+>
+>There is the yamllint of 110 which does have to be followed=2E
+>
 
-diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
-index 7c958d6065be..7b85634ee3a1 100644
---- a/drivers/bluetooth/btqca.c
-+++ b/drivers/bluetooth/btqca.c
-@@ -816,6 +816,17 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
- 		snprintf(config.fwname, sizeof(config.fwname), "qca/%s", rampatch_name);
- 	} else {
- 		switch (soc_type) {
-+		case QCA_QCA2066:
-+			snprintf(config.fwname, sizeof(config.fwname),
-+				 "qca/hpbtfw%02x.tlv", rom_ver);
-+			break;
-+		case QCA_QCA6390:
-+			snprintf(config.fwname, sizeof(config.fwname),
-+				 "qca/htbtfw%02x.tlv", rom_ver);
-+			break;
-+		case QCA_QCC2072:
-+			snprintf(config.fwname, sizeof(config.fwname),
-+				 "qca/ornbtfw%02x.tlv", rom_ver);
- 		case QCA_WCN3950:
- 			snprintf(config.fwname, sizeof(config.fwname),
- 				 "qca/cmbtfw%02x.tlv", rom_ver);
-@@ -830,14 +841,6 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
- 			snprintf(config.fwname, sizeof(config.fwname),
- 				 "qca/apbtfw%02x.tlv", rom_ver);
- 			break;
--		case QCA_QCA2066:
--			snprintf(config.fwname, sizeof(config.fwname),
--				 "qca/hpbtfw%02x.tlv", rom_ver);
--			break;
--		case QCA_QCA6390:
--			snprintf(config.fwname, sizeof(config.fwname),
--				 "qca/htbtfw%02x.tlv", rom_ver);
--			break;
- 		case QCA_WCN6750:
- 			/* Choose mbn file by default.If mbn file is not found
- 			 * then choose tlv file
-@@ -885,6 +888,19 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
- 		}
- 	} else {
- 		switch (soc_type) {
-+		case QCA_QCA2066:
-+			qca_get_nvm_name_by_board(config.fwname,
-+				sizeof(config.fwname), "hpnv", soc_type, ver,
-+				rom_ver, boardid);
-+			break;
-+		case QCA_QCA6390:
-+			snprintf(config.fwname, sizeof(config.fwname),
-+				 "qca/htnv%02x.bin", rom_ver);
-+			break;
-+		case QCA_QCC2072:
-+			snprintf(config.fwname, sizeof(config.fwname),
-+				 "qca/ornnv%02x.bin", rom_ver);
-+			break;
- 		case QCA_WCN3950:
- 			if (le32_to_cpu(ver.soc_id) == QCA_WCN3950_SOC_ID_T)
- 				variant = "t";
-@@ -907,15 +923,6 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
- 			snprintf(config.fwname, sizeof(config.fwname),
- 				 "qca/apnv%02x.bin", rom_ver);
- 			break;
--		case QCA_QCA2066:
--			qca_get_nvm_name_by_board(config.fwname,
--				sizeof(config.fwname), "hpnv", soc_type, ver,
--				rom_ver, boardid);
--			break;
--		case QCA_QCA6390:
--			snprintf(config.fwname, sizeof(config.fwname),
--				 "qca/htnv%02x.bin", rom_ver);
--			break;
- 		case QCA_WCN6750:
- 			snprintf(config.fwname, sizeof(config.fwname),
- 				 "qca/msnv%02x.bin", rom_ver);
-diff --git a/drivers/bluetooth/btqca.h b/drivers/bluetooth/btqca.h
-index 8f3c1b1c77b3..a175ac31e7b2 100644
---- a/drivers/bluetooth/btqca.h
-+++ b/drivers/bluetooth/btqca.h
-@@ -158,6 +158,7 @@ enum qca_btsoc_type {
- 	QCA_WCN6750,
- 	QCA_WCN6855,
- 	QCA_WCN7850,
-+	QCA_QCC2072,
- };
- 
- #if IS_ENABLED(CONFIG_BT_QCA)
-diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
-index 888176b0faa9..2ce6e19e5b86 100644
---- a/drivers/bluetooth/hci_qca.c
-+++ b/drivers/bluetooth/hci_qca.c
-@@ -623,6 +623,7 @@ static int qca_open(struct hci_uart *hu)
- 		qcadev = serdev_device_get_drvdata(hu->serdev);
- 
- 		switch (qcadev->btsoc_type) {
-+		case QCA_QCC2072:
- 		case QCA_WCN3950:
- 		case QCA_WCN3988:
- 		case QCA_WCN3990:
-@@ -1498,6 +1499,7 @@ static int qca_set_speed(struct hci_uart *hu, enum qca_speed_type speed_type)
- 		 * changing the baudrate of chip and host.
- 		 */
- 		switch (soc_type) {
-+		case QCA_QCC2072:
- 		case QCA_WCN3950:
- 		case QCA_WCN3988:
- 		case QCA_WCN3990:
-@@ -1514,6 +1516,7 @@ static int qca_set_speed(struct hci_uart *hu, enum qca_speed_type speed_type)
- 		}
- 
- 		switch (soc_type) {
-+		case QCA_QCC2072:
- 		case QCA_WCN3990:
- 			reinit_completion(&qca->drop_ev_comp);
- 			set_bit(QCA_DROP_VENDOR_EVENT, &qca->flags);
-@@ -1533,6 +1536,7 @@ static int qca_set_speed(struct hci_uart *hu, enum qca_speed_type speed_type)
- 
- error:
- 		switch (soc_type) {
-+		case QCA_QCC2072:
- 		case QCA_WCN3950:
- 		case QCA_WCN3988:
- 		case QCA_WCN3990:
-@@ -1549,6 +1553,7 @@ static int qca_set_speed(struct hci_uart *hu, enum qca_speed_type speed_type)
- 		}
- 
- 		switch (soc_type) {
-+		case QCA_QCC2072:
- 		case QCA_WCN3990:
- 			/* Wait for the controller to send the vendor event
- 			 * for the baudrate change command.
-@@ -1900,6 +1905,10 @@ static int qca_setup(struct hci_uart *hu)
- 		soc_name = "qca2066";
- 		break;
- 
-+	case QCA_QCC2072:
-+		soc_name = "qcc2072";
-+		break;
-+
- 	case QCA_WCN3950:
- 	case QCA_WCN3988:
- 	case QCA_WCN3990:
-@@ -1935,6 +1944,7 @@ static int qca_setup(struct hci_uart *hu)
- 	clear_bit(QCA_SSR_TRIGGERED, &qca->flags);
- 
- 	switch (soc_type) {
-+	case QCA_QCC2072:
- 	case QCA_WCN3950:
- 	case QCA_WCN3988:
- 	case QCA_WCN3990:
-@@ -1969,6 +1979,7 @@ static int qca_setup(struct hci_uart *hu)
- 	}
- 
- 	switch (soc_type) {
-+	case QCA_QCC2072:
- 	case QCA_WCN3950:
- 	case QCA_WCN3988:
- 	case QCA_WCN3990:
-@@ -2058,6 +2069,23 @@ static const struct hci_uart_proto qca_proto = {
- 	.dequeue	= qca_dequeue,
- };
- 
-+static const struct qca_device_data qca_soc_data_qca2066 __maybe_unused = {
-+	.soc_type = QCA_QCA2066,
-+	.num_vregs = 0,
-+};
-+
-+static const struct qca_device_data qca_soc_data_qca6390 __maybe_unused = {
-+	.soc_type = QCA_QCA6390,
-+	.num_vregs = 0,
-+	.capabilities = QCA_CAP_WIDEBAND_SPEECH | QCA_CAP_VALID_LE_STATES,
-+};
-+
-+static const struct qca_device_data qca_soc_data_qcc2072 __maybe_unused = {
-+	.soc_type = QCA_QCC2072,
-+	.num_vregs = 0,
-+	.capabilities = QCA_CAP_WIDEBAND_SPEECH | QCA_CAP_VALID_LE_STATES,
-+};
-+
- static const struct qca_device_data qca_soc_data_wcn3950 __maybe_unused = {
- 	.soc_type = QCA_WCN3950,
- 	.vregs = (struct qca_vreg []) {
-@@ -2114,17 +2142,6 @@ static const struct qca_device_data qca_soc_data_wcn3998 __maybe_unused = {
- 	.num_vregs = 4,
- };
- 
--static const struct qca_device_data qca_soc_data_qca2066 __maybe_unused = {
--	.soc_type = QCA_QCA2066,
--	.num_vregs = 0,
--	.capabilities = QCA_CAP_WIDEBAND_SPEECH | QCA_CAP_VALID_LE_STATES,
--};
--
--static const struct qca_device_data qca_soc_data_qca6390 __maybe_unused = {
--	.soc_type = QCA_QCA6390,
--	.num_vregs = 0,
--};
--
- static const struct qca_device_data qca_soc_data_wcn6750 __maybe_unused = {
- 	.soc_type = QCA_WCN6750,
- 	.vregs = (struct qca_vreg []) {
-@@ -2715,6 +2732,7 @@ static const struct of_device_id qca_bluetooth_of_match[] = {
- 	{ .compatible = "qcom,qca6174-bt" },
- 	{ .compatible = "qcom,qca6390-bt", .data = &qca_soc_data_qca6390},
- 	{ .compatible = "qcom,qca9377-bt" },
-+	{ .compatible = "qcom,qcc2072-bt", .data = &qca_soc_data_qcc2072},
- 	{ .compatible = "qcom,wcn3950-bt", .data = &qca_soc_data_wcn3950},
- 	{ .compatible = "qcom,wcn3988-bt", .data = &qca_soc_data_wcn3988},
- 	{ .compatible = "qcom,wcn3990-bt", .data = &qca_soc_data_wcn3990},
--- 
-2.34.1
+Amazing! Thank you both for your suggestions=2E
 
+>Rob
 
