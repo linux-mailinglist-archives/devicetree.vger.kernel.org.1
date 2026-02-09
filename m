@@ -1,331 +1,211 @@
-Return-Path: <devicetree+bounces-263825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263826-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UGrmLE13iWlm9gQAu9opvQ
-	(envelope-from <devicetree+bounces-263825-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 06:57:33 +0100
+	id cGm8D9N8iWnk9wQAu9opvQ
+	(envelope-from <devicetree+bounces-263826-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 07:21:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 439B210BEA5
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 06:57:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C1F510C006
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 07:21:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 55E6030015A6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 05:57:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D787630071C5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 06:21:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 028AB2DB794;
-	Mon,  9 Feb 2026 05:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54B332E62D9;
+	Mon,  9 Feb 2026 06:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="H0ls0yyN"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="bMcV/fEZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011037.outbound.protection.outlook.com [40.107.130.37])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9D52D8364;
-	Mon,  9 Feb 2026 05:57:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770616649; cv=fail; b=UKaOa8sUD2abuVTdNFrAaj1UbqSQ5v3dOIg/5yX+cGjYytoJMKbrIcCstMnsC1o2lXDYE7I0ObEr5MoXL/nBcw25h/VH1sK8aCZuiAX8F/GY55sKzzsdUr91Of6IDHmoVIvuOP/8vrNdNFi/RUdtC7xUeDXCzLIV9I9luUVIR+A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770616649; c=relaxed/simple;
-	bh=79EgKcWU1EdGzV9SRMy9jxGHO/7l3H9mIuuSyPd6p4A=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=b7s7RiqnKMFnVRyTHFHs550LFvbthbQtIcNhMXuXwTMpJ07G/nFHumYPJg6+Pyys4Nb5pcDfVmgdJxu6y0FDi7J8gNKRN5hH8Ip3XFurlyEtRFYvy/vdSJ6XsKIZrIvto9+V0fM5mIpF23HwQT7ZyCYMYAPiYIMIpqtkIOvnd9w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=H0ls0yyN; arc=fail smtp.client-ip=40.107.130.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CbUhtb1iHvJR55Z9i8AeyOjF+T+U813zwV9S4PZzYacf85+1HdGfDogzCUAwIrVAQd9gRDf0+sArO+bbDZGWJ1IPNXJHjdna9osEkfh4XTONp/QvZzVZzwvpdf/u7gGwYfuiG2nUEQKh2pQ4zozpMKVyAFn9vTTGLeQP/aBtfbNLhVheXWu9QsHtL8DL4Ggtbwz1C/tm6umzYclnzOTpj5/CMRsN2OtyCqtn9frmsh8RfMtuNpoasCda+1HbgI6ibznOVynOn5wWFx5MzFvB000HqQbfbIcpKreVL8TGog8yol0g62jowMRaslvo4oRBpjUiE+27V5KFI0ihHbnCug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GbBxEVR5+liWhuWbw7FKa+GemtEo+q+DQTcvIors7zw=;
- b=BqHM1ywkYqPWE6QML8xXmJOii2x/FIHj7sbNXD9GFxPQg+D78X+oBptfqiJVtNoiHBCIBl/L/VLrqewgbQ0QGGfKSafNZ1yRRicDTYKrELI80UrD4J6hbZOmq/KroOdNsbqOjB/5xuzxvs290DFXvf6/WQoez4uvf43tmvDStWtpis7w/7oaxa35msRy2Wi8g6qwVV5mxyfICLUojPkmOuwrriiIE+LUmnoy8nmtgLtn+gVL2qAlG45oy3UrsV2xXEgd9+C9THnPh/2SagxyEidlnX4LEOaDLo4T15y/XZ8zRF37QZtN6FC2Lq3xFXra48VCtU8FDwg3eFeL3dVWuw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GbBxEVR5+liWhuWbw7FKa+GemtEo+q+DQTcvIors7zw=;
- b=H0ls0yyNZDSzGAQpu3vZnMaUio4rel4YH+xwpkbmr20exlr6fCFhrZGnOwxZHH2vUbAoTY52eMDs5wg5SNndSMujMYhAIL5YB9cirBycLviHAqeY9lUJ8x+f07C+7cpDUXot58eDkZCo3bZvKKzsA5n6I9Xaou35wEhBCGKO8amjtIYH09zr8kqsxn4+GyoeMcTjUFnojm2+tjlX8XlISkUjwIOVXmJ5dj+/0h3wm7WgRuo5Wgwjtp0UXlYIwlGd9wrjI82FcKH+btO4DiosGSgOeo0hMozSm0oT8G9mf9F6zB7T3JdRNCyTDWmqKDp4ldlk6WCsiJHR5MLIdtLlWw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8833.eurprd04.prod.outlook.com (2603:10a6:20b:42c::19)
- by AS8PR04MB8994.eurprd04.prod.outlook.com (2603:10a6:20b:42d::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.19; Mon, 9 Feb
- 2026 05:57:27 +0000
-Received: from AS8PR04MB8833.eurprd04.prod.outlook.com
- ([fe80::209c:44e4:a205:8e86]) by AS8PR04MB8833.eurprd04.prod.outlook.com
- ([fe80::209c:44e4:a205:8e86%3]) with mapi id 15.20.9587.017; Mon, 9 Feb 2026
- 05:57:27 +0000
-From: Richard Zhu <hongxing.zhu@nxp.com>
-To: frank.li@nxp.com,
-	sherry.sun@nxp.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	festevam@gmail.com
-Cc: kernel@pengutronix.de,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Richard Zhu <hongxing.zhu@nxp.com>
-Subject: [PATCH v2 3/3] arm64: dts: imx943-evk: Add pcie[0,1] and pcie-ep[0,1] support
-Date: Mon,  9 Feb 2026 13:57:45 +0800
-Message-Id: <20260209055745.1545129-4-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20260209055745.1545129-1-hongxing.zhu@nxp.com>
-References: <20260209055745.1545129-1-hongxing.zhu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0032.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::12) To AS8PR04MB8833.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::19)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91662D9EED;
+	Mon,  9 Feb 2026 06:21:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770618064; cv=none; b=Qfvlib5WaPZB4t/Y+dzAZo97GAqSDGzSEKB9dhFby7HeshMwKKPvAxIrCIpZ9EI9ZuVjL0Kcw2+Mso2kXmREPkh84fEu3FHdXXST15Y5+wAVCvNVRYAkZo4HNiLvA0g2tInOATh9d6LF4vy6/ZWejU6Q5eICLUOXepJbbFChgA0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770618064; c=relaxed/simple;
+	bh=GQthucHqDIOnvHj9QJHaxiz6J7KCY1uXkd4lADQoWAQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Izr0P9miKuxy1sOLp9ZpavJnzgmxYj0obxcTk4emvikWvdUVUM+wJBZcfoBvOOHTrhjk5B3r9OCH793ed6HarZZBSHcKIEFhraJxWmkCYu6Rl31Aaj9kWK7eGqmu5IFMSudYujAUf+uqpgbax2vXzNFQYhBLf1k32JsqZReKi24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=bMcV/fEZ; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1770618061;
+	bh=y1YXR4/Tyv9LUkuxa8hny85fia7ireYDpMIuGkyTJqA=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=bMcV/fEZkzK7rGBH/FYv8Y0leVnfLwAoi4PIVFj+oNgOgyq9TVRwGUSwbe1V7Ruwf
+	 einFWiOE/WXcWYyuDnJXLbqXH6nMUAq2DNakHJZZIzCtgUn9I7qEDq8YmpIso9VVt6
+	 ddWSmTMEKtJ2S6bpOfuGE/ummOa236s06qQrQRUR36GxZmRiNAHzunqx9wzc0onDsq
+	 +zxuUjOEUzdz2VGmytqSGeenN6rEPINEmVzDa43X8X3UyGHJrm2bCShaAjPkqWfNtm
+	 0n8qZBXTHHWc+CQVu7mnw0wrK2F8ReiMQs/Gnjql4CWjsV5Bzu2srl1a5h4CnmBsgi
+	 uWrYSuG/TM1lg==
+Received: from [192.168.68.117] (unknown [180.150.112.60])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 109B06024E;
+	Mon,  9 Feb 2026 14:21:01 +0800 (AWST)
+Message-ID: <73c63bc2f5eaae2c931a4ced1462024bd5a24237.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v4 5/7] ARM: dts: aspeed: yosemite5: Correct power
+ monitor shunt resistor
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Kevin Tung <kevin.tung.openbmc@gmail.com>, Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley	 <joel@jms.id.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, Amithash
+ Prasasd	 <amithash@meta.com>, Kevin Tung <Kevin.Tung@quantatw.com>, Ken
+ Chen	 <Ken.Chen@quantatw.com>, Leo Yang <Leo-Yang@quantatw.com>, Jackson
+ Liu	 <Jackson.Liu@quantatw.com>
+Date: Mon, 09 Feb 2026 16:51:00 +1030
+In-Reply-To: <20260130-yv5_revise_dts-v4-5-4d924455f3a7@gmail.com>
+References: <20260130-yv5_revise_dts-v4-0-4d924455f3a7@gmail.com>
+	 <20260130-yv5_revise_dts-v4-5-4d924455f3a7@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8833:EE_|AS8PR04MB8994:EE_
-X-MS-Office365-Filtering-Correlation-Id: d3846996-4e78-4b19-3aa6-08de67a01a4e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|19092799006|366016|52116014|7416014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Z9omqDn+OSMVchol1LynkDSncMgTMrU49rbXxzyjcsCE+Sild/bzq4zkgVZ0?=
- =?us-ascii?Q?rulpRmoC52zno/ydapKsaQQVVHD8GoVdDUZI1L4WETX9jh7zxU/47SysTnBZ?=
- =?us-ascii?Q?pulSP2IzTR7JP8tB8fpZWkjjhG2eZUcrTPkT4FlqgTTCNCtPnn6YYcKjJaUf?=
- =?us-ascii?Q?mi0lM14gabLerIzLxNQIl55KX9j+75lhqEmnOLhPVLBztLaGHVGYMy8h4uex?=
- =?us-ascii?Q?V9Z2d2MNx9Wbs30MrDVcCCSOcOfj/mBjB9VFHVsUKukPRDmWtJe2AnikMhOv?=
- =?us-ascii?Q?EYGWkKlz4EYSB/vbGTQiqNV4t0+p+mFNCi3hjGI2W/+OPkYzTcy66gC2q2bV?=
- =?us-ascii?Q?xUoY4c7ruF7nY+k3LU7eeuqq5LgtzMU1iHkE3K2jE3jON3vzssKWKav1deA8?=
- =?us-ascii?Q?5xgcyyeWH1pQ26Seg7XyZvVjp9XKSSG87jM7IPR/J5ggpS+PdinDfGGJow75?=
- =?us-ascii?Q?mMooY40MRYipdV8aMr89skTnPvZvTubnCdR8e2ARX3cCoNxazziUZ5FlXxmX?=
- =?us-ascii?Q?qGp997wOMxOJs3laOhKo5egj1VkFFyx2bDztvi6qc3K4ai5pNfTaal7j04qu?=
- =?us-ascii?Q?tphSr7tjhVKHQlc3hOzzYXOOGuFVGOHuVCusmlhcwICdlG2V+Z6Vu4nSaMOO?=
- =?us-ascii?Q?LlMAYROGZU/aLha0o8sm2oQMIpCy6+eFCchd123UWHyIoo0ZMFJdDxbtStQy?=
- =?us-ascii?Q?+vADJAbUArVgHSXp0+yRU6wbK5+BwIV7uzchKkbAKeVsLQ5Aa0YkACw7WzRQ?=
- =?us-ascii?Q?YjoKoypWEV7D2upw+fPS0I5l1iUVfdWl/HrUve6xrDJ+5MCQZidH4iq5E+uP?=
- =?us-ascii?Q?DoBQDxQv2U5tZ7LLa++iU84NhIjj4YIzUfike0eY8QIqrvfm8BqgsT+gHe0H?=
- =?us-ascii?Q?htREMbDJjDIweBFPq5SURuzURjXiURgwMznOA9cjF7m2KdmZ2OyPKcvd3W8M?=
- =?us-ascii?Q?ChOMeyrlX9QZFI/JctIitIPDvnSOtC/d1ctzjDYvImn4aqNgpFk3wu21Efwl?=
- =?us-ascii?Q?PhvYJUZyrDRPr4h795FMUD3LDfDJS1f+XhU7Qp1EI2wLDePsr+R0uadDz05l?=
- =?us-ascii?Q?PXooy0GI90bvqtivd+6p0MwKYYYVG0Dt0w73l4ksg2HwxYgnpU4zmV59paZ2?=
- =?us-ascii?Q?Ej24VMFA1JZVKLKRImYjqy9qoJkgFTWud3XmQx3DjRTU++2o5cUFDZTmJqHi?=
- =?us-ascii?Q?zEESAzP80kyUQ8hovjZRMcdug/9AgJybTFL65tIWVRACxfI/VUH+gl2yuxZz?=
- =?us-ascii?Q?XPxl8u0//c3Y8ufubR7oEkVK1VkIfO6uWk8msrkYnKAhMo1V/c7LWJbkyy4m?=
- =?us-ascii?Q?fvuNk1zvAE2lno8bpg3jvCdCIukD0ZbnmurG2KUmw0agICH39/P6w4XGtMPY?=
- =?us-ascii?Q?WdUn1RJAermzQl30zc2wd0ha0KvllbNp1LHktjtADa0b6uGuYoqi1l2MgZ4T?=
- =?us-ascii?Q?MKl8gDRVYRplY9gQucqjGBvHMN6SjEvSlh+0fER/Ro4idmzjd/fXPAfhwAup?=
- =?us-ascii?Q?fvdTynGeL20xPFxW8ToDwC2DE2oLDAAt3hTuJ6obc/MyjMgTXJNSI7/QkwaA?=
- =?us-ascii?Q?S2vDzcNHUWlEJZHwfSl24hPwBsn2QJga7aR821H74sbueM5jpO6DlG7k2pX8?=
- =?us-ascii?Q?TpA4EqR/qg+QgcH5h8QtBCU=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8833.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(366016)(52116014)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?9Rm7elQbJn8vJyLjLzjBaBf8eHnRXq0/zN8/ew9jbtsa1vtgXwRJwdxb1KgM?=
- =?us-ascii?Q?W5N0ZjpxEtNl9hoPgIGI+cUnl1X8oiSlsgTYT6vDvEqyRwohRDPxwoW8q8RF?=
- =?us-ascii?Q?grNxU6v5YhX2uxN7FZ08BqG6WjTyMUSNQxtZ9RSimu4J1sE1Bb/qtzNmx/Q9?=
- =?us-ascii?Q?F/cuYuggNOhlANmWwypLyiQxIqyxIHpktIEpA1764Bjo5pM1kZxTBka16DuW?=
- =?us-ascii?Q?wqgAoZswZRvsq3phZ37oDXxTQoiKvhZCMYnb7QFojlxrGBvWx/s0pstmTR+f?=
- =?us-ascii?Q?plTH0WYVF3jZ2g9wqrJUOHmeATPdkuDRLx0Kc+1zauzGLJWc9pLo3+z3zFIE?=
- =?us-ascii?Q?5hdrRUsG3KoLvkLnZuGlkWYwHoVYR+uWo9jAZT+70C+B3PPJvy5rBavyJoTN?=
- =?us-ascii?Q?J5YDgAjUTIMJ2mQhuzKzroOboC929pX6kaaEBhGxdl143OVwED/ELgvQ+T3a?=
- =?us-ascii?Q?0juzu/1cA+pK6e290QkRZE6y6Gn0n0K8eHTA9f2ULvwefX52X+ORv4etqUd2?=
- =?us-ascii?Q?sWTtFWjVXZxMdycT4bXcYVAMpmheBi4hLxWhsWBXfuH0ToEq3S/ZT6kOzY8o?=
- =?us-ascii?Q?1RPEjqo5fa9abCWU0a/RDiKvY2R6U6R/RQpK9nAtZpvw0MkwbWDKZADVBSDC?=
- =?us-ascii?Q?ARpbR0kPVAqJWSvS9DMbRdxQX6svmSAmsHQqqIhkRXucM0BUTOeg37HlOsOd?=
- =?us-ascii?Q?N7XAJMdpzhAQpnl/eEjL9OzrSjuMnRddwfSPIXlfyUSh0CZJxdQ8kDUOt6tN?=
- =?us-ascii?Q?tpdKwkDJnsevN5AoI4lFPKse5Ov4WNi75Bep6TvD1+tkdHTIssJ4bkz65pZJ?=
- =?us-ascii?Q?H7jRWzaBLcBgQE62wGZA+f0Zcq3SPZqjU1tffwr6+SgoJHnlqfu4TknZ4gqw?=
- =?us-ascii?Q?3IjkNFZD47nq4VdpTnNerxWy5N9x0za50OSVaFy8LkLlJD1oUtvzfqEY4G3u?=
- =?us-ascii?Q?dzJNixHGV4O5bbhFtwG2yaTlHjxMyLnUJ2Cb5IkIRFKHCTvji/7K5QWdbd3B?=
- =?us-ascii?Q?BqEsy+2bvbqUtaBsi8Qpk4f1qImBwG63NQCmP3TctM94d22pwJkDNYRuFu4V?=
- =?us-ascii?Q?29kU7rbS7n9mZq2ZKugZ0lAzcK6wPlIdTiQjINv5CotVWSM8cZ2NQOsqlU1y?=
- =?us-ascii?Q?M80HSlLnI08lgkub6lroofkGzWeuXH0+996CHsVdswdLVIN3Png06ocXoe/k?=
- =?us-ascii?Q?kmWK2hQQW7bsiTR87X5kbMCNSCw3bAqFN4Xy9/+eK3XmKCSCijwpQw/YhsyM?=
- =?us-ascii?Q?9d47J+zYdGG9LFCu6VWCAsHUMwizQjN4AmVQhNRqXBUd5FKsIiYCc72ICmee?=
- =?us-ascii?Q?u0FxwKiq7G5VURRTbxGMWVK8DCk2OE/qgE6OVhPefYXFgx2YJFFdQh+RcJd2?=
- =?us-ascii?Q?IWC+NMHTtYOmJZhvkzDb6luSrRt7Ye/Y/ap9CbmySvr79gwfBGKKetmG8AO3?=
- =?us-ascii?Q?Wn+FgPyjC4i6xCOdR60ZiIzGzZ1wTvvHaI2/bFDgUKfnnoUkSeF8BIXr9KZd?=
- =?us-ascii?Q?Vp2BihumoV4n7RFt0GaMb6Jy3gsDCmBH4fpVzDIno47TIVj9zvVTFHfZTXER?=
- =?us-ascii?Q?jlDHt/N0kboLGZNGbNUcjUL2LCMyn1VenEU94afSJbv9vh8gOJ2LLUFhfH8c?=
- =?us-ascii?Q?6vvuEgST1sUDBw+/iP66Lxg3Aca/vNIN8c61ZCHF8lmTxFNtUta52PHq8CFT?=
- =?us-ascii?Q?A5CChAoAnczks12lSB4Hg5X9ZfW/35pW/kRcxCGcpox/0wI54sVDZ7v/27/1?=
- =?us-ascii?Q?QsVomn9eaw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d3846996-4e78-4b19-3aa6-08de67a01a4e
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8833.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2026 05:57:27.0096
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VSLeX+ePKRDaKVyI5k5E4yOY4farl/NLksq6io+P6HOpy5GVbYUwH/mMzAf6rB2BlhbmKGzDuMkLVqbDyj3ZMg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8994
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-263826-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,jms.id.au];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263825-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hongxing.zhu@nxp.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.57:email,0.0.0.21:email,0.0.0.41:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
+	NEURAL_HAM(-0.00)[-0.996];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.979];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 439B210BEA5
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[5b:email,0.0.0.44:email,0.0.0.40:email,0.0.0.59:email,codeconstruct.com.au:mid,codeconstruct.com.au:dkim,0.0.0.43:email,0.0.0.42:email,0.0.0.58:email]
+X-Rspamd-Queue-Id: 7C1F510C006
 X-Rspamd-Action: no action
 
-Add pcie[0,1] and pcie-ep[0,1] support.
+Hi Kevin,
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx943-evk.dts | 82 ++++++++++++++++++++
- 1 file changed, 82 insertions(+)
+On Fri, 2026-01-30 at 16:20 +0800, Kevin Tung wrote:
+> The shunt resistor value defined in the DTS was incorrect and did not
+> reflect the resistor value populated on the board. As a result, power
+> and current readings derived from this value were inaccurate.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx943-evk.dts b/arch/arm64/boot/dts/freescale/imx943-evk.dts
-index 765d9d05e489d..524bcb5951151 100644
---- a/arch/arm64/boot/dts/freescale/imx943-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx943-evk.dts
-@@ -49,6 +49,20 @@ chosen {
- 		stdout-path = &lpuart1;
- 	};
- 
-+	pcie_ref_clk: clock-pcie-ref {
-+		compatible = "gpio-gate-clock";
-+		clocks = <&xtal25m>;
-+		#clock-cells = <0>;
-+		enable-gpios = <&pca9670_i2c3 7 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	xtal25m: clock-xtal25m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <25000000>;
-+		clock-output-names = "xtal_25MHz";
-+	};
-+
- 	dmic: dmic {
- 		compatible = "dmic-codec";
- 		#sound-dai-cells = <0>;
-@@ -70,6 +84,15 @@ reg_m2_pwr: regulator-m2-pwr {
- 		startup-delay-us = <5000>;
- 	};
- 
-+	reg_slot_pwr: regulator-slot-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "PCIe slot-power";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&pcal6416_i2c3_u46 0 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	reg_m2_wlan: regulator-wlan {
- 		compatible = "regulator-fixed";
- 		regulator-name = "WLAN_EN";
-@@ -641,6 +664,18 @@ IMX94_PAD_GPIO_IO28__LPI2C6_SCL		0x40000b9e
- 		>;
- 	};
- 
-+	pinctrl_pcie0: pcie0grp {
-+		fsl,pins = <
-+			IMX94_PAD_GPIO_IO20__PCIE1_CLKREQ_B	0x4000031e
-+		>;
-+	};
-+
-+	pinctrl_pcie1: pcie1grp {
-+		fsl,pins = <
-+			IMX94_PAD_GPIO_IO23__PCIE2_CLKREQ_B	0x4000031e
-+		>;
-+	};
-+
- 	pinctrl_pdm: pdmgrp {
- 		fsl,pins = <
- 			IMX94_PAD_PDM_CLK__PDM_CLK			0x31e
-@@ -800,6 +835,53 @@ IMX94_PAD_XSPI1_DQS__XSPI1_A_DQS	0x3fe
- 	};
- };
- 
-+&pcie0 {
-+	pinctrl-0 = <&pinctrl_pcie0>;
-+	pinctrl-names = "default";
-+	clocks = <&scmi_clk IMX94_CLK_HSIO>,
-+		 <&scmi_clk IMX94_CLK_HSIOPLL>,
-+		 <&scmi_clk IMX94_CLK_HSIOPLL_VCO>,
-+		 <&scmi_clk IMX94_CLK_HSIOPCIEAUX>,
-+		 <&hsio_blk_ctl 0>,
-+		 <&pcie_ref_clk>;
-+	clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux",
-+		      "ref", "extref";
-+	reset-gpio = <&pcal6416_i2c3_u46 3 GPIO_ACTIVE_LOW>;
-+	vpcie3v3aux-supply = <&reg_m2_wlan>;
-+	supports-clkreq;
-+	status = "okay";
-+};
-+
-+&pcie0_ep {
-+	pinctrl-0 = <&pinctrl_pcie0>;
-+	pinctrl-names = "default";
-+	vpcie3v3aux-supply = <&reg_m2_wlan>;
-+	status = "disabled";
-+};
-+
-+&pcie1 {
-+	pinctrl-0 = <&pinctrl_pcie1>;
-+	pinctrl-names = "default";
-+	clocks = <&scmi_clk IMX94_CLK_HSIO>,
-+		 <&scmi_clk IMX94_CLK_HSIOPLL>,
-+		 <&scmi_clk IMX94_CLK_HSIOPLL_VCO>,
-+		 <&scmi_clk IMX94_CLK_HSIOPCIEAUX>,
-+		 <&hsio_blk_ctl 0>,
-+		 <&pcie_ref_clk>;
-+	clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux",
-+		      "ref", "extref";
-+	reset-gpio = <&pcal6416_i2c3_u46 1 GPIO_ACTIVE_LOW>;
-+	vpcie3v3aux-supply = <&reg_slot_pwr>;
-+	status = "okay";
-+};
-+
-+&pcie1_ep {
-+	pinctrl-0 = <&pinctrl_pcie1>;
-+	pinctrl-names = "default";
-+	vpcie3v3aux-supply = <&reg_slot_pwr>;
-+	status = "disabled";
-+};
-+
- &usdhc1 {
- 	pinctrl-0 = <&pinctrl_usdhc1>;
- 	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
--- 
-2.37.1
+Okay, but how did it come to be incorrect in the devicetree? Was the
+documentation wrong and so someone entered the wrong value? Was the
+documentation correct but there was a misunderstanding? Did the
+hardware design change and the devicetree is now just inappropriate for
+your needs?
 
+Essentially, what's preventing this from happening again?
+
+>=20
+> This change=C2=A0
+>=20
+
+I'd rather you rephrase this to avoid using "This change ...".
+Hopefully the commit message always refers to its change.
+
+Generally, please write in the imperative mood (see [1])
+
+[1]: https://docs.kernel.org/process/submitting-patches.html#describe-your-=
+changes
+
+> updates the DTS to use the correct shunt resistor value
+> according to the hardware design, restoring accurate power and current
+> measurements.
+>=20
+> Signed-off-by: Kevin Tung <kevin.tung.openbmc@gmail.com>
+> ---
+> =C2=A0arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts | 14 +++=
+++++-------
+> =C2=A01 file changed, 7 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts b=
+/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
+> index 84d3731b17f7c7c87338672bbcc859de2b89b722..524597a81365ef10cd03b67d3=
+5eeb88a965cbe0a 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
+> @@ -415,7 +415,7 @@ power-sensor@42 {
+> =C2=A0	power-monitor@43 {
+> =C2=A0		compatible =3D "lltc,ltc4287";
+> =C2=A0		reg =3D <0x43>;
+> -		shunt-resistor-micro-ohms =3D <250>;
+> +		shunt-resistor-micro-ohms =3D <100>;
+> =C2=A0	};
+> =C2=A0
+> =C2=A0	power-sensor@44 {
+> @@ -461,25 +461,25 @@ eeprom@57 {
+> =C2=A0	power-monitor@58 {
+> =C2=A0		compatible =3D "renesas,isl28022";
+> =C2=A0		reg =3D <0x58>;
+> -		shunt-resistor-micro-ohms =3D <1000>;
+> +		shunt-resistor-micro-ohms =3D <10000>;
+> =C2=A0	};
+> =C2=A0
+> =C2=A0	power-monitor@59 {
+> =C2=A0		compatible =3D "renesas,isl28022";
+> =C2=A0		reg =3D <0x59>;
+> -		shunt-resistor-micro-ohms =3D <1000>;
+> +		shunt-resistor-micro-ohms =3D <10000>;
+> =C2=A0	};
+> =C2=A0
+> =C2=A0	power-monitor@5a {
+> =C2=A0		compatible =3D "renesas,isl28022";
+> =C2=A0		reg =3D <0x5a>;
+> -		shunt-resistor-micro-ohms =3D <1000>;
+> +		shunt-resistor-micro-ohms =3D <10000>;
+> =C2=A0	};
+> =C2=A0
+> =C2=A0	power-monitor@5b {
+> =C2=A0		compatible =3D "renesas,isl28022";
+> =C2=A0		reg =3D <0x5b>;
+> -		shunt-resistor-micro-ohms =3D <1000>;
+> +		shunt-resistor-micro-ohms =3D <10000>;
+> =C2=A0	};
+> =C2=A0
+> =C2=A0	psu@5c {
+> @@ -723,13 +723,13 @@ gpio-expander@21 {
+> =C2=A0	power-sensor@40 {
+> =C2=A0		compatible =3D "ti,ina230";
+> =C2=A0		reg =3D <0x40>;
+> -		shunt-resistor =3D <2000>;
+> +		shunt-resistor =3D <1000>;
+> =C2=A0	};
+> =C2=A0
+> =C2=A0	power-sensor@41 {
+> =C2=A0		compatible =3D "ti,ina230";
+> =C2=A0		reg =3D <0x41>;
+> -		shunt-resistor =3D <2000>;
+> +		shunt-resistor =3D <1000>;
+> =C2=A0	};
+> =C2=A0
+> =C2=A0	power-sensor@42 {
+
+The way the commit message is written suggests it was just one shunt
+resistor, but that's clearly not the case.
+
+Andrew
 
