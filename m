@@ -1,248 +1,594 @@
-Return-Path: <devicetree+bounces-263802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263803-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6OEQDOJqiWny8gQAu9opvQ
-	(envelope-from <devicetree+bounces-263802-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 06:04:34 +0100
+	id MHE7GZpwiWnl9AQAu9opvQ
+	(envelope-from <devicetree+bounces-263803-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 06:28:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A8DE10BB26
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 06:04:33 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2D4F10BC11
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 06:28:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 62B4F30073D8
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 05:04:32 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 316FD30022C1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 05:28:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 528E4255F52;
-	Mon,  9 Feb 2026 05:04:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A40222FD7BC;
+	Mon,  9 Feb 2026 05:28:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jMgHC/d0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="P7amoY3C";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YxbNFr9r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f44.google.com (mail-dl1-f44.google.com [74.125.82.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A0DA1BBBE5
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 05:04:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770613469; cv=pass; b=o+MOojFDgyydsSnVtpil+uOVHzXk0wPNM2RG22sSidQAXLbBLgZY7mgFx7jCry5K7FGU72vWjFGXH8xX5Xh10mHwC1b2p6FHs++kOeiML3TjuRph42tQ95wuejSyU/XnblHg+mfOQw4F1/cchgl5sr/mOh+4h5E8Tj9D8onu2Po=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770613469; c=relaxed/simple;
-	bh=fBbG1mnFlbose/sSakTAYymCEKLG6HMiS5tjfl9wTSk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L6vHQyvmjgGXXEHZPApAlrXplCIa0fjTGSCvLqJNqYDDMmWs+rLGYhPHgOzhAYJCK/EcvF2DFe3r0CWRyG55z8r+OeLfjKD5zcyAxoQXcsmCuZLSFrqgAqco6kCgyK93h/ekEjOvQXnSlJHvqbp61TFPTEMVImdC5e4CHVCl3E8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jMgHC/d0; arc=pass smtp.client-ip=74.125.82.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f44.google.com with SMTP id a92af1059eb24-1248d27f2b9so4559806c88.0
-        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 21:04:28 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770613468; cv=none;
-        d=google.com; s=arc-20240605;
-        b=hktZL8VszDX0z+okcTfckYkeGiLFCkBsi0Fd1dW801E4tJrJ2IawNqe3IyE+cUO/7l
-         XTqW0oTGX0mPw1fiT0s92RjnPnf7RmngPdykJBQ3ONExeOepWUhEquCSx9hN+0TtYnr4
-         8TqdBw2kt5SCWrgke+aTBAXfWN+lCVQwsldzAZrfNw5iEBg0h3J8aCEaVpRfpwVKcspe
-         e3exZlcDODsjh9gq1us6GMiETiHpZjbCeiRpHpkhiLLYO9Jh2VeKk8HI0/fYfPWPZkck
-         X+FIIMAmI7X3UQQJqjDzksTaAJo3TpPYgnTk0O5O0WsXullwt+Fst1d2LZv1vEiGm4qP
-         0Quw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=kLdAMjKN4MfQwM617A7tGdAkD2nzrI/3wQiBJg1Ko4g=;
-        fh=hjraGglFTztjvTiKZVQ5ppfTZze9bCLYAC+SbZi4JmI=;
-        b=eI7J4QtPmVhlLk0sBkZPeNNgsygquOWs2PqPdS1X/iVAIskzh4uo2Figzfwp9cQvGB
-         WqYwfMms9HbuX0Wi6n6jHnT5uuZypKksnDO8TAKixaH5zrYE2uSt8MbdJKzsHgLl9qsO
-         jqTKVY+m3kBBY/I23jDL+RZP5kiSTe8vN9StIfvJROEALHtdDvyaC3m1gzpl71yOqi6w
-         4nShJ4aYGQqBjpQTNSYKwPuW2EM8hp89i8jdXafOl7oekzbu2mDvNznOs06DWpuPEHKr
-         L+RnohoNUNJdxYS1ebVAjznnGExv9rT37Wh1Qs+g03evj9eYBSIhZFmqpkAqZPzeBNS3
-         SJPw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 709FC2FD1BC
+	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 05:28:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770614933; cv=none; b=RmrIQlxvg1rvJImOGCd+yKOtXzjmEy57Tyhx2dpcS2GdH8FxCg1k1H74MwzkKgBGnmSuSzG/brqtLIraw6NG8wbPAyuOZ2uugKXZgCiH80aFvOLtCKH93CchVsXZco0bajy17prN3XkiekQKcVviz8SglkkiC0RyDyi6kBsKwh0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770614933; c=relaxed/simple;
+	bh=L3HDVwb7HvgIVRkfomTfQA8sZRyRnlhQqYq1MyFOMLc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UsDOjzsRKj3wsb5uK0mw6uvgm9O6REAWeNveVENbNyzIClAM9di+X8Ongam37ZD7CIdkySWa7pkGcVwKNvfHCrwuVcCISsLgnW27aIUfF+OS8DJaces6AqXvKx3mfMZtQweGJgcGdztdqHDNJejCLYXOQp0ld+z8QYBQj4ah5BY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=P7amoY3C; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YxbNFr9r; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 618LHgXo1524110
+	for <devicetree@vger.kernel.org>; Mon, 9 Feb 2026 05:28:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6AmxTb4ful2Hhdd/Tz7AEZuDQZ7WsAtX7vPCOFeicgE=; b=P7amoY3CAJxGEANF
+	Pp4ooAeiv4YFKJxEM1fsFqPvaCOA7LOaBWNfbr2Db4qfv5ZBGaOeuGSDCpmsReHD
+	+RD3khMENTXJvn/6YLoBvyKrLZzgCsgOw/jGcDpHeCLcZRz1OwX9teL+4XaCbn9h
+	Lr8WscRoJ3iJiu5v0DdAv02gIsU/GpdKwmkPOdFO+rxV++aL4wpWqFIGvYV3d6A2
+	/aXtTewa8XrSV0uOx3CWQbDEmqJjPK3ijqDlFTo/fKQPqkDEjPWBlpcHgQm961/l
+	AxU3Dl60KKDLiABjg2v2wCLPEPArZHlTbvysEi8TgB8fMPIf+js3u9hdGKEtO0wK
+	sNyMSg==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c5xhrbqcq-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 05:28:52 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-c68b97b7316so1758194a12.3
+        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 21:28:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770613468; x=1771218268; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kLdAMjKN4MfQwM617A7tGdAkD2nzrI/3wQiBJg1Ko4g=;
-        b=jMgHC/d08P1AXJbQaCu2qEQDDCefuGWcdyKjBJLxBhmVxhchmfPbBoET9JJhgifc8B
-         r7pmSeY4ifrgyhkUDkNRvhxo8pd0LTLZc6cUShqq4be5hY8LMlS+Rtj+WD71pRrMq8oW
-         erSuQIa59WpFLxjK3Ka14ZyR29nhgcZewEgTIOzr6SQBequWa0U+iaMSbf4nwgE9vJ8n
-         v4i2prAbEUHchpMDuaW5/DCPxHVsCG80woYbeMmjtz58NaRHeNkp1VQFVVBAQwSPubRC
-         S/c/Rm2mMRhyaGwKepa0nf92fSAyA4Y9ixKkJYjm6O6kcxaN9wzhUzlVzfRPu65yAItw
-         pDpQ==
+        d=oss.qualcomm.com; s=google; t=1770614932; x=1771219732; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6AmxTb4ful2Hhdd/Tz7AEZuDQZ7WsAtX7vPCOFeicgE=;
+        b=YxbNFr9rH6CHL001YcZV9jjBgKDtTr7C8IcH3HI70LH/70G2UR+tJii9PtFInCs0yd
+         UzLeRatOTl/KDIWp32ERE1Na3nMbg/pUWVBXv+m8jQ0sson0t57w1g8w9xauEkCaM63/
+         xpgc17CeI/PPKzb0LjkGgviCZXGoU0jr1z9e4mvqm+bW/J8Wd2oLaYZUqmwtlI5Mh32Y
+         +2OMgnw5pXfMzRB8Bg8q9dFsN3kGxDuTvFeJ0VzLOsNuJsMlxHC72qZE/wqJAIsh8SSO
+         VDvKncY0USYvyfWqiWtbFWdgr/126go7wfSc118sawjlliF2HhuDnlEJtVEMHif+8Q/0
+         gPqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770613468; x=1771218268;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=kLdAMjKN4MfQwM617A7tGdAkD2nzrI/3wQiBJg1Ko4g=;
-        b=N8iwRKgSmYWUxXfGH0dTrCs+GOgTxqEH69PxL3d8AUq+LmHGTpi7S9kzIzZj7nt/rm
-         4yu/5RFxPasJmgZrjIZEsMAHUX3ROM6nxftMqW96GW3MOCkvFrIQv7VNe4hgFkZMCLiA
-         YrRo6YR8bcl4BG33OpF4zyP8tCsR639Z4Dt5GebyTirTV63f0aUiO9dZcwk4fctV6OfM
-         nD4h3rA8KLBZhcr5dkzTTf9cTriJH+GcmGMLHMQj65osdPu9fBqKGEN0QnxDrhzF3OwL
-         J80ejqv1na/QGqn3KM3eVZj1tC9ifOkJR01OlDTfhkDe87jNkowu5wmCkX3Q1ViRc4ey
-         Cjfw==
-X-Forwarded-Encrypted: i=1; AJvYcCXLznZTVmc/gMqQFB0Av1B3RZvqNwz9C2JSFq9uYQgilsmuFGH5Z/jxzupPi2GebhCsLu3gIArO9SQU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpwlIlJw5MNnRtGqXzyhNbgQ/bBVPEpeL8rmjqTNnCKnucL0DY
-	wBlLGAmH3yGxfV8iHfO46WvkDGAnkzKWiB3ox7gArB3KABaSDQPbQA8Pm34S7frZ0L9g/EtWkEY
-	fc97hJcbOpk+Nl3WjSXgKeE3hc95szK4=
-X-Gm-Gg: AZuq6aI+OlrZMAMk+PX+SQo99ADE8BePjiceXuuh5ftZc0x+mgNzVgF7joEEe2j5m9B
-	3qScOdU3eQFbUSjEsleSGo5v6tO2VigP2Y1dkc7UswhomXVyW0gFtU0pbC8E6kvb/KgspY+2zRQ
-	5bxv3rNlFLax1saLqWuPMezhl8a/cAPu1zkKQZWgnsuIga4JncFAuFVrMr5ZJkybSUAwcSaWhud
-	8yp3OjNpvmWncKXoZfBNVbk5dHpBVmZ3gvnevyOBn0OEtpd6G7jHitAxmkX/6NEvaEUmexw
-X-Received: by 2002:a05:7022:45a7:b0:11b:d561:bc10 with SMTP id
- a92af1059eb24-12704020b8cmr5530699c88.41.1770613468012; Sun, 08 Feb 2026
- 21:04:28 -0800 (PST)
+        d=1e100.net; s=20230601; t=1770614932; x=1771219732;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6AmxTb4ful2Hhdd/Tz7AEZuDQZ7WsAtX7vPCOFeicgE=;
+        b=R0THPlTfQNCSmPuRFHc6Ddu6NsM4+tYB8dyIX7Y+cCtVn3l1R2n7E0SfjHpuTbaBMs
+         xd8i0QDf6KVJVKgc0/3+VpaI7Cg8HtLj2lURuCVep02V2QuEtjTfOJg8PTodIlGwlkgM
+         Fnq/+WNSy5l0AMQXUBhyMJDZ2oS1ZfcnGFhJukq/XAXIpWiKfB5K5p+Z2C3iVB6bZoQa
+         DuE2z7HxFsDAk9uYH7VJMsuTxgPks7pYGwvpWZcAcfVW8VsUCJHPxQTzlMbFOJJP5rEj
+         gz3tL6zCi+MA99Yfl+D+oZBM6gkLEcpgaLGjYMAuMlh2kQL+D1XKFO3hcvZJO9LxlEQs
+         jhtw==
+X-Forwarded-Encrypted: i=1; AJvYcCWU03P1cxX2TCtjYBkRuJakvbNnmSi6iLDDz4AxMPSZvupCjV5wHeilOmS7cG6aeHx2TTOMtpc/vPFI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSKT+CU+gc685Iu8DIErDeBicW25YpyX0ONJTn5ECy8KytJRke
+	uIE2QhVYq2Vj2Pm7eU3kF0xrB1fLz3iqOIBO/WldwaqUqQoRp1ocRT5Jhn54T6Xykm/MG93u6LG
+	l6HhaeR2aVF72q8CmT/6Z8utRebBNXXFhvZCGFLf/3FAP54O6gF4pDjh9EgWq3ZpjyBDP9XNX
+X-Gm-Gg: AZuq6aLHjCXXgumRzrLPsXg2X1zoDXXPkpmYIRW+8GqWWPdnjOTOHbrCTQDfMzoP69s
+	I5cIA1wZt+DlkUhweVC2oUKSqjyg7ek5P0ZAwM3Hm8KiVJ9cSxk544oOg+dZNJs9IsMHhlgCCXM
+	h4ccqBIzAJsimrP8IVl0+U0bn6zpWLdyNf1C27yKUdJF2T3itX0xGGsUYpzLSsnW+g8fvSML9GL
+	7uH/hCOI8uNgV8ugSxFRArvszavJK8F9z3g5MOheJ0uS1h8FzlD0zUn2ueXCilcpUX09pe34hct
+	q7W3P5ZTn5qJdEgTqPYs0WJaPkH9MZjyYujSrknOxsECy5A0ov2t4SRRtmLlb7Z8wVVbZ6/BNMx
+	BRYY3dEAUx0YnvnUIJ0I5jJM+5TOk2oRe9W947Z4=
+X-Received: by 2002:a05:6a21:a92:b0:35d:7f7:4aac with SMTP id adf61e73a8af0-393ad3041a7mr9419909637.47.1770614931785;
+        Sun, 08 Feb 2026 21:28:51 -0800 (PST)
+X-Received: by 2002:a05:6a21:a92:b0:35d:7f7:4aac with SMTP id adf61e73a8af0-393ad3041a7mr9419879637.47.1770614931235;
+        Sun, 08 Feb 2026 21:28:51 -0800 (PST)
+Received: from [10.218.12.237] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-354b21fb723sm8844140a91.10.2026.02.08.21.28.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 08 Feb 2026 21:28:50 -0800 (PST)
+Message-ID: <d5fd45e3-68b2-427d-b75a-4c6bb9ed6ecb@oss.qualcomm.com>
+Date: Mon, 9 Feb 2026 10:58:43 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260107144507.46491-1-Ashish.Yadav@infineon.com>
- <03da3b10-dfe9-466a-9dc9-b51e29938e3e@roeck-us.net> <CAJKbuCYcRMrX5H5rWXWXOz4FCZi5iu8CCE2Oi3WEsWqEikqsYg@mail.gmail.com>
- <f0d230be-676b-47b9-9565-22319b8e62cc@roeck-us.net> <CAJKbuCYUCr-R-91Ou1y6XDEPdqabSDvCxUypc-YmW=-EPxgNyQ@mail.gmail.com>
- <787ffcff-28cb-43e0-97db-19dd7a996d13@roeck-us.net>
-In-Reply-To: <787ffcff-28cb-43e0-97db-19dd7a996d13@roeck-us.net>
-From: ashish yadav <ashishyadav78@gmail.com>
-Date: Mon, 9 Feb 2026 10:34:16 +0530
-X-Gm-Features: AZwV_Qi8ECim-_A_uIZdQNa43I4c3A_fbTT40fu5-EfM7i8A9Souso3kOJ87A2Q
-Message-ID: <CAJKbuCav7iCdpph7HYW4=QxEmJ5+vuwadRmaQVUxT-TBSBBGVg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] hwmon:(pmbus/tda38740a) TDA38740A Voltage
- Regulator Driver
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	ASHISH YADAV <Ashish.Yadav@infineon.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/8] thermal: Add Remote Proc cooling driver
+To: Lukasz Luba <lukasz.luba@arm.com>
+Cc: linux-arm-msm@vger.kernel.org, krzk+dt@kernel.org,
+        casey.connolly@linaro.org, amitk@kernel.org, konradybcio@kernel.org,
+        rui.zhang@intel.com, daniel.lezcano@linaro.org, rafael@kernel.org,
+        conor+dt@kernel.org, andersson@kernel.org, robh@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Amit Kucheria <amit.kucheria@oss.qualcomm.com>,
+        mathieu.poirier@linaro.org, mani@kernel.org
+References: <20251223123227.1317244-1-gaurav.kohli@oss.qualcomm.com>
+ <20251223123227.1317244-2-gaurav.kohli@oss.qualcomm.com>
+ <a27b755d-00d2-4350-98ab-0b68ab754770@arm.com>
+Content-Language: en-US
+From: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+In-Reply-To: <a27b755d-00d2-4350-98ab-0b68ab754770@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: iC4RQGC_BNVHvshjGnvoQvZq8b9ip3E3
+X-Authority-Analysis: v=2.4 cv=AJ+v8NAg c=1 sm=1 tr=0 ts=69897094 cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=7CQSdrXTAAAA:8 a=5wUkCm8xxAg9AHOHLWUA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
+ a=a-qgeE7W1pNrGK8U0ZQC:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA5MDA0MyBTYWx0ZWRfXw65e7ZDQLLnj
+ XlF/l7r4lLHv+g6TMByOVZ1ojt16hp5qoulFE9zzRMA0VUNiODIvsVaWAmrePrKR+hBaBkl3A0r
+ Gc/SWl4nT1DePu5x+YJUr6MWoC6BG6ks/e0tbcVonm0kmg/iOD4Yxg4rCy2sPVlp75KsioljIPK
+ /u0GQfNHLofn3a9iXZ97mCLFXtrM1xCk1NkSGjkS2Unhxhwf6GxdcbPsOfKGRqy/9tDSnKJ8TEI
+ gwdv7lTSZ43oMaanuL8y3l7qzcxBxIVjJlkw7xiTeMMOwVyymVJsK8h94d4qbNHH3YZdJdOjOF7
+ IZQyNVLCq6BTyoB/80Bw3U1gAxyMG0kWmbOzK/WxWtwzmgp6KhGzviBQySCltHuoGge68BjNZ8J
+ CS8MEhfgjiUOswH+u/HRnkWK10sQZYq8lLYzdI6Z5jlVarTWk/o+dozRXmbY/aXsptbiRxq/sam
+ 5Ped7xl30Y+Urfq89ow==
+X-Proofpoint-ORIG-GUID: iC4RQGC_BNVHvshjGnvoQvZq8b9ip3E3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-08_05,2026-02-05_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 priorityscore=1501 spamscore=0 bulkscore=0 suspectscore=0
+ clxscore=1015 lowpriorityscore=0 phishscore=0 adultscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602090043
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263802-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MISSING_XM_UA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	NEURAL_HAM(-0.00)[-0.963];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ashishyadav78@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-263803-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,arm.com:email];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gaurav.kohli@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.987];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 9A8DE10BB26
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: F2D4F10BC11
 X-Rspamd-Action: no action
 
-Hi Guenter,
-
-I hope you are doing well.
-
-Please find my response inline.
-
-With Best Regards
-  Ashish Yadav
 
 
-On Mon, Feb 2, 2026 at 5:59=E2=80=AFAM Guenter Roeck <linux@roeck-us.net> w=
-rote:
->
-> On 1/22/26 03:42, ashish yadav wrote:
-> > Hi Guenter,
-> >
-> > Please find my response inline.
-> >
-> > Thanks & Regards
-> >     Ashish Yadav
-> >
-> > On Tue, Jan 13, 2026 at 8:40=E2=80=AFPM Guenter Roeck <linux@roeck-us.n=
-et> wrote:
-> >>
-> >> On 1/12/26 23:24, ashish yadav wrote:
-> >>
-> >>>> The need for this, especially why it would only be needed for PMBUS_=
-READ_VOUT
-> >>>> but not for any other VOUT related commands, is still insufficiently=
- explained
-> >>>> (and I failed to understand the rationale provided earlier).
-> >>>>
-> >>>
-> >>> It is specifically needed for READ_VOUT as it is being used by
-> >>> external controller to monitor the rail health.
-> >>> Other Vout related parameters are used internally in the IC to for
-> >>> output voltage related protections and does not impact any external
-> >>> decision making.
-> >>>
-> >>
-> >> Sorry, that doesn't really make sense. How would the chip know to matc=
-h
-> >> VOUT with its VOUT limits if both don't use the same scale ?
-> >>
-> > The chip telemetry would still show Vout as 0.7V as it does not know
-> > about the external feedback resistors.
-> > Hence, no need to scale internal Vout related parameters.
-> > This scale is only for external vendor use to tweak their telemetry
-> > output voltage reading.
-> >
->
-> You fail to explain why VOUT_SCALE_LOOP - which is supposed to handle suc=
-h
-> situations - can not be used, and why it would be acceptable for other VO=
-UT
-> related attributes such as VOUT_MIN, VOUT_MAX, VOUT_MARGIN_LOW, VOUT_MARG=
-IN_HIGH,
-> and the various VOUT fault limits to show the wrong values.
->
-> For reference:
->
-> VOUT_SCALE_LOOP:
-> "Used to account for any external attenuation network on VOUT sense
->   feedback and provide correct VOUT reporting."
->
+On 2/2/2026 4:29 PM, Lukasz Luba wrote:
+> Hi Gaurav,
+> 
+> On 12/23/25 12:32, Gaurav Kohli wrote:
+>> Add a new generic driver for thermal cooling devices that control
+>> remote processors (modem, DSP, etc.) through various communication
+>> channels.
+>>
+>> This driver provides an abstraction layer between the thermal
+>> subsystem and vendor-specific remote processor communication
+>> mechanisms.
+> 
+> Is this the patch about proposing the new cooling
+> device type at last LPC2025 conference (what we've discussed with Amit)?
+> 
 
-TDA38725A/TDA38740A has only two options of vout_scale_loop. These are
-1 and 0.5.
-If the output voltage is directly connected to the output rail, then
-vout_scale_loop =3D 1 as there is no resistor divider in the feedback
-and feedback voltage is equal to the actual output voltage.
+thanks Lukasz for review, yes this is the same.
+sorry for late reply, was on leave last week.
 
-If vout_scale_loop =3D 0.5, it is recommended to use a resistor divider
-(top & bottom =E2=80=93 499ohms each) with a ratio of  0.5 in the feedback
-path.
-In this case, feedback voltage will be 0.5 x actual output voltage.
-As the vout_scale_loop is set to 0.5, IC would use this
-vout_scale_loop internally to provide the correct telemetry data.
+> There was some feedback asking you to add a bit more description
+> into this patch header, please do that (with some background as well).
+> 
 
-If a customer uses a resistor divider of 2.21k (top) & 22.1k (bottom),
-the divider ratio would be (2.21/22.1 + 2.21 =3D 0.09).
-This is not an option available in the IC as it can only identify 1 and 0.5=
-.
-In this case, they configure the IC in vout_scale_loop of 1 and use a
-multiplier in Linux code to correct the READ_VOUT telemetry voltage.
+Sure, will update.
 
-Why can vout_scale_loop not be used?
-Using vout_scale_loop for correction will also impact all the Vout
-related parameters and makes it cumbersome.
-To simplify the linux code, customers prefer changing only Read_Vout
-value and accept that IC would still operate based on vout_scale_loop
-value configured to 1.
+>>
+>> Suggested-by: Amit Kucheria <amit.kucheria@oss.qualcomm.com>
+>> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+>> ---
+>>   MAINTAINERS                          |   8 ++
+>>   drivers/thermal/Kconfig              |  11 ++
+>>   drivers/thermal/Makefile             |   2 +
+>>   drivers/thermal/remoteproc_cooling.c | 154 +++++++++++++++++++++++++++
+>>   include/linux/remoteproc_cooling.h   |  52 +++++++++
+>>   5 files changed, 227 insertions(+)
+>>   create mode 100644 drivers/thermal/remoteproc_cooling.c
+>>   create mode 100644 include/linux/remoteproc_cooling.h
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 679e5f11e672..c1ba87315cdf 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -25935,6 +25935,14 @@ F:    drivers/thermal/cpufreq_cooling.c
+>>   F:    drivers/thermal/cpuidle_cooling.c
+>>   F:    include/linux/cpu_cooling.h
+>> +THERMAL/REMOTEPROC_COOLING
+>> +M:    Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+>> +L:    linux-pm@vger.kernel.org
+>> +S:    Supported
+>> +F:    drivers/thermal/remoteproc_cooling.c
+>> +F:    include/linux/remoteproc_cooling.h
+>> +
+>> +
+>>   THERMAL/POWER_ALLOCATOR
+>>   M:    Lukasz Luba <lukasz.luba@arm.com>
+>>   L:    linux-pm@vger.kernel.org
+>> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+>> index b10080d61860..31e92be34387 100644
+>> --- a/drivers/thermal/Kconfig
+>> +++ b/drivers/thermal/Kconfig
+>> @@ -229,6 +229,17 @@ config PCIE_THERMAL
+>>         If you want this support, you should say Y here.
+>> +
+>> +config REMOTEPROC_THERMAL
+>> +    bool "Remote processor cooling support"
+>> +    help
+>> +      This implements a generic cooling mechanism for remote processors
+>> +      (modem, DSP, etc.) that allows vendor-specific implementations to
+>> +      register thermal cooling devices and provide callbacks for thermal
+>> +      mitigation.
+>> +
+>> +      If you want this support, you should say Y here.
+>> +
+>>   config THERMAL_EMULATION
+>>       bool "Thermal emulation mode support"
+>>       help
+>> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+>> index bb21e7ea7fc6..ae747dde54fe 100644
+>> --- a/drivers/thermal/Makefile
+>> +++ b/drivers/thermal/Makefile
+>> @@ -34,6 +34,8 @@ thermal_sys-$(CONFIG_DEVFREQ_THERMAL) += 
+>> devfreq_cooling.o
+>>   thermal_sys-$(CONFIG_PCIE_THERMAL) += pcie_cooling.o
+>> +thermal_sys-$(CONFIG_REMOTEPROC_THERMAL) += remoteproc_cooling.o
+>> +
+>>   obj-$(CONFIG_K3_THERMAL)    += k3_bandgap.o k3_j72xx_bandgap.o
+>>   # platform thermal drivers
+>>   obj-y                += broadcom/
+>> diff --git a/drivers/thermal/remoteproc_cooling.c b/drivers/thermal/ 
+>> remoteproc_cooling.c
+>> new file mode 100644
+>> index 000000000000..a1f948cbde0f
+>> --- /dev/null
+>> +++ b/drivers/thermal/remoteproc_cooling.c
+>> @@ -0,0 +1,154 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Remote Processor Cooling Device
+>> + *
+>> + * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights 
+>> reserved.
+>> + */
+>> +
+>> +#include <linux/err.h>
+>> +#include <linux/export.h>
+>> +#include <linux/module.h>
+>> +#include <linux/mutex.h>
+>> +#include <linux/of.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/thermal.h>
+>> +
+>> +#define REMOTEPROC_PREFIX        "rproc_"
+>> +
+>> +struct remoteproc_cooling_ops {
+>> +    int (*get_max_level)(void *devdata, unsigned long *level);
+>> +    int (*get_cur_level)(void *devdata, unsigned long *level);
+>> +    int (*set_cur_level)(void *devdata, unsigned long level);
+>> +};
+> 
+> 1. There is no comment for struct and the functions like you did below.
+> 2. Why you need those 3 callbacks?
+>     It looks like they are simple wrappers on stuff in
+>     'struct thermal_cooling_device_ops'.
+>     Please try to get rid of them and re-use the existing fwk callbacks.
+> 
 
+thanks for this suggestion, i will use thermal_cooling_device_ops directly.
 
+>> +
+>> +/**
+>> + * struct remoteproc_cdev - Remote processor cooling device
+>> + * @cdev: Thermal cooling device handle
+>> + * @ops: Vendor-specific operation callbacks
+>> + * @devdata: Private data for vendor implementation
+>> + * @np: Device tree node associated with this cooling device
+>> + * @lock: Mutex to protect cooling device operations
+>> + */
+>> +struct remoteproc_cdev {
+> 
+> Please use the full naming:
+> remoteproc_cooling_device
+> 
+>> +    struct thermal_cooling_device *cdev;
+> 
+> You don't need to keep it here. AFAICS it's only
+> used in the 'unregister' function. Please check my
+> comment here and then remove this pointer.
+> (It creates uneseccery linkage between those devices).
+> 
+>> +    const struct remoteproc_cooling_ops *ops;
+> 
+> So here it can be simply:
+> struct thermal_cooling_device_ops cooling_ops;
+> 
 
-> Guenter
->
+yes, i will use this as part of remoteproc_cooling_device struct.
+
+>> +    void *devdata;
+>> +    struct device_node *np;
+> 
+> This 'np' is also not used, remove it please.
+> 
+>> +    struct mutex lock;
+>> +};
+>> +
+>> +
+>> +/* Thermal cooling device callbacks */
+>> +
+>> +static int remoteproc_get_max_state(struct thermal_cooling_device *cdev,
+>> +                    unsigned long *state)
+>> +{
+>> +    struct remoteproc_cdev *rproc_cdev = cdev->devdata;
+>> +    int ret;
+>> +
+>> +    if (!rproc_cdev || !rproc_cdev->ops)
+>> +        return -EINVAL;
+> 
+> This mustn't be changed in runtime accidenly. We don't guard in
+> cpufreq-/devfreq- cooling these callbacks that way. Please drop them.
+
+Sure, let me rewrite this and update in next version.
+
+> 
+>> +
+>> +    mutex_lock(&rproc_cdev->lock);
+>> +    ret = rproc_cdev->ops->get_max_level(rproc_cdev->devdata, state);
+>> +    mutex_unlock(&rproc_cdev->lock);
+>> +
+>> +    return ret;
+>> +}
+>> +
+>> +static int remoteproc_get_cur_state(struct thermal_cooling_device *cdev,
+>> +                    unsigned long *state)
+>> +{
+>> +    struct remoteproc_cdev *rproc_cdev = cdev->devdata;
+>> +    int ret;
+>> +
+>> +    if (!rproc_cdev || !rproc_cdev->ops)
+>> +        return -EINVAL;
+> 
+> as above
+> 
+>> +
+>> +    mutex_lock(&rproc_cdev->lock);
+>> +    ret = rproc_cdev->ops->get_cur_level(rproc_cdev->devdata, state);
+>> +    mutex_unlock(&rproc_cdev->lock);
+>> +
+>> +    return ret;
+>> +}
+>> +
+>> +static int remoteproc_set_cur_state(struct thermal_cooling_device *cdev,
+>> +                    unsigned long state)
+>> +{
+>> +    struct remoteproc_cdev *rproc_cdev = cdev->devdata;
+>> +    int ret;
+>> +
+>> +    if (!rproc_cdev || !rproc_cdev->ops)
+>> +        return -EINVAL;
+> 
+> as above
+> 
+
+will fix in all callbacks.
+
+>> +
+>> +    mutex_lock(&rproc_cdev->lock);
+>> +    ret = rproc_cdev->ops->set_cur_level(rproc_cdev->devdata, state);
+>> +    mutex_unlock(&rproc_cdev->lock);
+>> +
+>> +    return ret;
+>> +}
+>> +
+>> +static const struct thermal_cooling_device_ops remoteproc_cooling_ops 
+>> = {
+>> +    .get_max_state = remoteproc_get_max_state,
+>> +    .get_cur_state = remoteproc_get_cur_state,
+>> +    .set_cur_state = remoteproc_set_cur_state,
+>> +};
+>> +
+>> +struct remoteproc_cdev *
+>> +remoteproc_cooling_register(struct device_node *np,
+>> +                 const char *name, const struct 
+>> remoteproc_cooling_ops *ops,
+>> +                 void *devdata)
+> 
+> Since this is based on device_node, please align to the naming
+> convention from cpufreq-/devfreq-cooling and use prefix 'of_'
+> 
+> of_remoteproc_cooling_register()
+> 
+>> +{
+>> +    struct remoteproc_cdev *rproc_cdev;
+>> +    struct thermal_cooling_device *cdev;
+>> +    int ret;
+>> +
+>> +    if (!name || !ops) {
+> 
+> IMO you should check the '!np' here, not the lines below.
+> We can simply bail out very early.
+> 
+
+thanks will put explicit check for np, but please let me know for non 
+np, do we have to add support for non np also.
+so they can directly register with thermal_cooling_device_register.
+
+>> +        return ERR_PTR(-EINVAL);
+>> +    }
+>> +
+>> +    rproc_cdev = kzalloc(sizeof(*rproc_cdev), GFP_KERNEL);
+>> +    if (!rproc_cdev)
+>> +        return ERR_PTR(-ENOMEM);
+>> +
+>> +    rproc_cdev->ops = ops;
+>> +    rproc_cdev->devdata = devdata;
+>> +    rproc_cdev->np = np;
+>> +    mutex_init(&rproc_cdev->lock);
+>> +
+>> +    char *rproc_name __free(kfree) =
+>> +        kasprintf(GFP_KERNEL, REMOTEPROC_PREFIX "%s", name);
+>> +    /* Register with thermal framework */
+>> +    if (np) {
+> 
+> Too late to test 'np'.
+
+yes, will put a check in the start of function.
+
+> 
+>> +        cdev = thermal_of_cooling_device_register(np, rproc_name, 
+>> rproc_cdev,
+>> +                              &remoteproc_cooling_ops);
+>> +    }
+>> +
+>> +    if (IS_ERR(cdev)) {
+> 
+> This check should be just below the line when you get the 'cdev'
+> 
+>> +        ret = PTR_ERR(cdev);
+>> +        goto free_rproc_cdev;
+>> +    }
+>> +
+>> +    rproc_cdev->cdev = cdev;
+>> +
+>> +    return rproc_cdev;
+>> +
+>> +free_rproc_cdev:
+>> +    kfree(rproc_cdev);
+>> +    return ERR_PTR(ret);
+>> +}
+>> +EXPORT_SYMBOL_GPL(remoteproc_cooling_register);
+>> +
+>> +void remoteproc_cooling_unregister(struct remoteproc_cdev *rproc_cdev)
+> 
+> Change the API to be alined with cpufreq-cooling and devfreq-cooling
+> types of devices, so:
+> 
+> void remoteproc_cooling_unregister(struct thermal_cooling_device *cdev)
+> 
+> You still should be able to get the rptoc_cdev like:
+> 
+> rproc_cdev = cdev->devdata;
+> 
+> and free it.
+> 
+
+thanks, will change something like below
++       rproc_cdev = cdev->devdata;
++       thermal_cooling_device_unregister(cdev);
+
+>> +{
+>> +    if (!rproc_cdev)
+>> +        return;
+>> +
+>> +    thermal_cooling_device_unregister(rproc_cdev->cdev);
+>> +    mutex_destroy(&rproc_cdev->lock);
+>> +    kfree(rproc_cdev);
+>> +}
+>> +EXPORT_SYMBOL_GPL(remoteproc_cooling_unregister);
+>> +
+>> +MODULE_LICENSE("GPL");
+>> +MODULE_DESCRIPTION("Remote Processor Cooling Device");
+>> diff --git a/include/linux/remoteproc_cooling.h b/include/linux/ 
+>> remoteproc_cooling.h
+>> new file mode 100644
+>> index 000000000000..ef94019d220d
+>> --- /dev/null
+>> +++ b/include/linux/remoteproc_cooling.h
+>> @@ -0,0 +1,52 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * Remote Processor Cooling Device
+>> + *
+>> + * Copyright (c) 2025, Qualcomm Innovation Center
+>> + */
+>> +
+>> +#ifndef __REMOTEPROC_COOLING_H__
+>> +#define __REMOTEPROC_COOLING_H__
+>> +
+>> +#include <linux/thermal.h>
+>> +
+>> +struct device;
+>> +struct device_node;
+>> +
+>> +struct remoteproc_cooling_ops {
+>> +    int (*get_max_level)(void *devdata, unsigned long *level);
+>> +    int (*get_cur_level)(void *devdata, unsigned long *level);
+>> +    int (*set_cur_level)(void *devdata, unsigned long level);
+>> +};
+> 
+> That duplicate w/ .c file content.
+> We don't need this in the header, please follow the cpufreq-/devfreq-
+> design.
+> 
+
+Yes, with new approach of using thermal_cooling_device_ops directly can
+save this.
+
+>> +
+>> +struct remoteproc_cdev;
+>> +
+>> +#ifdef CONFIG_REMOTEPROC_THERMAL
+>> +
+>> +struct remoteproc_cdev *
+>> +remoteproc_cooling_register(struct device_node *np,
+>> +                 const char *name,
+>> +                 const struct remoteproc_cooling_ops *ops,
+>> +                 void *devdata);
+>> +
+>> +void remoteproc_cooling_unregister(struct remoteproc_cdev *rproc_cdev);
+>> +
+>> +#else /* !CONFIG_REMOTEPROC_THERMAL */
+>> +
+>> +static inline struct remoteproc_cdev *
+>> +remoteproc_cooling_register(struct device_node *np,
+>> +                 const char *name,
+>> +                 const struct remoteproc_cooling_ops *ops,
+>> +                 void *devdata)
+>> +{
+>> +    return ERR_PTR(-EINVAL);
+>> +}
+> 
+> Function naming convention here as well
+> 
+
+thanks a lot, let me rewrite as per suggestion and update in newer version.
+
+> 
+> Regards,
+> Lukasz
+
 
