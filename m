@@ -1,236 +1,248 @@
-Return-Path: <devicetree+bounces-264038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264040-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OKUDOID6iWkiFQAAu9opvQ
-	(envelope-from <devicetree+bounces-264038-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:17:20 +0100
+	id ELBoGKH6iWkiFQAAu9opvQ
+	(envelope-from <devicetree+bounces-264040-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:17:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D19E111CBD
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:17:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 058F9111CF9
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 16:17:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 31899303DD14
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 14:59:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6939B30413BE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 15:00:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5311A37C112;
-	Mon,  9 Feb 2026 14:59:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA539322A;
+	Mon,  9 Feb 2026 15:00:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GCn7TNxA"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="XA0I8z4n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013045.outbound.protection.outlook.com [40.107.159.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BECF037C0E0
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 14:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770649164; cv=none; b=fpxdEaapFZ3ZGErvKi4pLuxvejDvxtOQ2EqO8ll6ZRueg/x6kDSzbZHmYDrt2w+Xx0htv6At2plMFKq6VmyRkRaaxNH2Y1+fmJdm4hHOEZ2wMouWv1TZC1QdERa5LXCz/O/a0T0+nvJ++NssVpMmJKWZi7BdszpTgdtm8+wpVQs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770649164; c=relaxed/simple;
-	bh=WLVJv5ugIhf3VIIc7NthdDs9sjWvcntd5T03Up5qFVk=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=CKzNTTMnfoUFtwFifqvQXJEY/Zt2uFt1jTxAt+meAxuQvQOQeWtSgytsOeKtXjOdA+SSBg38Qkwn1Uirm5Ma7wItYXhi3axQt6IAGLwBkRF1zVIw7FR9JDGf/Pbsfjsxg464LtCCTqLzVBKeOBsIX5tSL5UufSNs57nhx1awuoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GCn7TNxA; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4806cc07ce7so46090165e9.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 06:59:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1770649162; x=1771253962; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TzlX62O2iHtDoc/wlp70TM/0Ovim/AGV2yahkY72zas=;
-        b=GCn7TNxAhV7JVuZCQEXpIBPGk0F78lMJmLJMuOJgNtwmeNNbnh9PLCRgx8++yQNWTq
-         BlczZkEtZTRiGASZvD1akuZrsEQVayDAcUD1yY+6exZENMCXQXdSAwh1mzh75FccSHwa
-         pR/LFdCzQuIBQ8F2BdOfzRyBnVMq7/lWUc1THzkyoOFsE28kSX5IrS/WtynoaCwyMoyH
-         hr7UPLMuS217FHUjTs9dS6+8XF+vLiUAG0WeOG/MkleX3WjSWZq+thky6hYNOdOQZX2n
-         p70Xh8VJF/LyzhRxNp20dhfGK1ogOfrzI+3EVG+oQKdg4PKOG81g/IfonGk6jHSIu+Mh
-         tekg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770649162; x=1771253962;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TzlX62O2iHtDoc/wlp70TM/0Ovim/AGV2yahkY72zas=;
-        b=kmhh1Ikp4A9hCCphSHl4wbjYAK1Vcq2JflcTSrj33uJH18hAoNcEmAbE20h663RDs1
-         ++ioop4mzPLTgy23Y9rsWU5Q1xE7xYeDF52iizihyVUIYx7OErLRaZJML87iTJ+AJj7x
-         ZcnzLHx+iGR0d/GaPfWdjzxnWeg4q2MlQb9JompX8mBsNpKdSgjRB/jgjL2brRmAA14V
-         0rueDoAoqVLW3d3w3QH2HYZJV8JLGh+v9D1QZzYbU0pkvI626f8YIEkGwT0OZWNuF4kA
-         6SFPfpw9Vz5J19uz+l2TS64MvFcCk3T46HZTYgy/ekRp8v/IoHzCGufrt0DTireuBRSH
-         K2xA==
-X-Forwarded-Encrypted: i=1; AJvYcCVmchQuhZB/aG6ypevEOOegU5rc/U3bO+/J2oOuvFf39wE+Cd9G6c5OaKMgMG+wcQUvEBBCTMD2ghpH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrA/dEt0Ny/SLmCwL6MRF7xeLQjTPpEQIM3jtFBPWQy2EFbmNw
-	ZCAERhaOFi/HuUBPW6pEig4AboTExgI2k5NmVGq+wDOjM0MJu0PKvoJe9dOKqaMKnPs=
-X-Gm-Gg: AZuq6aJFdaxkuEOPWnPyH601TRWLWCRmTP2AulTzX7xtb72H+zCca3i535+T68kJ6e2
-	xjR0QTV+JcP+1btGWmyhEXj93Ns+KoPtbl7sLX0K64kQupLhwEMF1db8Mr/jZLim3YT8Q7N0v6r
-	xfOndSeWgOtJuf96Xe8ogSOvo5KKKdxQ+g1HBw2cqfK5dCWWWVwKlG1eVHlFMBjailiefB65Pp0
-	c8JN+yWhvtlCAraVcAdkba1c+UzCAJXhCCqZksk7NIbVOWcVvI4po2pB5HKOgrnKOQkUOVrg7cE
-	ZNCa4ijVxX5sHBh5T+NIbvX9V3lQJj0N2avDwh/sSR8Z+2AgIT3yh1i6sESt2NjMM6I4aF/pcFd
-	plYjp0J4hsiPpYICOgPO/sOEUlE7rNnTeR4OaiOCH/8d1kDCvqunKb08226BG3KL9o+FWIJ/9eP
-	Dvw/lyfcBtwoCKDTc9or5ghjDfXhVHIgM4VqlCJNjqP33uMS4fNrd/v5Mp6S9/iVo=
-X-Received: by 2002:a05:600c:8719:b0:482:eec4:76d with SMTP id 5b1f17b1804b1-4832021b461mr184052445e9.17.1770649161961;
-        Mon, 09 Feb 2026 06:59:21 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:106d:1080:44e3:9198:bd5d:a3f? ([2a01:e0a:106d:1080:44e3:9198:bd5d:a3f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4376bd5a074sm10377353f8f.11.2026.02.09.06.59.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Feb 2026 06:59:21 -0800 (PST)
-Message-ID: <b46da4da-93aa-4213-ad75-ec7709008b95@linaro.org>
-Date: Mon, 9 Feb 2026 15:59:20 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A41E37C106;
+	Mon,  9 Feb 2026 15:00:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770649202; cv=fail; b=Q5xHtzieBK2IHvBC5W20jbc79EM2XNe52tC0RY4vO7IpdXgMVLlXotD7UqdB6TnayvlPqh75Gkt2rDMskNCh3+UTyVi/ySX0mXAXMewusI2AvORZgxjf6zFTu7CFW49rgDO7gPX7LaLM6PWBDS8eFzIZKI651lm5UCaZHqWuATI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770649202; c=relaxed/simple;
+	bh=10T8+kCcV+f94Y5OEPBxCffAtG4sJRxRHdIVoSL2jrA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=vEeRXuIcO5Hk/6O54HlIIv3fvuMLb/Mz5i6kIZPHjz7vttoVoIESfF0Dm/PnGkhv/GrEhh3DwGeY82zsDnD7j33XMdW8lvAaMxXPcR/fheeo0ytNlOLLFAHsIDNMVDSxzEv0f2WKADhB+txF7t7V+BS21uDjSJ+MoJgmO0EHomc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=XA0I8z4n; arc=fail smtp.client-ip=40.107.159.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=aw4ajep9ElCoeYa5ocn49j/BwEx8uOLOkOMRlIPoJ1xb/5WwD3KgJRMVCnm+ZZzneh3nhj6hGP/mFcR3nnbUDlhTxtjJ2TyXXcWQjpR1UGjiAxJQqW/fPUYKspMrBeqJXdu0tVZ+SWgAfUEh2a1UNTb6hl00eRpr/lS8PlOdLAa9dLXjZAfQR/hasEajsifdCqnSVOQha69yj220/BKx1zHpTMBTSDuipXr/tuw4Ih2FHWg5zUXdj7e5CQ9gT+47v0aFyB1CuYmmvRmb1wUPzTu9eO2Cme1B1fMXXc8rYtDKyCM+nX6bcCsYIv4YiW6YJ9Yp+S19G5SbjJ2tRAUa0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0YzHQqCXg5dQ+QS4TnvfAV0VrAQ7zfv8JQmtmceaF0Q=;
+ b=mdsoDoiPwM96pvjnu71cmS8wrj0CmB6JIoHXhoxPaDOz3zBNl2rgHTBurEupcAx1Q64aRhrNig89LLFcsMbKO7m3uETNaTyECun9mG7+YrZLbBbEph7XTeWirnyGQcTngcM0p8r9h6oQztBsFhnFoA3ZQdUUwjbHltJ9gkWNlfECLa1wD0QBMKh4uWZOW1TKxMjEHIk9x7u2O5i/Tcy5kmeEJ+vgM7mAvAYn1x3OMcp6SV37zM/yn71RJKHfrDItXmlgXWZqjq3XKFCxlOkNnT/tf874gn0FB132l9KCzHzD/klzwoJdXRsu9uaI2bGbo+1uixdLQOR6J1yfdRTrTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0YzHQqCXg5dQ+QS4TnvfAV0VrAQ7zfv8JQmtmceaF0Q=;
+ b=XA0I8z4nbePwhKweSIBIN/n+mDJsAwtwz/puDgZCDT+9kwlsZc0bFHiYjB1KsfJZ3Ms1/QCJh0SBZXC0lLsBvxSY56Q7Cl5nkR9uaW714cT0NAwj9+DnSKOA7nowM5qFih3IuEiZUz1VoTtE/UzyqfDYv+lceHmUog3cEM0b+1YAdwS60cKPtxDI8SwON2zTOyc0CXVD9ewTRwELoE4Pa0W93QNHPjR73kdNP+T28PLGiFrSoY6xLzgdfAPiWkv8fTrXoPkxD+16JorDHNvF5lA7Kdy0XSWiDQwPAI/CCsoCK0i84Us2Oiu500vRCfjiiABc5gxttU9rClyOPGrH8A==
+Received: from CWLP123CA0059.GBRP123.PROD.OUTLOOK.COM (2603:10a6:401:59::23)
+ by GV2PR10MB6525.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:c3::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.15; Mon, 9 Feb
+ 2026 14:59:54 +0000
+Received: from AMS1EPF00000043.eurprd04.prod.outlook.com
+ (2603:10a6:401:59:cafe::9b) by CWLP123CA0059.outlook.office365.com
+ (2603:10a6:401:59::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.18 via Frontend Transport; Mon,
+ 9 Feb 2026 14:59:52 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ AMS1EPF00000043.mail.protection.outlook.com (10.167.16.40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9587.10 via Frontend Transport; Mon, 9 Feb 2026 14:59:53 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Mon, 9 Feb
+ 2026 16:01:43 +0100
+Received: from localhost (10.48.86.212) by STKDAG1NODE2.st.com (10.75.128.133)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Mon, 9 Feb
+ 2026 15:59:53 +0100
+From: Gatien Chevallier <gatien.chevallier@foss.st.com>
+Subject: [PATCH 0/7] soc: st: add RISAB dump debug driver.
+Date: Mon, 9 Feb 2026 15:59:30 +0100
+Message-ID: <20260209-stm32_risab-v1-0-ef0b2b6a7e0a@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 4/9] pci: pwrctrl: generic: support for the
- UPD720201/UPD720202 USB 3.0 xHCI Host Controller
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-0-5b79c5d61a03@linaro.org>
- <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-4-5b79c5d61a03@linaro.org>
- <fbxbnou5mdlhaq5dpxr3wdzmjetwdp7auaaqeunc67tgk5ej2m@cnnkr2pcwy77>
- <a4e55e91-0e03-4e63-8542-d8ad61b38906@linaro.org>
- <o6e5qygss55p6npjgaicxffsqdpv7kojgidr46zinsvfpxfxug@vn67nq4k6jzk>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <o6e5qygss55p6npjgaicxffsqdpv7kojgidr46zinsvfpxfxug@vn67nq4k6jzk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFL2iWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDIwNL3eKSXGOj+KLM4sQkXZO0pOSUJAtjk2QTYyWgjoKi1LTMCrBp0bG
+ 1tQA8yQ8KXQAAAA==
+X-Change-ID: 20260209-stm32_risab-4fbcdb834c43
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Gatien Chevallier <gatien.chevallier@foss.st.com>, Theo GOUREAU
+	<theo.goureau-ext@st.com>
+X-Mailer: b4 0.14.3
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS1EPF00000043:EE_|GV2PR10MB6525:EE_
+X-MS-Office365-Filtering-Correlation-Id: a256b716-68d7-422e-b9fd-08de67ebe1d5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|376014|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?eWJ0elJZemFjd2VtM1BxV3M3eUdLMnNGeXZMMmZmdkkxWTNyVytnSSthN1cx?=
+ =?utf-8?B?aEc4WGhEa2RmTW4wbkF5TjQvTGVYbzlJc21HSnJmYjg2T2EveStZZDhCMjMw?=
+ =?utf-8?B?Z054ZnBHcUNTZmtNTkd6Y05BdU81U3E5TXFxZVVNUitUbnovaTRDUkR0V1Js?=
+ =?utf-8?B?VEgwZHZmVlRwdUpmdGYyTmRFRnNsQXM0Y2E5NW1oVVZaUndtSUpjWUdqUXY4?=
+ =?utf-8?B?WjJ5RVlTeFlUZEhrU2l0K1N5UjBIME5lUHFocStzdWpSTkVKa2VybGxadnhq?=
+ =?utf-8?B?aXZOdWlPUHFCbEhpYjl2UWVrQnlxWkNDQmFEVWVWaS93SGcvRWJJNlVKWXBC?=
+ =?utf-8?B?a0ZyMVV4QmRCaEo1dEVacEJlYklwTU1sUUZnVmdSRlRQUGRoV240bW9xQmJy?=
+ =?utf-8?B?c2N3dGJZeWZsOGIvWTZQeEREUGRqdVRrd2FraTMwTUtnWktwVnFwd3VLTUpI?=
+ =?utf-8?B?Y1M4ZEZnQmF1bWVuOXltN3lmOUJVUG1yZC9TVVZyTEpnYUd2QVh2cGczaXVV?=
+ =?utf-8?B?czVVV0ZBZ1ltYjFQVGpMckhDcEFBS0hPTWJYdHZUZDBKSVhjM0VtNUxmUWtX?=
+ =?utf-8?B?Rk1PRDUyTGM3WUVmaFNSVFpiR2x0cDE3ZlEwenQ5djBNTDVMemtBWlFSZ3hG?=
+ =?utf-8?B?ZWJyazJLNHNnVG4vWklOeXVlZHVMcWxLeVNKQlBoc2ZHN2MvM20ydmhPTkxq?=
+ =?utf-8?B?RWMyRGN2ZzlsREFJOVlmWVdQdlhFR0hLZEV6N01ickwvNk5DSk84U2YxRG81?=
+ =?utf-8?B?WTdQa0kyYXdoc24xSnRxTjNlRStUeXhHOHlJTzJEVFZoRDFMb0RFVDhjT3RJ?=
+ =?utf-8?B?bHQ4TVVRTmNZOTlBN0l0Q1owMmNVbFVUbldQL2tzQmZwRmsxWUU0aW43MXdi?=
+ =?utf-8?B?a3FPdEtwZ0VWRFVnWlFXNllZditzdXFCSEp5bnphekZ1amtBa0tZSFE5U3ZH?=
+ =?utf-8?B?QWVFQ05OYkQxY3BDMm9iQ3NXNTZ5NXN6WVF6TGhUQXlMVGJXTVRYNHpYblpw?=
+ =?utf-8?B?U3JvZ2JrOUhpcGVXbVRDRlNGdWoxSHBZaklCb3dVVFprNFdIWUxvUm9QVzJQ?=
+ =?utf-8?B?aDhFWXNrUUJsWXJFSHJVam9oSTdrKzNCSFVpWWdXUi92NlAxb2ZuOVVTWlNT?=
+ =?utf-8?B?dEhMSmx1MnpHZlBLY2lNZE52aXE5OVVLM2VGdEpQVFEvSWRKaDI2Vzhvd3VZ?=
+ =?utf-8?B?YVNSNnU2Q21DZlpRclp2TVdBbnpkUFhTbWx4MVI2aE9CczM4QmdqdldDZll3?=
+ =?utf-8?B?NzI5cWRaOGMreWtCRG44cXNkSFZnNFpWdUpGV1F1U3JaM0xNUUNCZk1TTnl5?=
+ =?utf-8?B?SzFOYnVnUjhOMUhNZmhNak4vZW9MQlptL3cvQnNidHRsUjlnbzAxMkV1VGNn?=
+ =?utf-8?B?Z0N6K1RkU3BOdkFxN3RoeGNoYk5PUlQxS0ZlQ1c2QzVTTFZsWS9WOExVeFlS?=
+ =?utf-8?B?aG5IT2dkeHJ0TjhGU2dpa2cvOU9qRDQ5azdLbnp5Rkh1aWFxaVl0MU03SVlG?=
+ =?utf-8?B?N0N6cmxsRm9DQzdkV25tbVhuRWhGUlFNLytKWXpDYjFvdlZVVjB4b0xDYVVi?=
+ =?utf-8?B?ZVVhbkMzUUlhWG5aR2dnd09teFhZWThZOE5LYUhkR2JKVEQ3VUFtNW12Ykgz?=
+ =?utf-8?B?MVNJanphWjdBSGhQYXMzUmV4Q0FrL3VzSWM0MSs3cFE2aVZhOEVlV2xQYVli?=
+ =?utf-8?B?Zy9SMDhNQjBBVkNZc1lWL1prUE9BTjJBQ0hIZnF5MlVDbW90SnNGQ2lvejVh?=
+ =?utf-8?B?T0VTMytob01qS3hiNmJRMnBPcXpRbk5MNEpMZHUwNUFZQkdpZUdJWThDa2RU?=
+ =?utf-8?B?bDJYNkd5a3lGOWtjNGdzYkZSTUZpNVhvemo0bEE1MGU1RjM1SGxKakV0ZWxL?=
+ =?utf-8?B?eWY0MjV4Uk53cTRkS0t3Y2N4eHNJOGwvMVhQUUk4cWsvbGNwREhtaWYwblAw?=
+ =?utf-8?B?VFMreVBVbkhHQzgxVUl6TzVjTmdKQzgzb1hzNVVNeHo2cmhSYSs0T3E3L2NL?=
+ =?utf-8?B?NG5qMU52NVFBQXNCL0Q1N3BuVkNDbmZCZkpmSmJncE51QUtMdC9OM1FQVEE4?=
+ =?utf-8?B?SytvVzZCREp3ZGtjWk13QkxESUM3RmMvVEVQRmRpL0FkYUdMTlVJYVhmNWdq?=
+ =?utf-8?B?czZaemdLNUtZRmExcGJ6L3FCVVhkalZrMkkyQVozc1g2Z2JlZWtLeDFBVmU3?=
+ =?utf-8?B?WDIzb0UvemY4dUFkMlRCUENUWTVTeFlnNFlTMlhHUG95OWttZkRWeFFDZDB2?=
+ =?utf-8?B?UXlOZmlybkNGY2xIRzNJb0ZmMWt3PT0=?=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014)(13003099007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	wZdoEwh7dL6tDldCqJQ2xS3rrQLLzjOpF08Wzsnhz4WlrrwNDwS+c0cBX5Etak/jLJUKsLk7UllthKctmBTm4IUauRiyUkKOAhZqWxjqUtgA/PFjAqfCqxAK0TthZm/hLQYYdF9saRK2WD89h6irY1f+frFcle0h0M9Fs8QLB8/WrqDddLJZf+CtrI5OlxTczfkqXyzTlPRFkTdbaZBsMlPUvEVYhTAmjrC2IzJuGi1nLCdhNlCaluJJnlzn4lYBJWgPehcyv5P1V9ikiQxnrHziWh5pCDk6tbKd04w2t/vyRgwCaO6FvEpc9VUTMmmrqmq+NWw4j4ppUy+sv6vGsGJKQjxpIxj+V2z7rbBvjsqFFKfvx6SrRAJXe90PkrGJIxp7zR4V6hLcrffKN/OPeuuLSdwZEon65mzfef06mK76v+CqQSQClgx7RFlxs6Lf
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2026 14:59:53.6165
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a256b716-68d7-422e-b9fd-08de67ebe1d5
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS1EPF00000043.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR10MB6525
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
+	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com,google.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-264038-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:replyto,linaro.org:dkim,linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264040-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_EQ_FROM(0.00)[]
-X-Rspamd-Queue-Id: 3D19E111CBD
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,foss.st.com];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[foss.st.com:mid,foss.st.com:dkim,st.com:url,st.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gatien.chevallier@foss.st.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[foss.st.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 058F9111CF9
 X-Rspamd-Action: no action
 
-On 2/9/26 15:49, Manivannan Sadhasivam wrote:
-> On Mon, Feb 09, 2026 at 03:00:02PM +0100, Neil Armstrong wrote:
->> On 2/9/26 12:30, Manivannan Sadhasivam wrote:
->>> On Fri, Feb 06, 2026 at 03:50:32PM +0100, Neil Armstrong wrote:
->>>> Enable the generic pwrctrl driver to control the power of the
->>>> PCIe UPD720201/UPD720202 USB 3.0 xHCI Host Controller.
->>>>
->>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>> ---
->>>>    drivers/pci/pwrctrl/generic.c | 4 ++++
->>>>    1 file changed, 4 insertions(+)
->>>>
->>>> diff --git a/drivers/pci/pwrctrl/generic.c b/drivers/pci/pwrctrl/generic.c
->>>> index 08e53243cdbd..4a57a631362f 100644
->>>> --- a/drivers/pci/pwrctrl/generic.c
->>>> +++ b/drivers/pci/pwrctrl/generic.c
->>>> @@ -73,6 +73,10 @@ static const struct of_device_id pci_pwrctrl_slot_of_match[] = {
->>>>    	{
->>>>    		.compatible = "pciclass,0604",
->>>>    	},
->>>> +	/* Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller */
->>>> +	{
->>>> +		.compatible = "pci1912,0014",
->>>
->>> No need to add the compatible to the driver. Just use the existing compatible as
->>> fallback in the binding/dts.
->>
->> ???
->>
->> Sorry but this is insane, in no world a standalone PCIe USB controller could be qualified as
->> compatible as a pciclass,0604 slot.
->>
-> 
-> AFAIU, 'compatibility' implies that the driver can safely fallback and would
-> still work. If we add dedicated compatibles for each endpoint devices, then we
-> will just keep adding forever. Powering up a PCIe slot and an endpoint device
-> are conceptually same.
+The RISAB peripheral is part of the RIF and is used to protect internal
+RAMs.
 
-We're not speaking about driver here, but about compatible string which describes
-a device, a PCI endpoint and a PCIe slot are 2 very different devices that are
-nowhere compatible.
+Memory firewalls configuration on stm32mp2x platforms can be quite
+complex. The RIF configuration is done by the Trusted Domain CID
+(TDCID) that is running in secure priviledged mode. However, the
+configuration can be read in any mode.
 
-> 
->> Technically it would work just fine, but "compatibility" has a meaning....
->>
-> 
-> I view compatibility interms of device operation, not device as a whole. But
-> sure, I could be wrong. If the DT maintainers say so, I won't insist.
+In order to facilitate the memory firewall configuration (check if
+correctly applied, what rights for which range, etc...), add a RISAB
+configuration dump driver that is embedded only when CONFIG_DEBUGFS
+is set. This driver creates a debugfs entry to dump the whole RISAB
+configuration in a readable format [1], as for the RIFSC.
 
-In the actual way it's defined _today_, the "slot" and "endpoint" power up schemes are
-compatible, but I hope the slot bindings will get much more features to describe the
-real world slots power properties. And no, endpoints will definitely not have the same
-features as slots, using it as a fallback today is an error.
+[1]: https://wiki.st.com/stm32mpu/wiki/How_to_analyze_IAC_%26_SERC_errors#RISAB_dump
 
-On the other side, adding a "simple-pci-endpoint" compatible that enables any supply
-and clock would be a good solution, if the DT maintainers agrees of course.
+Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+---
+Gatien Chevallier (7):
+      dt-bindings: soc: st: document the RISAB firewall peripheral
+      soc: st: add RISAB dump debug driver
+      arm64: dts: st: add RISAB1/2/3/4/5/6 nodes to stm32mp251.dtsi
+      arm64: dts: st: add RISAB1/2/3/4/5/6 nodes to stm32mp231.dtsi
+      arm64: dts: st: enable all RISAB instances on the stm32mp257f-ev1 board
+      arm64: dts: st: enable all RISAB instances on the stm32mp257f-dk board
+      arm64: dts: st: enable all RISAB instances on the stm32mp235f-dk board
 
-Neil
+ .../bindings/soc/st/st,stm32mp25-risab.yaml        |  74 +++++
+ MAINTAINERS                                        |   6 +
+ arch/arm64/boot/dts/st/stm32mp231.dtsi             |  48 +++
+ arch/arm64/boot/dts/st/stm32mp235f-dk.dts          |  24 ++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi             |  48 +++
+ arch/arm64/boot/dts/st/stm32mp257f-dk.dts          |  24 ++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts         |  24 ++
+ drivers/soc/Kconfig                                |   1 +
+ drivers/soc/Makefile                               |   1 +
+ drivers/soc/st/Kconfig                             |  11 +
+ drivers/soc/st/Makefile                            |   1 +
+ drivers/soc/st/stm32_risab.c                       | 329 +++++++++++++++++++++
+ 12 files changed, 591 insertions(+)
+---
+base-commit: 05f7e89ab9731565d8a62e3b5d1ec206485eeb0b
+change-id: 20260209-stm32_risab-4fbcdb834c43
 
-> 
-> - Mani
-> 
+Best regards,
+-- 
+Gatien Chevallier <gatien.chevallier@foss.st.com>
 
 
