@@ -1,106 +1,64 @@
-Return-Path: <devicetree+bounces-263771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263772-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gOI4AK4iiWn/2wQAu9opvQ
-	(envelope-from <devicetree+bounces-263771-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 00:56:30 +0100
+	id oD1dCz0viWlj3wQAu9opvQ
+	(envelope-from <devicetree+bounces-263772-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 01:50:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 753FB10AAC6
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 00:56:29 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E70B10AC28
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 01:50:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8BB2C3018406
-	for <lists+devicetree@lfdr.de>; Sun,  8 Feb 2026 23:55:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EF5F730015A1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 00:50:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F232385EC6;
-	Sun,  8 Feb 2026 23:55:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A0B41FF1C4;
+	Mon,  9 Feb 2026 00:49:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Atx1lWEW";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HZ9w4rhZ"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Qsv95FT3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B9A388844
-	for <devicetree@vger.kernel.org>; Sun,  8 Feb 2026 23:55:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27AD33EBF0E;
+	Mon,  9 Feb 2026 00:49:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770594948; cv=none; b=L/9qtErYulg7xBhjpqEThQRkbhQL5kOVH/WX0ivZBoIhdFI+xtsLTyFDAoCh8MKcFUMNPAwcY9fKE9J1jCO/MOk3PIEqpIe59Fw0PMvQ2Xs5qP+IBvqzM0a2ezyGVMIK/efOtGgybPm9FgmEJuO94/4llR/DCpKNE1QezJEWGGQ=
+	t=1770598198; cv=none; b=YcO1hl4HAqc4ehN6bUr/Ns6DYGtEasBBFDTturheq0dNTRHGzKjavtYHLXxT0HHKu43+qYSucIJPLW8z26CLRRNr4tt9TtTzTHP5W10nkr6F2MWHk4VulC6+CeIiHu1NR0WuQYoYoYh8q9vOsPfmx789XK2yF9ugLqBAYKgTlAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770594948; c=relaxed/simple;
-	bh=AguPyjryJFtRx2eaJbYNMbx1txjYcA3Blb6q3wboAz4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=B0eruoEoQeqgtYd9gSYL2uyudvfLvFJJ6alwHbbSKvb19UhxMt2ZQOJ+fgalIZGY4q0gp4y4XpUuon9leudOSy4/JQPabb2g4lB/Vd1Hc71qGAicZEzOLbOA9r5THy212Nq8c3XP6XNcqPvwscP2lfAjehs5A852P3QDbwPbbDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Atx1lWEW; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HZ9w4rhZ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 618IRjuo1923644
-	for <devicetree@vger.kernel.org>; Sun, 8 Feb 2026 23:55:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+rRlQKJisATzVZPJyVOcJXS8qbgH74hMR0xOPMwnDPw=; b=Atx1lWEWblDPAMwp
-	7xSV2eP52dUX4koVfMcXw96uCx1rex2qok+m28aRfzvVOTKYsAAA/lkD50ANn0GU
-	8DyFaonPNUrv355TvVRQA7KEc4fBbd07fZQMND4HvkPIPMH37/X+H521Kj5wCdLj
-	CydJ9Amkiu1C2KwFILRtkLa+RB1xNlNJ2PKrkBNvQZighsa4LUfxsquDmpYkfcAr
-	7IomCc0WfIPJdyiI0XtwCpgSzWVmxC9v0xGU7MOj6I3qhxX3UK4IgE3sFNo1URvg
-	l3cFPWjKLrVmc6Z0C8b/JjtQRtdzhUb61Hzx1G3cy42HxkMCc6z/YGzgqCG/pZtA
-	/0obBA==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c5xb534hm-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 23:55:47 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c711251ac5so1113670985a.1
-        for <devicetree@vger.kernel.org>; Sun, 08 Feb 2026 15:55:47 -0800 (PST)
+	s=arc-20240116; t=1770598198; c=relaxed/simple;
+	bh=k8wVYqBrUVctAMsuVZgnG+59zkz/VsBL4xK5zf5yk1c=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=FiXI+DiTdeWQkCqRZnkNl0whPx99mxUcbv4oISHolkmIpaTDnOFvJcMOfbku7bYQ3+wm1TU1c4X/6mhYDgC3PmYcTgsOEwcqQA5vAlx+szGvvzYAS7p3dQtyr2oYzg7fA2bQrPZUcRxKl9Y8KpH1uexF3jR7ZqBFmvGTHNdPTqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Qsv95FT3; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770594947; x=1771199747; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+rRlQKJisATzVZPJyVOcJXS8qbgH74hMR0xOPMwnDPw=;
-        b=HZ9w4rhZtUPgJWBnjKO4I/Y5jP6AEILBDeFlRsoPNNRCMZBfQ0EGRt1+ROWnxvlbqD
-         nkC62huSUQOwbv+Zfzit99pj0BClmgBk7nOMxzWHeJfY3uScoYGW6olzRuwu+2TmfVHE
-         m2dO1Z9ugLiVULnEjtmgcUIJGcN7JTVqojbLSYNrsnpw72DPuLFbSdAD3GhrTtaCPsu5
-         IaXus5xKZPuanMxinilztFbViRrD8NneGK9RveKqAhrtsTkqohj8s0Ecd1WiYgzsEXOe
-         RscNcdiF4EQ07fRX0cx8AvLiQTNuc6QzZCU3CkNKdK1DdgbvPterUZNNva0RDHWcD2Im
-         /orA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770594947; x=1771199747;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+rRlQKJisATzVZPJyVOcJXS8qbgH74hMR0xOPMwnDPw=;
-        b=JXCOmsgRldeRZvceZQNDde5wM+/dqRk7XSWzXPsfmLeZgEOvdFUnJhQAKhr7KGimaG
-         qw/pOV/aWM1LWKb4mZdTID82UxfNytmNIF+6nT59DPJoHswZM2wLqQxhkHgCIdiqsOUX
-         dCA6OuXJ0CjS7sEHUxR4cuZDnNMrJyIaX4ANleY86uCCITpaB8WeCuGEUPjsrRs1k8dx
-         eDHjMGfDiPtIumlMfBgVnoBfngJYPGXYaLkfqF/MIQjdulFDsw39Bfe9bqcqBRJqvEEw
-         GMQEwrNBnQEOThlLhlXbc6WAQAj2LYAOs0bQSlS4K5yCEMWflYkOw0n7qUtIQP8i4f4S
-         y8eA==
-X-Forwarded-Encrypted: i=1; AJvYcCUKwBxLNDauMBAKW3dD3mNNoMKTNIQ5HlWHw5Q6X5uOGpAfHAcgp21dAcBAttw0IsoeRY8ZlKDbiaoI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRqFoRYz5IOBLTKQSe5glm39Uf9dQyrRwc/UTZQMrLwIndjNaG
-	Z5hqtvVo2A7Skc/+pECKdNg72xI0SuUYQMo3re7sLF6appgLbQsbK3KJhIYGbkn0qQB0410+xJo
-	v1sD/lnsHPIEOjFRlqFJ5W88IynS8rYnOiRe6UpBirY7jBOVg8hUn2WyJ3Yxxr/s7
-X-Gm-Gg: AZuq6aLJUHCy2W4TozVA20jP15DWfoUT+GtWeYHlINeNtWNQp8hCwZTQXwry8wnkTY2
-	txDuiJZlgMjjwOYoQl28Zt3743JQ9NPREq1YbIdorzzIOQhPNhbDR9LbVHrYkKtFjIbc9BHQA1g
-	OlCV8BRSnPnZ67B42PCJmWLxUG3TPVgs2anbaTWgQlj1d/BE08Xl8AeMI17Bb7I8YMeBi6EiuHJ
-	1A3LeG8uKhpBvM2NUWbqG2TAOD22BfEavRBIqXvHKiPGun/K5WuIcvLMo/O0QqTgxn1lYHSbJRC
-	nYGYi3NW316a2y1J/4wDyhQogNq3RH58hSE9tiq49ONkLEA76BgJG3yjzQhgqFF+zXwmDldlaWO
-	pJTZXqGu47/PHoO3UJMtNruAJb63CmMVD5ybXWrMToF0FRRKcxUGpawCOq+cBd4rw2dND65KD0r
-	sf51z6ojT1cBhkfnybFoTSiLI=
-X-Received: by 2002:a05:620a:390a:b0:8c7:1b3f:5eab with SMTP id af79cd13be357-8caf17e3d13mr1252410985a.60.1770594946757;
-        Sun, 08 Feb 2026 15:55:46 -0800 (PST)
-X-Received: by 2002:a05:620a:390a:b0:8c7:1b3f:5eab with SMTP id af79cd13be357-8caf17e3d13mr1252407785a.60.1770594946165;
-        Sun, 08 Feb 2026 15:55:46 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e44cf6ee4sm2188074e87.4.2026.02.08.15.55.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Feb 2026 15:55:45 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Mon, 09 Feb 2026 01:55:39 +0200
-Subject: [PATCH v4 5/5] arm64: dts: qcom: sm8250: correct frequencies in
- the Iris OPP table
+	d=codeconstruct.com.au; s=2022a; t=1770598189;
+	bh=r7MCCqP45D0dY/QaEr0D6Ms9HT2gRvnzr4MI+SBARCU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=Qsv95FT3JdSqVtCZt3NjwNcCnqE7TpLFpUEwRs6P6zgVBZepyXw4WDPudVkrI+rlI
+	 +DXpoZSJPRHqZ7iytabmfOudbuTL5Se9YCVItkelw2W0caa3RjAM5gagZlCmXBk84T
+	 9N38H53KsEEJ3lCDRxmmEMx3LyLm3Zg9g3PpJgC5z95PqkrNDLcTMQDBRttEESbign
+	 CD0XUf2CM0ofN1ZTC7ztpbtxQiK9bhdHkNYGBVj9f5Efe8a22do6Eh4DUiO+sIuvt9
+	 xtk3UdqIdqPTpNQMosbHFMN0JUkEy4s9jJiSUmc0vulrOd0WImOP1GKfq/NJgsuTdT
+	 tvYnDJS+HrL3Q==
+Received: from [127.0.1.1] (unknown [180.150.112.60])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id B77AB60360;
+	Mon,  9 Feb 2026 08:49:46 +0800 (AWST)
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Anirudh Srinivasan <anirudhsriniv@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20260114-asus-ipmi-expansion-card-v2-0-12b72d20a9b9@gmail.com>
+References: <20260114-asus-ipmi-expansion-card-v2-0-12b72d20a9b9@gmail.com>
+Subject: Re: [PATCH v2 0/2] Add device tree for Asus Kommando IPMI Card
+Message-Id: <177059818618.793195.12078369893551899945.b4-ty@codeconstruct.com.au>
+Date: Mon, 09 Feb 2026 11:19:46 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,157 +67,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260209-iris-venus-fix-sm8250-v4-5-9662a0471d82@oss.qualcomm.com>
-References: <20260209-iris-venus-fix-sm8250-v4-0-9662a0471d82@oss.qualcomm.com>
-In-Reply-To: <20260209-iris-venus-fix-sm8250-v4-0-9662a0471d82@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Hans Verkuil <hverkuil@kernel.org>,
-        Stefan Schmidt <stefan.schmidt@linaro.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Dikshita Agarwal <dikshita@qti.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1944;
- i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=AguPyjryJFtRx2eaJbYNMbx1txjYcA3Blb6q3wboAz4=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBpiSJ70t1Y5lwN36+qM0IdjFviCgJPTo7IY9tFT
- nQCnAXi4eiJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaYkiewAKCRCLPIo+Aiko
- 1dngCACFJUOZG90YgvHwIKNH5rBm0cnYlHslF4iaZsx9Vv9DbFf5jJCHqjRKnRtRH6N70/B7mMs
- LYwMFOuuh6IcfU2YOtciTktW14G3GkzPDYc8m73e0AYiVM4Fr8/oQ6BEaFATQJNb4JQOAD850A2
- bNdWeKtujwd+JPUSuCRdElQ1vsuOYDtP4z//SN2mMqr519aE172IgPmkswdt9EOmGrt0BwGKY+q
- KxdO23YchizPSOwlZQiF1Zmp9HWQE7k35gBky0Tmw5VW13aK+HlstEW50rQ108i5XENqWy/6HIh
- kqqNc1Ga5GABW5SPabYcIWijPnyV/IXPEk1QxlgeUWrKhDit
-X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Authority-Analysis: v=2.4 cv=QMBlhwLL c=1 sm=1 tr=0 ts=69892283 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=EUspDBNiAAAA:8
- a=EQKuo8RqpatckOKiKW0A:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-GUID: HpoUzmamE3Taz7kY0-IFhSBrzf2PiE9u
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjA4MDIwNiBTYWx0ZWRfX2KSGz2qghkSy
- eWIpbFfcI/Fct8xHhJbl9yTXUzreVtYkuHJfQneCuzNOX02LTbHKwtyHYZSuRw/xwFTAE6V9/Cu
- Ov/dDaxgE8E6opojT9lyvedMLHl+e/DQ9i2cnWEXdHMvPp45menN5CmxIS28ZB3xSvu5uo62AMP
- oIn20wE8cnRDQOYSegdcFQ78px3nhAn/ijfiE+bPwBHePwi7W4Jg/O6CTXHXK6tLWvv0kitwC2o
- LYaIXmXW6gf3AaEYJP7ApT1hFO3L2whsmMFKupkbUutQ5wReLPjM3H1DGAQy/4n4iE2LYFWdWu/
- hwSBcdq6Sd85r4MyLGk+/VPRxfLm5ts4T05bo02hnhVuWE2TJHMP0van3prUrmbx8XjJsk8wbU8
- M+u909+wJthhiK3VXbzR1LrqKDB9Ue6zc6dp5hBwUJP+wZ7L3QNhtiAqOC3NQsRI1/S0DoX8D5t
- D6fm9zwHXk+xXHGB2vg==
-X-Proofpoint-ORIG-GUID: HpoUzmamE3Taz7kY0-IFhSBrzf2PiE9u
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-08_05,2026-02-05_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 suspectscore=0 spamscore=0 adultscore=0
- priorityscore=1501 impostorscore=0 bulkscore=0 lowpriorityscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602080206
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
+	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263771-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-263772-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-0.988];
-	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[kernel.org,jms.id.au,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.985];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 753FB10AAC6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,codeconstruct.com.au:email,codeconstruct.com.au:dkim,codeconstruct.com.au:mid]
+X-Rspamd-Queue-Id: 4E70B10AC28
 X-Rspamd-Action: no action
 
-The OPP table for the Iris core is wrong, it copies the VDD table from
-the downstream kernel, but that table is written for the
-video_cc_mvs0_clk_src, while the upstream uses video_cc_mvs0_clk for OPP
-rate setting (which is clk_src divided by 3). Specify correct
-frequencies in the OPP table.
+On Wed, 14 Jan 2026 23:31:06 -0600, Anirudh Srinivasan wrote:
+> Adds support for Asus Kommando IPMI Card [1] [2], which is a PCIe card
+> with an AST2600 on it that provides BMC functionality to any host
+> without an onboard BMC as long as it has a PCIe slot. The model name
+> Kommando is based off the model description in the vendor fw.
+> 
+> Currently supported functionality includes UART, booting from SPI,
+> KVM functionality(usb gadget for host, reading VGA framebuffer from
+> host) and LED/Power Control via GPIOs. NIC support is not included,
+> requiring additional patches which will be sent later on [3]. The
+> entire BMC functionality has been tested on an OpenBMC build
+> available here [4] (which uses a modified u-boot device tree [5]).
+> 
+> [...]
 
-Fixes: fa245b3f06cd ("arm64: dts: qcom: sm8250: Add venus DT node")
-Reported-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index a1ab8c3c27e6..a80defcb29ed 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -4350,26 +4350,26 @@ venus: video-codec@aa00000 {
- 			venus_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
--				opp-720000000 {
--					opp-hz = /bits/ 64 <720000000>;
-+				opp-240000000 {
-+					opp-hz = /bits/ 64 <240000000>;
- 					required-opps = <&rpmhpd_opp_svs>,
- 							<&rpmhpd_opp_low_svs>;
- 				};
- 
--				opp-1014000000 {
--					opp-hz = /bits/ 64 <1014000000>;
-+				opp-338000000 {
-+					opp-hz = /bits/ 64 <338000000>;
- 					required-opps = <&rpmhpd_opp_svs>,
- 							<&rpmhpd_opp_svs>;
- 				};
- 
--				opp-1098000000 {
--					opp-hz = /bits/ 64 <1098000000>;
-+				opp-366000000 {
-+					opp-hz = /bits/ 64 <366000000>;
- 					required-opps = <&rpmhpd_opp_svs_l1>,
- 							<&rpmhpd_opp_svs_l1>;
- 				};
- 
--				opp-1332000000 {
--					opp-hz = /bits/ 64 <1332000000>;
-+				opp-444000000 {
-+					opp-hz = /bits/ 64 <444000000>;
- 					required-opps = <&rpmhpd_opp_svs_l1>,
- 							<&rpmhpd_opp_nom>;
- 				};
+Thanks, I've applied this to the BMC tree.
 
 -- 
-2.47.3
+Andrew Jeffery <andrew@codeconstruct.com.au>
 
 
