@@ -1,208 +1,173 @@
-Return-Path: <devicetree+bounces-263854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263855-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uH6WCh6SiWlz+wQAu9opvQ
-	(envelope-from <devicetree+bounces-263854-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:51:58 +0100
+	id yP/IFMqTiWlj/AQAu9opvQ
+	(envelope-from <devicetree+bounces-263855-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:59:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C663410CA0C
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:51:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B344010CAE3
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:59:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8283C3004236
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 07:51:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3FA4A30086EB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 07:59:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FD41338581;
-	Mon,  9 Feb 2026 07:51:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 397E933A005;
+	Mon,  9 Feb 2026 07:59:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r7ESbaM3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qZfUOlTn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C661318B96;
-	Mon,  9 Feb 2026 07:51:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 154A033986F;
+	Mon,  9 Feb 2026 07:59:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770623483; cv=none; b=qSMj7rNt+w7z3H045Hzw1cCoNmY1FdnrFWECvXB8/84HlKJnH9ElrES4vV5sjsf/FEHeX5JTEpYpkelHmse/C0aEFdicBgt8tWhGO9r6DGTim9KrSJd7At3fGYhA5Vx6oHPDRnf1w3DQnODRIQnsgeOfNLzTxQ76Q36zl8ALMd0=
+	t=1770623942; cv=none; b=R5rOwmaMdIYcMCfDGo7ApBZb19eb8Aw4BaQQdSySIAyvNTtKzr0jFtj/RIocbMdbIqntiXHfB5FlTgf2u/2LXEFm6hSDW+WCZHfxQ3hbqHOKW06UV0y3DMJEWvvB1LfTKLs/pumn9yGyBY++88Qzyss1zl7UrC9cx1BDCt6xajI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770623483; c=relaxed/simple;
-	bh=tra1nGlLkCkWrSabfPDcu8ZuECM2MQK2rXwhoc1KMVA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zxfpv0UqUl2Sbi6x8OTMinTpOoHFTcJemKgsl7alOlUQ1eMnB2dTbPHGLYAZsa2UldwWHqFZQH7hnaPkvhJyfD7z4zPpVSpxcZyfVT6MgLj7pn6A7qDttrn0gAhEZjJnU6hNWwkR4v8j4yutCn1IlzZANwiH8LPT7Odbk5w7su0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r7ESbaM3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9B9EC116C6;
-	Mon,  9 Feb 2026 07:51:20 +0000 (UTC)
+	s=arc-20240116; t=1770623942; c=relaxed/simple;
+	bh=EvZLo8yBPuNQ2ZWhWlIOFY5LAjRlRTBuCqsicIyWtNs=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=XiCwwegjRP8+NFtuy/f24vnNjrUB6R+Jtaay4M99Up1Lv+AhH6CRmshCt3XbrD1LtICnVkLKXlnlnjmtp1DOXeAApCDDuy6WflZb26k+a1NZKRZ0zxPufN5Z7mD5e1jYXLgMXkENBiyizV2SIvN8XU+8tSkzc8ZwrgoRHVSmJoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qZfUOlTn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 80C45C116C6;
+	Mon,  9 Feb 2026 07:59:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770623483;
-	bh=tra1nGlLkCkWrSabfPDcu8ZuECM2MQK2rXwhoc1KMVA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=r7ESbaM3Q8pZlvmWhFVRH5o94GyXn8ZSDUmqs07VGs0dWkVx6L5eT14Nv4S6litfI
-	 y254riFFhuBYpKTg1qapgqulUQCCvaVgXCYgamqdXQxoU8AVPGGMjJ2GCtIbFgALOP
-	 pncmSmNV8QshZhVXgytbO8cv5l8FXsfGGnRvCX1eV/CEn2DU7ClMsXRuzELDEL4/Vl
-	 1j3iXt4tbT03LZgjQNFJsGvNxX7+IeIcjJP4HxxnW+prOlvpGmmYdZkl8BD8iYp33d
-	 g2WM1v/9zK2/h36PPCilBJ8Ex/fuRFZk/G5nNxL8DWpl/rj0EstyuKVH5Or0UgYwen
-	 k2r4ZbK0d4TSg==
-Message-ID: <487e4605-0a21-48d6-8b77-9ce2799ad212@kernel.org>
-Date: Mon, 9 Feb 2026 08:51:18 +0100
+	s=k20201202; t=1770623941;
+	bh=EvZLo8yBPuNQ2ZWhWlIOFY5LAjRlRTBuCqsicIyWtNs=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=qZfUOlTnBdSEk5iVMZaxtqVbSDShf99WcsVyOJB1R3Spo6wkhqwHL1Bp7qYhmRe60
+	 nn6V5EVP6IeO0DirysjrtX6BcoxPO6HwUkGm2bVwY1CGiWXjJbI3gJ3ZdoqQkC9oN+
+	 StMtBgVJNamevWZ2eDjIjTc46vmKsg45faAF5zyytTndnfZSMvJyJcjwqZXIPLOUN4
+	 3b5EpSsEj2AoERT3A6RCyoQbtkTINk7z9PK/jK7JwpcuE3zRoXzxlNQ8NIleOiYO0b
+	 g9itA46W4LbnMaSFCtxsojx4dCRLdPALdZbB/ZNi3eira4KQ+4Wnap9WD/RA0V+uLn
+	 uaWNy1gjmq5UA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5436AEF0711;
+	Mon,  9 Feb 2026 07:59:01 +0000 (UTC)
+From: Dirk Chen via B4 Relay <devnull+dirkchen.amd.com@kernel.org>
+Date: Mon, 09 Feb 2026 15:58:53 +0800
+Subject: [PATCH v2] ARM: dts: aspeed: anacapa: Add retimer EEPROMs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550: Fix DTBO boot failure
-To: Aaron Kling <webgeek1234@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kumar Sharma <quic_vksharma@quicinc.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-References: <20260207-sm8550-abl-dtbo-v2-1-83afaa6f3ce9@gmail.com>
- <d4faaf8d-1517-4187-8801-a2dd52d8dde3@kernel.org>
- <CALHNRZ9k3yxXb9OfYXMSfEwyYKU8Rrrrjb-hPqLgU90X9YBP8g@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CALHNRZ9k3yxXb9OfYXMSfEwyYKU8Rrrrjb-hPqLgU90X9YBP8g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260209-b4-anacapa-dts-fix-v2-1-fe446a7038bf@amd.com>
+X-B4-Tracking: v=1; b=H4sIALyTiWkC/32NOw7CMBBErxJtzSLbmF8q7oFSrH/ERZzIjixQ5
+ Luz5AA0I72R5s0GxefoC/TdBtnXWOKcGNShAztSenmMjhmUUBfBgUYjJbK0ELq1YIhvVOIagr/
+ TyQgLPFyy53qXPgfmMZZ1zp/9o8pf+1dXJUp2Om2ElPp21g+a3NHOEwyttS/r+y4osgAAAA==
+X-Change-ID: 20260202-b4-anacapa-dts-fix-207ffe9a3b0c
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Dirk Chen <dirkchen@amd.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770623940; l=1517;
+ i=dirkchen@amd.com; s=20260202; h=from:subject:message-id;
+ bh=q1pvDHup26t2gWq6fHUSx5KhOyJaw4CQELJ2qKSf88g=;
+ b=+d5clqSgm87rC1q9Ol08GoDm3+lw2SvRxI9fXdTjZLhpFf6cW2vjFrUdJO1WfZNI5XmE+g+Y/
+ MM6fJ1mG6qvBV6X7Na2+2Ueg2+YOlKAL0bUl9n0YQWIk4i4HvpKoSGY
+X-Developer-Key: i=dirkchen@amd.com; a=ed25519;
+ pk=NBIyLsVg/YYtGLruq9XLdLWx2PP/1MH4jDDQ1V+7wes=
+X-Endpoint-Received: by B4 Relay for dirkchen@amd.com/20260202 with
+ auth_id=622
+X-Original-From: Dirk Chen <dirkchen@amd.com>
+Reply-To: dirkchen@amd.com
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-263854-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-263855-lists,devicetree=lfdr.de,dirkchen.amd.com];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.987];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.3:email];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	NEURAL_HAM(-0.00)[-0.996];
+	HAS_REPLYTO(0.00)[dirkchen@amd.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: C663410CA0C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amd.com:replyto,amd.com:email,amd.com:mid,0.0.0.50:email]
+X-Rspamd-Queue-Id: B344010CAE3
 X-Rspamd-Action: no action
 
-On 08/02/2026 16:10, Aaron Kling wrote:
-> On Sun, Feb 8, 2026 at 3:07 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 08/02/2026 02:16, Aaron Kling via B4 Relay wrote:
->>> From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
->>>
->>> ABL requires certain things in the base dtb to apply a dtbo. Namely:
->>>
->>> * A label named qcom_tzlog must exist, but doesn't have to contain any
->>>   specific properties
->>> * The timer node must have a label named arch_timer
->>>
->>> This aligns the sm8550 soc dtsi with those requirements. Without these
->>> in the base dtb, when ABL attempts to apply any dtbo, it will fail to
->>> the bootloader menu.
->>>
->>
->> Incomplete DCO chain.
->>
->>> Co-authored-by: Aaron Kling <webgeek1234@gmail.com>
->>> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
->>> ---
->>> With a current mainline sm8550 base dtb, ABL will fail to apply any dtbo
->>> and fail back to the bootloader menu. There are two changes needed:
->>
->> Since when? We were testing SM8550 (me on QRD) all the time and there
->> was no problem.
->>
->> You need to provide details which hardware needs it, if this is about to
->> expected, but honestly, we don't add such nodes/labels for downstream
->> bootloader. Qualcomm should fix the bootloder instead.
-> 
-> This discussion has been ongoing in a couple places. It is needed on
-> all semi-recent recent qcom socs. See this chain [0] on my sm8550
+From: Dirk Chen <dirkchen@amd.com>
 
+The Anacapa board features Atmel 24C2048 EEPROMs on i2c0 and i2c1, which
+are used to store retimer configurations. Add the corresponding device
+tree nodes to support these components.
 
-Explanation must be in this commit, not in other places.
+Signed-off-by: Dirk Chen <dirkchen@amd.com>
+---
+Changes in v2:
+- Improved commit description to clarify that the change reflects
+  actual hardware as requested by the reviewer.
+- Removed mentions of other platforms to avoid confusion.
+- Link to v1: https://lore.kernel.org/r/20260202-b4-anacapa-dts-fix-v1-1-20d4b0114854@amd.com
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-> questions thread and the previous revision of this series [1]. This
-> has been a known issue for a while, see this comment [2] on the gunyah
-> watchdog series, which is what the series was based on.
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
+index 221af858cb6b..b8d248d99d7c 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
+@@ -328,6 +328,12 @@ i2c0mux0ch3: i2c@3 {
+ 			#size-cells = <0>;
+ 		};
+ 	};
++
++	eeprom@50 {
++		compatible = "atmel,24c2048";
++		reg = <0x50>;
++		pagesize = <128>;
++	};
+ };
+ 
+ // R Bridge Board
+@@ -362,6 +368,12 @@ i2c1mux0ch3: i2c@3 {
+ 			#size-cells = <0>;
+ 		};
+ 	};
++
++	eeprom@50 {
++		compatible = "atmel,24c2048";
++		reg = <0x50>;
++		pagesize = <128>;
++	};
+ };
+ 
+ // MB - E1.S
 
-But that [2] still speaks about overlay. You are suppose to boot
-standard kernel with typical setup - concatenated DTB.
-
-If you want some other ways, like choosing overlays by ABL or whatever
-else, you need to fix ABL.
-
-You want to use some custom boot way of ABL, but it's broken... yet it
-is no reason to add these properties. What if I want to boot DTJUNK
-files via my custom ABJUNK - can I add such things to upstream? No.
-
-You cannot add properties to support custom boot of ABL if that boot is
-broken.
-> 
-> My current understanding is that the qcom_tzlog and arch_timer labels
-> are required period for abl to apply a dtbo. And this setup will only
-
+---
+base-commit: 4c87cdd0328495759f6e9f9f4e1e53ef8032a76f
+change-id: 20260202-b4-anacapa-dts-fix-207ffe9a3b0c
 
 Best regards,
-Krzysztof
+-- 
+Dirk Chen <dirkchen@amd.com>
+
+
 
