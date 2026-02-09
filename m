@@ -1,204 +1,274 @@
-Return-Path: <devicetree+bounces-264031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264034-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ID0DO/nwiWnGEgAAu9opvQ
-	(envelope-from <devicetree+bounces-264031-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 15:36:41 +0100
+	id 6O+KGib2iWl7FAAAu9opvQ
+	(envelope-from <devicetree+bounces-264034-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 15:58:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62C97110843
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 15:36:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDAFA1114EB
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 15:58:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 331713006997
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 14:36:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 93C5830D5C8F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 14:45:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1903537BE72;
-	Mon,  9 Feb 2026 14:36:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25EE137997A;
+	Mon,  9 Feb 2026 14:45:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Er1I+l+i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cox5UCSV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f182.google.com (mail-dy1-f182.google.com [74.125.82.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6C9B379990
-	for <devicetree@vger.kernel.org>; Mon,  9 Feb 2026 14:36:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0039227CCF2;
+	Mon,  9 Feb 2026 14:45:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770647794; cv=none; b=ssMJuZR5pVuIWQWXZMemQEYCO6/398Vt694+H7vJCFV15/KvkPllvuHjEVqL3V+7qpEnUujqDKJFN+Tje1zvvkiEssdRyMgY0nLb2HXnNZQpKUEq1grltQ4rebSxSb9m4vsyK+3osVOwL9L96coP46eehVsdGJn40cqDEskHnp8=
+	t=1770648308; cv=none; b=RSGC+0Wh+msJVBlr+JhdmIQC2b4jdJA2BIUPGojh0Qju12TpTUm9QGB4lTG0ql3SHzy98jP875JAfGv4xFIMb50q+ksbSu7Zm7pC3yxEBMOfACVWG5ZUQ2g+lEqvbQcA8vu989HqqEbOkhElK5U3uwP1Ma/FdBu4VzOidQFk55o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770647794; c=relaxed/simple;
-	bh=hp0VIwG+tZ4C/xAipi8SSeLZ0cZ7Avit/lMHmraD0wc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AcGg0fW39xa3UPj3eev/D7uo8YI9P4eqwy4SF2eDQ9VQecoSr00vdWsKTHlqn3zzm691z4jgkdYUQi44/VeR+Jt14MpAXxJypg3I+zV8uPjoZYgdA3Fe5XSuv6HkopZ4HYvri5PG0Edx9W0i3AzpDSLCmuS47eOwO5595iIquq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Er1I+l+i; arc=none smtp.client-ip=74.125.82.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f182.google.com with SMTP id 5a478bee46e88-2b7da62b487so1442017eec.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 06:36:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770647793; x=1771252593; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZxW9LgCH07BdNp/H9r+dMXWuibZ85UcJq1iPgsYd5Oc=;
-        b=Er1I+l+iJUM3BjJlVhftPTss6/TmesRIVac2Xmef6bX9T/tcv+tS2IMH8eNQjavIEP
-         EBD1V/dfFcdgxWsKqsm40m/a8Z9G+/6g5ZbmkifWUYkXitnywRvrPj2QSugRDolFv3cz
-         d2OI+VST7UFf4DguR0iHHBYx8o007jCZ8LhDjQLoaVzmAFAwO8rJNYIBcobeQZbupLaU
-         LWt/XTg35I8EIgHLF92h7znOMP91zFCEeB/46ulWDFNv6ssmZXx4ZoTd9UL3Xi/6r6g1
-         MXDV/Ni/AFrShuQbBKHGX14gnrwn09YW/N3aSeWr6aMsfgrJJH1cM3h2ufIo1Nf2YxGK
-         u5pQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770647793; x=1771252593;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZxW9LgCH07BdNp/H9r+dMXWuibZ85UcJq1iPgsYd5Oc=;
-        b=RjDi/JwUfLBmD8nFqn4WTIWYhpW2dhJqzSoL1L55dsl/LdV6hlgRPGBiSdIDyo2yc/
-         I8Ftdt8PiPVV9MeRT6IhOKIIT+PLExv8dYmw97TguJPEazMbjgiCyxLhMBBuBcoAbRTN
-         oDXkzN94Gdam2+PGgcBEeXC2TIHCE+NpbM+lPDk6ec3JaX/S11mOs00ZHjqgqubGaXPY
-         YeRgHUNk6xiDZY8ePrsFtkkW7kdfm/mBmaW8sPB841lZ3TG4RhM7Nl0KT2kX0FN00VMq
-         irBLjlzmK09ax9rB2tE4+NUoRGYsol2dEv4XYFI8+aLIIPfBJB4xHJpHdPvRqRw/Qb1y
-         tTHA==
-X-Forwarded-Encrypted: i=1; AJvYcCXo8rWwMBlePaQIvbL/zq9ZrNFg0bCu1ewpon5+4g4Ok/hoE+xzB+SXs+LwRH8ibOcWGIZwV1pEXN3Z@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEl1zLiatDC+aaRAnHfNBi67EI0ule8LpCSaw6lbpSvQwam51M
-	Qlhf8g694Q1MbLP0lnM8joSyiSRcfF2fF3tHvmFtMV2ppV5waMPnVIvT
-X-Gm-Gg: AZuq6aJJz/RnIr9k6QczSGmrI3k4ClM8eR3XtozIq2PKet0WANbjGC2iPfj+H0G9mLK
-	5KQkBXo6xA2sDfGjaXSR9aWeFxBdKE+l82gukGB0m8UQzZbH4Z5m1jzaJKpXpwZZn2sh4KzYZvv
-	1IMQnIhsiTHh6CjiKjZ5zAV0stfSrNTKAZqOIQTf8T35fMbfgANJ+6A+A5Hbz1Vpr2L1lgi1YiA
-	FrDKpPP3wDeGKKSWWQexinMKUzKNM9OxS1xXgOPLA74RAKg8nTXAmTHOubHij0xerB1SwaqEpdw
-	DNT0ObGZSljw27K0WNCl3rGAIRueiPtleJ2F+xq78/BHLENS838ZJ1m24CLu/33kM25+azPyYSd
-	fTTqrVnOiPCDf2dFzqOJA8XANfffuxzYQp3uUKPrSjBKZ/J7qE2DbZHzXuoXCB0DFAZy+nXXnWe
-	d1S+DSH7pwoUWCbZwO8qJc
-X-Received: by 2002:a05:693c:2d84:b0:2b7:b41:bbeb with SMTP id 5a478bee46e88-2b856723b28mr5265050eec.43.1770647790912;
-        Mon, 09 Feb 2026 06:36:30 -0800 (PST)
-Received: from localhost ([2804:30c:163a:1300:9b68:dd2c:feb4:459b])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2ba6517c316sm3778411eec.3.2026.02.09.06.36.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Feb 2026 06:36:29 -0800 (PST)
-Date: Mon, 9 Feb 2026 11:36:57 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, jic23@kernel.org,
-	michael.hennerich@analog.com, nuno.sa@analog.com,
-	eblanc@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	corbet@lwn.net, Trevor Gamblin <tgamblin@baylibre.com>,
-	Axel Haslam <ahaslam@baylibre.com>
-Subject: Re: [PATCH v8 5/8] iio: adc: ad4030: Add SPI offload support
-Message-ID: <aYnxCc1wv8MVfv2b@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1770403407.git.marcelo.schmitt@analog.com>
- <315c614e65e40634251e624d73d83fdea4c51c78.1770403407.git.marcelo.schmitt@analog.com>
- <aYiWA5ev2nPF8UxU@smile.fi.intel.com>
+	s=arc-20240116; t=1770648308; c=relaxed/simple;
+	bh=YdYoyk5Ci8Y1p9o6ixSRLudnboGADccmpN2dxZQGJ2Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AbtTIA2YF7d9G13inCiCtrC3ubDklFT41+QCvQGrN+4UvpiWSgS0hJp7Xbj87wRiafQD36Mc8N1stJEI8BGP1Q+m+2vNQwW7xhJnQ9jGgpL3+LZbF41cWnHQ3VmnQyugD6L8NTqqyakDqUAy2pOmDpjfwbGs3PFZaUVkwLQzlAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cox5UCSV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1048C19422;
+	Mon,  9 Feb 2026 14:45:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770648307;
+	bh=YdYoyk5Ci8Y1p9o6ixSRLudnboGADccmpN2dxZQGJ2Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Cox5UCSVck3KssGy/xSU1b6aHDxgoePQd5LeEOhe5V2pz/jI5LVTLirEhio8qihnk
+	 5cxmeFesCTDDM/ijcO00VWPI8BlGcRyt3qRuEVHxLL8WqUbO/oqAAEuKYnZ4njRbXh
+	 mCjUYFA+GYP6AkZ9BsmSRhd/VDOc7tOpLS2MMx7QejhpR80BE+oMx2F2ZjNHvPZYRO
+	 rU1RSqKtzsyRJAmCWtXwyZ5ZpHKZMo8ieAVlHjynmKbvcFPZ3oq2eYomg95R+jqgPl
+	 L/17Qk3jpkiXGTXyko7rccta4Mu4JRAoI0rDr/bU5Q8CRIrYHLNEMDriTTMk7TtnYk
+	 4gsBTqHmkq3qg==
+Message-ID: <5614db64-3ee4-4a41-bd8b-5b89cc3264aa@kernel.org>
+Date: Mon, 9 Feb 2026 15:45:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aYiWA5ev2nPF8UxU@smile.fi.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: Add binding document for cm36686
+To: Erikas Bitovtas <xerikasxx@gmail.com>, Jonathan Cameron
+ <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Tsai <ktsai@capellamicro.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20260209-cm36686-v2-0-a48126d2b124@gmail.com>
+ <20260209-cm36686-v2-1-a48126d2b124@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260209-cm36686-v2-1-a48126d2b124@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264031-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264034-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,baylibre.com,analog.com,capellamicro.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marceloschmitt1@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 62C97110843
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url]
+X-Rspamd-Queue-Id: DDAFA1114EB
 X-Rspamd-Action: no action
 
-On 02/08, Andy Shevchenko wrote:
-> On Fri, Feb 06, 2026 at 04:01:33PM -0300, Marcelo Schmitt wrote:
-> > AD4030 and similar ADCs can capture data at sample rates up to 2 mega
-> > samples per second (MSPS). Not all SPI controllers are able to achieve such
-> > high throughputs and even when the controller is fast enough to run
-> > transfers at the required speed, it may be costly to the CPU to handle
-> > transfer data at such high sample rates. Add SPI offload support for AD4030
-> > and similar ADCs to enable data capture at maximum sample rates.
-> 
-> ...
-> 
-> > +static int ad4030_update_conversion_rate(struct ad4030_state *st,
-> > +					 unsigned int freq_hz, unsigned int avg_log2)
-> > +{
-> > +	struct spi_offload_trigger_config *config = &st->offload_trigger_config;
-> > +	unsigned int offload_period_ns, cnv_rate_hz;
-> > +	struct pwm_waveform cnv_wf = { };
-> > +	u64 target = AD4030_TCNVH_NS;
-> > +	u64 offload_offset_ns;
-> > +	int ret;
-> > +
-> > +	/*
-> > +	 * When averaging/oversampling over N samples, we fire the offload
-> > +	 * trigger once at every N pulses of the CNV signal. Conversely, the CNV
-> > +	 * signal needs to be N times faster than the offload trigger. Take that
-> > +	 * into account to correctly re-evaluate both the PWM waveform connected
-> > +	 * to CNV and the SPI offload trigger.
-> > +	 */
-> > +	cnv_rate_hz = freq_hz << avg_log2;
-> > +
-> > +	cnv_wf.period_length_ns = DIV_ROUND_CLOSEST(NSEC_PER_SEC, cnv_rate_hz);
-> 
-> See below.
-> 
-> > +	/*
-> > +	 * The datasheet lists a minimum time of 9.8 ns, but no maximum. If the
-> > +	 * rounded PWM's value is less than 10, increase the target value by 10
-> > +	 * and attempt to round the waveform again, until the value is at least
-> > +	 * 10 ns. Use a separate variable to represent the target in case the
-> > +	 * rounding is severe enough to keep putting the first few results under
-> > +	 * the minimum 10ns condition checked by the while loop.
-> > +	 */
-> > +	do {
-> > +		cnv_wf.duty_length_ns = target;
-> > +		ret = pwm_round_waveform_might_sleep(st->cnv_trigger, &cnv_wf);
-> > +		if (ret)
-> > +			return ret;
-> > +		target += AD4030_TCNVH_NS;
-> > +	} while (cnv_wf.duty_length_ns < AD4030_TCNVH_NS);
-> 
-> Does the above have a side-effect on period_length_ns? If not, the below check
-> should be moved up, otherwise here should be a short comment explaining the
-> side-effect(s).
+On 09/02/2026 15:23, Erikas Bitovtas wrote:
+> Document the Capella cm36686 ambient light and proximity sensor devicetree
+> bindings.
 
-Yes, pwm_round_waveform_might_sleep() might round the period down. I'd add the
-following comment to clarify that
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-	/*
-	 * The CNV waveform period (period_length_ns) might get rounded down by
-	 * pwm_round_waveform_might_sleep(). Check the resultant PWM period
-	 * is not smaller than the minimum data conversion cycle time.
-	 */
-> > +	if (!in_range(cnv_wf.period_length_ns, AD4030_TCYC_NS, INT_MAX))
-> > +		return -EINVAL;
+A nit, subject: drop second/last, redundant "bindings document". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+You are just missing one redundant name for the redundant-subject-bingo.
+
+dt-bindings: iio: Add Capella CM....
+
 > 
+> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
+> ---
+>  .../bindings/iio/light/capella,cm36686.yaml        | 97 ++++++++++++++++++++++
+>  1 file changed, 97 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/light/capella,cm36686.yaml b/Documentation/devicetree/bindings/iio/light/capella,cm36686.yaml
+> new file mode 100644
+> index 000000000000..0e54b681e197
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/light/capella,cm36686.yaml
+
+cm36672p instead, since that's the fallback... although
+
+
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/light/capella,cm36686.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Capella cm36686 I2C Ambient Light and Proximity sensor
+
+Compatible says cm36672p... Confusing.
+
+> +
+> +maintainers:
+> +  - Erikas Bitovtas <xerikasxx@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: capella,cm36672p
+> +      - items:
+> +          - const: capella,cm36686
+> +          - const: capella,cm36672p
+
+Why higher number is the fallback? Explain this in the commit msg.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: I2C address of the device. Must be 0x60 for both cm36686
+> +      and cm36672p sensors.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description:
+> +      Regulator that provides power to the sensor.
+> +
+> +  vddio-supply:
+> +    description:
+> +      Regulator used to power IO and I2C bus.
+> +
+> +  vled-supply:
+> +    description:
+> +      Regulator used to power proximity LED
+> +
+> +  proximity-near-level: true
+
+Drop
+
+> +
+> +  capella,proximity-led-current-microamp:
+> +    description:
+> +      Current for proximity IR LED
+> +    enum: [50000, 75000, 100000, 120000, 140000, 160000, 180000, 200000]
+> +    default: 50000
+> +
+> +  capella,glass-factor:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Lux amplification factor to account for packaging - a number by which a
+> +      lux reading is multiplied.
+> +    default: 1
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - capella,cm36672p
+> +    then:
+> +      properties:
+> +        capella,glass-factor: false
+> +
+
+Missing ref to common.yaml.
+
+> +additionalProperties: false
+
+And this goes after required as unevaluatedProperties.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +  - vddio-supply
+> +  - vled-supply
+> +
+
 
 Best regards,
-Marcelo
+Krzysztof
 
