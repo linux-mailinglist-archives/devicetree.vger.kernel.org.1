@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-263850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-263851-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0JG/Bl6QiWlz+wQAu9opvQ
-	(envelope-from <devicetree+bounces-263850-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:44:30 +0100
+	id yBxbKTGRiWlz+wQAu9opvQ
+	(envelope-from <devicetree+bounces-263851-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:48:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BE0410C91A
-	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:44:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 051A210C96D
+	for <lists+devicetree@lfdr.de>; Mon, 09 Feb 2026 08:48:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 21535300361C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 07:44:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9938030053EE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Feb 2026 07:47:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D244330B0C;
-	Mon,  9 Feb 2026 07:44:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2939F2FFF97;
+	Mon,  9 Feb 2026 07:47:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oGiG67+y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y35rhwkZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 792911862A;
-	Mon,  9 Feb 2026 07:44:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044601C2AA;
+	Mon,  9 Feb 2026 07:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770623067; cv=none; b=g8l4Lj6sS8gD6TL+50aAIZPhAfXcTA9SdYPdHZBDDsajRJqjVaU9AM9qKAiQHMIpLppLsjixW4NxVAhky/hXiVJWtSxjGZHLHQvcP43I5VeDpWIsthwc0JJ+W4wuM6l0QjI0DcVa19iqw4185cOB2seUSOD0C3pCNQyz7vxvtdE=
+	t=1770623221; cv=none; b=KJPGN0+K6za7yZq0tykdlpHcfNIW1ohRRa9U1cvrka2sYzmmkYL5uo6GGG030v5DN5vE6juyn4pGj83uZGKi9MpwqFnWDAny1iPxThmVbzEYTcKbN5fTAfxIhTCJ6l77iSpW8sFMzOrrO7iexL9EigGUehycJJaiNU02D8mWqHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770623067; c=relaxed/simple;
-	bh=Ta25kI7USSWWuSkXP9nJ+DZDxRzPLkzvq2/V5y/6bk8=;
+	s=arc-20240116; t=1770623221; c=relaxed/simple;
+	bh=IndfL7PE/WdXaxUDEwnvO7U+aOUsMdwiM6o/wVwo3mA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D4/1q0KEe1/qz8jYNnjrK4+EHh/uW2qzqy48BO7fQPMOIKtktbGKBILtV+NXfxF1T6/YrI+59ZZJJqFkVd7CQhkfjkuVhFCotRzsnckonKZn3N5lCrAXMkCOhhm+8D6GrwIA1nDtUXVWnrTVRCYWE6vxyYGrhndfOLVtfLrtqyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oGiG67+y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40DC8C116C6;
-	Mon,  9 Feb 2026 07:44:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=H6124N/RW6vkBVa+MCw/G7EzVO1GqReKkOROUXwLnTROMKQuLMRnh380ufaBvnTa5mWsIu2khH3WGtDUWYeVOtfzEcek7OuPt0rQ1iH39qkFCJWMFI2ZfSfIx50yVqhdT0iuzOlsLJ/0rrVH70r9M6ncxcRXMPUuWvavfwjc6po=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y35rhwkZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAA45C116C6;
+	Mon,  9 Feb 2026 07:46:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770623067;
-	bh=Ta25kI7USSWWuSkXP9nJ+DZDxRzPLkzvq2/V5y/6bk8=;
+	s=k20201202; t=1770623220;
+	bh=IndfL7PE/WdXaxUDEwnvO7U+aOUsMdwiM6o/wVwo3mA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oGiG67+ykCGXB+vg87pIpANs+w13tPLZ7LvR4IZSdZ8EbKDK/Ljpc9SBQNqeeBCUM
-	 a5WQ9G926i7fllx5Gv1YJlG+0/d3ffR77AukgUV1ClA8U8TzLE9xiXlPgHH2EMPl+v
-	 FspI2ALfo5W1WJ8nJlBmjACNAKWa/24N35Aulc3oCXBdeSA8RSYRBWgZ/nJpLFxOSX
-	 JXUtBzMZLwMMPMw/2Pf4LAl0pGadfZ3QPAIZ2z0hITDs2x6wtnxquYrk2k13409ZE7
-	 FUMoGd2mvjdS2mwxCp217sz8FzlXm0jWSwX9g0kXI84SdKnBnvd1KEJMtN3K+ZeqKI
-	 M35QNVYwrz5pw==
-Message-ID: <ffafb3b7-bb9a-48e8-9810-7fd837d52001@kernel.org>
-Date: Mon, 9 Feb 2026 08:44:21 +0100
+	b=Y35rhwkZqiZcyrO/jZVJ9yFuMHbKDay/OtzMn/OTdPXvFsik1B2Eb6UO2nMTczeQl
+	 AGoWCrY91EBEsSDTxWfXVL60k7EV2j+Nlt4GzYKfoUhqlYKlACZUOLMDLF5J+JJuva
+	 YzBnqnKa+L/cmZXze+woLRIUI3wA2tx8GcKGUno57PseBp7GEkqeXuPBaJaNobPCYo
+	 gtHSRA0sK08pkU9mKwPy03SDEiEW5kr4zXrbcn8g1ywFno7m4wbKsHb5ojp19gKanc
+	 1J1/2Fw7N4Lad2QrOOfqbFG1lfpuOijUgfqr2g4T24qJ6/nhf7bjfac1N9kKoVx4Az
+	 3z7u5r61c1L0A==
+Message-ID: <cf87856e-13f9-4d94-aa07-eed7fb4a2309@kernel.org>
+Date: Mon, 9 Feb 2026 08:46:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,31 +53,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/11] dt-bindings: crypto: qcom,ice: Require power-domain
- and iface clk
-To: Harshal Dev <harshal.dev@oss.qualcomm.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Abel Vesa <abel.vesa@oss.qualcomm.com>, cros-qcom-dts-watchers@chromium.org
-Cc: Brian Masney <bmasney@redhat.com>,
- Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
- Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>,
- linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260123-qcom_ice_power_and_clk_vote-v1-0-e9059776f85c@qti.qualcomm.com>
- <20260123-qcom_ice_power_and_clk_vote-v1-1-e9059776f85c@qti.qualcomm.com>
- <14a71b33-4c10-41b0-a6cb-585a38e05f56@kernel.org>
- <06160c6c-a945-467a-be82-7b33c5285d0f@oss.qualcomm.com>
- <7216c86d-2b87-496c-9548-ccdcb3c98b6b@oss.qualcomm.com>
- <1f99db18-d76c-4b87-9e30-423eee7037e1@oss.qualcomm.com>
- <dd34525c-0a25-47ae-9061-c4c7ab708306@kernel.org>
- <2830a189-a5ce-45a0-92fe-7a01c3b012a7@oss.qualcomm.com>
- <6efcdf51-bdb1-4dfc-aa5e-8b7dc8c68cd3@kernel.org>
- <b217a08a-2755-4ef8-bf39-af1c3e628cf8@oss.qualcomm.com>
+Subject: Re: [V5,00/13] Fixes to pcie-tegra194 driver
+To: Manikanta Maddireddy <mmaddireddy@nvidia.com>, bhelgaas@google.com,
+ lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ thierry.reding@gmail.com, jonathanh@nvidia.com, jingoohan1@gmail.com,
+ vidyas@nvidia.com, cassel@kernel.org, 18255117159@163.com
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260208180746.2024338-1-mmaddireddy@nvidia.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -123,7 +107,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <b217a08a-2755-4ef8-bf39-af1c3e628cf8@oss.qualcomm.com>
+In-Reply-To: <20260208180746.2024338-1-mmaddireddy@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -132,62 +116,54 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-263850-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-263851-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[nvidia.com,google.com,kernel.org,gmail.com,163.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.989];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.988];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6BE0410C91A
+X-Rspamd-Queue-Id: 051A210C96D
 X-Rspamd-Action: no action
 
-On 09/02/2026 06:43, Harshal Dev wrote:
->>>> Either I do not understand the point or you still insist on breaking a
->>>> working DTS on kernels with clk_ignore_unused, just because what
->>>> exactly? You claim it did not work, but in fact it did work. So you
->>>> claim it worked by luck, right? And what this patchset achieves? It
->>>> breaks this "work by luck" into "100% not working and broken". I do not
->>>> see how is this an improvement.
->>>>
->>>
->>> My point is something more fundamental. It worked before and it will still continue
->>> to work if:
->>> 1. We pass the 'clk_ignore_unused' flag. or,
->>> 2. If the Linux distro is overriding CONFIG_SCSI_UFS_QCOM to 'y'.
->>
->> I do not agree with this. I already commented about your driver. If you
->> do not believe me, apply your driver patch and show the test results of
->> existing working device.
->>
->>
+On 08/02/2026 19:07, Manikanta Maddireddy wrote:
+> This series[1] was originally posted by Vidya Sagar, and I have rebased
+> it onto 6.19.0-rc6-next. I addressed review comments and split this into
+> two series, one for fixes(current) and the other is for enhancements.
+> I verified these patches on Jetson AGX Orin(Tegra234 SoC).
 > 
-> Apologies, it seems like I failed to explain correctly what I meant.
-> Here I was talking about the existing in-tree ICE driver and not about this particular DT
-> binding commit. This commit, as you rightly said and I mentioned below too, breaks backward
-> compatibility for existing in-tree and out-of-tree DTS.
+> I added below four new patches to fix bugs, commit message of each
+> patch has the details on the bug and fix.
+>  - PCI: tegra194: Use HW version number
+>  - PCI: tegra194: Fix CBB timeout caused by DBI access before core power-on
+>  - PCI: tegra194: Disable PERST IRQ only in Endpoint mode 
+> 
 
-I was also talking about existing in-tree ICE driver, not about my
-commit. I do not believe anything will work fine with existing in-tree
-ICE driver.
 
-We shifted away from this binding in the discussion, imagine it does not
-matter. Just look at your driver code.
+Please use standard email subjects, so with the PATCH keyword in the
+title. `git format-patch -vX` helps here to create proper versioned
+patches. Another useful tool is b4. Skipping the PATCH keyword makes
+filtering of emails more difficult thus making the review process less
+convenient.
+
+I really do not get why such big patchset is still not with b4, but if
+you insist, then at least do it correct.
 
 Best regards,
 Krzysztof
