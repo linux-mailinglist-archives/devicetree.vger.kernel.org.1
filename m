@@ -1,148 +1,225 @@
-Return-Path: <devicetree+bounces-264514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264513-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aLCTHP5vi2lhUQAAu9opvQ
-	(envelope-from <devicetree+bounces-264514-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 18:50:54 +0100
+	id YHayK3Nvi2lhUQAAu9opvQ
+	(envelope-from <devicetree+bounces-264513-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 18:48:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1757411E1C5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 18:50:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 662A111E186
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 18:48:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1E88C3019D48
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 17:50:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9335D301048A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 17:48:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E888938A9D6;
-	Tue, 10 Feb 2026 17:50:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1291B35DCED;
+	Tue, 10 Feb 2026 17:48:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="C+XgP9Qj"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="qNlPD0ot"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com [91.218.175.182])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16A5138A9AF
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 17:50:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F870632;
+	Tue, 10 Feb 2026 17:48:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770745843; cv=none; b=gkyBDcvT+4LRa6hBr8YnW6Ye/R499tY6AVQQw0rzDlyXMQBB3QJeBIYcFZWCrvxhZvGMM3ljyfafxU6SO6Hu/iZmtJgcHO/Mr41fc6iGnpfFQiN6XncLVKkNKBHD0SmFtJmXnoTY+PhZs4Sznz3Uv0nHY9pPTjicmDepPhMtuwQ=
+	t=1770745710; cv=none; b=NTbE9VClDi5yTUi1RYVvlfOpMrzW4pc84aBkP78GES22OIwDX0X70ApqQ6KmFRUnj/5C4FTBZqTJjf84XITgV43qTtk874pbFmieNkDA0FlIrDCd16OLabOPKaMxt6vXV8+8uMtLBry2Rz2EtBJq4eV50/P7bb7sM871tbLlQL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770745843; c=relaxed/simple;
-	bh=nYvm4UhHwCRyt4ugQfUKjDIo4rNO7pfyXU6Vbo39630=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Wxv4KllNUqMpl2vmslRfpm+2AuD42K/WMrVtGIdAxb2UYZJoiuifHHKE7b/x43BCFpiQ+H/OaN2s1NbGnEkWpvZnxdRWeE1EoMO/WC5QkBU7A0bfwk2tRx+HBIuRsn9u9ei/Rr9qNOFg3QZqL5rKoX0u9GHOoP3YV4zNFpmkoQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=C+XgP9Qj; arc=none smtp.client-ip=91.218.175.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1770745839;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Vpwc04aRqjCD/uWOIUUpe7lRfI+Q6uBKuFNge3A6DHc=;
-	b=C+XgP9Qjjp22dxqvYSFqQGf85GvZXoMrDZrCAuao3TZb33VzrzJEpdnYpk2I/qZ47AOALv
-	e4VXJzf9croDfI6pwIlce3CZVFkAoaUQUfye+1mkY2nNarHNZKbzZ68VKjqInmq7NBdTW0
-	6U+0KimQ4OLVodB1ezuTVaQ3l1GfRJ++M9aeef93Yp7fYJ9gh9v129FZ2y4MffGkQVt0HX
-	O80jCMjc9QoM0zzIp04nM8L+I2HorxfeQXGq4UTIH3iabkjLGD8e6l+uqXIEoWp1gmI3No
-	W162XNOTEvFr58qSVDSq0XgfCKO7jFkYjifpSqvLK9ogEg9B/BF8oAA4YZRb7g==
-From: Val Packett <val@packett.cool>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+	s=arc-20240116; t=1770745710; c=relaxed/simple;
+	bh=lUjwjU7r/37mGB1+K3bxHipqn9HWgCfuZbF3Cr+c9Oc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eRzcVvTYsk3fMsFBwjpy2IINQixcg9jeV9J1CATfEGOXsIEs2Mrd/xMv4rEj9cssnlJU1jzbbys7eQgJkeKlBpMcu51Eyv4ZT96X6q+YX4kyU5VLz/oT+txhbkoWB91qRDl04TXNscV3rHOFTGFVcT2QOcbnoRC5XS7HSXo3gbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=qNlPD0ot; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=xeAOkTtRwcO+e2SaV7ZKu57U0Jz6k1k1CcRryqfUgcg=; b=qNlPD0otkehOoYaEKrGge/jrak
+	QhJ1Myw82gCtw3rwilHqO7HwFPMgrDuVbaMpqGraieid4jHrDHaUeF2i/7O9IGC+6t5AL9dVshJwH
+	4V7CqdUWghEvACsybzINdoBvcaJ54Nsfh+fDk9ahh2do62/DUDTdHqQDpf/e8xAeMRTQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vprqS-006ruL-NJ; Tue, 10 Feb 2026 18:48:16 +0100
+Date: Tue, 10 Feb 2026 18:48:16 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Val Packett <val@packett.cool>,
-	Laurentiu Tudor <laurentiu.tudor1@dell.com>,
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: x1-dell-thena: remove i2c20 (battery SMBus) and reserve its pins
-Date: Tue, 10 Feb 2026 14:45:28 -0300
-Message-ID: <20260210175001.7691-2-val@packett.cool>
-In-Reply-To: <20260210175001.7691-1-val@packett.cool>
-References: <20260210175001.7691-1-val@packett.cool>
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-doc@vger.kernel.org, linux-imx@nxp.com,
+	arnaud.pouliquen@foss.st.com, Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH v7 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
+Message-ID: <5158fda4-6bf6-45b8-bbe0-8b469066d0ef@lunn.ch>
+References: <20260210170814.406883-1-shenwei.wang@nxp.com>
+ <20260210170814.406883-4-shenwei.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260210170814.406883-4-shenwei.wang@nxp.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[packett.cool,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264513-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264514-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,pengutronix.de,lwn.net,gmail.com,nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,foss.st.com,bgdev.pl];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[packett.cool:+];
 	PRECEDENCE_BULK(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,packett.cool:mid,packett.cool:dkim,packett.cool:email]
-X-Rspamd-Queue-Id: 1757411E1C5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 662A111E186
 X-Rspamd-Action: no action
 
-i2c20 is used by the battmgr service on the ADSP to communicate with the
-SBS interface of the battery. Initializing it from Linux would break the
-battmgr functionality when booted in EL2. Mark those pins as reserved.
+> +#define GPIOS_PER_PORT		32
 
-Fixes: e7733b42111c ("arm64: dts: qcom: Add support for Dell Inspiron 7441 / Latitude 7455")
-Signed-off-by: Val Packett <val@packett.cool>
----
-Wow.. I was pulling my hair out trying to figure out why I had the "broken battmgr in EL2"
-issue that absolutely no one else had on other laptops, turns out I did it to myself.
----
- arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
+Maybe this should be from DT, using "ngpios". The Documentation says:
 
-diff --git a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-index fcf2845beb3c..255728970c1d 100644
---- a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-@@ -982,12 +982,6 @@ &i2c8 {
- 	status = "okay";
- };
- 
--&i2c20 {
--	clock-frequency = <400000>;
--
--	status = "okay";
--};
--
- &lpass_tlmm {
- 	spkr_01_sd_n_active: spkr-01-sd-n-active-state {
- 		pins = "gpio12";
-@@ -1308,6 +1302,7 @@ right_tweeter: speaker@0,1 {
- &tlmm {
- 	gpio-reserved-ranges = <44 4>,  /* SPI11 (TPM) */
- 			       <76 4>,  /* SPI19 (TZ Protected) */
-+			       <80 2>,  /* I2C20 (Battery SMBus) */
- 			       <238 1>; /* UFS Reset */
- 
- 	cam_rgb_default: cam-rgb-default-state {
--- 
-2.52.0
+  Optionally, a GPIO controller may have a "ngpios" property. This
+  property indicates the number of in-use slots of available slots for
+  GPIOs. The typical example is something like this: the hardware
+  register is 32 bits wide, but only 18 of the bits have a physical
+  counterpart. The driver is generally written so that all 32 bits can
+  be used, but the IP block is reused in a lot of designs, some using
+  all 32 bits, some using 18 and some using 12. In this case, setting
+  "ngpios = <18>;" informs the driver that only the first 18 GPIOs, at
+  local offset 0 .. 17, are in use.
 
+Just because your hardware has 32 does not mean every vendor does.
+
+> +struct gpio_rpmsg_head {
+> +	u8 id;		/* Message ID Code */
+> +	u8 vendor;	/* Vendor ID number */
+> +	u8 version;	/* Vendor-specific version number */
+> +	u8 type;	/* Message type */
+> +	u8 cmd;		/* Command code */
+> +	u8 reserved[5];
+> +} __packed;
+
+I still think this should be a clean design from scratch, and you
+modify your firmware.
+
+This data structure is 10 bytes. Are these all needed for a generic
+GPIO controller? version, type, command and one reserved byte seems
+like enough, and it is then 4 bytes, so there is no need for __packed.
+
+> +struct gpio_rpmsg_packet {
+> +	struct gpio_rpmsg_head header;
+> +	u8 pin_idx;
+> +	u8 port_idx;
+> +	union {
+> +		u8 event;
+> +		u8 retcode;
+> +		u8 value;
+> +	} out;
+> +	union {
+> +		u8 wakeup;
+> +		u8 value;
+> +	} in;
+> +} __packed __aligned(8);
+
+This then becomes 8 bytes, so there is no need for __packed or
+__aligned(8).
+
+I don't want to force this, it is something i think which should be
+discussed. Do we adopt your design, which is not so nice, but at least
+has one working implementation, or do we do a clean design?
+
+> +static int gpio_send_message(struct rpmsg_gpio_port *port,
+> +			     struct gpio_rpmsg_packet *msg,
+> +			     bool sync)
+> +{
+> +	struct gpio_rpmsg_info *info = &port->info;
+> +	int err;
+> +
+> +	reinit_completion(&info->cmd_complete);
+> +	err = rpmsg_send(info->rpdev->ept, msg, sizeof(struct gpio_rpmsg_packet));
+> +	if (err) {
+> +		dev_err(&info->rpdev->dev, "rpmsg_send failed: %d\n", err);
+> +		return err;
+> +	}
+> +
+> +	if (sync) {
+> +		err = wait_for_completion_timeout(&info->cmd_complete,
+> +						  msecs_to_jiffies(RPMSG_TIMEOUT));
+> +		if (!err) {
+> +			dev_err(&info->rpdev->dev, "rpmsg_send timeout!\n");
+> +			return -ETIMEDOUT;
+> +		}
+
+I _think_ you need to handle negative values of err. It looks like
+do_wait_for_common() can return -ERESTARTSYS;
+
+> +static struct gpio_rpmsg_packet *gpio_setup_msg_header(struct rpmsg_gpio_port *port,
+> +						       unsigned int offset,
+> +						       u8 cmd)
+> +{
+> +	struct gpio_rpmsg_packet *msg = &port->gpio_pins[offset].msg;
+> +
+> +	memset(msg, 0, sizeof(struct gpio_rpmsg_packet));
+> +	msg->header.id = RPMSG_GPIO_ID;
+> +	msg->header.vendor = RPMSG_VENDOR;
+> +	msg->header.version = RPMSG_VERSION;
+> +	msg->header.type = GPIO_RPMSG_SETUP;
+> +	msg->header.cmd = cmd;
+> +	msg->pin_idx = offset;
+> +	msg->port_idx = port->idx;
+
+Why is a function called gpio_setup_msg_header() setting things
+outside of the header?
+
+> +static int rpmsg_gpio_get(struct gpio_chip *gc, unsigned int gpio)
+> +{
+> +	struct rpmsg_gpio_port *port = gpiochip_get_data(gc);
+> +	struct gpio_rpmsg_packet *msg;
+> +	int ret;
+> +
+> +	guard(mutex)(&port->info.lock);
+> +
+> +	msg = gpio_setup_msg_header(port, gpio, GPIO_RPMSG_INPUT_GET);
+> +
+> +	ret = gpio_send_message(port, msg, true);
+
+If gpio_setup_msg_header() does what it sounds like it should do, what
+is setting up the message body before you send the message?
+
+	Andrew
 
