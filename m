@@ -1,179 +1,185 @@
-Return-Path: <devicetree+bounces-264404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264405-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sGLsD/Yni2m6QQAAu9opvQ
-	(envelope-from <devicetree+bounces-264404-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:43:34 +0100
+	id UAHMFOwoi2n1QQAAu9opvQ
+	(envelope-from <devicetree+bounces-264405-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:47:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C499D11AF3E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:43:33 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF45111AFB1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:47:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BD26F303749A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:43:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 16D05303DF68
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:47:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEFE91DF261;
-	Tue, 10 Feb 2026 12:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03BAF2EA754;
+	Tue, 10 Feb 2026 12:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="acnwf4vJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kJ4NGsDs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9B0CF4FA;
-	Tue, 10 Feb 2026 12:43:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D47122367DC
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 12:47:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770727411; cv=none; b=fJyTP1Z8PmhV+n8U6cMg8y47rQIRyQO++J7Q+F8u6xZC43+Vye1clpGCi7Fs29ZQQhUIGToCXhZTZUfsz7EyTfs1UGyV5bWHA3eZXgxQp8IgcCvfuo2YllrlHOEQKRDVlV3/PweVJcgbsTomQty+kd5lMhuN8Tf9clZxTGU+tJ8=
+	t=1770727654; cv=none; b=RXV0Ekg/SYydRwA4zGN74gT/Jqv696rYArl+nohhiNKAAYVHgpdjsOco/AOG3+FosCeupWOW/yK2BNXbTPyNW4bQkIsfBXSA0G1juPUhtbcR8Ga6Y5i9OFev9aBz8tD/mpujjaKlE0pAb2NuV7JxYe5arps56Cpo6vfA4ELNr/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770727411; c=relaxed/simple;
-	bh=SsUey4ngL1IxmEKLVcbKNfqjTf3Op/WYv3+uHVC9HVg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=lhoDWWnVoqNprBCxN/mUNgSEueCgcjwcI7eu4HMJMQVnGsUoYeyvkxvS+dwmXS1yNZ5Jwp2dUJXP+Hi2vUTeeDXDprO+MEKjnClvu9AbvOMW30txgxAzTuUE8xhFZ7xznL7mxxT9jTnt1uIZGDGVF8HsXtIt5wPjAN5hDW7C3oU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=acnwf4vJ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61AB01dA1940314;
-	Tue, 10 Feb 2026 12:43:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/DJUZuxMxHgBmLTMKLMgpfnmRklM8tdMOAxKG/xygi0=; b=acnwf4vJonQLz/nN
-	+M2c4JvMSZmChvFX3Hi1hzhA0MiUak1VWWTfxsmzc5pBz61aOd3Pn/uK3tH8qTni
-	0OTwq8qH6ovr9RGYtVHE82P3ol6/ME/Z9x6w+LRWW6h0XCWFyrIe5I7Bylk98nu0
-	RPuEMZ1qIIFRDCfix6vd8/WDqjSqwynWFdbM756uuu+lcQ3JVr8E8iXOH62ijpiM
-	yZw1UM/+IWQMiFomDySBva2AQGgfrFJRq05EnYiW6A0HT/TXoM2JnxL+vTBFxOt9
-	E75H7o8xCZCP15tR25LRvyS0yx1E46FK5GhUUyv6sv8YBcJD0JJS0hrnfkJZa0I5
-	w7kAHQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c7w1jsk4r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Feb 2026 12:43:22 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 61AChMtA022796
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Feb 2026 12:43:22 GMT
-Received: from [10.216.16.89] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 10 Feb
- 2026 04:43:11 -0800
-Message-ID: <d63a0663-626e-416c-a5b4-e7d91f158b44@quicinc.com>
-Date: Tue, 10 Feb 2026 18:12:59 +0530
+	s=arc-20240116; t=1770727654; c=relaxed/simple;
+	bh=3byUhG/m2c7E2GQCgSueOnUQ3LkrcuBr9TfT3+SL82U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tCve6765anSJtEkz4zS81+oCcM3UeXKjL8fSsEhlUcXC5sAqM4Vyi6FgebCc9qKO2/JGDtAxkbwaPsiJ3Zt3A2ptrXpZ7J2ZSY/GhGFJrPyKxasC5Hf4w1Bh8+FL7r/XZ5LRbbePp1exyFdKw1dhd/lmKB8WrVSSnW0d3ZfdVto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kJ4NGsDs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 784AAC19424
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 12:47:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770727654;
+	bh=3byUhG/m2c7E2GQCgSueOnUQ3LkrcuBr9TfT3+SL82U=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=kJ4NGsDs5qpD6oyGl1dylgz/c5K49OovvoIBkocz/k3lAMwC7YAQqcXMo11ZiyWJG
+	 ovtVdTkELC2W7QJfkVsFpG727Z2pVAR5jLyeMx9Is/oqvPc+Ve7zUD4QNCnAj7dqVh
+	 xakvhWAqM8inqXTbdlPysMFx7BEtFALNNBrc0MvBtVgxuIbQwZ/Dbx7jmLUE64NqDZ
+	 I5vpKTsiKOmHR9KKi0F4jjc/5KoC30EQGHnj01FcJ/FDZqGEk5COG72dK7MXg3sW82
+	 KzCBnX/xSSPZmSLNqoFInb4ZN+MYwEwZi7fbOsRzCrU0Md7iOmLekQdNIaatccxH3y
+	 wiGsN6Cgc3pPQ==
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b86ed375d37so85708966b.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 04:47:34 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWfQTzgjFGuWw6sVjl46RJh9l1/fpvzTsEFIWOxNKtmMrvrV0jhfy6kLEre97qHdaHENbHZd7sOVAjI@vger.kernel.org
+X-Gm-Message-State: AOJu0YycuhIFBsvNSP50hNqsVtoykGZMwJZ0Na2j1iAu41MgFeVTAmeN
+	BSvPubJTb2iYjgIX8n2iZoGr9NUOHdSLpr2+t3por6tqsu0EGNzIUtjGlQrRBH9XZB4qLHIEHIh
+	W8Q5qn3SFExK5GkdP8g3/OaVDRzgfgwI=
+X-Received: by 2002:a17:907:96a3:b0:b8e:d1f3:4744 with SMTP id
+ a640c23a62f3a-b8edf4139c7mr865102066b.55.1770727653004; Tue, 10 Feb 2026
+ 04:47:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 5/5] arm64: dts: qcom: monaco-evk-camera: Add DT
- overlay
-To: Krzysztof Kozlowski <krzk@kernel.org>, <bryan.odonoghue@linaro.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <hverkuil-cisco@xs4all.nl>, <loic.poulain@oss.qualcomm.com>,
-        <rfoss@kernel.org>, <andi.shyti@kernel.org>,
-        <linux-i2c@vger.kernel.org>, <cros-qcom-dts-watchers@chromium.org>
-CC: <quic_svankada@quicinc.com>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Ravi Shankar <quic_rshankar@quicinc.com>,
-        Vishal Verma <quic_vishverm@quicinc.com>,
-        Vladimir Zapolskiy
-	<vladimir.zapolskiy@linaro.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-References: <20260121183142.1867199-1-quic_nihalkum@quicinc.com>
- <20260121183142.1867199-6-quic_nihalkum@quicinc.com>
- <32c4d3c3-6cbc-42cc-8c6e-7f1d0d35cc2c@kernel.org>
- <7889e13e-fd81-42aa-873c-92de641e1979@quicinc.com>
- <c9d1e8ca-253a-4e87-8dc7-d2036737b5e4@kernel.org>
-Content-Language: en-US
-From: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
-In-Reply-To: <c9d1e8ca-253a-4e87-8dc7-d2036737b5e4@kernel.org>
+References: <20260131094547.455916-1-zhengxingda@iscas.ac.cn>
+ <20260131094547.455916-3-zhengxingda@iscas.ac.cn> <20260209234818.GA2119841-robh@kernel.org>
+ <1f7b645328fb86d1097a80b224c39ca3ed07a4b2.camel@iscas.ac.cn>
+In-Reply-To: <1f7b645328fb86d1097a80b224c39ca3ed07a4b2.camel@iscas.ac.cn>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Tue, 10 Feb 2026 20:47:17 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H5foQQFakDCYRDSM3vePZh-kECpTM+rwvs3jBvLgsjChQ@mail.gmail.com>
+X-Gm-Features: AZwV_QjCQ0H5HZWn3pR4DLUJociZMJIWnpAT2Ryiz-3zKCNbW_uonG7cG-yu01Y
+Message-ID: <CAAhV-H5foQQFakDCYRDSM3vePZh-kECpTM+rwvs3jBvLgsjChQ@mail.gmail.com>
+Subject: Re: [PATCH 2/8] dt-bindings: interrupt-controller: add LS7A PCH LPC
+To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Cc: Rob Herring <robh@kernel.org>, Thomas Gleixner <tglx@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-mips@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: OYhPIZr6wCzhrCvheCyrDBt15RWjAilF
-X-Proofpoint-ORIG-GUID: OYhPIZr6wCzhrCvheCyrDBt15RWjAilF
-X-Authority-Analysis: v=2.4 cv=YrIChoYX c=1 sm=1 tr=0 ts=698b27ea cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=uqR9VxAXCapsPfiRIz4A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjEwMDEwNyBTYWx0ZWRfXxOWIvIMH6TaC
- OwZPD7hRCr5RAFGXZ489cBHFAbMiHVKOztXjxxARcvxfTyV3k85X2N0d0UyK5SQyml975DyOCsS
- +aZIppzRnivpZErDI31bILww0lnPUlWp2ilRsx/OfGCqSt87+gjpyMBfscjJwychNrTp36brKm7
- lHUQ0GBERy7Uj1t0vwNgPzzwUakVKsaalr4oDBsPJChT/7ptSyLZKFH+ljisiji1vepM5jQfxc3
- Gvd9MfvK3Hld3MhdT9u9KCUR2Iv+73qkDaQxHnElAcp6Kcn2HTUpnpylYRH7hTUxEy7O3xcVuMH
- pgevAzo78FRxK7oYT42w3nAy93Urc6dGIndTWjcHvEZhrtnr1qPBtW7oMNI6Ff/0p7jJv3KYAO8
- fATXpWwF1YPAZYk7sIMY+bjqKM/CnxoW0JJuEg0q+M0Mn/C3cOnmIIPkIrJmjj4n0FxfYuNSUaE
- mC1oAdgKk4OHBQLvy3Q==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-10_01,2026-02-10_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 suspectscore=0 bulkscore=0 adultscore=0 clxscore=1015
- impostorscore=0 lowpriorityscore=0 priorityscore=1501 phishscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602100107
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[quicinc.com,none];
-	R_DKIM_ALLOW(-0.20)[quicinc.com:s=qcppdkim1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264404-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,xs4all.nl,oss.qualcomm.com,vger.kernel.org,chromium.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-264405-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[quic_nihalkum@quicinc.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[quicinc.com:+];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[chenhuacai@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: C499D11AF3E
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[flygoat.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: BF45111AFB1
 X-Rspamd-Action: no action
 
+On Tue, Feb 10, 2026 at 6:51=E2=80=AFPM Icenowy Zheng <zhengxingda@iscas.ac=
+.cn> wrote:
+>
+> =E5=9C=A8 2026-02-09=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 17:48 -0600=EF=
+=BC=8CRob Herring=E5=86=99=E9=81=93=EF=BC=9A
+> > On Sat, Jan 31, 2026 at 05:45:41PM +0800, Icenowy Zheng wrote:
+> > > Loongson 7A series PCH contains an LPC controller with an interrupt
+> > > controller.
+> > >
+> > > Add the device tree binding for the interrupt controller.
+> > >
+> > > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> > > ---
+> > >  .../loongson,pch-lpc.yaml                     | 52
+> > > +++++++++++++++++++
+> > >  1 file changed, 52 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/interrupt-
+> > > controller/loongson,pch-lpc.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/interrupt-
+> > > controller/loongson,pch-lpc.yaml
+> > > b/Documentation/devicetree/bindings/interrupt-
+> > > controller/loongson,pch-lpc.yaml
+> > > new file mode 100644
+> > > index 0000000000000..c00fbf31f47f0
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/interrupt-
+> > > controller/loongson,pch-lpc.yaml
+> > > @@ -0,0 +1,52 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id:
+> > > http://devicetree.org/schemas/interrupt-controller/loongson,pch-lpc.y=
+aml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Loongson PCH LPC Controller
+> > > +
+> > > +maintainers:
+> > > +  - Jiaxun Yang <jiaxun.yang@flygoat.com>
+> > > +
+> > > +description:
+> > > +  This interrupt controller is found in the Loongson LS7A family
+> > > of PCH for
+> > > +  accepting interrupts sent by LPC-connected peripherals and
+> > > signalling PIC
+> > > +  via a single interrupt line when interrupts are available.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: loongson,pch-lpc-1.0
+> >
+> > Where does 1.0 come from? We don't do version numbers generally
+> > unless
+> > you define where the versions come from (e.g. Soft IP releases for
+> > FPGAs). I would have expected "ls7a" in the compatible instead.
+>
+> I originally followed the behavior of PCH PIC; however after asking
+> Jiaxun offlist, I was noticed about a register on the 7A1000 user
+> manual in the PIC that identifies the PIC version number; such version
+> number register does not exist for LPC part.
+>
+> I will switch to ls7a-lpc or ls7a1000-lpc. Newer compatible strings in
+> the 2K series (LoongArch ones) come with the whole model number, I
+> don't know whether this is needed for 7A1000 (although it looks like
+> that 7A2000 has the same
+Yes, they are the same, so I think ls7a-lpc is just OK.
 
+Huacai
 
-On 09-02-2026 22:08, Krzysztof Kozlowski wrote:
->> Krzysztof, Thanks for your review.
->> All patches posted here were build‑tested and verified by the author.
-> Then please explain reported by Rob build-process warnings.
-
-The dt-binding for qcom,qcs8300-cci specifies two clocks:
-clock-names = "ahb", "cci";
-
-On Monaco, the CCI node currently defines:
-clock-names = "cpas_ahb", "cci";
-
-The dt-binding warns because it expects the clock-names to be "ahb" and
-"cci", while the Monaco DTS uses "cpas_ahb" instead of "ahb". The
-hardware works correctly, but the name doesn't match the binding.
-Renaming "cpas_ahb" to "ahb" aligns the DTS with the binding and clears
-the warning. Please advise if you prefer a different approach.
-
--- 
-Regards,
-Nihal Kumar Gupta
-
+> >
+> > Rob
+> >
+>
 
