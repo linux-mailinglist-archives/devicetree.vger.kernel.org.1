@@ -1,107 +1,93 @@
-Return-Path: <devicetree+bounces-264195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264196-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OKKpEnKVimmuMAAAu9opvQ
-	(envelope-from <devicetree+bounces-264195-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:18:26 +0100
+	id YA9LBLmVimmuMAAAu9opvQ
+	(envelope-from <devicetree+bounces-264196-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:19:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE1191163D6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:18:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A8861163E5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:19:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3D6DB303C605
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:17:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D4C51302D52B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BEF52BD597;
-	Tue, 10 Feb 2026 02:17:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE562D248D;
+	Tue, 10 Feb 2026 02:19:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZG0CgFv+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h+81o0v9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD4022D1907
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 02:17:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74AC92C21FE
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 02:19:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770689872; cv=none; b=LQwTesaDceQ5S0QYxYQQE0Ide+xvXJtUiTQu9DzqiJd5YZYsC2m2yQAym/CASr27A181cB7inVfzPCzKB8VqXHQNl5N46+OIOXbUTAvfRDNIt7YaNXoybpqTEzSA+rM7XR68HRc7zIcAsjQO6ZRbtDEWFBbWR+Dgxa6UhgIYS5s=
+	t=1770689974; cv=none; b=nDoj+SDiCghOT+uHek9PMip95Lx3pKd+fqvxSRIyjVqVeOmt94veSadM8W6yEji+wc7iC5MtYA6f+EB87Fb4nvUEqHNu2mVVpViP4Jma52rUOm8L9+HebOozAZb+gNp/H4doTEDhua10n5Y5nX6DlGyrD1QZapPWhkiSrIc0b9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770689872; c=relaxed/simple;
-	bh=ecL4HzrmaN1g6G3Gfzm4vg8zhMlqzVByTHdXOIbJymY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eAUVb02PGjiuFjMBvWBlAosQS7lLIrFDWeStC5cPKjptiFGdxucsO4RUFGmAVvgozV93uD2VOaowJBfopfprMK3aL3WF7gPqcyDk+OrfMGLcm04k1gngTzI7KJCq+LTmai9xNXzhJDYSTc+Es/cp528dUuw+70lKGuV6a/NsZ6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZG0CgFv+; arc=none smtp.client-ip=209.85.219.52
+	s=arc-20240116; t=1770689974; c=relaxed/simple;
+	bh=T8TVumN5p9S56hgkEPK41dUkfPRroL+hgxyLPii5BwA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UL/INhYpEDCsy5qjKnp1s/aToel70mX6ld3SavWO7xQ39HnishidLyHyyHrUjvZlMoRKHG4BkgCejQr1wanYXQ7IOYHJcTTSIHoV3JPhkquDi+HLIvCJ52az1XDy9Rb3vr4Wd5vWMM9LWVhoPmbKigcq6q2yBtr0qO0offzXYcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h+81o0v9; arc=none smtp.client-ip=209.85.160.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-896fd2c5337so3047686d6.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 18:17:49 -0800 (PST)
+Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-50146483bf9so55154141cf.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 18:19:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770689869; x=1771294669; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IPeTKP/Rf3na6Mzwukzowm8bsD512Ev2e43pKFOWzjM=;
-        b=ZG0CgFv+2P4jJhUlTeky+U2gEfsUAIQSSLzrxWlzGXs7a9JcGon0QiV0CMnscRAh+Q
-         vPSxk7pYqrO+reXBSuWY6Ns7WAENoDwluU2UUsOGvupWHZFhezJG+eLkXkJ3jnVOFga/
-         BwdQqoGOptSOSWXcBFZAVi2DuA0gcsIaSEzwAeuKzCKjWE58PMvv6XBMybV35/g2IMwI
-         1Hph8zk63MjWWchMvztW6lzYSJ2JMOyMt3u9BLl7tR+DgjXomXGQmLqvsYRk+D8e2AEX
-         +5LV1s1H3cwuxLiVdBbni186shjj/MXySYw7imbHBW3SdhoqaTnNziSePVv3GlMPHF3H
-         bIVw==
+        d=gmail.com; s=20230601; t=1770689971; x=1771294771; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=S/hXVVFZ9xkdTyzbj181YKI3deT99BWwoqpKjOX9aJk=;
+        b=h+81o0v96q2qVUbSElwrvB0Nja3SM/IucTADu2m2N8fnuaPTelTXxpLscJ1UYAif27
+         6udQi4jV6q5CAgv9Atkxqz6xq8klXprD24lZ8vhuBf8HFMdpVCgvohM2V+Kv1dz/kuK8
+         +uuIa73Awa1OcyFzsImmJDCc+tmRNnZPHDzNqMP7BAjWLb4+MsMIJkqwex0bkPvkAvmd
+         yjd5datrx/iob0sKXjOSwUnNQcyof6RE2Lz4hHSqMx0+Y3zgvxcTBzBv6uuZgLK0pbZj
+         yJ3LrMMRJzOw0fca09cLIY04OqN/Uy2gGxM1HkeM0QN06xwr7LRUQTk+Y6eJjyGvUAEX
+         ZVCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770689869; x=1771294669;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=IPeTKP/Rf3na6Mzwukzowm8bsD512Ev2e43pKFOWzjM=;
-        b=EF8Ey/an9sTTZ8xJvw3fVW7YXoLrz/GXVLQgoNxSamnY9/sNKQp2+ey2fuS97fbP4R
-         +ATz/WluLY6P1X45zDlS1nzhu+9+B7j6DgqxGCrwMNjP0QdWcCUj5dfCMG+yyYqrSN1t
-         e8NhrTRD+uMs+4gn2KFq1CI/MaWwY9YILTcQ1Zu7yVIeba67LM+5zCli1zti3tM5Suv0
-         6bX73kpXPk/cuka1frvJ7Awaetvn97FQEcihUaSbVLKVw24bRle+Xq/nSyzdzcqRXm0w
-         sDH7n+X+7ozPtYaA4MRkmsXQDz95xUuW4dIyKJw4mIFxjend0z1RceqWbztaF4F5RkbK
-         8iww==
-X-Forwarded-Encrypted: i=1; AJvYcCW0T7NcwXfBPxiInDiHoGK2okJOMoGM3wgRsM0AsalBrepLtv3gTQp5pgAtZHR3ONlqFP8/O2+/NDw/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzodItuuj2zBQWUMCks/L2uoizJbGlbSLDJiwt7ELclJW9cKGi
-	G0FdS1zan6Vv/xkfBktcAH5mznrcP4oX58d/gCbXnMoS4ZiJMceQKo4V
-X-Gm-Gg: AZuq6aJmna/jZky813AzxlKfcgiTFg7ssgs5bueXj5kTzzJfoNb3EU+/mQXCvc/liCW
-	bxStd5vu7eNH3ft/mW2j7AXvexkdIk8hCPCS9JnbX1LDb/EjMymOI2ih2se1l6cdf91omdfuBVw
-	VBIud4mdpraefrUjYCVhDdBWZXkDbJO7f3fZvgYvU4AUvn3cfTLdQJAUP3z3XpK4Pg+BZ/kmL1x
-	/LmDL3w2PxVFKeO+LsMubwDYVgHa6Fpa1ZTEfDswCIEQZNpozzYvnZ9jIPyHrROEcuEd7n3npPw
-	0TojoVOwE1ZWa/mKshlkcRb3xl6yviffsiMH3sztybVWVwK7k2vLQSRtEanLqu3/LndrvW941rj
-	1B8qdJ0a6HKc0GLTB6QCzm2Qi+xFc5uvWO1bHAc0+NlqEHqkpSHjFV6NFEIglehZmLW+JAF0ax4
-	rraRr01EakMpPCqwN23Z3yrH67TqmwRTl8jPx+KaRq7qli/isfY2UWh3lALKSdUXnVKvx8jOw/b
-	Jwf1F4u9+XUQ/EfxmKcJ8Rb8A==
-X-Received: by 2002:a05:6214:21a3:b0:896:f3de:cc2d with SMTP id 6a1803df08f44-896f3decd51mr114935096d6.21.1770689868858;
-        Mon, 09 Feb 2026 18:17:48 -0800 (PST)
-Received: from localhost (bras-base-toroon21-grc-75-184-144-58-243.dsl.bell.ca. [184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8caf7aed5d9sm930556585a.14.2026.02.09.18.17.48
+        d=1e100.net; s=20230601; t=1770689971; x=1771294771;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S/hXVVFZ9xkdTyzbj181YKI3deT99BWwoqpKjOX9aJk=;
+        b=bxX/FqlU2RKoWGSoetk3+qZPfE3fTYfCOxe5fnW459iVPKW7O35Xsk7dlmNJN9RvB7
+         nPPT+Ciz5iQu/HLgs5zizHjTEIwjDa5kIxvQRNAl+7CpsU/hWqQW1bnseFrVvm/ND6Dh
+         vrEP83nlEXV0/uLjTMr3HP/8nqyW6vGVF5UBwOO+2aXfxDy4vI7bb0Quqtr6/O9vrH9I
+         kZVDC+H/WUxZO+pTT5fmemyLm3SOHRAmk7qUkAAxwpmtGwDHABCJMJ161iIunA8ljHBt
+         ggHmwSqXgah9b6oOkOknsIYTsupkJSCZSm+EGYEgCkfFy2uCnf0sQWuPDWm4vQv46ae9
+         28iw==
+X-Forwarded-Encrypted: i=1; AJvYcCWRQP1XuTXAPHYVBDP4qlYY8rMF/RgKCafXP5yH8nL1QFh1hOYRB94rAT/sZYD2Qqh9rJFJyvInriSb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw906wul2bYJD61EePYtWmYU7B21HNF5PJ+p5BKkM6jcDz/1mM3
+	HGjedYCdFP+inJ+a5YPsY++LNYTnYNhNlm9yPvPsEYiwT+OegQn+/DYX
+X-Gm-Gg: AZuq6aI3h3FGKfgEe/0U3UeHIWZOWVujKcpJZI4gGBJBZBxxuiupnjLva9I03RLkgGy
+	ZTnNFGZ78sRvEfjBdTnmDcR87Cq0n3Pd6eFrwTF+WSIqbQ56F/g+rg286lEogfF8ZjdMXJBp2de
+	rf1TVUTLDT/SYhpQoDNRx9I9iEgV8l3uwAWQaPDvyO7bwiggd1D6omBvcdTsQKiC3WfyXYuacWK
+	kjlGb3jYohGnQ4PlTwOJkPg2od9pcbqV88MPl7HB/H4nNNJGi60wY6CzlN2nWbXoUoVL67x6qdu
+	zhlO3mBq7zIanpv3ha6eje54z8Iga7Ihv0TG59LNjkvB7Tl+RzKrr4EF4WCTWJmYlOofHwNGkdD
+	FENc2Q2LMxZap0pILn6LV7UWbcHnqHXL5eMl8B+TnHfKL/eGD1NqXxEkxl0lGjfYqjgeYqAx8sE
+	+/b3WD8lff0m/FzW1hzXsJqdqY7w==
+X-Received: by 2002:a05:622a:48a:b0:506:1c5e:d1c2 with SMTP id d75a77b69052e-506398adeaamr188453821cf.27.1770689971445;
+        Mon, 09 Feb 2026 18:19:31 -0800 (PST)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-5063929099asm89000011cf.22.2026.02.09.18.19.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Feb 2026 18:17:48 -0800 (PST)
+        Mon, 09 Feb 2026 18:19:30 -0800 (PST)
 From: Richard Acayan <mailingradian@gmail.com>
-To: Lee Jones <lee@kernel.org>,
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Conor Dooley <conor@kernel.org>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Amit Kucheria <amitk@kernel.org>,
-	Thara Gopinath <thara.gopinath@gmail.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
 	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org
+	devicetree@vger.kernel.org
 Cc: Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: pm660: add thermal monitor
-Date: Mon,  9 Feb 2026 21:18:19 -0500
-Message-ID: <20260210021819.12673-4-mailingradian@gmail.com>
+Subject: [PATCH 0/3] SDM670 cache controller support
+Date: Mon,  9 Feb 2026 21:19:54 -0500
+Message-ID: <20260210021957.13357-1-mailingradian@gmail.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260210021819.12673-1-mailingradian@gmail.com>
-References: <20260210021819.12673-1-mailingradian@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -112,69 +98,49 @@ Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264195-lists,devicetree=lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,linaro.org,intel.com,arm.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-264196-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_PROHIBIT(0.00)[0.0.13.72:email,0.0.17.148:email];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.85:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DE1191163D6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6A8861163E5
 X-Rspamd-Action: no action
 
-The thermal monitor is used to monitor arbitrary ADC-based thermal
-sensors. It is suitable for use in thermal zones. Add support for it in
-PM660.
+This adds support for the Low-Level Cache Controller (LLCC) on SDM670.
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
----
- arch/arm64/boot/dts/qcom/pm660.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Richard Acayan (3):
+  dt-bindings: cache: qcom,llcc: Add SDM670 compatible
+  soc: qcom: llcc: Add configuration data for SDM670
+  arm64: dts: qcom: sdm670: add llcc
 
-diff --git a/arch/arm64/boot/dts/qcom/pm660.dtsi b/arch/arm64/boot/dts/qcom/pm660.dtsi
-index 156b2ddff0dc..7cedf6980b34 100644
---- a/arch/arm64/boot/dts/qcom/pm660.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm660.dtsi
-@@ -197,6 +197,16 @@ channel@85 {
- 			};
- 		};
- 
-+		pm660_adc_tm: adc-tm@3400 {
-+			compatible = "qcom,spmi-adc-tm-hc";
-+			reg = <0x3400>;
-+			interrupts = <0x0 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
-+			#thermal-sensor-cells = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		pm660_rradc: adc@4500 {
- 			compatible = "qcom,pm660-rradc";
- 			reg = <0x4500>;
+ .../devicetree/bindings/cache/qcom,llcc.yaml  |   2 +
+ arch/arm64/boot/dts/qcom/sdm670.dtsi          |  11 ++
+ drivers/soc/qcom/llcc-qcom.c                  | 105 ++++++++++++++++++
+ 3 files changed, 118 insertions(+)
+
 -- 
 2.53.0
 
