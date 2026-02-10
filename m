@@ -1,323 +1,235 @@
-Return-Path: <devicetree+bounces-264428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264436-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eOalIwE5i2kKRwAAu9opvQ
-	(envelope-from <devicetree+bounces-264428-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:56:17 +0100
+	id kOv5NDw5i2neRgAAu9opvQ
+	(envelope-from <devicetree+bounces-264436-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:57:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E26B11B947
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:56:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A1ED11B9CC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:57:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E02CA30A85C3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:52:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8A51B3002B6E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6034636A02B;
-	Tue, 10 Feb 2026 13:51:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DEA1329E6D;
+	Tue, 10 Feb 2026 13:53:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dA+JJVfx";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TB2eUi9E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A5D366DAF
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 13:51:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 787BF30E0CC
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 13:53:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770731484; cv=none; b=iSqJfzxV933b7w9FWo+x0W0keRbov8UW3T+KDnCyEsroxSuede7Zra2ntFTEa4RRLeovoZT8FMW90wljYD7s92K0jd2LHmwnGWqWeXF6O5JUhpXGyjfMZ5/73AW04alVLOq3vedT9c6qaGFG++uaJ9GVR9F2cN3yR/snfnA2ASE=
+	t=1770731601; cv=none; b=XFWFgTlsbKtdd1Bn3gXRQJ7YYqw8Q/9ivHTleCzuw0qZ/L60v4zYVDucGVm/4l98tZRNpoZuY9zNkdhlDlCsdaLE7R2GnLNAadqwFtikqakfdx4Av+fMFzInI4iSqDEKonDHtJJKlRzThqsKNyyeBukohYR3F9GdfQ5BW8yUt7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770731484; c=relaxed/simple;
-	bh=Duho69ITpR1VQoZFjLUSXTKeJiyYZw2J2OMqeEZCkDM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=F+Z3vE9vuhptWPnpazpFJhg13SD1didLhM6ZVkxHumqWADDgl4olZvvilGgGpCwMq4oqtxTQ5PCcrTcNeFdNhJ1JcZiNxxJJo0t0WeOGaAh6MMUsBYY0pwOI/Zl4oROcKrMl+eSrBtoeWT0isBtv/bgZ+zKsQDh7ApXTFu882l0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vpo93-0005dU-HZ; Tue, 10 Feb 2026 14:51:13 +0100
-Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vpo92-0005dI-15;
-	Tue, 10 Feb 2026 14:51:12 +0100
-Received: from ore by dude04 with local (Exim 4.98.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vpo92-00000008VP3-40bY;
-	Tue, 10 Feb 2026 14:51:12 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Andy Shevchenko <andriy.shevchenko@intel.com>,
-	kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Andy Shevchenko <andy@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-	David Jander <david@protonic.nl>
-Subject: [PATCH v6 12/12] iio: dac: ds4424: add Rfs-based scale and per-variant limits
-Date: Tue, 10 Feb 2026 14:51:10 +0100
-Message-ID: <20260210135110.2027073-13-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260210135110.2027073-1-o.rempel@pengutronix.de>
-References: <20260210135110.2027073-1-o.rempel@pengutronix.de>
+	s=arc-20240116; t=1770731601; c=relaxed/simple;
+	bh=erLQoruVgdG1tPtGnSYjEdMaQh7l+bORlfqid1duOSU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NXM3vFXzg1bz8m4yzNrG4hDBrGAPbnSEHq10a+Pg7s9Zbo+n6clrSEs9uP0Fj/FKX3rmNxtMuzC8k6u8VfIGHcfVWFZpYYsbD8HWZ3jA9v+P5FlC+asGdpy+UlQrcXXUdGrSInGnQ5K2GoDj/WtLCWY4Z2BMAU10xNu9cwnA6i4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dA+JJVfx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=TB2eUi9E; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61A72Q5G441443
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 13:53:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	DmF4Gfu8XO9Rvxh6aUMFei3U16jyA5Bxui9UplFPhvs=; b=dA+JJVfxOU/pc2T/
+	FCMosy2Uzx+iIQq26U2S9qKh9Sbi4B/2N4TuE3FzSRRE74FCTUNwXDsUnopEOZJJ
+	Bk4B+AjdTZGDva8hklcZbFPfB8n9Dq0PTE+LhbnpsBDFmWm28HSQgfkFB+nN7wcm
+	e9ElENDbS3m7e1PSg04sk/ott+l5frxFIJtwdujb3DVmpuBmJ0VIcnxUPoHiSDlX
+	+v7QZ4sTIh850AIsNQeusPJCtjGaKT8y20QGP/GDKypBDOoS6a5Gx8Y3e5BTeHjv
+	7TEKNppKN7BhHJrYVb4F7eahcZM9HsF/92jsq1sofDPOtBncWDyRq0x/p+7Ga7Wg
+	bdNNiQ==
+Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c7qp9jsyu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 13:53:19 +0000 (GMT)
+Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-2b6b9c1249fso4517682eec.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 05:53:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770731599; x=1771336399; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DmF4Gfu8XO9Rvxh6aUMFei3U16jyA5Bxui9UplFPhvs=;
+        b=TB2eUi9ECv4sgbedB1+8VcAR6ds7UFDy3pgTZ93R+fMqgzA9wlUABLlCD1K/9jUP+/
+         Z0Anc7F0QRK+wN1SBKADKUyOTgIvoVtTN96VmgGOTakUVIGlqmQJBQSsOhz/224i982m
+         hoMP6qSQGyyV7UhVRlFUsnaHu0P+5dvdxO0l8YD5DG1HH4m1tBIwWuGBityZkOn2s7BD
+         dmU7zVoIOlelDpj5QgHUfe08wVmcigJiuhATVR2XxNah/HUy/6ROwiVpc08VhvOWQ6+N
+         HZ+l2dS7vWyrbVQUIJOlucv6T/9vIj3AFipEAGbkaNnonccqKbJnFX2dMu/1Y/Wi7857
+         Sv0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770731599; x=1771336399;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DmF4Gfu8XO9Rvxh6aUMFei3U16jyA5Bxui9UplFPhvs=;
+        b=bUeNx9bX78+fYnQB39YDksTCPWDYY6tmsmLfHE1TSZdhzfo46c/xRBq+VAVDYKb2RM
+         hECxROjYutP77wZYYY1/J5PuZrBqg3eqDtyxDPZ7wXaiUiTVjX7DPV73xJR8sXFJk76W
+         QsLe7wcVcCJGeRlMmuA/D/u/14ksDuUgIF/rmgLe9oik/Xv90802aBF3SPgkjfkwqNWQ
+         n94U8XWOO9hF8nUUVhbm9TZF4IP7uKcohb34KX8uv8RoJy3fPmkP8MHb/NfT4LzQ1+d2
+         FzUaJGdWDf5b5fJghDaBMEBSwVZIm/5JTtz92uCtLZem3iug12ByiUXIYeWQ/aG+I4sC
+         0Mbg==
+X-Forwarded-Encrypted: i=1; AJvYcCW9ZzUAI/eQqr35fi5nMFpPfrGPX6FpeA6kSWYLa9U1ot0NE+ECRkDTmJA/qvjdmjzvQXM0SaK73mAL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxkc4uOzkzm2fDsLIrkTqFpgP7o1wiiferjMitYraPwH/WCRJ6I
+	Gp3lIcu42pwtFiBx6fcPmq9oD7DmTgNHz7H9Rt5aP53pnvkGk2Xsx7fryFVDiZy9F3CEZoWgoHU
+	nFqhB/S4AONbCUrrx36/trNmh8v0bOdttF7na1D1X8+W4gitoHXALq+xBP54X5x2K
+X-Gm-Gg: AZuq6aKjI1MiD4hSHL6BLuv5JYuUA0KL/qhvN41XQwCrfaicSVG1gMVo4wgaV2aX12j
+	xAZpePY0UHhM06334T0ezJ1pq9eRXmtzGpgq1K3/hGOtGhVvjilqMkk21Fzsys0tqIuqqVZJCKo
+	i/WRCnkCEKP6WYLd0h0XuXRz8JknaCOjwnvL5KKj7l9eOgH98k0MFZynaQ4L8iH+Ne0kPrTfgv7
+	tpT69kGZ/h4N/cR4rYV9UhtFDnfoi7nq2Ecz0lIgaAQgm5kUJB1uR3BWWZorZ7QYmtEczHU1I+o
+	KLwTp5vABwGgjV1Ew45I/y3oHMeQZtIBOQ0hL/CqvcH/RGhQfJcV4Ant3JrRTGcW1j31VVpYt23
+	JPwcclk9Urt0rCyGxRQRJa1cvuhA2PfHMm+1BZk+3VQLdsk2d
+X-Received: by 2002:a05:7300:572c:b0:2ae:55f0:f2be with SMTP id 5a478bee46e88-2b85683e423mr6864662eec.31.1770731598933;
+        Tue, 10 Feb 2026 05:53:18 -0800 (PST)
+X-Received: by 2002:a05:7300:572c:b0:2ae:55f0:f2be with SMTP id 5a478bee46e88-2b85683e423mr6864647eec.31.1770731598389;
+        Tue, 10 Feb 2026 05:53:18 -0800 (PST)
+Received: from [10.218.16.122] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b855c88cb4sm9295064eec.30.2026.02.10.05.53.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Feb 2026 05:53:18 -0800 (PST)
+Message-ID: <dada4a44-f464-4325-9082-50029d6a4555@oss.qualcomm.com>
+Date: Tue, 10 Feb 2026 19:23:11 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] Bluetooth: qca: add QCC2072 support
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bartosz Golaszewski <brgl@kernel.org>, quic_mohamull@quicinc.com,
+        quic_hbandi@quicinc.com, linux-bluetooth@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Rob Herring
+ <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+        Rocky Liao <quic_rjliao@quicinc.com>
+References: <20260209080613.217578-1-vivek.sahu@oss.qualcomm.com>
+ <20260209080613.217578-3-vivek.sahu@oss.qualcomm.com>
+ <CAMRc=MfT7ourMH+ShJpnBAjv_uOb_ds0rxJOYaz_HsoT45dJYA@mail.gmail.com>
+ <cbc0b42d-fb5f-45b8-9074-d0bcc64a9de1@oss.qualcomm.com>
+ <erc5u6hzofidlf54dsz7htta55o4xwgihgh4tu6mqkg2ijz3fo@6hd6q6iljrfq>
+Content-Language: en-US
+From: Vivek Sahu <vivek.sahu@oss.qualcomm.com>
+In-Reply-To: <erc5u6hzofidlf54dsz7htta55o4xwgihgh4tu6mqkg2ijz3fo@6hd6q6iljrfq>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: d6-Z8LDi1-4NWyYahr7d_yhJ8-qIWb9K
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjEwMDExNyBTYWx0ZWRfXx1Sobk8VKdJ5
+ ZHJoJaU+2PH262XxdEIeMk8QUssjAXTAwhzFCB1zKjhKXpm0Fo5MegExwgfG0K9l3xc4caD5WmQ
+ GzZCPcRbghHQm3Wk3r6oiqUDUkcu9QVZwoS50L1pkhkEIeUn18hCfnRjY+0p3FgOnZscR4MGPUq
+ YAIukPcjsXqEAIrGisr/dIf406+kK0bYIRAaSGwmoxextnCGgLif2y8Tmeb9xynzbr2H9Lt6liG
+ WbaQCeEuZAIEmbkJlNLQcpWiHaSA+Px72y1SbwYJ0oim0x2kOV5gt/pMzAR+RYHJwHGRmSilpa7
+ NGEa7lh8AChmc/KFSxHYCHMWlb8AVXussVYj+t/7jkXEPJoLloXgteD65rKje6u17idoU1rcO50
+ xsN1u6VRVUHK7gi5pmwNhJq9x+nO3yJee8Z2I8b03Sz9XSGp1Vrizp+1ryqX3fRbs5gE6Rla3Ox
+ LVbsfRJDkzsaiN5/9nA==
+X-Authority-Analysis: v=2.4 cv=dP2rWeZb c=1 sm=1 tr=0 ts=698b384f cx=c_pps
+ a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=EUspDBNiAAAA:8 a=UT5QHHMPRZfFomOLfS4A:9 a=QEXdDO2ut3YA:10
+ a=bBxd6f-gb0O0v-kibOvt:22
+X-Proofpoint-ORIG-GUID: d6-Z8LDi1-4NWyYahr7d_yhJ8-qIWb9K
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-10_01,2026-02-10_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 clxscore=1015 impostorscore=0 phishscore=0 lowpriorityscore=0
+ spamscore=0 priorityscore=1501 adultscore=0 bulkscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602100117
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	RCVD_COUNT_FIVE(0.00)[6];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-264428-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-264436-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,quicinc.com,vger.kernel.org,holtmann.org,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[vivek.sahu@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:email]
-X-Rspamd-Queue-Id: 2E26B11B947
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 3A1ED11B9CC
 X-Rspamd-Action: no action
 
-Parse optional maxim,rfs-ohms values to derive the per-channel output
-current scale (mA per step) for the IIO current ABI.
 
-Behavior changes:
-- If maxim,rfs-ohms is present, IIO_CHAN_INFO_SCALE becomes available
-  and reports mA/step derived from Rfs.
-- If maxim,rfs-ohms is missing, SCALE is not exposed to keep older DTs
-  working without requiring updates.
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
----
-changes v6:
-- no changes
-changes v5:
-- no changes
-changes v4:
-- Split series: moved infrastructure and RAW limit fixes to a preceding patch.
-- Replaced dynamic channel allocation (devm_kmemdup_array()) with static
-  const arrays (ds4424_channels_with_scale) to handle the two states.
-- Removed log message when maxim,rfs-ohms is missing.
-changes v3:
-- Added explicit check for negative return from device_property_count_u32().
-- Rename vref_mv to vref_mV
-- Use devm_kmemdup_array() instead of devm_kmemdup()
-- Use %u for unsigned index in Rfs error logs.
-- Consolidated Rfs parse logs to a single line.
-changes v2:
-- Reorder struct ds4424_chip_info members to optimize padding.
-- Use GENMASK() for chip variant masks instead of hex constants.
-- Simplify ds4424_setup_channels: use direct devm_kmemdup to avoid stack
-  usage and memcpy.
-- Use local 'dev' pointer and dev_err_probe() in ds4424_parse_rfs for
-  cleaner error handling.
-- Rename the static iio_info struct to ds4424_iio_info to prevent name
-  collision with the new hardware chip_info structs.
-- Use unsigned int for loop counters.
-- Rebase on top of regmap and symmetrical raw_access refactoring.
----
- drivers/iio/dac/ds4424.c | 81 +++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 80 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/iio/dac/ds4424.c b/drivers/iio/dac/ds4424.c
-index 16de31665eff..48dbe7f5727b 100644
---- a/drivers/iio/dac/ds4424.c
-+++ b/drivers/iio/dac/ds4424.c
-@@ -12,6 +12,7 @@
- #include <linux/i2c.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-+#include <linux/property.h>
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
- #include <linux/time64.h>
-@@ -39,32 +40,51 @@
- 	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW), \
- }
- 
-+#define DS4424_CHANNEL_WITH_SCALE(chan) { \
-+	.type = IIO_CURRENT, \
-+	.indexed = 1, \
-+	.output = 1, \
-+	.channel = chan, \
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | \
-+			      BIT(IIO_CHAN_INFO_SCALE), \
-+}
-+
- struct ds4424_chip_info {
- 	const char *name;
-+	int vref_mV;
-+	int scale_denom;
- 	u8 result_mask;
- 	u8 num_channels;
- };
- 
- static const struct ds4424_chip_info ds4402_info = {
- 	.name = "ds4402",
-+	.vref_mV = 1230,
-+	.scale_denom = 4,
- 	.result_mask = DS4404_DAC_MASK,
- 	.num_channels = DS4422_MAX_DAC_CHANNELS,
- };
- 
- static const struct ds4424_chip_info ds4404_info = {
- 	.name = "ds4404",
-+	.vref_mV = 1230,
-+	.scale_denom = 4,
- 	.result_mask = DS4404_DAC_MASK,
- 	.num_channels = DS4424_MAX_DAC_CHANNELS,
- };
- 
- static const struct ds4424_chip_info ds4422_info = {
- 	.name = "ds4422",
-+	.vref_mV = 976,
-+	.scale_denom = 16,
- 	.result_mask = DS4424_DAC_MASK,
- 	.num_channels = DS4422_MAX_DAC_CHANNELS,
- };
- 
- static const struct ds4424_chip_info ds4424_info = {
- 	.name = "ds4424",
-+	.vref_mV = 976,
-+	.scale_denom = 16,
- 	.result_mask = DS4424_DAC_MASK,
- 	.num_channels = DS4424_MAX_DAC_CHANNELS,
- };
-@@ -73,6 +93,8 @@ struct ds4424_data {
- 	struct regmap *regmap;
- 	struct regulator *vcc_reg;
- 	const struct ds4424_chip_info *chip_info;
-+	u32 rfs_ohms[DS4424_MAX_DAC_CHANNELS];
-+	bool has_rfs;
- };
- 
- static const struct iio_chan_spec ds4424_channels[] = {
-@@ -82,6 +104,13 @@ static const struct iio_chan_spec ds4424_channels[] = {
- 	DS4424_CHANNEL(3),
- };
- 
-+static const struct iio_chan_spec ds4424_channels_with_scale[] = {
-+	DS4424_CHANNEL_WITH_SCALE(0),
-+	DS4424_CHANNEL_WITH_SCALE(1),
-+	DS4424_CHANNEL_WITH_SCALE(2),
-+	DS4424_CHANNEL_WITH_SCALE(3),
-+};
-+
- static const struct regmap_range ds44x2_ranges[] = {
- 	regmap_reg_range(DS4424_DAC_ADDR(0), DS4424_DAC_ADDR(1)),
- };
-@@ -174,6 +203,15 @@ static int ds4424_read_raw(struct iio_dev *indio_dev,
- 			*val = -*val;
- 
- 		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		if (!data->has_rfs)
-+			return -EINVAL;
-+
-+		/* SCALE is mA/step: mV / Ohm = mA. */
-+		*val = data->chip_info->vref_mV;
-+		*val2 = data->rfs_ohms[chan->channel] *
-+			data->chip_info->scale_denom;
-+		return IIO_VAL_FRACTIONAL;
- 
- 	default:
- 		return -EINVAL;
-@@ -212,6 +250,39 @@ static int ds4424_write_raw(struct iio_dev *indio_dev,
- 	}
- }
- 
-+static int ds4424_parse_rfs(struct i2c_client *client,
-+			    struct ds4424_data *data,
-+			    struct iio_dev *indio_dev)
-+{
-+	struct device *dev = &client->dev;
-+	int count, ret;
-+
-+	if (!device_property_present(dev, "maxim,rfs-ohms"))
-+		return 0;
-+
-+	count = device_property_count_u32(dev, "maxim,rfs-ohms");
-+	if (count < 0)
-+		return dev_err_probe(dev, count, "Failed to count maxim,rfs-ohms entries\n");
-+	if (count != indio_dev->num_channels)
-+		return dev_err_probe(dev, -EINVAL, "maxim,rfs-ohms must have %u entries\n",
-+				     indio_dev->num_channels);
-+
-+	ret = device_property_read_u32_array(dev, "maxim,rfs-ohms",
-+					     data->rfs_ohms,
-+					     indio_dev->num_channels);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read maxim,rfs-ohms property\n");
-+
-+	for (unsigned int i = 0; i < indio_dev->num_channels; i++) {
-+		if (!data->rfs_ohms[i])
-+			return dev_err_probe(dev, -EINVAL, "maxim,rfs-ohms entry %u is zero\n", i);
-+	}
-+
-+	data->has_rfs = true;
-+
-+	return 0;
-+}
-+
- static int ds4424_suspend(struct device *dev)
- {
- 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-@@ -291,7 +362,6 @@ static int ds4424_probe(struct i2c_client *client)
- 	fsleep(1 * USEC_PER_MSEC);
- 
- 	indio_dev->num_channels = chip_info->num_channels;
--	indio_dev->channels = ds4424_channels;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
- 	indio_dev->info = &ds4424_iio_info;
- 
-@@ -299,6 +369,15 @@ static int ds4424_probe(struct i2c_client *client)
- 	if (ret)
- 		goto fail;
- 
-+	ret = ds4424_parse_rfs(client, data, indio_dev);
-+	if (ret)
-+		goto fail;
-+
-+	if (data->has_rfs)
-+		indio_dev->channels = ds4424_channels_with_scale;
-+	else
-+		indio_dev->channels = ds4424_channels;
-+
- 	ret = iio_device_register(indio_dev);
- 	if (ret < 0) {
- 		dev_err(&client->dev,
--- 
-2.47.3
-
+On 2/10/2026 5:46 PM, Dmitry Baryshkov wrote:
+> On Tue, Feb 10, 2026 at 05:41:13PM +0530, Vivek Sahu wrote:
+>>
+>> On 2/9/2026 5:04 PM, Bartosz Golaszewski wrote:
+>>> On Mon, 9 Feb 2026 09:06:13 +0100, Vivek Sahu
+>>> <vivek.sahu@oss.qualcomm.com> said:
+>>>> QCC2072 is a family of WiFi/BT connectivity chip.
+>>>> It requires different firmware files and has different
+>>>> configurations , so add it as a separate SoC type.
+>>>>
+>>>> Correct the sorting of other chipsets for better readability.
+>>>>
+>>>> The firmware for these chips has been recently added to the
+>>>>       linux-firmware repository and will be a part of the upcoming
+>>>>       release.
+>>> Something is wrong with formatting here.
+>>>
+>>> I would personally split the sorting and support for the new model into two
+>>> patches - without and with functional changes respectively - for easier review.
+>>>
+>>> Bartosz
+>>
+>> Yes, I'm now splitting this patch into 2 parts, one for sorting another one
+>> for new model
+>>
+>> support. Please ignore this patch.
+> 
+> Please stop adding extra empty lines between (or fix your email client).
+> 
+>>
+>> Sorting change has been raised with tittle "[PATCH v1] Bluetooth: qca:
+>> Refactor code on
+>>
+>> the basis of chipset names". Please approve it at quickest so that we can
+>> raise new model
+>>
+>> addition code changes on top of that.
+> 
+> 
+> Why couldn't you send it as 2 patches in a single series?
+> 
+this change includes driver change and yaml change. In recent
+bluetooth-next branch there is a new style of documentation of bindings
+comes as "Split to separate schema". I need to re-modify my patch again
+and compile. Splitting patch seems more convenient for code submission 
+and addressing review comments.
 
