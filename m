@@ -1,82 +1,77 @@
-Return-Path: <devicetree+bounces-264421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264422-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mPnFB7Y1i2myRgAAu9opvQ
-	(envelope-from <devicetree+bounces-264421-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:42:14 +0100
+	id OHKgAOw3i2neRgAAu9opvQ
+	(envelope-from <devicetree+bounces-264422-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:51:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3098C11B532
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:42:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5714011B6D1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:51:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 44D5C3006089
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:42:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 240093033D31
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:48:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03AFE329E65;
-	Tue, 10 Feb 2026 13:42:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8945632AAAF;
+	Tue, 10 Feb 2026 13:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="myUYicc/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tB5ySOaJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4DDA328B7D
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 13:42:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64AA432A3CC
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 13:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770730928; cv=none; b=TBTWVmQUTOF0HuULnTND8kxsbxNhd6814L2NadLwUoldhsRINHW82ljeBw15cP5/wJgYRcy1dH1cLNIXU/PmqSSDNalQ9sSq44r2z0EqzABrtLku8y0CM8ZhId1gHIfTnYX6BYk3aVepYY+855+5ZzEozBUJYW3mZGZIeTQrq7M=
+	t=1770731288; cv=none; b=dkDADuiAb/R/pmVZ7RNpbKf+Unx6tCOQzStLJ0LP67aGQch63CCr0gmh8waQJZenngfr1ncm77kH0p4mveIVDl89lV4o2XuvHUSIicnFZydxLBMO4FZIw74PL9he7fJvxaek2KcExAHOHmJO8u0UDysz14S1PBkT31KtAY9JI14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770730928; c=relaxed/simple;
-	bh=KvCWqb2hqYTj26lrrDonWv4/5HcZhD/EcQOLJLovuUI=;
+	s=arc-20240116; t=1770731288; c=relaxed/simple;
+	bh=LmTxtKmCP+MxuknULWOn/5V7LbPqudyZbQ+Sx9xXVso=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LrG0jyOQ+HU/X8J1eumV4A/5iFUmAZ+cQEttbHBipy5WNNMNndApB4epC/+Hslou18gMvCHBGp1fXDGElIVAORfEVv7KDQYvGwGWLiX/0kn+DnejoIAZcjAQZw+f0ZjjZ/Qe/LIbsTt/1V7QJwdD+a7EyUQugM2egjh4E1Eiqpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=myUYicc/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81C27C2BCB1
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 13:42:08 +0000 (UTC)
+	 To:Cc:Content-Type; b=R4KcW4isGZtDi5/ftyJ9SEwCeRfHNmcoHBLhKmWLmKDVknTAoH5iqm8UKYip9+EspMHhvSukCDFJhFNStfqN/yoKD1p1+N+EwEfdbkU7ped5YEGrQvic/ezZiBwtO5MnRjPUDr90vjXraWd7BsuRDgHLuj4BLJj6v/AjfLFUeK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tB5ySOaJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC88BC2BC86
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 13:48:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770730928;
-	bh=KvCWqb2hqYTj26lrrDonWv4/5HcZhD/EcQOLJLovuUI=;
+	s=k20201202; t=1770731288;
+	bh=LmTxtKmCP+MxuknULWOn/5V7LbPqudyZbQ+Sx9xXVso=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=myUYicc/p3YYVczXMTgj6o6RxiHJ52msY1URNyD2WD8dKWIH+8EzynRC2t7e2pr5x
-	 PeannzEm9qLGMN9F8WpoxokzBDYaV7JYTqXWPIcDWj42wEUCsh5f3gFly6h0BZ5rIx
-	 7H8YlRHQbwVh84EH4nL9i1b18mPZruFQSFxlr0oVOpLqiXy3oUlrgzYbyZR3URHtvE
-	 bvlBG2EfS6PLcQfdhuf1z2c9P6cVRoJS5XdH6opU8WNtH6u9lZD257uUVfJ4uCb+yx
-	 6MsLCjmizr37jWfMrnrArF/xw9P1KS1bR42QKRWu6O/HqvFAJ+eYcb0XrwXPZQhRJT
-	 oGwEpwq+8im5w==
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-658cc45847cso1285311a12.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 05:42:08 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVpzl8IUC1R6qYR7+gBK8nuqLewzw/uW0o2AiWeuGK6d6HxPte6S1dukrKrLgdo1BLr7ee+ZjO5QG7l@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCge0bVXQiFwQ88J9N4/1RwewTqCGFxkApefLV6yvF5Hftxv+P
-	c9j1I+ECsYNGmgSp5IGFZcWZivGIfneIrLlt+NdGfel6kBl/HozdQYx0TuQeUxRQJKbNN1pvM4n
-	pjEd7Va9RLGViw603ADu+hR4qe5Hm1w==
-X-Received: by 2002:a50:c8c6:0:b0:65a:2903:3164 with SMTP id
- 4fb4d7f45d1cf-65a2903460fmr254675a12.30.1770730926783; Tue, 10 Feb 2026
- 05:42:06 -0800 (PST)
+	b=tB5ySOaJV8lHri9LqnMSCh2UKkQVk0EUDAuJB4ivOn51t7Ta+0uje4oFdm4ULeDcH
+	 XNyee8K0JOFgDePPFVRW7y8xJBSORn1nRrXltTZZ7J07X9a9h7ogiUWJ348uRyvV6n
+	 2zyKF/IEvFASPBAU/4zNwyGYfbYNzv27+T3o8mQpMmDcGxOEzoXMrCUTCHnu1/+u2E
+	 f93LEBokV3Z70gt31NqJ+juG7b/Y648igJzoDPgF72VKZzAafXWUEkU2Gd9avzvB0f
+	 mQdWKWXn0vznQzE3WdqCAhTxRIU0rb4Jg1lhdJwwmZ3hbG66GtYg6YJf5CHJwKiqqn
+	 b2JY5sl58wVnA==
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-65832e566edso1133597a12.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 05:48:07 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVmKsgrq6E/HZMVkIwMSn9v3GxGGxt+WBFs7AoHBS5SMVfjxODtwXBPHL6Nrk3gazCMVa2jB0LCL5NB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yypd+RDpjn46UkIjorlAVIa96qZ0UJxGXzAxXWahM4bbUsSTrBG
+	FqOkEVAm1KV4dYFJXbPumuXJWgQRd5/KcIlTH2A4fHJbb+Omx4/C07CW7mUFhp6w90tszMYf79W
+	WAPttoXr0GI8P3Pc6GniRybk5gRNZCA==
+X-Received: by 2002:a05:6402:34c2:b0:64b:5f4e:9e6d with SMTP id
+ 4fb4d7f45d1cf-6598416c3dbmr8257225a12.18.1770731286484; Tue, 10 Feb 2026
+ 05:48:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260115125624.73598-1-angelogioacchino.delregno@collabora.com> <20260115125624.73598-4-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20260115125624.73598-4-angelogioacchino.delregno@collabora.com>
+References: <20260122-spear-v1-1-fd44bc79695b@gmail.com>
+In-Reply-To: <20260122-spear-v1-1-fd44bc79695b@gmail.com>
 From: Rob Herring <robh@kernel.org>
-Date: Tue, 10 Feb 2026 07:41:55 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL=zAqyVDAP_B1VW1FWKoS9OEdTNZiZabSNxDscBryYgw@mail.gmail.com>
-X-Gm-Features: AZwV_QhEv7cl8ZxKnJCe5nmdFpEiI7-_VBEnnhT0PzMh2ys-GVQbQoUyTL66giA
-Message-ID: <CAL_JsqL=zAqyVDAP_B1VW1FWKoS9OEdTNZiZabSNxDscBryYgw@mail.gmail.com>
-Subject: Re: [PATCH 3/4] dt-bindings: arm: mediatek: audsys: Support
- mt8192-audsys variant
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, tudor.ambarus@linaro.org, 
-	pratyush@kernel.org, mwalle@kernel.org, miquel.raynal@bootlin.com, 
-	richard@nod.at, vigneshr@ti.com, lgirdwood@gmail.com, broonie@kernel.org, 
-	matthias.bgg@gmail.com, julien.massot@collabora.com, eugen.hristev@linaro.org, 
-	jiaxin.yu@mediatek.com, shane.chien@mediatek.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org, 
-	linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Date: Tue, 10 Feb 2026 07:47:55 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJhnuWzPxUWywZkjt=zc0nSFKP7hM_ekmKKr7p_jXaaag@mail.gmail.com>
+X-Gm-Features: AZwV_QhIFz36bxFd9be2-_8um1iPQH6w35jojRXwkeKdwVtXGhkeLtoijsXwqTY
+Message-ID: <CAL_JsqJhnuWzPxUWywZkjt=zc0nSFKP7hM_ekmKKr7p_jXaaag@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mtd: st,spear600-smi: convert to DT schema
+To: Akhila YS <akhilayalmati@gmail.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
@@ -84,119 +79,169 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264421-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,bootlin.com,nod.at,ti.com,gmail.com,collabora.com,mediatek.com,vger.kernel.org,lists.infradead.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264422-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 3098C11B532
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,nod.at:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5714011B6D1
 X-Rspamd-Action: no action
 
-On Thu, Jan 15, 2026 at 6:56=E2=80=AFAM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
+On Thu, Jan 22, 2026 at 10:23=E2=80=AFAM Akhila YS <akhilayalmati@gmail.com=
+> wrote:
 >
-> Add support for the mediatek,mt8192-audsys compatible, which uses
-> a different audio controller (mt8192-afe-pcm) compared to mt8183
-> and mt2701.
+> Convert STMicroelectronics SPEAr600 Serial Memory Interface (SMI)
+> Controller binding to YAML format.
 >
-> This resolves a dtbs_check warning on all MT8192 devicetrees.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+> Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
 > ---
->  .../arm/mediatek/mediatek,audsys.yaml         | 46 +++++++++++++------
->  1 file changed, 33 insertions(+), 13 deletions(-)
+>  .../devicetree/bindings/mtd/spear_smi.txt          | 29 ---------
+>  .../devicetree/bindings/mtd/st,spear600-smi.yaml   | 72 ++++++++++++++++=
+++++++
+>  2 files changed, 72 insertions(+), 29 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,auds=
-ys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.ya=
-ml
-> index f3a761cbd0fd..09a6c16e7e82 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml
-> @@ -48,19 +48,39 @@ required:
->    - compatible
->    - '#clock-cells'
->
-> -if:
-> -  properties:
-> -    compatible:
-> -      contains:
-> -        const: mediatek,mt8183-audiosys
-> -then:
-> -  properties:
-> -    audio-controller:
-> -      $ref: /schemas/sound/mediatek,mt8183-audio.yaml#
-> -else:
-> -  properties:
-> -    audio-controller:
-> -      $ref: /schemas/sound/mediatek,mt2701-audio.yaml#
+> diff --git a/Documentation/devicetree/bindings/mtd/spear_smi.txt b/Docume=
+ntation/devicetree/bindings/mtd/spear_smi.txt
+> deleted file mode 100644
+> index c41873e92d26..000000000000
+> --- a/Documentation/devicetree/bindings/mtd/spear_smi.txt
+> +++ /dev/null
+> @@ -1,29 +0,0 @@
+> -* SPEAr SMI
+> -
+> -Required properties:
+> -- compatible : "st,spear600-smi"
+> -- reg : Address range of the mtd chip
+> -- #address-cells, #size-cells : Must be present if the device has sub-no=
+des
+> -  representing partitions.
+> -- interrupts: Should contain the STMMAC interrupts
+> -- clock-rate : Functional clock rate of SMI in Hz
+> -
+> -Optional properties:
+> -- st,smi-fast-mode : Flash supports read in fast mode
+> -
+> -Example:
+> -
+> -       smi: flash@fc000000 {
+> -               compatible =3D "st,spear600-smi";
+> -               #address-cells =3D <1>;
+> -               #size-cells =3D <1>;
+> -               reg =3D <0xfc000000 0x1000>;
+> -               interrupt-parent =3D <&vic1>;
+> -               interrupts =3D <12>;
+> -               clock-rate =3D <50000000>;        /* 50MHz */
+> -
+> -               flash@f8000000 {
+> -                       st,smi-fast-mode;
+> -                       ...
+> -               };
+> -       };
+> diff --git a/Documentation/devicetree/bindings/mtd/st,spear600-smi.yaml b=
+/Documentation/devicetree/bindings/mtd/st,spear600-smi.yaml
+> new file mode 100644
+> index 000000000000..8fe27aae7527
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/st,spear600-smi.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/st,spear600-smi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics SPEAr600 Serial Memory Interface (SMI) Control=
+ler
+> +
+> +maintainers:
+> +  - Richard Weinberger <richard@nod.at>
+> +
+> +description:
+> +  The SPEAr600 Serial Memory Interface (SMI) is a dedicated serial flash
+> +  controller supporting up to four chip selects for serial NOR flashes
+> +  connected in parallel. The controller is memory-mapped and the attache=
+d
+> +  flash devices appear in the CPU address space.The driver
+> +  (drivers/mtd/devices/spear_smi.c) probes the attached flashes
+> +  dynamically by sending commands (e.g., RDID) to each bank.
+> +  Flash sub nodes describe the memory range and optional per-flash
+> +  properties.
+> +
 > +allOf:
-> + - if:
-
-Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml:52:2:
-[warning] wrong indentation: expected 2 but found 1 (indentation)
-
-
-> +     properties:
-> +       compatible:
-> +         contains:
-> +           enum:
-> +             - mediatek,mt2701-audsys
-> +             - mediatek,mt7622-audsys
-> +   then:
-> +     properties:
-> +       audio-controller:
-> +         $ref: /schemas/sound/mediatek,mt2701-audio.yaml#
+> +  - $ref: mtd.yaml#
 > +
-> + - if:
-> +     properties:
-> +       compatible:
-> +         contains:
-> +           const: mediatek,mt8183-audiosys
-> +   then:
-> +     properties:
-> +       audio-controller:
-> +         $ref: /schemas/sound/mediatek,mt8183-audio.yaml#
+> +properties:
+> +  compatible:
+> +    const: st,spear600-smi
 > +
-> + - if:
-> +     properties:
-> +       compatible:
-> +         contains:
-> +           const: mediatek,mt8192-audsys
-> +   then:
-> +     properties:
-> +       audio-controller:
-> +         $ref: /schemas/sound/mt8192-afe-pcm.yaml#
+> +  reg:
+> +    maxItems: 1
 > +
->
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  clock-rate:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Functional clock rate of the SMI controller in Hz.
+> +
+> +  st,smi-fast-mode:
+> +    type: boolean
+> +    description: Indicates that the attached flash supports fast read mo=
+de.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clock-rate
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    flash@fc000000 {
+> +        compatible =3D "st,spear600-smi";
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <1>;
+> +        reg =3D <0xfc000000 0x1000>;
+> +        interrupt-parent =3D <&vic1>;
+> +        interrupts =3D <12>;
+> +        clock-rate =3D <50000000>;  /* 50 MHz */
+> +
+> +        flash@f8000000 {
 
-Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml:84:1:
-[warning] too many blank lines (2 > 1) (empty-lines)
+This is now a warning in linux-next:
 
-Please fix as these are warnings in linux-next now.
+Documentation/devicetree/bindings/mtd/st,spear600-smi.example.dtb:
+flash@fc000000 (st,spear600-smi): Unevaluated properties are not
+allowed ('flash@f8000000' was unexpected)
+        from schema $id: http://devicetree.org/schemas/mtd/st,spear600-smi.=
+yaml
 
+Please send a fix (and test your schemas before sending).
 
->  additionalProperties: false
->
-> --
-> 2.52.0
->
+Rob
 
