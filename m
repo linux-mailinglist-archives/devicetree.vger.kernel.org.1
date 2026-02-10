@@ -1,177 +1,250 @@
-Return-Path: <devicetree+bounces-264257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264260-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +AcOEDPjimmjOgAAu9opvQ
-	(envelope-from <devicetree+bounces-264257-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:50:11 +0100
+	id iDgGOR/limndOgAAu9opvQ
+	(envelope-from <devicetree+bounces-264260-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:58:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 990FB118090
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:50:10 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C65A118148
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:58:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 55198301653A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:50:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 006EA30090A9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:58:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E262D32ED25;
-	Tue, 10 Feb 2026 07:50:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l30w6gqK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F18BB33A9C3;
+	Tue, 10 Feb 2026 07:58:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BECB42DF151;
-	Tue, 10 Feb 2026 07:50:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB773385A3
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 07:58:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770709807; cv=none; b=cRNXLySAdunb5EnzQNeIFas4rb+/7QMJgvae9H3f/03W8GS4ia8jp9kIy6S2yFe0+Bl9oH93drAXihWMy3jLDH7IipxlXXdVQ3JVVLLx7wZu2CthR+BqlGPUoRV4kWL3hbHIdQonGaIg2DA5UCa//vjyAMX6JfBPYXUOmndkfaI=
+	t=1770710301; cv=none; b=p5yeTeJVv8LenWLTY3ZccmVyi8Rcf/3yETpm5yUYBH0cm+cz3qMPB274cN2EPqb2w69EdhOQcoNxogwED/5ewtzwQVmrJclb4mL4m4aaGQiJ6LJfU/tIRD5nKstYp7tQaId6jw2W0pCdMnNC74a9Wm0ke/ZlPL6/Q8E93TmRcNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770709807; c=relaxed/simple;
-	bh=+ZTXiS+ZcMTGgYy8SoVJ6FkfY9w4a+b3rDvBpEBn/us=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YHWzzxQgUFDD/gCLE6CScnS7YP8FcjUENddcfrTraWjvKqNFhb2f8a5+8rz15pCy8GR7SOUbWdPYRLi3osX8JVC3b3ynZRxx82sb2TX6PYvTjqsuO+XagVNOwUo+mnBcV5oSOUutYXHMtwyJeq+W0RDeccghhc4WE2yiYCfhMkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l30w6gqK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E416C116C6;
-	Tue, 10 Feb 2026 07:50:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770709807;
-	bh=+ZTXiS+ZcMTGgYy8SoVJ6FkfY9w4a+b3rDvBpEBn/us=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=l30w6gqKg7Rv8Vf1hiseRRKwqaGxhGtarkCjPS8n6CsclScEuYs4eo4mMF6n3Nwfq
-	 bB5bVzDg0ObDkbNkKmP1X1I7k2oe+tX+wXwOXQSdfB8jrxnddL6YYTY/hbjQqu7OBQ
-	 WYP/oWWVQ7lZStORkpBaZMiVa9Sct9QAL1q9c2Bw/5lxEZxHYyFW4niHymkQ8Pbdod
-	 2DmMvbQnYzZbXzwEniMx1cwNtg5hAd1NR4SYMkLCIj9gm+YqfVkAUizK03gmJbpRZH
-	 iRhmhuV60E3tETqkK7+0Z1tPrig+P8HX71Bdn7TRHvgx3eKvZqNGZLEberigxLj6Uc
-	 Lul10l+yw3b0Q==
-Message-ID: <cbdea2e7-a419-483f-8d2a-f0d045737feb@kernel.org>
-Date: Tue, 10 Feb 2026 08:50:03 +0100
+	s=arc-20240116; t=1770710301; c=relaxed/simple;
+	bh=ZBrn2V6Ps9nAXfcemoiQWj+7Cl/HyRPhAU9WPaB6Fxc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PjIKR2NTpIoYg6V3gfOw2fjyciOEjHokBjtRL3gsaQSJqmxqAufYrWC3ThvSmmww3nahC/QX+mPWCVKuEHsm9t5wtc1dk6Ecc3Zi52T0VQqhIXf2Rdk953Get1LJevGrVJfM1AT8CaFetACWZzXpqpbYOMD/a+wY+Yq0e1NbpbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.216.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-354bc7c2c46so1863043a91.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 23:58:20 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770710300; x=1771315100;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=za+ffUzQm9VRZ3fSQVHtfuOR3ywRY/ywHi+DZoQjMUc=;
+        b=PnBHWcL9+URBr+pS30mQynZbI0QTnGJRo7bHXgAsKi4P5NKRh+ddEBrj901mI6bmAd
+         J8pzUSQWDVgT+dun3GrE6KMK51k4YgmnytnoxKAJuetZkABpFZgtOMBy/tjKYaZRa70g
+         Dgeuj3A0laO1gOyteuQx/UeBmiOfoZI5ixbtgsvZzPkxs7kdX/DhAgc9ciNzkWSDkBPF
+         jpR0kRlLZJrcEJR6PV87bZXhUXYCRgmDJqh5XwP15gp6E1V168tdnO3yHEhrruR4hgva
+         lKs9TCoeIqn63a4kDMozJJSKycJzipHx4Ew5Q89T4wEJbsLcToiWmk6lplMpdeMl8NCQ
+         aUuw==
+X-Forwarded-Encrypted: i=1; AJvYcCWx2+zO/Zb/m0rDnkTdti3DsTqT1TyHsC6o42H9+uEMAKf9lwJuPONUy8ajmefFwpqaoGhRYMDHBPKP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsTZ0IYB4WH38kwV7IscUtE4Xjvn3aWvGOFyNGJA3JGImDF/dp
+	X7i/4XugL1za/TGhxzE2n06sljXUmjF5CkGvTZeXUm3d18qSaPjOy7GrDf8RAuCY
+X-Gm-Gg: AZuq6aLrsJM2rotrqp8CHJ9Mhl+NCDa9cHMoKn9Abet4Z8bVBplsC+9okB8zV8J5NfF
+	9Hjorh7UNkTA2lI2Z1YenpfSMngAdvEwsDbJt0U+pZNqqQiQPcv7cLuXXVUN4Xg9c/HklJYKW8d
+	Yre2fQQmcIWZD2NtaS1IqFX/N8plIDPulBKYxvK8QnBdzfTOE1Vz69NmL0THYKrdP0by0p1/KuB
+	kVwVOmt/Yvkoq/Ca96j043qoNQe+rKIXGHLw6g4cf1aHv7Ci6LJXEe5jB+LAC1nBPJGVllyGBrU
+	wmyvuhEznESe3gh32hNqqRBb+cUW9nGIrzQ3vxuUXxK9KSW8mAyjsUvoaNjZ0cw+xiZbfnH5XnZ
+	J+WXgkOUwg+hAPiXozNMIdnG6xJv1ld6oe1xiYz92lj83Y91UtZT2Z1J7WVNpExH2NOw/DCzIqc
+	xtSD5viypuLS+0huR9O71ob2jou5dwZ+snMpo1GduZX5psqu+iq5fE/1JUw8pcACg=
+X-Received: by 2002:a17:90b:3508:b0:341:8b2b:43c with SMTP id 98e67ed59e1d1-35667b4b2ffmr1204305a91.18.1770710299887;
+        Mon, 09 Feb 2026 23:58:19 -0800 (PST)
+Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com. [74.125.82.179])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35662f6b84dsm2231553a91.10.2026.02.09.23.58.19
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Feb 2026 23:58:19 -0800 (PST)
+Received: by mail-dy1-f179.google.com with SMTP id 5a478bee46e88-2b86671f87eso2033188eec.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 23:58:19 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWU944zBVz/jdj6pfa/unohbITtDmsu1AwzsB++N2WIprd/jPQepipAuqBotom5HWqMBQXLJCsPNgpy@vger.kernel.org
+X-Received: by 2002:a05:6122:920:b0:55b:305b:4e31 with SMTP id
+ 71dfb90a1353d-5673dad68b3mr278879e0c.17.1770709845104; Mon, 09 Feb 2026
+ 23:50:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] soc: st: add RISAB dump debug driver
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Theo GOUREAU <theo.goureau-ext@st.com>
-References: <20260209-stm32_risab-v1-0-ef0b2b6a7e0a@foss.st.com>
- <20260209-stm32_risab-v1-2-ef0b2b6a7e0a@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260209-stm32_risab-v1-2-ef0b2b6a7e0a@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260208-rz-sdio-mux-v9-0-9a3be13c1280@solid-run.com>
+ <20260208-rz-sdio-mux-v9-3-9a3be13c1280@solid-run.com> <bc5fbfc5-6f71-eeed-ad90-0c1b835e65ea@axentia.se>
+ <fcef2798-1645-41fb-952e-daf3657bc231@solid-run.com> <704210e0-2e53-09f6-9f8c-3ae0c4b8e0da@axentia.se>
+ <9d7bda92-e520-466a-a0be-d01686af1d56@solid-run.com> <f4d8547d-3de3-0de5-da61-3de57d9af895@axentia.se>
+In-Reply-To: <f4d8547d-3de3-0de5-da61-3de57d9af895@axentia.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 10 Feb 2026 08:50:33 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUEZZ+p+yaQDWhVCRNEQUygR2j=HpCp5LuzFU3E=qVNXg@mail.gmail.com>
+X-Gm-Features: AZwV_QjWs_kGwWtLP-4KOwLJynmxdzZD9XMo5f_JCKEF6YiXm5BZAUIGiU8_kRM
+Message-ID: <CAMuHMdUEZZ+p+yaQDWhVCRNEQUygR2j=HpCp5LuzFU3E=qVNXg@mail.gmail.com>
+Subject: Re: [PATCH v9 3/7] mux: add help text for MULTIPLEXER config option
+To: Peter Rosin <peda@axentia.se>
+Cc: Josua Mayer <josua@solid-run.com>, Marc Kleine-Budde <mkl@pengutronix.de>, 
+	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
+	Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+	Janusz Krzysztofik <jmkrzyszt@gmail.com>, Vignesh R <vigneshr@ti.com>, 
+	Andi Shyti <andi.shyti@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Yazan Shhady <yazan.shhady@solid-run.com>, Jon Nettleton <jon@solid-run.com>, 
+	Mikhail Anikin <mikhail.anikin@solid-run.com>, 
+	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>, 
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>, 
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>, 
+	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264257-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[foss.st.com,kernel.org,gmail.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_CC(0.00)[solid-run.com,pengutronix.de,kernel.org,linaro.org,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com,vger.kernel.org,lists.infradead.org];
+	DMARC_NA(0.00)[linux-m68k.org];
+	RCPT_COUNT_TWELVE(0.00)[32];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-264260-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 990FB118090
+	DBL_BLOCKED_OPENRESOLVER(0.00)[axentia.se:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid,solid-run.com:email,linux-m68k.org:email]
+X-Rspamd-Queue-Id: 8C65A118148
 X-Rspamd-Action: no action
 
-On 09/02/2026 15:59, Gatien Chevallier wrote:
-> +
-> +static int stm32_risab_register_debugfs(struct risab_pdata *pdata)
-> +{
-> +	struct dentry *root = NULL;
-> +
-> +	root = debugfs_lookup("stm32_firewall", NULL);
-> +	if (!root)
-> +		root = debugfs_create_dir("stm32_firewall", NULL);
-> +
-> +	if (IS_ERR(root))
-> +		return PTR_ERR(root);
-> +
-> +	pdata->dbg_entry = debugfs_create_file(dev_name(pdata->dev), 0444,
-> +					       root, pdata, &stm32_risab_conf_dump_fops);
+Hi Peter,
 
-soc drivers should not have any user-space interfaces. This was
-requested by Arnd many times in the past, nothing new, including about
-debugfs. Otherwise it opens cans of worms, because soc platform
-maintainer can dump here whatever the subsystem rejected.
+On Mon, 9 Feb 2026 at 14:09, Peter Rosin <peda@axentia.se> wrote:
+> 2026-02-09 at 13:07, Josua Mayer wrote:
+> > On 09/02/2026 13:43, Peter Rosin wrote:
+> >> 2026-02-09 at 12:31, Josua Mayer wrote:
+> >>> On 09/02/2026 13:10, Peter Rosin wrote:
+> >>>> 2026-02-08 at 16:38, Josua Mayer wrote:
+> >>>>> Add prompt and help text for CONFIG_MULTIPLEXER to allow enabling this
+> >>>>> option thorugh the kernel configuration without explicit "select" driver
+> >>>>> dependencies.
+> >>>>>
+> >>>>> Select it by default when COMPILE_TEST is set for better coverage.
+> >>>>>
+> >>>>> Signed-off-by: Josua Mayer <josua@solid-run.com>
+> >>>>> ---
+> >>>>>    drivers/mux/Kconfig | 9 ++++++++-
+> >>>>>    1 file changed, 8 insertions(+), 1 deletion(-)
+> >>>>>
+> >>>>> diff --git a/drivers/mux/Kconfig b/drivers/mux/Kconfig
+> >>>>> index c68132e38138..4f7c6bb86fc6 100644
+> >>>>> --- a/drivers/mux/Kconfig
+> >>>>> +++ b/drivers/mux/Kconfig
+> >>>>> @@ -4,7 +4,14 @@
+> >>>>>    #
+> >>>>>
+> >>>>>    config MULTIPLEXER
+> >>>>> - tristate
+> >>>>> + tristate "Generic Multiplexer Support"
+> >>>>> + default m if COMPILE_TEST
+> >>>>> + help
+> >>>>> +   This framework is designed to abstract multiplexer handling for
+> >>>>> +   devices via various GPIO-, MMIO/Regmap or specific multiplexer
+> >>>>> +   controller chips.
+> >>>>> +
+> >>>>> +   If unsure, say no.
+> >>>>>
+> >>>>>    menu "Multiplexer drivers"
+> >>>>>           depends on MULTIPLEXER
+> >>>>>
+> >>>> I'm not comfortable with making MULTIPLEXER a visible symbol. It is meant to
+> >>>> be selected when needed (and there are a dozen or so instances). The kbuild
+> >>>> docs has this on the subject:
+> >>>>
+> >>>>    "In general use select only for non-visible symbols (no prompts
+> >>>>     anywhere) and for symbols with no dependencies."
+> >>> The patch description didn't make the decision logic clear,
+> >>> and I plan to submit a standalone patch for this after v7.0-rc1.
+> >>>
+> >>> Basically existing drivers using mux core used "select" to enable it,
+> >>> even though the core can function standalone with device-tree.
+> >>>
+> >>> Some of these users (phy-can-transceiver) function perfectly
+> >>> perfectly fine without mux, and use it as an optional feature.
+> >>>
+> >>> Likely drivers only used "select" to avoid writing helper functions,
+> >>> prompt, kconfig description and stubs - which this patch-set added.
+> >>>
+> >>> So I will argue that some existing users relying on "select" was wrong,
+> >>> and that the mux framework is generally useful on its own.
+> >> When I wrote the mux sub-system it was very much intentional and by
+> >> design that drivers needing a mux should select MULTIPLEXER, and that
+> >> MULTIPLEXER should not be a visible symbol.
+> > Need is a strong word here, and doesn't address the optional case.
+>
+> "Need" was the correct verb up until you needed the subsystem to be
+> optional. If you need the mux subsystem to be optional, you need to
+> do it in a way that does not introduce headaches.
 
-Find suitable subsystem and get its approval for such debugfs entry.
+In the other thread, Josua pointed out that there are already several
+drivers that cannot be enabled if MULTIPLEXER is not selected by
+something else:
 
-Your commit msg is so vague it is another reason this is not mergeable.
-Explains nothing about the feature, nothing about the risk or impact on
-the system when user does (while (1); read stm32_risab_conf_dump_fops).
+drivers/mux/Kconfig:
 
-Not mentioning that it does not explain WHY do we want this driver in
-the first place...
+    menu "Multiplexer drivers"
+            depends on MULTIPLEXER
 
-Best regards,
-Krzysztof
+    config MUX_ADG792A
+            tristate "Analog Devices ADG792A/ADG792G Multiplexers"
+            depends on I2C
+
+    config MUX_ADGS1408
+            tristate "Analog Devices ADGS1408/ADGS1409 Multiplexers"
+            depends on SPI
+
+    config MUX_GPIO
+            tristate "GPIO-controlled Multiplexer"
+            depends on GPIOLIB || COMPILE_TEST
+
+    config MUX_MMIO
+            tristate "MMIO/Regmap register bitfield-controlled Multiplexer"
+            depends on OF
+
+While MUX_MMIO is selected by some/all(?) symbols that need it,
+the other three are not.  Are these three really dependent on another
+symbol selecting MULTIPLEXER?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
