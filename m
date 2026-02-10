@@ -1,66 +1,75 @@
-Return-Path: <devicetree+bounces-264215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264216-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8Dv+ByOfimniMQAAu9opvQ
-	(envelope-from <devicetree+bounces-264215-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:59:47 +0100
+	id GB2oLAufimniMQAAu9opvQ
+	(envelope-from <devicetree+bounces-264216-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:59:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92029116988
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:59:46 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A32D116946
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:59:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 74D3C3076E44
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:50:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1E528302A7EB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:59:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907B72EC562;
-	Tue, 10 Feb 2026 02:48:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84A82283C89;
+	Tue, 10 Feb 2026 02:59:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mMkNfiEl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CW2oBkJ8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6956B2E62AC;
-	Tue, 10 Feb 2026 02:48:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FA473A1C9;
+	Tue, 10 Feb 2026 02:59:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770691727; cv=none; b=nrXD3+XraHGFQ8OQkUcE2yHiRlBpnoBpn8mFQdqIL6dWbXi1GQm4jcBumNak7yQH1w80x+XEUbq5BdrywgtxMGKtKa4AzinD1AXpSWxKZas28NzkutOblRorL6vOApGEbH9Usr1ObiyNYzpgGqzwBjJxPNB2/2SyV1r3gMnF3zQ=
+	t=1770692359; cv=none; b=dzRo5281p/T08/3s2PKHqgBvA999lE6krCz/koAyW5DfmCZ0VwKrJK0b8rP3AjignPfkTJHX0YMIJG269F7PPv8ltPsNaQ6E7lDIY+3nu6+RjqoZuVFGXjIiHKpRBAeVEPORQIlH1NlOIZdGHhO+yAudpUi79auBgR5AZef3a8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770691727; c=relaxed/simple;
-	bh=6NxCKVaA7xc8vNbgeX/09jYUtLOFu2k/grPFrJ0Gyoo=;
+	s=arc-20240116; t=1770692359; c=relaxed/simple;
+	bh=sswvim6uo0hgfdQyfqItuvNUGxUG69xSNcPrZzHtTvQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N90k7wHEyT9KN7KRilGv/ND4KCx/z9bqr0sAozJx84q/Js07cor0yi+hHVKVmq1QMTrzLgMFNjPT7Knfl+OHnHh9j6JuifapllKgB5mgU+SIuAemm2N3e5ADoqPzMEk2qoPL5n8MTwJJY/1mnQ+p43n8F23Etw8jPtXCkdyhzYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mMkNfiEl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED0FDC116C6;
-	Tue, 10 Feb 2026 02:48:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MjnflJTo60hdwKV1e+prSV+RXmpwiHkw6wt+CWSa8FBXrm0AucdB6wiMjV9cfjTsBGgACy1uxVAS4mq8HOr8y2itVIGRl1sOzLNtrFoNlm+oxfv9N8EqrcXjfu+uZb8ijoOIcENFiQ9RuuX7qx9OEiXOm0gTm5FytL7MXQILWFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CW2oBkJ8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2B92C116C6;
+	Tue, 10 Feb 2026 02:59:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770691727;
-	bh=6NxCKVaA7xc8vNbgeX/09jYUtLOFu2k/grPFrJ0Gyoo=;
+	s=k20201202; t=1770692358;
+	bh=sswvim6uo0hgfdQyfqItuvNUGxUG69xSNcPrZzHtTvQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mMkNfiElnd0c/wAh6KncBzPBH7BJQ61kpZInwUf1g7X27t4AwqIznNa995E8hqTcV
-	 NYGssJTc2kEBM0zZk0p90W7+WYpcubxQVvqo/ocx7XQ9bLKdzvgGYZFoQ6Mo1HO4Pf
-	 1yh0s6GfE0Z5AOLW7xtnX2sxJtjEO9lWGcvNQD8iovLJ1a0zd4J5+sIs5huUrLId2c
-	 DqmgPiyL6A1yjF7Wd0lO3wxVnUxkC/4MtToJAW9Uk7iM10tnMVau+p/GYP/cJaFdiY
-	 L2h8aGOnrSAGnXTKVlTQKosYHhjiw15NVCsaQ2aHj0evLMrJgelR918MxTNljdzGVJ
-	 RdYBPb4/nL1+A==
-Date: Mon, 9 Feb 2026 20:48:46 -0600
-From: Rob Herring <robh@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	b=CW2oBkJ87Q5j6c3n3zIazQIBEGASBkmOy/Z6Zy1q0ZMhstulJXmPfBr/oUUzJmE1e
+	 03n66/UrHuvRwnqeZHvNbT7Xi3NkBDZ7wdClTAGmtqybLnoBl+GeD8cz28GS9hh1/Y
+	 b6W7mMm26Nf0KZxJoHDk2O9MncWyuk4wHzUO/Pb9e1SONNj16wYbVPGeNrM7cutH+r
+	 xc/KQZ90lzmBMzUMe6c5XXBHa2yE1GVjFmdAcRVzM6NbQpdypL4LAio1tx/boPbtSZ
+	 GqKBr1NNEAmhoK0sU92ddneIr6fQfRLToiGXA/SDoMok0H5QFiuA4cIq1850oZ/Yi/
+	 5i5DtFtjvtdgw==
+Date: Mon, 9 Feb 2026 20:59:18 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Hongyang Zhao <hongyang.zhao@thundersoft.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	dri-devel@lists.freedesktop.org,
+	Christopher Obbard <christopher.obbard@linaro.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Robert Foss <rfoss@kernel.org>, Maxime Ripard <mripard@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Simona Vetter <simona@ffwll.ch>, Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Jonas =?iso-8859-1?Q?Schw=F6bel?= <jonasschwoebel@yahoo.de>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/5] ASoC: dt-bindings: nvidia,tegra-audio-max9808x:
- document additional board pins
-Message-ID: <20260210024846.GA2385273-robh@kernel.org>
-References: <20260206173423.145954-1-clamor95@gmail.com>
- <20260206173423.145954-6-clamor95@gmail.com>
+	linux-kernel@vger.kernel.org, Roger Shimizu <rosh@debian.org>,
+	devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: display: lt9611: Support single Port
+ B input
+Message-ID: <177069235725.2401457.4430450777112402794.robh@kernel.org>
+References: <20260207-rubikpi-next-20260116-v3-0-23b9aa189a3a@thundersoft.com>
+ <20260207-rubikpi-next-20260116-v3-1-23b9aa189a3a@thundersoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,72 +78,58 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260206173423.145954-6-clamor95@gmail.com>
+In-Reply-To: <20260207-rubikpi-next-20260116-v3-1-23b9aa189a3a@thundersoft.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264215-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264216-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,intel.com,lists.freedesktop.org,linaro.org,suse.de,gmail.com,kernel.org,ideasonboard.com,ffwll.ch,vger.kernel.org,kwiboo.se,linux.intel.com,debian.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,nvidia.com,perex.cz,suse.com,yahoo.de,vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 92029116988
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.1:email]
+X-Rspamd-Queue-Id: 1A32D116946
 X-Rspamd-Action: no action
 
-On Fri, Feb 06, 2026 at 07:34:22PM +0200, Svyatoslav Ryhel wrote:
-> Document additional board pins that may be used in routing.
+
+On Sat, 07 Feb 2026 15:32:54 +0800, Hongyang Zhao wrote:
+> The LT9611 has two DSI input ports (Port A and Port B). Update the
+> binding to clearly document the port mapping and allow using Port B
+> alone when DSI is physically connected to Port B only.
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Changes:
+> - Clarify port@0 corresponds to DSI Port A input
+> - Clarify port@1 corresponds to DSI Port B input
+> - Change port requirement from mandatory port@0 to anyOf port@0/port@1,
+>   allowing either port to be used independently
+> 
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
 > ---
->  .../bindings/sound/nvidia,tegra-audio-max9808x.yaml          | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../bindings/display/bridge/lontium,lt9611.yaml           | 15 +++++++++++----
+>  1 file changed, 11 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml
-> index 241d20f3aad0..4957645a8e03 100644
-> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml
-> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml
-> @@ -35,10 +35,15 @@ properties:
->      items:
->        enum:
->          # Board Connectors
-> +        - Speakers
->          - Int Spk
-> +        - Headphone
-> +        - Headphones
->          - Headphone Jack
 
-Aren't all 3 of these the same thing?
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
->          - Earpiece
->          - Headset Mic
-> +        - Mic Jack
-> +        - Int Mic
->          - Internal Mic 1
->          - Internal Mic 2
->  
-> -- 
-> 2.51.0
-> 
 
