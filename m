@@ -1,235 +1,177 @@
-Return-Path: <devicetree+bounces-264295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264296-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uIMBO4v9imlyPAAAu9opvQ
-	(envelope-from <devicetree+bounces-264295-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:42:35 +0100
+	id KL8CJY/+imnJPAAAu9opvQ
+	(envelope-from <devicetree+bounces-264296-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:46:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BBC211903E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:42:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 424E2119110
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:46:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4E232303B5FD
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:42:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A25293045AA9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:45:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26190341AD7;
-	Tue, 10 Feb 2026 09:42:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D147341674;
+	Tue, 10 Feb 2026 09:45:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MZwFvb4z"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MxXiqzsF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7029A341AB6
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 09:42:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770716546; cv=pass; b=h668JVnNtIzVO4iekD6y35nTf74g+ta3qO86NOWo7bWXlHsg5XR6Uz4UIjuWyBZoJxAnbgDg3rojDzbcrzSe2AcowBAGkFe4utVJhcnh2xLay311yZBkaxjYMNn1dPIqhtoQ6rmA/znYMyhy4yuRUL9UNLjyiPRMGk5YHXDVvyc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770716546; c=relaxed/simple;
-	bh=oOjICXJg7ZpifL4ZDE4Mvkawuzo2HaLZVgTlYB0pvHs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rP4Uh7cGs63XcJdMhmTaa2JFGLcjfIPhiOGf+iYHL+CFCjAKbEVZ7BwzLJ6jcyaNH4hi43w0DFl8ALpgks/2eXwtf3WuhvlniONlCzC3YOyu1vgty57yLLGNnobGe5IHLpVzkBEm/XHQKAc+D7F7kGUlCEJlXnBFk7R7hdSdtL0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MZwFvb4z; arc=pass smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-436317c80f7so1804995f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 01:42:24 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770716543; cv=none;
-        d=google.com; s=arc-20240605;
-        b=ghQvEgSvyoE1s7mCoWHC+xhDvI92CdjJQcFAGKKhR18CVI9LQHDEN0KjNBisVBeaJF
-         3tG6aGrWLYu4orRSGALpIKnIBXMXRC0DxKEfbogoA1tgK2Ai5+9lHL/QX34FBdPLsoUW
-         hVH1kFgibiaJTewsCJhg3Hhsu9/aMidXaUMcM7vYOIBsWcf2H5iUWtrpw+popg4kzhRr
-         YYQO4jRQWyTAigU8NfvbrfUxztZ+8rueF19Bq3Lc08ql6ET/11bnbi6bWKSXQT84/cA7
-         ByrL6fiy0qJKwWk+ULpi0FwqK9nB6oAMpRZgJmkIGxBog7q9u0CoPc+CB1auZKPL13RR
-         /OiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=Ze1c4tMfcpX491+6mPiJXsJlYkup8lMt/xtrcGpqjuI=;
-        fh=JR4zEEobrd8x4CihdlwThDj3+4mhmk9aGfHQmeW1usE=;
-        b=R1Sta9q692amT8lhxXN9IHnB8ggsGEfeeLq9qRPTkgC7mNiS8NN4ItX9s4boOSL06H
-         aA8V9cbhHqLCYLXOWIokk2v1MHyUOyIpUgk7NoJkiEC1SwpmIKofMhnSHNVCJ/4jA+Q0
-         ws3ZJWdI5PltuVsv+nIjN78HThhVuAbogMAibrFNmnU2jPkLphicye6+X30hqHhghz4o
-         FOiryH40I7zIUNr2owcdJE4ZlcRK4409Mvgaleq1V061UYSP7CGA2E7ktBf0fpTcIyf0
-         zOZywG4BCh02vF7u4pWf8T/81fzBB4i13dhUcV5+brB0/L0y617ef3xjKq6vvuGLZ2k3
-         pTvw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770716543; x=1771321343; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ze1c4tMfcpX491+6mPiJXsJlYkup8lMt/xtrcGpqjuI=;
-        b=MZwFvb4zWxnfekjl+a8fsLfYtrscT0ebMy+djosDK9zMn1NLXNNuNkeJQ+YZDUZQSh
-         tcLsWoxPOHXM5b/VVpDIbtS9/eMQysU7DEuHttnRlEIfhi72G94wQcIDA7I3fwtUs6rj
-         nteoasqj8yMgzfcoesAhg58ZN4/uNGulmZC/d67iSwERAp7Mt+Jkxa2JWURr4iEkYGFy
-         oWBK9pnh/KpCD9NvHu7tDrSq5ISoB9FqNFpd0X2E75oWHDjPuoLdvUe22FRymBGnvtBr
-         cQthSGiuHgb/OH0zZ5bRLvrG3MUTNNcN1zPQOw4y/lRDOibeI+JZU3YRdmS7oBTm9slr
-         OHQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770716543; x=1771321343;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Ze1c4tMfcpX491+6mPiJXsJlYkup8lMt/xtrcGpqjuI=;
-        b=OKHOUzcwpML9z7IL1pAacoH1IrQXVraKXKhkFC3OdNnvnWxRXZpjB/krRgG7bxFSe9
-         bYXSZYT/uNmRGPt0qgKLOocne8SOJIhYH5kxxnJPslzQ6ruKyMmiTXgn9sh0dHobuCww
-         fWpxLwTBDDM8Fovn7beKE096VHTfgfTM9ciNz6l9iQRzxfOHFY5NKHJ2JKVue7/GnZLK
-         1Ob8gaIt+zrYlbcO62+gzTO85uGU/Z9fKWZfsEoG3o0XHpAG2Y1x7MQ2gIP7CGY6SgtC
-         9qfoEkvQ36WQITCkliwZzFvGJ40aR6Zshxw12IsTqfU6TrwqgBhwD8aDvf8P0X24ruL1
-         eqZw==
-X-Forwarded-Encrypted: i=1; AJvYcCXT5LJ1yi2LrD4fy39u/wV3K/J8C3+zeywYEWt7Xby1Af+2g8NKvtOkfh8KsT8eVyZD8GDlZHj0hUX3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkD3442jE0tZassn8DEkYKMNgOGzxU96GUOr7vfQy0pPfh4hIx
-	AbnDbntT4T/grqCgAK8z1QRzDXkCHv407+LDN1limVLah7xqzOsSgYWLcSYIecVgeIi4pov4BKR
-	HSLobFtqCFouZuRvTJzww11zZe8hZJuc=
-X-Gm-Gg: AZuq6aKnJuRayVqGZZNdwYhgroR4dA3BcECdObv4jg+703Tnm1tewDmOUsD9j01KJy5
-	VY9TASR/6RBeU7YUedREbItHQF9Ax99vy7Fgnp9rKKXglc8DliOLQLTIgsogNKqU8eIbXIdtpYf
-	MY/PIfPueGSWITnlwHagEau3hA3OHwjEiqxlrA9c00raPReotfNAd8i7jyNhvzbquzdlre0XtlP
-	w3M8j1bXFpaC7kgP/OQnTEEvOqHUFTJ+X00Y1IPgzPctZjTc5IynnrbAaGg066LaR1UFSYB7qEx
-	bJurhjyB
-X-Received: by 2002:a05:6000:3111:b0:435:db9b:5881 with SMTP id
- ffacd0b85a97d-4377a1f2a30mr2055191f8f.25.1770716542552; Tue, 10 Feb 2026
- 01:42:22 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF6A234106D;
+	Tue, 10 Feb 2026 09:45:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770716701; cv=none; b=d3AXlkE6o8jSO4+MYkxhUO5GJ78ehhBPorJgksFJg5GN2fZ4tmTMYe19TWSSIO/KW1wdzFdv9HOBpHG7FWzh5QA4xnUpQeTvafafKCBUFtPzs6+ib2CzgzoQoHXb/pOcbX8BCoB6Aw/Ql0LCKJTvNLcYRZYsTtXATHa9ddjc/IA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770716701; c=relaxed/simple;
+	bh=U1QrkqJP4kK4VH9sCiWK3UQ3vrzXoR2lGYukSr3g4W0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=isv9KfD9mI6FiCd4R7nSrl4Fd7Gqk7sO840WVfC3PLfnGspnYa+u5JUWIAW1VZ9aIBq+PM5/dSAO/xbNaPQfcVe8JaBvXbT9Og9/vc+WZwb1s4oZOtQbNxjeJUhNx/VjgBzLGGziFYOlhrtYY1Ta7t3GCbAg+CvZORZYJbI0U0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MxXiqzsF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61A6lrxs3436819;
+	Tue, 10 Feb 2026 09:44:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	tQGKLGWah9W7FaVER4qAVlJswPtgodKSIfn47Es8I3Q=; b=MxXiqzsFlC6qIwHu
+	XVgUP39rqGBIfVLZCNqkyum1yNBG8IWDOGhymEn0yMzqAwxFBMZX/f1avLhlUXfB
+	8NqqNS0nY0zuFUyK6pM+kUx4cmjjs3B+RULovdUG3p2AyT3BW6rQxAn1+/W4R4vC
+	9+xdnioktCZloYNDoj7z/G0x0Riht5Eocsosu95VCHUTe+VFQffIvFWFXOtpv9fB
+	5E2g++px/Lo4SaSk9/OLgv/90rACQmpqwDGcfaWTX2GXr3FOW6xvU3xeijVKwVDN
+	3bpWhfeLXy5v2mZU2KXgqzTeIQBwOurOJh/vaD+NpL3D4K6mmKcLfljrJkT3vFje
+	P4V30Q==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c7fevbug8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Feb 2026 09:44:58 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 61A9ivLj009115
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Feb 2026 09:44:57 GMT
+Received: from [10.151.36.184] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 10 Feb
+ 2026 01:44:53 -0800
+Message-ID: <e0556d38-249f-d8ef-ab91-d5dd3a528d5c@quicinc.com>
+Date: Tue, 10 Feb 2026 15:14:40 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260209104407.116426-1-clamor95@gmail.com> <20260209104407.116426-2-clamor95@gmail.com>
- <20260210-hidden-swinging-galago-fdcfa3@quoll>
-In-Reply-To: <20260210-hidden-swinging-galago-fdcfa3@quoll>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 10 Feb 2026 11:42:11 +0200
-X-Gm-Features: AZwV_Qhn-R0xjZTEGY6wy39uV3chiY2pUKepim55rxxDwQzXQ4tGrjUlByAc-JY
-Message-ID: <CAPVz0n3Pzvzt+LmOH_peCtpx8DP2-GiRv--6-ppQUaa51AXRFw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/9] dt-bindings: misc: document ASUS Transformers EC DockRAM
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Sebastian Reichel <sre@kernel.org>, =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>, 
-	Ion Agorria <ion@agorria.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v4 1/7] dma: qcom: bam_dma: Fix command element mask field
+ for BAM v1.6.0+
+To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <vkoul@kernel.org>, <Frank.Li@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dmaengine@vger.kernel.org>
+CC: <quic_varada@quicinc.com>
+References: <20260206100202.413834-1-quic_mdalam@quicinc.com>
+ <20260206100202.413834-2-quic_mdalam@quicinc.com>
+ <409c2e5f-1bf2-44ed-9c0f-df762320e068@kernel.org>
+ <153241e9-f71a-970c-c929-53b195807259@quicinc.com>
+ <3d3a3b14-e305-439a-b6bd-2339202ad66d@kernel.org>
+Content-Language: en-US
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+In-Reply-To: <3d3a3b14-e305-439a-b6bd-2339202ad66d@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Dd447cCDbTSME75oAazetbb5YvxLtxBp
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjEwMDA4MSBTYWx0ZWRfX6mH9k60HZTc/
+ p2t0wABWVlgGa5Z4m0eh8HAMNfsKxNW8CC+EbJ3ILJQe2c3lWvGmMnsCL7dXBOmfPbuADWrxCcU
+ rTnRXizEMUZW6p1w4N1lecgnz19PfD7XHNlaU2+NrUVbETDRKpGzK83a/5L+4M1Bkl5WtD/D5k0
+ WtR9MoF+S5h4wtaFg/oN/5JDv0joayhasj49VkC4Whgs2/GQBwF92lrVY7i+fXvLW0u+7RU6V6F
+ u8Lo4Z/wJhWcqfvfkS0xK6QbKXT7Ggvwfd68Ne4BF2yM9bc3ugIWtlRsIyeOKmBkGQxTC8p8//z
+ uj3DVCl3Xv3zRe1uyP6t2cUZe5sdYPTAUcV0kL9weOOk++JcjGXDpyjKlUShBOfZG+6yGdOjnkP
+ Wrb8EIKym8AsnQb7LI+19GFV7j9L3TEj4sQWPgTzvU0+X6UJGFwQSJHUakJKlxKQVtTOws8bKGB
+ FNXYq4PsiAp5ykQyI9A==
+X-Authority-Analysis: v=2.4 cv=F6Rat6hN c=1 sm=1 tr=0 ts=698afe1a cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=Ye0eM1Z4n2nGo6S4sv4A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: Dd447cCDbTSME75oAazetbb5YvxLtxBp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-09_01,2026-02-09_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 spamscore=0 clxscore=1015 lowpriorityscore=0 priorityscore=1501
+ phishscore=0 suspectscore=0 malwarescore=0 bulkscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602100081
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[quicinc.com,none];
+	R_DKIM_ALLOW(-0.20)[quicinc.com:s=qcppdkim1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264295-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_COUNT_SEVEN(0.00)[7];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,arndb.de,linuxfoundation.org,rere.qmqm.pl,agorria.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[quicinc.com:mid,quicinc.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[quic_mdalam@quicinc.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6BBC211903E
+	PRECEDENCE_BULK(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264296-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[quicinc.com:+]
+X-Rspamd-Queue-Id: 424E2119110
 X-Rspamd-Action: no action
 
-=D0=B2=D1=82, 10 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 11:25 Krzy=
-sztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Mon, Feb 09, 2026 at 12:43:59PM +0200, Svyatoslav Ryhel wrote:
-> > Documenting an I2C device used in conjunction with the EC on ASUS
-> > Transformers. The main function of DockRAM (the name used by downstream
-> > ASUS sources) is to provide power-related functions, such as battery an=
-d
-> > charger communication. The device is exposed as an individual entity
-> > because multiple embedded controllers can utilize the same DockRAM
-> > instance.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  .../bindings/misc/asus,dockram.yaml           | 40 +++++++++++++++++++
-> >  1 file changed, 40 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/misc/asus,dockram=
-.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/misc/asus,dockram.yaml b=
-/Documentation/devicetree/bindings/misc/asus,dockram.yaml
-> > new file mode 100644
-> > index 000000000000..0cfde619ba01
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/misc/asus,dockram.yaml
->
-> Not a misc device. Find appropriate place, e.g. for EC or docking or
-> laptop devices or power-related.
->
+Hi,
 
-Why not misc? be more specific pls where you want it to be.
+On 2/9/2026 5:36 PM, Krzysztof Kozlowski wrote:
+> On 09/02/2026 12:43, Md Sadre Alam wrote:
+>>>> that use BAM v1.6.0+, because the current code sets mask=0xffffffff
+>>>> for all commands. For read commands on newer BAM versions, this results
+>>>> in the hardware interpreting the destination address as 0xf_xxxxxxxx
+>>>> (invalid high memory) instead of the intended 0x0_xxxxxxxx address.
+>>>>
+>>>> Fixed this issue by:
+>>>> 1. Updating the bam_cmd_element structure documentation to reflect the
+>>>>      dual purpose of the mask field
+>>>> 2. Modifying bam_prep_ce_le32() to set appropriate mask values based on
+>>>>      command type:
+>>>>      - For read commands: mask = 0 (32-bit addressing, upper bits = 0)
+>>>>      - For write commands: mask = 0xffffffff (traditional write mask)
+>>>> 3. Maintaining backward compatibility with older BAM versions
+>>>>
+>>>> This fix enables proper NAND functionality on IPQ5424 and other platforms
+>>>> using BAM v1.6.0+ while preserving compatibility with existing systems.
+>>>
+>>> Fixes tag? CC-stable?
+>>
+>> This patch is not fixing an existing commit. This is to address the
+>> update in the newer version of the hardware.
+> 
+> Then "this fix" is misleading. Either you fix or not fix.
+You are right — the wording is misleading. I will update the commit 
+message in next revision.
 
-> > @@ -0,0 +1,40 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/misc/asus,dockram.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Asus Transformer EC DockRAM
-> > +
-> > +maintainers:
-> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > +
-> > +description:
-> > +  Dedicated i2c device used to provide power related functions of the
-> > +  embedded controller used in ASUS Transformer device family.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: asus,dockram
->
-> Way too generic compatible. You are not documenting here all ASUS
-> laptops/devices dockram. For example this implies dockram is also on
-> ASUS Vivobook... or on any other asus device.
->
-
-Asus were not so generous to provide more specific data, they call
-this device dockram in their sources.
-
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
->
-> Device looks weirdly empty. Probably you have it only to instantiate I2C
-> handle, so what you really wanted is i2c-parent. This is not a real
-> device.
->
-
-WDYM? it is a real physical i2c device located on a i2c bus and probed
-by i2c driver just fine. Maybe you will deny RTC being a real device
-like it was done for example for max77663 which now causes a massive
-issues since it can occupy different i2c addresses?
-
-> Best regards,
-> Krzysztof
->
+Thanks,
+Alam.
 
