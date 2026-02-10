@@ -1,170 +1,171 @@
-Return-Path: <devicetree+bounces-264341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264342-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2EmJNgYLi2kdPQAAu9opvQ
-	(envelope-from <devicetree+bounces-264341-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:40:06 +0100
+	id oPlzEPQMi2lXPQAAu9opvQ
+	(envelope-from <devicetree+bounces-264342-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:48:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A265119B6E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:40:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CC06119CC0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:48:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 45E503040200
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:40:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3FE67302D0A5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:48:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF367329E56;
-	Tue, 10 Feb 2026 10:40:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b="GsrEUQzX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA0ED34A78C;
+	Tue, 10 Feb 2026 10:48:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60000316904
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 10:40:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 696C02E7637;
+	Tue, 10 Feb 2026 10:48:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770720003; cv=none; b=dCv/9cQww927bTzzuV1jPtEgPmAvtdTmImerzDOJyBV9JJF4HhXG6Q0FNdDoSRDE/xIITE6dq7OudVPwZFDPCVX0n27OQgv083rfmeSIRo2t6xuqCg3KxDK6IaEO7OGeiVCrYyHYnr2GB8IvazjzzHjd4TYY//0dxZsMXDvjy0k=
+	t=1770720496; cv=none; b=SMuvx+IP6rkn2LtK1DkWd8GiQko5WiAPU2tjb3vRXMDDr95gGrW9FN5t4bSrDfi28v4COf9mge+fqzF8QcWUMU93yJRoouNI4bRfvj1164BeRx7yqbqRYek0Va20GzvxjJ+JyLfqloeMXwSq2+fyK5tj8E/nFMFHvNxDJP9xxG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770720003; c=relaxed/simple;
-	bh=d0ljkEDQ1gGGwbbxFybeZxVmLfP8oWfMC9kjAC5355I=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HP8iR2+sXncLIjJgbhWdUeSJY09WRMvSK1sHceNFSOJIvZofG8fM9dpKvDaeHeaAI0FggYxXqfkvpUPeNsj6oBRINIXBeK9GrL8W4XqYV7kxRLBX60KoMMQMEEpOF4STzoT56DB9RbaYVuCzAMkgoMNxBfosy+fvacrpcIYB80E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc; spf=pass smtp.mailfrom=arduino.cc; dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b=GsrEUQzX; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arduino.cc
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47ff94b46afso52004255e9.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 02:40:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=arduino.cc; s=google; t=1770720000; x=1771324800; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jaXWgPn4mF7i9yaiiPpLBPhR6O1+uuJeQxKfkWKqAJg=;
-        b=GsrEUQzXGLKeMAXIePLZf9gxP4OrpMVFXbwfMrDPkOrOlGI81+25YlE01SBU7mqy3n
-         rMivtckr6gDsMTCT4tDp2nIq7o/KyLb948JOT41vs6W3i63vR8U8JZNoKrPkNF1hK3AN
-         dOY6KhjfHRWKRNnARXptBc1+OFPCcg8v8goLw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770720000; x=1771324800;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jaXWgPn4mF7i9yaiiPpLBPhR6O1+uuJeQxKfkWKqAJg=;
-        b=uUH1QH7NVBXEXtb1GIgPDft4q/e71ck5Qk4SjjJ2DQURTVMaS4T+ncg+hzWMiPN0jO
-         ioB9+UIvqamJm3+ToNpXOiQ/VZ/sVX1yRMs9u2Puw13pknDG6fIkmf7mAKTBSRcwG8yN
-         UVLcGp9Q1/3a8SCrG71OL1w/GwWzpthNGm8qIMCUj0yPB0gxkIC5mfXAHAKj6yHHFlRp
-         CqCj03i4rxbrVPMeAfgzJmMlTYWir8RtVHGzreN3O9bhtOMNTXO/B+BaI+P7X/z5h094
-         a7u5YZdE7cPdyJ68wPFh6nydrFHPuQ3623biALdKtUY1DbYbbL10DEY0DLu3/Hjj33uU
-         thGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVDAg2PQOReHdL9bp3cKQdxW69PFauWqWin0qFSjBgmfdnXb8lPBWdiIwEy7EuSjAMWPktLHSH5W0wZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxomqNZUuM498ocDDzr4Nd59Af42+cgKQuQxNTiQwi8JFVeAKhn
-	TmKuvjU0JaPR8VZkyIHJQ5iX5eOcSC8wiBAN5v4sPKhw2BwMYLF+66MiaBxF838NOsgOnCkctU1
-	5Eg1N
-X-Gm-Gg: AZuq6aKi0anHj52iqZgCDC60wpftPJXvEYkExlcKwewnf37zP9vZFDvmSdebiSjNNDb
-	F3tK75OphrmJBgkswkG11g3Gt8lTHjaMYUYuKQ24C5bc3xFNdf/6+CNMM6Cfl2aZeMG8mfWCDm5
-	dufyK6m51v2ECPidSCczzWJ55iieLqC+sa9IcmQEVkbVop2MSyqt3sc25Skk4vqNjQBMwFSm0xR
-	Vv+nqm5tpPJ4+Z22xVeWny70Pf5ObkEfyzHV2VYCsaR1p08w06UEsaeMNEOa2+CEr8eIlexuwO/
-	bBUdxrzv6fk7mb9R9GaFtjzAGyotT0sXUoxiciTrkcmzSm4bDAaI3u8UZT0ci9qYHyDBrjVVmyV
-	eAIT3zCUiAxONQmx08EVM26wIxA5V+Fgww2w3TJ3MMnEX7HUcex1ApoChJGu/Tuh9HZ7L2JeICf
-	yOQTrpgauyK+QDH2m3Dkp/NOqR99sR5DXuu2SvxwvXDVwVbJvd4OmMZoTD16hmud74+xLf7vaUV
-	Rd28u3G0+mgJjN/KsI=
-X-Received: by 2002:a05:600c:12cc:b0:477:3fcf:368c with SMTP id 5b1f17b1804b1-4834fbc8f63mr16251015e9.9.1770720000337;
-        Tue, 10 Feb 2026 02:40:00 -0800 (PST)
-Received: from riccardo-work.fritz.box (host-79-41-222-66.retail.telecomitalia.it. [79.41.222.66])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4834d5d77f9sm54587935e9.3.2026.02.10.02.39.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Feb 2026 02:40:00 -0800 (PST)
-From: Riccardo Mereu <r.mereu.kernel@arduino.cc>
-To: lee@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andersson@kernel.org,
-	konradybcio@kernel.org,
-	sboyd@kernel.org
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	alexey.klimov@linaro.org,
-	srinivas.kandagatla@oss.qualcomm.com,
-	m.facchin@arduino.cc,
-	Riccardo Mereu <r.mereu@arduino.cc>
-Subject: [PATCH] arm64: dts: qcom: arduino-imola: fix faulty spidev node
-Date: Tue, 10 Feb 2026 11:39:33 +0100
-Message-ID: <20260210103933.27228-1-r.mereu.kernel@arduino.cc>
-X-Mailer: git-send-email 2.53.0
+	s=arc-20240116; t=1770720496; c=relaxed/simple;
+	bh=WyoME0rioc0iFzgHeDWs0U5WkwpS1Sz1cMkqrrvJbyg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=IYELaSyokksGgWKnWNsTTDDNyuuJXWAMMZA4OpVvmZaNQWf+uix8lmSQhc0ea+vo2OlntRu2GICY07kGNDs0tVoqNmmCHxBJc9kwdLU5ryIQT3Kj2rFBiw/uX3ECovvvLnf3ERMZ9dRmPd6qcyTfn376m4YxS4topHutjkN5q5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B40F91A0AD5;
+	Tue, 10 Feb 2026 11:48:06 +0100 (CET)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 5BFF11A0CDD;
+	Tue, 10 Feb 2026 11:48:06 +0100 (CET)
+Received: from lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com (lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com [10.52.9.11])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 0A5DE180007B;
+	Tue, 10 Feb 2026 18:48:03 +0800 (+08)
+From: Yanan Yang <yanan.yang@nxp.com>
+Subject: [PATCH v5 0/2] Add NXP FRDM-IMX91S board support
+Date: Tue, 10 Feb 2026 19:47:53 +0900
+Message-Id: <20260210-imx91s-frdm-v5-0-b3e9a67d2285@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANkMi2kC/23OTQrCMBCG4atI1kYykyZ2XHkPcZHmR7NoK4mUi
+ vTupgWhFZffwPMyb5Z9ij6z0+7Nkh9ijn1XhtrvmL2b7uZ5dGUzFKgAheKxHQkyD8m1HK2U1Fi
+ LQQdWxCP5EMeldrmWfY/52afXEh9gvv7vDMAFN8Fp6wRYJDp34+Ng+5bNlQFXEn4kFlkfiXTjj
+ FFkt1J+pRYAeitlkVTrIzivK0K1ldVKotzKqkhoTCNkHYz3q2+nafoAx8tfp1IBAAA=
+X-Change-ID: 20251205-imx91s-frdm-2c339bcc2f6f
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ yanan.yang@nxp.com, qijian.guo@nxp.com, justin.jiang@nxp.com, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Daniel Baluta <daniel.baluta@nxp.com>, Lei Xu <lei.xu@nxp.com>, 
+ Xiaofeng Wei <xiaofeng.wei@nxp.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770720483; l=2646;
+ i=yanan.yang@nxp.com; s=20251205; h=from:subject:message-id;
+ bh=WyoME0rioc0iFzgHeDWs0U5WkwpS1Sz1cMkqrrvJbyg=;
+ b=KKTvisPO/K4q/KoXFmsJsxmsxL5b6Sy1Epf2gMirbPvj5N9Nqmvj4eNwWtItpEC/ftMpli1eM
+ 1z56eaHfwDrDFTiHUeLa0dZJrjgxd53Ni8RPF7Ge3qi48YyLhowo/FF
+X-Developer-Key: i=yanan.yang@nxp.com; a=ed25519;
+ pk=d4hHTp5SW/PyyxexLEo/3c2RAaQDwym0zuYlifH95PI=
+X-Virus-Scanned: ClamAV using ClamSMTP
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[arduino.cc,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[arduino.cc:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com];
+	TAGGED_FROM(0.00)[bounces-264342-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-264341-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[r.mereu.kernel@arduino.cc,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[arduino.cc:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arduino.cc:mid,arduino.cc:dkim,arduino.cc:email]
-X-Rspamd-Queue-Id: 8A265119B6E
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[yanan.yang@nxp.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8CC06119CC0
 X-Rspamd-Action: no action
 
-From: Riccardo Mereu <r.mereu@arduino.cc>
+This patch set introduces DeviceTree support for the NXP FRDM-IMX91S
+development board based on the i.MX91 SoC. FRDM-IMX91S is a cost-optimized
+variant of FRDM-IMX91 and differs in several hardware aspects:
 
-CS pin added on pinctrl0 property is causing spidev to return -ENODEV
-since that GPIO is already part of spi5 pinmuxing.
+- 512MB LPDDR4 (FRDM-IMX91 uses 1GB)
+- 256MB FlexSPI-NAND (FRDM-IMX91 uses 8GB eMMC)
+- Single GbE port (FRDM-IMX91 has dual GbE)
+- PMIC PF9453 (FRDM-IMX91 uses PCA9451A)
 
-Fixes: 3f745bc0f11f ("arm64: dts: qcom: qrb2210: add dts for Arduino unoq")
-Signed-off-by: Riccardo Mereu <r.mereu@arduino.cc>
+This patch has been tested on FRDM-IMX91S board and verified for basic
+functionality.
+
+For more details about the FRDM-IMX91S board, see:
+https://www.nxp.com/design/design-center/development-boards-and-designs/FRDM-IMX91S
+
+Signed-off-by: Yanan Yang <yanan.yang@nxp.com>
 ---
- arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts | 7 -------
- 1 file changed, 7 deletions(-)
+Changes in v5:
+- Replace space with tabs in IOMUX
+- Rebase to latest linux-next tree
+- Link to v4: https://lore.kernel.org/r/20260123-imx91s-frdm-v4-0-1bab038faee9@nxp.com
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts b/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
-index 197ab6eb1666..d2c3359dd814 100644
---- a/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
-@@ -328,18 +328,11 @@ &spi5 {
- 	spidev@0 {
- 		reg = <0>;
- 		compatible = "arduino,unoq-mcu";
--		pinctrl-0 = <&spidev_cs>;
- 		pinctrl-names = "default";
- 	};
- };
- 
- &tlmm {
--	spidev_cs: spidev-cs-state {
--		pins = "gpio17";
--		function = "gpio";
--		drive-strength = <16>;
--	};
--
- 	jmisc_gpio18: jmisc-gpio18-state {
- 		pins = "gpio18";
- 		function = "gpio";
+Changes in v4:
+- Remove the board-specific "fsl,imx6sx-sdb-mqs" compatible from the sound-mqs node
+- Remove redundant address and size cells from lpi2c2 node
+- Link to v3: https://lore.kernel.org/r/20260116-imx91s-frdm-v3-0-98671de64925@nxp.com
+
+Changes in v3:
+- add bootph- property for nodes should be kept in bootloader phase
+- add code-review trailers
+- Link to v2: https://lore.kernel.org/r/20251215-imx91s-frdm-v2-0-87996bdaa59c@nxp.com
+
+Changes in v2:
+- Correct author name: removed extra period in "Yanan.Yang"
+- Removed aliases pointing to disabled nodes from DTS
+- Add "rtc0 = &pcf2131;" in aliases to make external RTC the primary device
+- Fix DT node name: change
+  "usdhc1_pwrseq: usdhc1_pwrseq" to "usdhc1_pwrseq: usdhc1-pwrseq"
+- Renamed LED node from 'status' to 'led-0' to comply with gpio-leds binding
+- Replace regulator-based transceiver (reg_can_stby) with CAN PHY (nxp,tja1051)
+- Replaced 'xceiver-supply' property with 'phys' in flexcan1 node
+- Adjusted alignment in fsl,pins property: used spaces between pin names and values for proper DTS style.
+- Refined commit message in dt binding patch to clarify board differences
+- Link to v1: https://lore.kernel.org/r/20251205-imx91s-frdm-v1-0-afd6cd01c299@nxp.com
+
+---
+Yanan Yang (2):
+      dt-bindings: arm: fsl: Add FRDM-IMX91S board
+      arm64: dts: freescale: add NXP FRDM-IMX91S board support
+
+ Documentation/devicetree/bindings/arm/fsl.yaml     |   1 +
+ arch/arm64/boot/dts/freescale/Makefile             |   1 +
+ .../boot/dts/freescale/imx91-11x11-frdm-s.dts      | 769 +++++++++++++++++++++
+ 3 files changed, 771 insertions(+)
+---
+base-commit: 9845cf73f7db6094c0d8419d6adb848028f4a921
+change-id: 20251205-imx91s-frdm-2c339bcc2f6f
+
+Best regards,
 -- 
-2.53.0
+Yanan Yang <yanan.yang@nxp.com>
 
 
