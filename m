@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-264252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264253-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mD5YDZveimlIOgAAu9opvQ
-	(envelope-from <devicetree+bounces-264252-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:30:35 +0100
+	id UDVFMDHfimlIOgAAu9opvQ
+	(envelope-from <devicetree+bounces-264253-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:33:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BA78117F1C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:30:34 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38CE5117F5C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:33:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BF1CB301B72D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:29:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0A9D2302DE02
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:33:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83ED4333439;
-	Tue, 10 Feb 2026 07:29:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB442D24B7;
+	Tue, 10 Feb 2026 07:33:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YyGU1cQv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jPdAmyxF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6014133066A;
-	Tue, 10 Feb 2026 07:29:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 192951F1534;
+	Tue, 10 Feb 2026 07:33:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770708543; cv=none; b=F2k50+srSBfIuGld3QyiUDPwZMpuddi04QO3fPVdchUTItD4nlwO4IQMcMdgaIdptVybpqStMntzgnIqqA0o7ORgQuUYQMqxJq4zvXBp+Ym5OijVbbTRTVB+4nlBipJFVJBVRsFc1sLvSqzn4cCEWRmPKv84M9vqiCZdV+ADMbk=
+	t=1770708783; cv=none; b=ActG6c/853p6lPyy5aWfwBteAtAU4Db3v0iU1Wt7txqcCpMQ+Wyv60inw5WbIpk8y48Gt35rdgMrqxWFGSwz0Z95CtnN8o6E1UWuYaL1xmuFHT5fAfHwsHqGIGGU3izquX5gIpbBeZbFfG2/P4g/QYBhMimEJ4BdA+1AFPLA08g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770708543; c=relaxed/simple;
-	bh=ByPtK5KEpX2LdZX9oddoBB6sseTwgfzJrnfd0ExNZ1U=;
+	s=arc-20240116; t=1770708783; c=relaxed/simple;
+	bh=7plfoJ7cq4lOffrdRunzYCQOJPXt85agCfud2XH8cW8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eGuB/k9/45JJZTSxwlG0fAo13C5y9vZyZ17YyaOFpFrgHlkjpmUIQY4uJFcKoH27VluqudBsEOG6CWZxNicMoLKgY5Z+44uGD7F4F1TMbZKj9Cl8guMsEOaFiiiH5RK59vWHXPF69Se0q+J2vyNaxoowy/NPm/gkcW8dVL0bv78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YyGU1cQv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFD51C116C6;
-	Tue, 10 Feb 2026 07:29:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=AJQTqRjH2ZNwlEYTUq03V9kb1oHXn4DOZhs2qh6RugxZiieAcEjxm8sXzfzDK7E3X/9KXgTwVXtB2qKa5BmiIOHE9Sw78YQZhikqrP9n8GS31fz3idNi8HkMKK70OS4asDquz+ne19E+g+5KSYH9qsq6u1EPJXZs4kAFh9sXDSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jPdAmyxF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B24E2C116C6;
+	Tue, 10 Feb 2026 07:32:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770708543;
-	bh=ByPtK5KEpX2LdZX9oddoBB6sseTwgfzJrnfd0ExNZ1U=;
+	s=k20201202; t=1770708782;
+	bh=7plfoJ7cq4lOffrdRunzYCQOJPXt85agCfud2XH8cW8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YyGU1cQvALzFPDmnZyw5MOmEzvZCQwkvqF+FVIiC2LPpFkPbx1xqfwVCS9rnDmf41
-	 dHFk3IjcNIkf49vG76e2B5WrwCbWcwrKQPMuDJQKwkZTrHK8Y8lXUVPImvhKVgpICp
-	 pQ3lvDv0Yc3JkEmEY4kdGPyNR830sP2khMrFbWEdlYrK/2XAqtfbWK/xePApG1IcqH
-	 Yy4pk/1MmdLnjlA4RImRUU6DueMuz/qZjcJVarCPYNv7uZ7CCmNAIEbe+OoXoNi90y
-	 ApmwpvRO5Lga+1KgvqYgWhnGeANZ6p43tWuDYwlv/LGmRDNNRU5aYoTpz+FFWrvTbg
-	 z0BeU0nSeYeFA==
-Message-ID: <d159efb2-6c91-4778-8be8-838e5789fa24@kernel.org>
-Date: Tue, 10 Feb 2026 08:28:58 +0100
+	b=jPdAmyxFJnoJZsYLnAtbRjAISdOAqwijjrbZGmeHItwdLDmET3NbgXe1I2THqpnl2
+	 rlJ9R+5tzalrqkyX8CRudlfoKEVYxOg68hodECdivhf9SUVa9bUbRboVBjw5E+reuV
+	 qn4871ZZeiiVvwn+48D6UsXAM27oEDO4RMD3h1meAvEYsZBdPw6C1NIGeJwarIwD4H
+	 o2bwA8QcBo4GjSSDeU2ltfp2WAqn+cJpMg7GsBZFEJov/QoKlk2RMVWGzb+uwrTx9a
+	 YAHWpi2WesMK4ArnbbXZTlLHCFNrmqjbWkOH8WfjGKcJQ2ZZ/Ngr4XApeYqVP9QbUP
+	 e+zMP3sJGYqjA==
+Message-ID: <2c7ebaf4-5f0c-4712-bf7b-d5b2fa6e5366@kernel.org>
+Date: Tue, 10 Feb 2026 08:32:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,14 +53,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: hamoa-evk: Add DP0/DP1 audio
- playback support
-To: Le Qi <le.qi@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@oss.qualcomm.com
-References: <20260210024037.3719191-1-le.qi@oss.qualcomm.com>
+Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW1BBVENIIHY4IDEvM10gZHQtYmluZGluZ3M6IHNv?=
+ =?UTF-8?Q?c=3A_cix=3A_document_the_simple-mfd_syscon_on_Sky1_SoC?=
+To: Gary Yang <gary.yang@cixtech.com>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ Peter Chen <peter.chen@cixtech.com>,
+ "unicorn_wang@outlook.com" <unicorn_wang@outlook.com>,
+ "inochiama@gmail.com" <inochiama@gmail.com>,
+ "alchark@gmail.com" <alchark@gmail.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
+References: <20260209093344.2013693-1-gary.yang@cixtech.com>
+ <20260209093344.2013693-2-gary.yang@cixtech.com>
+ <4a26d89a-95ca-4888-aaea-876b9612d006@kernel.org>
+ <PUZPR06MB5887D218A0A69676ED2FEBDFEF62A@PUZPR06MB5887.apcprd06.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,49 +117,71 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260210024037.3719191-1-le.qi@oss.qualcomm.com>
+In-Reply-To: <PUZPR06MB5887D218A0A69676ED2FEBDFEF62A@PUZPR06MB5887.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264252-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264253-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[cixtech.com,kernel.org,pengutronix.de,outlook.com,gmail.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: 8BA78117F1C
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.244.36.0:email]
+X-Rspamd-Queue-Id: 38CE5117F5C
 X-Rspamd-Action: no action
 
-On 10/02/2026 03:40, Le Qi wrote:
-> The hamoa-evk DTS currently lacks DAI links for DP0 and DP1, preventing
-> the sound card from exposing these playback paths. Add the missing links
-> to enable audio output on both DP interfaces.
+On 10/02/2026 04:37, Gary Yang wrote:
+>>> +examples:
+>>> +  - |
+>>> +    syscon@16000000 {
+>>> +      compatible = "cix,sky1-s5-system-control", "syscon";
+>>> +      reg = <0x16000000 0x1000>;
+>>> +      #reset-cells = <1>;
+>>> +    };
+>>> diff --git a/include/dt-bindings/reset/cix,sky1-rst-fch.h
+>>> b/include/dt-bindings/reset/cix,sky1-rst-fch.h
+>>
+>> Filename must match compatible.
+>>
+>> I am pretty sure I gave such feedback to Cix before....
+>>
 > 
-> ---
-> Changelog:
-> 
+> Yes, You're right. I remember it. But please allow us to explain it.
+> This header file contains many macros for reset signals. We intend to use syscon as a common module.
+> So it is not only reset controller, it can also be used by other modules in futher. If the file named by syscon, 
+> Maybe make confuse. All right?
 
+Really? How?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Not able to find the header because it is randomly named would confuse
+more. You don't get exceptions from the rules. Multiple people before
+also asked for some special naming for whatever reasons. It's the last
+time I am asking you of it. Read the docs and follow it and we really do
+not care what internally you want, because you are contributing to
+GENERIC kernel so you must follow common and generic rules.
+
 
 Best regards,
 Krzysztof
