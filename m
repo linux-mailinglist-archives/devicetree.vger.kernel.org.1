@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-264358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264356-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GK7hGxcVi2n5PQAAu9opvQ
-	(envelope-from <devicetree+bounces-264358-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:23:03 +0100
+	id OGo2BBQVi2n5PQAAu9opvQ
+	(envelope-from <devicetree+bounces-264356-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:23:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1E7411A153
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:23:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5545F11A130
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:22:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BB3D83039F63
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:22:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 09BAA300D618
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:22:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D58C33191C9;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B3143191D2;
 	Tue, 10 Feb 2026 11:22:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24E5E3191B1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24DE63191A7
 	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 11:22:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770722576; cv=none; b=gmdkj1PI6WYNWwW1SKNISVp9qjZExSmZN7sAbsB1vA368Wsr4PFdUz5xFMzipvoep+EEWC3cTFZljhKoWXArnkhaiW9+j/BzFZL2DjVnNMotPT6ip3QbrcKNv5UOlFIcmnHXnD82kfFjAUNeC5TQyqAYBH5p4q7PeDm4jlDTEU8=
+	t=1770722576; cv=none; b=FIBNDQGiV+aOyBvmwJy7uHl4uyD/pYPqsUMfWtCjxVEnviu4iWsS2zdMBfRPAAMRJONIP8LIL1McvGJzKW3G3OGHMxMCQrvZLaPTBNS47AMjjzBBtt2IEj+JYrq9klTYhF9jZzhRGw0nT7VPGgV3x3kgw+gmFZ82o0D3EOht4TU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1770722576; c=relaxed/simple;
-	bh=tIxEnVXQIcycehJg14Mm4wL6a483jo2yiz6YAS5tZ8k=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KcjG4QYeNBpXDtx+s0e6HPgv5HI+n3SLuwhqtV+As0yaLNWpCvlxD3mSL6jxKhlO54vAbfeieaKzOVHyHc6VU6CpKSTD/grThBjSYfBXziY+qDXiafsE6x0E0vptnmsqmazRespQkaluojRpPKPyKzyhk7uGczbOqr7RY73KCqU=
+	bh=OJfESjo3KnQt+foc/RR36coXEo48BBCUkYgv/27ypSk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=J/K3gG8PpcbEu/a0MToV9jCwFfrSSPugU9pvOwxbqk7gNH9wg+QR9mQcO4hCkm2dh+Op0MoZNkZDn6eB47iM4kszF0772AoCsYs7xlSX7bFbODytU+2Rr1y2o/dp0sMbqv0LnA7/A4WRYE/o83phRTCZ4AmDdqWqJX1vLRD0ep8=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.tretter@pengutronix.de>)
-	id 1vplpN-00070Z-P1; Tue, 10 Feb 2026 12:22:45 +0100
+	id 1vplpN-00070Z-Qy; Tue, 10 Feb 2026 12:22:45 +0100
 From: Michael Tretter <m.tretter@pengutronix.de>
-Subject: [PATCH v3 0/3] drm/panel: add LXD M9189A
-Date: Tue, 10 Feb 2026 12:22:31 +0100
-Message-Id: <20260210-drm-panel-ek79007ad3-v3-0-cd2974d56937@pengutronix.de>
+Date: Tue, 10 Feb 2026 12:22:32 +0100
+Subject: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add lxd
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,10 +47,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAPcUi2kC/x3MMQqAMAxA0atIZgOxBUu9ijgUEzWoVVoQQby7x
- fEN/z+QJalk6KoHklya9YgFtq5gXEKcBZWLwZBpyZBHTjueIcqGsjpP5AJbbIm8801gNhZKeia
- Z9P63/fC+H2TVLtRmAAAA
-X-Change-ID: 20260209-drm-panel-ek79007ad3-6009791add23
+Message-Id: <20260210-drm-panel-ek79007ad3-v3-1-cd2974d56937@pengutronix.de>
+References: <20260210-drm-panel-ek79007ad3-v3-0-cd2974d56937@pengutronix.de>
+In-Reply-To: <20260210-drm-panel-ek79007ad3-v3-0-cd2974d56937@pengutronix.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Rouven Czerwinski <r.czerwinski@pengutronix.de>, 
@@ -83,7 +82,7 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-264358-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264356-lists,devicetree=lfdr.de];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -92,46 +91,40 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,msgid.link:url]
-X-Rspamd-Queue-Id: F1E7411A153
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5545F11A130
 X-Rspamd-Action: no action
 
-Add support for the LXD M9189A panel based on the EK79007AD3 DSI display
-controller.
+From: Rouven Czerwinski <r.czerwinski@pengutronix.de>
 
-This series is based on the v2 by Rouven Czerwinski. Since I took over
-the series, I changed the maintainer for the driver and bindings to
-myself. Furthermore, I updated the device tree binding to use
-panel-common.yaml as a base and fixed a compiler warning for the driver.
+Add vendor prefix for LXD Research & Display, LLC.
+Link: https://www.lxdinc.com/
 
+Signed-off-by: Rouven Czerwinski <r.czerwinski@pengutronix.de>
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
 ---
 Changes in v3:
-- Add cover letter
-- Change maintainer to myself
-- Use panel-common.yaml as base for dt binding
-- Fix compiler warning about uninitialized variable
-- Link to v2: https://patch.msgid.link/20241025141130.3179166-1-r.czerwinski@pengutronix.de
-
+- none
 ---
-Rouven Czerwinski (3):
-      dt-bindings: vendor-prefixes: Add lxd
-      dt-bindings: display: panel: add YAML schema for LXD M9189A
-      drm/panel: add LXD M9189A panel driver
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../bindings/display/panel/lxd,m9189a.yaml         |  63 ++++++
- .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
- MAINTAINERS                                        |   6 +
- drivers/gpu/drm/panel/Kconfig                      |   9 +
- drivers/gpu/drm/panel/Makefile                     |   1 +
- drivers/gpu/drm/panel/panel-lxd-m9189a.c           | 243 +++++++++++++++++++++
- 6 files changed, 324 insertions(+)
----
-base-commit: 05f7e89ab9731565d8a62e3b5d1ec206485eeb0b
-change-id: 20260209-drm-panel-ek79007ad3-6009791add23
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index c7591b2aec2a..90d5ef1f15b3 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -963,6 +963,8 @@ patternProperties:
+     description: Liebherr-Werk Nenzing GmbH
+   "^lxa,.*":
+     description: Linux Automation GmbH
++  "^lxd,.*":
++    description: LXD Research & Display, LLC
+   "^m5stack,.*":
+     description: M5Stack
+   "^macnica,.*":
 
-Best regards,
 -- 
-Michael Tretter <m.tretter@pengutronix.de>
+2.47.3
 
 
