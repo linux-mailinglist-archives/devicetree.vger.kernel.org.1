@@ -1,345 +1,331 @@
-Return-Path: <devicetree+bounces-264248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264249-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QLJUIvPbimkOOgAAu9opvQ
-	(envelope-from <devicetree+bounces-264248-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:19:15 +0100
+	id 65kJHlPdimlIOgAAu9opvQ
+	(envelope-from <devicetree+bounces-264249-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:25:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34F9F117D38
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:19:15 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15281117E35
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:25:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 80ADC300AB02
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:19:14 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 00B5B300A30D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:25:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81563332EB2;
-	Tue, 10 Feb 2026 07:19:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 290D7331219;
+	Tue, 10 Feb 2026 07:25:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PCoDOQU+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AnmZuF8F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05368126F3B;
-	Tue, 10 Feb 2026 07:19:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=198.175.65.16
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770707953; cv=fail; b=TIBGk6tzb8Ji0YrF4shutAKX/GxyWAC2Xzz5GAEDFuvP5lmZHWOQKo6+2ciNNdmPoI+CIsbtu2jf/B4QO6KaQZ3BxMFksuDmmFz16sbu8snL95B9a0Dc94JqFTeSfHQfx3Uj1EmSsuNnC8tj/Cx8nCmEiNLzfkrVFBsAzDoEUOg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770707953; c=relaxed/simple;
-	bh=IU1EsInyFiXGKgUyBsEMBgR5ovGSGc1JYUes559WzNs=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=A9pII9cPT0Wxy+llhmHv36nuhYLQpqUpGBJt4Sw6/lIsS+EiyrBG6i2l07ZtlOBlIcirA9aX/0DlUWkaba/+d+0CgRzFu3fj3i4rZ3LXzRZjNcpVCJ6LpShU81vmUDoTQ2JDkitfY5Q8rfMJ2qhTaxFIwLL8yu5Ymkg3u3JPbLw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PCoDOQU+; arc=fail smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770707952; x=1802243952;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=IU1EsInyFiXGKgUyBsEMBgR5ovGSGc1JYUes559WzNs=;
-  b=PCoDOQU+9vj5PGydMZVeqVxYk2ZB/j3z4Tidtle2TK5D/jW2qYtK6dQd
-   76CkETfja84vp+Q2LjSEkFg5MFPsqNv+jJhItrRiwFcVyl5xAYomiE/Cb
-   rYxiOSqOedIALEeCBdGSp5UDOSJZqfVbqRe1BbNumrnATQmkpicVPQvkH
-   yqQtXDuXOSj4VcdWS5hGiUivfGCTk1QwkfBr8iHmnvHQJmQH0qOyMT8wB
-   BYm5+nV6OUpiSrZjkyKMJh4ZLADwyl2qVhVfmMRKAc3uJBjRvxRVgt5fu
-   yePbpfVB4dxLSNHJIMx9wTWKjDtJFwEh3DUYFJMRBKIbel6HSiUl1Afx8
-   Q==;
-X-CSE-ConnectionGUID: 1s9yl+0gRjmPWpfvggwbAw==
-X-CSE-MsgGUID: Qq0vk9CiTSO6nL9QImffLA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="72013465"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; 
-   d="scan'208";a="72013465"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 23:19:11 -0800
-X-CSE-ConnectionGUID: hPg1ap/VR3azg12+JxXNGg==
-X-CSE-MsgGUID: pgHmUQKJRwmx/0kokkHQQw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; 
-   d="scan'208";a="211672603"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
-  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 23:19:12 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 9 Feb 2026 23:19:11 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Mon, 9 Feb 2026 23:19:11 -0800
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.1) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 9 Feb 2026 23:19:10 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VPVT+cPPtiK83Tafnub6GSU/fQ4eowy50+xpTs0u2gd3fGMrEnz6gaILEXOEmxxeRAOhqRrTvMmSLyO9Q+X3tMAdbXWPI8RjeI/2oUvSBHDW8C81ShyiDv0o4sRgBkocsyexOyNtI3Aw4v40b9cPQsTDceOL/utJNDwnUccHo5Ch8n2pkMar1Vq4gA8jXplXhQMxWPfFVtq0IZCS5ik8BXt++LzDkgARNpx2Fvckcf97pcvjXekb8Vvn5PO42sU4H+f+xCVVLeob5mGGU85r87uKNwHzqxEnxjkVib8M3/njxoCPLguftNlY+187BzNUJ10e8aB0hLd+lN75v8SS5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N8YSCYIAQwe01A70B7fa+QAA68oGYX443Vjs6PyCMQo=;
- b=chfZ4lRuy0xAAGxEnePkCM5LEhP1IwTbkHpwKSHDqrOAgqvyv4QqQqlpkVUjwGauCqfSPo/J1YRnwyA36EwYBnru543Ss2pmDltbTqWnkZeN7oPKpaj7qGIw2S53yEzVPJKpkGj3rSnH+vyvcJfMLYGMZJXGEqfWqYerxtQSDNM6fFfdKWTp6GaNXHV9fAWLtkQ2+yVlYN4IfnnnjNS8oT8MNSd0wn0l5aziYlKqqdynvHH3sqdfJsYwqrXEuL8PPe+qhmtZz1bznvGPHQAGrmKBA0fPXEm7SDheyHre4n3sSIxdrP7yn57WruMUFZHr6FbxJdRbRLWFjoNkXV8C/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA3PR11MB8986.namprd11.prod.outlook.com (2603:10b6:208:577::21)
- by SA2PR11MB4953.namprd11.prod.outlook.com (2603:10b6:806:117::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.17; Tue, 10 Feb
- 2026 07:19:05 +0000
-Received: from IA3PR11MB8986.namprd11.prod.outlook.com
- ([fe80::e6f0:6afb:6ef9:ab5c]) by IA3PR11MB8986.namprd11.prod.outlook.com
- ([fe80::e6f0:6afb:6ef9:ab5c%5]) with mapi id 15.20.9611.006; Tue, 10 Feb 2026
- 07:19:05 +0000
-From: "Loktionov, Aleksandr" <aleksandr.loktionov@intel.com>
-To: "Vecera, Ivan" <ivecera@redhat.com>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>
-CC: Eric Dumazet <edumazet@google.com>, "Nguyen, Anthony L"
-	<anthony.l.nguyen@intel.com>, Rob Herring <robh@kernel.org>, Leon Romanovsky
-	<leon@kernel.org>, "Lobakin, Aleksander" <aleksander.lobakin@intel.com>,
-	"linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>, "Kitszel,
- Przemyslaw" <przemyslaw.kitszel@intel.com>, "Kubalewski, Arkadiusz"
-	<arkadiusz.kubalewski@intel.com>, "intel-wired-lan@lists.osuosl.org"
-	<intel-wired-lan@lists.osuosl.org>, Jakub Kicinski <kuba@kernel.org>, "Paolo
- Abeni" <pabeni@redhat.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jiri Pirko
-	<jiri@resnulli.us>, Richard Cochran <richardcochran@gmail.com>, "Saravana
- Kannan" <saravanak@kernel.org>, Prathosh Satish
-	<Prathosh.Satish@microchip.com>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Mark Bloch <mbloch@nvidia.com>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Tariq Toukan <tariqt@nvidia.com>, Andrew Lunn
-	<andrew+netdev@lunn.ch>, Jonathan Lemon <jonathan.lemon@gmail.com>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Saeed Mahameed <saeedm@nvidia.com>, "David S.
- Miller" <davem@davemloft.net>
-Subject: RE: [Intel-wired-lan] [PATCH net-next v2 03/12] dpll: Add helpers to
- find DPLL pin fwnode
-Thread-Topic: [Intel-wired-lan] [PATCH net-next v2 03/12] dpll: Add helpers to
- find DPLL pin fwnode
-Thread-Index: AQHchxiP7wmqfXl5uUKlMU2tWQ3AT7V7rLWQ
-Date: Tue, 10 Feb 2026 07:19:05 +0000
-Message-ID: <IA3PR11MB89868F74CB8737AA5B67B1F7E562A@IA3PR11MB8986.namprd11.prod.outlook.com>
-References: <20260116184610.147591-1-ivecera@redhat.com>
- <20260116184610.147591-4-ivecera@redhat.com>
-In-Reply-To: <20260116184610.147591-4-ivecera@redhat.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA3PR11MB8986:EE_|SA2PR11MB4953:EE_
-x-ms-office365-filtering-correlation-id: 85292f8f-e9dc-400b-026e-08de6874acbe
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700021;
-x-microsoft-antispam-message-info: =?us-ascii?Q?AjKfCn7xUW7JINXMRcv5x7Sdg6R7a/1mYOk6MkDLytvlS1NdO70bWsW0fIlJ?=
- =?us-ascii?Q?4RxPv6Rkxb/AhfFgMtveVC/Mv+Iykk7gPMFWKWG4x9p5kfhts26AOn2gGlgI?=
- =?us-ascii?Q?1WAC5/mcREnGVH3ybcymSAVVmo4mbIkcWOIxcSVPuexAzlCTqBHB/nnKitMP?=
- =?us-ascii?Q?bQWO1XA/nU3Vezhxua6BsZSelSgoz7AHxDLXxYGdrSHy+k+CumKCUVdi5D2f?=
- =?us-ascii?Q?Oyzuzx6yo8a+OX3lu8kuFLcpK7ksjOEgR8b4kc2LjoCBLS8p+cAyDqh2uu+7?=
- =?us-ascii?Q?9ejPzCriMlKZ4EEUPQZqbQS12bHFMecx7mouNXSO5twiIIea/w9qzqlvmazW?=
- =?us-ascii?Q?ZxWJyGloJxsFz9oOW80jqmBYlxrn3MDfzw7FGbJ+pOd9T4lr/pna6ryRZoHu?=
- =?us-ascii?Q?cHOeyYdYCmI3LUr54gIdHgeA5liekrXjDv3kvaORN0tuthyOjB6Cf07VovFD?=
- =?us-ascii?Q?r9lvIaq/5nU6ArnYO7dBkUKDzL+y4sayFIwnSIXt13Nm6jUxiq9H5Or3zjO4?=
- =?us-ascii?Q?BscPG3EWyhUaeE0Ibt0ei5Gko9GuubI0q8TMcB+IHbzzzvm2EHHfP9sYvxQD?=
- =?us-ascii?Q?893sR4lNGSqKC2HtGckO0QCOKDsDk6DPeUIizUGXFgqMI7XH2tO3vwkaws4v?=
- =?us-ascii?Q?XAipeyzbG9JhaNEkxhL5XUqnwo9bxqT0ZuFTzR2HGDDVKkrlXuvutHnhkijV?=
- =?us-ascii?Q?c3Vr5YZlp/ibYrZkCj7tU2BUfcVqso8M3w/tYJnZZciF2KXKgZgz6McBd0QZ?=
- =?us-ascii?Q?CnFDCjJZzKwTRw1qTcjHGBeNhVW7u0juHnMCZPclwZyNl1uzz84aG5vsizfV?=
- =?us-ascii?Q?EtsPLMukAzFM+s6lcNdaEdbK5i3uYb80WZ5WS2ouKYqQ92+rumgcN59CctCr?=
- =?us-ascii?Q?F1F9ra7gJinBbm7NL/eZ0sg6H+MzkyAKG6ZoWAZ5qZ28ii5whHlxKrPaWiVi?=
- =?us-ascii?Q?uZOUmVjk9lJCwGE5H4DQmchn2llP9VW97qk+vzHA7ayf6QznX+s/ovfxqkG1?=
- =?us-ascii?Q?d8SF6WPoj4+oKN+jprM/qM94bQB7rPIvhrG2tUk7e+lqkPAlES3g1477IJbg?=
- =?us-ascii?Q?F8iNKZkF+hJ7bJKa2lxQSO9PKMSjubNoS/UmyBuUx0g7QT9DDJhRjN7d84Mv?=
- =?us-ascii?Q?+dhL2RgX2a0u1sc01TffDwW0nvSmI/o/LnWkV7glvbn09iNG5jWz+ZMAoXQZ?=
- =?us-ascii?Q?CxkiKEIEAAiLeO+pRYqCVFj4jb7d89lfFulsY3pUp1jioJbCJBAKfqNKAqdD?=
- =?us-ascii?Q?vYqFMH6TmO60II3kQqPStQ7HVOpecMa0xBnWJ1ug3pN+yK3rv52SMjUo67Zu?=
- =?us-ascii?Q?uClDOOfKF5Gsd+6y3Ur2//a2sxrEuPwv9cD6yDgzNxO8x+IBQG5Obk0gOtJ6?=
- =?us-ascii?Q?B28VI2WabW4slHg1Hmnubqb/Iib6XMXnAo8A9hCZdr3S9VLkX1E0txfPCW6w?=
- =?us-ascii?Q?p7y3LBtO+QdE/OIBTXwNumiTZvo+zHedRIwVMcsH1FaAOuuJEtXqJdcINGs9?=
- =?us-ascii?Q?NI1WveXJEfFdZZdf225XPdcwpWvFUf/7gT146wN9W3kW4/p349eSwllwzGOw?=
- =?us-ascii?Q?KM+J9nUVnSJkH2+0UbUKAF3bFLlb9bZ+PaU806+H/cJcjmAYdLBJxqor2rkz?=
- =?us-ascii?Q?bpJjPI3CcTO65b8/ENqXBm0=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA3PR11MB8986.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?uRI0jhUAYJuQ0KNfrIqorrGjo2e4scyJaSF68oo7uM58n0LT5F3e/WoMDdik?=
- =?us-ascii?Q?Y86OgkpiBwWiBQGskt8DVI306qUU1Ua7FBa9dTP7RiyLlUoJMaIkFRTcLdCf?=
- =?us-ascii?Q?GCrtfB7WwaHPH96mvROytsfVqRgGILmhexKHBRvgr+0Dub2DzszT6zOC8Vq+?=
- =?us-ascii?Q?2P8fvbdS8lWye8cRCae9jJoMNUWtlzXHK/WHVjrsbgXgW3MYGaNIpCUfutRM?=
- =?us-ascii?Q?GPCjTQLtZXbmb/WWl+q6xmHl0Ig+8XAhGdcYyvXCta+46IEgLp/QHKUmaPV0?=
- =?us-ascii?Q?L5tbYzJI0RiNCbhMPGc0sjwgB2jyJgyM3dluNexbDBonZCiDJpp5obw04hkI?=
- =?us-ascii?Q?yNUYIZhGsQxphT+Zcn5qZSNBfhRMlYe9bREd9dL7sTEvY1lpIPvoVQYzrB7F?=
- =?us-ascii?Q?RPQfGmQI5KGA17DyZXMDzaWmR40+uPbHp8ysVdrenUB0I6E8KFJHwY0mCYyw?=
- =?us-ascii?Q?2GGuH14UobVBgS15C6xQH4f+85NyPtFklGsnHuyOp0aMIPH1w82bKH4rIP9+?=
- =?us-ascii?Q?AiDZBxYtUjbbKEqEilfwR/sN2mZ/Ia3DwXyK0NDBpcu7E3aZpgNNlHgLkOB3?=
- =?us-ascii?Q?yzGExh/k8Mne4wAkJCEsbZJlkCstzL1BWaRbvpuhektUo1I6hwDtDbjgUKOJ?=
- =?us-ascii?Q?gQf49zE918NQsHipAhWrt2OSpPRMPbvLmv+eriJJwgpH5CXWbeTOf1quBUOn?=
- =?us-ascii?Q?qqjACr3D2mFwx7cS19N+GQ3MOMjSJulpH5Vull2+hXX73IbYVKbwQMu/t6u7?=
- =?us-ascii?Q?kaiZxpKB0gy4BUsEpeMfsBdh1eUTPYFjV2fyEtZLcOg+khCuyRTfAaEAG1eM?=
- =?us-ascii?Q?kRxQgP1Fpt1EPGpF4IQN6eKs9O7NXE9/OiTuWJy6H9VE9L1Q2CYxFeYzTKGj?=
- =?us-ascii?Q?sfODw8DT6TXtRetlRctyhCFjnz4oFKeXUbKir+QxX8kwHiDZSdTDmPJN1FCb?=
- =?us-ascii?Q?sxVp+yCVof6cMeX7fbN4pECNTmBvaid0Pn2ETbUJayWUXq6p8xXAbZW+/53u?=
- =?us-ascii?Q?ztoxkE1OXb52AkYEjDgcvH5/89Q4lluR98A9QTcn/k8nbJZE02n3BccIgPTj?=
- =?us-ascii?Q?y2OTx+J02OSm46OgmfH3iHmFXlaRU0QL/GPQrfnR8sNrmpsW3DIs35G2TXGW?=
- =?us-ascii?Q?OizdvcsWQEdYkxTieFdFHyHD2IhXxoAZmHdy013kuhTUs5mzaa0HSqVoRSSa?=
- =?us-ascii?Q?iG1JkbOO5h8CrfuUMoW+Y9CbFdoR/a1vSHytR5eZWa5lLpwWVZTqfIFvVNkH?=
- =?us-ascii?Q?NOgvbhchJarxD2NIAFlnddDwvIDajRbMoSX8pnHextCxBsVzLa7MeWnaTFb7?=
- =?us-ascii?Q?NuFuqOdNuZic4HZbVPh2RaYQQPjChV+eMaXO87XKvvpiEAq06DElNMd3jeAK?=
- =?us-ascii?Q?LcebzCwYRprp7PdK5CRkEP40y5Njd6oEQt9NVaGOz6WF2RQS5S3fgZNuZOV+?=
- =?us-ascii?Q?G49xpKL/C2Qq/1wPrePOn6TQv4rgCtr7oHSLPtKBfNLanvSc+criVHPN8JL5?=
- =?us-ascii?Q?l5QUXyBDtj0KRJgd/qZUFWVeXabfAXVW6OR8fyR2QFjv79l185pBciSnSECp?=
- =?us-ascii?Q?28yPXOavjeUvh17CPc2Ok5BRcN8yDCa/hkHmT22ekmXoqx/KFZGu+0ExUKIR?=
- =?us-ascii?Q?kWmOOSfbhhFFIjuUgpPyYLZLjn7yRX6qTCpkNrTu1Xje0I7AWqucbFPmht9W?=
- =?us-ascii?Q?d5uTkr4jMLdsN7BBPGZQo0CUInxR/ixGAzpBW1QW8dUC5Wq+yggk2rLWNsH2?=
- =?us-ascii?Q?PH+x9PyIUa4yJkIjpjJm12VbDkVvFVI=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 043FB309EFB;
+	Tue, 10 Feb 2026 07:25:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770708303; cv=none; b=lspWaR+x/eDzzviU0Py2JtJeoTz2w8o3F9+YWHUdIRkD6uIjuJ2xxvdnw0EgRTBOXbl6gpY9/QquGawGB0ra+tMvjwIU+edyehN66hFRCJIBJtWSTdUj+hoMbu7i2RTKShcaguP6FoHzMQ7wMOE3Rom/JYlCcWumh8orJC2E6FY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770708303; c=relaxed/simple;
+	bh=NKabKm5bxXQzRG3wBqpraJyx74A7XUtBm0rlOFG7iag=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JCl6Z0IoLv63yXDpaaV56gU5+TNrfdrZ2RhFbJ9cTkek7nMlo1lROR2mVZlNJgtyg/nLRfFXFNYEsJiiunkxeoz/6Z2VmhdYzYudTaJeyot7AqwZmg5wk1ExW4X5s/lRa+h9X3XYuaeVnnsU9N0LOy0LnftBb2UbxvvRnm/LKX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AnmZuF8F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1485C116C6;
+	Tue, 10 Feb 2026 07:24:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770708302;
+	bh=NKabKm5bxXQzRG3wBqpraJyx74A7XUtBm0rlOFG7iag=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AnmZuF8FPlL7U+DEcpntM54HDphYDNE41OcocmVHVcoS04EA0ntdCrL0u3NTUoeme
+	 zLUMXu3oD/kSPaYg2gb3ptBzvydHBdiicYKoyhSLOv8VteFz+5S5Hr33mW9fKTP5DE
+	 fh3buE72NGRcUgFBal6Izl1AlP7+JqkBqH6KrNlvaRAGpVSos5Kj2UQGP7knfTFaLX
+	 6TvM0s5yCPFpFLFuhL2cj97m71IR7KeNPW1+9hMkmjaaulk8S/kZe5TYnWPIwsaio7
+	 WNz8aKUT18l2g/JYoJle/RqHmNbi3Bm4gpGwvfuWeLXJVHPFNoL+L3q7gCOm22KSa7
+	 q3WOshNWN4MVg==
+Message-ID: <3bed0897-f04a-4d0d-81f5-eea34a0f833b@kernel.org>
+Date: Tue, 10 Feb 2026 08:24:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB8986.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85292f8f-e9dc-400b-026e-08de6874acbe
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Feb 2026 07:19:05.5954
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fLQpoqqaW3EC4BsJrHw0F1uH8kyq1oyx1GnlbfDW88zgAsKrfplqS/DWzQA3Gp4yeawPb8V2U9+oWT/LAwTmLSjvtL0IGTn3KSR2cKDvk0s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4953
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/9] dt-bindings: soc: qcom: eud: Restructure to model
+ multi-path hardware
+To: Elson Serrao <elson.serrao@oss.qualcomm.com>,
+ Rob Herring <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260126233830.2193816-1-elson.serrao@oss.qualcomm.com>
+ <20260126233830.2193816-2-elson.serrao@oss.qualcomm.com>
+ <20260206145544.GA207233-robh@kernel.org>
+ <cb0693b2-b9fd-4880-86fa-26fd1259f5b1@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <cb0693b2-b9fd-4880-86fa-26fd1259f5b1@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	TAGGED_FROM(0.00)[bounces-264248-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264249-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[google.com,intel.com,kernel.org,vger.kernel.org,lists.osuosl.org,redhat.com,resnulli.us,gmail.com,microchip.com,linux.dev,nvidia.com,lunn.ch,davemloft.net];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[aleksandr.loktionov@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 34F9F117D38
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.2:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.1:email,0.0.0.3:email]
+X-Rspamd-Queue-Id: 15281117E35
 X-Rspamd-Action: no action
 
+On 10/02/2026 05:32, Elson Serrao wrote:
+> 
+> 
+> On 2/6/2026 6:55 AM, Rob Herring wrote:
+>> On Mon, Jan 26, 2026 at 03:38:22PM -0800, Elson Serrao wrote:
+>>> The Qualcomm Embedded USB Debugger (EUD) can intercept one or two
+>>> independent High-Speed UTMI paths, depending on the SoC. Each path is
+>>> distinct with its own HS-PHY interface, connector/controller wiring, and
+> 
+> [...]
+> 
+>>> +  supported on up to two High-Speed USB ports.
+>>>  
+>>>  properties:
+>>>    compatible:
+>>> @@ -29,26 +32,62 @@ properties:
+>>>      description: EUD interrupt
+>>>      maxItems: 1
+>>>  
+>>> -  ports:
+>>> -    $ref: /schemas/graph.yaml#/properties/ports
+>>
+>> You are breaking existing users.
+>>
+> 
+> Thanks Rob for your feedback.
+> 
+> The original motivation for the structural change was to make the binding
+> encode resources/topology that were implicit before. Specifically the EUD
+> intercept of the UTMI path(s) between the HS-USB PHY and the controller, and
+> the need to represent platforms with two independent UTMI paths. That led me
+> to introduce per-path nodes and a per-path PHY reference.
+
+I do not see how this answers at all the comment, so no, it's still NAK.
+
+> I outlined the constraints and rationale in this earlier thread:
+> 
+> https://lore.kernel.org/all/5cec9127-bdc5-49d7-80e1-2ae26f81163c@oss.qualcomm.com/
+
+And you were supposed to keep things backwards compatible. Are they? Not.
+
+Anyway, the reasoning cannot be somewhere else. Must be here in the commit.
+
+> 
+> 
+>>> +  '#address-cells':
+>>> +    const: 1
+>>> +
+>>> +  '#size-cells':
+>>> +    const: 0
+>>> +
+>>> +patternProperties:
+>>> +  "^eud-path@[0-1]$":
+>>> +    type: object
+>>>      description:
+>>> -      These ports is to be attached to the endpoint of the DWC3 controller node
+>>> -      and type C connector node. The controller has the "usb-role-switch"
+>>> -      property.
+>>> +      Represents one High-Speed UTMI path that EUD intercepts. This node models
+>>> +      the physical data path intercepted by EUD and provides graph endpoints to
+>>> +      link the USB controller and the external connector associated with this path.
+>>>  
+>>>      properties:
+>>> -      port@0:
+>>> -        $ref: /schemas/graph.yaml#/properties/port
+>>> -        description: This port is to be attached to the DWC3 controller.
+>>> +      reg:
+>>> +        maxItems: 1
+>>> +        description: Path number
+>>> +
+>>> +      phys:
+>>> +        maxItems: 1
+>>> +        description: High-Speed USB PHY associated with this data path.
+>>
+>> Doesn't the DWC3 node have a phys property? You don't need it twice 
+>> since you can walk the graph.
+>>
+> 
+> Yes, the DWC3 node does have a `phys` property. I added a PHY reference under
+> EUD to make the dependency explicit, since the EUD debug module is independent
+> and relies on the HS‑USB PHY for its operation.
+> 
+> If the preferred pattern is to rely on the controller’s `phys` and discover it
+> by walking the graph, I’m happy to drop the duplicate reference. My only
+> concern was whether that makes the dependency effectively implicit—i.e., EUD’s
+> correctness would depend on a resource not directly referenced in its own
+> binding. If my understanding of how this should be expressed in the binding is
+> not correct, please let me know and I’ll adjust v3 accordingly.
+
+Binding is not for drivers, so term "implicit" used before and now is
+not correct. Does the EUD has dedicated different phy? Yes or not?
+
+> 
+> 
+> 
+>>> +
+>>> +      usb-role-switch:
+>>> +        type: boolean
+>>> +        description:
+>>> +          Set this property if the USB port on this path is role switch capable.
+>>> +          In device role, debug mode inserts the EUD hub into the UTMI path. In
+>>> +          host role, the EUD hub is bypassed and UTMI traffic flows directly
+>>> +          between the PHY and the USB controller.
+>>> +
+>>> +      ports:
+>>> +        $ref: /schemas/graph.yaml#/properties/ports
+>>> +        description:
+>>> +          These ports are to be attached to the endpoint of the USB controller node
+>>> +          and USB connector node.
+>>> +
+>>> +        properties:
+>>> +          port@0:
+>>> +            $ref: /schemas/graph.yaml#/properties/port
+>>> +            description: This port is to be attached to the USB controller.
+>>>  
+>>> -      port@1:
+>>> -        $ref: /schemas/graph.yaml#/properties/port
+>>> -        description: This port is to be attached to the type C connector.
+>>> +          port@1:
+>>> +            $ref: /schemas/graph.yaml#/properties/port
+>>> +            description: This port is to be attached to the USB connector.
+>>
+>> Both port 0 and 1 are attached to the USB controller?
+>>
+> 
+> No—only port@0 is attached to the USB controller; port@1 is attached to the USB
+> connector.
+> 
+>> Why can't you just add more port nodes to the existing binding?
+>>
+> 
+> Do you mean extending the existing top-level ports like this?
+> 
+>   - port@0: USB controller0
+>   - port@1: USB connector0
+>   - port@2: USB controller1
+>   - port@3: USB connector1
+> 
+> My hesitation with a flat ports list is that it doesn’t encode which
+> controller/connector pair belongs to which physical path through EUD.
+
+What do you mean? The index defines exactly which path it is.
+
+> A graph walk starting at Conn0 could also reach USB Ctrl1, even though
+> these are independent paths and not interchangeable.
+> 
+> Below is the high‑level topology of EUD connections. In the disabled state,
+> EUD is transparent and UTMI traffic flows directly from USB2PHY0/1 to USB
+> Ctrl0/1. When EUD is enabled, the debug hub is inserted on the selected path
+> by the internal UTMI switch, so UTMI traffic on that path traverses the hub.
+> The non‑selected path continues as a direct PHY↔Controller link (EUD can be
+> enabled on only one path at a time).
+> 
+> 
+> 
+> 					EUD Block
+> 			   +------------------------------+  
+> 			   |                              |
+> [Conn0]-->[USB2PHY0 ]----->|  -------- Path 0 ------------|--> [ USB Ctrl0 ]
+> 			   |                              |  
+> [Conn1]-->[USB2PHY1 ]----->|  -------- Path 1 ------------|--> [ USB Ctrl1 ]
+> 			   |                              |
+> 			   |      +------------------+    |
+> 			   |      |  EUD Debug Hub   |    |
+> 			   |      +------------------+    |
+> 			   +------------------------------+
+> 
+> 
+> 
+> So to make the connector–controller relationships explicit, I kept the `ports`
+> property under the `eud-path@N` child nodes. Please let me know if there is a
+> preferable way to model this.
+> 
+> Thanks
+> Elson
+> 
+> 
 
 
-> -----Original Message-----
-> From: Intel-wired-lan <intel-wired-lan-bounces@osuosl.org> On Behalf
-> Of Ivan Vecera
-> Sent: Friday, January 16, 2026 7:46 PM
-> To: netdev@vger.kernel.org
-> Cc: Eric Dumazet <edumazet@google.com>; Nguyen, Anthony L
-> <anthony.l.nguyen@intel.com>; Rob Herring <robh@kernel.org>; Leon
-> Romanovsky <leon@kernel.org>; Lobakin, Aleksander
-> <aleksander.lobakin@intel.com>; linux-rdma@vger.kernel.org; Kitszel,
-> Przemyslaw <przemyslaw.kitszel@intel.com>; Kubalewski, Arkadiusz
-> <arkadiusz.kubalewski@intel.com>; intel-wired-lan@lists.osuosl.org;
-> Jakub Kicinski <kuba@kernel.org>; Paolo Abeni <pabeni@redhat.com>;
-> devicetree@vger.kernel.org; Conor Dooley <conor+dt@kernel.org>; Jiri
-> Pirko <jiri@resnulli.us>; Richard Cochran <richardcochran@gmail.com>;
-> Saravana Kannan <saravanak@kernel.org>; Prathosh Satish
-> <Prathosh.Satish@microchip.com>; Vadim Fedorenko
-> <vadim.fedorenko@linux.dev>; Mark Bloch <mbloch@nvidia.com>; linux-
-> kernel@vger.kernel.org; Tariq Toukan <tariqt@nvidia.com>; Andrew Lunn
-> <andrew+netdev@lunn.ch>; Jonathan Lemon <jonathan.lemon@gmail.com>;
-> Krzysztof Kozlowski <krzk+dt@kernel.org>; Saeed Mahameed
-> <saeedm@nvidia.com>; David S. Miller <davem@davemloft.net>
-> Subject: [Intel-wired-lan] [PATCH net-next v2 03/12] dpll: Add helpers
-> to find DPLL pin fwnode
->=20
-> dpll: core: add helpers to find DPLL pin fwnode
->=20
-> Add helper functions to the DPLL core to retrieve a DPLL pin's
-> firmware node handle based on the 'dpll-pins' and 'dpll-pin-names'
-> properties.
->=20
-> Unlike simple phandle arrays, 'dpll-pins' entries typically contain a
-> pin specifier (index and direction) as defined by '#dpll-pin-cells'.
-> The new helper fwnode_dpll_pin_node_get() parses these specifiers
-> using fwnode_property_get_reference_args(). It resolves the target pin
-> by:
-> 1. Identifying the DPLL device node from the phandle.
-> 2. Selecting the correct sub-node ('input-pins' or 'output-pins')
-> based
->    on the direction argument.
-> 3. Matching the pin index argument against the 'reg' property of
->    the child nodes.
->=20
-> Additionally, register 'dpll-pins' in drivers/of/property.c to enable
-> proper parsing of the supplier bindings by the OF core.
->=20
-> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
-> ---
-> v2:
-> * added check for fwnode_property_match_string() return value
-> * reworked searching for the pin using dpll device phandle and
->   pin specifier
-> * added dpll-pins into OF core supplier_bindings
-> ---
->  drivers/dpll/dpll_core.c | 74
-> ++++++++++++++++++++++++++++++++++++++++
->  drivers/of/property.c    |  2 ++
->  include/linux/dpll.h     | 15 ++++++++
->  3 files changed, 91 insertions(+)
->=20
-> diff --git a/drivers/dpll/dpll_core.c b/drivers/dpll/dpll_core.c index
-> fb68b5e19b480..b0083b5c10aa4 100644
-> --- a/drivers/dpll/dpll_core.c
-> +++ b/drivers/dpll/dpll_core.c
-> @@ -13,6 +13,7 @@
->  #include <linux/property.h>
->  #include <linux/slab.h>
->  #include <linux/string.h>
-> +#include <dt-bindings/dpll/dpll.h>
->=20
->  #include "dpll_core.h"
->  #include "dpll_netlink.h"
-> @@ -654,6 +655,79 @@ struct dpll_pin *fwnode_dpll_pin_find(struct
-> fwnode_handle *fwnode)  }  EXPORT_SYMBOL_GPL(fwnode_dpll_pin_find);
->=20
-> +/**
-> + * fwnode_dpll_pin_node_get - get dpll pin node from given fw node
-> and
-> +pin name
-> + * @fwnode: firmware node that uses the dpll pin
-> + * @name: dpll pin name from dpll-pin-names property
-> + *
-> + * Return: ERR_PTR() on error or a valid firmware node handle on
-> success.
-> + */
-> +struct fwnode_handle *fwnode_dpll_pin_node_get(struct fwnode_handle
-> *fwnode,
-> +					       const char *name)
-
-...
-
->=20
-> --
-> 2.52.0
-
-Reviewed-by: Aleksandr Loktionov <aleksandr.loktionov@intel.com>
+Best regards,
+Krzysztof
 
