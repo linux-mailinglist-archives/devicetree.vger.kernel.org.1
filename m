@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-264198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264199-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6D6CAb+VimmuMAAAu9opvQ
-	(envelope-from <devicetree+bounces-264198-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:19:43 +0100
+	id yACKG8KVimmuMAAAu9opvQ
+	(envelope-from <devicetree+bounces-264199-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:19:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B07D1163FC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:19:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E5BD116414
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:19:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 03EB73019193
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:19:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4FF79300A765
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 146AC2D3ECF;
-	Tue, 10 Feb 2026 02:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B4A2D2491;
+	Tue, 10 Feb 2026 02:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZAnK5Ntq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RnraYHwo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C09032D1907
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 02:19:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6234F2D877E
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 02:19:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770689979; cv=none; b=Rcwvpv1BCuFBY8hUpmkGMBast52+KHNXKisaw4kerOBpVS4zPV1G0hRmSr/QtKZZiL/05DDXG+FktF8sH+HVb/Rf68z3kabM7tWTrTyT69GJZeKWSvGeoKo6nSwU/gksxd7+yBmEs+aO5OLKgbUZ0ksySIcsI9fPcm4n+J+G5CM=
+	t=1770689981; cv=none; b=DczitP3uJaBmFKfh+hzwcmUA4fqw+W1BkX1rXKXi7tx6Piy/EnpzxcxQ8ndGajQU7d0rE90wv/ta6rv4zaqu0J1Zc0XLD0FgqX2wIsuWFTAhQlHaGL35RgexevHwHiXvoqtqHdIGiDveHs87ae/y98Lw5xv5+gyHcy1nOErl66Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770689979; c=relaxed/simple;
-	bh=oOLKfQhplLPkksnqPu6jGg/HV4MpMelwgSgfRLfxuPs=;
+	s=arc-20240116; t=1770689981; c=relaxed/simple;
+	bh=JuEIdUklwEG+RzPHMwpT310LEVYhx3Cs+uWXhr5CSP0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LfJ6Vc5n5lc5Ox2OL9M00fUwvDsx8rP+acwDRwGtNXHqBHZCjDwg92CZ4FXY47oJ43+EearrNm2P8chTInO1jIlzz2cJEdtt25kasVANQutzLvGgbM0UTyFnN9cgDpheZQ7jCS0T3jEeyH9R4v5yMS+BTYuYjlqHC8lhU/FyIj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZAnK5Ntq; arc=none smtp.client-ip=209.85.222.170
+	 MIME-Version; b=BM1gpAd6MnLmMdqSu/h4RSAjpvfrh58c2cEMUclY8L3vuyQA8DBb+AG4tSjx57x4MltDVISkzz63t6zCwChY7trS3nZUl6X8lh0ZWv94EelBeDJL36BQJ2YG+hu4KEEeuLr4If/EtjFZ5J/Fyho8foITxEzQykx6hs3GGOZAfng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RnraYHwo; arc=none smtp.client-ip=209.85.219.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-8ca3807494eso27747285a.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 18:19:37 -0800 (PST)
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-89549b2f538so6548776d6.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 18:19:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770689977; x=1771294777; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1770689979; x=1771294779; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KxExnHAcD18UQwwwaoDAhxWnwLUGHdshY5r3R5qxHk0=;
-        b=ZAnK5Ntq9DWVnRH/oIVCCj2iMX9K+E2Vg/41gor6CpWL+OuY94bI+uKurvaanXlXc4
-         VRfjd9zAbP3PUfVmQccPEiB3LoYaK2bAIVuhoEwXkz6NUCjCAePU7tFztl18hRtn4XFh
-         oU308NFE9Fd0CJCrqUHgToU+OUWQxBOl/0pfACStwumn2whiWvem8CmbtK5CRMver3au
-         pfpT0MBj2Yr2QISA/ZglXSf4wUhalpZHStVfNdjdhx8D3ctJNrOJwNbgBj2VgPG78MGv
-         uHRruWcNe/ccKroSily+iC29/pR/jIXtx6GGB3OEd9MIwNCseMvS2leYDq2nxAoGGU1G
-         bulg==
+        bh=trICzJbfAGRUinFxpIlScezsbIN1wIpZqx7ryhwMH/k=;
+        b=RnraYHwoKVdI/e8nLLQpq4asTRd2sgUdqNNUFd3QT5gR24lIavrhZ5kyu5NBXyw/Ep
+         IyIGv1B+10JN3lujuokawaSX61Jnq5MjlZ3HhodWrUb8fm3zUHnvJePgblieW+fws//p
+         OJu50qzOH8LuVne6ULohpsAwYoYjttPWYpe8+DHOpkrI8EW8kEJgM326pLm231c+nSvM
+         pS0RKT3SMgWWF1VZzc0KMqZi8h5xWsBrvlrJ6vmVOk3YEifmDYKI7kvv2pgf0GsxjU1z
+         WzNAt3s0nMLtzqmyU8tkigvAJqHB516D1KAByjdL8GQ8MDZTI+6cnpDYOVAj9TCMv9AA
+         mglg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770689977; x=1771294777;
+        d=1e100.net; s=20230601; t=1770689979; x=1771294779;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=KxExnHAcD18UQwwwaoDAhxWnwLUGHdshY5r3R5qxHk0=;
-        b=c7Fz2c8kuODeMSuOI2gstaFsDeIYeDw02NwxDOERKNWsZ9cx8gEDUEix5VItSBrpdL
-         6SKsQ1TXAtfA2w0ocDcHsI+5s+JykHmbL2T3ljZf7NdR5l2KWTRu4SVOA0IANQUxRxLA
-         jZ8MzQisEaYMRcWdQDr03IwQLiEo900sDBvKsj4Iq+EJI7+i/cLffD1bBWjavzGF9EP8
-         ENmxedXEmD1WIuhtKSk9ubvc2VAg49IBZrBRu9bsNEATOx+qBrUpwEv/ynIf9p34JO6e
-         JQV+vMpQhNm6P3Rsln0E6zBCBYoDmezJtfFxwsYDaCIff20w7mAC+TYSUDv2anSEqXNV
-         xEiw==
-X-Forwarded-Encrypted: i=1; AJvYcCUby+mWqqFXdLzpDChnydCgbuKDzqSko/2hAm02d785yPqhSEQjakmOM/EjtXAhFVNRD7/VePUvG9TP@vger.kernel.org
-X-Gm-Message-State: AOJu0YySW75FgY9pISwkTtOkCcImX/c02G6K+6PC6vOsuO0p3f+L12Hd
-	u+tj98aYMrjniKykvxXqfZF+1o/1TFjkI6yr3iRN5YSy22OkJLAj7N+rgDPMbA==
-X-Gm-Gg: AZuq6aINyTzBppauNcqwr/NBtneTPgCzVVEMfpouUSy2s5X+kzTqKQaCvq/X76UX23u
-	v3O+UEH9P/QyWUWmF8vieINRrBPPOkwLF+OGcu0W7bT+Zd0DSZYCmdnoxO+5AgLOfWcuFQywY4k
-	sJK1Oach/5RYJ9WmBh/EQO72B78QNidsCPOl3sI2ODMiHwEvaXA0WcUJbUZ0CdNSUbaBI2OKAK1
-	Ae+m0F0tqy6ohy4jC3H8IDOerVH8A3eK20muZIeF3YqsQs69Q6+MNnnDboyS/3bHZaHgcRCp90A
-	wEVpB9/j6LfR3Gcv6V3SerbByo/L8eVMKSZ0mOrGI05ZYd9CbOoBYF2FlcYdSPSYDMbWvvrGaHy
-	/gd0x3iV0ZlAAnGO7E5jEp3F67M30WAdC05fDGMQGEVy35Y85ZZYfS38myozuO7o6hI40Xn81OJ
-	Ew4Th0ZQ7sOuxd8XNVWN53DMKXYbxT49ZxHZAxdpJIV8D6lxZS+KTbAIw0gbsPlQef6Gf/mj93/
-	CaMMmm7hWlj188=
-X-Received: by 2002:a05:620a:46a9:b0:8c6:b315:1452 with SMTP id af79cd13be357-8caeeb510c0mr1779994685a.7.1770689976800;
-        Mon, 09 Feb 2026 18:19:36 -0800 (PST)
+        bh=trICzJbfAGRUinFxpIlScezsbIN1wIpZqx7ryhwMH/k=;
+        b=os/7L4oAdjZxkh1H2HGszROeyM+ob12dG/Z7y0VfTvsH2sL9IRgzOqA6hFBcqnd1hi
+         mOGgSMh3wORRvLqk5+ynQsuqqi+/rzt6ZLWoz99joMg+8ysc/fmCO0soiZqiJZUh2FLP
+         9XBr3CSOKjQMJI1KeMSxD8yYAd8AOnRMok+aYi65Iyzla4EUnk6ZnMj1am3qXIcB6kbm
+         NQxmjuxIBbunsCZdT4kDLvh+FTkTE2SQbz38xT8dEZC9m0wJpAalQymrIzIdL7H0RtsM
+         zHElzMsSWBDbKanlk7aAx4VGD33jqEZPqI62MAKHgv6dYGL5NwHh/oVU1FLcoIhRVp+c
+         otjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU5T8ELBcP7YyPSt2u4yY7fe179k+BVigHgWS0k/rydRlJW1kI1omM7nK03Svk1qIkQaw3oJzwfBrgW@vger.kernel.org
+X-Gm-Message-State: AOJu0YytzKG1dQzSplwFRUr7TRh5n989GX0eFxyOTTbA4a4Od1M8zZUd
+	00ERvrDtu4mVS0Z1UD5TBWkDkyAmb0YplsHoN4+OZFBG5BwJ/VMFrdaL
+X-Gm-Gg: AZuq6aKwltlRyVWHFwqCyu2i4gumGZeSpZLqOxG4xXU/XqRuC0CGcHGD9JEkEYBOP1c
+	/0y8x3yKstHWwkaA1DN+icpX4GVXflGw2QS+wii/yqLsDf6CydCk4w7GILfAWLyrVGnoHspkIY+
+	OBcxorYhJlIi+OWT5kscumtc5doNtZulBuDhRIx/jWR9Xu7yIdHeRluuwAItlLi+GzqX/FkSoh3
+	26iy/Y1+/FqdC5Xb/qY2iIBJDJQleVY6K4yokeUHRX4ihboGNBMS5AC/ElSSgNEyUlqadkY5k/d
+	xqkyPVLkcc4XGawBtd6IvB8YuvAwPuDjFhcxAO8dEnwGnt3+a5Xn433E5qThUOOCDwWq/NTsFHG
+	Kh6d8loS76fjIKO4ETcvP55Q/k9KQyDVUxxktb0OY357NFQQm39I2cEpTMSEVkOqdQzCroGH3PW
+	znVXB9X4D5OnLOqVdPYQAfhgGGFwHqcknQge8jKctSq1VkMuwyJY4umUlIl25LZYJ83gQYJsEEv
+	x2p+DLWzJRLL74=
+X-Received: by 2002:ad4:5aac:0:b0:896:f47e:fd51 with SMTP id 6a1803df08f44-896f47f052cmr110932636d6.47.1770689979374;
+        Mon, 09 Feb 2026 18:19:39 -0800 (PST)
 Received: from localhost (bras-base-toroon21-grc-75-184-144-58-243.dsl.bell.ca. [184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8cafa4b6b8dsm930751885a.50.2026.02.09.18.19.35
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8caf7aeed8bsm964810885a.20.2026.02.09.18.19.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Feb 2026 18:19:35 -0800 (PST)
+        Mon, 09 Feb 2026 18:19:38 -0800 (PST)
 From: Richard Acayan <mailingradian@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
@@ -87,9 +87,9 @@ To: Bjorn Andersson <andersson@kernel.org>,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org
 Cc: Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH 2/3] soc: qcom: llcc: Add configuration data for SDM670
-Date: Mon,  9 Feb 2026 21:19:56 -0500
-Message-ID: <20260210021957.13357-3-mailingradian@gmail.com>
+Subject: [PATCH 3/3] arm64: dts: qcom: sdm670: add llcc
+Date: Mon,  9 Feb 2026 21:19:57 -0500
+Message-ID: <20260210021957.13357-4-mailingradian@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260210021957.13357-1-mailingradian@gmail.com>
 References: <20260210021957.13357-1-mailingradian@gmail.com>
@@ -108,7 +108,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -118,7 +118,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-264198-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264199-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
@@ -128,156 +128,41 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9B07D1163FC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.21.14.160:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.16.200.224:email]
+X-Rspamd-Queue-Id: 0E5BD116414
 X-Rspamd-Action: no action
 
-Add system cache table and configs for the SDM670 SoC.
+Add the Last Level Cache Controller (LLCC) for the SDM670.
 
 Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 ---
- drivers/soc/qcom/llcc-qcom.c | 105 +++++++++++++++++++++++++++++++++++
- 1 file changed, 105 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm670.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-index 13e174267294..c5f7647ec8de 100644
---- a/drivers/soc/qcom/llcc-qcom.c
-+++ b/drivers/soc/qcom/llcc-qcom.c
-@@ -1591,6 +1591,94 @@ static const struct llcc_slice_config sc8280xp_data[] = {
- 	},
- };
+diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+index b8a8dcbdfbe3..b5f832ca42f4 100644
+--- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+@@ -1130,6 +1130,17 @@ refgen: regulator@ff1000 {
+ 			reg = <0x0 0x00ff1000 0x0 0x60>;
+ 		};
  
-+static const struct llcc_slice_config sdm670_data[] = {
-+	{
-+		.usecase_id = LLCC_CPUSS,
-+		.slice_id = 1,
-+		.max_cap = 512,
-+		.priority = 1,
-+		.bonus_ways = 0xf,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.dis_cap_alloc = true,
-+		.retain_on_pc = true,
-+		.activate_on_init = true,
-+	}, {
-+		.usecase_id = LLCC_ROTATOR,
-+		.slice_id = 4,
-+		.max_cap = 384,
-+		.priority = 2,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0xe,
-+		.cache_mode = 2,
-+		.dis_cap_alloc = true,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_VOICE,
-+		.slice_id = 5,
-+		.max_cap = 512,
-+		.priority = 1,
-+		.bonus_ways = 0xf,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.dis_cap_alloc = true,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_AUDIO,
-+		.slice_id = 6,
-+		.max_cap = 512,
-+		.priority = 1,
-+		.bonus_ways = 0xf,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.dis_cap_alloc = true,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_MDM,
-+		.slice_id = 8,
-+		.max_cap = 512,
-+		.priority = 1,
-+		.bonus_ways = 0xf,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.dis_cap_alloc = true,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_GPU,
-+		.slice_id = 12,
-+		.max_cap = 384,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.dis_cap_alloc = true,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_MMUHWT,
-+		.slice_id = 13,
-+		.max_cap = 512,
-+		.priority = 1,
-+		.bonus_ways = 0xf,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.dis_cap_alloc = true,
-+		.activate_on_init = true,
-+	}, {
-+		.usecase_id = LLCC_AUDHW,
-+		.slice_id = 22,
-+		.max_cap = 512,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0xf,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.dis_cap_alloc = true,
-+		.retain_on_pc = true,
-+	},
-+};
++		llcc: system-cache-controller@1100000 {
++			compatible = "qcom,sdm670-llcc";
++			reg = <0 0x01100000 0 0x50000>,
++			      <0 0x01180000 0 0x50000>,
++			      <0 0x01300000 0 0x50000>;
++			reg-names = "llcc0_base",
++				    "llcc1_base",
++				    "llcc_broadcast_base";
++			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
++		};
 +
- static const struct llcc_slice_config sdm845_data[] =  {{
- 		.usecase_id = LLCC_CPUSS,
- 		.slice_id = 1,
-@@ -3995,6 +4083,17 @@ static const struct qcom_llcc_config sc8280xp_cfg[] = {
- 	},
- };
- 
-+static const struct qcom_llcc_config sdm670_cfg[] = {
-+	{
-+		.sct_data	= sdm670_data,
-+		.size		= ARRAY_SIZE(sdm670_data),
-+		.skip_llcc_cfg	= true,
-+		.reg_offset	= llcc_v1_reg_offset,
-+		.edac_reg_offset = &llcc_v1_edac_reg_offset,
-+		.no_edac	= true,
-+	},
-+};
-+
- static const struct qcom_llcc_config sdm845_cfg[] = {
- 	{
- 		.sct_data	= sdm845_data,
-@@ -4158,6 +4257,11 @@ static const struct qcom_sct_config sc8280xp_cfgs = {
- 	.num_config	= ARRAY_SIZE(sc8280xp_cfg),
- };
- 
-+static const struct qcom_sct_config sdm670_cfgs = {
-+	.llcc_config	= sdm670_cfg,
-+	.num_config	= ARRAY_SIZE(sdm670_cfg),
-+};
-+
- static const struct qcom_sct_config sdm845_cfgs = {
- 	.llcc_config	= sdm845_cfg,
- 	.num_config	= ARRAY_SIZE(sdm845_cfg),
-@@ -4953,6 +5057,7 @@ static const struct of_device_id qcom_llcc_of_match[] = {
- 	{ .compatible = "qcom,sc7280-llcc", .data = &sc7280_cfgs },
- 	{ .compatible = "qcom,sc8180x-llcc", .data = &sc8180x_cfgs },
- 	{ .compatible = "qcom,sc8280xp-llcc", .data = &sc8280xp_cfgs },
-+	{ .compatible = "qcom,sdm670-llcc", .data = &sdm670_cfgs },
- 	{ .compatible = "qcom,sdm845-llcc", .data = &sdm845_cfgs },
- 	{ .compatible = "qcom,sm6350-llcc", .data = &sm6350_cfgs },
- 	{ .compatible = "qcom,sm7150-llcc", .data = &sm7150_cfgs },
+ 		mem_noc: interconnect@1380000 {
+ 			compatible = "qcom,sdm670-mem-noc";
+ 			reg = <0 0x01380000 0 0x27200>;
 -- 
 2.53.0
 
