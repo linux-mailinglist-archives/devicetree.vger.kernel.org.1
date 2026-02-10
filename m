@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-264382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264383-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CAdEFiQci2nSPwAAu9opvQ
-	(envelope-from <devicetree+bounces-264382-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:53:08 +0100
+	id FdfSOmIci2kvQAAAu9opvQ
+	(envelope-from <devicetree+bounces-264383-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:54:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4D5A11A694
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:53:07 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BDA011A6BF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:54:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 306D23023E10
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:53:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EA3FA3010B57
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B324932570A;
-	Tue, 10 Feb 2026 11:53:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B4B5326D62;
+	Tue, 10 Feb 2026 11:54:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CQRTku3P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I+8epu/o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB41319877;
-	Tue, 10 Feb 2026 11:53:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3651A283FE5;
+	Tue, 10 Feb 2026 11:54:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770724382; cv=none; b=nGuMJH5aRLE+E8xGtYwj2eAB9vSMjw6S5qrJDRY9YY4Xcy45Wvkyuif/m6WccZE9rcZr/Sy7/I7rcUS7+CmqgflUaCibsP7Vg4bfAYCbOSsy5KFsISNaiCVtf5jTLJlKvxtKs+VgjaVAKoXLHOxFf48eL/OgealVFavEb6KpPg8=
+	t=1770724448; cv=none; b=a0Gpkt0p5w9gBhaeElMZW65VKHmKJp73wwp5cmSyGlcSg58G1tu0dzxkiuJ3X6shVAvcDI+b+RMWsY3U1MDgJqHY9EY2CgdPLyrlJsVtJgrXsHScYH6UPFsgeqh1Bsc89r5IHx7pq/p7DS0zLYL+z4Ar+KakPzurWe+DhvtQK4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770724382; c=relaxed/simple;
-	bh=DTKtPzrNcroSvblcKni4DdpAu+xFAOCS3OZEeIvGN7A=;
+	s=arc-20240116; t=1770724448; c=relaxed/simple;
+	bh=lmDdD2WeTv3lwci6Ykf/RIhBMheOxhbiTk1zUMfWMzg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hqnfDC/cKfTDE9chS96klg+oYKkbMn44uTidFNlcN2ICT4ER1x6MTDVb7dGjZP3l+08Y+s8oPO0QYJy3l1KpZzMp7VpOXMPL/VFD/kKOTeQrBdJnNf9yRyPslvQ9ClxX++mDmYStxd+LOSizNb2oMnyGC5aINnjiGm61UxQyCDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CQRTku3P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B697C116C6;
-	Tue, 10 Feb 2026 11:52:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=r1r5kQOm7+++n5A2cjN2agoYezABo6V87OD7bXgYsym85hjrX4lAC0FYOiqkWkYeQndvfnyyUbScwAKUFnB1leHq2Jv4gQ+OsdvVBrPOt1VCxIdR7eGzuY6zuIOSICA+1jdttLW/AAS9SZiFvdkrKaWgqWoQKzwR0Gw9ACSay3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I+8epu/o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9582DC116C6;
+	Tue, 10 Feb 2026 11:54:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770724382;
-	bh=DTKtPzrNcroSvblcKni4DdpAu+xFAOCS3OZEeIvGN7A=;
+	s=k20201202; t=1770724447;
+	bh=lmDdD2WeTv3lwci6Ykf/RIhBMheOxhbiTk1zUMfWMzg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CQRTku3PdXcdGf3M1W9bvVSpVO61V6NgMMTjpa4TkVJLdqTMSmf8sR2JeU8cIr7pP
-	 ILfCZ8B6ImEMVe3Touw66RYERRZnnVxxv7tEuLVetkl6Ban30/vSYIV7s6aEAM7/EL
-	 uTpCcsysVB6bgAmRu6WcpE3FSrnPQI9Ohitt4sHfTf3djBoyQdDbXIjl9Te21nbY5g
-	 Av49xqUu3cKWivUe8ZWIrdDhmucOv7GkDU30TqaPIe/Xgu1MjQ62S/df/gizD5q30B
-	 Bw7aCMnN/hEAAcCP5UCTY5YIQIJMugPCtzlR5JHlscJYgNSRJ9En9xrO7aMsmEX4es
-	 sL+QR1UjrkgsQ==
-Message-ID: <0497b058-b943-46e5-89f4-a0d3dcf367ad@kernel.org>
-Date: Tue, 10 Feb 2026 12:52:57 +0100
+	b=I+8epu/oy1hLJdp8OpelQL+5iw0fu9QUgheRbyAnpYB4742UkoL165ZL6tb4hlX5c
+	 S40T5nSnMYJfDnDJJtzg1efRP5Hk6rzNFbVP0ungZVzkv89kqY26DdEUnD8T3/HLvW
+	 jEumig+ItJiE8KgSYH5f2Hn07dGaPIzaVnixoSb4WfMU4bXLpTR450VkXVCq1Kuooa
+	 TAkc5yzySPmVMIHQppmGMWm/vV2Y0Cm9+0OQS89YkUpgzau4M8/dGBhW0oy6YzpnFu
+	 4vAl5oogxfoDANrXkA0teUKLuTvQMsibCkCuHtO66Nm2x+pZEGyEeHz5JDzvd1nlRI
+	 wzBNM/feiz7sA==
+Message-ID: <ec3b39d6-51ec-429d-b083-e5af2b4a9c65@kernel.org>
+Date: Tue, 10 Feb 2026 12:54:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,19 +53,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: exynos: gs101-pixel: add all S2MPG1x
- regulators
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Juan Yescas <jyescas@google.com>, kernel-team@android.com,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+Subject: Re: [PATCH v2 3/9] dt-bindings: mfd: document ASUS Transformer EC
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Pavel Machek <pavel@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Sebastian Reichel <sre@kernel.org>, =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?=
+ <mirq-linux@rere.qmqm.pl>, Ion Agorria <ion@agorria.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-References: <20260210-s2mpg1x-regulators-dts-v2-1-68783c9e0a32@linaro.org>
- <cf4073c76c2db84fd8fac3e1c2a63918bf9d45da.camel@linaro.org>
- <81ef51394b2612368bceb81466dbb090260578e0.camel@linaro.org>
+ linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20260209104407.116426-1-clamor95@gmail.com>
+ <20260209104407.116426-4-clamor95@gmail.com>
+ <20260210-sexy-grumpy-sambar-44edd2@quoll>
+ <CAPVz0n3fizf=r58Fr4YQ6pnjHq5p-7yFz95obss6w6x0bfgnDg@mail.gmail.com>
+ <d1973810-d3f5-4ed7-ba0f-6bf93c1c7f3d@kernel.org>
+ <CAPVz0n1foyy9g7MAurSAyLCUHTzrPPu0ceqy9YpcDA9uzgjGng@mail.gmail.com>
+ <cb91898e-10f1-4d64-bace-41bbed08179b@kernel.org>
+ <CAPVz0n0O_uSAPYFtg8s+Ni0buyGJys6d0jEMob6SNWx-aeKUEw@mail.gmail.com>
+ <dc7acd1e-91e8-492c-8665-cb680c6164fd@kernel.org>
+ <CAPVz0n0u_0ZukcKXt0QpiyCMhWsg2VE-dE19wDCbRQvBvVOf+A@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,73 +120,77 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <81ef51394b2612368bceb81466dbb090260578e0.camel@linaro.org>
+In-Reply-To: <CAPVz0n0u_0ZukcKXt0QpiyCMhWsg2VE-dE19wDCbRQvBvVOf+A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-264383-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264382-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,arndb.de,linuxfoundation.org,rere.qmqm.pl,agorria.com,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C4D5A11A694
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8BDA011A6BF
 X-Rspamd-Action: no action
 
-On 10/02/2026 12:47, André Draszik wrote:
-> On Tue, 2026-02-10 at 11:38 +0000, André Draszik wrote:
->> On Tue, 2026-02-10 at 11:30 +0000, André Draszik wrote:
->>> Most rails are the same between Pixel 6 and Pro, with the following
->>> differences:
->>>     * only Pro has UWB
->>>     * Pro uses l2m, not l14m, for TCXO
->>>     * Pro uses bucka, not l31m, for NFC
+On 10/02/2026 12:40, Svyatoslav Ryhel wrote:
 >>>
->>> Signed-off-by: André Draszik <andre.draszik@linaro.org>
->>> ---
->>> Changes in v2:
->>> - add comments for board-specific and unused rails (Krzysztof)
->>> - link simple-framebuffer to display regulators
->>> - Link to v1: https://lore.kernel.org/r/20251113-s2mpg1x-regulators-dts-v1-1-80a70ef42be1@linaro.org
->>> ---
->>> Please note that this patch depends on the bindings updates for S2MPG1x
->>> from
->>> https://lore.kernel.org/all/20260122-s2mpg1x-regulators-v7-0-3b1f9831fffd@linaro.org/
->>> for validation to succeed. Almost all of them are in linux-next, but
->>> patch 1 from that series is still to be applied.
+>>> So you propose introduce a compatible for every single ec used in
+>>> transformers instead of simply disable unpopulated functions? And how
+>>> then battery and charger can reach monitored cell if they have no
+>>> dedicated node?
 >>
->>   ^^^^^^^
->> patch 7
+>> Just like for other bindings for nodes without resources, fold into
+>> parent. This is already explained in writing bindings, so you could have
+>> just read that. I will pass with answering more questions till you read
+>> that doc.
+>>
 > 
-> Krzysztof, could you take patch 7 of that series? I expected them all to go
-> via mfd and/or regulator trees, but seems final decision was otherwise.
+> Unfolding asus,ec-pad and asus,ec-dock will result in this list:
+> 
+> asus,tf101-dock-ec
+> asus,tf101g-dock-ec
+> asus,sl101-pad-ec
+> asus,tf201-pad-ec
+> asus,tf201-dock-ec
+> asus,tf300t-pad-ec
+> asus,tf300t-dock-ec
+> asus,tf300tg-pad-ec
+> asus,tf300tg-dock-ec
+> asus,tf300tl-pad-ec
+> asus,tf300tl-dock-ec
+> asus,tf600t-pad-ec
+> asus,tf700t-pad-ec
+> asus,tf700t-dock-ec
+> asus,tf701t-pad-ec
+> asus,p1801-t-pad-ec
+> 
+> with minor variations in populated cells. Is this acceptible?
 
-Yes, sure, just resend it please (remember to note if there are any
-dependencies).
 
-> 
-> Or what's the best thing to do?
-> 
+Yes, this looks correct.
 
 Best regards,
 Krzysztof
