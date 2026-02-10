@@ -1,55 +1,56 @@
-Return-Path: <devicetree+bounces-264267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264269-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CO/nJVDwimmwOwAAu9opvQ
-	(envelope-from <devicetree+bounces-264267-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:46:08 +0100
+	id cN2DOFXwimmwOwAAu9opvQ
+	(envelope-from <devicetree+bounces-264269-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:46:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DF48118591
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:46:08 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 425A211859F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:46:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D657130358A0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:45:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9F24F30396B7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26D3E33DEF9;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3818333E353;
 	Tue, 10 Feb 2026 08:45:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BUVpZaE7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KU3gzxtm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00C3233D6C9;
-	Tue, 10 Feb 2026 08:45:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 132A633DED6;
+	Tue, 10 Feb 2026 08:45:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770713145; cv=none; b=AyoZ/OYZpKsb3aA/wxjaMzMtuNto39pCfDfIUr8Ezc/O070xuvVDsfrX66CTwLPONpdPFPIaDFy/63yoUEVwiDoUEV2IztYAEPEZ0AGJKzHxsluG6n2OvQwHrJTnDoRTENz+tw2/HrfO45xr5OHd5LDshbu8gmkfwYbvEQetVxQ=
+	t=1770713145; cv=none; b=IBsGn4Q7lj88bSbrKktnYahGAaF67DH1veS9OJpr4uLg8IQYi3GEZLVPPwaF5ZECVVBFIC8ES9nmS5SXzEfC0kFDfiRyJhZAvmxQtJtAH7f/vMYjTXyOeYqjSgmpXAgRTDWJpX8cRpCbT/fut29WQwqkxR/wTQkAmOdcRWe/GP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1770713145; c=relaxed/simple;
-	bh=tLpExwpEhurY6voXzq0qndE7d/dtoLm/tbWhcRdS4og=;
+	bh=ui7WqBKC+x5VPpvWs+riiVZOOI82dJOZM2cVDuDSCCg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=edplbEn+tavGQmjTnOzWMnxnhTBNYct4n2l1/MZumiwLUJc+5xfeH6El+M5+dGMhzkCOdjQNGtlRwaw4nkT2C8k+a+34HZw5mbGJPbpjRNeBMOawmnLHLPY+5KxxCreFMfaOU8FGO+LlIF80fLiBR5vuEkeZy5iJNoWkJE+xfG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BUVpZaE7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C3B75C2BCB0;
+	 In-Reply-To:To:Cc; b=B0DUr56hvsLXB9oysJJprCnaqX4QKW0DKLpkl184ta4qW9o6/E6QSSOoMvz9PQS/qid+Q3AZpLzcSHKhKEN8NTJgZ7zCTWFBP5LnjqbVD9Uq0eos2DVLK2d02P2l8yCtGKCD+c6aZfyt9y3E9yQp4D+Ayj1vDNgqriXEFB184pM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KU3gzxtm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D27D0C2BCB1;
 	Tue, 10 Feb 2026 08:45:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1770713144;
-	bh=tLpExwpEhurY6voXzq0qndE7d/dtoLm/tbWhcRdS4og=;
+	bh=ui7WqBKC+x5VPpvWs+riiVZOOI82dJOZM2cVDuDSCCg=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=BUVpZaE7x58iVxp516OAjGTTxMO+aLIjy6VDCY32HMyCgQm4gdcMv93TqEn/J4hS+
-	 qdCxkJFMkRQvBUJ0DIlXTMrPVX+4qQxmSxGZw6adyqomndCcS6SpsTfc0i62TAYW+q
-	 0ZOMKHGqql31xY9RvMiqMCEqVOxMq710IMqoz34L73pVjc8Bxse+GU+wXc0NVR2j9u
-	 phbD1bHcXyUcYmGmGWi+AcVh4cdJD+HZogc9nqMONEeOLrzJjRh5Ftq1vRZ257II2P
-	 ApG8rgHYKThZWpmB2g2+ueFZ2n+EWPV4cSlI+1FoPv+gw+7myRy0iveF15taYNgVL9
-	 HIqwF9ETYmKJA==
+	b=KU3gzxtmMuYQcEgObW6ryZ8A0pV45wP88pM+u/AtGL399kMsOqbsfRJ/5gcdYDEZU
+	 mf5FpnMs8K3nWx88aT8z3yee/roR+vahRlKSBLbZevMdhsXoqJn3MmdKHo6Iv15ZUm
+	 uwzIHwhC4BcMLGeHr3XrHQ8K1jPZ9WUM1W9mckGQl1XJuKE42QEbsWO0rvlt8V/97r
+	 kAB65Qcin16zwfwt+fJWm8OMGHIIxP5sTNorbinrwQrbOwBJccrMZzMPgozV/gw8ms
+	 Sfls5xB+BmjlsgNURyvG5jr5UlhM2ef/k5u5iTXzuVWerPHs5G7zAhWKe2OtS49iHn
+	 Sfo68ubj98SUQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B52B6EA3F2B;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C6E7DEA3F2C;
 	Tue, 10 Feb 2026 08:45:44 +0000 (UTC)
 From: Maud Spierings via B4 Relay <devnull+maudspierings.gocontroll.com@kernel.org>
-Date: Tue, 10 Feb 2026 09:45:40 +0100
-Subject: [PATCH v7 2/5] arm64: dts: imx8mm: Add pinctrl config definitions
+Date: Tue, 10 Feb 2026 09:45:41 +0100
+Subject: [PATCH v7 3/5] arm64: dts: freescale: add Ka-Ro Electronics
+ tx8m-1610 COM
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,8 +58,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260210-mini_iv-v7-2-a3ad8e7ddf0d@gocontroll.com>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260210-mini_iv-v7-3-a3ad8e7ddf0d@gocontroll.com>
 References: <20260210-mini_iv-v7-0-a3ad8e7ddf0d@gocontroll.com>
 In-Reply-To: <20260210-mini_iv-v7-0-a3ad8e7ddf0d@gocontroll.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -72,11 +73,11 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
  Maud Spierings <maudspierings@gocontroll.com>, Frank Li <Frank.Li@nxp.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770713143; l=1797;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770713143; l=14146;
  i=maudspierings@gocontroll.com; s=20250214; h=from:subject:message-id;
- bh=lvUqpRh7n9YkRtJZVSUOA/YxY3527H7NJn4HwdOrJFg=;
- b=APRpif8J8ASdJITa96V9YCY67fdIDSH/9lqI7hUvoYMWg3s7Olfh0iQKiBvE2Km0iuBL70Rf9
- qnWB5fX17T9A8i9I2XT7Agj8+C826ZrdT/4hqGk6beiHpjdLedhEgBM
+ bh=D1vMJQAKM6bWGcvyAoUdVFh3kGnlxMbeAx7Lw+DOxgk=;
+ b=yUGOIE+z37wZ3IeX22QiQ3LkjSb2YXkWc62pcbPiNt2klp12lQN9JJGqkXam6hmpB8sCScDB9
+ +aiClNuE6JKBOq8XM8+Myk7OJI5kngM7OOnX+Pj5f+bk7nEP3XtRHkd
 X-Developer-Key: i=maudspierings@gocontroll.com; a=ed25519;
  pk=7chUb8XpaTQDvWhzTdHC0YPMkTDloELEC7q94tOUyPg=
 X-Endpoint-Received: by B4 Relay for maudspierings@gocontroll.com/20250214
@@ -88,13 +89,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264267-lists,devicetree=lfdr.de,maudspierings.gocontroll.com];
+	TAGGED_FROM(0.00)[bounces-264269-lists,devicetree=lfdr.de,maudspierings.gocontroll.com];
 	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[16];
@@ -109,69 +110,475 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,gocontroll.com:mid,gocontroll.com:email,gocontroll.com:replyto,nxp.com:email]
-X-Rspamd-Queue-Id: 0DF48118591
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,gocontroll.com:mid,gocontroll.com:email,gocontroll.com:replyto,0.0.0.0:email]
+X-Rspamd-Queue-Id: 425A211859F
 X-Rspamd-Action: no action
 
 From: Maud Spierings <maudspierings@gocontroll.com>
 
-Currently to configure each IOMUXC_SW_PAD_CTL_PAD the raw value of this
-register is written in the dts, these values are not obvious. Add defines
-which describe the fields of this register which can be or-ed together to
-produce readable settings.
+The Ka-Ro Electronics tx8m-1610 is a COM based on the imx8mm SOC. It has
+1 GB of ram and 4 GB of eMMC storage on board.
+
+Add it to enable boards based on this module
 
 Reviewed-by: Frank Li <Frank.Li@nxp.com>
 Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
 ---
- arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h | 33 ++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+ .../arm64/boot/dts/freescale/imx8mm-tx8m-1610.dtsi | 444 +++++++++++++++++++++
+ 1 file changed, 444 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h b/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-index b1f11098d248..31557b7b9ccc 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-@@ -6,6 +6,39 @@
- #ifndef __DTS_IMX8MM_PINFUNC_H
- #define __DTS_IMX8MM_PINFUNC_H
- 
-+/* Drive Strength */
-+#define MX8MM_DSE_X1		0x0
-+#define MX8MM_DSE_X2		0x4
-+#define MX8MM_DSE_X4		0x2
-+#define MX8MM_DSE_X6		0x6
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tx8m-1610.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-tx8m-1610.dtsi
+new file mode 100644
+index 000000000000..44d863c8d930
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-tx8m-1610.dtsi
+@@ -0,0 +1,444 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright (C) 2021 Lothar Waßmann <LW@KARO-electronics.de>
++ * 2025 Maud Spierings <maudspierings@gocontroll.com>
++ */
 +
-+/* Slew Rate */
-+#define MX8MM_FSEL_FAST		0x10
-+#define MX8MM_FSEL_SLOW		0x0
++#include "imx8mm.dtsi"
 +
-+/* Open Drain */
-+#define MX8MM_ODE_ENABLE	0x20
-+#define MX8MM_ODE_DISABLE	0x0
++/ {
++	model = "Ka-Ro Electronics TX8M-1610";
++	compatible = "karo,imx8mm-tx8m-1610", "fsl,imx8mm";
 +
-+#define MX8MM_PULL_DOWN		0x0
-+#define MX8MM_PULL_UP		0x40
++	reg_3v3_etn: regulator-3v3-etn {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpio = <&gpio1 23 GPIO_ACTIVE_HIGH>;
++		pinctrl-0 = <&pinctrl_reg_3v3_etn>;
++		pinctrl-names = "default";
++		regulator-boot-on;
++		regulator-max-microvolt = <3300000>;
++		regulator-min-microvolt = <3300000>;
++		regulator-name = "3v3-etn";
++	};
++};
 +
-+/* Hysteresis */
-+#define MX8MM_HYS_CMOS		0x0
-+#define MX8MM_HYS_SCHMITT	0x80
++&A53_0 {
++	cpu-supply = <&reg_vdd_arm>;
++};
 +
-+#define MX8MM_PULL_ENABLE	0x100
-+#define MX8MM_PULL_DISABLE	0x0
++&A53_1 {
++	cpu-supply = <&reg_vdd_arm>;
++};
 +
-+/* SION force input mode */
-+#define MX8MM_SION		0x40000000
++&A53_2 {
++	cpu-supply = <&reg_vdd_arm>;
++};
 +
-+/* long defaults */
-+#define MX8MM_USDHC_DATA_DEFAULT (MX8MM_FSEL_FAST | MX8MM_PULL_UP | \
-+				  MX8MM_HYS_SCHMITT | MX8MM_PULL_ENABLE)
-+#define MX8MM_I2C_DEFAULT (MX8MM_DSE_X6 | MX8MM_PULL_UP | MX8MM_HYS_SCHMITT | \
-+			   MX8MM_PULL_ENABLE | MX8MM_SION)
++&A53_3 {
++	cpu-supply = <&reg_vdd_arm>;
++};
 +
- /*
-  * The pin function ID is a tuple of
-  * <mux_reg conf_reg input_reg mux_mode input_val>
++&ddrc {
++	operating-points-v2 = <&ddrc_opp_table>;
++
++	ddrc_opp_table: opp-table {
++		compatible = "operating-points-v2";
++
++		opp-400000000 {
++			opp-hz = /bits/ 64 <400000000>;
++		};
++	};
++};
++
++&fec1 {
++	assigned-clocks = <&clk IMX8MM_CLK_ENET_AXI>,
++			  <&clk IMX8MM_CLK_ENET_TIMER>,
++			  <&clk IMX8MM_CLK_ENET_REF>,
++			  <&clk IMX8MM_CLK_ENET_REF>;
++	assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_266M>,
++				 <&clk IMX8MM_SYS_PLL2_100M>,
++				 <&clk IMX8MM_SYS_PLL2_50M>,
++				 <&clk IMX8MM_SYS_PLL2_50M>;
++	assigned-clock-rates = <0>, <100000000>, <50000000>, <50000000>;
++	clocks = <&clk IMX8MM_CLK_ENET1_ROOT>,
++		 <&clk IMX8MM_CLK_ENET1_ROOT>,
++		 <&clk IMX8MM_CLK_ENET_TIMER>,
++		 <&clk IMX8MM_CLK_ENET_REF>;
++	phy-handle = <&ethphy0>;
++	phy-mode = "rmii";
++	phy-reset-duration = <25>;
++	phy-reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
++	phy-reset-post-delay = <1>;
++	phy-supply = <&reg_3v3_etn>;
++	pinctrl-0 = <&pinctrl_fec1>, <&pinctrl_ethphy_rst>;
++	pinctrl-names = "default";
++	status = "okay";
++
++	mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy0: ethernet-phy@0 {
++			reg = <0>;
++			clocks = <&clk IMX8MM_CLK_ENET_REF>;
++			interrupt-parent = <&gpio1>;
++			interrupts = <28 IRQ_TYPE_EDGE_FALLING>;
++			pinctrl-0 = <&pinctrl_ethphy_int>;
++			pinctrl-names = "default";
++			smsc,disable-energy-detect;
++		};
++	};
++};
++
++&gpio1 {
++	gpio-line-names = "SODIMM_152", "SODIMM_42", "SODIMM_153", "PMIC_IRQ_B",
++			  "SODIMM_154", "SODIMM_155", "SODIMM_156", "SODIMM_157",
++			  "SODIMM_158", "SODIMM_159", "SODIMM_161", "SODIMM_162",
++			  "SODIMM_34", "SODIMM_36", "SODIMM_27", "SODIMM_28",
++			  "", "", "", "",
++			  "", "", "", "ENET_POWER",
++			  "", "", "", "",
++			  "ENET_nINT", "ENET_nRST", "", "";
++};
++
++&gpio2 {
++	gpio-line-names = "", "", "", "",
++			  "", "", "", "",
++			  "", "", "", "",
++			  "SODIMM_51", "SODIMM_57", "SODIMM_56", "SODIMM_52",
++			  "SODIMM_53", "SODIMM_54", "SODIMM_55", "SODIMM_15",
++			  "SODIMM_45", "", "", "",
++			  "", "", "", "",
++			  "", "", "", "";
++};
++
++&gpio3 {
++	gpio-line-names = "SODIMM_103", "SODIMM_104", "SODIMM_105", "SODIMM_106",
++			  "SODIMM_107", "SODIMM_112", "SODIMM_108", "SODIMM_109",
++			  "SODIMM_95", "SODIMM_110", "SODIMM_96", "SODIMM_97",
++			  "SODIMM_98", "SODIMM_99", "SODIMM_113", "SODIMM_114",
++			  "SODIMM_115", "SODIMM_101", "SODIMM_100", "SODIMM_77",
++			  "SODIMM_72", "SODIMM_73", "SODIMM_74", "SODIMM_75",
++			  "SODIMM_76", "SODIMM_43", "", "",
++			  "", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names = "SODIMM_178", "SODIMM_180", "SODIMM_184", "SODIMM_185",
++			  "SODIMM_186", "SODIMM_187", "SODIMM_188", "SODIMM_189",
++			  "SODIMM_190", "SODIMM_191", "SODIMM_179", "SODIMM_181",
++			  "SODIMM_192", "SODIMM_193", "SODIMM_194", "SODIMM_195",
++			  "SODIMM_196", "SODIMM_197", "SODIMM_198", "SODIMM_199",
++			  "SODIMM_182", "SODIMM_79", "SODIMM_78", "SODIMM_84",
++			  "SODIMM_87", "SODIMM_86", "SODIMM_85", "SODIMM_83",
++			  "SODIMM_81", "SODIMM_80", "SODIMM_90", "SODIMM_93";
++};
++
++&gpio5 {
++	gpio-line-names = "SODIMM_92", "SODIMM_91", "SODIMM_89", "SODIMM_144",
++			  "SODIMM_143", "SODIMM_146", "SODIMM_68", "SODIMM_67",
++			  "SODIMM_70", "SODIMM_69", "SODIMM_48", "SODIMM_46",
++			  "SODIMM_47", "SODIMM_44", "PMIC_SCL", "PMIC_SDA",
++			  "SODIMM_41", "SODIMM_40", "SODIMM_148", "SODIMM_149",
++			  "SODIMM_150", "SODIMM_151", "SODIMM_60", "SODIMM_59",
++			  "SODIMM_64", "SODIMM_63", "SODIMM_62", "SODIMM_61",
++			  "SODIMM_66", "SODIMM_65", "", "";
++};
++
++&i2c1 {
++	clock-frequency = <400000>;
++	pinctrl-0 = <&pinctrl_i2c1>;
++	pinctrl-1 = <&pinctrl_i2c1_gpio>;
++	pinctrl-names = "default", "gpio";
++	scl-gpios = <&gpio5 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	status = "okay";
++
++	pmic: pmic@4b {
++		compatible = "rohm,bd71847";
++		reg = <0x4b>;
++		interrupt-parent = <&gpio1>;
++		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
++		pinctrl-0 = <&pinctrl_pmic>;
++		pinctrl-names = "default";
++		rohm,reset-snvs-powered;
++
++		regulators {
++			BUCK1 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-max-microvolt = <900000>;
++				regulator-min-microvolt = <780000>;
++				regulator-name = "buck1";
++				regulator-ramp-delay = <1250>;
++			};
++
++			reg_vdd_arm: BUCK2 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-max-microvolt = <950000>;
++				regulator-min-microvolt = <805000>;
++				regulator-name = "buck2";
++				regulator-ramp-delay = <1250>;
++				rohm,dvs-run-voltage = <950000>;
++				rohm,dvs-idle-voltage = <810000>;
++			};
++
++			BUCK3 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-max-microvolt = <900000>;
++				regulator-min-microvolt = <805000>;
++				regulator-name = "buck3";
++			};
++
++			reg_vdd_3v3: BUCK4 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-max-microvolt = <3300000>;
++				regulator-min-microvolt = <3300000>;
++				regulator-name = "buck4";
++			};
++
++			reg_vdd_1v8: BUCK5 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-max-microvolt = <1950000>;
++				regulator-min-microvolt = <1700000>;
++				regulator-name = "buck5";
++			};
++
++			BUCK6 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-max-microvolt = <(1350000 + 100000)>;
++				regulator-min-microvolt = <(1350000 - 67000)>;
++				regulator-name = "buck6";
++				rohm,fb-pull-up-microvolt = <0>;
++				rohm,feedback-pull-up-r1-ohms = <2200>;
++				rohm,feedback-pull-up-r2-ohms = <499>;
++			};
++
++			LDO1 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-max-microvolt = <1980000>;
++				regulator-min-microvolt = <1620000>;
++				regulator-name = "ldo1";
++			};
++
++			LDO2 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-max-microvolt = <900000>;
++				regulator-min-microvolt = <760000>;
++				regulator-name = "ldo2";
++			};
++
++			LDO3 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-max-microvolt = <1890000>;
++				regulator-min-microvolt = <1710000>;
++				regulator-name = "ldo3";
++			};
++
++			LDO4 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-max-microvolt = <1000000>;
++				regulator-min-microvolt = <855000>;
++				regulator-name = "ldo4";
++			};
++
++			LDO5 {
++				regulator-max-microvolt = <3300000>;
++				regulator-min-microvolt = <1800000>;
++				regulator-name = "ldo5";
++			};
++
++			LDO6 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-max-microvolt = <1260000>;
++				regulator-min-microvolt = <1140000>;
++				regulator-name = "ldo6";
++			};
++		};
++	};
++};
++
++&iomuxc {
++	pinctrl_ethphy_int: etnphy-intgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_ENET_RD2_GPIO1_IO28
++				(MX8MM_FSEL_FAST | MX8MM_HYS_SCHMITT)
++		>;
++	};
++
++	pinctrl_ethphy_rst: etnphy-rstgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_ENET_RD3_GPIO1_IO29
++				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
++		>;
++	};
++
++	pinctrl_fec1: fec1grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_ENET_MDC_ENET1_MDC
++				(MX8MM_DSE_X4 | MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
++			MX8MM_IOMUXC_ENET_MDIO_ENET1_MDIO
++				(MX8MM_DSE_X4 | MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
++			MX8MM_IOMUXC_ENET_TD2_ENET1_TX_CLK
++				(MX8MM_FSEL_FAST | MX8MM_SION)
++			MX8MM_IOMUXC_ENET_TD0_ENET1_RGMII_TD0
++				(MX8MM_DSE_X6 | MX8MM_FSEL_FAST)
++			MX8MM_IOMUXC_ENET_TD1_ENET1_RGMII_TD1
++				(MX8MM_DSE_X6 | MX8MM_FSEL_FAST)
++			MX8MM_IOMUXC_ENET_RD0_ENET1_RGMII_RD0
++				(MX8MM_FSEL_FAST | MX8MM_HYS_SCHMITT)
++			MX8MM_IOMUXC_ENET_RD1_ENET1_RGMII_RD1
++				(MX8MM_FSEL_FAST | MX8MM_HYS_SCHMITT)
++			MX8MM_IOMUXC_ENET_RXC_ENET1_RX_ER
++				MX8MM_FSEL_FAST
++			MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL
++				MX8MM_FSEL_FAST
++			MX8MM_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL
++				(MX8MM_DSE_X6 | MX8MM_FSEL_FAST)
++		>;
++	};
++
++	pinctrl_i2c1: i2c1grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL
++				MX8MM_I2C_DEFAULT
++			MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA
++				MX8MM_I2C_DEFAULT
++		>;
++	};
++
++	pinctrl_i2c1_gpio: i2c1-gpiogrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_I2C1_SCL_GPIO5_IO14
++				MX8MM_I2C_DEFAULT
++			MX8MM_IOMUXC_I2C1_SDA_GPIO5_IO15
++				MX8MM_I2C_DEFAULT
++		>;
++	};
++
++	pinctrl_pmic: pmicgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3
++				(MX8MM_PULL_UP | MX8MM_HYS_SCHMITT | MX8MM_PULL_ENABLE)
++		>;
++	};
++
++	pinctrl_reg_3v3_etn: reg-3v3-etngrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_ENET_TXC_GPIO1_IO23
++				(MX8MM_DSE_X4 | MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
++		>;
++	};
++
++	pinctrl_usdhc1: usdhc1grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK
++				(MX8MM_FSEL_FAST | MX8MM_HYS_SCHMITT | MX8MM_PULL_ENABLE)
++			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD
++				MX8MM_USDHC_DATA_DEFAULT
++			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0
++				MX8MM_USDHC_DATA_DEFAULT
++			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1
++				MX8MM_USDHC_DATA_DEFAULT
++			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2
++				MX8MM_USDHC_DATA_DEFAULT
++			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3
++				MX8MM_USDHC_DATA_DEFAULT
++			MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4
++				MX8MM_USDHC_DATA_DEFAULT
++			MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5
++				MX8MM_USDHC_DATA_DEFAULT
++			MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6
++				MX8MM_USDHC_DATA_DEFAULT
++			MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7
++				MX8MM_USDHC_DATA_DEFAULT
++			MX8MM_IOMUXC_SD1_STROBE_USDHC1_STROBE
++				(MX8MM_FSEL_FAST | MX8MM_HYS_SCHMITT | MX8MM_PULL_ENABLE)
++			MX8MM_IOMUXC_SD1_RESET_B_USDHC1_RESET_B
++				(MX8MM_DSE_X6 | MX8MM_FSEL_FAST | MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
++		>;
++	};
++
++	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK
++				(MX8MM_DSE_X2 | MX8MM_FSEL_FAST | MX8MM_HYS_SCHMITT | MX8MM_PULL_ENABLE)
++			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD
++				(MX8MM_DSE_X2 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0
++				(MX8MM_DSE_X2 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1
++				(MX8MM_DSE_X2 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2
++				(MX8MM_DSE_X2 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3
++				(MX8MM_DSE_X2 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4
++				(MX8MM_DSE_X2 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5
++				(MX8MM_DSE_X2 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6
++				(MX8MM_DSE_X2 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7
++				(MX8MM_DSE_X2 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_STROBE_USDHC1_STROBE
++				(MX8MM_DSE_X2 | MX8MM_FSEL_FAST | MX8MM_HYS_SCHMITT | MX8MM_PULL_ENABLE)
++			MX8MM_IOMUXC_SD1_RESET_B_USDHC1_RESET_B
++				(MX8MM_DSE_X6 | MX8MM_FSEL_FAST | MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
++		>;
++	};
++
++	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK
++				(MX8MM_DSE_X6 | MX8MM_FSEL_FAST | MX8MM_HYS_SCHMITT | MX8MM_PULL_ENABLE)
++			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD
++				(MX8MM_DSE_X6 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0
++				(MX8MM_DSE_X6 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1
++				(MX8MM_DSE_X6 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2
++				(MX8MM_DSE_X6 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3
++				(MX8MM_DSE_X6 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4
++				(MX8MM_DSE_X6 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5
++				(MX8MM_DSE_X6 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6
++				(MX8MM_DSE_X6 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7
++				(MX8MM_DSE_X6 | MX8MM_USDHC_DATA_DEFAULT)
++			MX8MM_IOMUXC_SD1_STROBE_USDHC1_STROBE
++				(MX8MM_DSE_X6 | MX8MM_FSEL_FAST | MX8MM_HYS_SCHMITT | MX8MM_PULL_ENABLE)
++			MX8MM_IOMUXC_SD1_RESET_B_USDHC1_RESET_B
++				(MX8MM_DSE_X6 | MX8MM_FSEL_FAST | MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
++		>;
++	};
++};
++
++&usdhc1 {
++	assigned-clocks = <&clk IMX8MM_CLK_USDHC1>;
++	assigned-clock-rates = <400000000>;
++	bus-width = <8>;
++	non-removable;
++	pinctrl-0 = <&pinctrl_usdhc1>;
++	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	vmmc-supply = <&reg_vdd_3v3>;
++	vqmmc-supply = <&reg_vdd_1v8>;
++	status = "okay";
++};
 
 -- 
 2.53.0
