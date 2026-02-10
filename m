@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-264429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264431-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KGf+NYc4i2neRgAAu9opvQ
-	(envelope-from <devicetree+bounces-264429-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:54:15 +0100
+	id GH7eCIo4i2kKRwAAu9opvQ
+	(envelope-from <devicetree+bounces-264431-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:54:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F69511B800
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:54:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA7AC11B815
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:54:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C22A5307751D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:52:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6B0523079A69
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:52:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FC5936A025;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68CEA36A038;
 	Tue, 10 Feb 2026 13:51:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 122A63624CF
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15B90367F20
 	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 13:51:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770731484; cv=none; b=Tq4Q3feM49244tT8UPDZWO2d8t9nSQAZNJ0zO8d3EaFAgR3AsN6Ht9nji2qwYRSVSCWer39Dzcp3ePyOX9f/WSjvnhZhxEkdw9idd4Oao1h4OwcCwUfUjoTPr0LznkgIuKV6nc6iRxGIa5a0eHiqjcE69Ckqc0sdBzn8yc9+yrM=
+	t=1770731484; cv=none; b=AiQU6gfKEpA7BS1Txd0YukOp/yQUpY3pnUeeN/Spsd6H9Yya5Ds+bcCBGGPURF18+nbZwCmNcPoNoWYF0dvrPZ+H77GQcrdjyIkeaMQC0v8eTWAs2WcT+8naDisCyp+tuzErbVrsn5StTlCzs5j+2Tp0i9SB5LrOpT+3hSjgzew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1770731484; c=relaxed/simple;
-	bh=zhfW341DF63TNgoe2Zjys5xIE6r6Q10E6gNt83Goq9U=;
+	bh=+rqvg27v8pxK14HPLogSisNdDT4go7iA15kgpg74nVQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=b72okrVth47bmGj0no3fmDH7zruCKvxDJkR9Mp/KKpP8S+ArkM9erKTd+9rwTs0IwFVg/VkKOLpvHDCm8msLQIdv/vKjSOANFncFh/2lu/EoAESTYuYd4oMs7O4j2a/o82YvrCTroVhnbQBrh9phJMOsqtRYU9W+8K108FYT4gY=
+	 MIME-Version; b=HV+2KHKIUeDPW/yw/IIpwGKqosGdsKgSBw7BEN9afbSs84GXgKecet+Vs6kTc+2gizPt843QFuRRsw0wKOeTT1R2AIfWR1553CTGuVbp5vxSg/8S+JaTArPZKcWa6VBjc0iT8Qm6wAU0PbYRFpsH9EAlZIPi3Hk6zQdmFxnW+oQ=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -36,16 +36,16 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vpo93-0005dH-HX; Tue, 10 Feb 2026 14:51:13 +0100
+	id 1vpo93-0005dJ-HX; Tue, 10 Feb 2026 14:51:13 +0100
 Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vpo92-0005d0-0C;
+	id 1vpo92-0005d3-0M;
 	Tue, 10 Feb 2026 14:51:12 +0100
 Received: from ore by dude04 with local (Exim 4.98.2)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vpo92-00000008VNV-39Cx;
+	id 1vpo92-00000008VNf-3HvE;
 	Tue, 10 Feb 2026 14:51:12 +0100
 From: Oleksij Rempel <o.rempel@pengutronix.de>
 To: Jonathan Cameron <jic23@kernel.org>,
@@ -62,9 +62,9 @@ Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
 	David Lechner <dlechner@baylibre.com>,
 	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
 	David Jander <david@protonic.nl>
-Subject: [PATCH v6 03/12] iio: dac: ds4424: sort headers alphabetically
-Date: Tue, 10 Feb 2026 14:51:01 +0100
-Message-ID: <20260210135110.2027073-4-o.rempel@pengutronix.de>
+Subject: [PATCH v6 04/12] iio: dac: ds4424: rename iio_info struct to avoid ambiguity
+Date: Tue, 10 Feb 2026 14:51:02 +0100
+Message-ID: <20260210135110.2027073-5-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260210135110.2027073-1-o.rempel@pengutronix.de>
 References: <20260210135110.2027073-1-o.rempel@pengutronix.de>
@@ -95,7 +95,7 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-264429-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264431-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -105,14 +105,15 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email]
-X-Rspamd-Queue-Id: 4F69511B800
+X-Rspamd-Queue-Id: CA7AC11B815
 X-Rspamd-Action: no action
 
-Sort the header inclusions alphabetically. This improves readability and
-simplifies adding new includes in the future.
+Rename the static `ds4424_info` structure to `ds4424_iio_info`.
 
-Group subsystem-specific headers (linux/iio/*) separately at the end
-to clarify subsystem context.
+The previous name was generic and could be confused with chip-specific
+data structures (like the upcoming `ds4424_chip_info`). The new name
+explicitly indicates that this structure holds the IIO framework
+callbacks.
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
@@ -120,44 +121,35 @@ Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 changes v6:
 - no changes
 changes v5:
-- no changes
+- add Reviewed-by: Andy
 changes v4:
-- no changes
-changes v3:
-- Keep linux/iio/* headers in a separate group at the end of the includes.
-changes v2:
-- new patch
+- New patch
 ---
- drivers/iio/dac/ds4424.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/iio/dac/ds4424.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/iio/dac/ds4424.c b/drivers/iio/dac/ds4424.c
-index 36286e4923af..c03051dc763e 100644
+index c03051dc763e..3385f39521d9 100644
 --- a/drivers/iio/dac/ds4424.c
 +++ b/drivers/iio/dac/ds4424.c
-@@ -6,16 +6,17 @@
-  */
+@@ -197,7 +197,7 @@ static int ds4424_resume(struct device *dev)
  
- #include <linux/bits.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
--#include <linux/i2c.h>
- #include <linux/regulator/consumer.h>
--#include <linux/err.h>
--#include <linux/delay.h>
--#include <linux/iio/iio.h>
-+
-+#include <linux/iio/consumer.h>
- #include <linux/iio/driver.h>
-+#include <linux/iio/iio.h>
- #include <linux/iio/machine.h>
--#include <linux/iio/consumer.h>
+ static DEFINE_SIMPLE_DEV_PM_OPS(ds4424_pm_ops, ds4424_suspend, ds4424_resume);
  
- #define DS4422_MAX_DAC_CHANNELS		2
- #define DS4424_MAX_DAC_CHANNELS		4
+-static const struct iio_info ds4424_info = {
++static const struct iio_info ds4424_iio_info = {
+ 	.read_raw = ds4424_read_raw,
+ 	.write_raw = ds4424_write_raw,
+ };
+@@ -252,7 +252,7 @@ static int ds4424_probe(struct i2c_client *client)
+ 
+ 	indio_dev->channels = ds4424_channels;
+ 	indio_dev->modes = INDIO_DIRECT_MODE;
+-	indio_dev->info = &ds4424_info;
++	indio_dev->info = &ds4424_iio_info;
+ 
+ 	ret = iio_device_register(indio_dev);
+ 	if (ret < 0) {
 -- 
 2.47.3
 
