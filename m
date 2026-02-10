@@ -1,247 +1,153 @@
-Return-Path: <devicetree+bounces-264422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264424-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OHKgAOw3i2neRgAAu9opvQ
-	(envelope-from <devicetree+bounces-264422-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:51:40 +0100
+	id GCLbEkw4i2neRgAAu9opvQ
+	(envelope-from <devicetree+bounces-264424-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:53:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5714011B6D1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:51:39 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B863311B7A8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:53:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 240093033D31
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:48:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8914C3063AD7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:51:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8945632AAAF;
-	Tue, 10 Feb 2026 13:48:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tB5ySOaJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB5BF367F28;
+	Tue, 10 Feb 2026 13:51:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64AA432A3CC
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 13:48:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E0B364E89
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 13:51:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770731288; cv=none; b=dkDADuiAb/R/pmVZ7RNpbKf+Unx6tCOQzStLJ0LP67aGQch63CCr0gmh8waQJZenngfr1ncm77kH0p4mveIVDl89lV4o2XuvHUSIicnFZydxLBMO4FZIw74PL9he7fJvxaek2KcExAHOHmJO8u0UDysz14S1PBkT31KtAY9JI14=
+	t=1770731482; cv=none; b=O+BokwGOjOxQx4mIADlazduiMV/B/lZBEvnFxeKnbiGyw8XkOuh6Gh701SSoP9zmFtjqRd0b5Sgf/kGZEa1A/w+kXjAcXBvd21kaHrJSgR9iuCmkrEQyrAzhwPn2r7aRoDgZjNZ+sZ8DmVHoBIzPRYINRqOg/1s+g/r5+vaCIG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770731288; c=relaxed/simple;
-	bh=LmTxtKmCP+MxuknULWOn/5V7LbPqudyZbQ+Sx9xXVso=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R4KcW4isGZtDi5/ftyJ9SEwCeRfHNmcoHBLhKmWLmKDVknTAoH5iqm8UKYip9+EspMHhvSukCDFJhFNStfqN/yoKD1p1+N+EwEfdbkU7ped5YEGrQvic/ezZiBwtO5MnRjPUDr90vjXraWd7BsuRDgHLuj4BLJj6v/AjfLFUeK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tB5ySOaJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC88BC2BC86
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 13:48:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770731288;
-	bh=LmTxtKmCP+MxuknULWOn/5V7LbPqudyZbQ+Sx9xXVso=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=tB5ySOaJV8lHri9LqnMSCh2UKkQVk0EUDAuJB4ivOn51t7Ta+0uje4oFdm4ULeDcH
-	 XNyee8K0JOFgDePPFVRW7y8xJBSORn1nRrXltTZZ7J07X9a9h7ogiUWJ348uRyvV6n
-	 2zyKF/IEvFASPBAU/4zNwyGYfbYNzv27+T3o8mQpMmDcGxOEzoXMrCUTCHnu1/+u2E
-	 f93LEBokV3Z70gt31NqJ+juG7b/Y648igJzoDPgF72VKZzAafXWUEkU2Gd9avzvB0f
-	 mQdWKWXn0vznQzE3WdqCAhTxRIU0rb4Jg1lhdJwwmZ3hbG66GtYg6YJf5CHJwKiqqn
-	 b2JY5sl58wVnA==
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-65832e566edso1133597a12.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 05:48:07 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVmKsgrq6E/HZMVkIwMSn9v3GxGGxt+WBFs7AoHBS5SMVfjxODtwXBPHL6Nrk3gazCMVa2jB0LCL5NB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yypd+RDpjn46UkIjorlAVIa96qZ0UJxGXzAxXWahM4bbUsSTrBG
-	FqOkEVAm1KV4dYFJXbPumuXJWgQRd5/KcIlTH2A4fHJbb+Omx4/C07CW7mUFhp6w90tszMYf79W
-	WAPttoXr0GI8P3Pc6GniRybk5gRNZCA==
-X-Received: by 2002:a05:6402:34c2:b0:64b:5f4e:9e6d with SMTP id
- 4fb4d7f45d1cf-6598416c3dbmr8257225a12.18.1770731286484; Tue, 10 Feb 2026
- 05:48:06 -0800 (PST)
+	s=arc-20240116; t=1770731482; c=relaxed/simple;
+	bh=d3XTjJj/yPkqHIsG+VCWmRMELS7yty9PSgNqiwQiRow=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=j6aUW/dqF6fFYQCyU0ONXYCoUQ/X3IJDuhU4wtsztN/20dZ0zz6fKrcnUxCvLCvPzDfz9SUe9QLDzoWgUKWQwoxDQpe6TNMfR2E6phZryuYliAqZVIXjrr1QPoJjP+arBnFezHNiNDV49Sk4GXjb7XUSeJ6THGKx63JsTkPhhkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vpo93-0005dD-HX; Tue, 10 Feb 2026 14:51:13 +0100
+Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vpo91-0005cw-35;
+	Tue, 10 Feb 2026 14:51:11 +0100
+Received: from ore by dude04 with local (Exim 4.98.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vpo92-00000008VN1-2hom;
+	Tue, 10 Feb 2026 14:51:12 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	David Jander <david@protonic.nl>
+Subject: [PATCH v6 00/12] iio: dac: ds4424: add DS4402/DS4404 support and scale
+Date: Tue, 10 Feb 2026 14:50:58 +0100
+Message-ID: <20260210135110.2027073-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260122-spear-v1-1-fd44bc79695b@gmail.com>
-In-Reply-To: <20260122-spear-v1-1-fd44bc79695b@gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 10 Feb 2026 07:47:55 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJhnuWzPxUWywZkjt=zc0nSFKP7hM_ekmKKr7p_jXaaag@mail.gmail.com>
-X-Gm-Features: AZwV_QhIFz36bxFd9be2-_8um1iPQH6w35jojRXwkeKdwVtXGhkeLtoijsXwqTY
-Message-ID: <CAL_JsqJhnuWzPxUWywZkjt=zc0nSFKP7hM_ekmKKr7p_jXaaag@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mtd: st,spear600-smi: convert to DT schema
-To: Akhila YS <akhilayalmati@gmail.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264422-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	DMARC_NA(0.00)[pengutronix.de];
+	RCVD_COUNT_FIVE(0.00)[6];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-264424-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,nod.at:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5714011B6D1
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B863311B7A8
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 10:23=E2=80=AFAM Akhila YS <akhilayalmati@gmail.com=
-> wrote:
->
-> Convert STMicroelectronics SPEAr600 Serial Memory Interface (SMI)
-> Controller binding to YAML format.
->
-> Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
-> ---
->  .../devicetree/bindings/mtd/spear_smi.txt          | 29 ---------
->  .../devicetree/bindings/mtd/st,spear600-smi.yaml   | 72 ++++++++++++++++=
-++++++
->  2 files changed, 72 insertions(+), 29 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/mtd/spear_smi.txt b/Docume=
-ntation/devicetree/bindings/mtd/spear_smi.txt
-> deleted file mode 100644
-> index c41873e92d26..000000000000
-> --- a/Documentation/devicetree/bindings/mtd/spear_smi.txt
-> +++ /dev/null
-> @@ -1,29 +0,0 @@
-> -* SPEAr SMI
-> -
-> -Required properties:
-> -- compatible : "st,spear600-smi"
-> -- reg : Address range of the mtd chip
-> -- #address-cells, #size-cells : Must be present if the device has sub-no=
-des
-> -  representing partitions.
-> -- interrupts: Should contain the STMMAC interrupts
-> -- clock-rate : Functional clock rate of SMI in Hz
-> -
-> -Optional properties:
-> -- st,smi-fast-mode : Flash supports read in fast mode
-> -
-> -Example:
-> -
-> -       smi: flash@fc000000 {
-> -               compatible =3D "st,spear600-smi";
-> -               #address-cells =3D <1>;
-> -               #size-cells =3D <1>;
-> -               reg =3D <0xfc000000 0x1000>;
-> -               interrupt-parent =3D <&vic1>;
-> -               interrupts =3D <12>;
-> -               clock-rate =3D <50000000>;        /* 50MHz */
-> -
-> -               flash@f8000000 {
-> -                       st,smi-fast-mode;
-> -                       ...
-> -               };
-> -       };
-> diff --git a/Documentation/devicetree/bindings/mtd/st,spear600-smi.yaml b=
-/Documentation/devicetree/bindings/mtd/st,spear600-smi.yaml
-> new file mode 100644
-> index 000000000000..8fe27aae7527
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/st,spear600-smi.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/st,spear600-smi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics SPEAr600 Serial Memory Interface (SMI) Control=
-ler
-> +
-> +maintainers:
-> +  - Richard Weinberger <richard@nod.at>
-> +
-> +description:
-> +  The SPEAr600 Serial Memory Interface (SMI) is a dedicated serial flash
-> +  controller supporting up to four chip selects for serial NOR flashes
-> +  connected in parallel. The controller is memory-mapped and the attache=
-d
-> +  flash devices appear in the CPU address space.The driver
-> +  (drivers/mtd/devices/spear_smi.c) probes the attached flashes
-> +  dynamically by sending commands (e.g., RDID) to each bank.
-> +  Flash sub nodes describe the memory range and optional per-flash
-> +  properties.
-> +
-> +allOf:
-> +  - $ref: mtd.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: st,spear600-smi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  clock-rate:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Functional clock rate of the SMI controller in Hz.
-> +
-> +  st,smi-fast-mode:
-> +    type: boolean
-> +    description: Indicates that the attached flash supports fast read mo=
-de.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clock-rate
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    flash@fc000000 {
-> +        compatible =3D "st,spear600-smi";
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <1>;
-> +        reg =3D <0xfc000000 0x1000>;
-> +        interrupt-parent =3D <&vic1>;
-> +        interrupts =3D <12>;
-> +        clock-rate =3D <50000000>;  /* 50 MHz */
-> +
-> +        flash@f8000000 {
+changes v6:
+- rebase on top of iio/fixes-togreg
+- drop "iio: dac: ds4424: reject -128 RAW value", already included
 
-This is now a warning in linux-next:
+This series extends the ds4424 IIO DAC driver and its devicetree binding
+to support the DS4402 and DS4404 current DAC variants.
 
-Documentation/devicetree/bindings/mtd/st,spear600-smi.example.dtb:
-flash@fc000000 (st,spear600-smi): Unevaluated properties are not
-allowed ('flash@f8000000' was unexpected)
-        from schema $id: http://devicetree.org/schemas/mtd/st,spear600-smi.=
-yaml
+DS440x devices share the same register map as DS442x but use a different
+resolution (5-bit vs 7-bit) and a different full-scale current formula.
+The full-scale current depends on external Rfs resistors connected to
+the FS pins, so a new optional DT property is added to provide the
+per-channel Rfs values and allow the driver to report a correct IIO
+SCALE (mA/step).
 
-Please send a fix (and test your schemas before sending).
+While adding DS440x support, a few related issues were addressed:
+- Port to regmap
+- Reject -128 in RAW writes on DS442x, which cannot be represented with
+  sign-magnitude encoding and could silently program an unintended
+  output.
+- Preserve preconfigured values on probe.
+- Ratelimit read error logging and use device context.
 
-Rob
+David Jander (1):
+  iio: dac: ds4424: add DS4402/DS4404 device IDs
+
+Oleksij Rempel (11):
+  iio: dac: ds4424: refactor raw access to use bitwise operations
+  iio: dac: ds4424: ratelimit read errors and use device context
+  iio: dac: ds4424: sort headers alphabetically
+  iio: dac: ds4424: rename iio_info struct to avoid ambiguity
+  iio: dac: ds4424: use device match data for chip info
+  iio: dac: ds4424: use fsleep() instead of usleep_range()
+  dt-bindings: iio: dac: maxim,ds4424: add ds4402/ds4404
+  iio: dac: ds4424: support per-variant output range limits
+  iio: dac: ds4424: convert to regmap
+  dt-bindings: iio: dac: maxim,ds4424: add maxim,rfs-ohms property
+  iio: dac: ds4424: add Rfs-based scale and per-variant limits
+
+ .../bindings/iio/dac/maxim,ds4424.yaml        |  42 +-
+ drivers/iio/dac/Kconfig                       |   1 +
+ drivers/iio/dac/ds4424.c                      | 375 ++++++++++++------
+ 3 files changed, 287 insertions(+), 131 deletions(-)
+
+--
+2.47.3
+
 
