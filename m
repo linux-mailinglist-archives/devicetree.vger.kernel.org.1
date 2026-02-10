@@ -1,307 +1,158 @@
-Return-Path: <devicetree+bounces-264452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264448-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KLMcIZdFi2mfRwAAu9opvQ
-	(envelope-from <devicetree+bounces-264452-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 15:49:59 +0100
+	id mB72OYZFi2mfRwAAu9opvQ
+	(envelope-from <devicetree+bounces-264448-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 15:49:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B048F11C12B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 15:49:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 650DF11C10A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 15:49:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5B2D73012970
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:49:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EF54F3020E92
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:48:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C3D3803FE;
-	Tue, 10 Feb 2026 14:49:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB89133F38A;
+	Tue, 10 Feb 2026 14:48:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bEB0WHHp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EEL355M7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5CDC32A3D7
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 14:49:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8CED329E58;
+	Tue, 10 Feb 2026 14:48:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770734967; cv=none; b=ctLOkwirYTuOjeUF+U2tncYiT/h5DlB5Y/jCXJbc+8G5ZFYP+bwxeLBMFQFS392so4pkZjn5HYMhGBfxYcrtVPSpSI1vSW1FvFBrvSOMNEiUnuwFx6L8Q/I7wNHzbiDac42mln9rxV07iemYR/A9xnL4QdVdmHOoFAXlx1Ns+54=
+	t=1770734930; cv=none; b=GKfpxl+IoY/gsA5Tln24918gQFaVCOeBSsUc3DMCebG3KYRqLJrqQTQqbAGn6+0FyCoRLopb8qo7iiMO0OkAW60vmkFDBf8aenxBfoqeGkulNmTtxvkxBLRvqNBM1SklLFQNp64ZSELfPPO7jSdOKIFsMYNTkGu8GOCEcE+kbKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770734967; c=relaxed/simple;
-	bh=s+u+pQE5MF5R0f6DpnVBXrF/ZbfBtQgck00DGIPuy2I=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=fjIV9D9Rk+lFsl7MHNR4zHTLRPBMd4cBvDdK48g608uqfQZF2z0fLaxxaoWtqE8xKuJZQ1gr8xDLyLlpd0bdwMXsVLUQiro/fUcen8khuu6VjdQBhw/z28XJRDapxudKlSlU79jmGf8rQWs6ghNy2I9lE8MRQutbvokWTc10D2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bEB0WHHp; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-79627af6349so10486267b3.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 06:49:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770734965; x=1771339765; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6r7XJGPI4Eu2nijObW0lD2FssoR7X5MTuREbg2w6rVY=;
-        b=bEB0WHHpJacezMHfOgqR96w8pGYNRC63OzATsVqimBWBwwlGYZRxuG5QLxTg9JUSoU
-         oZUD++GYp8v4gUJLZV/vgNuyy9B46yhTISWCaZH4S/kAbH1ziEpVo8LQcrAp1OuUrfk0
-         BYagpKrsLAI1evm13ds5gkzYCknMyoAsfC5zMDmQKb4NZ7gEZaB/vHFwutXMjxYGV5nS
-         RlX7ukKwKpPcothFB/bjyWXZ06wvY4ofG3uvfQWripz/PfLPseho5+uFvxIcXjO6U11d
-         Ei0bXBu8Ibrs+eMeJcdwKvglsZP8ER/KpeIJ7Z4EN3M9970b+wL+RYSw9YJRTAi6qfSD
-         LLoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770734965; x=1771339765;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=6r7XJGPI4Eu2nijObW0lD2FssoR7X5MTuREbg2w6rVY=;
-        b=ky3GXgjCA46zs4nqTvbr1yYsFS5DPqBln+PxKG/LnKRfNAtGwu57VhPmF6otPgCh34
-         mcpJhFUkdvINPKvB8s5vsoM6xgNJtp9VsaYvabHlQrXgzSgjnoIt9MeVRENGQJSs/b9F
-         ObVw8oF24VBte7EsyZg8URmh8+r8kv5EoGtemvM1gN6rXhCebNm9X3X+sxqsjl+0Ou7V
-         E1hs/rDME4vX5eKPtp7ndwecVayjq0e78ik5lEUp03AyMMAz91BpSd8bX6iicHpRUAeF
-         j7AXS/ZnGjnvBESBiUhn4Z11HPoytQ+hw/j1O7y89a5ifI4tIF8ne4LZdzB8pGcFS1p5
-         cjHw==
-X-Forwarded-Encrypted: i=1; AJvYcCXVdGEbfUAu0KZdp0LL8u3rqnnVUylgeQmgoFWHxxleTGmDfMbbl8ERjbLZmySRtlcEyFcehV6BqyOj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0w26FQsav2qs+yna7b1mcxoH4N/Pmob3EWT6SuYYmvoJU+dSK
-	OeNX88hHldlZq3kyCwS4Prc8V3N04pJiDKxw98nN2IUWYxLf9vTzCHE30IksJA==
-X-Gm-Gg: AZuq6aI7aXdJNBT3MWnHefuuZQsMVQMh+EHCgIVLB/vRhSGYFJODpVtJro1jAMaNm79
-	T1c85dgVSRLqZKSfltHuU00DkkdgnsFlnVnnt1BjolREkfI5wzmls2Fw4DeibUEGu02U2jHqCxy
-	iU2z3K8FLAiJgUyNBk/18xTb6HPS0hn4g3P/MKVlIIjfBO3yCXQVKKNhRpn1GJpM7D+YdUZc9Wn
-	GpwzN2WHLZVqloqQRIwseDaf9aofv5DsNdrx3h7TzH5qq5TtflaLPliAiC5u8smSHmCBh0AQzXu
-	OfX7dVOOu4rzGIQlknggOdX+cw91Vy3p4Y/Ru0EMYSMKozNELEj0ZG4BaAxrFSYTDWVagw3w+e8
-	dCx82SnIcDFFijc5KEeWxAADY6Qn96XGGJhY9nH8bmCxJBwDd8ynIalKy05Kbb/3dnquftZ2Akk
-	fa+onCudgqQWO9euVnZGMXs2oIQT1LqWxULxZD
-X-Received: by 2002:a05:690c:60c6:b0:794:d4c3:3152 with SMTP id 00721157ae682-7952aaa7866mr287712077b3.31.1770734964654;
-        Tue, 10 Feb 2026 06:49:24 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:7e95:428c:8802:872e])
-        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-64acd247ee5sm12086263d50.6.2026.02.10.06.49.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Feb 2026 06:49:23 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: heiko@sntech.de
-Cc: jonas@kwiboo.se,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Fabio Estevam <festevam@nabladev.com>
-Subject: [PATCH v3 4/4] ARM: dts: rockchip: Add Onion Omega4 Evaluation Board
-Date: Tue, 10 Feb 2026 11:48:45 -0300
-Message-Id: <20260210144845.317048-4-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260210144845.317048-1-festevam@gmail.com>
-References: <20260210144845.317048-1-festevam@gmail.com>
+	s=arc-20240116; t=1770734930; c=relaxed/simple;
+	bh=0BPOdjZ9FZZhVNS70ugUYJcdyNmnzzQQblYQQVtkCAI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u/OfCs0uRWIMSIJ3JZ1SmfPMRim1/2Y1+AkZXfNfFk38dJeqbPDOi9HHov9vyTcSgo4zkWDoUNt3pb/QETxFpLXvOP1VWg0nu+vU9eifdef1FHDl5BMkrKTReMNb7RQPTvJZPj6NTGCUUtSn/6YbBX4cAs+y5X6kAcx8VhAJoXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EEL355M7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A603C116C6;
+	Tue, 10 Feb 2026 14:48:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770734930;
+	bh=0BPOdjZ9FZZhVNS70ugUYJcdyNmnzzQQblYQQVtkCAI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EEL355M7aYUwWTSyH8KocQFtO+QK8eM+yylOh+jKs/gUQG/tfGx/n2a+5I4BKhBTu
+	 hltnl+VVUrmIh9G0TY2Eqv3S5COB7SnYGSa1MLRQZZk5FS6d9wTXJPCaf8NAdpNwzq
+	 d5Hek3aBv0L+pIEzaFxoCMiZh6YQYOGPviLtNiWALzem0j5ddEJEgOfMg5OINkuGIA
+	 cPm/8Y6sc1cWZN785j5Ci5avKtcT9y5qKMGgWkDyYhmkQDt/PvPSqFLXu9VRB33Lvw
+	 4UGis9ilIAgM0eKnieYUHCg9m/MeLW72wNMkFJZvRywabIvJ7pSPQaAo1inHWJUsOt
+	 uDGj0U5SS1Aow==
+Date: Tue, 10 Feb 2026 08:48:49 -0600
+From: Rob Herring <robh@kernel.org>
+To: Teresa Remmet <t.remmet@phytec.de>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, upstream@lists.phytec.de,
+	Yannic Moog <y.moog@phytec.de>, Benjamin Hahn <b.hahn@phytec.de>,
+	Yashwanth Varakala <y.varakala@phytec.de>,
+	Jan Remmet <j.remmet@phytec.de>
+Subject: Re: [PATCH 1/2] dt-bindings: dp83867: add binding for
+ ti,output-impedance property
+Message-ID: <20260210144849.GB2675838-robh@kernel.org>
+References: <20260129-wip-t-remmet-phytec-de-bspimx95-132_upstream-v1-0-8deccd658d16@phytec.de>
+ <20260129-wip-t-remmet-phytec-de-bspimx95-132_upstream-v1-1-8deccd658d16@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260129-wip-t-remmet-phytec-de-bspimx95-132_upstream-v1-1-8deccd658d16@phytec.de>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264452-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-264448-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,ti.com,gmail.com,armlinux.org.uk,vger.kernel.org,lists.phytec.de,phytec.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	DBL_PROHIBIT(0.00)[0.0.156.64:email];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.3.169.128:email,nabladev.com:email,0.0.0.0:email,plan44.ch:url,0.2.34.224:email]
-X-Rspamd-Queue-Id: B048F11C12B
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 650DF11C10A
 X-Rspamd-Action: no action
 
-From: Fabio Estevam <festevam@nabladev.com>
+On Thu, Jan 29, 2026 at 03:13:33PM +0100, Teresa Remmet wrote:
+> Add an optional device tree property, "ti,output-impedance", which
+> specifies the output impedance using a raw register field value from
+> 0x0 to 0x1f.
+> 
+> 0x0 corresponds to the highest impedance (approximately 70 ohms),
+> while 0x1f represents the lowest (approximately 35 ohms).
+> 
+> This property allows the impedance to be configured through the
+> device-tree to any required value rather than being limited to fixed
+> minimum or maximum settings.
+> 
+> Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
+> ---
+>  Documentation/devicetree/bindings/net/ti,dp83867.yaml | 19 ++++++++++++++-----
+>  1 file changed, 14 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ti,dp83867.yaml b/Documentation/devicetree/bindings/net/ti,dp83867.yaml
+> index 4bc1f98fd9fe..a8d8bfb68bee 100644
+> --- a/Documentation/devicetree/bindings/net/ti,dp83867.yaml
+> +++ b/Documentation/devicetree/bindings/net/ti,dp83867.yaml
+> @@ -52,11 +52,20 @@ properties:
+>      description: |
+>        MAC Interface Impedance control to set the programmable output impedance
+>        to a maximum value (70 ohms).
+> -      Note: Specifying an io_impedance_ctrl nvmem cell or one of the
+> -        ti,min-output-impedance, ti,max-output-impedance properties
+> -        are mutually exclusive. If more than one is present, an nvmem
+> -        cell takes precedence over ti,max-output-impedance, which in
+> -        turn takes precedence over ti,min-output-impedance.
+> +      Note: Specifying an io_impedance_ctrl nvmem cell, ti,output-impedance
+> +        or one of the boolean ti,min-output-impedance and ti,max-output-impedance
+> +        properties is mutually exclusive.
+> +        If more than one is present the priority order is nvmem cell,
+> +        ti,output-impedance, ti,max-output-impedance and last
+> +        ti,min-output-impedance.
+> +
+> +  ti,output-impedance:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      MAC Interface Impedance control to set the raw register value from 0x0
+> +      (approx. 70 ohms) to 0x1f (approx. 35 ohms).
+> +    minimum: 0
+> +    maximum: 31
 
-The Onion Omega4 Evaluation Board is based on the RV1103B SoC and has:
+How does this compare to 'mac-termination-ohms'? Seems like this should 
+be a common property whether it's the same or for a different location.
 
- - 256 MB of RAM
- - 256 MB of SPI-NAND
- - Ethernet
- - USB OTG
- - Wifi
- - SD card
- - Camera connector
-
-The details can be found at:
-https://documentation.onioniot.com/omega4/getting-started/
-
-Add the initial support for this board so that it can fully boot into
-Linux with the root file system stored in the SPI NAND.
-
-Signed-off-by: Fabio Estevam <festevam@nabladev.com>
----
-Changes since v3:
-- Split it in the EVB and SoM dtsi.
-
- arch/arm/boot/dts/rockchip/Makefile           |  1 +
- .../boot/dts/rockchip/rv1103b-omega4-evb.dts  | 94 +++++++++++++++++++
- .../arm/boot/dts/rockchip/rv1103b-omega4.dtsi | 21 +++++
- 3 files changed, 116 insertions(+)
- create mode 100644 arch/arm/boot/dts/rockchip/rv1103b-omega4-evb.dts
- create mode 100644 arch/arm/boot/dts/rockchip/rv1103b-omega4.dtsi
-
-diff --git a/arch/arm/boot/dts/rockchip/Makefile b/arch/arm/boot/dts/rockchip/Makefile
-index 716f5540e438..d0154fd7ff24 100644
---- a/arch/arm/boot/dts/rockchip/Makefile
-+++ b/arch/arm/boot/dts/rockchip/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_ROCKCHIP) += \
-+	rv1103b-omega4-evb.dtb \
- 	rv1108-elgin-r1.dtb \
- 	rv1108-evb.dtb \
- 	rv1109-relfor-saib.dtb \
-diff --git a/arch/arm/boot/dts/rockchip/rv1103b-omega4-evb.dts b/arch/arm/boot/dts/rockchip/rv1103b-omega4-evb.dts
-new file mode 100644
-index 000000000000..686f2dd28eab
---- /dev/null
-+++ b/arch/arm/boot/dts/rockchip/rv1103b-omega4-evb.dts
-@@ -0,0 +1,94 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2022 Rockchip Electronics Co., Ltd.
-+ * Copyright (c) 2025 plan44.ch/luz
-+ * Copyright (c) 2025 Onion Corporation
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include "rv1103b-omega4.dtsi"
-+
-+/ {
-+	model = "Onion Omega4 Evaluation Board";
-+	compatible = "onion,rv1103b-omega4-evb", "onion,rv1103b-omega4", "rockchip,rv1103b";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0	{
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&led>;
-+			gpios = <&gpio0 RK_PA2 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_BLUE>;
-+			label = "sys";
-+			default-state = "on";
-+		};
-+	};
-+};
-+
-+&fspi0 {
-+	status = "okay";
-+
-+	spi_nand: flash@0 {
-+		compatible = "spi-nand";
-+		reg = <0>;
-+		bootph-pre-ram;
-+		bootph-some-ram;
-+		spi-max-frequency = <75000000>;
-+		spi-rx-bus-width = <4>;
-+		spi-tx-bus-width = <1>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "env";
-+				reg = <0x00000000 0x00040000>;
-+			};
-+
-+			partition@40000 {
-+				label = "idblock";
-+				reg = <0x00040000 0x00100000>;
-+				read-only;
-+			};
-+
-+			partition@140000 {
-+				label = "uboot";
-+				reg = <0x00140000 0x00100000>;
-+				read-only;
-+			};
-+
-+			partition@240000 {
-+				label = "boot";
-+				reg = <0x00240000 0x00800000>;
-+			};
-+
-+			partition@a40000 {
-+				label = "ubi";
-+				reg = <0x00a40000 0x0f5c0000>;
-+			};
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	leds {
-+		led: led {
-+			rockchip,pins = <0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-diff --git a/arch/arm/boot/dts/rockchip/rv1103b-omega4.dtsi b/arch/arm/boot/dts/rockchip/rv1103b-omega4.dtsi
-new file mode 100644
-index 000000000000..bf245b547ea2
---- /dev/null
-+++ b/arch/arm/boot/dts/rockchip/rv1103b-omega4.dtsi
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2022 Rockchip Electronics Co., Ltd.
-+ * Copyright (c) 2025 plan44.ch/luz
-+ * Copyright (c) 2025 Onion Corporation
-+ */
-+
-+/dts-v1/;
-+
-+#include "rv1103b.dtsi"
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0m0_xfer>;
-+	bootph-all;
-+	status = "okay";
-+};
-+
-+&wdt {
-+	status = "okay";
-+};
--- 
-2.34.1
-
+Rob
 
