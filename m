@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-264407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264408-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eDxoJDopi2n1QQAAu9opvQ
-	(envelope-from <devicetree+bounces-264407-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:48:58 +0100
+	id gP9eJtEpi2kbQgAAu9opvQ
+	(envelope-from <devicetree+bounces-264408-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:51:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F71811AFF4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:48:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D2F11B056
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:51:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6750930071E3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:48:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B6FEE3045A1B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:51:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97243318B93;
-	Tue, 10 Feb 2026 12:48:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AA4C328616;
+	Tue, 10 Feb 2026 12:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="riTIzdQs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BS0fLOCw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7211628727E;
-	Tue, 10 Feb 2026 12:48:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 745341D5CD9;
+	Tue, 10 Feb 2026 12:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770727731; cv=none; b=WxJWWqL52GUxwl85wAbqILv3xqfW80qkZmbGVuDzeNX93ONxNRFQbWY3lIDImrlLIdoeu7V2/kJ84iyectnCPRenhCMYIm3VMABVPvFJZBMlRzX1ThWl4UO6HKTpE+hfhsQYqFJGr+oooE9MLi0W+AAxBfjrPGsyIeEAO7GgvYQ=
+	t=1770727868; cv=none; b=rCWrIDA0GgFrt0/zWDITbHe0vM4KC4PNG1xUhov8Yiu2z919oKmbOl4k1s3Znd+MjVxpamJhN9ks/I5jMd93mSa29DG/mUmFGX7qhtL84zgUUjV1JgFlyZ5DZ03dryjcllFe8zkDvPdQojb5OM0G7TtF8Bjhh/oHmYb90ayNrqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770727731; c=relaxed/simple;
-	bh=vvnvUwyQSeRgCBnsUrcVrKGgV+yxucGObqDmZnndIzI=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=OuPTYAAixUPE+wN0G07kVQqJ/SjQYK6A0K0arnH82Ng0P+3xPM12ra8WlZni7o5KWaUKegiYZVY2XMl7nqws4LXGOwQszpp8VP60tbf0StyxmIJQRO1SbXlVnoCXQhF1tlfckJo1t9+qZOzdKIolYTEqWpbMQexPfXDefmxXSdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=riTIzdQs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0729C116C6;
-	Tue, 10 Feb 2026 12:48:47 +0000 (UTC)
+	s=arc-20240116; t=1770727868; c=relaxed/simple;
+	bh=mmvYVpmng05S9pUxpRZjbaPjAKB25nUtvZt9cxt89EM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Zde6YStyoc+8nZBXnMJDjAMv2WyEVkFZmWiYn906zM6RSc7o8wqlPNCAIh78hUs6/yCbKhteJM9rX8YzQg2zyO1vnjC8wkqCYyRAxBmveReU17ptXw+f2oCcNxpbcs9tGm1heFRrFYcbjXVSLN3wuykLf3Y4Dj9L5MCQU6gqAj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BS0fLOCw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFE5DC19423;
+	Tue, 10 Feb 2026 12:51:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770727731;
-	bh=vvnvUwyQSeRgCBnsUrcVrKGgV+yxucGObqDmZnndIzI=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=riTIzdQssYR8g2NzGUGuJiD/6H2GGiVWLCyloWQblfYjGzJqo4lPuEYXCsLhz81Yh
-	 8lxBRMhZM8bZ7PDfwYQQRRtd3cwJ/ccbu795+X3kwEf68kVwnpA2ecX/fDCvUArgzb
-	 wSLYYvrA5qp9D4C+/QX6pW8DvIIpLhP4XGvdJuKpn++709gQaylMhwDemCjf3INE0J
-	 jm1WsHAb4QLFhHHYdems2/OIOrnu2oXYRhHGLhwfSyMXzG9UAQiGc/D5Nacv0AfZza
-	 9+IKpBQqnni90saBsi5Of+XqLMJxKDH57SM+uVNl8ZUD30YFK9DDIoGojs3fx9zp9X
-	 t8ZWNtwSF9RjA==
-Message-ID: <9dcc308d-f87d-4706-90ae-df3669aea224@kernel.org>
-Date: Tue, 10 Feb 2026 13:48:45 +0100
+	s=k20201202; t=1770727868;
+	bh=mmvYVpmng05S9pUxpRZjbaPjAKB25nUtvZt9cxt89EM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BS0fLOCw5HPYDquXCrMdyF+FJgeiQKkxQQjIHPSyC5RKfO0X+ims7eCdWNnSBUABH
+	 Bgf954+eAiqgL9oPy4sN13QewO5Ge2EWPYn+JegokXaMVaqPf7wYjnPmP6YPgYKbC4
+	 rjH1LOlJD7CHGSw5jwZv9SDb0CXarNAF0HS78WNPQbXURalMVRM4Q0vWVCLcukYHa8
+	 3lJLhF/9w6yY5hbxY/e5mOVTwHj2nNpk8D80vtrG4ukrKWGZIeIpwPfBd4yIA/3yEd
+	 uqeyqtCSHAHmn6fL+qQzVryORh5xF2buwhkYetgYWeNf0jjmZXRGEY+B5UZpMtUyn2
+	 4hQQIMyTEQekQ==
+Message-ID: <8f8d7469-5edb-4718-997e-9cd01f7a9689@kernel.org>
+Date: Tue, 10 Feb 2026 13:51:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,30 +53,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/9] dt-bindings: mfd: document ASUS Transformer EC
+Subject: Re: [PATCH v9 5/5] arm64: dts: qcom: monaco-evk-camera: Add DT
+ overlay
+To: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>,
+ bryan.odonoghue@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+ hverkuil-cisco@xs4all.nl, loic.poulain@oss.qualcomm.com, rfoss@kernel.org,
+ andi.shyti@kernel.org, linux-i2c@vger.kernel.org,
+ cros-qcom-dts-watchers@chromium.org
+Cc: quic_svankada@quicinc.com, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Ravi Shankar <quic_rshankar@quicinc.com>,
+ Vishal Verma <quic_vishverm@quicinc.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20260121183142.1867199-1-quic_nihalkum@quicinc.com>
+ <20260121183142.1867199-6-quic_nihalkum@quicinc.com>
+ <32c4d3c3-6cbc-42cc-8c6e-7f1d0d35cc2c@kernel.org>
+ <7889e13e-fd81-42aa-873c-92de641e1979@quicinc.com>
+ <c9d1e8ca-253a-4e87-8dc7-d2036737b5e4@kernel.org>
+ <d63a0663-626e-416c-a5b4-e7d91f158b44@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Pavel Machek <pavel@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sebastian Reichel <sre@kernel.org>, =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?=
- <mirq-linux@rere.qmqm.pl>, Ion Agorria <ion@agorria.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
- linux-pm@vger.kernel.org
-References: <20260209104407.116426-1-clamor95@gmail.com>
- <20260209104407.116426-4-clamor95@gmail.com>
- <20260210-sexy-grumpy-sambar-44edd2@quoll>
- <CAPVz0n3fizf=r58Fr4YQ6pnjHq5p-7yFz95obss6w6x0bfgnDg@mail.gmail.com>
- <d1973810-d3f5-4ed7-ba0f-6bf93c1c7f3d@kernel.org>
- <CAPVz0n1foyy9g7MAurSAyLCUHTzrPPu0ceqy9YpcDA9uzgjGng@mail.gmail.com>
- <cb91898e-10f1-4d64-bace-41bbed08179b@kernel.org>
- <CAPVz0n0O_uSAPYFtg8s+Ni0buyGJys6d0jEMob6SNWx-aeKUEw@mail.gmail.com>
- <dc7acd1e-91e8-492c-8665-cb680c6164fd@kernel.org>
- <CAPVz0n0u_0ZukcKXt0QpiyCMhWsg2VE-dE19wDCbRQvBvVOf+A@mail.gmail.com>
- <ec3b39d6-51ec-429d-b083-e5af2b4a9c65@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,81 +118,69 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <ec3b39d6-51ec-429d-b083-e5af2b4a9c65@kernel.org>
+In-Reply-To: <d63a0663-626e-416c-a5b4-e7d91f158b44@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264407-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264408-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[quicinc.com,linaro.org,kernel.org,xs4all.nl,oss.qualcomm.com,vger.kernel.org,chromium.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,arndb.de,linuxfoundation.org,rere.qmqm.pl,agorria.com,vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2F71811AFF4
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E8D2F11B056
 X-Rspamd-Action: no action
 
-On 10/02/2026 12:54, Krzysztof Kozlowski wrote:
-> On 10/02/2026 12:40, Svyatoslav Ryhel wrote:
->>>>
->>>> So you propose introduce a compatible for every single ec used in
->>>> transformers instead of simply disable unpopulated functions? And how
->>>> then battery and charger can reach monitored cell if they have no
->>>> dedicated node?
->>>
->>> Just like for other bindings for nodes without resources, fold into
->>> parent. This is already explained in writing bindings, so you could have
->>> just read that. I will pass with answering more questions till you read
->>> that doc.
->>>
->>
->> Unfolding asus,ec-pad and asus,ec-dock will result in this list:
->>
->> asus,tf101-dock-ec
->> asus,tf101g-dock-ec
->> asus,sl101-pad-ec
->> asus,tf201-pad-ec
->> asus,tf201-dock-ec
->> asus,tf300t-pad-ec
->> asus,tf300t-dock-ec
->> asus,tf300tg-pad-ec
->> asus,tf300tg-dock-ec
->> asus,tf300tl-pad-ec
->> asus,tf300tl-dock-ec
->> asus,tf600t-pad-ec
->> asus,tf700t-pad-ec
->> asus,tf700t-dock-ec
->> asus,tf701t-pad-ec
->> asus,p1801-t-pad-ec
->>
->> with minor variations in populated cells. Is this acceptible?
+On 10/02/2026 13:42, Nihal Kumar Gupta wrote:
 > 
 > 
-> Yes, this looks correct.
+> On 09-02-2026 22:08, Krzysztof Kozlowski wrote:
+>>> Krzysztof, Thanks for your review.
+>>> All patches posted here were build‑tested and verified by the author.
+>> Then please explain reported by Rob build-process warnings.
+> 
+> The dt-binding for qcom,qcs8300-cci specifies two clocks:
+> clock-names = "ahb", "cci";
+> 
+> On Monaco, the CCI node currently defines:
+> clock-names = "cpas_ahb", "cci";
+> 
+> The dt-binding warns because it expects the clock-names to be "ahb" and
+> "cci", while the Monaco DTS uses "cpas_ahb" instead of "ahb". The
+> hardware works correctly, but the name doesn't match the binding.
+> Renaming "cpas_ahb" to "ahb" aligns the DTS with the binding and clears
+> the warning. Please advise if you prefer a different approach.
 
-Update: with fallback-expressed compatibility when same interface and/or
-superset of features.
+I said this was not build-time tested. I gave a proof of that.
+
+You said it was build tested but you confirm it has build error.
+
+Listen, when tools report you errors and maintainers say your code does
+not pass basic tests, don't insist that this was basic tested.
+
+It was not and discussing this just wastes our time. I am not going to
+spend more time on this discussion, wasted already too much.
 
 Best regards,
 Krzysztof
