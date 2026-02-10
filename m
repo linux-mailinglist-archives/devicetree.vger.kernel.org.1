@@ -1,143 +1,170 @@
-Return-Path: <devicetree+bounces-264239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264240-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qGMoHEXOimkUOAAAu9opvQ
-	(envelope-from <devicetree+bounces-264239-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:20:53 +0100
+	id cNrUNf3OimkUOAAAu9opvQ
+	(envelope-from <devicetree+bounces-264240-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:23:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9200117559
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:20:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4036E11759C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:23:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 66C353016515
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 06:20:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 20683300B10B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 06:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6309E32B9AE;
-	Tue, 10 Feb 2026 06:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 023FD32D0E8;
+	Tue, 10 Feb 2026 06:23:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VG40HT/Y"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="wp4Lu1hQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f67.google.com (mail-dl1-f67.google.com [74.125.82.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16ADA2C08BC
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 06:20:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D21CB32ABE1
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 06:23:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770704444; cv=none; b=I2IoBoHkTFFtJDtBjgA4EuBqNIAta7543kgRRllBA1hYMoCMREmi4t5I1uz7CIh9zKccVn3nH0dO6M14nVDlUsQpp9z/lqho2D8idgGuEGjAHmlWx0KU1LqpMiAIAiT9Xg6oIFM6azGdpnPNrsgH0B3fZ+pBsSlKul5IQI91/pw=
+	t=1770704608; cv=none; b=QOahfbg4vHA1dJI+lv74ikzho7SdEdXEELrBVbwU26ftNXAoSOJi8uKJr/EbJiuNx1KqfuoPwqliKEdnqwLY4Mgr8iKU83GZUFgoGuri2YybOOZXgP3QTqSjca/C1TmZXXXmAtet5RPU+wHmTlIDyoJvUwoJDQ/r8oxalPqVpTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770704444; c=relaxed/simple;
-	bh=SEYG66B8ZtLuXgv2nsuhGS6fllKN1d8ENv7O1dAcJEI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EzL4qGUjqrbb+pXr5ZCG+Sx/L4NHVd7+W0nX6t3pwAlbMnOShsrad7ejs1FE/k1CUtLS86lEHBAOzq3Vm6fJawbDBMfghw853PIdizcHukMaoYGJZH72Azu0Xzi385ETh8X/QkqVJGDmxbtqno++mKDSzERh3n/ScHU/8KfL4wM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VG40HT/Y; arc=none smtp.client-ip=74.125.82.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f67.google.com with SMTP id a92af1059eb24-1233c155a42so454889c88.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 22:20:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770704442; x=1771309242; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AgWuwLpuwK0cTRarzf0Yohoxjvezc1aQian77BUVRlU=;
-        b=VG40HT/Yo1xVlgykPCpuUNQAlmLtgOtlXBKB7lm53NlxtZ5B1aHn2wkMlZeg8+j+Od
-         KcSNK+XfPXbv3wiCtz4cLFaCWstozCP9mesd413mVV5icmozgLBHbS29oFNQA5uTnkbw
-         Mlw5I8r4cKDxfqrTGAMYM4/cWMwhA7yudYNtd8y7KZm73QaJ5M/i/pEElMTAMo7Bqwwj
-         sAmJCg78yA28Y620ukaiODgphsMPaWy1bIc1VE3RT/ekw7qxjIRQ9c1igEukUZFDZm9w
-         2DDTrtH3nK4SJHUUpZpzpnpckBAR5GUq16ElEffRIB/WsSaA+TqYzy5Y5wOcNyXTKlnE
-         yDEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770704442; x=1771309242;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AgWuwLpuwK0cTRarzf0Yohoxjvezc1aQian77BUVRlU=;
-        b=n4RrZeI4aAEjE/EPfYStB0txmk3O0UFQJ6/n1v9eS/Qa6hJbNsBPYNs0xofH63pVRp
-         R6LN8eyPK/ZfciNxd2q2RPwCxQg3qZazqHclz+VvR81uNoTbp9AbQmUIrRoCmcaIKJEN
-         M+jp7aiTevdXO5XUgJmiZ9Lqi+i42vcqKdp66pyCh+DwwbBh9BR5DIgydVjHXlvcK4sx
-         T3bhqSE85YWZAbt5YBM4a3/PnfyTEFPky2+Wh8WHvdoEDFJi9ZXoz/VJZM2MIPtpjW5D
-         NKrh2ycYDWH/zdCvdNn+gaqPMerRvGPIW/PlPggcNrNNEBIu+bvb0JAmOuxuYBJHAYsl
-         /Hlg==
-X-Forwarded-Encrypted: i=1; AJvYcCX+daSemB+OLMkUL6lIkQEuBBQFQt0RnJygiBqy0PYfJykfPoZv6AayPVQ7FzugwhvvpTkmjJ+gUD/E@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYwkp1DJIN2gJ6N2yizPjlbZdDchE8P+NzaJWUO1QaG966u9Co
-	eOk8bsU58xGEotb8l1qD84dN+maNKY7ltF7NkdWY/FzKUjWP43MZMUCf
-X-Gm-Gg: AZuq6aLozSBvR7vKivaGDKOg468oGXGaTmE/yiOO1FXO9fonG1oBi4aTBEw0EjELxd4
-	nwURA8ogU3d96a6LWIhPC1aCEhCHqT92Dcu9uwLyAaXRaYTFKJdtICypGVypQjF6BJK8dEWgjLz
-	rQYJu1PeMJCq5z8Mg8zO00Mzml/k2Q3mp0d9TFNsEIARUbqrTcGWCqU1szsM4o6wIhya1dUFGYW
-	v6xsLUkY8HrQ18wg2xc60+jl+s4j/zZ5jkMjq2nlzpg7vw7E6/VIt1FgwA6oLamjgDGQKEvAUhf
-	UdxmiNutZ0ZgFO6CbXO5V0qcMKin8bx0P3rwM5oavplwjpchXXnVBNFZDO6UwEB0IBv0E2AupdR
-	vEtAVUzYCCwdXICa7gxZScCQlwMAEhhz/ohNWhQRxpTOSlXC/z9pzThKUTx361M5CN1AoKZD+km
-	1pkmq0ykYk0GdoV0tB1MEae1vunNBIVdjmrSD5O5DSBsLi4KkcxRgwLMEH6UDeMchF
-X-Received: by 2002:a05:7022:2523:b0:119:e56b:98c1 with SMTP id a92af1059eb24-1270405d980mr5709422c88.40.1770704442142;
-        Mon, 09 Feb 2026 22:20:42 -0800 (PST)
-Received: from google.com ([2a00:79e0:2ebe:8:616e:78a2:cc03:4be3])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2ba89ae14c9sm887685eec.29.2026.02.09.22.20.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Feb 2026 22:20:41 -0800 (PST)
-Date: Mon, 9 Feb 2026 22:20:37 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Courtney Cavin <courtney.cavin@sonymobile.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-input@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: input: qcom,pm8941-pwrkey: Document
- PMM8654AU
-Message-ID: <aYrOMvIJdiaGHw9k@google.com>
-References: <20260209-add_pwrkey_and_resin-v2-0-f944d87b9a93@oss.qualcomm.com>
- <20260209-add_pwrkey_and_resin-v2-2-f944d87b9a93@oss.qualcomm.com>
+	s=arc-20240116; t=1770704608; c=relaxed/simple;
+	bh=vAkD2Y7A3kX2N7NxVpgDP67IrLuf+CkR+cYwyIBTEGo=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=IG0AX4o2gCR75iugiM4NgQWFHhU4LBbEmVt8aS5mMtl8YJ88DLZ30KqLNp+pkYEwmjF9cXZGL1ho/2U/16OBOxPH28hTByWkw0en4e9WF6NKclN2l9j1Tg5iJJ4fbuThxlgM5m0oDbZl9nM2F0XiBU8DCi3xLbZdqh3/LKoeKFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=wp4Lu1hQ; arc=none smtp.client-ip=95.215.58.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260209-add_pwrkey_and_resin-v2-2-f944d87b9a93@oss.qualcomm.com>
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1770704594;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=pi7LgHt89ZeNTeQkWsRlsUpjNQmreE7zjeBsTGPhing=;
+	b=wp4Lu1hQiCozVcyhh/FpdV+vgG8UXf8D872DxmZl0PGOPV7/3FPpF7HOn7C9jvNE2ywfgd
+	L8E4VAv2/EFSdypKiRJ79gFyNbaXQOGVFf0KgnhDL91gCOWHDA/sTWQ28vQ9bHumk1gdZI
+	EzCsjdpdqs6tr+u/gzJmjx/cpv8s3+Q=
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 10 Feb 2026 14:23:06 +0800
+Message-Id: <DGB2E17NBWO2.544ZZ15AEBLC@linux.dev>
+Cc: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <kernel@pengutronix.de>
+Subject: Re: [PATCH v4 0/5] Add onboard-dev USB hub host managed vbus
+ handling support
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Ze Huang" <huang.ze@linux.dev>
+To: "Marco Felsch" <m.felsch@pengutronix.de>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Fabio Estevam" <festevam@gmail.com>, "Matthias Kaehlcke"
+ <mka@chromium.org>, "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown"
+ <broonie@kernel.org>
+References: <20250911-v6-16-topic-usb-onboard-dev-v4-0-1af288125d74@pengutronix.de>
+In-Reply-To: <20250911-v6-16-topic-usb-onboard-dev-v4-0-1af288125d74@pengutronix.de>
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-264240-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264239-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[pengutronix.de,linuxfoundation.org,kernel.org,gmail.com,chromium.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: E9200117559
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[huang.ze@linux.dev,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.dev:mid,linux.dev:dkim]
+X-Rspamd-Queue-Id: 4036E11759C
 X-Rspamd-Action: no action
 
-On Mon, Feb 09, 2026 at 06:53:37PM +0530, Rakesh Kota wrote:
-> Add compatible strings for PMM8654AU power key and resin support.
-> These blocks are compatible with PMK8350, so use that as the
-> fallback.
-> 
-> Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+On Fri Sep 12, 2025 at 4:22 AM CST, Marco Felsch wrote:
+> Hi,
+>
+> the whole purpose of this series is to make it possible to control the
+> USB VBUS regulators of an USB hub via host managed regulators.
+>
+> Regards,
+>   Marco
+>
+> ---
+> Changes in v4:
+> - dt-bindings: change to vbus-supply and shift doc to usb-device.yaml
+> - onboard_dev: make use of new regulator API to parse child device
+>                regulators.
+> - onboard_dev: drop hard coded downstream port number and make it more
+>                dynamic
+> - onboard_dev: drop limiting support to SMSC hubs
+> - Link to v3: https://lore.kernel.org/r/20250821-v6-16-topic-usb-onboard-=
+dev-v3-0-6d2b38a5d818@pengutronix.de
+>
+> Changes in v3:
+> - fix dt-bindings issues
+> - Link to v2: https://lore.kernel.org/all/20250327172803.3404615-1-m.fels=
+ch@pengutronix.de/
+>
+> Changes in v2:
+> - fix compile time errors in case the module builds
+> - Link to v1: https://lore.kernel.org/all/20240807-b4-v6-10-topic-usb-onb=
+oard-dev-v1-0-f33ce21353c9@pengutronix.de/
+>
+> ---
+> Marco Felsch (5):
+>       usb: port: track the disabled state
+>       usb: hub: add infrastructure to pass onboard_dev port features
+>       dt-bindings: usb: usb-device: add usb hub port vbus-supply suppport
+>       dt-bindings: usb: microchip,usb2514: add vbus-supply example
+>       usb: misc: onboard_dev: add hub downstream port host vbus-supply ha=
+ndling
+>
+>  .../devicetree/bindings/usb/microchip,usb2514.yaml |   7 ++
+>  .../devicetree/bindings/usb/usb-device.yaml        |   6 ++
+>  drivers/usb/core/hub.c                             |  55 +++++++++-
+>  drivers/usb/core/hub.h                             |   4 +
+>  drivers/usb/core/port.c                            |   6 ++
+>  drivers/usb/misc/onboard_usb_dev.c                 | 117 +++++++++++++++=
+++++++
+>  include/linux/usb.h                                |   3 +
+>  7 files changed, 196 insertions(+), 2 deletions(-)
+> ---
+> base-commit: 038d61fd642278bab63ee8ef722c50d10ab01e8f
+> change-id: 20250821-v6-16-topic-usb-onboard-dev-b8d4d1d8a086
+>
+> Best regards,
 
-Applied, thank you.
+Hi Marco,
 
--- 
-Dmitry
+I'm checking in to ask about the status of this patch series.
+
+We are currently working on the Spacemit K1 SoC and we have a use case
+that requires onboard_dev to manage the USB VBUS regulator. This series
+would be very helpful for us :)
+
+Link: https://lore.kernel.org/all/DG8QBWSJ79MP.2MVIHFRBX3WXX@linux.dev/
+
+Best regards,
+Ze Huang
 
