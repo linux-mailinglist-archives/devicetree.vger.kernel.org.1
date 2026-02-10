@@ -1,311 +1,284 @@
-Return-Path: <devicetree+bounces-264293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264294-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gHKGBPT8imlyPAAAu9opvQ
-	(envelope-from <devicetree+bounces-264293-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:40:04 +0100
+	id 0D37KDH9imlyPAAAu9opvQ
+	(envelope-from <devicetree+bounces-264294-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:41:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2D51118FB3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:40:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DFA1118FF8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:41:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C4FB9300FEE1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:37:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0AE3E303C82A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:40:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 199BF341648;
-	Tue, 10 Feb 2026 09:37:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7E29341660;
+	Tue, 10 Feb 2026 09:40:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CL5CIkkK"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SabpRx8f";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="SVb1rvDE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EA9C340298
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 09:37:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770716278; cv=pass; b=ipMBHv5l3OK6roN7cosWHtuNlFjKLfW/oF6P42MmOefs2gjyPhKPMFDdtNBVl/sZD8zL6qxSd+L2BYrRgBrswpXkty8OUEeI4JRh21T1nPq0NBNMipXZ4FSLzYSnCftuJRAbvB4FnNlMlm1hNki9Qrn4vmscjpMaD0bQ9LiQyQk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770716278; c=relaxed/simple;
-	bh=7DIMjFeeo3eAla/lQXJGSagwHaW1sDqxPorzkJ5QBmY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FlpaudkbFGcwxBwU5YsR/3mD+Zi9CgtUixs8wg4JjwGcokZkzIHEandK0GeG8tEVk7Q1wZfS3cxKt5VtGMFSid4gJaTlmKxiLncu/vWQii/arROa3PnpKJpnEO7MLZ8GsmYvr3uSGP66rjWN//7zDtdPUuxBwGqxqW71o6eqdxM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CL5CIkkK; arc=pass smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-43591b55727so3411357f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 01:37:55 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770716274; cv=none;
-        d=google.com; s=arc-20240605;
-        b=IquhUEVoFtcDiOmdc/ArOIwQAb738eA8bpY74d2wF0Ur9QgPfV47+DWVw+f4rY6teE
-         Go0M/e+mRMCJjGRX+EpUgYC1JsKYBZWhpqgDg7bZTJwBzFPn3E+5zrZ9cxISKKG92j2V
-         PrFtJwiQ8UROvd/XgDgCTrLAIBSkFE3FiVlFkrjkG3JbL5k8+/vcoYKKuYXPcXeKphpo
-         RcXzOW4sXGtv6xZnF8Tf6mLkYwu3KUATZKyPlHPSBAp+A1g8351JFrFMuOE+uGGQ7Tht
-         pixWpHZsN/QN4UY9puIjEVGUWw4wTSf3Ud8PmNNwQ8MSrJkkUhhkopXpzUrDXLGxNDAM
-         7JBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=u9Y37ln8xuGFDWitJXwAsleyIOk7cbpvtjoxWooyXWE=;
-        fh=f1pmFvb8N2hunfZeGmuTTdSqmasSQWfWJW5brUThMDA=;
-        b=acxlrtBEZZkK7Xcvf1by+SbZf3jfLo7TDv7enYQtRIeSt9iPYq93Wtrjdl9/7MOK8p
-         OT9XfW5Fk2DIndvDHv9OrM0+3f8xYtVGA8r6tX9U3gFg2YATXAVRoODBVGJw+9gJa6wC
-         PvaAwU+2reybJ0Fdt05TQRhkdiuTIaLcuFl6+Wax/g7W2P0KctRwDho2wTnaeU1l3iOU
-         2guyHnY+g5VxXhKguLwQaABW3+zKFWaiQ2xQf55CuU5+hTB+sgE2l1z/l609+MXShh3A
-         3Jc/sSMq87TpS2XGjEKuPJdwg1e9xDbaUjgUDzuwJN6kEM1/ApLl0O1nj159B2EcRXA3
-         cezQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62D1434106D
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 09:40:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770716454; cv=none; b=rBV4iZXcM5nN81MCOxA4MMsdF/JuBcwkdeqWIuUH1NOV/1A2YuWd9Bj9Czw82AYy1clne4+ETKHwRiTn2hUOvqEOjv0D4eeBrAt15dignob3CeB1zIO2sAh3OgegAeVYcCWIStIyH4auFVtcatyTDLITphdb9nY+fZPn0l+dr7k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770716454; c=relaxed/simple;
+	bh=IaFf8Z7TstwEdQwSe5OreMHuEwOc6UsGIJfofeXFebw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Zl52qhA03z3J/FZ9cRw+T1Xzbd2fp4sd351Ysc9jYixuPbLv7O14obRTk51PjPpVsDWHhT0mfM5NL/G4ccST/UgpiZnjkquE3ufFsESWldt5Mixhy1UKVovP7YE/CRN5jHIC3kVzhg6XfevDdfH/pTMLcnVyyplQ7EddTFKoiaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SabpRx8f; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=SVb1rvDE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61A7dipV1419509
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 09:40:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	7HX9D/rIEQoc/3ALF0SX5kf73GjJxX3M6evfAte1kZ8=; b=SabpRx8fkbC5VHGV
+	8GnNuiXaflitNXdNWaVnuxJ7yBgFf4WRxvtf2/vwaWo0UugKQsHUj5HMiy4LxRXV
+	GtTUdzDJo4NtKv22W9oTlVuW/wt8bKo65dDO8Dfw1JqZalmk4cz6GSE3r7PjYrqa
+	TTr1qr21dfHeTEcTfNPJm6407/jk0Lb1f3VyXzwsUBRl45aoirgdDwc8k6Yk2XBn
+	M3VymF7vQOESmBewf4E54G5XlJnWQdoyEq5K3xCyY8/NgenqCjzsLaURQkwuO+MF
+	0FSAPEnruKnaeml7HEosYYgYMG08z43YxirmJz5cBS0JlTMMEa3ElMxHPnn/925O
+	aGCmUg==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c7rpvsxbs-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 09:40:52 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-81e81fbbb8cso5656083b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 01:40:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770716274; x=1771321074; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=u9Y37ln8xuGFDWitJXwAsleyIOk7cbpvtjoxWooyXWE=;
-        b=CL5CIkkK5e2UxEC7ncV9OTJi2bZl+QdhePyt+67TuSigo1gDjCyMbV7q9S3UPR9/3K
-         55KqN1UTcCBw8Fg+3njGkLNfZTuWEhfQVmkeyOaXOwdMlop7uV1/SpA5I9u2KQV0CChN
-         wb1QOKo6OO6hpbkrETmxdRE0W3jd7Xe/kTpUA3pQuG0R3CMma4UJXUo512OYyOcl/rV7
-         m317H8PGsd+So0hcIwnESjlK2yRB3idQYtx3+ntJ77oHK3hvWIlZJPlviimoIHNLSJTr
-         qj3vkqD0Cirj/mvNz8tOSpkpuGaEFef7snlEMPmUaXuCtv94eWS64RcBZyIn0L2/+eld
-         Eyxw==
+        d=oss.qualcomm.com; s=google; t=1770716451; x=1771321251; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7HX9D/rIEQoc/3ALF0SX5kf73GjJxX3M6evfAte1kZ8=;
+        b=SVb1rvDE7z2HR/mQRHujTScwN1CfBAcxC//HE3J6s2PxafO3lk7ScYwdCb39kQh0bo
+         yGAVgiTJ+eq3p4kjPwAyEGJOSEF7WDsSaYECWAQ04D9/SCt+4qZouGgT63u2jJjn8sxN
+         /ywcVkJKh6tBBWGVNXQF9wP8SajfD/KryqL3S95F+pY12HxCY7/UljIPu7Ft+339PKb0
+         YLElC51vSQbV71AudtRIjRe8PjfS8aDwZOwUQNTjFvEjyixYgdcbpCPKRR9pRwfeNZRE
+         7gsENL7PdiL4PKPmUzhVpWfO42YLJn2yZGRnn4dj9mq+Bn6Z763WdWT2xwi9h4TsMHwr
+         SmYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770716274; x=1771321074;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=u9Y37ln8xuGFDWitJXwAsleyIOk7cbpvtjoxWooyXWE=;
-        b=CZtcx6oZus5kK1E/jaImyk7vPjnBoFtsAGSJ81oRI93K2CXQNrHUbjmrCvHkZSPVRq
-         WvY19Xnwg0R58/UsuraKXipwNjT7U9xUwULFBNwy/BTapUsgwAM4UXcsJ9TfGesKNz4z
-         TUbj6zSYrGFkGdUd/5+9W4DJBFGs8cgTmfPpknT8So6t7QBQopPwU/rOSVyO3q/uohmV
-         7VBpMpPsVG66fX04aV5P/+6ocZfRUSMsfQdMlgsd/xCzSq7N4lwq+UL6qkKEw2yldEBx
-         TnSprBH3o/9e5jdR9Yr13t4EJKbMVEMU8B/palTtiVcf/ibzuSPzVL++WrfxbYGGy75X
-         zPsw==
-X-Forwarded-Encrypted: i=1; AJvYcCWstHXjua1ajzU6JdqFqU3s3xDaoFFdfvitdjC13HJjt0j5mXlpUF9uC2wvd9GVPq/YBKZjlmM4+MYY@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZdd3pRg7WjSJZrD+oBuvCbepSUq9QIsD64HJ64YJYfqbCUeMd
-	kJWhzqi+xaxteEHEWyH0TTcYhNyY+9qbvSvLzaQ7RQRYpTibwoMQh3GfTWxvLSlXTia1aYcdwPN
-	rs5zPdnOY6+kBt9ZkPtbHnbo2NJA9gJY=
-X-Gm-Gg: AZuq6aLmhlTC2qWwFHqQnv+0gPKgwBLPBpZobeDRr0phT5sL8nR6YO0PFgue2I/t9Ga
-	bvapZkVlwydU7bRLsDlvQl5vL6SUdSTBzoCdpnXa7CBTESW3B4Kgfn2pKA6V/n4JRpo1YCr1DNm
-	0T1UoBW6viSkBL2q0UWW/s1nBklE0Sc68P3wsrbF/gv7V9r1F+gZHTrHI9xd2qtU3SQpKNdYeIu
-	lzWy0ElkZZjHwqltGcT12wCMlyRAzA+Koz/Z5JtWqGCfCDmtB+Z3F0qJM9+6tc1HhZOKDnEtBMk
-	CK3enhxfvgg5T6SXpIE=
-X-Received: by 2002:a5d:5f88:0:b0:435:8e14:9877 with SMTP id
- ffacd0b85a97d-436293b11bcmr21266056f8f.60.1770716274221; Tue, 10 Feb 2026
- 01:37:54 -0800 (PST)
+        d=1e100.net; s=20230601; t=1770716451; x=1771321251;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7HX9D/rIEQoc/3ALF0SX5kf73GjJxX3M6evfAte1kZ8=;
+        b=nzddskWQeRJlwhl38J1caOAuQ9oFkaajnRNWGyvaOeKPMRYcmyBrmQLkkN//7lUZj8
+         OXo73i1ZlZs+mh411mIG9kRCHTJc6Q43X58Dqr4EL7U04YmrSFiLzdjJDO6XCqWxOPSm
+         6uIzolu59qJBidS53gmw5KJQKkrlrfhGlIZbzi/Q8u4/9IxMOF6Dr7cGsRlwXPSZkKIH
+         OZhOJO9oW4kq26eD5h/641Eg8zA/SnvGFHY2KfdPvheDPYmlgs56pFbq+8iwLRwg/gdL
+         vL7b2lP5EEDCG7So/5yud42KebMiGC8xYa3Xa1ljRptEixc2lzC5e59zr7S18vBrMmot
+         DGPg==
+X-Forwarded-Encrypted: i=1; AJvYcCVJ0u124QJMgXGbRLwzgNPE74mkNbyUjNsXFJDJv0s0BJ6eAZRc5h+AeGJdtfPSKUluFmNIuUwN7H0S@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxik+IlRm8jlQjILr3WrhPcuqfrW5gqmoKAj3/X27etNaB/Qk2J
+	fQaa0u/DbN4qUXa6q9LNTe0ec4ElJRpSgAjkKsa5/IWDmhkynTpffAOnn9YhVb57taShS6q8ZdE
+	/YIJDTVjwjyvtK4uEsaPf9r4gZrrICzwSBCfKq5x8nb1ZvEjm7Ce6oYKbf+YEIJy0
+X-Gm-Gg: AZuq6aITGmEN5gQu60cQZ4UI4muk9Bb7gOWSOcRfjwr7tXkKWHDA1ume/LbOPim4j5t
+	jLydp50YRxmwh/BB3mK5MELwzsj+HlpWURfUslNQZR9A3+A8NrmggprZJ+9obJxebI/Ozgp4ZPA
+	ceR47b8QLHxhFvkExu2QU5JIVk8eAYKKUZ/RZxaRQfOHZ6JNPwtYNnOAnXyl98VikssZgf7FsIC
+	UVwAyEAXIGifHEDi13LFbXzhnL28AfyBQlB9S4cZjPaS+Kv8ZZCx+2xoNeJwLEX68U1YWcVaqf2
+	Kohno9Byca6M+HEyMx1mi/ati9paFDcTGq8xSnU4XnC0rEXgc8v82UKdXF90PGRojwjKvhmJpwU
+	6QbgUfGKWgyXUTnGHvAHzak+5aYOLKr8tQokNvgbquhLnbgjDk60lbg==
+X-Received: by 2002:a05:6a00:2341:b0:7b9:8142:96f4 with SMTP id d2e1a72fcca58-824879b4c2amr1487363b3a.21.1770716451320;
+        Tue, 10 Feb 2026 01:40:51 -0800 (PST)
+X-Received: by 2002:a05:6a00:2341:b0:7b9:8142:96f4 with SMTP id d2e1a72fcca58-824879b4c2amr1487349b3a.21.1770716450825;
+        Tue, 10 Feb 2026 01:40:50 -0800 (PST)
+Received: from [10.217.216.195] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82441690235sm13508078b3a.18.2026.02.10.01.40.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Feb 2026 01:40:50 -0800 (PST)
+Message-ID: <87985615-e8a7-4ded-b082-8d1cb91d49af@oss.qualcomm.com>
+Date: Tue, 10 Feb 2026 15:10:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260209104407.116426-1-clamor95@gmail.com> <20260209104407.116426-4-clamor95@gmail.com>
- <20260210-sexy-grumpy-sambar-44edd2@quoll>
-In-Reply-To: <20260210-sexy-grumpy-sambar-44edd2@quoll>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 10 Feb 2026 11:37:42 +0200
-X-Gm-Features: AZwV_QgL826wb_3IChyEYnKxPyG1ZElirm7op-wvlPZ1EK88mg4sg0InNYKSJlk
-Message-ID: <CAPVz0n3fizf=r58Fr4YQ6pnjHq5p-7yFz95obss6w6x0bfgnDg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/9] dt-bindings: mfd: document ASUS Transformer EC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Sebastian Reichel <sre@kernel.org>, =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>, 
-	Ion Agorria <ion@agorria.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: interconnect: qcom,qcs615-rpmh: add
+ clocks property to enable QoS
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mike Tipton <mike.tipton@oss.qualcomm.com>
+References: <20260202070534.1281652-1-odelu.kukatla@oss.qualcomm.com>
+ <20260202070534.1281652-2-odelu.kukatla@oss.qualcomm.com>
+ <b37e6569-61e9-4998-8fc0-603b83edfa2a@oss.qualcomm.com>
+ <95d42fb7-2365-46a0-a995-c9cc51b17424@oss.qualcomm.com>
+ <ac26d960-5c05-4681-aefe-4827b74ef29e@oss.qualcomm.com>
+ <a9c2f6e2-0185-4a1e-bed6-fd1f542b2367@oss.qualcomm.com>
+ <luahjv66e2h6gvxygmy2syzvt4rmdzqlfig6um74ysfhidyztc@eu4whsehmm5q>
+ <f694b267-ec02-4867-86a3-b63ff2d908ec@oss.qualcomm.com>
+ <trcbrxphzbgldya5cau42irrsnu7wn5swffjyvm74z7emfcevg@muojwgpa6ln4>
+Content-Language: en-US
+From: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+In-Reply-To: <trcbrxphzbgldya5cau42irrsnu7wn5swffjyvm74z7emfcevg@muojwgpa6ln4>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjEwMDA4MSBTYWx0ZWRfX7WaIkwmfUthw
+ MWYRDzAFMThofnXP24jHuct7y4DojhUkjgij8WYAqqaNDQMABrKW5dJJWwcj0tdHd8Ni91DKTMI
+ lCYr0moeOFNL2hEJbrVV2C7fL3tKYTUWivnp2PiVHorIZHJMD90fobLLXS624d4P/5JnW98Dda8
+ G6DSDOzGsGiJ+Pi2T9nCt+fqHxPKvOJeeONiZ+AkAuVxsgxWtIlwQDAZ6ZIHtUCQ2g3B3kabRym
+ SNnhe+rNkFC/HAChyIh0k4IzFX2V8CDkDpCyiSaJVBA0NQhjtCASvU9z0bQfaYWxsRE9QFJU00w
+ ijK1CffLwjVMF7FC9Lno+zKjHr4tw12he2teSVlzvbF6kVF8Jf/j55kh6cfSolbrkTv6Z8Bpxib
+ Es3+zScfHi8xCzJnFwazzCB16bfqnHrzy5+A/5Giup+TXayPchoXvgPbdI7xbFZ8AzU5hLjsCBS
+ xDB95VpiFU0Cq91Ko6A==
+X-Authority-Analysis: v=2.4 cv=KKZXzVFo c=1 sm=1 tr=0 ts=698afd24 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=EUspDBNiAAAA:8 a=C88Ajdsh_gp41bVUDNUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-ORIG-GUID: TRl9OWqlrSoyfN1clCfqRUF5ryEFFIwL
+X-Proofpoint-GUID: TRl9OWqlrSoyfN1clCfqRUF5ryEFFIwL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-09_01,2026-02-09_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0 spamscore=0
+ adultscore=0 malwarescore=0 priorityscore=1501 phishscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602100081
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264293-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-264294-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,arndb.de,linuxfoundation.org,rere.qmqm.pl,agorria.com,vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,devicetree.org:url]
-X-Rspamd-Queue-Id: A2D51118FB3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[odelu.kukatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 1DFA1118FF8
 X-Rspamd-Action: no action
 
-=D0=B2=D1=82, 10 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 11:22 Krzy=
-sztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Mon, Feb 09, 2026 at 12:44:01PM +0200, Svyatoslav Ryhel wrote:
-> > Document embedded controller used in ASUS Transformer device series.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  .../devicetree/bindings/mfd/asus,ec.yaml      | 152 ++++++++++++++++++
-> >  1 file changed, 152 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/asus,ec.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/mfd/asus,ec.yaml b/Docum=
-entation/devicetree/bindings/mfd/asus,ec.yaml
-> > new file mode 100644
-> > index 000000000000..1d1a62761b71
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/asus,ec.yaml
->
-> EC do not go to MFD, but to dedicated directory (there is such).
->
 
-Noted
 
-> > @@ -0,0 +1,152 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mfd/asus,ec.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: ASUS Transformer's Embedded Controller
-> > +
-> > +description:
-> > +  Several Nuvoton based Embedded Controller attached to an I2C bus,
-> > +  running a custom ASUS firmware, specific to the Asus Transformer
-> > +  device series.
-> > +
-> > +maintainers:
-> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
->
-> Drop oneOf
->
+On 2/6/2026 12:21 PM, Dmitry Baryshkov wrote:
+> On Fri, Feb 06, 2026 at 10:28:15AM +0530, Odelu Kukatla wrote:
+>>
+>>
+>> On 2/5/2026 3:59 PM, Dmitry Baryshkov wrote:
+>>> On Thu, Feb 05, 2026 at 03:10:31PM +0530, Odelu Kukatla wrote:
+>>>>
+>>>>
+>>>> On 2/5/2026 2:31 PM, Konrad Dybcio wrote:
+>>>>> On 2/5/26 7:06 AM, Odelu Kukatla wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 2/2/2026 4:33 PM, Konrad Dybcio wrote:
+>>>>>>> On 2/2/26 8:05 AM, Odelu Kukatla wrote:
+>>>>>>>> Aggre1-noc interconnect node on QCS615 has QoS registers located
+>>>>>>>> inside a block whose interface is clock-gated. For that node,
+>>>>>>>> driver must enable the corresponding clock(s) before accessing
+>>>>>>>> the registers. Add the 'clocks' property so the driver can obtain
+>>>>>>>> and enable the required clock(s).
+>>>>>>>>
+>>>>>>>> Only interconnects that have clock‑gated QoS register interface
+>>>>>>>> use this property; it is not applicable to all interconnect nodes.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+>>>>>>>> ---
+>>>>>
+>>>>> [...]
+>>>>>
+>>>>>>>> +  - if:
+>>>>>>>> +      properties:
+>>>>>>>> +        compatible:
+>>>>>>>> +          contains:
+>>>>>>>> +            enum:
+>>>>>>>> +              - qcom,qcs615-aggre1-noc
+>>>>>>>> +    then:
+>>>>>>>> +      properties:
+>>>>>>>> +        clocks:
+>>>>>>>> +          items:
+>>>>>>>> +            - description: aggre UFS PHY AXI clock
+>>>>>>>> +            - description: aggre USB2 SEC AXI clock
+>>>>>>>> +            - description: aggre USB3 PRIM AXI clock
+>>>>>>>
+>>>>>>> Should we also include the IPA clock here?
+>>>>>>>
+>>>>>>
+>>>>>> Thanks for the review!
+>>>>>>
+>>>>>> For QCS615, the IPA clock is already enabled by the bootloader (xBL) and
+>>>>>> kept on during the boot‑up stage. Because of this, we do not need to
+>>>>>> explicitly enable the IPA clock in the interconnect driver when
+>>>>>> accessing the QoS registers.
+>>>>>
+>>>>> Would we need to re-enable it to re-program the hardware if say the
+>>>>> icc module is loaded after unused clk cleanup or after a cx collapse?
+>>>>>
+>>>>
+>>>> IPA clock is not managed by GCC clock controller driver, so
+>>>> clk_disable_unused does not disable it.
+>>>
+>>> The clk_disable_unused is not limited to the GCC. The clock is managed
+>>> by the clk-rpmh, so clk_disable_unused applies to it too. 
+>>>
+>>
+>> clk_disable_unused()/clk_disable_unused_subtree() does not disable RPMh
+>> managed clocks, so it does not apply to IPA clock.
+> 
+> You are describing the current behaviour of one OS. The DTS should be
+> describing the hardware. Other platforms describe IPA clock used by the
+> aggre NoC nodes.
+> 
 
-Noted
+I will update the bindings and the device tree to include the IPA clock
+for the Aggre1 NoC node to ensure the driver handles it correctly,
+aligning with other platforms. I will send out V2 with these changes.
 
-> > +      - enum:
-> > +          - asus,ec-pad  # Pad part of Asus Transformer
-> > +          - asus,ec-dock # Dock part of Asus Transformer
->
->
-> Compatibles are way too generic. "ec" basically means you document all
-> Asus EC, which is for sure not true. You need specific compatible for
-> this specific model.
->
+Thanks,
+Odelu
+>>
+>>>> As a result, the icc provider
+>>>> does not need to re enable an IPA clock for QoS access after unused clk
+>>>> cleanup. And QCS615 does *not* support Cx collapse.
+>>>
+>>> Does lack of CX collapse apply to SM6150?
+>>>
+>>
+>> SM6150, QCS615, and Talos are all names referring to the same underlying
+>> SoC family.
+> 
+> Ack, I was making sure that lack of CX collapse isn't related to IoT vs
+> mobile case.
+> 
 
-Asus were not so generous to provide more specific data, they call
-there controllers asusdec and asusped in their sources.
-
-> Missing blank line.
->
-
-noted
-
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  request-gpio:
->
-> gpio is deprecated. gpios, look at any other binding.
->
-
-noted
-
-> > +    maxItems: 1
-> > +
-> > +  asus,dockram:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: I2C device used to access power related functions.
-> > +
-> > +  asus,clear-factory-mode:
-> > +    type: boolean
-> > +    description: clear Factory Mode bit in EC control register
->
-> Why would this be a static/fixed property over lifecycle of all devices?
->
-
-Specify pls.
-
-> > +
-> > +  battery:
-> > +    type: object
-> > +    $ref: /schemas/power/supply/power-supply.yaml
-> > +    unevaluatedProperties: false
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: asus,ec-battery
-> > +
-> > +    required:
-> > +      - compatible
-> > +
-> > +  charger:
-> > +    type: object
-> > +    $ref: /schemas/power/supply/power-supply.yaml
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: asus,ec-charger
-> > +
-> > +      monitored-battery: true
-> > +
-> > +    required:
-> > +      - compatible
-> > +
-> > +  keyboard-ext:
-> > +    type: object
-> > +    description: top row of multimedia keys
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: asus,ec-keys
-> > +
-> > +    required:
-> > +      - compatible
-> > +
-> > +  led:
-> > +    type: object
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: asus,ec-led
-> > +
-> > +    required:
-> > +      - compatible
-> > +
-> > +  serio:
->
-> All of these children are pointless - no resources. Drop all of them,
-> it's btw explicitly documented rule in writing bindings.
->
-
-They are all needed to be able to disable them individually from the
-device tree if needed.
-
-> Best regards,
-> Krzysztof
->
 
