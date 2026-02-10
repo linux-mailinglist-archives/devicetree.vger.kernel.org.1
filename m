@@ -1,428 +1,273 @@
-Return-Path: <devicetree+bounces-264357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264360-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QCgrAxUVi2n5PQAAu9opvQ
-	(envelope-from <devicetree+bounces-264357-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:23:01 +0100
+	id gNmCKFkVi2n5PQAAu9opvQ
+	(envelope-from <devicetree+bounces-264360-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:24:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7799311A13E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:23:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3D7811A16C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:24:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 319E5302293B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:22:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 85279302E7B1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7208C3203B5;
-	Tue, 10 Feb 2026 11:22:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 152413191D3;
+	Tue, 10 Feb 2026 11:24:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PWSjfmHX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24D42318EE2
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 11:22:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E362A318BBB;
+	Tue, 10 Feb 2026 11:24:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770722576; cv=none; b=VaOOiXE64U6DTvMyK3uxt1PYOnylwsoG84Cr9pjFQWMFXN+oVxTYjzLMeCxbeULpDK3qHqs3nX1sTWIZgTkQUbT46Ezc/28rm6YAnh7m053XyX6h77V/nmk4Lk2c7Wrs6m7s+7EPqAnq5goDfScezEVsufVQzufdBicE7+27Mqk=
+	t=1770722647; cv=none; b=SXbatCI0gjw1U7ahoZ397Yg8MlWyvVyuf9naz/B7uUSZMzoarp8IFimoCXmWvwWtJSM7/mao+Kdv1O4Axb9ckEs5q+gxhiukk+i/kTmwL9gQhKmN4vmoqfcsDjCtod1jPTW30W6WWxu953Cssnj7a6+a+6ChvWtfJTsISMLYErs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770722576; c=relaxed/simple;
-	bh=Q8xKtIV2F2FJVXmsIeSQ3Kgt6fd5extFtDp7kJnHh/A=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qt16o7gv1J2PHo4rafROJW/cosL5Zaf2uVzDJTXsGlYeET6jAg6oS0DpUZwcQY+rbAo3G+lztVzXqWsGjDYh00/wNDbJwDyGq0dIWXaCP3byZEw/S+QmG6ZnUR9gb+8TtpLiO9dqb+l4l+6fHScDWmUF028MLxgkV2WGQAr4AYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <m.tretter@pengutronix.de>)
-	id 1vplpN-00070Z-V6; Tue, 10 Feb 2026 12:22:45 +0100
-From: Michael Tretter <m.tretter@pengutronix.de>
-Date: Tue, 10 Feb 2026 12:22:34 +0100
-Subject: [PATCH v3 3/3] drm/panel: add LXD M9189A panel driver
+	s=arc-20240116; t=1770722647; c=relaxed/simple;
+	bh=qtWcGGNQTHx1PZZdqOK/r5p2scN0dMHiFnAM5S93qEI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OLcmUfDWDSfjFnb/xkZha+ZFcIkLgv8eLfrRP3GGNecldH33aLcApMg9339++T+Rrj8f229pZt44YIBDh39iLriTXVyl5PQRJ6YNAITUFLLzgE1+JuHlpEP6x3KNbcEeNEXDMUFDV7N12JhjPrWEMNXHsw5VIg4hsFajHdLz4OU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PWSjfmHX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D707C116C6;
+	Tue, 10 Feb 2026 11:24:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770722646;
+	bh=qtWcGGNQTHx1PZZdqOK/r5p2scN0dMHiFnAM5S93qEI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PWSjfmHXFsVxIOWV65MwnYtJmZpcHdVxwI2+pPTAahGC8d0JmBY0rkD587DAuFgo6
+	 0lOKpu8Y0/joHB9mOR7Xz2m5tYnFS8MSpBkqOIrGIJPtkhHFKaOJY9VK5siDTI831L
+	 H9uhuLiHqkKHG1evmiATieaViRF94gUEiUrojSYWy2Ra4xkMiQzl4mhWTiWj5ewwFo
+	 nK8a3C72NfSqMIugtoxuvZv/+gamj+idyHNjbyRsx5Jtz0PhZvcEbruNROx7/KaWZW
+	 gXT6en/jxc2VNKVQtDNd3kROFBa1sCGgx+Kcd0meVzpUK77J3L8NsRniqDJU5nsaPH
+	 rQaocxRpK3mDQ==
+Message-ID: <dc7acd1e-91e8-492c-8665-cb680c6164fd@kernel.org>
+Date: Tue, 10 Feb 2026 12:24:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/9] dt-bindings: mfd: document ASUS Transformer EC
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Pavel Machek <pavel@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Sebastian Reichel <sre@kernel.org>, =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?=
+ <mirq-linux@rere.qmqm.pl>, Ion Agorria <ion@agorria.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20260209104407.116426-1-clamor95@gmail.com>
+ <20260209104407.116426-4-clamor95@gmail.com>
+ <20260210-sexy-grumpy-sambar-44edd2@quoll>
+ <CAPVz0n3fizf=r58Fr4YQ6pnjHq5p-7yFz95obss6w6x0bfgnDg@mail.gmail.com>
+ <d1973810-d3f5-4ed7-ba0f-6bf93c1c7f3d@kernel.org>
+ <CAPVz0n1foyy9g7MAurSAyLCUHTzrPPu0ceqy9YpcDA9uzgjGng@mail.gmail.com>
+ <cb91898e-10f1-4d64-bace-41bbed08179b@kernel.org>
+ <CAPVz0n0O_uSAPYFtg8s+Ni0buyGJys6d0jEMob6SNWx-aeKUEw@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAPVz0n0O_uSAPYFtg8s+Ni0buyGJys6d0jEMob6SNWx-aeKUEw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260210-drm-panel-ek79007ad3-v3-3-cd2974d56937@pengutronix.de>
-References: <20260210-drm-panel-ek79007ad3-v3-0-cd2974d56937@pengutronix.de>
-In-Reply-To: <20260210-drm-panel-ek79007ad3-v3-0-cd2974d56937@pengutronix.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Rouven Czerwinski <r.czerwinski@pengutronix.de>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <jesszhan0024@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- kernel@pengutronix.de, Michael Tretter <m.tretter@pengutronix.de>
-X-Mailer: b4 0.14.3
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::54
-X-SA-Exim-Mail-From: m.tretter@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	TAGGED_FROM(0.00)[bounces-264360-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,linaro.org,gmail.com,linux.intel.com,suse.de,ffwll.ch];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-264357-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.tretter@pengutronix.de,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[puri.sm:email,fairphone.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sigxcpu.org:email]
-X-Rspamd-Queue-Id: 7799311A13E
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,arndb.de,linuxfoundation.org,rere.qmqm.pl,agorria.com,vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F3D7811A16C
 X-Rspamd-Action: no action
 
-From: Rouven Czerwinski <r.czerwinski@pengutronix.de>
+On 10/02/2026 12:14, Svyatoslav Ryhel wrote:
+> вт, 10 лют. 2026 р. о 13:04 Krzysztof Kozlowski <krzk@kernel.org> пише:
+>>
+>> On 10/02/2026 11:59, Svyatoslav Ryhel wrote:
+>>>>>>> +  asus,clear-factory-mode:
+>>>>>>> +    type: boolean
+>>>>>>> +    description: clear Factory Mode bit in EC control register
+>>>>>>
+>>>>>> Why would this be a static/fixed property over lifecycle of all devices?
+>>>>>>
+>>>>>
+>>>>> Specify pls.
+>>>>
+>>>> Provide rationale why we need to clear it every time, not once. Or any
+>>>> other rationale why we would accept that property.
+>>>>
+>>>
+>>> Cause it is done by original Asus code and Asus did not provide
+>>> schematic or any data apart from downstream source regarding this EC.
+>>
+>> So that's a no. downstream code which is poor quality, not following DT
+>> rules at all, is never an argument for a DT property.
+>>
+> 
+> This property indicates that this controller on every reset restores
 
-The LXD M9189A panel is based on the EK79007AD3 DSI display controller.
-It currently supports only 4 lane operation.
+Implied by compatible then and you can drop the property.
 
-Signed-off-by: Rouven Czerwinski <r.czerwinski@pengutronix.de>
-Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
----
-Changes in v3:
-- Change maintainer to Michael Tretter <m.tretter@pengutronix.de>
-- Fix error code if regulator is missing
-- Request power-supply instead of vdd-supply
+> factory bit hence it must be cleared. Bit is write only and cannot be
+> detected. EC remains in factory mode which blocks its functions.
+> 
+>>>
+>>>>>
+>>>>>>> +
+>>>>>>> +  battery:
+>>>>>>> +    type: object
+>>>>>>> +    $ref: /schemas/power/supply/power-supply.yaml
+>>>>>>> +    unevaluatedProperties: false
+>>>>>>> +
+>>>>>>> +    properties:
+>>>>>>> +      compatible:
+>>>>>>> +        const: asus,ec-battery
+>>>>>>> +
+>>>>>>> +    required:
+>>>>>>> +      - compatible
+>>>>>>> +
+>>>>>>> +  charger:
+>>>>>>> +    type: object
+>>>>>>> +    $ref: /schemas/power/supply/power-supply.yaml
+>>>>>>> +    additionalProperties: false
+>>>>>>> +
+>>>>>>> +    properties:
+>>>>>>> +      compatible:
+>>>>>>> +        const: asus,ec-charger
+>>>>>>> +
+>>>>>>> +      monitored-battery: true
+>>>>>>> +
+>>>>>>> +    required:
+>>>>>>> +      - compatible
+>>>>>>> +
+>>>>>>> +  keyboard-ext:
+>>>>>>> +    type: object
+>>>>>>> +    description: top row of multimedia keys
+>>>>>>> +    additionalProperties: false
+>>>>>>> +
+>>>>>>> +    properties:
+>>>>>>> +      compatible:
+>>>>>>> +        const: asus,ec-keys
+>>>>>>> +
+>>>>>>> +    required:
+>>>>>>> +      - compatible
+>>>>>>> +
+>>>>>>> +  led:
+>>>>>>> +    type: object
+>>>>>>> +    additionalProperties: false
+>>>>>>> +
+>>>>>>> +    properties:
+>>>>>>> +      compatible:
+>>>>>>> +        const: asus,ec-led
+>>>>>>> +
+>>>>>>> +    required:
+>>>>>>> +      - compatible
+>>>>>>> +
+>>>>>>> +  serio:
+>>>>>>
+>>>>>> All of these children are pointless - no resources. Drop all of them,
+>>>>>> it's btw explicitly documented rule in writing bindings.
+>>>>>>
+>>>>>
+>>>>> They are all needed to be able to disable them individually from the
+>>>>> device tree if needed.
+>>>>
+>>>> They should not be disabled from DT, so they are not valid here. The
+>>>> given EC for given device is fixed/static. Does not change.
+>>>>
+>>>
+>>> Have you considered a possibility that function may be
+>>> disabled/unrouted within the controller. By the vendor.
+>>
+>> And then it is implied by the compatible, so no need for any of that.
+>> Otherwise, if it is not specific per device, then specifying it for DTS
+>> for all devices would make no sense.
+>>
+> 
+> So you propose introduce a compatible for every single ec used in
+> transformers instead of simply disable unpopulated functions? And how
+> then battery and charger can reach monitored cell if they have no
+> dedicated node?
 
-v2:
-- use _multi functions
-- remove unnecessary dcs_nop function
-- calculate pixelclock with timings
-suggested by Dmitry Baryshkov
+Just like for other bindings for nodes without resources, fold into
+parent. This is already explained in writing bindings, so you could have
+just read that. I will pass with answering more questions till you read
+that doc.
 
-- rename functions to m9189_ prefix
-- rename struct and c file to use m9189
-- fix commit title to mention m9189
----
- MAINTAINERS                              |   6 +
- drivers/gpu/drm/panel/Kconfig            |   9 ++
- drivers/gpu/drm/panel/Makefile           |   1 +
- drivers/gpu/drm/panel/panel-lxd-m9189a.c | 243 +++++++++++++++++++++++++++++++
- 4 files changed, 259 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e08767323763..ba4030a4d154 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7948,6 +7948,12 @@ F:	Documentation/devicetree/bindings/display/lvds.yaml
- F:	Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
- F:	drivers/gpu/drm/panel/panel-lvds.c
- 
-+DRM DRIVER FOR LXD M9189A PANELS
-+M:	Michael Tretter <m.tretter@pengutronix.de>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/panel/lxd,m9189a.yaml
-+F:	drivers/gpu/drm/panel/panel-lxd-m9189a.c
-+
- DRM DRIVER FOR MANTIX MLAF057WE51 PANELS
- M:	Guido Günther <agx@sigxcpu.org>
- R:	Purism Kernel Team <kernel@puri.sm>
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 7a83804fedca..b7d35a73080e 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -442,6 +442,15 @@ config DRM_PANEL_LG_SW43408
- 	  pixel. It provides a MIPI DSI interface to the host and has a
- 	  built-in LED backlight.
- 
-+config DRM_PANEL_LXD_M9189A
-+	tristate "LXD M9189A MIPI-DSI LCD panel"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y if you want to enable support for the LXD M9189A 4-Lane
-+	  1024x600 MIPI DSI panel.
-+
- config DRM_PANEL_MAGNACHIP_D53E6EA8966
- 	tristate "Magnachip D53E6EA8966 DSI panel"
- 	depends on OF && SPI
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index b9562a6fdcb3..d1303455a374 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -44,6 +44,7 @@ obj-$(CONFIG_DRM_PANEL_LG_LB035Q02) += panel-lg-lb035q02.o
- obj-$(CONFIG_DRM_PANEL_LG_LD070WX3) += panel-lg-ld070wx3.o
- obj-$(CONFIG_DRM_PANEL_LG_LG4573) += panel-lg-lg4573.o
- obj-$(CONFIG_DRM_PANEL_LG_SW43408) += panel-lg-sw43408.o
-+obj-$(CONFIG_DRM_PANEL_LXD_M9189A) += panel-lxd-m9189a.o
- obj-$(CONFIG_DRM_PANEL_MAGNACHIP_D53E6EA8966) += panel-magnachip-d53e6ea8966.o
- obj-$(CONFIG_DRM_PANEL_NEC_NL8048HL11) += panel-nec-nl8048hl11.o
- obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3051D) += panel-newvision-nv3051d.o
-diff --git a/drivers/gpu/drm/panel/panel-lxd-m9189a.c b/drivers/gpu/drm/panel/panel-lxd-m9189a.c
-new file mode 100644
-index 000000000000..df1d029f8b26
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-lxd-m9189a.c
-@@ -0,0 +1,243 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree.
-+ * Copyright (c) 2024 Luca Weiss <luca.weiss@fairphone.com>
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/types.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+#include <drm/drm_probe_helper.h>
-+
-+/* Manufacturer specific DSI commands */
-+#define EK79007AD3_GAMMA1		0x80
-+#define EK79007AD3_GAMMA2		0x81
-+#define EK79007AD3_GAMMA3		0x82
-+#define EK79007AD3_GAMMA4		0x83
-+#define EK79007AD3_GAMMA5		0x84
-+#define EK79007AD3_GAMMA6		0x85
-+#define EK79007AD3_GAMMA7		0x86
-+#define EK79007AD3_PANEL_CTRL3		0xB2
-+
-+struct m9189_panel {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+	struct regulator *supply;
-+	struct gpio_desc *reset_gpio;
-+	struct gpio_desc *standby_gpio;
-+};
-+
-+static inline struct m9189_panel *to_m9189_panel(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct m9189_panel, panel);
-+}
-+
-+static void m9189_reset(struct m9189_panel *m9189)
-+{
-+	gpiod_set_value_cansleep(m9189->reset_gpio, 0);
-+	msleep(20);
-+	gpiod_set_value_cansleep(m9189->reset_gpio, 1);
-+	msleep(30);
-+	gpiod_set_value_cansleep(m9189->reset_gpio, 0);
-+	msleep(55);
-+}
-+
-+static int m9189_on(struct m9189_panel *m9189)
-+{
-+	struct mipi_dsi_multi_context ctx = { .dsi = m9189->dsi };
-+
-+	ctx.dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	/* Gamma 2.2 */
-+	mipi_dsi_dcs_write_seq_multi(&ctx, EK79007AD3_GAMMA1, 0x48);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, EK79007AD3_GAMMA2, 0xB8);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, EK79007AD3_GAMMA3, 0x88);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, EK79007AD3_GAMMA4, 0x88);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, EK79007AD3_GAMMA5, 0x58);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, EK79007AD3_GAMMA6, 0xD2);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, EK79007AD3_GAMMA7, 0x88);
-+	mipi_dsi_msleep(&ctx, 50);
-+
-+	/* 4 Lanes */
-+	mipi_dsi_generic_write_multi(&ctx, (u8[]){ EK79007AD3_PANEL_CTRL3, 0x70 }, 2);
-+
-+	mipi_dsi_dcs_exit_sleep_mode_multi(&ctx);
-+	mipi_dsi_msleep(&ctx, 120);
-+
-+	mipi_dsi_dcs_set_display_on_multi(&ctx);
-+	mipi_dsi_msleep(&ctx, 120);
-+
-+	return ctx.accum_err;
-+}
-+
-+static int m9189_disable(struct drm_panel *panel)
-+{
-+	struct m9189_panel *m9189 = to_m9189_panel(panel);
-+	struct mipi_dsi_multi_context ctx = { .dsi = m9189->dsi };
-+
-+	ctx.dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	mipi_dsi_dcs_enter_sleep_mode_multi(&ctx);
-+	mipi_dsi_msleep(&ctx, 120);
-+
-+	gpiod_set_value_cansleep(m9189->standby_gpio, 1);
-+
-+	return ctx.accum_err;
-+}
-+
-+static int m9189_prepare(struct drm_panel *panel)
-+{
-+	struct m9189_panel *m9189 = to_m9189_panel(panel);
-+	struct device *dev = &m9189->dsi->dev;
-+	int ret;
-+
-+	ret = regulator_enable(m9189->supply);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enable regulators: %d\n", ret);
-+		return ret;
-+	}
-+
-+	gpiod_set_value_cansleep(m9189->standby_gpio, 0);
-+	msleep(20);
-+	m9189_reset(m9189);
-+
-+	ret = m9189_on(m9189);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-+		gpiod_set_value_cansleep(m9189->reset_gpio, 1);
-+		regulator_disable(m9189->supply);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int m9189_unprepare(struct drm_panel *panel)
-+{
-+	struct m9189_panel *m9189 = to_m9189_panel(panel);
-+
-+	gpiod_set_value_cansleep(m9189->standby_gpio, 1);
-+	msleep(50);
-+
-+	gpiod_set_value_cansleep(m9189->reset_gpio, 1);
-+	regulator_disable(m9189->supply);
-+
-+	return 0;
-+}
-+
-+static const struct drm_display_mode m9189_mode = {
-+	.clock = (1024 + 160 + 160 + 10) * (600 + 12 + 23 + 1) * 60 / 1000,
-+	.hdisplay = 1024,
-+	.hsync_start = 1024 + 160,
-+	.hsync_end = 1024 + 160 + 160,
-+	.htotal = 1024 + 160 + 160 + 10,
-+	.vdisplay = 600,
-+	.vsync_start = 600 + 12,
-+	.vsync_end = 600 + 12 + 23,
-+	.vtotal = 600 + 12 + 23 + 1,
-+	.width_mm = 154,
-+	.height_mm = 86,
-+};
-+
-+static int m9189_get_modes(struct drm_panel *panel,
-+				  struct drm_connector *connector)
-+{
-+	return drm_connector_helper_get_modes_fixed(connector, &m9189_mode);
-+}
-+
-+static const struct drm_panel_funcs m9189_panel_funcs = {
-+	.prepare = m9189_prepare,
-+	.unprepare = m9189_unprepare,
-+	.disable = m9189_disable,
-+	.get_modes = m9189_get_modes,
-+};
-+
-+static int lxd_m9189_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct m9189_panel *m9189;
-+	int ret;
-+
-+	m9189 = devm_kzalloc(dev, sizeof(*m9189), GFP_KERNEL);
-+	if (!m9189)
-+		return -ENOMEM;
-+
-+	m9189->supply = devm_regulator_get(dev, "power");
-+	if (IS_ERR(m9189->supply))
-+		return dev_err_probe(dev, PTR_ERR(m9189->supply),
-+				     "Failed to get power-supply\n");
-+
-+	m9189->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(m9189->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(m9189->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	m9189->standby_gpio = devm_gpiod_get(dev, "standby", GPIOD_OUT_LOW);
-+	if (IS_ERR(m9189->standby_gpio))
-+		return dev_err_probe(dev, PTR_ERR(m9189->standby_gpio),
-+				     "Failed to get standby-gpios\n");
-+
-+	m9189->dsi = dsi;
-+	mipi_dsi_set_drvdata(dsi, m9189);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST;
-+
-+	drm_panel_init(&m9189->panel, dev, &m9189_panel_funcs,
-+		       DRM_MODE_CONNECTOR_DSI);
-+	m9189->panel.prepare_prev_first = true;
-+
-+	ret = drm_panel_of_backlight(&m9189->panel);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get backlight\n");
-+
-+	drm_panel_add(&m9189->panel);
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		dev_err_probe(dev, ret, "Failed to attach to DSI host\n");
-+		drm_panel_remove(&m9189->panel);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void lxd_m9189_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct m9189_panel *m9189 = mipi_dsi_get_drvdata(dsi);
-+	int ret;
-+
-+	ret = mipi_dsi_detach(dsi);
-+	if (ret < 0)
-+		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
-+
-+	drm_panel_remove(&m9189->panel);
-+}
-+
-+static const struct of_device_id lxd_m9189_of_match[] = {
-+	{ .compatible = "lxd,m9189a" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, lxd_m9189_of_match);
-+
-+static struct mipi_dsi_driver lxd_m9189_driver = {
-+	.probe = lxd_m9189_probe,
-+	.remove = lxd_m9189_remove,
-+	.driver = {
-+		.name = "panel-lxa-m9189a",
-+		.of_match_table = lxd_m9189_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(lxd_m9189_driver);
-+
-+MODULE_DESCRIPTION("DRM driver for LXD M9189A MIPI-DSI panels");
-+MODULE_LICENSE("GPL");
-
--- 
-2.47.3
-
+Best regards,
+Krzysztof
 
