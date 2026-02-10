@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-264498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264499-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OMGIKClsi2lhUQAAu9opvQ
-	(envelope-from <devicetree+bounces-264498-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 18:34:33 +0100
+	id 8MXDDTBsi2lhUQAAu9opvQ
+	(envelope-from <devicetree+bounces-264499-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 18:34:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C64A11DF57
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 18:34:33 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C7A011DF74
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 18:34:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 71BFF304AC05
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 17:34:28 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 744653011100
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 17:34:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D0F1329E67;
-	Tue, 10 Feb 2026 17:34:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ACE138A9C7;
+	Tue, 10 Feb 2026 17:34:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Ym8NiQ3P"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ta2DXNjz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB11F1E832A;
-	Tue, 10 Feb 2026 17:34:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46AA138A709;
+	Tue, 10 Feb 2026 17:34:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770744865; cv=none; b=AZpmexG2gqendKXm3MDiuGkTIdHNLZUPHZQyhkCewsTJAKcmxRPpX5bqWwl0HbhPO3KZDkBOQeg6oa6J1iJQOUBbOFLi5q0LJP3UoepNtccxaZHiR/EpHMqG2ys5GUdLgTio1zZbVJEPFkWV5qE45ArDu+NmgnAmAPjFPphBMzg=
+	t=1770744866; cv=none; b=PK/WK3MJ3FqJvY3vXsYb3sUmVGBfqb1wtyONFABL3Ti/gwZTlSVWE7wLHg46iYS0UxKGS9wArRpbxIOPcxyuIbtBy7PJdaXGxwWLmeXVdXVPn8lWDA08VHBFYdqNqpMB2EtCpwkj3dI/bCAPKQRUVmI+V89yGpR4Nuh20ETA0kI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770744865; c=relaxed/simple;
-	bh=/CPOb5wezrA1J+WyG49Si3hqreflaqzMwMHgrNQDD/E=;
+	s=arc-20240116; t=1770744866; c=relaxed/simple;
+	bh=WtKphMCsjPcCVX5VwtmFrAns3o9ylLtWGgEPh01Qm1s=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EicdJL4Arl+DoJ9z/2in0REXLc8R8pufPuGdlTu3wJQbQIm5w3iyAAjRfIHYYTiZ9pLK/wAtqqGLGAjydzPt8zV6Ha6bJg2Y/LcOwMoM7NPoWTnVQpJGKjR5gl24fKFgGPY4ad3oRE58bIEdgkUm+pQyERqbzA5zzfHRMVLEeuk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Ym8NiQ3P; arc=none smtp.client-ip=185.246.85.4
+	 MIME-Version; b=MWN842WEJ+mVHvr4VZxxo+GZ4+ek4LG93mBFdgqT5ASrYVHY9iEkUIghaLUJuEc2iGwF8uc4Icy5QmuzF+41fgFFzF66jEVgwEsY+G/1fWD5l/2oMhCosPtsY3azWrIDtJ3fmHmTnXtujrnZ90Zrhlb+YlNGleSFf6ouFRKBqzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ta2DXNjz; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 7F7984E40BFD;
-	Tue, 10 Feb 2026 17:34:22 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id EC5D51A0D83;
+	Tue, 10 Feb 2026 17:34:23 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 54222606BD;
-	Tue, 10 Feb 2026 17:34:22 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5819B10B91B35;
-	Tue, 10 Feb 2026 18:34:20 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C0A8B606BD;
+	Tue, 10 Feb 2026 17:34:23 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B445710B9221F;
+	Tue, 10 Feb 2026 18:34:21 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770744861; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1770744862; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=7+ALKX18P777BGJJpM5hpvhIjeNnWAA1h7zd2J24J8c=;
-	b=Ym8NiQ3PxoXUjn2OhBvPJba/5od0kUFXl69/owDv0oszIHwF25NaodfWU8QYfHGwaGW5C1
-	DZLj4F+FhAm10SHVNh7snvkD9dSsOC8AzIPmY81oMoYVt42dKkoKG2YAZAoJsqNCL2Wm7F
-	Ta1libKI15YFqdHIdMTIPmyJT1+P7Mrv0mNrMMVCWuM9X91PlDTCj0/qY1tz2gcEIujM0R
-	kMgYc+vGA7RbtHlX0Q/lROqc0gTAM99HQV1CzWLnbH+RQ54gcmyOMEyI0GJ9+Ce9Iukb3u
-	Kp7pfcD0OHCjcqdtJO1XJMMq3S2z9g/KDsw540cgqJT0mVoqQs3kgJYCQiR7zg==
+	bh=Vj+nbmbL/ubeh6lBT2UK7368Bw4bAaxwTg/HQfQrIks=;
+	b=ta2DXNjztKdSya0GuB61Wd5PsVWIW7Dhi3eUXS0hnngmoC5WKlB2kxmF4aP8oHX+kZ/E95
+	vsP9ZpW8Dxhg5hmaDLFoF9QUO5ZmwqwLnF8V7L/o6IXrTmR54YspwK1UyXaFTscMf2Epbs
+	qvi/1Z6MnP+YXqFD106AwshVSfpkwQ0bBCncjB2KeWUMAYDhXthhMGkoydwuwj2yyNHERO
+	RhnCQ6xus8GfsBUQV8yqL35wNTt7D7IPfq2VcmfHRZbp+RJyB8CKHColii108SJrIZeqTF
+	D1WUH9F4E91a8oSfZMKbUPjeEjnVBJN2kt0S85apVPNFbFF8BO0WPNxAWV8Gfw==
 From: Herve Codina <herve.codina@bootlin.com>
 To: David Gibson <david@gibson.dropbear.id.au>,
 	Rob Herring <robh@kernel.org>,
@@ -67,9 +67,9 @@ Cc: Ayush Singh <ayush@beagleboard.org>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Herve Codina <herve.codina@bootlin.com>
-Subject: [RFC PATCH 01/15] dtc: Use a consistent type for basenamelen
-Date: Tue, 10 Feb 2026 18:33:29 +0100
-Message-ID: <20260210173349.636766-2-herve.codina@bootlin.com>
+Subject: [RFC PATCH 02/15] fdtdump: Remove dtb version check
+Date: Tue, 10 Feb 2026 18:33:30 +0100
+Message-ID: <20260210173349.636766-3-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260210173349.636766-1-herve.codina@bootlin.com>
 References: <20260210173349.636766-1-herve.codina@bootlin.com>
@@ -89,14 +89,14 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264498-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264499-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -108,56 +108,41 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[6];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1C64A11DF57
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4C7A011DF74
 X-Rspamd-Action: no action
 
-The basenamelen member in the node structure is set in all cases to
-a positive value, the length of the basename string. Also it is used as
-parameters on function expecting a size_t type.
+fdtdump checks the dtb version and simply failed if the dtb version is
+newer than the last version supported by fdtdump.
 
-Further more an implicit cast of strspn() returned value from size_t to
-int is needed in checks.c to avoid a signed/unsigned compilation warning
-when this value is checked.
+This check is not needed and too restrictive. Indeed, fdtdump does
+read-only operations on the dtb provided and should rely only the
+last_comp_version header field to know whether or not it can read the
+dtb.
 
-This member has no reason to be a signed integer and its obvious type is
-size_t.
+The current check also avoid the use of fdtdump in tests checking for
+the libfdt behavior when an new (future) dtb version is used.
 
-Be consistent and fix its type.
+Relax fdtdump checks removing the check of the dtb version header field.
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- checks.c | 2 +-
- dtc.h    | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ fdtdump.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/checks.c b/checks.c
-index 45d0213..946c142 100644
---- a/checks.c
-+++ b/checks.c
-@@ -324,7 +324,7 @@ ERROR(node_name_chars, check_node_name_chars, NODECHARS);
- static void check_node_name_chars_strict(struct check *c, struct dt_info *dti,
- 					 struct node *node)
+diff --git a/fdtdump.c b/fdtdump.c
+index 0260609..6c9ad90 100644
+--- a/fdtdump.c
++++ b/fdtdump.c
+@@ -169,7 +169,6 @@ static bool valid_header(char *p, size_t len)
  {
--	int n = strspn(node->name, c->data);
-+	size_t n = strspn(node->name, c->data);
- 
- 	if (n < node->basenamelen)
- 		FAIL(c, dti, node, "Character '%c' not recommended in node name",
-diff --git a/dtc.h b/dtc.h
-index 7231200..473552e 100644
---- a/dtc.h
-+++ b/dtc.h
-@@ -227,7 +227,7 @@ struct node {
- 	struct node *next_sibling;
- 
- 	char *fullpath;
--	int basenamelen;
-+	size_t basenamelen;
- 
- 	cell_t phandle;
- 	int addr_cells, size_cells;
+ 	if (len < sizeof(struct fdt_header) ||
+ 	    fdt_magic(p) != FDT_MAGIC ||
+-	    fdt_version(p) > MAX_VERSION ||
+ 	    fdt_last_comp_version(p) > MAX_VERSION ||
+ 	    fdt_totalsize(p) >= len ||
+ 	    fdt_off_dt_struct(p) >= len ||
 -- 
 2.52.0
 
