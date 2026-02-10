@@ -1,164 +1,186 @@
-Return-Path: <devicetree+bounces-264526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264529-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0LYfMQCJi2nUVgAAu9opvQ
-	(envelope-from <devicetree+bounces-264526-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 20:37:36 +0100
+	id OCzyFyGKi2nYVgAAu9opvQ
+	(envelope-from <devicetree+bounces-264529-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 20:42:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20BD011EB05
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 20:37:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB7E211EB6C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 20:42:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5C7DC3024178
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 19:37:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2B5143032991
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 19:42:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EDAB3164DF;
-	Tue, 10 Feb 2026 19:37:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E9E32ED22;
+	Tue, 10 Feb 2026 19:42:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R5fefDvU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dupaQZGw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00B232F9D98
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 19:37:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEBD7319850;
+	Tue, 10 Feb 2026 19:42:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770752253; cv=none; b=YLHnYYv0iHpxSCs98PJFQLLGU4kBP6lrXCq9wIC4M0mLgmGualS848Zx3yOdlqALyn5U22sSbgJUO0bfDlE4SFSHGj02+Wra3STMhUIAQbsq0QMLlh6ptSXKOqi6FF6JsqorWu7hv3A/V2NrpRvPqCKnIhhQgJ0OSrJ2YbGgIWI=
+	t=1770752537; cv=none; b=oQK82mwY/hqLibBt7aEe2B/zUYxnvXEJ6CNymkXl15DTgUZXaPb1+AlKUoe7O9Z1GSbY6gAspfMXFLn+nWgb2gb41i01yMufitqB1iFx1GrXYz1sF1zfZFNtACNU2DlSb/luDqPCZ96zNdErD+GJ2UeYkAS7fq+Vu3k/LUEqkY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770752253; c=relaxed/simple;
-	bh=fRur79AaHqNQV3fBr4hf5Rrc3u8CGGPgcbZLe1PvlTs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mY0sMlZrwo/lWKEDJ2qTYM//GFCq9/w/Tyqhxzj4qCCgdoF7QvKqEKKXMofz9taCsXKitJ/r+GOc7FfndyaUxzN7CNBgdOavUQs0dzkb9rJsnrVWUTZRf+sUfwqpB741Yju0qt/ixLxnOsQukulUiPHjqUFsOhNms4NYDjaWpOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R5fefDvU; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-436333dcc42so449370f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 11:37:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770752250; x=1771357050; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=fqDz8Drx8XjDtZc8LsAC+uLDhKgLLYdxTPVtiF/ij7I=;
-        b=R5fefDvUd00un7dIomu5/1O1/MvCC9JM8X4upAFz60c/ub91qrSPIuetKpbXV8gIqi
-         YFQIyDLbTcJi+H4iRKR98ib6Wi6unP8GBW2b0tXYrRr5GwVkJcLlqUfhi2p/ot3Qv61t
-         vurZ0WJYck/zenfGJSe0krk0uxKaQ4n9EfvIbRZYhbS6Ij42Bx47J/YbkWKXHOqvpyIq
-         UzCkfipCNL7e2mC6H4SRCiOWeuDoaSnAqpvZzDrXKQpwh7H+d/ZQQ57ImxsLihOgZw/D
-         ZxsJRacQL7ZMjkUamPG8ethuix9QCUOVfa/mWYeTh/25mymB0VRVXzFhZWaZznQmPEbC
-         un8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770752250; x=1771357050;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fqDz8Drx8XjDtZc8LsAC+uLDhKgLLYdxTPVtiF/ij7I=;
-        b=WFUJx3usugW4HouyIJvpHNpp2mF+y0/F/xPBtD0B9vcQi2WDlxryfaFybgBfNLjy+K
-         mPj0GrmrwKsop/cbMzbSWsGw2VWwk7EfGAmYW5GmWh4rC54AYgIVE8TZk6FrRwgkaBYP
-         vzLRt2rTYjxsdzocMqCCqBMLtdDKvrzwwKYts1VG6tAc8tZLBvlXnmtQB27WZZ63DvUB
-         Fzq9sD4uSr2nErsWNtKo7KBD1H8Vx6+/4Z1zqBe3mRqIUMKrH69Q0g7rI4uQAVau3lTu
-         iYCrp/+9Ly15PsJu/5k6aHZ3Pfav+RKqPybZBta/drB/lQl+KImkx0ZtqSPozlpt2yYT
-         h0nQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVUVbooJzsSGC8af5F0AwfDJd54fzKPfw+DOnUSGvO23znI6Lvii6mkyp/ybN5EDeKLeIrrhs7fRWEP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3uZ4R+OS6EA+8t3PVRRmu6BBHUWZBoxAphHfYjRfaFa+LB4ho
-	nftlPjzHGoB9UnMWFmjJb1dEC4Y5mODYzEsNwonLbxavEDq7FRkTMopM
-X-Gm-Gg: AZuq6aIgzhb69XjqRDlKoZrXQKu8kp9GV1mYnJTjB/dD+aJQPQssOFN2uXZ/9Eekg0o
-	sqeX03ob3xey3p5Zrq3EYB7ZnKDthuovurVsv2R8cIRdjXf4VImS+AWuK9VmF/TRNHuoCyI5szx
-	9Q8wdiqjMQ257j7WM8x+FHYa/F6CG0h8QA8Nn7IwWie1qY6MHGFidFa7OOjkQo1+hSVubFzq81V
-	U+N22VbKHpyZ97TF+PM2pNhfqLuWhe1f+CLheUSmcHVapkaufSmn5XKdZMD9vkpQyeZ3MTackTW
-	lvhW45zOoccnI4CugSjXwyaoIF/DVGhXZbBFJW5z3tZDEZTLAQ3q6oTQOIqs0DjYGuGIhwKW1LT
-	I9b//kAVX1I/WgyqiVx4mk7j9YZj+6ZuwoisgqmYmWwR3JUy2p16A1H4LA3WBFW0ImIJRE95cb4
-	8gFBkB2TmGu/ayfWI=
-X-Received: by 2002:a05:6000:3104:b0:437:771e:9dbd with SMTP id ffacd0b85a97d-4377aba5bd2mr2497517f8f.0.1770752250206;
-        Tue, 10 Feb 2026 11:37:30 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d501:d900:d8ac:c964:9b43:1b13])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-436296bd4a1sm36328520f8f.17.2026.02.10.11.37.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Feb 2026 11:37:29 -0800 (PST)
-Date: Tue, 10 Feb 2026 21:37:26 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Cc: =?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	=?utf-8?Q?Beno=C3=AEt?= Monin <benoit.monin@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>
-Subject: Re: [PATCH v6 2/8] phy: sort Kconfig and Makefile
-Message-ID: <20260210193726.h6fc65gekida65la@skbuf>
-References: <20260127-macb-phy-v6-0-cdd840588188@bootlin.com>
- <20260127-macb-phy-v6-2-cdd840588188@bootlin.com>
+	s=arc-20240116; t=1770752537; c=relaxed/simple;
+	bh=PHuCXYowjcT9tn+WZauaI9w8j8YdUh8Ki1wtQ+cSTb4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZBr9Mgxng73ChSFtbIr/H4D861dRoNhkqEpHgmMyiVcynIObdt0S+H/LD2ORpAO5CBJ2LyEy50J3hoNzNm/MvNvqMkI+gByWB7fBg0YoX+m0rDamAPTZlOMP1D9NaitUYxouXD5TkSnGukSgQNA6R0btAKB0/fLC6SnjUiXL3iA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dupaQZGw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3FB63C116C6;
+	Tue, 10 Feb 2026 19:42:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770752537;
+	bh=PHuCXYowjcT9tn+WZauaI9w8j8YdUh8Ki1wtQ+cSTb4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=dupaQZGw+XtOXrGXVpjVjC/0Jkc5Fi18sN6QkfhLzkWQ0ZGKRAMX594VgDcKnugKv
+	 j2oYi+WNLseLMB21hDGfHjeDdc86dBF77WfcQ/qsdNLEY+fyxfRQF2vX53NFDcyX80
+	 lUDX9r33nIq3TnXvb80SalvR1/TtMA6RwYn7NHzMw2dPQUXmkMi4pmC83B2IRay5AM
+	 0ya09szAfgA1BLq51fKyx9YSwlAglEeuDPrVBk5O/NiLUmn17RNTMNeB++bdMTTuH4
+	 EkY58R+j0yIpA6osJpjRH8GtkjN+TQIibmd/K8uXdJiYKEwGj/dBprsAROJNDFYMa+
+	 m7Os/U3sfgcmg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 22F7BEB2706;
+	Tue, 10 Feb 2026 19:42:17 +0000 (UTC)
+From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Subject: [PATCH v4 00/11] iio: amplifiers: ad8366: driver update and dt
+ support
+Date: Tue, 10 Feb 2026 19:42:00 +0000
+Message-Id: <20260210-iio-ad8366-update-v4-0-15505f7b15b4@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260127-macb-phy-v6-2-cdd840588188@bootlin.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAiKi2kC/23OzQ6CMAzA8VcxOzuz7ivgyfcwHrqtwhJlBJBoC
+ O/u4KJGjv8m/bUT66mL1LPjbmIdjbGPqcmh9zvma2wq4jHkZlJIAyCBx5g4hkJZyx9twIG4sej
+ Qm8I5jyzvtR1d43M1z5fcdeyH1L3WEyMs00WzAqDc0EbgghdCa5KKSqvxhA3eUnXw6c4WbpRfh
+ LRbhMyEL1EHBUhOwB+hPoQUaotQmTDBWGWdgQJ+v5jn+Q3Ke8LaOQEAAA==
+X-Change-ID: 20251121-iio-ad8366-update-56abac58bbca
+To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Rodrigo Alencar <rodrigo.alencar@analog.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Alexandru Ardelean <alexandru.ardelean@analog.com>, 
+ Andy Shevchenko <andriy.shevchenko@intel.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770752535; l=2865;
+ i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
+ bh=PHuCXYowjcT9tn+WZauaI9w8j8YdUh8Ki1wtQ+cSTb4=;
+ b=jzJDYXXu0ES79ZoQ01SdoLUCIAyv9OBRqDDb4xjfc+ClvB986g0uPMIz8TlZN8zNEJnThu8Qs
+ 8+NN0luWLPYBXi9Ij8QhsTBUUUH/LFtPn67wUDBnktTnhXH6iwr53CQ
+X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
+ pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
+X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
+ with auth_id=561
+X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Reply-To: rodrigo.alencar@analog.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-264529-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264526-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:email]
-X-Rspamd-Queue-Id: 20BD011EB05
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EB7E211EB6C
 X-Rspamd-Action: no action
 
-Hi Theo,
+This patch series updates the AD8366 amplifier/attenuator driver with
+modern device resource management, including support for additional
+device variants.
 
-On Tue, Jan 27, 2026 at 06:09:30PM +0100, Théo Lebrun wrote:
-> Neither Kconfig nor Makefile are sorted; reorder them.
-> 
-> $ diff -U100 <(grep ^config drivers/phy/Kconfig) \
->              <(grep ^config drivers/phy/Kconfig | sort)
-> 
-> $ diff -U100 <(grep ^obj-\\$ drivers/phy/Makefile) \
->              <(grep ^obj-\\$ drivers/phy/Makefile | sort)
-> 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-> ---
+Adds support for multiple digital step attenuators:
+- ADRF5720: 0.5 dB LSB, 6-Bit, Digital Attenuator, 9 kHz to 40 GHz
+- ADRF5730: 0.5 dB LSB, 6-Bit, Digital Attenuator, 100 MHz to 40 GHz
+- ADRF5731: 2 dB LSB, 4-Bit, Digital Attenuator, 100 MHz to 40 GHz
+- HMC271A: 1 dB LSB, 5-bit, Digital Attenuator, 0.7 - 3.7 GHz
+- HMC1018A: 1.0 dB LSB GaAs MMIC 5-BIT DIGITAL ATTENUATOR, 0.1 - 30 GHz
+- HMC1019A: 0.5 dB LSB GaAs MMIC 5-BIT DIGITAL ATTENUATOR, 0.1 - 30 GHz
 
-This patch is appreciated, however it no longer applies on top of
-current linux-phy/next.
+Device Tree Support:
+- Adds device tree binding documentation
+- Adds device tree compatible strings for all supported devices
+- Favor chip info tables over device type.
 
-Since we are in the merge window currently, would you mind reposting in
-2 weeks (or as RFC in the meantime)?
+Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+---
+Changes in v4:
+- Review of included headers.
+- Split of device-tree support patch.
+- Consume reset controller rather than gpio.
+- Link to v3: https://lore.kernel.org/r/20260203-iio-ad8366-update-v3-0-5d5636b5181a@analog.com
+
+Changes in v3:
+- Add compatible checks for dt-binding gpio properties.
+- Remove reset and enable gpio from device state struct.
+- Split refactoring commits.
+- Drop part of the refactoring in favor of a cleaner diff.
+- Get included header files sorted.
+- Link to v2: https://lore.kernel.org/r/20260126-iio-ad8366-update-v2-0-c9a4d31aeb01@analog.com
+
+Changes in v2:
+- Reorganize commits with cleanups before features.
+- Link to v1: https://lore.kernel.org/r/20260119-iio-ad8366-update-v1-0-8044e23e964a@analog.com
+
+---
+Rodrigo Alencar (11):
+      MAINTAINERS: Add missing maintainer entry for AD8366 driver
+      dt-bindings: iio: amplifiers: Add AD8366 support
+      iio: amplifiers: ad8366: remove unused include headers
+      iio: amplifiers: ad8366: add local dev pointer to the probe function
+      iio: amplifiers: ad8366: use devm_mutex_init() and drop mutex_init()
+      iio: amplifiers: ad8366: replace reset-gpio with reset controller
+      iio: amplifiers: ad8366: refactor device resource management
+      iio: amplifiers: ad8366: prepare for device-tree support
+      iio: amplifiers: ad8366: add device tree support
+      iio: amplifiers: ad8366: consume enable gpio
+      iio: amplifiers: ad8366: update device support
+
+ .../bindings/iio/amplifiers/adi,ad8366.yaml        |  97 ++++++
+ MAINTAINERS                                        |   9 +
+ drivers/iio/amplifiers/Kconfig                     |   6 +
+ drivers/iio/amplifiers/ad8366.c                    | 355 +++++++++++----------
+ 4 files changed, 291 insertions(+), 176 deletions(-)
+---
+base-commit: 62b44ebc1f2c71db3ca2d4737c52e433f6f03038
+change-id: 20251121-iio-ad8366-update-56abac58bbca
+
+Best regards,
+-- 
+Rodrigo Alencar <rodrigo.alencar@analog.com>
+
+
 
