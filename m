@@ -1,385 +1,246 @@
-Return-Path: <devicetree+bounces-264464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264459-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mEU7I6pVi2k1UAAAu9opvQ
-	(envelope-from <devicetree+bounces-264464-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 16:58:34 +0100
+	id 0GyqDmVSi2kMUAAAu9opvQ
+	(envelope-from <devicetree+bounces-264459-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 16:44:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A14D11CDB6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 16:58:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B35311CAFF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 16:44:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 44860303DA8B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 15:57:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 431823032F5F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 15:44:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5D6F385ECB;
-	Tue, 10 Feb 2026 15:57:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEA36366DDE;
+	Tue, 10 Feb 2026 15:44:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ht2Q0OhU"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="FDaGO5g7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010060.outbound.protection.outlook.com [52.101.84.60])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C447838553D
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 15:57:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770739028; cv=none; b=MKuI8HMc5UQoFqebo9eTxJpj7p5Zr8AAtON6t5kBPDs06sKXdAbBoo8aLCYY1a0OZpn/he7tDREw6oIWGlekSATi1E8M5nbLM8sH55UK/z7FmoDITZugnnZaaGbaQCMyNbqk6j36XJ3X9X75btvAoWYoIfR6XLn4oYgBKUUIcbc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770739028; c=relaxed/simple;
-	bh=r03sluLS+oFdhKyCjrad+WXjQvkS4ewAU1a/LBepu20=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NX77mP5nHDMPd9jOFuPYzr2quSsccSfHFovRQxFsillOje372AAJItoeOBlXndwIgZtX5VeoRg1Py565ej/ZhOgRgeXTU96P7D/xEAmCfBLDC8CqgciTT2Cp+TulDG8VAYUMujK1EeiXaDB9gYTw9gcd13sqFYjiNTnGFesOAqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ht2Q0OhU; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-43767807cf3so1898501f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 07:57:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770739025; x=1771343825; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=KDxHw3Hq9zG9KAhSV/T4bFN5OhynGtCKzUgVN+dy8Fc=;
-        b=Ht2Q0OhUBoHJb07sr8HzPGEVOYlN6B2lbzOuTiKCP7fx/YezgiwwucnsUB81RrPf6Y
-         Nk9wNEXz2ozL4DXARI4imWxL1MgSnANemG0iWRUT68sZi/7eNxc6f1k+kQ2UaJ6tJYUr
-         rkeFvcnbNq1+HskgJRJtg66S0PvFwDeff2goxXcqfP5tHiOSC8IF+kd8jpCZ0jpgb5j6
-         inEu6RTpAuvZr6p2OQ8irW+d699A9oEiukmNVHxC7AXrthAeM8ssUU8XYIPycKJPqL5x
-         tXc16LuHV3tisrgMKve9PqcYAVHo44xHrRoqS0+eSPRF1NwbeEpX7dhfdPKQr/67l3Ma
-         LxxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770739025; x=1771343825;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KDxHw3Hq9zG9KAhSV/T4bFN5OhynGtCKzUgVN+dy8Fc=;
-        b=Qx9WJUmzFHemtjYlujS25x274iH3pQv4cewURsOT8CHmAJeZz3JDFYlxV1l7QYSJ2T
-         ORAvKrZRtYWP2CD+uW2OGKWgfYRXCbxfUlqVErF2w/+l6VaRSHKYAbb/+kspgRXPGdpD
-         gPh8MWlfGuAKCJlqLlLNE05KM6eL4UklGBBhqi5OfQH4hlRCN0BYdTayVsEp4l23Xta4
-         DZ49742U0GjhcsYwXEf9/eWP3rX5FXd9xXC9dpPHwX4JRZO1BU+qBpyEwc8nYLWNm9Tw
-         tRYnrjW9DLZ9B+2xB70cvfjLwFctYQyOh3stY926zELpwO151CLK12Xt4PU5CA+Udu4y
-         agVA==
-X-Forwarded-Encrypted: i=1; AJvYcCUDfqV9V0wxLyrJqwnR6RbFM5NUcPj++4gKwgg2jta3lVKStOBmSey5SrXS4YTY247UvOlkosSAjc1n@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcXnYIkNxQAbG0Y2bfnSLz+HvmYsUOZGoNRX3cAY1w9KZ1+Lom
-	sl9rS1dsgncxeZe5II9XQ7YKgUAPoVwVa1gW6kbM0Rz/56mFpTBXw0Bd
-X-Gm-Gg: AZuq6aLMgdEnxg7AaqDHqlVpX0nZ4AoB5CPAEP8DW60XGB+J69HSTaAH0JU4qDDSj8T
-	pqMhJc8lCIOD3OFr54jHm759qFF78XR6i5Oii/fSZjZKmQNzUVMCd0wGqKhnKeDaUJrc49OjH0r
-	RqN4huITc9SK+4xh7HLuPMmoBYJ8nKXsL5td/bYrqaBLFevIt9zY77JGCqUYhQe9QxOCbkFsaVN
-	t/EHOVi6lanRepATtrdStQT+j9B0XorkmF66Y1Li/3zgzuuGIE7P+yd0+/+FkZfCKofFWrMtn7s
-	ZREgicT8irwxIt5qgNendNeaILn4YeHI6ZW120CSEM+iKOnbi7ZXVtEmR3GUdOwESTq8tHo9L0y
-	JusVewRAiiZcX7Ly6nswlPcz30kDhT1skV82wgIv/OYxy+zonwAEzkXxYSYWadtzaSJR5h4AZHc
-	UJl6PsSMdx3ozuGFD8oIWJAEBN0Awsn9sYYg==
-X-Received: by 2002:a05:6000:2010:b0:437:71cc:a246 with SMTP id ffacd0b85a97d-43771cca558mr10374442f8f.10.1770739024825;
-        Tue, 10 Feb 2026 07:57:04 -0800 (PST)
-Received: from taln60.nuvoton.co.il ([212.199.177.18])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4376806626fsm22051809f8f.37.2026.02.10.07.57.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Feb 2026 07:57:04 -0800 (PST)
-From: Tomer Maimon <tmaimon77@gmail.com>
-To: andrew@codeconstruct.com.au,
-	avifishman70@gmail.com,
-	tali.perry1@gmail.com,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: venture@google.com,
-	yuenn@google.com,
-	benjaminfair@google.com,
-	openbmc@lists.ozlabs.org,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v1] dt-bindings: hwmon: convert npcm750-pwm-fan to DT schema
-Date: Tue, 10 Feb 2026 17:41:17 +0200
-Message-Id: <20260210154117.1126857-1-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F7E53009E8;
+	Tue, 10 Feb 2026 15:44:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770738274; cv=fail; b=CudmdvLfL2JVmEzmzZLY2HrQckXpAJCPjj/+TLnuaNiQsPy1pRxP0scy2AMD05xI/P/KKZ5VPKtWaBZmwO/nN/47zd6H3vQ9wer4Qtt1KU9xwmkAkNaM1RrNOjoSUfP9S6SWAdeIIuLUAuXdUg5dilIe6rRLPjPkRsbvJ3ypm6Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770738274; c=relaxed/simple;
+	bh=CAm6jyBLeKJCNKIgHH6fS1Q085zcHeVsZaUrC5k2jV4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=nLJsKwK0GBcU4HyzOj2rGMMSsQyU89nQZSlSifZbuNRKeShkB1jPk6O3aT9HLrXtz57lpV45dVLtFNBqLSgluxk2lR1O2tOalTR+zquevo8JLf1blBMEgn707hOM6QDLZck2Gk085IApUXKKr+3Nrj/nSVcnJ0E8mN3ya0WzMb4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=FDaGO5g7; arc=fail smtp.client-ip=52.101.84.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=klyRxz7XWQpaQorbm/DkgNUJP7Yp7UAtZA2SweNNvXtxjZbUROtIWM3l8lzIM23ptUIgyUyw8SD0dDcX06Usar6iKSEV7ZPh1Qxu3tD4WmvACvpSuGJCHc32mREsZQy86pl0HozCAuMc+6woZxVNtSrgPQflVKcI0PKvb84TyjnFRsyfii9g9redMHr5FmlOdNIWtvUCAVgUuikKUA7yvPjICq2oOiUaJkDSKp/o2xyeUWneyrrOxI30DBAvtBY3955gKYWeJf+HN1sv4WCJzAlM3xUQbDzZSsDeQS+KjKvnMQS8pkjpMvWremJAAFhqJKQLWBqM/qLxKq+BO3R5nA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QKbZCFKQGgrQMbgBnUQLdsjsAvW6bnPHVCw/34hdwmY=;
+ b=RTHog3GWvYSO+H8lJBlXJ1kuazSgTLDjz611QM0c6Nqa6+Ka7d/9RA+1xh9sSXppqqc0R/VSla+liNh7XBpBp+XWuwSdObZZCh3mqo+8PcMdoQoOmST794zIo8TNLOp/W8+sh+3pUGQ032RWcAIJ5qPvEIfEDizjEdbpk1NWb1DYm2k3BS8WrwdzPdfLxdg9P5Ht/mXUv5ctqLOkQvE3z/NuaZra+PyYi8v1erJKhU571znGqv/c92ua73c14S/hxNwgv09uWiSx8Dtb5CWXNPasC2Bl1JAHZh8myORV4iiWRrfHHKuI6fn9BLGDd4JFgG7uPZRUGc8s7YfW3+ZGIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QKbZCFKQGgrQMbgBnUQLdsjsAvW6bnPHVCw/34hdwmY=;
+ b=FDaGO5g7w8zYFKRMgMbsIFS/n+zPhweUR3QEBW1YLeQtTyCk32IjEkrBTAQztlHQFVHrE65kxsNhEQ3VgGPdH2JJNmlRxmmVDvRY53ohDRwIA3GT5eaPKRfTRRKioNy/ab7U8MvVI5e61t7RK4Y6HA2F2fjW+zk0Y8+4SWQQ/ATMJvIJIInJmmjr5bzeqtwgNzK3nEbZdtifxcU8nPDGt7rT73qDScUQEENpy47ozHj8nMPXOKmY2LH4XXZk5IlwOmTNh3ywo+QmPvPQcw80RpYXFPd4dto1HLbJWU46Au8Pb86C0m6WAMYTpg00AuM9IisMUcx6lvTcnqzz+GMKfg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by DB9PR04MB8074.eurprd04.prod.outlook.com (2603:10a6:10:24a::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.8; Tue, 10 Feb
+ 2026 15:44:30 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Tue, 10 Feb 2026
+ 15:44:30 +0000
+Date: Tue, 10 Feb 2026 10:44:23 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Marek Vasut <marex@nabladev.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, kernel@dh-electronics.com,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: imx6ull-dhcor: Handle both 1DX and 1YN WiFi on
+ i.MX6ULL DHCOR
+Message-ID: <aYtSV8oynehECLPM@lizhi-Precision-Tower-5810>
+References: <20260209170739.22379-1-marex@nabladev.com>
+ <aYoyrqV2lSJetls5@lizhi-Precision-Tower-5810>
+ <9760a129-ee03-4556-b98b-2625739b21fa@nabladev.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9760a129-ee03-4556-b98b-2625739b21fa@nabladev.com>
+X-ClientProxiedBy: SA9PR10CA0019.namprd10.prod.outlook.com
+ (2603:10b6:806:a7::24) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DB9PR04MB8074:EE_
+X-MS-Office365-Filtering-Correlation-Id: d0023f7c-04ae-498b-f7d2-08de68bb476b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|7416014|376014|366016|1800799024|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?A38g+xzgelhFuOavtzbv/O3sDX037u435j0tTm77xkBXUyeAILnAu9KENIf3?=
+ =?us-ascii?Q?5C9EGOEPRCcuoKRfOBh9gtCirzcDk4l0qceMo4R8jUKqUsjnMqu0yZEgml6d?=
+ =?us-ascii?Q?aqC1keMn1LJleVYWgtvn7V0PXOMMcfQ6VqLSG6nDcurQImCmRQjQHmhxvZjF?=
+ =?us-ascii?Q?NqqJNakIoAic5BoLh/BQRQkrKqQEBBA4Bw4pWxC7CfJ0xMil9csM+OFHL8AG?=
+ =?us-ascii?Q?FfsyWLxgn+kopuSfxEo3MdJg8DwouR4zcZog8dI4PaBBguhtTZoWs5JqL0tf?=
+ =?us-ascii?Q?ElU5l4tvUdoB1stVfbIzySs2hIEeQULmUTVNo7PD3mob3pVnGZbJhTUEfdpg?=
+ =?us-ascii?Q?yXbsyDxO78YtMBIU9uz/1F1J9ZTIMCyKlO9/ZPqBvuaZKIuQn1Djmorpf72Q?=
+ =?us-ascii?Q?EC0wo1c/a6JDIWsprUii+E1vDUZkYXAcwrCrSqlj5BRvX3wsjfeU0o1xY7My?=
+ =?us-ascii?Q?ym/WouBamGLk15gjSXj7GZIbef35C8pnJN0ARkyrCw7e2lL6CcqIJo/Nki0u?=
+ =?us-ascii?Q?fPOIFmvaiNwkWSZ0+twpPtRxGSQthq0zqP4N6C1LpdfdEg1tlYYNzxnYaUo5?=
+ =?us-ascii?Q?wQArJQVe6zZuXMAojXCdiYpvwXIuDACEZehGZ1R2BB/rgkuwk43Tuy1OHoDq?=
+ =?us-ascii?Q?ZvcJ/hoXHj+ew9+pmaPkfa/kmPCoLb48QUl6D1/3uLbkUVO4CZJqqSI/yUl5?=
+ =?us-ascii?Q?R2DyBLvlYcIMwWkghJcwZm5IBBXdXA0Uq/3OxZtKlB/nlBeQ/epRhauKs0Nn?=
+ =?us-ascii?Q?wiKnDhmB7qs7YhsWNpBtFPvly1OPBMtLrbJgQKAvMpLyzh+jyeJcgbNk8c/I?=
+ =?us-ascii?Q?55R5BUGcl+cehaLhwlqpwzykU4tOlYaKEy1wFW/fr4AVrMuYniSoaw7eybA+?=
+ =?us-ascii?Q?Gyjv2cN6cM5FxZIZctEjX3kLsAAs6PglmQSPJKESXQcbIiaSIWP/fECiNifi?=
+ =?us-ascii?Q?YF+piyowrgAZjpZ+pdFNT17/E2QqXDR9w9lXtDp6t6yqfPKD3nJTHJ/ROCrv?=
+ =?us-ascii?Q?y1Y0S57bukf1o/tRrwN8jTl+auPaCD7LPV0hHnaJTk+fpg6vLLjIuLgMnzoL?=
+ =?us-ascii?Q?E82azZxCsyiQMl7LQKZpHmYMAiZh8/9gWVpkB21k5HN/HkHCEIaCXSx5ZeHo?=
+ =?us-ascii?Q?5YbwTjpIrVSY9QfJ3t4qe3SjYe73QTCOPwm0+NXUSk00wqJ85Tf+ypYJA/dX?=
+ =?us-ascii?Q?3Mz4uwxApHGfVn0f3IeRLERlGiCgHdUZeas25mDhY+9erBqrGu0J7i7vgfBm?=
+ =?us-ascii?Q?gQ2sGFvH3d9HlF9Y1MfiKqN5DrWenBvWMA9Pw383td4nyyNLU6cJYNmKr2V8?=
+ =?us-ascii?Q?WBWr9TJDAgY/85TW1Y32JiKIljpkk+XqcIVBGVUhlMEIGJ0kJ4DlwD78y54o?=
+ =?us-ascii?Q?R1JF6rhmSx6dXtcCS+g5D4pkrr97n3jyunIBC/FSzu/tPVPeCm5a6laCqSw5?=
+ =?us-ascii?Q?40hjmDt+9efJNhn/VWh/iGyP5L7TUs7jEsOCdg29MSwzJHsq2xYVQYfqyw5T?=
+ =?us-ascii?Q?uLfUWVQgZegwZh+CJWu9EcAk89tkPgFYuBvGCeXLNDLkGvQvsh0DgrMQ0ntf?=
+ =?us-ascii?Q?VfbfPXa7lMZPVAuAsXPFt0OSdptzYqFgLZqTW8O0+Pnh6lQlO6DKY695sqkO?=
+ =?us-ascii?Q?1XgPxzI1yTM8+pHvC7SFzHM=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(366016)(1800799024)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?jyT6spHhswXXt5oZxdl3SIJWZEJzohr5TK9RTw7e0kVLmuFAJ/S6T8w0MI4U?=
+ =?us-ascii?Q?Fsg36NJGg8Sagsq21BUR5NMMF/OxfFmhhib5S9QkBw8CJQUriub0dk/Fbrfs?=
+ =?us-ascii?Q?lDpxRWQ+i2IZuiGcL27l9xjRRqMHpjG/k5zWpMLWBR/xpAjPKFRJcXiKFgkP?=
+ =?us-ascii?Q?W915lZPTAPz5SI8adgYq28RY2S6dgIUfLfcUptMXYpzn7zEXEsV8MMok55xv?=
+ =?us-ascii?Q?+GI9wF25C/GnzExrIw/PIUBZC4PEKV4JwP6TbjLylzfVDL0UAnX6eP+wiR5e?=
+ =?us-ascii?Q?Y3zesuLLXxlrAvh2oEAfbdWyxsydoVu0xc1DwzXMvGSsKT9RM/CyvHBogt8O?=
+ =?us-ascii?Q?yDnB0XMYy1DCWGtFp/Bp+SD5vaQutX+glkvL3WpV9CDXU+/XjqL2b9RfxGvl?=
+ =?us-ascii?Q?olVG2GE0p0uiOcR5cYgbaP7vb4UVJ7dXluUBQesRiNUYbBrPZ8a4tZC7Are5?=
+ =?us-ascii?Q?4DT6itjUmB0nlvhlVXmfzFHTSvY91pFcF0q+DaYCi1vb3ofw4XwURaisbDEq?=
+ =?us-ascii?Q?A/MONNs3dzTc0DAvbA4C0gYrLqmGgJ3SICv125Gj6G5uVr8CcQY33VzmraaG?=
+ =?us-ascii?Q?HzFmp/q6pQl+hn903IMrOLki43UCOIBR/Tkw2449uMiES0N4xVl3peipDVYn?=
+ =?us-ascii?Q?RkGjFRfLobC23A32Rw7OqAoizUQa6o5EAz96jZ8fElFxsVzVyYv7kJr8d7Xq?=
+ =?us-ascii?Q?qKpwMsMhhV+sWrYOnSasSqYWrE5KfZ3+HvUekR/7TzbMKz5syyLoarRGCsEz?=
+ =?us-ascii?Q?K8ifVifeHlyZxqQM3P+VApOYQ0HmOP+xUD2D3HNGehHIToPToAtXJZj2aOMe?=
+ =?us-ascii?Q?ZrOBdh9Wf+8zTXEAz5+YT3RuWBYTXIEXfcZ0N2kk4nTKLNvRSGNF163HnGQq?=
+ =?us-ascii?Q?DWaES4q1ZeFMXwVkDxsKhFQflMAESeLGJ6LzeNJjHrAUCGbgQfVFaOLqnYr/?=
+ =?us-ascii?Q?BVhivk4u0XwIOpBR37dP0TVXO4Fz/Vb0RvyeK06P14eVshl4aq9VUHnYrsSX?=
+ =?us-ascii?Q?BNixMNwglABlxlwtQDrx3lMUSr3kYcbFakxaBfF4rzdd8owghxAdeEyq3kN6?=
+ =?us-ascii?Q?JlCEe8ndgIdq8rwOm0SASA9XYttFS4SFBJXzBbnU16AxW9fQpoDIyji/8ewd?=
+ =?us-ascii?Q?ioI9HJY9O2vsSfkDMzPoXj6e0MP35ks0PyvwLAzAKgBjpcN6dEGb7GojoAgu?=
+ =?us-ascii?Q?Twez+hLdxPn8+3EgtMaclAltV+GJMcjbd5QHbRaPAKPv+VmZYaFuPhAzpOwQ?=
+ =?us-ascii?Q?WL6cSduFJ4P3N6H8wvE+k25Q2ra5dzXaXw00rTZfG1x+tAWU2jvLOyKFmeuj?=
+ =?us-ascii?Q?7h0YrvXUEpn9QANS8Z35gdaSKdFX5C7HV/kYl2mc3SgoWS2iDBLusf+dA87I?=
+ =?us-ascii?Q?rpGAhwdfZ0xt1EeVZ0bkKEONXsdz0d0Fbw9wYs3HbzUYgO6jtrCl8MrxiBaS?=
+ =?us-ascii?Q?XsZFs/Y3IymnjAO3VqQLlo3+mnr7GY/XgoIHUDrp4+NBbtIAm9NPCkSTor2i?=
+ =?us-ascii?Q?LiAB9GsO9IfoPpf8j/SSPjBuKk0umWlkfMQSHqtfEiLSr/PEvyQhlp6cfWUo?=
+ =?us-ascii?Q?Zr2DU/GsWjj9f7aBygDkwIRSAfQDSk0PsJ84ZpVGjIK66rMwv9Nt5wEfXNC4?=
+ =?us-ascii?Q?D3yNey0ntD+1g2N6cmQdCtx1InSuOM3O6x9B9kcascCBsHpNWclQ61nB6msE?=
+ =?us-ascii?Q?FZgg+NlFUi+aKMPRBXn+81EXMtl2w0vC3gcGFi7nUTwEqJG2Ex3chYKQTMia?=
+ =?us-ascii?Q?dUklXj/E/w=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0023f7c-04ae-498b-f7d2-08de68bb476b
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2026 15:44:30.2718
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xcnAXyf4V+C1RDGmRAL5uw1QyUVR2wtaGOnu+1UZErNYsINS/5lPWmeR8gzRGM8gVDMcV3Xri+3HIEAKWaOeKA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8074
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[codeconstruct.com.au,gmail.com,roeck-us.net,kernel.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[google.com,lists.ozlabs.org,vger.kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-264464-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-264459-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.infradead.org,dh-electronics.com,kernel.org,gmail.com,pengutronix.de,vger.kernel.org,lists.linux.dev];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_PROHIBIT(0.00)[0.0.0.2:email,0.1.146.88:email];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.1:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
-X-Rspamd-Queue-Id: 2A14D11CDB6
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:dkim,0.0.0.1:email]
+X-Rspamd-Queue-Id: 8B35311CAFF
 X-Rspamd-Action: no action
 
-Convert the Nuvoton HWMON PWM and FAN controllers binding to schema
-format.
+On Mon, Feb 09, 2026 at 09:41:24PM +0100, Marek Vasut wrote:
+> On 2/9/26 8:17 PM, Frank Li wrote:
+>
+> Hello Frank,
+>
+> > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi
+> > > index 75486e1b0c15f..a0adcd3fe1229 100644
+> > > --- a/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi
+> > > +++ b/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi
+> > > @@ -201,7 +201,7 @@ &uart2 {
+> > >   	 * the speed can be increased accordingly.
+> > >   	 */
+> > >   	bluetooth: bluetooth {
+> > > -		compatible = "brcm,bcm43430a1-bt"; /* muRata 1DX */
+> > > +		compatible = "brcm,bcm4329-bt"; /* muRata 1DX or 1YN */
+> >
+> > in driver, brcm,bcm43430a1-bt and brcm,bcm4329-bt should be the same.
+> >
+> > >   		max-speed = <3000000>;
+> > >   		vbat-supply = <&vcc_3v3>;
+> > >   		vddio-supply = <&vcc_3v3>;
+> > > @@ -222,7 +222,7 @@ &usdhc1 {
+> > >   	status = "okay";
+> > >
+> > >   	brcmf: wifi@1 {
+> > > -		compatible = "brcm,bcm43430a1-fmac", "brcm,bcm4329-fmac"; /* muRata 1DX */
+> > > +		compatible = "brcm,bcm4329-fmac"; /* muRata 1DX or 1YN */
+> >
+> > driver have not check "brcm,bcm43430a1-fmac".
+> >
+> > Look like driver can work for both CHIP without modify dts.
+> Sure, the driver can work even with the current DT, but the DT isn't
+> accurate as it describes compatible string specifically for the 1DX part.
+> This change makes the DT use more generic compatible which fits both 1DX and
+> 1YN parts. And it also fixes the comment accordingly.
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- .../bindings/hwmon/npcm750-pwm-fan.txt        |  88 ------------
- .../bindings/hwmon/npcm750-pwm-fan.yaml       | 132 ++++++++++++++++++
- 2 files changed, 132 insertions(+), 88 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.txt
- create mode 100644 Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.yaml
+Okay, can you descript more clear at commit message, especially how driver
+can auto detect 1DX and 1YN.
 
-diff --git a/Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.txt b/Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.txt
-deleted file mode 100644
-index 18095ba87a5a..000000000000
---- a/Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.txt
-+++ /dev/null
-@@ -1,88 +0,0 @@
--Nuvoton NPCM PWM and Fan Tacho controller device
--
--The Nuvoton BMC NPCM7XX supports 8 Pulse-width modulation (PWM)
--controller outputs and 16 Fan tachometer controller inputs.
--
--The Nuvoton BMC NPCM8XX supports 12 Pulse-width modulation (PWM)
--controller outputs and 16 Fan tachometer controller inputs.
--
--Required properties for pwm-fan node
--- #address-cells : should be 1.
--- #size-cells	: should be 0.
--- compatible	: "nuvoton,npcm750-pwm-fan" for Poleg NPCM7XX.
--				: "nuvoton,npcm845-pwm-fan" for Arbel NPCM8XX.
--- reg			: specifies physical base address and size of the registers.
--- reg-names	: must contain:
--					* "pwm" for the PWM registers.
--					* "fan" for the Fan registers.
--- clocks		: phandle of reference clocks.
--- clock-names	: must contain
--					* "pwm" for PWM controller operating clock.
--					* "fan" for Fan controller operating clock.
--- interrupts	: contain the Fan interrupts with flags for falling edge.
--- pinctrl-names	: a pinctrl state named "default" must be defined.
--- pinctrl-0	: phandle referencing pin configuration of the PWM and Fan
--					controller ports.
--
--fan subnode format:
--===================
--Under fan subnode can be upto 8 child nodes, each child node representing a fan.
--Each fan subnode must have one PWM channel and at least one Fan tach channel.
--
--For PWM channel can be configured cooling-levels to create cooling device.
--Cooling device could be bound to a thermal zone for the thermal control.
--
--Required properties for each child node:
--- reg : specify the PWM output channel.
--	integer value in the range 0 through 7, that represent
--	the PWM channel number that used.
--
--- fan-tach-ch : specify the Fan tach input channel.
--		integer value in the range 0 through 15, that represent
--		the fan tach channel number that used.
--
--		At least one Fan tach input channel is required
--
--Optional property for each child node:
--- cooling-levels: PWM duty cycle values in a range from 0 to 255
--                  which correspond to thermal cooling states.
--
--Examples:
--
--pwm_fan:pwm-fan-controller@103000 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--	compatible = "nuvoton,npcm750-pwm-fan";
--	reg = <0x103000 0x2000>,
--		<0x180000 0x8000>;
--	reg-names = "pwm", "fan";
--	clocks = <&clk NPCM7XX_CLK_APB3>,
--		<&clk NPCM7XX_CLK_APB4>;
--	clock-names = "pwm","fan";
--	interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&pwm0_pins &pwm1_pins &pwm2_pins
--			&fanin0_pins &fanin1_pins &fanin2_pins
--			&fanin3_pins &fanin4_pins>;
--	fan@0 {
--		reg = <0x00>;
--		fan-tach-ch = /bits/ 8 <0x00 0x01>;
--		cooling-levels = <127 255>;
--	};
--	fan@1 {
--		reg = <0x01>;
--		fan-tach-ch = /bits/ 8 <0x02 0x03>;
--	};
--	fan@2 {
--		reg = <0x02>;
--		fan-tach-ch = /bits/ 8 <0x04>;
--	};
--
--};
-diff --git a/Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.yaml
-new file mode 100644
-index 000000000000..954ba7d38b93
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.yaml
-@@ -0,0 +1,132 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/npcm750-pwm-fan.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Nuvoton NPCM7xx/NPCM8xx PWM and Fan Tach Controller
-+
-+maintainers:
-+  - Tomer Maimon <tmaimon77@gmail.com>
-+
-+description: |
-+  The NPCM7xx/NPCM8xx family includes a PWM and Fan Tachometer controller.
-+  The controller provides up to 8 (NPCM7xx) or 12 (NPCM8xx) PWM channels and up
-+  to 16 tachometer inputs. It is used for fan speed control and monitoring.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nuvoton,npcm750-pwm-fan
-+      - nuvoton,npcm845-pwm-fan
-+
-+  reg:
-+    maxItems: 2
-+    description: Register addresses for PWM and Fan Tach units.
-+
-+  reg-names:
-+    items:
-+      - const: pwm
-+      - const: fan
-+
-+  clocks:
-+    maxItems: 2
-+    description: Clocks for the PWM and Fan Tach modules.
-+
-+  clock-names:
-+    items:
-+      - const: pwm
-+      - const: fan
-+
-+  interrupts:
-+    description: |
-+      Contains the Fan interrupts with flags for falling edge.
-+      For NPCM7XX, 8 interrupt lines are expected (one per PWM channel).
-+      For NPCM8XX, 12 interrupt lines are expected (one per PWM channel).
-+    minItems: 8
-+    maxItems: 12
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^fan@[0-9a-f]+$":
-+    type: object
-+    $ref: fan-common.yaml#
-+    unevaluatedProperties: false
-+
-+    properties:
-+      reg:
-+        maxItems: 1
-+        description: |
-+          Specify the PWM output channel. Integer value in the range 0-7 for
-+          NPCM7XX or 0-11 for NPCM8XX, representing the PWM channel number.
-+
-+      fan-tach-ch:
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        description: |
-+          The tach channel(s) used for the fan.
-+          Integer values in the range 0-15.
-+
-+      cooling-levels:
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        description: |
-+          PWM duty cycle values in a range from 0 to 255 which
-+          correspond to thermal cooling states. This property enables
-+          thermal zone integration for automatic fan speed control
-+          based on temperature.
-+
-+    required:
-+      - reg
-+      - fan-tach-ch
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - clocks
-+  - clock-names
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/nuvoton,npcm7xx-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    pwm_fan: pwm-fan@103000 {
-+        compatible = "nuvoton,npcm750-pwm-fan";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        reg = <0x103000 0x2000>, <0x180000 0x8000>;
-+        reg-names = "pwm", "fan";
-+
-+        clocks = <&clk NPCM7XX_CLK_APB3>, <&clk NPCM7XX_CLK_APB4>;
-+        clock-names = "pwm", "fan";
-+
-+        interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pwm0_pins &fanin0_pins>;
-+
-+        fan@0 {
-+            reg = <0>;
-+            fan-tach-ch = <0 1>;
-+            cooling-levels = <64 128 192 255>;
-+        };
-+
-+        fan@1 {
-+            reg = <1>;
-+            fan-tach-ch = <2>;
-+        };
-+    };
--- 
-2.34.1
-
+Frank
 
