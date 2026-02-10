@@ -1,221 +1,375 @@
-Return-Path: <devicetree+bounces-264310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264312-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wFeZOnoBi2npPAAAu9opvQ
-	(envelope-from <devicetree+bounces-264310-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:59:22 +0100
+	id 8FEMDMsBi2npPAAAu9opvQ
+	(envelope-from <devicetree+bounces-264312-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:00:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75181119492
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:59:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3D8B1194DE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:00:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E8AE1303CC3B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:54:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4DB8E30C4517
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:55:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6130C342CA2;
-	Tue, 10 Feb 2026 09:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C54342510;
+	Tue, 10 Feb 2026 09:55:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZQz7nBck"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="PV0SBnoo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011056.outbound.protection.outlook.com [40.107.130.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B359E342524
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 09:54:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770717291; cv=none; b=iiKQNmROlbOgEICdPhLKVdDIduXeohrwHfOJsLxUhfAqgMlj7Zb2ANpFs0QngWv6La0PBtPJQJGBF96CMMKXy8zcOlJqlVNdUAG9AgrMEErVlTlNrfmWBuEWFr6R+gzmKcFjygXnGbztgLqrh6RDzDLVpEleqxo7kFnBt8AORVM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770717291; c=relaxed/simple;
-	bh=HxxenadFwN0QecO/VcAoIcmjFPcwyrISlXCM0v/oOYo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=NlKDjTMocsIz4pLMDPi6qpXfqJ3/1YEJrLuH5pSurGdqWkxaMTjmPieoc2dOHfl6FyDR/J11tQFf+e1F5L09QRahHQjwCeRdrVPmHEdcChFALcCWxAaEf+mXIi6MFSNKOv/59p2zSTusfvFLxUr9F/bivUZ0jpSQ0M2wDm85M5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZQz7nBck; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-48334ee0aeaso6421255e9.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 01:54:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1770717288; x=1771322088; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=8HYdS+zrmd+b3Wrxo0gB3qyloTrSaCZ1qSRZuELJtL4=;
-        b=ZQz7nBckSlVgz3NphooJaa4UG/JHDyLHzGwmCJrkG3TW0W46js5oASREoep3pjUDeX
-         hY98/9Qvbt9lVdm9We9DLBc1PNR+mlInuHdl/4Wwi9mGrNgrz+S5vPy7Grw9dsEJs1vi
-         YVSpbsP3xvFbPHVz19ui1gt1/tH6oRt/FMAmyq68Pm9V1+bcKvQ+pAmJ3whgwbRpF/go
-         iNGy/EhkvHhDFT9kEwrXIWpF14HZrCgeddPgNGBMQkfq7XBuiNoYS95dsYM1JFFO4095
-         u6su+gUqs5ZGHINTxlZiLKwFsMVne/PaglGpr+SNkALVS/SkgRUtGeuSH/lVD8Bb6LhR
-         iSgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770717288; x=1771322088;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8HYdS+zrmd+b3Wrxo0gB3qyloTrSaCZ1qSRZuELJtL4=;
-        b=YgsUFDEgid/fb1bB1/DYumhOBSH9ltRiBO+787XQKe9rlK0bKDWHU6xKInBh47G3zZ
-         lx+Dnvp6PgoR+Lg7zCy0vxcbq/YSrM+zW1AEUlKZD5jugbrx7Qw7KytworsYkvi4/yGH
-         ZGbRI05k2YW/FONoGPh26bc78IkQqyKh3xMt0rBsXTNbNYyZVn9HT47TBfwua22yR53i
-         RnI+zJ5/3+3QtLxuYQNY/gcZu5CPWPspud8TQyXxEtPbnr/kEwP/+ol/z+UxuX8p6y+R
-         u6bLErUADgBTgRcKRtE1kr79qlPCVjmsEYzn0yBLSPX0rnshdA+b3XGvLt+CvfTod11z
-         iEOw==
-X-Forwarded-Encrypted: i=1; AJvYcCVjfxHJwy7y0jMNFS9EUL6JRV23DJh0WlpKugJuA4wyWQlxitKH7bscNhTaSR+au0MPL3lD5ol401Mg@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNKIcrAHmyolSmYKY0JXXkKgjPMa8LHtgisSW/EgfZWp6wEit4
-	rOtWbWE1sUDlmKcErk3F+IOZuwded1b1lPXJtIHoeFYYsE956n9J1qOVFCBk4OLGmRQ=
-X-Gm-Gg: AZuq6aIITA72N2NMqxJ1SLuO4t5PhDfZMswoscmc8/WUthTGUR+K7xm/uODl9dH83WK
-	zmMcR7Eea3lILYUm+WzMpxWhUEr5g1yd9PAaefloLQG5H+wUt1sXTNoDzGy2q2I8mrE3Tat2kg+
-	8+zfuN0kjzoKmyGgn1ms9ZNHrmrsk1eQFTtsHSE69zgB/onekRjTyngJxAqEx829hdsVhdlvV0x
-	QEkJaYWe8bexFaRZO56d7nNk+VWlDYhIE2MRGsdpUfvGEzzBQD93Ur6ccokEIM0niKOB/P2Mm9U
-	7JAAWKmR1q4nwKE2GroF0WmGpbQJ/7QHT739TcisydUZ6a2x8JrRTbfCKQ8LrT+ugzT9V+uUEoq
-	my5qUm8A+Ro5XrJ7cKKEBk/kfv7436iakRKqIPsL975GFOigRPXpq4WAWJ0teaGsELSPYdE1ZiL
-	EjWAaBqWjRd6PF9WVwJDGpj3NvhiJoSmtzQ6CHD4sK
-X-Received: by 2002:a05:600c:3509:b0:477:a9e:859a with SMTP id 5b1f17b1804b1-4832021604amr182180095e9.22.1770717288054;
-        Tue, 10 Feb 2026 01:54:48 -0800 (PST)
-Received: from draszik.lan ([212.129.79.225])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48320961701sm214759035e9.5.2026.02.10.01.54.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Feb 2026 01:54:47 -0800 (PST)
-Message-ID: <6cb639e1b655efb68aebc8b21ae34450b8936830.camel@linaro.org>
-Subject: Re: [PATCH v2 06/12] mfd: sec: add support for S2MU005 PMIC
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>, Lee Jones
- <lee@kernel.org>,  Pavel Machek <pavel@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
- <conor+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, Chanwoo
- Choi	 <cw00.choi@samsung.com>, Sebastian Reichel <sre@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, Jonathan Corbet	 <corbet@lwn.net>, Shuah
- Khan <skhan@linuxfoundation.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org, 
-	linux-doc@vger.kernel.org
-Date: Tue, 10 Feb 2026 09:55:14 +0000
-In-Reply-To: <DG74Y3QSCLIO.32Q8ZKCTISXXB@disroot.org>
-References: <20260126-s2mu005-pmic-v2-0-78f1a75f547a@disroot.org>
-	 <20260126-s2mu005-pmic-v2-6-78f1a75f547a@disroot.org>
-	 <69e2c1b1a2f3d2ed5e5da995cc5ee49bb3627597.camel@linaro.org>
-	 <DG74Y3QSCLIO.32Q8ZKCTISXXB@disroot.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8147342CB1;
+	Tue, 10 Feb 2026 09:55:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.56
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770717356; cv=fail; b=Vbornawq0pt4R3y5QIZVE8CjOAYESJeR/lPYzl+XQWKTUHZY6OU7W+yaDBdlI018ofMugjmCj3PkIuT8WjEWPxDOXhe/XEbAa+PxrO6RWIrloeAB5Eae9Xo9U1XO677pDkj8TYMf5kffFP/2YxrizJG7lr07AeHMO82HhVD7IVw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770717356; c=relaxed/simple;
+	bh=HCZtLnp3lsmwCblUF5x1TA6li3abu4eTv9ea7HU7R0Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=gDNav7vblJwFXgnJ8VQO4jIx5tzw5+5aLdKV9RvM7uHzJUUbR5KJ3a+mCmcIp6aImOL5tJaxYKWEx7E4psW4c+S+T6ufncqBBlWZLCvt2X3/dWftSbM176hKTP7vaZDAxoJQx9gjYHA8Mb3XL4Ft2ZDUKz/mF6d31m0trLgVGyk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=PV0SBnoo; arc=fail smtp.client-ip=40.107.130.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=L0c8wKstVUqJ6CtQ8YhSthf/2U+WP35zsA4LRmNNujMfTZ5hPBxExsaNgD5Pjjk0YwPd/IR/GEgel2nBeRSdQzXtYNmBk2rxfsvZNvoboPJB3F+Jh1Dew51EMMJbL2cS9OLMDSNDzniZ4Fbrntl9OeYI/+KiQ+5axphyitax+bQa/8qy+avconprL+jQ/2TGgCE6P3U9CCc+cDZuAa6INhtgslI4sYKHOCj0HoyaalHcoEim4cbJRXx7kqdyHLrAPxOoUKE/Ki0mhxKi84YqYvQc8tsUDe7RTTXngBcXs4GMoTztJC/Y1opGvebfqrGmzxamAMGZfsY7LOa16sUjRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3uwkM0KsGhEaupU65gmEMHgwAyQCXvflIrMhYFriUZs=;
+ b=lMCTC9i47IolJyLOIylU3XrINqhoLN7YB48cQTRlDRwH1+PK++kxPkDK+H1+8Q77Ti+gXwzKML3jPX3ElpSoHgPNih/RWUeUuihg1ph+6pBBF+cQv0kMXpOOeU2/naI9GDvrMPqLxr49Ui05TF1m7Cm9N60NplvLyp0V1zGd6RXGv3EyKX5nCAKKojaPMiu6Ax18OpoPxJcAMM7kQSZ+c4g9EIH2NbFX0cwVuVJEP8rR3xN1x8qZ3cQajL6OxFUCDG7YF/toHYlFNPkWsZnk3DGGi9g8IB/CE6abjIhXWGTAjGbQ2DNcsUZSEdOOSC9AcElzviGU08R9eJd1RMvsoQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3uwkM0KsGhEaupU65gmEMHgwAyQCXvflIrMhYFriUZs=;
+ b=PV0SBnoobDeB2jgdBbtL8FxMoLeI2DHl9PFv7zRSvluE1clNAXZsZ1fk/4W6OoGmEasCXZcDVCOdxNP1oO7nIfz01bur/QmK5HbiQxUaNBZmg23Gtl2SIYoYetEEEhTScAGedb239pbtro5LdnUofIu/gZO2jIxNch1B/yVsa3Ss1nf8AcGCoEvoH9bpahmLEvcY8OxNR4gAKZ/IUL27JtUoYVnrTb2b4oOYNQtiphJSwUYXGFe02tkFlErOaaMmxx0bWBAgG/LQfSQBrR/MYyh/QHRPXPVqENUmVKsl1J3gGeb9u+2xRXZZ6SbazzdY4VwDlgXranuZKGiWf5VJEw==
+Received: from DU2P250CA0023.EURP250.PROD.OUTLOOK.COM (2603:10a6:10:231::28)
+ by PA1PR10MB8476.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:445::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.17; Tue, 10 Feb
+ 2026 09:55:46 +0000
+Received: from DU2PEPF00028D0F.eurprd03.prod.outlook.com
+ (2603:10a6:10:231:cafe::82) by DU2P250CA0023.outlook.office365.com
+ (2603:10a6:10:231::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.19 via Frontend Transport; Tue,
+ 10 Feb 2026 09:55:48 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ DU2PEPF00028D0F.mail.protection.outlook.com (10.167.242.23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9587.10 via Frontend Transport; Tue, 10 Feb 2026 09:55:46 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 10 Feb
+ 2026 10:57:36 +0100
+Received: from [10.48.86.212] (10.48.86.212) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 10 Feb
+ 2026 10:55:45 +0100
+Message-ID: <516036b6-b825-4a29-a48a-5d3af3234968@foss.st.com>
+Date: Tue, 10 Feb 2026 10:55:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] dt-bindings: soc: st: document the RISAB firewall
+ peripheral
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20260209-stm32_risab-v1-0-ef0b2b6a7e0a@foss.st.com>
+ <20260209-stm32_risab-v1-1-ef0b2b6a7e0a@foss.st.com>
+ <ee9759a6-1779-4891-8716-24c36134198a@kernel.org>
+Content-Language: en-US
+From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <ee9759a6-1779-4891-8716-24c36134198a@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PEPF00028D0F:EE_|PA1PR10MB8476:EE_
+X-MS-Office365-Filtering-Correlation-Id: bae70064-8359-40a6-68f6-08de688a9011
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|36860700013|1800799024|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SjhockZRNlptUFVGM2ZldHFUN25IaUplNTJYUU1NRWpXUDhzRVdmT09seDdz?=
+ =?utf-8?B?R09BNSs2L296T0d0QTAxRS9GOUdUc0FRdzlpaEtLVTh5TDFlcXd1MHBzMHVu?=
+ =?utf-8?B?emhibUkrSy9YU3Y0TTdFRHlnS2VsTDVoQ21aWkI3Q2l3MU5aSkJVb3NEWlpa?=
+ =?utf-8?B?dkhuYlBITXN6cWhWR1VsTWtHeEpFMk93RjdNcTZuUU9uRWg2bEZ5M2tGSnU5?=
+ =?utf-8?B?K010cWdUK3JDV3gxOC9pckthYVB6VEZmNjRESnowWkFJUXc4TlVRSDNldEN0?=
+ =?utf-8?B?cnFyYUhYN2wwMWZ1VkxJeUtmbU8rUVRpeitKc1Vzd2w5SUMrUTl2b2MxaTk2?=
+ =?utf-8?B?aHlHSVdUd1BxS1NLdGZLQXNFNFJydjdabHE3RUVNV2RId3hHQmxlSHNJcEdO?=
+ =?utf-8?B?Zy9oeG5XL3ZmQU9YdlIzUzBLV3JOejhGdWg4MlV5WC9JTmI1RE5MeXl3d2tv?=
+ =?utf-8?B?Mng4Q2psUnhpMUlwZGpYK3lvMUlVWjJCVWYwM1RKVXM1UnFITXREblpIN0xy?=
+ =?utf-8?B?T20ya1pOeGkwTG01bHFkZ2JpU2hPOUgyQmhmNlBEc1BtKzVLRlplNmVPSHFr?=
+ =?utf-8?B?R2tCeEs0aFVlMXB2ZmxjM3ZwMHFjMlBvTUx6M1dwTUNkY2cvaS9rSWE2SE1r?=
+ =?utf-8?B?ejZqM2RiYllvMmxiWStKYVNpY0ViTXYyV1A0TW1rTFRSNDBLZzlzZVRUdmNK?=
+ =?utf-8?B?Lys2Ylc0YjlHR0xSa0gxcGhKWjJTU285TkkvWWxWcEh2SFJkNUh6YXpiTkRk?=
+ =?utf-8?B?ZWg1Y0JEOE1BUzBFajRjYjVVbERtOUptRlo2Vkd1Wk1uR2pOdmxQMzV5bTlT?=
+ =?utf-8?B?ZGNodzdKQnRKM2txS2VweFdPakx1OWJNYTkzMW0rQmxTbGZnbGFrdzVtTzY1?=
+ =?utf-8?B?cU9INkFFb01ObGJ6UVdYNkVlTWNOOU5MZFVXN3gzcUxXb3JwdzZqdWxvSU8x?=
+ =?utf-8?B?TFJlLzA5RTFGbmVQZUlYRk9sZ2RsaTJJbFZPUlV6R0svU1V1eVloQ3RqS1hQ?=
+ =?utf-8?B?dHRubzJSZ000TExyM3FFNU0rOHZMQWg5SytmKzlpSmZMTHIwdk9MNy9aRTdk?=
+ =?utf-8?B?Y2xwS3l2NFB6NjlNVUVxb0I5aEtDRnA1OWxIQTdMN0VxVzRMbFp1eGVMKzh3?=
+ =?utf-8?B?Z3VqU01NYUYwa1RZcXBKKy85b3N6ekIrVCtySUNGbFg3RGgySG9aOTMyVEJM?=
+ =?utf-8?B?dnExWWM0OE1KdTBaaGhXampoSWJGdTAvblZzQkV0OTJndFpSZkE0RnZseU40?=
+ =?utf-8?B?MldhRnBFSWwwVkxEMVR0aTNGdTQ4bG4zNGlLSDd3clpUUDJOeVVyMFAreU5N?=
+ =?utf-8?B?UWhIUUozMit4MFR1WkJLNVhSQlI2MHNDVTJEQXppMWdvbUZOQmdLUVZxcnNy?=
+ =?utf-8?B?NG51ZVE5dU5YeDV3dG5vRGhncTJXR21nOUhLZmVNd1NUVy9nR0tldEZ6Mk0w?=
+ =?utf-8?B?SmJDbnQwSGhwTnJDVzA5eHBQckJiSUNiUEEyek14T0FyREcyMFpna0xvN285?=
+ =?utf-8?B?d1J4aC8rSVpPWnNGUytjMm9lNVd6d2FycGdmOHJYdUtjNnRtQTN0T1ZDQkV4?=
+ =?utf-8?B?akdmZldFdHIzb0NTRCt5UGdWRThETVREMXBrMHU2TjQvNlB3SWxwSjJzU3gv?=
+ =?utf-8?B?ZmErMEpkeTVpSkRXcWJmbGJibkJYTkk0SStUejNLV2dxR1BGMTZNTzI5VmJz?=
+ =?utf-8?B?eE9kU2l3V1ZOWlUyWHd6ZDBUSzh6Q1ozWFBPSlFTem5zc0MyWGNYZ0hnSnBH?=
+ =?utf-8?B?VXBiZGZFYytlVmxCK1ZMNkcwQVJYaUFhWmFMQmVkbXNNdVU0VVNYMDFVZU50?=
+ =?utf-8?B?OWJ3MVpVMldoYWMza2ZaYitRY0tWczdKNkFPdmI5am5YaFZEM3JFM3U3TUNK?=
+ =?utf-8?B?cklEZVNmejFYcHRNeE4yTjArdnFFVGptTHVQbXI0ZnVua2ZJUTJ4dGZ6UVRG?=
+ =?utf-8?B?NFpmQkpvYmpWaE5sN0hQYm03QUdPVUl3MUpUN1pCUnR1T2I4UUh1WWljWjV3?=
+ =?utf-8?B?VEVpVXB5ak1nZmk4RW8rc2ZaNGRCbFlNNm1XL2hxeG1Pc2lXYlZacTVGcnU4?=
+ =?utf-8?B?Skx1NG9zSlVUK0tHMEFNRWVINFh6MmRDRVRjSHJWbWNlUFhRb09FZ2w5a0lm?=
+ =?utf-8?B?N3hIK1Bud1g1bi80TndueFZVcnNacTlTV1Rhb3U0dzZkWnBWa056NXhGWkF4?=
+ =?utf-8?B?cUFJZlJhaEpVdVptRzNkcTJnOE0vZStBblVNbytCKzYzK2N6bVVvcjI5ajB1?=
+ =?utf-8?Q?xag0RAcXX2DLDZqiwB2nkszj+VxWaYBG3q5dOLKeNk=3D?=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024)(13003099007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	63kLOq1UgZ3aWZWkA0cBJrDpTGHUZfsdjbb+JGP/6dmEpYRczHjofI3JKXHBm+usVzq4iiTlPKYq1faN0mOu1ovoCsIXwGwfGQZkVjxm4o1N6D25ydPSBZpwwUIPbTnzolcl7bKdEx2H0F+mGISkfMm292aGTE7aGGpn8KsKEpq653hR4bX6b1lbfiEWDDvpyycsExm7ZVMI7R+s3NmgXQdko5EuSvN1WWd1WOiTvEdBhbrH9CP/0KpKrW12xYpGWT0f0ja5Nb1t9eFYdzmH0E8wX4z5z6SL8MLF2CVFFyAuSwyDn8rizufuwocgQGdY8+4pjkHv3f4BODI+Is27YcDG8tYi5qZsGuQ/jD3ErFedZCLr5PehBTycuxLAESVAyGG8yUc9MMwtGS3bHU/VM9nNaeC4xi4W+wRHvnH9U9OIZMtvqVZori+Pd87AlZZ3
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2026 09:55:46.3853
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bae70064-8359-40a6-68f6-08de688a9011
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU2PEPF00028D0F.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR10MB8476
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
+	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264310-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264312-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,foss.st.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RSPAMD_URIBL_FAIL(0.00)[devicetree.org:query timed out];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[420f0000:email,foss.st.com:mid,foss.st.com:dkim,st.com:email,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[gatien.chevallier@foss.st.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[foss.st.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:mid,linaro.org:dkim,disroot.org:email]
-X-Rspamd-Queue-Id: 75181119492
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RSPAMD_EMAILBL_FAIL(0.00)[risab.420f0000:query timed out,gatien.chevallier.foss.st.com:query timed out];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: C3D8B1194DE
 X-Rspamd-Action: no action
 
-On Thu, 2026-02-05 at 21:02 +0530, Kaustabh Chakraborty wrote:
-> On 2026-02-04 15:23 +00:00, Andr=C3=A9 Draszik wrote:
-> > Hi,
-> >=20
-> > On Mon, 2026-01-26 at 00:37 +0530, Kaustabh Chakraborty wrote:
-> > > Samsung's S2MU005 PMIC includes subdevices for a charger, an MUIC (Mi=
-cro
-> > > USB Interface Controller), and flash and RGB LED controllers.
-> > >=20
-> > > S2MU005's interrupt registers can be properly divided into three regm=
-ap
-> > > IRQ chips, one each for the charger, flash LEDs, and the MUIC.
-> > >=20
-> > > Add initial support for S2MU005 in the PMIC driver, along with it's t=
-hree
-> > > interrupt chips.
-> > >=20
-> > > Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> > > ---
-> > > =C2=A0drivers/mfd/sec-common.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 16 ++
-> > > =C2=A0drivers/mfd/sec-i2c.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 12 ++
-> > > =C2=A0drivers/mfd/sec-irq.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 74 ++++++++
-> > > =C2=A0include/linux/mfd/samsung/core.h=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 1 +
-> > > =C2=A0include/linux/mfd/samsung/irq.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
- 66 ++++++++
-> > > =C2=A0include/linux/mfd/samsung/s2mu005.h | 328 +++++++++++++++++++++=
-+++++++++++++++
-> > > =C2=A06 files changed, 497 insertions(+)
-> > >=20
->=20
-> [...]
->=20
-> > > diff --git a/drivers/mfd/sec-i2c.c b/drivers/mfd/sec-i2c.c
-> > > index 3132b849b4bc4..3f1d70cc3292b 100644
-> > > --- a/drivers/mfd/sec-i2c.c
-> > > +++ b/drivers/mfd/sec-i2c.c
-> > > @@ -17,6 +17,7 @@
-> > > =C2=A0#include <linux/mfd/samsung/s2mps14.h>
-> > > =C2=A0#include <linux/mfd/samsung/s2mps15.h>
-> > > =C2=A0#include <linux/mfd/samsung/s2mpu02.h>
-> > > +#include <linux/mfd/samsung/s2mu005.h>
-> > > =C2=A0#include <linux/mfd/samsung/s5m8767.h>
-> > > =C2=A0#include <linux/mod_devicetable.h>
-> > > =C2=A0#include <linux/module.h>
-> > > @@ -130,6 +131,11 @@ static const struct regmap_config s2mpu05_regmap=
-_config =3D {
-> > > =C2=A0	.val_bits =3D 8,
-> > > =C2=A0};
-> > > =C2=A0
-> > > +static const struct regmap_config s2mu005_regmap_config =3D {
-> > > +	.reg_bits =3D 8,
-> > > +	.val_bits =3D 8,
-> > > +};
-> >=20
-> > No cache? And what is the .max_register value?
-> >=20
->=20
-> This was in the previous revision, but I ended up removing it because
-> (at least I thought at that time) interfered with interrupts firing in
-> some way. The actual issue was unrelated, so I will add it back.
->=20
-> However, there is also another thing I see in logs:
->=20
-> sec-pmic-i2c 2-003d: using zero-initialized flat cache, this may cause un=
-expected behavior
->=20
-> This is due to REGCACHE_FLAT, I am not sure if I should just ignore
-> this.
-
-I think the error might be because you should also specify num_reg_defaults=
-_raw:
-
-.max_register =3D xxx,
-.num_reg_defaults_raw =3D xxx + 1,
 
 
-Cheers,
-Andre'
+On 2/10/26 08:57, Krzysztof Kozlowski wrote:
+> On 09/02/2026 15:59, Gatien Chevallier wrote:
+>> Add documentation on the RISAB peripheral that is a memory firewall on
+> 
+> What is RISAB? It's in capitals, so some sort of acronym?
+> 
+
+I'll add a small description as well in the commit message to justify
+the acronym.
+
+>> the stm32mp2x platforms.
+>>
+>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+>> ---
+>>   .../bindings/soc/st/st,stm32mp25-risab.yaml        | 74 ++++++++++++++++++++++
+> 
+> soc is not a dumping ground. Find suitable subsystem for it.
+> 
+
+Considering the RISAB filters bus accesses, I guess its place
+is next to the RIFSC in drivers/bus. Plus, all stm32 firewalls
+would be located at the same spot.
+
+> 
+>>   MAINTAINERS                                        |  5 ++
+>>   2 files changed, 79 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/st/st,stm32mp25-risab.yaml b/Documentation/devicetree/bindings/soc/st/st,stm32mp25-risab.yaml
+>> new file mode 100644
+>> index 000000000000..d05a683c594d
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soc/st/st,stm32mp25-risab.yaml
+>> @@ -0,0 +1,74 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/soc/st/st,stm32mp25-risab.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: STM32 Resource isolation peripheral unit for address space protection
+>> +       (block-based)
+> 
+> So maybe here would be RISAB explanation... Use proper capital lettes in
+> the title (e.g. AP or Chicago style, I don't think we do any preference
+> or consistency, especially that most of us including myself don't even
+> know the difference).
+> 
+
+It is the non-acronym version. Very well, I will change that for V2.
+
+>> +
+>> +maintainers:
+>> +  - Gatien Chevallier <gatien.chevallier@foss.st.com>
+>> +
+>> +description:
+>> +  The RIF (resource isolation framework) is a comprehensive set of hardware
+>> +  blocks designed to enforce and manage isolation of STM32 hardware resources,
+>> +  like memory and peripherals. The RISAB peripheral is part of the RIF and is
+>> +  used to protect internal RAMs by applying access rights per RISAB fixed-size
+>> +  page. Through RISAB registers, a trusted domain, or the domain to whom the
+>> +  page configuration has been delegated, assigns memory pages to one or more
+>> +  security domains (secure, privilege, compartment).
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: st,stm32mp25-risab
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: RISAB bus clock
+>> +
+>> +  memory-region:
+>> +    minItems: 1
+>> +    maxItems: 32
+>> +    description:
+>> +      Phandle to nodes describing memory regions to be configured in the RISAB
+>> +      by the trusted domain of at least a RISAB page size.
+>> +      These regions cannot overlap. A zone must be within st,mem-map range and
+>> +      can be represented by one or more pages.
+>> +
+>> +  st,mem-map:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    description: Memory address range covered by the RISAB.
+>> +    items:
+>> +      - description: Memory range base address
+>> +      - description: Memory range size
+> 
+> Why do you need this property if you have memory-region already? This
+> also should be part of <reg>, although this mixing with memory-region is
+> anyway confusing.
+> 
+
+The RISAB is a memory firewall peripheral covering internal RAMs. It is
+possible to configure multiple memory regions within these RAMs (done by
+the Trusted Domain) with security, privilege and compartment isolation.
+This peripheral allow 4kBytes page granularity. Each page can hold
+different access rights, with 32 pages at most (hence the maxItems: 32).
+That is some information that can be added to the documentation.
+
+Moreover, when a region is delegated to a non-secure privileged
+component, this component can configure the privilege level necessary to
+access the region.
+
+This property gives me the opportunity to get the memory range covered
+by the RISAB. "reg" here is used to access the actual RISAB registers
+holding the configuration.
+
+>> +
+>> +  st,srwiad:
+>> +    description:
+>> +      When set, the trusted domain configures the RISAB to allow secure
+>> +      read/write data accesses to non-secure blocks and pages. Secure execute
+>> +      remains illegal.
+>> +    type: boolean
+> 
+> Shouldn't this be a property of given block from memory-regions, not
+> entire RISAB?
+> 
+
+It is a global setting for the whole RISAB (in RISAB_CR register) so I
+think it's fine keeping it at RISAB level.
+
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - st,mem-map
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/st,stm32mp25-rcc.h>
+>> +
+>> +    risab1: risab@420f0000 {
+> 
+> Drop unused label.
+> 
+
+Ack
+
+Thanks,
+Gatien
+
+>> +        compatible = "st,stm32mp25-risab";
+>> +        reg = <0x420f0000 0x1000>;
+>> +        clocks = <&rcc CK_ICN_LS_MCU>;
+>> +        st,mem-map = <0xa000000 0x20000>;
+>> +        st,srwiad;
+>> +    };
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index e08767323763..b9a1276e94a9 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -25092,6 +25092,11 @@ F:	Documentation/arch/arm/stm32/stm32-dma-mdma-chaining.rst
+>>   F:	Documentation/devicetree/bindings/dma/stm32/
+>>   F:	drivers/dma/stm32/
+>>   
+>> +STM32 SoC FIREWALL DRIVERS
+> 
+> s/SoC/SOC/
+> 
+> 
+> Best regards,
+> Krzysztof
+
 
