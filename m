@@ -1,276 +1,175 @@
-Return-Path: <devicetree+bounces-264259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264261-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QEJ/F+/kimndOgAAu9opvQ
-	(envelope-from <devicetree+bounces-264259-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:57:35 +0100
+	id GFA4HpLlimndOgAAu9opvQ
+	(envelope-from <devicetree+bounces-264261-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:00:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBA0611812A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:57:34 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2D6E118160
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:00:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 23E1A30090BD
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:57:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D2E44302BDCE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:00:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2472C33A6FB;
-	Tue, 10 Feb 2026 07:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0762333C522;
+	Tue, 10 Feb 2026 08:00:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QCr4TlC9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cf1vDTs7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D5133A6E4;
-	Tue, 10 Feb 2026 07:57:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D732B33BBBA;
+	Tue, 10 Feb 2026 08:00:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770710253; cv=none; b=LFEg4Ml1jbHujnicAaSrejtwyf2jSMpf5YnbdXhITrp23ao4vwYJuox1/I432q0an5S+7cI7AKCS+NYwPf8lJbe7g/j9CsoXnIVHYrWVUXEGsQV12Y/uR3out6+ibJV+V7SV5O1MHfSt5inS4eZYc4ANEaISlrM1OJIICRhWPOY=
+	t=1770710415; cv=none; b=K6Oj3q9VY8LPTXiUUgfxRvvOa0NjOQz25d/Cf3GxgJL5KaeJ0pQqqqoM2RTcPC78xlguntzxxM4ZexOwdAMJjxvlFyRaPptKZ9UDhvObarNEq9CNc/dwnBRvtXBmEdET7JgfEZAZGUCtAQd5vxYPGe0Q7YC5AEpGRXyBkbjKkJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770710253; c=relaxed/simple;
-	bh=3xPmINn1ZMlfn3sOVXZASDkUg8ApCtliQ4NNcv91JbA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NKnxlAsyCgqq1r+NHgJZpvJ5iLwdoIRqkDfnlOQODiWibfmDw6gX+0VUc6bnDUOgzNob5iFiN/kpKze2UUpmNVJf9WeGaDreF6NcqUxUOxLbyLL77GvMsDHbJulXEwzBOb5vhthofovWlOxtH11iia3WkOKfNCPNMZ0t+OJkYVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QCr4TlC9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C26AC116C6;
-	Tue, 10 Feb 2026 07:57:30 +0000 (UTC)
+	s=arc-20240116; t=1770710415; c=relaxed/simple;
+	bh=vGVI1GPobS6Ck1Wc7xRE4xQgoD9fzTTbpIBQJmAWkN8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tblai39I+SWkYbY8gX88aTez2U8vZ980dwFMKkSN/RuRregPlF31ngc4tvWpmyumGGIdXHoePztXs8jLAWZkbP9TCq6MJ0VeGxOTWUDDW/es1rODQGzivXTMX0f4D8CpTTF0AGUYyYna42ppAiMKcbIn0pcpWIJOf9+5GwSfybY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cf1vDTs7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4140C116C6;
+	Tue, 10 Feb 2026 08:00:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770710252;
-	bh=3xPmINn1ZMlfn3sOVXZASDkUg8ApCtliQ4NNcv91JbA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QCr4TlC9PPXrSd6FascMSq5PAq4+X0Mq/cnRMN54vszBHmhZllTd66sIR6XX0fAOB
-	 VIBFa5+yl5xqHESujHLOQi5M1CeRSjQnI1U0wCvpg12nwgiQhvb0SWLkSdtPXFp7Lh
-	 NwRLnXBwCiH7k1BB9A5mFWtPoIKLdbRZdZYvZYKOG+LhE4IlFXVsiXZHOhLTAWK2AF
-	 CIVi6RWe0bfPjrooWf19/pqmOzyIlil+ihK4hbwobhk7W4EwROsW7DHbV13/u7PB6m
-	 1WvtJf0z45lZRQXQkjU7ED31FTRB2T/3MEXCW6MzAwiE+78B1lgiRQut6jrBdlFf6d
-	 B1LrWC8j2sVCw==
-Message-ID: <ee9759a6-1779-4891-8716-24c36134198a@kernel.org>
-Date: Tue, 10 Feb 2026 08:57:28 +0100
+	s=k20201202; t=1770710415;
+	bh=vGVI1GPobS6Ck1Wc7xRE4xQgoD9fzTTbpIBQJmAWkN8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cf1vDTs7Vt5yAzTw7XCYMmNQVRMZNfbAE5sKfuaS06LYSpGraP0BFz/2Ekl4BUaaS
+	 t8eaACG3ybXmLyuBRT7bpXM5CHChiCP72i31nLi1jIOapgVehyRlOVVIx0kgCsgmIC
+	 eJ2ct79hJYRMzNYVD/reWGeObYu0yTo/r0OyMFwcfT1S+YlJWqRc2xYPknJ3zCNksP
+	 EKXK2DqAiNp43uRvSeaY0njRhWXUiM+/SHJE+cs9m64oBT4YnYlsXOhU0JZeHd1uFf
+	 08KQ4jwCIVKknAPLZ4f97rFp9cK1zF7xZy14rCr/OxQu2W1AuYCZfPpR1SHz0cq0D4
+	 n6wzNl5xqtZDg==
+Date: Tue, 10 Feb 2026 13:30:05 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v3 4/9] pci: pwrctrl: generic: support for the
+ UPD720201/UPD720202 USB 3.0 xHCI Host Controller
+Message-ID: <qd5egc42mkdofs4ey7gl664e5el2p5sxwluesjtm7gc3y66hez@l4dz3bd5xm6n>
+References: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-0-5b79c5d61a03@linaro.org>
+ <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-4-5b79c5d61a03@linaro.org>
+ <fbxbnou5mdlhaq5dpxr3wdzmjetwdp7auaaqeunc67tgk5ej2m@cnnkr2pcwy77>
+ <a4e55e91-0e03-4e63-8542-d8ad61b38906@linaro.org>
+ <o6e5qygss55p6npjgaicxffsqdpv7kojgidr46zinsvfpxfxug@vn67nq4k6jzk>
+ <b46da4da-93aa-4213-ad75-ec7709008b95@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: soc: st: document the RISAB firewall
- peripheral
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260209-stm32_risab-v1-0-ef0b2b6a7e0a@foss.st.com>
- <20260209-stm32_risab-v1-1-ef0b2b6a7e0a@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260209-stm32_risab-v1-1-ef0b2b6a7e0a@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b46da4da-93aa-4213-ad75-ec7709008b95@linaro.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264259-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[foss.st.com,kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-264261-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,420f0000:email,devicetree.org:url]
-X-Rspamd-Queue-Id: EBA0611812A
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com,google.com,vger.kernel.org];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D2D6E118160
 X-Rspamd-Action: no action
 
-On 09/02/2026 15:59, Gatien Chevallier wrote:
-> Add documentation on the RISAB peripheral that is a memory firewall on
-
-What is RISAB? It's in capitals, so some sort of acronym?
-
-> the stm32mp2x platforms.
+On Mon, Feb 09, 2026 at 03:59:20PM +0100, Neil Armstrong wrote:
+> On 2/9/26 15:49, Manivannan Sadhasivam wrote:
+> > On Mon, Feb 09, 2026 at 03:00:02PM +0100, Neil Armstrong wrote:
+> > > On 2/9/26 12:30, Manivannan Sadhasivam wrote:
+> > > > On Fri, Feb 06, 2026 at 03:50:32PM +0100, Neil Armstrong wrote:
+> > > > > Enable the generic pwrctrl driver to control the power of the
+> > > > > PCIe UPD720201/UPD720202 USB 3.0 xHCI Host Controller.
+> > > > > 
+> > > > > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > > > > ---
+> > > > >    drivers/pci/pwrctrl/generic.c | 4 ++++
+> > > > >    1 file changed, 4 insertions(+)
+> > > > > 
+> > > > > diff --git a/drivers/pci/pwrctrl/generic.c b/drivers/pci/pwrctrl/generic.c
+> > > > > index 08e53243cdbd..4a57a631362f 100644
+> > > > > --- a/drivers/pci/pwrctrl/generic.c
+> > > > > +++ b/drivers/pci/pwrctrl/generic.c
+> > > > > @@ -73,6 +73,10 @@ static const struct of_device_id pci_pwrctrl_slot_of_match[] = {
+> > > > >    	{
+> > > > >    		.compatible = "pciclass,0604",
+> > > > >    	},
+> > > > > +	/* Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller */
+> > > > > +	{
+> > > > > +		.compatible = "pci1912,0014",
+> > > > 
+> > > > No need to add the compatible to the driver. Just use the existing compatible as
+> > > > fallback in the binding/dts.
+> > > 
+> > > ???
+> > > 
+> > > Sorry but this is insane, in no world a standalone PCIe USB controller could be qualified as
+> > > compatible as a pciclass,0604 slot.
+> > > 
+> > 
+> > AFAIU, 'compatibility' implies that the driver can safely fallback and would
+> > still work. If we add dedicated compatibles for each endpoint devices, then we
+> > will just keep adding forever. Powering up a PCIe slot and an endpoint device
+> > are conceptually same.
 > 
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-> ---
->  .../bindings/soc/st/st,stm32mp25-risab.yaml        | 74 ++++++++++++++++++++++
-
-soc is not a dumping ground. Find suitable subsystem for it.
-
-
->  MAINTAINERS                                        |  5 ++
->  2 files changed, 79 insertions(+)
+> We're not speaking about driver here, but about compatible string which describes
+> a device, a PCI endpoint and a PCIe slot are 2 very different devices that are
+> nowhere compatible.
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/st/st,stm32mp25-risab.yaml b/Documentation/devicetree/bindings/soc/st/st,stm32mp25-risab.yaml
-> new file mode 100644
-> index 000000000000..d05a683c594d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/st/st,stm32mp25-risab.yaml
-> @@ -0,0 +1,74 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/st/st,stm32mp25-risab.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STM32 Resource isolation peripheral unit for address space protection
-> +       (block-based)
+> > 
+> > > Technically it would work just fine, but "compatibility" has a meaning....
+> > > 
+> > 
+> > I view compatibility interms of device operation, not device as a whole. But
+> > sure, I could be wrong. If the DT maintainers say so, I won't insist.
+> 
+> In the actual way it's defined _today_, the "slot" and "endpoint" power up schemes are
+> compatible, but I hope the slot bindings will get much more features to describe the
+> real world slots power properties. And no, endpoints will definitely not have the same
+> features as slots, using it as a fallback today is an error.
+> 
+> On the other side, adding a "simple-pci-endpoint" compatible that enables any supply
+> and clock would be a good solution, if the DT maintainers agrees of course.
+> 
 
-So maybe here would be RISAB explanation... Use proper capital lettes in
-the title (e.g. AP or Chicago style, I don't think we do any preference
-or consistency, especially that most of us including myself don't even
-know the difference).
+We do have a 'pci-host-cam-generic' compatible. So we can also have something
+like 'pci-pwrctrl-generic' IMO.
 
-> +
-> +maintainers:
-> +  - Gatien Chevallier <gatien.chevallier@foss.st.com>
-> +
-> +description:
-> +  The RIF (resource isolation framework) is a comprehensive set of hardware
-> +  blocks designed to enforce and manage isolation of STM32 hardware resources,
-> +  like memory and peripherals. The RISAB peripheral is part of the RIF and is
-> +  used to protect internal RAMs by applying access rights per RISAB fixed-size
-> +  page. Through RISAB registers, a trusted domain, or the domain to whom the
-> +  page configuration has been delegated, assigns memory pages to one or more
-> +  security domains (secure, privilege, compartment).
-> +
-> +properties:
-> +  compatible:
-> +    const: st,stm32mp25-risab
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: RISAB bus clock
-> +
-> +  memory-region:
-> +    minItems: 1
-> +    maxItems: 32
-> +    description:
-> +      Phandle to nodes describing memory regions to be configured in the RISAB
-> +      by the trusted domain of at least a RISAB page size.
-> +      These regions cannot overlap. A zone must be within st,mem-map range and
-> +      can be represented by one or more pages.
-> +
-> +  st,mem-map:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: Memory address range covered by the RISAB.
-> +    items:
-> +      - description: Memory range base address
-> +      - description: Memory range size
+- Mani
 
-Why do you need this property if you have memory-region already? This
-also should be part of <reg>, although this mixing with memory-region is
-anyway confusing.
-
-> +
-> +  st,srwiad:
-> +    description:
-> +      When set, the trusted domain configures the RISAB to allow secure
-> +      read/write data accesses to non-secure blocks and pages. Secure execute
-> +      remains illegal.
-> +    type: boolean
-
-Shouldn't this be a property of given block from memory-regions, not
-entire RISAB?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - st,mem-map
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/st,stm32mp25-rcc.h>
-> +
-> +    risab1: risab@420f0000 {
-
-Drop unused label.
-
-> +        compatible = "st,stm32mp25-risab";
-> +        reg = <0x420f0000 0x1000>;
-> +        clocks = <&rcc CK_ICN_LS_MCU>;
-> +        st,mem-map = <0xa000000 0x20000>;
-> +        st,srwiad;
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e08767323763..b9a1276e94a9 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -25092,6 +25092,11 @@ F:	Documentation/arch/arm/stm32/stm32-dma-mdma-chaining.rst
->  F:	Documentation/devicetree/bindings/dma/stm32/
->  F:	drivers/dma/stm32/
->  
-> +STM32 SoC FIREWALL DRIVERS
-
-s/SoC/SOC/
-
-
-Best regards,
-Krzysztof
+-- 
+மணிவண்ணன் சதாசிவம்
 
