@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-264506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264507-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id PYCaE6Jsi2l2UQAAu9opvQ
-	(envelope-from <devicetree+bounces-264506-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 18:36:34 +0100
+	id iHJiL61si2l2UQAAu9opvQ
+	(envelope-from <devicetree+bounces-264507-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 18:36:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61B0E11DFE3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 18:36:33 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D697111DFFA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 18:36:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1B0083012957
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 17:35:15 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B594C301D108
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 17:35:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6BFE39E171;
-	Tue, 10 Feb 2026 17:34:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3662938B7AA;
+	Tue, 10 Feb 2026 17:34:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="phsanotU"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BFc8JhG3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC56395D88;
-	Tue, 10 Feb 2026 17:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DED8F399010;
+	Tue, 10 Feb 2026 17:34:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770744877; cv=none; b=V7I1kYffR3eXwiDRYfj8H5l2w9s0A1QQY5UikkTZUv/bDtEktHU8w3YmefXg5UgeIrrJ9i/yp/5HkqvJk9FprcKUKidVyDbFup3BdOnyNuuMlwUm56arDKVxv4GubzowU43WcPTZWoLcnDHeHuha/4ZPmDc7Py109cXRxytx/kk=
+	t=1770744879; cv=none; b=SimRFWnFVWrcHR5hn3ibrhb44wU4qx78cD0gPuA3mGsZdrIsrd2MgMunNnrLaAqtkKOi0aG8UDozVfgy4wB/VYLiPi56RQdq49yhgdoKbJ8UbZoXOV7aMllcsGbv/fc323xh+dBn0TNDdazbE5Jn5ogM1Mt6C2MhtjvASmaFDH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770744877; c=relaxed/simple;
-	bh=39K4m3cDwzIk0lw+fWTf25HhLhw7zbT6CjlxHX8Oc8Q=;
+	s=arc-20240116; t=1770744879; c=relaxed/simple;
+	bh=6oSS3Gjaq5pHhOjJKcEyJyHC93xQI35PkBt/9oTWx8o=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nKD0n0RAi5z21t99ebMzGVgzFkhq0fOW3uK/jnkOWcdbTXspKVlYo2CExoHw2Xsk86WBg+cL2+hPILg3pG5pJnc79JJ1CpHYCJwoPHTXKsMf4w3JL4WIeLBqJsPnne8UWDpnKpAixrZqRHLShDmYN77BVPq+JL7YLh1AUzo56mg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=phsanotU; arc=none smtp.client-ip=185.246.84.56
+	 MIME-Version; b=upZeK+lIBvJ+Jks/BZkly6wrstRaolHQ9c5gAAH6vBy0zzp1IBwRlHnU1pJ+XHDAjy0RlP/99dKNqKpxMt6c1ApJapGjQqirkPTope+IN2vyFPbZitmK7XMzhrAAt1JGf1g8cC8FYl0BkEmJBvpuUZI8/atvuC9A+DZoou96seY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BFc8JhG3; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 7043E1A0DB1;
-	Tue, 10 Feb 2026 17:34:34 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id AF4311A0D81;
+	Tue, 10 Feb 2026 17:34:35 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 47D68606BD;
-	Tue, 10 Feb 2026 17:34:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1165810B91FBE;
-	Tue, 10 Feb 2026 18:34:32 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 860C9606BD;
+	Tue, 10 Feb 2026 17:34:35 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9C8B810B921D3;
+	Tue, 10 Feb 2026 18:34:33 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770744873; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1770744874; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=5ibmTCsT8ORXKdaMNLgIZH3vWyXFUJS/N9D+sJGZPHo=;
-	b=phsanotUjbErY3UW6KKNe8xnMrtoRFQQoRqXQ9K4PaDZqVjJZ+GDWrkwIqHRgjWD8b8+jw
-	U4TplRwZjEaqFlwC2W2eiyXK4RRU1gePqYXqBQpySUMRy2hn0Gln4KcGZw+Dos1n6MbkyC
-	ERECTsuCLXouf220RILbCu2e5OT7nS4J7RuVBpsrIftgENkrGsdCni+/E5avJss43YPKig
-	HQUm9tQ/F8TymoR83i+/4SyBw/aqSVPKAkgOsXw6yvopTFIsC88uHTuHHFs+Xtlf2ABf16
-	zfI0HTWd2VSqOE+cPuz3ek2+FqFV2ryCz507lz1qFz3BsNP/V0UrDm8q5+Kteg==
+	bh=cRSd/rE0sOqm3dI53YYlvF6U6UePz1Pna27Ugbu+jEQ=;
+	b=BFc8JhG3YWPJfIopswd+qeoY5P3GKsvGF8+jGdCHiYS+JVZHWviNik/zCTNIurXkJMRXz+
+	utMSxpi3x/UK/ojievODKwcXAjkW0IPUUhmVDXEPfwp0++QV8ufwHycgLLL/UwmhDoVbxT
+	uyMqbgxwpAFt2SY0ejPnFYAmG90ptNRHPh6LhqOrOOy/Ls597q6NWQ1+eOQIlPIWlvJS2v
+	QUiU/JL0aq+CuvrQMk157LDKNzdt9HSvyGLM8ARTZmLROoqa/9sycAL1PiEiuJWvvuhFKa
+	lNPl7TF7LFm5ix/9vMJ+jOGp3on54Ws73OG9A7mzkYHPMev+Y1Ao368PPJqpoA==
 From: Herve Codina <herve.codina@bootlin.com>
 To: David Gibson <david@gibson.dropbear.id.au>,
 	Rob Herring <robh@kernel.org>,
@@ -67,9 +67,9 @@ Cc: Ayush Singh <ayush@beagleboard.org>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Herve Codina <herve.codina@bootlin.com>
-Subject: [RFC PATCH 09/15] Introduce structured tag value definition
-Date: Tue, 10 Feb 2026 18:33:37 +0100
-Message-ID: <20260210173349.636766-10-herve.codina@bootlin.com>
+Subject: [RFC PATCH 10/15] fdtdump: Handle unknown tags
+Date: Tue, 10 Feb 2026 18:33:38 +0100
+Message-ID: <20260210173349.636766-11-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260210173349.636766-1-herve.codina@bootlin.com>
 References: <20260210173349.636766-1-herve.codina@bootlin.com>
@@ -89,14 +89,14 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264506-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264507-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -108,105 +108,359 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[6];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,bootlin.com:mid,bootlin.com:dkim,bootlin.com:email]
-X-Rspamd-Queue-Id: 61B0E11DFE3
+X-Rspamd-Queue-Id: D697111DFFA
 X-Rspamd-Action: no action
 
-The goal of structured tag values is to ease the introduction of new
-tags in future releases with the capability for an already existing
-release to ignore those structured tags. In order to do that data length
-related to the unknown tag needs to be identify. Also a flag is present
-to tell an old release if this tag can be simply skipped or must lead to
-an error.
+The structured tag value definition introduced recently gives the
+ability to ignore unknown tags without any error when they are read.
 
-Structured tag value is defined on 32bit and is defined as follow:
-
-Bits  | 31 | 30       | 29             28 | 27    0|
-------+----+----------+-------------------+--------+
-Fields| 1  | CAN_SKIP | DATA_LNG_ENCODING | TAG_ID |
-------+----+----------+-------------------+--------+
-
-Bit 31 is always set to 1 to identified a structured tag value.
-
-Bit 30 (CAN_SKIP) is set to 1 if the tag can be safely ignore when its
-TAG_ID value is not a known value (unknown tag). If the CAN_SKIP bit is
-set to 0 this tag must not be ignored and an error should be reported
-when its TAG_ID value is not a known value (unknown tag).
-
-Bits 29..28 (DATA_LNG_ENCODING) indicates the length of the data related
-to the tag. Following values are possible:
-  - 0b00: No data.
-          The tag is followed by the next tag value.
-
-  - 0b01: 1 cell data
-          The tag is followed by a 1 cell (u32) data. The next tag is
-          available after this cell.
-
-  - 0b10: 2 cells data
-          The tag is followed by a 2 cells (2 * u32) data. The next tag
-          is available after those two cells.
-
-  - 0b11: Data length encoding
-          The tag is followed by a cell (u32) indicating the size of the
-          data. This size is given in bytes. Data are available right
-          after this cell.
-
-          The next tag is available after the data. Padding is present
-          after the data in order to have the next tag aligned on 32bits.
-          This padding is not included in the size of the data.
-
-Bits 27..0 (TAG_ID) is the tag identifier defining a specific tag.
-
-Introduce the structured tag values definition and some specific tags
-reserved for tests based on this structure definition.
+Handle those structured tag.
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- libfdt/fdt.h | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ fdtdump.c                              |  45 +++++++++-
+ tests/dumptrees.c                      |   4 +-
+ tests/run_tests.sh                     |  41 +++++++++
+ tests/testdata.h                       |   2 +
+ tests/trees.S                          | 110 +++++++++++++++++++++++++
+ tests/unknown_tags_can_skip.dtb.expect |  26 ++++++
+ 6 files changed, 224 insertions(+), 4 deletions(-)
+ create mode 100644 tests/unknown_tags_can_skip.dtb.expect
 
-diff --git a/libfdt/fdt.h b/libfdt/fdt.h
-index a07abfc..2e07599 100644
---- a/libfdt/fdt.h
-+++ b/libfdt/fdt.h
-@@ -49,6 +49,7 @@ struct fdt_property {
+diff --git a/fdtdump.c b/fdtdump.c
+index 0e7a265..eb8cda9 100644
+--- a/fdtdump.c
++++ b/fdtdump.c
+@@ -44,7 +44,7 @@ static const char *tagname(uint32_t tag)
+ #define dumpf(fmt, args...) \
+ 	do { if (debug) printf("// " fmt, ## args); } while (0)
  
- #define FDT_MAGIC	0xd00dfeed	/* 4: version, 4: total size */
- #define FDT_TAGSIZE	sizeof(fdt32_t)
-+#define FDT_CELLSIZE	sizeof(fdt32_t)
+-static void dump_blob(void *blob, bool debug)
++static void dump_blob(void *blob, bool debug, int dump_unknown)
+ {
+ 	uintptr_t blob_off = (uintptr_t)blob;
+ 	struct fdt_header *bph = blob;
+@@ -146,20 +146,55 @@ static void dump_blob(void *blob, bool debug)
+ 			continue;
+ 		}
  
- #define FDT_BEGIN_NODE	0x1		/* Start node: full name */
- #define FDT_END_NODE	0x2		/* End node */
-@@ -57,6 +58,28 @@ struct fdt_property {
- #define FDT_NOP		0x4		/* nop */
- #define FDT_END		0x9
++		if ((tag & FDT_TAG_STRUCTURED) && (tag & FDT_TAG_SKIP_SAFE)) {
++			sz = 0;
++			switch (tag & FDT_TAG_DATA_MASK) {
++			case FDT_TAG_DATA_NONE:
++				break;
++			case FDT_TAG_DATA_1CELL:
++				sz = FDT_CELLSIZE;
++				break;
++			case FDT_TAG_DATA_2CELLS:
++				sz = 2 * FDT_CELLSIZE;
++				break;
++			case FDT_TAG_DATA_LNG:
++				/* Get the length */
++				sz = fdt32_to_cpu(GET_CELL(p));
++				break;
++			}
++
++			if (dump_unknown) {
++				printf("%*s// Unknown tag ignored: 0x%08"PRIx32", data lng %d",
++				       depth * shift, "", tag, sz);
++				if (dump_unknown > 1 && sz != 0) {
++					printf(" ");
++					for (i = 0; i < sz; i++)
++						printf("%02hhx", *(p + i));
++				}
++				printf("\n");
++			}
++
++			/* Skip the data bytes */
++			p = PALIGN(p + sz, 4);
++			continue;
++		}
++
+ 		die("** Unknown tag 0x%08"PRIx32"\n", tag);
+ 	}
+ }
  
-+/* Tag values flags */
-+#define FDT_TAG_STRUCTURED	(1<<31)
-+#define FDT_TAG_SKIP_SAFE	(1<<30)
-+#define FDT_TAG_DATA_MASK	(3<<28)
-+#define FDT_TAG_DATA_NONE	(0<<28)
-+#define FDT_TAG_DATA_1CELL	(1<<28)
-+#define FDT_TAG_DATA_2CELLS	(2<<28)
-+#define FDT_TAG_DATA_LNG	(3<<28)
+ /* Usage related data. */
+ static const char usage_synopsis[] = "fdtdump [options] <file>";
+-static const char usage_short_opts[] = "ds" USAGE_COMMON_SHORT_OPTS;
++static const char usage_short_opts[] = "dus" USAGE_COMMON_SHORT_OPTS;
+ static struct option const usage_long_opts[] = {
+ 	{"debug",            no_argument, NULL, 'd'},
++	{"unknown",          no_argument, NULL, 'u'},
+ 	{"scan",             no_argument, NULL, 's'},
+ 	USAGE_COMMON_LONG_OPTS
+ };
+ static const char * const usage_opts_help[] = {
+ 	"Dump debug information while decoding the file",
++	"Dump unknown tags information while decoding the file (-uu to have data)",
+ 	"Scan for an embedded fdt in file",
+ 	USAGE_COMMON_OPTS_HELP
+ };
+@@ -183,6 +218,7 @@ int main(int argc, char *argv[])
+ 	const char *file;
+ 	char *buf;
+ 	bool debug = false;
++	int dump_unknown = 0;
+ 	bool scan = false;
+ 	size_t len;
+ 
+@@ -198,6 +234,9 @@ int main(int argc, char *argv[])
+ 		case 'd':
+ 			debug = true;
+ 			break;
++		case 'u':
++			dump_unknown++;
++			break;
+ 		case 's':
+ 			scan = true;
+ 			break;
+@@ -242,7 +281,7 @@ int main(int argc, char *argv[])
+ 	} else if (!valid_header(buf, len))
+ 		die("%s: header is not valid\n", file);
+ 
+-	dump_blob(buf, debug);
++	dump_blob(buf, debug, dump_unknown);
+ 
+ 	return 0;
+ }
+diff --git a/tests/dumptrees.c b/tests/dumptrees.c
+index 08967b3..4732fff 100644
+--- a/tests/dumptrees.c
++++ b/tests/dumptrees.c
+@@ -25,7 +25,9 @@ static struct {
+ 	TREE(truncated_property), TREE(truncated_string),
+ 	TREE(truncated_memrsv),
+ 	TREE(two_roots),
+-	TREE(named_root)
++	TREE(named_root),
++	TREE(unknown_tags_can_skip),
++	TREE(unknown_tags_no_skip)
+ };
+ 
+ #define NUM_TREES	(sizeof(trees) / sizeof(trees[0]))
+diff --git a/tests/run_tests.sh b/tests/run_tests.sh
+index f07092b..b69b61b 100755
+--- a/tests/run_tests.sh
++++ b/tests/run_tests.sh
+@@ -196,6 +196,40 @@ check_align () {
+     )
+ }
+ 
++# $1: f1 file
++# $2: f2 file
++check_diff () {
++    printf "diff $1 $2:	"
++    local f1="$1"
++    local f2="$2"
++    (
++        if diff $f1 $f2 >/dev/null; then
++            PASS
++        else
++            if [ -z "$QUIET_TEST" ]; then
++                echo "DIFF :-:"
++                diff -u $f1 $f2
++            fi
++            FAIL "Results differ from expected"
++        fi
++    )
++}
 +
-+#define FDT_TAG_NO_SKIP(tag_data, tag_id) \
-+		(FDT_TAG_STRUCTURED | tag_data | tag_id)
++# $1: dtb file
++# $2: out file
++wrap_fdtdump () {
++    printf "wrap_fdtdump -uu $1:	"
++    local dtb="$1"
++    local out="$2"
++    (
++        if $FDTDUMP -uu ${dtb} 2>/dev/null >${out}; then
++            PASS
++        else
++            FAIL
++        fi
++    )
++}
 +
-+#define FDT_TAG_CAN_SKIP(tag_data, tag_id) \
-+		(FDT_TAG_STRUCTURED | FDT_TAG_SKIP_SAFE | tag_data | tag_id)
+ run_dtc_test () {
+     printf "dtc $*:	"
+     base_run_test wrap_test $VALGRIND $DTC "$@"
+@@ -1007,6 +1041,13 @@ utilfdt_tests () {
+ 
+ fdtdump_tests () {
+     run_fdtdump_test "$SRCDIR/fdtdump.dts"
 +
-+/* Tests reserved tags */
-+#define FDT_TEST_NONE_CAN_SKIP		FDT_TAG_CAN_SKIP(FDT_TAG_DATA_NONE, 0)
-+#define FDT_TEST_1CELL_CAN_SKIP		FDT_TAG_CAN_SKIP(FDT_TAG_DATA_1CELL, 0)
-+#define FDT_TEST_2CELLS_CAN_SKIP	FDT_TAG_CAN_SKIP(FDT_TAG_DATA_2CELLS, 0)
-+#define FDT_TEST_LNG_CAN_SKIP		FDT_TAG_CAN_SKIP(FDT_TAG_DATA_LNG, 0)
-+#define FDT_TEST_NONE_NO_SKIP		FDT_TAG_NO_SKIP(FDT_TAG_DATA_NONE, 0)
++    base_run_test wrap_fdtdump unknown_tags_can_skip.dtb unknown_tags_can_skip.dtb.out
++    # Remove unneeded comments
++    sed -i '/^\/\/ /d' unknown_tags_can_skip.dtb.out
++    base_run_test check_diff unknown_tags_can_skip.dtb.out "$SRCDIR/unknown_tags_can_skip.dtb.expect"
 +
- #define FDT_V1_SIZE	(7*sizeof(fdt32_t))
- #define FDT_V2_SIZE	(FDT_V1_SIZE + sizeof(fdt32_t))
- #define FDT_V3_SIZE	(FDT_V2_SIZE + sizeof(fdt32_t))
++    run_wrap_error_test $FDTDUMP unknown_tags_no_skip.dtb
+ }
+ 
+ fdtoverlay_tests() {
+diff --git a/tests/testdata.h b/tests/testdata.h
+index fcebc2c..aef04ab 100644
+--- a/tests/testdata.h
++++ b/tests/testdata.h
+@@ -57,4 +57,6 @@ extern struct fdt_header truncated_string;
+ extern struct fdt_header truncated_memrsv;
+ extern struct fdt_header two_roots;
+ extern struct fdt_header named_root;
++extern struct fdt_header unknown_tags_can_skip;
++extern struct fdt_header unknown_tags_no_skip;
+ #endif /* ! __ASSEMBLER__ */
+diff --git a/tests/trees.S b/tests/trees.S
+index 4db2b9b..221c9fd 100644
+--- a/tests/trees.S
++++ b/tests/trees.S
+@@ -328,3 +328,113 @@ named_root_strings:
+ named_root_strings_end:
+ 
+ named_root_end:
++
++
++	/* Tree with "unknown" tags that can be skipped
++	 * Use a really future dtb version to check version downgrade on
++	 * modification.
++	 */
++	treehdr_vers	unknown_tags_can_skip 0xffffffff 0x10
++	empty_rsvmap	unknown_tags_can_skip
++
++unknown_tags_can_skip_struct:
++	fdtlong	FDT_TEST_1CELL_CAN_SKIP
++	fdtlong	0x1
++
++	beginn	""
++		fdtlong	FDT_TEST_NONE_CAN_SKIP
++
++		propu32	unknown_tags_can_skip, prop_int, 1
++
++		fdtlong	FDT_TEST_1CELL_CAN_SKIP
++		fdtlong	0x11
++
++		propstr	unknown_tags_can_skip, prop_str, "abcd"
++
++		fdtlong	FDT_TEST_2CELLS_CAN_SKIP
++		fdtlong	0x12
++		fdtlong	0x12
++
++		fdtlong	FDT_TEST_LNG_CAN_SKIP
++		fdtlong	3
++		.byte 0x13
++		.byte 0x13
++		.byte 0x13
++		.byte 0 /* padding */
++
++		beginn	"subnode1"
++			propu64	unknown_tags_can_skip, prop_int, 1, 2
++			fdtlong	FDT_TEST_NONE_CAN_SKIP
++		endn
++
++		beginn	"subnode2"
++			fdtlong	FDT_TEST_1CELL_CAN_SKIP
++			fdtlong	0x121
++			propu64	unknown_tags_can_skip, prop_int1, 1, 2
++			fdtlong	FDT_TEST_1CELL_CAN_SKIP
++			fdtlong	0x122
++			propu64	unknown_tags_can_skip, prop_int2, 1, 2
++			beginn	"subsubnode"
++				fdtlong	FDT_TEST_1CELL_CAN_SKIP
++				fdtlong	0x123
++				propu64	unknown_tags_can_skip, prop_int, 1, 2
++			endn
++			fdtlong	FDT_TEST_1CELL_CAN_SKIP
++			fdtlong	0x124
++		endn
++
++		fdtlong	FDT_TEST_LNG_CAN_SKIP
++		fdtlong	5
++		.byte 0x14
++		.byte 0x14
++		.byte 0x14
++		.byte 0x14
++		.byte 0x14
++		.byte 0 /* padding */
++		.byte 0 /* padding */
++		.byte 0 /* padding */
++	endn
++
++	fdtlong	FDT_TEST_1CELL_CAN_SKIP
++	fdtlong	0x2
++
++	fdtlong	FDT_TEST_LNG_CAN_SKIP
++	fdtlong	2
++	.byte 0x3
++	.byte 0x3
++	.byte 0 /* padding */
++	.byte 0 /* padding */
++
++	fdtlong	FDT_END
++
++unknown_tags_can_skip_struct_end:
++
++unknown_tags_can_skip_strings:
++	string	unknown_tags_can_skip, prop_int, "prop-int"
++	string	unknown_tags_can_skip, prop_int1, "prop-int1"
++	string	unknown_tags_can_skip, prop_int2, "prop-int2"
++	string	unknown_tags_can_skip, prop_str, "prop-str"
++unknown_tags_can_skip_strings_end:
++
++unknown_tags_can_skip_end:
++
++
++	/* Tree with "unknown" tags that cannot be skipped */
++	treehdr	unknown_tags_no_skip
++	empty_rsvmap	unknown_tags_no_skip
++
++unknown_tags_no_skip_struct:
++	beginn	""
++	fdtlong	FDT_TEST_NONE_NO_SKIP
++		beginn	"subnode1"
++			propu64	unknown_tags_no_skip, prop_int, 1, 2
++		endn
++	endn
++	fdtlong	FDT_END
++unknown_tags_no_skip_struct_end:
++
++unknown_tags_no_skip_strings:
++	string	unknown_tags_no_skip, prop_int, "prop-int"
++unknown_tags_no_skip_strings_end:
++
++unknown_tags_no_skip_end:
+diff --git a/tests/unknown_tags_can_skip.dtb.expect b/tests/unknown_tags_can_skip.dtb.expect
+new file mode 100644
+index 0000000..32e3f46
+--- /dev/null
++++ b/tests/unknown_tags_can_skip.dtb.expect
+@@ -0,0 +1,26 @@
++/dts-v1/;
++
++/ {
++    // Unknown tag ignored: 0xc0000000, data lng 0
++    prop-int = <0x00000001>;
++    // Unknown tag ignored: 0xd0000000, data lng 4 00000011
++    prop-str = "abcd";
++    // Unknown tag ignored: 0xe0000000, data lng 8 0000001200000012
++    // Unknown tag ignored: 0xf0000000, data lng 3 131313
++    subnode1 {
++        prop-int = <0x00000001 0x00000002>;
++        // Unknown tag ignored: 0xc0000000, data lng 0
++    };
++    subnode2 {
++        // Unknown tag ignored: 0xd0000000, data lng 4 00000121
++        prop-int1 = <0x00000001 0x00000002>;
++        // Unknown tag ignored: 0xd0000000, data lng 4 00000122
++        prop-int2 = <0x00000001 0x00000002>;
++        subsubnode {
++            // Unknown tag ignored: 0xd0000000, data lng 4 00000123
++            prop-int = <0x00000001 0x00000002>;
++        };
++        // Unknown tag ignored: 0xd0000000, data lng 4 00000124
++    };
++    // Unknown tag ignored: 0xf0000000, data lng 5 1414141414
++};
 -- 
 2.52.0
 
