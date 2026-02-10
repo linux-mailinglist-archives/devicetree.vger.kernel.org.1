@@ -1,84 +1,85 @@
-Return-Path: <devicetree+bounces-264521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264522-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8InGIxCIi2lWVgAAu9opvQ
-	(envelope-from <devicetree+bounces-264521-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 20:33:36 +0100
+	id oAikEhiIi2lWVgAAu9opvQ
+	(envelope-from <devicetree+bounces-264522-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 20:33:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D535F11EA69
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 20:33:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A505511EA87
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 20:33:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3A4D4302494C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 19:33:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4167C30238E0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 19:33:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF782EE268;
-	Tue, 10 Feb 2026 19:33:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B01B322B88;
+	Tue, 10 Feb 2026 19:33:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wk09pqbM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TRvBhD3b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E2628F50F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F56D2D839B
 	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 19:33:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770752013; cv=none; b=TpcBDLo7v5TCFJjvCt9eRxXgT+sc/EszI5Lph+RdaocRSmTDjvf9FX0rWd1KaiejP1GzSfmzWpxV8fY0qjmWmoD7Zn6/qiqQwlrAZVHZnNGurUADK/eHBV4bdXH3NyCxXmfTkYxD8XPRyhDLSuNVRf4eKH0d9WxABVRQCrjaBCA=
+	t=1770752014; cv=none; b=YxM9p3pLOTEnaEdiieDRaxlspuA0y8ifGJEnv8fhHTedKZ1kwh0rvrZi9pZNovCMd670BPKP1OROpl3aKNWA2edN/bX5BBnGWEmJZ+k8DX+niCyeG/iYhjSPm/MH1FXcqIkRWdPhjJ+UfZH+ljD2uk/bgtCZnfehPMqYhF011Gg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770752013; c=relaxed/simple;
-	bh=IykiMd2uZZOX44SXwVXRT6KB2qguUas2yNtgMqjletA=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Y1M6kDv2srJOm73TyK+x7Y8yUqkeor2NdMq/twF12G1fL/cNiyPGpoZJvW+lZLNLVL6aZ84BHOoGdaYGXSLX4VjWNuhzyG8pn65iy09EHCwSkMJboSMS1GVs2RQaVHAwYFw8kwb0ipEQ5RMzWyIAuHOrFLaVH7PBWMnu07MkdMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wk09pqbM; arc=none smtp.client-ip=209.85.221.54
+	s=arc-20240116; t=1770752014; c=relaxed/simple;
+	bh=tOxwMlBPb2WjRRdQkXGGJ9FrS0pIDd5TW9EkQMWr8bA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=RLcZZZreG3VAHeFUFx8DNIxL/KJq/rucFSKksoAkMfETJeS51vHHfmo4ouRO4DrPw+zBZbpKMYbxfw6gYeCHhpgbgCPK51kk3n0FRAPQ4nz6nUwS5OyHpvkpyiclV+MJWBzNb/06ZLPei3GCHSY8ySZgQ7uMob1zydM+u3YmTYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TRvBhD3b; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-4359249bbacso115550f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 11:33:31 -0800 (PST)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4834826e5a0so13612615e9.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 11:33:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770752010; x=1771356810; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=erTmcC4BRsN72TnU7ILsQhSKr9ooULobI3aSeUy7isI=;
-        b=Wk09pqbMcfRZCpdChrelCQQEQjYQWbEmzuX/zD58jsbgYP8mImXezw+ulU32e2dyei
-         xyB6MCaN5A0Rn+8OLpLzzsITtRrTdC4oc89SeJig58WZkcldXpf8ff0XbBadVn6cIlGD
-         CgvzY84hLiADNuMManHQTZK9iTK7H/6dTBV2zZylsD1BRHusRJIxysSpV3yGydmjy2A0
-         AurjJvR8uIUSyxT73S6WWzgvyIIFPyuPZFkHwnf8fQ48klgEWsASqqTVc37sV8Cy/EqF
-         l1e6UoLlXxXRj/7ky5CUBzToRZIjx17nhiMkjgrn3+o6zau9Z15fl1nl1z7kP73g7dbi
-         xb7Q==
+        d=gmail.com; s=20230601; t=1770752011; x=1771356811; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6oQpYXC+oOVLX3B1mt394dx6/WutKhxIvgHdxTMSixY=;
+        b=TRvBhD3br6yGkwnY1kR0jqU2aC4Y3BEULfogQNxQblXU86HvOTS7z9fkqHxugGxvUW
+         v4Iw0Waeo8zJSz2LdA2/0WymCwYqWMZL+2z/Ux0GgbsmOemw/RY/WjUdsH8n4vxnO558
+         S2Ex5eeCj0TPlI/ZNlsNZyRgj9FMRQdnY4ewLE7Y4mIFK6YHKgwwM1Vhl7rxQSOD7wg8
+         6QPJe5U9HDb5cEKu2G/2SqeKTGxd6Rtg6gOPskEA+IpIyM4kAdFQTHW7KEqlF41jgRRB
+         a9X0mjX1k4FdWw9+8hdLooEhA7Mj4aQU6DjySVX2jGa+fHhY0DnsOagE+d8XcF2L0cCR
+         QAog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770752010; x=1771356810;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=erTmcC4BRsN72TnU7ILsQhSKr9ooULobI3aSeUy7isI=;
-        b=TCtpN8JmmYk9ntZe4FsCGR7qjFX+W4LKaW8qohnvfMn2DEZ87yXLNOJgZck5fFgb5K
-         FrISrB0lZcGfcIt5cAstBbr3ELSCycHf8YtnFY15scPHAUY8DGEYhld4psaX0fZNZH40
-         srUdjAFCb3U4dXjXZeH4Ny8XwJ9XRm/b1XWRj8S/R2WAACwyvBCGYyzZbrd4aU2O1QEa
-         RPg79Nr8Pg4m5P4gmLFyDDYqfoLHvpH1hnDWVtgFoir6n0IJYUu3B0LRDM21GzzGyccy
-         Y8BS3XeWE13N6nRLcPs1Etejy45gtRGYwXu1AgjqiNhbsxe7094R1iUoNaUSR/9hF+Wk
-         3i7A==
-X-Forwarded-Encrypted: i=1; AJvYcCVLN2wTNubiMKbLTK4AiiGZHaLNLTBCdJSm2RxmDDdabb4Y4AiQ9fXcw5mAcAGQBT8ujPIFjti+/jrj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1Z6Ovg7jWNL7d6sBoB93+XFCKsgObXojtS7IqaH1CJs9W6J4T
-	+7Ulnil/N/OY+Gy0U9ZChlOyNPAkibSUHt2ez5UakxiRACrr3UtwZBpv
-X-Gm-Gg: AZuq6aKeMwMij2OjG5lTSCJVxLluXrpHMX0KHU3HKSvVfauWpK5xbAOMEpCNgWGCIba
-	MG+H3mKqzIGIqLl2bxbZuiTCLJwIGsTQtlqjc/PyM6MZuBwt/xX9DxUuJX6UI/KIRFUljbpmJsU
-	1Eo+Yyah0eUgsDzIE8ro3HgKQn/5swoPncnsf6m1tB2IE4Af/TKacaGGWFh1TPyudNw003HmIzC
-	l+vNLFMEmg3J8rNq9dxFrCy9ZsR5CvVPaeMGYXqaKXbGChKK36UyE6cOcooYddtms6cSM4fkGkn
-	mQUYFxtHFyGBuXH7323uJBWjrXJwAR24yI+EGO84YLPm7lWQUwnyC6IcED9MI5n1BCr+JOZQBIv
-	5S06F0pQ/5hxEFujU+c7A1e9y8DJ061pTcXAuAzcTM/c7qBZ8Me5ZfvLlNLnvJgZbczMhZgV9P3
-	GFKDB99I3DbORIVjRm9iCUjFlsQFEODbc6aUDYTcXtDb7DEWag
-X-Received: by 2002:a05:6000:1847:b0:435:8dd5:ad4f with SMTP id ffacd0b85a97d-43779e433b6mr5594134f8f.9.1770752010474;
-        Tue, 10 Feb 2026 11:33:30 -0800 (PST)
+        d=1e100.net; s=20230601; t=1770752011; x=1771356811;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=6oQpYXC+oOVLX3B1mt394dx6/WutKhxIvgHdxTMSixY=;
+        b=hTl5jt4XUsrr/pMF3C39xW2axJTSsemRxMQTZwBVhB/SQk7LoHieiulDastQCxzSy3
+         hWprR3dBTWj3wzO8fM6OF70OjbsXulJha/qVmMLzOmIF078B0YO2C+xlt35oA/ufiE70
+         EN2POsfu+IUB8TCbnoKiNSor5p25ZqWc4bGPcDt9WoQWU6WtHKTKF7zBOjobQrjp3Q85
+         Sk69LkLZAtUdWb3mpQHMNeHdHlzv5bJQeHR2PqMtOx0xnb9kBjMzlykBlPRdkxK6/Q0V
+         8Cj/NX0U2kr8g/NLZBapP5pv2gqhlN9Ny0L62txJGsNLjKmMLVnykZBrjT1Jxx1+YkEx
+         Py4g==
+X-Forwarded-Encrypted: i=1; AJvYcCXhF0UKvnt/Vsz75VuFK0Chd/fEyggtoFGzrUX2U/76KhXEPvPVaFo10vwulJXYHslPh9nmsX9aZ6Tl@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHYKozfrQRwrJ6VuZNuRBnEDPNBrcIrawk7M92D95m+D4xRel+
+	TNnt+Fc/oDUxJ+Gier6/nT7AT/wZmSSn4uibfNqOdd+CzykrRQD8kA+/
+X-Gm-Gg: AZuq6aITuD1Zwns8E3+CSizr4t719jhGqJkVHQ7tOLPeOOT9e9rvRbPtGGSwBSVVQmf
+	1745R6ZW7+ywtH8mPxafbt0/CNBn9tTqAjolv0NKIKUPPJp7A361GPZC49+RGehIlcd+QSklOYJ
+	gIMSlf7Ty6RBXdF+gZ+KO/VWwSyGTl1bhhNA2Spam9cyvJ0XYYBEuthfAHYn3OZ4bkObk7F9NOG
+	EqxRyOhG/hNXWa2aJdeYCxLb9MJJ5Wl7oNbhn49c0WluaElHe7VkSZ2SKqSiPxERDOIzcAtyQE4
+	MzX4sMgqv1+LaxZT+HHStcnXND0qydrGwDA0GOr4irDE5N8GdkhRSlsL/SLb06+RRyg0rlhyLO3
+	bfQgQM7MjES+GoYTXLbg7QONCRoLCIMVpcwTPd4E4EAJNtJaGoh+0xSyOvwxudqtYHNjGTb2l9H
+	0jiMUikygYhhPIHS/HfesN432s3HcWwImwfDtSkQtbkPPNqufBaa7VIBO0/mQ=
+X-Received: by 2002:a05:600c:6290:b0:483:a21:774a with SMTP id 5b1f17b1804b1-48320225afemr247617395e9.26.1770752011383;
+        Tue, 10 Feb 2026 11:33:31 -0800 (PST)
 Received: from localhost (39.31.66.37.rev.sfr.net. [37.66.31.39])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4362972fc26sm34029966f8f.22.2026.02.10.11.33.29
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4834d82a4c4sm143519295e9.10.2026.02.10.11.33.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Feb 2026 11:33:30 -0800 (PST)
+        Tue, 10 Feb 2026 11:33:31 -0800 (PST)
 From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>
-Subject: [PATCH v9 0/3] Register the STM32MP25 RCC driver as an access
- controller.
-Date: Tue, 10 Feb 2026 20:32:51 +0100
-Message-Id: <20260210-b4-rcc-upstream-v9-0-17ca1db7613f@gmail.com>
+Date: Tue, 10 Feb 2026 20:32:52 +0100
+Subject: [PATCH v9 1/3] dt-bindings: stm32: stm32mp25: add
+ `#access-controller-cells` property
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,12 +88,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2WPQW7DIBBFr2KxLhVgwGOveo+qiwGGBCmOU3DcV
- pHvXmovainLP9J7evNghXKiwobmwTItqaTpWkf/0jB/xuuJeAp1MyWUEb203Gmevef3W5kz4cg
- BgbDFaFEEVqlbppi+N+P7x74zfd6reN6PzGEh7qdxTPPQCBM7gh5d37XSWBMAraLWmSDJK2E1G
- CInHDsGDc0xJ6ZMX3i5/DeFSGAAUMkIwwLsr+Ocyjzln+3RpdtCdolSTz8tHRdcheg1CQlRi7f
- TiOnyWqM3V1UeeP3MQ+Vdq4K2sZPYwpFf1/UXYDjcDnYBAAA=
-X-Change-ID: 20250916-b4-rcc-upstream-8a8ea3af6a0d
+Message-Id: <20260210-b4-rcc-upstream-v9-1-17ca1db7613f@gmail.com>
+References: <20260210-b4-rcc-upstream-v9-0-17ca1db7613f@gmail.com>
+In-Reply-To: <20260210-b4-rcc-upstream-v9-0-17ca1db7613f@gmail.com>
 To: Michael Turquette <mturquette@baylibre.com>, 
  Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -111,13 +109,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264521-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264522-lists,devicetree=lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FREEMAIL_TO(0.00)[baylibre.com,kernel.org,gmail.com,foss.st.com];
 	MIME_TRACE(0.00)[0:+];
@@ -135,57 +133,57 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D535F11EA69
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,st.com:email]
+X-Rspamd-Queue-Id: A505511EA87
 X-Rspamd-Action: no action
 
-The STM32MP25 RCC peripheral as an access controller is allowed to know
-whether the clocks are secured or not.
-The STM32MP25 RCC peripheral knows about the clock secure configuration
-of all non RIF-aware peripheral.
-In parallel all the RIF-aware peripheral configuration information
-are known by the RIFSC peripheral which is already an access
-controller.
+From: Clément Le Goffic <clement.legoffic@foss.st.com>
 
-Changes in v9:
-- Rebase on v6.19.0
-- Add Gabriel Fernandez's Reviewed-by
-- Link to v8: https://lore.kernel.org/r/20250924-b4-rcc-upstream-v8-0-b32d46f71a38@gmail.com
+RCC is able to check the availability of a clock.
+Allow to query the RCC with a firewall ID.
 
-Changes in v8:
-- Use uppercase for peripheral name in commit message
-- Add the '#access-controller-cells' property to the RCC in
-  stm32mp231.dtsi
-- Link to v7: https://lore.kernel.org/r/20250922-b4-rcc-upstream-v7-0-2dfc4e018f40@gmail.com
-
-The v7 is a subset of the v6 and other prior versions, split to simplify
-the review and merging process.
-
-Changes in v7:
-- None
-- Link to v6: https://lore.kernel.org/all/20250909-b4-ddrperfm-upstream-v6-2-ce082cc801b5@gmail.com/
-
+Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Clément Le Goffic <legoffic.clement@gmail.com>
 ---
-Clément Le Goffic (3):
-      dt-bindings: stm32: stm32mp25: add `#access-controller-cells` property
-      clk: stm32mp25: add firewall grant_access ops
-      arm64: dts: st: set RCC as an access-controller
+ Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
- .../bindings/clock/st,stm32mp25-rcc.yaml           |  7 ++++
- arch/arm64/boot/dts/st/stm32mp231.dtsi             |  1 +
- arch/arm64/boot/dts/st/stm32mp251.dtsi             |  1 +
- drivers/clk/stm32/clk-stm32mp25.c                  | 40 +++++++++++++++++++++-
- 4 files changed, 48 insertions(+), 1 deletion(-)
----
-base-commit: 05f7e89ab9731565d8a62e3b5d1ec206485eeb0b
-change-id: 20250916-b4-rcc-upstream-8a8ea3af6a0d
-prerequisite-change-id: 20250916-b4-firewall-upstream-dfe8588a21f8:v8
-prerequisite-patch-id: e4a708d9c6df5725c9598fbd2169636e4e7dc46b
+diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
+index 1e3b5d218bb0..882de8608200 100644
+--- a/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
++++ b/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
+@@ -31,6 +31,11 @@ properties:
+   '#reset-cells':
+     const: 1
+ 
++  '#access-controller-cells':
++    const: 1
++    description:
++      Contains the firewall ID associated to the peripheral.
++
+   clocks:
+     items:
+       - description: CK_SCMI_HSE High Speed External oscillator (8 to 48 MHz)
+@@ -122,6 +127,7 @@ required:
+   - reg
+   - '#clock-cells'
+   - '#reset-cells'
++  - '#access-controller-cells'
+   - clocks
+ 
+ additionalProperties: false
+@@ -135,6 +141,7 @@ examples:
+         reg = <0x44200000 0x10000>;
+         #clock-cells = <1>;
+         #reset-cells = <1>;
++        #access-controller-cells = <1>;
+         clocks =  <&scmi_clk CK_SCMI_HSE>,
+                   <&scmi_clk CK_SCMI_HSI>,
+                   <&scmi_clk CK_SCMI_MSI>,
 
-Best regards,
---  
-Clément Le Goffic <legoffic.clement@gmail.com>
+-- 
+2.53.0
 
 
