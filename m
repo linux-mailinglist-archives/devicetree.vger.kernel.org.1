@@ -1,80 +1,82 @@
-Return-Path: <devicetree+bounces-264185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264186-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YVFhAaCTimlzMAAAu9opvQ
-	(envelope-from <devicetree+bounces-264185-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:10:40 +0100
+	id SOHgHaeTimlvMAAAu9opvQ
+	(envelope-from <devicetree+bounces-264186-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:10:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F0C611627A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:10:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 228CD116296
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:10:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 05AD0301A380
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:10:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 35B453028EFD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:10:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA3DA2C1589;
-	Tue, 10 Feb 2026 02:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E65352C08BB;
+	Tue, 10 Feb 2026 02:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XlKHJ73C"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VWtnpZh9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f195.google.com (mail-qk1-f195.google.com [209.85.222.195])
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 202A02C08BB
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 02:10:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1EF2C234E
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 02:10:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770689435; cv=none; b=RmAXsMKaZuGD+8vl3CftAfED3iFo0Yc2vnawrltl7aiYrg4YXhHAUzBNkXJqmQejzw5AJDcwFxaIJMMMnha7LhCj126akmUDMYGXVzyIvXvwbHPJEHqvygGzY8sPk/Kqfb4cQn9QDfcsnGemYC6E2zrspIVjcbXndqiTzxL+0yM=
+	t=1770689437; cv=none; b=H5MLUgRtpCIvtNLX+q1ZeqiVbfeMlQAh9A6tojwADhV+Gg1DWXKaqrNQUp7HrseY7FNZB3PFomLpZvBgcmlUlyl4Loc0hs7sLOOwzM4jC7HpcF1lwM9xeUEdwYeE3EDaFKHaSp+KNCwc3dh9bSXN50Tph2gq25HKaEh0Qs5D9F0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770689435; c=relaxed/simple;
-	bh=/ICsutzuX+LZ7m9I9aGGUYOr30MrEuyQKRWLfJGcBKY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hBv1/1Auu+jGvZiU5bmnNqxPgAZEzk9avfc9BnAf80ZwO2fLFIh0w8ikljjxgAqCWiTjGWYVwjm4KO2pC+7TV+Aa/hKjddzHPAFDenqA6L2M8eCOD/tf76PhJpnFH40k4zYUaVcrvOCYv/LkO2DI/UwACdBHqRbRn80WgClvPqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XlKHJ73C; arc=none smtp.client-ip=209.85.222.195
+	s=arc-20240116; t=1770689437; c=relaxed/simple;
+	bh=gAuhlX8TxqpHMMWg03KEEJo34V06DiDhUjyg+cFVFGs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=FwMjgt7UEByW87MqyGYZ02brK5KNxnzYuz6b6XD0sqSG3TWENf2xu+WQx/eqTesxYKXtidC9/8+cnjWVJ+W7PJgiwTiAbdxsY/5hOvjj/FcQAZfSnGXV6g4+6PQBMJ59vSugGLxgZIt42rdylSXHiOC5qBmuTVew73zPRV/id60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VWtnpZh9; arc=none smtp.client-ip=209.85.160.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f195.google.com with SMTP id af79cd13be357-8c711959442so496584785a.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 18:10:33 -0800 (PST)
+Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-5029901389dso2489811cf.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 18:10:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770689433; x=1771294233; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=KSA2DfHeEWFn2IlLoxdyjrJ3c05oOywysXab7NEt2VI=;
-        b=XlKHJ73CP4vdolQ9yW1Fn8hGpe3X/rRPl/BWaDyw6QvOWjzPSiUmHaHnCndZsQ50cY
-         10YCyvW7Ms4JBzcUQaqXwFC4xLuWYQlEUM2tsPpPobI0C9kK6mhSok8kvrmkW79H347g
-         LSrhT+KmZoRdIcsp9DUDnVWQEzGWROxdQmPw/j9Ar7Ej3tLfN28v21PpdUnGcGDv1XXy
-         ubw+XDDtiDoKwE87nWpbNnD9SgnrzHnucsuoD7+5edKsjeic2eN8QPgvSmTHpfpOepXF
-         ldmZgjXPMuytafAWYyTeWco+1gZHA/If698UR0Y4WXlRgLqKlhqpM6LMZcYnqRYVS1w5
-         2F0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770689433; x=1771294233;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1770689435; x=1771294235; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KSA2DfHeEWFn2IlLoxdyjrJ3c05oOywysXab7NEt2VI=;
-        b=dJJqWXtlrufSiAawBYsJwtA17ELPVKWOY7BylLjxj+fHl0CxGR+jGf03CDNk7lpbJF
-         nMyT4UE/5yPRz2GYecwmu/kbMKZ5bT8OuFOb5q5QGRb4wKATWCEWglGnY4p9M2LxD8sB
-         jO1CPBkhRvI/2gxJTXrZUzOcrp8ASLxHcTuNfzbdlUiEdNWvuLy9Gmke63PYFogWGPFc
-         u7eVZYlCj8a8iqP4M+py21Lu7WcVxPLq4MiDX6o1UyJilaw0UQ5w3Mvvjg0xZ/SZx/Gt
-         SXfyK/DgLqLXg6EP5oFOwFkbM0dGypZSUZIEZQjYH706RT1tUi5GOcPaoQLgJFoGsn4b
-         WDtg==
-X-Forwarded-Encrypted: i=1; AJvYcCWGDHM9qADu75qBquBiO2ZpuPi+OldjJk0ij3HAAXgE4L0RPyAKzGeZCYLNv9HvCBszZW/IynrO9O7M@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxp2usrBidlf+gq6xbtgu9vbOf+HX2Gce9Em1sh719HLZnsWR4s
-	0+/ffMZlOPBBdetZfCCHflIvGrbY7BOUYZzkjw3KaC2oW3M0OXAWskCE
-X-Gm-Gg: AZuq6aLMX84m+2MxSSluuK6yIhZB1iTWTPIdueEUUaMxyeHpImPz/8A2JhX7Z7HyVbj
-	jRC6ZH6PQj0C92xlL85Ed4+H70zNhqO7xWYATGYGmYtgG2qMO0D8Es+BtFu+3XA6BKx0ugwS8AZ
-	AU8zo3VoxKkFI9rM4cddA3un9GURuxO5mwq/wJZien/iyhND7Fio06d7Pj8ySeVVJSxVoSoA9LZ
-	OYruYOVwJAYTG6+h84ypKrfkZwGM+XWKL6ySFbL7wYmwqdor+CLysmsu7ooKYHx42EQDD+V04cW
-	ch7rmHX8ll0JgNDXS/zDXPYoHCh28zRG/qwQMsfZp1s/n2oyAEhktSOEqSVy/8Vv+XS05HuJfQ1
-	vydhR0+bQihHo3DkJDOSfsQXNTzbGGDORNFr3S6yVDX/nrRhwrDadsIaTLDsAeIusO441018ls7
-	S9zavod8HdocjnGaUyD1G/A0+tM23EmS3VCjHUHNz/0w3NOetYsTTKs7x449C1ZouwK0HSjgemu
-	ns=
-X-Received: by 2002:a05:620a:450e:b0:8bb:a037:fd90 with SMTP id af79cd13be357-8cb1eefbc2fmr108292385a.12.1770689433095;
-        Mon, 09 Feb 2026 18:10:33 -0800 (PST)
+        bh=WgCet5GEIn/MU9+jS2xsEMyF4DqXP/WKRLxFg70EPyQ=;
+        b=VWtnpZh9ZLF36XFgqcb/rMLMK4gqQixmbqFmnTbydzALwDKiKnJ2rwGyufd3Bla/Qc
+         Deg4yOX/11hD731sH3LIN4zewkz0aXGHVDmDqWY4ulfwOYrd5gmywKBAc6oOxcnLHohm
+         3q5LIGuB7FmwDa3rFVxCVfProGvaEwvxE+YsiSeYLV17i+/nDWY8ngALM82iQFDvVz4x
+         hl9GPKL6u7fi8ANLS5Xrh1JZdFYykwNk2JL+zQBvrPdRFwIcRO8N9eBiBVbo+W/Ypfnu
+         OgHkq1HJnDI1qRww16B5kF3PgIsn+N8/8xbdZb9VUaAXp0T//6iZ266mLBWKK74FTdE3
+         1RNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770689435; x=1771294235;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=WgCet5GEIn/MU9+jS2xsEMyF4DqXP/WKRLxFg70EPyQ=;
+        b=IaqsSI6BqzMlHScCQpz/lGEpVi21yEm1fjM9KVv0UkgOBxc0k2sgBGSMhoRPl6NebT
+         dGfXno4Ow8I3QSpMKCnBsshzzFhPRgeiKAQ3tHTQmDyefszOI+vwa6lclN4PGUkG42Jf
+         ZhmmRLQRMzj2mA1wCtsu/bNA7+S+Uzbhwryag5a8sqaAATxjvqfFZ3BsWSfZ3rqgBO2S
+         Q8oj5MR3Ne532LdCERLf1c2y7LbD0WbsrRxePdTqOA20ZRRzAGep738tyApxFGtmZWLq
+         x2mq/xAaYERAhZQIhj4C9KeevvJNtCq5srcTJNcI8B2VtTQnivMY/+NCc1s/sZ/5T80g
+         i3cw==
+X-Forwarded-Encrypted: i=1; AJvYcCXSgWtxaQKqF94KgAKwQKu9qYjaxr2CSlpc7Q65SnzgU4Wb8P+tTrDCT55Vl6W9MZ8fMfmCjZjkfdjW@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHDCPVPprVRmAo8echc8bKZCMjFZhdxeTAzpD651IO466xK+r/
+	EP6DkywlCJs378fCYkBVJxHdk940NjRBv9NzvKmHdWEhkHrB7XTUssIY
+X-Gm-Gg: AZuq6aIbqJxsOAqmxWeww8DEVbpO/Pe+299r230sDZeUq/JfmnWxFlVRkOpelr623jH
+	yf6oK+vZdIMRCBm5Hz6wWxhMRm2quTlQsD0qPZhXcLiXltbNp5JZIILLFqIBp/AsmTzahpcSuPY
+	R9jQHHuAsq5EPaojEzpGCpe/0zHEzG1MsPCBK5fXR/AxezvoCJtJVXj6oETwCMStnczj7MtB8YD
+	YnVDiiFjpLMRlgOSql6OC35d0UhU5qullIyQlxmXDAh/icz+DzqY4g4dgjFOzIa4rZcYI3+f1aK
+	cQPfJuXGoHHv/Krkh034MG4TVlqA6JrYlPJT8Q5er3P8+abhi9xUa5n44oKlvLvFCvkUppp75Cv
+	J0LBhdv1+gBfW3eAVJWLgHxEbB/l0HVyc78tE51rMMcwnb9VMmKMSi18kV55bprydVY6OdZ24+s
+	j3vy6izvbKkACgaH8ST6Pvrmnh4JskxieMAY10QeRM7wDmDPNLD+rq37VTyBtwCn2sE5LxRrg2C
+	5ObK4MHmj79ybQ=
+X-Received: by 2002:ac8:5acc:0:b0:4f4:ee07:91b9 with SMTP id d75a77b69052e-506399bb6e1mr181615591cf.47.1770689434951;
+        Mon, 09 Feb 2026 18:10:34 -0800 (PST)
 Received: from localhost (bras-base-toroon21-grc-75-184-144-58-243.dsl.bell.ca. [184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8caf9a1575asm1009087385a.32.2026.02.09.18.10.32
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-89546b09f87sm75306686d6.34.2026.02.09.18.10.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Feb 2026 18:10:32 -0800 (PST)
+        Mon, 09 Feb 2026 18:10:34 -0800 (PST)
 From: Richard Acayan <mailingradian@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Linus Walleij <linusw@kernel.org>,
@@ -86,10 +88,12 @@ To: Bjorn Andersson <andersson@kernel.org>,
 	linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org
 Cc: Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH 0/3] SDM670 LPASS LPI pin controller support
-Date: Mon,  9 Feb 2026 21:11:06 -0500
-Message-ID: <20260210021109.11906-1-mailingradian@gmail.com>
+Subject: [PATCH 1/3] dt-bindings: pinctrl: qcom: Add SDM670 LPI pinctrl
+Date: Mon,  9 Feb 2026 21:11:07 -0500
+Message-ID: <20260210021109.11906-2-mailingradian@gmail.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260210021109.11906-1-mailingradian@gmail.com>
+References: <20260210021109.11906-1-mailingradian@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -110,7 +114,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	TO_DN_SOME(0.00)[];
 	FREEMAIL_CC(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-264185-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264186-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -126,28 +130,105 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9F0C611627A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,62b40000:email,devicetree.org:url]
+X-Rspamd-Queue-Id: 228CD116296
 X-Rspamd-Action: no action
 
-This adds support for the LPASS LPI pin controller on SDM670, which
-controls some audio pins (e.g. TDM or PDM busses). The ADSP patches are
-not sent yet.
+Add the pin controller for the audio Low-Power Island (LPI) on SDM670.
 
-Richard Acayan (3):
-  dt-bindings: pinctrl: qcom: Add SDM670 LPI pinctrl
-  pinctrl: qcom: add sdm670 lpi tlmm
-  arm64: dts: qcom: sdm670: add lpi pinctrl
-
- .../qcom,sdm670-lpass-lpi-pinctrl.yaml        |  81 ++++++++
- arch/arm64/boot/dts/qcom/sdm670.dtsi          |  74 ++++++++
- drivers/pinctrl/qcom/Kconfig                  |  10 +
- drivers/pinctrl/qcom/Makefile                 |   1 +
- .../pinctrl/qcom/pinctrl-sdm670-lpass-lpi.c   | 174 ++++++++++++++++++
- 5 files changed, 340 insertions(+)
+Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+---
+ .../qcom,sdm670-lpass-lpi-pinctrl.yaml        | 81 +++++++++++++++++++
+ 1 file changed, 81 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdm670-lpass-lpi-pinctrl.yaml
- create mode 100644 drivers/pinctrl/qcom/pinctrl-sdm670-lpass-lpi.c
 
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdm670-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sdm670-lpass-lpi-pinctrl.yaml
+new file mode 100644
+index 000000000000..125f365d11fa
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdm670-lpass-lpi-pinctrl.yaml
+@@ -0,0 +1,81 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/qcom,sdm670-lpass-lpi-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm SDM670 SoC LPASS LPI TLMM
++
++maintainers:
++  - Richard Acayan <mailingradian@gmail.com>
++
++description:
++  Top Level Mode Multiplexer pin controller in the Low Power Audio SubSystem
++  (LPASS) Low Power Island (LPI) of Qualcomm SDM670 SoC.
++
++properties:
++  compatible:
++    const: qcom,sdm670-lpass-lpi-pinctrl
++
++  reg:
++    items:
++      - description: LPASS LPI TLMM Control and Status registers
++
++patternProperties:
++  "-state$":
++    oneOf:
++      - $ref: "#/$defs/qcom-sdm670-lpass-state"
++      - patternProperties:
++          "-pins$":
++            $ref: "#/$defs/qcom-sdm670-lpass-state"
++        additionalProperties: false
++
++$defs:
++  qcom-sdm670-lpass-state:
++    type: object
++    description:
++      Pinctrl node's client devices use subnodes for desired pin configuration.
++      Client device subnodes use below standard properties.
++    $ref: qcom,lpass-lpi-common.yaml#/$defs/qcom-tlmm-state
++    unevaluatedProperties: false
++
++    properties:
++      pins:
++        description:
++          List of gpio pins affected by the properties specified in this
++          subnode.
++        items:
++          pattern: "^gpio([0-9]|1[0-9]|2[0-9]|3[0-1])$"
++
++      function:
++        enum: [ gpio, comp_rx, dmic1_clk, dmic1_data, dmic2_clk, dmic2_data,
++                lpi_cdc_rst, mclk0, pdm_tx, pdm_clk, pdm_rx, pdm_sync, sec_tdm,
++                sec_tdm_din, sec_tdm_dout ]
++        description:
++          Specify the alternative function to be configured for the specified
++          pins.
++
++allOf:
++  - $ref: qcom,lpass-lpi-common.yaml#
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    lpi_tlmm: pinctrl@62b40000 {
++        compatible = "qcom,sdm670-lpass-lpi-pinctrl";
++        reg = <0x62b40000 0x20000>;
++        gpio-controller;
++        #gpio-cells = <2>;
++        gpio-ranges = <&lpi_tlmm 0 0 32>;
++
++        cdc_comp_default: cdc-comp-default-state {
++            pins = "gpio22", "gpio24";
++            function = "comp_rx";
++            drive-strength = <4>;
++        };
++    };
 -- 
 2.53.0
 
