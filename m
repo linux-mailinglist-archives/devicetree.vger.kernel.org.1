@@ -1,132 +1,391 @@
-Return-Path: <devicetree+bounces-264200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264201-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CO5JLvyWimn2MAAAu9opvQ
-	(envelope-from <devicetree+bounces-264200-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:25:00 +0100
+	id +DSTA2+Ximn2MAAAu9opvQ
+	(envelope-from <devicetree+bounces-264201-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:26:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11B70116465
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:25:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A358116485
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:26:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 42B0230276BF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:24:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2B8123014566
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:26:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98BF52D8DBB;
-	Tue, 10 Feb 2026 02:24:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6603C2D94AB;
+	Tue, 10 Feb 2026 02:26:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VpUfiCWN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ULLVu6Xs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71EF5284686;
-	Tue, 10 Feb 2026 02:24:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E762C2D8DBB
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 02:26:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770690297; cv=none; b=dKJM+GQsJBLE+X/0tRb4WPXO4DsW7o+PZl5R1cKPiexpY6Ym2YQAoVxsJp9yL7TYCIgHKzlOBhsi0NvL8/7IRiFsNqVLECcXs3ubxiBg1ikyFPjVRiLAQbx5qtkHkZK1TNOr+l7ODf+OZiW6cYnwyFJ4IL4aL+HKghHHZ/qXysQ=
+	t=1770690412; cv=none; b=nO2JH3TdidNURUJPiMbyep+OZzVMmU0+vl43lsAItIh7yqheaO/fc6NLPlF6wKjjV0WFzwHMuIxutmJlZ8XMahdf+KSp/P4wOPSbfF0JxdE8B57rjE148EQ23Dk33nUf5zAbf61BbVrX9pr7WIC6dPH/X0uGQ7xOEn6Jhz0VMQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770690297; c=relaxed/simple;
-	bh=qvzkgIsUupXyFBmx94KHEIrSTpQoQW9SEGt5veYFylE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m/lB5+KcxM3WEeZiA+U+KQs634l2Jb1hkuLRNYModgae0aWhjcF+vXAvDE7LW96wTt+UgPhZwKVJht6HZL+UFVRqnIYqElDkITUC/o6tOUWnAwEy3Drjl3JlIN2hcz/dxx8Kin58ZxtiBkYHSgkuIXv5yQjYCQpPuYgN7JncnBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VpUfiCWN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D93AC116C6;
-	Tue, 10 Feb 2026 02:24:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770690297;
-	bh=qvzkgIsUupXyFBmx94KHEIrSTpQoQW9SEGt5veYFylE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VpUfiCWNb0vIktuuKWDP6Fl3XWl+f+zThcHDJq4SLtV6wjdRsodxX3StIrah3IjVS
-	 lLyr/fNF07JG/tVAe3JyNDP2l68nIHnCI29Y73uRuwfYi/M1xI/P4IOUx4WzRgu20e
-	 8jNRqleE6NsTtCQbEAkUggssnnhuL5fDWEq36grrGmUiivUIYhJzVTaEfMQor9D1ut
-	 +zXBzGcxexfCOSQcM5MCcLZJu3Sfrp6XkU80bj3OHmkI8Bbx0cDfu0RfDDNa6hfqC7
-	 NeozwEYjDFXg8tQA+dE3mf1zu4yfP9Mx3c1BLVHy3pSVSnIFKIsRNnjpLlyOiP1c7I
-	 uvZYNzwPcyA2w==
-Date: Mon, 9 Feb 2026 20:24:56 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: Frank Li <frank.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Li Jun <jun.li@nxp.com>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v3 1/3] dt-bindings: usb: introduce nxp,imx-dwc3
-Message-ID: <177069029377.2355609.7155450591040552968.robh@kernel.org>
-References: <20260206-add-flatten-dts-based-dwc3-imx-driver-v3-0-ebd9b9b77049@nxp.com>
- <20260206-add-flatten-dts-based-dwc3-imx-driver-v3-1-ebd9b9b77049@nxp.com>
+	s=arc-20240116; t=1770690412; c=relaxed/simple;
+	bh=BTqAKC0i24IBiMoIcV7oMgsKbpIo3FeA7GOLul0Jkb4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=H7zYPH0FF8LVtnfGWaq00Rc0pL6Bm0/hN8oat2aGbEBi0dqUEfZjw8o/uNnYjw+MuTR26VkAkCNEJVlBggNMK6eaWbt4VgKhdorNm0QJ4MjMCTW9V1J0vuAm3IAU/gogdjBVBfU+xZZ1zZIm9/PJBhyvWnB0CgKhik3mVSHOGf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ULLVu6Xs; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-79627af6349so4133337b3.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 18:26:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770690410; x=1771295210; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pi7Nb4WPQaDqjjpzXE32MrRshp2IR4Mc/boqukgvkXs=;
+        b=ULLVu6XsUmKxvsb+NeiCJii1y0A4dCxH0cXeJJHwDXHuOhwoD8+8ZWg1UPw9FmAPiO
+         RhMarGrBBy80A2pzzzlMoimbRPg504YMRhsddlJB9Ukjkv8Uv07xsBMJv/jP4N/4iNPU
+         HKBFRVIozHjllzCLYqd6UKO5uCEnQ7h+hpRToYD+ff7/GlwjHPNWRlhtzQ1DOG+foZ0l
+         pkyWFyFaIzJRFsX7ziTeLQnjJavLTJ00Kl3rh0dNAXj3ixvcLCktCqIMepHSkTG062MM
+         +wdO5gwW2dtwGwVewnzrVvisIZFd0rUr8aO4scViM3UkNQ/GMI7CNhTrxZMUGKSVqZKY
+         22Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770690410; x=1771295210;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Pi7Nb4WPQaDqjjpzXE32MrRshp2IR4Mc/boqukgvkXs=;
+        b=nrLJYPmserLb1i/H+sfEdknES+IelT7X/UYWqWgtXFGkF7gZfMP3qqT1N8kH+loBek
+         viF9WKbU/2WuHsELvzCFqvMAWzYP0TyupDacZKJWGO2E8KRr2uyfcmAHp42Do0Cc85Oj
+         /vsTCcwJvLGb0u0Kol4hnzL+NwUWYXvh/K/nrl7w6f5qoHiLlRAeEQNx5RG9wROOLCDI
+         STmaj1CEAbIOSWfe/hVZoViQnYi6upkI1qb7inJmegp+UEaLO47BlvuzU8VOTAH9DYCI
+         NTbebAry5oSzUhHjTiN9OFL2IjlaW+l6+bpKGXhGX2/kQEPsaP35dUZwHJHmh7xnB7cZ
+         72cg==
+X-Forwarded-Encrypted: i=1; AJvYcCUKPbJlqR0sibMVG94RkAQ7Oq4y0rdY+2/LxH5mEIMWturWa3/ilRNp5zLrJpWNdJXie4VVFwr/hm+k@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4rvTY9Oe+S5YK5/E+yMyzPO6Iw9x4SMvhFgFGkuke8wRM36qS
+	zKPujG9bjtPAgPDlAjcft9+XEqPJhBU+8AB0ZOMguXeTeSPBDx8sO87L
+X-Gm-Gg: AZuq6aJs+1hsfnHcAJU5yb4/Q6kjIR01Cg5cKscBtqGPZl7JhxQbCIUxQ7TLBs8dUPP
+	oS8RzTD36dCOci/IXWprEN2UE+fosd7mfIcLZCaCpRJwaKMs9OCMm/lxfrKrIo60zcRpOXS0jCk
+	WJ6NfPFqnPQl23dUTighI+knrp6rBRkY8Z/D1NlssIyV0UvhPLhza3lrOY29rnwHobMZkQrYjtU
+	4PGNLJTslgztnMu+alr3Kf7FCZpJ6m84UHcW68As21ozj3MbNk6Nx4xgl3sfxyMaRgoKZ+VvOiK
+	gVYu3XgB8lQH0ds+yBVFbEuQ/ZlyZhleaOv9FShJ49xbm41SHuzGgUJphSTMdHSG5JbVRW4GOQQ
+	LFkS62Bf98hOLdGsj4SsskJRPHgeSfapTpQulJCb5qx7vIUTgfFa0M3id1VT9/wI1RK2ccxgwit
+	JJwxHeyTSF8dfMvLWqJtnJRT3gzyn1+tufoLlW
+X-Received: by 2002:a05:690c:88:b0:794:e08a:9196 with SMTP id 00721157ae682-7952ab249bbmr268145477b3.34.1770690409802;
+        Mon, 09 Feb 2026 18:26:49 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:f6a0:d6e1:b522:395a])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-79529e45621sm109858257b3.0.2026.02.09.18.26.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Feb 2026 18:26:49 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: sboyd@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	linux-clk@vger.kernel.org,
+	jonas@kwiboo.se,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@nabladev.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH v3 1/2] dt-bindings: clock: rockchip: Add RV1103B CRU support
+Date: Mon,  9 Feb 2026 23:26:19 -0300
+Message-Id: <20260210022620.172570-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260206-add-flatten-dts-based-dwc3-imx-driver-v3-1-ebd9b9b77049@nxp.com>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264200-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[nxp.com,kernel.org,gmail.com,pengutronix.de,vger.kernel.org,lists.infradead.org,lists.linux.dev,synopsys.com,linuxfoundation.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-264201-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[i.mx:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 11B70116465
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rock-chips.com:email]
+X-Rspamd-Queue-Id: 6A358116485
 X-Rspamd-Action: no action
 
+From: Fabio Estevam <festevam@nabladev.com>
 
-On Fri, 06 Feb 2026 18:18:49 +0800, Xu Yang wrote:
-> The i.MX USB glue and DWC3 core are closely coupled. Describe the i.MX
-> USB block in a single block will bring more benefits than a parent-child
-> relation. The new binding is used to describe flattened usb controller
-> node. It's a copy of the legacy binding fsl,imx8mp-dwc3.yaml with the
-> needed modifications.
-> 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> 
-> ---
-> Changes in v3:
->  - rename file name as nxp,imx-dwc3.yaml
->  - rename compatible as nxp,imx*-dwc3
->  - remove status property in example node
->  - remove select block
->  - modify commit message
-> Changes in v2:
->  - reorder compatible property
-> ---
->  .../devicetree/bindings/usb/fsl,imx8mp-dwc3.yaml   |   2 +
->  .../devicetree/bindings/usb/nxp,imx-dwc3.yaml      | 123 +++++++++++++++++++++
->  2 files changed, 125 insertions(+)
-> 
+Add support for the Rockchip RV1103B Clock and Reset Unit (CRU).
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+The RV1103B CRU is compatible with the existing RV1126B binding.
+Add the compatible string to the schema and introduce the
+corresponding clock ID definitions.
+
+Signed-off-by: Fabio Estevam <festevam@nabladev.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+---
+Changes since v2:
+- None. Only added Krzysztof's RB tag.
+
+ .../bindings/clock/rockchip,rv1126b-cru.yaml  |   1 +
+ .../dt-bindings/clock/rockchip,rv1103b-cru.h  | 220 ++++++++++++++++++
+ 2 files changed, 221 insertions(+)
+ create mode 100644 include/dt-bindings/clock/rockchip,rv1103b-cru.h
+
+diff --git a/Documentation/devicetree/bindings/clock/rockchip,rv1126b-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rv1126b-cru.yaml
+index 04b0a5c51e4e..b6d3a04be8f1 100644
+--- a/Documentation/devicetree/bindings/clock/rockchip,rv1126b-cru.yaml
++++ b/Documentation/devicetree/bindings/clock/rockchip,rv1126b-cru.yaml
+@@ -17,6 +17,7 @@ description:
+ properties:
+   compatible:
+     enum:
++      - rockchip,rv1103b-cru
+       - rockchip,rv1126b-cru
+ 
+   reg:
+diff --git a/include/dt-bindings/clock/rockchip,rv1103b-cru.h b/include/dt-bindings/clock/rockchip,rv1103b-cru.h
+new file mode 100644
+index 000000000000..35afdee7e961
+--- /dev/null
++++ b/include/dt-bindings/clock/rockchip,rv1103b-cru.h
+@@ -0,0 +1,220 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
++/*
++ * Copyright (c) 2024 Rockchip Electronics Co. Ltd.
++ * Author: Elaine Zhang <zhangqing@rock-chips.com>
++ */
++
++#ifndef _DT_BINDINGS_CLK_ROCKCHIP_RV1103B_H
++#define _DT_BINDINGS_CLK_ROCKCHIP_RV1103B_H
++
++#define PLL_GPLL		0
++#define ARMCLK			1
++#define PLL_DPLL		2
++#define XIN_OSC0_HALF		3
++#define CLK_GPLL_DIV24		4
++#define CLK_GPLL_DIV12		5
++#define CLK_GPLL_DIV6		6
++#define CLK_GPLL_DIV4		7
++#define CLK_GPLL_DIV3		8
++#define CLK_GPLL_DIV2P5		9
++#define CLK_GPLL_DIV2		10
++#define CLK_UART0_SRC		11
++#define CLK_UART1_SRC		12
++#define CLK_UART2_SRC		13
++#define CLK_UART0_FRAC		14
++#define CLK_UART1_FRAC		15
++#define CLK_UART2_FRAC		16
++#define CLK_SAI_SRC		17
++#define CLK_SAI_FRAC		18
++#define LSCLK_NPU_SRC		19
++#define CLK_NPU_SRC		20
++#define ACLK_VEPU_SRC		21
++#define CLK_VEPU_SRC		22
++#define ACLK_VI_SRC		23
++#define CLK_ISP_SRC		24
++#define DCLK_VICAP		25
++#define CCLK_EMMC		26
++#define CCLK_SDMMC0		27
++#define SCLK_SFC_2X		28
++#define LSCLK_PERI_SRC		29
++#define ACLK_PERI_SRC		30
++#define HCLK_HPMCU		31
++#define SCLK_UART0		32
++#define SCLK_UART1		33
++#define SCLK_UART2		34
++#define CLK_I2C_PMU		35
++#define CLK_I2C_PERI		36
++#define CLK_SPI0		37
++#define CLK_PWM0_SRC		38
++#define CLK_PWM1		39
++#define CLK_PWM2		40
++#define DCLK_DECOM_SRC		41
++#define CCLK_SDMMC1		42
++#define CLK_CORE_CRYPTO		43
++#define CLK_PKA_CRYPTO		44
++#define CLK_CORE_RGA		45
++#define MCLK_SAI_SRC		46
++#define CLK_FREQ_PWM0_SRC	47
++#define CLK_COUNTER_PWM0_SRC	48
++#define PCLK_TOP_ROOT		49
++#define CLK_REF_MIPI0		50
++#define CLK_MIPI0_OUT2IO	51
++#define CLK_REF_MIPI1		52
++#define CLK_MIPI1_OUT2IO	53
++#define MCLK_SAI_OUT2IO		54
++#define ACLK_NPU_ROOT		55
++#define HCLK_RKNN		56
++#define ACLK_RKNN		57
++#define LSCLK_VEPU_ROOT		58
++#define HCLK_VEPU		59
++#define ACLK_VEPU		60
++#define CLK_CORE_VEPU		61
++#define PCLK_IOC_VCCIO3		62
++#define PCLK_ACODEC		63
++#define PCLK_USBPHY		64
++#define LSCLK_VI_100M		65
++#define LSCLK_VI_ROOT		66
++#define HCLK_ISP		67
++#define ACLK_ISP		68
++#define CLK_CORE_ISP		69
++#define ACLK_VICAP		70
++#define HCLK_VICAP		71
++#define ISP0CLK_VICAP		72
++#define PCLK_CSI2HOST0		73
++#define PCLK_CSI2HOST1		74
++#define HCLK_EMMC		75
++#define HCLK_SFC		76
++#define HCLK_SFC_XIP		77
++#define HCLK_SDMMC0		78
++#define PCLK_CSIPHY		79
++#define PCLK_GPIO1		80
++#define DBCLK_GPIO1		81
++#define PCLK_IOC_VCCIO47	82
++#define LSCLK_DDR_ROOT		83
++#define CLK_TIMER_DDRMON	84
++#define LSCLK_PMU_ROOT		85
++#define PCLK_PMU		86
++#define XIN_RC_DIV		87
++#define CLK_32K			88
++#define PCLK_PMU_GPIO0		89
++#define DBCLK_PMU_GPIO0		90
++#define CLK_DDR_FAIL_SAFE	91
++#define PCLK_PMU_HP_TIMER	92
++#define CLK_PMU_32K_HP_TIMER	93
++#define PCLK_PWM0		94
++#define CLK_PWM0		95
++#define CLK_OSC_PWM0		96
++#define CLK_RC_PWM0		97
++#define CLK_FREQ_PWM0		98
++#define CLK_COUNTER_PWM0	99
++#define PCLK_I2C0		100
++#define CLK_I2C0		101
++#define PCLK_UART0		102
++#define PCLK_IOC_PMUIO0		103
++#define CLK_REFOUT		104
++#define CLK_PREROLL		105
++#define CLK_PREROLL_32K		106
++#define CLK_LPMCU_PMU		107
++#define PCLK_SPI2AHB		108
++#define HCLK_SPI2AHB		109
++#define SCLK_SPI2AHB		110
++#define PCLK_WDT_LPMCU		111
++#define TCLK_WDT_LPMCU		112
++#define HCLK_SFC_PMU1		113
++#define HCLK_SFC_XIP_PMU1	114
++#define SCLK_SFC_2X_PMU1	115
++#define CLK_LPMCU		116
++#define CLK_LPMCU_RTC		117
++#define PCLK_LPMCU_MAILBOX	118
++#define PCLK_IOC_PMUIO1		119
++#define PCLK_CRU_PMU1		120
++#define PCLK_PERI_ROOT		121
++#define PCLK_RTC_ROOT		122
++#define CLK_TIMER_ROOT		123
++#define PCLK_TIMER		124
++#define CLK_TIMER0		125
++#define CLK_TIMER1		126
++#define CLK_TIMER2		127
++#define CLK_TIMER3		128
++#define CLK_TIMER4		129
++#define CLK_TIMER5		130
++#define PCLK_STIMER		131
++#define CLK_STIMER0		132
++#define CLK_STIMER1		133
++#define PCLK_WDT_NS		134
++#define TCLK_WDT_NS		135
++#define PCLK_WDT_S		136
++#define TCLK_WDT_S		137
++#define PCLK_WDT_HPMCU		138
++#define TCLK_WDT_HPMCU		139
++#define PCLK_I2C1		140
++#define CLK_I2C1		141
++#define PCLK_I2C2		142
++#define CLK_I2C2		143
++#define PCLK_I2C3		144
++#define CLK_I2C3		145
++#define PCLK_I2C4		146
++#define CLK_I2C4		147
++#define PCLK_SPI0		148
++#define PCLK_PWM1		149
++#define CLK_OSC_PWM1		150
++#define PCLK_PWM2		151
++#define CLK_OSC_PWM2		152
++#define PCLK_UART2		153
++#define PCLK_UART1		154
++#define ACLK_RKDMA		155
++#define PCLK_TSADC		156
++#define CLK_TSADC		157
++#define CLK_TSADC_TSEN		158
++#define PCLK_SARADC		159
++#define CLK_SARADC		160
++#define PCLK_GPIO2		161
++#define DBCLK_GPIO2		162
++#define PCLK_IOC_VCCIO6		163
++#define ACLK_USBOTG		164
++#define CLK_REF_USBOTG		165
++#define HCLK_SDMMC1		166
++#define HCLK_SAI		167
++#define MCLK_SAI		168
++#define ACLK_CRYPTO		169
++#define HCLK_CRYPTO		170
++#define HCLK_RK_RNG_NS		171
++#define HCLK_RK_RNG_S		172
++#define PCLK_OTPC_NS		173
++#define CLK_OTPC_ROOT_NS	174
++#define CLK_SBPI_OTPC_NS	175
++#define CLK_USER_OTPC_NS	176
++#define PCLK_OTPC_S		177
++#define CLK_OTPC_ROOT_S		178
++#define CLK_SBPI_OTPC_S		179
++#define CLK_USER_OTPC_S		180
++#define CLK_OTPC_ARB		181
++#define PCLK_OTP_MASK		182
++#define HCLK_RGA		183
++#define ACLK_RGA		184
++#define ACLK_MAC		185
++#define PCLK_MAC		186
++#define CLK_MACPHY		187
++#define ACLK_SPINLOCK		188
++#define HCLK_CACHE		189
++#define PCLK_HPMCU_MAILBOX	190
++#define PCLK_HPMCU_INTMUX	191
++#define CLK_HPMCU		192
++#define CLK_HPMCU_RTC		193
++#define DCLK_DECOM		194
++#define ACLK_DECOM		195
++#define PCLK_DECOM		196
++#define ACLK_SYS_SRAM		197
++#define PCLK_DMA2DDR		198
++#define ACLK_DMA2DDR		199
++#define PCLK_DCF		200
++#define ACLK_DCF		201
++#define MCLK_ACODEC_TX		202
++#define SCLK_UART0_SRC		203
++#define SCLK_UART1_SRC		204
++#define SCLK_UART2_SRC		205
++#define XIN_RC_SRC		206
++#define CLK_UTMI_USBOTG		207
++#define CLK_REF_USBPHY		208
++
++#endif // _DT_BINDINGS_CLK_ROCKCHIP_RV1103B_H
+-- 
+2.34.1
 
 
