@@ -1,69 +1,59 @@
-Return-Path: <devicetree+bounces-264211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264212-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AL6RKPqZimk8MQAAu9opvQ
-	(envelope-from <devicetree+bounces-264211-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:37:46 +0100
+	id KLSpBjyaimk8MQAAu9opvQ
+	(envelope-from <devicetree+bounces-264212-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:38:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 458321165C9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:37:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A2EA1165F8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:38:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 81E8C3006812
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:37:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CBD9F301BCDD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:38:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A60D2E06ED;
-	Tue, 10 Feb 2026 02:37:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304A22DC339;
+	Tue, 10 Feb 2026 02:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UzRMz19k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e0bLPROy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74DAB2765C4;
-	Tue, 10 Feb 2026 02:37:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DFBC1F09AD;
+	Tue, 10 Feb 2026 02:38:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770691062; cv=none; b=aOMuuRHhSgfpJaENsokhj1QIUktZ8NRJHPc2LwIUpJTdF/LPaac7j7vNuiPgwXMD3JtL0q+yrSinqckJHWYoKIqUgD4r9zjql3UJ75TE60L+8CCTjX7s5PpUG/jBXQfENZTXWyJ9bGcUYrWL0LE5pVPB8rmBBQhHZ9Lv4ITQ/vo=
+	t=1770691128; cv=none; b=WwC7grYBfNUqk3sOpEpnlqx5qw0vqhp8iHlgE7obvHblS5kO6pZD7Mb7J8AIGzpTLZ2Tns0lSBt6tkhwasujgFhRfkHd+IAqRJHPnlbEf7wqLhCLAvCCQfUMuolMBVgK0tvaVpGLZVb012WecUWmTJyKX1s+uBhZZZ+T36/E7IM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770691062; c=relaxed/simple;
-	bh=1REeQ9bmhabHDdl80zGNRmd69dN2i8Beu8762qMZG78=;
+	s=arc-20240116; t=1770691128; c=relaxed/simple;
+	bh=a+W7rJ+nSy+E9nA72vbcHKdll0IUBuebzRkNW6TOQCk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hNV5qC3W+GDFYpc27HlopQRubOFOMH6o7+0T3YvvdA/WpLHgqGficrdzfM+wVZzImoXgJhRjZZUBkwKa9JAy6INKs8wZlXEyAJoguuc4mrKvwcuGhfXbZJiPaJPHJV/VyBPSgnI7sXJntwip1X/RSeJc9QpALPlIC4g+fw1Xydg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UzRMz19k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3C41C116C6;
-	Tue, 10 Feb 2026 02:37:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kqBZQZ1d8y8JVhFQshQHle6kLELIhAI9prPil1T0P8Nua00VAdrRcjy2pRO3KK/kYwo3/iNBzjP64sxYxLzw70sUCkcX98l2Ji3kSVYbz1tkFEZgGEbsQKMRRirs552y/UMP0i5eCvj98PdX1HMyAy8AZZieSwohwlRi+JLp998=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e0bLPROy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91A48C116C6;
+	Tue, 10 Feb 2026 02:38:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770691061;
-	bh=1REeQ9bmhabHDdl80zGNRmd69dN2i8Beu8762qMZG78=;
+	s=k20201202; t=1770691127;
+	bh=a+W7rJ+nSy+E9nA72vbcHKdll0IUBuebzRkNW6TOQCk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UzRMz19kLrMZbrV3DBTXVa/+qGr13rHrDkrO0kOrH+rQRx3xVGCAfUx8eg5kDB7t5
-	 NUMpk86kcujYCLnAMCJAVFxOyd7ivT0mIfpwCi7QpgmcwCGOz27apgBk5bkczTFowB
-	 7tXAf9ZUDLAns6d5TPvcY4ddT5xrl883nqI1yZV4XfEMeDgEKk1A5y4aHP/EkRjePN
-	 caJ3Zl2YJyjJtisG5K686si4SE0yGjoigQLxdYp1F0LcMqAA3JwCc0TTJ39ci2cFIu
-	 ut8uYsbljMZ1rXuIzvhDpxSi0TZJoPCpfZC6benZTLx233CBJF+fRVWVfeC7bvm2ZK
-	 wAeLfbB9McawA==
-Date: Mon, 9 Feb 2026 20:37:41 -0600
+	b=e0bLPROyxDCoW0Ba2kuk1CrnHUjouIrJ+qAeMpKsrzGL0pAoXXZDS9oFcpzPO/Hgz
+	 uuxEF5aB1RJL73Dzu6EExnkKRi8o3fPzVoj+hiE9qQOHs5iljlqoPv6enO54jq+PgF
+	 ZNrJ3tXnLiQZQLLpqoaB7lSKNa/MPqu62hIUPgqUjn5rVLPLN52TmEbPqarN6IG5tm
+	 wBR10qQxwXibX/3xS27vdZXYK4S/Da4zA2TtcwAaTmidT9wIfLnlbUdhHg7xGLJ3GW
+	 4mIpZoHxjx+t02Ei6/V7GNSS1lOEEcDgqEAAWwh8Fte1io17gSI9lQrcn/hHt77VQq
+	 Szctz8ECxQxqg==
+Date: Mon, 9 Feb 2026 20:38:47 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-pci@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>,
-	linux-renesas-soc@vger.kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v3 1/9] dt-bindings: usb: document the Renesas
- UPD720201/UPD720202 USB 3.0 xHCI Host Controller
-Message-ID: <177069106017.2372479.10101805621676479866.robh@kernel.org>
-References: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-0-5b79c5d61a03@linaro.org>
- <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-1-5b79c5d61a03@linaro.org>
+To: Akhila YS <akhilayalmati@gmail.com>
+Cc: Tony Lindgren <tony@atomide.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: power: ti,omap3-smartreflex-core:
+ convert to DT schema
+Message-ID: <177069112619.2374074.2138585999534731553.robh@kernel.org>
+References: <20260206-smartreflex-v2-1-b258498917a4@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,49 +62,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-1-5b79c5d61a03@linaro.org>
+In-Reply-To: <20260206-smartreflex-v2-1-b258498917a4@gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264211-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-264212-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com,google.com,glider.be,linuxfoundation.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 458321165C9
+	RCPT_COUNT_FIVE(0.00)[6]
+X-Rspamd-Queue-Id: 7A2EA1165F8
 X-Rspamd-Action: no action
 
 
-On Fri, 06 Feb 2026 15:50:29 +0100, Neil Armstrong wrote:
-> Document the Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller,
-> which connects over PCIe and requires specific power supplies to
-> start up.
+On Fri, 06 Feb 2026 16:57:54 +0000, Akhila YS wrote:
+> Convert Texas Instruments SmartReflex module binding to YAML format.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
 > ---
->  .../bindings/usb/renesas,upd720201-pci.yaml        | 61 ++++++++++++++++++++++
->  1 file changed, 61 insertions(+)
+> Changes in v2:
+> - Remove unnecessary examples.
+> - Remove "ti,hwmods" property from example.
+> - Link to v1: https://lore.kernel.org/r/20260128-smartreflex-v1-1-2ab7a35169ed@gmail.com
+> ---
+>  .../bindings/power/ti,omap3-smartreflex-core.yaml  | 58 ++++++++++++++++++++++
+>  .../devicetree/bindings/power/ti-smartreflex.txt   | 47 ------------------
+>  2 files changed, 58 insertions(+), 47 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
