@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-264279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264280-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KDp7GHn2imkePAAAu9opvQ
-	(envelope-from <devicetree+bounces-264279-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:12:25 +0100
+	id uLVMO7n2imkePAAAu9opvQ
+	(envelope-from <devicetree+bounces-264280-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:13:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FC07118A94
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:12:25 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33A0C118B3D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:13:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 995D83017519
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:12:13 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7F6E4300F1EE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:12:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC57433F39B;
-	Tue, 10 Feb 2026 09:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 008E433F39B;
+	Tue, 10 Feb 2026 09:12:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M4w+J6vq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lYreCZBk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6D7433D6D4;
-	Tue, 10 Feb 2026 09:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D115E33F389;
+	Tue, 10 Feb 2026 09:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770714731; cv=none; b=hC2WRE6gxlvUyjgy55O+jHcwUX00aP3eFouVL/nV9OAkfmxUI6gR25ZR/TCVHZxdRSbqZW1LtiUB4ItcCNeMH/fpOVrLGc46BElcfXYu1+4RceIEgip/KaA+XqopGMRdoUGJSJkRb9WtvV+rk6f6pWcLfEpZiVtNr6ShNx9AIzk=
+	t=1770714768; cv=none; b=eVCwzf5TvbjVBx4klXUQIV6CsqPEjlfCXssRfOG3D83jzEkLR8tJCwXzmI1Vz6gkrZ0gO2hASK6ic/ZYvZms78f3wWwpeJ+2sm3HJtCHACsocM2xED50fSAglryNB18sOuaMRnqh0F3sk0OugUOHRAhIHBUyqwqc6h71ychSDZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770714731; c=relaxed/simple;
-	bh=Du0O5Gu/g6ofJk1V/Nt2Be4m0aYJ5MMW5ef2B36nSH4=;
+	s=arc-20240116; t=1770714768; c=relaxed/simple;
+	bh=VcHeDJkLSKVCKZWbfezI1w1iAPTYKMlAAq1HC8tWo/c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PlihmYhzwjI9QsnRiCyuRafwij9Bwy3QZ8XVvT35F4PddOKGffTp31U4y1Rx+ycIJvljw0c9RcLa3ng8BRR6Qb92UAc1SpaO/zirqX8yFfxZxsveCJY9NpGdSBj4g7zgTymdlMRmEB8xPnu5MM/oWdrprTkZNNu8cRFHI8NsHes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M4w+J6vq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D0C6C116C6;
-	Tue, 10 Feb 2026 09:12:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JDDB3XRMsvxCitbaJEia6UsvJYCXIAWwrI71xPSO7/Ns6l/cZYCs2p5z1V77TDpaIin9PBXqR9irvjcYb0AoJ9Dxu/fI31bhu+zi77QzAcP3pKXDjvl2DM0CpSlzatQGde8dIKoRBcIvRtm+6dnel5vbLTZwCb69IwIE+YNtwFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lYreCZBk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91521C116C6;
+	Tue, 10 Feb 2026 09:12:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770714731;
-	bh=Du0O5Gu/g6ofJk1V/Nt2Be4m0aYJ5MMW5ef2B36nSH4=;
+	s=k20201202; t=1770714768;
+	bh=VcHeDJkLSKVCKZWbfezI1w1iAPTYKMlAAq1HC8tWo/c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=M4w+J6vq0raHkUufPTlrTEkfOkhxWuf8mVsTkBQ43G3XEpeisgRUbMTnEgVXPR0r/
-	 05sBeim+97mQ282c2O/DmOtpb/bvWnm9xptJMzAi2rFbwkznmpClcqyovO+417Zi5e
-	 xRMoPWZSNtid0XemJbZ+XAPlv9/Bl7H+iaYrIUEHCDGeqeeowaRSIGsMfqT70qm+yl
-	 hC9ZOguKe8g2tCFuxkUl+dz+ysptDJ9Uo4XKLO0acI7Y60XG9MtQziNFqNmPpHrwza
-	 eBW6WvM/0hrlSTsOhQsejFdDFUy/WJ03QWOKFI+NiuPvco3UCbFix00ScF1QJTnapW
-	 SZJ66MhBRIDAA==
-Message-ID: <06503bb7-0d82-4407-815f-6f3851069041@kernel.org>
-Date: Tue, 10 Feb 2026 10:12:05 +0100
+	b=lYreCZBkTa5Q8QHFsyzmbGMpJKZnwqkGrwD3KCwz6hWMCIGD7W8QL1MKRSf/h/Feb
+	 StpbOzM1yPvNKPkTjb+S0EVj4mSiIHet/U8l+kRXrmnTk3kYefN+3RAEDzpjg/Wcgb
+	 XQHUy3RJ+udNOQFi5YSCFGr1a9is7OY9M4ILhEb/xL8ZYueOp/2phqnxHg7CygeZ8G
+	 m6aRMoVb//595jf0IbsjWh1L/oPETmWJ8YS4HYcCX+ckHv/VnY00zjikUgjxmG5OT/
+	 ScWGhWiPXNVM1rCotyysphd0/wOJmd6d6tiufCUMFTLNjhOV9nTEXZrcmhtmNmrarD
+	 OAxmXbiH1iE8A==
+Message-ID: <4d3ec80b-ad91-4e10-8b33-b4f1337069ce@kernel.org>
+Date: Tue, 10 Feb 2026 10:12:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,8 +53,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: arm: qcom: document google,bonito-tianma
- board
+Subject: Re: [PATCH 2/6] dt-bindings: panel-simple-dsi: add nt37700f
+ compatible
 To: Richard Acayan <mailingradian@gmail.com>,
  Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -69,7 +69,7 @@ To: Richard Acayan <mailingradian@gmail.com>,
  dri-devel@lists.freedesktop.org
 Cc: yifei@zhan.science
 References: <20260210023300.15785-1-mailingradian@gmail.com>
- <20260210023300.15785-2-mailingradian@gmail.com>
+ <20260210023300.15785-3-mailingradian@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,7 +115,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260210023300.15785-2-mailingradian@gmail.com>
+In-Reply-To: <20260210023300.15785-3-mailingradian@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -123,12 +123,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264279-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264280-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,linux.intel.com,suse.de,ffwll.ch,ravnborg.org,vger.kernel.org,lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -144,19 +144,21 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0FC07118A94
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 33A0C118B3D
 X-Rspamd-Action: no action
 
 On 10/02/2026 03:32, Richard Acayan wrote:
-> The google,bonito-sdc board compatible represents the Google Pixel 3a XL
+> Add the compatible for the NT37700F panel found on the Pixel 3a XL.
+> 
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>  .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-I do not see sdc anywhere in the diff.
-
-> with a Tianma/Novatek NT37700F panel. Document it in the bindings.
-
-What is bonito? Why bonito is compatible with sdm670?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
