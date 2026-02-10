@@ -1,108 +1,95 @@
-Return-Path: <devicetree+bounces-264184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264185-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oOAaI7SRimkQMAAAu9opvQ
-	(envelope-from <devicetree+bounces-264184-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:02:28 +0100
+	id YVFhAaCTimlzMAAAu9opvQ
+	(envelope-from <devicetree+bounces-264185-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:10:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08F5211621D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:02:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F0C611627A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 03:10:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE7AD303A24E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:01:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 05AD0301A380
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:10:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8FE82C08BB;
-	Tue, 10 Feb 2026 02:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA3DA2C1589;
+	Tue, 10 Feb 2026 02:10:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QZUvqjpe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XlKHJ73C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+Received: from mail-qk1-f195.google.com (mail-qk1-f195.google.com [209.85.222.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A17622D7B6
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 02:01:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 202A02C08BB
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 02:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770688907; cv=none; b=M/7kEp6fdMqVzHll3DzerxSsjYWv0biyYTOReCQI1cuJWJA5sg0kBiSmgynJpszbarxozlnq6P5QG65dh+D2tvhVv6GQ9rX2Ubq/PSJm+tk85PQ1ipf1slgvSW3Vzqf9YTnZ21Q8CnKb+mZQtjrBFCSCc4iVnsJrXoC1lT9DOzM=
+	t=1770689435; cv=none; b=RmAXsMKaZuGD+8vl3CftAfED3iFo0Yc2vnawrltl7aiYrg4YXhHAUzBNkXJqmQejzw5AJDcwFxaIJMMMnha7LhCj126akmUDMYGXVzyIvXvwbHPJEHqvygGzY8sPk/Kqfb4cQn9QDfcsnGemYC6E2zrspIVjcbXndqiTzxL+0yM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770688907; c=relaxed/simple;
-	bh=EcTRKDBc1veGtECuqy6AI3PYeK9xENvrGwMb1X7Kpbw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=su7sr0gtq41l+pn3A851LG5ytwYe1dPiM+vNw8fTTb2KVquymevDZDSoycHhwu4B81i3FwrYzyrm/CZ8c08yZaqrF3z0mGP8OFNLGYlPgKT7GwtJMjU9civxEFITgwlKdZPOsb9YK8zARz3a5zer3eNfRucRc+wt4Hof71NSnDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QZUvqjpe; arc=none smtp.client-ip=209.85.219.49
+	s=arc-20240116; t=1770689435; c=relaxed/simple;
+	bh=/ICsutzuX+LZ7m9I9aGGUYOr30MrEuyQKRWLfJGcBKY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hBv1/1Auu+jGvZiU5bmnNqxPgAZEzk9avfc9BnAf80ZwO2fLFIh0w8ikljjxgAqCWiTjGWYVwjm4KO2pC+7TV+Aa/hKjddzHPAFDenqA6L2M8eCOD/tf76PhJpnFH40k4zYUaVcrvOCYv/LkO2DI/UwACdBHqRbRn80WgClvPqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XlKHJ73C; arc=none smtp.client-ip=209.85.222.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-896f82e5961so4170796d6.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 18:01:46 -0800 (PST)
+Received: by mail-qk1-f195.google.com with SMTP id af79cd13be357-8c711959442so496584785a.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 18:10:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770688905; x=1771293705; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JLRIaf1mXyXFgjmYj7clQ+v1OirQdgTMmdH6PpF9IHw=;
-        b=QZUvqjpeehV4ddCj/pxgpgRBRhZC3c3I3dI63WHRjD8a7YcM+d9Mqemun3Wugl9QoS
-         Qalaau7/9qLxfkbXGLD4VdLEwryBWvM29DWcvong9U+fphJPltZrMo64KxR/dhImcIRE
-         IGbjZ8Ul05SvlV3IVohmbZaeFBQxFEtmjkSK4yGQTr6uhApQ3DAiod3xRWroYaD9C4Ub
-         UZ5BeNtpA+CaT6xmF0WWcRT3K6GBzmGQrGBRhlKh+COcnKn61sn9+Trng+Qdho0+0mrc
-         j6bVM+zvIy0QtcIW4Q7KdnTdozsZe0I4d/Huq/WOl8iK/zom4AtatvUqMpV9x9TbVLy0
-         SIZg==
+        d=gmail.com; s=20230601; t=1770689433; x=1771294233; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KSA2DfHeEWFn2IlLoxdyjrJ3c05oOywysXab7NEt2VI=;
+        b=XlKHJ73CP4vdolQ9yW1Fn8hGpe3X/rRPl/BWaDyw6QvOWjzPSiUmHaHnCndZsQ50cY
+         10YCyvW7Ms4JBzcUQaqXwFC4xLuWYQlEUM2tsPpPobI0C9kK6mhSok8kvrmkW79H347g
+         LSrhT+KmZoRdIcsp9DUDnVWQEzGWROxdQmPw/j9Ar7Ej3tLfN28v21PpdUnGcGDv1XXy
+         ubw+XDDtiDoKwE87nWpbNnD9SgnrzHnucsuoD7+5edKsjeic2eN8QPgvSmTHpfpOepXF
+         ldmZgjXPMuytafAWYyTeWco+1gZHA/If698UR0Y4WXlRgLqKlhqpM6LMZcYnqRYVS1w5
+         2F0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770688905; x=1771293705;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=JLRIaf1mXyXFgjmYj7clQ+v1OirQdgTMmdH6PpF9IHw=;
-        b=rM2NTsH87V/lUWepi8Jui7FpUiWs3wn3Hgmgg9Z/bmqOHkPj3nbrl7gGQCeBAH4y8o
-         z9gvZ9LHv6hiMAcgx7/4ubmhOdPds0O7a0CsWmnrZhTDeffH7eJeJLt6xfeMBPla6JHh
-         FVkdMKq8eB228OQkD0WvKP16n9hfjUqhOrnLGoXOd0os3XzK6OZfiLHKW7CfZS8E81Xy
-         5aAGJOQn5y3oqU0yZHDwfBFl1na0MVps2H4tiyQMuahh7MxNU7oyrl9lmcmjX5F5qSgJ
-         3NpY4WS5pJoT4smgtbmEdWT7DcEpwGYFQYbTvBtSPD3sFZGaPve3KdtkrbHJuiBDV4ke
-         fcCg==
-X-Forwarded-Encrypted: i=1; AJvYcCW5O5HwQqvemyEHdlGqQgw6cEiSvZ603AQktyQR4/4s/r4UiP1f7n4wSOmUgzDl8xjRqHNJcwblHRVt@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqpZWUwCg00HoyW6jiFpSYDDM+AGq5NIs0wyChc+7HXkkijN4t
-	k+cstnIQ19d120Xmi/d27HDSkAeWi1IRJyl42fIq7WTg5U+2bqOXQU39
-X-Gm-Gg: AZuq6aJMPDI4efFbsHT4hRt1HLLdBlrIKxcWQaluOa+z1AqZmeL1ofN1tv8wiKq/f9j
-	nZAv5AhIcccc5V+KnssIiAFf/DdWPw/OomtBxt/1YXhdUVhjFaYYRikl4hIdxS0Dy1UWEgUcd1u
-	poo2ITLccdrHxiVL0MB2WJmJXVxnf349cvXTNrcOGRX/iJFpybcH8wmG6ty0AWLOTpxwplsaY3B
-	+ODAMsbjTEuzTvkdAL5XCe7aVECryVx2qUcYb+3Wyy5mI6vq+DGchl+rH/clM/W4qu7MWttgQIE
-	WySTAa7rreZqdJpkPfxcXsHMLrw/Pldv36YOEzSVj0dQgOK4w5vmw7EhNcRKnOMdsHPhFkCV9VC
-	KDeVu2zZCLD03dhxFHdd97DdAAAN1RrIhuxpp1c3ahJj0m8pi1THXS1lyDdG9HpQJG9DZ1pjO3j
-	s8vLjIWLYTjTSnZTzmBM6ntnlpZ5qvSjBpUaL7qP5psKvKyttPe7r2OoJ2IW3idhhzB8AM3VvWz
-	oC4Dcv48R062Tw=
-X-Received: by 2002:a05:620a:4093:b0:8c5:32b7:210e with SMTP id af79cd13be357-8caf1bc6675mr1878858085a.82.1770688905495;
-        Mon, 09 Feb 2026 18:01:45 -0800 (PST)
+        d=1e100.net; s=20230601; t=1770689433; x=1771294233;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KSA2DfHeEWFn2IlLoxdyjrJ3c05oOywysXab7NEt2VI=;
+        b=dJJqWXtlrufSiAawBYsJwtA17ELPVKWOY7BylLjxj+fHl0CxGR+jGf03CDNk7lpbJF
+         nMyT4UE/5yPRz2GYecwmu/kbMKZ5bT8OuFOb5q5QGRb4wKATWCEWglGnY4p9M2LxD8sB
+         jO1CPBkhRvI/2gxJTXrZUzOcrp8ASLxHcTuNfzbdlUiEdNWvuLy9Gmke63PYFogWGPFc
+         u7eVZYlCj8a8iqP4M+py21Lu7WcVxPLq4MiDX6o1UyJilaw0UQ5w3Mvvjg0xZ/SZx/Gt
+         SXfyK/DgLqLXg6EP5oFOwFkbM0dGypZSUZIEZQjYH706RT1tUi5GOcPaoQLgJFoGsn4b
+         WDtg==
+X-Forwarded-Encrypted: i=1; AJvYcCWGDHM9qADu75qBquBiO2ZpuPi+OldjJk0ij3HAAXgE4L0RPyAKzGeZCYLNv9HvCBszZW/IynrO9O7M@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxp2usrBidlf+gq6xbtgu9vbOf+HX2Gce9Em1sh719HLZnsWR4s
+	0+/ffMZlOPBBdetZfCCHflIvGrbY7BOUYZzkjw3KaC2oW3M0OXAWskCE
+X-Gm-Gg: AZuq6aLMX84m+2MxSSluuK6yIhZB1iTWTPIdueEUUaMxyeHpImPz/8A2JhX7Z7HyVbj
+	jRC6ZH6PQj0C92xlL85Ed4+H70zNhqO7xWYATGYGmYtgG2qMO0D8Es+BtFu+3XA6BKx0ugwS8AZ
+	AU8zo3VoxKkFI9rM4cddA3un9GURuxO5mwq/wJZien/iyhND7Fio06d7Pj8ySeVVJSxVoSoA9LZ
+	OYruYOVwJAYTG6+h84ypKrfkZwGM+XWKL6ySFbL7wYmwqdor+CLysmsu7ooKYHx42EQDD+V04cW
+	ch7rmHX8ll0JgNDXS/zDXPYoHCh28zRG/qwQMsfZp1s/n2oyAEhktSOEqSVy/8Vv+XS05HuJfQ1
+	vydhR0+bQihHo3DkJDOSfsQXNTzbGGDORNFr3S6yVDX/nrRhwrDadsIaTLDsAeIusO441018ls7
+	S9zavod8HdocjnGaUyD1G/A0+tM23EmS3VCjHUHNz/0w3NOetYsTTKs7x449C1ZouwK0HSjgemu
+	ns=
+X-Received: by 2002:a05:620a:450e:b0:8bb:a037:fd90 with SMTP id af79cd13be357-8cb1eefbc2fmr108292385a.12.1770689433095;
+        Mon, 09 Feb 2026 18:10:33 -0800 (PST)
 Received: from localhost (bras-base-toroon21-grc-75-184-144-58-243.dsl.bell.ca. [184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8caf9fdf745sm922591585a.40.2026.02.09.18.01.44
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8caf9a1575asm1009087385a.32.2026.02.09.18.10.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Feb 2026 18:01:45 -0800 (PST)
+        Mon, 09 Feb 2026 18:10:32 -0800 (PST)
 From: Richard Acayan <mailingradian@gmail.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+To: Bjorn Andersson <andersson@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
-	Tianshu Qiu <tian.shu.qiu@intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Cc: Robert Mader <robert.mader@collabora.com>,
-	David Heidelberg <david@ixit.cz>,
-	phone-devel@vger.kernel.org,
-	Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH v8 7/7] arm64: dts: qcom: sdm670-google-sargo: add imx355 front camera
-Date: Mon,  9 Feb 2026 21:02:06 -0500
-Message-ID: <20260210020207.10246-8-mailingradian@gmail.com>
+	linux-arm-msm@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Richard Acayan <mailingradian@gmail.com>
+Subject: [PATCH 0/3] SDM670 LPASS LPI pin controller support
+Date: Mon,  9 Feb 2026 21:11:06 -0500
+Message-ID: <20260210021109.11906-1-mailingradian@gmail.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260210020207.10246-1-mailingradian@gmail.com>
-References: <20260210020207.10246-1-mailingradian@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -111,181 +98,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264184-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,linaro.org,intel.com,linux.intel.com,vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-264185-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[collabora.com,ixit.cz,vger.kernel.org,gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,1a:email]
-X-Rspamd-Queue-Id: 08F5211621D
+	RCPT_COUNT_SEVEN(0.00)[10];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9F0C611627A
 X-Rspamd-Action: no action
 
-The Sony IMX355 is the front camera on the Pixel 3a, mounted in portrait
-mode. It is connected to CSIPHY1 and CCI I2C1, and uses MCLK2. Add
-support for it.
+This adds support for the LPASS LPI pin controller on SDM670, which
+controls some audio pins (e.g. TDM or PDM busses). The ADSP patches are
+not sent yet.
 
-Co-developed-by: Robert Mader <robert.mader@collabora.com>
-Signed-off-by: Robert Mader <robert.mader@collabora.com>
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- .../boot/dts/qcom/sdm670-google-sargo.dts     | 95 +++++++++++++++++++
- 1 file changed, 95 insertions(+)
+Richard Acayan (3):
+  dt-bindings: pinctrl: qcom: Add SDM670 LPI pinctrl
+  pinctrl: qcom: add sdm670 lpi tlmm
+  arm64: dts: qcom: sdm670: add lpi pinctrl
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-index ed55646ca419..e925cba0381f 100644
---- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-@@ -172,6 +172,34 @@ vreg_s2b_1p05: vreg-s2b-regulator {
- 		regulator-min-microvolt = <1050000>;
- 		regulator-max-microvolt = <1050000>;
- 	};
-+
-+	cam_front_ldo: cam-front-ldo-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "cam_front_ldo";
-+		regulator-min-microvolt = <1352000>;
-+		regulator-max-microvolt = <1352000>;
-+		regulator-enable-ramp-delay = <135>;
-+
-+		gpios = <&pm660l_gpios 4 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&cam_front_ldo_pin>;
-+		pinctrl-names = "default";
-+	};
-+
-+	cam_vio_ldo: cam-vio-ldo-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "cam_vio_ldo";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-enable-ramp-delay = <233>;
-+
-+		gpios = <&pm660_gpios 13 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&cam_vio_pin>;
-+		pinctrl-names = "default";
-+	};
- };
- 
- &apps_rsc {
-@@ -392,6 +420,59 @@ vreg_bob: bob {
- 	};
- };
- 
-+&camss {
-+	vdda-phy-supply = <&vreg_l1a_1p225>;
-+	vdda-pll-supply = <&vreg_s6a_0p87>;
-+
-+	status = "okay";
-+};
-+
-+&camss_port1 {
-+	camss_endpoint1: endpoint {
-+		data-lanes = <0 1 2 3>;
-+		remote-endpoint = <&cam_front_endpoint>;
-+	};
-+};
-+
-+&cci {
-+	pinctrl-0 = <&cci1_default>;
-+	pinctrl-1 = <&cci1_sleep>;
-+	pinctrl-names = "default", "sleep";
-+
-+	status = "okay";
-+};
-+
-+&cci_i2c1 {
-+	camera@1a {
-+		compatible = "sony,imx355";
-+		reg = <0x1a>;
-+
-+		clocks = <&camcc CAM_CC_MCLK2_CLK>;
-+
-+		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
-+		assigned-clock-rates = <19200000>;
-+
-+		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
-+
-+		avdd-supply = <&cam_front_ldo>;
-+		dvdd-supply = <&cam_front_ldo>;
-+		dovdd-supply = <&cam_vio_ldo>;
-+
-+		pinctrl-0 = <&cam_mclk2_default>;
-+		pinctrl-names = "default";
-+
-+		rotation = <270>;
-+		orientation = <0>;
-+
-+		port {
-+			cam_front_endpoint: endpoint {
-+				link-frequencies = /bits/ 64 <360000000>;
-+				remote-endpoint = <&camss_endpoint1>;
-+			};
-+		};
-+	};
-+};
-+
- &gcc {
- 	protected-clocks = <GCC_QSPI_CORE_CLK>,
- 			   <GCC_QSPI_CORE_CLK_SRC>,
-@@ -490,6 +571,14 @@ &pm660_charger {
- 	status = "okay";
- };
- 
-+&pm660_gpios {
-+	cam_vio_pin: cam-vio-state {
-+		pins = "gpio13";
-+		function = "normal";
-+		power-source = <0>;
-+	};
-+};
-+
- &pm660_rradc {
- 	status = "okay";
- };
-@@ -508,6 +597,12 @@ led-0 {
- };
- 
- &pm660l_gpios {
-+	cam_front_ldo_pin: cam-front-state {
-+		pins = "gpio4";
-+		function = "normal";
-+		power-source = <0>;
-+	};
-+
- 	vol_up_pin: vol-up-state {
- 		pins = "gpio7";
- 		function = "normal";
+ .../qcom,sdm670-lpass-lpi-pinctrl.yaml        |  81 ++++++++
+ arch/arm64/boot/dts/qcom/sdm670.dtsi          |  74 ++++++++
+ drivers/pinctrl/qcom/Kconfig                  |  10 +
+ drivers/pinctrl/qcom/Makefile                 |   1 +
+ .../pinctrl/qcom/pinctrl-sdm670-lpass-lpi.c   | 174 ++++++++++++++++++
+ 5 files changed, 340 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdm670-lpass-lpi-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sdm670-lpass-lpi.c
+
 -- 
 2.53.0
 
