@@ -1,201 +1,339 @@
-Return-Path: <devicetree+bounces-264348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264349-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AGkhAsYNi2l/PQAAu9opvQ
-	(envelope-from <devicetree+bounces-264348-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:51:50 +0100
+	id eD9xGA4Qi2l/PQAAu9opvQ
+	(envelope-from <devicetree+bounces-264349-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:01:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BA8A119D68
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:51:49 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F22D5119EDB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:01:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F049D3046A99
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:51:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8469E3037430
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:00:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3731C35CB9A;
-	Tue, 10 Feb 2026 10:51:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C5D3612F7;
+	Tue, 10 Feb 2026 11:00:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ORI+W7xI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IB5Zvk76"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB22434C818;
-	Tue, 10 Feb 2026 10:51:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770720684; cv=none; b=DK/M717UUPp7Che9cOHpE1gcD0T/O7lFJqLkchVxS+kSYH8YETnPBL/S1zpMJY8vDvSZ/2NrlbaUzMLfGtKawW+zLvoqmbhjLoEw+3ToPY9HDdm65rJEc5Roq66471vuKqc/bsiW90kxGtnAdKdj/0Mea5tGLyA/eEYvQen1MR0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770720684; c=relaxed/simple;
-	bh=NTDQ2z46qy9D3IuLQd4Soj1UA8t+QmePoMymLDLGHS0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GNlV2FIVPiEsUrNgbWayYySXP056vRNB/S6ZwWK8MPQZ67EbO/t9jWKGWQoPWrrHfS9TPXtUkddYt2RuzAqthHzz6pK+0tdtpLiscj4pt4y6recXQEfnhRXEBiD5kXRLibPXspDbs6ngSgM3zG41WYJ321BgRknyKPQAAMNKSJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ORI+W7xI; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1770720681;
-	bh=NTDQ2z46qy9D3IuLQd4Soj1UA8t+QmePoMymLDLGHS0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ORI+W7xILBNUuSSdr6XQ7zospIplxBB0gAiCi+7j+WjOg6OirC5t7D+Xl5O7l6U0P
-	 0HD2maqTImAwLwopKSirmVOZeShM031FZYVVgpHLke/6jK4BxMMu0ps9IYJAiVU7mJ
-	 DPkI4/W6XVDRMh6+5pcME+ypELxTR7UpIOY675gyM5/WE4WjDlffajsjni8nZUuueR
-	 XxgTBnTkrlvPFnk/DRWWENPmDN+lmWYtu9LWEMdMIEYX+QtAP5kHqaevrVTBqCC3ku
-	 tUTykaPPeNV8WofuxZySz/BeOHrhszS0BTziiskZQVZeGt1ORhiYtOxaHAmvupeBWQ
-	 n1OUnnD1am5mQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9846417E012E;
-	Tue, 10 Feb 2026 11:51:20 +0100 (CET)
-Message-ID: <296b000c-5970-4668-bd42-b99ca78d598f@collabora.com>
-Date: Tue, 10 Feb 2026 11:51:20 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3DB3318EEC
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 11:00:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770721208; cv=pass; b=cDKQ7VDRf3TvoGJ7kAfc5cn5hR7Jbt8KosYewHQAEm06K0R65KgJ8yQlN7Bz0hBmmog5Y2O3a/BkWDptPquPWg1jK2OLACx28EyBRt+qSY1DWyTIZP9UvX95mH732hpn1yTUY5cLngecoPNq85K9SMuJme54IIwnlM/9P1MWFOM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770721208; c=relaxed/simple;
+	bh=1OYwpF7TO7xoKHzCuy52J4aRjvgLTtucW1e1JzBZV/4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dL1icsC77AOavZVekkmkrcOEsqZG2foZYUSx0k3FuKdcPAfcj258VKpGZspm0mDG8Pm6ereQ7+pb37f3bB/1CJFCSwWnASfCLvRhPOoWmIksHeVFWmc7vpva6zEsw52gIlYiN7xemF8nR5ots2Vx5lwPo4j15D3efHUTzNsfy5M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IB5Zvk76; arc=pass smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-43284ed32a0so3704466f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 03:00:06 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770721205; cv=none;
+        d=google.com; s=arc-20240605;
+        b=hmXcgySCtK6HeIGL/G4WJmVavQNAdNmyEdAuLXD21JN9P+egkXym/z+TkI28NQVjHE
+         Y5LL9/Gt8O7HtOJoBakJtMhnNGaDP/CvXZ66n1UPh5HCX3b78ojZGoOGiMWFsGYDoOu3
+         e+5ILAhPlFkJp85Fkmkwn3fVC6AhbC6w5pld0EZVhaHdEmoF3L2EhFJYgKGOXoRFCDZt
+         jf9AiponyhK01IwoDmUvc5rOUsUSXNVUoE9qWjd8KJSBc5vx4YQWK2TTsCB9fOedUg/T
+         oSsWPfmlyU9+J98q5beHFDMFjgR0aS2tVD/REKAAxYMH1ti2O3iPv4Y3jakhFR/vMEHW
+         3rOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=OfSBwZ5L6uqnAzvcQ05vMPY2K5kDs14EhIIFhtKNvQM=;
+        fh=9S8Ul6i8k2zSs433lAJq03+UMdWKYqajzu9UXWoiziE=;
+        b=dBFEQXfdxIqWmrrCrh/CC+sbfochb3lUuV069cM51l4KVmyUfh5gBuiZZPeuyopFnu
+         SH4oS9C5u2UCCY/vvq4Yf1b63GJ1sWeGmMK87MDAr+J2ESFT/5qpqublbwdN0mgNoc3X
+         2AQ80wsc0TOjUKjvqYLq7YCfL657Ws839ddQb+fZKs4EI/eUa/5ZB0iBaNZhkkD5TW2O
+         Rb81NQRtW5gHIk9q9ur3D16GGA51ykVLRN9H4pD29p5RltDhP+Hdt0GpJwVRJ8LBAMFM
+         AKRi1trJp1v5afSbKyQztqTWJcpVgTG5j9ci2Ubcqbs2fFz+XLiAB73RlOTtDbU9NzMQ
+         g02g==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770721205; x=1771326005; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OfSBwZ5L6uqnAzvcQ05vMPY2K5kDs14EhIIFhtKNvQM=;
+        b=IB5Zvk76VicVMOwP5OTF/oc7e2kErV3U3/Z8I2dJzS8UzMScFyV6fILwusyIvugkAi
+         bsYQlBd7/VZYsx2dxt1iCQAo3DTZOLJA4ls+e4a/xV+oqCA0SXmFfwLoy0YY8OtfV0BX
+         lunMzkjiHvk5lqRF427yB+uAP8t4ARoplWh7XfzS5GNfJkQq9/sGj4VKAdOfpthtJ/J4
+         xCKB9g27f1mJHwljbsZ8zJzZ6LaZz/LIKQzstixgGD8SlfVJI71D6aHpcEMFUbbKKjoN
+         ScE4W6gNG9wLGZarv4lah+ED/DPqrQm1hx29hCqfLlxaWMP5jQwWo6VJDV/bcOFa8Pwu
+         j9eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770721205; x=1771326005;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=OfSBwZ5L6uqnAzvcQ05vMPY2K5kDs14EhIIFhtKNvQM=;
+        b=TRF0d/lKI/ztnt/3ZjeV0yztac8R+o97cSoR+AwASYbSsi0DXkrPZQYYvfKrRchYU9
+         vlUR1/LSL/jQDvnRMT/uh2ztdvsj5s4GM15B6YI9ZnqaXdoGzWw05VmVRleR9FSjpAlj
+         EYKzs2PZ7RcPqxjpg+oGCv+1vSASu4i0dzk2IYO5fnUoH8dC6qwI0RN5wFFSucSncr+k
+         aHT5dCcwanwJuppNy5EtSAX+uCeGQDXDEReKNudTfJj2ZpG2UtgcLdtR7pLxR8rkXHGd
+         lRfadihZSwI2Em4HpkZTZcrj/C9hA8/boSt20oh7QhAnpZBf4nGnWs9p/DSX4R3on/07
+         vTIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXcoZnNJ0/lwmVCul0ywoejObTRhZ4lNf2H6y/T1cnAKkNoz+zk+LoyCemNrDVfW00rrrVdZZ05AfGs@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBFT98Ns8v9xyBazenDylaOarpRg+bnkv8wKSTIAlHAfHhaRLK
+	Ke5OAt6qP1lbSswLEwWRjVXnQL65EY3NyfJxd6DMTly7LdqdBgajcHz2cZoNV3ef1vDqwlTqSBD
+	465lUrCixMMczD5xwR1WbryentK8taGU=
+X-Gm-Gg: AZuq6aIVykrRj9KY8HluL22s5Y3iXYXwPYocYMXSpdQI5Bk26x7mxJiJQtZeFw8RMYO
+	D48BR4ZxTdcKr2e8DCLr2aPHlf6volGBuVRp+2zTHSkg/14h9qS13vfvi37eZIfXuFgkxQC5jFh
+	9YQutPzGTPRGRJkHgvv5StpONlU810icYXVdF5raouQ1LvLmmG6QopSGEJR4vScwIJmlTsaLgPz
+	tybMWZ+wbSCam1uVaAuJCFdZJq8J2D0ChX0kAxfqWuxEVusww6kuNBW8w2wzKZ3N9nHLs+4hkqA
+	dhf1IyUI
+X-Received: by 2002:a05:6000:22c4:b0:436:38a7:b486 with SMTP id
+ ffacd0b85a97d-4377a5021c6mr2312017f8f.8.1770721204589; Tue, 10 Feb 2026
+ 03:00:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: syscon: Add mt8516-syscfg
-To: Luca Weiss <luca@lucaweiss.eu>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, phone-devel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20260206-mt8516-syscfg-syscon-v1-0-96dcb37acdb4@lucaweiss.eu>
- <20260206-mt8516-syscfg-syscon-v1-1-96dcb37acdb4@lucaweiss.eu>
- <20260207-tricky-strange-swan-6f11b0@quoll>
- <3476c51b-9293-40f1-8b5c-9ac9802d7d97@collabora.com>
- <f1e1eeea-b246-42c8-84c9-0c1203706ddc@lucaweiss.eu>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <f1e1eeea-b246-42c8-84c9-0c1203706ddc@lucaweiss.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20260209104407.116426-1-clamor95@gmail.com> <20260209104407.116426-4-clamor95@gmail.com>
+ <20260210-sexy-grumpy-sambar-44edd2@quoll> <CAPVz0n3fizf=r58Fr4YQ6pnjHq5p-7yFz95obss6w6x0bfgnDg@mail.gmail.com>
+ <d1973810-d3f5-4ed7-ba0f-6bf93c1c7f3d@kernel.org>
+In-Reply-To: <d1973810-d3f5-4ed7-ba0f-6bf93c1c7f3d@kernel.org>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Tue, 10 Feb 2026 12:59:53 +0200
+X-Gm-Features: AZwV_QjgDJzQTiiKU4SQZozTCvRGlQSh-OCg1lxd7C4cK92P8FnftCEFnLl9FiU
+Message-ID: <CAPVz0n1foyy9g7MAurSAyLCUHTzrPPu0ceqy9YpcDA9uzgjGng@mail.gmail.com>
+Subject: Re: [PATCH v2 3/9] dt-bindings: mfd: document ASUS Transformer EC
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@kernel.org>, 
+	Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Sebastian Reichel <sre@kernel.org>, =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>, 
+	Ion Agorria <ion@agorria.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264348-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	RSPAMD_URIBL_FAIL(0.00)[devicetree.org:query timed out];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[lists.sr.ht,kernel.org,gmail.com,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264349-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,arndb.de,linuxfoundation.org,rere.qmqm.pl,agorria.com,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:mid,collabora.com:dkim,lucaweiss.eu:email]
-X-Rspamd-Queue-Id: 8BA8A119D68
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F22D5119EDB
 X-Rspamd-Action: no action
 
-Il 09/02/26 21:45, Luca Weiss ha scritto:
-> Hi AngeloGioacchino,
-> 
-> On 09-02-2026 12:34, AngeloGioacchino Del Regno wrote:
->> Il 07/02/26 11:51, Krzysztof Kozlowski ha scritto:
->>> On Fri, Feb 06, 2026 at 11:20:48AM +0100, Luca Weiss wrote:
->>>> Document the Mediatek mt8516-syscfg.
->>>
->>> Which is what? What is syscfg block?
->>>
->>
->> Not sure this is really a SYSCFG block.
->>
->> This should be a GPIO controller range, which is split between IOCFG and EINT.
->> Now, the legacy drivers are declaring the EINT iospace in the pinctrl node, and
->> getting the GPIO controller (IOCFG) iospace from a regmap.
->>
->> I don't have any board with MT8516... but well, the really-right-thing to do
->> would be to migrate that SoC off of the legacy driver, to the new-style one
->> that *properly* takes two iospaces:
->> "base" -> (0x10005000)
->> "eint" -> (0x1000b000)
->>
->> Luca, if you've got such a board, could you please try to migrate this SoC out
->> of the improper (but working good) driver and bindings?
->>
->> If not... well, I think this block is IOCFG, not SYSCFG...
-> 
-> Thanks for the suggestions. This is essentially my first Mediatek patch and while 
-> I'd say I have a good understanding of Qualcomm SoCs, Mediatek is very different, 
-> so I've got no clue about anything here really ;)
-> 
-> I'll try to decipher your comment and see what I can do about it, hopefully soon. 
-> Thanks!
-> 
+=D0=B2=D1=82, 10 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 12:48 Krzy=
+sztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On 10/02/2026 10:37, Svyatoslav Ryhel wrote:
+> > =D0=B2=D1=82, 10 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 11:22 =
+Krzysztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+> >>
+> >> On Mon, Feb 09, 2026 at 12:44:01PM +0200, Svyatoslav Ryhel wrote:
+> >>> Document embedded controller used in ASUS Transformer device series.
+> >>>
+> >>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> >>> ---
+> >>>  .../devicetree/bindings/mfd/asus,ec.yaml      | 152 ++++++++++++++++=
+++
+> >>>  1 file changed, 152 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/mfd/asus,ec.yam=
+l
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/mfd/asus,ec.yaml b/Doc=
+umentation/devicetree/bindings/mfd/asus,ec.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..1d1a62761b71
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/mfd/asus,ec.yaml
+> >>
+> >> EC do not go to MFD, but to dedicated directory (there is such).
+> >>
+> >
+> > Noted
+> >
+> >>> @@ -0,0 +1,152 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/mfd/asus,ec.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: ASUS Transformer's Embedded Controller
+> >>> +
+> >>> +description:
+> >>> +  Several Nuvoton based Embedded Controller attached to an I2C bus,
+> >>> +  running a custom ASUS firmware, specific to the Asus Transformer
+> >>> +  device series.
+> >>> +
+> >>> +maintainers:
+> >>> +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    oneOf:
+> >>
+> >> Drop oneOf
+> >>
+> >
+> > Noted
+> >
+> >>> +      - enum:
+> >>> +          - asus,ec-pad  # Pad part of Asus Transformer
+> >>> +          - asus,ec-dock # Dock part of Asus Transformer
+> >>
+> >>
+> >> Compatibles are way too generic. "ec" basically means you document all
+> >> Asus EC, which is for sure not true. You need specific compatible for
+> >> this specific model.
+> >>
+> >
+> > Asus were not so generous to provide more specific data, they call
+> > there controllers asusdec and asusped in their sources.
+>
+> Look how other ECs are called. Your device is not "", but e.g.
+> "Transformer".
+>
+> >
+> >> Missing blank line.
+> >>
+> >
+> > noted
+> >
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  interrupts:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  request-gpio:
+> >>
+> >> gpio is deprecated. gpios, look at any other binding.
+> >>
+> >
+> > noted
+> >
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  asus,dockram:
+> >>> +    $ref: /schemas/types.yaml#/definitions/phandle
+> >>> +    description: I2C device used to access power related functions.
+> >>> +
+> >>> +  asus,clear-factory-mode:
+> >>> +    type: boolean
+> >>> +    description: clear Factory Mode bit in EC control register
+> >>
+> >> Why would this be a static/fixed property over lifecycle of all device=
+s?
+> >>
+> >
+> > Specify pls.
+>
+> Provide rationale why we need to clear it every time, not once. Or any
+> other rationale why we would accept that property.
+>
 
-Oh, okay. You want to check mt6795.dtsi - that's a SoC that has "more or less" the
-same generation of GPIO Controller IP as MT8516.
+Cause it is done by original Asus code and Asus did not provide
+schematic or any data apart from downstream source regarding this EC.
 
-Also, useless to say, drivers/pinctrl/mediatek ... there's a pinctrl-moore and a
-pinctrl-paris; your SoC *should* be paris, but I don't really know - you want to
-definitely check if the register layout matches between the old-legacy-deprecated
-driver and the Paris IP.
+> >
+> >>> +
+> >>> +  battery:
+> >>> +    type: object
+> >>> +    $ref: /schemas/power/supply/power-supply.yaml
+> >>> +    unevaluatedProperties: false
+> >>> +
+> >>> +    properties:
+> >>> +      compatible:
+> >>> +        const: asus,ec-battery
+> >>> +
+> >>> +    required:
+> >>> +      - compatible
+> >>> +
+> >>> +  charger:
+> >>> +    type: object
+> >>> +    $ref: /schemas/power/supply/power-supply.yaml
+> >>> +    additionalProperties: false
+> >>> +
+> >>> +    properties:
+> >>> +      compatible:
+> >>> +        const: asus,ec-charger
+> >>> +
+> >>> +      monitored-battery: true
+> >>> +
+> >>> +    required:
+> >>> +      - compatible
+> >>> +
+> >>> +  keyboard-ext:
+> >>> +    type: object
+> >>> +    description: top row of multimedia keys
+> >>> +    additionalProperties: false
+> >>> +
+> >>> +    properties:
+> >>> +      compatible:
+> >>> +        const: asus,ec-keys
+> >>> +
+> >>> +    required:
+> >>> +      - compatible
+> >>> +
+> >>> +  led:
+> >>> +    type: object
+> >>> +    additionalProperties: false
+> >>> +
+> >>> +    properties:
+> >>> +      compatible:
+> >>> +        const: asus,ec-led
+> >>> +
+> >>> +    required:
+> >>> +      - compatible
+> >>> +
+> >>> +  serio:
+> >>
+> >> All of these children are pointless - no resources. Drop all of them,
+> >> it's btw explicitly documented rule in writing bindings.
+> >>
+> >
+> > They are all needed to be able to disable them individually from the
+> > device tree if needed.
+>
+> They should not be disabled from DT, so they are not valid here. The
+> given EC for given device is fixed/static. Does not change.
+>
 
-Check a bit; should you have any question, either reply here or shoot me an email,
-I'll do anything I can (though probably with late replies, as I'm usually a bit
-busy with work - but no worries about disturbing in any way!) to clarify things
-for you.
+Have you considered a possibility that function may be
+disabled/unrouted within the controller. By the vendor.
 
-Cheers,
-Angelo
-
-> Regards
-> Luca
-> 
->>
->> Cheers,
->> Angelo
->>
->>>>
->>>> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
->>>> ---
->>>>   Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
->>>>   1 file changed, 2 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/ 
->>>> Documentation/devicetree/bindings/mfd/syscon.yaml
->>>> index e57add2bacd3..a67699f1faee 100644
->>>> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
->>>> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
->>>> @@ -91,6 +91,7 @@ select:
->>>>             - mediatek,mt8135-pctl-b-syscfg
->>>>             - mediatek,mt8173-pctl-a-syscfg
->>>>             - mediatek,mt8365-syscfg
->>>> +          - mediatek,mt8516-syscfg
->>>
->>> Why aren't you placing it with all others mediatek,mt8516 syscons?
->>>
->>> Why this is so generically called "syscfg", completely not looking like
->>> a real name from datasheet unlike the others in this device.
->>>
->>> You have entire commit msg to explain that.
->>>
->>> Best regards,
->>> Krzysztof
->>>
->>
->>
-> 
+>
+> Best regards,
+> Krzysztof
 
