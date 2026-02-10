@@ -1,203 +1,243 @@
-Return-Path: <devicetree+bounces-264350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264351-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sOY7FHkQi2l/PQAAu9opvQ
-	(envelope-from <devicetree+bounces-264350-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:03:21 +0100
+	id 4HhwDqkQi2l/PQAAu9opvQ
+	(envelope-from <devicetree+bounces-264351-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:04:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE6AC119F1B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:03:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C5E119F51
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:04:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 585853032CC3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:03:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 67B22303FF24
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:03:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E494E311587;
-	Tue, 10 Feb 2026 11:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDA6A3164C8;
+	Tue, 10 Feb 2026 11:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ikP5l9oN"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aB05hZVC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF8BB219E8D;
-	Tue, 10 Feb 2026 11:03:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66162219E8D;
+	Tue, 10 Feb 2026 11:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770721397; cv=none; b=c47bPvEv4VELPpuqvo3u6iWOykxojY3YpWUM3yoWvUNDdS0pwc9gRoTGnLBajfc+aJwqUvrLeKcsvckLpEG7u6zjFuPWNuEZXVWH831pSC/pEJDJiL1aO5EbPJcwTQ3iYXOsfI2pk++Y44lJeLOvND2/PuN9KNStf7T/vdh4GYM=
+	t=1770721410; cv=none; b=h4G8OwvtpPt5AuX8FEvYqxwVWMbrL3qAL7E/VLQ8SORgeVNHLHDQ9uZ+FQyJGHlqsdf1CPfZDboh91DtD2KyQOsXau0SrOWNIZJd7C1j4kS5t4rxa78APQms1B5c6sXfxwbm4fjpBTimyUFzTGujE10cs/F3zV41E024+yKxtjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770721397; c=relaxed/simple;
-	bh=/KAJwsOfzjcbdFRa/f2yuz2k36Ieq8U26aqf651uN30=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=liqFmdxK0cxkbPwTrMVkHs82bRkb/sS43JQodzt3MxkzDYCncZ9peEgFLPRCk5ip0jnIeJ7Zf7zElx4jCbX8SkS6tjvDFUXA7wHeylbPQohMAcOhE8FDTNXIHqjoy0Tkpfj3m4AnCtdYi0xP4ufQ0b8kSElJ9haaiCsuNP94t5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ikP5l9oN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 245E1C116C6;
-	Tue, 10 Feb 2026 11:03:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770721397;
-	bh=/KAJwsOfzjcbdFRa/f2yuz2k36Ieq8U26aqf651uN30=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ikP5l9oNoYzUIkoNv3xsVnpGElh6FK9rDCJCRcwtPicDAjP8fR1XkSWqAzTnBetT7
-	 d8WF/lC/kt3qBCBumWT27M80y4LKqL1Ew9kuN6lxMoIfV/uFyCW5FDy1ewthp7ukWZ
-	 a16TfnfK3Pk/auhIeh2vU1I3T3ZGLOdtHuPlm9ljTRM2U8vAP6vERfAVrNwMaHZciL
-	 SIEQ0wcBm2LiD/k7HyAC8KVU+UgmjhbA06BTq6bhIa7B/AdGgDyybrJ1nL2Ltm4c5M
-	 gTdcKFDckohBX96qFpo6I5h3KC1EUj4HrC6BUFRlxzkEPdmvRu7uwxnkc6Uz4yy2bR
-	 I4VXX6sPhg3yw==
-Date: Tue, 10 Feb 2026 16:33:08 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 4/9] pci: pwrctrl: generic: support for the
- UPD720201/UPD720202 USB 3.0 xHCI Host Controller
-Message-ID: <cish7iljd23mon4onzbonpuvii7mccwygllr3bcqcpo7zbp2o2@lbzokxr6dod3>
-References: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-0-5b79c5d61a03@linaro.org>
- <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-4-5b79c5d61a03@linaro.org>
- <fbxbnou5mdlhaq5dpxr3wdzmjetwdp7auaaqeunc67tgk5ej2m@cnnkr2pcwy77>
- <a4e55e91-0e03-4e63-8542-d8ad61b38906@linaro.org>
- <o6e5qygss55p6npjgaicxffsqdpv7kojgidr46zinsvfpxfxug@vn67nq4k6jzk>
- <b46da4da-93aa-4213-ad75-ec7709008b95@linaro.org>
- <qd5egc42mkdofs4ey7gl664e5el2p5sxwluesjtm7gc3y66hez@l4dz3bd5xm6n>
- <8b18433a-5836-4a65-b790-9f51112d1f5c@linaro.org>
+	s=arc-20240116; t=1770721410; c=relaxed/simple;
+	bh=8RIiVCpyFFw4VXvzN2L61UAywu/cwAgjZhkbdvtX+sY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XYQ17nbJn079omoxrizQZY74OD38BfIGZj3MVWatTEx+gyh1UFGaeP26vlwbJ16fPl+PULLreyG2shu1iAiSItk1WnGv6rqOxaAgFYt/eAvSa1chAXDN4oT6bIHjy/6rylrdwxH0vUQxHt5ih9u37/RBFQ/S0z4Ago+Y/+gQvRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aB05hZVC; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1770721407;
+	bh=8RIiVCpyFFw4VXvzN2L61UAywu/cwAgjZhkbdvtX+sY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aB05hZVCJpcC42+sI9c+F5DCGrJRaakAxgzQDTapKHCtvTiPp/guU4Hw4gwGbxR+v
+	 i2L0TnPdM4uRf+WQjaWm66PoLiDLnCls0e2KYI1e9jNemqBbSM85apDLX+uZxdEC7S
+	 B6fq6m+TsAjf8l/MM6jt3NE5qJvh/3MrMNmEwqfZZwkaJ2nuvAGJnv9KIgBM3PCDqg
+	 RyqoCxWivzj0rtcaFAU0AldJb2zNdrhoFAwLAP/sechw5pyLlLGi5riugCxpb6FU7C
+	 Sk6IJDr2ldf8D7bCWbEzPwp/zakzcvzlZVQW4bzXYYx6YKa9liiDFP28E1V2NXnjbn
+	 RKrEEBuIhX5EQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id EBCFC17E0E90;
+	Tue, 10 Feb 2026 12:03:26 +0100 (CET)
+Message-ID: <7ed7a5e3-0c83-44e8-b7d2-e93e0b686df8@collabora.com>
+Date: Tue, 10 Feb 2026 12:03:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8b18433a-5836-4a65-b790-9f51112d1f5c@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8189: Add pinmux macro header
+ file
+To: David Lechner <david@lechnology.com>, Cathy Xu
+ <ot_cathy.xu@mediatek.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Yong Mao <yong.mao@mediatek.com>, Wenbin Mei <Wenbin.Mei@mediatek.com>,
+ Axe Yang <Axe.Yang@mediatek.com>, Lei Xue <Lei.Xue@mediatek.com>
+References: <20250919020525.7904-1-ot_cathy.xu@mediatek.com>
+ <1b092f9c-d0b1-47df-a83e-a99d7491a32b@lechnology.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <1b092f9c-d0b1-47df-a83e-a99d7491a32b@lechnology.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264350-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_TO(0.00)[lechnology.com,mediatek.com,kernel.org,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264351-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com,google.com,vger.kernel.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EE6AC119F1B
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim]
+X-Rspamd-Queue-Id: A0C5E119F51
 X-Rspamd-Action: no action
 
-On Tue, Feb 10, 2026 at 10:01:00AM +0100, Neil Armstrong wrote:
-> On 2/10/26 09:00, Manivannan Sadhasivam wrote:
-> > On Mon, Feb 09, 2026 at 03:59:20PM +0100, Neil Armstrong wrote:
-> > > On 2/9/26 15:49, Manivannan Sadhasivam wrote:
-> > > > On Mon, Feb 09, 2026 at 03:00:02PM +0100, Neil Armstrong wrote:
-> > > > > On 2/9/26 12:30, Manivannan Sadhasivam wrote:
-> > > > > > On Fri, Feb 06, 2026 at 03:50:32PM +0100, Neil Armstrong wrote:
-> > > > > > > Enable the generic pwrctrl driver to control the power of the
-> > > > > > > PCIe UPD720201/UPD720202 USB 3.0 xHCI Host Controller.
-> > > > > > > 
-> > > > > > > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > > > > > > ---
-> > > > > > >     drivers/pci/pwrctrl/generic.c | 4 ++++
-> > > > > > >     1 file changed, 4 insertions(+)
-> > > > > > > 
-> > > > > > > diff --git a/drivers/pci/pwrctrl/generic.c b/drivers/pci/pwrctrl/generic.c
-> > > > > > > index 08e53243cdbd..4a57a631362f 100644
-> > > > > > > --- a/drivers/pci/pwrctrl/generic.c
-> > > > > > > +++ b/drivers/pci/pwrctrl/generic.c
-> > > > > > > @@ -73,6 +73,10 @@ static const struct of_device_id pci_pwrctrl_slot_of_match[] = {
-> > > > > > >     	{
-> > > > > > >     		.compatible = "pciclass,0604",
-> > > > > > >     	},
-> > > > > > > +	/* Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller */
-> > > > > > > +	{
-> > > > > > > +		.compatible = "pci1912,0014",
-> > > > > > 
-> > > > > > No need to add the compatible to the driver. Just use the existing compatible as
-> > > > > > fallback in the binding/dts.
-> > > > > 
-> > > > > ???
-> > > > > 
-> > > > > Sorry but this is insane, in no world a standalone PCIe USB controller could be qualified as
-> > > > > compatible as a pciclass,0604 slot.
-> > > > > 
-> > > > 
-> > > > AFAIU, 'compatibility' implies that the driver can safely fallback and would
-> > > > still work. If we add dedicated compatibles for each endpoint devices, then we
-> > > > will just keep adding forever. Powering up a PCIe slot and an endpoint device
-> > > > are conceptually same.
-> > > 
-> > > We're not speaking about driver here, but about compatible string which describes
-> > > a device, a PCI endpoint and a PCIe slot are 2 very different devices that are
-> > > nowhere compatible.
-> > > 
-> > > > 
-> > > > > Technically it would work just fine, but "compatibility" has a meaning....
-> > > > > 
-> > > > 
-> > > > I view compatibility interms of device operation, not device as a whole. But
-> > > > sure, I could be wrong. If the DT maintainers say so, I won't insist.
-> > > 
-> > > In the actual way it's defined _today_, the "slot" and "endpoint" power up schemes are
-> > > compatible, but I hope the slot bindings will get much more features to describe the
-> > > real world slots power properties. And no, endpoints will definitely not have the same
-> > > features as slots, using it as a fallback today is an error.
-> > > 
-> > > On the other side, adding a "simple-pci-endpoint" compatible that enables any supply
-> > > and clock would be a good solution, if the DT maintainers agrees of course.
-> > > 
-> > 
-> > We do have a 'pci-host-cam-generic' compatible. So we can also have something
-> > like 'pci-pwrctrl-generic' IMO.
+Il 09/02/26 22:48, David Lechner ha scritto:
+> On 9/18/25 9:03 PM, Cathy Xu wrote:
+>> Add the pinctrl header file on MediaTek mt8189.
+>>
+>> Signed-off-by: Cathy Xu <ot_cathy.xu@mediatek.com>
+>> ---
+>> This patch is base on the patch series:
+>> https://patchwork.kernel.org/project/linux-mediatek/list/?series=981475
+>> [1] dt-bindings: pinctrl: mediatek: Add support for mt8189
+>> [2] arm64: dts: mediatek: mt8189: Add pinmux macro header file
+>> [3] pinctrl: mediatek: Add pinctrl driver on mt8189
+>> Since patch [1] and [3] of the series have already been merged, this
+>> patch(patch [2]) is being resent individually after modifications.
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h | 1125 +++++++++++++++++
+>>   1 file changed, 1125 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h b/arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h
+>> new file mode 100644
+>> index 000000000000..df69f50c267a
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h
 > 
-> I don't want to into this route, I just want to powerup the USB3 controller on
-> the Pocket S2 gaming device, not spend 6 months into _not_ modifying a driver compatible
-> list.
+> General question:
 > 
-
-Sure, I don't want you to spend that much time either. But I was trying to avoid
-having a solution that just works only for your platform.
-
-> All this feels bulky, who a pci device would be compatible with something like
-> 'pci-pwrctrl-generic' we're speaking about a pci device, not a power control device.
+> Why do we have similar files in two different places different places?
 > 
-> It's nowhere similar to the 'pci-host-cam-generic' situation, this describes well defined
-> host controller interface.
+> $ ls arch/arm64/boot/dts/mediatek/*-pin*
+> arch/arm64/boot/dts/mediatek/mt2712-pinfunc.h
+> arch/arm64/boot/dts/mediatek/mt6878-pinfunc.h
+> arch/arm64/boot/dts/mediatek/mt6893-pinfunc.h
+> arch/arm64/boot/dts/mediatek/mt8167-pinfunc.h
+> arch/arm64/boot/dts/mediatek/mt8173-pinfunc.h
+> arch/arm64/boot/dts/mediatek/mt8196-pinfunc.h
+> arch/arm64/boot/dts/mediatek/mt8516-pinfunc.h
 > 
+> $ ls include/dt-bindings/pinctrl/mt*
+> include/dt-bindings/pinctrl/mt65xx.h
+> include/dt-bindings/pinctrl/mt6779-pinfunc.h
+> include/dt-bindings/pinctrl/mt6795-pinfunc.h
+> include/dt-bindings/pinctrl/mt6797-pinfunc.h
+> include/dt-bindings/pinctrl/mt7623-pinfunc.h
+> include/dt-bindings/pinctrl/mt8135-pinfunc.h
+> include/dt-bindings/pinctrl/mt8183-pinfunc.h
+> include/dt-bindings/pinctrl/mt8186-pinfunc.h
+> include/dt-bindings/pinctrl/mt8192-pinfunc.h
+> include/dt-bindings/pinctrl/mt8195-pinfunc.h
+> include/dt-bindings/pinctrl/mt8365-pinfunc.h
+> 
+> 
+> Plus one different naming pattern.
+> 
+> $ ls include/dt-bindings/pinctrl/mediatek,*
+> include/dt-bindings/pinctrl/mediatek,mt8188-pinfunc.h
+> 
+> 
+> 
+> Which one is preferred?
+> 
+> 
+The MediaTek pinctrl must gain compatibility with standard pinctrl bindings. Until
+then, bindings maintainers decided that these headers must go to the dts/mediatek
+folder.
 
-I honestly don't see much difference. ECAM is just *a way* of accessing the
-config space of the PCIe devices. If we can have a compatible based on that,
-then I don't see why can't we have one for pwrctrl. Only difference is that
-"pwrctrl" terminology is not part of any spec, but for sure every device would
-have some kind of power control implementation.
+It is my desire to (but lack of time on my side hits hard) do the right thing and
+make the MediaTek pinctrl drivers to actually "understand" standard bindings.
 
-Anyhow, I don't have other solutions on top of my head now. Let's go with
-per-device compatible for now. I'll deal with a generic solution later.
+I'd be - of course - happy if anyone else beats me on time (which wouldn't be hard
+really) and pushes a series to fix this situation.
 
-- Mani
+Just to be clear - right now, the MTK pinctrl DT looks like:
 
--- 
-மணிவண்ணன் சதாசிவம்
+	panel_default_pins: panel-default-pins {
+		pins-rst {
+			pinmux = <PINMUX_GPIO108__FUNC_GPIO108>;
+			output-high;
+		};
+
+		pins-en {
+			pinmux = <PINMUX_GPIO48__FUNC_GPIO48>;
+			output-low;
+		};
+	};
+
+	spi1_pins: spi1-pins {
+		pins {
+			pinmux = <PINMUX_GPIO136__FUNC_SPIM1_CSB>,
+				 <PINMUX_GPIO137__FUNC_SPIM1_CLK>,
+				 <PINMUX_GPIO138__FUNC_SPIM1_MO>,
+				 <PINMUX_GPIO139__FUNC_SPIM1_MI>;
+			bias-disable;
+		};
+	};
+
+....but the driver should gain compatibility with nodes which would look like:
+
+	panel_default_pins: panel-default-pins {
+		pins-rst {
+			pins = "gpio108";
+			function = "gpio";
+			output-high;
+		};
+
+		pins-en {
+			pins = "gpio48";
+			function = "gpio";
+			output-low;
+		};
+	};
+
+	spi1_pins: spi1-pins {
+		pins-bus {
+			pins = "gpio136", "gpio137", "gpio138", "gpio139",
+			function = "spi_m1";
+			bias-disable;
+		};
+	};
+
+.... or
+
+	spi1_pins: spi1-pins {
+		pins-bus {
+			function = "spi_m1";
+			groups = "spi_m1_pins";
+			bias-disable;
+		};
+	};
+
+That's the entire situation.
+
+Cheers,
+Angelo
 
