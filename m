@@ -1,213 +1,155 @@
-Return-Path: <devicetree+bounces-264251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264252-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eB9LO8bdimlIOgAAu9opvQ
-	(envelope-from <devicetree+bounces-264251-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:27:02 +0100
+	id mD5YDZveimlIOgAAu9opvQ
+	(envelope-from <devicetree+bounces-264252-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:30:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 486C9117E95
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:27:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BA78117F1C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:30:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 36A743008D3A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:26:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BF1CB301B72D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:29:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26CE0333440;
-	Tue, 10 Feb 2026 07:26:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83ED4333439;
+	Tue, 10 Feb 2026 07:29:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dYYMduTo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YyGU1cQv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E27332917;
-	Tue, 10 Feb 2026 07:26:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6014133066A;
+	Tue, 10 Feb 2026 07:29:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770708398; cv=none; b=CUW5/dqyE68YiKQ4UqgHuf8YfkGH3YQTC7EhWmhNVr1jlLnCBWPCJkeSNjNKxiLi2hSfQO3maSqscs0zAFW2y6vGzlFgWiSqMZIb0wT3YbocQvUKBsoj5T3QS8PF26A3OT5uUT/87F6RKrmKM+Vr4RBk9+f0G8zKypAPMBjPEiA=
+	t=1770708543; cv=none; b=F2k50+srSBfIuGld3QyiUDPwZMpuddi04QO3fPVdchUTItD4nlwO4IQMcMdgaIdptVybpqStMntzgnIqqA0o7ORgQuUYQMqxJq4zvXBp+Ym5OijVbbTRTVB+4nlBipJFVJBVRsFc1sLvSqzn4cCEWRmPKv84M9vqiCZdV+ADMbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770708398; c=relaxed/simple;
-	bh=azYJ70UCkd6ewxDbN2Z1oowj1ERPXJLfCcuKGvjkH78=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=uev2QFQ9ULLFAh4aAuQeeCJKKreF9lgeTo/+NZk6lFPg+jelBQTuqqd75iDee99nUeAhpxzZzEpXv3cYW4VNo1K0Q4LTSUQPveZYJNmcVLEWuPmvAXJGj8xQld9QAClRKAfvWRkIWXZRi4nCO7KGSD5yzLrhu0tH2kOI+fUcFgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dYYMduTo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9F3EAC116C6;
-	Tue, 10 Feb 2026 07:26:37 +0000 (UTC)
+	s=arc-20240116; t=1770708543; c=relaxed/simple;
+	bh=ByPtK5KEpX2LdZX9oddoBB6sseTwgfzJrnfd0ExNZ1U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eGuB/k9/45JJZTSxwlG0fAo13C5y9vZyZ17YyaOFpFrgHlkjpmUIQY4uJFcKoH27VluqudBsEOG6CWZxNicMoLKgY5Z+44uGD7F4F1TMbZKj9Cl8guMsEOaFiiiH5RK59vWHXPF69Se0q+J2vyNaxoowy/NPm/gkcW8dVL0bv78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YyGU1cQv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFD51C116C6;
+	Tue, 10 Feb 2026 07:29:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770708397;
-	bh=azYJ70UCkd6ewxDbN2Z1oowj1ERPXJLfCcuKGvjkH78=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=dYYMduToBIZjok9xs+7XkCFXPWeL336JksfVqm6ar/j80qVsRSXolPJabdNZQVlK9
-	 h7neodVG9XKhsqZuX+f/A7toUtJZnxajPriDNRt40JnkLeBSSz2cgkv9rY6+I2T1id
-	 qUrPeYaxImVwjlehXxnCMnWvk9HI3Sf01C0NSj8IfVEb0fKhoQU/4ltxDnscD8UfAH
-	 wlGkD17noi40V5QUQjFR1hjJRfloOXcNTcX847oBG0SsA4Wid7Pe13iIBrThkaaDgL
-	 ifWmjkGinNJ0vuVvlwNitYlBMFLskbPLb4t06rQfvojeEx/ttsPTJJK/Ocvd/2W8X+
-	 gGZbdIuuja5Qg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D338EA3F13;
-	Tue, 10 Feb 2026 07:26:37 +0000 (UTC)
-From: Carl Lee via B4 Relay <devnull+carl.lee.amd.com@kernel.org>
-Date: Tue, 10 Feb 2026 15:26:34 +0800
-Subject: [PATCH v3] hwmon: pmbus: mpq8785: fix VOUT_MODE mismatch during
- identification
+	s=k20201202; t=1770708543;
+	bh=ByPtK5KEpX2LdZX9oddoBB6sseTwgfzJrnfd0ExNZ1U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YyGU1cQvALzFPDmnZyw5MOmEzvZCQwkvqF+FVIiC2LPpFkPbx1xqfwVCS9rnDmf41
+	 dHFk3IjcNIkf49vG76e2B5WrwCbWcwrKQPMuDJQKwkZTrHK8Y8lXUVPImvhKVgpICp
+	 pQ3lvDv0Yc3JkEmEY4kdGPyNR830sP2khMrFbWEdlYrK/2XAqtfbWK/xePApG1IcqH
+	 Yy4pk/1MmdLnjlA4RImRUU6DueMuz/qZjcJVarCPYNv7uZ7CCmNAIEbe+OoXoNi90y
+	 ApmwpvRO5Lga+1KgvqYgWhnGeANZ6p43tWuDYwlv/LGmRDNNRU5aYoTpz+FFWrvTbg
+	 z0BeU0nSeYeFA==
+Message-ID: <d159efb2-6c91-4778-8be8-838e5789fa24@kernel.org>
+Date: Tue, 10 Feb 2026 08:28:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: qcom: hamoa-evk: Add DP0/DP1 audio
+ playback support
+To: Le Qi <le.qi@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@oss.qualcomm.com
+References: <20260210024037.3719191-1-le.qi@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20260210024037.3719191-1-le.qi@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260210-dt-bindings-hwmon-pmbus-mpq8785-add-mpq8786-support-v3-1-84636ccfe76f@amd.com>
-X-B4-Tracking: v=1; b=H4sIAKndimkC/6XOvQ6CMBDA8VchnT3TlkKLk+9hHIAW6NAPW0AN4
- d0txERn3e5/w/1uQVEFrSI6ZQsKatZRO5siP2SoHWrbK9AyNaKYlpjiHOQIjbZS2z7CcDfOgjf
- NFMH4m+CigFrK91xCnLx3YYSOCcwqJRghCqXLPqhOP3b1ck096Di68NyfmMm2/c+bCRAoeYMZU
- bTjJT3XRh5bZ9CmzfRbKH4TKGDIOWOtrBoqCvwR1nV9AWHtPUpWAQAA
-X-Change-ID: 20260203-dt-bindings-hwmon-pmbus-mpq8785-add-mpq8786-support-f48049e8411e
-To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Charles Hsu <ythsu0511@gmail.com>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, carl.lee@amd.com, peter.shen@amd.com, 
- colin.huang2@amd.com
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770708396; l=3189;
- i=carl.lee@amd.com; s=20260203; h=from:subject:message-id;
- bh=DHv3qYgkJTh/6E+3LOp8GqDIxJ4CeCy84LAPdnBLZ8U=;
- b=hpw4xdcGTjEjU7TfOl/vcBy9+4SWcu2Ruqa/7BsCC+L7tQn6I+0w9PU3nNE2e0Z+4LXmxb/tO
- cM7SjU1aW0gBZD5leIe84KH1I87IlQVYkYBFyeg9MuRsv+fid64Qjtw
-X-Developer-Key: i=carl.lee@amd.com; a=ed25519;
- pk=pyq7QaQvoxMg806KVkRwpCbiah+7ncWr4MBpK1AEyjA=
-X-Endpoint-Received: by B4 Relay for carl.lee@amd.com/20260203 with
- auth_id=623
-X-Original-From: Carl Lee <carl.lee@amd.com>
-Reply-To: carl.lee@amd.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-264252-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264251-lists,devicetree=lfdr.de,carl.lee.amd.com];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[roeck-us.net,kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[carl.lee@amd.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,amd.com:mid,amd.com:email,amd.com:replyto]
-X-Rspamd-Queue-Id: 486C9117E95
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 8BA78117F1C
 X-Rspamd-Action: no action
 
-From: Carl Lee <carl.lee@amd.com>
+On 10/02/2026 03:40, Le Qi wrote:
+> The hamoa-evk DTS currently lacks DAI links for DP0 and DP1, preventing
+> the sound card from exposing these playback paths. Add the missing links
+> to enable audio output on both DP interfaces.
+> 
+> ---
+> Changelog:
+> 
 
-When MPQ8785 reports VOUT_MODE as VID mode, mpq8785_identify()
-configures the driver for direct mode. The subsequent
-pmbus_identify_common() check then fails due to a mismatch
-between the reported mode and the configured mode, causing
-device initialization to fail.
 
-Override the reported VOUT_MODE to direct mode to keep the
-driver configuration consistent with the reported mode and
-allow successful device initialization.
-
-This does not change how voltages are interpreted, but avoids
-a false identification failure caused by mismatched mode
-handling.
-
-Signed-off-by: Carl Lee <carl.lee@amd.com>
----
-This series fixes a device identification failure on MPQ8785 caused by
-a mismatch between the reported VOUT_MODE and the driver-configured mode.
-
-When the chip reports VOUT_MODE as VID, the driver already treats it as
-direct mode, but the mismatch causes the common identification code to
-fail. The patch ensures the reported mode is consistent with the driver
-configuration so the device can initialize successfully.
----
-Changes in v3:
-- Drop patches 1/3 and 2/3 from the series.
-- Pass through non-VID modes unchanged
-- Add clarify code comments
-- Link to v2: https://lore.kernel.org/r/20260205-dt-bindings-hwmon-pmbus-mpq8785-add-mpq8786-support-v2-0-3744cd9b2850@amd.com
-
-Changes in v2:
-- Combine DT binding and driver changes into a single series
-- Fix VOUT reporting by forcing direct mode for VID VOUT
-- Link to v1: https://lore.kernel.org/r/20260203-dt-bindings-hwmon-pmbus-mpq8785-add-mpq8786-support-v1-1-67b041e2f762@amd.com
----
- drivers/hwmon/pmbus/mpq8785.c | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
-
-diff --git a/drivers/hwmon/pmbus/mpq8785.c b/drivers/hwmon/pmbus/mpq8785.c
-index 1f56aaf4dde8..87bd039c77b9 100644
---- a/drivers/hwmon/pmbus/mpq8785.c
-+++ b/drivers/hwmon/pmbus/mpq8785.c
-@@ -47,6 +47,33 @@ static int mpq8785_identify(struct i2c_client *client,
- 	return 0;
- };
- 
-+static int mpq8785_read_byte_data(struct i2c_client *client, int page, int reg)
-+{
-+	int ret;
-+
-+	switch (reg) {
-+	case PMBUS_VOUT_MODE:
-+		ret = pmbus_read_byte_data(client, page, reg);
-+		if (ret < 0)
-+			return ret;
-+
-+		if ((ret >> 5) == 1) {
-+			/*
-+			 * The MPQ8785 chip reports VOUT_MODE as VID mode, but the driver
-+			 * treats VID as direct mode. Without this, identification would fail
-+			 * due to mode mismatch.
-+			 * This override ensures the reported mode matches the driver
-+			 * configuration, allowing successful initialization.
-+			 */
-+			return PB_VOUT_MODE_DIRECT;
-+		}
-+
-+		return ret;
-+	default:
-+		return -ENODATA;
-+	}
-+}
-+
- static int mpm82504_read_word_data(struct i2c_client *client, int page,
- 				   int phase, int reg)
- {
-@@ -129,6 +156,7 @@ static int mpq8785_probe(struct i2c_client *client)
- 		break;
- 	case mpq8785:
- 		info->identify = mpq8785_identify;
-+		info->read_byte_data = mpq8785_read_byte_data;
- 		break;
- 	default:
- 		return -ENODEV;
-
----
-base-commit: 4c87cdd0328495759f6e9f9f4e1e53ef8032a76f
-change-id: 20260203-dt-bindings-hwmon-pmbus-mpq8785-add-mpq8786-support-f48049e8411e
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
--- 
-Carl Lee <carl.lee@amd.com>
-
-
+Krzysztof
 
