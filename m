@@ -1,60 +1,65 @@
-Return-Path: <devicetree+bounces-264172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264173-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qLzsJl2EimmfLQAAu9opvQ
-	(envelope-from <devicetree+bounces-264172-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:05:33 +0100
+	id AB7WGm+GimkVLgAAu9opvQ
+	(envelope-from <devicetree+bounces-264173-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:14:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3563C115E7B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:05:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8524115EF5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 02:14:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 300C63018402
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 01:05:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A2033300A62A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 01:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9188926C3AE;
-	Tue, 10 Feb 2026 01:05:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA12F23EA87;
+	Tue, 10 Feb 2026 01:14:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EI2ow6Tq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xp6MOftG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65D1F17BEBF;
-	Tue, 10 Feb 2026 01:05:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4CBB238D42;
+	Tue, 10 Feb 2026 01:14:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770685529; cv=none; b=CjKCjQpsbr/B7SG27WDhTbDHNFoI9FhOhs1B9iMbGmCHQuBAUrqLY1ziCSulO1l28VO50eIZId5Ey6L/nUUB1Ujo0NQHdOOeqtbTo2MOmJsgGoYN+i2O2ZDrdyYhwi5Y/Ywo5YLNUasH/oX3rps/WDNc7OTTudH+rC7iX5wZlU0=
+	t=1770686059; cv=none; b=K8X8Y16UyXGCEdWrtXyZIQq+sc8mAdrIzeL9Gqd1xKpTAI6efRb5FYCHuC78MmhEwF+/820INiop24AvtjqYYXr4Q+++knqc4Nm3EZPNKC1r9xanidS1GZZTi6NXb5R4WMUJ3ZOJayp8P1OoIEaAgCRzbkXB+c3kuFp/mVOmThg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770685529; c=relaxed/simple;
-	bh=NZ1UpPJkKt7Y0uFrtl79h/DhcaOBliCOw0Lfi+31IJQ=;
+	s=arc-20240116; t=1770686059; c=relaxed/simple;
+	bh=yMSnap1H9Cu9+6D8Oq3J4mpUg6BC7MFbdOxTodbzqu4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YtbTA9RIDLAdM78GioGtmsuKL7dTOXTxUk9QbTA2iL96ur9Ssolzn40SaSQxnJ0m6tcs/0Qqnw1rB6aLkUhqJ/ZPF4YKCYZmVZqy77Gxwl8v5cqjlIousr/4Unj/O5FKZQIScHg4iLHHv0La8PikYZh//bqk8hzMDHk2cI8xgDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EI2ow6Tq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0ECFC116C6;
-	Tue, 10 Feb 2026 01:05:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lK+/Ipq78yfoiWGqEFRI+ivS4R0sn/LCArJCo/i63YzhF+tfgvvEg4Yutca4ZUNgVMf+aufLcC3ivBMgB8Ic9lyL5G13wxzQ23ent3nNu4KHWfWccXJ4CuwST96+kNKdMrx1W+RH7d67N0gQdcevBF+GT2QPlcRDfW9A6ucF7sw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xp6MOftG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44091C116C6;
+	Tue, 10 Feb 2026 01:14:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770685528;
-	bh=NZ1UpPJkKt7Y0uFrtl79h/DhcaOBliCOw0Lfi+31IJQ=;
+	s=k20201202; t=1770686059;
+	bh=yMSnap1H9Cu9+6D8Oq3J4mpUg6BC7MFbdOxTodbzqu4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EI2ow6TqStbzo1Vb5o4Yn11slfVMB/EOsSvoYbUCntZzZMs9MvRs+o+mqaX8DQaV1
-	 /PCBh47WKFkOrF07Ctz0JE0uyz69fweA/j44oD7fCf7uC4/IjMDumukgQAXR1nlgnZ
-	 V0Yt6VB0kun+ZK8oPHoI6tAyTzuH0cgeAoOr2SA3nLJOd1DNoGx/ZFM1I3oK0h/ILY
-	 4py8a91JBsV2qB6HgP4tN45mwyCi0LgHNY3BqANVGq1V4JIxZ3jQi2dIZXb/gbVL+7
-	 pc6X+MIZsaoGUwkcGZdtNTcsk7gBAEQg79pANBNEYVuJoF3ojnDMEgGP9PT+kB6qxz
-	 JkKz8EWuO9VQQ==
-Date: Mon, 9 Feb 2026 19:05:28 -0600
+	b=Xp6MOftGDVcdLaI0o2bj0Sd8EimEigqWQXlkQc7FiQ5zewU7MsbYmms3QZddtPyol
+	 w4usqbZU3vEz5csslDOMN3w1n0wOC/rhESf51+GTCYLgAqaPYdFbBp5L4Z0759b/LG
+	 RLfRA55JNbXRSTjJa0penHvIe9uCqy7i1Z8y67zgjPVxE5N33sbI7NzQr5KKaEbUKo
+	 8J+uCMw+/jv2iEAxKqJF2kDSQefj/s6bFyinvInBTR+VpRPxxN5sv72eb3UHL+flAI
+	 LaWeJVQ2W5hoNKeZwGI3XPMhPZN6rKyMbPjy7YyPw2fj+bU+cXl8lBiFkoUrl+TEbO
+	 y2phLy4vYqJAw==
+Date: Mon, 9 Feb 2026 19:14:18 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Stanislav Zaikin <zstaseg@gmail.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-	andersson@kernel.org, linux-kernel@vger.kernel.org,
-	konradybcio@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add SM7325 Xiaomi 12 Lite 5G
- (taoyao)
-Message-ID: <177068552739.2245926.6013795880835087773.robh@kernel.org>
-References: <20260204115645.1343750-1-zstaseg@gmail.com>
- <20260204115645.1343750-2-zstaseg@gmail.com>
+To: Biju <biju.das.au@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>, devicetree@vger.kernel.org,
+	Thomas Gleixner <tglx@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v2 1/9] dt-bindings: interrupt-controller:
+ renesas,rzg2l-irqc: Use pattern for interrupt-names
+Message-ID: <177068605793.2257614.4296319093364723189.robh@kernel.org>
+References: <20260204180632.249139-1-biju.das.jz@bp.renesas.com>
+ <20260204180632.249139-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,49 +68,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260204115645.1343750-2-zstaseg@gmail.com>
+In-Reply-To: <20260204180632.249139-2-biju.das.jz@bp.renesas.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-264173-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,bp.renesas.com,gmail.com,kernel.org,glider.be];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264172-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3563C115E7B
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email]
+X-Rspamd-Queue-Id: C8524115EF5
 X-Rspamd-Action: no action
 
 
-On Wed, 04 Feb 2026 12:56:44 +0100, Stanislav Zaikin wrote:
-> Xiaomi 12 Lite 5G (xiaomi,taoyao) is a smartphone based on the SM7325
-> SoC.
+On Wed, 04 Feb 2026 18:06:17 +0000, Biju wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
 > 
-> Signed-off-by: Stanislav Zaikin <zstaseg@gmail.com>
+> Simplify the bindings by using pattern property for interrupt-names.
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> v1->v2:
+>  * New patch.
+> ---
+>  .../renesas,rzg2l-irqc.yaml                   | 120 ++++--------------
+>  1 file changed, 23 insertions(+), 97 deletions(-)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
