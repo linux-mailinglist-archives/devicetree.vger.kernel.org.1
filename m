@@ -1,70 +1,82 @@
-Return-Path: <devicetree+bounces-264448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264453-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mB72OYZFi2mfRwAAu9opvQ
-	(envelope-from <devicetree+bounces-264448-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 15:49:42 +0100
+	id 6O4oGcBFi2mfRwAAu9opvQ
+	(envelope-from <devicetree+bounces-264453-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 15:50:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 650DF11C10A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 15:49:42 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7620E11C16E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 15:50:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EF54F3020E92
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:48:52 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C2BD530080B0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:50:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB89133F38A;
-	Tue, 10 Feb 2026 14:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6890F3803C9;
+	Tue, 10 Feb 2026 14:50:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EEL355M7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lXl8h50V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8CED329E58;
-	Tue, 10 Feb 2026 14:48:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB60636681B;
+	Tue, 10 Feb 2026 14:50:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770734930; cv=none; b=GKfpxl+IoY/gsA5Tln24918gQFaVCOeBSsUc3DMCebG3KYRqLJrqQTQqbAGn6+0FyCoRLopb8qo7iiMO0OkAW60vmkFDBf8aenxBfoqeGkulNmTtxvkxBLRvqNBM1SklLFQNp64ZSELfPPO7jSdOKIFsMYNTkGu8GOCEcE+kbKk=
+	t=1770735033; cv=none; b=thameYxRaudusscWOxG6ri7+XWpeFcs3Z3fK3pf5w8FsWSeip1AIAm5ypKj2seTozC85zs9gjTGxOhep+JBKN4fwCnP58iT9ExHdjwC1nixUSloa3F+1WDwiSgq2X2jlUbHLavA4adstml35/backeTBYxxKTcbgI2KeeENph8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770734930; c=relaxed/simple;
-	bh=0BPOdjZ9FZZhVNS70ugUYJcdyNmnzzQQblYQQVtkCAI=;
+	s=arc-20240116; t=1770735033; c=relaxed/simple;
+	bh=Ay0a5yt0KAk0KqvUofnnt7ru3ngDlacuX/N01eIYONs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u/OfCs0uRWIMSIJ3JZ1SmfPMRim1/2Y1+AkZXfNfFk38dJeqbPDOi9HHov9vyTcSgo4zkWDoUNt3pb/QETxFpLXvOP1VWg0nu+vU9eifdef1FHDl5BMkrKTReMNb7RQPTvJZPj6NTGCUUtSn/6YbBX4cAs+y5X6kAcx8VhAJoXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EEL355M7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A603C116C6;
-	Tue, 10 Feb 2026 14:48:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770734930;
-	bh=0BPOdjZ9FZZhVNS70ugUYJcdyNmnzzQQblYQQVtkCAI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EEL355M7aYUwWTSyH8KocQFtO+QK8eM+yylOh+jKs/gUQG/tfGx/n2a+5I4BKhBTu
-	 hltnl+VVUrmIh9G0TY2Eqv3S5COB7SnYGSa1MLRQZZk5FS6d9wTXJPCaf8NAdpNwzq
-	 d5Hek3aBv0L+pIEzaFxoCMiZh6YQYOGPviLtNiWALzem0j5ddEJEgOfMg5OINkuGIA
-	 cPm/8Y6sc1cWZN785j5Ci5avKtcT9y5qKMGgWkDyYhmkQDt/PvPSqFLXu9VRB33Lvw
-	 4UGis9ilIAgM0eKnieYUHCg9m/MeLW72wNMkFJZvRywabIvJ7pSPQaAo1inHWJUsOt
-	 uDGj0U5SS1Aow==
-Date: Tue, 10 Feb 2026 08:48:49 -0600
-From: Rob Herring <robh@kernel.org>
-To: Teresa Remmet <t.remmet@phytec.de>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=mWzlhYbo6Z4mrxTHfTsKagS2HteqpWMRbmqXa6RhAaFq3BOwRHdfqDhBR1bSr/429a0k/ou+WmT3Oh+k6/BAQUiuFiuytYECxTEbn5D+Bvrl6hFYUXEJuRCaQ+aJsK2Px/5l7aP1sKzt1b1c6lu5kj07aIwlyhiftj04ZKGeCRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lXl8h50V; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770735032; x=1802271032;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Ay0a5yt0KAk0KqvUofnnt7ru3ngDlacuX/N01eIYONs=;
+  b=lXl8h50VebY513Vu8otROqRh6sTOnfisYFMWjPUhjLtTJsWi1H+r093r
+   3R0kTmVcQ8IhmF4G3Qffzm4WmG6vI9w2JLxuKHW8KOYqhGhD9GPVRSVe4
+   Y8IhKdXEUXsjgGZx4F/3wKTvWU/knS2+MR7/bLfVqcCiBQ9TKvFbnBAiB
+   H/x4nH584Ct61BEK7+VtmsUfajzfVS0XlqFWqbJRVjUUqEHq19laiIBoS
+   SGc9obO9iMZ0ahZnIGesv6hKl8FUsdGdozmfzEIPhuSwkF47R0uVFsYRP
+   lp0GI14y+BqdkjJJKn2Spp+8kjyfWQFvC57zK7yFsWTPt5U6xVfPPMcRS
+   w==;
+X-CSE-ConnectionGUID: +zUjBMAlR0ie7RVBMx2o6g==
+X-CSE-MsgGUID: Iq3VOOzvQ7aGmZzUg3q7FA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="71757908"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; 
+   d="scan'208";a="71757908"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2026 06:50:31 -0800
+X-CSE-ConnectionGUID: MBJ4Y3sORl+ULAXzXvrZHQ==
+X-CSE-MsgGUID: 5KMPrUf0Ray1/Mka9vaqOw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; 
+   d="scan'208";a="211429637"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.39])
+  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2026 06:50:28 -0800
+Date: Tue, 10 Feb 2026 16:50:26 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, upstream@lists.phytec.de,
-	Yannic Moog <y.moog@phytec.de>, Benjamin Hahn <b.hahn@phytec.de>,
-	Yashwanth Varakala <y.varakala@phytec.de>,
-	Jan Remmet <j.remmet@phytec.de>
-Subject: Re: [PATCH 1/2] dt-bindings: dp83867: add binding for
- ti,output-impedance property
-Message-ID: <20260210144849.GB2675838-robh@kernel.org>
-References: <20260129-wip-t-remmet-phytec-de-bspimx95-132_upstream-v1-0-8deccd658d16@phytec.de>
- <20260129-wip-t-remmet-phytec-de-bspimx95-132_upstream-v1-1-8deccd658d16@phytec.de>
+	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH v6 05/12] iio: dac: ds4424: use device match data for
+ chip info
+Message-ID: <aYtFsmO7h5ucSyVq@smile.fi.intel.com>
+References: <20260210135110.2027073-1-o.rempel@pengutronix.de>
+ <20260210135110.2027073-6-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,86 +85,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260129-wip-t-remmet-phytec-de-bspimx95-132_upstream-v1-1-8deccd658d16@phytec.de>
+In-Reply-To: <20260210135110.2027073-6-o.rempel@pengutronix.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264448-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-264453-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,ti.com,gmail.com,armlinux.org.uk,vger.kernel.org,lists.phytec.de,phytec.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 650DF11C10A
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: 7620E11C16E
 X-Rspamd-Action: no action
 
-On Thu, Jan 29, 2026 at 03:13:33PM +0100, Teresa Remmet wrote:
-> Add an optional device tree property, "ti,output-impedance", which
-> specifies the output impedance using a raw register field value from
-> 0x0 to 0x1f.
+On Tue, Feb 10, 2026 at 02:51:03PM +0100, Oleksij Rempel wrote:
+> Refactor the driver to use device match data instead of checking ID enums
+> in a switch statement.
 > 
-> 0x0 corresponds to the highest impedance (approximately 70 ohms),
-> while 0x1f represents the lowest (approximately 35 ohms).
+> Define a `ds4424_chip_info` structure to hold variant-specific attributes
+> (currently just the channel count) and attach it directly to the I2C and
+> OF device ID tables.
 > 
-> This property allows the impedance to be configured through the
-> device-tree to any required value rather than being limited to fixed
-> minimum or maximum settings.
-> 
-> Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
-> ---
->  Documentation/devicetree/bindings/net/ti,dp83867.yaml | 19 ++++++++++++++-----
->  1 file changed, 14 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ti,dp83867.yaml b/Documentation/devicetree/bindings/net/ti,dp83867.yaml
-> index 4bc1f98fd9fe..a8d8bfb68bee 100644
-> --- a/Documentation/devicetree/bindings/net/ti,dp83867.yaml
-> +++ b/Documentation/devicetree/bindings/net/ti,dp83867.yaml
-> @@ -52,11 +52,20 @@ properties:
->      description: |
->        MAC Interface Impedance control to set the programmable output impedance
->        to a maximum value (70 ohms).
-> -      Note: Specifying an io_impedance_ctrl nvmem cell or one of the
-> -        ti,min-output-impedance, ti,max-output-impedance properties
-> -        are mutually exclusive. If more than one is present, an nvmem
-> -        cell takes precedence over ti,max-output-impedance, which in
-> -        turn takes precedence over ti,min-output-impedance.
-> +      Note: Specifying an io_impedance_ctrl nvmem cell, ti,output-impedance
-> +        or one of the boolean ti,min-output-impedance and ti,max-output-impedance
-> +        properties is mutually exclusive.
-> +        If more than one is present the priority order is nvmem cell,
-> +        ti,output-impedance, ti,max-output-impedance and last
-> +        ti,min-output-impedance.
-> +
-> +  ti,output-impedance:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      MAC Interface Impedance control to set the raw register value from 0x0
-> +      (approx. 70 ohms) to 0x1f (approx. 35 ohms).
-> +    minimum: 0
-> +    maximum: 31
+> This simplifies the probe function and makes it easier to add support for
+> new variants like DS4402/DS4404.
 
-How does this compare to 'mac-termination-ohms'? Seems like this should 
-be a common property whether it's the same or for a different location.
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 
-Rob
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
