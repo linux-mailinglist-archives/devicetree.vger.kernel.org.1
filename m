@@ -1,337 +1,202 @@
-Return-Path: <devicetree+bounces-264406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264407-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kP/YMhwpi2n1QQAAu9opvQ
-	(envelope-from <devicetree+bounces-264406-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:48:28 +0100
+	id eDxoJDopi2n1QQAAu9opvQ
+	(envelope-from <devicetree+bounces-264407-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:48:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E542811AFCA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:48:27 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F71811AFF4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:48:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A29A03008615
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:48:23 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6750930071E3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 12:48:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FA502EA754;
-	Tue, 10 Feb 2026 12:48:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97243318B93;
+	Tue, 10 Feb 2026 12:48:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lxfgH7Jb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="riTIzdQs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BF3D1D516C
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 12:48:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7211628727E;
+	Tue, 10 Feb 2026 12:48:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770727702; cv=none; b=X9ca0plgmzB87BtI4wdrs1Thh3KcNrfxgVVvQ/JnxBpcSliBZ8YSPlhbQnoX3JZvVR21emE74Ua/kLuqHjVZSIypjiAhhQ9I9o7GFW5Q5BrkzkpOS+KO/+CRqGQ6coI/L9t5WrPEnRd9XWWNzOpr8RFE79qotdzYG5B9DRBeaB4=
+	t=1770727731; cv=none; b=WxJWWqL52GUxwl85wAbqILv3xqfW80qkZmbGVuDzeNX93ONxNRFQbWY3lIDImrlLIdoeu7V2/kJ84iyectnCPRenhCMYIm3VMABVPvFJZBMlRzX1ThWl4UO6HKTpE+hfhsQYqFJGr+oooE9MLi0W+AAxBfjrPGsyIeEAO7GgvYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770727702; c=relaxed/simple;
-	bh=/yLTrEwFx14Dt9Rfp5vSAMLnucczQsLEDATsUcijQh0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DqDfgnm8kecRtk8rAOzvY2HisegQ1pKVwbuNM4weyCKuOkZdECfdoLHXUxAkiHlE+cUJD4AwB+boPMfHm6V/+5tlbLk1cxkUxW6/TOF//W5fXpVOSOXsMpnDA/C9GL/QQVux6vD8GqpWf66OVqBECUjI0YL0JZ68q+vRNlP4Mt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lxfgH7Jb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 164AEC4AF0C
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 12:48:22 +0000 (UTC)
+	s=arc-20240116; t=1770727731; c=relaxed/simple;
+	bh=vvnvUwyQSeRgCBnsUrcVrKGgV+yxucGObqDmZnndIzI=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=OuPTYAAixUPE+wN0G07kVQqJ/SjQYK6A0K0arnH82Ng0P+3xPM12ra8WlZni7o5KWaUKegiYZVY2XMl7nqws4LXGOwQszpp8VP60tbf0StyxmIJQRO1SbXlVnoCXQhF1tlfckJo1t9+qZOzdKIolYTEqWpbMQexPfXDefmxXSdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=riTIzdQs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0729C116C6;
+	Tue, 10 Feb 2026 12:48:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770727702;
-	bh=/yLTrEwFx14Dt9Rfp5vSAMLnucczQsLEDATsUcijQh0=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=lxfgH7JbVpaXTZgCXtPeacOeRoRqvwbSeiQKRQ+CWb1BVOyn4X/FUNVyU8wG+46Ql
-	 zHPQAvWpU/lsPHuGmBCWO8gtVgozcmXWtJF+4gtY2p8GdRa0RPxaL5f+l7qtpIlPFl
-	 ZGxKcrHwNy2xhQo1ddiquABe/dBB0ANpCYID4oX5OGPQA8Ir3CerZyZP18Y85Gy6gc
-	 Crs5Xi7rCUVM8pMn8nKVbP2mO3j+s7GrbVDW7Ep2ybo+Y8fnAUZJm2Rv2hwaWHXXKk
-	 K3t9MapjBhjrVP1+rBiq4jW7yeIE4z/s4OtIJ0Qk2bTwrvUKx16eNxEl1QVkEG647a
-	 z0kPurYsJNNrA==
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-38305d006faso46540851fa.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 04:48:22 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVrrS/D874h/qQLM6taejXSsjTtYX5AfbrfiQ+FklIyfFBTYXFuyzbpbXGreAJIakZxWBpzf/9yplQH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLaY4SzTd975wM2D0tv+5pHJb8eIvmANidnZEbFJ3Sok3vPBi1
-	ktOUGcNuYRY2kpqPHhoX9DfMaxHD7V2CTnqxCVGzK6HyagOne5gi5hghw3bYBMMJFA+T9aI/d8E
-	DUSVE0synNKFL3MIyVSAPHr9lUjipqHc=
-X-Received: by 2002:a05:651c:31cd:b0:386:fa6b:44dc with SMTP id
- 38308e7fff4ca-386fa6b49ecmr1427891fa.9.1770727700437; Tue, 10 Feb 2026
- 04:48:20 -0800 (PST)
+	s=k20201202; t=1770727731;
+	bh=vvnvUwyQSeRgCBnsUrcVrKGgV+yxucGObqDmZnndIzI=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=riTIzdQssYR8g2NzGUGuJiD/6H2GGiVWLCyloWQblfYjGzJqo4lPuEYXCsLhz81Yh
+	 8lxBRMhZM8bZ7PDfwYQQRRtd3cwJ/ccbu795+X3kwEf68kVwnpA2ecX/fDCvUArgzb
+	 wSLYYvrA5qp9D4C+/QX6pW8DvIIpLhP4XGvdJuKpn++709gQaylMhwDemCjf3INE0J
+	 jm1WsHAb4QLFhHHYdems2/OIOrnu2oXYRhHGLhwfSyMXzG9UAQiGc/D5Nacv0AfZza
+	 9+IKpBQqnni90saBsi5Of+XqLMJxKDH57SM+uVNl8ZUD30YFK9DDIoGojs3fx9zp9X
+	 t8ZWNtwSF9RjA==
+Message-ID: <9dcc308d-f87d-4706-90ae-df3669aea224@kernel.org>
+Date: Tue, 10 Feb 2026 13:48:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250919020525.7904-1-ot_cathy.xu@mediatek.com>
- <1b092f9c-d0b1-47df-a83e-a99d7491a32b@lechnology.com> <7ed7a5e3-0c83-44e8-b7d2-e93e0b686df8@collabora.com>
-In-Reply-To: <7ed7a5e3-0c83-44e8-b7d2-e93e0b686df8@collabora.com>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Tue, 10 Feb 2026 20:48:06 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66eSZUVk8_CXDMn6jmEJeC9QqJcz1eO-wVT-9OxrkU6Aw@mail.gmail.com>
-X-Gm-Features: AZwV_Qj5PKRKpTYJzhQaY6M0aPxMiwKhFHv4dpRoWs-3c-choy2xYtUHpIM2CXI
-Message-ID: <CAGb2v66eSZUVk8_CXDMn6jmEJeC9QqJcz1eO-wVT-9OxrkU6Aw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8189: Add pinmux macro header file
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: David Lechner <david@lechnology.com>, Cathy Xu <ot_cathy.xu@mediatek.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, Yong Mao <yong.mao@mediatek.com>, 
-	Wenbin Mei <Wenbin.Mei@mediatek.com>, Axe Yang <Axe.Yang@mediatek.com>, 
-	Lei Xue <Lei.Xue@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/9] dt-bindings: mfd: document ASUS Transformer EC
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Pavel Machek <pavel@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Sebastian Reichel <sre@kernel.org>, =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?=
+ <mirq-linux@rere.qmqm.pl>, Ion Agorria <ion@agorria.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20260209104407.116426-1-clamor95@gmail.com>
+ <20260209104407.116426-4-clamor95@gmail.com>
+ <20260210-sexy-grumpy-sambar-44edd2@quoll>
+ <CAPVz0n3fizf=r58Fr4YQ6pnjHq5p-7yFz95obss6w6x0bfgnDg@mail.gmail.com>
+ <d1973810-d3f5-4ed7-ba0f-6bf93c1c7f3d@kernel.org>
+ <CAPVz0n1foyy9g7MAurSAyLCUHTzrPPu0ceqy9YpcDA9uzgjGng@mail.gmail.com>
+ <cb91898e-10f1-4d64-bace-41bbed08179b@kernel.org>
+ <CAPVz0n0O_uSAPYFtg8s+Ni0buyGJys6d0jEMob6SNWx-aeKUEw@mail.gmail.com>
+ <dc7acd1e-91e8-492c-8665-cb680c6164fd@kernel.org>
+ <CAPVz0n0u_0ZukcKXt0QpiyCMhWsg2VE-dE19wDCbRQvBvVOf+A@mail.gmail.com>
+ <ec3b39d6-51ec-429d-b083-e5af2b4a9c65@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <ec3b39d6-51ec-429d-b083-e5af2b4a9c65@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-264407-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264406-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[lechnology.com,mediatek.com,kernel.org,gmail.com,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[wens@kernel.org];
-	RCVD_COUNT_FIVE(0.00)[5];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,arndb.de,linuxfoundation.org,rere.qmqm.pl,agorria.com,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,mail.gmail.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mediatek.com:email]
-X-Rspamd-Queue-Id: E542811AFCA
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2F71811AFF4
 X-Rspamd-Action: no action
 
-On Tue, Feb 10, 2026 at 7:03=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 09/02/26 22:48, David Lechner ha scritto:
-> > On 9/18/25 9:03 PM, Cathy Xu wrote:
-> >> Add the pinctrl header file on MediaTek mt8189.
-> >>
-> >> Signed-off-by: Cathy Xu <ot_cathy.xu@mediatek.com>
-> >> ---
-> >> This patch is base on the patch series:
-> >> https://patchwork.kernel.org/project/linux-mediatek/list/?series=3D981=
-475
-> >> [1] dt-bindings: pinctrl: mediatek: Add support for mt8189
-> >> [2] arm64: dts: mediatek: mt8189: Add pinmux macro header file
-> >> [3] pinctrl: mediatek: Add pinctrl driver on mt8189
-> >> Since patch [1] and [3] of the series have already been merged, this
-> >> patch(patch [2]) is being resent individually after modifications.
-> >> ---
-> >>   arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h | 1125 +++++++++++++++=
-++
-> >>   1 file changed, 1125 insertions(+)
-> >>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h
-> >>
-> >> diff --git a/arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h b/arch/arm6=
-4/boot/dts/mediatek/mt8189-pinfunc.h
-> >> new file mode 100644
-> >> index 000000000000..df69f50c267a
-> >> --- /dev/null
-> >> +++ b/arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h
-> >
-> > General question:
-> >
-> > Why do we have similar files in two different places different places?
-> >
-> > $ ls arch/arm64/boot/dts/mediatek/*-pin*
-> > arch/arm64/boot/dts/mediatek/mt2712-pinfunc.h
-> > arch/arm64/boot/dts/mediatek/mt6878-pinfunc.h
-> > arch/arm64/boot/dts/mediatek/mt6893-pinfunc.h
-> > arch/arm64/boot/dts/mediatek/mt8167-pinfunc.h
-> > arch/arm64/boot/dts/mediatek/mt8173-pinfunc.h
-> > arch/arm64/boot/dts/mediatek/mt8196-pinfunc.h
-> > arch/arm64/boot/dts/mediatek/mt8516-pinfunc.h
-> >
-> > $ ls include/dt-bindings/pinctrl/mt*
-> > include/dt-bindings/pinctrl/mt65xx.h
-> > include/dt-bindings/pinctrl/mt6779-pinfunc.h
-> > include/dt-bindings/pinctrl/mt6795-pinfunc.h
-> > include/dt-bindings/pinctrl/mt6797-pinfunc.h
-> > include/dt-bindings/pinctrl/mt7623-pinfunc.h
-> > include/dt-bindings/pinctrl/mt8135-pinfunc.h
-> > include/dt-bindings/pinctrl/mt8183-pinfunc.h
-> > include/dt-bindings/pinctrl/mt8186-pinfunc.h
-> > include/dt-bindings/pinctrl/mt8192-pinfunc.h
-> > include/dt-bindings/pinctrl/mt8195-pinfunc.h
-> > include/dt-bindings/pinctrl/mt8365-pinfunc.h
-> >
-> >
-> > Plus one different naming pattern.
-> >
-> > $ ls include/dt-bindings/pinctrl/mediatek,*
-> > include/dt-bindings/pinctrl/mediatek,mt8188-pinfunc.h
-> >
-> >
-> >
-> > Which one is preferred?
-> >
-> >
-> The MediaTek pinctrl must gain compatibility with standard pinctrl bindin=
-gs. Until
-> then, bindings maintainers decided that these headers must go to the dts/=
-mediatek
-> folder.
->
-> It is my desire to (but lack of time on my side hits hard) do the right t=
-hing and
-> make the MediaTek pinctrl drivers to actually "understand" standard bindi=
-ngs.
+On 10/02/2026 12:54, Krzysztof Kozlowski wrote:
+> On 10/02/2026 12:40, Svyatoslav Ryhel wrote:
+>>>>
+>>>> So you propose introduce a compatible for every single ec used in
+>>>> transformers instead of simply disable unpopulated functions? And how
+>>>> then battery and charger can reach monitored cell if they have no
+>>>> dedicated node?
+>>>
+>>> Just like for other bindings for nodes without resources, fold into
+>>> parent. This is already explained in writing bindings, so you could have
+>>> just read that. I will pass with answering more questions till you read
+>>> that doc.
+>>>
+>>
+>> Unfolding asus,ec-pad and asus,ec-dock will result in this list:
+>>
+>> asus,tf101-dock-ec
+>> asus,tf101g-dock-ec
+>> asus,sl101-pad-ec
+>> asus,tf201-pad-ec
+>> asus,tf201-dock-ec
+>> asus,tf300t-pad-ec
+>> asus,tf300t-dock-ec
+>> asus,tf300tg-pad-ec
+>> asus,tf300tg-dock-ec
+>> asus,tf300tl-pad-ec
+>> asus,tf300tl-dock-ec
+>> asus,tf600t-pad-ec
+>> asus,tf700t-pad-ec
+>> asus,tf700t-dock-ec
+>> asus,tf701t-pad-ec
+>> asus,p1801-t-pad-ec
+>>
+>> with minor variations in populated cells. Is this acceptible?
+> 
+> 
+> Yes, this looks correct.
 
-The headers encode the pin numbers and mux values in a way that the
-"pinmux" property requires, all the while giving them meaningful names.
+Update: with fallback-expressed compatibility when same interface and/or
+superset of features.
 
-I suppose you could consider them part of the binding, as the pin controlle=
-r
-binding assembles all the individual PIO blocks in the SoC to produce one
-unified view of all the pins. How they are ordered is important.
-
-Plus the datasheets are horrible to read, as the pins aren't always numbere=
-d,
-but are referred to using symbolic names like I2S2_MCLK.
-
-> I'd be - of course - happy if anyone else beats me on time (which wouldn'=
-t be hard
-> really) and pushes a series to fix this situation.
->
-> Just to be clear - right now, the MTK pinctrl DT looks like:
->
->         panel_default_pins: panel-default-pins {
->                 pins-rst {
->                         pinmux =3D <PINMUX_GPIO108__FUNC_GPIO108>;
->                         output-high;
->                 };
->
->                 pins-en {
->                         pinmux =3D <PINMUX_GPIO48__FUNC_GPIO48>;
->                         output-low;
->                 };
->         };
->
->         spi1_pins: spi1-pins {
->                 pins {
->                         pinmux =3D <PINMUX_GPIO136__FUNC_SPIM1_CSB>,
->                                  <PINMUX_GPIO137__FUNC_SPIM1_CLK>,
->                                  <PINMUX_GPIO138__FUNC_SPIM1_MO>,
->                                  <PINMUX_GPIO139__FUNC_SPIM1_MI>;
->                         bias-disable;
->                 };
->         };
-
-To be fair, the above is one valid kind of generic pinmux description.
-
-From Documentation/devicetree/bindings/pinctrl/pinmux-node.yaml :
-
-While not required to be used, there are 3 generic forms of pin muxing node=
-s
-which pin controller devices can use.
-
-For hardware where pin multiplexing configurations have to be specified for
-each single pin the number of required sub-nodes containing "pin" and
-"function" properties can quickly escalate and become hard to write and
-maintain.
-
-For cases like this, the pin controller driver may use the pinmux helper
-property, where the pin identifier is provided with mux configuration setti=
-ngs
-in a pinmux group. A pinmux group consists of the pin identifier and mux
-settings represented as a single integer or an array of integers.
-
-The pinmux property accepts an array of pinmux groups, each of them describ=
-ing
-a single pin multiplexing configuration.
-
- - end quote -
-
-So Mediatek is following one of the generic pinmux bindings. It's not the
-only one using this scheme either. STM32 and some of the Renesas platforms
-also follow it.
-
-> ....but the driver should gain compatibility with nodes which would look =
-like:
->
->         panel_default_pins: panel-default-pins {
->                 pins-rst {
->                         pins =3D "gpio108";
->                         function =3D "gpio";
->                         output-high;
->                 };
->
->                 pins-en {
->                         pins =3D "gpio48";
->                         function =3D "gpio";
->                         output-low;
->                 };
->         };
->
->         spi1_pins: spi1-pins {
->                 pins-bus {
->                         pins =3D "gpio136", "gpio137", "gpio138", "gpio13=
-9",
->                         function =3D "spi_m1";
-
-Why is it "spi_m1", not "spi1"?
-
-
-Honestly you likely don't want this, or rather you don't want a huge table
-of pins and pinmux values and strings in the kernel. It takes a lot of time
-to write, even more time to review, and takes up a lot of space for each
-pinctrl driver. And those are generally built-in.
-
-The Allwinner platform has gone in the reverse direction: instead of having
-a huge table, we put the mux value in the DT using a custom property.
-See the following for discussions:
-
-https://patchwork.ozlabs.org/project/linux-gpio/cover/20171113012523.2328-1=
--andre.przywara@arm.com/
-https://patchwork.ozlabs.org/project/linux-gpio/patch/20171113012523.2328-2=
--andre.przywara@arm.com/
-
-And this is what finally landed:
-
-https://lore.kernel.org/linux-gpio/20250306235827.4895-7-andre.przywara@arm=
-.com/
-
-Has it caused a bit of trouble? Perhaps. I was working on various periphera=
-ls
-on a new board and put in the wrong mux value and didn't notice for a coupl=
-e
-days.
-
-
-
-ChenYu
-
->                         bias-disable;
->                 };
->         };
->
-> .... or
->
->         spi1_pins: spi1-pins {
->                 pins-bus {
->                         function =3D "spi_m1";
->                         groups =3D "spi_m1_pins";
->                         bias-disable;
->                 };
->         };
->
-> That's the entire situation.
->
-> Cheers,
-> Angelo
->
+Best regards,
+Krzysztof
 
