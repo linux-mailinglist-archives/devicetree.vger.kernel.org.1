@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-264256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264257-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wJYzKovhimmLOgAAu9opvQ
-	(envelope-from <devicetree+bounces-264256-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:43:07 +0100
+	id +AcOEDPjimmjOgAAu9opvQ
+	(envelope-from <devicetree+bounces-264257-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:50:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 255C311802E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:43:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 990FB118090
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:50:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DCF4D302E7DC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:43:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 55198301653A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:50:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0765335564;
-	Tue, 10 Feb 2026 07:43:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E262D32ED25;
+	Tue, 10 Feb 2026 07:50:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="roVAtPtB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l30w6gqK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC3F632C926;
-	Tue, 10 Feb 2026 07:43:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BECB42DF151;
+	Tue, 10 Feb 2026 07:50:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770709383; cv=none; b=idu37XvMF1GNY8kVvV82lwCD7/gLjk1GmWfGIPZfAS2FXaqNWfKUg2l0k/qjIrX8qzZ9pEkiMYNj26opBACNQRh1hLHG7+mDSDko3LE96022Lf00ogXSRyEeWWCXLRxKaTq5UFanYoP5rglcVHIdaOxARrJCu8FBvarkanNi9G0=
+	t=1770709807; cv=none; b=cRNXLySAdunb5EnzQNeIFas4rb+/7QMJgvae9H3f/03W8GS4ia8jp9kIy6S2yFe0+Bl9oH93drAXihWMy3jLDH7IipxlXXdVQ3JVVLLx7wZu2CthR+BqlGPUoRV4kWL3hbHIdQonGaIg2DA5UCa//vjyAMX6JfBPYXUOmndkfaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770709383; c=relaxed/simple;
-	bh=SuD40GTxhiLcBBjjT8Usds1jaokLubBZ9+YgUt6zCvQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=rc1gWLoX6zbWBYwMQWS6KjczRnGkbAZbmcteAyKLVbPBmdt/n2VS4fB93kSaFKvqOwxL+naqi6r0aZcBJgEuxroSOJCStyGAo96mBwdtONuJYx6jV8kY1YZeDQG5CXhoZ/NZhmPh9SYYQUP+e/2ZCqI5BGSizJTYBdcMi+25ulo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=roVAtPtB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 542E7C116C6;
-	Tue, 10 Feb 2026 07:43:01 +0000 (UTC)
+	s=arc-20240116; t=1770709807; c=relaxed/simple;
+	bh=+ZTXiS+ZcMTGgYy8SoVJ6FkfY9w4a+b3rDvBpEBn/us=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YHWzzxQgUFDD/gCLE6CScnS7YP8FcjUENddcfrTraWjvKqNFhb2f8a5+8rz15pCy8GR7SOUbWdPYRLi3osX8JVC3b3ynZRxx82sb2TX6PYvTjqsuO+XagVNOwUo+mnBcV5oSOUutYXHMtwyJeq+W0RDeccghhc4WE2yiYCfhMkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l30w6gqK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E416C116C6;
+	Tue, 10 Feb 2026 07:50:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770709383;
-	bh=SuD40GTxhiLcBBjjT8Usds1jaokLubBZ9+YgUt6zCvQ=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=roVAtPtBgy2H/3B6R035WqI9dEHYhdyp4t7CdvjFse+Q4S4gTMDQa/V5Y9kOWqSJy
-	 Drzw/qHnVIdWMVCfnyjy/PoNd/EFXfIdripeoVzAGd1s9Mgbitl0EBss0ml7gt7S25
-	 HUAqz/5jm0z9KKXxyQtLxiyPHqVaaXFLnfUjOh1fIWUCMOuunmmXwsJYb9XQbxf1Yz
-	 UP46d3vbM/gWNrHEAwJTZaVgAFskBXcQCLu6JkPsc0ZRP3spUwles4OvYQkj8tr/JU
-	 Y4DGM8vq21aqXPF7WePZQyY/jAB5SurWnu/njjdYbu4HJRD/zNk/gIidV5lrX4oKwS
-	 7GV7DnB/fJVaA==
-Message-ID: <2b3d9528-56d0-407f-bd3f-e805cfdea5e3@kernel.org>
-Date: Tue, 10 Feb 2026 08:42:59 +0100
+	s=k20201202; t=1770709807;
+	bh=+ZTXiS+ZcMTGgYy8SoVJ6FkfY9w4a+b3rDvBpEBn/us=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=l30w6gqKg7Rv8Vf1hiseRRKwqaGxhGtarkCjPS8n6CsclScEuYs4eo4mMF6n3Nwfq
+	 bB5bVzDg0ObDkbNkKmP1X1I7k2oe+tX+wXwOXQSdfB8jrxnddL6YYTY/hbjQqu7OBQ
+	 WYP/oWWVQ7lZStORkpBaZMiVa9Sct9QAL1q9c2Bw/5lxEZxHYyFW4niHymkQ8Pbdod
+	 2DmMvbQnYzZbXzwEniMx1cwNtg5hAd1NR4SYMkLCIj9gm+YqfVkAUizK03gmJbpRZH
+	 iRhmhuV60E3tETqkK7+0Z1tPrig+P8HX71Bdn7TRHvgx3eKvZqNGZLEberigxLj6Uc
+	 Lul10l+yw3b0Q==
+Message-ID: <cbdea2e7-a419-483f-8d2a-f0d045737feb@kernel.org>
+Date: Tue, 10 Feb 2026 08:50:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,15 +53,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sdm670: add lpi pinctrl
-To: Richard Acayan <mailingradian@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>, Linus Walleij <linusw@kernel.org>,
+Subject: Re: [PATCH 2/7] soc: st: add RISAB dump debug driver
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260210021109.11906-1-mailingradian@gmail.com>
- <20260210021109.11906-4-mailingradian@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Theo GOUREAU <theo.goureau-ext@st.com>
+References: <20260209-stm32_risab-v1-0-ef0b2b6a7e0a@foss.st.com>
+ <20260209-stm32_risab-v1-2-ef0b2b6a7e0a@foss.st.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,67 +109,68 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260210021109.11906-4-mailingradian@gmail.com>
+In-Reply-To: <20260209-stm32_risab-v1-2-ef0b2b6a7e0a@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264256-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264257-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[foss.st.com,kernel.org,gmail.com];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,17d43000:email,62b40000:email]
-X-Rspamd-Queue-Id: 255C311802E
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 990FB118090
 X-Rspamd-Action: no action
 
-On 10/02/2026 03:11, Richard Acayan wrote:
-> The Snapdragon 670 has a separate TLMM for audio pins. Add the device
-> node for it.
-> 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/sdm670.dtsi | 74 ++++++++++++++++++++++++++++
->  1 file changed, 74 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> index b8a8dcbdfbe3..0da3e22ce402 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> @@ -2273,5 +2273,79 @@ cpufreq_hw: cpufreq@17d43000 {
->  
->  			#freq-domain-cells = <1>;
->  		};
+On 09/02/2026 15:59, Gatien Chevallier wrote:
 > +
-> +		lpi_tlmm: pinctrl@62b40000 {
-> +			compatible = "qcom,sdm670-lpass-lpi-pinctrl";
-> +			reg = <0 0x62b40000 0 0x20000>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&lpi_tlmm 0 0 32>;
-> +			status = "disabled";
+> +static int stm32_risab_register_debugfs(struct risab_pdata *pdata)
+> +{
+> +	struct dentry *root = NULL;
+> +
+> +	root = debugfs_lookup("stm32_firewall", NULL);
+> +	if (!root)
+> +		root = debugfs_create_dir("stm32_firewall", NULL);
+> +
+> +	if (IS_ERR(root))
+> +		return PTR_ERR(root);
+> +
+> +	pdata->dbg_entry = debugfs_create_file(dev_name(pdata->dev), 0444,
+> +					       root, pdata, &stm32_risab_conf_dump_fops);
 
-Why is this disabled? We disable blocks needing external resources or
-being busses/connectors. This is not the case.
+soc drivers should not have any user-space interfaces. This was
+requested by Arnd many times in the past, nothing new, including about
+debugfs. Otherwise it opens cans of worms, because soc platform
+maintainer can dump here whatever the subsystem rejected.
+
+Find suitable subsystem and get its approval for such debugfs entry.
+
+Your commit msg is so vague it is another reason this is not mergeable.
+Explains nothing about the feature, nothing about the risk or impact on
+the system when user does (while (1); read stm32_risab_conf_dump_fops).
+
+Not mentioning that it does not explain WHY do we want this driver in
+the first place...
 
 Best regards,
 Krzysztof
