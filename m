@@ -1,276 +1,193 @@
-Return-Path: <devicetree+bounces-264303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264300-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MOMPMiAAi2nJPAAAu9opvQ
-	(envelope-from <devicetree+bounces-264303-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:53:36 +0100
+	id 4J5FIr//imnJPAAAu9opvQ
+	(envelope-from <devicetree+bounces-264300-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:51:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D2401192D2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:53:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BC3A11924C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:51:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A091230B4358
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:49:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 69358307D7D3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 09:49:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D2734253C;
-	Tue, 10 Feb 2026 09:49:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A890A342510;
+	Tue, 10 Feb 2026 09:49:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b2uoyaGQ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="h+XCIrJz";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XbZk722+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD9C342524
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 09:49:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8687E2868B5
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 09:49:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770716973; cv=none; b=AyARud4VqtPslyPVHOiHT0DO2sK9wN+WMRskMgyyEIhKO2053ya2HtHdmu/nVpXYxG6ehHhL6RSFaTOeiLtkC4J7LfRqxqx5q99mOGo4M2lEFTLDhvaCJuFv4+0mXly3xu7FPQ5w077Gkq4xSvrlQ9xB+sWBuv0NtdRfz/vbuzc=
+	t=1770716960; cv=none; b=tdIqHUhTaGyamCv1ziOuVYervTLgi4tsgI8aW+5V6zHui9N2bLkEZwuENUdzftr8wBlqB+QU+x/QDZDX6vxLWX0ElcmDz1NE91ZnkLXU3ia+bxQ8xtQqzhh49rWoywTyJcXtYlezy85YR1+Rn/9rvP40xhlhSlxgXxdJjgB8OQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770716973; c=relaxed/simple;
-	bh=lMzEsshGSRJZOWfPu29o542XgKUbh2dLItyfJE9Cz+I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IkScXyCZe1bW1acqKK73zapuAIQZN50anYbXul+Pz4izCuUQWmQzOPwiYcVGjuPdxvMZ2t5W48ysnNQ8I7zD3OzaRkJchGSgEn53xWY7Es0pXQq2IUYFRLAfcY5fnrJRbpyYuTiyfIZkI0j2hkeZPEEVCrm/BfMZ5bkMio0RpI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b2uoyaGQ; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-59dd4b602bfso7041558e87.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 01:49:30 -0800 (PST)
+	s=arc-20240116; t=1770716960; c=relaxed/simple;
+	bh=VOyKj+x+EF9ytp2h/AeDDqViNOHSWGswmkyGJWPK4xY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hy0/sHlIqCF/+AYtFnUxRuXZN0JUWVlJ9E2DnFF9LFZeB5Xje43SP0ogx0abtkmNXlq7cBXXnxyru+NHHNfanvh/NvNM4pYGb4ppXLrEdVIDgLsxKpeqCdRpWM+bC69Y1MAbyjKlQratqWRPOi1A4+EVqc7QszEOCEJv7uwr9rs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=h+XCIrJz; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XbZk722+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61A773kE1151816
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 09:49:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	B6o6n9g1es6JXwo4ZfXOysqdCRuWXP7Xh3RFhzD83M8=; b=h+XCIrJziNpDpgml
+	BxIWl914yIE11YaPabnEHrSf7RCersfHp8SsbBF8iQu2kNMMjFG6pHuCP+9N7Xgh
+	9yC2hMhJ2ZzHqKnPVn2zM4LFI0zVT55IgvWFV/jbg45OIIAS5TDAAC9zLneEYzWf
+	Z4e8IC08poXzG6Q1xQddPBj4deu/Irpt0+xI5A4hlv7aWxzbzXetxsueyi1Qsoor
+	Aa9VQmWB6IdSFlajYDyltTEJmFsoAJaavGtlv2sEGGsQANQp1w75d9vkNSyre4R/
+	3wLcHthEHt5BWaG/32OqJKmt63ALjRH0LN7Regq8kszmp0Atze2/QvTCW/iZ5zNo
+	0zz/CA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c800j8k5c-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 09:49:18 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c6a182d4e1so96064485a.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 01:49:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770716969; x=1771321769; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=docz6ooNYgx/jlwVUrg5MGlatBXXa4vDb6cy3X3gZsU=;
-        b=b2uoyaGQbsxgAC77F4YMPXp0hLKygphMNDbGTfSnXAZvFk+su1jOoiOMo/BmJtPOVh
-         FFY9TuRz6y8fLjkCpp0cFk4i4CJM0iuRE/xE4s852D/Q64jk0bVwBqaIVIPUgXaN8cQy
-         sadn/1KSxGNNQsv8lsipTICuoxjkHHzkpGEbbhRwavWXpN14yYkV54oW1FCJzDXcKMy9
-         S6ZgUcD64w7uOmF+Tr8985AtJ/8zmSxDBZ1HqYh7bebu19cFZyD+6TFy6XUBnKSC7xnG
-         yfDbYzK9bIhVZ8yavoaUCYgyvVETzyNNOR28bAkgEgSLtmfrgwCiqus6loLC+V24YCTz
-         9Ryg==
+        d=oss.qualcomm.com; s=google; t=1770716958; x=1771321758; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B6o6n9g1es6JXwo4ZfXOysqdCRuWXP7Xh3RFhzD83M8=;
+        b=XbZk722+/TMZQrMgJzQkdV/JcHXaTzXbJHnCw96AiAD9lFwuK8+MGBoY84CTxoJIbH
+         MmrVIXCVRQVVnoJ1l5F5zWCIu2uAyjjHR6rvyUjnY2jsyamEs7iOXCuKyFKABkvkfPqK
+         NmCO/pSdS50jmWjhWAYVKJG1iZt11OjAynVJYSxzbAnsXwZE2lL5pREyi9efu/YEzDyU
+         Y4B9V3YJI8wQANypEOmc8aJmL7fY7GQADN94pRyyUkmsviQXApvfPnNyR7ff7d5omjiF
+         ndiRM6M+/KHGjQXlN/blrNLiF+vVwX+Zoke4S1irl9lFpnHAVM76g4J2QAggYYs6pPRs
+         rOKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770716969; x=1771321769;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=docz6ooNYgx/jlwVUrg5MGlatBXXa4vDb6cy3X3gZsU=;
-        b=Je5qO4OMj80mUGWo70nolpvvyxpN1a6PUlRcadI7X+b+FuQxSIGt55j1IwlSTNz4gD
-         8VJazbVnfmfIAxeTcBaSSR4k+3PsGQ9Fkh5jsAJOvnnE3ywEK5xHg/LI73W3iyMdGX5S
-         czF7oQBUn9KBayIfHsFJmd/p16+U4FX6EYECiwi4i9QLI6HxR38EMAMD2snDyQnNjrYe
-         rO4HvQMh2Tj1LJQca+Qm8YrJC5VNmtPb9TFRzt4Ya7dqyfMvR3Yg97FF7DXJSgX8vAzl
-         mhx6Kcvw6yAYxY/+U349HnAHHZ3b7K0plu47vSrR15+adrODcF0L8+QoSOytL/DHAodo
-         aZBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVExB0ajnI/ifNDMvB6MveXZpRQ1SnCwsduyYF8J1FtKRJOPtbVFhCgd74US7Ag8Nh4CQK+th0ePFjZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxa+RRvV2TeV7VB4QRl27vQNvEKHuBvenHgNs7U2yuM7P6o/h4i
-	v8cgqy93P0T0AnyqQcPsTYif5nx9DKZeqsg62tiOcIIICEmtgDAc7VJv
-X-Gm-Gg: AZuq6aJ/c3ITs/t7Bb3sE6+Cf0rznNownqZ+2FiGHC9uz09GhPLrEw70Fd4XqOxDhX/
-	je7m3T4mIfES0Q3xLRh6VyDA+oN09a9IzQpvpgXzDQQlJSiPNYaUNDC3RNUTiQlhVCrOrKipxSf
-	Ih7+Zp4AVSNlDDo72wsPpRvZMcYTtfuvqYFuNmlO4My2pfrG4KEUJiqh2BSScgMAIbc5hgyJQN/
-	1EFNWU99GXcJy6MwOWBTJNkNXVcr8lMGTq6x6QE32PgF4e1q05drFDzFD6D1V2oDyH+PDxuFE8f
-	Up90uqD7aI16dykWE6xyUPeIwD1iwefZrMu/K0irCuNoHAcEtYHjEeM6jKWQsm7NU9GShodhPj+
-	jeKydkAP5gTqL5YLmYWodSqr0akixOFJVIy9m3krDdHmzTkykFhmlNhekXVB85Zp4KD3/jZBR0k
-	+7YFx38BR9mLoN
-X-Received: by 2002:a05:6512:b16:b0:59e:1663:941 with SMTP id 2adb3069b0e04-59e55b7404cmr537077e87.3.1770716968637;
-        Tue, 10 Feb 2026 01:49:28 -0800 (PST)
-Received: from xeon ([188.163.112.51])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e44e231d5sm3191691e87.81.2026.02.10.01.49.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Feb 2026 01:49:28 -0800 (PST)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] ARM: tegra: transformers: add connector node
-Date: Tue, 10 Feb 2026 11:49:08 +0200
-Message-ID: <20260210094908.14276-3-clamor95@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260210094908.14276-1-clamor95@gmail.com>
-References: <20260210094908.14276-1-clamor95@gmail.com>
+        d=1e100.net; s=20230601; t=1770716958; x=1771321758;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B6o6n9g1es6JXwo4ZfXOysqdCRuWXP7Xh3RFhzD83M8=;
+        b=LqlLBsgk5CQaPRaoYMsaUZYWMdCWYrvpZCOah6PxpsZPAenrU0DIuvWyawy2zEWNIs
+         6QMMC9U+RG6ZxspPvzFBKUPpF/9hZy9meV0jOWKjVRdC4p4VY/X9/301QmgSVawgvbGl
+         ORMb9wSJhHDW5WTtMO0Iqi+3YQV10ScSseXBUKqGXyGii2Srf2vzRUbrFyMMbjoT/YOe
+         wdyKfADn6vr08mkg00kkDhHascdONxth80gXp34JaUHWa6mjtAiyhZXHbcRVk/HeCwWl
+         HCzickRWvz1YSqsjhoHkhsQ9ZcmM2C+kc7XE1zd+9jJCqQOgJolw/cLdGqdFab39gYBx
+         9hTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXaQNV8F4/vsjIoNIRH43dCxlDmTnORElr+NtoZOSLSx8Fawi7IGPWc54P1eWSqi43/cVrQ6H8guWkT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/2AeeZmzjzRjAKG709kTwTjXauonw9tqCMX9QyOqzDKPYpcYu
+	/bDkITDra7ozUDHgmyShYwIx9darn7hLnTGaMxhurwgO57SCIYNWsNKTELxtwut2mc/nGicWy6t
+	e1vwIzQK5sRSCKeVZ1CsGINorbGKfMVpVtBYU2GP31TaajZlRqbfr3CoCV3tok3zy
+X-Gm-Gg: AZuq6aLZ1ZcCGOwlH3vCNP4jEqWb0MAP1rGb4YWmLrs9CB3BlXbIZC1GaGD6gSqvxdp
+	eSeltr9F7iRTeLsuFxZECyeT1OdInfW/4R90vaItuoahEbZWuqkp5kyWu8WLUEjMiqojiei3sf3
+	C2O6PAy2twwhSeYt29wXth0b683LAyPLLrll/xgUVgPCnnjgz7v305/Mie18rJoVbTKbNI/N9Ap
+	yg76wLajFazicM6/dmjNEUn5ELZOhSoNiIRM9cMrM4chK2RpwJQPc5gtCR4UDe72JHaBIjDKZ3K
+	i0iEw/KtkS2J4mZnbOGARHyXF//GU44vHcPpI2jghBJ1Gk4NceRVmrrZxvrmioB9mNXpYS8BgwO
+	Ibz9loOHmrlzTkMSzMWNXlcV9QVvcRZAxj6wT4029ZVsLTemTmVNJ/su+SM5mI851Ic6Tx/san6
+	jZy/o=
+X-Received: by 2002:a05:620a:1a20:b0:8c9:ea8e:c55a with SMTP id af79cd13be357-8cb1fed996bmr111451985a.3.1770716958022;
+        Tue, 10 Feb 2026 01:49:18 -0800 (PST)
+X-Received: by 2002:a05:620a:1a20:b0:8c9:ea8e:c55a with SMTP id af79cd13be357-8cb1fed996bmr111450885a.3.1770716957634;
+        Tue, 10 Feb 2026 01:49:17 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8eda7a6d09sm499807366b.25.2026.02.10.01.49.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Feb 2026 01:49:17 -0800 (PST)
+Message-ID: <fca576de-6454-446b-9470-ff71fddbc7fd@oss.qualcomm.com>
+Date: Tue, 10 Feb 2026 10:49:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 5/5] power: supply: qcom_battmgr: Add support for
+ Glymur and Kaanapali
+To: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>,
+        andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, sre@kernel.org,
+        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20260209204915.1983997-1-anjelique.melendez@oss.qualcomm.com>
+ <20260209204915.1983997-6-anjelique.melendez@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260209204915.1983997-6-anjelique.melendez@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjEwMDA4MSBTYWx0ZWRfX15zDBuvKWCbX
+ 0XUaiZOsbkFhS8RcXqqISuwavQhp/ENdniuo1+NTEfCdnOG5vCfS402aVfCWjiSSG1L/IYqFM6S
+ 9orLviVvt6vP/r7xzVPKmiWSdB9r0mL1Y1+uTrUPDpXA9IDrdAo3rYh8sZqJ6YOhhDV6qA9qA52
+ Z6Vj/2YKEnsPGcjRJaUjCThfGlnsyQPmBAh74BwufUbH7IvccrjGNk/UoC77AGzRa3Ep/78pzME
+ i5pXPh7xG5EnWGF2OrG7pwcOBiIHAZEtc2AieUA9PKAGCaS9XUnjcOWdiaxIFLEZidJw5XsKSeh
+ caxonDCUvf7xoP1OmwaGG7/xvZCowj54UE/JyVhhe5aR114WFD18U6eDDADEZQq0LsF8Rfhdeek
+ IPtUZDWBcvsYU8vll8CFZ0v3M+1mvRpXQWKjw5zfNSuAihR0Fu/XSjGJVP9alYdOimGHbZqrHAN
+ VCCdHQpYrCDB54m0dew==
+X-Proofpoint-GUID: kV1DR4frwqG6IVQIZDBiUMGrqwxzl70m
+X-Proofpoint-ORIG-GUID: kV1DR4frwqG6IVQIZDBiUMGrqwxzl70m
+X-Authority-Analysis: v=2.4 cv=b9u/I9Gx c=1 sm=1 tr=0 ts=698aff1e cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=EUspDBNiAAAA:8 a=kEueVoIVdGDzn9jpcCgA:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-09_01,2026-02-09_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 impostorscore=0 lowpriorityscore=0 priorityscore=1501
+ clxscore=1015 adultscore=0 spamscore=0 suspectscore=0 malwarescore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2602100081
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-264300-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-264303-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,nvidia.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,3.60.63.64:email,3.60.141.96:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2D2401192D2
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 2BC3A11924C
 X-Rspamd-Action: no action
 
-All ASUS Transformers have micro-HDMI connector directly available. After
-Tegra HDMI got bridge/connector support, we should use connector framework
-for proper HW description.
+On 2/9/26 9:49 PM, Anjelique Melendez wrote:
+> Glymur is a compute platform which has the same power supply properties
+> as X1E80100 and Kaanapali is a mobile platform which has the same power
+> supply properties as SM8550. Add support for the Glymur and Kaanapali
+> compatible strings.
+> 
+> Signed-off-by: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
+> ---
 
-Tested-by: Andreas Westman Dorcsak <hedmoo@yahoo.com> # ASUS TF T30
-Tested-by: Robert Eckelmann <longnoserob@gmail.com> # ASUS TF101 T20
-Tested-by: Svyatoslav Ryhel <clamor95@gmail.com> # ASUS TF201 T30
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- .../tegra20-asus-transformer-common.dtsi      | 22 ++++++++++++++++---
- .../boot/dts/nvidia/tegra30-asus-tf600t.dts   | 21 ++++++++++++++++--
- .../tegra30-asus-transformer-common.dtsi      | 21 ++++++++++++++++--
- 3 files changed, 57 insertions(+), 7 deletions(-)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra20-asus-transformer-common.dtsi b/arch/arm/boot/dts/nvidia/tegra20-asus-transformer-common.dtsi
-index 73c7ee378865..51d99998d836 100644
---- a/arch/arm/boot/dts/nvidia/tegra20-asus-transformer-common.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra20-asus-transformer-common.dtsi
-@@ -79,9 +79,11 @@ hdmi@54280000 {
- 			pll-supply = <&hdmi_pll_reg>;
- 			hdmi-supply = <&vdd_hdmi_en>;
- 
--			nvidia,ddc-i2c-bus = <&hdmi_ddc>;
--			nvidia,hpd-gpio = <&gpio TEGRA_GPIO(N, 7)
--				GPIO_ACTIVE_HIGH>;
-+			port {
-+				hdmi_out: endpoint {
-+					remote-endpoint = <&connector_in>;
-+				};
-+			};
- 		};
- 	};
- 
-@@ -951,6 +953,20 @@ clk32k_in: clock-32k-in {
- 		#clock-cells = <0>;
- 	};
- 
-+	connector {
-+		compatible = "hdmi-connector";
-+		type = "d";
-+
-+		hpd-gpios = <&gpio TEGRA_GPIO(N, 7) GPIO_ACTIVE_HIGH>;
-+		ddc-i2c-bus = <&hdmi_ddc>;
-+
-+		port {
-+			connector_in: endpoint {
-+				remote-endpoint = <&hdmi_out>;
-+			};
-+		};
-+	};
-+
- 	cpus {
- 		cpu0: cpu@0 {
- 			cpu-supply = <&vdd_cpu>;
-diff --git a/arch/arm/boot/dts/nvidia/tegra30-asus-tf600t.dts b/arch/arm/boot/dts/nvidia/tegra30-asus-tf600t.dts
-index 1ed0536ae3fa..498780a96cf9 100644
---- a/arch/arm/boot/dts/nvidia/tegra30-asus-tf600t.dts
-+++ b/arch/arm/boot/dts/nvidia/tegra30-asus-tf600t.dts
-@@ -67,8 +67,11 @@ hdmi: hdmi@54280000 {
- 			pll-supply = <&vdd_1v8_vio>;
- 			vdd-supply = <&vdd_3v3_sys>;
- 
--			nvidia,hpd-gpio = <&gpio TEGRA_GPIO(N, 7) GPIO_ACTIVE_HIGH>;
--			nvidia,ddc-i2c-bus = <&hdmi_ddc>;
-+			port {
-+				hdmi_out: endpoint {
-+					remote-endpoint = <&connector_in>;
-+				};
-+			};
- 		};
- 
- 		lcd: dsi@54300000 {
-@@ -2302,6 +2305,20 @@ clk32k_in: clock-32k {
- 		clock-output-names = "pmic-oscillator";
- 	};
- 
-+	connector {
-+		compatible = "hdmi-connector";
-+		type = "d";
-+
-+		hpd-gpios = <&gpio TEGRA_GPIO(N, 7) GPIO_ACTIVE_HIGH>;
-+		ddc-i2c-bus = <&hdmi_ddc>;
-+
-+		port {
-+			connector_in: endpoint {
-+				remote-endpoint = <&hdmi_out>;
-+			};
-+		};
-+	};
-+
- 	cpus {
- 		cpu0: cpu@0 {
- 			cpu-supply = <&vdd_cpu>;
-diff --git a/arch/arm/boot/dts/nvidia/tegra30-asus-transformer-common.dtsi b/arch/arm/boot/dts/nvidia/tegra30-asus-transformer-common.dtsi
-index 53382e10f29f..0b0713d62e32 100644
---- a/arch/arm/boot/dts/nvidia/tegra30-asus-transformer-common.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra30-asus-transformer-common.dtsi
-@@ -166,8 +166,11 @@ hdmi: hdmi@54280000 {
- 			pll-supply = <&vdd_1v8_vio>;
- 			vdd-supply = <&vdd_3v3_sys>;
- 
--			nvidia,hpd-gpio = <&gpio TEGRA_GPIO(N, 7) GPIO_ACTIVE_HIGH>;
--			nvidia,ddc-i2c-bus = <&hdmi_ddc>;
-+			port {
-+				hdmi_out: endpoint {
-+					remote-endpoint = <&connector_in>;
-+				};
-+			};
- 		};
- 	};
- 
-@@ -1713,6 +1716,20 @@ clk32k_in: clock-32k {
- 		clock-output-names = "pmic-oscillator";
- 	};
- 
-+	connector {
-+		compatible = "hdmi-connector";
-+		type = "d";
-+
-+		hpd-gpios = <&gpio TEGRA_GPIO(N, 7) GPIO_ACTIVE_HIGH>;
-+		ddc-i2c-bus = <&hdmi_ddc>;
-+
-+		port {
-+			connector_in: endpoint {
-+				remote-endpoint = <&hdmi_out>;
-+			};
-+		};
-+	};
-+
- 	cpus {
- 		cpu0: cpu@0 {
- 			cpu-supply = <&vdd_cpu>;
--- 
-2.51.0
-
+Konrad
 
