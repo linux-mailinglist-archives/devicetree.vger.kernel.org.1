@@ -1,304 +1,275 @@
-Return-Path: <devicetree+bounces-264242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264243-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GJrjN1nSimmaOAAAu9opvQ
-	(envelope-from <devicetree+bounces-264242-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:38:17 +0100
+	id MBGlCn3SimmaOAAAu9opvQ
+	(envelope-from <devicetree+bounces-264243-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:38:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 810F3117656
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:38:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 846D311767D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:38:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9FBF830098B7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 06:38:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 318FC3018D60
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 06:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D285032E130;
-	Tue, 10 Feb 2026 06:38:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A473E32E14D;
+	Tue, 10 Feb 2026 06:38:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BMIBbfMT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aPaMhkZc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A8A732D45C;
-	Tue, 10 Feb 2026 06:38:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=198.175.65.17
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770705493; cv=fail; b=Aj3mhsI56SwHJiM+uHsviaUWiTa5UxDfAGgnCitCzUM7lAxun7/PGCVDJL0IF1kndVhJtRbbnNHOtVoqHkKYB8BAaTy21Ph4qyREXP8bDH6e08MPy6S9zB+hYgkEE1Idkn30rbYNGZou6wGM8mfRWsa1qhsEvQh/BNGOMMUvjN4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770705493; c=relaxed/simple;
-	bh=iLSKsdkrPit6NeLuu98fcs5+mhF/YPqnne0B3MYrqJ8=;
-	h=Message-ID:Date:Subject:To:CC:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=gIMRL4DExRrFYCpLviUQjyDVJ4l3Y3EZi+rGihHVvzeiDLFP8LnMr5GnbTtJlp/stkF+6vsH5FLIHybdzuOoR4AxYioOLMAdwNe26rKq6NCjwpU6LLQdD5kHDZ6qPX6pnK9NNtxdNqfZibbYnNkmHHvImonwcPKhGQaLVW77W5U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BMIBbfMT; arc=fail smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770705493; x=1802241493;
-  h=message-id:date:subject:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=iLSKsdkrPit6NeLuu98fcs5+mhF/YPqnne0B3MYrqJ8=;
-  b=BMIBbfMTBR+x3ra+2FUtFpWs8qt7izjoZvnUkxB0EXfQ+RlaMza/5dQ2
-   GQIy3ITBCB0+yoFZczxXNiVNSg6Y+bClSKxX24q34MbzsQGa7f+PZZuR0
-   /gu9EVxVVQDmnaQDy1n5noQ/DKOJSKLUZkCa0kv2APiGpNxLeib2LjJFu
-   ELPHoJCBff+xAgshuwrpNdBe1ragpmLKS1CtOt1lXM2useaC9HfVDlY60
-   V7Vdcyvyfg7JAcXhgtZ3OC/Tqb82mLY4fafEFogB9QKhOEjnQuX4Ix3wr
-   VQCeX7J7Vkk3wFZg0Ul4bMAR1hSCwNn5Y0y9/HN2cOL+Wne4kXT4A/TCP
-   Q==;
-X-CSE-ConnectionGUID: etDM0ZTXQMGYfq4BfP8zKw==
-X-CSE-MsgGUID: /q6ZVYO8SMm5albs3QkvQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="71813474"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; 
-   d="scan'208";a="71813474"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 22:38:12 -0800
-X-CSE-ConnectionGUID: n9UZxZHGSsaMbL08RLVZNg==
-X-CSE-MsgGUID: fctEt9j1Rpu8b2rUu4bk+A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; 
-   d="scan'208";a="210922269"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
-  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 22:38:11 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 9 Feb 2026 22:38:10 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Mon, 9 Feb 2026 22:38:10 -0800
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.62) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 9 Feb 2026 22:38:10 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NXRysPcxHa/mNFU/qMULI7Q9Zy9E4XO8bJAHEiULWwOZokBoYTG9MtSWROzAJmFjSbSfn1gB+uYo1/BeAyRPIANkbETmiRCqlZsHfYi39kUD6d3TweZxPMCF1/McZcSoAK2SFt50I0eTwuz6qpyI6Ch6wPH6bzaMEP08+iSmj3SgLN80uwRWkNTuxNP4tETIw8FJ29GSBhzqWVyMOgJmXClnfFyQrP3FH05SGEIqMDvWb5hFX/TbsT3iZLuYK/gfNgvY6zMopx4Q1DGc/aPbMSX4E+jk9UMu4Watoa8CGRVrkDvA97G8fRpDW75UKvaL0mP11zETUwbzM117u9JbpQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=99rLVnFT7zz77DdpD4tefDoKWFDN9c2cfmMAAsW1mwM=;
- b=RX0U8TVxu/WRhwTJXUo+taLUiM2kJIZKEmiA5cTCpRBZs9xGuq9MoD0tyVHOaxmmfox0qnOWkuvjXezhGuNMurZv2HJ7Z02KfK3x5LbMJsZjad5oTNEIHMPBguDHHpVwwo4C4lBIUaFYsOQE3rAt1HO3j73nx0hER9D18FuIGmvLn2haJGNKWDjr5pd1Zxxnh3BNb9+DzOkEIDE+nrXWOr7/9ZlhzAhQmO05kINxV17Uzv9Q/FT/a3MYl25aL7G3DRbWfihrwl1JKm4BF+z4yi94Y0+kGmvDf08rsytPXoe2l3kPw9YcKHbV5LCQSJ2/c8Io17YAGJ8wrU2Bb+Wi5A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA1PR11MB7198.namprd11.prod.outlook.com (2603:10b6:208:419::15)
- by SJ0PR11MB5085.namprd11.prod.outlook.com (2603:10b6:a03:2db::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.19; Tue, 10 Feb
- 2026 06:38:08 +0000
-Received: from IA1PR11MB7198.namprd11.prod.outlook.com
- ([fe80::2c4e:e92a:4fa:a456]) by IA1PR11MB7198.namprd11.prod.outlook.com
- ([fe80::2c4e:e92a:4fa:a456%6]) with mapi id 15.20.9587.017; Tue, 10 Feb 2026
- 06:38:08 +0000
-Message-ID: <3cfcc4b1-9b7a-4c83-9323-9f37f76271c2@intel.com>
-Date: Tue, 10 Feb 2026 08:38:03 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] mmc: sdhci-of-arasan: add support on Axiado AX3000
- SoC
-To: Tzu-Hao Wei <twei@axiado.com>, SriNavmani A <srinavmani@axiado.com>,
-	Prasad Bolisetty <pbolisetty@axiado.com>, Vinod Koul <vkoul@kernel.org>,
-	"Neil Armstrong" <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Michal Simek <michal.simek@amd.com>
-CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-mmc@vger.kernel.org>, <openbmc@lists.ozlabs.org>
-References: <20260206-axiado-ax3000-add-emmc-host-driver-support-v3-0-ef83b09325be@axiado.com>
- <20260206-axiado-ax3000-add-emmc-host-driver-support-v3-2-ef83b09325be@axiado.com>
-Content-Language: en-US
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: c/o Alberga Business Park,
- 6 krs, Bertel Jungin Aukio 5, 02600 Espoo, Business Identity Code: 0357606 -
- 4, Domiciled in Helsinki
-In-Reply-To: <20260206-axiado-ax3000-add-emmc-host-driver-support-v3-2-ef83b09325be@axiado.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D60527AC4D
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 06:38:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770705530; cv=none; b=HF461JwAhqv5qbE+jqXh3SpGrwyywJKNbm/0V2+lqqy7EMPLoNuIU8seItIQ1j9RLLFXoAQvPfYqOZukIjJxLvogarEZRnqkBj9rV4x+5Pw9JFo5mPzE72lcuN54TLY4StMBh+7SKzCufpRYB8cvZK7rc3/wWMZAxjm3FttzBoM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770705530; c=relaxed/simple;
+	bh=Tzvqbf/lzUX+Xryn3wOPmUQNw3pnqvGuG9huSDJZPn4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=b6ZyuIdcVymsBxjnEqkIEfO5IxpIR0PsWyCwi1ZTIvYGM6M3CJ0+8jJdoD0RiKFutsr3SfUI/Ql7bSMnFf1KbYww6kAYaeRBHSNPRTw4PHj825j+E/pSNG4oPzhg0AhW6pdA4geZar2YqeJrM1mvzkjRnn7Lap6JiSX7iqWU6Qs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aPaMhkZc; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47ff94b46afso49621975e9.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 22:38:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1770705528; x=1771310328; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=lLdYDGt/+DrOZdYJB2wqY0IBiaBFC8iK50DATmXPJZs=;
+        b=aPaMhkZcfXpmP2tm/iJaq/CWcrBT5oUwIPYKVQunfq07wAHYn5QH79di58LjJZCCKZ
+         ElWls/ygW5HHWkNDwOfos/MTuCMj6r8QfeKoK5qeFFRXQZE0Jzb5MgWfuIQtwbB7SgTI
+         t0w/NgrN4Qvdqu4Ro03urdFF/zw5By8GRlEd50bbXeMHCJ6oVqTrqwaUwvztZSeCzJcn
+         3+NfnuTuWPqRVUpRVvW5khABjNpmtMnLrM/nhazeMNrk05OgjuO1/R8+Jr+2tBrXsHtU
+         wndcURxtIj4wsyMcBnt+G1R2Pj/3iRi9vELwS8GP9yQLL/vDhAW/ntof0pq3Aw01JPGf
+         JTnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770705528; x=1771310328;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lLdYDGt/+DrOZdYJB2wqY0IBiaBFC8iK50DATmXPJZs=;
+        b=X6yUh4mu12UdlUH/PivaQnNkPHg0uQLDXGhWE4QCMnweOzAi7Z4LQ+S3dlN8BjYgaY
+         U8eUTOt5xWY8TNBkvE9B9T73S3PYhPI3cLcWJclt8Hy+uFuNfR7yOdqdhK73pHfXr62a
+         DDG8G3LH+1ZfdsuqXlvcwUPOrqcNZLj6VWFpcGnVrqXIc6Ay+32C5iFJJ4SjQqGcHiyu
+         1lNQwaYYDAQVcx+jHeBxFtVfOhJATsdsTXheghNmV4j6SCaCnL4T2TiwnEQZAfLfkr0D
+         RwYCUGE+/DwmGhJ3hugy3/b2PmiSOm2IvGvnm5n3sVNhQ+gmStIXQ8Enob4Xe+NxJmAu
+         Z6Og==
+X-Forwarded-Encrypted: i=1; AJvYcCWFZC0lowQo8jzDJeI7hRes39D0JEAgzLJjkdzxGTMR9z5UAWiufZISsssUS28ltki6Hl/ysNKrOCfx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxumbkf2YvxEtR8pBtu/3agNgpDo6JCFq3eaVnKWcijeUcRDbes
+	Mo7QG7oesYPO5vjmWqSUlRPEDdea5KfHO09ckBkEr/U572FM94NJ7N1ucNSjV5fhIDY=
+X-Gm-Gg: AZuq6aKcqrp+i7Be5yL2qN1pRJ5vS9OjhNCPFEXExKevfXWI59ruJ0HlUscWjy4uG4n
+	G6dPAQmqf4Lp9puwuQoLveWk6Fte1rTtHqdJqhKLF9ECeOz6Nw11CIqQJIhnNWv6NMEsf5ovI5k
+	5M7K4Q2WzLNstuVxef+FcCN2PzkwafTt7syhcP/swxsjaK8oSmzigOLVgLVAGSuC/rWpQXnvwNk
+	Aeo/6+edtGlP9zVaXB8NiwM5R8HKsGn5TzMPe9XzGlrqhTKAsQf8hRv95LwScKX5a/XkOjoLOAr
+	TQ3YNBgx1cP2WriGzOdzMvcxqsKk8PoaS8WVn2DBJItYsrRuSxnekZ/SCunZDVAuOtD98TgtH6S
+	+LZKHwFE6g6PGAcWZng/us7wRogvdDtLONp1sMN2ZsaNJOIAouQeQUo79tbbAs/TXj/3bPVrNKI
+	RcmfdQSX0qMBKLU4H+w4AAiV9ExsmmHQ==
+X-Received: by 2002:a05:600c:c086:b0:47e:e7de:7c41 with SMTP id 5b1f17b1804b1-4834ffb08f0mr12556465e9.16.1770705527668;
+        Mon, 09 Feb 2026 22:38:47 -0800 (PST)
+Received: from draszik.lan ([212.129.79.225])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4834d8334a8sm37397915e9.12.2026.02.09.22.38.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Feb 2026 22:38:47 -0800 (PST)
+Message-ID: <9fce298c842533bc6ede7f1a97040337236351d8.camel@linaro.org>
+Subject: Re: [PATCH v5 4/5] power: supply: max77759: add charger driver
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Amit Sunil Dhamne <amitsd@google.com>, Sebastian Reichel
+ <sre@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Lee Jones
+ <lee@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Badhri
+ Jagan Sridharan	 <badhri@google.com>, Heikki Krogerus
+ <heikki.krogerus@linux.intel.com>,  Peter Griffin
+ <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, Alim
+ Akhtar	 <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, RD
+ Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+Date: Tue, 10 Feb 2026 06:39:14 +0000
+In-Reply-To: <277e1c95-e221-4c07-a00e-d0f0a1a7553f@google.com>
+References: <20260203-max77759-charger-v5-0-b50395376a5f@google.com>
+	 <20260203-max77759-charger-v5-4-b50395376a5f@google.com>
+	 <3ab2d8cd112441dc1d7ab5097f5b1b64c7e415ab.camel@linaro.org>
+	 <277e1c95-e221-4c07-a00e-d0f0a1a7553f@google.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DUZP191CA0036.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:10:4f8::28) To IA1PR11MB7198.namprd11.prod.outlook.com
- (2603:10b6:208:419::15)
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB7198:EE_|SJ0PR11MB5085:EE_
-X-MS-Office365-Filtering-Correlation-Id: 243b8f89-dfbc-4299-020d-08de686ef412
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024|921020|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?L2pwVkFXM2ZrQjBpSFFIeFZKeFphVCtmRHFoS3AyZzJQVHo5eS9BZldiN1NQ?=
- =?utf-8?B?b01JcWhBelAzN0xPTC8zY0NnaU1rWUtIU2ZzaFBPYWovakFmeVVNYXNjUUJW?=
- =?utf-8?B?OUNtMEkxWDNJWUE3NVlyem45Q0wyVWp6djU2SDZmc0VZVE53MlRRaWdzTEtX?=
- =?utf-8?B?ajBmWVVLSGtXMGFBZXgxNnZNaDdpSDRQN2doclZRQTRudGNrZFNnK3RJT2h1?=
- =?utf-8?B?SThQWW1Wbkdjc05EWTdvSTkwVXMwdDlrQXZJNkFlQmtUSC9FZHhLamdPckRR?=
- =?utf-8?B?SHpiQXVqWWppM1pmamJDamFsdEhLMzFnMTRnQUJTd1lIZTV0T1FtVVBtVGJp?=
- =?utf-8?B?K2VWZmxhT1RPdVlXQ2RJZDV0eG4zamdiMktwQnV2SWg0a0lrZWFiWDVhWGMr?=
- =?utf-8?B?YUlXWmRZUU9jMjlOeTVDU09pUEpHUERjbk51cDRReStpdEZwTVZjUWNxMUNG?=
- =?utf-8?B?elFZNjZSeTQrRnRqTER4NDhlbjN3SThjeU1WSFh1OVNjZjl4UlJ5Nm9yN2VP?=
- =?utf-8?B?cmpMSUlUQzhwd05EY2VGcTlSdm55Z2M4amN4Yy9BTkRNU3V5M0JDUkZTRkhi?=
- =?utf-8?B?THA1VkFiNlZTTjJyN1UwdnNXY2FCTkhNcEMvZUpZazZOZEtKdUhRN1FvMnUz?=
- =?utf-8?B?YkhsbEpPTzdvcXZFelZlcVdJMjZXbkZaaHNiYnZzUkZLZlRheTlBanRsamxO?=
- =?utf-8?B?M3liMGtoSHNtT1N0V2pkKzdPSmFQWFdjMHVpVUpHSEtrQ2FkV1FibGRiNkFy?=
- =?utf-8?B?UlBXaDlxZ1A2ek00ZXBadHMvTFZWblNQUTBuTERLSHdkYXo0amNnVUdya0kw?=
- =?utf-8?B?UGJublp0MzN1S0ZXengzZmk0QUJwbHdvUGlpM09EWTdzZlUrNzB4aWovZmFS?=
- =?utf-8?B?cTF4d3BnMFdxYVF0NFcvVGxlVTlqZERXMkM5d2tKdm9jNWdUUFdlbVN5VFc4?=
- =?utf-8?B?MXZXdnJqOEJsSU8vcmhMY1N3elJKcTBqTzdPY0FyZW9SSnZYVFFubThXU3BB?=
- =?utf-8?B?VVJvTUdpYVV0cU53WkZONFQ3VDNEdXJCRWRsazI0ODY0OEpBeVhrNm92Qng3?=
- =?utf-8?B?am9STVZmUTNHUTJDbklIMlR2Y1JmSkRjdzV4UTNVdTF3Z296ODBWN2JLd01M?=
- =?utf-8?B?WlRISE1tNzg3Mmo4L0xoam1zYWpIaFdmT05EWmdwUWFXTVhWZDd2VG9lQ01D?=
- =?utf-8?B?Q25NQWlLeFNxaldXOVA3R0FuaWtBbU14N1ZNdDg2YW5qSnRMajFlazJPZkQv?=
- =?utf-8?B?WklDWW1COEtzc2FaUm12SXpuSzlKbkRpZk1iV0Z1R0dmZklWWjRpeWdQcVBO?=
- =?utf-8?B?b1pCM2ZGM2xSOGFFWi9xK1l3MDQ1d1lEd2JYUDlEL0dSdGRxOW1vU2xmUDhG?=
- =?utf-8?B?WDlSS2w5L3h2akNGMGZnaDhvSFhjYzNmVzJQQzROdTBKZ1NFc1BOK2k5eGZ1?=
- =?utf-8?B?eDlQOXNLZG5jbWRVVm52cFY3NXc2ZGhUUXo5eVRmaHJuVkd1QVZzUVhNZGhr?=
- =?utf-8?B?TDlocnFNZjAzdzVpZldXVDExYU5VNEpVSEFFcDYwK2hDTW1ncnNLN1Z6YWdn?=
- =?utf-8?B?bFl1T1A5RU4xSStQcG5oQUxRNWgwOXZnTk9PeDIwNUFqbVFsQjROdGFxblkx?=
- =?utf-8?B?dTAwNDM2a0l1emNaVG1YL0tTOFhYZWRDQ2F5d0lPMk1EcmkzKzVVSWRiTWg3?=
- =?utf-8?B?TzlxMGtkaHNsckdYS0JybUFPVmM2ZkI3Vno0NVlMU1dGV3hmRXVCUVk2YTVp?=
- =?utf-8?B?c0Fxd24zTythSTdKNVRvejA4VXZuNnVUU2ZVMURlbkw3TXBwb2RaNXVZYzdL?=
- =?utf-8?B?bGFQZmRnc0UrSHRtWjlpN1dYUGwxQnZCZGxuNHZ1Uy8yeFl3WGFkMWhlTmx0?=
- =?utf-8?B?L0JxYVB4WHBOb2l5amlBMWRhYU5nS2wwVWlBWkJabHlJZ293UDM0OTMwWnps?=
- =?utf-8?B?OUhQbnJES3pRYi9jU1N3NE0ycGlsTEZlMU1CWTV3eW56amNUM1JFMFJSSmJt?=
- =?utf-8?B?NHBrVk1WQUNFZ3E0T0hGSllZYS95MkFSK2ExQThKMmVGN25FQVNPOHBPUUli?=
- =?utf-8?B?Vzc3c3RYUmx4azBRUjF4MVUycC84ckk0SEx0aWNsaFhBb1ZsT1lZYUtwOUJ2?=
- =?utf-8?B?dUlQUTF4MTJGV0NtcWVydmpHd1Nya3JKeDNFOHdJZnZGVVF0V096bU9JZDFF?=
- =?utf-8?B?Y0E9PQ==?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR11MB7198.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(921020)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Uk9GU3c2Q0xkRnVlaG10cXFjWGVzMzBVeXVOV2RwU0x6UncyRVhQY2VGeUZr?=
- =?utf-8?B?TWc1OFNpV1djeDQ0bUY5WGdmNWMrODNoeGw3ZWF0ODRROXpSZW85YTRoTnlm?=
- =?utf-8?B?YVMyK0xOeDVaY3hkUUdRV1ViUDhoRFFuTk45WXhpUGFJaUU2alZkV1JINjkr?=
- =?utf-8?B?ZmVnVDRCZkRsL2FiN3ZXS2dSa2liWTR2V0l4emZtVDRVWGhyaktJaXhpd1B5?=
- =?utf-8?B?WVEvUXV0bFp4R3dDNVYwckVOZks1TmlHYkRNUTFodGdaSjA0MzVxZERvWnFz?=
- =?utf-8?B?cWU3NVRoY3RtSFI2SDMwTlB4YVRvZVZzZmkvN1JveUVhYnB2RWxDSjhwcEZU?=
- =?utf-8?B?ZVdId25sWlNkU0pNNWV1am1OSFErUjhmUk1KWVNoWUlpemI3VjVyNlpKU3l0?=
- =?utf-8?B?VTU0Q2p2OUZzUnNiZ25YeVJzYzBGWnNUd0EyRmFvREs5akNFbjI0OWg3T25X?=
- =?utf-8?B?RVVRd0FieFRjOVc0VENRakNibnZ0MElyVS9wNUZCMldITHYxblRDYlBFdXl3?=
- =?utf-8?B?OU8xbVFqVEx3RkJEUW5OaGVwem5CMW43MC9tc2c1d3M4TjhRdG96N1JMZGVX?=
- =?utf-8?B?c2VJMTFlN0hzVExZRHVvdkw4ZTNTWXZ4MWNObWtUdzVPQXo5a1g0WjUvSTJW?=
- =?utf-8?B?cFozOGRRNEVtSU9uTkhJYk1JS09HMklZM3I2UmVNY0Z0OTJuUVJkZkFRbWFF?=
- =?utf-8?B?YVNFQkZsOHR5WTZ3aUI5L0lnaUVMcnp1SkpBYnR6YkJZMFA0T29qdFkrUEJT?=
- =?utf-8?B?WnVBQStIRzY4OFRIdjlPa2dYV1RhbS9VeEdINDd3TmVjWno0SGtiQ1pKcGox?=
- =?utf-8?B?R01acTZES3NuTWRmK0xmV3dSem42dlQxdlpjMjd6V1lQc21melNvNVBLS0M4?=
- =?utf-8?B?KzJUbG02UDhMdjFDVVdXRllxUi9kdHowRlRHRHhTaXYyTjJmcDVTOEM4Rm5L?=
- =?utf-8?B?Vy9oTVdIeTE2dW80UUJtaGpmaDZpUVJOS05wY012VVdsK0RadUlLdjFwU3BY?=
- =?utf-8?B?YUt2RStFV0tTM3pDQ0x3RGhnQk0wV1RUM1V4S2hsTGwyOUNrSHJ5OUwrSm43?=
- =?utf-8?B?L1dFcTlkeEFHYkJ2SjJadE9zVW51SEpFZ3c5QmlGVkRZSDVzemtLWThHeXZl?=
- =?utf-8?B?Z1FPR01SUDJsUkpEeHQwaFhmbkp4OCtrKzFtSzZybGhoU0FRTEtld1JJQTZ2?=
- =?utf-8?B?cUdHdHkyaDByT0tudmJ1TldPeGEzTDNzV21KSXFmV1doa0ttMHJ2cGw0Z01M?=
- =?utf-8?B?dTdkd05CSzUzUSs0NUgwWnA2VTFIc1dnS1RtK2xJUmxCK1JwbXBqTzR3THlj?=
- =?utf-8?B?WW1YV3BabmxRdnRGK0dHREtlY1JGcURqWFNodTd3L3pCSUlsdlcvN1VCamNN?=
- =?utf-8?B?bm9XTXV5MW51eXNxamZiYXk5Sy81OVpyNkRPaHdpTHNzRWJTTWJFUkIrME1h?=
- =?utf-8?B?NDJpMEdOcEFjNWhjNm5PNjhWeG9lTVBmWldmR3FqdFRpRmVJVCtqNDJ6SmJU?=
- =?utf-8?B?bGJRWWZWN3FrWlN4emdHOGVCdGhVeUJwRHZnNjJ6aFhnNFFCdVpOOFc1T3Ja?=
- =?utf-8?B?S3hiemtqSEM2YVk5clNtdzBiTXQ5MVNBYVJRUjg5Yks1ZXc0N012aHcxTjR4?=
- =?utf-8?B?VXd5aTBmdnFNL2lmVWpUbUh5MnBmRE5HcFlSRVMwMWg5NmJER0NlVkJTLzZC?=
- =?utf-8?B?RWtMUlZiRXF1eE9sUURQSWx3SkJaV0pyY3dlVWJzbWFqczVtaHJSbUc2eE5H?=
- =?utf-8?B?WUZtdk5aNng5NHZOK0FhdnVjZm5xVkhvUmc2SjVERFlJRmhUUnR5NWhJd0Fm?=
- =?utf-8?B?Mm5iUlJORkY0T3pOMUJMN3BDKzVUSW4rZHpIZFpCUHVQN3I4UDZKL2VGOWNm?=
- =?utf-8?B?OEdRYmlzRFAxTXRmUm11S1dQZ2JsVUdTVGQ1SWJqVVBSWm0wZGpSYnFidmZs?=
- =?utf-8?B?NldJa2kxSGtTQnZ1UlNuYnJ2Nm5Uak9WRm81aENkMGJ0ZzM4WDVoWUplakc5?=
- =?utf-8?B?ODBWR1F2eXpsQlYvNVJNK3VncDF0TUR5SkoyL0FjcmUyeFB1dk5USjVXZlEw?=
- =?utf-8?B?UkNmVXFOczFJRjRtenRaaWw0NStzbFVhVnVqbHFrSE9BVUgrNmJaRmtKMDkz?=
- =?utf-8?B?ZklFMTVRQnBSZ1Z0em5IcStWQ00vOFNzdzhyMzVqdmJqaXdHUk9oTElWaStm?=
- =?utf-8?B?OTAvN3NlcHpwSjV5eUYzeXF2emdqcDZFYndkWlBoVTcyTWdLSUUyWEVLT0Nk?=
- =?utf-8?B?OFY3TVRSYlg5dzNtc1VhZHBnV0pWbWRBbDJGYzl2ZXRLNEtRcVhjUGV6S3NP?=
- =?utf-8?B?M0o3cFpyQXd6aGRHZ1NWS0wwMmVCdjBrZklhUVlWcWRZRWxCU2crdz09?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 243b8f89-dfbc-4299-020d-08de686ef412
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7198.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2026 06:38:08.6767
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: y727dBO85GLuyLPxs3D8VgAyfXfA9v1Ne6+8wd8GSxybZBWTfHa50YMe2fIrde/GbjEyCZROQf2y4ZFLkkgkfA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5085
-X-OriginatorOrg: intel.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-264243-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264242-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email,axiado.com:email];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[adrian.hunter@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 810F3117656
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 846D311767D
 X-Rspamd-Action: no action
 
-On 06/02/2026 10:23, Tzu-Hao Wei wrote:
-> From: SriNavmani A <srinavmani@axiado.com>
-> 
-> Axiado AX3000 SoC eMMC controller is based on Arasan eMMC 5.1 host
-> controller IP.
-> 
-> Signed-off-by: SriNavmani A <srinavmani@axiado.com>
-> Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
-> ---
+Hi Amit,
 
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+On Mon, 2026-02-09 at 16:42 -0800, Amit Sunil Dhamne wrote:
+> Hi Andre',
+>=20
+> On 2/4/26 4:49 AM, Andr=C3=A9 Draszik wrote:
+> > On Tue, 2026-02-03 at 22:50 +0000, Amit Sunil Dhamne via B4 Relay wrote=
+:
+> >=20
+> > > +
+> > > +static void psy_work_item(struct work_struct *work)
+> > > +{
+> > > +	struct max77759_charger *chg =3D
+> > > +		container_of(work, struct max77759_charger, psy_work.work);
+> > > +	union power_supply_propval current_limit, online;
+> > > +	int ret;
+> > > +
+> > > +	ret =3D power_supply_get_property(chg->tcpm_psy,
+> > > +					POWER_SUPPLY_PROP_CURRENT_MAX,
+> > > +					&current_limit);
+> > > +	if (ret) {
+> > > +		dev_err(chg->dev,
+> > > +			"Failed to get CURRENT_MAX psy property, ret=3D%d",
+> > > +			ret);
+> > > +		goto err;
+> > > +	}
+> > > +
+> > > +	ret =3D power_supply_get_property(chg->tcpm_psy, POWER_SUPPLY_PROP_=
+ONLINE,
+> > > +					&online);
+> > > +	if (ret) {
+> > > +		dev_err(chg->dev,
+> > > +			"Failed to get ONLINE psy property, ret=3D%d",
+> > > +			ret);
+> > > +		goto err;
+> > > +	}
+> > > +
+> > > +	if (online.intval && current_limit.intval) {
+> > > +		ret =3D set_input_current_limit(chg, current_limit.intval);
+> > > +		if (ret) {
+> > > +			dev_err(chg->dev,
+> > > +				"Unable to set current limit, ret=3D%d", ret);
+> > > +			goto err;
+> > > +		}
+> > > +
+> > > +		charger_set_mode(chg, MAX77759_CHGR_MODE_CHG_BUCK_ON);
+> > > +	} else {
+> > > +		charger_set_mode(chg, MAX77759_CHGR_MODE_OFF);
+> > > +	}
+> > > +
+> > > +	chg->psy_work_retry_cnt =3D 0;
+> > > +	return;
+> > > +
+> > > +err:
+> > > +	charger_set_mode(chg, MAX77759_CHGR_MODE_OFF);
+> > > +	if (chg->psy_work_retry_cnt >=3D MAX_NUM_RETRIES)
+> > > +		return;
+> > I'd say this final giving up could benefit from a dev_err(), while ...
+>=20
+> I want to clarify if you want me to add this final giving up print just=
+=20
+> once or every time I am returning early?
 
->  drivers/mmc/host/sdhci-of-arasan.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-of-arasan.c b/drivers/mmc/host/sdhci-of-arasan.c
-> index ab7f0ffe7b4f007a58eb0a26868b08b0b02b40f3..caf97238a58b487312d6cc2b7a868913ace60f22 100644
-> --- a/drivers/mmc/host/sdhci-of-arasan.c
-> +++ b/drivers/mmc/host/sdhci-of-arasan.c
-> @@ -1512,6 +1512,17 @@ static struct sdhci_arasan_of_data intel_keembay_sdio_data = {
->  	.clk_ops = &arasan_clk_ops,
->  };
->  
-> +static const struct sdhci_pltfm_data sdhci_arasan_axiado_pdata = {
-> +	.ops = &sdhci_arasan_ops,
-> +	.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN |
-> +			SDHCI_QUIRK_BROKEN_CQE,
-> +};
-> +
-> +static struct sdhci_arasan_of_data sdhci_arasan_axiado_data = {
-> +	.pdata = &sdhci_arasan_axiado_pdata,
-> +	.clk_ops = &arasan_clk_ops,
-> +};
-> +
->  static const struct of_device_id sdhci_arasan_of_match[] = {
->  	/* SoC-specific compatible strings w/ soc_ctl_map */
->  	{
-> @@ -1538,6 +1549,10 @@ static const struct of_device_id sdhci_arasan_of_match[] = {
->  		.compatible = "intel,keembay-sdhci-5.1-sdio",
->  		.data = &intel_keembay_sdio_data,
->  	},
-> +	{
-> +		.compatible = "axiado,ax3000-sdhci-5.1-emmc",
-> +		.data = &sdhci_arasan_axiado_data,
-> +	},
->  	/* Generic compatible below here */
->  	{
->  		.compatible = "arasan,sdhci-8.9a",
-> 
+I meant something along the lines of this:
 
++	if (chg->psy_work_retry_cnt)
++		dev_dbg(chg->dev, "chg psy_work succeeded after %d\n",
++			chg->psy_work_retry_cnt)
++	chg->psy_work_retry_cnt =3D 0;
++	return;
++
++err:
++	charger_set_mode(chg, MAX77759_CHGR_MODE_OFF);
++	if (chg->psy_work_retry_cnt >=3D MAX_NUM_RETRIES) {
++		dev_warn(chg->dev, "chg psy_work failed, giving up",
++			 chg->psy_work_retry_cnt, MAX_NUM_RETRIES);
++		return;
++	}
+
+> >=20
+> > > +
+> > > +	++chg->psy_work_retry_cnt;
+> > > +	dev_err(chg->dev, "Retrying %u/%u chg psy_work",
+> > > +		chg->psy_work_retry_cnt, MAX_NUM_RETRIES);
+> > ... this one could be demoted (but doesn't have to).
+> >=20
+> > That'd make it easier to determine if it's still in the process of
+> > trying, or if it has given up fully.
+>=20
+> I was assuming the printing of "3/3" would indicate the final giving up=
+=20
+> and sufficient.
+
+
+If you see 3/3 in the log, you'll know that it has scheduled the work (for
+the last attempt), but you won't easily know if 3/3 has ran yet or if it
+has completed successfully this time or if it was still unsuccessful.
+
+> >=20
+> > > +	schedule_delayed_work(&chg->psy_work,
+> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 msecs_to_jiffies(PSY_WORK_RETRY_DE=
+LAY_MS));
+> > > +}
+> > > +
+> > > +static int psy_changed(struct notifier_block *nb, unsigned long evt,=
+ void *data)
+> > > +{
+> > > +	struct max77759_charger *chg =3D container_of(nb, struct max77759_c=
+harger,
+> > > +						=C2=A0=C2=A0=C2=A0 nb);
+> > > +	static const char *psy_name =3D "tcpm-source";
+> > > +	struct power_supply *psy =3D data;
+> > > +
+> > > +	if (!strnstr(psy->desc->name, psy_name, strlen(psy_name)) ||
+> > > +	=C2=A0=C2=A0=C2=A0 evt !=3D PSY_EVENT_PROP_CHANGED)
+> > > +		return NOTIFY_OK;
+> > > +
+> > > +	chg->tcpm_psy =3D psy;
+> > Do you need locking here? What if this is changed while a previous
+> > psy_work_item() is still executing?
+>=20
+> I=C2=A0 don't think that's ever possible in this case though. The power=
+=20
+> supply that this driver registers is downstream of the tcpm's.
+
+
+A previous work could still be executing (e.g. due to retrying), no? It
+should also probably set chg->psy_work_retry_cnt =3D 0; here, to allow it
+to retry up to MAX_NUM_RETRIES when a new work is queued and a previous
+one was unsuccessful?
+
+
+
+
+Cheers,
+Andre
 
