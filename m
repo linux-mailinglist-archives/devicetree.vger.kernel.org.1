@@ -1,303 +1,185 @@
-Return-Path: <devicetree+bounces-264227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264228-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8G7+EI23imnrNAAAu9opvQ
-	(envelope-from <devicetree+bounces-264227-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 05:43:57 +0100
+	id wGOeJI68immmNQAAu9opvQ
+	(envelope-from <devicetree+bounces-264228-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 06:05:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B928116E6A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 05:43:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40B5F116F3B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 06:05:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 885613013782
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 04:43:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 62B57301F9A4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 05:05:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9C2A32AADF;
-	Tue, 10 Feb 2026 04:43:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EA5032B983;
+	Tue, 10 Feb 2026 05:05:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iPQTcqBJ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Eu3JNKAS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RicI7NXW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com [209.85.167.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DF13191F94
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 04:43:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE79431814A
+	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 05:04:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770698632; cv=none; b=Kfoqyj20av3QjCxZ34BTLIzOc/a117HPL0bYo1oXEAbl4B2qRe9gK44K+msYfiqgRDWzBXNAKpDwM098NHeU7TfFZzn73NtC8U+WXJ58E94d8p/GitPWK4AMbUTGj8OfJu0k+BV3GIJtSJHnpbOiqxniJvz1AJuQueMOvxDb3VE=
+	t=1770699900; cv=none; b=HgPKKiPD/gEydNR8KinAgbir4zNxE2zvYeLCo4MCSbULgAaRAlfr71ns3P292HZofEgvJLx2fBFEhaq+5bcG7TI3sCJ0mxZKMavSdcEvw+nMP6Hn3puEo7yYbHfwKhY6j9N/MQB3PE3Qf20F1ayTuR7iQtv2G747Ph6nFX8Zq4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770698632; c=relaxed/simple;
-	bh=aj74Wd3UJnJv+wwSk8MgS1eKBotWRY6d/HxNi3I9tB4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rwDeo9q4kAEjFhGm/Qm7veKxh6pmWEZjs6gSyD2Q/nHu5SdEvyde1aFAzwJzFMakaEuy1Rzxk5m2z9hXjiZoSren8J9y4XS7hf2FRP8PKmVQskU2fHHhE7lV4yPSt/egpvqk5rYXQlpsbwrcPogiXcKiwgderkWVPi79BR1OJNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iPQTcqBJ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Eu3JNKAS; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 619MmLAn1419398
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 04:43:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	W6+8G8nl7MvNRnkLAsupqS5Bp1YCcMpqIVPQTLqfTM4=; b=iPQTcqBJL0qnbgyn
-	m59pQ8Jm1ADzMnjbn7b/OWN0JG/6Mh/ET1Em9T/rpcUhryEDCtXe5PddvuRex1Vd
-	L1EQCYCl7TvXX1Xk+fChjBT1cQJbF8OE70xwcN4meseGxydsyfzJBfqca3+hEfxb
-	sWrpqI7W1F5gOgx2/0/4C+bU17tc8DKZl68No0wPGW+CkIRvGkV9xoFkfhJxxY41
-	vu62Wx2W/x4ia7GomygC84e0dQhObF5xGVeMr9dmZvxc0AjZ15NsuhMTYzi7icOD
-	S/iRBaBlXVzdEi+TkRQilJrk2BrhOLN7X5AeEK7XH3/30C0zROaDvSm2lpIaO0DD
-	Taf2Pw==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c7rpvrxmy-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 04:43:50 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2aae0d40a47so70552865ad.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 20:43:50 -0800 (PST)
+	s=arc-20240116; t=1770699900; c=relaxed/simple;
+	bh=7kr8C/N3CZVrMfJa6+I2EsqoPuIOtVrtV5QgiZixCsM=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=oba/ecj5Z+LhNS+e6Ei9lWoqtABEnf84841GCRvN+FhMMy5so2WX0H0hpmH/MrxXdQgI7OAg7ZSKXHCzuZmWmBq1i+WsPNxUOVJ2wlYqnaetoW5fu9eQc+E0reRUN0CqmREjBrAHE2NGzYSRR/+Kn7mjGWmEH+bYL3S4DZTQVJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RicI7NXW; arc=none smtp.client-ip=209.85.167.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f67.google.com with SMTP id 2adb3069b0e04-59b672f8ec4so375959e87.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Feb 2026 21:04:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770698629; x=1771303429; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=W6+8G8nl7MvNRnkLAsupqS5Bp1YCcMpqIVPQTLqfTM4=;
-        b=Eu3JNKASCKr2ekpUq6v8V0aczYekafkK1pwvn+w8IB5D2GN5fFEKcXN5LnnwudiyRi
-         zB4a7YSAY0lgymLJG7aCLgiNase3ct6Xep3RqkVbbWNv6vwUFTHPdKPEIBrHx+5TCGbL
-         rmhvPwO1xdIUh9h1bKrKrQGeEXlBe8eDm6BVCjf9MTm070mDtGdHWnKx6IFnmVyf1WLS
-         +42mpa/st2eYQrRjvhttn5jO5wYeRwmMAJovMsjk9uqtuNiXy1p9v4Fq6G6iv2hz2eoH
-         OaXtHMVxQIJNQgr4D0gnczcAnCFmGoSXWFGshIIFJnbqUh5HbgC82wFubqX56E2j/Sts
-         fJFw==
+        d=gmail.com; s=20230601; t=1770699896; x=1771304696; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=FVdcfWZz2bzAb8+1BZcSv1OUoO1wFXkBe9mPhTK6GsM=;
+        b=RicI7NXWvd6eK1wIHuznIZbnt7AM67DqU7bOGnQ5y2eeLkJiAerehbiSJc5jauq8OP
+         3mpk3dybcIdHKdryeXf5EgksAbYCPQUsRXp/UzaY+P12tOiNa9CE/mxVKnhUWvSASFnD
+         bB31MuvaIKAjzpiv5vErMgonvAsRTN6jF79IDyePtnn3IcHgby5OLN/o6VXcPy6IoHGe
+         q8NXl3hgLUipQMFogk8glVFJ9RsDJ9jnZHWKeR/WQhvH/JA/9oHD+PK5rwD26XWMTZzn
+         8fq4tkT0DW3NMhmSXTjUpG/mr7WSGuHYNKJEi/nf6Ithcz4LLzIn3jnIHBJ6eyHczj7Y
+         2YSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770698629; x=1771303429;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=W6+8G8nl7MvNRnkLAsupqS5Bp1YCcMpqIVPQTLqfTM4=;
-        b=qazvBm/HHB8EMUkOEkLWQq4kJEapfhHf1PIve+e3iy1yizTjFTq/htM8kM6pmrObnb
-         28aADIwZ0vc8inoonhsjR5pjsMqaEfLFkJK+rwaS/GTGUAHsVAukWZuaWnlxbaL26Dkq
-         ++n3Orfd8N458geOK9d67W+XjrGoY9e6w71KbNN82Vsmj1X+mHEYCyaPGX8FLIQnIpNc
-         ZRLhSBeCM24NB7BrAePXFWJ8agzlR6YD8itpSQLtnYXy94yLcx8Ys4iaykdYzK3ygGiU
-         RHpajFxsvZWTkmrduroyPMU7Om7PwjLbVgEqvZaUsQFBXXUKc6j+1c9GV+wlIt9pXjPb
-         EeSw==
-X-Forwarded-Encrypted: i=1; AJvYcCU2S154TxnST+4Pm460bbw5CBvqNKBbXL+5KXGAFUvXbt9oogAUe5Zaxw9mDAHVju8L5wrTjmPc+AiY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy47/O73Y1noPfp2j3V4KFsYDveJZox+NLM/H9RTAUGksN0FjtO
-	FFM+0KzKaH8Kg/d2sfY9Apl5+c/Fy+yV0524b4mBCmoO5W86JBmNUJDCJt9K9PBtBOxvAJF+POP
-	wCxlKtcksWWyHcduPnevr9jgZOmsY9as9/eQJF7u7S5Mth7RgwaUf56aqx3uBdmsP
-X-Gm-Gg: AZuq6aKCMAOyiRLkjI6rxXouAokCd0C1G/QPNa8JXIADAqmDJORLkW2cX1rgHdTviYt
-	9gfhWrwzjuLvsw05cXhsHMq6LYEYw5v+VmXj7kt9Gme2LqZaA/mmIR4pOSJz/f/h1T+zvnzxZY1
-	JF0YjvElVCYnEjHkyGbh5rIz1iqNvL4Z6ynmJCACv46Fo+/dfqmSDldAoQ30EiPCwGqs8RnQGC7
-	WMXzDP3XZogo6wAdMRqcOAdPQ1g5aQlX0fuHMrLMLK+C4l8DyZY0s0KZpl0n3oM62ACv5tt95ac
-	HynaO7ogt+cdH8s3IPNoB2TIFN7+DFxE12jwPU0STppizoprFekmVZqlM3/hAwHIHAS/AMey0lv
-	beAQiCtUDb6mXTeWfw0FXLyzsvAGC4dEl3j+MQ4DdsZ2PVB+sqj5Q
-X-Received: by 2002:a17:903:3d0e:b0:2a9:484c:ff19 with SMTP id d9443c01a7336-2a95194a492mr128522275ad.42.1770698629392;
-        Mon, 09 Feb 2026 20:43:49 -0800 (PST)
-X-Received: by 2002:a17:903:3d0e:b0:2a9:484c:ff19 with SMTP id d9443c01a7336-2a95194a492mr128522075ad.42.1770698628919;
-        Mon, 09 Feb 2026 20:43:48 -0800 (PST)
-Received: from [10.217.199.117] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a951c8b041sm117312205ad.34.2026.02.09.20.43.45
+        d=1e100.net; s=20230601; t=1770699896; x=1771304696;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FVdcfWZz2bzAb8+1BZcSv1OUoO1wFXkBe9mPhTK6GsM=;
+        b=ERwf4JGfAaosU3vCwJ4etI+OE8rtYaTb8C4pv71tx2CmJpnkx8ndkiv+7P9Ot/4uzp
+         tyEI7p5/I/b5B61nMeTl4qJdwL2iJJf1bbMQ1b2SKtJyUzfJKATWlIFRhJTG1hWNItLt
+         FSC7/VpZoGj3tNaOBHW3hXe7rnb3s/+tS8OyUPqz7S4n7P8nlCxgeCOxkWe8t7fm0K3y
+         kxb/ZnFnpaMQ2I7uuHhvfspS5K9dDqWfRkXaexbeIoTge5uXGkVd8OcRyEww8sMc+77R
+         HBS1j0R42DDYpydHMCCmoAhBptQg29MtzxPzsA9drNL4bFxwwXgtCha6OjPpDrA4FKBq
+         GayQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXLRRkfJ0oyksM1bu6AkPYxADIwPaUFwdR5ZieaTJR8+VQDKIHgr0SOHKtN0yk9gPlvAcsjRPu5dxe6@vger.kernel.org
+X-Gm-Message-State: AOJu0YygcXHYHnxyPI8bRIlOfxN7y3rlvX77vq39h4v3zMQmgXiMBWhR
+	rqKGqNWYfsH8n6z238x7tnZHWkkbwStagO9PAXGsEY8E4qJGkiN944ea
+X-Gm-Gg: AZuq6aIanVly83SWF2mYoeowdRaqTnOpFiUU6ZSy3nBgWxgQlNtlAceEwUIQ5usRtVJ
+	8tZJ2vVyND0UfbtmDNwWkbPZxCcRMnjiskDdx7sHfuhBKUa3LujaY2wqsc2YKWH/C6n/cwNALnV
+	eyoxbLTqcD2b7dOCjl7MNQ6wCoaqP3nPUovNCDuL0wi+IX6BXJJRBUxrz1oPm4H2Ov9AoOmYd3b
+	eWfw5CLKy/3T5T8nNB2LXBYxPAQ5ujxBSnOj3rbFF6VJsoAf/BlITSOeoTLQxWWvurP5EA/YZX3
+	Ga+Gty7excqt1N8kVjHoqbsbq70uxol9q85zNWPUeYaY3zhmqO7LFF14Q6ruxQEPk/xChXBP5Ue
+	M2j3HCpUVGL6011KorKiiCQ2UVsXyaK3jU8RMCmYSO4lnRKuLSB/nJdLX27rO/KN8YnL1HMfJDv
+	axy5+nQfVQcyu9f1WhjInGinZ/AqNUypk=
+X-Received: by 2002:a05:6512:3da1:b0:59d:f545:f2e0 with SMTP id 2adb3069b0e04-59e45044500mr4242646e87.6.1770699895590;
+        Mon, 09 Feb 2026 21:04:55 -0800 (PST)
+Received: from ehlo.thunderbird.net ([178.137.233.16])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e44e21c94sm3038956e87.74.2026.02.09.21.04.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Feb 2026 20:43:48 -0800 (PST)
-Message-ID: <4454b03d-9e1d-42a9-a8e6-177e3848a366@oss.qualcomm.com>
-Date: Tue, 10 Feb 2026 10:13:44 +0530
+        Mon, 09 Feb 2026 21:04:55 -0800 (PST)
+Date: Tue, 10 Feb 2026 07:04:54 +0200
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Rob Herring <robh@kernel.org>
+CC: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>,
+ =?ISO-8859-1?Q?Jonas_Schw=F6bel?= <jonasschwoebel@yahoo.de>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2_5/5=5D_ASoC=3A_dt-bindings=3A_nvidia=2Cteg?=
+ =?US-ASCII?Q?ra-audio-max9808x=3A_document_additional_board_pins?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20260210024846.GA2385273-robh@kernel.org>
+References: <20260206173423.145954-1-clamor95@gmail.com> <20260206173423.145954-6-clamor95@gmail.com> <20260210024846.GA2385273-robh@kernel.org>
+Message-ID: <7338AB2F-0FEB-4AAC-991D-1FE33E03B32A@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [[PATCH]] arm64: dts: qcom: hamoa: Enable cpufreq cooling devices
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260128053208.3240189-1-gaurav.kohli@oss.qualcomm.com>
- <iq2cirb4axawir4a7yjm5okf32ptzwdrvovji7tp2hdzmui7qg@pidosokrykgi>
-Content-Language: en-US
-From: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-In-Reply-To: <iq2cirb4axawir4a7yjm5okf32ptzwdrvovji7tp2hdzmui7qg@pidosokrykgi>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjEwMDAzNiBTYWx0ZWRfXwbSl+ljTs6Rd
- I0KSEwQlJWNmsgbneUP8e5B4O4QFyxM3w0gBzf6qb8FwVt2IyxsB6qgdbjvHJA7m1pGiY9ljXqo
- J1NHcRM+Sdb1JvcKMwGVbtREOAsxvpyjyry8QJvU5v8h0Rpb0vocZ5Hcv5C0zTRAun0eFn7fUGv
- jzbADvG7ebh86F0Crs5lC8lS7kHlPtgJybG+H5LXWmey5iAbewQ8qCeHspyrAE9MZMqrTaLruxI
- fikvVswd87EDgDsjalNxrzn4lekUft6eJd/gG/5FEfbz/N1MWrMXJy/V3MCz2C9kVMzkgALR0gn
- 5IHm9qB5qz4TE750iO9MyP+lVZ8MXqPH4OTfScf07+KG/x0xxeDGiGvR+bzOfZRed1gw5ZtbcyD
- kz/2L6UIjKNQPvLDVAb/geDGCXzX3RE2o3DAwovJ4Azes+gwbEAIjqevxmZAhtfqZm8C8OAqzp0
- AeFJ+kQvRzx/p23aprw==
-X-Authority-Analysis: v=2.4 cv=KKZXzVFo c=1 sm=1 tr=0 ts=698ab786 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=uWovGTecX45KREATSWcA:9 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-ORIG-GUID: 8AYp8NNA5sl0ZmAtzJhxY0GfqXxl2JsC
-X-Proofpoint-GUID: 8AYp8NNA5sl0ZmAtzJhxY0GfqXxl2JsC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-09_01,2026-02-09_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0 spamscore=0
- adultscore=0 malwarescore=0 priorityscore=1501 phishscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602100036
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	SUBJ_EXCESS_QP(1.20)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	TAGGED_FROM(0.00)[bounces-264227-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gaurav.kohli@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,nvidia.com,perex.cz,suse.com,yahoo.de,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-264228-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 8B928116E6A
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 40B5F116F3B
 X-Rspamd-Action: no action
 
 
 
-On 2/3/2026 11:21 AM, Manivannan Sadhasivam wrote:
-> On Wed, Jan 28, 2026 at 11:02:08AM +0530, Gaurav Kohli wrote:
->> Add cooling-cells property to the CPU nodes to support cpufreq
->> cooling devices.
->>
->> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-> 
-> FYI: I submitted the similar version back in October:
-> https://lore.kernel.org/linux-arm-msm/20251015065703.9422-1-mani@kernel.org/
-> 
-
-Hi Mani,
-
-thanks for sharing this link. Could you please respin your patch. So 
-that it can get merged? we need this cpufreq support enabled.
-
-> - Mani
-> 
+10 =D0=BB=D1=8E=D1=82=D0=BE=D0=B3=D0=BE 2026=E2=80=AF=D1=80=2E 04:48:46 GM=
+T+02:00, Rob Herring <robh@kernel=2Eorg> =D0=BF=D0=B8=D1=88=D0=B5:
+>On Fri, Feb 06, 2026 at 07:34:22PM +0200, Svyatoslav Ryhel wrote:
+>> Document additional board pins that may be used in routing=2E
+>>=20
+>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail=2Ecom>
 >> ---
->>   arch/arm64/boot/dts/qcom/hamoa.dtsi | 12 ++++++++++++
->>   1 file changed, 12 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
->> index db65c392e618..799e405a9f87 100644
->> --- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
->> @@ -75,6 +75,7 @@ cpu0: cpu@0 {
->>   			next-level-cache = <&l2_0>;
->>   			power-domains = <&cpu_pd0>, <&scmi_dvfs 0>;
->>   			power-domain-names = "psci", "perf";
->> +			#cooling-cells = <2>;
->>   
->>   			l2_0: l2-cache {
->>   				compatible = "cache";
->> @@ -91,6 +92,7 @@ cpu1: cpu@100 {
->>   			next-level-cache = <&l2_0>;
->>   			power-domains = <&cpu_pd1>, <&scmi_dvfs 0>;
->>   			power-domain-names = "psci", "perf";
->> +			#cooling-cells = <2>;
->>   		};
->>   
->>   		cpu2: cpu@200 {
->> @@ -101,6 +103,7 @@ cpu2: cpu@200 {
->>   			next-level-cache = <&l2_0>;
->>   			power-domains = <&cpu_pd2>, <&scmi_dvfs 0>;
->>   			power-domain-names = "psci", "perf";
->> +			#cooling-cells = <2>;
->>   		};
->>   
->>   		cpu3: cpu@300 {
->> @@ -111,6 +114,7 @@ cpu3: cpu@300 {
->>   			next-level-cache = <&l2_0>;
->>   			power-domains = <&cpu_pd3>, <&scmi_dvfs 0>;
->>   			power-domain-names = "psci", "perf";
->> +			#cooling-cells = <2>;
->>   		};
->>   
->>   		cpu4: cpu@10000 {
->> @@ -121,6 +125,7 @@ cpu4: cpu@10000 {
->>   			next-level-cache = <&l2_1>;
->>   			power-domains = <&cpu_pd4>, <&scmi_dvfs 1>;
->>   			power-domain-names = "psci", "perf";
->> +			#cooling-cells = <2>;
->>   
->>   			l2_1: l2-cache {
->>   				compatible = "cache";
->> @@ -137,6 +142,7 @@ cpu5: cpu@10100 {
->>   			next-level-cache = <&l2_1>;
->>   			power-domains = <&cpu_pd5>, <&scmi_dvfs 1>;
->>   			power-domain-names = "psci", "perf";
->> +			#cooling-cells = <2>;
->>   		};
->>   
->>   		cpu6: cpu@10200 {
->> @@ -147,6 +153,7 @@ cpu6: cpu@10200 {
->>   			next-level-cache = <&l2_1>;
->>   			power-domains = <&cpu_pd6>, <&scmi_dvfs 1>;
->>   			power-domain-names = "psci", "perf";
->> +			#cooling-cells = <2>;
->>   		};
->>   
->>   		cpu7: cpu@10300 {
->> @@ -157,6 +164,7 @@ cpu7: cpu@10300 {
->>   			next-level-cache = <&l2_1>;
->>   			power-domains = <&cpu_pd7>, <&scmi_dvfs 1>;
->>   			power-domain-names = "psci", "perf";
->> +			#cooling-cells = <2>;
->>   		};
->>   
->>   		cpu8: cpu@20000 {
->> @@ -167,6 +175,7 @@ cpu8: cpu@20000 {
->>   			next-level-cache = <&l2_2>;
->>   			power-domains = <&cpu_pd8>, <&scmi_dvfs 2>;
->>   			power-domain-names = "psci", "perf";
->> +			#cooling-cells = <2>;
->>   
->>   			l2_2: l2-cache {
->>   				compatible = "cache";
->> @@ -183,6 +192,7 @@ cpu9: cpu@20100 {
->>   			next-level-cache = <&l2_2>;
->>   			power-domains = <&cpu_pd9>, <&scmi_dvfs 2>;
->>   			power-domain-names = "psci", "perf";
->> +			#cooling-cells = <2>;
->>   		};
->>   
->>   		cpu10: cpu@20200 {
->> @@ -193,6 +203,7 @@ cpu10: cpu@20200 {
->>   			next-level-cache = <&l2_2>;
->>   			power-domains = <&cpu_pd10>, <&scmi_dvfs 2>;
->>   			power-domain-names = "psci", "perf";
->> +			#cooling-cells = <2>;
->>   		};
->>   
->>   		cpu11: cpu@20300 {
->> @@ -203,6 +214,7 @@ cpu11: cpu@20300 {
->>   			next-level-cache = <&l2_2>;
->>   			power-domains = <&cpu_pd11>, <&scmi_dvfs 2>;
->>   			power-domain-names = "psci", "perf";
->> +			#cooling-cells = <2>;
->>   		};
->>   
->>   		cpu-map {
->> -- 
->> 2.34.1
->>
-> 
+>>  =2E=2E=2E/bindings/sound/nvidia,tegra-audio-max9808x=2Eyaml          |=
+ 5 +++++
+>>  1 file changed, 5 insertions(+)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio=
+-max9808x=2Eyaml b/Documentation/devicetree/bindings/sound/nvidia,tegra-aud=
+io-max9808x=2Eyaml
+>> index 241d20f3aad0=2E=2E4957645a8e03 100644
+>> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max980=
+8x=2Eyaml
+>> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max980=
+8x=2Eyaml
+>> @@ -35,10 +35,15 @@ properties:
+>>      items:
+>>        enum:
+>>          # Board Connectors
+>> +        - Speakers
+>>          - Int Spk
+>> +        - Headphone
+>> +        - Headphones
+>>          - Headphone Jack
+>
+>Aren't all 3 of these the same thing?
+>
 
+From=20Tegra ASoC machine perspective no, it exposes each of these pins and =
+each of them can be used=2E
+
+>>          - Earpiece
+>>          - Headset Mic
+>> +        - Mic Jack
+>> +        - Int Mic
+>>          - Internal Mic 1
+>>          - Internal Mic 2
+>> =20
+>> --=20
+>> 2=2E51=2E0
+>>=20
 
