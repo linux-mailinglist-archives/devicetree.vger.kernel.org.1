@@ -1,363 +1,366 @@
-Return-Path: <devicetree+bounces-264465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264466-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wKCLIqdWi2lIUAAAu9opvQ
-	(envelope-from <devicetree+bounces-264465-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 17:02:47 +0100
+	id yDcZFMpWi2lIUAAAu9opvQ
+	(envelope-from <devicetree+bounces-264466-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 17:03:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F2BA11CE45
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 17:02:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C85B011CE6A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 17:03:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B4542301AA6B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 16:02:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D6F513016C87
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 16:02:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8EA387575;
-	Tue, 10 Feb 2026 16:02:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA816387575;
+	Tue, 10 Feb 2026 16:02:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SLGtX2uA"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ml9ORTj6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f54.google.com (mail-dl1-f54.google.com [74.125.82.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 710C83081BE
-	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 16:02:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A558915624B;
+	Tue, 10 Feb 2026 16:02:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770739359; cv=none; b=PkOMXvXq4X0Fja7Qo3X/zQG/y1iqzdEajYZ8nLN7FbLsJ1CbDaK4NA6nIGykoil8WGRTFV7PLXW+SiUNCOoooyK+T0JuZ7DgrdvWJKpeQO7BBDxCF9VLKa192wXlu7K6tgdHUho8Zh3HbHhZ8gOA5Eb8KCql1LF/1Gk1HoF1Q3Y=
+	t=1770739370; cv=none; b=RXfJrbiZHD/eJX4zRISi9hclpF+x+n/0PV+4sZg2hL+nDH7tQ+BeF+Yvm5YSJ4kRq5Az3Z/NFUdFojf7TIb1q45locIktWHSCn8jJWFcxmV2qvHX1QNWGTU9hK9KD+OvCe4I5p9kridYiIMgHJ6wSYrhg5h46W/rEVYYSVHd6gY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770739359; c=relaxed/simple;
-	bh=VS0eY8WcAfG/iyqBEZTT6cHjNqV5dr29Qzs0B18lGXQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n0fC3QScpbmihxhtET+ENJyFneonzUs9FzkBYdC5IoiFITknyOTMoWR00p0or8hdMbDoQ2B+0Ksk7iBkOI2GXjUTGRVDEe58bI+tT0nvD7rqTAHhfGnxgOSyzEQFOnHKnKDKYRwbugZTUHuR8ciqaafCbf/SVNGX3W0LOU/fj/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SLGtX2uA; arc=none smtp.client-ip=74.125.82.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f54.google.com with SMTP id a92af1059eb24-124a95e592fso324638c88.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 08:02:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770739357; x=1771344157; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=3cNNl5pPhcYluAPwoEK8QbImmnq0y2snMiJMPCDs958=;
-        b=SLGtX2uA7WFUBIxxi+zc1QQQjDsJ+Y+WX6ZPAl/BG5Mb/dOhytsPWlSDiBFzO/oNXm
-         54vvxooaXscPiUf21XxOEr/pZCuS8IlfU++IgvwGdU6rBPkzubH+nYwlIhZbGOCYKecP
-         ADcKd/YZReTKtDm1uc0l17+wpxgrUgudAo2K9pY/e71MXFJ5/oOsMBF1iWKsQ2p0L/9E
-         hV/uYp0WGW8vQ0mYTGKSaA0tk0nP8Cq9rU2pHXaSOxeEkAIpEHkbcV5rDEB7r6n3NFo4
-         mcjB33FLsRdZvrLxpNL381m9XR9lV3DUa8C9/9pVY9NCmT/naVPlKsp0Tn7sOugCF4Eb
-         UKCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770739357; x=1771344157;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3cNNl5pPhcYluAPwoEK8QbImmnq0y2snMiJMPCDs958=;
-        b=I7kpSKK4c2zjlE+2F7hz3kyQ9KWrw+nGvT0R5U2w8KOHtWgXJmd+Ly/4HxMvmB+rtq
-         zHpd5vx9pwbxnOXoN0xy4GfkB1RM0NayCzjvATSpVMwP7j1kMfRXqPdumxwtx8MDIHpP
-         Bwp3OHX+h8GyTtgm8Pq9SBFNBGYxgT+jKB8fBaCP/9e/a1pmyRofM7W2vVYbtyLSLHyb
-         s9KsGIGVK6g2F0hghmyK1GfHL4I9ahU+5GuCP809Xz4cCaSvTzI6OS90T0sPdFHDkj7X
-         a9s69QFigyMaVyMukQX1TywILDfKoV2hgjMjAPRJq+22wupULKq+CFzufamsMvT6BOo1
-         rt3w==
-X-Forwarded-Encrypted: i=1; AJvYcCVmSDbUN3HLw0O3JAh07FXpNtTBa0Ya9UN5fXhmpa7qyL3Bm4UnUOM1dBwSAXB88vruTcaMmT/5THr5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyjY+p3R5XTuFOruAEKQa/0aMGJuiQAiIW9wnqKanH300xdOuzv
-	SbaFU4hhWD+d4KjZSzWJXoXjTm1WlvsGSxe/123QMbt5diQwTr9GBlts
-X-Gm-Gg: AZuq6aJwmu9cGE04qBPZJAKVD6MtVzZKm05urSENMJX5sMSJgfQhFgQ7H9eNqmyR2T/
-	/gKvIADTSekzqWDycpcbuNjt54xsNFFtTtnkXgcGPKgJdfeI6T6X44YwZxRCf2P5aD5QT2T1mzd
-	uT6R8Nf8di9jT1gPCYSSRWwFcR7wFdMRoanzZdYQu4JqBDqZYKKgwXhWaqJcf6i8oUjwcY1yyJE
-	tkyi14m3vq/ldjfkoxe/YFzxGw7/SULfjGlW5iN/BBEkWDhCMkJdaSSYnbY3jtQC3Ptai02ylqc
-	TraNK22YBgFq11FcA/3X0dkN+Cyp0r1KNDWU2M6AqKyrpidLoWxe/oVBxP99zIEm05gnC5WbPlH
-	ADEN2SEjrBLuoVRueoUlWeeplFHJmZ462UOICJi4P54FVFmtolfrj5Gh/gFcmH44+JX5Ulqt5N5
-	hJOIpy7OcU07FnIjMdPsmVIaF5M3lhiFhouJLWLWj8GWpzUWSPyJycgBzP++Fmcsw9h84uriTiV
-	WTIoEhgESU=
-X-Received: by 2002:a05:7022:301:b0:122:345:a948 with SMTP id a92af1059eb24-1270419f523mr7904093c88.46.1770739357072;
-        Tue, 10 Feb 2026 08:02:37 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1270433abdfsm11577096c88.12.2026.02.10.08.02.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Feb 2026 08:02:36 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <e946baf7-4c3e-42a6-9cd2-a4b917ce09bf@roeck-us.net>
-Date: Tue, 10 Feb 2026 08:02:34 -0800
+	s=arc-20240116; t=1770739370; c=relaxed/simple;
+	bh=ALzULHo7sgR9xPvwqxjQVJXsK5fYs71iG1WLuNUL9hI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LEvs9ifyLzDur/rDIrsY4ctj1TyQr062zzMVzQ9y51o5Pdj8NFOiy/girLiQApvwmm1oTlv2717+CiGvpv9rVtpKFgnuPX7i9xvEuPnjUU+AI2vLSXenJDTGTNDOx0+YVc9cLfx6e/HopFwNDT6peqjUnRXqYhsRKsrErsGqz6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ml9ORTj6; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from killaraus.ideasonboard.com (2001-14ba-703d-e500--2a1.rev.dnainternet.fi [IPv6:2001:14ba:703d:e500::2a1])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id D8816454;
+	Tue, 10 Feb 2026 17:01:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1770739320;
+	bh=ALzULHo7sgR9xPvwqxjQVJXsK5fYs71iG1WLuNUL9hI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ml9ORTj6aXoMnJQggHea7K+MTJh1cSvqwIgkIBvKwcsyl6NPnnOeaHTCmuAmeytLh
+	 U9UGaEZGpO+o67eoB8HHUsfJ8Tehl/1qmrN7hrEnKQ48rrgVnv7Rl4uvE/q+rdrU0x
+	 gFw6PuilcMEeCR/inHi4+tOFsUZMC25NJMI0cwTY=
+Date: Tue, 10 Feb 2026 18:02:45 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Anthony McGivern <anthony.mcgivern@arm.com>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Antoine Bouyer <antoine.bouyer@nxp.com>,
+	Michael Riesch <michael.riesch@collabora.com>,
+	julien.vuillaumier@nxp.com, alexi.birlinger@nxp.com,
+	daniel.baluta@nxp.com, peng.fan@nxp.com, frank.li@nxp.com,
+	mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com,
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	niklas soderlund <niklas.soderlund@ragnatech.se>
+Subject: Re: [RFC v1 00/11] Add iMX95 neoisp driver
+Message-ID: <20260210160245.GN2405149@killaraus.ideasonboard.com>
+References: <544a98f3-d451-4ca1-b7d0-0b0a1238f66a@collabora.com>
+ <c8536c80-2f58-4eae-9336-436d772206df@nxp.com>
+ <22b3916a-a12f-4ea2-8863-8ebd9cb498b0@collabora.com>
+ <aYI0CrKLGeiZMlD8@zed>
+ <aYN8v3UGFKfzkl4_@zed>
+ <86109309-8200-464a-a167-ae9cef3f41b7@nxp.com>
+ <aYRSMXHjFC0M_DM_@zed>
+ <a4c62fb8-51f5-47eb-a1aa-ec0e4f6a9707@arm.com>
+ <20260210002053.GJ2405149@killaraus.ideasonboard.com>
+ <2b64aa6c-b3d3-4b96-b603-1ceb3497dce2@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] watchdog: npcm: Add reset status support
-To: Tomer Maimon <tmaimon77@gmail.com>, andrew@codeconstruct.com.au,
- avifishman70@gmail.com, tali.perry1@gmail.com, wim@linux-watchdog.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: venture@google.com, yuenn@google.com, benjaminfair@google.com,
- joel@jms.id.au, openbmc@lists.ozlabs.org, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260210133843.1078463-1-tmaimon77@gmail.com>
- <20260210133843.1078463-3-tmaimon77@gmail.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAmgrMyQFCSbODQkACgkQyx8mb86fmYGcWRAA
- oRwrk7V8fULqnGGpBIjp7pvR187Yzx+lhMGUHuM5H56TFEqeVwCMLWB2x1YRolYbY4MEFlQg
- VUFcfeW0OknSr1s6wtrtQm0gdkolM8OcCL9ptTHOg1mmXa4YpW8QJiL0AVtbpE9BroeWGl9v
- 2TGILPm9mVp+GmMQgkNeCS7Jonq5f5pDUGumAMguWzMFEg+Imt9wr2YA7aGen7KPSqJeQPpj
- onPKhu7O/KJKkuC50ylxizHzmGx+IUSmOZxN950pZUFvVZH9CwhAAl+NYUtcF5ry/uSYG2U7
- DCvpzqOryJRemKN63qt1bjF6cltsXwxjKOw6CvdjJYA3n6xCWLuJ6yk6CAy1Ukh545NhgBAs
- rGGVkl6TUBi0ixL3EF3RWLa9IMDcHN32r7OBhw6vbul8HqyTFZWY2ksTvlTl+qG3zV6AJuzT
- WdXmbcKN+TdhO5XlxVlbZoCm7ViBj1+PvIFQZCnLAhqSd/DJlhaq8fFXx1dCUPgQDcD+wo65
- qulV/NijfU8bzFfEPgYP/3LP+BSAyFs33y/mdP8kbMxSCjnLEhimQMrSSo/To1Gxp5C97fw5
- 3m1CaMILGKCmfI1B8iA8zd8ib7t1Rg0qCwcAnvsM36SkrID32GfFbv873bNskJCHAISK3Xkz
- qo7IYZmjk/IJGbsiGzxUhvicwkgKE9r7a1rOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAmgrMyQFCSbODQkACgkQyx8mb86fmYHlgg/9
- H5JeDmB4jsreE9Bn621wZk7NMzxy9STxiVKSh8Mq4pb+IDu1RU2iLyetCY1TiJlcxnE362kj
- njrfAdqyPteHM+LU59NtEbGwrfcXdQoh4XdMuPA5ADetPLma3YiRa3VsVkLwpnR7ilgwQw6u
- dycEaOxQ7LUXCs0JaGVVP25Z2hMkHBwx6BlW6EZLNgzGI2rswSZ7SKcsBd1IRHVf0miwIFYy
- j/UEfAFNW+tbtKPNn3xZTLs3quQN7GdYLh+J0XxITpBZaFOpwEKV+VS36pSLnNl0T5wm0E/y
- scPJ0OVY7ly5Vm1nnoH4licaU5Y1nSkFR/j2douI5P7Cj687WuNMC6CcFd6j72kRfxklOqXw
- zvy+2NEcXyziiLXp84130yxAKXfluax9sZhhrhKT6VrD45S6N3HxJpXQ/RY/EX35neH2/F7B
- RgSloce2+zWfpELyS1qRkCUTt1tlGV2p+y2BPfXzrHn2vxvbhEn1QpQ6t+85FKN8YEhJEygJ
- F0WaMvQMNrk9UAUziVcUkLU52NS9SXqpVg8vgrO0JKx97IXFPcNh0DWsSj/0Y8HO/RDkGXYn
- FDMj7fZSPKyPQPmEHg+W/KzxSSfdgWIHF2QaQ0b2q1wOSec4Rti52ohmNSY+KNIW/zODhugJ
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20260210133843.1078463-3-tmaimon77@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2b64aa6c-b3d3-4b96-b603-1ceb3497dce2@arm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264465-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264466-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,codeconstruct.com.au,linux-watchdog.org,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_THREE(0.00)[4];
+	RSPAMD_URIBL_FAIL(0.00)[ideasonboard.com:query timed out];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RSPAMD_EMAILBL_FAIL(0.00)[tmaimon77.gmail.com:query timed out];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[ideasonboard.com,nxp.com,collabora.com,kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.infradead.org,ragnatech.se];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:mid]
-X-Rspamd-Queue-Id: 2F2BA11CE45
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C85B011CE6A
 X-Rspamd-Action: no action
 
-On 2/10/26 05:38, Tomer Maimon wrote:
-> Add reset status detection for NPCM watchdog driver on both NPCM7XX and
-> NPCM8XX platforms. Implement GCR register integration via syscon for
-> reset status detection and configurable reset type mapping via device
-> tree properties.
+On Tue, Feb 10, 2026 at 12:20:42PM +0000, Anthony McGivern wrote:
+> On 10/02/2026 00:20, Laurent Pinchart wrote:
+> > On Mon, Feb 09, 2026 at 01:19:43PM +0000, Anthony McGivern wrote:
+> >> On 05/02/2026 09:40, Jacopo Mondi wrote:
+> >>> On Wed, Feb 04, 2026 at 07:30:18PM +0100, Antoine Bouyer wrote:
+> >>>> Le 04/02/2026 à 18:12, Jacopo Mondi a écrit :
+> >>>>> On Tue, Feb 03, 2026 at 07:37:34PM +0100, Jacopo Mondi wrote:
+> >>>>>> On Thu, Jan 29, 2026 at 12:00:24AM +0100, Michael Riesch wrote:
+> >>>>>>> On 1/28/26 09:17, Antoine Bouyer wrote:
+> >>>>>>>> On 1/26/26 10:44 AM, Michael Riesch wrote:
+> >>>>>>>>> On 1/23/26 09:09, Antoine Bouyer wrote:
+> > 
+> > [snip]
+> >
+> >>>>>>>>>    - How many media devices are registered and which driver registers it
+> >>>>>>>>>      or them?
+> >>>>>>>> 
+> >>>>>>>> That will be part of the evaluation. My initial assumption is that
+> >>>>>>>> neoisp would be the appropriate component to register the media device
+> >>>>>>>> in this mode, since ISI is not involved, and ISI currently performs the
+> >>>>>>>> registration in the M2M configuration.
+> >>>>>> 
+> >>>>>> Isn't the ISP registering its own media graph ?
+> >>>> 
+> >>>> Yes, 8 copies of ISP media graph, that can be used with the 8 output video
+> >>>> devices of the ISI media graph.
+> >>> 
+> >>> I suggest you do what RPi does. The mainline driver only registers one
+> >>> instance and they carry a little patch downstream that implements the
+> >>> for() loop where multiple instances are registered. Duplicating media graphs
+> >>> is not desirable (at least in mainline) as we can have ISPs with 256
+> >>> contexts, we don't want 256 media graphs.
+> >>>
+> >>> A framework level solution with proper priority handling and job
+> >>> scheduling is what is required and that's what the context work should
+> >>> end up being.
+> >> 
+> >> Our Mali-C720 ISP can support up to 16 contexts, each with over a dozen
+> >> subdevs and capture nodes. As we imagine this will not be feasible for
+> >> upstreaming :) So using  this framework is definitely the way we would
+> >> like to go. We are mainly limited by the lack of per-context graph/streams
+> >> configuration at this point.
+> >>
+> >>>>>> Can we get a copy of all media graphs on an i.MX95 system including
+> >>>>>> the ISI and the CSI-2 receiver ?
+> >>>>
+> >>>> Here is an example with multiple sensors. Or do you need it in another
+> >>>> format ?
+> >>>
+> >>> No it's fine, thanks!
+> >>>
+> >>>> digraph board {
+> >>>>         rankdir=TB
+> >>>>         n00000001 [label="{{<port0> 0 | <port1> 1 | <port2> 2 | <port3> 3 | <port4> 4} | crossbar\n/dev/v4l-subdev8 | {<port5> 5 | <port6> 6 | <port7> 7 | <port8> 8 | <port9> 9 | <port10> 10 | <port11> 11 | <port12> 12}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n00000001:port5 -> n0000000f:port0 [style=bold]
+> >>>>         n00000001:port6 -> n0000001a:port0 [style=bold]
+> >>>>         n00000001:port7 -> n00000025:port0 [style=bold]
+> >>>>         n00000001:port8 -> n00000030:port0 [style=bold]
+> >>>>         n00000001:port9 -> n0000003b:port0 [style=bold]
+> >>>>         n00000001:port10 -> n00000046:port0 [style=bold]
+> >>>>         n00000001:port11 -> n00000051:port0 [style=bold]
+> >>>>         n00000001:port12 -> n0000005c:port0 [style=bold]
+> >>>>         n0000000f [label="{{<port0> 0} | mxc_isi.0\n/dev/v4l-subdev9 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n0000000f:port1 -> n00000012 [style=bold]
+> >>>>         n00000012 [label="mxc_isi.0.capture\n/dev/video8", shape=box, style=filled, fillcolor=yellow]
+> >>>>         n0000001a [label="{{<port0> 0} | mxc_isi.1\n/dev/v4l-subdev10 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n0000001a:port1 -> n0000001d [style=bold]
+> >>>>         n0000001d [label="mxc_isi.1.capture\n/dev/video9", shape=box, style=filled, fillcolor=yellow]
+> >>>>         n00000025 [label="{{<port0> 0} | mxc_isi.2\n/dev/v4l-subdev11 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n00000025:port1 -> n00000028 [style=bold]
+> >>>>         n00000028 [label="mxc_isi.2.capture\n/dev/video10", shape=box, style=filled, fillcolor=yellow]
+> >>>>         n00000030 [label="{{<port0> 0} | mxc_isi.3\n/dev/v4l-subdev12 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n00000030:port1 -> n00000033 [style=bold]
+> >>>>         n00000033 [label="mxc_isi.3.capture\n/dev/video13", shape=box, style=filled, fillcolor=yellow]
+> >>>>         n0000003b [label="{{<port0> 0} | mxc_isi.4\n/dev/v4l-subdev13 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n0000003b:port1 -> n0000003e [style=bold]
+> >>>>         n0000003e [label="mxc_isi.4.capture\n/dev/video14", shape=box, style=filled, fillcolor=yellow]
+> >>>>         n00000046 [label="{{<port0> 0} | mxc_isi.5\n/dev/v4l-subdev14 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n00000046:port1 -> n00000049 [style=bold]
+> >>>>         n00000049 [label="mxc_isi.5.capture\n/dev/video21", shape=box, style=filled, fillcolor=yellow]
+> >>>>         n00000051 [label="{{<port0> 0} | mxc_isi.6\n/dev/v4l-subdev15 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n00000051:port1 -> n00000054 [style=bold]
+> >>>>         n00000054 [label="mxc_isi.6.capture\n/dev/video22", shape=box, style=filled, fillcolor=yellow]
+> >>>>         n0000005c [label="{{<port0> 0} | mxc_isi.7\n/dev/v4l-subdev16 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n0000005c:port1 -> n0000005f [style=bold]
+> >>>>         n0000005f [label="mxc_isi.7.capture\n/dev/video23", shape=box, style=filled, fillcolor=yellow]
+> >>>>         n00000067 [label="mxc_isi.output\n", shape=box, style=filled, fillcolor=yellow]
+> >>>>         n00000067 -> n00000001:port4 [style=bold]
+> >>>>         n0000006e [label="{{<port0> 0} | 4ac10000.syscon:formatter@20\n/dev/v4l-subdev17 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n0000006e:port1 -> n00000001:port2 [style=bold]
+> >>>>         n00000073 [label="{{<port0> 0} | csidev-4ad30000.csi\n/dev/v4l-subdev18 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n00000073:port1 -> n0000006e:port0 [style=bold]
+> >>>>         n00000078 [label="{{<port0> 0 | <port1> 1 | <port2> 2 | <port3> 3} | max96724 2-0027\n/dev/v4l-subdev19 | {<port4> 4 | <port5> 5}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n00000078:port4 -> n00000073:port0 [style=dashed]
+> >>>>         n00000081 [label="{{} | mx95mbcam 8-0040\n/dev/v4l-subdev20 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n00000081:port0 -> n00000078:port0 [style=bold]
+> >>>>         n00000085 [label="{{} | mx95mbcam 9-0040\n/dev/v4l-subdev21 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n00000085:port0 -> n00000078:port1 [style=bold]
+> >>>>         n00000089 [label="{{} | mx95mbcam 10-0040\n/dev/v4l-subdev22 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n00000089:port0 -> n00000078:port2 [style=bold]
+> >>>>         n0000008d [label="{{} | mx95mbcam 11-0040\n/dev/v4l-subdev23 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
+> >>>>         n0000008d:port0 -> n00000078:port3 [style=bold]
+> >>>> }
+> >>
+> >> This was an interesting point from our sides too regarding the context framework,
+> >> how would shared inputs be linked to independent contexts? For example, one input
+> >> port with 4 sensors where each is processed by a separate context.
+> >
+> > If the multi-context ISP operates in M2M mode, the capture and ISP
+> > pipelines will be disjoint (even if they're in the same media graphs).
+> > Linking the two will be done by userspace, through memory buffers shared
+> > between the pipelines.
 > 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->   drivers/watchdog/npcm_wdt.c | 110 ++++++++++++++++++++++++++++++++++++
->   1 file changed, 110 insertions(+)
+> In our ISP we don't have to operate in a pure M2M mode for multi-context.
 > 
-> diff --git a/drivers/watchdog/npcm_wdt.c b/drivers/watchdog/npcm_wdt.c
-> index e62ea054bc61..ebece5d6240a 100644
-> --- a/drivers/watchdog/npcm_wdt.c
-> +++ b/drivers/watchdog/npcm_wdt.c
-> @@ -12,9 +12,25 @@
->   #include <linux/platform_device.h>
->   #include <linux/slab.h>
->   #include <linux/watchdog.h>
-> +#include <linux/regmap.h>
-> +#include <linux/mfd/syscon.h>
-> +
-> +#define NPCM7XX_RESSR_OFFSET	0x6C
-> +#define NPCM7XX_INTCR2_OFFSET	0x60
->   
->   #define NPCM_WTCR	0x1C
->   
-> +#define NPCM7XX_PORST	BIT(31)
-> +#define NPCM7XX_CORST	BIT(30)
-> +#define NPCM7XX_WD0RST	BIT(29)
-> +#define NPCM7XX_WD1RST	BIT(24)
-> +#define NPCM7XX_WD2RST	BIT(23)
-> +#define NPCM7XX_SWR1RST	BIT(28)
-> +#define NPCM7XX_SWR2RST	BIT(27)
-> +#define NPCM7XX_SWR3RST	BIT(26)
-> +#define NPCM7XX_SWR4RST	BIT(25)
-> +#define NPCM8XX_RST	(GENMASK(31, 23) | GENMASK(15, 12))
-> +
->   #define NPCM_WTCLK	(BIT(10) | BIT(11))	/* Clock divider */
->   #define NPCM_WTE	BIT(7)			/* Enable */
->   #define NPCM_WTIE	BIT(6)			/* Enable irq */
-> @@ -45,6 +61,9 @@ struct npcm_wdt {
->   	struct watchdog_device  wdd;
->   	void __iomem		*reg;
->   	struct clk		*clk;
-> +	u32			card_reset;
-> +	u32			ext1_reset;
-> +	u32			ext2_reset;
->   };
->   
->   static inline struct npcm_wdt *to_npcm_wdt(struct watchdog_device *wdd)
-> @@ -185,6 +204,95 @@ static const struct watchdog_ops npcm_wdt_ops = {
->   	.restart = npcm_wdt_restart,
->   };
->   
-> +static u32 npcm_wdt_reset_type(const char *reset_type)
-> +{
-> +	if (!strcmp(reset_type, "porst"))
-> +		return NPCM7XX_PORST;
-> +	else if (!strcmp(reset_type, "corst"))
-> +		return NPCM7XX_CORST;
-> +	else if (!strcmp(reset_type, "wd0"))
-> +		return NPCM7XX_WD0RST;
-> +	else if (!strcmp(reset_type, "wd1"))
-> +		return NPCM7XX_WD1RST;
-> +	else if (!strcmp(reset_type, "wd2"))
-> +		return NPCM7XX_WD2RST;
-> +	else if (!strcmp(reset_type, "sw1"))
-> +		return NPCM7XX_SWR1RST;
-> +	else if (!strcmp(reset_type, "sw2"))
-> +		return NPCM7XX_SWR2RST;
-> +	else if (!strcmp(reset_type, "sw3"))
-> +		return NPCM7XX_SWR3RST;
-> +	else if (!strcmp(reset_type, "sw4"))
-> +		return NPCM7XX_SWR4RST;
-> +
-> +	return 0;
-> +}
-> +
-> +static void npcm_get_reset_status(struct npcm_wdt *wdt, struct device *dev)
-> +{
-> +	const char *card_reset_type;
-> +	const char *ext1_reset_type;
-> +	const char *ext2_reset_type;
-> +	struct regmap *gcr_regmap;
-> +	u32 rstval, ressrval;
-> +	int ret;
-> +
-> +	gcr_regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
-> +	if (IS_ERR(gcr_regmap)) {
-> +		dev_warn(dev, "Failed to find gcr syscon, WD reset status not supported\n");
+> Instead, we have a time division mode for multiple inline sensors simultaneously.
+> The context management unit writes incoming frames from multiple sensors to memory
+> buffers and automatically schedule them for processing, injecting the buffer into
+> the pipeline once it is available.
+> 
+> In the driver we just configure the context, provide internally allocated DMA buffers
+> and the scheduler automatically handles the rest. Of course we can get interrupts
+> for these events if we have use for them.
 
-A warning is quite strong here, given that this is new code and the
-syscon reference may not exist in existing devicetree files. notice
-should be good enough.
+OK, so this is offline mode but with hardware (or firmware) scheduling.
 
-> +		return;
-> +	}
-> +
-> +	ret = of_property_read_string(dev->of_node,
-> +				      "nuvoton,card-reset-type",
-> +				      &card_reset_type);
-> +	if (ret)
-> +		wdt->card_reset = NPCM7XX_PORST;
-> +	else
-> +		wdt->card_reset = npcm_wdt_reset_type(card_reset_type);
-> +
-> +	ret = of_property_read_string(dev->of_node,
-> +				      "nuvoton,ext1-reset-type",
-> +				      &ext1_reset_type);
-> +	if (ret)
-> +		wdt->ext1_reset = 0;
+> While we could do this through userspace, it doesn't make full use of the ISP's
+> capabilities such as its hardware scheduling. From a media graph perspective, I
+> think it should be considered as an inline ISP with the buffers simply acting as
+> temporary storage while the ISP is busy.
 
-wdt is zero-allocated, so setting those variables to 0 is not necessary.
+Given that userspace will still have to supply parameters for the ISP,
+as well as buffers for processed images, what would be the advantage of
+scheduling the raw buffers automatically ?
 
-> +	else
-> +		wdt->ext1_reset = npcm_wdt_reset_type(ext1_reset_type);
-> +
-> +	ret = of_property_read_string(dev->of_node,
-> +				      "nuvoton,ext2-reset-type",
-> +				      &ext2_reset_type);
-> +	if (ret)
-> +		wdt->ext2_reset = 0;
-> +	else
-> +		wdt->ext2_reset = npcm_wdt_reset_type(ext2_reset_type);
-> +
-> +	regmap_read(gcr_regmap, NPCM7XX_INTCR2_OFFSET, &rstval);
+> I guess my thought was the camera "frontend" would effectively have some shared
+> state across all contexts, but the outputs from this would go to per context instances.
+> Perhaps a similar thing would apply with this CSI-2 receiver and the ISI since they
+> appear to deal with multiple sensors that are then divided across their 8 contexts?
 
-This warrants an explanation/comment: Why is it not necessary to check
-the return value of the regmap operations ?
+With a media graph that spans sensors, CSI-2 receivers, ISI and ISP, the
+frontend part of the graph (sensors, CSI-2, ISI) would be handled with
+one pipeline (in kernel terms, not a libcamera pipeline handler) and the
+ISP with another pipeline. Those two pipelines would operate
+independently. The ISP pipeline would make use of the multi-context API
+while the frontend pipeline wouldn't.
 
-> +	/* prefer the most specific SoC first */
-> +	if (of_device_is_compatible(dev->of_node, "nuvoton,npcm845-wdt")) {
-> +		regmap_write(gcr_regmap, NPCM7XX_INTCR2_OFFSET,
-> +			     rstval & ~NPCM8XX_RST);
-> +	} else if (of_device_is_compatible(dev->of_node, "nuvoton,npcm750-wdt")) {
-> +		if ((rstval & NPCM7XX_PORST) == 0) {
-> +			rstval = NPCM7XX_PORST;
-> +			regmap_write(gcr_regmap, NPCM7XX_INTCR2_OFFSET,
-> +				     rstval | NPCM7XX_PORST);
+> >> As a test of multi-context with duplicated media graphs, we would segregate our
+> >> inputs between media devices, though this is less flexible as it strictly ties
+> >> one sensor to a particular context.
+> >>
+> >>>>>> If I'm not mistaken you'll have 8 copies of the ISP media graphs, and
+> >>>>>> that's exactly what we're working on with the context framework :)
+> >>>>
+> >>>> Ok. Then I should have a look to context framework too ...
+> >>>
+> >>> Please, I hope to be able to resume working on it sooner or later
+> >>> given the right use case.
+> >>>
+> >>>>>>> ... since it is not, your assumption seems very reasonable.
+> >>>>>>>
+> >>>>>>>>>    - How can the user decide whether direct (csi2isp) or indirect
+> >>>>>>>>>      (mem2mem) streaming shall be used?
+> >>>>>>>>
+> >>>>>>>> That will also be part of the evaluation. From dts would be my first
+> >>>>>>>> option, but may prevent using both modes on same platform then.
+> >>>>>>>
+> >>>>>>> Of course this depends what the hardware is able to do, but in case the
+> >>>>>>> HW is reconfigurable easily, I doubt that device tree is a good choice
+> >>>>>>> to solve that.
+> >>>>>>>
+> >>>>>>>>> While it is certainly OK to introduce this support only at a later
+> >>>>>>>>> stage, it makes sense to consider this right from the start to avoid
+> >>>>>>>>> some nasty changes e.g. in how this hardware is exposed to user space.
+> >>>>>>>>>
+> >>>>>>>>> Also, we are facing a similiar challenge with recent Rockchip ISP
+> >>>>>>>>> hardware (RK3588, RK3576, ...) and it would be great to hear your
+> >>>>>>>>> thoughts about that.
+> >>>>>>>> 
+> >>>>>>>> Is there an existing discussion thread available on this topic? I would
+> >>>>>>>> be very interested in following it.
+> >>>>>>> 
+> >>>>>>> Not yet, I am afraid. But there should be one or two soon (TM) :-)
+> >>>>>> 
+> >>>>>> It's probably time to have one :)
+> >>>> 
+> >>>> Good. Please loop me in ;)
+> >>> 
+> >>> You are in, this is the conversation ;)
+> >>>
+> >>> It might be a good discussion point for the media summit in Nice
+> >>> co-located with Embedded Recipes if people with interest in the topic
+> >>> will going the be there.
+> >>>
+> >>> I'm also adding Anthony from ARM as I know he's going through the same
+> >>> inline/m2m duality you're now facing.
+> >>> 
+> >> We make the issue even more complex as individual contexts can run in either
+> >> inline or m2m mode simultaneously... Though in our case the ISP does not
+> >> have any external dependencies for this like with Mali-C55 + IVC.
+> > 
+> > Simultaneously ? Can a single ISP instance run in inline and offline
+> > mode simultaneously ? How does that work ?
+> 
+> Technically speaking the inline still require memory buffers but once configured
+> the ISP can run without involvement from the driver. The buffering is effectively
+> invisible at this point.
+>
+> The context management unit facilitates this through the aformentioned hardware
+> scheduling. Each individual context may choose to use inline mode or M2M mode.
+> In inline mode, that context is "schedulable" when it's input buffer isready,
+> which occurs automatically once the image is fully written to memory.
+> In M2M mode, the context is "schedulable" when the user triggers it via SW.
+> 
+> >> As a side note, was there any thought into how Libcamera may support a pure m2m
+> >> usecase, say by passing user provided frames rather than indirectly coming from
+> >> a sensor? Perhaps there is already something for this that I've missed.
+> > 
+> > https://lists.libcamera.org/pipermail/libcamera-devel/2025-December/055627.html
+> >
+> > I expect more work to be needed before we can finalize an API, as I
+> > think different people will have very different ideas of how this should
+> > work.
+> 
+> Ah nice thanks :)
+> 
+> I took a quick skim through and it seems pretty good. When I have some time
+> I will try pull this series to test on our side.
 
-That "| NPCM7XX_PORST" is pretty pointless here since rstval was
-just set to that value.
+What are your use cases ?
 
-> +		} else {
-> +			rstval = 0;
-> +		}
+> >>>>>>>>>> This series is posted as RFC because extending the v4l2-isp interface may
+> >>>>>>>>>> overlap with ongoing work. If similar development already exists, I am
+> >>>>>>>>>> happy to rebase or adapt the series accordingly. If preferred, the series
+> >>>>>>>>>> can also be split into two parts: the v4l2-isp rework and the Neo ISP
+> >>>>>>>>>> driver introduction.
+> >>>>>>>>>>
+> >>>>>>>>>> A few checkpatch warnings in v4l2-ioctl.c remain intentionally to stay
+> >>>>>>>>>> consistent with the existing style in that file.
+> >>>>>>>>>>
+> >>>>>>>>>> Testing was performed on the i.MX95 EVK using the media/next kernel in
+> >>>>>>>>>> standalone M2M mode. End-to-end camera-to-ISP capture has been validated
+> >>>>>>>>>> using the downstream NXP kernel, as some hardware dependencies are not
+> >>>>>>>>>> yet upstreamed.
+> >
+> > [snip]
 
-Another comment needed: This negates NPCM7XX_PORST and otherwise clear
-rstval. The reason is not immediately (or, rather, at all) obvious.
+-- 
+Regards,
 
-> +		regmap_read(gcr_regmap, NPCM7XX_RESSR_OFFSET, &ressrval);
-> +		rstval |= ressrval;
-> +		regmap_write(gcr_regmap, NPCM7XX_RESSR_OFFSET, ressrval);
-> +	}
-
-If the device is not compatible to either chip, retval is just passed
-on and nothing is written to the chip. That warrants another comment.
-
-[ Yes, I see that the driver does not currently support another chip.
-
-> +
-> +	if (rstval & wdt->card_reset)
-> +		wdt->wdd.bootstatus |= WDIOF_CARDRESET;
-> +	if (rstval & wdt->ext1_reset)
-> +		wdt->wdd.bootstatus |= WDIOF_EXTERN1;
-> +	if (rstval & wdt->ext2_reset)
-> +		wdt->wdd.bootstatus |= WDIOF_EXTERN2;
-> +}
-> +
->   static int npcm_wdt_probe(struct platform_device *pdev)
->   {
->   	struct device *dev = &pdev->dev;
-> @@ -208,6 +316,8 @@ static int npcm_wdt_probe(struct platform_device *pdev)
->   	if (irq < 0)
->   		return irq;
->   
-> +	npcm_get_reset_status(wdt, dev);
-> +
->   	wdt->wdd.info = &npcm_wdt_info;
->   	wdt->wdd.ops = &npcm_wdt_ops;
->   	wdt->wdd.min_timeout = 1;
-
+Laurent Pinchart
 
