@@ -1,249 +1,178 @@
-Return-Path: <devicetree+bounces-264346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264347-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AHkiMoINi2l/PQAAu9opvQ
-	(envelope-from <devicetree+bounces-264346-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:50:42 +0100
+	id oHU0M6cNi2lXPQAAu9opvQ
+	(envelope-from <devicetree+bounces-264347-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:51:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26EE8119D1F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:50:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4988F119D4B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 11:51:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CC0C03019181
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:50:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DDA233017FB5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 10:51:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1A1534253B;
-	Tue, 10 Feb 2026 10:50:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cnAV8B+k"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38C89360729;
+	Tue, 10 Feb 2026 10:51:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C1033090FF;
-	Tue, 10 Feb 2026 10:50:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A06B5342C80;
+	Tue, 10 Feb 2026 10:51:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770720639; cv=none; b=ObgYOh2zXdL/OuAAR2j8nDgJge6y+BA2vql98GUoMQAqDk/F3jVapy6cIL6gRVitUmS6Ma5PgTffv8VNIXS9veSQBApxRzSP8V9UIpdpW/aI/uqZQflVbszWmv2wTuUflVxW5dSsqIAp2JCc4o+Pk4jDOdt9tGab9z1Hoj+YSwk=
+	t=1770720673; cv=none; b=fHU9JHV1dcMPDEcBZ/2daVsZFp0qNh/4zwsT3k0QtWY+6ZFtwLRC93TEuSzSNxmblVz8lGKbkIaAx6tXANS4upkU6PJFyqz+oF/z7CridJijWE+cI3HIjlG1LPjsBjCzrQGWVcc1dYnQqKHW+tmpOP7T/YdPd5RRocs8f+zIJqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770720639; c=relaxed/simple;
-	bh=uxHxvgKW0987X8+TXSIjGzFpR495mlThvkYCCyAbpZs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JTuf/IJA/FLz1y6vIDw4alw/NNLhzi1sCEN6Q7ycNLz/cWdQ4oxZL1E4zZC7DByjlJrZ6KstekCs0+9xNaNxeLUqhXATFI89Y0nb4MUk34LwTYcpJ8ocTNspUomJeEq44ScB5QbzZjtsvs8LTPyogCO/rAMEqr/Z9naKZDiV4I0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cnAV8B+k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3708C116C6;
-	Tue, 10 Feb 2026 10:50:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770720639;
-	bh=uxHxvgKW0987X8+TXSIjGzFpR495mlThvkYCCyAbpZs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cnAV8B+kJW1O6M2nfiilVVSvZrEH17pP5zFd+Nz9eeer/CVCzdjEd4KoMb7rWpw6J
-	 jrJMExRjvkGfT+9Ds/8rK9C23gFEfTt/ViZsYDymnMTRZOwPZzZYyRnsXxC9qpkwGC
-	 k9VbuQ20//lSpCHnfvhgmT6MeWjfd/jTidpqnbMrD1ORqzVZRxWBjf63jDwkwiut2+
-	 yUhvoDvyjUpysKmrrGG5ZTC1f+UufVvhEz4AoNCBWEaHtGmOY93yEETuagIkq8K86z
-	 zml2bN51BkaMWKhPk1YIyf4dCSMCSutGIkPPCyFbcovNUeblm03iTeMAYVTuRcX1y8
-	 7rkvk3LXoudsQ==
-Message-ID: <e73d6634-7f31-4dcf-87dd-c8192e7e66c1@kernel.org>
-Date: Tue, 10 Feb 2026 11:50:33 +0100
+	s=arc-20240116; t=1770720673; c=relaxed/simple;
+	bh=mhdYid8XmFcIj9wWiW7/K/jA197wwkjAf5+5sx75Ca4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=JokSeQHoVCKjIH6wd77Y0MacliuMp463Dl4rqejqOx87pdQzDSzi8+7Q+KB4QuWog6SWKcTLL33r3WoiE7d3p+uwkZ45vJLEL1nh0yH1DW6vOJxdxMuE4FynSjq2xq+md1wsDOy2zKqhFMtNxRCatC/SW7H+k/p+Om1TUV4gmR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from edelgard.fodlan.icenowy.me (unknown [112.94.103.253])
+	by APP-01 (Coremail) with SMTP id qwCowABH7mmWDYtphfqdBw--.30927S2;
+	Tue, 10 Feb 2026 18:51:02 +0800 (CST)
+Message-ID: <1f7b645328fb86d1097a80b224c39ca3ed07a4b2.camel@iscas.ac.cn>
+Subject: Re: [PATCH 2/8] dt-bindings: interrupt-controller: add LS7A PCH LPC
+From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+To: Rob Herring <robh@kernel.org>
+Cc: Thomas Gleixner <tglx@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>, Thomas
+ Bogendoerfer <tsbogend@alpha.franken.de>, Huacai Chen
+ <chenhuacai@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-mips@vger.kernel.org
+Date: Tue, 10 Feb 2026 18:51:02 +0800
+In-Reply-To: <20260209234818.GA2119841-robh@kernel.org>
+References: <20260131094547.455916-1-zhengxingda@iscas.ac.cn>
+	 <20260131094547.455916-3-zhengxingda@iscas.ac.cn>
+	 <20260209234818.GA2119841-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/9] dt-bindings: misc: document ASUS Transformers EC
- DockRAM
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Pavel Machek <pavel@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sebastian Reichel <sre@kernel.org>, =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?=
- <mirq-linux@rere.qmqm.pl>, Ion Agorria <ion@agorria.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
- linux-pm@vger.kernel.org
-References: <20260209104407.116426-1-clamor95@gmail.com>
- <20260209104407.116426-2-clamor95@gmail.com>
- <20260210-hidden-swinging-galago-fdcfa3@quoll>
- <CAPVz0n3Pzvzt+LmOH_peCtpx8DP2-GiRv--6-ppQUaa51AXRFw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAPVz0n3Pzvzt+LmOH_peCtpx8DP2-GiRv--6-ppQUaa51AXRFw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qwCowABH7mmWDYtphfqdBw--.30927S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7tr17ArWDJF48JryxCr1ftFb_yoW5Jry3pF
+	WrC3ZxKFW8tr1xCw4Sq3WUGrW5Ar4fAw1DGFsIqw1UCr9xWFy2qrWavr9Yga45Zr4xXFWj
+	vry09a1UuF45JaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvqb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IE
+	w4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMc
+	vjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xKxwCY
+	1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8Jw
+	C20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAF
+	wI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjx
+	v20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2
+	jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0x
+	ZFpf9x07betCcUUUUU=
+X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264346-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,arndb.de,linuxfoundation.org,rere.qmqm.pl,agorria.com,vger.kernel.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,flygoat.com:email,devicetree.org:url];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
-X-Rspamd-Queue-Id: 26EE8119D1F
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	R_DKIM_NA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264347-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: 4988F119D4B
 X-Rspamd-Action: no action
 
-On 10/02/2026 10:42, Svyatoslav Ryhel wrote:
-> вт, 10 лют. 2026 р. о 11:25 Krzysztof Kozlowski <krzk@kernel.org> пише:
->>
->> On Mon, Feb 09, 2026 at 12:43:59PM +0200, Svyatoslav Ryhel wrote:
->>> Documenting an I2C device used in conjunction with the EC on ASUS
->>> Transformers. The main function of DockRAM (the name used by downstream
->>> ASUS sources) is to provide power-related functions, such as battery and
->>> charger communication. The device is exposed as an individual entity
->>> because multiple embedded controllers can utilize the same DockRAM
->>> instance.
->>>
->>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
->>> ---
->>>  .../bindings/misc/asus,dockram.yaml           | 40 +++++++++++++++++++
->>>  1 file changed, 40 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/misc/asus,dockram.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/misc/asus,dockram.yaml b/Documentation/devicetree/bindings/misc/asus,dockram.yaml
->>> new file mode 100644
->>> index 000000000000..0cfde619ba01
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/misc/asus,dockram.yaml
->>
->> Not a misc device. Find appropriate place, e.g. for EC or docking or
->> laptop devices or power-related.
->>
-> 
-> Why not misc? be more specific pls where you want it to be.
+=E5=9C=A8 2026-02-09=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 17:48 -0600=EF=BC=
+=8CRob Herring=E5=86=99=E9=81=93=EF=BC=9A
+> On Sat, Jan 31, 2026 at 05:45:41PM +0800, Icenowy Zheng wrote:
+> > Loongson 7A series PCH contains an LPC controller with an interrupt
+> > controller.
+> >=20
+> > Add the device tree binding for the interrupt controller.
+> >=20
+> > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> > ---
+> > =C2=A0.../loongson,pch-lpc.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 52
+> > +++++++++++++++++++
+> > =C2=A01 file changed, 52 insertions(+)
+> > =C2=A0create mode 100644 Documentation/devicetree/bindings/interrupt-
+> > controller/loongson,pch-lpc.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/interrupt-
+> > controller/loongson,pch-lpc.yaml
+> > b/Documentation/devicetree/bindings/interrupt-
+> > controller/loongson,pch-lpc.yaml
+> > new file mode 100644
+> > index 0000000000000..c00fbf31f47f0
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/interrupt-
+> > controller/loongson,pch-lpc.yaml
+> > @@ -0,0 +1,52 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id:
+> > http://devicetree.org/schemas/interrupt-controller/loongson,pch-lpc.yam=
+l#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Loongson PCH LPC Controller
+> > +
+> > +maintainers:
+> > +=C2=A0 - Jiaxun Yang <jiaxun.yang@flygoat.com>
+> > +
+> > +description:
+> > +=C2=A0 This interrupt controller is found in the Loongson LS7A family
+> > of PCH for
+> > +=C2=A0 accepting interrupts sent by LPC-connected peripherals and
+> > signalling PIC
+> > +=C2=A0 via a single interrupt line when interrupts are available.
+> > +
+> > +properties:
+> > +=C2=A0 compatible:
+> > +=C2=A0=C2=A0=C2=A0 const: loongson,pch-lpc-1.0
+>=20
+> Where does 1.0 come from? We don't do version numbers generally
+> unless=20
+> you define where the versions come from (e.g. Soft IP releases for=20
+> FPGAs). I would have expected "ls7a" in the compatible instead.
 
-Because there is no such device as "misc". Otherwise explain me what
-sort of device is "misc".
+I originally followed the behavior of PCH PIC; however after asking
+Jiaxun offlist, I was noticed about a register on the 7A1000 user
+manual in the PIC that identifies the PIC version number; such version
+number register does not exist for LPC part.
 
-I already wrote where I want it to be placed. You keep bouncing
-questions pointlessly, even when given exact request.
+I will switch to ls7a-lpc or ls7a1000-lpc. Newer compatible strings in
+the 2K series (LoongArch ones) come with the whole model number, I
+don't know whether this is needed for 7A1000 (although it looks like
+that 7A2000 has the same=20
+>=20
+> Rob
+>=20
 
-
-
-> 
->>> @@ -0,0 +1,40 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/misc/asus,dockram.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Asus Transformer EC DockRAM
->>> +
->>> +maintainers:
->>> +  - Svyatoslav Ryhel <clamor95@gmail.com>
->>> +
->>> +description:
->>> +  Dedicated i2c device used to provide power related functions of the
->>> +  embedded controller used in ASUS Transformer device family.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: asus,dockram
->>
->> Way too generic compatible. You are not documenting here all ASUS
->> laptops/devices dockram. For example this implies dockram is also on
->> ASUS Vivobook... or on any other asus device.
->>
-> 
-> Asus were not so generous to provide more specific data, they call
-> this device dockram in their sources.
-
-
-
-> 
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>
->> Device looks weirdly empty. Probably you have it only to instantiate I2C
->> handle, so what you really wanted is i2c-parent. This is not a real
->> device.
->>
-> 
-> WDYM? it is a real physical i2c device located on a i2c bus and probed
-> by i2c driver just fine. Maybe you will deny RTC being a real device
-
-Driver does not matter here.
-
-> like it was done for example for max77663 which now causes a massive
-> issues since it can occupy different i2c addresses?
-
-Then describe what is the device here. So far it looks exactly like
-"ec-dock" for which you already have a binding.
-
-Best regards,
-Krzysztof
 
