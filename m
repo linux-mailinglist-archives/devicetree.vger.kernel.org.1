@@ -1,145 +1,213 @@
-Return-Path: <devicetree+bounces-264250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264251-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YIoQAJndimlIOgAAu9opvQ
-	(envelope-from <devicetree+bounces-264250-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:26:17 +0100
+	id eB9LO8bdimlIOgAAu9opvQ
+	(envelope-from <devicetree+bounces-264251-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:27:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86682117E68
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:26:16 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 486C9117E95
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 08:27:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5DF92303102B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:26:14 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 36A743008D3A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 07:26:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B843333737;
-	Tue, 10 Feb 2026 07:26:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26CE0333440;
+	Tue, 10 Feb 2026 07:26:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="E+HqPabo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dYYMduTo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7662309EFB;
-	Tue, 10 Feb 2026 07:26:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E27332917;
+	Tue, 10 Feb 2026 07:26:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770708371; cv=none; b=uBaWOfBX1U6NWc/ijJr35NfyVRqHdHXpzqbadqP+Jjsh7dhlsoDZATBCVECjGYgKoXN6Psu4zl2smk1Cm2lj/z+kcpjBNVl0eSZeZ5AxkYv6gFveh/Xs3QOlg0TS5MIHNVx5pMHAzMTYcyVpMqoRcw+sQb6KegF6LtvUJEvUxig=
+	t=1770708398; cv=none; b=CUW5/dqyE68YiKQ4UqgHuf8YfkGH3YQTC7EhWmhNVr1jlLnCBWPCJkeSNjNKxiLi2hSfQO3maSqscs0zAFW2y6vGzlFgWiSqMZIb0wT3YbocQvUKBsoj5T3QS8PF26A3OT5uUT/87F6RKrmKM+Vr4RBk9+f0G8zKypAPMBjPEiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770708371; c=relaxed/simple;
-	bh=8ledWZbn+TzX2T22Aa+xwzh+iAFsRkUxzf+EyA9TX7s=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JbUNJ/haEl2fXH20ssL9BoqH4vKt7X5hNilR2w+wj5dFbgFXILmTyWA6blXDWcIg8MJ0FZ8Mfp41wcnzRg7HLufoD6nD22pKkXBclEEMWil0FsiHydWGKAfUoIZnsWfrs5PG3ffSn8B+cQjXcKdcrXcpPC1IrRY6bxehE1fwK3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=E+HqPabo; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1770708361;
-	bh=8ledWZbn+TzX2T22Aa+xwzh+iAFsRkUxzf+EyA9TX7s=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=E+HqPabozX7gbg0tjWTuECfyirjpr0nWgXujSn25Ar2B8oaYpH00TUh9B6IaioJHK
-	 eqU8tsIKfX2npYQkA6VV+LUbeg3jeX5Y2Lp6C3QlDl3gMmxV7cvzCR0up3C42CRskV
-	 gL5Re3fuUEVoMqQhoTsTCvPf9mBuv6DQeL5ijfZL3TgWi4JED1isiv96UgEinTPqia
-	 0vuJioL5O2vOOTjQaUd9Ej0WeZECD8LcpZ0dYoPhUwD2bORMRPCMxY/u+ouZGTzSAT
-	 KCNvYAYKiXaEZf2ASacIaApc7p3K7HOa68CmC+7YlH+XFkdyIJOB7BgjpzaLc8T6Qo
-	 6kclYs2fn75UA==
-Received: from [192.168.68.117] (unknown [180.150.112.60])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 179126024E;
-	Tue, 10 Feb 2026 15:25:59 +0800 (AWST)
-Message-ID: <feedc58438adad98f4b2a74a1499b2afa92a5eae.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 0/4] Add AST2700 INTC0/INTC1 support
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Ryan Chen
- <ryan_chen@aspeedtech.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley	 <joel@jms.id.au>, Paul Walmsley
- <pjw@kernel.org>, Palmer Dabbelt	 <palmer@dabbelt.com>, Albert Ou
- <aou@eecs.berkeley.edu>, Alexandre Ghiti	 <alex@ghiti.fr>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
- "devicetree@vger.kernel.org"	 <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"	
- <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"	
- <linux-aspeed@lists.ozlabs.org>, "linux-riscv@lists.infradead.org"	
- <linux-riscv@lists.infradead.org>, Jeremy Kerr <jk@codeconstruct.com.au>
-Date: Tue, 10 Feb 2026 17:55:58 +1030
-In-Reply-To: <6de719dc84324166ed60bb8ec130cf2c9ef351f5.camel@codeconstruct.com.au>
-References: <20260205-irqchip-v1-0-b0310e06c087@aspeedtech.com>
-		 <20260205-intrepid-vengeful-deer-14e2eb@quoll>
-		 <TY2PPF5CB9A1BE69B07F90DFB245FAB735DF299A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
-		 <d5e45c9f-f3c7-4289-8991-02bd2c5b9587@kernel.org>
-	 <6de719dc84324166ed60bb8ec130cf2c9ef351f5.camel@codeconstruct.com.au>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1770708398; c=relaxed/simple;
+	bh=azYJ70UCkd6ewxDbN2Z1oowj1ERPXJLfCcuKGvjkH78=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=uev2QFQ9ULLFAh4aAuQeeCJKKreF9lgeTo/+NZk6lFPg+jelBQTuqqd75iDee99nUeAhpxzZzEpXv3cYW4VNo1K0Q4LTSUQPveZYJNmcVLEWuPmvAXJGj8xQld9QAClRKAfvWRkIWXZRi4nCO7KGSD5yzLrhu0tH2kOI+fUcFgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dYYMduTo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9F3EAC116C6;
+	Tue, 10 Feb 2026 07:26:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770708397;
+	bh=azYJ70UCkd6ewxDbN2Z1oowj1ERPXJLfCcuKGvjkH78=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=dYYMduToBIZjok9xs+7XkCFXPWeL336JksfVqm6ar/j80qVsRSXolPJabdNZQVlK9
+	 h7neodVG9XKhsqZuX+f/A7toUtJZnxajPriDNRt40JnkLeBSSz2cgkv9rY6+I2T1id
+	 qUrPeYaxImVwjlehXxnCMnWvk9HI3Sf01C0NSj8IfVEb0fKhoQU/4ltxDnscD8UfAH
+	 wlGkD17noi40V5QUQjFR1hjJRfloOXcNTcX847oBG0SsA4Wid7Pe13iIBrThkaaDgL
+	 ifWmjkGinNJ0vuVvlwNitYlBMFLskbPLb4t06rQfvojeEx/ttsPTJJK/Ocvd/2W8X+
+	 gGZbdIuuja5Qg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D338EA3F13;
+	Tue, 10 Feb 2026 07:26:37 +0000 (UTC)
+From: Carl Lee via B4 Relay <devnull+carl.lee.amd.com@kernel.org>
+Date: Tue, 10 Feb 2026 15:26:34 +0800
+Subject: [PATCH v3] hwmon: pmbus: mpq8785: fix VOUT_MODE mismatch during
+ identification
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260210-dt-bindings-hwmon-pmbus-mpq8785-add-mpq8786-support-v3-1-84636ccfe76f@amd.com>
+X-B4-Tracking: v=1; b=H4sIAKndimkC/6XOvQ6CMBDA8VchnT3TlkKLk+9hHIAW6NAPW0AN4
+ d0txERn3e5/w/1uQVEFrSI6ZQsKatZRO5siP2SoHWrbK9AyNaKYlpjiHOQIjbZS2z7CcDfOgjf
+ NFMH4m+CigFrK91xCnLx3YYSOCcwqJRghCqXLPqhOP3b1ck096Di68NyfmMm2/c+bCRAoeYMZU
+ bTjJT3XRh5bZ9CmzfRbKH4TKGDIOWOtrBoqCvwR1nV9AWHtPUpWAQAA
+X-Change-ID: 20260203-dt-bindings-hwmon-pmbus-mpq8785-add-mpq8786-support-f48049e8411e
+To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Charles Hsu <ythsu0511@gmail.com>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, carl.lee@amd.com, peter.shen@amd.com, 
+ colin.huang2@amd.com
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770708396; l=3189;
+ i=carl.lee@amd.com; s=20260203; h=from:subject:message-id;
+ bh=DHv3qYgkJTh/6E+3LOp8GqDIxJ4CeCy84LAPdnBLZ8U=;
+ b=hpw4xdcGTjEjU7TfOl/vcBy9+4SWcu2Ruqa/7BsCC+L7tQn6I+0w9PU3nNE2e0Z+4LXmxb/tO
+ cM7SjU1aW0gBZD5leIe84KH1I87IlQVYkYBFyeg9MuRsv+fid64Qjtw
+X-Developer-Key: i=carl.lee@amd.com; a=ed25519;
+ pk=pyq7QaQvoxMg806KVkRwpCbiah+7ncWr4MBpK1AEyjA=
+X-Endpoint-Received: by B4 Relay for carl.lee@amd.com/20260203 with
+ auth_id=623
+X-Original-From: Carl Lee <carl.lee@amd.com>
+Reply-To: carl.lee@amd.com
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
-	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264250-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-264251-lists,devicetree=lfdr.de,carl.lee.amd.com];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_TO(0.00)[roeck-us.net,kernel.org,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 86682117E68
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[carl.lee@amd.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,amd.com:mid,amd.com:email,amd.com:replyto]
+X-Rspamd-Queue-Id: 486C9117E95
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
+From: Carl Lee <carl.lee@amd.com>
 
-On Fri, 2026-02-06 at 17:49 +1030, Andrew Jeffery wrote:
-> Is it acceptable if we take the following actions:
->=20
-> =C2=A0=C2=A0 1. Do some b4 magic to transplant this series back onto [1]
-> =C2=A0=C2=A0 2. Send a follow up revision with a link to this discussion =
-in the
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cover letter
+When MPQ8785 reports VOUT_MODE as VID mode, mpq8785_identify()
+configures the driver for direct mode. The subsequent
+pmbus_identify_common() check then fails due to a mismatch
+between the reported mode and the configured mode, causing
+device initialization to fail.
 
-Following up my own post, I don't think we should attempt such
-grafting. [1] references v4. v4 was superseded by v6 at [2], which was
-merged.
+Override the reported VOUT_MODE to direct mode to keep the
+driver configuration consistent with the reported mode and
+allow successful device initialization.
 
-Because of that merge, separating this proposal into a new series seems
-warranted, but has the downside of making it difficult to compare to v4
-of that earlier series.
+This does not change how voltages are interpreted, but avoids
+a false identification failure caused by mismatched mode
+handling.
 
-I have gone through each of your feedback items from the earlier series
-to consider recurring issues. Defining a new binding is unfortunate but
-its addition side-steps an ABI break - perhaps rather than remove the
-existing binding we can deprecate it, and keep the associated driver
-(assuming this isn't overkill, given there are no in-tree users).
-Otherwise it looks to me like the proposal has concerns covered, but
-let me know if not.
+Signed-off-by: Carl Lee <carl.lee@amd.com>
+---
+This series fixes a device identification failure on MPQ8785 caused by
+a mismatch between the reported VOUT_MODE and the driver-configured mode.
 
-Andrew
+When the chip reports VOUT_MODE as VID, the driver already treats it as
+direct mode, but the mismatch causes the common identification code to
+fail. The patch ensures the reported mode is consistent with the driver
+configuration so the device can initialize successfully.
+---
+Changes in v3:
+- Drop patches 1/3 and 2/3 from the series.
+- Pass through non-VID modes unchanged
+- Add clarify code comments
+- Link to v2: https://lore.kernel.org/r/20260205-dt-bindings-hwmon-pmbus-mpq8785-add-mpq8786-support-v2-0-3744cd9b2850@amd.com
 
-[1]: https://lore.kernel.org/all/1a2ca78746e00c2ec4bfc2953a897c48376ed36f.c=
-amel@codeconstruct.com.au/
-[2]: https://lore.kernel.org/all/20251030060155.2342604-1-ryan_chen@aspeedt=
-ech.com/
+Changes in v2:
+- Combine DT binding and driver changes into a single series
+- Fix VOUT reporting by forcing direct mode for VID VOUT
+- Link to v1: https://lore.kernel.org/r/20260203-dt-bindings-hwmon-pmbus-mpq8785-add-mpq8786-support-v1-1-67b041e2f762@amd.com
+---
+ drivers/hwmon/pmbus/mpq8785.c | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+diff --git a/drivers/hwmon/pmbus/mpq8785.c b/drivers/hwmon/pmbus/mpq8785.c
+index 1f56aaf4dde8..87bd039c77b9 100644
+--- a/drivers/hwmon/pmbus/mpq8785.c
++++ b/drivers/hwmon/pmbus/mpq8785.c
+@@ -47,6 +47,33 @@ static int mpq8785_identify(struct i2c_client *client,
+ 	return 0;
+ };
+ 
++static int mpq8785_read_byte_data(struct i2c_client *client, int page, int reg)
++{
++	int ret;
++
++	switch (reg) {
++	case PMBUS_VOUT_MODE:
++		ret = pmbus_read_byte_data(client, page, reg);
++		if (ret < 0)
++			return ret;
++
++		if ((ret >> 5) == 1) {
++			/*
++			 * The MPQ8785 chip reports VOUT_MODE as VID mode, but the driver
++			 * treats VID as direct mode. Without this, identification would fail
++			 * due to mode mismatch.
++			 * This override ensures the reported mode matches the driver
++			 * configuration, allowing successful initialization.
++			 */
++			return PB_VOUT_MODE_DIRECT;
++		}
++
++		return ret;
++	default:
++		return -ENODATA;
++	}
++}
++
+ static int mpm82504_read_word_data(struct i2c_client *client, int page,
+ 				   int phase, int reg)
+ {
+@@ -129,6 +156,7 @@ static int mpq8785_probe(struct i2c_client *client)
+ 		break;
+ 	case mpq8785:
+ 		info->identify = mpq8785_identify;
++		info->read_byte_data = mpq8785_read_byte_data;
+ 		break;
+ 	default:
+ 		return -ENODEV;
+
+---
+base-commit: 4c87cdd0328495759f6e9f9f4e1e53ef8032a76f
+change-id: 20260203-dt-bindings-hwmon-pmbus-mpq8785-add-mpq8786-support-f48049e8411e
+
+Best regards,
+-- 
+Carl Lee <carl.lee@amd.com>
+
+
 
