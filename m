@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-264427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264432-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CEOBH4U4i2neRgAAu9opvQ
-	(envelope-from <devicetree+bounces-264427-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:54:13 +0100
+	id yMwlO504i2kKRwAAu9opvQ
+	(envelope-from <devicetree+bounces-264432-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:54:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08E5611B7F9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:54:12 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67ED311B82E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 14:54:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 57A243077102
-	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:52:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 231E4308035B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Feb 2026 13:52:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B15636A022;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA78B3624D9;
 	Tue, 10 Feb 2026 13:51:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13E1A366DDE
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06CE9366DCE
 	for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 13:51:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770731484; cv=none; b=G8sD7ejKQXf0OWJBK4VU+AGSuJz7o4LiObuqDnOJWegWk3OBs7sPYSYrOwDqW0vTN4WTMi+6L4uq9M6YyDOo2UmPZ6EHERUedaxuqAEb/DkzpaGBmMnbRP2jAZac2sOOWjpkLQZoAyeL7fVHWZFN6dZnRbwEgqx32sT9Mk+ergU=
+	t=1770731484; cv=none; b=twWIUUmlJw+GOseQIugSsiJWzu33YoO/wB/19A5IXc5KpdFL4nDiW6KBY3bJJIxjNcFM2TXRZz6CTH3DnSzUHo/pqm1uIDvDjKQOoIej1I2aO+1znQ78ERsMyvF6RyyATw3ajE2N1ueJPj0WtZwqR9R5cjR7sqNBwPmCcUgQMnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1770731484; c=relaxed/simple;
-	bh=MxMljzlANYj2yqu4tNqaHx4w1IsklpPRaDv0QCXwfkU=;
+	bh=thQFYrehlflnzoIUmGK6mMLizKsqQA7Qp/k5KFQIaMg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=iIPKmcLh9AhTIPdOyKIWJhOOGH96NZPGEq60qndm1dmr09N9sgtc3J5QgCcoDBxIPdroZnxyQql5kEcpzSBeUNA7qTISRMlgyosK6iUBl7kgyoXxk3TGvLUbmbWByaO3Z5h7l2ERV3EveCiKyqBKYLEYTEgjEc2bUC8zGW0fBS8=
+	 MIME-Version; b=PKofYkBeVOiOe4aa2jQzo+mnAm8jgrymludD5xl7kNPO80MTpFRkd1uB3/Fe0uM+DBM6dQMKws0D/HFWe5fmNTus6Jr6XYd9hgDvIP5JwR83UecdSglfIWsJS0rzSPi1jqr/Q77ucYSWcL39sfawsGceBbxbfcVDXMih5JrAuQQ=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -36,24 +36,23 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vpo93-0005dP-I2; Tue, 10 Feb 2026 14:51:13 +0100
+	id 1vpo93-0005dN-HY; Tue, 10 Feb 2026 14:51:13 +0100
 Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vpo92-0005dB-0s;
+	id 1vpo92-0005dD-0m;
 	Tue, 10 Feb 2026 14:51:12 +0100
 Received: from ore by dude04 with local (Exim 4.98.2)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vpo92-00000008VOM-3f0W;
+	id 1vpo92-00000008VOX-3kjo;
 	Tue, 10 Feb 2026 14:51:12 +0100
 From: Oleksij Rempel <o.rempel@pengutronix.de>
 To: Jonathan Cameron <jic23@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Cc: David Jander <david@protonic.nl>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
 	Andy Shevchenko <andriy.shevchenko@intel.com>,
 	kernel@pengutronix.de,
 	linux-kernel@vger.kernel.org,
@@ -61,10 +60,11 @@ Cc: David Jander <david@protonic.nl>,
 	devicetree@vger.kernel.org,
 	Andy Shevchenko <andy@kernel.org>,
 	David Lechner <dlechner@baylibre.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-Subject: [PATCH v6 08/12] iio: dac: ds4424: add DS4402/DS4404 device IDs
-Date: Tue, 10 Feb 2026 14:51:06 +0100
-Message-ID: <20260210135110.2027073-9-o.rempel@pengutronix.de>
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	David Jander <david@protonic.nl>
+Subject: [PATCH v6 09/12] iio: dac: ds4424: support per-variant output range limits
+Date: Tue, 10 Feb 2026 14:51:07 +0100
+Message-ID: <20260210135110.2027073-10-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260210135110.2027073-1-o.rempel@pengutronix.de>
 References: <20260210135110.2027073-1-o.rempel@pengutronix.de>
@@ -85,7 +85,7 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -95,83 +95,141 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-264427-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264432-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	R_DKIM_NA(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email,protonic.nl:email]
-X-Rspamd-Queue-Id: 08E5611B7F9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email]
+X-Rspamd-Queue-Id: 67ED311B82E
 X-Rspamd-Action: no action
 
-From: David Jander <david@protonic.nl>
+The DS4402/DS4404 variants operate with a 5-bit resolution (31 steps),
+whereas the DS4422/DS4424 support 7-bit (127 steps).
 
-Add I2C/OF IDs for DS4402 and DS4404 and set the correct channel count.
-Follow-up changes add per-variant scaling based on external Rfs.
+Previously, the driver enforced a hardcoded 7-bit mask (DS4424_DAC_MASK)
+for all variants. This allowed users to write values exceeding the 5-bit
+range to DS4402/DS4404 devices, resulting in silent truncation or
+undefined behavior.
 
-Co-developed-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Add a `result_mask` field to the chip_info structure to define the valid
+data range for each variant. Use this mask to:
+1. Correctly mask register values in read_raw().
+2. Return -EINVAL in write_raw() if the input value exceeds the
+   variant's capabilities.
+
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-Signed-off-by: David Jander <david@protonic.nl>
 Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 ---
 changes v6:
-- assign predictable name to indio_dev->name.
+- no changes
 changes v5:
-- no changes
+- add Reviewed-by: Andy ..
 changes v4:
-- no changes
-changes v3:
-- Reset author to David Jander and added Co-developed-by tag for
-  Oleksij Rempel to clarify roles
-changes v2:
-- No changes.
+- New patch
+- Split from the original patch (v3) to isolate 5-bit vs 7-bit handling.
 ---
- drivers/iio/dac/ds4424.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ drivers/iio/dac/ds4424.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/iio/dac/ds4424.c b/drivers/iio/dac/ds4424.c
-index d3bf0dc02b1a..20031639e753 100644
+index 20031639e753..3560b151192b 100644
 --- a/drivers/iio/dac/ds4424.c
 +++ b/drivers/iio/dac/ds4424.c
-@@ -40,6 +40,16 @@ struct ds4424_chip_info {
+@@ -23,6 +23,7 @@
+ #define DS4424_MAX_DAC_CHANNELS		4
+ 
+ #define DS4424_DAC_MASK			GENMASK(6, 0)
++#define DS4404_DAC_MASK			GENMASK(4, 0)
+ #define DS4424_DAC_SOURCE		BIT(7)
+ 
+ #define DS4424_DAC_ADDR(chan)   ((chan) + 0xf8)
+@@ -37,26 +38,31 @@
+ 
+ struct ds4424_chip_info {
+ 	const char *name;
++	u8 result_mask;
  	u8 num_channels;
  };
  
-+static const struct ds4424_chip_info ds4402_info = {
-+	.name = "ds4402",
-+	.num_channels = DS4422_MAX_DAC_CHANNELS,
-+};
-+
-+static const struct ds4424_chip_info ds4404_info = {
-+	.name = "ds4404",
-+	.num_channels = DS4424_MAX_DAC_CHANNELS,
-+};
-+
+ static const struct ds4424_chip_info ds4402_info = {
+ 	.name = "ds4402",
++	.result_mask = DS4404_DAC_MASK,
+ 	.num_channels = DS4422_MAX_DAC_CHANNELS,
+ };
+ 
+ static const struct ds4424_chip_info ds4404_info = {
+ 	.name = "ds4404",
++	.result_mask = DS4404_DAC_MASK,
+ 	.num_channels = DS4424_MAX_DAC_CHANNELS,
+ };
+ 
  static const struct ds4424_chip_info ds4422_info = {
  	.name = "ds4422",
++	.result_mask = DS4424_DAC_MASK,
  	.num_channels = DS4422_MAX_DAC_CHANNELS,
-@@ -286,6 +296,8 @@ static void ds4424_remove(struct i2c_client *client)
- }
+ };
  
- static const struct i2c_device_id ds4424_id[] = {
-+	{ "ds4402", (kernel_ulong_t)&ds4402_info },
-+	{ "ds4404", (kernel_ulong_t)&ds4404_info },
- 	{ "ds4422", (kernel_ulong_t)&ds4422_info },
- 	{ "ds4424", (kernel_ulong_t)&ds4424_info },
- 	{ }
-@@ -294,6 +306,8 @@ static const struct i2c_device_id ds4424_id[] = {
- MODULE_DEVICE_TABLE(i2c, ds4424_id);
+ static const struct ds4424_chip_info ds4424_info = {
+ 	.name = "ds4424",
++	.result_mask = DS4424_DAC_MASK,
+ 	.num_channels = DS4424_MAX_DAC_CHANNELS,
+ };
  
- static const struct of_device_id ds4424_of_match[] = {
-+	{ .compatible = "maxim,ds4402", .data = &ds4402_info },
-+	{ .compatible = "maxim,ds4404", .data = &ds4404_info },
- 	{ .compatible = "maxim,ds4422", .data = &ds4422_info },
- 	{ .compatible = "maxim,ds4424", .data = &ds4424_info },
- 	{ }
+@@ -66,6 +72,7 @@ struct ds4424_data {
+ 	uint8_t save[DS4424_MAX_DAC_CHANNELS];
+ 	struct regulator *vcc_reg;
+ 	uint8_t raw[DS4424_MAX_DAC_CHANNELS];
++	const struct ds4424_chip_info *chip_info;
+ };
+ 
+ static const struct iio_chan_spec ds4424_channels[] = {
+@@ -116,6 +123,7 @@ static int ds4424_read_raw(struct iio_dev *indio_dev,
+ 			   struct iio_chan_spec const *chan,
+ 			   int *val, int *val2, long mask)
+ {
++	struct ds4424_data *data = iio_priv(indio_dev);
+ 	int ret, regval;
+ 
+ 	switch (mask) {
+@@ -128,7 +136,7 @@ static int ds4424_read_raw(struct iio_dev *indio_dev,
+ 			return ret;
+ 		}
+ 
+-		*val = regval & DS4424_DAC_MASK;
++		*val = regval & data->chip_info->result_mask;
+ 		if (!(regval & DS4424_DAC_SOURCE))
+ 			*val = -*val;
+ 
+@@ -143,6 +151,7 @@ static int ds4424_write_raw(struct iio_dev *indio_dev,
+ 			     struct iio_chan_spec const *chan,
+ 			     int val, int val2, long mask)
+ {
++	struct ds4424_data *data = iio_priv(indio_dev);
+ 	unsigned int abs_val;
+ 
+ 	if (val2 != 0)
+@@ -151,7 +160,7 @@ static int ds4424_write_raw(struct iio_dev *indio_dev,
+ 	switch (mask) {
+ 	case IIO_CHAN_INFO_RAW:
+ 		abs_val = abs(val);
+-		if (abs_val > DS4424_DAC_MASK)
++		if (abs_val > data->chip_info->result_mask)
+ 			return -EINVAL;
+ 
+ 		/*
+@@ -242,6 +251,7 @@ static int ds4424_probe(struct i2c_client *client)
+ 	i2c_set_clientdata(client, indio_dev);
+ 	data->client = client;
+ 	indio_dev->name = chip_info->name;
++	data->chip_info = chip_info;
+ 
+ 	data->vcc_reg = devm_regulator_get(&client->dev, "vcc");
+ 	if (IS_ERR(data->vcc_reg))
 -- 
 2.47.3
 
