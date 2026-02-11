@@ -1,74 +1,98 @@
-Return-Path: <devicetree+bounces-264656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264657-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +FgiADw9jGlyjwAAu9opvQ
-	(envelope-from <devicetree+bounces-264656-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:26:36 +0100
+	id YCZmLMs9jGlyjwAAu9opvQ
+	(envelope-from <devicetree+bounces-264657-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:28:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5616E12236D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:26:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6096C1223B6
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:28:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3A5403044A4F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 08:26:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D645F3016516
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 08:28:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EAB8350D75;
-	Wed, 11 Feb 2026 08:26:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB076350D6B;
+	Wed, 11 Feb 2026 08:28:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cg/9omM/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F3CD189F20
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 08:26:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770798373; cv=none; b=frAoDNte2pUy59XPSQDjW9hGyWO2ZO2SVD9ZPYPRXbZFf3jKpp038hixz7zvMwvdhsv61h2kZ2pHMRF+NvNTqMEdOTSy40JDcwXR5Phu3mvxX0FK/a9mWchOmyix+iVAV3nSL7j005sTzxTWJoHvOEp34S9yCX8dRc+h0Mu0Q60=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770798373; c=relaxed/simple;
-	bh=r9Wla/KAGSmrKoL/4XgQdP4TYp4ywC1zm3v7/o7W7fE=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698573502B5
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 08:28:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.217.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770798536; cv=pass; b=HB2JZawLtJ1L34XyG5gKziecjwl2gCIDH+MIBA6jqiOnCcpEIDdX6UEz6hg61Dq/jCar1/T59d7tfq57ekfONV2r06FvopnKaWk1ovEXMRf/cBkU+Ot0wflmEtVu8lVYVSEbJEF1cUwnjPdBZTzDF5kCWDS2ZkrjsXcOz3EnoUI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770798536; c=relaxed/simple;
+	bh=Kg6moQXk9ZlzdUMp6S2MKmxwSba5KfxOcZPdAHunSgg=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E/yvPcP1tPMNz8vNY/dhl4PXN2y1p9I3FknALZnXCq/iOTzas/E32IDerYuLr61bYlEkCGcfKw6ExCHb8M1aVt6q5sBIjyG8D0w0jhewo+fzElb3ML163D2uBbga8EJTANyTH99foIgvlVHkYbArYAtdyBt4w9nqlz603fls0CQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	 To:Cc:Content-Type; b=U/aRiz3vtD5hmDM99/kQoJP95rw+DdTiFp6pHkPx2tZs97ZdY4/dfu6/y+lMGKv0RAE54+MZeAoxvuwjcsDEz4E3jCuzlflBlswZwo0boUxsjjr+plYF82t2FWc+yQPNdmUEZQn8vnQCwJaXz8rknU4S+FD4D61zqaW5X+1mRms=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cg/9omM/; arc=pass smtp.client-ip=209.85.217.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-948c1171392so1133705241.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 00:26:10 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770798369; x=1771403169;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-5fd9c2b2858so183665137.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 00:28:55 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770798534; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UL+UWIoYUfyyU5lUAYIB4k/S8n2Om8ZoiAebAWjnyDl9DVz3o6hifeMA3g2kWRA5rX
+         Yd3VyJrVpTJ6kOrCtanMWFVHkK2P0J3GJ/iGn6cL34/PI3k6TOuWj8CkERDbLUIFcFa2
+         Fkby8iagUoE+ayuNOpA2fydZGoJvW1dJ8W3vK4JdbV5FzP+r8lFjj2XnU/tT4y/ZyM2T
+         +etqIYR3Nrv/nEMLzNnphboniggdOF9H3di1QJZa+rSbWQ022j7enAleoyfDeJVksmdU
+         0TiikGciV386j+r/EipRbUhKJRMpyuhKRroXJr7/2TyUB0lOIoNqsKRVUy3vVNyTH9lo
+         Su6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Kg6moQXk9ZlzdUMp6S2MKmxwSba5KfxOcZPdAHunSgg=;
+        fh=+EWwJJmljKjP39lhzJjEZO69TFcUp/belRy6lSnibEI=;
+        b=Piih1E8/5jXyIundn1eq9ywJ30Qng0YDYXxbV0JZ4sGV2dKRHnU+xenX8D9HcE7nCM
+         npSMEsY+PMBhISvvFTV5799s+zVlxPB6TKUwIGqOUrEOH5lVHzNUs1/ZxFNWNrr5Qhcq
+         4mD6WvxhKDMXhxbk4WDR1frXqHqHXF8+pR05m6ulWWaWn9371B6UyxNUuWE/hKS0sR17
+         ZnTv4h7PctUE0HYyvWo9MTbapL9Clso1qMoHd5yBchsAVrhYFJ40gJ53Bap3+JecJeov
+         cfH5mUZLFDt3Npi2yIoD+OlY/x2f8/7hT3LRWK24bKj0/cO/VWl5K7pvZ/cVwZ94TW8z
+         00LA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770798534; x=1771403334; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MUtq8RehO2YiCwI9u9SSNEZ4UqlgXWw6ZYam6FQhea8=;
-        b=p3Q3xzOHGmCHbmtDw6GAt7H65yhxVVtBbttf4t8Ag6XfN+dMEM5sadzWkPs6SI2NOn
-         8e1lkGkz+3Ouq8Y6RrU9czmq+1TqBbMoFAdFAuyXqd/tgA6SoVSu0vZMfI5rZ3sbTEbx
-         Lkit5CFZ4Eg/1JDcG+4EodfCigxA6DwUaAL/7fTmLg7uh1B6hwREoLMvLdPfAyQ5CD47
-         0iSVNVQE70cUmxZPqhQMLeOiOCYQfw8vJmDiz4mfB1n7IRm+jUHMQ+6WXS9FTXI88F7o
-         rnwKGS7UsFsz7LBT4B+FBpWmVUfHbevk83So9ICQLUH00NErrWrgz0STKlD5h542rf8n
-         oeBg==
-X-Forwarded-Encrypted: i=1; AJvYcCWTNN+UN4TV3ges+sDK7V5Td2mPvCALn8ECgW66cdgpazunFXa90ME7A1PIRZ1FEuS6Fmcf6LJLOI7l@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzkxk3yowEAH+4lw+g3o9OvtdW6iQBY4Y7N3NPnBrAHJ8adW0iI
-	36X2J/0mxUAH1vToyVt5FCIbjLaX3H8B69Vy4r9L+GZGtzTUqGOs0TAafTzi47SCQDA=
-X-Gm-Gg: AZuq6aLBt0XfFasvIptEc8O/xs5OA9vlva0MCUcs9d1VVrgVXIHxezPGnV58XSTHrjp
-	oHyQyrq/ZEg/rcJBBCRm4sqWvrYCY5/yZUq1er6UtYgmMhko3XOkd9+iX5cUggBzSdeJi0CVlZb
-	bFXf1SKNWAGQy2ZnDoHgb3F92TigjCoF5gI6MOEHlbERz/ryuGuXZEOfVz3/axsHymqbb0J5Lgf
-	HgHjCdsHBM6uOcwN8Q+j7eADZ4TrDLVmfideAU+zkgg2vvLS8NAz4NRI91olT3qrELS7YwhaMob
-	YP7Refupsy4cKqnS2VLsveAMVpmxlQkcWTy8ndlGfRpsiunnil6Y0DLmL/CPvO2WY8/iiD25uHZ
-	1SsG17ZpuenD12MShjqPXOCbo6trGaC1D/Imq9Kf2QO7uJEwcUsYnZwi3qRKGKwo9pLhcwjXzBS
-	b8xvUWef3Fi5SwMEBdhczEp0HwMTasdr12BDXu/l0795t8SHFrLbkJ8MQJqFLY
-X-Received: by 2002:a05:6102:508e:b0:5f5:35bd:6fb3 with SMTP id ada2fe7eead31-5fde417928amr455875137.5.1770798369210;
-        Wed, 11 Feb 2026 00:26:09 -0800 (PST)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5fde8a845ddsm400945137.10.2026.02.11.00.26.08
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Feb 2026 00:26:08 -0800 (PST)
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-948c1171392so1133702241.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 00:26:08 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV6zULCQOgeEPKc8AMxde/iUS2JfLecyjmcctMBHfXpU65wmHwj7s17OdRXrTtQ33+yab/Vfrqry0kl@vger.kernel.org
-X-Received: by 2002:a05:6102:418c:b0:5f5:3ffe:58a1 with SMTP id
- ada2fe7eead31-5fde4453cfcmr443849137.42.1770798367745; Wed, 11 Feb 2026
- 00:26:07 -0800 (PST)
+        bh=Kg6moQXk9ZlzdUMp6S2MKmxwSba5KfxOcZPdAHunSgg=;
+        b=Cg/9omM/8lqlAR6QTtKU7nKpXD8IOsgEuNNI8hr6wYXIQnlAtggbH/2yF/Me4lczHP
+         HjXfIdHwqms4owfmzMXUuiI7ZV6FG8+/QbvofOjXMO3xWcthwquJ9KGnCvMGJn8YxGOd
+         HDp1R0EDfS48dYpUgxZgs3jhtV1pn6P8lhDKJm7O5OBgsmefwOnK9JOlJRi3cODMgTde
+         KO5ln8DKiJ6iKPhOyiACNorAWq3BvRuKJSwtgrLgGGdFWholsNQ5XDIpTAOvlc6CD2k+
+         vmmNp2+UOPUh+6NHJPdhCneXBMb3xvL/8nEf+8UcHK0eLaufK3ZY4BgxYrWX5AzDmG9e
+         HBWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770798534; x=1771403334;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Kg6moQXk9ZlzdUMp6S2MKmxwSba5KfxOcZPdAHunSgg=;
+        b=nvDt1mzXs29LqK0RZpQea5WBr2zDITXFveCbpLAKK/BXS5ubxiRVT5BMTuQ7AOhCtl
+         qaEqv6n0v56H/xfyg5yF/0picaSitWfR4l6IrncleGGyeHycNoVb+WACAGErNDQjWhc1
+         LtEemsb4g+NqEYMep75F2Q9DdR41PkZ5eFR/K79/g2ZqRaDisVM26Dgh1vhGk1+TuKrb
+         U0gIUEMywNGMoCe+XxMHGmqIo/rlCYRUBfr3QDK3eJWVY2HE8ZwpxVwRKq3FRcqsBjAq
+         q7wV0EE15ofgc3387gc8+Y8gOFVKKMrGpd9T8o8RIEMcVLYeuWSSDdDEOJleGPG0/X8/
+         FcBA==
+X-Forwarded-Encrypted: i=1; AJvYcCXR2bELmsOXQff+7+SqO8b5OO1txT9sa8TdMMxsDim67FI5wUTnMd7KsT1mD1XM7wwQf4BtBiXkiNjc@vger.kernel.org
+X-Gm-Message-State: AOJu0YzV1lWZeft92ivEvBPNOnm7RAGzEiP8sbDH/xJ9bRNV2G25RBFw
+	1bjZqcuMOZU12IehTc/NnoaRJAqZzyYuPpEnsoi8VbbJ2qsWH9lwbqn5Dc4hqVX0217raocJ7iU
+	9mCmru/583tvr173Ja1y0yiqQBGzYtqwuCCzS
+X-Gm-Gg: AZuq6aIyUZwOaWwrxlIpViuWKZmazj6bK1/2sUUZ5QEPsVHy1PRDIuvyZBhBoe1ArGg
+	P3bmlUfzlzTmv52dRbdxd4R4v87/G80/JseRjgkpjlKDgeJGU9yZIbHqV5sfVJWplxryl/lKOMI
+	E1QoiXR0jTDBW/jJwU+IRxPqKWEcAbCAxun5BN+w70P+qNumxQcmE2SMmSlgMWQJXPc8ExdyJik
+	nc2iRD/buP8iG1xoYR+CX6NYjWNzOQ8e+uYeYm/Q9p37cT1QIOsEWgIkBCkUUDwPCxbIMSy2p88
+	7Wsb89uIl1FR9AnTC5ZXjAekKhimZk96tnFV5sYMmAe7uakCYzRvaslU9L0oKjy6eZpl
+X-Received: by 2002:a05:6102:2ad5:b0:5ee:9f76:1ab with SMTP id
+ ada2fe7eead31-5fde417367fmr471702137.5.1770798534275; Wed, 11 Feb 2026
+ 00:28:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,115 +100,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
-In-Reply-To: <20260211081355.3028947-1-james.hilliard1@gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 11 Feb 2026 09:25:56 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXWAx1Kfb84bhp0c8Gya5yaQjtYOnVFqJzyc4Wjc_KtqA@mail.gmail.com>
-X-Gm-Features: AZwV_Qgck8jsh11uaU1QsTZP3lb4ThuWhGkv_csuiy-E1gDkipfBoAU_AtkEcLU
-Message-ID: <CAMuHMdXWAx1Kfb84bhp0c8Gya5yaQjtYOnVFqJzyc4Wjc_KtqA@mail.gmail.com>
+ <338e6575-ec44-4179-94af-9086a7ca79ac@kernel.org> <92359c6d-06ac-4f8d-baa5-6fa45a536455@kernel.org>
+In-Reply-To: <92359c6d-06ac-4f8d-baa5-6fa45a536455@kernel.org>
+From: James Hilliard <james.hilliard1@gmail.com>
+Date: Wed, 11 Feb 2026 01:28:44 -0700
+X-Gm-Features: AZwV_QjfXIRkNqLm-Dp3Zh9PYyfFaTDskzThQSZuWG7pN9NHmqot008KowqL37k
+Message-ID: <CADvTj4q74H__JZftOiXkdsY3+E_Xmcx6Y6i70RQDJ0K09=XOHQ@mail.gmail.com>
 Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
-To: James Hilliard <james.hilliard1@gmail.com>
-Cc: linux-gpio@vger.kernel.org, Linus Walleij <linusw@kernel.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-gpio@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Alexander Stein <linux@ew.tq-group.com>, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.46 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264656-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264657-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DMARC_NA(0.00)[linux-m68k.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,mail.gmail.com:mid,tq-group.com:email]
-X-Rspamd-Queue-Id: 5616E12236D
+	FROM_NEQ_ENVFROM(0.00)[jameshilliard1@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6096C1223B6
 X-Rspamd-Action: no action
 
-Hi James,
-
-On Wed, 11 Feb 2026 at 09:14, James Hilliard <james.hilliard1@gmail.com> wrote:
-> Document the gpio-aggregator virtual GPIO controller with a dedicated
-> schema and compatible string.
+On Wed, Feb 11, 2026 at 1:19=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
 >
-> Also extend the GPIO AGGREGATOR MAINTAINERS entry to cover the new
-> binding file.
+> On 11/02/2026 09:17, Krzysztof Kozlowski wrote:
+> > On 11/02/2026 09:13, James Hilliard wrote:
+> >> Document the gpio-aggregator virtual GPIO controller with a dedicated
+> >> schema and compatible string.
+> >>
+> >> Also extend the GPIO AGGREGATOR MAINTAINERS entry to cover the new
+> >> binding file.
+> >
+> > <form letter>
+> > This is a friendly reminder during the review process.
+> >
+> > It seems my or other reviewer's previous comments were not fully
+> > addressed. Maybe the feedback got lost between the quotes, maybe you
+> > just forgot to apply it. Please go back to the previous discussion and
+> > either implement all requested changes or keep discussing them.
+> >
+> > Thank you.
+> > </form letter>
+> >
 >
-> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+> First thing which was missing (I did not even check the rest in such
+> case): missing rationale for this patch, missing hardware description.
 
-Thanks for your patch!
+I added some more details to the commit message, this is a
+virtual gpio driver though so AFAIU it's not hardware specific.
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-aggregator.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/gpio-aggregator.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GPIO aggregator controller
-> +
-> +maintainers:
-> +  - Alexander Stein <linux@ew.tq-group.com>
-> +
-> +description:
-> +  GPIO aggregator forwards selected GPIO lines from one or more GPIO
-> +  controllers and exposes them as a virtual GPIO controller.
+Use case is I have a device with something like 300 gpio
+lines...and I want to name/group a small subset of those
+lines for delegation to a userspace app rather than trying
+to set 300 or something gpio-line-names values, also I'm
+supporting multiple board variants and want to be able to
+better compose the gpio difference with device tree overlays
+using these virtual gpio groups essentially.
 
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    gpio_agg: gpio-aggregator {
-> +        compatible = "gpio-aggregator";
-> +        #gpio-cells = <2>;
-> +        gpio-controller;
-> +        gpios = <&gpio0 3 GPIO_ACTIVE_LOW>,
-> +                <&gpio3 1 GPIO_ACTIVE_HIGH>;
-> +        gpio-line-names = "modem-reset", "modem-enable";
-> +    };
-
-Looking at the example, it seems you intend to use the gpio-aggregator
-as a "Generic GPIO Driver", like in the example in the documentation[1].
-Hence I think you should not introduce and abuse the "gpio-aggregator"
-compatible value for this, but instead:
-  1. Use a proper compatible value that matches your device,
-  2. Write proper DT bindings for the device,
-  3. Add the proper device's compatible value to the gpio-aggregator
-     driver's match table.
-The above is very similar to how spidev is handled, which also forbids
-using the spidev compatible value in DTS.
-
-[1] https://docs.kernel.org/6.2/admin-guide/gpio/gpio-aggregator.html#generic-gpio-driver
-[2] https://docs.kernel.org/spi/spidev.html
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>
+> Best regards,
+> Krzysztof
 
