@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-264723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264724-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EOYYDwlWjGnblAAAu9opvQ
-	(envelope-from <devicetree+bounces-264723-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:12:25 +0100
+	id 8eayFmVWjGm9lQAAu9opvQ
+	(envelope-from <devicetree+bounces-264724-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:13:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CFF0123387
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:12:24 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCC9F12339F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:13:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2AA5E301DE30
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:12:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 337E6300340D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CBA1352C42;
-	Wed, 11 Feb 2026 10:12:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17909366831;
+	Wed, 11 Feb 2026 10:13:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q8oilSJT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B8u+HgjN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 392DD33F8C8
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 10:12:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7DF6331A5F;
+	Wed, 11 Feb 2026 10:13:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770804742; cv=none; b=sw2yYIMLZdGsed7OL+oi++ZW/aHC8JcCZsmp2y04YV+U32xf1ClxzjOvxb5kaOvyVEI1XHpdYUy8l3dEItn7gq2vF32HuhnJMtiAn9N+a6EZUfxTle8yvxH5fXTAjURHRh5yaAQTlBuOTqrGMXAEpZUSKxyZjt/e0VMrL77Rex0=
+	t=1770804833; cv=none; b=rDQ9HKIsZbP5y9fk7fGGsSwILoDXzMyThkXjt7mq2vC+HWj2ljzqAMMACKzCcgrnG2Nj1cGgydQnrp7E3Auj5W9crMGnv8G8X93axUrrJEC+R0Ye5WQqAvF2L7UgfdaDTUGYjxifb/JQXQu5RFiXsM9guX1PV6oQc4+0sRa+KSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770804742; c=relaxed/simple;
-	bh=diywIlvbx1oj2gqAg7hLMlQHaByyJeSC8PBmAl9boa8=;
+	s=arc-20240116; t=1770804833; c=relaxed/simple;
+	bh=JFnX7yfR+381QSg8y1LbW4qWSHq1WxFa6n1bWoTWAN4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kQeI720i67WwieqfhmvQSdy+lXBy6SLJsEZl1UE8HpbXZ42yUNTtCuDbb6echLcdNoNLmffWfOC0c8iv1Lk1pBo9EFSF56rGWD/zyB3BSIK9O8qVTjHlBmG98bHj4yNdvoJmhMaVRFobeemrZKRu7dDXVS0CcT/zgcBa2ez4JWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q8oilSJT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D765DC4CEF7;
-	Wed, 11 Feb 2026 10:12:18 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=sNVxFVxMbvUBz8wb1FLHVzWmjLXrfaYqp1QUYVO8KJ54F1A8vzHJxmql9b60UNPXj9t5o/wKC+UunokuYn/K39FA9bYPWwbKz8q49QM+6+F3mkinXJEPiiDURfSCnq0ZsIX3Gn8/VqTHABKKbiNbWHp7vH8ZL6UxIXnDho5vvWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B8u+HgjN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30CE4C4CEF7;
+	Wed, 11 Feb 2026 10:13:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770804742;
-	bh=diywIlvbx1oj2gqAg7hLMlQHaByyJeSC8PBmAl9boa8=;
+	s=k20201202; t=1770804832;
+	bh=JFnX7yfR+381QSg8y1LbW4qWSHq1WxFa6n1bWoTWAN4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q8oilSJTn8/tsUrjCfCW3dl1SbxB9gNw9m1taFVvMeivbwBf9x16NjMSx/0FCmd0+
-	 p7//T7M6X8PXRGSHFLcAH6i4FwLSTSNKWwfovmtDnph71C9PFeU9EDi9xNk/lcdDr3
-	 +79vC04y0LOfG4nmS1vdmORBY1MZMeeGUpU+0IHCNbXVNJwMrX1JMwbh4y9LzXNgvx
-	 PMhmYZrSBrxXaCtY3W+lt7gvyWXQgAgV0mm66WOcCew5YxR7gOl5ip0PSxwPQ42GNJ
-	 HV7+5RKIsVauun8Yk5GWFJ23/tQpeT5/k+4tNfxvtb6f6kLuVDXPfTd8WMOM+fysRx
-	 ZhisT3kcmng1Q==
-Message-ID: <a04d9603-2bf2-4e61-9fde-e484f9c777af@kernel.org>
-Date: Wed, 11 Feb 2026 11:12:17 +0100
+	b=B8u+HgjNPMxacH9NpoYGeAB44HvTBxQHojZ4EC4DaURdrxrjgWx5VJCvYgEuK0TNV
+	 JTE4VBxkzKFUoSdIV3YlX8ZaJ48N/YUQt4ZDvEFbpKo4D4LMx6e+lk2xxkoD/BawtO
+	 14nGoysBuyZuO9CaX6+74uypUtlEkBl4TGDG+xL/sv2RS3sDURFJQZN0fVTdH0z1cA
+	 aKH2VKCAJU3RNctaSnNW2R3j+kI1Oy1HPyymRzvFNh7z8xFd7ZgpYmv4fPFoN8HFUt
+	 NsfRDcsMTFJcnwoGvqN2EPWqQvfSSyq/cBbsX2BiijrWuel3dRtOxtx6/iOuxFfkCH
+	 4qvEwTHcQeJEQ==
+Message-ID: <34a9b531-4f53-47ee-861e-1b18ff1a5752@kernel.org>
+Date: Wed, 11 Feb 2026 11:13:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,23 +53,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] dt-bindings: display: panel: add YAML schema for
- LXD M9189A
-To: Michael Tretter <m.tretter@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Rouven Czerwinski <r.czerwinski@pengutronix.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <jesszhan0024@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- kernel@pengutronix.de
-References: <20260210-drm-panel-ek79007ad3-v3-0-cd2974d56937@pengutronix.de>
- <20260210-drm-panel-ek79007ad3-v3-2-cd2974d56937@pengutronix.de>
- <20260211-practical-coyote-of-awe-0dc0a4@quoll>
- <aYxUpoWETYB9vaK2@pengutronix.de>
+Subject: Re: [PATCH v2 2/2] gpio: aggregator: add gpio-aggregator DT
+ compatible
+To: Bartosz Golaszewski <brgl@kernel.org>,
+ James Hilliard <james.hilliard1@gmail.com>
+Cc: linux-gpio@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alexander Stein <linux@ew.tq-group.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
+ <20260211081355.3028947-2-james.hilliard1@gmail.com>
+ <CAMRc=MfgoKmsNAmn3rO2jDL-ZArMX2Jh-n4SnV6rpzRY3KSwuA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,74 +110,89 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aYxUpoWETYB9vaK2@pengutronix.de>
+In-Reply-To: <CAMRc=MfgoKmsNAmn3rO2jDL-ZArMX2Jh-n4SnV6rpzRY3KSwuA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264723-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264724-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,linaro.org,gmail.com,linux.intel.com,suse.de,ffwll.ch,vger.kernel.org,lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8CFF0123387
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BCC9F12339F
 X-Rspamd-Action: no action
 
-On 11/02/2026 11:06, Michael Tretter wrote:
-> On Wed, 11 Feb 2026 07:28:55 +0100, Krzysztof Kozlowski wrote:
->> On Tue, Feb 10, 2026 at 12:22:33PM +0100, Michael Tretter wrote:
->>> From: Rouven Czerwinski <r.czerwinski@pengutronix.de>
->>>
->>> The LXD M9189A is a 1024x600 MIPI-DSI panel.
->>>
->>> Signed-off-by: Rouven Czerwinski <r.czerwinski@pengutronix.de>
->>> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+On 11/02/2026 10:47, Bartosz Golaszewski wrote:
+> On Wed, Feb 11, 2026 at 9:14 AM James Hilliard
+> <james.hilliard1@gmail.com> wrote:
 >>
->> I do not see any improvements.
+>> Add an OF match entry for "gpio-aggregator" to support plain GPIO
+>> forwarding from devicetree without delay semantics.
+>>
+>> This allows exposing selected lines as a logical GPIO controller with
+>> stable aggregated offsets, so consumers can reference forwarded lines
+>> instead of physical controller offsets. It also allows creating bundled
+>> groups of named lines that can be exposed to userspace as a convenient
+>> virtual gpiochip interface. Using "gpio-delay" for this case is not
+>> suitable because it enables delay features and requires 3-cell GPIO
+>> specifiers.
+>>
+>> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+>> ---
+>> Changes v1 -> v2:
+>>   - Split DT schema into a separate patch
+>>     (suggested by Krzysztof Kozlowski)
+>>   - Expand commit message rationale and use-case explanation
+>>     (suggested by Krzysztof Kozlowski)
+>>   - Clarify userspace use case with bundled named line groups
+>> ---
+>>  drivers/gpio/gpio-aggregator.c | 3 +++
+>>  1 file changed, 3 insertions(+)
+>>
+>> diff --git a/drivers/gpio/gpio-aggregator.c b/drivers/gpio/gpio-aggregator.c
+>> index 416f265d09d0..a09752fc5fe2 100644
+>> --- a/drivers/gpio/gpio-aggregator.c
+>> +++ b/drivers/gpio/gpio-aggregator.c
+>> @@ -1635,6 +1635,9 @@ static int gpio_aggregator_probe(struct platform_device *pdev)
+>>  }
+>>
+>>  static const struct of_device_id gpio_aggregator_dt_ids[] = {
+>> +       {
+>> +               .compatible = "gpio-aggregator",
+>> +       },
+>>         {
+>>                 .compatible = "gpio-delay",
+>>                 .data = (void *)FWD_FEATURE_DELAY,
+>> --
+>> 2.43.0
+>>
 > 
-> Changes in v3:
-> - [...]
-> - Use panel-common.yaml as base
-> - [...]
-> 
-> This change addresses your comment on v2:
-> 
->>> You should reference proper panel schema in top-level.
-> 
-> I changed the schema to include panel-common.yaml as a $ref. Did I
-> misunderstand the comment?
-> 
-> What else needs improvement?
-> 
-> I am confused and any guidance would be appreciated.
-> 
+> Regardless of the DT bindings - this change is perfectly fine. We do
 
-In such case I find it helpful when you go via previous comments and
-ack/acknowledge each of them. It is not necessary if you implement all
-of them, but that did not happen here. BTW, I stopped review on the
-first missing review feedback to save myself time.
-
+You cannot have compatible without DT bindings, so this alone is not
+"perfectly fine". Maybe you wanted platform_device_id entry for
+ACPI/legacy/MFD devices?
 
 Best regards,
 Krzysztof
