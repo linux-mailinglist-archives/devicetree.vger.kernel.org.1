@@ -1,357 +1,201 @@
-Return-Path: <devicetree+bounces-264742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264743-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uHdTBGpgjGmWlwAAu9opvQ
-	(envelope-from <devicetree+bounces-264742-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:56:42 +0100
+	id mE1SGO5gjGmWlwAAu9opvQ
+	(envelope-from <devicetree+bounces-264743-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:58:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37BCD123A98
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:56:41 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id E34EC123AF8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:58:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DF991301875B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:55:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2EC273005A91
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:58:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 508FC369999;
-	Wed, 11 Feb 2026 10:55:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0341336AB5B;
+	Wed, 11 Feb 2026 10:58:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Mu2wuKHz"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="rXZ2glk4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27A9369973
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 10:55:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BAA336A03F;
+	Wed, 11 Feb 2026 10:58:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770807357; cv=none; b=c6Q81jkdVMHjvxgP3fcY51vtBTgoyPmCX8bNFG8Xy4GbaOHLbEoCphQsVwtWyk8JWF1KWPn2rUpM9m9V0zZDonX0chxEK3rOBJN1bkpbb0RLITP7Ivv6vkpSlnN4h50huqp12aTe2r/uzowIgy1oLWyLEZ2a1rcv0nR8DpgHR2c=
+	t=1770807531; cv=none; b=mZ14lAVXZDLGmCqYID/Iar2sq/29Hbg2VKIpfmZ0GBSXSPZHgDB8NAge6i0m1he7dgf39yk++AyOHh325rml9kfKO37zrPS2SWZep7KmHEzqiCrGWPFxWcvjOEYN9iKmnWUQ9K4iJ/6T+7QgttYgC21I2twZ54oEz+PM5HxA0j4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770807357; c=relaxed/simple;
-	bh=vQxbOzdjfJYfaq3MX4JMmdz+HVAp3Xh6PsUXQZNp7PA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jIK9wst4RbE/4dtPH8qYurHYFrNuOqkyopYTZubfuWCbcmE4RE3Jd1pkzlNOnkTXtV3aelujsR+Ulmci3r8GEnCRP0kkDY9yCnPO4lw0ekXZxo06tBTz+pVRn5Pwtjjtwsl7VRvsN2Da1iXmsKB3iLW4eUaw2AtXtDQ6Uy1KLsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Mu2wuKHz; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2a79998d35aso47582375ad.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 02:55:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770807355; x=1771412155; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=45Dgn0M186ZnKFMAZZJdlS+m794VI4H1CnRvG5UXt7c=;
-        b=Mu2wuKHzbajX+dKkPp71uI+xxpcAoqZHLijFmxnD3nTydB2quWRRtu9rtNzqcE6k2t
-         6xazwaNpKOAkMxBbT4lPuo34kAKGc095jEm72wMS32F30OQ2dXthNLvqVJKeGKJD9WWm
-         dqUIPozpYiYwzv7r2vvZK3nNyJ35Eg6SLpfLot7yt4Le7qGHRuJLNpeTARcdRHJL0278
-         9QOQtVu4gb00iAAgiqm52BaRn/kAAysdFjKty2LATO+OBMRW1uD+dNxO0uM7DKU+IMgF
-         Vc5fieajbYtcz+0BtTE8qeDO8zem1RtxUU3ppS6yTwE6Z7rJeCKBS+TbBvhbhTqRZhwI
-         1Isg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770807355; x=1771412155;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=45Dgn0M186ZnKFMAZZJdlS+m794VI4H1CnRvG5UXt7c=;
-        b=ZdAktBZeK21mxgCkACoXqUhO8jSN2KnoYAjfndMiaTXYQzJE5RBFB6zzETOwOqbMVF
-         OM32yHqScDoi8W1P5xpYwz14yPEBs/8vldecdLNhbY9x0hufUDIpqg9hs176H1R6z4e4
-         7qUe76Xy1Ujfgl/jUVGXdnyGBq9GvZ8xA5mSppUo40igknztgPKslSlyYubYWxwzxiuF
-         JVznhbxW2FehFFGKaQPcLYqJQWQn69U9l36+hdoznhPrLylvYVDwMn/jEkCBQfyNgBHm
-         aqbjZZ18Wd5xWde2qpqaisDpRjo4ZLkQMmsFJ7THWguCeMm4wRuP7tXucROLECc59aE7
-         wchw==
-X-Forwarded-Encrypted: i=1; AJvYcCVBlrC/zYrTBM2YtR+Apx/r+mnP9MzbH4kil1FOulLudvm0QbcbdryJf4Opui75gyAktzFO+MslSeNF@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnuqU60lpM4EUqyjtw+H1JVPpbZsleEcK7vt0oC6m/aOuP/P6B
-	GG4F66dWLqvEnw6NRo9mMGAnsOa4s8L9OF3iGe+y5ZpFKrvoA/8cagTi
-X-Gm-Gg: AZuq6aIJIjuGopSYSdlc80nrcLvPJYkPVLUer2yQVkdZxQ2LhLng+2Vs6K5RCkpXN59
-	gvm4ZJSllEUSQ+tMQzd2vgEvQuRr9eMholMDAIZqa21IZDwjaM8I+gpvDNRnvRQknKZMVijkMQl
-	GnNuw+Op/3b490t9YWyiiVzIgjNijj1mXlqMcKWveumshkuW5YTQFds0z7iNENuCjuqLVSwK74K
-	CPB5cctghOYFEmSiSM3JjRG0/oqN6vw8znkwTbJeMgFmytky3qHLHzyC5m8mfrVlXrk9oCyODV6
-	FqqwjaDPiIQYgRQJOYLTE9n1kRsflYx9zC+cwDUUefvem2HYirU/lbIHf39zeTtPilnGM53SnxP
-	di5heo9tryNMIX2+J/TMD5tNnld3VY9Qwm2JhC9veqY89iN8RKDjzHdMm0aKfoVpHtVNu6l3Bmh
-	QrIjAvXl91pnus4eCwbHhMgX5z6nNoYAiN7mk=
-X-Received: by 2002:a17:903:17cf:b0:2aa:dd98:197e with SMTP id d9443c01a7336-2ab29fb5a57mr18177605ad.51.1770807355036;
-        Wed, 11 Feb 2026 02:55:55 -0800 (PST)
-Received: from [192.168.0.13] ([172.92.174.155])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ab2997bf86sm19287105ad.74.2026.02.11.02.55.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Feb 2026 02:55:54 -0800 (PST)
-Message-ID: <4f6580f3-3759-4b33-a3d3-54bef0a7ae83@gmail.com>
-Date: Wed, 11 Feb 2026 02:53:44 -0800
+	s=arc-20240116; t=1770807531; c=relaxed/simple;
+	bh=wiBnKzGmkKejPRVzA4JzkrvhZirsvgKktO17sAb5qjI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TTfw1POPqhoIb5oo8HRHCV1s01SxmNiSLpm8BW53qHnFieWgEynW+rgiKnL/UdICEBfJMZhhwBEJGgK36oKOLI8ZGOQeVqqOl426rTQOxJ9jYiZcFzeVLBJLFK+gShHpp0hgvvNBRGvAowLpjJB8BalNs7MlnKrtk0ViJy4n0RE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=rXZ2glk4; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id D125D1A0DDF;
+	Wed, 11 Feb 2026 10:58:42 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 948BD606BE;
+	Wed, 11 Feb 2026 10:58:42 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B041711948CDE;
+	Wed, 11 Feb 2026 11:58:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1770807521; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=sUiIQ8yvJ1tDaH4jiMQ9ZLLPcRdaOjCdIjoUMLb16/o=;
+	b=rXZ2glk4DGqvdeb0MLGVtFABZtah+qWCKK6xMHbZ5pdfLqL7ImtKtcGCAJx36Y08x8WUDJ
+	ZqV4g8z5dUBTtAB+/B4FAbutN8t02/v7P+ch6f2OUnwUr+fzcAEzHEhxGWriw6/n2GDSvi
+	pgRtOC+WuOmFwrx9OmGvXjR/mN+Y+TXAqr1Lwgt4yepqTZ2Dehhq3yBhNb7GQrXC5ocUB6
+	UWr36P0kffTsvOArU1bCSLgTFECZ8ZahS/rzZmZgaWlQrIcoO79n68VjGVy3klzr9jQJUS
+	5R7mJfT/EK+qbEHku92XAbeYNKcuhJyVcq9nTfuKML84jKa2QbwQQGagBzHl3g==
+Date: Wed, 11 Feb 2026 11:58:37 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: James Hilliard <james.hilliard1@gmail.com>, linux-gpio@vger.kernel.org,
+ Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alexander Stein
+ <linux@ew.tq-group.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
+Message-ID: <20260211115837.265c46cd@bootlin.com>
+In-Reply-To: <CAMuHMdXUG3fMdVk3CVVJpacnZE=j7feke9Nb+Mq6obsCdCr7Dg@mail.gmail.com>
+References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
+	<CAMuHMdXWAx1Kfb84bhp0c8Gya5yaQjtYOnVFqJzyc4Wjc_KtqA@mail.gmail.com>
+	<CADvTj4oetrsLwB0q=tA+9KZ7XTXd5asZjhZf=kekbSpnBFHA-w@mail.gmail.com>
+	<CAMuHMdWTp8VsbBq0y9MKQJdkQnDADCbLbKW--gosoBt92PhAmg@mail.gmail.com>
+	<20260211105735.0e8e65b4@bootlin.com>
+	<CAMuHMdXUG3fMdVk3CVVJpacnZE=j7feke9Nb+Mq6obsCdCr7Dg@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 0/3] Add driver support for ESWIN eic700 SoC clock
- controller
-To: dongxuyang@eswincomputing.com, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, troy.mitchell@linux.dev, bmasney@redhat.com
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com,
- marcel@ziswiler.com
-References: <20260210095008.726-1-dongxuyang@eswincomputing.com>
-Content-Language: en-US
-From: Bo Gan <ganboing@gmail.com>
-In-Reply-To: <20260210095008.726-1-dongxuyang@eswincomputing.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264743-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264742-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org,ew.tq-group.com];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ganboing@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,microchip.com:email,linux.dev:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sifive.com:url,ziswiler.com:email]
-X-Rspamd-Queue-Id: 37BCD123A98
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,tq-group.com:email,bootlin.com:mid,bootlin.com:dkim,bootlin.com:url,bootlin.com:email]
+X-Rspamd-Queue-Id: E34EC123AF8
 X-Rspamd-Action: no action
 
-Hi Xuyang,
+On Wed, 11 Feb 2026 11:01:24 +0100
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 
-Do you have a device-tree that can work with this patchset and enable
-eMMC/eth/SATA on Hifive P550? Given these drivers are already merged,
-I'd like to test it myself. I just need a proper device-tree. I checked
-your github repo: https://github.com/eswincomputing/linux-next, which
-hasn't been updated for a while, and none of the branches are based on
-the latest v6.19-rc7
+> Hi Hervé,
+> 
+> On Wed, 11 Feb 2026 at 10:57, Herve Codina <herve.codina@bootlin.com> wrote:
+> > On Wed, 11 Feb 2026 10:47:53 +0100
+> > Geert Uytterhoeven <geert@linux-m68k.org> wrote:  
+> > > On Wed, 11 Feb 2026 at 09:35, James Hilliard <james.hilliard1@gmail.com> wrote:  
+> > > > On Wed, Feb 11, 2026 at 1:26 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:  
+> > > > > On Wed, 11 Feb 2026 at 09:14, James Hilliard <james.hilliard1@gmail.com> wrote:  
+> > > > > > Document the gpio-aggregator virtual GPIO controller with a dedicated
+> > > > > > schema and compatible string.
+> > > > > >
+> > > > > > Also extend the GPIO AGGREGATOR MAINTAINERS entry to cover the new
+> > > > > > binding file.
+> > > > > >
+> > > > > > Signed-off-by: James Hilliard <james.hilliard1@gmail.com>  
+> > > > >  
+> > > > > > --- /dev/null
+> > > > > > +++ b/Documentation/devicetree/bindings/gpio/gpio-aggregator.yaml
+> > > > > > @@ -0,0 +1,54 @@
+> > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > +%YAML 1.2
+> > > > > > +---
+> > > > > > +$id: http://devicetree.org/schemas/gpio/gpio-aggregator.yaml#
+> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > +
+> > > > > > +title: GPIO aggregator controller
+> > > > > > +
+> > > > > > +maintainers:
+> > > > > > +  - Alexander Stein <linux@ew.tq-group.com>
+> > > > > > +
+> > > > > > +description:
+> > > > > > +  GPIO aggregator forwards selected GPIO lines from one or more GPIO
+> > > > > > +  controllers and exposes them as a virtual GPIO controller.  
+> > > > >  
+> > > > > > +examples:
+> > > > > > +  - |
+> > > > > > +    #include <dt-bindings/gpio/gpio.h>
+> > > > > > +
+> > > > > > +    gpio_agg: gpio-aggregator {
+> > > > > > +        compatible = "gpio-aggregator";
+> > > > > > +        #gpio-cells = <2>;
+> > > > > > +        gpio-controller;
+> > > > > > +        gpios = <&gpio0 3 GPIO_ACTIVE_LOW>,
+> > > > > > +                <&gpio3 1 GPIO_ACTIVE_HIGH>;
+> > > > > > +        gpio-line-names = "modem-reset", "modem-enable";
+> > > > > > +    };  
+> > > > >
+> > > > > Looking at the example, it seems you intend to use the gpio-aggregator
+> > > > > as a "Generic GPIO Driver", like in the example in the documentation[1].
+> > > > > Hence I think you should not introduce and abuse the "gpio-aggregator"
+> > > > > compatible value for this, but instead:
+> > > > >   1. Use a proper compatible value that matches your device,
+> > > > >   2. Write proper DT bindings for the device,
+> > > > >   3. Add the proper device's compatible value to the gpio-aggregator
+> > > > >      driver's match table.
+> > > > > The above is very similar to how spidev is handled, which also forbids
+> > > > > using the spidev compatible value in DTS.  
+> > > >
+> > > > Isn't this gpio-aggregator driver supposed to be non-hardware
+> > > > specific?
+> > > >
+> > > > I'm trying to use it as described here, I noticed the compatible
+> > > > in the blog post was missing and just needed adding to the
+> > > > driver: https://bootlin.com/blog/gpio-aggregator-a-virtual-gpio-chip/  
+> > >
+> > > Let's kick Hervé to fix that ;-)  
+> >
+> > Where is it missing ?  
+> 
+> In the driver ;-)
+> 
+> DTS must never use 'compatible = "gpio-aggregator"'.
 
-Bo
+Why?
 
-On 2/10/26 01:50, dongxuyang@eswincomputing.com wrote:
-> From: Xuyang Dong <dongxuyang@eswincomputing.com>
-> 
-> The link [1] provides the official documentation for the EIC7700. Section 3.2
-> covers the clock subsystem.
-> 
-> [1] https://www.sifive.com/document-file/eic7700x-datasheet
-> 
-> Updates:
->    Change in v11:
->    - Updated driver file
->      - Add "Tested-by: Marcel Ziswiler <marcel@ziswiler.com> # ebc77" tag.
->      - Fix build error in function eswin_clk_register_clks
->        (reported by kernel test robot).
->        Reported-by: kernel test robot <lkp@intel.com>
->        Closes: https://lore.kernel.org/oe-kbuild-all/202602060520.p4Hg35Ja-lkp@intel.com/
-> 
->    - Link to v10: https://lore.kernel.org/all/20260205093322.1030-1-dongxuyang@eswincomputing.com/
-> 
->    Changes in v10:
->    - Updated driver file
->      - Add a private clock divider API named 'eswin_register_clkdiv' to
->        register divider clocks with private flag.
->        Define 'ESWIN_PRIV_DIV_MIN_2' private flag for registering the clock
->        dividers whose division ratio start from 2.
->        Implement the private set_rate, recalc_rate, and determine_rate accordingly.
->      - Add CLK_DIVIDER_ALLOW_ZERO flag to the clock dividers whose division
->        ratio start from 0.
->      - Replace CONFIG_ARCH_ESWIN with CONFIG_COMMON_CLK_ESWIN in the Makefile.
->      - Modify the help description of COMMON_CLK_EIC7700.
->      - Move register offset definitions from 'clk-eic7700.h' to 'clk-eic7700.c' and
->        remove the 'clk-eic7700.h'. Remove '_CTRL' from the offset names.
->      - Remove all unused headers.
->      - Use devm_platform_ioremap_resource() instead of devm_of_iomap().
->      - Export the functions from clk.c as symbols.
->      - Use readl_poll_timeout().
->      - Use 'clk_parent_data' and '.hw' instead of string parent names.
->      - Rename the header file from clk.h to common.h.
->      - Rename macros from EIC7700_* to ESWIN_* in common.h.
->      - Add a new function, 'eswin_clk_register_clks', which can register
->        divider, mux, gate, and fixed-factor clocks based on their types.
->      - Add structure 'eswin_clk_info' to manage the clocks that need to be registered
->        in a specific order.
->      - Add macros 'ESWIN_*_TYPE' to define divider, mux, gate, and fixed-factor clocks
->        with type. Add enum 'eswin_clk_type' for these types.
->      - Remove 'eswin_clk_register_mux_tbl'. Use 'eswin_clk_register_mux' to register
->        mux clocks with or without table.
->      - Add xtal24m as the parent clock of the PLL.
->      - Change 2025 to 2026 in all files.
-> 
->    - Link to v9: https://lore.kernel.org/all/20251229105844.1089-1-dongxuyang@eswincomputing.com/
-> 
->    Changes in v9:
->    - Updated driver file
->      - Checked return values of eswin_clk_register_*() in the probe function.
->      - Removed binding IDs check from pll functions in clk.c, as these functions
->        were exclusively used by pll clocks and did not require ID validation.
->      - The PLL structure has been extended with max_rate and min_rate fields to
->        explicitly define the frequency operating range of the PLL. These limits
->        were now utilized by the clk_pll_determine_rate() function.
->      - Removed __clk_lookup() in clk_pll_set_rate. Added clk_notifier support
->        in clk-eic7700.c.
->      - Added five previously missing clocks from [1].
-> 
->    - Link to v8: https://lore.kernel.org/all/20251113013637.1109-1-dongxuyang@eswincomputing.com/
-> 
->    Changes in v8:
->    - Updated YAML file
->      - Added "Acked-by: Troy Mitchell <troy.mitchell@linux.dev>"
->    - Updated driver file
->      - Changed Kconfig from bool to tristate.
->    - Updated MAINTAINERS file
->      - Added "ESWIN SOC SERIES CLOCK DRIVER"
-> 
->    - Link to v7: https://lore.kernel.org/all/20251023071658.455-1-dongxuyang@eswincomputing.com/
-> 
->    Changes in v7:
->    - Updated YAML file
->      - Added "Acked-by: Conor Dooley <conor.dooley@microchip.com>" for bindings.
->    - Updated driver file
->      - Added description for clk of eswin_calc_pll().
->      - Added macro EIC7700_MUX_TBL to manage mux clock-tree.
->      - Added eswin_clk_register_mux_tbl() to register mux clocks with
->        discontinuous parent indexes.
-> 
->    - Link to v6: https://lore.kernel.org/all/20251009092029.140-1-dongxuyang@eswincomputing.com/
-> 
->    Changes in v6:
->    - Removed config option patch dependency from cover letter, because the patch
->      was applied.
->    - Updated YAML file
->      - Added an oscillator as the clock input, named xtal24m.
->      - Added clocks property.
->    - Updated driver file
->      - Replaced fixed_rate_clk_xtal_24m with xtal24m.
->      - Dropped fixed_rate_clk_xtal_24m from driver. Because clock xtal24m was
->        registered by fixed-clock as oscillator.
-> 
->    - Link to v5: https://lore.kernel.org/all/20250923084637.1223-1-dongxuyang@eswincomputing.com/
-> 
->    Changes in v5:
->    - Removed vendor prefix patch dependency from cover letter, because the patch
->      was applied.
->    - Updated YAML file
->      - Placed the required after all properties.
->      - Removed patternProperties. Also removed compatible of eswin,pll-clock,
->        eswin,mux-clock, eswin,divider-clock and eswin,gate-clock as we have moved
->        clock tree from DTS to Linux driver.
->      - Removed the clock tree from DTS. Used clock-controller to manage all
->        clock. Removed all child nodes in clock-controller.
->      - Removed '#address-cells' and '#size-cells' properties, because the clock
->        controller did not need to define these properties.
->      - Removed eic7700-clocks.dtsi.
->      - Added dt-bindings header for clock IDs. Because used the IDs to register
->        clocks.
->    - Updated driver file
->      - Modified the commit for clock driver. Dropped indentation in commit.
->      - Removed CLK_OF_DECLARE(). Used *clk_hw_register* to register clocks. Used
->        devm_of_clk_add_hw_provider.
->      - Dropped singletons.
->      - Checked the value right after obtaining it.
->      - Removed the definitions of macro frequency in clk.h like CLK_FREQ_24M.
->      - Modified description of help in Kconfig.
->      - Added COMPILE_TEST. Added COMMON_CLK_ESWIN for clk.o. And added
->        "select COMMON_CLK_ESWIN" for clk-eic7700.c. Without COMMON_CLK_EIC7700,
->        clk.c could not be compiled.
->      - Used .determined_rate.
->      - Added macro definitions of EIC7700_DIV, EIC7700_FIXED, EIC7700_FACTOR,
->        EIC7700_MUX and EIC7700_PLL to manage clock tree.
->      - Added clk-eic7700.h to place eic7700 SoC clock registers.
->      - Removed refdiv_val and postdiv1_val from clk_pll_recalc_rate(). Because
->        these values were unused.
-> 
->    - Link to v4: https://lore.kernel.org/all/20250815093539.975-1-dongxuyang@eswincomputing.com/
-> 
->    Changes in v4:
->    - Updated YAML file
->      - Changed name from cpu-default-frequency to cpu-default-freq-hz.
->      - Dropped $ref of cpu-default-frequency.
->      - Added cpu-default-frequency for required.
->      - Removed cpu-default-frequency in updated file, because there was no
->        need to add cpu-default-frequency.
->      - Moved DIVIDER to DIV.
->      - Arranged the IDs in order.
->      - Dropped EIC7700_NR_CLKS.
->      - Removed dt-bindings eswin,eic7700-clock.h. Because IDs was not used,
->        and used clock device nodes.
->      - According to the updated driver codes, the YAML has been updated.
->    - Updated driver file
->      - Remove undocumented parameters "cpu_no_boost_1_6ghz" and
->        "cpu-default-frequency".
->      - Modified the comment and used the correct Linux coding style.
->      - Removed codes of voltage, because it was not the clock driver.
->      - Updated the formula of clock frequency calculation. Removed the logic
->        that only used register selection.
->      - Used CLK_OF_DECLARE() to register clocks. Registered pll-clock,
->        mux-clock, divider-clock, and gate-clock in clk-eic7700.c.
->        The specific implementation of clock registration was in clk.c.
->      - Added eic7700-clocks.dtsi.
->      - Moved device information to DTS. Put all clocks' node in the
->        eic7700-clocks.dtsi.
-> 
->    - Link to v3: https://lore.kernel.org/all/20250624103212.287-1-dongxuyang@eswincomputing.com/
-> 
->    Changes in v3:
->    - Update example, drop child node and add '#clock-cells' to the parent
->      node.
->    - Change parent node from sys-crg to clock-controller for this yaml.
->    - Drop "syscon", "simple-mfd" to clear warnings/errors by using "make
->      dt_binding_check". And these are not necessary.
->    - Add "cpu-default-frequency" definition in yaml for "undocumented ABI".
->    - Drop Reviewed-by, this is misunderstanding. We have not received such
->      an email.
->    - Link to v2: https://lore.kernel.org/all/20250523090747.1830-1-dongxuyang@eswincomputing.com/
-> 
->    Changes in v2:
->    - Update example, drop child node.
->    - Clear warnings/errors for using "make dt_binding_check".
->    - Change to the correct format.
->    - Drop some non-stanard code.
->    - Use dev_err_probe() in probe functions.
->    - Link to v1: https://lore.kernel.org/all/20250514002233.187-1-dongxuyang@eswincomputing.com/
-> 
-> Xuyang Dong (3):
->    dt-bindings: clock: eswin: Documentation for eic7700 SoC
->    clock: eswin: Add eic7700 clock driver
->    MAINTAINERS: Add entry for ESWIN EIC7700 clock driver
-> 
->   .../bindings/clock/eswin,eic7700-clock.yaml   |   46 +
->   MAINTAINERS                                   |    8 +
->   drivers/clk/Kconfig                           |    1 +
->   drivers/clk/Makefile                          |    1 +
->   drivers/clk/eswin/Kconfig                     |   15 +
->   drivers/clk/eswin/Makefile                    |    8 +
->   drivers/clk/eswin/clk-eic7700.c               | 1337 +++++++++++++++++
->   drivers/clk/eswin/clk.c                       |  579 +++++++
->   drivers/clk/eswin/common.h                    |  373 +++++
->   .../dt-bindings/clock/eswin,eic7700-clock.h   |  285 ++++
->   10 files changed, 2653 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
->   create mode 100644 drivers/clk/eswin/Kconfig
->   create mode 100644 drivers/clk/eswin/Makefile
->   create mode 100644 drivers/clk/eswin/clk-eic7700.c
->   create mode 100644 drivers/clk/eswin/clk.c
->   create mode 100644 drivers/clk/eswin/common.h
->   create mode 100644 include/dt-bindings/clock/eswin,eic7700-clock.h
-> 
-> --
-> 2.34.1
-> 
+gpio-aggregator can be used as a virtual device to aggregate GPIOs for
+user-space.
 
+I think we should have 'compatible = "gpio-aggregator"' in dts.
+
+Best regards,
+Hervé
 
