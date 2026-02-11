@@ -1,231 +1,225 @@
-Return-Path: <devicetree+bounces-264660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264659-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yGnKAz8/jGlyjwAAu9opvQ
-	(envelope-from <devicetree+bounces-264660-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:35:11 +0100
+	id yMixCDc/jGlyjwAAu9opvQ
+	(envelope-from <devicetree+bounces-264659-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:35:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8482122498
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:35:10 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D4EB122481
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:35:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 28A093020E92
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 08:35:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3247D3012CFB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 08:35:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02432352FB5;
-	Wed, 11 Feb 2026 08:35:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19E1E34FF77;
+	Wed, 11 Feb 2026 08:34:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nTysi+Lh"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="MBTqQ1PK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16730350A3F
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 08:34:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.217.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770798901; cv=pass; b=jhTmuM6kSJezDB+FOYr37WYxlzrvGBsvZApRHzbtkAyksB7zPmCNeEJYPQVs62n/QQQ8Egw30Nkf6K4KMuPqI7yQsu3E+BGlIPCwWOIIZMzi0i+al0cvIA0g00eiDqwaDl7tw23kz2EwD9NTrT9dh2iUet5uvTnHCmTP23BIWbI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770798901; c=relaxed/simple;
-	bh=9sy1CT/jZthF5HQbc+sg67yNK28VFMTbC0Tg+M3zmKY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QkAtsIV2NVCSegvXV5TmHeomG6vhNuVbJ8DlM2ZE5zq+ryLtfE3n3mooe8lY7vRuKEpdvhTA66x7o7th9S6CuCwVxC+BzGdhFwJyDT6crvwLjLH4RzS2LgN2HhDM0sEur6gknEEyIX6PD7JX0VtMMWz7Tsl5MA6NVAxWvf31eyg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nTysi+Lh; arc=pass smtp.client-ip=209.85.217.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-5faddf6db62so4160691137.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 00:34:59 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770798899; cv=none;
-        d=google.com; s=arc-20240605;
-        b=VJRKVZ9pFyoCJ0fFkOogQ/g7N8u3CrT9GO0YjQ2DDa157pba5sQem6F7TxWBunB5D1
-         Linpm7gw4sG+oyufC8UHUQoRUNmQjxIOhGMXIFO5B5RUcSunTBSYwNJojQF7ScFz2VTP
-         7xAJPkbaKssfZ6xUQJJ/vsZxeeyJaqr/2BR7IcFkvo6UKo/3mLGrmwhWsY7q1O9H6Kef
-         mX0hjQuGzOV6ybucwtHsZ/iDTrgc+9KzyBkCPL0CWLlJ9LP55CrtIOeqPMVNxQY9VUA3
-         RHg1dztlhezNM9wtkNhKHSYjB4ALxMlKY8aJPjX56t8FB6vd+tNBmNf7e97BSY7A7rWf
-         pHmw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=gB+voJ9pXS/NiL9Z4eXXKfd2kHrjxz2mBCt1N1H1pBU=;
-        fh=vy0jrQfu4LLocC+hplSecqwCEQMrYTNEzSFNAc/5QII=;
-        b=loyIe9NeXtGULhEiNPfX2IMe7HI3OK2WcSLZOVZYoz2D3IP9zyl0cw6WfP+laZODWl
-         aYvdOOKcF8l2RF2Iw0Jmd1zkUBeqTmJiaq3IH/e+tbqhmLP10l1bYzKcQdDEpnrb+nuJ
-         P8SPH6yJ0bL+6rcqaYcNQR3IaREgp9p9xHosqMcDYE0KNjbG6VkCLSR4amwuSbGlLig9
-         giRYjD6AobknJvuXFbtirrQKh0dvVlCRTB5vmsou7IJIJvBJ73OGYM0JTtrh2OB2P4a7
-         RJvooTqTbJ9JMR7qaagGNQbj7eBv7HJo4x3r3F5jwQAhyYvx68fDssKwWTCnbwnWwZhi
-         NP6g==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7680349B0D
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 08:34:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770798899; cv=none; b=iIW1ub1JRdWJX+RxdxkWK+fDdgS1SqbZPG5iMhtlvfNs3Ake0kt/opmw6bz3IxK+DhlOnf779+sdmelR4hXlPaVuC/uQZjhbqR/Qwgp2UlH5hAzg9FrUlgy+ldpoClZ/yn4U/4w+b1MWCKN2Vl3V1waHqg2xii6JvlehcUnUmBs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770798899; c=relaxed/simple;
+	bh=cGq5QWXO0T3OHCprd8pgvsBLcjOO3QjwLDHuarQ5fkc=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=F5l10QUe1bM6tQUblt+Kq2N3V3uM8iDJrB8B+8uG7ljomn5GGMCUkWNyWh0mF+Twz+Dph0inrHx7JrsHVRFWqTTtFjss7Mj3KQ7XzwJXlmEv8hMKfWy8mGaxcRuAj+RnEz4WRKPUwxklY2vjVsabILS/nNk4w/R1/4bnRnO/y8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=MBTqQ1PK; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-4362d4050c1so4921285f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 00:34:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770798899; x=1771403699; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1770798895; x=1771403695; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gB+voJ9pXS/NiL9Z4eXXKfd2kHrjxz2mBCt1N1H1pBU=;
-        b=nTysi+LhaKxPDmuCmoyRznvBF44bfY/+KEr0/wZrvHLKaRMm2k/iFDKdaJtkQ+UQzh
-         Mbvz7RpHoNpRaH+otPt4lJ54gsG2CwP0W+TgWCWDyOaPy7df3ky+FPo8Qh7tmeFriBx9
-         mx4Hyb/jIR3H1quoz6N/Civc/dUk49cAKddmtjnx46n4rMS7900DvRFGCX6oGPQKiQ+S
-         g7ScqJxo5lEgDey27VkYIKqiF238wiKrqt/b8SG8Fx9vuiw+/omsMQvVJUabKQfBQQ+s
-         dYxM5rbvP47iJ5QZ/isjVaKOIUKbw+Nxwdmi9k1CJ7HhaXuWxlZ6F2ADuBQqIr88preN
-         Fy2A==
+        bh=vfdcqFM0/eCHybIVXUmOHj6K5wyJWfZBIgSuomD2VWA=;
+        b=MBTqQ1PKIlSd0cw60gvXDDHslwgDsssI8qvUYs8262Dp99GsXPuLStgX9gxwmVkD/D
+         SAY2BePdai+nSqFLG3oWEI7bvrbMlbrMCtVf3uC9Q0bQDcM5iGpRb7HSJ10DfKp2fWNp
+         xyXmDbSaXw2TJVR8wxFjFl3CJ7wM620w8Rh42RVpY5zG1NNO6uxfMR8n/LouRgxB4DJa
+         BDVbscLnjXqJZkx5ok+KwyE/V/m1vkDpg0ALl0yvhRf52ClI/Okdpkiycz0oTjwECwKT
+         7anU9AkoPrISvtB9R4GRoE7T7SZwd2EfaSlTx/At45uT8utf5Ffp5DqBOJuvuw4ZYbMP
+         Xw2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770798899; x=1771403699;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=gB+voJ9pXS/NiL9Z4eXXKfd2kHrjxz2mBCt1N1H1pBU=;
-        b=BYifWL7SmRQkCA91SBFB+3k/eIIMbxZoqYJerE+pefMcK2dQ5j85SB/kFOSGX5Tm9A
-         UuYrdB4iBQs1JneVt3WteWwvk2ze9nVANVZE5J0fkXVRc+iIm8I2etEEHtD4oU+9Dt0s
-         bESEhkev9GVE5gcTKZLdd1fvbygPUgjercMDs5fOjdjgvThdLQE17e95SX/I1SXyuQnL
-         36ePHsAtJZ5NLk8HvEQlZSTnp2kvmWIT0tMIAerB1/ApA7K5t7j4hKEF0eyggX5GPt5v
-         1BVJAIPb/sbbJFsEHlVCQEeaBn6IDRuk2A/SWsL3zahSmu2ZiRGSMduAqvzeZ0PgReXl
-         W0pQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVwyfwYbgtYuqCcWFLCHZeJsycmShdMq6BptY5xceuadw7FNEoJAbzwk6baDXSGWxmXEm7KjH6vsVxF@vger.kernel.org
-X-Gm-Message-State: AOJu0YziWe1N3/T7rlPnqV0c+ldlLcyMOpg0VWcLYgpi+L4Dn7DZcvQf
-	lShJ9iVov9uQOmiD2YiLJoYbBTWyIL8NULfQpOvGfZQz3MeA8uro788NFOvG0QhGi9mhwE/yiQc
-	TljE3WmNtHQdOGAYdikb6LLokILVlxSo=
-X-Gm-Gg: AZuq6aLMU7xqjyzEWeG6TbrBHeReXeeMFFGdF9CYac1CTAB5U/oqxWQ7W308rGUDMWK
-	mtJimQfQn6J/J5V51dEsPG5HNNsY5UOxTLB1Z41LourarqnlELWTUsDi7yN6NVKVV98K1bXyKb1
-	Yf/617KHEMK2TY3/S4xy1pIy1GGNGWQXospbE/0lcpbXnbUeKiFOxlPk3Oj0NyeIIBhflGOXxlZ
-	P5UHVlldks3rK+Ts4VXyi1ie7HFFz8/I/78GtqrVE01aCSqcki47+FtRJtiLrqEm0H9EPNiglqR
-	/kapwXv/LeNThTBFt91NW1ysnjktm8qr17S5MaTIJdZ2ycZ+E4Ft1EgGWAz1raVP5r7E
-X-Received: by 2002:a05:6102:3e89:b0:5f5:4e0e:c826 with SMTP id
- ada2fe7eead31-5fc48c111bbmr1444766137.5.1770798899019; Wed, 11 Feb 2026
- 00:34:59 -0800 (PST)
+        d=1e100.net; s=20230601; t=1770798895; x=1771403695;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vfdcqFM0/eCHybIVXUmOHj6K5wyJWfZBIgSuomD2VWA=;
+        b=DhTHdO2YllDClO3VV3UMiKIqn1Z9c4s1ME1KJ7Q5/VtD/WWqIAqYljLwdzk6+b3fnE
+         4Gj/zKcSNNWgloNFYFX2lt5HAy1mpaxGxs1VzxoG4fL13KksdVAjfScIsjucm+Fk5yAO
+         tfAE75VN5hhqQO5VkyHaU4zeOsRdXls5uirxiEfr2Usu5LbiqZfrxeXNEr7pNdKjWLzX
+         L27VBVmeq3wgfgHxVvMyxXSuIkehwDCQ4rK5xLg4R0V/puRIFpT5Bz5YUoehviblYrsI
+         Y702tUDZ+Fu23w0/N5wQYWBrGgXbOXvh9i2Hb9Dn0dRaDwgKCcwWJWJxDJkhkZ19dFOc
+         AbmA==
+X-Forwarded-Encrypted: i=1; AJvYcCUraQQV3VyXztDsO9rBMbU6XqkEiegsSoLfXGOlq6dfCcllik0hAKKn8qZgN/A8dUoescZef59MLU7M@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz74JsCnXvl53QeP9eyYFvLyiC2LlyB+wNvF3S00PRFRdlbnQIS
+	prDMEnYW+N25y6zlSF8Se4ifCyxOVy5liSzV9FOtkX6YUIQFxmcLWR08IFOkhRmgH5I=
+X-Gm-Gg: AZuq6aIDzVnNdK+XjIdDKFDAFgTYbPi0Edr5zf0iBP0paAopFt4qIO78yz+tX9aS9S7
+	3u12kNosyPAlUPHVrL+lyVn+2HRrhyErV/6CFuFkld8pUv5d0eUtk4U1nyC/V4vFVNj5X1BgB1Q
+	DoHqCyadeT89jAtSEU58aDBHFUUEYIQwvZaTwSJHnJSoLnoxNQP9lMgk65Fx9SwbAuG8hZ8/CGE
+	Dd8DuKNWDtF06Hoa7uzviDlfkLTkVVu8RFsSTbShtqgDFwzCgrDifgds2RZ9v1Eyve494kGddvg
+	7oyF6kcbEyTQNvuXe9/wzo7VtbPEznNnhhmbb8Q5rhcfC1axGMDrQ90y3+t2X3od56k4af2YsNJ
+	0NxajLhKR0nIycOj8vMNa1G80jLOoZxgO/oY1NNJKCDgUAzxkZKvxQBq1OKgxLUeNDCakGhgCzq
+	21AdnGYmfc1jt3d39lirN0oQ==
+X-Received: by 2002:a05:6000:2386:b0:435:dd81:4f4d with SMTP id ffacd0b85a97d-4377a534f67mr8447959f8f.26.1770798894983;
+        Wed, 11 Feb 2026 00:34:54 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:550e:9544:443b:8507])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-43783d746a3sm3075953f8f.17.2026.02.11.00.34.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Feb 2026 00:34:54 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
+ <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,  Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>,  chuan.liu@amlogic.com,
+  linux-amlogic@lists.infradead.org,  linux-clk@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/13] clk: amlogic: Introduce A9 PLL and CCU driver
+ support
+In-Reply-To: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com> (Chuan
+	Liu via's message of "Mon, 09 Feb 2026 13:48:46 +0800")
+References: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Wed, 11 Feb 2026 09:34:52 +0100
+Message-ID: <1jseb7y8yb.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260211081355.3028947-1-james.hilliard1@gmail.com> <CAMuHMdXWAx1Kfb84bhp0c8Gya5yaQjtYOnVFqJzyc4Wjc_KtqA@mail.gmail.com>
-In-Reply-To: <CAMuHMdXWAx1Kfb84bhp0c8Gya5yaQjtYOnVFqJzyc4Wjc_KtqA@mail.gmail.com>
-From: James Hilliard <james.hilliard1@gmail.com>
-Date: Wed, 11 Feb 2026 01:34:48 -0700
-X-Gm-Features: AZwV_Qj7Gzo2wnLCjGYX7X_WPDa_y5ffPDK6j_-RPcUd2pnezANnMEtpl04M6GI
-Message-ID: <CADvTj4oetrsLwB0q=tA+9KZ7XTXd5asZjhZf=kekbSpnBFHA-w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux-gpio@vger.kernel.org, Linus Walleij <linusw@kernel.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alexander Stein <linux@ew.tq-group.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264660-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264659-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jameshilliard1@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,devicetree.org:url,mail.gmail.com:mid,tq-group.com:email]
-X-Rspamd-Queue-Id: B8482122498
+	FROM_NEQ_ENVFROM(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,chuan.liu.amlogic.com,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,starbuckisacylon.baylibre.com:mid,baylibre-com.20230601.gappssmtp.com:dkim]
+X-Rspamd-Queue-Id: 8D4EB122481
 X-Rspamd-Action: no action
 
-On Wed, Feb 11, 2026 at 1:26=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi James,
->
-> On Wed, 11 Feb 2026 at 09:14, James Hilliard <james.hilliard1@gmail.com> =
-wrote:
-> > Document the gpio-aggregator virtual GPIO controller with a dedicated
-> > schema and compatible string.
-> >
-> > Also extend the GPIO AGGREGATOR MAINTAINERS entry to cover the new
-> > binding file.
-> >
-> > Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
->
-> Thanks for your patch!
->
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/gpio/gpio-aggregator.yaml
-> > @@ -0,0 +1,54 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/gpio/gpio-aggregator.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: GPIO aggregator controller
-> > +
-> > +maintainers:
-> > +  - Alexander Stein <linux@ew.tq-group.com>
-> > +
-> > +description:
-> > +  GPIO aggregator forwards selected GPIO lines from one or more GPIO
-> > +  controllers and exposes them as a virtual GPIO controller.
->
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    gpio_agg: gpio-aggregator {
-> > +        compatible =3D "gpio-aggregator";
-> > +        #gpio-cells =3D <2>;
-> > +        gpio-controller;
-> > +        gpios =3D <&gpio0 3 GPIO_ACTIVE_LOW>,
-> > +                <&gpio3 1 GPIO_ACTIVE_HIGH>;
-> > +        gpio-line-names =3D "modem-reset", "modem-enable";
-> > +    };
->
-> Looking at the example, it seems you intend to use the gpio-aggregator
-> as a "Generic GPIO Driver", like in the example in the documentation[1].
-> Hence I think you should not introduce and abuse the "gpio-aggregator"
-> compatible value for this, but instead:
->   1. Use a proper compatible value that matches your device,
->   2. Write proper DT bindings for the device,
->   3. Add the proper device's compatible value to the gpio-aggregator
->      driver's match table.
-> The above is very similar to how spidev is handled, which also forbids
-> using the spidev compatible value in DTS.
+On lun. 09 f=C3=A9vr. 2026 at 13:48, Chuan Liu via B4 Relay <devnull+chuan.=
+liu.amlogic.com@kernel.org> wrote:
 
-Isn't this gpio-aggregator driver supposed to be non-hardware
-specific?
+> This patch adds driver support for Phase-Locked Loop (PLL) controllers
+> and Clock Control Units (CCUs) in A9 SoC family.
+>
+> In the A9 SoC architecture, PLLs and clock control units are implemented
+> as standardized hardware instances to reduce unnecessary differentiation
+> across individual units.
+>
+> All A9 PLLs and CCUs are exposed as device tree nodes, providing an
+> accurate representation of the SoC's internal clock hardware structure.
+>
+> These drivers are designed for reuse in subsequent SoC generations,
+> guaranteeing code inheritance and maximizing reusability.
+>
+> Makefile rules compile A9 PLL and CCU drivers into clk-amlogic.o (see
+> drivers/clk/amlogic/Makefile), simplifying deployment and enhancing load
+> efficiency (single insmod for kernel module).
+>
+> Since the foundational A9 DTS hasn't been upstreamed yet, I'm temporarily
+> pushing the PLL/CCU DTS files to github for driver comprehension [1].
+> These patches will be included in a later release after the base A9 DTS
+> is merged.
 
-I'm trying to use it as described here, I noticed the compatible
-in the blog post was missing and just needed adding to the
-driver: https://bootlin.com/blog/gpio-aggregator-a-virtual-gpio-chip/
+Creating a new vendor directory and re-inventing supported driver
+without an explanation, coding style, build problems ... the list goes
+on. You've outdone yourself !
 
-> [1] https://docs.kernel.org/6.2/admin-guide/gpio/gpio-aggregator.html#gen=
-eric-gpio-driver
-> [2] https://docs.kernel.org/spi/spidev.html
+So NACK.
+
+Chuan has been warned numerous times about his submission to the kernel
+mailing lists, without a noticeable effect. I can only suggest other
+reviewers do not waste their time reviewing this.
+
 >
-> Gr{oetje,eeting}s,
+> [1] https://github.com/torvalds/linux/commit/d6a82e4cce675fa5146c5f638c2a=
+926c1c8cb1d9
 >
->                         Geert
+> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+> ---
+> Chuan Liu (13):
+>       dt-bindings: clock: Add Amlogic A9 standardized model clock control=
+ units
+>       dt-bindings: clock: Add Amlogic A9 PLL controllers
+>       dt-bindings: clock: Add Amlogic A9 misc clock control units
+>       clk: amlogic: Add basic clock driver
+>       clk: amlogic: Add composite clock driver
+>       clk: amlogic: Add noglitch clock driver
+>       clk: amlogic: Add duandiv clock driver
+>       clk: amlogic: Add PLL driver
+>       clk: amlogic: Add DT-based clock registration functions
+>       clk: amlogic: Add A9 standardized model clock control units driver
+>       clk: amlogic: Add A9 PLL controllers driver
+>       clk: amlogic: Add A9 misc clock control units driver
+>       clk: amlogic: Add support for building as combined kernel module
 >
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
+>  .../bindings/clock/amlogic,a9-misc-ccu.yaml        | 523 +++++++++++
+>  .../bindings/clock/amlogic,a9-model-ccu.yaml       | 435 +++++++++
+>  .../devicetree/bindings/clock/amlogic,a9-pll.yaml  | 134 +++
+>  drivers/clk/Kconfig                                |   1 +
+>  drivers/clk/Makefile                               |   1 +
+>  drivers/clk/amlogic/Kconfig                        |  52 ++
+>  drivers/clk/amlogic/Makefile                       |  23 +
+>  drivers/clk/amlogic/a9-misc-ccu.c                  | 970 +++++++++++++++=
+++++++
+>  drivers/clk/amlogic/a9-model-ccu.c                 | 475 ++++++++++
+>  drivers/clk/amlogic/a9-pll.c                       | 156 ++++
+>  drivers/clk/amlogic/clk-basic.c                    | 219 +++++
+>  drivers/clk/amlogic/clk-basic.h                    |  39 +
+>  drivers/clk/amlogic/clk-composite.c                | 280 ++++++
+>  drivers/clk/amlogic/clk-composite.h                |  20 +
+>  drivers/clk/amlogic/clk-dualdiv.c                  | 365 ++++++++
+>  drivers/clk/amlogic/clk-dualdiv.h                  |  27 +
+>  drivers/clk/amlogic/clk-module.c                   |  42 +
+>  drivers/clk/amlogic/clk-module.h                   |  53 ++
+>  drivers/clk/amlogic/clk-noglitch.c                 | 584 +++++++++++++
+>  drivers/clk/amlogic/clk-noglitch.h                 |  29 +
+>  drivers/clk/amlogic/clk-pll.c                      | 701 +++++++++++++++
+>  drivers/clk/amlogic/clk-pll.h                      |  43 +
+>  drivers/clk/amlogic/clk.c                          | 464 ++++++++++
+>  drivers/clk/amlogic/clk.h                          |  56 ++
+>  include/dt-bindings/clock/amlogic,a9-misc-ccu.h    |  53 ++
+>  25 files changed, 5745 insertions(+)
+> ---
+> base-commit: 4d310797262f0ddf129e76c2aad2b950adaf1fda
+> change-id: 20260130-a9_clock_driver-ddd90357848c
 >
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
+> Best regards,
+
+--=20
+Jerome
 
