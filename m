@@ -1,184 +1,165 @@
-Return-Path: <devicetree+bounces-264817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264819-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MJPtKy3VjGm+tgAAu9opvQ
-	(envelope-from <devicetree+bounces-264817-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 20:14:53 +0100
+	id YJhTLJPWjGm+tgAAu9opvQ
+	(envelope-from <devicetree+bounces-264819-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 20:20:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B222D127188
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 20:14:52 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5623712720E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 20:20:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2E583300AC37
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 19:14:46 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 83B0830041DC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 19:20:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A6D34EEF4;
-	Wed, 11 Feb 2026 19:14:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55057309DCF;
+	Wed, 11 Feb 2026 19:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="sMD8YsCH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XA4qx6kd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BFC5352FAA;
-	Wed, 11 Feb 2026 19:14:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B9FD1A0B15
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 19:20:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770837284; cv=none; b=cWFUpd1259BMxAK6tYVh+EudtaaeDmwsD6r+oAMGMLfEWWguQIlBWqzLWbDlLiy4RX1Igrhtk7nq9syuRsSvFqnxjdHDpuIh/FdA/8OppJE6NEYZ5vLMQnSrRfr989cYhZH+5ExnPhxBHa6W2xqsB87hWRQODEhJLRiTuPDV7bc=
+	t=1770837648; cv=none; b=GcvgXdxqfV5b5ApB/T9Xfm5h99sB4CyAo9pzuNB9ytgulDCD5IWQ3b95o3oydkmOWwDURwGQcXSjGaIc8YLrXw+BdVlYNM44oVZ2E4abqeWv5BfAdkYPXCyVc6ePEO5aCwm7G78jeTVZ/o9eWLvCrOfXeXuCdzfMMoc8ywOHlis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770837284; c=relaxed/simple;
-	bh=ZweJHAwbcunaNib9ONNm6FR95GLSMOSSKUVabneKcoc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gqIWvxynLDeR1ETEClaVkKSAlIeGUgpPhXooOLKBKl6jjj/2kbXP9WZ7mbUW82hrbDYhobJV/vx7JAsNWruqUnEip3wTQAM6x2sehNt/fdr/6izk5CI6vZkTEV5qMM/n9YY8A79/lrNEZAaz20F+fo60zQoF/E/ycVzee/OOxUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=sMD8YsCH; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: e753eada077d11f1b7fc4fdb8733b2bc-20260212
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=p6iru+5MqcVh6Wj2utJq3VS9ZNE7+yfzibDMJ0iPXrc=;
-	b=sMD8YsCHTZ9JWi4qTEPa923CMDeb14Wb+xgLDLBjm6UIS5D3P+1ZCqD/w6NqpcC1b4C8Gk3q8HTw7kphhMsVI75zNPRGo9PqcxQaRlNriKOHn+wxSkqtBJJrhvwyv8U+6YzNo/Xv5rsXAzNCa8oPlSc3qmJA9XVi8RVr2RJBTIc=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.11,REQID:60f2da96-2f2b-4f8e-af50-623722ece708,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:89c9d04,CLOUDID:1ce197f0-16bd-4243-b4ca-b08ca08ab1d8,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|888|898,TC:-5,Content:
-	0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI
-	:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: e753eada077d11f1b7fc4fdb8733b2bc-20260212
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-	(envelope-from <ryder.lee@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 280944736; Thu, 12 Feb 2026 03:14:35 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 12 Feb 2026 03:14:35 +0800
-Received: from mussdccf250.eus.mediatek.inc (10.73.250.250) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Thu, 12 Feb 2026 03:14:34 +0800
-From: Ryder Lee <ryder.lee@mediatek.com>
-To: Felix Fietkau <nbd@nbd.name>, Rob Herring <robh@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-wireless@vger.kernel.org>, Ryder Lee <ryder.lee@mediatek.com>, Allen
- Ye <allen.ye@mediatek.com>
-Subject: [PATCH v4 2/2] dt-bindings: net: wireless: mt76: clarify backoff limit usage
-Date: Wed, 11 Feb 2026 11:14:30 -0800
-Message-ID: <4111ba0734fc7818f899db0bea08e3428eb536d5.1770836705.git.ryder.lee@mediatek.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <8fa8ec500b3d4de7b1966c6887f1dfbe5c46a54c.1770836705.git.ryder.lee@mediatek.com>
-References: <8fa8ec500b3d4de7b1966c6887f1dfbe5c46a54c.1770836705.git.ryder.lee@mediatek.com>
+	s=arc-20240116; t=1770837648; c=relaxed/simple;
+	bh=N7jtro5oSJN1JKozY7l0/NLT0gx83PLmC0myZcZeqW0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fv1b1U265voE5DzKRYOk7Uor4928kZWBvjdlJMAGVf3xtd+YCRA8d7FSGejMZLhxfoD6C8udZXehn0RNBS9wWtz+11OGJ1CBOO2YNRFPS4n4g4X7n42cgNYO9Ph4wUtscRl7YAknWwB959SbBwvoWJEdt8pDzHISAz63XsRSAJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XA4qx6kd; arc=none smtp.client-ip=209.85.222.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-8c533228383so149225385a.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 11:20:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770837646; x=1771442446; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Hnjm98atgKsIzfRxPyb/8amThvi/ub+kK9XVY2KgknI=;
+        b=XA4qx6kdzGxpYbNm808+tcFQvxoWXgCxbzFAmbhfsLXxu4IoLCVkXR0HA3EzqeSc6Z
+         YbGV1AGtjiIB3xoJUxWhbsveNcpHRHhzQRQdjBwBEobTxueMPwujR5+F9xfOkaQ7xrcr
+         koLV5cf38Rk49Bl9VzI5xu2RJsMRqIenjVBaZyRR22WZdkh1Djrfw8tq8sqOTfpkxUgJ
+         zOUUCwxWMlDP1P8fbooRXk/4BFpEGdpo7OpNZ3yV0PvfpNJ2uHV8Oy8+X7hGBhTSYzxH
+         Shc3LBXFgkhICyoHP7afbQF6yV61g8piw1eSFgNSLMEHJBfeqIS9J8dLmNJyTCSdGPFS
+         9e/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770837646; x=1771442446;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Hnjm98atgKsIzfRxPyb/8amThvi/ub+kK9XVY2KgknI=;
+        b=NhByUC5TQBGB6lVIvE4VlvelSq38PXLQ5TXGxFDhpXhUcIfUDxJx/CIsoae38F8Ukn
+         G1akeAu1xCU+7Z28bl+0iTHjhQPus1vWh3VsFYxDk40l4Z6RtKJYJa15JIy5Nq3uPZq/
+         bqoy9j+pSLtTo+vXOqCxRMeTuk+IPbQztlGftEre2DWeKITdD1lOMCEwKg9wkHseeHCe
+         Rxy5gwxrkybooUOc+yFDxobPeMIMWFXtYstvd8+Mv95yDVTBf86feVBw+H+27wQxnXLx
+         EFpWDZVpQoiyzf3YFT7k6kd1KLrdrX5SJmLeXaPNMMYyNl/dzLwZRY2/6a5/x+0HMMSR
+         pYbw==
+X-Forwarded-Encrypted: i=1; AJvYcCVUjsPRp9+Lnc41NF4tAh5EbnKjV+U9J+VG0MjumZu7Ivy0hzYh3V2b5t/Oq83EYzVaKHIuY0G18IgO@vger.kernel.org
+X-Gm-Message-State: AOJu0YxfJicx9wmzMDcWhNFGWlqNNHPxPImG7bft0Ga7tzTiyF7jPi5m
+	XTOzuiap5fH+FtgMZijc0GbAFm4fbwi1WuoxNtydTC6nJbWgxm/errMh
+X-Gm-Gg: AZuq6aLN0s9XI3BKbLrpiK4r3XI810Lp0JW5HgQefiDxU3P7qQIOqFe7FLXglrBeQtq
+	3Ea2UVI6Yrx+lXSqGORleYLVR8Hdg1MYb0xnw4J6/O6/EA2jA3xSSLbrGlkaoEtvOBfx/xOY6jQ
+	u7Z85HOV24XV181nPrOporIhiFB0j0KPqpghpqgsJQjmDkzSrYq4hfCZV6/rsARMIyW/jBKFGQm
+	Ys58aH7/AFh3PHiay3i7YqqwrVlrKXsAJ+odupZzEUVe29wtys9yoc85PpR+TI+iKlhw8B+FTdj
+	N1VKeR2q+m+LC6An0Oege+w3u/1uhpWF2Wc6WCHPN58so2Ohiu5QeTBW3T25TPwMDCkIeNOeq8p
+	YI7Ql+xqXD63NHjg+Bg4A3sZdvfuTBAohbTCzuMLxgEW1yMY5SAPk292gqGi/5R8S1H6al5d8mo
+	Vlsa+iQiCo3zxAOGwUqADtp64UpGcVYnxeltVg
+X-Received: by 2002:a05:620a:4892:b0:8c5:2ce6:dae with SMTP id af79cd13be357-8cb3308ed3bmr48912085a.29.1770837645889;
+        Wed, 11 Feb 2026 11:20:45 -0800 (PST)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8cb2b1f8185sm180521985a.36.2026.02.11.11.20.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Feb 2026 11:20:45 -0800 (PST)
+Date: Wed, 11 Feb 2026 14:21:12 -0500
+From: Richard Acayan <mailingradian@gmail.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Conor Dooley <conor@kernel.org>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] soc: qcom: llcc: Add configuration data for SDM670
+Message-ID: <aYzWqFybymwd17Dx@rdacayan>
+References: <20260210021957.13357-1-mailingradian@gmail.com>
+ <20260210021957.13357-3-mailingradian@gmail.com>
+ <026ce34c-c880-4832-a791-656fb245a495@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <026ce34c-c880-4832-a791-656fb245a495@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264817-lists,devicetree=lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264819-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ryder.lee@mediatek.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	DKIM_TRACE(0.00)[mediatek.com:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B222D127188
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5623712720E
 X-Rspamd-Action: no action
 
-Clarify the usage of path backoff limit properties in mt76 binding.
-Add explicit documentation for old generation (mt7915, mt7916, mt7981,
-mt7986) and new generation (mt7990, mt7992, mt7996) devices, including
-the difference in beamforming and non-beamforming entries.
+On Tue, Feb 10, 2026 at 10:27:40AM +0100, Konrad Dybcio wrote:
+> On 2/10/26 3:19 AM, Richard Acayan wrote:
+> > Add system cache table and configs for the SDM670 SoC.
+> > 
+> > Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> > ---
+> 
+> I have a clone of some msm-4.9 on my ssd and it roughly matches this
+> patch
+> 
+> However
+> 
+> In docs, I see a version with only CPU_SS, MODEM and MMUHWT left
+> (your settings here seem to match), dated later than the last commit
+> to llcc-sdm670.c in that downstream kernel clone..
+> 
+> Because this SoC seems to only have 512KiB of LLC in total, it may
+> be that it was found in testing for that configuration to have a
+> better perf profile
+> 
+> Could you please give it a shot and check if you see any immediate
+> gains/losses?
 
-Rephrase the paths-ru/paths-ru-bf description to reflect the actual
-usage.
+I don't notice a difference outside the margin of error. The Unixbench
+workload reported 4550.4 with all configs, and 4550.9 with only
+LLCC_CPUSS, LLCC_MDM, and LLCC_MMUHWT. My 15-second workload on
+Hexagon/CDSP was half a second faster when commenting out the cache use
+cases.
 
-Co-developed-by: Allen Ye <allen.ye@mediatek.com>
-Signed-off-by: Allen Ye <allen.ye@mediatek.com>
-Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
----
-v1-v3: none
-
-v4:
-- revise commit message
-- use PCI id as the compatible string to replace "connac2/3"
----
- .../bindings/net/wireless/mediatek,mt76.yaml  | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-index ae6b97cdc..ccb31cf76 100644
---- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-@@ -27,6 +27,11 @@ properties:
-       - mediatek,mt7622-wmac
-       - mediatek,mt7981-wmac
-       - mediatek,mt7986-wmac
-+      - pci14c3,7915 #mt7915
-+      - pci14c3,7906 #mt7916
-+      - pci14c3,7990 #mt7996
-+      - pci14c3,7992 #mt7992
-+      - pci14c3,7993 #mt7990
- 
-   reg:
-     minItems: 1
-@@ -252,6 +257,14 @@ properties:
-                       followed by 10 power limit values. The order of the
-                       channel resource unit settings is RU26, RU52, RU106,
-                       RU242/SU20, RU484/SU40, RU996/SU80 and RU2x996/SU160.
-+                      - For mt7981/mt7986/mt7915/mt7916
-+                        - Beamforming entries for BW20~BW160 and OFDM do not
-+                          include 1T1ss.
-+                        - When 1T1ss is not used, it should be filled with 0.
-+                      - For mt7996/mt7992/mt7990
-+                        - Beamforming entries for BW20~BW160 and RU include
-+                          1T1ss, but OFDM does not include 1T1ss.
-+                        - 1T1ss is taken into account, so no need to fill with 0.
-                     minItems: 1
-                     maxItems: 7
-                     items:
-@@ -270,6 +283,14 @@ properties:
-                       followed by 10 power limit values. The order of the
-                       channel resource unit settings is RU26, RU52, RU106,
-                       RU242/SU20, RU484/SU40, RU996/SU80 and RU2x996/SU160.
-+                      - For mt7981/mt7986/mt7915/mt7916
-+                        - Beamforming entries for BW20~BW160 and OFDM do not
-+                          include 1T1ss.
-+                        - When 1T1ss is not used, it should be filled with 0.
-+                      - For mt7996/mt7992/mt7990
-+                        - Beamforming entries for BW20~BW160 and RU include
-+                          1T1ss, but OFDM does not include 1T1ss.
-+                        - 1T1ss is taken into account, so no need to fill with 0.
-                     minItems: 1
-                     maxItems: 7
-                     items:
--- 
-2.45.2
-
+I don't see better startup times either.
 
