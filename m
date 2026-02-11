@@ -1,137 +1,170 @@
-Return-Path: <devicetree+bounces-264726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264727-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2ACaD4BYjGm9lQAAu9opvQ
-	(envelope-from <devicetree+bounces-264726-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:22:56 +0100
+	id QJhlEqpZjGm9lQAAu9opvQ
+	(envelope-from <devicetree+bounces-264727-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:27:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C85CC12347C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:22:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CEA21234EC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:27:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0FCDE3005596
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:22:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4BA11301DBBB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:27:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3322E35B12B;
-	Wed, 11 Feb 2026 10:22:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF99E368275;
+	Wed, 11 Feb 2026 10:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="lPsbcQDc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95B5D30C60D
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 10:22:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 293373563C7
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 10:27:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770805373; cv=none; b=iyzRLEwjxzdq+k0gvCb+IqkvvEJR06d98ODm0weHZiSEZ/PHyM7bD5Qy5eCcVtVEBAdKS5J7K+acUeBzDlZg46KgCLYgiRD5qDIbf4ynFFhisG4ojg8VLMSnX+/M9V/2gm8h6Hk8P0xw4XJ5uYoHkdvn4DzY/hMzHaQx9LWZxTU=
+	t=1770805670; cv=none; b=lyDlPzts9Gin+sHy8pla8ggMe1HD/MTrOch8yqXADNPTsmVlXlCZuIkYf9XqIlYjp4cccthHpQVI0URoVzxtjQpcuzDEElzmJ9D+TyR0o4MQVDmHrBCpAmkhLBTyYpgOefzRN8olSHjE4V/UWkqkCPZZBz6vXxF4wcTdH6DKq+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770805373; c=relaxed/simple;
-	bh=ByPFv9LSfPa2h98LgJFBNckt7yVpvetzmP0rKVGMRWE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=HW/1un6+84eiY0UjQF3Cac7DZiQX658mak+Pq2tDi4uNySO+22qQrGVZ+yx8xkc2gctz9EdEgJDRM3/W4ZzxBPhsfFaXqCdHg9seaPe2xgUcYJfMAY4M5F6c2RZ1iflqbxREjOjXVxZ26rGscAdwCEBV+jpVC6joim5hgZ3yyx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vq7Mp-0006CD-Ff; Wed, 11 Feb 2026 11:22:43 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vq7Mm-000ECR-2H;
-	Wed, 11 Feb 2026 11:22:42 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vq7Mn-000000004Mm-45m0;
-	Wed, 11 Feb 2026 11:22:41 +0100
-Message-ID: <fcbc10e7657a20c08eb1fd50f0eedad0d6361fed.camel@pengutronix.de>
-Subject: Re: =?UTF-8?Q?=E5=9B=9E=E5=A4=8D=3A?= [PATCH v8 2/3] reset: add
- Sky1 soc reset support
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Gary Yang <gary.yang@cixtech.com>, "robh@kernel.org" <robh@kernel.org>, 
- "krzk+dt@kernel.org"	 <krzk+dt@kernel.org>, "conor+dt@kernel.org"
- <conor+dt@kernel.org>, Peter Chen	 <peter.chen@cixtech.com>,
- "unicorn_wang@outlook.com" <unicorn_wang@outlook.com>, 
- "inochiama@gmail.com"	 <inochiama@gmail.com>, "alchark@gmail.com"
- <alchark@gmail.com>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
- "linux-kernel@vger.kernel.org"
-	 <linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	 <linux-arm-kernel@lists.infradead.org>, cix-kernel-upstream
-	 <cix-kernel-upstream@cixtech.com>
-Date: Wed, 11 Feb 2026 11:22:41 +0100
-In-Reply-To: <TYUPR06MB587663CF0612A0552C0029E8EF63A@TYUPR06MB5876.apcprd06.prod.outlook.com>
-References: <20260209093344.2013693-1-gary.yang@cixtech.com>
-		 <20260209093344.2013693-3-gary.yang@cixtech.com>
-	 <1c77ab31e6ba8b6285a67a6f2877a415dc9f3d3b.camel@pengutronix.de>
-	 <TYUPR06MB587663CF0612A0552C0029E8EF63A@TYUPR06MB5876.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1770805670; c=relaxed/simple;
+	bh=lrAhY6+QpfzhR3CUKyt42tW2guO/yHYDHCPWvOuysKA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ug+G1bcyIMmP/TkHgReALli62i5MDCCFLgqlbHAFN/BT0KhYNvOwTmM4oaM21CoUNeR49zvlSWghkaymtdw3wc7XMKxmfhtI8PdXEji6iKf9spAzjV8ClHF3aqK5BcOoq/IKB5J9AmzNU4DLzSZuYMg2hFXOrSiT7YjlgD8BanQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=lPsbcQDc; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b885e8c6700so1070849066b.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 02:27:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1770805667; x=1771410467; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cFvWbdBwgEcUXjI4yzNcU+BV58r6gnRAccKEixMkUnA=;
+        b=lPsbcQDcxLpMLtIOHckzfG+LFwrmehFFFmt8BWQsBqx2gV8XNm4b/7AklOEPMfwhAR
+         Zkov3bKyIC4OgVQBLq259A9jJDaaHf1aRDhMFrQ2oKapRvREFlice7OOlFZbbBjtpWkQ
+         dSHw+pr7LHVlnPwoxLtwo5RIRHV/NHqQL+b4C8k35wpZcg112o3BmzrHxNcn/QWDWtVW
+         EcK5qDbh5dLk0kji3jjSWUTr+NDHdJu0CArbt4ckmtVGr4nAXYWcSjaVMcpv2GDgTFc5
+         CxCir7JOJcE6hVu1K8wCwmGCxODrTM7sAemFrwC/RsVBpQKD9gKXNE6Zj044ZwqMdPmV
+         OTcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770805667; x=1771410467;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cFvWbdBwgEcUXjI4yzNcU+BV58r6gnRAccKEixMkUnA=;
+        b=Vn2KmlBK5tsIIuS84n7uruI/UPfjdR5UB9HQ1fvoMaf1fTGQ9jQTud4zulttsQRYLG
+         eFirvAt2sliJ45z43SefkxqC6scxmw84bZngU2Vq8Z6go+6j98i3CRFpz892+HTr4g8p
+         lU3YphR66aIzmxo1uZK3Cc5wT8I+AMQl6FFwjHyj2HqgGtJlAp5yMwTGJtVfD9LnbDnf
+         G26CLpQuxNDfFc6LUoGTotoL6kSIZXpw5ETi/DIbCWtfzx0B1rWsUklrX47xVvve6WM6
+         icAGvuJEgHRj2jjdQp1IJQUfHOrXdgaR43xMHfMr7gPVOaoOUAYgrxQZGOYvq8pwUGVr
+         qlIA==
+X-Forwarded-Encrypted: i=1; AJvYcCWjuO3diE7cFg3Jc4g3rYzCiibez4lsExDpLLEe+9SHaP/nPq8RmyT3KF/4dOmxktqPXQy/+xUwFkw7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJ6l41tcgVu7h78eaVEGaI5u1uqjcgEsmuJYfHE3eI3O/TG/Lc
+	+De+O1c7Rf7otYbobhpWOfF3yOnMJdgXIYugRpfSHhfbimWU2eV0T7ExbqKtTLwkUu5d3Ikari3
+	6V1fh
+X-Gm-Gg: AZuq6aLiCy7yIXUtYRghFI/fX042fibbIpmO3C/KjYd5BIVLUy63XJmUxJaGJxXMdzH
+	7HGpQULbVijOazI+fF4C1JiNcPJ+su1qyyJHhqfX9+an+zOwGEuwLuvVCMqAFaTIInXCIPcL7ez
+	1Gv4zqxwCL4IJqHMxuxRqS7nPbvUrnxTipPOipCsEgx5qUsz2pqxXt2rES2kDCXGEHrmUMVuI5X
+	hF2oLs/aEFm5NuHXiHPpjPi/c/vF0KFfFcHFQbMTqDXnWVLzytjD22qBHO/tN0+8P0JsK5mOI8j
+	qlwqxP7v0z1us6/uxROtmSyDOWlO+4IsQYYMZVOL6JXgv4Zk73oaXDb88osU+LdFp3SIWSMLMJI
+	UNDuL2Q5PLS/EMs8xdWnQ0lGyMwv2aOqwaGPjD4cpnM8LXC6XIri78i2ez9+JXzJt49yWBCXq+v
+	+fL3IKYEzojclqraLFJEPjhZ+UEl3MRKEq1n2NtFoQ20BNcjJiBSqklA5qxy/KuWcj37SqSGdGp
+	xV5
+X-Received: by 2002:a17:907:9289:b0:b73:210a:44e with SMTP id a640c23a62f3a-b8f717080ddmr71193766b.30.1770805667335;
+        Wed, 11 Feb 2026 02:27:47 -0800 (PST)
+Received: from [172.16.240.99] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8f6ec54925sm44296266b.53.2026.02.11.02.27.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Feb 2026 02:27:47 -0800 (PST)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH 0/3] Bitmask logic fix and firmware-name support for
+ AW88261 amplifier driver
+Date: Wed, 11 Feb 2026 11:27:31 +0100
+Message-Id: <20260211-aw88261-fwname-v1-0-e24e833a019d@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MQQqAIBBA0avErBOcIcy6SrQQHWsWWShUEN09a
+ fkW/z9QOAsXGJsHMp9SZE8V2DbgV5cWVhKqgTQZTYjKXdaSQRWv5DZWdvCEwfih6w3U6Mgc5f6
+ H0/y+H00BSDpgAAAA
+X-Change-ID: 20260211-aw88261-fwname-89c21d6c9476
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Weidong Wang <wangweidong.a@awinic.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Alexandre Ferrieux <alexandre.ferrieux@orange.com>, 
+ Bhushan Shah <bhushan.shah@machinesoul.in>, 
+ Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770805666; l=862;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=lrAhY6+QpfzhR3CUKyt42tW2guO/yHYDHCPWvOuysKA=;
+ b=QZwG9Mo9pYOwFUON1wrF/HQ3xQNMAkT59lgRa+SNZsrXpKDqJbYbyB73rVA+fz8cdpPvU1Mnv
+ K95/u6alG3BAx9fakuVcXvkqbrUU0WmB1bKzHtYfoye7OuBD++7u8of
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264726-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_TO(0.00)[cixtech.com,kernel.org,outlook.com,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264727-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,perex.cz,suse.com,awinic.com,orange.com,machinesoul.in];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[pengutronix.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[fairphone.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C85CC12347C
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9CEA21234EC
 X-Rspamd-Action: no action
 
-On Mi, 2026-02-11 at 01:56 +0000, Gary Yang wrote:
-[...]
-> As Krzysztof's advices, we will remove the file named sky1-system-control=
-.c
-> Make the syscon node directly bind to reset driver. Are you agree?
-[...]
-> >=20
-> >=20
-> >=20
-> >=20
-> We will delete sky1-system-control.c as Krzysztof's advices.
-> Are you Agree?
-[...]
->=20
-> Yes, you're right. We intend to adopt the advices from conor. But I saw t=
-he new syscon scheme from spacemit,k210-syscon
-> and these comments from Krzysztof. We will delete sky1-system-control.c a=
-s Krzysztof's advices. Are you Agree?
+First a patch which fixes a logic error in the aw88261 driver. And then
+we add "firmware-name" support for that driver to support loading
+the device-specific firmware properly.
 
-I agree.
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Alexandre Ferrieux (1):
+      ASoC: codecs: aw88261: Fix erroneous bitmask logic in Awinic init
 
-regards
-Philipp
+Luca Weiss (2):
+      ASoC: dt-bindings: awinic,aw88395: Document firmware-name property
+      ASoC: codecs: aw88261: Add firmware-name support
+
+ .../devicetree/bindings/sound/awinic,aw88395.yaml        |  4 ++++
+ sound/soc/codecs/aw88261.c                               | 16 +++++++++++-----
+ 2 files changed, 15 insertions(+), 5 deletions(-)
+---
+base-commit: 6ca87498ba32522a6c10914add7beb2d9a2eb558
+change-id: 20260211-aw88261-fwname-89c21d6c9476
+
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
+
 
