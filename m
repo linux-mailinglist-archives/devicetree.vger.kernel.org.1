@@ -1,221 +1,198 @@
-Return-Path: <devicetree+bounces-264703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264704-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wJRNAypSjGmukgAAu9opvQ
-	(envelope-from <devicetree+bounces-264703-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:55:54 +0100
+	id ENb8IRFSjGmukgAAu9opvQ
+	(envelope-from <devicetree+bounces-264704-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:55:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B58BC1230AB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:55:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7A7612307D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:55:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0A2FA309CB2F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:52:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 78CD6300A8CE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 775BE36682A;
-	Wed, 11 Feb 2026 09:52:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE1336683E;
+	Wed, 11 Feb 2026 09:55:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="XlYu8ERp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AqX8gw98"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE498366814
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 09:52:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770803553; cv=pass; b=NhZPG5ssG38LxAU4emDYb3UVpep0VMEK2RzknI3dWuF8/wCkQokx2I4IXqyFiMGsUaaOGUj5vykT48qECUk2S/49nEo+BN1czGsqoJRrC/4poAfNiHFE1Vpdl6pMhIZ8pGAFhbhOMUPzozHz73AHPxhFY10P2gYfSfLlacVDUc4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770803553; c=relaxed/simple;
-	bh=FNM7+dqYol6CvwW/AICqCR+k1WexBtc5up187PR4V6U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=P8mS2JndMNxnmkoNKZYvfnRJzkG7ulQMCexmEnnHWBPI5HlGVgjCVBSSYhxMkhdHoFQI4fHcuKnPVGGeB71671nGWnw7vh19jwdQ1vmFxzkwGrO8uMhEizNfMYxfY7pRYq7oFYQs9ss3mJ+NWIwDxRa4+N/rmSJ2RtF2LXPFGsQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=XlYu8ERp; arc=pass smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-59b6c89d302so6445977e87.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 01:52:31 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770803550; cv=none;
-        d=google.com; s=arc-20240605;
-        b=cuq+PIj5WBq9/ni0vhWj5QlCHoAnTH/p10EsYr0lueVKsNJXzwjb/7mlpEyRrKxzpG
-         6V1k6Kg5CJykTDjZnoeyej92e3HRc/2jXzxTXkpr9iz5GnlV1Zh+6ePjMJnxBzI2E+Bw
-         l9giAmZNAAVIwz0rNkuKlQJ7zzdJW9LFgtYxhGIXzEhc/p0taw8YfeUsDvaoTDErKY5r
-         etmJ5Bb2sfr+SnP2IiqIAnQN9a/pViQRECs0NffA4qsAwqh5ZtSQG4DGK+ZrMIDhOIXH
-         NwNSPCxFBEugx+tTFQE3Cmtqf3gWKcP+7kfxmtNJTgVC2kbx91dok/WdWMbpDwzUxZEL
-         sbiw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=FNM7+dqYol6CvwW/AICqCR+k1WexBtc5up187PR4V6U=;
-        fh=i757wraeTL18Yy+JP7RUKC3TLiCX1/cAOZXfdpQoVhQ=;
-        b=h9z78y8p0uzKZI6y1Zs5HF2lDaB2faoViG/7AYduUKXDz42nEAmP3Yjjc0Tm8XBIfK
-         vjJ3bODtdEeuNLdab3zcRlHD17YRUsExthTmH5Pd/SO8EN6vm+C5ZFHnwlReAME0NcMj
-         tiowRYcog/R/Ctv7k/+B168zPiNAhQTdsNqroFPGUM60mGGuiKJoLzXVy3Afs/4l9f9i
-         yeFhx/qSHMiidKqRUvsN9Lu50lgCv+jU1Hl3E3BNJHD5WKnhzJX3Md7AZqRGT2L5UyEu
-         1bhMbPMBXdioTbRvr2OXMunVqdothgpsWEcxxFSw2REcqF3//k/vTCoycLx9jqE3gmvi
-         9vfA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1770803550; x=1771408350; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FNM7+dqYol6CvwW/AICqCR+k1WexBtc5up187PR4V6U=;
-        b=XlYu8ERpoebH6RfOEkEYN+jqjxYMUZKwzUA96SYwReqDBUgkEms1YtM2wvPkWIZ/Sx
-         U83t9Y4nX/N3x7of6a70e4R04QZ7TLZk9W7QkPUl+FCgmuTFs12l8YIrPEMg4XJBivDI
-         Q8s+JVUQphPjVYVor03N4gE0ntixqH/fMjcRA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770803550; x=1771408350;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=FNM7+dqYol6CvwW/AICqCR+k1WexBtc5up187PR4V6U=;
-        b=p7PNzcUenDCIi+H6ahgY3W0XZwy8zm84UcpXJHlAW+Qv+l1AKsPdBi6qvT+TM1vmHA
-         c+Y+HAB+bQ01Sbdj/wfV7qVGwxFhBf+Metm2fV61ewoaCB5n0mGGKnd4f4m52ZqYi8RT
-         8FGelrlJ8yEHGW4AHbsET/IIAciLeQ5jLogWnSSpARMWNTrOrjbYaFJaLUPUuZBvnHLf
-         bsHxQ8DurDyWl089z1TIwbjfOWuJAdE8/B059WFgrwarBVvw8trvNTGIy+7BWnS3EFGF
-         r/XRw796RndzyRSt3H1XCtncW38Q4d0lNswa9Gq9w9wMjtbA6s+sxSl9tidu3FVkYCpN
-         AS1g==
-X-Forwarded-Encrypted: i=1; AJvYcCWfot7B7FxLpKJZ6d9/xxnRBQ6aH7DfqmQAZXZPTZAIaTr6cJE5AxS/faEGb/DDr1sQJf6yOHoP0lf9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+SOtJRn+Hp1NIbD2sHwUg4JN0Q/WV8Y5MwGebDapkthAs//So
-	oqKR8cqHQHM8LLcx4kCkdStXbMMSYKP9jibpJdXEQxNj+IbvwjiP7655HiF5CshvdwdrrMId1Sr
-	KVN0sn+MvR07nxlhPu3Hl43mULVGi2nl7ls1PV1Vo
-X-Gm-Gg: AZuq6aL7vNxtbdyykJs6IwdhnkpVDSBBAERh6/TiIGfoGQMrVNINYWq7AzZAeq9jrFt
-	lTqEakJF8uCD5jE4/h/Jd6u4ZVucIz5XGTOJ8NTsxxYDpWmmwPCoNxL7tJAN9QpCmpQMitmGMLi
-	ZuTm92tXyk2PrqJZEwwcv5ywV+HNPvUJE2cA3Y+07o1arY+0k692bJ3XaW0dEP+JnvpfGVqt74U
-	I6k7jNw5jgYtmZWR5i/fWiMb1HiegaVKi4ZAV9XA13LLx+x8zke/KM9HJ2go7fzc0s4UvOcBbdw
-	CwzH2vII1/sWOJvMJ6bgAP1xQAURiEznMUwz
-X-Received: by 2002:a05:6512:2244:b0:59e:523:ddc9 with SMTP id
- 2adb3069b0e04-59e5e0805ebmr522191e87.46.1770803549951; Wed, 11 Feb 2026
- 01:52:29 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6F5B366831;
+	Wed, 11 Feb 2026 09:55:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770803726; cv=none; b=swiDqu/WEvZv6HH9J6f1/3xCUZ97AwwHtU3DOtH+FUOIpnvJ5hyC437uQRaCKCbCd2yxFC1oLEAWieWQf149QkJ1y6lvVadsh1+UgqQRwbQUfbkdcu9BqusaexZXopbslzk3gq/0v43jKdFZ324sTzZSa0xcJUaPfOLqJqImXsw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770803726; c=relaxed/simple;
+	bh=ficnapCkCf+khatK2N0Ft9F3rB7FAZW78An8VQMxafM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BOXUM85rukWQkb58CVjqdNXbe23C2QhSdo+BA86KhukjaQjszhl0A0HtVvSRlBmSDkxBAsS3L9FHavOSdWbx4d+MTwoBZ4r0OXsVCgmlRm8/AkhMTrMyZmFCm6jetYyzFMMD5dELDzfkTzqrKdIl3TUAZC9D5UMiXzs0SSsLwGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AqX8gw98; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35C04C4CEF7;
+	Wed, 11 Feb 2026 09:55:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770803725;
+	bh=ficnapCkCf+khatK2N0Ft9F3rB7FAZW78An8VQMxafM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AqX8gw98dFxJpmNqPCzOMtORCM+znj0QtTax6ydhaKXUKRLQ6hvD2Mca14wt6jhme
+	 OgLLSYM08TJPbKIUYsZ+9RwVM46VCxfCsTc2/fTJcq7RkbIpPx+8NXJ58U3jKdtvyz
+	 DpNTszqlwLSQodgfBpNaNhs2qonpmtJS8y+M6ODrFMz0cUSI5GyY6PL2p9oOSzidLd
+	 JRYwur4nfHICeJmev2M2QAhAePQ41d3/G0i9BdVg56pftCswAk7lxuf0Oqz1+eMnom
+	 9QJfYHHaIbOUbaooUMcYSaEMld0XmcJUgaziC4oxrtxjR+n8uaNDUT/TcbWplghTou
+	 rL4QYRQvAusFw==
+Message-ID: <423a3431-1271-4c35-94fe-8ca880679ed9@kernel.org>
+Date: Wed, 11 Feb 2026 10:55:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <8fa8ec500b3d4de7b1966c6887f1dfbe5c46a54c.1770746444.git.ryder.lee@mediatek.com>
- <69521aebefef405bad5117d4d5d5fef4a5dfb7e8.1770746444.git.ryder.lee@mediatek.com>
- <20260211-miniature-chital-of-plenty-1a71df@quoll> <bd4da0a8522db2991ec0844233efe068323c2578.camel@mediatek.com>
- <b00c8c18-930b-4cb9-975d-b15118bfc854@kernel.org> <0dceffe2e1344830c12bc1f6516d13c7bb488b99.camel@mediatek.com>
- <23561f00-9f3f-4d4d-81ae-aab9958bd797@kernel.org> <0572bd6e56ca872e285729ccd4c2201517b66e18.camel@mediatek.com>
- <388e874d-d9ff-43f2-b010-ca7ac29aa065@kernel.org> <0c7b854e342e2047fbc9fc8e8fd80b67a6ec2bec.camel@mediatek.com>
-In-Reply-To: <0c7b854e342e2047fbc9fc8e8fd80b67a6ec2bec.camel@mediatek.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Wed, 11 Feb 2026 17:52:18 +0800
-X-Gm-Features: AZwV_Qjfx5xbtiM_CvuB9ceKCwswDittQ1fUg0ke-_sxFS_qlXIG8TKjT0xy2K0
-Message-ID: <CAGXv+5E=REdz0g8rfi7+KvyC7jLXO0q=yjan3mMTGtxe0NgCDQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: net: wireless: mt76: clarify backoff
- limit format
-To: Ryder Lee <Ryder.Lee@mediatek.com>
-Cc: "krzk@kernel.org" <krzk@kernel.org>, "robh@kernel.org" <robh@kernel.org>, "nbd@nbd.name" <nbd@nbd.name>, 
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, =?UTF-8?B?QWxsZW4gWWUgKOiRieiKt+WLsyk=?= <Allen.Ye@mediatek.com>, 
-	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] arm64,ppc64le/kdump: pass dm-crypt keys to kdump
+ kernel
+To: Coiby Xu <coxu@redhat.com>, kexec@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+ devicetree@vger.kernel.org
+Cc: Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>,
+ Baoquan he <bhe@redhat.com>, Dave Young <dyoung@redhat.com>,
+ Kairui Song <ryncsn@gmail.com>, Pingfan Liu <kernelfans@gmail.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Thomas Staudt <tstaudt@de.ibm.com>, Sourabh Jain
+ <sourabhjain@linux.ibm.com>, Will Deacon <will@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
+ Saravana Kannan <saravanak@kernel.org>,
+ open list <linux-kernel@vger.kernel.org>
+References: <20260211082401.2407853-1-coxu@redhat.com>
+ <20260211082401.2407853-3-coxu@redhat.com>
+Content-Language: fr-FR
+From: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+In-Reply-To: <20260211082401.2407853-3-coxu@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-264704-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264703-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[clever-cloud.com,redhat.com,gmail.com,linux-foundation.org,kernel.org,de.ibm.com,linux.ibm.com,arm.com,ellerman.id.au,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[chleroy@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,chromium.org:dkim,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: B58BC1230AB
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,outlook.com:url,clever-cloud.com:email]
+X-Rspamd-Queue-Id: D7A7612307D
 X-Rspamd-Action: no action
 
-On Wed, Feb 11, 2026 at 5:19=E2=80=AFPM Ryder Lee <Ryder.Lee@mediatek.com> =
-wrote:
->
-> On Wed, 2026-02-11 at 10:08 +0100, Krzysztof Kozlowski wrote:
-> > On 11/02/2026 09:59, Ryder Lee wrote:
-> > > On Wed, 2026-02-11 at 09:41 +0100, Krzysztof Kozlowski wrote:
-> > > > On 11/02/2026 09:33, Ryder Lee wrote:
-> > > > > > > > Why this cannot be a schema?
-> > > > > > > >
-> > > > > > > >
-> > > > > > > Well, actually, it's already a schema. This is just an
-> > > > > > > expanded
-> > > > > >
-> > > > > > Where exactly?
-> > > > > >
-> > > > >
-> > > > > How 1T1ss is used across different generations is what my
-> > > > > example
-> > > > > above
-> > > > > was talking about.
-> > > >
-> > > > Where exactly it is already a schema? Please point me line
-> > > > encoding
-> > > > this.
-> > > >
-> > > >
-> > > line 243 paths-ru
-> > > line 261 paths-ru-bf
-> >
-> > I do not see there anything like you wrote here. You just list all of
-> > them, no device constraints.
-> >
-> > Best regards,
-> > Krzysztof
-> >
->
-> The original schema is a broad description. Now a reviewer want me to
-> describe the differences for various connected devices, but I don=E2=80=
-=99t
-> know how to add a compatible string for PCIe, USB, or even SDIO devices
-> for their constraints. So I used the driver=E2=80=99s generation name... =
-can I
-> just write =E2=80=9Cmt7996=E2=80=9D? Or do I need a complete and meaningf=
-ul compatible
-> string?
-
-You can fill in the PCI or USB IDs as the compatible string.
-
-See for example
-- Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-- Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-- Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
-
-There's no equivalent for SDIO, so they just have separate compatibles.
-The bcm4329-fmac binding also has examples of these.
-
-If the hardware has something like a chip ID register, then you can
-have a common fallback string. At the extreme end of this is the ARM
-Mali bindings, which just have one compatible string for the core GPU
-as the fallback, and per platform/SoC compatibles to cover the glue
-layer:
-
-- Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
 
 
-ChenYu
+Le 11/02/2026 à 09:24, Coiby Xu a écrit :
+> CONFIG_CRASH_DM_CRYPT has been introduced to support LUKS-encrypted
+> device dump target by addressing two challenges [1],
+>   - Kdump kernel may not be able to decrypt the LUKS partition. For some
+>     machines, a system administrator may not have a chance to enter the
+>     password to decrypt the device in kdump initramfs after the 1st kernel
+>     crashes
+> 
+>   - LUKS2 by default use the memory-hard Argon2 key derivation function
+>     which is quite memory-consuming compared to the limited memory reserved
+>     for kdump.
+> 
+> To also enable this feature for ARM64 and PowerPC, we only need to add
 
-> Or maybe there=E2=80=99s no need to change the documentation at all and j=
-ust
-> let the driver handle it, so we don=E2=80=99t have to discuss these detai=
-ls.
->
-> Ryder
+What do you want to say exactly with 'only' ?
+
+> a device tree property dmcryptkeys [2] as similar to elfcorehdr to pass
+> the memory address of the stored info of dm-crypt keys to the kdump
+> kernel. Since this property is only needed by the kdump kernel, it won't
+> be exposed to user space.
+> 
+> [1] https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fall%2F20250502011246.99238-1-coxu%40redhat.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7C0aa5f3b34d694b23b0cc08de6946f66c%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C639063950684962054%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=8uCc%2Bg6YNojymf8UpZhmJY19vpWXJCC9KIf3qMyQ3dI%3D&reserved=0
+> [2] https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgithub.com%2Fdevicetree-org%2Fdt-schema%2Fpull%2F181&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7C0aa5f3b34d694b23b0cc08de6946f66c%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C639063950684987003%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=1s5NPHgF1LsXdrDXBhawduFXOqnHPlkbohQHHvolLw4%3D&reserved=0
+> 
+> Cc: Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>
+> Cc: Baoquan he <bhe@redhat.com>
+> Cc: Dave Young <dyoung@redhat.com>
+> Cc: Kairui Song <ryncsn@gmail.com>
+> Cc: Pingfan Liu <kernelfans@gmail.com>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: Krzysztof Kozlowski <krzk@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Thomas Staudt <tstaudt@de.ibm.com>
+> Cc: Sourabh Jain <sourabhjain@linux.ibm.com>
+> Cc: Will Deacon <will@kernel.org>
+> Signed-off-by: Coiby Xu <coxu@redhat.com>
+> ---
+>   arch/arm64/kernel/machine_kexec_file.c |  4 ++++
+>   arch/powerpc/kexec/elf_64.c            |  4 ++++
+>   drivers/of/fdt.c                       | 21 +++++++++++++++++++++
+>   drivers/of/kexec.c                     | 19 +++++++++++++++++++
+>   4 files changed, 48 insertions(+)
+> 
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 331646d667b9..2967e4aff807 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -866,6 +866,26 @@ static void __init early_init_dt_check_for_elfcorehdr(unsigned long node)
+>   		 elfcorehdr_addr, elfcorehdr_size);
+>   }
+>   
+> +static void __init early_init_dt_check_for_dmcryptkeys(unsigned long node)
+> +{
+> +	const char *prop_name = "linux,dmcryptkeys";
+> +	const __be32 *prop;
+> +
+> +	if (!IS_ENABLED(CONFIG_CRASH_DM_CRYPT))
+> +		return;
+> +
+> +	pr_debug("Looking for dmcryptkeys property... ");
+> +
+> +	prop = of_get_flat_dt_prop(node, prop_name, NULL);
+> +	if (!prop)
+> +		return;
+> +
+> +	dm_crypt_keys_addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
+> +
+> +	/* Property only accessible to crash dump kernel */
+> +	fdt_delprop(initial_boot_params, node, prop_name);
+
+Shouldn't this property be deleted regardless of whether kernel is built 
+with CONFIG_CRASH_DM_CRYPT or without ?
+
+> +}
+> +
+>   static unsigned long chosen_node_offset = -FDT_ERR_NOTFOUND;
+>   
+>   /*
+> @@ -1097,6 +1117,7 @@ int __init early_init_dt_scan_chosen(char *cmdline)
+>   
+>   	early_init_dt_check_for_initrd(node);
+>   	early_init_dt_check_for_elfcorehdr(node);
+> +	early_init_dt_check_for_dmcryptkeys(node);
+>   
+>   	rng_seed = of_get_flat_dt_prop(node, "rng-seed", &l);
+>   	if (rng_seed && l > 0) {
 
