@@ -1,138 +1,149 @@
-Return-Path: <devicetree+bounces-264834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264835-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GIIFM6zujGmSvgAAu9opvQ
-	(envelope-from <devicetree+bounces-264834-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 22:03:40 +0100
+	id MBTuHYLyjGmqvwAAu9opvQ
+	(envelope-from <devicetree+bounces-264835-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 22:20:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DCE41279B0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 22:03:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5374127B5A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 22:20:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CA0823006B79
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 21:03:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 465CC30C223E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 21:11:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A26E352C22;
-	Wed, 11 Feb 2026 21:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 497D135D5F4;
+	Wed, 11 Feb 2026 21:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iJzwUTrR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sJdIJGOT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4696ACA5A;
-	Wed, 11 Feb 2026 21:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21D2C35CBCD;
+	Wed, 11 Feb 2026 21:11:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770843818; cv=none; b=uiBhvMsG74s8kXUmcV/W3OrvGcLECS/FOOf820lQbgKyfK1Kg9SGMwCAKG0ABq4MYOZvalGeWRt0d/FvJRqJdiAx5s+LMfBC53mXLypp07N05qui5GaK6dLZCKxuRDV2Gh26dcIzmwDDywi1RiGyYk+aNxJXfkwfi5WFVVXimCo=
+	t=1770844266; cv=none; b=IOynZ5OSLDTuWXiJ31zfG8OewCCJXLDUCYXICJwSFHHF2ENulSA2XK9h9aedKwTBPC+p+78BBrqr/V3ZYWt8qaPNXMiFT/8kFy0pnWnHiauwSzrMUKOvbkQs8LY9czkOJJgkpSMR7mDhqF+btRzX2chpipBqhzo4o+OVYFuB804=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770843818; c=relaxed/simple;
-	bh=yKZgXX+CsYRZzhuWXY3GAbVJ6v2rTJISb4JSw/063sg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=udTfdUj/crwHcFD7/VYqFAnwTcyAqOkiCZySFCJPoi41IyvdqVwsm5I595feT5q2eDe9PKlPeoLhejF9OO53d8D/pjGjS87bGbvBITczbrdrdZ+bS0/ydXUNnP3eL61/PHCbaMj8TpZF0dXjUUnWfyO+YyMLRaFxAr02kU6dums=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iJzwUTrR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B690EC4CEF7;
-	Wed, 11 Feb 2026 21:03:37 +0000 (UTC)
+	s=arc-20240116; t=1770844266; c=relaxed/simple;
+	bh=8BS0HjUZ2c2XIa09Dyj75cOKCDZd5+HLlSJGloTMoCY=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=L70iSH8YHA0Jpg7IS8c1VTpJ9f1v1yRXCUh1Rv5aeA/thvkvrx2U8i7+sP1jUCLORhDGFFF/osqki0B5ZIXm7jRRnJYnW/vh/FnJUUFs3Ha/RY34gzXvCzZNPsMi4QY+ixgMMQap1q6FieXQKDpk61fqOWQNN6/035MLcnGMyeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sJdIJGOT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 634A3C4CEF7;
+	Wed, 11 Feb 2026 21:11:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770843817;
-	bh=yKZgXX+CsYRZzhuWXY3GAbVJ6v2rTJISb4JSw/063sg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iJzwUTrROdDwAU473dmNRp1Kjga6TjSB46dDrsHdY86NUWg9BfPd7zfMrNzzhmnXp
-	 vRZi15J+OWDJL+yDmxgfVjK/8UUeiy9vStjc4DDH5DindDJLYRMwSmLBsSG2NUW2t+
-	 oVHFAhY3MjyJ92+xqwPTtpx9Lz0i+E44M5nuNReLPspX6jkxI2HoYAlaBJhMvDB0q9
-	 h4DidSQ+PB0sHGHk3tBXTP19p4HMxsnVjDkDjWQ3QskhYLEOM+5eJFU9j6CTzrGztX
-	 Q4idPT4ST2EA3LwsEZ7ShYBdBMYs4GVsBkyY/r1/rHJQIqUI3p4ERBbZF5RIFQIWT7
-	 K+bJ5lku9A2+Q==
-Date: Wed, 11 Feb 2026 15:03:37 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: kernel-team@android.com, linux-pm@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Mark Brown <broonie@kernel.org>, Juan Yescas <jyescas@google.com>,
-	Will McVicker <willmcvicker@google.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 03/10] dt-bindings: soc: samsung: exynos-pmu: move
- gs101-pmu into separate binding
-Message-ID: <177084381638.3881673.13620235276834374128.robh@kernel.org>
-References: <20260205-gs101-pd-v5-0-ede49cdb57a6@linaro.org>
- <20260205-gs101-pd-v5-3-ede49cdb57a6@linaro.org>
+	s=k20201202; t=1770844265;
+	bh=8BS0HjUZ2c2XIa09Dyj75cOKCDZd5+HLlSJGloTMoCY=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=sJdIJGOTEcR/pVqdOis0U72NT3kdqQiTVivMV3Hp6+Tnh4gEBuJ9M7ecacD8kDUlC
+	 E4QnwLkF51qxA7SmFEAznZ6BzdzjSZ0Q/crsmMSPffPLjN452hh3zS54otYqgbOpeQ
+	 emHeajY+TaK6mydY0JQ/Uq4DbYrQ8zG0iwXY7TTHUQR7yJ9vOxMZMq9nvxyxhrluhO
+	 FnAJzM+J6LqNleggYWSC+Y+UNJhUuLdh5vwh0f2muWC95RiLaiEv9l3J2x5eWLb6LU
+	 unUz5DQtVL3SlJjkZtO0vnZaKhihHmazKyc6oYTylesJGcq5511qbCN4fMrTinond4
+	 /XrYo3gHB16bA==
+Date: Wed, 11 Feb 2026 15:11:04 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260205-gs101-pd-v5-3-ede49cdb57a6@linaro.org>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-wireless@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+ Allen Ye <allen.ye@mediatek.com>, Felix Fietkau <nbd@nbd.name>, 
+ devicetree@vger.kernel.org
+To: Ryder Lee <ryder.lee@mediatek.com>
+In-Reply-To: <4111ba0734fc7818f899db0bea08e3428eb536d5.1770836705.git.ryder.lee@mediatek.com>
+References: <8fa8ec500b3d4de7b1966c6887f1dfbe5c46a54c.1770836705.git.ryder.lee@mediatek.com>
+ <4111ba0734fc7818f899db0bea08e3428eb536d5.1770836705.git.ryder.lee@mediatek.com>
+Message-Id: <177084426457.3906539.9556948985092789939.robh@kernel.org>
+Subject: Re: [PATCH v4 2/2] dt-bindings: net: wireless: mt76: clarify
+ backoff limit usage
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264834-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-264835-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[android.com,vger.kernel.org,gmail.com,kernel.org,samsung.com,google.com,lists.infradead.org,linaro.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,samsung.com:email]
-X-Rspamd-Queue-Id: 8DCE41279B0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C5374127B5A
 X-Rspamd-Action: no action
 
 
-On Thu, 05 Feb 2026 21:42:31 +0000, André Draszik wrote:
-> The gs101-pmu binding is going to acquire various additional (pattern)
-> properties that don't apply to other PMUs supported by this binding.
+On Wed, 11 Feb 2026 11:14:30 -0800, Ryder Lee wrote:
+> Clarify the usage of path backoff limit properties in mt76 binding.
+> Add explicit documentation for old generation (mt7915, mt7916, mt7981,
+> mt7986) and new generation (mt7990, mt7992, mt7996) devices, including
+> the difference in beamforming and non-beamforming entries.
 > 
-> To enable this, move google,gs101-pmu into a separate binding.
+> Rephrase the paths-ru/paths-ru-bf description to reflect the actual
+> usage.
 > 
-> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> Co-developed-by: Allen Ye <allen.ye@mediatek.com>
+> Signed-off-by: Allen Ye <allen.ye@mediatek.com>
+> Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
 > ---
+> v1-v3: none
+> 
 > v4:
-> - update since 'syscon' was removed from gs101-pmu compatibles
-> - update since 'select:' was removed from google,gs101-pmu.yaml
-> 
-> v3:
-> - use additionalProperties, not unevaluatedProperties
-> - fix path in $id (Rob)
-> - drop comment around 'select' (Rob)
+> - revise commit message
+> - use PCI id as the compatible string to replace "connac2/3"
 > ---
->  .../bindings/soc/google/google,gs101-pmu.yaml      | 56 ++++++++++++++++++++++
->  .../bindings/soc/samsung/exynos-pmu.yaml           | 20 --------
->  MAINTAINERS                                        |  1 +
->  3 files changed, 57 insertions(+), 20 deletions(-)
+>  .../bindings/net/wireless/mediatek,mt76.yaml  | 21 +++++++++++++++++++
+>  1 file changed, 21 insertions(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml:30:23: [error] missing starting space in comment (comments)
+./Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml:31:23: [error] missing starting space in comment (comments)
+./Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml:32:23: [error] missing starting space in comment (comments)
+./Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml:33:23: [error] missing starting space in comment (comments)
+./Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml:34:23: [error] missing starting space in comment (comments)
+
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/4111ba0734fc7818f899db0bea08e3428eb536d5.1770836705.git.ryder.lee@mediatek.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
