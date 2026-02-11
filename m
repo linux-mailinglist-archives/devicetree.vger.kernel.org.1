@@ -1,200 +1,185 @@
-Return-Path: <devicetree+bounces-264825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264826-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eKwTNtnojGmwvAAAu9opvQ
-	(envelope-from <devicetree+bounces-264825-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 21:38:49 +0100
+	id aGLEFnvsjGlNvgAAu9opvQ
+	(envelope-from <devicetree+bounces-264826-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 21:54:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C6E3127786
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 21:38:49 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C09771278B2
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 21:54:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CAED0305DA85
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 20:38:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 572D2302924D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 20:54:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A94135C1A6;
-	Wed, 11 Feb 2026 20:38:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2590D35028B;
+	Wed, 11 Feb 2026 20:54:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a/2x7SLc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jVRXV0Ug"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6602335B63A;
-	Wed, 11 Feb 2026 20:38:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F40FE33FE1F;
+	Wed, 11 Feb 2026 20:54:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770842285; cv=none; b=Chgs6RrE39qWrCGRnrCtD7LdDpYGYOo5deF5aGSrkftF9NJIKP4LXS2mjl0HXm0IbapkjIyauntpijhG2LC6IyMJaB1I/0870XQM1K0039NInI2nSvPTckHnMEPFx7EeAQcaPVZvPP2YDh7gVDs+/0Rs7ZUDlvgcqtR3EGkiCo0=
+	t=1770843241; cv=none; b=jKqmeZ+nKKU3ncw3GwXqYtPi6xFuAGffNYyiZ31/wZwP7vppvGFbRLhMUMH6679nPs4s7KZz2TQ6kQZV1fu0Xxs0WdeDkgwbY8spneuzmAkUJ02JTxgWPY+RVmK8+dmawi8UaopX0XUqmAGzaCdNXMea6Skeu4i0QqQQNjHMCfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770842285; c=relaxed/simple;
-	bh=+5DqskATXF0TL5mJl29X+tuvH9FNurRv9uz69t/WSMc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FUJaRyOmOES1BxTh8hIunREh6Q6vFgh8nwzuaMlOGn2fLYYdZuXLb6eZMM4p0ZUxNm3ouVQCdlqFVy6swpoKwhsNstWQkPDNZZg3FAZu0+LHxHpHlDCPZf3YaDDmp5cwCzCvAV62mBypUdmzSfXXNTYWZ06n1iEbHw3VDVhSs2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a/2x7SLc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 33AC8C2BCB4;
-	Wed, 11 Feb 2026 20:38:05 +0000 (UTC)
+	s=arc-20240116; t=1770843241; c=relaxed/simple;
+	bh=C4fSmQS1/v4DY2auUQM0mERpX0iAPLQEIrmOl7DFfdE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lP5vuTZGcTn1Z4ORZK0/nO6kf73ifKUCXw89SCFXk5ZNoUFHKHyxIBbTDq+MRSdBOWutIYuHw656nvkiV/5h66tFxcHsrCHwdjZiTT1LKkd4ta9aDs970THnbi+GyBpp3IkIHsZynEL/WqU9vCiQPnQOUWDCkq6SsXL5dRdieLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jVRXV0Ug; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85DCDC4CEF7;
+	Wed, 11 Feb 2026 20:54:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770842285;
-	bh=+5DqskATXF0TL5mJl29X+tuvH9FNurRv9uz69t/WSMc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=a/2x7SLcYbS5uQn7eLYrKJlhqnRIh8ek1yOapPgalxCDinQcoYXzbKnWdPjju9FrV
-	 yO/7sSxCMMD664owby0/NGfwle/UUL9jk35or6vkwecV7PC0x5Uj+XDYWKIbjYihv3
-	 BBig7q1WXPBZfEFbmJKNfuuxCAOK35Q1MIvpYnVvIeyWqrLsYbZonWZ5k6ETmpaB4J
-	 keCstEJAnwETpcyANu0H1EwDO150OKwx8Ag1pHdab9+Z0KfS9OwGuGn1NwaY8QoyqE
-	 yOSRWLgBNPBo6jpFIXJo+fkmzIYRdcq1bw0/2HMWaAiwiVJm+4uZ0ElYaJyRgUDGMG
-	 TMAaFokLT2t2w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0DECBECD6EB;
-	Wed, 11 Feb 2026 20:38:05 +0000 (UTC)
-From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
-Date: Wed, 11 Feb 2026 21:37:53 +0100
-Subject: [PATCH v2 4/4] arm64: dts: qcom: x1-vivobook-s15: add
- Purwa-compatible device tree
+	s=k20201202; t=1770843240;
+	bh=C4fSmQS1/v4DY2auUQM0mERpX0iAPLQEIrmOl7DFfdE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jVRXV0Ug9R/cLEODGVGo4nB6dunr0Yn0nzsRZgG0XJ2omurxmlKFzRm7KpEajUB3h
+	 dTDUSSBUYQJhA6aEs2UJ24MbO+4kx5LUTyzcuz/NhRbIR+jl5XAa8mOW6Okb0wrS+0
+	 CYhpx19GyRhtprbEo/OY0Cyz3UGhQUHyBQ29VmMqSsxMJce7qHpQoBZP5UTQibBP1p
+	 uifAqfE5eOFdz0XVpwgU61Mqhk2PNuuL9c03IZthg5xyAZbFAR6MLb7CrqNCsWsfyu
+	 V2Cn1OEVmzRTc+WTzPRF0v287JIe0zqE5XRz7WtOWv9qGSz9WWqglCwSyYvrAZpVZm
+	 j0VW0ujuvCtBA==
+Date: Wed, 11 Feb 2026 14:53:59 -0600
+From: Rob Herring <robh@kernel.org>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Bartosz Golaszewski <brgl@kernel.org>, dl-linux-imx <linux-imx@nxp.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	"arnaud.pouliquen@foss.st.com" <arnaud.pouliquen@foss.st.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+	Peng Fan <peng.fan@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 1/4] dt-bindings: remoteproc: imx_rproc: Add "rpmsg"
+ subnode support
+Message-ID: <20260211205359.GA3857648-robh@kernel.org>
+References: <20260210170814.406883-1-shenwei.wang@nxp.com>
+ <20260210170814.406883-2-shenwei.wang@nxp.com>
+ <177075649333.2817738.5507371747833844104.robh@kernel.org>
+ <PAXPR04MB9185556E1A3DD990697E721A8963A@PAXPR04MB9185.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260211-b4-vivobook-v2-4-9f500415d2ed@oldschoolsolutions.biz>
-References: <20260211-b4-vivobook-v2-0-9f500415d2ed@oldschoolsolutions.biz>
-In-Reply-To: <20260211-b4-vivobook-v2-0-9f500415d2ed@oldschoolsolutions.biz>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Maud Spierings <maud_spierings@hotmail.com>, 
- "Colin K. Williams" <colin@li-nk.org>, 
- Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770842282; l=2944;
- i=jens.glathe@oldschoolsolutions.biz; s=20240919;
- h=from:subject:message-id;
- bh=ptuXwHkFSH4UzSXx9epEse1Eq5mBz3kvAbkz5o95kh0=;
- b=FS1OfcFva6XjIKmivXvjBM6I5wCVLVP06OWUPzGxnFSaFAh62CfcJDmj+VsnrlKp+nF4/qBm0
- T2b0EGD5jAhDGM4yDRzMLVyUdzPIx/r3eGiF44OYFkLzpLJl+/y4993
-X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
- pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
-X-Endpoint-Received: by B4 Relay for
- jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
-X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Reply-To: jens.glathe@oldschoolsolutions.biz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PAXPR04MB9185556E1A3DD990697E721A8963A@PAXPR04MB9185.eurprd04.prod.outlook.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264825-lists,devicetree=lfdr.de,jens.glathe.oldschoolsolutions.biz];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,hotmail.com,li-nk.org,oldschoolsolutions.biz];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,vger.kernel.org,foss.st.com,pengutronix.de,lists.infradead.org,lists.linux.dev,lwn.net,linaro.org,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	TAGGED_FROM(0.00)[bounces-264826-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[jens.glathe@oldschoolsolutions.biz];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oldschoolsolutions.biz:mid,oldschoolsolutions.biz:email,oldschoolsolutions.biz:replyto,asus.com:url,li-nk.org:email]
-X-Rspamd-Queue-Id: 3C6E3127786
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C09771278B2
 X-Rspamd-Action: no action
 
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+On Wed, Feb 11, 2026 at 05:26:06PM +0000, Shenwei Wang wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Rob Herring (Arm) <robh@kernel.org>
+> > Sent: Tuesday, February 10, 2026 2:48 PM
+> > To: Shenwei Wang <shenwei.wang@nxp.com>
+> > Cc: Bartosz Golaszewski <brgl@kernel.org>; dl-linux-imx <linux-imx@nxp.com>;
+> > devicetree@vger.kernel.org; Linus Walleij <linusw@kernel.org>;
+> > arnaud.pouliquen@foss.st.com; Krzysztof Kozlowski <krzk+dt@kernel.org>;
+> > Sascha Hauer <s.hauer@pengutronix.de>; Shawn Guo <shawnguo@kernel.org>;
+> > linux-gpio@vger.kernel.org; Bjorn Andersson <andersson@kernel.org>;
+> > Pengutronix Kernel Team <kernel@pengutronix.de>; linux-arm-
+> > kernel@lists.infradead.org; linux-remoteproc@vger.kernel.org; Peng Fan
+> > <peng.fan@nxp.com>; Conor Dooley <conor+dt@kernel.org>;
+> > imx@lists.linux.dev; Jonathan Corbet <corbet@lwn.net>; Mathieu Poirier
+> > <mathieu.poirier@linaro.org>; Fabio Estevam <festevam@gmail.com>; linux-
+> > doc@vger.kernel.org; linux-kernel@vger.kernel.org
+> > Subject: [EXT] Re: [PATCH v7 1/4] dt-bindings: remoteproc: imx_rproc: Add
+> > "rpmsg" subnode support
+> > 
+> > On Tue, 10 Feb 2026 11:08:11 -0600, Shenwei Wang wrote:
+> > > Remote processors may announce multiple GPIO controllers over an RPMSG
+> > > channel. These GPIO controllers may require corresponding device tree
+> > > nodes, especially when acting as providers, to supply phandles for
+> > > their consumers.
+> > >
+> > > Define an RPMSG node to work as a container for a group of RPMSG
+> > > channels under the imx_rproc node. Each subnode within "rpmsg"
+> > > represents an individual RPMSG channel. The name of each subnode
+> > > corresponds to the channel name as defined by the remote processor.
+> > >
+> > > All remote devices associated with a given channel are defined as
+> > > child nodes under the corresponding channel node.
+> > >
+> > > Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+> > > ---
+> > >  .../devicetree/bindings/gpio/gpio-rpmsg.yaml  | 55 +++++++++++++++++++
+> > >  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 53 ++++++++++++++++++
+> > >  2 files changed, 108 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml
+> > >
+> > 
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > 
+> > 
+> > doc reference errors (make refcheckdocs):
+> > Warning: Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml references
+> > a file that doesn't exist: Documentation/driver-api/gpio/gpio-rpmsg.rst
+> > Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml:
+> > Documentation/driver-api/gpio/gpio-rpmsg.rst
+> > 
+> 
+> The .rst file mentioned in the description is included in this same patch set.
 
-The ASUS Vivobook S15 (S5507) [1] is available with Hamoa and Purwa SoC.
+Then can't the .rst doc come first?
 
-Add the Purwa-based device tree.
+Really, bindings should not reference kernel docs as they are used 
+outside the kernel. However, since there is no other definition of the 
+protocol, I think it is fine here.
 
-[1]: https://www.asus.com/de/laptops/for-home/vivobook/asus-vivobook-s-15-s5507/techspec/
-
-Tested-by: Colin K. Williams <colin@li-nk.org>
-Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
----
- arch/arm64/boot/dts/qcom/Makefile                  |  2 +
- .../boot/dts/qcom/x1p42100-asus-vivobook-s15.dts   | 43 ++++++++++++++++++++++
- 2 files changed, 45 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index f80b5d9cf1e80e4efcd70f14cef4e7d4a1ec48eb..baa7ec904b4878a41e6fd9c678025f28cb484cf3 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -380,6 +380,8 @@ x1e80100-microsoft-romulus15-el2-dtbs	:= x1e80100-microsoft-romulus15.dtb x1-el2
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-microsoft-romulus15.dtb x1e80100-microsoft-romulus15-el2.dtb
- x1e80100-qcp-el2-dtbs	:= x1e80100-qcp.dtb x1-el2.dtbo
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-qcp.dtb x1e80100-qcp-el2.dtb
-+x1p42100-asus-vivobook-s15-el2-dtbs	:= x1p42100-asus-vivobook-s15.dtb x1-el2.dtbo
-+dtb-$(CONFIG_ARCH_QCOM)	+= x1p42100-asus-vivobook-s15.dtb x1p42100-asus-vivobook-s15-el2.dtb
- x1p42100-asus-zenbook-a14-el2-dtbs	:= x1p42100-asus-zenbook-a14.dtb x1-el2.dtbo
- dtb-$(CONFIG_ARCH_QCOM)	+= x1p42100-asus-zenbook-a14.dtb x1p42100-asus-zenbook-a14-el2.dtb
- x1p42100-asus-zenbook-a14-lcd-el2-dtbs	:= x1p42100-asus-zenbook-a14-lcd.dtb x1-el2.dtbo
-diff --git a/arch/arm64/boot/dts/qcom/x1p42100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1p42100-asus-vivobook-s15.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..a68c295200d1a2481481f9740c1c2db9e4a7afed
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/x1p42100-asus-vivobook-s15.dts
-@@ -0,0 +1,43 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2024, Xilin Wu <wuxilin123@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "purwa.dtsi"
-+#include "x1-asus-vivobook-s15.dtsi"
-+
-+/delete-node/ &pmc8380_6;
-+/delete-node/ &pmc8380_6_thermal;
-+
-+/ {
-+	model = "ASUS Vivobook S 15 X1P-42-100";
-+	compatible = "asus,vivobook-s15-x1p4", "qcom,x1p42100";
-+	chassis-type = "laptop";
-+};
-+
-+&gpu_zap_shader {
-+	firmware-name = "qcom/x1p42100/ASUSTeK/vivobook-s15/qcdxkmsucpurwa.mbn";
-+};
-+
-+&iris {
-+	firmware-name = "qcom/x1p42100/ASUSTeK/vivobook-s15/qcvss8380.mbn";
-+	status = "okay";
-+};
-+
-+&remoteproc_adsp {
-+	firmware-name = "qcom/x1p42100/ASUSTeK/vivobook-s15/qcadsp8380.mbn",
-+			"qcom/x1p42100/ASUSTeK/vivobook-s15/adsp_dtbs.elf";
-+
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/x1p42100/ASUSTeK/vivobook-s15/qccdsp8380.mbn",
-+			"qcom/x1p42100/ASUSTeK/vivobook-s15/cdsp_dtbs.elf";
-+
-+	status = "okay";
-+};
-+
-
--- 
-2.51.0
-
-
+Rob
 
