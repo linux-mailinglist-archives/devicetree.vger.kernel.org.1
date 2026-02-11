@@ -1,199 +1,134 @@
-Return-Path: <devicetree+bounces-264724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264725-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8eayFmVWjGm9lQAAu9opvQ
-	(envelope-from <devicetree+bounces-264724-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:13:57 +0100
+	id iMgfHGhYjGm9lQAAu9opvQ
+	(envelope-from <devicetree+bounces-264725-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:22:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCC9F12339F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:13:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBA1812345D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:22:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 337E6300340D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:13:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DCA5C300E17B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:22:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17909366831;
-	Wed, 11 Feb 2026 10:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEDF9366DD9;
+	Wed, 11 Feb 2026 10:22:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B8u+HgjN"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="z4W1LRrY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7DF6331A5F;
-	Wed, 11 Feb 2026 10:13:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CACC19EED3;
+	Wed, 11 Feb 2026 10:22:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770804833; cv=none; b=rDQ9HKIsZbP5y9fk7fGGsSwILoDXzMyThkXjt7mq2vC+HWj2ljzqAMMACKzCcgrnG2Nj1cGgydQnrp7E3Auj5W9crMGnv8G8X93axUrrJEC+R0Ye5WQqAvF2L7UgfdaDTUGYjxifb/JQXQu5RFiXsM9guX1PV6oQc4+0sRa+KSs=
+	t=1770805349; cv=none; b=pjy2/0CbNIzizmZwjbyfRXROY4kbhKDNphJVmVeqMRjEuXDagBevgf3Olj5NPHF/ChseFQ500hZwtoHHRnzZSGWAltXMMSbuwcIv3h7qjxaR9Ub41i6bTds/83GNdTRQHmR3tUyiZpC5VoabcUjztH34rW31RXIpWFKN2bUd0gc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770804833; c=relaxed/simple;
-	bh=JFnX7yfR+381QSg8y1LbW4qWSHq1WxFa6n1bWoTWAN4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sNVxFVxMbvUBz8wb1FLHVzWmjLXrfaYqp1QUYVO8KJ54F1A8vzHJxmql9b60UNPXj9t5o/wKC+UunokuYn/K39FA9bYPWwbKz8q49QM+6+F3mkinXJEPiiDURfSCnq0ZsIX3Gn8/VqTHABKKbiNbWHp7vH8ZL6UxIXnDho5vvWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B8u+HgjN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30CE4C4CEF7;
-	Wed, 11 Feb 2026 10:13:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770804832;
-	bh=JFnX7yfR+381QSg8y1LbW4qWSHq1WxFa6n1bWoTWAN4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=B8u+HgjNPMxacH9NpoYGeAB44HvTBxQHojZ4EC4DaURdrxrjgWx5VJCvYgEuK0TNV
-	 JTE4VBxkzKFUoSdIV3YlX8ZaJ48N/YUQt4ZDvEFbpKo4D4LMx6e+lk2xxkoD/BawtO
-	 14nGoysBuyZuO9CaX6+74uypUtlEkBl4TGDG+xL/sv2RS3sDURFJQZN0fVTdH0z1cA
-	 aKH2VKCAJU3RNctaSnNW2R3j+kI1Oy1HPyymRzvFNh7z8xFd7ZgpYmv4fPFoN8HFUt
-	 NsfRDcsMTFJcnwoGvqN2EPWqQvfSSyq/cBbsX2BiijrWuel3dRtOxtx6/iOuxFfkCH
-	 4qvEwTHcQeJEQ==
-Message-ID: <34a9b531-4f53-47ee-861e-1b18ff1a5752@kernel.org>
-Date: Wed, 11 Feb 2026 11:13:48 +0100
+	s=arc-20240116; t=1770805349; c=relaxed/simple;
+	bh=rBK6FdRF8RDJHWlLzixMxjhU3HjyL6p4/YgUmJotBDw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Unq+lBt4mQlketzOgZBy3km+4BTDRvyUys39IgkQP5H/oThwlXVNUVQ5C7YudTSOb5W2NKorDdwoQeyrljGfrhREv56COIJwTaGp0cod4cBF062mjc0YjhKpky48gzMZV8Apk+9+g5t06FCcvMDu7kJ0CbWjnkBA/u5v+QM+opU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=z4W1LRrY; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=x26RJEZzvywxmqhbMuzA7A8coQZewEhYsgXJn0+8VIw=; b=z4W1LRrYkYWx83Y554+BLK4ps/
+	kVIQ8R/xWaPBtSIVRSxNeQxUZR9q/qriUgI3IuFK/p+PhIWjaONg3mJu2RR/6f8/QTOZlhlqusSwg
+	fkFoLU6UFJH/2vU5HeOMWorE3bHSPb5/aGh3gmzBViiPULwhubt4MLzZ00LMDV8A/V2u3P8UMCZUJ
+	gT3QvTwSTWt7MvCSEIysqM6eXS6tX5YmDPQOBIjSfWpOX1z5pE60m5+Z8SR6jlEBJurVc3bBM+/1V
+	BRp3ICKDwKulxr0GcBRYHmaLH4jh+TUOf1wacGWYe0JN6tDHwSQhA0J7sP2wDET0dBBh1GwXRPq0R
+	JHoTO1jQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55616)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vq7MD-000000003Ij-10GA;
+	Wed, 11 Feb 2026 10:22:05 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vq7M6-000000003hT-07hu;
+	Wed, 11 Feb 2026 10:21:58 +0000
+Date: Wed, 11 Feb 2026 10:21:57 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Joey Lu <a0987203069@gmail.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
+	richardcochran@gmail.com, alexandre.torgue@foss.st.com,
+	joabreu@synopsys.com, ychuang3@nuvoton.com, schung@nuvoton.com,
+	yclu4@nuvoton.com, peppe.cavallaro@st.com,
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH net-next v12 3/3] net: stmmac: dwmac-nuvoton: Add dwmac
+ glue for Nuvoton MA35 family
+Message-ID: <aYxYRZZkVFz2jHaF@shell.armlinux.org.uk>
+References: <20260210052226.3005666-1-a0987203069@gmail.com>
+ <20260210052226.3005666-4-a0987203069@gmail.com>
+ <aYsurPBMnzWDZCco@shell.armlinux.org.uk>
+ <747b9ab4-6711-426d-95a5-4ce6c8732edd@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] gpio: aggregator: add gpio-aggregator DT
- compatible
-To: Bartosz Golaszewski <brgl@kernel.org>,
- James Hilliard <james.hilliard1@gmail.com>
-Cc: linux-gpio@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>,
- Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alexander Stein <linux@ew.tq-group.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
- <20260211081355.3028947-2-james.hilliard1@gmail.com>
- <CAMRc=MfgoKmsNAmn3rO2jDL-ZArMX2Jh-n4SnV6rpzRY3KSwuA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAMRc=MfgoKmsNAmn3rO2jDL-ZArMX2Jh-n4SnV6rpzRY3KSwuA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <747b9ab4-6711-426d-95a5-4ce6c8732edd@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264724-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-264725-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,synopsys.com,nuvoton.com,st.com,lists.infradead.org,vger.kernel.org,lists.ozlabs.org,st-md-mailman.stormreply.com];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[armlinux.org.uk:-];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BCC9F12339F
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,armlinux.org.uk:url]
+X-Rspamd-Queue-Id: DBA1812345D
 X-Rspamd-Action: no action
 
-On 11/02/2026 10:47, Bartosz Golaszewski wrote:
-> On Wed, Feb 11, 2026 at 9:14 AM James Hilliard
-> <james.hilliard1@gmail.com> wrote:
->>
->> Add an OF match entry for "gpio-aggregator" to support plain GPIO
->> forwarding from devicetree without delay semantics.
->>
->> This allows exposing selected lines as a logical GPIO controller with
->> stable aggregated offsets, so consumers can reference forwarded lines
->> instead of physical controller offsets. It also allows creating bundled
->> groups of named lines that can be exposed to userspace as a convenient
->> virtual gpiochip interface. Using "gpio-delay" for this case is not
->> suitable because it enables delay features and requires 3-cell GPIO
->> specifiers.
->>
->> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
->> ---
->> Changes v1 -> v2:
->>   - Split DT schema into a separate patch
->>     (suggested by Krzysztof Kozlowski)
->>   - Expand commit message rationale and use-case explanation
->>     (suggested by Krzysztof Kozlowski)
->>   - Clarify userspace use case with bundled named line groups
->> ---
->>  drivers/gpio/gpio-aggregator.c | 3 +++
->>  1 file changed, 3 insertions(+)
->>
->> diff --git a/drivers/gpio/gpio-aggregator.c b/drivers/gpio/gpio-aggregator.c
->> index 416f265d09d0..a09752fc5fe2 100644
->> --- a/drivers/gpio/gpio-aggregator.c
->> +++ b/drivers/gpio/gpio-aggregator.c
->> @@ -1635,6 +1635,9 @@ static int gpio_aggregator_probe(struct platform_device *pdev)
->>  }
->>
->>  static const struct of_device_id gpio_aggregator_dt_ids[] = {
->> +       {
->> +               .compatible = "gpio-aggregator",
->> +       },
->>         {
->>                 .compatible = "gpio-delay",
->>                 .data = (void *)FWD_FEATURE_DELAY,
->> --
->> 2.43.0
->>
+On Wed, Feb 11, 2026 at 05:52:21PM +0800, Joey Lu wrote:
+> > Is this register preserved over suspend/resume ?
 > 
-> Regardless of the DT bindings - this change is perfectly fine. We do
+> It is not preserved by the GMAC suspend/resume flow and therefore needs to
+> be treated as a system register rather than a GMAC local context.
 
-You cannot have compatible without DT bindings, so this alone is not
-"perfectly fine". Maybe you wanted platform_device_id entry for
-ACPI/legacy/MFD devices?
+That is another reason to use .set_phy_intf_sel as that will be called
+just before GMAC soft-reset in the .ndo_open() and resume paths.
 
-Best regards,
-Krzysztof
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
