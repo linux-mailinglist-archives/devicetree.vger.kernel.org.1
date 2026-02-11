@@ -1,185 +1,124 @@
-Return-Path: <devicetree+bounces-264826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264827-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aGLEFnvsjGlNvgAAu9opvQ
-	(envelope-from <devicetree+bounces-264826-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 21:54:19 +0100
+	id Q9jxD5ftjGmSvgAAu9opvQ
+	(envelope-from <devicetree+bounces-264827-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 21:59:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C09771278B2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 21:54:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 893731278E3
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 21:59:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 572D2302924D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 20:54:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 69F7B3016266
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 20:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2590D35028B;
-	Wed, 11 Feb 2026 20:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A576350A2D;
+	Wed, 11 Feb 2026 20:59:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jVRXV0Ug"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qYLfzg7j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F40FE33FE1F;
-	Wed, 11 Feb 2026 20:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45CBE1CF7D5;
+	Wed, 11 Feb 2026 20:58:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770843241; cv=none; b=jKqmeZ+nKKU3ncw3GwXqYtPi6xFuAGffNYyiZ31/wZwP7vppvGFbRLhMUMH6679nPs4s7KZz2TQ6kQZV1fu0Xxs0WdeDkgwbY8spneuzmAkUJ02JTxgWPY+RVmK8+dmawi8UaopX0XUqmAGzaCdNXMea6Skeu4i0QqQQNjHMCfM=
+	t=1770843540; cv=none; b=omyHrTkZeVYfXsZiVG2akhCxD35zcTtWTPaFttTSEIaAvQSik6bZNY/TFnTMo7HzoFkMR+uVSK1Legxdrox7T+YHr3udY9pWoULWjyfUg0IkswBYF/FOwHCYNWHBfARqvbiflXX+8fmzZp4uTfnKQxxifGa15Fnu4IFYUZoKw3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770843241; c=relaxed/simple;
-	bh=C4fSmQS1/v4DY2auUQM0mERpX0iAPLQEIrmOl7DFfdE=;
+	s=arc-20240116; t=1770843540; c=relaxed/simple;
+	bh=qdCaHBM1vsBZYUsiwQrhAgP75Pv4fk+r6MNmnFrGo58=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lP5vuTZGcTn1Z4ORZK0/nO6kf73ifKUCXw89SCFXk5ZNoUFHKHyxIBbTDq+MRSdBOWutIYuHw656nvkiV/5h66tFxcHsrCHwdjZiTT1LKkd4ta9aDs970THnbi+GyBpp3IkIHsZynEL/WqU9vCiQPnQOUWDCkq6SsXL5dRdieLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jVRXV0Ug; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85DCDC4CEF7;
-	Wed, 11 Feb 2026 20:54:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MkO9BN6kMpgld/cyayeaGNoZjVsevBW+kxSugwAS89x61MZhuk8a6nwehCef8LBEauCy7ZkLXUyS3jhJtMROxGNMR/PxaVZYAGV4Nckz4UPw+UtvRjzzuOeW3F/VNBJrvda9pZfLdxp9QcOG4jW9pldXBZjkKP3FxFjIG282C4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qYLfzg7j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A15EBC4CEF7;
+	Wed, 11 Feb 2026 20:58:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770843240;
-	bh=C4fSmQS1/v4DY2auUQM0mERpX0iAPLQEIrmOl7DFfdE=;
+	s=k20201202; t=1770843539;
+	bh=qdCaHBM1vsBZYUsiwQrhAgP75Pv4fk+r6MNmnFrGo58=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jVRXV0Ug9R/cLEODGVGo4nB6dunr0Yn0nzsRZgG0XJ2omurxmlKFzRm7KpEajUB3h
-	 dTDUSSBUYQJhA6aEs2UJ24MbO+4kx5LUTyzcuz/NhRbIR+jl5XAa8mOW6Okb0wrS+0
-	 CYhpx19GyRhtprbEo/OY0Cyz3UGhQUHyBQ29VmMqSsxMJce7qHpQoBZP5UTQibBP1p
-	 uifAqfE5eOFdz0XVpwgU61Mqhk2PNuuL9c03IZthg5xyAZbFAR6MLb7CrqNCsWsfyu
-	 V2Cn1OEVmzRTc+WTzPRF0v287JIe0zqE5XRz7WtOWv9qGSz9WWqglCwSyYvrAZpVZm
-	 j0VW0ujuvCtBA==
-Date: Wed, 11 Feb 2026 14:53:59 -0600
-From: Rob Herring <robh@kernel.org>
-To: Shenwei Wang <shenwei.wang@nxp.com>
-Cc: Bartosz Golaszewski <brgl@kernel.org>, dl-linux-imx <linux-imx@nxp.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	"arnaud.pouliquen@foss.st.com" <arnaud.pouliquen@foss.st.com>,
+	b=qYLfzg7jzD96tci/rXKGqs/81bavX1iBCE8FR3GapJZKETE91rDNxGzZAkP1gcQAy
+	 KRP4yVtBb+MKhsg8yZrKYgtRqqLlJk024qEdA+TRD8fYD4IlboKPho+v70yGX8WO1W
+	 48zKlPnlele6pP6oFcsDSYSvQ3xPPgIF4VrNGg0+k/mu7ILJqHSecm+shFQ/Hhnb2l
+	 6Ojgtfjm6fRd54LLgcafgpDOrI1bnOQfF2gYAi0yacGPJEWrs6F5HsTViJvgJRZ5SR
+	 okQvEx1A7b6ESa+RWBMSDTjUQ9XwJ0fXuz1CPHqfZ+rn5UCTzQZaB6w8yTWhX1FBZO
+	 Hy6kBhDpCCejA==
+Date: Wed, 11 Feb 2026 14:58:53 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>, kernel-team@android.com,
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Will McVicker <willmcvicker@google.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Juan Yescas <jyescas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-	Peng Fan <peng.fan@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 1/4] dt-bindings: remoteproc: imx_rproc: Add "rpmsg"
- subnode support
-Message-ID: <20260211205359.GA3857648-robh@kernel.org>
-References: <20260210170814.406883-1-shenwei.wang@nxp.com>
- <20260210170814.406883-2-shenwei.wang@nxp.com>
- <177075649333.2817738.5507371747833844104.robh@kernel.org>
- <PAXPR04MB9185556E1A3DD990697E721A8963A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+	Alim Akhtar <alim.akhtar@samsung.com>
+Subject: Re: [PATCH v5 01/10] dt-bindings: soc: google: add google,gs101-dtzpc
+Message-ID: <177084353310.3872540.16740879904970139914.robh@kernel.org>
+References: <20260205-gs101-pd-v5-0-ede49cdb57a6@linaro.org>
+ <20260205-gs101-pd-v5-1-ede49cdb57a6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <PAXPR04MB9185556E1A3DD990697E721A8963A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260205-gs101-pd-v5-1-ede49cdb57a6@linaro.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,vger.kernel.org,foss.st.com,pengutronix.de,lists.infradead.org,lists.linux.dev,lwn.net,linaro.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	TAGGED_FROM(0.00)[bounces-264826-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264827-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linaro.org,android.com,vger.kernel.org,google.com,lists.infradead.org,samsung.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C09771278B2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:email]
+X-Rspamd-Queue-Id: 893731278E3
 X-Rspamd-Action: no action
 
-On Wed, Feb 11, 2026 at 05:26:06PM +0000, Shenwei Wang wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Rob Herring (Arm) <robh@kernel.org>
-> > Sent: Tuesday, February 10, 2026 2:48 PM
-> > To: Shenwei Wang <shenwei.wang@nxp.com>
-> > Cc: Bartosz Golaszewski <brgl@kernel.org>; dl-linux-imx <linux-imx@nxp.com>;
-> > devicetree@vger.kernel.org; Linus Walleij <linusw@kernel.org>;
-> > arnaud.pouliquen@foss.st.com; Krzysztof Kozlowski <krzk+dt@kernel.org>;
-> > Sascha Hauer <s.hauer@pengutronix.de>; Shawn Guo <shawnguo@kernel.org>;
-> > linux-gpio@vger.kernel.org; Bjorn Andersson <andersson@kernel.org>;
-> > Pengutronix Kernel Team <kernel@pengutronix.de>; linux-arm-
-> > kernel@lists.infradead.org; linux-remoteproc@vger.kernel.org; Peng Fan
-> > <peng.fan@nxp.com>; Conor Dooley <conor+dt@kernel.org>;
-> > imx@lists.linux.dev; Jonathan Corbet <corbet@lwn.net>; Mathieu Poirier
-> > <mathieu.poirier@linaro.org>; Fabio Estevam <festevam@gmail.com>; linux-
-> > doc@vger.kernel.org; linux-kernel@vger.kernel.org
-> > Subject: [EXT] Re: [PATCH v7 1/4] dt-bindings: remoteproc: imx_rproc: Add
-> > "rpmsg" subnode support
-> > 
-> > On Tue, 10 Feb 2026 11:08:11 -0600, Shenwei Wang wrote:
-> > > Remote processors may announce multiple GPIO controllers over an RPMSG
-> > > channel. These GPIO controllers may require corresponding device tree
-> > > nodes, especially when acting as providers, to supply phandles for
-> > > their consumers.
-> > >
-> > > Define an RPMSG node to work as a container for a group of RPMSG
-> > > channels under the imx_rproc node. Each subnode within "rpmsg"
-> > > represents an individual RPMSG channel. The name of each subnode
-> > > corresponds to the channel name as defined by the remote processor.
-> > >
-> > > All remote devices associated with a given channel are defined as
-> > > child nodes under the corresponding channel node.
-> > >
-> > > Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
-> > > ---
-> > >  .../devicetree/bindings/gpio/gpio-rpmsg.yaml  | 55 +++++++++++++++++++
-> > >  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 53 ++++++++++++++++++
-> > >  2 files changed, 108 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml
-> > >
-> > 
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > 
-> > 
-> > doc reference errors (make refcheckdocs):
-> > Warning: Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml references
-> > a file that doesn't exist: Documentation/driver-api/gpio/gpio-rpmsg.rst
-> > Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml:
-> > Documentation/driver-api/gpio/gpio-rpmsg.rst
-> > 
-> 
-> The .rst file mentioned in the description is included in this same patch set.
 
-Then can't the .rst doc come first?
+On Thu, 05 Feb 2026 21:42:29 +0000, André Draszik wrote:
+> The Exynos Distributed TruztZone Protection Control (D_TZPC) provides
+> an interface to the protection bits that are included in the TrustZone
+> design in a secure system. It configures each area of the memory as
+> secure or non-secure.
+> 
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> ---
+>  .../bindings/soc/google/google,gs101-dtzpc.yaml    | 42 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 43 insertions(+)
+> 
 
-Really, bindings should not reference kernel docs as they are used 
-outside the kernel. However, since there is no other definition of the 
-protocol, I think it is fine here.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
