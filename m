@@ -1,67 +1,70 @@
-Return-Path: <devicetree+bounces-264837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264838-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MOe2Hf/wjGmSvgAAu9opvQ
-	(envelope-from <devicetree+bounces-264837-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 22:13:35 +0100
+	id uIaNLijxjGmSvgAAu9opvQ
+	(envelope-from <devicetree+bounces-264838-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 22:14:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6706127A65
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 22:13:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F8B6127A95
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 22:14:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B09FC301704C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 21:13:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 90AEF301C977
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 21:13:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6277F35D5FC;
-	Wed, 11 Feb 2026 21:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0C8835FF4C;
+	Wed, 11 Feb 2026 21:13:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cjvvDZUB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="guF0WGNO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EF9035CBB6;
-	Wed, 11 Feb 2026 21:13:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A863E35E535;
+	Wed, 11 Feb 2026 21:13:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770844411; cv=none; b=R85U3WbzKC9rpEdlj/QxF602Jigbz/wd2agJbg1ouVWd60FPS36LpjkgggrZQ6QjQguaDpf1JS/wDNwv5uA01YdBH17LsUQXkK/HsCJzdi6o0PQVEuDXgnyI4cikjZqIAeE5Fo7xLtoNlPwYAIsYfcOp5ZeVVtalF0IELPn+lrc=
+	t=1770844426; cv=none; b=s1Ty3bdBNZLEpcjDvlYlFHE9TxFRdKe44Jaol0GHny8EgCzLX/lsaZj/rvAXAM0vg+zljHh68pbMX04j9itE9bXvk8M/g+bQ9pDlZlSPZugea9WGzXk9RXCtG/h/JPlV9BBSoFa1qLQifYaMbo9mrf4tT0y8UQO4HGffIfQhMSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770844411; c=relaxed/simple;
-	bh=elREHuzud4aN187FLQs9JvA1JdI3V1NW13W5rgg4Kyc=;
+	s=arc-20240116; t=1770844426; c=relaxed/simple;
+	bh=2SFhjjO4JhhiGOVpntjjr7EQH+F78lsZmlsaKg9GT68=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=su0xuVs7B/BTFFAeWWdwOrNhVqtpnJcF/7ey5fqCkRCXNYSyTmIycoexdI+YaQ0IguGpwPF6tSOJiozdAV/7noEwdgPV4kG+G5/X/GHPFQ1QqBqniVEespqHg2a62NjYdMjs/DevLe3sSjO2I1cL3OuTwnUEoZ4PCODOt9XxqMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cjvvDZUB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 982D5C4CEF7;
-	Wed, 11 Feb 2026 21:13:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wbqjtj/5XILEydk44pHXk+cxDAcbJtludFhntfKl0IX9Mrmy2G4XIri0Pz158tFsHRjHRkIXk0V72M3SHyoPp9P7FdeDJskOOTBdk9aKedm9cBxGg+zyCKoJLDzXXTklSUCxlbU0LKR4s5VsiM+zftITJiiVqWJI7z+rTeQT21E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=guF0WGNO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FD4CC4CEF7;
+	Wed, 11 Feb 2026 21:13:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770844410;
-	bh=elREHuzud4aN187FLQs9JvA1JdI3V1NW13W5rgg4Kyc=;
+	s=k20201202; t=1770844426;
+	bh=2SFhjjO4JhhiGOVpntjjr7EQH+F78lsZmlsaKg9GT68=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cjvvDZUBmHRBg6WwgZJqPoDEmcAq12mjfKiODxsFuV4ztoq93P8EddciiIh55MP/g
-	 +vs7/5B55vaPzo7Aw9nwAwo5mXk5vFkqmbRaTDtLyj7qJuyfVykvm96ySM6vgRGNM+
-	 0Mc35RlhQLAyPQn4Aan0WV0NY/XKyVMI01aYKQarK8Oy+FEWmH8OR1sA/DMuaHHznA
-	 DQRUgWP8CieAD7+lNXEqrUUyoVNI/68ygGk4WZnaeS7aLnuskOOmDev8R9DixiPePJ
-	 9YqYQMHUIVqCg66c+li1lSyZiHUpdIHPZ7HDoCY4TsPXsybGeTdvudOAgJe0HV1QnR
-	 8m4mUeZ36CZ1g==
-Date: Wed, 11 Feb 2026 15:13:29 -0600
+	b=guF0WGNOcIuWywfnCvCQVG5nhbp9wrsyUHsG6D2rwDHQi7hYB8QUNqkSJAinjuubZ
+	 ur3bTWwInBHwXCOs5OzpCXg/+Rof7sIcw9Chm4GuYV8Fbr9jSVdAB7j5nWN7gWZYpN
+	 Mfgs/JCEn4ixDcBEG9NyJ6++i17uQasYGHgQ3ZaIzLlnAnnrQ5Ui8dPFfjfqFVTFqG
+	 E531xE8dlXeJUyqIrLVwRmsK5lD+C/XX3pBX6n3VrU0w4dgTitbG75mxbdriY+caya
+	 TDGJOvY1/ubWZlBbRgVmnEhuFwnNE3fGomDE7wK3cmx5jEFqmlEokxN6/uhIUl9xbO
+	 +KB28HYIcC8Fw==
+Date: Wed, 11 Feb 2026 15:13:45 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: devicetree@vger.kernel.org, Takashi Iwai <tiwai@suse.com>,
-	linux-tegra@vger.kernel.org, Jaroslav Kysela <perex@perex.cz>,
-	linux-kernel@vger.kernel.org,
-	Thierry Reding <thierry.reding@gmail.com>,
-	linux-sound@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Jonas =?iso-8859-1?Q?Schw=F6bel?= <jonasschwoebel@yahoo.de>,
+Cc: linux-input@vger.kernel.org, David Lechner <dlechner@baylibre.com>,
+	Lee Jones <lee@kernel.org>, Mark Brown <broonie@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	devicetree@vger.kernel.org, Dixit Parmar <dixitparmar19@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Pavel Machek <pavel@kernel.org>, linux-iio@vger.kernel.org,
 	Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH v2 5/5] ASoC: dt-bindings: nvidia,tegra-audio-max9808x:
- document additional board pins
-Message-ID: <177084440873.3909872.156538446557882874.robh@kernel.org>
-References: <20260206173423.145954-1-clamor95@gmail.com>
- <20260206173423.145954-6-clamor95@gmail.com>
+Subject: Re: [PATCH v2 02/11] dt-bindings: regulator: cpcap-regulator:
+ document Mot regulator
+Message-ID: <177084442495.3910352.7057800020774400525.robh@kernel.org>
+References: <20260206172845.145407-1-clamor95@gmail.com>
+ <20260206172845.145407-3-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,24 +73,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260206173423.145954-6-clamor95@gmail.com>
+In-Reply-To: <20260206172845.145407-3-clamor95@gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264837-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264838-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
@@ -95,23 +98,24 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,suse.com,perex.cz,gmail.com,kernel.org,nvidia.com,yahoo.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,baylibre.com,kernel.org,gmail.com,atomide.com,analog.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B6706127A65
+X-Rspamd-Queue-Id: 3F8B6127A95
 X-Rspamd-Action: no action
 
 
-On Fri, 06 Feb 2026 19:34:22 +0200, Svyatoslav Ryhel wrote:
-> Document additional board pins that may be used in routing.
+On Fri, 06 Feb 2026 19:28:36 +0200, Svyatoslav Ryhel wrote:
+> Document regulator composition used by the CPCAP of Tegra20 Mot board,
+> that is a base for Atrix 4G and Droid X2.
 > 
 > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  .../bindings/sound/nvidia,tegra-audio-max9808x.yaml          | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../devicetree/bindings/regulator/motorola,cpcap-regulator.yaml  | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
