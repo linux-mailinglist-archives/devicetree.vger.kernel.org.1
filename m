@@ -1,202 +1,168 @@
-Return-Path: <devicetree+bounces-264662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264663-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YMonK31BjGlYkAAAu9opvQ
-	(envelope-from <devicetree+bounces-264662-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:44:45 +0100
+	id GKAGMi1CjGm/kAAAu9opvQ
+	(envelope-from <devicetree+bounces-264663-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:47:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EAAA1225A1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:44:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63E17122616
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:47:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9E8093016532
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 08:44:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2570030263F7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 08:47:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2A935294E;
-	Wed, 11 Feb 2026 08:44:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E43AB352FA7;
+	Wed, 11 Feb 2026 08:47:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m5Tv11TW"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Sq16N2Mf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A962834846D;
-	Wed, 11 Feb 2026 08:44:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F354E3542DD;
+	Wed, 11 Feb 2026 08:47:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770799482; cv=none; b=LL8eKbmpPkYmEQWL7qC9euh3c7V0ZU7eCHkt5nMlc1+x9mMsGgL7Zttj0ovFo11Fl4nNA1bKj3ICA8mu0v+oT3Os0kX2LOgOC+809Sm3GbvlwA4ET6x+OXlUg08hIv0URizVAyTpFCcYpDvXw4nWLqM3cGlQHzG4cjEfQp/UBpI=
+	t=1770799628; cv=none; b=m0ix/qxG21z6cKeusTd+9b2aybZcg4gPWRmuKdiWmKbFh9ZoDXMB3gjbnXB7LrSW9sOysyiSZl8MzhU1K10UVp5MLRtYN3WFJEEJhpZFhnIrpxiZ6jt3WRZ8dhS4ZtHFxplVi+Eo0w0vu2DX313CpFZtKOmjs2l7mmALQKwDhBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770799482; c=relaxed/simple;
-	bh=2U+ptRsG3F1N+6DOP9Kp4NeIPR7wGkQ6h4Z6hgReQ1g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OuLNksdHWMtmZXYEMBmzy+OvDOY+6M+Xk04R50v1scPTcgo8g4z0C/VqRNjroZetDyfUGT4abCLlGbafhpPhFyTh0bEZEfXKkcbalySN932IXVxW2Ff3Z9VlOnQOtItycZA3ZYt81aSS96zrb5skHYpsPj6Dwdft0FB96y8kgvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m5Tv11TW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3022C4CEF7;
-	Wed, 11 Feb 2026 08:44:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770799482;
-	bh=2U+ptRsG3F1N+6DOP9Kp4NeIPR7wGkQ6h4Z6hgReQ1g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m5Tv11TWtLahq/FaMOBIyU3hDZLssT5HWPD8dXkM2UmAwqHQpUMe9TlZ2P3Ecfql2
-	 IVVEhpwp+DeZyvlkWZPXYgJ4t9+hvDk4LNGA3jOiOzzVwdF1RZh/dRNMrjBNKTI2nv
-	 hrrJLCyjpNC0mINw5mV6O7pphSIX5sS8Iq4Oggw/KLwLDIQuq0P5OSlBGJvukVjHwz
-	 +BqqPevN++aLfiYWMKFWp1dqcFfUo4e+aj1oeiXCfhcXK9gGrcMmohBqe0LKvECXWd
-	 Fi1J4dxMk4e0IUVoU+JApxowU/VYJe3WHz5KrDredU1JMaWCVqCLPV/c3UmhqGZU8w
-	 5chZkaxhsbdTw==
-Message-ID: <30026ed7-cd19-4be2-adbb-e8bb155a75b8@kernel.org>
-Date: Wed, 11 Feb 2026 09:44:38 +0100
+	s=arc-20240116; t=1770799628; c=relaxed/simple;
+	bh=dKXaoUlFrP9ltcQ3ZCib3rfKKB8PcOXTv9qK/YHa70o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EZno8UGzuf9vzc3wC9XVYRUhBqvfHHnq2QHwDcFRO0XAPKOiqE8E3x8LWaI/DJlMuN8r0zZfJj1EOO2o3vaC4GDDrUhnBnMBdMwzqrNq0Uh10SWJU40Ry5dwjeSqqRZ3fG2nb2R3pYPwQO+sZ6UZLqWqXQyK45Xfnggpw9ZPSF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Sq16N2Mf; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770799627; x=1802335627;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=dKXaoUlFrP9ltcQ3ZCib3rfKKB8PcOXTv9qK/YHa70o=;
+  b=Sq16N2Mf/pbBC/PuRff9+pMbo9fzSeojo59+fOwaN18HtQoyTouOxuPA
+   HIHbZAzDE+GReTkC59NRvkja30Xzyc12QLG65fOEHvSLLxZwMgOaxUb87
+   GoYcBBbDnOU4rataOCUXfhMhx6KqZeFiIe02uW+xRoh166dsG4mDY4ObR
+   gsmGF60R7X6uXKqkOy2RDHFkLofkNPT6vqmfGZg1cMNl30r9yIunMnKEX
+   HfTfZcla4hPkrpwjK3QwZYTrS8PL1P/gPE7/fw7ttirCouvH4JTTj6Y5t
+   O7JdwNw+3fwzq3bqP+FVJIvNfU4tZtrH3WuHOyBo33QlZISMGVbIa/z/N
+   g==;
+X-CSE-ConnectionGUID: gSRPXwyNR4OjxKYhI0OqtQ==
+X-CSE-MsgGUID: DQYbYVdmT9mny0fA+vASfg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="71839859"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; 
+   d="scan'208";a="71839859"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2026 00:47:06 -0800
+X-CSE-ConnectionGUID: JQTw2U0oSQiaZNunnspMNg==
+X-CSE-MsgGUID: IxFVc3HWTQq6BjPe4w6Y9w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; 
+   d="scan'208";a="211590780"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.220])
+  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2026 00:47:03 -0800
+Date: Wed, 11 Feb 2026 10:47:01 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Yasin Lee <yasin.lee.x@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, yasin.lee.x@outlook.com,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 5/5] iio: proximity: hx9023s: add ACPI support
+Message-ID: <aYxCBSgIx7HYVv9h@smile.fi.intel.com>
+References: <20260209-upstream-20260219-v1-0-2b4d74e309d1@gmail.com>
+ <20260209-upstream-20260219-v1-5-2b4d74e309d1@gmail.com>
+ <aYmeeWeXRdPHZxRr@smile.fi.intel.com>
+ <CA+NOmzLXv8C-i-dHxdsQ2bCCYxhU4ay2ip6LXK-rcimWSZA-tQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
-To: James Hilliard <james.hilliard1@gmail.com>
-Cc: linux-gpio@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>,
- Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alexander Stein <linux@ew.tq-group.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
- <338e6575-ec44-4179-94af-9086a7ca79ac@kernel.org>
- <92359c6d-06ac-4f8d-baa5-6fa45a536455@kernel.org>
- <CADvTj4q74H__JZftOiXkdsY3+E_Xmcx6Y6i70RQDJ0K09=XOHQ@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CADvTj4q74H__JZftOiXkdsY3+E_Xmcx6Y6i70RQDJ0K09=XOHQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+NOmzLXv8C-i-dHxdsQ2bCCYxhU4ay2ip6LXK-rcimWSZA-tQ@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264662-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-264663-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,outlook.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0EAAA1225A1
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: 63E17122616
 X-Rspamd-Action: no action
 
-On 11/02/2026 09:28, James Hilliard wrote:
-> On Wed, Feb 11, 2026 at 1:19 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 11/02/2026 09:17, Krzysztof Kozlowski wrote:
->>> On 11/02/2026 09:13, James Hilliard wrote:
->>>> Document the gpio-aggregator virtual GPIO controller with a dedicated
->>>> schema and compatible string.
->>>>
->>>> Also extend the GPIO AGGREGATOR MAINTAINERS entry to cover the new
->>>> binding file.
->>>
->>> <form letter>
->>> This is a friendly reminder during the review process.
->>>
->>> It seems my or other reviewer's previous comments were not fully
->>> addressed. Maybe the feedback got lost between the quotes, maybe you
->>> just forgot to apply it. Please go back to the previous discussion and
->>> either implement all requested changes or keep discussing them.
->>>
->>> Thank you.
->>> </form letter>
->>>
->>
->> First thing which was missing (I did not even check the rest in such
->> case): missing rationale for this patch, missing hardware description.
+On Wed, Feb 11, 2026 at 11:54:11AM +0800, Yasin Lee wrote:
+> On Mon, Feb 9, 2026 at 4:44 PM Andy Shevchenko
+> <andriy.shevchenko@intel.com> wrote:
+> > On Mon, Feb 09, 2026 at 11:37:06AM +0800, Yasin Lee wrote:
+
+...
+
+> > > +#include <linux/acpi.h>
+> >
+> > Why?
 > 
-> I added some more details to the commit message, this is a
+> Ack. I Will remove this.
 
-No... Commit msg is exactly the same.
+Hmm... Don't you need to add mod_devicetable.h?
 
-> virtual gpio driver though so AFAIU it's not hardware specific.
+...
 
-You can give example of any hardware where this is useful. You need to
-make your case with actual arguments.
+> > And since you added a new ID, please add to the commit message if this is
+> > in a wild (and hence the vendor and model of the device that it has) and
+> > also an excerpt from DSDT to the comment block (after '---' line).
 
-> 
-> Use case is I have a device with something like 300 gpio
-> lines...and I want to name/group a small subset of those
-> lines for delegation to a userspace app rather than trying
-> to set 300 or something gpio-line-names values, also I'm
+> Thanks for your comments.
+> Regarding the ACPI ID "TYHX9023", it is for a product currently in the
+> late stages of development. We are in the process of formally
+> registering the "TYHX" Vendor ID with the UEFI Forum.
+> To ensure everything is compliant, I will withdraw this ACPI support
+> patch (5/5) for now. I will resubmit it as a standalone patch once the
+> ID registration is officially confirmed and I can provide the verified
+> DSDT evidence.
 
-So if I change the approach in user-space or use different user-space
-app then I change the DTS?
+Thanks! That is the best approach, glad you followed the process!
 
-Well, that's not a valid reason for a binding then.
+> I will send v2 for the rest of the series (1-4) with your other
+> suggestions addressed.
 
-> supporting multiple board variants and want to be able to
-> better compose the gpio difference with device tree overlays
-> using these virtual gpio groups essentially.
+Sounds good.
 
-This also should not be used to differently organize DTS, for the sole
-purpose of composing gpio difference. The role of DTS is to represent
-here the hardware.
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Best regards,
-Krzysztof
 
