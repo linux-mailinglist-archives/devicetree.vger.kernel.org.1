@@ -1,224 +1,147 @@
-Return-Path: <devicetree+bounces-264764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264765-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yMMUCrxzjGk6ogAAu9opvQ
-	(envelope-from <devicetree+bounces-264764-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 13:19:08 +0100
+	id AMXQBah0jGk6ogAAu9opvQ
+	(envelope-from <devicetree+bounces-264765-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 13:23:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCDD7124243
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 13:19:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87C541242A5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 13:23:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 70BE830143D8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 12:19:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5CE5430143DB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 12:23:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEB6C33986B;
-	Wed, 11 Feb 2026 12:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1C8B33A6FB;
+	Wed, 11 Feb 2026 12:23:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="1bbpVcOd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LMxsmxcr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15EE1313524
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 12:18:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 971A932B989
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 12:22:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770812342; cv=none; b=XORwQxYsqNNSkEWF8f3/yWXtrbvqzsylPStVClaXuXaN/fKsDz0PdPZPkezSDMJSH3uL7Qm2ahaJZOtCQusq7gkAUszdOpJUb97g0wYFUO1RpGAoewWRDfsBjhQSXgrvVcqXblMxL5MWpPGbFvp9x3ZFAEW0TMdr5j/yHG28xtA=
+	t=1770812580; cv=none; b=o+gCkF7MLI9TpH/cceBOdDoxjjM1Ip606ciqJNnXz5JsBoTI4MHCBew60BaUYelcr5pyV/dAiMm4wlA2vbD+Z8oREgDbFF0KxKBzJt07O7SLVqsU7PcpuuKdZBSffPt0Bv6oSV1xeIPxgi/15Lv+p+nyEC5hah2O2DhDC+eWUN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770812342; c=relaxed/simple;
-	bh=9A4gWGZFOxwDhK7ZmTb9tedSw5n3x7/bEPDL9A0lbN8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=MxbXtuQ9ogjc1Uc18/Ab43UC7/MMhS0A8zEKxxFuuNGmqYxiwos5ObsYbGjWitZkUev/REyu5PXEvVRPmv8rLr8qC536ht02/NjcSVR7sy2KAV5XaU/IGQPR6gokjmNDCFvRsO17Mg3wO4U09dDEpEOJq9a4NRi4h+KSyW9xxt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=1bbpVcOd; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b883c8dfb00so338976966b.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 04:18:59 -0800 (PST)
+	s=arc-20240116; t=1770812580; c=relaxed/simple;
+	bh=PNl2W09PXS2cIEGgx6m7OnG6l1CiCnM8wXGyRyqATVc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A1ndxx25zv0FtJUxEGEe1VmotfqLMyWG4Yk/i3LlWF/fko4bn+5A0ltd4B2v35z5tJa3LEv/FhxmvTBiRA6+weLo4I92lqaOAl80bxOcBHpBIMEYliD3+hpL3YVug1dhTnNpMJsNpSThsi/wnAqhmNJYy4WY7urR7c7smfIQnb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LMxsmxcr; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4806fd9033bso11650375e9.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 04:22:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1770812338; x=1771417138; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6dzpOGAu3+rtyHx1s4OVXpmAjZ0G8S1KZFSUletwwEc=;
-        b=1bbpVcOdJgXnenLSGY1j60NFJtAfyqfoGxLb/LxMazckaC7hNbwoZMJDhKUOS4xg/o
-         YNw3oSB2SarsqNGGIjAsIctEe2hgl9QQN3JvMaYXTvyQXa7sKog90SB9J2a2YdkE6n06
-         qssytXNV8iQ4A3abRYBTv+HHnogsLEiVjkFm8v5NUD6GPEonxqqUqDexGDUVHcnr20vS
-         DnFMs+HggCSEruCcrl9+I2kmskmSsWy0lMzXRuALhoAorZ/TDSiBweeu/Co/ee4lwbfu
-         Mj9kLi4mFViSY2Wi0sH0MbGoxvXGv326fCkz57Cv0XlzfmH4kDWSNid6Ll99gcrhiS7Y
-         88SQ==
+        d=gmail.com; s=20230601; t=1770812578; x=1771417378; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=vJVzdkrFxuD+RMS2UJUYgd6O4St7LRSdDuy0occZDfE=;
+        b=LMxsmxcr7E8+HOhvrYkJMuk9wplWMkIN7TS7wAN57tE9UWiSBOOJyvidMSHtBhTjlg
+         6z0S5amjlTkLuK/HuitSfOX/9u8Er5t+nNpmwJfxlU/tGpUtsq6/v1kOOYMUZW0Zxn+1
+         plORaBIz07U8yO2VdvyiDZ1SORawjLvTAsybSBsNqOWCsVCRBTmb41UOhh/O4FPEvUra
+         AxMgAJ7UYO7hQZHfKGhzv4jTnGSmiiQ8hWcdHjzf7Rf5Y+dwj5u4gP3mH3sE163Wkpii
+         2HD31P83R5hNWizIXS0/xErPATOUrNmpHHui1/uVD4J5xG5hiVqNMj/jN4fQmnMPK3Lw
+         v66w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770812338; x=1771417138;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6dzpOGAu3+rtyHx1s4OVXpmAjZ0G8S1KZFSUletwwEc=;
-        b=Ti2FF2wPxEOfgOelga8xcpDqi5N3PVtpw2/iKcxb7I0UEdezSQnWBCaCBe+sGXXi4p
-         aw+Tn5NdUOW+rAZ6Z4Wm3w3GwthJ6krVRSEyPWy0HRMs1mzs5oEHYhsqjIgEKgoT0ARY
-         lyl8IsKAi4FKqTF8o09PWB9orq0+etAHmx0yoXQSZnJY6D0Vd9Gzt7YDB0psOTGUzAa5
-         GxIrCDbWECrUsnZyGyxRiRgBI+bukrQQVF702yYisyFq/l5YS+7KNYlmFs4ufJafuzI1
-         pJWcoOFxUhyrQ+cIbp7Zzxbs6wn7hepqNx/gdsiDt78GQRQJQohhyCIzdJGYs9XJBf/Q
-         5ZIA==
-X-Forwarded-Encrypted: i=1; AJvYcCUwgd5d1GdFZe96RIHD/xLv/M8+oYNFNMYe5Y6IRa4z3OLCyAgqFkR6IrEbkqL1iEDHy2ASslLu12hm@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaRGd2bjugssfIJ4p/vhUjFyvx8dZvEV+exbrd/gcrroHstxjX
-	mZ+4L09Li3HhwXkfCZsBWi0m1DYdM52KJyTD+jQgiZpOgCU85Q0tOSEFhezXDy1LpsHm/mof4bj
-	5abeS
-X-Gm-Gg: AZuq6aLI1A+J8GyyhAnL2xocoXveTiRqFUMiYyjev2JMUXl8NyorsrX05ebOwRKqgsJ
-	2w34DqFgGbZDDdcECqBBqad93r3rvyjR0avT35gvjvq69JBMEnmUd3N1JE+r6FVu5al+wMZZGog
-	jODjpdaU9EDuNwpCMc1Dv+3QMj1eIbvcfqHF+DMe7w322bMD/4SWjARVPwRXWKL2LkfhKR7GRq9
-	7tyLgdbpp3GnD3fG4rECJZjMIaHsBY29Pk4kZg7Vy/nwUVsxaZx4dm2liejF38QZKy5ZNhvGI+5
-	g+DbXuPTTCuBhhyogMPJj+NBeeUi0xcEhbLto5yUV1jFeW3aLZNGBc1hLz9RnTzXxx13Ucz8kiC
-	OvPyJB9g+LCZO7ITXYXpbQS13A0NE9J0Bwn3DHgSTqxkQe/WcsywHnLpsff0+IcZnowUS2ICU4d
-	PFXBwvQ9BcsWup/OR5766NdbisW4K5IVkd7B5I35f1oWXtnNZedo/qwN9LdxaD2+cqq6CS5dxQt
-	tWx
-X-Received: by 2002:a17:907:96a3:b0:b87:124c:5f65 with SMTP id a640c23a62f3a-b8edf415a37mr1153663866b.51.1770812338337;
-        Wed, 11 Feb 2026 04:18:58 -0800 (PST)
-Received: from [172.16.240.99] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8f6e9d0212sm55791066b.26.2026.02.11.04.18.57
+        d=1e100.net; s=20230601; t=1770812578; x=1771417378;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vJVzdkrFxuD+RMS2UJUYgd6O4St7LRSdDuy0occZDfE=;
+        b=SgPEnIPJ5pm6usahJk6eE3n/5bcNdxARXz5h4g5QfamKHvtYWAcTdWrrj+uC+iz+qv
+         4H90NwvGf9jKMK0a7ptbafNdwhBLaiR567e2aci49T37xdHUyL1JZwKiuVaJIM1VjrB6
+         JuFiEGRwMBbJgxBvOMTjP0riIfzDwxHOGBGf8eVMiUdhJBS52QubECqh7vP3VXM4eLEL
+         TsVBZsC9idyJkkr6qTDroZu9yaSsArlb9u1xp1RBVzGWd7lIO4YH3we9m1Se0UwkpMZY
+         tFme2Bt/CR7YXl/eZtJG+SP6EJhHl6xA5rpP+BFdxOTzyGn7cmn4OZgQS1FI/hSv6EqL
+         dkpw==
+X-Forwarded-Encrypted: i=1; AJvYcCVbpus4f0PVAZMAv++8BGlBvT8+o20Sfy6V0btiL41F2JynoRVOlaoVJmvhCSdqy6Jj9SWYTv0JT7Lz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzb7qBInk9nc8ianEH9BoPGYY1PQQauwYP/YgGBxcKsRpz4LFHg
+	rItaTPSQ90h4LkV29t94bZL5Vwa+i/Llq80AMaaYDpeKeSMveq/r7bMx
+X-Gm-Gg: AZuq6aJ3NG6grrirutT6+ykqMUQXceG77Ks4X+ONe0QUVynjWpVplCZFWQHoq0rY2p+
+	EeIeJ7r8Gp4ha6SrgaJ2R7NZyPw6YYgGSce8gZA4uH1bGy2IoSpI3WLeHoWvajgd7LhU7t1mG5L
+	BQL8DmSm9KqifYUlDgBowe1xNSecRcDZMJZb2oFD9jyx16AKJabZ8CNzhLW3NZO+mI/n4EwLc1L
+	4e+Od0soT9odVJfLJUj8d04VmnpGdqal7DZC7JMFXqE+kn671FtvqzS1IGF2kLETQfiDEn3/wwM
+	Zm6JGJ3Gx58an9JrihgEBekyYY1N1RjYTNsH1ua0lcAfNfLMufGoaKy5R7rOaFoN1nLI/1q3hbw
+	KaKu+ATK4oUbA8oZfJVKDJmhA8EwHtNfeGjehvJbus9D1nl4OESUw8v8ySXb2Ya3H5kqST9+lcl
+	mgmfiwcaJu/OYIRxfTtS0=
+X-Received: by 2002:a05:600c:1990:b0:483:ca4:c8ab with SMTP id 5b1f17b1804b1-4835e2ce42cmr16954935e9.6.1770812577765;
+        Wed, 11 Feb 2026 04:22:57 -0800 (PST)
+Received: from skbuf ([2a02:2f04:d501:d900:d8ac:c964:9b43:1b13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43783d4785fsm4100412f8f.11.2026.02.11.04.22.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Feb 2026 04:18:58 -0800 (PST)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Wed, 11 Feb 2026 13:18:57 +0100
-Subject: [PATCH] arm64: dts: qcom: kodiak: Add I2S1 pinctrl definitions
+        Wed, 11 Feb 2026 04:22:57 -0800 (PST)
+Date: Wed, 11 Feb 2026 14:22:54 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc: Vladimir Oltean <vladimir.oltean@nxp.com>, vkoul@kernel.org,
+	kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Daniel Golle <daniel@makrotopia.org>
+Subject: Re: [PATCH 0/2] phy: microchip: lan966x: Allow to invert N and P
+ signals
+Message-ID: <20260211122254.4mwzmi5auxddsm5k@skbuf>
+References: <20251110110536.2596490-1-horatiu.vultur@microchip.com>
+ <20251110114216.r6zdgg4iky7kasut@skbuf>
+ <20251111095016.42byrgj33lp4bouo@DEN-DL-M31836.microchip.com>
+ <20251113163023.syl6nxq2mqkxpz4z@skbuf>
+ <20251114103411.rzigaoictyinmx66@DEN-DL-M31836.microchip.com>
+ <20251119192326.4bflaqkh4zvz2rib@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260211-kodiak-i2s1-v1-1-b3a7fad8014e@fairphone.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MwQpAQBCA4VfRnE2ZUcKryAE7w6TQTklp393m+
- B3+/wWXaOLQFy9Euc3tPDKoLGDZpmMVtJANXHFTMRHuZ7BpR2MnrDtRnYVa1QVycUVRe/7bMKb
- 0AV8TzMpdAAAA
-X-Change-ID: 20260211-kodiak-i2s1-39effbe18ffc
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Bhushan Shah <bhushan.shah@machinesoul.in>, 
- Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770812337; l=2016;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=9A4gWGZFOxwDhK7ZmTb9tedSw5n3x7/bEPDL9A0lbN8=;
- b=pNemSz99lPFip6qwzHK563vh87rqx0FItMyLu+rIfVoSahTuANBU3u9aIFLUaX4j7Gvg6lO9+
- iY9QmGnbEmVBMvBSesRH5C+9aH6T2fsWHDzbjVO87w0AR8+/5cYHceh
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251119192326.4bflaqkh4zvz2rib@skbuf>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264764-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264765-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[fairphone.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[fairphone.com:mid,fairphone.com:dkim,fairphone.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DCDD7124243
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 87C541242A5
 X-Rspamd-Action: no action
 
-Add the pinctrl definitions to configure gpio6-gpio9 of the lpass_tlmm
-for I2S output.
+Hi Horatiu,
 
-Co-developed-by: Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
-Signed-off-by: Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/kodiak.dtsi | 52 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
+On Wed, Nov 19, 2025 at 09:23:26PM +0200, Vladimir Oltean wrote:
+> > Anyway I can wait with this patch series until you get your changes in.
+> 
+> I will keep you copied to the patch set which I hope to send later today.
 
-diff --git a/arch/arm64/boot/dts/qcom/kodiak.dtsi b/arch/arm64/boot/dts/qcom/kodiak.dtsi
-index 6079e67ea829..2e53e99e86e4 100644
---- a/arch/arm64/boot/dts/qcom/kodiak.dtsi
-+++ b/arch/arm64/boot/dts/qcom/kodiak.dtsi
-@@ -3036,6 +3036,58 @@ lpass_dmic23_data: dmic23-data-state {
- 				bias-pull-down;
- 			};
- 
-+			lpass_i2s1_active: i2s1-active-state {
-+				clk-pins {
-+					pins = "gpio6";
-+					function = "i2s1_clk";
-+					drive-strength = <8>;
-+					bias-disable;
-+					output-high;
-+				};
-+
-+				ws-pins {
-+					pins = "gpio7";
-+					function = "i2s1_ws";
-+					drive-strength = <8>;
-+					bias-disable;
-+					output-high;
-+				};
-+
-+				data-pins {
-+					pins = "gpio8", "gpio9";
-+					function = "i2s1_data";
-+					drive-strength = <8>;
-+					bias-disable;
-+					output-high;
-+				};
-+			};
-+
-+			lpass_i2s1_sleep: i2s1-sleep-state {
-+				clk-pins {
-+					pins = "gpio6";
-+					function = "i2s1_clk";
-+					drive-strength = <2>;
-+					bias-pull-down;
-+					input-enable;
-+				};
-+
-+				ws-pins {
-+					pins = "gpio7";
-+					function = "i2s1_ws";
-+					drive-strength = <2>;
-+					bias-pull-down;
-+					input-enable;
-+				};
-+
-+				data-pins {
-+					pins = "gpio8", "gpio9";
-+					function = "i2s1_data";
-+					drive-strength = <2>;
-+					bias-pull-down;
-+					input-enable;
-+				};
-+			};
-+
- 			lpass_rx_swr_clk: rx-swr-clk-state {
- 				pins = "gpio3";
- 				function = "swr_rx_clk";
-
----
-base-commit: e1a106754a75d08a60acd0d72bff339d7cfe8c3a
-change-id: 20260211-kodiak-i2s1-39effbe18ffc
-
-Best regards,
--- 
-Luca Weiss <luca.weiss@fairphone.com>
-
+The generic description I was talking about has been merged as commit
+e7556b59ba65 ("phy: add phy_get_rx_polarity() and phy_get_tx_polarity()").
+This set should be dropped from Patchwork. You can send a new version
+after the merge window closes, or an RFC at any time.
 
