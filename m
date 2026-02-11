@@ -1,167 +1,119 @@
-Return-Path: <devicetree+bounces-264836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264837-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oNPTCG3yjGmqvwAAu9opvQ
-	(envelope-from <devicetree+bounces-264836-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 22:19:41 +0100
+	id MOe2Hf/wjGmSvgAAu9opvQ
+	(envelope-from <devicetree+bounces-264837-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 22:13:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D78127B4A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 22:19:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6706127A65
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 22:13:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 989F630F382F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 21:12:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B09FC301704C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 21:13:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB90A35CBB7;
-	Wed, 11 Feb 2026 21:12:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6277F35D5FC;
+	Wed, 11 Feb 2026 21:13:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N4gBczgv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cjvvDZUB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B85CD34EEF1;
-	Wed, 11 Feb 2026 21:12:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EF9035CBB6;
+	Wed, 11 Feb 2026 21:13:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770844350; cv=none; b=BUfN69jwPJP0mvSzeAcyKCvxGuaCI0Co5wT9xFRAByOBzTYcLODIQdPs730wB8gfCh03+par6bLCtIVJsC9QQWL8miQUiSeNbpYZzlPznk7Z2aU2jo3L2X+XkLRUFgPMvoSIa8TKgXeMWTQjCkZXfIhc2lGY7svsxFTOSEUhDCM=
+	t=1770844411; cv=none; b=R85U3WbzKC9rpEdlj/QxF602Jigbz/wd2agJbg1ouVWd60FPS36LpjkgggrZQ6QjQguaDpf1JS/wDNwv5uA01YdBH17LsUQXkK/HsCJzdi6o0PQVEuDXgnyI4cikjZqIAeE5Fo7xLtoNlPwYAIsYfcOp5ZeVVtalF0IELPn+lrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770844350; c=relaxed/simple;
-	bh=ZsXDR+ZmQZgcAFLTOvK08pR/QTvXK90/KVWwSRiQC3E=;
+	s=arc-20240116; t=1770844411; c=relaxed/simple;
+	bh=elREHuzud4aN187FLQs9JvA1JdI3V1NW13W5rgg4Kyc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JPapCDSUJLLNaodytB7gM5MMqxBKdjDglNI1Rwv/h+wtZfZjjY8++AhSZxVz6Y9tvDEa2uPHOyOfJYhlhS/dRYKv9P3KNeOfHGEdtaW7I+1IcNnyRT15uPK0/PWd1/2J1OqoKP08f1L+wnubSr2wxn0o02bCHD2g2atlgdcmEpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N4gBczgv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 321B6C4CEF7;
-	Wed, 11 Feb 2026 21:12:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=su0xuVs7B/BTFFAeWWdwOrNhVqtpnJcF/7ey5fqCkRCXNYSyTmIycoexdI+YaQ0IguGpwPF6tSOJiozdAV/7noEwdgPV4kG+G5/X/GHPFQ1QqBqniVEespqHg2a62NjYdMjs/DevLe3sSjO2I1cL3OuTwnUEoZ4PCODOt9XxqMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cjvvDZUB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 982D5C4CEF7;
+	Wed, 11 Feb 2026 21:13:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770844350;
-	bh=ZsXDR+ZmQZgcAFLTOvK08pR/QTvXK90/KVWwSRiQC3E=;
+	s=k20201202; t=1770844410;
+	bh=elREHuzud4aN187FLQs9JvA1JdI3V1NW13W5rgg4Kyc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N4gBczgv0CRF9wWjRyBcZ6sr4hzPtVjbbyR/fWi2KJF0JCap73Xh9p8TZkXVH/z6B
-	 cIS5py2CePVPSyb+xh36Kw+IHHulK4SxFFhPy6vnv4bnGW5UcSvYcdpmGCRPsXwTF6
-	 +9trG//gb98jf1b+MKRjoIoMWl8O3SDHUDSQcZIN2lGvas6QeTnDbCKziKkEq+TyDe
-	 jDf9z8ZgWtrQplxsQReN2izQTI0yRTkD3kgAAmjrGsVyFil96U5u6denXcHrnPIqNr
-	 bKyI8UwcokiGnYxz73fIkAwr3JWWYpzNkYCUIN+lL3OENK0YzAWJ9A6cXBesd2GJT1
-	 uLvTBtDxxqoWQ==
-Date: Wed, 11 Feb 2026 15:12:29 -0600
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
+	b=cjvvDZUBmHRBg6WwgZJqPoDEmcAq12mjfKiODxsFuV4ztoq93P8EddciiIh55MP/g
+	 +vs7/5B55vaPzo7Aw9nwAwo5mXk5vFkqmbRaTDtLyj7qJuyfVykvm96ySM6vgRGNM+
+	 0Mc35RlhQLAyPQn4Aan0WV0NY/XKyVMI01aYKQarK8Oy+FEWmH8OR1sA/DMuaHHznA
+	 DQRUgWP8CieAD7+lNXEqrUUyoVNI/68ygGk4WZnaeS7aLnuskOOmDev8R9DixiPePJ
+	 9YqYQMHUIVqCg66c+li1lSyZiHUpdIHPZ7HDoCY4TsPXsybGeTdvudOAgJe0HV1QnR
+	 8m4mUeZ36CZ1g==
+Date: Wed, 11 Feb 2026 15:13:29 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: devicetree@vger.kernel.org, Takashi Iwai <tiwai@suse.com>,
+	linux-tegra@vger.kernel.org, Jaroslav Kysela <perex@perex.cz>,
+	linux-kernel@vger.kernel.org,
+	Thierry Reding <thierry.reding@gmail.com>,
+	linux-sound@vger.kernel.org, Mark Brown <broonie@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Jonas =?iso-8859-1?Q?Schw=F6bel?= <jonasschwoebel@yahoo.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Juan Yescas <jyescas@google.com>,
-	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v5 04/10] dt-bindings: soc: google: gs101-pmu: allow
- power domains as children
-Message-ID: <20260211211229.GA3882182-robh@kernel.org>
-References: <20260205-gs101-pd-v5-0-ede49cdb57a6@linaro.org>
- <20260205-gs101-pd-v5-4-ede49cdb57a6@linaro.org>
+	Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH v2 5/5] ASoC: dt-bindings: nvidia,tegra-audio-max9808x:
+ document additional board pins
+Message-ID: <177084440873.3909872.156538446557882874.robh@kernel.org>
+References: <20260206173423.145954-1-clamor95@gmail.com>
+ <20260206173423.145954-6-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260205-gs101-pd-v5-4-ede49cdb57a6@linaro.org>
+In-Reply-To: <20260206173423.145954-6-clamor95@gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264836-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264837-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[kernel.org,samsung.com,linaro.org,gmail.com,google.com,android.com,lists.infradead.org,vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,suse.com,perex.cz,gmail.com,kernel.org,nvidia.com,yahoo.de];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email]
-X-Rspamd-Queue-Id: C1D78127B4A
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B6706127A65
 X-Rspamd-Action: no action
 
-On Thu, Feb 05, 2026 at 09:42:32PM +0000, André Draszik wrote:
-> The power domains are a property of / implemented in the PMU. As such,
-> they should be modelled as child nodes of the PMU.
+
+On Fri, 06 Feb 2026 19:34:22 +0200, Svyatoslav Ryhel wrote:
+> Document additional board pins that may be used in routing.
 > 
-> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
-> v4:
-> - consistent quoting using " (Krzysztof)
-> - add samsung,dtzpc to example
+>  .../bindings/sound/nvidia,tegra-audio-max9808x.yaml          | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> Note: Ideally, the newly added properties (ranges, etc.) should only be
-> 'required' if "^power-domain@[0-9a-f]+$" exists as a patternProperty,
-> as they're needed only in that case. As-is, this patch now causes
-> warnings for existing DTs as they don't specify the new properties (and
-> they shouldn't need to). 
 
-We can't have warnings added if they aren't valid.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-> Only if DTs are updated to include
-> power-domains, such an update should also add the new properties.
-> 
-> I've not been able to come up with the correct schema syntax to achieve
-> that. dependencies, dependentRequired, and dependentSchemas don't seem
-> to support patterns. Similarly,
->   - if:
->       required:
->         - ...
->     then:
->       required:
->         - ...
-> 
-> doesn't allow patterns in the 'if' block (or I didn't get the syntax
-> right).
-> 
-> Rob said in
-> https://lore.kernel.org/all/20251010141357.GA219719-robh@kernel.org/
-> that this is a known limitation in json-schema.
-
-For a given compatible, you should either have child nodes or you don't. 
-The h/w is not variable. So something like this should work:
-
-if:
-  properties:
-    compatible:
-      contains:
-        const: foo,bar
-
-then:
-  required:
-    - ranges
-    - '#address-cells'
-    - '#size-cells'
-
-Rob
 
