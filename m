@@ -1,149 +1,160 @@
-Return-Path: <devicetree+bounces-264693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264694-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8GXSIqNQjGmukgAAu9opvQ
-	(envelope-from <devicetree+bounces-264693-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:49:23 +0100
+	id yHztDlNQjGmukgAAu9opvQ
+	(envelope-from <devicetree+bounces-264694-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:48:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B0D122F1D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:49:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C56A8122E95
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:48:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D0996306A28B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:47:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0499730071EA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:48:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0762436655B;
-	Wed, 11 Feb 2026 09:47:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22D59366565;
+	Wed, 11 Feb 2026 09:47:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jxPS6QQr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CECB2F6192;
-	Wed, 11 Feb 2026 09:47:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F171636655A
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 09:47:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770803270; cv=none; b=HHNvAcLjQM6HVhjxTgeLj7T9SWcsFR0uP6jBIc1FBLsB8JYdp6VYsKZznuKfXSDjhYwWtUQs4Gh9vmQkwKDCycevnZQoOCkbqTK3q+Slw/+wCQTxkhbl5NNNGkV3MgUbV8TI333MUz+Hz8/Jxw3xB7b3KGsejfomepTQpKLUyoE=
+	t=1770803277; cv=none; b=F/4Ds3+UR7HI7JFDlHyagvYtNy4CcJ/ErMNmlnJCT/5g5ADMfFoi2Kfd/CJXe8PShxBMenasLtJFdywclnvB8V9Uuds0Hpy4QMsUAanUt+VdwweJjIhbhLs7+0EaTn3THBVdwhNlR0XuKEPloDrgSzuUkNboRcfA87RVM0n329k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770803270; c=relaxed/simple;
-	bh=du4Vj2klYNzF4G9W/aM4Me7dO6BWJCWIM0/OzcJuA/s=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KP2Ta9yWHQCz/uP0cakOpkyACOho1DdJrKVofdxlG34h3NCf2nHZFNtcb1MexZ00D+g4VIzI9F8Wr3E25LE7CyiVt1PI3vnTc8nESnV4Vw7u0qAzyhK/6iWHcyluD+4Lpc0GG65t2EBhLSiOo2GMtegRKoJ02BOs0+XLcqsiMgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005182LT.eswin.cn (unknown [10.12.96.155])
-	by app2 (Coremail) with SMTP id TQJkCgBnYs06UIxpTRoAAA--.526S2;
-	Wed, 11 Feb 2026 17:47:40 +0800 (CST)
-From: hehuan1@eswincomputing.com
-To: ulf.hansson@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jszhang@kernel.org,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	xuxiang@eswincomputing.com,
-	Huan He <hehuan1@eswincomputing.com>,
-	Pritesh Patel <pritesh.patel@einfochips.com>
-Subject: [PATCH v1] dt-bindings: mmc: dwcmshc-sdhci: Fix resets array validation
-Date: Wed, 11 Feb 2026 17:47:36 +0800
-Message-Id: <20260211094736.88-1-hehuan1@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
+	s=arc-20240116; t=1770803277; c=relaxed/simple;
+	bh=fP4SfOgARQ7v/Brjb9O3+lwzxomBul6ME0wlt0f7dSM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eJw7VxHPy3I3GhFeHey3/nFTGRSKDukqa3UZU/GMkHYAmZMoyQlAfIlJ6wYzn0qnXI70wZ14L4NnedVxaB3hSseA2RZrDIWxSZpnxyf/vu4awPRBccY10GvMDbyiIRLFSjp9RHLNKTSTTqpGSf/S5d1fYfwab4E1cnA5ofvG/R8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jxPS6QQr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F7B7C4CEF7
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 09:47:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770803276;
+	bh=fP4SfOgARQ7v/Brjb9O3+lwzxomBul6ME0wlt0f7dSM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=jxPS6QQrjrPMrsSQhMh/wWB5EpDpCaVZumokW8m+WSKUXusJqx717HuMsa46BkvYo
+	 4fWdrGtt6jTureCnwwfPQZ1isxZtQ83dooeF+7G6LK8QvorYweVeOS5uIGsf2tL/8h
+	 EXJ15RB2jvqRCyg/u/8GaaX/RbxM74rK9jj2qk8ZfDSWDIYFGNjYd28WCfFjmlfX2N
+	 a31hCwsVFPdfQWBRwPsGrdhH2BlufKBt0X9G+dKpjB/Z48JeYza0Ti37sehaU+1Pf+
+	 a+wccplsz1kn2i/hNRLwcGZY7vaCGqPRONVwCjguDKBmSENq62cXyGuedwN5qU4Fn4
+	 OuQkI0UJixPgw==
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-382fb2bb83dso40176891fa.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 01:47:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX+6N7zaRYpHd3coRr4sMUd6OawVN5Aynbu9PSdBo6SgZGJX9PRbW16YSiu8DzUOwB97ihgeUWhRsTR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkX2YIj7jkSh1CkymxXiPCCANE5je+FTrz9eKjjtiPCh1nLQgQ
+	gZjhcURSvIc4X1J4cTX50Bbo9paPqp5kM3jVjKKKFOtoZdS6jAc1y1YG/bN46bCxktuN/F2t8gI
+	/RgPPjAAnYB3sl11kI7u3xO6v8syIoEveyJcpkfhUsQ==
+X-Received: by 2002:a05:651c:31d0:b0:385:9b50:91a2 with SMTP id
+ 38308e7fff4ca-38705403fffmr5340821fa.10.1770803275257; Wed, 11 Feb 2026
+ 01:47:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TQJkCgBnYs06UIxpTRoAAA--.526S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7uF13urWfuFy3Gw43Xr1UKFg_yoW8Wr1fpF
-	Z3Ary7t3s3CFy3Ww4Iy3WkC3W7XwnxKF12gr12qr1xKF4DuF4jgrW3K3Z0qry3GFyxtaya
-	gFW29r13Aa4Ivw7anT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
-	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
-	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
-	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
-	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRMCJQUUUUU=
-X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/
+References: <20260211081355.3028947-1-james.hilliard1@gmail.com> <20260211081355.3028947-2-james.hilliard1@gmail.com>
+In-Reply-To: <20260211081355.3028947-2-james.hilliard1@gmail.com>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Wed, 11 Feb 2026 10:47:42 +0100
+X-Gmail-Original-Message-ID: <CAMRc=MfgoKmsNAmn3rO2jDL-ZArMX2Jh-n4SnV6rpzRY3KSwuA@mail.gmail.com>
+X-Gm-Features: AZwV_QhOgiVsYyK_jjpPbKXaVcpSjcjhcm9AGxleSbT7RLMOVXp0xwFXS4jxvVw
+Message-ID: <CAMRc=MfgoKmsNAmn3rO2jDL-ZArMX2Jh-n4SnV6rpzRY3KSwuA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] gpio: aggregator: add gpio-aggregator DT compatible
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: linux-gpio@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexander Stein <linux@ew.tq-group.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,eswincomputing.com:mid,eswincomputing.com:email,einfochips.com:email];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TAGGED_FROM(0.00)[bounces-264693-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[eswincomputing.com];
+	TAGGED_FROM(0.00)[bounces-264694-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	R_DKIM_NA(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org]
-X-Rspamd-Queue-Id: 02B0D122F1D
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: C56A8122E95
 X-Rspamd-Action: no action
 
-From: Huan He <hehuan1@eswincomputing.com>
+On Wed, Feb 11, 2026 at 9:14=E2=80=AFAM James Hilliard
+<james.hilliard1@gmail.com> wrote:
+>
+> Add an OF match entry for "gpio-aggregator" to support plain GPIO
+> forwarding from devicetree without delay semantics.
+>
+> This allows exposing selected lines as a logical GPIO controller with
+> stable aggregated offsets, so consumers can reference forwarded lines
+> instead of physical controller offsets. It also allows creating bundled
+> groups of named lines that can be exposed to userspace as a convenient
+> virtual gpiochip interface. Using "gpio-delay" for this case is not
+> suitable because it enables delay features and requires 3-cell GPIO
+> specifiers.
+>
+> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+> ---
+> Changes v1 -> v2:
+>   - Split DT schema into a separate patch
+>     (suggested by Krzysztof Kozlowski)
+>   - Expand commit message rationale and use-case explanation
+>     (suggested by Krzysztof Kozlowski)
+>   - Clarify userspace use case with bundled named line groups
+> ---
+>  drivers/gpio/gpio-aggregator.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpio/gpio-aggregator.c b/drivers/gpio/gpio-aggregato=
+r.c
+> index 416f265d09d0..a09752fc5fe2 100644
+> --- a/drivers/gpio/gpio-aggregator.c
+> +++ b/drivers/gpio/gpio-aggregator.c
+> @@ -1635,6 +1635,9 @@ static int gpio_aggregator_probe(struct platform_de=
+vice *pdev)
+>  }
+>
+>  static const struct of_device_id gpio_aggregator_dt_ids[] =3D {
+> +       {
+> +               .compatible =3D "gpio-aggregator",
+> +       },
+>         {
+>                 .compatible =3D "gpio-delay",
+>                 .data =3D (void *)FWD_FEATURE_DELAY,
+> --
+> 2.43.0
+>
 
-The binding defines tuple-style reset-names items for some
-compatibles, which implicitly enforces a fixed array length
-via JSON Schema.
+Regardless of the DT bindings - this change is perfectly fine. We do
+that for other "virtual" devices like gpio-sim, gpio-virtuser, etc. I
+would just ask you to document it under
+Documentation/admin-guide/gpio/gpio-aggregator.rst.
 
-Defining global maxItems for resets and reset-names causes these
-constraints to be intersected via allOf, resulting in an effective
-minItems equal to the global maxItems. This leads to dtbs_check
-failures reporting reset arrays as too short, even when the DTS
-provides the correct number of entries.
-
-Remove the global maxItems constraints and let the per-compatible
-schema branches define the required reset array sizes explicitly.
-
-Fixes: 30009a21f257 ("dt-bindings: mmc: sdhci-of-dwcmshc: Add Eswin EIC7700")
-Signed-off-by: Pritesh Patel <pritesh.patel@einfochips.com>
-Signed-off-by: Huan He <hehuan1@eswincomputing.com>
----
- .../devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml         | 6 ------
- 1 file changed, 6 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-index 7e7c55dc2440..8af55a53b569 100644
---- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-+++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-@@ -49,12 +49,6 @@ properties:
-   power-domains:
-     maxItems: 1
- 
--  resets:
--    maxItems: 5
--
--  reset-names:
--    maxItems: 5
--
-   rockchip,txclk-tapnum:
-     description: Specify the number of delay for tx sampling.
-     $ref: /schemas/types.yaml#/definitions/uint8
--- 
-2.25.1
-
+Bartosz
 
