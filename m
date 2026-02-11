@@ -1,64 +1,69 @@
-Return-Path: <devicetree+bounces-264858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264859-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id dRWdEtb9jGk/wwAAu9opvQ
-	(envelope-from <devicetree+bounces-264858-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 23:08:22 +0100
+	id OMMGDQv+jGk9wwAAu9opvQ
+	(envelope-from <devicetree+bounces-264859-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 23:09:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B03BD127F74
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 23:08:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD5F0127FBD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 23:09:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2B8C530309AB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 22:08:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1453C3036094
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 22:08:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFCA73161AB;
-	Wed, 11 Feb 2026 22:08:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD101329387;
+	Wed, 11 Feb 2026 22:08:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H7Cnw6Cb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xb/gjgVx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CFF0308F1A;
-	Wed, 11 Feb 2026 22:08:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A323161AB;
+	Wed, 11 Feb 2026 22:08:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770847696; cv=none; b=SGXVNp8zT7O+cvg4dRFqM8GoqbLiMLJceRAHuvN9lBwQoJ7cqGsvqg7Ba/8+WmxlXaZJL9dkh5fTn/73C3w3ZBXvCxltjwTcqqEgOf5cpxDvNIsDeC5u7ihnOOfWDKGJFvwCBtMLegPmUSEpEbZfBFASNMs+ivBW0gCm2M7k9KI=
+	t=1770847732; cv=none; b=W3gPo0yeuSqM0ntjhLuxwzoNGxF9BIs0yLhlUSCbahH1nFdSdi26NTXN13H1Pl1Yr3ioQFg23QEqrNyv621wdQGbwoLRX1deJGR9D5joTSFcY3uHcYiPKI3kTpxaCp9ZgHkozZZ8ssBWx9a8/zbMwmB0vnBEUwIY6m8+5R3nKG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770847696; c=relaxed/simple;
-	bh=90fBW/H4wp0k88p21TdnKnQ12WODzNCLXK2y9QiZ8DU=;
+	s=arc-20240116; t=1770847732; c=relaxed/simple;
+	bh=/SIaAPBIuPMwbUuxhO/Sg0/HwCxN1y8RGt/Emg0k7V0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jh3KGc3POS3tA1Pri9FwZVIEGuqHp+QMhgjG0zWZQKJpUuFz4GpAOUPEiHOuhYEIiX1YdIy0xSAfTjZM4sXwlR8VCghQU8Sk/3nIDeokjTCSL/6gkqdRUFNfRv2B/Xn1GVtkkppbfg+BZG2u5qEy7Ig1VprSJS6G89hxs6EW1VQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H7Cnw6Cb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3B7EC4CEF7;
-	Wed, 11 Feb 2026 22:08:15 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OH7tmuL+5FERmS51Nh/8HDaVIs4eXS/4xB5/z3ELt+wlJSCl1KFj32f3MsHGe2ZzImGvr5zBLW/B9PkPVLCwMKdl/Z1kSXA7rIfr0oUJEXnEbjcpLMlRx59v3jBOPY5kYzh00mbcALF/BDOWtmJMQofk+WHkBERl1eGgYOMNgxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xb/gjgVx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F54C4CEF7;
+	Wed, 11 Feb 2026 22:08:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770847696;
-	bh=90fBW/H4wp0k88p21TdnKnQ12WODzNCLXK2y9QiZ8DU=;
+	s=k20201202; t=1770847732;
+	bh=/SIaAPBIuPMwbUuxhO/Sg0/HwCxN1y8RGt/Emg0k7V0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H7Cnw6CbnsDv2iMpH59C3TScYW+Mw9H3hUHB8L4ykQmqIkyzrMFIH1zS5Vue8h2xv
-	 rFZ7d5DLhaXO+k8afMN5sYohj4vOKMbZMzC7GnX+NrPjJdAgMLlctHPwX5tE3TM7br
-	 5sJcOiITbQuMM+FXGWhGbNuGZDOTJduZJMTQ/8PyKBVHvPFJAyH3uasy3gDenMc+fq
-	 k/feXHrOWwwWun6bTuBPhnbXQ4uGWq27YEZidBF1praQ9GZo57nO6xnfnsjvqjkqQX
-	 nomKWx0VP438Sh37MUQeZRvXCdYlOAWHF/mGzAvEMJptDoPk8SyOYqAtVkprytp3kn
-	 l/O2u3cESqQng==
-Date: Wed, 11 Feb 2026 16:08:15 -0600
+	b=Xb/gjgVxv1pFZtyDlEMQWHskUq1nTRX0tJIIkbFDEj8hoczEw5LbUdAIqVinYrTAz
+	 OQNQL6coRjDNzRI0JYC6hj67y1gfR8l48DeEB61MlyNGxv1AkUj00LRkAFTSITTGI+
+	 1He6u8KvjO9L/4YDBKv7JFOIkY3TKbXL+S/lpCF740XsTvSDkV6Wun1kagoc0Zpgd/
+	 UCYSuEYV7wAcnlOhur7NKLwkzB6VMP6Pd/fe+gFuBVluLnLMUtA3Jz8gjpefssPh7N
+	 a5imFETgDV5qve91M0Neue5zagE5r2+ikvfDX1BUb2y051mDYGKe+dUYgG1P7+I9E+
+	 Fb5jWqC34W4Yg==
+Date: Wed, 11 Feb 2026 16:08:51 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Cc: linux-mips@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Yao Zi <me@ziyao.cc>, Thomas Gleixner <tglx@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>,
+To: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, linux-scsi@vger.kernel.org,
+	Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Bjorn Andersson <andersson@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/7] dt-bindings: interrupt-controller: add LS7A PCH
- LPC
-Message-ID: <177084769455.3975088.12862789175815996383.robh@kernel.org>
-References: <20260211094408.3463916-1-zhengxingda@iscas.ac.cn>
- <20260211094408.3463916-3-zhengxingda@iscas.ac.cn>
+	Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>
+Subject: Re: [PATCH v5 1/4] dt-bindings: crypto: ice: add operating-points-v2
+ property for QCOM ICE
+Message-ID: <177084773073.3975957.7006950267237342921.robh@kernel.org>
+References: <20260211-enable-ufs-ice-clock-scaling-v5-0-221c520a1f2e@oss.qualcomm.com>
+ <20260211-enable-ufs-ice-clock-scaling-v5-1-221c520a1f2e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,52 +72,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260211094408.3463916-3-zhengxingda@iscas.ac.cn>
+In-Reply-To: <20260211-enable-ufs-ice-clock-scaling-v5-1-221c520a1f2e@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-264859-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-264858-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B03BD127F74
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: AD5F0127FBD
 X-Rspamd-Action: no action
 
 
-On Wed, 11 Feb 2026 17:44:03 +0800, Icenowy Zheng wrote:
-> Loongson 7A series PCH contains an LPC controller with an interrupt
-> controller.
+On Wed, 11 Feb 2026 15:17:44 +0530, Abhinaba Rakshit wrote:
+> Add support for specifying OPPs for the Qualcomm Inline Crypto Engine
+> by allowing the use of the standard "operating-points-v2" property in
+> the ICE device node.
 > 
-> Add the device tree binding for the interrupt controller.
+> ICE clock management was handled by the storage drivers in legacy
+> bindings, so the ICE driver itself had no mechanism for clock scaling.
+> With the introduction of the new standalone ICE device node, clock
+> control must now be performed directly by the ICE driver. Enabling
+> operating-points-v2 allows the driver to describe and manage the
+> frequency and voltage requirements for proper DVFS operation.
 > 
-> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> Signed-off-by: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
 > ---
->  .../loongson,pch-lpc.yaml                     | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,pch-lpc.yaml
+>  .../bindings/crypto/qcom,inline-crypto-engine.yaml | 26 ++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
