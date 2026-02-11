@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-264575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264589-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sJPrNLHji2kVcgAAu9opvQ
-	(envelope-from <devicetree+bounces-264575-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 03:04:33 +0100
+	id gMtJJO77i2nPeQAAu9opvQ
+	(envelope-from <devicetree+bounces-264589-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 04:47:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3843F120A9F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 03:04:33 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D79AE121118
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 04:47:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E1B1030A67B0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 02:02:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E80D43018B9A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 03:46:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 488ED2F25F4;
-	Wed, 11 Feb 2026 02:02:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FB15349AEA;
+	Wed, 11 Feb 2026 03:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BxSQoqiJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eN+zyXnD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+Received: from mail-ot1-f68.google.com (mail-ot1-f68.google.com [209.85.210.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BFBA2DC32E
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 02:02:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7F7C34DCE2
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 03:46:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770775377; cv=none; b=A0xRB0X448jHUvYuR89RGEsvUefBKEDd1KTfu2DvIuDnb87SDIL9xwtsR8dGs376P2puC82agglDeTi6AJo7NeEUvMHQIDbwlslfpP1b3jlCm+eoNPkOAfLR7gVvRGQDxk5CF2HzO2jBl+GGet1Zp/mpi9Xl6O05LBNf8T0hcgs=
+	t=1770781582; cv=none; b=I/OrLL8NrXuSYn56alg0KVoabHLQT+hw80XwgZXCVmWyAwfR54CYoYNckx+Ct2FSPzETBNGIldG7QD/ar4ZasixQVYbdUPFNfENmvca9f2OY0xRB0h8aY9MlGG1aKSIw7N7FrA5VUPrvjvrdiuP48RtS5heLJcoV4piN8Pl+vB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770775377; c=relaxed/simple;
-	bh=h0ABrlF6gXld0vBhklJE1jW9snkjCyGzWm+4OIIUAdE=;
+	s=arc-20240116; t=1770781582; c=relaxed/simple;
+	bh=P5kLVST21mq0WXtrvYwRskLpaUtwd4R/FfjlYu/PcQM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WSV5QgxU+HgfT1fxyGP0GDfc0f9iV6KOQc8uZfMPv0rZpjDAVUM2OHBrAKLhgiAm6uPdUkm4YOZ6HOSaunQs377M3G64oShwLl+GcdBGjihBGyTyj7S6y7Nu+NbixjPUUn0tlYAg2Hcq9PiWdoijeQzC8PT5UybEF3MVgXqgbIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BxSQoqiJ; arc=none smtp.client-ip=209.85.219.53
+	 MIME-Version; b=tMBiEyvbBfw6MVR7+yuBbxJdpJpf8ebCMRtg/b/lt4WevzQVmBIDtzbA2ABX+FyJmLWQXut2iBBcamq0zZGTIHVBnamBizpowEmYyrh+hhxK4GrW3tRNE80qEuloQyWgkZjDgt7yeSelR2fBeQkct6/YO31aqHSYEpJcj9v0jeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eN+zyXnD; arc=none smtp.client-ip=209.85.210.68
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-8951c720496so10733946d6.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 18:02:55 -0800 (PST)
+Received: by mail-ot1-f68.google.com with SMTP id 46e09a7af769-7cfcb46ffc9so325436a34.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 19:46:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770775374; x=1771380174; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1770781580; x=1771386380; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YTZ5v6TZwH0D3KMaa2Z1A6g64aCTgmwvmVrwpuBxytU=;
-        b=BxSQoqiJbFrLWuQQ2513t7tkKGHrxADcJpGDb6G52NANFFAwZlqBj/JydHHKPQxO+4
-         T288yuLRTAtnKtLTqWUTWvwehfIlklCiG6pIvz/L7tDu2q/LddZFaDt+2kHe7cCQFDqt
-         lw0Fvokz+b7O1MbcLNZj6Fybvj6fZkFdVzEbty6FB1hYKxApUPUYCP3wl8TyXvTYBSsJ
-         U20cQzFGLJVJBop8qt6n8OAyJXqQHCJHPvSGE168PHAMkPG362Rr4m+gfrGYmiQRoq/y
-         qpVILU0NLZFjMFhOOZIR/zkhRvpRKrVtaTS5wZQOJ9TWQhucncjFTSlJf9TmU7oK4D5c
-         ztZw==
+        bh=WsTdfccGqb1uJ0g1iA5avj4gtZCqVvJmBjk0T3KnHAo=;
+        b=eN+zyXnDYBDJO6hlORzwy9hMeIT4LTBO2ipMb0ccVzcRCRvElCmy+ycelYc5+VVuxm
+         xI95DSuN5km0kqw4gXsy+NjEco0lINmBZlt2zdJfFTyWN8+PfZq2Wa/276bI1KJOGRfS
+         xtwopU8d3C2RWmH76oDv8kcIlhIzYlnsCSnjxYcljurRAE5UW3POUvXN9aGIoRgldvkh
+         B3Axwkrm+0PumJu7AtrT0fy/+IDpyhulmCg9rI1fZ9i+ZGq46UWrqOkG7KqoEihDhCvm
+         my8JZzV0d038/kdQya8aKvf5giusmnpTkPmzYn10yKiiBDSdSja8ngm2dI7n5joK8I9t
+         4RkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770775374; x=1771380174;
+        d=1e100.net; s=20230601; t=1770781580; x=1771386380;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=YTZ5v6TZwH0D3KMaa2Z1A6g64aCTgmwvmVrwpuBxytU=;
-        b=UwBjBf6zuuGrgqORjZFSh9E1zGQbw6+6y4bzW/2qNQ7Xn798qqjSTGEO5FhrmSWupg
-         TR1uRbVqe3YzPwN56GbTLmgqn3y4O33HOxa6m/+b4P2OqCx+fSO2Q0VktOW5b5f8wn1E
-         l14h2BOHALrsZvN9+u2XMRgfyIJ3OanGtVgoFI6LbQ8BYI8ghXA2scTPoxHkNhmASZvs
-         nzc+IjM+Tq7HYKn+A4nJlgkPBorSHr/chRJAprpjJ59RMewzErLzpiNaRsWrjXfSHSEx
-         nFUZ4T+dYzSMLUAR6o9l+2Zdt858UWEoWJgbp5Lc4h+7XopHvYGVW3ckA2VWJ3oLWEXP
-         3jTA==
-X-Forwarded-Encrypted: i=1; AJvYcCXbFduTVEkGH+RX8NT16MeVa59EaV99Crtxf0RBOHW2cFdYOeqD49VPYlzdTTiMRvVpm18XRI/4B3f1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7FX8g4zuG0ZHk6BqcLPVg05S92enzcQFVglblptVcNjjUZp1X
-	qXWScbEoTdHJIzGF1EbqjGSIgqUcaWvZfPFv9GMQ2D17AvhAAT/e//HA
-X-Gm-Gg: AZuq6aIao/gPJ8ug4jJipHfR/B81fBWYIay5Et7qEa9BFl/c2JhcjGgfNqZ7I/8qlt4
-	aSicUFVQ4WlbDwUA+CwR+zqXrj6cD/V+fpHyb0/wExFi37qi1eMHyVr6y7+FVaoOllz4CozH4sZ
-	KY+pm16q5Ug+TwwLMzhuqm86q8FyG576/EUYgokL8gRpACvXNPislYu5HUJaCZNFPAewMjrYBxY
-	rdwidowhSdeMZRXiTjBDFYfhdn7VDzlxasNp0oYeJ54qdvzBDw1Z+pR8GlsdmW1YIQ7og9DExP5
-	UDBUsxVY1u05llEzaxWIVrhdXhOqQJJTVSgNVblKuTA40B1U2p8LMgTiRaiFjHkR0AtBMO5NbJr
-	bzxEiLzLGQ3J/0QwCGisjCV56Xp24o+vGZLTB6b4eQALdoS7YFFL3Vvo2qioiKJ7E4PYabaIeHh
-	xsOrz6fKfFMuafJn+Ty9q9ryDwLA==
-X-Received: by 2002:a05:6214:c2a:b0:88a:2500:7d45 with SMTP id 6a1803df08f44-8953d09f207mr278373536d6.46.1770775374245;
-        Tue, 10 Feb 2026 18:02:54 -0800 (PST)
+        bh=WsTdfccGqb1uJ0g1iA5avj4gtZCqVvJmBjk0T3KnHAo=;
+        b=DH0ohQW0cNrkPey5Dc/ZHWyLbrjs3hotpjK0vymqsbJrtHDQT2N/HHlTnImKmg/0m4
+         zl/sCikRzHlUDlKaSnccobLtS6YMmRuZ4CXV/TT4uk7HTUMZsDD+cd/FK20z2CNEQPvX
+         cMsZG1dbB2h8o92/EgOjyiD3qxbLpHFMFGDwFOqXqdXI36L63lL5uOHu+26SPkZ22wGc
+         zeh1C60d/iVD8kcFEaGIL1/cE8L1oe2GADNPBSfE8fBSpdK+zSud+0uq4DrBLo3mZWxC
+         M76hrmzPmtPWsaodmYJ5Y2To+1OJtk/01lBAby2fBvhixcFQab31G+KWoB2asJxDGgcB
+         6XQw==
+X-Forwarded-Encrypted: i=1; AJvYcCUcoOKAT/6lHYa08HdEtmn/LsSimmLsf2+E+V8VbmHbQijNClQbtGOCDqoqZDkii3hW/AofZqmI0A3A@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNM3/8DIF4g8MxpYS+VqDgJ8gMU1r4SZRRg7NOFjtxe7MYj5h8
+	lN0X938pZFYv4vxxHZo7dPTGhQGt4/K10T571iP1yG62ee9IVpSo3CdGAX9XpaHf
+X-Gm-Gg: AZuq6aLUyHZShuTBWI78LuKBVcdF8XpUbbJ4jnRC/cM2rZBr27GMFQCQl2xEL77qkZm
+	B6RhFg2DrPHRae/mLBpQlUoqB3Jz7fOOFIxpJ0VxzVsufpadJIp2BcCszkWUM7LlrXIj3gVhSeV
+	DOFwxIN7duAivtJw6UaCGsDw5piOD23oYviCLulQ4+eeBlWcyf4AJt+AwCH6Cv5n1NipfF1Cm0Q
+	GZSS78SmpLkYbynBf+piFkeFqjOwZStTpLfLf6k2n0odm3/Q70AXq1Fr1bxeFZ9StWnvX3zUJ8G
+	761TNDPAjtAq4DCfPEYENHnn2AXiAnCi5I7H9pt8IloQeTqSKoZk5PgS3ApN6m+0gXV6Y3YcoGk
+	DC6D50KyaKX+/ywdhEyW42EtGChAatqTLeynllNgr+4EtCZXEwQ5P+YdA5+Ltf4jShoWx1qwIvm
+	v3VDZbmXqEMosc+g1+jbxjLfRCCg==
+X-Received: by 2002:a05:622a:1353:b0:4f1:e79a:1e0 with SMTP id d75a77b69052e-50672e0c220mr51930831cf.20.1770775386125;
+        Tue, 10 Feb 2026 18:03:06 -0800 (PST)
 Received: from localhost ([184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8971cc94dffsm3676866d6.14.2026.02.10.18.02.53
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-50684b6b220sm1673851cf.18.2026.02.10.18.03.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Feb 2026 18:02:53 -0800 (PST)
+        Tue, 10 Feb 2026 18:03:05 -0800 (PST)
 From: Richard Acayan <mailingradian@gmail.com>
 To: Srinivas Kandagatla <srini@kernel.org>,
 	Liam Girdwood <lgirdwood@gmail.com>,
@@ -94,9 +94,9 @@ To: Srinivas Kandagatla <srini@kernel.org>,
 	devicetree@vger.kernel.org
 Cc: Nickolay Goppen <setotau@mainlining.org>,
 	Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH 04/10] ASoC: dt-bindings: msm8916-digital-codec: Add SDM660 compatible
-Date: Tue, 10 Feb 2026 21:02:56 -0500
-Message-ID: <20260211020302.2674-5-mailingradian@gmail.com>
+Subject: [PATCH 05/10] ASoC: qdsp6: q6dsp-lpass-ports: add internal mi2s support
+Date: Tue, 10 Feb 2026 21:02:57 -0500
+Message-ID: <20260211020302.2674-6-mailingradian@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260211020302.2674-1-mailingradian@gmail.com>
 References: <20260211020302.2674-1-mailingradian@gmail.com>
@@ -115,11 +115,11 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264575-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264589-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[17];
@@ -137,39 +137,238 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3843F120A9F
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,googlesource.com:url]
+X-Rspamd-Queue-Id: D79AE121118
 X-Rspamd-Action: no action
 
-The MSM8916 digital codec is also found on SDM660, typically connected to
-the SDM660 internal sound card. Provide a space
-for specific compatibles and add the compatible for SDM660.
+Add the internal MI2S stream capabilities as specified by the audio
+kernel modules and configure the ports as MI2S ports.
 
+Link: https://android.googlesource.com/kernel/msm-extra/+/530cffa4cc977a348753831b163eb9d3302b954a/asoc/msm-dai-q6-v2.c#4597
 Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 ---
- .../bindings/sound/qcom,msm8916-wcd-digital-codec.yaml    | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c | 200 +++++++++++++++++++++++
+ 1 file changed, 200 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,msm8916-wcd-digital-codec.yaml b/Documentation/devicetree/bindings/sound/qcom,msm8916-wcd-digital-codec.yaml
-index a899c4e7c1c9..33bc23b6176a 100644
---- a/Documentation/devicetree/bindings/sound/qcom,msm8916-wcd-digital-codec.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,msm8916-wcd-digital-codec.yaml
-@@ -14,7 +14,13 @@ description:
+diff --git a/sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c b/sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c
+index 4eed54b071a5..fc79934fc1bf 100644
+--- a/sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c
++++ b/sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c
+@@ -594,6 +594,205 @@ static struct snd_soc_dai_driver q6dsp_audio_fe_dais[] = {
+ 	Q6AFE_CDC_DMA_TX_DAI(TX_CODEC_DMA_TX_5),
+ 	Q6AFE_CDC_DMA_RX_DAI(RX_CODEC_DMA_RX_6),
+ 	Q6AFE_CDC_DMA_RX_DAI(RX_CODEC_DMA_RX_7),
++	{
++		.playback = {
++			.stream_name = "INT0 MI2S Playback",
++			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
++				 SNDRV_PCM_RATE_44100 | SNDRV_PCM_RATE_48000 |
++				 SNDRV_PCM_RATE_192000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE |
++				   SNDRV_PCM_FMTBIT_S24_LE |
++				   SNDRV_PCM_FMTBIT_S24_3LE,
++			.channels_min = 1,
++			.channels_max = 8,
++			.rate_min =     8000,
++			.rate_max =     192000,
++		},
++		.id = INT0_MI2S_RX,
++		.name = "INT0_MI2S_RX",
++	}, {
++		.capture = {
++			.stream_name = "INT0 MI2S Capture",
++			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
++				 SNDRV_PCM_RATE_48000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE,
++			.channels_min = 1,
++			.channels_max = 8,
++			.rate_min =     8000,
++			.rate_max =     48000,
++		},
++		.id = INT0_MI2S_TX,
++		.name = "INT0_MI2S_TX",
++	}, {
++		.playback = {
++			.stream_name = "INT1 MI2S Playback",
++			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
++				 SNDRV_PCM_RATE_48000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE |
++				   SNDRV_PCM_FMTBIT_S24_LE |
++				   SNDRV_PCM_FMTBIT_S24_3LE,
++			.channels_min = 1,
++			.channels_max = 8,
++			.rate_min =     8000,
++			.rate_max =     48000,
++		},
++		.id = INT1_MI2S_RX,
++		.name = "INT1_MI2S_RX",
++	}, {
++		.capture = {
++			.stream_name = "INT1 MI2S Capture",
++			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
++				 SNDRV_PCM_RATE_48000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE,
++			.channels_min = 1,
++			.channels_max = 8,
++			.rate_min =     8000,
++			.rate_max =     48000,
++		},
++		.id = INT1_MI2S_TX,
++		.name = "INT1_MI2S_TX",
++	}, {
++		.playback = {
++			.stream_name = "INT2 MI2S Playback",
++			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
++				 SNDRV_PCM_RATE_48000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE |
++				   SNDRV_PCM_FMTBIT_S24_LE |
++				   SNDRV_PCM_FMTBIT_S24_3LE,
++			.channels_min = 1,
++			.channels_max = 8,
++			.rate_min =     8000,
++			.rate_max =     48000,
++		},
++		.id = INT2_MI2S_RX,
++		.name = "INT2_MI2S_RX",
++	}, {
++		.capture = {
++			.stream_name = "INT2 MI2S Capture",
++			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
++				 SNDRV_PCM_RATE_48000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE,
++			.channels_min = 1,
++			.channels_max = 8,
++			.rate_min =     8000,
++			.rate_max =     48000,
++		},
++		.id = INT2_MI2S_TX,
++		.name = "INT2_MI2S_TX",
++	}, {
++		.playback = {
++			.stream_name = "INT3 MI2S Playback",
++			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
++				 SNDRV_PCM_RATE_48000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE |
++				   SNDRV_PCM_FMTBIT_S24_LE |
++				   SNDRV_PCM_FMTBIT_S24_3LE,
++			.channels_min = 1,
++			.channels_max = 8,
++			.rate_min =     8000,
++			.rate_max =     48000,
++		},
++		.id = INT3_MI2S_RX,
++		.name = "INT3_MI2S_RX",
++	}, {
++		.capture = {
++			.stream_name = "INT3 MI2S Capture",
++			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
++				 SNDRV_PCM_RATE_48000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE,
++			.channels_min = 1,
++			.channels_max = 8,
++			.rate_min =     8000,
++			.rate_max =     48000,
++		},
++		.id = INT3_MI2S_TX,
++		.name = "INT3_MI2S_TX",
++	}, {
++		.playback = {
++			.stream_name = "INT4 MI2S Playback",
++			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
++				 SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 |
++				 SNDRV_PCM_RATE_192000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE |
++				   SNDRV_PCM_FMTBIT_S24_LE |
++				   SNDRV_PCM_FMTBIT_S24_3LE,
++			.channels_min = 1,
++			.channels_max = 8,
++			.rate_min =     8000,
++			.rate_max =     192000,
++		},
++		.id = INT4_MI2S_RX,
++		.name = "INT4_MI2S_RX",
++	}, {
++		.capture = {
++			.stream_name = "INT4 MI2S Capture",
++			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
++				 SNDRV_PCM_RATE_48000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE,
++			.channels_min = 1,
++			.channels_max = 8,
++			.rate_min =     8000,
++			.rate_max =     48000,
++		},
++		.id = INT4_MI2S_TX,
++		.name = "INT4_MI2S_TX",
++	}, {
++		.playback = {
++			.stream_name = "INT5 MI2S Playback",
++			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
++				 SNDRV_PCM_RATE_48000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE |
++				   SNDRV_PCM_FMTBIT_S24_LE |
++				   SNDRV_PCM_FMTBIT_S24_3LE,
++			.channels_min = 1,
++			.channels_max = 8,
++			.rate_min =     8000,
++			.rate_max =     48000,
++		},
++		.id = INT5_MI2S_RX,
++		.name = "INT5_MI2S_RX",
++	}, {
++		.capture = {
++			.stream_name = "INT5 MI2S Capture",
++			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
++				 SNDRV_PCM_RATE_48000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE,
++			.channels_min = 1,
++			.channels_max = 8,
++			.rate_min =     8000,
++			.rate_max =     48000,
++		},
++		.id = INT5_MI2S_TX,
++		.name = "INT5_MI2S_TX",
++	}, {
++		.playback = {
++			.stream_name = "INT6 MI2S Playback",
++			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
++				 SNDRV_PCM_RATE_48000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE |
++				   SNDRV_PCM_FMTBIT_S24_LE |
++				   SNDRV_PCM_FMTBIT_S24_3LE,
++			.channels_min = 1,
++			.channels_max = 8,
++			.rate_min =     8000,
++			.rate_max =     48000,
++		},
++		.id = INT6_MI2S_RX,
++		.name = "INT6_MI2S_RX",
++	}, {
++		.capture = {
++			.stream_name = "INT6 MI2S Capture",
++			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
++				 SNDRV_PCM_RATE_48000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE,
++			.channels_min = 1,
++			.channels_max = 8,
++			.rate_min =     8000,
++			.rate_max =     48000,
++		},
++		.id = INT6_MI2S_TX,
++		.name = "INT6_MI2S_TX",
++	},
+ };
  
- properties:
-   compatible:
--    const: qcom,msm8916-wcd-digital-codec
-+    oneOf:
-+      - items:
-+          - enum:
-+              - qcom,sdm660-wcd-digital-codec
-+          - const: qcom,msm8916-wcd-digital-codec
-+
-+      - const: qcom,msm8916-wcd-digital-codec
- 
-   reg:
-     maxItems: 1
+ int q6dsp_audio_ports_of_xlate_dai_name(struct snd_soc_component *component,
+@@ -636,6 +835,7 @@ struct snd_soc_dai_driver *q6dsp_audio_ports_set_config(struct device *dev,
+ 			break;
+ 		case QUINARY_MI2S_RX ... QUINARY_MI2S_TX:
+ 		case PRIMARY_MI2S_RX ... QUATERNARY_MI2S_TX:
++		case INT0_MI2S_RX ... INT6_MI2S_TX:
+ 			q6dsp_audio_fe_dais[i].ops = cfg->q6i2s_ops;
+ 			break;
+ 		case PRIMARY_TDM_RX_0 ... QUINARY_TDM_TX_7:
 -- 
 2.53.0
 
