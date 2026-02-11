@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-264812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264813-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kCj7BZzTjGm+tgAAu9opvQ
-	(envelope-from <devicetree+bounces-264812-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 20:08:12 +0100
+	id XXZsAbTTjGnqtgAAu9opvQ
+	(envelope-from <devicetree+bounces-264813-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 20:08:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABB5B1270B7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 20:08:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FF401270CD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 20:08:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AFECA303A6C5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 19:06:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 64C77304303A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 19:06:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5209353ED8;
-	Wed, 11 Feb 2026 19:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FE57346ADC;
+	Wed, 11 Feb 2026 19:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mfy192Hk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jePlMSB9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D1A5352C51
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 19:06:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DB46352FBF
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 19:06:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770836789; cv=none; b=Zj0JfMVdg9NL5e0rrZnha08sN/AL3yX6hPliMpSg+4J1mEUH7g9iD0IeqX405gRgGJSIlaW4rpFvgScMniom2lJXiXeJ4VHBpbvTxY7U4yayJEAQ5mnIhaqUH1P1XxetbSAgmsdQpgxpRJS61WlV7o8BcYgZyLtgX9uSQ+/1hHw=
+	t=1770836792; cv=none; b=VBGRUT/R1Wzy1wCTcC8RDEEkJBqIKkhvV5S+xZnCLkLoguQck2m1l/RA3N5fpnhV0gyGT45gv3OTEihxIbd82xZdPueU/sVJ5KWWDdbR5igMKzD1qBhIHmewsn2TE8DgwkcPA1E2ch4lLY85v7UCvV9H8Ev2z7Lywc+oFgkrShw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770836789; c=relaxed/simple;
-	bh=NjORale0EQrlT0CTmh6nN6JQRc2R61yP8fM+Dx3b0J0=;
+	s=arc-20240116; t=1770836792; c=relaxed/simple;
+	bh=FPn+xX+IbNMdR9qg0pA+C2JrAY3hI8lDAl20KwJ71EY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=C7jfDhGj5Myia7X5hLGnZigaAUOFUo79AX/sEGHgzY4gs++Ql1yl/l96wBlNAUzogXHf8blbxUKsNzcbnixo9FGM+JZ0xaRF3ktSgK8ldvMbt8Ef6NwSCoQ+cG45+HhNHh8ZLnk1quAJDAZorLsNRMfADYC05mSkXyOnA7Yh93I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mfy192Hk; arc=none smtp.client-ip=209.85.221.45
+	 MIME-Version; b=N+oJQ55jGf5WxF71zT/ISNVxe46rTHS1JQUx8griezrhKopWYw3v37vSuGwonmbnUlof9/muaouo7e6nWusGCiLWk93a7GWMU7kr0hTb5x2+B18bbgdmM4FiYoHkYIaBQNHo/nZwhj6AAunspyOJxWa9Z5BBkf1R3PqJCc5HlXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jePlMSB9; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-435a11957f6so5373525f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 11:06:28 -0800 (PST)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47edd6111b4so106688345e9.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 11:06:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770836787; x=1771441587; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1770836789; x=1771441589; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=L887ASoGk+SRq/zl6CDIjyzwXxgUSRpV2EZ36HcCxec=;
-        b=mfy192HktQ/KVxTuTK9UmKcmyqgDfBlqHKksyq05gFSpWI7Z5U3RXdzNjoQ9CJyNPq
-         01IHprOIDBIgJd9wGP0MW5wvQPcCOG8V0cyveE0dEpU2I1Nbnr3x8olpk+b/S1uEif1N
-         H3r+ajHuvNmiigHDBh7/z1LSDue12cg9fUGc/np/dgL1aWjIL0WMILWkZLI3w6Its+Pn
-         mkrk2qbIrXRmtY+JC3Y9r2etCC2htRLDaohlqaLcw7WJbEAezp9v5yA6r/kdtChLrP+N
-         xqBpfImXcoES0K7vQwaRjjcMZmzvOP3R/tSJM7npEhsqrnmAz1w2N2+RaxNsuGXwiX/m
-         s9lg==
+        bh=92SAHgAplCp4yQb9ApiGrHWDXrzlV3xmhRggcLV+hYY=;
+        b=jePlMSB94riIsRXO7EHLNPi7KbJW9V2BhtSGYN03N34kNrpf2M6tMKLWgWMCZKz8Gr
+         mNVdWwnlm//LnhShCETseJx2WRKkDyqLexMoj4sO2GLYjnqSshFKIjsClQiaFuwWg3GB
+         99VQRngWUNgR7r5e71vvQkjieSsI2i/+jPZsRm/eCffBCxZnwWGfXarADmVutnoU4WJf
+         gsT5Azmk6t7LG2SUNJInoKT1lXKc4N3pmjDg+s5L8XYjdfVoNSmFZPBG0p0PtStJHU2S
+         KFG7ZoVAPpOJCxaBqgi8l8jvPOeod0n+1O95Dke5HzE52yZp3gDUtbGU8VpHTDLW4TDs
+         kMXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770836787; x=1771441587;
+        d=1e100.net; s=20230601; t=1770836789; x=1771441589;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=L887ASoGk+SRq/zl6CDIjyzwXxgUSRpV2EZ36HcCxec=;
-        b=djtbb31nL8zwDnccfQogVw8ApzlhTBE1C2DzdTMF/LwSn4UhKyT5/TxU8mhnFBRKWx
-         Sh6l0DEgA0ZbApvxbSRHCE/SWpaqJ+3TxARW0C/JtiJ4gQxixBd21NjEcUfLyZDfNevY
-         xvRt0paTUJMmM66YOy/CFu1E9LURkypo7Q7HBPCdp/aDv5o0qF8ndOKt3nckKSYZAIrM
-         2WIuzF3WwOfy/JDwXv9Tsnm7gBjpCm/ZkwrgNeEd7Eaqh9pRx/qJSgyZSLLHeUIwQNiF
-         VtLduWhubIC+MF9Cg3VxxtQVPMMe0Fd7XWAlrCqmNyP+ea7W3zG59QzaVFV22n2PPQ+J
-         GK0A==
-X-Forwarded-Encrypted: i=1; AJvYcCXk+ihAQKDbGbyNds/q67yKpKnSsnM1BvLVqwYDywsrDPHTy87g4lk6yqq9kNPK6cN9ERTLp7moxrUH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfgcCAOxqEXErmwiISrOzoTwM4jFB3bLEhR1Megfv5KCHeI6jD
-	8YPxUBqJoJkm6in8tJ/KWZ0kP3iJXWDrmbVtLM9KWNkaduFVzHmdq4an
-X-Gm-Gg: AZuq6aL/AXecVJqbljo+q6vxPYbug5zuBZ7p+X04KDMODUNu4nXUmYYTQh2J8m8VBaU
-	zbvHFxZqIC6qoMyfki7FIIYAN/K7IgECZcBYyD+beqBDaxO/7NES7xvBMNnZ6OXj56goxEoIY65
-	YJ/3/T7BsR+rkYfrhf/YHGglGcj5qrRO3kaxT+qfeErAK90o8kgDPvCLPUAYLmy61tLOaqZXDFa
-	C1NaaDhvDw3YcW4uJtbziPBf4v2oNeFCCG8evU8V1cCDe3HE4U7KPeMQ6fEGqsU5KPbWwCWwhB7
-	QlzMGIHXAqpp2++f63w7/Ou/fEzbLMfA0+j+/YiF6UQtlOw0sxVAZvIucGRVyjfroYklkn3+aRY
-	r2Ap7XBBVhS/NGCbdhj4FEXGE3UhBviGhVB91WzGr/u3vn7SAaLJcQaHI0EslLSWaTws+akBOzf
-	dy+okvuwyoi+uTmwoUBEM=
-X-Received: by 2002:a05:6000:2888:b0:436:3267:3edd with SMTP id ffacd0b85a97d-4378acf76ddmr638334f8f.22.1770836786611;
-        Wed, 11 Feb 2026 11:06:26 -0800 (PST)
+        bh=92SAHgAplCp4yQb9ApiGrHWDXrzlV3xmhRggcLV+hYY=;
+        b=VxRzPZZ7Bp9GlpvNT7PNgvCCsk9hVzslCWQgm3QgEEtpllGLKAeW7cEiern/fcbviL
+         rGXSKYARWhlTSVx2Hjt9ODVwt0sdp1wa/PUFXZQY9A07RS3WWAYDY14IiOEBsYmXmtg/
+         5y0G3yZoAiyczaUtkpJoy65vpO4MoCYxx2urndmeSjSo6f1l8AqN+lKaTsi1JjKqKqE0
+         wex+J+GAd3ONfCB7L5q/vQD6+DOg89ohPG6LMMb8fPgBJIZyDhjlwcDfZ9aRQWvtnQlm
+         CR6rSNT2LPbHExGBUQMwkZLCU/42J6yi3uVWhI3opXt7YPaVdrJ+9VrYl5rsvTIyAGID
+         7kAA==
+X-Forwarded-Encrypted: i=1; AJvYcCVfNXa5y/ponzwDfPvLqZRWHzgsNiju4tW3MKfOszb4JJqFdicC5XEM7aaPKe4vis7tcHHhHN2oDZ6d@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZPL86oRd+aTTbjn2yDaw3IowGFdu6mOEJuh9t5rwYyK22Upxx
+	i29ZN9sl1A8KI1lWMVCr9UKYD9pHrqHUWviDoBwwhRCUbJUth4W3iKOq
+X-Gm-Gg: AZuq6aKnS6ezLRsvGXo8VeW8qPOXdUjDe4igdSKr5Xtg19OTNnkmLXeqCGhDi6LnfS3
+	VVW2/sM1UTeD8887Wv/wO//NM4DFmEQhAT7Uq4gMQIKO3aSx6hHB1u+Ok0d3V5JQoGgc+p6hf5z
+	RTwVx4YwpC3m5dL4AKSl/xTGm9n/DmEt8+9OHGE2ykSLL3G6Q7uEN9MkWK4ZTiQppd7UPikzxuX
+	TJ2i7UgACf994DVnqV86FuGvriF7v31xdpoZybRhXsjf1u4q07Na7dDL8uOiiiGvM1l3fd5u9SN
+	rPAk19YFAKro6y0CdXddcUa5RIh68dAmJKF8lx5Rjnd6+NfvWj2fefbXwCLKPH5QU/aoc7CHR2D
+	mm/rS4uQ1mFChB2Yh0YeXERJ8SP6epTW0OnHPHPTJrxyfsRIKel9NIgr24nsSHyRhyhqMhZ0M2Q
+	mM0ZP/7L81cdIVFKuq+D8=
+X-Received: by 2002:a05:600c:1d86:b0:477:7bca:8b2b with SMTP id 5b1f17b1804b1-483656c1151mr3219115e9.15.1770836789098;
+        Wed, 11 Feb 2026 11:06:29 -0800 (PST)
 Received: from luca-vm.lan ([154.61.61.58])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4378e122df9sm211223f8f.15.2026.02.11.11.06.25
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4378e122df9sm211223f8f.15.2026.02.11.11.06.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Feb 2026 11:06:26 -0800 (PST)
+        Wed, 11 Feb 2026 11:06:28 -0800 (PST)
 From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 To: linux-mediatek@lists.infradead.org
 Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
@@ -91,9 +91,9 @@ Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 3/7] watchdog: mediatek: Add support for mt8167 TOPRGU/WDT
-Date: Wed, 11 Feb 2026 19:03:24 +0000
-Message-ID: <77434edba7ab5050f5c0fd03302bf9eb4b1c60ca.1770836190.git.l.scorcia@gmail.com>
+Subject: [PATCH 4/7] dt-bindings: watchdog: Support MediaTek MT8167 wdt
+Date: Wed, 11 Feb 2026 19:03:25 +0000
+Message-ID: <560b1985c911ce25950c9caedc42677ae01fa8bb.1770836190.git.l.scorcia@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1770836189.git.l.scorcia@gmail.com>
 References: <cover.1770836189.git.l.scorcia@gmail.com>
@@ -117,7 +117,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-264812-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264813-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_CC(0.00)[gmail.com,linux-watchdog.org,roeck-us.net,kernel.org,collabora.com,pengutronix.de,vger.kernel.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
@@ -134,48 +134,28 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: ABB5B1270B7
+X-Rspamd-Queue-Id: 5FF401270CD
 X-Rspamd-Action: no action
 
-Add support for the Top Reset Generation Unit/Watchdog Timer found on
-mt8167.
+Modify dt-binding to add support for mt8167 dts node of wdt
 
 Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 ---
- drivers/watchdog/mtk_wdt.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
-index 91d110646e16..ded16173105b 100644
---- a/drivers/watchdog/mtk_wdt.c
-+++ b/drivers/watchdog/mtk_wdt.c
-@@ -13,6 +13,7 @@
- #include <dt-bindings/reset/mediatek,mt6735-wdt.h>
- #include <dt-bindings/reset/mediatek,mt6795-resets.h>
- #include <dt-bindings/reset/mt7986-resets.h>
-+#include <dt-bindings/reset/mt8167-resets.h>
- #include <dt-bindings/reset/mt8183-resets.h>
- #include <dt-bindings/reset/mt8186-resets.h>
- #include <dt-bindings/reset/mt8188-resets.h>
-@@ -105,6 +106,10 @@ static const struct mtk_wdt_data mt7988_data = {
- 	.has_swsysrst_en = true,
- };
- 
-+static const struct mtk_wdt_data mt8167_data = {
-+	.toprgu_sw_rst_num = MT8167_TOPRGU_SW_RST_NUM,
-+};
-+
- static const struct mtk_wdt_data mt8183_data = {
- 	.toprgu_sw_rst_num = MT8183_TOPRGU_SW_RST_NUM,
- };
-@@ -498,6 +503,7 @@ static const struct of_device_id mtk_wdt_dt_ids[] = {
- 	{ .compatible = "mediatek,mt6795-wdt", .data = &mt6795_data },
- 	{ .compatible = "mediatek,mt7986-wdt", .data = &mt7986_data },
- 	{ .compatible = "mediatek,mt7988-wdt", .data = &mt7988_data },
-+	{ .compatible = "mediatek,mt8167-wdt", .data = &mt8167_data },
- 	{ .compatible = "mediatek,mt8183-wdt", .data = &mt8183_data },
- 	{ .compatible = "mediatek,mt8186-wdt", .data = &mt8186_data },
- 	{ .compatible = "mediatek,mt8188-wdt", .data = &mt8188_data },
+diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+index 953629cb9558..f514be8a5851 100644
+--- a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+@@ -26,6 +26,7 @@ properties:
+           - mediatek,mt6795-wdt
+           - mediatek,mt7986-wdt
+           - mediatek,mt7988-wdt
++          - mediatek,mt8167-wdt
+           - mediatek,mt8183-wdt
+           - mediatek,mt8186-wdt
+           - mediatek,mt8188-wdt
 -- 
 2.43.0
 
