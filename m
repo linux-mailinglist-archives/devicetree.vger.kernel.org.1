@@ -1,64 +1,67 @@
-Return-Path: <devicetree+bounces-264631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264632-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8DyDGI8mjGliiQAAu9opvQ
-	(envelope-from <devicetree+bounces-264631-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 07:49:51 +0100
+	id QDuzEionjGliiQAAu9opvQ
+	(envelope-from <devicetree+bounces-264632-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 07:52:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4B27121B1B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 07:49:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88DA6121B4C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 07:52:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8E56F30329A1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 06:49:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 69F553031327
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 06:51:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12C09313540;
-	Wed, 11 Feb 2026 06:49:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C90E3314D14;
+	Wed, 11 Feb 2026 06:51:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ig9oYtbX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qcZtjG1h"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2B5729C338;
-	Wed, 11 Feb 2026 06:49:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A578729C338;
+	Wed, 11 Feb 2026 06:51:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770792588; cv=none; b=WMWb65SlSlo+Fy3V0/SSx2qZAqOgfyTOcfgmZQTo6x6X0B1CP1Ms7aYnAlyynkclB1oER96YHEMtJxrGZToQgUBhH0hVEKz6vcgIvaEi1X0vkesokZdPx0yeTSceYkqwrg9xEt6pDymuKJrIcsLLzeK85DdTfh7aMGios/wIWSs=
+	t=1770792705; cv=none; b=oQqxsuBReA0I6YRl0DgS2eZFH1aTV+aw7DUBc4XNkqgYAok1WU/BV9486MMB8qmNYZaxc82Ble1QqfREV4HTEhK7Pm135IYEPqPprD2dXceou1E4yCf8L6ES54yovXeJoyzpJ74tHcMk3BDykHu7/XZxYD5pb97dpFv+kIXg+PE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770792588; c=relaxed/simple;
-	bh=OYfWQg9thq1Z4lUXJpP4sm0GZngOsXWcnSCX9sggLHw=;
+	s=arc-20240116; t=1770792705; c=relaxed/simple;
+	bh=PO0Yb4rM2R1rp2phrnWJC2V35SZWCeVXeIfWE+OD98c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IroTweZ3jxaWkk2ycwcCmWS/kX+f3bRpO7gUK0BRs4RLcOVtJWigSwZ1DPSoInT7zWKXRZfDHI5b+wFMPuoSUWrgFXObNOTNwmwNhaxD6EvMe/V/WoI5rRscqH1DyqX4c5uuvIRpDzh53awBR7KlQ7ZHzXYiCCpz5bMXhWEByoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ig9oYtbX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81D97C4CEF7;
-	Wed, 11 Feb 2026 06:49:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YNbK/i1XnUy4UVN37cPeDNCFy8RZiEZAozkyEoRmCPe5yKlq4lvimQ2CQAC1PHyOxleivnmzS0k3Y95lmrzAhsSLvjJmvkWCmAaXLpNQgDSM68K34178qEQixvBRU0pBEokN73vRlw/edWXYafblrsVoGiGbMsIeKzWQmifYR1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qcZtjG1h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBFEAC4CEF7;
+	Wed, 11 Feb 2026 06:51:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770792587;
-	bh=OYfWQg9thq1Z4lUXJpP4sm0GZngOsXWcnSCX9sggLHw=;
+	s=k20201202; t=1770792705;
+	bh=PO0Yb4rM2R1rp2phrnWJC2V35SZWCeVXeIfWE+OD98c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ig9oYtbXpWKC+pWK3Q8o4bN/RiMJW7ApiMOK/4o9atIkABnbPDmWEK8kW0W1j5qEk
-	 OpRtPtX0XR3b5Q1gBYQpwZy+Z1dtLijV3VDKhl9+gQ+P0LpchU4k40edZJFH2LXcrS
-	 omwCDD5q3Ku6zcAj7V3uOVCgrdBl4QuT5vER04HdGy0fcUVjd4wZD3xFfJr4/z0+Lj
-	 Z1AAurycN6BCwyhuEIC3k+nHOSLHo4kVG662MbgP+KQqVTzx3K4qI8ZWr8VIhjAQy4
-	 /3b0hPOmcCSEqwMnpWgbulcmytoYa9Hqzm36niwnXzy+XWbk5UwRP91Os+oToL0lNf
-	 h6XCAjl0YEnhg==
-Date: Wed, 11 Feb 2026 07:49:44 +0100
+	b=qcZtjG1hcJDXtq7ZjHLlhYsbOxP0YzKaAfnCaBVCig97WJxZDL1tN4ast95KMcDxL
+	 2GkEdDnSCjLs1eNty3lVC37u5+eCH4eG2zUbFONdH54p3n4IiEJ1KiOGCgQdhZH5bK
+	 e2YTBmedcYBIHYwd+Fo3VSCN1OP4PTKUuSB/tO4DKK/tjlj7sjCx9IOx67Jg+9xsmo
+	 CYBP/GwHeFecv7WydU7smqmGleKQ44+JCc84Dk3iV+ii72CsVWH7Ezc0LjUcGF2Pl6
+	 XaNP9lIhprv1gMbDtRv2C7kUVdq7s9vFTU67iJ2FL6WydYCnMNqhsOhRyE+v2znRPR
+	 q0TCTv1yFUWkQ==
+Date: Wed, 11 Feb 2026 07:51:42 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Erikas Bitovtas <xerikasxx@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Richard Acayan <mailingradian@gmail.com>, 
+	Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Peter Meerwald <pmeerw@pmeerw.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
-	phone-devel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: iio: light: vcnl4000: add Capella
- CM36686 and CM36672P
-Message-ID: <20260211-sceptical-frog-of-revolution-fc3cf4@quoll>
-References: <20260210-cm36686-v1-0-aef68dd46ad4@gmail.com>
- <20260210-cm36686-v1-1-aef68dd46ad4@gmail.com>
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
+	Johan Hovold <johan@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	Nickolay Goppen <setotau@mainlining.org>
+Subject: Re: [PATCH 01/10] ASoC: dt-bindings: qcom,sm8250: add compatible for
+ sdm660-internal
+Message-ID: <20260211-skilled-transparent-moth-fac10f@quoll>
+References: <20260211020302.2674-1-mailingradian@gmail.com>
+ <20260211020302.2674-2-mailingradian@gmail.com>
+ <yxrhmblavwkuhfrfgskujs7tz7cykojnqnl2mfrf365lhdem35@bgqwiaft67b3>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +70,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260210-cm36686-v1-1-aef68dd46ad4@gmail.com>
+In-Reply-To: <yxrhmblavwkuhfrfgskujs7tz7cykojnqnl2mfrf365lhdem35@bgqwiaft67b3>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -75,48 +78,42 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-264631-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-264632-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,perex.cz,suse.com,linuxfoundation.org,quicinc.com,vger.kernel.org,mainlining.org];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: D4B27121B1B
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mainlining.org:email]
+X-Rspamd-Queue-Id: 88DA6121B4C
 X-Rspamd-Action: no action
 
-On Tue, Feb 10, 2026 at 10:46:10PM +0200, Erikas Bitovtas wrote:
-> Capella CM36686 is an ambient light and proximity sensor developed by
-> Capella Microsystems, now a subsidiary of Vishay Intertechnology Inc. It
-> has an I2C address of 0x60 and is fully compatible with an existing
-> driver for VCNL4040. Capella CM36672P is a proximity-only sensor that
-> is fully compatible with CM36686, and therefore with VCNL4040. Add
-> compatibles for cm36672p and cm36686, with a fallback for cm36686 of
-> vcnl4040.
+On Wed, Feb 11, 2026 at 04:11:24AM +0200, Dmitry Baryshkov wrote:
+> On Tue, Feb 10, 2026 at 09:02:53PM -0500, Richard Acayan wrote:
+> > From: Nickolay Goppen <setotau@mainlining.org>
+> > 
+> > Add compatibles for sdm660-internal based soundcards.
+> 
+> Why is it called "internal"?
 
-There was CM36686 v1 and v2, so I do not understand versioning here.
-Also, lack of any changelog.
-
-And how is it supposed to work for us? Try yourself:
-
-  $ b4 diff 20260210-cm36686-v1-1-aef68dd46ad4@gmail.com
-  Could not find lower series to compare against.
-
-Please implement previous feedback.
+Yeah... I am pretty sure there is no such sound card. You cannot have
+sound card internal to the soc, because you need the external components
+like codecs.
 
 Best regards,
 Krzysztof
