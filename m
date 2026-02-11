@@ -1,99 +1,74 @@
-Return-Path: <devicetree+bounces-264709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264710-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AI9ECbRTjGnblAAAu9opvQ
-	(envelope-from <devicetree+bounces-264709-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:02:28 +0100
+	id cKXaMr5TjGnblAAAu9opvQ
+	(envelope-from <devicetree+bounces-264710-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:02:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B8D912317E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:02:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F0D9123185
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:02:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 658F330495E8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:01:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 86DBD301700A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:02:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 986C1366831;
-	Wed, 11 Feb 2026 10:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B903570AD;
+	Wed, 11 Feb 2026 10:02:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BF7C365A18
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 10:01:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6403E26F47D;
+	Wed, 11 Feb 2026 10:02:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770804101; cv=none; b=oeM36pr0IOgunuZnI1SFJJkeEtmMzYnEKKhZ9xkqEHSPdLi5jon+di7JVpOVxS6mx4NSW/lAN8s3PdIH8kxJ6Z/5qeTmzGF32JYdnBg+pkcZUCvo8b15hC02YFfx6YstPbnZw4dI9rqhfZEPHbk2F5VFLPOpp4aJK4bR9zsjcGc=
+	t=1770804124; cv=none; b=Ddqa3eJkE97/5VvZx9IxhM647OoscPEIi7D74gHuPUq+hRS/2/VDILrV1vQaIqzWFAz8c+5H1s4f/k0n4yGKBq0UK1y+R0+fcgsU5JDgPvpJYHGBaHvpMLGqEuCs9VUgViP3XGnYbFf3rFjULSF3eO7PyYC4CxQAMZYTd5Z+/zA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770804101; c=relaxed/simple;
-	bh=Dyn5A0xBMrpzZ0V6DLf1LSrfgphC2IgYspNLzGlacfw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DHVrM62o+8J2d1KTYb1a1+HIVkEhrjux4TVIR4UUDXvL1AmVkyvuWCViqPve+WHq0zMv+NFjrwfqdzEl4ughIyZKIInPcCWszVVzrccrUyro8nyVsJhvsmuKmUf7evhBFkP8vcOf4t6PBo0JXRpZ8utg6/JYbe+vmd7iTXOCYkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-56737fe4888so689380e0c.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 02:01:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770804097; x=1771408897;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=v83DzRRw2jidt/UvVUYMQ/X8L3Y36ITUSwZjlgmX4MQ=;
-        b=dnapbrnto09thAwFYW0hG2gz66Q7sd2I/bg77OmFD/1zTSRH8FFYT+06tcZZl40oIL
-         XPTIzZVA9mKiPNuiQlKpZxg8JT5PEDYMPam/frGaGtXaxi08aVce65s2aRxOXSHPaKKi
-         6RMqp/nhvdqopbtNIBgzq7AIl61nND9ASLj6zAgRFInN49WzfwwMzdy8YZpKQNsuFE0s
-         BFiOxyQqfjJyq4cWFFpSDYhWCW9rbRYTVqrQLvZptV81PGLzenz6L+WqOelcjjLinu+D
-         EJvtZ+M5Xzw84q+K22pFji1wB0PHbk9QYNUmMT8RnekoE7sP6bSSfonI5ZmErgABThJK
-         qfSA==
-X-Forwarded-Encrypted: i=1; AJvYcCW3QgMlRFpOjmvcrlTeygGJ1XoRr97iu/W0iyeM5y3SRCm64Oh5Yjj8VJm45SzKhK409+GmyuT3pEJA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxBZSowTYbjSUSOGSIGmMGTN8JQ8FCpyus0rE0Ypfzf8QYU8dC
-	q8zraDqbX9xHDK8ZlfaVA5lRe3OXK1uZXlWBs94rMh+xiYyOPIUdRVcJoqKkhN1JOW4=
-X-Gm-Gg: AZuq6aIIYFZDjVo8mSQh7vSKBhbz8z94klqDVdT5avGKUl1DgEXTemf3I/tA7foM+r2
-	eCZI3wsLXQWH2gueHG0wMVrIrz1A4lHf7wbG5TqO0y0rAZy7FPaoX/nLG4VLUIiLzxUbdsp6O1k
-	N7w6wcgKXmK6IJHgQSx3q+p/CwScZybf6Ma4w/fWH0Xdtu6gtE+YkFqdwwhZc1TCUf6zRauTQbj
-	2Qhzh/9BCKclXNFB09K+1yho49kdvtFCiLOgRzUOCujWgKXDGo1bf56erwU5NoGlyfGflfbMbaJ
-	3LQvOCOqm5+la2nlzcU7cK7ZlZkxLTa/goczYZl9r+J7ijDrmBATL00OEXkm9eHzXqMj4ig17/G
-	2kwstojYqsFOfKSRRlf9bEoOEZNeKi12LnK3eeOziHA69BRJwJ7VPJoEj4d0KIi+bUPawjNW2PL
-	5AqHUv/s/mSihgKkGE2Tiir7j9i/3/cg9RTuFsbSxUWW+dRutd+W4wVhmA07uAg6S8
-X-Received: by 2002:a05:6122:f90:b0:566:37da:a72a with SMTP id 71dfb90a1353d-56749e4d109mr496153e0c.13.1770804097206;
-        Wed, 11 Feb 2026 02:01:37 -0800 (PST)
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com. [209.85.221.175])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5674c20a6b8sm450333e0c.10.2026.02.11.02.01.36
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Feb 2026 02:01:36 -0800 (PST)
-Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-56743b33c67so492637e0c.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 02:01:36 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXPABAYCs21d4VqvSQEUL+J0izPgv9dDKkqNS/a/2Vqcd6ms/tsFb4vyIB85vwix2RgR7WsAoq+G22A@vger.kernel.org
-X-Received: by 2002:a05:6122:4599:b0:566:3c22:c131 with SMTP id
- 71dfb90a1353d-56749e4d3efmr486903e0c.10.1770804095886; Wed, 11 Feb 2026
- 02:01:35 -0800 (PST)
+	s=arc-20240116; t=1770804124; c=relaxed/simple;
+	bh=n6ZWJki2G8x8zxyk31c4BgGZuaPyu2KLP2w1uhw2X+0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UG4et1+ZeLOXAN7WQF/f8MJG8uRFz51JBzjL93m9N7v1jfNRsQMhBHufwPpDUr0foipPIP0E5/fo5iqD96DkQWk0WbkK+BNRB/zC5Q9+svcH64+fV6sHPA3114aoEMRMTOElTOp1H2jsEaYoxjl1jMIszjT/k8qXtiEbcFrc6Ys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vq72Z-000000001Cx-3IgB;
+	Wed, 11 Feb 2026 10:01:47 +0000
+Date: Wed, 11 Feb 2026 10:01:44 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Paolo Abeni <pabeni@redhat.com>
+Cc: Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Liang Xu <lxu@maxlinear.com>, John Crispin <john@phrozen.org>
+Subject: Re: [PATCH net-next v14 0/4] net: dsa: initial support for MaxLinear
+ MxL862xx switches
+Message-ID: <aYxTiJW03q1DN9XF@makrotopia.org>
+References: <cover.1770433307.git.daniel@makrotopia.org>
+ <20260207214733.m2zvh6ozo7vsc5hj@skbuf>
+ <d6393a14-fe50-426d-9dd8-5a33b2af0a0d@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
- <CAMuHMdXWAx1Kfb84bhp0c8Gya5yaQjtYOnVFqJzyc4Wjc_KtqA@mail.gmail.com>
- <CADvTj4oetrsLwB0q=tA+9KZ7XTXd5asZjhZf=kekbSpnBFHA-w@mail.gmail.com>
- <CAMuHMdWTp8VsbBq0y9MKQJdkQnDADCbLbKW--gosoBt92PhAmg@mail.gmail.com> <20260211105735.0e8e65b4@bootlin.com>
-In-Reply-To: <20260211105735.0e8e65b4@bootlin.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 11 Feb 2026 11:01:24 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXUG3fMdVk3CVVJpacnZE=j7feke9Nb+Mq6obsCdCr7Dg@mail.gmail.com>
-X-Gm-Features: AZwV_QhkZTLrLJeARWTdqpegZ05E_mRSU_756dbNFLjpCGMjC-Dcphy4OobnZeU
-Message-ID: <CAMuHMdXUG3fMdVk3CVVJpacnZE=j7feke9Nb+Mq6obsCdCr7Dg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: James Hilliard <james.hilliard1@gmail.com>, linux-gpio@vger.kernel.org, 
-	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alexander Stein <linux@ew.tq-group.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d6393a14-fe50-426d-9dd8-5a33b2af0a0d@redhat.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -102,142 +77,65 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org,ew.tq-group.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264709-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264710-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[makrotopia.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,lunn.ch,davemloft.net,google.com,kernel.org,armlinux.org.uk,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,tq-group.com:email,devicetree.org:url,bootlin.com:url,bootlin.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 6B8D912317E
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,makrotopia.org:mid]
+X-Rspamd-Queue-Id: 3F0D9123185
 X-Rspamd-Action: no action
 
-Hi Herv=C3=A9,
+On Wed, Feb 11, 2026 at 10:49:56AM +0100, Paolo Abeni wrote:
+> On 2/7/26 10:47 PM, Vladimir Oltean wrote:
+> > On Sat, Feb 07, 2026 at 03:06:48AM +0000, Daniel Golle wrote:
+> >> This series adds very basic DSA support for the MaxLinear MxL86252
+> >> (5x 2500Base-T PHYs) and MxL86282 (8x 2500Base-T PHYs) switches.
+> >> In addition to the 2.5G TP ports both switches also come with two
+> >> SerDes interfaces which can be used either to connect external PHYs
+> >> or SFP cages, or as CPU port when using the switch with this DSA driver.
+> > 
+> > For the entire set:
+> > 
+> > Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+> > 
+> > with some minor comments I'll leave in individual patches, which I'd
+> > like you to address.
+> > 
+> > I don't want to put anybody in a bad spot, but given what time it is,
+> > this set should get at least _some_ time in net-next before the upcoming
+> > net-next PR, to allow for some reaction time in case of some unexpected
+> > reports like from static analysis or similar. 
+> 
+> As I'm wrapping-up the PR right now, and the series is not applied yet,
+> I fear the above is not going to happen.
+> 
+> Since a driver is involved (as opposed to the core stack) and there will
+> be the usual release cycle to address issues before the code lands in an
+> official release, I tend to think this series should still be merged -
+> unless someone voices strong and valid concerns _very soon_.
+> 
+> Thanks,
+> 
+> Paolo
+> 
+> So it would be good,
+> > because of that, for the fixups as a result of my comments to be
+> > separate patches rather than a new version.
 
-On Wed, 11 Feb 2026 at 10:57, Herve Codina <herve.codina@bootlin.com> wrote=
-:
-> On Wed, 11 Feb 2026 10:47:53 +0100
-> Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Wed, 11 Feb 2026 at 09:35, James Hilliard <james.hilliard1@gmail.com=
-> wrote:
-> > > On Wed, Feb 11, 2026 at 1:26=E2=80=AFAM Geert Uytterhoeven <geert@lin=
-ux-m68k.org> wrote:
-> > > > On Wed, 11 Feb 2026 at 09:14, James Hilliard <james.hilliard1@gmail=
-.com> wrote:
-> > > > > Document the gpio-aggregator virtual GPIO controller with a dedic=
-ated
-> > > > > schema and compatible string.
-> > > > >
-> > > > > Also extend the GPIO AGGREGATOR MAINTAINERS entry to cover the ne=
-w
-> > > > > binding file.
-> > > > >
-> > > > > Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
-> > > >
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/gpio/gpio-aggregator.yaml
-> > > > > @@ -0,0 +1,54 @@
-> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +$id: http://devicetree.org/schemas/gpio/gpio-aggregator.yaml#
-> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > +
-> > > > > +title: GPIO aggregator controller
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Alexander Stein <linux@ew.tq-group.com>
-> > > > > +
-> > > > > +description:
-> > > > > +  GPIO aggregator forwards selected GPIO lines from one or more =
-GPIO
-> > > > > +  controllers and exposes them as a virtual GPIO controller.
-> > > >
-> > > > > +examples:
-> > > > > +  - |
-> > > > > +    #include <dt-bindings/gpio/gpio.h>
-> > > > > +
-> > > > > +    gpio_agg: gpio-aggregator {
-> > > > > +        compatible =3D "gpio-aggregator";
-> > > > > +        #gpio-cells =3D <2>;
-> > > > > +        gpio-controller;
-> > > > > +        gpios =3D <&gpio0 3 GPIO_ACTIVE_LOW>,
-> > > > > +                <&gpio3 1 GPIO_ACTIVE_HIGH>;
-> > > > > +        gpio-line-names =3D "modem-reset", "modem-enable";
-> > > > > +    };
-> > > >
-> > > > Looking at the example, it seems you intend to use the gpio-aggrega=
-tor
-> > > > as a "Generic GPIO Driver", like in the example in the documentatio=
-n[1].
-> > > > Hence I think you should not introduce and abuse the "gpio-aggregat=
-or"
-> > > > compatible value for this, but instead:
-> > > >   1. Use a proper compatible value that matches your device,
-> > > >   2. Write proper DT bindings for the device,
-> > > >   3. Add the proper device's compatible value to the gpio-aggregato=
-r
-> > > >      driver's match table.
-> > > > The above is very similar to how spidev is handled, which also forb=
-ids
-> > > > using the spidev compatible value in DTS.
-> > >
-> > > Isn't this gpio-aggregator driver supposed to be non-hardware
-> > > specific?
-> > >
-> > > I'm trying to use it as described here, I noticed the compatible
-> > > in the blog post was missing and just needed adding to the
-> > > driver: https://bootlin.com/blog/gpio-aggregator-a-virtual-gpio-chip/
-> >
-> > Let's kick Herv=C3=A9 to fix that ;-)
->
-> Where is it missing ?
-
-In the driver ;-)
-
-DTS must never use 'compatible =3D "gpio-aggregator"'.
-Instead, you must use a suitable compatible value, as described in [1]:
-
-   "Binding a device to the GPIO Aggregator is performed either
-    by modifying the gpio-aggregator driver, or by writing to the
-    =E2=80=9Cdriver_override=E2=80=9D file in Sysfs."
-
-> In the DTS snippet example I see:
-> --- 8< ---
-> gpio-aggregator {
->     pinctrl-names =3D "default";
->     pinctrl-0 =3D <&gpio_pins>;
->     compatible =3D "gpio-aggregator";
->     ...
-> };
-> --- 8< ---
-
-> > > > [1] https://docs.kernel.org/6.2/admin-guide/gpio/gpio-aggregator.ht=
-ml#generic-gpio-driver
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Meaning I should send them *now*, despite net-next being closed already?
 
