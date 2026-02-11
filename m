@@ -1,153 +1,199 @@
-Return-Path: <devicetree+bounces-264637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264638-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sLLkHAopjGkiigAAu9opvQ
-	(envelope-from <devicetree+bounces-264637-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 08:00:26 +0100
+	id COohGQsqjGmFigAAu9opvQ
+	(envelope-from <devicetree+bounces-264638-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 08:04:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C032121BEB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 08:00:25 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B7B8121C30
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 08:04:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C92B93030E88
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 07:00:23 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DC52A3018C1F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 07:04:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA4832C31B;
-	Wed, 11 Feb 2026 07:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9487831AA8F;
+	Wed, 11 Feb 2026 07:04:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Bp1pgJh+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cPcE6n+w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA44A3C0C;
-	Wed, 11 Feb 2026 07:00:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FE682C2365;
+	Wed, 11 Feb 2026 07:04:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770793223; cv=none; b=BKp9lBRcmgsejV7NcZvJ6C6gBsM3bu+HhFEQb9jnHj891743sh2pravAuhzh6oChr2LKTuPAvNrXI5x7Cdug27pvbrEwG/xsJ7LdpTJfY76uZe2Mhp7pQxylLrMkAMbOE8/Wzp7CAbmigNU4AptcYZ86QygYWIj9H4R+m+p1qXw=
+	t=1770793478; cv=none; b=EMiGoDKpf2bjWDLVqmtkMdD0YrtIieoVIi2eC/jADvmlMYXc1+uWmkveDGg4g2qPB+xvfbuMok+wu32DLulZJAIfrUZW2txBEGF68WMIp57TBu+67R1rg53NHukzK4E+Yy/3Zc1eFC5kUCfDdCYbcuUT2DKgExlB+5MpW/ikk/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770793223; c=relaxed/simple;
-	bh=vuYr2vq0cFwE4qvKD7Lfl9rzFyIgt6TyCPiwKZCLEok=;
+	s=arc-20240116; t=1770793478; c=relaxed/simple;
+	bh=3ZTnWhXXoERir4oO0pfx4Q02C2doAZHVJvzFlwy5MRI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YacHz6IXg9khlM+x1Ol1HDNqH+7LyWDiTwGZBq0WPcRlF9BU+HAdG6wCRG+FeYlNmoueUhiKMv9AdrDTGD4gbEpcZN/0Ug6CtsbgtEnbw6E6kL8dQqcINNBmOZ80EEjUcm1dR7uQGXlaSDsu7YxywHXSibH5xnTZJRaQkFeD2aU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Bp1pgJh+; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770793222; x=1802329222;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vuYr2vq0cFwE4qvKD7Lfl9rzFyIgt6TyCPiwKZCLEok=;
-  b=Bp1pgJh+H7UXHhzqxyhg9CD1qIaM+a9/mzSmlY2/pf7eHl1N6jtFSZrp
-   nW8hdxsGe8jcUbITuuXXf2EMQcDt4PwKR+BJCYeFH6h4Vvjcnw3Kt/5SH
-   o1GCBoXQm00s2t65j0q7V3s9qtGOP38BN1wIar2hTn3im5h+t6/u3wPpo
-   Ri17wbLwbd3xRmeoJf+jSu/DQq03fqcchnfmzZ7iH78TvpYg+4rAjprvv
-   VLHeJp6eSSMuSCsaTPgydoa/zEH27/6we+8z7ZHd1y7c/3sNni7cQcGQ4
-   nuweBttux7ACjuK/9XXP54TVysaEnRLp+PnK5nm3hK6jAoBc53nMbMqM7
-   w==;
-X-CSE-ConnectionGUID: Qfq3huWJSMaf8NChJ8zUQQ==
-X-CSE-MsgGUID: YwUg164FRkmasSqi8mYE2w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="71650047"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; 
-   d="scan'208";a="71650047"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2026 23:00:22 -0800
-X-CSE-ConnectionGUID: xXYVsZPZSGu5C+8U+B6owg==
-X-CSE-MsgGUID: Lt6Lu1kSTauP4DuPwHkRaw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; 
-   d="scan'208";a="242766222"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 10 Feb 2026 23:00:17 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vq4Cs-00000000plY-48wi;
-	Wed, 11 Feb 2026 07:00:14 +0000
-Date: Wed, 11 Feb 2026 14:59:16 +0800
-From: kernel test robot <lkp@intel.com>
-To: dongxuyang@eswincomputing.com, mturquette@baylibre.com,
-	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	troy.mitchell@linux.dev, bmasney@redhat.com
-Cc: oe-kbuild-all@lists.linux.dev, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, huangyifeng@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, ganboing@gmail.com,
-	marcel@ziswiler.com, Xuyang Dong <dongxuyang@eswincomputing.com>
-Subject: Re: [PATCH v11 2/3] clock: eswin: Add eic7700 clock driver
-Message-ID: <202602111424.mhTAakDX-lkp@intel.com>
-References: <20260210095106.839-1-dongxuyang@eswincomputing.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=o8050kPMPVQDt15pa/SH49jVVwIR11oEzsluMPbiJueticjam9Th/hi1Guf0yHf7ryoIaFhu076B/oDQ4lvi7jEEdQvp4R9zDvEA6v7LqzrrXJYdMGY0INZZHd2UgX6RAb7uBzBdSo6XN7OVolMx7xz3OatCc38FCsDvCLVGMVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cPcE6n+w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D466C4CEF7;
+	Wed, 11 Feb 2026 07:04:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770793477;
+	bh=3ZTnWhXXoERir4oO0pfx4Q02C2doAZHVJvzFlwy5MRI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cPcE6n+wMTjRTF0qXd5BzwFFJpnbjDSOEYPcUWGTZDessMWC5fxe1GpHYp1v5KYNl
+	 NN9pIFDzXVJ85muL5dqr3qRLNOmUzvh5Mm2rM8GXxG5U4hnGJms9jNZ7LMOzTqwE2n
+	 SsjOeefZB6J9zAqmMvBlHfojpH8AE1mtmpwed6+Bs1CYKUkKAhpa3OhZh9LzqemCcy
+	 2zj5WdSrErRbGY9emASPelj0EJLA6YkUTxoXGiOsnQeSGQsAbjJXE6aX/yrz60bK/T
+	 QuUuqEj9uy2nLLx+0IWKD7ppnZOk5/CPSFOWRpxkyeojeW3b8qL+pO+c+5Z1ubuKg+
+	 V1FmdhhRdR0mw==
+Date: Wed, 11 Feb 2026 08:04:35 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: linux-gpio@vger.kernel.org, Linus Walleij <linusw@kernel.org>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Alexander Stein <linux@ew.tq-group.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] gpio: aggregator: add gpio-aggregator DT compatible
+Message-ID: <20260211-accurate-mini-mustang-2b2c9e@quoll>
+References: <20260211044216.2885718-1-james.hilliard1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260210095106.839-1-dongxuyang@eswincomputing.com>
+In-Reply-To: <20260211044216.2885718-1-james.hilliard1@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[lists.linux.dev,eswincomputing.com,einfochips.com,gmail.com,ziswiler.com];
-	TAGGED_FROM(0.00)[bounces-264637-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-264638-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email,git-scm.com:url]
-X-Rspamd-Queue-Id: 3C032121BEB
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,tq-group.com:email]
+X-Rspamd-Queue-Id: 0B7B8121C30
 X-Rspamd-Action: no action
 
-Hi,
+On Tue, Feb 10, 2026 at 09:42:12PM -0700, James Hilliard wrote:
+> Add an OF match entry for gpio-aggregator so the forwarder can be
+> instantiated without using the delay-specific compatible.
 
-kernel test robot noticed the following build errors:
+Why? What problems or real hardware are you solving here?
 
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on linus/master v6.19 next-20260210]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/dongxuyang-eswincomputing-com/dt-bindings-clock-eswin-Documentation-for-eic7700-SoC/20260210-175433
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20260210095106.839-1-dongxuyang%40eswincomputing.com
-patch subject: [PATCH v11 2/3] clock: eswin: Add eic7700 clock driver
-config: microblaze-allyesconfig (https://download.01.org/0day-ci/archive/20260211/202602111424.mhTAakDX-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260211/202602111424.mhTAakDX-lkp@intel.com/reproduce)
+> 
+> Add a minimal DT schema for gpio-aggregator documenting compatible.
+> 
+> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+> ---
+>  .../bindings/gpio/gpio-aggregator.yaml        | 57 +++++++++++++++++++
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602111424.mhTAakDX-lkp@intel.com/
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
 
-All errors (new ones prefixed by >>):
+>  drivers/gpio/gpio-aggregator.c                |  3 +
+>  2 files changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-aggregator.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-aggregator.yaml b/Documentation/devicetree/bindings/gpio/gpio-aggregator.yaml
+> new file mode 100644
+> index 000000000000..ec1d08f3db2c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-aggregator.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/gpio-aggregator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GPIO aggregator controller
+> +
+> +maintainers:
+> +  - Alexander Stein <linux@ew.tq-group.com>
+> +
+> +description: |
 
-   microblaze-linux-ld: drivers/clk/eswin/clk.o: in function `clk_pll_set_rate':
->> clk.o:(.text+0x1278): undefined reference to `__udivdi3'
+Do not need '|' unless you need to preserve formatting.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +  This binding describes a GPIO forwarder that exposes selected GPIO
+
+Explain the hardware, not the binding. Drop "this binding ......"
+
+> +  lines as a virtual GPIO controller.
+> +
+> +properties:
+> +  compatible:
+> +    const: gpio-aggregator
+> +
+> +  "#gpio-cells":
+> +    description: Specifies the line offset and GPIO flags.
+> +    const: 2
+> +
+> +  gpios:
+> +    description: Array of GPIOs to aggregate
+> +    minItems: 1
+> +    maxItems: 32
+> +
+> +  gpio-controller: true
+> +
+> +  gpio-line-names:
+> +    minItems: 1
+> +    maxItems: 32
+> +
+> +required:
+> +  - compatible
+> +  - "#gpio-cells"
+> +  - gpio-controller
+> +  - gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    gpio_agg: gpio-aggregator {
+> +        compatible = "gpio-aggregator";
+> +        #gpio-cells = <2>;
+> +        gpio-controller;
+> +        gpios = <&gpio0 3 GPIO_ACTIVE_LOW>,
+> +                <&gpio3 1 GPIO_ACTIVE_HIGH>;
+> +    };
+> +
+> +    consumer {
+> +        enable-gpios = <&gpio_agg 0 GPIO_ACTIVE_LOW>;
+> +    };
+
+Drop node, not relevant. Anyway, I do not see any point in referencing
+"gpio_agg 0" instead of "gpio0 3" and your commit msg fails to explain
+that.
+
+Best regards,
+Krzysztof
+
 
