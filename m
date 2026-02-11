@@ -1,226 +1,191 @@
-Return-Path: <devicetree+bounces-264739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264740-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aExcIWZfjGmWlwAAu9opvQ
-	(envelope-from <devicetree+bounces-264739-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:52:22 +0100
+	id GExcJqVfjGmWlwAAu9opvQ
+	(envelope-from <devicetree+bounces-264740-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:53:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CB1E123A29
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:52:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDA61123A52
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:53:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A34E43014964
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:48:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C9C173047055
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:49:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43BC436A01A;
-	Wed, 11 Feb 2026 10:48:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BC4136A026;
+	Wed, 11 Feb 2026 10:49:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KRL4uY83"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nOAWdGAB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3FFC36999F
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 10:48:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770806912; cv=pass; b=rZ+qDfiWhH5MkFJMgcQT1KHSJR3kpJMoT66wgH+CqI1oIWtpxw0qbcYsTpi5zLVapgrvKuEX2GYj83OFOtnECEyPakU0a01LuJY6sgFFyYb1f05RC3PCx2ed7NgnGD2bIjp0gqwN1xObOR15tnp9+ggyLjBIYlcBOpqA9zXYwLA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770806912; c=relaxed/simple;
-	bh=goC3mIbNohckiF5ZYjrfvjxXcyQ5EbfvCJ7/+85hUuY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NV7n2Pxk8vVTtpqBhq0S8VGXNVUPlpiqMTi4ap8QROWfwZSVWV2oF/SfADWgltpGQVU8liCqqy00MrGk+1p3GQG59gbFf2P34CBv1oxbw7f/Zfc7zmUiyHgP7kGtX1+8IsqqUfsn1O1M40NDPCGzZUERu0/RDVffmAugGmjiJ2E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KRL4uY83; arc=pass smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-43767807da6so1315467f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 02:48:30 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770806909; cv=none;
-        d=google.com; s=arc-20240605;
-        b=K/km8EIIfpCANHiYLAqtklTqy9Hq7/+egacipsSLRQq+Us1XMkeSWXbWRkguDb7iNT
-         OkDvGaOHpp7bHbcl+rDXvd76w3RSCkPw7d+9D5ToVQ2B9wgByn0tltyi7iJ42gQt6n++
-         WGTfNPdHLmDgxSo9mCBVpyaIALrOSSiRqRd82963GMTpKbxZUrv1gnxs3EWt9RF0D92F
-         3NyWYrJ6qdh4wH4ya49iLf9wQjqq9x60YA8FNlyJNv6xcicaz0+vSWE48qJTWkeHbwI4
-         yieMI67ltW9HX1TWmxxh8UMAgjKrrJMjcYN6r1i1RD8+9OpnxeW8MLyZeMazc+S+8RVU
-         jjGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=J2gBRwJor0x8FmOh8GyzyKNT5TNM+dtqzKR3kPMSD/A=;
-        fh=yJ5J49qZL0OBg9xCYTI56S4JbMGE+1TJR1g2Bt1Hqqg=;
-        b=YA/2lgiIKWY7mqX29bk9wPe5itNNiue4Vz9SwWBu0DhbOMmlBqOg6+WuM8XZuGbeMM
-         45yv0m+dDwHJKiZlTxY9Ae6sWA+uL4uaPx44nZyf2IjvFqE5fzrQy97rQSmbttIjpwK5
-         iQemrxDFofxclR8Qm0hBcD1/wSBMl77/oSwrTD9vKFe9fld8EZnIiJ5JCtwokQmNXc36
-         OVztqtxBNFY5Gb7PomSqo5JYpDTJ9us/Hyr6LwJy9RZ8TCGVhVaOa0aKizq3/VTONLWL
-         QgN3nw64AazCf8nF9s+fmGv9NONHWQh1AbVbmGREeSgPHH/rUSc82Uj/0nNcoFDWUJUl
-         0GqQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770806909; x=1771411709; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J2gBRwJor0x8FmOh8GyzyKNT5TNM+dtqzKR3kPMSD/A=;
-        b=KRL4uY83VFKh79eYwywSsflLk7UhcCxSBevCn+ooQ3zf/ZOiVyAwA7LsGqN75vtnD9
-         Gp/OaQuqqH2HwbQi28TheijoUEfT5V0YzhJJL8d/yffptZ0AxU2///H7bSEX+fW5EIy+
-         7nspB6NMe1SU/uBs4oBctjJqQMHnoOEOEue1qVy5Ow2IhS9mz1FKMlKz4ZOCi+hajr4t
-         B9t1FLLZNpM7rsGXKfOb292YixpPnQSEzjmc/zviMEO43BR/qr9iUzn9P687zMn04ik0
-         UO+6EYGsTfkfC2TjDCaLk8qVPKIGM+6GayJarcsKBzjrBP7tvAgQsKK6so+/Op5f/WKC
-         9WCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770806909; x=1771411709;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=J2gBRwJor0x8FmOh8GyzyKNT5TNM+dtqzKR3kPMSD/A=;
-        b=klNWUad5xkH6e+onP+k7VZQclXzxj9aXQIR+ITW5XDv6raDoBtH2NsCKhnZgDlJPbh
-         bUBRtj1abyfg6RdE0bfemlr5mkkQmpFw+/14m3sTYKHud+Bg2eUrgjN5Hpj1wZcUCFmA
-         HnCSkixZRcPDr/4V3cZX+Yy9/lFnAXOP1xDvLP0C49cmSQioysOYerdaOO1+Tjrkqo3I
-         /ksNUtn5I+vXEA2ZjBegzs938L2A8Tf0aYBaw9nFjGWzAKBR5PQc8PggaznHzRCy2tE9
-         XMi95GSn/vHKkmVx5bVVpLJa3RJupuQOqd/r1gAnqWI9TL9sT0V+O/5Hc15fUB04RnRX
-         bhqw==
-X-Forwarded-Encrypted: i=1; AJvYcCV/E+xOHk+rG31DpZGFq7+JZc7ZcAMwwP6ipPfvwio52ZEsCIz/FN1afxwHD0No3jbS7EQ77HDUpXS+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwLyD1U3DyHIDYJx/S7Jvt2KAOglfSlh8A+sNeRIaI29OtOj6hI
-	TBRpbQYFrA4PSzufoQYvHKsKU66hcpmK3HJh6NHhW7Dkk1K1/i+NJrSmtJM0/w3APu+kefAe1pb
-	2vV5nz7tIAHk025zs3rXLOaTnnWsMLao=
-X-Gm-Gg: AZuq6aJeASeZbpSBdYn3ElZtlmQwAV9nTD9KyRjtr7zJTS0BkDghp7XJH8jbs0z8OV+
-	wCylIXZAF93JgZLeLhL5V1iOQaFjwlTHF7bLmM/8eDSFMxyVvzPp8/CCdI/zCrPtLLlQq8JQyle
-	AZ3S64O6zOmLKGMyzfD8w44tEEKBfBve+B5Hw59MlQYHaGAQhsIuGusWTv+esZ0fhOyK8BHxgQO
-	jlRyFot+6y5Ad6cClxBgyseKKkQ9JOab0pgM0pzFRJNb44wD9AOk45fHmmPv/4kG705GOZaIcow
-	gLr23SnD
-X-Received: by 2002:a05:6000:3107:b0:435:9770:9eb8 with SMTP id
- ffacd0b85a97d-4362923fc0emr28798812f8f.25.1770806909126; Wed, 11 Feb 2026
- 02:48:29 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07DF636A015;
+	Wed, 11 Feb 2026 10:49:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770806944; cv=none; b=rX4yFdD5UTmNlqx8MALz5gUsMUJPNgiIZXtvVv7D1W3iwvZWi18faqaV7IGx1ydAwKDec1utWXur1EKwg9ygX/BnW/mlKEzxr9uMRkpMVlrBXZG/fmx2XQrPDa2+5RQy6+FEKrOUdxOPoyi5ihNqo9WpTPv2fNHKWq0RhvaCpjM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770806944; c=relaxed/simple;
+	bh=jIf0+M3KsfRjlOzc2/0QBIWz/ppKHa03wFBPNYg07fQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PMdXWFQKVpUO5c1nLtaqCVdhJm8HtEHrQhAs1K5zmSWhCinv2w+lUHP+g0jMkSYZ1fzjW9+L6k3BX3hJonM/u2XQM+0HneUZBLwXaCUoCJKUexQRJZUuFt8Fw4TkSrfrspT4Z+1T05cqYjeMVfsZjwQW9T+HKOwn35Hc5wgEaBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nOAWdGAB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7578EC2BC86;
+	Wed, 11 Feb 2026 10:49:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770806943;
+	bh=jIf0+M3KsfRjlOzc2/0QBIWz/ppKHa03wFBPNYg07fQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nOAWdGAB422xPPd7QDWj60Kx78Sxej19WVk56f75O3KNQ98O2AdkjRUoy68srGJPE
+	 EwzAIpO8m7ycTR1RJ7voXjF8NE1v459RHdEeyC56YdnNdlNLrja/wRIpX9SZjoMi5t
+	 7SNaFXHW429GRhZyZVofrZzCqoT2qRKUn6VtsZ1g3w5Vf71//lPyZ148PhTFtD2/XR
+	 Kgdg8mxPVzURaW7Ms6XVEXJVyKYc0Kb5QIuGJoUESEL9ThRPW6XjL+TniyeqkVgQ77
+	 IPL4zYrz8ah8sm1lSUDqhZGM7APaOO/DXdJ02PWUSK9ZgHipXF+d2gXRvfBGUbTgLF
+	 bZtklWJPQeCdg==
+Message-ID: <2c5734db-1e62-4aeb-9c6a-ef14939575c2@kernel.org>
+Date: Wed, 11 Feb 2026 11:48:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260209104407.116426-1-clamor95@gmail.com> <20260209104407.116426-4-clamor95@gmail.com>
- <20260210-sexy-grumpy-sambar-44edd2@quoll> <CAPVz0n3fizf=r58Fr4YQ6pnjHq5p-7yFz95obss6w6x0bfgnDg@mail.gmail.com>
- <d1973810-d3f5-4ed7-ba0f-6bf93c1c7f3d@kernel.org> <CAPVz0n1foyy9g7MAurSAyLCUHTzrPPu0ceqy9YpcDA9uzgjGng@mail.gmail.com>
- <cb91898e-10f1-4d64-bace-41bbed08179b@kernel.org> <CAPVz0n0O_uSAPYFtg8s+Ni0buyGJys6d0jEMob6SNWx-aeKUEw@mail.gmail.com>
- <dc7acd1e-91e8-492c-8665-cb680c6164fd@kernel.org> <CAPVz0n0u_0ZukcKXt0QpiyCMhWsg2VE-dE19wDCbRQvBvVOf+A@mail.gmail.com>
- <ec3b39d6-51ec-429d-b083-e5af2b4a9c65@kernel.org> <9dcc308d-f87d-4706-90ae-df3669aea224@kernel.org>
-In-Reply-To: <9dcc308d-f87d-4706-90ae-df3669aea224@kernel.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Wed, 11 Feb 2026 12:48:16 +0200
-X-Gm-Features: AZwV_QiRfznTx26RtaNIi_FievzuOy5_SC6hUakUwNSsN_ybyyiwQRTPmonDjZ8
-Message-ID: <CAPVz0n0ULXAWnK0cJcuK-k9jO9JdqHutZ84bsgSDwGJUshgS+Q@mail.gmail.com>
-Subject: Re: [PATCH v2 3/9] dt-bindings: mfd: document ASUS Transformer EC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Sebastian Reichel <sre@kernel.org>, =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>, 
-	Ion Agorria <ion@agorria.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] gpio: aggregator: add gpio-aggregator DT
+ compatible
+To: Bartosz Golaszewski <brgl@kernel.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: James Hilliard <james.hilliard1@gmail.com>, linux-gpio@vger.kernel.org,
+ Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alexander Stein <linux@ew.tq-group.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
+ <20260211081355.3028947-2-james.hilliard1@gmail.com>
+ <CAMRc=MfgoKmsNAmn3rO2jDL-ZArMX2Jh-n4SnV6rpzRY3KSwuA@mail.gmail.com>
+ <CAMuHMdWS-ZaL1nLS=C=hjBVJeVtgNYX-XgWf-8Oy4cGt6OMGDg@mail.gmail.com>
+ <CAMRc=MdRn=791YHaGZ7s+rwftJ84PYRivOO8gPPbCMNF6MUH3w@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAMRc=MdRn=791YHaGZ7s+rwftJ84PYRivOO8gPPbCMNF6MUH3w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264739-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org,ew.tq-group.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-264740-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,arndb.de,linuxfoundation.org,rere.qmqm.pl,agorria.com,vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1CB1E123A29
+	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,linux-m68k.org:email]
+X-Rspamd-Queue-Id: EDA61123A52
 X-Rspamd-Action: no action
 
-=D0=B2=D1=82, 10 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 14:48 Krzy=
-sztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On 10/02/2026 12:54, Krzysztof Kozlowski wrote:
-> > On 10/02/2026 12:40, Svyatoslav Ryhel wrote:
-> >>>>
-> >>>> So you propose introduce a compatible for every single ec used in
-> >>>> transformers instead of simply disable unpopulated functions? And ho=
-w
-> >>>> then battery and charger can reach monitored cell if they have no
-> >>>> dedicated node?
-> >>>
-> >>> Just like for other bindings for nodes without resources, fold into
-> >>> parent. This is already explained in writing bindings, so you could h=
-ave
-> >>> just read that. I will pass with answering more questions till you re=
-ad
-> >>> that doc.
-> >>>
-> >>
-> >> Unfolding asus,ec-pad and asus,ec-dock will result in this list:
-> >>
-> >> asus,tf101-dock-ec
-> >> asus,tf101g-dock-ec
-> >> asus,sl101-pad-ec
-> >> asus,tf201-pad-ec
-> >> asus,tf201-dock-ec
-> >> asus,tf300t-pad-ec
-> >> asus,tf300t-dock-ec
-> >> asus,tf300tg-pad-ec
-> >> asus,tf300tg-dock-ec
-> >> asus,tf300tl-pad-ec
-> >> asus,tf300tl-dock-ec
-> >> asus,tf600t-pad-ec
-> >> asus,tf700t-pad-ec
-> >> asus,tf700t-dock-ec
-> >> asus,tf701t-pad-ec
-> >> asus,p1801-t-pad-ec
-> >>
-> >> with minor variations in populated cells. Is this acceptible?
-> >
-> >
-> > Yes, this looks correct.
->
-> Update: with fallback-expressed compatibility when same interface and/or
-> superset of features.
->
+On 11/02/2026 11:38, Bartosz Golaszewski wrote:
+> On Wed, Feb 11, 2026 at 10:50 AM Geert Uytterhoeven
+> <geert@linux-m68k.org> wrote:
+>>
+>>>>
+>>>>  static const struct of_device_id gpio_aggregator_dt_ids[] = {
+>>>> +       {
+>>>> +               .compatible = "gpio-aggregator",
+>>>> +       },
+>>>>         {
+>>>>                 .compatible = "gpio-delay",
+>>>>                 .data = (void *)FWD_FEATURE_DELAY,
+>>>> --
+>>>> 2.43.0
+>>>>
+>>>
+>>> Regardless of the DT bindings - this change is perfectly fine. We do
+>>> that for other "virtual" devices like gpio-sim, gpio-virtuser, etc. I
+>>> would just ask you to document it under
+>>> Documentation/admin-guide/gpio/gpio-aggregator.rst.
+>>
+>> This is not a pure virtual device, but for use with actual hardware.
+>>
+>> Nacked-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>>
+> 
+> Well, it is a virtual device in that there's no actual "aggregator"
+> device on the board. It virtually aggregates GPIOs into a separate
+> chip for user's convenience. While there's no such device as a
+> gpio-aggregator - and so we must not put it into bindings nor into
+> mainline devicetree sources - having a compatible matching in the
+> driver is perfectly fine IMO. Just like gpio-sim.
 
-I am removing separate DockRAM and merging it into this schema hence,
-it should look like this
+I already wrote, you cannot have undocumented compatible. There are even
+explicit checks for this - in schema and checkpatch - so with your
+approach you accept known warnings. Really, no, and fact we need to keep
+discussing it:
 
-  reg:
-    description:
-      The ASUS Transformer EC has a main I2C address and an associated
-      DockRAM device, which provides power-related functions for the
-      embedded controller. Both addresses are required for operation.
-    minItems: 2
+Nacked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-  reg-names:
-    items:
-      - const: ec
-      - const: dockram
-
-How should I organize amount of regs? Would this example be acceptable
-with minItems: 2 since EC requires both to work or should I set is as
-items list or minItems: 2 maxItems: 2? Thank you.
-
-> Best regards,
-> Krzysztof
+Best regards,
+Krzysztof
 
