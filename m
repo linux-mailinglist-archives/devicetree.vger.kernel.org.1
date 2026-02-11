@@ -1,283 +1,209 @@
-Return-Path: <devicetree+bounces-264615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264618-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4BX5LosXjGnegQAAu9opvQ
-	(envelope-from <devicetree+bounces-264615-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 06:45:47 +0100
+	id gGu+KNUXjGnegQAAu9opvQ
+	(envelope-from <devicetree+bounces-264618-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 06:47:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3886F121705
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 06:45:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC175121766
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 06:47:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 67F1A30B3DB8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 05:43:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4E652307C06E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 05:43:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF27353ED5;
-	Wed, 11 Feb 2026 05:42:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C16334EEF1;
+	Wed, 11 Feb 2026 05:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="SDs7BlC1"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UNtG3Srq";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Lfwg0IUz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 969F935581D;
-	Wed, 11 Feb 2026 05:42:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560C734DCFF
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 05:43:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770788568; cv=none; b=JOfpMEQBlg+ZaiJ29kdNUJwKqcS9wU+B4eUAqj7vMQcxK02l/DGpFpJVvx2iTY/MjuFdQi4lfzRpqzjtxKAvtJ5O1rAObQlvdN4/t/UNoXbILTPLo32XrPU9jzE3KmJi3mNYaEPKmmCyFPvK/+fqpqy/rRh5cegvabJ64WfUK1U=
+	t=1770788600; cv=none; b=kXSnz0SPo/+V1OFi0cN6dQvl6SmQvczX50JM1cxYTuahZ0BhjCdLMoaBcfABPYLVOIwdHcDnoNydKwMQvH0x1+Ou52Zq3BD7WLVpKolMU0VqkqTnwPLTsqK6Hhw3ROlKYeqSliDOz2QE7CS+s0TwbaedPLCQDl/Mno14uLTDP+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770788568; c=relaxed/simple;
-	bh=Dm62YSP35rO2I3MBXhutYy0Axtp6NdaafYgEv/FqjYE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YBGx9d7IgeJDD2VGtXfrEuf/DDeuJIvjYU7JKLVgDXaXSgByEp2wusguqPl3EU0ZzMbrSRS13ULhgIB4Zq94JHgSiJytNFTL0L28tJzgBalWzV9MU1eGqT/Gpc4+wLSI2B1kySB74p55FrwKHbmVI2L768VFZvi2HUQYJbQuOpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=SDs7BlC1; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 7896efb4070c11f185319dbc3099e8fb-20260211
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=2gIr27ibXlLtUFUdzTrS2GZG197SokLGpR00S8KqYCs=;
-	b=SDs7BlC13ErWkiP77HHbetBNJCYWT5uDsPn3t5ijWx82K1Rw895zBdP5m1xfPWs/hFPyfda1OqiDqtWyXowFmbLXLJCsz75ETHHgBMWZrfukA+5nQGQSPRZZ//Kt1FDz0ig9kWVC4//4TOj8N43+UOMZuXS38gGt23eY1jKSH1o=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.11,REQID:93dfd151-7481-4854-8e33-dcd93113330e,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:89c9d04,CLOUDID:7f788de9-ef90-4382-9c6f-55f2a0689a6b,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|888|898,TC:-5,Content:
-	0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI
-	:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 7896efb4070c11f185319dbc3099e8fb-20260211
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
-	(envelope-from <yunfei.dong@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1929309200; Wed, 11 Feb 2026 13:42:36 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 11 Feb 2026 13:42:35 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Wed, 11 Feb 2026 13:42:34 +0800
-From: Yunfei Dong <yunfei.dong@mediatek.com>
-To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
-	<nfraprado@collabora.com>, Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Hans Verkuil
-	<hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>,
-	Daniel Almeida <daniel.almeida@collabora.com>
-CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, Yunfei
- Dong <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v3 14/14] media: mediatek: decoder: support av1 extend vsi
-Date: Wed, 11 Feb 2026 13:41:41 +0800
-Message-ID: <20260211054149.27249-15-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20260211054149.27249-1-yunfei.dong@mediatek.com>
-References: <20260211054149.27249-1-yunfei.dong@mediatek.com>
+	s=arc-20240116; t=1770788600; c=relaxed/simple;
+	bh=toYSo3OobrugapftHePbdROlxuAVnQF6XcZup3CnDTE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IlMAFgvPEORm6VecFLycDdtDtcKtXuTh5by/eEqM6ZEYEYvoCv07JYmN5GZ7nbdottQKZElqqAXWxA63bcAxoxi8alfTA3Gbk64E0ozkHOFL1idV0PCt5jP4PqFzVEVwgkZ9hzY8HRgBrlf2BocTf4lE7cjSLUBb4w9UmyUWI20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UNtG3Srq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Lfwg0IUz; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61B2bXHw3203772
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 05:43:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	dfqXLcfgV6a9lK6a9WVNtmA67ZK8MlXpAND6ETLw3Mc=; b=UNtG3SrqjuIuFAaw
+	c9vYK1aH5USgoDwQzdmzxWQOTrLMQcxozfyB6nJDpzX8+Jm3CUQU+YUkL7fZw7BL
+	+PyWsPDPDUD5Bu0GIGJi3XlkdKDc1xyLlphtm++Mk/N+aAQXB7sAt9w/ikZPTprV
+	Kg+PZHPoKt60sfZc/yHqxvcANNaIoijnS5gEbFvcjl6YqAWdV6KnB6Juun23Z8y+
+	DHNL6jM6QFB9zMv0SYqIt+P7SL424duScgEHxQk74S5zNtkk+dFJmdo+OaIK1+35
+	ETQgF2ATW4dgvKT/ZG89d7OubNyKcYtlxT+bc7Uj8ow/SK9czJvI5Tr6PuiVZa5S
+	Tet27Q==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c894g20rr-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 05:43:18 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-81d9b88caf2so1671888b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 21:43:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770788597; x=1771393397; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dfqXLcfgV6a9lK6a9WVNtmA67ZK8MlXpAND6ETLw3Mc=;
+        b=Lfwg0IUzuu9JObXBNEIrVYNrfioQXS4w1qKdZEZSUJIbU7kBhKuGj+jCwpmQJmuQff
+         bwJMRNNx1GBMJTvpO590DrsvMovWQXmhSPHpHNxdaSrwi4bKFQX8Miv5Jw1o2WQ/IdWR
+         VXKaGfNyDzzyOTB0BJwEfBRCIG2NRmf8vZ5x2Cf5CbogpNAZ9T7laDzsYDF8KicU5N+P
+         TP1AREuLcoFCmijBW3seBg3BMUzLpg1AKhbKSiz8ZEDOiYvlpkcYc5xdMHi9AcPU3Hn3
+         1gQuQZyTJEujSV9DcPbxSEI/YZJyCxdmpvpqEQW3Giiq9J3HdZER59vFiG6zog4DiKOp
+         oX3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770788597; x=1771393397;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dfqXLcfgV6a9lK6a9WVNtmA67ZK8MlXpAND6ETLw3Mc=;
+        b=BwKyeiTCCKS9LRMJslgZYM/lpEa1SPTt80GahhmkYqrcoWD4LjIipLMdq+Nb7mpX90
+         lkio534ep0nliSeSUnvJgEi8UBI0ReZYRcoInUejMPqHkQWNZnLRjPU0el1USk/FzDi4
+         w/XZkwETskXP3wjiLmWR8Sp1Z/1Y4F7Vx3hRy2DsvwaoMMBEfNo0vsGoKS5HUkkm5WU0
+         1KrufgnKyKyhAkS+IWdie/SKOE3fsMT32xnL89CXGLJwiIsFNeso8Q3iSf4zHBRHfu1g
+         QVLFBx5LDUbqRZM52IdCSKMDnXmIAhi2FBrP1QhnDpcis+72PvQM3lOJH4rjB1wwOqCE
+         MQ5w==
+X-Forwarded-Encrypted: i=1; AJvYcCVQXVncFhJ9WQq6FRl5fX2tC2N1FvQOOH7vRNwJnCQFv1Nm+NZV3FnzxW2mVYttUXD3MhJSw5P8arHR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0SV2Vc5b8mY4mOm9ZP3SwxH3etThdvszjSat7nmDlVlyMiSDY
+	ZBVcmin1aH7w4qY+qAA+3VX8Y4Ggs5tlp/vTyZOdR6ASI63+V2V2qmMJAHzRo0zIfiIn3j/1D43
+	m4u03gDVAz8eLSnB6dSgf0gJlHZ1PhS+QGpGvWOl+kYp/2MGQjHSmU4Oj3y4orMxq
+X-Gm-Gg: AZuq6aJVFCqR0CiipmtCK1aXwFUQGGNQ82u0sblKFcKFBFlClMY2eEMuZvfvrbAPO1M
+	ogkeAV8DguGVQ32dJpphhZ1pXev84kKoTGlPQd6O3jkhVujD2UbENrEPN90jysDW9xsQVtzWQcS
+	SC1hd+vBV9F0Xxc0gR9W+cjOJF5L4A9W1CqyEnrUwex3LdhAF2dVnEXh1dbc11LW2aAqS896uc3
+	lgo1cso48+ls1JAXBOnna6e4llB323oyHPFZvU9/JQFxe8XHO1SShG+rPSqknsxlg4ii9PSKIND
+	C6ORPG70JoappCWKUQU73tPZQU93ZjaGVX1AN3FppnE2oUABX1VS1iq+S3sHQ1nAX9GpvVZQJzl
+	DTWJWV/BERuOjtJYU3HGjFOQEWbQ2y0f4iWACcXMDH8XjwTEdyDQrKZZb
+X-Received: by 2002:a05:6a00:7581:b0:823:30a1:d5ba with SMTP id d2e1a72fcca58-8244174c514mr13870062b3a.51.1770788597233;
+        Tue, 10 Feb 2026 21:43:17 -0800 (PST)
+X-Received: by 2002:a05:6a00:7581:b0:823:30a1:d5ba with SMTP id d2e1a72fcca58-8244174c514mr13870043b3a.51.1770788596773;
+        Tue, 10 Feb 2026 21:43:16 -0800 (PST)
+Received: from [10.219.57.109] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8249e8528f6sm722418b3a.61.2026.02.10.21.43.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Feb 2026 21:43:16 -0800 (PST)
+Message-ID: <88a5bbd5-8bcf-495b-be68-65cc06a68f1b@oss.qualcomm.com>
+Date: Wed, 11 Feb 2026 11:13:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/3] of: factor arguments passed to of_map_id() into a
+ struct
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: robin.murphy@arm.com, will@kernel.org, joro@8bytes.org, robh@kernel.org,
+        konrad.dybcio@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com,
+        bod@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+        prakash.gupta@oss.qualcomm.com, vikash.garodia@oss.qualcomm.com,
+        iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+References: <20260210101157.2145113-1-vijayanand.jitta@oss.qualcomm.com>
+ <20260210101157.2145113-3-vijayanand.jitta@oss.qualcomm.com>
+ <CAO9ioeVwPhbW=mkGUZQdCJH+C=KVf1bm=SDkoDinrj+nD94s3g@mail.gmail.com>
+Content-Language: en-US
+From: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+In-Reply-To: <CAO9ioeVwPhbW=mkGUZQdCJH+C=KVf1bm=SDkoDinrj+nD94s3g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjExMDA0NCBTYWx0ZWRfX5WCWl6oL/76l
+ 22WseiXJUQOiNw68qNToi1Wurq215dlbuSk4BGK4lGQwCgHD+Vifwq0VEjwtPdFxYk9hHYI96YY
+ OvVkd36O3x7Qihm3oFUDrp7c6E1JjausSURR0v7Eajub737nGYiExu7j7Cx4slaAZEqJsbtgUk2
+ o+rEiWs2wIdLESv9t0JwCbmhv4NiDg3yQ2+/IwRP7Sanrc+kyPXpyUondKluHSLoXr67b9bOQS/
+ CzHymbmhefKP9eUu6Kwwj+tqyklRhtBgcHCLYoxk++vpExb0ck6yFunI3+Lbak+5TgpZPGar8yU
+ hetJWuKlp7lzVnvmVZ5Gu2r8AwtT/disM0i57/ZBsolHsqBTlRiqVIJNGSz4RIlR0H8VIDxwX+W
+ /qXISMdU7lEGXY4U850dIH5YKwAjZymLJstwX0kyANehOiWaue/AmqlA9LffRxJd+9pSsBKkoB/
+ AKCAk9BeDESqUN5tBZQ==
+X-Authority-Analysis: v=2.4 cv=R64O2NRX c=1 sm=1 tr=0 ts=698c16f6 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=oAmyuOoVcDRkA2_ul38A:9 a=QEXdDO2ut3YA:10
+ a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-GUID: dCEoiNqCpMYi4IZx7vCFgI5x2llcb1Ru
+X-Proofpoint-ORIG-GUID: dCEoiNqCpMYi4IZx7vCFgI5x2llcb1Ru
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-10_03,2026-02-10_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 bulkscore=0 phishscore=0 lowpriorityscore=0
+ clxscore=1015 adultscore=0 suspectscore=0 impostorscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602110044
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-264615-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-264618-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[collabora.com,xs4all.nl,chromium.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yunfei.dong@mediatek.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[vijayanand.jitta@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[mediatek.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:mid,mediatek.com:dkim,mediatek.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,tile.va:url]
-X-Rspamd-Queue-Id: 3886F121705
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: EC175121766
 X-Rspamd-Action: no action
 
-The driver can't access tile buffer address for extend architecture,
-set tile group information in vcp and share it with kernel.
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- .../vcodec/decoder/vdec/vdec_av1_req_lat_if.c | 59 ++++++++++++++++---
- 1 file changed, 52 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1_req_lat_if.c
-index d613decae8f8..7d112a633484 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1_req_lat_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1_req_lat_if.c
-@@ -25,6 +25,9 @@
- 
- #define AV1_INVALID_IDX			-1
- 
-+#define AV1_NON_EXT_VSI_SIZE		0xD50
-+#define AV1_TILE_SIZE			64
-+
- #define AV1_DIV_ROUND_UP_POW2(value, n)			\
- ({							\
- 	typeof(n) _n  = n;				\
-@@ -641,6 +644,8 @@ struct vdec_av1_slice_fb {
-  * @frame:		current frame info
-  * @state:		status after decode done
-  * @cur_lst_tile_id:	tile id for large scale
-+ * @tile_group:	tile group info
-+ * @reserved:		reserved
-  */
- struct vdec_av1_slice_vsi {
- 	/* lat */
-@@ -665,6 +670,8 @@ struct vdec_av1_slice_vsi {
- 	struct vdec_av1_slice_frame frame;
- 	struct vdec_av1_slice_state state;
- 	u32 cur_lst_tile_id;
-+	struct vdec_av1_slice_tile_group tile_group;
-+	unsigned int reserved[4];
- };
- 
- /**
-@@ -1402,17 +1409,29 @@ static void vdec_av1_slice_setup_uh(struct vdec_av1_slice_instance *instance,
- 	vdec_av1_slice_setup_tile(frame, &ctrl_fh->tile_info);
- }
- 
-+static
-+struct vdec_av1_slice_tile_group *vdec_av1_get_tile_group(struct vdec_av1_slice_instance *instance,
-+							  struct vdec_av1_slice_vsi *vsi)
-+{
-+	if (IS_VDEC_SUPPORT_EXT(instance->ctx->dev->dec_capability))
-+		return &vsi->tile_group;
-+	else
-+		return &instance->tile_group;
-+}
-+
- static int vdec_av1_slice_setup_tile_group(struct vdec_av1_slice_instance *instance,
- 					   struct vdec_av1_slice_vsi *vsi)
- {
- 	struct v4l2_ctrl_av1_tile_group_entry *ctrl_tge;
--	struct vdec_av1_slice_tile_group *tile_group = &instance->tile_group;
-+	struct vdec_av1_slice_tile_group *tile_group;
- 	struct vdec_av1_slice_uncompressed_header *uh = &vsi->frame.uh;
- 	struct vdec_av1_slice_tile *tile = &uh->tile;
- 	struct v4l2_ctrl *ctrl;
- 	u32 tge_size;
- 	int i;
- 
-+	tile_group = vdec_av1_get_tile_group(instance, vsi);
-+
- 	ctrl = v4l2_ctrl_find(&instance->ctx->ctrl_hdl, V4L2_CID_STATELESS_AV1_TILE_GROUP_ENTRY);
- 	if (!ctrl)
- 		return -EINVAL;
-@@ -1607,6 +1626,15 @@ static int vdec_av1_slice_setup_pfc(struct vdec_av1_slice_instance *instance,
- 	return ret;
- }
- 
-+static u32 vdec_av1_get_tiles_num(struct vdec_av1_slice_instance *instance,
-+				  struct vdec_av1_slice_vsi *vsi)
-+{
-+	if (IS_VDEC_SUPPORT_EXT(instance->ctx->dev->dec_capability))
-+		return vsi->tile_group.num_tiles;
-+	else
-+		return instance->tile_group.num_tiles;
-+}
-+
- static void vdec_av1_slice_setup_lat_buffer(struct vdec_av1_slice_instance *instance,
- 					    struct vdec_av1_slice_vsi *vsi,
- 					    struct mtk_vcodec_mem *bs,
-@@ -1647,12 +1675,18 @@ static void vdec_av1_slice_setup_lat_buffer(struct vdec_av1_slice_instance *inst
- 
- 	vsi->tile.buf = instance->tile.dma_addr;
- 	vsi->tile.size = instance->tile.size;
--	memcpy(lat_buf->tile_addr.va, instance->tile.va, 64 * instance->tile_group.num_tiles);
- 
- 	vsi->cdf_table.buf = instance->cdf_table.dma_addr;
- 	vsi->cdf_table.size = instance->cdf_table.size;
- 	vsi->iq_table.buf = instance->iq_table.dma_addr;
- 	vsi->iq_table.size = instance->iq_table.size;
-+
-+	/* lat_buf is used to share hardware decoder syntax between lat and core,
-+	 * there isn't only one. But there is only one tile.va for each instance.
-+	 * Need to copy tile information to lat_buf every time.
-+	 */
-+	memcpy(lat_buf->tile_addr.va, instance->tile.va,
-+	       AV1_TILE_SIZE * vdec_av1_get_tiles_num(instance, vsi));
- }
- 
- static void vdec_av1_slice_setup_seg_buffer(struct vdec_av1_slice_instance *instance,
-@@ -1675,7 +1709,7 @@ static void vdec_av1_slice_setup_tile_buffer(struct vdec_av1_slice_instance *ins
- 					     struct vdec_av1_slice_vsi *vsi,
- 					     struct mtk_vcodec_mem *bs)
- {
--	struct vdec_av1_slice_tile_group *tile_group = &instance->tile_group;
-+	struct vdec_av1_slice_tile_group *tile_group;
- 	struct vdec_av1_slice_uncompressed_header *uh = &vsi->frame.uh;
- 	struct vdec_av1_slice_tile *tile = &uh->tile;
- 	u32 tile_num, tile_row, tile_col;
-@@ -1686,6 +1720,8 @@ static void vdec_av1_slice_setup_tile_buffer(struct vdec_av1_slice_instance *ins
- 	u32 *tile_info_buf = instance->tile.va;
- 	u64 pa = (u64)bs->dma_addr;
- 
-+	tile_group = vdec_av1_get_tile_group(instance, vsi);
-+
- 	if (uh->disable_cdf_update == 0)
- 		allow_update_cdf = 1;
- 
-@@ -1907,7 +1943,7 @@ static int vdec_av1_slice_init(struct mtk_vcodec_dec_ctx *ctx)
- 	struct vdec_av1_slice_instance *instance;
- 	struct vdec_av1_slice_init_vsi *vsi;
- 	enum mtk_vcodec_fw_type fw_type = ctx->dev->fw_handler->type;
--	int ret;
-+	int ret, vsi_size = AV1_NON_EXT_VSI_SIZE;
- 
- 	instance = kzalloc(sizeof(*instance), GFP_KERNEL);
- 	if (!instance)
-@@ -1941,9 +1977,18 @@ static int vdec_av1_slice_init(struct mtk_vcodec_dec_ctx *ctx)
- 		goto error_vsi;
- 	}
- 
--	if (vsi->vsi_size != sizeof(struct vdec_av1_slice_vsi))
--		mtk_vdec_err(ctx, "remote vsi size 0x%x mismatch! expected: 0x%zx\n",
--			     vsi->vsi_size, sizeof(struct vdec_av1_slice_vsi));
-+	if (IS_VDEC_SUPPORT_EXT(ctx->dev->dec_capability)) {
-+		vsi_size = sizeof(struct vdec_av1_slice_vsi);
-+		vsi->iq_table_size = AV1_IQ_TABLE_SIZE;
-+		vsi->cdf_table_size = AV1_CDF_SIZE;
-+	}
-+
-+	if (vsi->vsi_size != vsi_size) {
-+		mtk_vdec_err(ctx, "remote vsi size 0x%x mismatch! expected: 0x%x\n",
-+			     vsi->vsi_size, vsi_size);
-+		ret = -EINVAL;
-+		goto error_vsi;
-+	}
- 
- 	instance->irq_enabled = 1;
- 	instance->inneracing_mode = IS_VDEC_INNER_RACING(instance->ctx->dev->dec_capability);
--- 
-2.45.2
+On 2/10/2026 5:30 PM, Dmitry Baryshkov wrote:
+> On Tue, 10 Feb 2026 at 12:12, Vijayanand Jitta
+> <vijayanand.jitta@oss.qualcomm.com> wrote:
+>>
+>> From: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+>>
+>> Introduce a new struct type where the optional arguments passed to
+>> of_map_id() are Currently embedded as of_phandle_args struct.
+>> Subsequent patches add additional arguments to the struct that the
+>> caller expects to be filled of_map_id().
+> 
+> You updated the patch, dropping of_map_args, but didn't update commit message.
+> 
+
+Thanks for pointing out, I missed to update commit message after removing of_map_args.
+Fixed it in v8.
+
+Thanks,
+Vijay
+>>
+>> Suggested-by: Rob Herring (Arm) <robh@kernel.org>
+>> Signed-off-by: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+>> Signed-off-by: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+> 
+> 
 
 
