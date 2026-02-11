@@ -1,226 +1,149 @@
-Return-Path: <devicetree+bounces-264560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264569-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GGaUFXPMi2n7bAAAu9opvQ
-	(envelope-from <devicetree+bounces-264560-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 01:25:23 +0100
+	id GIPCEODii2kVcgAAu9opvQ
+	(envelope-from <devicetree+bounces-264569-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 03:01:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E6781204BA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 01:25:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D527F1209B5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 03:01:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D3EDA300682E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 00:25:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 49E9630067BB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 02:01:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1A951E9B1C;
-	Wed, 11 Feb 2026 00:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5EB52E62AC;
+	Wed, 11 Feb 2026 02:01:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b="nSFh00Cd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ngzu9S8P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ironport.ite.com.tw (60-251-196-230.hinet-ip.hinet.net [60.251.196.230])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9568319E839;
-	Wed, 11 Feb 2026 00:25:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.251.196.230
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 972D1272E63
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 02:01:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770769518; cv=none; b=Qn2Rv8+PDqBNBh/KOUwtg2lswQKc/ZlUVjUrUb3OrKJhbdymL5KlK6AMDjGUQfQO+AOx6InWQy63pVFWFCbvTZqSRPwt8nZmqCJHF10vEqp0wPBq2O0WmufDjZTunectV+ldrQaX0BkOI2ilnabFkWZWY6FcuXqPMnN6j+rRl6s=
+	t=1770775261; cv=none; b=nyoBLETyU/9Um/NCUrtcaUAEt3VNafEMjQ2lilVNMnxTF4ScHlW7mGn9d1OAyuZWpi/aOdkCYlP7pTSPFEKeLW+7ihmwbeJuQixSsD8nDvnZO7EBFi/42mbziG54ji78rjsPB1zElX/VaCin0u4mDq4M6+kg8A15NuxXD3p6NeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770769518; c=relaxed/simple;
-	bh=X8VNOLxVdr6v0QbTbvixpoK8YWaNtPDCEHxIV7FWnYc=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ru99fwmSbgurNasoX93TqvoO6Y6+mb7f94G+1XuZemzsTjejk4B9bVS6ouHPKKtGiuYoAQVHPzDE0n5FkJI5w5reUYhSdgwotaSMBOvKpEKjWEnwjdo0UryJrhu0L8cVsywiLKnXSwhRt67OcHobueU7SG9oWLPSPCSPywoNLyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw; spf=pass smtp.mailfrom=ite.com.tw; dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b=nSFh00Cd; arc=none smtp.client-ip=60.251.196.230
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ite.com.tw
+	s=arc-20240116; t=1770775261; c=relaxed/simple;
+	bh=A1SS4TKzzKgvQKNJqUbY09euLXdjy02UR4+Fo+uBiuw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EM8wEpwGk/rM6tGdWCQL9pJypDPQDpdfLDGr2VkQ08rUf5zWkoa5ObsvCaLUUtdubN9rZDyeKQXXOpJoalatYwscTpyAfrTDGjXiAzKskxVRv1Fl6iBSST7XRxnI5RgcFtWSwXyDECwerIBF1WKCSmAqJ59pAjGfAd+VTa+dnUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ngzu9S8P; arc=none smtp.client-ip=209.85.210.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-7cfd2423793so988599a34.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 18:01:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=ite.com.tw; s=dkim;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=X8VNOLxVdr6v0QbTbvixpoK8YWaNtPDCEHxIV7FWnYc=;
-  b=nSFh00CdZA+VcEW1M8+RDUjf9zA6nip5p6KaUhlYTWaYfW3ZwjWSuqms
-   olV5M4GIfEZXeoFRFaY294ji+ONg/FcYhwD/9SJ6ajiFragYW9THXyUg3
-   EboLdShUYD0W8jM6xn+H/3LWdJPRaVQGr+5CXFjN0v6ui5ArG0edPFKY6
-   SLKF2NEcrNkKfycXwK9IM2wkxl7xMV0YRy4CC+5JF654RG7T8e9UJa0lx
-   oyNd1palyCarPY002pJamKthviSe7HqndolS3BHZ/EsBu2JawORtbrATN
-   /UF5t9aqWMwAhrcqsocjmcXCB2ZatxSAVB/3yKDndreA7MoG5OzRDUPhp
-   w==;
-X-CSE-ConnectionGUID: HUSOHO6GSZ6nqjsytGGoVg==
-X-CSE-MsgGUID: 8ii6Z/1qQCScnaKShCMFKQ==
-Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
-  by ironport.ite.com.tw with ESMTP; 11 Feb 2026 08:14:25 +0800
-Received: from CSBMAIL1.internal.ite.com.tw (CSBMAIL2.internal.ite.com.tw [192.168.65.41])
-	by mse.ite.com.tw with ESMTP id 61B0HiXX098938;
-	Wed, 11 Feb 2026 08:17:44 +0800 (+08)
-	(envelope-from Pet.Weng@ite.com.tw)
-Received: from CSBMAIL2.internal.ite.com.tw (192.168.65.41) by
- CSBMAIL2.internal.ite.com.tw (192.168.65.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 11 Feb 2026 08:17:42 +0800
-Received: from CSBMAIL2.internal.ite.com.tw ([fe80::9446:9aa0:fea6:7e92]) by
- CSBMAIL2.internal.ite.com.tw ([fe80::9446:9aa0:fea6:7e92%15]) with mapi id
- 15.02.2562.035; Wed, 11 Feb 2026 08:17:42 +0800
-From: <Pet.Weng@ite.com.tw>
-To: <robh@kernel.org>
-CC: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
-        <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
-        <jernej.skrabec@gmail.com>, <maarten.lankhorst@linux.intel.com>,
-        <mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
-        <simona@ffwll.ch>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <Hermes.Wu@ite.com.tw>,
-        <Kenneth.Hung@ite.com.tw>, <Jau-Chih.Tseng@ite.com.tw>,
-        <treapking@google.com>
-Subject: RE: [PATCH v6 1/3] dt-binding: display: Add ITE IT61620 MIPI DSI to
- HDMI bridge
-Thread-Topic: [PATCH v6 1/3] dt-binding: display: Add ITE IT61620 MIPI DSI to
- HDMI bridge
-Thread-Index: AQHclTklgY85MwF+Skm21guaMZWaebV8rCLw
-Date: Wed, 11 Feb 2026 00:17:42 +0000
-Message-ID: <ec0c9019f02f4d3db3498758f9c0fd7d@ite.com.tw>
-References: <20260130-it61620-0714-v6-0-70afa65923b5@ite.com.tw>
- <20260130-it61620-0714-v6-1-70afa65923b5@ite.com.tw>
- <20260203181546.GA3341586-robh@kernel.org>
-In-Reply-To: <20260203181546.GA3341586-robh@kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-tm-snts-smtp: 939A3E17BBBADCDF9341C6EA23535C7A814FB5CBDEA5BAC7755381E8927EA15E2002:8
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20230601; t=1770775259; x=1771380059; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gm/euDJIj38jkfPBdt87UcAMoKQj5lm4rAH2NrGeusg=;
+        b=Ngzu9S8PJDrfgp54MnBD0XdTOrJ5RD2O5w++S6oSI4gULw59OeQFw1IO5vzfoqIMTb
+         wJdOj2dXVcWBFwC6Vu+xjsKfEQ4Ip5+n+wc27opCQpmiRuHTbDGRUwT8dr4HI6szK4dI
+         WzIMvEARGsiw86i5dPI5jp2F1bSiUTWuq6YclTvsU6qfiVOTpTTMKBkI/Ja0fH3BDFw4
+         JZfapl2+wD8QYeqOMRHa6uCWbZEBp+mIztkVXZ2KSMa/bahRbm6z+LHDIXH+1sVu6UCy
+         s0o9lhPygffrpB0/tgBRab40vN+/7nu968eZu+Vk0GN3btCzNgKChkpJgHMGl8Nv688A
+         wkwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770775259; x=1771380059;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Gm/euDJIj38jkfPBdt87UcAMoKQj5lm4rAH2NrGeusg=;
+        b=mha/HFXclN99B8zYPOL0HFS+TyzokphSJj9yTOwYvkp5OADZwSQELMlhwuYMVRThMs
+         YSXddrNBejG254SWHoEcjjVVC/blcK6CQA2tKTM5p9bf/IP42IfNWflcknAoP50yYES8
+         oOOK0GlSMmQUfG8qlLEV1H2rdBU8pILE/CdLg1SpvRKUfYylc36/Pq0Ncd6LW2+rJ9HC
+         eMIUSH9V+jLXdNCZz9v21YzTyc5FYlumsFso0mVUsjOY9e+x3fyCb2IU3xZDOmss4MOI
+         ZTOnNR07LPDiHdIBi7S/eR3mQkTE2JdA7AKuKihYeotmMPbUmRTejN0lV9yLuKFh4i5E
+         0iwg==
+X-Forwarded-Encrypted: i=1; AJvYcCXLfYZFw8B5Eb+MAkwnt3n28al624cLqqZDZR/shPgVhthHW7ahscXs+bTYN0M9Kotk01U0NXqKmEVd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4SQgAwEaW4Cn+O/ZMJjWzDWkXNOICvtEDnwXBDcVXpb4np7Nw
+	OZJJetFjv1oXwmrSgNcyGwgVQIZoYvHwShNcSk1+HK++NHVFKUZrlrvfu4bjRQ==
+X-Gm-Gg: AZuq6aItanezm2BoRnMGhcW0Ovqx3Vy2HVlYICOkMhuKDC0NNEizEdWFkqGdBz1zVGy
+	bQG73Nx0xY6tM/2fbBjJry7Hc/9KXd53ZGe4guFc9RGEUclXhnRatFGhpIJoDdDTlBm2s04FRGH
+	QZc6HSGoWffbVgpulytPi5NIsupV6SlqTehoLA2vTrf4matN9RwWdl+qQF3B/ivMezAYtjS9XvB
+	Db227qnAtUV21eD0MMNXBXS1v8Y/PRrQC9iNG+JKcY2F/6FUqvYuBpbNxm6M53DFtPGYr+7KPCe
+	s89vS76bUF7TNg0i5XrVzIXwMMghseTA+KXAkgaNgsDlxC8rpmbsRn7030FJ9DC+zA7tYBt7hs4
+	2EZUeJoYzp3fq7IU0xQbhwJ7UgXtl/5zNujCYgaCE1iI9G5hRmRgkWgyrZsM1caScvAGvk4iwWW
+	NAJrhJwq7FqsLx7vh5LnN8GbXUZw==
+X-Received: by 2002:a05:620a:1789:b0:8b2:eefb:c898 with SMTP id af79cd13be357-8caf2389cc5mr2130416885a.69.1770769291885;
+        Tue, 10 Feb 2026 16:21:31 -0800 (PST)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8971cc823a4sm1881586d6.8.2026.02.10.16.21.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Feb 2026 16:21:31 -0800 (PST)
+Date: Tue, 10 Feb 2026 19:21:58 -0500
+From: Richard Acayan <mailingradian@gmail.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+	Todor Tomov <todor.too@gmail.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Cc: Robert Mader <robert.mader@collabora.com>,
+	David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v8 0/7] media: i2c: IMX355 for the Pixel 3a
+Message-ID: <aYvLppaYsNDDD4DX@rdacayan>
+References: <20260210020207.10246-1-mailingradian@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MAIL:mse.ite.com.tw 61B0HiXX098938
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260210020207.10246-1-mailingradian@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.56 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ite.com.tw,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[ite.com.tw:s=dkim];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264560-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,lists.freedesktop.org,vger.kernel.org,ite.com.tw,google.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,devicetree.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.0.0.1:email,0.0.0.58:email,0.0.0.2:email,30hz:email];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,linaro.org,intel.com,linux.intel.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[ite.com.tw:+];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Pet.Weng@ite.com.tw,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-264569-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 6E6781204BA
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D527F1209B5
 X-Rspamd-Action: no action
 
-PiBPbiBGcmksIEphbiAzMCwgMjAyNiBhdCAwMzo1MTozNFBNICswODAwLCBQZXQgV2VuZyB3cm90
-ZToNCj4gPiBUaGlzIGNoaXAgcmVjZWl2ZXMgTUlQSSBEU0kgaW5wdXQgYW5kIG91dHB1dHMgSERN
-SSwgYW5kIGlzIGNvbW1vbmx5DQo+ID4gY29ubmVjdGVkIHRvIFNvQ3MgdmlhIEkyQyBhbmQgRFNJ
-Lg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogUGV0IFdlbmcgPHBldC53ZW5nQGl0ZS5jb20udHc+
-DQo+IA0KPiBNaXNzaW5nIEtyenlzenRvZidzIFJldmlld2VkLWJ5Lg0KPiANCg0KVGhhbmtzIGZv
-ciBwb2ludGluZyB0aGF0IG91dC4NCllvdSdyZSByaWdodCChWCBJIG1pc3NlZCBLcnp5c3p0b2Yn
-cyBSZXZpZXdlZC1ieSB0YWcuIEmhpmxsIGluY2x1ZGUgaXQgaW4gdGhlIG5leHQgcmV2aXNpb24u
-DQpQZXQNCg0KPiA+IC0tLQ0KPiA+ICAuLi4vYmluZGluZ3MvZGlzcGxheS9icmlkZ2UvaXRlLGl0
-NjE2MjAueWFtbCAgICAgICB8IDE0MiArKysrKysrKysrKysrKysrKysrKysNCj4gPiAgMSBmaWxl
-IGNoYW5nZWQsIDE0MiBpbnNlcnRpb25zKCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvYnJpZGdlL2l0ZSxpdDYxNjIwLnlh
-bWwNCj4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9icmlkZ2Uv
-aXRlLGl0NjE2MjAueWFtbA0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAw
-MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMC4uZTE5NWQxOTJmNmIxYTJkMDky
-YjM3NDVlM2U3ZjYyYjhiMWQyZDhjZQ0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9icmlkZ2UvaXRlLGl0NjE2MjAu
-eWFtbA0KPiA+IEBAIC0wLDAgKzEsMTQyIEBADQo+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZp
-ZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KPiA+ICslWUFNTCAxLjINCj4gPiAr
-LS0tDQo+ID4gKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvZGlzcGxheS9icmlk
-Z2UvaXRlLGl0NjE2MjAueWFtbCMNCj4gPiArJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3Jn
-L21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQo+ID4gKw0KPiA+ICt0aXRsZTogSVRFIElUNjE2MjAg
-TUlQSSBEU0kgdG8gSERNSSBCcmlkZ2UNCj4gPiArDQo+ID4gK21haW50YWluZXJzOg0KPiA+ICsg
-IC0gUGV0IFdlbmcgPHBldC53ZW5nQGl0ZS5jb20udHc+DQo+ID4gKw0KPiA+ICtkZXNjcmlwdGlv
-bjogfA0KPiA+ICsgIFRoZSBJVEUgSVQ2MTYyMCBpcyBhIGhpZ2gtcGVyZm9ybWFuY2UsIGxvdy1w
-b3dlciBIRE1JIGJyaWRnZSB0aGF0IGNvbnZlcnRzDQo+ID4gKyAgTUlQSSBEU0kgaW5wdXQgdG8g
-SERNSSAxLjRiIFRNRFMgb3V0cHV0LiBJdCBzdXBwb3J0cyB1cCB0byA0IGxhbmVzIG9mIE1JUEkN
-Cj4gPiArICBELVBIWSAyLjAgaW5wdXQgYXQgMi41R2JwcyBwZXIgbGFuZSAoMTBHYnBzIHRvdGFs
-KSwgY29tcGF0aWJsZSB3aXRoIERTSS0yDQo+ID4gKyAgdjIuMC4NCj4gPiArDQo+ID4gKyAgVGhl
-IEhETUkgdHJhbnNtaXR0ZXIgc2lkZSBzdXBwb3J0cyB1cCB0byA0S3gyS0AzMEh6IHJlc29sdXRp
-b25zLCBhbmQgaXMNCj4gPiArICBjb21wbGlhbnQgd2l0aCBIRE1JIDEuNGIgYW5kIEhEQ1AgMS40
-Lg0KPiA+ICsNCj4gPiArICBGb3IgYXVkaW8sIHRoZSBJVDYxNjIwIHN1cHBvcnRzIHVwIHRvIDgt
-Y2hhbm5lbCBMUENNIHZpYSBJMlMgKG11bHRpLWxpbmUgb3INCj4gPiArICBURE0gbW9kZSksIHdp
-dGggb3B0aW9uYWwgUy9QRElGIG9yIERTRCAoZm9yIFNBQ0QpLiBJdCBzdXBwb3J0cyBhdWRpbw0K
-PiA+ICsgIHNhbXBsaW5nIHJhdGVzIHVwIHRvIDE5MmtIei4NCj4gPiArDQo+ID4gK2FsbE9mOg0K
-PiA+ICsgIC0gJHJlZjogL3NjaGVtYXMvc291bmQvZGFpLWNvbW1vbi55YW1sIw0KPiA+ICsNCj4g
-PiArcHJvcGVydGllczoNCj4gPiArICBjb21wYXRpYmxlOg0KPiA+ICsgICAgY29uc3Q6IGl0ZSxp
-dDYxNjIwDQo+ID4gKw0KPiA+ICsgIHJlZzoNCj4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0K
-PiA+ICsgIGludGVycnVwdHM6DQo+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+ICsNCj4gPiArICBy
-ZXNldC1ncGlvczoNCj4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsgIGl2ZGQtc3Vw
-cGx5Og0KPiA+ICsgICAgZGVzY3JpcHRpb246IGNvcmUgdm9sdGFnZQ0KPiA+ICsNCj4gPiArICBv
-dmRkLXN1cHBseToNCj4gPiArICAgIGRlc2NyaXB0aW9uOiBJL08gdm9sdGFnZQ0KPiA+ICsNCj4g
-PiArICBvdmRkMTgzMy1zdXBwbHk6DQo+ID4gKyAgICBkZXNjcmlwdGlvbjogZmxleGlibGUgSS9P
-IHZvbHRhZ2UNCj4gPiArDQo+ID4gKyAgIiNzb3VuZC1kYWktY2VsbHMiOg0KPiA+ICsgICAgY29u
-c3Q6IDANCj4gPiArDQo+ID4gKyAgcG9ydHM6DQo+ID4gKyAgICAkcmVmOiAvc2NoZW1hcy9ncmFw
-aC55YW1sIy9wcm9wZXJ0aWVzL3BvcnRzDQo+ID4gKw0KPiA+ICsgICAgcHJvcGVydGllczoNCj4g
-PiArICAgICAgcG9ydEAwOg0KPiA+ICsgICAgICAgICRyZWY6IC9zY2hlbWFzL2dyYXBoLnlhbWwj
-LyRkZWZzL3BvcnQtYmFzZQ0KPiA+ICsgICAgICAgIHVuZXZhbHVhdGVkUHJvcGVydGllczogZmFs
-c2UNCj4gPiArICAgICAgICBkZXNjcmlwdGlvbjogSW5wdXQgcG9ydCBmb3IgTUlQSSBEU0kNCj4g
-PiArDQo+ID4gKyAgICAgICAgcHJvcGVydGllczoNCj4gPiArICAgICAgICAgIGVuZHBvaW50Og0K
-PiA+ICsgICAgICAgICAgICAkcmVmOiAvc2NoZW1hcy9tZWRpYS92aWRlby1pbnRlcmZhY2VzLnlh
-bWwjDQo+ID4gKyAgICAgICAgICAgIHVuZXZhbHVhdGVkUHJvcGVydGllczogZmFsc2UNCj4gPiAr
-ICAgICAgICAgICAgcmVxdWlyZWQ6DQo+ID4gKyAgICAgICAgICAgICAgLSBkYXRhLWxhbmVzDQo+
-ID4gKw0KPiA+ICsgICAgICBwb3J0QDE6DQo+ID4gKyAgICAgICAgJHJlZjogL3NjaGVtYXMvZ3Jh
-cGgueWFtbCMvcHJvcGVydGllcy9wb3J0DQo+ID4gKyAgICAgICAgZGVzY3JpcHRpb246IE91dHB1
-dCBwb3J0IGZvciBIRE1JIG91dHB1dA0KPiA+ICsNCj4gPiArICAgICAgcG9ydEAyOg0KPiA+ICsg
-ICAgICAgICRyZWY6IC9zY2hlbWFzL2dyYXBoLnlhbWwjL3Byb3BlcnRpZXMvcG9ydA0KPiA+ICsg
-ICAgICAgIGRlc2NyaXB0aW9uOiBBdWRpbyBpbnB1dCBwb3J0IChJMlMpDQo+ID4gKw0KPiA+ICsg
-ICAgcmVxdWlyZWQ6DQo+ID4gKyAgICAgIC0gcG9ydEAwDQo+ID4gKyAgICAgIC0gcG9ydEAxDQo+
-ID4gKw0KPiA+ICtyZXF1aXJlZDoNCj4gPiArICAtIGNvbXBhdGlibGUNCj4gPiArICAtIHJlZw0K
-PiA+ICsgIC0gaW50ZXJydXB0cw0KPiA+ICsgIC0gcmVzZXQtZ3Bpb3MNCj4gPiArICAtIGl2ZGQt
-c3VwcGx5DQo+ID4gKyAgLSBvdmRkLXN1cHBseQ0KPiA+ICsgIC0gb3ZkZDE4MzMtc3VwcGx5DQo+
-ID4gKyAgLSBwb3J0cw0KPiA+ICsNCj4gPiArdW5ldmFsdWF0ZWRQcm9wZXJ0aWVzOiBmYWxzZQ0K
-PiA+ICsNCj4gPiArZXhhbXBsZXM6DQo+ID4gKyAgLSB8DQo+ID4gKyAgICAjaW5jbHVkZSA8ZHQt
-YmluZGluZ3MvZ3Bpby9ncGlvLmg+DQo+ID4gKyAgICAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvaW50
-ZXJydXB0LWNvbnRyb2xsZXIvaXJxLmg+DQo+ID4gKw0KPiA+ICsgICAgaTJjIHsNCj4gPiArICAg
-ICAgICAjYWRkcmVzcy1jZWxscyA9IDwxPjsNCj4gPiArICAgICAgICAjc2l6ZS1jZWxscyA9IDww
-PjsNCj4gPiArDQo+ID4gKyAgICAgICAgYnJpZGdlQDU4IHsNCj4gPiArICAgICAgICAgICAgY29t
-cGF0aWJsZSA9ICJpdGUsaXQ2MTYyMCI7DQo+ID4gKyAgICAgICAgICAgIHJlZyA9IDwweDU4PjsN
-Cj4gPiArICAgICAgICAgICAgI3NvdW5kLWRhaS1jZWxscyA9IDwwPjsNCj4gPiArICAgICAgICAg
-ICAgaW50ZXJydXB0LXBhcmVudCA9IDwmcGlvPjsNCj4gPiArICAgICAgICAgICAgaW50ZXJydXB0
-cyA9IDwxMjggSVJRX1RZUEVfTEVWRUxfTE9XPjsNCj4gPiArICAgICAgICAgICAgcGluY3RybC1u
-YW1lcyA9ICJkZWZhdWx0IjsNCj4gPiArICAgICAgICAgICAgcGluY3RybC0wID0gPCZpdDYxNjIw
-X3BpbnM+Ow0KPiA+ICsgICAgICAgICAgICByZXNldC1ncGlvcyA9IDwmcGlvIDEyNyBHUElPX0FD
-VElWRV9MT1c+Ow0KPiA+ICsgICAgICAgICAgICBpdmRkLXN1cHBseSA9IDwmcHAxMDAwX2hkbWlf
-eD47DQo+ID4gKyAgICAgICAgICAgIG92ZGQtc3VwcGx5ID0gPCZwcDMzMDBfdmlvMjhfeD47DQo+
-ID4gKyAgICAgICAgICAgIG92ZGQxODMzLXN1cHBseSA9IDwmcHAxODAwX3ZjYW1pb194PjsNCj4g
-PiArDQo+ID4gKyAgICAgICAgICAgIHBvcnRzIHsNCj4gPiArICAgICAgICAgICAgICAgICNhZGRy
-ZXNzLWNlbGxzID0gPDE+Ow0KPiA+ICsgICAgICAgICAgICAgICAgI3NpemUtY2VsbHMgPSA8MD47
-DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAgcG9ydEAwIHsNCj4gPiArICAgICAgICAgICAg
-ICAgICAgICByZWcgPSA8MD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgaXQ2MTYyMF9kc2lf
-aW46IGVuZHBvaW50IHsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgZGF0YS1sYW5lcyA9
-IDwwIDEgMiAzPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgcmVtb3RlLWVuZHBvaW50
-ID0gPCZkc2lfb3V0PjsNCj4gPiArICAgICAgICAgICAgICAgICAgICB9Ow0KPiA+ICsgICAgICAg
-ICAgICAgICAgfTsNCj4gPiArDQo+ID4gKyAgICAgICAgICAgICAgICBwb3J0QDEgew0KPiA+ICsg
-ICAgICAgICAgICAgICAgICAgIHJlZyA9IDwxPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICBp
-dDYxNjIwX2hkbWlfb3V0OiBlbmRwb2ludCB7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAg
-IHJlbW90ZS1lbmRwb2ludCA9IDwmaGRtaV9jb25uZWN0b3JfaW4+Ow0KPiA+ICsgICAgICAgICAg
-ICAgICAgICAgIH07DQo+ID4gKyAgICAgICAgICAgICAgICB9Ow0KPiA+ICsNCj4gPiArICAgICAg
-ICAgICAgICAgIHBvcnRAMiB7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgcmVnID0gPDI+Ow0K
-PiA+ICsgICAgICAgICAgICAgICAgICAgIGl0NjE2MjBfYXVkaW9faW46IGVuZHBvaW50IHsNCj4g
-PiArICAgICAgICAgICAgICAgICAgICAgICAgcmVtb3RlLWVuZHBvaW50ID0gPCZpMnMwX291dD47
-DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgfTsNCj4gPiArICAgICAgICAgICAgICAgIH07DQo+
-ID4gKyAgICAgICAgICAgIH07DQo+ID4gKyAgICAgICAgfTsNCj4gPiArICAgIH07DQo+ID4NCj4g
-PiAtLQ0KPiA+IDIuMzQuMQ0KPiA+DQo=
+On Mon, Feb 09, 2026 at 09:01:59PM -0500, Richard Acayan wrote:
+> This adds support for the IMX355 in devicetree and adds support for the
+> Pixel 3a front camera.
+> 
+> Changes since v7 (https://lore.kernel.org/r/20260117040657.27043-1-mailingradian@gmail.com):
+> - restrict data-lanes to 4 (4/7)
+
+Apparently the 4th patch has been blocked by Gmail.
 
