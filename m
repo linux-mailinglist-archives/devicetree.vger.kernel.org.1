@@ -1,185 +1,157 @@
-Return-Path: <devicetree+bounces-264757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264758-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mMzZOUZojGkdnAAAu9opvQ
-	(envelope-from <devicetree+bounces-264757-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 12:30:14 +0100
+	id +GPxNG1pjGkMnQAAu9opvQ
+	(envelope-from <devicetree+bounces-264758-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 12:35:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C003123DDA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 12:30:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CE7F123E61
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 12:35:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 78C013016922
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:29:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9CF9A303BB31
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:34:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F6636BCEE;
-	Wed, 11 Feb 2026 11:29:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D98F314A8D;
+	Wed, 11 Feb 2026 11:34:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K/x5kKtw"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iCyxAyNS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 825BE36B07B
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 11:29:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.180
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770809397; cv=pass; b=mS+dYeqDYvvf0i3tTnGPJFUjwlZf54p1cTzv8rdzASIHUsj+yDZ/mDtxDI+CVdHkDWfRhZ1NzV9Lq9L/nX6VOAvpwdCpV46MWQRVMPn01HILGCnR6/1TmHv50eFQEFlTkJaXDaOtSw3Pxttxnzh95eXRKre6cykAgwcs+z5DYLU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770809397; c=relaxed/simple;
-	bh=sLnOa71h29WYuZ9LNj9fnvGyP/4g4rt7bz1/6hf6FC0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RnCyCmr83+lQie4Fg/RDGiiY77sxPbd5QywjiNU4oKEkK8FkkVv4yFmuMjWrVyKHHbRCzEsQJUe9J7KFEwSrs+c+ms93qQu2li+3m7KsqpicgVYgYbqXaDvhvjZjxZFMUMRjdcw86urJx9lqYaJGRdH/ETlE2UfQwXhM7qzJ+n8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K/x5kKtw; arc=pass smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2a77c1d5c3bso8326675ad.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 03:29:56 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770809396; cv=none;
-        d=google.com; s=arc-20240605;
-        b=atECJmvXEXCOGuj9LbmTaPGvHFPm1PkqlEmF/9PWIMy9/3UdbLDePYAQJo5EW/ltRY
-         HcDlSDTbSizFiPKsMGKE5yze5H+Nx/ofq4t2ZxF63mG/AsfMdr2qeUkMNAlj1SJnSS1L
-         MYkJW8Ack0+DkxjO6Am0XEJ0Y9Ad21Z4JMRE6OvrVRO+7plZKnU51uHB+Oj6BYkV2Fue
-         /5zAxsSHRCg0wIehpz/cIdak37IVbRiE7A4Pvk0ipO0Q97esFBlltWWyrizdasLyxPal
-         Y+BtR0L3QEV/GTaRYCZYla0e0C2wR5nW+j5QY52t80vHiM9MYo4JSdKo7wy/Koq3gEcF
-         8J0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=cMkh7cnzDv96CNvbeCbaRTyM6wLKZu/qXnz0rFwQJdY=;
-        fh=QEXpaIwMrpFIMK0B93i4YjIw9QLN1OSUFxw9r4y+7YY=;
-        b=Ukc/E5Km8KJL9mMxjY/LVyGKY2Ai2Oi/nVv357gWipmz0mI2CHivz7bOGIUYQXdcII
-         8vN0sLkDD++JyDjEBIjbJ+jM9FXV1uUb5VH4V6w2bMyQeH3mua3jpsKR5W4GLhqKc8Hx
-         pd62E+K4+LkfKCyxhcSvig2kYqrFeACWOdri9fG5UBjJ9AELQtLKjKhhvaBZO2GmkVp3
-         pSQcwEd+A1UBuK14WOhXzI+lAJLsyCk5GQUM3FWMpScwyOvb+SA6vMyKQddIGvuJrN0q
-         5SiubsvALS9oSI85d2mf/DdWKZyqP0h4Bf8Ds5B3Nntc1TzZD6rb4/Geu8FEI1L1aH/T
-         0eiA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770809396; x=1771414196; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cMkh7cnzDv96CNvbeCbaRTyM6wLKZu/qXnz0rFwQJdY=;
-        b=K/x5kKtwqkbRsAOPp0C2IMLHa86pRws/mouUgEnLGFhShfaYL0V3et4nrOFf39sCsQ
-         lY30nML6mrjYliISKC/TYSumKvdIrtcwLn0YUkOV6BZHacUPeIjQQOAp+0Z/XomnAxbK
-         FfjyyUyPFOmxU/PZcgX0lTO37uwRAzx5IADd5VU8EM+jrI7eNRyGxsfTzTSGTwakppII
-         xKChENQBIti0bL59ZI6BxkcQeTEuGoImp90eoHUf4AQr1QK7RihWT7L0TCE0Hgd7yajQ
-         Sr6CzGtQd+kxCmBaWym8eqBu1Ox/wp7wOvlJv6GWKIMW0bqB0uBV4cYza8MnK/ZJWQQN
-         lOhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770809396; x=1771414196;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=cMkh7cnzDv96CNvbeCbaRTyM6wLKZu/qXnz0rFwQJdY=;
-        b=lPxj0zu4Ts8AC3Z54aKMg5kt2ywiASgiB2UkfVVguKtfda4BZ9uAK3xQErqcWGOGTh
-         fFuedaJq19JIq8oWt2uc3F7LYyK1PAGSWlsCoI8fi9jBZqUZWjgXIxzujV4jF6pgsP/F
-         LT45kwb5AcklKgd8/FChMd2TsQcwb+7zTlSjn7ps6ypRRBZPpZnokFB/yhDgairxKyZI
-         b8318wRCwupR+7tcHPnz9tEFtq9kOtopke6Dlqs+JzO6TFW4E6AUyWUFl8KNJby4bloK
-         gH2qb6iFHLwZxUAAddH/t+UusIiq/Wz3NOJeGbtpf0jHiNr1UNEwjcw5RW/v8v2vJCz5
-         MFnA==
-X-Forwarded-Encrypted: i=1; AJvYcCXrgUce1but79JWCGOL1yiLlB07WZri0b33+ryOPOb0dl9Le85MaqdhPcqnX/7xWUGrV/noTdmzt/iZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNt9B9IOpzn6z6+5Uh34kEMJUFAhAOv5K34t/OKVvfP00WEEyj
-	AHFbDaX01cUA98aav0a/XbQqt/nzFx8wQ3bOlrFJGlTwkdhtl6QzVpMOZmyHm++p/VYIBOsGljT
-	5df4VOKwGnTS9riDrq+YTBczPltTXzJw=
-X-Gm-Gg: AZuq6aJEUj/RRUwqZZDhdlJaoLiljLlTe25Dr/kHKzsFzRv+7ZTDQvXmdO4p1m6tBna
-	K0ZHs4EYcV/xonTJ83fx/u+2yh52Pu+RnEL4jp4NacfYzVydfjtwoQh8R/5NKfVaTNnMvbUe29H
-	WhuLsYHigtxXSvb24URy8QAse4Jng9L9LG/4d8SRWCLgBmEzc+57X6doR2nkDnqA0Nd+t4JoJ0s
-	S4tldqfnXTeeUTLwTQL5tdHuZE2TLnHR0eZ1UAsY06e6Kyeop3pIkpCR2f1Pb3EJz52GlpWBpY0
-	8eJEDgbn5w3OJe7Hkfw=
-X-Received: by 2002:a17:902:d4c2:b0:2aa:e6c1:cea1 with SMTP id
- d9443c01a7336-2aae6c1d148mr108095975ad.17.1770809395707; Wed, 11 Feb 2026
- 03:29:55 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24E830C619;
+	Wed, 11 Feb 2026 11:34:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770809669; cv=none; b=Hb9NrvRsg1x8pKMxC2DxXR7Y4U1X5BakijCVvrG9eYhpZqlIM6zJctxIB75RpRHOk7ZplsU+eD5qtkF6B8cg6/mLfxfSHoJ3GCd50Lkv+7Z4aALbqubOkpA0/aiAiv15i3HPmZqANC2kI1OW9j7aIo+sG2u7l0k3RPqIM/GomCo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770809669; c=relaxed/simple;
+	bh=1xykNzdmvqoqeEJz/4Buz2/kuYquEmIRgt597iVsgnw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fCHHTbQv97psjV14sMOK5CisXIG2YFSFEQpLsaDcGCCIdKUeUKzuM3+eyZEetuc9Q6KLqfZdvAIJQONfIjP3ZMk0UmKIU8xRWtRKApfmG0EzAajBBsWZ+cgw28eJbgSlVL2iR63VNLs7y1olseggd6kuPy0DpheQGsB5Z892Caw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iCyxAyNS; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770809667; x=1802345667;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=1xykNzdmvqoqeEJz/4Buz2/kuYquEmIRgt597iVsgnw=;
+  b=iCyxAyNSOQ9aoSCnDpzCb7YBPmOWVeUYkYU5FyZXoQnYLWs4OY1Rwi+p
+   U7OCOT3+D7moNErqF9d450sRJOrSIjnpKjpbng+s3HpGRkyrsesegkUkQ
+   ztv2ym5OZomdL4BDKQWjhTDGaZYRdT6+1GtCbP+6AQi14Gsfv27qO5QtW
+   uSKAqqoaOlU5kPBwseYivc4dViAIZnku79KBWzwcqaDJIRca0K4UwI/0u
+   6b6Q9NNfmRNlRPdZ8cnupLUL7WPjtDDECFgs3gJ/+LqmuaninRrNiCUzQ
+   PQTGpLrNk2/fxQM+R3lNLRxI7eajtza9AiKQ0dj5Srk4K0Xd+2WRzagdR
+   A==;
+X-CSE-ConnectionGUID: TeROh2GvReqUQM26ulRfrQ==
+X-CSE-MsgGUID: dPxc2BokQn25Loxit2E2JQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="71997726"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; 
+   d="scan'208";a="71997726"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2026 03:34:27 -0800
+X-CSE-ConnectionGUID: P42b6e5+R7iMr3MZIdct6g==
+X-CSE-MsgGUID: V+Xbh+QaSKefMo8zvqUWgw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; 
+   d="scan'208";a="211537348"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.220])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2026 03:34:24 -0800
+Date: Wed, 11 Feb 2026 13:34:21 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Shengjiu Wang <shengjiu.wang@gmail.com>
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com,
+	broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	perex@perex.cz, tiwai@suse.com, ckeepax@opensource.cirrus.com,
+	nichen@iscas.ac.cn, kuninori.morimoto.gx@renesas.com
+Subject: Re: [PATCH 3/3] ASoC: ak5558: Fix the supply names
+Message-ID: <aYxpPX3LQ8RGgIBz@smile.fi.intel.com>
+References: <20260211093527.2892297-1-shengjiu.wang@nxp.com>
+ <20260211093527.2892297-4-shengjiu.wang@nxp.com>
+ <aYxl-84o20htTnNt@smile.fi.intel.com>
+ <CAA+D8AM6SxpfUpZJQAT9cif+7+cXwQCOmFqOXcNyQj=jd2VpJQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260211093527.2892297-1-shengjiu.wang@nxp.com>
- <20260211093527.2892297-4-shengjiu.wang@nxp.com> <aYxl-84o20htTnNt@smile.fi.intel.com>
-In-Reply-To: <aYxl-84o20htTnNt@smile.fi.intel.com>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Wed, 11 Feb 2026 19:29:42 +0800
-X-Gm-Features: AZwV_QgnSiInqQGmLAwo2fh7tDu38fawLdb6UdwB4QGSTTwD8LZCvKhPLMw4ToA
-Message-ID: <CAA+D8AM6SxpfUpZJQAT9cif+7+cXwQCOmFqOXcNyQj=jd2VpJQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] ASoC: ak5558: Fix the supply names
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com, broonie@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, perex@perex.cz, tiwai@suse.com, 
-	ckeepax@opensource.cirrus.com, nichen@iscas.ac.cn, 
-	kuninori.morimoto.gx@renesas.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAA+D8AM6SxpfUpZJQAT9cif+7+cXwQCOmFqOXcNyQj=jd2VpJQ@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264757-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shengjiuwang@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-264758-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_CC(0.00)[nxp.com,gmail.com,kernel.org,vger.kernel.org,perex.cz,suse.com,opensource.cirrus.com,iscas.ac.cn,renesas.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,intel.com:email]
-X-Rspamd-Queue-Id: 5C003123DDA
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: 3CE7F123E61
 X-Rspamd-Action: no action
 
-On Wed, Feb 11, 2026 at 7:21=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Wed, Feb 11, 2026 at 05:35:27PM +0800, Shengjiu Wang wrote:
-> > According to the binding document, the supply name characters are
-> > lowercase.
->
-> Same question. If it's okay to convert, please elaborate that it doesn't =
-have
-> any side-effects for in-kernel users. Also, check if these names may come=
- from
-> DTS (some old DTS might have it, in such case it's a documentation issue,=
- or
-> driver needs to support both).
+On Wed, Feb 11, 2026 at 07:29:42PM +0800, Shengjiu Wang wrote:
+> On Wed, Feb 11, 2026 at 7:21 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Wed, Feb 11, 2026 at 05:35:27PM +0800, Shengjiu Wang wrote:
+> > > According to the binding document, the supply name characters are
+> > > lowercase.
+> >
+> > Same question. If it's okay to convert, please elaborate that it doesn't have
+> > any side-effects for in-kernel users. Also, check if these names may come from
+> > DTS (some old DTS might have it, in such case it's a documentation issue, or
+> > driver needs to support both).
+> 
+> Thanks.
+> 
+> I go through all the DTS,  no DTS uses DVDD/AVDD or dvdd/avdd for ak4458 and
+> ak5558 codecs.  so there is no side-effect.
 
-Thanks.
+You mean no "in-kernel" DTS. But my question was if any DTS in the world may
+supply this as AVDD? If answer is yes, the binding must be changed. But then
+the same issue may come due to somebody using a new binding somewhere. however
+I don't understand how in that case it will work in Linux (only other projects
+that use the same bindings as Linux kernel may be affected).
 
-I go through all the DTS,  no DTS uses DVDD/AVDD or dvdd/avdd for ak4458 an=
-d
-ak5558 codecs.  so there is no side-effect.
+> I just am thinking it is better to fix it in document, it is caused
+> by converting txt to dtschema.
 
-I just am thinking it is better to fix it in document,  it is caused
-by converting txt to
-dtschema.
+I think this sounds at least like a safer change.
 
-Best regards
-shengjiu Wang
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
->
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
