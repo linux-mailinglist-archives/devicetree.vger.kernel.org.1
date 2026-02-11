@@ -1,270 +1,230 @@
-Return-Path: <devicetree+bounces-264646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264648-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OKhbClM6jGlZjgAAu9opvQ
-	(envelope-from <devicetree+bounces-264646-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:14:11 +0100
+	id aCLZN2U6jGlZjgAAu9opvQ
+	(envelope-from <devicetree+bounces-264648-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:14:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FA341221AE
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:14:10 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C2131221E5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 09:14:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 508F6305D1C2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 08:13:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A53903006D58
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 08:14:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADD543502BF;
-	Wed, 11 Feb 2026 08:13:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C1BB350A00;
+	Wed, 11 Feb 2026 08:14:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a77jPIdK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mZfgsnnl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8916E34FF7C;
-	Wed, 11 Feb 2026 08:13:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69FC934FF71
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 08:14:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770797609; cv=none; b=DRMDVTg39ITKvN+SanvyxAl/zu4R9jhYa5rvvs+zdr17rLC79FOoGn6AFRHE/0hwGc9qNBsT/8Lb68ogfojwwahPzJxozBRL0DUlKL+urhYbYVJgXSKePtLHX2gTVCc8xW0kc/JF+Q4NxbYSbhuM0J/ucsNlelHcn0Ra+ntPJC0=
+	t=1770797657; cv=none; b=MCPMV82KlJ6NU8uSMNqDGw9zKATwdINKRrOEZQzrWhD6tQLD1uy9vIYuwNHL7Hq8IOr5kKGsbkWWx/brVXg6F/CYGvWz2BjbIQm6oMwcB7XqtEwvDQIPn4iqGWxJ98SAcGAV821+bxRDBK0+NF8V5qFEy1d6BooDAEmVmKuoNd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770797609; c=relaxed/simple;
-	bh=MrMsLsaOlb+gOFnpvZgCtelkdiAWHIv67lnCZuXihzE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qEW+bqlR255AmCv1ujvP6jG03bwkOgOPBw8SID5508RZ24ELyqyGXh01yyXDZRZnunhpzDNnRE4uzMiOEIucHZv5u12b0L/d0q5aYCdUsYLPy7raHjAfX7/+xq9FiERRjDxXlTC2Znpt2PKAuInlFdMjDbGZIIFaQiqZ8azNjnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a77jPIdK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97D60C4CEF7;
-	Wed, 11 Feb 2026 08:13:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770797609;
-	bh=MrMsLsaOlb+gOFnpvZgCtelkdiAWHIv67lnCZuXihzE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=a77jPIdKHxHynnyDNv/VSQJnI5IshZeFrBzmgMD+OGJSK+xgNgZUF/AkSjHTreAA1
-	 HXt+MKuwRPw5fniLxQ+JseqszUXvFa2h10t0zk//bnAUv7af7X+XrrTD0eOGcksqZT
-	 +HCPMGrfc9wV4WLhkIYiRP66sWqVRup1bQNcOxWjPjfdjSDWwTxOiYjCoIH6B5TXxv
-	 YTj6t1Uq0VAPzfS8I8GQGV0qRSEQyAZvJUDleZUwB0yulvzvEbnHqVT53q4hJedw18
-	 NbkQwLZDW6drBGBU4utF90sclnszCETvLoDnwgy+PrecYjivk1IDuSmGI/3rgzQ1qi
-	 zjEOrQyr0H4eA==
-Message-ID: <ae4c1f7e-8f4c-4ce0-a6b8-bab29984e693@kernel.org>
-Date: Wed, 11 Feb 2026 09:13:23 +0100
+	s=arc-20240116; t=1770797657; c=relaxed/simple;
+	bh=kgeB/mXRVhBY032aHGr7l0zao2inBR+pzoMDX7O4N14=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nePbRa2VUOs+CsU3fkOV0Jt/mnw46Nm0/G6grRuw9MBh8+uV+YcR8LMJ6IJdgG9C2NOnxfpJ7GWLucRA4NJWZuVnpll2ALL+sRNcqlTeey8fCcZ6m+pdQEsz//fwu4n6xaoQoBNSlQZEKnDglniSZsvDTB9oxMoiUBiKfRK9Miw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mZfgsnnl; arc=none smtp.client-ip=209.85.167.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-45f10d7eb81so1751885b6e.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 00:14:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770797653; x=1771402453; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=X6JrbLie5g+deNg6l8anM21cq00T82ekWyP4ks5bzZ4=;
+        b=mZfgsnnlwor6z0gFf/e6XhrEbzEYMLRct/kYl2t/jvN/zksDKzg5e1nhV4wWK5Q4DX
+         8yUID76FOlEHxJ90OJstUfXQJ6fqx1ipXgEXBbQoLuAIP2ivLlHTr1++LRxRXeteD2yz
+         f652/DErBNDn652NRNNwJhI7CjRw8rYVATVYTVXIIaOYAkMDVlJK5FDW7WRkIm1t+kKT
+         uSw8pLiQZ0cGusju5zVYLJMns7omKrlCSA+W3xa42kpM3aihH6xKS1oIjy8FigOOCxML
+         aRBDKy3trziDV6sDAjmJep32NIUUTAQkyPGnT3S2EGOn2ANNl5qW+ATLCFHmVNb0Hlot
+         YtsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770797653; x=1771402453;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X6JrbLie5g+deNg6l8anM21cq00T82ekWyP4ks5bzZ4=;
+        b=X82hfgSgNiflPOv7jv0WZwa+kRWbz55A77gR3gb7Hid4mswHt3fysLRa+wT3mH10QB
+         dR6WxuEbQhWrHjEGM9IO0fDleFVBI533pH7bYaDmrlkukdDWC9LH3RPIbTDke/dnrWOi
+         X1kX10VWqSIR/pgLxYdORuC2M1W2FOXZC4V1LpuZ31Z7QJ10GVu4ll5njr1mk4HjNgFq
+         E6ymapKgYtcz1sp4pC49m5AOoIeQEtetlPE2TRcvIBZIyqnAl7phsGGfrTt4fEM4+p9F
+         PEkzzlBG5nQ8W0xOGlR0UxElWib+Rsit36e5APQJAycuNtonn4V84e6xEwjaG99jwICE
+         6mxg==
+X-Forwarded-Encrypted: i=1; AJvYcCXa7Zk8/2X4kduKM1sbwK4T/L7x434aBhlQto2qsd2Q4K8Oc9jtVw1uC2MJHyJ3VdGKB04D1RFnWQ2b@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQuzF0h0iucRjkbWyIiUDZJ9XFrTZXbh0HCQbI99BVZSZClurt
+	t7gEEDN/L9Ao+bmPMaqtBjzEJJHGePwxpnG15DGMjWzV92UQa6VeEDoN
+X-Gm-Gg: AZuq6aICg/WgfV/DXipRotzqh2Wjk4kBqVst1vFvLgy625esJFXya7NiTm5LrokHuJG
+	MSk8lZoE94PvTscjeUEi0OwzrAtGkT3IooC397bFgoVFpP+baGQDNZ9VF/ZcqKivl6bHK+3by1E
+	lSPF20Je9RpMZ+fBlU5Bv135VJRBMXcrUtFE718qcXNPAbyTSwn2pE+mp+5okogxatjgvD7q5cd
+	82IvLeXuuKUJDFQ3JnszCagwBJduRVjLOpmUHoZotxlAUxnT/jInvsl++DY8euWNw/B5BbbvgiT
+	1eVvdYTBKdf1SoH/d+a4wPLVy+Qj1eF52LiIFsOeE20nircQeXk5KdfVSiUN/PtYsWvsnUuZy+u
+	2rzXptmSAOaO1dLknZIPkx3TIMKlvassh5n7jJ5r0N32IEOXxSccp6QtctAbF0E6UhPxVa5c3+Q
+	J/fLa3SBLBcr+gg1b30mF6Mdr/MU6SDJKj2e26jAX8fxY7JeE2DOyJjQNGAMKpBvcXruZTRvWEi
+	Im0NMJHaZq9+aCRXX1sCRJrLCBMbnX1B578rQsJQlk0RamE9oIBx8WuzS+9iDWPZ2XkOfoxBA==
+X-Received: by 2002:a05:6808:1315:b0:45c:8045:89a6 with SMTP id 5614622812f47-46366656081mr863730b6e.59.1770797653214;
+        Wed, 11 Feb 2026 00:14:13 -0800 (PST)
+Received: from james-x399.localdomain (71-218-105-26.hlrn.qwest.net. [71.218.105.26])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-4636b093ee1sm624852b6e.14.2026.02.11.00.14.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Feb 2026 00:14:12 -0800 (PST)
+From: James Hilliard <james.hilliard1@gmail.com>
+To: linux-gpio@vger.kernel.org
+Cc: James Hilliard <james.hilliard1@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexander Stein <linux@ew.tq-group.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
+Date: Wed, 11 Feb 2026 01:13:49 -0700
+Message-ID: <20260211081355.3028947-1-james.hilliard1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/8] dt-bindings: thermal: Add qcom,qmi-cooling yaml
- bindings
-To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, rui.zhang@intel.com,
- lukasz.luba@arm.com, konradybcio@kernel.org, mani@kernel.org,
- casey.connolly@linaro.org, amit.kucheria@oss.qualcomm.com,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- manaf.pallikunhi@oss.qualcomm.com
-References: <20260127155722.2797783-1-gaurav.kohli@oss.qualcomm.com>
- <20260127155722.2797783-3-gaurav.kohli@oss.qualcomm.com>
- <20260128-whispering-caracal-of-respect-a26638@quoll>
- <36706481-2549-4716-8e6d-0e4db42591a2@oss.qualcomm.com>
- <546faeda-d896-403c-a449-5c9b0cd7159e@kernel.org>
- <17474333-bb82-49d7-bc04-45ab21095c38@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <17474333-bb82-49d7-bc04-45ab21095c38@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264646-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[1.145.78.96:email];
+	TAGGED_FROM(0.00)[bounces-264648-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,glider.be,kernel.org,ew.tq-group.com,vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,2a300000:email]
-X-Rspamd-Queue-Id: 7FA341221AE
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[jameshilliard1@gmail.com,devicetree@vger.kernel.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email]
+X-Rspamd-Queue-Id: 1C2131221E5
 X-Rspamd-Action: no action
 
-On 11/02/2026 08:37, Gaurav Kohli wrote:
-> 
-> 
-> On 2/8/2026 3:36 PM, Krzysztof Kozlowski wrote:
->> On 29/01/2026 13:06, Gaurav Kohli wrote:
->>>
->>> On 1/28/2026 4:57 PM, Krzysztof Kozlowski wrote:
->>>> On Tue, Jan 27, 2026 at 09:27:16PM +0530, Gaurav Kohli wrote:
->>>>> The cooling subnode of a remoteproc represents a client of the Thermal
->>>>> Mitigation Device QMI service running on it. Each subnode of the cooling
->>>>> node represents a single control exposed by the service.
->>>>>
->>>>> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
->>>>> ---
->>>>>    .../bindings/remoteproc/qcom,pas-common.yaml  |  6 ++
->>>>>    .../bindings/thermal/qcom,qmi-cooling.yaml    | 72 +++++++++++++++++++
->>>>>    2 files changed, 78 insertions(+)
->>>>>    create mode 100644 Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->>>>> index 68c17bf18987..6a736161d5ae 100644
->>>>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->>>>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->>>>> @@ -80,6 +80,12 @@ properties:
->>>>>          and devices related to the ADSP.
->>>>>        unevaluatedProperties: false
->>>>>    
->>>>> +  cooling:
->>>>> +    $ref: /schemas/thermal/qcom,qmi-cooling.yaml#
->>>>> +    description:
->>>>> +      Cooling subnode which represents the cooling devices exposed by the Modem.
->>>> I do not see the reason why you need 3 (!!!) children here. Everything
->>>> should be folded here.
->>>
->>>
->>> Thanks Krzysztof for review.
->>>
->>> Each subsystem may support multiple thermal mitigation devices through
->>> remote TMD service.
->>>
->>> Because of this multiplicity, introduced separate binding file.
->>
->> This explains nothing. Subsystem does not matter for the binding. My
->> comment stays.
->>
-> 
-> thanks for this suggestion, we will use qcom,pas-common.yaml to define 
-> bindings and avoid creating new file.
+Document the gpio-aggregator virtual GPIO controller with a dedicated
+schema and compatible string.
 
-I asked not to create any children nodes.
+Also extend the GPIO AGGREGATOR MAINTAINERS entry to cover the new
+binding file.
 
-> 
->>>
->>>>> +    unevaluatedProperties: false
->>>>> +
->>>>>    required:
->>>>>      - clocks
->>>>>      - clock-names
->>>>> diff --git a/Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml b/Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..0dd3bd84c176
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml
->>>>> @@ -0,0 +1,72 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>> +
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/thermal/qcom,qmi-cooling.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Qualcomm QMI based thermal mitigation (TMD) cooling devices
->>>>> +
->>>>> +maintainers:
->>>>> +  - Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
->>>>> +
->>>>> +description:
->>>>> +  Qualcomm QMI-based TMD cooling devices are used to mitigate thermal conditions
->>>>> +  across multiple remote subsystems. These devices operate based on junction
->>>>> +  temperature sensors (TSENS) associated with thermal zones for each subsystem.
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    enum:
->>>>> +      - qcom,qmi-cooling-cdsp
->>>>> +      - qcom,qmi-cooling-cdsp1
->>>> What are the differences between them?
->>>
->>>
->>> Some SOcs support multiple CDSP/NSP instances. Each instance requires
->>> it's own
->>>
->>> compatible string to distinguish.
->>
->> Why? What are the differences?
->>
->> I will not ask third time, but just respond with NAK.
->>
-> 
-> For Leman's, we have multiple NSP subsystem to support compute and each 
-> instance has it's own firmware and separate hardware like below for cdsp
-> 
-> Below data is from lemans.dtsi for cdsp subsystem:
-> -> remoteproc@26300000 {
-> ->  remoteproc@2a300000 {
-> 
-> That's why, we have introduced different compatible to distinguish 
-> multiple instance, but we can also solve this with single compatible
+Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+---
+Changes v1 -> v2:
+  - Add MAINTAINERS entry for the new binding file
+  - Rewrite binding description without "this binding" wording
+    (suggested by Krzysztof Kozlowski)
+  - Drop unrelated consumer node from the example
+    (suggested by Krzysztof Kozlowski)
+  - Add gpio-line-names usage to the example to show named aggregated
+    lines
+---
+ .../bindings/gpio/gpio-aggregator.yaml        | 54 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 55 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-aggregator.yaml
 
-You did not answer the question what are the differences, so I am not
-going to ask third time. NAK.
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-aggregator.yaml b/Documentation/devicetree/bindings/gpio/gpio-aggregator.yaml
+new file mode 100644
+index 000000000000..e7df266a3d8f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/gpio-aggregator.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/gpio-aggregator.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: GPIO aggregator controller
++
++maintainers:
++  - Alexander Stein <linux@ew.tq-group.com>
++
++description:
++  GPIO aggregator forwards selected GPIO lines from one or more GPIO
++  controllers and exposes them as a virtual GPIO controller.
++
++properties:
++  compatible:
++    const: gpio-aggregator
++
++  "#gpio-cells":
++    description: Specifies the line offset and GPIO flags.
++    const: 2
++
++  gpios:
++    description: Array of GPIOs to aggregate
++    minItems: 1
++    maxItems: 32
++
++  gpio-controller: true
++
++  gpio-line-names:
++    minItems: 1
++    maxItems: 32
++
++required:
++  - compatible
++  - "#gpio-cells"
++  - gpio-controller
++  - gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    gpio_agg: gpio-aggregator {
++        compatible = "gpio-aggregator";
++        #gpio-cells = <2>;
++        gpio-controller;
++        gpios = <&gpio0 3 GPIO_ACTIVE_LOW>,
++                <&gpio3 1 GPIO_ACTIVE_HIGH>;
++        gpio-line-names = "modem-reset", "modem-enable";
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 13b291d801bc..e1bf9a37f87f 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -10789,6 +10789,7 @@ M:	Geert Uytterhoeven <geert+renesas@glider.be>
+ L:	linux-gpio@vger.kernel.org
+ S:	Supported
+ F:	Documentation/admin-guide/gpio/gpio-aggregator.rst
++F:	Documentation/devicetree/bindings/gpio/gpio-aggregator.yaml
+ F:	drivers/gpio/gpio-aggregator.c
+ 
+ GPIO IR Transmitter
+-- 
+2.43.0
 
-> with new dt property for each subsystem instance id. Please let us know 
-
-Instance IDs are not allowed, either. Please read writing bindings doc
-or slides from talks.
-
-Best regards,
-Krzysztof
 
