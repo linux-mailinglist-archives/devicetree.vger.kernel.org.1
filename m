@@ -1,100 +1,100 @@
-Return-Path: <devicetree+bounces-264600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264601-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +HVDEqIWjGnegQAAu9opvQ
-	(envelope-from <devicetree+bounces-264600-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 06:41:54 +0100
+	id EPQEC/MWjGnegQAAu9opvQ
+	(envelope-from <devicetree+bounces-264601-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 06:43:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA09812161E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 06:41:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99230121663
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 06:43:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A36EC303E4AF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 05:41:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0C9D0308369A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 05:41:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2569834D901;
-	Wed, 11 Feb 2026 05:41:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2FD434D90E;
+	Wed, 11 Feb 2026 05:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CqOc8hZD";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WMfp9dRi"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nvKB0djT";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XKeFPB5i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99BC5346FC0
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 05:41:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45B4434321C
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 05:41:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770788512; cv=none; b=jMPzzWK8ili2gFQfNIvqxhmlXE6cUnboMzz3zryUBxL2BsGQMHeCF1QlAPN82prsvvTxIwD3j81sbT4GsFqAGG8QMiM+cQ9kjrrZzXk6Er38Xv1eS58o7VJxCr6HFaoXsgfhIvFIzeMFYNsbqpR8+w5k0tDWmWngKSm1NLirVT4=
+	t=1770788518; cv=none; b=WqDeKA4eirpRMSZxFTHJm9ypvW8wCCxgPedVGBFwfK9hF+qIG1DA5po1UnszC6VkKuNXRvx+D+XEIwpW4bSycmXR5j7HiwCK3c4dfdxO5DRi7UItNqGGb2X/DTLl7nykeB8cPu8SpQEWUZF2CJ+diTpkopjlENXbvrYy79Ts4Ss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770788512; c=relaxed/simple;
-	bh=62wE/dFO70wWM6jtNkIEjSDoZ/uTZDrsSnyLOGNH7AU=;
+	s=arc-20240116; t=1770788518; c=relaxed/simple;
+	bh=g1haGOpzNTfZvxTfyS5r1B8gJFPHElbpXRDKtM7KpV0=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=RQv+HDG1f23kLUxjqghOeRDqhcnQ8l1ZoxeoMz2rIn9MgYt37agARmQL9iV1cVfpOO4PIXseICZV/LIarjDSUF9Hm9bcfBfQaYzwLYWzOEnQ4Imje12RtKqPFADqmPSRWrfs/24Xx9E3NHgOZVDD99k5qLrPGvpo5LvLtkJE0tU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CqOc8hZD; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WMfp9dRi; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=s10mdiTQ651SA5ucAaeUT1o52P/HX07HLCfHHXNWryc0M/MCjCMKxtnCJNdDfAKMtwRyliiaZRP/yTabMzVM4yhBnfDPNxwzD1YdFUcUQGcsmi+CZQXOO6gTGoK5Y/mVa8D7cnJBwiYGkYzSCzi/C2T6BKpy8IdOkK4hEIhY+Fg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nvKB0djT; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XKeFPB5i; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61B2d2Bh2396523
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 05:41:49 GMT
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61ANo2JD3320512
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 05:41:56 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=3ukvPHoLd8R
-	ybKSkJJjyIW6Pfs0lLwz5oAOgnyruNtE=; b=CqOc8hZDMLTBxxbQqQK/WNgBngs
-	ZTY8mmVLI9SXpAr5LnLvwZTP2NAg4qHtYTy7ZgHwZff4eOPP9WhWn7mTO5VPSfpj
-	hOpieoOGOKOB+JRnVfgF1OBz9zUkUoJBvLhlKKASLrHRWd1ipmH5RXZ/NaddnSOy
-	dCW+AcpWGf6HGBO9bYPrWu8lQqx5bvVQubhUplD3+vQJlo7lsdHFdaEBneivmMpj
-	Yv4vUgBMZJBO+D9NPEMg59fgRJyn3a+XVF2f+QLWVxAB7bsZfzkUb5kBmC0lQ32F
-	YF7gnQ3mTLXoG2oXWZ/ESFLb1ERlzgUTNbESC2GdQ5awLijPXBH9TBMtO5g==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c88wqj2dd-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=ph+uPWKuRkv
+	Wsmnv4xYT3GHGVLy8gBuWsg0hQehtf58=; b=nvKB0djTtOt/LCEITHCE8njj8nf
+	kXQmEqXfyOqlvyGvgCdxK+B3OpLTDieNULoVoBQ9rbfFb6yjXkIkS9ACMYOxw9Yx
+	9dGY1guuoM7XRYvHXgaw5HCce6akWMqP98ltNyEGkQeP38kDZYKOxwjBhkV8OHe5
+	Qt8Sl5LxoMm+ymLMjZgg4t8YcB/+gVu2oVeU9zG8N2WQZQITNul/O3wfSFlTKDlu
+	9/j08UvxwOELwOC/RbzM+2yXSRe6GF1DhfJNJc/C7yE1ARTZwweFCfSjV3SZ3zsY
+	ukaBUsl2xQY9IT8/PT5S7HrBnd4t+Kjj7dRI+oqsuWuJk88r9chI8uA/4Ng==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c8epsgud5-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 05:41:49 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2a76f2d7744so18468125ad.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 21:41:49 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 05:41:56 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2aaf2ce5d81so37012495ad.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Feb 2026 21:41:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770788508; x=1771393308; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1770788515; x=1771393315; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3ukvPHoLd8RybKSkJJjyIW6Pfs0lLwz5oAOgnyruNtE=;
-        b=WMfp9dRiVnZCgsosKDWKRITeeRy0wV/YspOGPmYwTCjzkFIlyj6j5gkHR84Ja0XSLJ
-         1+U7M1TfCl7gE/gmgoI4+nUpVLIzMajdQFiWtWg5aVOBOkZIjOPaSdC3Xwlu5doqCAVw
-         +L0rZqo9L8oPnu+FCp9u3fjGgOWFrHI1wDyPN8SmIK4NxFcgGmSVDENSAPBKE756Z9CD
-         9LZLjtXA8+lU1bWtwpWXQo2gy4Ut4yc/SEBQKj7KHFBKDcZ2EfaD4wzm2yFrw0pSvt1G
-         iduASRkKztUAcB4sZg1kZWTStX2N/OShrJ+pFYbG+tzgLkdCOveU90nnqeCMQiBr6XoZ
-         1j6w==
+        bh=ph+uPWKuRkvWsmnv4xYT3GHGVLy8gBuWsg0hQehtf58=;
+        b=XKeFPB5ive6W32s5BjIdieD5mjHyqGOP82FfPXg4EBtdpJWoeERVzAK7sczfnPmgZ0
+         9WBUKaa/ofJ/GdG3ad4lWa+LoAtIVOvsW6NiK7xzlbv27B3stMBJMMOx70qhmNLOpDTC
+         0jTewyzl/sRgCtm1V65G0dlPh8liJA64K4sTJPh6JCIl/HjIp+0v1cyuD5gFBXq/JP5q
+         bXTyiAYEsSVG4qXiGghRywbUodGmDd+B/z3D9J64P+5UAT6qJFUei/5KghznoLyNuxx5
+         FWdV2+dFyqC821Y/f0ZwfL+9T9vAHxzHxRK3TaYgpwvYdHoghH3jSu9vO+gU3h3A+mwY
+         Hy6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770788508; x=1771393308;
+        d=1e100.net; s=20230601; t=1770788515; x=1771393315;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=3ukvPHoLd8RybKSkJJjyIW6Pfs0lLwz5oAOgnyruNtE=;
-        b=w6Iw1LpKeOhUn03EoL3jd8TR1rZ10ub6J1mOn1MzmhAMMWkrqzb8XlPlOF/0xVCtHL
-         LTXct0M1eoypVMf+vtQxgXJbK93EEYG84+w+IFD/jUx9yIyyxS+gn5C9mk7qcgLJ+SDg
-         yTVbQjPrJ9qcawMq3VnsEzdfD9POcp7OwImz2onjwUprEip2r/lUR7S+72hIewNtosE9
-         csc+CpcMi3w+Vyd1kCSxOE/3WpmeEFQdCOLv9I0MXePIeIwYN6LD3nn8o4Y0Fcx9QX81
-         ntTi9zOvV41OJQZQ7G0CceLY7KZxuewEwZ5fknnH88+HfsiEP0zFpWhzSFaXNfEKMedy
-         boRw==
-X-Forwarded-Encrypted: i=1; AJvYcCXr1LjKxvW0rvCa8oXwlrIc0zeaP2txhILuv6E0coIQu884B+2k5XWktXFj0ps9ybtPBo6Cs0d9d4PJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw69EQssIRsQds5QE76Xed3Fzur5sREHp6GwjuGjSI2lnJ2OwSk
-	PNHWZblKZKvv4vAmbh85nBnhGqpW6sH/wGoSpdxqtInu5ZgMNr2nghnJ/ZvyCP7I3HdSkyEeQ8B
-	7ek202+/ralG0INxyR9vzNIRXkIext3l7ymVIrZK81HC+fPOiY5+JJGN2NHCDWOpG
-X-Gm-Gg: AZuq6aIMUH2Rsev+fZPsmWfJkAaSCsq3fma4JOBg4WlTJJLvVIH8LrLEf+FFlEnJZrH
-	qP6czHEo4oZVunzfBfXAnQvCHPOia3XGFZxy+Atm89xdOE3gUmEe5V9oI4RdjXQzN5oLBww4Nv2
-	fSRSSnHf8a9KbEfx0DvY0jQ8MHk9V5heOxe0f6bZdsMLFc++OKVmQ+cvlzvn+aJ6+vxGJMeLziW
-	8szHJwSkUG9CFjQ7VenMLVl17IWRoxi81FVHyKqB1MAfHauHCHrb2M88dEeq6/xWRUvj82TUv8l
-	hj2hOKZCRnJurpzAudDpw4jWPc6LbNuT8ADoNR4GveuphKEv16jG0qCxuaGba43VozVjk+lV8YD
-	g6NI3z4ge+g7efxnyIyK/PmPz6VHWbl+ZHg5GsxVxZ2MFkv3LCiXePWGX
-X-Received: by 2002:a17:903:2f08:b0:2a0:9fc8:a98b with SMTP id d9443c01a7336-2a95181196fmr166691945ad.40.1770788508445;
-        Tue, 10 Feb 2026 21:41:48 -0800 (PST)
-X-Received: by 2002:a17:903:2f08:b0:2a0:9fc8:a98b with SMTP id d9443c01a7336-2a95181196fmr166691725ad.40.1770788507959;
-        Tue, 10 Feb 2026 21:41:47 -0800 (PST)
+        bh=ph+uPWKuRkvWsmnv4xYT3GHGVLy8gBuWsg0hQehtf58=;
+        b=jzNQWqqOZK4tVWud5qJgq+INgoYmIjRYCs3azRPo2LQQUynBDdz2xAUZDrgp6odAil
+         kZkZ23Gen0qk+w/9TdZXp++RNstDMnbyzV3tKgP+RBspYtStnBR39yGlgFn4nsmZ4IpP
+         lcagjQJxKItqqbTZfVvW7Rske0HiQh+X+RvTbVsB/Umz0RuX/YCaPiWRcArYbmApaHPe
+         qY6mUDnGyNZBb7ZnLAC/PObUF8yvWUhkJQxz+zGKqiV8sa1lIra8abRqbwn8JJR21QBy
+         dD2xT5ZeYJmUN6pRpxJjbg2ejTZLNGar8ymwe23fUxTdQaR9KNClvWxXiEoLPw3SDbB1
+         3AmA==
+X-Forwarded-Encrypted: i=1; AJvYcCW9JKx8+6ve166kUBBnfGctj4Xfgy4JY/QfGotigZmHtzrhgTrXJRsFiz6PX7fBVnCr8/pmQ846yrIn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxacwFIvgGP66eIsKArIJTbh3QCA1WRL0w22zezq9P30wxrIzp3
+	XZlPJlTA/3Jh3z/8VLr30rybwbO9Lj/b9z+U2AR3dga9jmWjPOcHeFQ7o801RHVQdWdMqeGH2Ga
+	VlglWvyGs9VP1iNVRAVyjQjbCbWjG7dspSHdJ/ZqkCA0M4+zMn25USKyCGqDBqSFz
+X-Gm-Gg: AZuq6aKcWTx1HLXse4BabDnYoe8cR8ME3phYcFuDLSPOz1vHZB6VJHF35Ef88UPoM5I
+	h/eGdKG4rdxLebwtPxbm9D7V+39CyWS/c5UMvPKYmPAGvt8s/kZdDnFVlTx5ghL12IXmQo+CGOP
+	kBnU2PHtYRfSC83JZoEjRoWE/9SGAexfCw3riP56U0FoH3UuyJExGpW3+Zd3GrKH4A7nDsqqcwm
+	dcU8njHcwjWOBfS5vRwV7iIdwAY0TsrLz8mphGJObHQ65oiWkliOia6jvQguaw78Fz2iXhdWvpg
+	2JyfljLHtJoapYXejRahwYAR2aHno5kcqYtqFQtkMMTjl00clwzDknMuRBu3B88tcGprdLuk5G8
+	wnGvLOc9GdXDuqBOdhrnh3XC2WeI11odfAh0PIrzvpnRvMTgZYqSKZVTM
+X-Received: by 2002:a17:903:2c03:b0:2aa:d618:96b5 with SMTP id d9443c01a7336-2ab275b3f42mr16451055ad.11.1770788515163;
+        Tue, 10 Feb 2026 21:41:55 -0800 (PST)
+X-Received: by 2002:a17:903:2c03:b0:2aa:d618:96b5 with SMTP id d9443c01a7336-2ab275b3f42mr16450705ad.11.1770788514678;
+        Tue, 10 Feb 2026 21:41:54 -0800 (PST)
 Received: from hu-vjitta-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ab2986f0adsm9932875ad.26.2026.02.10.21.41.42
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ab2986f0adsm9932875ad.26.2026.02.10.21.41.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Feb 2026 21:41:47 -0800 (PST)
+        Tue, 10 Feb 2026 21:41:54 -0800 (PST)
 From: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
 To: robin.murphy@arm.com, will@kernel.org, joro@8bytes.org, robh@kernel.org,
         dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
@@ -102,11 +102,12 @@ To: robin.murphy@arm.com, will@kernel.org, joro@8bytes.org, robh@kernel.org,
         krzk+dt@kernel.org, prakash.gupta@oss.qualcomm.com,
         vikash.garodia@oss.qualcomm.com
 Cc: iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Frank Li <Frank.Li@nxp.com>,
+        devicetree@vger.kernel.org,
+        Charan Teja Kalla <charan.kalla@oss.qualcomm.com>,
         Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
-Subject: [PATCH v8 1/3] of: Add convenience wrappers for of_map_id()
-Date: Wed, 11 Feb 2026 11:10:31 +0530
-Message-Id: <20260211054033.2796660-2-vijayanand.jitta@oss.qualcomm.com>
+Subject: [PATCH v8 2/3] of: factor arguments passed to of_map_id() into a struct
+Date: Wed, 11 Feb 2026 11:10:32 +0530
+Message-Id: <20260211054033.2796660-3-vijayanand.jitta@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260211054033.2796660-1-vijayanand.jitta@oss.qualcomm.com>
 References: <20260211054033.2796660-1-vijayanand.jitta@oss.qualcomm.com>
@@ -117,28 +118,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjExMDA0NCBTYWx0ZWRfX48wSud5dJ8Q7
- bx2swD0a3I6DJjTHkcbtp30tokzPlap+P/oB7s9+oEcEc16zGcntEE/2MmgS3TlgLZ+iCkzt5jx
- dsoBaTg9wDNO9aUjfyVFVV7CBb5ALwoyuBWBJOBGvnyv2g26Nxqfd3jP+ODbbLLShaRQWjxP72r
- DX/fvRD/6ZeP89byy+zIjT8s41iFaLkdL9/Ei1T1hYrC3gDcnpUpjhNEVRDgy9ccd1XcHYeO2v6
- rNECepz6NZzmJeXqdjDaEGW4KBd3tx3iRVCMSG1VBn1Ar/Sjl110P183TZ61HeotgLaxfRDxub1
- 1dTT5QiOI1JqfHHqeAz/to34vA7P4uICeW3pFlPlVT4WK8FuKpRS9QeYbbOxueOMYXpaKBxU71G
- 3MHmt9dPKvjL/xRAYKIsHRLHzlWdVa6P/KB8cPSRMCGfo3fXFWTk8MxIvULn53WnPaQ5YYhq1eX
- A26BgMEuHHvQ9DmqJLg==
-X-Proofpoint-GUID: vYDYrCaBQCV5dZ9BomD7Agk2sEZFfaiW
-X-Authority-Analysis: v=2.4 cv=W7Q1lBWk c=1 sm=1 tr=0 ts=698c169d cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjExMDA0NCBTYWx0ZWRfX9aCqPSS4+Tch
+ 2unyjL5y6IesH/x20sw2AX5ki9lhbFzPm+GDPS8d/QYiUekfCbt0vzejTCWIT+fDRKHiyuIa+ra
+ La4prp7zqWxWvHCKvwF3nkUmQn5Hyxph2Etmtm5BcPQiR9Q8DBCJzSpJoZxN1zcXeHikYsYYOSM
+ riLcuAFx9+7h4cQnJiy0d/mV9rFam5tiyuxgbN4/e4fs0WpgdDlpAhEM2w370sK0xpWXk01mguY
+ TGrDB0GE8ihwrLYXDYig1Zl7rU2vJTcsecYQHlcyzqmCQi0UVIUpOUfpJx13InbtgT2FwW3anxZ
+ 0mDkHNOiREqAiJ7FLO9FC0F7l7GgQN8xphEmLjBfTlB9TeKRY5SxHYzI3xLGqLoEcIXw1hdu1Db
+ CMmAZBT86ZamjPRXNJAHPsJ94oBJn2XTZsnbM6hdcNUv1GH1uEFmnw8fxqN9BCvRBuhehHypBoK
+ cIyL29IjO4uutFIorMw==
+X-Proofpoint-ORIG-GUID: Q4958kAuQ7MdKpB07gqdyaolHL0K_OSX
+X-Proofpoint-GUID: Q4958kAuQ7MdKpB07gqdyaolHL0K_OSX
+X-Authority-Analysis: v=2.4 cv=I/Vohdgg c=1 sm=1 tr=0 ts=698c16a4 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
  a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=7CQSdrXTAAAA:8
- a=VwQbUJbxAAAA:8 a=8AirrxEcAAAA:8 a=EUspDBNiAAAA:8 a=wrOk0Nx1w3hKWqktZycA:9
- a=1OuFwYUASf3TG4hYMiVC:22 a=a-qgeE7W1pNrGK8U0ZQC:22 a=ST-jHhOKWsTCqRlWije3:22
-X-Proofpoint-ORIG-GUID: vYDYrCaBQCV5dZ9BomD7Agk2sEZFfaiW
+ a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=EUspDBNiAAAA:8
+ a=VwQbUJbxAAAA:8 a=I3pr03k2-ahTGQre_g8A:9 a=uG9DUKGECoFWVXl0Dc02:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-02-10_03,2026-02-10_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015
- suspectscore=0 adultscore=0 malwarescore=0 impostorscore=0 priorityscore=1501
+ clxscore=1015 impostorscore=0 suspectscore=0 priorityscore=1501 bulkscore=0
+ malwarescore=0 spamscore=0 lowpriorityscore=0 phishscore=0 adultscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602110044
 X-Rspamd-Server: lfdr
@@ -148,7 +148,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -156,177 +156,254 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-264600-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-264601-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[vijayanand.jitta@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,arm.com:email,qualcomm.com:email,qualcomm.com:dkim,nxp.com:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: BA09812161E
+X-Rspamd-Queue-Id: 99230121663
 X-Rspamd-Action: no action
 
-From: Robin Murphy <robin.murphy@arm.com>
+From: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
 
-Since we now have quite a few users parsing "iommu-map" and "msi-map"
-properties, give them some wrappers to conveniently encapsulate the
-appropriate sets of property names. This will also make it easier to
-then change of_map_id() to correctly account for specifier cells.
+Change of_map_id() to take a pointer to struct of_phandle_args
+instead of passing target device node and translated IDs separately.
+Update all callers accordingly.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+Subsequent patch will make use of the args_count field in
+struct of_phandle_args.
+
+Suggested-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
 Signed-off-by: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
 ---
- drivers/cdx/cdx_msi.c                    |  3 +--
- drivers/iommu/of_iommu.c                 |  4 +---
- drivers/irqchip/irq-gic-its-msi-parent.c |  2 +-
- drivers/of/irq.c                         |  3 +--
- drivers/pci/controller/dwc/pci-imx6.c    |  6 ++----
- drivers/pci/controller/pcie-apple.c      |  3 +--
- drivers/xen/grant-dma-ops.c              |  3 +--
- include/linux/of.h                       | 14 ++++++++++++++
- 8 files changed, 22 insertions(+), 16 deletions(-)
+ drivers/iommu/of_iommu.c              |  2 +-
+ drivers/of/base.c                     | 37 +++++++++++++--------------
+ drivers/pci/controller/dwc/pci-imx6.c |  8 +++++-
+ drivers/pci/controller/pcie-apple.c   |  4 ++-
+ drivers/xen/grant-dma-ops.c           |  2 +-
+ include/linux/of.h                    | 21 ++++++++++-----
+ 6 files changed, 44 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/cdx/cdx_msi.c b/drivers/cdx/cdx_msi.c
-index 91b95422b263..63b3544ec997 100644
---- a/drivers/cdx/cdx_msi.c
-+++ b/drivers/cdx/cdx_msi.c
-@@ -128,8 +128,7 @@ static int cdx_msi_prepare(struct irq_domain *msi_domain,
- 	int ret;
- 
- 	/* Retrieve device ID from requestor ID using parent device */
--	ret = of_map_id(parent->of_node, cdx_dev->msi_dev_id, "msi-map", "msi-map-mask",
--			NULL, &dev_id);
-+	ret = of_map_msi_id(parent->of_node, cdx_dev->msi_dev_id, NULL, &dev_id);
- 	if (ret) {
- 		dev_err(dev, "of_map_id failed for MSI: %d\n", ret);
- 		return ret;
 diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-index 6b989a62def2..a511ecf21fcd 100644
+index a511ecf21fcd..d255d0f58e8c 100644
 --- a/drivers/iommu/of_iommu.c
 +++ b/drivers/iommu/of_iommu.c
-@@ -48,9 +48,7 @@ static int of_iommu_configure_dev_id(struct device_node *master_np,
+@@ -48,7 +48,7 @@ static int of_iommu_configure_dev_id(struct device_node *master_np,
  	struct of_phandle_args iommu_spec = { .args_count = 1 };
  	int err;
  
--	err = of_map_id(master_np, *id, "iommu-map",
--			 "iommu-map-mask", &iommu_spec.np,
--			 iommu_spec.args);
-+	err = of_map_iommu_id(master_np, *id, &iommu_spec.np, iommu_spec.args);
+-	err = of_map_iommu_id(master_np, *id, &iommu_spec.np, iommu_spec.args);
++	err = of_map_iommu_id(master_np, *id, &iommu_spec);
  	if (err)
  		return err;
  
-diff --git a/drivers/irqchip/irq-gic-its-msi-parent.c b/drivers/irqchip/irq-gic-its-msi-parent.c
-index a832cdb2e697..b30d0dc0a1aa 100644
---- a/drivers/irqchip/irq-gic-its-msi-parent.c
-+++ b/drivers/irqchip/irq-gic-its-msi-parent.c
-@@ -179,7 +179,7 @@ static int of_pmsi_get_msi_info(struct irq_domain *domain, struct device *dev, u
+diff --git a/drivers/of/base.c b/drivers/of/base.c
+index 57420806c1a2..6c3628255908 100644
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -2102,8 +2102,11 @@ int of_find_last_cache_level(unsigned int cpu)
+  * @id: device ID to map.
+  * @map_name: property name of the map to use.
+  * @map_mask_name: optional property name of the mask to use.
+- * @target: optional pointer to a target device node.
+- * @id_out: optional pointer to receive the translated ID.
++ * @arg: of_phandle_args structure,
++ *	which includes:
++ *	np: pointer to the target device node
++ *	args_count: number of arguments
++ *	args[]: array to receive the translated ID(s).
+  *
+  * Given a device ID, look up the appropriate implementation-defined
+  * platform ID and/or the target device which receives transactions on that
+@@ -2117,21 +2120,21 @@ int of_find_last_cache_level(unsigned int cpu)
+  */
+ int of_map_id(const struct device_node *np, u32 id,
+ 	       const char *map_name, const char *map_mask_name,
+-	       struct device_node **target, u32 *id_out)
++	       struct of_phandle_args *arg)
+ {
+ 	u32 map_mask, masked_id;
+ 	int map_len;
+ 	const __be32 *map = NULL;
  
- 	struct device_node *msi_ctrl __free(device_node) = NULL;
+-	if (!np || !map_name || (!target && !id_out))
++	if (!np || !map_name || !arg)
+ 		return -EINVAL;
  
--	return of_map_id(dev->of_node, dev->id, "msi-map", "msi-map-mask", &msi_ctrl, dev_id);
-+	return of_map_msi_id(dev->of_node, dev->id, &msi_ctrl, dev_id);
+ 	map = of_get_property(np, map_name, &map_len);
+ 	if (!map) {
+-		if (target)
++		if (arg->np)
+ 			return -ENODEV;
+ 		/* Otherwise, no map implies no translation */
+-		*id_out = id;
++		arg->args[0] = id;
+ 		return 0;
+ 	}
+ 
+@@ -2173,18 +2176,15 @@ int of_map_id(const struct device_node *np, u32 id,
+ 		if (!phandle_node)
+ 			return -ENODEV;
+ 
+-		if (target) {
+-			if (*target)
+-				of_node_put(phandle_node);
+-			else
+-				*target = phandle_node;
++		if (arg->np)
++			of_node_put(phandle_node);
++		else
++			arg->np = phandle_node;
+ 
+-			if (*target != phandle_node)
+-				continue;
+-		}
++		if (arg->np != phandle_node)
++			continue;
+ 
+-		if (id_out)
+-			*id_out = masked_id - id_base + out_base;
++		arg->args[0] = masked_id - id_base + out_base;
+ 
+ 		pr_debug("%pOF: %s, using mask %08x, id-base: %08x, out-base: %08x, length: %08x, id: %08x -> %08x\n",
+ 			np, map_name, map_mask, id_base, out_base,
+@@ -2193,11 +2193,10 @@ int of_map_id(const struct device_node *np, u32 id,
+ 	}
+ 
+ 	pr_info("%pOF: no %s translation for id 0x%x on %pOF\n", np, map_name,
+-		id, target && *target ? *target : NULL);
++		id, arg->np ? arg->np : NULL);
+ 
+ 	/* Bypasses translation */
+-	if (id_out)
+-		*id_out = id;
++	arg->args[0] = id;
+ 	return 0;
  }
- 
- static int its_pmsi_prepare(struct irq_domain *domain, struct device *dev,
-diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-index f374d8b212b8..ddd046de70de 100644
---- a/drivers/of/irq.c
-+++ b/drivers/of/irq.c
-@@ -817,8 +817,7 @@ u32 of_msi_xlate(struct device *dev, struct device_node **msi_np, u32 id_in)
- 	 * "msi-map" or an "msi-parent" property.
- 	 */
- 	for (parent_dev = dev; parent_dev; parent_dev = parent_dev->parent) {
--		if (!of_map_id(parent_dev->of_node, id_in, "msi-map",
--				"msi-map-mask", msi_np, &id_out))
-+		if (!of_map_msi_id(parent_dev->of_node, id_in, msi_np, &id_out))
- 			break;
- 		if (!of_check_msi_parent(parent_dev->of_node, msi_np))
- 			break;
+ EXPORT_SYMBOL_GPL(of_map_id);
 diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-index a5b8d0b71677..bff8289f804a 100644
+index bff8289f804a..74fc603b3f84 100644
 --- a/drivers/pci/controller/dwc/pci-imx6.c
 +++ b/drivers/pci/controller/dwc/pci-imx6.c
-@@ -1144,8 +1144,7 @@ static int imx_pcie_add_lut_by_rid(struct imx_pcie *imx_pcie, u32 rid)
+@@ -1139,12 +1139,18 @@ static int imx_pcie_add_lut_by_rid(struct imx_pcie *imx_pcie, u32 rid)
+ {
+ 	struct device *dev = imx_pcie->pci->dev;
+ 	struct device_node *target;
++	struct of_phandle_args iommu_spec = { .args_count = 1 };
+ 	u32 sid_i, sid_m;
+ 	int err_i, err_m;
  	u32 sid = 0;
  
  	target = NULL;
--	err_i = of_map_id(dev->of_node, rid, "iommu-map", "iommu-map-mask",
--			  &target, &sid_i);
-+	err_i = of_map_iommu_id(dev->of_node, rid, &target, &sid_i);
+-	err_i = of_map_iommu_id(dev->of_node, rid, &target, &sid_i);
++	err_i = of_map_iommu_id(dev->of_node, rid, &iommu_spec);
++	if (!err_i) {
++		target = iommu_spec.np;
++		sid_i = iommu_spec.args[0];
++	}
++
  	if (target) {
  		of_node_put(target);
  	} else {
-@@ -1158,8 +1157,7 @@ static int imx_pcie_add_lut_by_rid(struct imx_pcie *imx_pcie, u32 rid)
- 	}
- 
- 	target = NULL;
--	err_m = of_map_id(dev->of_node, rid, "msi-map", "msi-map-mask",
--			  &target, &sid_m);
-+	err_m = of_map_msi_id(dev->of_node, rid, &target, &sid_m);
- 
- 	/*
- 	 *   err_m      target
 diff --git a/drivers/pci/controller/pcie-apple.c b/drivers/pci/controller/pcie-apple.c
-index 2d92fc79f6dd..a0937b7b3c4d 100644
+index a0937b7b3c4d..e1d4b37d200d 100644
 --- a/drivers/pci/controller/pcie-apple.c
 +++ b/drivers/pci/controller/pcie-apple.c
-@@ -764,8 +764,7 @@ static int apple_pcie_enable_device(struct pci_host_bridge *bridge, struct pci_d
+@@ -755,6 +755,7 @@ static int apple_pcie_enable_device(struct pci_host_bridge *bridge, struct pci_d
+ {
+ 	u32 sid, rid = pci_dev_id(pdev);
+ 	struct apple_pcie_port *port;
++	struct of_phandle_args iommu_spec = { .args_count = 1 };
+ 	int idx, err;
+ 
+ 	port = apple_pcie_get_port(pdev);
+@@ -764,10 +765,11 @@ static int apple_pcie_enable_device(struct pci_host_bridge *bridge, struct pci_d
  	dev_dbg(&pdev->dev, "added to bus %s, index %d\n",
  		pci_name(pdev->bus->self), port->idx);
  
--	err = of_map_id(port->pcie->dev->of_node, rid, "iommu-map",
--			"iommu-map-mask", NULL, &sid);
-+	err = of_map_iommu_id(port->pcie->dev->of_node, rid, NULL, &sid);
+-	err = of_map_iommu_id(port->pcie->dev->of_node, rid, NULL, &sid);
++	err = of_map_iommu_id(port->pcie->dev->of_node, rid, &iommu_spec);
  	if (err)
  		return err;
  
++	sid = iommu_spec.args[0];
+ 	mutex_lock(&port->pcie->lock);
+ 
+ 	idx = bitmap_find_free_region(port->sid_map, port->sid_map_sz, 0);
 diff --git a/drivers/xen/grant-dma-ops.c b/drivers/xen/grant-dma-ops.c
-index c2603e700178..1b7696b2d762 100644
+index 1b7696b2d762..5f1d6540049a 100644
 --- a/drivers/xen/grant-dma-ops.c
 +++ b/drivers/xen/grant-dma-ops.c
-@@ -325,8 +325,7 @@ static int xen_dt_grant_init_backend_domid(struct device *dev,
+@@ -325,7 +325,7 @@ static int xen_dt_grant_init_backend_domid(struct device *dev,
  		struct pci_dev *pdev = to_pci_dev(dev);
  		u32 rid = PCI_DEVID(pdev->bus->number, pdev->devfn);
  
--		if (of_map_id(np, rid, "iommu-map", "iommu-map-mask", &iommu_spec.np,
--				iommu_spec.args)) {
-+		if (of_map_iommu_id(np, rid, &iommu_spec.np, iommu_spec.args)) {
+-		if (of_map_iommu_id(np, rid, &iommu_spec.np, iommu_spec.args)) {
++		if (of_map_iommu_id(np, rid, &iommu_spec)) {
  			dev_dbg(dev, "Cannot translate ID\n");
  			return -ESRCH;
  		}
 diff --git a/include/linux/of.h b/include/linux/of.h
-index be6ec4916adf..824649867810 100644
+index 824649867810..9d72d76f909d 100644
 --- a/include/linux/of.h
 +++ b/include/linux/of.h
-@@ -1457,6 +1457,20 @@ static inline int of_property_read_s32(const struct device_node *np,
- 	return of_property_read_u32(np, propname, (u32*) out_value);
+@@ -463,7 +463,7 @@ bool of_console_check(const struct device_node *dn, char *name, int index);
+ 
+ int of_map_id(const struct device_node *np, u32 id,
+ 	       const char *map_name, const char *map_mask_name,
+-	       struct device_node **target, u32 *id_out);
++	       struct of_phandle_args *arg);
+ 
+ phys_addr_t of_dma_get_max_cpu_address(struct device_node *np);
+ 
+@@ -929,7 +929,7 @@ static inline void of_property_clear_flag(struct property *p, unsigned long flag
+ 
+ static inline int of_map_id(const struct device_node *np, u32 id,
+ 			     const char *map_name, const char *map_mask_name,
+-			     struct device_node **target, u32 *id_out)
++			     struct of_phandle_args *arg)
+ {
+ 	return -EINVAL;
+ }
+@@ -1458,17 +1458,24 @@ static inline int of_property_read_s32(const struct device_node *np,
  }
  
-+static inline int of_map_iommu_id(const struct device_node *np, u32 id,
-+				  struct device_node **target, u32 *id_out)
-+{
-+	return of_map_id(np, id, "iommu-map", "iommu-map-mask",
-+			 target, id_out);
-+}
+ static inline int of_map_iommu_id(const struct device_node *np, u32 id,
+-				  struct device_node **target, u32 *id_out)
++				  struct of_phandle_args *arg)
+ {
+-	return of_map_id(np, id, "iommu-map", "iommu-map-mask",
+-			 target, id_out);
++	return of_map_id(np, id, "iommu-map", "iommu-map-mask", arg);
+ }
+ 
+ static inline int of_map_msi_id(const struct device_node *np, u32 id,
+ 				struct device_node **target, u32 *id_out)
+ {
+-	return of_map_id(np, id, "msi-map", "msi-map-mask",
+-			 target, id_out);
++	struct of_phandle_args msi_spec = { .np = *target, .args_count = 1 };
++	int ret;
 +
-+static inline int of_map_msi_id(const struct device_node *np, u32 id,
-+				struct device_node **target, u32 *id_out)
-+{
-+	return of_map_id(np, id, "msi-map", "msi-map-mask",
-+			 target, id_out);
-+}
++	ret = of_map_id(np, id, "msi-map", "msi-map-mask", &msi_spec);
++	if (!ret) {
++		*target = msi_spec.np;
++		*id_out = msi_spec.args[0];
++	}
 +
++	return ret;
+ }
+ 
  #define of_for_each_phandle(it, err, np, ln, cn, cc)			\
- 	for (of_phandle_iterator_init((it), (np), (ln), (cn), (cc)),	\
- 	     err = of_phandle_iterator_next(it);			\
 -- 
 2.34.1
 
