@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-264722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264723-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cItEKbxVjGnblAAAu9opvQ
-	(envelope-from <devicetree+bounces-264722-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:11:08 +0100
+	id EOYYDwlWjGnblAAAu9opvQ
+	(envelope-from <devicetree+bounces-264723-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:12:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22C9612334D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:11:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CFF0123387
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 11:12:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C2A7C30099A7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:11:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2AA5E301DE30
+	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 10:12:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23A1D367F20;
-	Wed, 11 Feb 2026 10:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CBA1352C42;
+	Wed, 11 Feb 2026 10:12:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e4pgoLse"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q8oilSJT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97B4F366827;
-	Wed, 11 Feb 2026 10:11:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 392DD33F8C8
+	for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 10:12:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770804661; cv=none; b=sO3mTu62tj7v0PxnGbMJP08n8zmTdinPOXkCZYpZQqfvpb66OEL9RdAHZzV6wlCj1Vht6jYMqpV3UOVpmXVQHlD1QJMDE03wIP9lYcoWpWSzUGuyl2VBrDAd6jauYwEFU8wkkzZbJXPwhiWMsSQNlUiaYmB0a0u6mxHLt6h6wFQ=
+	t=1770804742; cv=none; b=sw2yYIMLZdGsed7OL+oi++ZW/aHC8JcCZsmp2y04YV+U32xf1ClxzjOvxb5kaOvyVEI1XHpdYUy8l3dEItn7gq2vF32HuhnJMtiAn9N+a6EZUfxTle8yvxH5fXTAjURHRh5yaAQTlBuOTqrGMXAEpZUSKxyZjt/e0VMrL77Rex0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770804661; c=relaxed/simple;
-	bh=UI3E6x+qfcV5tPmVFvSkSbIbzmQTV/SjwJS4GDRttx0=;
+	s=arc-20240116; t=1770804742; c=relaxed/simple;
+	bh=diywIlvbx1oj2gqAg7hLMlQHaByyJeSC8PBmAl9boa8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X1I0Q/L21pPzZ/WxoQS0IKSDUSC25TEx3GN3dQKv1OEXeySenomM7Wtk8B03CCIYt+pxMFDRFts9+5DETpwueNZ9FZ2SRmfH8em5ahsTMmM9zBJeE01tYe61/YqToyArSGe1SA61diGHuUp7Ng96qaY53xXeGG4Run513GfYAAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e4pgoLse; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8356C4CEF7;
-	Wed, 11 Feb 2026 10:10:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kQeI720i67WwieqfhmvQSdy+lXBy6SLJsEZl1UE8HpbXZ42yUNTtCuDbb6echLcdNoNLmffWfOC0c8iv1Lk1pBo9EFSF56rGWD/zyB3BSIK9O8qVTjHlBmG98bHj4yNdvoJmhMaVRFobeemrZKRu7dDXVS0CcT/zgcBa2ez4JWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q8oilSJT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D765DC4CEF7;
+	Wed, 11 Feb 2026 10:12:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770804661;
-	bh=UI3E6x+qfcV5tPmVFvSkSbIbzmQTV/SjwJS4GDRttx0=;
+	s=k20201202; t=1770804742;
+	bh=diywIlvbx1oj2gqAg7hLMlQHaByyJeSC8PBmAl9boa8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=e4pgoLseg5C5+K3tWOCNyR7uXq74n7f/pWOybfIzI0rxRKucuAWNt/CtdfQWNZ8Rv
-	 t312U50B/r0md/ZymQyL6jdmGb/TX8mrD+I0wr+HoYPLlaoinWTb76zFzG2QTuEJ2D
-	 o+FYIAJrdmJrGfI/1/gf3BLzRmGsYTMMiEZnOiD+i0NW9cRsSZmuxruJw9chxQhAMc
-	 vjFlcjylMRmB37iWZl//bQJqzBoybYztc+o01UPN57HNsCG4tofy2syc833pkNlHe3
-	 2FHVulrNCkIYvhULNBJCdOiosmtjKmEI0/BZkGageSrS+fLqNMW7IjO54GetYZTvrs
-	 uqmNUuu4Pn+Ug==
-Message-ID: <6f97c68d-0236-4d04-8199-768ecee7c4dd@kernel.org>
-Date: Wed, 11 Feb 2026 11:10:56 +0100
+	b=q8oilSJTn8/tsUrjCfCW3dl1SbxB9gNw9m1taFVvMeivbwBf9x16NjMSx/0FCmd0+
+	 p7//T7M6X8PXRGSHFLcAH6i4FwLSTSNKWwfovmtDnph71C9PFeU9EDi9xNk/lcdDr3
+	 +79vC04y0LOfG4nmS1vdmORBY1MZMeeGUpU+0IHCNbXVNJwMrX1JMwbh4y9LzXNgvx
+	 PMhmYZrSBrxXaCtY3W+lt7gvyWXQgAgV0mm66WOcCew5YxR7gOl5ip0PSxwPQ42GNJ
+	 HV7+5RKIsVauun8Yk5GWFJ23/tQpeT5/k+4tNfxvtb6f6kLuVDXPfTd8WMOM+fysRx
+	 ZhisT3kcmng1Q==
+Message-ID: <a04d9603-2bf2-4e61-9fde-e484f9c777af@kernel.org>
+Date: Wed, 11 Feb 2026 11:12:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,21 +53,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: light: vcnl4000: add Capella
- CM36686 and CM36672P
-To: Erikas Bitovtas <xerikasxx@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20260210-cm36686-v1-0-aef68dd46ad4@gmail.com>
- <20260210-cm36686-v1-1-aef68dd46ad4@gmail.com>
- <20260211-sceptical-frog-of-revolution-fc3cf4@quoll>
- <b95d7a49-6191-4d85-b725-4a941505b40d@gmail.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: display: panel: add YAML schema for
+ LXD M9189A
+To: Michael Tretter <m.tretter@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Rouven Czerwinski <r.czerwinski@pengutronix.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ kernel@pengutronix.de
+References: <20260210-drm-panel-ek79007ad3-v3-0-cd2974d56937@pengutronix.de>
+ <20260210-drm-panel-ek79007ad3-v3-2-cd2974d56937@pengutronix.de>
+ <20260211-practical-coyote-of-awe-0dc0a4@quoll>
+ <aYxUpoWETYB9vaK2@pengutronix.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,7 +115,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <b95d7a49-6191-4d85-b725-4a941505b40d@gmail.com>
+In-Reply-To: <aYxUpoWETYB9vaK2@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -121,19 +123,19 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264722-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-264723-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,linaro.org,gmail.com,linux.intel.com,suse.de,ffwll.ch,vger.kernel.org,lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -142,51 +144,45 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 22C9612334D
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8CFF0123387
 X-Rspamd-Action: no action
 
-On 11/02/2026 11:07, Erikas Bitovtas wrote:
+On 11/02/2026 11:06, Michael Tretter wrote:
+> On Wed, 11 Feb 2026 07:28:55 +0100, Krzysztof Kozlowski wrote:
+>> On Tue, Feb 10, 2026 at 12:22:33PM +0100, Michael Tretter wrote:
+>>> From: Rouven Czerwinski <r.czerwinski@pengutronix.de>
+>>>
+>>> The LXD M9189A is a 1024x600 MIPI-DSI panel.
+>>>
+>>> Signed-off-by: Rouven Czerwinski <r.czerwinski@pengutronix.de>
+>>> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+>>
+>> I do not see any improvements.
 > 
+> Changes in v3:
+> - [...]
+> - Use panel-common.yaml as base
+> - [...]
 > 
-> On 2/11/26 8:49 AM, Krzysztof Kozlowski wrote:
->>
->> There was CM36686 v1 and v2, so I do not understand versioning here.
->> Also, lack of any changelog.
->>
->> And how is it supposed to work for us? Try yourself:
->>
->>   $ b4 diff 20260210-cm36686-v1-1-aef68dd46ad4@gmail.com
->>   Could not find lower series to compare against.
-
-Look here.
-
->>
->> Please implement previous feedback.
->>
->> Best regards,
->> Krzysztof
->>
+> This change addresses your comment on v2:
 > 
-> Since I am making changes to the existing driver instead of creating a new one,
-> I introduced a new patch series. As I mentioned in the cover letter, cm36686 is
-> fully compatible with vcnl4040, so instead of creating a new binding, I create a
-> fallback compatible for the device. I probably should have named this patch
-> series something else.
+>>> You should reference proper panel schema in top-level.
+> 
+> I changed the schema to include panel-common.yaml as a $ref. Did I
+> misunderstand the comment?
+> 
+> What else needs improvement?
+> 
+> I am confused and any guidance would be appreciated.
+> 
 
-That's fine, but that's v3 of previous patches. Your work was to add
-CM36686 support. How you do it, evolves, but patchset/work is one
-continuous work. When you rework approach next time, you also start from
-v1? And then you go back to previous solution of new driver it will jump
-from v1 to v3?
+In such case I find it helpful when you go via previous comments and
+ack/acknowledge each of them. It is not necessary if you implement all
+of them, but that did not happen here. BTW, I stopped review on the
+first missing review feedback to save myself time.
 
-> As for the previous feedback, I added the subject prefix and removed the
-> redundant phrasing.
-
-And how do I know it if there is no changelog with list of changes? Look
-how many patches is here:
-https://lore.kernel.org/linux-devicetree/
 
 Best regards,
 Krzysztof
