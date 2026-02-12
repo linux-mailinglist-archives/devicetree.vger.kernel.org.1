@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-264945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264946-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id izeyLqaVjWnd4wAAu9opvQ
-	(envelope-from <devicetree+bounces-264945-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 09:56:06 +0100
+	id sKK+B/OVjWnd4wAAu9opvQ
+	(envelope-from <devicetree+bounces-264946-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 09:57:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07C1312B96D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 09:56:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75C7912B992
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 09:57:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 909533014971
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:56:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CDB463049716
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:56:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 074302D8792;
-	Thu, 12 Feb 2026 08:56:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E9BA2DCF71;
+	Thu, 12 Feb 2026 08:56:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="2CJ/TI6f"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="aae3Ubgu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3245E2E414;
-	Thu, 12 Feb 2026 08:56:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908C32DB7A1
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 08:56:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770886563; cv=none; b=WKgZaDoJ7YPjy6BmeoCMWFsEW9DBrMYowNJkOtinv9tKNezSIjzJUmmkfcmVNzsXuZlAPo9dTU8qV74/A6xmcGgv+LjiJ38jPCaxUyHYfQYDLXDWAUejpHHhMX4VVTV+YFhQ0GfI/dOSgFU0FT+xc+pNh46z5ioeMwQKsGmzGeE=
+	t=1770886611; cv=none; b=AzSzpan0JJbu684UcLwmuWZetvTsZBPpCFO1XMwYV6OK6rufgJAAX8lr4oPa8dSiPVx92GNbBVCN3jQJos6ZPieLPnbdnAFxFH/JXmy978kyrvuUVVbpIHVGi6IJikLX7d2+R3aKH9ke9I7u2uZafO43PK7WUnL+bKUlZDlySk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770886563; c=relaxed/simple;
-	bh=tfvyWbx4/2UO4RM4LomfCL3Hut60ss0HfqHmEuIgIi8=;
+	s=arc-20240116; t=1770886611; c=relaxed/simple;
+	bh=hDOH8RiBsoa8QQWGvfBy20zXdX9QAWhlDlGbkxYJQGk=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=ui7IMNdalwCPu85Kvd/kGl6/zwZXLPRacC+a2EooHsVQNqECMO1Rp6fEqJBaZ8H3vtDfjQmMJbBFRf0QbL/FjiDT8usL8DZJ2L43YzK/1eBWCdV8L+kCav6loSO5rBnIl3OQmXVeKNt2ErFPMo4yeQiA0MMiojMAl0dF9XyaMXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=2CJ/TI6f; arc=none smtp.client-ip=185.246.84.56
+	 MIME-Version:Content-Type; b=AxpwtKmEi8xaXQagrlm7DpmgpvagkcQ8OMHfCNNYF3KgxH2nGz2+bYLbvvm9dVQ+hB/WxWpkpZUawGJaDUbY0qWrt6QcE68KknHZI86mPjmJlKNWn7fXAIDkZOgMRENMQVRNJXlX1NAg63/SFEtboTPVgQj5zfk8oI50271NBVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=aae3Ubgu; arc=none smtp.client-ip=185.171.202.116
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 76FB01A0E3C;
-	Thu, 12 Feb 2026 08:55:58 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id DCAAEC23D90;
+	Thu, 12 Feb 2026 08:56:56 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3D1B5606CA;
-	Thu, 12 Feb 2026 08:55:58 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1CAE7119714B5;
-	Thu, 12 Feb 2026 09:55:52 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 95A38606CA;
+	Thu, 12 Feb 2026 08:56:47 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E9DAD11971525;
+	Thu, 12 Feb 2026 09:56:44 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770886557; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=DDNoaaEfwFU2nsc6h/m5gjTCggQVtwmmt0PAUYALLLU=;
-	b=2CJ/TI6fiRTYG0KHUKvYNl6G6WRWp2Ju5O8x+MeEy28lPp2fe4Yaij4SinsOddzSwh6Qyz
-	kTpDbA6FmHQABgb67N/JnGY4kHXoxiy9wS8ZcAOaet6MKsBQfFNAiSlp5epGwWRDvoTFzP
-	JjOw6iFDPUQMfp7wOxc/xPdY2nkldA9hJh2RTqB59HNK5d6KToqZM8G0WMAA4KZVScLkBG
-	GcFYFgPfYJTyAT4677Tob6xvQYDNeojpu0D8vKuRNEO+tO/el1Hn9P+0ViYjwL19vPWNTF
-	d+iJSaXUiBtGLHhTtmxlLSl47EG+6OG7NKkcKEYv7zUuhndA+mNV8NVAmOUIVg==
+	t=1770886606; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=0ldWFSho7cgvpQS3kw2NKCZEi+w6HLlHSMQtO3IQVz4=;
+	b=aae3UbguXIhpWxFQQi5HZqISIhQQGKUqxkIEuntQznrTF4HZSltGDmKmvpmLvY+vPwYccj
+	5wAj/jFC3tDuBq+AZpd9eyHLMR0GZwpWGsKGyLGQbfQVu1BX4/+T54klACgBF1DLGxfWXw
+	4AjJHrQpukpjOqwat6Moc7G1GVsUOn14tPwMtIt6A0ln3LgfKt9zAUNgx4rTqANZ9JHsd+
+	ngJQkUf0qz0VfbQIb4hOEkwoddhYkBNNJMUAdzovu3syPptpSLabzi3WF10KLHwuHvwD4y
+	GpLfs+Nw/CPeEbtDQ0u/IC+B6WM7setVLyWqh8ckdKSoWAfWx/TEsfGycX+SFA==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
 To: Frank Li <Frank.Li@nxp.com>
 Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
@@ -61,14 +61,15 @@ Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
   linux-mtd@lists.infradead.org,  devicetree@vger.kernel.org,
   imx@lists.linux.dev,  linux-arm-kernel@lists.infradead.org,
   linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] ARM: dts: imx: move NAND properties under nand@0 node
-In-Reply-To: <20260211-imx25_nand_dtb_warnings-v1-3-2f06aaa1e3b9@nxp.com>
-	(Frank Li's message of "Wed, 11 Feb 2026 16:19:41 -0500")
+Subject: Re: [PATCH 2/3] RM: dts: imx: set #size-cells to 0 to align with
+ nand-controller.yaml
+In-Reply-To: <20260211-imx25_nand_dtb_warnings-v1-2-2f06aaa1e3b9@nxp.com>
+	(Frank Li's message of "Wed, 11 Feb 2026 16:19:40 -0500")
 References: <20260211-imx25_nand_dtb_warnings-v1-0-2f06aaa1e3b9@nxp.com>
-	<20260211-imx25_nand_dtb_warnings-v1-3-2f06aaa1e3b9@nxp.com>
+	<20260211-imx25_nand_dtb_warnings-v1-2-2f06aaa1e3b9@nxp.com>
 User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Thu, 12 Feb 2026 09:55:52 +0100
-Message-ID: <878qcyz6g7.fsf@bootlin.com>
+Date: Thu, 12 Feb 2026 09:56:44 +0100
+Message-ID: <873436z6er.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,17 +85,17 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[nod.at,ti.com,kernel.org,pengutronix.de,gmail.com,lists.infradead.org,vger.kernel.org,lists.linux.dev];
-	TAGGED_FROM(0.00)[bounces-264945-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264946-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[nod.at,ti.com,kernel.org,pengutronix.de,gmail.com,lists.infradead.org,vger.kernel.org,lists.linux.dev];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -106,20 +107,23 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 07C1312B96D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,bootlin.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,devicetree.org:url,bb000000:email]
+X-Rspamd-Queue-Id: 75C7912B992
 X-Rspamd-Action: no action
 
-On 11/02/2026 at 16:19:41 -05, Frank Li <Frank.Li@nxp.com> wrote:
+On 11/02/2026 at 16:19:40 -05, Frank Li <Frank.Li@nxp.com> wrote:
 
-> Move NAND flash properties under the nand@0 node and place partition
-> properties under the partitions node.
+> Set #size-cells to 0 to align with nand-controller.yaml. Remove the
+> redundant empty clock-names property from the NFC node.
 >
-> Fix below CHECK_DTBS warnings:
-> arch/arm/boot/dts/nxp/imx/imx27-apf27.dtb: nand-controller@d8000000 (fsl,imx27-nand): Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'clocks', 'nand-bus-width', 'nand-ecc-mode', 'nand-on-flash-bbt', 'partition@0', 'partition@100000', 'partition@180000', 'partition@200000', 'partition@280000', 'partition@300000', 'partition@800000' were unexpected)
->         from schema $id: http://devicetree.org/schemas/mtd/mxc-nand.yaml
+> Fix below CHECK_DTBS warning:
+> arch/arm/boot/dts/nxp/imx/imx25-karo-tx25.dtb: nand-controller@bb000000 (fsl,imx25-nand): #size-cells: 0 was expected
+>         from schema $id: http://devicetree.org/schemas/mtd/nand-controller.yam
 >
 > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+
+Besides the prefix which misses an "A",
 
 Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
