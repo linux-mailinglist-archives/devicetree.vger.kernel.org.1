@@ -1,193 +1,245 @@
-Return-Path: <devicetree+bounces-265109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265110-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GNWLCUXvjWlw8wAAu9opvQ
-	(envelope-from <devicetree+bounces-265109-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 16:18:29 +0100
+	id qGDNC9jvjWlw8wAAu9opvQ
+	(envelope-from <devicetree+bounces-265110-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 16:20:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C472412ED38
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 16:18:28 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44EF012ED86
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 16:20:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F3D80304F354
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:18:00 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3F5863003BFE
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:20:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACAB91D5CC6;
-	Thu, 12 Feb 2026 15:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA932AE78;
+	Thu, 12 Feb 2026 15:20:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="klC2+tU5"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="RVfT8uCL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011012.outbound.protection.outlook.com [52.101.70.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 856697E110;
-	Thu, 12 Feb 2026 15:18:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770909480; cv=none; b=M3aj0hF63O/9l2u7TyIL4kWGPPrpURuywcCZOb8EOGA1wZF7FXUnO5pC32GAyeE6fzs2563TPbR6FLZ7TPmtsOCa2rmgSvbQhYFGgtBzFg6hBLOHAOz+zbeTi+upqOIqIN/bq/NKk8NFVlLTYBEUTFks7xt9GwGCaG7Tg+P6PHM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770909480; c=relaxed/simple;
-	bh=GNWaPpbr53BU3Z840pm9s1F3R3YM8PUA8uCQhf9EXyk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=glkbaMrLkSkUZEuRob784FCaL61gftwxIWkBny/uTMt9oPSSuhypYVv4TG9LX0qYa1Dxk0EbM4R5O/oHr3wl+VJJR/K4gF7RjddA/nrRGgC2A6pgnLjyzVXC4aWp8Wmv1tHG9rQ0gKRJ9/WSjRPuD6ZInCgaffAOm+tlCcOU/jw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=klC2+tU5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C9A8C19425;
-	Thu, 12 Feb 2026 15:17:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770909480;
-	bh=GNWaPpbr53BU3Z840pm9s1F3R3YM8PUA8uCQhf9EXyk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=klC2+tU5ThyeaPGiln5kckSlgVK801hTcmdB64aKcQtluNwnGEb+N29aJ4mrAqWIg
-	 38Mm4pu/e7bYwLL0ujY6BYSMHD1nXV+t5CPpKSBrxFd4RX42863yQTuRcPpj6i+Nko
-	 TXHo/7Yy136kkxCE9uNU01qQSPefY8yMTu5xYVQ/hSjqqtsRhLRi8QbeVPw/VXUPqx
-	 3gpCSunUXMgOcb8B5nZDmmMWLmTOwnIlFrU6LMRu0daaCgmuTNTlO6xImpeni1QYJD
-	 DXVigqwGyL4IkzMlc4auTqqCPa04NruKsLZEpCPQ9tPHYhY4+wSL0+00bDXj3zFtoh
-	 TNjDhElNtAyEQ==
-Date: Thu, 12 Feb 2026 09:17:56 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 1/9] dt-bindings: usb: document the Renesas
- UPD720201/UPD720202 USB 3.0 xHCI Host Controller
-Message-ID: <7kkwkjnucx3cpvegilske2qd4u24vvjkykrljosi2uyknte4bz@3xvh57q5lpcv>
-References: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-0-5b79c5d61a03@linaro.org>
- <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-1-5b79c5d61a03@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 674A61F3B87;
+	Thu, 12 Feb 2026 15:20:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770909651; cv=fail; b=WQNroTIbHu8uUxrEJfKxrytCsmIcoQ46Z9Hl0yz6fHWnrmTuHreUtaKRAEWlCv7VIp3dItgynk3y8Je9oY29/LYiNlQLg8q88fwVEMlwAb+bzLGKljyuZoJgumiC24y39QahSX/1wQTMQdEiyOWpRznIbYvnWSiBFOvNWQvIiUQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770909651; c=relaxed/simple;
+	bh=qK6J/kXiP/FXLz9N56pYk+qApKZdOkYvpJnhYlglHEo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=f8Stv8JRr87nm29yP9mWeQjIkDmJJbfHfzF3qZjsxeB2fE/xFvRwwm9w4oOn7vhVEfobxkXejg5cn9vmZpfsigfHhJqL78+W9mpudpIIQrJHepgcTmhy37oaFqw3QZOY5ewpLCSySvEPFlC5Z6+X/K51ydND6z3Gl6wMM7ztlW8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=RVfT8uCL; arc=fail smtp.client-ip=52.101.70.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UGEkk8YQ+A7phLUM6hAtt0+29Fr+WFp44+2BxIwGf/ts8XHzRq/ChxNelpUirMQ1agDtZp4zA6/Fzj8Fkftc0GRP/WMtmBRS0rOL5H7TbFmxEalHb2Z1/A8BUGHAhBFw5FwQWLUwQG7HaagI8xqR1hm27aMU5ujFLdBdjlXi+iK623sF06SIYyWEclYLA0t/JNkI2BXbFMecAU55hitZ+02aRuQ+NtEVYP2uclzxm9APZmJhU9UqkI1fRZXoS17cYBUhIYrin+jEYEG5Mv2d1x1/3XhjE3HFJNJY6PwAgOo6vxUOBQiOZDOGjS6tPte/sj8KOuTun9Dr7emqHl8WSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SB6eU53g//86J2wUTSSYKSMyp7hY4YMlzrlBoagVufM=;
+ b=JA0CBgPvMoOsl+R7KSc57SvRbSG/hHppvJI9PqBku+vzIJBz188K2EEVDbU8f0oNnvhV1Q/1l8s/0HPbd481TwJ6LjV8MEa4R1a0jrw9IsoR1WHgKOAjks/E4pOtvc+DzEkI07KoOiZMmZqXwLGGyhzLoqE6dke5TN8vD2FTcGzbmJs4DZLpglwfSNC/h3jRXDH8XTvEuMZZlmfbQj3L9VtRUX4f6qbL9vEApen035HlB1f/slXaiSuof+630ctewAh5mmoW5J2Jx2GBM7U0nasvcJxXuQTY6Rjgn1NNYvYdyQl1ztqlGdzYox1kr8tVOzCX/WfmnzPzpGTVHG2LNA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SB6eU53g//86J2wUTSSYKSMyp7hY4YMlzrlBoagVufM=;
+ b=RVfT8uCLvjUtHGXvfnPgqozYgki24vNAHyQBiOqsp6BEBCzfbtDol21GZRQFQNdP0AhfY4L71pOZQcT2CK+p+TavteTJ6yl1WqS4rARci2AV0wNQxm5T4LT0x+M2ZvjH9iWNNDEiRFX6E5GzWhEIe2ClMx/Tb/ORYHynW+x98HI1hDZ7FzadjWd+9wdxexRl5PKR4Tvx1WdOV/z+uJBNyz7l5mk+SJIjz9QES1pzNiI+SBFHzGVlSq2gwQQUECzToFwpvA96On3wT/yHqLEOi7ULypkRZYv3L9lLUz79cPI0GJWjz798Phvnt6BeuvG1M0UfwSuf0tBFti8GrhXbPA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by DU7PR04MB11233.eurprd04.prod.outlook.com (2603:10a6:10:5b2::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.11; Thu, 12 Feb
+ 2026 15:20:45 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9587.010; Thu, 12 Feb 2026
+ 15:20:45 +0000
+Date: Thu, 12 Feb 2026 10:20:34 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: soc: imx: add fsl,aipi-bus and
+ fsl,emi-bus
+Message-ID: <aY3vwqvB5S4M-Vdq@lizhi-Precision-Tower-5810>
+References: <20260211221937.3752048-1-Frank.Li@nxp.com>
+ <20260212-divergent-gazelle-of-patience-0dd85c@quoll>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260212-divergent-gazelle-of-patience-0dd85c@quoll>
+X-ClientProxiedBy: BY3PR05CA0060.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::35) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-1-5b79c5d61a03@linaro.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DU7PR04MB11233:EE_
+X-MS-Office365-Filtering-Correlation-Id: 437b5a5c-52f6-4ad0-557a-08de6a4a4acb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|376014|1800799024|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?hyKAKInEPGMqccj6L5UyDz/FEDvlUAEOE59+t1UpmyC00IniDW8fNqA3GsQx?=
+ =?us-ascii?Q?h8oFT43AqudKl9S3fpTlSnge2aTnZ1zoHjdJjFKQWYTHVRcqQW/VR9OHOvbE?=
+ =?us-ascii?Q?yEQjVe80w+j+Z2w1S/zSnUPEZ9UJio/RKpE5tKJnOqT/oTgCgjWRbuwg71ZX?=
+ =?us-ascii?Q?F7CKnj+oisMteEMM0f4PscZt5/gEjBiUExWmUBn4e2q2sqz4FUnULA+zIBxr?=
+ =?us-ascii?Q?EbfI4Xf+92XMqmIbdOp7laa0ZgzwdowWGrcBu2li9jOO6XtrkW1Yr+D0zLDk?=
+ =?us-ascii?Q?0lUR+COYcn/dTiUz+ak8qxPBEoaZ9pn8bwsfZM1/ZR7kH25KH1xrygl6Fwpc?=
+ =?us-ascii?Q?+wFLr4c1XAF/8jtupihSUl0SnkE0izZ9Kvze5pz/hirBQQ0cnm5lf61Z2U8l?=
+ =?us-ascii?Q?54N6UHCKASJJ97PA7Lk+dGWDl4vfiF7bDtf1FSw8sZPaojzGLn6YhRflua6G?=
+ =?us-ascii?Q?yCw9vh93OF5GHc1iWQxqfo4ZRkFrZZ+uI22lksDapppGXXy58VdSh2KTtbkJ?=
+ =?us-ascii?Q?tVHNZ5sRCi31dO8T/K3GyCtyvedk/nfQqysFjSF7HQztiaa6rPpW8e1ceiLn?=
+ =?us-ascii?Q?x9mA/2DaTgRq+2qIXNwmobfOyXdEYu7gfoWZW/7GGwtpJ4ukp5oOqKUWreqJ?=
+ =?us-ascii?Q?ycC54Twd5MhBJaY3wY5+TqttT/2RRx+EDrW7WCRam+RKTnB+0kzcphf4zG5d?=
+ =?us-ascii?Q?jaPfwO/MU0zni90BisMCiIL1hTeSuk+p2qkbJiOiXyoWvL583DQRpJzQceZu?=
+ =?us-ascii?Q?/CsHiIGnTtCHakWj3a4UlYbDONaBrXpqLhYvAZA6uGDpUb695sMmaSj26fpN?=
+ =?us-ascii?Q?l+V/VLips+FvY/bIG6mKPr65skgJbs7NlLi6jt4RMHWqGA2lZQRvDosqqAoP?=
+ =?us-ascii?Q?mdw3worQa8Pl9NT8Yps+sCEHB0WzThCP7MRvIj9CdBF5yimnzTwssqJhtocV?=
+ =?us-ascii?Q?Zfg2t0+qKxfcGu56WUdsGtrGEBS6HgVWdLXSdTPFqVbSUf5bHLnbSs2w9392?=
+ =?us-ascii?Q?uwijY1G/KQXYsiD5QA3YOPDeCMrn/zN/vuUhonrNnQeg8H85FU3ssQxmodBl?=
+ =?us-ascii?Q?BVP6LR9h6BhGBuuoPZEWcwMqMpYi0I1722WFcrd8NONL4iKS7lJJazNPIunH?=
+ =?us-ascii?Q?8yGPUN0JisTThqqz8WMcqKNooxlvSMC4WUwZF+mIA2mVMEx7qDpCQYsTOvb0?=
+ =?us-ascii?Q?f1WZzJMXpdFv8HfSdYEK8jxNFL/Ji3tCoh1pZx8BZup5+sZWliy9sxSQb2U0?=
+ =?us-ascii?Q?dDRZlDUYLAjApn++J+ipNopHu2d8CytusZz+Om7kdFi1JtI1QhNfjM9nhWz3?=
+ =?us-ascii?Q?ZbZ0xHMi+NYNvCpDDv7Hx1HFUkZn7B+lUe28aLpJypN4x8cylCSQnVBbmbC3?=
+ =?us-ascii?Q?1rPGuKUJMmhTKDKvdsnA6bYiUId3Up88gM8qvmPIcoT4jKepUans+K10+ln/?=
+ =?us-ascii?Q?UFQd/xeA5kewNRNlRy4fIRxXiUrKhmR025mO+ebLT33+WGN3CjMxNJsuKZRP?=
+ =?us-ascii?Q?v7Z68FUcgE/lV6Oryrj0byD7NKVb004eCo2M6gce+Ei6LonVUhfklaWh+5hN?=
+ =?us-ascii?Q?tc7j/zKD0YlhXeVznm2XQN65LNG5id31wYuuzhZLiJPztBjYNcDA07nV1dnN?=
+ =?us-ascii?Q?Lc0LgfMG7SSyRf5j/O60YXY=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(1800799024)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?DrDafepX8yh3zNPfc/G2z8FTs9VSfD9JlLsiRZFZY8rYxUb8CUDF3N1L2Zeu?=
+ =?us-ascii?Q?Pix4zCYED36zTcuIZolCG7XA2eA2URuyLtS3ewCOtk7Td504IbBJW9RAcnZq?=
+ =?us-ascii?Q?JJLZ3T+fGjeffK9r7Px8wU7rT8Ce1IYg410hLTYrmGzINTtvWbziiBMfj4m/?=
+ =?us-ascii?Q?UHqHTXJ9keKrEbY5h5dhquEA4Gxkf5q6wlRiGJVMe2eyOR9i/9wiBsDj01d8?=
+ =?us-ascii?Q?vVeeIYGHutEB/g5dn23Ef+34I8tVqkYuMhWlPLzJcMT1u+ApTwyEdreWVVTf?=
+ =?us-ascii?Q?wvGIVT4pKIEN6PkIOE+siufCQ22wow/jBnatpDvLb9plevyprgJAm0fcTS1D?=
+ =?us-ascii?Q?7Vl2cUYfGg5U8a9cYaxn+4UN03aITyt1JPkZvuv+/Z0dpBBva1mPDv/ZZXli?=
+ =?us-ascii?Q?kbYAp3J+J1aIv6hSdKH3vFLpS35XeIt2P1xwKnvmDNgXVLZ1qp/GKkpUWZIc?=
+ =?us-ascii?Q?MCb6Z06aLtu4C4CHjBplsnomMF9HKKgwxBzy0tZDmoHAE8BAIEazKerCMddU?=
+ =?us-ascii?Q?9VvIcdZYTlPpJ/3CGpqw58G2XN4LKdJwJ8X/uQ3vaUrBVDeLrg/zTE+OqoAw?=
+ =?us-ascii?Q?dnXVWjhCtOsNVu9u2WZpKISDkuFhJMBJGFNIohY3b+oskWEFqT6kMGVTVWr0?=
+ =?us-ascii?Q?V7n8gh53P1ulOOdn/yfrEfU9uZt5IfIGXbvVUP4Ag0FBpVDp8fPo9aPZpK/m?=
+ =?us-ascii?Q?98jj8p2yL5W0PGOG7VlLDlzFVOIu39xoHK8hYZi6M/ltWRWwIny+pgTy3UMC?=
+ =?us-ascii?Q?H61Y0G6sKSmJi9c+Nu4QSAofjukTJ2NvNLCLqu3q8MoEXpe+8h6CiDCfICLc?=
+ =?us-ascii?Q?6uyhDIb455HMyNX4ChMGA1cArTsNvO/h3/K8BQ0gTtDO9ptfwIGKkE/+Wphc?=
+ =?us-ascii?Q?jV3SKEsqgRcnXEI8NJqpqO4ZkOK1m5W4NVXQ4NwuYLYJBq1VwymsOWOf0OGI?=
+ =?us-ascii?Q?COLMBS3uVtVB1TwTOCvSDRVjv5JLFGK/iZAoXl+624d2F4fu2VIHT9NJLVbm?=
+ =?us-ascii?Q?q2prgCLPQE7oovq4ebOgM/EpQLZKkcXyUto6fy2hLvYii6zZYL+g4uH1lvhO?=
+ =?us-ascii?Q?Kfi/LgsZ0qUlAjl+F23J+Qa9XvxhXU8yxdOA1k7toejSCH462anvjMjWf5I4?=
+ =?us-ascii?Q?/hAp86KoRja95iE1tHaff5Npm/zk8dq5IIMhFyeJmZt/pVOdxJMLUp4l+W6+?=
+ =?us-ascii?Q?COhofYjPJ36pp0deTlOblBT9P7K2sVkypVcV+Nbzw8AUF3nvO3G9CVVqoNMk?=
+ =?us-ascii?Q?CXxnddzBJ1cBGPwC6UQVQsiiZ9A8OBR5YEKalRE97H6bim5jkHqKQFSTgdSh?=
+ =?us-ascii?Q?KQuS9s5vJ1Jw897dl80lh7KBOMbUr8zIkSBgzih6S16+ABMOuuTjZsUFTH50?=
+ =?us-ascii?Q?A59RkxXzaWuGaaAUUu5goEWY9f9Phd0zV4SG2xHd9SEc4StJovdjHHcsqhB5?=
+ =?us-ascii?Q?vbjeHReY2W7l1hiF9QVxDnYCi6mqID+bOr+gHE/wQ4dnoqDN4zmxsx0XFxe6?=
+ =?us-ascii?Q?9+rcRtaET80QiC3MSoo90Ip4UNBK4Y9dFWnbBWFYVrPBIGGIFjikR5vAueIe?=
+ =?us-ascii?Q?iP9mpYrBBF8GPgWgItx0L25LgH7VTiBbtkR3okFZEfsUnKcKJDW5z32gMwbq?=
+ =?us-ascii?Q?cHeG6WldzR1mKAaGMoOkw7CghZlPYemIDJdfTSqGE5JiVqSk6qLlWoM0bH4V?=
+ =?us-ascii?Q?+BF97ZgWKmY8eMeM2SMFirPiV5sm1WztMjd+o8FXxJnvQm8p?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 437b5a5c-52f6-4ad0-557a-08de6a4a4acb
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2026 15:20:45.0531
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: u/dKzjBx7awl3SoUCkLmKUOtSV9OS0H8VLrr2BM6YyG08ZqrN69XJjiT0wlP6gZbaxrKKeKqJUqMNzR7e8AJ9g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU7PR04MB11233
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265109-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com,google.com,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: C472412ED38
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-265110-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+]
+X-Rspamd-Queue-Id: 44EF012ED86
 X-Rspamd-Action: no action
 
-On Fri, Feb 06, 2026 at 03:50:29PM +0100, Neil Armstrong wrote:
-> Document the Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller,
-> which connects over PCIe and requires specific power supplies to
-> start up.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  .../bindings/usb/renesas,upd720201-pci.yaml        | 61 ++++++++++++++++++++++
->  1 file changed, 61 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml b/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml
-> new file mode 100644
-> index 000000000000..34acee62cdd2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/renesas,upd720201-pci.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: UPD720201/UPD720202 USB 3.0 xHCI Host Controller (PCIe)
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +
-> +description:
-> +  UPD720201 USB 3.0 xHCI Host Controller via PCIe x1 Gen2 interface.
-> +  The UPD720202 supports up to two downstream ports, while UPD720201
-> +  supports up to four downstream USB 3.0 rev1.0 ports.
-> +
-> +properties:
-> +  compatible:
-> +    const: pci1912,0014
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  avdd33-supply:
-> +    description: +3.3 V power supply for analog circuit
-> +
-> +  vdd10-supply:
-> +    description: +1.05 V power supply
-> +
-> +  vdd33-supply:
-> +    description: +3.3 V power supply
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - avdd33-supply
-> +  - vdd10-supply
-> +  - vdd33-supply
-> +
-> +allOf:
-> +  - $ref: usb-xhci.yaml
-> +
-> +additionalProperties: false
+On Thu, Feb 12, 2026 at 12:59:45PM +0100, Krzysztof Kozlowski wrote:
+> On Wed, Feb 11, 2026 at 05:19:35PM -0500, Frank Li wrote:
+> > Add fsl,aipi-bus and fsl,emi-bus for i.MX1, i.MX2*.
+> >
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> >  Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
+> > index 00bbde203f598..4808065fc9115 100644
+> > --- a/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
+> > +++ b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
+> > @@ -26,8 +26,10 @@ select:
+> >      compatible:
+> >        contains:
+> >          enum:
+> > +          - fsl,aipi-bus
+> >            - fsl,aips
+> >            - fsl,emi
+> > +          - fsl,emi-bus
+> >            - fsl,spba-bus
+> >    required:
+> >      - compatible
+> > @@ -39,8 +41,10 @@ properties:
+> >    compatible:
+> >      items:
+> >        - enum:
+> > +          - fsl,aipi-bus
+> >            - fsl,aips
+> >            - fsl,emi
+> > +          - fsl,emi-bus
+>
+> Why exactly? There is already emi, although not in my next, so don't do
+> it per one compatible.
+>
+> https://lore.kernel.org/all/20260201011913.2419626-1-Frank.Li@nxp.com/
 
-I'm trying to hang a onboard_hub off this controller and #address-cells,
-#size-cells, and hub@ comes back as invalid children. 
+It is really old chips. some mx3/5 use fsl,emi. but imx2 use fsl,emi-bus.
+it is not used in current kernel source. Consider it is really old, over
+20 years, Just allow it to avoid CHECK_DTBS warning.
 
-I think this should be unevaluatedProperties instead.
+Frank
 
-Regards,
-Bjorn
-
-> +
-> +examples:
-> +  - |
-> +    pcie@0 {
-> +        reg = <0x0 0x1000>;
-> +        ranges = <0x02000000 0x0 0x100000 0x10000000 0x0 0x0>;
-> +        #address-cells = <3>;
-> +        #size-cells = <2>;
-> +        device_type = "pci";
-> +
-> +        usb-controller@0 {
-> +            compatible = "pci1912,0014";
-> +            reg = <0x0 0x0 0x0 0x0 0x0>;
-> +            avdd33-supply = <&avdd33_reg>;
-> +            vdd10-supply = <&vdd10_reg>;
-> +            vdd33-supply = <&vdd33_reg>;
-> +        };
-> +    };
-> 
-> -- 
-> 2.34.1
-> 
+>
+> >            - fsl,spba-bus
+> >        - const: simple-bus
+> >
+> > --
+> > 2.43.0
+> >
 
