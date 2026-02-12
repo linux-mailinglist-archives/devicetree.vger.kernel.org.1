@@ -1,210 +1,184 @@
-Return-Path: <devicetree+bounces-265177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265178-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AJQnJhsajmkX/gAAu9opvQ
-	(envelope-from <devicetree+bounces-265177-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:21:15 +0100
+	id QIYzBp0bjmlK/gAAu9opvQ
+	(envelope-from <devicetree+bounces-265178-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:27:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38AD61303B2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:21:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87B4A1303F8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:27:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9A7BF30EC156
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:20:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 200C130360AF
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:27:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6208285C98;
-	Thu, 12 Feb 2026 18:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DFA927E054;
+	Thu, 12 Feb 2026 18:27:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eP37YKbL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cZo/kQZT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 725FB284B54
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 18:20:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D2027B340
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 18:27:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770920427; cv=none; b=MLj4tUsZ2kZ/d10wky+UyZK9nctvavnnEwE99JRfwp+4fwvNB9YKfi59G+RehgBXfSMsdrxjS3HxZf57QJzwH1Do1KIN1DCG9SkUMYMY9kKg70TzTJkthiUoeWiLQfUM/b4VFbzGfXzR4ufUazou4RFUS2n5sna6vF5rW6zro2g=
+	t=1770920856; cv=none; b=hjJ7lLGx/QBr2/GGEw+omyYN2Hj/HSKXjzyefioVGFn62aR1EKk/4ZoxNU5q49ySfgCIHhsxsTWXT2lU8+2Ovmg2ztVmjdj7D1DftkAumFp/LhxUx8yP7SNKc7R/u8JJnI4rwgMb7X7zYApOFouunNjBBNhXWKqpC6l6G/xdogY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770920427; c=relaxed/simple;
-	bh=j7w5W5n+1tnAj9tyIzUZDSwh/ga/Vo6JWcfZq1R2EOo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=J3n+dct81hy6AhetdxE9uG5Xk8JblV8Yv7EF0gKNl6KlPYvgc7b3/HdZImZtGaIx4oM1JWkfjPSh9PUsksK7GaBQHQnv5lW05Hi++3l9f+RdYkK6hfyCIcA5Skr27FVc1Ee36fZ6tKPqR6KPBUtf3TY6UIm6wzLUw4knQT9v+n0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eP37YKbL; arc=none smtp.client-ip=209.85.221.53
+	s=arc-20240116; t=1770920856; c=relaxed/simple;
+	bh=ufmEDOIfuDt3CbFMJGieDgc3OFPQ2BpzxMovoK9k9II=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ufs9eBZEcx45aWCVxl+LJ5ndKgaWK6GR07ohH1QM+Ymzd3u3ad/h6aH0g9nc7b4jND16LuDBArVeDCFo2Isth5krvYfuyHpTW+ynd6DvhpygqZpp85jqUJv0zoDhMLmFqMrzmOyD5S4txCz9pq7UeUZRCvhEQQJc1inBnoly+wU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cZo/kQZT; arc=none smtp.client-ip=209.85.160.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-43638a3330dso138489f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 10:20:26 -0800 (PST)
+Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-506a1b23c05so1732401cf.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 10:27:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770920425; x=1771525225; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YJKm78yJdUZ0qsK3Qh4mVjVC+cGTgJke+yjUKqEIW6U=;
-        b=eP37YKbLcXwbqsBS55aAyL5g40PkfHB5KgNca2CmAW9OweLh9uD2D8TH14n4NKSovb
-         3mCb5SN/rT0gtUSoz69WXYtQ8snZMjx6Qjttk6MZnhydxYKBDw+vKKP/z/sthfK0S7Ot
-         T1Tsp22Rjwg+0pm/F1PgVRps0Z2Ujrug5Gq+wg4knZJhyRQ/U+hnDgc1eJYEd8lfGrz2
-         nQD1FuVyuoIoRcJJDyaWh0FF9AA3RJXPnEMzoc0f8OaLPhmVAS4WbBDFM8nqSsaZpDP6
-         CgWFAqXzIMt8znVZeEqUFSqI3WVIFN4oZvwFMq4SRju0ZLUWdF/US8s5x722JmSmMr7x
-         jEzA==
+        d=gmail.com; s=20230601; t=1770920854; x=1771525654; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=CRTCx5otqsXIbaqSTlPHxkL1toAAMDZa7bOrLqMbOPc=;
+        b=cZo/kQZTjS2vr5q1bFg8Vzkcsh4BkVL182YtD2u7NDBGXtyKIwaHmSJlDp90L0nIL6
+         Zn87QmHrSsapG9WjxiPa9LtqJ4dPMNVlhCwxGbGXuLC+vPtu7RFCl+yzN021OXz7dB5X
+         MMV8cITtg3Z8Vm5WVNakufIUctf75pGKbgr0kCAAitQZlk/sppz8zE/gcRfi4UYlyn1f
+         N6qDfFizVLeiKtsXlzS9DuyiOYifLxHLXwyH5O95trf19M0b2HSDdIyewu+6VESi6+Bw
+         8ktw982Z4Cw7X6GsIyYsrEofeTgiFI7XxswkQYh91xKt6N+TSiEbWrGoaEsiR8hxY0dx
+         qs9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770920425; x=1771525225;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=YJKm78yJdUZ0qsK3Qh4mVjVC+cGTgJke+yjUKqEIW6U=;
-        b=KhdpJGad4TbIfdEbwmJTT2XETxDgjCghfouxPVE0pLGM6ilQU18+EWROluu41J95Vw
-         k7Pqf74K25C+avptzgmJwMSJObD+gYifzl1L/UMqq2jY8IarNyIUG0K5kS9zYKQISFf4
-         ICrktVcatrnjGEwrfDd3H742q0TyTNJrB4pGJYmqKHtxz0lqix4McHtzc32xS98X37EZ
-         bkYD6N5a3WvjzoxgcaVonUiCtclvdNkGkL72waqN1/eXOwSHQaUedMvDhdv4QtLMXgY3
-         7DUlP8AsUoRrwArVBZ93fadT0Ylq+xi/XQKo/jT7bVpVWJwdTR9JGZZ8+4iGS3FPWAiR
-         hMTg==
-X-Forwarded-Encrypted: i=1; AJvYcCXU5wckk36eMKvldQ6OZ4LUdOnF54mz1eiQThMb5B1JBUtGhaBoPaLbnpyDmNXv2r2ACq7Wz+EQVSy+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+V9NSC+L8CPnh1p+m6Py9IwN6nAEYgjGMl/Bqci20y+QBntoX
-	kP92OhYEcugNGqiPG5ghneL0JA7xcdRzuUArhu+TYAUzVYKnuNVq2Jhh
-X-Gm-Gg: AZuq6aLwHWaT+te9hc9dcEv+409b7uHeC5f8/nI/7GAC7Zb+CbjbDj8UefWNCPiW02/
-	TBZhEBuM94dh34heakqhGxuur6vUc63xNPAwxhLAWsRBI95KpEE8PRNnrvu/fXqyLsB1XWvbRcG
-	T8SRp1L8iVEGVGnEgswoT7c01j5Tu0VG3rFb/3CypvhVdiufLoCog4tKdINzslCqr5OgT0mefhN
-	M3F+mEfPO0U6FemhcxYl6KYJgVH5eItcvzEFhVFgIHRE5OzT9Q7exPBh6fr0+hdBaOV7KV+lqeu
-	+lEGwveLfSIln793I+xMLeo6H6N7O4bWHeDAvPxtoYmNeviqeAenDcQ+xUhMK55bK0EPAoYAZZo
-	u7n9p/YiU5y6PZN78fBNZmizF1Gs/XvLEFPLzqCUmhznxnajwdfVNX3PCnZ2eCbdraNUvrRfQ06
-	B9k/1tTEpqoUzHueiZNAKZ7mWuY4v5obwSsnNSbpw7iPMRHxcxDXA8z/jYb8SbcfnI
-X-Received: by 2002:a05:6000:178f:b0:431:656:c73a with SMTP id ffacd0b85a97d-4378ac7e289mr6007987f8f.31.1770920424821;
-        Thu, 12 Feb 2026 10:20:24 -0800 (PST)
-Received: from db07.UM6P.local ([196.200.180.25])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43783dfc2b0sm13239933f8f.21.2026.02.12.10.20.22
+        d=1e100.net; s=20230601; t=1770920854; x=1771525654;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CRTCx5otqsXIbaqSTlPHxkL1toAAMDZa7bOrLqMbOPc=;
+        b=qILLmXxXaGmsKA72dDK3u7FQLWGUbUyOuuj/t1T/g/QlDtDkgoIO2NroAyasmbPlpR
+         oGvq7m/HKNhg7hKPBVHLvy8PI/qp71wPdGNzbC2GrRPCz1aokJBW2UejrEMmeq8hZd2x
+         QvTxescD7YBpACUS1qvTunlJBSiS4LSy/tsTOd/2ZT0k7wZf5kHddHATmIGaaKHKEoCs
+         QojipK/xVtt9PsACu6C+n/FU4uSd0/BJT/41nskL10u8zGaCcEVWjDMnRtAJhQCIgldo
+         AHU0ZrFbUU0F/Rc16bNFj+OyZ4znmTfU/oRNpUXmWvLR6aVxLcO/BxKzuwYlLhprP/rr
+         c8dQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVAHZtNVD1CN00zqCVv4tpcdRBovSFiw7CLVC46fWhO6/0M8Wq6b5gUv3fYnFHyzNvoEQIFy7Ptxs9t@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy79ADCRaWRc8b8wNR49Dmp25xHF55gXLgRWKRapR10q/2S/7M1
+	LQ3aEMkoe7+2Vy4tQsSGhIPh2s28PPaT5ZXY257hIrAr9JNfQRnoqsJv
+X-Gm-Gg: AZuq6aJbMBCFAIPjkwFfiVcK9Q5N0SLO732bKhnQEvVa/VhqciqQIoymU8+w8VmbhnH
+	xebnx4VhdoVxT1ntl5+uz2EerWB3+P9gbDm+e8LLz87PSiNu5d1t0NzOk0ZU+VKczq1ml9z3KqQ
+	u8cy0KeL/59Gcocm6P3BeCfy9EX124D3S1TAy1nAW+1O6CnQriPSADsgNhpQ8MP9wc9MGaq7w4D
+	CWbDQpxgKOqpsFfpAGCdHNIJMFsgG8QD7nhsAC7dDOWt9Cuq1/JBCRp3rIfIrNVP2xKnSqTr3Yq
+	CngfQ8Q7xaOaqwlV6THWBOTm/GjAu52nrbYtgcrPLk/7Ev6h9OkFJegh52jKw/JGyRM6jGXdseV
+	PXmWux7ArfY18z05SR/o1bcSyqWsiSPpwpUgKMCswimPEjXULorZDmJWgTCwLLkAJoNcd3cLsyT
+	Jm5FvzeeXNTQgVr8fPZ1tdFUigKox+SA==
+X-Received: by 2002:ac8:5d44:0:b0:4ef:db28:1f3b with SMTP id d75a77b69052e-506919e9f83mr53865011cf.16.1770920853839;
+        Thu, 12 Feb 2026 10:27:33 -0800 (PST)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8971cc95acasm43835426d6.18.2026.02.12.10.27.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Feb 2026 10:20:24 -0800 (PST)
-From: Taha Ed-Dafili <0rayn.dev@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
+        Thu, 12 Feb 2026 10:27:33 -0800 (PST)
+Date: Thu, 12 Feb 2026 13:27:59 -0500
+From: Richard Acayan <mailingradian@gmail.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mentees@lists.linuxfoundation.org,
-	me@brighamcampbell.com,
-	skhan@linuxfoundation.org,
-	Taha Ed-Dafili <0rayn.dev@gmail.com>
-Subject: [PATCH v1 2/2] iio: dac: ad5504: use adi,output-range-volts for scale calculation
-Date: Thu, 12 Feb 2026 19:19:55 +0100
-Message-ID: <20260212181955.42724-3-0rayn.dev@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260212181955.42724-1-0rayn.dev@gmail.com>
-References: <20260212181955.42724-1-0rayn.dev@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Amit Kucheria <amitk@kernel.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Dmitry Baryshkov <lumag@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: pm660: add thermal monitor
+Message-ID: <aY4br1BX9InqWUd6@rdacayan>
+References: <20260210021819.12673-1-mailingradian@gmail.com>
+ <20260210021819.12673-4-mailingradian@gmail.com>
+ <e72ede03-94cb-45c3-95e7-63dff0ca3888@oss.qualcomm.com>
+ <aYvNX718diaXDsBy@rdacayan>
+ <f1fc24ad-054f-4731-b982-4c579abf46c1@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f1fc24ad-054f-4731-b982-4c579abf46c1@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-265177-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265178-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,vger.kernel.org,lists.linuxfoundation.org,brighamcampbell.com,linuxfoundation.org,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[0rayndev@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linaro.org,intel.com,arm.com,vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:email]
-X-Rspamd-Queue-Id: 38AD61303B2
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.13.72:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 87B4A1303F8
 X-Rspamd-Action: no action
 
-The driver previously used VCC to calculate the scale, but the datasheet
-states the output range is fixed by the R_SEL pin (0-30V or 0-60V).
+On Thu, Feb 12, 2026 at 01:15:04PM +0100, Konrad Dybcio wrote:
+> On 2/11/26 1:29 AM, Richard Acayan wrote:
+> > On Tue, Feb 10, 2026 at 10:59:20AM +0100, Konrad Dybcio wrote:
+> >> On 2/10/26 3:18 AM, Richard Acayan wrote:
+> > (snip)
+> >>> +		pm660_adc_tm: adc-tm@3400 {
+> >>> +			compatible = "qcom,spmi-adc-tm-hc";
+> >>> +			reg = <0x3400>;
+> >>> +			interrupts = <0x0 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
+> >>> +			#thermal-sensor-cells = <1>;
+> >>> +			#address-cells = <1>;
+> >>> +			#size-cells = <0>;
+> >>> +			status = "disabled";
+> >>
+> >> Can we enable it by default?
+> > 
+> > No, the thermal monitor fails to probe if it doesn't have any channels:
+> > 
+> > 	[   17.728926] qcom-spmi-adc-tm5 c440000.spmi:pmic@0:adc-tm@3400: error -EINVAL: get dt data failed
+> > 	[   17.728945] qcom-spmi-adc-tm5 c440000.spmi:pmic@0:adc-tm@3400: probe with driver qcom-spmi-adc-tm5 failed with error -22
+> > 
+> > Triggered by https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/thermal/qcom/qcom-spmi-adc-tm5.c?h=next-20260209#n945
+> 
+> You can define the following ones in the common dt:
+> 
+> REF_GND
 
-Update probe to read `adi,output-range-volts` for the scale. Default
-to the 60V range if the property is missing, while keeping the VCC
-regulator enable for power.
+Is there any (likely passive, if any) cooling device that should be
+activated when this goes above or below a certain reading?
 
-Suggested-by: David Lechner <dlechner@baylibre.com>
-Signed-off-by: Taha Ed-Dafili <0rayn.dev@gmail.com>
----
- drivers/iio/dac/ad5504.c | 26 ++++++++++++++++----------
- 1 file changed, 16 insertions(+), 10 deletions(-)
+> 1.25VREF
+> VREF_VADC
+> VPH_PWR
+> VCOIN
+> DIE_TEMP
 
-diff --git a/drivers/iio/dac/ad5504.c b/drivers/iio/dac/ad5504.c
-index 355bcb6a8ba0..1796a9b1e750 100644
---- a/drivers/iio/dac/ad5504.c
-+++ b/drivers/iio/dac/ad5504.c
-@@ -15,6 +15,7 @@
- #include <linux/regulator/consumer.h>
- #include <linux/module.h>
- #include <linux/bitops.h>
-+#include <linux/property.h>
- 
- #include <linux/iio/iio.h>
- #include <linux/iio/sysfs.h>
-@@ -274,6 +275,7 @@ static int ad5504_probe(struct spi_device *spi)
- 	struct iio_dev *indio_dev;
- 	struct ad5504_state *st;
- 	int ret;
-+	u32 val;
- 
- 	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
- 	if (!indio_dev)
-@@ -281,17 +283,21 @@ static int ad5504_probe(struct spi_device *spi)
- 
- 	st = iio_priv(indio_dev);
- 
--	ret = devm_regulator_get_enable_read_voltage(&spi->dev, "vcc");
--	if (ret < 0 && ret != -ENODEV)
-+	ret = devm_regulator_get_enable(&spi->dev, "vcc");
-+	if (ret)
- 		return ret;
--	if (ret == -ENODEV) {
--		if (pdata->vref_mv)
--			st->vref_mv = pdata->vref_mv;
--		else
--			dev_warn(&spi->dev, "reference voltage unspecified\n");
--	} else {
--		st->vref_mv = ret / 1000;
--	}
-+
-+	ret = device_property_read_u32(&spi->dev, "adi,output-range-volts", &val);
-+	if (ret)
-+		val = 60;
-+
-+	if (val == 60)
-+		st->vref_mv = 60000;
-+	else
-+		st->vref_mv = 30000;
-+
-+	if (pdata && pdata->vref_mv)
-+		st->vref_mv = pdata->vref_mv;
- 
- 	st->spi = spi;
- 	indio_dev->name = spi_get_device_id(st->spi)->name;
--- 
-2.47.3
+Maybe this temperature can be included, but I don't see any other
+PMIC devicetree that has this channel ready-to-go.
 
+> ANA_IN
 
