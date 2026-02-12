@@ -1,58 +1,80 @@
-Return-Path: <devicetree+bounces-265081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265082-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SBWiLavUjWlA7wAAu9opvQ
-	(envelope-from <devicetree+bounces-265081-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 14:24:59 +0100
+	id 4NOgABHYjWng7wAAu9opvQ
+	(envelope-from <devicetree+bounces-265082-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 14:39:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C3CE12DC86
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 14:24:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57B0A12DE19
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 14:39:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 99E42301287B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 13:24:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0355430970E8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 13:39:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4D8A35B629;
-	Thu, 12 Feb 2026 13:24:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4893835B625;
+	Thu, 12 Feb 2026 13:39:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RQCLyUl7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OXGHMup/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81B5B3502BE;
-	Thu, 12 Feb 2026 13:24:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A165C3451CE;
+	Thu, 12 Feb 2026 13:39:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770902695; cv=none; b=ElE9xyq8f/nThb2Y067DeB0F/d844fFaAZbHnoCsMvfhJUwNEP8ZKXJ0G1UVKYmylsaBq5brOm60KO4XsKW5QuOkXocuoPqe8/lVwKgeO5azOrbD21yQBzShjkZP0b+M6Oi1K7EB/G9GwQLdrk1mq5XHdf0kuDabWbW2laMMEDg=
+	t=1770903566; cv=none; b=BnI82ZWSv30MQXe73iumRgSial2SuPfWP+pMFeBsqbA4/y3fKvBsjMKFk270Xw5RBzAr5TA6RK7Qhp+MB1wrSpTM17QKTO62v0ZfJAp9FxxeA+bHYvibRUO3Vh0ZJ+Rkq+aOCtMRLXePUMiZMPSGyo5dm0Isg5eR1Ohd3NE45IM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770902695; c=relaxed/simple;
-	bh=3W47sWgbdsLfZh/NdwqxiVWYn/yjoN2UVZ4sy5Q9l10=;
+	s=arc-20240116; t=1770903566; c=relaxed/simple;
+	bh=utyaYBiIGi7UzJmfMxgD2vkdv+j61T4B/YtQfUgtvkQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NWNS8vxbkZv9zeJIhkesGYjAT/GXo7y4aTCd4MF6HOXKe/hKBvyNYb1B1auus86C2r92AxzwslDrUqsied9o7EjGT1LZdtRYsxifKdjFGADEZ/92eFP2Z/KtmN6qSZ8KSi7ArTWmHiiEgbGid2atlvkF6SnNSDBp5yo6JBRetlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RQCLyUl7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C14EC4CEF7;
-	Thu, 12 Feb 2026 13:24:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770902695;
-	bh=3W47sWgbdsLfZh/NdwqxiVWYn/yjoN2UVZ4sy5Q9l10=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RQCLyUl7kJd3DUhlY/VfK74JyXS/Q1ir3lgVmZeUldpqARrYWbc2P2my9gJXw4e/W
-	 IosrfpEp1bgU6caupsUyPGTAn1kXTCYR8qv4RlmfznjKSTeJeR4NKg/HzeNpuSALFk
-	 XlX387aD0nXfg9Z5HENBrLT1piyQm8omwGdVtgvgDX3oxatO1/9qUXQrbckguStlDo
-	 PeUrDyY8q4G7Mwaom97i6tZ6Q17tVuwAFpShhrqqOzyk4dBLIObAMXEvrAjnDtL7wi
-	 sJpiPoYSQekD/63dHsizVjcwvwMScHvc7NA5foazYVb+XPY+NH+opZnfSWfaCHsurG
-	 9i94RvntYp0jg==
-Date: Thu, 12 Feb 2026 07:24:52 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] Enable tertiary USB controller in OTG mode
-Message-ID: <cuaantvlrghl6wf2zqg7rjodsxzj3cegjdml73ax2k7sffl5mn@osbasubcz5rl>
-References: <20260210125348.2800846-1-swati.agarwal@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KkmltovHW9SWlisLAL97Z2wvaVW9nulop0oPZi9tjAaGPTikOWBPhPzldWtSEP38JnEIux3Mc62zfYbrbWMoOvj3gxilfejFusqEYWNdc95BOHyLXpRjJe4L0UEMqcShU8Wgpq78CNxNucr9B0p+cQpY72oKnjmOa1Rgy2yLEI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OXGHMup/; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770903565; x=1802439565;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=utyaYBiIGi7UzJmfMxgD2vkdv+j61T4B/YtQfUgtvkQ=;
+  b=OXGHMup/8xuTUEK6AzqweQxAxNeIQaiJLWZjUuZ46JYDH1VDaVtv8At9
+   1EjD3LSASPoDqIOxqFJMo661HTjmwrZT7tlp6OS+9ZDtsog1I9s+L6gUj
+   +s7PGe/G/W6FBni2uN0YeGmmqK5B08uYapwK4ynR8ecIUrO0+NE8wpZ3c
+   Ib4Dz+SXN2jplanDO/TfLRRUWZ2j7wBhvKcvyZ9VGoyC7avCzu/G8qEGs
+   QtiZRE1cR4q9Skowi6U3cpDAqyjTikQ7UmK59OR6VwXm/35P0Lv9cH4P/
+   xA+GZ276HroxczNxDlXOTxP4tg7V2dR+d9oIb8GS+xIwb4fi9oA5s8njY
+   Q==;
+X-CSE-ConnectionGUID: LTEklVKRRjSmrdVVwI0tjQ==
+X-CSE-MsgGUID: Wkn/+j9WSauTw8l6GGwmlg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="71788646"
+X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; 
+   d="scan'208";a="71788646"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 05:39:24 -0800
+X-CSE-ConnectionGUID: RUaq1lFlTImvcGnzmzdRLQ==
+X-CSE-MsgGUID: yZDvEoNkTaqUNOQt2wM3bw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; 
+   d="scan'208";a="211419698"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.145])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 05:39:21 -0800
+Date: Thu, 12 Feb 2026 15:39:19 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Ariana Lazar <ariana.lazar@microchip.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] Add support for Microchip MCP48FxBy1/2/4/8 DAC with
+ an SPI Interface
+Message-ID: <aY3YB1MyNnSUszJN@smile.fi.intel.com>
+References: <20260212-mcp48feb02-v1-0-ce5843db65db@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,68 +83,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260210125348.2800846-1-swati.agarwal@oss.qualcomm.com>
+In-Reply-To: <20260212-mcp48feb02-v1-0-ce5843db65db@microchip.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265081-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265082-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5C3CE12DC86
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: 57B0A12DE19
 X-Rspamd-Action: no action
 
-On Tue, Feb 10, 2026 at 06:23:46PM +0530, Swati Agarwal wrote:
-> Enable tertiary USB controller in OTG mode on lemans EVK platform.
+On Thu, Feb 12, 2026 at 02:48:33PM +0200, Ariana Lazar wrote:
+> Add support for Microchip MCP48FxBy1/2/4/8 series of buffered voltage
+> output Digital-to-Analog converters with an SPI Interface. This driver
+> covers the following part numbers: 
+> - With nonvolatile memory:
+>    - MCP48FEB01, MCP48FEB02, MCP48FEB04, MCP48FEB08,
+>      MCP48FEB11, MCP48FEB12, MCP48FEB14, MCP48FEB18,
+>      MCP48FEB21, MCP48FEB22, MCP48FEB24, MCP48FEB28
+>  - With volatile memory:
+>    - MCP48FVB01, MCP48FVB02, MCP48FVB04, MCP48FVB08,
+>      MCP48FVB11, MCP48FVB12, MCP48FVB14, MCP48FVB18,
+>      MCP48FVB21, MCP48FVB22, MCP48FVB24, MCP48FVB28
 > 
-> Changes in v2:
-> Added interrupsts for all expanders.
-> Minor formatting changes.
-> 
-> Link to v1:
-> https://lore.kernel.org/all/20260206104642.1038381-1-swati.agarwal@oss.qualcomm.com/
-> 
-> This patch depends on:
-> https://lore.kernel.org/all/20260122092852.887624-1-swati.agarwal@oss.qualcomm.com/
+> The families support up to 8 output channels. The devices can be 8-bit,
+> 10-bit and 12-bit resolution.
 
-You're the author of both series, there's no reason to have them active
-at the same time. Group them together, or prioritize finishing the first
-one.
+Is it really v1? I am under impression that I have seen this patch already
+several times...
 
-Regards,
-Bjorn
+-- 
+With Best Regards,
+Andy Shevchenko
 
-> 
-> Swati Agarwal (2):
->   arm64: dts: qcom: lemans-evk: Enable GPIO expander interrupt for
->     Lemans EVK
->   arm64: dts: qcom: lemans-evk: Enable the tertiary USB controller
-> 
->  arch/arm64/boot/dts/qcom/lemans-evk.dts | 96 +++++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/lemans.dtsi    |  7 ++
->  2 files changed, 103 insertions(+)
-> 
-> -- 
-> 2.34.1
-> 
+
 
