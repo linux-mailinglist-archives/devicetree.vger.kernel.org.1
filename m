@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-265164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265165-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8GZBDZINjmmS+wAAu9opvQ
-	(envelope-from <devicetree+bounces-265164-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:27:46 +0100
+	id sDB4AdUNjmmS+wAAu9opvQ
+	(envelope-from <devicetree+bounces-265165-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:28:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A41E412FE51
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:27:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 987D012FE8B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:28:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2582C302E0D3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 17:27:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 803DF30A7958
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 17:27:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECCCB35C1BB;
-	Thu, 12 Feb 2026 17:27:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABCB325B2F4;
+	Thu, 12 Feb 2026 17:27:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eukw/HPx"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YW96FBtR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com (mail-northcentralusazon11013002.outbound.protection.outlook.com [40.107.201.2])
+Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazon11010027.outbound.protection.outlook.com [52.101.85.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1ED7259C92;
-	Thu, 12 Feb 2026 17:27:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.201.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C140263899;
+	Thu, 12 Feb 2026 17:27:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.85.27
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770917256; cv=fail; b=LWWh2+kG7ZwPbpKKOs8+zy2zgPo7wFtQjAEILdBGbM8pwB0PebHw786GLcbs4YtCl+AI6x91MuoCSLA5oECFgJUO9g97m0A0Jj9xQz7iRytkHlDM8PyiOi6D2GAI6dw70RRMG728c21aZWNjGt+oZ//9Lu4wep1OKKz8HXsW+Yk=
+	t=1770917257; cv=fail; b=tGgaFh//AkM5VAd1ufIzgtkQlZSedY7c4t4qPwlTAHPaFzlV9Li1GONssz1W/c+4MmfYVxH3Fi+1T3NVUI214r7Az42cW66cPRfOzd5CfHKMwBY2I0JUZVReZUsYyfdErYCE88e9qUkI8hNBp1kE0t3X3Sx5vSj4wJe4NPMi82Y=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770917256; c=relaxed/simple;
-	bh=4fr74g2oYuiGpfkShWukQgCXWlR+Dv7RwbBJt0mAfbU=;
-	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=trBVC9oeycYAdBuNg2X+5q4nlct8fdsipKnOEI60ceHpVtDFo+crA2nEac3w5Q18pcFe/y5IvA9XUBqoJga2MWMY65nM7tAyalhOAJzMVld8xBkqMkZCZZbS+V+Hm09oX2XClsrNkW21Hf4XNVcPQf/FycLGqzEZDxwU+Rkox6I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eukw/HPx; arc=fail smtp.client-ip=40.107.201.2
+	s=arc-20240116; t=1770917257; c=relaxed/simple;
+	bh=Bw3d2QGzMeHrLjfHDxb4CtLd01SYeoXA/RR2XPSUZE0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
+	 In-Reply-To:To:CC; b=p1TlbBLoahLtvYzmOgxZYyTxN8qrY2GSiQtzcUPmnDjO4VqEnAk7FXXU5Q7PypF387s2zC+W311ylZgRwhyURYGnfAhKAJQ43YAGq3IYHKkkkkyNH/aYaWW88OwTd+jcPYpy1fJqGYuyg1jszT5ehoWf9X7VNf2BvceIXLp40HA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YW96FBtR; arc=fail smtp.client-ip=52.101.85.27
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aMmVAaE2vGwZ31AeU/L6mHILsPFGJf9JeKjbRhC9r2CReyPWvpwZEa5yUzazqyDbQsviFcBl94nhax5nI+x9c3EMPKtrgJ1NXZwgn+H4x7SLLvofJkd2NL39zqodUk7rZRjM/jf0BM4CVQoM7Z/X0+aZNoBbCX5VJiyOXxcyblA7H40o8X9yyaDCRiqLj7ZftctZTg+hcOOwdEczAH47o7t+QqfLE/XyYqYKOhMvPGi6/kM/TY62VWcffmkhdnWC/Dgz1e6WmC5jcBBGffNw4FdWIG81CQTHuK4zes06DPojtpNrFT6rPB3PYLZcMfRX4LxAH05GVawPyADPSCmjNg==
+ b=ibE2TGhnTuJXh5BHlGGg1BwLNIr3BCrMlLdkCOkxP9Yq6eN1MEQIqghS/YzV876pObyc9YSjx4Z+3k2CTzU05G6ILgzqm+1nHE67h07y0prrPJA3ewOZWe2EPPaUa+4b5r8FsnvVa4zIBsYGrLNWFqJWCJCgNwNwAlNZKDimLdFhUkMtsFyRMkXK7LneHVXuRparKuCM9WiFmk4c+oa81ZGMi0p125A+4jUQv2P5TNUBzoraRd+kdo7RvqJfNyOsBwVmCRew0aVE1x0km62TuOgO4E5kOqrSnvSoQ5f17UxBaHUcWhl/YlsOTQ45Hq5PpLUDGr8E55I1o4u/7cBpMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I+GwYqm9nr2qRXATGgBVi78r3YBZYRQ/xecTnJN0buk=;
- b=cKUnnvXJzdDVnuBoNF8TNH0OlXc2aRT2prwQfemY+2Ch/X9eOw03+tc4xlqDdEGuc4hPuddZtpxvi8sy+J03dy1oKtLKsU5CmUS1EjADYWcJhnbNIo2nGluxx6Uz0WzcKG3TMbXmzVjkFM71nFADfV4QK8HsZ9yKV52SCI6QRGrFgpl5Ks32ogZpzhD51Ciq+hthUDzgNBOt88LSypG93z/bU01/Pt7bi59LwRB0cqFLNH58+09F7v/qSh365UTJzENtiqHheV3ZirGQpf5Ne1sg5LkrIH9KjBaNYFa0YRiuF46O1+5YOfbZy0kErXbXEysjApeeBEnujaxnIb1K+A==
+ bh=LtIQ0lZd+2lujlxju2d+tTsuDeO66s79cffwaccQdag=;
+ b=cfvZKiDrNqdBbgZqX0s9rIPCtPFGXxfA9pFBD17jttqEDvJvrnrY0dXZWmOozQUUFBgdk7luYG3pOVUUBmcjaDc6n7ydImrCth8sSAiM6w/zDjQD7x8V2i1M+UEpGiinhbSK12Bpl49GN/eIPFZ/Mt6UBoDJWRgHqxZb36WsgAfhJ7OKwzo5FzpBKnQlu+gqRkYa95jr5Ub6QXPXbF/otuG5eteL1u3qxvTjy3k/WC6PsGXmoBTOa6KUMN1xwP7o6P2PvCiUMRpJ3YOTNnpgmKjf9enE3meRGiHrYatY2RfqvB1hCCmJiZ9bJZzup8+XmZGsKg8k71zEmdEnrd4FrQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  198.47.21.195) smtp.rcpttodomain=baylibre.com smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I+GwYqm9nr2qRXATGgBVi78r3YBZYRQ/xecTnJN0buk=;
- b=eukw/HPxCXG9HA6w9YWe1NYi11JUYskbKqMUidaJMU2fP84ar7fIeyA12RNsJOnUSi7s+zrDWR2FoX78H9qc7gy/tcYbii2JrjcTcqicusgoEhsbvfpCqAt35OByW489inGnle9A3HgSRndyqmiVJucpx5biLGhQMLEhCvAgPvo=
-Received: from SA0PR11CA0109.namprd11.prod.outlook.com (2603:10b6:806:d1::24)
- by CH2PR10MB4311.namprd10.prod.outlook.com (2603:10b6:610:79::22) with
+ bh=LtIQ0lZd+2lujlxju2d+tTsuDeO66s79cffwaccQdag=;
+ b=YW96FBtRJf0mh9hPRYokslUz4wSg6CdfTYHB9n+GrSwiuOH/Fd+8CjC555TBQYT8sCuKX8eYiSc6yyPIF0I1bOgEeWNlRXDcMBf5AQ9lee6Tg/UnBIEjMPmLj4uLGa0a8c9e94N6hXS8gSAYPfns50p//DLh6puFn0Sf3LPrN9U=
+Received: from SA0PR11CA0110.namprd11.prod.outlook.com (2603:10b6:806:d1::25)
+ by PH0PR10MB5660.namprd10.prod.outlook.com (2603:10b6:510:ff::6) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.11; Thu, 12 Feb
- 2026 17:27:30 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.10; Thu, 12 Feb
+ 2026 17:27:31 +0000
 Received: from SN1PEPF0002636C.namprd02.prod.outlook.com
- (2603:10b6:806:d1:cafe::d1) by SA0PR11CA0109.outlook.office365.com
- (2603:10b6:806:d1::24) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:806:d1:cafe::3e) by SA0PR11CA0110.outlook.office365.com
+ (2603:10b6:806:d1::25) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9611.10 via Frontend Transport; Thu,
- 12 Feb 2026 17:27:19 +0000
+ 12 Feb 2026 17:27:15 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
@@ -67,26 +68,26 @@ Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
 Received: from flwvzet201.ext.ti.com (198.47.21.195) by
  SN1PEPF0002636C.mail.protection.outlook.com (10.167.241.137) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9611.8 via Frontend Transport; Thu, 12 Feb 2026 17:27:29 +0000
+ 15.20.9611.8 via Frontend Transport; Thu, 12 Feb 2026 17:27:30 +0000
 Received: from DFLE205.ent.ti.com (10.64.6.63) by flwvzet201.ext.ti.com
  (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 12 Feb
- 2026 11:27:28 -0600
-Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE205.ent.ti.com
+ 2026 11:27:29 -0600
+Received: from DFLE211.ent.ti.com (10.64.6.69) by DFLE205.ent.ti.com
  (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 12 Feb
  2026 11:27:28 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE207.ent.ti.com
- (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE211.ent.ti.com
+ (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
  Transport; Thu, 12 Feb 2026 11:27:28 -0600
 Received: from [127.0.1.1] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61CHRSI13458792;
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61CHRSI23458792;
 	Thu, 12 Feb 2026 11:27:28 -0600
 From: Kendall Willis <k-willis@ti.com>
-Subject: [PATCH v5 0/5] arm64: dts: ti: k3-am62: Support Main UART wakeup
-Date: Thu, 12 Feb 2026 11:27:19 -0600
-Message-ID: <20260212-b4-uart-daisy-chain-dts-v5-0-26c7f534e567@ti.com>
+Date: Thu, 12 Feb 2026 11:27:20 -0600
+Subject: [PATCH v5 1/5] arm64: dts: ti: k3-am62x-sk-common: Enable Main
+ UART wakeup
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,13 +96,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHcNjmkC/4XQy27CMBAF0F+Jsu6g8fgRklX/o+pi4tjF4hFqm
- 1CE+PeaIGi7QF1eyT6+vuc6uRhcqrvqXEc3hRTGXQn6partincfDsJQck1IWpBE6BUcOGYYOKQ
- TlDNhB0NOMKBgVqgN9lSX2/vofPia5bf3kn0ct5BX0fHDwxYVCVpSs5CNRCkUCFjDMWw2Ib3ms
- LDj9kqtQspjPM0dJ7qC/9eZCBA8a9KNs1r1/d27dpnkHTEo0DxHZEFku2RjSC892T+I+oUQPUd
- UQawfuB+8dsaKB3K5zRTd56Hsnm9b/czeVY9fzvCR1+6wB0TPjm1j21Z107x1z8lBIbchd9VkF
- qKFaE154PINhAIM1OABAAA=
-X-Change-ID: 20251230-b4-uart-daisy-chain-dts-d01aa40560b2
+Message-ID: <20260212-b4-uart-daisy-chain-dts-v5-1-26c7f534e567@ti.com>
+References: <20260212-b4-uart-daisy-chain-dts-v5-0-26c7f534e567@ti.com>
+In-Reply-To: <20260212-b4-uart-daisy-chain-dts-v5-0-26c7f534e567@ti.com>
 To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, "Tero
  Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
  Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
@@ -110,83 +107,83 @@ CC: <k-willis@ti.com>, <vishalm@ti.com>, <sebin.francis@ti.com>,
 	<s-kochidanadu@ti.com>, <linux-arm-kernel@lists.infradead.org>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770917248; l=2829;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770917248; l=1938;
  i=k-willis@ti.com; s=20251230; h=from:subject:message-id;
- bh=4fr74g2oYuiGpfkShWukQgCXWlR+Dv7RwbBJt0mAfbU=;
- b=LsjCKFiyXu4S2p9zjnsgTbjx/OmNx2mvySpVyF8LHkUkMGu29UutB1wSm0n+JujmjnHl9mz9c
- WuoxKR4zI0ODAZXl7kmrs8S4lroF776dhSDOho9vjRKHW1smmkXy0oq
+ bh=Bw3d2QGzMeHrLjfHDxb4CtLd01SYeoXA/RR2XPSUZE0=;
+ b=41Mzdd8dsEtnfnHX3y9/Ix3aZLzcHgjOGEjC6P1iBW42CSGkupcwAF6lxLOePjAFADGJbw9+o
+ ieca1Th+WlyAW2+vSoa+bka/sOLxg7p5wNEm7T6B1YnXz6zQ01Mx1/b
 X-Developer-Key: i=k-willis@ti.com; a=ed25519;
  pk=fQiPVFwmogfDAKdaAKq163RWSfgHZVE/MrsDzp0Xo1k=
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002636C:EE_|CH2PR10MB4311:EE_
-X-MS-Office365-Filtering-Correlation-Id: d2896e98-d92d-4619-b6ac-08de6a5bff69
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002636C:EE_|PH0PR10MB5660:EE_
+X-MS-Office365-Filtering-Correlation-Id: ac5728a5-2131-4d38-4928-08de6a5c002d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|376014|1800799024;
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013|7053199007;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?V3dqVmR4SUNKaXVScmRZTGhRbUhkc0VVT0UyakZ3ZzZEV2tlSzFldzFGbHpj?=
- =?utf-8?B?dmxzUDBLdTg3RGVpbVFqRnBJOTRIYkJhVWlKUEZ2bXRteTRqVnFVTldtL3Rk?=
- =?utf-8?B?cG5rNmZjMXlqYm8zd085c0VTZWhmR2IwZGI1aDZVRTd6dmZTN1ZLWFJLOHhu?=
- =?utf-8?B?TnBKRU05WGxIcmxMeXNTQmVaQ25QQUNWUnF1WkhwditLblpXVkFvME1Uanha?=
- =?utf-8?B?K1E1Q0dQKzdNRTlWTitNVzk3SjZmekVabWZ2aUtNb3NqMjU1SDByTjEza2k3?=
- =?utf-8?B?SFhhcWNEbnhsNm5TSnIyZGlVc1l2aWJqRUhEakczR0lETEpsblBTdnFnTmpy?=
- =?utf-8?B?OGNJRHl6WU9uMVZ3djFpTkRoZzBYcmJkQnd2NklZc0I2dkcwMnlxaW1SNUdK?=
- =?utf-8?B?M29scWQxeGJUUDluTkhsTElGS3FzTnp6UTZpWTRML0dOY3JHUUtLYlhLY3Fr?=
- =?utf-8?B?QlBXbVJqNW5pSVVRakt4OHlEeStKeno4ZFdNazNodjhQYjJCZCtESHpySEJt?=
- =?utf-8?B?KzQzNVBOZTcxTmJJbHFmSU11TjFFVUwwS0Jtamlyb0E4a3RWZHVKVzBYVTU4?=
- =?utf-8?B?Qy9DTkJkMTdDTUlBR1dTY0VRZzkrMVgvUldHVmcrbDBlQ2xQSWJpbkJZaUxS?=
- =?utf-8?B?VE5ocWNha3RYdmNkcUFLT0NtS2paWksyQ1gxbnlUNGRhb2V3elJzZjlTY0g3?=
- =?utf-8?B?YkJvMGoydmROTElBWDhxTXhkU05DL2lRMG0wbVQvWWdPSnRUanhXYTN0SCtC?=
- =?utf-8?B?c3VZaU9GQlp6YjJ1R0dsVUs2KzMxbzJKckEzbGltZzZjM2pTbTlLMENUQVU2?=
- =?utf-8?B?UzlSODhwQnI3UkNReVBOM3dFM0ovOXRjM1Y0ZXo4QjJ4VDFBa3poMU15ZGFQ?=
- =?utf-8?B?blc5SERmN0tXaGpBb2w5STF4Q0tuWkhCTEJrNnBVVHEwRHVPbzlDaFhDOW44?=
- =?utf-8?B?UHh2T1NjV2Y1SFd0c0hwVGdjdEljRmZPenRUaGttc1BlVFFnWXR4V2l2V1g5?=
- =?utf-8?B?eC9NNTZxUDBUQXFLbU5reHhtd1ZaRGtXRkxxYkowNkF6Uzc0RU5xRGRpaUZ0?=
- =?utf-8?B?cnNYOG43OG5PRFd1UWxxOEoxTkh4T05tYjdtM2tFWnU0R0dSRjdSR0l1M3Zz?=
- =?utf-8?B?THkwK29Iam1KSGhFQld4V3RhMGdSQlVWV1VxZTZnWU1JV0RYK3cwTjJBRHBh?=
- =?utf-8?B?QWE5SjNHbDRxR3R6RHhsZHU3VG43V1BhY2I3eTVKSlNlV3B2MDNvQXJyR2cy?=
- =?utf-8?B?djVjTmRGT051VmI0TTUwMFFneTV3cFpEUDJhaXQrSnpPUnlETXNDaVJkT1NC?=
- =?utf-8?B?VjFadUVzcWJxMHgrd3Zhb2ZzdzRpeW5YTW4yWUJZWWZjWDVqZWxrNzV1em1L?=
- =?utf-8?B?SFFnSFIreW50NVovZW5qNHVjeWpnVWt0ZDRySG9MTC9FQnk5Z1FWOTdtUGo3?=
- =?utf-8?B?dnNicjdaT254eHNwNVRPQ2k4YzNLS0NyUGJKdUFXenBnNVhyZjNUQmk0bndO?=
- =?utf-8?B?VE1nakw5OElZS1RYVFNLdEZOVGpyUFkzRzdDcTlOczlYRStiZWxOeUp4Zkk2?=
- =?utf-8?B?TlVHSmlLYTd3UHlvWFRYWGRoUjNiWmEwanhZTzBFVE9XWnJrYWpRNUdtUWdo?=
- =?utf-8?B?bTZ5RFlxRHVoam5iVURheS8xeW9LTWlpOHo4VEVMNWdKeUFHRXhWd1UyVEQ4?=
- =?utf-8?B?UnJTUUk1NFc2aDNWL21QZ1RPNVlZTjNWREVPSkRZbktleCs4V3hvbHE0NGI3?=
- =?utf-8?B?WVM2ajRRT2pFRXZSZ2tBa2MzbmdWNm1wK3dTZHlGbjdBL2ZYZGc3TE5yeHBF?=
- =?utf-8?B?eFBqN0E0UDVBMHRQejlzTUJhSEJCZ25hb0hrR05XNjBHcGVtZzVnK0dRTk5l?=
- =?utf-8?B?OUt1Q3dYdkErelBuc0pWRlZ3Z3BLODdaaEY5YVpBS0ZDVXdWaERUN2hwMXF0?=
- =?utf-8?B?VFZ5ajZEcW5oWEdHaUNkUEFDMDFMZHRvNHY1TTNtZ1pJMHYxTTY3QkNObE5J?=
- =?utf-8?B?VFJOT0xicWMvUnZ5QzBRWWVIZEpxZE5VNmtMM1FWaWl5UFNOeDZYc2sxeGMx?=
- =?utf-8?B?bXJSUC8yVmFiRnNjazZNNlFPdnhIWkF4dmZKcUR0SllTRVRzWG9wSjRVZGh4?=
- =?utf-8?B?cDVVdmhlbGd1R0dPdFora3pCM3piemFMUFdGMS9iRjdubXhrUE9HVSt0WGZo?=
- =?utf-8?B?Vlp1cWN3TGZWVHpMMVRNNzlkQ2tFMURpT1MyTVBhSjJEUXY4VktieHV0eGFO?=
- =?utf-8?B?aHdleXdCMHV3ZmxUcW9xMmRLWkpBPT0=?=
+	=?utf-8?B?dDd0Q0FQU0hKNzgwNGhKdE5IQlkxQ0xLbTBlLzZRM3dFeC94Y2R4aUwreFB4?=
+ =?utf-8?B?a3o5ZUtNelR2ZjNOaHVKODhjQWpKZG5rLzBKZU92RmN6OUJBMDNFQUdsQU1h?=
+ =?utf-8?B?U0d2Z2hwN1lqbU8rVkVhQmNCeUJxMXVvaDl1aElyQkdQWkRlMWZoUHpnQ1Nw?=
+ =?utf-8?B?T1YwOXEwVXJ3Tm1YdzQxbC84MnZxR2RYMkdJVUU1dENZaW01eHdmeWhTdm1S?=
+ =?utf-8?B?M3U2NGlGVG00N2trVThhYkVIcVByQ0RnZXY4aWNjc2xpMWRWOGFmRmFUR213?=
+ =?utf-8?B?cUtpNldzOCswelNwajRqS1R6NDRTY3F6Ukx5ZEZNblFXaWx0TWRudUJ3Qy9X?=
+ =?utf-8?B?QXRBVldhaTVndkIvUzZhd2pIZjFmcjVLdHRMTFVCZHprSFYrcytMOGlRaTRZ?=
+ =?utf-8?B?SGhJaW0vZGxOTlEwbldaZGdCS3pIN2JWZkUwb0Izc3YvY1JueDVYTUZySjlm?=
+ =?utf-8?B?enNRY0FVWnFQYzZLTnB6NHl4TElsdTQwTndkUnFPUXlGUi93d1B6TkhiTlAz?=
+ =?utf-8?B?V0Qremw5bTZWWjNsdEpIWUZEbVkyOUZWVVEwRTNTWWMvQnA0UWJFZ01LRncy?=
+ =?utf-8?B?OFdvYnJyb3ZiZ1htcFFjUURGYzN1Y1FYaFFwM1cwYUxsa0lqQTB2YUxYU0FV?=
+ =?utf-8?B?Y2hLYjcrS0ErOEJoV1o2N3RSbEJIRlI0NTZGUmdHMklLRGVpVzBjWit4bDJy?=
+ =?utf-8?B?bTdBRTFKSlpWNmdpTE9hVE1hSS9GckJzYmdSYTM2WjBxa1BneEJFOVdCMTA1?=
+ =?utf-8?B?QldDRW5RaUJNaVE0M3lUcFVxQVhkR1lCU1B2RGVXR2VYL29DMGw2WDE0OFF5?=
+ =?utf-8?B?MEN6dlRnL3RaR0kxRTlIMGg0aWRBcHZwU3didU5qY2lMYXA3aHZkMXNxQ2Nl?=
+ =?utf-8?B?dW11TGRXSnRMLzZGM1IzVk9oQm1tenYyS1g2VXZyc3h6cE9iYzRCT1p5eW5J?=
+ =?utf-8?B?Mmk2Y1dTdUtFOTkzcXNEYVlIZ2hDTnpXUHRwOGpRS0tCV0RZZ2pVM0g4YkFt?=
+ =?utf-8?B?bmZZL2luTWh3MGVZQWQwMjUzbzhXR2Nzc0Nhdkc5UjlvNm1qTmtOMHZpZlpt?=
+ =?utf-8?B?cndaakZCOTFqb2NwM0NRRGp6Q0hza0I4RmNKLzZLMFB0cGNsb2ltMnViL2xk?=
+ =?utf-8?B?VVRWclB4RmVjdkxBckJ1aHZVeVlYZGlMYTVrRFNNVG5yUzB0RHcxSmdhT3dx?=
+ =?utf-8?B?amdYREVvWlpaMENKSWcwWGlwVTJSSUZSd3p1ZE5HTUZDOFRiZ1IxTXl5S2dL?=
+ =?utf-8?B?MTIrOWlsZ3pyQkQ1MkRVNmRBbUxxUUVjWEFKWHRwQnVDNlVGaEdDSlBCd3ox?=
+ =?utf-8?B?Ulk4N3NhSlludmdkellsNVhxdnIxd3ZFaDBLRWdoMGlVdUwrd2w2dDQwVlNy?=
+ =?utf-8?B?Z2M5ckV1aXdETTZ0cEZnWVNadmV4YldiMEFHaCtqcnVZZlZ2ZW9admgvVVd5?=
+ =?utf-8?B?ZjBGS3Rva2VqbW5FU0xLNEdwMlNMQTFVd29SNWdJbysvaC9KeW1QbnFCL09z?=
+ =?utf-8?B?UmJYMXNTUiszaUE1TG1RRVoveXlrbVhhcmNKN0M5NFhqQXVVSkoyaHV3NFJQ?=
+ =?utf-8?B?STVxaHBVR2l6R08za2lSa0FRQU5ZSVFNdlJmcGtpdFJqRFR3aUZBU2lsUHdH?=
+ =?utf-8?B?RVgxcmc1TlBLaWI3WHFjVjlqenpKVzhDL1RZbHZrQXljdnZnMFhQMDZ2bU42?=
+ =?utf-8?B?Y0VRcmtCcnlXYzIzWVhKUFp3SFRWcGdyZG4za2x3SnlCc2xxSVJPcG5KVDVl?=
+ =?utf-8?B?Q2h3RVNjMHc2QUJYSnhzeS9TQlFXNVBINTRuYUhMQm9LOGVyQ3paMmZKY0VG?=
+ =?utf-8?B?OWtoQ0NOamhuR21pa2pNeUlNamo3WkVFMmF2M0dXMzNROGQwWUxpRnB0YWVn?=
+ =?utf-8?B?Vk82aGNscXd1dGl6bWRJZzdkMGVUUnpZbDdvb2krM05YcFFHRG1tbHRYcDE1?=
+ =?utf-8?B?VDUyc1J2ZlkvWlY3N0lZQk1BMjc2bGFzNTVLOVJzcG1raDB2OXp1NGcxWXJR?=
+ =?utf-8?B?KytCOG9kUW9zZHBuQTRLZGpZeHZFb3d3clg5SlM1VkJnTEdRWTdYT0g0T0lQ?=
+ =?utf-8?B?NG5wbXNwTEZZZmJWVXIxVlZIMTlaMFpYV2g1d3VuT08vbzl4SlBLc1Q3N0tF?=
+ =?utf-8?B?UGlmVkhYYzhhUDZxVm1aemlaVGxpc1JwTm4xTXNQa2JSNWM2SGNSVFZhVjc0?=
+ =?utf-8?B?WmFnNjZCQ3RxQUlOdzJJZWxWOW1ybGlhdHNHUHp2VzJuTTRCOU90QkwzQ0Jn?=
+ =?utf-8?B?a2dlVUZDcCswdlJ5WE9QSjBmMTV3PT0=?=
 X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024);DIR:OUT;SFP:1101;
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013)(7053199007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	HsrKF3sahKpZEjTXLRMeyW7JhqTBCpmmickem7GJu7gIxJPRIIzmVnls8i76U4gmTY1W6AFt2iKq18h/N+n6dTGXh6SUFNqNjJJ+HKT160mw3170JHsVzqIvRpc+jiWKblQDeu6OHEoOYYwnZVaOUbwUO4zojyuHiKBZklt9R9iI7ToteZX1NjXOtvYgM5yQTBt+Ua8qdzP2UVB7h4e8dS1Qvr+iWUpi9iPbCU7m1laZ4S9mLStbhkvY0HiOWG0jeKMZrKn9lfy8XsBea/COJeF26Ga/TrDt4OwwKjgoeqZjYsZxe9MWEJDNTf3zNDpZXZU4VlTBGP7vGrN0ZPV3R5yqLkJHjmLM42GzxXDPgzSNjZrAVmv6HD00hahWlPOFoCgrYGxfHVxlSfcCZ5cE4gQ/g3Y6ulD8nxD5FU7otfIGaRxkLQ7WnxbKs82UNtzs
+	bL6S05kFJQnkoaUc9ZSjPA1qAlu9nzBkRIckKX6imLoB3yqfGtKHrLW6NqBFhhCzov3/OfIJS+F0tB+BPQqGwh8uCE+p1U7g9WpPc6Bvq4Agvrsbjl7PKHX4Mo1nebJUIaTvU+SVBOl5W7goeizrZdjAYLPuOA2Ko8dmDDoJzfPGZlulqlgtcwd4QHyur66D19g9AVDTjbNMrMlD8DmTeoyApYnktc+J5odCkJRrmLXGqurk9KaJvlxLoAJjDrZnHTYx7sd0sQfhpdHjpCZyvFBPASCio8ZDJxXC9deubLwmdsvi4XSJSZMB+/0zhfacwG3CAOg8WG+Xoz6whTWJn1xGeX6JTeM9kL9x2zvUPv9OntdGkU9QXJHfiVMvvB78hH3eyg4+K1jlaneyvrqJNM34MPym41/dRlfsi3rzgYK6x1hG7N7V+rdlAJpQdf0k
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2026 17:27:29.2140
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2026 17:27:30.4952
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2896e98-d92d-4619-b6ac-08de6a5bff69
+X-MS-Exchange-CrossTenant-Network-Message-Id: ac5728a5-2131-4d38-4928-08de6a5c002d
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource:
 	SN1PEPF0002636C.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR10MB4311
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB5660
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_REJECT(1.00)[cv is fail on i=2];
 	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
 	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -195,84 +192,71 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[10];
 	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[k-willis@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:mid,ti.com:dkim,ti.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:mid,ti.com:dkim,ti.com:email,baylibre.com:email];
 	PRECEDENCE_BULK(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265164-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265165-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[ti.com:+]
-X-Rspamd-Queue-Id: A41E412FE51
+X-Rspamd-Queue-Id: 987D012FE8B
 X-Rspamd-Action: no action
 
-This series adds wakeup support for the Main UART in the device tree of
-the TI AM62 family of devices. It defines the specific pins and pinctrl
-states needed to wakeup the system from the Main UART via I/O
-daisy-chaining. The wakeup-source property is configured to describe the
-low power modes the system can wakeup from using the Main UART.
+The Main UART can resume from suspend to RAM states when PIN_WKUP_EN
+is enabled. Add the necessary pins needed to wakeup the system. Add the
+system idle states that the Main UART can wakeup the system from.
 
-Testing
--------
-Tested on a AM62P SK EVM board and a AM62L EVM board. Suspend/resume
-verified with the Main UART wakeup source by entering a keypress on the
-console.
+The UART driver uses the "default" pinctrl state when the system is
+active. In the suspend hook, if the UART is wakeup enabled, the "wakeup"
+pinctrl state is selected by the UART driver in order to allow wakeup.
+Upon resume, the default pinctrl state is selected again.
 
+Reviewed-by: Markus Schneider-Pargmann <msp@baylibre.com>
+Reviewed-by: Dhruva Gole <d-gole@ti.com>
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Signed-off-by: Kendall Willis <k-willis@ti.com>
 ---
-Changes in v5:
-- Enable Main UART wakeup for AM62D SoC.
-- Link to v4: https://lore.kernel.org/r/20260122-b4-uart-daisy-chain-dts-v4-0-cfdabdf5e6c1@ti.com
-
-Changes in v4:
-- Dropped AM62L system idle states patch.
-- Removed AM62L system idle states from the wakeup-source property.
-- Link to v3: https://lore.kernel.org/r/20260106-b4-uart-daisy-chain-dts-v3-0-398a66258f2c@ti.com
-
-Changes in v3:
-- Reword commits to include the logic of how the "default" and "wakeup"
-  pinctrl states are used.
-- Revert pin logic so that main_uart0_pins_default and uart0_pins_default
-  are untouched.
-- Remove main_uart0_rx_pins_default and uart0_rx_pins_default.
-- Combine main_uart0 RX wakeup pin and main_uart0 TX pin into one group of
-  pins called main_uart0_pins_wakeup or uart0_pins_wakeup.
-- Revert pinctrl-0 to only include main_uart0_pins_wakeup or
-  uart0_pins_wakeup.
-- Change pinctrl-1 to only include main_uart0_pins_wakeup or
-  uart0_pins_wakeup.
-- Link to v2: https://lore.kernel.org/r/20251230-b4-uart-daisy-chain-dts-v2-0-fa5257ec54bb@ti.com
-
-Changes in v2:
-- Define AM62L system idle states
-- Enable Main UART wakeup for AM62L SoC
-- Rebase to v6.19-rc3
-- Link to v1: https://lore.kernel.org/all/20250904212827.3730314-1-k-willis@ti.com/
-
----
-Kendall Willis (5):
-      arm64: dts: ti: k3-am62x-sk-common: Enable Main UART wakeup
-      arm64: dts: ti: k3-am62a7-sk: Enable Main UART wakeup
-      arm64: dts: ti: k3-am62p5-sk: Enable Main UART wakeup
-      arm64: dts: ti: k3-am62l3-evm: Enable Main UART wakeup
-      arm64: dts: ti: k3-am62d2-evm: Enable Main UART wakeup
-
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts        | 13 ++++++++++++-
- arch/arm64/boot/dts/ti/k3-am62d2-evm.dts       | 13 ++++++++++++-
- arch/arm64/boot/dts/ti/k3-am62l3-evm.dts       | 11 ++++++++++-
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts        | 13 ++++++++++++-
  arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 13 ++++++++++++-
- 5 files changed, 58 insertions(+), 5 deletions(-)
----
-base-commit: c8a4a774a9b0d2c86593492625874e27e9cbc9a9
-change-id: 20251230-b4-uart-daisy-chain-dts-d01aa40560b2
-prerequisite-change-id: 20251230-uart-wakeup-00faeac7c994:v2
-prerequisite-patch-id: f886c56dbb291b710ec07001ce79b0016c233e1c
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-Best regards,
+diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+index 50ed859ae06c47af38b11753d909a91485d438e5..ab9e58c2d225eb44c054d984aad8f0bed92bf7e9 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+@@ -151,6 +151,13 @@ AM62X_IOPAD(0x1cc, PIN_OUTPUT, 0) /* (E14/E11) UART0_TXD */
+ 		>;
+ 	};
+ 
++	main_uart0_pins_wakeup: main-uart0-wakeup-pins {
++		pinctrl-single,pins = <
++			AM62X_IOPAD(0x1c8, PIN_INPUT | PIN_WKUP_EN, 0) /* (D14/A13) UART0_RXD */
++			AM62X_IOPAD(0x1cc, PIN_OUTPUT, 0) /* (E14/E11) UART0_TXD */
++		>;
++	};
++
+ 	main_uart1_pins_default: main-uart1-default-pins {
+ 		bootph-pre-ram;
+ 		pinctrl-single,pins = <
+@@ -322,8 +329,12 @@ &wkup_uart0 {
+ &main_uart0 {
+ 	bootph-all;
+ 	status = "okay";
+-	pinctrl-names = "default";
++	pinctrl-names = "default", "wakeup";
+ 	pinctrl-0 = <&main_uart0_pins_default>;
++	pinctrl-1 = <&main_uart0_pins_wakeup>;
++	wakeup-source = <&system_deep_sleep>,
++			<&system_mcu_only>,
++			<&system_standby>;
+ };
+ 
+ &main_uart1 {
+
 -- 
-Kendall Willis <k-willis@ti.com>
+2.34.1
 
 
