@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-265119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265115-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mIoJH3zyjWlw8wAAu9opvQ
-	(envelope-from <devicetree+bounces-265119-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 16:32:12 +0100
+	id eF2sNzfyjWlw8wAAu9opvQ
+	(envelope-from <devicetree+bounces-265115-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 16:31:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1385A12EF83
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 16:32:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61D2B12EF31
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 16:31:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4853B31903B2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:28:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3B2AA315DADC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:28:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AF8423C4FF;
-	Thu, 12 Feb 2026 15:28:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B2CD2222A1;
+	Thu, 12 Feb 2026 15:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="v9+M6EXS"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PjV4fCcN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E66F201113
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 15:28:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8335422578A;
+	Thu, 12 Feb 2026 15:28:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770910102; cv=none; b=spLGnNqmZI3sD7RZI1d3TqwwiweKjb7MMCz2xF+V9qavNoqGv+XK7YJwmRDbn8N6vFsLLaP5s7KFwRUmtvbuRpSB++LKNXtxa19Uwngn5MOyNwBqNGrdsFafWWvtoLmZhU3LIEKG07NdrKMuZqsjtaUUvCVIPVJPeUjiE4eEdhc=
+	t=1770910092; cv=none; b=dFT2IdEJ6TyKQQsguCR7T1M/ntuuy8RjJdOgLGCZgMcquv5gF/zGiVGDWUdhWn9uBrJV1X5DpKtSeIKG4slAQ/v6QVaZYhVV33R89CyqG9Jmsg5UdbtypLS0tabfYfSQC2IcXc7uoBBL4s0IhwE5XPtUzvMZQS9rCKJqgBObCLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770910102; c=relaxed/simple;
-	bh=kAg7GnuZyI5ZzTuZI204r7cRM7u3uXOT4+LAvG87HQA=;
+	s=arc-20240116; t=1770910092; c=relaxed/simple;
+	bh=I71qNTMzvMzAwNtlXCyxYnMHiDKBIu/HYDIf1798M9k=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=h5WdAFKWrtioeE4snsfGMM/UrkLxiajANbLVSprxXihUxbOxX2uI6oMNzhdVv9da3m5FfFpELe/c5IEFGXI1mnd8mAl8QwrzPQzqm97ntzb1OyJ1M+rLUHrlZy2/mD8CVQo4jOaphqkOMw6iqz8HzxJLXKCIhqib9ZaJd7fJsHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=v9+M6EXS; arc=none smtp.client-ip=185.171.202.116
+	 In-Reply-To:To:Cc; b=Lvy7MqiuQCPNIDdcVmNIuWBjzlhjhYTiBHv+ZqC/NFvAGwfyylSmkIzxtEFHA0aGpcy8aWPGz4C2heTFuo7W1NsBhNhbwEm4iYIEMz2NSRJto1VGCfVUQb4RNHmrszGVC1iTG87VWbONj1/Znu4mln9n4Aivmbn2Le6CYlzthA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=PjV4fCcN; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (unknown [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 53BA7C23DA8;
-	Thu, 12 Feb 2026 15:28:26 +0000 (UTC)
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 305834E40CE3;
+	Thu, 12 Feb 2026 15:28:10 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 1799D606CA;
-	Thu, 12 Feb 2026 15:28:07 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3788111971B05;
-	Thu, 12 Feb 2026 16:28:03 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 05323606CD;
+	Thu, 12 Feb 2026 15:28:10 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5200511971B11;
+	Thu, 12 Feb 2026 16:28:06 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770910084; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1770910088; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=thbPNnRijTLf9gzZkZqQPZn2GPekIDtSoeywreYAt34=;
-	b=v9+M6EXS3+KSQIsQQmNwLg6DbjW0+wRqi7o6sBQLkugxgmlxHiRjyjMZnQfsGKVFsch8gq
-	xrsyBnl3hIiRFDhaffNj48tX7Zn13JLAWPhGwpOKZOLz9F5qk5RAmDzJZ9fEYbaR867j/Y
-	CTgGtnfUXfNvy0H/CXjRqFKiIufEzQeQAoGdyz1kJBvEP7C/BaDm1PPStw5g2P6+Qbx+m0
-	1j7tT8+XaZ8QlaETs6XZtAu96wivAvVy5dxnHAZCxPgRujZ+GPYiBqTwgwYsf/Z0j6fH6y
-	hsn6povRGcFrpw0/oR9y1IMsO5xBeNQOEpDwL/QR3ViSXx9yNlxc+dDvslrXSg==
+	bh=ek7OISNeQ+OcU+2gcXbX00XP+56retPqfH6Ygv5ZL0M=;
+	b=PjV4fCcN2ZEOm4pvvdXsZyDrZs8FlK52ow42015KdXgtJVVmPq6MYI472D6gkxR4fo8szG
+	Pav91Ud2lOZsEWKWJ4BMB6qwltYb7ruGGFWKbgvxOARtrbO9/Of82Z7eDjQswhjvK6/M+r
+	m3gMjDIgG7WyE0ZoAY0pASab7kF4yf2CqLzay45CyOnF2Cqva40AHkX/drwTKN8CuMCs8P
+	x04do6G2t9l/Zc6zLaIq78oLJ8qH6E3sWoK0M0bD+nfOiSaDi57Stcca86j6cQ9wB5d5/8
+	Wxv3rJ0zcw9ky8cpYbkgJPRB4lCmEEzh5yXsO8Kuufkb1dQ0OpL5ZAsUxisctw==
 From: "Kory Maincent (TI)" <kory.maincent@bootlin.com>
-Date: Thu, 12 Feb 2026 16:26:16 +0100
-Subject: [PATCH 2/5] ARM: multi_v7_defconfig: Enable TILCDC DRM driver
+Date: Thu, 12 Feb 2026 16:26:17 +0100
+Subject: [PATCH 3/5] ARM: omap2plus_defconfig: Enable ITE IT66121 driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260212-feature_bbge-v1-2-29014a212f35@bootlin.com>
+Message-Id: <20260212-feature_bbge-v1-3-29014a212f35@bootlin.com>
 References: <20260212-feature_bbge-v1-0-29014a212f35@bootlin.com>
 In-Reply-To: <20260212-feature_bbge-v1-0-29014a212f35@bootlin.com>
 To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
@@ -88,50 +88,51 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265119-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265115-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCPT_COUNT_TWELVE(0.00)[23];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 1385A12EF83
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:mid,bootlin.com:dkim,bootlin.com:email]
+X-Rspamd-Queue-Id: 61D2B12EF31
 X-Rspamd-Action: no action
 
-Enable CONFIG_DRM_TILCDC as a module to provide display support for
-TI AM335x-based SoCs in the multi_v7 kernel configuration.
+Enable the ITE IT66121 HDMI bridge driver to support HDMI output on
+the BeagleBone Green with the Seeed Studio HDMI cape.
 
 Signed-off-by: Kory Maincent (TI) <kory.maincent@bootlin.com>
 ---
- arch/arm/configs/multi_v7_defconfig | 1 +
+ arch/arm/configs/omap2plus_defconfig | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index 7f1fa9dd88c92..196b6872ca463 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -735,6 +735,7 @@ CONFIG_DRM_RCAR_DU=m
- CONFIG_DRM_SUN4I=m
+diff --git a/arch/arm/configs/omap2plus_defconfig b/arch/arm/configs/omap2plus_defconfig
+index 4e53c331cd841..cdf69ac2e5126 100644
+--- a/arch/arm/configs/omap2plus_defconfig
++++ b/arch/arm/configs/omap2plus_defconfig
+@@ -486,6 +486,7 @@ CONFIG_VIDEO_OMAP3=m
+ CONFIG_VIDEO_MT9P031=m
+ CONFIG_VIDEO_TVP5150=m
+ CONFIG_DRM=m
++CONFIG_DRM_ITE_IT66121=m
  CONFIG_DRM_OMAP=m
  CONFIG_OMAP5_DSS_HDMI=y
-+CONFIG_DRM_TILCDC=m
- CONFIG_DRM_MSM=m
- CONFIG_DRM_FSL_DCU=m
- CONFIG_DRM_TEGRA=y
+ CONFIG_OMAP2_DSS_SDI=y
 
 -- 
 2.43.0
