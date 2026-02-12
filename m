@@ -1,116 +1,193 @@
-Return-Path: <devicetree+bounces-265098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265099-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iBufCFXojWkm8gAAu9opvQ
-	(envelope-from <devicetree+bounces-265098-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:48:53 +0100
+	id OMa0JGzojWmP8gAAu9opvQ
+	(envelope-from <devicetree+bounces-265099-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:49:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B42C112E836
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:48:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D39312E875
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:49:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5CC25305144B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 14:43:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7CC02305E562
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 14:44:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB04A3587C2;
-	Thu, 12 Feb 2026 14:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA23935C180;
+	Thu, 12 Feb 2026 14:44:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XkxyqDfd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C8B29CE9;
-	Thu, 12 Feb 2026 14:43:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A67E83382F7;
+	Thu, 12 Feb 2026 14:44:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770907417; cv=none; b=ee26S3NTR51EfH/4J2QTrzqsf/dWfTvnQSeNVT3/oz7nEb04jgUuZaFq7p1U0HamOTsVPYgxIRsRsRe2k0LCqwqNO1IKVIxWFESU9n7MyCn3Wu0KRf63jvFLlxj1RwcJstpNQDULQ6m/fqE1BHrXZmrC/tUR3XDXfveZskC7cKc=
+	t=1770907454; cv=none; b=OLD7qWP3ms5ZX+484/zTLj2ei/WUt2vTQm2u0jdup/RyNYsCZ9XUje/W8sR+ZzhJ78qNhTNynxI4LxwZVg4JNo75ipiVA4zVKyB/Uj5b8LhMbUMbQzYVz2z8Oryas4z5tXCJP4fyzsn8961Fwo46aY7wZLyJMFeCqxdr72EyYms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770907417; c=relaxed/simple;
-	bh=w73KRp9PrnpihVzS+UqGXLGhxOqbn/WPIjqajzpJC9o=;
+	s=arc-20240116; t=1770907454; c=relaxed/simple;
+	bh=wsRfq4JQHV9EhUjp6BlIKRlXnA1FZ0qmUD3BISX7I1E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gUjj2Xg55oYWy36b2ZkvIVtSOqj8CSuYHsbkn9OaLPF6LnDg4FJOQC2VNNX19r8zVJXtNXBxQz2judylrfpJ5Lz7e6LXyg2NSoDFUKloPuRlyl87BaEcjBoZW9YlJOZg4WsE5S4k0CvTkQi2PaXOYxtdENZ1ITQb90sjoM5iNbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.48.232])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 4DB58342445;
-	Thu, 12 Feb 2026 14:43:34 +0000 (UTC)
-Date: Thu, 12 Feb 2026 22:43:25 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Yao Zi <me@ziyao.cc>
-Cc: Yixun Lan <dlan@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>,
-	Junzhong Pan <panjunzhong@linux.spacemit.com>,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] phy: k1-usb: add disconnect function support
-Message-ID: <20260212144325-GYA164498@gentoo.org>
-References: <20260212-11-k3-usb2-phy-v1-0-43578592405d@kernel.org>
- <20260212-11-k3-usb2-phy-v1-2-43578592405d@kernel.org>
- <aY24UOvYsnh_7ZCO@pie>
+	 Content-Type:Content-Disposition:In-Reply-To; b=oPS7Rc4y02H52zzFPG/HaPvnxyV1RIt46OebFcZKQ5rEl8eAGyz7LIoT3Jmt625rws2qEJECix/EhHnARJr1gU1wE/jB71GBcfQvEOGhdXSbQGbbzwE/+XUCWsFc2gj3JDuDPeJj0yKcCrKDf9JanzDLNPEfLuAhfWVCM/PEbN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XkxyqDfd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87E5AC4CEF7;
+	Thu, 12 Feb 2026 14:44:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770907454;
+	bh=wsRfq4JQHV9EhUjp6BlIKRlXnA1FZ0qmUD3BISX7I1E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XkxyqDfdIbc2bvCV2VBTnKQn9x0JFcTOZBtBFX9PB8A/2SpUcIM1nvBYIKLVp7Lmm
+	 lQadF0urGbstpA3g9OASJ+foqHw327u6Sa3rSgYzmtxZDbIqF8POCkoZL6HQ0uzA2n
+	 euVz7mNjkB/EnKj7QbbU4yEvU27No5zuj7siNzFWGIA4qqv9MeuF4DWoOhsyqGj+nQ
+	 YedwoFYYkkwAZIeXxE7U+M5M9UiuoXGQY1TTFXZs0kXeg0mCoNz2Ssbs09aLyqB1I6
+	 cG5j7sYjeMmNkVYyk0RePGcka/JK5TRHwlAEYq3Nqj2STN4KtIFqQSP7/eQ+SwpDmV
+	 N3yMaDkmI1QQQ==
+Date: Thu, 12 Feb 2026 15:44:11 +0100
+From: Thierry Reding <thierry.reding@kernel.org>
+To: Maxime Ripard <mripard@redhat.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
+	John Stultz <jstultz@google.com>, "T . J . Mercier" <tjmercier@google.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@redhat.com>, 
+	Mike Rapoport <rppt@kernel.org>, Sumit Garg <sumit.garg@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linaro-mm-sig@lists.linaro.org, linux-mm@kvack.org
+Subject: Re: [PATCH v2 04/10] mm/cma: Allow dynamically creating CMA areas
+Message-ID: <aY3j57xvdOY09EwQ@orome>
+References: <20260122161009.3865888-1-thierry.reding@kernel.org>
+ <20260122161009.3865888-5-thierry.reding@kernel.org>
+ <20260123-active-witty-rabbit-0fc5b9@houat>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="glr5iu7kbaysq2rw"
 Content-Disposition: inline
-In-Reply-To: <aY24UOvYsnh_7ZCO@pie>
+In-Reply-To: <20260123-active-witty-rabbit-0fc5b9@houat>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.14 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[gentoo.org : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-265099-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265098-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,linaro.org,kernel.org,collabora.com,arm.com,google.com,linux-foundation.org,redhat.com,lists.freedesktop.org,vger.kernel.org,lists.linaro.org,kvack.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@gentoo.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: B42C112E836
+X-Rspamd-Queue-Id: 3D39312E875
 X-Rspamd-Action: no action
 
-Hi Yao,
 
-On 11:24 Thu 12 Feb     , Yao Zi wrote:
-> On Thu, Feb 12, 2026 at 09:38:55AM +0800, Yixun Lan wrote:
-> > A disconnect status BIT of USB2 PHY need to be cleared, otherwise
-> > it will fail to work properly during next connection when devices
-> > connect to roothub directly.
-> 
-> This sounds like a bug. Does it affect K1 SoC as well? If so, I think
-> it deserves a Fixes tag and backporting.
-> 
-yes, but I haven't checked if it will affect real case since the problem
-exist with devices connected to roothub directly only..
+--glr5iu7kbaysq2rw
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 04/10] mm/cma: Allow dynamically creating CMA areas
+MIME-Version: 1.0
 
-anyway, I think it deserves to add a Fixes tag, so will do in next version
+On Fri, Jan 23, 2026 at 02:25:16PM +0100, Maxime Ripard wrote:
+> On Thu, Jan 22, 2026 at 05:10:03PM +0100, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > There is no technical reason why there should be a limited number of CMA
+> > regions, so extract some code into helpers and use them to create extra
+> > functions (cma_create() and cma_free()) that allow creating and freeing,
+> > respectively, CMA regions dynamically at runtime.
+> >=20
+> > The static array of CMA areas cannot be replaced by dynamically created
+> > areas because for many of them, allocation must not fail and some cases
+> > may need to initialize them before the slab allocator is even available.
+> > To account for this, keep these "early" areas in a separate list and
+> > track the dynamic areas in a separate list.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+>=20
+> AFAIU, this won't create a new cma heap when registering. This goes
+> against the recent work we did to create one for every cma region.
+>=20
+> I guess, since you have a driver that would explicitly handle that
+> region, we should create some kind of opt-out mechanism, but by default,
+> we should still create such a heap.
 
--- 
-Yixun Lan (dlan)
+It sounds like there's a bit of a conflict between what you want to
+achieve and what this series attempts to do.
+
+The way I see it, the CMA code is more of a helper that gives you a
+specific functionality set. Exposing each CMA area as a heap that
+userspace can allocate from seems like a bad idea to me.
+
+Without knowing anything specific about a CMA area you don't know if it
+makes sense to expose it as a heap. Given that there is very little
+information associated with a CMA area there's only so much guessing
+that you can do. I think it'd be more sensible to make CMA areas opt-in
+to have a heap created for them rather than requiring opt-out. Exposing
+a heap publicly applies only to a (potentially) small subset of all CMA
+areas, albeit at the moment it may seem that that is what it's primarily
+used for.
+
+In fact, for this particular driver nobody must allocate from any of the
+CMA regions associated with the heap driver outside of that heap driver,
+simply because the heap driver maintains meta data about these CMA
+regions for things to work. If we allow access to it from anywhere,
+things are eventually going to explode.
+
+> That being said, it's not clear to me why the heap driver uses CMA in
+> the first place.
+
+We use CMA as a way of reclaiming memory if needed. The heap that we
+create is meant to be resizable, so that when nothing uses the heap, the
+memory can be reused for other purposes. However, when memory is
+allocated from the heap, we need to reclaim that memory for the heap and
+relocate any buffers allocated from the region somewhere else. CMA does
+all of that for us, so it seemed like the logical choice for this.
+
+Thierry
+
+--glr5iu7kbaysq2rw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmmN5zgACgkQ3SOs138+
+s6FSqRAAwWGzG1UjDgVwyR+isYP6DrFMGbojEtczHFxgKElBKoFjjqtdmpN97XRD
+7MIc1C6LGCLoJa++YXy7ZlL24CTzYRohVBnmy/Hygdz2uoaeW7GdR0M31slI/lG4
+TpliCL/GXNi1ZhmE8BjykmsEqgjHG+PH9Vd1/VEgo/5DoaX3uc+8TndO9hqh/Jgh
+gFScFbr/VRKDx8wdWyhOsWN4Nm52uJBCPbhJ8dGv4iabMopEwOlLpcm32aFNWMHv
+El8zIIeGzfw9lfWm2WZvtO8heFn3R0kT5yw4opDc7STvO7k6fC/ZQWbg86FR71/e
+DtrHMcjjg+75TIZemvKQwPrshL7CAdwcaNnT+QxVKE0oqHxjoIonRsUkEaTrFKyE
+6n6eqR8+enCtH3hamWE6rFocZQzL5zXxqILwbzeAR/4CBtXBh3pZL4SH6V0cye9h
+jci5Lfjh2SiLSggSKXsTBgrCLCvz8DuapM8GEtfkRS1YoKrix+uGe0nj+J3uAx+U
+SyvOCMoTb+WWQNOyNBMpS2Wk3KcNDMuadOtuxbZa1BInxUBOktPn/km1vJgiO0au
+5sWtH6xSgLF50qbTEFRVg+Pz31LIT+TZSA6L2gj5EmD1gKZeefPCtkiBgDZdsvwk
+KAejAHsfMS0kibucCHIgTg6cjifaVKfFVtiBh3BX8ZuSmmlqnOM=
+=TTIe
+-----END PGP SIGNATURE-----
+
+--glr5iu7kbaysq2rw--
 
