@@ -1,87 +1,78 @@
-Return-Path: <devicetree+bounces-264986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264988-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4EQCBnaljWlh5gAAu9opvQ
-	(envelope-from <devicetree+bounces-264986-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:03:34 +0100
+	id kNYSJ+eljWlh5gAAu9opvQ
+	(envelope-from <devicetree+bounces-264988-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:05:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F0CF12C2EF
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:03:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2580D12C379
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:05:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BB86730CF191
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 10:02:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DCBA93172212
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 10:02:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA1952F5313;
-	Thu, 12 Feb 2026 10:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E79552EFD9C;
+	Thu, 12 Feb 2026 10:02:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="LGiKKXf+"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="MFS3Zcfz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69E42F1FC2;
-	Thu, 12 Feb 2026 10:01:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 806D829A9F9;
+	Thu, 12 Feb 2026 10:02:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770890488; cv=none; b=KGEMx5Prpoi3qa0ZCpK6Q3RyCRE+aFw5/h8HqNGw9x/BBxASEUzbqDNM5IWhd+gaIGSY1gQl2j8zKt719iRV3R/Ktcy6JVWZ3RIw6ozuy9RDJK36j5hKzpgX9ndlLIAquduzPGOgay0AV6LvtpY3lZbdad0AWEv6hixhBEIsgLs=
+	t=1770890536; cv=none; b=YYPXcLsAHUZu6w39rJhdpuULyeCHLkjy7EJ2lhn2yZgLzsq5LZDWuU3XgR6T6deJavwVxmVJRSj+zxTlQLIzcWkEooQfn7GDeoPNmNzNrUBJxSuWTYjre4R9JGFDDNpUG4aNciw589ycq8DTphBhaocLeOFCwgdVVFtYyMQmcBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770890488; c=relaxed/simple;
-	bh=wtvphi0U+wPKRDT/xaA2E/ru0Zp3iE0uJXbK2G53W6w=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EzE/AbXCxutqCvrgavRqHGrt+hRDrHBP9Ka9dkqi+137+wO1xYR7a1ZBfXVHRUSK919o1LUY/073U7mZKyIIOgYrjf1bUF/WW1cMCeBVomC/xILYI4VvMMj4Q89E5hAaYBFtUjhDWCydNI4g+cP2wmxt0C/2O5z7bajFoq9lwsk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=LGiKKXf+; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: c835b55807f911f1b7fc4fdb8733b2bc-20260212
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=+/Pg8Kgz+0kKiwJ2rlkl+AbLR6pcx1M1c/4v5llLUWg=;
-	b=LGiKKXf+CCGM0C4eIXJ1YGf3KwvxTpdvTxvgJ6UPYUBQiecVB40jLEdl45/9mEveCpNKLbjH5MbLcr8VK4p8i+jvMKXLPBRidkhr084FUnP60aUsrp6hwLwm+7ERH3a2aLOvYGl/whdWiAW3yNwE6zlGT6YdZq0XScn/ZZJGIaA=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.11,REQID:026f59fa-1052-4bb9-856f-42c98f81cec2,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:89c9d04,CLOUDID:b80be27a-8c8a-4fc4-88c0-3556e7711556,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|888|898,TC:-5,Content:
-	0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI
-	:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: c835b55807f911f1b7fc4fdb8733b2bc-20260212
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
-	(envelope-from <irui.wang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1110603421; Thu, 12 Feb 2026 18:01:21 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 12 Feb 2026 18:01:19 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Thu, 12 Feb 2026 18:01:18 +0800
-From: Irui Wang <irui.wang@mediatek.com>
-To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	<wenst@chromium.org>, <angelogioacchino.delregno@collabora.com>,
-	<nicolas.dufresne@collabora.com>, <sebastian.fricke@collabora.com>, Tiffany
- Lin <tiffany.lin@mediatek.com>, kyrie wu <kyrie.wu@mediatek.com>
-CC: Yunfei Dong <yunfei.dong@mediatek.com>, Maoguang Meng
-	<maoguang.meng@mediatek.com>, Longfei Wang <longfei.wang@mediatek.com>, Irui
- Wang <irui.wang@mediatek.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>
-Subject: [PATCH v4 6/6] media: mediatek: encoder: Add MT8196 encoder compatible data
-Date: Thu, 12 Feb 2026 18:01:03 +0800
-Message-ID: <20260212100104.11863-7-irui.wang@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20260212100104.11863-1-irui.wang@mediatek.com>
-References: <20260212100104.11863-1-irui.wang@mediatek.com>
+	s=arc-20240116; t=1770890536; c=relaxed/simple;
+	bh=+XSdePmIxMkVcvmbkbSmvnwKwABGab5j+b7WmP5kNz4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qd4JxbUkMuB+QQzMrVHwEqmZLXKXdDFnWX0DO7vUf8E4TvaQHNLRZIV1r0w45VhUS4SfQm5Xb5Xg7sk1CtfuEjXP3YsiZ/TmzVE0ie/BYTyUnDTkU+plAR7jOe97yEZM7FB06+47vFxseCmeEFzakSrCBN6WhR2kTMI4jFjEJqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=MFS3Zcfz; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1770890535; x=1802426535;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=+XSdePmIxMkVcvmbkbSmvnwKwABGab5j+b7WmP5kNz4=;
+  b=MFS3Zcfzf2ke4gKxaunwif6Iui8WgF/MxSf+BVFJHJix5hFSeO2OJzSh
+   t5kjsxVBSqmWi8LWkIQdoOXQDAocF9KjgR1m52uXbsTPP+9dryQayo862
+   bGJeXcuxhVGx/Fz5M8UfCBm2h68kXtNLyA0Lu8IZKolyhIH1p9iFyQs27
+   oySi9VrzesLsm2xRC5xiY2fpyF9XCG0C3y1YCgDyaertmRyDRgfL+zGGQ
+   OLZTifj1+ZTINy1YquYJnpy06jt/sJxc0Nuac8dYRdmHQ4anFoOTKhE8h
+   8lbvj5Y7NF4v/pIkfTqoViz9KEILCkVf/c8NtYFhMo8wKJRXtcqbH7Zho
+   A==;
+X-CSE-ConnectionGUID: 9SO/Vbq8Qbun3JrOdaYeIg==
+X-CSE-MsgGUID: hTJwjBEdSdK+h8m/oRJOZw==
+X-IronPort-AV: E=Sophos;i="6.21,286,1763449200"; 
+   d="scan'208";a="60606622"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Feb 2026 03:02:14 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Thu, 12 Feb 2026 03:02:07 -0700
+Received: from archlinux.mchp-main.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Thu, 12 Feb 2026 03:02:04 -0700
+From: Mihai Sain <mihai.sain@microchip.com>
+To: <mturquette@baylibre.com>, <sboyd@kernel.org>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <varshini.rajendran@microchip.com>,
+	<cristian.birsan@microchip.com>, <balamanikandan.gunasundar@microchip.com>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<ryan.wanner@microchip.com>, Mihai Sain <mihai.sain@microchip.com>
+Subject: [PATCH v2 0/4] Update gmac clocks and devicetree for sam9x7 mpu
+Date: Thu, 12 Feb 2026 12:01:43 +0200
+Message-ID: <20260212100147.5007-1-mihai.sain@microchip.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,119 +81,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-MTK: N
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[xs4all.nl,kernel.org,gmail.com,chromium.org,collabora.com,mediatek.com];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264986-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264988-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[irui.wang@mediatek.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[mihai.sain@microchip.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[mediatek.com:+];
+	DKIM_TRACE(0.00)[microchip.com:+];
 	PRECEDENCE_BULK(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_FIVE(0.00)[6];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mediatek.com:mid,mediatek.com:dkim,mediatek.com:email]
-X-Rspamd-Queue-Id: 6F0CF12C2EF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:mid,microchip.com:dkim]
+X-Rspamd-Queue-Id: 2580D12C379
 X-Rspamd-Action: no action
 
-MT8196 encoder use common firmware interface, add compatible data to
-support MT8196 encoding, and need set dma mask to support 34bit.
+This series updates the GMAC clock configuration for the
+SAM9X7 family. The current clock definitions contain inconsistencies
+around the GMAC peripheral and its associated generic clock IDs, which
+lead to incorrect wiring in both the clock driver and the devicetree.
 
-Signed-off-by: Irui Wang <irui.wang@mediatek.com>
----
- .../vcodec/encoder/mtk_vcodec_enc_drv.c       | 19 +++++++++++++++++++
- .../vcodec/encoder/mtk_vcodec_enc_drv.h       |  2 ++
- 2 files changed, 21 insertions(+)
+Changelog:
 
-diff --git a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-index 9a94bd096397..86d0ab03f151 100644
---- a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-+++ b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-@@ -20,6 +20,8 @@
- #include "mtk_vcodec_enc_pm.h"
- #include "../common/mtk_vcodec_intr.h"
- 
-+#define VENC_DMA_BIT_MASK 34
-+
- static const struct mtk_video_fmt mtk_video_formats_output[] = {
- 	{
- 		.fourcc = V4L2_PIX_FMT_NV12M,
-@@ -300,6 +302,9 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
- 		goto err_res;
- 	}
- 
-+	if (dev->venc_pdata->set_dma_bit_mask)
-+		dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(VENC_DMA_BIT_MASK));
-+
- 	mutex_init(&dev->enc_mutex);
- 	mutex_init(&dev->dev_mutex);
- 	spin_lock_init(&dev->dev_ctx_lock);
-@@ -451,6 +456,19 @@ static const struct mtk_vcodec_enc_pdata mt8195_pdata = {
- 	.core_id = VENC_SYS,
- };
- 
-+static const struct mtk_vcodec_enc_pdata mt8196_pdata = {
-+	.venc_model_num = 8196,
-+	.capture_formats = mtk_video_formats_capture_h264,
-+	.num_capture_formats = ARRAY_SIZE(mtk_video_formats_capture_h264),
-+	.output_formats = mtk_video_formats_output,
-+	.num_output_formats = ARRAY_SIZE(mtk_video_formats_output),
-+	.min_bitrate = 64,
-+	.max_bitrate = 100000000,
-+	.core_id = VENC_SYS,
-+	.uses_common_fw_iface = true,
-+	.set_dma_bit_mask = true,
-+};
-+
- static const struct of_device_id mtk_vcodec_enc_match[] = {
- 	{.compatible = "mediatek,mt8173-vcodec-enc",
- 			.data = &mt8173_avc_pdata},
-@@ -460,6 +478,7 @@ static const struct of_device_id mtk_vcodec_enc_match[] = {
- 	{.compatible = "mediatek,mt8188-vcodec-enc", .data = &mt8188_pdata},
- 	{.compatible = "mediatek,mt8192-vcodec-enc", .data = &mt8192_pdata},
- 	{.compatible = "mediatek,mt8195-vcodec-enc", .data = &mt8195_pdata},
-+	{.compatible = "mediatek,mt8196-vcodec-enc", .data = &mt8196_pdata},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_vcodec_enc_match);
-diff --git a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
-index 769fb5009964..475953d39aa4 100644
---- a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
-+++ b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
-@@ -32,6 +32,7 @@
-  * @core_id: stand for h264 or vp8 encode index
-  * @uses_34bit: whether the encoder uses 34-bit iova
-  * @uses_common_fw_iface: whether the encoder uses common driver interface
-+ * @set_dma_bit_mask: whether the encoder need set extra DMA bit mask
-  */
- struct mtk_vcodec_enc_pdata {
- 	u16 venc_model_num;
-@@ -45,6 +46,7 @@ struct mtk_vcodec_enc_pdata {
- 	u8 core_id;
- 	bool uses_34bit;
- 	bool uses_common_fw_iface;
-+	bool set_dma_bit_mask;
- };
- 
- /*
+v1 -> v2:
+- Add only one patch for devicetree with detailed description
+
+Mihai Sain (4):
+  clk: at91: sam9x7: Remove gmac peripheral and generic clock entries with ID 67
+  clk: at91: sam9x7: Rename macb0_clk to gmac_clk
+  clk: at91: sam9x7: Add gmac generic clock entry with ID 24
+  ARM: dts: microchip: sam9x7: fix GMAC clock configuration
+
+ arch/arm/boot/dts/microchip/sam9x7.dtsi |  6 +++---
+ drivers/clk/at91/sam9x7.c               | 21 ++++++++++-----------
+ 2 files changed, 13 insertions(+), 14 deletions(-)
+
+
+base-commit: 37a93dd5c49b5fda807fd204edf2547c3493319c
 -- 
-2.45.2
+2.53.0
 
 
