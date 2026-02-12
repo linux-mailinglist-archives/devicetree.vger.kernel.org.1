@@ -1,269 +1,223 @@
-Return-Path: <devicetree+bounces-264887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264888-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kN4jHXE1jWl70AAAu9opvQ
-	(envelope-from <devicetree+bounces-264887-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 03:05:37 +0100
+	id qIv+Ey84jWng0AAAu9opvQ
+	(envelope-from <devicetree+bounces-264888-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 03:17:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDFB8129194
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 03:05:36 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BD1112920F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 03:17:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 86784300A7E5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 02:05:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 03F413006998
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 02:17:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D0F619CC0C;
-	Thu, 12 Feb 2026 02:05:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3FB21F4613;
+	Thu, 12 Feb 2026 02:17:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ULDh7QcQ";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="ECHYWw9p"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ajvlTM9B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011005.outbound.protection.outlook.com [52.101.65.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 298EB43ABC
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 02:05:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770861931; cv=none; b=Srx427nR5YqxiGGukBIXRos356Og5xwj6r6W0d4Ow/RYX6oaBMBI+zpYHP3Z5A1lAm8ZX0nrEMVIC7wdVaYWmvpxmm+QfkrKD6f5uC3R0184g4dzNE9oPWChdKv902/1G6bxOJpSosAoAfDE0rOxkpFYsW8GVeEOctRjlbqc/RU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770861931; c=relaxed/simple;
-	bh=WOyzWWXK6xsPjUEPf3AnRP+f4QppHKpUNZstQPWUwTA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s1VA11fyUmQ38ubeaPqhQLPycTkdVKEedO3NEOrnlgBwsUtwksp+6WeObmVhksIx0IGjMQ9njYBNFgiR9CMpsd8x0TMOls/OV76R7xh0r6X5e7VZnOAUJCsCYVMiCxQyAyxwd0F1NdoJ0GV2Pvumm7m4mKmuavcPKVU62QFDiKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ULDh7QcQ; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=ECHYWw9p; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1770861928;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PizJXKd85zXyZ9iQQX+Ej3hfH7kGalbAW0kYbFZfhf4=;
-	b=ULDh7QcQOGgvZj2wTFEoOjuxG4CSW61nO1C0xeArzSl5Q8k/eAwJOhFcOlv0KuUwdSUn0D
-	kdy083qKTD66V88t0Et4GMkxCkB9ukBB1aoR3l0SwJjds3a2gi1vO9mcvGGckNRsF8StIM
-	cA6s4WMAxT67AtNYsjwxkzY/MMOG/fA=
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
- [209.85.214.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-498-i-mXF3KQNPeEE5fGZcIIEA-1; Wed, 11 Feb 2026 21:05:26 -0500
-X-MC-Unique: i-mXF3KQNPeEE5fGZcIIEA-1
-X-Mimecast-MFC-AGG-ID: i-mXF3KQNPeEE5fGZcIIEA_1770861926
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2aad5fc5b2fso26713165ad.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 18:05:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1770861925; x=1771466725; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=PizJXKd85zXyZ9iQQX+Ej3hfH7kGalbAW0kYbFZfhf4=;
-        b=ECHYWw9pUEsaJiMNPyjXN/Gc5BfgnJyClfsWQQsvDkfGtG+h3UWzwvDJm3qHorbZu8
-         T3Ag0tksh+0zkiETRTk2uk87QhPojXFgP2UStj8+yT6vPQ3h9jQV55frKRWCLleGb9Kl
-         tZdRv/nvUolQ/Ir5aAQ5zqUX0WIxZtf5CzvktmrMi9KpfZLMdGMcVrQOnF8mw3CKPR7L
-         2UodfHtszwfXPA8vHQ+k0NlwtRf2ZCTLWGviXxDIeQfxbom9UkumQ9o5P1SaTbHTsd0Z
-         uv63dpJBpBdhT75CRVivPfMKJ0sHmKeisWfxfrOgyVRWqssryH5lazMP2A4u9WMQsREq
-         1NCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770861925; x=1771466725;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PizJXKd85zXyZ9iQQX+Ej3hfH7kGalbAW0kYbFZfhf4=;
-        b=w5c8awedx4AVMOqTOWq/FCQzNUIE5GoE0zpLgFTpgNVFOVWBLMoPYL57VqyyddIXSY
-         IGPwiNZaUTYHLj/ZXeX3/ZR+m+jFdZAsR+Lr6gt+cUsVm2GEZXPc4oEZgZD1uod9Mu/x
-         +MulBFVspiO6srXCsk6jVjXcGExdXpzXH57fuolMspRaAxjzNZk0nt9+dlBr0RkuhsM5
-         5NJeFFXNaFi8ght6XGrbj4B4NP+Kd/m7FTcfcyUNYHzqMdMZJbW4PEjPYScAO7WPEkpq
-         LWlws6Z0wyRBEJ+2lca/4cyWUy8FolYcH9rizP0IIz+akrLSOPTbiDyrrLUMg7N8vW42
-         fS1g==
-X-Forwarded-Encrypted: i=1; AJvYcCWMOJcTaloykb8ZDx5mnm4EiiBUdcoNJklRicJmnKDxEtF2S/YgmMRKJ07rznbdmjNU28GNUbRr06H/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUqem5ACh57QxYvtkz8k3gjkr24WRpR3jWvDn8kJxX1T2pwIc3
-	f81UPsawBIOvH7A7daCsaFPRflz50zFxPQMzY7co9GqIpG4hCp4UqM+ez/SCJXf3LwFX3CZBUSG
-	soiB89c68Pi2ta7zmmdxf7D+AcGVIcPvqbEgx6p1tjHhVJUe0HM9akk9CDUVrWCo=
-X-Gm-Gg: AZuq6aJl+K/YWtv1nWxOmVt5DQLzfrd3VWOpEP/fUcKf7CRCApSs4G917drbZcF11xH
-	TZepxY7mVqCKMVHNPvht5p81FcAKWqA1RQ/wP80SBelpw8lc515/YdED4CEYQNEAS2IMpspq/e+
-	gIhWbuO6IAzCA9vhFCQhvH9dCK8JFUsu+g70Gub6e2Tq46oFzIEqvrZAjdWOvHi+PlVXWTBx+h+
-	C6gNGhQpPhkIqQszWOCmbsaKW4/kn53ruLW/7vQmmV/b97SQ3xH7FxfTW76kQ82CnhHsCF5qATl
-	OSFjy9gN4YRkBlJyL3W7rYtyn+YfAz6m8CbbGVSD24tml5ZP+F9VYqXfOOhP11RYhLp6pQ7Erk5
-	YY65Oznp5yA9V
-X-Received: by 2002:a17:903:1663:b0:2a0:de4f:c99 with SMTP id d9443c01a7336-2ab3b1583c5mr6716765ad.9.1770861925455;
-        Wed, 11 Feb 2026 18:05:25 -0800 (PST)
-X-Received: by 2002:a17:903:1663:b0:2a0:de4f:c99 with SMTP id d9443c01a7336-2ab3b1583c5mr6716465ad.9.1770861924935;
-        Wed, 11 Feb 2026 18:05:24 -0800 (PST)
-Received: from localhost ([209.132.188.88])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ab2984c07bsm34405605ad.7.2026.02.11.18.05.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Feb 2026 18:05:24 -0800 (PST)
-Date: Thu, 12 Feb 2026 10:01:58 +0800
-From: Coiby Xu <coxu@redhat.com>
-To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-Cc: kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org, 
-	Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>, Baoquan he <bhe@redhat.com>, Dave Young <dyoung@redhat.com>, 
-	Kairui Song <ryncsn@gmail.com>, Pingfan Liu <kernelfans@gmail.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Thomas Staudt <tstaudt@de.ibm.com>, 
-	Sourabh Jain <sourabhjain@linux.ibm.com>, Will Deacon <will@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Madhavan Srinivasan <maddy@linux.ibm.com>, 
-	Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
-	Saravana Kannan <saravanak@kernel.org>, open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 2/2] arm64,ppc64le/kdump: pass dm-crypt keys to kdump
- kernel
-Message-ID: <aY0uGN67vdEP2b_F@Rk>
-References: <20260211082401.2407853-1-coxu@redhat.com>
- <20260211082401.2407853-3-coxu@redhat.com>
- <423a3431-1271-4c35-94fe-8ca880679ed9@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C3761AB6F1;
+	Thu, 12 Feb 2026 02:17:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.5
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770862634; cv=fail; b=cCwKXu+6GK4J7yw1TXeSzXMW562vfYM6oIREu2aw/AKiwifkCNFFTWSndTzLdT5Xm0BNGlVHKkYOwy84F5XmQKO2hC6WgfZPyUz7WlvjmYG8n/+aVYuJM5qejzWWP/V8+O6/fNlqqnSn655L2YODTvXTGQzlSKjm54VUf3Rdc0A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770862634; c=relaxed/simple;
+	bh=NkGlqdlg/q99JuKrkFpB9BwWqoxF+2jJC8ZsHcvgX+I=;
+	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=UQtpBl24E8wn+6FDElw1GO1hPuvReKiFx5AX3jImlYnBuuRP+fC0mgupSiuerNTtiO0gu58r6aqhLzheke6Xsjf1ACx1WeiMLSD+AQLaPV0D/jE+6xtaOxhH3nl9WxKt+5uFynJpV0S8TDSqXPtweQnqweh5pMq70cXAKntfwqM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ajvlTM9B; arc=fail smtp.client-ip=52.101.65.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ax62r/jYDGKkG5RfafA04/xRJu5VRtaK/Kr4dbU6Xqa7Y6MXXYJIYk4gTHQAFLZLsiDxQMWEp1U45+6OYHGvISyKzoMjzJDROrSt1ocRUkUI5o6p+shacvyp6qfZLSFGhPnDZt3LnDIOLu9ogwvVwGDxDnq1pRpiIOmQpFCOBn34bJnv0Q+gZhANZlhaavDxusjDDywRBD4bhlkgWPSV47OUjqBT8NFGbJmRffoOtg/jLTTjqHIcxrtkpCcL2zho0+Ygic4TUXPUyQsxQ1UH2Eq5/18uFdxCL8FSlwRvvfGXnCpSK0Q/dgBFyGSq3spbqhAqKrmf2wGGk6o+WKySiQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aX0cMY9Of4G75WRbanbT/VXeStl5diHEJt+s6U5N870=;
+ b=T1DLcormuKIPzfalr1ZUOt+2FHIGsptWOTnbUeJG90HG+s/yXXYevwHJSGzXEPHUALRV+iYoA5FDFfVUws9dFWH3iT2odStVRt0HOqZSGMLIx7eKUuAMNgiGNiyPu1zwA4ATC5tDXBWidIwN8UxJ1otv70m4sTE1zGDwVOtdgA/V/zWUHgA3qblloOgzDDSDdmYjG5hWT2wElpiTUXEPLdH92zkkqTWSK9fCJwtjL2NqJX4Etpnbg2Zo8P4h2Z5CeotauAqR8NJGEBlSweI93phZ+LJXiEA8bB4kpMy2ymhqrTLDCSzNLIH1dWpnhq6m4jCCzmkzarkjd2lV4jU1KQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aX0cMY9Of4G75WRbanbT/VXeStl5diHEJt+s6U5N870=;
+ b=ajvlTM9BLuG9osmbk6mZKsfoXDGyArEO+R8oqOqCZuOZejLC615NGX05brmSKWterheTpXdOZZkmdww4leOhOJyI2c0MdP1MaRc4XT/ylOT5439Eez0lQ/PO08e4ByjEBzvmf8Bga8T3jWV4Q96NPNChDhGB9i2q9tOp76MvFyP04DXbR5hDPS2pKE7kKSdr7u7enXBodOu7s1uHeZXBWjVJ70FaCOFRXsebvqDlOjuT2pXNS4cY3W9F8lDvBUvBNthvwQu6hFaQh+ZomEzv8MFLwmhWKRpwPawU9CXHZbMAcCzzeI1TWmZg0UEtErfBFD7K9nhRAE8xwWCJM+ERJw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB7055.eurprd04.prod.outlook.com (2603:10a6:800:123::21)
+ by AS8PR04MB7973.eurprd04.prod.outlook.com (2603:10a6:20b:28b::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.10; Thu, 12 Feb
+ 2026 02:17:10 +0000
+Received: from VI1PR04MB7055.eurprd04.prod.outlook.com
+ ([fe80::d6ab:1538:d868:bf8]) by VI1PR04MB7055.eurprd04.prod.outlook.com
+ ([fe80::d6ab:1538:d868:bf8%7]) with mapi id 15.20.9564.014; Thu, 12 Feb 2026
+ 02:17:10 +0000
+From: Shengjiu Wang <shengjiu.wang@nxp.com>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	perex@perex.cz,
+	tiwai@suse.com,
+	ckeepax@opensource.cirrus.com,
+	andriy.shevchenko@linux.intel.com,
+	nichen@iscas.ac.cn,
+	kuninori.morimoto.gx@renesas.com
+Subject: [PATCH v2 0/3]  ASoC: dt-bindings: fix the ak4458 and ak5558 binding doc
+Date: Thu, 12 Feb 2026 10:18:26 +0800
+Message-Id: <20260212021829.3244736-1-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0016.apcprd02.prod.outlook.com
+ (2603:1096:4:1f4::17) To VI1PR04MB7055.eurprd04.prod.outlook.com
+ (2603:10a6:800:123::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <423a3431-1271-4c35-94fe-8ca880679ed9@kernel.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR04MB7055:EE_|AS8PR04MB7973:EE_
+X-MS-Office365-Filtering-Correlation-Id: b543c408-ec37-46fa-8162-08de69dcd3da
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|7416014|19092799006|366016|1800799024|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?jEDkFBnsdh4falXeD7F5VRooV6SZzbNiVRgzOMqL4hKjDO1Mtq76RoTf4Fjb?=
+ =?us-ascii?Q?4iZs+C2DMJ0nmb4b7VwstxvCbUTRaBG6+du/HTkcMa9CNXY9GkdY/Sox8BQm?=
+ =?us-ascii?Q?ThbmhB+yp6AiWFSxFD22aKHcb06JAWxS9w9mQ67K6dVnS46WzkO96vRsdmbH?=
+ =?us-ascii?Q?MGpK4bYYKezehc4WKDBLuSf4ykx5mnOtoGPqux6aP4yS81lvi5jINbauhYnw?=
+ =?us-ascii?Q?r6SR3tUbXnzeVCswevmcbrxG+hXerMO/sc49S9HftyVKijlEjmzhABPhf3n1?=
+ =?us-ascii?Q?mDaUwdhiB3bIofZ0CVa8AnjF5bVHJ277Q9od5eVr7lsFahO5Rl1i+m/ZEj1k?=
+ =?us-ascii?Q?MbCiFwvOrs4N+ueezdcajL1m2v9mJk6MEYpNLiXJwMLAj0qBJDYOdR2h63VI?=
+ =?us-ascii?Q?cwVD1LDeDBxktDDapCOnqEczlK9GVHw+98tjKvzkv6hnuTHH6D1lRijhJZWT?=
+ =?us-ascii?Q?3qvCm8L1MqDbGz+20z1xtp+tRc/4LfBJywrpjfYds9vy1jNRWyQdpDnpUfyP?=
+ =?us-ascii?Q?JVPHUk+2oPG/V63Gb5cQe6gOKgIz3VX4aSUP0WsGkub9QZZAUqtzOdZboPu5?=
+ =?us-ascii?Q?lDi00j9EhyHaF4htnfiGvpk8stEATg3CFytWbuTjaW2FhUOkPErkrTXeSq9Z?=
+ =?us-ascii?Q?Lq0J1jwNzTl2Wr9+5ynVXoulvgpvDx4t/h9o1YKZo0+JYmz02oYkpFaGCcS5?=
+ =?us-ascii?Q?iW8KCGj7bi4qqC1zoOCBVXk+3QI7gZXLbDvhBSVOf58l7Dukttna1ugvech4?=
+ =?us-ascii?Q?gmrHdzJqDfuPY0LnCQtY0cIgkLtEhGgXk5kNDi/AHmdapTP41E/4ylJyVEeV?=
+ =?us-ascii?Q?N/DHJ33Vihb6m3HXfv3uhWEgHCV2/lSI+126UhAKXXYKsrLXJBV8DjdVRlSn?=
+ =?us-ascii?Q?h91vLK2OpHPcCz68KF1AvX7qKbNYXS0dDOO6hcZtaBKiZiDczLP5dFK7pni2?=
+ =?us-ascii?Q?PlFW+YCiR5BSARSjHMNeo32g+GR/e7nPZoyfP3hx3mBz1eRycqB+mbH6pinH?=
+ =?us-ascii?Q?POdp0sK8+FjlQNJOInus3G0OQP6MAZnv7dG51+KXiWaoEvDNs9c4iJWTntv8?=
+ =?us-ascii?Q?qRZjEbgxGsMV8iGS3aPlBNRBCqTxYBcWcpfpHW8KoMunGspqrkIXzOfDqVL9?=
+ =?us-ascii?Q?52x55HGuAB/Whn8ZOqMgAqWOi4TYiL/Tat7DLqt5cRO1U/fmdDu4qI1woQxp?=
+ =?us-ascii?Q?zVRzRLUFD0OtiPu5zmVV8UsoVadW3nFlj/WwRPMlAR0OFnsaRmskZWC/PX8t?=
+ =?us-ascii?Q?VLmhO4iPSeN0ycCDkQ5vM9lInsSWy5KsnMmzBu0hmd91rwTzQbQ9HK7TZv4D?=
+ =?us-ascii?Q?GWXLRugpcvteExMoVHjMeO09DNFVHAOLWzMir+u381ad7/BDtlss4NIqRuO3?=
+ =?us-ascii?Q?KwUJHbvkdImOAr7fI1vkIT5LESuDNG8YAvrjV0Ls6Zv9quqqSd4edp2T26+s?=
+ =?us-ascii?Q?VPEGvmZvQvzDBtmosGSMZYP3dtOUweof8h0JhlOA5bN11ivxvEFRVM9fibfz?=
+ =?us-ascii?Q?y5xDk2/zbEDA/j6mGLAnVMnRlaT9W0kS8VgxIpy2ZYg8gyjWnT2wlHqiP2mZ?=
+ =?us-ascii?Q?3abt6gn9cy4DfdV5VYU9CZ6MkqrbXAWnlrkp2blBRYPq65rEP4sPnlSDg738?=
+ =?us-ascii?Q?VX20taDTbrwkQbd2xQuFJAzh9D6im+g8uvB2DGVJvPB+?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB7055.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(7416014)(19092799006)(366016)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?MDOYZ0ldPZfMm2/nSSQsKHqMlepRvtlflE8lHxW5fRlEPlPvSAYTSPWcD9Sh?=
+ =?us-ascii?Q?iqK0AivIFQx88zv0qe/ooTTgijY9DgU4qc0uauzyhMvNcbOEPmQ7xaa9DpjX?=
+ =?us-ascii?Q?6zemaJVbwBB1Wz7UmMHqirUXfAEurj3tU27vpwyAXzUwjFW5Uh2f79G0j8cc?=
+ =?us-ascii?Q?I+fSz7k4IWaQSG/Hda9mhK659ytcLoGRBGdBTun8qq17LLJrvi6nHuVSE8xY?=
+ =?us-ascii?Q?y735aXk4Bx7pZUUkN3LWtLXQQKuAFeyYrQd5Q2ZYMETasYo+Xa+UH9bGgCSX?=
+ =?us-ascii?Q?BU9e8OYsctsIWfPcPCRDpm9NNiYYycwyXXQDp1RyhfVD2V/FTRYo5winpuan?=
+ =?us-ascii?Q?baTxB4OP+3UbOyA3MVOfd1XdT2O6vDjHFHzTvbAd15PJtVn1yrODP/HTN5wm?=
+ =?us-ascii?Q?J4xkbxphF+2OLuxZwVERGFFBXhjnjk5pGdco0lObtswQCRAEtU/HKEEV50I4?=
+ =?us-ascii?Q?Ipwfg8JNhIFnA/UN/8A55KQoYmlXgvmO7zjZPxVTEh2Y0Nqg5RnqBuE6FxNz?=
+ =?us-ascii?Q?8SD/oUiYmqLe0YWFyoheX+qgDBT/kYZunS2c46LQD08iBV1O5OXKKEBYIdjr?=
+ =?us-ascii?Q?gw2fIB87Xn/toO1wKzOZuo40cQdpGGmlNHAxBuSYP1bOSTPlOS0eleIhZ9He?=
+ =?us-ascii?Q?sFqtlFCnFh38msVxgxBaLJ9Ub2HIwzgyxpGhw45jqvNxWjXwlAxE4gq8nhen?=
+ =?us-ascii?Q?JaYiP5wfZ4KXt4VV0Q3Kf5GsO65jh+1eptm4IT2TBsFeFu35wXh0LDyaRHRd?=
+ =?us-ascii?Q?G862PcO1jbips51gfLhOv/cKkrd6HviEudhDCXf5V73Qp3WaXi5W8tLZerRL?=
+ =?us-ascii?Q?0oRgcMjF5IYKxTHdjmnqUstPIY47IY+kU/X8ilmhg4XDRMU8vm++RQTgsg6G?=
+ =?us-ascii?Q?kRaEcAmztv10rweW3USdP0lUykfJE11I0ypJ0FjUgDVXf7p/8bs4awB2wtKd?=
+ =?us-ascii?Q?EB7yUCZ9GEj2JZJF/xRphHj9RW+mW2mmxH76t3XTEwFAEOAsiiqrjBDeFPqr?=
+ =?us-ascii?Q?pwBZ0Mn0gNr3HzvHbH+Ah3ZMbuDKXQnitEULnJ2VcuFvrg+m0taU5pp48haw?=
+ =?us-ascii?Q?jhv8O0pG/Wf2WYNKS0VN8OgyWBbQqAxm23GyFxRB15VvZgcAEMDkKr2w8KUD?=
+ =?us-ascii?Q?rXDP24CrLuPlixRInoZ2Q9kkfKdtTNeRbib082+CGK/rVNvYU5t1xkDdHwWB?=
+ =?us-ascii?Q?aATh6KP1zbij8z16AD+Z9WVKA3kJJQ7HvxeW95VPtxHZKn8+E681ZNuGXUPw?=
+ =?us-ascii?Q?QXJgo65JFhiFiibe+q6kB+1mRoitqa+5fAxgldHYFTAfyXShOOUpi4/0ZY5G?=
+ =?us-ascii?Q?8ZdCFOrXIAoxD5NtQv7ahKg+rs3JveB54JI9YixrkyxlbQoY9l4ycqWUFMeI?=
+ =?us-ascii?Q?VkSpjDLN7/1/4Vj1WgA9C/jg4KVGix1jI1p888r9jqh+6jpmTNy+KY8wb88p?=
+ =?us-ascii?Q?PslLHG7fHEE5nouUZ7FmjYhWhrQ7VhUGuN8ScZD05POitMASOCmFvnaZKB7J?=
+ =?us-ascii?Q?ObiZAjc0/m1bAJFy4al1ssQKHYibq9r/kJm05JRaUesPgXSHbNj35NWIa7JS?=
+ =?us-ascii?Q?3aOiiPOeIy/Oc7IuzD/65AZB/FsLdV9zVBmez3QyJzl28wImfNxUEIyF+2wB?=
+ =?us-ascii?Q?334QkIpCm8PrpU3C42QD2b3gRV1i9bA1sY7HzEL9BchOyf5/iK1gsIynIb1B?=
+ =?us-ascii?Q?whXDbFq8lus5ugQfH470dVd9M91ZrpcUYuVN0HrbjTnJGWuUiEPfBzDRRDI1?=
+ =?us-ascii?Q?6+dNcA2PKw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b543c408-ec37-46fa-8162-08de69dcd3da
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB7055.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2026 02:17:10.4305
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oag800iuN8EnzXCbI7ei3N+3YuTcTxuHIpw3axc0/F9nx5WuGHfxkDtvZ1iJUhjsADhv+RH7P0ufzQpGfhwwVQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7973
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+X-Spamd-Result: default: False [2.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264887-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,lists.ozlabs.org,vger.kernel.org,clever-cloud.com,redhat.com,gmail.com,linux-foundation.org,kernel.org,de.ibm.com,linux.ibm.com,arm.com,ellerman.id.au];
-	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264888-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,vger.kernel.org,perex.cz,suse.com,opensource.cirrus.com,linux.intel.com,iscas.ac.cn,renesas.com];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[coxu@redhat.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[redhat.com:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[outlook.com:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DDFB8129194
+	FROM_NEQ_ENVFROM(0.00)[shengjiu.wang@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_NONE(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nxp.com:mid,nxp.com:dkim]
+X-Rspamd-Queue-Id: 7BD1112920F
 X-Rspamd-Action: no action
 
-On Wed, Feb 11, 2026 at 10:55:17AM +0100, Christophe Leroy (CS GROUP) wrote:
->
->
->Le 11/02/2026 à 09:24, Coiby Xu a écrit :
->>CONFIG_CRASH_DM_CRYPT has been introduced to support LUKS-encrypted
->>device dump target by addressing two challenges [1],
->>  - Kdump kernel may not be able to decrypt the LUKS partition. For some
->>    machines, a system administrator may not have a chance to enter the
->>    password to decrypt the device in kdump initramfs after the 1st kernel
->>    crashes
->>
->>  - LUKS2 by default use the memory-hard Argon2 key derivation function
->>    which is quite memory-consuming compared to the limited memory reserved
->>    for kdump.
->>
->>To also enable this feature for ARM64 and PowerPC, we only need to add
->
->What do you want to say exactly with 'only' ?
+Set unevaluatedProperties:false in ak4458 dt-binding doc.
+Fix supply name in ak4458 and ak5558 dt-binding doc.
 
-Hi Christophe,
+Changes in v2:
+- update the commit message for patch 1/3.
+- Fix the supply name in dt-binding doc, not in driver, replace the
+  patch 2/3 and 3/3.
 
-Thanks for raising the question! To clarify, CONFIG_CRASH_DM_CRYPT
-provides the framework to address these challenges for LUKS-encrypted
-dump target. Since the heavy lifting is handled in the arch-independent
-code, we only need to...
+Shengjiu Wang (3):
+  ASoC: dt-bindings: asahi-kasei,ak4458: set unevaluatedProperties:false
+  ASoC: dt-bindings: asahi-kasei,ak4458: Fix the supply names
+  ASoC: dt-bindings: asahi-kasei,ak5558: Fix the supply names
 
-If it looks good to you, I'll rephrase it as "To also enable this
-feature for ARM64 and PowerPC, the missing piece is to let the kdump
-kernel know where to find the dm-crypt keys which are randomly stored in
-memory reserved for kdump. I'll introduce a new device tree property
-dmcryptkeys ...".
-
->
->>a device tree property dmcryptkeys [2] as similar to elfcorehdr to pass
->>the memory address of the stored info of dm-crypt keys to the kdump
->>kernel. Since this property is only needed by the kdump kernel, it won't
->>be exposed to user space.
->>
->>[1] https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fall%2F20250502011246.99238-1-coxu%40redhat.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7C0aa5f3b34d694b23b0cc08de6946f66c%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C639063950684962054%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=8uCc%2Bg6YNojymf8UpZhmJY19vpWXJCC9KIf3qMyQ3dI%3D&reserved=0
->>[2] https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgithub.com%2Fdevicetree-org%2Fdt-schema%2Fpull%2F181&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7C0aa5f3b34d694b23b0cc08de6946f66c%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C639063950684987003%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=1s5NPHgF1LsXdrDXBhawduFXOqnHPlkbohQHHvolLw4%3D&reserved=0
->>
->>Cc: Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>
->>Cc: Baoquan he <bhe@redhat.com>
->>Cc: Dave Young <dyoung@redhat.com>
->>Cc: Kairui Song <ryncsn@gmail.com>
->>Cc: Pingfan Liu <kernelfans@gmail.com>
->>Cc: Andrew Morton <akpm@linux-foundation.org>
->>Cc: Krzysztof Kozlowski <krzk@kernel.org>
->>Cc: Rob Herring <robh@kernel.org>
->>Cc: Thomas Staudt <tstaudt@de.ibm.com>
->>Cc: Sourabh Jain <sourabhjain@linux.ibm.com>
->>Cc: Will Deacon <will@kernel.org>
->>Signed-off-by: Coiby Xu <coxu@redhat.com>
->>---
->>  arch/arm64/kernel/machine_kexec_file.c |  4 ++++
->>  arch/powerpc/kexec/elf_64.c            |  4 ++++
->>  drivers/of/fdt.c                       | 21 +++++++++++++++++++++
->>  drivers/of/kexec.c                     | 19 +++++++++++++++++++
->>  4 files changed, 48 insertions(+)
->>
->>diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
->>index 331646d667b9..2967e4aff807 100644
->>--- a/drivers/of/fdt.c
->>+++ b/drivers/of/fdt.c
->>@@ -866,6 +866,26 @@ static void __init early_init_dt_check_for_elfcorehdr(unsigned long node)
->>  		 elfcorehdr_addr, elfcorehdr_size);
->>  }
->>+static void __init early_init_dt_check_for_dmcryptkeys(unsigned long node)
->>+{
->>+	const char *prop_name = "linux,dmcryptkeys";
->>+	const __be32 *prop;
->>+
->>+	if (!IS_ENABLED(CONFIG_CRASH_DM_CRYPT))
->>+		return;
->>+
->>+	pr_debug("Looking for dmcryptkeys property... ");
->>+
->>+	prop = of_get_flat_dt_prop(node, prop_name, NULL);
->>+	if (!prop)
->>+		return;
->>+
->>+	dm_crypt_keys_addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
->>+
->>+	/* Property only accessible to crash dump kernel */
->>+	fdt_delprop(initial_boot_params, node, prop_name);
->
->Shouldn't this property be deleted regardless of whether kernel is 
->built with CONFIG_CRASH_DM_CRYPT or without ?
-
-This property will be created only if 1) CONFIG_CRASH_DM_CRYPT is
-enabled and 2) the dump target is LUKS-encrypted. So there is no need to
-delete it if it doesn't exist at all.
-
->
->>+}
->>+
->>  static unsigned long chosen_node_offset = -FDT_ERR_NOTFOUND;
->>  /*
->>@@ -1097,6 +1117,7 @@ int __init early_init_dt_scan_chosen(char *cmdline)
->>  	early_init_dt_check_for_initrd(node);
->>  	early_init_dt_check_for_elfcorehdr(node);
->>+	early_init_dt_check_for_dmcryptkeys(node);
->>  	rng_seed = of_get_flat_dt_prop(node, "rng-seed", &l);
->>  	if (rng_seed && l > 0) {
->
+ .../devicetree/bindings/sound/asahi-kasei,ak4458.yaml       | 6 +++---
+ .../devicetree/bindings/sound/asahi-kasei,ak5558.yaml       | 4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
 -- 
-Best regards,
-Coiby
+2.34.1
 
 
