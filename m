@@ -1,192 +1,307 @@
-Return-Path: <devicetree+bounces-265052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265053-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CLbjCAq+jWnL6QAAu9opvQ
-	(envelope-from <devicetree+bounces-265052-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:48:26 +0100
+	id 6HJ5CCm+jWnL6QAAu9opvQ
+	(envelope-from <devicetree+bounces-265053-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:48:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BDD912D281
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:48:25 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D7B12D290
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:48:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7D8803006817
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:48:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CADB33031AD5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:48:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60F0A347FE2;
-	Thu, 12 Feb 2026 11:48:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B31E034DB72;
+	Thu, 12 Feb 2026 11:48:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TzDyKRVs";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NFPxpu5/"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="hYfkVxIQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 567F72EFD8F
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 11:48:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66079347FE2
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 11:48:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770896901; cv=none; b=RxX5GIbweOHBLkljjrfeIL74arV+w2nmAFm+Pz+Qih7e1MsEXwBN791Pxs0iYY7HruWvN74fjkU1gMUmSgmVvtDk+n20ijx3MjGrv91Gp1qawJKe9O9vsKK4IBJRQ8ud6a2BYBb+SwiSGZpVlp5J4bFzipQlfIkwIEI3gBh/RJI=
+	t=1770896933; cv=none; b=ZHwWDsO8yJxNqUbN+oHIN9bpyrAeIgDI5y9hruWVvpkQRgQPngFBfVL8xwspgkF2fh5lF/8GOPMun5iBEMW7MSpKsBqSfhbKtx6JluK906eGI6Sjzs/JopBIdlw8iOoMUs37kr1egVZnWBzYeYaMh5bjCF9kvdlTn5iJhCOuQAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770896901; c=relaxed/simple;
-	bh=hIh3oSyVMQQt7qw+8sircxXE8uP/SPAf5YkX5rhX1is=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FAvsptzvUNEPP9QWS2Zgi9heYHg2yNS8mtj1hHQC0MwLVyyOq81Wcri+KBV/66p54ALyQ9rsrB465eUtqD2X5t4C2tJcbIus2ENhH7PQdhEsB+PWbxI4VQgb+C1eO9TlcyNGrN2Rdq/fuSoVQfptW3wEF1QwEkhsRSxXWumWi24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TzDyKRVs; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NFPxpu5/; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61C9o5gC3562064
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 11:48:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	58fQgaFCLcM82KGrE+raK/eX/NXaaod58IGSbttniHw=; b=TzDyKRVs960eF3bg
-	opjXA1gMScMRs2OHKBzhJXg7Q02mJuCCwXfIJR2+zwreDwR4Ux2YZdEVOrSbR+5g
-	wdBd9xM0v2QfkKN3Q9aPXGyCEdCZUVCrBLOHvRHoWt32ULWlh+Ewpc2K8I876nZy
-	KLZ+6U79/ZK27GFvUtn5d17zWCgVa+EVMsjtYl8bSccizPk/6meOpX7/dukZc4o/
-	GWrWlerIr7cfF8Avwzh3RxGatrB4YUGINIVgCtT346o3cDqSNrOtS0t1WzN4IOEl
-	vTWvayEhnyPt1kx+SWdVzs2dR6vUwxauPTUurQs2DIV6cJD+ubm6BTM9lEILXp+W
-	BIRvuw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c9ck2gbw3-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 11:48:19 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-8954b9b5da7so19338906d6.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 03:48:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770896899; x=1771501699; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=58fQgaFCLcM82KGrE+raK/eX/NXaaod58IGSbttniHw=;
-        b=NFPxpu5/20eHiKVcK90BawtagLY7pCQOODsth1/q7ZZ0n4XC6ZULqNfJAeSukl5PZH
-         7L6KNl5VoJKSpCet6nKugfm9ezYspJT1xOvMFyd69Krs04GF9rBaFzfpBsSYcLoG9op8
-         cKsmxZRkjfrx0vXrsg7VuA8Rw9u2R8G102WttcEyCcITkghFUI39TsUbbWjEQ0LFkGsN
-         ABby2Z1c29DVRkB+rmM9lSxw4YpPp6f58V4k9SKsxnTp7hZmT3FQIN0nrufhthlMjflr
-         pIQvx9WCB+zUH7JrREFyWaJPncuIIqVcM6gbX9Egv63cWVd7eTBe2GhOXKKAiocrMg+b
-         Ew4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770896899; x=1771501699;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=58fQgaFCLcM82KGrE+raK/eX/NXaaod58IGSbttniHw=;
-        b=TQKde1TSk2WxQQb6wDC1id+bKB0Skma72Ixss9vCXTpMAjFUb5dCLGA+2ZMgcZXEeC
-         V7/tp+ebzjAo94kwa/8xq17njL23PFKAzo7xw7jWX+FXkBYqnIJyJHFEbXeOmYS+MbTz
-         G+mJ7mqa2fou2WNOxGG1xh+ld2zSHpbMY0QzOuxLwgf8qhqq3rTpLkP1bosMJg/7WgWU
-         b65DY6s43vyGqMXfOn9ruNmIUNFwC5xRqSluyhDIJjSAtuZihmr/mKcVgqorpsMdMoTL
-         lp6nexeD6CxyUSQUqBrsSvYGae1rKcPvDWNPnL5tm4p2rdlcbzc4AgxBgrvKkSrG6+8W
-         uMXg==
-X-Forwarded-Encrypted: i=1; AJvYcCWVB8pG2e3fy22HvBfpnBp63G6b5ZE1izpTZt/QAVzJ63pO7QqskKXJ14QIFluogdctmr6YINNF/E9N@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVoEXl3/qDFc26uhMWXIa8Bu7eXem91wkPO3VgAASJ7awZcejL
-	sWFC70ny3P0Hgg94OBGZRq2vFvuXZNBNTLdsz8JKrsZiU/4jotn5XW3qY+x7be7/ptFCJz/5Bmu
-	aCiXWKK2SQMKB1t5kxrqNETCOgbwIoAvf6LmHHrXPETetSF3xHNiOeiGF5B6hHJSV
-X-Gm-Gg: AZuq6aIbk6ePgXuH17MVzGrJIXTq8aRrmGnhuNmg4LeWR4qbS03arI22k1c2OrsZGTH
-	idoQxXKzSEpcx8r2MA3h5QEF1JgPZd55gFArJNeEzv1vw9sBaODf3PmN93MZGuChJoVKY5b5qg9
-	KsBLu1jMyFg8F1rAwTg/LgeKDMau6N2ooDhRajbYMgJv9btqVL+F/erqQB1A9sKjlxMEB8Bu3d+
-	v7+NeaVER7IbK4+Qp8P+U0wN6K7b3743YqDZYqc9TJ7ZVO99PGHx4D414aKbA89YyNdtzMfcPYI
-	Us0IBfp1GMN7EK7LxdfmZhW3JyeCnPlk2q9HAFzzqA+lxmjKzgiGphIJNkjRaEE3f3KjUf6UT09
-	CQ22cCU6yIv2E3oUXwTOEdEvPzjIbGeGCLy55C6RfFJJsg15oYa414RGU1b2re15zVJ9JP56G3a
-	FShTw=
-X-Received: by 2002:a0c:e014:0:b0:897:41c:a766 with SMTP id 6a1803df08f44-89727af3e44mr26162376d6.5.1770896898621;
-        Thu, 12 Feb 2026 03:48:18 -0800 (PST)
-X-Received: by 2002:a0c:e014:0:b0:897:41c:a766 with SMTP id 6a1803df08f44-89727af3e44mr26162106d6.5.1770896898098;
-        Thu, 12 Feb 2026 03:48:18 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65a3cf38c5dsm1691236a12.22.2026.02.12.03.48.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Feb 2026 03:48:17 -0800 (PST)
-Message-ID: <3c06c3cd-cc10-4e2c-9001-9e0a4174d489@oss.qualcomm.com>
-Date: Thu, 12 Feb 2026 12:48:14 +0100
+	s=arc-20240116; t=1770896933; c=relaxed/simple;
+	bh=Y7oS27WsfhSOay2q5h6kGU3w05SjPN5GatFYPC0+cAA=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=bKNIT/YKAXHnSf0xGG14Q95ZOuYimaKtphHDrL+kZsu6LssF33zACkfCfiUMcG8FSK2GKkr9W/S+3Xg6jFyoP6Uv6RSLDXpBwQDhctmLTNiBY4H7VErdd6IEwVLWtPSZEqcNKTeQFWmkMFi7CUmQ0Di3j2W2+CEnqaRl7p1Uka0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=hYfkVxIQ; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20260212114849epoutp01c5f1f8d3421055b9d9c166b0f53a5027~TfV-eJaa00608806088epoutp01N
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 11:48:49 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20260212114849epoutp01c5f1f8d3421055b9d9c166b0f53a5027~TfV-eJaa00608806088epoutp01N
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1770896929;
+	bh=jyl3AxqX9Tq3PeJ2Lu8gJJZ6ed5Wpcv+H3JcsKlDbVE=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=hYfkVxIQmXL2QQiVcqLJtJ2rONwjk3zJ7m/RhRc30INOUxBU+8tichWF9mssSUAWk
+	 Hr58eINTPN+9Fuk78ncccfG6oFoQCnKboyav46vlRoAxDHK1pLCE0/KqRVIrO7vb0/
+	 eC5ZvNpD8kBLIpHL2x/9n/U1/LRLC6WpDCAaNB4Y=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20260212114848epcas5p3ae68f5890f0cba77251bdda61750f3db~TfV_oyQL61067810678epcas5p3P;
+	Thu, 12 Feb 2026 11:48:48 +0000 (GMT)
+Received: from epcas5p4.samsung.com (unknown [182.195.38.92]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4fBYV72FpTz6B9m6; Thu, 12 Feb
+	2026 11:48:47 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20260212114846epcas5p16d130a5688ae2732ff5b38e0b856bc3b~TfV9KNMUP2225822258epcas5p17;
+	Thu, 12 Feb 2026 11:48:46 +0000 (GMT)
+Received: from INBRO007194 (unknown [107.122.3.105]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20260212114844epsmtip18d7db7a4756a8505234fe3cea1ecae8d~TfV7XeT9R1842418424epsmtip1J;
+	Thu, 12 Feb 2026 11:48:44 +0000 (GMT)
+From: <pritam.sutar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Rob Herring'"
+	<robh@kernel.org>
+Cc: <alim.akhtar@samsung.com>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <rosa.pila@samsung.com>,
+	<selvarasu.g@samsung.com>, <linux-samsung-soc@vger.kernel.org>,
+	<muhammed.ali@samsung.com>, <faraz.ata@samsung.com>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<dev.tailor@samsung.com>
+In-Reply-To: <6ac69d62-6b14-4010-9c66-764b7dc2e610@kernel.org>
+Subject: RE: [PATCH v2 0/3] Add and enable USB nodes for ExynosAutov920 SoC
+Date: Thu, 12 Feb 2026 17:18:43 +0530
+Message-ID: <000301dc9c15$8b5bfca0$a213f5e0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] arm64: dts: qcom:
- qcs6490-rb3gen2-industrial-mezzanine: Add TC9563 PCIe switch nodes
-To: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20260212-industrial-mezzanine-pcie-v3-0-1e152937a76a@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260212-industrial-mezzanine-pcie-v3-0-1e152937a76a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=cd7fb3DM c=1 sm=1 tr=0 ts=698dbe03 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=tdYBvKbOvurciTX4EzIA:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjEyMDA4OCBTYWx0ZWRfX+U7HT+udOMrh
- ACvcBb2/7BA8WKdmBdbBNrAN+m2vOAGVeur/S+BLFA9JCiCRDo6tzHp99cclJOasUIc2kid2ReM
- h7J6zpU0fA5JamdVKQwaqGEwrUOjbxEhkgVaJy4/p7bNKJQN5dmecc5EykkkVX1dO2rRX7MchnR
- BbRmW+IoOhoiJmPmDgMwoMFibLpGkFiuZK6+Bapde7sUszHJzc/rNS7NJLC+L9+iBn+7hJww2IZ
- FWVdh0ffGOgDQeZ798a1xvlQi5wfSsKyPY46nX9eug7q0rE8T6YupFjyOrpN/rz7FBmO8fwKLu4
- Uy6m3M1w7IsgWxFCiDh3XfaL8/wFiuoNtLHNrLDfryVUZ14TOd2cSOy8wJnTdFmEDPvdgFEq9kR
- CnXizrAV1lKEjtt4Sqv6dhSzXXSQTIgyZYcv7Chl17WDn/odCtjrCHv29imWKIkMWs3hdxoU/I0
- OdHmYfVBgh/ksMHk/Eg==
-X-Proofpoint-GUID: 1jNzA9pzF6ARsZmq5IQqPnP5o8xas2ui
-X-Proofpoint-ORIG-GUID: 1jNzA9pzF6ARsZmq5IQqPnP5o8xas2ui
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-12_03,2026-02-11_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 priorityscore=1501 lowpriorityscore=0 spamscore=0
- impostorscore=0 malwarescore=0 bulkscore=0 phishscore=0 adultscore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602120088
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHZrJ6Mjzaw1gIwj373G9ghj88fmQEa27yOAk8cNCcDW2nXuwFvkMg7tUMp5zA=
+Content-Language: en-us
+X-CMS-MailID: 20260212114846epcas5p16d130a5688ae2732ff5b38e0b856bc3b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20260122125130epcas5p4ac37f540c609f3016ff02f5708e897a2
+References: <CGME20260122125130epcas5p4ac37f540c609f3016ff02f5708e897a2@epcas5p4.samsung.com>
+	<20260122130721.205664-1-pritam.sutar@samsung.com>
+	<176910209177.2703219.7993114273484886473.robh@kernel.org>
+	<000001dc8c30$d83ce2e0$88b6a8a0$@samsung.com>
+	<6ac69d62-6b14-4010-9c66-764b7dc2e610@kernel.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	TAGGED_FROM(0.00)[bounces-265052-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,infradead.org:email,samsung.com:mid,samsung.com:dkim,samsung.com:email,fireeye.com:url];
+	TAGGED_FROM(0.00)[bounces-265053-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DKIM_TRACE(0.00)[samsung.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NO_DN(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[pritam.sutar@samsung.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 3BDD912D281
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: F0D7B12D290
 X-Rspamd-Action: no action
 
-On 2/12/26 11:44 AM, Sushrut Shree Trivedi wrote:
-> Add nodes for the two additional TC9563 PCIe switches present on the
-> QCOM RB3Gen2 Industrial Mezzanine platform.
-> 
-> One of the TC9563 is connected directly to the PCIe0 root-port while
-> the second TC9563 switch is connected in cascade fashion to another
-> already available TC9563 switch on PCIe1 via the former's downstream
-> port (DSP). The final PCIe hierarchy on the Industrial Mezz platform
-	^ +Mani is that PCIe terminology, or is that a Toshiba-ism?
+Hi Krzysztof,
 
-Konrad
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: Friday, January 23, 2026 1:02 PM
+> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>; 'Rob Herring'
+> <robh=40kernel.org>
+> Cc: alim.akhtar=40samsung.com; conor+dt=40kernel.org; krzk+dt=40kernel.or=
+g;
+> linux-arm-kernel=40lists.infradead.org; rosa.pila=40samsung.com;
+> selvarasu.g=40samsung.com; linux-samsung-soc=40vger.kernel.org;
+> muhammed.ali=40samsung.com; faraz.ata=40samsung.com; linux-
+> kernel=40vger.kernel.org; devicetree=40vger.kernel.org;
+> dev.tailor=40samsung.com
+> Subject: Re: =5BPATCH v2 0/3=5D Add and enable USB nodes for ExynosAutov9=
+20
+> SoC
+>=20
+> On 23/01/2026 07:23, Pritam Manohar Sutar wrote:
+> > Hi Rob,
+> >
+> > Thank you for your feedback on the patch series.
+> >
+> >> -----Original Message-----
+> >> From: Rob Herring <robh=40kernel.org>
+> >> Sent: 22 January 2026 10:46 PM
+> >> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> >> Cc: alim.akhtar=40samsung.com; conor+dt=40kernel.org;
+> krzk+dt=40kernel.org;
+> >> linux-arm-kernel=40lists.infradead.org; rosa.pila=40samsung.com;
+> >> selvarasu.g=40samsung.com; linux-samsung-soc=40vger.kernel.org;
+> >> muhammed.ali=40samsung.com; faraz.ata=40samsung.com; linux-
+> >> kernel=40vger.kernel.org; devicetree=40vger.kernel.org;
+> >> dev.tailor=40samsung.com
+> >> Subject: Re: =5BPATCH v2 0/3=5D Add and enable USB nodes for
+> >> ExynosAutov920 SoC
+> >>
+> >>
+> >> On Thu, 22 Jan 2026 18:37:18 +0530, Pritam Manohar Sutar wrote:
+> >>> This SoC has 2 USB typeC and 2 typeA ports those are DWC3 DRD
+> >>> controllers and among them, one single USB3.1 DRD combo phy and
+> >>> three
+> >>> USB2.0 only phy controllers. This patchset adds and enables USB and
+> >>> USB-PHY nodes in dts.
+> >>>
+> >>> PMIC is not implemented yet, we rely on USB LDOs being enabled by
+> >>> the bootloader and used dummy regulators for now.
+> >>>
+> >>> To drive vbus for host mode, it needs GPIO pin to enable vbus regulat=
+or.
+> >>> GPIO expander is present in the dts, we used it to enable the
+> >>> regulator using GPIO.
+> >>>
+> >>> USB ports are configured as OTG, and default mode is configured as
+> >>> peripheral. It will be changed based on requirements.
+> >>>
+> >>> changelog
+> >>> ----------
+> >>> Changes in v2:
+> >>> - As v1 was pushed 3 months back, resending this patchset.
+> >>> - Since dependencies are merged, removed links from coverletter.
+> >>>   link for v1:
+> >>> https://lore.kernel.org/linux-devicetree/20251024114845.2395166-1-pr
+> >>> it
+> >>> am.sutar=40samsung.com/
+> >>>
+> >>> Pritam Manohar Sutar (3):
+> >>>   arm64: dts: exynos: ExynosAutov920: Add USB and USB-phy nodes
+> >>>   arm64: dts: exynos: ExynosAutov920: Add regulators for the USB
+> >>>   arm64: dts: exynos: ExynosAutov920: Enable USB nodes
+> >>>
+> >>>  .../boot/dts/exynos/exynosautov920-sadk.dts   =7C 160
+> >> +++++++++++++++++
+> >>>  .../arm64/boot/dts/exynos/exynosautov920.dtsi =7C 162
+> >>> ++++++++++++++++++
+> >>>  2 files changed, 322 insertions(+)
+> >>>
+> >>> --
+> >>> 2.34.1
+> >>>
+> >>>
+> >>>
+> >>
+> >>
+> >> My bot found new DTB warnings on the .dts files added or changed in
+> >> this series.
+> >>
+> >> Some warnings may be from an existing SoC .dtsi. Or perhaps the
+> >> warnings are fixed by another series. Ultimately, it is up to the
+> >> platform maintainer whether these warnings are acceptable or not. No
+> >> need to reply unless the platform maintainer has comments.
+> >>
+> >> If you already ran DT checks and didn't see these error(s), then make
+> >> sure dt- schema is up to date:
+> >>
+> >>   pip3 install dtschema --upgrade
+> >>
+> >>
+> >> This patch series was applied (using b4) to base:
+> >>  Base: attempting to guess base-commit...
+> >>  Base: tags/next-20260121 (exact match)
+> >>  Base: tags/next-20260121 (use --merge-base to override)
+> >>
+> >> If this is not the correct base, please add 'base-commit' tag (or use
+> >> b4 which does this automatically)
+> >>
+> >>
+> >> New warnings running 'make CHECK_DTBS=3Dy for
+> >> arch/arm64/boot/dts/exynos/' for 20260122130721.205664-1-
+> >> pritam.sutar=40samsung.com:
+> >>
+> >> arch/arm64/boot/dts/exynos/exynosautov920-sadk.dtb: usb-phy0 (usb-
+> >> nop-xceiv): '=23phy-cells' is a required property
+> >> 	from schema =24id: https://protect2.fireeye.com/v1/url?k=3D91401ba9-
+> >> cedb2354-914190e6-000babff317b-0af64cc1fcd35e1a&q=3D1&e=3De0bf9bed-
+> >> 20f5-431c-9a8f-
+> >>
+> ded53e46a366&u=3Dhttp%3A%2F%2Fdevicetree.org%2Fschemas%2Fusb%2Fu
+> >> sb-nop-xceiv.yaml
+> >> arch/arm64/boot/dts/exynos/exynosautov920-sadk.dtb: usb-phy1 (usb-
+> >> nop-xceiv): '=23phy-cells' is a required property
+> >> 	from schema =24id: https://protect2.fireeye.com/v1/url?k=3Db208eda5-
+> >> ed93d558-b20966ea-000babff317b-f6650041a1e910a7&q=3D1&e=3De0bf9bed-
+> >> 20f5-431c-9a8f-
+> >>
+> ded53e46a366&u=3Dhttp%3A%2F%2Fdevicetree.org%2Fschemas%2Fusb%2Fu
+> >> sb-nop-xceiv.yaml
+> >> arch/arm64/boot/dts/exynos/exynosautov920-sadk.dtb: usb-phy2 (usb-
+> >> nop-xceiv): '=23phy-cells' is a required property
+> >> 	from schema =24id: https://protect2.fireeye.com/v1/url?k=3Dce686cfd-
+> >> 91f35400-ce69e7b2-000babff317b-ccbf1b3c353ecfc0&q=3D1&e=3De0bf9bed-
+> 20f5-
+> >> 431c-9a8f-
+> >>
+> ded53e46a366&u=3Dhttp%3A%2F%2Fdevicetree.org%2Fschemas%2Fusb%2Fu
+> >> sb-nop-xceiv.yaml
+> >> arch/arm64/boot/dts/exynos/exynosautov920-sadk.dtb: usb-phy3 (usb-
+> >> nop-xceiv): '=23phy-cells' is a required property
+> >> 	from schema =24id: https://protect2.fireeye.com/v1/url?k=3D633aebf3-
+> >> 3ca1d30e-633b60bc-000babff317b-ef5a169bc853eddb&q=3D1&e=3De0bf9bed-
+> >> 20f5-431c-9a8f-
+> >>
+> ded53e46a366&u=3Dhttp%3A%2F%2Fdevicetree.org%2Fschemas%2Fusb%2Fu
+> >> sb-nop-xceiv.yaml
+> >
+> > Apologize for any inconvenience caused by the issues you=E2=80=99ve=20i=
+dentified.=0D=0A>=20=0D=0A>=20It=20means=20you=20did=20not=20test=20the=20p=
+atches=20before=20sending=20and=20I=20find=20it=20very=0D=0A>=20wasteful=20=
+of=20my=20time.=0D=0A>=20=0D=0A>=20>=20Below,=20Have=20outlined=20the=20cha=
+nges,=20will=20implement=20to=20address=20the=0D=0A>=20>=20warnings=20and=
+=20ensure=20the=20patch=20set=20aligns=20with=20the=20required=20standards.=
+=0D=0A>=20>=0D=0A>=20>=20Proposed=20Changes:=0D=0A>=20>=201.=20Will=20inclu=
+de=20=23phy-cells=20=3D=20<0>;=20in=20the=20USB=20PHY=20nodes=0D=0A>=20>=20=
+=20=20(usb_phy0,=20usb_phy1,=20usb_phy2,=20and=20usb_phy3)=20This=20is=20a=
+=20crucial=0D=0A>=20>=20addition=20to=20avoid=20compilation=20warnings=20an=
+d=20ensure=20compatibility.=0D=0A>=20>=0D=0A>=20>=20Example:=0D=0A>=20>=20u=
+sb_phy0:=20usb-phy0=20=7B=0D=0A>=20>=20=20=20=20=20compatible=20=3D=20=22us=
+b-nop-xceiv=22;=0D=0A>=20>=20=20=20=20=20=23phy-cells=20=3D=20<0>;=0D=0A>=
+=20>=20=20=20=20=20vbus-supply=20=3D=20<&usbdrd31_dwc3_vbus>;=0D=0A>=20>=20=
+=7D;=0D=0A>=20>=0D=0A>=20>=202.=20The=20errors=20were=20not=20caught=20by=
+=20the=20make=20dt_binding_check=20and=20make=0D=0A>=20dtbs_check=0D=0A>=20=
+>=20=20=20commands=0D=0A>=20>=20=20=20make=20-j=20ARCH=3Darm64=20dt_binding=
+_check=20dtbs_check=0D=0A>=20DT_SCHEMA_FILES=3DDocumentation/devicetree/bin=
+dings/phy/samsung,usb3=0D=0A>=20-drd-phy.yaml=0D=0A>=20>=20=20=20make=20-j=
+=20ARCH=3Darm64=20dt_binding_check=20dtbs_check=0D=0A>=20>=0D=0A>=20DT_SCHE=
+MA_FILES=3DDocumentation/devicetree/bindings/usb/samsung,exyn=0D=0A>=20os-d=
+=0D=0A>=20>=20wc3.yaml=0D=0A>=20=0D=0A>=20This=20is=20not=20the=20command=
+=20you=20are=20supposed=20to=20run=21=20You=20MUST=20CHECK=20YOUR=0D=0A>=20=
+DTS=20WITH=20ALL=20THE=20BINDINGS.=20Why=20would=20you=20run=20only=20two=
+=20of=20them=20and=0D=0A>=20ignore=20the=20rest=20which=20you=20still=20use=
+?=20What=20is=20the=20logic=20behind=20-=20I=20will=20use=20phy-=0D=0A>=20n=
+op=20binding,=20but=20not=20test=20against=20it?=0D=0A>=20=0D=0A>=20A=20hin=
+t=20-=20if=20your=20patches=20are=20not=20being=20picked=20up,=20maybe=20be=
+cause=20you=20send=0D=0A>=20buggy=20code=20and=20I=20am=20bored=20to=20repl=
+y=20-=20test=20finally,=20because=20I=20am=20not=20your=0D=0A>=20testing=20=
+service.=0D=0A=0D=0ASorry=20for=20the=20inconvenience.=20will=20take=20care=
+=20of=20this=20in=20future=20to=20consider=20=0D=0Aall=20bindings=20rather=
+=20than=20taking=20what=20are=20updated=20for=20this=20SoC.=0D=0A=0D=0A>=20=
+=0D=0A>=20Best=20regards,=0D=0A>=20Krzysztof=0D=0A=0D=0AThank=20you,=0D=0A=
+=0D=0ARegards,=0D=0APritam=0D=0A=0D=0A
 
