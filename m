@@ -1,135 +1,161 @@
-Return-Path: <devicetree+bounces-265156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265159-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KDpoMHsHjmkT+wAAu9opvQ
-	(envelope-from <devicetree+bounces-265156-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:01:47 +0100
+	id +AxoLqMMjmmS+wAAu9opvQ
+	(envelope-from <devicetree+bounces-265159-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:23:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 526A112FC31
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:01:47 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6DA612FDE1
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:23:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C3B3B303850E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 16:58:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0BD3A300C39B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 17:23:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C4DE35DD11;
-	Thu, 12 Feb 2026 16:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A386B24503C;
+	Thu, 12 Feb 2026 17:23:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gCSGMQvz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q4cqJBmv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62D4357716
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 16:58:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 812E4214A8B
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 17:23:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770915517; cv=none; b=XNnxA3hUixk6FoeihvOk4DvlpDniMo20CTkwIR3IYb5a/rtdMrRYz3uEvUcR4fsoJHzSijPBon7/YFPkx8ZyR7nIrazKRyaWHyZbzbE1D20ZPZ/66nD3fQhLnKWUJsVsOPVJHVMKRdt0rLImNLgfJflVI6X32G4ElcixtpDDRLI=
+	t=1770917022; cv=none; b=k17ddNUiuCPidTYVD2bAKkN1oQTc+Lj61q3/3mwciBN7b91uELxOceBqk4zZCwtJajaQjYxSds6QJnR90FDWRckXxpwIoXn+xMSApQ1JAwcE8m126wqd2FeydVmAuDwaHj/n6F221MOEalKM6A+ZrTTse+a8qRY6Q849AOo6GOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770915517; c=relaxed/simple;
-	bh=arbeKzskpaZ6m1Z7FnnQ5xEvGj02M4ftvyLatuv7G9I=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WMeUpaUoGipNv7SGb4TEHHzJ04sozQOu28L7BRDL38QTHBCuk1JKH/xZs+/4V9RK2Gd30vZAQ87yYu/IMVH04I6udbJ+if+c4fDC/eGHOFlvbbLCh/IGDRtT0cwaxp0JzXg1M2BZJqzc0BQ95FjZozwB3X8BPvDB3XMrD0Fioro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gCSGMQvz; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 4FCB4C23DA8;
-	Thu, 12 Feb 2026 16:58:43 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 022FF606B8;
-	Thu, 12 Feb 2026 16:58:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6ADAF1036888C;
-	Thu, 12 Feb 2026 17:58:29 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770915513; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=arbeKzskpaZ6m1Z7FnnQ5xEvGj02M4ftvyLatuv7G9I=;
-	b=gCSGMQvztYNe3eC6uQzYgHoD6EATkzqZfYyeAU/f3/I9mXJ8PbJkqMKFssqdEWLygsQCMS
-	dYrt25axvM/8/jIlSwmcqnULBvPi4rAISiPrVLkxj+YNEZTVWSY3gcy3odJN18qPrYzf8n
-	GUEK3R/XDWveteemwNH9tm5rP1yNIdo/25iGkr3yTQ1epIZ6Aa21mha9pU11JMO2E5suI3
-	o8ATdKYJ79w2ge2A/kv3XrBmj0T8KdxtMVnj65EQecDiqS3moyAdyGMWghXgRt6RQyOit5
-	iOr13cSb6aZ8i2HZk9yS4D076cyXKJiePiNrSYjOCrMokOGShyEW1/xObA/TJQ==
-Date: Thu, 12 Feb 2026 17:58:28 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
- <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, Roger Quadros
- <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Bajjuri Praneeth <praneeth@ti.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Louis
- Chauvet <louis.chauvet@bootlin.com>
-Subject: Re: [PATCH 4/5] ARM: multi_v7_defconfig: Enable ITE IT66121 driver
-Message-ID: <20260212175828.380fa3ff@kmaincent-XPS-13-7390>
-In-Reply-To: <d786d817-e97d-4270-a3be-4778730df35e@kernel.org>
-References: <20260212-feature_bbge-v1-0-29014a212f35@bootlin.com>
-	<20260212-feature_bbge-v1-4-29014a212f35@bootlin.com>
-	<d786d817-e97d-4270-a3be-4778730df35e@kernel.org>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1770917022; c=relaxed/simple;
+	bh=PXUOOzNqnHMX+0XnIWqWXRpUxu/0JJ4vrNFn8/nFqss=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gK7BjnjAfp8vT1AeWAuQqTiw+AE6Tj/tHNVwAKruH/KrME84y3dQso/fzcZBMexSiwkfu6JYmUynYNwyMLuw8yLPtkzqjMW9NgsD8BKNvLB9genMcvB51AapRCWcmlnybkTrj2Dc5z4+yc5DPfsH44ilNR6xtdgzGElymgOjv7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q4cqJBmv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 634B3C2BCB2
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 17:23:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770917022;
+	bh=PXUOOzNqnHMX+0XnIWqWXRpUxu/0JJ4vrNFn8/nFqss=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=q4cqJBmvcXvukKQnTyBEXAfOq2U6CrE080zMq6pRoXH9RcDF3Jj53d5Hiv9QKexWV
+	 GD13xOf12bufh1npU4shUVOKNmzbgQjpfcS1OQxydQiACxbXhjinWCrkA+x9XZOFPy
+	 xTNmoupasg950/KbrRZiQJnQokpT7CCq+oiCAtUgbsG91dBpq9PBvHqwuVUD3xMcZz
+	 HkDsx87M5XRsvsvjdvsTYPApvBjUHR7jI9uVaxwkw/PSb/7bUU9ubscktzlIZhpFeS
+	 q6j6jFEBwM3UyTSmkW89LGW6rwpR3fsHpkSmC0n9mPdOx3SykFO8dT1RcErjaCAKFO
+	 9ka4GnEqid9zg==
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-65b9608a9adso2224697a12.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 09:23:42 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVr3G2mFJsymnOsnWvIeYRgYe1AKCFq2dpXyGSizATaPIsyF+nhUr/YzCYkEwvrjRG2yverGKy9I9V0@vger.kernel.org
+X-Gm-Message-State: AOJu0YyE1skUZhfndhaF+s4T/cFo6bLfy95jjBxfmW634AFSAF0U53ek
+	4o34F3E/DUNPcEpLBeVSSkIhnp27HavrCu1ZPcPa5w6SdIm7sxkOtyhjuUj5YZ7qozV2z0Kf4ba
+	qL8zEGfDNinD1vysE6aXd2aw/WjT8hQ==
+X-Received: by 2002:a05:6402:42c9:b0:659:3d7d:e38 with SMTP id
+ 4fb4d7f45d1cf-65b96e50d45mr2054024a12.32.1770917020827; Thu, 12 Feb 2026
+ 09:23:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20260211094736.88-1-hehuan1@eswincomputing.com>
+ <20260211221017.GA3976151-robh@kernel.org> <b0805c4.368e.19c50c8c197.Coremail.hehuan1@eswincomputing.com>
+In-Reply-To: <b0805c4.368e.19c50c8c197.Coremail.hehuan1@eswincomputing.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 12 Feb 2026 11:23:29 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLa+Wehi5SSOm6A4jkRMKMvB2J3OG7DR+aAwCPrS4jGnA@mail.gmail.com>
+X-Gm-Features: AZwV_QhBYRB4GsWZrFbzudGCr8iVnYKK4zgVAcmHAZVw9ORJzGDwJrwJIogyyHc
+Message-ID: <CAL_JsqLa+Wehi5SSOm6A4jkRMKMvB2J3OG7DR+aAwCPrS4jGnA@mail.gmail.com>
+Subject: Re: Re: [PATCH v1] dt-bindings: mmc: dwcmshc-sdhci: Fix resets array validation
+To: Huan He <hehuan1@eswincomputing.com>
+Cc: ulf.hansson@linaro.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	jszhang@kernel.org, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com, 
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, 
+	xuxiang@eswincomputing.com, Pritesh Patel <pritesh.patel@einfochips.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265156-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-265159-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url,bootlin.com:dkim]
-X-Rspamd-Queue-Id: 526A112FC31
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,einfochips.com:email,eswincomputing.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D6DA612FDE1
 X-Rspamd-Action: no action
 
-On Thu, 12 Feb 2026 16:40:14 +0100
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Thu, Feb 12, 2026 at 1:37=E2=80=AFAM Huan He <hehuan1@eswincomputing.com=
+> wrote:
+>
+> > > The binding defines tuple-style reset-names items for some
+> > > compatibles, which implicitly enforces a fixed array length
+> > > via JSON Schema.
+> > >
+> > > Defining global maxItems for resets and reset-names causes these
+> > > constraints to be intersected via allOf, resulting in an effective
+> > > minItems equal to the global maxItems. This leads to dtbs_check
+> > > failures reporting reset arrays as too short, even when the DTS
+> > > provides the correct number of entries.
+> > >
+> > > Remove the global maxItems constraints and let the per-compatible
+> > > schema branches define the required reset array sizes explicitly.
+> > >
+> > > Fixes: 30009a21f257 ("dt-bindings: mmc: sdhci-of-dwcmshc: Add Eswin E=
+IC7700")
+> > > Signed-off-by: Pritesh Patel <pritesh.patel@einfochips.com>
+> > > Signed-off-by: Huan He <hehuan1@eswincomputing.com>
+> > > ---
+> > >  .../devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml         | 6 ----=
+--
+> > >  1 file changed, 6 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci=
+.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> > > index 7e7c55dc2440..8af55a53b569 100644
+> > > --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> > > +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> > > @@ -49,12 +49,6 @@ properties:
+> > >    power-domains:
+> > >      maxItems: 1
+> > >
+> > > -  resets:
+> > > -    maxItems: 5
+> > > -
+> > > -  reset-names:
+> > > -    maxItems: 5
+> >
+> > No, add 'minItems' that covers the whole range needed.
+>
+> Thank you very much for taking the time to review the patch and for your
+> valuable feedback.
+>
+> I have checked other vendors in the kernel that use the resets property.
+> The minimum number in actual use is 4 (Eswin uses 4, others use 5).
+>
+> Is it reasonable to add "minItems: 1"?
 
-> On 12/02/2026 16:26, Kory Maincent (TI) wrote:
-> > Enable the ITE IT66121 HDMI bridge driver to support HDMI output on
-> > the BeagleBone Green with the Seeed Studio HDMI cape. =20
->=20
-> This is not one option per patch. All three patches should be squashed,
-> because are logically one change.
+No, if 4 is the min, then you use 'minItems: 4'.
 
-Ok, as you prefer.
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Rob
 
