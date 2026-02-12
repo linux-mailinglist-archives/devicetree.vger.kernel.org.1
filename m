@@ -1,194 +1,135 @@
-Return-Path: <devicetree+bounces-265155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265156-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kM8dFCcGjmlf+gAAu9opvQ
-	(envelope-from <devicetree+bounces-265155-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 17:56:07 +0100
+	id KDpoMHsHjmkT+wAAu9opvQ
+	(envelope-from <devicetree+bounces-265156-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:01:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B814412FB78
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 17:56:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 526A112FC31
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:01:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E5283301DEE9
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 16:55:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C3B3B303850E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 16:58:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECC622F0C6A;
-	Thu, 12 Feb 2026 16:55:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C4DE35DD11;
+	Thu, 12 Feb 2026 16:58:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fTZswQco"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gCSGMQvz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8596835D611
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 16:55:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62D4357716
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 16:58:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770915356; cv=none; b=tFAwX6JZiqVZ0bQJ+LqNaFH80atWly8Y2Yfh6/Hcil3XMcJV5weaOo3D51IfK+J0T6YF9jmpJ/4vLGwyJGo4sobNh+pzUEbvnJ8hoQ1MhIRnKxSMbBDMNz5znrdf+eaVF0HNvS8Q6CPwTNhZyzhSUvXL2qLsMxG0Jv2KgMhGa/0=
+	t=1770915517; cv=none; b=XNnxA3hUixk6FoeihvOk4DvlpDniMo20CTkwIR3IYb5a/rtdMrRYz3uEvUcR4fsoJHzSijPBon7/YFPkx8ZyR7nIrazKRyaWHyZbzbE1D20ZPZ/66nD3fQhLnKWUJsVsOPVJHVMKRdt0rLImNLgfJflVI6X32G4ElcixtpDDRLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770915356; c=relaxed/simple;
-	bh=tu6NH5KRiqpHmO7a2E4izBi9G/Voi5o3rIHojUhD3Gg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LWpS3HT8yiktOQEAsNpRX8ekXSqu2Ty6JPT1DgOgn+qt2q2PCgQHEuqrl23A5RIHpIb4GyhHxoUoW/Lm3sbVpt8pF74iOflAkWN1u+9yxl67yLaSBLJTm5JW1i8rbgi7rE/QSbXL877Cf49vg2jAwGsxG8Jdx4EZEeAJHs6rk0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fTZswQco; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4806fd9033bso49955e9.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 08:55:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770915354; x=1771520154; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=EWH52hHDoZsOt/pe7QFROJLUmHx4Nch/byKXwRcnIQ8=;
-        b=fTZswQcoPhPY2MwfeoyuqlxNoTYAl0qUKn99RZyjRr2g+ftzh2xQif1T772pDf+/l+
-         rS3iB54Ion+rDYOB1szBqeS5EZUNBITcXM+WNKXgowlxXdtVOtObl+6xCgAKtkLb6yUe
-         RgBXB7HWubZ2DefpQKJG/XrmXSU2Vj7Hv29iX270uIWPw2Bio4l3kHlxn5EQtBxcLcwM
-         ZBB4izRx3DyNG5t4Ab+dPgGqn8NG1Pbb91++O4cyMBrc+gvDV3YtxxlmEgTe012KDGhN
-         94b9/UjtBAC9FTpT4b64Z1f9UqCK5TJVAtu3SkIo8x06MEYBUbEKMAk28weaxKjxfSvD
-         l3Bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770915354; x=1771520154;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EWH52hHDoZsOt/pe7QFROJLUmHx4Nch/byKXwRcnIQ8=;
-        b=AxF7idltPAynI9DSKOH/THIHKPPrNhxb8hEku99VATCWWCw2F3DS8zGz3L/N68Tl4n
-         BNLN7TUmUQGm+MvG2Irq5Qa5FyYFCxLBcKix5AqnqAffWcK9HTGuUqltoY5xptb3WNG3
-         cO95TQNLrdvgMWYx37crryRs3YDJwtD3qwdtUT37UlAzzYI6WEVNZNwou2xnrYbZGppQ
-         4F0jGfhXLxM6VuNFUXk47kbf8iMHB+2KcdBGqY5wqkSG6BUmcgZRTpzrk54wLjtBz5GJ
-         EIw4s3HlvNH7+T6JrsyeON7MHzOQkDYUQOhWnGY5X6/jiFA748oD1Sdvwc5MphYeXx4U
-         /yWA==
-X-Forwarded-Encrypted: i=1; AJvYcCXgfC57O22R6dOIhsh8q1P6dGDZt8yu0DCw9lWMjuHZWam7TFb16j2exXUF8YE1Mpm+V9jndzMd35vP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6F8DMtflfDFK6cJdK0mWQOtDGFFC0yforYUmtIUP5BvJVNTN7
-	w/PAN7bNaOqH1PUr7C6F+1joB9xeQObuFQN6OrMSNGriHlAYDm0tTZI5
-X-Gm-Gg: AZuq6aKpxSC6lt//1IVtg+l6xZiAUegPRi7hOj0xTMnPM4i20woVQY8dldAnNT7YYVF
-	TSw4y5ZbEhA6u+/MRM6vlRi10FUzOC0fnm1EDsev7EcmkDOu0hhekM6uoArWnR0PY8acJ96oOyV
-	9KbVYmYacicaYVfFhEE30Cxi+iWvXsmcaroUD0qNzDugkIcXq6iaaL3eWiNrimCNSQo7OIZtEHC
-	5Sx0VhNTaV7ToYg46lwNJxwgU+9PqKGA+2V8d5u+Ttne9CxSbMDyx9a6XqW7a2yrYMS9+LbIt9E
-	dWpUxhCcLnRHtd5B7HAq5I/AC0MWxm/zFSjcJ0vyKcbGt8509LSwJxqrpcuNhJ/Y0UmxERyhwXK
-	xznHWSWijwwzzeJDELjBLoTmF/j3Na/Yy97mAOHp5pAd7DbVimEuTR55nv9qSOfVvn8eyLP5jua
-	fYnzpNfQIsKm1SD4Q=
-X-Received: by 2002:a05:600c:a09:b0:477:9fa8:bc99 with SMTP id 5b1f17b1804b1-4836570e260mr29901335e9.4.1770915353815;
-        Thu, 12 Feb 2026 08:55:53 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d501:d900:2f75:bf70:f0b9:4586])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4835dd20519sm222156105e9.15.2026.02.12.08.55.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Feb 2026 08:55:53 -0800 (PST)
-Date: Thu, 12 Feb 2026 18:55:50 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: WeiHao Li <cn.liweihao@gmail.com>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] arm64: dts: rockchip: Add USB2.0 PHY for RK3368
-Message-ID: <20260212165550.mju3377fvphdsqoe@skbuf>
-References: <20250909132958.26423-1-cn.liweihao@gmail.com>
- <20250909132958.26423-3-cn.liweihao@gmail.com>
+	s=arc-20240116; t=1770915517; c=relaxed/simple;
+	bh=arbeKzskpaZ6m1Z7FnnQ5xEvGj02M4ftvyLatuv7G9I=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WMeUpaUoGipNv7SGb4TEHHzJ04sozQOu28L7BRDL38QTHBCuk1JKH/xZs+/4V9RK2Gd30vZAQ87yYu/IMVH04I6udbJ+if+c4fDC/eGHOFlvbbLCh/IGDRtT0cwaxp0JzXg1M2BZJqzc0BQ95FjZozwB3X8BPvDB3XMrD0Fioro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gCSGMQvz; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 4FCB4C23DA8;
+	Thu, 12 Feb 2026 16:58:43 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 022FF606B8;
+	Thu, 12 Feb 2026 16:58:34 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6ADAF1036888C;
+	Thu, 12 Feb 2026 17:58:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1770915513; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=arbeKzskpaZ6m1Z7FnnQ5xEvGj02M4ftvyLatuv7G9I=;
+	b=gCSGMQvztYNe3eC6uQzYgHoD6EATkzqZfYyeAU/f3/I9mXJ8PbJkqMKFssqdEWLygsQCMS
+	dYrt25axvM/8/jIlSwmcqnULBvPi4rAISiPrVLkxj+YNEZTVWSY3gcy3odJN18qPrYzf8n
+	GUEK3R/XDWveteemwNH9tm5rP1yNIdo/25iGkr3yTQ1epIZ6Aa21mha9pU11JMO2E5suI3
+	o8ATdKYJ79w2ge2A/kv3XrBmj0T8KdxtMVnj65EQecDiqS3moyAdyGMWghXgRt6RQyOit5
+	iOr13cSb6aZ8i2HZk9yS4D076cyXKJiePiNrSYjOCrMokOGShyEW1/xObA/TJQ==
+Date: Thu, 12 Feb 2026 17:58:28 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
+ <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, Roger Quadros
+ <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Bajjuri Praneeth <praneeth@ti.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Louis
+ Chauvet <louis.chauvet@bootlin.com>
+Subject: Re: [PATCH 4/5] ARM: multi_v7_defconfig: Enable ITE IT66121 driver
+Message-ID: <20260212175828.380fa3ff@kmaincent-XPS-13-7390>
+In-Reply-To: <d786d817-e97d-4270-a3be-4778730df35e@kernel.org>
+References: <20260212-feature_bbge-v1-0-29014a212f35@bootlin.com>
+	<20260212-feature_bbge-v1-4-29014a212f35@bootlin.com>
+	<d786d817-e97d-4270-a3be-4778730df35e@kernel.org>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250909132958.26423-3-cn.liweihao@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265155-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265156-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.2.188:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ff770000:email,ff760000:email]
-X-Rspamd-Queue-Id: B814412FB78
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url,bootlin.com:dkim]
+X-Rspamd-Queue-Id: 526A112FC31
 X-Rspamd-Action: no action
 
-On Tue, Sep 09, 2025 at 09:29:56PM +0800, WeiHao Li wrote:
-> RK3368 has one USB2.0 PHY with two ports, This adds device tree node for
-> it.
-> 
-> Signed-off-by: WeiHao Li <cn.liweihao@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3368.dtsi | 29 ++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3368.dtsi b/arch/arm64/boot/dts/rockchip/rk3368.dtsi
-> index 1b21787269..b09e431a64 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3368.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3368.dtsi
-> @@ -766,11 +766,40 @@ cru: clock-controller@ff760000 {
->  	grf: syscon@ff770000 {
->  		compatible = "rockchip,rk3368-grf", "syscon", "simple-mfd";
->  		reg = <0x0 0xff770000 0x0 0x1000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
+On Thu, 12 Feb 2026 16:40:14 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-This introduces a device tree warning. You cannot mix nodes with no unit
-address (io-domains) with nodes with a unit address (usb2-phy@700) on
-the same hierarchical level. You have to pick a format and stick to it.
+> On 12/02/2026 16:26, Kory Maincent (TI) wrote:
+> > Enable the ITE IT66121 HDMI bridge driver to support HDMI output on
+> > the BeagleBone Green with the Seeed Studio HDMI cape. =20
+>=20
+> This is not one option per patch. All three patches should be squashed,
+> because are logically one change.
 
->  
->  		io_domains: io-domains {
->  			compatible = "rockchip,rk3368-io-voltage-domain";
->  			status = "disabled";
->  		};
-> +
-> +		u2phy: usb2-phy@700 {
-> +			compatible = "rockchip,rk3368-usb2phy";
-> +			reg = <0x700 0x2c>;
-> +			clocks = <&cru SCLK_OTGPHY0>;
-> +			clock-names = "phyclk";
-> +			clock-output-names = "usb480m_phy";
-> +			#clock-cells = <0>;
-> +			status = "disabled";
-> +
-> +			u2phy_otg: otg-port {
-> +				interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
-> +					     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
-> +					     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
-> +				interrupt-names = "otg-bvalid", "otg-id",
-> +						  "linestate";
-> +				#phy-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			u2phy_host: host-port {
-> +				interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
-> +				interrupt-names = "linestate";
-> +				#phy-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +		};
->  	};
->  
->  	wdt: watchdog@ff800000 {
-> -- 
-> 2.47.2
-> 
-> 
+Ok, as you prefer.
+
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
