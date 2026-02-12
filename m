@@ -1,219 +1,249 @@
-Return-Path: <devicetree+bounces-265184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265185-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CABaFjYnjmlrAAEAu9opvQ
-	(envelope-from <devicetree+bounces-265184-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 20:17:10 +0100
+	id +GFfAKAqjmlsAQEAu9opvQ
+	(envelope-from <devicetree+bounces-265185-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 20:31:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8EA0130A05
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 20:17:09 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 442B5130B80
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 20:31:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BA441303931E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:17:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9B7F83004626
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FC4528E0;
-	Thu, 12 Feb 2026 19:17:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C4829BDBD;
+	Thu, 12 Feb 2026 19:31:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bgWOb0on"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="d8nUvkAe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 498F5219A81
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 19:17:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.222.48
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770923826; cv=pass; b=ZZNPS1Va/pCZhSaloHQstf0t4GktlXmiUQX6kR4B9bd2L0xC74LJOKi3ViA/WNXPZllukg+umnvmy1pbG4pHHtqghOPje+aDr0AvN/IsTvkP9eEv61a6KXKO7MrG7y7ur2NLVat1NGnPAnJOdcNBRtRyXcK6ul1BKlqQBhWTrAY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770923826; c=relaxed/simple;
-	bh=+5DH5ijzAvOtI7eX5+/+AuuQ4e/7LkgnyQJmj+MOH7M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=W66uoGNX4oIwH84mA3VfDfs9EWadUbON4UshPTgnS2WOmMAKc3ols8HGmdfSut926kgotGJGlm4G6omGubKkb0ir0MxdsUDu9LDMxGpPgW3gS1ba+JgYB9QUt40cdqpJqaW2k6e4HEGf/WA3NU2jCEgvIsLZQE8fwQUClqUNDbQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bgWOb0on; arc=pass smtp.client-ip=209.85.222.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-948a076d6ecso56458241.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 11:17:05 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770923824; cv=none;
-        d=google.com; s=arc-20240605;
-        b=WL2eis6LUrKz1/SBXdsNKa9yWtlF5ZqnUy15Ohj/UJPV0DptxTSnastrX2b2SK9A56
-         weoSPZ72+Pf634vOWYiQQXwsiOdVdYxID1SGzph9KuWwQoFTOWDjI3g0DnPhDoyup3B2
-         NwzIGcu8br7u6GeDLQTS6iPKUOJyfeQH1j4KDN5e0p1zIT+8l20qRIRYFPF+WJnydF6R
-         ZCnpEPY1YCKhUpCnLu53kikjNpSnsDElmD+CGGQpJoli/fKQsl6kRhiGXtSCKfm2+Pkm
-         xj/bXqWThnICwtzMANZGqrkEH03PN7ew7Zi/LXqZgOD5tUFQYguhg3Y4EImDyfEjSmKx
-         aDXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=+5DH5ijzAvOtI7eX5+/+AuuQ4e/7LkgnyQJmj+MOH7M=;
-        fh=dfXHH+vMfKk17Eco5zb/HRPDQofX4LGSv1dbbAZplLE=;
-        b=UY3C6m+4y30aR0fa34px45r2ONPPwkaZ/1kwlr1YjdEAe0Fm7f8/0Bv7bOkCU3RsnK
-         j27fwF5PzhXz+38owZxJ/fqnAt2qlJLo1O8wa5wB+TaFlGa2oSc9W3inpQ/5IDkttz+1
-         4z8guHYcX0Fr8glQuhNtAgsQv/CUMj+nRG0mA5t2+FE+EZn197XrvkGBuwyP447gi6L9
-         vtJPa143aSW0uLxybmDK1teoeWV4cIjUdNq/cOIXL4tK1D4pQhWbIMXAu/O+UowhwOz/
-         P1gKSuyG/V/9jYmD17FPxXTWvGwVhIFf2RNTchr+wBoPVycven1ZmSa72TE+Nwzk8+IC
-         9Pvw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770923824; x=1771528624; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+5DH5ijzAvOtI7eX5+/+AuuQ4e/7LkgnyQJmj+MOH7M=;
-        b=bgWOb0ongsiTVcBqPgk82k9gFKb4Kdf11JY81uD91F99pkMhX5EiIZ6pGjbXPtTcaC
-         Ho5uApMMiSBCw0qSn690v6PZ6Yov3HeR9DWgvEBGsoBZwzgwomwrRwbEKqZkkhDUiunq
-         D2qHTlHgvyvH9Onew0b/21MOJL6rRMzhho1sbWd3K9Tp64hSHJUDoxLHElIwB4eaO4VO
-         V8umfn7RqcQDdYd+HvZgPrpXG2ImNvpkO+KUN6nStRv3lsXHuHTvItM8442wFyY072dd
-         Dz5YSLtNSE3k3BUlfmHrDy7XyV0lAe2QS3CocKExTXWU8K0rBCQAqax/3Pckz5zJWKQ9
-         i99g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770923824; x=1771528624;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=+5DH5ijzAvOtI7eX5+/+AuuQ4e/7LkgnyQJmj+MOH7M=;
-        b=S7Q+6ABgCPVyPjUyC51KVSppATfZGUAVHteNWejY8GT3ia+GEsbyAVaOC04bdsUv29
-         Y2Pb6DSC2xDmLAUm3sagqSTkzszdcp8I5P4lb3BwFLQCHxR66dZqdmGIJQSdvrhxMQst
-         p4WsEWbJKfPTgchNpS3P7nAT/92lmRC5eRT8fwYxp0fSEIKmqFrK9/Qg/AS+BI1hnDR4
-         +X1zPvW76L69tlqXMXvA9kk8IlkaywY/pGfgXHKFb4Wq1eb947cb12Xm1Nsfh0eoyQzT
-         v1O6tmfKybiVh3nNEka7RPi4jt0+5Qe3zqNpi5VYW/agfJf7J+PlI/u9Y8Th85b+M8VR
-         DA9g==
-X-Forwarded-Encrypted: i=1; AJvYcCX53UsgiOUH8pBWw5PyI6TpHgUcF8Ji8qsCUm5q8qhwH3ytCFaeiEaERWlW3K2Np1IBwAtQuoRP1vFL@vger.kernel.org
-X-Gm-Message-State: AOJu0YysvOE6W0ngsiq348JmfHKTicLiO9/l2VrlEFrrdstX9+mM7T8+
-	te7ilh3QPeVErKtNkrhxShEtWsLB5weDjSg02ffSnk2zR3+yBJjZKTdY1aXCFAwbzlKnYlHZWdj
-	dftWs0npDEwZbfh/9bJ06ofDY/gpUSGA=
-X-Gm-Gg: AZuq6aIn0IF7XY6k/ULzoiA68jQ6ZqMPPW8/N28dTX8nZFvjg3RxTzL0+ifDizYEd0e
-	Kuw0WJddN76aAIfx452XaA9tCdTDVLxFfvg5BqZEHZr/Z9kowsHreLWhilLXScx0hRkqtBS+xbE
-	0Kby4wp/zZ4yp2ix3LEJfa17j8g5mCdfaPG/I5At2dpxyCdKL9UbwXlR24xcm31a3Cgmxx8C5Gn
-	WrGVvUtjYMrnMgNdo6Bbuft+QmWmOG5CqO67hR5TGZCjet8uRKnV46N64sAZRXDn8VldqP39vb3
-	IV5vTYdaNJxFptT9H/fG4GV8S4ZV7vW+saQqShmCLLqBMTX2pZMN1/Oa5fLtpxexMfn8
-X-Received: by 2002:a05:6102:160f:b0:5ee:a0de:65ea with SMTP id
- ada2fe7eead31-5fdfbb9efc0mr1372507137.38.1770923824150; Thu, 12 Feb 2026
- 11:17:04 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A00A28C2A1;
+	Thu, 12 Feb 2026 19:31:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770924689; cv=none; b=esi3ATdr8xUM8BNg8jnXVxPiiVx3X/+V3Nlvs87a7YHogf8ca6lcKcJa5HvUuGKWTs7OX8+FFjqNRtTzhp2cnT1Ooe7vbkK09BoItZEZRwHbcafi65mCU3oWetNdHVO8tMk4V4GLseGB/msTryC7+bRZf7nB86yahlB2I+ucU+Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770924689; c=relaxed/simple;
+	bh=+qNUr0UoriHOp1Z7R0j7T53LVOa64ZsApE4fd9vU1/I=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=XzYtVEwCNBJlxa7O5HK8rNpy700bFSkdE1SClfj6wc2b65J16HWUfNxR4t+ZMvpPLobt4Q22OCmQ5x3aNS8ZTxPbGNBmxcJSuBrV/qtZxoFmjo0lpJ2fQHIvjFzeBxKQqmw2pSgjGnL5nIQdnS80kb1w3H/fPiAcEYmRbk3X77M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=d8nUvkAe; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1770924686;
+	bh=+qNUr0UoriHOp1Z7R0j7T53LVOa64ZsApE4fd9vU1/I=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=d8nUvkAehy9yHTSm6VurTOk3PcmpaHehiHFDkoonwDV33kpogDUNL1ptxqo9LRK6A
+	 qX1Y4Q1vs7t0xSxy2eeG8EP1SMUpaeHXJhmAlX+oQ6dxqsBta0V7+MAqbN1CBqZB3y
+	 bhfFYEEO1X3YtJ3KoJP5L9aRWFnEiLlyRMoML0f0c3bGMFJGV3WIq+v4QmdwVue+SO
+	 R/t2p0GEq6Vd2w6YU2UvNIl1iddu+puh4N77Krk0tSKgEuqP0qn7q+ojPmENkIfji5
+	 8DKsE9YLxQK6tinu1KNyswU3YLRogAmtUsrI1ZMWdisHu8m1UD3F3AW+6zBjiL8khO
+	 KcDuY0tc3sT7g==
+Received: from [IPv6:2606:6d00:15:210e::5ac] (unknown [IPv6:2606:6d00:15:210e::5ac])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3DB0A17E1274;
+	Thu, 12 Feb 2026 20:31:24 +0100 (CET)
+Message-ID: <ce23bec1765032aad25e036b46cf45eb97764ea0.camel@collabora.com>
+Subject: Re: [PATCH v3 02/14] media: mediatek: vcodec: add decoder
+ compatible to support mt8196
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ =?ISO-8859-1?Q?N=EDcolas?= "F . R . A . Prado"	 <nfraprado@collabora.com>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>,  Hans Verkuil
+ <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>, Benjamin Gaignard	
+ <benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>, 
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ linux-mediatek@lists.infradead.org
+Cc: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig
+ <frkoenig@chromium.org>,  Daniel Vetter <daniel@ffwll.ch>, Steve Cho
+ <stevecho@chromium.org>, Yunfei Dong <yunfei.dong@mediatek.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Date: Thu, 12 Feb 2026 14:31:21 -0500
+In-Reply-To: <6176231.DvuYhMxLoT@workhorse>
+References: <20260211054149.27249-1-yunfei.dong@mediatek.com>
+	 <20260211054149.27249-3-yunfei.dong@mediatek.com>
+	 <6176231.DvuYhMxLoT@workhorse>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-ExWRxj2PEKAcesDrVVPq"
+User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
- <20260211081355.3028947-2-james.hilliard1@gmail.com> <CAMRc=MfgoKmsNAmn3rO2jDL-ZArMX2Jh-n4SnV6rpzRY3KSwuA@mail.gmail.com>
- <34a9b531-4f53-47ee-861e-1b18ff1a5752@kernel.org> <CAMRc=MfwQ8J7eT_geEf7Kj230SOvmO-LDHz9a_YgfRY-QB5V8w@mail.gmail.com>
- <20260211214708.GA3947691-robh@kernel.org> <CADvTj4p-zHMrXW+GJstB2sKS-7Wij98JNJGoiPiYmaP5RHhNQg@mail.gmail.com>
- <9afa52c1-b7de-4ccb-9114-a142567d21af@kernel.org>
-In-Reply-To: <9afa52c1-b7de-4ccb-9114-a142567d21af@kernel.org>
-From: James Hilliard <james.hilliard1@gmail.com>
-Date: Thu, 12 Feb 2026 12:16:54 -0700
-X-Gm-Features: AZwV_QjTJOnpuLDi2ZHGibY0A42KReJLVkc_FuXVhU2nbfu1jpgvU9PmIjUN8P8
-Message-ID: <CADvTj4pmAXo+KUMyB0=+x3HRdUdUq=baj_pnoa44oxnugZuTOg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] gpio: aggregator: add gpio-aggregator DT compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Bartosz Golaszewski <brgl@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org, 
-	Linus Walleij <linusw@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Alexander Stein <linux@ew.tq-group.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [-4.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265184-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265185-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[collabora.com,xs4all.nl,chromium.org,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jameshilliard1@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,glider.be:email,bootlin.com:url]
-X-Rspamd-Queue-Id: C8EA0130A05
+	FROM_NEQ_ENVFROM(0.00)[nicolas.dufresne@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 442B5130B80
 X-Rspamd-Action: no action
 
-On Thu, Feb 12, 2026 at 12:18=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On 11/02/2026 22:49, James Hilliard wrote:
-> >>>>>
-> >>>>> Regardless of the DT bindings - this change is perfectly fine. We d=
-o
-> >>>>
-> >>>> You cannot have compatible without DT bindings, so this alone is not
-> >>>> "perfectly fine". Maybe you wanted platform_device_id entry for
-> >>>> ACPI/legacy/MFD devices?
-> >>>>
-> >>>
-> >>> Sure you can, you just can't put it into upstream devicetree sources.
-> >>> We have had a compatible for gpio-sim for testing purposes for years.
-> >>> Why would it be illegal to enable matching of platform drivers over D=
-T
-> >>> for testing purposes?
-> >>
-> >> The primary issue is undocumented ones show up in 'make
-> >> dt_compatible_check'. I would like that to be warning free.
-> >
-> > Would adding it here make sense?
-> > https://github.com/torvalds/linux/blob/v6.19/Documentation/devicetree/b=
-indings/incomplete-devices.yaml#L243-L245
->
-> What would you like to achieve with that? The binding patch did not have
-> rationale why do we want it and here is the same question - what sort of
-> problem is being solved by adding it to incomplete (so wrong) devices?
 
-See details for what I'm trying to accomplish with gpio-aggregator:
-https://lore.kernel.org/all/CADvTj4oBtO0Yhib1rE8QQwgtJvy-x_hK46C63mjVAydtxH=
-OV8g@mail.gmail.com/
+--=-ExWRxj2PEKAcesDrVVPq
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I'm basically trying to use it for the reasons described here:
-https://bootlin.com/blog/gpio-aggregator-a-virtual-gpio-chip/
+Hi,
 
-Is there a different device tree mechanism that can be used to
-name individual gpio lines on a gpiochip without having to name
-all of them for non-hog lines?
+Le jeudi 12 f=C3=A9vrier 2026 =C3=A0 17:48 +0100, Nicolas Frattaroli a =C3=
+=A9crit=C2=A0:
+> On Wednesday, 11 February 2026 06:41:29 Central European Standard Time Yu=
+nfei
+> Dong wrote:
+> > MT8196 is lat single core architecture. Support its compatible and
+> > use `mtk_lat_sig_core_pdata` to initialize platform data.
+> >=20
+> > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> > ---
+> > =C2=A0.../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c=C2=A0=
+=C2=A0 | 6 ++++++
+> > =C2=A0.../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h=C2=A0=
+=C2=A0 | 1 +
+> > =C2=A02 files changed, 7 insertions(+)
+> >=20
+> > diff --git
+> > a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+> > b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+> > index 3b81fae9f913..d9f722698198 100644
+> > --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv=
+.c
+> > +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv=
+.c
+> > @@ -347,6 +347,8 @@ static void mtk_vcodec_dec_get_chip_name(struct
+> > mtk_vcodec_dec_dev *vdec_dev)
+> > =C2=A0		vdec_dev->chip_name =3D MTK_VDEC_MT8186;
+> > =C2=A0	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8188-
+> > vcodec-dec"))
+> > =C2=A0		vdec_dev->chip_name =3D MTK_VDEC_MT8188;
+> > +	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8196-
+> > vcodec-dec"))
+> > +		vdec_dev->chip_name =3D MTK_VDEC_MT8196;
+>=20
+> Why is this entire function written like this, and why does it exist
+> at all? You can store the chip name in the platform data for a compatible=
+,
+> thereby avoiding a massive of_device_is_compatible if block because that'=
+s
+> what platform data is for.
+>=20
+> The only place where this function is even used is in probe.
+>=20
+> Just store it in your mtk_vcodec_match's .data struct and pull it from
+> dev->vdec_pdata. No need for the function.
 
-I'm confused why a "gpio-delay" compatible is allowed but one
-without the delay param is not?
+I have already asked this to the dev working on some other MTK codec patchs=
+et,
+and I think he already posted some proper refactoring (but had more changes=
+ to
+finish it up). Mind, Yunfei, coordinating the effort on removing all the if=
+/else
+please ? We are doing the same code review again and again with every singl=
+e
+individual working on this driver.
 
-Or is the issue just with the name of the compatible I used being
-called "gpio-aggregator"?
+regards,
+Nicolas
 
-> This is not a pure virtual device, but for use with actual hardware.
->
-> Nacked-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>=20
+> > =C2=A0	else
+> > =C2=A0		vdec_dev->chip_name =3D MTK_VDEC_INVAL;
+> > =C2=A0}
+> > @@ -560,6 +562,10 @@ static const struct of_device_id mtk_vcodec_match[=
+] =3D {
+> > =C2=A0		.compatible =3D "mediatek,mt8188-vcodec-dec",
+> > =C2=A0		.data =3D &mtk_lat_sig_core_pdata,
+> > =C2=A0	},
+> > +	{
+> > +		.compatible =3D "mediatek,mt8196-vcodec-dec",
+> > +		.data =3D &mtk_lat_sig_core_pdata,
+> > +	},
+> > =C2=A0	{},
+> > =C2=A0};
+> > =C2=A0
+> > diff --git
+> > a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+> > b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+> > index c9d27534c63e..f06dfc1a3455 100644
+> > --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv=
+.h
+> > +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv=
+.h
+> > @@ -29,6 +29,7 @@ enum mtk_vcodec_dec_chip_name {
+> > =C2=A0	MTK_VDEC_MT8188 =3D 8188,
+> > =C2=A0	MTK_VDEC_MT8192 =3D 8192,
+> > =C2=A0	MTK_VDEC_MT8195 =3D 8195,
+> > +	MTK_VDEC_MT8196 =3D 8196,
+> > =C2=A0};
+> > =C2=A0
+> > =C2=A0/*
+> >=20
+>=20
+>=20
+>=20
 
-I'm trying to use this with actual hardware, I just called it "virtual"
-because that's how it was described in the bootlin blog post.
+--=-ExWRxj2PEKAcesDrVVPq
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-I'm confused about what the issue is here as "gpio-delay" is also
-a virtual device in the same way.
+-----BEGIN PGP SIGNATURE-----
 
-> Well, it is a virtual device in that there's no actual "aggregator"
-> device on the board. It virtually aggregates GPIOs into a separate
-> chip for user's convenience. While there's no such device as a
-> gpio-aggregator - and so we must not put it into bindings nor into
-> mainline devicetree sources - having a compatible matching in the
-> driver is perfectly fine IMO. Just like gpio-sim.
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaY4qiQAKCRDZQZRRKWBy
+9HeYAQCWhI9bf5Bxz3iHnJha5FN0WSgszG3muAHP/g8J/IEASQD+P/e/9t05GUPv
++FUC4Inp4Ry1nEoRPqRIjZMwr70F9g8=
+=JVru
+-----END PGP SIGNATURE-----
 
-There's no such "gpio-delay" device either right? I'm confused
-why that compatible can exist but one without the delay param can
-not in the mainline sources. Aren't they both virtual devices?
+--=-ExWRxj2PEKAcesDrVVPq--
 
