@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-265173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265174-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0GnzNi4VjmmZ/AAAu9opvQ
-	(envelope-from <devicetree+bounces-265173-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:00:14 +0100
+	id iCt9KSoYjmlF/QAAu9opvQ
+	(envelope-from <devicetree+bounces-265174-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:12:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 653971301DB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:00:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B5301302F5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:12:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 69C48300D748
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:00:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DA573301A513
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:12:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8848613D891;
-	Thu, 12 Feb 2026 18:00:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D65F126FA50;
+	Thu, 12 Feb 2026 18:12:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T2XF/Peg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XvWGHK1a"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 653D2F9C0;
-	Thu, 12 Feb 2026 18:00:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B22331D63E4;
+	Thu, 12 Feb 2026 18:12:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770919211; cv=none; b=JYlCRSUYDmOers0VQUk2kYBSvJ5hSEjdiZeqLXE+PkvzMd51Bgp0wDaBaGFAg+DH29mTGInR1nGVfnq06pX+3QGwDEEnXe1qZzsXy+5Ivkr3QgFKjFkL2d00F89LtNqrR4t2e59GZmg4vofwR+22I4Zvp+lWYrnPjvnv+jdohB4=
+	t=1770919974; cv=none; b=EZxQ+4Q7GG5/EFXmw1FQXarF68zpOs7eHAYHddjZ9MJLU3NEEjWAyVNK9X+llKEofpnXHx2b904utj5OJ5lJ0RfLSA+ROvIt06sckgpWebTVc3dTeuQf6fNC/9jmifhu92MoOct8WCRf/ifDAMnSRRfPHGbFEEiIRe9Lpzs/v1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770919211; c=relaxed/simple;
-	bh=s7u9AhIOESjrkM2qI9JtGUX7DXLML7Dnl6WGHKtGoxQ=;
+	s=arc-20240116; t=1770919974; c=relaxed/simple;
+	bh=M3cjgvS/ZhQs/TCeqlasGC66xOXSJARftgnCxWJua90=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=efTAvdVoxGz7tMqIxaUu1znRPWfjjrFIyJ+Z114zP7Cn+vui5HSJ3el3/jUEw/ja3+gN2n0AjV0upVUB7BkWiBZu5MTS2Hy31D/bdTBbvnrRMTDEo62B+Oz7haS4QyErYkoi+AB/lDZAR6xz1BuSsy5f3D4ic6ogwknzq44HqHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T2XF/Peg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2AA8C4CEF7;
-	Thu, 12 Feb 2026 18:00:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eVHjYQNY1IbXhvvkQxJw0o48fShpUxU6xG4y3U37Jro0hXLGYGrD9KM0XKk0CyYrhjaiSOCx/t8QrPDvQsZ0B6JXS6GsFD+LgHgF4dQWKOFdxiGg65/Dqs3ysk5nNVb7RG8jXCNNz/j9tBznVYAA4sP7kEr+hBOSqXfVT2XYBIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XvWGHK1a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 582A0C4CEF7;
+	Thu, 12 Feb 2026 18:12:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770919211;
-	bh=s7u9AhIOESjrkM2qI9JtGUX7DXLML7Dnl6WGHKtGoxQ=;
+	s=k20201202; t=1770919974;
+	bh=M3cjgvS/ZhQs/TCeqlasGC66xOXSJARftgnCxWJua90=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T2XF/PegghZiKrnVM/PAl+sux97OeRxQZCMcXgXMc+NvBR2yA6H7hBTYBVU1MCvuc
-	 GiBPSXFLLHS+vPMupnnor4cdaJcDVkWaZGrb6F2X6u+ZxuTvXNUrLFpmoRJsnNtxVR
-	 CaELOmBMndPPcuaczeC87NZPhvJ7uTQKPlIw5Hsd/mjxKGPUZ3cPIodL35xJ+VQF7u
-	 GAvobIt3+wih4inebfwkH5OwK/+N0na8lxwNhAh+WWFPv61OY3a/8bfbdEjSTM7fA/
-	 lUtREvh6s6Xi1vgWEi4OpX8JGbk1ejHBOdLdfZpfD1BbJFEweSPJ3u/9lnm3gXTyVi
-	 BCvBZ3Cdkdf8A==
-Date: Thu, 12 Feb 2026 18:00:06 +0000
+	b=XvWGHK1axMnijm8bv6w/0OX3bCimHzoVns1p0FmNPe6JHKGoPt14ZCKevDubWZ2yA
+	 aNBVAJH8Fqo54UgEtAORIVRhuZ+ihFDPSBcNHk4FVlBTfp9909VdF9RnrMih6QdS9E
+	 MnmmcMt16Nwkgh0s40hvQGYmzxGNQ3C0Udx8kjVEH5BpybNXoVp8qh9z9jcKkPbnhC
+	 YAyahBUytDq2HgYeBQ74PnaGczBPKKHSl+8KIfj+qY1db1JOwkB1g9LJSdqTPf/qLy
+	 YxL/tbplTo/TuJgeEq5evU33sTPQARdLbx2ty1VPUG1jY8YnJfO+9U+lxuaiQxaSjF
+	 mVdGzXij2aC7g==
+Date: Thu, 12 Feb 2026 18:12:50 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Ariana Lazar <ariana.lazar@microchip.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Marius Cristea <marius.cristea@microchip.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: iio: dac: add support for Microchip
- MCP48FEB02
-Message-ID: <20260212-germless-favoring-c27ab4c53128@spud>
-References: <20260212-mcp48feb02-v1-0-ce5843db65db@microchip.com>
- <20260212-mcp48feb02-v1-1-ce5843db65db@microchip.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] dt-bindings: hwmon: temperature: add support for
+ EMC1812
+Message-ID: <20260212-unsaved-delta-a49468049f10@spud>
+References: <20260212-hw_mon-emc1812-v6-0-e37e9b38d898@microchip.com>
+ <20260212-hw_mon-emc1812-v6-1-e37e9b38d898@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,9 +65,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="I9nsXitjwyJV+GTG"
+	protocol="application/pgp-signature"; boundary="WcLubc+h1xVO3Dkh"
 Content-Disposition: inline
-In-Reply-To: <20260212-mcp48feb02-v1-1-ce5843db65db@microchip.com>
+In-Reply-To: <20260212-hw_mon-emc1812-v6-1-e37e9b38d898@microchip.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -77,11 +76,11 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265173-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265174-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
@@ -89,409 +88,58 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,microchip.com:url,microchip.com:email,devicetree.org:url,0.0.0.1:email]
-X-Rspamd-Queue-Id: 653971301DB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1B5301302F5
 X-Rspamd-Action: no action
 
 
---I9nsXitjwyJV+GTG
+--WcLubc+h1xVO3Dkh
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 12, 2026 at 02:48:34PM +0200, Ariana Lazar wrote:
-> This is the device tree schema for iio driver for Microchip
-> MCP48FxBy1/2/4/8 series of buffered voltage output Digital-to-Analog
-> Converters with nonvolatile or volatile memory and an SPI Interface.
->=20
-> The families support up to 8 output channels.
->=20
-> The devices can be 8-bit, 10-bit and 12-bit.
->=20
-> Signed-off-by: Ariana Lazar <ariana.lazar@microchip.com>
+On Thu, Feb 12, 2026 at 11:54:07AM +0200, Marius Cristea wrote:
+> +
+> +  # EMC1815: 4 Channels, Supports APD, REC on 1-2 and 3-4
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          const: microchip,emc1815
+> +    then:
+> +      # No restrictions needed, but explicitly allowing them is good documentation
 
-Other than the interface, what's actually different between this and the
-47? Could they share the same binding?
+Uh, I don't agree. If we applied this across the board in the name of
+"good documentation" we'd end up bloating up so many bindings.
+
+Other than this,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
 Conor.
 
-> ---
->  .../bindings/iio/dac/microchip,mcp48feb02.yaml     | 299 +++++++++++++++=
-++++++
->  MAINTAINERS                                        |   6 +
->  2 files changed, 305 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/dac/microchip,mcp48feb=
-02.yaml b/Documentation/devicetree/bindings/iio/dac/microchip,mcp48feb02.ya=
-ml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..78c6bd641c6e37321e4fc056d=
-b83eb4277f429b8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/dac/microchip,mcp48feb02.yaml
-> @@ -0,0 +1,299 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/dac/microchip,mcp48feb02.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip MCP48F(E/V)B(0/1/2)(1/2/4/8) DAC with SPI Interface Fam=
-ilies
-> +
-> +maintainers:
-> +  - Ariana Lazar <ariana.lazar@microchip.com>
-> +
-> +description: |
-> +  Datasheet for MCP48FEB01, MCP48FEB02, MCP48FEB11, MCP48FEB12, MCP48FEB=
-21,
-> +  MCP48FEB22 can be found here:
-> +    https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/Produ=
-ctDocuments/DataSheets/20005429B.pdf
-> +  Datasheet for MCP48FVB01, MCP48FVB02, MCP48FVB11, MCP48FVB12, MCP48FVB=
-21,
-> +  MCP48FVB22 can be found here:
-> +    https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/Produ=
-ctDocuments/DataSheets/20005466A.pdf
-> +  Datasheet for MCP48FEB04, MCP48FEB14, MCP48FEB24, MCP48FEB08, MCP48FEB=
-18,
-> +  MCP48FEB28, MCP48FVB04, MCP48FVB14, MCP48FVB24, MCP48FVB08, MCP48FVB18,
-> +  MCP48FVB28 can be found here:
-> +    https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/Prod=
-uctDocuments/DataSheets/MCP48FXBX4-8-Family-Data-Sheet-DS20006362A.pdf
-> +
-> +  +------------+--------------+-------------+-------------+------------+
-> +  | Device     |  Resolution  |   Channels  | Vref number | Memory     |
-> +  |------------|--------------|-------------|-------------|------------|
-> +  | MCP48FEB01 |              |      1      |      1      |   EEPROM   |
-> +  | MCP48FEB02 |     8-bit    |      2      |      1      |   EEPROM   |
-> +  | MCP48FEB04 |              |      4      |      2      |   EEPROM   |
-> +  | MCP48FEB08 |              |      8      |      2      |   EEPROM   |
-> +  |------------|--------------|-------------|-------------|------------|
-> +  | MCP48FEB11 |              |      1      |      1      |   EEPROM   |
-> +  | MCP48FEB12 |    10-bit    |      2      |      1      |   EEPROM   |
-> +  | MCP48FEB14 |              |      4      |      2      |   EEPROM   |
-> +  | MCP48FEB18 |              |      8      |      2      |   EEPROM   |
-> +  |------------|--------------|-------------|-------------|------------|
-> +  | MCP48FEB21 |              |      1      |      1      |   EEPROM   |
-> +  | MCP48FEB22 |    12-bit    |      2      |      1      |   EEPROM   |
-> +  | MCP48FEB24 |              |      4      |      2      |   EEPROM   |
-> +  | MCP48FEB28 |              |      8      |      2      |   EEPROM   |
-> +  |------------|--------------|-------------|-------------|------------|
-> +  | MCP48FVB01 |              |      1      |      1      |   RAM      |
-> +  | MCP48FVB02 |     8-bit    |      2      |      1      |   RAM      |
-> +  | MCP48FVB04 |              |      4      |      2      |   RAM      |
-> +  | MCP48FVB08 |              |      8      |      2      |   RAM      |
-> +  |------------|--------------|-------------|-------------|------------|
-> +  | MCP48FVB11 |              |      1      |      1      |   RAM      |
-> +  | MCP48FVB12 |    10-bit    |      2      |      1      |   RAM      |
-> +  | MCP48FVB14 |              |      4      |      2      |   RAM      |
-> +  | MCP48FVB18 |              |      8      |      2      |   RAM      |
-> +  |------------|--------------|-------------|-------------|------------|
-> +  | MCP48FVB21 |              |      1      |      1      |   RAM      |
-> +  | MCP48FVB22 |    12-bit    |      2      |      1      |   RAM      |
-> +  | MCP48FVB24 |              |      4      |      2      |   RAM      |
-> +  | MCP48FVB28 |              |      8      |      2      |   RAM      |
-> +  +------------+--------------+-------------+-------------+------------+
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,mcp48feb01
-> +      - microchip,mcp48feb02
-> +      - microchip,mcp48feb04
-> +      - microchip,mcp48feb08
-> +      - microchip,mcp48feb11
-> +      - microchip,mcp48feb12
-> +      - microchip,mcp48feb14
-> +      - microchip,mcp48feb18
-> +      - microchip,mcp48feb21
-> +      - microchip,mcp48feb22
-> +      - microchip,mcp48feb24
-> +      - microchip,mcp48feb28
-> +      - microchip,mcp48fvb01
-> +      - microchip,mcp48fvb02
-> +      - microchip,mcp48fvb04
-> +      - microchip,mcp48fvb08
-> +      - microchip,mcp48fvb11
-> +      - microchip,mcp48fvb12
-> +      - microchip,mcp48fvb14
-> +      - microchip,mcp48fvb18
-> +      - microchip,mcp48fvb21
-> +      - microchip,mcp48fvb22
-> +      - microchip,mcp48fvb24
-> +      - microchip,mcp48fvb28
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  vdd-supply:
-> +    description:
-> +      Provides power to the chip and it could be used as reference volta=
-ge. The
-> +      voltage is used to calculate scale. For parts without EEPROM at po=
-werup
-> +      this will be the selected as voltage reference.
-> +
-> +  vref-supply:
-> +    description: |
-> +      Vref pin (it could be found as Vref0 into the datasheet) may be us=
-ed as a
-> +      voltage reference when this supply is specified. The internal refe=
-rence
-> +      will be taken into account for voltage reference besides VDD if th=
-is supply
-> +      does not exist.
-> +
-> +      This supply will be voltage reference for the following outputs:
-> +        - for single-channel device: Vout0;
-> +        - for dual-channel device: Vout0, Vout1;
-> +        - for quad-channel device: Vout0, Vout2;
-> +        - for octal-channel device: Vout0, Vout2, Vout4, Vout6;
-> +
-> +  vref1-supply:
-> +    description: |
-> +      Vref1 pin may be used as a voltage reference when this supply is s=
-pecified.
-> +      The internal reference will be taken into account for voltage refe=
-rence
-> +      beside VDD if this supply does not exist.
-> +
-> +      This supply will be voltage reference for the following outputs:
-> +        - for quad-channel device: Vout1, Vout3;
-> +        - for octal-channel device: Vout1, Vout3, Vout5, Vout7;
-> +
-> +  lat-gpios:
-> +    description:
-> +      LAT pin to be used as a hardware trigger to synchronously update t=
-he DAC
-> +      channels. The pin is active Low. It could be also found as LAT0 in
-> +      datasheet.
-> +    maxItems: 1
-> +
-> +  lat1-gpios:
-> +    description:
-> +      LAT1 pin to be used as a hardware trigger to synchronously update =
-the odd
-> +      DAC channels on devices with 4 and 8 channels. The pin is active L=
-ow.
-> +    maxItems: 1
-> +
-> +  microchip,vref-buffered:
-> +    type: boolean
-> +    description:
-> +      Enable buffering of the external Vref/Vref0 pin in cases where the
-> +      external reference voltage does not have sufficient current capabi=
-lity in
-> +      order not to drop its voltage when connected to the internal resis=
-tor
-> +      ladder circuit.
-> +
-> +  microchip,vref1-buffered:
-> +    type: boolean
-> +    description:
-> +      Enable buffering of the external Vref1 pin in cases where the exte=
-rnal
-> +      reference voltage does not have sufficient current capability in o=
-rder not
-> +      to drop its voltage when connected to the internal resistor ladder
-> +      circuit.
-> +
-> +patternProperties:
-> +  "^channel@[0-7]$":
-> +    $ref: dac.yaml
-> +    type: object
-> +    description: Voltage output channel.
-> +
-> +    properties:
-> +      reg:
-> +        description: The channel number.
-> +        maxItems: 1
-> +
-> +      label:
-> +        description: Unique name to identify which channel this is.
-> +
-> +    required:
-> +      - reg
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd-supply
-> +
-> +allOf:
-> +  - if:
 > +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - microchip,mcp48feb01
-> +              - microchip,mcp48feb11
-> +              - microchip,mcp48feb21
-> +              - microchip,mcp48fvb01
-> +              - microchip,mcp48fvb11
-> +              - microchip,mcp48fvb21
-> +    then:
-> +      properties:
-> +        lat1-gpios: false
-> +        vref1-supply: false
-> +        microchip,vref1-buffered: false
-> +        channel@0:
-> +          properties:
-> +            reg:
-> +              const: 0
-> +      patternProperties:
-> +        "^channel@[1-7]$": false
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - microchip,mcp48feb02
-> +              - microchip,mcp48feb12
-> +              - microchip,mcp48feb22
-> +              - microchip,mcp48fvb02
-> +              - microchip,mcp48fvb12
-> +              - microchip,mcp48fvb22
-> +    then:
-> +      properties:
-> +        lat1-gpios: false
-> +        vref1-supply: false
-> +        microchip,vref1-buffered: false
-> +      patternProperties:
-> +        "^channel@[0-1]$":
-> +          properties:
-> +            reg:
-> +              enum: [0, 1]
-> +        "^channel@[2-7]$": false
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - microchip,mcp48fvb04
-> +              - microchip,mcp48fvb14
-> +              - microchip,mcp48fvb24
-> +              - microchip,mcp48feb04
-> +              - microchip,mcp48feb14
-> +              - microchip,mcp48feb24
-> +    then:
-> +      patternProperties:
-> +        "^channel@[0-3]$":
-> +          properties:
-> +            reg:
-> +              enum: [0, 1, 2, 3]
-> +        "^channel@[4-7]$": false
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - microchip,mcp48fvb08
-> +              - microchip,mcp48fvb18
-> +              - microchip,mcp48fvb28
-> +              - microchip,mcp48feb08
-> +              - microchip,mcp48feb18
-> +              - microchip,mcp48feb28
-> +    then:
-> +      patternProperties:
-> +        "^channel@[0-7]$":
-> +          properties:
-> +            reg:
-> +              enum: [0, 1, 2, 3, 4, 5, 6, 7]
-> +  - if:
-> +      not:
-> +        required:
-> +          - vref-supply
-> +    then:
-> +      properties:
-> +        microchip,vref-buffered: false
-> +  - if:
-> +      not:
-> +        required:
-> +          - vref1-supply
-> +    then:
-> +      properties:
-> +        microchip,vref1-buffered: false
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +    - |
-> +      spi {
-> +          #address-cells =3D <1>;
-> +          #size-cells =3D <0>;
-> +
-> +          dac@0 {
-> +            compatible =3D "microchip,mcp48feb08";
-> +            reg =3D <0>;
-> +            vdd-supply =3D <&vdac_vdd>;
-> +            vref-supply =3D <&vref_reg>;
-> +
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +            channel@0 {
-> +              reg =3D <0>;
-> +              label =3D "Adjustable_voltage_ch0";
-> +            };
-> +
-> +            channel@1 {
-> +              reg =3D <0x1>;
-> +              label =3D "Adjustable_voltage_ch1";
-> +            };
-> +          };
-> +      };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a92290fffa163f9fe8fe3f04bf66426f9a894409..ed24fd2758ad0103dbc5191d0=
-ec180f8ee5e8298 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14945,6 +14945,12 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/iio/dac/microchip,mcp4821.yaml
->  F:	drivers/iio/dac/mcp4821.c
-> =20
-> +MCP48FEB02 MICROCHIP DAC DRIVER
-> +M:	Ariana Lazar <ariana.lazar@microchip.com>
-> +L:	linux-iio@vger.kernel.org
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/iio/dac/microchip,mcp48feb02.yaml
-> +
->  MCR20A IEEE-802.15.4 RADIO DRIVER
->  M:	Stefan Schmidt <stefan@datenfreihafen.org>
->  L:	linux-wpan@vger.kernel.org
->=20
-> --=20
-> 2.43.0
->=20
+> +        microchip,enable-anti-parallel: true
+> +        microchip,parasitic-res-on-channel1-2: true
+> +        microchip,parasitic-res-on-channel3-4: true
 
---I9nsXitjwyJV+GTG
+
+--WcLubc+h1xVO3Dkh
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaY4VJgAKCRB4tDGHoIJi
-0rRMAQCZMRY1FOe7uj/I87LSS6RiM09yoIPgyd7uubtLjkNuIwEAkY7f7UFoWire
-MZ3Urm+Lbx5CrQdXwl6ntN34O9PWBgw=
-=kkFn
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaY4YIgAKCRB4tDGHoIJi
+0io7AQDkOutIwPEj3td+X34ZdFu1SsITFTn7UcVxtL3pH+nOPgEAxu03PDgMYXlT
+7Ehku15KQ38z7onzyYmCveIOY6r7TAE=
+=DcpH
 -----END PGP SIGNATURE-----
 
---I9nsXitjwyJV+GTG--
+--WcLubc+h1xVO3Dkh--
 
