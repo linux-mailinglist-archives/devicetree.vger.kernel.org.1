@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-265072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265073-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cG1gOk3GjWnT6gAAu9opvQ
-	(envelope-from <devicetree+bounces-265072-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 13:23:41 +0100
+	id +L3QN/PGjWnT6gAAu9opvQ
+	(envelope-from <devicetree+bounces-265073-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 13:26:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 674AD12D6B0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 13:23:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6832B12D745
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 13:26:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E38F9304805F
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:23:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 07E603162782
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:23:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F70B3587D3;
-	Thu, 12 Feb 2026 12:23:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8910C3587A9;
+	Thu, 12 Feb 2026 12:23:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dMmwb6qw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aFohFSa7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC588357A41
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 12:23:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97F633587A7
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 12:23:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770899013; cv=none; b=qh6AQgHEV+hb0Do0V000TLBOruq+VuogA0PsEOp+niWb9usf3lWBjYAuPIuwUuj3IwqDrX10btcaoaPtHhVUuKQHnRKQd/wBTyPK4xUjuSzRGD02mEhHl2O+7IwwGZhCvaLdaB78sa87Fm1MJbi1Pn6MKfIJkFiaGbT+HXv+QtE=
+	t=1770899014; cv=none; b=kHYlzo1ud1Kw34PEXBNkVnjr4jIIBK/lxinFGDzUpTk4GGGgtly8v8Eb/srVwa3rNPjTTyiEHwUsnCWF9ea1QRzmw8EkRmxnC2yPennsHPMz2/821DZVE493RpZ94CxUFYXdKeVLT7ds2fEuc/aDWmEY0RnxgBZI1M2wEYAH/wU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770899013; c=relaxed/simple;
-	bh=CoeSUcu5JKP2vlIyuq71hLdki8LZeHARqdF+DbG35Tk=;
+	s=arc-20240116; t=1770899014; c=relaxed/simple;
+	bh=pW74V5cFkrxHAUpolR7r8O1D0nnf5KOsjp09vfB2x7g=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WqxiyufX47FuMQ9pRI1RY/6xnzUzHz+bSyAINtiDSdV9XKsmiNCQSyp1ZH1AFNry9C23TfpOd9tLnB5MP0hAQ/ord+sSgZZ3V9QwRmDKo9tx+ZI3tPn+5dwAy+GyLqjY8tWAK8EUGS3ihtfgFJsauvch7BVBCtPux3EKvNI4Ld0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dMmwb6qw; arc=none smtp.client-ip=209.85.208.65
+	 MIME-Version; b=L9ztI+UHyyu6OKRg9y3PtdAMedgUAbjFwHHVVoEqSfSyY3QzXLyrQVxDN5cDRPFNNiwZhQvDn+tw04cR6eqETzTGDsHo4tdkT7mnOU4MJ5C1qPjMbJzx5BurC2ldD7Nh2dNDbCt4kL2rm9btp0GRHuQadlwR9+IhmhWdYr3WA7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aFohFSa7; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f65.google.com with SMTP id 4fb4d7f45d1cf-65a431e305eso2782543a12.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 04:23:31 -0800 (PST)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b8f86167d39so154562266b.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 04:23:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770899010; x=1771503810; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1770899011; x=1771503811; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GcDfVsxOaZtMJ1kOTr1x0s4TukCtP+zyp2wxcrrzJwc=;
-        b=dMmwb6qw1QgWBYOoFlRckOseeXiIgjvfS62Pj8IMLs4oXZZQVLrbh0FvKcIUxc9I/L
-         PRBWFRLFNeITe6j8s3Os2xE+330lfVpGYQSntwVDf9c/KQby9EE3T+C3UXDDXGQoqAtL
-         vSgoClyc888c5sK/5RmFr6OZfPoWSg+sx3DuR8x1lOXUxfwYPeD5JrewfDotPQ/lR/hW
-         hvrfweMMREAB2hVfTgj/pcETW/rLafoIcw2TQKo9oyEHp9X0SMVCxeJTEpeR26pHOMBo
-         HCE7yRqAGMJ/UlFz3B6oucTfmldGjGoPi9RuWldxLPCy6woIg5a/v4w3rAyWJlS3RZMT
-         Lv2A==
+        bh=mcC35f9Jziu32RgFmxZhKjABLtU2XS673ijWTDginX0=;
+        b=aFohFSa7ThyqqB9TT+qEDboTtcQn9e2qAE0f4TvJTpn6/MI1D5ug6QXW3cLxoASn+j
+         4OooAeDe4C7sfyAXyt0rmJqa8g33iSciOriIn07V5qIwD2IWOSsETklj19ocQDnMS49T
+         lDAGYXnr8mLXEaIkTAdKkdd4iihbldeYrOWfVp7iBaUkUGqZayhwcgK9bGakz0B0OU8S
+         5vfMkIVZF8E2t1bwBlWw5yXpF76kPLqWSR7zWZCMWjTOtZUMjXVn9MimKMtxPtVeOtk4
+         5u2Icydj7j1eDDIsTjAm6Xfe4NyrtM1cmHbPjuLkgbiDFzowBMfoB2oPVnOtQFPiWo/X
+         YJVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770899010; x=1771503810;
+        d=1e100.net; s=20230601; t=1770899011; x=1771503811;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=GcDfVsxOaZtMJ1kOTr1x0s4TukCtP+zyp2wxcrrzJwc=;
-        b=Z2KK1pYMZTU/qSvdGluN4+A+kWzC9N392OqJUiBWJNglBTXNlr9pL+72fhPif2PT3j
-         yTUtzb0THlUhK6kR8G+6JtkbF3ySb8RO1dyif5wI0djvZkn72Rn4hW0Zv8As4ow9AAUt
-         PAnrcsMA9HmwugGao2mBY7c48h5VJAaJ0qRr4IstFKewHO0/kq+lbiMNyLowmHvoybKm
-         aSxuTEWA0hUFr266rTq0qLVUKatTSZQK4UqJU2HxzE0OPD/iusJ+iUuk/KfRX0KWrSjG
-         gjlzGwLv3m6cVB3cYnnMOO6PCrtZQvURQAYjadA+vUTGKcuma3PXIpjRIyBr/0N8HT+j
-         Bxeg==
-X-Forwarded-Encrypted: i=1; AJvYcCWpVuLlK9dBUut4sMSrx107mv0EYNWK5Wp6sl9NB0Z1BalCXg2Gz/Og3WvccYkenDMhy+66oC0ByhyT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCb/XY4VnEnY143S+X7F/sQkCbKWtP5l4rz3rRi30Fus/6p3/H
-	LHIbYLZ4pbS0RykoH+lK2VQPlNX3sOVjuUQEuOii0DCkIGJyX9k8OCEH
-X-Gm-Gg: AZuq6aJSXhxBQBYOmv6PJr0sfg+ewJKrBhCEFbwoipZkQeWMx9PT5IirwyRMtCo7FUB
-	3zwBtnxR5AGcr8VwBJriVxTZGEsHMkugxoYtbxy7kMzl+6Zn5GWQlEf8b2GAUnGlzBSEsb7nGt6
-	DGtIpUqcMpwZze9FyZEa7bp/JyWO20LMMV+Q+UhM5uTPakwEQyhXbloemBM+U49RymgDsPf35s+
-	uEg9eJW3DagxuYHQKo7wzFDDmbU5u6jydasO8MfjHTkUmcOBYVbtrSASZAkoJbe2G4akyYmThkI
-	Qkgv+1T91kluarVG/tYDIf5OXpr7H1IvedOjG2q+Fn3zR4nk71/iKQ0QYKWabppkZ013JoFgfi+
-	bC1CbZF/voXbM6j86eJz4KFhKDpAueud4BVuLfVP0qCw/EYr7CKtx8vu+ilxnFTE7DwhOhPpefg
-	aVI6K6KKZD3ubU
-X-Received: by 2002:a17:907:3cd2:b0:b88:463e:b55f with SMTP id a640c23a62f3a-b8f8f3d85a9mr142911166b.6.1770899009817;
-        Thu, 12 Feb 2026 04:23:29 -0800 (PST)
+        bh=mcC35f9Jziu32RgFmxZhKjABLtU2XS673ijWTDginX0=;
+        b=TxvtRAjE76KqF9PopGWIq0jPFnTu5a2RENzJ7O+gTHvaQFeO9P2DNpmhGpGv4bOKwU
+         ZRMZ0upw3cnsndc923Z+AWE2+j51BFPcnCBV1iufYTKSashD+JZab5iLV3YTtiKfkdod
+         0eCO1YvF3k4XbdurA0w+Op11ONr2sm4hgfoC5nLXIvl+GO9lsVFscoQtrhNwH3mP4SEl
+         /Ifx+8Veaphah5CK/NqDCtxnah+YnuhvwxBw5aC30eLHpUtyxmoQD62UYe7OG4FG2lRz
+         EOhjB9nCBlax6VhZuyZCLfhy2x5sc5bFCS0DHbV1ngHaSRHhBAnWahOItSAEPentEwVc
+         73Bg==
+X-Forwarded-Encrypted: i=1; AJvYcCXVUivmTcumQSzRIxpDQayLu6YJv84w5ZxMHOYaCYi9e4zBq0Bxec9UmxIlI4UkdBO2CcVqJP5GRK6w@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyh+CCnekoZPnZEl5Ro10CqJar+w+nout/h/HMQhl5syj1U5v/f
+	+zimAU2CzvMhD8bdboxImqy3q9iFe6K5qawjFkImkQ5AtzMTywfzGPDj
+X-Gm-Gg: AZuq6aLo5w39VfZWxeUGN4uYFVaPBKmS+4mvNmiuYEM4URcSUS97F+tZKG64/+ED22i
+	tA5f4eJpxffc9q1mBWQgVdwr8R1pIDA0hAKje554IN6azhj/eSyyp22V8tmyzac3a8ArofUVCdk
+	p+AQJKOhcmlLjlnzfaYb8BWD8dUPUsoKdvORR4Ls+J/i/zPbWuZ3j1snyyEpJaqoF0bp8Oq7UIQ
+	zRiwQVVFGOeFBbu5wBtTBiJaMyayg2ATprsHJg1axBp+xsiMuM27Iq7ax5B2bwWa2WODuaxpwVd
+	MWeWbFMtYcBflVoOCWPIHnaX7vDbdcV0L3pPjvNgzqJWV+rhbjLK139OmLC3p2AQPlnr7WqA4NN
+	z1H2lGjaRDkICV+uSd8vZcS1LE9Fu6WSavJ7XSCjVCSNSmJoDTXQ1QJXy5XEXGw98HvFSRBhzps
+	V7fshgKwyyGtjujz5uVivSXy8=
+X-Received: by 2002:a17:907:1c81:b0:b8f:7a08:9e43 with SMTP id a640c23a62f3a-b8f92cbf524mr107164766b.59.1770899010619;
+        Thu, 12 Feb 2026 04:23:30 -0800 (PST)
 Received: from xeon ([188.163.112.48])
         by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8f6ec1c753sm155603466b.45.2026.02.12.04.23.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Feb 2026 04:23:29 -0800 (PST)
+        Thu, 12 Feb 2026 04:23:30 -0800 (PST)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
 	Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -87,9 +87,9 @@ To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
 Cc: linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: media: mt9m114: document MI1040 sensor
-Date: Thu, 12 Feb 2026 14:23:01 +0200
-Message-ID: <20260212122302.29211-2-clamor95@gmail.com>
+Subject: [PATCH v2 2/2] media: i2c: mt9m114: add support for Aptina MI1040
+Date: Thu, 12 Feb 2026 14:23:02 +0200
+Message-ID: <20260212122302.29211-3-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260212122302.29211-1-clamor95@gmail.com>
 References: <20260212122302.29211-1-clamor95@gmail.com>
@@ -107,7 +107,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -117,8 +117,8 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265072-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_FROM(0.00)[bounces-265073-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
@@ -129,36 +129,91 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,microchip.com:email]
-X-Rspamd-Queue-Id: 674AD12D6B0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6832B12D745
 X-Rspamd-Action: no action
 
-The Aptina MI1040 is a slightly different version of the MT9M114 camera
-module. It is used in several devices, such as the ASUS Nexus 7 (2012) and
-the ASUS Transformer Prime TF201. The compatible "onnn,mt9m114" is placed
-first in the enum, as it is considered the default compatible value.
+Slightly different version of MT9M114 camera module is used in a several
+devices like ASUS Nexus 7 (2012) or ASUS Transformer Prime TF201 and is
+called Aptina MI1040. The only difference found so far is lacking ability
+to poll STATE register during power on sequence, which causes driver to
+fail with time out error. Add state_polling flag to diverge models and
+address quirk found in MI1040.
 
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/media/i2c/mt9m114.c | 29 ++++++++++++++++++++++++-----
+ 1 file changed, 24 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-index dffd23ca4839..e896f4db2421 100644
---- a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-@@ -17,7 +17,9 @@ description: |-
+diff --git a/drivers/media/i2c/mt9m114.c b/drivers/media/i2c/mt9m114.c
+index d5b142fe68a9..a4b021702a1f 100644
+--- a/drivers/media/i2c/mt9m114.c
++++ b/drivers/media/i2c/mt9m114.c
+@@ -373,6 +373,10 @@ enum {
+  * Data Structures
+  */
  
- properties:
-   compatible:
--    const: onnn,mt9m114
-+    enum:
-+      - onnn,mt9m114
-+      - aptina,mi1040
++struct mt9m114_model_info {
++	bool state_polling;
++};
++
+ enum mt9m114_format_flag {
+ 	MT9M114_FMT_FLAG_PARALLEL = BIT(0),
+ 	MT9M114_FMT_FLAG_CSI2 = BIT(1),
+@@ -422,6 +426,8 @@ struct mt9m114 {
  
-   reg:
-     description: I2C device address
+ 		struct v4l2_ctrl *tpg[4];
+ 	} ifp;
++
++	const struct mt9m114_model_info *info;
+ };
+ 
+ /* -----------------------------------------------------------------------------
+@@ -2279,9 +2285,11 @@ static int mt9m114_power_on(struct mt9m114 *sensor)
+ 	 * reaches the standby mode (either initiated manually above in
+ 	 * parallel mode, or automatically after reset in MIPI mode).
+ 	 */
+-	ret = mt9m114_poll_state(sensor, MT9M114_SYS_STATE_STANDBY);
+-	if (ret < 0)
+-		goto error_clock;
++	if (sensor->info->state_polling) {
++		ret = mt9m114_poll_state(sensor, MT9M114_SYS_STATE_STANDBY);
++		if (ret < 0)
++			goto error_clock;
++	}
+ 
+ 	return 0;
+ 
+@@ -2527,6 +2535,8 @@ static int mt9m114_probe(struct i2c_client *client)
+ 	if (ret < 0)
+ 		return ret;
+ 
++	sensor->info = device_get_match_data(dev);
++
+ 	/* Acquire clocks, GPIOs and regulators. */
+ 	sensor->clk = devm_v4l2_sensor_clk_get(dev, NULL);
+ 	if (IS_ERR(sensor->clk)) {
+@@ -2641,9 +2651,18 @@ static void mt9m114_remove(struct i2c_client *client)
+ 	pm_runtime_set_suspended(dev);
+ }
+ 
++static const struct mt9m114_model_info mt9m114_models_default = {
++	.state_polling = true,
++};
++
++static const struct mt9m114_model_info mt9m114_models_aptina = {
++	.state_polling = false,
++};
++
+ static const struct of_device_id mt9m114_of_ids[] = {
+-	{ .compatible = "onnn,mt9m114" },
+-	{ /* sentinel */ },
++	{ .compatible = "onnn,mt9m114", .data = &mt9m114_models_default },
++	{ .compatible = "aptina,mi1040", .data = &mt9m114_models_aptina },
++	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, mt9m114_of_ids);
+ 
 -- 
 2.51.0
 
