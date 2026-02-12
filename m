@@ -1,203 +1,194 @@
-Return-Path: <devicetree+bounces-265158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265155-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ELNlDgAJjmkT+wAAu9opvQ
-	(envelope-from <devicetree+bounces-265158-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:08:16 +0100
+	id kM8dFCcGjmlf+gAAu9opvQ
+	(envelope-from <devicetree+bounces-265155-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 17:56:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5482C12FCD4
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:08:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B814412FB78
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 17:56:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 81E4A3009E09
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 17:08:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E5283301DEE9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 16:55:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81C0221C16A;
-	Thu, 12 Feb 2026 17:08:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECC622F0C6A;
+	Thu, 12 Feb 2026 16:55:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="Q+SGIMNJ";
-	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="dLzVYS5O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fTZswQco"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.83])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 007C22066F7;
-	Thu, 12 Feb 2026 17:08:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.83
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770916087; cv=pass; b=fdxHNyoEDgUViqLnouQkG1xioCgQJN+dSvHA4/xA6/HuLM37E0xOVtO46e48OwZD1Y5GPk0Vf6xElXTrajyhQie61Hszkkz3iZU4PN3gh0qLibi1kqmDodh3DUl5iY3DHv5AGZV/cLENHgx45BzmZwkCiH9NuK6P6Mry3pC4lvE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770916087; c=relaxed/simple;
-	bh=0yygrALMAexS1ThG2pkH1/33OpHfYKVBFq93Wki2PeE=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=LGjRw2ZiK6jnhVxftP5sz71rIRJuPt6HVSlT201N1RSKSJDSxYoTUVgy4a7UKVoP0Gdw2bI27HqOmBuLu9Q+nQjaVcv2MYxnYL2v84uLZuI9LCDH8re97yCss+SsCwQCmS9F5lmhS9n2FSF5VdUHpgN1o5mIk7KyA2MTdwnp+KM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=Q+SGIMNJ; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=dLzVYS5O; arc=pass smtp.client-ip=85.215.255.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=goldelico.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
-ARC-Seal: i=1; a=rsa-sha256; t=1770915367; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=poCROlE1R2t+M26nxG1K274+nRYYyfGaASX8bvQ+zYvGlMsEMj0hvUuGNMjmoFyrxm
-    bpDSmrE+NK2r91Uw+Um78FYnUaw6pp2xuhaHLIgIwn3odZ1MCaSkIOKLK7Uiav+RjeDb
-    83o9wI0kFjAfo3yVUG9hAnS0LzyWJuORJ8ri23zo8DiU0EYm9nvH06IQDB8s5Mq/o4p+
-    T1k12EjLlE4uwtPEa83yYW8MhgCsVHD/75mv92o5i9iLVuNBJkrIlPVlYVkuUJLA9qVe
-    Y9W4hcaKpT7xwLqMIXb37mRcym7YvGk5F7JzfO6rUja3f6Zsl2jWZNKgaDb9XGufsV2w
-    Vc0A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1770915367;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=0yygrALMAexS1ThG2pkH1/33OpHfYKVBFq93Wki2PeE=;
-    b=GmvKvR335RvOhJgii9GAqusO/RhcYfYwllNWmD2yGW4M2tIvsYy3JtCpo+hYezasUU
-    z3nsuHppkKelmYc3vE2NVubIUT4MHCsaoczvnTMPYrJFvuty1xQfEqkYDMaL22Qkd73C
-    kzk2iYrBTkWOxZd7MPBWYwMClsZMGioHufr/bESKYzvu/wKReY9k+fbk3H5PeGTZ5P/S
-    16nIRDQKy+lR88s7WwZUD8kaWmrB7FRl0WSi362tqDDZrtWNH774J4gCSO49UFwTUgWO
-    5wdKBZPYpIAxd9yazjyGl8wRf1awHSTiF8V2G4V3NvtKBjV3RJTHf7FSfR9VeZ6wTpjA
-    vMJQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1770915367;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=0yygrALMAexS1ThG2pkH1/33OpHfYKVBFq93Wki2PeE=;
-    b=Q+SGIMNJxYOwdPT2X7Ms+1pAua7HzFP1bBGtwGwmkPaQBgLC9EaTnM225LZNBNvEYB
-    C7VhpwqgMsfj6eVz+prFYc8BF/3HVLVxWQ3KmopF03wkU7/t1zukslJ8QW8r9olovbKN
-    9m2KNOoxU9GchM/6XlndjZe7HICOf8NTZS2XDLYCvwyDKDD/wqFnXTKd4DS8uAL1UYWm
-    /Rs4LanrBmuM/IUz5v9UyXMhDyz6caqXczO/aHj1fQnPncZtQXib5jLxKqQ5nhdUwaxc
-    O6yYHedjB26xGlPKgejaaoXn2fI+TWr2EL15A5R9BplcWJgkUqk73h7l92xrXLkYUgJl
-    SVlg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1770915367;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=0yygrALMAexS1ThG2pkH1/33OpHfYKVBFq93Wki2PeE=;
-    b=dLzVYS5OhKK1EI1lcwu2KJP1oH/9uvPkIz/pupltRiH6NHQNMRybkt4pN3f7nBCPCQ
-    SpkVZgHbSRFfLXTByXBg==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yfzkZ"
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 55.0.1 DYNA|AUTH)
-    with ESMTPSA id Q3a36b21CGu3RSn
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Thu, 12 Feb 2026 17:56:03 +0100 (CET)
-Content-Type: text/plain;
-	charset=us-ascii
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8596835D611
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 16:55:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770915356; cv=none; b=tFAwX6JZiqVZ0bQJ+LqNaFH80atWly8Y2Yfh6/Hcil3XMcJV5weaOo3D51IfK+J0T6YF9jmpJ/4vLGwyJGo4sobNh+pzUEbvnJ8hoQ1MhIRnKxSMbBDMNz5znrdf+eaVF0HNvS8Q6CPwTNhZyzhSUvXL2qLsMxG0Jv2KgMhGa/0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770915356; c=relaxed/simple;
+	bh=tu6NH5KRiqpHmO7a2E4izBi9G/Voi5o3rIHojUhD3Gg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LWpS3HT8yiktOQEAsNpRX8ekXSqu2Ty6JPT1DgOgn+qt2q2PCgQHEuqrl23A5RIHpIb4GyhHxoUoW/Lm3sbVpt8pF74iOflAkWN1u+9yxl67yLaSBLJTm5JW1i8rbgi7rE/QSbXL877Cf49vg2jAwGsxG8Jdx4EZEeAJHs6rk0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fTZswQco; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4806fd9033bso49955e9.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 08:55:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770915354; x=1771520154; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=EWH52hHDoZsOt/pe7QFROJLUmHx4Nch/byKXwRcnIQ8=;
+        b=fTZswQcoPhPY2MwfeoyuqlxNoTYAl0qUKn99RZyjRr2g+ftzh2xQif1T772pDf+/l+
+         rS3iB54Ion+rDYOB1szBqeS5EZUNBITcXM+WNKXgowlxXdtVOtObl+6xCgAKtkLb6yUe
+         RgBXB7HWubZ2DefpQKJG/XrmXSU2Vj7Hv29iX270uIWPw2Bio4l3kHlxn5EQtBxcLcwM
+         ZBB4izRx3DyNG5t4Ab+dPgGqn8NG1Pbb91++O4cyMBrc+gvDV3YtxxlmEgTe012KDGhN
+         94b9/UjtBAC9FTpT4b64Z1f9UqCK5TJVAtu3SkIo8x06MEYBUbEKMAk28weaxKjxfSvD
+         l3Bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770915354; x=1771520154;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EWH52hHDoZsOt/pe7QFROJLUmHx4Nch/byKXwRcnIQ8=;
+        b=AxF7idltPAynI9DSKOH/THIHKPPrNhxb8hEku99VATCWWCw2F3DS8zGz3L/N68Tl4n
+         BNLN7TUmUQGm+MvG2Irq5Qa5FyYFCxLBcKix5AqnqAffWcK9HTGuUqltoY5xptb3WNG3
+         cO95TQNLrdvgMWYx37crryRs3YDJwtD3qwdtUT37UlAzzYI6WEVNZNwou2xnrYbZGppQ
+         4F0jGfhXLxM6VuNFUXk47kbf8iMHB+2KcdBGqY5wqkSG6BUmcgZRTpzrk54wLjtBz5GJ
+         EIw4s3HlvNH7+T6JrsyeON7MHzOQkDYUQOhWnGY5X6/jiFA748oD1Sdvwc5MphYeXx4U
+         /yWA==
+X-Forwarded-Encrypted: i=1; AJvYcCXgfC57O22R6dOIhsh8q1P6dGDZt8yu0DCw9lWMjuHZWam7TFb16j2exXUF8YE1Mpm+V9jndzMd35vP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6F8DMtflfDFK6cJdK0mWQOtDGFFC0yforYUmtIUP5BvJVNTN7
+	w/PAN7bNaOqH1PUr7C6F+1joB9xeQObuFQN6OrMSNGriHlAYDm0tTZI5
+X-Gm-Gg: AZuq6aKpxSC6lt//1IVtg+l6xZiAUegPRi7hOj0xTMnPM4i20woVQY8dldAnNT7YYVF
+	TSw4y5ZbEhA6u+/MRM6vlRi10FUzOC0fnm1EDsev7EcmkDOu0hhekM6uoArWnR0PY8acJ96oOyV
+	9KbVYmYacicaYVfFhEE30Cxi+iWvXsmcaroUD0qNzDugkIcXq6iaaL3eWiNrimCNSQo7OIZtEHC
+	5Sx0VhNTaV7ToYg46lwNJxwgU+9PqKGA+2V8d5u+Ttne9CxSbMDyx9a6XqW7a2yrYMS9+LbIt9E
+	dWpUxhCcLnRHtd5B7HAq5I/AC0MWxm/zFSjcJ0vyKcbGt8509LSwJxqrpcuNhJ/Y0UmxERyhwXK
+	xznHWSWijwwzzeJDELjBLoTmF/j3Na/Yy97mAOHp5pAd7DbVimEuTR55nv9qSOfVvn8eyLP5jua
+	fYnzpNfQIsKm1SD4Q=
+X-Received: by 2002:a05:600c:a09:b0:477:9fa8:bc99 with SMTP id 5b1f17b1804b1-4836570e260mr29901335e9.4.1770915353815;
+        Thu, 12 Feb 2026 08:55:53 -0800 (PST)
+Received: from skbuf ([2a02:2f04:d501:d900:2f75:bf70:f0b9:4586])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4835dd20519sm222156105e9.15.2026.02.12.08.55.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Feb 2026 08:55:53 -0800 (PST)
+Date: Thu, 12 Feb 2026 18:55:50 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: WeiHao Li <cn.liweihao@gmail.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] arm64: dts: rockchip: Add USB2.0 PHY for RK3368
+Message-ID: <20260212165550.mju3377fvphdsqoe@skbuf>
+References: <20250909132958.26423-1-cn.liweihao@gmail.com>
+ <20250909132958.26423-3-cn.liweihao@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.4\))
-Subject: Re: [PATCH 1/5] ARM: dts: ti: Enable overlays for all DTB files
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20260212174718.7daccb70@kemnade.info>
-Date: Thu, 12 Feb 2026 17:55:43 +0100
-Cc: "Kory Maincent (TI)" <kory.maincent@bootlin.com>,
- Aaro Koskinen <aaro.koskinen@iki.fi>,
- Kevin Hilman <khilman@baylibre.com>,
- Roger Quadros <rogerq@kernel.org>,
- Tony Lindgren <tony@atomide.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Russell King <linux@armlinux.org.uk>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Bajjuri Praneeth <praneeth@ti.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Louis Chauvet <louis.chauvet@bootlin.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <719BF710-26DF-49AB-A016-D2306F0389E2@goldelico.com>
-References: <20260212-feature_bbge-v1-0-29014a212f35@bootlin.com>
- <20260212-feature_bbge-v1-1-29014a212f35@bootlin.com>
- <B3366A17-641F-4E02-A5D4-978F525E0A96@goldelico.com>
- <20260212174718.7daccb70@kemnade.info>
-To: Andreas Kemnade <andreas@kemnade.info>
-X-Mailer: Apple Mail (2.3826.700.81.1.4)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250909132958.26423-3-cn.liweihao@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[goldelico.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[goldelico.com:s=strato-dkim-0002,goldelico.com:s=strato-dkim-0003];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265158-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	TAGGED_FROM(0.00)[bounces-265155-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hns@goldelico.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[goldelico.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,kemnade.info:email,goldelico.com:mid,goldelico.com:dkim,goldelico.com:email,bootlin.com:email]
-X-Rspamd-Queue-Id: 5482C12FCD4
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.2.188:email];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ff770000:email,ff760000:email]
+X-Rspamd-Queue-Id: B814412FB78
 X-Rspamd-Action: no action
 
+On Tue, Sep 09, 2025 at 09:29:56PM +0800, WeiHao Li wrote:
+> RK3368 has one USB2.0 PHY with two ports, This adds device tree node for
+> it.
+> 
+> Signed-off-by: WeiHao Li <cn.liweihao@gmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3368.dtsi | 29 ++++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3368.dtsi b/arch/arm64/boot/dts/rockchip/rk3368.dtsi
+> index 1b21787269..b09e431a64 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3368.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3368.dtsi
+> @@ -766,11 +766,40 @@ cru: clock-controller@ff760000 {
+>  	grf: syscon@ff770000 {
+>  		compatible = "rockchip,rk3368-grf", "syscon", "simple-mfd";
+>  		reg = <0x0 0xff770000 0x0 0x1000>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
 
+This introduces a device tree warning. You cannot mix nodes with no unit
+address (io-domains) with nodes with a unit address (usb2-phy@700) on
+the same hierarchical level. You have to pick a format and stick to it.
 
-> Am 12.02.2026 um 17:47 schrieb Andreas Kemnade <andreas@kemnade.info>:
->=20
-> On Thu, 12 Feb 2026 16:49:43 +0100
-> "H. Nikolaus Schaller" <hns@goldelico.com> wrote:
->=20
->>> Am 12.02.2026 um 16:26 schrieb Kory Maincent (TI) =
-<kory.maincent@bootlin.com>:
->>>=20
->>> Allow overlays to be applied to any DTB. This adds around ~40% to =
-the
->>> total size of the DTB files on average. =20
->>=20
->> Is this unconditionally enabled or can it be turned off by some =
-CONFIG? We have
->> our own defconfig so I would not worry if if is enabled in =
-omap2plus_defconfig
->> and disabled in ours.
->>=20
->> We have several devices where the boot loader can't handle overlays =
-(never touch
->> a working boot-loader :) So this seems to only contribute to build =
-and load time
->> without benefit.
->>=20
-> As long as you do not add overlays, the bootloader does not care. I =
-would
-> like to simply carry around the 1-bit mmc overlay for one broken =
-board.
-> That would help me. So I think there is a benefit but nobody forces
-> you to use it.
-
-Well, it does not force to use the really good feature, but it forces to =
-add
-~40% more file size and some more compile time, if I understand it =
-correctly.
-
-This makes me think that it should be an option to turn it off =
-completely (and
-not just ignore it by the boot loader).
-
-BR,
-Nikolaus
-
+>  
+>  		io_domains: io-domains {
+>  			compatible = "rockchip,rk3368-io-voltage-domain";
+>  			status = "disabled";
+>  		};
+> +
+> +		u2phy: usb2-phy@700 {
+> +			compatible = "rockchip,rk3368-usb2phy";
+> +			reg = <0x700 0x2c>;
+> +			clocks = <&cru SCLK_OTGPHY0>;
+> +			clock-names = "phyclk";
+> +			clock-output-names = "usb480m_phy";
+> +			#clock-cells = <0>;
+> +			status = "disabled";
+> +
+> +			u2phy_otg: otg-port {
+> +				interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
+> +					     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
+> +					     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
+> +				interrupt-names = "otg-bvalid", "otg-id",
+> +						  "linestate";
+> +				#phy-cells = <0>;
+> +				status = "disabled";
+> +			};
+> +
+> +			u2phy_host: host-port {
+> +				interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+> +				interrupt-names = "linestate";
+> +				#phy-cells = <0>;
+> +				status = "disabled";
+> +			};
+> +		};
+>  	};
+>  
+>  	wdt: watchdog@ff800000 {
+> -- 
+> 2.47.2
+> 
+> 
 
