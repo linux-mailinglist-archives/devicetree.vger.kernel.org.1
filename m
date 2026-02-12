@@ -1,159 +1,209 @@
-Return-Path: <devicetree+bounces-264973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264976-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OGlcFq6jjWlh5gAAu9opvQ
-	(envelope-from <devicetree+bounces-264973-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 10:55:58 +0100
+	id iCsRO+mjjWlh5gAAu9opvQ
+	(envelope-from <devicetree+bounces-264976-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 10:56:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9E2212C156
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 10:55:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BF5212C1B8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 10:56:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7FE65317AC87
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 09:52:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5679F30FAC18
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 09:55:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1BB72E265A;
-	Thu, 12 Feb 2026 09:52:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10DE72E3B1C;
+	Thu, 12 Feb 2026 09:55:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jxBXkaCC"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="I4ajjpoi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80D152DEA87;
-	Thu, 12 Feb 2026 09:52:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B176F2F2;
+	Thu, 12 Feb 2026 09:55:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770889967; cv=none; b=WE/a4qDGG0F1/KU3wuBQWoL/tbfcBKxHb7rkHQQV7FDIZiXPf/hqTOrdfXy6DQVBNA7uby2+am7EPngsBkL2BIuWu5SKoxtLQUovme3P/2ykNuCrT0dHZel/DXCKiKTAZpydakIO7/002vvMbElbTfvV+btxBu7HJIgE0Qu7Ajc=
+	t=1770890106; cv=none; b=VSJ4DoabCuAwEYqZ2UOEsayjj7qIdys9+/Phwjc67xNMe1hF/AMNd47mZYVjjQjNwBTWp08EQj+HWx48iZEyutTDSrVZ5tfAxWGe6TAqtAQsKCAbvtimnVp6AEpiE8+WY8C1Cm5bQMt2dplbfcjK8RM6s5duZOdlOx+wZPq8kSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770889967; c=relaxed/simple;
-	bh=XdhwoC7iS38ULTyh2EON1SSrsr8JoG9YgWk25wcUu1A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Mi1h6JQ+8auwNaKx+R0jqQhbg6ppJuY4HVopFAYhet8OzNzZ64cNxrce36i8tcHGeqkvhFDIX+L7lCHrHsNiaNuXgbkLpiN+dfOZhfvNUlyK0gmXKLnxqGGwV14LOklr0rOUSyUDI9dibfLS0O64Y+H2Zl+9Lxw8Nsql8hGmaEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jxBXkaCC; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1770889965;
-	bh=XdhwoC7iS38ULTyh2EON1SSrsr8JoG9YgWk25wcUu1A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jxBXkaCCehCEGRtm/lDxy90bvOIljkvSpHjISKeu7XJHPkgwiuMmFGfNw1xJBsoqt
-	 LucvoHrLeKLch+SU6tUQ9QbeW6PYb0IKZzWdkbauwKYhLXnlxi24XmUaycDo172MPz
-	 EMqN4xoHZOmwYXOUXTiYiPnX7GpNL9K0T5En86rkJ/ALFoDa6ZUVyggQ7nbq7AK43m
-	 Dhj4fyLuR4c3SvbWrUPl1+H6waNII7/UjImwrKsL0wbgAiPrJpYe75leAIASZ9E6Em
-	 fYhsg+g49VZYL2MWnSYRJMnpSYPVN1Z2q8j1uDbfKJR8ZIAkovYzbupMaks7P/9v/4
-	 AagrFDEpfaS7A==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 832C217E114C;
-	Thu, 12 Feb 2026 10:52:44 +0100 (CET)
-Message-ID: <1908b0e4-6684-4192-8ae4-9e3d1abad21a@collabora.com>
-Date: Thu, 12 Feb 2026 10:52:44 +0100
+	s=arc-20240116; t=1770890106; c=relaxed/simple;
+	bh=9w4yEfMbLtubTo9E++hNpKog19hYJQ1sNsia2gQoyb8=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=a+mouudvEmv3QQ5iUG+EaKNkntmqhbfSg2JZZoNtCUgiUT05fj2WK4Ar3kTFZQ/f+9VPJM38QByZKw1qSo5oR5qFBAdV2CEZ4QzIMXLW3e1wKK1u1yKGeCyd8aPlsFgMRAkLzjbvjBblFvAjz6sV+l/YDp3i2U7N6jf+JkDwJyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=I4ajjpoi; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1770890102; x=1802426102;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=9w4yEfMbLtubTo9E++hNpKog19hYJQ1sNsia2gQoyb8=;
+  b=I4ajjpoi6apzUCwCZqWts+v74YoRxyYTZ5mR90yAnihKKSU2wnb6RcRb
+   dHcYqbGRZKVUsPIkC8/NH+jRSzsW/I7uL27C8l5gFSS3zq/cbQJQCEzsB
+   0NfYNzo+HNpEDLsd8qT7Vir2eej/G3P8JDxgSpKXh22jMuQ8mW64fd9oW
+   fu80K95G57r26VhfQ9ido3zpDaCHLF+6RlNzIDJ24H3HmKpqrJ61UwecC
+   7Sxz62xkGicO5mrQhbX1Tj8cOhCz6TOMKDkCXPmwgda0jXkMKinbiY7FC
+   TgDyCAGVi9xZWcU9u5YzTP1jQgv2w9pJZR0rIUoomIQq/6XMLFUdHR2eX
+   A==;
+X-CSE-ConnectionGUID: a5dp8WccRqa78Yr/7BTeGw==
+X-CSE-MsgGUID: qiVMT0pzRGWPJL4tSCLmFw==
+X-IronPort-AV: E=Sophos;i="6.21,286,1763449200"; 
+   d="scan'208";a="220595684"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Feb 2026 02:55:01 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Thu, 12 Feb 2026 02:54:23 -0700
+Received: from marius-VM.mshome.net (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Thu, 12 Feb 2026 02:54:20 -0700
+From: Marius Cristea <marius.cristea@microchip.com>
+Subject: [PATCH v6 0/2] Add support for Microchip EMC1812
+Date: Thu, 12 Feb 2026 11:54:06 +0200
+Message-ID: <20260212-hw_mon-emc1812-v6-0-e37e9b38d898@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] arm64: dts: mt8167: Add the mmsys reset bit to reset
- dsi
-To: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
- linux-mediatek@lists.infradead.org
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <cover.1770836189.git.l.scorcia@gmail.com>
- <72dcec7fe8bfd8ee7e8ef58708690268f3c07d42.1770836190.git.l.scorcia@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <72dcec7fe8bfd8ee7e8ef58708690268f3c07d42.1770836190.git.l.scorcia@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAD6jjWkC/23My2rDMBCF4VcJWldlZnSbZNX3CKVItlRrYSvYx
+ WkJfvcqocUQe/kfON9NTHHMcRKnw02Mcc5TLkMN+3IQTeeHzyhzW1sQkEEAkt31oy+DjH2DjCQ
+ TBgar2bUIop4uY0z5+wGe32t3efoq48/Dn/G+/lF0fKZmlCBD1KllnwCtf+tzM5amy5fXpvTiz
+ s20Eki4IagSJhA4SByc4z1CrQQhbwhVCY+kfOtdYHPcI/Q/YQHJbQhdCRuSVTYYzdrtEWYlCMy
+ GMJUgRayMjylyeiaWZfkFvdLCsbwBAAA=
+X-Change-ID: 20251002-hw_mon-emc1812-f1b806487d10
+To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+CC: <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>, Marius Cristea
+	<marius.cristea@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3382;
+ i=marius.cristea@microchip.com; h=from:subject:message-id;
+ bh=9w4yEfMbLtubTo9E++hNpKog19hYJQ1sNsia2gQoyb8=;
+ b=owGbwMvMwCW2tbSTZa7u0x2Mp9WSGDJ7F7ts1BI8Jqb1PTvJ0GvPSz6/D4cO7zr26j//r6pN5
+ 5s4LcJOd5SyMIhxMciKKbKseOunVrX2w2UlsUwdmDmsTCBDGLg4BWAiU48wMryUUFrB9qCn7UPf
+ jX8BNUYTM1a/+3yLzWbjP+7nlwOn72Bl+J/L+NFqykWVbqeVvUpin//mfE7NqFXSCfg0cbHoszO
+ 6k7gA
+X-Developer-Key: i=marius.cristea@microchip.com; a=openpgp;
+ fpr=E32F8D4396E72E463E8CCD91446DE0ABD9140C3E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264973-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linux-watchdog.org,roeck-us.net,kernel.org,gmail.com,pengutronix.de,vger.kernel.org,lists.infradead.org];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264976-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.213.159.128:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FROM_NEQ_ENVFROM(0.00)[marius.cristea@microchip.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:mid,collabora.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.213.206.96:email,0.213.225.232:email]
-X-Rspamd-Queue-Id: A9E2212C156
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:mid,microchip.com:dkim,microchip.com:email]
+X-Rspamd-Queue-Id: 5BF5212C1B8
 X-Rspamd-Action: no action
 
-Il 11/02/26 20:03, Luca Leonardo Scorcia ha scritto:
-> DSI hardware reset is needed to prevent different settings between
-> the bootloader and the kernel.
-> 
-> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8167.dtsi | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> index caf51f203dd3..ee2792d53b2c 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> @@ -8,6 +8,7 @@
->   #include <dt-bindings/clock/mt8167-clk.h>
->   #include <dt-bindings/memory/mt8167-larb-port.h>
->   #include <dt-bindings/power/mt8167-power.h>
-> +#include <dt-bindings/reset/mt8167-resets.h>
+This is the hwmon driver for EMC1812/13/14/15/33 multichannel Low-Voltage
+Remote Diode Sensor Family. The chips in the family have one internal
+and different numbers of external channels, ranging from 1 (EMC1812) to
+4 channels (EMC1815).
+Reading diodes in anti-parallel connection is supported by EMC1814, EMC1815
+and EMC1833.
 
-Change header name.
+Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
+---
+Changes in v6:
+- driver
+  - fix an overflow when writing more then 191875 to limits stored on 8
+    bits register
+  - remove "i2c_set_clientdata" from probe
+  - fix discrepancy where writing 16ms and reading it back returns 15ms
+    at update interval
+  - skip setting the ideality factor for channels that are not available
+    on the device
+- devicetree binding:
+  - change the way interrupts are described/used
+  - add "microchip,enable-anti-parallel"
+  - rewrite "allOf" section to be more clear
+- Link to v5: https://lore.kernel.org/r/20260205-hw_mon-emc1812-v5-0-232835aefe8f@microchip.com
 
-Cheers,
-Angelo
+Changes in v5:
+- fix calculation in emc1812_get_limit_temp 
+- use i2c_get_match_data cover the case when the driver is instantiated
+  via I2C ID table.
+- replace dev_info with dev_warn
+- remove some unnecessary truncation on 8 bits
+- remove clamping when reading the temerature with hyst
+- not change the conversion rate at probe time
+- use a generic define to remove duplicate channel_info entries
+- Link to v4: https://lore.kernel.org/r/20260127-hw_mon-emc1812-v4-0-6bf636b54847@microchip.com
 
->   
->   #include "mt8167-pinfunc.h"
->   
-> @@ -189,6 +190,7 @@ dsi: dsi@14012000 {
->   				 <&mmsys CLK_MM_DSI_DIGITAL>,
->   				 <&mipi_tx>;
->   			clock-names = "engine", "digital", "hs";
-> +			resets = <&mmsys MT8167_MMSYS_SW0_RST_B_DISP_DSI0>;
->   			phys = <&mipi_tx>;
->   			phy-names = "dphy";
->   			status = "disabled";
-> @@ -295,6 +297,7 @@ mmsys: syscon@14000000 {
->   			compatible = "mediatek,mt8167-mmsys", "syscon";
->   			reg = <0 0x14000000 0 0x1000>;
->   			#clock-cells = <1>;
-> +			#reset-cells = <1>;
->   		};
->   
->   		smi_common: smi@14017000 {
+Changes in v4:
+- fix file permissions for read only properties
+- fix calculation when the limits are written
+- remove the temp_min_hyst because the part doesn't support it
+- Link to v3: https://lore.kernel.org/r/20251218-hw_mon-emc1812-v3-0-a123ada7b859@microchip.com
 
+Changes in v3:
+- remove mesages that are not helpfull
+- fix an issue related to NULL labels
+- fix sign/unsign calculation
+- replace E2BIG with EINVAL
+- use BIT() to create mask
+- Link to v2: https://lore.kernel.org/r/20251121-hw_mon-emc1812-v2-0-5b2070f8b778@microchip.com
+
+Changes in v2:
+- update the interrupt section from yaml file
+- update index.rst
+- remove fault condition from internal sensor
+- remove unused members from structures
+- update the driver to work on systems without device tree or
+  firmware nodes
+- add missing include files
+- make NULL labels to be not visible
+- corect sign/unsign calculations
+- corect possible underflow for limits
+- Link to v1: https://lore.kernel.org/r/20251029-hw_mon-emc1812-v1-0-be4fd8af016a@microchip.com
+
+---
+Marius Cristea (2):
+      dt-bindings: hwmon: temperature: add support for EMC1812
+      hwmon: temperature: add support for EMC1812
+
+ .../bindings/hwmon/microchip,emc1812.yaml          | 196 +++++
+ Documentation/hwmon/emc1812.rst                    |  68 ++
+ Documentation/hwmon/index.rst                      |   1 +
+ MAINTAINERS                                        |   8 +
+ drivers/hwmon/Kconfig                              |  11 +
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/emc1812.c                            | 942 +++++++++++++++++++++
+ 7 files changed, 1227 insertions(+)
+---
+base-commit: d2b2fea3503e5e12b2e28784152937e48bcca6ff
+change-id: 20251002-hw_mon-emc1812-f1b806487d10
+
+Best regards,
+-- 
+Marius Cristea <marius.cristea@microchip.com>
 
 
