@@ -1,156 +1,157 @@
-Return-Path: <devicetree+bounces-265187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265188-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4B3sKbwxjmkwAwEAu9opvQ
-	(envelope-from <devicetree+bounces-265187-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 21:02:04 +0100
+	id MALrHg8yjmkxAwEAu9opvQ
+	(envelope-from <devicetree+bounces-265188-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 21:03:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 067BF130D2D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 21:02:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D31D1130D76
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 21:03:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E4FF83020D76
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 20:01:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A50F9303DAA0
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 20:03:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 137E727B340;
-	Thu, 12 Feb 2026 20:01:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D85627B340;
+	Thu, 12 Feb 2026 20:03:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AWO2y0vQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bca4zLBj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D367ABA21;
-	Thu, 12 Feb 2026 20:01:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7719B41760;
+	Thu, 12 Feb 2026 20:03:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770926493; cv=none; b=D1u0YeHScSCQr/p89/cDO/8o0Nv9D76VBsHuNaMACDMtDQyYS0wKBr45R+9geOPvQVgLd0yI/Vl8R008+jik3WWYazDzDhBjJy7MQ2B6aCfV9N67WuwL1KmxEx1L6gZ8p4hfTjcQTdrnRfMT8zJ31PM+JTKbfU+h08OZqIRmvWs=
+	t=1770926590; cv=none; b=ChniKo1RjgjL21slG/4RRtVvC1rbIqwoVyJaporwn24vkK4DFyk6idCj58Q2UmLq21WoK3cyr1n9FC1uGjk0kg9yILU6dOF7cDyJxCuKvqnZnxkCHwVBj5PK9zPnTi3garMNnmpJ4HaVpz0bhKH1OO0WHOv8IF5p5u7LzJV1rMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770926493; c=relaxed/simple;
-	bh=n/vJRCrCNULp9io0l1cfIC8bcJMTWtP4uWXt+A+6sNk=;
+	s=arc-20240116; t=1770926590; c=relaxed/simple;
+	bh=GPEUQGmmj3bv2i7mHANvX5AamGNwb839uTXselHOQ70=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HthxBnl9OktzoLIc2QHcR2B96A39KwEy4kKoWxI3nm2k6W4YYcYzp3SrrAnG/++QP/lAqzqVkO15Jtwpl2Jn56kPQ3nr/GpRpb676tKUWfHh9vmbpM16FajbCWzvf4IAl+xLMFYOIO7sU/DpWYtqU3Lhd/JtWI1V5zgtRhnbQ60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AWO2y0vQ; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770926492; x=1802462492;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=n/vJRCrCNULp9io0l1cfIC8bcJMTWtP4uWXt+A+6sNk=;
-  b=AWO2y0vQ1EsmlSJsUomtrN7yAixPBTQcq6c+f0L82/0oftmbRERpNauK
-   fWCiM297RhOv2kxs64xHq+SaEjcfwRup2/nyHGWKg3/RFJ+hCzDWTkTC8
-   x0KZZnRIc46Yao9i8IhUYZmsc1jfj1rmyuoVE7GOvoeX8/E/FIlK1ocQZ
-   CIGJq4aICWBSlahIaa0LU65e6o8HqvnbyrMxSMI6716mB1eJUGECp4v+2
-   LHjRyqyCkmTRhPJ6q5JeB8MhR44VEn7xs8aGF0wMPC4+LNfyNL/GtPbXr
-   rDfIaIghY8sE+YpNQaF6c5luER+KWHNT+pz/EJDsmsYtDecoaAzrVORBd
-   A==;
-X-CSE-ConnectionGUID: v2aTbgTyQumvdvqkHn3HrA==
-X-CSE-MsgGUID: Bcj0+U+ZQ4K4TMe2vjhezw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="82837390"
-X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; 
-   d="scan'208";a="82837390"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 12:01:31 -0800
-X-CSE-ConnectionGUID: XppEVrBpQP6j7L9ei68XcA==
-X-CSE-MsgGUID: n1CZ5GICRzqEkVOw7gni2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; 
-   d="scan'208";a="216859523"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.145])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 12:01:28 -0800
-Date: Thu, 12 Feb 2026 22:01:25 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Yasin Lee <yasin.lee.x@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, yasin.lee.x@outlook.com,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] iio: proximity: hx9023s: Protect against division
- by zero in set_samp_freq
-Message-ID: <aY4xlfSJwFGt1IPA@smile.fi.intel.com>
-References: <20260212-upstream-20260219-v2-0-2b28fce5d09e@gmail.com>
- <20260212-upstream-20260219-v2-2-2b28fce5d09e@gmail.com>
- <aY2xveYRXEKIBV92@smile.fi.intel.com>
- <CA+NOmzLMzWqnS0B9B96qJUU2EoYppDKO6_Rdu52_dPqWTSS+ig@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=oCYEmsTte4jgagLiRDMQ5Q/pMfF9gjh5Ltfcbn+uXfFZXmdynvjmcOdoAmQp6496hWmWw9aR3EGQruXnP737q9kNqu1GpvZ9hieNLsmQzqtfxe826u05WLBsvbdn+s6ggHMnVMT+SnXo+X+5I4mq7Fv9el/hW2kVWPilj16PheE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bca4zLBj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D56B0C4CEF7;
+	Thu, 12 Feb 2026 20:03:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770926590;
+	bh=GPEUQGmmj3bv2i7mHANvX5AamGNwb839uTXselHOQ70=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Bca4zLBj9KCAuftboa7BeYhac4SQvVGWo+Cki4klGZvdXdMefG2C6U3pBbUW7e8q3
+	 EdYsL+xoEmLWdto55zN+LrxAGuAMj2TNewxQOF+5KVzLppAS770j5xZFmh+8knODPr
+	 ZSxI2occsh9RaQoLk1U8BoJarb6h8cXRUszTftDiNfwoSYDmXbFUC1f3gTvevUaiDq
+	 1S8V+l4bCgGu2kFM1coBMPXCy4ORPSi90XHD9+NWZ5XMlZgQPJxg05hhjaCOegNyXM
+	 txlgV5oc2zNuoeYSErzIiZLirq3U9ICz2dJmwrfe8eWRq0qkpxxdRbYbztHnlIYLdn
+	 d/W8QhN/YShcg==
+Date: Thu, 12 Feb 2026 14:03:06 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Umang Chheda <umang.chheda@oss.qualcomm.com>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, richardcochran@gmail.com, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mohd.anwar@oss.qualcomm.com, 
+	krishna.chundru@oss.qualcomm.com, monish.chunara@oss.qualcomm.com
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: monaco-evk: Add Mezzanine
+Message-ID: <z7y7gpfhrxgsxsqlsxmkwyr3zemvwpnpfuegv43ne56g5rsfl4@pehu3vloqjsy>
+References: <20260210103821.4169-1-umang.chheda@oss.qualcomm.com>
+ <20260210103821.4169-2-umang.chheda@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+NOmzLMzWqnS0B9B96qJUU2EoYppDKO6_Rdu52_dPqWTSS+ig@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20260210103821.4169-2-umang.chheda@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-265187-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-265188-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,outlook.com,vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,oss.qualcomm.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.52:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 067BF130D2D
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D31D1130D76
 X-Rspamd-Action: no action
 
-On Fri, Feb 13, 2026 at 12:44:57AM +0800, Yasin Lee wrote:
-> On Thu, Feb 12, 2026 at 6:56 PM Andy Shevchenko
-> <andriy.shevchenko@intel.com> wrote:
-> > On Thu, Feb 12, 2026 at 02:26:53PM +0800, Yasin Lee wrote:
+On Tue, Feb 10, 2026 at 04:08:21PM +0530, Umang Chheda wrote:
+> diff --git a/arch/arm64/boot/dts/qcom/monaco-evk-mezzanine.dtso b/arch/arm64/boot/dts/qcom/monaco-evk-mezzanine.dtso
+[..]
+> +&i2c15 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
 
-...
+Do we need to repeat this? It's in the top-level i2c15 definition
+already?
 
-> > Not sure about this. Perhaps we should rather do
-> >
-> >         if (!val || !val2)
-> >                 return -EINVAL;
-> >
-> > ?
+> +
+> +	status = "okay";
+
+I presume this overlay is used on top of monaco-evk.dtb, which already
+says that status is okay.
+
+
+That said, I don't see a "clock-frequency" in either node, so I presume
+you have an error/warning in your kernel log about this. But unless you
+have reason to change that in your overlay, I think that's a unrelated
+patch on the monaco-evk.dts - which I would like you to send, separately.
+
+> +
+> +	eeprom1: eeprom@52 {
+> +		compatible = "giantec,gt24c256c", "atmel,24c256";
+> +		reg = <0x52>;
+> +		pagesize = <64>;
+> +
+> +		nvmem-layout {
+> +			compatible = "fixed-layout";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +		};
+> +	};
+> +};
+> +
+[..]
+> +&tlmm {
+> +	tc9563_resx_n: tc9563-resx-state {
+> +		pins = "gpio124";
+> +		function = "gpio";
+> +
+> +		bias-disable;
+> +		input-disable;
+> +		output-enable;
+> +		power-source = <0>;
+
+Does these properties really match the TLMM binding? Please double
+check.
+
+Regards,
+Bjorn
+
+> +	};
+> +};
+> --
+> 2.34.1
 > 
-> Agreed. I will update this in v3 as below .
-> ...
-> if (!val && !val2)
->     return -EINVAL;
-
-> period_ms = div_u64(NANO, val * MEGA + val2);
-
-Then don't touch parentheses, as the line will have nothing to do with
-the scope of the patch.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
 
