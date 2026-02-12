@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-265061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265062-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OIIBIejBjWlt6gAAu9opvQ
-	(envelope-from <devicetree+bounces-265061-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 13:04:56 +0100
+	id yKSAJnLCjWlt6gAAu9opvQ
+	(envelope-from <devicetree+bounces-265062-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 13:07:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B97D12D429
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 13:04:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 264B612D486
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 13:07:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5B091300D743
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:04:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3484A305809C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:06:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74092356A0D;
-	Thu, 12 Feb 2026 12:04:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E483563FF;
+	Thu, 12 Feb 2026 12:06:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m0PET97J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XAzWr5wn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FFD8346A1F;
-	Thu, 12 Feb 2026 12:04:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6DC93EBF24;
+	Thu, 12 Feb 2026 12:06:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770897893; cv=none; b=chCJ8M5HN7838HsefdJ9GO4fYoJhfiatKvIm8EV99qVhoOO2C27nK/4Dmqml7QK2CGHvzCJYkKYFF6PLQ874vydMOXa2sK2su4dNYFgzoBD+ik3v5cSN6RflLP5jZcN010MczIzGb4P+YFn0z3qI9Z1Oo1mB+4kdaODyHyozuNo=
+	t=1770897969; cv=none; b=jJuj6n5krPa8+TqgcLLfEdT++QHCbTTvXR2dyBMm7Pp9+04OMqIFuHXxKvQsK/61iTWRuYIFBxQYrjdQrRaNXJfv3rCt/+pwnNEgVnx0Il19Y//jswlfJGDLqkBw2fW26VBt9SRL+DUQC3KajIwtb1jegWPcFNpfH+NJwMUyWpg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770897893; c=relaxed/simple;
-	bh=kht88UPCcdjdbb6rQuHUzPbMAe23E6O8r/InhqpgmxU=;
+	s=arc-20240116; t=1770897969; c=relaxed/simple;
+	bh=L8E/2Fr+JWokQLZqBZkg1J2S7QjxwdU/qZsIn0+w1pA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O+XJdUH92AWPZLu8PRVMXpO7sRd3AjFeYAnLTT3hDcDiV6ylcfPsjJ0bHikYJVlA0crnfYE5AFJpaXXbfBgZ6L+IgCi8XrEYlvS+cWe+DzQJqFGjUW390i13ny+kuOENPCxxL4nO8zuJhdxl5LvDw1MHCLMLuSHAmUnn24Od590=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m0PET97J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56D37C4CEF7;
-	Thu, 12 Feb 2026 12:04:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UexOUl3tdtqflgFI7cjw5YhRGSAeXcgnhUUgC37q1eEMPcovshkuOW+6gT+5dZ8GttQCYDkPWKu+U9EgVANk50rwNh3qjz5tEDEkjJW2lcLV72rr/r+tR2DzwaGOYC6Ux/XS0TJT/eX/cxq6JdzAHGxI6nRJ06U94G5z4CSwTrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XAzWr5wn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C814EC16AAE;
+	Thu, 12 Feb 2026 12:06:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770897892;
-	bh=kht88UPCcdjdbb6rQuHUzPbMAe23E6O8r/InhqpgmxU=;
+	s=k20201202; t=1770897969;
+	bh=L8E/2Fr+JWokQLZqBZkg1J2S7QjxwdU/qZsIn0+w1pA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m0PET97JMWnNsbWb8sMeIktf1PCJX/diLa57FzC0jnO4/BfMovkQu4BOxoSU3CkQj
-	 RxT4IWzS+AM7DVAcdWc23j6ieZWkS58KsnK/YZfV6K5+3toQjQEFMc6tQGyfj8rHG/
-	 A5egrQ+9x9EU0H8piDN/Q5UbGwrlXyszIdLMoSpi9JamfFDxaMygg9YcvOHDAKoCNb
-	 9Z/In5/F7poyxSp2acmhPtZbBkoQ7RL/LtAANv7150gy8Dx3Oq96z2+FfyBjtRN7CK
-	 scFf1WDRH7AYi4lvwGvt5U3/1c6BbFp7BRNA+nAtT+hnSTblVbyMdauRbnyfCYCfxb
-	 FaeEqXLhZB3iQ==
-Date: Thu, 12 Feb 2026 13:04:50 +0100
+	b=XAzWr5wn50OG1sZHkmYquaHl3HRxDIQUSH0KJWhAgtaHRrdfPI1dtL4KxuFCqB2EE
+	 ry91ghS/PWAj7dzA71Daff7UNsakVhUKMi+so27YM/LU2A2nhKDO6ATdsbKUGJxXTM
+	 lHCpfrXvcd3vshsip1AtrooSfw6yYyux2zI1xMUwo3Q1FoRL3qLuqiPP0aN0vh3V+m
+	 /PIStgpffBL/DM1+CpIKcX97l6T0I/hBqb2EnAeQO31z7XB7KKb6GtlgyIxaRnrA5Q
+	 Z3pUe+mvQh6U3cXQbckGf2aRyGVxTekhp6NooqBJSjUwd10YDLAVv6yWGpRG5dCVFf
+	 uw4TUJ771cyXA==
+Date: Thu, 12 Feb 2026 13:06:07 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chancel Liu <chancel.liu@nxp.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, Frank.Li@nxp.com, shengjiu.wang@gmail.com, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ASoC: dt-bindings: imx-card: Add dsp_a DAI format
-Message-ID: <20260212-incredible-smart-honeybee-7203a8@quoll>
-References: <20260212053036.2581083-1-chancel.liu@nxp.com>
+To: Stoyan Bogdanov <sbogdanov@baylibre.com>
+Cc: jbrunet@baylibre.com, linux@roeck-us.net, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net, skhan@linuxfoundation.org, 
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/3] dt-bindings: hwmon: pmbus/tps1689: Add TPS1689
+ support
+Message-ID: <20260212-private-hedgehog-of-elevation-953d91@quoll>
+References: <20260212084502.1795-1-sbogdanov@baylibre.com>
+ <20260212084502.1795-3-sbogdanov@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +64,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260212053036.2581083-1-chancel.liu@nxp.com>
+In-Reply-To: <20260212084502.1795-3-sbogdanov@baylibre.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -71,41 +72,38 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265061-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265062-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,nxp.com,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2B97D12D429
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 264B612D486
 X-Rspamd-Action: no action
 
-On Thu, Feb 12, 2026 at 02:30:36PM +0900, Chancel Liu wrote:
-> This machine driver can parse DAI format from format property. Add
-> "dsp_a" because it's one of the DAI formats this driver can support.
+On Thu, Feb 12, 2026 at 10:45:01AM +0200, Stoyan Bogdanov wrote:
+> Add device compatible support for TPS1689
+> 
 
-Since when it can support it? Maybe driver is wrong? What are the
-differences?
+Subject: Drop "support"
 
-Maybe there was a reason this was rejected in the first place?
 
-You have commit msg to explain all this.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
