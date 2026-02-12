@@ -1,83 +1,61 @@
-Return-Path: <devicetree+bounces-265094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265095-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AJYbIbzdjWnE8AAAu9opvQ
-	(envelope-from <devicetree+bounces-265094-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:03:40 +0100
+	id oEN4MD7ljWms8QAAu9opvQ
+	(envelope-from <devicetree+bounces-265095-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:35:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70CA812E14E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:03:39 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46E9112E46A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:35:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 61DF33008520
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 14:03:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B8402300491D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 14:35:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 247D034AAF9;
-	Thu, 12 Feb 2026 14:03:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HIbQ4AtR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDBFA2D2387;
+	Thu, 12 Feb 2026 14:35:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D51A2C234A;
-	Thu, 12 Feb 2026 14:03:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1D312629D;
+	Thu, 12 Feb 2026 14:35:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770905017; cv=none; b=W5D8nM4cl9udt/WwSBQZc1xClATZuy3ny+Z4m5E35re+hCNh7aU2kA1djrbxrJqANA2dvG/ZKB6VlHip+475m8tJ5Yxh5a+OJCiVtYn5KWIhESazYgXWKindnE6D9AFhvB69/kGovMPAIxFm9ghUGeh4IVsbb4HhDpiJj0V1BgA=
+	t=1770906939; cv=none; b=ZXD8ViZ8SwAmUlrsejcX09WF1hcSq8Tn0tEFtc3OuQgz8g8kQ/z8AO6lKdOzFX4DqDFFw0riMzr2wFThLBtIjaJKR5J4P7nsFQx1nkhvD8Fc1EUHu0xGCwlJzN+FSnjYE8pg8phnOx9bMyE+p3HodkbMFSJJt+guPq1owFzEVvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770905017; c=relaxed/simple;
-	bh=EyQunCWi4Z1DGhSr1/8zGP7hAM9s1Yj4u4pyQcPZisY=;
+	s=arc-20240116; t=1770906939; c=relaxed/simple;
+	bh=pCTxw9ZabRRyy67yWUvE+t6vwzKshHx3F1gUcULbzps=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hzmLkyEI7WAkGZABzb39aOAVHkHFD92asZvxo4gHFy2UwPLD4Z8ltADvcWB80waIf73bUzGpDmbMhTi7W1JDcC28CnLMl743AA3OcdYQUyr/3xqTF+AijmOXBB7Q9El4HIM5qZqcnWsoUmuFBMDobYfCyLGNgDoD/gLodozeSbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HIbQ4AtR; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770905016; x=1802441016;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EyQunCWi4Z1DGhSr1/8zGP7hAM9s1Yj4u4pyQcPZisY=;
-  b=HIbQ4AtRUazPzYsqClhfkLVAmx8EVct7RfdCdSbkFOjbFgAjuBsErXkn
-   oCsGdh43kHYGNwWAMqD4Hi4ix1yQ5JgqRre09iY6eyK4e/SYNiSdYHQNs
-   rlhv6ANt2uTPTlDjbFJ67WdwdDA1OZUl2RQXBBTjO5MhHw+DtRHLQ20jO
-   inUW39mlEcGy0TQriSRZDNZqYI1BklKMbKTpUR1cvBJahJVVKybCHSOxa
-   CECCg/97mBffOLqAIpJccTtLkhZ3j4YnrQqrzfqg3Ys3AhskMqVuQU30J
-   c54b3hrvN4AkGUAh8nvWqZ+K0X+XNTK8Bg9Zvme70j/CKZwpOXZoSO1Ek
-   g==;
-X-CSE-ConnectionGUID: jhujUUZsS4eErCSq89rb+Q==
-X-CSE-MsgGUID: y8KGPU/xRgmHZeEkLCT09A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="71976922"
-X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; 
-   d="scan'208";a="71976922"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 06:03:35 -0800
-X-CSE-ConnectionGUID: b9UPKEm5RXKY0a9hXxjt7A==
-X-CSE-MsgGUID: sIgKH/6ER8+H6qHzV4ooXA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; 
-   d="scan'208";a="211861087"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 12 Feb 2026 06:03:32 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vqXI1-00000000rDE-3YFM;
-	Thu, 12 Feb 2026 14:03:29 +0000
-Date: Thu, 12 Feb 2026 22:03:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Stoyan Bogdanov <sbogdanov@baylibre.com>, jbrunet@baylibre.com,
-	linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, corbet@lwn.net, skhan@linuxfoundation.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Stoyan Bogdanov <sbogdanov@baylibre.com>
-Subject: Re: [PATCH v1 1/3] hwmon: (pmbus/tps25990): Rework TPS25990 non
- standatd direct conversion
-Message-ID: <202602122114.dKAeIkiK-lkp@intel.com>
-References: <20260212084502.1795-2-sbogdanov@baylibre.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=o2DJfYfxszYCMoNAidQWdPMvyRHGHlsljDp8rxcePQ7aDg0efoSZZS9CUd91Jb3LKFcOhvEffaV+ebNU23vxF+W5f6TM/RyhX9GLtkr5rsWUOEKNMOdfG3/9uEBL+3M3aTR/TQlbLZBd3Pqp+ghprY53/77GB7/ZzLu50MglLaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.48.232])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id D36B634243E;
+	Thu, 12 Feb 2026 14:35:36 +0000 (UTC)
+Date: Thu, 12 Feb 2026 22:35:30 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Yao Zi <me@ziyao.cc>
+Cc: Yixun Lan <dlan@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>,
+	Junzhong Pan <panjunzhong@linux.spacemit.com>,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] phy: k1-usb: k3: add USB2 PHY support
+Message-ID: <20260212143530-GYB114046@gentoo.org>
+References: <20260212-11-k3-usb2-phy-v1-0-43578592405d@kernel.org>
+ <20260212-11-k3-usb2-phy-v1-3-43578592405d@kernel.org>
+ <aY253_fOkoQKbi8g@pie>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,111 +64,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260212084502.1795-2-sbogdanov@baylibre.com>
+In-Reply-To: <aY253_fOkoQKbi8g@pie>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[gentoo.org : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265094-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-265095-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[dlan@gentoo.org,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,01.org:url,git-scm.com:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 70CA812E14E
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 46E9112E46A
 X-Rspamd-Action: no action
 
-Hi Stoyan,
+Hi Yao,
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on groeck-staging/hwmon-next]
-[also build test ERROR on linus/master v6.19 next-20260211]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Stoyan-Bogdanov/hwmon-pmbus-tps25990-Rework-TPS25990-non-standatd-direct-conversion/20260212-164903
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20260212084502.1795-2-sbogdanov%40baylibre.com
-patch subject: [PATCH v1 1/3] hwmon: (pmbus/tps25990): Rework TPS25990 non standatd direct conversion
-config: parisc-randconfig-002-20260212 (https://download.01.org/0day-ci/archive/20260212/202602122114.dKAeIkiK-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260212/202602122114.dKAeIkiK-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602122114.dKAeIkiK-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/hwmon/pmbus/tps25990.c: In function 'tps25990_probe':
->> drivers/hwmon/pmbus/tps25990.c:463:11: error: 'ENOTSUP' undeclared (first use in this function); did you mean 'ENOTSUPP'?
-      return -ENOTSUP;
-              ^~~~~~~
-              ENOTSUPP
-   drivers/hwmon/pmbus/tps25990.c:463:11: note: each undeclared identifier is reported only once for each function it appears in
-
-
-vim +463 drivers/hwmon/pmbus/tps25990.c
-
-   447	
-   448	static int tps25990_probe(struct i2c_client *client)
-   449	{
-   450		struct device *dev = &client->dev;
-   451		struct tps25990_data *data;
-   452		u32 rimon = TPS25990_DEFAULT_RIMON;
-   453		struct pmbus_driver_info *info_get;
-   454		struct local_direct_value *info_local_get;
-   455		int ret;
-   456	
-   457		ret = device_property_read_u32(dev, "ti,rimon-micro-ohms", &rimon);
-   458		if (ret < 0 && ret != -EINVAL)
-   459			return dev_err_probe(dev, ret, "failed to get rimon\n");
-   460	
-   461		data = (struct tps25990_data *)of_device_get_match_data(dev);
-   462		if (!data)
- > 463			return -ENOTSUP;
-   464	
-   465		info_get = data->info;
-   466		/* Make copy of pmbus_info and replace it to preserve original values */
-   467		data->info = devm_kmemdup(dev, info_get, sizeof(*info_get), GFP_KERNEL);
-   468		if (!data->info)
-   469			return -ENOMEM;
-   470	
-   471		info_local_get = data->info_local;
-   472		/* Make copy of pmbus_info and replace it to preserve original values */
-   473		data->info_local = devm_kmemdup(dev, info_local_get, sizeof(*info_local_get), GFP_KERNEL);
-   474		if (!data->info_local)
-   475			return -ENOMEM;
-   476	
-   477		/* Adapt the current and power scale for each instance */
-   478		tps25990_set_m(&data->info->m[PSC_CURRENT_IN], rimon);
-   479		tps25990_set_m(&data->info->m[PSC_POWER], rimon);
-   480	
-   481		return pmbus_do_probe(client, data->info);
-   482	}
-   483	
+On 11:30 Thu 12 Feb     , Yao Zi wrote:
+> On Thu, Feb 12, 2026 at 09:38:56AM +0800, Yixun Lan wrote:
+> > Add USB2 PHY support for SpacemiT K3 SoC.
+> > 
+> > Register layout of handling USB disconnect operation has been changed,
+> > So introducing a platform data to distinguish the different SoCs.
+> 
+> Would it be clearer and simpler if you define separate phy_ops for
+> k1 and k3, and point of_device_id.data directly to the corresponding
+> phy_ops? Then there's no need to introduce either spacemit_usb2phy_data
+> structure, or spacemit_usb2phy_disconnect wrapper.
+> 
+Yes, I agree, thanks for the suggestion
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Yixun Lan (dlan)
 
