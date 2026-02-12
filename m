@@ -1,115 +1,319 @@
-Return-Path: <devicetree+bounces-265059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265060-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cNtnGtbBjWlt6gAAu9opvQ
-	(envelope-from <devicetree+bounces-265059-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 13:04:38 +0100
+	id wOM8FfTBjWlt6gAAu9opvQ
+	(envelope-from <devicetree+bounces-265060-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 13:05:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C142712D41B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 13:04:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F18712D432
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 13:05:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DB4EC3066BDB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:03:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C77D730C27B2
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:03:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72788346A1F;
-	Thu, 12 Feb 2026 12:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F403563FF;
+	Thu, 12 Feb 2026 12:03:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U+SA3LYA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hPevaUBM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EE24284895;
-	Thu, 12 Feb 2026 12:03:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92932346A1F
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 12:03:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770897797; cv=none; b=co4w8IjQAgsQZMKF5fRrkGwdby6M08pPr/xfLMgZ6RpLh3yp03HotPIjtA9aHUHMtEeZVeZgS+IFYYS3DZzFBvBWsl3ET7iEyGfh0Fj/mWVWuwQhS3U0Svj4EwuqPH/wGPXI7VhwEs2GpquwfWV+uKehhBpPUpdXNAcFMywL2fI=
+	t=1770897819; cv=none; b=bR9bvrU0so3Ekp04ZP4IQf43Hh72ReGgZr3FwympupSJ29ORiIrLhOY6/XiUVb/BAs/3ueF8zsJp4qqKw3iKd0XaaOCSCiP06EfWoSOMpCDNSuQKfZ4xH9+P+rWVfeDcrcK1HjOiFKM3q8ZdsVkjVzXhSlF97XlYGd6HcMD2TtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770897797; c=relaxed/simple;
-	bh=SZTz8HS9PWKBbdj5b1EMRwXlgepLmkuv69oIrOnPdcY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bIUVCOaGYQv5A0A3CmulIpingGESwhzH7sQI9t1aGZBAogh4W6NcYQzFqC9rpS/6+WCmudcAaypdL3ZQLvfrZNVMMDQqz+MvqXaVe4csrJn4FREmQFcbgvFSBbLq6IAOpn0D9+RNO5LJtf/OY5jF81DtriIp7JeI5i+u5bYIObs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U+SA3LYA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67095C4CEF7;
-	Thu, 12 Feb 2026 12:03:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770897796;
-	bh=SZTz8HS9PWKBbdj5b1EMRwXlgepLmkuv69oIrOnPdcY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U+SA3LYAhVdyGRMYNYGEU4GprVv77KQ5bP8VRHPjcMk95kB+NihCUNPMMQYxkudZB
-	 1ZKFDz30j0zy67aIfC3as2goYgNs2WvAUbNBX3v4aP+rzwT7Z+sY0UOcXz0m8DapJb
-	 2VHMQ4vzdKRTIzs6CqkUhhRS9GIrxKAFMY4C+YtbGWj5gKCV1Y1xyVULpPhwbD0OMe
-	 O/+BBougAMDGhGofIQ9bSejxi+pTZWXDE0hrQdjckrQfK8ZxJz/FXNY7R5LdnPs0o3
-	 8fHuropl7OXGzqLs8eH5HXkNeagi9IrV1Pc7swD62TPWDCyfNwM4t/Zwo1Wvvfe0zl
-	 d4bgQbQzbcQDA==
-Date: Thu, 12 Feb 2026 13:03:14 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yixun Lan <dlan@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ze Huang <huang.ze@linux.dev>, Junzhong Pan <panjunzhong@linux.spacemit.com>, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: phy: spacemit: k3: add USB2 PHY support
-Message-ID: <20260212-rampant-grinning-deer-1eb7ca@quoll>
-References: <20260212-11-k3-usb2-phy-v1-0-43578592405d@kernel.org>
- <20260212-11-k3-usb2-phy-v1-1-43578592405d@kernel.org>
+	s=arc-20240116; t=1770897819; c=relaxed/simple;
+	bh=orrgARdRVXY24gkPcC6wmruEl81dP2QFKl4esYE/FQM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=DiM0Khtwu6b8HOzTvR+4GcV8eGq/NGOAGc4clwKFEjUoa9Iq7HiGAcRsOq8zhlswMm8+ogIw+uob4gQKhRMToKZ/iecwa+l9xSjA71DqyFOeQcBORjR8jw6s5rEIA2a6EgR5YgoyYnZe5gSiC5y4acIR3fihCRr88A4SmSUo4mE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hPevaUBM; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-43767807cf3so3417197f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 04:03:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1770897817; x=1771502617; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=IPXBLe0yJUYbIoGyT5kMiHrz15M67LzrqjA/DC/nqFM=;
+        b=hPevaUBMTdCmjZpAIUz7m6NyBYoypy0QXWXugrn8NpEoAZXFHNDiiVOl2Smyqm4YPk
+         duPm5qjppAE7oLpC8XXBzbDWq60ZRcG12QbaR2uXf7ONwcFatznIFD+oNs4fpUh2Ui8E
+         xlgvLjnhdqxdRlZSIPTM9nCFj4AY0/En66eOiSDmMGrA0z4qIhRjtp+cGju6MOgub0d8
+         F2mg7IFc+KbfPOAI8mt/PwHDSYaDxlWkX2hA7gjiivtVKrQ4xD5WSMGQLJkQjeAHaFcM
+         APc/D+5Wdu4XdpcFQhN7B6YXPd4088r7i6+fHkw42j0DTzABWXajFLe+BzuFDXBda3ZH
+         KDqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770897817; x=1771502617;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IPXBLe0yJUYbIoGyT5kMiHrz15M67LzrqjA/DC/nqFM=;
+        b=v4tnPnJhSrg4Pv1ZWPOVWoscy9M2yM1QUN5ilzNZNrGLY+yA9O/VNS+Sx1dT7amB7v
+         aJT9JZBq5QcpBetnR3n6oC3TmXgmNZCp7qxQfvgeT1sxnPsqKCq5kkP3oC2U6ezWO7cG
+         Hr3WaJHDHmPiBAJhxfsm+cO+F9nF+tnsYntLUtMvGlaaKtfQ+2pFgu6ihJgjpLyPmHRG
+         zLXfgKuKmTYnuKYKviY6hQ/GhrmZBL9WU61eAte38ig+jcAsOe3GLTINv+UgLPV6VLNT
+         Yv3fXy3oLr0vz8GYT311AtxuSrf7rcGMFtInoErVoGSfB5C1j6NN4lvzrUB3OTmBBYor
+         hobA==
+X-Forwarded-Encrypted: i=1; AJvYcCWpsabMrLYvRkLRrCq8azPv6CL7bf9ygWLFCRj6l0xsxvdmOxIrT4V+RoDvA9yedBIylglioOaHT1oW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyw60EFt0pcWQYFYjGpbp9BK3etknbCNfbDOHGW3JbAMU1cz86q
+	IgtaiJOORhKPr8AjCVvGRs+vUz/kcQQ5RRs1pwVcH86fc4hka4GUa/JdKzcX4RK7+j0=
+X-Gm-Gg: AZuq6aJHagrnOkO/81syU4MQBXuE9f7nY6y0zLw5ytqxV9XNhFpV3Dn0+J/9Zi01xkv
+	/i7/r4RX6koXrA0W6lkGrgb0qoBCyGVfoHLfrc6rS5lKt53w1u3uxjzSnunw6jBr+TCaQodqU3U
+	+dt/Y8LXDyzb+5kfQr4rt8/onB/lRe8E8lZs+JE99UqVCFrxUE3qyrrj4r5lMO3NwxEpHoMzNg6
+	QT9X/N7fikAeGk4F6nBHMJJgR5Cbe4x9FYYQOoOitWfJu1ioZ0+3jlZdAs3t9yiU2g98ogwE4Hy
+	V6Im9DuNHIZ/xVcvfVbgEI5xW6GIEJDyk6DSQ8EFJrXtfczkqn8+QxdoDN9GpM+fFSBcbZd77OS
+	OzSJIWVuAzFqHfdR9cw4GEIWfUKWlUidUM0gr1s1IuS4e6XYy55tKAlwjJxSlJojLuOgPT0fe58
+	HTXTNK/5CuwsuF0hJz0ol9bl0Dsm7OHkBcQ1qWSXqO
+X-Received: by 2002:a05:6000:2901:b0:436:233c:c7c2 with SMTP id ffacd0b85a97d-4378aa0c732mr4446267f8f.16.1770897816772;
+        Thu, 12 Feb 2026 04:03:36 -0800 (PST)
+Received: from draszik.lan ([212.129.82.233])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43783dfc8b9sm11365172f8f.24.2026.02.12.04.03.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Feb 2026 04:03:36 -0800 (PST)
+Message-ID: <b5078af810a681333043f64d71b7d6ea55ff44bb.camel@linaro.org>
+Subject: Re: [PATCH v5 04/10] dt-bindings: soc: google: gs101-pmu: allow
+ power domains as children
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar
+ <alim.akhtar@samsung.com>,  Conor Dooley <conor+dt@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Ulf Hansson	 <ulf.hansson@linaro.org>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown	 <broonie@kernel.org>, Peter
+ Griffin <peter.griffin@linaro.org>, Tudor Ambarus	
+ <tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, Will McVicker
+	 <willmcvicker@google.com>, kernel-team@android.com, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>
+Date: Thu, 12 Feb 2026 12:03:38 +0000
+In-Reply-To: <20260211211229.GA3882182-robh@kernel.org>
+References: <20260205-gs101-pd-v5-0-ede49cdb57a6@linaro.org>
+	 <20260205-gs101-pd-v5-4-ede49cdb57a6@linaro.org>
+	 <20260211211229.GA3882182-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260212-11-k3-usb2-phy-v1-1-43578592405d@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265059-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[kernel.org,samsung.com,linaro.org,gmail.com,google.com,android.com,lists.infradead.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-265060-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[1.10.107.32:email];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: C142712D41B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.7.208:email,samsung.com:email,1e00:email]
+X-Rspamd-Queue-Id: 8F18712D432
 X-Rspamd-Action: no action
 
-On Thu, Feb 12, 2026 at 09:38:54AM +0800, Yixun Lan wrote:
-> Introduce a compatible string for the USB2 PHY in SpacemiT K3 SoC. The IP
-> of USB2 PHY mostly shares the same functionalities with K1 SoC, while has
-> some register layout changes.
-> 
-> Signed-off-by: Yixun Lan <dlan@kernel.org>
-> ---
->  Documentation/devicetree/bindings/phy/spacemit,usb2-phy.yaml | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+Hi Rob,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+On Wed, 2026-02-11 at 15:12 -0600, Rob Herring wrote:
+> On Thu, Feb 05, 2026 at 09:42:32PM +0000, Andr=C3=A9 Draszik wrote:
+> > The power domains are a property of / implemented in the PMU. As such,
+> > they should be modelled as child nodes of the PMU.
+> >=20
+> > Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> > ---
+> > v4:
+> > - consistent quoting using " (Krzysztof)
+> > - add samsung,dtzpc to example
+> >=20
+> > Note: Ideally, the newly added properties (ranges, etc.) should only be
+> > 'required' if "^power-domain@[0-9a-f]+$" exists as a patternProperty,
+> > as they're needed only in that case. As-is, this patch now causes
+> > warnings for existing DTs as they don't specify the new properties (and
+> > they shouldn't need to).=20
+>=20
+> We can't have warnings added if they aren't valid.
+>=20
+> > Only if DTs are updated to include
+> > power-domains, such an update should also add the new properties.
+> >=20
+> > I've not been able to come up with the correct schema syntax to achieve
+> > that. dependencies, dependentRequired, and dependentSchemas don't seem
+> > to support patterns. Similarly,
+> > =C2=A0 - if:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 required:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - ...
+> > =C2=A0=C2=A0=C2=A0 then:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 required:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - ...
+> >=20
+> > doesn't allow patterns in the 'if' block (or I didn't get the syntax
+> > right).
+> >=20
+> > Rob said in
+> > https://lore.kernel.org/all/20251010141357.GA219719-robh@kernel.org/
+> > that this is a known limitation in json-schema.
+>=20
+> For a given compatible, you should either have child nodes or you don't.=
+=20
+> The h/w is not variable. So something like this should work:
+>=20
+> if:
+> =C2=A0 properties:
+> =C2=A0=C2=A0=C2=A0 compatible:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const: foo,bar
+>=20
+> then:
+> =C2=A0 required:
+> =C2=A0=C2=A0=C2=A0 - ranges
+> =C2=A0=C2=A0=C2=A0 - '#address-cells'
+> =C2=A0=C2=A0=C2=A0 - '#size-cells'
+>=20
 
-Best regards,
-Krzysztof
+Thanks Rob, yes, that works in general, but unfortunately in this case exis=
+ting
+DTs don't specify ranges etc for the google,gs101-pmu compatible. (This bin=
+ding
+is specifically for google,gs101-pmu only anyway).
 
+The above suggestion will cause the same validation warnings for existing D=
+Ts
+which is no different to just adding those properties to the top-level requ=
+ired:
+as my patch is doing. Unless I misunderstood your suggestion.
+
+The compatible doesn't change with these patches. So I'm not sure how to ma=
+ke
+your suggestion work without causing warnings for existing DTs. We can eith=
+er
+have an old incomplete DT+binding:
+
+	pmu_system_controller: system-controller@17460000 {
+		compatible =3D "google,gs101-pmu";
+		reg =3D <0x17460000 0x10000>;
+	};
+
+or the new one:
+
+	pmu_system_controller: system-controller@17460000 {
+		compatible =3D "google,gs101-pmu";
+		reg =3D <0x17460000 0x10000>;
+		ranges;
+		#address-cells =3D <1>;
+		#size-cells =3D <1>;
+
+		power-domain@1c00 {
+			compatible =3D "google,gs101-pd";
+			reg =3D <0x1c00 0x80>;
+			#power-domain-cells =3D <0>;
+			label =3D "eh";
+			samsung,dtzpc =3D <&dtzpc_eh>;
+		};
+	};
+
+I.e. in the old case (when binding + DT were incomplete) ranges etc. are
+not 'required' (and shouldn't be), while with the power-domain@[0-9a-f]+
+child node(s) added, ranges etc must be specified.=20
+
+If power-domain@[0-9a-f]+ wasn't a pattern, it'd be easy, but I really want
+it to be a pattern, not least because there are so many instances.
+
+What works (at the top level) is:
+
+    dependentRequired:
+      power-domain@1e00: [ranges]
+
+but it would require spelling out all the instances instead of a pattern. T=
+he
+following (or various variations I've tried) doesn't:
+
+    dependentRequired:
+      power-domain@.*: [ranges]
+
+I've also tried to come up with something involving dependentSchemas:, but =
+to no
+avail.
+
+Similarly,
+
+    allOf:
+      - if:
+          anyOf:
+            - required: [power-domain@1e00]
+            - required: [power-domain@2000]
+        then:
+          required:
+            - ranges
+
+works, but when using a regex, it doesn't:
+
+    allOf:
+      - if:
+          anyOf:
+            - required: [power-domain@.*]
+        then:
+          required:
+            - ranges
+
+I've also tried:
+
+    allOf:
+      - if:
+          required:
+            - "^power-domain@[0-9a-f]+$"
+        then:
+          required:
+            - ranges
+
+and
+
+    anyOf:
+      - required:
+          - power-domain@1e00
+          - ranges
+          - reg
+      - required:
+          - reg
+
+and
+
+    anyOf:
+      - required:
+          - "^power-domain@[0-9a-f]+$"
+          - ranges
+          - reg
+      - required:
+          - reg
+
+None of these seem to do what I would like (even the non-regex one).
+
+
+Cheers,
+Andre'
 
