@@ -1,299 +1,237 @@
-Return-Path: <devicetree+bounces-264942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264944-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oN/uGFKTjWl54QAAu9opvQ
-	(envelope-from <devicetree+bounces-264942-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 09:46:10 +0100
+	id wOETDt+UjWmI4wAAu9opvQ
+	(envelope-from <devicetree+bounces-264944-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 09:52:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F17E12B822
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 09:46:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B6C212B924
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 09:52:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B8F863122163
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:45:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 21EC2304C05E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:51:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B05EC2E03E4;
-	Thu, 12 Feb 2026 08:45:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AADC02BE647;
+	Thu, 12 Feb 2026 08:51:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="RJY4P9tC"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AnDwNuJ/";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aLCFX+1X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F9882D94A3
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 08:45:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 845BF24466B
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 08:51:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770885912; cv=none; b=jHWLvkxo85I/jtJG1NCH6g0CwoVrtDuGmN4CGRRao8YTfSMzIoZOGMBwyY3FZxCH2lpJDCHPCYv9C11IwsVhJdZ9ZxmVeXf+FUwMPpqlYKM81Pl/ZYFTLFfOp/LKyfGpo5w3iBtqmeoRAEvzf/RG9eOmQmE53xPFBQwGaNjYqiU=
+	t=1770886297; cv=none; b=YMJGHr/YoSd4bwJk6yTaGZCjM8+we1mBs3DZ9kXkSHs2QB4ArD75zs43olLmEXcCYJMxrjX/e3NxHD49l7Mnzathn86YQOHJEivPr6un//2rLQLXgISyk7RLPkNXob02dRlC9rVWolH6HmepC2/j0nI23C4iF4wbJ1vJc4MIShw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770885912; c=relaxed/simple;
-	bh=c4T0y/hzZHDuIAz/fbVwxQ6Q4j0rUNvQhG2sxxLl4ak=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=JjoMPhVjwr/cNMYPPBNhK44WODHOD9zF6rfh8zY/iQqoALfxyP+UToW8CAeFUn2bt/2tM2zG0784GagDEi4YFn70jD3CS3n/wbJXrzqLtQg1izUnzjAHCCC0qZF/qlkn7PacUeFwe2kX/I1GPBHjtmPHtKolCRRAw1moShVph0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=RJY4P9tC; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4806e0f6b69so59664775e9.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 00:45:10 -0800 (PST)
+	s=arc-20240116; t=1770886297; c=relaxed/simple;
+	bh=XE6TpHh/T7ne0t5BpRvkUIHT6EpqjBnrWgQsvurFYB0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bqc/ibG9+OIQLS/XyDSC8vrEB91/G5bBlC3hUto7triErvyEGNqDw4YS6Oy7/RCjP01Dy+Hm9p/ldYjg0MEcbPe98GquT8u/HMwnCJy2UOCuxDtzF4i/1R4tm5P9QC2WRKTvHBYy9MCUE6UMY+hgN6XhjHcyYs1Z/OUP3sXymV0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AnDwNuJ/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aLCFX+1X; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61C3RpQe3615924
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 08:51:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	H2lDuVV6NS6Z7BmlriJs7dLuO1aUiohzAfUrMrJLlmk=; b=AnDwNuJ/DSeBOVIG
+	BLBqJpteiRZoY2hcrHBFJH7O2O0hLQ/mxaL18qsU5cJ4fuQQNYP7LkdbEZbQc9mF
+	J64v+F35LpOs+z1ZZOrPLL3sBQsnewRr2R5hsYoYHtFYTYHuYFAfojnvLG3jnLbW
+	XEyRmR9wht7cN0T981N+K7rE/Ex2a5+xFGW/Y8U4A5cX7YiQJVtHvHk/7G3ae4rb
+	wM3H8Ls6pdroy+ehkGqwllqrcQblB4vxzSPixZM0ZCS9mGOjzJ4s41KPjLCPZKhq
+	c+dwKOXtLr2bi1uktnYlwcKZRz89dHjGrNLAiZVC8PWck6+IFj3tDKhgK/RYGMI5
+	SUOQRg==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c8ydn252t-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 08:51:29 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2aae3810558so61978795ad.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 00:51:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1770885909; x=1771490709; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4pKMLu2vrVoz0ZANHaXBigtawgekohjYcNvHVashll8=;
-        b=RJY4P9tCmNGoU7tLbopsCk9p4SX11tZ9UCCWKGQmw0ZMcm/LSPGdzZOSE2VvJ09ArE
-         68s6nrSi+BDicSnp5YNo1QeOPZxcxxXWBJGTFYQgPRqWLk5ufHZqlrA7NjrG8yRqEQA8
-         EyVH4k1iQeq/GEKwtqscqjd8d2AFQ5rO8OSKDir7wHX60WT38/xne9ZDVwB92pOKBAZ0
-         KCQyTMf3RX98zA61KYMf9v/RqGvpzLA79GO1hDnAYMUc5Wea6rqVsFRA0hnXAXeYV6wX
-         ZsISslqHe491IjKGlspWHqi65W2C//fdgt20z+++p/jMHOfA/jTyWjV3F+xBYpQf557S
-         xjBQ==
+        d=oss.qualcomm.com; s=google; t=1770886289; x=1771491089; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=H2lDuVV6NS6Z7BmlriJs7dLuO1aUiohzAfUrMrJLlmk=;
+        b=aLCFX+1XHcY/uh5tZsPRfK4IMauOY2nDZHEYti3vb7czpks6NthxWmCxwqyTncRss9
+         A3ehy9sZ+nHudtVRrhMhcjymKg0WRr8iiDtyXbPcQvU2enh2AFXtR36b7jMJX0qyqJKI
+         BEOSMIVKztOvn2vzIy9r5DqyoMxeTzY6owqNyIa2wNa/m6XIFZur+U2zQ6JYeLEp1X6n
+         X8aXy6XzHfwVj9x/xK32/vd9PnEkmB7hy1B8u34ACxjRaFZBbLI8Mu8v36d6Nr3QsnGI
+         iRLtZROYM9mi/3aILZUnc5S7tdclOQbLJrZSWXz/aCdnb7PISjfSN16G6rXZg7pVfGsv
+         +c0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770885909; x=1771490709;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=4pKMLu2vrVoz0ZANHaXBigtawgekohjYcNvHVashll8=;
-        b=F/Imt20O2nTPk6Lm0YNd2S29peGV8goayMibeH95FnX5IsvtJHJqqW2K/ex6YHb0zp
-         sYzRBwz902vG/Q91ItmuWFBcaIn80rMNVbpxAoRH2vl4P5AaCuFyVV5Ew6tyM7Q6qZd3
-         9Mh9Bj8JZ61Ej8ge3xdL2Re9IwUWj2on96LJUiSSKgIYxDNT3pY0tbaHWgljj600IwFE
-         XiI8mJzBEjmlKYVLxgobiMLvqHLS5aTlIa7n+88ba+FccX+DtRpHqHpUQfZj1ltXibt6
-         wH1j578QLAFp7bN4dnqbXQXSVu6XlXwMAaba8ao98TEjkY/deOyXR3vGvKC+SLcCsy90
-         7TxA==
-X-Forwarded-Encrypted: i=1; AJvYcCX7H0Mi3wKP4F3bdDtwiJCwyqf3rEwovkEUK9UrznBIS4GFWhWviB3SyHo/bXsEA76i+qkpkBNsWe2Z@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgV89vUJ/2W2bPObLuM8ol88NNS3Nf61oxRmGOJxC2TPXYNl98
-	xDSkMLTnih/m3Z/c8IZkIWqEiWw3ouj3huo1xvVMoAbvUoIX7yWk+31lpCX2Gr5PSyX/aTXrK4A
-	y1BEJQwk=
-X-Gm-Gg: AZuq6aKFm7VAUCrtKRAW5W9IlsAZM67mUJOeufgRmM5/4XGcZkfv2rjdJGaD8Iamz++
-	ECkHCL0XRRVvY9nyaYWoThzr+GAv9Pi2fDsWfTywfPzzH/q+4v2F6TQjTUsCJfoHwf28/dUTBIA
-	JqmvARA0P8lug2gwhOeqWPdUQ0kFtA5RZUBtuv7wcOaK4sLHsJ5DHj9wOuIqgPyWe+zvNEO7uCy
-	/WcmNFVLG27ii0lzkwbm4N+G5uIH6dzac8yZuqWy7U4syzAbAm88ytbf4WKba2Fx++9OlTksNLV
-	8nQB/K7l7yBXfZhQyaUVKMclMtTDbUqgiYYqY8XGwmp481gQYgo82LjXqL+ZsYylWokakFxjnMX
-	brVEMvzZPmP2SX7RwpPZHbeI5RoyniVQAeLHW36FQUD5EPL1fFzhAJkpRVgNoehQXoqXfyKJFFJ
-	V31+P9tYNQOLZg2fJxYDkZqodZmomhoYQHCy615S8K4prU4gGy6sAs94mEdGGnxeYt6SXbmz2A6
-	jG86cOveQ==
-X-Received: by 2002:a05:600c:848d:b0:479:35e7:a0e3 with SMTP id 5b1f17b1804b1-48365716033mr24734255e9.30.1770885908815;
-        Thu, 12 Feb 2026 00:45:08 -0800 (PST)
-Received: from silence.. ([46.10.240.40])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4835dd0e15bsm82753705e9.13.2026.02.12.00.45.07
+        d=1e100.net; s=20230601; t=1770886289; x=1771491089;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=H2lDuVV6NS6Z7BmlriJs7dLuO1aUiohzAfUrMrJLlmk=;
+        b=ALmcUSHSjSSkTgKHUM1RpeuwfZHmADpPnDiFHMAmhhAqc5wMy8PPfboj7WNGh7YLV9
+         o2rKCNz46Z20YGm2WYoI4NMrpuJ9pYY7YJS9jLZI8uvbdKmP9oj9scP3WrmubV0tT2gU
+         7RMu5zyFG5vTu1s93G1nKV1uHKs8CnpWu6V+IbnuPKm1Meg+629lC5JgWLspBUCe8ld/
+         eTOt2CMaYDWQxmafNrYij2SDWakP/EWH9qOZgO5tuCNuGVkjZ9TlBSfK9AtSyolTcdTV
+         7dWJw0Ti1LsysC+eEls+BQ6/aYhYiavgm/Dy35IOgBvcvb2+gGVa9qpj1RtZPZNJmjtP
+         jBQg==
+X-Forwarded-Encrypted: i=1; AJvYcCWW7zSpUt62Q3UdQL7EHTFrAgBA1tluVkxdNrndaPUf3hWYgZnCAORuvd7GbAeyl/AdNQytBszUg319@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw62LpcvY9ObHMOqH90edIRl1gZ+XiArSfdZeEN82CLwvrV+PLg
+	hrPgafCOq5ILi1yMgWRyY7c+gsQXwvgF/U7EXBlFYpHUbip14+NIpvLanUOdnMOtEqckfrCRzoH
+	068r56uiFxu/veTYtWRnfPwyjvfTeGeuXBBrqdUfqitz0MPR4mqIPnRkicdG+IwyU64suDGQE
+X-Gm-Gg: AZuq6aKkh+lA8tGtBadqrPJbyAIN6FMUxKpNWAZgXHCxO7k2G2d9Y3d4TVtX3tU/vCj
+	ioVeg8VJ3kg2699dIr8BBvce5E0fGjspncsKb9LajtF5itKloTlKYOHS8J6zc6KMlzWpXUre+av
+	viJFNXxgpcZepX0wt1QxURwJTQKi6+6ETIIIsXyGN+Haj1QYudfdqOjsZydAsKyobQbY3xuuXj1
+	WQ5QqKNClPlA0SJJ3nbWMGcH6NCnja/+6NKEeFtEXUVI905VrqhGqMaumnjVabnv6llgMO3iLLO
+	BlC56zYZxq81dlOSZNdDWoHahyvtow8SSMKw1T9O5BybgjCBXzNIEXgKMU/RTAKyul1b7Oq1v99
+	90nugpVwvFS3+Ou5oTV1oD6X+Hqo48ebY4FXbPSEm41Gk3DkHAuk=
+X-Received: by 2002:a17:903:2c50:b0:2a9:62f1:3fbb with SMTP id d9443c01a7336-2ab39c426ebmr19170555ad.37.1770886288757;
+        Thu, 12 Feb 2026 00:51:28 -0800 (PST)
+X-Received: by 2002:a17:903:2c50:b0:2a9:62f1:3fbb with SMTP id d9443c01a7336-2ab39c426ebmr19170345ad.37.1770886288300;
+        Thu, 12 Feb 2026 00:51:28 -0800 (PST)
+Received: from hu-kamalw-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ab2986ebd4sm46805465ad.24.2026.02.12.00.51.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Feb 2026 00:45:08 -0800 (PST)
-From: Stoyan Bogdanov <sbogdanov@baylibre.com>
-To: jbrunet@baylibre.com,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	skhan@linuxfoundation.org
-Cc: linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Stoyan Bogdanov <sbogdanov@baylibre.com>
-Subject: [PATCH v1 3/3] hwmon: (pmbus/tps1689): Add TPS1689 support
-Date: Thu, 12 Feb 2026 10:45:02 +0200
-Message-Id: <20260212084502.1795-4-sbogdanov@baylibre.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260212084502.1795-1-sbogdanov@baylibre.com>
-References: <20260212084502.1795-1-sbogdanov@baylibre.com>
+        Thu, 12 Feb 2026 00:51:27 -0800 (PST)
+Date: Thu, 12 Feb 2026 14:21:21 +0530
+From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+To: Saikiran B <bjsaikiran@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Rob Herring <robh@kernel.org>,
+        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>, lgirdwood@gmail.com,
+        andersson@kernel.org, konradybcio@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzk+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: regulator: qcom,rpmh: Allow
+ regulator-off-on-delay-us
+Message-ID: <20260212085121.65bxxp7xfvny6v2z@hu-kamalw-hyd.qualcomm.com>
+References: <20260127190211.14312-1-bjsaikiran@gmail.com>
+ <20260127190211.14312-2-bjsaikiran@gmail.com>
+ <20260129174829.GA1324020-robh@kernel.org>
+ <355213ef-106c-4383-88e7-9b40f5b1c1ef@sirena.org.uk>
+ <fa760b2f-4b8c-46d5-90b9-2ad9e69ebf04@oss.qualcomm.com>
+ <20260203162005.ui7sl4t5m32jwas6@hu-kamalw-hyd.qualcomm.com>
+ <7da1e3e3-18d7-45f8-9168-481ce8e4493c@sirena.org.uk>
+ <20260206161952.ctmzghln5tkqzvn6@hu-kamalw-hyd.qualcomm.com>
+ <CAAFDt1uiWq-adPtXiD+i1swavK_GS+SB__+46NN5jtwOopz9Lw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAAFDt1uiWq-adPtXiD+i1swavK_GS+SB__+46NN5jtwOopz9Lw@mail.gmail.com>
+X-Authority-Analysis: v=2.4 cv=NLHYOk6g c=1 sm=1 tr=0 ts=698d9491 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=EUspDBNiAAAA:8 a=hqVRMzIdmVMcWLLNMpMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-GUID: UfFMN8TSI-aQhl2yKhIncx2SDtl1jgWj
+X-Proofpoint-ORIG-GUID: UfFMN8TSI-aQhl2yKhIncx2SDtl1jgWj
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjEyMDA2NCBTYWx0ZWRfX0KLearjTdDA6
+ gnHkux+YnlyRMm8qqpgldWpqo9nU73MiDxU5IRPLEtGYmQUqEwcTWguxgDtkjRrbz+Fe+xjzefA
+ VyujsqxfsY/CW+KtaL6QC5moWWLFmJhuqdSvQVxJyIxKHs4fC5w3rGOndK8sMoqQPRZV+pBmUS7
+ Y4+DXRNDi0DsjLevoqrjqOdKHFXgzfHC5fZ0M7hcVqzBYUmlSUFKxYmderNaNaC45Pv7MJ/Vzl6
+ 741V1n4/cyrFIBdLZYTYPS0MECrN8L76+ilx8YOK1bg24c0zTTrKkpVJjU9BvOOsSYg2YLEaUrO
+ gkkzO7X4P6J6ikz/hHQTTfeWEmX35VQgXglVEB/I67T49qGdlWim8cq1iUkq3Wz3yf59uGkX/sc
+ GtUFGRKQsRrW/bpYfL0Odu4BDpVhDF63XSfUZMEHCAp4bNKcs4wlMMI+MPLbYfA/b503Vzv72bP
+ KMtIherZ8pPv3PXUSfA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-12_02,2026-02-11_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1015 lowpriorityscore=0 priorityscore=1501
+ impostorscore=0 phishscore=0 malwarescore=0 spamscore=0 bulkscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2602120064
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-264942-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[hu-kamalw-hyd.qualcomm.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,qualcomm.com:dkim,qualcomm.com:url,qualcomm.com:email];
+	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-264944-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sbogdanov@baylibre.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[kamal.wadhwa@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:url,baylibre.com:mid,baylibre.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre-com.20230601.gappssmtp.com:dkim]
-X-Rspamd-Queue-Id: 0F17E12B822
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 8B6C212B924
 X-Rspamd-Action: no action
 
-Extend tps25990 existing driver to support tps1689 eFuse,
-since they are sharing command interface and functionality
-Update documentation for tps1689
+On Sun, Feb 08, 2026 at 06:37:24PM +0530, Saikiran B wrote:
+> On Fri, Feb 6, 2026 at 9:50 PM Kamal Wadhwa
+> <kamal.wadhwa@oss.qualcomm.com> wrote:
+> >
+> > On Tue, Feb 03, 2026 at 04:30:27PM +0000, Mark Brown wrote:
+> > > On Tue, Feb 03, 2026 at 09:50:05PM +0530, Kamal Wadhwa wrote:
+> > >
+> > > > But I'm wondering if this is really a 'slow discharge' issue, because if the
+> 
+> Hi Kamal,
+> 
+> Thanks for checking the internal register defaults.
+> 
+> I can confirm it is definitely related to the power-cycling state. While I
+> haven't probed the pads, I validated this with two software tests:
+> 
+> 1. The Always On Test: I modified the driver to keep the regulators
+>    permanently enabled (never turning off). In this state, the camera works
+>    100% of the time, even with rapid open/close cycles. This proves the
+>    crash is triggered specifically by the power-down event.
+> 
+> 2. The Timing Threshold: Through iterative testing, I found that reopening
+>    the camera fails consistently if the off-time is <2.0s, but succeeds if
+>    the off-time is >2.3s. This 2.3s window matches the calculated RC time
+>    constant for a passive discharge on these rails.
+> 
+> If the Strong Pull Down were effectively active, the rails should drain in
+> milliseconds. The fact that it requires 2.3s suggests that on this unit,
+> the PD is either effectively disabled or too weak for the bulk capacitance
+> present.
+> 
+> As I mentioned to Mark, I have withdrawn this specific delay patch to
+> investigate if I can manually enforce Active Discharge (via direct RPMh
+> commands) to solve this at the source. But now, your note that these settings
+> might be locked is concerning.
 
-Signed-off-by: Stoyan Bogdanov <sbogdanov@baylibre.com>
----
- Documentation/hwmon/tps25990.rst | 15 ++++---
- drivers/hwmon/pmbus/tps25990.c   | 70 ++++++++++++++++++++++++++++++++
- 2 files changed, 80 insertions(+), 5 deletions(-)
+I discussed about your concerns, and it seems that we have some boot side DT config 
+that can be configured to enable/disable the strong PD ( its not available
+from HLOS though)
 
-diff --git a/Documentation/hwmon/tps25990.rst b/Documentation/hwmon/tps25990.rst
-index 04faec780d26..e8bc9a550bda 100644
---- a/Documentation/hwmon/tps25990.rst
-+++ b/Documentation/hwmon/tps25990.rst
-@@ -9,26 +9,31 @@ Supported chips:
- 
-     Prefix: 'tps25990'
- 
--  * Datasheet
-+    Datasheet: Publicly available at Texas Instruments website: https://www.ti.com/lit/gpn/tps25990
- 
--    Publicly available at Texas Instruments website: https://www.ti.com/lit/gpn/tps25990
-+  * TI TPS1689
-+
-+    Prefix: 'tps1689'
-+
-+    Datasheet: Publicly available at Texas Instruments website: https://www.ti.com/lit/gpn/tps1689
- 
- Author:
- 
- 	Jerome Brunet <jbrunet@baylibre.com>
-+	Stoyan Bogdanov <sbogdanov@baylibre.com>
- 
- Description
- -----------
- 
--This driver implements support for TI TPS25990 eFuse.
-+This driver implements support for TI TPS25990 and TI TPS1689 eFuse chips.
- This is an integrated, high-current circuit protection and power
- management device with PMBUS interface
- 
--Device compliant with:
-+Devices are compliant with:
- 
- - PMBus rev 1.3 interface.
- 
--Device supports direct format for reading input voltages,
-+Devices supports direct format for reading input voltages,
- output voltage, input current, input power and temperature.
- 
- Due to the specificities of the chip, all history reset attributes
-diff --git a/drivers/hwmon/pmbus/tps25990.c b/drivers/hwmon/pmbus/tps25990.c
-index 268e361b6fd3..3d4056724303 100644
---- a/drivers/hwmon/pmbus/tps25990.c
-+++ b/drivers/hwmon/pmbus/tps25990.c
-@@ -370,6 +370,15 @@ static const struct regulator_desc tps25990_reg_desc[] = {
- };
- #endif
- 
-+struct local_direct_value tps1689_local_info = {
-+	.m[TPS25990_VIN_OVF] = 3984,
-+	.b[TPS25990_VIN_OVF] = -63750,
-+	.R[TPS25990_VIN_OVF] = -3,
-+	.m[TPS25990_IIN_OCF] = 7111,
-+	.b[TPS25990_IIN_OCF] = -2133,
-+	.R[TPS25990_IIN_OCF] = -2,
-+};
-+
- struct local_direct_value tps25590_local_info = {
- 	.m[TPS25990_VIN_OVF] = 10163,
- 	.b[TPS25990_VIN_OVF] = -30081,
-@@ -379,6 +388,60 @@ struct local_direct_value tps25590_local_info = {
- 	.R[TPS25990_IIN_OCF] = -6,
- };
- 
-+static struct pmbus_driver_info tps1689_base_info = {
-+	.pages = 1,
-+	.format[PSC_VOLTAGE_IN] = direct,
-+	.m[PSC_VOLTAGE_IN] = 1166,
-+	.b[PSC_VOLTAGE_IN] = 0,
-+	.R[PSC_VOLTAGE_IN] = -2,
-+	.format[PSC_VOLTAGE_OUT] = direct,
-+	.m[PSC_VOLTAGE_OUT] = 1166,
-+	.b[PSC_VOLTAGE_OUT] = 0,
-+	.R[PSC_VOLTAGE_OUT] = -2,
-+	.format[PSC_TEMPERATURE] = direct,
-+	.m[PSC_TEMPERATURE] = 140,
-+	.b[PSC_TEMPERATURE] = 32103,
-+	.R[PSC_TEMPERATURE] = -2,
-+	/*
-+	 * Current and Power measurement depends on the ohm value
-+	 * of Rimon. m is multiplied by 1000 below to have an integer
-+	 * and -3 is added to R to compensate.
-+	 */
-+	.format[PSC_CURRENT_IN] = direct,
-+	.m[PSC_CURRENT_IN] = 9548,
-+	.b[PSC_CURRENT_IN] = 0,
-+	.R[PSC_CURRENT_IN] = -6,
-+	.format[PSC_CURRENT_OUT] = direct,
-+	.m[PSC_CURRENT_OUT] = 24347,
-+	.b[PSC_CURRENT_OUT] = 0,
-+	.R[PSC_CURRENT_OUT] = -3,
-+	.format[PSC_POWER] = direct,
-+	.m[PSC_POWER] = 2775,
-+	.b[PSC_POWER] = 0,
-+	.R[PSC_POWER] = -4,
-+	.func[0] = (PMBUS_HAVE_VIN |
-+		    PMBUS_HAVE_VOUT |
-+		    PMBUS_HAVE_VMON |
-+		    PMBUS_HAVE_IIN |
-+		    PMBUS_HAVE_PIN |
-+		    PMBUS_HAVE_TEMP |
-+		    PMBUS_HAVE_STATUS_VOUT |
-+		    PMBUS_HAVE_STATUS_IOUT |
-+		    PMBUS_HAVE_STATUS_INPUT |
-+		    PMBUS_HAVE_STATUS_TEMP |
-+		    PMBUS_HAVE_SAMPLES),
-+
-+	.read_word_data = tps25990_read_word_data,
-+	.write_word_data = tps25990_write_word_data,
-+	.read_byte_data = tps25990_read_byte_data,
-+	.write_byte_data = tps25990_write_byte_data,
-+
-+#if IS_ENABLED(CONFIG_SENSORS_TPS25990_REGULATOR)
-+	.reg_desc = tps25990_reg_desc,
-+	.num_regulators = ARRAY_SIZE(tps25990_reg_desc),
-+#endif
-+};
-+
- static struct pmbus_driver_info tps25990_base_info = {
- 	.pages = 1,
- 	.format[PSC_VOLTAGE_IN] = direct,
-@@ -428,18 +491,25 @@ static struct pmbus_driver_info tps25990_base_info = {
- #endif
- };
- 
-+struct tps25990_data data_tps1689 = {
-+	.info = &tps1689_base_info,
-+	.info_local = &tps1689_local_info,
-+};
-+
- struct tps25990_data data_tps25990 = {
- 	.info = &tps25990_base_info,
- 	.info_local = &tps25590_local_info,
- };
- 
- static const struct i2c_device_id tps25990_i2c_id[] = {
-+	{ .name = "tps1689", .driver_data = (kernel_ulong_t)&data_tps1689 },
- 	{ .name = "tps25990", .driver_data = (kernel_ulong_t)&data_tps25990 },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, tps25990_i2c_id);
- 
- static const struct of_device_id tps25990_of_match[] = {
-+	{ .compatible = "ti,tps1689", .data = &data_tps1689 },
- 	{ .compatible = "ti,tps25990", .data = &data_tps25990 },
- 	{}
- };
--- 
-2.34.1
+you can refer to Doc for same here:-
+https://docs.qualcomm.com/doc/80-70023-4/topic/tools.html?product=895724676033554725&facet=Boot&version=1.7
 
+forum to ask questions about it:-
+https://mysupport.qualcomm.com/supportforums/s/
+
+> 
+> Regards,
+> Saikiran
 
