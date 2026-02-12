@@ -1,119 +1,129 @@
-Return-Path: <devicetree+bounces-265026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265027-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sDN4NXW2jWl96AAAu9opvQ
-	(envelope-from <devicetree+bounces-265026-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:16:05 +0100
+	id WL50ON62jWl96AAAu9opvQ
+	(envelope-from <devicetree+bounces-265027-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:17:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D793F12CE89
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:16:04 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7484112CEB5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:17:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 61E6930177B2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:16:00 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D923C300AB15
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:17:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B659329C48;
-	Thu, 12 Feb 2026 11:15:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iglfuqU8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FD4A32938D;
+	Thu, 12 Feb 2026 11:17:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9202F1FD2;
-	Thu, 12 Feb 2026 11:15:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB591E7C23;
+	Thu, 12 Feb 2026 11:17:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770894958; cv=none; b=mD8r8QJdqnyzj9zCOyn6cQMfH3p8i2q4RefStiEqhtcCCJUKNxJNKurLrqjQ2odyK2y4HjuZaGAxOgM4lKlaCPSNBogvTVKHdGgfebd9QCS35FkZ4X0w6/pxYdizlNHSKpZPwXnR+ZHYhmKMwdUfwFYEcHtNgzFkX1kj8z0fwyg=
+	t=1770895067; cv=none; b=XPDgLKKSN9794VwX9codXr6HNUGibF46U6oEevsxWOgf7FHNWT4dqCYXeB2G/+DWuRFAUp+EdjeKs+BP1VRGcr0lC1zsIo1xup5jxL3QuIAu1woAh7FyMmNDLfAizuXuIRj1ylvkwFbz7GUePNb0k7LCXxw1D08R97qLvMIrrfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770894958; c=relaxed/simple;
-	bh=JaROBJiSQgrGJWZSRBqinFk10ERX4PkHC50mhVsinh4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VSXcbrUf7AhVn09QzuQ5q8HuNb7hSXLf1MixLGBxe0/hEEKbQmvdwlnYFziVdWaEnyI+LdolvIE2AogYBFBQKvKTjSW0kk3YLegGoP24Qjf5mARm7GjCjERvSl3tZ8u4sI6vZAj/haxWCKe8a+1h7PZf7ZU7uGryPRCDI07VpZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iglfuqU8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9799C4CEF7;
-	Thu, 12 Feb 2026 11:15:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770894958;
-	bh=JaROBJiSQgrGJWZSRBqinFk10ERX4PkHC50mhVsinh4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iglfuqU8Ih7yhE4RS9OFH5397ZNNUDEZWqCnic+fKm5ZSL3a/DLc+9jR5K8fMiwrL
-	 evB28BbrFco8iw1rVJAp0BkInu6JAGTUN34wf94/Z3NDuCExoS74E05/0V38zgprVq
-	 0qcAdRsCgOES4rKh2OGOAWrMn8/tGtD3+Mo9EhJSegIlTy7+vI39FH2nCF6z2r/Cxb
-	 dCu7QRLdOUJdRClF3UPpwPxr5qpJ6L+3AqV6D3wwFsJ6WdTv4aunY56spAsBjpdKAA
-	 4jKe4EX79mrg5AUlufqSA3hySrEB4YbG9MSQupgwQJLV/1jM/V1K5yE8Ey7XkYkVQI
-	 cMLFQlS6wLldA==
-Date: Thu, 12 Feb 2026 12:15:56 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Maud Spierings <maud_spierings@hotmail.com>, "Colin K. Williams" <colin@li-nk.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: arm: qcom: Add ASUS Vivobook
- X1P42100 variant
-Message-ID: <20260212-watchful-inchworm-of-radiance-9bb4eb@quoll>
-References: <20260211-b4-vivobook-v2-0-9f500415d2ed@oldschoolsolutions.biz>
- <20260211-b4-vivobook-v2-1-9f500415d2ed@oldschoolsolutions.biz>
+	s=arc-20240116; t=1770895067; c=relaxed/simple;
+	bh=d7YPEI0YKLrZbZeEl6CSXoCKS9It1twSy6+qSTOdpWA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=u6UIeQeoeVZMq+1qOld59HVPblv5KWCx1dlFR1nat9AdUbJPuLy0a3M0s7heo+AHsHB2M4Jw4NylYvGxWF/g38VLE/P7xR8fTibAsCRFR5ngM6BYsmdks9UVatCUm/o5/lv8LiJipcUNWNMGq0FyL9lrA0LfVCP8pK4K/CmZoUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0FE59339;
+	Thu, 12 Feb 2026 03:17:32 -0800 (PST)
+Received: from e137876.arm.com (e137876.arm.com [10.33.10.100])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9A1BF3F632;
+	Thu, 12 Feb 2026 03:17:36 -0800 (PST)
+From: Debbie Horsfall <debbie.horsfall@arm.com>
+Subject: [PATCH v2 0/2] Add Arm Zena CSS support
+Date: Thu, 12 Feb 2026 11:16:50 +0000
+Message-Id: <20260212-zena-css-v2-0-d33ea23cb9c2@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260211-b4-vivobook-v2-1-9f500415d2ed@oldschoolsolutions.biz>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKK2jWkC/23MQQ7CIBCF4as0sxYD1LbWlfcwXVAY7CwKhjFEb
+ bi72LXL/+Xl24AxETJcmg0SZmKKoYY+NGAXE+4oyNUGLXUvlW7FB4MRllkMc6e99NqM/QD1/kj
+ o6bVTt6n2QvyM6b3LWf3WP0hWQor2ZNw8dtb583g1aT3auMJUSvkCkHrdHp4AAAA=
+X-Change-ID: 20260123-zena-css-7b52f0f2a967
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>, 
+ Sudeep Holla <sudeep.holla@arm.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ Linus Walleij <linusw@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Debbie Horsfall <debbie.horsfall@arm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770895056; l=1193;
+ i=debbie.horsfall@arm.com; s=20260123; h=from:subject:message-id;
+ bh=d7YPEI0YKLrZbZeEl6CSXoCKS9It1twSy6+qSTOdpWA=;
+ b=s6KardkWv64HT2C7lE3RSNYXac2BhltvtOpJ4A7Lu1wiqapWeGSooS9MnPHaNPaPMhBlpsD5B
+ vGhYUER0UxWDRv1mHoWeGCUFobzv2RH0KWSZWFLiluCjVl7L6W9qxHo
+X-Developer-Key: i=debbie.horsfall@arm.com; a=ed25519;
+ pk=PHSQwhhwfluuPcWn1fk950OfqGxCy2cjbyQb7dfAcFY=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.36 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-265026-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,arm.com:mid,arm.com:url,arm.com:email];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,hotmail.com,li-nk.org];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[debbie.horsfall@arm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,li-nk.org:email]
-X-Rspamd-Queue-Id: D793F12CE89
+	TAGGED_FROM(0.00)[bounces-265027-lists,devicetree=lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: 7484112CEB5
 X-Rspamd-Action: no action
 
-On Wed, Feb 11, 2026 at 09:37:50PM +0100, Jens Glathe wrote:
-> The ASUS Vivobook S15 (S5507) [1] is available with Hamoa and Purwa SoC.
-> Add the Purwa-based variant:
-> 
-> asus,vivobook-s15-x1p4 compatible to Purwa SoC
-> 
-> [1]: https://www.asus.com/de/laptops/for-home/vivobook/asus-vivobook-s-15-s5507/techspec/
-> 
-> Tested-by: Colin K. Williams <colin@li-nk.org>
+This series adds the Arm Zena Compute Subsystem schemas and
+Devicetree. Currently, the only platform variant is the Fixed
+Virtual Platform. More information on Arm Zena CSS can be found
+at https://www.arm.com/products/automotive/compute-subsystems/zena
 
-Please drop, you cannot test a binding in this meaning. I guess this was
-populated from cover letter.
+Signed-off-by: Debbie Horsfall <debbie.horsfall@arm.com>
+---
+Changes in v2:
+- Moved the binding to the common vexpress file.
+- Removed MAINTAINERS additions.
+- Refactored Devicetree in line with review comments and Devicetree coding style.
+- Link to v1: https://lore.kernel.org/r/20260123-zena-css-v1-0-34adb95cdf89@arm.com
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+---
+Debbie Horsfall (2):
+      dt-bindings: arm: Add Zena CSS compatibility
+      arm64: dts: zena: Add support for Zena CSS
+
+ .../devicetree/bindings/arm/arm,vexpress-juno.yaml |  10 +
+ arch/arm64/boot/dts/arm/Makefile                   |   1 +
+ arch/arm64/boot/dts/arm/zena-css-fvp.dts           |  55 ++
+ arch/arm64/boot/dts/arm/zena-css.dtsi              | 777 +++++++++++++++++++++
+ 4 files changed, 843 insertions(+)
+---
+base-commit: c072629f05d7bca1148ab17690d7922a31423984
+change-id: 20260123-zena-css-7b52f0f2a967
 
 Best regards,
-Krzysztof
+-- 
+Debbie Horsfall <debbie.horsfall@arm.com>
 
 
