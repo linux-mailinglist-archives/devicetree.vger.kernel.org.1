@@ -1,193 +1,187 @@
-Return-Path: <devicetree+bounces-265099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265103-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OMa0JGzojWmP8gAAu9opvQ
-	(envelope-from <devicetree+bounces-265099-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:49:16 +0100
+	id GPZXMI/pjWmr8gAAu9opvQ
+	(envelope-from <devicetree+bounces-265103-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:54:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D39312E875
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:49:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60A3012E9DE
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:54:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7CC02305E562
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 14:44:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BBB2830CDF9D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 14:50:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA23935C180;
-	Thu, 12 Feb 2026 14:44:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XkxyqDfd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 254E935CBB7;
+	Thu, 12 Feb 2026 14:50:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A67E83382F7;
-	Thu, 12 Feb 2026 14:44:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DECAF3382F7
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 14:50:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770907454; cv=none; b=OLD7qWP3ms5ZX+484/zTLj2ei/WUt2vTQm2u0jdup/RyNYsCZ9XUje/W8sR+ZzhJ78qNhTNynxI4LxwZVg4JNo75ipiVA4zVKyB/Uj5b8LhMbUMbQzYVz2z8Oryas4z5tXCJP4fyzsn8961Fwo46aY7wZLyJMFeCqxdr72EyYms=
+	t=1770907807; cv=none; b=GY47YlsQvypgq/5BrOKnlz2PmrWBXhKwgY9BAJjem2gC7Z8piRiMxFbsNI7ZNb1cUUAW0XSYdGpz6l68/NOYyWvj+i9BJbesmcFY/PRAcoHzL0UBlB543YWqkFKrtQdJ/jN+175RmmJTMJOUoenBG4rOkDVHahm9glX9mK/vieA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770907454; c=relaxed/simple;
-	bh=wsRfq4JQHV9EhUjp6BlIKRlXnA1FZ0qmUD3BISX7I1E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oPS7Rc4y02H52zzFPG/HaPvnxyV1RIt46OebFcZKQ5rEl8eAGyz7LIoT3Jmt625rws2qEJECix/EhHnARJr1gU1wE/jB71GBcfQvEOGhdXSbQGbbzwE/+XUCWsFc2gj3JDuDPeJj0yKcCrKDf9JanzDLNPEfLuAhfWVCM/PEbN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XkxyqDfd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87E5AC4CEF7;
-	Thu, 12 Feb 2026 14:44:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770907454;
-	bh=wsRfq4JQHV9EhUjp6BlIKRlXnA1FZ0qmUD3BISX7I1E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XkxyqDfdIbc2bvCV2VBTnKQn9x0JFcTOZBtBFX9PB8A/2SpUcIM1nvBYIKLVp7Lmm
-	 lQadF0urGbstpA3g9OASJ+foqHw327u6Sa3rSgYzmtxZDbIqF8POCkoZL6HQ0uzA2n
-	 euVz7mNjkB/EnKj7QbbU4yEvU27No5zuj7siNzFWGIA4qqv9MeuF4DWoOhsyqGj+nQ
-	 YedwoFYYkkwAZIeXxE7U+M5M9UiuoXGQY1TTFXZs0kXeg0mCoNz2Ssbs09aLyqB1I6
-	 cG5j7sYjeMmNkVYyk0RePGcka/JK5TRHwlAEYq3Nqj2STN4KtIFqQSP7/eQ+SwpDmV
-	 N3yMaDkmI1QQQ==
-Date: Thu, 12 Feb 2026 15:44:11 +0100
-From: Thierry Reding <thierry.reding@kernel.org>
-To: Maxime Ripard <mripard@redhat.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	John Stultz <jstultz@google.com>, "T . J . Mercier" <tjmercier@google.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@redhat.com>, 
-	Mike Rapoport <rppt@kernel.org>, Sumit Garg <sumit.garg@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linaro-mm-sig@lists.linaro.org, linux-mm@kvack.org
-Subject: Re: [PATCH v2 04/10] mm/cma: Allow dynamically creating CMA areas
-Message-ID: <aY3j57xvdOY09EwQ@orome>
-References: <20260122161009.3865888-1-thierry.reding@kernel.org>
- <20260122161009.3865888-5-thierry.reding@kernel.org>
- <20260123-active-witty-rabbit-0fc5b9@houat>
+	s=arc-20240116; t=1770907807; c=relaxed/simple;
+	bh=zx6AgySWs3CQJ/r8IU+PeotcYw8+mqITBNN+IS1KfvU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EVwQusK+RAot0OQHu2J/6TZYJxYP2EdN9C11NABvFDNhahaD6lEJ4bI7cHRmmq+z2XeXShs0YI2FW41NHuQ9GUijYreFPFSsPdmP4AeQ6ngC+8uoZpPHOKwqV5dYPB5cFTdk1LCh2wmwQdFKeExzN6YQswbMz+h3MLGRGFblNCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-5662c2937fdso1769672e0c.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 06:50:05 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770907805; x=1771512605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=0NvQO/wNdDzAnDN3kqPLti/mAGnL7J/5+U3O5NXismk=;
+        b=dRR2hSFeaWnBoyO4TvJonoJrCMgypqjrjHeKeIRo0CcPUr2hXKGTSsB3WzGnCvQ83w
+         WVDGQetXFogcjRVgXTRpzDANBJC/Hn08Qw12n4NTreJ+lmIKxyH0+9oTxyoiPYr6lWjW
+         cFtjHItT+8FCX8ouKzgMqI1ggoLY1PDv01vu4socOAb0tqL4TLOilvBdLcBSDLTwmTsz
+         ftDS7PVeMo/i/xrpi2FXXpkW8hQt+9dXj1LKTv1e14sv1UJtO+S8+htke5cKDUHUNmph
+         Nro+2FPO5sQeg6YClPWo2b3fMqFz34xt+lLc9uA8I2hpeYNtokn4t8vE1Y/GETOAUFpF
+         bUPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXWYAxYXHhOA3uhIbtHbuEsGcnGeM+68NxkzBDl9fRA95EgWQGRyVCqBj9vKRX0bCiHODJxbAUhl7RG@vger.kernel.org
+X-Gm-Message-State: AOJu0YwG/b/5UdNcv24UVyPuT580N/AmMLkgeUrxlKw4G4qxDWHKha8q
+	Kq3a3/oM0CxG3XeQe5CSezBRdmHE1bwMEcgs6O+FMmpTo8blcGFWlgxPjviJKJ9n
+X-Gm-Gg: AZuq6aIv5SRlojmKKS2aXfN0JxB1lyD0NVYzqXSBcUEqhJQCfziXukQehTaSCpMhNco
+	l4hoEg3xpnjR+aAMjpDRVRZtjMo7Uv4to1C158yXTnUTEs87MD4zqOtmDOfFPOq24OlMMGNgnzN
+	BA7VjEs3Kj1jZm0R5ywu3OGR/MQuOIbjgXR3dfF1GIsFoS3PBjEYCnPPC6Fu3cFvomzO3wF8BNY
+	/susvKsCZard23/dVIXBCJmHq0U72/s2gSDrerqfmGaqL0yk2U/oJr5tGlJRFkFZvWfXaGUjJh0
+	Xoscad2kvoWFlah/7zNoK+Qr3xRl8lpFHneodvNYhB64tV5QJz55p3rPMATmf8n1ttVoqpg9E3G
+	Kf7JhOIS8J2v/OvdA2LWH7zTIjePpsAvJv6DBEfGJIJmq4Et2A8viBxWKHIhRmjIeKN+BRTS9cg
+	gcYFL641xMlfeQJoHpJMLMuI+hOpnnj5BMeamBYiB2RLGXfVbQ9EnuRuI98bxl
+X-Received: by 2002:a05:6122:4d0e:b0:55e:82c3:e1fb with SMTP id 71dfb90a1353d-5675a4020aamr748644e0c.10.1770907804758;
+        Thu, 12 Feb 2026 06:50:04 -0800 (PST)
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5674bc76b6asm1938884e0c.0.2026.02.12.06.50.01
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Feb 2026 06:50:04 -0800 (PST)
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-5fa3f2b8f7dso1410885137.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 06:50:01 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWG9GlY1bs52QrTnCx4Gv3ByVEOGoPo3RrLMASQShaYvfx7xzOwBC8tSXXCayGDHKhERt9nULKMdnxl@vger.kernel.org
+X-Received: by 2002:a05:6102:b16:b0:5f9:2ac5:2fc4 with SMTP id
+ ada2fe7eead31-5fdfdf15952mr936376137.17.1770907799750; Thu, 12 Feb 2026
+ 06:49:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="glr5iu7kbaysq2rw"
-Content-Disposition: inline
-In-Reply-To: <20260123-active-witty-rabbit-0fc5b9@houat>
+References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
+ <338e6575-ec44-4179-94af-9086a7ca79ac@kernel.org> <92359c6d-06ac-4f8d-baa5-6fa45a536455@kernel.org>
+ <CADvTj4q74H__JZftOiXkdsY3+E_Xmcx6Y6i70RQDJ0K09=XOHQ@mail.gmail.com>
+ <30026ed7-cd19-4be2-adbb-e8bb155a75b8@kernel.org> <CADvTj4oBtO0Yhib1rE8QQwgtJvy-x_hK46C63mjVAydtxHOV8g@mail.gmail.com>
+In-Reply-To: <CADvTj4oBtO0Yhib1rE8QQwgtJvy-x_hK46C63mjVAydtxHOV8g@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 12 Feb 2026 15:49:48 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW4oNeGY4VP7zajOS17apnjqS050H5L+Pxqe9bqqt=WNQ@mail.gmail.com>
+X-Gm-Features: AZwV_QikOS80PENLHmR1lFwFY0-ZpGoOD-VsDMq5xij9EK0PUpviHol_KwwKmZs
+Message-ID: <CAMuHMdW4oNeGY4VP7zajOS17apnjqS050H5L+Pxqe9bqqt=WNQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-gpio@vger.kernel.org, 
+	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexander Stein <linux@ew.tq-group.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265099-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265103-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,linaro.org,kernel.org,collabora.com,arm.com,google.com,linux-foundation.org,redhat.com,lists.freedesktop.org,vger.kernel.org,lists.linaro.org,kvack.org];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 3D39312E875
+X-Rspamd-Queue-Id: 60A3012E9DE
 X-Rspamd-Action: no action
 
+Hi James,
 
---glr5iu7kbaysq2rw
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 04/10] mm/cma: Allow dynamically creating CMA areas
-MIME-Version: 1.0
+On Wed, 11 Feb 2026 at 18:01, James Hilliard <james.hilliard1@gmail.com> wr=
+ote:
+> On Wed, Feb 11, 2026 at 1:44=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.=
+org> wrote:
+> > On 11/02/2026 09:28, James Hilliard wrote:
+> > > virtual gpio driver though so AFAIU it's not hardware specific.
+> >
+> > You can give example of any hardware where this is useful. You need to
+> > make your case with actual arguments.
+>
+> The sunxi h616 board I have has hundreds of GPIOs, only
+> a few of which are needed, I want to map them in device
+> tree overlays since there's some minor variants with different
+> hardware gpio configurations.
+>
+> Setting the gpio names on the parent controller is not practical
+> since doing so would require setting hundreds of values for
+> gpio-line-names, you also can't really combine sets of pin
+> names across device tree overlays AFAIU.
+>
+> > > Use case is I have a device with something like 300 gpio
+> > > lines...and I want to name/group a small subset of those
+> > > lines for delegation to a userspace app rather than trying
+> > > to set 300 or something gpio-line-names values, also I'm
+> >
+> > So if I change the approach in user-space or use different user-space
+> > app then I change the DTS?
+>
+> The idea is to make it practical to set gpio-line-names for a
+> subset of the GPIOs that are wired to peripheral boards.
+>
+> Say for example I have a control board connected to a few
+> different peripheral boards, there may be different mixtures
+> of peripheral boards, some of which can be used at the same
+> time as they use different GPIOs.
+>
+> The idea is we load device tree overlays for the detected
+> peripheral boards with detection done in uboot based on a
+> GPIO pin strapping based detection.
 
-On Fri, Jan 23, 2026 at 02:25:16PM +0100, Maxime Ripard wrote:
-> On Thu, Jan 22, 2026 at 05:10:03PM +0100, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > There is no technical reason why there should be a limited number of CMA
-> > regions, so extract some code into helpers and use them to create extra
-> > functions (cma_create() and cma_free()) that allow creating and freeing,
-> > respectively, CMA regions dynamically at runtime.
-> >=20
-> > The static array of CMA areas cannot be replaced by dynamically created
-> > areas because for many of them, allocation must not fail and some cases
-> > may need to initialize them before the slab allocator is even available.
-> > To account for this, keep these "early" areas in a separate list and
-> > track the dynamic areas in a separate list.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
->=20
-> AFAIU, this won't create a new cma heap when registering. This goes
-> against the recent work we did to create one for every cma region.
->=20
-> I guess, since you have a driver that would explicitly handle that
-> region, we should create some kind of opt-out mechanism, but by default,
-> we should still create such a heap.
+Sounds like the work being done in "[RFC PATCH 00/77] Add support for
+dtb metadata and addon device-trees" [1] can be helpful for you, too.
 
-It sounds like there's a bit of a conflict between what you want to
-achieve and what this series attempts to do.
+[1] https://lore.kernel.org/20260112142009.1006236-1-herve.codina@bootlin.c=
+om
 
-The way I see it, the CMA code is more of a helper that gives you a
-specific functionality set. Exposing each CMA area as a heap that
-userspace can allocate from seems like a bad idea to me.
+Gr{oetje,eeting}s,
 
-Without knowing anything specific about a CMA area you don't know if it
-makes sense to expose it as a heap. Given that there is very little
-information associated with a CMA area there's only so much guessing
-that you can do. I think it'd be more sensible to make CMA areas opt-in
-to have a heap created for them rather than requiring opt-out. Exposing
-a heap publicly applies only to a (potentially) small subset of all CMA
-areas, albeit at the moment it may seem that that is what it's primarily
-used for.
+                        Geert
 
-In fact, for this particular driver nobody must allocate from any of the
-CMA regions associated with the heap driver outside of that heap driver,
-simply because the heap driver maintains meta data about these CMA
-regions for things to work. If we allow access to it from anywhere,
-things are eventually going to explode.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-> That being said, it's not clear to me why the heap driver uses CMA in
-> the first place.
-
-We use CMA as a way of reclaiming memory if needed. The heap that we
-create is meant to be resizable, so that when nothing uses the heap, the
-memory can be reused for other purposes. However, when memory is
-allocated from the heap, we need to reclaim that memory for the heap and
-relocate any buffers allocated from the region somewhere else. CMA does
-all of that for us, so it seemed like the logical choice for this.
-
-Thierry
-
---glr5iu7kbaysq2rw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmmN5zgACgkQ3SOs138+
-s6FSqRAAwWGzG1UjDgVwyR+isYP6DrFMGbojEtczHFxgKElBKoFjjqtdmpN97XRD
-7MIc1C6LGCLoJa++YXy7ZlL24CTzYRohVBnmy/Hygdz2uoaeW7GdR0M31slI/lG4
-TpliCL/GXNi1ZhmE8BjykmsEqgjHG+PH9Vd1/VEgo/5DoaX3uc+8TndO9hqh/Jgh
-gFScFbr/VRKDx8wdWyhOsWN4Nm52uJBCPbhJ8dGv4iabMopEwOlLpcm32aFNWMHv
-El8zIIeGzfw9lfWm2WZvtO8heFn3R0kT5yw4opDc7STvO7k6fC/ZQWbg86FR71/e
-DtrHMcjjg+75TIZemvKQwPrshL7CAdwcaNnT+QxVKE0oqHxjoIonRsUkEaTrFKyE
-6n6eqR8+enCtH3hamWE6rFocZQzL5zXxqILwbzeAR/4CBtXBh3pZL4SH6V0cye9h
-jci5Lfjh2SiLSggSKXsTBgrCLCvz8DuapM8GEtfkRS1YoKrix+uGe0nj+J3uAx+U
-SyvOCMoTb+WWQNOyNBMpS2Wk3KcNDMuadOtuxbZa1BInxUBOktPn/km1vJgiO0au
-5sWtH6xSgLF50qbTEFRVg+Pz31LIT+TZSA6L2gj5EmD1gKZeefPCtkiBgDZdsvwk
-KAejAHsfMS0kibucCHIgTg6cjifaVKfFVtiBh3BX8ZuSmmlqnOM=
-=TTIe
------END PGP SIGNATURE-----
-
---glr5iu7kbaysq2rw--
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
