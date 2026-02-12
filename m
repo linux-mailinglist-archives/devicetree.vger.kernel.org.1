@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-264916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264917-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mEaQO8N+jWl93QAAu9opvQ
-	(envelope-from <devicetree+bounces-264916-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:18:28 +0100
+	id APBHLLGAjWnS3QAAu9opvQ
+	(envelope-from <devicetree+bounces-264917-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:26:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85F8912AE7E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:18:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 141F012AEFC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:26:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9834C3021975
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 07:18:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 77E9F302A6A1
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 07:26:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A812BDC3E;
-	Thu, 12 Feb 2026 07:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF29C2BEC3A;
+	Thu, 12 Feb 2026 07:26:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q7MjYzHE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J/SXfUVA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC399287276;
-	Thu, 12 Feb 2026 07:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 996FB2BD5BB;
+	Thu, 12 Feb 2026 07:26:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770880703; cv=none; b=tw8pqZYqr4NKVvhWhOIUbLrDp6Ch3kTHYo0I0eYjLAvcZnTU4O4MaDMv/fIiOcDIzA97KOj/oO4qWWdEzv3NZiBZ1HjLeUhOKMPqi+u3/u+FJrwPAOFXRyQH7SFW1U97b/zjGTQaAHp3kXQMHZCqWFcxB/ZBQpEFzYm3M1XWVfU=
+	t=1770881197; cv=none; b=qvx5PN0Kj8x/6ct1PFyIDP4k5R9UbCfYnFnVIlYcus/r7PpRvzZ8RwqE4sktH7D/moheyMI2T3wMf+PMu2E81dxIRQ/YIb9yB3F1aVV0P88XB3dnmgWEwEtmlt31fXOH3dRo2Y6numSJtKh346ea6ydEtRZmRO2KZCfZJn491eg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770880703; c=relaxed/simple;
-	bh=iv2usDJpkd7PkupLPM9HVa9bmiZZ89WgfkI5p9Qe6VU=;
+	s=arc-20240116; t=1770881197; c=relaxed/simple;
+	bh=Y+c1D0clIQEkBNPBXeRyVnn8RjYZRLDoCFIYnvvfeNQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oL6VsIQORDMEXjM7Dm7O4Y8zRktWWUuLb0w/LIYO5KN0YlRhhlZdHNlNKqmj1tIRQnzeqjdlkMYUmeNJSZaIvg2+DnEE0gJfRD8Cdz82LBzDQPKEbJqgA/YlTnk7FgfIY/WrXFn23cZj0tgKl3pqs6y1vhPlkNy/KMO6RLlSw5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q7MjYzHE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7450C4CEF7;
-	Thu, 12 Feb 2026 07:18:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=WBsqZRCHcB6E5GXbyAPDwu6hn5LMF0/zl3bdGZp9pfbIZL4mOVhj/B5+5ql4TNCFN9oDi3S7t6TSTN00bqAuclWXjKe40CQzNGt38eAwIFsIiLm6FMsAmIsC0HDzZJd3QS/i/YTr/8C6CQ8ewnot7jiW9y7shNw1GfGBTr4bN+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J/SXfUVA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20A3BC4CEF7;
+	Thu, 12 Feb 2026 07:26:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770880703;
-	bh=iv2usDJpkd7PkupLPM9HVa9bmiZZ89WgfkI5p9Qe6VU=;
+	s=k20201202; t=1770881197;
+	bh=Y+c1D0clIQEkBNPBXeRyVnn8RjYZRLDoCFIYnvvfeNQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q7MjYzHEtKh4A+D/GXOs9okQeXzLovSogzszcFfBCD3YrVnG5g3VnlpaQc/rxQ0/n
-	 zB8d+EgsIm22KVxCMmx12lEYXKYxXUZ8DfDRaZtdHqTkV1qpAxFeVs8PiRxzuAR3JJ
-	 Vkb/Afg48BtPb+n1F4GdsNcyrG2pMBSVHczQ3sr0u5wm0zfjZQXRFxhm8H+OTUCJTW
-	 V70oi+7k1m7j0kUjjzWvBhg+ImgsRIcYROabt3WBvE1ysCYAKstfJk0ahAJ6bztb0X
-	 3N9lHlrV/tfilIPvst39DIHB4B/HhiuCxDhYPo3ZlpGc9FjFyuDTuZoSeLBduhs8td
-	 1PHzPg1se5onA==
-Message-ID: <9afa52c1-b7de-4ccb-9114-a142567d21af@kernel.org>
-Date: Thu, 12 Feb 2026 08:18:19 +0100
+	b=J/SXfUVA9xVTDTPeSpRwwJmNYsCzo+SMR2hh8MqOCjWms/xjirL1f3T0rrnbv93bY
+	 b+eHx5EcZ18FL17FN7Ja6MkyKZZta+4xwYXc83qtdEg70/HTuJNwrHke8W+YGXKl1D
+	 fyIJOMdrprjv7FkMmaKTm9CQ3tEaUd9nMpcnlzHXot/Pj8cqttIgiirize5knWgTLX
+	 owlisgJ2AIcUVAWKtaE1GRD+vwg1hvyhKyfi/YCKK73FN9ZHCd2WR70QHcMLr92hKu
+	 WjhpZL+15DoNPEnaYrvpYGcExZJLfltDApIsCPFl0XufVrfuz4St1MFx8tK7mz+Kzl
+	 mF3XAADtlNmaw==
+Message-ID: <a58587d3-65ec-4d40-aab9-dca08278c2f2@kernel.org>
+Date: Thu, 12 Feb 2026 08:26:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,21 +53,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] gpio: aggregator: add gpio-aggregator DT
- compatible
-To: James Hilliard <james.hilliard1@gmail.com>, Rob Herring <robh@kernel.org>
-Cc: Bartosz Golaszewski <brgl@kernel.org>, linux-gpio@vger.kernel.org,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Linus Walleij <linusw@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alexander Stein <linux@ew.tq-group.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
- <20260211081355.3028947-2-james.hilliard1@gmail.com>
- <CAMRc=MfgoKmsNAmn3rO2jDL-ZArMX2Jh-n4SnV6rpzRY3KSwuA@mail.gmail.com>
- <34a9b531-4f53-47ee-861e-1b18ff1a5752@kernel.org>
- <CAMRc=MfwQ8J7eT_geEf7Kj230SOvmO-LDHz9a_YgfRY-QB5V8w@mail.gmail.com>
- <20260211214708.GA3947691-robh@kernel.org>
- <CADvTj4p-zHMrXW+GJstB2sKS-7Wij98JNJGoiPiYmaP5RHhNQg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: mfd: maxim,max77686: document
+ optional RTC address
+To: Svyatoslav Ryhel <clamor95@gmail.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-rtc@vger.kernel.org
+References: <20260211184941.6756-1-clamor95@gmail.com>
+ <20260211184941.6756-2-clamor95@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,62 +108,47 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CADvTj4p-zHMrXW+GJstB2sKS-7Wij98JNJGoiPiYmaP5RHhNQg@mail.gmail.com>
+In-Reply-To: <20260211184941.6756-2-clamor95@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	URIBL_MULTI_FAIL(0.00)[sea.lore.kernel.org:server fail];
+	TAGGED_FROM(0.00)[bounces-264917-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264916-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com,samsung.com,kernel.org,bootlin.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 85F8912AE7E
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 141F012AEFC
 X-Rspamd-Action: no action
 
-On 11/02/2026 22:49, James Hilliard wrote:
->>>>>
->>>>> Regardless of the DT bindings - this change is perfectly fine. We do
->>>>
->>>> You cannot have compatible without DT bindings, so this alone is not
->>>> "perfectly fine". Maybe you wanted platform_device_id entry for
->>>> ACPI/legacy/MFD devices?
->>>>
->>>
->>> Sure you can, you just can't put it into upstream devicetree sources.
->>> We have had a compatible for gpio-sim for testing purposes for years.
->>> Why would it be illegal to enable matching of platform drivers over DT
->>> for testing purposes?
->>
->> The primary issue is undocumented ones show up in 'make
->> dt_compatible_check'. I would like that to be warning free.
-> 
-> Would adding it here make sense?
-> https://github.com/torvalds/linux/blob/v6.19/Documentation/devicetree/bindings/incomplete-devices.yaml#L243-L245
+On 11/02/2026 19:49, Svyatoslav Ryhel wrote:
+> Document an optional second I2C address for the PMIC's RTC device, to be
+> used if the RTC is located at a non-default I2C address
 
-What would you like to achieve with that? The binding patch did not have
-rationale why do we want it and here is the same question - what sort of
-problem is being solved by adding it to incomplete (so wrong) devices?
+MAX77686 did not allow changing the I2C address and there are no other
+devices in the bindings.
 
 
 Best regards,
