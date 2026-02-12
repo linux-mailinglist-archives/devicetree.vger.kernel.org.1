@@ -1,308 +1,351 @@
-Return-Path: <devicetree+bounces-265198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265199-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0NMaEM5BjmltBQEAu9opvQ
-	(envelope-from <devicetree+bounces-265198-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 22:10:38 +0100
+	id SCuCD55EjmmPBQEAu9opvQ
+	(envelope-from <devicetree+bounces-265199-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 22:22:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 874AA131244
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 22:10:37 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68FDB131386
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 22:22:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 048A73072190
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 21:10:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 214C8301DAB4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 21:22:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DEE22BF3F4;
-	Thu, 12 Feb 2026 21:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0A9B31984E;
+	Thu, 12 Feb 2026 21:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MKedIuS7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EDts6vKw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AF4E18BC3D
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 21:10:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770930634; cv=none; b=SYG2/qNG1spFee6J8xsjn58Dl+n8n741RXddomCiPb9EHyRkuYpOT/X208T+49f+vc3mSsBv+9nyGROwqWyc3Mce+dfhJBJBOnxYBASIYKkQh4srL/8KOzgo+b9gxfxiBpwodQRbLUVk74rd77QjMugoKBDItPggwfL95ysBvu8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770930634; c=relaxed/simple;
-	bh=mvdPPd9MTlAzGcEDHBnGOWpQp3W0SRG282ox6GhN6yU=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20809298CC9
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 21:22:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.217.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770931341; cv=pass; b=oIh6vBuuS44lOjtIkJMszw3oWW+riVsXDnDuerTwf9csz2PaUlV1sz0+TopdW5uJdNPBtHhAtvrHE+31QEd6zNsAlPbOM6dIqcW19+bmw7YrE4FItK4yK94GwxEESHR50g7ck6kaIHyUbREsVPmSDAcPNXBh8VMjbFkxqeGiSuE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770931341; c=relaxed/simple;
+	bh=2Q80iWLlO/EsAMi2xxRZK64CHFdB+K1b20bleGuBlSQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HVZ29jNkD7pj2SaSgwX0QmZV7fVNFZdQBeHdhzq70st48a95J74iJ6GRZ8y64NJAaL2XH/s7jvy/Pl2HR+zO+CRXDclT20/+nrRBEph8qhXcGZ27cZcR7fQtYWy8GNVOHdFxPYMXPGqBjcH0FkM7UJcKlTdkcaH2UNtShGhNF8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MKedIuS7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F28E2C19424
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 21:10:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770930634;
-	bh=mvdPPd9MTlAzGcEDHBnGOWpQp3W0SRG282ox6GhN6yU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=MKedIuS7UHjUhPjWdfzeH7gPRKU9MGbhvFeNiyA4RcYeeFQjbnJ2z68IdbptFVcxS
-	 Hftd1/ErHqlf6F1LHtuf3bP31mAy6nscejBalABRjCZKIDmhWUFI1LIDpWNA8p0LFq
-	 jXxV1TPNwC2eQdhcjjP9vrht2WKzaRRnZL1sk6+G563h7bUBu3MRe7nsaEI9YFLwM2
-	 2/217ZxlFyDOqe2kmSMZf2GkOpJSMKGi2/es+J/b9YUsxmD4tPlzB8nmvaYVsRLiPl
-	 KDYDkaGYXDg4gIY0qg3Si7ap1P1O3BN+evLrMc9IWrM7y856l7oosyY5oDgaHCJIaG
-	 P7CxikvdtY8sg==
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b884cb1e717so359150766b.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 13:10:33 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVTv5i2a1XQ9kTETLZJoQyHaFVFgkKesIgRBhrk5hPRe+TTSQqP6oEejXyjQGJjek6ki7Ynzn9WwL6X@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9mwgr+w5PgSDSDDqs2UcyQq2hA2R/t3iXcf/o6eL5J8ulDQ/4
-	6gBI5XdP+Hz+3sg0b6wSjdUaQDCD1kJjzvXYSQSRkZP4bzL4qWGJKCTlH3wEkGz0mrszrJshhKQ
-	vNP7LwHJYBZUoKIxlnEbGX0tpvWAxog==
-X-Received: by 2002:a17:907:72d2:b0:b73:37aa:87c0 with SMTP id
- a640c23a62f3a-b8f9069c11fmr208094466b.23.1770930632527; Thu, 12 Feb 2026
- 13:10:32 -0800 (PST)
+	 To:Cc:Content-Type; b=m1lS9vZNF7uGFO6yqD/NrTmqTdwuACpfpnM/bhgMKasFJz3kHmJ+k5tBDZaj266Y0Et/G63xEplan9Hv/msHr/FFmUeBrav5RSXHBF0ZCUeuiIKNX3ziuNeJTEEtxllMz724hHZMcInSD5ZfIU8dFN7F17FOLFqN+eTdrv9lZD4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EDts6vKw; arc=pass smtp.client-ip=209.85.217.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-5fc4220b0acso106292137.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 13:22:19 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770931339; cv=none;
+        d=google.com; s=arc-20240605;
+        b=dlO2yKviKreafQTOMaaF8YQZnl0mmAMA5MVPH/A51/XolHCZEJy8KrKRWXe8Uouo2P
+         xt8wdzXBtV/cAFSIFYC+0C9BicAenUQF2mDug0UAONacJzeuQVU5F9FjsABtv0NX37iM
+         U0SNi3sKJZCb/uRSW+xtdtGONnqUBS2llAuZ39aY+O4F0eGV8XxqMqkD+9KFhTKa8tSX
+         maWSNVOpmUulI4x5HZyX9WDiy8Mn05iQ7E82MkfPRB51lJQaTkYPl1CaJwkElvpcOroZ
+         dKhaaP+8eGImM9LUO7uKE5qKW2DsZ7htX6j4PwNdVmoVwHhRKv8AtZzuZoKVWudie+Mj
+         SdLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=lJbkjkMJnR0L+7fmUU2v5pdQLPoQqPz3qy/LeQMOfTI=;
+        fh=vxcajKJw83pI0A9igtGVrSmrW7mzr9n7wjSyA3z+n58=;
+        b=BOXfQ/vw5PgJX1oDWsx6yezakerMQ+BpO2btlFCvZGN7JnLwUCGJXH6Uql6rpwCogW
+         BRxBeytXqEEj0jt93bairUza8BufuWsJQMW5WizLfz/yT2r+hqG6B5aQBlA9WnwTy1bV
+         nAsIim3RLtlHuAij2OknfijbcQm8PS3jDb5j2UuM4B0g65ROEauK2FPWQqRqk59XTc4+
+         3FkHOvoT1lXSyCsXTqwVLh41LpP8/sAOEXE9Gfh7voev+/mkk9eW9ZnXQAp6IOeKneQO
+         JyNGpCrDaJvCEtMEopbQ5PjrwFySJHHpa5imDYjzhO6DMoq4vNGVBPzgFMGVd2cQzd11
+         dLtA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770931339; x=1771536139; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lJbkjkMJnR0L+7fmUU2v5pdQLPoQqPz3qy/LeQMOfTI=;
+        b=EDts6vKwk2USlhd6hBjgjOf5FnDiPukq2EOYc8mOWdAwcAjRQK3LQKe23UoCmwIXk5
+         CPZOAj3trm8RcexwHiYY260RznRs0Rdro6QNzSenyrTkOwYoHGzilnoRjpZt0DaA3lb6
+         HeYOlvdLsQdCmv6+OwGM09QSrAfFmzi/2y5po6JsRIn+oPI8cbu+Qm20Oa6uHQjVEwyt
+         iJsKKPoGxu92Zp6IR81bWf6vVg1bzA0DZpWVv0p4xha8klIvJxTEc9Pa+rbIKRZ8EZmq
+         VWo2AqBFol7zmN2PJNtk6xk1LwvLElitU9+Qspr4tEG3C9xvG6uPtUngHL3Gtof0yt78
+         WFvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770931339; x=1771536139;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=lJbkjkMJnR0L+7fmUU2v5pdQLPoQqPz3qy/LeQMOfTI=;
+        b=K6GEw1AwIOrTw7zkuzz3tmytfpyyl4Q/LgJxY7zFx4A93Q8ITzWl0JC+AcMPCWE0DP
+         BOMLu3LlJ9067TZAqRTK9H04g/zfVXvRO7GMKEMousXZNgYg3UsYAI14LBHsJGaKvB5f
+         5THMDJ6R8e2TPC1bj//8V8GlOvGLNKdMDg1ar2YIyV4Pvcnl919rdH8Z6A17m8OiWBI2
+         0yAUfx0fE9S3tJjxmJ3VOrCAPU/d3QaVa4/z2sDbfrH91ueGkZYzg/87IJoKYJdEjdfC
+         DVLmx1RBGYmDJziRTd1a1KRXFekDiyEGlb+OxFA0A36H0F0ARVWtC/mHTW9UNi7DTaGR
+         UKcg==
+X-Forwarded-Encrypted: i=1; AJvYcCWS6GVpSEHbN8NaaeD1CmBnx4BHE+Xv64MVGPAH04lpFP/Min1pfHoA7iMyDW/+el1+gMnDTS285efX@vger.kernel.org
+X-Gm-Message-State: AOJu0YwFLWETbtsn2UcOe2wJG9uO6GlHwkQ0KZU/yi9kVTtkEKU/B7Gc
+	V+dqHsa5VFI84nQmkS5MGObgCvfrdzYVvnwRFfa2xOvwhDRoptwFUnJ5OZF+ZWpHhSJ/RHXCSAN
+	pD9JoIZt0c4Hi2WGOntcIjTTLxWj6yOQ=
+X-Gm-Gg: AZuq6aJndfZAJBAIoR5e3iEtX0EinVjn8Oca7ASGcV64XxoJZiKSzINBocFVWJZtcw4
+	w3jS41rhxvLHPYu/3e/ayWlFFQMJ4QNRRKwipgikmUrgA0s+SKV2/D9mTB+bxnm1xsQbYZ9QZYM
+	UKFkuz+/4jTcgW8/JyAT4x5/znt+iE8Lu5gnI++5T1MiciMckCO0autXWKG6AdNu9x1+FIkI4tP
+	XvhhpB+8zcDgrwMwT/ALyfJT/dCaT7gsz3chSgqLiAUp45ZHDGkFcB/3uLK/VV27GjGpW9n1406
+	OujquUMTn0Izi5RSThyxqVUWbEICh1aGgbSDH+6wMUBMwU//SEywx/mCnclGNxH6AZ+b
+X-Received: by 2002:a05:6102:3a14:b0:5fd:eff4:825 with SMTP id
+ ada2fe7eead31-5fe16eb84f7mr64745137.26.1770931338959; Thu, 12 Feb 2026
+ 13:22:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260203161917.1666696-1-vincent.guittot@linaro.org>
- <20260203161917.1666696-2-vincent.guittot@linaro.org> <20260210004011.GA2188625-robh@kernel.org>
- <CAKfTPtA299R7yn3r=tCqhhP_tK3E_UpGSMrDLyRP4Ccwt1m58g@mail.gmail.com>
-In-Reply-To: <CAKfTPtA299R7yn3r=tCqhhP_tK3E_UpGSMrDLyRP4Ccwt1m58g@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 12 Feb 2026 15:10:20 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+SswpTjQShfkdhVwL_k8gJ_5+NrecPCUiFR52UB5zNMA@mail.gmail.com>
-X-Gm-Features: AZwV_QjelX9NLva1DLDx_tMGAWuQk_3-b-qqDMfkQH9yt3x_72JwdyevIvbKnTI
-Message-ID: <CAL_Jsq+SswpTjQShfkdhVwL_k8gJ_5+NrecPCUiFR52UB5zNMA@mail.gmail.com>
-Subject: Re: [PATCH 1/4 v2] dt-bindings: serdes: s32g: Add NXP serdes subsystem
-To: Vincent Guittot <vincent.guittot@linaro.org>
-Cc: vkoul@kernel.org, neil.armstrong@linaro.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, ciprianmarian.costea@oss.nxp.com, s32@nxp.com, 
-	p.zabel@pengutronix.de, linux@armlinux.org.uk, ghennadi.procopciuc@nxp.com, 
-	Ionut.Vicovan@nxp.com, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, 
-	horms@kernel.org, Frank.li@nxp.com
+References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
+ <338e6575-ec44-4179-94af-9086a7ca79ac@kernel.org> <92359c6d-06ac-4f8d-baa5-6fa45a536455@kernel.org>
+ <CADvTj4q74H__JZftOiXkdsY3+E_Xmcx6Y6i70RQDJ0K09=XOHQ@mail.gmail.com>
+ <30026ed7-cd19-4be2-adbb-e8bb155a75b8@kernel.org> <CADvTj4oBtO0Yhib1rE8QQwgtJvy-x_hK46C63mjVAydtxHOV8g@mail.gmail.com>
+ <20260212195423.GA787785-robh@kernel.org>
+In-Reply-To: <20260212195423.GA787785-robh@kernel.org>
+From: James Hilliard <james.hilliard1@gmail.com>
+Date: Thu, 12 Feb 2026 14:22:08 -0700
+X-Gm-Features: AZwV_Qj2iNJknyOdMvovav2QeJixLpYucI_gIuCIgL06PMhb9lk3yHI7CRg8Nv8
+Message-ID: <CADvTj4rPq8D5piqEijCdAjkWmZtq3Bi_Kxv-4F0aU4xi_O5WKg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-gpio@vger.kernel.org, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Linus Walleij <linusw@kernel.org>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexander Stein <linux@ew.tq-group.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265198-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265199-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,linaro.org:email,0.0.0.0:email,devicetree.org:url]
-X-Rspamd-Queue-Id: 874AA131244
+	FROM_NEQ_ENVFROM(0.00)[jameshilliard1@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 68FDB131386
 X-Rspamd-Action: no action
 
-On Thu, Feb 12, 2026 at 1:17=E2=80=AFAM Vincent Guittot
-<vincent.guittot@linaro.org> wrote:
+On Thu, Feb 12, 2026 at 12:54=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
+e:
 >
-> On Tue, 10 Feb 2026 at 01:40, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Tue, Feb 03, 2026 at 05:19:14PM +0100, Vincent Guittot wrote:
-> > > Describe the serdes subsystem available on the S32G platforms.
+> On Wed, Feb 11, 2026 at 10:01:05AM -0700, James Hilliard wrote:
+> > On Wed, Feb 11, 2026 at 1:44=E2=80=AFAM Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
 > > >
-> > > Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
-> > > ---
-> > >  .../bindings/phy/nxp,s32g-serdes.yaml         | 154 ++++++++++++++++=
-++
-> > >  1 file changed, 154 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/phy/nxp,s32g-se=
-rdes.yaml
+> > > On 11/02/2026 09:28, James Hilliard wrote:
+> > > > On Wed, Feb 11, 2026 at 1:19=E2=80=AFAM Krzysztof Kozlowski <krzk@k=
+ernel.org> wrote:
+> > > >>
+> > > >> On 11/02/2026 09:17, Krzysztof Kozlowski wrote:
+> > > >>> On 11/02/2026 09:13, James Hilliard wrote:
+> > > >>>> Document the gpio-aggregator virtual GPIO controller with a dedi=
+cated
+> > > >>>> schema and compatible string.
+> > > >>>>
+> > > >>>> Also extend the GPIO AGGREGATOR MAINTAINERS entry to cover the n=
+ew
+> > > >>>> binding file.
+> > > >>>
+> > > >>> <form letter>
+> > > >>> This is a friendly reminder during the review process.
+> > > >>>
+> > > >>> It seems my or other reviewer's previous comments were not fully
+> > > >>> addressed. Maybe the feedback got lost between the quotes, maybe =
+you
+> > > >>> just forgot to apply it. Please go back to the previous discussio=
+n and
+> > > >>> either implement all requested changes or keep discussing them.
+> > > >>>
+> > > >>> Thank you.
+> > > >>> </form letter>
+> > > >>>
+> > > >>
+> > > >> First thing which was missing (I did not even check the rest in su=
+ch
+> > > >> case): missing rationale for this patch, missing hardware descript=
+ion.
+> > > >
+> > > > I added some more details to the commit message, this is a
 > > >
-> > > diff --git a/Documentation/devicetree/bindings/phy/nxp,s32g-serdes.ya=
-ml b/Documentation/devicetree/bindings/phy/nxp,s32g-serdes.yaml
-> > > new file mode 100644
-> > > index 000000000000..fad34bee2a4f
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/phy/nxp,s32g-serdes.yaml
-> > > @@ -0,0 +1,154 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/phy/nxp,s32g-serdes.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: NXP S32G2xxx/S32G3xxx SerDes PHY subsystem
-> > > +
-> > > +maintainers:
-> > > +  - Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> > > +
-> > > +description: |
-> > > +  The SerDes subsystem on S32G SoC Family includes two types of PHYs=
-:
-> > > +    - One PCIe PHY: Supports various PCIe operation modes
-> > > +    - Two Ethernet Physical Coding Sublayer (XPCS) controllers
-> > > +
-> > > +  SerDes operation mode selects the enabled PHYs and speeds. Clock f=
-requency
-> > > +  must be adapted accordingly. Below table describes all possible op=
-eration
-> > > +  modes.
-> > > +
-> > > +  Mode  PCIe XPCS0           XPCS1           PHY clock       Descrip=
-tion
-> > > +                SGMII                SGMII             (MHz)
-> > > +  ------------------------------------------------------------------=
--------
-> > > +  0  Gen3    N/A             N/A             100             Single =
-PCIe
-> > > +  1  Gen2    1.25Gbps        N/A             100             PCIe/SG=
-MII
-> > > +  2  Gen2    N/A             1.25Gbps        100             PCIe/SG=
-MII
-> > > +  3  N/A     1.25Gbps        1.25Gbps        100,125         SGMII
-> > > +  4  N/A     3.125/1.25Gbps  3.125/1.25Gbps  125             SGMII
-> > > +  5  Gen2    N/A             3.125Gbps       100             PCIe/SG=
-MII
+> > > No... Commit msg is exactly the same.
 > >
-> > Mixed tabs and spaces. Drop the tabs.
->
-> okay
->
+> > I added the details to this commit message specifically:
+> > https://lore.kernel.org/all/20260211081355.3028947-2-james.hilliard1@gm=
+ail.com/
 > >
-> > What's not clear to me is do you have 2 or 4 lanes?
->
-> 2 lanes per serdes
-> as an example mode 0 is one PCIe x2 lane
-> and mode 1 is one PCIe x1 and one xpcs0/SGMII on lane 1
-> or mode 3 is one  xpcs0/SGMII on lane 0 and one xpcs1/SGMII on lane 1
-
-Still confused. So 2 total lanes?
-
->
+> > >
+> > > > virtual gpio driver though so AFAIU it's not hardware specific.
+> > >
+> > > You can give example of any hardware where this is useful. You need t=
+o
+> > > make your case with actual arguments.
 > >
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - enum:
-> > > +          - nxp,s32g2-serdes
-> > > +      - items:
-> > > +          - const: nxp,s32g3-serdes
-> > > +          - const: nxp,s32g2-serdes
-> > > +
-> > > +  reg:
-> > > +    maxItems: 4
-> > > +
-> > > +  reg-names:
-> > > +    items:
-> > > +      - const: ss_pcie
-> > > +      - const: pcie_phy
-> > > +      - const: xpcs0
-> > > +      - const: xpcs1
-> > > +
-> > > +  clocks:
-> > > +    minItems: 4
-> > > +    maxItems: 5
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: axi
-> > > +      - const: aux
-> > > +      - const: apb
-> > > +      - const: ref
-> > > +      - const: ext
-> > > +    minItems: 4
-> > > +
-> > > +  resets:
-> > > +    maxItems: 2
-> > > +
-> > > +  reset-names:
-> > > +    items:
-> > > +      - const: serdes
-> > > +      - const: pcie
-> > > +
-> > > +  nxp,sys-mode:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > The sunxi h616 board I have has hundreds of GPIOs, only
+> > a few of which are needed, I want to map them in device
+> > tree overlays since there's some minor variants with different
+> > hardware gpio configurations.
 > >
-> >        maximum: 5
-> >
-> > Though isn't this redundant with the child nodes? You could use the
-> > standard 'phy-mode' property in each child.
+> > Setting the gpio names on the parent controller is not practical
+> > since doing so would require setting hundreds of values for
+> > gpio-line-names, you also can't really combine sets of pin
+> > names across device tree overlays AFAIU.
 >
-> not really because we can have mode 1 but only a node to describe
-> lane0 for PCIe x1 if the lane 1 is not used
+> You can do: gpio-line-names =3D "GPIO0", "", "", "GPIO3", ...;
 >
+> The clock binding has "clock-indices" which is used with
+> "clock-output-names". We could do something similar if
+> all the '""' entries are really a problem.
+
+AFAIU this doesn't solve the line name merge issue.
+
+I have some GPIO lines that are common to all control card
+variants, as such I would like to put the names for these lines
+in the base dts file so the names always get applied.
+
+I also have some lines that that are common to a subset of
+control card variants(which I detect via GPIO strapping in uboot),
+as such I would like to put the names for these lines in a dtso file
+that is conditionally applied by uboot based on the control card
+variant. There are actually multiple GPIO groupings, some are
+for peripheral connectors and others are for control board
+integrated hardware.
+
+So what I want to be able to do is effectively merge all the GPIO
+names from a dts file and multiple dtso files, and you can't merge
+list properties, you can only override them entirely AFAIU.
+
+> > > > Use case is I have a device with something like 300 gpio
+> > > > lines...and I want to name/group a small subset of those
+> > > > lines for delegation to a userspace app rather than trying
+> > > > to set 300 or something gpio-line-names values, also I'm
+> > >
+> > > So if I change the approach in user-space or use different user-space
+> > > app then I change the DTS?
 > >
-> > > +    description: |
-> > > +      SerDes operational mode. See above table for possible values.
-> > > +
-> > > +  '#address-cells':
-> > > +    const: 1
-> > > +
-> > > +  '#size-cells':
-> > > +    const: 0
-> > > +
-> > > +patternProperties:
-> > > +  '^serdes[0,1]_lane@[0,1]$':
-> >
-> > Do you need to support serdes0_lane@0 and serdes1_lane@0 (or similar
-> > with "@1")? That's illegal as you have 2 nodes with the same address.
+> > The idea is to make it practical to set gpio-line-names for a
+> > subset of the GPIOs that are wired to peripheral boards.
 >
-> okay, we can find other naming
+> Humm, peripheral boards! So there's a connector. You need a connector
+> binding. And the one solved binding for such a thing is GPIO! The
+> gpio-map property lets you remap GPIOs from one provider (the connector)
+> to a parent provider (soc_gpio). It would look something like this:
+
+Well...some GPIOs are wired to peripheral board connectors...but
+some are wired to things like built in LEDs and a few different
+on-controller components as well which vary by controller hardware
+revisions.
+
+This gpio-map feature doesn't exist in the mainline kernel does it?
+
+Would this work with multiple connectors?
+
+In my device everything I'm wanting to name is off the same gpiochip.
+
 >
-> >
-> > > +    description:
-> > > +      Describe a serdes lane.
-> > > +    type: object
-> > > +
-> > > +    properties:
-> > > +      compatible:
-> > > +        enum:
-> > > +          - nxp,s32g2-serdes-pcie-phy
-> > > +          - nxp,s32g2-serdes-xpcs
-> >
-> > Seems like phy-mode would be sufficient. Are these separate blocks from
-> > the parent?
+> conn_gpio: connector {
+>         #gpio-cells =3D <1>;
+>         gpio-map =3D <0 &soc_gpio 3>,
+>                    <1 &soc_gpio 123>;
+>         gpio-line-names =3D "GPIO0", "GPIO1";
 >
-> Isn't phy-mode only for ethernet phy ?
+>         /* in an overlay */
+>         device {
+>                 foo-gpios =3D <&conn_gpio 1>; /* soc_gpio 123 */
+> };
 
-Sorry, it is "phy-type" that I was thinking about. That takes the
-types defined in dt-bindings/phy/phy.h. The type can be defined either
-in "phy-type" or in the phy cells if the type is per identifier.
+I think in my case the entire connector would be in the overlay, as
+the connector GPIO lines vary by control board hardware revisions.
+Would that still work?
 
-Really, Given each lane doesn't have any of its own resources, I'd
-probably get rid of the child nodes and put the type into the phy
-cells. Then you'd have something like this:
+Would the gpio-line-names defined here get set on the parent
+&soc_gpio gpiochip or would they show up under a virtual
+separate gpiochip similar to gpio-aggregator?
 
-// PCIE on lanes 0 and 1 (mode 0)
-pcie {
-  phys =3D <&phy 0 PHY_TYPE_PCIE>, <&phy 1 PHY_TYPE_PCIE>;
-};
+> >
+> > Say for example I have a control board connected to a few
+> > different peripheral boards, there may be different mixtures
+> > of peripheral boards, some of which can be used at the same
+> > time as they use different GPIOs.
+> >
+> > The idea is we load device tree overlays for the detected
+> > peripheral boards with detection done in uboot based on a
+> > GPIO pin strapping based detection.
+> >
+> > In userspace we want to match the peripheral board GPIOs
+> > based on the GPIO line names, but using gpio-line-names
+> > on the entire GPIO controller isn't practical as that doesn't
+> > allow composing gpio-line-names configurations from
+> > multiple device tree overlays and would require a ridiculous
+> > number of placeholder entries due to there being no way
+> > to configure individual gpio-line-names for non-hog lines.
+>
+> GPIO lines typically connect to something. Relying on gpio-line-names
+> seems like a failure in defining (in DT) that something.
 
-// PCIE on lane 0 (mode 1)
-pcie {
-  phys =3D <&phy 0 PHY_TYPE_PCIE>;
-};
-// Ethernet on lane 1
-ethernet {
-  phys =3D <&phy 1 PHY_TYPE_SGMII>;
-};
+Isn't gpio-line-names intended to describe what they are physically
+connected to? At least that's how I'm seeing them often get used
+in mainline device trees.
 
-I perhaps don't have the cells right if it is more than just lane 0
-and lane 1, but you can put anything there you want. The cell
-definition is provider specific.
+> We would never rely on GPIO pin names in the kernel. Userspace doing
+> so is pretty suspect too. More importantly wanting to do something in
+> userspace is irrelevant to bindings. What's in userspace today may be in
+> the kernel tomorrow. Look at serial attached BT or other h/w.
 
-If you need to get the overall system wide configuration, that can be
-done. It's not terribly efficient, but you can iterate all 'phys'
-nodes in the DT, find the ones for your provider (&phy) and examine
-the cell values.
+Why is that suspect for userspace? The userspace tooling for
+gpio manipulation largely seems to support flags for name based
+lookups as an alternative to gpio numbers.
 
-Rob
+In terms of userspace vs kernel drivers...the current situation
+for my hardware at the moment is that it's effectively a hybrid
+situation, some peripheral board components like eeproms and
+temperature sensors have proper kernel drivers, these would be
+on the i2c lines for the connectors. There's also uart lines as well
+for high speed communications and plug detection GPIOs, reset
+GPIOs and reset detect GPIOs on the connectors.
+
+Overall management of the peripheral boards is handled by a
+userspace application that needs to know which GPIOs are
+attached to which physical connector lines, and since this varies
+by the hardware revision it seemed logical to use gpio line names
+for that rather than implementing the mapping logic in the userspace
+application. There isn't really a good way to control reset lines
+and such from userspace other than with GPIO based interfaces
+right?
+
+I'm trying to push as much logic into the kernel as practical,
+hence why I'm trying to use the gpio names instead of having
+the userspace application handle the mappings.
+
+For this hardware there are roughly a dozen control card
+subvariants and hundreds of peripheral board subvariants,
+although the peripheral board subvariants generally don't
+require much differences in kernel features/configurations so
+the userspace application can largely handle those differences.
+
+>
+> Rob
 
