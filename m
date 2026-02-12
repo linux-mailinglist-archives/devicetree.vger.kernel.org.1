@@ -1,283 +1,799 @@
-Return-Path: <devicetree+bounces-265096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265097-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aC3gOYfnjWkm8gAAu9opvQ
-	(envelope-from <devicetree+bounces-265096-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:45:27 +0100
+	id uGMNLOznjWkm8gAAu9opvQ
+	(envelope-from <devicetree+bounces-265097-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:47:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 016E212E6F8
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:45:26 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BDFE12E7DF
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 15:47:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D10E73075DD4
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 14:39:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 79D50305CE00
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 14:42:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9805B36680C;
-	Thu, 12 Feb 2026 14:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6273C2EB847;
+	Thu, 12 Feb 2026 14:42:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="I6SO2k2d"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZcY5sQdm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011043.outbound.protection.outlook.com [52.101.125.43])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A1133644CF;
-	Thu, 12 Feb 2026 14:36:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770906998; cv=fail; b=iTuyqfmLn31ChFJISgHwLVcTNqG/mejAB7jF85JqD519p7UG1b4iQ3wr7D/+w+XEKdqmQjTVKiJohU8+i0SR5YI3TR4RJz6Bfl2EGt6zwLd4WvEWy5gEyw6gCmBBD3/Z8J5MGMo2ka005LELcB3Zkd/ITiDgfTWr2Xr0K3DtQwE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770906998; c=relaxed/simple;
-	bh=wCt7pYtyluFCZYqwIAoY3UKuUrIN/NYuM+/I0YumbVU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=YNdtHgctftOIJaiHzlsPxZaJK5y/nY+2/bC3ZMUjBwS7V0FHpi5J5HUbGP7GRxLwZjvpLUZmlhb3EBcGE+Ja5CJICvB+ztNwKpn43Km2gjLT64K6UVsl6+6egu8NKcS7Pl2o06ZMyTvzVhG7bwusaZsImXiohGXAHTisQ/M7urA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=I6SO2k2d; arc=fail smtp.client-ip=52.101.125.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NVAhrhHN+XQDCEptdUiEUqsKu5+6PX0lVb13uaCzi5URQgHDlp8Kjr+LulDEy94wuAzEohDRh+3QDwm/VXsMqRo0V3WVgq7vmXwLOalM+9f2aEc2idbdd8uH5a8KBk+3MalHeypcbAKynyxwILeQol0PmNqWgruFX62rGhSL649zDpJix9rZb0bMzAP4aqdHRyxxucoKy+Gex0YFbHXUEiPWXxHQcsEr0KArC9+h4Nh2eWQHpehGFnPh/gl5AJIeLPwm8aKkbCRta0ysZITUVauglzfJgn1vAtw5rivWMzudaDjcE6Iv99hWtgHJ0pwTcfWnMS0wR+9idohwhb3iSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nmMUk2KrqGNBWPwSm3dTuekcZi1KgKzvah4ozo6+UtY=;
- b=JgQjUdypxR99loHKfpqC+zCiOihmqh5MO3mQDT1gqH2xxOEm2fAZ3iseHYaLpc+oNYG578GrzzKYtcXHojfoySIS+D0J7bwdcu3/owLCBncwL0jS/18ppj8hQP4k6PnYTkoFxWOGCzupz3vDkim+eZmjnmsogzIpt6HXXF9VqXEvyx3QpXBXqViZtCWAEwsS/qIGhfcFaddsc5GMQ8HgKYDdNYhmdCOB/Qfzd4Qsm1jH4Ewj3AzMkKIrxueBu/PAqYZsXewGJT5JboSEygDPDtFan4fQ4qsXQ/1LwYJWLhxbUdphWsL3stkMN6qQ7tmwfq1791mAFX53vn5rtJZX8w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nmMUk2KrqGNBWPwSm3dTuekcZi1KgKzvah4ozo6+UtY=;
- b=I6SO2k2dTp1iYKg9lvaNyeUg9nubgG+O8I6SeCTJjoUnVXyMBoVlTF4MYSjb9Xt5ArGRM99zi//78bbwU8gXln2qXxd1h4BB55VXf3u8eiDxxbbLwvVGE3yiWl+vCbwSqbVPmSOi7wa4E0KaRXAd4xg5EkZS+GBEKod/HREy9nI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
- by TY3PR01MB9918.jpnprd01.prod.outlook.com (2603:1096:400:229::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.13; Thu, 12 Feb
- 2026 14:36:28 +0000
-Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com
- ([fe80::33f1:f7cd:46be:e4d8]) by TYCPR01MB11947.jpnprd01.prod.outlook.com
- ([fe80::33f1:f7cd:46be:e4d8%5]) with mapi id 15.20.9611.008; Thu, 12 Feb 2026
- 14:36:28 +0000
-Date: Thu, 12 Feb 2026 15:36:09 +0100
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>
-Cc: tomm.merciai@gmail.com, geert@linux-m68k.org,
-	laurent.pinchart@ideasonboard.com,
-	linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC85229CE9;
+	Thu, 12 Feb 2026 14:42:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770907373; cv=none; b=XVkMuHzr6fSJqZR99W06SbljsnES2JYYMlNbnYUWWHHt3NvSAw2dSoi2sJFUBrBljMt/qJL2OCwV8a17XpsVS6IvvXWCsxFwOnImSOEU7JI0X7QunCdjv8thDvYNjiVnU7dTF7T9Qre3WC47sBDudZh7kejctiGHALN1hcuPqYQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770907373; c=relaxed/simple;
+	bh=Pr/tib4fASi/UYLbu6R6hoz2q1KHQakaSCHzu93cmsI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yf6o8XScigFuQohRa2yAKDvrmCh1sewkigtE/9RFc8pJzKxScK6CA0ykdtJtFmCye57c0EsSwyUrRjNbsG+2kNB3wKjHKroAvX/Vo9pbheMImEtpHkJNEBM0g+eZam21SJNCI9hcq9t34TB4qgrdTxwMwcpP/k6aewH4GvhU5Fg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZcY5sQdm; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770907371; x=1802443371;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=Pr/tib4fASi/UYLbu6R6hoz2q1KHQakaSCHzu93cmsI=;
+  b=ZcY5sQdmneZyPbnIsRp0wLKkZzaolLchfM9JgL1yB3CfEQ+F/clk2WyF
+   tit5+INtquF/vRjBqC3m5GyK4iwQ74jjk49AkVzTvzmTmNW8RfxiKmE2V
+   eXQMClie3Ov76OXB9GCaNrpXoWoh7P38fJcEolmaa+8q1LwI3yKkApBfs
+   wKQ2u0hSo+1QNaIZ08GjM7eOwp/nw5tTX+8XcvdJzS8gn2MMBWrO5COiP
+   pkQ2kvuvPbUk5S1ePdz4ipWhhVldRi3OKr3Js1sgcdyZU2iixnAdHKTjC
+   rfMUlTwJg3E5EedTXNwuquv8C08aQ3fOVVN7IwVDG/nuj/SdWN7bqrtj1
+   w==;
+X-CSE-ConnectionGUID: ZEBJPWAXRluF+nNa2ezmMw==
+X-CSE-MsgGUID: k6sk310rR1u250U1EkyVjA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="89663378"
+X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; 
+   d="scan'208";a="89663378"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 06:42:50 -0800
+X-CSE-ConnectionGUID: dNWECkuaRQupgcywimIsJg==
+X-CSE-MsgGUID: fKzVznzxRVS2ZA5cob3lug==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; 
+   d="scan'208";a="211428783"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.145])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 06:42:47 -0800
+Date: Thu, 12 Feb 2026 16:42:45 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Ariana Lazar <ariana.lazar@microchip.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v4 09/20] dt-bindings: display: renesas,rzg2l-du: Add
- support for RZ/G3E SoC
-Message-ID: <aY3lWbxr08F8kGxS@tom-desktop>
-References: <cover.1770030493.git.tommaso.merciai.xr@bp.renesas.com>
- <4986c5a3c5cda9e754ed1f9f7121b32e9bf4499f.1770030493.git.tommaso.merciai.xr@bp.renesas.com>
- <20260210001108.GA2165386-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260210001108.GA2165386-robh@kernel.org>
-X-ClientProxiedBy: FR4P281CA0171.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:b7::18) To TYCPR01MB11947.jpnprd01.prod.outlook.com
- (2603:1096:400:3e1::6)
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] iio: dac: add support for Microchip MCP48FEB02
+Message-ID: <aY3m5V05FOH5sut6@smile.fi.intel.com>
+References: <20260212-mcp48feb02-v1-0-ce5843db65db@microchip.com>
+ <20260212-mcp48feb02-v1-2-ce5843db65db@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB11947:EE_|TY3PR01MB9918:EE_
-X-MS-Office365-Filtering-Correlation-Id: de031b71-564b-4f85-00db-08de6a441b57
-X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|376014|7416014|52116014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?mzmFss0MOX6B22Suv3MxUtMZnjmCvURZWqWUkDHm4CY3kptUxyRjG/nMW7e7?=
- =?us-ascii?Q?cS4UcAAfhUWCSnV7RHQEuemd0itw9rx13CQjFuLLdPrKsVPirGzpQI12TdZX?=
- =?us-ascii?Q?ByG+nIUfHXe3iqRilTI73ONrSAEzjhQC49seuws9dJkiH1bAco4SP66iC+1U?=
- =?us-ascii?Q?r/Zbcv1XNS5t7f0xbRC4OuQYjdlVImBEgi5sjlLaVAjVcXgJ43drIRVIbQxI?=
- =?us-ascii?Q?1IELzrIesT1ZazaCccojQ5W6ojfYnGoeM9v7GwBJC4LxeOEwgG4j2PgIwLYe?=
- =?us-ascii?Q?LZCtfCjmCknFSlb99RcVGC2yODSN75Ho01Naguuwau4hkjzPJpBLgu6TgzKH?=
- =?us-ascii?Q?gsdW4AvtuzIXqQtlvAFBrlpg71Py9690Jyae0WIAan5Z2vem5nBdcvqxkc0H?=
- =?us-ascii?Q?R9dcoVZcDVV5OuE0yYN35Je5BhphnU0gQt/FyYOmboSs4aIF5AsMnAjdUT8L?=
- =?us-ascii?Q?WacD8edEWEjrovecHn9T+RHO3Cg5SYIErvJJa+qmKoCMruUqf6rg0TawFArZ?=
- =?us-ascii?Q?Jb89r4Dez9HjzXHFs4Bn73pIEn7egL1uIs06AdP+o4ObeeeUmUDPXShOO7W6?=
- =?us-ascii?Q?OiTKuzYxintB27ngNu4itTgkeevT72GTp3i3V4JYhulkW0dVjYux8TNgLYBy?=
- =?us-ascii?Q?GADjC0QCB+UpFAFGD52LA3WlCFgs0x2u2wfBumb23IQpI64fSv5T4fT5NbbE?=
- =?us-ascii?Q?3ty2jc3yOCVelar/9ltRHYCqrKCI4GYlX4TI5G4lA5v0xbCDm+pY7t64oKvX?=
- =?us-ascii?Q?ais24pFkyH4oWeSw+KmBzJWBFXzXNxR7nNmR01rrYdN8S+EHEHLu4YNenCKf?=
- =?us-ascii?Q?NUV7xLRb05WAI8mGNwuWBZrAq9J/m3owAB58/758CqPR2L83BZSrZAh+SMlj?=
- =?us-ascii?Q?xoQlKMqKDYgsStk+uDEakzveBaEM7C3lmj+EL6LXcuX55pwtX9kTmIUnyJB3?=
- =?us-ascii?Q?IvjNI0zJ1sq8+bKCpXG0kC/iPqEWn5ho+lgnnfSOhE3l0CaGkHE+IsRd45rW?=
- =?us-ascii?Q?POJCYV8mhqg8+KIzY9JkMWJX4jzo2x0nBAwjdGCs5r19i87Y2wYj1o2J06KX?=
- =?us-ascii?Q?pDcZLdzrQFoYL6dZ+dnw4Y0xhio5021e3sRQtudhV3GupsV/go77u3f3MuXA?=
- =?us-ascii?Q?/EcgZFPX45nkg5QPDG+1Yy5LQpWdJFwqhg3Wc8ywo3SlsgSKQJ5KFDU1vmYy?=
- =?us-ascii?Q?9QYZXAopyydJZTG1Pknh0BrPLr7RG4LC6zRU9c/emEszUtVBwNy6+fls6QGX?=
- =?us-ascii?Q?Lo57qE/2KW3G5qP0GDLgmWR6JvkesdKzC1sCPtDAwz6bX3M2zNjFfQRunxnk?=
- =?us-ascii?Q?HYpDEIb/4qnhZfoIMPgaKGkSiZczAnF9CIed05DFG8pCH3a9zsZNJY2TkIw6?=
- =?us-ascii?Q?fRELzeLiVLAK/+yD8vMZ7ruXPeeLbq+KOzumsBOQYx/GYJJEMm5tWhYrDhPM?=
- =?us-ascii?Q?sakUNbR0Mi+NFNJoVFnws95hsgVz5kVQ7n7nFbTZc1AplMAHvWnejYR2xHXR?=
- =?us-ascii?Q?rnhEbZCdb8HkdRhcDzRU5bKZ7ejGqjIZTSIqb6mFI4GkaM+1ECIMO+QJ72VD?=
- =?us-ascii?Q?X/JDYZ2SSjDDzOmoTJMgQHSmgkPvAYfM4GvlK7hwCKi680IIUStwQFiDdQKF?=
- =?us-ascii?Q?vg=3D=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11947.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?IoCojwHYqgY0T0Ujb1Ud3mkQMSQY0umyDFziDKUHISJYy+aOwR1kJk3FFdte?=
- =?us-ascii?Q?Fcjdi4BNNbEPCgNT74o+YLd0gqjPKRjbWMdeB9rjO+OahEfQ1ZPqAa/PLM59?=
- =?us-ascii?Q?AEjz0oaXs8KxKL464YfvNV36Fmxvt1wnuiG0/0417ic8koGtLiUyynfZiL3n?=
- =?us-ascii?Q?O2u+epizt1zYwZBrqvthCYni2LuqyJvmPGQ8oQrTNKmZljryK+HeBIt4KjAD?=
- =?us-ascii?Q?NsTqAqYE49CIsgc+mG0mthfsY4/j+pfO76epk/LQRzLsU/uMkDLk6c7RdaWZ?=
- =?us-ascii?Q?DR/qzyY0J6eDGQHl/6WOHib3L1HYCad8A+v8vQl7jI/A/qYXgkFDF/Pmhh+8?=
- =?us-ascii?Q?n65P2qr2fVXASwVIuZxsVD+mIWZYvIVVEP3PD1IAXTytrrIT+0VczVXChCHN?=
- =?us-ascii?Q?Ovzx0a3pPFbJmvNN09aL5kiuKIdtPvmTOXTWrBCVbUHlFGfB5mkUwV+ZxkfN?=
- =?us-ascii?Q?VrHjuCY9qy/fhXUQlEB4/ANn66YhztMbReQ80k8qoZV12iXSx5rUpWK2GODH?=
- =?us-ascii?Q?jouJIH8gUHbix/PVoHU3p4MJihncB7sAWYhknHyhieQ9dT4S3A73QYSUSwES?=
- =?us-ascii?Q?gW8VnkvNJwf6jV7TDZsZcN35Z+5TTOrSLHzx1+88sMKg4LrdD9jTm3TeJhqU?=
- =?us-ascii?Q?iEjzr0dIVjHin+8lzKZSOQqcszPbtFYvu/vO3eHtYF+Y7KaZXhuu6VY2ijxX?=
- =?us-ascii?Q?k+X0BGQ6b9ZS8l+rgydvEupMW6WGh3sjIzqaE7iQg+Vn0SwTmQBuE70kBOWA?=
- =?us-ascii?Q?itC23KBckDX/LEQWM6DiRASPihXxZEEoA6DxEnRw3dleB1mVwHdZHXExloLN?=
- =?us-ascii?Q?IFXgXrrFaTawqRacmecX9HpzH+EBL/AX+TM3Ls4XMJwOPe36mucFl4aLPjUY?=
- =?us-ascii?Q?yiVDCYzZVl4pGvWJQ5myxARJIciXMqKnqIE/CNbG7KlKS5azEWdpjZmFsXqZ?=
- =?us-ascii?Q?RlOAJTqJn+r3YAjdsTPXzbgB6H9l4VeP4fmXBcZz6mUap4uhF3ulTf22tq/g?=
- =?us-ascii?Q?Z5+lXAwbMVCpmsU48f6nHm4rDRUsmAqh9CN+5LO30dq/nheXgxXpA5kIVTqk?=
- =?us-ascii?Q?teQ/e6bHKRVhfkWXXBV7kJTN/MLrF7rMZeQzaMZIaq3H0N3gZunacz4Ubrm5?=
- =?us-ascii?Q?y/tr1wycusx8eHpSRkStv3BkoqJxi76y8Cd1FVextTXY4ci2u7zww/Bumpbc?=
- =?us-ascii?Q?m1Ne2z3pkLRbRZHho+efe5vhI/q0KiMrKTAC0cMQEHgGEoBYEIQ9vWzoEIbZ?=
- =?us-ascii?Q?daruL1sZ7XMK2tpTimO+7dD0qBI0QudK0HblU8zW5xW/jNAQC+0DzzrXnNf9?=
- =?us-ascii?Q?kn2Oeral+VJSzhGsQKeD7zYWB/NHF6VTCECH5YyQ/o/NhNt39iXP/AsCZp/Q?=
- =?us-ascii?Q?OskZb849xYXVDvmDtxsAWAorzmwwskgQo7ANsO5o9Bmq+nj59WTqseObbdwn?=
- =?us-ascii?Q?yBTYb9a4NNHI6kwMu6Y7f3gj6rmW3RJYGaMMIqxD4W0h1kSwU9sfC6ugJROg?=
- =?us-ascii?Q?iunkpkVPESJGpZXRHTMSUvgTZet+1jp7W9HlUlQeZpfZg9ATeaETevT7oOP/?=
- =?us-ascii?Q?Jwx/1O3qUQP1rqjrdxjh2kN5zmAMBE9YcxVxcEoql+85oxNIDJoLd0hARnj8?=
- =?us-ascii?Q?h6EJUQ3g6aenMMVHWxpv9AGihcbYyv9GZLwWpN0YMd/Wxt6iLEvBaJoWrYoV?=
- =?us-ascii?Q?B5NZ+e7FONfQnICF6DVlU0yEXqSfCWOBNRTIxy6uPmgUwenWrxMsFp6BVJbM?=
- =?us-ascii?Q?AsLXLrVXYVnVwX4rPW/cG7Twtd1Cet3FJlCoVLtRkCkc9wOYJc9x?=
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: de031b71-564b-4f85-00db-08de6a441b57
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2026 14:36:28.5294
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Wv/KObZPjH6Gxl8jYSksfCdvbEAGl2I8gSOZtUKbwPllTaPBf57fVBSmqtXGxCEOPHYcpnslHkaRv+vlgE6RRyDctQN6TXgBua/5PX533okg7t8jxwSFjjj74DlGZVUS
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3PR01MB9918
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260212-mcp48feb02-v1-2-ce5843db65db@microchip.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265096-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	TAGGED_FROM(0.00)[bounces-265097-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,linux-m68k.org,ideasonboard.com,vger.kernel.org,bp.renesas.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,glider.be,baylibre.com,lists.freedesktop.org];
-	DKIM_TRACE(0.00)[bp.renesas.com:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tommaso.merciai.xr@bp.renesas.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 016E212E6F8
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: 2BDFE12E7DF
 X-Rspamd-Action: no action
 
-Hi Rob,
-Thanks for your review.
-
-
-On Mon, Feb 09, 2026 at 06:11:08PM -0600, Rob Herring wrote:
-> On Mon, Feb 02, 2026 at 12:57:40PM +0100, Tommaso Merciai wrote:
-> > The RZ/G3E Soc has 2 LCD controller (LCDC), contain a Frame Compression
-> > Processor (FCPVD), a Video Signal Processor (VSPD), Video Signal
-> > Processor (VSPD), and Display Unit (DU).
-> > 
-> >  - LCDC0 supports DSI and LVDS (single or dual-channel) outputs.
-> >  - LCDC1 supports DSI, LVDS (single-channel), and RGB outputs.
-> > 
-> > Add new SoC-specific compatible string 'renesas,r9a09g047-du'.
-> > 
-> > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> > ---
-> > v1->v2:
-> >  - Use single compatible string instead of multiple compatible strings
-> >    for the two DU instances, leveraging a 'renesas,id' property to
-> >    differentiate between DU0 and DU1.
-> >  - Updated commit message accordingly.
-> > 
-> > v2->v3:
-> >  - No changes.
-> > 
-> > v3->v4:
-> >  - No changes.
-> > 
-> >  .../bindings/display/renesas,rzg2l-du.yaml    | 54 +++++++++++++++++++
-> >  1 file changed, 54 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-> > index 2cc66dcef870..55e3fcff7030 100644
-> > --- a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-> > +++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-> > @@ -20,6 +20,7 @@ properties:
-> >        - enum:
-> >            - renesas,r9a07g043u-du # RZ/G2UL
-> >            - renesas,r9a07g044-du # RZ/G2{L,LC}
-> > +          - renesas,r9a09g047-du # RZ/G3E
-> >            - renesas,r9a09g057-du # RZ/V2H(P)
-> >        - items:
-> >            - enum:
-> > @@ -53,6 +54,12 @@ properties:
-> >    power-domains:
-> >      maxItems: 1
-> >  
-> > +  renesas,id:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum: [0, 1]
-> > +    description: |
-> > +      DU instance number.
+On Thu, Feb 12, 2026 at 02:48:35PM +0200, Ariana Lazar wrote:
+> This is the iio driver for Microchip MCP48FxBy1/2/4/8 series of buffered
+> voltage output Digital-to-Analog Converters with nonvolatile or volatile
+> memory and an SPI Interface.
 > 
-> If we wanted instance numbers, there would be a common property. So why 
-> is this needed? What's the difference between instances besides the 
-> ports?
-
-renesas,id was introduce because:
-
- - LCDC0 supports DSI and LVDS (single or dual-channel) outputs.
- - LCDC1 supports DSI, LVDS (single-channel), and RGB outputs.
-
-I will model the hardware without renesas,id.
-I just used renesas,id because of the above reason.
-
-Kind Regards,
-Tommaso
-
+> The families support up to 8 output channels.
 > 
-> Rob
+> The devices can be 8-bit, 10-bit and 12-bit.
+
+...
+
+> +#include <linux/array_size.h>
+> +#include <linux/bits.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+
+I would split this group...
+
+> +#include <linux/kstrtox.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/mutex.h>
+> +#include <linux/property.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/time64.h>
+> +#include <linux/types.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/units.h>
+> +
+
+...to be here as other IIO drivers do.
+
+...
+
+> +/* Gain Control and I2C Slave Address Reguster fields */
+> +#define DAC_GAIN_MASK(ch)				(BIT(0) << (8 + (ch)))
+
+Just BIT(8 + (ch)) should suffice.
+
+> +#define DAC_GAIN_VAL(ch, val)				((val) << (8 + (ch)))
+
+For the sake of consistency this may be also rewritten to
+
+#define DAC_GAIN_VAL(ch, val)				((val) * BIT(8 + (ch)))
+
+...
+
+> +/**
+> + * struct mcp48feb02_channel_data - channel configuration
+> + * @ref_mode: chosen voltage for reference
+> + * @use_2x_gain: output driver gain control
+> + * @powerdown: is false if the channel is in normal operation mode
+> + * @powerdown_mode: selected power-down mode
+> + * @dac_data: dac value
+
+DAC
+
+> + */
+> +struct mcp48feb02_channel_data {
+> +	u8 ref_mode;
+> +	bool use_2x_gain;
+> +	bool powerdown;
+> +	u8 powerdown_mode;
+> +	u16 dac_data;
+
+Wondering if the following arrangement is slightly better:
+
+	u16 dac_data;
+	u8 ref_mode;
+	u8 powerdown_mode;
+	bool powerdown;
+	bool use_2x_gain;
+
+> +};
+
+...
+
+> +/**
+> + * struct mcp48feb02_data - chip configuration
+> + * @chdata: options configured for each channel on the device
+> + * @lock: prevents concurrent reads/writes to driver's state members
+> + * @chip_features: pointer to features struct
+> + * @scale_1: scales set on channels that are based on Vref1
+> + * @scale: scales set on channels that are based on Vref/Vref0
+> + * @active_channels_mask: enabled channels
+> + * @regmap: regmap for directly accessing device register
+> + * @labels: table with channels labels
+> + * @phys_channels: physical channels on the device
+> + * @vref1_buffered: Vref1 buffer is enabled
+> + * @vref_buffered: Vref/Vref0 buffer is enabled
+> + * @use_vref1: vref1-supply is defined
+> + * @use_vref: vref-supply is defined
+> + */
+> +struct mcp48feb02_data {
+> +	struct mcp48feb02_channel_data chdata[MCP48FEB02_MAX_CH];
+> +	struct mutex lock; /* prevents concurrent reads/writes to driver's state members */
+> +	const struct mcp48feb02_features *chip_features;
+> +	int scale_1[2 * MCP48FEB02_MAX_SCALES_CH];
+> +	int scale[2 * MCP48FEB02_MAX_SCALES_CH];
+
+I would name it scale1 and scale0. This will increase readability to see that
+the sizes are equal and that the first digit is the part of the name.
+
+> +	unsigned long active_channels_mask;
+> +	struct regmap *regmap;
+> +	const char *labels[MCP48FEB02_MAX_CH];
+> +	u16 phys_channels;
+> +	bool vref1_buffered;
+> +	bool vref_buffered;
+> +	bool use_vref1;
+> +	bool use_vref;
+> +};
+
+...
+
+> +static int mcp48feb02_write_to_eeprom(struct mcp48feb02_data *data, unsigned int reg,
+> +				      unsigned int val)
+> +{
+> +	int eewa_val, ret;
+
+Is it okay that the eewa_val is signed?
+
+> +	ret = regmap_read_poll_timeout(data->regmap, MCP48FEB02_GAIN_CTRL_STATUS_REG_ADDR,
+> +				       eewa_val,
+> +				       !(eewa_val & MCP48FEB02_GAIN_BIT_STATUS_EEWA_MASK),
+> +				       USEC_PER_MSEC, USEC_PER_MSEC * 5);
+
+I would rather put it as
+
+				       1 * USEC_PER_MSEC, 5 * USEC_PER_MSEC);
+
+This follows the natural (from physics) reading — 1ms, 5ms.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	return regmap_write(data->regmap, reg, val);
+> +}
+
+...
+
+> +static ssize_t store_eeprom_store(struct device *dev, struct device_attribute *attr,
+> +				  const char *buf, size_t len)
+> +{
+> +	struct mcp48feb02_data *data = iio_priv(dev_to_iio_dev(dev));
+> +	unsigned int i, val, val1, eewa_val;
+> +	bool state;
+> +	int ret;
+> +
+> +	ret = kstrtobool(buf, &state);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!state)
+> +		return 0;
+> +
+> +	/*
+> +	 * Wait until the currently occurring EEPROM Write Cycle is completed.
+> +	 * Only serial commands to the volatile memory are allowed.
+> +	 */
+> +	guard(mutex)(&data->lock);
+> +
+> +	/*
+> +	 * Verify DAC Wiper and DAC Configuration are unlocked. If both are disabled,
+> +	 * writing to EEPROM is available.
+> +	 */
+> +	ret = regmap_read(data->regmap, MCP48FEB02_WIPERLOCK_STATUS_REG_ADDR, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (val) {
+> +		dev_err(dev, "DAC Wiper and DAC Configuration not are unlocked.\n");
+
+"are not"
+
+> +		return -EINVAL;
+> +	}
+> +
+> +	for_each_set_bit(i, &data->active_channels_mask, data->phys_channels) {
+> +		ret = mcp48feb02_write_to_eeprom(data, NV_REG_ADDR(i),
+> +						 data->chdata[i].dac_data);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ret = regmap_read(data->regmap, MCP48FEB02_VREF_REG_ADDR, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = mcp48feb02_write_to_eeprom(data, MCP48FEB02_NV_VREF_REG_ADDR, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(data->regmap, MCP48FEB02_POWER_DOWN_REG_ADDR, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = mcp48feb02_write_to_eeprom(data, MCP48FEB02_NV_POWER_DOWN_REG_ADDR, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read_poll_timeout(data->regmap, MCP48FEB02_GAIN_CTRL_STATUS_REG_ADDR, eewa_val,
+> +				       !(eewa_val & MCP48FEB02_GAIN_BIT_STATUS_EEWA_MASK),
+> +				       USEC_PER_MSEC, USEC_PER_MSEC * 5);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(data->regmap, MCP48FEB02_NV_GAIN_CTRL_I2C_SLAVE_REG_ADDR, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(data->regmap, MCP48FEB02_GAIN_CTRL_STATUS_REG_ADDR, &val1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = mcp48feb02_write_to_eeprom(data, MCP48FEB02_NV_GAIN_CTRL_I2C_SLAVE_REG_ADDR,
+> +					 (val1 & MCP48FEB02_GAIN_BITS_MASK) |
+> +					 (val & MCP48FEB02_NV_I2C_SLAVE_ADDR_MASK));
+> +	if (ret)
+> +		return ret;
+> +
+> +	return len;
+> +}
+
+> +
+
+Unneeded blank line.
+
+> +static IIO_DEVICE_ATTR_WO(store_eeprom, 0);
+
+...
+
+> +static void mcp48feb02_init_scale(struct mcp48feb02_data *data, enum mcp48feb02_scale scale,
+> +				  int vref_uV, int scale_avail[])
+> +{
+> +	u32 value_micro, value_int;
+> +	u64 tmp;
+> +
+> +	/* vref_uV should not be negative */
+> +	tmp = (u64)vref_uV * MILLI >> data->chip_features->resolution;
+
+If vref_uV is guaranteed to be less than ~33V, this code can be transformed to
+avoid 64-bit division. Hints: resolution is always great than 3; MILLI equals
+to 2³*5³.
+
+> +	value_int = div_u64_rem(tmp, MICRO, &value_micro);
+> +	scale_avail[scale * 2] = value_int;
+> +	scale_avail[scale * 2 + 1] = value_micro;
+> +}
+
+Since it's kinda a common stuff, perhaps one wants to add a helper
+to include/linux/math.h.
+
+...
+
+> +static int mcp48feb02_read_avail(struct iio_dev *indio_dev, struct iio_chan_spec const *ch,
+> +				 const int **vals, int *type, int *length, long info)
+> +{
+> +	struct mcp48feb02_data *data = iio_priv(indio_dev);
+> +
+> +	switch (info) {
+> +	case IIO_CHAN_INFO_SCALE:
+> +		switch (ch->type) {
+> +		case IIO_VOLTAGE:
+> +			if (data->phys_channels >= 4 && (ch->address % 2))
+> +				*vals = data->scale_1;
+> +			else
+> +				*vals = data->scale;
+
+Actually, if you put the scales as
+
+	int scales[2][2 * MCP48FEB02_MAX_SCALES_CH];
+
+this will become as simple as
+
+			if (data->phys_channels >= 4)
+				*vals = data->scales[ch->address];
+			else
+				*vals = data->scales[0];
+
+OTOH, I am not sure if it can be always as
+
+			*vals = data->scales[ch->address];
+
+which would be the best approach.
+
+> +			*length = 2 * MCP48FEB02_MAX_SCALES_CH;
+> +			*type = IIO_VAL_INT_PLUS_MICRO;
+> +			return IIO_AVAIL_LIST;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
+...
+
+> +static void mcp48feb02_get_scale(int ch, struct mcp48feb02_data *data, int *val, int *val2)
+> +{
+> +	enum mcp48feb02_scale current_scale;
+> +
+> +	if (data->chdata[ch].ref_mode == MCP48FEB02_VREF_VDD)
+> +		current_scale = MCP48FEB02_SCALE_VDD;
+> +	else if (data->chdata[ch].use_2x_gain)
+> +		current_scale = MCP48FEB02_SCALE_GAIN_X2;
+> +	else
+> +		current_scale = MCP48FEB02_SCALE_GAIN_X1;
+> +
+> +	if (data->phys_channels >= 4 && (ch % 2)) {
+> +		*val = data->scale_1[current_scale * 2];
+> +		*val2 = data->scale_1[current_scale * 2 + 1];
+> +	} else {
+> +		*val = data->scale[current_scale * 2];
+> +		*val2 = data->scale[current_scale * 2 + 1];
+> +	}
+
+Ditto. I.o.w. you can avoid (ch % 2) for good.
+
+> +}
+
+...
+
+> +static int mcp48feb02_set_scale(struct mcp48feb02_data *data, int ch, int scale)
+> +{
+> +	int tmp_val, ret;
+
+Why is 'tmp_val' signed?
+
+> +	ret = mcp48feb02_ch_scale(data, ch, scale);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (scale == MCP48FEB02_SCALE_GAIN_X2)
+> +		tmp_val = MCP48FEB02_GAIN_BIT_X2;
+> +	else
+> +		tmp_val = MCP48FEB02_GAIN_BIT_X1;
+> +
+> +	ret = regmap_update_bits(data->regmap, MCP48FEB02_GAIN_CTRL_STATUS_REG_ADDR,
+> +				 DAC_GAIN_MASK(ch), DAC_GAIN_VAL(ch, tmp_val));
+> +	if (ret)
+> +		return ret;
+> +
+> +	data->chdata[ch].use_2x_gain = tmp_val;
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int mcp48feb02_write_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *ch,
+> +				int val, int val2, long mask)
+> +{
+> +	struct mcp48feb02_data *data = iio_priv(indio_dev);
+> +	int *tmp_scale, ret;
+> +
+> +	guard(mutex)(&data->lock);
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		ret = regmap_write(data->regmap, REG_ADDR(ch->address), val);
+> +		if (ret)
+> +			return ret;
+> +
+> +		data->chdata[ch->address].dac_data = val;
+> +		return 0;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		if (data->phys_channels >= 4 && (ch->address % 2))
+> +			tmp_scale = data->scale_1;
+> +		else
+> +			tmp_scale = data->scale;
+
+Same, (ch->address % 2) can be avoided.
+
+> +		ret = mcp48feb02_check_scale(data, val, val2, tmp_scale);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		return mcp48feb02_set_scale(data, ch->address, ret);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
+...
+
+> +static int mcp48feb02_parse_fw(struct iio_dev *indio_dev,
+> +			       const struct mcp48feb02_features *chip_features)
+> +{
+> +	struct iio_chan_spec chanspec = mcp48febxx_ch_template;
+> +	struct mcp48feb02_data *data = iio_priv(indio_dev);
+> +	struct device *dev = regmap_get_device(data->regmap);
+> +	struct iio_chan_spec *channels;
+> +	u32 num_channels;
+
+> +	u8 chan_idx = 0;
+
+Assignments like this are harder to maintain and prone to subtle mistakes in
+case the variable gets reused. Please, split it...
+
+> +	guard(mutex)(&data->lock);
+> +
+> +	num_channels = device_get_child_node_count(dev);
+> +	if (num_channels > chip_features->phys_channels)
+> +		return dev_err_probe(dev, -EINVAL, "More channels than the chip supports\n");
+> +
+> +	if (!num_channels)
+
+While this is standard pattern, I find == 0 is more explicit when we compare
+counters, but it's up to you and maintainers.
+
+> +		return dev_err_probe(dev, -EINVAL, "No channel specified in the devicetree.\n");
+> +
+> +	channels = devm_kcalloc(dev, num_channels, sizeof(*channels), GFP_KERNEL);
+> +	if (!channels)
+> +		return -ENOMEM;
+
+...to be here as
+
+	chan_idx = 0;
+
+> +	device_for_each_child_node_scoped(dev, child) {
+> +		u32 reg = 0;
+
+Redundant assignment. "reg" is a mandatory property AFAICS from the below code.
+
+> +		int ret;
+> +
+> +		ret = fwnode_property_read_u32(child, "reg", &reg);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "Invalid channel number\n");
+> +
+> +		if (reg >= chip_features->phys_channels)
+> +			return dev_err_probe(dev, -EINVAL,
+> +					     "The index of the channels does not match the chip\n");
+
+> +		set_bit(reg, &data->active_channels_mask);
+
+Is atomic bit operation required here?
+
+> +		ret = fwnode_property_read_string(child, "label", &data->labels[reg]);
+> +		if (ret)
+
+> +			return dev_err_probe(dev, ret, "%pfw: invalid label\n",
+> +					     fwnode_get_name(child));
+
+Something is really wrong here. Please, fix accordingly.
+
+> +		chanspec.address = reg;
+> +		chanspec.channel = reg;
+> +		channels[chan_idx] = chanspec;
+> +		chan_idx++;
+> +	}
+> +
+> +	indio_dev->num_channels = num_channels;
+> +	indio_dev->channels = channels;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	data->phys_channels = chip_features->phys_channels;
+> +
+> +	data->vref_buffered = device_property_read_bool(dev, "microchip,vref-buffered");
+
+> +	if (chip_features->have_ext_vref1)
+> +		data->vref1_buffered = device_property_read_bool(dev, "microchip,vref1-buffered");
+
+Alternatively can be
+
+	if (device_property_read_bool(dev, "microchip,vref1-buffered"))
+		data->vref1_buffered = chip_features->have_ext_vref1;
+
+the difference is that vref1_buffered can be filled with "false", but I don't see
+if it can be true before that. You may stick with your variant to avoid this side
+effect.
+
+> +	return 0;
+> +}
+
+...
+
+> +static int mcp48feb02_init_ctrl_regs(struct mcp48feb02_data *data)
+> +{
+> +	unsigned int i, vref_ch, gain_ch, pd_ch;
+> +	int ret;
+> +
+> +	ret = regmap_read(data->regmap, MCP48FEB02_VREF_REG_ADDR, &vref_ch);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(data->regmap, MCP48FEB02_GAIN_CTRL_STATUS_REG_ADDR, &gain_ch);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(data->regmap, MCP48FEB02_POWER_DOWN_REG_ADDR, &pd_ch);
+> +	if (ret)
+> +		return ret;
+> +
+> +	gain_ch = gain_ch & MCP48FEB02_GAIN_BITS_MASK;
+> +	for_each_set_bit(i, &data->active_channels_mask, data->phys_channels) {
+> +		struct device *dev = regmap_get_device(data->regmap);
+> +		unsigned int pd_tmp;
+> +
+> +		data->chdata[i].ref_mode = (vref_ch >> (2 * i)) & MCP48FEB02_DAC_CTRL_MASK;
+> +		data->chdata[i].use_2x_gain = (gain_ch >> i)  & MCP48FEB02_GAIN_BIT_MASK;
+> +
+> +		/*
+> +		 * Inform the user that the current voltage reference read from the volatile
+> +		 * register of the chip is different from the one specified in the device tree.
+> +		 * Considering that the user cannot have an external voltage reference connected
+> +		 * to the pin and select the internal Band Gap at the same time, in order to avoid
+> +		 * miscofiguring the reference voltage, the volatile register will not be written.
+> +		 * In order to overwrite the setting from volatile register with the one from the
+> +		 * device tree, the user needs to write the chosen scale.
+> +		 */
+> +		switch (data->chdata[i].ref_mode) {
+> +		case MCP48FEB02_INTERNAL_BAND_GAP:
+> +			if (data->phys_channels >= 4 && (i % 2) && data->use_vref1) {
+> +				dev_dbg(dev, "ch[%u]: was configured to use internal band gap", i);
+> +				dev_dbg(dev, "ch[%u]: reference voltage set to VREF1", i);
+> +				break;
+
+> +			}
+> +			if ((data->phys_channels < 4 || (data->phys_channels >= 4 && !(i % 2))) &&
+> +			    data->use_vref) {
+
+I don't see how these two conditionals can be run both.
+
+> +				dev_dbg(dev, "ch[%u]: was configured to use internal band gap", i);
+> +				dev_dbg(dev, "ch[%u]: reference voltage set to VREF", i);
+> +				break;
+> +			}
+
+With that in mind, the above can be simplified a bit.
+
+			if (data->use_vref && ((data->phys_channels >= 4 && !(i % 2)) ||
+					       (data->phys_channels < 4))) {
+				dev_dbg(dev, "ch[%u]: was configured to use internal band gap\n", i);
+				dev_dbg(dev, "ch[%u]: reference voltage set to Vref\n", i);
+			} else if (data->use_vref1 && data->phys_channels >= 4 && (i % 2)) {
+				dev_dbg(dev, "ch[%u]: was configured to use internal band gap\n", i);
+				dev_dbg(dev, "ch[%u]: reference voltage set to Vref1\n", i);
+			}
+
+The conditionals were reshuffled to make it shorter and easier to compare
+(yes, there is a pair of unneeded parentheses for the sake of good looking
+ code, a.k.a. readability).
+
+Also note, the messages were missing trailing '\n'; I lowered REF --> ref
+in them.
+
+> +			break;
+> +		case MCP48FEB02_EXTERNAL_VREF_UNBUFFERED:
+> +		case MCP48FEB02_EXTERNAL_VREF_BUFFERED:
+> +			if (data->phys_channels >= 4 && (i % 2) && !data->use_vref1) {
+> +				dev_dbg(dev, "ch[%u]: was configured to use VREF1", i);
+> +				dev_dbg(dev,
+> +					"ch[%u]: reference voltage set to internal band gap", i);
+> +				break;
+> +			}
+> +			if ((data->phys_channels < 4 || (data->phys_channels >= 4 && !(i % 2))) &&
+> +			    !data->use_vref) {
+> +				dev_dbg(dev, "ch[%u]: was configured to use VREF", i);
+> +				dev_dbg(dev,
+> +					"ch[%u]: reference voltage set to internal band gap", i);
+> +				break;
+> +			}
+> +			break;
+
+Ditto.
+
+> +		}
+> +
+> +		pd_tmp = (pd_ch >> (2 * i)) & MCP48FEB02_DAC_CTRL_MASK;
+> +		data->chdata[i].powerdown_mode = pd_tmp ? (pd_tmp - 1) : pd_tmp;
+> +		data->chdata[i].powerdown = !!(data->chdata[i].powerdown_mode);
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int mcp48feb02_probe(struct spi_device *spi)
+> +{
+> +	const struct mcp48feb02_features *chip_features;
+> +	struct device *dev = &spi->dev;
+> +	struct mcp48feb02_data *data;
+> +	struct iio_dev *indio_dev;
+
+> +	int vref1_uV = 0;
+> +	int vref_uV = 0;
+
+Please, split the assignments (the rationale was given somewhere above).
+
+> +	int vdd_uV;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	data = iio_priv(indio_dev);
+> +
+> +	chip_features = spi_get_device_match_data(spi);
+> +	if (!chip_features)
+> +		return -EINVAL;
+> +
+> +	data->chip_features = chip_features;
+> +
+> +	if (chip_features->have_eeprom) {
+> +		data->regmap = devm_regmap_init_spi(spi, &mcp48feb02_regmap_config);
+> +		indio_dev->info = &mcp48feb02_info;
+> +	} else {
+> +		data->regmap = devm_regmap_init_spi(spi, &mcp48fvb02_regmap_config);
+> +		indio_dev->info = &mcp48fvb02_info;
+> +	}
+> +	if (IS_ERR(data->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(data->regmap), "Error initializing spi regmap\n");
+
+SPI
+
+> +	indio_dev->name = chip_features->name;
+> +
+> +	ret = mcp48feb02_parse_fw(indio_dev, chip_features);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Error parsing firmware data\n");
+> +
+> +	ret = devm_mutex_init(dev, &data->lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_regulator_get_enable_read_voltage(dev, "vdd");
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	vdd_uV = ret;
+> +
+> +	ret = devm_regulator_get_enable_read_voltage(dev, "vref");
+> +	if (ret > 0) {
+> +		vref_uV = ret;
+> +		data->use_vref = true;
+> +	} else {
+> +		dev_dbg(dev, "using internal band gap as voltage reference.\n");
+> +		dev_dbg(dev, "External Vref is unavailable.\n");
+> +	}
+> +
+> +	if (chip_features->have_ext_vref1) {
+> +		ret = devm_regulator_get_enable_read_voltage(dev, "vref1");
+> +		if (ret > 0) {
+> +			vref1_uV = ret;
+> +			data->use_vref1 = true;
+> +		} else {
+> +			dev_dbg(dev, "using internal band gap as voltage reference 1.\n");
+> +			dev_dbg(dev, "External Vref1 is unavailable.\n");
+> +		}
+> +	}
+> +
+> +	ret = mcp48feb02_init_ctrl_regs(data);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Error initialising vref register\n");
+> +
+> +	ret = mcp48feb02_init_ch_scales(data, vdd_uV, vref_uV, vref1_uV);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
