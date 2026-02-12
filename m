@@ -1,145 +1,179 @@
-Return-Path: <devicetree+bounces-265174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265175-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iCt9KSoYjmlF/QAAu9opvQ
-	(envelope-from <devicetree+bounces-265174-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:12:58 +0100
+	id WlaVCuwZjmkX/gAAu9opvQ
+	(envelope-from <devicetree+bounces-265175-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:20:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B5301302F5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:12:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 748F713037F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:20:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DA573301A513
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:12:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 964A43053B12
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 18:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D65F126FA50;
-	Thu, 12 Feb 2026 18:12:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A4CB27AC57;
+	Thu, 12 Feb 2026 18:20:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XvWGHK1a"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ywr+ulJD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B22331D63E4;
-	Thu, 12 Feb 2026 18:12:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1D9C1E5714
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 18:20:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770919974; cv=none; b=EZxQ+4Q7GG5/EFXmw1FQXarF68zpOs7eHAYHddjZ9MJLU3NEEjWAyVNK9X+llKEofpnXHx2b904utj5OJ5lJ0RfLSA+ROvIt06sckgpWebTVc3dTeuQf6fNC/9jmifhu92MoOct8WCRf/ifDAMnSRRfPHGbFEEiIRe9Lpzs/v1A=
+	t=1770920424; cv=none; b=Nsm5VNLHx39xTrFnUpScxow2pOgUjxUxEqMBw7BxYXfooUbpSlZsServMeZ4NhgJlHzCzyVZWY6m+zFtgnOo3vTL7AIIoCiPnVIVSqyvfT3IT1As/ID8lPH5NcsgrpifIe3dpwzc/jrQGlw91s9hUtoMSNEfvlVwowgTpjKwan4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770919974; c=relaxed/simple;
-	bh=M3cjgvS/ZhQs/TCeqlasGC66xOXSJARftgnCxWJua90=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eVHjYQNY1IbXhvvkQxJw0o48fShpUxU6xG4y3U37Jro0hXLGYGrD9KM0XKk0CyYrhjaiSOCx/t8QrPDvQsZ0B6JXS6GsFD+LgHgF4dQWKOFdxiGg65/Dqs3ysk5nNVb7RG8jXCNNz/j9tBznVYAA4sP7kEr+hBOSqXfVT2XYBIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XvWGHK1a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 582A0C4CEF7;
-	Thu, 12 Feb 2026 18:12:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770919974;
-	bh=M3cjgvS/ZhQs/TCeqlasGC66xOXSJARftgnCxWJua90=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XvWGHK1axMnijm8bv6w/0OX3bCimHzoVns1p0FmNPe6JHKGoPt14ZCKevDubWZ2yA
-	 aNBVAJH8Fqo54UgEtAORIVRhuZ+ihFDPSBcNHk4FVlBTfp9909VdF9RnrMih6QdS9E
-	 MnmmcMt16Nwkgh0s40hvQGYmzxGNQ3C0Udx8kjVEH5BpybNXoVp8qh9z9jcKkPbnhC
-	 YAyahBUytDq2HgYeBQ74PnaGczBPKKHSl+8KIfj+qY1db1JOwkB1g9LJSdqTPf/qLy
-	 YxL/tbplTo/TuJgeEq5evU33sTPQARdLbx2ty1VPUG1jY8YnJfO+9U+lxuaiQxaSjF
-	 mVdGzXij2aC7g==
-Date: Thu, 12 Feb 2026 18:12:50 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Marius Cristea <marius.cristea@microchip.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1770920424; c=relaxed/simple;
+	bh=uVa+/wT3KNLi8Q8FvKRnSsnebspAdMUzmu8d9BvGiTA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=vCB7Z4ix+Gr3+n1TqxcdhYTgK+Mz26M9SDNqmuUHgkwIkCSoRx/+HWDeiBUhA57SeMXho+oWOgg7EbRNLbXTZsK77IMYBKvuHlx7MZgEV3IJcafkKbMv/yR0klBSrCfnKky/FmsRKg8tkF5a6XEn+7AC7ilxhsi1rHzI4tCfILc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ywr+ulJD; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-47ee07570deso1400785e9.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 10:20:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770920421; x=1771525221; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8E3QEIEUXqaGRqVfLNoA5ttIhLZ1wRahVarTW2/Waqg=;
+        b=Ywr+ulJDq1lCI17n1lzkNvhPrf/eRQg9rbnIxaz61F51boA1l3EdrljY+0J4Q24Rnn
+         LY/7y9ChFWLW6d6PdeLEwtsGjcQYtlQkh/9w5yje0fBYQiweecLlpQ61ppiU9rbfyTgE
+         K6xVzsrmMhgepB9tkX16zGm9zCwcmwv/aJd2Hd/3R0+bTpmfpgb2bg/K/Tj50bs2RrgT
+         ih4qpqbxaMHFwQgNKQN7zw5e+XjZCQf5r70obj71zVLbl1Erxgsw4rw07kY6+sGk0lel
+         fnPcSr0EzWWAz04MvW6mWU+qLFILX/+Lf5W8cu8Aac4FIm99v+QQmMrzRP8vgit89vkD
+         gY9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770920421; x=1771525221;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8E3QEIEUXqaGRqVfLNoA5ttIhLZ1wRahVarTW2/Waqg=;
+        b=H4CpSM+/bhqsVNkI7r1ZV2jcmngm+gKggD+ORprffkusBitml7+6y1y1uRFHNO8i4U
+         /p0sr4llWnbeuF4tDyFCTqE+TuprVkrp5H6A/Bfqeo7lx3AftTIlzh5tApzw0fbpGJwo
+         LTn8RT4wnLzg86Oq8Y5OgwVgqPlb2RnmFtFBT/rIiuZNPVWm9X4lgwMl8DSoGRyfuqXJ
+         e/ApkZUVS1MJEw7UpL4yNlEBiy3Uo7yL+Ub4KwDKvXrd9d4k/8alsSy2TwmRmnJoLXHP
+         LyPFrEkvntgQoo+cn+jWB0Ci76wKQWk55IaiVSm1z/6YG7rbYLtu2T+g0sj9pzl/0OuA
+         W7yA==
+X-Forwarded-Encrypted: i=1; AJvYcCU2C3D3SmE11gWar1vagWgdLh2kn08nx9+v6NHHB4Na/h0WJI3TxyrNDQ8QCIGEH+vfw6DLblbyeuTM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWg53GvAhHFxxE+TP7BlfypKTGLNXVZTWKTPdtqjAa4NwxLAa4
+	ciwj4b4anAoQY9qmJLm+cVCRzscpI0+C3C3tfQfh8dhWE3XtaENm3iXe
+X-Gm-Gg: AZuq6aL4AvC6eyzi/oy5C7Gd1rtpCIs+2y5o2pFWACjzln6jt4MhFHCYGpV7WZnn/kO
+	9I1X9eCEDvs50o8RAyOAH4XA0kv+2sKkVZzRVFAbsohNXfdjlk7P2T1sFUGjtz+RrjQKeTtM24v
+	EhNzLXnZMhwmEIRbmRfsTX5Eeifszd7R7ybC4hPkEJOXwiES4Gx67UhDbclrDjnNQfMHIZARiae
+	xkVpa9f0Uy2yhuj/BQJssjsLeIVZ/Z4d+ENDRIM/Q3NRutNqgI+VOy2vsMLDWr/vbuU9vMVEfvn
+	Fd+joph3q9lkpHLBaBkt5r7NZ/bsqmf7bEMUNOCvkA5Q5lHi1w7Wpfu5s2Dti+pl34r/QJhDDDh
+	fawpG/VpgEqakTuMQRlMrdbfUB/7F4yjODQcArQtPIN1wUnXbzHfordT3dHLP8FiRsUZYW8yKS6
+	OUhuPmnR3nxZzoDJy4tbbswTVA6tf+WiKr1Hc+KQ3hNa3mljKTFBac3zXy7r1cPL1t
+X-Received: by 2002:a05:6000:26c2:b0:437:7770:d058 with SMTP id ffacd0b85a97d-4378acd7296mr6978525f8f.63.1770920420975;
+        Thu, 12 Feb 2026 10:20:20 -0800 (PST)
+Received: from db07.UM6P.local ([196.200.180.25])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43783dfc2b0sm13239933f8f.21.2026.02.12.10.20.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Feb 2026 10:20:20 -0800 (PST)
+From: Taha Ed-Dafili <0rayn.dev@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: hwmon: temperature: add support for
- EMC1812
-Message-ID: <20260212-unsaved-delta-a49468049f10@spud>
-References: <20260212-hw_mon-emc1812-v6-0-e37e9b38d898@microchip.com>
- <20260212-hw_mon-emc1812-v6-1-e37e9b38d898@microchip.com>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mentees@lists.linuxfoundation.org,
+	me@brighamcampbell.com,
+	skhan@linuxfoundation.org,
+	Taha Ed-Dafili <0rayn.dev@gmail.com>
+Subject: [PATCH v1 0/2] iio: dac: ad5504: fix voltage scaling and add missing bindings
+Date: Thu, 12 Feb 2026 19:19:53 +0100
+Message-ID: <20260212181955.42724-1-0rayn.dev@gmail.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="WcLubc+h1xVO3Dkh"
-Content-Disposition: inline
-In-Reply-To: <20260212-hw_mon-emc1812-v6-1-e37e9b38d898@microchip.com>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265174-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-265175-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,vger.kernel.org,lists.linuxfoundation.org,brighamcampbell.com,linuxfoundation.org,gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[0rayndev@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1B5301302F5
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 748F713037F
 X-Rspamd-Action: no action
 
+This series fixes the voltage scale calculation for the AD5504 DAC and
+updates the devicetree bindings to support the necessary hardware
+configuration.
 
---WcLubc+h1xVO3Dkh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Previously, the driver calculated the scale based on the VCC supply
+voltage.
 
-On Thu, Feb 12, 2026 at 11:54:07AM +0200, Marius Cristea wrote:
-> +
-> +  # EMC1815: 4 Channels, Supports APD, REC on 1-2 and 3-4
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: microchip,emc1815
-> +    then:
-> +      # No restrictions needed, but explicitly allowing them is good documentation
+However, as confirmed by the datasheet (Rev. B) and discussion on
+the mailing list [1], the AD5504 has an integrated precision reference,
+and the output range is determined strictly by the state of the
+R_SEL pin (0-30V or 0-60V).
 
-Uh, I don't agree. If we applied this across the board in the name of
-"good documentation" we'd end up bloating up so many bindings.
+To address this:
+1. Patch 1 adds `adi,output-range-volts` (and GPIO equivalents) to the
+   bindings to describe the hardware state of the R_SEL pin, along with
+   other missing properties (vlogic, clear, ldac).
+2. Patch 2 updates the driver to use this property for scale calculation,
+   falling back to the 60V range if unspecified, while retaining the VCC
+   regulator enable for power.
 
-Other than this,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Link: https://lore.kernel.org/linux-iio/20260210121032.4630-1-0rayn.dev@gmail.com/ [1]
 
-Cheers,
-Conor.
+Taha Ed-Dafili (2):
+  dt-bindings: iio: dac: ad5504: add output-range and missing gpios
+  iio: dac: ad5504: use adi,output-range-volts for scale calculation
 
-> +      properties:
-> +        microchip,enable-anti-parallel: true
-> +        microchip,parasitic-res-on-channel1-2: true
-> +        microchip,parasitic-res-on-channel3-4: true
+ Documentation/devicetree/bindings/iio/dac/adi,ad5504.yaml | 20 ++++++++++++++++++++
+ drivers/iio/dac/ad5504.c                                  | 15 ++++++++++-----
+ 2 files changed, 30 insertions(+), 5 deletions(-)
 
+Taha Ed-Dafili (2):
+  dt-bindings: iio: dac: ad5504: add output-range and missing gpios
+  iio: dac: ad5504: use adi,output-range-volts for scale calculation
 
---WcLubc+h1xVO3Dkh
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../bindings/iio/dac/adi,ad5504.yaml          | 38 +++++++++++++++++++
+ drivers/iio/dac/ad5504.c                      | 26 ++++++++-----
+ 2 files changed, 54 insertions(+), 10 deletions(-)
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.47.3
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaY4YIgAKCRB4tDGHoIJi
-0io7AQDkOutIwPEj3td+X34ZdFu1SsITFTn7UcVxtL3pH+nOPgEAxu03PDgMYXlT
-7Ehku15KQ38z7onzyYmCveIOY6r7TAE=
-=DcpH
------END PGP SIGNATURE-----
-
---WcLubc+h1xVO3Dkh--
 
