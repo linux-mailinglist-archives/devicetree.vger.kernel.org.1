@@ -1,381 +1,188 @@
-Return-Path: <devicetree+bounces-265194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265195-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id fyeWMB03jmkhBAEAu9opvQ
-	(envelope-from <devicetree+bounces-265194-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 21:25:01 +0100
+	id cAoiEyM5jmluBAEAu9opvQ
+	(envelope-from <devicetree+bounces-265195-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 21:33:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C22C130EB8
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 21:25:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3053130F36
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 21:33:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3FA48302A53A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 20:24:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4522D304C091
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 20:33:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E72D2FFFB8;
-	Thu, 12 Feb 2026 20:24:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85ACA2F39C1;
+	Thu, 12 Feb 2026 20:33:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BV3Z6Ppn";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="R10hHf98"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="irfRbt7K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36FBE28727B
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 20:24:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22BA1238C07
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 20:33:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770927898; cv=none; b=LKz5T+05LKw31YBGb6Hx3m6gHRcBYGKryvxgMceT7Aab/9RgPcNPF6FFRa8TTY0rb11lwLjyMHZTG78pG1wR0VJIlb5WMvMN8ytTK85lxW9IU6riPwonqbjDHRMfpiqvHV0+ZX7nMtnVaKarZeSl/zjcs0VGZIzNT2USRp2GCeY=
+	t=1770928413; cv=none; b=Ao4scZpwPlO3mfXqKhJUMRL5RMfw0o3rG5WWbEmJxZC/3U76NK5XrRZueymseDlXvEtCrPzTTczCicEtMrmPakNqVWzR50EumNe7FooGEU5RzvVQo+W+HYokP2Qmu6TuLkW+Bpeipe7NtxjZyHg3RF5OOZRB56kv5v3KKOKDvtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770927898; c=relaxed/simple;
-	bh=z0MqLM9tPrQBVm9SriOBamLQ+piTfSlt5beztrKO9Dk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CMwJrSpQqNFuXbroPYdp8s8jW7ON0WRLxfeWBzeQPgn/JEjJYbl6ojteEjca9NwmsyVDyEAh1AqvhIVjrBZ5gVZcsOUk7C/kkTb2JvLqFRnd7ZrTEBWiR4KFo3ob4hCp9EGygKXFTHhgs1cvQ5n3eIhW2xRFoDXfRtT+scIcoDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BV3Z6Ppn; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=R10hHf98; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61CDRf7L588652
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 20:24:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uKYdLADorOb0aef85RQYXnUPOkx+7cAVnEN0Fv//BAA=; b=BV3Z6Ppn6qugW25e
-	7pp+UYLeo+UAGAajAXEOUfhmef4hrEFoxN2cEbljoY04rAw2pOa0ajI4hlY5dI6W
-	It9SxApZLQQc+1aCXKbWw87HMI7WozngBFgIOAJ+TycEvNEbJ/IUFdWDk6tKDvE9
-	+/2A3f/vYpwr5gTy8CalsQNU4GN3XkZOash1Tje8WcZd8V+v+Aho5GxEKQvkZMyv
-	MPZ4bXyJZzAH3RNNiAn+HkMBbninH5NfZVVL/p8lb76fcqWKUZLOf5FXD1nqqbrI
-	1IPc/fS4Dkh7T8bApxKCs3S8OknOh8z1AD5gyY87GyAvIl1z2VmPwbKgKC6Vs86a
-	Quz7pw==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c93snkst6-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 20:24:56 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-c61dee98720so103298a12.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 12:24:56 -0800 (PST)
+	s=arc-20240116; t=1770928413; c=relaxed/simple;
+	bh=GnVOYFS1dOs4ytjskGYRNbag345ulKuZ+IaQUN3bwJk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=tjlMA/VQmF1HGlkAMkYEGUr2N++Ji9+WaseB4hXujQyx03nSK+zOp/4rGnxNducVlH92jIYlcA1UX2CGYyKCRKoS4/CUsMAHMfWMEWftJZSn8pYP0gdNhKXEU4t88/XjHItxWVRiRwgSov0GbOI+CfXuIHwct3qpY6LspJsrvsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=irfRbt7K; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-4362507f0bcso171899f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 12:33:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770927896; x=1771532696; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uKYdLADorOb0aef85RQYXnUPOkx+7cAVnEN0Fv//BAA=;
-        b=R10hHf98BriXgOSKYgQK/3lvScIJUgQYgXij2FKmU1ERT0IZFYEEb09PnKzseJm/5R
-         CtEewR9mUd5Xg4M4HFNZvscta8vMq31MqkEOZq4VSoOLIYekZQPClSn+GEKOivm0NxGA
-         TaC/2vUIDOtQioEm+j0RdWK5Bu5bS6bMjGOUzwbqtq7CgbmdRgqnFxP4YbfORStYYEGG
-         2iaB6SuRIoJNYjA805x0u5tI2zKxS/clrF+5sCnne7BRQZCqdzd68gPYmuYKaZPFyz7L
-         C7grhdPkQsd2V5aqSvf+TXejR+AwSHmcQTC0GaF3dEaerE9LTmj4Gs8mpdEtmNW168iJ
-         OL1g==
+        d=linaro.org; s=google; t=1770928410; x=1771533210; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=GnVOYFS1dOs4ytjskGYRNbag345ulKuZ+IaQUN3bwJk=;
+        b=irfRbt7KDGQMMfULLyinfvoxkP/hz+aooshWz3GdSJHtAnlDu1FHGnHxAuOUqbTz+k
+         m3bePX4J2eKz0Xdi2WFWc+s9uXzdzZk6E0O4CX+VaI/M6SXRPwt5P/BO0F84JLLDpEen
+         Lmz7s9Wq8G71G0MFVKUg04VgfTOWEsAMnmGETOPAjhYnBWrFku4zvuv1YWBWXcmJYkGW
+         ZHss5nV+gnmW+knAaVTX0+8z9SBpPWU3k0nvj/9NFqVLUb3sGBmXu4R4608KAXyfv9Dc
+         qY6HzyBDELOwu/MCdwtaHhGy+d64ZhRNqwiQuTNSn+X0diclK5SEJ8wW8iERbYgJepsf
+         qKuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770927896; x=1771532696;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uKYdLADorOb0aef85RQYXnUPOkx+7cAVnEN0Fv//BAA=;
-        b=MfPjtzRQP89W2HUBDANCzyvIYlYJp152MgNcF1j59tX9DCdlg2AK9b+I5rHeXEfCnK
-         d5JRhs4S0rWM7NljcyP8WtmSKiss80W1C1kCjP3w9WxH5gfU1ipYsed4Apf0nyqPS9Ww
-         2RFnXW3EhshRBimibe+ew6Fn61fbPMxs8hDmRpi5GACh4DFHArZa3zg8yOTgvGG+nSay
-         NMQrBcJ0bk7Ui2/G1/e35ht7joelsMDaS2ThtwLTlzc1KeK8v93ACLbSAYUlA5PZHtTK
-         Vujtr8cHL+Dwy3Qo2tAheYwpzC0NS1VwlDawlQrf0a6odYTluY8xe94VrMg51lvNYGgD
-         /fBg==
-X-Forwarded-Encrypted: i=1; AJvYcCWZaYxZSH0VTpRqa8vG7L3s9O1ClVG8nNQSqp/+9jaHOOyEyPXEt3aNcGJTFXMTtum172BhZTb+GOzT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1IBdyL+ejd06oPJK0KnJsyq+sT/g2VUJUYFBLXkvEBxonxUDs
-	4xMD8B8QrwxQq+QPAtz9TBhj6UD13Lz0ObJEnKb0B4qZrqJtWJBAI8qxi+Zhq0IGdVmMIiq5njE
-	gR1T7CYSVIAGMR872ysHpcLswtWFUaBCnUxCsRY/Vzrgqb8bn3ilOd2bIH/tEw4Cr
-X-Gm-Gg: AZuq6aKWfiwO9wdT0oE9wZc1q0d2r75he6x3afYAVimwBehU1dtlSgc0WBDJ9wGLOKk
-	p4NJifjPji2sryhp78FewvNRSeJx5PYg5AHGnWHp0DGC0f5lEY+lgc+G5NmRLaRI0cF1xomRNNn
-	brQ54suGP02+NhlobVur6UGldr/BjjdOMc5BzgwzAT4+PbSsTGfLO52LoGZcjiE0YbE2QjZ+iN0
-	S43SMg6c/sApMdo6qAIrT5tmPjDqlnYzqKsvBFRC1IxC8rCQlkmevcPCHtwGWO6SQsEaC1qyjsx
-	cslzUaOZ0OYAnKSA6V95AwLrIyjGJnqBlbk7Dg+VPr+u7niUrnEm3gH0t8Zca+L2SgZyifPukuh
-	WCR28XmULoYtnNCPrqsWFReiEhgSA2HpICHJqiwgJ0HRU7vwxlGYPm9Q=
-X-Received: by 2002:a05:6a21:150b:b0:366:14b0:4b03 with SMTP id adf61e73a8af0-394672af719mr16692637.63.1770927895632;
-        Thu, 12 Feb 2026 12:24:55 -0800 (PST)
-X-Received: by 2002:a05:6a21:150b:b0:366:14b0:4b03 with SMTP id adf61e73a8af0-394672af719mr16666637.63.1770927894991;
-        Thu, 12 Feb 2026 12:24:54 -0800 (PST)
-Received: from [192.168.2.5] ([49.204.20.221])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-356a88a04a5sm19658a91.13.2026.02.12.12.24.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Feb 2026 12:24:54 -0800 (PST)
-Message-ID: <b286f784-1246-464a-a678-dcdcf3350f3d@oss.qualcomm.com>
-Date: Fri, 13 Feb 2026 01:54:48 +0530
+        d=1e100.net; s=20230601; t=1770928410; x=1771533210;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GnVOYFS1dOs4ytjskGYRNbag345ulKuZ+IaQUN3bwJk=;
+        b=OZs+F6kKw5KgEOnsiV5g+a1DBW+YcxFssnKamXKf4Nf0NZztKCOCGkStgUzCX08a2q
+         3Q5qLIuG6LrJTBgzf8xw6RlmdEMsdRi+4LYUP+V5tUlVHRz+G3GPa89Nt5CQDJTC4fEo
+         kzuW3bF1VmqFK79V12ap2QfL7iR0+WXCgkT9S3j3Gvo3PqTfCOEFysUQH5jUj4E1yTZe
+         1V0teCUqKP/MwFvAzOSOVIMTn7x4bk4GRr9NDSR37CIFdN41J9YFa5imJPK2eArGx4/s
+         P2VYhxZONvv/h1kOdg/0VAF3uEvDHC1oXqUGNMyO2BWPuZGEvBxhp+sXYNGpa5lqRGka
+         ETLg==
+X-Forwarded-Encrypted: i=1; AJvYcCVkHHRLquTOkHffVrYTK0GfLS+MiUaFYygEBqmzfCaviHFw+Oz5PHYT+52iTfj5S6/O6GE9S9xDobat@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWWVKLM/EWsM3dchj/hVbaDLE3wFcKhGQF8d9RQhw4C6tNdjyc
+	Uon9AGdj7UiBWCAIn3JfHU5ePaEh0mqVGoc8eO7OUJYcbQ/blsgbRxezldQm4PwOh54=
+X-Gm-Gg: AZuq6aLTRqdADRr4avofIA7HvPYv/I/iAIxniT4kjBSVBrotdc6N7yCePd5y9VAYT+O
+	UW7Bq7ujBw33HBgDktIOH9YyQpTPd13h2X+YJdVZ24jShbo3lP9onoyZZMCbPhQtmyi+QjM4nhx
+	qKGV8De/DgBQCuylg4wv3jaLtvZqPDBFDydX0QtQaagjABR3qKktdzfhjchOSAGZo15W0OUVvd1
+	sKi4Dw+9qIukeecFP8q4wbS96RhhhStPyQ37hwE3nExYE8nOSj9/9bGNUO6vkWTKoIjGTQbUp8v
+	6bvYxcjSzJ5mmmhCRol4oTSLUL+/OA5bTJMIoSXoFJM9gVikvSmb6iLtkbJryamdBw4XBeLUB6t
+	rEDyjm0zWpvZmsyhxBRv1tDy8pwwY+gJXqThvFIBVMns2Im0qEp1y3J1W3qbY/Uc4mg5JjpVAmh
+	lieeCAgGSQ1dTYB4pXN0nd6BhgQ11DoeeS2zQlw7UB
+X-Received: by 2002:a05:6000:3113:b0:435:9e81:105e with SMTP id ffacd0b85a97d-43796b22389mr268014f8f.19.1770928410444;
+        Thu, 12 Feb 2026 12:33:30 -0800 (PST)
+Received: from draszik.lan ([212.129.82.233])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43796ac9d77sm419495f8f.33.2026.02.12.12.33.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Feb 2026 12:33:30 -0800 (PST)
+Message-ID: <f190f9a211a69bf5200098f9d26a40b117ff7953.camel@linaro.org>
+Subject: Re: [PATCH v5 04/10] dt-bindings: soc: google: gs101-pmu: allow
+ power domains as children
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar
+ <alim.akhtar@samsung.com>,  Conor Dooley <conor+dt@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Ulf Hansson	 <ulf.hansson@linaro.org>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown	 <broonie@kernel.org>, Peter
+ Griffin <peter.griffin@linaro.org>, Tudor Ambarus	
+ <tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, Will McVicker
+	 <willmcvicker@google.com>, kernel-team@android.com, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>
+Date: Thu, 12 Feb 2026 20:33:33 +0000
+In-Reply-To: <CAL_JsqKKig8ePmmMZH=QagSyw0d=FKrORTxKzj7HOZqd0jLZFg@mail.gmail.com>
+References: <20260205-gs101-pd-v5-0-ede49cdb57a6@linaro.org>
+	 <20260205-gs101-pd-v5-4-ede49cdb57a6@linaro.org>
+	 <20260211211229.GA3882182-robh@kernel.org>
+	 <b5078af810a681333043f64d71b7d6ea55ff44bb.camel@linaro.org>
+	 <CAL_JsqKKig8ePmmMZH=QagSyw0d=FKrORTxKzj7HOZqd0jLZFg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: hwmon: Add qcom,bcl-hwmon yaml bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, amit.kucheria@oss.qualcomm.com,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>,
-        linux-hwmon@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260206-qcom-bcl-hwmon-v1-0-7b426f0b77a1@oss.qualcomm.com>
- <20260206-qcom-bcl-hwmon-v1-1-7b426f0b77a1@oss.qualcomm.com>
- <20260206-tricky-funky-bison-ffafa3@quoll>
-Content-Language: en-US
-From: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
-In-Reply-To: <20260206-tricky-funky-bison-ffafa3@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjEyMDE1NyBTYWx0ZWRfX497uvKNHqFWv
- C5WNygo3FwjyERdFT1lhSscV4xXr4NETHjUcpXca7y4oLAn7Mrjfxt34kILbe3fk0UOWoHCNAqt
- t1N/e4yrkcbps/J4UsfQ0duUGsPybljm1Aib6YYjzd3+Y1xqe1+/QDUAgOeOLkFngueA+ZUh3a1
- cU/mGD8nQjrwU6V1ZpaILC9jyuRocAg6bmvnXsxaI05Gld67fwsrhz/8dfL9OohW/14mop6H2st
- n6culsYeK0AthTQZ4j7AA1ccu+ihCYuJyF3dDEAlkdRpQhepyGCLy53R5VyLHUuZhBVacCFTOQL
- R3HbxnZhg31k8gaaB+Mk2SOuPJCmTyKHf2HiIkW0tGPgLuJ3BRew2SvlHgvBjDMTEJOWVJBEBkq
- aNkelkgCxptI6ivROYciwt6mQ3A88OaB/KPrf3b4jWouFka8tM0zRwFlngLODU+96a9pZRUvIG+
- nxBkVwXLnskYdxKk8Fg==
-X-Proofpoint-ORIG-GUID: PHK7YUMQO5jDYaBUjkYbSxUs1dSEC3EY
-X-Authority-Analysis: v=2.4 cv=dLCrWeZb c=1 sm=1 tr=0 ts=698e3718 cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=vFtg0H/HDnVpo/8TLRRAnA==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=gEfo2CItAAAA:8 a=UXIAUNObAAAA:8 a=EUspDBNiAAAA:8 a=GuN8W3Bbd2OushFT6gEA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
- a=sptkURWiP4Gy88Gu7hUp:22 a=a1s67YnXd6TbAZZNj1wK:22
-X-Proofpoint-GUID: PHK7YUMQO5jDYaBUjkYbSxUs1dSEC3EY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-12_05,2026-02-12_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 phishscore=0 lowpriorityscore=0 adultscore=0 impostorscore=0
- priorityscore=1501 spamscore=0 suspectscore=0 clxscore=1015 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602120157
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265194-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,1d00:email,qualcomm.com:email,qualcomm.com:dkim,devicetree-specification.readthedocs.io:url];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[manaf.pallikunhi@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-265195-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,samsung.com,linaro.org,gmail.com,google.com,android.com,lists.infradead.org,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 0C22C130EB8
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E3053130F36
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
+Hi Rob,
 
+On Thu, 2026-02-12 at 14:06 -0600, Rob Herring wrote:
+> On Thu, Feb 12, 2026 at 6:03=E2=80=AFAM Andr=C3=A9 Draszik <andre.draszik=
+@linaro.org> wrote:
+>=20
+>=20
+> "google,gs101-pmu" represents some specific h/w. That h/w either has
+> power domains or it doesn't. So which is it?
 
-On 2/6/2026 1:39 PM, Krzysztof Kozlowski wrote:
-> On Fri, Feb 06, 2026 at 02:44:05AM +0530, Manaf Meethalavalappu Pallikunhi wrote:
->> Add devicetree binding documentation for Qualcomm PMIC Battery Current
-> Subject - You almost hit bingo of what not to do. You miss the third one.
-> When you hit the bingo, get in touch for a beer.
->
-> And before, read the docs, because this was repeated SO MANY TIMES.
-Sure, I will update in next revision
->
->
->> Limiting (BCL) hardware monitor. The BCL hardware provides monitoring
->> and alarm functionality for battery overcurrent and battery/system
->> under voltage conditions.
->>
->> Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
->> ---
->>   .../devicetree/bindings/hwmon/qcom,bcl-hwmon.yaml  | 128 +++++++++++++++++++++
->>   1 file changed, 128 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/hwmon/qcom,bcl-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/qcom,bcl-hwmon.yaml
->> new file mode 100644
->> index 000000000000..a0e8eaf13eec
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/hwmon/qcom,bcl-hwmon.yaml
->> @@ -0,0 +1,128 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/hwmon/qcom,bcl-hwmon.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm SPMI PMIC Battery Current Limiting (BCL) Hardware Monitor
->> +
->> +maintainers:
->> +  - Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
->> +
->> +description: |
-> Do not need '|' unless you need to preserve formatting.
-ACK
->
->> +  SPMI PMIC Battery Current Limiting (BCL) hardware provides monitoring and
->> +  alarm functionality for battery overcurrent and battery or system under
->> +  voltage conditions. It monitors battery voltage and current, and
->> +  can trigger interrupts when configurable thresholds are exceeded.
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - description: v1 based BCL
->> +        items:
->> +          - enum:
->> +              - qcom,pm7250b-bcl
->> +              - qcom,pm8250b-bcl
->> +          - const: qcom,bcl-v1
-> Drop all bcl fallbacks. Pointless, incorrect and misleading.
-ACK
->
->> +
->> +      - description: v2 based BCL
->> +        items:
->> +          - enum:
->> +              - qcom,pm8350b-bcl
->> +              - qcom,pm8350c-bcl
->> +          - const: qcom,bcl-v2
->> +
->> +      - description: v3 bmx based BCL
->> +        items:
->> +          - enum:
->> +              - qcom,pm8550b-bcl
->> +              - qcom,pm7550ba-bcl
->> +          - const: qcom,bcl-v3-bmx
->> +
->> +      - description: v3 core based BCL
->> +        items:
->> +          - enum:
->> +              - qcom,pm8550-bc0l
->> +              - qcom,pm7550-bcl
->> +          - const: qcom,bcl-v3-core
->> +
->> +      - description: v3 wb based BCL
->> +        items:
->> +          - enum:
->> +              - qcom,pmw5100-bcl
->> +          - const: qcom,bcl-v3-wb
->> +
->> +      - description: v4 bmx based BCL
->> +        items:
->> +          - enum:
->> +              - qcom,pmih010-bcl
->> +          - const: qcom,bcl-v4-bmx
->> +
->> +      - description: v4 bmx with different scale based BCL
->> +        items:
->> +          - enum:
->> +              - qcom,pmv010-bcl
->> +          - const: qcom,bcl-v4-pmv010
->> +
->> +      - description: v4 core based BCL
->> +        items:
->> +          - enum:
->> +              - qcom,pmh010-bcl
->> +          - const: qcom,bcl-v4-core
->> +
->> +      - description: v4 wb based BCL
->> +        items:
->> +          - enum:
->> +              - qcom,pmw6100-bcl
->> +          - const: qcom,bcl-v4-wb
-> I really do not get what you are expressing here but all this is wrong.
->
->> +
->> +  reg:
->> +    maxItems: 1
->> +    description: BCL base address in the SPMI PMIC register map
-> Bus defines it. Drop descrip=tion.
-ACK
->
->> +
->> +  interrupts:
->> +    minItems: 2
-> Drop.
-ACK
->
->> +    maxItems: 2
->> +    description:
->> +      BCL alarm interrupts for different threshold levels
-> Drop
-ACK
->
->> +
->> +  interrupt-names:
->> +    items:
->> +      - const: bcl-max-min
->> +      - const: bcl-critical
-> Drop bcl
-ACK
->
->> +
->> +  overcurrent-thresholds-milliamp:
->> +    description:
->> +      Current thresholds in milliamperes for the two configurable current
->> +      alarm levels (max and critical). These values are used to override
->> +      default thresholds if a platform has different battery ocp specification.
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> No, please read basic guides or presentations about DT bindings. The
-> suffix already defines this.
-ACK
->
->> +    minItems: 2
->> +    maxItems: 2
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - interrupt-names
->> +
->> +unevaluatedProperties: false
-> You did not bother to read the docs prior to posting this.
->
-> You are supposed to do internal review first. Did it happen? I checked
-> and cannot find anything. It's not acceptable to use the community
-> instead of your internal review.
->
-> NAK
-My understanding is, it is optional. I will send v2 for internal review.
->
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
->> +    pmic {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        bcl@1d00 {
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> If you cannot find a name matching your device, please check in kernel
-> sources for similar cases or you can grow the spec (via pull request to
-> DT spec repo).
+It does have power domains, they were missing during the initial submission=
+ of
+bindings and DTS.
 
-ACK, Will use  node name as  sensor
+>=20
 
-Thanks,
+> > The compatible doesn't change with these patches. So I'm not sure how t=
+o make
+> > your suggestion work without causing warnings for existing DTs. We can =
+either
+> > have an old incomplete DT+binding:
+>=20
+> If this is considered incomplete, then you are going to complete it
+> and add the child nodes? If so, then the warnings are appropriate.
 
-Manaf
+Yes, I'm going to update the relevant DTS to include power domains.
 
->
-> Best regards,
-> Krzysztof
->
+> If you were going to maintain both bindings forever, then you would
+> probably want a new compatible. Or just drop the properties from
+> required. Note that if you have child nodes with 'reg' and parent
+> missing #address-cells or #size-cells, then dtc will warn about that.
+> So it's not too important if the schema doesn't.
+
+Maybe the commit message or footer comment was clear enough, sorry for that=
+.
+I never intended to support both old (incomplete) and new DT.
+
+Dropping from required did cross my mind, as I also saw the warning about
+missing #address-cells or #size-cells in that case. Missing 'ranges' would
+still not trigger a warning, though.
+
+So does my above explanation mean you're OK with the patch as such? I can
+reword the commit message a bit to point out that while this binding update
+breaks existing DTS, I will update them as they're simply incomplete.
+
+Cheers,
+Andre'
 
