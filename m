@@ -1,247 +1,153 @@
-Return-Path: <devicetree+bounces-265205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265206-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uGBYKvhOjmljBgEAu9opvQ
-	(envelope-from <devicetree+bounces-265205-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 23:06:48 +0100
+	id Yrk8JO5RjmmMBgEAu9opvQ
+	(envelope-from <devicetree+bounces-265206-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 23:19:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4851131751
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 23:06:47 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B6B41317B5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 23:19:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 932223019F1A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 22:06:46 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 422593014A0B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 22:19:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1335735D612;
-	Thu, 12 Feb 2026 22:06:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 668A7261B92;
+	Thu, 12 Feb 2026 22:19:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="l6bX6iXg"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="fTrjlnTJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11012045.outbound.protection.outlook.com [40.107.200.45])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB1335DCE3;
-	Thu, 12 Feb 2026 22:06:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.200.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770934006; cv=fail; b=uKQ9Atpx5nYb6uuAU62AQ2EpQb8FhIQQKh4wn2xZXKWOM001N7sspBnSf8Yd+Ay45+bjW5eKaCOZ0GZhYyS2yqyj+GET4yAnyDtzlyfdEiwR5i3ky13VE3WzNW0+s07c+pJwMJdT+9C8TUIJQUUKwpricxUKhn6KkE8FrcxSo5s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770934006; c=relaxed/simple;
-	bh=KHy62Kp1l7X8ELKTVax4Vkahpq88aNXVO4Ru8LpEBJY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RzZvcggBl9kbOD2BrFl94msC20hJajkVxzRPnNaGj3JnWcqYJqJB7t/wZVjGetKK7RmVVK3MimtI6IzSlzbzzQPV7vVg3rsmH2MrJKBI1LXfj0NHUp/AeXihPYXswAI9iQo1NmafnejS5UdghFlgiP/MhVCexpQj+f8kCha6HuQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=l6bX6iXg; arc=fail smtp.client-ip=40.107.200.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Mw72jNNvm6y/r/SAWiLG9Vfyu1IusEVVCaoatHuJrzBKS92hCDNHb7/e5rNJCcW6Wip/8/w2taqjvHbAJYAvGj8ryP+wuKMc1vq2G6HL10vXHAWYtN7biGIO8ASCkGdrmCbgfezdfX72CcIyj5a4txWQ9b1V1vJaTUYeKN6BUcaMYG5J3kLTlYeQgz5H4ZFxFwKOX6r6jRIRj8oJ4WvqTyEcNq/r3e0p1VJsN2wGoAk8SDsGKHpiiWA5/VhjELm0o1TvbvNC3giMv+VRFez3tcPWCreW8P+FYbN6r9iOZZ5R3jyW9kGZ6mfXOY6A+THEwNTz6y9wENCOWj2fJdVEbw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MgRApiQ7lh2AV88jsmsHe2HJ6OU3kV4ofWQHAdgT8Xk=;
- b=fTrbvEJGWOEG/40qiAqJXdc0VLQpQdIFqEPbjm0dyxPD6YzpDkEgTxSMpfHImH0hC6DKlYmvS2q5PfnsxyvE21cwgTA/5DTQtONkKmKpPEQtOxhehAiws5LLaPjJIuTA/fUrc1o2xBYMQUWRolceiGHn4cABsBTD0oZGnHEsCSME4gDjyC2GKPAZzRb8Dc7EoOpz129y1OHb1p97U2Z0Lmf+ZRi2jzb+7HYBfsSz7aeGZwPJVDkLo93i7RVgWG0qJsjaRxXkr3FHEfrVabAZp6hlq3ZYLjWfd3jQ4NzJddLXisQ9DttFQTkFlYAZFD3nO5rZ1yt546uD4v6DqrhoqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MgRApiQ7lh2AV88jsmsHe2HJ6OU3kV4ofWQHAdgT8Xk=;
- b=l6bX6iXg+z2VFTrNTtfx2fMh30Hs4bYFxnTRlltb/FWLYRTGHv24xyMQrQl2e9BMont13Mu8GvGtbgrFOuh7ZEX5Jnn4p5hIwG1CoedYhdRfY41d5mmc9uDNfJCQeGcFYI4e53WaIMQul9RXML2b1pTaqpYFJYiObCEAVpzuppg=
-Received: from MW4PR03CA0121.namprd03.prod.outlook.com (2603:10b6:303:8c::6)
- by LV3PR10MB8034.namprd10.prod.outlook.com (2603:10b6:408:28e::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.10; Thu, 12 Feb
- 2026 22:06:42 +0000
-Received: from CO1PEPF000066E8.namprd05.prod.outlook.com
- (2603:10b6:303:8c:cafe::e9) by MW4PR03CA0121.outlook.office365.com
- (2603:10b6:303:8c::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9611.11 via Frontend Transport; Thu,
- 12 Feb 2026 22:06:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CO1PEPF000066E8.mail.protection.outlook.com (10.167.249.6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9611.8 via Frontend Transport; Thu, 12 Feb 2026 22:06:40 +0000
-Received: from DLEE201.ent.ti.com (157.170.170.76) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 12 Feb
- 2026 16:06:40 -0600
-Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE201.ent.ti.com
- (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 12 Feb
- 2026 16:06:39 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE202.ent.ti.com
- (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 12 Feb 2026 16:06:39 -0600
-Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61CM6dXR3816226;
-	Thu, 12 Feb 2026 16:06:39 -0600
-Message-ID: <e92ec82e-63b4-4ef3-b6ef-4b0c3743a8f7@ti.com>
-Date: Thu, 12 Feb 2026 16:06:39 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFB3B3EBF3D;
+	Thu, 12 Feb 2026 22:19:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770934762; cv=none; b=rohBvH1avSyyILRtb12mNBpTJMFv/64Q/r61oxE9hyb8vtDpjALkV6j+qxHWFhkbAp9WGyVNWyXXX3SxLoOVeE1Ss1Id3nU1/2FjDdO56Lpm5iXENglde2/cXKgIIL1oeuPT2ORDfEWG2civX1HbXmJzYB/Soldlm96SCIHchAE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770934762; c=relaxed/simple;
+	bh=Btev3tidk4fWW2gklUalUiURfnfOP6aldQ+A9eS/HNI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CSVmzA0PFD/L0/SMEPAFRowaI06z92i5a9+aQFg0CJcYgIvt9yu8SXjy9UlmHTsQ65R31iTpTUNGpn2w5YmSbZ9kpEoyQKpBsQk3UMBg+SGzVaPzIEPsRaqQTjkvKH410Tzr3aGQkymTyICbLGQRY8/gewiUfUihF/7lwmkz5es=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=fTrjlnTJ; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=zn6U+s6nKrFVxchAXEA+zzkVNw+Uwh9myW4j41Chco0=; b=fTrjlnTJbHR9mHHDsRFLB1u5MS
+	cHDu4x/pQ+9UvqI4onwLN2MEDiON8bVlXS6XkeGD2THz78GAj4g+vKPCdoI32aoadakAuuTnFhke5
+	CuSVIXeC+YMGyIjoz2HC1ecnUGbDbLidWr1hWIRCkal4Ij+WhBSqNzchuNgl4mOtjFMCrV2epS34v
+	6BavwZGcv0uIZOhF9byHr4hv9kGD6OsRjs4+yYmmsUmI+tEzvsHnZjyZBy8Htr/3W8ST8vF6S4loG
+	md/G94cs5SHN0bhZGBfv0TbpglBVy8Sd6/i+gKxf9hMRcXs2iVCWGdDK/BvcDEIvaZBX+5NPnZZ32
+	BFZNo3kQ==;
+Date: Thu, 12 Feb 2026 23:19:07 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc: "Kory Maincent (TI)" <kory.maincent@bootlin.com>, Aaro Koskinen
+ <aaro.koskinen@iki.fi>, Kevin Hilman <khilman@baylibre.com>, Roger Quadros
+ <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Bajjuri Praneeth <praneeth@ti.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Louis
+ Chauvet <louis.chauvet@bootlin.com>
+Subject: Re: [PATCH 1/5] ARM: dts: ti: Enable overlays for all DTB files
+Message-ID: <20260212231907.6120a2e2@kemnade.info>
+In-Reply-To: <719BF710-26DF-49AB-A016-D2306F0389E2@goldelico.com>
+References: <20260212-feature_bbge-v1-0-29014a212f35@bootlin.com>
+	<20260212-feature_bbge-v1-1-29014a212f35@bootlin.com>
+	<B3366A17-641F-4E02-A5D4-978F525E0A96@goldelico.com>
+	<20260212174718.7daccb70@kemnade.info>
+	<719BF710-26DF-49AB-A016-D2306F0389E2@goldelico.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] arm64: boot: dts: ti: k3-am62l-wakeup: create
- label for target-module
-To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>, "Tero
- Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Dhruva
- Gole" <d-gole@ti.com>, Bryan Brattlof <bb@ti.com>
-CC: <vishalm@ti.com>, <sebin.francis@ti.com>, <msp@baylibre.com>,
-	<khilman@baylibre.com>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20260127-v6-19-wkup-uart-wakeup-v3-0-e7ccac761f3a@ti.com>
- <20260127-v6-19-wkup-uart-wakeup-v3-2-e7ccac761f3a@ti.com>
- <3bac0dc6-6e58-4a04-a0c6-a6646e261f6e@ti.com>
-Content-Language: en-US
-From: Kendall Willis <k-willis@ti.com>
-In-Reply-To: <3bac0dc6-6e58-4a04-a0c6-a6646e261f6e@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000066E8:EE_|LV3PR10MB8034:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9b865979-b2e6-4f31-f7cd-08de6a83001e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Rm9wRm4wOXl0QmJxN0JVWDNLeUx3M2locXI1YUIyTFplaEdIa3VmVGlVR1JD?=
- =?utf-8?B?RVR6K2JCTmJxQXNxbmY2d0crd3VZTjRwVVFKUUlZdWpSZy9iQ2pOcW4wN25G?=
- =?utf-8?B?M1pkLzJ2YmM5UnRLMnRKWTBoa0FyZi9IaUJYSnV5SFZQeUlLT1E0WllNa0Mv?=
- =?utf-8?B?YUluSkZHNk9GR2pEYTMzb2lBNk5oaVJ2ODBLVTliMGsyNTVBVHV0VjdlUnVH?=
- =?utf-8?B?UTh1NFk2ZTZ1cEhuSWQrNFh5c3NTSENiR1ZTTFl3UWxFZG80OVl6ZStuOGR1?=
- =?utf-8?B?emNlRnBBR0hvN1J6VnFvZkFudlErb1ZWb09DWXJpeno4aHdYckJZSklIbjRO?=
- =?utf-8?B?SGJBdW5kazBRQk5vNDZSbFQ4WG1ZUDhCYTFINXVKVUtEZVVzRnFNRk1zVnA1?=
- =?utf-8?B?VlNicVRrb0FBdkx5WXh1SWw2YlZZL3pYa3lldGRGTlc0cWNFLzNTeDI0Mnhh?=
- =?utf-8?B?eG9WcjlnOFY4OStwSm90S0lPYTlsNEZCeXdPcGFEKzFiN3JxTjBPWnk0ZDR2?=
- =?utf-8?B?YkRMV1dhM3JTQVNkczVINGhrRHFGWDc4YUpRUTlHYVFaUEVqVnJNRVZGS1Qz?=
- =?utf-8?B?UElVeTF4ZmFKQ3VRQ0p2KzFEMkdBZnNlMjNsMG5zYVlKbDJRc1g5K0tLUnpY?=
- =?utf-8?B?ZVJ6Z09EVnhqNHIzUTVBNjIzODBOMk5Wcng2YzJmSTVaeEZkb3RBVmd3dUZI?=
- =?utf-8?B?RitidDV4NWlRb3dGd2JjNEJ2Z0h2ZnRXYmFvTTBscjBPMUpJNk91aGJFdUQ5?=
- =?utf-8?B?bVU2dkdseUtlRWo2bWdCS0twZGdySi9hOVJvMG8wYVhNYXN0QlFxZUYyMEhO?=
- =?utf-8?B?S0dweVZrWWFpTUg0Vk1BSk1nZjNVQW5QRVJxKzBEOUNZWXUreU1GdDBqanBq?=
- =?utf-8?B?UDFGVVNSWGhsNmgxNGM1L0s3WjV2RUJzdzRRZVRsWWVrcExJMUtVQ0ZBcEZi?=
- =?utf-8?B?SnBEQ3VLaS9DNFFpTDRvcVZ2QWFRTjVmT05UWFNxR1ByWkhxd3BpeEJmS3Zk?=
- =?utf-8?B?TzdBWm9xQmZockJyNS9OeG1LZFkxYkVWb0JicVh3YkcwejBxRFpqeGRtdlZL?=
- =?utf-8?B?K2FkMWVuUmg3Mk9sQXM0OEpDYTVseDEvNDdWakQ4TC90blFZRDFwRlRLNzhw?=
- =?utf-8?B?bExERnlmaEVWTHF3THRyY05aYkdYQ0pHbXY1OUZ1STRxZXV1VUhJYkhqcUtI?=
- =?utf-8?B?MUJVbThzUDB1VDd6WThXS2Yxb2RYekxHdnQrNVhMNWNpVzl1U013L2kzTTRR?=
- =?utf-8?B?UCtMemU1RXE3ZmwrZkp3Znh6RW56dXVQR29MVTVoSFBkYnk4aW0vSGtqcy9j?=
- =?utf-8?B?MDVRSndmVDJLQzNmRHN4M283UmJ4cGtWK3hLOWZwU2JxM3oyUzZBNFg4M25j?=
- =?utf-8?B?bE9zTzdhTlRBYUZBZkxMVnlZdW9XbEpCUHQwY3Zsd0JDcTFRbnFLVnJQR2Fl?=
- =?utf-8?B?T2ErdkdoMU8weldUaTNOMXRkY2kvS1podUh2b0NxbGVGNFE3dkVYMlBGV3Rt?=
- =?utf-8?B?MFFrMjdOOFM3cHVhVDMvbzJ2S2Vqd3I5cnBSL0hXYTFtdFZla1NpdHdxWjJY?=
- =?utf-8?B?a3pkRThBaGdzcUM1RmszbzhTYVpEaS9LcmhXYi9qWXE2dkZVd2djekJOMHg2?=
- =?utf-8?B?aDBTR2hqT2ZMTXppTHlSdzRoTTc2NlRVb2dXQ0l0UHFrNzhUSmRFUVFnS1hP?=
- =?utf-8?B?RHMvcjJBYnVHQVJOUkJ3TEdHcW0zZWp5RHFWQUU4dVRJNy9namNIS1JRWTYz?=
- =?utf-8?B?K3I3RG1wZFNQUXoxeFRvQ3dqeG5BSU5xZTJrN1JPSzh1djBkWndsVHo4TmQ4?=
- =?utf-8?B?REpHakdnQU03NzgwbmhzWStUVE54SnVjdkhmdWZsMHNQQTFMK2JoQzNFNDcz?=
- =?utf-8?B?NkJjM1lwOTd5ZWplczRWUDliODYxTEJNcXg4ZkFTWUtndDF3QURyVmtxR3Iw?=
- =?utf-8?B?UVZEUlhSYzMxZnRFdnJ4STlpZ2oyTUtoYTRURzF2bGx2N0VSNnkrYlZvT0hE?=
- =?utf-8?B?ZGx1ZGpXbzdwUmJhUUdNMy9JWmlTSDRyL0s1NHpjdk1wTkpRZFQxWXBaenNw?=
- =?utf-8?B?MTJqT2E2RnRVY1FIVzkzZXNjb1gxb3A3SjRMQm5naHhJazVwajlVNVlvNVhL?=
- =?utf-8?B?L0tZS25BNWFHcXR2YmQ1SFFvSG1oaDlhZFNBV2ppU3ZjSHJIOEVVSlJuNW9B?=
- =?utf-8?B?TkVETWYzblFSZTY2WHAxTjhHL3ZhNGFCNk9QS2NzR3h6SnRMbWJrNWZyeXd6?=
- =?utf-8?B?VmdaYVZkdjVaQ1IvN2ZuZyszTEVnPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	wTBmkklNa6G2pOUcNTmzfc2YIpZnR9cMWU8cEgCZX1/ypNUx/TSZ4bamZdiK4YRO1JpRGUh7yQiBrpCI8q3fWM5Xi879hTQNIARkiVqvTdyIdwOiBiiBejJ6Hvzs/pfQjJLbSaOldAGyrgQ6P7JZ+24UtZAh4pvb/yIaEenZdlLZ+Putf7XabJC5UwkQiotey7PPO8V/KzmmkpxJrOjYWihPTd9WFYx1rlSHWlAGTVVurnVpSUUxNJUAe5YPH3YG27TF9yzHx9oTjxqciE+oqj9oTULYyngp+mFmO92e4n653Y40E+jZ2j8t81640ljk5POqvIO8tI54SvTAPRHQzsue0UJQTMwvDBmVBZ5a6/ClZjLyb68FdDQQOl6I6hCNncO25DXEygieQu6cwgBYDtr5GGik21PMR+B00fZdGtD2I/V9tlUP4nQU2cNoDRZ5
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2026 22:06:40.6924
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9b865979-b2e6-4f31-f7cd-08de6a83001e
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000066E8.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR10MB8034
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kemnade.info,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	R_DKIM_ALLOW(-0.20)[kemnade.info:s=20220719];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[k-willis@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,2b300050:email];
-	PRECEDENCE_BULK(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265206-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265205-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[ti.com:+]
-X-Rspamd-Queue-Id: D4851131751
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andreas@kemnade.info,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kemnade.info:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,goldelico.com:email]
+X-Rspamd-Queue-Id: 1B6B41317B5
 X-Rspamd-Action: no action
 
-Hi Vignesh,
-On 2/5/26 22:41, Vignesh Raghavendra wrote:
-> Hi
-> 
-> On 28/01/26 04:09, Kendall Willis wrote:
->> Add label to the target-module node so that it can easily be referenced.
->> The node specifically configures the SYSCONFIG related registers for WKUP
->> UART.
->>
->> Reviewed-by: Dhruva Gole <d-gole@ti.com>
->> Signed-off-by: Kendall Willis <k-willis@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi
->> index 61bfcdcfc66ea8d802a36ed43cd01fbbf3decc70..e9d638d9ffd3a52aa6e0df70f6003879bc292358 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi
->> @@ -81,7 +81,7 @@ wkup_i2c0: i2c@2b200000 {
->>   		status = "disabled";
->>   	};
->>   
->> -	target-module@2b300050 {
->> +	wkup_uart0_interconnect: target-module@2b300050 {
-> 
-> This is not an interconnect node, so the label is a bit misleading, just
-> use something like wkup_uart_target or something similar to how these
-> are labeled in arch/arm/boot/dts/ti/
-> 
+On Thu, 12 Feb 2026 17:55:43 +0100
+"H. Nikolaus Schaller" <hns@goldelico.com> wrote:
 
-Will fix this in v4, thanks for pointing this out.
-
-Best,
-Kendall
-
->>   		compatible = "ti,sysc-omap2", "ti,sysc";
->>   		reg = <0x00 0x2b300050 0x00 0x4>,
->>   		      <0x00 0x2b300054 0x00 0x4>,
->>
+> > Am 12.02.2026 um 17:47 schrieb Andreas Kemnade <andreas@kemnade.info>:
+> > 
+> > On Thu, 12 Feb 2026 16:49:43 +0100
+> > "H. Nikolaus Schaller" <hns@goldelico.com> wrote:
+> >   
+> >>> Am 12.02.2026 um 16:26 schrieb Kory Maincent (TI) <kory.maincent@bootlin.com>:
+> >>> 
+> >>> Allow overlays to be applied to any DTB. This adds around ~40% to the
+> >>> total size of the DTB files on average.    
+> >> 
+> >> Is this unconditionally enabled or can it be turned off by some CONFIG? We have
+> >> our own defconfig so I would not worry if if is enabled in omap2plus_defconfig
+> >> and disabled in ours.
+> >> 
+> >> We have several devices where the boot loader can't handle overlays (never touch
+> >> a working boot-loader :) So this seems to only contribute to build and load time
+> >> without benefit.
+> >>   
+> > As long as you do not add overlays, the bootloader does not care. I would
+> > like to simply carry around the 1-bit mmc overlay for one broken board.
+> > That would help me. So I think there is a benefit but nobody forces
+> > you to use it.  
 > 
+> Well, it does not force to use the really good feature, but it forces to add
+> ~40% more file size and some more compile time, if I understand it correctly.
+> 
+Compile time, hardly measurable even if you just do make dtbs.
 
+Size on disk:
+a) if it lives around in a /boot partitions with kernels and initrams in it,
+   then we are around 1% more space needed.
+
+b) if it has separate partitions maybe on some mtd: Looking around: GTA04
+   has quite some headroom left. Usage is still <50% even with symbols
+   enabled.
+
+But on the other no one else seems to enable that besides for devices with
+open expansion boards carrying "hats". So overall, should we really be the
+exception? 
+
+Regards,
+Andreas
 
