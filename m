@@ -1,596 +1,397 @@
-Return-Path: <devicetree+bounces-264873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264876-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eMl9JwUQjWnoyQAAu9opvQ
-	(envelope-from <devicetree+bounces-264873-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 00:25:57 +0100
+	id cBM8BIcgjWmJzQAAu9opvQ
+	(envelope-from <devicetree+bounces-264876-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 01:36:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13B9D1284B1
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 00:25:57 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 350B6128A91
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 01:36:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 04B03301D329
-	for <lists+devicetree@lfdr.de>; Wed, 11 Feb 2026 23:25:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CE9EB301FB5E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 00:36:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 133AF35771F;
-	Wed, 11 Feb 2026 23:25:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC1BC19D8AC;
+	Thu, 12 Feb 2026 00:36:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AY+k0qU+"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="acbkqUPf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3098338F4A;
-	Wed, 11 Feb 2026 23:25:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94BF613D51C;
+	Thu, 12 Feb 2026 00:36:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770852354; cv=none; b=TsQcC/fQ2BcLhsWcLGNACKjAtY+4jwOdHQ94xxscJ4fwxFmZ1OHrTBP4NtJbkAsSQhy42xG7Xxz5OwBegs9qVcvGgq7kj3khG/z5pesj+5et7yo7sJvYqeZpDE+yTAMw4ARO1kZjFnzOsn1apddqExL1JDOZvcaOoNHhhIZncuQ=
+	t=1770856578; cv=none; b=CBw32jNna+6UvSiVA0Hk3O5I+vB7mDK0xYyFdNb5DNn+pwXPjhKbDNQu05iKRFTWCB9UUtFwcKyByyS0/mLFCHeblk6SYQq/WpNIZP5YRqaOt2p1ePQbx7zpD4IFfv1ebfHJySy5qGvezE9cGlueGgM1TS6A9m53gZoDLTsjHqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770852354; c=relaxed/simple;
-	bh=T7W11iyKfB0XStgz6sv7aH6mTOcPBbmrHgmCJKx2DVY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ov51pBlbsD5d8snRlf3Mcd79CyTXK+YCjM3G9E6OylZoacYeXpnGfA1Qd/NT/7MFeXlL9F/nQSicS/ngLNLtcSWoeEGTbggSGi9jgYuQO1wayVzCq+VdZemAxwv/FfQ/ctRu5bPs2L1BBFfnxPRtGFqp4mbG1sAcZ/gC2Lmnr90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AY+k0qU+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B25C7C19423;
-	Wed, 11 Feb 2026 23:25:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770852353;
-	bh=T7W11iyKfB0XStgz6sv7aH6mTOcPBbmrHgmCJKx2DVY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=AY+k0qU+bq3uDcuyLX0irJ8s0/RAPrUNAW/qT5GEtuMk8edzNBf2iqfanXcDts4OB
-	 Ls3TDmxsT1P2T/g1JkYoeXH1J8NamZiUvuznzDlyQmlQyFMxCsfVM6AdTBQFtziDBY
-	 0XuvOJnCn9CCrKvdUx5dvpF7G1hOCTi4+lHMuAB1z0WSUVjGmTJeQS/ausf02XTjaB
-	 /vkWZYrBIk2p3bSnFgl1j39dEvPWA33AxzRUd63gZy5TXpQ8TdW4TSnT8Vz5w3c/tP
-	 UupiLEF4w/f1Qal9Ca6IJ/QMbhkTJ+6z/leSe+RszcCqYc8yYCmTowSOUv1SDn1hGd
-	 0L1gX1KkmzRLQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A5BAAECD6F7;
-	Wed, 11 Feb 2026 23:25:53 +0000 (UTC)
-From: Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>
-Date: Wed, 11 Feb 2026 23:25:36 +0000
-Subject: [PATCH 2/2] usb: typec: tcpm: add support for Sink Cap Extended
- msg response
+	s=arc-20240116; t=1770856578; c=relaxed/simple;
+	bh=jbtjgleDK6XJs5VcXh+X9zps4nyWbJrR/T6zQ26UNCs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PuxKcVnGhoqyuFJUWYP0IWkxc1z1zAEYsm9IMQ12G1u9d1WokRTrmAP+5BEZ4DkSgLdHn9agr03yq/8UGilNrJ66tNqoSrLzSP0poMDoWaxiHJ8Y+Lx0xvmqQ37JXWEuDd39NosRESfcnlYhxalWJCqGyiXokShMk7c331uHEso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=acbkqUPf; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: d3d2c31e07aa11f1b7fc4fdb8733b2bc-20260212
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=oH3IAtOnsh2fuVtcrht4CGGicuTHa4AMS7Ui0cJNMKY=;
+	b=acbkqUPfIufeDpy48wq3Go/EaB7PKgzGQNsUksCxZfBLGiok3pWf6eU5cJ0RksFzAN2hLttDUCkFo7ymZN4Am4DrF0glnKd/JEzlKfjuCDmwj4+nrFPgjwGg5CkKdlVapYuCp/YFVtBnL4MDZyyd7bK1TOHrxxOPGSqyJxlw3Ts=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.11,REQID:5756713c-60bb-47ac-ba01-4d571da093c2,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:89c9d04,CLOUDID:121b95e9-ef90-4382-9c6f-55f2a0689a6b,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI:0,OSA
+	:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: d3d2c31e07aa11f1b7fc4fdb8733b2bc-20260212
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+	(envelope-from <ryder.lee@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 901809507; Thu, 12 Feb 2026 08:36:10 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Thu, 12 Feb 2026 08:36:09 +0800
+Received: from mussdccf250.eus.mediatek.inc (10.73.250.250) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Thu, 12 Feb 2026 08:36:07 +0800
+From: Ryder Lee <ryder.lee@mediatek.com>
+To: Felix Fietkau <nbd@nbd.name>, Rob Herring <robh@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-wireless@vger.kernel.org>, Allen Ye <allen.ye@mediatek.com>, Ryder Lee
+	<ryder.lee@mediatek.com>
+Subject: [PATCH v5 1/2] wifi: mt76: fix backoff fields and max_power calculation
+Date: Wed, 11 Feb 2026 16:36:05 -0800
+Message-ID: <8fa8ec500b3d4de7b1966c6887f1dfbe5c46a54c.1770856296.git.ryder.lee@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260211-skedb-v1-2-616340426cdc@google.com>
-References: <20260211-skedb-v1-0-616340426cdc@google.com>
-In-Reply-To: <20260211-skedb-v1-0-616340426cdc@google.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Badhri Jagan Sridharan <badhri@google.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-usb@vger.kernel.org, Kyle Tso <kyletso@google.com>, 
- RD Babiera <rdbabiera@google.com>, Amit Sunil Dhamne <amitsd@google.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770852352; l=15587;
- i=amitsd@google.com; s=20241031; h=from:subject:message-id;
- bh=BzCSjtIOUUD4Q99p18Q7PqnQpuoLqw6EnXFnmItem+I=;
- b=A6+fIvGraI3758QqJVLEePtwR4SFlrvjG704UCIAa2/Gv7nvit5X/x86U5HbsjInve2M8r89c
- r5aHo4QiKB6BAr0UXNyUU6k2IWWMwq7GhJm39EuwqkDIjPeDL4Q3vn+
-X-Developer-Key: i=amitsd@google.com; a=ed25519;
- pk=wD+XZSST4dmnNZf62/lqJpLm7fiyT8iv462zmQ3H6bI=
-X-Endpoint-Received: by B4 Relay for amitsd@google.com/20241031 with
- auth_id=262
-X-Original-From: Amit Sunil Dhamne <amitsd@google.com>
-Reply-To: amitsd@google.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264873-lists,devicetree=lfdr.de,amitsd.google.com];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-264876-lists,devicetree=lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[6];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[ryder.lee@mediatek.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	HAS_REPLYTO(0.00)[amitsd@google.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,skedb.pid:url]
-X-Rspamd-Queue-Id: 13B9D1284B1
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	DKIM_TRACE(0.00)[mediatek.com:+];
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 350B6128A91
 X-Rspamd-Action: no action
 
-From: Amit Sunil Dhamne <amitsd@google.com>
+From: Allen Ye <allen.ye@mediatek.com>
 
-Add support for responding to Sink Cap Extended msg request. To achieve
-this, include parsing support for DT properties related to Sink Cap
-Extended. The request for Sink Cap Ext is a control message while the
-response is an extended message (chunked). As the Sink Caps Extended
-Data Block size (24 Byte) is less than MaxExtendedMsgChunkLen (26 Byte),
-a single chunk is sufficient to complete this AMS.
+The maximum power value may exist in either the data or backoff field.
+Previously, backoff power limits were not considered in txpower reporting.
+This patch ensures mt76 also considers backoff values in the SKU table.
 
-Supporting sink cap extended messages while responding to a
-Get_Sink_Caps_Extended request when port is in Sink role is required in
-order to be compliant with at least USB PD Rev3.1 Ver1.8.
+Also, each RU entry (RU26, RU52, RU106, BW20, ...) in the DTS corresponds
+to 10 stream combinations (1T1ss, 2T1ss, 3T1ss, 4T1ss, 2T2ss, 3T2ss,
+4T2ss, 3T3ss, 4T3ss, 4T4ss).
 
-Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
-Reviewed-by: Badhri Jagan Sridharan <badhri@google.com>
+For beamforming tables:
+- In connac2, beamforming entries for BW20~BW160, and OFDM do not include
+  1T1ss.
+- In connac3, beamforming entries for BW20~BW160, and RU include 1T1ss,
+  but OFDM beamforming does not include 1T1ss.
+
+Non-beamforming and RU entries for both connac2 and connac3 include 1T1ss.
+
+Fixes: b05ab4be9fd7 ("wifi: mt76: mt7915: add bf backoff limit table support")
+Signed-off-by: Allen Ye <allen.ye@mediatek.com>
+Co-developed-by: Ryder Lee <ryder.lee@mediatek.com>
+Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
 ---
- drivers/usb/typec/tcpm/tcpm.c | 253 +++++++++++++++++++++++++++++++++++++++++-
- include/linux/usb/pd.h        |  82 +++++++++++++-
- 2 files changed, 332 insertions(+), 3 deletions(-)
+v1:
+- Add "wifi:" prefix to the subject.
 
-diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index be49a976428f..72559d0dbf34 100644
---- a/drivers/usb/typec/tcpm/tcpm.c
-+++ b/drivers/usb/typec/tcpm/tcpm.c
-@@ -12,6 +12,7 @@
- #include <linux/jiffies.h>
- #include <linux/kernel.h>
- #include <linux/kthread.h>
-+#include <linux/minmax.h>
- #include <linux/module.h>
- #include <linux/mutex.h>
- #include <linux/power_supply.h>
-@@ -188,7 +189,8 @@
- 	S(STRUCTURED_VDMS),			\
- 	S(COUNTRY_INFO),			\
- 	S(COUNTRY_CODES),			\
--	S(REVISION_INFORMATION)
-+	S(REVISION_INFORMATION),		\
-+	S(GETTING_SINK_EXTENDED_CAPABILITIES)
- 
- #define GENERATE_ENUM(e)	e
- #define GENERATE_STRING(s)	#s
-@@ -229,6 +231,7 @@ enum pd_msg_request {
- 	PD_MSG_DATA_SINK_CAP,
- 	PD_MSG_DATA_SOURCE_CAP,
- 	PD_MSG_DATA_REV,
-+	PD_MSG_EXT_SINK_CAP_EXT
- };
- 
- enum adev_actions {
-@@ -337,6 +340,42 @@ struct pd_timings {
- 	u32 snk_bc12_cmpletion_time;
- };
- 
-+/* Convert microwatt to watt */
-+#define UW_TO_W(pow)					((pow) / 1000000)
+v2:
+- Fix checkpatch errors.
+- Remove unnecessary style changes.
+- Add explanation for connac2 index adjustment.
+
+v3:
+- Fix "case"s for MT76_SKU_BACKOFF_BF_OFFSET and MT76_SKU_BACKOFF.
+- add more explanation for connac2/connac3 tables.
+---
+ drivers/net/wireless/mediatek/mt76/eeprom.c | 154 ++++++++++++++------
+ drivers/net/wireless/mediatek/mt76/mt76.h   |   1 -
+ 2 files changed, 109 insertions(+), 46 deletions(-)
+
+diff --git a/drivers/net/wireless/mediatek/mt76/eeprom.c b/drivers/net/wireless/mediatek/mt76/eeprom.c
+index 573400d57..afdb73661 100644
+--- a/drivers/net/wireless/mediatek/mt76/eeprom.c
++++ b/drivers/net/wireless/mediatek/mt76/eeprom.c
+@@ -9,6 +9,13 @@
+ #include <linux/nvmem-consumer.h>
+ #include <linux/etherdevice.h>
+ #include "mt76.h"
++#include "mt76_connac.h"
 +
-+/**
-+ * pd_identifier - Contains info about PD identifiers
-+ * @vid: Vendor ID (assigned by USB-IF)
-+ * @pid: Product ID (assigned by manufacturer)
-+ * @xid: Value assigned by USB-IF for product
-+ */
-+struct pd_identifier {
-+	u16 vid;
-+	u16 pid;
-+	u32 xid;
++enum mt76_sku_type {
++	MT76_SKU_RATE,
++	MT76_SKU_BACKOFF,
++	MT76_SKU_BACKOFF_BF_OFFSET,
 +};
-+
-+/**
-+ * sink_caps_ext_data - Sink extended capability data
-+ * @load_step: Indicates the load step slew rate. Value of 0 indicates 150mA/us
-+ *             & 1 indicates 500 mA/us
-+ * @load_char: Snk overload characteristics
-+ * @compliance: Types of sources the sink has been tested & certified on
-+ * @modes: Charging caps & power sources supported
-+ * @spr_min_pdp: Sink Minimum PDP for SPR mode (in Watts)
-+ * @spr_op_pdp: Sink Operational PDP for SPR mode (in Watts)
-+ * @spr_max_pdp: Sink Maximum PDP for SPR mode (in Watts)
-+ */
-+struct sink_caps_ext_data {
-+	u8 load_step;
-+	u16 load_char;
-+	u8 compliance;
-+	u8 modes;
-+	u8 spr_min_pdp;
-+	u8 spr_op_pdp;
-+	u8 spr_max_pdp;
-+};
-+
- struct tcpm_port {
- 	struct device *dev;
  
-@@ -585,6 +624,9 @@ struct tcpm_port {
+ static int mt76_get_of_eeprom_data(struct mt76_dev *dev, void *eep, int len)
+ {
+@@ -292,7 +299,6 @@ mt76_find_channel_node(struct device_node *np, struct ieee80211_channel *chan)
+ }
+ EXPORT_SYMBOL_GPL(mt76_find_channel_node);
  
- 	/* Indicates maximum (revision, version) supported */
- 	struct pd_revision_info pd_rev;
-+
-+	struct pd_identifier pd_ident;
-+	struct sink_caps_ext_data sink_caps_ext;
- #ifdef CONFIG_DEBUG_FS
- 	struct dentry *dentry;
- 	struct mutex logbuffer_lock;	/* log buffer access lock */
-@@ -1367,6 +1409,64 @@ static int tcpm_pd_send_sink_caps(struct tcpm_port *port)
- 	return tcpm_pd_transmit(port, TCPC_TX_SOP, &msg);
+-
+ static s8
+ mt76_get_txs_delta(struct device_node *np, u8 nss)
+ {
+@@ -306,9 +312,24 @@ mt76_get_txs_delta(struct device_node *np, u8 nss)
+ 	return be32_to_cpu(val[nss - 1]);
  }
  
-+static int tcpm_pd_send_sink_cap_ext(struct tcpm_port *port)
++static inline u8 mt76_backoff_n_chains(struct mt76_dev *dev, u8 idx)
 +{
-+	u16 operating_snk_watt = port->operating_snk_mw / 1000;
-+	struct sink_caps_ext_data *data = &port->sink_caps_ext;
-+	struct pd_identifier *pd_ident = &port->pd_ident;
-+	struct sink_caps_ext_msg skedb = {0};
-+	struct pd_message msg;
-+	u8 data_obj_cnt;
++	/* 0:1T1ss, 1:2T1ss, ..., 14:5T5ss */
++	static const u8 connac3_table[] = {
++		1, 2, 3, 4, 5, 2, 3, 4, 5, 3, 4, 5, 4, 5, 5};
++	static const u8 connac2_table[] = {
++		1, 2, 3, 4, 2, 3, 4, 3, 4, 4, 0, 0, 0, 0, 0};
 +
-+	if (!port->self_powered)
-+		data->spr_op_pdp = operating_snk_watt;
++	if (idx >= ARRAY_SIZE(connac3_table))
++		return 0;
 +
-+	/*
-+	 * SPR Sink Minimum PDP indicates the minimum power required to operate
-+	 * a sink device in its lowest level of functionality without requiring
-+	 * power from the battery. We can use the operating_snk_watt value to
-+	 * populate it, as operating_snk_watt indicates device's min operating
-+	 * power.
-+	 */
-+	data->spr_min_pdp = operating_snk_watt;
-+
-+	if (data->spr_op_pdp < data->spr_min_pdp ||
-+	    data->spr_max_pdp < data->spr_op_pdp) {
-+		tcpm_log(port,
-+			 "Invalid PDP values, Min PDP:%u, Op PDP:%u, Max PDP:%u",
-+			 data->spr_min_pdp, data->spr_op_pdp, data->spr_max_pdp);
-+		return -EOPNOTSUPP;
-+	}
-+
-+	memset(&msg, 0, sizeof(msg));
-+	skedb.vid = cpu_to_le16(pd_ident->vid);
-+	skedb.pid = cpu_to_le16(pd_ident->pid);
-+	skedb.xid = cpu_to_le32(pd_ident->xid);
-+	skedb.skedb_ver = SKEDB_VER_1_0;
-+	skedb.load_step = data->load_step;
-+	skedb.load_char = cpu_to_le16(data->load_char);
-+	skedb.compliance = data->compliance;
-+	skedb.modes = data->modes;
-+	skedb.spr_min_pdp = data->spr_min_pdp;
-+	skedb.spr_op_pdp = data->spr_op_pdp;
-+	skedb.spr_max_pdp = data->spr_max_pdp;
-+	memcpy(msg.ext_msg.data, &skedb, sizeof(skedb));
-+	msg.ext_msg.header = PD_EXT_HDR_LE(sizeof(skedb),
-+					   0, /* Denotes if request chunk */
-+					   0, /* Chunk Number */
-+					   1  /* Chunked */);
-+
-+	data_obj_cnt = count_chunked_data_objs(sizeof(skedb));
-+	msg.header = cpu_to_le16(PD_HEADER(PD_EXT_SINK_CAP_EXT,
-+					   port->pwr_role,
-+					   port->data_role,
-+					   port->negotiated_rev,
-+					   port->message_id,
-+					   data_obj_cnt,
-+					   1 /* Denotes if ext header */));
-+	return tcpm_pd_transmit(port, TCPC_TX_SOP, &msg);
++	return is_mt799x(dev) ? connac3_table[idx] : connac2_table[idx];
 +}
 +
- static void mod_tcpm_delayed_work(struct tcpm_port *port, unsigned int delay_ms)
+ static void
+-mt76_apply_array_limit(s8 *pwr, size_t pwr_len, const s8 *data,
+-		       s8 target_power, s8 nss_delta, s8 *max_power)
++mt76_apply_array_limit(struct mt76_dev *dev, s8 *pwr, size_t pwr_len,
++		       const s8 *data, s8 target_power, s8 nss_delta,
++		       s8 *max_power, int n_chains, enum mt76_sku_type type)
  {
- 	if (delay_ms) {
-@@ -3655,6 +3755,19 @@ static void tcpm_pd_ctrl_request(struct tcpm_port *port,
- 					   PD_MSG_CTRL_NOT_SUPP,
- 					   NONE_AMS);
- 		break;
-+	case PD_CTRL_GET_SINK_CAP_EXT:
-+		/* This is an unsupported message if port type is SRC */
-+		if (port->negotiated_rev >= PD_REV30 &&
-+		    port->port_type != TYPEC_PORT_SRC)
-+			tcpm_pd_handle_msg(port, PD_MSG_EXT_SINK_CAP_EXT,
-+					   GETTING_SINK_EXTENDED_CAPABILITIES);
-+		else
-+			tcpm_pd_handle_msg(port,
-+					   port->negotiated_rev < PD_REV30 ?
-+					   PD_MSG_CTRL_REJECT :
-+					   PD_MSG_CTRL_NOT_SUPP,
-+					   NONE_AMS);
-+		break;
- 	default:
- 		tcpm_pd_handle_msg(port,
- 				   port->negotiated_rev < PD_REV30 ?
-@@ -3907,6 +4020,16 @@ static bool tcpm_send_queued_message(struct tcpm_port *port)
- 					 ret);
- 			tcpm_ams_finish(port);
- 			break;
-+		case PD_MSG_EXT_SINK_CAP_EXT:
-+			ret = tcpm_pd_send_sink_cap_ext(port);
-+			if (ret == -EOPNOTSUPP)
-+				tcpm_pd_send_control(port, PD_CTRL_NOT_SUPP, TCPC_TX_SOP);
-+			else if (ret < 0)
-+				tcpm_log(port,
-+					 "Unable to transmit sink cap extended, ret=%d",
-+					 ret);
-+			tcpm_ams_finish(port);
+ 	int i;
+ 
+@@ -316,18 +337,51 @@ mt76_apply_array_limit(s8 *pwr, size_t pwr_len, const s8 *data,
+ 		return;
+ 
+ 	for (i = 0; i < pwr_len; i++) {
+-		pwr[i] = min_t(s8, target_power, data[i] + nss_delta);
++		u8 backoff_chain_idx = i;
++		int backoff_n_chains;
++		s8 backoff_delta;
++		s8 delta;
++
++		switch (type) {
++		case MT76_SKU_RATE:
++			delta = 0;
++			backoff_delta = 0;
++			backoff_n_chains = 0;
 +			break;
- 		default:
- 			break;
- 		}
-@@ -7291,6 +7414,129 @@ static void tcpm_fw_get_timings(struct tcpm_port *port, struct fwnode_handle *fw
- 		port->timings.snk_bc12_cmpletion_time = val;
- }
- 
-+static void tcpm_fw_get_pd_ident(struct tcpm_port *port)
-+{
-+	struct pd_identifier *pd_ident = &port->pd_ident;
-+	u32 *vdo;
-+
-+	/* First 3 vdo values contain info regarding USB PID, VID & XID */
-+	if (port->nr_snk_vdo >= 3)
-+		vdo = port->snk_vdo;
-+	else if (port->nr_snk_vdo_v1 >= 3)
-+		vdo = port->snk_vdo_v1;
-+	else
-+		return;
-+
-+	pd_ident->vid = PD_IDH_VID(vdo[0]);
-+	pd_ident->pid = PD_PRODUCT_PID(vdo[2]);
-+	pd_ident->xid = PD_CSTAT_XID(vdo[1]);
-+	tcpm_log(port, "vid:%#x pid:%#x xid:%#x",
-+		 pd_ident->vid, pd_ident->pid, pd_ident->xid);
-+}
-+
-+static void tcpm_parse_snk_pdos(struct tcpm_port *port)
-+{
-+	struct sink_caps_ext_data *caps = &port->sink_caps_ext;
-+	u32 max_mv, max_ma;
-+	u8 avs_tier1_pdp, avs_tier2_pdp;
-+	int i, pdo_itr;
-+	u32 *snk_pdos;
-+
-+	for (i = 0; i < port->pd_count; ++i) {
-+		snk_pdos = port->pd_list[i]->sink_desc.pdo;
-+		for (pdo_itr = 0; pdo_itr < PDO_MAX_OBJECTS && snk_pdos[pdo_itr];
-+		     ++pdo_itr) {
-+			u32 pdo = snk_pdos[pdo_itr];
-+			u8 curr_snk_pdp = 0;
-+
-+			switch (pdo_type(pdo)) {
-+			case PDO_TYPE_FIXED:
-+				max_mv = pdo_fixed_voltage(pdo);
-+				max_ma = pdo_fixed_current(pdo);
-+				curr_snk_pdp = UW_TO_W(max_mv * max_ma);
-+				break;
-+			case PDO_TYPE_BATT:
-+				curr_snk_pdp = UW_TO_W(pdo_max_power(pdo));
-+				break;
-+			case PDO_TYPE_VAR:
-+				max_mv = pdo_max_voltage(pdo);
-+				max_ma = pdo_max_current(pdo);
-+				curr_snk_pdp = UW_TO_W(max_mv * max_ma);
-+				break;
-+			case PDO_TYPE_APDO:
-+				if (pdo_apdo_type(pdo) == APDO_TYPE_PPS) {
-+					max_mv = pdo_pps_apdo_max_voltage(pdo);
-+					max_ma = pdo_pps_apdo_max_current(pdo);
-+					curr_snk_pdp = UW_TO_W(max_mv * max_ma);
-+					caps->modes |= SINK_MODE_PPS;
-+				} else if (pdo_apdo_type(pdo) ==
-+					   APDO_TYPE_SPR_AVS) {
-+					avs_tier1_pdp = UW_TO_W(SPR_AVS_TIER1_MAX_VOLT_MV
-+						* pdo_spr_avs_apdo_9v_to_15v_max_current_ma(pdo));
-+					avs_tier2_pdp = UW_TO_W(SPR_AVS_TIER2_MAX_VOLT_MV
-+						* pdo_spr_avs_apdo_15v_to_20v_max_current_ma(pdo));
-+					curr_snk_pdp = max(avs_tier1_pdp, avs_tier2_pdp);
-+					caps->modes |= SINK_MODE_AVS;
-+				}
-+				break;
-+			default:
-+				tcpm_log(port, "Invalid source PDO type, ignoring");
-+				continue;
-+			}
-+
-+			caps->spr_max_pdp = max(caps->spr_max_pdp,
-+						curr_snk_pdp);
++		case MT76_SKU_BACKOFF_BF_OFFSET:
++			backoff_chain_idx += 1;
++			fallthrough;
++		case MT76_SKU_BACKOFF:
++			delta = mt76_tx_power_path_delta(n_chains);
++			backoff_n_chains = mt76_backoff_n_chains(dev, backoff_chain_idx);
++			backoff_delta = mt76_tx_power_path_delta(backoff_n_chains);
++			break;
++		default:
++			return;
 +		}
-+	}
-+}
 +
-+static void tcpm_fw_get_sink_caps_ext(struct tcpm_port *port,
-+				      struct fwnode_handle *fwnode)
-+{
-+	struct sink_caps_ext_data *caps = &port->sink_caps_ext;
-+	int ret;
-+	u32 val;
++		pwr[i] = min_t(s8, target_power + delta - backoff_delta, data[i] + nss_delta);
 +
-+	/*
-+	 * Load step represents the change in current per usec that a given
-+	 * source can tolerate while maintaining Vbus within the vSrcValid
-+	 * range. For a sink this represents the "preferred" load-step value. It
-+	 * can only have 2 values (150 mA/usec or 500 mA/usec) with 150 mA/usec
-+	 * being the default.
-+	 */
-+	ret = fwnode_property_read_u32(fwnode, "sink-load-step", &val);
-+	if (!ret)
-+		caps->load_step = val == 500 ? 1 : 0;
++		/* used for padding, doesn't need to be considered */
++		if (data[i] >= S8_MAX - 1)
++			continue;
 +
-+	fwnode_property_read_u16(fwnode, "sink-load-characteristics",
-+				 &caps->load_char);
-+	fwnode_property_read_u8(fwnode, "sink-compliance", &caps->compliance);
-+	caps->modes = SINK_MODE_VBUS;
++		/* only consider backoff value for the configured chain number */
++		if (type != MT76_SKU_RATE && n_chains != backoff_n_chains)
++			continue;
 +
-+	/*
-+	 * As per "6.5.13.14" SPR Sink Operational PDP definition, for battery
-+	 * powered devices, this value will correspond to the PDP of the
-+	 * charging adapter either shipped or recommended for use with it. For
-+	 * batteryless sink devices SPR Operational PDP indicates the power
-+	 * required to operate all the device's functional modes. Hence, this
-+	 * value may be considered equal to port's operating_snk_mw. As
-+	 * operating_sink_mw can change as per the pd set used thus, OP PDP
-+	 * is determined when populating Sink Caps Extended Data Block.
-+	 */
-+	if (port->self_powered) {
-+		fwnode_property_read_u32(fwnode, "charging-adapter-pdp-milliwatt",
-+					 &val);
-+		caps->spr_op_pdp = (u8)(val / 1000);
-+		caps->modes |= SINK_MODE_BATT;
-+	}
-+
-+	tcpm_parse_snk_pdos(port);
-+	tcpm_log(port,
-+		 "load-step:%#x load-char:%#x compl:%#x op-pdp:%#x max-pdp:%#x",
-+		 caps->load_step, caps->load_char, caps->compliance,
-+		 caps->spr_op_pdp, caps->spr_max_pdp);
-+}
-+
- static int tcpm_fw_get_caps(struct tcpm_port *port, struct fwnode_handle *fwnode)
- {
- 	struct fwnode_handle *capabilities, *caps = NULL;
-@@ -7464,6 +7710,9 @@ static int tcpm_fw_get_caps(struct tcpm_port *port, struct fwnode_handle *fwnode
- 		}
+ 		*max_power = max(*max_power, pwr[i]);
  	}
- 
-+	if (port->port_type != TYPEC_PORT_SRC)
-+		tcpm_fw_get_sink_caps_ext(port, fwnode);
-+
- put_caps:
- 	if (caps != fwnode)
- 		fwnode_handle_put(caps);
-@@ -7506,6 +7755,8 @@ static int tcpm_fw_get_snk_vdos(struct tcpm_port *port, struct fwnode_handle *fw
- 			return ret;
- 	}
- 
-+	tcpm_fw_get_pd_ident(port);
-+
- 	return 0;
  }
  
-diff --git a/include/linux/usb/pd.h b/include/linux/usb/pd.h
-index 6ccd1b2af993..8f7e44c0d321 100644
---- a/include/linux/usb/pd.h
-+++ b/include/linux/usb/pd.h
-@@ -34,7 +34,8 @@ enum pd_ctrl_msg_type {
- 	PD_CTRL_FR_SWAP = 19,
- 	PD_CTRL_GET_PPS_STATUS = 20,
- 	PD_CTRL_GET_COUNTRY_CODES = 21,
--	/* 22-23 Reserved */
-+	PD_CTRL_GET_SINK_CAP_EXT = 22,
-+	/* 23 Reserved */
- 	PD_CTRL_GET_REVISION = 24,
- 	/* 25-31 Reserved */
- };
-@@ -72,7 +73,8 @@ enum pd_ext_msg_type {
- 	PD_EXT_PPS_STATUS = 12,
- 	PD_EXT_COUNTRY_INFO = 13,
- 	PD_EXT_COUNTRY_CODES = 14,
--	/* 15-31 Reserved */
-+	PD_EXT_SINK_CAP_EXT = 15,
-+	/* 16-31 Reserved */
- };
- 
- #define PD_REV10	0x0
-@@ -205,6 +207,72 @@ struct pd_message {
- 	};
- } __packed;
- 
-+/*
-+ * count_chunked_data_objs: Helper to calculate number of Data Objects on a 4
-+ *   byte boundary.
-+ * @size: Size of data block for extended message. Should *not* include extended
-+ *   header size.
-+ */
-+static inline u8 count_chunked_data_objs(u32 size)
-+{
-+	size += offsetof(struct pd_chunked_ext_message_data, data);
-+	return ((size / 4) + (size % 4 ? 1 : 0));
-+}
-+
-+/* Sink Caps Extended Data Block Version */
-+#define SKEDB_VER_1_0				1
-+
-+/* Sink Caps Extended Sink Modes */
-+#define SINK_MODE_PPS		BIT(0)
-+#define SINK_MODE_VBUS		BIT(1)
-+#define SINK_MODE_AC_SUPPLY	BIT(2)
-+#define SINK_MODE_BATT		BIT(3)
-+#define SINK_MODE_BATT_UL	BIT(4) /* Unlimited battery power supply */
-+#define SINK_MODE_AVS		BIT(5)
-+
-+/**
-+ * sink_caps_ext_msg - Sink extended capability PD message
-+ * @vid: Vendor ID
-+ * @pid: Product ID
-+ * @xid: Value assigned by USB-IF for product
-+ * @fw: Firmware version
-+ * @hw: Hardware version
-+ * @skedb_ver: Sink Caps Extended Data Block (SKEDB) Version
-+ * @load_step: Indicates the load step slew rate.
-+ * @load_char: Sink overload characteristics
-+ * @compliance: Types of sources the sink has been tested & certified on
-+ * @touch_temp: Indicates the IEC standard to which the touch temperature
-+ *              conforms to (if applicable).
-+ * @batt_info: Indicates number batteries and hot swappable ports
-+ * @modes: Charging caps & power sources supported
-+ * @spr_min_pdp: Sink Minimum PDP for SPR mode
-+ * @spr_op_pdp: Sink Operational PDP for SPR mode
-+ * @spr_max_pdp: Sink Maximum PDP for SPR mode
-+ * @epr_min_pdp: Sink Minimum PDP for EPR mode
-+ * @epr_op_pdp: Sink Operational PDP for EPR mode
-+ * @epr_max_pdp: Sink Maximum PDP for EPR mode
-+ */
-+struct sink_caps_ext_msg {
-+	__le16 vid;
-+	__le16 pid;
-+	__le32 xid;
-+	u8 fw;
-+	u8 hw;
-+	u8 skedb_ver;
-+	u8 load_step;
-+	__le16 load_char;
-+	u8 compliance;
-+	u8 touch_temp;
-+	u8 batt_info;
-+	u8 modes;
-+	u8 spr_min_pdp;
-+	u8 spr_op_pdp;
-+	u8 spr_max_pdp;
-+	u8 epr_min_pdp;
-+	u8 epr_op_pdp;
-+	u8 epr_max_pdp;
-+} __packed;
-+
- /* PDO: Power Data Object */
- #define PDO_MAX_OBJECTS		7
- 
-@@ -329,6 +397,11 @@ enum pd_apdo_type {
- #define PDO_SPR_AVS_APDO_9V_TO_15V_MAX_CURR	GENMASK(19, 10)	/* 10mA unit */
- #define PDO_SPR_AVS_APDO_15V_TO_20V_MAX_CURR	GENMASK(9, 0)	/* 10mA unit */
- 
-+/* SPR AVS has two different current ranges 9V - 15V, 15V - 20V */
-+#define SPR_AVS_TIER1_MIN_VOLT_MV		9000
-+#define SPR_AVS_TIER1_MAX_VOLT_MV		15000
-+#define SPR_AVS_TIER2_MAX_VOLT_MV		20000
-+
- static inline enum pd_pdo_type pdo_type(u32 pdo)
+ static void
+-mt76_apply_multi_array_limit(s8 *pwr, size_t pwr_len, s8 pwr_num,
+-			     const s8 *data, size_t len, s8 target_power,
+-			     s8 nss_delta)
++mt76_apply_multi_array_limit(struct mt76_dev *dev, s8 *pwr, size_t pwr_len,
++			     s8 pwr_num, const s8 *data, size_t len,
++			     s8 target_power, s8 nss_delta, s8 *max_power,
++			     int n_chains, enum mt76_sku_type type)
  {
- 	return (pdo >> PDO_TYPE_SHIFT) & PDO_TYPE_MASK;
-@@ -339,6 +412,11 @@ static inline unsigned int pdo_fixed_voltage(u32 pdo)
- 	return ((pdo >> PDO_FIXED_VOLT_SHIFT) & PDO_VOLT_MASK) * 50;
++	static const int connac2_backoff_ru_idx = 2;
+ 	int i, cur;
+-	s8 max_power = -128;
+ 
+ 	if (!data)
+ 		return;
+@@ -337,8 +391,26 @@ mt76_apply_multi_array_limit(s8 *pwr, size_t pwr_len, s8 pwr_num,
+ 		if (len < pwr_len + 1)
+ 			break;
+ 
+-		mt76_apply_array_limit(pwr + pwr_len * i, pwr_len, data + 1,
+-				       target_power, nss_delta, &max_power);
++		/* Each RU entry (RU26, RU52, RU106, BW20, ...) in the DTS
++		 * corresponds to 10 stream combinations (1T1ss, 2T1ss, 3T1ss,
++		 * 4T1ss, 2T2ss, 3T2ss, 4T2ss, 3T3ss, 4T3ss, 4T4ss).
++		 *
++		 * For beamforming tables:
++		 * - In connac2, beamforming entries for BW20~BW160 and OFDM
++		 *   do not include 1T1ss.
++		 * - In connac3, beamforming entries for BW20~BW160 and RU
++		 *   include 1T1ss, but OFDM beamforming does not include 1T1ss.
++		 *
++		 * Non-beamforming and RU entries for both connac2 and connac3
++		 * include 1T1ss.
++		 */
++		if (!is_mt799x(dev) && type == MT76_SKU_BACKOFF &&
++		    i > connac2_backoff_ru_idx)
++			type = MT76_SKU_BACKOFF_BF_OFFSET;
++
++		mt76_apply_array_limit(dev, pwr + pwr_len * i, pwr_len, data + 1,
++				       target_power, nss_delta, max_power,
++				       n_chains, type);
+ 		if (--cur > 0)
+ 			continue;
+ 
+@@ -360,18 +432,11 @@ s8 mt76_get_rate_power_limits(struct mt76_phy *phy,
+ 	struct device_node *np;
+ 	const s8 *val;
+ 	char name[16];
+-	u32 mcs_rates = dev->drv->mcs_rates;
+-	u32 ru_rates = ARRAY_SIZE(dest->ru[0]);
+ 	char band;
+ 	size_t len;
+-	s8 max_power = 0;
+-	s8 max_power_backoff = -127;
++	s8 max_power = -127;
+ 	s8 txs_delta;
+ 	int n_chains = hweight16(phy->chainmask);
+-	s8 target_power_combine = target_power + mt76_tx_power_path_delta(n_chains);
+-
+-	if (!mcs_rates)
+-		mcs_rates = 10;
+ 
+ 	memset(dest, target_power, sizeof(*dest) - sizeof(dest->path));
+ 	memset(&dest->path, 0, sizeof(dest->path));
+@@ -409,46 +474,45 @@ s8 mt76_get_rate_power_limits(struct mt76_phy *phy,
+ 	txs_delta = mt76_get_txs_delta(np, hweight16(phy->chainmask));
+ 
+ 	val = mt76_get_of_array_s8(np, "rates-cck", &len, ARRAY_SIZE(dest->cck));
+-	mt76_apply_array_limit(dest->cck, ARRAY_SIZE(dest->cck), val,
+-			       target_power, txs_delta, &max_power);
++	mt76_apply_array_limit(dev, dest->cck, ARRAY_SIZE(dest->cck), val,
++			       target_power, txs_delta, &max_power, n_chains, MT76_SKU_RATE);
+ 
+-	val = mt76_get_of_array_s8(np, "rates-ofdm",
+-				   &len, ARRAY_SIZE(dest->ofdm));
+-	mt76_apply_array_limit(dest->ofdm, ARRAY_SIZE(dest->ofdm), val,
+-			       target_power, txs_delta, &max_power);
++	val = mt76_get_of_array_s8(np, "rates-ofdm", &len, ARRAY_SIZE(dest->ofdm));
++	mt76_apply_array_limit(dev, dest->ofdm, ARRAY_SIZE(dest->ofdm), val,
++			       target_power, txs_delta, &max_power, n_chains, MT76_SKU_RATE);
+ 
+-	val = mt76_get_of_array_s8(np, "rates-mcs", &len, mcs_rates + 1);
+-	mt76_apply_multi_array_limit(dest->mcs[0], ARRAY_SIZE(dest->mcs[0]),
+-				     ARRAY_SIZE(dest->mcs), val, len,
+-				     target_power, txs_delta);
++	val = mt76_get_of_array_s8(np, "rates-mcs", &len, ARRAY_SIZE(dest->mcs[0]) + 1);
++	mt76_apply_multi_array_limit(dev, dest->mcs[0], ARRAY_SIZE(dest->mcs[0]),
++				     ARRAY_SIZE(dest->mcs), val, len, target_power,
++				     txs_delta, &max_power, n_chains, MT76_SKU_RATE);
+ 
+-	val = mt76_get_of_array_s8(np, "rates-ru", &len, ru_rates + 1);
+-	mt76_apply_multi_array_limit(dest->ru[0], ARRAY_SIZE(dest->ru[0]),
+-				     ARRAY_SIZE(dest->ru), val, len,
+-				     target_power, txs_delta);
++	val = mt76_get_of_array_s8(np, "rates-ru", &len, ARRAY_SIZE(dest->ru[0]) + 1);
++	mt76_apply_multi_array_limit(dev, dest->ru[0], ARRAY_SIZE(dest->ru[0]),
++				     ARRAY_SIZE(dest->ru), val, len, target_power,
++				     txs_delta, &max_power, n_chains, MT76_SKU_RATE);
+ 
+-	max_power_backoff = max_power;
+ 	val = mt76_get_of_array_s8(np, "paths-cck", &len, ARRAY_SIZE(dest->path.cck));
+-	mt76_apply_array_limit(dest->path.cck, ARRAY_SIZE(dest->path.cck), val,
+-			       target_power_combine, txs_delta, &max_power_backoff);
++	mt76_apply_array_limit(dev, dest->path.cck, ARRAY_SIZE(dest->path.cck), val,
++			       target_power, txs_delta, &max_power, n_chains, MT76_SKU_BACKOFF);
+ 
+ 	val = mt76_get_of_array_s8(np, "paths-ofdm", &len, ARRAY_SIZE(dest->path.ofdm));
+-	mt76_apply_array_limit(dest->path.ofdm, ARRAY_SIZE(dest->path.ofdm), val,
+-			       target_power_combine, txs_delta, &max_power_backoff);
++	mt76_apply_array_limit(dev, dest->path.ofdm, ARRAY_SIZE(dest->path.ofdm), val,
++			       target_power, txs_delta, &max_power, n_chains, MT76_SKU_BACKOFF);
+ 
+ 	val = mt76_get_of_array_s8(np, "paths-ofdm-bf", &len, ARRAY_SIZE(dest->path.ofdm_bf));
+-	mt76_apply_array_limit(dest->path.ofdm_bf, ARRAY_SIZE(dest->path.ofdm_bf), val,
+-			       target_power_combine, txs_delta, &max_power_backoff);
++	mt76_apply_array_limit(dev, dest->path.ofdm_bf, ARRAY_SIZE(dest->path.ofdm_bf), val,
++			       target_power, txs_delta, &max_power, n_chains,
++			       MT76_SKU_BACKOFF_BF_OFFSET);
+ 
+ 	val = mt76_get_of_array_s8(np, "paths-ru", &len, ARRAY_SIZE(dest->path.ru[0]) + 1);
+-	mt76_apply_multi_array_limit(dest->path.ru[0], ARRAY_SIZE(dest->path.ru[0]),
+-				     ARRAY_SIZE(dest->path.ru), val, len,
+-				     target_power_combine, txs_delta);
++	mt76_apply_multi_array_limit(dev, dest->path.ru[0], ARRAY_SIZE(dest->path.ru[0]),
++				     ARRAY_SIZE(dest->path.ru), val, len, target_power,
++				     txs_delta, &max_power, n_chains, MT76_SKU_BACKOFF);
+ 
+ 	val = mt76_get_of_array_s8(np, "paths-ru-bf", &len, ARRAY_SIZE(dest->path.ru_bf[0]) + 1);
+-	mt76_apply_multi_array_limit(dest->path.ru_bf[0], ARRAY_SIZE(dest->path.ru_bf[0]),
+-				     ARRAY_SIZE(dest->path.ru_bf), val, len,
+-				     target_power_combine, txs_delta);
++	mt76_apply_multi_array_limit(dev, dest->path.ru_bf[0], ARRAY_SIZE(dest->path.ru_bf[0]),
++				     ARRAY_SIZE(dest->path.ru_bf), val, len, target_power,
++				     txs_delta, &max_power, n_chains, MT76_SKU_BACKOFF);
+ 
+ 	return max_power;
  }
+diff --git a/drivers/net/wireless/mediatek/mt76/mt76.h b/drivers/net/wireless/mediatek/mt76/mt76.h
+index d05e83ea1..32876eab2 100644
+--- a/drivers/net/wireless/mediatek/mt76/mt76.h
++++ b/drivers/net/wireless/mediatek/mt76/mt76.h
+@@ -540,7 +540,6 @@ struct mt76_driver_ops {
+ 	u32 survey_flags;
+ 	u16 txwi_size;
+ 	u16 token_size;
+-	u8 mcs_rates;
  
-+static inline unsigned int pdo_fixed_current(u32 pdo)
-+{
-+	return ((pdo >> PDO_FIXED_CURR_SHIFT) & PDO_CURR_MASK) * 10;
-+}
-+
- static inline unsigned int pdo_min_voltage(u32 pdo)
- {
- 	return ((pdo >> PDO_VAR_MIN_VOLT_SHIFT) & PDO_VOLT_MASK) * 50;
-
+ 	unsigned int link_data_size;
+ 
 -- 
-2.53.0.239.g8d8fc8a987-goog
-
+2.45.2
 
 
