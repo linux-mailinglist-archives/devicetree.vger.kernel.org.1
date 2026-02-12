@@ -1,279 +1,231 @@
-Return-Path: <devicetree+bounces-265038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265039-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CM2xKMO5jWl96AAAu9opvQ
-	(envelope-from <devicetree+bounces-265038-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:30:11 +0100
+	id OASIDjm7jWl96AAAu9opvQ
+	(envelope-from <devicetree+bounces-265039-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:36:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E8B312D044
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:30:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88B9012D0CD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 12:36:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 022AC300B58D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:30:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1A9653028349
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:31:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F0A1305E2E;
-	Thu, 12 Feb 2026 11:30:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A0682DB7A8;
+	Thu, 12 Feb 2026 11:31:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cp5oxCmm";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="cwK2gFx+"
+	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b="a+67Y4XZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFABB2C08B0
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 11:30:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770895808; cv=none; b=Sk4wKD9u7Pi8J3xd3Pu/F/ZWErAM3TN7PN0KUNeOzJ95hP2CPYq9lURqGv7bQun1QBOyiv9xk6XF+fdjzm3TpsSC267DzrAjvCO9I3zx6Ewrqb8XddrOxwT37fNJcPRiXfoaDSXa1pxgKd8fwFZvRdLcsaEQ/l+MQmwijskvWpo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770895808; c=relaxed/simple;
-	bh=s/xg6C6WN2NIXO1VE7H68jznG8Lz8f8idcAGIpFhkXQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hqc2o4OqX91kWDqTSsXP7wiO7UGSHThDkde4tS66mWLV8TQN6j91npmImMDaOtZEkwonrRmlaLrQ9s492qQreLzrbJWvWGFKQiR6VNrB7SmLwQ3Y06LCnM2izKtzdBIhkwM/TmetUnvrbXQ0zuZRVeoOUHgSZQLiW2v+KyleyDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cp5oxCmm; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=cwK2gFx+; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61CAhFis3963728
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 11:30:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	CcafTaVjifqFrLoCQd4r4m/zCs1n46XiePZ4WiT65Tg=; b=cp5oxCmmi5uiP91R
-	omlhAZvPlihcPIEMr6YJPdw0iPUivmDq5wu6B57wr4cIWi4vy0l4gSNtuvYAHHqk
-	xAX5ZrV0dm2qV17PeYiVzPwmQxlWvOTueaqPJpGt4ko5Yxnvt4xYX2sdjxaASZE0
-	msurNksYX+8eOhTtVLkYUipLDwKzvbu0SQDaYfew3EqxaliXJaImO0WDKYvArodf
-	GrXQULaq+GwSqKsSjCsGfDhaYaPtK7cfvcXaCTItZlrBAr/4IovFAeOTBsXTc3ck
-	elsHEh/eElFLiZSN2r5R8xoC5BEhDls71jpW/B1tBpVFq2H93vUPMRmEENcZzU7G
-	9BlgGQ==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c8y8ntsqv-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 11:30:05 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8cb3978cdb2so7968685a.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 03:30:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770895805; x=1771500605; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CcafTaVjifqFrLoCQd4r4m/zCs1n46XiePZ4WiT65Tg=;
-        b=cwK2gFx+005GnA2gRJEBkCg4Y+rXXGjABsdpTTufPculx5Imzsr68LztdsvDf4ozTe
-         gEOC3qeDxwSwGNmA9jDQ1MiPIlJYMq5jN+7JW379ZjNHRGvE9fA/noezMXaRDV6j3O0q
-         oLy//xmVrTtwPQv4yixpFLMHMdt65vtms8V61CEaBngL/qFWAkfmo6xj+4tGuK3g89Bf
-         v6I1DczdAtjhrBN/LEwsurTP8YfoiSlYQPExud1gKJZ/vQvR34j2PYtkdCygT+/p3/5x
-         NmktCbIUtEaas+emSCVEB3dO9qYYDBFxq7EEphCWS+Gaj1R3MXxYh4dFKqamiu6dFPBk
-         ayJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770895805; x=1771500605;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CcafTaVjifqFrLoCQd4r4m/zCs1n46XiePZ4WiT65Tg=;
-        b=PSivMR3y76NYBjtU1OAsQAZs+FFzSjQ2WPbGwrby7fHSmRoug/JCkCkKssVR2d7dbD
-         5OcdILxgzgLYqndTTYldFK5p4bE6CsuQLk3cZQi6tkGVJyV6fSQQZRG7uTReTWV/hGmS
-         d5s1FORxPpAeRmDow2yn0ZetIGZOQWlh/hVIz7a4JdWV5dvoQc5/epJ4UP5vVLh9mP3X
-         BYuepTwx6rgrWm5OoQxPiioc9oCdOLIglquT2030YIGOcS2iNUdcFXlULlT8sVfudBIj
-         wUN6Qb5215hy3YdXkhT6hyzRo+Pdlb4K+WoVw4OSttAHNaM9kiWD3GhORCFBIFVWrm0r
-         oeaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUshO0m39lLdzTgREOjnOlJp2gzAS3hu1SMgB1oyyb0XhGsSjrWPqt0l1tjkRRToJQnv3Ta3BsniRaY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwF+wegHAFH3LZPhSlJ90F98UU32cGpnCHWeTDOyVY8uKUJJEMr
-	50p+OuBX7FtG9zUHXaCmiL4jsaPjRPb3qb+Qw8oeNP/HqJqBfdDaEfI5nInDxntR4GEv3A+9I+q
-	+dpOASO0bHVsmeF/nGinaKWiSn9buJzWGWIISaF4x6OgpCrMU1NCLT3tYtc1vTxSf
-X-Gm-Gg: AZuq6aJ7YgX0wRVnvfX2BnQcCpORV+JLXupu6e3ZCwc04YnBPFkyTzyGNTdv2mpssDf
-	yuNQzkO3+qy61PC6Vmgn1TyOWxx7xf7m9cs2FNXoZOTWEeW5BY76RfhjvqzSPIL3CFYvBffbqVx
-	5PeMW/03NC+WrP34do3FqD0RVK8FKMzYrqk2dMDkT2SQu9J2L4tjC21HYef/gTnz8xewMBubzQ1
-	b714qvRxrz2g2G0CUj/NwFrhZmzHV2KsFBb/PlqlflXGBU+bfHYWmtWWjHnUP3HUp5RdtxX8os9
-	fG7TT3cBxSzmii9H4OK2n2bN58m66PvIQpWw4G1GjHpLhi8e6lecIhpDOeBYRxdQcmYd/I3MUbc
-	muIRIbWy8UbYxIR1QuIbUzU87eNERzGIVGXiZquAGwTi6d9Zp1rSDtsy5NKNWYB/Agzt0xiCPOV
-	GUDSo=
-X-Received: by 2002:a05:620a:448b:b0:8c9:eae0:d1df with SMTP id af79cd13be357-8cb33115b5amr226371285a.6.1770895805147;
-        Thu, 12 Feb 2026 03:30:05 -0800 (PST)
-X-Received: by 2002:a05:620a:448b:b0:8c9:eae0:d1df with SMTP id af79cd13be357-8cb33115b5amr226368085a.6.1770895804702;
-        Thu, 12 Feb 2026 03:30:04 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8f6ecadb27sm147972666b.63.2026.02.12.03.30.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Feb 2026 03:30:03 -0800 (PST)
-Message-ID: <bfbe04db-bf64-418b-a75a-88879bf0bf2d@oss.qualcomm.com>
-Date: Thu, 12 Feb 2026 12:30:00 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F2452BDC1C;
+	Thu, 12 Feb 2026 11:31:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770895870; cv=pass; b=L1UTgcqbez10x6hOHiHIfkrlVcwpsL38cKTgNpAssCNGHpd0EhWYgUIFFgDE5Rn1tLkZ2UkqZC+FgOiLdCcMYEiAuNmTOLLpiGuHHy/RUt+2irNN6auKB03JjkZcOZSWspBacJohBaB+pXM4rsZ6ANeMuCNxWbXtD78/TOxcmbs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770895870; c=relaxed/simple;
+	bh=msX9oUvwHOoLQ9XyqhCQ4CktiNmgooHVtVAmoHkfRk8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PMLut0bslQ5i25viaikRA4mL3EU6HwsoXjkEtFLWpbIxwwcgUyDDKnntLICHEPb/U1/qVWeC7QFVoJSYumR8aNM8H6+Rk1KYjCoOoPwPTqa876kDdtiWjGP/rilA0zvoODyG3CU4a6YyckKWy1Nlvvo9EYAAmrktGZ0T4sX41IU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b=a+67Y4XZ; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
+ARC-Seal: i=1; a=rsa-sha256; t=1770895849; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=HVKbNxgsmBVFEAlsnx8KyqWs619i3Xdcq0ugbutcRJ/rreEGuQ0r2AaPUgIuyUwgPJoMqAVkBpzHTZlUw3pstFFZvzSiN1RsNIeJ2LYzF3/YhysoUBJcMZWc4ejLweR6TPqcx0U2+s6pSJvjLPFNqpTplyR+BCtPdQR7I/maH2M=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1770895849; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=G8IqrDcbAUJ2cX6HzRhCxQ7mt8YTvz969YgV8457uCI=; 
+	b=Qa8iUZMdmMHy46JsRB7124zN9TKnyctzdMBy7mUZlAJaO9P2xs2f6maFmYvxGsg1j33LgdsGTdMk3aXNGlrFPbkrBiZyFjpoz3d2Xgl34vxa/E538obsZ8p6fVF/abvUEFYYa3l+CyNjTGrKoouqN2lXbG4PrElhsk5zJ1H8+xo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=ziyao.cc;
+	spf=pass  smtp.mailfrom=me@ziyao.cc;
+	dmarc=pass header.from=<me@ziyao.cc>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1770895849;
+	s=zmail; d=ziyao.cc; i=me@ziyao.cc;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=G8IqrDcbAUJ2cX6HzRhCxQ7mt8YTvz969YgV8457uCI=;
+	b=a+67Y4XZFbkUF+RtSrlNZsmMfBVoxBthDopV9txjtnmrV/K+c7SkrdMZ/gfKaQAZ
+	BGuCxAtVEsopD4cAuzC/q1GiY9gM7bJclaG6/u+whWubwDZT3OgqDUuFiAPCXJGowd3
+	xq+XJnSY5e60aOuAa+ZkORVX6YR+aPWIycgNmKaU=
+Received: by mx.zohomail.com with SMTPS id 1770895846550396.2075278392381;
+	Thu, 12 Feb 2026 03:30:46 -0800 (PST)
+Date: Thu, 12 Feb 2026 11:30:39 +0000
+From: Yao Zi <me@ziyao.cc>
+To: Yixun Lan <dlan@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>
+Cc: Junzhong Pan <panjunzhong@linux.spacemit.com>,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] phy: k1-usb: k3: add USB2 PHY support
+Message-ID: <aY253_fOkoQKbi8g@pie>
+References: <20260212-11-k3-usb2-phy-v1-0-43578592405d@kernel.org>
+ <20260212-11-k3-usb2-phy-v1-3-43578592405d@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/4] soc: qcom: ice: Add OPP-based clock scaling
- support for ICE
-To: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20260211-enable-ufs-ice-clock-scaling-v5-0-221c520a1f2e@oss.qualcomm.com>
- <20260211-enable-ufs-ice-clock-scaling-v5-2-221c520a1f2e@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260211-enable-ufs-ice-clock-scaling-v5-2-221c520a1f2e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjEyMDA4NSBTYWx0ZWRfX12wJJ/nr24yV
- /ZTOvkmRBFk02WgiN40T59IrFHGozPiLCb85AGR5UAUPCCZrml+TEw+wFhK5zJnEr3DVsbvj48U
- 3idgxMro0BjKMPG/quwmgG80M5FTfD0ADdg97xIyMiefZ4UU2ZZAxZpjkiCI6gbtknUyKeiO3BF
- sDc4dTn5zWv57P9VFa14UmVz0PrJwZgWx2MJ0jnAEiNUjMLRSEo010vbDTiSZccyeyhWZPgly+n
- 3eBa/gj+tTaHB6xsOT/UjmCS51TiJ0k1w5piH9Q67rvHvum/9pfbqkHA90sBnfwusJfWKavCKxb
- cgPOdopw43N9rgf1m5tJ/vSWRwfD+sNFPVI5V+H52tFIefHftHDvuTpFrUzq7slWpXjzxmpSqbN
- SrQ3U3sYUmOfTcGvd9peDMGBtaULrkBhJxbQKQCu8PBCuN7Y2jHQSsbsIBYCFk4hYcJ2JyV/M/Z
- pIuVqclMvHRNqx/XMnQ==
-X-Authority-Analysis: v=2.4 cv=VNvQXtPX c=1 sm=1 tr=0 ts=698db9bd cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=EUspDBNiAAAA:8 a=cMzz2QcylWOBvAN0VsUA:9 a=QEXdDO2ut3YA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-GUID: 5XRACalLlm8mhyXrtidU5SzPDkxjvvFO
-X-Proofpoint-ORIG-GUID: 5XRACalLlm8mhyXrtidU5SzPDkxjvvFO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-12_03,2026-02-11_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 spamscore=0 suspectscore=0 adultscore=0
- malwarescore=0 bulkscore=0 priorityscore=1501 lowpriorityscore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602120085
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260212-11-k3-usb2-phy-v1-3-43578592405d@kernel.org>
+X-ZohoMailClient: External
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [9.34 / 15.00];
+	URIBL_BLACK(7.50)[ziyao.cc:dkim];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265038-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-265039-lists,devicetree=lfdr.de];
+	R_DKIM_ALLOW(0.00)[ziyao.cc:s=zmail];
+	GREYLIST(0.00)[pass,body];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[ziyao.cc,quarantine];
+	DKIM_TRACE(0.00)[ziyao.cc:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 8E8B312D044
-X-Rspamd-Action: no action
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[me@ziyao.cc,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,of_device_id.data:url,ziyao.cc:dkim]
+X-Rspamd-Queue-Id: 88B9012D0CD
+X-Rspamd-Action: add header
+X-Spam: Yes
 
-On 2/11/26 10:47 AM, Abhinaba Rakshit wrote:
-> Register optional operation-points-v2 table for ICE device
-> and aquire its minimum and maximum frequency during ICE
-> device probe.
+On Thu, Feb 12, 2026 at 09:38:56AM +0800, Yixun Lan wrote:
+> Add USB2 PHY support for SpacemiT K3 SoC.
 > 
-> Introduce clock scaling API qcom_ice_scale_clk which scale ICE
-> core clock based on the target frequency provided and if a valid
-> OPP-table is registered. Use flags (if provided) to decide on
-> the rounding of the clock freq against OPP-table. Incase no flags
-> are provided use default behaviour (CEIL incase of scale_up and FLOOR
-> incase of ~scale_up). Disable clock scaling if OPP-table is not
-> registered.
-> 
-> When an ICE-device specific OPP table is available, use the PM OPP
-> framework to manage frequency scaling and maintain proper power-domain
-> constraints.
-> 
-> Also, ensure to drop the votes in suspend to prevent power/thermal
-> retention. Subsequently restore the frequency in resume from
-> core_clk_freq which stores the last ICE core clock operating frequency.
-> 
-> Signed-off-by: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+> Register layout of handling USB disconnect operation has been changed,
+> So introducing a platform data to distinguish the different SoCs.
+
+Would it be clearer and simpler if you define separate phy_ops for
+k1 and k3, and point of_device_id.data directly to the corresponding
+phy_ops? Then there's no need to introduce either spacemit_usb2phy_data
+structure, or spacemit_usb2phy_disconnect wrapper.
+
+Best regards,
+Yao Zi
+
+> Signed-off-by: Yixun Lan <dlan@kernel.org>
 > ---
-
-[...]
-
-> +/**
-> + * qcom_ice_scale_clk() - Scale ICE clock for DVFS-aware operations
-> + * @ice: ICE driver data
-> + * @target_freq: requested frequency in Hz
-> + * @scale_up: If @flags is 0, choose ceil (true) or floor (false)
-> + * @flags: Rounding policy (ICE_CLOCK_ROUND_*); overrides @scale_up
-> + *
-> + * Clamps @target_freq to the OPP range (min/max), selects an OPP per rounding
-> + * policy, then applies it via dev_pm_opp_set_rate() (including voltage/PD
-> + * changes).
-> + *
-> + * Return: 0 on success; -EOPNOTSUPP if no OPP table; or error from
-> + *         dev_pm_opp_set_rate()/OPP lookup.
-> + */
-> +int qcom_ice_scale_clk(struct qcom_ice *ice, unsigned long target_freq,
-> +		       bool scale_up, unsigned int flags)
+>  drivers/phy/spacemit/phy-k1-usb2.c | 40 ++++++++++++++++++++++++++++++++++++--
+>  1 file changed, 38 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/phy/spacemit/phy-k1-usb2.c b/drivers/phy/spacemit/phy-k1-usb2.c
+> index 959bf79c7a72..b0ce0a92861e 100644
+> --- a/drivers/phy/spacemit/phy-k1-usb2.c
+> +++ b/drivers/phy/spacemit/phy-k1-usb2.c
+> @@ -51,6 +51,9 @@
+>  #define PHY_K1_HS_HOST_DISC		0x40
+>  #define  PHY_K1_HS_HOST_DISC_CLR		BIT(0)
+>  
+> +#define PHY_K3_HS_HOST_DISC		0x20
+> +#define  PHY_K3_HS_HOST_DISC_CLR		BIT(8)
+> +
+>  #define PHY_PLL_DIV_CFG			0x98
+>  #define  PHY_FDIV_FRACT_8_15		GENMASK(7, 0)
+>  #define  PHY_FDIV_FRACT_16_19		GENMASK(11, 8)
+> @@ -74,10 +77,15 @@
+>  
+>  #define K1_USB2PHY_RESET_TIME_MS	50
+>  
+> +struct spacemit_usb2phy_data {
+> +	int (*disconnect)(struct phy *phy, int port);
+> +};
+> +
+>  struct spacemit_usb2phy {
+>  	struct phy *phy;
+>  	struct clk *clk;
+>  	struct regmap *regmap_base;
+> +	const struct spacemit_usb2phy_data *data;
+>  };
+>  
+>  static const struct regmap_config phy_regmap_config = {
+> @@ -145,7 +153,7 @@ static int spacemit_usb2phy_exit(struct phy *phy)
+>  	return 0;
+>  }
+>  
+> -static int spacemit_usb2phy_disconnect(struct phy *phy, int port)
+> +static int spacemit_k1_usb2phy_disconnect(struct phy *phy, int port)
+>  {
+>  	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
+>  
+> @@ -155,6 +163,23 @@ static int spacemit_usb2phy_disconnect(struct phy *phy, int port)
+>  	return 0;
+>  }
+>  
+> +static int spacemit_k3_usb2phy_disconnect(struct phy *phy, int port)
 > +{
-> +	int ret;
-> +	unsigned long ice_freq = target_freq;
-> +	struct dev_pm_opp *opp;
-
-Reverse-Christmas-tree ordering would be neat
-
+> +	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
 > +
-> +	if (!ice->has_opp)
-> +		return -EOPNOTSUPP;
+> +	regmap_update_bits(sphy->regmap_base, PHY_K3_HS_HOST_DISC,
+> +					   PHY_K3_HS_HOST_DISC_CLR, PHY_K3_HS_HOST_DISC_CLR);
 > +
-> +	/* Clamp the freq to max if target_freq is beyond supported frequencies */
-> +	if (ice->max_freq && target_freq >= ice->max_freq) {
-> +		ice_freq = ice->max_freq;
-> +		goto scale_clock;
-> +	}
+> +	return 0;
+> +}
 > +
-> +	/* Clamp the freq to min if target_freq is below supported frequencies */
-> +	if (ice->min_freq && target_freq <= ice->min_freq) {
-> +		ice_freq = ice->min_freq;
-> +		goto scale_clock;
-> +	}
-
-The OPP framework won't let you overclock the ICE if this is what these checks
-are about. Plus the clk framework will perform rounding for you too
-
+> +static int spacemit_usb2phy_disconnect(struct phy *phy, int port)
+> +{
+> +	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
 > +
-> +	switch (flags) {
-
-Are you going to use these flags? Currently they're dead code
-
-> +	case ICE_CLOCK_ROUND_CEIL:
-> +		opp = dev_pm_opp_find_freq_ceil_indexed(ice->dev, &ice_freq, 0);
-
-You never use the index (hardcoded to 0)
-
-> +		break;
-> +	case ICE_CLOCK_ROUND_FLOOR:
-> +		opp = dev_pm_opp_find_freq_floor_indexed(ice->dev, &ice_freq, 0);
-> +		break;
-> +	default:
-> +		if (scale_up)
-> +			opp = dev_pm_opp_find_freq_ceil_indexed(ice->dev, &ice_freq, 0);
-> +		else
-> +			opp = dev_pm_opp_find_freq_floor_indexed(ice->dev, &ice_freq, 0);
-
-Is this distinction necessary?
-
-Konrad
+> +	return sphy->data->disconnect(phy, port);
+> +}
+> +
+>  static const struct phy_ops spacemit_usb2phy_ops = {
+>  	.init = spacemit_usb2phy_init,
+>  	.exit = spacemit_usb2phy_exit,
+> @@ -173,6 +198,8 @@ static int spacemit_usb2phy_probe(struct platform_device *pdev)
+>  	if (!sphy)
+>  		return -ENOMEM;
+>  
+> +	sphy->data = device_get_match_data(dev);
+> +
+>  	sphy->clk = devm_clk_get_prepared(&pdev->dev, NULL);
+>  	if (IS_ERR(sphy->clk))
+>  		return dev_err_probe(dev, PTR_ERR(sphy->clk), "Failed to get clock\n");
+> @@ -195,8 +222,17 @@ static int spacemit_usb2phy_probe(struct platform_device *pdev)
+>  	return PTR_ERR_OR_ZERO(phy_provider);
+>  }
+>  
+> +static const struct spacemit_usb2phy_data k1_usb2phy_data = {
+> +	.disconnect = spacemit_k1_usb2phy_disconnect,
+> +};
+> +
+> +static const struct spacemit_usb2phy_data k3_usb2phy_data = {
+> +	.disconnect = spacemit_k3_usb2phy_disconnect,
+> +};
+> +
+>  static const struct of_device_id spacemit_usb2phy_dt_match[] = {
+> -	{ .compatible = "spacemit,k1-usb2-phy", },
+> +	{ .compatible = "spacemit,k1-usb2-phy", .data = &k1_usb2phy_data },
+> +	{ .compatible = "spacemit,k3-usb2-phy", .data = &k3_usb2phy_data },
+>  	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, spacemit_usb2phy_dt_match);
+> 
+> -- 
+> 2.52.0
+> 
+> 
 
