@@ -1,69 +1,84 @@
-Return-Path: <devicetree+bounces-265186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265187-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WL+EKPUvjmnsAgEAu9opvQ
-	(envelope-from <devicetree+bounces-265186-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 20:54:29 +0100
+	id 4B3sKbwxjmkwAwEAu9opvQ
+	(envelope-from <devicetree+bounces-265187-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 21:02:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09BDA130CC1
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 20:54:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 067BF130D2D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 21:02:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A726E303B16D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 19:54:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E4FF83020D76
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 20:01:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06215296BD2;
-	Thu, 12 Feb 2026 19:54:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 137E727B340;
+	Thu, 12 Feb 2026 20:01:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tbB5aqFt"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AWO2y0vQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4D4223D281;
-	Thu, 12 Feb 2026 19:54:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D367ABA21;
+	Thu, 12 Feb 2026 20:01:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770926064; cv=none; b=b81kgG2+S/7PHUFp9TwcwyqJJ+J0IT9XbYelHWP9KicwzsCsBPnqveY3xf/YVcKxxfLPpDMWDB9r9nFC1c4d4KJ7d3U+sip1TMJXIY4qJHc7wKzaa0Nya0GcBnL+/8iPRKRzNbuExVJup+ELu9jbq1/WeijYEGtYWjJ5Uj5SmR0=
+	t=1770926493; cv=none; b=D1u0YeHScSCQr/p89/cDO/8o0Nv9D76VBsHuNaMACDMtDQyYS0wKBr45R+9geOPvQVgLd0yI/Vl8R008+jik3WWYazDzDhBjJy7MQ2B6aCfV9N67WuwL1KmxEx1L6gZ8p4hfTjcQTdrnRfMT8zJ31PM+JTKbfU+h08OZqIRmvWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770926064; c=relaxed/simple;
-	bh=Eacdj7ONmzxod7N3yo32xAW1ze/a9eGetTtpn5Xbr70=;
+	s=arc-20240116; t=1770926493; c=relaxed/simple;
+	bh=n/vJRCrCNULp9io0l1cfIC8bcJMTWtP4uWXt+A+6sNk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G8HhEe9bV6dh4uN0hWSJ4w22yFpLQC0M3FDp9Oh9wrIAULLIQ99SiXeX767kTCQdbcy+2k78d5lPxZqerDg+wZIjAOoSjBmaujUl0TGjASyGYCOVYcXt/iPb3NIh6uC44EXB0dlwdUPLRqMTBVlM7NhHITtfP3SSVlVRJyS02gg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tbB5aqFt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61063C4CEF7;
-	Thu, 12 Feb 2026 19:54:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770926064;
-	bh=Eacdj7ONmzxod7N3yo32xAW1ze/a9eGetTtpn5Xbr70=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tbB5aqFthHoxt5/1+/qYhS18o+U4nAzsp0rQCzDOGDU+l0riY+SOQLGu/n3ydWdLJ
-	 eZUanYErBvifNkn6xos333d2MwNRzbCJOBe8U47n5KPS9jCak72q9BUOKDbD/ZF4qz
-	 TeFhRdVST+ALY6el9qY2DeYSSuaDJQ/yJiXS/FHIysHsRo8lzm7T6zNIK9dtvyrA0s
-	 wW1jEo5OMSJJWfBi1ahjnp2DkpiQfMMw+SxMqxlUr+jxTjqGNB0QZvfT1+Nx+ZJdYX
-	 rVH/8ghlSEuwfZ8JMFqtPrf39AbLDPDZxmSyu7EfJPobkGOiRPt2pTGDWs5SzHrxHp
-	 AqmxtwBCF5RdA==
-Date: Thu, 12 Feb 2026 13:54:23 -0600
-From: Rob Herring <robh@kernel.org>
-To: James Hilliard <james.hilliard1@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-gpio@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=HthxBnl9OktzoLIc2QHcR2B96A39KwEy4kKoWxI3nm2k6W4YYcYzp3SrrAnG/++QP/lAqzqVkO15Jtwpl2Jn56kPQ3nr/GpRpb676tKUWfHh9vmbpM16FajbCWzvf4IAl+xLMFYOIO7sU/DpWYtqU3Lhd/JtWI1V5zgtRhnbQ60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AWO2y0vQ; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770926492; x=1802462492;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=n/vJRCrCNULp9io0l1cfIC8bcJMTWtP4uWXt+A+6sNk=;
+  b=AWO2y0vQ1EsmlSJsUomtrN7yAixPBTQcq6c+f0L82/0oftmbRERpNauK
+   fWCiM297RhOv2kxs64xHq+SaEjcfwRup2/nyHGWKg3/RFJ+hCzDWTkTC8
+   x0KZZnRIc46Yao9i8IhUYZmsc1jfj1rmyuoVE7GOvoeX8/E/FIlK1ocQZ
+   CIGJq4aICWBSlahIaa0LU65e6o8HqvnbyrMxSMI6716mB1eJUGECp4v+2
+   LHjRyqyCkmTRhPJ6q5JeB8MhR44VEn7xs8aGF0wMPC4+LNfyNL/GtPbXr
+   rDfIaIghY8sE+YpNQaF6c5luER+KWHNT+pz/EJDsmsYtDecoaAzrVORBd
+   A==;
+X-CSE-ConnectionGUID: v2aTbgTyQumvdvqkHn3HrA==
+X-CSE-MsgGUID: Bcj0+U+ZQ4K4TMe2vjhezw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="82837390"
+X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; 
+   d="scan'208";a="82837390"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 12:01:31 -0800
+X-CSE-ConnectionGUID: XppEVrBpQP6j7L9ei68XcA==
+X-CSE-MsgGUID: n1CZ5GICRzqEkVOw7gni2w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; 
+   d="scan'208";a="216859523"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.145])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 12:01:28 -0800
+Date: Thu, 12 Feb 2026 22:01:25 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Yasin Lee <yasin.lee.x@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexander Stein <linux@ew.tq-group.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
-Message-ID: <20260212195423.GA787785-robh@kernel.org>
-References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
- <338e6575-ec44-4179-94af-9086a7ca79ac@kernel.org>
- <92359c6d-06ac-4f8d-baa5-6fa45a536455@kernel.org>
- <CADvTj4q74H__JZftOiXkdsY3+E_Xmcx6Y6i70RQDJ0K09=XOHQ@mail.gmail.com>
- <30026ed7-cd19-4be2-adbb-e8bb155a75b8@kernel.org>
- <CADvTj4oBtO0Yhib1rE8QQwgtJvy-x_hK46C63mjVAydtxHOV8g@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, yasin.lee.x@outlook.com,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] iio: proximity: hx9023s: Protect against division
+ by zero in set_samp_freq
+Message-ID: <aY4xlfSJwFGt1IPA@smile.fi.intel.com>
+References: <20260212-upstream-20260219-v2-0-2b28fce5d09e@gmail.com>
+ <20260212-upstream-20260219-v2-2-2b28fce5d09e@gmail.com>
+ <aY2xveYRXEKIBV92@smile.fi.intel.com>
+ <CA+NOmzLMzWqnS0B9B96qJUU2EoYppDKO6_Rdu52_dPqWTSS+ig@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,149 +88,69 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CADvTj4oBtO0Yhib1rE8QQwgtJvy-x_hK46C63mjVAydtxHOV8g@mail.gmail.com>
+In-Reply-To: <CA+NOmzLMzWqnS0B9B96qJUU2EoYppDKO6_Rdu52_dPqWTSS+ig@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265186-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-265187-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,outlook.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 09BDA130CC1
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 067BF130D2D
 X-Rspamd-Action: no action
 
-On Wed, Feb 11, 2026 at 10:01:05AM -0700, James Hilliard wrote:
-> On Wed, Feb 11, 2026 at 1:44 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Fri, Feb 13, 2026 at 12:44:57AM +0800, Yasin Lee wrote:
+> On Thu, Feb 12, 2026 at 6:56 PM Andy Shevchenko
+> <andriy.shevchenko@intel.com> wrote:
+> > On Thu, Feb 12, 2026 at 02:26:53PM +0800, Yasin Lee wrote:
+
+...
+
+> > Not sure about this. Perhaps we should rather do
 > >
-> > On 11/02/2026 09:28, James Hilliard wrote:
-> > > On Wed, Feb 11, 2026 at 1:19 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > >>
-> > >> On 11/02/2026 09:17, Krzysztof Kozlowski wrote:
-> > >>> On 11/02/2026 09:13, James Hilliard wrote:
-> > >>>> Document the gpio-aggregator virtual GPIO controller with a dedicated
-> > >>>> schema and compatible string.
-> > >>>>
-> > >>>> Also extend the GPIO AGGREGATOR MAINTAINERS entry to cover the new
-> > >>>> binding file.
-> > >>>
-> > >>> <form letter>
-> > >>> This is a friendly reminder during the review process.
-> > >>>
-> > >>> It seems my or other reviewer's previous comments were not fully
-> > >>> addressed. Maybe the feedback got lost between the quotes, maybe you
-> > >>> just forgot to apply it. Please go back to the previous discussion and
-> > >>> either implement all requested changes or keep discussing them.
-> > >>>
-> > >>> Thank you.
-> > >>> </form letter>
-> > >>>
-> > >>
-> > >> First thing which was missing (I did not even check the rest in such
-> > >> case): missing rationale for this patch, missing hardware description.
-> > >
-> > > I added some more details to the commit message, this is a
+> >         if (!val || !val2)
+> >                 return -EINVAL;
 > >
-> > No... Commit msg is exactly the same.
+> > ?
 > 
-> I added the details to this commit message specifically:
-> https://lore.kernel.org/all/20260211081355.3028947-2-james.hilliard1@gmail.com/
-> 
-> >
-> > > virtual gpio driver though so AFAIU it's not hardware specific.
-> >
-> > You can give example of any hardware where this is useful. You need to
-> > make your case with actual arguments.
-> 
-> The sunxi h616 board I have has hundreds of GPIOs, only
-> a few of which are needed, I want to map them in device
-> tree overlays since there's some minor variants with different
-> hardware gpio configurations.
-> 
-> Setting the gpio names on the parent controller is not practical
-> since doing so would require setting hundreds of values for
-> gpio-line-names, you also can't really combine sets of pin
-> names across device tree overlays AFAIU.
+> Agreed. I will update this in v3 as below .
+> ...
+> if (!val && !val2)
+>     return -EINVAL;
 
-You can do: gpio-line-names = "GPIO0", "", "", "GPIO3", ...;
+> period_ms = div_u64(NANO, val * MEGA + val2);
 
-The clock binding has "clock-indices" which is used with 
-"clock-output-names". We could do something similar if 
-all the '""' entries are really a problem.
+Then don't touch parentheses, as the line will have nothing to do with
+the scope of the patch.
 
-> > > Use case is I have a device with something like 300 gpio
-> > > lines...and I want to name/group a small subset of those
-> > > lines for delegation to a userspace app rather than trying
-> > > to set 300 or something gpio-line-names values, also I'm
-> >
-> > So if I change the approach in user-space or use different user-space
-> > app then I change the DTS?
-> 
-> The idea is to make it practical to set gpio-line-names for a
-> subset of the GPIOs that are wired to peripheral boards.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Humm, peripheral boards! So there's a connector. You need a connector 
-binding. And the one solved binding for such a thing is GPIO! The 
-gpio-map property lets you remap GPIOs from one provider (the connector) 
-to a parent provider (soc_gpio). It would look something like this:
 
-conn_gpio: connector {
-        #gpio-cells = <1>;
-	gpio-map = <0 &soc_gpio 3>,
-		   <1 &soc_gpio 123>;
-        gpio-line-names = "GPIO0", "GPIO1";
-
-	/* in an overlay */
-	device {
-		foo-gpios = <&conn_gpio 1>; /* soc_gpio 123 */
-};
-
-> 
-> Say for example I have a control board connected to a few
-> different peripheral boards, there may be different mixtures
-> of peripheral boards, some of which can be used at the same
-> time as they use different GPIOs.
-> 
-> The idea is we load device tree overlays for the detected
-> peripheral boards with detection done in uboot based on a
-> GPIO pin strapping based detection.
-> 
-> In userspace we want to match the peripheral board GPIOs
-> based on the GPIO line names, but using gpio-line-names
-> on the entire GPIO controller isn't practical as that doesn't
-> allow composing gpio-line-names configurations from
-> multiple device tree overlays and would require a ridiculous
-> number of placeholder entries due to there being no way
-> to configure individual gpio-line-names for non-hog lines.
-
-GPIO lines typically connect to something. Relying on gpio-line-names 
-seems like a failure in defining (in DT) that something.
-
-We would never rely on GPIO pin names in the kernel. Userspace doing 
-so is pretty suspect too. More importantly wanting to do something in 
-userspace is irrelevant to bindings. What's in userspace today may be in 
-the kernel tomorrow. Look at serial attached BT or other h/w.
-
-Rob
 
