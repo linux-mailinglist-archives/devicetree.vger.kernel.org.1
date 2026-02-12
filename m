@@ -1,370 +1,176 @@
-Return-Path: <devicetree+bounces-264915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264916-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IO2mFKt+jWl93QAAu9opvQ
-	(envelope-from <devicetree+bounces-264915-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:18:03 +0100
+	id mEaQO8N+jWl93QAAu9opvQ
+	(envelope-from <devicetree+bounces-264916-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:18:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3D9712AE6C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:18:02 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F8912AE7E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:18:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B645B3028105
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 07:18:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9834C3021975
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 07:18:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C3272BD5BB;
-	Thu, 12 Feb 2026 07:17:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A812BDC3E;
+	Thu, 12 Feb 2026 07:18:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rkY0ARSt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q7MjYzHE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69EB7295D90
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 07:17:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770880678; cv=pass; b=K/nxvLi4bGyBexjBBptuqqm09yihgVk3IYu0G3XUcLM4GzuehIjdr1ZI+e0JlcVUVC9xAHh5p4Hi/KQgHDU9fVEHNN/xtfxxQ8CXQqoNNuJASIu5yFS7yvx4VaJPnwrdfQNyJBJJelmH2QwaShX0OSN9uJVlEY6kTCw6JmOqWBQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770880678; c=relaxed/simple;
-	bh=3JUYhEjG86u79GzhS2NXkVdzj4AGSv4a26ZGnvYxQ18=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PRlYXmSvZNxRSSASFkJBQUDvWg6yXy0NWN9NCmwMD/EHx3Wv01czSPzFftePAG7/7kfkd/DSov55yfxuuZlyaL0VcHJu6qAbvMe9hsfVRf3h2xZibCcXkESl+55G3Haoax6rjuWKgJNNMRF5eJy8OkOOikarOjpcpIXbvigjGE0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rkY0ARSt; arc=pass smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-65a1b17a99aso4004593a12.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Feb 2026 23:17:57 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770880676; cv=none;
-        d=google.com; s=arc-20240605;
-        b=Arb7cW92N8ckClbt/y1nwx4oh1ZXDfz9lFkAsMgtqH2/oOGbG/ajB1gekFHbRBtGLM
-         gwI056ePsz4Dcg+161nXVoewiSOKRLv5GZe7RMCn1E8gYan6yiGwdied8ENqg4tyUCY0
-         MznFuNooOi1oZmgqjRftphZdwtRZRmvVbT5wlNOcugPMZhi1eQu5uaHEO0rVe+kt59tW
-         n2EzavtkT663Zu8r7o1qti7WwNdhUSyVfB2KkFly1Va9QMgG+nhXu/J9lWNGsDMFuqdn
-         VEmkEDQHFwkFNP6l823VrCY1QHYxLfr6/Cpm91fDVqSvjJ9jNVzCxNEAADB+BACc2ztR
-         yNrQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=4VtkmaXYDRoBb0Ii/zZutz9SPx4ofKw8c7aX2qO71JI=;
-        fh=7gXb30BLDKdOp6J76F+7hGUEv9hAcxa14d6bbSsmj0s=;
-        b=OPOF5nHcnnY466NdRKG0eosmNZ6OaunmSgmkg2aofm0VT/xGfsvTJbnnlU+tEU6AzU
-         pLUhBZKfpMQR54pL43w98eRJcd9fJ5uNVjVYDJKDmsPJl8rLnyJCSYJBRXF7JPfaAzpw
-         BQftCPJ1LXs2i4MExampdsxsDLrHHGrCnac6ku0YbsWTWuJSbq06d9I9q0Ns4wqJ6Lfi
-         fmbPBtPUgUj9zS0Udz5x19b4j3aO+wfpkLlodQCb/90B6VPBa+uecQj0XwTyimclCoeJ
-         VYTRS750imYK3AfL9S5KpKlQJAEOmKpJqFPx/Kt7uZE0c0+3eVp84az875jVgW00g0Zo
-         K8ZQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1770880676; x=1771485476; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4VtkmaXYDRoBb0Ii/zZutz9SPx4ofKw8c7aX2qO71JI=;
-        b=rkY0ARSt3TOLfqzD+HTUxHajiAzuUb0ekbyaW2WLRD507nz6VTMp4G9zfrM9yP7FWk
-         qslPozqDpbI04Z7zO40qyEPorafldUc94k42/KBMatwJp02FDkG31xn4JNVhvsVEef29
-         10Chl+Grox8n1DzSMfDOZhiBHKwrMME4Z20qA8Z1Pqy5Ivq7BAiV3zi81S2i8tau8qaF
-         Z8MBA+nSEqSPVmPfLqTt5a4Fjb+hh0Xaoo0uW39+oLB1mzwSmh6RtCC9fT3YVh69qA3r
-         5MC9g4WbuiueUkuEhGFDzc90EDVtx/3iPkXL7cKutZrznxZIhmBsm1km5bnsHCkE031L
-         ed0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770880676; x=1771485476;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4VtkmaXYDRoBb0Ii/zZutz9SPx4ofKw8c7aX2qO71JI=;
-        b=VkVYOpdFpTeBKxPj6IEgyF+1DSgmW7TrgjSHYcz+BROkko+eEIZxfY+I1PDrQoeTSf
-         rA2R8vy/1yh+HdXjcjgClBJ3LPSKd9FLyy8jmHAEEkpN17aCDqyofUr799atRdu5fKVU
-         CdKaOPyG4Qx9pv3vNUsyCEMJ9cf/znRstZ1RDGTTrq9SdbAYJFTsAW+6m+47M7WwMP89
-         52kMgo1Asqp0xHK3L0TJT/cvFFaIaiLPse6g7V/NAJQmnHNf35u9uYnnvoblayb7OY2J
-         sg9yq42cRe/i3xn/c0XFok9T8i5IXfLar8Cs8GDZtMi5w3vYA1weOjrZ9mZ6b3FmPcpW
-         yLvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUv+3YjjBx4XldlCmrrhPOCOqvC5P0DbzgIkCoVchQ979wUlQoqGNnOdlC3v5dUzvzvz9VbKHR00Phz@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnKC6rqSJFZcEHF9eqv9fgV5NhBN2ucX7zxUqVIEidhEpxwm8y
-	JZMr16rUMsKVkSwwJZq1pHAQdg8OWpIDyYdCWQScf5rA8ZGyk8W30UaBhBw+Hmvuq02vCZTbmp7
-	NDYDaXwgmZN+q07UDjrz2J6YfvBUrRD+I1jncYD7K0Q==
-X-Gm-Gg: AZuq6aIAjO9f8K24bw98EcoUWqgeQuulJvUTIPzdJvAAeQIar8e4qFA4N7lnCoLivCN
-	dG5e5JMEK3sT4xarZPYz9rWCqf1lbee0SQP2JzsW/Cfy500CbCmDQu0nwinwXaKQ3+R5e99Btny
-	y2bqo89PKbZ1EKyWYr17L0MpopdgA+eHj6RNPNI477LJLaqgB25VapJe3yAiC3yOB0vj6CXSsgE
-	ag5Mb79Ijflu5qVpBtREZcL9+xdEHCMY4S0hjqzowGQu6T1bt23ux0XKNG1BorVhgWxTAunmB5m
-	N1+OdkOBYTYZijJAbciBsESYeimSpYqlJFkc
-X-Received: by 2002:a05:6402:2690:b0:658:bab5:57f4 with SMTP id
- 4fb4d7f45d1cf-65b9db110b9mr587533a12.23.1770880675576; Wed, 11 Feb 2026
- 23:17:55 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC399287276;
+	Thu, 12 Feb 2026 07:18:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770880703; cv=none; b=tw8pqZYqr4NKVvhWhOIUbLrDp6Ch3kTHYo0I0eYjLAvcZnTU4O4MaDMv/fIiOcDIzA97KOj/oO4qWWdEzv3NZiBZ1HjLeUhOKMPqi+u3/u+FJrwPAOFXRyQH7SFW1U97b/zjGTQaAHp3kXQMHZCqWFcxB/ZBQpEFzYm3M1XWVfU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770880703; c=relaxed/simple;
+	bh=iv2usDJpkd7PkupLPM9HVa9bmiZZ89WgfkI5p9Qe6VU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oL6VsIQORDMEXjM7Dm7O4Y8zRktWWUuLb0w/LIYO5KN0YlRhhlZdHNlNKqmj1tIRQnzeqjdlkMYUmeNJSZaIvg2+DnEE0gJfRD8Cdz82LBzDQPKEbJqgA/YlTnk7FgfIY/WrXFn23cZj0tgKl3pqs6y1vhPlkNy/KMO6RLlSw5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q7MjYzHE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7450C4CEF7;
+	Thu, 12 Feb 2026 07:18:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770880703;
+	bh=iv2usDJpkd7PkupLPM9HVa9bmiZZ89WgfkI5p9Qe6VU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=q7MjYzHEtKh4A+D/GXOs9okQeXzLovSogzszcFfBCD3YrVnG5g3VnlpaQc/rxQ0/n
+	 zB8d+EgsIm22KVxCMmx12lEYXKYxXUZ8DfDRaZtdHqTkV1qpAxFeVs8PiRxzuAR3JJ
+	 Vkb/Afg48BtPb+n1F4GdsNcyrG2pMBSVHczQ3sr0u5wm0zfjZQXRFxhm8H+OTUCJTW
+	 V70oi+7k1m7j0kUjjzWvBhg+ImgsRIcYROabt3WBvE1ysCYAKstfJk0ahAJ6bztb0X
+	 3N9lHlrV/tfilIPvst39DIHB4B/HhiuCxDhYPo3ZlpGc9FjFyuDTuZoSeLBduhs8td
+	 1PHzPg1se5onA==
+Message-ID: <9afa52c1-b7de-4ccb-9114-a142567d21af@kernel.org>
+Date: Thu, 12 Feb 2026 08:18:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260203161917.1666696-1-vincent.guittot@linaro.org>
- <20260203161917.1666696-2-vincent.guittot@linaro.org> <20260210004011.GA2188625-robh@kernel.org>
-In-Reply-To: <20260210004011.GA2188625-robh@kernel.org>
-From: Vincent Guittot <vincent.guittot@linaro.org>
-Date: Thu, 12 Feb 2026 08:17:44 +0100
-X-Gm-Features: AZwV_Qj567pfCDwzOGI7nJVgtwTDzptXPKhrNBHBCOrwOw7GShjTLukyePRdLLo
-Message-ID: <CAKfTPtA299R7yn3r=tCqhhP_tK3E_UpGSMrDLyRP4Ccwt1m58g@mail.gmail.com>
-Subject: Re: [PATCH 1/4 v2] dt-bindings: serdes: s32g: Add NXP serdes subsystem
-To: Rob Herring <robh@kernel.org>
-Cc: vkoul@kernel.org, neil.armstrong@linaro.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, ciprianmarian.costea@oss.nxp.com, s32@nxp.com, 
-	p.zabel@pengutronix.de, linux@armlinux.org.uk, ghennadi.procopciuc@nxp.com, 
-	Ionut.Vicovan@nxp.com, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, 
-	horms@kernel.org, Frank.li@nxp.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] gpio: aggregator: add gpio-aggregator DT
+ compatible
+To: James Hilliard <james.hilliard1@gmail.com>, Rob Herring <robh@kernel.org>
+Cc: Bartosz Golaszewski <brgl@kernel.org>, linux-gpio@vger.kernel.org,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Linus Walleij <linusw@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alexander Stein <linux@ew.tq-group.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
+ <20260211081355.3028947-2-james.hilliard1@gmail.com>
+ <CAMRc=MfgoKmsNAmn3rO2jDL-ZArMX2Jh-n4SnV6rpzRY3KSwuA@mail.gmail.com>
+ <34a9b531-4f53-47ee-861e-1b18ff1a5752@kernel.org>
+ <CAMRc=MfwQ8J7eT_geEf7Kj230SOvmO-LDHz9a_YgfRY-QB5V8w@mail.gmail.com>
+ <20260211214708.GA3947691-robh@kernel.org>
+ <CADvTj4p-zHMrXW+GJstB2sKS-7Wij98JNJGoiPiYmaP5RHhNQg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CADvTj4p-zHMrXW+GJstB2sKS-7Wij98JNJGoiPiYmaP5RHhNQg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264915-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-264916-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vincent.guittot@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	DBL_PROHIBIT(0.00)[2.105.173.0:email];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:email,linaro.org:dkim,mail.gmail.com:mid,nxp.com:email,devicetree.org:url,0.0.0.1:email]
-X-Rspamd-Queue-Id: C3D9712AE6C
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 85F8912AE7E
 X-Rspamd-Action: no action
 
-On Tue, 10 Feb 2026 at 01:40, Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Feb 03, 2026 at 05:19:14PM +0100, Vincent Guittot wrote:
-> > Describe the serdes subsystem available on the S32G platforms.
-> >
-> > Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
-> > ---
-> >  .../bindings/phy/nxp,s32g-serdes.yaml         | 154 ++++++++++++++++++
-> >  1 file changed, 154 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/phy/nxp,s32g-serdes.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/phy/nxp,s32g-serdes.yaml b/Documentation/devicetree/bindings/phy/nxp,s32g-serdes.yaml
-> > new file mode 100644
-> > index 000000000000..fad34bee2a4f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/phy/nxp,s32g-serdes.yaml
-> > @@ -0,0 +1,154 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/phy/nxp,s32g-serdes.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: NXP S32G2xxx/S32G3xxx SerDes PHY subsystem
-> > +
-> > +maintainers:
-> > +  - Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> > +
-> > +description: |
-> > +  The SerDes subsystem on S32G SoC Family includes two types of PHYs:
-> > +    - One PCIe PHY: Supports various PCIe operation modes
-> > +    - Two Ethernet Physical Coding Sublayer (XPCS) controllers
-> > +
-> > +  SerDes operation mode selects the enabled PHYs and speeds. Clock frequency
-> > +  must be adapted accordingly. Below table describes all possible operation
-> > +  modes.
-> > +
-> > +  Mode  PCIe XPCS0           XPCS1           PHY clock       Description
-> > +                SGMII                SGMII             (MHz)
-> > +  -------------------------------------------------------------------------
-> > +  0  Gen3    N/A             N/A             100             Single PCIe
-> > +  1  Gen2    1.25Gbps        N/A             100             PCIe/SGMII
-> > +  2  Gen2    N/A             1.25Gbps        100             PCIe/SGMII
-> > +  3  N/A     1.25Gbps        1.25Gbps        100,125         SGMII
-> > +  4  N/A     3.125/1.25Gbps  3.125/1.25Gbps  125             SGMII
-> > +  5  Gen2    N/A             3.125Gbps       100             PCIe/SGMII
->
-> Mixed tabs and spaces. Drop the tabs.
+On 11/02/2026 22:49, James Hilliard wrote:
+>>>>>
+>>>>> Regardless of the DT bindings - this change is perfectly fine. We do
+>>>>
+>>>> You cannot have compatible without DT bindings, so this alone is not
+>>>> "perfectly fine". Maybe you wanted platform_device_id entry for
+>>>> ACPI/legacy/MFD devices?
+>>>>
+>>>
+>>> Sure you can, you just can't put it into upstream devicetree sources.
+>>> We have had a compatible for gpio-sim for testing purposes for years.
+>>> Why would it be illegal to enable matching of platform drivers over DT
+>>> for testing purposes?
+>>
+>> The primary issue is undocumented ones show up in 'make
+>> dt_compatible_check'. I would like that to be warning free.
+> 
+> Would adding it here make sense?
+> https://github.com/torvalds/linux/blob/v6.19/Documentation/devicetree/bindings/incomplete-devices.yaml#L243-L245
 
-okay
-
->
-> What's not clear to me is do you have 2 or 4 lanes?
-
-2 lanes per serdes
-as an example mode 0 is one PCIe x2 lane
-and mode 1 is one PCIe x1 and one xpcs0/SGMII on lane 1
-or mode 3 is one  xpcs0/SGMII on lane 0 and one xpcs1/SGMII on lane 1
-
->
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - enum:
-> > +          - nxp,s32g2-serdes
-> > +      - items:
-> > +          - const: nxp,s32g3-serdes
-> > +          - const: nxp,s32g2-serdes
-> > +
-> > +  reg:
-> > +    maxItems: 4
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: ss_pcie
-> > +      - const: pcie_phy
-> > +      - const: xpcs0
-> > +      - const: xpcs1
-> > +
-> > +  clocks:
-> > +    minItems: 4
-> > +    maxItems: 5
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: axi
-> > +      - const: aux
-> > +      - const: apb
-> > +      - const: ref
-> > +      - const: ext
-> > +    minItems: 4
-> > +
-> > +  resets:
-> > +    maxItems: 2
-> > +
-> > +  reset-names:
-> > +    items:
-> > +      - const: serdes
-> > +      - const: pcie
-> > +
-> > +  nxp,sys-mode:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
->
->        maximum: 5
->
-> Though isn't this redundant with the child nodes? You could use the
-> standard 'phy-mode' property in each child.
-
-not really because we can have mode 1 but only a node to describe
-lane0 for PCIe x1 if the lane 1 is not used
-
->
-> > +    description: |
-> > +      SerDes operational mode. See above table for possible values.
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> > +patternProperties:
-> > +  '^serdes[0,1]_lane@[0,1]$':
->
-> Do you need to support serdes0_lane@0 and serdes1_lane@0 (or similar
-> with "@1")? That's illegal as you have 2 nodes with the same address.
-
-okay, we can find other naming
-
->
-> > +    description:
-> > +      Describe a serdes lane.
-> > +    type: object
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        enum:
-> > +          - nxp,s32g2-serdes-pcie-phy
-> > +          - nxp,s32g2-serdes-xpcs
->
-> Seems like phy-mode would be sufficient. Are these separate blocks from
-> the parent?
-
-Isn't phy-mode only for ethernet phy ?
-
-here we have either a PCIe phy or a xpcs instance which are referenced
-with phandle
-
->
-> > +
-> > +      reg:
-> > +        maxItems: 1
->
-> Just 'maximum: 1' instead.
-
-okay
+What would you like to achieve with that? The binding patch did not have
+rationale why do we want it and here is the same question - what sort of
+problem is being solved by adding it to incomplete (so wrong) devices?
 
 
->
-> > +
-> > +      '#phy-cells':
-> > +        const: 0
-> > +
-> > +    required:
-> > +      - reg
-> > +      - compatible
-> > +
-> > +    unevaluatedProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - clocks
-> > +  - clock-names
-> > +  - resets
-> > +  - reset-names
-> > +  - nxp,sys-mode
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    bus {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> > +        serdes0: serdes@40480000 {
-> > +          compatible = "nxp,s32g3-serdes", "nxp,s32g2-serdes";
-> > +            reg = <0x0 0x40480000 0x0 0x108>,
-> > +                  <0x0 0x40483008 0x0 0x10>,
-> > +                  <0x0 0x40482000 0x0 0x800>,
-> > +                  <0x0 0x40482800 0x0 0x800>;
-> > +            reg-names = "ss_pcie", "pcie_phy", "xpcs0", "xpcs1";
-> > +            clocks = <&clks 1>,
-> > +                     <&clks 2>,
-> > +                     <&clks 3>,
-> > +                     <&clks 4>,
-> > +                     <&serdes_100_ext>;
-> > +            clock-names = "axi", "aux", "apb", "ref", "ext";
-> > +            resets = <&reset 9>,
-> > +                     <&reset 8>;
-> > +            reset-names = "serdes", "pcie";
-> > +            nxp,sys-mode = <1>;
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +            phy_pcie0: serdes0_lane@0 {
-> > +              compatible = "nxp,s32g2-serdes-pcie-phy";
-> > +              #phy-cells = <0>;
-> > +              reg = <0>;
-> > +            };
-> > +            phy_xpcs0_0: serdes0_lane@1 {
-> > +              compatible = "nxp,s32g2-serdes-xpcs";
-> > +              reg = <0>;
-> > +            };
-> > +        };
-> > +    };
-> > --
-> > 2.43.0
-> >
+Best regards,
+Krzysztof
 
