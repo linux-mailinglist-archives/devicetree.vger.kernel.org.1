@@ -1,187 +1,152 @@
-Return-Path: <devicetree+bounces-265018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265019-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SG8jFtWxjWmz5wAAu9opvQ
-	(envelope-from <devicetree+bounces-265018-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:56:21 +0100
+	id qP3AL9KxjWmz5wAAu9opvQ
+	(envelope-from <devicetree+bounces-265019-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:56:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7DB612CBFF
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:56:20 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 414F612CBF1
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:56:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4AC4530154A3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 10:56:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D84FB3004F13
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 10:56:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41961318ECA;
-	Thu, 12 Feb 2026 10:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B084318B9C;
+	Thu, 12 Feb 2026 10:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ze2iH1Q7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OD+V5BVF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 835FE31961A
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 10:55:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B209A3EBF24;
+	Thu, 12 Feb 2026 10:56:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770893762; cv=none; b=PGAilftRMHjXn+1KRB3SWxVP1zHjdZpfZTNO4PjeRAj7EEoEh90k6XeQchVjxOJPe2c3gV9Ikik7Dx7YBABGGNjeTEOZCRrd36OeV8AclV4SLQ/zUElqHbcqOEAutD2zt1gIQy5uV91PKsWHyNy1xLADIRpNveMu3jgcd6JYcoc=
+	t=1770893766; cv=none; b=rpkPOZjAaWJRyEqkmd4HFya/yFU/yJ6HcadAYVqC7XCc5Vbh3LVtOvz0dWNAhkjw4HLRNoXL0Pml8gYoGAD3jszZcuPtBu4GtxZE7scGsrZ+FDPIccpjg4pybIFaf/5NUD8gXPvlZgeov8uFBbPomQdbe0nzyPvDg+Ta9Hy8Byw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770893762; c=relaxed/simple;
-	bh=RS00af9P9/DeA+D7z0dG5vR2qeqNt3oxiUIUEYfR5CA=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Mq+v0K2wdNImbnm9xa41gPtcrbdDk2wtSEYep/+sUqSEFFbApG4XB3n56lCOFQHJ5sNK9i4QxEzmVZRUSiRJbdrJ2MMFycxnUkMtsmaI6u4NlPa3OntNCxDZ8W5P+F8ADq5bLnfj46eIXBSHL1TbCWu7j9sktiLyZ/PAfwo0U20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ze2iH1Q7; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 3C7574E40CB9;
-	Thu, 12 Feb 2026 10:55:52 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 0E2EB606CA;
-	Thu, 12 Feb 2026 10:55:52 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9E989119718DE;
-	Thu, 12 Feb 2026 11:55:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770893751; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=E2SMN+BIfw5yU3tNiYXzFDMuLU0QrZTEoxC8Qr6cOtk=;
-	b=ze2iH1Q7JcOz3PC+1edI9DyH7FNgeY2O/SqrulLsEv+NNy0oxvIX3GGxJTSk7qaSMfkM+Q
-	ft82KE/dEwzOAoPrZdPoXJ+7x4NmsygE/QB9YV16Lsthl2Yj/o8C/5c5zMDW1HPgLSCvSP
-	+qHMc7x2dw8FCchLABwuDBVsyWChf70KJQ82NbXynGKAPrgvr0EEXh6x9NsBbhOUYdDEjx
-	bgZ+Sjdib7mQ0xCZ7PWQMFuSiwbzXmzQv/VfwLyhkOoZ/ChlRb3TiPhn7fHfIQQy8/aXYt
-	7zsb4fjmm1EbdBm7he/Ybaw31NriUvag3ZVV8Q0iDJ9QgoxjR/8Q84xjbNLobA==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Cheng Ming Lin <linchengming884@gmail.com>
-Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
- <vigneshr@ti.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Tudor Ambarus
- <tudor.ambarus@linaro.org>,  Mikhail Kshevetskiy
- <mikhail.kshevetskiy@iopsys.eu>,  Pablo Martin-Gomez
- <pmartin-gomez@freebox.fr>,  Tianling Shen <cnsztl@gmail.com>,  Pratyush
- Yadav <pratyush@kernel.org>,  linux-mtd@lists.infradead.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  alvinzhou@mxic.com.tw,  Cheng Ming Lin <chengminglin@mxic.com.tw>
-Subject: Re: [PATCH v5 3/3] mtd: spi-nand: macronix: Enable randomizer support
-In-Reply-To: <20260211100553.907585-4-linchengming884@gmail.com> (Cheng Ming
-	Lin's message of "Wed, 11 Feb 2026 18:05:53 +0800")
-References: <20260211100553.907585-1-linchengming884@gmail.com>
-	<20260211100553.907585-4-linchengming884@gmail.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Thu, 12 Feb 2026 11:55:43 +0100
-Message-ID: <87ldgyxmc0.fsf@bootlin.com>
+	s=arc-20240116; t=1770893766; c=relaxed/simple;
+	bh=oRcuOTKeQkYXu57P3k/BhhMMXmjpgkGU5VCaMNMOQbo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s8EXt1+Tydd8wQDg2N1G1ccTIbPkO4Vwi28HDqODA4MP7X5zJhn6WZ2HIKbnk3610kPe+/Wi/CyQ0h6NlGCZt6V1qe6+sBfVOrUaHVcPo1w4tV4jKl2rR8s2s7l6Gy59OfRphQsafNXLll67VpQMJvs8FdGXN3II3hhe1LnDi2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OD+V5BVF; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770893764; x=1802429764;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oRcuOTKeQkYXu57P3k/BhhMMXmjpgkGU5VCaMNMOQbo=;
+  b=OD+V5BVFd900D+/fgk0VmPJSTxy0CPqZMGeDKwSvnNmb0NY1q7ODeEdx
+   kA03uesfyOPOPEI/lLzcWO57/1SlqicYxZnoeOuprwzExEnqPmPyiKAoE
+   A/BIvxIuYt6xjo5LVCHXNGqEDlXa9znafsmYkoWcAajCqU4byUl66a9l5
+   3VKe700qtCn6YCR9pLQx/yZKRQO1UQrA51IlMiRMUrQUWtDvJn5MLsaut
+   ii5jdgowqxRpN2deTAILBMEVZ/U3DXpqbZw1dj5P6YKYt27yCa+SVQ9v9
+   3CWq+jiOEeS5fmOdscggt7+nRJKlIaRnXYZpfezBW6jt9ad4TYIHEMRaW
+   g==;
+X-CSE-ConnectionGUID: TtitChpeTkyDc2QarRMppw==
+X-CSE-MsgGUID: 6b1mHOM3RtyItrE4il72KA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="72135506"
+X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; 
+   d="scan'208";a="72135506"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 02:56:03 -0800
+X-CSE-ConnectionGUID: VXeGqzVtTr+kHe+DLg9TGQ==
+X-CSE-MsgGUID: GisKOH0TQjKYdJ6196KQLw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; 
+   d="scan'208";a="212394950"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.145])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 02:56:00 -0800
+Date: Thu, 12 Feb 2026 12:55:57 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Yasin Lee <yasin.lee.x@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, yasin.lee.x@outlook.com,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] iio: proximity: hx9023s: Protect against division
+ by zero in set_samp_freq
+Message-ID: <aY2xveYRXEKIBV92@smile.fi.intel.com>
+References: <20260212-upstream-20260219-v2-0-2b28fce5d09e@gmail.com>
+ <20260212-upstream-20260219-v2-2-2b28fce5d09e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260212-upstream-20260219-v2-2-2b28fce5d09e@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265018-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[nod.at,ti.com,kernel.org,linaro.org,iopsys.eu,freebox.fr,gmail.com,lists.infradead.org,vger.kernel.org,mxic.com.tw];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-265019-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,outlook.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mxic.com.tw:email]
-X-Rspamd-Queue-Id: C7DB612CBFF
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: 414F612CBF1
 X-Rspamd-Action: no action
 
-On 11/02/2026 at 18:05:53 +08, Cheng Ming Lin <linchengming884@gmail.com> w=
-rote:
+On Thu, Feb 12, 2026 at 02:26:53PM +0800, Yasin Lee wrote:
+> Avoid division by zero when sampling frequency is unspecified by
+> falling back to a default 100ms sampling period.
 
-> From: Cheng Ming Lin <chengminglin@mxic.com.tw>
->
-> Implement the 'set_randomizer' callback for Macronix SPI NAND chips.
-> The randomizer is enabled by setting bit 1 of the Configuration Register
-> (address 0x10).
->
-> This patch adds support for the following chips:
->   - MX35LFxG24AD series
->   - MX35UFxG24AD series
->
-> When the randomizer is enabled, data is scrambled internally during
-> program operations and automatically descrambled during read operations.
-> This helps reduce bit errors caused by program disturbance.
->
-> Signed-off-by: Cheng Ming Lin <chengminglin@mxic.com.tw>
-> ---
->  drivers/mtd/nand/spi/macronix.c | 46 +++++++++++++++++++++++++--------
->  1 file changed, 35 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/mtd/nand/spi/macronix.c b/drivers/mtd/nand/spi/macro=
-nix.c
-> index edf63b9996cf..3a9ab146426b 100644
-> --- a/drivers/mtd/nand/spi/macronix.c
-> +++ b/drivers/mtd/nand/spi/macronix.c
-> @@ -14,6 +14,8 @@
->  #define MACRONIX_ECCSR_BF_LAST_PAGE(eccsr) FIELD_GET(GENMASK(3, 0), eccs=
-r)
->  #define MACRONIX_ECCSR_BF_ACCUMULATED_PAGES(eccsr) FIELD_GET(GENMASK(7, =
-4), eccsr)
->  #define MACRONIX_CFG_CONT_READ         BIT(2)
-> +#define MACRONIX_CFG_RANDOMIZER_EN     BIT(1)
-> +#define MACRONIX_FEATURE_ADDR_RANDOMIZER 0x10
->  #define MACRONIX_FEATURE_ADDR_READ_RETRY 0x70
->  #define MACRONIX_NUM_READ_RETRY_MODES 5
->=20=20
-> @@ -146,7 +148,7 @@ static int macronix_set_cont_read(struct spinand_devi=
-ce *spinand, bool enable)
->   * Return: 0 on success, a negative error code otherwise.
->   */
->  static int macronix_set_read_retry(struct spinand_device *spinand,
-> -					     unsigned int retry_mode)
-> +				   unsigned int retry_mode)
+...
 
-This is unrelated, it should be in an other commit.
+> -	period_ms = div_u64(NANO, (val * MEGA + val2));
+> +	if (val || val2)
+> +		period_ms = div_u64(NANO, (val * MEGA + val2));
 
->  {
->  	struct spi_mem_op op =3D SPINAND_SET_FEATURE_1S_1S_1S_OP(MACRONIX_FEATU=
-RE_ADDR_READ_RETRY,
->  							       spinand->scratchbuf);
-> @@ -155,6 +157,18 @@ static int macronix_set_read_retry(struct spinand_de=
-vice *spinand,
->  	return spi_mem_exec_op(spinand->spimem, &op);
->  }
->=20=20
-> +static int macronix_set_randomizer(struct spinand_device *spinand, bool =
-enable)
-> +{
-> +	int ret;
-> +
-> +	ret =3D spinand_write_reg_op(spinand, MACRONIX_FEATURE_ADDR_RANDOMIZER,
-> +				   enable ? MACRONIX_CFG_RANDOMIZER_EN :
-> 0);
+While at it, drop unneeded parentheses.
 
-You can directly return. Same in the core BTW.
+> +	else
+> +		/* Fallback to a safe default sampling period */
+> +		period_ms = 100;
 
-Otherwise with this and the binding document fixed, looks ok.
+Not sure about this. Perhaps we should rather do
 
-Thanks,
-Miqu=C3=A8l
+	if (!val || !val2)
+		return -EINVAL;
+
+?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
