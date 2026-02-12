@@ -1,129 +1,132 @@
-Return-Path: <devicetree+bounces-264919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264920-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IHdKLWyCjWkw3gAAu9opvQ
-	(envelope-from <devicetree+bounces-264919-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:34:04 +0100
+	id wFlZFF2DjWlb3gAAu9opvQ
+	(envelope-from <devicetree+bounces-264920-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:38:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D31F012AF58
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:34:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76E0812AF88
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 08:38:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 21F97300F1EC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 07:34:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 154C130BF797
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 07:38:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93265275844;
-	Thu, 12 Feb 2026 07:33:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L6Veu8Xg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D48129DB6A;
+	Thu, 12 Feb 2026 07:38:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6953C4C81;
-	Thu, 12 Feb 2026 07:33:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [4.193.249.245])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C8663EBF2C;
+	Thu, 12 Feb 2026 07:37:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=4.193.249.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770881639; cv=none; b=tnYXyPjeGx9lnAEewsIXhdDfkzTE7JhtiY6a2n0dSqVRNi0NLo0B59VnzHN0seqm+25m8UxcT81mwH658LS9hIcIbojvxAJO2833v4sRVQqL0S/kCgrxWeOIbpJ1l7vDaBosiORgPqTUMDm0jOxvPwYYJqvQCKuKL2iac6ZIYBo=
+	t=1770881882; cv=none; b=uKgXILbtxRhwJBlnWBiqFnhpoEs01NYLnfabAXfJeElx3OeP+jcXAs80sctW6MRAEddo2fDNOM+8nOxT1vyyS5lIfd5LBI9XGNwrC9NAxsurpkJpaoiy6nMPmZ70/RAJ1r4ar5aBYPB2ifvN82dl2UrLohjDsIsZhR/R5r+upiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770881639; c=relaxed/simple;
-	bh=RjZLQwqHGUM3fe6f8/YcpBJlzL94xf9Sua0ZtzxuMRI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=be/q3LfCMfPjg/13jUh9BLXz3oMnstbqy3fjrsScHtUXx/Qiweyi1sg10gTOzJhL76p7/+mpl5LLerLAy60wFJ7SKnwuqs/dVT+UFDwC1TiRAQi57S3SCkf9RT+BL+ItfkcZlbX/88++OmCg7UIyXtdyzOcuUsJ4W+TuZ4cv+/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L6Veu8Xg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62747C4CEF7;
-	Thu, 12 Feb 2026 07:33:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770881638;
-	bh=RjZLQwqHGUM3fe6f8/YcpBJlzL94xf9Sua0ZtzxuMRI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L6Veu8Xgpcigo7tkvuLV1NZppBh/7mOViq82pStgY/f1BARcv/o5rLl6rZShnl+m8
-	 5DkxZGlWfUrLUrUssmMmXfaKCtjIjNd1qPvmPxCUDCohgoRcEezFsk1tiTR8NgVaBA
-	 RoFlGtcvE4ccg5Qy0Kp58PLeD8TZ8BVAt0gsTE3yqPsRaOivE/p0t5FKtFGWE+7YuQ
-	 lI9mw6AtLbXzCVyNZ+zX9PuPyKIfRiVbL4pPlq/+Z4k7eSWSHSLqNzP4dQGg61/QzR
-	 umkfaAccgGQidB6X8tDaosWBF+z4Rv1FqvVOm9KsRWrdW84k1FJUWzSP4IC5mh/AcD
-	 /MZr2tDMOYcPw==
-Date: Thu, 12 Feb 2026 08:33:56 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Cheng Ming Lin <linchengming884@gmail.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>, Pablo Martin-Gomez <pmartin-gomez@freebox.fr>, 
-	Tianling Shen <cnsztl@gmail.com>, Pratyush Yadav <pratyush@kernel.org>, 
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	alvinzhou@mxic.com.tw, Cheng Ming Lin <chengminglin@mxic.com.tw>
-Subject: Re: [PATCH v5 1/3] dt-bindings: mtd: spinand: Add randomizer
- enable/disable properties
-Message-ID: <20260212-white-numbat-of-variation-cde4ae@quoll>
-References: <20260211100553.907585-1-linchengming884@gmail.com>
- <20260211100553.907585-2-linchengming884@gmail.com>
+	s=arc-20240116; t=1770881882; c=relaxed/simple;
+	bh=C3SWlHAr67G4cpV6SeO9/o6ehdzk7TarAGvyOicXcs8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=Oy9K6ShLzAtYEMN0oKnsSUZDIxEyzh9MVobzpwH/LV41ccyLc14wmu2vmQHuuGtdtzyc7zbwUJsbsf4JDys83Nb9kLnvZzNWH4b5VAX3sbBvq2/1c7dfo2EFmaJkB59g8Dv2ETSmgDEr/sSW4tdGtLagAsvIN/wDf9xeKuh5Agg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=4.193.249.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from hehuan1$eswincomputing.com ( [10.12.96.103] ) by
+ ajax-webmail-app2 (Coremail) ; Thu, 12 Feb 2026 15:37:39 +0800 (GMT+08:00)
+Date: Thu, 12 Feb 2026 15:37:39 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: "Huan He" <hehuan1@eswincomputing.com>
+To: "Rob Herring" <robh@kernel.org>
+Cc: ulf.hansson@linaro.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	jszhang@kernel.org, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, xuxiang@eswincomputing.com,
+	"Pritesh Patel" <pritesh.patel@einfochips.com>
+Subject: Re: Re: [PATCH v1] dt-bindings: mmc: dwcmshc-sdhci: Fix resets
+ array validation
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <20260211221017.GA3976151-robh@kernel.org>
+References: <20260211094736.88-1-hehuan1@eswincomputing.com>
+ <20260211221017.GA3976151-robh@kernel.org>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260211100553.907585-2-linchengming884@gmail.com>
+Message-ID: <b0805c4.368e.19c50c8c197.Coremail.hehuan1@eswincomputing.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:TQJkCgDH3aBEg41prQoAAA--.40W
+X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/1tbiAgEQCmmMr4QP9AAB
+	st
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [0.64 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[eswincomputing.com];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-264919-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-264920-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[bootlin.com,nod.at,ti.com,kernel.org,linaro.org,iopsys.eu,freebox.fr,gmail.com,lists.infradead.org,vger.kernel.org,mxic.com.tw];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org];
+	HAS_X_PRIO_THREE(0.00)[3];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D31F012AF58
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:mid,eswincomputing.com:email,einfochips.com:email]
+X-Rspamd-Queue-Id: 76E0812AF88
 X-Rspamd-Action: no action
 
-On Wed, Feb 11, 2026 at 06:05:51PM +0800, Cheng Ming Lin wrote:
-> diff --git a/Documentation/devicetree/bindings/mtd/nand-chip.yaml b/Documentation/devicetree/bindings/mtd/nand-chip.yaml
-> index 609d4a4ddd80..2fcbc4b73e95 100644
-> --- a/Documentation/devicetree/bindings/mtd/nand-chip.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/nand-chip.yaml
-> @@ -67,6 +67,14 @@ properties:
->        the secure regions present.
->      $ref: /schemas/types.yaml#/definitions/uint64-matrix
->  
-> +  nand-randomizer-enable:
-> +    description: Enable the randomizer feature.
-> +    type: boolean
-> +
-> +  nand-randomizer-disable:
-> +    description: Disable the randomizer feature.
-> +    type: boolean
-
-Read again feedback from Miquel - two EXCLUSIVE properties. You miss
-"not" with "required":
-https://lore.kernel.org/all/20230118163208.GA117919-robh@kernel.org/
-
-Best regards,
-Krzysztof
-
+PiA+IFRoZSBiaW5kaW5nIGRlZmluZXMgdHVwbGUtc3R5bGUgcmVzZXQtbmFtZXMgaXRlbXMgZm9y
+IHNvbWUKPiA+IGNvbXBhdGlibGVzLCB3aGljaCBpbXBsaWNpdGx5IGVuZm9yY2VzIGEgZml4ZWQg
+YXJyYXkgbGVuZ3RoCj4gPiB2aWEgSlNPTiBTY2hlbWEuCj4gPiAKPiA+IERlZmluaW5nIGdsb2Jh
+bCBtYXhJdGVtcyBmb3IgcmVzZXRzIGFuZCByZXNldC1uYW1lcyBjYXVzZXMgdGhlc2UKPiA+IGNv
+bnN0cmFpbnRzIHRvIGJlIGludGVyc2VjdGVkIHZpYSBhbGxPZiwgcmVzdWx0aW5nIGluIGFuIGVm
+ZmVjdGl2ZQo+ID4gbWluSXRlbXMgZXF1YWwgdG8gdGhlIGdsb2JhbCBtYXhJdGVtcy4gVGhpcyBs
+ZWFkcyB0byBkdGJzX2NoZWNrCj4gPiBmYWlsdXJlcyByZXBvcnRpbmcgcmVzZXQgYXJyYXlzIGFz
+IHRvbyBzaG9ydCwgZXZlbiB3aGVuIHRoZSBEVFMKPiA+IHByb3ZpZGVzIHRoZSBjb3JyZWN0IG51
+bWJlciBvZiBlbnRyaWVzLgo+ID4gCj4gPiBSZW1vdmUgdGhlIGdsb2JhbCBtYXhJdGVtcyBjb25z
+dHJhaW50cyBhbmQgbGV0IHRoZSBwZXItY29tcGF0aWJsZQo+ID4gc2NoZW1hIGJyYW5jaGVzIGRl
+ZmluZSB0aGUgcmVxdWlyZWQgcmVzZXQgYXJyYXkgc2l6ZXMgZXhwbGljaXRseS4KPiA+IAo+ID4g
+Rml4ZXM6IDMwMDA5YTIxZjI1NyAoImR0LWJpbmRpbmdzOiBtbWM6IHNkaGNpLW9mLWR3Y21zaGM6
+IEFkZCBFc3dpbiBFSUM3NzAwIikKPiA+IFNpZ25lZC1vZmYtYnk6IFByaXRlc2ggUGF0ZWwgPHBy
+aXRlc2gucGF0ZWxAZWluZm9jaGlwcy5jb20+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBIdWFuIEhlIDxo
+ZWh1YW4xQGVzd2luY29tcHV0aW5nLmNvbT4KPiA+IC0tLQo+ID4gIC4uLi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL21tYy9zbnBzLGR3Y21zaGMtc2RoY2kueWFtbCAgICAgICAgIHwgNiAtLS0tLS0KPiA+
+ICAxIGZpbGUgY2hhbmdlZCwgNiBkZWxldGlvbnMoLSkKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL0Rv
+Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tbWMvc25wcyxkd2Ntc2hjLXNkaGNpLnlh
+bWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbW1jL3NucHMsZHdjbXNoYy1z
+ZGhjaS55YW1sCj4gPiBpbmRleCA3ZTdjNTVkYzI0NDAuLjhhZjU1YTUzYjU2OSAxMDA2NDQKPiA+
+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tbWMvc25wcyxkd2Ntc2hj
+LXNkaGNpLnlhbWwKPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9t
+bWMvc25wcyxkd2Ntc2hjLXNkaGNpLnlhbWwKPiA+IEBAIC00OSwxMiArNDksNiBAQCBwcm9wZXJ0
+aWVzOgo+ID4gICAgcG93ZXItZG9tYWluczoKPiA+ICAgICAgbWF4SXRlbXM6IDEKPiA+ICAKPiA+
+IC0gIHJlc2V0czoKPiA+IC0gICAgbWF4SXRlbXM6IDUKPiA+IC0KPiA+IC0gIHJlc2V0LW5hbWVz
+Ogo+ID4gLSAgICBtYXhJdGVtczogNQo+IAo+IE5vLCBhZGQgJ21pbkl0ZW1zJyB0aGF0IGNvdmVy
+cyB0aGUgd2hvbGUgcmFuZ2UgbmVlZGVkLgoKVGhhbmsgeW91IHZlcnkgbXVjaCBmb3IgdGFraW5n
+IHRoZSB0aW1lIHRvIHJldmlldyB0aGUgcGF0Y2ggYW5kIGZvciB5b3VyCnZhbHVhYmxlIGZlZWRi
+YWNrLgoKSSBoYXZlIGNoZWNrZWQgb3RoZXIgdmVuZG9ycyBpbiB0aGUga2VybmVsIHRoYXQgdXNl
+IHRoZSByZXNldHMgcHJvcGVydHkuClRoZSBtaW5pbXVtIG51bWJlciBpbiBhY3R1YWwgdXNlIGlz
+IDQgKEVzd2luIHVzZXMgNCwgb3RoZXJzIHVzZSA1KS4KCklzIGl0IHJlYXNvbmFibGUgdG8gYWRk
+ICJtaW5JdGVtczogMSI/CgpCZXN0IHJlZ2FyZHMsCkh1YW4gSGUK
 
