@@ -1,151 +1,112 @@
-Return-Path: <devicetree+bounces-264897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-264898-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0O6aFI9QjWnW0wAAu9opvQ
-	(envelope-from <devicetree+bounces-264897-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 05:01:19 +0100
+	id qCUVE8FRjWkf1AAAu9opvQ
+	(envelope-from <devicetree+bounces-264898-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 05:06:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A562412A42E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 05:01:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D45BE12A467
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 05:06:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6C3B531E0192
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 03:56:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B16D63217A94
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 03:59:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B54418C33;
-	Thu, 12 Feb 2026 03:56:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3B220ADD6;
+	Thu, 12 Feb 2026 03:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="b+qGPcc8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ubPex95N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D659C239567;
-	Thu, 12 Feb 2026 03:56:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59BF51A304A;
+	Thu, 12 Feb 2026 03:59:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770868598; cv=none; b=vFoJ2cDIMl9Yk9m1oad/1OCDowAcv4otqarAt27m0xfzCqjbx4Cs3gZUqiLkrY6lmeihrWRSTJNBuIqQCyqS0KA5IiVyUTCw4qkey9izFh7on5ssKyk2c1evoafIKQPmfxwRMAhCrwkDgumG72gYp76k5aeCuerpUFQyGjEtbtM=
+	t=1770868749; cv=none; b=P1QWfGXLEbSFkU9wn0+azvq7kaDMd5cmBlaKWqB+9ItIcWWPVTZsGvl2aUj4QaTJ8oZ9p3ob4VcWOkcIhaqGUjwpQyinOBI7M4+F04/pumYtCggWMTzloWvvHeTvUGXudEfuCH/SrfEZpT20x1aAo3X5k+DoBakuPXe6q3Eowi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770868598; c=relaxed/simple;
-	bh=m5FX710KFiG+MB3P345VDRHdTTue3VoIFjOCrEq7n50=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nb2lLccpwygCa4rGgjJvRs61eSQzIJDFnPqL/hU7inPLyxAwZ9kgrVxw9MeRH+ziZ+27Fuj3EXOl8/tOTUcgOXga+1bbo3ilZ1TZ8YEw3jaM4jvfEcS2ctn637JQXuRtumZtiAl6TBqrAEjCU71lpfeJDKo+3sePIiI5QZdIgpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=b+qGPcc8; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770868597; x=1802404597;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=m5FX710KFiG+MB3P345VDRHdTTue3VoIFjOCrEq7n50=;
-  b=b+qGPcc8dEUblC2J1Are49gIvQhdRJGTwaPY5w2j1t4H9lq/Xf1QlGJB
-   zflZX1PhRstxzQmHG+2RSaWrx7gStjg9XLigCfHWrWRpIoE39BUN0nlh7
-   8NoIdf0WvyN+9TsodA5eogrDYG9MtkVibTbh5AXYlP2bAuJ85ZjwMgbTp
-   DEp2GR+neSisDjHMbBPHL3qfdbzV2dshKzG+sOUcURW8nzFRXW7I397A1
-   b5y8r6hjjsoJY40FA0JInB6h2Aq3yb5tE/xzJAf3jKDeL7/8ioT4LrN7T
-   S/h+ullocDJyGI+oMJhnCJl9qVnWrb3k0/8XM1CCaTImFphknmWoNAwzh
-   A==;
-X-CSE-ConnectionGUID: P+U2BcGHSquaz0/34mLw3w==
-X-CSE-MsgGUID: PmbFv0J/RjexNDgr7xNACA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="72076958"
-X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; 
-   d="scan'208";a="72076958"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2026 19:56:37 -0800
-X-CSE-ConnectionGUID: 8YKsv03FT4Oi33+hgFC3eA==
-X-CSE-MsgGUID: le1ORshSScmQxXWm8fQHjA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; 
-   d="scan'208";a="211323652"
-Received: from igk-lkp-server01.igk.intel.com (HELO e5404a91d123) ([10.211.93.152])
-  by fmviesa006.fm.intel.com with ESMTP; 11 Feb 2026 19:56:33 -0800
-Received: from kbuild by e5404a91d123 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vqNod-000000001GL-1E4e;
-	Thu, 12 Feb 2026 03:56:31 +0000
-Date: Thu, 12 Feb 2026 04:56:26 +0100
-From: kernel test robot <lkp@intel.com>
-To: Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Badhri Jagan Sridharan <badhri@google.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	Kyle Tso <kyletso@google.com>, RD Babiera <rdbabiera@google.com>,
-	Amit Sunil Dhamne <amitsd@google.com>
-Subject: Re: [PATCH 2/2] usb: typec: tcpm: add support for Sink Cap Extended
- msg response
-Message-ID: <202602120453.BOyqL3t6-lkp@intel.com>
-References: <20260211-skedb-v1-2-616340426cdc@google.com>
+	s=arc-20240116; t=1770868749; c=relaxed/simple;
+	bh=a46rfjnlaMgPHlSJOHgqt0FPo4MLvbxGCb7JsRbXUCM=;
+	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=kLTkhZqwPhcw9Xmp3H7yxxbc2gSWN9ci8SKLxRjMwhxQVbnLUqaaaAUztngUhnsMA/0j5JRIHhnT8ic6i2EX6wXV0eNYZgEyinJ7yw0i80rYfLPgvFrNnXFQ4gOW1A5APVZArGCP9HFK6+VIKStVYM7ba0gWT9YQNmIbv5hePMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ubPex95N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 334A7C4CEF7;
+	Thu, 12 Feb 2026 03:59:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770868749;
+	bh=a46rfjnlaMgPHlSJOHgqt0FPo4MLvbxGCb7JsRbXUCM=;
+	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+	b=ubPex95Nzmrm+cfRk8b/8e7DmRMXy+D6W0R/20a19YFqYROEuqSh7nLTV7PDbCA7E
+	 gwJwYkDDuxgFugxcbtdcnXE9N7mU601kvctbLwR5K1vrkK3ctPpGSAJO1aBgejB6vt
+	 ykFWgqDFApJmVNcvGP5VQdEewLhk6ersNzx3isXjDb2gx3Z2yEuug0IAFS/IGzNu4S
+	 OZfbmzEjOdW+i8j9+fK15VKL6bLV7GHmnZGFcOb8SlG74npxH6EZi+krngxv6bDDPf
+	 /4OYfUgCjGXtm3CmQYc8fYRoxfDWslOFIfjkngFH2Ux4pG+x68jxLFYB84mFl8ojl+
+	 dG3QaNGgKZaZA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 0B01139EF966;
+	Thu, 12 Feb 2026 03:59:05 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree updates for v7.0
+From: pr-tracker-bot@kernel.org
+In-Reply-To: <20260212014040.GA120198-robh@kernel.org>
+References: <20260212014040.GA120198-robh@kernel.org>
+X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20260212014040.GA120198-robh@kernel.org>
+X-PR-Tracked-Remote: ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-7.0
+X-PR-Tracked-Commit-Id: a16f91f80735e653b88370b840d5c771f2c175c5
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 098b6e44cbaa2d526d06af90c862d13fb414a0ec
+Message-Id: <177086874358.893578.13050902050993369166.pr-tracker-bot@kernel.org>
+Date: Thu, 12 Feb 2026 03:59:03 +0000
+To: Rob Herring <robh@kernel.org>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, Saravana Kannan <saravanak@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260211-skedb-v1-2-616340426cdc@google.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-264897-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-264898-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NO_DN(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,amitsd.google.com,dt];
+	FROM_NEQ_ENVFROM(0.00)[pr-tracker-bot@kernel.org,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email,01.org:url]
-X-Rspamd-Queue-Id: A562412A42E
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D45BE12A467
 X-Rspamd-Action: no action
 
-Hi Amit,
+The pull request you sent on Wed, 11 Feb 2026 19:40:40 -0600:
 
-kernel test robot noticed the following build warnings:
+> ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-7.0
 
-[auto build test WARNING on 8dfce8991b95d8625d0a1d2896e42f93b9d7f68d]
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/098b6e44cbaa2d526d06af90c862d13fb414a0ec
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Amit-Sunil-Dhamne-via-B4-Relay/dt-bindings-connector-Add-sink-properties-to-comply-with-PD-3-1-spec/20260212-072745
-base:   8dfce8991b95d8625d0a1d2896e42f93b9d7f68d
-patch link:    https://lore.kernel.org/r/20260211-skedb-v1-2-616340426cdc%40google.com
-patch subject: [PATCH 2/2] usb: typec: tcpm: add support for Sink Cap Extended msg response
-config: x86_64-rhel-9.4-ltp (https://download.01.org/0day-ci/archive/20260212/202602120453.BOyqL3t6-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260212/202602120453.BOyqL3t6-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602120453.BOyqL3t6-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: drivers/usb/typec/tcpm/tcpm.c:351 cannot understand function prototype: 'struct pd_identifier'
->> Warning: drivers/usb/typec/tcpm/tcpm.c:368 cannot understand function prototype: 'struct sink_caps_ext_data'
+Thank you!
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
 
