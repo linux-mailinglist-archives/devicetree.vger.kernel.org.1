@@ -1,223 +1,224 @@
-Return-Path: <devicetree+bounces-265010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265009-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8EECHAasjWkK5wAAu9opvQ
-	(envelope-from <devicetree+bounces-265010-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:31:34 +0100
+	id IA6NDaOrjWkK5wAAu9opvQ
+	(envelope-from <devicetree+bounces-265009-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:29:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C82E712C851
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:31:33 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 610A812C81A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:29:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 51748301DBAB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 10:30:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 171273004680
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 10:29:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 916352ECE8F;
-	Thu, 12 Feb 2026 10:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6177A2EA16A;
+	Thu, 12 Feb 2026 10:29:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nYQ3n9lV";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="d3YRVBjn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NDXz3OzX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D55C62EF64C
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 10:30:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770892248; cv=none; b=nAhJ4lgzlOBrdbqrjfiBSel+hohFZhTc4gt51WrLPMF7Lbiqg8IKyRPzuPfLQ1RSmtUpOoe/cUkaJgNaLWqt8dEmkTXscAVY0PiYyy2K52XXaIF4xbcTAT8xbxwWZQvDdRvIFmlopHT0n2h8rpV5XWCQViSErvM9z8FqrjogOgk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770892248; c=relaxed/simple;
-	bh=iMbpaAeK14rlqepdD3Yto9sUrMv1iTcnRxa6G6CD56Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DSnmsNcWUpNVCjwlmS8cQcKvhTzntXRm8lTpmhX2y2T7CoDvqxKS3WVLvLfCEvc90UkRIs/9tJhHrl0ZhRfAo/n0AUmUcItLYy6Q0A0shqXFJjZigmgE9UAk5w3/0euTAyvwMXpMlDY2AprIYKZNz5zhgwGoy8GAeGMUJFXKRWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nYQ3n9lV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=d3YRVBjn; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61CAFpsA008924
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 10:30:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aa6M8IvkT51MgHJ9Y9GX/isOhRijULHWDSLbPiUBeCU=; b=nYQ3n9lVA9XS8uPF
-	50P4Nl1PY3l9auM51+Drw7rm4x8n3xn1GHIxJKeFv43VklzW291otxRBixwNZE5/
-	ZtIkNpBSvOrKQczDy3cUPr4qTZxwUryZg1qaYJqFbHFimWsL0W5nVEfp51J2BCmD
-	ORmemoto8xTIvbfOQyz8CTwQfYzMT7PoNFb20ZkzTXhG8dERltYK0uMJ6q6aCdBC
-	LoKO3Y/JC+8HgZg/ZRVJA4Um7TUoSgk4wbR9drkucDeSYW6SIRAS0/INcJMFW+K3
-	XLbJICkMx9c/v89H3G2YIU3dXUmvU01E9Lzh5TKEspwWL8+YZyqDtLULuj+aUfZj
-	BzVSsg==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c9cy481h0-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 10:30:45 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c70c91c8b0so294631885a.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 02:30:45 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F12122EA15C
+	for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 10:29:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770892191; cv=pass; b=DfKuAr675yxsSVj3KeojbkTkFgINT2M6+Al19npsOykvxk7rXWxPcGXwbNZ5W/f+9+wqU7jVuPAuQ8kxiwc9pcQbH1t9DAWECr8RGU+TjFT4VHcvsfPuzExpP8ZPejilMhoyGJncPmGKCpXQ0/4jWv4X6V4COQTCkxMgJ4RgLxo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770892191; c=relaxed/simple;
+	bh=2a4Le73LBQr/hZI/otLXD8JXTTU+ceipXIWhUtHl5Rk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VhSatRCEwavrQcSMG3oxWHeol8Mf8wvbhA5mZJ1zZhQqhHplQg6x83iMBUrpB9DfEtW6MtEdtCwl+ttpXM48xT1ls9cyDNvQ53Og8Dgu1MvAChzIje1bMx4pSde3Kbmm8dPqLcB5Qm7k4/a31HUolH1XgtZjs8I5QbRdwJThRsg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NDXz3OzX; arc=pass smtp.client-ip=74.125.82.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f48.google.com with SMTP id a92af1059eb24-126ea4b77adso8808884c88.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 02:29:49 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770892189; cv=none;
+        d=google.com; s=arc-20240605;
+        b=bahnphyHiJPtBOd+tmDW1y309wdlmXOALfw3Z+Er83l+I38T+G129eZs0V9UBeTguW
+         fbVpAyABqtJe4EGG+7soQAsH45pEKKwBbcJ75Y5FJXR+IRb5AaxirzmL1JNGXZ7dwy3B
+         HWaHDxUXbM+C3Ytfsy2El0df3Zw6OQEVyAPVnuBBC4jyDa+zCB79D/U94N+SyKYQW5BH
+         IMXkag63SIv1JZEByVfPp3UGV8XRT79jliQM7nne5c4HwUKaoF2OhcgkEHq6/R6STAHv
+         1SFyf3Z4/3pyB5Enj/juZDR7695Y88NJ9qqEf0RplnR/dELFJSWID8XuGcw1swkAHm8j
+         yFQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=2WNwAh7MqNpr3gNRm798l0GPzFsj9dN4fIN0L2pm3tc=;
+        fh=wrG56N3/ZNIwCn5cu3g8YAkxf0LzrKlEri1tisWbRPE=;
+        b=dVWCp8wC+YXHvyM2648+M6V0SB7HvD2bnTgNNAWg+UYT4by1vwBpRfWiqx48U2L6OX
+         pwRHiOnByGY30EUTr0408ADjhLR4ANCI+Qxs210d4lR3HH6Qg+78uTL/wsLTbWwXT/Co
+         l2rbMlug4Ms5QVwKzQNkxQ6ZZV7rrzXcVX5zERGpoxdGDlnxFD2NilBEw7Y4VCVYF8ho
+         ZXFDtOF653cJvEgfZbsrL6+xvS4bx9pQueiALe4jbpu8vQL3jkZWuSG+uvO5LAmFFz02
+         nwQaUYEPRyEZe5183ur7H41f9g6d6XrRL+Flw0wYd7Sn7aKGnDyGSBkazxcWn0sJ48B4
+         ONTw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1770892245; x=1771497045; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aa6M8IvkT51MgHJ9Y9GX/isOhRijULHWDSLbPiUBeCU=;
-        b=d3YRVBjn1mbLXiyKu3c1PLTSkItEM1cAqNTOyP1O/qyrh0pbKdhAMfXTFDVWDFWM5G
-         sqqO2izcoYiOhgxm2o0HWNPcm2DuP1iJi978lpyt04ntkfDvAeyYKvXIbnJFIBP3/6UO
-         9gZx5K3BE6DJU+eup93CwBAwBftP9O5y9olmZDehIzbbuycqhjct9WlFsMHpBbgFin8B
-         E1/P5yNt5icqOSR5BAcrHIcK+dvwBiVQo/1UalzC/4FP0aYO89/iQE9dYG5VQGn68juN
-         I70bcnSpNEQOuwOxjXuMJkx4oPqeHptjeAGKGK/Bn2t+l5JYx+ZYhphX1DEfTmfW7uDI
-         xmXA==
+        d=gmail.com; s=20230601; t=1770892189; x=1771496989; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2WNwAh7MqNpr3gNRm798l0GPzFsj9dN4fIN0L2pm3tc=;
+        b=NDXz3OzXkUzfwFFAx0wbxiUoclPnmNV3SkSAGu60nYnx1M8rW+RsI0CJzhEgWyQb9G
+         1Vb8C/OoPQmTjddg0LbQ/MQIepPQabnBJiBjLQ/OZ9SuKlZulUeAI5YNwBu/WcBPCrp2
+         l2ZSfA0/6Nsrug9V3N7mKMT9KzK7Z1ATSVJodlLobIh3Fn7Wx/TStvyyQlHR2k4vx9ef
+         Cae8Ia2EbZFmoVh4MPjwJfJfCL+1c2BA0XNllrz0aLkoFYSHz8mX/45oitPzVVS7DAPX
+         vZBhQIMPsNOEQfJk4KgOGvMZIVQ0qPJ0pV+0tOALCeeZG18xc+E3qr0w0KG3uC4BjKt4
+         zmmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770892245; x=1771497045;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aa6M8IvkT51MgHJ9Y9GX/isOhRijULHWDSLbPiUBeCU=;
-        b=wytSIRhP1bpjeuhHw5RCchKckH/TlWTA5V1uzOelzFbWMEpgleoTCfXzHta7qkXY5+
-         JR/C1K4G5BUHi/N7HudFB5df28q40zJpo+KUk1mSXfXh02cni3LdPgHAVofh2Sc+gkF0
-         RMLKk38zTmlM6rfa08j6wwpWM8o/IxYbM1e9XFC5QLM/wWXvYjSb6uyH9APOACMd08JQ
-         7hG7Y+keAH+IIeJ4JqpHEAXFtXudFzo6FB9SzxQ30igNctSXgPGhdEKW3ctN3e43GKjj
-         9WhtNeHueD6CvFDqs9Oq+1PTONlnrP1VlBeDKWAEm4ENu0qxpv3gewTkZD/7FhJnGQe0
-         w1EA==
-X-Forwarded-Encrypted: i=1; AJvYcCVvTNlRq47GMsC/dIWPvWAVmUrVaNdU5DUcjiu3fv2IusWCZsZeueWCuU9bnm/kxPFJkMVmhHIPC3zL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxh6o5Ttak4oLm/HUA+MjbQg7CezMyQc/tG5tbqx978uxQVYtxL
-	+Hohn53fkBTI1CN2rqp7UHRZ8Naz8hN/aR6OAbYNkGnsFh+P1bNJGpcuf9No7+0w431NX23C7m+
-	wYZC3mbVptrUkfxzSJef4rLdknjGFrMfuh9++iEL2MbEPyw3xuHJc0yFWfjNl2L9N
-X-Gm-Gg: AZuq6aJVCVoIAVeuMBuW09y8jXjYssaR8dslbUu27IMJqzHmt2F38kfJmUeqwXgmsyH
-	7D+W1RhzdHV9vvXQNnFj9rtVuLmY0uWeRNOsBOYvbI9bCJuRs6VuHqjn5G0okmmJCfvfJokP8K2
-	aIb27Nq32Ygmd7BZASNwPiXdNXapdOOS82dDG91CHB0nYsi8SUrUinyvTu71hhF98Hzr72z1D2X
-	3PsdNP5LAfA9VOYrzZUZYm4R3+Mfr1WvnqAUcdse9KMJ+AqQP3zAQn8Fxxns73lkvop/ieOt8oA
-	wYWnEDjopnCmofMRINHa/VyLTBYB4HAo25ukAPoYW8CFGjkK6sCsID7nlYzGjubFiPfexsvPz0f
-	+h0k//6g44MXZhtQmPdtjeiaCvu12WcuSLl9XWcuIwQLb4VT7WVetmiNjJFNxuC2dO1Py3EjrZB
-	Q5lJQ=
-X-Received: by 2002:a05:620a:4407:b0:896:ead2:a657 with SMTP id af79cd13be357-8cb32f3df9fmr219596085a.0.1770892244866;
-        Thu, 12 Feb 2026 02:30:44 -0800 (PST)
-X-Received: by 2002:a05:620a:4407:b0:896:ead2:a657 with SMTP id af79cd13be357-8cb32f3df9fmr219594185a.0.1770892244508;
-        Thu, 12 Feb 2026 02:30:44 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8f6e950070sm150863966b.6.2026.02.12.02.30.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Feb 2026 02:30:44 -0800 (PST)
-Message-ID: <a2b47800-0c4b-4d94-8fd4-1e2f832de298@oss.qualcomm.com>
-Date: Thu, 12 Feb 2026 11:30:40 +0100
+        d=1e100.net; s=20230601; t=1770892189; x=1771496989;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=2WNwAh7MqNpr3gNRm798l0GPzFsj9dN4fIN0L2pm3tc=;
+        b=QtRaxA0i4AcbNr7wzYlHqld43zGYWZjZBFsAgSjhmFBADINwuuL2YzWSqJMwajMReK
+         Epq3D9MYfQi5KCLGjpE76HE4e8QzlczHci9UuuyGBn76cTjyG604gYdmQwAFEYfIUoCI
+         ood/iPkf9J2+LYNJN2nI8iF3OA5Swrv74ByZgBrg7HgWXz0BwEiOrb2gZZdnQLjbtakW
+         3Gs0pOgwDQ672cO0zpgdzRtI8eiiCkZM8LLwolL5t685BkdQ35wrkuTLsHkj2W6wh+OH
+         VWJaRjG7zxGRxtygP3EiDse17opOupbt/LjXhR4Es0fX7HjM7VvP+APpl/8S/69DS6P1
+         bXeA==
+X-Forwarded-Encrypted: i=1; AJvYcCWGGA2X/43WEHcrq4sJQixkUBUgYsHjgihk71K3LFNPgjHgZOn9MCUTHqo5wFgncQBeFETWB3ySNYSl@vger.kernel.org
+X-Gm-Message-State: AOJu0YzujiBSntMOhVKujI02RqV4d+XucsYLRaKErIVx00HHcwqnwt1b
+	grx7jVSrDz6qA0vPRrVEQhmeyv96mbO/YPfEDqIYTFr6UqaBLhG7bMyqrLnOJRm/HZ6PLkjI4sD
+	SR0AAvB+U3bxAf4LAP5QJ7o4LbJ2WyzM=
+X-Gm-Gg: AZuq6aJbRYtIn9qj94J3u1QAOLTKBKDQSG7+L5euACtf3tEFVEWpm753+vPFzlpllTh
+	eOpuxsUilSPFO9KW0wUAWEZLkalGsdyK1zYzn1SpNIEpijDaV+TUMbS5gBtfc5Ag1iVHVcA6raJ
+	qOEIkrtX056fh76EpN/QzVHnkRb4AjB79UvCjSWCCs02MyPMnlgAAmenFkzqN6sqX3Jz1vxka5t
+	+suf2yGAvovtBo69WvXEJPvnbHAT8bQ5rTuymT+eUQk/zAX95DsXUHdxXo0Lfz6VU4wQdbVUpRQ
+	olelcmMro9QgGJyFAn1J1+Zew72DsY6tSfLMTS/8x+mIaqGUMSPKxa8IItyWWpoaGTgwVsdjCpr
+	MaKUuXOogzsCYUVXU4xELjw==
+X-Received: by 2002:a05:7022:e12:b0:11e:3e9:3ea2 with SMTP id
+ a92af1059eb24-1272f7b0683mr1034840c88.49.1770892188893; Thu, 12 Feb 2026
+ 02:29:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: sdm670-google: add common device
- tree include
-To: Richard Acayan <mailingradian@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jessica Zhang <jesszhan0024@gmail.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc: yifei@zhan.science
-References: <20260210023300.15785-1-mailingradian@gmail.com>
- <20260210023300.15785-6-mailingradian@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260210023300.15785-6-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: MsaTTQ23hkqxJb2UbRN2PkLv3Hv2lBB3
-X-Proofpoint-GUID: MsaTTQ23hkqxJb2UbRN2PkLv3Hv2lBB3
-X-Authority-Analysis: v=2.4 cv=XvX3+FF9 c=1 sm=1 tr=0 ts=698dabd5 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=pGLkceISAAAA:8 a=bx1Af-bPBxMGZxlJJ80A:9 a=QEXdDO2ut3YA:10
- a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjEyMDA3NyBTYWx0ZWRfX1bqU5nB2h7Ba
- iu3M35z8QeGc57g/885J0NsK/C7NiF35R0Mqr3lh4Kum/7wByFIzWU8ayHYl6iEDLCp075Z3Aam
- Rmorsvza0hZUxLCcKKinoZPL8qjiCy2HJV9TkZrOxaDWHOm4PiU1hkN7xLJqGHc0L/NYrUgouHP
- wIn8GfCOWGUURfQrBVn4ji5eOUDHSCw3rYqj43BFO+WH1cVFBNYmkUxMUe+ex65PDgbfqwDoGoh
- 2UT03lu43IVknoYEchClOVnesnGZmzLhorzB+0+bCVIWX/jYR/no7r9REkGCo+ydnxTu4b0Yh4C
- IiUUbMud5jJ6/WbMEQYABXy+kvdhz/l4SrXmpprnXJDLgLxX2uI3EwHYRiIjT6Iy8WRvWqi22+S
- ZnS7cUlTWaSb8NwgsQGNwjnnrE2KUIwJjJqBOe8oupP1N6FJ8ES1daN4q5tcZnlhlzp/CJlNRMu
- KEQoOSE/959reYKTm9w==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-12_03,2026-02-11_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 priorityscore=1501 malwarescore=0 adultscore=0 phishscore=0
- bulkscore=0 lowpriorityscore=0 impostorscore=0 clxscore=1015 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602120077
+References: <20260211214646.3700533-1-Frank.Li@nxp.com>
+In-Reply-To: <20260211214646.3700533-1-Frank.Li@nxp.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Thu, 12 Feb 2026 12:32:32 +0200
+X-Gm-Features: AZwV_QhhFT0cn79ldAjeoBPb3aybubF9rpuw8kM-MYNYPOpdFzKmXW-eCrt9Hks
+Message-ID: <CAEnQRZACes8EptdEgg0i0vzdcxgUJwZAfQHU0DEhMnXtA-g01Q@mail.gmail.com>
+Subject: Re: [PATCH 1/1] ASoC: dt-bindings: Convert eukrea-tlv320.txt to yaml
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"open list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." <linux-sound@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	imx@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265010-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,linux.intel.com,suse.de,ffwll.ch,ravnborg.org,vger.kernel.org,lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-265009-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,9c000000:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,lists.linux.dev];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: C82E712C851
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[danielbaluta@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid,devicetree.org:url]
+X-Rspamd-Queue-Id: 610A812C81A
 X-Rspamd-Action: no action
 
-On 2/10/26 3:32 AM, Richard Acayan wrote:
-> The Pixel 3a XL can be supported by reusing most of the device tree from
-> the Pixel 3a. Move the common elements to a common device tree include
-> like with other devices.
-> 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+On Wed, Feb 11, 2026 at 11:49=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
+>
+> Convert eukrea-tlv320.txt to yaml format.
+>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
+>  .../bindings/sound/eukrea,asoc-tlv320.yaml    | 53 +++++++++++++++++++
+>  .../bindings/sound/eukrea-tlv320.txt          | 26 ---------
+>  2 files changed, 53 insertions(+), 26 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/eukrea,asoc-t=
+lv320.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/eukrea-tlv320=
+.txt
+>
+> diff --git a/Documentation/devicetree/bindings/sound/eukrea,asoc-tlv320.y=
+aml b/Documentation/devicetree/bindings/sound/eukrea,asoc-tlv320.yaml
+> new file mode 100644
+> index 0000000000000..483507fa77937
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/eukrea,asoc-tlv320.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/eukrea,asoc-tlv320.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Audio complex for Eukrea boards with tlv320aic23 codec.
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: eukrea,asoc-tlv320
+> +
+> +  eukrea,model:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      The user-visible name of this sound complex.
+> +
+> +  ssi-controller:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      The phandle of the SSI controller.
+> +
+> +  fsl,mux-int-port:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The internal port of the i.MX audio muxer (AUDMUX).
 
-[...]
+Same comment about port numbering applies also for mux-int-port. So
+better add it here too.
 
->  
->  		framebuffer: framebuffer@9c000000 {
->  			compatible = "simple-framebuffer";
-> -			reg = <0 0x9c000000 0 (1080 * 2220 * 4)>;
-> -			width = <1080>;
-> -			height = <2220>;
-> -			stride = <(1080 * 4)>;
->  			format = "a8r8g8b8";
-> +			status = "disabled";
 
-why?
+> +
+> +  fsl,mux-ext-port:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      The external port of the i.MX audio muxer.
+> +      Note: The AUDMUX port numbering should start at 1, which is consis=
+tent with
+> +      hardware manual.
+> +
+> +required:
+> +  - compatible
+> +  - eukrea,model
+> +  - ssi-controller
+> +
+> +additionalProperties: false
 
-[...]
-
->  	panel: panel@0 {
-> -		compatible = "samsung,s6e3fa7-ams559nk06";
-> +		// compatible is provided in specific device trees
-
-/* C-style comment, please */
-
-lg otherwise
-
-Konrad
+The driver sound/soc/fsl/eukrea-tlv320.c allows an optional property
+named codec-handle
+so I'm not sure additionalProperties: false is correct here.
 
