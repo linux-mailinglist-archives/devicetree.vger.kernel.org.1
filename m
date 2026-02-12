@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-265019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265020-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qP3AL9KxjWmz5wAAu9opvQ
-	(envelope-from <devicetree+bounces-265019-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:56:18 +0100
+	id uOrXERayjWmz5wAAu9opvQ
+	(envelope-from <devicetree+bounces-265020-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:57:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 414F612CBF1
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:56:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8FB212CC0F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 11:57:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D84FB3004F13
-	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 10:56:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 559C4300A524
+	for <lists+devicetree@lfdr.de>; Thu, 12 Feb 2026 10:57:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B084318B9C;
-	Thu, 12 Feb 2026 10:56:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 626022DEA7A;
+	Thu, 12 Feb 2026 10:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OD+V5BVF"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="P6FPLi5P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B209A3EBF24;
-	Thu, 12 Feb 2026 10:56:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEAD32AE68;
+	Thu, 12 Feb 2026 10:57:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770893766; cv=none; b=rpkPOZjAaWJRyEqkmd4HFya/yFU/yJ6HcadAYVqC7XCc5Vbh3LVtOvz0dWNAhkjw4HLRNoXL0Pml8gYoGAD3jszZcuPtBu4GtxZE7scGsrZ+FDPIccpjg4pybIFaf/5NUD8gXPvlZgeov8uFBbPomQdbe0nzyPvDg+Ta9Hy8Byw=
+	t=1770893843; cv=none; b=j35SjoQ1Z7WUcjg4t7y8rlhErwPU03+TuFYOIAO739ZZrrZF1uR1pMOKnOr+zg71438SzqWhfcnAT0K6fT/daRswUXCMT/tmfs3dmltS1aFMkoGFrA2h4TKE3PAp36DbkUWUyxXkpzPjbV6+uQ+Y5LqXa4Z2Lc8Ro2FRUocCiUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770893766; c=relaxed/simple;
-	bh=oRcuOTKeQkYXu57P3k/BhhMMXmjpgkGU5VCaMNMOQbo=;
+	s=arc-20240116; t=1770893843; c=relaxed/simple;
+	bh=jdGJ2dIezfzRDJgHrZCaELdwGR15JNsMJiYqPJIdBec=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s8EXt1+Tydd8wQDg2N1G1ccTIbPkO4Vwi28HDqODA4MP7X5zJhn6WZ2HIKbnk3610kPe+/Wi/CyQ0h6NlGCZt6V1qe6+sBfVOrUaHVcPo1w4tV4jKl2rR8s2s7l6Gy59OfRphQsafNXLll67VpQMJvs8FdGXN3II3hhe1LnDi2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OD+V5BVF; arc=none smtp.client-ip=192.198.163.14
+	 Content-Type:Content-Disposition:In-Reply-To; b=o7narj4CfD+5l99y81y9T3q+IQTlIo3Xfh4TtD+1xqh53Nm+vXZQuk7jPncz8FB+BjUJndmGPtZH5Rp6S55enCTNFkHT/pCfTcTOQ/AHyw4M3M5V5FrPQnp4On4n9nmurZelF6TKO78t8XY5+PKtgsXy+8iWS5V1KLVPsnfjxAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=P6FPLi5P; arc=none smtp.client-ip=198.175.65.14
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770893764; x=1802429764;
+  t=1770893842; x=1802429842;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=oRcuOTKeQkYXu57P3k/BhhMMXmjpgkGU5VCaMNMOQbo=;
-  b=OD+V5BVFd900D+/fgk0VmPJSTxy0CPqZMGeDKwSvnNmb0NY1q7ODeEdx
-   kA03uesfyOPOPEI/lLzcWO57/1SlqicYxZnoeOuprwzExEnqPmPyiKAoE
-   A/BIvxIuYt6xjo5LVCHXNGqEDlXa9znafsmYkoWcAajCqU4byUl66a9l5
-   3VKe700qtCn6YCR9pLQx/yZKRQO1UQrA51IlMiRMUrQUWtDvJn5MLsaut
-   ii5jdgowqxRpN2deTAILBMEVZ/U3DXpqbZw1dj5P6YKYt27yCa+SVQ9v9
-   3CWq+jiOEeS5fmOdscggt7+nRJKlIaRnXYZpfezBW6jt9ad4TYIHEMRaW
-   g==;
-X-CSE-ConnectionGUID: TtitChpeTkyDc2QarRMppw==
-X-CSE-MsgGUID: 6b1mHOM3RtyItrE4il72KA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="72135506"
+  bh=jdGJ2dIezfzRDJgHrZCaELdwGR15JNsMJiYqPJIdBec=;
+  b=P6FPLi5P21bJZp6PaWD7A22QEaHGSgYi8Zk4IsDa/r1wHZDt84TtVA/q
+   ptawKSACIG3q2bcpH2RIhEirXLCAMS6byPqxG2Qdq2mUM3d+gGTpQtjbj
+   6a2ZNdej8h9O1rD3HQFaq1KH1clbsMF+oXbQoP04zUWWllpwuIvND51PS
+   lYENhXTPbVF4PHPOqhy/BY40XCPjiSqSN4PjHaappDRLXy/ktnOg4QZzb
+   2329hmswbkV2JqtufX407xOJP6qdbtISPVj5xSdnIcubSNqFuLorkMJc3
+   AqqWJ4/CfaNPI2eoPqpa10qb/3UYvg3tWIR3+0Nkujf2r7HlI2HfGHHLg
+   A==;
+X-CSE-ConnectionGUID: DaJIQrtET4SpyAT5x3Lz3A==
+X-CSE-MsgGUID: GCOUZBdLRMKudG76SclImA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="75905528"
 X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; 
-   d="scan'208";a="72135506"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 02:56:03 -0800
-X-CSE-ConnectionGUID: VXeGqzVtTr+kHe+DLg9TGQ==
-X-CSE-MsgGUID: GisKOH0TQjKYdJ6196KQLw==
+   d="scan'208";a="75905528"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 02:57:22 -0800
+X-CSE-ConnectionGUID: aX/wEv8uRj+FkIvrKVlXxQ==
+X-CSE-MsgGUID: 7JbNJ8dNQ6OGdtvT6ZVlfA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; 
-   d="scan'208";a="212394950"
+   d="scan'208";a="250233477"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.145])
-  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 02:56:00 -0800
-Date: Thu, 12 Feb 2026 12:55:57 +0200
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2026 02:57:18 -0800
+Date: Thu, 12 Feb 2026 12:57:16 +0200
 From: Andy Shevchenko <andriy.shevchenko@intel.com>
 To: Yasin Lee <yasin.lee.x@gmail.com>
 Cc: Jonathan Cameron <jic23@kernel.org>,
@@ -72,11 +72,11 @@ Cc: Jonathan Cameron <jic23@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, yasin.lee.x@outlook.com,
 	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] iio: proximity: hx9023s: Protect against division
- by zero in set_samp_freq
-Message-ID: <aY2xveYRXEKIBV92@smile.fi.intel.com>
+Subject: Re: [PATCH v2 4/4] iio: proximity: hx9023s: support firmware-name
+ property
+Message-ID: <aY2yDCY85zuxWpen@smile.fi.intel.com>
 References: <20260212-upstream-20260219-v2-0-2b28fce5d09e@gmail.com>
- <20260212-upstream-20260219-v2-2-2b28fce5d09e@gmail.com>
+ <20260212-upstream-20260219-v2-4-2b28fce5d09e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260212-upstream-20260219-v2-2-2b28fce5d09e@gmail.com>
+In-Reply-To: <20260212-upstream-20260219-v2-4-2b28fce5d09e@gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
@@ -93,14 +93,14 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-265019-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265020-lists,devicetree=lfdr.de];
 	HAS_ORG_HEADER(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
@@ -116,33 +116,16 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: 414F612CBF1
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smile.fi.intel.com:mid,intel.com:email,intel.com:dkim]
+X-Rspamd-Queue-Id: A8FB212CC0F
 X-Rspamd-Action: no action
 
-On Thu, Feb 12, 2026 at 02:26:53PM +0800, Yasin Lee wrote:
-> Avoid division by zero when sampling frequency is unspecified by
-> falling back to a default 100ms sampling period.
+On Thu, Feb 12, 2026 at 02:26:55PM +0800, Yasin Lee wrote:
+> Add an optional firmware-name property to specify the firmware file.
+> If not provided, the driver falls back to the default firmware name.
 
-...
-
-> -	period_ms = div_u64(NANO, (val * MEGA + val2));
-> +	if (val || val2)
-> +		period_ms = div_u64(NANO, (val * MEGA + val2));
-
-While at it, drop unneeded parentheses.
-
-> +	else
-> +		/* Fallback to a safe default sampling period */
-> +		period_ms = 100;
-
-Not sure about this. Perhaps we should rather do
-
-	if (!val || !val2)
-		return -EINVAL;
-
-?
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 
 -- 
 With Best Regards,
