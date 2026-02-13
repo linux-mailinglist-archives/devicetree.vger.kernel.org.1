@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-265296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265297-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6PeuKrrljmkDFwEAu9opvQ
-	(envelope-from <devicetree+bounces-265296-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:50:02 +0100
+	id OBpVCAXmjmkDFwEAu9opvQ
+	(envelope-from <devicetree+bounces-265297-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:51:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0402134300
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:50:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EF65134319
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:51:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ADCF8303DAA0
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:50:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0F8ED303E49C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:51:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF86A33AD9F;
-	Fri, 13 Feb 2026 08:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C51349AF4;
+	Fri, 13 Feb 2026 08:51:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t98A1toH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AzL3RqLg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB119DF76;
-	Fri, 13 Feb 2026 08:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 026ABDF76;
+	Fri, 13 Feb 2026 08:51:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770972599; cv=none; b=uCVPQhO0bsRbIXS2IpBSvAP1/HrExNW3wOhhynBFF/us88vAvNLSeqqST5xk5nesZjD4B9UaqiyyO1F9oZrr7FkIPtCTBcgdyT3km6QmhjY8dQV+M1R82uQvbxoUJALFvzUtVMJZC3DmsCNdVcimL8WoA3LA8teAzT78boT2Ouo=
+	t=1770972674; cv=none; b=aOPtkTQBQK3BmzVZql3UNR3eULJhrJf6OVlW3DVgB4TIYkw6UcyNHvNPddgLyyncSvOEhRfWriD7OP1URy+1UWqyd2JH7AY+gzUv2i/XwH+DyUk783G6uFE7TjKwsJkm4ckZQMEY9Pa3pLkMU/Y9aF2K6Ufn7LLChBwxreT+U6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770972599; c=relaxed/simple;
-	bh=MbVoK4GTREQTGMIleb02zYT71orVkmHlmwhbCifQ/G0=;
+	s=arc-20240116; t=1770972674; c=relaxed/simple;
+	bh=U618WhmVRyna+RkOUrJBfe2Nx0Aov4/Joy2X8GUZDMM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T4AysByASeqaDhnBA5Ekhs9lhHGTErY0h8LYCDpKBSu9jTEPzDOOq4hoiwqLyIkcCCwTAJoWhYOXdKFUVxgmJfkhAmLqZ+BAgivU1F0U+twHtZh7X23TrtMgraoCmRMGTr3ok8MqZYZ+bLzENllgxgSDzAIKRnGDpLR91Qm3wKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t98A1toH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA11DC116C6;
-	Fri, 13 Feb 2026 08:49:56 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=HGFH6NF/y21ulSI4GLCIkX+Vd057S3O0pUAjBsBKLYgl+JSWVST2qwolXODaotcHUesWXQ2IOUN9s5XyM1xiD6vL099M32qYnMo6LYIvjJNn1cMwUhOXyB/aEEsSv814SVOWapgZFsLwpg15sMB0ssVtdAGxfoiF6zGEa+JaERA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AzL3RqLg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57732C16AAE;
+	Fri, 13 Feb 2026 08:51:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770972599;
-	bh=MbVoK4GTREQTGMIleb02zYT71orVkmHlmwhbCifQ/G0=;
+	s=k20201202; t=1770972673;
+	bh=U618WhmVRyna+RkOUrJBfe2Nx0Aov4/Joy2X8GUZDMM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=t98A1toHdwcYWnrlEgANI/B9q6awe0uAhc0+fT611GK6bjNTWk8zsBWoLxmyIY+Ma
-	 t5JiwuHYETtiusD6PpHWEZFKMkYwKBVK9TrHMdJy5HSLoizeiRhy/BESinY23uXI/g
-	 ZBKUyJn3xWbXCy7fWQJit6z7/vY21gUwb3/C9KsloqJPaAqYsXjBumaAmCB7Qt+3Hl
-	 6H1BncPBDKQvyVCCtyWYy9x+XT6c2LqbKGFYETis/PPZOrPIygRf6m0D/GZR//D5BN
-	 w/8Pn0NCz7Hd3B5wDhx9yOjiYT616HpMOGenreiHTfYnCqyg+vFJ2CNeGMOMniEBgA
-	 GVx1+8y27BF1A==
-Message-ID: <0c6c8063-3c8e-49ad-a5cf-f751b3d9f2f5@kernel.org>
-Date: Fri, 13 Feb 2026 09:49:55 +0100
+	b=AzL3RqLgHDpMmdnHiBWt9YIPSbyKEzPA69/aPJsp2uMlCGfCLkSLEUKu8eHV04yte
+	 6Fe/LXlu3fnSOqzjk+7CZXmfhwo97W1nrX6mD63T9KdYoE3Wj107O9Ae9hGqAQQaT2
+	 Kw88y1gpiMKwSykNIoFF0AePPBcBRVBzEXSCHwBVfOwoqtSjnqWWdNn0iK/jBjERKO
+	 hF4cPQ3QrMynaQxrXj7Kfx6CFN+jV4rfM6xGISj+haBfXVlxmpjiZfxign+GjMXgQW
+	 sHAbb1UrdUGWYYl7XTh/NwubZBK0FaVLRiTwZOlEm1yT2A5HMmULkm74753D8wY6/M
+	 9jHkiCEe1pjvQ==
+Message-ID: <8fb27a7a-82dc-443b-bcc4-21007783fc54@kernel.org>
+Date: Fri, 13 Feb 2026 09:51:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,27 +53,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] gpio: aggregator: add gpio-aggregator DT
- compatible
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: James Hilliard <james.hilliard1@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>,
- linux-gpio@vger.kernel.org, Linus Walleij <linusw@kernel.org>,
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: light: vcnl4000: add Capella
+ CM36686 and CM36672P
+To: Erikas Bitovtas <xerikasxx@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alexander Stein <linux@ew.tq-group.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
- <20260211081355.3028947-2-james.hilliard1@gmail.com>
- <CAMRc=MfgoKmsNAmn3rO2jDL-ZArMX2Jh-n4SnV6rpzRY3KSwuA@mail.gmail.com>
- <34a9b531-4f53-47ee-861e-1b18ff1a5752@kernel.org>
- <CAMRc=MfwQ8J7eT_geEf7Kj230SOvmO-LDHz9a_YgfRY-QB5V8w@mail.gmail.com>
- <20260211214708.GA3947691-robh@kernel.org>
- <CADvTj4p-zHMrXW+GJstB2sKS-7Wij98JNJGoiPiYmaP5RHhNQg@mail.gmail.com>
- <9afa52c1-b7de-4ccb-9114-a142567d21af@kernel.org>
- <CADvTj4pmAXo+KUMyB0=+x3HRdUdUq=baj_pnoa44oxnugZuTOg@mail.gmail.com>
- <89c0dd51-fdd5-4368-b5f5-615143ffd166@kernel.org>
- <20260213092914.79790cb9@bootlin.com>
+ <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20260212-cm36686-v4-0-8f587d4a72bf@gmail.com>
+ <20260212-cm36686-v4-1-8f587d4a72bf@gmail.com>
+ <20260213-unyielding-pistachio-ape-deda74@quoll>
+ <3a20c906-647c-458f-a118-c7927495e7ef@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -119,7 +113,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260213092914.79790cb9@bootlin.com>
+In-Reply-To: <3a20c906-647c-458f-a118-c7927495e7ef@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -132,14 +126,14 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-265297-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265296-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_CC(0.00)[gmail.com,glider.be,kernel.org,vger.kernel.org,ew.tq-group.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -147,75 +141,47 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url]
-X-Rspamd-Queue-Id: F0402134300
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7EF65134319
 X-Rspamd-Action: no action
 
-On 13/02/2026 09:29, Herve Codina wrote:
-> Hi all,
-> 
-> On Fri, 13 Feb 2026 08:31:21 +0100
-> Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
+On 13/02/2026 09:29, Erikas Bitovtas wrote:
+>>> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
+>>> ---
+>>>  .../devicetree/bindings/iio/light/vishay,vcnl4000.yaml  | 17 +++++++++++------
+>>>  1 file changed, 11 insertions(+), 6 deletions(-)
 >>>
->>> Or is the issue just with the name of the compatible I used being
->>> called "gpio-aggregator"?  
+>>> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+>>> index 4d1a225e8868..2ba4d5de4ec4 100644
+>>> --- a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+>>> +++ b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+>>> @@ -18,12 +18,17 @@ allOf:
+>>>  
+>>>  properties:
+>>>    compatible:
+>>> -    enum:
+>>> -      - vishay,vcnl4000
+>>> -      - vishay,vcnl4010
+>>> -      - vishay,vcnl4020
+>>> -      - vishay,vcnl4040
+>>> -      - vishay,vcnl4200
+>>> +    oneOf:
+>>> +      - enum:
+>>> +          - capella,cm36672p
 >>
->> No, the issue is that there is no hardware you are trying represent in DTS.
+>> CM36672P is compatible with CM36686, but this is not expressed.
+>> Confusing commit msg and code. 
 > 
-> Except if you have a piece of hardware that invert the gpio line.
-> 
-> In that case you need to set GPIO_ACTIVE_LOW somewhere.
-> 
-> The aggregator allows to describe this line inverter.
+> For CM36672P we create a dedicated compatible because it is a
+> proximity-only sensor which has the same proximity sensor configuration,
+> but ambient light sensor registers are missing (reserved).
 
-Of course. And then you could touch that piece of hardware and use it as
-an argument here, where I asked show me the piece of hardware being
-described.
+I don't understand this. You just wrote "fully compatible with CM36686"
+and now you imply that not.
 
-Anyway, we encode the inverters in the final GPIO flags.
-
-> 
-> Of course, if the gpio is connected to a hardware component handled by the
-> kernel, the DT node describing this hardware can set the flag.
-> 
-> The issue is for GPIOs that are just GPIOs and should by a user-space
-> application as GPIOs.
-> 
-> Some bindings exist for GPIO and do not describe the hardware but the
-> feature. For instance:
-> https://elixir.bootlin.com/linux/v6.18/source/Documentation/devicetree/bindings/trigger-source/gpio-trigger.yaml
-> https://elixir.bootlin.com/linux/v6.18/source/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
-> https://elixir.bootlin.com/linux/v6.18/source/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
-> 
-> Can we consider the gpio-aggregator describing the wires that should be
-> grouped together.
-
-No, because the grouping depends on user-space choice (as explained by
-the author).
-
-> 
-> Industrial board can have some GPIOs grouped together and used as inputs or
-> ouputs of this industrial board.
-> 
-> As output they command an external system. As input, they get feedback from
-> this system.
-> 
-> gpio-aggregator describes those lines.
-> 
-> In that sense, it describes hardware.
-> Maybe the "gpio-aggregator" name doesn't reflect that and a compatible such as
-> "gpio-equipment" could make sense.
-
-What is a "GPIO grouped together"? The moment such grouping does not
-depend on hardware characteristics, it's the moment it is purely
-arbitrary choice thus not suitable for DT.
-
-Comparison to gpio-restart where you have actual component, receiving a
-fixed line and then doing restart is not appropriate.
-
+Decide.
 
 Best regards,
 Krzysztof
