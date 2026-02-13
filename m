@@ -1,186 +1,171 @@
-Return-Path: <devicetree+bounces-265299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265300-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gMYFLF/njmkDFwEAu9opvQ
-	(envelope-from <devicetree+bounces-265299-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:57:03 +0100
+	id eIiGD37ojmkDFwEAu9opvQ
+	(envelope-from <devicetree+bounces-265300-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 10:01:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 128C41343CD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:57:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58C0913448C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 10:01:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DDB6E3032058
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:57:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 290773008E3A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DD9634AAE2;
-	Fri, 13 Feb 2026 08:57:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C0F3128CA;
+	Fri, 13 Feb 2026 09:01:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GI1eSFhC"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ajnFwvyb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f44.google.com (mail-yx1-f44.google.com [74.125.224.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 098CF31DD86
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 08:56:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 824E82580D7
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 09:01:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770973020; cv=none; b=XOM4PVQ3d6uJgeZtrQBX/0JHdda7CWdPLmLJtfC2xYchxGpol8ndI0WqsaohGyoDUCbNBJXVWIP3z+qzY+E9qUfwzZXfZsK01pPSyje347MrFLdMzyIivaBSs7LUfhVNXt2Ke4f3GKO29ytUQotPwJDk1Ch9sMO6HIEBm42PJ6o=
+	t=1770973298; cv=none; b=MuSXlvFupmiA/8OLFVHr8IPIuHEzbGFbDZtO94ZHJjw7UpUguNJUOxD60mqQ07AR760O1MI8cVpe8gVRbDsP8hb/QOo8xzu70dQMuRRvG3XUVxewa72wSZ3QPIM0L3uZcZ0Sqenc3ywkTnhuQ3W9gdYFmAmU5CUEueiU1aI0eE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770973020; c=relaxed/simple;
-	bh=Usvq3+GYA4VQwXiEk4EQAYwzenht0eLbQUxTReVkrXg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RIWIzMVXFgx/9RshaqkArhpswOnOIwsexhyUiEADGe7i4xuj/d25haMRrjS6jE3bOeoP9KslXqHOSvtutY0ZWWR9vpqbUemtUU4LNe6Nfg/1jEwESzEvlrqbduW+7+RE1P4FSVED6675NaT2Od8xd9HmQAyLQrFO/vlyXoCImkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GI1eSFhC; arc=none smtp.client-ip=74.125.224.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f44.google.com with SMTP id 956f58d0204a3-649db2b6cdcso640247d50.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 00:56:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770973018; x=1771577818; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fS+ISWa72W+g6JkqlchkqQ6Ii61m95nh1ydzb82hfZg=;
-        b=GI1eSFhCDTfNO3ptIdDOiXWxDZlevyXw0ejtCxvgCmWswn6fmCmVYBPPm55NfjNYrL
-         LsweHu6/VhSkRISEjNPgvH3f81R89vR0DQHkYM+tEaUR5X/sb8gBQDyBJCIoPpGBrIIs
-         hooBvF+uzvgK2kpGjlDRTp0+nFw0zeQu5O3gim7ChivK5u/5M1TzWU0mKSwAf1s9medo
-         pVxOaxZVXJBfEdArRHV9kE73w5XM4slcns172NmfXsgUCY5xaD5HwRGG/ENsCr7P1YrP
-         HleJYAqQmUW0/qp++OCL3Mw2YHVOtomicKUi3dD3GYNgFZtawr6FSTvQqEO/Wp+fZySU
-         nSsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770973018; x=1771577818;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fS+ISWa72W+g6JkqlchkqQ6Ii61m95nh1ydzb82hfZg=;
-        b=kicJ6nnuwkjiuqO0XqRrJyH2O5EPaXu1WpjV6LutUENDXDP4wJlt0NZERPsOyfNZ0K
-         1qZWDEzgx2uNOi0bVxKyYqlUkTCO7oI+ghjE6EG/i+QDGD+IrKwUxtHvDX0be27JeNB5
-         3gHhZlh1F7RYCBZTPSW+q3Q9vUsZmtk9vpWWsHNS2TYzHbj2gBeT0+7v85wSShWiq82h
-         ibpJHkEd7iSYkCq9c4RZI9usRGmxPrpV07XQVuWT/aSMg61Votz/a+luWOqAYhD6TJb+
-         uQlKrLtlwI6F4AauOwWpDGweZY4tf7VDMBOpMaSENnsPMoGrYeu7hOLpikjgm3mFIR4o
-         qzjw==
-X-Forwarded-Encrypted: i=1; AJvYcCWMAkIU3pXNLSgHBhte+7jNwn+p3CPk2G+Bd1ZqedM1uZRjPUt2sX/YLL/U7hg5eaz5TV6C5IeEUSdQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+qEtoTaBNUJ5FZnFiIoIvVeILg1kJDeqjCn6mpwg633nDrfCy
-	rz4cJRkt6dR/RKW791Kv/VrbfQGq9FZ2EUbY9/KQ75/SWck9y0IHdoPn
-X-Gm-Gg: AZuq6aIMiHd+LOlfHYMFtqILfoQIOyi6KUwmfhFW3MbzuCSM8V968LPjueGb2ZqtnCp
-	FWTZ+48s6BwqwTRbOwwTRGi7ZKoftoZtM8pmePrQOuKPSDyDeyBr+Fnq+yKcI0xFKCxpQg2PKCo
-	8cskqRZXC/KguCVRUTPR0Xz8Nob+nUtenCKEtUcdCki9yS5z8GS4LR6jmP0u/+qO/h23RYuZOcJ
-	gL1LPwUHYxcPx1hpuUKHj+1+ETqbg32YAh9cSEnf8erDm+n3wX/BG7umjJnKpf+nitp7YiiHwHY
-	cs1uUwMsrh/xDUxNEFqcQWhmf0DTJ9YRvkezgK1jYBhYFEHZhh7hUqFzIoj+YoTX3GEoDHB/UKx
-	QuZRvhOAeJU+E4uLzr2aOhS9+9hWFf30kQTTsQ6g5+o1ia9IChe4heP62eJtsPBxNSrnJ7bgXOk
-	+z3ca2luRRso6g3eAKbbxntOOAxQ==
-X-Received: by 2002:a53:d014:0:b0:64a:dcb3:732 with SMTP id 956f58d0204a3-64c19b2ec54mr554017d50.60.1770973017911;
-        Fri, 13 Feb 2026 00:56:57 -0800 (PST)
-Received: from [192.168.0.40] ([79.133.247.80])
-        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-64afc83fa7esm6670723d50.1.2026.02.13.00.56.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Feb 2026 00:56:57 -0800 (PST)
-Message-ID: <f014078c-6e4d-48b0-a814-45898b005c44@gmail.com>
-Date: Fri, 13 Feb 2026 10:56:52 +0200
+	s=arc-20240116; t=1770973298; c=relaxed/simple;
+	bh=jNO73u+i65xkf0YweV1puplp8BRnzGz5roCr1o00jwY=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=EdU3M5Dn9y4kP4OtFz9Yx9+IjbBjxseXCFwuWxGxtFUPPBszki8q9gw7hfUoslu3f+sBHd+VlyHXL/FbW7+MoAoMhAEkbzFbmkoZXxd9zIIVqrw16pY55LOlVEQ0bFsUGi2ifuP9IEncypkzEkk5r0eytkLKqCXYnHklPaqBjLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ajnFwvyb; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id F10AC1A0EBB;
+	Fri, 13 Feb 2026 09:01:34 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C2E35606CC;
+	Fri, 13 Feb 2026 09:01:34 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8D05910368D90;
+	Fri, 13 Feb 2026 10:01:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1770973292; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=rp1eDOIRhaqWCkYz+NWbK33lJyO3gCS1N2c/2rJWg/E=;
+	b=ajnFwvybN/0XFrBUedxR74LHa2roePtEFDzO102eE0A34vTv8r/teN6VmAyqa5UaQ3PAS5
+	nCSZFLxbHzsN0+Gwxsk0vV/Fc7Gp3KOXPPhgR8ATlUbvlAkNk1BRb9AFPJHWbKennAVtes
+	zWj8QxYJpIFfqHx5V6o8iIA62QSD5hwxd8lacmpYG2mNdSFsf5m+bhEUXxzM205MJYcIQ2
+	4Ac7speu6a2fbuuV1FGAoHu7eNwrOYxfnMXTCrKA9B6ng3mv46LV7UmvhFkMzbz4GyiELR
+	hOn/psaAkqctQA8IQUKxZTjiRERWxnwFnwZh9sKNQ0ft1qzBvDK/fVTVembZKA==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Santhosh Kumar K <s-k6@ti.com>
+Cc: <broonie@kernel.org>,  <robh@kernel.org>,  <krzk+dt@kernel.org>,
+  <conor+dt@kernel.org>,  <richard@nod.at>,  <vigneshr@ti.com>,
+  <tudor.ambarus@linaro.org>,  <pratyush@kernel.org>,  <mwalle@kernel.org>,
+  <linux-spi@vger.kernel.org>,  <devicetree@vger.kernel.org>,
+  <linux-kernel@vger.kernel.org>,  <linux-mtd@lists.infradead.org>,
+  <praneeth@ti.com>,  <u-kumar1@ti.com>,  <p-mantena@ti.com>,
+  <a-dutta@ti.com>
+Subject: Re: [RFC PATCH v2 00/12] spi: cadence-quadspi: add PHY tuning support
+In-Reply-To: <775d8dce-b567-4f21-963c-a843e409fea5@ti.com> (Santhosh Kumar
+	K.'s message of "Sat, 7 Feb 2026 00:58:03 +0530")
+References: <20260113141617.1905039-1-s-k6@ti.com>
+	<87343ghkek.fsf@bootlin.com> <87v7gbdwdh.fsf@bootlin.com>
+	<775d8dce-b567-4f21-963c-a843e409fea5@ti.com>
+User-Agent: mu4e 1.12.7; emacs 30.2
+Date: Fri, 13 Feb 2026 10:01:28 +0100
+Message-ID: <87y0kxvwyf.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: light: vcnl4000: add Capella
- CM36686 and CM36672P
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20260212-cm36686-v4-0-8f587d4a72bf@gmail.com>
- <20260212-cm36686-v4-1-8f587d4a72bf@gmail.com>
- <20260213-unyielding-pistachio-ape-deda74@quoll>
- <3a20c906-647c-458f-a118-c7927495e7ef@gmail.com>
- <8fb27a7a-82dc-443b-bcc4-21007783fc54@kernel.org>
-From: Erikas Bitovtas <xerikasxx@gmail.com>
-Content-Language: en-US
-In-Reply-To: <8fb27a7a-82dc-443b-bcc4-21007783fc54@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265299-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265300-lists,devicetree=lfdr.de];
+	RSPAMD_URIBL_FAIL(0.00)[ti.com:query timed out];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 128C41343CD
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ti.com:email]
+X-Rspamd-Queue-Id: 58C0913448C
 X-Rspamd-Action: no action
 
+On 07/02/2026 at 00:58:03 +0530, Santhosh Kumar K <s-k6@ti.com> wrote:
 
+> On 05/02/26 21:18, Miquel Raynal wrote:
+>> Hi Santhosh,
+>>=20
+>>> I am surprised by these numbers, I would expect these to get higher for
+>>> SPI NANDs. I will test the series and report my observations, especially
+>>> since there is also ODDR SPI NAND support now (in nand/next, should be
+>>> part of my upcoming merge request to Linus for 6.19+1);
+>> I just tested the series, here are some numbers I grabbed on TI AM62A7
+>> LP SK with a Winbond W35N02 SPI NAND chip (so in the end very close to
+>> your report):
+>>   +-----------------+-----------+------------+
+>>   | SPI NAND        | no tuning | PHY tuning |
+>>   | Unit: MiB/s     |   25MHz   |   166MHz   |
+>>   |-----------------+-----------+------------|
+>>   | Octal SDR read  |   13.8    |    34.2    |
+>>   |           write |    7.2    |    10.2    |
+>>   |-----------------+-----------+------------|
+>>   | Octal DTR read  |   21.2    |     N/A    |
+>>   |           write |    9.0    |     N/A    |
+>>   +-----------------+-----------+------------+
+>> Please mind I used MiB/s and not MB/s (so kiB / 1024), I don't know
+>> which one you used for measuring, as you marked MB, whereas the most
+>> common unit seems to be MiB.
+>> However PHY tuning failed in Octal DTR mode (your series applied on
+>> top
+>> of nand/next) with the following logs, can you have a look?
+>> [    2.261647] spi-nand spi0.0: Winbond SPI NAND was found.
+>> [    2.266956] spi-nand spi0.0: 128 MiB, block size: 256 KiB, page size:=
+ 4096, OOB size: 128
+>> [    2.285257] cadence-qspi fc40000.spi: PHY tuning failed: -2
+>> [    2.290835] spi-nand spi0.0: Failed to execute PHY tuning: -2
+>
+> Unfortunately, due to a known erratum in the Cadence controller, PHY DDR
+> mode cannot be used with 2-byte addressing.
+>
+> Refer:
+> Errata i2383: OSPI: 2-byte address is not supported in PHY DDR mode [1]
+>
+> As a result, the Cadence controller supports only the following
+> operating modes:
+>  - PHY DDR mode with 4-byte addressing
+>  - PHY SDR mode
+>  - TAP (non-PHY) DDR mode
+>  - TAP (non-PHY) SDR mode
 
-On 2/13/26 10:51 AM, Krzysztof Kozlowski wrote:
-> On 13/02/2026 09:29, Erikas Bitovtas wrote:
->>>> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
->>>> ---
->>>>  .../devicetree/bindings/iio/light/vishay,vcnl4000.yaml  | 17 +++++++++++------
->>>>  1 file changed, 11 insertions(+), 6 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
->>>> index 4d1a225e8868..2ba4d5de4ec4 100644
->>>> --- a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
->>>> +++ b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
->>>> @@ -18,12 +18,17 @@ allOf:
->>>>  
->>>>  properties:
->>>>    compatible:
->>>> -    enum:
->>>> -      - vishay,vcnl4000
->>>> -      - vishay,vcnl4010
->>>> -      - vishay,vcnl4020
->>>> -      - vishay,vcnl4040
->>>> -      - vishay,vcnl4200
->>>> +    oneOf:
->>>> +      - enum:
->>>> +          - capella,cm36672p
->>>
->>> CM36672P is compatible with CM36686, but this is not expressed.
->>> Confusing commit msg and code. 
->>
->> For CM36672P we create a dedicated compatible because it is a
->> proximity-only sensor which has the same proximity sensor configuration,
->> but ambient light sensor registers are missing (reserved).
-> 
-> I don't understand this. You just wrote "fully compatible with CM36686"
-> and now you imply that not.
-> 
-> Decide.
-> 
-It is not. CM36672P supports only a subset of CM36686 features, in
-particular the proximity sensor. That is what I meant initially.
-I am sorry if the previous phrasing caused any confusion.
-> Best regards,
-> Krzysztof
+I do not think we have 4-byte addressing capabilities on SPI NAND chips,
+esp. Winbond's chips. So there is a down side: the core will pick-up
+Octal DTR modes rather than Octal SDR (with PHY) mode, which is not the
+fastest mode. Maybe we can guess that once we have access to the max
+(tuned PHY) spi frequency, with an extra flag in the driver indicating
+that the PHY speed is not accessible in DTR mode. But this again
+requires different handling between SPI NAND and SPI NOR, as SPI NOR
+IIRC may have 4-byte addressing capabilities.
 
+Thanks,
+Miqu=C3=A8l
 
