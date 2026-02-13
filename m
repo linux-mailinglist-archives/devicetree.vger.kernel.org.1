@@ -1,123 +1,120 @@
-Return-Path: <devicetree+bounces-265482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265483-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UFAaLJCqj2m1SQEAu9opvQ
-	(envelope-from <devicetree+bounces-265482-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 23:49:52 +0100
+	id oDPQBseqj2m2SQEAu9opvQ
+	(envelope-from <devicetree+bounces-265483-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 23:50:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6509139DB2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 23:49:51 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DD8F139DD2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 23:50:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3A0CE303B7E1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 22:49:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 96135300622D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 22:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9DC43164D8;
-	Fri, 13 Feb 2026 22:49:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA2763176EF;
+	Fri, 13 Feb 2026 22:50:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eih4Buj9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eQJ1NuQ9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C87A2ED872
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 22:49:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.222.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 663F9315D46
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 22:50:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.177
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771022989; cv=pass; b=boCD4Oya3/qQrMPGRGaFhsvCfZ1oPDViH/teZ9Gv6s0G9DP8HN11TGFc0WgXP9Rp2G7G3JUOMLWfOrOvpmeTCbUtoDBOiZFFJQ5XdaxT3zSzU+RhxLEgKF5Sctzk492EeR+bfKR9qkQl2mPu/K+WTXqHWJzw31tMD47iQj6Karc=
+	t=1771023040; cv=pass; b=ZLIizrQP7vkdkvhLyRGJldtNq8f/ospYk47sT3Ss8l7gQlZlDke3qX+ksCC6zu6dlE8zfXy0Q/pr4+AqvSs8PHQrkVag9RQEQtOBMvK3/BoUngI6f9VUwTkyES5roIrLsYwNSLFEiZcSMiIt1CcoGs2lqbeoe/SuTIT+YLlLEeo=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771022989; c=relaxed/simple;
-	bh=9kNLURRl9epMH2EGWpNGXjQSwO+2bGtfXsiuAbAVrkc=;
+	s=arc-20240116; t=1771023040; c=relaxed/simple;
+	bh=lr5p0UQVbZf3BUB9lAWHgkkUnoSiqgJtH4p8mksrrhc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OJIebHT3yawhLf8xgzN60aPzqdfeAZ3FgfTlTLdUTw+sPZ8iP8NW/Ql6b5i6dhE2RsD3LAlxlxIPsGVF2bI2ZXz54JHgep27xqq4dylXODFs7+PwssKd0fOMiM71j7g1Xwep0n+lLvh639i27pnp18d4eNnPz2jY6u4COc1bpZk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eih4Buj9; arc=pass smtp.client-ip=209.85.222.50
+	 To:Cc:Content-Type; b=e/s97swvFxxOkUnplnSHZGwsGN3LnArt2HzjIe9t9xRpnlhHOjpYUy2rMizt0uF3R/pY6turzxY/LaLZooTMPqsoRIPIV4zAa88hp4hoDy7ZrZP9Hyu3s4tPS8hXClRYuAH99u3WKH9bCOqq7zaEuh8qwgfLe8a3WuMmSYd+SIg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eQJ1NuQ9; arc=pass smtp.client-ip=209.85.208.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-948ccec7c89so432942241.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 14:49:47 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771022987; cv=none;
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-38706b63929so12142241fa.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 14:50:39 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771023038; cv=none;
         d=google.com; s=arc-20240605;
-        b=Tt+Jv+xMLifALML5x0M4BtlBzYQiinwBK/q/WhOwr7vXvMngHv82d/DmLXmPdC/A8z
-         bTxIL2xHq0no9VD9a7TkBz5DhwAjDaoLqLYzSvfZwmQWDUWlJCTTHaRnWg/TKLzYraxW
-         wzVkHxpv5c4qVKMMvIj6cwTIeSQMS1W4ppkNFtyAQJC87u+0m8uJpTVK8ZmQCNXoDsQm
-         K1m15FibjP5tM+3VnCpcdV+MzqqgNlxT9AndJ3GLxfEABSPMMMGhvi0j4+k3HGLMMCJQ
-         O9MJTxZGreA/hLZcBbT3axQf8784YvUqLxMcMdofAZfjPI+xrQMh1MD1zM4yD0qe1HG3
-         vHbQ==
+        b=iOYNp5fRyHWgyfb+3Uag8nshk+jQitpidkRhJ3xV5xJJtLIsFDH4qNnpNwS+NELYFL
+         i0hiySWWk7YJ0pPm9P9pzq4vO9ghRPfDP0KUDORffWtgCfryl5jqKH9LziAYVy37SrBA
+         MEmnW6XlLJEirwGhZoyMVU0mlRcvo3O6XpBwE4bdFNyGxbBDflrs9QOPK607f5Z4byg6
+         b0cMIE5Rk5ykuUX16CJF1++XJqwYpszB2HRFwvh2t1dQ61Lx+Xjhc6pSaNMB3mEiRcHg
+         Hjf32JVfhWczTefxqinfxsFWcM8opRJTOmmlo3iPzjFHi6d1IziQzRQI7Ayb74kbZjHs
+         fntw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=fm/Ku3H4FZvf+zzBHFNaTUSrm5SHhsvOTJezFOttYB4=;
-        fh=5GUM0qPvcPXoPonIfnmSGcCFFjRmzE8lFzD+iTf48/o=;
-        b=COAx3TSYpHgg6wfHJ9SHESArPtoBMrU37Au7NVEmf6wna8hXfjjoLeutWmON1UXX28
-         j3l0YB3RxRHo8PI9Hg67iJ317r5SB8ap1aE8LFzCJJUKTyG2398tqxLSWLOZQcwkVleR
-         gHGqb/oLYMJBrKuKUAo4N1b3AA9qn5WqROVv1As5Ptx7ibseNRH8HTJUjoRJaVN48/8/
-         TAK3g4mNVzLTVzugcGsBUCkDhc34DGzy/wM6k6udKb9dwM1Xgr2YVtI3+Cv6HUn8w6tm
-         R7JFZmv6pge9VUOK3coQvh01VpeA3/rqyGEAjSEzEwu1IZXSeAXV/CfEowdGFUoa7eo7
-         BZnw==;
+        bh=vR+6cRekOZtXr2Qr1FAp4PgFafu9msNtuU7NWkZnbjo=;
+        fh=TjVO2E6aei+2zO6dv1mQBBMKWTisBB9CbVdi7u2cXMU=;
+        b=MVwKNBmMEWmXvnOUHypWuF7R2emwwiF+U77XL1ZFxjCt5U84136b84cFSgKPJ9JILx
+         FBUcbftLTaYfARzJ+Fqh6zSBRl8VGxvZnF8ITopUKKiBWn+FkPBpdA/zXGMooK09W2i/
+         6P6UMllgUZM8m3IGoA5PFz1mTlHR2HIbdZCqEFIU6UtEc5xzkFavH+3s8fYUU8pAYHHK
+         zRRYMnjxzvlMNMCdB1OWdwg+nOGvDDC5grGzQ3nq5yeolVR5cD2KDicqlk/FrWkizdsm
+         kYbmwt0KA++om5qKy/L5CsimEO0M8VbNmXDWU+MP1fPhfOZAXdbJJsRyRWMTtzpvCHF2
+         cBzA==;
         darn=vger.kernel.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771022987; x=1771627787; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771023038; x=1771627838; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fm/Ku3H4FZvf+zzBHFNaTUSrm5SHhsvOTJezFOttYB4=;
-        b=eih4Buj9GVbAVBtpKVwM3dT5dceuOrV0GxYp24TwsTHAbL8B/HECL5XGWDw+z+wsKF
-         HIXfDlwvhDPNX1sUbxo/CpkdPFHgiUxICN5GbSme6rOEVsD148h1L7RE7lIZRTvDUza5
-         Cydh59ng+7voQL2egV5pUZNO29NPbh3vB/+N5S58S8ZMKLNEVIf7aayDyvZuk/VECBoF
-         ZjhiT3SqbZQ87VEImkCCnZ6nFl1Ye/i/mrLc/aAgqmfYkdtdPcaTyDlVe3K7XoXh8Dsc
-         ASRXqryPd9wv6R/BEgaedjolV1xGWSEBV9uot2hSvOVKXr1AGmVZ+9w37GTbp3hVF7Uk
-         Oilw==
+        bh=vR+6cRekOZtXr2Qr1FAp4PgFafu9msNtuU7NWkZnbjo=;
+        b=eQJ1NuQ9cCoHgiL/qW1TMVJG6Ig8eyPCw/nRY06HCcBAFDRm2nLGVgFz+gyig/eWOk
+         LnKa+wu9kBa8oFpy50FmLSuIZ9sI17x06boPdrFjtalEn6PNM5iUaR9AYvO5QzUDnGrQ
+         yAERBUhdG7+bCBzvOGEK+GC4nmLEkdJwf8m5fqH1Rm2N24VcKtmyiu6jF7IyWyyGe7ep
+         KJpx3AFs9K2mjHx426+reXQGU6myQy7OpK4p+g/cF5SgA2WQCSxh5G7ryjRmiCRnLR1r
+         TCzrVQLkvhCMKROPKfzl2wiZkK9kMUkUznZr8fJE3T6kq56jVJns/aL9TG1D9FmsJIef
+         NTTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771022987; x=1771627787;
+        d=1e100.net; s=20230601; t=1771023038; x=1771627838;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=fm/Ku3H4FZvf+zzBHFNaTUSrm5SHhsvOTJezFOttYB4=;
-        b=O2bGJVvfzBDFEF1oa0mBrvhvoZIOOVtGu9qh8J48gbetX4KJAg+jt9ujHznCPWMmfE
-         ky0hp+BM2oBWRtz3Xk/xdWsQkVKRrjQH4p0NNij5sFH8F6dXaJoZId69qeZk8M9X7lme
-         JUONIUdsQ5+8m7Z5v/o2UddfWR7CNCd0eAUxjgDPaCEJMrLVO3llodZJkRvxRrQHZMXL
-         yzlIA0cP09R7fzRg8vztJGoLFDVcTrKHJ/jjvOBxFoArYVeFX+PUOeF/zLShKT2s5HBq
-         5StLA8Qc0o1wjFXTc22m3CnrT1w40T/Mr+1lmnZ3ZFOhhm18iMzDBXr+FTGR1RuctMOI
-         9+ng==
-X-Forwarded-Encrypted: i=1; AJvYcCWHyJVwe88vqblYipT/42iS97wv58bsWBNu4D7cDRf0ytJabtQyZUgoddnn1Yl5UAtMKE3c8I1LVnyB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzm9ZAhjuJ6mwttTTlHnRj1ZqZOCvP+a7dt5vr+9OaRnTx62OZK
-	iSmA080I7VnzYTyn9jQsDkUvL+epGlcAl1mt6AoVbeWlQhE895Lfm/h3EoDFnaUdNBIK61Z9PMF
-	AZoa+WoJwOeRs0SjXE82goDuUdCrV1c4=
-X-Gm-Gg: AZuq6aIGmu5A+6EX8zfDq4hzDSJjYlBNlrNYJ+6VQsOU3W9Gb4KmFK0RJ3zDjqZ+twB
-	m/KBgtSJay5TQbKSYX5ewH8JiykOQGYcrhaHgcq9JwBemBKhx2455AyB30Tq2MuCRTfhzC6cG41
-	UmvVjpExEffdyVmc83lJMCtr43oaiJJvIJgOhUvvIDDLci7Rnx3tdgQFCHYAPzkwuSFSakizhdv
-	1SfQUvBMrRudvxJqKr4W/lqHVvqFrWT6zf/88A0T2K+OuLNa6GacO0S2Ein7S5B+1oFaYhPbATc
-	c/pxMLwujozTBEPPtNRf04H99OwXhfy2ATXja5gIHDAQqkYago1C3KSvZgRgzW48xmkSYfEPBhE
-	/o48=
-X-Received: by 2002:a05:6102:3583:b0:5de:93bb:c53f with SMTP id
- ada2fe7eead31-5fe16ee2466mr1332610137.25.1771022986851; Fri, 13 Feb 2026
- 14:49:46 -0800 (PST)
+        bh=vR+6cRekOZtXr2Qr1FAp4PgFafu9msNtuU7NWkZnbjo=;
+        b=noFE6DosK1AV5f6YJbajIx3j4Vxib3pBYGqeIzOyHDfII/CWrKOCAz/BnX+M6WGmF2
+         iFiIZqlbVCJPSu1UyWvkOc8OI5y+iuyf1U49NsUyuxMllzQ5GbXWbNuXXOVxU+E+F8jb
+         N5kPkWm/XWqS1OkPM/JM40OKJ2uOet0ccicVD9OFjvCBzWUnfhg0wRsLdzQMbFOUWk8A
+         2ty2PZGSogQtnXOkb7IE86cs6Kx1DCgTusa2SGWQ57LMkDhnl3PvEOr9aVds2y+x/FFW
+         moFft82rkD5LNWiMAte9hCWFml2rm9t8Qw2o411EDRE4TXtfkH7B/RQXFJ273hIMPbpt
+         sD/g==
+X-Forwarded-Encrypted: i=1; AJvYcCU4seRjhNYDNN1BUMMWl/aU6rtPaC07kPbgkCDFSvYnjxLpas/pwWyNcAE0DrIBGJdsgyoT3PsgTtGp@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKlAoIOuv1ojjTS4yvpayy1kire4dEKHcT+TOO9bAJ8f0BstVw
+	LRab95aKaJ0xMZq/cx3TvASPhQpVThX6rqn81+8hUW5N4noiZAeYOW0ExgOfpvd4zPf2W2WSugN
+	PRyojVGmkXHijf567zqInZC9LCS42xHA=
+X-Gm-Gg: AZuq6aJ4iDmer5bIBXfIbtWQ8rhBd2FqEr/w27TXsrhYegwqj2qZC3/Dy8SPgsD2DFv
+	PrJIzt9X1WF4gg/Mmd0Faa+f5LyN9VT2nUHiiJr05hw6pSPNSHBlydE/9qQhL6hhyVKHbzDQsJG
+	Q39fXOXY60t2JNRN4Eaol9IT0pUC7zvky51pc1xTgDX5k/LpSNlKPZFsTvsvV38qdlYU5ur94PK
+	IwZe3xz3AmP0mTV6DzRnq0HMj2Vf2lG+FXJrbo62feX2C8UKLEqQPEMWxkjGL/ix6ZbIrj97EM5
+	KpFMz0y2JxHQRuQUxK6x1QipsEHrqsSIwR60ymjAiOa5O2Cc8hAeIOMpXKqxPbPdbd3Rrg==
+X-Received: by 2002:a05:651c:1594:b0:386:8f97:d0b4 with SMTP id
+ 38308e7fff4ca-3881056e9e0mr10978961fa.33.1771023037226; Fri, 13 Feb 2026
+ 14:50:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
- <338e6575-ec44-4179-94af-9086a7ca79ac@kernel.org> <92359c6d-06ac-4f8d-baa5-6fa45a536455@kernel.org>
- <CADvTj4q74H__JZftOiXkdsY3+E_Xmcx6Y6i70RQDJ0K09=XOHQ@mail.gmail.com>
- <30026ed7-cd19-4be2-adbb-e8bb155a75b8@kernel.org> <CADvTj4oBtO0Yhib1rE8QQwgtJvy-x_hK46C63mjVAydtxHOV8g@mail.gmail.com>
- <20260212195423.GA787785-robh@kernel.org> <CADvTj4rPq8D5piqEijCdAjkWmZtq3Bi_Kxv-4F0aU4xi_O5WKg@mail.gmail.com>
- <CAL_Jsq+Fb0vOggHWkNGusCBcwTQubD1Lc+0=U4+MpZacXqc_ag@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+Fb0vOggHWkNGusCBcwTQubD1Lc+0=U4+MpZacXqc_ag@mail.gmail.com>
-From: James Hilliard <james.hilliard1@gmail.com>
-Date: Fri, 13 Feb 2026 15:49:36 -0700
-X-Gm-Features: AaiRm51ZFxUyPIsRwBEEG2RmrGgxnbc0sWqKUh340EJHCarzH8oO2L9mHlRuunI
-Message-ID: <CADvTj4rfgEjMNkjg-A0Jn=brO1SUBzQtL_+wra8RWdgBDVdU5w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-gpio@vger.kernel.org, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Linus Walleij <linusw@kernel.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alexander Stein <linux@ew.tq-group.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>
+References: <20260207-sm8550-abl-dtbo-v2-1-83afaa6f3ce9@gmail.com>
+ <d4faaf8d-1517-4187-8801-a2dd52d8dde3@kernel.org> <CALHNRZ9k3yxXb9OfYXMSfEwyYKU8Rrrrjb-hPqLgU90X9YBP8g@mail.gmail.com>
+ <487e4605-0a21-48d6-8b77-9ce2799ad212@kernel.org> <CALHNRZ8sqCpUMyCFP99b7nHu2onojZ0EY6YGQZ9RMP0kH8jWzw@mail.gmail.com>
+ <gd7puun6xy5bh4q73mqc5ooza2kzla3rtov6d2723zc6tw7qwi@gxbsnloi2qcw>
+In-Reply-To: <gd7puun6xy5bh4q73mqc5ooza2kzla3rtov6d2723zc6tw7qwi@gxbsnloi2qcw>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Fri, 13 Feb 2026 16:50:25 -0600
+X-Gm-Features: AZwV_QjheQFWIEOHHIv32Xg63eRnwZ_m1h48teuA8-xoaylzGjylpNz_BX-gxLI
+Message-ID: <CALHNRZ87j=j5LEMA=P=D73vOz1C-p+BDKcXV2bH7rcPDtAx9JQ@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550: Fix DTBO boot failure
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kumar Sharma <quic_vksharma@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
@@ -125,308 +122,164 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265482-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265483-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jameshilliard1@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D6509139DB2
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[webgeek1234@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3DD8F139DD2
 X-Rspamd-Action: no action
 
-On Fri, Feb 13, 2026 at 7:34=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
+On Fri, Feb 13, 2026 at 2:34=E2=80=AFPM Bjorn Andersson <andersson@kernel.o=
+rg> wrote:
 >
-> On Thu, Feb 12, 2026 at 3:22=E2=80=AFPM James Hilliard
-> <james.hilliard1@gmail.com> wrote:
-> >
-> > On Thu, Feb 12, 2026 at 12:54=E2=80=AFPM Rob Herring <robh@kernel.org> =
-wrote:
+> On Wed, Feb 11, 2026 at 09:10:39AM -0600, Aaron Kling wrote:
+> > On Mon, Feb 9, 2026 at 1:51=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel=
+.org> wrote:
 > > >
-> > > On Wed, Feb 11, 2026 at 10:01:05AM -0700, James Hilliard wrote:
-> > > > On Wed, Feb 11, 2026 at 1:44=E2=80=AFAM Krzysztof Kozlowski <krzk@k=
-ernel.org> wrote:
-> > > > >
-> > > > > On 11/02/2026 09:28, James Hilliard wrote:
-> > > > > > On Wed, Feb 11, 2026 at 1:19=E2=80=AFAM Krzysztof Kozlowski <kr=
-zk@kernel.org> wrote:
-> > > > > >>
-> > > > > >> On 11/02/2026 09:17, Krzysztof Kozlowski wrote:
-> > > > > >>> On 11/02/2026 09:13, James Hilliard wrote:
-> > > > > >>>> Document the gpio-aggregator virtual GPIO controller with a =
-dedicated
-> > > > > >>>> schema and compatible string.
-> > > > > >>>>
-> > > > > >>>> Also extend the GPIO AGGREGATOR MAINTAINERS entry to cover t=
-he new
-> > > > > >>>> binding file.
-> > > > > >>>
-> > > > > >>> <form letter>
-> > > > > >>> This is a friendly reminder during the review process.
-> > > > > >>>
-> > > > > >>> It seems my or other reviewer's previous comments were not fu=
-lly
-> > > > > >>> addressed. Maybe the feedback got lost between the quotes, ma=
-ybe you
-> > > > > >>> just forgot to apply it. Please go back to the previous discu=
-ssion and
-> > > > > >>> either implement all requested changes or keep discussing the=
-m.
-> > > > > >>>
-> > > > > >>> Thank you.
-> > > > > >>> </form letter>
-> > > > > >>>
-> > > > > >>
-> > > > > >> First thing which was missing (I did not even check the rest i=
-n such
-> > > > > >> case): missing rationale for this patch, missing hardware desc=
-ription.
-> > > > > >
-> > > > > > I added some more details to the commit message, this is a
-> > > > >
-> > > > > No... Commit msg is exactly the same.
+> > > On 08/02/2026 16:10, Aaron Kling wrote:
+> > > > On Sun, Feb 8, 2026 at 3:07=E2=80=AFAM Krzysztof Kozlowski <krzk@ke=
+rnel.org> wrote:
+> > > >>
+> > > >> On 08/02/2026 02:16, Aaron Kling via B4 Relay wrote:
+> > > >>> From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
+> > > >>>
+> > > >>> ABL requires certain things in the base dtb to apply a dtbo. Name=
+ly:
+> > > >>>
+> > > >>> * A label named qcom_tzlog must exist, but doesn't have to contai=
+n any
+> > > >>>   specific properties
+> > > >>> * The timer node must have a label named arch_timer
+> > > >>>
+> > > >>> This aligns the sm8550 soc dtsi with those requirements. Without =
+these
+> > > >>> in the base dtb, when ABL attempts to apply any dtbo, it will fai=
+l to
+> > > >>> the bootloader menu.
+> > > >>>
+> > > >>
+> > > >> Incomplete DCO chain.
+> > > >>
+> > > >>> Co-authored-by: Aaron Kling <webgeek1234@gmail.com>
+> > > >>> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > > >>> ---
+> > > >>> With a current mainline sm8550 base dtb, ABL will fail to apply a=
+ny dtbo
+> > > >>> and fail back to the bootloader menu. There are two changes neede=
+d:
+> > > >>
+> > > >> Since when? We were testing SM8550 (me on QRD) all the time and th=
+ere
+> > > >> was no problem.
+> > > >>
+> > > >> You need to provide details which hardware needs it, if this is ab=
+out to
+> > > >> expected, but honestly, we don't add such nodes/labels for downstr=
+eam
+> > > >> bootloader. Qualcomm should fix the bootloder instead.
 > > > >
-> > > > I added the details to this commit message specifically:
-> > > > https://lore.kernel.org/all/20260211081355.3028947-2-james.hilliard=
-1@gmail.com/
-> > > >
-> > > > >
-> > > > > > virtual gpio driver though so AFAIU it's not hardware specific.
-> > > > >
-> > > > > You can give example of any hardware where this is useful. You ne=
-ed to
-> > > > > make your case with actual arguments.
-> > > >
-> > > > The sunxi h616 board I have has hundreds of GPIOs, only
-> > > > a few of which are needed, I want to map them in device
-> > > > tree overlays since there's some minor variants with different
-> > > > hardware gpio configurations.
-> > > >
-> > > > Setting the gpio names on the parent controller is not practical
-> > > > since doing so would require setting hundreds of values for
-> > > > gpio-line-names, you also can't really combine sets of pin
-> > > > names across device tree overlays AFAIU.
+> > > > This discussion has been ongoing in a couple places. It is needed o=
+n
+> > > > all semi-recent recent qcom socs. See this chain [0] on my sm8550
 > > >
-> > > You can do: gpio-line-names =3D "GPIO0", "", "", "GPIO3", ...;
 > > >
-> > > The clock binding has "clock-indices" which is used with
-> > > "clock-output-names". We could do something similar if
-> > > all the '""' entries are really a problem.
-> >
-> > AFAIU this doesn't solve the line name merge issue.
-> >
-> > I have some GPIO lines that are common to all control card
-> > variants, as such I would like to put the names for these lines
-> > in the base dts file so the names always get applied.
-> >
-> > I also have some lines that that are common to a subset of
-> > control card variants(which I detect via GPIO strapping in uboot),
-> > as such I would like to put the names for these lines in a dtso file
-> > that is conditionally applied by uboot based on the control card
-> > variant. There are actually multiple GPIO groupings, some are
-> > for peripheral connectors and others are for control board
-> > integrated hardware.
-> >
-> > So what I want to be able to do is effectively merge all the GPIO
-> > names from a dts file and multiple dtso files, and you can't merge
-> > list properties, you can only override them entirely AFAIU.
->
-> IIRC, there was some dtc work to prepend/append to properties.
->
-> > > > > > Use case is I have a device with something like 300 gpio
-> > > > > > lines...and I want to name/group a small subset of those
-> > > > > > lines for delegation to a userspace app rather than trying
-> > > > > > to set 300 or something gpio-line-names values, also I'm
-> > > > >
-> > > > > So if I change the approach in user-space or use different user-s=
-pace
-> > > > > app then I change the DTS?
-> > > >
-> > > > The idea is to make it practical to set gpio-line-names for a
-> > > > subset of the GPIOs that are wired to peripheral boards.
+> > > Explanation must be in this commit, not in other places.
 > > >
-> > > Humm, peripheral boards! So there's a connector. You need a connector
-> > > binding. And the one solved binding for such a thing is GPIO! The
-> > > gpio-map property lets you remap GPIOs from one provider (the connect=
-or)
-> > > to a parent provider (soc_gpio). It would look something like this:
-> >
-> > Well...some GPIOs are wired to peripheral board connectors...but
-> > some are wired to things like built in LEDs and a few different
-> > on-controller components as well which vary by controller hardware
-> > revisions.
-> >
-> > This gpio-map feature doesn't exist in the mainline kernel does it?
->
-> For at least the last 5 years. It's even defined in the DT spec
-> (generically as "nexus").
->
-> > Would this work with multiple connectors?
->
-> Yes.
->
-> > In my device everything I'm wanting to name is off the same gpiochip.
->
-> gpio-map completely decouples what the base DT GPIOs look like.
->
-> >
+> > > > questions thread and the previous revision of this series [1]. This
+> > > > has been a known issue for a while, see this comment [2] on the gun=
+yah
+> > > > watchdog series, which is what the series was based on.
 > > >
-> > > conn_gpio: connector {
-> > >         #gpio-cells =3D <1>;
-> > >         gpio-map =3D <0 &soc_gpio 3>,
-> > >                    <1 &soc_gpio 123>;
-> > >         gpio-line-names =3D "GPIO0", "GPIO1";
+> > > But that [2] still speaks about overlay. You are suppose to boot
+> > > standard kernel with typical setup - concatenated DTB.
 > > >
-> > >         /* in an overlay */
-> > >         device {
-> > >                 foo-gpios =3D <&conn_gpio 1>; /* soc_gpio 123 */
-> > > };
-> >
-> > I think in my case the entire connector would be in the overlay, as
-> > the connector GPIO lines vary by control board hardware revisions.
-> > Would that still work?
->
-> You mean you have an overlay for h/w revision of the base board and
-> then an overlay for the peripheral board? I'm only talking about the
-> latter.
-
-Mostly the base board at the moment, the peripheral boards tend
-to be more similar in terms of GPIO configuration despite having more
-subvariants.
-
->
-> > Would the gpio-line-names defined here get set on the parent
-> > &soc_gpio gpiochip or would they show up under a virtual
-> > separate gpiochip similar to gpio-aggregator?
->
-> I suspect there's no support for gpio-line-names alongside gpio-map.
-> You get to define how that works.
-
-Yeah, I gave that a try but it was problematic, gpio-map also
-needs an in kernel consumer to do anything which is not ideal
-if one wants the effective consumer to be in userspace in some
-cases.
-
-I experimented and came up with an entirely different approach,
-I added a gpio-line that's configured like a gpio-hog and then added
-a gpio-line-name override property to that, this seems to allow
-for setting up the lines for userspace handling and allows for setting
-individual line nodes from multiple overlays for the same controller:
-https://lore.kernel.org/linux-gpio/20260213223204.2415507-1-james.hilliard1=
-@gmail.com/
-
->
-> There is no gpiochip for the map. It is transparent.
->
-> > > >
-> > > > Say for example I have a control board connected to a few
-> > > > different peripheral boards, there may be different mixtures
-> > > > of peripheral boards, some of which can be used at the same
-> > > > time as they use different GPIOs.
-> > > >
-> > > > The idea is we load device tree overlays for the detected
-> > > > peripheral boards with detection done in uboot based on a
-> > > > GPIO pin strapping based detection.
-> > > >
-> > > > In userspace we want to match the peripheral board GPIOs
-> > > > based on the GPIO line names, but using gpio-line-names
-> > > > on the entire GPIO controller isn't practical as that doesn't
-> > > > allow composing gpio-line-names configurations from
-> > > > multiple device tree overlays and would require a ridiculous
-> > > > number of placeholder entries due to there being no way
-> > > > to configure individual gpio-line-names for non-hog lines.
+> > > If you want some other ways, like choosing overlays by ABL or whateve=
+r
+> > > else, you need to fix ABL.
 > > >
-> > > GPIO lines typically connect to something. Relying on gpio-line-names
-> > > seems like a failure in defining (in DT) that something.
+> > > You want to use some custom boot way of ABL, but it's broken... yet i=
+t
+> > > is no reason to add these properties. What if I want to boot DTJUNK
+> > > files via my custom ABJUNK - can I add such things to upstream? No.
+> > >
+> > > You cannot add properties to support custom boot of ABL if that boot =
+is
+> > > broken.
 > >
-> > Isn't gpio-line-names intended to describe what they are physically
-> > connected to? At least that's how I'm seeing them often get used
-> > in mainline device trees.
->
-> No doubt. People want names for everything, so we give them names so
-> they stop asking.
->
-> *-gpios is how you describe what GPIOs are connected to. This works
-> unless you aren't describing the device/thing the GPIO is connected to
-> in the DT. The first thing to do there is question could you describe
-> it?
-
-I'm thinking my gpio-line approach may be a better way to describe
-the lines, it also lets one describe the initial GPIO state before
-userspace has a chance to touch the lines.
-
->
-> > > We would never rely on GPIO pin names in the kernel. Userspace doing
-> > > so is pretty suspect too. More importantly wanting to do something in
-> > > userspace is irrelevant to bindings. What's in userspace today may be=
- in
-> > > the kernel tomorrow. Look at serial attached BT or other h/w.
+> > My use case here is an open source Android rom. I would like to think
+> > that android would be a supported use case. Not necessarily a driving
+> > force for decisions, but at least supported. And I'm using the
+> > standard boot image v4 setup with dtb on vendor_boot and dtbo's on the
+> > dedicated partition. This isn't some weird and wacko setup, it's what
+> > the vast majority of devices this soc is used in are designed for.
 > >
-> > Why is that suspect for userspace? The userspace tooling for
-> > gpio manipulation largely seems to support flags for name based
-> > lookups as an alternative to gpio numbers.
 >
-> For starters, once you depend on specific names, it is an ABI. But we
-> don't document all the names, so it's not an ABI.
->
-> > In terms of userspace vs kernel drivers...the current situation
-> > for my hardware at the moment is that it's effectively a hybrid
-> > situation, some peripheral board components like eeproms and
-> > temperature sensors have proper kernel drivers, these would be
-> > on the i2c lines for the connectors. There's also uart lines as well
-> > for high speed communications and plug detection GPIOs, reset
-> > GPIOs and reset detect GPIOs on the connectors.
->
-> All that should be in a connector driver IMO. For purposes of the
-> binding, I don't really care where you handle things. I do care if
-> where is influencing the binding design.
+> Android isn't a weird and wacko setup; but I'm guessing that the
+> proposed changes aren't related to running Android, nor are they related
+> to dependencies of the overlays, but it rather relate to some
+> runtime-generated overlay that ABL wants to apply?
 
-Would a connector driver require moving all driver logic to
-the kernel? Or would it allow for hybrid architectures like mine
-where userspace retains significant control?
+I honestly can't say what the underlying cause is. A couple of us have
+looked at the public abl source and weren't able to find what causes
+this issue. We just know that this issue happens when abl tries to
+apply a dtbo off the dtbo partition. So yes, in technicality this is
+not an android specific issue. I mention android because having a dtbo
+is generally expected in the aosp setup. In my specific use case, I
+have four devices from the same odm, where it's simple to split the
+common part into a dts, then the device specific parts into dtso's,
+allowing for a single software build to support all four devices.
+Requiring everything to be baked into a dts would require separate
+vendor_boot images per device, and thus completely separate build
+targets.
 
->
-> > Overall management of the peripheral boards is handled by a
-> > userspace application that needs to know which GPIOs are
-> > attached to which physical connector lines, and since this varies
-> > by the hardware revision it seemed logical to use gpio line names
-> > for that rather than implementing the mapping logic in the userspace
-> > application. There isn't really a good way to control reset lines
-> > and such from userspace other than with GPIO based interfaces
-> > right?
->
-> gpio-map is designed exactly for this purpose. GPIO0 on the connector
-> is always the same thing (or defined by the peripheral board) and what
-> actual GPIO drives it doesn't matter.
->
-> > I'm trying to push as much logic into the kernel as practical,
-> > hence why I'm trying to use the gpio names instead of having
-> > the userspace application handle the mappings.
->
-> Using names is not putting it into the kernel because the kernel
-> doesn't use the names.
+> Fixing ABL to be resilient against such failure cases certainly seems
+> like the right thing to do. But I'm guessing that you're on some device
+> where you can't change the ABL?
 
-I just mean the device tree configures the names the kernel exposes
-to userspace, so from the userspace point of view it's the kernel that
-provides the GPIO mappings in that case.
+My devices are unfused, and thus I could change ABL. Two problems,
+however. 1) we can't find the necessary changes to make to fix the
+problem. And 2) this problem is more universal. Per [0], this affects
+8550 and 8750 using the qcom baseline abl. By extrapolation, all odm
+copies will also have this problem. This has also been observed on a
+sm7635 phone. It appears to affect all baseline abl copies since at
+least sm8550.
 
->
-> Rob
+> If that is the case, then I'm open to a pragmatic solution where you add
+> such workarounds to the specific dts that needs it, with clear
+> documentation of the circumstances.
+
+> PS. Not all SM8550 runs Android, not all SM8550 has that specific
+> version of ABL, so therefor the change does not belong in sm8550.dtsi.
+
+Ideally would be getting this fixed in the baseline abl code by qcom,
+since this issue seems to be continuing. That's not something I can
+affect, however. But I disagree about making this device specific,
+because the vast majority of devices are affected by this, it would be
+the exception to not be affected, from what I can tell. And on more
+soc's than sm8550, but qcs8550 is the only qcom soc I am currently
+working on.
+
+Aaron
+
+[0] https://lore.kernel.org/all/91002189-9d9e-48a2-8424-c42705fed3f8@quicin=
+c.com/
 
