@@ -1,48 +1,49 @@
-Return-Path: <devicetree+bounces-265444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265445-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uNCwNAVcj2lxQgEAu9opvQ
-	(envelope-from <devicetree+bounces-265444-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 18:14:45 +0100
+	id +L1PDgpcj2lxQgEAu9opvQ
+	(envelope-from <devicetree+bounces-265445-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 18:14:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E06DA1388C7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 18:14:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2B891388E5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 18:14:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F18CC300A24D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:14:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 14750302CD30
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:14:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCA5C2773F7;
-	Fri, 13 Feb 2026 17:14:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57809365A0E;
+	Fri, 13 Feb 2026 17:14:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="hODR5zBM"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="StOhYP7f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D3D3361664;
-	Fri, 13 Feb 2026 17:14:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CE33624C1;
+	Fri, 13 Feb 2026 17:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771002878; cv=none; b=hQsvUULuZYwl1ITQEwBKqwjwKtIRBC/2SnPLS6Yjb7ITy1hHZImuH5/1AQJttMXSF3ReqzslF0uAGweB/w769wAwqYO3AYn1LMS67BvarsCuql/MQr+IT7kyyHY/6dp21OVZzQZiWRrs7PXEBsSANqvgYP+yChrQ31r2QRh+bYs=
+	t=1771002879; cv=none; b=huRl1WB90tycWVCEj5oBT6eMr5neQnjjaEsdOmB9JOudqGIDu7TcVAtJ1rtpiwpn8cDNsg2Gq9G92PYQnzrQMG6StbFBKx26p1AJigr1EyM/NC8b+6F1A1PFm85jIFLYs8Z9l85amUVQA+ZzYDpw4W4PTQ8dS/op6LrXvXgFTXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771002878; c=relaxed/simple;
-	bh=QgdNQfGjQmARgSLVkgxyvnLR8N26L55cwC8uLbSK2sM=;
-	h=From:To:Cc:Date:Message-ID:MIME-Version:Subject; b=nUQyA9Yz+LZbTz2dOZeklGWgG4bv4zk/JtSK1Z7BexzmDZnuBrDCrX0+NGKswZ7RpS+t8JfyFtRcBnPtZ0Q6Okb7KQbZye+x+3y5avHuko3jDrdgSs0UYo7x6SxsdTLWJ794sDqXgDAxjxVylCGObuxG8a+FIPd1ysPqetttg1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=hODR5zBM; arc=none smtp.client-ip=162.243.120.170
+	s=arc-20240116; t=1771002879; c=relaxed/simple;
+	bh=Wv+4y1tAcGqJOTyA1fZuV0d60O1SZSd4XH11J7U9Juk=;
+	h=From:To:Cc:Date:Message-ID:In-Reply-To:References:MIME-Version:
+	 Subject; b=gIqgQRU766oChMkjVKx5NXknFoXaqUBhtDTDy4XMeAaQ+TyeFHhFoOz13YNvNacz6sYZEUROOsVwZ/e8y4pQeJoqN+ft19+XjzxdxB5aNcGJL6b3tQT4IGnolTNoLOd5EM/AIOzZKQYhZ0rlLLpakY9Y9vUade4H6P+z/98biFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=StOhYP7f; arc=none smtp.client-ip=162.243.120.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
 	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Cc:To
 	:From:subject:date:message-id:reply-to;
-	bh=grRG3DYuwZKkPYMV7bV5WeA82KikqE5SWdsEo80aIE4=; b=hODR5zBMHFtB6Eki7bBMldX2OE
-	oJWN8DTjs8fAxiDsdVvkGlrxpyXlfnhE/upyKdGb0NNTpiLPPrZvbU5r5gB35VAixWFXqKS8lJjt/
-	xesg6771zlQs+MePRykTeIJ1k5YtMy5Chx/Zcd7JfhiUnlhAivZEu4H1zYUA7LPIdio4=;
+	bh=+Y2RgLXDgNIKLMeOTPhP2GoKWeQQcPvO3uERG8Kvy84=; b=StOhYP7fdjobizygYrXN8MxU79
+	3exp+6jYDioO5V743jIeSpVSwZSxwmITbjUt4U2ny5jCa1cmibaROhxqAwXLGNVykYLQvGumciI9r
+	sk+wX3EWvEqGO6CHMNBTrFFr5oeATfL2iDO+efmWEv014CBZtWiWrI2iMAA0B+X4/ksc=;
 Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:49782 helo=pettiford.lan)
 	by mail.hugovil.com with esmtpa (Exim 4.92)
 	(envelope-from <hugo@hugovil.com>)
-	id 1vqwkU-0007VX-Kj; Fri, 13 Feb 2026 12:14:34 -0500
+	id 1vqwkV-0007VX-NE; Fri, 13 Feb 2026 12:14:36 -0500
 From: Hugo Villeneuve <hugo@hugovil.com>
 To: hvilleneuve@dimonoff.com,
 	dmitry.torokhov@gmail.com,
@@ -53,9 +54,11 @@ Cc: linux-input@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	hugo@hugovil.com
-Date: Fri, 13 Feb 2026 12:14:24 -0500
-Message-ID: <20260213171431.2228814-1-hugo@hugovil.com>
+Date: Fri, 13 Feb 2026 12:14:25 -0500
+Message-ID: <20260213171431.2228814-2-hugo@hugovil.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260213171431.2228814-1-hugo@hugovil.com>
+References: <20260213171431.2228814-1-hugo@hugovil.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,7 +71,7 @@ X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Level: 
 X-Spam-Report: 
 	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-Subject: [PATCH v2 0/2] input: add GPIO-based charlieplex keypad
+Subject: [PATCH v2 1/2] dt-bindings: input: add GPIO charlieplex keypad
 X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
 X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 X-Rspamd-Server: lfdr
@@ -78,18 +81,18 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_TO(0.00)[dimonoff.com,gmail.com,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265444-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265445-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[hugovil.com];
 	RCVD_COUNT_THREE(0.00)[4];
 	DKIM_TRACE(0.00)[hugovil.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
@@ -99,44 +102,108 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[hugovil.com:mid,hugovil.com:dkim,dimonoff.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E06DA1388C7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,hugovil.com:mid,hugovil.com:dkim,dimonoff.com:email,devicetree.org:url]
+X-Rspamd-Queue-Id: E2B891388E5
 X-Rspamd-Action: no action
 
 From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Hello,
-this patch series add a new GPIO charlieplex keypad driver.
+Add DT bindings for GPIO charlieplex keypad.
 
-I have tested the driver on a custom board with a Solidrun RZ/G2LC SOM
-with three charlieplex keyboards, all connected thru a a PCA9416 I2C GPIO
-expander.
-
-Link: [v1] https://lore.kernel.org/linux-serial/20250924153740.806444-1-hugo@hugovil.com/raw
-
-Changes for v2:
-- Fix yamllint error for example
-- Remove unused debug variable (nkeys)
-- Remove support for custom linux,no-autorepeat DT property
-- Remove support for custom gpio-activelow DT property
-
-Thank you.
-
-Hugo Villeneuve (2):
-  dt-bindings: input: add GPIO charlieplex keypad
-  Input: charlieplex_keypad: add GPIO charlieplex keypad
-
- .../input/gpio-charlieplex-keypad.yaml        |  82 +++++++
- MAINTAINERS                                   |   7 +
- drivers/input/keyboard/Kconfig                |  14 ++
- drivers/input/keyboard/Makefile               |   1 +
- drivers/input/keyboard/charlieplex_keypad.c   | 213 ++++++++++++++++++
- 5 files changed, 317 insertions(+)
+Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+---
+ .../input/gpio-charlieplex-keypad.yaml        | 82 +++++++++++++++++++
+ 1 file changed, 82 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
- create mode 100644 drivers/input/keyboard/charlieplex_keypad.c
 
-
-base-commit: ed8a4ef29da3821ee3155d3b1925fa67fc92aae2
+diff --git a/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+new file mode 100644
+index 0000000000000..1672491a75a85
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+@@ -0,0 +1,82 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/input/gpio-charlieplex-keypad.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: GPIO charlieplex keypad
++
++maintainers:
++  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
++
++description:
++  The charlieplex keypad supports N^2)-N different key combinations (where N is
++  the number of lines). Key presses and releases are detected by configuring
++  only one line as output at a time, and reading other line states. This process
++  is repeated for each line.
++  This mechanism doesn't allow to detect simultaneous key presses.
++
++allOf:
++  - $ref: input.yaml#
++  - $ref: /schemas/input/matrix-keymap.yaml#
++
++properties:
++  compatible:
++    const: gpio-charlieplex-keypad
++
++  autorepeat: true
++
++  line-scan-delay-us:
++    description:
++      Delay, measured in microseconds, that is needed
++      before we can scan keypad after activating one line.
++    default: 0
++
++  line-gpios:
++    description:
++      List of GPIOs used as lines. The gpio specifier for this property
++      depends on the gpio controller to which these lines are connected.
++
++  linux,keymap: true
++
++  debounce-delay-ms:
++    description: Debounce interval in milliseconds.
++    default: 5
++
++  poll-interval: true
++
++  wakeup-source: true
++
++required:
++  - compatible
++  - line-gpios
++  - linux,keymap
++  - poll-interval
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/input/input.h>
++
++    charlieplex-keypad {
++        compatible = "gpio-charlieplex-keypad";
++        debounce-delay-ms = <20>;
++        poll-interval = <5>;
++        line-scan-delay-us = <2>;
++
++        line-gpios = <&gpio2 25 0
++                      &gpio2 26 0
++                      &gpio2 27 0>;
++
++        /* MATRIX_KEY(output, input, key-code) */
++        linux,keymap = <
++            MATRIX_KEY(0, 1, KEY_F1)
++            MATRIX_KEY(0, 2, KEY_F2)
++            MATRIX_KEY(1, 0, KEY_F3)
++            MATRIX_KEY(1, 2, KEY_F4)
++            MATRIX_KEY(2, 0, KEY_F5)
++            MATRIX_KEY(2, 1, KEY_F6)
++        >;
++    };
 -- 
 2.47.3
 
