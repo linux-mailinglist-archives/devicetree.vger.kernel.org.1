@@ -1,232 +1,195 @@
-Return-Path: <devicetree+bounces-265431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265432-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SKgnM+VTj2lUQQEAu9opvQ
-	(envelope-from <devicetree+bounces-265431-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:40:05 +0100
+	id yLIxF9FUj2lqQQEAu9opvQ
+	(envelope-from <devicetree+bounces-265432-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:44:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C47913844A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:40:05 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A030138552
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:44:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 39E98307C572
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:39:33 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9D3893037D74
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:40:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 473F23659EB;
-	Fri, 13 Feb 2026 16:39:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A5E53644A4;
+	Fri, 13 Feb 2026 16:40:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OSb+eb6s"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eQCwN/9i";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fVJNATfl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA918364EAB
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 16:39:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D52AD315D3E
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 16:40:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771000767; cv=none; b=YHnsqPQq9E9MSJTW5yozNqG1QFWCrtznNamCqX2qA/ruUMkE9ZlyrOzBW1DlRCEnwQ/xepf9qvA30aJhK+m8jKxX4NUo80r0ykTJG+9HjX9YtI1o/p7eNKLoVQoSn/y6iXAsmC94SIOHPK5umVpd2NKJrXL19aEIq108n74LPiw=
+	t=1771000831; cv=none; b=JnT3y4S22d2AXYkD3mVa23KJIhgijz+8k5pkeGFElt+aUBmO1hSkYEYD5eWm6KpNWEwpujVpVTVmyKbG4NLxZ7dyySYVBnIX7Jk2p1WIEMKBMPSBLhGOabJ01qI+wEnE3nq9J7Gs00yvRtJEiwICDBfom2ofHvh4pRqaLQVbeDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771000767; c=relaxed/simple;
-	bh=I5t+AuxYw7p7Xyx85rveOZeK24TscG2Fhq1FrAYn1hw=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gSAjWs1S7wt9nIQSqp+ruTM3cPcp7kecG0752+FbzfNgneVGoJ8ik8jCW3cOTl6MgcCenP8h7J+VSJLA7fZ58AvLsCty/ONPfeBrW8dGOqQCaNlERaXhERTHjo21bbvga4JgE5Eaf7M9b8zLT19NPgSqHBQDWq4CHUQ2cVSQqLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OSb+eb6s; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-48336a6e932so7014095e9.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 08:39:25 -0800 (PST)
+	s=arc-20240116; t=1771000831; c=relaxed/simple;
+	bh=qDVvGh+76sTjCZiSzilUGG7sWVwCUrNKU5Wqi2dAdX4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GFj/r5SOUKuON6XcD7MIiJlpmbR5ktLc5fRM8ZSkQXHpXQljhkC7Z9S3oo3s44K4g0xbstuNBfleoAgn1DQVucKcTiKBrc+YbbuEx+VRVi9RtKoaoEyvMfbg3d7fIQFangtiUp7uBMCWssnXGU9o2LCV0MBRcXjL0AJ0ILLj1Aw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eQCwN/9i; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fVJNATfl; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61DF6EgD3424059
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 16:40:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=vsAMKhs6S1NPffJlhKX9y1rd
+	VZ6mCP64HnStmjH9xaw=; b=eQCwN/9iMWyaHo1bbAbFoZ7fCRKvXrRt9ibC+peP
+	xj3AVeTUKj0gDV4yENmKFGVZB+PLCGu/16AK6tVEoGOz+z28blU61dyN0LutJwxW
+	duNaLi5opM3iLrAjf4DGvFc4hrbBkpDJyEdPtv8irxMM/wr6uzEc9q/MVKR+g0rB
+	2MPEOVzb+7jqWaKFb8RohR9EmhYvi4pYiGqolzC7w48hi7Vyc7ohWSbUNesH8Yn5
+	FHIdXPV8Vue+xQKkx2PBcrjQXgziOe81OrUU7IpeAraMzCuWjAh+GuFhMBh4zTag
+	HyJeo/hqa84hzl08T2qQ8Xmmk00UPAvgFj6II7oSBcJ/1w==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c9yvrsvhv-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 16:40:28 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8cb3ad1b81aso564672885a.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 08:40:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771000764; x=1771605564; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IYpnXoF4mkHSRo0JO+Wo5zILS4TZKjxUVcEjwxhz2As=;
-        b=OSb+eb6sGoq1Xz0rDLY7B3NG6KlKT5trRdjEdWC9lUP7GxFtHixEJ0YQz37IElpwWE
-         wC8VvY8s/VbEvWJbiuMU5/TVSxLVV2JqsHEbUcei4oqytBwwOKxk/BwvR4c/bNi7tgUU
-         skMpvj+k6BSgkgF5Bk8jAcQ9YamrUA/fAJmAchMc5uLQlqiNJnB4+3sE7CoORMsORJHH
-         Z21hNQ0ACqYxLJVUjiVwnf+9oYHjqFefafJGosw1MlDa9X+nxgcgtLy+XZ5iQzYI49xx
-         w62i7XOs/LYtH5UlGn8hkCi4I5woYyavprBn96QvhV63MlQMNrw3N1VdatcEOe+8vI/t
-         ZJ/Q==
+        d=oss.qualcomm.com; s=google; t=1771000827; x=1771605627; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=vsAMKhs6S1NPffJlhKX9y1rdVZ6mCP64HnStmjH9xaw=;
+        b=fVJNATflzXjXq2PvvJ/A2/igqtWK5Lmt+CRlrTX+gAmcG7G0YS4ZGM+kC5xnK3xAUv
+         WsLxq/yJ5JloQZwg5n35R0bfxH2K5ODmg0l2lDr3/Thpk9Bm4Mc37I/0zyp7R3FEnBpA
+         D5PI/xM1YNXXWywyc4SCTxyHx/LVn1BYxbel3HDNuKm5XKx+Sd/xFi29Rr0L2Ai9voXh
+         Joqy9zzZD7zefNvwGfix0ahID+dkkLgu79JquqUznrIiMfPBL59LzrAlexhSWBvZSzBF
+         wv7/1sn/fiIkmNFZ4hNzXpgAv5peqPfqX9pxfg5Ua2fcXjYE5YvSqYa8Lk3/Ye37kcjX
+         K0WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771000764; x=1771605564;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IYpnXoF4mkHSRo0JO+Wo5zILS4TZKjxUVcEjwxhz2As=;
-        b=giKunle8c31ckOowVbkRpNmZWYIpSnYJeQiL2H8AbtBkqZqnMhFJ/Pk2yW/TnfERFp
-         aE3PI+SP/+VCqu+ZZqDnE3MzvR0D3c5tRxLLgjxUh1KHRFbRdBBFOMwjQqlxTLeRzD0v
-         N9zoxXbRUacl0gUiSxsydToT/Ebc0P6/D4ZAFitmvtXy5WwBZ2xp0lH9mB1bmLH5t5LL
-         C1nn46TYNIFYVQyjbXhp1D30owzLhUSfd3ThGRtWw+sO6tAKf5Jl5fO5b8khFUm2Vg/j
-         WaYeL2d491LimVWelWKGSDuxucF52Auhtl2PrRSrENho/s/oStSg04EPVm7qwXGp6e8U
-         NnIg==
-X-Forwarded-Encrypted: i=1; AJvYcCV1gpOkm3tOa2A5PTfzNbkK3gk8KKcxzPAqABpAQ9Cz7emz3UdqnTNox3aYTnX0a2q5OXoP5gQXMieU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPlSSHDe4Zy2r0jRdB3aGCXyQ4S/M1LW+u1fl66BzW3hx1Xg7j
-	2y8SEYVig8Iv6pZePCAJygHawRJQ1VQ4Jvr4klASd9rU79IyQeMoFneE
-X-Gm-Gg: AZuq6aLz2EfC3fqCYqUfBqRtjDHDkopbGrfBXOzcy2Ro67bv9kVVvYQn02IsbxgnXSj
-	0FET9Rx7gh1PJVBhpzV8UerwlxSQbRZEm91yA7uCD219fycnZRcBcE+ycHvyV3zjgAn1J1x7OGY
-	shOZEr11Q0k7L2I0DfPaNluu0U7tsvRyzBO56GvRiaHZ2WkDmpZqyFWnS5izIdFTapFEcLHn74Y
-	McLTG2n+M2tB5I37tPUa1SOEqFXrpB1FXkanFoISZWKHyZVvi0V5y54tMvfd4ONlStaG6j6f+a+
-	l4a1g9cwzb+YuObvdgvf0ARMs4cAiX//5Lz9O6GNpwo2/VHYDWZvXrKpfUu/+MiNGE50IfbgApn
-	8CdWYxytPSLiPNNx/owN0hMK56+wZLHG02Y2O/iKeznSzsilzGU/mFpkglNR2HP7shA5xTSWgfR
-	fXfWtyCTLOBx7T2hqQbd7hJb/1NpEaiAs=
-X-Received: by 2002:a05:600c:4e86:b0:47e:e20e:bbb2 with SMTP id 5b1f17b1804b1-48373a15ff4mr40626655e9.7.1771000763657;
-        Fri, 13 Feb 2026 08:39:23 -0800 (PST)
-Received: from [192.168.1.187] ([148.63.225.166])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4834d8334a8sm283255245e9.12.2026.02.13.08.39.22
+        d=1e100.net; s=20230601; t=1771000827; x=1771605627;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vsAMKhs6S1NPffJlhKX9y1rdVZ6mCP64HnStmjH9xaw=;
+        b=aFuXe+scrNU1Yfz+SLGkggFuCA0zh+bVtx3SKOb7YYoZB2oFXNRWy9ZIzksa37HTXS
+         MKkgCTYLNeBg5C5r+f0Mne8RBoeDHulGsH5YIARHU+XZVF+uSw+JhbQc/JF8jXIoWnMd
+         BQ5ur/P57FkMOQXnGbymo64UwCM5MpFmXJmZ/LeA8Q/H6ViW73ocni28NnyBWul3+KmP
+         4Q1f6S27pfIKu/8hMKclyVvAL/Dysqzk39WwsVva0E2s8roIYbsn28GWo0U5E/Go1yhk
+         Qy4Ov9YnDiHaBEFKIkPmc5WvX4LyEeJzMlNOH1H7zGqvhroGUhiYCGYeC5nA3LwlOQ54
+         ZbDg==
+X-Forwarded-Encrypted: i=1; AJvYcCWCmtk4TMstN9Mlq/kpYctim/n44zD6RA4Zunfp/i9Sk7U/OldXAnI/o0BsVBYyLjvO45gVj14vCHYF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzICmFo0fHbF2NioL2//i+oShqwCH2IqhquNGbh06UWpYjjf7jU
+	GeHEwxMKeGy98g0uavpgtQTqtDPuYM9kS3WC0YVYzjhKg9KjYwtjk2mJJJz1Q57XPX+hBLIfGFK
+	Djpnjd4hY+81JTZJU8i1ZqjpYE27fcsX3fLXwSOWBPCd1/DsUJtv/Klz0bdpabTT+
+X-Gm-Gg: AZuq6aKTJq3nLcrVJL71cMPynfmAw6TMUwCqy8DR/RGK+Fi4IkMFZbEO5JQtYku3/nC
+	EZnC0AAgMPcpnrT8IaNatP1J7YY/x7xGaSJ01Csstrh/PWf13aeHcPFGSFwV2dJ0kYq3BiFwe4N
+	XybnptTG5lUgQGngOMOoXkZBUToJnGkVlEUeQKUlhLD4fZaEWFQIruGRWmeum/jWIqJn5WjP+Xo
+	11lnvaGYmAr0DVk8IfoHvd8gV6kukAjZxf9K3925ziLSnkGyA9l0qGh3xtsGFleOr9VYuOLxn2W
+	axKFouZ3fm2ALpKjJod8eJFk+1NMImncSWCwGgzLcN+qSUWBed8vCtCD16qI/OJqmfSAtXjO18z
+	qURPyx8BhDAOJL5l6c2/9/I3VYvelFIfx/atN/CbJ294pARCToLC106tq9mYP/4NUNCOxm5LL65
+	X+0XvX8+FIFvs6xCQXOcNdjBO3/1d0TyO7xgM=
+X-Received: by 2002:a05:620a:4607:b0:8c7:176b:ebbe with SMTP id af79cd13be357-8cb4c014765mr13392085a.57.1771000827168;
+        Fri, 13 Feb 2026 08:40:27 -0800 (PST)
+X-Received: by 2002:a05:620a:4607:b0:8c7:176b:ebbe with SMTP id af79cd13be357-8cb4c014765mr13387985a.57.1771000826679;
+        Fri, 13 Feb 2026 08:40:26 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e5f562f8fsm1645806e87.5.2026.02.13.08.40.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Feb 2026 08:39:23 -0800 (PST)
-Message-ID: <c956f310b31e608520e203186ffdc753e55c045c.camel@gmail.com>
-Subject: Re: [PATCH v3 2/5] spi: add devm_spi_new_ancillary_device()
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, Lars-Peter Clausen	
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron	 <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=	 <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring	 <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>, Mark
- Brown	 <broonie@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org
-Date: Fri, 13 Feb 2026 16:40:05 +0000
-In-Reply-To: <20260213144742.16394-3-antoniu.miclaus@analog.com>
-References: <20260213144742.16394-1-antoniu.miclaus@analog.com>
-	 <20260213144742.16394-3-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+        Fri, 13 Feb 2026 08:40:26 -0800 (PST)
+Date: Fri, 13 Feb 2026 18:40:24 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] arm64: dts: qcom:
+ qcs6490-rb3gen2-industrial-mezzanine: Add TC9563 PCIe switch node for PCIe0
+Message-ID: <tri52yrodjeaoayifuud2rof34du7r3jcp564axkns6ncn3syy@ccfmh54d2v4n>
+References: <20260212-industrial-mezzanine-pcie-v3-0-1e152937a76a@oss.qualcomm.com>
+ <20260212-industrial-mezzanine-pcie-v3-1-1e152937a76a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260212-industrial-mezzanine-pcie-v3-1-1e152937a76a@oss.qualcomm.com>
+X-Proofpoint-GUID: nbIe-E2ChNF58utI3uFowvCy7UqZ-4jh
+X-Proofpoint-ORIG-GUID: nbIe-E2ChNF58utI3uFowvCy7UqZ-4jh
+X-Authority-Analysis: v=2.4 cv=LNZrgZW9 c=1 sm=1 tr=0 ts=698f53fc cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=EUspDBNiAAAA:8
+ a=qSWERiRezZrDuvaUYp0A:9 a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjEzMDEyOCBTYWx0ZWRfX3DUjs8sCt7v+
+ R4tfPm7GLqb60KtugX/wmzOuJpEgQTXoC6V1jwyXT2uxEytzhQmnXX1DIXhzBC/22ZBK6WT8UST
+ Ho2JW2QRYf7rtAVm6NWY/aXjinYjdh3Nkgizw7KGWTGuO50OsCe8K0CjDFm29EqKVNLsvTHU1Yp
+ ymbQmJY5VAvhw6XSLch4CNSAdIj0oXjQXK6l6thJ9N9eKKjuYth9dDh4bCIo/fwTFtL/qL7xlQx
+ azF4Rz/kd+0jhXLVXXeI6PBehmVEw4GqVr69JXQJC5KCp2bLK48PqCZvL9kVqriIr32mLwBv7ry
+ 29/2Rr9IY0jdSTqXazcfs4gmdwnJ79qq37VRI3atvGLbykIxM6htvMKNRKoQOnTZPrtPWndvdL7
+ V/poKlN4xrcBPixKytwMPoZOhVZVPguS0qDduP6Y0d/DiEky3e/XbmixcgsnfaINfI79jBlitgn
+ w0SfIbI+NhTNtJc+n2g==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-13_03,2026-02-13_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 lowpriorityscore=0 adultscore=0 suspectscore=0 spamscore=0
+ phishscore=0 malwarescore=0 bulkscore=0 clxscore=1015 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602130128
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-265432-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265431-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6C47913844A
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 6A030138552
 X-Rspamd-Action: no action
 
-On Fri, 2026-02-13 at 16:47 +0200, Antoniu Miclaus wrote:
-> Add a devres-managed version of spi_new_ancillary_device() that
-> automatically unregisters the ancillary SPI device when the parent
-> device is removed.
->=20
-> This follows the same devm_add_action_or_reset() pattern used by the
-> other managed SPI functions (devm_spi_optimize_message,
-> devm_spi_register_controller, etc.) and eliminates the need for drivers
-> to open-code their own devm cleanup callbacks for ancillary devices.
->=20
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+On Thu, Feb 12, 2026 at 04:14:01PM +0530, Sushrut Shree Trivedi wrote:
+> Add a node for the TC9563 PCIe switch connected to PCIe0. The switch
+> has three downstream ports.Two embedded Ethernet devices are present
+> on one of the downstream ports. All the ports present in the
+> node represent the downstream ports and embedded endpoints.
+> 
+> Power to the TC9563 is supplied through two LDO regulators, which
+> are on by default and are added as fixed regulators. TC9563 can be
+> configured through I2C.
+> 
+> Signed-off-by: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>
 > ---
+>  .../qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso | 145 +++++++++++++++++++++
+>  1 file changed, 145 insertions(+)
+> 
 
-Acked-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-> Changes in v3:
-> =C2=A0 - New patch
->=20
-> =C2=A0drivers/spi/spi.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 40 ++++++++=
-++++++++++++++++++++++++++++++++
-> =C2=A0include/linux/spi/spi.h |=C2=A0 1 +
-> =C2=A02 files changed, 41 insertions(+)
->=20
-> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-> index 693bdcc5a12a..1b48ec67b8e0 100644
-> --- a/drivers/spi/spi.c
-> +++ b/drivers/spi/spi.c
-> @@ -2612,6 +2612,46 @@ struct spi_device *spi_new_ancillary_device(struct=
- spi_device *spi,
-> =C2=A0}
-> =C2=A0EXPORT_SYMBOL_GPL(spi_new_ancillary_device);
-> =C2=A0
-> +static void devm_spi_unregister_device(void *spi)
-> +{
-> +	spi_unregister_device(spi);
-> +}
-> +
-> +/**
-> + * devm_spi_new_ancillary_device() - Register managed ancillary SPI devi=
-ce
-> + * @spi:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Pointer to the =
-main SPI device registering the ancillary device
-> + * @chip_select: Chip Select of the ancillary device
-> + *
-> + * Register an ancillary SPI device; for example some chips have a chip-=
-select
-> + * for normal device usage and another one for setup/firmware upload.
-> + *
-> + * This is the managed version of spi_new_ancillary_device(). The ancill=
-ary
-> + * device will be unregistered automatically when the parent SPI device =
-is
-> + * unregistered.
-> + *
-> + * This may only be called from main SPI device's probe routine.
-> + *
-> + * Return: Pointer to new ancillary device on success; ERR_PTR on failur=
-e
-> + */
-> +struct spi_device *devm_spi_new_ancillary_device(struct spi_device *spi,
-> +						 u8 chip_select)
-> +{
-> +	struct spi_device *ancillary;
-> +	int ret;
-> +
-> +	ancillary =3D spi_new_ancillary_device(spi, chip_select);
-> +	if (IS_ERR(ancillary))
-> +		return ancillary;
-> +
-> +	ret =3D devm_add_action_or_reset(&spi->dev, devm_spi_unregister_device,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ancillary);
-> +	if (ret)
-> +		return ERR_PTR(ret);
-> +
-> +	return ancillary;
-> +}
-> +EXPORT_SYMBOL_GPL(devm_spi_new_ancillary_device);
-> +
-> =C2=A0#ifdef CONFIG_ACPI
-> =C2=A0struct acpi_spi_lookup {
-> =C2=A0	struct spi_controller=C2=A0	*ctlr;
-> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
-> index cb2c2df31089..9aef1987b12f 100644
-> --- a/include/linux/spi/spi.h
-> +++ b/include/linux/spi/spi.h
-> @@ -374,6 +374,7 @@ static inline void spi_unregister_driver(struct spi_d=
-river *sdrv)
-> =C2=A0}
-> =C2=A0
-> =C2=A0extern struct spi_device *spi_new_ancillary_device(struct spi_devic=
-e *spi, u8 chip_select);
-> +extern struct spi_device *devm_spi_new_ancillary_device(struct spi_devic=
-e *spi, u8 chip_select);
-> =C2=A0
-> =C2=A0/* Use a define to avoid include chaining to get THIS_MODULE */
-> =C2=A0#define spi_register_driver(driver) \
+
+-- 
+With best wishes
+Dmitry
 
