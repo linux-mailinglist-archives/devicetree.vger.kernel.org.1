@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-265318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265319-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kHGQO2f0jmk5GAEAu9opvQ
-	(envelope-from <devicetree+bounces-265318-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 10:52:40 +0100
+	id IM91HcX0jmnDGAEAu9opvQ
+	(envelope-from <devicetree+bounces-265319-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 10:54:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 569D2134B52
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 10:52:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF8FD134B71
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 10:54:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 15D5C306147B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:51:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A704F309464C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:53:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3AB434EF18;
-	Fri, 13 Feb 2026 09:51:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 508E734F47C;
+	Fri, 13 Feb 2026 09:53:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xic0u1p+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Shln6tAt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFB3734DB4D;
-	Fri, 13 Feb 2026 09:51:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28FED34F473;
+	Fri, 13 Feb 2026 09:53:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770976315; cv=none; b=HoSOgZQGD2AkZG1JgIUcyu2725xqaIOFL0Mw0GG/obXrYRwKO+C08FjsZl7OxkuXZzQROQCxODCgRK2DftYEAOL5mnJL9GOLm8ETWEq2YpaZH1toJ5EdGq4th3qg0sWsthlr5AKSszioB4Mv3AnUj/3wB3f/Imt+ZQ5mFqfkH6Q=
+	t=1770976424; cv=none; b=T3mRBU6ooJVPbu5B+Z/wVU4cvSY98EctglawkdU/Zh/B4OV14E8v4WJ0YhiZlrxH7owxp7XOrdkS9I76z8qd87qt4zP3jBxXyY2gjAzJ7PP5KE3g56zlF2Dns6vs3e7Qw/9LSHYNzB+tB8JMWbz+feuyNhkbsYlT0BpVC3tdTKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770976315; c=relaxed/simple;
-	bh=iRls6+U3fZPkaSGsvnSa1VmBaxah7AoJ/t5kH+owJDI=;
+	s=arc-20240116; t=1770976424; c=relaxed/simple;
+	bh=z68VAFgu03wyf7l3IWaQwDISBEKZz0P9EzF4N4uzcrM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=deBCQyMFL7LY0VvtLN2CVtn+fEoksLyVGxx4epUqKY7qWd7FfoOQhF3FdrfEUC4jdxiLR0FhwVNO0rJB08WReyoox9GXI+VYVt/kqgU2LPWnVWY0llPb5gWZuZKGmTx3aXIVL2XVB8OrBxch4DzgPHYq3LGxGyg5QTaqeSykXcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xic0u1p+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22F08C116C6;
-	Fri, 13 Feb 2026 09:51:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oUCpJwdBl5kCYKKdCSIBXEcgOgeJO7/q4xRWevkKz7pId4GIiB0xfl2900LJcb2iJHCjChfUtGlQ6geP0DHLS5Y33d8fdYAesASDyS4KAD7+8cKy/wMAflKMp3+Nq9qHaVoJU3KS68g2DXSOdJZfzrZCL20CI99/GB+hj99eTgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Shln6tAt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A585EC16AAE;
+	Fri, 13 Feb 2026 09:53:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770976315;
-	bh=iRls6+U3fZPkaSGsvnSa1VmBaxah7AoJ/t5kH+owJDI=;
+	s=k20201202; t=1770976424;
+	bh=z68VAFgu03wyf7l3IWaQwDISBEKZz0P9EzF4N4uzcrM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Xic0u1p+3mB1x1welUSgDMMGR7fM6BznAqfSAVWCmIzzgQI3r4Bm0PVhOn72qiolF
-	 7bSBRRV4MfZ2/+885hwCgGVIUeKB9B1Z+YyXCbwDC9YnbhXZA8DZpMbX7o4VgBtJkE
-	 71H1LmdRuSj7M7Gx4KEg2Qn7HMWpYVcaoB57IsPXTDqR7H1uk0e4vgNW9LZaL30wtd
-	 zI+rN7OyFfo2Rujc/2ePhVnlq1jx9wZmEj3o3M3mfFSUDcXzE5MTtfWcGZl+BOZbss
-	 MH6ABCHimpP2TsrfoUZ03CyBc9y2Jhqhq1iuB6obhR0erTmvnAWlpdQ4a8ZSv3gknT
-	 rIPcTqEa3a8nA==
-Message-ID: <ece3f7ee-8ecc-4528-a6ce-da4eeb24b236@kernel.org>
-Date: Fri, 13 Feb 2026 10:51:47 +0100
+	b=Shln6tAtclu66CGUtl+strj0q/v+4yx/M34Gk3WD5urfoIJfKcGuBwb7kqWXXks22
+	 Yyx4Jt1IgaYs+wo85MUn4HC8YAEDSvy2pF24usmqLQ6FzKttEePR63uzXeHc5JR3v8
+	 rR9BnRHBWV00uLXF8eDKQNhTXiQQbNxXOoPzlgriH2RvJxJJ1aOi0Lj7ulfxowkofb
+	 gppTRjrNB4Elv1457kbv/CLj1ENK5EOlHBv1QmVtLzKcoWbAylnrTjlWriy7DBlf1A
+	 ohXtPJdwwTo/gl8S1/xJ2/PWg7fFnHv6ZpBouKToEypf6XfElPyb6d62riYPsaxUox
+	 xXxN5i4A+L+nA==
+Message-ID: <738dbc7c-9915-4308-8e0b-388d6b73b067@kernel.org>
+Date: Fri, 13 Feb 2026 10:53:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,38 +53,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/6] dt-bindings: media: mediatek,vcodec-encoder: Add
- MT8196 with VCP support
-To: =?UTF-8?B?SXJ1aSBXYW5nICjnjovnkZ4p?= <Irui.Wang@mediatek.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- =?UTF-8?B?TG9uZ2ZlaSBXYW5nICjnjovpvpnpo54p?= <Longfei.Wang@mediatek.com>,
- =?UTF-8?B?VGlmZmFueSBMaW4gKOael+aFp+ePiik=?= <tiffany.lin@mediatek.com>,
- "wenst@chromium.org" <wenst@chromium.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- =?UTF-8?B?TWFvZ3VhbmcgTWVuZyAo5a2f5q+b5bm/KQ==?=
- <Maoguang.Meng@mediatek.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "nicolas.dufresne@collabora.com" <nicolas.dufresne@collabora.com>,
- "mchehab@kernel.org" <mchehab@kernel.org>,
- =?UTF-8?B?S3lyaWUgV3UgKOWQtOaZlyk=?= <Kyrie.Wu@mediatek.com>,
- =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= <Yunfei.Dong@mediatek.com>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
- "sebastian.fricke@collabora.com" <sebastian.fricke@collabora.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-References: <20260212100104.11863-1-irui.wang@mediatek.com>
- <20260212100104.11863-6-irui.wang@mediatek.com>
- <20260213-didactic-whispering-impala-ea9e64@quoll>
- <13bf9b8673c6d47e07dee4a233945ed542e9b4f3.camel@mediatek.com>
- <e69cf0c6-f7cf-4f83-a7fc-dc4b9dfe174c@kernel.org>
- <dad64d23d0e9588979005f5770806105eb32a831.camel@mediatek.com>
+Subject: Re: [PATCH v11 3/7] i2c: xiic: switch to generic device property
+ accessors
+To: abdurrahman@nexthop.ai, Michal Simek <michal.simek@amd.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260213-i2c-xiic-v11-0-5d18aea11bde@nexthop.ai>
+ <20260213-i2c-xiic-v11-3-5d18aea11bde@nexthop.ai>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -130,68 +108,54 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <dad64d23d0e9588979005f5770806105eb32a831.camel@mediatek.com>
+In-Reply-To: <20260213-i2c-xiic-v11-3-5d18aea11bde@nexthop.ai>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-265318-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,mediatek.com,chromium.org,lists.infradead.org,collabora.com,xs4all.nl,gmail.com];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265319-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 569D2134B52
+X-Rspamd-Queue-Id: CF8FD134B71
 X-Rspamd-Action: no action
 
-On 13/02/2026 10:47, Irui Wang (王瑞) wrote:
->>>>
->>>> And here still did not implement the comment. So basically you
->>>> did
->>>> not
->>>> implement fully v2 and v3.
->>>
->>> If you are mean about the `else statement`, I left a comments and
->>> want
->>> to get an explanation from you, if you feel that my reply is
->>> unsatisfactory or incorrect, please let me know.
->>>
->>> The key point is that our patch can satisfy you and get a Reviewed-
->>> by
->>> from you.
->>>
->>
->> Neither your answer, nor commit description here are actually
->> ANSWERING
->> to my comment at v3. If you answer with irrelevant/unrelated comment,
->> the reviewer's feedback stays. OR explain please with different words
->> why other devices have vcp but your commit msg says they do not have
->> vcp.
+On 13/02/2026 01:15, Abdurrahman Hussain via B4 Relay wrote:
+> From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
 > 
-> Why other devices have vcp? because I didn't write 'mediatek,vcp:false'
-> in else statement?
+> Use generic device property accessors.
 
-Yes
+You should explain here the impact, e.g. making them work for ACPI
+platforms.
+
+> 
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+> Signed-off-by: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+> ---
+>  drivers/i2c/busses/i2c-xiic.c | 20 ++++++--------------
+>  1 file changed, 6 insertions(+), 14 deletions(-)
+> 
+
 
 Best regards,
 Krzysztof
