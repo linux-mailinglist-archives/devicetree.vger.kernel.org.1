@@ -1,160 +1,148 @@
-Return-Path: <devicetree+bounces-265283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265284-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YFRqMR3ejmlSFgEAu9opvQ
-	(envelope-from <devicetree+bounces-265283-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:17:33 +0100
+	id +PKzKUrejmlSFgEAu9opvQ
+	(envelope-from <devicetree+bounces-265284-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:18:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4208B133E34
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:17:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2072F133E5A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:18:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 10B26300D9DD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:17:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8F9BB302867C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:18:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EEEB27F18B;
-	Fri, 13 Feb 2026 08:17:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gd57xqK3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A526313535;
+	Fri, 13 Feb 2026 08:18:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B5742505B2;
-	Fri, 13 Feb 2026 08:17:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9FAA29D269;
+	Fri, 13 Feb 2026 08:18:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770970650; cv=none; b=aiXyb8rJAnX5FL1yaZi0fLExLtvDEArgkFEwhzwF9u9ni6aPZV8juWtpnUQI+D1S+A/bzPAWXejwABFrzMQJOQ7zd3elnFKmxkx89H7XcrC38xUmapzxIzZhaFRBIy+2Q6y8JffD9+dhTKQ3bz6w36tYz4DMY66qbPYKLrk41xI=
+	t=1770970686; cv=none; b=NgQl+8T4RiAdRpgsC4uTiYyrVFGnNaCJrbmc2qpG6eAc/n4LZY8ZoTnoCGT5nclzIjOM0HoFZUvpY7OzPMgUIRt+6XVbQ/XMf5RHgq0NhDYh8WFke7fMjZcVvRDPXD2WBVE58iBTDCYwlC1ffAaAyMwqcu3vESgMEZoPhF+8jm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770970650; c=relaxed/simple;
-	bh=5IFVImr6FC2fCJmvhchlTJID5GokFgIO/taR4mmbo/8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UaL98ph/OBxgsop7TRmfidM7cYuPI4be5SIbqJVqkglT1tGuEEv7zMFswejsuK8q4pLUlQLq1HfikGdXNPdLoOdkDFjJCFakkpapPljlAHzkKtGfd4I3ND8HqA80rufihkP35OR6IaNOiTn9W93pRWitLN57vEgEU89Sor1aCAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gd57xqK3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9DCBC116C6;
-	Fri, 13 Feb 2026 08:17:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770970649;
-	bh=5IFVImr6FC2fCJmvhchlTJID5GokFgIO/taR4mmbo/8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Gd57xqK3n0VeLdt58JNtLAZ5WhFhI3RPika/DqHA6aOnlgS+8jyCq+JHfAnaJkSvv
-	 4+AC4B/TmbQiboJj+9Hqx3J7WyGihPIqqRSbOojTOma/n7vbLjSAYZsn/fWkcFvRqQ
-	 7/gJ2wPydMgvUdmaAuvfjs7VZnhTK7qvVW3k3Kqjs3ejOEtYOxM57/WiP8p5HYbt2I
-	 DDUdEjoAWWa2Cz390YjObU+JT/bFBMV0TcwpT6e6NE0RwU7JZPmOsxlEJOGO/Zokbd
-	 6VHGDbaA3mRw5pGkTddLojItB/YkxOEnJksPiV6QgkroywxqotuTdDL54c+vzieC2f
-	 ChPS1BjEfPIdA==
-Message-ID: <5d3e8678-9319-4e0e-a83d-5676127fe8b8@kernel.org>
-Date: Fri, 13 Feb 2026 09:17:24 +0100
+	s=arc-20240116; t=1770970686; c=relaxed/simple;
+	bh=GyucnYRddM+KPEwtfmXcesurg0IS8btBZhDNqZcs91M=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=BC2UziZeQzgsaMvFHhI78zuxHeR6zzUFjzhqF0OPZdidnfUq5101TVMMiPR38+7AprQo3Xka0Ldi9b0e8ABz/h4o0XpGN1xG83GUZVTXc9uo9EImoK4xrSXCGrkhpiF/kqhNjhw7buBxS+uMev6g5v4wvIe/zehd4A5ddphZC2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 13 Feb
+ 2026 16:17:55 +0800
+Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Fri, 13 Feb 2026 16:17:55 +0800
+From: Billy Tsai <billy_tsai@aspeedtech.com>
+Subject: [PATCH RFC 0/2] pinctrl: add syscon-backed packed-field pinctrl
+ driver and DT bindings
+Date: Fri, 13 Feb 2026 16:17:41 +0800
+Message-ID: <20260213-pinctrl-single-bit-v1-0-c60f2fb80efb@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v4 1/4] media: dt-bindings: Add Amlogic V4L2 video
- decoder
-To: Zhentao Guo <zhentao.guo@amlogic.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-References: <20260213-b4-s4-vdec-upstream-v4-0-c7112d00d662@amlogic.com>
- <20260213-b4-s4-vdec-upstream-v4-1-c7112d00d662@amlogic.com>
- <d96c689d-a5a3-453d-a1ab-56dc1bf01635@kernel.org>
- <fd56ede0-5d62-42ec-8d19-19552b246c7c@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <fd56ede0-5d62-42ec-8d19-19552b246c7c@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACXejmkC/x3MwQpAQBCA4VfRnE3ZEeGqPICrHNgdTGlpV1Lad
+ 7c5fof/f8GzE/bQJC84vsXLYSNUmoDeJrsyiokGyqjMSCk8xerL7ejFrjvjLBeaiVS+UEW6LiC
+ Gp+NFnn86QN+1MIbwAdRy5kxpAAAA
+X-Change-ID: 20260211-pinctrl-single-bit-da213f282c95
+To: Linus Walleij <linusw@kernel.org>, Tony Lindgren <tony@atomide.com>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+	<andrew@codeconstruct.com.au>, Bartosz Golaszewski <brgl@kernel.org>
+CC: <patrickw3@meta.com>, <linux-gpio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
+	<BMC-SW@aspeedtech.com>, Billy Tsai <billy_tsai@aspeedtech.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770970675; l=2131;
+ i=billy_tsai@aspeedtech.com; s=20251118; h=from:subject:message-id;
+ bh=GyucnYRddM+KPEwtfmXcesurg0IS8btBZhDNqZcs91M=;
+ b=wnr8PkYCiaj6qIxDNo2bobprHQFZzxKZe4ITj4bP2A7etp7tWDxgaI1FFV0ZkCF8v/Mzh9EvQ
+ i9jFMJZ6T+wBt80YTsSiVUTiqGAEBSJYEh8C4XVx4HGcMDlWw2KJ+jV
+X-Developer-Key: i=billy_tsai@aspeedtech.com; a=ed25519;
+ pk=/A8qvgZ6CPfnwKgT6/+k+nvXOkN477MshEGJvVdzeeQ=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_QUARANTINE(1.50)[aspeedtech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265283-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[amlogic.com,kernel.org,linaro.org,baylibre.com,googlemail.com];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 4208B133E34
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[billy_tsai@aspeedtech.com,devicetree@vger.kernel.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265284-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: 2072F133E5A
 X-Rspamd-Action: no action
 
-On 13/02/2026 09:04, Zhentao Guo wrote:
-> 
-> 在 2026/2/13 15:35, Krzysztof Kozlowski 写道:
->> [ EXTERNAL EMAIL ]
->>
+This work follows earlier review discussions around extending
+pinctrl-single for bit-per-mux / packed-field controllers. Based on
+feedback from Linus Walleij and Tony Lindgren, the direction was changed
+towards introducing a separate targeted driver instead of further
+increasing the complexity of pinctrl-single.
 
-Do not send me such emails more than once. Also, drop the "EXTERNAL
-EMAIL" markings.
+The prior pinctrl-single series is at:
+https://lore.kernel.org/all/20260123-upstream_pinctrl_single-v2-0-40f8063cc5a2@aspeedtech.com/
+
+This series is a replacement of that approach., targeted pinctrl driver
+for controllers where pinmux and/or pin configuration are represented as
+fixed-width fields packed sequentially within shared registers
+(packed-field / bit-per-pin style controllers).
+
+Although pinctrl-single contains support for some bit-per-mux use cases,
+it was originally designed around direct MMIO ownership and has grown
+in complexity over time. For SoCs where the pin controller lives inside
+a larger SCU/syscon register block, using syscon + regmap-mmio provides
+a clearer ownership model and naturally avoids MMIO resource conflicts.
+
+The new driver is designed to be instantiated as a subnode of a syscon
+device (e.g. SCU). It obtains a regmap from the parent and uses the
+child node 'reg' as a window into the syscon register space.
+
+This series includes:
+  1. A generic Devicetree binding for packed-field pin controllers.
+  2. The new pinctrl-packed driver (derived from pinctrl-single).
+
+Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+---
+Billy Tsai (2):
+      dt-bindings: pinctrl: Add pinctrl-packed
+      pinctrl: add syscon-backed packed-field pin controller driver
+
+ .../bindings/pinctrl/pinctrl-packed.yaml           |  166 +++
+ drivers/pinctrl/Kconfig                            |   13 +
+ drivers/pinctrl/Makefile                           |    1 +
+ drivers/pinctrl/pinctrl-packed.c                   | 1168 ++++++++++++++++++++
+ 4 files changed, 1348 insertions(+)
+---
+base-commit: ea24857a76ad90632f86f1e8c8465f96c9f2e407
+change-id: 20260211-pinctrl-single-bit-da213f282c95
 
 Best regards,
-Krzysztof
+-- 
+Billy Tsai <billy_tsai@aspeedtech.com>
+
 
