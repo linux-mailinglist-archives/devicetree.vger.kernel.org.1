@@ -1,171 +1,179 @@
-Return-Path: <devicetree+bounces-265287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265288-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GFoeKY3ejmluFgEAu9opvQ
-	(envelope-from <devicetree+bounces-265287-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:19:25 +0100
+	id GLXdGNfejmluFgEAu9opvQ
+	(envelope-from <devicetree+bounces-265288-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:20:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D68A8133EDC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:19:24 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECB62133F1D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:20:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B4CB7303BDA5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:18:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5C4403023E34
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:19:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB1E2320CAD;
-	Fri, 13 Feb 2026 08:18:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC7923161A4;
+	Fri, 13 Feb 2026 08:19:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N1SMB6J5"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="R/rh10fv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D0031ED81;
-	Fri, 13 Feb 2026 08:18:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B15EE31B82C;
+	Fri, 13 Feb 2026 08:19:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770970699; cv=none; b=kKp7rUScO/N1pyu7HExqNSHjdKeQ/k6tRndkVs4WJngbV5FJaRVEwLTDWmeANk+rgxnYMGFueO8y4WScQs7FRfqfgudJozKTyNvxe8PidTPp9DIqfe62lvOwqzRWMA9MIMPWNpLBKWH3bii1EqHG2NmoGUhRRB4JLWePao8AwEo=
+	t=1770970746; cv=none; b=M9n8fGQWTIvvD+qJDzudbJuPLn8Qorv2ArdIBWZKSSoXZnIW8A/DLwBSrdpHQFxL5eEPD2XfOF5ChJxVrrrmrkOECwC2GY9TB8XBcTbVRIrcqvdO/Gi3jnQm3zIyobhlWbDG4C2wcPTWUyaVYmaSk+Q9AVGOSk8ticwfGUVNObU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770970699; c=relaxed/simple;
-	bh=nLK8MRzJXFvP4p/yF7HQAiipB4wPokOc/nqWm4aAYoQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MCY7yVk3kxIdWTP4/0pFS1eui5rrexb5vTF9SdLMJNNT0CuBQFFq4/O5Dppgf9qZBJdlX302gKdTQ1AMrmNelmC5K1Y+yHZJ+ORS+JyoApdeAJ+hU1Ors2jLZ8aKB1nFDluJn33Sa8nPXsrD0HanpT/KwrUnIMQ2rsYVn3C9Dk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N1SMB6J5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D951EC2BC87;
-	Fri, 13 Feb 2026 08:18:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770970699;
-	bh=nLK8MRzJXFvP4p/yF7HQAiipB4wPokOc/nqWm4aAYoQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=N1SMB6J5Gi988tVBca7FOWsb12Ig/nGgy9n1b9WJgslBSBVkqf2smEV0szN6rtDoN
-	 3qmtBfWEKRa4uL1sVeT6aIOk4Pox1QVT5o1EXDAjymeSRxtKxv6v9bt+iFk5req9af
-	 8elCLalDg/T7cQmj2/Xm6oQhsfOeW3rcAHcs6/zAD/IMlV+/hbCWvqqvRk9cLJZmHn
-	 Gu2HhgosUBryy6Ahwbb5FPuEzcaW7fnFkGCBL0s0sCaWroE6pLB1QEGCHlthPJe/fP
-	 wUI+xaQAxLHYA1HJ4wnYgccms4HcILiuar+aRE6056I4uyHQpZ5hOy8MLoPtRiAXDJ
-	 qfoBZtO69hnFQ==
-Message-ID: <d4c4afe2-c224-4d4b-a4ac-69928d33d445@kernel.org>
-Date: Fri, 13 Feb 2026 09:18:14 +0100
+	s=arc-20240116; t=1770970746; c=relaxed/simple;
+	bh=75NWZpzG3PgHqXnpAb2JqUhfWyvzCwxFFpQ5zHepM6c=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=KwIPG0ZQCBgImq5/Cm+3OF9WyTnJaekZmsEqBNab0Tu/KMkEWOG1aG5Wc8aaT0L4Z6RrQYuE9x6Cn8eptngVGkynYnenrR8vPKjGFRymaDEmcRZ+7vevvuTZQrEOgjPMrUja0ERDu8DibkJPCuOoZXouYPnLgBQgIm7gaWSq648=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=R/rh10fv; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id B92EE1A0E8E;
+	Fri, 13 Feb 2026 08:19:00 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 8A815606CC;
+	Fri, 13 Feb 2026 08:19:00 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C830710368E05;
+	Fri, 13 Feb 2026 09:18:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1770970739; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=6yDp974LQrt0MDs5mJhTng5R7kqy2mlSjAEqesT+EHc=;
+	b=R/rh10fv12ZrMWg0slw6wc48DOkSeuVDzW4lm8J3U750kw3QXJaYY2JMIDvuKx7RCtBT6e
+	zEngr6rKknPHs/3rzngK/zf6s2b+p1F5BcuJ3Wq2PsdSZNC+tfjkn3SJJY5TgV1topTCHM
+	E2MKb0oDbYlhU/LKhrA7o3VbjHzm9lh0j3hSLH8iZzmC9YDU7UhYXZfheJR3F1vU3CBKGr
+	tMQJpIegyGXz81nU2eyg651tatAv/r/9iTuKtyTTSAiuZgCp6qpcimtRpddZfPT04lddha
+	KrwYagkq9XaW6ZkXwYmdW5T7kzbnkymA0MI8u33A/3zIa0rClONyWUWgv7di6w==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Santhosh Kumar K <s-k6@ti.com>
+Cc: <broonie@kernel.org>,  <robh@kernel.org>,  <krzk+dt@kernel.org>,
+  <conor+dt@kernel.org>,  <richard@nod.at>,  <vigneshr@ti.com>,
+  <tudor.ambarus@linaro.org>,  <pratyush@kernel.org>,  <mwalle@kernel.org>,
+  <linux-spi@vger.kernel.org>,  <devicetree@vger.kernel.org>,
+  <linux-kernel@vger.kernel.org>,  <linux-mtd@lists.infradead.org>,
+  <praneeth@ti.com>,  <u-kumar1@ti.com>,  <p-mantena@ti.com>,
+  <a-dutta@ti.com>
+Subject: Re: [RFC PATCH v2 09/12] spi: cadence-quadspi: add PHY tuning
+ infrastructure
+In-Reply-To: <012a44f3-973f-4f34-be69-286cf924a6c6@ti.com> (Santhosh Kumar
+	K.'s message of "Sat, 7 Feb 2026 00:55:49 +0530")
+References: <20260113141617.1905039-1-s-k6@ti.com>
+	<20260113141617.1905039-10-s-k6@ti.com> <87bji3gkda.fsf@bootlin.com>
+	<012a44f3-973f-4f34-be69-286cf924a6c6@ti.com>
+User-Agent: mu4e 1.12.7; emacs 30.2
+Date: Fri, 13 Feb 2026 09:18:54 +0100
+Message-ID: <87a4xdxdht.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v4 4/4] arm64: defconfig: Enable VDEC driver for
- Amlogic SoCs
-To: Zhentao Guo <zhentao.guo@amlogic.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-References: <20260213-b4-s4-vdec-upstream-v4-0-c7112d00d662@amlogic.com>
- <20260213-b4-s4-vdec-upstream-v4-4-c7112d00d662@amlogic.com>
- <795e507a-b0b7-40a5-8a75-25b464ba6b37@kernel.org>
- <fe111988-69bf-4a56-ae7c-2f94d8c7f83d@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <fe111988-69bf-4a56-ae7c-2f94d8c7f83d@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265287-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[amlogic.com,kernel.org,linaro.org,baylibre.com,googlemail.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-265288-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: D68A8133EDC
+X-Rspamd-Queue-Id: ECB62133F1D
 X-Rspamd-Action: no action
 
-On 13/02/2026 09:06, Zhentao Guo wrote:
-> Hi
-> 
-> 在 2026/2/13 15:33, Krzysztof Kozlowski 写道:
->> [ EXTERNAL EMAIL ]
->>
->> On 13/02/2026 06:12, Zhentao Guo via B4 Relay wrote:
->>> From: Zhentao Guo <zhentao.guo@amlogic.com>
+On 07/02/2026 at 00:55:49 +0530, Santhosh Kumar K <s-k6@ti.com> wrote:
+
+> On 05/02/26 23:09, Miquel Raynal wrote:
+>> On 13/01/2026 at 19:46:14 +0530, Santhosh Kumar K <s-k6@ti.com> wrote:
+>>=20
+>>> Implement the spi_controller_mem_ops execute_tuning callback to enable
+>>> PHY tuning support for the Cadence controller. PHY tuning optimizes data
+>>> capture timing at high frequencies by calibrating the read data capture
+>>> delay through the controller's PHY interface.
 >>>
->>> Enable the driver for Amlogic's stateless decoder.
->> Why? Read other commits how this is supposed to look like.
-> I explained the reason in patch 1/4. But please inform me if you have 
-> more suggestions. Thanks a lot!
+>>> Tuning algorithm functions (cqspi_phy_tuning_ddr/sdr and
+>>> cqspi_phy_pre/post_config) are placeholders to be implemented
+>>> in subsequent commits.
+>>>
+>>> Signed-off-by: Santhosh Kumar K <s-k6@ti.com>
+>>> ---
+>>>   drivers/spi/spi-cadence-quadspi.c | 241 ++++++++++++++++++++++++++++++
+>>>   1 file changed, 241 insertions(+)
+>>>
+>>> diff --git a/drivers/spi/spi-cadence-quadspi.c b/drivers/spi/spi-cadenc=
+e-quadspi.c
+>>> index 0df286d24256..b8b0e85f4f68 100644
+>>> --- a/drivers/spi/spi-cadence-quadspi.c
+>>> +++ b/drivers/spi/spi-cadence-quadspi.c
+>>> @@ -32,6 +32,7 @@
+>>>     #define CQSPI_NAME			"cadence-qspi"
+>>>   #define CQSPI_MAX_CHIPSELECT		4
+>>> +#define CQSPI_AM654_NON_PHY_CLK_RATE	25000000
+>>>     static_assert(CQSPI_MAX_CHIPSELECT <=3D SPI_DEVICE_CS_CNT_MAX);
+>>>   @@ -65,6 +66,7 @@ struct cqspi_st;
+>>>   struct cqspi_flash_pdata {
+>>>   	struct cqspi_st	*cqspi;
+>>>   	u32		clk_rate;
+>>> +	u32		non_phy_clk_rate;
+>> This is the second (and last) main issue I have with the series as it
+>> is
+>> right now. We cannot set this type of frequency in the driver IMO, it is
+>> too board specific.
+>> We currently have a DT property for the SPI maximum supported
+>> frequency. I believe this is no longer enough. Why not making this
+>> frequency property an array? First frequency would be the default,
+>> non tuned maximum frequency. The second would be the maximum frequency
+>> reachable when tuning the PHY.
+>
+> If the concern is only about where this is set, we could introduce a DT
+> property such as "non-phy-max-freq" to carry this information. This
+> would allow us to avoid any changes to the existing "spi-max-frequency"
+> handling. Let me know your thoughts on this.
 
+Naming is difficult, non-phy-max-freq is too TI specific. I was
+proposing the evolution of spi-max-frequency because it is backward
+compatible. The naming can be discussed after you send a proposal, but
+do not include "non-phy" in it. It shall reflect the fact that with fine
+tuning we can reach higher frequencies on certain operations.
 
-There is no single reason in 1/4 and anyway it would not matter. I
-already informed you how you can improve your code.
+Mark, any take on this?
 
-NAK
+> I'll also test the approach you suggested and share my inputs based on
+> the results. By the way, where are you insisting to adjust/switch to
+> the maximum frequency - within the controller driver or in the
+> spi-core?
 
-Best regards,
-Krzysztof
+It is preferable to make the decisions in the core and avoid being smart
+in controller drivers, if possible.
+
+Thanks,
+Miqu=C3=A8l
 
