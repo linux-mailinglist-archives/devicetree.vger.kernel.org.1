@@ -1,55 +1,56 @@
-Return-Path: <devicetree+bounces-265219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265220-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eAKoFFhtjmnuCAEAu9opvQ
-	(envelope-from <devicetree+bounces-265219-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 01:16:24 +0100
+	id WMcAF2dtjmnuCAEAu9opvQ
+	(envelope-from <devicetree+bounces-265220-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 01:16:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3128131FD9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 01:16:23 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CEC213200B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 01:16:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 592FE309A2E7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 00:15:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2999C30A6BC7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 00:15:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DB74219301;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59E0C2253EB;
 	Fri, 13 Feb 2026 00:15:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dBJgHY44"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbZSLlWB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E621B20DD51;
-	Fri, 13 Feb 2026 00:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 277B6220F38;
+	Fri, 13 Feb 2026 00:15:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770941723; cv=none; b=ld5MeC7oBAC9LaBqgeoSqxc6e1ue71QBFogVp7KvEqXWE3MqJvHND5HiLOsvJ4S9HXr/mBv8DLRQMoeUW+l6utVbG3+3tyscxYRvpqHwFOeZTtzz6tvyGM6VpgOmFv6pIApLC1YsmsKtC6oJ8PBHRR3/apHY3q7zXr35xIR0Ne8=
+	t=1770941723; cv=none; b=ofZncEOuu3OHr/BcKFLONk7gKWoZvoJoycAhWf7EOZcA7Gg4Yg7aP38jJNeMiI08/62fIFZJvRD0Trvjt1aWPupDesJEdCgvu6VS9UI7oDkCNx50nHZyCzUU5ImbE7vFW5Pt50uVz2ckeYNzl7j3lOiY/NVZJOm7gDg7G3z8b2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1770941723; c=relaxed/simple;
-	bh=0cagQQWs1EQdChAxlxHuUUZ51gQ+OoWY5PxjVHvtV3E=;
+	bh=kbn4C8NgmoBQzHsuwllEDpxc5+yBJkccQL4mCYwFGbQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=f5uRSkCvQ7dWM/1M66xRBTSFACG1w253xbXwAsR01cm7vo7FSlAVJjOD7YMOmO/klhIJFjEzrVsxHXGhsOrcy76gEiyeo1u8LYHYJtGk70BtxoyzBG1fLSwCnFGCHynCRSXs1WlYTtR1g00aYoFZe2dgMpxfSNb24pjVBH6OnKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dBJgHY44; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A3D0FC2BCB3;
+	 In-Reply-To:To:Cc; b=s4MR4k79/gp0lAkoNqDHJ31Kunf/KTtwQYX8kaquvwtoEDQsk4CaPHAe8gCeq0BHcDMjMqDLG8zNE2isBJIzUjk+6kTeu0bx/RjZUeIvm4LCxVmr8RrZd4vGWpRcrk94/+23VarJiW11Y/km0Iv6pUAjcja1Qf1grp81u/s2mbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SbZSLlWB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AAC8EC2BCB9;
 	Fri, 13 Feb 2026 00:15:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1770941722;
-	bh=0cagQQWs1EQdChAxlxHuUUZ51gQ+OoWY5PxjVHvtV3E=;
+	bh=kbn4C8NgmoBQzHsuwllEDpxc5+yBJkccQL4mCYwFGbQ=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=dBJgHY44dTIuOY9xXALHU9Y/QCqRKAHspXUjwHRr34EaF0+tLS9UWE8A9PreFAjpO
-	 i6BL4QzyR407nVAQvGJ/cuaNur5mEI/Vfg3x18glhy66hsmNmTHPfgkdatH8R1UkFd
-	 R2W7GTTkbzhrAC4ki0qFWNcRIu+xktyeSuxDWVfGw1QTgesnYgSFkxrY0J0eGkB5Se
-	 qqLdoDEz+A1gSfei/kDLBT1BiEJzOcwGlbVMrdA6meoB6xww1v8BAVYTD9xDTfbUp0
-	 /cuHwEu+EaDsqes3AOgKlSt0zf/QjAAnq7z//oWAzoewC44ZTOQNDNGvJFAjmRaMnC
-	 2aOQGCwqkVDYQ==
+	b=SbZSLlWB+uyZw+umSQ1E7KOTp6lxAGrm9eOjJprTjFaPi3I/n7D9+g6JMVPuURren
+	 coNhVEii/mxACikNsM94a3jjGRf6m5nf/uVjwDaRUXEtVxU7bg148E8usVtdUQ3om0
+	 HdccU/9vl9YwuVs0zihcgqjta67Jbjv/iJx7CIWvvNA782toE9Hcox196TGgI2rV19
+	 abaPpM3CmK6bVwbOtbIR7zXdGO4ucAB/6Y6/KzZezSWb0hB6Qm1sIuhSlpqD1vD4Lg
+	 dlkZtokY6VX2vtwu7/N85ifQD+HGfjF5q7KFTJibW8vd3As/JAnIfbzK/cLqydwIoK
+	 PSTns9qdFFh/Q==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A4A6EEA872;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8DE75EEA876;
 	Fri, 13 Feb 2026 00:15:22 +0000 (UTC)
 From: Abdurrahman Hussain via B4 Relay <devnull+abdurrahman.nexthop.ai@kernel.org>
-Date: Fri, 13 Feb 2026 00:15:19 +0000
-Subject: [PATCH v11 4/7] i2c: xiic: cosmetic cleanup
+Date: Fri, 13 Feb 2026 00:15:20 +0000
+Subject: [PATCH v11 5/7] i2c: xiic: cosmetic: use resource format specifier
+ in debug log
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +59,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260213-i2c-xiic-v11-4-5d18aea11bde@nexthop.ai>
+Message-Id: <20260213-i2c-xiic-v11-5-5d18aea11bde@nexthop.ai>
 References: <20260213-i2c-xiic-v11-0-5d18aea11bde@nexthop.ai>
 In-Reply-To: <20260213-i2c-xiic-v11-0-5d18aea11bde@nexthop.ai>
 To: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>, 
@@ -69,11 +70,11 @@ Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  Abdurrahman Hussain <abdurrahman@nexthop.ai>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770941721; l=2969;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770941721; l=861;
  i=abdurrahman@nexthop.ai; s=20260119; h=from:subject:message-id;
- bh=4goe1hN23ExSd3bXmlNyi4c8jVT0rjfLxvQAv2IuPoE=;
- b=UG0j3nVRP5W7SvnQm4//0ani0A3FVvsGWRY67oVUvfCso0Nr4yMGnTlpamwnzNcgayMcWb+rV
- 6iFLUqzfA9tDd5RRgCfjO4tJxV4JbKRkZ2+2ER1kRMIdW8v0y/iOHjG
+ bh=58fg1T38jFleb0swh741hN3S1SY1m1FGjswU0Y+gW0c=;
+ b=nMJ+FAm5Y+DoCJAmk4Hyhfjm9uY2Br2aFcy0WDdixEHQkgFc+mbox3jTU66zde0Nb8+Y1TGzV
+ ah8gaUDKVL+B66m71/PXFzLFcOhjIRENGzKBZbGw1Rqt7lMlnzpmwgj
 X-Developer-Key: i=abdurrahman@nexthop.ai; a=ed25519;
  pk=S+ysnf+NwMcBdHBlyKIUEAtaFGSIhQwcJcgcXhq0osg=
 X-Endpoint-Received: by B4 Relay for abdurrahman@nexthop.ai/20260119 with
@@ -86,11 +87,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265219-lists,devicetree=lfdr.de,abdurrahman.nexthop.ai];
+	TAGGED_FROM(0.00)[bounces-265220-lists,devicetree=lfdr.de,abdurrahman.nexthop.ai];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -104,104 +105,38 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	HAS_REPLYTO(0.00)[abdurrahman@nexthop.ai];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nexthop.ai:mid,nexthop.ai:email,nexthop.ai:replyto,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email]
-X-Rspamd-Queue-Id: F3128131FD9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nexthop.ai:mid,nexthop.ai:email,nexthop.ai:replyto]
+X-Rspamd-Queue-Id: 1CEC213200B
 X-Rspamd-Action: no action
 
 From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
 
-Re-use dev pointer instead of referencing &pdev->dev everywhere.
+Use standard resource format specifier %pR in debug log.
 
 Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 Signed-off-by: Abdurrahman Hussain <abdurrahman@nexthop.ai>
 ---
- drivers/i2c/busses/i2c-xiic.c | 26 +++++++++++++-------------
- 1 file changed, 13 insertions(+), 13 deletions(-)
+ drivers/i2c/busses/i2c-xiic.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-xiic.c b/drivers/i2c/busses/i2c-xiic.c
-index 20cee7b6200c..377fa5948c3f 100644
+index 377fa5948c3f..373c00a93034 100644
 --- a/drivers/i2c/busses/i2c-xiic.c
 +++ b/drivers/i2c/busses/i2c-xiic.c
-@@ -1429,7 +1429,7 @@ static int xiic_i2c_probe(struct platform_device *pdev)
- 	u8 i;
- 	u32 sr;
+@@ -1518,8 +1518,8 @@ static int xiic_i2c_probe(struct platform_device *pdev)
+ 			i2c_new_client_device(&i2c->adap, pdata->devices + i);
+ 	}
  
--	i2c = devm_kzalloc(&pdev->dev, sizeof(*i2c), GFP_KERNEL);
-+	i2c = devm_kzalloc(dev, sizeof(*i2c), GFP_KERNEL);
- 	if (!i2c)
- 		return -ENOMEM;
+-	dev_dbg(&pdev->dev, "mmio %08lx irq %d scl clock frequency %d\n",
+-		(unsigned long)res->start, irq, i2c->i2c_clk);
++	dev_dbg(dev, "mmio %pR irq %d scl clock frequency %d\n",
++		res, irq, i2c->i2c_clk);
  
-@@ -1445,13 +1445,13 @@ static int xiic_i2c_probe(struct platform_device *pdev)
- 	if (irq < 0)
- 		return irq;
- 
--	pdata = dev_get_platdata(&pdev->dev);
-+	pdata = dev_get_platdata(dev);
- 
- 	/* hook up driver to tree */
- 	platform_set_drvdata(pdev, i2c);
- 	i2c->adap = xiic_adapter;
- 	i2c_set_adapdata(&i2c->adap, i2c);
--	i2c->adap.dev.parent = &pdev->dev;
-+	i2c->adap.dev.parent = dev;
- 	device_set_node(&i2c->adap.dev, dev_fwnode(dev));
- 	snprintf(i2c->adap.name, sizeof(i2c->adap.name),
- 		 DRIVER_NAME " %s", pdev->name);
-@@ -1467,9 +1467,10 @@ static int xiic_i2c_probe(struct platform_device *pdev)
- 		return dev_err_probe(&pdev->dev, PTR_ERR(i2c->clk),
- 				     "failed to enable input clock.\n");
- 
--	i2c->dev = &pdev->dev;
--	pm_runtime_set_autosuspend_delay(i2c->dev, XIIC_PM_TIMEOUT);
--	pm_runtime_use_autosuspend(i2c->dev);
-+	i2c->dev = dev;
-+
-+	pm_runtime_set_autosuspend_delay(dev, XIIC_PM_TIMEOUT);
-+	pm_runtime_use_autosuspend(dev);
- 	ret = devm_pm_runtime_set_active_enabled(dev);
- 	if (ret)
- 		return ret;
-@@ -1481,9 +1482,8 @@ static int xiic_i2c_probe(struct platform_device *pdev)
- 	if (ret || i2c->i2c_clk > I2C_MAX_FAST_MODE_PLUS_FREQ)
- 		i2c->i2c_clk = 0;
- 
--	ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
--					xiic_process, IRQF_ONESHOT,
--					pdev->name, i2c);
-+	ret = devm_request_threaded_irq(dev, irq, NULL, xiic_process,
-+					IRQF_ONESHOT, pdev->name, i2c);
- 	if (ret)
- 		return ret;
- 
-@@ -1526,21 +1526,21 @@ static int xiic_i2c_probe(struct platform_device *pdev)
- 
- static void xiic_i2c_remove(struct platform_device *pdev)
- {
-+	struct device *dev = &pdev->dev;
- 	struct xiic_i2c *i2c = platform_get_drvdata(pdev);
- 	int ret;
- 
- 	/* remove adapter & data */
- 	i2c_del_adapter(&i2c->adap);
- 
--	ret = pm_runtime_get_sync(i2c->dev);
--
-+	ret = pm_runtime_get_sync(dev);
- 	if (ret < 0)
--		dev_warn(&pdev->dev, "Failed to activate device for removal (%pe)\n",
-+		dev_warn(dev, "Failed to activate device for removal (%pe)\n",
- 			 ERR_PTR(ret));
- 	else
- 		xiic_deinit(i2c);
- 
--	pm_runtime_put_sync(i2c->dev);
-+	pm_runtime_put_sync(dev);
+ 	return 0;
  }
- 
- static const struct dev_pm_ops xiic_dev_pm_ops = {
 
 -- 
 2.52.0
