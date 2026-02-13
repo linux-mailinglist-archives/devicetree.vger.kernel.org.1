@@ -1,230 +1,211 @@
-Return-Path: <devicetree+bounces-265252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265253-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +DYTO+C3jmkwEAEAu9opvQ
-	(envelope-from <devicetree+bounces-265252-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 06:34:24 +0100
+	id 24YQKtW4jmm2EAEAu9opvQ
+	(envelope-from <devicetree+bounces-265253-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 06:38:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86D2C133055
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 06:34:24 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78560133079
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 06:38:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C0CB9301DF7A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 05:34:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5BA02303AF31
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 05:38:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC261AF4D5;
-	Fri, 13 Feb 2026 05:34:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D83724677B;
+	Fri, 13 Feb 2026 05:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="WhJDdEin";
-	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="v/DDwINB"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="lHftERZD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.168])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11023128.outbound.protection.outlook.com [52.101.72.128])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7AD329CE9;
-	Fri, 13 Feb 2026 05:34:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.168
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 313532E645;
+	Fri, 13 Feb 2026 05:38:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.128
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770960861; cv=pass; b=UM6+0UEXzfpJ0/uY9P1M12rbAbMrWIZ3Nj51C4xmlLvwLD06r9VEpMWBwxfRmKxuWQb1be3tYY+gjkwRy64rHvfpPV4hwfa2gq2ass2Rk8HIUQC+e/wdI8UUMc6baS8DmRJmdbRZghQRN53LK4d4sMs4hjPlARM0hKKnhWmUODM=
+	t=1770961101; cv=fail; b=YuBZGsWRZoSDBDmR3ErYyzrBwKavTlf5PURZDQ2qFW47dHXaxkRwU0taqqPmo2YEdDwnhFKEjDo/FhivsZyuFSfUH4Gh+JbR7OUgoHG18aY4adEhu6gIuqd4s7KR+dcvFPT4gXZqE6JWMB6TEj5IDHRb8RmF3eBHs/e4dQ1ZDKE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770960861; c=relaxed/simple;
-	bh=E0gQnviZKfBZBl+35onLQqA9d99Wl4wFIpJ+xenvVCo=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=LttGOyEbtlhlginr7MAyc6Zi184UKrQZ8Xy5Gvc+MfS9XlzAEkt586DuB3hsGKaQwD23jBgwm8iv0k+zzi5nim47HKZxJZXcdvM3WrS2ZeogStyVcpZzhkM2VugnUaOgooDN+zxjTossMnjA/v3rCpuhT/D8Zbh1EV6wV7IqHto=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=WhJDdEin; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=v/DDwINB; arc=pass smtp.client-ip=81.169.146.168
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=goldelico.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
-ARC-Seal: i=1; a=rsa-sha256; t=1770960839; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=gnGSP7XBqFzhKVj9JBCmaNFbVQyX2TVmgA7490ha+uBZdGHnxu6W7AE8ga+hZQXW7D
-    ksc5myr1mGcqCBwEFO1q+SltV7d0Np8XVOcOFiUVYUE6iUqgF3KtCZooB53I5Mp/mMsc
-    YKqaSsix6iZZfLKqyVlJ+ijOfi8kzNvXNHIjQwzo7pXJBSJ+BABFqEQjW24UHfoPDh4b
-    YE9EJwIxGi53NmHqR+GJImfZJjZMOeQTa+YSBaG1rccWubz+AlsEVz0N7nUjSNhmGNBc
-    Kc5mBoz+Mr9TLJzXoWxGwTUqSNbG0MIIcNYoWqWJxzVAVHz+vuArDGSvHBzUJVBX8tc6
-    J0Yw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1770960839;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=5YEwoFG2OaLSjd8Yl8JyESysYQ2pvDaXqlQbmK9OUVU=;
-    b=WIcg/q71lCdX/NOhdCdnb7xUirNTmpH4YaEnMU6gBPy7kIg4O5bnzsdR6v7PlTX2Me
-    eskEVgU2s8uOdU7ogFhXdY8d5p/JR1tENy43HGkO7nxf2B7B3IgRC1DjAGkoFbHi5Q4w
-    m258fH60teuumO3eOqM4iW7bB8nCovi97Ku8NCO/qr/g6i5MFSH5QpnyD70kyQWktc8I
-    MxFSjGVYsIQqwacWev7Yt43NT0LgZSHoFIrt4fen5E8Mfh/mc8L2+Pc1s1LVzKWvqhXm
-    bE3IxlBI5TgdS0UVrDyYz3mqM0l/DCA8tluNnkyQDQJrkZmBU/1k2njMQhRgcPS3hV+m
-    Omdg==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1770960839;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=5YEwoFG2OaLSjd8Yl8JyESysYQ2pvDaXqlQbmK9OUVU=;
-    b=WhJDdEinlmCOH7tjMzGe3Wf3WYFeEQCybgpE97c1h9MpoK2Ewlp2ZVkkJw/yJuixdm
-    A+dSrbaZuCCMj20zqzZmjBWEVxsQdGzCXd2QnCudO1ek7ZWm74jIKKVr3f5arDMxv1RX
-    AXK+Obe7WzSAVefE6+aKLNq7ZGUIXC0S/nrcpOXel/O2Z7gqk+mapzCFlYbzBPcm8kq1
-    HA155Fi4K3KoPATNGB3CSzEc09HkOWBqIu687ZIheZ3GecVcEU58NWZwnQRo/wgoquUS
-    5UN6CI/FDzvPLgmrFPUhStZ7Mrq9Qft7IxZezekb2YILdm/EFSoFBLU0wvGJXbSSEVo6
-    AAFA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1770960839;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=5YEwoFG2OaLSjd8Yl8JyESysYQ2pvDaXqlQbmK9OUVU=;
-    b=v/DDwINB+0vQ4LL3/TCJecH2XW+VUC6T7quALpW1StFMJK3HkKmabY8vs5z+mP8PXo
-    fowTgXLR0kirz+TtIZBg==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yfzsZ"
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 55.0.1 DYNA|AUTH)
-    with ESMTPSA id Q3a36b21D5XvW2c
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Fri, 13 Feb 2026 06:33:57 +0100 (CET)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1770961101; c=relaxed/simple;
+	bh=q3BgKwInqGX3TFrh+pFkKO/Ze5mCH1JgILNtITiRaP8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Fg+b5vrtvcWzBBQ/1lx7qs7FhOQHpS1RVEFc7Xi4qxOKiYAfCxpLpG47vfmBEJau5Luug/1FGnCm3kYYmfwWKZE02smAOtSC0UDc+RPgHJP3UJfk+HmWmJ+N2uCk3yrZbBIozMGFuiMCpBwusmF6Y34N3gppAMH3m1sBLjCPiRE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=lHftERZD; arc=fail smtp.client-ip=52.101.72.128
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZdMaMMfFs4EsGHxihq2csI9VfWbjrXljI28K5C4ezIeun14HndbkiDwnDbYYhPgfrvCL7yCm2rD7kZgbr/pUfBSt7jL9y/xDSR6OTJmBOCS6Ol9dV1ND2rjD+fbISTavIKsvxJoL5a98+jFByaCMfzzLSIZuYIDMNylFS/tghyI5wKfxCsVaGhP6LyxrkRSV4qcUoogmUxJXRjNnTt2021C9ABSfSciSAWA8xYG/lDUsHehZxWKHqmhuifAldmR1QOPNwnlhY6Pny8UoslE4H/rfXphc3FaXUY+EZvSPSS6wbOVUdTaZ30Kh3vpr8eBEf0leFK7H/Kds0IVnWt/q3w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=heZmo6aA9aKlebHJSn4JDKai8Wk8CblYl9xak6qAoT8=;
+ b=Xv16zYqsvh/zCKyOItAw12BQzeoSIq7NfM6u01MD3bsMMCQzvDj/wC/nHcHQRZVnQDZY/x0L+M5Ayr/GaL2DA5XVKnbMuKRbvJFyxIZjDcSvSNquAvgO/unzLE2dib1hbtXkwekKlmVqfb8Nke927khlcoZ0raxJjreIdGrwk0aCy57HuK7JWYNZ5qK/60B2MlzbnLP+guub3DsyKxHKLbRWkYBhgOLt1qzzQ7ogZcd0IBrEgFWuU/WXNitL2I9NAR00lShSTTurCwkpP8qwLZOedaDBvAa54ai88/dwFcZkeBnAg9znX6JKTzvVF9XOk+SwtjETy1BWWnNdPqvnFw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 91.26.50.189) smtp.rcpttodomain=ti.com smtp.mailfrom=phytec.de; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine header.from=phytec.de;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=heZmo6aA9aKlebHJSn4JDKai8Wk8CblYl9xak6qAoT8=;
+ b=lHftERZDibp6uQ7qpv+fWXMp6C31U/jkoyPR0tpGibv+PcTy6S9UFmg7NYyf+uhZYSSv14h/veKCzAXUIaMJKvsfNaYJQNQwVZQnaSQ5YA1hHvFo2B3grDmjIopIpCO68d8x0i5v1hm7xgp5nXd7VMyHTa2ncn6lJvLUwHJ+oEB1IF5AEOxOChoVkXoArPxEntzu4ojHGj1Ep9CGYBqXTrdcUjzKXdS8ZPsZVUhwDv3ZjUxLFvmxyHL1v+4qTTpbVfnV7gO3EB6FLYSsFvrcxhvcVa6aEB1OGpswr8kqQjK1+O+uarryI38X+bDEwZyiODK2joX+wgCz8zhKsMTqVw==
+Received: from AS4PR10CA0025.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5d8::14)
+ by AM8P195MB2729.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:32d::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.11; Fri, 13 Feb
+ 2026 05:38:14 +0000
+Received: from AMS0EPF0000019E.eurprd05.prod.outlook.com
+ (2603:10a6:20b:5d8:cafe::5e) by AS4PR10CA0025.outlook.office365.com
+ (2603:10a6:20b:5d8::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9611.11 via Frontend Transport; Fri,
+ 13 Feb 2026 05:38:11 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
+ smtp.mailfrom=phytec.de; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ phytec.de discourages use of 91.26.50.189 as permitted sender)
+Received: from Postix.phytec.de (91.26.50.189) by
+ AMS0EPF0000019E.mail.protection.outlook.com (10.167.16.250) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9611.8 via Frontend Transport; Fri, 13 Feb 2026 05:38:13 +0000
+Received: from phytec.de (172.25.0.51) by Postix.phytec.de (172.25.0.11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Fri, 13 Feb
+ 2026 06:38:13 +0100
+From: Wadim Egorov <w.egorov@phytec.de>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
+Subject: [PATCH] arm64: dts: ti: k3-am62-phycore-som: Add 128MiB of global CMA
+Date: Fri, 13 Feb 2026 06:38:06 +0100
+Message-ID: <20260213053806.219495-1-w.egorov@phytec.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.4\))
-Subject: Re: [PATCH 1/5] ARM: dts: ti: Enable overlays for all DTB files
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20260212231907.6120a2e2@kemnade.info>
-Date: Fri, 13 Feb 2026 06:33:46 +0100
-Cc: "Kory Maincent (TI)" <kory.maincent@bootlin.com>,
- Aaro Koskinen <aaro.koskinen@iki.fi>,
- Kevin Hilman <khilman@baylibre.com>,
- Roger Quadros <rogerq@kernel.org>,
- Tony Lindgren <tony@atomide.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Russell King <linux@armlinux.org.uk>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Bajjuri Praneeth <praneeth@ti.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Louis Chauvet <louis.chauvet@bootlin.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <9D7424B6-2022-4B03-9B8C-455CD3E3FBF1@goldelico.com>
-References: <20260212-feature_bbge-v1-0-29014a212f35@bootlin.com>
- <20260212-feature_bbge-v1-1-29014a212f35@bootlin.com>
- <B3366A17-641F-4E02-A5D4-978F525E0A96@goldelico.com>
- <20260212174718.7daccb70@kemnade.info>
- <719BF710-26DF-49AB-A016-D2306F0389E2@goldelico.com>
- <20260212231907.6120a2e2@kemnade.info>
-To: Andreas Kemnade <andreas@kemnade.info>
-X-Mailer: Apple Mail (2.3826.700.81.1.4)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
+ (172.25.0.11)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS0EPF0000019E:EE_|AM8P195MB2729:EE_
+X-MS-Office365-Filtering-Correlation-Id: b002d050-4d36-414d-7f05-08de6ac214a5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?rsycGlD4Dla/thd8pPiokAutu0CUkfU4WNEtp29Fz8a8503/FbDcac7xrWm6?=
+ =?us-ascii?Q?J5VurT3lQHv03zp7C+TqEPaA6wYg0iwCPp8T2xlt1DOF1j8Ver6qL1SAMejj?=
+ =?us-ascii?Q?2IFyaZv/QHhOhOYKE4KyBiABJKv0wVYN0Dn/gLkheER9quMcTjPTc87MtFXi?=
+ =?us-ascii?Q?GltLwAK1ox74xSl4pf0SsgiVIS+N46qGjqfGwJ09kImwnzbbROAX9sRPMPF/?=
+ =?us-ascii?Q?LIZVV/E1VkbUXPDLtD+n4XUuLJcP+BWnKj6PsKEqOS0ICa9HgA4aYZoRxhD0?=
+ =?us-ascii?Q?NSLTlgGy8sRT9UO+QZZyKWdAVrW7hTgmHaYH+xEQc7dw7c8CmXwAsXk48z4A?=
+ =?us-ascii?Q?SiX5LXcanOn9hVodWSSSWizCpEoKCy1/+lMdFncWCuldmAzkOPfM5Rr/pS/I?=
+ =?us-ascii?Q?IdLrv2oLAFG1LYUBqwfTdGNKKG+o5ci6fuyi2NXdpXV/6HTOicbCRZtGbdLH?=
+ =?us-ascii?Q?IUSeNWEkBNjXPtH/QRvs3EX/CW+N5nR9mrt+pPCFc5TQXmXVnLg5TJgNSj+M?=
+ =?us-ascii?Q?SurUx5q14GxtpfKeWSIC7l9lOGMKRkTQaOPlhgEc3oQspurffX5dNxhX6V/o?=
+ =?us-ascii?Q?CDLrsmpPD/QJR8fgzRGverYUDeNs9BMskgPu5rk4ReBW0VSo/QSTzP6pg4IW?=
+ =?us-ascii?Q?cRH0JJvUI9I+T66NErqrlieyO552Z6chuYDlCRda4Zwyf7fuLaehFsIaLxvU?=
+ =?us-ascii?Q?l1+07ibMzqti1XFTW839pEprWRb/DCUJc+Uqo1XvwBSXojhI3An5fETDTlvT?=
+ =?us-ascii?Q?B3sfT1M2kzAH4Nf5r9G7KBtx8vuYV8nSUDuC3B8VczcC7rk1NceqF4zssG3q?=
+ =?us-ascii?Q?3TQoebOeO1pyLnwDT1nD6k8pERgrvvLO4AcgaD6nm6Y34qzPNysYAlP2vJWd?=
+ =?us-ascii?Q?zWL52tgW4ram2/Hn9PXg5F0VELlxhl1zlmBoUOD4LsXOhnjZVbIIFAspmkYU?=
+ =?us-ascii?Q?yOg2thtJ8wVlSfU1hPeKDuybfMcvYUb/PboPWxqQPmsKuU5O19HH/A0IburM?=
+ =?us-ascii?Q?ZXcSj9TJ65yl/Tf3T7gkkapg/CJRztxZiRexyw+4FzJ6sIexbxC8/wbuq6pm?=
+ =?us-ascii?Q?0nCgtRqpBapk2V6I+0wN2i7FB4VLFRmc54pOEbbOagbRH5/iSvqUco/uafLR?=
+ =?us-ascii?Q?8toBFGC/PNiKomXS6cYS7p4MdkdSfrjarr3NeO0Igzq2Cf16i8pfbI5NKZ0s?=
+ =?us-ascii?Q?G0EljF+PJGQjajX5fnrUubQ9RUzHDAQLJTQRQeFh6IqkNs3+taMPJvlWeJyM?=
+ =?us-ascii?Q?r9hzyL1ghT3aC3t6guOmvjBL4+JrhgjdbG+9DCMhacudVP6khPc3pC6Go1SA?=
+ =?us-ascii?Q?xepwFaXtk7Qcz32SKim0DmS6iPZfjit3QaCmcsdjEoyKxkU1xDnYLowYkV/i?=
+ =?us-ascii?Q?F7/IxHPbaNJwzqEdSwW/UfQlbiVgIN58XJzkghFvbx74mOl3pxIOP0vWHiFj?=
+ =?us-ascii?Q?bG/ldAYgErC4qmjfQ9kuPKC3UhptJFY5/9ZXQSYoEvGURbXG4MLOKDts5RaW?=
+ =?us-ascii?Q?wu16BcvLyV5/8vQPc0UeIW8Mq+cBqpm6irJOjrB1QnjBqZMHzbbGgMmHeDAS?=
+ =?us-ascii?Q?KUfsI/LxtJANQp1Qg4gInjaW7yFL17K1g2Tl0uS0tEhdfVCDnq+JTLVnYYqx?=
+ =?us-ascii?Q?4AK6mEP6MZQ44wew85kYtE51ink7WfbvEItMS0+0i7IVEOaKFmSaGa2r+OUU?=
+ =?us-ascii?Q?+AUWtg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	8ExpMPnNvYPRwCVlYpA41yXvHh8tAzP3NYEHvf1F3X+oHOKO/697QRLEF2xy2IlUUPfzVND4GmQggOQyawLOH1eqqZjGH537MHMDEK6pctHlwalhkiUvMtVxcSpJSfRZOCvpvYAOHo1X6mgI6dftfs/MV05dm0uiL1XlWygZqKpmE8iUmNlrr52zN52XtDHop4VH0tshQEo9mDlVC+U4M3uL4vHoZB1aBSTzvKrUFa1O/rox1zsjrUGg1nMpVIG9MLT8xm4mZufyeSMViHCuqVtuPgXKN8vI5ZbjufK5QKNK1uoXm3mIuoxvgAPmaUlBKBXfLZ2keHC3BPxik01ruCIuBVRHN5//MrHwp1ESVvVqjgQd+tBg7VSgJTPZXtY1IYbgjprU6/1RjjM1uu1Ux+oNPiqwPkva48t09CkNUG9H8CYxQbm2y6mw84H+CwNR
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2026 05:38:13.5325
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b002d050-4d36-414d-7f05-08de6ac214a5
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF0000019E.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8P195MB2729
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[goldelico.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[goldelico.com:s=strato-dkim-0002,goldelico.com:s=strato-dkim-0003];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[phytec.de,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[phytec.de:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265252-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265253-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[phytec.de:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hns@goldelico.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[goldelico.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[w.egorov@phytec.de,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_COUNT_SEVEN(0.00)[7];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[kemnade.info:email,bootlin.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 86D2C133055
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,phytec.de:mid,phytec.de:dkim,phytec.de:email]
+X-Rspamd-Queue-Id: 78560133079
 X-Rspamd-Action: no action
 
-Hi,
+Reserve 128MiB of global CMA which is also marked as re-usable
+so that OS can also use the same if peripheral drivers are not using
+the same.
 
-> Am 12.02.2026 um 23:19 schrieb Andreas Kemnade <andreas@kemnade.info>:
->=20
-> On Thu, 12 Feb 2026 17:55:43 +0100
-> "H. Nikolaus Schaller" <hns@goldelico.com> wrote:
->=20
->>> Am 12.02.2026 um 17:47 schrieb Andreas Kemnade =
-<andreas@kemnade.info>:
->>>=20
->>> On Thu, 12 Feb 2026 16:49:43 +0100
->>> "H. Nikolaus Schaller" <hns@goldelico.com> wrote:
->>>=20
->>>>> Am 12.02.2026 um 16:26 schrieb Kory Maincent (TI) =
-<kory.maincent@bootlin.com>:
->>>>>=20
->>>>> Allow overlays to be applied to any DTB. This adds around ~40% to =
-the
->>>>> total size of the DTB files on average.   =20
->>>>=20
->>>> Is this unconditionally enabled or can it be turned off by some =
-CONFIG? We have
->>>> our own defconfig so I would not worry if if is enabled in =
-omap2plus_defconfig
->>>> and disabled in ours.
->>>>=20
->>>> We have several devices where the boot loader can't handle overlays =
-(never touch
->>>> a working boot-loader :) So this seems to only contribute to build =
-and load time
->>>> without benefit.
->>>>=20
->>> As long as you do not add overlays, the bootloader does not care. I =
-would
->>> like to simply carry around the 1-bit mmc overlay for one broken =
-board.
->>> That would help me. So I think there is a benefit but nobody forces
->>> you to use it. =20
->>=20
->> Well, it does not force to use the really good feature, but it forces =
-to add
->> ~40% more file size and some more compile time, if I understand it =
-correctly.
->>=20
-> Compile time, hardly measurable even if you just do make dtbs.
->=20
-> Size on disk:
-> a) if it lives around in a /boot partitions with kernels and initrams =
-in it,
->   then we are around 1% more space needed.
+Based on the use case described in commit c43dd2fe5316 ("arm64: dts: ti:
+k3-am62x-sk-common: Reserve 128MiB of global CMA").
 
-Ah, I see. I was too focussed on the "adds around ~40% to the total size =
-of the DTB files".
+Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+---
+ arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-For the Letux arm distro all DTBs are around 8.1 MB at the moment so it =
-will grow not that much
-(there are non-TI devices included).
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
+index e15da771bc07..3baa653257bb 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
+@@ -37,6 +37,13 @@ reserved_memory: reserved-memory {
+ 		#size-cells = <2>;
+ 		ranges;
+ 
++		linux,cma {
++			compatible = "shared-dma-pool";
++			reusable;
++			size = <0x00 0x8000000>;
++			linux,cma-default;
++		};
++
+ 		ramoops@9c700000 {
+ 			compatible = "ramoops";
+ 			reg = <0x00 0x9c700000 0x00 0x00100000>;
+-- 
+2.48.1
 
-So you are right, it is ~1% of the total if the kernel image is counted.
-
-Therefore, space should not be something we should be too concerned =
-about (although I remember
-discussions for driver code where every single byte did count).
-
-On the other hand this increases load time from (sometimes slow) =C2=B5SD =
-for a specific DTB by 40%.
-That should at least be discussed.
-
-BR,
-Nikolaus=
 
