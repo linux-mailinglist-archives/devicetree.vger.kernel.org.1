@@ -1,326 +1,486 @@
-Return-Path: <devicetree+bounces-265245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265246-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aH7RGqGkjmnMDQEAu9opvQ
-	(envelope-from <devicetree+bounces-265245-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 05:12:17 +0100
+	id kBBdIHyvjmkzDwEAu9opvQ
+	(envelope-from <devicetree+bounces-265246-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 05:58:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C1FF132DEF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 05:12:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BD7F132EBC
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 05:58:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 470C5315BED6
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 04:09:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E2FF7305CF4F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 04:58:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8486E24E4A8;
-	Fri, 13 Feb 2026 04:09:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33FB525487B;
+	Fri, 13 Feb 2026 04:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="aZgI1W12"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LDUlBCqf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012042.outbound.protection.outlook.com [52.101.66.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f169.google.com (mail-dy1-f169.google.com [74.125.82.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 072C51DDC1B;
-	Fri, 13 Feb 2026 04:09:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770955752; cv=fail; b=p88FEtR/jAlroSYEhvXfFgqHkV+9gYdqWegHhlv29UAekkZ9I3rBHPVeh905CTBYBC0HDdeaCjutEKlw50yCWVoxzYRt7AIv89KeTim1aRzSFBQQ0G/SsQkz0Dm1ImjLJpGUe+JRdGkeKYanFl8voH3ZTmnNrsb2bV+ObBZ9UBM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770955752; c=relaxed/simple;
-	bh=AAkUszj6SPnK2uMoevOU62XdwWErsKVAqBVjYvH/RUw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=sN4ILNa1GHqde20Q7KH7PmQTmYhVkhkuj2DRPt+92HldijenAKMJ5YIhv8jzyBGMHRFHcDN1EDd+2XplUwAxmM7lz5HsLXH0hMuPd9+JtmBS56Lc7QMBCALJL7VpAmPELr53krdBzJ1avKuf12mAwxbdxNUPcVSc8/PvrZoR8nI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=aZgI1W12; arc=fail smtp.client-ip=52.101.66.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ouqg1G1uOxjUAQ4fttN0THI6y8HWcknN4L+dBHQZijH53lNeCmwmRc/fguwPnRH8P8b3iyDNPKQlS1mkaU5ubkTCGm7QpODvtVHLpexbelkSxpJv0cBi3r/tlUKxAXtu3CvnwMpy1+Of1NkJHkxWCYlfmc/nu/ZR1P30K5MF6MN9kS2Dto3iSKJZ+pu2AkWPZom52zj2COyKfyVQFbisga/eYOz2aI0X0iJuz0JlW8SGMOIqa2SN0gImRO52UEyVi/PcUWuldxVZDNsJcDEkSzqEoqGc6/IUqCxEp9kLi83aZvjleagZsJ872P0pQh4B2tRIrNpwfBUZur/ue4j5Cg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iA6HH3oT7NxLhdanoXDLc8ORR9yhZ3AIV2S3H1AIpj0=;
- b=qRxj9pQB7j/3MDdak6xnMDN0FQm8SstilpAitzRGypkQRYw+I84AVFhr+UJgMXQuTEC4RAScGrA9gH4URolAtdQD6xbeq6CvwQBNSvZLAN/aIGClUS20+JtIpmeVSpz5Q68IZloKqE9DqMJYw6xAIMUHX3j0AkW+JmODzHK0Tr97KCwJIwxa8r8MsrofO4oawF23Mho4DAtGPaWB7E2XGGN3gYcXAGpCYlnmdW7mrG5gN1BhwbAplM8jpruMku72OaG+DKgDItUGDiMU0O0fz3IThVIO5/e+utEvpx7eekFucV42TIA5E6TbyYCIm6Fmkxh8X7gPVOViKrs5UFz4sw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iA6HH3oT7NxLhdanoXDLc8ORR9yhZ3AIV2S3H1AIpj0=;
- b=aZgI1W12XkGmA+ER4R5MDu7P5g3mW3/+JVle3SZ07c5Tij9lA2Nygqb9a0HJCrpQJcfugcbhpc3/w0ui9MqxKPxewwUQaeV93UHJLVW2+sJVsPJvtX4OvZf3TT6m1JrymmizkRDMkLlK04HWLByDHQwWXzfXYr3JIqY3tZF1kszT7+hQ4JVLKcjlntLkSCUD3Sh+K5NBvhiLWt0QTmslI/Z9djffysh/Tw/odEa81TJ4KTcUs91q2fPkyO2ISD1woJllfSinjcg/EWcTA8QGIAeFEChNw/37Dzkdvblacni3WaD6PTz7UkLaMZyij1WxuvnZ99N1gYZvB1Puz3UhcA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13) by DU4PR04MB11900.eurprd04.prod.outlook.com
- (2603:10a6:10:61a::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.10; Fri, 13 Feb
- 2026 04:09:08 +0000
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994%5]) with mapi id 15.20.9611.008; Fri, 13 Feb 2026
- 04:09:08 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: hongxing.zhu@nxp.com,
-	l.stach@pengutronix.de,
-	Frank.Li@nxp.com,
-	bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	s.hauer@pengutronix.de,
-	festevam@gmail.com
-Cc: imx@lists.linux.dev,
-	kernel@pengutronix.de,
-	linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH V5 12/12] arm64: dts: imx95: Add Root Port node and PERST property
-Date: Fri, 13 Feb 2026 12:08:52 +0800
-Message-Id: <20260213040852.3340547-13-sherry.sun@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20260213040852.3340547-1-sherry.sun@nxp.com>
-References: <20260213040852.3340547-1-sherry.sun@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR06CA0206.apcprd06.prod.outlook.com
- (2603:1096:4:68::14) To VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81DF92505B2
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 04:58:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1770958713; cv=none; b=IeLpo+5UPPwxaTRlFGzT5mSgKG8f2hLtrOe2ffCing6RIP+1QCvf3fAeuGIAaNj2dIJWIccpeUO4utfL2ppsfjzTUlk+kKiumiviGHD4/Ay+vkyUgGA0yOuxC1ObLmJMLsaCcVOnPSpB4DWVHrD/a1ZQku69X8mrqhtR7UIH2nQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1770958713; c=relaxed/simple;
+	bh=eRvFQXt0bkK7pDKSapaD6W78pFPmc8Voh9Ptsr0FL6E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DjQEmQYB1F/CcmaYBW2MuS6wY2AVsdrte8FYEG0Ir2f/uDPw2uaC79+iwoytMVoQM/uakWRz4GdcYMtdNSGD+y9Oc5I9JoQDVlX7mWW7PCskO8MYTh/zWSKMrDAjml2+mSSrBq488poOjsVvlxn60XAapv8sfL0TH9z0DB51R0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LDUlBCqf; arc=none smtp.client-ip=74.125.82.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f169.google.com with SMTP id 5a478bee46e88-2b740872a01so1039510eec.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 20:58:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770958710; x=1771563510; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=iGoHd6Wwp0UoOk5RmQ7t22wxxGbD4/6f+sXmlD85vTI=;
+        b=LDUlBCqfaXoYprRmNmNTuJxgLFyFLWLujRXyBRLqMziRH4X5gwSHlmVZG2Csrh0sr3
+         voEav7JvKWOwMroAzaw8Lqw39SnrlK3ys6BauWNPuh3SwpUOrbKoMH2DcNrGnUn9lr3y
+         UeO6MekMjR3eCVp79662bNBZ+YrufCGoNfVVuMYXp/J44yfuJC9uxXkha0mLERFr7P8t
+         OTggAerC5+wne52mlvo9b487eXHgMZoP7rJzXzMFN37Z1318PTvxv0Q54lPAoZ6CtR0x
+         utUk9SD3eg2qmaxIjiubZ+D+VlRbumyg6Qnbvz8iCiBBNSv168mBqvB2LpjNba8mEdNa
+         QtDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770958710; x=1771563510;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iGoHd6Wwp0UoOk5RmQ7t22wxxGbD4/6f+sXmlD85vTI=;
+        b=d5CfNxOmtb++7+btSeyk0AMUXBVILeq4XVVUph3luaK/j36MI/o69boVrmFYTpv6UT
+         eDZl2bFab0nZ8WkqBnK+Obhs2MQBAtaJREik0OqIpogXTPU8GD6R99UI7w7fuJX6DeBS
+         yJaJhOpWR8fUc0wBhwZt3anbTry+cKBIHQdeFNTPEYvoxqcmem/xH8syxg/Qupi/pnVT
+         NXpxD9c73yR2O9uRFMMHv2pWIsJ5wDvSSLJaNZ14tvJqTasFze3ZubgXAz9HCxRiehxP
+         RKWL5/5VJ+k9Jrh5J8cXWV28ZmdIxzqbI81Ir/LPW5jZY4i4TxT3AMSHwUJw/J5ir0KL
+         gZFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUZePBh6ZTuC3whaXoXVqV5mTUFYjbJCiyJ1xvWWOfG2TawuihvCNqrz+doWjH4LZR6dvvRtu6t/pYM@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxYktScQvG7DlTMCjv0VEgtfAST7ZRfj48lwLaGY6pYzd/v7XI
+	UU7nr/qQQCSfxeHB5DKfQLvfjAJGY74J1L1qdtoEpsVRs1lyS1HxoXAC
+X-Gm-Gg: AZuq6aL6XXJUClSTw/CbfGqYUzCrrBytIZznXrEEx1Mjvs9IpdV8O6M1LEGTQfDMGS2
+	Z5jlMrZS4Xzx0EkWi75AuTW6g/HsFjg56x2TK/KCDQUR1ppwIBiywMdZtKvkZWvlqX2+hmQ9vPS
+	8imEEAPTxCchuu2qf9jIrIrTJp7nDLHOChkkQbnBQE/3UgaWkW4hqcThZ4xdEYr4y1q7CDOfN/T
+	B2mfb9oZjEnmS/Pme7OmIhWSDgQ/KiEhdjA8miXAbKJDCYuGWH1MFWaUx3/uo9NWGaU4z+qQvVv
+	Rbvrr9WhIwsx0KKbVYCKIZw8/whpo2FuA9Mud32KIrukpkEAYS3RKmtgXtacThWCzE88qGqYlos
+	ePLh3s8F1nxVFapNoww3Pmf5hgoLwf/0EH/CWr3GdcwK90MhzRVfTUm4CJ2fK8RcZp9RfU7Yv/q
+	eWJ8iCaPQXFHRO77BCE/AnU96ULA7h++w4lgyFV5EoXWCFcpiqQ6JdvP/tEjWaLkQRUw1/bBrj+
+	bMCsB06XmY=
+X-Received: by 2002:a05:7301:fa10:b0:2ba:7717:2bdd with SMTP id 5a478bee46e88-2babc46ea54mr267397eec.27.1770958709451;
+        Thu, 12 Feb 2026 20:58:29 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2ba9dbd6524sm4833351eec.12.2026.02.12.20.58.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Feb 2026 20:58:28 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <4b1ab525-8a60-4980-90f4-c7a761cf1536@roeck-us.net>
+Date: Thu, 12 Feb 2026 20:58:26 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI0PR04MB12114:EE_|DU4PR04MB11900:EE_
-X-MS-Office365-Filtering-Correlation-Id: 48fd2b0c-af94-4cbf-9225-08de6ab5a2ae
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|19092799006|1800799024|376014|52116014|7416014|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?lT3Z3wA7hQdbHcKcyW0eY9OnHSK+LrTwEF3NT6WQPWc0rGIV7OrrNLLJ3NDr?=
- =?us-ascii?Q?rds5rNpotHqXhcm2qMgMNTEThOoOwvfR1agUQ4vuYNlcWv5f+ZCN2KoDVCV8?=
- =?us-ascii?Q?7/U3S9hOHtOx+25jIFPre6GT0lC7Hjl4IlnAVW/AKrZXuX9+ziHjIkE5Z2d4?=
- =?us-ascii?Q?o+dQqKPWEz5qfIGdlvTSykdYEIBTIsEAde11wnEcBOjQ6jINastV9mP8Dj5T?=
- =?us-ascii?Q?3rLH6fOBefZaIfQJ6TTa2LT2SmMJrr9hS8x6cOAVPTTUTJ4H9j+WCOMGGRPW?=
- =?us-ascii?Q?UY2nXEDdjVTiWKhGuX9WRTrdASXfJ3ZabSaWE7/uD9c5gA+H4ajOoSVU/TRc?=
- =?us-ascii?Q?TzzNwaLeQ59vVWcMv+vS/svRvPPdGO5Hbn5gwEz4VUiE1LAkEt8hsP0y+bq6?=
- =?us-ascii?Q?9e6uf1PGtgQZacsAb0pHCycjaufGMiIyH+Ww3YnJrhZFDgbQOKsAvg6Ul9Iw?=
- =?us-ascii?Q?pe55JpkjIvX9HpF2m17US+PROkdh87Nb8jTKlGnp3nU1x2HlLpTIAg5rrTdG?=
- =?us-ascii?Q?PMB/fIkcypTdWJlEVbRnFnmqm65PzPIZIw38Vv0akzt9dPTpfuqrDBzozYHo?=
- =?us-ascii?Q?dCAEUcBWN+41TLjudQqI6yiAzp/wtRkHBxh1ZzXxrNNDx7DI7zCKj2D4Iw+H?=
- =?us-ascii?Q?d2g07KZC7b2ruvYgVQE4xhfCinPQnPnpPZ0+KvbGfBGhLSILHh1MNBS60/+s?=
- =?us-ascii?Q?nPeStulYHrHgsLr5QxEnwg1GoduKVNAkheadz2N6gYA0moqhh0TSed/YXh4G?=
- =?us-ascii?Q?eFPshZhbLuuCWKz/udkP7E1TVNMzVqUn45eEWiPFXW3aB59kayS9Hgc+kElm?=
- =?us-ascii?Q?FQP93D+deH4j8nD0ZCG6ZGW9SD+jqy+J8z9dehHd/rRxE0ADfjKQuQa1CavN?=
- =?us-ascii?Q?gDpK//nBUsXxVolwuSAxamGwyo8hYEJdGezEYNhJrSNJKnsbBfI6k3fwPV2b?=
- =?us-ascii?Q?wYhoF4ZiA8rnny4Ksf2izTyt/4lCGPdVGMSwP+qIG2ZhAelq1Mg23yocbuW1?=
- =?us-ascii?Q?16t6iJgpyznhfVCNWp8BZH5H0kVhEX+Yxt1dFoo7mLh8sq9iP8J9NRUBlSeY?=
- =?us-ascii?Q?HavKfzDhX7SsPShPP7YgGKUTsaaY3s1h5NOaOMN0A46js6TqjDeBJd+4z9mK?=
- =?us-ascii?Q?Ncl8ZOXhylQ9Juh+Zw0agHedIBEyVHtSK/9FeavKj1FwNHLvm2DNc+Hu2WWA?=
- =?us-ascii?Q?3w0+u5vdHS1qQhB92egBHPk2a5cXUCmVneHnvSy1ATZiRFxhQMAdytNkwVlm?=
- =?us-ascii?Q?4XLwGRE1YpAyfjMBVQXQ6YH9H+CBwH+q4H0m9eowLxDHzf+vlOJZsMWAmUys?=
- =?us-ascii?Q?YY+ZF3vf1ZSyxdASEwm6TdlOnqxH0IEQG7WIM5WATLPGV2u0WD+tjh2AtTg+?=
- =?us-ascii?Q?dWTOepT+v9FmocbrxnZ7DcLXnL2tFgZo7E1r5SDiDERxrZM2q56O1+EWhy8K?=
- =?us-ascii?Q?778mbGjmFn2N9NzWjbaWtnTG1BqHNLa4ch+R/Qf/oS6cZCHwDnE4Qs+mSRdo?=
- =?us-ascii?Q?Vqh/NyB5aY2PFMfRKi206eUuWx2+Mafpe159lWiobYzI8xdp1liIUiztcV41?=
- =?us-ascii?Q?tKMw7MX3/rKBfdZCroWrEewk02pyEdBvex/sKvTeSUBEjty09axCM3gmcy3i?=
- =?us-ascii?Q?fw84Eyx9bltI8P/c7e6pYJXKG577/dogW2LMzXLcitlL?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(1800799024)(376014)(52116014)(7416014)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?SiWVuyKkAXvLI1KIwzOn/PLyziRk0ibxecSjF7sAS+98pEKKZ4+g0pi2DpFX?=
- =?us-ascii?Q?3UWK/j2iWPxwTb+AtAuXowvpgfw5gY22EHGk8R9U+SVIYYfc9MKpOrGizWdR?=
- =?us-ascii?Q?lHXLNiyy4PebZ5aG4IZz0ffHnTEQ/EFSXGFAVBrJ6/vobqt+Bq7/sch3/Vh9?=
- =?us-ascii?Q?OlhICW5qwtB0FeIX5tVE5KquojpWyjHtvtPnAeIBaado4z8j98Ol6aGoorsZ?=
- =?us-ascii?Q?U1d6cJQpIpZ/mSL8kdsr1HCumMxsLx1kG2rAVNcyegsLWriRlMs9So6R579L?=
- =?us-ascii?Q?cRk1haK9qkwbw9WQsHynAQt2Abzn8+hKkDlAqPTWPgXvm7uA8JKdVRDLHRCb?=
- =?us-ascii?Q?lfTzh0crM5ifuiNvEtiaEXltD0BB7rK1XISHWSWp/s+3BWRzxaV5eB+fOtOy?=
- =?us-ascii?Q?kKWnoZ5yXECSraXP551xq+tMGcxvaOV6yh80G1p9tN2+VOPNw4gNm3l6Hf22?=
- =?us-ascii?Q?n0YVmS7MxwqM1OHYzEDssvLE4/4ZEnBfXoUmyKrHDZ0XjH2U81cvh879gLbc?=
- =?us-ascii?Q?FS2HfByEFBr5+VcKkycJLHJPpA0WtThSeykXlK35QO9i/27+hSHrU5hGH8fw?=
- =?us-ascii?Q?mDTPGEzEei7tyQ6QIME5sljHoNQywpisQmt5Eoeg/1jm/6WtuBIN1Tdw0trb?=
- =?us-ascii?Q?5aZfeYINBHn4jQzThONDsm+XplemCGWDVT0MwWehtbOkZnxksIfk9fXnxc9t?=
- =?us-ascii?Q?1RsWEVWtZrOtPNsEO5iAx4s/9zc9da0CD2bPsDNMNlay6QPFTCOkyQoyPlxI?=
- =?us-ascii?Q?v895REPp3kf1rGdPuu/0BjSP1KVvs/GjYfqNFfPDavalP94xrlcKPWsvb/l2?=
- =?us-ascii?Q?rz5Qn725VtfPcCsF1lDlvTxh+UU1tSIE6M/x6Uy6vpdx7j4rRiOSUXnJf2Wo?=
- =?us-ascii?Q?n/HLSYWdJjdbx9pWN2Z80nEXo9oGCNA2TK26k3PKogwj+5mmzxjJU1VFf9dA?=
- =?us-ascii?Q?3EFaOcIuwBOQzVKyJNvslR9fU2aXa2EQGxhVtxlPeTrQmU6httYKTJk9kKL5?=
- =?us-ascii?Q?9/srYhEgGLKy1lLEjgZlqg79SQ1AA3W5nmDXTNRFEeEC+UTxV9HDsInjTpK1?=
- =?us-ascii?Q?BEX304LJZB7hQdUVQdoRS45N9guTOf0FHNSatIeP00CYXjgg5zllvYowsNWZ?=
- =?us-ascii?Q?suKG8tbBP1b6pNwoRy7tl+CuJ0VyP9pDS6x46um4b9i6PvaR0U8YOd1m5Ezp?=
- =?us-ascii?Q?SI0T5EipCDudNAdgXFLMGraMpiqPzWtB7UQSdLrQhr3D7AYTJTrij04DabQz?=
- =?us-ascii?Q?qQ7GGfe4W5P7erSY239NZR7c4Nx67ix0jKWKoDDAJrXI+vNEgS/8gVdv6P2t?=
- =?us-ascii?Q?p1D6HHBwMVS9Xyn3jyDa5tqcv6Eu0hi+jz+aK92VqxdSVTX3d/4D+nHkHp19?=
- =?us-ascii?Q?2g0EU9HEZJBhRlwwXAN5GOEAeQ8Qq1NXo4rEd+QjYhmmUoLGYy2ETLhVvVdM?=
- =?us-ascii?Q?F63wIK5g7L9yeOmmMZGC6Dqhk7uGLZGxpCzWv1p9aloJ2s1+rrJDu6lTbBbf?=
- =?us-ascii?Q?9RyBT9vREFHPU4uIWCKTLqOquyGMvPxJYCpdIJeq3lhO9UTs2ZfRNMh1/KhQ?=
- =?us-ascii?Q?vMwY7pbkZXBnttTxP5BtJwwjKB3FmE2Rjzwora9i3rTvcZgRurxSjml6n2fG?=
- =?us-ascii?Q?a72m27QhTQ0TYFjzvWICkz+ZAAjCJvlLhjuQNTq3wMs9X44mXAqA9JikRGN3?=
- =?us-ascii?Q?OhBjt4YYjsfVdW2SoLaD5Osb6G04RfJRVzZPr9KAss84JhdK/Pnenv9sJPNz?=
- =?us-ascii?Q?Wgd/gsujCw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 48fd2b0c-af94-4cbf-9225-08de6ab5a2ae
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2026 04:09:08.6423
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SfE4BLO0MM4T7IzTO4Uah7gnA6bs4rVwttyERsvJ3JbY6PL0Y58HXlypQrPYalLxG98jw5Srg5I7cUL8C59Jcw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB11900
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] hwmon:(pmbus/xdpe1a2g7b) Add support for
+ xdpe1a2g5b/7b controllers
+To: ashish yadav <ashishyadav78@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Ashish Yadav <ashish.yadav@infineon.com>
+References: <20260202080355.53061-1-Ashish.Yadav@infineon.com>
+ <20260202080355.53061-3-Ashish.Yadav@infineon.com>
+ <d0854014-7977-48b9-bf31-d66865352ecf@roeck-us.net>
+ <CAJKbuCan+5AMuGuqKg4V1qs5HYZQ9zgS9S1rDDJ1usjJAjEGqw@mail.gmail.com>
+ <CAJKbuCavMxc7xc4-QW95NfCaUCbLZck5nP1+iMtVxOt4LZ5esg@mail.gmail.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <CAJKbuCavMxc7xc4-QW95NfCaUCbLZck5nP1+iMtVxOt4LZ5esg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-265246-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,google.com,kernel.org,gmail.com];
+	DMARC_NA(0.00)[roeck-us.net];
+	FREEMAIL_TO(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265245-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_NONE(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,4c380000:email,nxp.com:mid,nxp.com:dkim,nxp.com:email]
-X-Rspamd-Queue-Id: 2C1FF132DEF
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2BD7F132EBC
 X-Rspamd-Action: no action
 
-Since describing the PCIe PERST# property under Host Bridge node is now
-deprecated, it is recommended to add it to the Root Port node, so
-creating the Root Port node and add the reset-gpios property in Root
-Port.
+On 2/12/26 19:45, ashish yadav wrote:
+> Hi Guenter,
+> 
+> I hope this email finds you well.
+> 
+> I am reaching out to request your assistance with a specific inquiry
+> regarding the handling of loops/pages for different VOUT modes
+> independently.
+> The challenge I am facing is that the Linux kernel provides a single
+> "PSC_VOLTAGE_OUT" for the chip, which is not page-specific, making it
+> difficult to handle these different modes independently.
+> 
+> I would greatly appreciate it if you could provide me with more
+> information or guidance on how to address this issue, as your
+> expertise in this area would be invaluable in helping me find a
+> solution.
+> 
 
-Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
----
- .../boot/dts/freescale/imx95-15x15-evk.dts    |  5 +++++
- .../boot/dts/freescale/imx95-19x19-evk.dts    | 10 +++++++++
- arch/arm64/boot/dts/freescale/imx95.dtsi      | 22 +++++++++++++++++++
- 3 files changed, 37 insertions(+)
+Best idea I have at this point is to announce a single mode for all pages
+and convert values for pages with other modes. We _could_ enhance the pmbus
+code to support per-page modes, but that only makes sense if more than a
+single chip is affected and if this is a real problem.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-index d4184fb8b28c..42bc09e48b80 100644
---- a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-@@ -554,6 +554,7 @@ &netcmix_blk_ctrl {
- &pcie0 {
- 	pinctrl-0 = <&pinctrl_pcie0>;
- 	pinctrl-names = "default";
-+	/* This property is deprecated, use reset-gpios from the Root Port node. */
- 	reset-gpio = <&gpio5 13 GPIO_ACTIVE_LOW>;
- 	vpcie-supply = <&reg_m2_pwr>;
- 	vpcie3v3aux-supply = <&reg_m2_pwr>;
-@@ -568,6 +569,10 @@ &pcie0_ep {
- 	status = "disabled";
- };
- 
-+&pcie0_port0 {
-+	reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
-+};
-+
- &sai1 {
- 	assigned-clocks = <&scmi_clk IMX95_CLK_AUDIOPLL1_VCO>,
- 			  <&scmi_clk IMX95_CLK_AUDIOPLL2_VCO>,
-diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-index 041fd838fabb..6f193cf04119 100644
---- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-@@ -540,6 +540,7 @@ &netc_timer {
- &pcie0 {
- 	pinctrl-0 = <&pinctrl_pcie0>;
- 	pinctrl-names = "default";
-+	/* This property is deprecated, use reset-gpios from the Root Port node. */
- 	reset-gpio = <&i2c7_pcal6524 5 GPIO_ACTIVE_LOW>;
- 	vpcie-supply = <&reg_pcie0>;
- 	vpcie3v3aux-supply = <&reg_pcie0>;
-@@ -554,9 +555,14 @@ &pcie0_ep {
- 	status = "disabled";
- };
- 
-+&pcie0_port0 {
-+	reset-gpios = <&i2c7_pcal6524 5 GPIO_ACTIVE_LOW>;
-+};
-+
- &pcie1 {
- 	pinctrl-0 = <&pinctrl_pcie1>;
- 	pinctrl-names = "default";
-+	/* This property is deprecated, use reset-gpios from the Root Port node. */
- 	reset-gpio = <&i2c7_pcal6524 16 GPIO_ACTIVE_LOW>;
- 	vpcie-supply = <&reg_slot_pwr>;
- 	vpcie3v3aux-supply = <&reg_slot_pwr>;
-@@ -570,6 +576,10 @@ &pcie1_ep {
- 	status = "disabled";
- };
- 
-+&pcie1_port0 {
-+	reset-gpios = <&i2c7_pcal6524 16 GPIO_ACTIVE_LOW>;
-+};
-+
- &sai1 {
- 	#sound-dai-cells = <0>;
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-index 55e2da094c88..7c5f350fe3a4 100644
---- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-@@ -1883,6 +1883,17 @@ pcie0: pcie@4c300000 {
- 			iommu-map-mask = <0x1ff>;
- 			fsl,max-link-speed = <3>;
- 			status = "disabled";
-+
-+			pcie0_port0: pcie@0 {
-+				compatible = "pciclass,0604";
-+				device_type = "pci";
-+				reg = <0x0 0x0 0x0 0x0 0x0>;
-+				bus-range = <0x01 0xff>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
- 		};
- 
- 		pcie0_ep: pcie-ep@4c300000 {
-@@ -1960,6 +1971,17 @@ pcie1: pcie@4c380000 {
- 			iommu-map-mask = <0x1ff>;
- 			fsl,max-link-speed = <3>;
- 			status = "disabled";
-+
-+			pcie1_port0: pcie@0 {
-+				compatible = "pciclass,0604";
-+				device_type = "pci";
-+				reg = <0x0 0x0 0x0 0x0 0x0>;
-+				bus-range = <0x01 0xff>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
- 		};
- 
- 		pcie1_ep: pcie-ep@4c380000 {
--- 
-2.37.1
+Practical question is if the chip supports this. So far I have not encountered
+a chip which does. Unfortunately Infineon doesn't provide datasheets for these
+chips, so it is impossible for me to determine if this is a real or a theoretic
+problem.
+
+Guenter
+
+> With Best Regards,
+>    Ashish Yadav
+> 
+> 
+> On Thu, Feb 5, 2026 at 2:20 PM ashish yadav <ashishyadav78@gmail.com> wrote:
+>>
+>> Hi Guenter,
+>>
+>> Thank you for taking the time to review and provide feedback.
+>> I appreciate your input and insights.
+>> Please find my comments inline below.
+>>
+>> Best regards,
+>> Ashish Yadav
+>>
+>> On Mon, Feb 2, 2026 at 9:01 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>>>
+>>> On 2/2/26 00:03, ASHISH YADAV wrote:
+>>>> From: Ashish Yadav <ashish.yadav@infineon.com>
+>>>>
+>>>> Add the pmbus driver for Infineon Digital Multi-phase XDPE1A2G5B and
+>>>> XDPE1A2G7B controllers.
+>>>>
+>>>> XDPE1A2G5B controller supports Linear Data format for VOUT using VOUT_MODE
+>>>> command.
+>>>> XDPE1A2G7B controller supports Linear and VID Data format for VOUT using
+>>>> VOUT_MODE command.
+>>>>
+>>>> In case of vid mode in XDPE1A2G7B controller, NVIDIA PWM VID vrm_version
+>>>> is supported:
+>>>> Vout = 5mV * (VID-1) + 195mV
+>>>>
+>>>> Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
+>>>> ---
+>>>>    drivers/hwmon/pmbus/Kconfig      |   9 +++
+>>>>    drivers/hwmon/pmbus/Makefile     |   1 +
+>>>>    drivers/hwmon/pmbus/pmbus.h      |   2 +-
+>>>>    drivers/hwmon/pmbus/pmbus_core.c |   4 ++
+>>>>    drivers/hwmon/pmbus/xdpe1a2g7b.c | 115 +++++++++++++++++++++++++++++++
+>>>
+>>> Driver documentation missing.
+>>>
+>>     ACK, We will take care of this in the next release.
+>>
+>>>>    5 files changed, 130 insertions(+), 1 deletion(-)
+>>>>    create mode 100644 drivers/hwmon/pmbus/xdpe1a2g7b.c
+>>>>
+>>>> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+>>>> index f3fb94cebf1a..c6750bce446d 100644
+>>>> --- a/drivers/hwmon/pmbus/Kconfig
+>>>> +++ b/drivers/hwmon/pmbus/Kconfig
+>>>> @@ -684,6 +684,15 @@ config SENSORS_XDPE152
+>>>>          This driver can also be built as a module. If so, the module will
+>>>>          be called xdpe152c4.
+>>>>
+>>>> +config SENSORS_XDPE1A2G7B
+>>>> +     tristate "Infineon XDPE1A2G7B"
+>>>> +     help
+>>>> +       If you say yes here you get hardware monitoring support for Infineon
+>>>> +       XDPE1A2G5B and XDPE1A2G7B.
+>>>> +
+>>>> +       This driver can also be built as a module. If so, the module will
+>>>> +       be called xdpe1a2g7b.
+>>>> +
+>>>>    config SENSORS_XDPE122
+>>>>        tristate "Infineon XDPE122 family"
+>>>>        help
+>>>> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+>>>> index 349a89b6d92e..620f24baa289 100644
+>>>> --- a/drivers/hwmon/pmbus/Makefile
+>>>> +++ b/drivers/hwmon/pmbus/Makefile
+>>>> @@ -67,6 +67,7 @@ obj-$(CONFIG_SENSORS_UCD9200)       += ucd9200.o
+>>>>    obj-$(CONFIG_SENSORS_XDP710)        += xdp710.o
+>>>>    obj-$(CONFIG_SENSORS_XDPE122)       += xdpe12284.o
+>>>>    obj-$(CONFIG_SENSORS_XDPE152)       += xdpe152c4.o
+>>>> +obj-$(CONFIG_SENSORS_XDPE1A2G7B)     += xdpe1a2g7b.o
+>>>>    obj-$(CONFIG_SENSORS_ZL6100)        += zl6100.o
+>>>>    obj-$(CONFIG_SENSORS_PIM4328)       += pim4328.o
+>>>>    obj-$(CONFIG_SENSORS_CRPS)  += crps.o
+>>>> diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus.h
+>>>> index d2e9bfb5320f..3ddcb742d289 100644
+>>>> --- a/drivers/hwmon/pmbus/pmbus.h
+>>>> +++ b/drivers/hwmon/pmbus/pmbus.h
+>>>> @@ -416,7 +416,7 @@ enum pmbus_sensor_classes {
+>>>>    #define PMBUS_PAGE_VIRTUAL  BIT(31) /* Page is virtual */
+>>>>
+>>>>    enum pmbus_data_format { linear = 0, ieee754, direct, vid };
+>>>> -enum vrm_version { vr11 = 0, vr12, vr13, imvp9, amd625mv };
+>>>> +enum vrm_version { vr11 = 0, vr12, vr13, imvp9, amd625mv, nvidia195mv };
+>>>>
+>>>>    /* PMBus revision identifiers */
+>>>>    #define PMBUS_REV_10 0x00   /* PMBus revision 1.0 */
+>>>> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
+>>>> index be6d05def115..4d7634ee6148 100644
+>>>> --- a/drivers/hwmon/pmbus/pmbus_core.c
+>>>> +++ b/drivers/hwmon/pmbus/pmbus_core.c
+>>>> @@ -885,6 +885,10 @@ static s64 pmbus_reg2data_vid(struct pmbus_data *data,
+>>>>                if (val >= 0x0 && val <= 0xd8)
+>>>>                        rv = DIV_ROUND_CLOSEST(155000 - val * 625, 100);
+>>>>                break;
+>>>> +     case nvidia195mv:
+>>>> +             if (val >= 0x01)
+>>>> +                     rv = 195 + (val - 1) * 5;  /* VID step is 5mv */
+>>>> +             break;
+>>>>        }
+>>>>        return rv;
+>>>>    }
+>>>
+>>> The core change needs to be a separate patch.
+>>>
+>> ACK, We will take care of this in the next release.
+>>
+>>>> diff --git a/drivers/hwmon/pmbus/xdpe1a2g7b.c b/drivers/hwmon/pmbus/xdpe1a2g7b.c
+>>>> new file mode 100644
+>>>> index 000000000000..79b12b56e7b6
+>>>> --- /dev/null
+>>>> +++ b/drivers/hwmon/pmbus/xdpe1a2g7b.c
+>>>> @@ -0,0 +1,115 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0+
+>>>> +/*
+>>>> + * Hardware monitoring driver for Infineon Multi-phase Digital XDPE1A2G5B
+>>>> + * and XDPE1A2G7B Controllers
+>>>> + *
+>>>> + * Copyright (c) 2026 Infineon Technologies. All rights reserved.
+>>>> + */
+>>>> +
+>>>> +#include <linux/err.h>
+>>>> +#include <linux/i2c.h>
+>>>> +#include <linux/init.h>
+>>>> +#include <linux/kernel.h>
+>>>> +#include <linux/module.h>
+>>>> +#include "pmbus.h"
+>>>> +
+>>>> +#define XDPE1A2G7B_PAGE_NUM 2
+>>>> +#define XDPE1A2G7B_NVIDIA_195MV 0x1E /* NVIDIA mode 1.95mV, VID step is 5mV */
+>>>> +
+>>>> +static int xdpe1a2g7b_identify(struct i2c_client *client,
+>>>> +                            struct pmbus_driver_info *info)
+>>>> +{
+>>>> +     u8 vout_params;
+>>>> +     int i, ret, vout_mode;
+>>>> +
+>>>> +     vout_mode = pmbus_read_byte_data(client, 0, PMBUS_VOUT_MODE);
+>>>> +     if (vout_mode >= 0 && vout_mode != 0xff) {
+>>>
+>>> What if vout_mode < 0 ? Also, what if the mode is different for page 1 ?
+>>
+>> ACK, We will take care of this in the next release.
+>>
+>>> Also, if I understand patch 0 correctly, executing this function is not needed
+>>> for XDPE1A2G5B.
+>>>
+>> ACK, We will take care of this in the next release.
+>>
+>>>> +             switch (vout_mode >> 5) {
+>>>> +             case 0:
+>>>> +                     info->format[PSC_VOLTAGE_OUT] = linear;
+>>>> +                     return 0;
+>>>> +             case 1:
+>>>> +                     info->format[PSC_VOLTAGE_OUT] = vid;
+>>>> +                     break;
+>>>> +             default:
+>>>> +                     return -ENODEV;
+>>>> +             }
+>>>> +     }
+>>>> +
+>>>> +     for (i = 0; i < info->pages; i++) {
+>>>> +             /* Read the VOUT_MODE register for VID Code Type. */
+>>>> +             ret = pmbus_read_byte_data(client, i, PMBUS_VOUT_MODE);
+>>>
+>>> Given that there are only two pages, reading PMBUS_VOUT_MODE for
+>>> page 0 twice is a bit of a waste. On top of that, the need for the loop
+>>> suggests that the mode can be different across pages. That needs to be
+>>> supported: Bailing out in that case is not acceptable. Worse:
+>>> What if the mode is linear on page 0 but vid on page 1 ?
+>>>
+>> ACK, We will take care of this in the next release.
+>>
+>>>> +             if (ret < 0)
+>>>> +                     return ret;
+>>>> +
+>>>> +             vout_params = ret & GENMASK(4, 0);
+>>>> +             switch (vout_params) {
+>>>> +             case XDPE1A2G7B_NVIDIA_195MV:
+>>>> +                     info->vrm_version[i] = nvidia195mv;
+>>>> +                     break;
+>>>> +             default:
+>>>> +                     return -EINVAL;
+>>>
+>>> This warrants an error message and an explanation (comment) why other modes
+>>> are not supported by the driver. The detailed datasheet is not public, so
+>>> you'll have to help out here. As mentioned above, bailing out because the
+>>> mode on page 1 is linear is not acceptable.
+>>>
+>> ACK, we will provide comments in the next release.
+>> Additionally, please note that the XDPE1A2G7B Controller only supports
+>> the 'nvidia195mv' vrm_version in the VID Data format for VOUT.
+>> We will ensure that this limitation is properly documented and
+>> commented on in the next release.
+>>
+>>>> +             }
+>>>> +     }
+>>>> +
+>>>> +     return 0;
+>>>> +}
+>>>> +
+>>>> +static struct pmbus_driver_info xdpe1a2g7b_info = {
+>>>> +     .pages = XDPE1A2G7B_PAGE_NUM,
+>>>> +     .identify = xdpe1a2g7b_identify,
+>>>> +     .format[PSC_VOLTAGE_IN] = linear,
+>>>> +     .format[PSC_TEMPERATURE] = linear,
+>>>> +     .format[PSC_CURRENT_IN] = linear,
+>>>> +     .format[PSC_CURRENT_OUT] = linear,
+>>>> +     .format[PSC_POWER] = linear,
+>>>> +     .func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
+>>>> +                PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
+>>>> +                PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_STATUS_TEMP |
+>>>> +                PMBUS_HAVE_POUT | PMBUS_HAVE_PIN | PMBUS_HAVE_STATUS_INPUT,
+>>>> +     .func[1] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
+>>>> +                PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
+>>>> +                PMBUS_HAVE_PIN | PMBUS_HAVE_POUT | PMBUS_HAVE_STATUS_INPUT,
+>>>> +};
+>>>> +
+>>>> +static int xdpe1a2g7b_probe(struct i2c_client *client)
+>>>> +{
+>>>> +     struct pmbus_driver_info *info;
+>>>> +
+>>>> +     info = devm_kmemdup(&client->dev, &xdpe1a2g7b_info, sizeof(*info),
+>>>> +                         GFP_KERNEL);
+>>>> +     if (!info)
+>>>> +             return -ENOMEM;
+>>>> +
+>>>> +     return pmbus_do_probe(client, info);
+>>>> +}
+>>>> +
+>>>> +static const struct i2c_device_id xdpe1a2g7b_id[] = { { "xdpe1a2g5b" },
+>>>> +                                                   { "xdpe1a2g7b" },
+>>>> +                                                   {} };
+>>>
+>>> Please use more lines and less indentation.
+>>>
+>> ACK, We will take care of this in the next release.
+>>
+>>>> +
+>>>> +MODULE_DEVICE_TABLE(i2c, xdpe1a2g7b_id);
+>>>> +
+>>>> +static const struct of_device_id __maybe_unused xdpe1a2g7b_of_match[] = {
+>>>> +     { .compatible = "infineon,xdpe1a2g5b" },
+>>>> +     { .compatible = "infineon,xdpe1a2g7b" },
+>>>> +     {}
+>>>
+>>> ... just like here.
+>>>
+>>>> +};
+>>>> +
+>>>> +MODULE_DEVICE_TABLE(of, xdpe1a2g7b_of_match);
+>>>> +
+>>>> +static struct i2c_driver xdpe1a2g7b_driver = {
+>>>> +     .driver = {
+>>>> +             .name = "xdpe1a2g7b",
+>>>> +             .of_match_table = of_match_ptr(xdpe1a2g7b_of_match),
+>>>> +     },
+>>>> +     .probe = xdpe1a2g7b_probe,
+>>>> +     .id_table = xdpe1a2g7b_id,
+>>>> +};
+>>>> +
+>>>> +module_i2c_driver(xdpe1a2g7b_driver);
+>>>> +
+>>>> +MODULE_AUTHOR("Ashish Yadav <ashish.yadav@infineon.com>");
+>>>> +MODULE_DESCRIPTION("PMBus driver for Infineon XDPE1A2G5B/7B");
+>>>> +MODULE_LICENSE("GPL");
+>>>> +MODULE_IMPORT_NS("PMBUS");
+>>>
 
 
