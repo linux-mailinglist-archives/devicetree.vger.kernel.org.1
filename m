@@ -1,196 +1,166 @@
-Return-Path: <devicetree+bounces-265293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265294-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UEk4AeHgjmluFgEAu9opvQ
-	(envelope-from <devicetree+bounces-265293-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:29:21 +0100
+	id CHveBxfhjmluFgEAu9opvQ
+	(envelope-from <devicetree+bounces-265294-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:30:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5091A134099
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:29:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D6041340D5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:30:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4FFF5304C139
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:29:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6541430BF07A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:29:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 822C332AAD8;
-	Fri, 13 Feb 2026 08:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE0B32BF3A;
+	Fri, 13 Feb 2026 08:29:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LUH/sthl"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kX2tOZB6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58B6E32C317
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 08:29:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6B432B989;
+	Fri, 13 Feb 2026 08:29:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770971351; cv=none; b=VuSb5QRGDcIvC842PtiUbtZhqKYm+i4paOTCWpI2rFIR6YcDyvPQRkawtslnr9Jv9NQ5sLrJPxGmuLx6z4nExNGkCWCiQTasZL8qVnMgBVHMPE3DSmZh3xaxBexGagLzrYogjXGha/wz7SXN6wMqyKNII+EVmNsBMpphjCSJgoI=
+	t=1770971364; cv=none; b=KdVD67gSbqwR/lcslgVJSM2b1JG33+ginB/VXh+G/cXKswxgaFkU6H2IUq8sVWtRllZ0XbIRk8eellPtCDI6KbB5MSIPNv3C3KQxWcStnmcxQzuTUwsxLVXr3pANWOf/aRyBUjn17hVPMN9oZ7AfnXRG6lznIAe0mohfgsqJy20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770971351; c=relaxed/simple;
-	bh=zvgY37ZQjsQkz5/m86ybqaE+gQvu4wV1jaVZs1RK1Mg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AFYpI2NIeVkBzm8cVnwwUaWWJcNcFKe6eLJJ7Bi+HQjnBsxA15Ki/BF5nj0ZO8934bQV6Pu1ic6bvRhzVzLW1vvvtvS7hixy4c9xPVGBeHEE/LWBgZWfqcBwNPBQx/ZyNbUCDf3a1xhn3+ovwOpNr+7nsHW6zPkBLCZO6yR/dxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LUH/sthl; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-7946a1f2430so7251117b3.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 00:29:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770971348; x=1771576148; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eb9SMDXx3XqEdbaMIOBwU3P2hDpL6y884kxQ2eGE+V0=;
-        b=LUH/sthltK7mdMPmTGL23mil49iTOSK39JeJJz0oPrCtjEfHzeuyC3SS2YicDeHoK/
-         3lAN4qUDX0eHnWBOJnPbEmQvXn8FymgTb3nDSDqdvQvYBOgR3okiDmzdda4vXOvl00i9
-         Q4Ko1cJRYXtANJX34C/HTDbP+t8PrzWnuJKWsSf9xyE0rHcDToOfv6jrQPjAVu3rcWW8
-         vaPAQqJ6I/Utr6yTTRHqgg+qNU+D9YiuBgh5f/fO0+2wCJieSUFtrT8sKQLck3u2Xkke
-         GI1JJaljMOWtal098eVwPi/e/mUiYZ0CL5w1+I0uNVAeVVK78bAfEuiTaVNoemnIA0x9
-         uAqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770971348; x=1771576148;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eb9SMDXx3XqEdbaMIOBwU3P2hDpL6y884kxQ2eGE+V0=;
-        b=VCLfSZzFqsnx0b34rFRK9nRiZnHaGmPzk6EScAMMRRYGlBKxOuF8n+dp5VJcIZSxMg
-         41NFLHXKjfZB2uSa2j77wDDW+DzRTtmS9LS82InVewtXWBlSp2J0kW2WZ8l5+CYetrQZ
-         weQ1iWrqREIdebT34YwRGcGaiIh/R5jrx2zuR49mShRKIZIaN1lxag3sI7ah5qEKSGck
-         YhSn/tkrY3h2x+R+HItnLNb6qepvp2bNtyRqs6XbM7zkqOpTRueCiASyTM+SuHZ2nz50
-         KThOU/pLSHiRMYNA+XN3wit5KaZUM751frkIBwAxDsb/HCOUtYg/5y21d608PO2I9vZH
-         Nf/g==
-X-Forwarded-Encrypted: i=1; AJvYcCVFyzqp7svzZL2x1uv9lCbuBwlcxeqn0qOIti5EYj2nfI0BitV8Qu7VWB+ZlqXPmA1X3ms4IaQocez7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCxut+N2DqoiD+7oODB2gyuWvbgYK2yMp9QxQnXarPxVu+O8UX
-	+lDYXkA0POzXbFR3kmJ6ZsYR4yQwJ7ff2z/jPF5HRzUe1QIILgCuVhrj
-X-Gm-Gg: AZuq6aJj9XB2My3cJ0fcq9q3zZeWGRmZzLRSXMgaEpIsPVd1TzfdPiNnihIOU4YkF2h
-	KQiHm/rV1H0ZTnRHU9MLCbFPbI8SGO1pTZrolXbUQhG6+tS4LEl0PzWs/BP2JHv/spoKGEfK17Z
-	CL0v4SOp8NfU9IDaxE8ZB2wWtAh0SYw8DjoFymukVNiuY0u51jJAvDtFUxcN7fMDfuHXu2nmb9z
-	l4ML4FEAXskw9ylcO+2Pz0iMiPvJWGvfjVxVjR9DBBa7Df0COsXNaER+8hzIMY4fpA5UiWG37QZ
-	HlkdIxiHfnYkEmZ0jCncx0ToyOSrrF0Z45A6IEdICdlHi53Hkv+dj2MMkIXtqP0BuqUpyHbM+8/
-	y3KXobh6BVjp6tE/REtvHq2uz8oZ349kkII6wwoIuJ+5sShlINZMMQDGZMxqqla5haU61i1ywEe
-	HicPxIITfPTv9HCtJBRszWyQKVqg==
-X-Received: by 2002:a05:690c:6306:b0:78a:859c:63b2 with SMTP id 00721157ae682-797a0c22868mr8571517b3.30.1770971348077;
-        Fri, 13 Feb 2026 00:29:08 -0800 (PST)
-Received: from [192.168.0.40] ([79.133.247.80])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-7966c254d1esm64369077b3.41.2026.02.13.00.29.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Feb 2026 00:29:07 -0800 (PST)
-Message-ID: <3a20c906-647c-458f-a118-c7927495e7ef@gmail.com>
-Date: Fri, 13 Feb 2026 10:29:02 +0200
+	s=arc-20240116; t=1770971364; c=relaxed/simple;
+	bh=RTo8u2Sedn1CnU8sFrvE0WSM41I0dJtuSDAEhq8+kRw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bTdqa81DCqSk3eLMRmE3OWfLmdwX0RzkwUMU8tQuYVxBVftSxjbLip6/i3DTH/PE9nNXopuFelPI4ZwWbCDNus/CYr74mZDCGEyNHCx4M82gp1HG/FftG3bZ77CL3Ns2GOUssSkUWMIc9QBPqWo0kjZ93uGm4V9r5cl+OEwav18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kX2tOZB6; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 5A72EC237FD;
+	Fri, 13 Feb 2026 08:29:30 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B953F606CC;
+	Fri, 13 Feb 2026 08:29:20 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 815FD10368E05;
+	Fri, 13 Feb 2026 09:29:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1770971360; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=HTw/HXY0Gs/LRcdanaDRSbVGf28t6RLADO9IJc09aSQ=;
+	b=kX2tOZB6aHe0Ba7nQ8QVjJLwvpMCkA1F71AAYE8sXzdBhBSC85zwePyXhYgkNVEqqyRDdw
+	SGZgiCCGPDKvyNZxe8JZJd8d6YaWF5PpGcmmvM2PJfBG1pbl+0ztWbTJRD47amwkkwx2du
+	sXwkDfsNMciFmP0SiewlO5qNEg5B2Qul6bRCVzJNYFzg4UWXdseoWscyV7YCHFqOq4J1mm
+	BxJaHzr9H6aC5T7pGfXP/fOJDvfmpG6N3VJmP7BNkz2lhRqKpize45wGqZPguFyMa2W+z7
+	wobewpFhqkLTrNMfN2122VT/VECv6KfG3447Ve4ecdzzo/0s4jOaFQE/wb10PA==
+Date: Fri, 13 Feb 2026 09:29:14 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: James Hilliard <james.hilliard1@gmail.com>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Bartosz Golaszewski <brgl@kernel.org>, Rob
+ Herring <robh@kernel.org>, linux-gpio@vger.kernel.org, Linus Walleij
+ <linusw@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alexander Stein <linux@ew.tq-group.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] gpio: aggregator: add gpio-aggregator DT
+ compatible
+Message-ID: <20260213092914.79790cb9@bootlin.com>
+In-Reply-To: <89c0dd51-fdd5-4368-b5f5-615143ffd166@kernel.org>
+References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
+	<20260211081355.3028947-2-james.hilliard1@gmail.com>
+	<CAMRc=MfgoKmsNAmn3rO2jDL-ZArMX2Jh-n4SnV6rpzRY3KSwuA@mail.gmail.com>
+	<34a9b531-4f53-47ee-861e-1b18ff1a5752@kernel.org>
+	<CAMRc=MfwQ8J7eT_geEf7Kj230SOvmO-LDHz9a_YgfRY-QB5V8w@mail.gmail.com>
+	<20260211214708.GA3947691-robh@kernel.org>
+	<CADvTj4p-zHMrXW+GJstB2sKS-7Wij98JNJGoiPiYmaP5RHhNQg@mail.gmail.com>
+	<9afa52c1-b7de-4ccb-9114-a142567d21af@kernel.org>
+	<CADvTj4pmAXo+KUMyB0=+x3HRdUdUq=baj_pnoa44oxnugZuTOg@mail.gmail.com>
+	<89c0dd51-fdd5-4368-b5f5-615143ffd166@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: light: vcnl4000: add Capella
- CM36686 and CM36672P
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20260212-cm36686-v4-0-8f587d4a72bf@gmail.com>
- <20260212-cm36686-v4-1-8f587d4a72bf@gmail.com>
- <20260213-unyielding-pistachio-ape-deda74@quoll>
-From: Erikas Bitovtas <xerikasxx@gmail.com>
-Content-Language: en-US
-In-Reply-To: <20260213-unyielding-pistachio-ape-deda74@quoll>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265293-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[gmail.com,glider.be,kernel.org,vger.kernel.org,ew.tq-group.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
+	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265294-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 5091A134099
+X-Rspamd-Queue-Id: 8D6041340D5
 X-Rspamd-Action: no action
 
+Hi all,
+
+On Fri, 13 Feb 2026 08:31:21 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
+
+> > 
+> > Or is the issue just with the name of the compatible I used being
+> > called "gpio-aggregator"?  
+> 
+> No, the issue is that there is no hardware you are trying represent in DTS.
+
+Except if you have a piece of hardware that invert the gpio line.
+
+In that case you need to set GPIO_ACTIVE_LOW somewhere.
+
+The aggregator allows to describe this line inverter.
+
+Of course, if the gpio is connected to a hardware component handled by the
+kernel, the DT node describing this hardware can set the flag.
+
+The issue is for GPIOs that are just GPIOs and should by a user-space
+application as GPIOs.
+
+Some bindings exist for GPIO and do not describe the hardware but the
+feature. For instance:
+https://elixir.bootlin.com/linux/v6.18/source/Documentation/devicetree/bindings/trigger-source/gpio-trigger.yaml
+https://elixir.bootlin.com/linux/v6.18/source/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
+https://elixir.bootlin.com/linux/v6.18/source/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
+
+Can we consider the gpio-aggregator describing the wires that should be
+grouped together.
+
+Industrial board can have some GPIOs grouped together and used as inputs or
+ouputs of this industrial board.
+
+As output they command an external system. As input, they get feedback from
+this system.
+
+gpio-aggregator describes those lines.
+
+In that sense, it describes hardware.
+Maybe the "gpio-aggregator" name doesn't reflect that and a compatible such as
+"gpio-equipment" could make sense.
 
 
-On 2/13/26 9:54 AM, Krzysztof Kozlowski wrote:
-> On Thu, Feb 12, 2026 at 04:42:47PM +0200, Erikas Bitovtas wrote:
->> Capella CM36686 is an ambient light and proximity sensor developed by
->> Capella Microsystems, now a subsidiary of Vishay Intertechnology Inc. It
->> has an I2C address of 0x60 and is fully compatible with an existing
->> driver for VCNL4040.
-> 
-> I wonder why and how...
-
-VCNL4040 shares the same digital interface as CM36686. All the registers
-and their fields are the same. It is most likely Vishay just reused the
-CM36686 design for VCNL4040.
-> 
->> Capella CM36672P is a proximity-only sensor that
->> is fully compatible with CM36686, and therefore with VCNL4040. Add
->> compatibles for cm36672p and cm36686, with a fallback for cm36686 of
->> vcnl4040.
->>
->> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
->> ---
->>  .../devicetree/bindings/iio/light/vishay,vcnl4000.yaml  | 17 +++++++++++------
->>  1 file changed, 11 insertions(+), 6 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
->> index 4d1a225e8868..2ba4d5de4ec4 100644
->> --- a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
->> +++ b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
->> @@ -18,12 +18,17 @@ allOf:
->>  
->>  properties:
->>    compatible:
->> -    enum:
->> -      - vishay,vcnl4000
->> -      - vishay,vcnl4010
->> -      - vishay,vcnl4020
->> -      - vishay,vcnl4040
->> -      - vishay,vcnl4200
->> +    oneOf:
->> +      - enum:
->> +          - capella,cm36672p
-> 
-> CM36672P is compatible with CM36686, but this is not expressed.
-> Confusing commit msg and code. 
-
-For CM36672P we create a dedicated compatible because it is a
-proximity-only sensor which has the same proximity sensor configuration,
-but ambient light sensor registers are missing (reserved).
->> +          - vishay,vcnl4000
->> +          - vishay,vcnl4010
->> +          - vishay,vcnl4020
->> +          - vishay,vcnl4040
-> 
-> Best regards,
-> Krzysztof
-> 
-
+Best regards,
+Hervé
 
