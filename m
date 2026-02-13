@@ -1,166 +1,149 @@
-Return-Path: <devicetree+bounces-265403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265438-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8MEpCwFNj2nnPgEAu9opvQ
-	(envelope-from <devicetree+bounces-265403-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:10:41 +0100
+	id AMr8AQNaj2lxQgEAu9opvQ
+	(envelope-from <devicetree+bounces-265438-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 18:06:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19FBA137D78
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:10:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B4A11387D1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 18:06:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1FBE2301BA60
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:10:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B1E123023D9B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:06:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8063E361677;
-	Fri, 13 Feb 2026 16:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E914363C6F;
+	Fri, 13 Feb 2026 17:06:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="gqR+K2yI"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="JOpvuRXb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m21470.qiye.163.com (mail-m21470.qiye.163.com [117.135.214.70])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D153E34CFC3
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 16:10:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.214.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85688362135;
+	Fri, 13 Feb 2026 17:06:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770999034; cv=none; b=kJkluH7UmQgsZzKK9QC9jz5jZaqPksYZFO6RbMmmWnkIDHNrFe300Egsq49IZwDuPJDPS9/dAbXePV8I00/NgTpL9VgKKx69381duZfP4GgJ8VS2Tw4ix7PEUEfWeO+agEc0VSKpOLtiAB+ortpWL2xQyF6hVBCEF0sDNF1uqUc=
+	t=1771002366; cv=none; b=W3tpK/4SXUqCPkImbRfqzKzjuS7xzp+YZquaUNspDWr4XdpdqWZOhanfep6gq2aYG9oSLrvG2VCoN+Oa1kxy25xVqnumlpTEgXu8BWA166exRLru7Id46tBSPNOwYJchbFcjiI8yNWkcgREbUWQ2igvq+Md3bVFhpK9GqU2jR7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770999034; c=relaxed/simple;
-	bh=9VAwqLi17ylXUyOT91/z740b9lfBf6SKIHMYfyMmoXs=;
-	h=Cc:Subject:To:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=kYrX4HXtmGb7iLYWgIXOj0cu86tzSynadz+FRA4xT2p2RhQyqrwDB1QfZ3KZMrcHDlvCcQF0pbm3Q3mfRoooW6L5ITvHjcyUxH0lhuTbzxXJzizuCWp9Y48A1bj2jr2LBzVQmCB/U23xAKginpoq7flK1t+mmcD7lzSDspDWs5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=gqR+K2yI; arc=none smtp.client-ip=117.135.214.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.14] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 341affb18;
-	Sat, 14 Feb 2026 00:10:26 +0800 (GMT+08:00)
-Cc: shawn.lin@rock-chips.com, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, heiko@sntech.de, jonas@kwiboo.se,
- Claude <noreply@anthropic.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: rock-3b: Add phy-supply to
- pcie30phy
-To: MidG971 <midgy971@gmail.com>, linux-rockchip@lists.infradead.org
-References: <20260213151452.535527-1-midgy971@gmail.com>
-From: Shawn Lin <shawn.lin@rock-chips.com>
-Message-ID: <fe4c9352-7bf9-70cb-97ed-322fc739f409@rock-chips.com>
-Date: Sat, 14 Feb 2026 00:10:24 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+	s=arc-20240116; t=1771002366; c=relaxed/simple;
+	bh=eQ+/GZMQnvc4JXRuxZ2v6ANRTE6ArEiUfpVtxljjlGc=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=Io/SdHnI7C98Bf9hOEA6nw5Bn/6EggyOM8w1QAWjXUZmhHhmHQ+bsj8UFCeYcHN8SW7Vsyk1JVUjMSLcLxEZF3Gm3VFGtD4MTQXa2GteeCECZzM/aatnyzWRJykxScw6pf93U2LpaRPxNOZPPSpD3GbNzArp4ocKOAO6k6z/Vys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=JOpvuRXb; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=Yn36RHFho+Iv+Jaaez44fpXvNXeAw6xOsN5DoJWTKQo=; b=JOpvuRXbdEZiRfo7nIbEbSnP8y
+	h7N6x+bRRhqNX7fv9zLhxZHQkgOCfLx00L/NyWvUoAlihD4jbDyvoHBp6OzODyAtaYY67qpLP07OO
+	59LOkVChGI33L0h8B+TFy1KD9Omhgiv6X1Z1TDQSFcDhby1vyO2wbfhF2g04GSNh6q9U=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:58146 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1vqw0M-0005nF-Le; Fri, 13 Feb 2026 11:26:55 -0500
+Date: Fri, 13 Feb 2026 11:26:53 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: hvilleneuve@dimonoff.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-Id: <20260213112653.6d8e1e45dc65000c7a326c6f@hugovil.com>
+In-Reply-To: <aYRg2vP4Lfqm61qH@google.com>
+References: <20260203155023.536103-1-hugo@hugovil.com>
+	<20260203155023.536103-2-hugo@hugovil.com>
+	<aYRg2vP4Lfqm61qH@google.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-In-Reply-To: <20260213151452.535527-1-midgy971@gmail.com>
-Content-Type: text/plain; charset=gbk; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9c57c491fb09cckunm917520542f2628
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ09PS1ZOT0lLGUsYHRoeQkNWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
-	xVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=gqR+K2yI1W/oIHIOEw+qH8se7uS+4+70umwQ6eF5WLknBtiKlVGVHdAoCyK0SdV1iSUyCy6YpyryQBbT/G8nuq+up1qxS7bSgKBac7RJbCLZ4K1AlfUXQd2oQLNEPEvYRVeOlxSNAqctiz/JlvMllF/h+eEU1IjNAEdvO9/77JA=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=lQCtykSlfRzqEm/DJfyTijSzAL8gm65mvzEpV44+OgM=;
-	h=date:mime-version:subject:message-id:from;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -2.4 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH 1/2] dt-bindings: input: add GPIO charlieplex keypad
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-265438-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-265403-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[hugovil.com];
+	DKIM_TRACE(0.00)[hugovil.com:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shawn.lin@rock-chips.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
+	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[8];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:url,infradead.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,anthropic.com:email,rock-chips.com:mid,rock-chips.com:dkim]
-X-Rspamd-Queue-Id: 19FBA137D78
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 3B4A11387D1
 X-Rspamd-Action: no action
 
-Hi
+On Thu, 5 Feb 2026 01:24:05 -0800
+Dmitry Torokhov <dmitry.torokhov@gmail.com> wrote:
 
-在 2026/02/13 星期五 23:14, MidG971 写道:
-> The PCIe 3.0 PHY requires its power supply regulator to be enabled
-> before initialization. Without the phy-supply property, the PHY
-> driver does not ensure the regulator is enabled, causing SRAM
-> initialization to timeout with "lock failed" errors:
-> 
->    phy phy-fe8c0000.phy.1: phy poweron failed --> -110
->    rockchip-snps-pcie3-phy fe8c0000.phy: PCIe3PHY lock failed 0x6890000
->    rockchip-pcie fe280000.pcie: phy init failed: -110
-> 
-> This results in NVMe devices in the M.2 slot not being detected.
-> 
-> Add phy-supply referencing vcc3v3_pi6c_03 regulator (which controls
-> the PI6C PCIe clock generator power via GPIO0_D4) to ensure proper
-> power sequencing during PHY initialization.
-> 
-> Fixes: 846ef7748fa9 ("arm64: dts: rockchip: Add Radxa ROCK 3B")
-> Signed-off-by: MidG971 <midgy971@gmail.com>
-> Co-developed-by: Claude <noreply@anthropic.com>
-> Signed-off-by: Claude <noreply@anthropic.com>
+Hi Dmitry,
 
-Should put your SOB at last.
-
-> ---
->   arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 1 +
->   1 file changed, 1 insertion(+)
+> Hi Hugo,
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-> index c5f67dd6dfd9..a1b2c3d4e5f6 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-> @@ -404,6 +404,7 @@ &pcie2x1 {
->   };
+> On Tue, Feb 03, 2026 at 10:49:47AM -0500, Hugo Villeneuve wrote:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > 
+> > Add DT bindings for GPIO charlieplex keypad.
+> > 
 > 
->   &pcie30phy {
-> +	phy-supply = <&vcc3v3_pi6c_03>;
-
-As a fix which need to be backported, it looks fine for just one-line
-change.
-
-However, the whole commit message is misleading. power supply for
-pcie30phy is powred up with all other phys' when booting, for instance,
-USB, otherwise all IP using PHY should not work, not just PCIe. So 
-actually it's not the power but the input refclk, and apprently pi6c
-is a 100MHz clock generator which was designed to be a regulator by
-mistake in the first place.
-
-If you would like to clean it up later, you could use a 
-gated-fixed-clock like:
-
-https://lore.kernel.org/linux-rockchip/35e97a41-b88b-f526-351f-d4c5f70ee4e9@rock-chips.com/T/#u
-
-
->   	status = "okay";
->   };
+> ...
 > 
-> --
-> 2.39.5
+> > +  linux,no-autorepeat:
+> > +    type: boolean
+> > +    description: Do not enable autorepeat feature.
 > 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> Let's use standard "autorepeat" property to enable autorepeat when
+> needed.
+
+Ok, I based my binding/driver on gpio-matrix-keypad, which had
+linux,no-autorepeat.
+I will change that in V2 (along with driver source code changes).
+
 > 
+> > +
+> > +  gpio-activelow:
+> > +    type: boolean
+> > +    description:
+> > +      Force GPIO polarity to active low.
+> > +      In the absence of this property GPIOs are treated as active high.
+> 
+> No, the polarity should be encoded in individual GPIOs, not via a
+> separate property.
+
+You are right, again "contamination" from gpio-matrix-keypad :)
+
+I will also change that in V2 (along with driver source code changes).
+
+Thank you,
+Hugo.
 
