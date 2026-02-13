@@ -1,298 +1,207 @@
-Return-Path: <devicetree+bounces-265223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265216-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KITDA2ZtjmnuCAEAu9opvQ
-	(envelope-from <devicetree+bounces-265223-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 01:16:38 +0100
+	id GOTxAjttjmnuCAEAu9opvQ
+	(envelope-from <devicetree+bounces-265216-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 01:15:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30D36131FFD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 01:16:37 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 326F2131F9E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 01:15:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7BB9B301407B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 00:15:47 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6E4AB30152CF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 00:15:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFCF3238C15;
-	Fri, 13 Feb 2026 00:15:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F49212548;
+	Fri, 13 Feb 2026 00:15:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="qOiEEh0R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="At++tvik"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB9A71CAA78
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 00:15:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3CDA1F30AD;
+	Fri, 13 Feb 2026 00:15:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770941723; cv=none; b=JiyoboEC61S7ZPUhIxXdSuZ30GU4IMc0733ssP7KNUsDcOmISeEzpH1gm7w0n3KX7i2sZa88iiJonYE/6WJ0+1OImvKI3+ILhNebskxHC1t4LtMvM2Z/7QDNbpeVlPvVVR8BHlhsEM1QPSUtO4n1cp8yGJQWiuUcCzrXQ3PSF2M=
+	t=1770941722; cv=none; b=ZXL9L4TfzMhFIsocSSpEQ7arMrLyPNVTKmxnHLhEnpMbOtsTWZ/Sz5SgSAQplv0mUHOdNnoc5MjVyy3ovC+Z7MMoK0ormCvOXhloXQjK9sEkcN1ZUWLCcgcOY0C9AgJ8XT1+2Lr1BwMnJ5zW0mT0M9TO10dYnxYQ6briFoomMqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770941723; c=relaxed/simple;
-	bh=1QKFWI4RjXLpuskxjhRHAeiImz6OuzoRskJ/lHHthpg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=b9GYLt4QlgZP1X5TgOZtfG0UXDpO8a+xQi0qLBlSsWqlVxhI8TZwnCwY5ojzEznr8pVsMc//SZpqhU9cRRDBDY93iwEH0pOEv5w+bM2EnuHB/szTNsqb9DFU1p1nmv6EhHbZgZZedo1o0+L/rRMv5P3C+26hnqw89SZ4N1LC5Iw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=qOiEEh0R; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47ee76e8656so5681425e9.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 16:15:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1770941720; x=1771546520; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PSlv+TtmjbR3KEd39LSGtfFdiXlGzzelHhN9IPNFyGE=;
-        b=qOiEEh0RzPKvXwIxWnRO29NDtqrcbh6pf0qg7F0ZjkibmkHGQo7MzqKVTOYhiasisK
-         +zRyjBeo8M0e35bTIrU77FpG5joaOFWQ0J6lLPeWqZjOc+Hq+M530XK/crJ/LFOxgx+R
-         khzLrQIJ+xforHX7k8mk3OA93liYpFce90HvPxdksCyb0w6FryUdSDj1pmWC3iMdF3Ht
-         dyMLZc3H1MGVq3FM4oHf2ptcWirtzRvftxNNLu0aUVNYrdRUgFhOKgZCozswx4o950q7
-         NCpfgtVW1qmFbFD4FpgfCVHnlmTKC7gpFNIVcYG+I4ENv9b3bL3hgY0AZA/pH9XSgm/H
-         TfbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770941720; x=1771546520;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=PSlv+TtmjbR3KEd39LSGtfFdiXlGzzelHhN9IPNFyGE=;
-        b=nQpzYv6cZL+LgBz5IxKIKP74Ww2KnWNRzW9H+DhsRy5cmIhToeGxP6EM3a+ylmHaht
-         T4hFW+812pqoprKxXcI9dGbnnUD3uEkrrTChyxQEMLKR6X5qTj1Ix7AZar6F30tcsIbC
-         hLnmtyCXkMlJFMpfBG6EC2I/ZvaQxgWvd7wUQXN6lQoWwo793Bm8ih3/qWp32gkqS11l
-         l3RQFS5qmygw4GHVEQir5j7YQH6ufhhg/AeaETVg1TJcC851o95V09Hoejjn/O5R2sEj
-         hXl2LbQgCcLsLSj8WFJdiKnP8YaOSbCPriB4dkWQkF97Z0YKyU9+ySUog/WVN51KZFkw
-         TeWA==
-X-Forwarded-Encrypted: i=1; AJvYcCUT2pFE1DvDdY57joqfGqwALb2YPbqCthua5HMIGrQS8zP0T4rz5a5Q/A6tZniHfMyo+x/arrAh32oJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxqlB1jc5GFFY/pRev65TEC1xmw0gP0rwgGdWOeJq83KByp2L0
-	bwO3dTGXX3ZVDGgP7D1+3hN5HRFKNCgwkw9H4mISVjwamKDXwfMGwlSDzx8tM2La1os=
-X-Gm-Gg: AZuq6aL5rOLuKc59KV/nzTXku7bb84ZM/8dhDHClq54hIbUT+yIzz71QKA1kKleVDn9
-	w0QNWrNF3EFVJW+UAVZqpBurvFSbJzxRvf4EzF2fJlPs85sDAHNzWY2ktUIL/i16CgfbdKd+FAl
-	Q7vMfOhB72Lrsf1eY3VzneYxcGkAjySIosWte88+cZHA11mnp6Q5nZMPy5AX/RmqsDebCa0TaNK
-	ZdzGeyannDxb7TShsm091AUxdHMIX6zcX14O61cfG6+T62dW2zYJYtuH1G5yrPT+HCP7+Qu8/zg
-	xdQ85RVC/vk7v8/CKuO+dzcJ4WnbBB7vI9r/sNb37teDUUo6EGL9BXzk3thPOZ8Z4ZRcXMKFFyw
-	zoXyk+ViId7lWnea/VeSPZDboFImAw1OvMpOBuo1I+hU4Al/+SzscZ56yEHDDkfpiiASYlFHRKy
-	fY+FfBhyKx5IPJe0ZwiV/bJRLeOFCgD/OtxEPuoeEO+7dSlZdWRYpLll8ovkv0na+ykxxFmEQhJ
-	lev6/mllw==
-X-Received: by 2002:a05:600c:34c3:b0:47d:73a4:45a7 with SMTP id 5b1f17b1804b1-4837103693emr15594065e9.24.1770941720202;
-        Thu, 12 Feb 2026 16:15:20 -0800 (PST)
-Received: from silence.. ([46.10.240.40])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4835d99497asm234440945e9.6.2026.02.12.16.15.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Feb 2026 16:15:19 -0800 (PST)
-From: Stoyan Bogdanov <sbogdanov@baylibre.com>
-To: jbrunet@baylibre.com,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	skhan@linuxfoundation.org
-Cc: linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Stoyan Bogdanov <sbogdanov@baylibre.com>
-Subject: [PATCH v2 3/3] hwmon: (pmbus/tps1689): Add TPS1689 support
-Date: Fri, 13 Feb 2026 02:14:08 +0200
-Message-Id: <20260213001408.2454567-4-sbogdanov@baylibre.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260213001408.2454567-1-sbogdanov@baylibre.com>
-References: <20260213001408.2454567-1-sbogdanov@baylibre.com>
+	s=arc-20240116; t=1770941722; c=relaxed/simple;
+	bh=Sb1Z9ToRtr8u+pAOPxIENcrNfGSnJsAfpeH6JTyv4M4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Bvbmg3rSgFTzhM2F7XEhL2kzOcSRTnWDnI2QCI7tG7eaRzNLLUyxvGCmNOyeiWKgz/ocmJ/8TpvQtIJDmjbr67XwAA3qE+EsCEfh2I557d5Micvtd5d2NGDVqqRB5zsxwFwTDQXtFnso3qZ+WpQ3QjJdsz5kBCc7qcj9Wa++8dk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=At++tvik; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5BB21C19424;
+	Fri, 13 Feb 2026 00:15:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770941722;
+	bh=Sb1Z9ToRtr8u+pAOPxIENcrNfGSnJsAfpeH6JTyv4M4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=At++tvikIcZRbahk7Vd1EDRf4auXmWXTUDF+crnKr+9OVuvlPOzrMUYXx3zaOHUHd
+	 mV4uVB+XgyAwZ10Re53SfowvIJfO3SXxiPiHf/rO/1SGlH+g3ox3Mb6/4PJkorVgXn
+	 7LAvP25o8UhuIoqAFrS42FNc1cVqADyg/Zs7AZ7gmcyJSwSfjTpNUxCX5jZJs/2MCz
+	 Ky+wxXegbZXGE3qLX+Qz1a8KS35Vf9NWcirS8sNHSx15myp0uYUIHJEaV7jjNxnCbS
+	 9DYJ/jlpNZIwjn4DX9bdK6v+WpQ3NKkemGcuhFcasjvM52wtsjCrV/HwaHIjhTodiR
+	 BHFXRmzscPfjA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A4E7EEA870;
+	Fri, 13 Feb 2026 00:15:22 +0000 (UTC)
+From: Abdurrahman Hussain via B4 Relay <devnull+abdurrahman.nexthop.ai@kernel.org>
+Subject: [PATCH v11 0/7] i2c: xiic: use generic device property accessors
+Date: Fri, 13 Feb 2026 00:15:15 +0000
+Message-Id: <20260213-i2c-xiic-v11-0-5d18aea11bde@nexthop.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABNtjmkC/3XRPW7DMAwF4KsEnqtAov4z9R5FB8miag2xAzk1U
+ gS5e+UsZaF2JMHv4QG8DyvWgutwOtyHiltZyzK3QYiXwzBOYf5AVlJbDMDBcAHACozsVsrIZAz
+ O56wxeDm080vFXG7PrLf3Nue6nNl1qhhIgNCcg1PmCFo6zwQLMX3WGqZzmF9nvF2n5XIMZc+by
+ npd6tez2gZ76h8lNmCcCamyTlZJdJGG7C02SaUkUjaJ0Y5JgVYp91L9J1WTKkiMQWrBR+ykptI
+ QqZt0LggTwFkQYycNlZZIs7d1gJBNNtr20lLpibRNWrCopHLeYu6k+5HABZGuyYQRUhLaJRE66
+ amkX/FNjqiM11mDsamTglOqCBV8txC9N+0xIPUv+3g8vgEqt8RTtAIAAA==
+X-Change-ID: 20260122-i2c-xiic-3ba89ff5ea93
+To: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Abdurrahman Hussain <abdurrahman@nexthop.ai>, Andrew Lunn <andrew@lunn.ch>, 
+ Jonathan Cameron <jonathan.cameron@huawei.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770941721; l=3438;
+ i=abdurrahman@nexthop.ai; s=20260119; h=from:subject:message-id;
+ bh=Sb1Z9ToRtr8u+pAOPxIENcrNfGSnJsAfpeH6JTyv4M4=;
+ b=PZ0XbQV8s2UWSCFbiogIumjF/qg7yBN1gXJJy+KjQPg3jmjsMZcpIscrCEGlRBpjjacXq9IGD
+ o4SKeCIUAiwDq/ZxZmRqIN6lNHpQoyiLAU9itKro+9ayaad7sYYCV0U
+X-Developer-Key: i=abdurrahman@nexthop.ai; a=ed25519;
+ pk=S+ysnf+NwMcBdHBlyKIUEAtaFGSIhQwcJcgcXhq0osg=
+X-Endpoint-Received: by B4 Relay for abdurrahman@nexthop.ai/20260119 with
+ auth_id=608
+X-Original-From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+Reply-To: abdurrahman@nexthop.ai
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-265223-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-265216-lists,devicetree=lfdr.de,abdurrahman.nexthop.ai];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sbogdanov@baylibre.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:url,baylibre-com.20230601.gappssmtp.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,baylibre.com:mid,baylibre.com:email]
-X-Rspamd-Queue-Id: 30D36131FFD
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	HAS_REPLYTO(0.00)[abdurrahman@nexthop.ai];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 326F2131F9E
 X-Rspamd-Action: no action
 
-Extend tps25990 existing driver to support tps1689 eFuse,
-since they are sharing command interface and functionality
-Update documentation for tps1689
+- Switch to generic device property accessors.
+- Switch to managed devm_ functions to simplify error handling.
+- General cleanups.
+- Skip clock setup on non-OF systems where clock is not specified via
+firmware.
 
-Signed-off-by: Stoyan Bogdanov <sbogdanov@baylibre.com>
+Signed-off-by: Abdurrahman Hussain <abdurrahman@nexthop.ai>
 ---
- Documentation/hwmon/tps25990.rst | 15 ++++---
- drivers/hwmon/pmbus/tps25990.c   | 70 ++++++++++++++++++++++++++++++++
- 2 files changed, 80 insertions(+), 5 deletions(-)
+Changes in v11:
+- Cosmetic change to return 0 in patch 1.
+- Remove pm_runtime_dont_use_autosuspend() in patch 1.
+- Link to v10: https://lore.kernel.org/r/20260204-i2c-xiic-v10-0-c2b996425235@nexthop.ai
 
-diff --git a/Documentation/hwmon/tps25990.rst b/Documentation/hwmon/tps25990.rst
-index 04faec780d26..e8bc9a550bda 100644
---- a/Documentation/hwmon/tps25990.rst
-+++ b/Documentation/hwmon/tps25990.rst
-@@ -9,26 +9,31 @@ Supported chips:
- 
-     Prefix: 'tps25990'
- 
--  * Datasheet
-+    Datasheet: Publicly available at Texas Instruments website: https://www.ti.com/lit/gpn/tps25990
- 
--    Publicly available at Texas Instruments website: https://www.ti.com/lit/gpn/tps25990
-+  * TI TPS1689
-+
-+    Prefix: 'tps1689'
-+
-+    Datasheet: Publicly available at Texas Instruments website: https://www.ti.com/lit/gpn/tps1689
- 
- Author:
- 
- 	Jerome Brunet <jbrunet@baylibre.com>
-+	Stoyan Bogdanov <sbogdanov@baylibre.com>
- 
- Description
- -----------
- 
--This driver implements support for TI TPS25990 eFuse.
-+This driver implements support for TI TPS25990 and TI TPS1689 eFuse chips.
- This is an integrated, high-current circuit protection and power
- management device with PMBUS interface
- 
--Device compliant with:
-+Devices are compliant with:
- 
- - PMBus rev 1.3 interface.
- 
--Device supports direct format for reading input voltages,
-+Devices supports direct format for reading input voltages,
- output voltage, input current, input power and temperature.
- 
- Due to the specificities of the chip, all history reset attributes
-diff --git a/drivers/hwmon/pmbus/tps25990.c b/drivers/hwmon/pmbus/tps25990.c
-index 33f6367f797c..c2da2b89fe2e 100644
---- a/drivers/hwmon/pmbus/tps25990.c
-+++ b/drivers/hwmon/pmbus/tps25990.c
-@@ -370,6 +370,15 @@ static const struct regulator_desc tps25990_reg_desc[] = {
- };
- #endif
- 
-+struct local_direct_value tps1689_local_info = {
-+	.m[TPS25990_VIN_OVF] = 3984,
-+	.b[TPS25990_VIN_OVF] = -63750,
-+	.R[TPS25990_VIN_OVF] = -3,
-+	.m[TPS25990_IIN_OCF] = 7111,
-+	.b[TPS25990_IIN_OCF] = -2133,
-+	.R[TPS25990_IIN_OCF] = -2,
-+};
-+
- struct local_direct_value tps25590_local_info = {
- 	.m[TPS25990_VIN_OVF] = 10163,
- 	.b[TPS25990_VIN_OVF] = -30081,
-@@ -379,6 +388,60 @@ struct local_direct_value tps25590_local_info = {
- 	.R[TPS25990_IIN_OCF] = -6,
- };
- 
-+static struct pmbus_driver_info tps1689_base_info = {
-+	.pages = 1,
-+	.format[PSC_VOLTAGE_IN] = direct,
-+	.m[PSC_VOLTAGE_IN] = 1166,
-+	.b[PSC_VOLTAGE_IN] = 0,
-+	.R[PSC_VOLTAGE_IN] = -2,
-+	.format[PSC_VOLTAGE_OUT] = direct,
-+	.m[PSC_VOLTAGE_OUT] = 1166,
-+	.b[PSC_VOLTAGE_OUT] = 0,
-+	.R[PSC_VOLTAGE_OUT] = -2,
-+	.format[PSC_TEMPERATURE] = direct,
-+	.m[PSC_TEMPERATURE] = 140,
-+	.b[PSC_TEMPERATURE] = 32103,
-+	.R[PSC_TEMPERATURE] = -2,
-+	/*
-+	 * Current and Power measurement depends on the ohm value
-+	 * of Rimon. m is multiplied by 1000 below to have an integer
-+	 * and -3 is added to R to compensate.
-+	 */
-+	.format[PSC_CURRENT_IN] = direct,
-+	.m[PSC_CURRENT_IN] = 9548,
-+	.b[PSC_CURRENT_IN] = 0,
-+	.R[PSC_CURRENT_IN] = -6,
-+	.format[PSC_CURRENT_OUT] = direct,
-+	.m[PSC_CURRENT_OUT] = 24347,
-+	.b[PSC_CURRENT_OUT] = 0,
-+	.R[PSC_CURRENT_OUT] = -3,
-+	.format[PSC_POWER] = direct,
-+	.m[PSC_POWER] = 2775,
-+	.b[PSC_POWER] = 0,
-+	.R[PSC_POWER] = -4,
-+	.func[0] = (PMBUS_HAVE_VIN |
-+		    PMBUS_HAVE_VOUT |
-+		    PMBUS_HAVE_VMON |
-+		    PMBUS_HAVE_IIN |
-+		    PMBUS_HAVE_PIN |
-+		    PMBUS_HAVE_TEMP |
-+		    PMBUS_HAVE_STATUS_VOUT |
-+		    PMBUS_HAVE_STATUS_IOUT |
-+		    PMBUS_HAVE_STATUS_INPUT |
-+		    PMBUS_HAVE_STATUS_TEMP |
-+		    PMBUS_HAVE_SAMPLES),
-+
-+	.read_word_data = tps25990_read_word_data,
-+	.write_word_data = tps25990_write_word_data,
-+	.read_byte_data = tps25990_read_byte_data,
-+	.write_byte_data = tps25990_write_byte_data,
-+
-+#if IS_ENABLED(CONFIG_SENSORS_TPS25990_REGULATOR)
-+	.reg_desc = tps25990_reg_desc,
-+	.num_regulators = ARRAY_SIZE(tps25990_reg_desc),
-+#endif
-+};
-+
- static struct pmbus_driver_info tps25990_base_info = {
- 	.pages = 1,
- 	.format[PSC_VOLTAGE_IN] = direct,
-@@ -428,18 +491,25 @@ static struct pmbus_driver_info tps25990_base_info = {
- #endif
- };
- 
-+struct tps25990_data data_tps1689 = {
-+	.info = &tps1689_base_info,
-+	.info_local = &tps1689_local_info,
-+};
-+
- struct tps25990_data data_tps25990 = {
- 	.info = &tps25990_base_info,
- 	.info_local = &tps25590_local_info,
- };
- 
- static const struct i2c_device_id tps25990_i2c_id[] = {
-+	{ .name = "tps1689", .driver_data = (kernel_ulong_t)&data_tps1689 },
- 	{ .name = "tps25990", .driver_data = (kernel_ulong_t)&data_tps25990 },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, tps25990_i2c_id);
- 
- static const struct of_device_id tps25990_of_match[] = {
-+	{ .compatible = "ti,tps1689", .data = &data_tps1689 },
- 	{ .compatible = "ti,tps25990", .data = &data_tps25990 },
- 	{}
- };
+Changes in v10:
+- Moved dev_dbg() change from patch 4 to patch 5.
+- Reworded description in patch 6.
+- Addressed Andy's comment in patch 7 (&pdev->dev -> dev).
+- Link to v9: https://lore.kernel.org/r/20260202-i2c-xiic-v9-0-ce4695f5267d@nexthop.ai
+
+Changes in v9:
+- Fix an issue found by the test robot in the cleanup patch.
+- Reworded the clock change description.
+- Add a patch to switch to i2c_add_numbered_adapter().
+- Link to v8: https://lore.kernel.org/r/20260201-i2c-xiic-v8-0-deb2dd158d1a@nexthop.ai
+
+Changes in v8:
+- Made the clock change the last patch in the series.
+- Reworded the clock change description.
+- Changed dev->fwnode to dev_fwnode(dev).
+- Link to v7: https://lore.kernel.org/r/20260129-i2c-xiic-v7-0-727e434897ef@nexthop.ai
+
+Changes in v7:
+- Drop the dt-bindings patch.
+- Skip clock setup on non-OF systems.
+- Minor commit body rewording.
+- Applied code-review trailers with `b4 trailers -u`
+- Link to v6: https://lore.kernel.org/r/20260127-i2c-xiic-v6-0-e82e2f6f657c@nexthop.ai
+
+Changes in v6:
+- Cosmetic changes to address the comments.
+- Added a patch to use resource format specifier in debug log.
+- Link to v5: https://lore.kernel.org/r/20260126-i2c-xiic-v5-0-88a16a28721c@nexthop.ai
+
+Changes in v5:
+- Reorder the cosmetic patch to be the last in the series.
+- Added a documentation patch to describe the optional clock.
+- Minor commit body rewording.
+- Link to v4: https://lore.kernel.org/r/20260123-i2c-xiic-v4-0-4a3eba3510ce@nexthop.ai
+
+Changes in v4:
+- Reorder the cosmetic patch to be the first in the series.
+- Amend the mutex_init patch to also switch to the managed pm_runtime_
+  variant.
+- Link to v3: https://lore.kernel.org/r/20260123-i2c-xiic-v3-0-eb7cd4254dfb@nexthop.ai
+
+Changes in v3:
+- Reorder the "optional clock" patch to be the first in the series. 
+- Add a patch to switch to devm_mutex_init().
+- Remove dup message in error path.
+- Cosmetic: use temporary dev variable.
+- Link to v2: https://lore.kernel.org/r/20260122-i2c-xiic-v2-0-134f5d743e8b@nexthop.ai
+
+Changes in v2:
+- Split the patch into two independent changes.
+- Added struct device *dev at the top of probe() and remove() to re-use.
+- Switched to device_set_node(...)
+
+---
+Abdurrahman Hussain (7):
+      i2c: xiic: switch to devres managed APIs
+      i2c: xiic: remove duplicate error message
+      i2c: xiic: switch to generic device property accessors
+      i2c: xiic: cosmetic cleanup
+      i2c: xiic: cosmetic: use resource format specifier in debug log
+      i2c: xiic: use numbered adapter registration
+      i2c: xiic: skip input clock setup on non-OF systems
+
+ drivers/i2c/busses/i2c-xiic.c | 98 +++++++++++++++++++------------------------
+ 1 file changed, 42 insertions(+), 56 deletions(-)
+---
+base-commit: 18f7fcd5e69a04df57b563360b88be72471d6b62
+change-id: 20260122-i2c-xiic-3ba89ff5ea93
+
+Best regards,
 -- 
-2.34.1
+Abdurrahman Hussain <abdurrahman@nexthop.ai>
+
 
 
