@@ -1,402 +1,295 @@
-Return-Path: <devicetree+bounces-265424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265425-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8LI5KJpTj2lqQQEAu9opvQ
-	(envelope-from <devicetree+bounces-265424-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:38:50 +0100
+	id YJjWK2lUj2lqQQEAu9opvQ
+	(envelope-from <devicetree+bounces-265425-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:42:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B480F1383F1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:38:49 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 166BD1384ED
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:42:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D02EC30AEBF4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:32:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B5B23314B259
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:32:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D1B936655A;
-	Fri, 13 Feb 2026 16:31:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 013642868B0;
+	Fri, 13 Feb 2026 16:32:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="phBbDrYO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KjMgXtBO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010004.outbound.protection.outlook.com [52.101.228.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21DA63559EF;
-	Fri, 13 Feb 2026 16:31:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.4
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771000264; cv=fail; b=UvpE5Ba8UbjRi2emuqBKuZXnGWzmAXynjGHDEg2Nm63/1So7Q29Vta7SajF83SgDmuPb67Sd6ogk9iWJzHPhKro4ZdrXXaYJdZSUyB/Jat+ihH2heM+JJUCDLoSXflTQdMzNFRn5v7vw8ht7A7CCxh84EsH0C+SlAYqmZDXPagE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771000264; c=relaxed/simple;
-	bh=Wh1cZiNWIo3UfmEiOPtEC0zrkUwpykJ1uSpzb3oJGrs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=kslViV+uW1HfNUc1NKZ2jq7hCVY3xjuopmi4DHZtdRc9kxXoRq7pn2Wmm/kxUfLev645LKFe0BQkqrVOJQqrnU9X3gEADqG0BlQZ91PsPvkL6NIBjTWQcPxqSBq5/fWRY5Sah+D2YqjAinnmQ8J06OgFvPrvpqVP4+RsVynb5ak=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=phBbDrYO; arc=fail smtp.client-ip=52.101.228.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zOs56gech8lIYgx/k3hUJ6utEHPP0SyTxZJnMIgy5hGWZzIbrvQJhkZDFFfoF2u8j/AkN8oZ30D7fUJT9fEjqUVGONpUjvrWAg+OaMPcrlYtXXYPmcaKJaC0OoA41uTvkrIUlfkSLSkp3md7vgDgV2JPmYldBnQahh2KImw7O1uq5dlSKhM5FD8UJ+5iQKSGMvNFi9BQ7E2x0HAWxC2zqv2pcvIjiygCgpW81e8r7dfmiEIw790Dh33M55xDTAwCRHa21GGzUZ+yPYLf5K3Z/WGvMZKi/YEmrDABZeO110hJ8QLLtMKtswUQPNu0SumP5djJoV3lIvleH6As082nbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SSsaIPtXGJvxl0xe82immKOu9iKBS0/3igDOALCTixI=;
- b=dJZ9yEMS7OiNuh6Gyq6M8b9xTzmmMZr2qtoiLYMA7aBKQo9sD/hM6MheaZbNVhNvrSP1rajQxfsHlLJfvp0w8JaHcQ28VCyXirpIy9MwEOYA/9XX7miMLUUOGdGXyL2YpBd2lzPLLEL/QKTX2XO9aG3436/7FV+Zyfj+IYdst22p2K+CNFG4iL43uaYWPZEFcyVumKaJYjgyS5LgEYuaJniO0BODTWq0HiFJjvcTg4+5B5uGnfjpE0YcAm8G+MEsZ+5i7DPvIPD7v9bLrzYzLlZGGC+8RqX8z2I/7BtKw9+XrmtqcFH2FKVOO5tpBQKqj4WX68zMKYVv9+A0Oapupw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SSsaIPtXGJvxl0xe82immKOu9iKBS0/3igDOALCTixI=;
- b=phBbDrYOefMHzncKgm3glZ2oN0yTCe4BCxZB1HkshERqJBZcoxO/efdH2d2qPn12GpvNDpmp7IcazYPVUMId1RMm5DtpKC96XUI2toftNKTiQwZPZ5ymED9Oc27zHoo6wsV1+TFL66Ie3zDx+hQyMalEg8P86L0hhKP8eJBonMo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
- by TY3PR01MB12106.jpnprd01.prod.outlook.com (2603:1096:400:3d8::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.14; Fri, 13 Feb
- 2026 16:31:00 +0000
-Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com
- ([fe80::33f1:f7cd:46be:e4d8]) by TYCPR01MB11947.jpnprd01.prod.outlook.com
- ([fe80::33f1:f7cd:46be:e4d8%5]) with mapi id 15.20.9611.013; Fri, 13 Feb 2026
- 16:31:00 +0000
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-To: tomm.merciai@gmail.com,
-	geert@linux-m68k.org,
-	laurent.pinchart@ideasonboard.com
-Cc: linux-renesas-soc@vger.kernel.org,
-	biju.das.jz@bp.renesas.com,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: [PATCH v5 20/20] arm64: dts: renesas: r9a09g047e57-smarc: Enable DU0 and DSI support
-Date: Fri, 13 Feb 2026 17:27:46 +0100
-Message-ID: <09d3d3020e9b8ba77af772ae19d1f2cac065d673.1770996493.git.tommaso.merciai.xr@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1770996493.git.tommaso.merciai.xr@bp.renesas.com>
-References: <cover.1770996493.git.tommaso.merciai.xr@bp.renesas.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FR2P281CA0153.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:98::20) To TYCPR01MB11947.jpnprd01.prod.outlook.com
- (2603:1096:400:3e1::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 765B524DFF9
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 16:32:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771000364; cv=none; b=JLctSqcZiUfsBmw0ha2fjMaoW1SP5kjqNnKYwYNqzC5jbDkSnIrAMe03CMjIgrFzH1jU3SLr+Og1bnsWxb54GEGazEf0f6NtJ2neTXWcb+lcDBNEHuLzQSrnKk3tFcyMXl0/+73mJNlcQMDytzcYGxwHWBsNq7vbdqGn7B/k1xI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771000364; c=relaxed/simple;
+	bh=6UlCDCKvpgdhVvZEFBWULI+ekMscG3Ep9OXDaN5Aqnk=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=EQzx2h6On/1Xr0TWvFdBCTLgyoU6Ygj0L9UaR1DHlngF/gKHxSdGG5UOXWavRJizx+H6jpR50JPjxyKHcmVRvjOzC63mDJPF18Yu9Oe+8aJPwUR5MoSa13VoBFho1+CssRSnG7BXFrwqPBd9LVfSxIwPsPsnYKSZy1qFRAGlZ6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KjMgXtBO; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-4375d4fb4d4so903742f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 08:32:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771000362; x=1771605162; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OSsStgCmS8aP2XA8Nu5NxqlQOoi74RAhmCRiufHYOgY=;
+        b=KjMgXtBOgXg3nViI9Uo+WfxfqgzzocoRttlce75FtECP2ICPf6tS9Rwqy59rEL14yw
+         UOigNXq9QvKwC8uVZsuqYiT32Ql3FJGc2pGS9gPGtZ27tpzvO4Yfeon3n89y8rOeYroA
+         ajjsDObT1+wBYw4KXRL7kIxJN+xIChcY4jQqFkTSob333pfbTGpCntgmH9XTtEj7zUV3
+         +PJY0haKqPyhqvY29G4bmvwaoKGK1ogirLs0sw8ljcjcWcIlQrXyWZZjPbDnd7wcNk9X
+         phwvC3nUY+wWK3dJw+/uChYbF9AgbvR/81ucNvSrK+U15A6Mjb2n0a1mIbime8IzYL1f
+         fB2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771000362; x=1771605162;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OSsStgCmS8aP2XA8Nu5NxqlQOoi74RAhmCRiufHYOgY=;
+        b=YK0peFSkfaJ+/jTzBCo46wXHnNZO+uJQ+hX8sPrJpfHFixkffiUbRsM2oNnPjaearZ
+         c4nsZNRAa1ZKs+DMRNlI7vcjchuVsm79FQQTK2EELRSC2Z2IdFL/NRmsPPPvjYHxlVIx
+         LqG+RHV7vEUDpUvyIyoUOIh/OvKwgbHLcQ5u4tWGACPqrzRrEyKZRlXsV7LuJ8MVNFjX
+         c4Sk1VeLeotJ4w9Y97AVURR/vernNvZN9Jg0Bwb4zrJu/zAeEsdMsNnWWM3lhy/7bsaQ
+         z/ojmEb6IsDvKHyDLsDmeaWIij8dcoiEbxBdWsPesZg+hRp5F96esATpNG0Spm5DEOco
+         7K7A==
+X-Forwarded-Encrypted: i=1; AJvYcCVQHZefds9HFJU0fQnPLJpMBWQNd1pc06+lYtJw1peoOmHT9v3t9SDduGeEl6FwRIFIrd/zUGgJBw+i@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8eOmLwOc/MNGPGhkiaIqH0jp9XukOb0BaqFHJmZ43SGHeFxe7
+	Y2orgvyePaCtMr/FaaKXKlfeaMDM0HE4BuG+zKaVyjPowCOxdmwWuf2h
+X-Gm-Gg: AZuq6aIDfyAtnzXOOdk0jiC3HxgAsGIxP7deqS57C4gLak6upboo5rslWOMbym5PH8X
+	AwoTaQo6D650VLm67KcgpcDncbKglt2KIvXs8DcOkQJy6TqSfao7XSp4D80eWuwW37XIDZbZapV
+	dKMqXAjlruc380QCh1MZJCla6nhr8oUs3PJ2aO85bRIgiKMRPjLKSZTyHoQWCGAYhpW55llCgya
+	4sgQdLYK8Iu/XF2KoAJGp0Argb0xIWTpJcIvSg+HKQW5Vj4b4VIZLBsH1UECgWzuMvmBuUdMOIh
+	Rsk5lYz4BAPeKFRGpIwUUQDriejA2hqO87S7uSLmCqtRfoOeHv+FMFVm7xSAdiy7ByjgljZrFjK
+	kJn3/KC2FpwKzlAc7dHdMmqHnkImYygSvgg9H/g3VegW+Voo3PzSlDzeozr4VPQ+l0CtXBwp0Mi
+	pmRWoe36qPejQit9ZQ9uR8PPPjI+if3/L096zcX650zQ==
+X-Received: by 2002:a05:6000:1a8b:b0:435:dba0:736c with SMTP id ffacd0b85a97d-43797927177mr5593289f8f.56.1771000361492;
+        Fri, 13 Feb 2026 08:32:41 -0800 (PST)
+Received: from [192.168.1.187] ([148.63.225.166])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43796acffcesm6118496f8f.37.2026.02.13.08.32.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Feb 2026 08:32:41 -0800 (PST)
+Message-ID: <a94e08378199529d30b6c4e33dc9397fd499820c.camel@gmail.com>
+Subject: Re: [PATCH v3 3/5] iio: backend: add devm_iio_backend_get_by_index()
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, Lars-Peter Clausen	
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron	 <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=	 <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring	 <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>, Mark
+ Brown	 <broonie@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-spi@vger.kernel.org
+Date: Fri, 13 Feb 2026 16:33:23 +0000
+In-Reply-To: <20260213144742.16394-4-antoniu.miclaus@analog.com>
+References: <20260213144742.16394-1-antoniu.miclaus@analog.com>
+	 <20260213144742.16394-4-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB11947:EE_|TY3PR01MB12106:EE_
-X-MS-Office365-Filtering-Correlation-Id: a59c5397-e266-4d22-c55f-08de6b1d45c5
-X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|366016|52116014|376014|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?/VAhFn5wm8pAqLIDNKNaQYiXII5mIROW2anTjycHo8ocf6fLCB98KD1+/UYw?=
- =?us-ascii?Q?kFaYkQbNNDULFetBXOmQjzhxD5GvSmmmVjGBXrHlPwYfnEBWgA2gMY0E8Ojl?=
- =?us-ascii?Q?SFrNbw5zZ8rFIv4TQ99nfRZJZNGewC2QfiY/bk7CLGAh+k3iSnZGKreuhDzA?=
- =?us-ascii?Q?J4IO8TJl9aop0ehUri2fwe28jQQMQLraJoq1O7hSkSmft1RoMJq3CuXMILxB?=
- =?us-ascii?Q?+DD/tPjGvTOgLthEjuzKlV5SWeolDm1PWh4jemuIBUvRMHlvmhlcI/jxC0//?=
- =?us-ascii?Q?dFjBeONCraA7aZfuAFN+mpQIOYLkscu/FlNjcgBkw2lRTkTV3dc88JfBkRlX?=
- =?us-ascii?Q?zZEMyMHnwgfBwFQtkOryZHhXAzJMuzq3J44UofRtCLosJZCJBTwKNHbqzXZl?=
- =?us-ascii?Q?36K+ufLj2zQNrVtolBsZ/C2F2+0UDx3xQwJnNLDaMN3sUXmqsdqXX+fza3Qx?=
- =?us-ascii?Q?3zk9HJzu/U0gYAvAoCKEFnsWgnGT3n7icCkCp4TDIYn4sfAka+pEuWCyCrp4?=
- =?us-ascii?Q?WPKSQxPVtrryn0hX0e7FC3m6f28LSjPSKkooEQRPOysv4DlfPybxX9Ywg6B6?=
- =?us-ascii?Q?0yiW7RySuFRdUsmvxM4JU8aybGm+JuJinpcpfN3EpNwPVsofezsp0ah67R8s?=
- =?us-ascii?Q?sgUlnOkPwGg0tE6Nbb+2a85uUG4x5kMKOiF/IFKdhjEfzQ28vS39hXIZZJjJ?=
- =?us-ascii?Q?DlCQLAM14vZKNU3LfLdXrX4Lwo6Wve9KuprS/P7HL9RGWEcmhHusfVUgx6hp?=
- =?us-ascii?Q?TDgBh/2syAOvS0Difb5YeYi1zcvn9Lr4vyxmM8/65HQHkkMuUOc6W39Vm0rB?=
- =?us-ascii?Q?UqFR9h9VCZ8+0kaAKeHrmdP2CGqE5Cc9Aun/QP5ur5cg0dVQMSb8O8ReEPFG?=
- =?us-ascii?Q?wdw7r2dbAEcLKz/9bEjgiakz/VGdfDfyNnjncDXUaOYkV1e4UvfQEK47iK4b?=
- =?us-ascii?Q?5cFBEcApFhgXKGDwoCTXwjQDJBU0XVDYgcxe5HO066VbrR7nlzv+S4YPr9TW?=
- =?us-ascii?Q?OsMboqycQDavDVFHeI0L0tQtpVX2N1B38k4MEXoYxcjg/4bkrV+MUTPrx0yp?=
- =?us-ascii?Q?XJV9rRJ5o6U8oFn8j2zSSTspC8nSszN73pBO1ZXy7co6bbo/l5JD2ahTlD1M?=
- =?us-ascii?Q?CBafaziHpexEAw+LfB6KE5oZ1z5TZ2PpNjyLvonX0EhZiZtLU12HPNTyidw1?=
- =?us-ascii?Q?sER/TSYkiUE1DBlOsCjEGg5Y5rCEWegwfLPkhcDkzgL+sGeOxJVJ2BgCh8wT?=
- =?us-ascii?Q?+EbHhpCu6U2fBlmmTbmVi+ydInGcmu1NAqqddT7RFU+BCiNwDOt3lOdYrDHG?=
- =?us-ascii?Q?zsH2MDvpfFqLsLCijuu2p/D7iO1icf/O4JBDVh4lX+fTCg+mB94HonubBrMJ?=
- =?us-ascii?Q?prVvJEfTS4lhtfOuep5YgqPjhnfHXGjjWo2C1T2S/VJqfzwTfKt9/5Y2WhT3?=
- =?us-ascii?Q?26M7gl7RMbZblp6ln0PG5a4KhYLekW/gMVfqyqPRZ6+ItkdPF7HU0AV77Sld?=
- =?us-ascii?Q?Iiojj3wyzUpyMvvoD7GILg7G+j6WWw3QPBmhdStY3C21lZCvokfvqa5AhgJk?=
- =?us-ascii?Q?PjTFLJgZpOhbqmiq+0uKY3qN9E1do9Oi+RyjHOD2OGXrLc7jDUZ3f9nUiDAi?=
- =?us-ascii?Q?C+bB9Pg9pgkKIdLNysvQAVg=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11947.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(376014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?OU6t4yqHumRcJDjGC5gSEcSXCJtVGRpAjznK2NVJJ+f2G4o8xI+fkZu9Bwql?=
- =?us-ascii?Q?bY+yqOhd/CG7ARzJsRsDUr9vY6MnKjb+/n4Kz5jj92k5LKAuUd3C4coYUECP?=
- =?us-ascii?Q?taHaOyCAxidVepgrTKBlTNC6HStsnL9m8FfvAE4ye2v5+vJ4LasTRCqb/iB9?=
- =?us-ascii?Q?xINeyQ9MqvY6pA3BJNrAw6vDG/c6hbnJ8nZJ0XyB/IygECekPUTWYgClaUQU?=
- =?us-ascii?Q?aphBIjkc8UEiPeDwAKLA5JzIx2Suo/VGR05AIaD7U8nFxo+iJPms0v2bIxQf?=
- =?us-ascii?Q?C0DIpKe1zeKMhinJjkAPp2JURadvJNxpdKrQASNOAIZGibuVTVc7tQ0M14Oe?=
- =?us-ascii?Q?czoEPzNFQUuQNKrLJ9NdY3Rl5mPvn9TFXRsAP4gbzOm916qHaMnYQmQu1zEO?=
- =?us-ascii?Q?ioUxTijA2XXKWBLaV8tEkIUIAFXjA7PMVYahZNZkcx9f44YfDN4Zp6gXvS/c?=
- =?us-ascii?Q?+FN9Yc2nQo9NsbEmz4Lyq9vxyINthLwSsS8lrOGWtjDoQcngRghY2Gqek4oV?=
- =?us-ascii?Q?O0zqo4b3jtAk0qEnrFApFbzqXtN2+/m0snuF51vbKTFD2SsfOnnjvpepbxDW?=
- =?us-ascii?Q?O9bdP8CG6XqiIrklYaTtgCXSxIrQ/44hV24Q9xpJLeZNLhN8G67uh9sd3SX3?=
- =?us-ascii?Q?3m8Ht5DC3YSIwoJ3BuoD4oL70DvrQg5BIJncTGAR8pyhWQpyzTXj3GxX39m1?=
- =?us-ascii?Q?lBwgfR0lPAuz0Zc1uBHN2TEKwXcXvQoDVrZdGanbfc+YzKZHMgSnsaOz8A9H?=
- =?us-ascii?Q?og8pJwR3D+ecy/IjDdHuM05k+wqEsH/3f5iwTJjhhG71bVsuFHACmnL8Ldht?=
- =?us-ascii?Q?HQjxriAo2E1cMTUuM8dD9541wIQlY801QAlq0GoqkiUYylTzAzN7ucLGAA/n?=
- =?us-ascii?Q?ss6dH0ywif+Y7zyOO62vAH/Z9TkKYPmKJ2f8rU1DJn6k6DWA/lh074iymsCJ?=
- =?us-ascii?Q?MJ4LsRpiqeBP052w0t/3yDDvqoRbPBqYpl0sl2OhdHmfazN0ps4Wa1X/4Nwl?=
- =?us-ascii?Q?9ZhfWFDk0YAeqkf729JY90d7nd3TtRkOhyOmAWnc+O2ac+bfVRxoU9WZTf/6?=
- =?us-ascii?Q?Hril3rhzIkWLkakS9H9I4K0TCD5/FSFAYfN5u5+1pRUQOGLE7gVMMA/WOkRF?=
- =?us-ascii?Q?beEBVAhKoHjssn+Zfokuk6nJoAFPemXPEtMXjo9qtcow2+h0g1b+ekxT8bfl?=
- =?us-ascii?Q?GFO+806+5LL0T0qgeS1CinYBXvuw+Lw/ef7jSoys6cQ67L21itAEki8Oic3I?=
- =?us-ascii?Q?I/3nu3EAvzRJHAYPFpzSWxFQzC6T/Qm4pzwMjEtWzt4K3gFmcfp3ifxJfEBK?=
- =?us-ascii?Q?pmNZIEIRn0oRZwew8WmlHGkz8cxanf4PyNsmOCg6mkUzufBMN5vpcdrhk2AP?=
- =?us-ascii?Q?ePwq6GeJjy877OLO4tTp4Zc4Jt6ao4f9rk1pUD7bBiMYF31SICQrXzv0G4bJ?=
- =?us-ascii?Q?FJFkngI8au9/J60+rM8ZnSSb6Oi0n7PtWj6oA13NShqXiPO0UXTIyZpMVj3t?=
- =?us-ascii?Q?do3xxjmxqA9YhNm9fggxB0h8n6hrHDEi/aUlwhW509k64g57ScTv9XBksqG8?=
- =?us-ascii?Q?QrBrXNEGRRWhVBD6vYRsaUemxf34dFoVEWvAJgtR1gQBoKGfGtazr8xe1xPF?=
- =?us-ascii?Q?+VvLb34myouhIAm0Y3HM57uFRqWAPGx1UqOrwpAA/tJNZzs42WQz69+HzuxG?=
- =?us-ascii?Q?0kQ6Ag5iGgrD5crsX+YsojDaQWxY4h+K5sZKqzSIe6r7G5ZJHjLNfU31Ph36?=
- =?us-ascii?Q?Y7DhvJj5sysjdho1w8pFQDPiR5o8jfYrkc8ULZ6xeWB2arhR4lnR?=
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a59c5397-e266-4d22-c55f-08de6b1d45c5
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2026 16:31:00.5388
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cBDQbTuizvkS1YS/zPaebN2jmQRUq6VOifEmnJD2RdjYU6s6ttHWhvCiekjVr3nxAMAmEhLm932ErjuOCQ/uE1rs4XLeMLhe0mOHoay7b3XEz4I2xq5ZFnMDck/XhVRM
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3PR01MB12106
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,linux-m68k.org,ideasonboard.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-265424-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265425-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,bp.renesas.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,glider.be,baylibre.com,ideasonboard.com,lists.freedesktop.org];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	FROM_NEQ_ENVFROM(0.00)[tommaso.merciai.xr@bp.renesas.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[bp.renesas.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.0.0.2:email,renesas.com:email,0.0.0.1:email,3d:email,0.0.0.0:email,bp.renesas.com:mid,bp.renesas.com:dkim,0.0.0.12:email]
-X-Rspamd-Queue-Id: B480F1383F1
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 166BD1384ED
 X-Rspamd-Action: no action
 
-Enable DU0, DSI and ADV7535 on RZ/G3E SMARC EVK.
+On Fri, 2026-02-13 at 16:47 +0200, Antoniu Miclaus wrote:
+> Add a new function to get an IIO backend by its index in the
+> io-backends device tree property. This is useful for multi-channel
+> devices that have multiple backends, where looking up by index is
+> more straightforward than using named backends.
+>=20
+> The new function directly uses the index to find the backend reference
+> in the io-backends property, avoiding the need for io-backend-names.
+>=20
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
 
-Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+LGTM
+
+Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+
+> Changes in v3:
+> =C2=A0 - Refactor __devm_iio_backend_fwnode_get() to reuse
+> =C2=A0=C2=A0=C2=A0 __devm_iio_backend_fwnode_get_by_index() instead of du=
+plicating
+> =C2=A0=C2=A0=C2=A0 the lookup logic
+> =C2=A0 - Use __free(fwnode_handle) for automatic cleanup instead of manua=
+l
+> =C2=A0=C2=A0=C2=A0 fwnode_handle_put()
+> =C2=A0 - Set back->idx unconditionally in the by_index path
+>=20
+> =C2=A0drivers/iio/industrialio-backend.c | 61 ++++++++++++++++++++-------=
 ---
-v4->v5:
- - Use DU0 -> DSI instead of DU1 -> DSI and update commit body and commit
-   message accordingly.
-
-v3->v4:
- - No changes.
-
-v2->v3:
- - No changes.
-
-v1->v2:
- - Fixed: dsi, du and adv7535 are part of the the R9A09G047E57
-   SMARC SoM board then add entries in the rzg3e-smarc-som.dtsi instead
-   of using the r9a09g047e57-smarc-du1-adv7535.dtsi.
-
- .../boot/dts/renesas/rzg3e-smarc-som.dtsi     | 114 ++++++++++++++++++
- 1 file changed, 114 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-index 3b571c096752..a8f73235988a 100644
---- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-@@ -33,6 +33,7 @@ aliases {
- 		ethernet0 = &eth0;
- 		ethernet1 = &eth1;
- 		i2c2 = &i2c2;
-+		i2c7 = &i2c7;
- 		mmc0 = &sdhi0;
- 		mmc2 = &sdhi2;
- 	};
-@@ -71,12 +72,47 @@ reg_vdd0p8v_others: regulator-vdd0p8v-others {
- 		regulator-always-on;
- 	};
- 
-+	reg_1p8v_adv: regulator-1p8v-adv {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-1.8V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	reg_3p3v_adv: regulator-3p3v-adv {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-3.3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	osc1: cec-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <12000000>;
-+	};
-+
- 	/* 32.768kHz crystal */
- 	x3: x3-clock {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <32768>;
- 	};
-+
-+	dsi-to-hdmi-out {
-+		compatible = "hdmi-connector";
-+		type = "d";
-+
-+		port {
-+			dsi_to_hdmi_out: endpoint {
-+				remote-endpoint = <&adv7535_out>;
-+			};
-+		};
-+	};
- };
- 
- &audio_extal_clk {
-@@ -101,6 +137,37 @@ &eth1 {
- 	status = "okay";
- };
- 
-+&dsi {
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			dsi_in0: endpoint {
-+				remote-endpoint = <&du0_out_dsi>;
-+			};
-+		};
-+
-+		port@2 {
-+			dsi_out: endpoint {
-+				remote-endpoint = <&adv7535_in>;
-+				data-lanes = <1 2 3 4>;
-+			};
-+		};
-+	};
-+};
-+
-+&du0 {
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			du0_out_dsi: endpoint {
-+				remote-endpoint = <&dsi_in0>;
-+			};
-+		};
-+	};
-+};
-+
- &gpu {
- 	status = "okay";
- 	mali-supply = <&reg_vdd0p8v_others>;
-@@ -126,6 +193,48 @@ raa215300: pmic@12 {
- 	};
- };
- 
-+&i2c7 {
-+	pinctrl-0 = <&i2c7_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	adv7535: hdmi@3d {
-+		compatible = "adi,adv7535";
-+		reg = <0x3d>, <0x4d>, <0x2d>, <0x5d>;
-+		reg-names = "main", "edid", "cec", "packet";
-+		clocks = <&osc1>;
-+		clock-names = "cec";
-+		avdd-supply = <&reg_1p8v_adv>;
-+		dvdd-supply = <&reg_1p8v_adv>;
-+		pvdd-supply = <&reg_1p8v_adv>;
-+		a2vdd-supply = <&reg_1p8v_adv>;
-+		v3p3-supply = <&reg_3p3v_adv>;
-+		v1p2-supply = <&reg_1p8v_adv>;
-+		adi,dsi-lanes = <4>;
-+		interrupts-extended = <&pinctrl RZG3E_GPIO(L, 4) IRQ_TYPE_EDGE_FALLING>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				adv7535_in: endpoint {
-+					remote-endpoint = <&dsi_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				adv7535_out: endpoint {
-+					remote-endpoint = <&dsi_to_hdmi_out>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &i3c {
- 	pinctrl-0 = <&i3c_pins>;
- 	pinctrl-names = "default";
-@@ -231,6 +340,11 @@ i2c2_pins: i2c {
- 			 <RZG3E_PORT_PINMUX(3, 5, 1)>; /* SDA2 */
- 	};
- 
-+	i2c7_pins: i2c7 {
-+		pinmux = <RZG3E_PORT_PINMUX(A, 4, 4)>, /* SCL7 */
-+			 <RZG3E_PORT_PINMUX(A, 5, 4)>; /* SDA7 */
-+	};
-+
- 	i3c_pins: i3c {
- 		pinmux = <RZG3E_PORT_PINMUX(2, 0, 2)>, /* I3C0_SCL */
- 			 <RZG3E_PORT_PINMUX(2, 1, 2)>; /* I3C0_SDA */
--- 
-2.43.0
-
+> =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0 2 +
+> =C2=A02 files changed, 44 insertions(+), 19 deletions(-)
+>=20
+> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industriali=
+o-backend.c
+> index 447b694d6d5f..d90a3a0b17c6 100644
+> --- a/drivers/iio/industrialio-backend.c
+> +++ b/drivers/iio/industrialio-backend.c
+> @@ -949,25 +949,16 @@ int iio_backend_data_transfer_addr(struct iio_backe=
+nd *back, u32 address)
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL_NS_GPL(iio_backend_data_transfer_addr, "IIO_BACKEND")=
+;
+> =C2=A0
+> -static struct iio_backend *__devm_iio_backend_fwnode_get(struct device *=
+dev, const char *name,
+> -							 struct fwnode_handle *fwnode)
+> +static struct iio_backend *
+> +__devm_iio_backend_fwnode_get_by_index(struct device *dev,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct fwnode_handle *fwnode,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int index)
+> =C2=A0{
+> -	struct fwnode_handle *fwnode_back;
+> +	struct fwnode_handle *fwnode_back __free(fwnode_handle) =3D
+> +		fwnode_find_reference(fwnode, "io-backends", index);
+> =C2=A0	struct iio_backend *back;
+> -	unsigned int index;
+> =C2=A0	int ret;
+> =C2=A0
+> -	if (name) {
+> -		ret =3D device_property_match_string(dev, "io-backend-names",
+> -						=C2=A0=C2=A0 name);
+> -		if (ret < 0)
+> -			return ERR_PTR(ret);
+> -		index =3D ret;
+> -	} else {
+> -		index =3D 0;
+> -	}
+> -
+> -	fwnode_back =3D fwnode_find_reference(fwnode, "io-backends", index);
+> =C2=A0	if (IS_ERR(fwnode_back))
+> =C2=A0		return dev_err_cast_probe(dev, fwnode_back,
+> =C2=A0					=C2=A0 "Cannot get Firmware reference\n");
+> @@ -977,21 +968,35 @@ static struct iio_backend *__devm_iio_backend_fwnod=
+e_get(struct device *dev,
+> con
+> =C2=A0		if (!device_match_fwnode(back->dev, fwnode_back))
+> =C2=A0			continue;
+> =C2=A0
+> -		fwnode_handle_put(fwnode_back);
+> =C2=A0		ret =3D __devm_iio_backend_get(dev, back);
+> =C2=A0		if (ret)
+> =C2=A0			return ERR_PTR(ret);
+> =C2=A0
+> -		if (name)
+> -			back->idx =3D index;
+> +		back->idx =3D index;
+> =C2=A0
+> =C2=A0		return back;
+> =C2=A0	}
+> =C2=A0
+> -	fwnode_handle_put(fwnode_back);
+> =C2=A0	return ERR_PTR(-EPROBE_DEFER);
+> =C2=A0}
+> =C2=A0
+> +static struct iio_backend *__devm_iio_backend_fwnode_get(struct device *=
+dev, const char *name,
+> +							 struct fwnode_handle *fwnode)
+> +{
+> +	unsigned int index =3D 0;
+> +	int ret;
+> +
+> +	if (name) {
+> +		ret =3D device_property_match_string(dev, "io-backend-names",
+> +						=C2=A0=C2=A0 name);
+> +		if (ret < 0)
+> +			return ERR_PTR(ret);
+> +		index =3D ret;
+> +	}
+> +
+> +	return __devm_iio_backend_fwnode_get_by_index(dev, fwnode, index);
+> +}
+> +
+> =C2=A0/**
+> =C2=A0 * devm_iio_backend_get - Device managed backend device get
+> =C2=A0 * @dev: Consumer device for the backend
+> @@ -1008,6 +1013,24 @@ struct iio_backend *devm_iio_backend_get(struct de=
+vice *dev, const char
+> *name)
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL_NS_GPL(devm_iio_backend_get, "IIO_BACKEND");
+> =C2=A0
+> +/**
+> + * devm_iio_backend_get_by_index - Device managed backend device get by =
+index
+> + * @dev: Consumer device for the backend
+> + * @index: Index of the backend in the io-backends property
+> + *
+> + * Get's the backend at @index associated with @dev.
+> + *
+> + * RETURNS:
+> + * A backend pointer, negative error pointer otherwise.
+> + */
+> +struct iio_backend *devm_iio_backend_get_by_index(struct device *dev,
+> +						=C2=A0 unsigned int index)
+> +{
+> +	return __devm_iio_backend_fwnode_get_by_index(dev, dev_fwnode(dev),
+> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 index);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(devm_iio_backend_get_by_index, "IIO_BACKEND");
+> +
+> =C2=A0/**
+> =C2=A0 * devm_iio_backend_fwnode_get - Device managed backend firmware no=
+de get
+> =C2=A0 * @dev: Consumer device for the backend
+> diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
+> index 7f815f3fed6a..8f18df0ca896 100644
+> --- a/include/linux/iio/backend.h
+> +++ b/include/linux/iio/backend.h
+> @@ -237,6 +237,8 @@ int iio_backend_extend_chan_spec(struct iio_backend *=
+back,
+> =C2=A0				 struct iio_chan_spec *chan);
+> =C2=A0void *iio_backend_get_priv(const struct iio_backend *conv);
+> =C2=A0struct iio_backend *devm_iio_backend_get(struct device *dev, const =
+char *name);
+> +struct iio_backend *devm_iio_backend_get_by_index(struct device *dev,
+> +						=C2=A0 unsigned int index);
+> =C2=A0struct iio_backend *devm_iio_backend_fwnode_get(struct device *dev,
+> =C2=A0						const char *name,
+> =C2=A0						struct fwnode_handle *fwnode);
 
