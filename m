@@ -1,66 +1,64 @@
-Return-Path: <devicetree+bounces-265272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265273-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QKE7ODTYjmm/FQEAu9opvQ
-	(envelope-from <devicetree+bounces-265272-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:52:20 +0100
+	id 4PaoFqTYjmm/FQEAu9opvQ
+	(envelope-from <devicetree+bounces-265273-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:54:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C2D5133B74
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:52:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A709F133BA3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:54:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 443CB303EBA2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 07:52:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2FC613013ABF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 07:54:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33959313549;
-	Fri, 13 Feb 2026 07:52:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 814F7313E0F;
+	Fri, 13 Feb 2026 07:54:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X51X4gAu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WSQER7Qt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E17E2F532F;
-	Fri, 13 Feb 2026 07:52:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D088305E32;
+	Fri, 13 Feb 2026 07:54:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770969138; cv=none; b=tH2XIv6M+7XK0hQMhowUJUTRsKVSxnhoWgr1UKynX69IlwAqR6Bd4K9HRSR/3qrb8fxLczpXyRg0Beh+Z7+8n/uZGe1nwOoj9WizipnamAIX2DokAooQ18m5XhaFgn6WUMM2IYl776PgpYCJa8sCXuMetUNzS8t/jSSFi8NWJmU=
+	t=1770969249; cv=none; b=L/WWzXkmbns2JAIB15xF00E6S/Zp6kBEhTK2LzD1RWUzY9SWABInk0fbeAb3m4HKwwEOCRhw1bbg8UOeB1uVx4qzj/xJ8qVmlL3h7JlphwRHpPbV3xa4k5x4f1Li2yjUEZfynsxvnov5ew7CqNcQNXwQiUK2TdoOPkqI7Je2Eok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770969138; c=relaxed/simple;
-	bh=UefBuSp8hc5xNGX436f+hEfJZc5QS43b+SrCXPfytKU=;
+	s=arc-20240116; t=1770969249; c=relaxed/simple;
+	bh=fyBZBOvRm63EDEk40xoiwwcRMLnqBiSK5e6jEdumIhU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gq8lHvQfCX9v1tmrNZwdJNx4qYXdDBAo6tt+qBaLo+fS8ypFUdC/DTnEylwpqeUqZf9WE0ZRq52tEDGwvLVB0p/7WuMyOmOt2AWEoliYmlxOUi2xoM8cVzIOrpG1+0/sgDwYzk9rSgAWhWAmTXKO6L15SfPgl9oxn6uX9pGctzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X51X4gAu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2457EC116C6;
-	Fri, 13 Feb 2026 07:52:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z16OxnT3t2cWH79oc5Q7/AiDvConL+0p3XKnYX93lyiqfqy0mysP86U+Cn2froMRoEY/Vhc3Uob4xc18en8VBMP6avDdgc73+ZXQX38mp/QVQkWST096yBuO2EWg8jZWikBFY7M1G146aofnPsdQm9Rd34kLdzFgqwv/D+48174=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WSQER7Qt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57AC0C116C6;
+	Fri, 13 Feb 2026 07:54:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770969137;
-	bh=UefBuSp8hc5xNGX436f+hEfJZc5QS43b+SrCXPfytKU=;
+	s=k20201202; t=1770969248;
+	bh=fyBZBOvRm63EDEk40xoiwwcRMLnqBiSK5e6jEdumIhU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X51X4gAuckniFmBn8+Z0Vkt9gmlv5zxA1umRA7wUuISNEbf15D5G9ITXD4KMdAqIK
-	 n3Vf/vVQjhh5QFV/ZfVILdXQW8pAe6jb6Zwnf6p0S5KUPft56ZTn9Pf3Na2kU3HZhL
-	 UMhTGVljOokCqeHEKn1TOSCXPdIuO7sXP5fmKyF5xphRfJs+ZXklbaDFF9vZSgVpEz
-	 xXpLjCf2KedgM82O10+2cLpebioC7/8MhmEn0A3M8NCHN+8PfpKmDhGNiTfSiFZ3mL
-	 6Nh5TXg3jho036ruD8x/r3tiP2WfkcYK3a/5gsRshR+kAkmsD7Tivi+XBU43tbrtBf
-	 n8xvT9Il+kFKw==
-Date: Fri, 13 Feb 2026 08:52:15 +0100
+	b=WSQER7QtxLkW6KVIUaosZ3F51+neBscYBbgVcl7FtPjEYXEMLrpEU8FIVDGnLnp1N
+	 ngJsm96F+rnE7CgNshR/woYsGthxTNLDK6Wr/xEzoMAto/jhgZJ2QtKyr5lL0KpSzD
+	 pTb4ZfsnvHDgpnvnY8UA7rX45ZYvjeC5vmFUXrrq/avmSjwKQp4QDzm16R7lhIwynf
+	 /yKDSF8fg/8SdNPiGsYPbOHciVSQlPxFaocZWEYsJtLGnCbsuHbfRqo/DVXkku49a1
+	 ZYKcrutfDRksF+pNqQQD4N0iRApLbTqnQdtlh1/hXafDt2Gay0ljxf3ykfIhSZWpN3
+	 P0h03W4Y0CnJA==
+Date: Fri, 13 Feb 2026 08:54:06 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Irui Wang <irui.wang@mediatek.com>
-Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, wenst@chromium.org, 
-	angelogioacchino.delregno@collabora.com, nicolas.dufresne@collabora.com, sebastian.fricke@collabora.com, 
-	Tiffany Lin <tiffany.lin@mediatek.com>, kyrie wu <kyrie.wu@mediatek.com>, 
-	Yunfei Dong <yunfei.dong@mediatek.com>, Maoguang Meng <maoguang.meng@mediatek.com>, 
-	Longfei Wang <longfei.wang@mediatek.com>, Project_Global_Chrome_Upstream_Group@mediatek.com, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v4 5/6] dt-bindings: media: mediatek,vcodec-encoder: Add
- MT8196 with VCP support
-Message-ID: <20260213-didactic-whispering-impala-ea9e64@quoll>
-References: <20260212100104.11863-1-irui.wang@mediatek.com>
- <20260212100104.11863-6-irui.wang@mediatek.com>
+To: Erikas Bitovtas <xerikasxx@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Meerwald <pmeerw@pmeerw.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+	phone-devel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: light: vcnl4000: add Capella
+ CM36686 and CM36672P
+Message-ID: <20260213-unyielding-pistachio-ape-deda74@quoll>
+References: <20260212-cm36686-v4-0-8f587d4a72bf@gmail.com>
+ <20260212-cm36686-v4-1-8f587d4a72bf@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,106 +67,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260212100104.11863-6-irui.wang@mediatek.com>
+In-Reply-To: <20260212-cm36686-v4-1-8f587d4a72bf@gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265272-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-265273-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[xs4all.nl,kernel.org,gmail.com,chromium.org,collabora.com,mediatek.com,vger.kernel.org,lists.infradead.org];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mediatek.com:email]
-X-Rspamd-Queue-Id: 4C2D5133B74
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A709F133BA3
 X-Rspamd-Action: no action
 
-On Thu, Feb 12, 2026 at 06:01:02PM +0800, Irui Wang wrote:
-> Add support for MT8196 video encoder which uses VCP (Video Co-Processor)
-> for firmware management. Unlike previous platforms that use SCP/VPU, MT8196
-> requires VCP to load and execute the video encoding firmware, with the
-> encoder communicating through VCP to perform encoding operations.
+On Thu, Feb 12, 2026 at 04:42:47PM +0200, Erikas Bitovtas wrote:
+> Capella CM36686 is an ambient light and proximity sensor developed by
+> Capella Microsystems, now a subsidiary of Vishay Intertechnology Inc. It
+> has an I2C address of 0x60 and is fully compatible with an existing
+> driver for VCNL4040.
 
-Again, read review from v2. Subject is still wrong.
+I wonder why and how...
 
+> Capella CM36672P is a proximity-only sensor that
+> is fully compatible with CM36686, and therefore with VCNL4040. Add
+> compatibles for cm36672p and cm36686, with a fallback for cm36686 of
+> vcnl4040.
 > 
-> Add the "mediatek,mt8196-vcodec-enc" compatible string and introduce
-> the "mediatek,vcp" property to reference the VCP device, which is
-> required for MT8196 encoder operation.
-> 
-> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
 > ---
->  .../media/mediatek,vcodec-encoder.yaml        | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+>  .../devicetree/bindings/iio/light/vishay,vcnl4000.yaml  | 17 +++++++++++------
+>  1 file changed, 11 insertions(+), 6 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-> index ebc615584f92..4c8acebeb9d3 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-> @@ -24,6 +24,7 @@ properties:
->                - mediatek,mt8188-vcodec-enc
->                - mediatek,mt8192-vcodec-enc
->                - mediatek,mt8195-vcodec-enc
-> +              - mediatek,mt8196-vcodec-enc
->        - items:
->            - const: mediatek,mt8186-vcodec-enc
->            - const: mediatek,mt8183-vcodec-enc
-> @@ -58,6 +59,13 @@ properties:
->      description:
->        Describes point to scp.
+> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+> index 4d1a225e8868..2ba4d5de4ec4 100644
+> --- a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+> +++ b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+> @@ -18,12 +18,17 @@ allOf:
 >  
-> +  mediatek,vcp:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Reference to the VCP (Video Co-Processor) device that loads and executes
-> +      the video encoding firmware. The encoder communicates with the firmware
-> +      through VCP to perform encoding operations.
-> +
->    power-domains:
->      maxItems: 1
->  
-> @@ -76,6 +84,17 @@ required:
->    - iommus
->  
->  allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt8196-vcodec-enc
-> +
-> +    then:
-> +      required:
-> +        - mediatek,vcp
+>  properties:
+>    compatible:
+> -    enum:
+> -      - vishay,vcnl4000
+> -      - vishay,vcnl4010
+> -      - vishay,vcnl4020
+> -      - vishay,vcnl4040
+> -      - vishay,vcnl4200
+> +    oneOf:
+> +      - enum:
+> +          - capella,cm36672p
 
-And here still did not implement the comment. So basically you did not
-implement fully v2 and v3.
+CM36672P is compatible with CM36686, but this is not expressed.
+Confusing commit msg and code.
 
-And if something was not clear, you have entire huge Mediatek company,
-with huge budget and enormous resources, to help you instead of pushing
-something which ignores review THIRD time.
-
-NAK
+> +          - vishay,vcnl4000
+> +          - vishay,vcnl4010
+> +          - vishay,vcnl4020
+> +          - vishay,vcnl4040
 
 Best regards,
 Krzysztof
