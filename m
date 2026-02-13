@@ -1,77 +1,79 @@
-Return-Path: <devicetree+bounces-265356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265357-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QFzZKowkj2lNKAEAu9opvQ
-	(envelope-from <devicetree+bounces-265356-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:18:04 +0100
+	id aA1MG5Ekj2m6KAEAu9opvQ
+	(envelope-from <devicetree+bounces-265357-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:18:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 234C8136434
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:18:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA2EC13644B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:18:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E0E95301C958
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 13:18:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1EBE3304D92D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 13:18:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAED035F8A6;
-	Fri, 13 Feb 2026 13:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58C4935FF69;
+	Fri, 13 Feb 2026 13:18:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lI8b+OSg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e10WJv+O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 733292C3256
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01664359FAF
 	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 13:17:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770988680; cv=none; b=Es+vGYUC0TK1X0ZmrpQp97KiazJL0NSIW1/vaymp2tnRRQEpZ74Zs3yjKckChWSArVpN3rg7lU8ac2UC6Lf9mkbJ/cs4TsV7aI3Z51Sg2ZdXeqdo1x0PnvuMHGDpbcrUs8fMqbTmIZiXc9unsVrnPrtkn6hGI412v49iSmDRsxc=
+	t=1770988681; cv=none; b=RfJcUJ34ZOY3neiMVWceQTDrnaFwL9qb7KdiqKQ5+SkKJKzQbCjdLw8DRRMGO6mIZy1fZc0u6VxxXvFly2VrAlP/APqaliZ5gbOMoSIT6InLDlvWyT5Uz2G2OkV8FUF/LsNV7ts11J2rRTx3zOaVSa8jJLKMiBzOJTrE3gH7blc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770988680; c=relaxed/simple;
-	bh=mCqVL0Im1LADrJFZ5SA80XuYkYbq/qWCO3VuRjyCb5A=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NiRQijPG+h1/wMaFdWuJuWH8YnzOUB9qaRbq4ZCREN3wQ9UQfKEWEb70BTw4j/4KKtZ0zgR0wykEgCtqR8t6+cGyDcDE0KPyTgX0MHsCygDRkR93ubfwhr8cmpeEhN/oV3tQI4hgeNL/JjTBd/Y4QQL1jeyP2BfxwHsMJKxZrX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lI8b+OSg; arc=none smtp.client-ip=209.85.128.48
+	s=arc-20240116; t=1770988681; c=relaxed/simple;
+	bh=INAIXghp83/jNBX4SyNZtmAn35Of6e7qwMPedmTcMcM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=m30qScXdWs79Nrp0k3gB7N/1SRT4+8fT/JN0bjifMYkphsD4uRvFXue4O9U1Y1hAdPSAZsx60IqWgd/jBbxgrDVljOiLQ6CZp4Ut8KU9Ar1mFdRNFYU7DrKLNnCz0xjU+DaqgP6n7fWqrdrMO7iNb9RfJ+ogNojx/tf2topbpBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e10WJv+O; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-483770e0b25so3490665e9.0
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-482f454be5bso29485775e9.0
         for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 05:17:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20230601; t=1770988678; x=1771593478; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=kb+Yauv/s6iAIjpMHMyZsZpTSzWDpVY1auP+Q51Tow4=;
-        b=lI8b+OSguFd69RFL2k3cIDukU7eFxzJ0q/DBagWDm6gIFfU2nyBziDMTMPSC5tdqh6
-         Llj9o6RxSmzu0vNXNf4WpoXwzyJ9OnOgkI77yDUtE7mwjsA0rbMK5fEalb7vLOEvuSzo
-         RQ3YSpCj24cNTKHTElJmvekT8bzkyLD0Rdclc299L7bpJB2+CMnJooUC1tlHjwcvYIRa
-         BLm6S/dQplnilw0BhRTLhX3cu+tsc/YPLwhAtHz+dFihHgzDGM8aoGNvJLREryEjTB+x
-         T1RN94I/P1T2jJU27KiNhUM6f8s1q4JOKSxnVFuFcshBx3mG+/hOnY3iAuGBtlN+UUX9
-         FlpA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=N81cStsvWs5JcIJrO+U/46Nh7gzxlPlPHY9kLBpRDpA=;
+        b=e10WJv+Oga5ZdGl3hKce2/ZM/aWoGdkVhg2VNqUAHog90vsjAEYu6jql2dAmN8M00A
+         jzOqKo09OyuideElG8+KcLMvD2E6n/kCw+az7H2udzdvNANdGyz5i2u22bxnx0LhN78S
+         Zd3ga0lR5hBpfbPxPcJAnrp4G92STItmS7HXDqx4YmuNFh3N7foDP1t3FBXDCdpImhIT
+         ONp9HsaxU1xDG1iZGX1Cy9XAJNfboEAxzJZkXzEhMrskvkvVvjtDGXmjVxdr6Dh0a9R5
+         VvvNa//NYsi9V87cPl+nQH73m65EmLWWjjqk8ljSQnYoUihC/dhCEcTN3fK9C9NrdQSO
+         igNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1770988678; x=1771593478;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kb+Yauv/s6iAIjpMHMyZsZpTSzWDpVY1auP+Q51Tow4=;
-        b=oiJK+IRA+jpDPW8C+jJmKn8dNJQW0E8i4vKQEHZXFaVcGGvDAhpM777M7ULIiDgHyu
-         K9g9Q16t5b2iingM19KVeMyvSa+ZaZTyUCa6z7rPMTZ52hUqEDpENTE/O+9XCq9NnsNN
-         XGxVfUdkelSOSbGT924c+GGdQVR9SBRYnweRzYGK8dqKKYZbcjmr5qsw3ZtB319GHNYJ
-         OJ7bv9aKvHuo+mPFOl+hlc17l9R6p1duTx39lMH0B6pV2RjZKPZJS+cRATe7OIyEdYNV
-         Vq9HjRbYK/V/hZa1KMQwyAezoLTL32rF7uEY24tpGHVoZLKLIhWXbSl5ccE8RYfI4xx/
-         S2aw==
-X-Gm-Message-State: AOJu0YxLQaxnR5s2tuF+UixIVT9KxyA2yEQu2tSuvCItCFL6nfvVA4wG
-	b1Gq12TdTBKMiUkr2NvfrBsFeS8DawoiPaRF6+WclH1038QRtfZUhmZg
-X-Gm-Gg: AZuq6aKEyxiWtP5XKNBdGJ5gOMkB0tsViJCpfrj2xLemOCjidtBSbxls5XKFXk6BWnb
-	O/yq0LdDwFhz5eYQGDQ+NLdkFqoi5TtQwK1/Xz6ZbEbQRhp4JAzOZB0vgvpvdON2oImqjd0eBpk
-	yKGzpb0mw0PsGffDXWC0RBYza+XQb/IPIy1eGilMF25H9YngEOz0GNJsr9fnFLFwkqkUkVeC+yq
-	X9EAJVeVvXMA3OV0SZ07sHzR1NcJnj8hvfa78Cpvm9sNlSDWnfxtgZlN75J0m2rUZQyj01NCEte
-	c79R82SX2q1uqYT9fOPcxKHiCjtd1ui38uSxnXSBnul6w65aTdbubgqb7wWE1MKX0kW4siZtPPK
-	3yWGRrCQ6So7AYKZKl9ZvcZoC2tLQe3QxMcDOmclHu3EzQVjKDqnRPb5TAA/LfNZw6LobmYwRNC
-	rXTZrBuC99gtLGtemOoMd9nMEvxSA89mP7h6Jkbb3J6H5RwOuJum2ZJJ8xjoUk3noXoZyNTL/5V
-	2KFsTUkyrOZFHQIJiBQoQeyWYZyDt8zDnzVzA==
-X-Received: by 2002:a05:600c:1547:b0:477:6d96:b3c8 with SMTP id 5b1f17b1804b1-48371085837mr42372955e9.23.1770988677560;
-        Fri, 13 Feb 2026 05:17:57 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=N81cStsvWs5JcIJrO+U/46Nh7gzxlPlPHY9kLBpRDpA=;
+        b=qEomDViIKROPz2pn6mmsWMoodWJc/j+q+1gua3xUS6mwQKOYiVAxl0JExlbGNcL42Q
+         iK8V7gxQ20BQG5HEmplqcPOcz7HekB6kxxIoVHiA2H0f1S9IbRy/kxsFgN/yXX899i04
+         THN+wuabNm+8/JDQSztLbZSjYR1rLFPMb/JcNJtlpT8WJhN48kVqHtnWK4VZaaKNJCwF
+         TgPbJOLdC58/VXD3ckqhoqfbfmf7RN39Zeu9DjW3afnVcBpHgOUSulPTs5KOU2Dk7TIg
+         5LNBZL0RulENgvYPaDRFJ7dS3BG3E4mVSxo8hmp3lSvLEr/AYAu9TaJ4V7Oh7nuHZVNn
+         K2Xg==
+X-Gm-Message-State: AOJu0YyV2vel51t4+u9O4QqpAkQ2RXd7/TKARCrgPYlLvSc85ojSOOYQ
+	okbm3zInA5UZyPIhXg+Wztqp6dbyHd2MW4PxlCHApDD1j+U6Y8XAF6hm
+X-Gm-Gg: AZuq6aIwu8ffPPlULtCXXXK1xVh0ebu5WOPJfc19KMNzEWwxx/EEinkKAl4cTUXBLwc
+	HqIM//qbwBXMnrXjiY9yZZcfl0t6SHo8JbhpNMs7c09NnrfrgjU34W4ocO+MVvzlZc+Zx9OIZLj
+	bqRiF5JeBrvlHpoW2whzqVy9NW9ixglyFNaG08q8OeM7h5qRYK8DE+QNcifz1J1K3GUslLpyoqf
+	5AGbhfeParu2MuDsapdMw4elXkomxLUt8AJjo0SBuASnI7KHN1FLQim2UxWk6tK8CuAFPcgKqV1
+	uK7y7gl1xr+AMnE3Pio2UUSiDKMFR5bTDw7KZk7OJleGCqE1q5Vz45GUHKrd1AOtz9tqpfBJlbR
+	b7CLkgqD8pADwFC5RsGcfSQINKO83gjxHlV5F9vZ1r4JXNFwJRvMyi+0CxqdEI+g5n62VwbraNR
+	O1BGps7f8L8P2T9JucwJj6rthVJxtbZI4SgQBFfPlc6cvT5qrA/O2fKAd0Lcw7+xjVu6O/JoD6B
+	3B8/ONy3jAt3EoEAE/UMQx/J/CwpZwJsA3Mzw==
+X-Received: by 2002:a05:600c:5912:b0:480:63c1:3ac7 with SMTP id 5b1f17b1804b1-48378d4f647mr1257315e9.2.1770988678270;
+        Fri, 13 Feb 2026 05:17:58 -0800 (PST)
 Received: from iku.Home ([2a06:5906:61b:2d00:ed1d:fb0d:baf6:e4d9])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4836ff00332sm60942925e9.2.2026.02.13.05.17.56
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4836ff00332sm60942925e9.2.2026.02.13.05.17.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 13 Feb 2026 05:17:57 -0800 (PST)
 From: Prabhakar <prabhakar.csengg@gmail.com>
@@ -88,10 +90,12 @@ Cc: devicetree@vger.kernel.org,
 	Biju Das <biju.das.jz@bp.renesas.com>,
 	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 0/2] arm64: dts: renesas: r9a09g0[77/87]: Fix CPG register region sizes
-Date: Fri, 13 Feb 2026 13:17:40 +0000
-Message-ID: <20260213131742.3606334-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 1/2] arm64: dts: renesas: r9a09g077: Fix CPG register region sizes
+Date: Fri, 13 Feb 2026 13:17:41 +0000
+Message-ID: <20260213131742.3606334-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260213131742.3606334-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20260213131742.3606334-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,58 +108,62 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-265356-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,bp.renesas.com,renesas.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-265357-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,renesas.com:email]
-X-Rspamd-Queue-Id: 234C8136434
+	DBL_PROHIBIT(0.00)[4.200.249.192:email];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,renesas.com:email,801c1000:email]
+X-Rspamd-Queue-Id: DA2EC13644B
 X-Rspamd-Action: no action
 
 From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Hi All,
+The CPG register regions were incorrectly sized. Update them to match
+the actual hardware specification:
+- First region (0x80280000): 0x1000 -> 0x10000 (64KB)
+- Second region (0x81280000): 0x9000 -> 0x10000 (64KB)
 
-As per the RZ/T2H HW manual below regions are used for clock generation,
-low power consumption, and reset control.
-- 0x80280000 - 0x8028FFFF (64KB)
-- 0x81280000 - 0x8128FFFF (64KB)
-
-The CPG register regions in the RZ/T2H and RZ/N2H DTS files were
-incorrectly sized. This patch updates them to match the actual hardware
-specification, ensuring that the correct memory regions are mapped for
-the clock controller.
-
-Cheeers,
-Prabhakar
-
-Lad Prabhakar (2):
-  arm64: dts: renesas: r9a09g077: Fix CPG register region sizes
-  arm64: dts: renesas: r9a09g087: Fix CPG register region sizes
-
+Fixes: d17b34744f5e4 ("arm64: dts: renesas: Add initial support for the Renesas RZ/T2H SoC")
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
  arch/arm64/boot/dts/renesas/r9a09g077.dtsi | 4 ++--
- arch/arm64/boot/dts/renesas/r9a09g087.dtsi | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g077.dtsi b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+index 83f6e667358e..ee41610c2ac8 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+@@ -1089,8 +1089,8 @@ xspi1: spi@801c1000 {
+ 
+ 		cpg: clock-controller@80280000 {
+ 			compatible = "renesas,r9a09g077-cpg-mssr";
+-			reg = <0 0x80280000 0 0x1000>,
+-			      <0 0x81280000 0 0x9000>;
++			reg = <0 0x80280000 0 0x10000>,
++			      <0 0x81280000 0 0x10000>;
+ 			clocks = <&extal_clk>;
+ 			clock-names = "extal";
+ 			#clock-cells = <2>;
 -- 
 2.53.0
 
