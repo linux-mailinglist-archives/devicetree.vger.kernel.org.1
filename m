@@ -1,80 +1,82 @@
-Return-Path: <devicetree+bounces-265479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265480-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8KOdN3ymj2kVSQEAu9opvQ
-	(envelope-from <devicetree+bounces-265479-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 23:32:28 +0100
+	id WEATIpWmj2kVSQEAu9opvQ
+	(envelope-from <devicetree+bounces-265480-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 23:32:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34218139CAA
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 23:32:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28DE3139CCE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 23:32:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1F71A301A502
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 22:32:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 604AD304971E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 22:32:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 111D8315785;
-	Fri, 13 Feb 2026 22:32:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABF2A315D49;
+	Fri, 13 Feb 2026 22:32:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AiuyVlEu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XdTaxu1V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+Received: from mail-oi1-f193.google.com (mail-oi1-f193.google.com [209.85.167.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 840772F7AAB
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 22:32:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 035C130FC33
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 22:32:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771021946; cv=none; b=bbJLFLU/NXi6m0Z5FQNGx4lQ8oLdcrHGoloFakfg/LEmllEQ6470PU5MpSAvkqiSP24lLvwzg1JaoSEp1so4FAQVOcpnMfcD/VCDKkimuqbxl7iyOzWsea3Goym6f2FbSMB6rMd1mbrPnej/WkJlGwe0d9XMXAl4QvYlFiXeb9s=
+	t=1771021948; cv=none; b=BB6/90Ir0ppLQDegZyp5qrloqksHI8e56QbUaoaxPZXlDC4XCnl/qaxG0Hv6ZEQQ3pv4IXjbgGVVNazLSQi6L7qJN/27PvylI0lmu4MHfqwN03abhMn46GQir+3GdO7sE7u0HRYTcDwBRQsQEbi6nY0e/sV/4IjmHt8BZAfAIaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771021946; c=relaxed/simple;
-	bh=QigO5K717byThetaj38bgtz6YLQk9cOFBuv9dpMoPGY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rq4Q4H0LBbEItRojQ7YHyQGyQ47sPIKMIxkTuOcdCF7GMqZmDm2//cH23E60d6KygE8GhBBQJfjNTmhb48JC9PwTxdL+Py34l3DT6+jBAHnLJHLMjknQkvVt9cCPxHvn0dznybEPa94sTV4QCKHHlh1BbjROdOKf/hPZ//T+nB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AiuyVlEu; arc=none smtp.client-ip=209.85.167.181
+	s=arc-20240116; t=1771021948; c=relaxed/simple;
+	bh=q7Fqxy6e28lycA/LVu+rFivt886Ak4SzXlJ0a8MnRFU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=CXvvoBFCVxlfs+dvn/E2q/elvUYrjmKytuXQYp8I82cShM3Ra//OD6ra1FgEMKzzxL+tc5MH/dW5BQtY/pOdsM3JjwkW6KZMwklHYrMuaFJ61ZEkgcFPioDBuT2azSEB8xPxmQr6Lx+Npnf8XHOGJLzafN7zA0d+WyaG72jFlvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XdTaxu1V; arc=none smtp.client-ip=209.85.167.193
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-4638fe85a7eso412727b6e.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 14:32:24 -0800 (PST)
+Received: by mail-oi1-f193.google.com with SMTP id 5614622812f47-45f0c1f1b54so851180b6e.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 14:32:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771021943; x=1771626743; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gwOZ+fMN1u7ZAD04Sc+WiPH2zobZhFlc/QjDODp9/tM=;
-        b=AiuyVlEuNZb3GiAPIk9VqQG+7eReq3GRfpgpb0R71hs+3W/keIgxp6ulrtM8ccvoHq
-         FRMf/kG6b2UhV4ER4tCrTfLdwNT3RH6rQGtyFRoGepztXwKksybNcPvOui6lx0eCACaQ
-         2+SUm7wG27a/1Q+E63RX/5YPENPYZ4fETM09nd/dc3KbpfDGLgJoQ2qTx57UpvuMVOGW
-         u3vmb5ud/gr/G9/vm5KSIC0f6qZI39cFz8bLpZEIH6wrYU5N95xsJ8TLcgVKgxLXaSop
-         L0dNJJBnA1Ivbc2Cub3a1CQWO1q9Eg3DXT1CcmAGnbItzWQvmKsOHDyKWWoXEhuTO6Hb
-         Aj8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771021943; x=1771626743;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1771021945; x=1771626745; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gwOZ+fMN1u7ZAD04Sc+WiPH2zobZhFlc/QjDODp9/tM=;
-        b=VsPSnJPyoDtIx3wws81UYWt+FMJIFxnaJ2Vr3ymMJpncOtrrM4AFZSi1FxB5UL8WM8
-         clt7PhmFPt/oEJIz99aXCJIhzO7xHSF07WdVnpVzvHzRKSpiHDD8A62LwEmR8KR5O+YQ
-         kv9L/89L2UOxgzdC1vrGKwmv24CssKImEJuXQ3uhpI5h2C2mlfiTZLwuFUU/Rf2JfOYf
-         1U+s6/jHxra76aWusUCdaPNN4TEd7AJj/10uuRiJUP7RaZvYh2jvKtz2fpt9SDr2W92c
-         /3XT43hdOzRWoTt3s0RggjLRioVhtyllVk7NAuhDhUU11JtuhBK8MEBdEZ3pY/qimYIr
-         b6rg==
-X-Forwarded-Encrypted: i=1; AJvYcCXPyt8wIbEbKhCw5jGP+lvoAPXiPet3HSRUxCF9FBHAGz37aMF5Hya469s7bNLInVI595hxWTdwcS1q@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyaXkGQY25SII8IQs+IRCc7CFD283mrmFMvIbk9vNDymlBIeZp
-	+nkRJUpM9YMVHKbTlXb7NSt4VlJarJuz0twy5isWwWQUAV9ti5PnAbt5
-X-Gm-Gg: AZuq6aJ+XzPyRhUS03UAk3VSjXAa9tqmmt8f3dWwScG5HwwHuOr4TCUH7iHLFEx444E
-	lXkLm2hKt0m4JNQtU1AssKEIgMMm1DN/cgEVZ48SCtQTrx4b0VGSr+VgphWULUTFXcM678xcEyP
-	sYINGLo/r78Y68wdFKbqhFs2xXVtDk/yNWJN56tOnS3+mtku6u5mRPGLVSn7sfJqk97Ja8n3FxP
-	idUd44cUd5WIDtVX4nnbUAD/muYlR33cSNyVskWvR6ATq8oWm1NdFYjc8vn/B673BSZAA+r8UL6
-	+590iuoswL4v08jKTjyRPqpIGWgS4mAlx3mA8QzF8C/cAFyTn/D6ewhbskPzPhNhjOCkH1xfM9D
-	tMRodtZJq+EVe7NwO+TkD89i6MD+964N8OAUvQf7Iw5C+x9ZKz8iyz1sCR/bW5kZLEs45EzOZQY
-	RT3HtODKjJWfQRloM9jyQ5HHByTqu9bCwPIJQbIOLN3AvpXCypdEeo4+YAImYnZzoibR1bUyi9S
-	abXIQ23CDsW2AXFbiXIg+qtXtTnB42tMpo7SofRPmdDlkhvTtttMOE1zy8cYr0=
-X-Received: by 2002:a05:6808:4fcd:b0:463:8a49:ca7a with SMTP id 5614622812f47-4639f245eedmr1381171b6e.52.1771021943296;
-        Fri, 13 Feb 2026 14:32:23 -0800 (PST)
+        bh=pOA3Fq3qeW/ssDTBL2Z818pHx95UW3MtdV2Mwb98UGY=;
+        b=XdTaxu1VmPYH1rxhp8+a1pS3xM8rJAQZfndOCRgCPKigyXexENG7mdFqY2kvO6Tx8N
+         T2cxeuvh5xDXV0HpxKKyKLSPVs+OeOEj9fQxqtygY7KfBltz9Hz8rRpp6p4xSISKLfK2
+         b+ET300jcGoX5jf50tvMOpavQ+M3FOTLrxfeI8PSb/ndkRtA7X6M49HbDAi119eeUY7T
+         iQBDWx5yh9QLgozhk5vcLqgSE/Xu3YXinIO/Ife0PNi9CWOg2OpwXslG/K5l/uokdLFr
+         NmdNTCmGdNBD+moZZcST3iXJaqmhpDNqWGVDCdJ6wGahdENGRPMc2GYsRUIVx0dsdINm
+         fIoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771021945; x=1771626745;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=pOA3Fq3qeW/ssDTBL2Z818pHx95UW3MtdV2Mwb98UGY=;
+        b=e30svTDiZyetjt1864rraz58M8+XSf5fvy18WfSNIATy+340/d30IXqzNhgka/vcI6
+         8ebdWZFk8B8o+s4DH/ArSZ7Mu0ayDeInrFxZiBDEd/JxvnTnrcFLV/iYqlBucgQZf5ME
+         bf98ZmrMlL6bSPEcs/AiR5ryZGkeRRDshsoyI5AhGzZBgVw1hq0nMgdRJGmuAzl12iXi
+         KjZXtdvaRFJ1hnMnusQDRdS8Jfe2mkvXxDxZF6/ydCsaJexEOfiGVa0zLgqjgCnwp/X7
+         76dkvgXd5700MNLG/JHGRP7tBolZoBwzRawV6iuJKMqxq7VmS+1iyNbiO7Ky7/82RD+z
+         1XqA==
+X-Forwarded-Encrypted: i=1; AJvYcCWaFxy6HY7LEmJso258co81P/qGdb9NLHUvG4BCUnBpdrBPAlSrUdtXE7dPlCQz1BjUQNwrVDrAtBa2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yymzo4SkHG3+3WnrGoIvQaqvHvpARPOTpOqDts/HTJ6YDzcQ9xD
+	8ObxwukS9SyaSFYLl2/Ov0zuMx0B9fxM4he/bIpSIE04ztBmVrkU5OI2
+X-Gm-Gg: AZuq6aJ0f5GPZDH6vMzgHqcaWnMwpL1570XQ6Pm3oMw5dowGD10lAt9wuL2Yaiw3gO0
+	FLMeoNNwmJe46nhKGHpRqCaX0F7Dv3wInoqHSslebEe4rTFbSRnrd09XKqeob2PUbx8cCf8RkJz
+	gMfrKeIVeSL6xxiwhMugEWC3GBtqCsyGrGeEmCKtPOWGBbIj81Ir9GdL0Fo2QO10rIZ7J5753DO
+	8k4aKVqfH7ymtKdtuvgLmqMufmWqB+MI6KIASScA8ERAu2fgV5c45m+Fktr7Iho7jtmiI6qHuTy
+	/YUzG+2OIUprZ5hvhu+/YaFcewsWgi9UCjHnMT4sg/KlIfBdfiABgHZR4Q+DJcbcCIRocl4iqaV
+	vEOtBcxXSgot5TH1x12OdQQ1tZnsXGzZQj5YcdUWI4M1XDmcR87fRPPzGAhGoEcvF8GHGEOIliU
+	jtqiCnO43nmlRrc6nzz0RRrnjA9iOdXF2g4vHcXtTTaMSG1VmvKpkf0myEWLimidQ4T23IKtgCu
+	Qy/XkAIQzXbUS+cvaA5AKgy1Adw73XHaV+QI74/a2wNeR7zNHGOj7JhnLCde2k=
+X-Received: by 2002:a05:6808:c18e:b0:450:d143:b79f with SMTP id 5614622812f47-4639f281395mr1478351b6e.66.1771021944958;
+        Fri, 13 Feb 2026 14:32:24 -0800 (PST)
 Received: from james-x399.localdomain (71-218-105-26.hlrn.qwest.net. [71.218.105.26])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-4636b0c8606sm5446923b6e.18.2026.02.13.14.32.22
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-4636b0c8606sm5446923b6e.18.2026.02.13.14.32.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Feb 2026 14:32:22 -0800 (PST)
+        Fri, 13 Feb 2026 14:32:24 -0800 (PST)
 From: James Hilliard <james.hilliard1@gmail.com>
 To: linux-gpio@vger.kernel.org
 Cc: James Hilliard <james.hilliard1@gmail.com>,
@@ -86,10 +88,12 @@ Cc: James Hilliard <james.hilliard1@gmail.com>,
 	Saravana Kannan <saravanak@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] gpiolib: of: add gpio-line node support
-Date: Fri, 13 Feb 2026 15:32:01 -0700
-Message-ID: <20260213223204.2415507-1-james.hilliard1@gmail.com>
+Subject: [PATCH 2/2] dt-bindings: gpio: document gpio-line usage
+Date: Fri, 13 Feb 2026 15:32:02 -0700
+Message-ID: <20260213223204.2415507-2-james.hilliard1@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260213223204.2415507-1-james.hilliard1@gmail.com>
+References: <20260213223204.2415507-1-james.hilliard1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,284 +106,119 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265479-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FROM_NEQ_ENVFROM(0.00)[jameshilliard1@gmail.com,devicetree@vger.kernel.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-265480-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 34218139CAA
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jameshilliard1@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.0:email];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 28DE3139CCE
 X-Rspamd-Action: no action
 
-Allow GPIO controller child nodes marked with "gpio-line" to
-configure direction/flags at probe time without hogging the line.
+Document gpio-line child nodes for GPIO controller initialization
+without line hogging.
 
-Teach OF gpiochip scanning and OF dynamic reconfiguration handlers to
-process gpio-line nodes in addition to gpio-hog nodes.
-
-Also parse "gpio-line-name" and apply it to desc->name. For gpio-hog
-nodes, keep "line-name" semantics as the hog consumer label.
+Describe gpio-line-name semantics for both gpio-line nodes and gpio-hog
+nodes, and update examples accordingly.
 
 Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
 ---
- drivers/gpio/gpiolib-of.c     | 89 ++++++++++++++++++++++++++++-------
- drivers/gpio/gpiolib-shared.c |  7 +--
- drivers/of/property.c         |  7 +--
- scripts/dtc/checks.c          |  4 +-
- 4 files changed, 82 insertions(+), 25 deletions(-)
+ .../devicetree/bindings/gpio/gpio.txt         | 47 ++++++++++++++-----
+ 1 file changed, 34 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
-index ef1ac68b94b7..b10a21a63d46 100644
---- a/drivers/gpio/gpiolib-of.c
-+++ b/drivers/gpio/gpiolib-of.c
-@@ -744,6 +744,7 @@ struct gpio_desc *of_find_gpio(struct device_node *np, const char *con_id,
-  * @lflags:	bitmask of gpio_lookup_flags GPIO_* values - returned from
-  *		of_find_gpio() or of_parse_own_gpio()
-  * @dflags:	gpiod_flags - optional GPIO initialization flags
-+ * @hog:	indicates if this is a gpio-hog node
-  *
-  * Returns:
-  * GPIO descriptor to use with Linux GPIO API, or one of the errno
-@@ -753,11 +754,13 @@ static struct gpio_desc *of_parse_own_gpio(struct device_node *np,
- 					   struct gpio_chip *chip,
- 					   unsigned int idx, const char **name,
- 					   unsigned long *lflags,
--					   enum gpiod_flags *dflags)
-+					   enum gpiod_flags *dflags,
-+					   bool hog)
- {
- 	struct device_node *chip_np;
- 	enum of_gpio_flags xlate_flags;
- 	struct of_phandle_args gpiospec;
-+	const char *desc_name;
- 	struct gpio_desc *desc;
- 	unsigned int i;
- 	u32 tmp;
-@@ -797,15 +800,19 @@ static struct gpio_desc *of_parse_own_gpio(struct device_node *np,
- 		*dflags |= GPIOD_OUT_LOW;
- 	else if (of_property_read_bool(np, "output-high"))
- 		*dflags |= GPIOD_OUT_HIGH;
--	else {
-+	else if (hog) {
- 		pr_warn("GPIO line %d (%pOFn): no hogging state specified, bailing out\n",
- 			desc_to_gpio(desc), np);
- 		return ERR_PTR(-EINVAL);
- 	}
- 
--	if (name && of_property_read_string(np, "line-name", name))
-+	if (hog && name && of_property_read_string(np, "line-name", name))
- 		*name = np->name;
- 
-+	if (!of_property_read_string(np, "gpio-line-name", &desc_name) &&
-+	    desc_name[0])
-+		desc->name = desc_name;
-+
- 	return desc;
+diff --git a/Documentation/devicetree/bindings/gpio/gpio.txt b/Documentation/devicetree/bindings/gpio/gpio.txt
+index b37dbb1edc62..cf591954eafd 100644
+--- a/Documentation/devicetree/bindings/gpio/gpio.txt
++++ b/Documentation/devicetree/bindings/gpio/gpio.txt
+@@ -199,28 +199,41 @@ gpio-controller@00000000 {
+ 		"poweroff", "reset";
  }
  
-@@ -827,7 +834,8 @@ static int of_gpiochip_add_hog(struct gpio_chip *chip, struct device_node *hog)
- 	int ret;
+-The GPIO chip may contain GPIO hog definitions. GPIO hogging is a mechanism
+-providing automatic GPIO request and configuration as part of the
+-gpio-controller's driver probe function.
++The GPIO chip may contain child nodes used for line setup at probe time:
++- gpio-hog: reserves the GPIO line as a hog and configures it.
++- gpio-line: configures the GPIO line without reserving it as a hog.
  
- 	for (i = 0;; i++) {
--		desc = of_parse_own_gpio(hog, chip, i, &name, &lflags, &dflags);
-+		desc = of_parse_own_gpio(hog, chip, i, &name, &lflags, &dflags,
-+					 true);
- 		if (IS_ERR(desc))
- 			break;
- 
-@@ -843,6 +851,36 @@ static int of_gpiochip_add_hog(struct gpio_chip *chip, struct device_node *hog)
- 	return 0;
- }
- 
-+/**
-+ * of_gpiochip_add_line - Configure all lines in a gpio-line device node
-+ * @chip:	gpio chip to act on
-+ * @line:	device node describing GPIO lines to configure
-+ *
-+ * Returns:
-+ * 0 on success, or negative errno on failure.
-+ */
-+static int of_gpiochip_add_line(struct gpio_chip *chip, struct device_node *line)
-+{
-+	enum gpiod_flags dflags;
-+	struct gpio_desc *desc;
-+	unsigned long lflags;
-+	unsigned int i;
-+	int ret;
+-Each GPIO hog definition is represented as a child node of the GPIO controller.
+-Required properties:
+-- gpio-hog:   A property specifying that this child node represents a GPIO hog.
++Common properties for gpio-hog and gpio-line child nodes:
+ - gpios:      Store the GPIO information (id, flags, ...) for each GPIO to
+ 	      affect. Shall contain an integer multiple of the number of cells
+ 	      specified in its parent node (GPIO controller node).
+-Only one of the following properties scanned in the order shown below.
+-This means that when multiple properties are present they will be searched
+-in the order presented below and the first match is taken as the intended
+-configuration.
+ - input:      A property specifying to set the GPIO direction as input.
+ - output-low  A property specifying to set the GPIO direction as output with
+ 	      the value low.
+ - output-high A property specifying to set the GPIO direction as output with
+ 	      the value high.
+-
+-Optional properties:
+-- line-name:  The GPIO label name. If not present the node name is used.
++	      When multiple line-state properties are present they are scanned
++	      in the order shown above and the first match is used.
++- gpio-line-name:
++	      Optional GPIO line name for the configured line.
++	      When present, it sets the line name for that line and overrides
++	      any existing name, including names assigned by the controller's
++	      "gpio-line-names". If not present, any existing name is left
++	      unchanged.
 +
-+	for (i = 0;; i++) {
-+		desc = of_parse_own_gpio(line, chip, i, NULL, &lflags, &dflags,
-+					 false);
-+		if (IS_ERR(desc))
-+			break;
++gpio-hog specific properties:
++- gpio-hog:   A property specifying that this child node represents a GPIO hog.
++- line-name:  Consumer label used when requesting the hogged GPIO.
++	      If not present the node name is used.
++	      This is independent from "gpio-line-name".
++At least one line-state property ("input", "output-low", or "output-high")
++must be present for gpio-hog.
 +
-+		ret = gpiod_configure_flags(desc, NULL, lflags, dflags);
-+		if (ret < 0)
-+			return ret;
-+	}
++gpio-line specific properties:
++- gpio-line:  A property specifying that this child node represents GPIO lines
++	      to configure without hogging.
++Line-state properties are optional for gpio-line.
++When no line-state property is present, the line direction/value is left as-is.
+ 
+ Example of two SOC GPIO banks defined as gpio-controller nodes:
+ 
+@@ -235,6 +248,14 @@ Example of two SOC GPIO banks defined as gpio-controller nodes:
+ 			gpios = <6 0>;
+ 			output-low;
+ 			line-name = "foo-bar-gpio";
++			gpio-line-name = "foo-bar-line";
++		};
 +
-+	return 0;
-+}
-+
- /**
-  * of_gpiochip_scan_gpios - Scan gpio-controller for gpio definitions
-  * @chip:	gpio chip to act on
-@@ -858,14 +896,22 @@ static int of_gpiochip_scan_gpios(struct gpio_chip *chip)
- 	int ret;
++		line_c-init {
++			gpio-line;
++			gpios = <7 0>;
++			output-high;
++			gpio-line-name = "foo-baz-gpio";
+ 		};
+ 	};
  
- 	for_each_available_child_of_node_scoped(dev_of_node(&chip->gpiodev->dev), np) {
--		if (!of_property_read_bool(np, "gpio-hog"))
-+		if (of_property_read_bool(np, "gpio-hog")) {
-+			ret = of_gpiochip_add_hog(chip, np);
-+			if (ret < 0)
-+				return ret;
-+
-+			of_node_set_flag(np, OF_POPULATED);
- 			continue;
-+		}
- 
--		ret = of_gpiochip_add_hog(chip, np);
--		if (ret < 0)
--			return ret;
-+		if (of_property_read_bool(np, "gpio-line")) {
-+			ret = of_gpiochip_add_line(chip, np);
-+			if (ret < 0)
-+				return ret;
- 
--		of_node_set_flag(np, OF_POPULATED);
-+			of_node_set_flag(np, OF_POPULATED);
-+		}
- 	}
- 
- 	return 0;
-@@ -905,14 +951,15 @@ static int of_gpio_notify(struct notifier_block *nb, unsigned long action,
- 	int ret;
- 
- 	/*
--	 * This only supports adding and removing complete gpio-hog nodes.
--	 * Modifying an existing gpio-hog node is not supported (except for
--	 * changing its "status" property, which is treated the same as
--	 * addition/removal).
-+	 * This only supports adding and removing complete gpio-hog and
-+	 * gpio-line nodes. Modifying an existing node is not supported
-+	 * (except for changing its "status" property, which is treated
-+	 * the same as addition/removal).
- 	 */
- 	switch (of_reconfig_get_state_change(action, arg)) {
- 	case OF_RECONFIG_CHANGE_ADD:
--		if (!of_property_read_bool(rd->dn, "gpio-hog"))
-+		if (!of_property_read_bool(rd->dn, "gpio-hog") &&
-+		    !of_property_read_bool(rd->dn, "gpio-line"))
- 			return NOTIFY_DONE;	/* not for us */
- 
- 		if (of_node_test_and_set_flag(rd->dn, OF_POPULATED))
-@@ -922,9 +969,12 @@ static int of_gpio_notify(struct notifier_block *nb, unsigned long action,
- 		if (!gdev)
- 			return NOTIFY_DONE;	/* not for us */
- 
--		ret = of_gpiochip_add_hog(gpio_device_get_chip(gdev), rd->dn);
-+		if (of_property_read_bool(rd->dn, "gpio-hog"))
-+			ret = of_gpiochip_add_hog(gpio_device_get_chip(gdev), rd->dn);
-+		else
-+			ret = of_gpiochip_add_line(gpio_device_get_chip(gdev), rd->dn);
- 		if (ret < 0) {
--			pr_err("%s: failed to add hogs for %pOF\n", __func__,
-+			pr_err("%s: failed to configure lines for %pOF\n", __func__,
- 			       rd->dn);
- 			of_node_clear_flag(rd->dn, OF_POPULATED);
- 			return notifier_from_errno(ret);
-@@ -932,6 +982,10 @@ static int of_gpio_notify(struct notifier_block *nb, unsigned long action,
- 		return NOTIFY_OK;
- 
- 	case OF_RECONFIG_CHANGE_REMOVE:
-+		if (!of_property_read_bool(rd->dn, "gpio-hog") &&
-+		    !of_property_read_bool(rd->dn, "gpio-line"))
-+			return NOTIFY_DONE;	/* not for us */
-+
- 		if (!of_node_check_flag(rd->dn, OF_POPULATED))
- 			return NOTIFY_DONE;	/* already depopulated */
- 
-@@ -939,7 +993,8 @@ static int of_gpio_notify(struct notifier_block *nb, unsigned long action,
- 		if (!gdev)
- 			return NOTIFY_DONE;	/* not for us */
- 
--		of_gpiochip_remove_hog(gpio_device_get_chip(gdev), rd->dn);
-+		if (of_property_read_bool(rd->dn, "gpio-hog"))
-+			of_gpiochip_remove_hog(gpio_device_get_chip(gdev), rd->dn);
- 		of_node_clear_flag(rd->dn, OF_POPULATED);
- 		return NOTIFY_OK;
- 	}
-diff --git a/drivers/gpio/gpiolib-shared.c b/drivers/gpio/gpiolib-shared.c
-index b3525d1f06a4..b934e58a07f0 100644
---- a/drivers/gpio/gpiolib-shared.c
-+++ b/drivers/gpio/gpiolib-shared.c
-@@ -147,10 +147,11 @@ static bool gpio_shared_of_node_ignore(struct device_node *node)
- 		return true;
- 
- 	/*
--	 * GPIO hogs have a "gpios" property which is not a phandle and can't
--	 * possibly refer to a shared GPIO.
-+	 * GPIO hog and gpio-line nodes have a "gpios" property which is not a
-+	 * phandle and can't possibly refer to a shared GPIO.
- 	 */
--	if (of_property_present(node, "gpio-hog"))
-+	if (of_property_present(node, "gpio-hog") ||
-+	    of_property_present(node, "gpio-line"))
- 		return true;
- 
- 	return false;
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 50d95d512bf5..7689c4315115 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1435,10 +1435,11 @@ static struct device_node *parse_gpio_compat(struct device_node *np,
- 		return NULL;
- 
- 	/*
--	 * Ignore node with gpio-hog property since its gpios are all provided
--	 * by its parent.
-+	 * Ignore nodes with gpio-hog and gpio-line properties since their gpios
-+	 * are all provided by their parent.
- 	 */
--	if (of_property_read_bool(np, "gpio-hog"))
-+	if (of_property_read_bool(np, "gpio-hog") ||
-+	    of_property_read_bool(np, "gpio-line"))
- 		return NULL;
- 
- 	if (of_parse_phandle_with_args(np, prop_name, "#gpio-cells", index,
-diff --git a/scripts/dtc/checks.c b/scripts/dtc/checks.c
-index 45d0213f3bf3..ee64cb4ada4f 100644
---- a/scripts/dtc/checks.c
-+++ b/scripts/dtc/checks.c
-@@ -1533,8 +1533,8 @@ static void check_gpios_property(struct check *c,
- {
- 	struct property *prop;
- 
--	/* Skip GPIO hog nodes which have 'gpios' property */
--	if (get_property(node, "gpio-hog"))
-+	/* Skip gpio-hog and gpio-line nodes which have 'gpios' property */
-+	if (get_property(node, "gpio-hog") || get_property(node, "gpio-line"))
- 		return;
- 
- 	for_each_property(node, prop) {
 -- 
 2.43.0
 
