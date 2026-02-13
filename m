@@ -1,113 +1,65 @@
-Return-Path: <devicetree+bounces-265477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265478-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SCQJEkiij2mOSAEAu9opvQ
-	(envelope-from <devicetree+bounces-265477-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 23:14:32 +0100
+	id kCOTEwGkj2nASAEAu9opvQ
+	(envelope-from <devicetree+bounces-265478-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 23:21:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9205E139BE3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 23:14:31 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1233139C51
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 23:21:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 60EB93026880
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 22:14:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2EF11301AABC
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 22:21:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1FE7306B0A;
-	Fri, 13 Feb 2026 22:14:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="QGQpPYUU";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="g8HVlMRv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EB72307481;
+	Fri, 13 Feb 2026 22:21:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA083304BDC
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 22:14:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC70E2701DA;
+	Fri, 13 Feb 2026 22:21:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771020868; cv=none; b=CzUmptjV9ija9+svUPkILJqP/+BHkLiH35nf2vmrT2xdz6rjamTsbAy8hlGYmERo5+QvNPAUucz61pfbdSPlbjK+gWNX/oDPx3vxqAJ/Wk/DmnSpeBGZPYoSoGl6pb7R01yv2pPS828T+vcF9qFPklK1JreN0bD8HwuM1jb9HBo=
+	t=1771021308; cv=none; b=tJ0TS+T9N06H8tlueBWbNTZkuWHB/XbWdNao1X9vsAxlGlUR+HfOgpckStLEMm1AUJY5wGcb5e1R+SduxZfYFCMH69VUSs1r9JBjlgwzdbuJuNr9oTaHcWafsHvUC3+Z345yk3nJF93dKGH9N9HNt0oAWMeVHSpyxA82kMLe8tQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771020868; c=relaxed/simple;
-	bh=mqW13uA5TM+Hph1nqWrJsn9JRRRcM3ZDiUWskTqCRvA=;
+	s=arc-20240116; t=1771021308; c=relaxed/simple;
+	bh=KRThdpw5w5KcKAgyBKNP9kDO4lgbBX5p0n9PKGMVUj0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K9l91p4zEVu5+IX9om0SkoAacSEec0FgD6b1vKS2ZVEfLbjjrf9CUp2Je7h1tFtuR2+yfc6Rjuhb44n8CUhsWjAbZfRFDeEbXeE9ctxFP3ML9bAo6zk7x9WbwIWVOfwf4qQsT1V0tdzMK4I+lf4pcBhWU+Cs53PpiIa0Tw8+Eb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=QGQpPYUU; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=g8HVlMRv; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1771020865;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=6hTIiLdxBgTr52GSbw0BeaA/PdjvxewY6nhObNpoFhA=;
-	b=QGQpPYUUwDKM4fwmyl7bSYjpEP/VPABCAU2ZerxFn0y7cmE9YP5EIs1tjET+8I3ZIpFQee
-	BnsLt4BgporYeme0FMtpC7Caw/wU+RMZDzB4Eznlxr7k3WGDzAW3E/LgnRj0o2jaPav8Pp
-	lHwZehF4aQibqNSW4rx68zYDeArwi6w=
-Received: from mail-yx1-f72.google.com (mail-yx1-f72.google.com
- [74.125.224.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-676-MTLFDgR5OcSSZzUpJ2GVsg-1; Fri, 13 Feb 2026 17:14:24 -0500
-X-MC-Unique: MTLFDgR5OcSSZzUpJ2GVsg-1
-X-Mimecast-MFC-AGG-ID: MTLFDgR5OcSSZzUpJ2GVsg_1771020864
-Received: by mail-yx1-f72.google.com with SMTP id 956f58d0204a3-649b4e27032so1920970d50.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 14:14:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1771020864; x=1771625664; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6hTIiLdxBgTr52GSbw0BeaA/PdjvxewY6nhObNpoFhA=;
-        b=g8HVlMRvV0PgQ/+V/szqf6r3WQDAMpsrdm2N18po6+bGCG/hxdQd9SH0oA8g/bKtIP
-         w67Du9QFsAJhBZjNgO0zMaKOxHnO7eCq/B9hnhbYFQ8qrxa7qtTqhzMg4GelFj+b6iBr
-         MGZ+4qslyLsAGyMdMM8OETSFfgCAIPaW7QSs+KqmBuaYqoEW0AYF7Gxwem7xSJLUBL3A
-         sjA0ujjCI8ya7hFF3aLkD1vW4fGDHPXACqdC70a18Riv0zbOOmAq1NqROejAgfptmL2V
-         eDe9U4X91AVzip3cA9X1GSbbRCwdtxIL9iLdsV4woTsxHdZmMDL2D8czjLqM/Mq3z1eW
-         qV2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771020864; x=1771625664;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=6hTIiLdxBgTr52GSbw0BeaA/PdjvxewY6nhObNpoFhA=;
-        b=ea1ldVoA/EN8Fd1SoFjw7zWGQA7pxpozhdckTO1qRL4ZOze98CUSsOqcf8wxzPmZHC
-         yGXKT4oN1SBfzUcmFyuVvorh8VmhkbXY8+rGj595Hr593MWEo5+SBQHdgIRvOcd2Qth8
-         UcrjCjsoYQJjWQ+f5uLfY3OwAxtVAgVK6CiCzBMNuipAVi5NHogNltMs3lyppR2Q+lUs
-         I6Bb+2OiqpUe5Co46Ma2gxwH1EvZpNjnwIlxe/UBkyhV5nv4mfHhI0BboTKh9rygVBnF
-         W5aeIn3K5kVBzRvXtSCsp1l69yN/E5vUZgh+dhPeFTjlsg1OFBBeM3xbVxuf7Ssbwcw/
-         Br3A==
-X-Forwarded-Encrypted: i=1; AJvYcCVpAbg7X3/x1hee3VA5oHYYYW5TCqd0bc/GNGI2rGlVBs/Q8w7qeI1TFcrHEjKMmIP7QQocEDWs8GyB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+lRagnJqW/5NEtDTtYa2Hm8PJquOrPBITr3bIOBn3EZZ5lvyR
-	AHG+4o9pKaiITTeExDc3EhEqKs73T+9IxQx9UnJxQem/qNowuPwZeLQtwua3Bzq3NhjW3wYnBHi
-	kyeWlk3YgHdk1RMECZ82VdtXioIuege5tzxuBYYr4mTOrdgSH1pHp5CAaRFg3sHs/A6QRX7M=
-X-Gm-Gg: AZuq6aIcIy++z/EKwdl/Z6x71ccwhk67qsVKa6lGCmW4Ilc3fvPLI8tOXYijxXPc1Bg
-	7SLGUrkLq+Y5TONhnitHAIA6ie4xE4gypw9iTP1N3BrnbnF1z94KIfUbw0XJcjCDd41PrMYErLc
-	QB3JUxYzjktIvi+CNWP85sDCRb2jVDKne342UvcsNivC8XLHfUAUBgHt7hkhLPO5g4BA4wO0Cm2
-	k37RB/V8GPWRG344a6lFt5yHzbpjCyFllMzqm85BcUdsGbGy0c/JYxDUKd1g5yhrJB9W7IMUODD
-	/wS+XpKElMBibELOtVwhtha+fsbTYXw1Jqpwa7il3s7hDZXYnU3cip+gtThCuHd5gtg2YDHAY44
-	pr+pNGUnrtE5FyjohmA==
-X-Received: by 2002:a05:690e:1686:b0:64c:20f7:b01a with SMTP id 956f58d0204a3-64c20f7b101mr1271744d50.63.1771020863896;
-        Fri, 13 Feb 2026 14:14:23 -0800 (PST)
-X-Received: by 2002:a05:690e:1686:b0:64c:20f7:b01a with SMTP id 956f58d0204a3-64c20f7b101mr1271734d50.63.1771020863494;
-        Fri, 13 Feb 2026 14:14:23 -0800 (PST)
-Received: from redhat.com ([2600:382:7701:35e:7b1:406b:abde:3b10])
-        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-64c22fb7860sm128668d50.19.2026.02.13.14.14.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Feb 2026 14:14:22 -0800 (PST)
-Date: Fri, 13 Feb 2026 17:14:18 -0500
-From: Brian Masney <bmasney@redhat.com>
-To: dongxuyang@eswincomputing.com
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	troy.mitchell@linux.dev, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, huangyifeng@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, ganboing@gmail.com,
-	marcel@ziswiler.com
-Subject: Re: [PATCH v12 2/3] clock: eswin: Add eic7700 clock driver
-Message-ID: <aY-iOjczskKfF66W@redhat.com>
-References: <20260213094112.115-1-dongxuyang@eswincomputing.com>
- <20260213094157.228-1-dongxuyang@eswincomputing.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=M0gfAH1GKDErh9JH9fF89wkhNm5NTEhkc252j7nItXVkfEZPs2cXwin25WWN63/Uswy+nWH3tWtR82LCdycggcQ9swY2h1+SZ88ul95OmV4j7DYUDNMzZSw2X7k0HZ1e1q7CNs0Ap6WJtWAs9LFhvxYb/++UlZhA2yKBd5M0Ios=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.48.232])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id C2A44342502;
+	Fri, 13 Feb 2026 22:21:45 +0000 (UTC)
+Date: Sat, 14 Feb 2026 06:21:35 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Lv Zheng <lv.zheng@linux.spacemit.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Tomasz Jeznach <tjeznach@rivosinc.com>,
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Jingyu Li <joey.li@spacemit.com>,
+	Zhijian Chen <zhijian@spacemit.com>, iommu@lists.linux.dev,
+	linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 0/8] iommu/riscv: Add HPM support for RISC-V IOMMU
+Message-ID: <20260213222135-GYB164498@gentoo.org>
+References: <cover.1769562575.git.lv.zheng@spacemit.com>
+ <F9748E3984D2A6F9+cover.1770195980.git.lv.zheng@linux.spacemit.com>
+ <a9d9f43a-edf3-419b-bdf7-dbd6bf9e978f@kernel.org>
+ <605D8D5AE96AEF8F+31d65ad3-3956-49ae-8d9f-589747a5086c@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -116,289 +68,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260213094157.228-1-dongxuyang@eswincomputing.com>
-User-Agent: Mutt/2.2.14 (2025-02-20)
+In-Reply-To: <605D8D5AE96AEF8F+31d65ad3-3956-49ae-8d9f-589747a5086c@linux.spacemit.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[gentoo.org : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,vger.kernel.org,linux.dev,eswincomputing.com,einfochips.com,gmail.com,ziswiler.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265477-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[redhat.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265478-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	RCVD_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
+	R_DKIM_NA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bmasney@redhat.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[dlan@gentoo.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9205E139BE3
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:url]
+X-Rspamd-Queue-Id: D1233139C51
 X-Rspamd-Action: no action
 
-Hi Xuyang,
+Hi Lv,
 
-On Fri, Feb 13, 2026 at 05:41:57PM +0800, dongxuyang@eswincomputing.com wrote:
-> From: Xuyang Dong <dongxuyang@eswincomputing.com>
+On 11:41 Sat 07 Feb     , Lv Zheng wrote:
+> On 2/6/2026 6:44 PM, Krzysztof Kozlowski wrote:
+> > On 04/02/2026 10:08, Lv Zheng wrote:
+> >> Includes HPM support for RISC-V IOMMU. The HPM hardware mechanism can be
+> >> found in the recent announced SpacemiT SoCs (K3, V100), where T100
+> >> (SpacemiT distributed IOMMU) is shipped.
+> >>
+> >> Revisions:
+> >> v1
+> >>   Initial release.
+> >> v2 (sent as v1.1)
+> >>   Split and cleanup DT-bindings.
+> >> v3
+> >>   Refactor using vendor specific compatible.
+> >>
+> > 
+> > 
+> > Do not attach (thread) your patchsets to some other threads (unrelated
+> > or older versions). This buries them deep in the mailbox and might
+> > interfere with applying entire sets. See also:
+> > https://elixir.bootlin.com/linux/v6.16-rc2/source/Documentation/process/submitting-patches.rst#L830
 > 
-> Add clock drivers for the EIC7700 SoC. The clock controller on the ESWIN
-> EIC7700 provides various clocks to different IP blocks within the SoC.
+> Got it.
+> I'm still using an old fashioned upstream way to collect all revisions
+> into one thread. Will align to the preferred style.
 > 
-> Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
-> Tested-by: Marcel Ziswiler <marcel@ziswiler.com> # ebc77
-> Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
+Using b4 will automate this procedure, you can also take a look at
+Konstantin's articles, and the b4 doc
+https://people.kernel.org/monsieuricon/sending-a-kernel-patch-with-b4-part-1
+https://b4.docs.kernel.org/en/latest/
 
-The commit subject has 'clock: eswin: ...', and it should be
-'clk: eswin: ...'.
+> Thanks,
+> Lv
+> 
+> > 
+> > Best regards,
+> > Krzysztof
+> > 
+> 
+> 
+> 
 
-> +++ b/drivers/clk/eswin/clk.c
-> @@ -0,0 +1,579 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2026, Beijing ESWIN Computing Technology Co., Ltd..
-> + * All rights reserved.
-> + *
-> + * Authors:
-> + *	Yifeng Huang <huangyifeng@eswincomputing.com>
-> + *	Xuyang Dong <dongxuyang@eswincomputing.com>
-> + */
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/delay.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/math.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +
-> +#include "common.h"
-> +
-> +struct eswin_clock_data *eswin_clk_init(struct platform_device *pdev,
-> +					size_t nr_clks)
-> +{
-> +	struct eswin_clock_data *eclk_data;
-> +
-> +	eclk_data = devm_kzalloc(&pdev->dev,
-> +				 struct_size(eclk_data, clk_data.hws, nr_clks),
-> +				 GFP_KERNEL);
-> +	if (!eclk_data)
-> +		return NULL;
-> +
-> +	eclk_data->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(eclk_data->base)) {
-> +		dev_err(&pdev->dev, "failed to map clock registers\n");
-> +		return NULL;
-> +	}
-> +
-> +	eclk_data->clk_data.num = nr_clks;
-> +	/* Avoid returning NULL for unused id */
-> +	memset_p((void **)eclk_data->clk_data.hws, ERR_PTR(-ENOENT), nr_clks);
-> +	spin_lock_init(&eclk_data->lock);
-> +
-> +	return eclk_data;
-> +}
-> +EXPORT_SYMBOL_GPL(eswin_clk_init);
-> +
-> +/**
-> + * eswin_calc_pll - calculate PLL values
-> + * @frac_val: fractional divider
-> + * @fbdiv_val: feedback divider
-> + * @rate: reference rate
-> + *
-> + *   Calculate PLL values for frac and fbdiv
-> + */
-> +static void eswin_calc_pll(u32 *frac_val, u32 *fbdiv_val, u64 rate)
-> +{
-> +	u32 rem, tmp1 = 0, tmp2 = 0;
-> +
-> +	rate = rate * 4;
-> +	rem = do_div(rate, 1000);
-> +	if (rem)
-> +		tmp1 = rem;
-> +
-> +	rem = do_div(rate, 1000);
-> +	if (rem)
-> +		tmp2 = rem;
-> +
-> +	rem = do_div(rate, 24);
-> +	/* fbdiv = rate * 4 / 24000000 */
-> +	*fbdiv_val = rate;
-> +	/* frac = rate * 4 % 24000000 * (2 ^ 24) */
-
-I assume the 24 MHz is the parent rate? This function is only used by
-clk_pll_set_rate(). Should the parent_rate be passed in as well, and
-use that variable instead of hard coding the parent rate?
-
-> +	*frac_val = ((1000 * (1000 * rem + tmp2) + tmp1) << 24) / 24
-> +		     / 1000000;
-> +}
-> +
-> +static inline struct eswin_clk_pll *to_pll_clk(struct clk_hw *hw)
-> +{
-> +	return container_of(hw, struct eswin_clk_pll, hw);
-> +}
-> +
-> +static int clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
-> +			    unsigned long parent_rate)
-> +{
-> +	struct eswin_clk_pll *clk = to_pll_clk(hw);
-> +	u32 frac_val, fbdiv_val, val;
-> +	int ret;
-> +
-> +	eswin_calc_pll(&frac_val, &fbdiv_val, (u64)rate);
-> +
-> +	/* First, disable pll */
-> +	val = readl_relaxed(clk->ctrl_reg0);
-> +	val &= ~(((1 << clk->pllen_width) - 1) << clk->pllen_shift);
-> +	val |= 0 << clk->pllen_shift;
-> +	writel_relaxed(val, clk->ctrl_reg0);
-> +
-> +	val = readl_relaxed(clk->ctrl_reg0);
-> +	val &= ~(((1 << clk->fbdiv_width) - 1) << clk->fbdiv_shift);
-> +	val &= ~(((1 << clk->refdiv_width) - 1) << clk->refdiv_shift);
-> +	val |= 1 << clk->refdiv_shift;
-> +	val |= fbdiv_val << clk->fbdiv_shift;
-> +	writel_relaxed(val, clk->ctrl_reg0);
-> +
-> +	val = readl_relaxed(clk->ctrl_reg1);
-> +	val &= ~(((1 << clk->frac_width) - 1) << clk->frac_shift);
-> +	val |= frac_val << clk->frac_shift;
-> +	writel_relaxed(val, clk->ctrl_reg1);
-> +
-> +	/* Last, enable pll */
-> +	val = readl_relaxed(clk->ctrl_reg0);
-> +	val &= ~(((1 << clk->pllen_width) - 1) << clk->pllen_shift);
-> +	val |= 1 << clk->pllen_shift;
-> +	writel_relaxed(val, clk->ctrl_reg0);
-
-You can use GENMASK() and FIELD_PREP() to simplify these bitwise
-operations.
-> +
-> +	/* Usually the pll will lock in 50us */
-> +	ret = readl_poll_timeout(clk->status_reg, val,
-> +				 val & (1 << clk->lock_shift), 1, 50 * 2);
-> +	if (ret)
-> +		pr_err("failed to lock the pll!\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static unsigned long clk_pll_recalc_rate(struct clk_hw *hw,
-> +					 unsigned long parent_rate)
-> +{
-> +	struct eswin_clk_pll *clk = to_pll_clk(hw);
-> +	u32 fbdiv_val, frac_val, rem, val;
-> +	unsigned long rate;
-> +	u64 tmp;
-> +
-> +	val = readl_relaxed(clk->ctrl_reg0);
-> +	val = val >> clk->fbdiv_shift;
-> +	val &= ((1 << clk->fbdiv_width) - 1);
-> +	fbdiv_val = val;
-> +
-> +	val = readl_relaxed(clk->ctrl_reg1);
-> +	val = val >> clk->frac_shift;
-> +	val &= ((1 << clk->frac_width) - 1);
-> +	frac_val = val;
-> +
-> +	/* rate = 24000000 * (fbdiv + frac / (2 ^ 24)) / 4 */
-> +	tmp = 1000 * frac_val;
-> +	rem = do_div(tmp, BIT(24));
-> +	if (rem)
-> +		rate = (unsigned long)(6000 * (1000 * fbdiv_val + tmp) +
-> +				      ((6000 * rem) >> 24) + 1);
-> +	else
-> +		rate = (unsigned long)(6000 * 1000 * fbdiv_val);
-> +
-> +	return rate;
-> +}
-> +
-> +static int clk_pll_determine_rate(struct clk_hw *hw,
-> +				  struct clk_rate_request *req)
-> +{
-> +	struct eswin_clk_pll *clk = to_pll_clk(hw);
-> +
-> +	req->rate = clamp(req->rate, clk->min_rate, clk->max_rate);
-> +	req->min_rate = clk->min_rate;
-> +	req->max_rate = clk->max_rate;
-> +
-> +	return 0;
-> +}
-> +
-> +int eswin_clk_register_fixed_rate(struct device *dev,
-> +				  struct eswin_fixed_rate_clock *clks,
-> +				  int nums, struct eswin_clock_data *data)
-> +{
-> +	struct clk_hw *clk_hw;
-> +	int i;
-> +
-> +	for (i = 0; i < nums; i++) {
-> +		clk_hw = devm_clk_hw_register_fixed_rate(dev, clks[i].name,
-> +							 NULL, clks[i].flags,
-> +							 clks[i].rate);
-> +		if (IS_ERR(clk_hw))
-> +			return PTR_ERR(clk_hw);
-> +
-> +		clks[i].hw = *clk_hw;
-> +		data->clk_data.hws[clks[i].id] = clk_hw;
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(eswin_clk_register_fixed_rate);
-> +
-> +static const struct clk_ops eswin_clk_pll_ops = {
-> +	.set_rate = clk_pll_set_rate,
-> +	.recalc_rate = clk_pll_recalc_rate,
-> +	.determine_rate = clk_pll_determine_rate,
-> +};
-> +
-> +int eswin_clk_register_pll(struct device *dev, struct eswin_pll_clock *clks,
-> +			   int nums, struct eswin_clock_data *data)
-> +{
-> +	struct eswin_clk_pll *p_clk = NULL;
-> +	struct clk_init_data init;
-> +	struct clk_hw *clk_hw;
-> +	int i, ret;
-> +
-> +	p_clk = devm_kzalloc(dev, sizeof(*p_clk) * nums, GFP_KERNEL);
-> +	if (!p_clk)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < nums; i++) {
-> +		p_clk->id = clks[i].id;
-> +		p_clk->ctrl_reg0 = data->base + clks[i].ctrl_reg0;
-> +		p_clk->pllen_shift = clks[i].pllen_shift;
-> +		p_clk->pllen_width = clks[i].pllen_width;
-> +		p_clk->refdiv_shift = clks[i].refdiv_shift;
-> +		p_clk->refdiv_width = clks[i].refdiv_width;
-> +		p_clk->fbdiv_shift = clks[i].fbdiv_shift;
-> +		p_clk->fbdiv_width = clks[i].fbdiv_width;
-> +
-> +		p_clk->ctrl_reg1 = data->base + clks[i].ctrl_reg1;
-> +		p_clk->frac_shift = clks[i].frac_shift;
-> +		p_clk->frac_width = clks[i].frac_width;
-> +
-> +		p_clk->ctrl_reg2 = data->base + clks[i].ctrl_reg2;
-> +		p_clk->postdiv1_shift = clks[i].postdiv1_shift;
-> +		p_clk->postdiv1_width = clks[i].postdiv1_width;
-> +		p_clk->postdiv2_shift = clks[i].postdiv2_shift;
-> +		p_clk->postdiv2_width = clks[i].postdiv2_width;
-
-Are these postdiv[12]_* members actually used anywhere? 
-
-Brian
-
+-- 
+Yixun Lan (dlan)
 
