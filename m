@@ -1,171 +1,174 @@
-Return-Path: <devicetree+bounces-265300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265301-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eIiGD37ojmkDFwEAu9opvQ
-	(envelope-from <devicetree+bounces-265300-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 10:01:50 +0100
+	id WO2PDJTqjmnsFwEAu9opvQ
+	(envelope-from <devicetree+bounces-265301-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 10:10:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58C0913448C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 10:01:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F3D134525
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 10:10:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 290773008E3A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:01:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 33284303FF04
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:10:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C0F3128CA;
-	Fri, 13 Feb 2026 09:01:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA15834B1BE;
+	Fri, 13 Feb 2026 09:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ajnFwvyb"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TXfuSbD1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 824E82580D7
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 09:01:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DAB6330B27;
+	Fri, 13 Feb 2026 09:10:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770973298; cv=none; b=MuSXlvFupmiA/8OLFVHr8IPIuHEzbGFbDZtO94ZHJjw7UpUguNJUOxD60mqQ07AR760O1MI8cVpe8gVRbDsP8hb/QOo8xzu70dQMuRRvG3XUVxewa72wSZ3QPIM0L3uZcZ0Sqenc3ywkTnhuQ3W9gdYFmAmU5CUEueiU1aI0eE0=
+	t=1770973827; cv=none; b=jTbcdGuoWNUIyxlKNeRu4jEGGU7guR5uRez39OkUgaM0vA5Z9X564wIPxFB7Jwd06cCjf+0EyhJJiH/ll4Xfhb7NeH6ohUSMu9KJAm8c/14SZCwNieUsGon2J9hP9F1iDe12ry/gabOiJwJrSCAhM3ni/T9ihmO5XP++4mbYZTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770973298; c=relaxed/simple;
-	bh=jNO73u+i65xkf0YweV1puplp8BRnzGz5roCr1o00jwY=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=EdU3M5Dn9y4kP4OtFz9Yx9+IjbBjxseXCFwuWxGxtFUPPBszki8q9gw7hfUoslu3f+sBHd+VlyHXL/FbW7+MoAoMhAEkbzFbmkoZXxd9zIIVqrw16pY55LOlVEQ0bFsUGi2ifuP9IEncypkzEkk5r0eytkLKqCXYnHklPaqBjLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ajnFwvyb; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id F10AC1A0EBB;
-	Fri, 13 Feb 2026 09:01:34 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C2E35606CC;
-	Fri, 13 Feb 2026 09:01:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8D05910368D90;
-	Fri, 13 Feb 2026 10:01:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770973292; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=rp1eDOIRhaqWCkYz+NWbK33lJyO3gCS1N2c/2rJWg/E=;
-	b=ajnFwvybN/0XFrBUedxR74LHa2roePtEFDzO102eE0A34vTv8r/teN6VmAyqa5UaQ3PAS5
-	nCSZFLxbHzsN0+Gwxsk0vV/Fc7Gp3KOXPPhgR8ATlUbvlAkNk1BRb9AFPJHWbKennAVtes
-	zWj8QxYJpIFfqHx5V6o8iIA62QSD5hwxd8lacmpYG2mNdSFsf5m+bhEUXxzM205MJYcIQ2
-	4Ac7speu6a2fbuuV1FGAoHu7eNwrOYxfnMXTCrKA9B6ng3mv46LV7UmvhFkMzbz4GyiELR
-	hOn/psaAkqctQA8IQUKxZTjiRERWxnwFnwZh9sKNQ0ft1qzBvDK/fVTVembZKA==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Santhosh Kumar K <s-k6@ti.com>
-Cc: <broonie@kernel.org>,  <robh@kernel.org>,  <krzk+dt@kernel.org>,
-  <conor+dt@kernel.org>,  <richard@nod.at>,  <vigneshr@ti.com>,
-  <tudor.ambarus@linaro.org>,  <pratyush@kernel.org>,  <mwalle@kernel.org>,
-  <linux-spi@vger.kernel.org>,  <devicetree@vger.kernel.org>,
-  <linux-kernel@vger.kernel.org>,  <linux-mtd@lists.infradead.org>,
-  <praneeth@ti.com>,  <u-kumar1@ti.com>,  <p-mantena@ti.com>,
-  <a-dutta@ti.com>
-Subject: Re: [RFC PATCH v2 00/12] spi: cadence-quadspi: add PHY tuning support
-In-Reply-To: <775d8dce-b567-4f21-963c-a843e409fea5@ti.com> (Santhosh Kumar
-	K.'s message of "Sat, 7 Feb 2026 00:58:03 +0530")
-References: <20260113141617.1905039-1-s-k6@ti.com>
-	<87343ghkek.fsf@bootlin.com> <87v7gbdwdh.fsf@bootlin.com>
-	<775d8dce-b567-4f21-963c-a843e409fea5@ti.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Fri, 13 Feb 2026 10:01:28 +0100
-Message-ID: <87y0kxvwyf.fsf@bootlin.com>
+	s=arc-20240116; t=1770973827; c=relaxed/simple;
+	bh=WLpab8z9L1FvsgPhhCAmW2PjbccD56OWmkO0q/7nCGI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fnoDnGWCLfIvQNySD0N6FVDaBYySFYFo9MbvKXU1xo2I5uY1CxZzVUEInHjybm6GXOlam2LOM/y1m7A91nlKOi6u01PW4wZfdwyFSuge3nnPtbCnVIc5dpT/cBmhrMIABfO+lEjqT5KRMRj47g06xQ4rDW2rn5Qo3O7K8SnfihM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TXfuSbD1; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770973826; x=1802509826;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WLpab8z9L1FvsgPhhCAmW2PjbccD56OWmkO0q/7nCGI=;
+  b=TXfuSbD1QLR+hpgbHX/VaXA/BZ59T9MGAorGpnPUCF9OVh5dJKfvfF60
+   PxZAzg74gUw+xXpCcNQ+x4WgflAQnaZImJLGH5+Tc7jtMR2DdSknkNkma
+   907bIZwHKOsTNrG1Fyp3LRJQ72rvzDb3PqNSfa/jOV6bTmNfcjATTH+kd
+   MS+rcZHSrvXWGmussGayHSmjSTl9TYhFZQHhwNqqGRPOTVx08jRUuGSs/
+   GyNGaLtuImgObdQhfyxbEPy69po0Xf0Q66+ZywxOlfwj4hVbxgW+YegZ1
+   k++uTIEifFFKy/JMBqXX+gLMn3NUDOgeN85oBBgn9ochKFbE3RaRWps5N
+   A==;
+X-CSE-ConnectionGUID: 0NgGteq2QDuZ4gagFfWtOw==
+X-CSE-MsgGUID: hxFOHue0Rs22QL4TgjIC1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="97614663"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; 
+   d="scan'208";a="97614663"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2026 01:10:26 -0800
+X-CSE-ConnectionGUID: O0rARFFOQ0CiE6O9xfc6iQ==
+X-CSE-MsgGUID: K4gaZ9zgQ/WYA+DpW14OMw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; 
+   d="scan'208";a="212117102"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 13 Feb 2026 01:10:23 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vqpBs-00000000vFs-1rlU;
+	Fri, 13 Feb 2026 09:10:20 +0000
+Date: Fri, 13 Feb 2026 17:10:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Stoyan Bogdanov <sbogdanov@baylibre.com>, jbrunet@baylibre.com,
+	linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, corbet@lwn.net, skhan@linuxfoundation.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Stoyan Bogdanov <sbogdanov@baylibre.com>
+Subject: Re: [PATCH v2 1/3] hwmon: (pmbus/tps25990): Rework TPS25990 non
+ standatd direct conversion
+Message-ID: <202602131712.Lruy3UMc-lkp@intel.com>
+References: <20260213001408.2454567-2-sbogdanov@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260213001408.2454567-2-sbogdanov@baylibre.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-265301-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265300-lists,devicetree=lfdr.de];
-	RSPAMD_URIBL_FAIL(0.00)[ti.com:query timed out];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ti.com:email]
-X-Rspamd-Queue-Id: 58C0913448C
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,01.org:url,intel.com:mid,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: 85F3D134525
 X-Rspamd-Action: no action
 
-On 07/02/2026 at 00:58:03 +0530, Santhosh Kumar K <s-k6@ti.com> wrote:
+Hi Stoyan,
 
-> On 05/02/26 21:18, Miquel Raynal wrote:
->> Hi Santhosh,
->>=20
->>> I am surprised by these numbers, I would expect these to get higher for
->>> SPI NANDs. I will test the series and report my observations, especially
->>> since there is also ODDR SPI NAND support now (in nand/next, should be
->>> part of my upcoming merge request to Linus for 6.19+1);
->> I just tested the series, here are some numbers I grabbed on TI AM62A7
->> LP SK with a Winbond W35N02 SPI NAND chip (so in the end very close to
->> your report):
->>   +-----------------+-----------+------------+
->>   | SPI NAND        | no tuning | PHY tuning |
->>   | Unit: MiB/s     |   25MHz   |   166MHz   |
->>   |-----------------+-----------+------------|
->>   | Octal SDR read  |   13.8    |    34.2    |
->>   |           write |    7.2    |    10.2    |
->>   |-----------------+-----------+------------|
->>   | Octal DTR read  |   21.2    |     N/A    |
->>   |           write |    9.0    |     N/A    |
->>   +-----------------+-----------+------------+
->> Please mind I used MiB/s and not MB/s (so kiB / 1024), I don't know
->> which one you used for measuring, as you marked MB, whereas the most
->> common unit seems to be MiB.
->> However PHY tuning failed in Octal DTR mode (your series applied on
->> top
->> of nand/next) with the following logs, can you have a look?
->> [    2.261647] spi-nand spi0.0: Winbond SPI NAND was found.
->> [    2.266956] spi-nand spi0.0: 128 MiB, block size: 256 KiB, page size:=
- 4096, OOB size: 128
->> [    2.285257] cadence-qspi fc40000.spi: PHY tuning failed: -2
->> [    2.290835] spi-nand spi0.0: Failed to execute PHY tuning: -2
->
-> Unfortunately, due to a known erratum in the Cadence controller, PHY DDR
-> mode cannot be used with 2-byte addressing.
->
-> Refer:
-> Errata i2383: OSPI: 2-byte address is not supported in PHY DDR mode [1]
->
-> As a result, the Cadence controller supports only the following
-> operating modes:
->  - PHY DDR mode with 4-byte addressing
->  - PHY SDR mode
->  - TAP (non-PHY) DDR mode
->  - TAP (non-PHY) SDR mode
+kernel test robot noticed the following build errors:
 
-I do not think we have 4-byte addressing capabilities on SPI NAND chips,
-esp. Winbond's chips. So there is a down side: the core will pick-up
-Octal DTR modes rather than Octal SDR (with PHY) mode, which is not the
-fastest mode. Maybe we can guess that once we have access to the max
-(tuned PHY) spi frequency, with an extra flag in the driver indicating
-that the PHY speed is not accessible in DTR mode. But this again
-requires different handling between SPI NAND and SPI NOR, as SPI NOR
-IIRC may have 4-byte addressing capabilities.
+[auto build test ERROR on groeck-staging/hwmon-next]
+[also build test ERROR on linus/master v6.19 next-20260212]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Thanks,
-Miqu=C3=A8l
+url:    https://github.com/intel-lab-lkp/linux/commits/Stoyan-Bogdanov/hwmon-pmbus-tps25990-Rework-TPS25990-non-standatd-direct-conversion/20260213-081713
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20260213001408.2454567-2-sbogdanov%40baylibre.com
+patch subject: [PATCH v2 1/3] hwmon: (pmbus/tps25990): Rework TPS25990 non standatd direct conversion
+config: i386-randconfig-011-20260213 (https://download.01.org/0day-ci/archive/20260213/202602131712.Lruy3UMc-lkp@intel.com/config)
+compiler: gcc-13 (Debian 13.3.0-16) 13.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260213/202602131712.Lruy3UMc-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202602131712.Lruy3UMc-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   ld: drivers/hwmon/pmbus/tps25990.o: in function `tps25990_value_to_raw':
+>> drivers/hwmon/pmbus/tps25990.c:86:(.text+0x1e3): undefined reference to `__udivdi3'
+   ld: drivers/hwmon/pmbus/tps25990.o: in function `tps25990_raw_to_value':
+   drivers/hwmon/pmbus/tps25990.c:68:(.text+0x4d8): undefined reference to `__udivdi3'
+
+
+vim +86 drivers/hwmon/pmbus/tps25990.c
+
+    74	
+    75	static unsigned int tps25990_value_to_raw(struct i2c_client *client, int param, int val)
+    76	{
+    77		struct tps25990_data *data = (struct tps25990_data *)of_device_get_match_data(&client->dev);
+    78		struct local_direct_value *info_local = data->info_local;
+    79	
+    80		/* Formula : Y = ( m * X + b) * 10^R */
+    81		val = (long)val * info_local->m[param] + info_local->b[param];
+    82	
+    83		if (info_local->R[param] >= 0)
+    84			val *= int_pow(10, info_local->R[param]);
+    85		else
+  > 86			val = DIV_ROUND_CLOSEST(val, int_pow(10, -info_local->R[param]));
+    87	
+    88		return val;
+    89	}
+    90	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
