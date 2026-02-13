@@ -1,403 +1,237 @@
-Return-Path: <devicetree+bounces-265446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265447-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +IRzFC5cj2lxQgEAu9opvQ
-	(envelope-from <devicetree+bounces-265446-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 18:15:26 +0100
+	id iH1vMLRcj2mSQgEAu9opvQ
+	(envelope-from <devicetree+bounces-265447-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 18:17:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2D9A1388FC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 18:15:25 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E468138913
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 18:17:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8BD933078A17
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:14:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B21A3300B292
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:17:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E090F36656F;
-	Fri, 13 Feb 2026 17:14:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B9634B40C;
+	Fri, 13 Feb 2026 17:17:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="kov4yeMd"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="eP0vHEUh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013017.outbound.protection.outlook.com [40.107.162.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60ECD36606F;
-	Fri, 13 Feb 2026 17:14:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771002881; cv=none; b=I6XaZSU9FYbdvt/RQKXWPddjae/ZvmkvaXQQ3tBf4HTuFPvfHM80jAVjilP3etGvMpk9e2b77KDg2s/rKsgObsAn6Qvpo7zFp3+xMK7zJLzfr6gfbZ1kVQOX2FMKPrRbeUY7amGa0lh3xCAuoySFC1LKmd02dYGzZB7N/BV6gLI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771002881; c=relaxed/simple;
-	bh=PGAH9rCxX7q2eQB3IVbofw/qNUc6fHrr2ONLETY6iEU=;
-	h=From:To:Cc:Date:Message-ID:In-Reply-To:References:MIME-Version:
-	 Subject; b=k81F0X7rferqhoWSkFPDnuBdDGpDhHLPup0jh+0QcMUitKSlW6mJx6a48vgY/6ZSeh7+Vil46EPeLFyr0HmHfOy4tXcoMFn5InLrKxz6mKKG8psgcNjAyn5TAVlShT4iDQ7DDKrydtRXiaRz7jFiBFs+o/MUkJ81sz3Taah7U9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=kov4yeMd; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Cc:To
-	:From:subject:date:message-id:reply-to;
-	bh=2weegKCMFOEi+LSDYi9P5QCz9jexBGAsJwZMFbqjKas=; b=kov4yeMd1RkKNsThT02tvgp43k
-	mFZpYkGK2QerI90/M+OniDAgPlk7VtusFQYSLRt2k3Bp6DQlqPl1YMZENDWBLx3f7Nx2al5ZWlP4p
-	0ZEXwku+htAFJ0TDpOaPNNfWTk1+69KDKaHaSFh0UEOa6X/e4F5BizN6wwwDtnQA8uZE=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:49782 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1vqwkX-0007VX-Ae; Fri, 13 Feb 2026 12:14:38 -0500
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: hvilleneuve@dimonoff.com,
-	dmitry.torokhov@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	hugo@hugovil.com
-Date: Fri, 13 Feb 2026 12:14:26 -0500
-Message-ID: <20260213171431.2228814-3-hugo@hugovil.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260213171431.2228814-1-hugo@hugovil.com>
-References: <20260213171431.2228814-1-hugo@hugovil.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DDB2BDC04;
+	Fri, 13 Feb 2026 17:17:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.17
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771003053; cv=fail; b=Nw/fIKVx5FjnvpS48erPK3R0BtYmJRi83b5R9mX1HGqFoiGKpafXyHraI/6FKJNZAQjpPgrdZzZj602tA8xaseUEAB28NlVkv59lrnYCOp9m2RcF8FEyct1Ibl/EkpBAeycDWYMsilGHHKA5JXZJZ4VJD2MziUA7J+EjjCCk51E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771003053; c=relaxed/simple;
+	bh=kSHWTIiAklnl01mxnANZDxam2DxPfYgzTF6MaOFZ3jU=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=aUFLp/xF2q8ybtBf1Fx7rXggLbcNBHKT/QO9QBYFRLOl3r7woV1TMo74NJZ4rud3/hIgcbKZrLkCTxd9RmShSKMA6WjD3fG2StE2fy0vHLSM3qJIGbr35DKKevJ637lTH1Zzs0Pm2K2zjcBabhsbwN8HwHoYWPwcRxuNFB6pYzs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=eP0vHEUh; arc=fail smtp.client-ip=40.107.162.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Z5aAhgVVvSXiKSpgTekYcppG4l0RpAVW2zrCdfdZn9WevbDw89wWfvBv8Z2I4R2HTA40v1xqJj84hIq8KPY3JJ3TBGRhHEG1EbEc19tOlplyosevOYRf7AWmA1sgXPmIrcQPtLBOcqwVWndSOmef9dhCpauMYZOA/uqtc6yoamK2krkS3GSvfe55V7NclXHg7ZqQAyHJJ3oDf1NW4yiKA3NdsGW+AjhdHozAjosCafL+/eQjbzXDAjiK+ToJZbMCClrR2vrykmqsHGknORBWsyAwWaDj+7sRlUxBtCzXf4ctfjins/BjOW2eFNo64N4qlS+LlIq2s3y46757MNwdZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=y8OB00T6SqnqccwRNiZhZD8kBsFSLpzg3/IrcHL/A2g=;
+ b=efRhVRacjpY2S1B3Wpv/0DvrGFZ5/0oVlNXc7LW0nLHrH2N+YpsJm/yP+IwsSrUxxnDOdCBqoCaewOWYIlIFvwkwuLx13EuONuWYsqivyqKzQVXkWtruHdwGubYmVPeS+uToG96hQKgy/+IxeE/6rNEpK+wrz9G/39sB3AGvcSBudVuqbyFGbi8KN4X5Tr+7NwInE3iMhWrr5h4cK5SQQ9KttUSMAAauK+lZHv4zV4T6Hi7soQwi0VhlYgwJvandzPmIzWUwDCyDLIK+TRzfU2CEIIv+FkzykrmtH1WI0cRY/ubhfBbfmW4pAQtnsWvrL2IwbsUGrIuE86ZnbOUDEQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y8OB00T6SqnqccwRNiZhZD8kBsFSLpzg3/IrcHL/A2g=;
+ b=eP0vHEUhaV5QRsnUfLZTUJsngWEg2uZxl/xCTz9JHWG5oTIGztRyeEIdE2ejFaJQX/CzvfVS2ZQarjimX844cZxLW1PHXwN6TdlKdLYZHBvWjMZfmQx1O+ZVuok7VC53Rp7afRETQhG58Bxcma4G2pCUPZ4N/o0htBUxBWKbvRMGSbIG3e9QjkuGxa0aRcV+zXbRTn+oStf1M81TLHHvO8qaak1TRCZOoiGkL7/3fJEi+90BqcXvq0m2CyadmVDbdsmQI9tRJIzazj7q3nZirO9Amzf89l380bjTtB8MBpP5Eri1dH8ZdrJ9SCNe0HSYQJ7BnjGEqZxxf8QTnuIy/w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by VI1PR04MB7135.eurprd04.prod.outlook.com (2603:10a6:800:12c::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.13; Fri, 13 Feb
+ 2026 17:17:29 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9611.008; Fri, 13 Feb 2026
+ 17:17:29 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v2 1/1] dt-bindings: soc: imx: Add fsl,aipi-bus and fsl,emi-bus
+Date: Fri, 13 Feb 2026 12:17:11 -0500
+Message-ID: <20260213171715.3465064-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.43.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY5PR04CA0018.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::28) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-Subject: [PATCH v2 2/2] Input: charlieplex_keypad: add GPIO charlieplex keypad
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|VI1PR04MB7135:EE_
+X-MS-Office365-Filtering-Correlation-Id: 842d7116-b7b7-46c7-6174-08de6b23c41c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|1800799024|376014|52116014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?APlRhWtupLFr0QuVFFTQ8FYXVm5BBuKyl7zJLkJthZAFAFvDJTGJw4zyIag3?=
+ =?us-ascii?Q?5VomW8mY2TRE1KZDVNml4fclQEayYFAKLelZmo0/s33yVyxZ/SW/8tIEn+OH?=
+ =?us-ascii?Q?Ee8Vl0A/ZOtk1KZiEUgkrb8UqOF1ojLxM9mD0T/cHt3mQOO/trsZdXSAdqkx?=
+ =?us-ascii?Q?jHSaqBN+kBP4K9AtSvaw+gAXbY2LdZGA17I/mBgRQwEe6hpGU+RI7Fr0yoFb?=
+ =?us-ascii?Q?eB0lA2QkyILapRl8yRiVqhuwkcweMM+/tUnFF06UJ9LyQ/2AatbU1B4B51aO?=
+ =?us-ascii?Q?q5G1s/ql1atmApuNdmgrNHDqEm9Oee1607ZVnN8gLDZsRg3ntiGOg89H65TW?=
+ =?us-ascii?Q?17NlczhO9ilM4K062fbNSYQWEqWdaZNwNn93rqib9rSc+2bDw48cxeaJszay?=
+ =?us-ascii?Q?zn5EIVDeSmHkSBxo0SCZMrtpp/na+BP5ZGUZo+t2eKu7Xz8EHWcnlvN69Tao?=
+ =?us-ascii?Q?z36yteJNNuIdaomhe+dyGzBT9rtTvyo20J5Ybxys4CXA8T6/xQKA1eKG9cOI?=
+ =?us-ascii?Q?9nqCEPLlgl6Vj7KwY/QPgxH/i1kDhoqNNtTpyfyXj6v4KpavlqnoffG91zqW?=
+ =?us-ascii?Q?H8eW65yXaaWaaYgvF44i5lrXG3IiQUIg5afOSmDxwY4tyo8XKDVMfqIMZH8U?=
+ =?us-ascii?Q?aiTw2jvHB4/6vf0qHJotppZljyLtG5LFOkhJ51Q13k98lwWsH2NZNry0Bf2L?=
+ =?us-ascii?Q?ij5YtsWpSe9cqxT2vmW3eklrOV9U8iAYHfzRV4UoAQTSlrjS0xlYb+oiKzKT?=
+ =?us-ascii?Q?znaVvXFwdN04klR122TuQBZQUyXcZLIx7GCBQfG+iMhkSr0g3f/+lr9Unv7y?=
+ =?us-ascii?Q?UwchC1TGjigirL7PAYH409VuC+lFAdH1m94Lns8Y3bflBBAe74FDdDl7qG0s?=
+ =?us-ascii?Q?w1C+NE6sMWeGobL+ka2a+rbBa2W8FBgouoe7ysZFdmiFFbd7JPIhC3WoKuLX?=
+ =?us-ascii?Q?jzgj2RQKf9qnCb4qg7RE9/L8UyqiXuGXWoB16lx1mZGic3JstYd+spfVTIYj?=
+ =?us-ascii?Q?wIUanFWdD0BMef0YEDlD6Qpdpvk8B6aX5dzleoC/IrbQn3HXVWmnLNnTyvMn?=
+ =?us-ascii?Q?kOLDgQSNJg3N8FJjYR7fM0TfbGnDsFcRZIAdcIC4MPjJ96wkmhuMOOJgqOfq?=
+ =?us-ascii?Q?+D9xNJ86XzxX2GiZp1LlvOCH3oJjiGHZZRzHEsHrmTnSH58pJAw9PqkG/bzQ?=
+ =?us-ascii?Q?Ksows/o3JBnfUQX/SzPE6ecl2z+PrkzmGJLCyvk1AYYm1RFpFaCipZRVbvA6?=
+ =?us-ascii?Q?6KFZRpCkdUAyGWv+VeL/V18mn9JTys6RKcHI60+qK4/u+CwzCBrQ3qMWx7/7?=
+ =?us-ascii?Q?xXWRF/w5vhZQ/5PIQWmgdqtanFBX2Wp9BHkdyKHxuuZuGYSleAKt5qvQa2iZ?=
+ =?us-ascii?Q?Q2djApLT+5LLyfwSMtkjswuMYS+lvv+cpH9sPvalMepMBJZv88ikaVFDrB6B?=
+ =?us-ascii?Q?qBsi0b2zKh9YDyIrCNFXDQI7Osp8Vc5g4atwoom5Rh4Rxi6mbwP3CQl59mYG?=
+ =?us-ascii?Q?QN8OPgXA7bIS7rdtKECZxoS7UxzRk9ml1W8PxZ4l1Q9jzH+iGlQB6dMiceQe?=
+ =?us-ascii?Q?5BWfkJp/TFrwnWUHvnKT+lueZ+D3D+4Kgl73j++5MWbY0AUCaTRZD3bsFHZ4?=
+ =?us-ascii?Q?EvCf5jjnW32cB9CbXazE7K8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(376014)(52116014)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?cqNq4PCBWKNDIING2t2nV1m8ZTXVM8X24R+ZNyMRpDBY/dSssq+YgMVhkT/Z?=
+ =?us-ascii?Q?q6vhYuEsKZRsywO/ntoc08HyGcvR9J14DsShkSjsTm8huByQpqe8lXzueZb+?=
+ =?us-ascii?Q?ML5mMB3E29RYmJFKgrwwycES8tgj7vUZDmW3xh4VI5Se3XPsRxLowNYKw0nX?=
+ =?us-ascii?Q?alVrA9qmQHuKFx042IcW3Yc581ZNI0rH/SJee6tebzo5jPtt0LIy35As4SCI?=
+ =?us-ascii?Q?yIjDUQKEU5DfHVpBnKkQsZIiLI9n4Au78VmAngZFUAyHw6trYpDpQcDkYiNC?=
+ =?us-ascii?Q?X0ZZGxnQg0AbrLXm/invvSB3ly/nddoQu3Gw0s2MkeAZEytSXV6MpPuOX3Od?=
+ =?us-ascii?Q?k6MUJLVhZHeomdCB1Bsw7ArW510c47v7AUL4tTBgB38D6RraoZ171q1E4EO8?=
+ =?us-ascii?Q?0rOKnEbz+34qqIQQJPrQqpd/LmczJWtKb9YCxZB7MfA+5z7dXvVbdfVrmfaK?=
+ =?us-ascii?Q?vNnceGO/51Lb1RiyyEXnO573JjCByGrDHbxaoRhdxa2XUWggNp0WsupOofpr?=
+ =?us-ascii?Q?gni3FLMlqsj2VJ6kTXGVej7/CZgm0N0Hrp6Ej1afW3eJ2fVXcMhwMBhQPoBw?=
+ =?us-ascii?Q?ev8atTvMLffDC7RTKEif5/O0AmJz3PrJMBvvi9FdYLaKs+gi89ROXH9IW6Ze?=
+ =?us-ascii?Q?LpRUzsDu7NTJAWvvWF4W0l+iyr7oHMRbX0EXXuvZor/usqnnGHcMIAtjerZw?=
+ =?us-ascii?Q?0zq3skFMV0vsmdIy/6lIW2SgCia+TPbf7HwcVhsdqfAklQYH+B8tcpiSnW7s?=
+ =?us-ascii?Q?IbrjWT+wLiI227Abd1y5AWv9ZD0CI3IVcwsY4NNg6Wh+yaVeuwg110eFvtHi?=
+ =?us-ascii?Q?1YwxvKnW2vu8CgG1sIY9wpMCIh+UAyWQRhBBIPuC80/6rHaFYEoSCwx4Ie+V?=
+ =?us-ascii?Q?yYeucezxET2MAzUiZQf3uScPFb1SwRsdpq3uFhcPnz7Yi/O+zzdjc/CbFXOD?=
+ =?us-ascii?Q?Kto26nL7YEp+VrKsQ7mmUXpiG0cC42TtMZMv1cHzCf+v6P48ZWDsi8h9I9Hv?=
+ =?us-ascii?Q?NoopV48Lu+/NNi8DuzvhX2weOxvuz7ZLdH8vXcAqCdr/B6/jSVIhdTXWXhSb?=
+ =?us-ascii?Q?WRIc9qbjIiNzEXkre46J0vnZVySTYyU8+JnEp/Cl5P9FSFnjbjuZMrleBRV1?=
+ =?us-ascii?Q?5Obe6PUpBaoOyTPLxdEwzvHOu33I3SxVy8eDa8zdPPIUeNykKJIsn2Y5Nxme?=
+ =?us-ascii?Q?lDpzDEZkfA9kjmwo2bggpP+6/eo/lG11BKQpstzCMDzq5cNRBWbRAT0bkRBu?=
+ =?us-ascii?Q?TXCA5YzTZgNbTatDckUGOM5mQuQt2I2/+Z2At3vSpy+9FF9JoWkUbG85ozKZ?=
+ =?us-ascii?Q?5Q+oK7VZpUJdC0QRyxYgX3iAZYRHjJR6yHzbSvE+vx7ifYHG3qHg0t9yX3ZL?=
+ =?us-ascii?Q?7cYuVWeGqDGXvLaLn5NDALqY1oqAeH0qrDWudLBiMFZTtVA1L7PZxJYcGvms?=
+ =?us-ascii?Q?NqKCZMCck2xzzinA2zoRQNUlHaw6EDPToyksta+2Xvx3ZD7qJI5lLQPJDMdF?=
+ =?us-ascii?Q?PCT6wU3dvkBAsbVZpF0ryfFQrb2cGPeflhn9C0sZ8EDlBMIef9HZoYkuD1WA?=
+ =?us-ascii?Q?FWerV49309fB7PBmKJqoqD3Z9PeBgtloztnTOBTITmkJvN+5NO9FaIO7iCag?=
+ =?us-ascii?Q?MqmB5DVNQXpy1OB+TRx95lvTiPIuXQXs1W6kDNronSXkrOSGvkcEhAn5SQXK?=
+ =?us-ascii?Q?w05iv4XRoTD2wxJYIDuxRVm4nKk04AZPUZoYEthYx4SWYz6075EKqT33bzxC?=
+ =?us-ascii?Q?DK2ZH3C51A=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 842d7116-b7b7-46c7-6174-08de6b23c41c
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2026 17:17:29.4897
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: I2nFQ42Y4eWP2mJztKsAPmLjhlXwIo3Xv+mofJvqgtIsOAQltMxn6UsZfTCLgf0G7gp+JvPKsc+horaGkRYqcA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7135
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[dimonoff.com,gmail.com,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265446-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[hugovil.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[hugovil.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-265447-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,perches.com:email,hugovil.com:mid,hugovil.com:dkim,dimonoff.com:email,canonical.com:email]
-X-Rspamd-Queue-Id: E2D9A1388FC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:mid,nxp.com:dkim,nxp.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6E468138913
 X-Rspamd-Action: no action
 
-From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Add the fsl,aipi-bus and fsl,emi-bus compatible strings for i.MX1 and
+i.MX2 variants.
 
-Add support for GPIO-based charlieplex keypad, allowing to control
-N^2-N keys using N GPIO lines.
+These compatibles are only intended for existing legacy chips (more than 15
+years old) and will not be used for new device trees.
 
-Reuse matrix keypad keymap to simplify, even if there is no concept
-of rows and columns in this type of keyboard.
-
-Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
- MAINTAINERS                                 |   7 +
- drivers/input/keyboard/Kconfig              |  14 ++
- drivers/input/keyboard/Makefile             |   1 +
- drivers/input/keyboard/charlieplex_keypad.c | 213 ++++++++++++++++++++
- 4 files changed, 235 insertions(+)
- create mode 100644 drivers/input/keyboard/charlieplex_keypad.c
+change in v2:
+- update commit message to show only for legacy chips
+---
+ Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9ed6d11a77466..0b2d71f32b400 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5765,6 +5765,13 @@ S:	Maintained
- F:	Documentation/hwmon/powerz.rst
- F:	drivers/hwmon/powerz.c
+diff --git a/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
+index 00bbde203f598..4808065fc9115 100644
+--- a/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
++++ b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
+@@ -26,8 +26,10 @@ select:
+     compatible:
+       contains:
+         enum:
++          - fsl,aipi-bus
+           - fsl,aips
+           - fsl,emi
++          - fsl,emi-bus
+           - fsl,spba-bus
+   required:
+     - compatible
+@@ -39,8 +41,10 @@ properties:
+   compatible:
+     items:
+       - enum:
++          - fsl,aipi-bus
+           - fsl,aips
+           - fsl,emi
++          - fsl,emi-bus
+           - fsl,spba-bus
+       - const: simple-bus
  
-+CHARLIEPLEX KEYPAD DRIVER
-+M:	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-+S:	Supported
-+W:	http://www.mosaic-industries.com/embedded-systems/microcontroller-projects/electronic-circuits/matrix-keypad-scan-decode
-+F:	Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
-+F:	drivers/input/keyboard/charlieplex_keypad.c
-+
- CHECKPATCH
- M:	Andy Whitcroft <apw@canonical.com>
- M:	Joe Perches <joe@perches.com>
-diff --git a/drivers/input/keyboard/Kconfig b/drivers/input/keyboard/Kconfig
-index 2ff4fef322c24..ae54b4b7e2d8a 100644
---- a/drivers/input/keyboard/Kconfig
-+++ b/drivers/input/keyboard/Kconfig
-@@ -289,6 +289,20 @@ config KEYBOARD_MATRIX
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called matrix_keypad.
- 
-+config KEYBOARD_CHARLIEPLEX
-+	tristate "GPIO driven chearlieplex keypad support"
-+	depends on GPIOLIB || COMPILE_TEST
-+	select INPUT_MATRIXKMAP
-+	help
-+	  Enable support for GPIO driven charlieplex keypad. A charlieplex
-+	  keypad allows to use fewer GPIO lines to interface to key switches.
-+	  For example, an N lines charlieplex keypad can be used to interface
-+	  to N^2-N different key switches. However, this type of keypad
-+	  cannot detect more than one key press at a time.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called charlieplex_keypad.
-+
- config KEYBOARD_HIL_OLD
- 	tristate "HP HIL keyboard support (simple driver)"
- 	depends on GSC || HP300
-diff --git a/drivers/input/keyboard/Makefile b/drivers/input/keyboard/Makefile
-index 2d906e14f3e27..40b5cf5d374d2 100644
---- a/drivers/input/keyboard/Makefile
-+++ b/drivers/input/keyboard/Makefile
-@@ -40,6 +40,7 @@ obj-$(CONFIG_KEYBOARD_LOCOMO)		+= locomokbd.o
- obj-$(CONFIG_KEYBOARD_LPC32XX)		+= lpc32xx-keys.o
- obj-$(CONFIG_KEYBOARD_MAPLE)		+= maple_keyb.o
- obj-$(CONFIG_KEYBOARD_MATRIX)		+= matrix_keypad.o
-+obj-$(CONFIG_KEYBOARD_CHARLIEPLEX)	+= charlieplex_keypad.o
- obj-$(CONFIG_KEYBOARD_MAX7359)		+= max7359_keypad.o
- obj-$(CONFIG_KEYBOARD_MAX7360)		+= max7360-keypad.o
- obj-$(CONFIG_KEYBOARD_MPR121)		+= mpr121_touchkey.o
-diff --git a/drivers/input/keyboard/charlieplex_keypad.c b/drivers/input/keyboard/charlieplex_keypad.c
-new file mode 100644
-index 0000000000000..81e8b6b96dab1
---- /dev/null
-+++ b/drivers/input/keyboard/charlieplex_keypad.c
-@@ -0,0 +1,213 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ *  GPIO driven charlieplex keypad driver
-+ *
-+ *  Copyright (c) 2025 Hugo Villeneuve <hvilleneuve@dimonoff.com>
-+ *
-+ *  Based on matrix_keyboard.c
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/input.h>
-+#include <linux/input/matrix_keypad.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/types.h>
-+
-+struct charlieplex_keypad {
-+	struct input_dev *input_dev;
-+	struct gpio_descs *line_gpios;
-+	unsigned int nlines;
-+	unsigned int line_scan_delay_us;
-+	unsigned int debounce_threshold;
-+	unsigned int debounce_count;
-+	int debounce_code;
-+	int current_code;
-+};
-+
-+static void charlieplex_keypad_report_key(struct input_dev *input)
-+{
-+	struct charlieplex_keypad *keypad = input_get_drvdata(input);
-+	const unsigned short *keycodes = input->keycode;
-+
-+	if (keypad->current_code > 0) {
-+		input_event(input, EV_MSC, MSC_SCAN, keypad->current_code);
-+		input_report_key(input, keycodes[keypad->current_code], 0);
-+	}
-+
-+	if (keypad->debounce_code) {
-+		input_event(input, EV_MSC, MSC_SCAN, keypad->debounce_code);
-+		input_report_key(input, keycodes[keypad->debounce_code], 1);
-+	}
-+
-+	input_sync(input);
-+	keypad->current_code = keypad->debounce_code;
-+}
-+
-+static void charlieplex_keypad_check_switch_change(struct input_dev *input,
-+						   int code)
-+{
-+	struct charlieplex_keypad *keypad = input_get_drvdata(input);
-+
-+	if (code != keypad->debounce_code) {
-+		keypad->debounce_count = 0;
-+		keypad->debounce_code = code;
-+	} else if (keypad->debounce_count < keypad->debounce_threshold) {
-+		keypad->debounce_count++;
-+
-+		if (keypad->debounce_count >= keypad->debounce_threshold &&
-+		    keypad->debounce_code != keypad->current_code)
-+			charlieplex_keypad_report_key(input);
-+	}
-+}
-+
-+static void charlieplex_keypad_poll(struct input_dev *input)
-+{
-+	struct charlieplex_keypad *keypad = input_get_drvdata(input);
-+	int oline;
-+	int code;
-+
-+	for (code = 0, oline = 0; oline < keypad->nlines; oline++) {
-+		DECLARE_BITMAP(values, MATRIX_MAX_ROWS);
-+		int iline;
-+		int rc;
-+
-+		/* Activate only one line as output at a time. */
-+		gpiod_direction_output(keypad->line_gpios->desc[oline], 1);
-+
-+		if (keypad->line_scan_delay_us)
-+			fsleep(keypad->line_scan_delay_us);
-+
-+		/* Read input on all other lines. */
-+		rc = gpiod_get_array_value_cansleep(keypad->line_gpios->ndescs,
-+						    keypad->line_gpios->desc,
-+						    keypad->line_gpios->info, values);
-+		if (rc)
-+			return;
-+
-+		for (iline = 0; iline < keypad->nlines; iline++) {
-+			if (iline == oline)
-+				continue; /* Do not read active output line. */
-+
-+			/* Check if GPIO is asserted. */
-+			if (test_bit(iline, values)) {
-+				code = MATRIX_SCAN_CODE(oline, iline,
-+							get_count_order(keypad->nlines));
-+				/*
-+				 * Exit loop immediately since we cannot detect
-+				 * more than one key press at a time.
-+				 */
-+				break;
-+			}
-+		}
-+
-+		gpiod_direction_input(keypad->line_gpios->desc[oline]);
-+
-+		if (code)
-+			break;
-+	}
-+
-+	charlieplex_keypad_check_switch_change(input, code);
-+}
-+
-+static int charlieplex_keypad_init_gpio(struct platform_device *pdev,
-+					struct charlieplex_keypad *keypad)
-+{
-+	int i;
-+
-+	keypad->line_gpios = devm_gpiod_get_array(&pdev->dev, "line", GPIOD_IN);
-+	if (IS_ERR(keypad->line_gpios))
-+		return PTR_ERR(keypad->line_gpios);
-+
-+	keypad->nlines = keypad->line_gpios->ndescs;
-+
-+	if (keypad->nlines > MATRIX_MAX_ROWS)
-+		return -EINVAL;
-+
-+	for (i = 0; i < keypad->nlines; i++)
-+		gpiod_set_consumer_name(keypad->line_gpios->desc[i], "charlieplex_kbd_line");
-+
-+	return 0;
-+}
-+
-+static int charlieplex_keypad_probe(struct platform_device *pdev)
-+{
-+	struct charlieplex_keypad *keypad;
-+	unsigned int debounce_interval_ms;
-+	unsigned int poll_interval_ms;
-+	struct input_dev *input_dev;
-+	int err;
-+
-+	keypad = devm_kzalloc(&pdev->dev, sizeof(*keypad), GFP_KERNEL);
-+	if (!keypad)
-+		return -ENOMEM;
-+
-+	input_dev = devm_input_allocate_device(&pdev->dev);
-+	if (!input_dev)
-+		return -ENOMEM;
-+
-+	keypad->input_dev = input_dev;
-+
-+	device_property_read_u32(&pdev->dev, "poll-interval", &poll_interval_ms);
-+	device_property_read_u32(&pdev->dev, "debounce-delay-ms", &debounce_interval_ms);
-+	device_property_read_u32(&pdev->dev, "line-scan-delay-us", &keypad->line_scan_delay_us);
-+
-+	keypad->current_code = -1;
-+	keypad->debounce_code = -1;
-+	keypad->debounce_threshold = DIV_ROUND_UP(debounce_interval_ms, poll_interval_ms);
-+
-+	err = charlieplex_keypad_init_gpio(pdev, keypad);
-+	if (err)
-+		return err;
-+
-+	input_dev->name		= pdev->name;
-+	input_dev->id.bustype	= BUS_HOST;
-+
-+	err = matrix_keypad_build_keymap(NULL, NULL, keypad->nlines,
-+					 keypad->nlines, NULL, input_dev);
-+	if (err)
-+		dev_err_probe(&pdev->dev, -ENOMEM, "failed to build keymap\n");
-+
-+	if (device_property_read_bool(&pdev->dev, "autorepeat"))
-+		__set_bit(EV_REP, input_dev->evbit);
-+
-+	input_set_capability(input_dev, EV_MSC, MSC_SCAN);
-+
-+	err = input_setup_polling(input_dev, charlieplex_keypad_poll);
-+	if (err)
-+		dev_err_probe(&pdev->dev, err, "unable to set up polling\n");
-+
-+	input_set_poll_interval(input_dev, poll_interval_ms);
-+
-+	input_set_drvdata(input_dev, keypad);
-+
-+	err = input_register_device(keypad->input_dev);
-+	if (err)
-+		return err;
-+
-+	platform_set_drvdata(pdev, keypad);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id charlieplex_keypad_dt_match[] = {
-+	{ .compatible = "gpio-charlieplex-keypad" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, charlieplex_keypad_dt_match);
-+
-+static struct platform_driver charlieplex_keypad_driver = {
-+	.probe		= charlieplex_keypad_probe,
-+	.driver		= {
-+		.name	= "charlieplex-keypad",
-+		.of_match_table = of_match_ptr(charlieplex_keypad_dt_match),
-+	},
-+};
-+module_platform_driver(charlieplex_keypad_driver);
-+
-+MODULE_AUTHOR("Hugo Villeneuve <hvilleneuve@dimonoff.com>");
-+MODULE_DESCRIPTION("GPIO driven charlieplex keypad driver");
-+MODULE_LICENSE("GPL");
 -- 
-2.47.3
+2.43.0
 
 
