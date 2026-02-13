@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-265297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265298-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OBpVCAXmjmkDFwEAu9opvQ
-	(envelope-from <devicetree+bounces-265297-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:51:17 +0100
+	id sPPuHB/njmkDFwEAu9opvQ
+	(envelope-from <devicetree+bounces-265298-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:55:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EF65134319
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:51:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E287B1343A7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:55:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0F8ED303E49C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:51:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B5C19302E7E1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:55:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C51349AF4;
-	Fri, 13 Feb 2026 08:51:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA3A834A788;
+	Fri, 13 Feb 2026 08:55:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AzL3RqLg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r57+Ew4q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 026ABDF76;
-	Fri, 13 Feb 2026 08:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B64AB34A3A7;
+	Fri, 13 Feb 2026 08:55:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770972674; cv=none; b=aOPtkTQBQK3BmzVZql3UNR3eULJhrJf6OVlW3DVgB4TIYkw6UcyNHvNPddgLyyncSvOEhRfWriD7OP1URy+1UWqyd2JH7AY+gzUv2i/XwH+DyUk783G6uFE7TjKwsJkm4ckZQMEY9Pa3pLkMU/Y9aF2K6Ufn7LLChBwxreT+U6s=
+	t=1770972954; cv=none; b=lAi0EtVQipkAflQi+aC+iLpRHzpHr0xiqFJHk5JLpbyL+0yBI8+StOkQtUoWFEdIwY+QNS5qTU07awEIpAE07AAkDwluONrJFqb1JmcJNd2Z3RaxrJSlw8ayo9bLgsZY6NMt5PtOE2nrbNSSF5zrKLlY1lC8NiWCh79dOdGe6Fc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770972674; c=relaxed/simple;
-	bh=U618WhmVRyna+RkOUrJBfe2Nx0Aov4/Joy2X8GUZDMM=;
+	s=arc-20240116; t=1770972954; c=relaxed/simple;
+	bh=3Q4Hms6L0V5+ETNkuY/gtwO7iWwM/8+Gq+QDMIMk1bs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HGFH6NF/y21ulSI4GLCIkX+Vd057S3O0pUAjBsBKLYgl+JSWVST2qwolXODaotcHUesWXQ2IOUN9s5XyM1xiD6vL099M32qYnMo6LYIvjJNn1cMwUhOXyB/aEEsSv814SVOWapgZFsLwpg15sMB0ssVtdAGxfoiF6zGEa+JaERA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AzL3RqLg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57732C16AAE;
-	Fri, 13 Feb 2026 08:51:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=mbREs3Q4YFqF8hZtvKX8YRCy6uxot0g/La6jLCuCn3frmm3Ea1+Hwfs1t1eE7tCFm44KfSYhnnlD4OZTn0WJn8UDWEhZsgpHpkR3x9rAp4DqD1MTv5zAp8c79hkgFO/ssJOp3JJvWdvIjZAtLYqhmwQugZXki+ar0zuYEs2Qzgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r57+Ew4q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5703DC16AAE;
+	Fri, 13 Feb 2026 08:55:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770972673;
-	bh=U618WhmVRyna+RkOUrJBfe2Nx0Aov4/Joy2X8GUZDMM=;
+	s=k20201202; t=1770972954;
+	bh=3Q4Hms6L0V5+ETNkuY/gtwO7iWwM/8+Gq+QDMIMk1bs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AzL3RqLgHDpMmdnHiBWt9YIPSbyKEzPA69/aPJsp2uMlCGfCLkSLEUKu8eHV04yte
-	 6Fe/LXlu3fnSOqzjk+7CZXmfhwo97W1nrX6mD63T9KdYoE3Wj107O9Ae9hGqAQQaT2
-	 Kw88y1gpiMKwSykNIoFF0AePPBcBRVBzEXSCHwBVfOwoqtSjnqWWdNn0iK/jBjERKO
-	 hF4cPQ3QrMynaQxrXj7Kfx6CFN+jV4rfM6xGISj+haBfXVlxmpjiZfxign+GjMXgQW
-	 sHAbb1UrdUGWYYl7XTh/NwubZBK0FaVLRiTwZOlEm1yT2A5HMmULkm74753D8wY6/M
-	 9jHkiCEe1pjvQ==
-Message-ID: <8fb27a7a-82dc-443b-bcc4-21007783fc54@kernel.org>
-Date: Fri, 13 Feb 2026 09:51:08 +0100
+	b=r57+Ew4qYgF5PVochFw5nEs/JRhP8ZJ2PBNSGYMwIm1QPJFYsJfhPhumP85/p5abM
+	 pOdlYxk9afDabL7l77PsJNRhWYS9a6+TjL5GXPWOLm9Jv2wgK2Tk3h04oQLpOWZSEF
+	 N2FD5JLJOQ2Hx+TrZcbyupMtnFtvvVSK4lzcchUFp1Th1VIuo0sNBETzk61nBTRQ6k
+	 FgXEEbnOxLjNr7QehT31q28pMGlklNFXbQHhpAwKL+yFdh1QsecbreHgVxeN27f+4z
+	 CJySqwfrU4dbYjdPXVsKSSIDpGSOcwwIha8HSer7mQ9dYUTeMPr4A2LjXBkaQPbNPW
+	 81IMmll45nTcg==
+Message-ID: <58d57a6c-7c69-4f5b-a4c2-f34ef0238511@kernel.org>
+Date: Fri, 13 Feb 2026 09:55:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,21 +53,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: light: vcnl4000: add Capella
- CM36686 and CM36672P
-To: Erikas Bitovtas <xerikasxx@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH RFC v4 1/4] media: dt-bindings: Add Amlogic V4L2 video
+ decoder
+To: Zhentao Guo <zhentao.guo@amlogic.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20260212-cm36686-v4-0-8f587d4a72bf@gmail.com>
- <20260212-cm36686-v4-1-8f587d4a72bf@gmail.com>
- <20260213-unyielding-pistachio-ape-deda74@quoll>
- <3a20c906-647c-458f-a118-c7927495e7ef@gmail.com>
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+References: <20260213-b4-s4-vdec-upstream-v4-0-c7112d00d662@amlogic.com>
+ <20260213-b4-s4-vdec-upstream-v4-1-c7112d00d662@amlogic.com>
+ <d96c689d-a5a3-453d-a1ab-56dc1bf01635@kernel.org>
+ <75e55ceb-e6dd-47b5-a829-66f6fbb3e13e@amlogic.com>
+ <2f68ee18-e9d9-4da6-900c-93a7663b3c9d@kernel.org>
+ <598c161c-d157-40e5-992c-912540589d7e@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,7 +115,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <3a20c906-647c-458f-a118-c7927495e7ef@gmail.com>
+In-Reply-To: <598c161c-d157-40e5-992c-912540589d7e@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -121,14 +123,14 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265297-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265298-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[amlogic.com,kernel.org,linaro.org,baylibre.com,googlemail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_TWELVE(0.00)[14];
@@ -142,46 +144,55 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7EF65134319
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E287B1343A7
 X-Rspamd-Action: no action
 
-On 13/02/2026 09:29, Erikas Bitovtas wrote:
->>> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
->>> ---
->>>  .../devicetree/bindings/iio/light/vishay,vcnl4000.yaml  | 17 +++++++++++------
->>>  1 file changed, 11 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
->>> index 4d1a225e8868..2ba4d5de4ec4 100644
->>> --- a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
->>> +++ b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
->>> @@ -18,12 +18,17 @@ allOf:
->>>  
->>>  properties:
->>>    compatible:
->>> -    enum:
->>> -      - vishay,vcnl4000
->>> -      - vishay,vcnl4010
->>> -      - vishay,vcnl4020
->>> -      - vishay,vcnl4040
->>> -      - vishay,vcnl4200
->>> +    oneOf:
->>> +      - enum:
->>> +          - capella,cm36672p
->>
->> CM36672P is compatible with CM36686, but this is not expressed.
->> Confusing commit msg and code. 
-> 
-> For CM36672P we create a dedicated compatible because it is a
-> proximity-only sensor which has the same proximity sensor configuration,
-> but ambient light sensor registers are missing (reserved).
+On 13/02/2026 09:31, Zhentao Guo wrote:
+>>>>> +  power-domains:
+>>>>> +    maxItems: 2
+>>>>> +
+>>>>> +  power-domain-names:
+>>>>> +    items:
+>>>>> +      - const: vdec
+>>>>> +      - const: hevc
+>>>>> +
+>>>>> +  resets:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  amlogic,canvas:
+>>>>> +    description: should point to a canvas provider node
+>>>> Why? What for?
+>>>>
+>>>> What is canvas provider?
+>>> The canvas provider is: drivers/soc/amlogic/meson-canvas.c
+>> What is this "canvas" device.
+> You can think of canvas as the agent through which the decoder hardware 
+> accesses DDR.
 
-I don't understand this. You just wrote "fully compatible with CM36686"
-and now you imply that not.
+AGAIN:
 
-Decide.
+What is the canvas device. Describe or point me to bindings describing
+it. Your current bindings say that canvas is "a collection of metadata
+that describes a pixel buffer" so there is no way it handles DDR access.
+
+NAK
+
+>>> In short, canvas is a hardware IP inside the Amlogic SoC. The decoder IP
+>>> needs to access DDR through canvas IP, so we need to reference the
+>> Why decoder cannot access DDR directly?
+> The internal topology of the S4 chip is designed this way, we don't know 
+> why our VLSI colleauges designed like this. But similar designs have 
+> been removed in subsequent chips, eliminating the need to rely on a 
+> common hardware IP.
+
+Quite poor explanation. Based on this, this as well could be entry in
+device reg lists.
+
+Anyway, I am done guessing, explain properly the hardware instead of
+answering with half-baked responses just so I will go away.
+
 
 Best regards,
 Krzysztof
