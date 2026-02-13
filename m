@@ -1,146 +1,427 @@
-Return-Path: <devicetree+bounces-265314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265315-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yHeSBRzyjmk5GAEAu9opvQ
-	(envelope-from <devicetree+bounces-265314-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 10:42:52 +0100
+	id iLlaHXfyjmk5GAEAu9opvQ
+	(envelope-from <devicetree+bounces-265315-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 10:44:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A08731349D0
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 10:42:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7A9D1349EF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 10:44:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1A5A030616FF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:42:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A8E2C3053E1E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:43:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02CBA34DB68;
-	Fri, 13 Feb 2026 09:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21FC634D934;
+	Fri, 13 Feb 2026 09:43:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CcT/y4/Y";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FnvRXfPZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [207.46.229.174])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34185336EF8;
-	Fri, 13 Feb 2026 09:42:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.46.229.174
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A95B6336EF8
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 09:43:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770975743; cv=none; b=lyeOV491WuBOtz7geAH08k1dP/w0DfbmeK5uIbRMi0PRN1g4Hf7YokpKoMERIakfEXSC6XLDR5IA/SGErlxnSLk+BFcs1umFTAPK9qlL0YcJ3893WnzEx3fu29Iw2z5CCF+IwIdTGvYbBxwAdYxQUiGR0OJDM1WAH3WT5Nhyu5I=
+	t=1770975784; cv=none; b=D6cjDCBJ4wrRxlJegyFtaj+AWn1NKgdUyZ7ormdIbvQ9wEad1KJ62ywOYc1cJlHipCLp/iSZFN5H37wVopjhSzmMQZAZ29NnpZ2E4ok7OGmJOBtxw09NQdiT9aY3xZtNafz932ZzEY5Jm2OAxJZDm12yGPxE/8iABtwaG8+QIA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770975743; c=relaxed/simple;
-	bh=0TaG3zKhjPdH3XKQ3J68a9J/86YyuBuqPvF95YxTGm4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ij5yreiZX4s/50zhpopGb2YgqkfBXqzYhW35u0XIUaIP/6N5mEkNaqGZBE0BmAmdYJdgdjMzk8iRCL76W6Ut1N0UGpl7Vuol1wvnhKHJuukp/Vm/KDbKIzRJ0RMCT+okKi2b+pLn76RHkURJDyUBoVaRcBiIepOzh37V73Vnvbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=207.46.229.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app1 (Coremail) with SMTP id TAJkCgAnyXL28Y5poVEAAA--.2295S2;
-	Fri, 13 Feb 2026 17:42:15 +0800 (CST)
-From: dongxuyang@eswincomputing.com
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	troy.mitchell@linux.dev,
-	bmasney@redhat.com
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	ganboing@gmail.com,
-	marcel@ziswiler.com,
-	Xuyang Dong <dongxuyang@eswincomputing.com>
-Subject: [PATCH v12 3/3] MAINTAINERS: Add entry for ESWIN EIC7700 clock driver
-Date: Fri, 13 Feb 2026 17:42:12 +0800
-Message-Id: <20260213094212.283-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
-In-Reply-To: <20260213094112.115-1-dongxuyang@eswincomputing.com>
-References: <20260213094112.115-1-dongxuyang@eswincomputing.com>
+	s=arc-20240116; t=1770975784; c=relaxed/simple;
+	bh=pOEseWGsBqI4pAVkkVXUFTt32BENJ5GDUEDnxuZrg38=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OTXmn8oGXTVX3jlM5XSyEBSQ/53w6QSj/edNXW69qKhmBpG0vVwt0VZXYXeXY51WTIxbbHz/LUYGP8tA2ZIHChkSMzAQ+fj87t552DrDS1Wqkj+hpX69t8buXWuzB5RS/9VwgJ1Ip3OP5xfQpkJ+cpM7xyr8M2L7/lHfSJR2stY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CcT/y4/Y; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FnvRXfPZ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61D4KO2B1756664
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 09:43:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3pn69GDL9HuGRSG29Jiomg57ZL8KM9XgFi5MRwJxQ0g=; b=CcT/y4/Ycwx3DbNU
+	BbOs7iDncABXJrNa+v5HTWN6qgaWBQuZeBTQJP4XTNO9GaPSMwVcQZu782dnUgLW
+	OD8odx+UmjinrY7IXXekcMIY8cGFA2OUc3j1cbwwDyObeOgX3qjWoSobk86T32+p
+	l0fp+WwuIjS+IRzKubA43KFpQ5cVZs5a8y+FHcg83bepwKDy7WDFPZXnQT1OFXyf
+	1ej/wo9jtpeSlhX/68+FFQwdB5xOHmJ2byTD9mfGMpWOyjcVmwuBSBEAeMhwliSR
+	tFHNIQ/HeXvOqATvGeLo/8IO+OaWwh6Dhsga6bwhvKQuhM2mfJT1QRDKcZYzYiYB
+	cDo1YQ==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c9mb12tqb-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 09:43:01 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-824a0ea2025so445877b3a.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 01:43:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1770975780; x=1771580580; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3pn69GDL9HuGRSG29Jiomg57ZL8KM9XgFi5MRwJxQ0g=;
+        b=FnvRXfPZkuHi9Mc4w+XTlyhwt46cPvYaKpajc+XipiEIy5cf2BFOFXuHa/VYRGUmBq
+         7fsiuCQBzDu52ya4XnMBShP3uRfa7xT1U75/nTNRL8tDEcaeg98ZGbFb5haOon4xTlfG
+         UQKddARjEwu9uc84mOuUpUT8DoSTgQF9lGwtF7dtlnADYQy7OOQT49PTwffbKxaGW/c1
+         E47nWwpTQP8QwheGmujcnmwW39aRMmDewU6deuXTUh0GEWK35FMPn/h5VKXT47ZPXOvs
+         qcvhjRNsvaK4Lm16omJlNy7QMxu6zDo6ALlK6JZq/gPzagn3Cn49SblOV5oRNpPqJeYZ
+         YXnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770975780; x=1771580580;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3pn69GDL9HuGRSG29Jiomg57ZL8KM9XgFi5MRwJxQ0g=;
+        b=gMfv6TXt0xR7A3m8z6+Ktb2Mo/Z5iMv48+/j7wqKsy6NctqQRsf0n8aoZ06stE96ta
+         8XZRcfVuj+oKtQcRy2TzqTul4cbrhhbQICF/LN030i/UpV0VJ3mXfuS7WxiQ8hYls2l5
+         /xj/aQn+cdboqjny9onQDPGbQzBxslnRVUJxXoACYcYUvaexcfXC4BgiFxbhOqq9BISZ
+         FOAFiBqMnWEB+pY3RIA1iSXkXbm5e6tZXG5bGetLkZrgwX2EaskQCdBUVXVdz8aDUeqC
+         5exe2SUpmn0pN7yqiDZ2DAGdVwgeXX2bVrv3soyoa93w7tL+9/uOc6tHoPs7H15oAFhb
+         D5lQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVewJ9En/Hn9OjuaxGcxehj50KfsKhkwQc7roH3rcZFViMPqNIplyuw2l7DNUmtb1zDdIzEMGe5n+Il@vger.kernel.org
+X-Gm-Message-State: AOJu0YyiupBPjwqOCNqYZ09Z1xzkqpxDMiJQaz4latYf7WJBHbl0m6MK
+	Pt6q30HLmnJg4CMhbMkutShYDsq80mHREGvHt0qcj2V5HN0NQVI4h1Wa+ltOQ3Utr5WFh4MnIqt
+	7anCdcS69pB1HYIQYTVf0vaX1WTa3qJzAPfJrpgtxNuGeqnv84tkBTJeBAttQmiZN
+X-Gm-Gg: AZuq6aL5WRvRNsb5gm0WNguzY09tV0FTCmoVw7OeVZvzZRUpJ4kO1qntZautfRMolca
+	q6YYTVmuCa7lTXHmHitjzXeFohfXihsy+whpb7M7c+XfJOG813M2jYJiRBDcm8p28089l5jgiYI
+	rX9QBdac1IyiGHUfmzUXOlEJ3N/ZzVsr/d1y910+xyoE5vuVRW2Uo0nVb1vVEKGdh3RLfdkeSiS
+	TTXi/RUEVWR0B2fcubDHbNs4ij2UJzVPOZg1vT7uasYkOV7TFvExb1VJA88IF4g/rdj1gCYHxLV
+	RDhcR6cckmeqjFjXlxGnplFOnjXGuw32LN5iWEpdBKNGmgbfWt/8wKKfTzabHiflhsuoODYWd4L
+	fBqbeRpP7mINoEMHHXqZa6NhyFq6A9v4egVTykqpd5LzzCp8Rcj/oKN1M8A==
+X-Received: by 2002:a05:6a00:a111:b0:824:b304:2cfa with SMTP id d2e1a72fcca58-824c963e349mr1385303b3a.62.1770975780408;
+        Fri, 13 Feb 2026 01:43:00 -0800 (PST)
+X-Received: by 2002:a05:6a00:a111:b0:824:b304:2cfa with SMTP id d2e1a72fcca58-824c963e349mr1385280b3a.62.1770975779767;
+        Fri, 13 Feb 2026 01:42:59 -0800 (PST)
+Received: from [10.217.198.130] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-824c6bb410csm1869775b3a.61.2026.02.13.01.42.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Feb 2026 01:42:59 -0800 (PST)
+Message-ID: <66e6696d-3fab-4da5-ab89-4067d856f186@oss.qualcomm.com>
+Date: Fri, 13 Feb 2026 15:12:54 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgAnyXL28Y5poVEAAA--.2295S2
-X-Coremail-Antispam: 1UD129KBjvdXoWruF48XFWkKr1DGr1UAw4fKrg_yoWDArc_Gr
-	48Aay7XFyrJF12k395ZFZayFWYkw4xJr45KanFyw4jv34Yyr1DKFWqvwnavw47GF43WryU
-	uFyrKFZIgFnrWjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbhkFF20E14v26ryj6rWUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
-	A2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j
-	6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
-	Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
-	I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
-	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
-	n2kIc2xKxwAKzVCY07xG64k0F24lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK6svPMxAIw2
-	8IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4l
-	x2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrw
-	CI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1l
-	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRmZXOUUUUU=
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] hwmon: Add Qualcomm PMIC BCL hardware monitor driver
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, amit.kucheria@oss.qualcomm.com,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+Cc: linux-hwmon@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260206-qcom-bcl-hwmon-v1-0-7b426f0b77a1@oss.qualcomm.com>
+ <20260206-qcom-bcl-hwmon-v1-2-7b426f0b77a1@oss.qualcomm.com>
+ <7911bbae-c507-4420-a05c-89242941f774@oss.qualcomm.com>
+Content-Language: en-US
+From: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+In-Reply-To: <7911bbae-c507-4420-a05c-89242941f774@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjEzMDA3NCBTYWx0ZWRfX8RbLdgE8NGch
+ IoD9IQ0gjTUF8OmhtG7h0axodLXSvDqofNOAfwCOaFVT67RRApTMASP0JsHG9lHHtT4m3A/TT3u
+ /brkl9yxm/qYekg0puuuGSzL3lOtq9JrRH1V9MU5trazpl4gaM6B2QTyt30A+sBjSiBMuF9HfYw
+ E6KEYYkgH/azugmmLl1rbxtrxjuoU6QIVyv2g2yCvddO2YiANMFpciQN3fPjAA4CwBjh13rBWlf
+ K9dlzL9hOXA+8z1kkoTwLyHwN5aA+ZsNP0G2mJ1d44H7fdNHHCQGFilePfBJkBzbSJJnnVc3sm2
+ 2Xy6clRa6iT/tjmU1AXhmx/aBhNkduQIxh9vUMJ+2RgAfxTk0cSDLltulHj/MZ07Hu2sc+MkEK/
+ GlEsvSxnCiaHs6L6gwDf48TUU0l3XQNk1i8c8PwiLLogc3JYp7mUxa7IXBpYUaaTVFFZThBsp2h
+ 7MXdu16X2ezwdRg4tIg==
+X-Proofpoint-ORIG-GUID: X_C3W_2KpHQCbsD1h2-_DK5XAxO6myIH
+X-Authority-Analysis: v=2.4 cv=asC/yCZV c=1 sm=1 tr=0 ts=698ef225 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=EUspDBNiAAAA:8 a=ldktEXf5EnBcnpPPVXkA:9 a=QEXdDO2ut3YA:10
+ a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-GUID: X_C3W_2KpHQCbsD1h2-_DK5XAxO6myIH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-13_01,2026-02-12_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 spamscore=0 priorityscore=1501 suspectscore=0 malwarescore=0
+ impostorscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602130074
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-265315-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[eswincomputing.com];
-	TAGGED_FROM(0.00)[bounces-265314-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	R_DKIM_NA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[eswincomputing.com,einfochips.com,gmail.com,ziswiler.com];
+	FROM_NEQ_ENVFROM(0.00)[manaf.pallikunhi@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org]
-X-Rspamd-Queue-Id: A08731349D0
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: C7A9D1349EF
 X-Rspamd-Action: no action
 
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
+Hi Konrad,
 
-Add myself as maintainer of ESWIN EIC7700 clock driver
 
-Tested-by: Marcel Ziswiler <marcel@ziswiler.com> # ebc77
-Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On 2/6/2026 2:57 PM, Konrad Dybcio wrote:
+> On 2/5/26 10:14 PM, Manaf Meethalavalappu Pallikunhi wrote:
+>> Add support for Qualcomm PMIC Battery Current Limiting (BCL) hardware
+>> monitor driver. The BCL peripheral is present in Qualcomm PMICs and
+>> provides real-time monitoring and protection against battery
+>> overcurrent and under voltage conditions.
+>>
+>> The driver monitors:
+>> - Battery voltage with configurable low voltage thresholds
+>> - Battery current with configurable high current thresholds
+>> - Two limit alarm interrupts (max/min, critical)
+>>
+>> The driver integrates with the Linux hwmon subsystem and provides
+>> standard hwmon attributes for monitoring battery conditions.
+>>
+>> Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+>> ---
+> [...]
+>
+>> +/* Interrupt names for each alarm level */
+>> +static const char * const bcl_int_names[ALARM_MAX] = {
+>> +	[LVL0] = "bcl-max-min",
+>> +	[LVL1] = "bcl-critical",
+>> +};
+>> +
+>> +static const char * const bcl_channel_label[CHANNEL_MAX] = {
+>> +	"BCL Voltage",
+>> +	"BCL Current",
+>> +};
+> Let's strip the BCL prefix
+Ack
+>
+> [...]
+>
+>> +/**
+>> + * bcl_convert_raw_to_milliunit - Convert raw value to milli unit
+>> + * @desc: BCL device descriptor
+>> + * @raw_val: Raw ADC value from hardware
+>> + * @type: type of the channel, in or curr
+>> + * @field_width: bits size for data or threshold field
+>> + *
+>> + * Return: value in milli unit
+>> + */
+>> +static unsigned int bcl_convert_raw_to_milliunit(const struct bcl_desc *desc, int raw_val,
+> raw_val is an int here, a u32 when you retrieve it and a s64 in the math..
+Will check and update in next revision
+>
+>> +					enum bcl_channel_type type, u8 field_width)
+>> +{
+>> +	u32 def_scale = desc->channel[type].default_scale_nu;
+>> +	u32 lsb_weight = field_width > 8 ? 1 : 1 << field_width;
+>> +	u32 scaling_factor = def_scale * lsb_weight;
+> Would this be equivalent?
+>
+> if (field_width > 8)
+> 	def_scale <<= field_width;
+Ack
+>
+> [...]
+>
+>> +static unsigned int bcl_get_version_major(const struct bcl_device *bcl)
+>> +{
+>> +	u32 raw_val = 0;
+>> +
+>> +	bcl_read_field_value(bcl, F_V_MAJOR, &raw_val);
+>> +
+>> +	return raw_val;
+>> +}
+>> +
+>> +static unsigned int bcl_get_version_minor(const struct bcl_device *bcl)
+>> +{
+>> +	u32 raw_val = 0;
+>> +
+>> +	bcl_read_field_value(bcl, F_V_MINOR, &raw_val);
+>> +
+>> +	return raw_val;
+>> +}
+> Do we really need so many read-1-value functions?
+Ack, will remove those functions
+>
+>> +static void bcl_hwmon_notify_event(struct bcl_device *bcl, enum bcl_limit_alarm alarm)
+>> +{
+>> +	if (bcl->in_mon_enabled)
+>> +		hwmon_notify_event(bcl->hwmon_dev, hwmon_in,
+>> +				in_lvl_to_attr_map[alarm], 0);
+>> +	if (bcl->curr_mon_enabled)
+>> +		hwmon_notify_event(bcl->hwmon_dev, hwmon_curr,
+>> +				curr_lvl_to_attr_map[alarm], 0);
+>> +}
+>> +
+>> +static void bcl_alarm_enable_poll(struct work_struct *work)
+>> +{
+>> +	struct bcl_alarm_data *alarm = container_of(work, struct bcl_alarm_data,
+>> +							 alarm_poll_work.work);
+>> +	struct bcl_device *bcl = alarm->device;
+>> +	long status;
+>> +
+>> +	guard(mutex)(&bcl->lock);
+>> +
+>> +	if (bcl_read_alarm_status(bcl, alarm->type, &status))
+>> +		goto re_schedule;
+> Do we ever expect regmap_read to *actually* fail?
+Since regmap_read API itself is saying, it can fail, added check. Will 
+remove it.
+>
+> [...]
+>
+>> +static int bcl_hwmon_write(struct device *dev, enum hwmon_sensor_types type,
+>> +			   u32 attr, int channel, long val)
+>> +{
+>> +	struct bcl_device *bcl = dev_get_drvdata(dev);
+>> +	int ret = -EOPNOTSUPP;
+>> +
+>> +	guard(mutex)(&bcl->lock);
+>> +
+>> +	switch (type) {
+>> +	case hwmon_in:
+>> +		switch (attr) {
+>> +		case hwmon_in_min:
+>> +		case hwmon_in_lcrit:
+>> +			ret = bcl_in_thresh_write(bcl, val, in_attr_to_lvl_map[attr]);
+>> +			break;
+>> +		default:
+>> +			ret = -EOPNOTSUPP;
+> Please don't "ret = ...;break;, just return directly, also in the function
+> below
+Ack
+>
+> [...]
+>
+>> +static int bcl_curr_thresh_update(struct bcl_device *bcl)
+>> +{
+>> +	int ret, i;
+>> +
+>> +	if (!bcl->curr_thresholds[0])
+>> +		return 0;
+>> +
+>> +	for (i = 0; i < ALARM_MAX; i++) {
+>> +		ret = bcl_curr_thresh_write(bcl, bcl->curr_thresholds[i], i);
+>> +		if (ret < 0)
+>> +			return ret;
+> This too, fails if a regmap_write() fails and leaves other registers
+> unconfigured if that happens for $reasons
+Ack
+>
+> [...]
+>
+>> +static int bcl_get_device_property_data(struct platform_device *pdev,
+>> +				   struct bcl_device *bcl)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	int ret;
+>> +	u32 reg;
+>> +
+>> +	ret = device_property_read_u32(dev, "reg", &reg);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	bcl->base = reg;
+>> +
+>> +	device_property_read_u32_array(dev, "overcurrent-thresholds-milliamp",
+>> +				       bcl->curr_thresholds, 2);
+>> +	return 0;
+> If you don't expect this to grow, just inline it in .probe
+For now, there is no any other requirement, will move it to probe
+>
+> [...]
+>
+>> +	if (!bcl_hw_is_enabled(bcl))
+>> +		return -ENODEV;
+> Please make this print a meaningful error - also, should we expect this to
+Ack
+> ever happen, or would it mean that the bootloader (or something) hasn't
+> configured BCL prior to Linux booting?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a9e5dda52199..0ef12433aaa8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9500,6 +9500,14 @@ T:	git https://github.com/eswincomputing/linux-next.git
- F:	Documentation/devicetree/bindings/riscv/eswin.yaml
- F:	arch/riscv/boot/dts/eswin/
- 
-+ESWIN EIC7700 CLOCK DRIVER
-+M:	Yifeng Huang <huangyifeng@eswincomputing.com>
-+M:	Xuyang Dong <dongxuyang@eswincomputing.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
-+F:	drivers/clk/eswin/
-+F:	include/dt-bindings/clock/eswin,eic7700-clock.h
-+
- ET131X NETWORK DRIVER
- M:	Mark Einon <mark.einon@gmail.com>
- S:	Odd Fixes
--- 
-2.43.0
+Most of the cases, it will be enabled in firmware. But there is scenario 
+for some variant, firmware will disable it at runtime
 
+based on underlying battery sensing element due to hw issue. So We 
+wanted to enable driver only if peripheral is enabled.
+
+>
+> [...]
+>
+>
+>> + * enum bcl_channel_type - BCL supported sensor channel type
+>> + * @IN: in (voltage) channel
+>> + * @CURR: curr (current) channel
+>> + * @CHANNEL_MAX: sentinel value
+>> + *
+>> + * Defines the supported channel types for bcl.
+>> + */
+>> +enum bcl_channel_type {
+>> +	IN,
+>> +	CURR,
+> The enum defines could use a prefix, say CHANNEL_CURR
+Ack
+>
+>> +
+>> +	CHANNEL_MAX,
+>> +};
+>> +
+>> +/**
+>> + * enum bcl_thresh_type - voltage or current threshold representation type
+>> + * @ADC: Raw ADC value representation
+>> + * @INDEX: Index-based voltage or current representation
+>> + *
+>> + * Specifies how voltage or current thresholds are stored and interpreted in
+>> + * registers. Some PMICs use raw ADC values while others use indexed values.
+>> + */
+>> +enum bcl_thresh_type {
+>> +	ADC,
+>> +	INDEX,
+> Same here, THRESH_TYPE_ADC
+Ack
+>
+> [...]
+>
+>> +/**
+>> + * bcl_read_field_value - Read alarm status for a given level
+>> + * @bcl: BCL device structure
+>> + * @id: Index in bcl->fields[]
+>> + * @val: Pointer to store val
+>> + *
+>> + * Return: 0 on success or regmap error code
+>> + */
+>> +static inline int bcl_read_field_value(const struct bcl_device *bcl, enum bcl_fields id, u32 *val)
+>> +{
+>> +	return regmap_field_read(bcl->fields[id], val);
+>> +}
+> This produces more characters than it would to inline the function
+>
+> Now, that doesn't mean it can't be like that, but it's certainly curious
+
+Ack, will remove it in v2
+
+Thanks,
+
+Manaf
+
+>
+> Konrad
 
