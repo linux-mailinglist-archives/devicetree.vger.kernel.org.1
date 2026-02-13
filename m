@@ -1,142 +1,135 @@
-Return-Path: <devicetree+bounces-265428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265430-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kEQANURUj2lqQQEAu9opvQ
-	(envelope-from <devicetree+bounces-265428-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:41:40 +0100
+	id ECg9HM1Tj2lUQQEAu9opvQ
+	(envelope-from <devicetree+bounces-265430-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:39:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF4FE1384C8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:41:39 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2DAB138433
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:39:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 193883019A12
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:37:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6D26630215AF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:39:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1354135FF53;
-	Fri, 13 Feb 2026 16:37:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0090A361653;
+	Fri, 13 Feb 2026 16:39:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="EHlR26S2"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QaK8ur8Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A1C218ACC;
-	Fri, 13 Feb 2026 16:37:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771000674; cv=pass; b=AdvTPL9wHZX+y+uwXBl5msg/9RpYS2Qs9Rs2vjpdIWpULZ2jUVRNjhcj0O67V10GzLgTvg+FWLP5Lh6L9UQZDLF47WXnzIPDkOchOQL0TWFr80Hv581rrUp0U8+Hq6pqE+DUzgr+MWHpTO/2xXfGhtJG5hT6h4yr5zfxYY1APls=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771000674; c=relaxed/simple;
-	bh=15AwacLxB73TOr5cVPuDnx2DJYTwfzqW0/3Qau2S8CM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bMuYv9UgoCtWaf6ScRWIW6dr5AqOSSsCCg4SabxddnvwmCjMtk+JhhtUVOVcFiG2ZiQeRUtduBOaY2ulsQjL6H43YYdrsssftGorgmBimyu2SfZsvTPcInsFMHnKlVmxiLJCoNcDOjMV3TN3L+l/gWqjzHd5LYohE9kdq2Oru0s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=EHlR26S2; arc=pass smtp.client-ip=136.143.188.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
-ARC-Seal: i=1; a=rsa-sha256; t=1771000658; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=M4DX0+b0/lyG76BbVQ1go5Ol9LD43YqFCdpFpRl4llknomFzWY91HaPgfrc/3btFQUS+Uz4iX0M8cajsNIRclGp04hjiXHg7u5rbnjilLkF0GYjYW+9iMXpgAQe710IzbbjvVhjW5d8tgOCKbh6T1eEZW+DxkOEUwa++7Y/6yXk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1771000658; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=YofNjb9F7nJnYLObALJPsqyds5MUF3wsfDl2RGiiVUA=; 
-	b=Ygy+OjV4AJfOSSMaZvvRWd0EG1rfZwtZnhFDbhhsLPJenpZf/LwN34G7cz8vaPWeRj7nG2u+TSIqBW+VJBVRE2xEbT+S5vZz38uq0pOqgXoGIVDh73grbdz4p6K9x1YFLbuysq9dtl3KlSSisgEfM2zTG1ueL4NvghsXuNDa7OQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=zohomail.com;
-	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
-	dmarc=pass header.from=<kingxukai@zohomail.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1771000658;
-	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
-	bh=YofNjb9F7nJnYLObALJPsqyds5MUF3wsfDl2RGiiVUA=;
-	b=EHlR26S2RoJS9MGAbCknTzVl52mHXVvYunIvqgJfof/yDEK2RvAzMjHFwS9yWx+N
-	SLaWuFmhgYXrU8aJhdaf009uhaa5WW5x32mcHhTFshXE/0g9FTFr6Cp/x5Ayo2jPCrT
-	d0NB9cKJySJQDjLE4clZznEoJx6aIPJPr/kTTYTo=
-Received: by mx.zohomail.com with SMTPS id 1771000650820508.8971456627156;
-	Fri, 13 Feb 2026 08:37:30 -0800 (PST)
-Message-ID: <f97dbaa3-b6d6-4dd2-aab9-f24a68c4adfe@zohomail.com>
-Date: Sat, 14 Feb 2026 00:37:24 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ABD223EA88;
+	Fri, 13 Feb 2026 16:39:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771000763; cv=none; b=qAa/FCV4RAu631lY1MtiQsbnoCISvOfDRC+oYrI8YBTtKoYJV9pYYZBHW9EVsIdliZrpt85bKwDYhme3VbyTCaV4fHYP1mKwvMU5lhMyAMrPOQTbcUT4rRVv83hxI04YXLp4Ps1rQq+6yBFBoErOfkEdlZyK5Z62vgZVZzYnIxE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771000763; c=relaxed/simple;
+	bh=z0qyxKtgoWoJjKhSIDi1PP1+nySfwjWL6aal+Ywekeg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bnhoI5WCi2TThS6XEDnc/K37xa5kmnOrAVaGfPehussYc/mJwQk0fRlG7ASVGSgvL2jsj4zuC+l9t676/RAQHUkwrJYghM3+NXK0Bs6BUQ8cDtOjQBQVkit39B00+exPdwlNi3Y1jobjSKcItbwU8IhscaUpkWcJHeVQU11gmek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QaK8ur8Y; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1771000762; x=1802536762;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=z0qyxKtgoWoJjKhSIDi1PP1+nySfwjWL6aal+Ywekeg=;
+  b=QaK8ur8Y3XByV6VcABmJEjAFKK0iFtgG8PfQLGpqgtqjb7qIwcVgu7I7
+   PaLUn7pcYl0/Oso604gwjyGNEcCH9uc3/Wi88Lu80MvVuAMUWsWxh2nEe
+   M6Z5rq49OsZktnhwJedIDp9gm9GmOf8e5hYnBkbEk6vDCIj/5R7f1Jagg
+   3bsrJdW/NddO7LhqSeO99hILWPyAT7pv3CSZoL85ThL4/fTJA1R0ahVM6
+   zfdU4jUdacMr0lVbjvNWJqJigNg0aTUQAffCVbdrIYId2rdhRciAXPjDR
+   K2INjvyTa4HhTfaadP+ZyuLTQY1NnXtsrh2YJYitMpOkDJXX6WHQhv/Zj
+   g==;
+X-CSE-ConnectionGUID: k2nAsavEQaOPkoIMucZumQ==
+X-CSE-MsgGUID: BMQtpV8iTnmjG2kcVDj3kQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11700"; a="83288955"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; 
+   d="scan'208";a="83288955"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2026 08:39:22 -0800
+X-CSE-ConnectionGUID: kckEj3O+S5Wrd8EmHnr04A==
+X-CSE-MsgGUID: eYH9eYKNRD+9exF0FAFkag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; 
+   d="scan'208";a="212211295"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.242])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2026 08:39:19 -0800
+Date: Fri, 13 Feb 2026 18:39:16 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Yasin Lee <yasin.lee.x@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, yasin.lee.x@outlook.com,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] iio: proximity: hx9023s: Protect against division
+ by zero in set_samp_freq
+Message-ID: <aY9TtJQoIyLVqqR-@smile.fi.intel.com>
+References: <20260213-upstream-20260219-v3-0-df9371d29f5c@gmail.com>
+ <20260213-upstream-20260219-v3-2-df9371d29f5c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 0/3] riscv: canaan: Add support for K230 clock
-To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- Samuel Holland <samuel.holland@sifive.com>,
- Troy Mitchell <TroyMitchell988@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20260116-b4-k230-clk-v10-0-de59033c5d30@zohomail.com>
- <aYNwmqEjvfAahGA+@duge-virtual-machine>
-From: Xukai Wang <kingxukai@zohomail.com>
-Content-Language: en-US
-In-Reply-To: <aYNwmqEjvfAahGA+@duge-virtual-machine>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Feedback-ID: rr08011227773c48f09a28a37a0491e606000077113171c0afaafa5a929e7dc2ff82c0f8a2d6c87de7653125:zu08011227c7fca2267c3403ca2151b9a800000f0b0b4c1ec5ea9754d945c5804b4d6ef907f6d390bd70c97d:rf0801122c6b91044fa389d2e8eb47a6ce0000d4c63a5dec18103768d77ba63014ebb43c195e29e27dd0dd30ae3497c706:ZohoMail
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260213-upstream-20260219-v3-2-df9371d29f5c@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[zohomail.com,reject];
-	R_DKIM_ALLOW(-0.20)[zohomail.com:s=zm2022];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265428-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,sifive.com,gmail.com,linaro.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-265430-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,outlook.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kingxukai@zohomail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[zohomail.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,zohomail.com:mid,zohomail.com:dkim]
-X-Rspamd-Queue-Id: DF4FE1384C8
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: F2DAB138433
 X-Rspamd-Action: no action
 
+On Fri, Feb 13, 2026 at 11:14:44PM +0800, Yasin Lee wrote:
+> Avoid division by zero when sampling frequency is unspecified.
 
-On 2026/2/5 00:15, Jiayu Du wrote:
-> On Fri, Jan 16, 2026 at 09:26:18PM +0800, Xukai Wang wrote:
->> This patch series adds clock controller support for the Canaan Kendryte
->> K230 SoC. The K230 SoC includes an external 24MHz OSC, 4 internal
->> PLLs and an external pulse input, with the controller managing these
->> sources and their derived clocks.
->  
-> Hi, Xukai. Currently, the k230 initial series and the patch 3 of the
-> pinctrl series has been in the linux next. So if possible, you need
-> to rebase your clock series onto the latest linux-next.
->
-> Then I will proceed with the development based on your v11 of the
-> clock series.
-I've rebased my patch series to `linux-next` (20260212). I noticed that
-the patch which updated the `k230.dtsi` format has been merged into
-`linux-next`.
+In case of agreement this is the desired behaviour you can add
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 
-Consequently, I've updated the `prerequisite-patch-id` for my series
-from `deda3c472f0000ffd40cddd7cf6d3b5e2d7da7dc` [1] to
-`9a2d01f55574b538dad572e193f81c44661f0853` [2]. Is this change correct?
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Separately, I sent you my v11 clock series for PREVIEW, but it seems you
-haven't received it.
 
-Link:
-https://lore.kernel.org/linux-clk/tencent_F76EB8D731C521C18D5D7C4F8229DAA58E08@qq.com/
-[1]
-Link:
-https://lore.kernel.org/linux-devicetree/20251227092355.42825-1-jiayu.riscv@isrc.iscas.ac.cn/
-[2]
 
