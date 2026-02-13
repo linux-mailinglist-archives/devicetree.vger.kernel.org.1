@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-265366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265367-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EPWOL7Ypj2kOKwEAu9opvQ
-	(envelope-from <devicetree+bounces-265366-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:40:06 +0100
+	id SDhAK0Mqj2kPKwEAu9opvQ
+	(envelope-from <devicetree+bounces-265367-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:42:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24FB81366D4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:40:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 086AD136708
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:42:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D115A30421EF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 13:40:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4B6C530465F1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 13:42:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC61C35CBD8;
-	Fri, 13 Feb 2026 13:40:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADFEA35FF49;
+	Fri, 13 Feb 2026 13:42:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="s5X3bNN6"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="LNf6rBTy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B6B235F8CF
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 13:40:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52EB923815D
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 13:42:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770990003; cv=none; b=X7rPNUzFonU08qZv7kUgd/5IgKM9/Jr7yMeknUDjK2/ne6WkhTO2/L41EAZDR++/x13CIU9ZQ/LWFnifhZjvWFEnuQ6Z2G8DpdAS13tz4zjZGIll1c5ziKEkfsNCqos9Hy5LNOxUJAiBZb9V3CVVFSgPsVt3p37EL1g8DhKulBY=
+	t=1770990142; cv=none; b=T5Ewzh1py0za9w/MsAKa0y4tHPDeJPS9jaf4rYP54O5CzHalREwQKbweYJ9f02PWCZBxAFCZnHJS+OnrQFnFmlAJuUuT7nLhSpj5I4RZ+2wtOFjxaoKGHPQAlIQ7yKi6j/kMF4JQcSFqP+3tcbXwv5kCnrDLzeBIIbFQTI0FNXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770990003; c=relaxed/simple;
-	bh=jPiaB1cPnsBCSqPZwxa3BXmJi7Uws2py+99N50LH18Q=;
+	s=arc-20240116; t=1770990142; c=relaxed/simple;
+	bh=v21aUaRExic4asjKw5wpz45cMKkg6xm9+FuILH8upa8=;
 	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=jIntqZpmnVaCJZqIU8qIZsulgzNqKhkuWZsw+cs7BMf35l4LZc9OGRK4XSqOblNOoBt8laPbYcZjjIOmwt6A1lfXl790AdTsdEK8iVLpUOLtNab0TTzVdrDbV8dp27m0EDqI5WvivIwu6DRHJH9TawbtAPR1eLViEcRFSCIdVmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=s5X3bNN6; arc=none smtp.client-ip=209.85.208.171
+	 References:In-Reply-To; b=oThRyd1f0wXecnl6RcME6ugqn/HdLAel4gfTFarav4NmG0IUsCiUaxuMJQ6sEEgG0d5dKedLrXsDLRVhGAOffBU3XYNi6U/eSIoq6LTMYWZxHkW+yNNW5MplkcEWP8q97+OM/rVwyfpAkWVTzxma9BnmV+y/WOkwOJLiPg2tShc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=LNf6rBTy; arc=none smtp.client-ip=209.85.208.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-3870c7479c0so7247511fa.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 05:40:02 -0800 (PST)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-65a3fdeb7d9so1455642a12.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 05:42:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1770990001; x=1771594801; darn=vger.kernel.org;
+        d=fairphone.com; s=fair; t=1770990140; x=1771594940; darn=vger.kernel.org;
         h=in-reply-to:references:subject:cc:to:from:message-id:date
          :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gXlnwEJKyA8dB3NSxxIfARoyH/UHQbm9JUFGj4ufio8=;
-        b=s5X3bNN6AOSgp+gNM7KYuVZalupQ5QskbGhf6PWdDdUcZK0GOVy7bKtXhJH2dxQ9xA
-         NtxLUgNWSYAaQ6IEcsryue16rCumsSpjdJ5SqxbjDHhDXay35FtxkMCYgSG9ntYyPbOt
-         Q6HQywiV1muyuYUfmUXB7YH9YyJiZPV//txzeIzOb64x78XY+K36OiPGK3KCiUMeLDSe
-         5qowlUHV3Woj8pKieyOaDZNapLok4rP8RxG+7tFAZfNdAX2iTqMaSqSo9WQ/IlYaMMrL
-         r+dfaIt92L6H5CgAQmLYAy1XyqU5PO7mwwxsuzisLUzrguKYg9GNFnQjFYMKcFdNsCQo
-         Im5w==
+        bh=jjlPOi80qwfClu6vEE8PfXH4lJ/jNSkLMmn/VxZK4i8=;
+        b=LNf6rBTygDqcP8xmNfi2pJ4S53exB9KaAmmL9qCOWSSTNqa0JBULJ0ysMpy8bcTH6z
+         Jf4YbJcqqd5mGyDP7I61tYzppb/W0FG0q5flhnSMW0pXHpzarl/RsPZ2qVV5+JNAn/zX
+         oP5TrbSRxCaswZsj+U4QPts7sIHHhFQXesGoqtp0JAIfOtwZzM/KoYFWjhTJTQTaqTTN
+         MGomhUw2KqXlPAJwGqiNsn+iYV8vIApPYc+xB7bQSewig5t9EBJuUgfgzIDyFTHxcxCh
+         YR/Dy4HEUlRmkafw8Xr0Rh3RnM/4z5jz77jXf/fXTm+axKs9pVJQYwVj/KerDEf6jqX2
+         afiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770990001; x=1771594801;
+        d=1e100.net; s=20230601; t=1770990140; x=1771594940;
         h=in-reply-to:references:subject:cc:to:from:message-id:date
          :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gXlnwEJKyA8dB3NSxxIfARoyH/UHQbm9JUFGj4ufio8=;
-        b=hurYF05nb8Xp1KUkMK28h0D3AnAuPxrjH2DnTpBylYwJw6jNJZ0pDrwqKnFLVdzUk1
-         3asi36D3LvzjjRVMandrjgAk4BeeWauAJgqJyNPBt9AznrOYuma/EdvtdIa+RrbTMf0Y
-         5znGc/gCxUwHOmhfksa3Qm1Ku5p1HrEnqrlDIrBPWAM+XSWQUrjzTf+YzN/pygXLVOSg
-         eSKFgS6YMntOvXlu+7u3NshvvLidYnHYgZAgeGFK5VEaBGCvFpFuND81swePOviSU4mx
-         7/RtB0OXrPZVHAKs4qyh/lHTJHuvlBHIczbT6p2543Krdz+GppPdfKAGvdBZBuUt4nje
-         XavQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUoF4AtvuhEXRaeXRgugkVYuYKOMWhV6OwdWjzZavZEVEH0bcTtdNRSNnOmqCC07kDD3ljBrcd88/J6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyn/iVd+hhtOCSBSI8ennB+8LP+yxg2aEVQUUJJwVSWw1tg1umn
-	5gNUhqHVAQjzF3t3eu+L86/dwY1QAlW7dgUvwr7KPPutJdjzkAtNMxj+6ydZ80WhMxo=
-X-Gm-Gg: AZuq6aJYoJYShw8P2RkHTx0gOQKG9CYMSjqsLU4Au6/KyIxbZIBuMZsQUkTgVw9yopR
-	ZgtEDRhAtQJry5nubCc4Cvo9fH/DHst2Z8+lFP9vJCvl1wnF8lFE9Hr9e+SarDiRLhWVr4kZaYC
-	+OxzWKMifwZRUwSQfs/4K4n1BFi4xzN37XTIutjyC716Naf1Ur+kzvGz+SPv9OpE6Ugzj1YU2hq
-	G0V0WDnylq0kqT75KluUUP3nz/ryLnFcigBMrXuh3Pt3/a4k6zJv/cc6c0j5w3IHMJ9V+wVx9RV
-	oF0kSOzMn5WWCA/mYJYuyQI6RcaG+P9f6HmpizJNwWB2aTzm1B6KifvQGLdhblQJXNhpnCKB0bw
-	cbdhRZpjQZ3adbpXY07ueAV9xhLMDKfJLJe7rEQ68PmjpsulLDIg29GFT8Oj364uGT8SHCSLsp7
-	yJcd0uAf0IfNxgoc6ikuUMWMTazYGKC78uNV0WpfZF3Yqo8WcHHLr/8j3+OgIm5K4sH4hQ
-X-Received: by 2002:a2e:bc23:0:b0:383:2074:ed34 with SMTP id 38308e7fff4ca-388104fb2a3mr6074671fa.2.1770989990120;
-        Fri, 13 Feb 2026 05:39:50 -0800 (PST)
+        bh=jjlPOi80qwfClu6vEE8PfXH4lJ/jNSkLMmn/VxZK4i8=;
+        b=KPhlir5gJ9y7joToKwAUVulOb3nZRB7XPTs1FS/sgnMs7unY35D7rYemN4D+L6iAiW
+         PIu661WS8G+VjFSrQ0/lHLjZY3TvbYlaJAfACMsb6pDtapS9CDdL6acfEPKXDrqF2Km+
+         GQCObmW2+i0ul3Ples8RoZT0c4Y8rXYDvpota81UW7B3IFu+KqAFUvNhysBqWE3kRMui
+         0LO9LLNlIxA3wlusWTq3ZGs1xVC7gzcmYYoc7NH8qj39lrkPwCg+ssg6BqGGocZYhD4V
+         L12FUzfJeiRqwhbGojymOkin96hSMnikLQ/aGX9wTJ3moQPYsJ42+DtaKTYLgp6TZwyG
+         GRwg==
+X-Forwarded-Encrypted: i=1; AJvYcCW6KyfyVabVAcTedHFlxZpwHStdgVAQGeQdN5bcs7wTh6gxMOU0ulphpH0cz4chBTPmHv9JWZEMNYFC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHQyzCZkdGeOGs1vF7tbsJgWBomdkMRCr5axzD0tK077x0z31m
+	4MdqKawMEARffNUlp6dg+vsJuNeNxgvQa/Czn0pY3U/LHzr8Ir18yFt7YVw9+pTEUzw=
+X-Gm-Gg: AZuq6aKb1gTu9x3BN13sLiwZ5QXiXv1BYPEdozd8YxN8nwwL5fe+sJV1ctlfoMICQl5
+	pyOR4/cAvnDb+yLkFgo8XqchevVhKGOX7PzBo43Dq+sQUkg53mdILeFPmhpi1VymQ5sBM3nLzuo
+	e5Vzw9kNR5+Y6vgRMPrUPO+Rbl/kR59bliuD3FheGDQz0AOrW+sfyu+aTfu8yrxCjyClmtUNH+x
+	tf7RRBSVt9GMsQE2QPH/tO0MLo5aA2fQSh0G0V9ZtuQC6tD4Su+BnRiorSHsCZD4RLncUY+DwWX
+	W6GpcAtX5iJ/BCTNI1pF5SMjc095RjcK9TMamIaXaAOACMEwG09wYjfXo0/VCbFJc88zRiDhjAn
+	0LxKo1JwKW3AQDjeWXjYGx4XE8ux3SrG7t496nFhnkIo/4Ew6XxJZ0Ray893rGCBIiWqT4LViF+
+	vQMDJAXMAgmxry2mryZ9KwPfhhAAOetQLl+TBJTtw+9UUCsYP/TDpo9/BB0rB27rDoJwbpV7/Zk
+	nFivOk=
+X-Received: by 2002:a05:6402:4406:b0:659:4853:5382 with SMTP id 4fb4d7f45d1cf-65bb13c2f2cmr934664a12.32.1770990139691;
+        Fri, 13 Feb 2026 05:42:19 -0800 (PST)
 Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65bad19bfd3sm682707a12.2.2026.02.13.05.39.48
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65bad3f137dsm653159a12.27.2026.02.13.05.42.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Feb 2026 05:39:49 -0800 (PST)
+        Fri, 13 Feb 2026 05:42:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,227 +85,132 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Fri, 13 Feb 2026 14:39:48 +0100
-Message-Id: <DGDVK13XN7OO.3I398MMB95Z8U@fairphone.com>
+Date: Fri, 13 Feb 2026 14:42:18 +0100
+Message-Id: <DGDVLY6M6E1N.12KFFYAGAD7H6@fairphone.com>
 From: "Luca Weiss" <luca.weiss@fairphone.com>
 To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Luca Weiss"
- <luca.weiss@fairphone.com>, "Bartosz Golaszewski" <brgl@kernel.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Loic Poulain"
- <loic.poulain@oss.qualcomm.com>, "Robert Foss" <rfoss@kernel.org>, "Andi
- Shyti" <andi.shyti@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>,
- "Konrad Dybcio" <konradybcio@kernel.org>
+ <luca.weiss@fairphone.com>, "Bjorn Andersson" <andersson@kernel.org>,
+ "Konrad Dybcio" <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Alexander Koskovich" <AKoskovich@pm.me>, "Jeff
+ Johnson" <jeff.johnson@oss.qualcomm.com>
 Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: milos-fairphone-fp6: Add camera
- EEPROMs on CCI busses
+ <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 3/5] arm64: dts: qcom: milos: Add WCN6750 WiFi node
 X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260116-milos-cci-v1-0-28e01128da9c@fairphone.com>
- <20260116-milos-cci-v1-4-28e01128da9c@fairphone.com>
- <ae73eac1-4e27-404d-af73-88eed699db0b@oss.qualcomm.com>
- <DFQ3MBO2EAYF.1PRF2111N0U1I@fairphone.com>
- <44f65bb6-616c-4dd9-a7a1-ee62d5d217cb@oss.qualcomm.com>
-In-Reply-To: <44f65bb6-616c-4dd9-a7a1-ee62d5d217cb@oss.qualcomm.com>
+References: <20260116-milos-fp6-bt-wifi-v1-0-27b4fbb77e9c@fairphone.com>
+ <20260116-milos-fp6-bt-wifi-v1-3-27b4fbb77e9c@fairphone.com>
+ <5fe80f4a-ef5c-4008-88e2-60ad1f8c2a18@oss.qualcomm.com>
+In-Reply-To: <5fe80f4a-ef5c-4008-88e2-60ad1f8c2a18@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
+	MV_CASE(0.50)[];
 	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265366-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265367-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[fairphone.com:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email,0.0.0.52:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[fairphone.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email,fairphone.com:mid,fairphone.com:dkim,fairphone.com:email,0.0.0.50:email,ac16000:email]
-X-Rspamd-Queue-Id: 24FB81366D4
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,fairphone.com:mid,fairphone.com:dkim,fairphone.com:email,quicinc.com:email,1.5.20.24:email,1.5.137.32:email]
+X-Rspamd-Queue-Id: 086AD136708
 X-Rspamd-Action: no action
 
-On Mon Jan 19, 2026 at 11:42 AM CET, Konrad Dybcio wrote:
-> On 1/16/26 3:54 PM, Luca Weiss wrote:
->> On Fri Jan 16, 2026 at 2:59 PM CET, Konrad Dybcio wrote:
->>> On 1/16/26 2:38 PM, Luca Weiss wrote:
->>>> Enable the CCI I2C busses and add nodes for the EEPROMs found on the
->>>> camera that are connected there.
->>>>
->>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts | 50 +++++++++++++++=
-+++++++++
->>>>  1 file changed, 50 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/a=
-rm64/boot/dts/qcom/milos-fairphone-fp6.dts
->>>> index 7629ceddde2a..c4a706e945ba 100644
->>>> --- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
->>>> @@ -529,6 +529,56 @@ vreg_l11f: ldo11 {
->>>>  	};
->>>>  };
->>>> =20
->>>> +&cci0 {
->>>> +	status =3D "okay";
->>>> +};
->>>> +
->>>> +&cci0_i2c0 {
->>>> +	/* Main cam: Sony IMX896 @ 0x1a */
->>>> +
->>>> +	eeprom@50 {
->>>> +		compatible =3D "puya,p24c128f", "atmel,24c128";
->>>> +		reg =3D <0x50>;
->>>> +		vcc-supply =3D <&vreg_l6p>;
->>>> +		read-only;
->>>> +	};
->>>> +
->>>> +	/* Dongwoon DW9784 VCM/OIS @ 0x72 */
->>>> +};
->>>> +
->>>> +
->>>> +&cci0_i2c1 {
->>>> +	/* Awinic AW86017 VCM @ 0x0c */
->>>> +	/* UW cam: OmniVision OV13B10 @ 0x36 */
->>>
->>> There's a driver for this one!
->>=20
->> Yep! Already got patches to add the required regulators & devicetree
->> support to the driver, but since I've got zero on CAMSS so far, I
->> couldn't test it more than reading chip ID.
->
-> That means the digital part works.. I'd say it's a good enough
-> indicator
->
->>>> +
->>>> +	eeprom@52 {
->>>> +		compatible =3D "puya,p24c128f", "atmel,24c128";
->>>> +		reg =3D <0x52>;
->>>> +		vcc-supply =3D <&vreg_l6p>;
->>>> +		read-only;
->>>> +	};
->>>> +};
->>>> +
->>>> +&cci1 {
->>>> +	/* cci1_i2c0 is not used for CCI */
->>>> +	pinctrl-0 =3D <&cci1_1_default>;
->>>> +	pinctrl-1 =3D <&cci1_1_sleep>;
->>>
->>> Let's keep them per-bus-subnode so we don't have to override it
->>=20
->> I don't see any upstream example of that, would the pinctrl work
->> correctly with that?
->
-> Hmm.. I assumed it would.. and I assumed we do have examples but
-> ma-a-aybe they got stuck somewhere in the review purgatory?
->
-> If you'd be inclined to test that, you can add a pr_err() to e.g.
-> msm_pinmux_set_mux() and observe whether that changes as you
-> interact with the sensor over i2c
+Hi Konrad,
 
-Yeah that doesn't work. With the following diff I just get some CCI
-timeouts and at24 driver doesn't probe correctly. I'd prefer not to do
-some yak shaving to get this patch upstream.
+On Tue Jan 20, 2026 at 3:39 PM CET, Konrad Dybcio wrote:
+> On 1/16/26 3:50 PM, Luca Weiss wrote:
+>> Add a node for the WCN6750 WiFi found with the Milos SoC.
+>>=20
+>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/milos.dtsi | 46 ++++++++++++++++++++++++++++++=
++++++++
+>>  1 file changed, 46 insertions(+)
+>>=20
+>> diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/q=
+com/milos.dtsi
+>> index 024e1c9992fe..80feb3e9d3e2 100644
+>> --- a/arch/arm64/boot/dts/qcom/milos.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/milos.dtsi
+>> @@ -2043,6 +2043,52 @@ gic_its: msi-controller@17140000 {
+>>  			};
+>>  		};
+>> =20
+>> +		wifi: wifi@17110040 {
+>> +			compatible =3D "qcom,wcn6750-wifi";
+>> +			reg =3D <0x0 0x17110040 0x0 0x0>;
+>
+> This reg doesn't.. sound.. very.. good..
+>
+> The size being 0 is of course wrong, but perhaps more interestingly
+> the base address is a register within the GIC..
+>
+>> +			iommus =3D <&apps_smmu 0x1400 0x1>;
+>
+> And this is a PCIe stream
+>
+> But I see kodiak has the exact same setup..
+>
+> After digging a little into the driver, that 'reg' is apparently
+> indeed consumed, as a base for PCI MSIs.. I feel like there should be
+> some better way to express this.. non-everyday setup
+>
+> There's this commit message:
+>
+> commit 00fd24089b8154ddf5b3e724e2c4c9974b9ba91e
+> Author: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+> Date:   Fri Apr 29 22:34:54 2022 +0530
+>
+>     dt: bindings: net: add bindings of WCN6750 for ath11k
+>    =20
+>     WCN6750 is the WLAN chip on Qualcomm Snapdragon SoC SC7280;
+>     Though being a PCIe based solution, it is not attached to
+>     the APSS processor (Application Processor SubSystem), it is
+>     instead attached to another tiny processor called WPSS Q6
+>     processor (Wireless Processor SubSystem) on the SC7280 MSM,
+>     where the WLAN firmware runs, and it is the WLAN firmware
+>     running on the Q6 processor which enumerates WCN6750, as a
+>     result APPS processor would never know such a device being
+>     present in the system and would not detect the WCN6750
+>     hardware unless and otherwise WCN6750 is registered as a
+>     platform device. This is the reason behind adding WCN6750
+>     WLAN node in the device tree.
+>    =20
+>     Add WCN6750 wireless driver support, its based on ath11k driver.
+>
+> Sorry to hijack this patch, but I am not comfortable with this binding
+> as-is..
+>
+> Adding +Jeff in case he has any thoughts
+
+To be honest I find it a bit discouraging to get this relatively simple
+patch with existing bindings blocked. Yes, the bindings are probably bad
+(not that I can really judge) but sc7280/kodiak already uses them and
+it's functional, so I don't know what I would need to change.
+
+Re-designing the bindings and driver seems a bit overkill to get milos
+wifi upstream.
 
 Regards
 Luca
-
-diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/arm64/=
-boot/dts/qcom/milos-fairphone-fp6.dts
-index b6cd95fc294e..9f9410615aea 100644
---- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-+++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-@@ -671,10 +671,6 @@ eeprom@52 {
- };
-=20
- &cci1 {
--	/* cci1_i2c0 is not used for CCI */
--	pinctrl-0 =3D <&cci1_1_default>;
--	pinctrl-1 =3D <&cci1_1_sleep>;
--
- 	status =3D "okay";
- };
-=20
-diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom=
-/milos.dtsi
-index adf050600a4e..a2438cf60271 100644
---- a/arch/arm64/boot/dts/qcom/milos.dtsi
-+++ b/arch/arm64/boot/dts/qcom/milos.dtsi
-@@ -1755,9 +1755,6 @@ cci0: cci@ac15000 {
- 			clock-names =3D "soc_ahb",
- 				      "cpas_ahb",
- 				      "cci";
--			pinctrl-0 =3D <&cci0_0_default &cci0_1_default>;
--			pinctrl-1 =3D <&cci0_0_sleep &cci0_1_sleep>;
--			pinctrl-names =3D "default", "sleep";
- 			status =3D "disabled";
- 			#address-cells =3D <1>;
- 			#size-cells =3D <0>;
-@@ -1765,6 +1762,9 @@ cci0: cci@ac15000 {
- 			cci0_i2c0: i2c-bus@0 {
- 				reg =3D <0>;
- 				clock-frequency =3D <1000000>;
-+				pinctrl-0 =3D <&cci0_0_default>;
-+				pinctrl-1 =3D <&cci0_0_sleep>;
-+				pinctrl-names =3D "default", "sleep";
- 				#address-cells =3D <1>;
- 				#size-cells =3D <0>;
- 			};
-@@ -1772,6 +1772,9 @@ cci0_i2c0: i2c-bus@0 {
- 			cci0_i2c1: i2c-bus@1 {
- 				reg =3D <1>;
- 				clock-frequency =3D <1000000>;
-+				pinctrl-0 =3D <&cci0_1_default>;
-+				pinctrl-1 =3D <&cci0_1_sleep>;
-+				pinctrl-names =3D "default", "sleep";
- 				#address-cells =3D <1>;
- 				#size-cells =3D <0>;
- 			};
-@@ -1788,9 +1791,6 @@ cci1: cci@ac16000 {
- 			clock-names =3D "soc_ahb",
- 				      "cpas_ahb",
- 				      "cci";
--			pinctrl-0 =3D <&cci1_0_default &cci1_1_default>;
--			pinctrl-1 =3D <&cci1_0_sleep &cci1_1_sleep>;
--			pinctrl-names =3D "default", "sleep";
- 			status =3D "disabled";
- 			#address-cells =3D <1>;
- 			#size-cells =3D <0>;
-@@ -1798,6 +1798,9 @@ cci1: cci@ac16000 {
- 			cci1_i2c0: i2c-bus@0 {
- 				reg =3D <0>;
- 				clock-frequency =3D <1000000>;
-+				pinctrl-0 =3D <&cci1_0_default>;
-+				pinctrl-1 =3D <&cci1_0_sleep>;
-+				pinctrl-names =3D "default", "sleep";
- 				#address-cells =3D <1>;
- 				#size-cells =3D <0>;
- 			};
-@@ -1805,6 +1808,9 @@ cci1_i2c0: i2c-bus@0 {
- 			cci1_i2c1: i2c-bus@1 {
- 				reg =3D <1>;
- 				clock-frequency =3D <1000000>;
-+				pinctrl-0 =3D <&cci1_1_default>;
-+				pinctrl-1 =3D <&cci1_1_sleep>;
-+				pinctrl-names =3D "default", "sleep";
- 				#address-cells =3D <1>;
- 				#size-cells =3D <0>;
- 			};
-
 
