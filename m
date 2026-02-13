@@ -1,84 +1,61 @@
-Return-Path: <devicetree+bounces-265427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265428-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gMk5BBNTj2kMQQEAu9opvQ
-	(envelope-from <devicetree+bounces-265427-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:36:35 +0100
+	id kEQANURUj2lqQQEAu9opvQ
+	(envelope-from <devicetree+bounces-265428-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:41:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C233F138345
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:36:29 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF4FE1384C8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:41:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2BCDB300827F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:36:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 193883019A12
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:37:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 794A433CEAC;
-	Fri, 13 Feb 2026 16:36:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1354135FF53;
+	Fri, 13 Feb 2026 16:37:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bsNgMbjg"
+	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="EHlR26S2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 609352848A0
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 16:36:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771000586; cv=none; b=YIUhKbu9rGoFk3cbx94FoqK45sqB8zc5gwAoV78mm2ehdjkT/Szzf25CfaifcG0WP0s52fHiFkaScV0Ex1SxqGFliHGMK+SL85jObD+hfVarvOHcTJp6A93eDw1X5PSjHSB902ldN3/PODxgaqzk6hBFMA+QvaYg1+CmCKNkyPQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771000586; c=relaxed/simple;
-	bh=ytXLg8/CbpRgWrWXCiN2taAFgPcJw1vJq6zqC5DM7rM=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A1C218ACC;
+	Fri, 13 Feb 2026 16:37:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771000674; cv=pass; b=AdvTPL9wHZX+y+uwXBl5msg/9RpYS2Qs9Rs2vjpdIWpULZ2jUVRNjhcj0O67V10GzLgTvg+FWLP5Lh6L9UQZDLF47WXnzIPDkOchOQL0TWFr80Hv581rrUp0U8+Hq6pqE+DUzgr+MWHpTO/2xXfGhtJG5hT6h4yr5zfxYY1APls=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771000674; c=relaxed/simple;
+	bh=15AwacLxB73TOr5cVPuDnx2DJYTwfzqW0/3Qau2S8CM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nF+yVlzWmCgmbEN0q/kYfAVa8xML+7028rb0JAFLQQGShEs5Quo/jXXIN5ALlAVZoAWXpAIoW+A0zUlWH+TqXxObwmzxf3Zd5B+MYkd7aTPl28Dylt4UB9RF5wfbnpch3pPVnX8Jne0loK2TXf4vMRz0xUyvdGGsf+yUL5OY0js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bsNgMbjg; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2aad1bb5058so11588485ad.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 08:36:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771000585; x=1771605385; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0F5tQcgxERAB02uB01kJMGI3FPIwYeXfyKo+LVQoV10=;
-        b=bsNgMbjga9EiJsjxNqa4sUcCxh6T789XD9JwcjLtJFEAh2XwBDY71cBUeHueS+hK6K
-         t8VbPI5yy1sdgszjyVP+E4gna9BvegmB+5FUznppqvNR8B2bCni7fb9+Q+Xr+tF2YFbI
-         2W8qfoYkuzI99dFNGu4oLaxtYgUechDTMDW5gqtDY4daucd9KNV6XALdd9VKDw4Uxg5e
-         U2tK+9k57HLSLMlgQRMXg7tLuPxJ6UEbi5GkZT8hdD0UgQPy+MkYwA8Nf46wPnM6PHQt
-         ozhNra4UY3VbCgzmtsaxdgetItya3mgKcoiGuM02oo990bb5fk/SSV47aJ1twMJAFhMr
-         DM5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771000585; x=1771605385;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0F5tQcgxERAB02uB01kJMGI3FPIwYeXfyKo+LVQoV10=;
-        b=WcUrtmzvSDhSLE3CZQ72X+Pl3SKnr0BNHIeNLvwxUCyMzodxwyWB5d/A3UXSgO2I1c
-         H0K3VFNjgpXP9iVgzZLN18cSII/VJvCjmVAK9aDqV2MFdFU2rsQ8ajFsxqM0xnJ2gqzT
-         QA4IiPJKPyrLCNCj+ehOLoJR6vxL8/ZaY1qcwRYHzs1QevkobOtVSjxlu36dvt2wNzZO
-         yIL60RWBjFjzN8MM/9mpLh9bCgGAck9GgoWwlZLPzAKktFJ/ezmyOqs0w4Z6O/NPCu3j
-         /yw7bVM/QUqFZ51/Srsa9kAY/+e3Pt1oAHNZ2qb1AH4H+TQ+HYrzbnKSyOd2oFGZ8glc
-         rSXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVjGyf0q2ID2w00RhDniPnPHBbcoHM+yZdfIIyfnvalnJVF0CquHEnGGqKuYzjbbtKm4agiOI5lxGrb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGobjLr12WMKOka36rso46FTE3pXnowJn+QQmeJvsWORPsyLsP
-	qiFPub8ITYz3AYB7PhYKLOdBhCF3BgHOEp4/g0bltUb0p/uxBDxcBZw/hDRu2g==
-X-Gm-Gg: AZuq6aJM/5mKDW+8MRi/ltW+E+BR1JEjh35q3bTmX/H4FKbgP+UQvnie7C7T0TD23eW
-	s3cfQSKvdWPh+P1pJBEN+r12bka9D6F7t4E4/hv7Pr8LnkDP9ZMjgP9clngH157qUd5EDAlEZ+w
-	jhA4wWCqZm4LdeA5xIHH3p1SvD7dDFJYH61W+rULR6f3GZSpVcrEL44tlYKesYk09v+URTcHlJb
-	9gfboWhAl6LP/+6yrANg5O0jflATz+PGksSg+zVYWb9zRAYspeK3tl6IgV4W3svPJSO3SZayNWK
-	EYpo2Z4ZkQWTtLJqMJ6LkPI3MmIY4DKGbDao8zd4auC/ciVW1wCJ2kNpS1oEhItFbWvKsEuJ6l7
-	GeyLDQlifpdmCo0FpkjeJPpqPAkiTg7pMFpDP/EUP5tr1TMq1PXJrPRb4enwWTPSW98sOYLougF
-	3GDuFtfVvwN4eVuwMcatoAnpFTS8Wkx+fWEuj5MNjBzig=
-X-Received: by 2002:a17:902:e787:b0:2aa:d11d:5c36 with SMTP id d9443c01a7336-2ab50598a38mr26413315ad.30.1771000584651;
-        Fri, 13 Feb 2026 08:36:24 -0800 (PST)
-Received: from [192.168.1.8] ([27.7.171.51])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ab2988bd4dsm85424595ad.38.2026.02.13.08.36.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Feb 2026 08:36:24 -0800 (PST)
-Message-ID: <f60156a6-58af-4548-9dc3-71c71b822343@gmail.com>
-Date: Fri, 13 Feb 2026 22:06:16 +0530
+	 In-Reply-To:Content-Type; b=bMuYv9UgoCtWaf6ScRWIW6dr5AqOSSsCCg4SabxddnvwmCjMtk+JhhtUVOVcFiG2ZiQeRUtduBOaY2ulsQjL6H43YYdrsssftGorgmBimyu2SfZsvTPcInsFMHnKlVmxiLJCoNcDOjMV3TN3L+l/gWqjzHd5LYohE9kdq2Oru0s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=EHlR26S2; arc=pass smtp.client-ip=136.143.188.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1771000658; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=M4DX0+b0/lyG76BbVQ1go5Ol9LD43YqFCdpFpRl4llknomFzWY91HaPgfrc/3btFQUS+Uz4iX0M8cajsNIRclGp04hjiXHg7u5rbnjilLkF0GYjYW+9iMXpgAQe710IzbbjvVhjW5d8tgOCKbh6T1eEZW+DxkOEUwa++7Y/6yXk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1771000658; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=YofNjb9F7nJnYLObALJPsqyds5MUF3wsfDl2RGiiVUA=; 
+	b=Ygy+OjV4AJfOSSMaZvvRWd0EG1rfZwtZnhFDbhhsLPJenpZf/LwN34G7cz8vaPWeRj7nG2u+TSIqBW+VJBVRE2xEbT+S5vZz38uq0pOqgXoGIVDh73grbdz4p6K9x1YFLbuysq9dtl3KlSSisgEfM2zTG1ueL4NvghsXuNDa7OQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=zohomail.com;
+	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
+	dmarc=pass header.from=<kingxukai@zohomail.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1771000658;
+	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
+	bh=YofNjb9F7nJnYLObALJPsqyds5MUF3wsfDl2RGiiVUA=;
+	b=EHlR26S2RoJS9MGAbCknTzVl52mHXVvYunIvqgJfof/yDEK2RvAzMjHFwS9yWx+N
+	SLaWuFmhgYXrU8aJhdaf009uhaa5WW5x32mcHhTFshXE/0g9FTFr6Cp/x5Ayo2jPCrT
+	d0NB9cKJySJQDjLE4clZznEoJx6aIPJPr/kTTYTo=
+Received: by mx.zohomail.com with SMTPS id 1771000650820508.8971456627156;
+	Fri, 13 Feb 2026 08:37:30 -0800 (PST)
+Message-ID: <f97dbaa3-b6d6-4dd2-aab9-f24a68c4adfe@zohomail.com>
+Date: Sat, 14 Feb 2026 00:37:24 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,82 +63,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v4 0/3] dt-bindings: phy: Convert TI OMAP control
- and PIPE3 PHY to DT schema
-To: Vinod Koul <vkoul@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
- <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>,
- Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
- Roger Quadros <rogerq@ti.com>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-References: <20260123-ti-phy-v4-0-b557e2c46e6f@gmail.com>
- <177021985530.133434.13436195442562231016.b4-ty@kernel.org>
+Subject: Re: [PATCH v10 0/3] riscv: canaan: Add support for K230 clock
+To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Troy Mitchell <TroyMitchell988@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20260116-b4-k230-clk-v10-0-de59033c5d30@zohomail.com>
+ <aYNwmqEjvfAahGA+@duge-virtual-machine>
+From: Xukai Wang <kingxukai@zohomail.com>
 Content-Language: en-US
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-In-Reply-To: <177021985530.133434.13436195442562231016.b4-ty@kernel.org>
+In-Reply-To: <aYNwmqEjvfAahGA+@duge-virtual-machine>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+Feedback-ID: rr08011227773c48f09a28a37a0491e606000077113171c0afaafa5a929e7dc2ff82c0f8a2d6c87de7653125:zu08011227c7fca2267c3403ca2151b9a800000f0b0b4c1ec5ea9754d945c5804b4d6ef907f6d390bd70c97d:rf0801122c6b91044fa389d2e8eb47a6ce0000d4c63a5dec18103768d77ba63014ebb43c195e29e27dd0dd30ae3497c706:ZohoMail
+X-ZohoMailClient: External
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[zohomail.com,reject];
+	R_DKIM_ALLOW(-0.20)[zohomail.com:s=zm2022];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-265428-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265427-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,sifive.com,gmail.com,linaro.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[kingxukai@zohomail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[zohomail.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C233F138345
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,zohomail.com:mid,zohomail.com:dkim]
+X-Rspamd-Queue-Id: DF4FE1384C8
 X-Rspamd-Action: no action
 
 
+On 2026/2/5 00:15, Jiayu Du wrote:
+> On Fri, Jan 16, 2026 at 09:26:18PM +0800, Xukai Wang wrote:
+>> This patch series adds clock controller support for the Canaan Kendryte
+>> K230 SoC. The K230 SoC includes an external 24MHz OSC, 4 internal
+>> PLLs and an external pulse input, with the controller managing these
+>> sources and their derived clocks.
+>  
+> Hi, Xukai. Currently, the k230 initial series and the patch 3 of the
+> pinctrl series has been in the linux next. So if possible, you need
+> to rebase your clock series onto the latest linux-next.
+>
+> Then I will proceed with the development based on your v11 of the
+> clock series.
+I've rebased my patch series to `linux-next` (20260212). I noticed that
+the patch which updated the `k230.dtsi` format has been merged into
+`linux-next`.
 
-On 04-02-2026 21:14, Vinod Koul wrote:
-> 
-> On Fri, 23 Jan 2026 15:39:01 +0000, Charan Pedumuru wrote:
->> This series converts the old text-based DeviceTree bindings for TI OMAP
->> Control PHY and TI PIPE3 PHY to modern JSON-schema (YAML) format.
->>
->>
-> 
-> Applied, thanks!
-> 
-> [2/3] dt-bindings: phy: ti,phy-usb3: convert to DT schema
->       commit: 62c9ff8fc20d23c0dc36be1330734fdafb3e8585
-> [3/3] dt-bindings: phy: ti,control-phy-otghs: convert to DT schema
->       commit: 7878306d182a1750583a325a29e5ccab9ce0235b
+Consequently, I've updated the `prerequisite-patch-id` for my series
+from `deda3c472f0000ffd40cddd7cf6d3b5e2d7da7dc` [1] to
+`9a2d01f55574b538dad572e193f81c44661f0853` [2]. Is this change correct?
 
-Hi Vinod,
+Separately, I sent you my v11 clock series for PREVIEW, but it seems you
+haven't received it.
 
-You missed to apply the first patch which has DT node pattern changes and now this dtb check fails in linux-next as these YAML patches use the updated node pattern. I got a report of errors from kernel test robot.
-
-> 
-> Best regards,
-
--- 
-Best Regards,
-Charan.
-
+Link:
+https://lore.kernel.org/linux-clk/tencent_F76EB8D731C521C18D5D7C4F8229DAA58E08@qq.com/
+[1]
+Link:
+https://lore.kernel.org/linux-devicetree/20251227092355.42825-1-jiayu.riscv@isrc.iscas.ac.cn/
+[2]
 
