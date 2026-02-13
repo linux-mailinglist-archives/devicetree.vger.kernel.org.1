@@ -1,86 +1,84 @@
-Return-Path: <devicetree+bounces-265292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265293-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iNYXFlDgjmluFgEAu9opvQ
-	(envelope-from <devicetree+bounces-265292-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:26:56 +0100
+	id UEk4AeHgjmluFgEAu9opvQ
+	(envelope-from <devicetree+bounces-265293-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:29:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A772134032
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:26:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5091A134099
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:29:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 780C63067B36
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:26:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4FFF5304C139
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:29:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97AA3271F9;
-	Fri, 13 Feb 2026 08:25:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 822C332AAD8;
+	Fri, 13 Feb 2026 08:29:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W8oDjtp3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LUH/sthl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 105F432572E
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 08:25:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58B6E32C317
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 08:29:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770971157; cv=none; b=tQ1l3/1TlQTh6pd6FbZs0BZryuLyYjGNcbTNHVk1fY5TEApgunS3a2nJdyf6fe2QhqBWiGJMKfKClRAttGcFPo9v5gLncPwaTwwsPQk/tsEWFbekUplWJAuEGn5NbSWHZfjKkSWZzSBxzn39AToDmdDRN2KQSUEP2wGmNd5xDtc=
+	t=1770971351; cv=none; b=VuSb5QRGDcIvC842PtiUbtZhqKYm+i4paOTCWpI2rFIR6YcDyvPQRkawtslnr9Jv9NQ5sLrJPxGmuLx6z4nExNGkCWCiQTasZL8qVnMgBVHMPE3DSmZh3xaxBexGagLzrYogjXGha/wz7SXN6wMqyKNII+EVmNsBMpphjCSJgoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770971157; c=relaxed/simple;
-	bh=MmVc0VjdOTh1ZfOCYiVVtnjpAPsxgxmPLfAfCnZ99Ik=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=RyKf7vC0Ym0/MnhsIZIcJv+LR3PuxzPXB67Qyrb6BkjjWKTiYjBRM/mZx6RBjLeJKfPt4jPXyjPqHG1x/wi4d1aEVqHg3P6ICVNapNozyw0VForVtbAJmgWsIyJr4764nfN1gP9BXnigEGyiMv5JHj+e+7ZNHZcL5eAsT44zPIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W8oDjtp3; arc=none smtp.client-ip=209.85.128.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-48334ee0aeaso4585085e9.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 00:25:55 -0800 (PST)
+	s=arc-20240116; t=1770971351; c=relaxed/simple;
+	bh=zvgY37ZQjsQkz5/m86ybqaE+gQvu4wV1jaVZs1RK1Mg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AFYpI2NIeVkBzm8cVnwwUaWWJcNcFKe6eLJJ7Bi+HQjnBsxA15Ki/BF5nj0ZO8934bQV6Pu1ic6bvRhzVzLW1vvvtvS7hixy4c9xPVGBeHEE/LWBgZWfqcBwNPBQx/ZyNbUCDf3a1xhn3+ovwOpNr+7nsHW6zPkBLCZO6yR/dxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LUH/sthl; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-7946a1f2430so7251117b3.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 00:29:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1770971154; x=1771575954; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Xy/I8SvLYv4ED/G6oTOiy6DorVU8/h1iqYBJACsgklw=;
-        b=W8oDjtp35qb9aX2cbSEoqUvr3uYvPeggLGQU+lEtgHbLQ4EoKgSgnkDodDNX/PXRR6
-         zR/a4R6KsE2h/QYHEs8+2ebIh7LTQgMfQmIk6WzF+3GpVbQ9YiPm8k7gums7NaXMkb0i
-         3DtvEdGGOzMV7tozigMeE2O+HFXvOcoONTQ3L47nMtAQ6yzOysOUi4V8rLLBADT1cB/y
-         5pmXt+e9bZJiDxsP8pebXwXSX2ICg//ZA4snQAldtVNaqFcodgetxXxN+JoYZSuIwk9c
-         urwkGxc7PRV+6D5ujC0ejsgtMpAwwhBFJbx3i/uBm15PGGSfu0UAp0GpHIvzY/nSgikg
-         FHrQ==
+        d=gmail.com; s=20230601; t=1770971348; x=1771576148; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eb9SMDXx3XqEdbaMIOBwU3P2hDpL6y884kxQ2eGE+V0=;
+        b=LUH/sthltK7mdMPmTGL23mil49iTOSK39JeJJz0oPrCtjEfHzeuyC3SS2YicDeHoK/
+         3lAN4qUDX0eHnWBOJnPbEmQvXn8FymgTb3nDSDqdvQvYBOgR3okiDmzdda4vXOvl00i9
+         Q4Ko1cJRYXtANJX34C/HTDbP+t8PrzWnuJKWsSf9xyE0rHcDToOfv6jrQPjAVu3rcWW8
+         vaPAQqJ6I/Utr6yTTRHqgg+qNU+D9YiuBgh5f/fO0+2wCJieSUFtrT8sKQLck3u2Xkke
+         GI1JJaljMOWtal098eVwPi/e/mUiYZ0CL5w1+I0uNVAeVVK78bAfEuiTaVNoemnIA0x9
+         uAqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770971154; x=1771575954;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Xy/I8SvLYv4ED/G6oTOiy6DorVU8/h1iqYBJACsgklw=;
-        b=s7GqPoABy77/g1Qg/Erx0X0ZB9AR1RrvBQu8qXGZGxfhVY3t9TU/cQkhKIgy1Vqg6E
-         eJKS6yacdkCcK707yYyk6VEtWLVOSZEzMeMAN14dxx//TlN1TPk8xiWjcCkXMgwtM2Qr
-         N9+hkGkMrX4Irh2oxeXHvLSZaii02q2MsAEHaNzaZV9CgF2pd3K8jXQqff0Z3r2NX9d5
-         615k8z2fhYblUjNCUs2HveAqtPmLo+DNp8P4xFvBUrba+59TvBmQiNh19ck/OwoO30J0
-         7/gHFR4a3fYLRFR8Ry8jTLaBf254t1xHNy3WbYp99Npj/6NLP5NN+2kcSeMcuarD1ox1
-         Zekg==
-X-Forwarded-Encrypted: i=1; AJvYcCVhdYHoitTf7IZalWJCcUQxMJz83289JvzZsekeixwOHz6mgPtKRnMF7sAmMKOMQQGUpvNDZ/8wGohu@vger.kernel.org
-X-Gm-Message-State: AOJu0YwaZTkQYftyEVmddHLFOJFwfCobui+PkNB33mj6sHoASHmVeX0m
-	lk7oNBcKcpQEdZuzsgCGKJdnsukPsyP14f/ZuhD4fQys5M2Z5VZVbl9MKNNQXWhYDuY=
-X-Gm-Gg: AZuq6aJ6JHZKhD94gTK6+EgCuo61YuBB/L/rf3XOdKiRQRBwQJub82jZjoPAysz1uNj
-	7Ouj3rYyDez9DxChsBoT4qv9uHpLBdlUM0jpvog83ezAB36e6zgw7KLFSPI3jDmeQngI2gjCv0y
-	XFHltOvOOFTJS6TM9qfLd5SzU9O4Kwp915q558yA/31uONyYE/drU0rZxtAN9E8yqzgqUY3xMN+
-	gXZqBC5gT/Ye26vJb97sImSZLMDGan64izcRwPEt2J5gyMfRGTenoNDYjC5WF3wdCKPNuGBIgvo
-	b2Q6UPx+e/ys4WR+b73P8GIM1qv+G/c2Z2DJBFZ4t5P6XRPmxVhaOd7y/y629Js2SfSJWwGGzKj
-	Nr5Wd10pwNin2+qeQKPQUc3BIs8sRaMjfH7oJNYXZJ4twKu11btRwflSPRrZIO3qB4udnbnq92e
-	8h/esp9yteZrB6D52J0w3OgCJJLMckrzUNHR5iPRqbuY+PKaL5v4R6akKneP/qXs6taFMqDVPxN
-	TYKt2kp0O4CBgJw
-X-Received: by 2002:a05:600c:4f90:b0:483:6f7c:19f4 with SMTP id 5b1f17b1804b1-48373a6f4a7mr11677375e9.30.1770971154146;
-        Fri, 13 Feb 2026 00:25:54 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:106d:1080:2dfb:a5b0:34b0:dd89? ([2a01:e0a:106d:1080:2dfb:a5b0:34b0:dd89])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4835dd0e15bsm148815915e9.13.2026.02.13.00.25.53
+        d=1e100.net; s=20230601; t=1770971348; x=1771576148;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eb9SMDXx3XqEdbaMIOBwU3P2hDpL6y884kxQ2eGE+V0=;
+        b=VCLfSZzFqsnx0b34rFRK9nRiZnHaGmPzk6EScAMMRRYGlBKxOuF8n+dp5VJcIZSxMg
+         41NFLHXKjfZB2uSa2j77wDDW+DzRTtmS9LS82InVewtXWBlSp2J0kW2WZ8l5+CYetrQZ
+         weQ1iWrqREIdebT34YwRGcGaiIh/R5jrx2zuR49mShRKIZIaN1lxag3sI7ah5qEKSGck
+         YhSn/tkrY3h2x+R+HItnLNb6qepvp2bNtyRqs6XbM7zkqOpTRueCiASyTM+SuHZ2nz50
+         KThOU/pLSHiRMYNA+XN3wit5KaZUM751frkIBwAxDsb/HCOUtYg/5y21d608PO2I9vZH
+         Nf/g==
+X-Forwarded-Encrypted: i=1; AJvYcCVFyzqp7svzZL2x1uv9lCbuBwlcxeqn0qOIti5EYj2nfI0BitV8Qu7VWB+ZlqXPmA1X3ms4IaQocez7@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCxut+N2DqoiD+7oODB2gyuWvbgYK2yMp9QxQnXarPxVu+O8UX
+	+lDYXkA0POzXbFR3kmJ6ZsYR4yQwJ7ff2z/jPF5HRzUe1QIILgCuVhrj
+X-Gm-Gg: AZuq6aJj9XB2My3cJ0fcq9q3zZeWGRmZzLRSXMgaEpIsPVd1TzfdPiNnihIOU4YkF2h
+	KQiHm/rV1H0ZTnRHU9MLCbFPbI8SGO1pTZrolXbUQhG6+tS4LEl0PzWs/BP2JHv/spoKGEfK17Z
+	CL0v4SOp8NfU9IDaxE8ZB2wWtAh0SYw8DjoFymukVNiuY0u51jJAvDtFUxcN7fMDfuHXu2nmb9z
+	l4ML4FEAXskw9ylcO+2Pz0iMiPvJWGvfjVxVjR9DBBa7Df0COsXNaER+8hzIMY4fpA5UiWG37QZ
+	HlkdIxiHfnYkEmZ0jCncx0ToyOSrrF0Z45A6IEdICdlHi53Hkv+dj2MMkIXtqP0BuqUpyHbM+8/
+	y3KXobh6BVjp6tE/REtvHq2uz8oZ349kkII6wwoIuJ+5sShlINZMMQDGZMxqqla5haU61i1ywEe
+	HicPxIITfPTv9HCtJBRszWyQKVqg==
+X-Received: by 2002:a05:690c:6306:b0:78a:859c:63b2 with SMTP id 00721157ae682-797a0c22868mr8571517b3.30.1770971348077;
+        Fri, 13 Feb 2026 00:29:08 -0800 (PST)
+Received: from [192.168.0.40] ([79.133.247.80])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-7966c254d1esm64369077b3.41.2026.02.13.00.29.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Feb 2026 00:25:53 -0800 (PST)
-Message-ID: <8da06d06-db9f-446b-b1de-c5727d354db1@linaro.org>
-Date: Fri, 13 Feb 2026 09:25:53 +0100
+        Fri, 13 Feb 2026 00:29:07 -0800 (PST)
+Message-ID: <3a20c906-647c-458f-a118-c7927495e7ef@gmail.com>
+Date: Fri, 13 Feb 2026 10:29:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,182 +86,111 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 1/9] dt-bindings: usb: document the Renesas
- UPD720201/UPD720202 USB 3.0 xHCI Host Controller
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas
- <bhelgaas@google.com>, Konrad Dybcio <konradybcio@kernel.org>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-0-5b79c5d61a03@linaro.org>
- <20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-1-5b79c5d61a03@linaro.org>
- <7kkwkjnucx3cpvegilske2qd4u24vvjkykrljosi2uyknte4bz@3xvh57q5lpcv>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <7kkwkjnucx3cpvegilske2qd4u24vvjkykrljosi2uyknte4bz@3xvh57q5lpcv>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: light: vcnl4000: add Capella
+ CM36686 and CM36672P
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20260212-cm36686-v4-0-8f587d4a72bf@gmail.com>
+ <20260212-cm36686-v4-1-8f587d4a72bf@gmail.com>
+ <20260213-unyielding-pistachio-ape-deda74@quoll>
+From: Erikas Bitovtas <xerikasxx@gmail.com>
+Content-Language: en-US
+In-Reply-To: <20260213-unyielding-pistachio-ape-deda74@quoll>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265292-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com,google.com,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-265293-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	REPLYTO_EQ_FROM(0.00)[]
-X-Rspamd-Queue-Id: 1A772134032
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 5091A134099
 X-Rspamd-Action: no action
 
-On 2/12/26 16:17, Bjorn Andersson wrote:
-> On Fri, Feb 06, 2026 at 03:50:29PM +0100, Neil Armstrong wrote:
->> Document the Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller,
->> which connects over PCIe and requires specific power supplies to
->> start up.
+
+
+On 2/13/26 9:54 AM, Krzysztof Kozlowski wrote:
+> On Thu, Feb 12, 2026 at 04:42:47PM +0200, Erikas Bitovtas wrote:
+>> Capella CM36686 is an ambient light and proximity sensor developed by
+>> Capella Microsystems, now a subsidiary of Vishay Intertechnology Inc. It
+>> has an I2C address of 0x60 and is fully compatible with an existing
+>> driver for VCNL4040.
+> 
+> I wonder why and how...
+
+VCNL4040 shares the same digital interface as CM36686. All the registers
+and their fields are the same. It is most likely Vishay just reused the
+CM36686 design for VCNL4040.
+> 
+>> Capella CM36672P is a proximity-only sensor that
+>> is fully compatible with CM36686, and therefore with VCNL4040. Add
+>> compatibles for cm36672p and cm36686, with a fallback for cm36686 of
+>> vcnl4040.
 >>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
 >> ---
->>   .../bindings/usb/renesas,upd720201-pci.yaml        | 61 ++++++++++++++++++++++
->>   1 file changed, 61 insertions(+)
+>>  .../devicetree/bindings/iio/light/vishay,vcnl4000.yaml  | 17 +++++++++++------
+>>  1 file changed, 11 insertions(+), 6 deletions(-)
 >>
->> diff --git a/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml b/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml
->> new file mode 100644
->> index 000000000000..34acee62cdd2
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml
->> @@ -0,0 +1,61 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/usb/renesas,upd720201-pci.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: UPD720201/UPD720202 USB 3.0 xHCI Host Controller (PCIe)
->> +
->> +maintainers:
->> +  - Neil Armstrong <neil.armstrong@linaro.org>
->> +
->> +description:
->> +  UPD720201 USB 3.0 xHCI Host Controller via PCIe x1 Gen2 interface.
->> +  The UPD720202 supports up to two downstream ports, while UPD720201
->> +  supports up to four downstream USB 3.0 rev1.0 ports.
->> +
->> +properties:
->> +  compatible:
->> +    const: pci1912,0014
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  avdd33-supply:
->> +    description: +3.3 V power supply for analog circuit
->> +
->> +  vdd10-supply:
->> +    description: +1.05 V power supply
->> +
->> +  vdd33-supply:
->> +    description: +3.3 V power supply
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - avdd33-supply
->> +  - vdd10-supply
->> +  - vdd33-supply
->> +
->> +allOf:
->> +  - $ref: usb-xhci.yaml
->> +
->> +additionalProperties: false
+>> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+>> index 4d1a225e8868..2ba4d5de4ec4 100644
+>> --- a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+>> +++ b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+>> @@ -18,12 +18,17 @@ allOf:
+>>  
+>>  properties:
+>>    compatible:
+>> -    enum:
+>> -      - vishay,vcnl4000
+>> -      - vishay,vcnl4010
+>> -      - vishay,vcnl4020
+>> -      - vishay,vcnl4040
+>> -      - vishay,vcnl4200
+>> +    oneOf:
+>> +      - enum:
+>> +          - capella,cm36672p
 > 
-> I'm trying to hang a onboard_hub off this controller and #address-cells,
-> #size-cells, and hub@ comes back as invalid children.
-> 
-> I think this should be unevaluatedProperties instead.
+> CM36672P is compatible with CM36686, but this is not expressed.
+> Confusing commit msg and code. 
 
-Ack will update
-
-Thanks,
-Neil
-
+For CM36672P we create a dedicated compatible because it is a
+proximity-only sensor which has the same proximity sensor configuration,
+but ambient light sensor registers are missing (reserved).
+>> +          - vishay,vcnl4000
+>> +          - vishay,vcnl4010
+>> +          - vishay,vcnl4020
+>> +          - vishay,vcnl4040
 > 
-> Regards,
-> Bjorn
+> Best regards,
+> Krzysztof
 > 
->> +
->> +examples:
->> +  - |
->> +    pcie@0 {
->> +        reg = <0x0 0x1000>;
->> +        ranges = <0x02000000 0x0 0x100000 0x10000000 0x0 0x0>;
->> +        #address-cells = <3>;
->> +        #size-cells = <2>;
->> +        device_type = "pci";
->> +
->> +        usb-controller@0 {
->> +            compatible = "pci1912,0014";
->> +            reg = <0x0 0x0 0x0 0x0 0x0>;
->> +            avdd33-supply = <&avdd33_reg>;
->> +            vdd10-supply = <&vdd10_reg>;
->> +            vdd33-supply = <&vdd33_reg>;
->> +        };
->> +    };
->>
->> -- 
->> 2.34.1
->>
 
 
