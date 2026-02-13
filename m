@@ -1,201 +1,173 @@
-Return-Path: <devicetree+bounces-265338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265340-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EEapHocFj2ltHQEAu9opvQ
-	(envelope-from <devicetree+bounces-265338-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 12:05:43 +0100
+	id aJDmFu4Ij2ltHQEAu9opvQ
+	(envelope-from <devicetree+bounces-265340-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 12:20:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 845E71356CA
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 12:05:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16CA9135B11
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 12:20:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2CD173047917
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 11:02:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A48CF30934A2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 11:16:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59A2035F8C4;
-	Fri, 13 Feb 2026 11:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9B3357A20;
+	Fri, 13 Feb 2026 11:16:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="dLLLg44w"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="OVxjcFhf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx4.sberdevices.ru (mx4.sberdevices.ru [152.89.196.46])
+Received: from mail-m15592.qiye.163.com (mail-m15592.qiye.163.com [101.71.155.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4754635971F;
-	Fri, 13 Feb 2026 11:00:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=152.89.196.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F313570C9
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 11:16:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.92
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770980451; cv=none; b=JpO7XxAtfeaKsjQcbeIM7DI7czHohcAXhhQzj60JlK/VxmB5UzuLScEL7T4Dtwvyql3pcziJoHnOekF8D2US3BFPX/g62IuS6vQwHrfcTztTb3VMxrgpx9SCqxpOp52V9LD5TNSlmU9XAxE27iOfYzzCvTAMYavFa9PMfktXimg=
+	t=1770981406; cv=none; b=WAAmBjlq2lXnoViCfmL6CFzB7HHLD9lv7gGVOgw+O/JrDPjRNG3qa81o73waHLYuL5gUSoKSrcHMW4NrHe5aHp/Oz9rnOkyoczJDOfjocerYD7JqP7IRv9f/0GgwX+cC9iFheCeqdkfmSaeJeWcXuDwGbp+oiev24C6O70XBvH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770980451; c=relaxed/simple;
-	bh=AwHuq3B+o2GZ9KEif6AopdrGFH7KK36BLMb799BPDvQ=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=JP5XJg7VTzSbwDXYkbt799+DQJeb8z6B3A6N39Wqc6Ihy87tTGIZcAG+dWCOlv6WVBoNAZwb17ISSoBm+eUdM4VntEUBdiBIhkwaQk7cZRGlqEJD1x7rZJwrLJqB0e7tfidXiU20YYkbt3pEAeSEMC+OajLwECh5eYC3Ri/kSPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=dLLLg44w; arc=none smtp.client-ip=152.89.196.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-antispam-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx4.sberdevices.ru (Postfix) with ESMTP id 2EF7E40009;
-	Fri, 13 Feb 2026 14:00:40 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx4.sberdevices.ru 2EF7E40009
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=post; t=1770980440;
-	bh=OvdxfPMq3ENALtKqXmHnW0FdBU4wQRCJOdA+xd6oOJc=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Content-Type:From;
-	b=dLLLg44w+OAQ/ccLAlyfl/P7XUStUPbA9n3K82PnBeAGM6dDr6V53BW7wlGxLcQTo
-	 59myc5PEimyglNz0111X3fZ5twPDqWbapNALFNCttwm/QbILl4vsXI10C412ktHNaw
-	 UEn13emDFv/s6MZKZiDR2s5i+M/9BG2V9zah2Z92EgC7dsaqU4fnlqek+yEib42hbj
-	 Ze1Mhbw8DD5YMdGuYyljFwsJ+dLPNyALERFCQeAU0vnNkznx5U5vKMeGMgv1hlVfRp
-	 t5XWnwvkIQAQkx42BO4hTLkXfMUwHJeVlGjd0sEXQOqYai/kp83tHDAMOxjH4btww3
-	 dcvc78z1j4ZbA==
-Received: from smtp.sberdevices.ru (p-exch-cas-s-m1.sberdevices.ru [172.16.210.2])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(Client CN "sberdevices.ru", Issuer "R12" (verified OK))
-	by mx4.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 13 Feb 2026 14:00:39 +0300 (MSK)
-Message-ID: <c1ec5f03-2fc5-4c63-91df-747f0bfd86c2@salutedevices.com>
-Date: Fri, 13 Feb 2026 14:00:38 +0300
+	s=arc-20240116; t=1770981406; c=relaxed/simple;
+	bh=LdkY9AWgmS+vTuatdkNG7W+bF5WKInkducMyIDof6TY=;
+	h=Cc:Subject:To:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=juY6+Hz6Q6ekjRolTOeRdFNPn0xGQl7509cmGjH+xMhpFIXi0OPeaNrw4A8I7uRPNi2zwmPPFN7fa70K9308xaPi78CcusPvua1/iXsS0lAzpCqDv2S7+PzinUN7ZRiqdsj9gixoGR9V4JUyDl82UVMbpoZbyauDbnmlctCj3FE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=OVxjcFhf; arc=none smtp.client-ip=101.71.155.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.14] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 341631483;
+	Fri, 13 Feb 2026 19:11:25 +0800 (GMT+08:00)
+Cc: shawn.lin@rock-chips.com, Heiko Stuebner <heiko@sntech.de>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: add node name for
+ RK3588_PD_RKVDEC0/1 and RK3588_PD_VENC0/1
+To: Chaoyi Chen <kernel@airkyi.com>
+References: <1770950113-19802-1-git-send-email-shawn.lin@rock-chips.com>
+ <B5000B8F1001C1D8+040b217f-8ee1-4f96-95ec-e44d140b589d@airkyi.com>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+Message-ID: <9cc9a3c5-55f0-32f6-f166-acfb3a34f0a3@rock-chips.com>
+Date: Fri, 13 Feb 2026 19:11:23 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: George Stark <gnstark@salutedevices.com>
-Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW0RNQVJDIGVycm9yXSBbUEFUQ0ggdjMgMy8zXSBh?=
- =?UTF-8?Q?rm64=3A_dts=3A_meson-s4-s905y4-khadas-vim1s=3A_add_initial_device?=
- =?UTF-8?Q?_tree?=
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: Nick Xie <nick@khadas.com>, "robh@kernel.org" <robh@kernel.org>,
-	"khilman@baylibre.com" <khilman@baylibre.com>, "jbrunet@baylibre.com"
-	<jbrunet@baylibre.com>, "neil.armstrong@linaro.org"
-	<neil.armstrong@linaro.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-amlogic@lists.infradead.org"
-	<linux-amlogic@lists.infradead.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "kernel@salutedevices.com" <kernel@salutedevices.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "xianwei.zhao@amlogic.com" <xianwei.zhao@amlogic.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20260115030015.1334517-1-nick@khadas.com>
- <20260115030015.1334517-4-nick@khadas.com>
- <09df45e1-90b5-4618-9197-c724142bd83a@salutedevices.com>
- <PS1PPF62EEA9B1D287E26DFE619BB840508AE93A@PS1PPF62EEA9B1D.apcprd03.prod.outlook.com>
- <88a0395b-1ab3-4ef0-96c4-440b3a5c96f4@salutedevices.com>
- <CAFBinCDcDy4M79+mM+axsqXLfoQ56Ucd1C-OHkGLxwNkpfZ-zQ@mail.gmail.com>
-Content-Language: en-US
-In-Reply-To: <CAFBinCDcDy4M79+mM+axsqXLfoQ56Ucd1C-OHkGLxwNkpfZ-zQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+In-Reply-To: <B5000B8F1001C1D8+040b217f-8ee1-4f96-95ec-e44d140b589d@airkyi.com>
+Content-Type: text/plain; charset=gbk; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: p-exch-cas-a-m1.sberdevices.ru (172.24.201.216) To
- p-exch-cas-s-m1.sberdevices.ru (172.16.210.2)
-X-KSMG-AntiPhishing: NotDetected, bases: 2026/02/13 10:48:00
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Info: LuaCore: 87 0.3.87 7430d8ffafccd8879e1d8370e5b501352446c2ba, {Tracking_uf_ne_domains}, {Tracking_bl_eng_cat}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;elixir.bootlin.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;lkml.iu.edu:7.1.1, {Track_Chinese_Simplified}, FromAlignment: s
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiSpam-Lua-Profiles: 200473 [Feb 13 2026]
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Version: 6.1.1.20
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.1.1.8310, bases: 2026/02/13 08:57:00 #28203847
-X-KSMG-AntiVirus-Status: NotDetected, skipped
-X-KSMG-KATA-Status: Not Scanned
-X-KSMG-LinksScanning: NotDetected, bases: 2026/02/13 10:48:00
-X-KSMG-Message-Action: skipped
-X-KSMG-Rule-ID: 5
+X-HM-Tid: 0a9c56b2d02309cckunm7939042d2d84bd
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkwfT1YdGB1KHUNOH0tMGkpWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUJCSU5LVU
+	pLS1VKQktCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=OVxjcFhfxlWGbRcypca3NKULvA9k3vr8qgD28Xz3XiMdlDokms9vcLxYov5RWRz25mxArw1K+w9wlXlXj93M7OyQATK0tgzfHwbM1oLSWDzwDOO3pFiIzwjPiTYzfoMce54tR1h85ScVLxP/bRGbGcd0mF+rw7xZ/sDLBLs2CQ4=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=cfrrzneLGcg5FFdQQt3/q570AODDdBAE3SDOF+o9Z9w=;
+	h=date:mime-version:subject:message-id:from;
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[salutedevices.com,none];
-	R_DKIM_ALLOW(-0.20)[salutedevices.com:s=post];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-265338-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[googlemail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gnstark@salutedevices.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[salutedevices.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,bootlin.com:url,iu.edu:url,salutedevices.com:mid,salutedevices.com:dkim,salutedevices.com:email]
-X-Rspamd-Queue-Id: 845E71356CA
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rk3588_pd_venc1:email,rk3588_pd_rkvdec1:email,rk3588_pd_venc0:email,rock-chips.com:mid,rock-chips.com:dkim,rock-chips.com:email];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[shawn.lin@rock-chips.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265340-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[rock-chips.com:+]
+X-Rspamd-Queue-Id: 16CA9135B11
 X-Rspamd-Action: no action
 
+Hi Chaoyi
 
-
-On 2/10/26 01:31, Martin Blumenstingl wrote:
-> Hi George,
+在 2026/02/13 星期五 18:32, Chaoyi Chen 写道:
+> Hello Shawn,
 > 
-> sorry for the late reply.
+> On 2/13/2026 10:35 AM, Shawn Lin wrote:
+>> Thus the board dts files could add property for these nodes.
+>>
+>> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+>> ---
+> You should also add pmdomain driver.
 > 
-> On Thu, Jan 29, 2026 at 3:48鈥疨M George Stark <gnstark@salutedevices.com> wrote:
+> I've encountered a similar issue before.
+> Finley told me to use the new PMIC, and that would solve the problem.
+> Maybe you're using the same old PMIC as I did :)
+> 
 
-Hello Martin. It's great to hear from you again.
+I don't know what does new PMIC mean? New RK806 driver or new RK806
+hardware?
+
+The problem is these power domains rely on voltage supply which could
+be probed late after pmdomain driver, then the system enables the PD and
+access the IP without PD actually enabled(even w/o voltage supply
+enabled).
+
+
+
+> 
 >>
+>>   arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 8 ++++----
+>>   1 file changed, 4 insertions(+), 4 deletions(-)
 >>
->> On 1/26/26 12:35, Nick Xie wrote:
->>>> Thanks for the patch. Since you have khadas mail I'm pretty sure you've
->>>> had the possibility to test it on the real vim board and I just don't
->>>> get it how it works with the voltage table above. The problem is that
->>>> pwm is calculated incorrectly in the upstream pwm-meson driver. That
->>>> voltage table appeared to be used in early amlogic bl loader and
->>>> appropriate pwm is initialized from a table's record. Duty cycle value
->>>> is translated to pwm regs correctly. Later when kernel start running
->>>> pwm-regulator driver is probed. It reads the pwm regs, calculates back
->>>> duty-cyle and search it in the table. Since calculation algos are not
->>>> match and the table doesn't contain full range of 0-100% values
->>>> regulator driver doesn't find current voltage. In such case regulator
->>>> core sets the minimum voltage from the table [1] and the SoC may hang
->>>> (depending on board) due to minimum voltage may be too low for the
->>>> current frequency SoC uses.
-> Nick likely didn't spot any issues on S4 since CPU frequency scaling
-> is not upstreamed yet (as there's no way to control the CPU clock
-> yet).
-> The lack of a OPP table means: the PWM and CPU clock will just stay at
-> whatever the bootloader provides
-
-It makes sense. I should experiment on the latest kernel.
-
->>>> Or I'm missing something?
->>>
->>>
->>>> There's not-yet-reviewed patch that fixes pwm algo [2]. There's
->>>> calculation example in the cover letter.
->>>> [1] https://elixir.bootlin.com/linux/v6.19-rc5/source/drivers/regulator/core.c#L1227
->>>> [2] https://lkml.iu.edu/2412.3/00826.html
->>>
->>> What's the status of such patches?
->>
->> the patch is ready for review. It's seems like nobody is interested
-> I'm sorry to see that the patch had it's first anniversary.
-> I'll need to bring out my logic analyzer and test your patch (I hope
-> it's precise enough to show the impact of your changes).
-> Are your plans then to re-send the patches or have you moved on and
-> need someone else to take care of it?
-
-It's a major step anyway if you confirm the issue yourself with an 
-analyzer. In that case discussion won't be delayed for one more year
-I think. Thanks.
-
-Sure I'm ready to discuss/fix/resend this patch.
-
--- 
-Best regards
-George
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>> index 7fe9593..4fb8888 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>> @@ -907,7 +907,7 @@
+>>   				#size-cells = <0>;
+>>   				#power-domain-cells = <0>;
+>>   
+>> -				power-domain@RK3588_PD_RKVDEC0 {
+>> +				pd_rkvdec0: power-domain@RK3588_PD_RKVDEC0 {
+>>   					reg = <RK3588_PD_RKVDEC0>;
+>>   					clocks = <&cru HCLK_RKVDEC0>,
+>>   						 <&cru HCLK_VDPU_ROOT>,
+>> @@ -917,7 +917,7 @@
+>>   					pm_qos = <&qos_rkvdec0>;
+>>   					#power-domain-cells = <0>;
+>>   				};
+>> -				power-domain@RK3588_PD_RKVDEC1 {
+>> +				pd_rkvdec1: power-domain@RK3588_PD_RKVDEC1 {
+>>   					reg = <RK3588_PD_RKVDEC1>;
+>>   					clocks = <&cru HCLK_RKVDEC1>,
+>>   						 <&cru HCLK_VDPU_ROOT>,
+>> @@ -926,7 +926,7 @@
+>>   					pm_qos = <&qos_rkvdec1>;
+>>   					#power-domain-cells = <0>;
+>>   				};
+>> -				power-domain@RK3588_PD_VENC0 {
+>> +				pd_venc0: power-domain@RK3588_PD_VENC0 {
+>>   					reg = <RK3588_PD_VENC0>;
+>>   					clocks = <&cru HCLK_RKVENC0>,
+>>   						 <&cru ACLK_RKVENC0>;
+>> @@ -937,7 +937,7 @@
+>>   					#size-cells = <0>;
+>>   					#power-domain-cells = <0>;
+>>   
+>> -					power-domain@RK3588_PD_VENC1 {
+>> +				pd_venc1: power-domain@RK3588_PD_VENC1 {
+>>   						reg = <RK3588_PD_VENC1>;
+>>   						clocks = <&cru HCLK_RKVENC1>,
+>>   							 <&cru HCLK_RKVENC0>,
+> 
 
