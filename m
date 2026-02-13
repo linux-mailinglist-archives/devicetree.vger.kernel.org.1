@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-265392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265393-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qEWjMvI9j2llOAEAu9opvQ
-	(envelope-from <devicetree+bounces-265392-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:06:26 +0100
+	id ABfDDG0+j2llOAEAu9opvQ
+	(envelope-from <devicetree+bounces-265393-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:08:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34E9113767E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:06:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D33541376AE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:08:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7E4ED301E3F1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 15:06:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 059BC302E7A9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 15:07:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C2CF362130;
-	Fri, 13 Feb 2026 15:06:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56706361DCF;
+	Fri, 13 Feb 2026 15:07:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bR6Chcgi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L8aCvjJ3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26FD436164D;
-	Fri, 13 Feb 2026 15:06:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31DF736164E;
+	Fri, 13 Feb 2026 15:07:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770995179; cv=none; b=Ft9RXcZ0+EWhROGPEVZ4uQeWtJvIKT1SEX8NBR2gMQpwqLvB3SZ9LRdyd/VPjaeZq9aZVcR3v7fey8DKzu0m3Bt62E4O1XiUbj6AjdtxosYAO8xVV5zlQ8GN8d+wq2lnok3v6I3lxXNIENi0wlNfBkkHUxqf94CDcL86BaZzduc=
+	t=1770995267; cv=none; b=kovbBv5Dxea0nDSkdy2NlXmu0+xxLt5+ExJ7K6bP5VCmTYIBF5OyFL4HyzyBdAPvjQrdsAQVuKlYIxBIMKVhpnGd8UuW91RfEl/29ZRZAELOrNfPuyF+ZmIlpvxXQZz5hMft2HLk+wJmKFjLyNZlwOzC9qUNgrBkGMXP3FfX3UE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770995179; c=relaxed/simple;
-	bh=7DNsYzDbp2Rq3SoXH+3vIIVKLF5rQK58LOjDKv+sPIA=;
+	s=arc-20240116; t=1770995267; c=relaxed/simple;
+	bh=fU3Smstkm9vsVdQ6PhIzTlsFAgeVVpZBvhQMAzyojZs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iebs28NdssGc0i+vaqVLasDLWLozP12HZJ9LWZE4aM3pqWf7so8hqZ+ljcrZTzpcti40XPZl1ICx+HX4XA+MKjRE6afJ0bEbthGKROWCgG6eAiA+S+tEfCpb07/EZLj/ZinkAL7uRWo8v9J6J08AOw+FEqfRZZ7ofnket0ioRBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bR6Chcgi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B12C8C19424;
-	Fri, 13 Feb 2026 15:06:16 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=eUrMqaIMsid8AsSwjAKkR0kNBHDSzmSy2WpbtfYmDg+41cGQz9zkVOaIp+sWfNKKXf11xpfqkKRVsxNZDixYwfA+BIIJl6yUVMPlj5UlONdpNkxY+OJ8j96Ci1Hvc9JjTWELjwnqueSdtlimNc6huMJEXSydZnrEUCd5H0tF160=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L8aCvjJ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08F24C116C6;
+	Fri, 13 Feb 2026 15:07:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770995178;
-	bh=7DNsYzDbp2Rq3SoXH+3vIIVKLF5rQK58LOjDKv+sPIA=;
+	s=k20201202; t=1770995266;
+	bh=fU3Smstkm9vsVdQ6PhIzTlsFAgeVVpZBvhQMAzyojZs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bR6ChcgiKp/4yRltNWtAIVcjp5Pg1aoAKQBrRG5qKuveLnXBKvvxXHa3DxuEnJQef
-	 FX+3ChCt6bU2UxnPdEepuju9FSuHlzC81R9Bs2kpUcVCKMVKpr3ois80reFXguoSOR
-	 H4CTz4vdT7Wv10ci0nggSvncAFkwpp5SQr9NkHoOCgTMFs4M9yFXuu9wBCtL3ylN1t
-	 UxdqTlP6MMiCKGSSHPVFg70KyGOnN+QAUJRdgEUy+G+mzJK/vpEm3RPy/cgRjzq4K3
-	 zRMb7dd09rN/etjWIMPnZyYDEQ1shBGD0wpsqx7Q0ko6UlF+o4qGB6JaL4OiAjQvhH
-	 ZMbfWs/RBinuQ==
-Message-ID: <ac793499-bebb-477b-b27e-089529f3ee4b@kernel.org>
-Date: Fri, 13 Feb 2026 16:06:14 +0100
+	b=L8aCvjJ3ggkAvsYLbrrqgGs2JXaim6L9ojNxxQpVeHdQRDAA7n0Rak8bQTx7sL+0i
+	 jpgADss010yQVG47/e3Z+lWuhUJiqIVw7OIbkkQnGtrGGWgLAo3+hs1/UrlCqdSEv1
+	 qM3w5ypQ2A75tSIdRLmocZuFpSiTsZQFUWSrPleq5p4V2KjsiLYctSjWiPocriuWxQ
+	 8ziTvzQmENvl4/3baBzaX/FO6WIxJ3Clbu/SsTMlT5KnnicEqPer0rNUod0Kl+ZNyl
+	 ERmWAcGuofcYOCrww2LS/6HOTbwx8D9VfDuZf7RcKHF0FHzXtOWbsur4aJ/dt/QUh4
+	 VszLfOE0qrkIA==
+Message-ID: <f45e77d7-0d0b-4236-a661-cc44d3460214@kernel.org>
+Date: Fri, 13 Feb 2026 16:07:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,19 +53,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: soc: st: document the RISAB firewall
+Subject: Re: [PATCH v2 1/9] dt-bindings: bus: document the RISAB firewall
  peripheral
-To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>
 Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260209-stm32_risab-v1-0-ef0b2b6a7e0a@foss.st.com>
- <20260209-stm32_risab-v1-1-ef0b2b6a7e0a@foss.st.com>
- <ee9759a6-1779-4891-8716-24c36134198a@kernel.org>
- <516036b6-b825-4a29-a48a-5d3af3234968@foss.st.com>
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20260212-stm32_risab-v2-0-02ef2859b596@foss.st.com>
+ <20260212-stm32_risab-v2-1-02ef2859b596@foss.st.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,7 +111,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <516036b6-b825-4a29-a48a-5d3af3234968@foss.st.com>
+In-Reply-To: <20260212-stm32_risab-v2-1-02ef2859b596@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -119,88 +119,52 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265392-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-265393-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[foss.st.com,kernel.org,gmail.com,baylibre.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[foss.st.com,kernel.org,gmail.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 34E9113767E
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D33541376AE
 X-Rspamd-Action: no action
 
-On 10/02/2026 10:55, Gatien CHEVALLIER wrote:
->>> +  memory-region:
->>> +    minItems: 1
->>> +    maxItems: 32
->>> +    description:
->>> +      Phandle to nodes describing memory regions to be configured in the RISAB
->>> +      by the trusted domain of at least a RISAB page size.
->>> +      These regions cannot overlap. A zone must be within st,mem-map range and
->>> +      can be represented by one or more pages.
->>> +
->>> +  st,mem-map:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->>> +    description: Memory address range covered by the RISAB.
->>> +    items:
->>> +      - description: Memory range base address
->>> +      - description: Memory range size
->>
->> Why do you need this property if you have memory-region already? This
->> also should be part of <reg>, although this mixing with memory-region is
->> anyway confusing.
->>
-> 
-> The RISAB is a memory firewall peripheral covering internal RAMs. It is
-> possible to configure multiple memory regions within these RAMs (done by
-> the Trusted Domain) with security, privilege and compartment isolation.
-> This peripheral allow 4kBytes page granularity. Each page can hold
-> different access rights, with 32 pages at most (hence the maxItems: 32).
-> That is some information that can be added to the documentation.
-> 
-> Moreover, when a region is delegated to a non-secure privileged
-> component, this component can configure the privilege level necessary to
-> access the region.
-> 
-> This property gives me the opportunity to get the memory range covered
-> by the RISAB. "reg" here is used to access the actual RISAB registers
-> holding the configuration.
+On 12/02/2026 11:10, Gatien Chevallier wrote:
+> +
+> +  memory-region:
+> +    minItems: 1
+> +    maxItems: 32
+> +    description:
+> +      Phandle to nodes describing memory regions to be configured in the RISAB
+> +      by the trusted domain of at least a RISAB page size.
+> +      These regions cannot overlap. A region must be within st,mem-map range and
+> +      can be represented by one or more pages. RISAB has a 4kBytes page
+> +      granularity and each page can hold different access rights.
+> +
+> +  st,mem-map:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description: Memory address range covered by the RISAB.
+> +    items:
+> +      - description: Memory range base address
+> +      - description: Memory range size
 
-Looks awfully like memory regions still :/
-
-> 
->>> +
->>> +  st,srwiad:
->>> +    description:
->>> +      When set, the trusted domain configures the RISAB to allow secure
->>> +      read/write data accesses to non-secure blocks and pages. Secure execute
->>> +      remains illegal.
->>> +    type: boolean
->>
->> Shouldn't this be a property of given block from memory-regions, not
->> entire RISAB?
->>
-> 
-> It is a global setting for the whole RISAB (in RISAB_CR register) so I
-> think it's fine keeping it at RISAB level.
-
-And in the next version of your IP? It really feels like description of
-memory region, not the entire device.
+I did reply at v1 now. This is not a trivial device so should not be rushed.
 
 
 Best regards,
