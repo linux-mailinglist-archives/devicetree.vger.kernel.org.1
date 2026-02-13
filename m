@@ -1,216 +1,186 @@
-Return-Path: <devicetree+bounces-265367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265368-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SDhAK0Mqj2kPKwEAu9opvQ
-	(envelope-from <devicetree+bounces-265367-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:42:27 +0100
+	id 6L6gMNUrj2kPKwEAu9opvQ
+	(envelope-from <devicetree+bounces-265368-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:49:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 086AD136708
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:42:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23AA7136786
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:49:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4B6C530465F1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 13:42:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A1C463055DCD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 13:47:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADFEA35FF49;
-	Fri, 13 Feb 2026 13:42:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5D5629A30E;
+	Fri, 13 Feb 2026 13:47:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="LNf6rBTy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QINFr95D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52EB923815D
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 13:42:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B335C22332E
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 13:47:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770990142; cv=none; b=T5Ewzh1py0za9w/MsAKa0y4tHPDeJPS9jaf4rYP54O5CzHalREwQKbweYJ9f02PWCZBxAFCZnHJS+OnrQFnFmlAJuUuT7nLhSpj5I4RZ+2wtOFjxaoKGHPQAlIQ7yKi6j/kMF4JQcSFqP+3tcbXwv5kCnrDLzeBIIbFQTI0FNXs=
+	t=1770990472; cv=none; b=hr7jZR/+ZNBtDi+p8GtiFqWY8M6pua5Bam3op/mEDCIcPPu423KTaa+Z00OiwZBjGRpr+E+1CJ91kQ8mbMMGiLtnT57BANA5QPAVHHKp6bXdBV/Y/yAKrIGnhP3WTUQwC53+7tfLjmAEIXU10jK5MzDqbT0V3e4uHRRnzl7B7/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770990142; c=relaxed/simple;
-	bh=v21aUaRExic4asjKw5wpz45cMKkg6xm9+FuILH8upa8=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=oThRyd1f0wXecnl6RcME6ugqn/HdLAel4gfTFarav4NmG0IUsCiUaxuMJQ6sEEgG0d5dKedLrXsDLRVhGAOffBU3XYNi6U/eSIoq6LTMYWZxHkW+yNNW5MplkcEWP8q97+OM/rVwyfpAkWVTzxma9BnmV+y/WOkwOJLiPg2tShc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=LNf6rBTy; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-65a3fdeb7d9so1455642a12.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 05:42:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1770990140; x=1771594940; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jjlPOi80qwfClu6vEE8PfXH4lJ/jNSkLMmn/VxZK4i8=;
-        b=LNf6rBTygDqcP8xmNfi2pJ4S53exB9KaAmmL9qCOWSSTNqa0JBULJ0ysMpy8bcTH6z
-         Jf4YbJcqqd5mGyDP7I61tYzppb/W0FG0q5flhnSMW0pXHpzarl/RsPZ2qVV5+JNAn/zX
-         oP5TrbSRxCaswZsj+U4QPts7sIHHhFQXesGoqtp0JAIfOtwZzM/KoYFWjhTJTQTaqTTN
-         MGomhUw2KqXlPAJwGqiNsn+iYV8vIApPYc+xB7bQSewig5t9EBJuUgfgzIDyFTHxcxCh
-         YR/Dy4HEUlRmkafw8Xr0Rh3RnM/4z5jz77jXf/fXTm+axKs9pVJQYwVj/KerDEf6jqX2
-         afiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770990140; x=1771594940;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jjlPOi80qwfClu6vEE8PfXH4lJ/jNSkLMmn/VxZK4i8=;
-        b=KPhlir5gJ9y7joToKwAUVulOb3nZRB7XPTs1FS/sgnMs7unY35D7rYemN4D+L6iAiW
-         PIu661WS8G+VjFSrQ0/lHLjZY3TvbYlaJAfACMsb6pDtapS9CDdL6acfEPKXDrqF2Km+
-         GQCObmW2+i0ul3Ples8RoZT0c4Y8rXYDvpota81UW7B3IFu+KqAFUvNhysBqWE3kRMui
-         0LO9LLNlIxA3wlusWTq3ZGs1xVC7gzcmYYoc7NH8qj39lrkPwCg+ssg6BqGGocZYhD4V
-         L12FUzfJeiRqwhbGojymOkin96hSMnikLQ/aGX9wTJ3moQPYsJ42+DtaKTYLgp6TZwyG
-         GRwg==
-X-Forwarded-Encrypted: i=1; AJvYcCW6KyfyVabVAcTedHFlxZpwHStdgVAQGeQdN5bcs7wTh6gxMOU0ulphpH0cz4chBTPmHv9JWZEMNYFC@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHQyzCZkdGeOGs1vF7tbsJgWBomdkMRCr5axzD0tK077x0z31m
-	4MdqKawMEARffNUlp6dg+vsJuNeNxgvQa/Czn0pY3U/LHzr8Ir18yFt7YVw9+pTEUzw=
-X-Gm-Gg: AZuq6aKb1gTu9x3BN13sLiwZ5QXiXv1BYPEdozd8YxN8nwwL5fe+sJV1ctlfoMICQl5
-	pyOR4/cAvnDb+yLkFgo8XqchevVhKGOX7PzBo43Dq+sQUkg53mdILeFPmhpi1VymQ5sBM3nLzuo
-	e5Vzw9kNR5+Y6vgRMPrUPO+Rbl/kR59bliuD3FheGDQz0AOrW+sfyu+aTfu8yrxCjyClmtUNH+x
-	tf7RRBSVt9GMsQE2QPH/tO0MLo5aA2fQSh0G0V9ZtuQC6tD4Su+BnRiorSHsCZD4RLncUY+DwWX
-	W6GpcAtX5iJ/BCTNI1pF5SMjc095RjcK9TMamIaXaAOACMEwG09wYjfXo0/VCbFJc88zRiDhjAn
-	0LxKo1JwKW3AQDjeWXjYGx4XE8ux3SrG7t496nFhnkIo/4Ew6XxJZ0Ray893rGCBIiWqT4LViF+
-	vQMDJAXMAgmxry2mryZ9KwPfhhAAOetQLl+TBJTtw+9UUCsYP/TDpo9/BB0rB27rDoJwbpV7/Zk
-	nFivOk=
-X-Received: by 2002:a05:6402:4406:b0:659:4853:5382 with SMTP id 4fb4d7f45d1cf-65bb13c2f2cmr934664a12.32.1770990139691;
-        Fri, 13 Feb 2026 05:42:19 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65bad3f137dsm653159a12.27.2026.02.13.05.42.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Feb 2026 05:42:19 -0800 (PST)
+	s=arc-20240116; t=1770990472; c=relaxed/simple;
+	bh=DyzFY+7qXZ/I87ykE9tTTX/te+3kpL/x6B8NDHwgSQE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Qc/wbXMjHqupAka67e6EOYK3RIjAIoOH3Ot/UikluFVNVT6oek7Brnrso4ORkBNonF0SB8w8jJi+sCL9iMAQgrrXQ1LOYUoJM9TGkhxwD1tzZ7kVloDGLJW84bcRcMIQ3BYeOPUBHaDe93AVeXAvo//FNfaIZurx1zCwnRoq9qI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QINFr95D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 652C3C116C6
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 13:47:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770990472;
+	bh=DyzFY+7qXZ/I87ykE9tTTX/te+3kpL/x6B8NDHwgSQE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=QINFr95DCTmDGpJZL+syZ6w4OMbiyEaGahW44SzHXpgajJ2dD5vASaBSSOblTtzhJ
+	 mEmISzqm/Rt05EPpL6OnY220wUlUKaw8KJPqyXaZUxb9RkyRQ3mrNGP/kBkyw5KDxZ
+	 gD0qa7b8j6Rthu62yPbLUoVNaL5PKbjPYPkjBNBFcOVkrP5QUi2XFs4fa+pJXrw6+j
+	 NgLRDKl6uyODeVCVJ2tEJRELPeN33fMl7ZyC5sfhiCV1Wo/OU9LFCwXtM3QGaJyfrG
+	 l7/pNkeQchzKS1aNT7jZ0qwN5YdeeYoLYqKPQVMtZhNEy23R0m2gVXMgPAaSjHXDKD
+	 T+ghE+E29rlvA==
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-79627af6349so11052527b3.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 05:47:52 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX8i2slBs5wKfB2hTAlXCVxieL3iV3vN6W4TI50cDG38uKh8DdTNpdoqbSzOYjw9al0ZF3C3G6mAAwV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLXGQtKpiwH5a6r52ycpcRjyS28WYsOd1EXBG+7zld9+k0aAOY
+	yr3d7vZMcWqM++3r/h7usmm+bwQ/IDnXblE6eTjfalWeippMVtYQNwqSuc4+HqIffgzbidsw9Oo
+	l3lRp1bnmm0GgARVk9c5t8nXJA4MTZ0A=
+X-Received: by 2002:a05:690c:18:b0:796:3f2f:a33b with SMTP id
+ 00721157ae682-797a0be9c0amr31425307b3.18.1770990471723; Fri, 13 Feb 2026
+ 05:47:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20260213-pinctrl-single-bit-v1-0-c60f2fb80efb@aspeedtech.com> <20260213-pinctrl-single-bit-v1-1-c60f2fb80efb@aspeedtech.com>
+In-Reply-To: <20260213-pinctrl-single-bit-v1-1-c60f2fb80efb@aspeedtech.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Fri, 13 Feb 2026 14:47:40 +0100
+X-Gmail-Original-Message-ID: <CAD++jLn6=YLh1EER2_cQZAprWfgmy-_XawreM5YpcTG2XA=uqA@mail.gmail.com>
+X-Gm-Features: AZwV_QhsixaqIxYeaVbNx--W7SxSEC1W_-pI5Tu0Vlx-qt-_T_CJ0Ra3jwQddw8
+Message-ID: <CAD++jLn6=YLh1EER2_cQZAprWfgmy-_XawreM5YpcTG2XA=uqA@mail.gmail.com>
+Subject: Re: [PATCH RFC 1/2] dt-bindings: pinctrl: Add pinctrl-packed
+To: Billy Tsai <billy_tsai@aspeedtech.com>
+Cc: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+	Andrew Jeffery <andrew@codeconstruct.com.au>, Bartosz Golaszewski <brgl@kernel.org>, patrickw3@meta.com, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, BMC-SW@aspeedtech.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 13 Feb 2026 14:42:18 +0100
-Message-Id: <DGDVLY6M6E1N.12KFFYAGAD7H6@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Luca Weiss"
- <luca.weiss@fairphone.com>, "Bjorn Andersson" <andersson@kernel.org>,
- "Konrad Dybcio" <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Alexander Koskovich" <AKoskovich@pm.me>, "Jeff
- Johnson" <jeff.johnson@oss.qualcomm.com>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 3/5] arm64: dts: qcom: milos: Add WCN6750 WiFi node
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260116-milos-fp6-bt-wifi-v1-0-27b4fbb77e9c@fairphone.com>
- <20260116-milos-fp6-bt-wifi-v1-3-27b4fbb77e9c@fairphone.com>
- <5fe80f4a-ef5c-4008-88e2-60ad1f8c2a18@oss.qualcomm.com>
-In-Reply-To: <5fe80f4a-ef5c-4008-88e2-60ad1f8c2a18@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265367-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-265368-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[fairphone.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,fairphone.com:mid,fairphone.com:dkim,fairphone.com:email,quicinc.com:email,1.5.20.24:email,1.5.137.32:email]
-X-Rspamd-Queue-Id: 086AD136708
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aspeedtech.com:email]
+X-Rspamd-Queue-Id: 23AA7136786
 X-Rspamd-Action: no action
 
-Hi Konrad,
+Hi Billy,
 
-On Tue Jan 20, 2026 at 3:39 PM CET, Konrad Dybcio wrote:
-> On 1/16/26 3:50 PM, Luca Weiss wrote:
->> Add a node for the WCN6750 WiFi found with the Milos SoC.
->>=20
->> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> ---
->>  arch/arm64/boot/dts/qcom/milos.dtsi | 46 ++++++++++++++++++++++++++++++=
-+++++++
->>  1 file changed, 46 insertions(+)
->>=20
->> diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/q=
-com/milos.dtsi
->> index 024e1c9992fe..80feb3e9d3e2 100644
->> --- a/arch/arm64/boot/dts/qcom/milos.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/milos.dtsi
->> @@ -2043,6 +2043,52 @@ gic_its: msi-controller@17140000 {
->>  			};
->>  		};
->> =20
->> +		wifi: wifi@17110040 {
->> +			compatible =3D "qcom,wcn6750-wifi";
->> +			reg =3D <0x0 0x17110040 0x0 0x0>;
->
-> This reg doesn't.. sound.. very.. good..
->
-> The size being 0 is of course wrong, but perhaps more interestingly
-> the base address is a register within the GIC..
->
->> +			iommus =3D <&apps_smmu 0x1400 0x1>;
->
-> And this is a PCIe stream
->
-> But I see kodiak has the exact same setup..
->
-> After digging a little into the driver, that 'reg' is apparently
-> indeed consumed, as a base for PCI MSIs.. I feel like there should be
-> some better way to express this.. non-everyday setup
->
-> There's this commit message:
->
-> commit 00fd24089b8154ddf5b3e724e2c4c9974b9ba91e
-> Author: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-> Date:   Fri Apr 29 22:34:54 2022 +0530
->
->     dt: bindings: net: add bindings of WCN6750 for ath11k
->    =20
->     WCN6750 is the WLAN chip on Qualcomm Snapdragon SoC SC7280;
->     Though being a PCIe based solution, it is not attached to
->     the APSS processor (Application Processor SubSystem), it is
->     instead attached to another tiny processor called WPSS Q6
->     processor (Wireless Processor SubSystem) on the SC7280 MSM,
->     where the WLAN firmware runs, and it is the WLAN firmware
->     running on the Q6 processor which enumerates WCN6750, as a
->     result APPS processor would never know such a device being
->     present in the system and would not detect the WCN6750
->     hardware unless and otherwise WCN6750 is registered as a
->     platform device. This is the reason behind adding WCN6750
->     WLAN node in the device tree.
->    =20
->     Add WCN6750 wireless driver support, its based on ath11k driver.
->
-> Sorry to hijack this patch, but I am not comfortable with this binding
-> as-is..
->
-> Adding +Jeff in case he has any thoughts
+thanks for your patch!
 
-To be honest I find it a bit discouraging to get this relatively simple
-patch with existing bindings blocked. Yes, the bindings are probably bad
-(not that I can really judge) but sc7280/kodiak already uses them and
-it's functional, so I don't know what I would need to change.
+This approach is better than trying to extend pinctrl-single in my
+opinion, but it has a bit of road to cover.
 
-Re-designing the bindings and driver seems a bit overkill to get milos
-wifi upstream.
+On Fri, Feb 13, 2026 at 9:18=E2=80=AFAM Billy Tsai <billy_tsai@aspeedtech.c=
+om> wrote:
 
-Regards
-Luca
+> Add a Devicetree binding for a generic pin controller where pinmux and/or
+> pin configuration are represented as fixed-width fields packed
+> sequentially within shared registers.
+>
+> The binding targets controllers that are typically exposed as subnodes of
+> a syscon node and accessed via regmap-mmio through the parent.
+>
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+(...)
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - pinctrl-packed
+> +          - pinconf-packed
+
+Why do you need two? Can't you just use one, pinctrl-packed.
+
+> +  pinctrl-packed,function-mask:
+> +    description: Mask of the allowed register bits for a single pin.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+To me this could be static data in the driver but I guess the whole
+point is to do what pinctrl-single is doing and store all of this
+information in the device tree, because reasons.
+
+I guess the DT binding maintainers need to decide on this and
+also what to name it.
+
+> +  pinctrl-packed,gpio-range:
+> +    description: Optional list of pin base, nr pins & gpio function.
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      items:
+> +        - description: phandle of a gpio-range node
+> +        - description: pin base
+> +        - description: number of pins
+> +        - description: gpio function
+
+Just use the standard gpio-range.
+
+> +patternProperties:
+> +  '-pins(-[0-9]+)?$|-pin$':
+> +    type: object
+> +    additionalProperties: false
+> +    properties:
+> +      pinctrl-packed,pins:
+> +        description: Array of pin index and function selector pairs.
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+
+Just use pinmux =3D <...>; from pinmux-node.yaml
+(make sure to use the ref include.)
+
+> +      pinctrl-packed,bias-pullup:
+> +      pinctrl-packed,bias-pulldown:
+> +      pinctrl-packed,drive-strength:
+> +      pinctrl-packed,input-schmitt:
+> +      pinctrl-packed,input-schmitt-enable:
+> +      pinctrl-packed,low-power-mode:
+> +      pinctrl-packed,slew-rate:
+
+Just use the existing configs from
+pincfg-node.yaml and abstain from any new
+inventions here.
+
+Yours,
+Linus Walleij
 
