@@ -1,152 +1,167 @@
-Return-Path: <devicetree+bounces-265426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265427-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MPeLAZNSj2kMQQEAu9opvQ
-	(envelope-from <devicetree+bounces-265426-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:34:27 +0100
+	id gMk5BBNTj2kMQQEAu9opvQ
+	(envelope-from <devicetree+bounces-265427-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:36:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797A61382B4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:34:26 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C233F138345
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:36:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1030F30205FF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:34:25 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2BCDB300827F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 16:36:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BE9A25742F;
-	Fri, 13 Feb 2026 16:34:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 794A433CEAC;
+	Fri, 13 Feb 2026 16:36:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SjC4l5bc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bsNgMbjg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA528239E80;
-	Fri, 13 Feb 2026 16:34:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 609352848A0
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 16:36:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771000462; cv=none; b=p+gGx5CyjlVRRVXEHRolGw3mk83EnecM/Uf5ev/MtAEvpIZzMa+gIwIiaWMdG7+TGjIi3/sqUEpCeRc7SyfcNoWMXFvRb6f4q5mQXawUfuY+4qLrHVgkxOcmmdbx92lGFg+ODTZ4A0QrLsuJqM83ib5RWil8CuwEKX3Rl7Qvu4w=
+	t=1771000586; cv=none; b=YIUhKbu9rGoFk3cbx94FoqK45sqB8zc5gwAoV78mm2ehdjkT/Szzf25CfaifcG0WP0s52fHiFkaScV0Ex1SxqGFliHGMK+SL85jObD+hfVarvOHcTJp6A93eDw1X5PSjHSB902ldN3/PODxgaqzk6hBFMA+QvaYg1+CmCKNkyPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771000462; c=relaxed/simple;
-	bh=Kkdod7hb3K76yUSE/jsadmgTv+XGZsX6Vv91Exo4iA8=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Jow6GlUTC9+epoIf4E9IHsH3M3sbWhHEcqcm2dIm/ELV4RlBSUTof2mut4dBA0Per+p3VezzL9vFcwfcs6loOjDllt99BOG7l9Vk09wwRsYwekQIzy5dnMoVqB3D25rgnQmEn8z2YkBStg5tr0LiZ/bgHRzuNuiwmokY7t3FKi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SjC4l5bc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02280C116C6;
-	Fri, 13 Feb 2026 16:34:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771000461;
-	bh=Kkdod7hb3K76yUSE/jsadmgTv+XGZsX6Vv91Exo4iA8=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=SjC4l5bcc8O0QDk0Yk1Th4TuqtK6E11cY6V/R7j5e+GVXNRYWvojim8j4UWC8YLU5
-	 dpjpsnNjJaS02iHl3ZYrf1KIlDOusZsxgJhv4yOqiqK9jW5HIcWQNEGYJW62esVyga
-	 /807sI4pIQrEDWX6N9/aodoytKQ/CQ5+EmN+7dDEcKjqopnSFkS/4uVbe1pzTdYnMl
-	 05qabsf0UK+0XpI4Iux2tRu5dqFCd5w/Na6JPYt/CVRX1D9AgFDFG/X4kri+g1LdPs
-	 k+6wSWx4xRMbqlrQmWUIaRfJ3iv+G53iUUsJfK6Nplll0Kg0L2xaNHbu4WYHKHmqiA
-	 keZeDCIRW2j0g==
-Date: Fri, 13 Feb 2026 10:34:19 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1771000586; c=relaxed/simple;
+	bh=ytXLg8/CbpRgWrWXCiN2taAFgPcJw1vJq6zqC5DM7rM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nF+yVlzWmCgmbEN0q/kYfAVa8xML+7028rb0JAFLQQGShEs5Quo/jXXIN5ALlAVZoAWXpAIoW+A0zUlWH+TqXxObwmzxf3Zd5B+MYkd7aTPl28Dylt4UB9RF5wfbnpch3pPVnX8Jne0loK2TXf4vMRz0xUyvdGGsf+yUL5OY0js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bsNgMbjg; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2aad1bb5058so11588485ad.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 08:36:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771000585; x=1771605385; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0F5tQcgxERAB02uB01kJMGI3FPIwYeXfyKo+LVQoV10=;
+        b=bsNgMbjga9EiJsjxNqa4sUcCxh6T789XD9JwcjLtJFEAh2XwBDY71cBUeHueS+hK6K
+         t8VbPI5yy1sdgszjyVP+E4gna9BvegmB+5FUznppqvNR8B2bCni7fb9+Q+Xr+tF2YFbI
+         2W8qfoYkuzI99dFNGu4oLaxtYgUechDTMDW5gqtDY4daucd9KNV6XALdd9VKDw4Uxg5e
+         U2tK+9k57HLSLMlgQRMXg7tLuPxJ6UEbi5GkZT8hdD0UgQPy+MkYwA8Nf46wPnM6PHQt
+         ozhNra4UY3VbCgzmtsaxdgetItya3mgKcoiGuM02oo990bb5fk/SSV47aJ1twMJAFhMr
+         DM5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771000585; x=1771605385;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0F5tQcgxERAB02uB01kJMGI3FPIwYeXfyKo+LVQoV10=;
+        b=WcUrtmzvSDhSLE3CZQ72X+Pl3SKnr0BNHIeNLvwxUCyMzodxwyWB5d/A3UXSgO2I1c
+         H0K3VFNjgpXP9iVgzZLN18cSII/VJvCjmVAK9aDqV2MFdFU2rsQ8ajFsxqM0xnJ2gqzT
+         QA4IiPJKPyrLCNCj+ehOLoJR6vxL8/ZaY1qcwRYHzs1QevkobOtVSjxlu36dvt2wNzZO
+         yIL60RWBjFjzN8MM/9mpLh9bCgGAck9GgoWwlZLPzAKktFJ/ezmyOqs0w4Z6O/NPCu3j
+         /yw7bVM/QUqFZ51/Srsa9kAY/+e3Pt1oAHNZ2qb1AH4H+TQ+HYrzbnKSyOd2oFGZ8glc
+         rSXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVjGyf0q2ID2w00RhDniPnPHBbcoHM+yZdfIIyfnvalnJVF0CquHEnGGqKuYzjbbtKm4agiOI5lxGrb@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGobjLr12WMKOka36rso46FTE3pXnowJn+QQmeJvsWORPsyLsP
+	qiFPub8ITYz3AYB7PhYKLOdBhCF3BgHOEp4/g0bltUb0p/uxBDxcBZw/hDRu2g==
+X-Gm-Gg: AZuq6aJM/5mKDW+8MRi/ltW+E+BR1JEjh35q3bTmX/H4FKbgP+UQvnie7C7T0TD23eW
+	s3cfQSKvdWPh+P1pJBEN+r12bka9D6F7t4E4/hv7Pr8LnkDP9ZMjgP9clngH157qUd5EDAlEZ+w
+	jhA4wWCqZm4LdeA5xIHH3p1SvD7dDFJYH61W+rULR6f3GZSpVcrEL44tlYKesYk09v+URTcHlJb
+	9gfboWhAl6LP/+6yrANg5O0jflATz+PGksSg+zVYWb9zRAYspeK3tl6IgV4W3svPJSO3SZayNWK
+	EYpo2Z4ZkQWTtLJqMJ6LkPI3MmIY4DKGbDao8zd4auC/ciVW1wCJ2kNpS1oEhItFbWvKsEuJ6l7
+	GeyLDQlifpdmCo0FpkjeJPpqPAkiTg7pMFpDP/EUP5tr1TMq1PXJrPRb4enwWTPSW98sOYLougF
+	3GDuFtfVvwN4eVuwMcatoAnpFTS8Wkx+fWEuj5MNjBzig=
+X-Received: by 2002:a17:902:e787:b0:2aa:d11d:5c36 with SMTP id d9443c01a7336-2ab50598a38mr26413315ad.30.1771000584651;
+        Fri, 13 Feb 2026 08:36:24 -0800 (PST)
+Received: from [192.168.1.8] ([27.7.171.51])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ab2988bd4dsm85424595ad.38.2026.02.13.08.36.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Feb 2026 08:36:24 -0800 (PST)
+Message-ID: <f60156a6-58af-4548-9dc3-71c71b822343@gmail.com>
+Date: Fri, 13 Feb 2026 22:06:16 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Lars-Peter Clausen <lars@metafoo.de>, 
- Olivier Moysan <olivier.moysan@foss.st.com>, 
- Andy Shevchenko <andy@kernel.org>, linux-spi@vger.kernel.org, 
- Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- linux-iio@vger.kernel.org
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-In-Reply-To: <20260213144742.16394-5-antoniu.miclaus@analog.com>
-References: <20260213144742.16394-1-antoniu.miclaus@analog.com>
- <20260213144742.16394-5-antoniu.miclaus@analog.com>
-Message-Id: <177100045980.2534776.8079356391569945808.robh@kernel.org>
-Subject: Re: [PATCH v3 4/5] dt-bindings: iio: adc: ad4080: add AD4880
- support
+User-Agent: Mozilla Thunderbird
+Subject: Re: (subset) [PATCH v4 0/3] dt-bindings: phy: Convert TI OMAP control
+ and PIPE3 PHY to DT schema
+To: Vinod Koul <vkoul@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
+ <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>,
+ Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+ Roger Quadros <rogerq@ti.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+References: <20260123-ti-phy-v4-0-b557e2c46e6f@gmail.com>
+ <177021985530.133434.13436195442562231016.b4-ty@kernel.org>
+Content-Language: en-US
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+In-Reply-To: <177021985530.133434.13436195442562231016.b4-ty@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-265426-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265427-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 797A61382B4
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C233F138345
 X-Rspamd-Action: no action
 
 
-On Fri, 13 Feb 2026 16:47:36 +0200, Antoniu Miclaus wrote:
-> Add support for the AD4880, a dual-channel 20-bit 40MSPS SAR ADC
-> with integrated fully differential amplifiers (FDA).
+
+On 04-02-2026 21:14, Vinod Koul wrote:
 > 
-> The AD4880 has two independent ADC channels, each with its own SPI
-> configuration interface. This requires:
-> - Two entries in reg property for primary and secondary channel
->   chip selects
-> - Two io-backends entries for the two data channels
+> On Fri, 23 Jan 2026 15:39:01 +0000, Charan Pedumuru wrote:
+>> This series converts the old text-based DeviceTree bindings for TI OMAP
+>> Control PHY and TI PIPE3 PHY to modern JSON-schema (YAML) format.
+>>
+>>
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-> Changes in v3:
->   - Add items descriptions for io-backends entries
->   - Fix reg example format: reg = <0 1> -> reg = <0>, <1>
+> Applied, thanks!
 > 
->  .../bindings/iio/adc/adi,ad4080.yaml          | 54 ++++++++++++++++++-
->  1 file changed, 52 insertions(+), 2 deletions(-)
+> [2/3] dt-bindings: phy: ti,phy-usb3: convert to DT schema
+>       commit: 62c9ff8fc20d23c0dc36be1330734fdafb3e8585
+> [3/3] dt-bindings: phy: ti,control-phy-otghs: convert to DT schema
+>       commit: 7878306d182a1750583a325a29e5ccab9ce0235b
+
+Hi Vinod,
+
+You missed to apply the first patch which has DT node pattern changes and now this dtb check fails in linux-next as these YAML patches use the updated node pattern. I got a report of errors from kernel test robot.
+
 > 
+> Best regards,
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml: properties:io-backends: {'minItems': 1, 'maxItems': 2, 'items': [{'description': 'Backend for channel A (primary)'}, {'description': 'Backend for channel B (secondary)'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260213144742.16394-5-antoniu.miclaus@analog.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+Best Regards,
+Charan.
 
 
