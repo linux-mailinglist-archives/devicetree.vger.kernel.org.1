@@ -1,135 +1,131 @@
-Return-Path: <devicetree+bounces-265354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265355-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4OwUKPYjj2lNKAEAu9opvQ
-	(envelope-from <devicetree+bounces-265354-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:15:34 +0100
+	id AMptBH4kj2lNKAEAu9opvQ
+	(envelope-from <devicetree+bounces-265355-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:17:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17AED1363C2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:15:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEC3213641D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 14:17:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 87DA43068A22
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 13:15:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 935C53023515
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 13:16:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B11DD3570BA;
-	Fri, 13 Feb 2026 13:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0589CA5A;
+	Fri, 13 Feb 2026 13:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="dFmNtiI7"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="2lcMPkFV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com [209.85.218.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9840B35FF78
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 13:15:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4181434EEE1
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 13:16:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770988510; cv=none; b=i8kwBM787xLDKDkYm3QBYeSpmB0r7TIF6v6JclhpqeMJoIyK6Q/V2NbZ9t6981sStO89pu80b6vH/lRupcS/MFdVNUswVjMfaR4VZS/tDEnd8cAduwnm0Nx8BuDOS97daJjLZsMSikYPDUov6DZiPw1eriWxW2i2UTXQsorCYfY=
+	t=1770988611; cv=none; b=NvceGg3Ylp8qgkPLC12ILMaC7rf5oEj3+w1jm9Z51Hi7WCdEkn5Yuiz/FJEJeRkDGn8VEHSMIQ64fujca0f6k5FzGfYbAAhURtXcieQ35qdH5dAUlqAPh925b6s3fCJXJsdoexVSfkjI1u2lK8TZVSAwNPu1yawWWjJxUxG+fG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770988510; c=relaxed/simple;
-	bh=ydhmJSCIZaIH22AlYiY5zbtcSZF7dLVsHrUi82mpK0s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bPpZmvX177T0+6GIO6eKZG0J23INimJy/6d+oo5Aor3rsL4EBZXGbK0Lctww0aEt37SsAc7ae5tqBpGja1HVuvcipasVMz757N0hKSW6r9lKWO2/4L271fHH+mzj6fZY1KM4OqBoLpfhPXc/HlEgvYhaPddCrnNALWXDbW7MZMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=dFmNtiI7; arc=none smtp.client-ip=209.85.208.54
+	s=arc-20240116; t=1770988611; c=relaxed/simple;
+	bh=sLl6FMj5rcoJoJnJtPsIJyDKQD5EE4IZ2V8G73qLWwo=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=stI4KoHF5gP4cLG1DW28g6DulY4v7vk7F1xlI7RIqkMq1NxpGBNh9jrxyZ7IUfvTQzF0AMES5vh2lk/hrVpx/B1JVnecRuE52OARtVNL6lleus12XskcZ725hf0yYDjr6cAaO3IHCbo8p8oUG8lpIdfrq0lqigdqg4QSsTH0XT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=2lcMPkFV; arc=none smtp.client-ip=209.85.218.68
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-65a25c3a86eso1457384a12.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 05:15:08 -0800 (PST)
+Received: by mail-ej1-f68.google.com with SMTP id a640c23a62f3a-b88593aa4dcso102090266b.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 05:16:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1770988507; x=1771593307; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3T+zUpq9H0nLacgX2lpZL7d91Dtqet9InTc/kLd9coE=;
-        b=dFmNtiI7ELvJWH3nxqo6J7ffBEmbuOsti2NC4DVN3qNsAOCaNEy8dWKXFGObdOml84
-         gIYXP9z7zl+EUoSZM1w/QtX4hpYH2PDafshDf4ssMK/hEOyFEdRt1zsmBlSwm/7VUx0j
-         YdC543vXGg3qGBkXuseEuzFsg4BlWigaIfC0Oe0BqypCncyMLupWzN+5Vfa2Uz6yLKGf
-         9DgEj+/uEb7ytAc2C0bS9W085tjpgOvOs2vmxlvKyU/WS+b9BTcEyf7sLjsQKZE3ttBE
-         0vgaLIoDgc8xjiy1FPOo8DCLcNUEkTZnnVj8aQJXp0XBbupPusVLguwSTdn9Jk13/CU/
-         OuOw==
+        d=fairphone.com; s=fair; t=1770988609; x=1771593409; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yJBbVjH419c062Z3IzKiz9l8/ItT4jJ4UMp42HsCYlE=;
+        b=2lcMPkFV33UOPujXvQB8/qXtwhz7YdGEKbgOQVxXgH0d6ZNVOsIQhqQ4tvbikHLe/u
+         I0dMoFB+hukeRCXyUJGGyJvVbZYrdFSISeb/4JfoT0ChivOxfaq7u99fW/NYy2brNSpU
+         8++8YHsjFfuvYoDZBeui60rES3qHWfddE57a9pYK2H0yQHNNmIB90Uy5HXv3IUnDpS/1
+         OklOdaQZP4zeLXohClBbxo/0uqmYwMrpLDdsJEjmgUAovvSFDLIFB2xdnEvLocvaMRL1
+         CtiHa6I1n3QIIb8kwBETNtnmHipuzr79CnutUiysGcPCevEi22SyFUHN4kjsI7t3+EQS
+         I1IA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770988507; x=1771593307;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=3T+zUpq9H0nLacgX2lpZL7d91Dtqet9InTc/kLd9coE=;
-        b=Y39HKL9RMoM3U9ITPtYqpX60dQ2jewolMtW6BEaM6RbkSoIEzQoq4y0ZW9+67i7/6B
-         UKL4RvbMc10ZGijtz6tGkSNlT7z63W1+myG8fwV01wR/YqG0dFjjqO9GqjUA0psdb0Zl
-         8TOCVY5UEnMWTQEJPF+Npjn9A4osQaqAYrPBxaRqO3ngJk6Gn1bab9VYAgzr35h4hWwe
-         61gZHLts8/++f33XkhogNO7ITD6vsD9WKO1nUwPhs40Uqf6ODRrFsrFlCeSxa7zOtoQB
-         uRZfx57zwunfsTPzpl5zKYlwGJapNebL5d6UjJv9z2HiDj6UdVVH7jBC2anoky0uBFlx
-         BGow==
-X-Forwarded-Encrypted: i=1; AJvYcCUpDLM7TF72SOJ2R1Vgl9RIbxmoa2gcLQN8ct11DnrdxBw6eclytcepE0TNnzyB2OLowz6s9pN4/Ewk@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXROlFy8Vt9vMXaK85R9jMLMiqnE0zlTvI5Q7TTo5bSoJBGV9h
-	kZrIOswI/C5AS7TldBmuLhB0tWmSvObtIv3wzE6I6R+0LRQoVP8HkwO70sC4K8KWaJ4=
-X-Gm-Gg: AZuq6aKOKawgpIHBTCKcO5r44fJ15kwgoXKJ9RyRBLHrQjLuFxv61QZDHyIYnVLEpdz
-	5UyX7qr/PRXLCqRvH1trlT+BqmKD3ybtUKOluu2H7NNdSEsKUiiuLPM89lL+E0dYe7NLLr/TOZ+
-	M5LOdQZGuJm6+4DmRScjB7s+FO5OtRg8+0fkgIgFyE7YPfLORpHf5d4uOIlLf2UBV77jU11s5tF
-	Sf6tr5EsQezIUADLJfdaPy336W+/zjGFugEkq3OeZx0qGj199Z++Q1Dl8z8WkEeen7ydro+jnO2
-	9QNz5iBliwNkRL6Keyr1sL1Y8VnaBzhd671+SLCjVChu0gpThtKpxBJmnYmc4DAf4NecdE8Jl9Y
-	Ceo+iHNliP5QNxUfP4k8AfQXJKsV0A8hP/59+2LyHBgsQtEFtoTwWuXQrjpD8f3s5/iwiPu6Hzh
-	eMULDGwo1l3b6tyca8yXIwtAOII/+IXDMLzMY144rGBhBdrr5LJVpcZhgjjuZPVWpgMQYuqr+vI
-	BqI
-X-Received: by 2002:a05:6402:4445:b0:658:bd67:bc16 with SMTP id 4fb4d7f45d1cf-65bace362damr901167a12.20.1770988506996;
-        Fri, 13 Feb 2026 05:15:06 -0800 (PST)
-Received: from [172.16.240.99] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65bace3fc4esm674231a12.0.2026.02.13.05.15.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Feb 2026 05:15:06 -0800 (PST)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 13 Feb 2026 14:15:03 +0100
-Subject: [PATCH v3 3/3] arm64: dts: qcom: sm6350: Add CAMSS node
+        d=1e100.net; s=20230601; t=1770988609; x=1771593409;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yJBbVjH419c062Z3IzKiz9l8/ItT4jJ4UMp42HsCYlE=;
+        b=dJUH2gxOpaiTN3lG96dlXkhwRppQrBv0748Um9vIb1ma7PNgh1mMTbxX+VtiatXrpb
+         Z7Np22Z1lLn078v+JnvCN2lY+diNPHpdbfRa44xKr2S8cnAhKV8fc0H6E2MTktmhEQS4
+         Vwm/iuqI2TF5IAvWeZP6QQCTEBh/R3U87cNTvShQEnlni5LeT61WzMXjI/ugdZ1TMZc1
+         I8CTCJqgne6LKRJpqJdvzlql7cR3t8kOQHpEIGqdVGVgZ6WcEmQmRTCv2a7EO3EYqT0d
+         0v7FRKYklgOaBW0+U1NSvvAMQhe2EhGgYuHB1do8relMoXIOLEwYYO1jMRx9Jb9IdZkz
+         2MSA==
+X-Forwarded-Encrypted: i=1; AJvYcCU2wthqDs+qKdRjk9ashok++BJ90OF8/G2o7XHJErtmF0ZAnzzvl2hmpYK0mf9vh19rrqkiLJO1Q1zj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFr0BglUjbhTPezxJYAD3Au7C0I6N8vQsR0Yag8YusmZV4sqrn
+	ZMs0LuP0cI6Tm4P9Olr2quB1SF6nYiR3ALU/7W2+IkMBaqFO9prlzi3FlGXWR3dc1CY=
+X-Gm-Gg: AZuq6aKvNr1ixDXh6krWPcFU5x+tP7qcsjscwZ6lQDjFaVGLIu2u5q+Up0C1dDhW5Q+
+	A76L3t/B92bQfwbuZtlkPANXE8aMGEpUN3UM8MthYBY2nMErz5O6jW3kK0t7pjjWSmgwS/IHebt
+	RSGpmYrCWvD7dQuaDSNKwOCAatjQ5C7L1jltQCcjWrnlwEX51SavC+L1yODnye8bvyCLb+gqpSW
+	hg/6eruKsYuPptufb3tgrov6f5ObrOnOdL+wQo21JONJuwE1/kVNtKBYXdoP9sGV4EoWeuVhUze
+	/JOVkIWVR8rouPjsfaLz4zxrM5zbbLBJi+CAhb7i7cskI9YCBJPQ3JHwZfuNQpzbsbK4DK7xSsh
+	mVV0g2lerJnl5qR49UMwYmG2JWwjUDBTVnfklBwWoXpgguCBUOm/hiKaMqdjFUBZlCyaKDu7fzr
+	efKfk3NOjwgUYc65Cs8n7RAVyZ5wlFoQG+a4u8E5IL9CWdbnBmjIUVVIcUrzIeHIaGUBDx
+X-Received: by 2002:a17:906:6a16:b0:b83:b7c5:de2c with SMTP id a640c23a62f3a-b8fb41937e5mr107585766b.10.1770988608590;
+        Fri, 13 Feb 2026 05:16:48 -0800 (PST)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8f6ebd60edsm251679566b.41.2026.02.13.05.16.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Feb 2026 05:16:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260213-sm6350-camss-v3-3-30a845b0b7cc@fairphone.com>
-References: <20260213-sm6350-camss-v3-0-30a845b0b7cc@fairphone.com>
-In-Reply-To: <20260213-sm6350-camss-v3-0-30a845b0b7cc@fairphone.com>
-To: Bryan O'Donoghue <bod@kernel.org>, Robert Foss <rfoss@kernel.org>, 
- Todor Tomov <todor.too@gmail.com>, 
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770988501; l=7482;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=ydhmJSCIZaIH22AlYiY5zbtcSZF7dLVsHrUi82mpK0s=;
- b=RL7EdMIv+OMN80Kmw4Nf5DmJG6mHymFBALfSHtD/yo7ntH77Zgug+cQn//pCyoHG0+hTdPD6A
- /NOlgCzivb2CPcR79dceAklPuPy9H6cjQdigmKIHrCkG22eXg9ip9vQ
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 13 Feb 2026 14:16:47 +0100
+Message-Id: <DGDV2EMXHDS3.2377AQBNDDHAV@fairphone.com>
+Cc: "Bartosz Golaszewski" <brgl@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Loic Poulain"
+ <loic.poulain@oss.qualcomm.com>, "Robert Foss" <rfoss@kernel.org>, "Andi
+ Shyti" <andi.shyti@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>,
+ "Konrad Dybcio" <konradybcio@kernel.org>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH 2/4] dt-bindings: i2c: qcom-cci: Document Milos
+ compatible
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Krzysztof Kozlowski"
+ <krzk@kernel.org>, "Luca Weiss" <luca.weiss@fairphone.com>, "Dmitry
+ Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260116-milos-cci-v1-0-28e01128da9c@fairphone.com>
+ <20260116-milos-cci-v1-2-28e01128da9c@fairphone.com>
+ <20260117-obedient-galago-from-eldorado-8e0ba4@quoll>
+ <cb2430f2-8601-4c72-af6b-10f1ff16c188@oss.qualcomm.com>
+In-Reply-To: <cb2430f2-8601-4c72-af6b-10f1ff16c188@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
+	MV_CASE(0.50)[];
 	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265354-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,linaro.org];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-265355-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -139,263 +135,99 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.1:email,fairphone.com:mid,fairphone.com:dkim,fairphone.com:email,0.0.0.3:email,0.0.0.2:email,0.0.0.0:email]
-X-Rspamd-Queue-Id: 17AED1363C2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fairphone.com:mid,fairphone.com:dkim,fairphone.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: AEC3213641D
 X-Rspamd-Action: no action
 
-Add a node for the CAMSS on the SM6350 SoC.
+Hi all,
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 233 +++++++++++++++++++++++++++++++++++
- 1 file changed, 233 insertions(+)
+On Tue Jan 20, 2026 at 2:18 PM CET, Konrad Dybcio wrote:
+> On 1/17/26 12:54 PM, Krzysztof Kozlowski wrote:
+>> On Fri, Jan 16, 2026 at 02:38:56PM +0100, Luca Weiss wrote:
+>>> Add Milos compatible for the CAMSS CCI interfaces.
+>>>
+>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>> ---
+>>>  .../devicetree/bindings/i2c/qcom,i2c-cci.yaml          | 18 ++++++++++=
+++++++++
+>>>  1 file changed, 18 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/=
+Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+>>> index a3fe1eea6aec..c57d81258fba 100644
+>>> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+>>> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+>>> @@ -27,6 +27,7 @@ properties:
+>>>        - items:
+>>>            - enum:
+>>>                - qcom,kaanapali-cci
+>>> +              - qcom,milos-cci
+>>>                - qcom,qcm2290-cci
+>>>                - qcom,sa8775p-cci
+>>>                - qcom,sc7280-cci
+>>> @@ -263,6 +264,23 @@ allOf:
+>>>              - const: cpas_ahb
+>>>              - const: cci
+>>> =20
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - qcom,milos-cci
+>>> +    then:
+>>> +      properties:
+>>> +        clocks:
+>>> +          minItems: 3
+>>> +          maxItems: 3
+>>> +        clock-names:
+>>> +          items:
+>>> +            - const: soc_ahb
+>>> +            - const: cpas_ahb
+>>> +            - const: cci
+>>=20
+>> Same comments as other discussion these days - I guess that soc_ahb
+>> serves the same purpose as camnoc_axi, so this is just last entri in the
+>> if:then: blocks.
+>>=20
+>> I really find this binding terrible - around six names for AHB - so I do
+>> not want another combination...
+>
+> I dug up the CCI doc, it talks about the CCI having a CC_CCI_CLK clock ("=
+cci"
+> here) and a CC_PBUS_CLK (AHB interface to the rest of the SoC).
+>
+> The CAMSS TOP doc (for Milos specifically, but I would assume there's a
+> pattern) says that for access to CCI_0, I need to enable CAM_CC_CPAS_AHB_=
+CLK
+> and CAM_CC_CCI_0_CLK. CPAS is a wrapper inside CAMSS that contains most o=
+f
+> the programmable IPs on there (notably not the CSIPHYs, at least not on t=
+his
+> platform)
+>
+> It further mentions that GCC_SOC_AHB_CLK is required for *any* register
+> access within CAMSS. Perhaps it sits right in front of the xNoC-to-CAMNoC
+> interface.
+>
+> This only enforces my imagination of CAMSS being a fully contained "bus"
+> (perhaps somewhat like AxNOC on 8996 represented with a simple-pm-bus)..
+>
+> +Dmitry, myself and a number of our colleagues were deliberating how to
+> best represent the hardware going forward and I think we at some point wa=
+ved
+> the idea of putting every camera subdevice under a "camss: bus@ {}"-type =
+node,
+> which would hold the reference to the TITAN_TOP_GDSC. This seems fitting =
+for
+> housing the SOC_AHB clock as well and therefore concluding this discussio=
+n.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index 9f9b9f9af0da..07887a07644f 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -2161,6 +2161,239 @@ cci1_i2c0: i2c-bus@0 {
- 			/* SM6350 seems to have cci1_i2c1 on gpio2 & gpio3 but unused downstream */
- 		};
- 
-+		camss: isp@acb3000 {
-+			compatible = "qcom,sm6350-camss";
-+
-+			reg = <0x0 0x0acb3000 0x0 0x1000>,
-+			      <0x0 0x0acba000 0x0 0x1000>,
-+			      <0x0 0x0acc1000 0x0 0x1000>,
-+			      <0x0 0x0acc8000 0x0 0x1000>,
-+			      <0x0 0x0ac65000 0x0 0x1000>,
-+			      <0x0 0x0ac66000 0x0 0x1000>,
-+			      <0x0 0x0ac67000 0x0 0x1000>,
-+			      <0x0 0x0ac68000 0x0 0x1000>,
-+			      <0x0 0x0acaf000 0x0 0x4000>,
-+			      <0x0 0x0acb6000 0x0 0x4000>,
-+			      <0x0 0x0acbd000 0x0 0x4000>,
-+			      <0x0 0x0acc4000 0x0 0x4000>,
-+			      <0x0 0x0ac18000 0x0 0x3000>,
-+			      <0x0 0x0ac00000 0x0 0x6000>,
-+			      <0x0 0x0ac10000 0x0 0x8000>,
-+			      <0x0 0x0ac6f000 0x0 0x8000>,
-+			      <0x0 0x0ac42000 0x0 0x4600>,
-+			      <0x0 0x01fc0000 0x0 0x40000>,
-+			      <0x0 0x0ac48000 0x0 0x1000>,
-+			      <0x0 0x0ac40000 0x0 0x1000>,
-+			      <0x0 0x0ac87000 0x0 0xa000>,
-+			      <0x0 0x0ac52000 0x0 0x4000>,
-+			      <0x0 0x0ac4e000 0x0 0x4000>,
-+			      <0x0 0x0ac6b000 0x0 0xa00>;
-+			reg-names = "csid0",
-+				    "csid1",
-+				    "csid2",
-+				    "csid_lite",
-+				    "csiphy0",
-+				    "csiphy1",
-+				    "csiphy2",
-+				    "csiphy3",
-+				    "vfe0",
-+				    "vfe1",
-+				    "vfe2",
-+				    "vfe_lite",
-+				    "a5_csr",
-+				    "a5_qgic",
-+				    "a5_sierra",
-+				    "bps",
-+				    "camnoc",
-+				    "core_top_csr_tcsr",
-+				    "cpas_cdm",
-+				    "cpas_top",
-+				    "ipe",
-+				    "jpeg_dma",
-+				    "jpeg_enc",
-+				    "lrme";
-+
-+			clocks = <&gcc GCC_CAMERA_AXI_CLK>,
-+				 <&camcc CAMCC_SOC_AHB_CLK>,
-+				 <&camcc CAMCC_CAMNOC_AXI_CLK>,
-+				 <&camcc CAMCC_CORE_AHB_CLK>,
-+				 <&camcc CAMCC_CPAS_AHB_CLK>,
-+				 <&camcc CAMCC_CSIPHY0_CLK>,
-+				 <&camcc CAMCC_CSI0PHYTIMER_CLK>,
-+				 <&camcc CAMCC_CSIPHY1_CLK>,
-+				 <&camcc CAMCC_CSI1PHYTIMER_CLK>,
-+				 <&camcc CAMCC_CSIPHY2_CLK>,
-+				 <&camcc CAMCC_CSI2PHYTIMER_CLK>,
-+				 <&camcc CAMCC_CSIPHY3_CLK>,
-+				 <&camcc CAMCC_CSI3PHYTIMER_CLK>,
-+				 <&camcc CAMCC_IFE_0_AXI_CLK>,
-+				 <&camcc CAMCC_IFE_0_CLK>,
-+				 <&camcc CAMCC_IFE_0_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_0_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_1_AXI_CLK>,
-+				 <&camcc CAMCC_IFE_1_CLK>,
-+				 <&camcc CAMCC_IFE_1_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_1_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_2_AXI_CLK>,
-+				 <&camcc CAMCC_IFE_2_CLK>,
-+				 <&camcc CAMCC_IFE_2_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_2_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_CSID_CLK>,
-+				 <&camcc CAMCC_BPS_CLK>,
-+				 <&camcc CAMCC_BPS_AHB_CLK>,
-+				 <&camcc CAMCC_BPS_AREG_CLK>,
-+				 <&camcc CAMCC_BPS_AXI_CLK>,
-+				 <&camcc CAMCC_ICP_CLK>,
-+				 <&camcc CAMCC_IPE_0_CLK>,
-+				 <&camcc CAMCC_IPE_0_AHB_CLK>,
-+				 <&camcc CAMCC_IPE_0_AREG_CLK>,
-+				 <&camcc CAMCC_IPE_0_AXI_CLK>,
-+				 <&camcc CAMCC_JPEG_CLK>,
-+				 <&camcc CAMCC_LRME_CLK>;
-+			clock-names = "cam_axi",
-+				      "soc_ahb",
-+				      "camnoc_axi",
-+				      "core_ahb",
-+				      "cpas_ahb",
-+				      "csiphy0",
-+				      "csiphy0_timer",
-+				      "csiphy1",
-+				      "csiphy1_timer",
-+				      "csiphy2",
-+				      "csiphy2_timer",
-+				      "csiphy3",
-+				      "csiphy3_timer",
-+				      "vfe0_axi",
-+				      "vfe0",
-+				      "vfe0_cphy_rx",
-+				      "vfe0_csid",
-+				      "vfe1_axi",
-+				      "vfe1",
-+				      "vfe1_cphy_rx",
-+				      "vfe1_csid",
-+				      "vfe2_axi",
-+				      "vfe2",
-+				      "vfe2_cphy_rx",
-+				      "vfe2_csid",
-+				      "vfe_lite",
-+				      "vfe_lite_cphy_rx",
-+				      "vfe_lite_csid",
-+				      "bps",
-+				      "bps_ahb",
-+				      "bps_areg",
-+				      "bps_axi",
-+				      "icp",
-+				      "ipe0",
-+				      "ipe0_ahb",
-+				      "ipe0_areg",
-+				      "ipe0_axi",
-+				      "jpeg",
-+				      "lrme";
-+
-+			interrupts = <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 717 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 473 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 461 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 718 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 472 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 463 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 459 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 475 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 474 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 476 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "csid0",
-+					  "csid1",
-+					  "csid2",
-+					  "csid_lite",
-+					  "csiphy0",
-+					  "csiphy1",
-+					  "csiphy2",
-+					  "csiphy3",
-+					  "vfe0",
-+					  "vfe1",
-+					  "vfe2",
-+					  "vfe_lite",
-+					  "a5",
-+					  "cpas",
-+					  "cpas_cdm",
-+					  "jpeg_dma",
-+					  "jpeg_enc",
-+					  "lrme";
-+
-+			interconnects = <&gem_noc MASTER_AMPSS_M0 QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_CAMERA_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&mmss_noc MASTER_CAMNOC_HF QCOM_ICC_TAG_ALWAYS
-+					 &clk_virt SLAVE_EBI_CH0 QCOM_ICC_TAG_ALWAYS>,
-+					<&mmss_noc MASTER_CAMNOC_SF QCOM_ICC_TAG_ALWAYS
-+					 &clk_virt SLAVE_EBI_CH0 QCOM_ICC_TAG_ALWAYS>,
-+					<&mmss_noc MASTER_CAMNOC_ICP QCOM_ICC_TAG_ALWAYS
-+					 &clk_virt SLAVE_EBI_CH0 QCOM_ICC_TAG_ALWAYS>;
-+			interconnect-names = "ahb",
-+					     "hf_mnoc",
-+					     "sf_mnoc",
-+					     "sf_icp_mnoc";
-+
-+			iommus = <&apps_smmu 0x820 0xc0>,
-+				 <&apps_smmu 0x840 0x0>,
-+				 <&apps_smmu 0x860 0xc0>,
-+				 <&apps_smmu 0x880 0x0>,
-+				 <&apps_smmu 0xc40 0x20>,
-+				 <&apps_smmu 0xc60 0x20>,
-+				 <&apps_smmu 0xc80 0x0>,
-+				 <&apps_smmu 0xca2 0x0>,
-+				 <&apps_smmu 0xcc0 0x20>,
-+				 <&apps_smmu 0xce0 0x20>,
-+				 <&apps_smmu 0xd00 0x20>,
-+				 <&apps_smmu 0xd20 0x20>,
-+				 <&apps_smmu 0xd40 0x20>,
-+				 <&apps_smmu 0xd60 0x20>;
-+
-+			power-domains = <&camcc BPS_GDSC>,
-+					<&camcc IFE_0_GDSC>,
-+					<&camcc IFE_1_GDSC>,
-+					<&camcc IFE_2_GDSC>,
-+					<&camcc IPE_0_GDSC>,
-+					<&camcc TITAN_TOP_GDSC>;
-+			power-domain-names = "bps",
-+					     "ife0",
-+					     "ife1",
-+					     "ife2",
-+					     "ipe",
-+					     "top";
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+				};
-+			};
-+		};
-+
- 		camcc: clock-controller@ad00000 {
- 			compatible = "qcom,sm6350-camcc";
- 			reg = <0x0 0x0ad00000 0x0 0x16000>;
+How can we continue here? What change can I do to unblock this? I can't
+tell whether soc_ahb =3D=3D camnoc_axi for this platform so I need some hel=
+p
+here.
 
--- 
-2.53.0
-
+Regards
+Luca
 
