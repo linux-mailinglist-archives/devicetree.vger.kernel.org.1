@@ -1,162 +1,270 @@
-Return-Path: <devicetree+bounces-265289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265290-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uHoqKh7fjmluFgEAu9opvQ
-	(envelope-from <devicetree+bounces-265289-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:21:50 +0100
+	id UJ12HkbfjmluFgEAu9opvQ
+	(envelope-from <devicetree+bounces-265290-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:22:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 505C7133F55
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:21:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D44C3133F6C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 09:22:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CE96930479C2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:21:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C23C2300D450
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 08:21:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76373161A4;
-	Fri, 13 Feb 2026 08:21:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49E36313535;
+	Fri, 13 Feb 2026 08:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PjY2ZIDh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kKaclgpJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55BE7313273;
-	Fri, 13 Feb 2026 08:21:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2506A27F005;
+	Fri, 13 Feb 2026 08:21:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770970879; cv=none; b=ZogoIBtPzo0zEt1R8zdlrvtYZP0VkzXeqQgb1AdjjtsiiiKFvdZDa6B+7GG21G0mVLHA9cC7ObeF0DfbU0QPXtpMQsjz/uW5niaByIksRKwl/haZkRtxvlF8RjxXMm6i+bfsmrg/fr++qPCaJJHiidhcI3YXcQ2uOjlH4dwF4JU=
+	t=1770970899; cv=none; b=C3/QDAn9gF1ViFJ/FkmsUrgPoy5UOh4o8r9mU9O/q7nYdNKE7xWAZ+wy4p1OTTW0BBBVN0J8cTJ90Dnzoebjr33+nqgpHgp07L1vKDcagcZ8LX3tcxcHRRCEDFdW3H4n78LC0rYtPib9lDrO6G34rFOe2hzeSG0QLaqqa6gZ+xU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770970879; c=relaxed/simple;
-	bh=pStBcQI45vcwvpK02rcJ+orFTmkPb+9dA3UTS0rvqzQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=qo5Vars+SgjNHuGL/0gwx9YWP+x600S+cjqkSjVbtcvycrvoYEhoPdDgkdxoNS5Zez/IDDXTh9QF7TEGMBUs9RBn3BD6d6Q/PPSXL7H0ssiYpy9V3smH8P9HhTLPBSjYiAZVHtdKg+3/ZzzSjpsFf4qGsznFxEoayVT3Xodah6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=PjY2ZIDh; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 9CFCDC237F7;
-	Fri, 13 Feb 2026 08:21:25 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id EA7FA606CC;
-	Fri, 13 Feb 2026 08:21:15 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A8D0D10368DA6;
-	Fri, 13 Feb 2026 09:21:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1770970874; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=2Syg4XtkVjAlgOYhpuM1HSgS7vTX5OxBQsvPxk928Fs=;
-	b=PjY2ZIDhEBVK0E85C+U9cRH+OvmQJGP0B+KnH1LHllT4Lngr5Wl27NJxYSiSTQ5nN+SoYf
-	GcTxOfHZSsPKN3eJGc/v8tD6Ke1ROsZT10nL4111oGYSAg1TcVy1tMKILtazu1I5iB7EYi
-	l8uIxz+lDLJRiZoRVl28pcR6QBkQ+nBKCa5L+oLjHFQqlAx5bgn1CUz/ecx1VU8Q2sUHHM
-	G4jtLcO0lIhmoLdQKksb7us3tT+4fcceECMSI3LyWrKR2MIbn9xu7K8G3p9jx8hYd/g6b/
-	AxEPe6pvJjNc6Ddh0oNleYecvMupvW0Ed7X/BKIdPKMF/vj1CnukoMS+YMLtNw==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Santhosh Kumar K <s-k6@ti.com>
-Cc: <broonie@kernel.org>,  <robh@kernel.org>,  <krzk+dt@kernel.org>,
-  <conor+dt@kernel.org>,  <richard@nod.at>,  <vigneshr@ti.com>,
-  <tudor.ambarus@linaro.org>,  <pratyush@kernel.org>,  <mwalle@kernel.org>,
-  <linux-spi@vger.kernel.org>,  <devicetree@vger.kernel.org>,
-  <linux-kernel@vger.kernel.org>,  <linux-mtd@lists.infradead.org>,
-  <praneeth@ti.com>,  <u-kumar1@ti.com>,  <p-mantena@ti.com>,
-  <a-dutta@ti.com>
-Subject: Re: [RFC PATCH v2 11/12] spi: cadence-quadspi: restrict PHY
- frequency to tuned operations
-In-Reply-To: <fdcb19ff-c949-4538-8819-88720e514f04@ti.com> (Santhosh Kumar
-	K.'s message of "Sat, 7 Feb 2026 00:57:04 +0530")
-References: <20260113141617.1905039-1-s-k6@ti.com>
-	<20260113141617.1905039-12-s-k6@ti.com> <87zf5nf5g1.fsf@bootlin.com>
-	<fdcb19ff-c949-4538-8819-88720e514f04@ti.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Fri, 13 Feb 2026 09:21:11 +0100
-Message-ID: <874inlxde0.fsf@bootlin.com>
+	s=arc-20240116; t=1770970899; c=relaxed/simple;
+	bh=Z5PhnKVNT+CKs2AEO0dXnHGG+26A6uAvZNtL9tY8HW4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ElId3aV3upBTIq9fn43buxoy1nm2WcpmaPsnDmCCMxwT3LrMv126ykNV0nAxKxIne30nym3ctN8s67nMswLmJmS6eKKzjtBve2ch2gShZ6B5Y9BpDJzrcBGwrNqcZARrfRqzMkgibaJQGMmYZxksrLjOCxswFiJX7VPKRMrYVs0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kKaclgpJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25241C116C6;
+	Fri, 13 Feb 2026 08:21:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770970898;
+	bh=Z5PhnKVNT+CKs2AEO0dXnHGG+26A6uAvZNtL9tY8HW4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kKaclgpJ9xy6XAIMl77qtXz/wKzdxBSflmnUiHGZpefGAxyrUEpJsFVXQWKIcHX5K
+	 dNp97fIlGu4XohPO/UbJGPAoK6xRyIUrjKbg23s3iluWw65IFWRpftxc2J7M1asnUP
+	 71YzBt5Fe2uGmdk3uccA6nkZQbcVZ9Y0b3wmPErwkFZTOQCxIqldM8GNwLOcwsbS7f
+	 7m1Off2kAEClqYs3EZbTkhvYmpNsfU4jMLT+6R3WFFL/liUneGWdCjwirdeKEt/79U
+	 x9UtRzj3leD5S9tR9+RpyIyzKEF8/XTVSRlrcP7Ot8V/P2I7fNIX9Htsli5oW//91W
+	 EWcs9Vj1t+m+Q==
+Message-ID: <7ac8c937-61b7-41e3-a4f7-b3e4256e727a@kernel.org>
+Date: Fri, 13 Feb 2026 09:21:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] gpio: aggregator: add gpio-aggregator DT
+ compatible
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+ Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>,
+ linux-gpio@vger.kernel.org, Linus Walleij <linusw@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alexander Stein <linux@ew.tq-group.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Herve Codina <herve.codina@bootlin.com>
+References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
+ <20260211081355.3028947-2-james.hilliard1@gmail.com>
+ <CAMRc=MfgoKmsNAmn3rO2jDL-ZArMX2Jh-n4SnV6rpzRY3KSwuA@mail.gmail.com>
+ <34a9b531-4f53-47ee-861e-1b18ff1a5752@kernel.org>
+ <CAMRc=MfwQ8J7eT_geEf7Kj230SOvmO-LDHz9a_YgfRY-QB5V8w@mail.gmail.com>
+ <20260211214708.GA3947691-robh@kernel.org>
+ <CADvTj4p-zHMrXW+GJstB2sKS-7Wij98JNJGoiPiYmaP5RHhNQg@mail.gmail.com>
+ <9afa52c1-b7de-4ccb-9114-a142567d21af@kernel.org>
+ <CADvTj4pmAXo+KUMyB0=+x3HRdUdUq=baj_pnoa44oxnugZuTOg@mail.gmail.com>
+ <89c0dd51-fdd5-4368-b5f5-615143ffd166@kernel.org>
+ <CADvTj4rhn32T=AOqq8boK6r0JXzV5oZ+CPWBEejLrUpP1771zA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CADvTj4rhn32T=AOqq8boK6r0JXzV5oZ+CPWBEejLrUpP1771zA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265289-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-265290-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 505C7133F55
+X-Rspamd-Queue-Id: D44C3133F6C
 X-Rspamd-Action: no action
 
-On 07/02/2026 at 00:57:04 +0530, Santhosh Kumar K <s-k6@ti.com> wrote:
+On 13/02/2026 09:02, James Hilliard wrote:
+> On Fri, Feb 13, 2026 at 12:31 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 12/02/2026 20:16, James Hilliard wrote:
+>>> On Thu, Feb 12, 2026 at 12:18 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>>
+>>>> On 11/02/2026 22:49, James Hilliard wrote:
+>>>>>>>>>
+>>>>>>>>> Regardless of the DT bindings - this change is perfectly fine. We do
+>>>>>>>>
+>>>>>>>> You cannot have compatible without DT bindings, so this alone is not
+>>>>>>>> "perfectly fine". Maybe you wanted platform_device_id entry for
+>>>>>>>> ACPI/legacy/MFD devices?
+>>>>>>>>
+>>>>>>>
+>>>>>>> Sure you can, you just can't put it into upstream devicetree sources.
+>>>>>>> We have had a compatible for gpio-sim for testing purposes for years.
+>>>>>>> Why would it be illegal to enable matching of platform drivers over DT
+>>>>>>> for testing purposes?
+>>>>>>
+>>>>>> The primary issue is undocumented ones show up in 'make
+>>>>>> dt_compatible_check'. I would like that to be warning free.
+>>>>>
+>>>>> Would adding it here make sense?
+>>>>> https://github.com/torvalds/linux/blob/v6.19/Documentation/devicetree/bindings/incomplete-devices.yaml#L243-L245
+>>>>
+>>>> What would you like to achieve with that? The binding patch did not have
+>>>> rationale why do we want it and here is the same question - what sort of
+>>>> problem is being solved by adding it to incomplete (so wrong) devices?
+>>>
+>>> See details for what I'm trying to accomplish with gpio-aggregator:
+>>> https://lore.kernel.org/all/CADvTj4oBtO0Yhib1rE8QQwgtJvy-x_hK46C63mjVAydtxHOV8g@mail.gmail.com/
+>>
+>> I don't think that putting it into incomplete-devices would help you. I
+>> assume you read the binding... You still could not use that compatible
+>> in any upstreamable DTS code, even if this is only an overlay. You would
+>> have warnings...
+>>
+>>>
+>>> I'm basically trying to use it for the reasons described here:
+>>> https://bootlin.com/blog/gpio-aggregator-a-virtual-gpio-chip/
+>>>
+>>> Is there a different device tree mechanism that can be used to
+>>> name individual gpio lines on a gpiochip without having to name
+>>> all of them for non-hog lines?
+>>>
+>>> I'm confused why a "gpio-delay" compatible is allowed but one
+>>> without the delay param is not?
+>>>
+>>> Or is the issue just with the name of the compatible I used being
+>>> called "gpio-aggregator"?
+>>
+>> No, the issue is that there is no hardware you are trying represent in DTS.
+> 
+> I'm trying to represent the physical board GPIO pin connections in
+> DTS...so representing hardware is exactly what I'm trying to do AFAIU.
 
-> On 05/02/26 23:17, Miquel Raynal wrote:
->> Hi Santhosh,
->>=20
->>> +	/*
->>> +	 * PHY tuning allows high-frequency operation only for calibrated
->>> +	 * commands. Uncalibrated operations use safe non-PHY frequency to
->>> +	 * avoid timing violations.
->>> +	 */
->>> +	if (cqspi->ddata->execute_tuning && f_pdata->use_phy &&
->>> +	    (cqspi_op_matches_tuned(op, &f_pdata->phy_read_op) ||
->>> +	     cqspi_op_matches_tuned(op, &f_pdata->phy_write_op))) {
->>> +		cqspi_configure(f_pdata, op->max_freq);
->>> +	} else if (cqspi->ddata->execute_tuning) {
->>> +		/* Use safe frequency for untuned operations */
->>> +		cqspi_configure(f_pdata, f_pdata->non_phy_clk_rate);
->>> +	} else {
->>> +		/* No tuning support, always use requested frequency */
->>> +		cqspi_configure(f_pdata, op->max_freq);
->>> +	}
->> Shouldn't we handle this at the core level? We know what kind of
->> operation pattern we provided, so it is easy to set the correct
->> frequency in the operation structure.
->> Can you please make this happen? Perhaps you can return the operation
->> frequency once the calibration is successful (in the read and write op
->> templates maybe?) so this can be picked up by the core and used for the
->> following operations. This way the controller driver no longer needs to
->> check if the operation has been tuned or not, it can just look at the
->> frequency. When using the highest frequency, PHY tuning must be
->> used/enabled, otherwise not.
->
-> No, Miquel, this may not be correct. There can be cases where an
-> operation does not require tuning but still can run at maximum
-> frequency (166 MHz, for instance).
 
-This is currently not the case. Currently you tune for one or two ops
-(read/write) and you enable PHY tuning only on these. Do you plan on
-adding such a feature? If not, I would not bother with this now.
+Sure, then please show me some sort of picture of the board/circuit or
+piece of schematics with visible aggregator, if you claim this is the
+hardware you represent.
 
-> In such scenarios, simply setting
-> op->max_freq to the maximum frequency value and deciding whether to
-> enable tuning based on an op->max_freq comparison would not be
-> sufficient.
+You can also (as exception) send it to me in private, without leaking to
+mailing list.
 
-If there are such cases, can they be listed? I am sorry but I fail to
-see where this would not work. Any examples to share?
+> 
+>>
+>>>
+>>>> This is not a pure virtual device, but for use with actual hardware.
+>>>>
+>>>> Nacked-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>>>
+>>> I'm trying to use this with actual hardware, I just called it "virtual"
+>>> because that's how it was described in the bootlin blog post.
+>>>
+>>> I'm confused about what the issue is here as "gpio-delay" is also
+>>> a virtual device in the same way.
+>>
+>> gpio-delay IS NOT a virtual device. You can even touch it. Can I touch
+>> your gpio-aggregator?
+> 
+> Sure I guess, the gpio-aggregator would be used to say define the
+> physical GPIO lines for exposed peripheral connectors in my case.
+> 
+>>
+>>>
+>>>> Well, it is a virtual device in that there's no actual "aggregator"
+>>>> device on the board. It virtually aggregates GPIOs into a separate
+>>>> chip for user's convenience. While there's no such device as a
+>>>> gpio-aggregator - and so we must not put it into bindings nor into
+>>>> mainline devicetree sources - having a compatible matching in the
+>>>> driver is perfectly fine IMO. Just like gpio-sim.
+>>>
+>>> There's no such "gpio-delay" device either right? I'm confused
+>>
+>> There is.
+> 
+> I'm not really seeing the difference, both are used to describe
+> physical circuit layouts, the only difference is a delay configuration
+> AFAIU.
 
-Thanks,
-Miqu=C3=A8l
+I explained you the difference, so again, can you touch gpio-delay? Yes.
+
+Can you touch gpio-aggregator? No (that's my claim, but I wait for
+picture of the circuit I can touch).
+
+> 
+> Should the compatible be named something like "gpio-connector" or
+> something else to indicate it's for describing physical connections.
+
+Rob and Geert already pointed you towards the connector work and this
+might solve your case.
+
+Best regards,
+Krzysztof
 
