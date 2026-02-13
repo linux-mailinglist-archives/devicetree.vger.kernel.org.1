@@ -1,486 +1,410 @@
-Return-Path: <devicetree+bounces-265246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265248-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kBBdIHyvjmkzDwEAu9opvQ
-	(envelope-from <devicetree+bounces-265246-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 05:58:36 +0100
+	id KNxxKumyjmmvDwEAu9opvQ
+	(envelope-from <devicetree+bounces-265248-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 06:13:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BD7F132EBC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 05:58:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD385132F18
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 06:13:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E2FF7305CF4F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 04:58:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D225B305E324
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 05:13:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33FB525487B;
-	Fri, 13 Feb 2026 04:58:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B58C425783A;
+	Fri, 13 Feb 2026 05:13:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LDUlBCqf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e7uQYuz0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f169.google.com (mail-dy1-f169.google.com [74.125.82.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81DF92505B2
-	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 04:58:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CEBB1A9F94;
+	Fri, 13 Feb 2026 05:13:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1770958713; cv=none; b=IeLpo+5UPPwxaTRlFGzT5mSgKG8f2hLtrOe2ffCing6RIP+1QCvf3fAeuGIAaNj2dIJWIccpeUO4utfL2ppsfjzTUlk+kKiumiviGHD4/Ay+vkyUgGA0yOuxC1ObLmJMLsaCcVOnPSpB4DWVHrD/a1ZQku69X8mrqhtR7UIH2nQ=
+	t=1770959588; cv=none; b=IkOtFz0p1/QDS9/4n7tw0yuewi50bM/gUa5aNgfHFkhmnJ1gFFMkg9ejNHi7QDgBFBF39K5ZrIdiWgEdK/d0m+xa+4snleimUnmocaaj6QCwwuIp0nve0hsH1Vd3WcN/ibZpxp5GYyqaIdprGlPkTPaBFspKe8rQsS9uhyiHf0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1770958713; c=relaxed/simple;
-	bh=eRvFQXt0bkK7pDKSapaD6W78pFPmc8Voh9Ptsr0FL6E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DjQEmQYB1F/CcmaYBW2MuS6wY2AVsdrte8FYEG0Ir2f/uDPw2uaC79+iwoytMVoQM/uakWRz4GdcYMtdNSGD+y9Oc5I9JoQDVlX7mWW7PCskO8MYTh/zWSKMrDAjml2+mSSrBq488poOjsVvlxn60XAapv8sfL0TH9z0DB51R0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LDUlBCqf; arc=none smtp.client-ip=74.125.82.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f169.google.com with SMTP id 5a478bee46e88-2b740872a01so1039510eec.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Feb 2026 20:58:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1770958710; x=1771563510; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=iGoHd6Wwp0UoOk5RmQ7t22wxxGbD4/6f+sXmlD85vTI=;
-        b=LDUlBCqfaXoYprRmNmNTuJxgLFyFLWLujRXyBRLqMziRH4X5gwSHlmVZG2Csrh0sr3
-         voEav7JvKWOwMroAzaw8Lqw39SnrlK3ys6BauWNPuh3SwpUOrbKoMH2DcNrGnUn9lr3y
-         UeO6MekMjR3eCVp79662bNBZ+YrufCGoNfVVuMYXp/J44yfuJC9uxXkha0mLERFr7P8t
-         OTggAerC5+wne52mlvo9b487eXHgMZoP7rJzXzMFN37Z1318PTvxv0Q54lPAoZ6CtR0x
-         utUk9SD3eg2qmaxIjiubZ+D+VlRbumyg6Qnbvz8iCiBBNSv168mBqvB2LpjNba8mEdNa
-         QtDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770958710; x=1771563510;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iGoHd6Wwp0UoOk5RmQ7t22wxxGbD4/6f+sXmlD85vTI=;
-        b=d5CfNxOmtb++7+btSeyk0AMUXBVILeq4XVVUph3luaK/j36MI/o69boVrmFYTpv6UT
-         eDZl2bFab0nZ8WkqBnK+Obhs2MQBAtaJREik0OqIpogXTPU8GD6R99UI7w7fuJX6DeBS
-         yJaJhOpWR8fUc0wBhwZt3anbTry+cKBIHQdeFNTPEYvoxqcmem/xH8syxg/Qupi/pnVT
-         NXpxD9c73yR2O9uRFMMHv2pWIsJ5wDvSSLJaNZ14tvJqTasFze3ZubgXAz9HCxRiehxP
-         RKWL5/5VJ+k9Jrh5J8cXWV28ZmdIxzqbI81Ir/LPW5jZY4i4TxT3AMSHwUJw/J5ir0KL
-         gZFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUZePBh6ZTuC3whaXoXVqV5mTUFYjbJCiyJ1xvWWOfG2TawuihvCNqrz+doWjH4LZR6dvvRtu6t/pYM@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxYktScQvG7DlTMCjv0VEgtfAST7ZRfj48lwLaGY6pYzd/v7XI
-	UU7nr/qQQCSfxeHB5DKfQLvfjAJGY74J1L1qdtoEpsVRs1lyS1HxoXAC
-X-Gm-Gg: AZuq6aL6XXJUClSTw/CbfGqYUzCrrBytIZznXrEEx1Mjvs9IpdV8O6M1LEGTQfDMGS2
-	Z5jlMrZS4Xzx0EkWi75AuTW6g/HsFjg56x2TK/KCDQUR1ppwIBiywMdZtKvkZWvlqX2+hmQ9vPS
-	8imEEAPTxCchuu2qf9jIrIrTJp7nDLHOChkkQbnBQE/3UgaWkW4hqcThZ4xdEYr4y1q7CDOfN/T
-	B2mfb9oZjEnmS/Pme7OmIhWSDgQ/KiEhdjA8miXAbKJDCYuGWH1MFWaUx3/uo9NWGaU4z+qQvVv
-	Rbvrr9WhIwsx0KKbVYCKIZw8/whpo2FuA9Mud32KIrukpkEAYS3RKmtgXtacThWCzE88qGqYlos
-	ePLh3s8F1nxVFapNoww3Pmf5hgoLwf/0EH/CWr3GdcwK90MhzRVfTUm4CJ2fK8RcZp9RfU7Yv/q
-	eWJ8iCaPQXFHRO77BCE/AnU96ULA7h++w4lgyFV5EoXWCFcpiqQ6JdvP/tEjWaLkQRUw1/bBrj+
-	bMCsB06XmY=
-X-Received: by 2002:a05:7301:fa10:b0:2ba:7717:2bdd with SMTP id 5a478bee46e88-2babc46ea54mr267397eec.27.1770958709451;
-        Thu, 12 Feb 2026 20:58:29 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2ba9dbd6524sm4833351eec.12.2026.02.12.20.58.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Feb 2026 20:58:28 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <4b1ab525-8a60-4980-90f4-c7a761cf1536@roeck-us.net>
-Date: Thu, 12 Feb 2026 20:58:26 -0800
+	s=arc-20240116; t=1770959588; c=relaxed/simple;
+	bh=QtyheCxmOuvGDsN1Pbkcqo4Apx5Uh7t3JM+lW/T1IKA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=o+TbCs+MytcnwwvN9qYaR92kEV3+236rL3J/Wyi2BSC0gRxNlASZc5Mq4sa4QQbzXn0bnMDpffAQSOouTxuprYgISRZmFLk8en6QOtUFTqqN+rS7n5hCjCKRnfe7F6WfKSSoIbsAcrlwuXUPBpdElFpzbnaJ6sSPanMWGFmo3JY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e7uQYuz0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id F1D32C116C6;
+	Fri, 13 Feb 2026 05:13:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770959588;
+	bh=QtyheCxmOuvGDsN1Pbkcqo4Apx5Uh7t3JM+lW/T1IKA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=e7uQYuz0UriYBGOlJ7hCwhD++ovZ8+s1nKtD+Eg22pASMQjrDRpX6wxFHrXKrlT2b
+	 WBN2XNKop9gma/YZ8ZEugTIBGROiJ5ev/CF4re3YWvtOa2iLqdT8Quby20JrzI8apu
+	 MLOGDR572HHzzxcaO5FPZ3XURdAX7o/egTYfSixyb0UHTw1NyPCincVi7p+PdYtNtY
+	 AY/Cm2dirqZm6GscmelnIj8qaKiu4t394hus4yoqwnTlKuVlvgWptM43SjD3JSz/9z
+	 SbyILhFavM3CLzR5ZPXqY46CYmd5cGHptNdjeBScZ1Ap+VXJ5ftFzu9rRZUgeHVNXU
+	 XQ1WD5jGyRA6A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D05A4EF48C8;
+	Fri, 13 Feb 2026 05:13:07 +0000 (UTC)
+From: Zhentao Guo via B4 Relay <devnull+zhentao.guo.amlogic.com@kernel.org>
+Subject: [PATCH RFC v4 0/4] Add Amlogic stateless H.264 video decoder for
+ S4
+Date: Fri, 13 Feb 2026 13:12:37 +0800
+Message-Id: <20260213-b4-s4-vdec-upstream-v4-0-c7112d00d662@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] hwmon:(pmbus/xdpe1a2g7b) Add support for
- xdpe1a2g5b/7b controllers
-To: ashish yadav <ashishyadav78@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Ashish Yadav <ashish.yadav@infineon.com>
-References: <20260202080355.53061-1-Ashish.Yadav@infineon.com>
- <20260202080355.53061-3-Ashish.Yadav@infineon.com>
- <d0854014-7977-48b9-bf31-d66865352ecf@roeck-us.net>
- <CAJKbuCan+5AMuGuqKg4V1qs5HYZQ9zgS9S1rDDJ1usjJAjEGqw@mail.gmail.com>
- <CAJKbuCavMxc7xc4-QW95NfCaUCbLZck5nP1+iMtVxOt4LZ5esg@mail.gmail.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <CAJKbuCavMxc7xc4-QW95NfCaUCbLZck5nP1+iMtVxOt4LZ5esg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMWyjmkC/33NSwoCMRAE0KsMWRtJJ21GXQmCB3ArLvJpNeB8S
+ DQoMnc3DIiI4rK66FcPligGSmxZPVikHFLo2hJwUjF3Mu2RePAlMynkDISsuUWekGdPjl/7dIl
+ kGi60UA4MujkaVj77SIdwG9Ud227WbF+Op5AuXbyPSxnG6i+agQuupUABc1B25lemOXfH4Kaua
+ 0Yxy7cCEn8rsijWW+tIHQCM/lbUS9ECJPxWVFEQF9qQU75e0KcyDMMTe0dtnEkBAAA=
+X-Change-ID: 20251027-b4-s4-vdec-upstream-0603c1a4c84a
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, Zhentao Guo <zhentao.guo@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770959584; l=12260;
+ i=zhentao.guo@amlogic.com; s=20251024; h=from:subject:message-id;
+ bh=QtyheCxmOuvGDsN1Pbkcqo4Apx5Uh7t3JM+lW/T1IKA=;
+ b=DmDzqn6d/fCbHodpHyDSk7lgqrlZ6n9HfRBXULoacWuMcC2SNaRXzuTomuMwb5wQhGBCmw2ry
+ /EnnrJTmr6DBjqCV8mqcfNF4bptKydt6Y2L1GPHRzDxgvQo2kaYMuT+
+X-Developer-Key: i=zhentao.guo@amlogic.com; a=ed25519;
+ pk=5yfDKrjreXwcAoEUsdtWafy6YN500upXp/CgtnXjLVU=
+X-Endpoint-Received: by B4 Relay for zhentao.guo@amlogic.com/20251024 with
+ auth_id=555
+X-Original-From: Zhentao Guo <zhentao.guo@amlogic.com>
+Reply-To: zhentao.guo@amlogic.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265246-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-265248-lists,devicetree=lfdr.de,zhentao.guo.amlogic.com];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,baylibre.com,googlemail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[zhentao.guo@amlogic.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2BD7F132EBC
+X-Rspamd-Queue-Id: CD385132F18
 X-Rspamd-Action: no action
 
-On 2/12/26 19:45, ashish yadav wrote:
-> Hi Guenter,
-> 
-> I hope this email finds you well.
-> 
-> I am reaching out to request your assistance with a specific inquiry
-> regarding the handling of loops/pages for different VOUT modes
-> independently.
-> The challenge I am facing is that the Linux kernel provides a single
-> "PSC_VOLTAGE_OUT" for the chip, which is not page-specific, making it
-> difficult to handle these different modes independently.
-> 
-> I would greatly appreciate it if you could provide me with more
-> information or guidance on how to address this issue, as your
-> expertise in this area would be invaluable in helping me find a
-> solution.
-> 
+Introduce initial driver support for Amlogic's new video acceleration
+hardware architecture, designed for video stream decoding.
 
-Best idea I have at this point is to announce a single mode for all pages
-and convert values for pages with other modes. We _could_ enhance the pmbus
-code to support per-page modes, but that only makes sense if more than a
-single chip is affected and if this is a real problem.
+Compared to the current Amlogic video decoder hardware architecture,
+this new implementation eliminates the Esparser hardware component,
+enabling direct vb2 buffer input. The driver is designed to support
+the V4L2 M2M stateless decoder API. The initial phase includes support
+for H.264 decoding on Amlogic S805X2 platform.
 
-Practical question is if the chip supports this. So far I have not encountered
-a chip which does. Unfortunately Infineon doesn't provide datasheets for these
-chips, so it is impossible for me to determine if this is a real or a theoretic
-problem.
+The driver is capable of:
+- Supporting stateless H.264 decoding up to a resolution 1920x1088(on the S805X2 platform).
+- Supporting I/P/B frame handling.
+- Supporting vb2 mmap and dma-buf modes.
+- Supporting frame-based decode mode. (Note that some H.264 bitstreams require
+  DPB reordering to generate reference lists, the stateless decoder driver
+  cannot access reordered reference lists in this mode, requiring the driver
+  to perform reference list reordering itself)
+- Supporting NV12/NV21 output.
+- Supporting Annex B start codes.
 
-Guenter
+This driver is tested with Gstreamer.
+Example:
+gst-launch-1.0 filesrc location=/tmp/video_640x360_mp4_hevc_450kbps_no_b.mp4 !
+parsebin ! v4l2slh264dec ! filesink location=/tmp/output.yuv
 
-> With Best Regards,
->    Ashish Yadav
-> 
-> 
-> On Thu, Feb 5, 2026 at 2:20 PM ashish yadav <ashishyadav78@gmail.com> wrote:
->>
->> Hi Guenter,
->>
->> Thank you for taking the time to review and provide feedback.
->> I appreciate your input and insights.
->> Please find my comments inline below.
->>
->> Best regards,
->> Ashish Yadav
->>
->> On Mon, Feb 2, 2026 at 9:01 PM Guenter Roeck <linux@roeck-us.net> wrote:
->>>
->>> On 2/2/26 00:03, ASHISH YADAV wrote:
->>>> From: Ashish Yadav <ashish.yadav@infineon.com>
->>>>
->>>> Add the pmbus driver for Infineon Digital Multi-phase XDPE1A2G5B and
->>>> XDPE1A2G7B controllers.
->>>>
->>>> XDPE1A2G5B controller supports Linear Data format for VOUT using VOUT_MODE
->>>> command.
->>>> XDPE1A2G7B controller supports Linear and VID Data format for VOUT using
->>>> VOUT_MODE command.
->>>>
->>>> In case of vid mode in XDPE1A2G7B controller, NVIDIA PWM VID vrm_version
->>>> is supported:
->>>> Vout = 5mV * (VID-1) + 195mV
->>>>
->>>> Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
->>>> ---
->>>>    drivers/hwmon/pmbus/Kconfig      |   9 +++
->>>>    drivers/hwmon/pmbus/Makefile     |   1 +
->>>>    drivers/hwmon/pmbus/pmbus.h      |   2 +-
->>>>    drivers/hwmon/pmbus/pmbus_core.c |   4 ++
->>>>    drivers/hwmon/pmbus/xdpe1a2g7b.c | 115 +++++++++++++++++++++++++++++++
->>>
->>> Driver documentation missing.
->>>
->>     ACK, We will take care of this in the next release.
->>
->>>>    5 files changed, 130 insertions(+), 1 deletion(-)
->>>>    create mode 100644 drivers/hwmon/pmbus/xdpe1a2g7b.c
->>>>
->>>> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
->>>> index f3fb94cebf1a..c6750bce446d 100644
->>>> --- a/drivers/hwmon/pmbus/Kconfig
->>>> +++ b/drivers/hwmon/pmbus/Kconfig
->>>> @@ -684,6 +684,15 @@ config SENSORS_XDPE152
->>>>          This driver can also be built as a module. If so, the module will
->>>>          be called xdpe152c4.
->>>>
->>>> +config SENSORS_XDPE1A2G7B
->>>> +     tristate "Infineon XDPE1A2G7B"
->>>> +     help
->>>> +       If you say yes here you get hardware monitoring support for Infineon
->>>> +       XDPE1A2G5B and XDPE1A2G7B.
->>>> +
->>>> +       This driver can also be built as a module. If so, the module will
->>>> +       be called xdpe1a2g7b.
->>>> +
->>>>    config SENSORS_XDPE122
->>>>        tristate "Infineon XDPE122 family"
->>>>        help
->>>> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
->>>> index 349a89b6d92e..620f24baa289 100644
->>>> --- a/drivers/hwmon/pmbus/Makefile
->>>> +++ b/drivers/hwmon/pmbus/Makefile
->>>> @@ -67,6 +67,7 @@ obj-$(CONFIG_SENSORS_UCD9200)       += ucd9200.o
->>>>    obj-$(CONFIG_SENSORS_XDP710)        += xdp710.o
->>>>    obj-$(CONFIG_SENSORS_XDPE122)       += xdpe12284.o
->>>>    obj-$(CONFIG_SENSORS_XDPE152)       += xdpe152c4.o
->>>> +obj-$(CONFIG_SENSORS_XDPE1A2G7B)     += xdpe1a2g7b.o
->>>>    obj-$(CONFIG_SENSORS_ZL6100)        += zl6100.o
->>>>    obj-$(CONFIG_SENSORS_PIM4328)       += pim4328.o
->>>>    obj-$(CONFIG_SENSORS_CRPS)  += crps.o
->>>> diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus.h
->>>> index d2e9bfb5320f..3ddcb742d289 100644
->>>> --- a/drivers/hwmon/pmbus/pmbus.h
->>>> +++ b/drivers/hwmon/pmbus/pmbus.h
->>>> @@ -416,7 +416,7 @@ enum pmbus_sensor_classes {
->>>>    #define PMBUS_PAGE_VIRTUAL  BIT(31) /* Page is virtual */
->>>>
->>>>    enum pmbus_data_format { linear = 0, ieee754, direct, vid };
->>>> -enum vrm_version { vr11 = 0, vr12, vr13, imvp9, amd625mv };
->>>> +enum vrm_version { vr11 = 0, vr12, vr13, imvp9, amd625mv, nvidia195mv };
->>>>
->>>>    /* PMBus revision identifiers */
->>>>    #define PMBUS_REV_10 0x00   /* PMBus revision 1.0 */
->>>> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
->>>> index be6d05def115..4d7634ee6148 100644
->>>> --- a/drivers/hwmon/pmbus/pmbus_core.c
->>>> +++ b/drivers/hwmon/pmbus/pmbus_core.c
->>>> @@ -885,6 +885,10 @@ static s64 pmbus_reg2data_vid(struct pmbus_data *data,
->>>>                if (val >= 0x0 && val <= 0xd8)
->>>>                        rv = DIV_ROUND_CLOSEST(155000 - val * 625, 100);
->>>>                break;
->>>> +     case nvidia195mv:
->>>> +             if (val >= 0x01)
->>>> +                     rv = 195 + (val - 1) * 5;  /* VID step is 5mv */
->>>> +             break;
->>>>        }
->>>>        return rv;
->>>>    }
->>>
->>> The core change needs to be a separate patch.
->>>
->> ACK, We will take care of this in the next release.
->>
->>>> diff --git a/drivers/hwmon/pmbus/xdpe1a2g7b.c b/drivers/hwmon/pmbus/xdpe1a2g7b.c
->>>> new file mode 100644
->>>> index 000000000000..79b12b56e7b6
->>>> --- /dev/null
->>>> +++ b/drivers/hwmon/pmbus/xdpe1a2g7b.c
->>>> @@ -0,0 +1,115 @@
->>>> +// SPDX-License-Identifier: GPL-2.0+
->>>> +/*
->>>> + * Hardware monitoring driver for Infineon Multi-phase Digital XDPE1A2G5B
->>>> + * and XDPE1A2G7B Controllers
->>>> + *
->>>> + * Copyright (c) 2026 Infineon Technologies. All rights reserved.
->>>> + */
->>>> +
->>>> +#include <linux/err.h>
->>>> +#include <linux/i2c.h>
->>>> +#include <linux/init.h>
->>>> +#include <linux/kernel.h>
->>>> +#include <linux/module.h>
->>>> +#include "pmbus.h"
->>>> +
->>>> +#define XDPE1A2G7B_PAGE_NUM 2
->>>> +#define XDPE1A2G7B_NVIDIA_195MV 0x1E /* NVIDIA mode 1.95mV, VID step is 5mV */
->>>> +
->>>> +static int xdpe1a2g7b_identify(struct i2c_client *client,
->>>> +                            struct pmbus_driver_info *info)
->>>> +{
->>>> +     u8 vout_params;
->>>> +     int i, ret, vout_mode;
->>>> +
->>>> +     vout_mode = pmbus_read_byte_data(client, 0, PMBUS_VOUT_MODE);
->>>> +     if (vout_mode >= 0 && vout_mode != 0xff) {
->>>
->>> What if vout_mode < 0 ? Also, what if the mode is different for page 1 ?
->>
->> ACK, We will take care of this in the next release.
->>
->>> Also, if I understand patch 0 correctly, executing this function is not needed
->>> for XDPE1A2G5B.
->>>
->> ACK, We will take care of this in the next release.
->>
->>>> +             switch (vout_mode >> 5) {
->>>> +             case 0:
->>>> +                     info->format[PSC_VOLTAGE_OUT] = linear;
->>>> +                     return 0;
->>>> +             case 1:
->>>> +                     info->format[PSC_VOLTAGE_OUT] = vid;
->>>> +                     break;
->>>> +             default:
->>>> +                     return -ENODEV;
->>>> +             }
->>>> +     }
->>>> +
->>>> +     for (i = 0; i < info->pages; i++) {
->>>> +             /* Read the VOUT_MODE register for VID Code Type. */
->>>> +             ret = pmbus_read_byte_data(client, i, PMBUS_VOUT_MODE);
->>>
->>> Given that there are only two pages, reading PMBUS_VOUT_MODE for
->>> page 0 twice is a bit of a waste. On top of that, the need for the loop
->>> suggests that the mode can be different across pages. That needs to be
->>> supported: Bailing out in that case is not acceptable. Worse:
->>> What if the mode is linear on page 0 but vid on page 1 ?
->>>
->> ACK, We will take care of this in the next release.
->>
->>>> +             if (ret < 0)
->>>> +                     return ret;
->>>> +
->>>> +             vout_params = ret & GENMASK(4, 0);
->>>> +             switch (vout_params) {
->>>> +             case XDPE1A2G7B_NVIDIA_195MV:
->>>> +                     info->vrm_version[i] = nvidia195mv;
->>>> +                     break;
->>>> +             default:
->>>> +                     return -EINVAL;
->>>
->>> This warrants an error message and an explanation (comment) why other modes
->>> are not supported by the driver. The detailed datasheet is not public, so
->>> you'll have to help out here. As mentioned above, bailing out because the
->>> mode on page 1 is linear is not acceptable.
->>>
->> ACK, we will provide comments in the next release.
->> Additionally, please note that the XDPE1A2G7B Controller only supports
->> the 'nvidia195mv' vrm_version in the VID Data format for VOUT.
->> We will ensure that this limitation is properly documented and
->> commented on in the next release.
->>
->>>> +             }
->>>> +     }
->>>> +
->>>> +     return 0;
->>>> +}
->>>> +
->>>> +static struct pmbus_driver_info xdpe1a2g7b_info = {
->>>> +     .pages = XDPE1A2G7B_PAGE_NUM,
->>>> +     .identify = xdpe1a2g7b_identify,
->>>> +     .format[PSC_VOLTAGE_IN] = linear,
->>>> +     .format[PSC_TEMPERATURE] = linear,
->>>> +     .format[PSC_CURRENT_IN] = linear,
->>>> +     .format[PSC_CURRENT_OUT] = linear,
->>>> +     .format[PSC_POWER] = linear,
->>>> +     .func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
->>>> +                PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
->>>> +                PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_STATUS_TEMP |
->>>> +                PMBUS_HAVE_POUT | PMBUS_HAVE_PIN | PMBUS_HAVE_STATUS_INPUT,
->>>> +     .func[1] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
->>>> +                PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
->>>> +                PMBUS_HAVE_PIN | PMBUS_HAVE_POUT | PMBUS_HAVE_STATUS_INPUT,
->>>> +};
->>>> +
->>>> +static int xdpe1a2g7b_probe(struct i2c_client *client)
->>>> +{
->>>> +     struct pmbus_driver_info *info;
->>>> +
->>>> +     info = devm_kmemdup(&client->dev, &xdpe1a2g7b_info, sizeof(*info),
->>>> +                         GFP_KERNEL);
->>>> +     if (!info)
->>>> +             return -ENOMEM;
->>>> +
->>>> +     return pmbus_do_probe(client, info);
->>>> +}
->>>> +
->>>> +static const struct i2c_device_id xdpe1a2g7b_id[] = { { "xdpe1a2g5b" },
->>>> +                                                   { "xdpe1a2g7b" },
->>>> +                                                   {} };
->>>
->>> Please use more lines and less indentation.
->>>
->> ACK, We will take care of this in the next release.
->>
->>>> +
->>>> +MODULE_DEVICE_TABLE(i2c, xdpe1a2g7b_id);
->>>> +
->>>> +static const struct of_device_id __maybe_unused xdpe1a2g7b_of_match[] = {
->>>> +     { .compatible = "infineon,xdpe1a2g5b" },
->>>> +     { .compatible = "infineon,xdpe1a2g7b" },
->>>> +     {}
->>>
->>> ... just like here.
->>>
->>>> +};
->>>> +
->>>> +MODULE_DEVICE_TABLE(of, xdpe1a2g7b_of_match);
->>>> +
->>>> +static struct i2c_driver xdpe1a2g7b_driver = {
->>>> +     .driver = {
->>>> +             .name = "xdpe1a2g7b",
->>>> +             .of_match_table = of_match_ptr(xdpe1a2g7b_of_match),
->>>> +     },
->>>> +     .probe = xdpe1a2g7b_probe,
->>>> +     .id_table = xdpe1a2g7b_id,
->>>> +};
->>>> +
->>>> +module_i2c_driver(xdpe1a2g7b_driver);
->>>> +
->>>> +MODULE_AUTHOR("Ashish Yadav <ashish.yadav@infineon.com>");
->>>> +MODULE_DESCRIPTION("PMBus driver for Infineon XDPE1A2G5B/7B");
->>>> +MODULE_LICENSE("GPL");
->>>> +MODULE_IMPORT_NS("PMBUS");
->>>
+Retry the compliance test based on kernel 6.19:
+v4l2-compliance 1.30.1, 64 bits, 64-bit time_t
+
+Compliance test for aml-vdec-drv device /dev/video0:
+
+Driver Info:
+        Driver name      : aml-vdec-drv
+        Card type        : platform:aml-vdec-drv
+        Bus info         : platform:fe320000.video-codec
+        Driver version   : 6.19.0
+        Capabilities     : 0x84204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+        Detected Stateless Decoder
+Media Driver Info:
+        Driver name      : aml-vdec-drv
+        Model            : aml-vdec-drv
+        Serial           :
+        Bus info         : platform:fe320000.video-codec
+        Media version    : 6.19.0
+        Hardware revision: 0x00000000 (0)
+        Driver version   : 6.19.0
+Interface Info:
+        ID               : 0x0300000c
+        Type             : V4L Video
+Entity Info:
+        ID               : 0x00000001 (1)
+        Name             : aml_dev_drv-source
+        Function         : V4L2 I/O
+        Pad 0x01000002   : 0: Source
+          Link 0x02000008: to remote pad 0x1000004 of entity 'aml_dev_drv-proc' (Video Decoder): Data, Enabled, Immutable
+
+Required ioctls:
+        test MC information (see 'Media Driver Info' above): OK
+        test VIDIOC_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/video0 open: OK
+        test VIDIOC_QUERYCAP: OK
+        test VIDIOC_G/S_PRIORITY: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 6 Private Controls: 0
+        Standard Compound Controls: 4 Private Compound Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK
+        test VIDIOC_TRY_FMT: OK
+        test VIDIOC_S_FMT: OK
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_REMOVE_BUFS: OK
+        test VIDIOC_EXPBUF: OK
+        test Requests: OK
+        test blocking wait: OK
+
+Total for aml-vdec-drv device /dev/video0: 49, Succeeded: 49, Failed: 0, Warnings: 0
+
+Fluster test result of JVT-AVC_V1.
+Result:
+Ran 77/135 tests successfully
+
+- 52 test vectors failed due to interlaced or mbaff clips: The Amlogic stateless
+  decoder driver only support bitstreams with frame_mbs_only_flags == 1.
+  Test Vectors:
+        cabac_mot_fld0_full
+        cabac_mot_mbaff0_full
+        cabac_mot_picaff0_full
+        CABREF3_Sand_D
+        CAFI1_SVA_C
+        CAMA1_Sony_C
+        CAMA1_TOSHIBA_B
+        cama1_vtc_c
+        cama2_vtc_b
+        CAMA3_Sand_E
+        cama3_vtc_b
+        CAMACI3_Sony_C
+        CAMANL1_TOSHIBA_B
+        CAMANL2_TOSHIBA_B
+        CAMANL3_Sand_E
+        CAMASL3_Sony_B
+        CAMP_MOT_MBAFF_L30
+        CAMP_MOT_MBAFF_L31
+        CANLMA2_Sony_C
+        CANLMA3_Sony_C
+        CAPA1_TOSHIBA_B
+        CAPAMA3_Sand_F
+        cavlc_mot_fld0_full_B
+        cavlc_mot_mbaff0_full_B
+        cavlc_mot_picaff0_full_B
+        CVCANLMA2_Sony_C
+        CVFI1_Sony_D
+        CVFI1_SVA_C
+        CVFI2_Sony_H
+        CVFI2_SVA_C
+        CVMA1_Sony_D
+        CVMA1_TOSHIBA_B
+        CVMANL1_TOSHIBA_B
+        CVMANL2_TOSHIBA_B
+        CVMAPAQP3_Sony_E
+        CVMAQP2_Sony_G
+        CVMAQP3_Sony_D
+        CVMP_MOT_FLD_L30_B
+        CVNLFI1_Sony_C
+        CVNLFI2_Sony_H
+        CVPA1_TOSHIBA_B
+        FI1_Sony_E
+        MR6_BT_B
+        MR7_BT_B
+        MR8_BT_B
+        MR9_BT_B
+        Sharp_MP_Field_1_B
+        Sharp_MP_Field_2_B
+        Sharp_MP_Field_3_B
+        Sharp_MP_PAFF_1r2
+        Sharp_MP_PAFF_2r
+        CVMP_MOT_FRM_L31_B
+- 3 test vectors failed due to unsupported bitstream.
+  num_slice_group_minus1 greater than zero is not supported by the
+  hardware.
+  Test Vectors:
+        FM1_BT_B
+        FM1_FT_E
+        FM2_SVA_C
+- 2 test vectors failed because SP_SLICE type is not supported by the
+  hardware.
+  Test Vectors:
+        SP1_BT_A
+        sp2_bt_b
+
+One remain failure is CVFC1_Sony_C, which contains crop information. The md5sum of every decoded YUV indicates that original output from the decoder was correct. The YUV was cropped by gstreamer. The correct cropping method for this bitstream should be to crop 30*2 rows of pixels from both the top and bottom of the image, and 13*2 columns of pixels from both the left and right sides.However, gstreamer cropped 13*4 columns of pixels from the right side and 30*4 rows of pixels from the bottom. We are trying to find out the cause of this. Other failuers mentioned in V1 and V2 were resolved.
+
+Changes in v4:
+- Use %pad to print dma_addr_t type instead of using %llx.
+- Add initial values to some local variables.
+- Link to v3: https://lore.kernel.org/r/20260121-b4-s4-vdec-upstream-v3-0-4496aec3d79e@amlogic.com
+
+Changes in v3:
+- Fixed the DT check error:
+  arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: video-codec@fe320000 (amlogic,s4-vcodec-dec): 'amlogic,canvas' does not match any of the regexes: '^pinctrl-[0-9]+$' 
+  from schema $id: http://devicetree.org/schemas/media/amlogic,vcodec-dec.yaml
+- Added DOS reset lines to dtsi and dt-binding.
+- Fixed the issue where some B-frames were not decoded correctly(The fluster failures mentioned in patch V1 and V2 were mostly caused by this).
+- Fixed the issue where canvas_index leaks occurred during the decoding of some bitstreams.
+- Rework the src/dst format storage. Use v4l2_pix_format_mplane to store formats that related to bitstreams into the context. Add the reset format function to reset all the formats to default value. 
+- Store decoding parameters related to chip platforms, such as maximum width/height and alignment requirement, organized by chip platform.
+- Link to v2: https://lore.kernel.org/r/20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com
+
+Changes in v2:
+- Fixed incorrect generation of the reference lists for some B-frames.
+- Rename or get rid of some properties in DTS and dt-binding.
+- Remove some useless code or helper functions, (eg. clk helper functions, reg I/O macros, and some superfluous print messages) replace these functions with existing ones.
+- Replace all the printk messages with dev_err/dev_info/dev_dbg
+- Use the helper functions from the existing meson-canvas driver.
+- Use clk_bulk_data to map clocks from DTS.
+- Retry the V4L2 Compliance test on 6.18-rc6, fix a newly introduced bug.
+- Link to v1: https://lore.kernel.org/r/20251027-b4-s4-vdec-upstream-v1-0-620401813b5d@amlogic.com
+
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Kevin Hilman <khilman@baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-media@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org
+
+Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
+---
+Zhentao Guo (4):
+      media: dt-bindings: Add Amlogic V4L2 video decoder
+      decoder: Add V4L2 stateless H.264 decoder driver
+      arm64: dts: amlogic: Add video decoder driver support for S4 SOCs
+      arm64: defconfig: Enable VDEC driver for Amlogic SoCs
+
+ .../bindings/media/amlogic,s4-vcodec-dec.yaml      |   96 +
+ MAINTAINERS                                        |    7 +
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi          |   28 +
+ arch/arm64/configs/defconfig                       |    1 +
+ drivers/media/platform/amlogic/Kconfig             |    1 +
+ drivers/media/platform/amlogic/Makefile            |    1 +
+ drivers/media/platform/amlogic/vdec/Kconfig        |   16 +
+ drivers/media/platform/amlogic/vdec/Makefile       |    4 +
+ drivers/media/platform/amlogic/vdec/TODO           |    7 +
+ drivers/media/platform/amlogic/vdec/aml_vdec.c     |  734 +++++++
+ drivers/media/platform/amlogic/vdec/aml_vdec.h     |   33 +
+ drivers/media/platform/amlogic/vdec/aml_vdec_drv.c |  239 +++
+ drivers/media/platform/amlogic/vdec/aml_vdec_drv.h |  172 ++
+ drivers/media/platform/amlogic/vdec/aml_vdec_hw.c  |  596 ++++++
+ drivers/media/platform/amlogic/vdec/aml_vdec_hw.h  |  158 ++
+ .../platform/amlogic/vdec/aml_vdec_platform.c      |   85 +
+ .../platform/amlogic/vdec/aml_vdec_platform.h      |   50 +
+ drivers/media/platform/amlogic/vdec/h264.c         | 2129 ++++++++++++++++++++
+ drivers/media/platform/amlogic/vdec/h264.h         |  299 +++
+ drivers/media/platform/amlogic/vdec/reg_defines.h  |  177 ++
+ 20 files changed, 4833 insertions(+)
+---
+base-commit: 9845cf73f7db6094c0d8419d6adb848028f4a921
+change-id: 20251027-b4-s4-vdec-upstream-0603c1a4c84a
+
+Best regards,
+-- 
+Zhentao Guo <zhentao.guo@amlogic.com>
+
 
 
