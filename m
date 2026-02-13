@@ -1,237 +1,206 @@
-Return-Path: <devicetree+bounces-265447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265448-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iH1vMLRcj2mSQgEAu9opvQ
-	(envelope-from <devicetree+bounces-265447-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 18:17:40 +0100
+	id eLDfBiBdj2mZQgEAu9opvQ
+	(envelope-from <devicetree+bounces-265448-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 18:19:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E468138913
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 18:17:39 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 698EA13893B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 18:19:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B21A3300B292
-	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:17:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 36891300D934
+	for <lists+devicetree@lfdr.de>; Fri, 13 Feb 2026 17:19:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B9634B40C;
-	Fri, 13 Feb 2026 17:17:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26C15352C4E;
+	Fri, 13 Feb 2026 17:19:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="eP0vHEUh"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="gesJMZ9s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013017.outbound.protection.outlook.com [40.107.162.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DDB2BDC04;
-	Fri, 13 Feb 2026 17:17:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.17
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771003053; cv=fail; b=Nw/fIKVx5FjnvpS48erPK3R0BtYmJRi83b5R9mX1HGqFoiGKpafXyHraI/6FKJNZAQjpPgrdZzZj602tA8xaseUEAB28NlVkv59lrnYCOp9m2RcF8FEyct1Ibl/EkpBAeycDWYMsilGHHKA5JXZJZ4VJD2MziUA7J+EjjCCk51E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771003053; c=relaxed/simple;
-	bh=kSHWTIiAklnl01mxnANZDxam2DxPfYgzTF6MaOFZ3jU=;
-	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=aUFLp/xF2q8ybtBf1Fx7rXggLbcNBHKT/QO9QBYFRLOl3r7woV1TMo74NJZ4rud3/hIgcbKZrLkCTxd9RmShSKMA6WjD3fG2StE2fy0vHLSM3qJIGbr35DKKevJ637lTH1Zzs0Pm2K2zjcBabhsbwN8HwHoYWPwcRxuNFB6pYzs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=eP0vHEUh; arc=fail smtp.client-ip=40.107.162.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Z5aAhgVVvSXiKSpgTekYcppG4l0RpAVW2zrCdfdZn9WevbDw89wWfvBv8Z2I4R2HTA40v1xqJj84hIq8KPY3JJ3TBGRhHEG1EbEc19tOlplyosevOYRf7AWmA1sgXPmIrcQPtLBOcqwVWndSOmef9dhCpauMYZOA/uqtc6yoamK2krkS3GSvfe55V7NclXHg7ZqQAyHJJ3oDf1NW4yiKA3NdsGW+AjhdHozAjosCafL+/eQjbzXDAjiK+ToJZbMCClrR2vrykmqsHGknORBWsyAwWaDj+7sRlUxBtCzXf4ctfjins/BjOW2eFNo64N4qlS+LlIq2s3y46757MNwdZA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y8OB00T6SqnqccwRNiZhZD8kBsFSLpzg3/IrcHL/A2g=;
- b=efRhVRacjpY2S1B3Wpv/0DvrGFZ5/0oVlNXc7LW0nLHrH2N+YpsJm/yP+IwsSrUxxnDOdCBqoCaewOWYIlIFvwkwuLx13EuONuWYsqivyqKzQVXkWtruHdwGubYmVPeS+uToG96hQKgy/+IxeE/6rNEpK+wrz9G/39sB3AGvcSBudVuqbyFGbi8KN4X5Tr+7NwInE3iMhWrr5h4cK5SQQ9KttUSMAAauK+lZHv4zV4T6Hi7soQwi0VhlYgwJvandzPmIzWUwDCyDLIK+TRzfU2CEIIv+FkzykrmtH1WI0cRY/ubhfBbfmW4pAQtnsWvrL2IwbsUGrIuE86ZnbOUDEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=y8OB00T6SqnqccwRNiZhZD8kBsFSLpzg3/IrcHL/A2g=;
- b=eP0vHEUhaV5QRsnUfLZTUJsngWEg2uZxl/xCTz9JHWG5oTIGztRyeEIdE2ejFaJQX/CzvfVS2ZQarjimX844cZxLW1PHXwN6TdlKdLYZHBvWjMZfmQx1O+ZVuok7VC53Rp7afRETQhG58Bxcma4G2pCUPZ4N/o0htBUxBWKbvRMGSbIG3e9QjkuGxa0aRcV+zXbRTn+oStf1M81TLHHvO8qaak1TRCZOoiGkL7/3fJEi+90BqcXvq0m2CyadmVDbdsmQI9tRJIzazj7q3nZirO9Amzf89l380bjTtB8MBpP5Eri1dH8ZdrJ9SCNe0HSYQJ7BnjGEqZxxf8QTnuIy/w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by VI1PR04MB7135.eurprd04.prod.outlook.com (2603:10a6:800:12c::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.13; Fri, 13 Feb
- 2026 17:17:29 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9611.008; Fri, 13 Feb 2026
- 17:17:29 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v2 1/1] dt-bindings: soc: imx: Add fsl,aipi-bus and fsl,emi-bus
-Date: Fri, 13 Feb 2026 12:17:11 -0500
-Message-ID: <20260213171715.3465064-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.43.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY5PR04CA0018.namprd04.prod.outlook.com
- (2603:10b6:a03:1d0::28) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A06F2DB79C
+	for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 17:19:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771003164; cv=none; b=DL3Solkbntb3b9W3PJn60dnDJvOswJUOxrGeilhvy5gWZL3AkXzGrZ8DvheoMOw7C5Ebpg2NcXFq8I7LpKrFH0H5XjWR/M26yxsJay999/Wps2Lk1DBoS7b5ewQ0bHDHrVrlp7eF8cNlJOEKE+WyZfo+GUceAqUM3wYy/utQ6Ug=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771003164; c=relaxed/simple;
+	bh=mxAcHR03CkEz1XecMXKJcquJSIc8TZiNdDZqIrE2LY0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iwsH83IOZK1AGqYv6UhMqJ6EAB3RfO30M+SKu/wA3oxEe3qPAFoeqA6mXWKuiuJ3JZbWeCGzTQOCF3LvTJKnaL8XPfL34H4vtW+/MpQl+vf+ONR76HilHqqwtjPOTilR4T8Aw/wnmZ2T14XUyj0XpSc2gjJZKsGQtXxR6afsyN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=gesJMZ9s; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1771003155;
+ bh=WLNCPhcI2W5xrHq/Yf54FeNp8YmonAJeCVTYOXhtjrs=;
+ b=gesJMZ9s4xYM6FjoZkTBxlceQ7ltlIV0FhBB8iJaEkKndWxKTCEDOksziS96oMT4u4NUr0Eu1
+ l3nFlQyf9iaIKIQZpMxmBAng73M1L29VBr4joSZ86J349+B+Cw5ola1MrvkUAcrL9IINZ3eePYn
+ DOU86u6RgUpDq4GVGOIFOY9wOrduX+w0DPwXCKaDKB1/4dt3zXFx85RQTUmp5e7mA+eR6LXZYaq
+ M9PEjY/GBjSoBm/i4IoO2WHDxz+FsbBuymYYSKP1NtuXY5TWyPTc1aWI7OKELY2WhkohlCvCZKQ
+ Ca4M7asMeMrqp85OJ3So2/GppTpWsndw6/UquC7qOt2w==
+X-Forward-Email-ID: 698f5d0c11dfcf99c4b0aeb1
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 2.6.4
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <9083266d-2b18-4b7a-bc72-1d873edb7cdf@kwiboo.se>
+Date: Fri, 13 Feb 2026 18:19:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|VI1PR04MB7135:EE_
-X-MS-Office365-Filtering-Correlation-Id: 842d7116-b7b7-46c7-6174-08de6b23c41c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|1800799024|376014|52116014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?APlRhWtupLFr0QuVFFTQ8FYXVm5BBuKyl7zJLkJthZAFAFvDJTGJw4zyIag3?=
- =?us-ascii?Q?5VomW8mY2TRE1KZDVNml4fclQEayYFAKLelZmo0/s33yVyxZ/SW/8tIEn+OH?=
- =?us-ascii?Q?Ee8Vl0A/ZOtk1KZiEUgkrb8UqOF1ojLxM9mD0T/cHt3mQOO/trsZdXSAdqkx?=
- =?us-ascii?Q?jHSaqBN+kBP4K9AtSvaw+gAXbY2LdZGA17I/mBgRQwEe6hpGU+RI7Fr0yoFb?=
- =?us-ascii?Q?eB0lA2QkyILapRl8yRiVqhuwkcweMM+/tUnFF06UJ9LyQ/2AatbU1B4B51aO?=
- =?us-ascii?Q?q5G1s/ql1atmApuNdmgrNHDqEm9Oee1607ZVnN8gLDZsRg3ntiGOg89H65TW?=
- =?us-ascii?Q?17NlczhO9ilM4K062fbNSYQWEqWdaZNwNn93rqib9rSc+2bDw48cxeaJszay?=
- =?us-ascii?Q?zn5EIVDeSmHkSBxo0SCZMrtpp/na+BP5ZGUZo+t2eKu7Xz8EHWcnlvN69Tao?=
- =?us-ascii?Q?z36yteJNNuIdaomhe+dyGzBT9rtTvyo20J5Ybxys4CXA8T6/xQKA1eKG9cOI?=
- =?us-ascii?Q?9nqCEPLlgl6Vj7KwY/QPgxH/i1kDhoqNNtTpyfyXj6v4KpavlqnoffG91zqW?=
- =?us-ascii?Q?H8eW65yXaaWaaYgvF44i5lrXG3IiQUIg5afOSmDxwY4tyo8XKDVMfqIMZH8U?=
- =?us-ascii?Q?aiTw2jvHB4/6vf0qHJotppZljyLtG5LFOkhJ51Q13k98lwWsH2NZNry0Bf2L?=
- =?us-ascii?Q?ij5YtsWpSe9cqxT2vmW3eklrOV9U8iAYHfzRV4UoAQTSlrjS0xlYb+oiKzKT?=
- =?us-ascii?Q?znaVvXFwdN04klR122TuQBZQUyXcZLIx7GCBQfG+iMhkSr0g3f/+lr9Unv7y?=
- =?us-ascii?Q?UwchC1TGjigirL7PAYH409VuC+lFAdH1m94Lns8Y3bflBBAe74FDdDl7qG0s?=
- =?us-ascii?Q?w1C+NE6sMWeGobL+ka2a+rbBa2W8FBgouoe7ysZFdmiFFbd7JPIhC3WoKuLX?=
- =?us-ascii?Q?jzgj2RQKf9qnCb4qg7RE9/L8UyqiXuGXWoB16lx1mZGic3JstYd+spfVTIYj?=
- =?us-ascii?Q?wIUanFWdD0BMef0YEDlD6Qpdpvk8B6aX5dzleoC/IrbQn3HXVWmnLNnTyvMn?=
- =?us-ascii?Q?kOLDgQSNJg3N8FJjYR7fM0TfbGnDsFcRZIAdcIC4MPjJ96wkmhuMOOJgqOfq?=
- =?us-ascii?Q?+D9xNJ86XzxX2GiZp1LlvOCH3oJjiGHZZRzHEsHrmTnSH58pJAw9PqkG/bzQ?=
- =?us-ascii?Q?Ksows/o3JBnfUQX/SzPE6ecl2z+PrkzmGJLCyvk1AYYm1RFpFaCipZRVbvA6?=
- =?us-ascii?Q?6KFZRpCkdUAyGWv+VeL/V18mn9JTys6RKcHI60+qK4/u+CwzCBrQ3qMWx7/7?=
- =?us-ascii?Q?xXWRF/w5vhZQ/5PIQWmgdqtanFBX2Wp9BHkdyKHxuuZuGYSleAKt5qvQa2iZ?=
- =?us-ascii?Q?Q2djApLT+5LLyfwSMtkjswuMYS+lvv+cpH9sPvalMepMBJZv88ikaVFDrB6B?=
- =?us-ascii?Q?qBsi0b2zKh9YDyIrCNFXDQI7Osp8Vc5g4atwoom5Rh4Rxi6mbwP3CQl59mYG?=
- =?us-ascii?Q?QN8OPgXA7bIS7rdtKECZxoS7UxzRk9ml1W8PxZ4l1Q9jzH+iGlQB6dMiceQe?=
- =?us-ascii?Q?5BWfkJp/TFrwnWUHvnKT+lueZ+D3D+4Kgl73j++5MWbY0AUCaTRZD3bsFHZ4?=
- =?us-ascii?Q?EvCf5jjnW32cB9CbXazE7K8=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(376014)(52116014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?cqNq4PCBWKNDIING2t2nV1m8ZTXVM8X24R+ZNyMRpDBY/dSssq+YgMVhkT/Z?=
- =?us-ascii?Q?q6vhYuEsKZRsywO/ntoc08HyGcvR9J14DsShkSjsTm8huByQpqe8lXzueZb+?=
- =?us-ascii?Q?ML5mMB3E29RYmJFKgrwwycES8tgj7vUZDmW3xh4VI5Se3XPsRxLowNYKw0nX?=
- =?us-ascii?Q?alVrA9qmQHuKFx042IcW3Yc581ZNI0rH/SJee6tebzo5jPtt0LIy35As4SCI?=
- =?us-ascii?Q?yIjDUQKEU5DfHVpBnKkQsZIiLI9n4Au78VmAngZFUAyHw6trYpDpQcDkYiNC?=
- =?us-ascii?Q?X0ZZGxnQg0AbrLXm/invvSB3ly/nddoQu3Gw0s2MkeAZEytSXV6MpPuOX3Od?=
- =?us-ascii?Q?k6MUJLVhZHeomdCB1Bsw7ArW510c47v7AUL4tTBgB38D6RraoZ171q1E4EO8?=
- =?us-ascii?Q?0rOKnEbz+34qqIQQJPrQqpd/LmczJWtKb9YCxZB7MfA+5z7dXvVbdfVrmfaK?=
- =?us-ascii?Q?vNnceGO/51Lb1RiyyEXnO573JjCByGrDHbxaoRhdxa2XUWggNp0WsupOofpr?=
- =?us-ascii?Q?gni3FLMlqsj2VJ6kTXGVej7/CZgm0N0Hrp6Ej1afW3eJ2fVXcMhwMBhQPoBw?=
- =?us-ascii?Q?ev8atTvMLffDC7RTKEif5/O0AmJz3PrJMBvvi9FdYLaKs+gi89ROXH9IW6Ze?=
- =?us-ascii?Q?LpRUzsDu7NTJAWvvWF4W0l+iyr7oHMRbX0EXXuvZor/usqnnGHcMIAtjerZw?=
- =?us-ascii?Q?0zq3skFMV0vsmdIy/6lIW2SgCia+TPbf7HwcVhsdqfAklQYH+B8tcpiSnW7s?=
- =?us-ascii?Q?IbrjWT+wLiI227Abd1y5AWv9ZD0CI3IVcwsY4NNg6Wh+yaVeuwg110eFvtHi?=
- =?us-ascii?Q?1YwxvKnW2vu8CgG1sIY9wpMCIh+UAyWQRhBBIPuC80/6rHaFYEoSCwx4Ie+V?=
- =?us-ascii?Q?yYeucezxET2MAzUiZQf3uScPFb1SwRsdpq3uFhcPnz7Yi/O+zzdjc/CbFXOD?=
- =?us-ascii?Q?Kto26nL7YEp+VrKsQ7mmUXpiG0cC42TtMZMv1cHzCf+v6P48ZWDsi8h9I9Hv?=
- =?us-ascii?Q?NoopV48Lu+/NNi8DuzvhX2weOxvuz7ZLdH8vXcAqCdr/B6/jSVIhdTXWXhSb?=
- =?us-ascii?Q?WRIc9qbjIiNzEXkre46J0vnZVySTYyU8+JnEp/Cl5P9FSFnjbjuZMrleBRV1?=
- =?us-ascii?Q?5Obe6PUpBaoOyTPLxdEwzvHOu33I3SxVy8eDa8zdPPIUeNykKJIsn2Y5Nxme?=
- =?us-ascii?Q?lDpzDEZkfA9kjmwo2bggpP+6/eo/lG11BKQpstzCMDzq5cNRBWbRAT0bkRBu?=
- =?us-ascii?Q?TXCA5YzTZgNbTatDckUGOM5mQuQt2I2/+Z2At3vSpy+9FF9JoWkUbG85ozKZ?=
- =?us-ascii?Q?5Q+oK7VZpUJdC0QRyxYgX3iAZYRHjJR6yHzbSvE+vx7ifYHG3qHg0t9yX3ZL?=
- =?us-ascii?Q?7cYuVWeGqDGXvLaLn5NDALqY1oqAeH0qrDWudLBiMFZTtVA1L7PZxJYcGvms?=
- =?us-ascii?Q?NqKCZMCck2xzzinA2zoRQNUlHaw6EDPToyksta+2Xvx3ZD7qJI5lLQPJDMdF?=
- =?us-ascii?Q?PCT6wU3dvkBAsbVZpF0ryfFQrb2cGPeflhn9C0sZ8EDlBMIef9HZoYkuD1WA?=
- =?us-ascii?Q?FWerV49309fB7PBmKJqoqD3Z9PeBgtloztnTOBTITmkJvN+5NO9FaIO7iCag?=
- =?us-ascii?Q?MqmB5DVNQXpy1OB+TRx95lvTiPIuXQXs1W6kDNronSXkrOSGvkcEhAn5SQXK?=
- =?us-ascii?Q?w05iv4XRoTD2wxJYIDuxRVm4nKk04AZPUZoYEthYx4SWYz6075EKqT33bzxC?=
- =?us-ascii?Q?DK2ZH3C51A=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 842d7116-b7b7-46c7-6174-08de6b23c41c
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2026 17:17:29.4897
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: I2nFQ42Y4eWP2mJztKsAPmLjhlXwIo3Xv+mofJvqgtIsOAQltMxn6UsZfTCLgf0G7gp+JvPKsc+horaGkRYqcA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7135
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: rock-3b: Add phy-supply to
+ pcie30phy
+To: MidG971 <midgy971@gmail.com>, Shawn Lin <shawn.lin@rock-chips.com>
+Cc: "linux-rockchip@lists.infradead.org"
+ <linux-rockchip@lists.infradead.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "heiko@sntech.de" <heiko@sntech.de>, Claude <noreply@anthropic.com>
+References: <20260213151452.535527-1-midgy971@gmail.com>
+ <fe4c9352-7bf9-70cb-97ed-322fc739f409@rock-chips.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <fe4c9352-7bf9-70cb-97ed-322fc739f409@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kwiboo.se,quarantine];
+	R_DKIM_ALLOW(-0.20)[kwiboo.se:s=fe-e1b5cab7be];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-265447-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-265448-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,rock-chips.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	URIBL_MULTI_FAIL(0.00)[tor.lore.kernel.org:server fail,anthropic.com:server fail,kwiboo.se:server fail];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kwiboo.se:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
 	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:mid,nxp.com:dkim,nxp.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6E468138913
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[anthropic.com:email,kwiboo.se:mid,kwiboo.se:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 698EA13893B
 X-Rspamd-Action: no action
 
-Add the fsl,aipi-bus and fsl,emi-bus compatible strings for i.MX1 and
-i.MX2 variants.
+Hi,
 
-These compatibles are only intended for existing legacy chips (more than 15
-years old) and will not be used for new device trees.
+On 2/13/2026 5:10 PM, Shawn Lin wrote:
+> Hi
+> 
+> 在 2026/02/13 星期五 23:14, MidG971 写道:
+>> The PCIe 3.0 PHY requires its power supply regulator to be enabled
+>> before initialization. Without the phy-supply property, the PHY
+>> driver does not ensure the regulator is enabled, causing SRAM
+>> initialization to timeout with "lock failed" errors:
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-change in v2:
-- update commit message to show only for legacy chips
----
- Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+This is incorrect, as already mentioned the ref clock is modeled as a
+regulator, and this regulator is both boot-on and always-on and should
+not be referenced as the phy-supply, and the reason why I did not do it
+in the initial board device tree submission.
 
-diff --git a/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
-index 00bbde203f598..4808065fc9115 100644
---- a/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
-+++ b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
-@@ -26,8 +26,10 @@ select:
-     compatible:
-       contains:
-         enum:
-+          - fsl,aipi-bus
-           - fsl,aips
-           - fsl,emi
-+          - fsl,emi-bus
-           - fsl,spba-bus
-   required:
-     - compatible
-@@ -39,8 +41,10 @@ properties:
-   compatible:
-     items:
-       - enum:
-+          - fsl,aipi-bus
-           - fsl,aips
-           - fsl,emi
-+          - fsl,emi-bus
-           - fsl,spba-bus
-       - const: simple-bus
- 
--- 
-2.43.0
+>>
+>>    phy phy-fe8c0000.phy.1: phy poweron failed --> -110
+>>    rockchip-snps-pcie3-phy fe8c0000.phy: PCIe3PHY lock failed 0x6890000
+>>    rockchip-pcie fe280000.pcie: phy init failed: -110
 
+How did you manage to get this? Did you use wrong/bad boot firmware?
+
+Please try mainline U-Boot for the ROCK 3B target, that will ensure that
+both the ref clock "regulator" and the two Ethernet phys are reset
+before entering Linux (or other OS) using the mainline Linux device tree
+for this board.
+
+>>
+>> This results in NVMe devices in the M.2 slot not being detected.
+>>
+>> Add phy-supply referencing vcc3v3_pi6c_03 regulator (which controls
+>> the PI6C PCIe clock generator power via GPIO0_D4) to ensure proper
+>> power sequencing during PHY initialization.
+
+As already mentioned, this is not a phy regulator so adding it as a
+phy-supply does not correctly reflect the hardware.
+
+>> Fixes: 846ef7748fa9 ("arm64: dts: rockchip: Add Radxa ROCK 3B")
+>> Signed-off-by: MidG971 <midgy971@gmail.com>
+>> Co-developed-by: Claude <noreply@anthropic.com>
+>> Signed-off-by: Claude <noreply@anthropic.com>
+> 
+> Should put your SOB at last.
+> 
+>> ---
+>>   arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+>> index c5f67dd6dfd9..a1b2c3d4e5f6 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+>> @@ -404,6 +404,7 @@ &pcie2x1 {
+>>   };
+>>
+>>   &pcie30phy {
+>> +	phy-supply = <&vcc3v3_pi6c_03>;
+> 
+> As a fix which need to be backported, it looks fine for just one-line
+> change.
+
+I disagree, as you mention below, and as mentioned in a comment in the
+device tree, the ref clk generator is modeled as a regulator that is
+boot-on and always-on that is normally enabled by boot firmware.
+
+> However, the whole commit message is misleading. power supply for
+> pcie30phy is powred up with all other phys' when booting, for instance,
+> USB, otherwise all IP using PHY should not work, not just PCIe. So 
+> actually it's not the power but the input refclk, and apprently pi6c
+> is a 100MHz clock generator which was designed to be a regulator by
+> mistake in the first place.
+> 
+> If you would like to clean it up later, you could use a 
+> gated-fixed-clock like:
+
+Agree, if anything please re-model the ref clk regulator as a
+gated-fixed-clock instead of adding an incorrect phy-supply.
+
+And please try mainline U-Boot targeted for you board if you intend on
+using mainline Linux for your board, should most likely fix your PCIe
+issue.
+
+Regards,
+Jonas
+
+> 
+> https://lore.kernel.org/linux-rockchip/35e97a41-b88b-f526-351f-d4c5f70ee4e9@rock-chips.com/T/#u
+> 
+> 
+>>   	status = "okay";
+>>   };
+>>
+>> --
+>> 2.39.5
 
