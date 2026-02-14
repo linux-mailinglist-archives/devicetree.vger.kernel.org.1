@@ -1,179 +1,142 @@
-Return-Path: <devicetree+bounces-265593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265594-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iMTqHULikGlmdgEAu9opvQ
-	(envelope-from <devicetree+bounces-265593-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 21:59:46 +0100
+	id 2YHJMoLkkGnDdgEAu9opvQ
+	(envelope-from <devicetree+bounces-265594-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 22:09:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0086E13D3A4
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 21:59:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E32213D40A
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 22:09:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C008E3007F72
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 20:59:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CF33E3007964
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 21:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F113E30EF88;
-	Sat, 14 Feb 2026 20:59:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 780F829ACCD;
+	Sat, 14 Feb 2026 21:09:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z606GRIh"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="wSB7pnif"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-244123.protonmail.ch (mail-244123.protonmail.ch [109.224.244.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA41F2E5B19;
-	Sat, 14 Feb 2026 20:59:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4DDF946C
+	for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 21:09:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771102774; cv=none; b=LLRlsItNPVYjhPyIjWQLDoWIa/jZ8zoVYSKjhXYJPl6JU+TJW6b2BJlrTZL4jZuBJtCKoyCrpadaMe7dFHhdlV5OjWs0kQjoE3arrtyPmMEWvGHpsohWWA5xT28kguwenljlCeK/9A0G0rNWpai1PZdDX5mLQtiZT/TjJ766xeg=
+	t=1771103357; cv=none; b=rMPIJ6XmtqY84g0E2SaqDogJSWFHAH+Nb5D3Xkl1nvo55k//XngKVqo+m1SvBLefeVLZwbmD5nLLON4snZgE7SS5Q9LfcphNBBBBtZJzgxe521/TXKCGyJ39deXKMC7wQIzphFp/Xe1db+YVnIWsXXIU7VQbT/tCHZkevazR7g0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771102774; c=relaxed/simple;
-	bh=UHgdSR67QobiHdKsTflomkz20WQJq0PqGKz1hJmGDNY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FXJsbLJUY+R9NcLE2riTIn7q8aKbY92DW0XZDcxd0Z5VXEovUN4/XNLLbgk6Di7tW0GgUui07IlUFEWOxQbuYZBtCo2Vwwe/AKEmVhfTfEgZn0I6rYyA707OLYra5WCD8iUs8Q8Ssq4l/v/Hk0mlmH18UKGxFUJqXWxKLZ4VUgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z606GRIh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2FFEC16AAE;
-	Sat, 14 Feb 2026 20:59:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771102774;
-	bh=UHgdSR67QobiHdKsTflomkz20WQJq0PqGKz1hJmGDNY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Z606GRIhFMcfkBLJqrenuwc21wc7IdgzPUS8cFMiyb7H8S+PZJcmNT3/LdTCA8XOt
-	 gsB6Bz5K8ov6ilgdtQ87CZja5MF0xKj39N/YLTAiKUPghPYHzc7yCjquC/03Pkbrdc
-	 oBbk5hMqC4PJ5+qp1iiDCle3QJKBRDP34yBvWOB8qVJkG6NepRfd9Fs/R08cWKd/F2
-	 oR4JnmFesql05uivF9N5/zLRf8ux29WMKi3gExTbKB0xNqMJf6xqklc0wkbfZol656
-	 Zt3zy/Bh8a9NbThDbKE9C79gLKMedf1uZjCTZGx6mwr6UN+cjgE+xZoApHRz0r8+eg
-	 6TH/RrJAi7d9A==
-Message-ID: <223c900f-e509-4c22-a3ea-3e2051ca6975@kernel.org>
-Date: Sat, 14 Feb 2026 21:59:30 +0100
+	s=arc-20240116; t=1771103357; c=relaxed/simple;
+	bh=g8nYWPMUBY7CgMskSO+8CU3KVwxKo6X7Bsl8D5taTOQ=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MxjU7KVhfp0nbNsXwaVohiD+J5bdv/GC//rtLjjnezZ7fiJgBiHgf243HriZ0OAe2exOa/QdS2FrGLq9suivBVDK16IRiJJ8zMhV530yrkuM6ymgE5PnrMGMspMbq2UkeKVadv012uyBha1MIOyIRE45wWnVeQTOkCf1/VCIHXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=wSB7pnif; arc=none smtp.client-ip=109.224.244.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1771103353; x=1771362553;
+	bh=eGKJib+0WITKdpI220IMwglgT6GjONiYD8yYH1MaSFg=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=wSB7pnifFw7d637dCE6Oe2YIk+00Zdug8aP0uY805FsknyxLwXqipP774M/qiKgDc
+	 JcE/14B0Vz0eF8x4bmC8rCt0qZTEP6oaO8LxfYmgVoc3BdZ57MGUHeHrRPHiKCRYHx
+	 C9GmHoeMMvWyHXRCsbrdmzWZqP6ky9Vql0CEGFqiPu1rnOrZr2Yc8WwK0kg+eQE1HY
+	 mhkcHaoQ5Tb4h7fo582W8NpvOwXtZmAPE5NmzCESXXG44z3lzjQFYHA5sLOlg/oueK
+	 3AVc+WysGFur4NzCA+XpmwgrbBKz9E7xN+JruFvP9u5E7A2IvQgiCdSRMhL7kCRhn6
+	 r9Gfn4Wnpd9gA==
+Date: Sat, 14 Feb 2026 21:09:09 +0000
+To: Krzysztof Kozlowski <krzk@kernel.org>
+From: Harry Austen <hpausten@protonmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>, Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: clock: xilinx: add description of user monitor interrupt
+Message-ID: <2QWRaIfoa_z-SIFIhFu37bcpZtK9jYlmk-mziAtaZMAFazmFi_7nloNxIroQ0B8gMhm_FmgptlYexUgHVQQkU6PEcmFi_6DvwwQXDycQESA=@protonmail.com>
+In-Reply-To: <223c900f-e509-4c22-a3ea-3e2051ca6975@kernel.org>
+References: <20260214180933.42143-1-hpausten@protonmail.com> <20260214180933.42143-2-hpausten@protonmail.com> <20260214-daffy-roadrunner-of-inquire-babdce@quoll> <NptKiK70heOFOIj9x6tz-gtS1m7ueBoa3SNCijidv1yeFPpt9OAPd-LTgBUbrEfAA2u3DTJHzlUDjv17fuddIPZ4m2YEZ1dTaMQuiXDGkD0=@protonmail.com> <223c900f-e509-4c22-a3ea-3e2051ca6975@kernel.org>
+Feedback-ID: 53116287:user:proton
+X-Pm-Message-ID: cf7a540bc2054d661460ecfcb69c6bac455ed3f1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: clock: xilinx: add description of
- user monitor interrupt
-To: Harry Austen <hpausten@protonmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260214180933.42143-1-hpausten@protonmail.com>
- <20260214180933.42143-2-hpausten@protonmail.com>
- <20260214-daffy-roadrunner-of-inquire-babdce@quoll>
- <NptKiK70heOFOIj9x6tz-gtS1m7ueBoa3SNCijidv1yeFPpt9OAPd-LTgBUbrEfAA2u3DTJHzlUDjv17fuddIPZ4m2YEZ1dTaMQuiXDGkD0=@protonmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <NptKiK70heOFOIj9x6tz-gtS1m7ueBoa3SNCijidv1yeFPpt9OAPd-LTgBUbrEfAA2u3DTJHzlUDjv17fuddIPZ4m2YEZ1dTaMQuiXDGkD0=@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265593-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265594-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[protonmail.com];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[protonmail.com];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[hpausten@protonmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[protonmail.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0086E13D3A4
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,protonmail.com:mid,protonmail.com:dkim]
+X-Rspamd-Queue-Id: 3E32213D40A
 X-Rspamd-Action: no action
 
-On 14/02/2026 21:57, Harry Austen wrote:
->>>
->>> +  interrupts:
->>> +    items:
->>> +      - description: user clock monitor interrupt
->>> +
->>> +  interrupt-names:
->>> +    items:
->>> +      - const: monitor
->>> +
->>>    xlnx,static-config:
->>>      $ref: /schemas/types.yaml#/definitions/flag
->>>      description:
->>> @@ -66,12 +74,24 @@ required:
->>>    - xlnx,speed-grade
->>>    - xlnx,nr-outputs
->>>
->>> +if:
->>
->> Why isn't this in allOf? Code is fine, but why changing it?
-> 
-> There is only a single if condition, so the allOf is not required. Removed
-> for simplicity and reduced indentation.
-> 
+On Saturday, 14 February 2026 at 20:59, Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
 
-Heh, you might need to add it soon re-indenting everything on adding
-just one more if, so for me that was wrong choice. And you got a review :/
+> On 14/02/2026 21:57, Harry Austen wrote:
+> >>>
+> >>> +  interrupts:
+> >>> +    items:
+> >>> +      - description: user clock monitor interrupt
+> >>> +
+> >>> +  interrupt-names:
+> >>> +    items:
+> >>> +      - const: monitor
+> >>> +
+> >>>    xlnx,static-config:
+> >>>      $ref: /schemas/types.yaml#/definitions/flag
+> >>>      description:
+> >>> @@ -66,12 +74,24 @@ required:
+> >>>    - xlnx,speed-grade
+> >>>    - xlnx,nr-outputs
+> >>>
+> >>> +if:
+> >>
+> >> Why isn't this in allOf? Code is fine, but why changing it?
+> >
+> > There is only a single if condition, so the allOf is not required. Remo=
+ved
+> > for simplicity and reduced indentation.
+> >
+>=20
+> Heh, you might need to add it soon re-indenting everything on adding
+> just one more if, so for me that was wrong choice. And you got a review :=
+/
 
-Best regards,
-Krzysztof
+Very fair points. Agreed, it was definitely the wrong thing to do. Not sure
+what I was thinking. Do you think it is okay as is, or would you like me to
+add the allOf back again?
+
+>=20
+> Best regards,
+> Krzysztof
+>=20
+
+Thanks again,
+Harry
 
