@@ -1,129 +1,134 @@
-Return-Path: <devicetree+bounces-265585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265586-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id neTXCNTGkGmscwEAu9opvQ
-	(envelope-from <devicetree+bounces-265585-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 20:02:44 +0100
+	id 2PFLEunGkGmqcwEAu9opvQ
+	(envelope-from <devicetree+bounces-265586-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 20:03:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 667EB13CFAE
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 20:02:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 924C913CFC3
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 20:03:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0267A301AF75
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:02:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5757D301F9D3
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:02:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C896428643D;
-	Sat, 14 Feb 2026 19:02:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0CB12D94A7;
+	Sat, 14 Feb 2026 19:02:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="s/RJfSbH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UgTmHKPn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31A261F8755;
-	Sat, 14 Feb 2026 19:02:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CBC02BE048;
+	Sat, 14 Feb 2026 19:02:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771095760; cv=none; b=Y2LbjLML2xvgh7K3Wbu7igQH+/yEoXV+HLsy91bPECmcAnqnumR6F54Pr/Qpi68kP1TifGExmjcpMxVPmcjrNeWzYB79cI1zFBjFYUqoU//zQzwQa0IK5fVD8qacsQ6Xwm0rccIyiY69mnXGPe6VLF3cKONCUJU+IgffHaou0es=
+	t=1771095777; cv=none; b=icwNReCFqx93u8jyyeNExaQVeObzHBTL5VlkEtc3iVLDV1OwGXYapx5dZ31a3ycDsUqT4Znml2E+MhOhKe8KY4wH0j2m0sbn19gznuEcjrhX+vc1yqKpmtKi3yKcjXWI8pRWAgYqH4ZN6MThdGNxFeJ9vy46hh8KZLvksEOG4gM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771095760; c=relaxed/simple;
-	bh=qT6IKyTgPgoWtq/pv4/ob9KiVzrzF9Y3L9t2eY2mF7o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L1PDEaHQCRVa67D4Ig674qJwsrZq3KymStmx7CJLD0vSHdVsKV/CNSKekNO4teP++Q0kuG8RL5yH0NssJtO6lB+dJoElZVp4rZCP/C0j5hoWFhZbVKUOeQ+a8AxQoJbbWDRB8T4rSKVPdP92/8rzYSEDvLANkuKo95oyimgreKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=s/RJfSbH; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=cu+TqsuHAXYizEfNBI0UDoQ498p1s8mX09LKRbQR0g4=; b=s/RJfSbHpNem+gp3NJ6JTnqJQS
-	fxoaewFnUWkdh4CzkZq5dJSLKkncMY/reCTtwACFwPCnPpv44SQAt42IKKzn6aCVxsEAH+SX85IR+
-	VwPDaw3zr14DSsm5ODITZJEKB7aJCHRburoWQYIOqTMmv/3FaoxszQu1K0kJiPryY8eFAooGLmgVZ
-	ZgGE8NBwDSy+MaKcNPNLN0WiUscah3Oq/QL3NsxXQ3Z8GD+deTqyGTGr8tZymD3FeDNg9GqTBoaAQ
-	GJRHzuHVAHv6TLa0HgGoXqvTyjrtIkFUTImQKXRVHznsFd2sT+q2G8jVryzQKfAS2TwyQ+WT3nIpD
-	YaIVBGkQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:52392)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vrKuC-0000000060D-2rUa;
-	Sat, 14 Feb 2026 19:02:12 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vrKu8-000000006zz-2kpK;
-	Sat, 14 Feb 2026 19:02:08 +0000
-Date: Sat, 14 Feb 2026 19:02:08 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Yao Zi <me@ziyao.cc>, Heiko Stuebner <heiko@sntech.de>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: Problematic understanding of phy-mode in Rockchip DWMAC driver
-Message-ID: <aZDGsJNLZIty0242@shell.armlinux.org.uk>
-References: <aY9s5PXP4zZ7R6fa@pie>
- <aY9xsslT56D9LGLe@shell.armlinux.org.uk>
- <f1e047e1-3f1c-4562-ab43-af2fe358fe04@lunn.ch>
+	s=arc-20240116; t=1771095777; c=relaxed/simple;
+	bh=TR0kk19nnoF9r65yFryXUINaqHmHctTxQ9YbpT7jsY0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aztv8NHFUWJBSoNHZyon4m3j1tL1XRthYxx25KMaaUUdw63atO2Uzq5UTiM+I1YxYVRRCDoVjFfqD9aiMiSgrjide/6Y8y3zKoiI6b1pBT3hNIT1ExRkPFS6lPPDwNzLRdC/91Wvdmjaa+NyP4Mt4If2qXRNHVQ8q6Klo/hMnbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UgTmHKPn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCED0C16AAE;
+	Sat, 14 Feb 2026 19:02:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771095777;
+	bh=TR0kk19nnoF9r65yFryXUINaqHmHctTxQ9YbpT7jsY0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=UgTmHKPnNaOdVQh+5K/HjQ+JRVd7lWMTBURaD2+2GLZJnkyJDzwiyYqZ1thHhRdZM
+	 AIfjCaZ8rP+vwIA+DyhErMO6fyKmdx9t58jvHk7uSSmCdDW4gAVX+EV+a4su6KbwpT
+	 vGI02nAkP3eG6+KsZp/Pdt0QwMjb7HvyVlN2Nr6ZMKsuhotKSv+yaT1mIf+Tmdie/U
+	 iFcDB/KU1/YP3xM6W1TMdkhnoTj70Nb12i1xGY5hXfQfNTdxxOACvUu0QLTIDC0qv0
+	 StqRNWxfr7DPWnV2J5VZreVmr5Ym934jQEqB4Z+HpC6ujgMl+0mRxAh8Nskq8/LOF1
+	 1B59lCMJdNhOw==
+Date: Sat, 14 Feb 2026 19:02:46 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rodrigo Alencar via B4 Relay
+ <devnull+rodrigo.alencar.analog.com@kernel.org>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, David
+ Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Alexandru Ardelean
+ <alexandru.ardelean@analog.com>, Andy Shevchenko
+ <andriy.shevchenko@intel.com>
+Subject: Re: [PATCH v4 11/11] iio: amplifiers: ad8366: update device support
+Message-ID: <20260214190246.228c148a@jic23-huawei>
+In-Reply-To: <20260210-iio-ad8366-update-v4-11-15505f7b15b4@analog.com>
+References: <20260210-iio-ad8366-update-v4-0-15505f7b15b4@analog.com>
+	<20260210-iio-ad8366-update-v4-11-15505f7b15b4@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f1e047e1-3f1c-4562-ab43-af2fe358fe04@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265585-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[ziyao.cc,sntech.de,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-265586-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,armlinux.org.uk:url,shell.armlinux.org.uk:mid]
-X-Rspamd-Queue-Id: 667EB13CFAE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,intel.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 924C913CFC3
 X-Rspamd-Action: no action
 
-On Sat, Feb 14, 2026 at 05:50:15PM +0100, Andrew Lunn wrote:
-> Rockchip have recently started adding support for a new version, and
-> appear to of listened to what we have been saying. So it could be the
-> next generation of chips get this correct.
+On Tue, 10 Feb 2026 19:42:11 +0000
+Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
 
-Have you seen any proposed code from Rockchip for their new scheme?
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> 
+> Add support for the following digital step attenuators:
+> - HMC271A: 1dB LSB 5-Bit Digital Attenuator SMT, 0.7 - 3.7 GHz
+> - ADRF5720: 0.5 dB LSB, 6-Bit, Digital Attenuator, 9 kHz to 40 GHz
+> - ADRF5730: 0.5 dB LSB, 6-Bit, Digital Attenuator, 100 MHz to 40 GHz
+> - ADRF5731: 2 dB LSB, 4-Bit, Digital Attenuator, 100 MHz to 40 GHz
+> - HMC1018A: 1.0 dB LSB GaAs MMIC 5-BIT DIGITAL ATTENUATOR, 0.1 - 30 GHz
+> - HMC1019A: 0.5 dB LSB GaAs MMIC 5-BIT DIGITAL ATTENUATOR, 0.1 - 30 GHz
+> 
+> Additionally, copyright notice was updated with current year.
+> 
+> Co-developed-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
+> Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Hi Rodrigo.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+A few early comments propagate to here but nothing else to add to this
+or previous patch.
+
+Thanks,
+
+Jonathan
+
+
 
