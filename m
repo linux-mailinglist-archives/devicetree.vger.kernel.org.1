@@ -1,193 +1,205 @@
-Return-Path: <devicetree+bounces-265577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265578-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id jID9J22/kGklcwEAu9opvQ
-	(envelope-from <devicetree+bounces-265577-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:31:09 +0100
+	id 8Hi6IoS/kGkmcwEAu9opvQ
+	(envelope-from <devicetree+bounces-265578-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:31:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15BFD13CE30
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:31:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF22F13CE66
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:31:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BB4AF301FA4D
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 18:31:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EEEFE301A521
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 18:31:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E70C8239570;
-	Sat, 14 Feb 2026 18:31:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C7A72D7398;
+	Sat, 14 Feb 2026 18:31:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ll6lbfYy"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oOoGkRD0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C21DB3EBF11;
-	Sat, 14 Feb 2026 18:31:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D77A2D47F4
+	for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 18:31:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771093861; cv=none; b=XkjWAZgnxEpFUtaD+jMHlrv5yKrokO9pA1MsF8h/6ulLPWL1Bpd5GlIofubFGXnXA4FR1yX8reL73aeindKMydAZVosyT3xrWcSjpxMeh7DKSQmkG6FKI8oOGkBAYxFIQKEn6dIciYzkl9/odFKGoGqoUW00CTaz9sy4nDJ1r10=
+	t=1771093878; cv=none; b=Sp+SBDdaPb+yXNKskM91/vkMhff+ijNHgRbK54dGJv5jVyLDA2vwYX4Ftp/w8F5uKlXnE6tMipnT8WRTt3NdMHC/WzFOPdBo9tcsQjUsgYfYc/twpExeWwTYyc/VYapB97Jh3XP0K5j2e19FxJmgpOe8/28gr3SFPbG7bZtr9EE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771093861; c=relaxed/simple;
-	bh=Ua4l3xJp7hde7/JLEqCM/G5dmZFB+E+3EMbzDdjE3D0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qCarZ34iXoxh4JqKCNuUXVG+2sVDRbeIPwS/4o6jpdnoiOdf0q7VnYVoYFuzzzNfVJPU7wWozYgEDJ5ogn0SmLKSwXxb59UxSNreluCkGi6btRT2oG6LBTtIYDIsH3wTVtjqAGtpof1qKI9j3orMoYLTWOea7NjDTs7h1NRgfQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ll6lbfYy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A43FC16AAE;
-	Sat, 14 Feb 2026 18:30:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771093861;
-	bh=Ua4l3xJp7hde7/JLEqCM/G5dmZFB+E+3EMbzDdjE3D0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ll6lbfYy2UIp8Gy+gAdoYbfcgtb+tfYzqwUvUpFXhsu0u4TMG4uuDBcanN2l18T/Q
-	 Mw6MWA9BEHfpdUuCeim+U7ur/L1a9apvncBuw9ExeogWFpcI5nycCdBksuQ4dnL/ds
-	 tsuKCPvJZQyuIAiy4tX3oYPsYMRShyUyYojwiikPTbDprMfbF2HnEBNKm3ph2OLrO4
-	 JMZd242TihpRvNWGMXEKnFfRVErArBGy3fSnWKGMlGjS0ceLWknAm3cEQwi+OTYJ7G
-	 /MWk1o6WKsUDK0vTToYveckZxtQLSoOtvGl1DclFbBbnQp0r55lt8d1g6BeRUpmBm7
-	 ECdE8zHOkKFxQ==
-Date: Sat, 14 Feb 2026 18:30:51 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>,
- rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Michael Hennerich
- <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, David
- Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v4 03/11] iio: amplifiers: ad8366: remove unused include
- headers
-Message-ID: <20260214183051.712c8c4b@jic23-huawei>
-In-Reply-To: <aYyFpFAQcfn7Qifn@smile.fi.intel.com>
-References: <20260210-iio-ad8366-update-v4-0-15505f7b15b4@analog.com>
-	<20260210-iio-ad8366-update-v4-3-15505f7b15b4@analog.com>
-	<aYuNr8alZt-mjd5x@smile.fi.intel.com>
-	<appnjr2asjxadbvcf2fosrkvfwj3dkcnvq7tk74i4xa4ku5zr3@c7qedqneukyn>
-	<aYyFpFAQcfn7Qifn@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1771093878; c=relaxed/simple;
+	bh=b07R7RxPek/KmyHQeUj6U27N2AGDo7QHGz1eUka/nFk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mM0uvzG1KidxKzRH9iiZBX2BM26IXaRrkD9m/99XN77Tvqt/VHcm1RUbgBhQJ+QRufvDspiv/lz19I8wuRtTRKMid5XmWuaqNAe/E7IJfd1lvHDim1eTgy3mVSJDFpke/iVrMiq0M6pwf2yupgy+TmgO4CdkJYADj9952ZKYq9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oOoGkRD0; arc=none smtp.client-ip=209.85.167.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-46394090d2fso588464b6e.3
+        for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 10:31:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1771093875; x=1771698675; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HD58WPQsaM06hdtRHJvptMU2qx/tHwI9jI/rWWMZj0Q=;
+        b=oOoGkRD0wH32Pxb5whVmDFgikh4ZsFC+SSR7NYsOg4X/sstBiytVLmc26VZZMHUmQg
+         HbmlMWPmHOugZJ3cnLHuCQdv7PfPKpsUSwFgQjg9H7FbFGlcBakK9K5yGBQo14P8u8fj
+         VyjaPNkbE1Opc+tezMtt4SoLHPOOE5HFAnzZ2I+vauaOdLLNHY4463Ls/hj7l7d6kkxJ
+         Ki9/Fli42cBpPx7IeJeyeTuGgfiD8h/avMP4mtnPunwIbeVxo2cLlKGocjLyEwsT45oC
+         Xvi9DYbxrvJZJpVtO9GkOLHvZ5lzzimiXbWcFbEQh7guJc6Q1ZFOkab7PkuFCyVRgKe1
+         1pIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771093875; x=1771698675;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HD58WPQsaM06hdtRHJvptMU2qx/tHwI9jI/rWWMZj0Q=;
+        b=QxpD4FB+y9xnJnQkk22U1Jyjve3JBHrH/yCpRr0GGR4JMl3YnkSb8wNCZgC5w4mFWX
+         fvixrmSILm//0Jvhl+g01BPk/qEh6EhW1pj/zodJwxhFj7XoRkUnNbJBIziiLgzFOU1x
+         2w67F9076Sh0E33wJT7Xnlmj/5gZ3bMXoYkUJUhULft+qqS2hp04IFkhK1CkExSuR4D/
+         HUG/QMOJYgfQ8jHXlRf4DW1xL1yR0Lc/38N+ojlRmcy9PwjxuK8Ct8QiI1q32Rl29uaY
+         VuxPrtjkkipS+fG5CjW0pj3CKaAa+ZBAgsoo7EXjc7VQstYpU8OEB4NuO3kvj72MNnA9
+         03gg==
+X-Forwarded-Encrypted: i=1; AJvYcCVFvBPogbizFRCmsnPHxbwpedwLk36V2gRqbHOIPAFBBlbXx4MVTs7xeqF7pkl2hX4JvfpRhIIHwDJM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkzOftOUuxTKzAl7foog40YoeZXZIZeez4eiffenYvIJZdu6aD
+	ewNHzB4vOH1fTLuCxNCHXL980LQq0sBb/MCj2lnzoud47GkL/IFArQTjwJ2EudPoMyQ=
+X-Gm-Gg: AZuq6aJFQDiPAChUNcOGjfpUzTNcYFqT3lTTXxy2CXpO95HVpqiXWkKqhgTdQvJ1hr9
+	Xf647qT+QiYAwQ75q30du+B+khZ/14Gr3ZVhyK1cS6IgDk0hDoHRpGjQJJV+sthTFCv0gQZsw3M
+	0HOQgtKNj0GGvHfgpu69ZgAybm8jWXxYk0qKbDGkR66E0HL+iWyI9HstdLlskTEej78fkWuNxgm
+	Xrq+PNyiLNKGk9PjJV4LHYvAQ3RconLvRLTpYZQjykPoUfroYa0vQDUZ7CQHlU875Qg80sieZDN
+	h3F4z6K051ohe+XMTiqT7nqWXBEuJpPOZ2cnpPyXF6x2BStmrCyf4mLdcDSYq6W5B65tZyAfNaw
+	77+nA2tON7guPbhm3RZ6wgfZD36URWncSQfc23bugX30jQXXCpEitkHnI078+j955hvSZ4yHgzz
+	KHwWAFOHpoZkzBifwhLVDgTv065j+bNmEQLdlN+EumZ37w3NH6G9LI+mBx5laFCw9c2rauCw==
+X-Received: by 2002:a05:6808:1491:b0:45c:7306:505e with SMTP id 5614622812f47-463b40e3869mr1817198b6e.63.1771093875267;
+        Sat, 14 Feb 2026 10:31:15 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:109:393c:254e:962e? ([2600:8803:e7e4:500:109:393c:254e:962e])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-40eaee46a6fsm9779558fac.3.2026.02.14.10.31.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 14 Feb 2026 10:31:14 -0800 (PST)
+Message-ID: <897bd4d4-bbdf-4cbf-84f6-05c110d75d03@baylibre.com>
+Date: Sat, 14 Feb 2026 12:31:12 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/4] iio: adc: ad4080: add support for AD4880
+ dual-channel ADC
+To: Andy Shevchenko <andriy.shevchenko@intel.com>,
+ Jonathan Cameron <jic23@kernel.org>
+Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
+ Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-spi@vger.kernel.org
+References: <cover.1770393792.git.antoniu.miclaus@analog.com>
+ <aYiGj_TYelvJdVaR@smile.fi.intel.com> <20260214160852.6862b58d@jic23-huawei>
+ <aZC6wIWDdS8J_1eJ@smile.fi.intel.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <aZC6wIWDdS8J_1eJ@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-265578-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265577-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,analog.com,vger.kernel.org,metafoo.de,baylibre.com,kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email]
-X-Rspamd-Queue-Id: 15BFD13CE30
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email,baylibre-com.20230601.gappssmtp.com:dkim,baylibre.com:mid]
+X-Rspamd-Queue-Id: EF22F13CE66
 X-Rspamd-Action: no action
 
-On Wed, 11 Feb 2026 15:35:32 +0200
-Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
-
-> On Wed, Feb 11, 2026 at 12:55:30PM +0000, Rodrigo Alencar wrote:
-> > On 26/02/10 09:57PM, Andy Shevchenko wrote:  
-> > > On Tue, Feb 10, 2026 at 07:42:03PM +0000, Rodrigo Alencar via B4 Relay wrote:
-> > >   
-> > > > Apply IWYU principle, removing the following headers:
-> > > > - linux/device.h: no usage of devm_add_action_or_reset, device_attr...
-> > > > - linux/kernel.h: no usage of container_of, kasprintf, ...
-> > > > - linux/slab.h: memory management handled by iio
-> > > > - linux/sysfs.h: sysfs interaction is managed by iio
-> > > > - linux/iio/sysfs.h: not using iio device attributes in this driver  
-> > > 
-> > > Yeah, but it also means to add (a lot of) missed headers...
-> > > 
-> > > array_size,h
-> > > dev_printk.h
-> > > mod_devicetable.h
-> > > mutex.h
-> > > stddef.h  
-> > 
-> > Are there proper guidelines for IWYU in the kernel?
-> > Include headers end up including a bunch of others, so
-> > the build finishes successfully anyways.  
+On 2/14/26 12:11 PM, Andy Shevchenko wrote:
+> On Sat, Feb 14, 2026 at 04:08:52PM +0000, Jonathan Cameron wrote:
+>> On Sun, 8 Feb 2026 14:50:23 +0200
+>> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+>>> On Fri, Feb 06, 2026 at 06:07:12PM +0200, Antoniu Miclaus wrote:
 > 
-> This is global stuff, no need to repeat this in the kernel documentation.
-> It's the same as asking documentation for KISS principle.
+> ...
 > 
-> > I understand that the concern is build time, so we better
-> > include all small parts that are needed rather than a generic
-> > header that includes that and much more.  
+>>> I believe there is a better approach, what you need is rather a flag
+>>> to SPI core to tell that this is the device with shared CS.
+>>
+>> Antoniu, this comment from Andy needs addressing before we move
+>> on. It seems fairly fundamental and I'm not seeing a reply to it on list.
+>>
+>> I'm not entirely sure what Andy is suggesting will work but this
+>> is perhaps a mismatch in really understanding what is going on here.
+>> Andy, how would a flag work given they seem to be separately addressable
+>> SPI buses. I think this isn't a shared SPI CS, but rather a device
+>> with two entirely separate SPI buses. I think the only reason
+>> we are bothering to implement it as a single device at all is the
+>> shared backend.
 > 
-> > This is the output of the iwyu tool without this patch series:  
-> 
-> Have you applied the configuration Jonathan made for this tool in relation
-> to the Linux kernel project? By default the tool has a lot of noise, indeed.
+> My understanding that there are two devices that for whatever reason share
 
-Worth noting that I'm still evolving my config and suspect there will still
-be a bit of 'taste' applied to the output even once I conclude what the
-best combinations are.  So to give my view on the following..
+It is the opposite. It is a _single_ device with _two_ CS lines.
 
-> 	#include <stddef.h>                     // for NULL
-Not this one.
+adc@0 {
+	reg = <0>, <1>;
+	...
+};
 
-> 	#include "asm-generic/errno-base.h"     // for EINVAL, ENOMEM
-Something to get to errnos is good, but not that one.
+> the same CS line. Yes, I probably misread the idea behind, but I meant
+> some flag for SPI device that tells SPI core that the CS it wants is shared
+> (maybe a high bit in the cs field or so), then CS core won't complain on
+> validation about using the same cs number which is "already in use".
 
-> 	#include "linux/array_size.h"           // for ARRAY_SIZE
-Yes - this is part of the kernel.h split up work.
+There was one existing user in the kernel of spi_new_ancillary_device()
+that looked like this, so it seemed the right way to approach it. However,
+code was added later that caused the primary SPI device to "claim" both
+CS lines for itself and probably broke the one existing user of
+spi_new_ancillary_device() (hard to tell without hardware to test).
 
-> 	#include "linux/compiler_attributes.h"  // for __aligned
-Never that one, but I sometimes feel compiler.h is fine.
+The idea here was to unbreak that so we could use spi_new_ancillary_device()
+just as in the existing use case.
 
-> 	#include "linux/dev_printk.h"           // for dev_err
-Yes if device.h doesn't have to be there for other reasons.
-
-> 	#include "linux/iio/types.h"            // for iio_chan_info_enum, iio_chan_...
-No. We always need iio.h which will always include that.
-
-> 	#include "linux/math.h"                 // for abs
-yes
-> 	#include "linux/minmax.h"               // for __cmp_op_max
-yes
-
-> 	#include "linux/mod_devicetable.h"      // for spi_device_id
-yes
-> 	#include "linux/mutex.h"                // for mutex_lock, mutex_unlock, mut...
-yes
-> 	#include "linux/mutex_types.h"          // for mutex
-no as mutex.h will alays include that.
-
-> 	#include "vdso/bits.h"                  // for BIT
-
-Usually via bitops.h or similar. But if none of those are there anyway linux/bits.h
-
-Jonathan
+The patch for that could have been a bit more strict to only allow the
+spi_new_ancillary_device() to take CS 1 and fail otherwise, but users
+are going to notice if it isn't working right anyway, so I didn't ask
+for more checking.
 
 > 
-> And note, tool != principle. The tool is just an implementation of the helper
-> to enforce the principle in practice, but it may be not always suitable for
-> the certain project "as is".
+>> There is an argument that maybe we should be looking at how
+>> to do data muxing backends to support the more general case of two
+>> separate chips feeding into a single buffer, but that's a complex
+>> beast and I'm not sure if it is something we actually need.
+
+I think it would actually be quite similar to what is done in this
+series.
+
 > 
-> In the below output some are valid, but some are just noise as there are
-> guarantees for the "proxying".
+> Yeah, if possible I prefer to look at the (ASCII art) schematics
+> on how the HW looks like (connections with busses and CS lines).
 > 
 
 
