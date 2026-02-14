@@ -1,392 +1,145 @@
-Return-Path: <devicetree+bounces-265572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265573-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yKdHJTK7kGm8cgEAu9opvQ
-	(envelope-from <devicetree+bounces-265572-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:13:06 +0100
+	id SBFFDIO7kGm8cgEAu9opvQ
+	(envelope-from <devicetree+bounces-265573-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:14:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35E0913CC61
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:13:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F3F413CC87
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:14:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0A9993067069
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 18:10:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7861A308F814
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 18:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71204313525;
-	Sat, 14 Feb 2026 18:10:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0168F314A8D;
+	Sat, 14 Feb 2026 18:10:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Iyvz/SZB"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="lzWNZnmz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-08.mail-europe.com (mail-08.mail-europe.com [57.129.93.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09ACE30F52A
-	for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 18:10:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 214CB31352C;
+	Sat, 14 Feb 2026 18:10:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=57.129.93.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771092628; cv=none; b=iEAkjW6ukvXse7dxJsjE7dcOzOjlG/5NLVBFtLsyNeafxedwUlR5F7dOdXZ/IsTIjTKs6AJdYC9GDP5aJXLMOgRrXeKlJ/04hDM5dZ9t0XRvjfovsZRtlRUzd6UOO3zeMJP8p5o10Qz2D7yKsdDuVJnsSJ9EOmbPmcIqKIdu6Kc=
+	t=1771092630; cv=none; b=o3hiGvQ9u4doiSPy8EUJv8xjFd+jkOXKnTxe6IgHLaH8urODWRR7gcXMf+eGwjocxDbR70lmlB/ytYY3bfksnUUdryvJ/dt5Xxlf4NKGKtdPR/DvZfB8qi9YHN5Du7GPUKaBxoYn1uECCvnOKBh3U6/jSQvLHImXppkapiNSiUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771092628; c=relaxed/simple;
-	bh=kH6IxGWU9/YPnlpdIv152C9oL2JnvfglKibkmH2D9yc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oqkjRghiNImTHYq4wR9/56kn/H8px+gtfp76tCzzXCQ1VQeDywIo5Lm7mQDJuD4C7fekhzqC7QLpExNxlNEqmcsRE1gMHaWzGR4Vw+LGgJ97rAbBU/SB+L8iJl7s1x9Fs/PpqhMku2NX7pseF40RPHn1iPz3A1XQx4hqUhtEuYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Iyvz/SZB; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b8fd976e921so28995666b.1
-        for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 10:10:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771092624; x=1771697424; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o3TwQJXKVq1pyC7HWfeudplW5CQQTbeaEyQZUhCqwB8=;
-        b=Iyvz/SZBiCjDWamqDjlo3av+apwColhoc0S7i31A7HLFbyoWbWuHb5/M4zAQq1UWyC
-         smNlwq17qZsAKlIHhrwI1SevBaO4RfWql6WIif0Kw8wKNDc42r/t4nrxtck1ntTHWCQ4
-         43X5be5Ieaao2UUfgO/Ju9l7vZF9pz2HmrCOfr2Ip3nF/1rs/ChARMsZYnBMsdW/+NNM
-         127D+ytH88aRFS/+meAfyK2XHzO73MPfp54FTsoxJMBr76ULQUu9yQslWc9mBlZ5CLEp
-         eAuevvPvsv/7yoQ7DvSuk6ObkWjUCBARNPal2c07sf2sqywtyxE4raWwan0GSwf7jpCK
-         zoWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771092624; x=1771697424;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=o3TwQJXKVq1pyC7HWfeudplW5CQQTbeaEyQZUhCqwB8=;
-        b=qBxJw+uEbPIMlnz19FQ/tbj3V+YfdocqBgfbwIckQESJCR1syDow74/WlFeH02HKk0
-         /hbR37RDkU7Do1kSgVxpsj1VCwoYu+lC64Agx1FZWmNH+twJWrJiwx/ne/JhPRMe03/O
-         Jeev/VWACxcmyExFC+lSwPMvwUpCftuxgoQHBHrJspOMExG7N3p/KhN3fS5wTCxM2lvk
-         GAfic/iHxDVNr9gJde5RUr9wyFfVbJd503h/CkCu+YZuLERsfr/OsznrGJoEN/CibYlS
-         qhp7LVPxVH70MrQ9JU2WD5lHOXtPMuwbnTrzy6Mq82sn7u6Z5WAWgPOzopMPoNGB8MoU
-         LDAQ==
-X-Gm-Message-State: AOJu0Yz+H9kh4HaV0kSdOPnpx4+EsYXhM6Djy5ocjijI6xKgqvpAzShn
-	eUt2NT8Ps2Kb/KS2MkB+KyJ5FEeK2m1DKiAmbgCym38uhijVL3ibGJsk
-X-Gm-Gg: AZuq6aILMCjWZwTVQg2cgibpSOrbRq/KeduVQ9oh5tSL24ORKunbOo88OUwQa/Tn90r
-	T+aHqbWzNSdDoVZClsNLYKqQqG7SUMXtAK+ZJJgTmk3pE1wP+in7l0LnkP1N2R9T04eyZkvA61w
-	5E1pfjBAmIIhcHUIFECkyedpeVvFwi3KNAukhF/jiNwCiYeY1UfHiJSBYFmcbgOYQPeL3ZBbFbn
-	PIea7bxpC4wsBdU2uvUyUS0I+HNsEP7JchdhJzoLjcNsPxdFaRzAjqTw7rlDIJGrKj44ES10Vnk
-	qYU5m68sEJlYaMbUITsXDUMds8pdioj1CPUZ6bu7+t/s9l1+4iMUV5yKkIdByUtRW/8Txst5tnM
-	SinGvqopK/u+X1RypPmUyBdDZqpHMjkWrKDXezm34ipxZD7FZmlYP2q9cVV4iAMpGb3d1BsjVw6
-	4IeAwiNmmFkKCl
-X-Received: by 2002:a17:907:970b:b0:b89:fb0b:65e3 with SMTP id a640c23a62f3a-b8fc3ced714mr139976766b.47.1771092624151;
-        Sat, 14 Feb 2026 10:10:24 -0800 (PST)
-Received: from xeon ([188.163.112.48])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8fc735e506sm88122066b.11.2026.02.14.10.10.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Feb 2026 10:10:23 -0800 (PST)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Svyatoslav Ryhel <clamor95@gmail.com>,
-	Ion Agorria <ion@agorria.com>,
-	=?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-input@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Subject: [PATCH v3 7/7] power: supply: Add charger driver for Asus Transformers
-Date: Sat, 14 Feb 2026 20:09:59 +0200
-Message-ID: <20260214180959.30714-8-clamor95@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260214180959.30714-1-clamor95@gmail.com>
-References: <20260214180959.30714-1-clamor95@gmail.com>
+	s=arc-20240116; t=1771092630; c=relaxed/simple;
+	bh=hGg21hNdwfSVHjjadqjdQcAko5Jr38TIRFRNcPdSaao=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=TjaHIGZU51bgavHu6MX8J+bA0GgbPB9kmn77STtMDJtsSdf9StfCLMRqYJAqwe/rrdDsutwzBFXjLeYR/OEYv926XP4ojsb2jQyvGHdVY/HInsgTIjhWxWUZwTNu+CBloCUzRlmcwxrbEsuhPrkM7Soh2271zE6XdmFbNkAduko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=lzWNZnmz; arc=none smtp.client-ip=57.129.93.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1771092613; x=1771351813;
+	bh=04vk7Tkl67/hhgMqv+BcDZRWNDj7PkIykfjIdYJisGI=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=lzWNZnmzltXz6nKdjeyNDHOlSQzkdIsgEGnJuEuAIh+ldTYFsToo1a3JptAUkBRzK
+	 hVnnWL8OXZj55Idi+s7X6HaaUZ64MJDYSZl7/vP9T+KnnoUStrkI0couBie+1kl0+J
+	 HoX5nVotwuTsv+X1bHagi6PvugvvER0ewJWICrK1vfg/acODaJyjiwQ9H0kk2N3WBr
+	 doGNWDaC2wirfvlYWgMnh3FLeP9dflQrMW6u3T/3tNJXikg+Sqv66J/JBmH3CI5L5t
+	 sc09AcozxpqhCC/QgjCiPnawGU6cXvwfKfiFbrBalo/ZHPl+0cBh9JHBbt94zRUq7T
+	 I1TghprY9gVLw==
+Date: Sat, 14 Feb 2026 18:10:09 +0000
+To: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>
+From: Harry Austen <hpausten@protonmail.com>
+Cc: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Harry Austen <hpausten@protonmail.com>
+Subject: [PATCH v4 0/2] clk: clocking-wizard: add user clock monitor support
+Message-ID: <20260214180933.42143-1-hpausten@protonmail.com>
+Feedback-ID: 53116287:user:proton
+X-Pm-Message-ID: 33811916af14432e3496307dc748448316a346c8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-265572-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265573-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[protonmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,agorria.com,rere.qmqm.pl];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qmqm.pl:email]
-X-Rspamd-Queue-Id: 35E0913CC61
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hpausten@protonmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[amd.com,vger.kernel.org,lists.infradead.org,protonmail.com];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[protonmail.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,protonmail.com:mid,protonmail.com:dkim]
+X-Rspamd-Queue-Id: 8F3F413CC87
 X-Rspamd-Action: no action
 
-From: Michał Mirosław <mirq-linux@rere.qmqm.pl>
+Add support for the clock monitor functionality added in version 6.0 of the
+Xilinx clocking wizard IP core, through use of devcoredump.
 
-Add support for charger detection capabilities found in the embedded
-controller of ASUS Transformer devices.
+This is a follow up from a patchset I submitted quite a while ago [1],
+where I was attempting to utilise the UIO subsystem instead. Stephen Boyd
+suggested use of devcoredump instead [2] and I have finally got round to
+giving this a go.
 
-Suggested-by: Maxim Schwalm <maxim.schwalm@gmail.com>
-Suggested-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+This is currently untested on hardware, so any help testing this would be
+much appreciated!
+
+v3 -> v4:
+- Patches 1-4,8-9 dropped, as they were submitted/accepted separately [3]
+- Patch 7 removed, as no longer creating a new UIO driver
+- DT binding patch mostly unchanged. Slight rework and rebase, so removed
+  Krzysztof's R-b tag just in case
+- Clock monitor support patch now reworked to make use of devcoredump
+- Rebased on top of clk-next
+v2 -> v3:
+- Move kernel doc variable comment to bottom in clk_hw transition patch (2)
+- Remove extra line (and add Krzysztof's R-b tag) in binding patch (5)
+- Add Krzysztof's A-b tag to dynamic reconfig binding patch (8)
+v1 -> v2:
+- Split and improve clk_hw+devres transition patch (2+3)
+- Fix/improve DT binding patches (5+8)
+- Utilise auxiliary bus in monitor support patch (6)
+- Add dedicated UIO driver for monitor support (7)
+
+[1]: https://lore.kernel.org/linux-clk/20240826123602.1872-1-hpausten@proto=
+nmail.com/
+[2]: https://lore.kernel.org/linux-clk/1bd17a02bab46391872e4934895b83e8.sbo=
+yd@kernel.org/
+[3]: https://lore.kernel.org/linux-clk/20240913191037.2690-1-hpausten@proto=
+nmail.com/
+
+Harry Austen (2):
+  dt-bindings: clock: xilinx: add description of user monitor interrupt
+  clk: clocking-wizard: add user clock monitor support
+
+ .../bindings/clock/xlnx,clocking-wizard.yaml  | 24 ++++++-
+ drivers/clk/xilinx/Kconfig                    |  1 +
+ drivers/clk/xilinx/clk-xlnx-clock-wizard.c    | 69 +++++++++++++++++--
+ 3 files changed, 89 insertions(+), 5 deletions(-)
 ---
- drivers/power/supply/Kconfig                  |  11 +
- drivers/power/supply/Makefile                 |   1 +
- .../supply/asus-transformer-ec-charger.c      | 193 ++++++++++++++++++
- 3 files changed, 205 insertions(+)
- create mode 100644 drivers/power/supply/asus-transformer-ec-charger.c
+base-commit: ea7282e99ead6d2a294cef40acd2a29ada3ab71d
 
-diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-index 3c46b412632d..56800aab82f9 100644
---- a/drivers/power/supply/Kconfig
-+++ b/drivers/power/supply/Kconfig
-@@ -497,6 +497,17 @@ config CHARGER_88PM860X
- 	help
- 	  Say Y here to enable charger for Marvell 88PM860x chip.
- 
-+config CHARGER_ASUS_TRANSFORMER_EC
-+	tristate "Asus Transformer's charger driver"
-+	depends on MFD_ASUS_TRANSFORMER_EC
-+	help
-+	  Say Y here to enable support AC plug detection on Asus Transformer
-+	  Dock.
-+
-+	  This sub-driver supports charger detection mechanism found in Asus
-+	  Transformer tablets and mobile docks and controlled by special
-+	  embedded controller.
-+
- config CHARGER_PF1550
- 	tristate "NXP PF1550 battery charger driver"
- 	depends on MFD_PF1550
-diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-index aa5e6b05b018..24679f09bb61 100644
---- a/drivers/power/supply/Makefile
-+++ b/drivers/power/supply/Makefile
-@@ -68,6 +68,7 @@ obj-$(CONFIG_CHARGER_RT9471)	+= rt9471.o
- obj-$(CONFIG_CHARGER_RT9756)	+= rt9756.o
- obj-$(CONFIG_BATTERY_TWL4030_MADC)	+= twl4030_madc_battery.o
- obj-$(CONFIG_CHARGER_88PM860X)	+= 88pm860x_charger.o
-+obj-$(CONFIG_CHARGER_ASUS_TRANSFORMER_EC)	+= asus-transformer-ec-charger.o
- obj-$(CONFIG_CHARGER_PF1550)	+= pf1550-charger.o
- obj-$(CONFIG_BATTERY_RX51)	+= rx51_battery.o
- obj-$(CONFIG_AB8500_BM)		+= ab8500_bmdata.o ab8500_charger.o ab8500_fg.o ab8500_btemp.o ab8500_chargalg.o
-diff --git a/drivers/power/supply/asus-transformer-ec-charger.c b/drivers/power/supply/asus-transformer-ec-charger.c
-new file mode 100644
-index 000000000000..de01f0bf2fd7
---- /dev/null
-+++ b/drivers/power/supply/asus-transformer-ec-charger.c
-@@ -0,0 +1,193 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+
-+#include <linux/err.h>
-+#include <linux/mfd/asus-transformer-ec.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/power_supply.h>
-+#include <linux/property.h>
-+
-+struct asus_ec_charger_data {
-+	struct notifier_block nb;
-+	const struct asusec_info *ec;
-+	struct power_supply *psy;
-+	struct power_supply_desc psy_desc;
-+};
-+
-+static enum power_supply_property asus_ec_charger_properties[] = {
-+	POWER_SUPPLY_PROP_USB_TYPE,
-+	POWER_SUPPLY_PROP_CHARGE_BEHAVIOUR,
-+	POWER_SUPPLY_PROP_ONLINE,
-+	POWER_SUPPLY_PROP_MODEL_NAME,
-+};
-+
-+static int asus_ec_charger_get_property(struct power_supply *psy,
-+					enum power_supply_property psp,
-+					union power_supply_propval *val)
-+{
-+	struct asus_ec_charger_data *priv = power_supply_get_drvdata(psy);
-+	enum power_supply_usb_type psu;
-+	int ret;
-+	u64 ctl;
-+
-+	ret = asus_ec_get_ctl(priv->ec, &ctl);
-+	if (ret)
-+		return ret;
-+
-+	switch (ctl & (ASUSEC_CTL_FULL_POWER_SOURCE | ASUSEC_CTL_DIRECT_POWER_SOURCE)) {
-+	case ASUSEC_CTL_FULL_POWER_SOURCE:
-+		psu = POWER_SUPPLY_USB_TYPE_CDP;	/* DOCK */
-+		break;
-+	case ASUSEC_CTL_DIRECT_POWER_SOURCE:
-+		psu = POWER_SUPPLY_USB_TYPE_SDP;	/* USB */
-+		break;
-+	case 0:
-+		psu = POWER_SUPPLY_USB_TYPE_UNKNOWN;	/* no power source connected */
-+		break;
-+	default:
-+		psu = POWER_SUPPLY_USB_TYPE_ACA;	/* power adapter */
-+		break;
-+	}
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_ONLINE:
-+		val->intval = psu != POWER_SUPPLY_USB_TYPE_UNKNOWN;
-+		return 0;
-+
-+	case POWER_SUPPLY_PROP_USB_TYPE:
-+		val->intval = psu;
-+		return 0;
-+
-+	case POWER_SUPPLY_PROP_CHARGE_BEHAVIOUR:
-+		if (ctl & ASUSEC_CTL_TEST_DISCHARGE)
-+			val->intval = POWER_SUPPLY_CHARGE_BEHAVIOUR_FORCE_DISCHARGE;
-+		else if (ctl & ASUSEC_CTL_USB_CHARGE)
-+			val->intval = POWER_SUPPLY_CHARGE_BEHAVIOUR_AUTO;
-+		else
-+			val->intval = POWER_SUPPLY_CHARGE_BEHAVIOUR_INHIBIT_CHARGE;
-+		return 0;
-+
-+	case POWER_SUPPLY_PROP_MODEL_NAME:
-+		val->strval = priv->ec->model;
-+		return 0;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int asus_ec_charger_set_property(struct power_supply *psy,
-+					enum power_supply_property psp,
-+					const union power_supply_propval *val)
-+{
-+	struct asus_ec_charger_data *priv = power_supply_get_drvdata(psy);
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_CHARGE_BEHAVIOUR:
-+		switch ((enum power_supply_charge_behaviour)val->intval) {
-+		case POWER_SUPPLY_CHARGE_BEHAVIOUR_AUTO:
-+			return asus_ec_update_ctl(priv->ec,
-+				ASUSEC_CTL_TEST_DISCHARGE | ASUSEC_CTL_USB_CHARGE,
-+				ASUSEC_CTL_USB_CHARGE);
-+
-+		case POWER_SUPPLY_CHARGE_BEHAVIOUR_INHIBIT_CHARGE:
-+			return asus_ec_clear_ctl_bits(priv->ec,
-+				ASUSEC_CTL_TEST_DISCHARGE | ASUSEC_CTL_USB_CHARGE);
-+
-+		case POWER_SUPPLY_CHARGE_BEHAVIOUR_FORCE_DISCHARGE:
-+			return asus_ec_update_ctl(priv->ec,
-+				ASUSEC_CTL_TEST_DISCHARGE | ASUSEC_CTL_USB_CHARGE,
-+				ASUSEC_CTL_TEST_DISCHARGE);
-+		default:
-+			return -EINVAL;
-+		}
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int asus_ec_charger_property_is_writeable(struct power_supply *psy,
-+						 enum power_supply_property psp)
-+{
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_CHARGE_BEHAVIOUR:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static const struct power_supply_desc asus_ec_charger_desc = {
-+	.name = "asus-ec-charger",
-+	.type = POWER_SUPPLY_TYPE_USB,
-+	.charge_behaviours = BIT(POWER_SUPPLY_CHARGE_BEHAVIOUR_AUTO) |
-+			     BIT(POWER_SUPPLY_CHARGE_BEHAVIOUR_INHIBIT_CHARGE) |
-+			     BIT(POWER_SUPPLY_CHARGE_BEHAVIOUR_FORCE_DISCHARGE),
-+	.usb_types = BIT(POWER_SUPPLY_USB_TYPE_UNKNOWN) |
-+		     BIT(POWER_SUPPLY_USB_TYPE_SDP) |
-+		     BIT(POWER_SUPPLY_USB_TYPE_CDP) |
-+		     BIT(POWER_SUPPLY_USB_TYPE_ACA),
-+	.properties = asus_ec_charger_properties,
-+	.num_properties = ARRAY_SIZE(asus_ec_charger_properties),
-+	.get_property = asus_ec_charger_get_property,
-+	.set_property = asus_ec_charger_set_property,
-+	.property_is_writeable = asus_ec_charger_property_is_writeable,
-+	.no_thermal = true,
-+};
-+
-+static int asus_ec_charger_notify(struct notifier_block *nb,
-+				  unsigned long action, void *data)
-+{
-+	struct asus_ec_charger_data *priv =
-+		container_of(nb, struct asus_ec_charger_data, nb);
-+
-+	switch (action) {
-+	case ASUSEC_SMI_ACTION(POWER_NOTIFY):
-+	case ASUSEC_SMI_ACTION(ADAPTER_EVENT):
-+		power_supply_changed(priv->psy);
-+		break;
-+	}
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static int asus_ec_charger_probe(struct platform_device *pdev)
-+{
-+	struct asus_ec_charger_data *priv;
-+	struct device *dev = &pdev->dev;
-+	struct power_supply_config cfg = { };
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, priv);
-+	priv->ec = cell_to_ec(pdev);
-+
-+	cfg.fwnode = dev_fwnode(dev->parent);
-+	cfg.drv_data = priv;
-+
-+	memcpy(&priv->psy_desc, &asus_ec_charger_desc, sizeof(priv->psy_desc));
-+	priv->psy_desc.name = devm_kasprintf(dev, GFP_KERNEL, "%s-charger",
-+					     priv->ec->name);
-+
-+	priv->psy = devm_power_supply_register(dev, &priv->psy_desc, &cfg);
-+	if (IS_ERR(priv->psy))
-+		return dev_err_probe(dev, PTR_ERR(priv->psy),
-+				     "Failed to register power supply\n");
-+
-+	priv->nb.notifier_call = asus_ec_charger_notify;
-+
-+	return devm_asus_ec_register_notifier(pdev, &priv->nb);
-+}
-+
-+static struct platform_driver asus_ec_charger_driver = {
-+	.driver.name = "asus-transformer-ec-charger",
-+	.probe = asus_ec_charger_probe,
-+};
-+module_platform_driver(asus_ec_charger_driver);
-+
-+MODULE_AUTHOR("Michał Mirosław <mirq-linux@rere.qmqm.pl>");
-+MODULE_DESCRIPTION("ASUS Transformer Pad battery charger driver");
-+MODULE_LICENSE("GPL");
--- 
-2.51.0
+--=20
+2.53.0
+
 
 
