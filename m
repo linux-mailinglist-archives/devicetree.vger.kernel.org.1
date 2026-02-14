@@ -1,167 +1,193 @@
-Return-Path: <devicetree+bounces-265576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265577-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iE7OHs66kGm8cgEAu9opvQ
-	(envelope-from <devicetree+bounces-265576-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:11:26 +0100
+	id jID9J22/kGklcwEAu9opvQ
+	(envelope-from <devicetree+bounces-265577-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:31:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1504E13CB9C
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:11:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15BFD13CE30
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:31:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4D12E3006127
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 18:11:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BB4AF301FA4D
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 18:31:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647DB3033CD;
-	Sat, 14 Feb 2026 18:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E70C8239570;
+	Sat, 14 Feb 2026 18:31:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VZngNJRc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ll6lbfYy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E937B30170F;
-	Sat, 14 Feb 2026 18:11:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C21DB3EBF11;
+	Sat, 14 Feb 2026 18:31:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771092681; cv=none; b=utaYSvPDs7VXHpDn8p49QUbNSCNY//Nb/1fhGM/L1lESG0GEi88ToByYYWGp6mYySC/egkE0V/G51yt1LAAHwqZxFf47XmiDQPb4RHoR5yKaGC0L9/CzJ6av4fb76bDU03eGCRSeif77Q9bqaJgaW1Y52oyD2pB/96xmMfv7j58=
+	t=1771093861; cv=none; b=XkjWAZgnxEpFUtaD+jMHlrv5yKrokO9pA1MsF8h/6ulLPWL1Bpd5GlIofubFGXnXA4FR1yX8reL73aeindKMydAZVosyT3xrWcSjpxMeh7DKSQmkG6FKI8oOGkBAYxFIQKEn6dIciYzkl9/odFKGoGqoUW00CTaz9sy4nDJ1r10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771092681; c=relaxed/simple;
-	bh=Rtw6jHf5uaxID1paObRpVDjR0hX7pGocbXMcSLXJo9g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j57syLZd1h1cjMCGcsyQXozAFof1/dSvR0EJD1yX3BoHZQthTXK6+OUUSkyAJNM//JTO8SWuY8HcCs957Iai0nZcjxkiAc+tqFY9ZBhDPZZylggdQo7pzu1nh+faVIUL2b0aevLW6qMLKFzJJ9xZpN/YxhBPVZyNOJgbTeObj5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VZngNJRc; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771092680; x=1802628680;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Rtw6jHf5uaxID1paObRpVDjR0hX7pGocbXMcSLXJo9g=;
-  b=VZngNJRclUQa1gHi4dtTXjaSYm/s1b+cClIsFY6kUb1GV92EQXDWXXLg
-   3IpRtdDQCO0f9tWunO9bUOVU0pWw3SXiddBCKOAoYGUaVpj4SRKHMJo/v
-   qG8KiGIywyvbshZ++RfZm7TJKMTTdbqo++ZvIIp0Kaemdp6qSrOYeyGqG
-   u9jQiCSYVADpya3xIfx8ANZSp6nyraWtNZu9KdgfnpLAW0/vjnn8XE7pn
-   f7EvJt1h1WL4llWrLjZfdE0KFdiJ0ktin7MmE7RRWPdIftT0ADM/P0Aq+
-   JpRQiw+XTfrUrZ38zbTSuoMvZnIKmoC8W98E1h97MDrU5D1M6f4Uthiyw
-   Q==;
-X-CSE-ConnectionGUID: bqMbN+oBTLOFTUvq/PSUFw==
-X-CSE-MsgGUID: R3bdZsphQOGvpMpdFW2GfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11701"; a="72148254"
-X-IronPort-AV: E=Sophos;i="6.21,291,1763452800"; 
-   d="scan'208";a="72148254"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2026 10:11:19 -0800
-X-CSE-ConnectionGUID: BzTRWHiLQeWUU57Ns6MZIA==
-X-CSE-MsgGUID: RxBwjV0BTL+Mh7+SaKa+Hw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,291,1763452800"; 
-   d="scan'208";a="212462021"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.136])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2026 10:11:15 -0800
-Date: Sat, 14 Feb 2026 20:11:12 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-spi@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] iio: adc: ad4080: add support for AD4880
- dual-channel ADC
-Message-ID: <aZC6wIWDdS8J_1eJ@smile.fi.intel.com>
-References: <cover.1770393792.git.antoniu.miclaus@analog.com>
- <aYiGj_TYelvJdVaR@smile.fi.intel.com>
- <20260214160852.6862b58d@jic23-huawei>
+	s=arc-20240116; t=1771093861; c=relaxed/simple;
+	bh=Ua4l3xJp7hde7/JLEqCM/G5dmZFB+E+3EMbzDdjE3D0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qCarZ34iXoxh4JqKCNuUXVG+2sVDRbeIPwS/4o6jpdnoiOdf0q7VnYVoYFuzzzNfVJPU7wWozYgEDJ5ogn0SmLKSwXxb59UxSNreluCkGi6btRT2oG6LBTtIYDIsH3wTVtjqAGtpof1qKI9j3orMoYLTWOea7NjDTs7h1NRgfQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ll6lbfYy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A43FC16AAE;
+	Sat, 14 Feb 2026 18:30:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771093861;
+	bh=Ua4l3xJp7hde7/JLEqCM/G5dmZFB+E+3EMbzDdjE3D0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ll6lbfYy2UIp8Gy+gAdoYbfcgtb+tfYzqwUvUpFXhsu0u4TMG4uuDBcanN2l18T/Q
+	 Mw6MWA9BEHfpdUuCeim+U7ur/L1a9apvncBuw9ExeogWFpcI5nycCdBksuQ4dnL/ds
+	 tsuKCPvJZQyuIAiy4tX3oYPsYMRShyUyYojwiikPTbDprMfbF2HnEBNKm3ph2OLrO4
+	 JMZd242TihpRvNWGMXEKnFfRVErArBGy3fSnWKGMlGjS0ceLWknAm3cEQwi+OTYJ7G
+	 /MWk1o6WKsUDK0vTToYveckZxtQLSoOtvGl1DclFbBbnQp0r55lt8d1g6BeRUpmBm7
+	 ECdE8zHOkKFxQ==
+Date: Sat, 14 Feb 2026 18:30:51 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>,
+ rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, David
+ Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v4 03/11] iio: amplifiers: ad8366: remove unused include
+ headers
+Message-ID: <20260214183051.712c8c4b@jic23-huawei>
+In-Reply-To: <aYyFpFAQcfn7Qifn@smile.fi.intel.com>
+References: <20260210-iio-ad8366-update-v4-0-15505f7b15b4@analog.com>
+	<20260210-iio-ad8366-update-v4-3-15505f7b15b4@analog.com>
+	<aYuNr8alZt-mjd5x@smile.fi.intel.com>
+	<appnjr2asjxadbvcf2fosrkvfwj3dkcnvq7tk74i4xa4ku5zr3@c7qedqneukyn>
+	<aYyFpFAQcfn7Qifn@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260214160852.6862b58d@jic23-huawei>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265576-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265577-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: 1504E13CB9C
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,analog.com,vger.kernel.org,metafoo.de,baylibre.com,kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email]
+X-Rspamd-Queue-Id: 15BFD13CE30
 X-Rspamd-Action: no action
 
-On Sat, Feb 14, 2026 at 04:08:52PM +0000, Jonathan Cameron wrote:
-> On Sun, 8 Feb 2026 14:50:23 +0200
-> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
-> > On Fri, Feb 06, 2026 at 06:07:12PM +0200, Antoniu Miclaus wrote:
+On Wed, 11 Feb 2026 15:35:32 +0200
+Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
 
-...
-
-> > I believe there is a better approach, what you need is rather a flag
-> > to SPI core to tell that this is the device with shared CS.
+> On Wed, Feb 11, 2026 at 12:55:30PM +0000, Rodrigo Alencar wrote:
+> > On 26/02/10 09:57PM, Andy Shevchenko wrote:  
+> > > On Tue, Feb 10, 2026 at 07:42:03PM +0000, Rodrigo Alencar via B4 Relay wrote:
+> > >   
+> > > > Apply IWYU principle, removing the following headers:
+> > > > - linux/device.h: no usage of devm_add_action_or_reset, device_attr...
+> > > > - linux/kernel.h: no usage of container_of, kasprintf, ...
+> > > > - linux/slab.h: memory management handled by iio
+> > > > - linux/sysfs.h: sysfs interaction is managed by iio
+> > > > - linux/iio/sysfs.h: not using iio device attributes in this driver  
+> > > 
+> > > Yeah, but it also means to add (a lot of) missed headers...
+> > > 
+> > > array_size,h
+> > > dev_printk.h
+> > > mod_devicetable.h
+> > > mutex.h
+> > > stddef.h  
+> > 
+> > Are there proper guidelines for IWYU in the kernel?
+> > Include headers end up including a bunch of others, so
+> > the build finishes successfully anyways.  
 > 
-> Antoniu, this comment from Andy needs addressing before we move
-> on. It seems fairly fundamental and I'm not seeing a reply to it on list.
+> This is global stuff, no need to repeat this in the kernel documentation.
+> It's the same as asking documentation for KISS principle.
 > 
-> I'm not entirely sure what Andy is suggesting will work but this
-> is perhaps a mismatch in really understanding what is going on here.
-> Andy, how would a flag work given they seem to be separately addressable
-> SPI buses. I think this isn't a shared SPI CS, but rather a device
-> with two entirely separate SPI buses. I think the only reason
-> we are bothering to implement it as a single device at all is the
-> shared backend.
+> > I understand that the concern is build time, so we better
+> > include all small parts that are needed rather than a generic
+> > header that includes that and much more.  
+> 
+> > This is the output of the iwyu tool without this patch series:  
+> 
+> Have you applied the configuration Jonathan made for this tool in relation
+> to the Linux kernel project? By default the tool has a lot of noise, indeed.
 
-My understanding that there are two devices that for whatever reason share
-the same CS line. Yes, I probably misread the idea behind, but I meant
-some flag for SPI device that tells SPI core that the CS it wants is shared
-(maybe a high bit in the cs field or so), then CS core won't complain on
-validation about using the same cs number which is "already in use".
+Worth noting that I'm still evolving my config and suspect there will still
+be a bit of 'taste' applied to the output even once I conclude what the
+best combinations are.  So to give my view on the following..
 
-> There is an argument that maybe we should be looking at how
-> to do data muxing backends to support the more general case of two
-> separate chips feeding into a single buffer, but that's a complex
-> beast and I'm not sure if it is something we actually need.
+> 	#include <stddef.h>                     // for NULL
+Not this one.
 
-Yeah, if possible I prefer to look at the (ASCII art) schematics
-on how the HW looks like (connections with busses and CS lines).
+> 	#include "asm-generic/errno-base.h"     // for EINVAL, ENOMEM
+Something to get to errnos is good, but not that one.
 
--- 
-With Best Regards,
-Andy Shevchenko
+> 	#include "linux/array_size.h"           // for ARRAY_SIZE
+Yes - this is part of the kernel.h split up work.
 
+> 	#include "linux/compiler_attributes.h"  // for __aligned
+Never that one, but I sometimes feel compiler.h is fine.
+
+> 	#include "linux/dev_printk.h"           // for dev_err
+Yes if device.h doesn't have to be there for other reasons.
+
+> 	#include "linux/iio/types.h"            // for iio_chan_info_enum, iio_chan_...
+No. We always need iio.h which will always include that.
+
+> 	#include "linux/math.h"                 // for abs
+yes
+> 	#include "linux/minmax.h"               // for __cmp_op_max
+yes
+
+> 	#include "linux/mod_devicetable.h"      // for spi_device_id
+yes
+> 	#include "linux/mutex.h"                // for mutex_lock, mutex_unlock, mut...
+yes
+> 	#include "linux/mutex_types.h"          // for mutex
+no as mutex.h will alays include that.
+
+> 	#include "vdso/bits.h"                  // for BIT
+
+Usually via bitops.h or similar. But if none of those are there anyway linux/bits.h
+
+Jonathan
+
+> 
+> And note, tool != principle. The tool is just an implementation of the helper
+> to enforce the principle in practice, but it may be not always suitable for
+> the certain project "as is".
+> 
+> In the below output some are valid, but some are just noise as there are
+> guarantees for the "proxying".
+> 
 
 
