@@ -1,323 +1,167 @@
-Return-Path: <devicetree+bounces-265575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265576-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gKoWI866kGm8cgEAu9opvQ
-	(envelope-from <devicetree+bounces-265575-lists+devicetree=lfdr.de@vger.kernel.org>)
+	id iE7OHs66kGm8cgEAu9opvQ
+	(envelope-from <devicetree+bounces-265576-lists+devicetree=lfdr.de@vger.kernel.org>)
 	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:11:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 274F013CB9D
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1504E13CB9C
 	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:11:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9C8A4302FEB8
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 18:10:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4D12E3006127
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 18:11:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6225C311C1B;
-	Sat, 14 Feb 2026 18:10:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647DB3033CD;
+	Sat, 14 Feb 2026 18:11:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="sFXrVGMS"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VZngNJRc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-106120.protonmail.ch (mail-106120.protonmail.ch [79.135.106.120])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6AC30F924
-	for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 18:10:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.120
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E937B30170F;
+	Sat, 14 Feb 2026 18:11:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771092637; cv=none; b=VwvHOSWagDyugpa88ywNAyjnrYYPPGCu9qcqNeWNAFrctgQpeVsUfp0B6LwfXl8uX5GM5kgxxiC5T9uWgpv+u0nIQZqgeOKKR53a9AD7DFubAd7dgz7/gzl5dVWQyZJOpebxbLZQYu0JeYKA+gz+D5PBXylxdzExufIdLZcaFiA=
+	t=1771092681; cv=none; b=utaYSvPDs7VXHpDn8p49QUbNSCNY//Nb/1fhGM/L1lESG0GEi88ToByYYWGp6mYySC/egkE0V/G51yt1LAAHwqZxFf47XmiDQPb4RHoR5yKaGC0L9/CzJ6av4fb76bDU03eGCRSeif77Q9bqaJgaW1Y52oyD2pB/96xmMfv7j58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771092637; c=relaxed/simple;
-	bh=dDnUSCEp99oaNFkSEApP6LO+YLiDVKMiK7JlCWM6xYk=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Y2qZxeZL7sk6ASzVEpWD/qFGEXGbuN4IcDxP84thpimN80VleSEYx1dK6mMZpMcWyU6kNNDZS4i9XEd4rW9BcILggHYALc8Zz+U4FvG1wrBX11Jk3VyqMGdnJcFc92ppIYRXtHeXxt0UQg+pMtMD8UdGK7uBw/f2g6RlsngZM1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=sFXrVGMS; arc=none smtp.client-ip=79.135.106.120
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1771092631; x=1771351831;
-	bh=pG4KOGJ75N5YkKd/3GD69J7uY+UkiejpCarTJWjDjs8=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=sFXrVGMS6QPQVOJNQimWlLVfz3MXDxgJNMap6EpjuT3RYIrTeXaOr4fhBcogJ+Cd6
-	 ScYURDtx1K0VIvH+yMc4RQd8883yQPcZ0xBq7ZO3Nh0wrEUJnDOONCOI2ZfpC7vHMQ
-	 spn8Y+DLjP3+hXDoZzOrvw4yKsQBqwCmTXdyVSfjb6MhZ6ebOtTcc8amn1lU0UCp0L
-	 6DxwFMYnKCxxXSPcZpuNoy3LzMsE8rJhNK7PYbl38dfJpnlz6Xd9TsXVb6S6DRH8k8
-	 g/LfD5D6pjbZDPaLTxBSEKqd7neYRkQ4oYOeEoZMhgVZ9vWOSSH21Nh4KI4J2oAdZF
-	 JAStsan9emBMw==
-Date: Sat, 14 Feb 2026 18:10:25 +0000
-To: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>
-From: Harry Austen <hpausten@protonmail.com>
-Cc: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Harry Austen <hpausten@protonmail.com>
-Subject: [PATCH v4 2/2] clk: clocking-wizard: add user clock monitor support
-Message-ID: <20260214180933.42143-3-hpausten@protonmail.com>
-In-Reply-To: <20260214180933.42143-1-hpausten@protonmail.com>
-References: <20260214180933.42143-1-hpausten@protonmail.com>
-Feedback-ID: 53116287:user:proton
-X-Pm-Message-ID: 2de2d7324fad0080ee117d3c2685689e6a3fc307
+	s=arc-20240116; t=1771092681; c=relaxed/simple;
+	bh=Rtw6jHf5uaxID1paObRpVDjR0hX7pGocbXMcSLXJo9g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j57syLZd1h1cjMCGcsyQXozAFof1/dSvR0EJD1yX3BoHZQthTXK6+OUUSkyAJNM//JTO8SWuY8HcCs957Iai0nZcjxkiAc+tqFY9ZBhDPZZylggdQo7pzu1nh+faVIUL2b0aevLW6qMLKFzJJ9xZpN/YxhBPVZyNOJgbTeObj5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VZngNJRc; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1771092680; x=1802628680;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Rtw6jHf5uaxID1paObRpVDjR0hX7pGocbXMcSLXJo9g=;
+  b=VZngNJRclUQa1gHi4dtTXjaSYm/s1b+cClIsFY6kUb1GV92EQXDWXXLg
+   3IpRtdDQCO0f9tWunO9bUOVU0pWw3SXiddBCKOAoYGUaVpj4SRKHMJo/v
+   qG8KiGIywyvbshZ++RfZm7TJKMTTdbqo++ZvIIp0Kaemdp6qSrOYeyGqG
+   u9jQiCSYVADpya3xIfx8ANZSp6nyraWtNZu9KdgfnpLAW0/vjnn8XE7pn
+   f7EvJt1h1WL4llWrLjZfdE0KFdiJ0ktin7MmE7RRWPdIftT0ADM/P0Aq+
+   JpRQiw+XTfrUrZ38zbTSuoMvZnIKmoC8W98E1h97MDrU5D1M6f4Uthiyw
+   Q==;
+X-CSE-ConnectionGUID: bqMbN+oBTLOFTUvq/PSUFw==
+X-CSE-MsgGUID: R3bdZsphQOGvpMpdFW2GfQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11701"; a="72148254"
+X-IronPort-AV: E=Sophos;i="6.21,291,1763452800"; 
+   d="scan'208";a="72148254"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2026 10:11:19 -0800
+X-CSE-ConnectionGUID: BzTRWHiLQeWUU57Ns6MZIA==
+X-CSE-MsgGUID: RxBwjV0BTL+Mh7+SaKa+Hw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,291,1763452800"; 
+   d="scan'208";a="212462021"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.136])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2026 10:11:15 -0800
+Date: Sat, 14 Feb 2026 20:11:12 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org
+Subject: Re: [PATCH v2 0/4] iio: adc: ad4080: add support for AD4880
+ dual-channel ADC
+Message-ID: <aZC6wIWDdS8J_1eJ@smile.fi.intel.com>
+References: <cover.1770393792.git.antoniu.miclaus@analog.com>
+ <aYiGj_TYelvJdVaR@smile.fi.intel.com>
+ <20260214160852.6862b58d@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260214160852.6862b58d@jic23-huawei>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265575-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[protonmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-265576-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hpausten@protonmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[amd.com,vger.kernel.org,lists.infradead.org,protonmail.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DKIM_TRACE(0.00)[protonmail.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 274F013CB9D
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: 1504E13CB9C
 X-Rspamd-Action: no action
 
-Xilinx clocking wizard IP core supports monitoring of up to four
-optional user clock inputs, with a corresponding interrupt for
-notification in change of clock state (stop, underrun, overrun or
-glitch). Give userspace access to this monitor logic through use of the
-devcoredump framework.
+On Sat, Feb 14, 2026 at 04:08:52PM +0000, Jonathan Cameron wrote:
+> On Sun, 8 Feb 2026 14:50:23 +0200
+> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+> > On Fri, Feb 06, 2026 at 06:07:12PM +0200, Antoniu Miclaus wrote:
 
-Use presence of the user monitor interrupt description in devicetree to
-indicate whether or not this functionality should be enabled. Also, this
-functionality is only supported from v6.0 onwards, so add indication of
-support to the device match data, in order to be tied to the utilised
-compatible string.
+...
 
-All 16 user clock monitor trigger sources are enabled in the IER. When
-triggered, the values of the first 5 registers are recorded through
-devcoredump.
+> > I believe there is a better approach, what you need is rather a flag
+> > to SPI core to tell that this is the device with shared CS.
+> 
+> Antoniu, this comment from Andy needs addressing before we move
+> on. It seems fairly fundamental and I'm not seeing a reply to it on list.
+> 
+> I'm not entirely sure what Andy is suggesting will work but this
+> is perhaps a mismatch in really understanding what is going on here.
+> Andy, how would a flag work given they seem to be separately addressable
+> SPI buses. I think this isn't a shared SPI CS, but rather a device
+> with two entirely separate SPI buses. I think the only reason
+> we are bothering to implement it as a single device at all is the
+> shared backend.
 
-Signed-off-by: Harry Austen <hpausten@protonmail.com>
----
-v3 -> v4: Rework from auxiliary bus and UIO to devcoredump
-v2 -> v3: No change
-v1 -> v2:
-- Remove direct UIO dependency by utilising auxiliary device
-- Move some logic from probe into clk_wzrd_setup_monitor for tidiness
+My understanding that there are two devices that for whatever reason share
+the same CS line. Yes, I probably misread the idea behind, but I meant
+some flag for SPI device that tells SPI core that the CS it wants is shared
+(maybe a high bit in the cs field or so), then CS core won't complain on
+validation about using the same cs number which is "already in use".
 
- drivers/clk/xilinx/Kconfig                 |  1 +
- drivers/clk/xilinx/clk-xlnx-clock-wizard.c | 69 ++++++++++++++++++++--
- 2 files changed, 66 insertions(+), 4 deletions(-)
+> There is an argument that maybe we should be looking at how
+> to do data muxing backends to support the more general case of two
+> separate chips feeding into a single buffer, but that's a complex
+> beast and I'm not sure if it is something we actually need.
 
-diff --git a/drivers/clk/xilinx/Kconfig b/drivers/clk/xilinx/Kconfig
-index 051756953558b..37758ac9ab552 100644
---- a/drivers/clk/xilinx/Kconfig
-+++ b/drivers/clk/xilinx/Kconfig
-@@ -21,6 +21,7 @@ config COMMON_CLK_XLNX_CLKWZRD
- =09tristate "Xilinx Clocking Wizard"
- =09depends on OF
- =09depends on HAS_IOMEM
-+=09select WANT_DEV_COREDUMP
- =09help
- =09  Support for the Xilinx Clocking Wizard IP core clock generator.
- =09  Adds support for clocking wizard and compatible.
-diff --git a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c b/drivers/clk/xilin=
-x/clk-xlnx-clock-wizard.c
-index 4a0136349f71a..f14d1ec80a321 100644
---- a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-+++ b/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-@@ -12,6 +12,7 @@
- #include <linux/platform_device.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
-+#include <linux/devcoredump.h>
- #include <linux/slab.h>
- #include <linux/io.h>
- #include <linux/of.h>
-@@ -19,11 +20,15 @@
- #include <linux/module.h>
- #include <linux/overflow.h>
- #include <linux/err.h>
-+#include <linux/interrupt.h>
- #include <linux/iopoll.h>
-=20
- #define WZRD_NUM_OUTPUTS=097
- #define WZRD_ACLK_MAX_FREQ=09250000000UL
-+#define WZRD_NUM_DUMP_REGS=095
-=20
-+#define WZRD_INTR_STATUS=090x0C
-+#define WZRD_INTR_ENABLE=090x10
- #define WZRD_CLK_CFG_REG(v, n)=09(0x200 + 0x130 * (v) + 4 * (n))
-=20
- #define WZRD_CLKOUT0_FRAC_EN=09BIT(18)
-@@ -124,6 +129,7 @@ enum clk_wzrd_int_clks {
- /**
-  * struct clk_wzrd - Clock wizard private data structure
-  *
-+ * @pdev:=09=09Platform device
-  * @nb:=09=09=09Notifier block
-  * @base:=09=09Memory base
-  * @clk_in1:=09=09Handle to input clock 'clk_in1'
-@@ -131,9 +137,11 @@ enum clk_wzrd_int_clks {
-  * @clks_internal:=09Internal clocks
-  * @speed_grade:=09Speed grade of the device
-  * @suspended:=09=09Flag indicating power state of the device
-+ * @work:=09=09Delayed work for devcoredump
-  * @clk_data:=09=09Output clock data
-  */
- struct clk_wzrd {
-+=09struct platform_device *pdev;
- =09struct notifier_block nb;
- =09void __iomem *base;
- =09struct clk *clk_in1;
-@@ -141,6 +149,7 @@ struct clk_wzrd {
- =09struct clk_hw *clks_internal[wzrd_clk_int_max];
- =09unsigned int speed_grade;
- =09bool suspended;
-+=09struct delayed_work work;
- =09struct clk_hw_onecell_data clk_data;
- };
-=20
-@@ -177,8 +186,9 @@ struct clk_wzrd_divider {
- =09spinlock_t *lock;  /* divider lock */
- };
-=20
--struct versal_clk_data {
-+struct clk_wzrd_data {
- =09bool is_versal;
-+=09bool has_monitor;
- };
-=20
- #define to_clk_wzrd(_nb) container_of(_nb, struct clk_wzrd, nb)
-@@ -984,8 +994,13 @@ static int __maybe_unused clk_wzrd_resume(struct devic=
-e *dev)
- static SIMPLE_DEV_PM_OPS(clk_wzrd_dev_pm_ops, clk_wzrd_suspend,
- =09=09=09 clk_wzrd_resume);
-=20
--static const struct versal_clk_data versal_data =3D {
-+static const struct clk_wzrd_data version_6_0_data =3D {
-+=09.is_versal=09=3D false,
-+=09.has_monitor=09=3D true,
-+};
-+static const struct clk_wzrd_data versal_data =3D {
- =09.is_versal=09=3D true,
-+=09.has_monitor=09=3D true,
- };
-=20
- static int clk_wzrd_register_output_clocks(struct device *dev, int nr_outp=
-uts)
-@@ -993,7 +1008,7 @@ static int clk_wzrd_register_output_clocks(struct devi=
-ce *dev, int nr_outputs)
- =09const char *clkout_name, *clk_name, *clk_mul_name;
- =09struct clk_wzrd *clk_wzrd =3D dev_get_drvdata(dev);
- =09u32 regl, regh, edge, regld, reghd, edged, div;
--=09const struct versal_clk_data *data;
-+=09const struct clk_wzrd_data *data;
- =09unsigned long flags =3D 0;
- =09bool is_versal =3D false;
- =09void __iomem *ctrl_reg;
-@@ -1150,14 +1165,45 @@ static int clk_wzrd_register_output_clocks(struct d=
-evice *dev, int nr_outputs)
- =09return 0;
- }
-=20
-+static irqreturn_t clk_wzrd_user_mon_intr_handler(int irq, void *data)
-+{
-+=09struct clk_wzrd *clk_wzrd =3D platform_get_drvdata(data);
-+
-+=09schedule_delayed_work(&clk_wzrd->work, msecs_to_jiffies(10));
-+=09return IRQ_HANDLED;
-+}
-+
-+static void clk_wzrd_user_mon_work(struct work_struct *work)
-+{
-+=09struct clk_wzrd *clk_wzrd =3D container_of(work, struct clk_wzrd, work.=
-work);
-+=09u32 *dump =3D vmalloc(WZRD_NUM_DUMP_REGS * sizeof(*dump));
-+
-+=09ioread32_rep(clk_wzrd->base, dump, WZRD_NUM_DUMP_REGS);
-+=09dev_coredumpv(&clk_wzrd->pdev->dev, dump, WZRD_NUM_DUMP_REGS * sizeof(*=
-dump), GFP_KERNEL);
-+=09iowrite32(dump[WZRD_INTR_STATUS / sizeof(*dump)], clk_wzrd->base + WZRD=
-_INTR_STATUS);
-+}
-+
-+static void clk_wzrd_cancel_delayed_work(void *data)
-+{
-+=09struct delayed_work *work =3D data;
-+
-+=09cancel_delayed_work_sync(work);
-+}
-+
- static int clk_wzrd_probe(struct platform_device *pdev)
- {
-+=09const struct clk_wzrd_data *data =3D device_get_match_data(&pdev->dev);
- =09struct device_node *np =3D pdev->dev.of_node;
- =09struct clk_wzrd *clk_wzrd;
- =09unsigned long rate;
- =09int nr_outputs;
-+=09int irq;
- =09int ret;
-=20
-+=09irq =3D platform_get_irq_optional(pdev, 0);
-+=09if (irq < 0 && irq !=3D -ENXIO)
-+=09=09return dev_err_probe(&pdev->dev, irq, "failed to get irq\n");
-+
- =09ret =3D of_property_read_u32(np, "xlnx,nr-outputs", &nr_outputs);
- =09if (ret || nr_outputs > WZRD_NUM_OUTPUTS)
- =09=09return -EINVAL;
-@@ -1226,6 +1272,21 @@ static int clk_wzrd_probe(struct platform_device *pd=
-ev)
- =09=09}
- =09}
-=20
-+=09if (data && data->has_monitor && irq > 0) {
-+=09=09ret =3D devm_request_irq(&pdev->dev, irq, clk_wzrd_user_mon_intr_han=
-dler, IRQF_SHARED,
-+=09=09=09=09       "user_mon", clk_wzrd);
-+=09=09if (ret)
-+=09=09=09return dev_err_probe(&pdev->dev, ret, "failed to request irq\n");
-+
-+=09=09INIT_DELAYED_WORK(&clk_wzrd->work, clk_wzrd_user_mon_work);
-+=09=09ret =3D devm_add_action_or_reset(&pdev->dev, clk_wzrd_cancel_delayed=
-_work,
-+=09=09=09=09=09       &clk_wzrd->work);
-+=09=09if (ret)
-+=09=09=09return ret;
-+
-+=09=09writel(GENMASK(15, 0), clk_wzrd->base + WZRD_INTR_ENABLE);
-+=09}
-+
- =09return 0;
- }
-=20
-@@ -1233,7 +1294,7 @@ static const struct of_device_id clk_wzrd_ids[] =3D {
- =09{ .compatible =3D "xlnx,versal-clk-wizard", .data =3D &versal_data },
- =09{ .compatible =3D "xlnx,clocking-wizard"   },
- =09{ .compatible =3D "xlnx,clocking-wizard-v5.2"   },
--=09{ .compatible =3D "xlnx,clocking-wizard-v6.0"  },
-+=09{ .compatible =3D "xlnx,clocking-wizard-v6.0", .data =3D &version_6_0_d=
-ata },
- =09{ },
- };
- MODULE_DEVICE_TABLE(of, clk_wzrd_ids);
---=20
-2.53.0
+Yeah, if possible I prefer to look at the (ASCII art) schematics
+on how the HW looks like (connections with busses and CS lines).
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 
