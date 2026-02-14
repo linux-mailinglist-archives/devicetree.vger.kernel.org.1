@@ -1,147 +1,161 @@
-Return-Path: <devicetree+bounces-265541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265542-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eI2yC1lLkGleYQEAu9opvQ
-	(envelope-from <devicetree+bounces-265541-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 11:15:53 +0100
+	id SBRYKOJLkGleYQEAu9opvQ
+	(envelope-from <devicetree+bounces-265542-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 11:18:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC7FE13BA2B
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 11:15:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F306E13BA66
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 11:18:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D60EA30065DE
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 10:15:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 87E853009B05
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 10:18:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE19729DB8F;
-	Sat, 14 Feb 2026 10:15:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C48243956;
+	Sat, 14 Feb 2026 10:18:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="kk07FDwZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D763122FE0E;
-	Sat, 14 Feb 2026 10:15:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23EB02BE03C
+	for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 10:18:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771064150; cv=none; b=CsQClMvw3mDbs31FFkkJpLJPVI0sJJLbmiIMI2ndTsVO6bxX1ABku/Vg7NIzNvpdbJ1Y2XZZ4E+JQMUyDeLwTQN8rTM53EUx+iILHA0ybMynTku6FiqOnwK1quSdvSXBb60gN5SQlsZ3rPS+ZB7Cq9bFQ4UciKP7ydYjA6BbGS4=
+	t=1771064286; cv=none; b=k381e+ZMKbpesHt5VGfLqhYQG3FEZ/fglUTLtSsbY5OOq12JoyBHQjYWYz1cE4yCHLeY3lJ0J9GujzICFdzh0ZHdZ9hxqKA7+3K1rqspcLQ8/TZPwJf1i4vDjjEp8l/QNxRkh2ybikSU2MdzDvM2LXcjLSilvt9zhIM6hfl/TPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771064150; c=relaxed/simple;
-	bh=Q/16NY4yRYKEDK7d1huvvnM6BbBwg4AN3thZcEmlbgk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=RxuCQ9jJohFzqGs/Q/DGksI82Mnz8Y0Sr4HTwGvmUhFX7jk29mlV8n0hb44bvPi/Xhykbc8JPkN4uK0+IabOEFzP2QnMkU1WoeOROiLl/2YZtuiyzTPZAfZC4w0GeV7R6I6vmVqJdBZUOnRbOp1fARrVq+ilU3RM1J2jkYLaa3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app2 (Coremail) with SMTP id TQJkCgAXLqFJS5Bp8JIAAA--.4131S2;
-	Sat, 14 Feb 2026 18:15:39 +0800 (CST)
-From: dongxuyang@eswincomputing.com
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	troy.mitchell@linux.dev,
-	bmasney@redhat.com
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	ganboing@gmail.com,
-	marcel@ziswiler.com,
-	Xuyang Dong <dongxuyang@eswincomputing.com>
-Subject: [PATCH v13 3/3] MAINTAINERS: Add entry for ESWIN EIC7700 clock driver
-Date: Sat, 14 Feb 2026 18:15:35 +0800
-Message-Id: <20260214101535.396-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
-In-Reply-To: <20260214101421.228-1-dongxuyang@eswincomputing.com>
-References: <20260214101421.228-1-dongxuyang@eswincomputing.com>
+	s=arc-20240116; t=1771064286; c=relaxed/simple;
+	bh=insWAkjv96gvnHBcrA03GTrqrzkxFg1k4WDNv9xYPuo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZUaBiPKPN31JI3b+WLY9v52xVNWO/pxuY93AuQiGweWFwCFvxdGjjn3IU4Zw7AH3gjzV9x9YlPMxdv+V7+BJhhoZ9r+UEVVAYL05ydWxkxF8zGcwg2FWbGCb0XxUnZP+e69U9wXAQ/1PsJkCdb7M0sshUyUHIkfBZzSpASshRZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=kk07FDwZ; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1771064282;
+ bh=UnRP19hiGW2EOW6F6Xb4s8Mr1BOvl4pRlTPUo+1yLhk=;
+ b=kk07FDwZhoi/OfSdOoYfOsZ9fb2xfubK/8F/4fILWELC4bgid6fLGur4aCaN9LJAYJ8vq2sEf
+ x0/7pqwDjuVf9tzMO4akVMNnKm2ADXXQpwA8ApbXhdhxg04GBMsEFOyQd3M6ki9L6wGq/tYqVRN
+ o0/qxEPawnjdWmj0HiGKXcgdSdvM2QYJR3kpoDiApdSBJln1yQqcw6DR1yEHPQktvoRW4X8pcAj
+ MZCBCoNYyfIjZFxUoUuj0zbK8syguk7X3oPjRL2vi32icR8syRrybAZHOhVGEgkUnSpzksN4hlo
+ QpRtUSDl1cKuQv700PPJgDaS2MYPxT6uU9U1qe/+WQFg==
+X-Forward-Email-ID: 69904bd531a6a6d7c5f99d43
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 2.6.4
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <64285bcf-7cbe-4732-bd45-44797846be23@kwiboo.se>
+Date: Sat, 14 Feb 2026 11:17:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/4] ARM: dts: rockchip: Add Onion Omega4 Evaluation
+ Board
+To: Fabio Estevam <festevam@gmail.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Fabio Estevam <festevam@nabladev.com>
+References: <20260210144845.317048-1-festevam@gmail.com>
+ <20260210144845.317048-4-festevam@gmail.com>
+ <a8c1bac7-9f67-4476-81ad-5271ff239b91@kwiboo.se>
+ <CAOMZO5DJGQVOL4D4WWopduodedExMG-O65E1AzdXDQDWMP8A1Q@mail.gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <CAOMZO5DJGQVOL4D4WWopduodedExMG-O65E1AzdXDQDWMP8A1Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TQJkCgAXLqFJS5Bp8JIAAA--.4131S2
-X-Coremail-Antispam: 1UD129KBjvdXoWruF48XFWkKr1DGr1UGry8Zrb_yoWDArc_Gw
-	4rCay7XFyrJF42k3ykZFZayrWYkw4xJr4jg3ZFkw1Yvw1Yyr1DKFWDXwnavw47Gr43WryU
-	uFyrKFZIgrnrXjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbhxFF20E14v26ryj6rWUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
-	A2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_
-	Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
-	0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
-	jxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
-	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
-	n2IY04v7M4kE6xkIj40Ew7xC0wCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE-syl42xK82
-	IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC2
-	0s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMI
-	IF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI
-	42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z2
-	80aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7sRiBT5PUUUUU==
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kwiboo.se,quarantine];
+	R_DKIM_ALLOW(-0.20)[kwiboo.se:s=fe-e1b5cab7be];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265541-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-265542-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[eswincomputing.com,einfochips.com,gmail.com,ziswiler.com];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kwiboo.se:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:mid,eswincomputing.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ziswiler.com:email]
-X-Rspamd-Queue-Id: AC7FE13BA2B
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F306E13BA66
 X-Rspamd-Action: no action
 
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
+Hi Fabio,
 
-Add myself as maintainer of ESWIN EIC7700 clock driver
+On 2/11/2026 12:03 PM, Fabio Estevam wrote:
+> Hi Jonas,
+> 
+> On Tue, Feb 10, 2026 at 1:53 PM Jonas Karlman <jonas@kwiboo.se> wrote:
+> 
+>> nit: Is rv1103b needed in all three compatible strings? The last one is
+>> already pointing out that this is the rv1103b soc, also the other Onion
+>> Omega boards in-tree use onion,omega and onion,omega2+.
+> 
+> All the boards inside arch/arm/boot/dts/rockchip/Makefile start with
+> the SoC name, so I prefer to be consistent.
 
-Tested-by: Marcel Ziswiler <marcel@ziswiler.com> # ebc77
-Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+I do not follow, the .dts-filename typically do not fully follow the
+topmost compatible for the board on Rockchip platform.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index faa914a5f34d..c57f1eb29ee9 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9500,6 +9500,14 @@ T:	git https://github.com/eswincomputing/linux-next.git
- F:	Documentation/devicetree/bindings/riscv/eswin.yaml
- F:	arch/riscv/boot/dts/eswin/
- 
-+ESWIN EIC7700 CLOCK DRIVER
-+M:	Yifeng Huang <huangyifeng@eswincomputing.com>
-+M:	Xuyang Dong <dongxuyang@eswincomputing.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
-+F:	drivers/clk/eswin/
-+F:	include/dt-bindings/clock/eswin,eic7700-clock.h
-+
- ET131X NETWORK DRIVER
- M:	Mark Einon <mark.einon@gmail.com>
- S:	Odd Fixes
--- 
-2.43.0
+The typical convention for Rockchip platform is:
+
+ compatible: "<vendor>,<board model>[-<revision>]",
+             ["<vendor>,<som model>",]
+             "rockchip,<soc>"
+
+and the filename is typically:
+
+ board dts: <soc>-[<vendor>-]<board model>[-<revision>].dts
+ som dtsi:  <soc>-[<vendor>-]<som model>.dtsi
+ soc dtsi:  <soc>.dtsi
+
+The board model typically only include <soc> if there are multiple
+versions/revisions sharing same/similar model name.
+
+And in mainline U-Boot we try to follow this convention for Rockchip
+defconfig naming:
+
+ defconfig: [<vendor>-]<board model>-<soc>_defconfig
+
+So my question remains, why do the soc (rv1103b) name need to be
+repeated in all compatible parts? Is there expected to be another Onion
+Omega4 version/revision using a different Rockchip SoC?
+
+And if that is the case, then probably only the SOM part would need
+the soc part, not the topmost part of the compatible.
+
+Regards,
+Jonas
+
+> I have addressed all of the other feedback you gave me and sent a v4.
+> 
+> Thanks
 
 
