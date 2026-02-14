@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-265525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265526-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yBEZHNU3kGkuXgEAu9opvQ
-	(envelope-from <devicetree+bounces-265525-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 09:52:37 +0100
+	id 6FQZBOg3kGkuXgEAu9opvQ
+	(envelope-from <devicetree+bounces-265526-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 09:52:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16BAD13B73C
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 09:52:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 829B113B752
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 09:52:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 48BCE300646D
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 08:52:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1F5DF301707F
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 08:52:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B68C1247295;
-	Sat, 14 Feb 2026 08:52:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4375F2749CF;
+	Sat, 14 Feb 2026 08:52:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sZMcZnvU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pQpf3IqX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92F3E3EBF34;
-	Sat, 14 Feb 2026 08:52:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F6D21EA84;
+	Sat, 14 Feb 2026 08:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771059152; cv=none; b=eyupZWpZC048V2MWKiLXBBUgO2Z7enQ8JIw6MGc57CVqQL4Lak2ur+r9xLzUEdoW05YhsIrcAS2ju/fg5qMqG/FWOQVAxRgejTaufaeVST81eumOu8fpBsEC/EvTW4nA/1tAIriVDfan5sWs61u0cau/F8qdlzKV8llY5xhSvrg=
+	t=1771059165; cv=none; b=pxgRWaq816gDUrXL4n4AARyAZwEGDMJVtaj9IBNxmNweaSzocVGSF6AL6qwip0qBE+3CKKxQionQTLwFT7FShsZyHvykIM0P8ZHULSX4DrWlu4n7hs8LcIs94CaalZxMipgd7QkiKKqOw3hlCO6a4wDbtwF2PVuyENTrNTZa85U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771059152; c=relaxed/simple;
-	bh=pChS38x+fpOwHSzLC+gsNJVekfuD/Lfjpq6gyfaYoxk=;
+	s=arc-20240116; t=1771059165; c=relaxed/simple;
+	bh=ZqB5eEq9kZYLfYGrkhKMJXz9JCAuloRrJckUkbQ8ZDU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=hkNraX1N9IaP1Dt0QOU1DNm/Ut+Ifv48Olg1+xXFIA+N3/0e2mAIxZGAzGSgirqEWhzjbM8ZNzllZdhgJ4a2rBRs8aKY5Y+eMShA59K6hcmF+FTi16ol8swIfpE6iTf0Op+NlfUFrGU09BsbacZ5hqTl8ppkFn+RsWZZi1PW6qw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sZMcZnvU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85499C19421;
-	Sat, 14 Feb 2026 08:52:29 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=U3AfAqDZdJEIwZC4GRZ2JDkKQvuNOcesoof5o+VoqrFIIBbhEbfjXZCfoU9vEE1nO8aV+FnNavHQgyCJj+49g38DZOckuP2nZtSJf0HeDzV9R3GnuxVEktEerv0inVPZ1jxjTx8qf3Lv9eCEQQkQZIbeVk7lVpR4VGJ2cMVRwwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pQpf3IqX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09383C19421;
+	Sat, 14 Feb 2026 08:52:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771059152;
-	bh=pChS38x+fpOwHSzLC+gsNJVekfuD/Lfjpq6gyfaYoxk=;
+	s=k20201202; t=1771059164;
+	bh=ZqB5eEq9kZYLfYGrkhKMJXz9JCAuloRrJckUkbQ8ZDU=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=sZMcZnvUutysi5oZpyxHlgOEnI1csgV58htF3luETPaUtjJUuMKTHa6LL2NZDL+uB
-	 /2Kky1uqDe3qkC6+Bu97QkXqnGeBihi5DSua92GYb9+XiaSmN0hGTH2JYoEwPThsjQ
-	 Hp4YGkWI+NN98UpJcec0d2wWQhYp5m67LFM8x80s5aUKuWnlxxtZlF/Dgn6zCLSWhh
-	 a1ADNh33kBxjF81HY70o/wtMQZa1HIUFBoi/4Ie2kNA5XjvpKn0g3FPcln/fSK4Jkb
-	 lKDMREYUezUWagiXgtagmaqQNIsTSMych3YJ+RyhXOhumOe9bLgGIKYnDpYnIdKGoh
-	 +55LI8BTKTPYQ==
-Message-ID: <97161bd8-788d-49f8-9524-b1bfe2b3ecfc@kernel.org>
-Date: Sat, 14 Feb 2026 09:52:27 +0100
+	b=pQpf3IqXUm7otrSyn1ONAhxQ1JLwtOyV7pEdyhoScFcIK5LqTTy8dnPDQzIcf9EnM
+	 v5TgkRha/SM5m2LG4LudojwQHY/2WK0UOt2zeaSaYUnlb7rx0tIjMyecYfTmYwShwD
+	 KwA9qZeG//Vhz4YPWKXpldeX5595H57SB547sBmE5Iv9SdQoE1ESZ/w+1ZuwfKJtpS
+	 orTZE9dBeN9B+hXMX++bruFr/z7T9p5AFkpeZ+2/CkTmUMqxpn2UgD3eeqiopNBcQ8
+	 8CMQDIJIIdKWtWCqC5LzCFcY52anEqztSSlOToPAyfaHN0vbOODa6UFcNAskWhcfFx
+	 gYxS1FYZY5FTA==
+Message-ID: <fc308487-4e42-436e-a47f-b76b785ba5f8@kernel.org>
+Date: Sat, 14 Feb 2026 09:52:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,8 +53,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: iio: adc: adi,ad4080: add support for
- AD4082
+Subject: Re: [PATCH v2 5/6] dt-bindings: iio: adc: adi,ad4080: add support for
+ AD4088
 To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
  Lars-Peter Clausen <lars@metafoo.de>,
  Michael Hennerich <Michael.Hennerich@analog.com>,
@@ -65,7 +65,7 @@ To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
  <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20260213144629.16001-1-antoniu.miclaus@analog.com>
- <20260213144629.16001-2-antoniu.miclaus@analog.com>
+ <20260213144629.16001-6-antoniu.miclaus@analog.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,7 +111,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260213144629.16001-2-antoniu.miclaus@analog.com>
+In-Reply-To: <20260213144629.16001-6-antoniu.miclaus@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -119,13 +119,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265525-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265526-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -139,25 +139,24 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 16BAD13B73C
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 829B113B752
 X-Rspamd-Action: no action
 
 On 13/02/2026 15:46, Antoniu Miclaus wrote:
-> Add device tree binding support for the AD4082 20-bit SAR ADC.
-> Add adi,ad4082 to the compatible enum.
+> Add device tree binding support for the AD4088 14-bit SAR ADC.
+> Add adi,ad4088 to the compatible enum.
 > 
 > A fallback compatible string to adi,ad4080 is not appropriate as the
-> AD4082 has a different LVDS CNV clock count maximum (8 vs 7), requiring
+> AD4088 has a different LVDS CNV clock count maximum (8 vs 7), requiring
 > different driver configuration.
 > 
 > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
 > No changes since v1.
-> 
 
-You ignored feedback and never responded to it.
+Not really acceptable. You ignored feedback and never responded to it.
 
 Best regards,
 Krzysztof
