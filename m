@@ -1,66 +1,89 @@
-Return-Path: <devicetree+bounces-265506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265507-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QIosDtPzj2k3UgEAu9opvQ
-	(envelope-from <devicetree+bounces-265506-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 05:02:27 +0100
+	id vXEQOsH+j2nMUwEAu9opvQ
+	(envelope-from <devicetree+bounces-265507-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 05:49:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1A5513AF81
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 05:02:26 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1950B13B14A
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 05:49:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4FCE8301ABA7
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 04:02:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5BF0F3007A7D
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 04:49:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 650997404E;
-	Sat, 14 Feb 2026 04:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59DE82FB08C;
+	Sat, 14 Feb 2026 04:48:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YMhltCUi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cm4Dbc+c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FD8B3EBF06;
-	Sat, 14 Feb 2026 04:02:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2602D2F83B5;
+	Sat, 14 Feb 2026 04:48:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771041744; cv=none; b=nEEfySSSijvs5+s4kiQgaupE0o+sbGyVkJqAYqx23Sl8dddZLjeihB54SuVjEFMZN2I5RBvDg7xtcF3HnHr1+8reTJ9+I3nmlNOxM63hbDvmdu1REiB/zEShaRgj2Y3wznKeHZrPx+d8djtnJIbnjrt4hJJbKvhkW5xjqBuHRaI=
+	t=1771044538; cv=none; b=MFkSHHVRbRIvlB5kxAPMQiSPGqwqWP0e7BNkeqc7l26zwSXC08J4mXdA2Tlq07RSSyT1caFKpHy3b+TPjxYvFDcuuEgJnFABxUSr/hEDbOFo2a8RheErRXFoaCCnbioKSE6ISxSNN4zeFV9HEDmCDxTbg2IztUI08L/kJz9qDkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771041744; c=relaxed/simple;
-	bh=RcMDwI8y8h3Rzt0mAi0JN3jRa8Y+v7JRmhYCcEfJ6y0=;
+	s=arc-20240116; t=1771044538; c=relaxed/simple;
+	bh=SWciu1EotfgCtPYvcZhetq4/41qsYpU6LYTorQstCP4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rjlbA3M9S3Mdmxjvn9EdyzkPuS5eWMGS1FDMgZ42uB9P4ctJRKCx0xhWICQ2MdfkNtibuNgtsuGJS070rAXSY7oqkVIrqX9vWRycZICoO5TUTkl6Kp0poCMlqTiu7BCScHEQh2sEoGVp/W/XwXW4wy9uw0vqHESlAIOLdltizoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YMhltCUi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7EE4C19421;
-	Sat, 14 Feb 2026 04:02:22 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AgUY64thTGju1pDtrZLTGjekChv67xVx3hGiuckVNCd9KtnO+qeiEAFql0cV2lkgK8ROmU//pGdmgvjWXiyIK0twrRgbNShPpzdJvQFR2uMV8EUGMOoPyK3v14ClZR5+4X1dr1fjOSJAibo5AM2uboaKm9h9GCGhWYRFv/vWYKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cm4Dbc+c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16543C19421;
+	Sat, 14 Feb 2026 04:48:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771041743;
-	bh=RcMDwI8y8h3Rzt0mAi0JN3jRa8Y+v7JRmhYCcEfJ6y0=;
+	s=k20201202; t=1771044537;
+	bh=SWciu1EotfgCtPYvcZhetq4/41qsYpU6LYTorQstCP4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YMhltCUid9v3vOJVF2v9pQJ5RDOcc1KlcY8e75g5ASnY9+AQ2R0iRts7FOBbc8iXF
-	 mxopsCyGclOX8t57vaVf+zW70AWASbhjY9tfapXqQY3qZyKNPf1xEyy2T+xHkcUZZu
-	 OBAWzG47yx9cuLopUTpliEO+9suwjPJMBG1t7K3ITK6Tdk+3mAp+mSKIfGF4xbQojP
-	 i/ew1JLC/1Y6vNQzvQrhXUi8x1jfBpN35qnckCOVxyw25fg9rUJU/7a/BrvWKnBsHE
-	 y90cd29WomHNIT97pTTKV03Geq/wEB9ckHxPBjklKK7+YlB7KOlpFz7AvinmgobQNK
-	 ZN6v2JmaxGCvA==
-Date: Fri, 13 Feb 2026 22:02:21 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Aaron Kling <webgeek1234@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kumar Sharma <quic_vksharma@quicinc.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550: Fix DTBO boot failure
-Message-ID: <dczz4uvcq4hc6p3zb6xnrsgmfeomwliagwhf36tewdz4z6mndp@afbxzhjziiwv>
-References: <20260207-sm8550-abl-dtbo-v2-1-83afaa6f3ce9@gmail.com>
- <d4faaf8d-1517-4187-8801-a2dd52d8dde3@kernel.org>
- <CALHNRZ9k3yxXb9OfYXMSfEwyYKU8Rrrrjb-hPqLgU90X9YBP8g@mail.gmail.com>
- <487e4605-0a21-48d6-8b77-9ce2799ad212@kernel.org>
- <CALHNRZ8sqCpUMyCFP99b7nHu2onojZ0EY6YGQZ9RMP0kH8jWzw@mail.gmail.com>
- <gd7puun6xy5bh4q73mqc5ooza2kzla3rtov6d2723zc6tw7qwi@gxbsnloi2qcw>
- <CALHNRZ87j=j5LEMA=P=D73vOz1C-p+BDKcXV2bH7rcPDtAx9JQ@mail.gmail.com>
+	b=cm4Dbc+cr3k+spSIzdONPIChT99Efjuv8SV8dvRQb+wDhK4lYNjrfVC7WL6wvScp6
+	 CxrdCZRan298qIW56GPrdlelatF6w7A3xe1FRGogqkfh7+AYurnTRGnDVB2mYwJuIK
+	 HUSEbujlPyLPV+y17WezDaMMSSpMs+I3kqiecM9vp7HJCvNoa0jUjoW0ilpYbUCPTT
+	 RbK6J4+3gLHiLXBVnCv8/XguS3cqs+VHqrT5X55xqpBYShpTyo1oWXeFWVjMN1P5b2
+	 h6tt+18A4u0gySiiSTMeUkWUZIQpwlCz4IHkffTnMag+X8WIdi7cgv9XUdgsKgSb0i
+	 UJwI8UCOU210w==
+Date: Fri, 13 Feb 2026 20:48:55 -0800
+From: Drew Fustini <fustini@kernel.org>
+To: yunhui cui <cuiyunhui@bytedance.com>
+Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Adrien Ricciardi <aricciardi@baylibre.com>,
+	Nicolas Pitre <npitre@baylibre.com>,
+	Kornel =?utf-8?Q?Dul=C4=99ba?= <mindal@semihalf.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Atish Kumar Patra <atishp@rivosinc.com>,
+	Vasudevan Srinivasan <vasu@rivosinc.com>,
+	Ved Shanbhogue <ved@rivosinc.com>,
+	Chen Pei <cp0613@linux.alibaba.com>,
+	Liu Zhiwei <zhiwei_liu@linux.alibaba.com>,
+	Weiwei Li <liwei1518@gmail.com>, guo.wenjia23@zte.com.cn,
+	liu.qingtao2@zte.com.cn,
+	Reinette Chatre <reinette.chatre@intel.com>,
+	Tony Luck <tony.luck@intel.com>, Babu Moger <babu.moger@amd.com>,
+	Peter Newman <peternewman@google.com>,
+	Fenghua Yu <fenghua.yu@intel.com>,
+	James Morse <james.morse@arm.com>, Ben Horgan <ben.horgan@arm.com>,
+	Dave Martin <Dave.Martin@arm.com>, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, x86@kernel.org,
+	Rob Herring <robh@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>, Robert Moore <robert.moore@intel.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [External] [PATCH RFC v2 16/17] acpi: riscv: Parse RISC-V
+ Quality of Service Controller (RQSC) table
+Message-ID: <aY_-t9F1eCKw8lGv@gen8>
+References: <20260128-ssqosid-cbqri-v2-0-dca586b091b9@kernel.org>
+ <20260128-ssqosid-cbqri-v2-16-dca586b091b9@kernel.org>
+ <CAEEQ3wnAqSFUhezyUmJQut8eXThGJ1zxtdNTbFtJusyDstgVUg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,183 +93,208 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CALHNRZ87j=j5LEMA=P=D73vOz1C-p+BDKcXV2bH7rcPDtAx9JQ@mail.gmail.com>
+In-Reply-To: <CAEEQ3wnAqSFUhezyUmJQut8eXThGJ1zxtdNTbFtJusyDstgVUg@mail.gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265506-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-265507-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[41];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,linux.alibaba.com,gmail.com,zte.com.cn,intel.com,amd.com,google.com,arm.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A1A5513AF81
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1950B13B14A
 X-Rspamd-Action: no action
 
-On Fri, Feb 13, 2026 at 04:50:25PM -0600, Aaron Kling wrote:
-> On Fri, Feb 13, 2026 at 2:34 PM Bjorn Andersson <andersson@kernel.org> wrote:
+On Mon, Feb 02, 2026 at 07:08:48PM +0800, yunhui cui wrote:
+> Hi Drew,
+> 
+> On Thu, Jan 29, 2026 at 4:28 AM Drew Fustini <fustini@kernel.org> wrote:
 > >
-> > On Wed, Feb 11, 2026 at 09:10:39AM -0600, Aaron Kling wrote:
-> > > On Mon, Feb 9, 2026 at 1:51 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > > >
-> > > > On 08/02/2026 16:10, Aaron Kling wrote:
-> > > > > On Sun, Feb 8, 2026 at 3:07 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > > > >>
-> > > > >> On 08/02/2026 02:16, Aaron Kling via B4 Relay wrote:
-> > > > >>> From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-> > > > >>>
-> > > > >>> ABL requires certain things in the base dtb to apply a dtbo. Namely:
-> > > > >>>
-> > > > >>> * A label named qcom_tzlog must exist, but doesn't have to contain any
-> > > > >>>   specific properties
-> > > > >>> * The timer node must have a label named arch_timer
-> > > > >>>
-> > > > >>> This aligns the sm8550 soc dtsi with those requirements. Without these
-> > > > >>> in the base dtb, when ABL attempts to apply any dtbo, it will fail to
-> > > > >>> the bootloader menu.
-> > > > >>>
-> > > > >>
-> > > > >> Incomplete DCO chain.
-> > > > >>
-> > > > >>> Co-authored-by: Aaron Kling <webgeek1234@gmail.com>
-> > > > >>> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > > > >>> ---
-> > > > >>> With a current mainline sm8550 base dtb, ABL will fail to apply any dtbo
-> > > > >>> and fail back to the bootloader menu. There are two changes needed:
-> > > > >>
-> > > > >> Since when? We were testing SM8550 (me on QRD) all the time and there
-> > > > >> was no problem.
-> > > > >>
-> > > > >> You need to provide details which hardware needs it, if this is about to
-> > > > >> expected, but honestly, we don't add such nodes/labels for downstream
-> > > > >> bootloader. Qualcomm should fix the bootloder instead.
-> > > > >
-> > > > > This discussion has been ongoing in a couple places. It is needed on
-> > > > > all semi-recent recent qcom socs. See this chain [0] on my sm8550
-> > > >
-> > > >
-> > > > Explanation must be in this commit, not in other places.
-> > > >
-> > > > > questions thread and the previous revision of this series [1]. This
-> > > > > has been a known issue for a while, see this comment [2] on the gunyah
-> > > > > watchdog series, which is what the series was based on.
-> > > >
-> > > > But that [2] still speaks about overlay. You are suppose to boot
-> > > > standard kernel with typical setup - concatenated DTB.
-> > > >
-> > > > If you want some other ways, like choosing overlays by ABL or whatever
-> > > > else, you need to fix ABL.
-> > > >
-> > > > You want to use some custom boot way of ABL, but it's broken... yet it
-> > > > is no reason to add these properties. What if I want to boot DTJUNK
-> > > > files via my custom ABJUNK - can I add such things to upstream? No.
-> > > >
-> > > > You cannot add properties to support custom boot of ABL if that boot is
-> > > > broken.
-> > >
-> > > My use case here is an open source Android rom. I would like to think
-> > > that android would be a supported use case. Not necessarily a driving
-> > > force for decisions, but at least supported. And I'm using the
-> > > standard boot image v4 setup with dtb on vendor_boot and dtbo's on the
-> > > dedicated partition. This isn't some weird and wacko setup, it's what
-> > > the vast majority of devices this soc is used in are designed for.
-> > >
+> > Add driver to parse the ACPI RISC-V Quality of Service Controller (RQSC)
+> > table which describes the capacity and bandwidth QoS controllers in a
+> > system. The QoS controllers implement the RISC-V Capacity and Bandwidth
+> > Controller QoS Register Interface (CBQRI) specification.
 > >
-> > Android isn't a weird and wacko setup; but I'm guessing that the
-> > proposed changes aren't related to running Android, nor are they related
-> > to dependencies of the overlays, but it rather relate to some
-> > runtime-generated overlay that ABL wants to apply?
+> > Link: https://github.com/riscv-non-isa/riscv-cbqri/releases/tag/v1.0
+> > Link: https://github.com/riscv-non-isa/riscv-rqsc/blob/main/src/
+> > Signed-off-by: Drew Fustini <fustini@kernel.org>
+> > ---
+> >  MAINTAINERS                   |   1 +
+> >  arch/riscv/include/asm/acpi.h |  10 ++++
+> >  drivers/acpi/riscv/Makefile   |   2 +-
+> >  drivers/acpi/riscv/rqsc.c     | 112 ++++++++++++++++++++++++++++++++++++++++++
+> >  4 files changed, 124 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 96ead357a634..e96a83dc9a02 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -22512,6 +22512,7 @@ S:      Supported
+> >  F:     arch/riscv/include/asm/qos.h
+> >  F:     arch/riscv/include/asm/resctrl.h
+> >  F:     arch/riscv/kernel/qos/
+> > +F:     drivers/acpi/riscv/rqsc.c
+> >  F:     include/linux/riscv_qos.h
+> >
+> >  RISC-V RPMI AND MPXY DRIVERS
+> > diff --git a/arch/riscv/include/asm/acpi.h b/arch/riscv/include/asm/acpi.h
+> > index 6e13695120bc..16c6e25eed1e 100644
+> > --- a/arch/riscv/include/asm/acpi.h
+> > +++ b/arch/riscv/include/asm/acpi.h
+> > @@ -71,6 +71,16 @@ int acpi_get_riscv_isa(struct acpi_table_header *table,
+> >
+> >  void acpi_get_cbo_block_size(struct acpi_table_header *table, u32 *cbom_size,
+> >                              u32 *cboz_size, u32 *cbop_size);
+> > +
+> > +#ifdef CONFIG_RISCV_ISA_SSQOSID
+> > +int acpi_parse_rqsc(struct acpi_table_header *table);
+> > +#else
+> > +static inline int acpi_parse_rqsc(struct acpi_table_header *table)
+> > +{
+> > +       return -EINVAL;
+> > +}
+> > +#endif /* CONFIG_RISCV_ISA_SSQOSID */
+> > +
+> >  #else
+> >  static inline void acpi_init_rintc_map(void) { }
+> >  static inline struct acpi_madt_rintc *acpi_cpu_get_madt_rintc(int cpu)
+> > diff --git a/drivers/acpi/riscv/Makefile b/drivers/acpi/riscv/Makefile
+> > index 1284a076fa88..cf0f38c93a9f 100644
+> > --- a/drivers/acpi/riscv/Makefile
+> > +++ b/drivers/acpi/riscv/Makefile
+> > @@ -1,5 +1,5 @@
+> >  # SPDX-License-Identifier: GPL-2.0-only
+> > -obj-y                                  += rhct.o init.o irq.o
+> > +obj-y                                  += rhct.o rqsc.o init.o irq.o
+> >  obj-$(CONFIG_ACPI_PROCESSOR_IDLE)      += cpuidle.o
+> >  obj-$(CONFIG_ACPI_CPPC_LIB)            += cppc.o
+> >  obj-$(CONFIG_ACPI_RIMT)                        += rimt.o
+> > diff --git a/drivers/acpi/riscv/rqsc.c b/drivers/acpi/riscv/rqsc.c
+> > new file mode 100644
+> > index 000000000000..a86ddb39fae4
+> > --- /dev/null
+> > +++ b/drivers/acpi/riscv/rqsc.c
+> > @@ -0,0 +1,112 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (C) 2025 Tenstorrent
+> > + *     Author: Drew Fustini <fustini@kernel.org>
+> > + *
+> > + */
+> > +
+> > +#define pr_fmt(fmt) "ACPI: RQSC: " fmt
+> > +
+> > +#include <linux/acpi.h>
+> > +#include <linux/bits.h>
+> > +#include <linux/riscv_qos.h>
+> > +
+> > +#ifdef CONFIG_RISCV_ISA_SSQOSID
+> > +
+> > +#define CBQRI_CTRL_SIZE 0x1000
+> > +
+> > +static struct acpi_table_rqsc *acpi_get_rqsc(void)
+> > +{
+> > +       static struct acpi_table_header *rqsc;
+> > +       acpi_status status;
+> > +
+> > +       /*
+> > +        * RQSC will be used at runtime on every CPU, so we
+> > +        * don't need to call acpi_put_table() to release the table mapping.
+> > +        */
+> > +       if (!rqsc) {
+> > +               status = acpi_get_table(ACPI_SIG_RQSC, 0, &rqsc);
+> > +               if (ACPI_FAILURE(status)) {
+> > +                       pr_warn_once("No RQSC table found\n");
+> > +                       return NULL;
+> > +               }
+> > +       }
+> > +
+> > +       return (struct acpi_table_rqsc *)rqsc;
+> > +}
+> > +
+> > +int acpi_parse_rqsc(struct acpi_table_header *table)
+> > +{
+> > +       struct acpi_table_rqsc *rqsc;
+> > +       int err;
+> > +
+> > +       BUG_ON(acpi_disabled);
+> > +       if (!table) {
+> > +               rqsc = acpi_get_rqsc();
+> > +               if (!rqsc)
+> > +                       return -ENOENT;
+> > +       } else {
+> > +               rqsc = (struct acpi_table_rqsc *)table;
+> > +       }
+> > +
+> > +       for (int i = 0; i < rqsc->num; i++) {
+> > +               struct cbqri_controller_info *ctrl_info;
+> > +
+> > +               ctrl_info = kzalloc(sizeof(*ctrl_info), GFP_KERNEL);
+> > +               if (!ctrl_info)
+> > +                       return -ENOMEM;
+> > +
+> > +               ctrl_info->type = rqsc->f[i].type;
+> > +               ctrl_info->addr = rqsc->f[i].reg[1];
+> > +               ctrl_info->size = CBQRI_CTRL_SIZE;
+> > +               ctrl_info->rcid_count = rqsc->f[i].rcid;
+> > +               ctrl_info->mcid_count = rqsc->f[i].mcid;
+> > +
+> > +               pr_info("Found controller with type %u addr 0x%lx size  %lu rcid  %u mcid  %u",
+> > +                       ctrl_info->type, ctrl_info->addr, ctrl_info->size,
+> > +                       ctrl_info->rcid_count, ctrl_info->mcid_count);
+> > +
+> > +               if (ctrl_info->type == CBQRI_CONTROLLER_TYPE_CAPACITY) {
+> > +                       ctrl_info->cache.cache_id = rqsc->f[i].res.id1;
+> > +                       ctrl_info->cache.cache_level =
+> > +                               find_acpi_cache_level_from_id(ctrl_info->cache.cache_id);
+> > +
+> > +                       struct acpi_pptt_cache *cache;
+> > +
+> > +                       cache = find_acpi_cache_from_id(ctrl_info->cache.cache_id);
+> > +                       if (cache) {
+> > +                               ctrl_info->cache.cache_size = cache->size;
+> > +                       } else {
+> > +                               pr_warn("%s(): failed to determine size for cache id 0x%x",
+> > +                                       __func__, ctrl_info->cache.cache_id);
+> > +                               ctrl_info->cache.cache_size = 0;
+> > +                       }
+> > +
+> > +                       pr_info("Cache controller has ID 0x%x level %u size %u ",
+> > +                               ctrl_info->cache.cache_id, ctrl_info->cache.cache_level,
+> > +                               ctrl_info->cache.cache_size);
+> > +
+> > +                       /*
+> > +                        * For CBQRI, any cpu (technically a hart in RISC-V terms)
+> > +                        * can access the memory-mapped registers of any CBQRI
+> > +                        * controller in the system.
+> > +                        */
+> > +                       err = cpumask_parse("FF", &ctrl_info->cache.cpu_mask);
 > 
-> I honestly can't say what the underlying cause is. A couple of us have
-> looked at the public abl source and weren't able to find what causes
-> this issue. We just know that this issue happens when abl tries to
-> apply a dtbo off the dtbo partition. So yes, in technicality this is
-> not an android specific issue. I mention android because having a dtbo
-> is generally expected in the aosp setup. In my specific use case, I
-> have four devices from the same odm, where it's simple to split the
-> common part into a dts, then the device specific parts into dtso's,
-> allowing for a single software build to support all four devices.
-> Requiring everything to be baked into a dts would require separate
-> vendor_boot images per device, and thus completely separate build
-> targets.
+> Hardcode? acpi_pptt_get_cpumask_from_cache_id(ctrl_info->cache.cache_id,
+> &ctrl_info->cache.cpu_mask); ?
 
-Your use of overlays is very reasonable.
+Thank you, I'll switch to using that.
 
-It is an Android-specific issue, because you store and apply those
-overlays using the Android bootloader and its way of doing things.
-
-If you run e.g. Debian on your 8550 you could still use overlays to
-solve your problem, but you wouldn't want abl and/or vendor_boot.
-
-> 
-> > Fixing ABL to be resilient against such failure cases certainly seems
-> > like the right thing to do. But I'm guessing that you're on some device
-> > where you can't change the ABL?
-> 
-> My devices are unfused, and thus I could change ABL. Two problems,
-> however. 1) we can't find the necessary changes to make to fix the
-> problem. And 2) this problem is more universal. Per [0], this affects
-> 8550 and 8750 using the qcom baseline abl. By extrapolation, all odm
-> copies will also have this problem. This has also been observed on a
-> sm7635 phone. It appears to affect all baseline abl copies since at
-> least sm8550.
-
-It's fair to assume that there's leverage between the different
-platforms, there shouldn't be much hardware-specifics in ABL.
-
-> 
-> > If that is the case, then I'm open to a pragmatic solution where you add
-> > such workarounds to the specific dts that needs it, with clear
-> > documentation of the circumstances.
-> 
-> > PS. Not all SM8550 runs Android, not all SM8550 has that specific
-> > version of ABL, so therefor the change does not belong in sm8550.dtsi.
-> 
-> Ideally would be getting this fixed in the baseline abl code by qcom,
-> since this issue seems to be continuing.
-
-Sounds like it, but I don't know what it is that ABL is expecting to be
-able to insert. [0] seems to mostly say "I added this and then it works"
-:(
-
-> That's not something I can affect, however.
-
-I can ask the team to read this thread...
-
-> But I disagree about making this device specific,
-> because the vast majority of devices are affected by this, it would be
-> the exception to not be affected, from what I can tell. And on more
-> soc's than sm8550, but qcs8550 is the only qcom soc I am currently
-> working on.
-
-I understand your argument, but I don't want top-level quirks for things
-that is device-specific.
-
-Regards,
-Bjorn
-
-> 
-> Aaron
-> 
-> [0] https://lore.kernel.org/all/91002189-9d9e-48a2-8424-c42705fed3f8@quicinc.com/
+Drew
 
