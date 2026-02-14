@@ -1,195 +1,154 @@
-Return-Path: <devicetree+bounces-265510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265511-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0AzYCcgakGkpWQEAu9opvQ
-	(envelope-from <devicetree+bounces-265510-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 07:48:40 +0100
+	id NFNeHJolkGkmWgEAu9opvQ
+	(envelope-from <devicetree+bounces-265511-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 08:34:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8991113B430
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 07:48:39 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0980813B4EB
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 08:34:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 597023012BFF
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 06:48:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 336333006801
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 07:34:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C5830DEA5;
-	Sat, 14 Feb 2026 06:48:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493D527A107;
+	Sat, 14 Feb 2026 07:34:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="Iaq3DiBl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.76.78.106])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 106AE31DDBB;
-	Sat, 14 Feb 2026 06:48:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.76.78.106
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771051713; cv=none; b=mkyc46m4h3yxD8MzaQg42+gDZoO6vK7puAoAjRrewt/80J5LhFB+66rGUY2Dn+cGvNyfiewh3G3tR65pM1k0DGHiht8Yv48O/hnI7M4rPQn4ilbqy5y3zkqXM4Opr7fvr4h4DltC+mFxZ4GP3iy20WpQqmxcbdX2cGj+1vPPVDc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771051713; c=relaxed/simple;
-	bh=FIphOdHWLBKNrj0c4HGXly4r6agSKqPR6jPL54nT+wE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=cDoJ2s+g0pmbRvJ7Vz/Ndv4w2HnAZF7ZfTyo9pY4Iga2duPuWMxcBgB8Inp+sesSbCWyWmN3ROCHTF9Bw2bkqD5LUNWiY284WebgqmnH9mXW4HmzX25Sw0cQWE30Susaq8GgGTrgBcxwa2ZNZPhVf4lLtp1B5itu9Yeugcvub4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.76.78.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from hehuan1$eswincomputing.com ( [10.12.96.103] ) by
- ajax-webmail-app2 (Coremail) ; Sat, 14 Feb 2026 14:48:05 +0800 (GMT+08:00)
-Date: Sat, 14 Feb 2026 14:48:05 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: "Huan He" <hehuan1@eswincomputing.com>
-To: "Guenter Roeck" <linux@roeck-us.net>
-Cc: "Krzysztof Kozlowski" <krzk@kernel.org>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	luyulin@eswincomputing.com
-Subject: Re: Re: Re: [PATCH v2 0/2] Add driver support for ESWIN EIC7700 PVT
- controller
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <0183a68b-f8e9-48b8-b77f-5ae0a048a2bf@roeck-us.net>
-References: <20260128101400.859-1-hehuan1@eswincomputing.com>
- <1a08e50a.362b.19c4c20db59.Coremail.hehuan1@eswincomputing.com>
- <e648565e-59a9-4270-bbbd-7c53f5f65c6c@kernel.org>
- <2c43c2a.366b.19c5017e58a.Coremail.hehuan1@eswincomputing.com>
- <0183a68b-f8e9-48b8-b77f-5ae0a048a2bf@roeck-us.net>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9C226738D;
+	Sat, 14 Feb 2026 07:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771054487; cv=pass; b=qlpXnTKVEZDecrv1gaSyvyZWWSBo8En4pXnEErSZHf7sQczHHYgrKC+MQ9zO7/cmFwJhZE4mjmq6EV/9kMUAO7QAZddkoKuaYil3PXm3bwZdw/85kQPtFifx4Muz6d2gTJr5bszHujfwqoJKzEkdtFUYyVEF5swBf6XB4umiroc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771054487; c=relaxed/simple;
+	bh=DnrLXzvN5HfGx/gEyT2ON4wouAHp3LTcsPAVqhwYOCA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g4Tu7psUiSRoVc3jDRJAnLmm6uBAbqW3d7X08IZejTEberD/6ElsRpouv00eoEddGQUPRtRgDQgExtzqNIgHkotuDyYFhA1UzWHSoW0iX0+Zx24xPle7q2JdN49NXMGNmnq70T2Ox6skxr3m6HED3abALPsiihNEYlBQqUD4CkE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=Iaq3DiBl; arc=pass smtp.client-ip=136.143.188.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1771054470; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=O3xkBsmvUUGVE6MPJ2x4vGD3WvxiXEtYjPP08hVChjzMP9gA128Y5voKgQRvYHxS+GCOvmORFgK3bzDC8/PIxGhOy7dnYjGhcHUtA+s7SeZm5LR3/C43hbcckLlvThLqxFoeOGK2g5aZjexYtcaPuS0naqyh84Iw9iLh7CC6fco=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1771054470; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=pM6bTMNAFnyU/zKrNO+5TSixuYCPTcb6KSxrsSYYe3E=; 
+	b=DL0DFa709rlvu92eCWYUyZ61m/2OuHbuwubEUAPfWkxuWMDuNyMfL+j6WXVFzVlbNmm0SV/35cj+uYtDNFzB42Tf3jeTnD22d2BCsGgZ8/L0q2I7SMdOf1zwMx4zXV3DphRJf7rLt1/jaLsEA3fHUkq+MHR20fO0w5GmD9EhnjM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=zohomail.com;
+	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
+	dmarc=pass header.from=<kingxukai@zohomail.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1771054470;
+	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
+	bh=pM6bTMNAFnyU/zKrNO+5TSixuYCPTcb6KSxrsSYYe3E=;
+	b=Iaq3DiBl8+D9WwNSCmlpskHtxMvJnkQLKEwKA1ZkJLSHz8/ciy8pXUzZwKqnAglF
+	N2G5kIWBGAMVI+OdGqOEmrteHBmo3SlVhIiruIE2xVDqZeqgcqUUHOwHakI4Fc9skWb
+	RbUxuhVJTbICUHkG6v1y8COucLYH3dhkBqWqY0Fw=
+Received: by mx.zohomail.com with SMTPS id 1771054462340716.7059044973032;
+	Fri, 13 Feb 2026 23:34:22 -0800 (PST)
+Message-ID: <283d631f-7cc6-4ec6-9946-5e2120625150@zohomail.com>
+Date: Sat, 14 Feb 2026 15:34:16 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <46752141.375d.19c5ae8161e.Coremail.hehuan1@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgDH3aClGpBpC4sAAA--.270W
-X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/1tbiAgESCmmPUoQMPQAA
-	sa
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VW3Jw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 0/3] riscv: canaan: Add support for K230 clock
+To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Troy Mitchell <TroyMitchell988@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20260116-b4-k230-clk-v10-0-de59033c5d30@zohomail.com>
+ <aYNwmqEjvfAahGA+@duge-virtual-machine>
+ <f97dbaa3-b6d6-4dd2-aab9-f24a68c4adfe@zohomail.com>
+ <aZAXJOHqrhKh8kd5@duge-virtual-machine>
+From: Xukai Wang <kingxukai@zohomail.com>
+Content-Language: en-US
+In-Reply-To: <aZAXJOHqrhKh8kd5@duge-virtual-machine>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Feedback-ID: rr0801122753ccd28fa625a4e6683ab79700006a9588579c34442f57bbc5c1a8a289cc5692f38152f1735391:zu0801122727f5c2f7473ee10d47df4dbc000007157993794f1914e991f67fb45e4e3edd0e5b302aced720c7:rf0801122cef56d2341015e9602836b5bb000090f4beeda16d79f5273a2d6adc11df22df92fb15acd57be80f044d50f053:ZohoMail
+X-ZohoMailClient: External
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.14 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[zohomail.com,reject];
+	R_DKIM_ALLOW(-0.20)[zohomail.com:s=zm2022];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-265511-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[eswincomputing.com];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-265510-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,sifive.com,gmail.com,linaro.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org];
-	HAS_X_PRIO_THREE(0.00)[3];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,eswincomputing.com:mid]
-X-Rspamd-Queue-Id: 8991113B430
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kingxukai@zohomail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[zohomail.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,zohomail.com:mid,zohomail.com:dkim]
+X-Rspamd-Queue-Id: 0980813B4EB
 X-Rspamd-Action: no action
 
-SGkgR3VlbnRlciwKClRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHRha2luZyB0aGUgdGltZSB0byBy
-ZXZpZXcgdGhpcyBwYXRjaCBhbmQgZm9yCnByb3ZpZGluZyBzdWNoIGRldGFpbGVkIGZlZWRiYWNr
-LgoKPiAKPiAjIENvbW1pdCA2ZjRkNTY5OGYzMzQgKCJod21vbjogQWRkIEVzd2luIEVJQzc3MDAg
-UFZUIHNlbnNvciBkcml2ZXIiKQo+IDEuICBlaWM3NzAwLXB2dC5jOjQ4NzogRVJST1I6IFVuYmFs
-YW5jZWQgY2xvY2sgcmVmY291bnQgd2l0aCBSdW50aW1lIFBNCj4gICAgID4gKwlwdnQtPmNsayA9
-IGRldm1fY2xrX2dldF9lbmFibGVkKCZwZGV2LT5kZXYsIE5VTEwpOwo+IAo+ICAgICBVc2luZyBg
-ZGV2bV9jbGtfZ2V0X2VuYWJsZWQoKWAgZW5hYmxlcyB0aGUgY2xvY2sgYW5kIHJlZ2lzdGVycyBh
-IGRldm0gYWN0aW9uCj4gICAgIHRvIGRpc2FibGUgaXQgb24gcmVtb3ZhbC4gSG93ZXZlciwgdGhl
-IGRyaXZlciBhbHNvIHVzZXMgUnVudGltZSBQTSB0byBtYW5hZ2UKPiAgICAgdGhlIHNhbWUgY2xv
-Y2s6Cj4gCj4gICAgID4gK3N0YXRpYyBpbnQgX19tYXliZV91bnVzZWQgZWljNzcwMF9wdnRfcnVu
-dGltZV9zdXNwZW5kKHN0cnVjdCBkZXZpY2UgKmRldikKPiAgICAgPiArewo+ICAgICA+ICsJc3Ry
-dWN0IHB2dF9od21vbiAqcHZ0ID0gZGV2X2dldF9kcnZkYXRhKGRldik7Cj4gICAgID4gKwo+ICAg
-ICA+ICsJY2xrX2Rpc2FibGVfdW5wcmVwYXJlKHB2dC0+Y2xrKTsKPiAKPiAgICAgSWYgdGhlIGRl
-dmljZSBpcyBydW50aW1lIHN1c3BlbmRlZCB3aGVuIGByZW1vdmUoKWAgaXMgY2FsbGVkOgo+ICAg
-ICAxLiBgcHJvYmUoKWA6IGBjbGtfcHJlcGFyZV9lbmFibGUoKWAgKFJlZjogMSkKPiAgICAgMi4g
-YHJ1bnRpbWVfc3VzcGVuZCgpYDogYGNsa19kaXNhYmxlX3VucHJlcGFyZSgpYCAoUmVmOiAwKQo+
-ICAgICAzLiBgcmVtb3ZlKClgICh2aWEgZGV2bSk6IGBjbGtfZGlzYWJsZV91bnByZXBhcmUoKWAg
-KFJlZjogLTEpCj4gCj4gICAgIFRoaXMgbGVhZHMgdG8gYSByZWZjb3VudCB1bmRlcmZsb3cgYW5k
-IHdhcm5pbmcuCj4gCj4gICAgIEZpeDogVXNlIGBkZXZtX2Nsa19nZXQoKWAgYW5kIG1hbnVhbGx5
-IGNhbGwgYGNsa19wcmVwYXJlX2VuYWJsZSgpYCBpbiBwcm9iZS4KPiAgICAgRW5zdXJlIHRoYXQg
-dGhlIG1hbnVhbCBlbmFibGUgaXMgYmFsYW5jZWQgY29ycmVjdGx5LCBvciByZWx5IG9uIFJ1bnRp
-bWUgUE0KPiAgICAgKGFuZCBgcG1fcnVudGltZV9nZXRfc3luY2AgaW4gcHJvYmUpIHRvIGhhbmRs
-ZSB0aGUgY2xvY2ssIGVuc3VyaW5nCj4gICAgIGBwbV9ydW50aW1lX3B1dGAgYmFsYW5jZXMgaXQu
-IFNpbmNlIGBjaGVja19wd3JgIG5lZWRzIHRoZSBjbG9jayBiZWZvcmUKPiAgICAgUnVudGltZSBQ
-TSBpcyBlbmFibGVkLCB5b3Ugc2hvdWxkIGVuYWJsZSBpdCBtYW51YWxseSBhbmQgdGhlbiBwb3Nz
-aWJseQo+ICAgICBkaXNhYmxlIGl0IGJlZm9yZSBlbmFibGluZyBSdW50aW1lIFBNLCBvciBrZWVw
-IGl0IGVuYWJsZWQgYW5kIGxldCBSdW50aW1lIFBNCj4gICAgIHRha2Ugb3ZlciAoYnV0IGVuc3Vy
-ZSBgcmVtb3ZlYCBkb2Vzbid0IGRvdWJsZSBkaXNhYmxlKS4KPiAKPiAgICAgQSBjb21tb24gcGF0
-dGVybjoKPiAgICAgYGBgYwo+ICAgICBwdnQtPmNsayA9IGRldm1fY2xrX2dldChkZXYsIE5VTEwp
-Owo+ICAgICAuLi4KPiAgICAgY2xrX3ByZXBhcmVfZW5hYmxlKHB2dC0+Y2xrKTsKPiAgICAgLi4u
-Cj4gICAgIHBtX3J1bnRpbWVfZW5hYmxlKGRldik7Cj4gICAgIHBtX3J1bnRpbWVfZ2V0X25vcmVz
-dW1lKGRldik7Cj4gICAgIC4uLgo+ICAgICBwbV9ydW50aW1lX3B1dChkZXYpOwo+ICAgICBgYGAK
-PiAgICAgQW5kIGVuc3VyZSBgcmVtb3ZlYCAob3IgZGV2bSBhY3Rpb24pIGRpc2FibGVzIGl0IE9O
-TFkgaWYgbm90IHN1c3BlbmRlZD8KPiAgICAgQWN0dWFsbHksIHNpbXBsZXIgaXM6Cj4gICAgIERv
-bid0IHVzZSBgZGV2bV9jbGtfZ2V0X2VuYWJsZWRgIGlmIHlvdSB1c2UgYHJ1bnRpbWVfc3VzcGVu
-ZGAgdG8gZGlzYWJsZSBpdC4KPiAgICAgVXNlIGBkZXZtX2Nsa19nZXRgLgo+ICAgICBJbiBwcm9i
-ZTogYGNsa19wcmVwYXJlX2VuYWJsZWAuCj4gICAgIFJlZ2lzdGVyIGEgYGRldm1fYWRkX2FjdGlv
-bmAgdGhhdCBjYWxscyBgY2xrX2Rpc2FibGVfdW5wcmVwYXJlYCAqb25seSBpZiogdGhlCj4gICAg
-IGRyaXZlciBpcyBub3QgdXNpbmcgUnVudGltZSBQTSB0byBjb250cm9sIGl0PyBObywgdGhhdCdz
-IG1lc3N5Lgo+IAo+ICAgICBCZXR0ZXIgZml4Ogo+ICAgICBVc2UgYGRldm1fY2xrX2dldGAuCj4g
-ICAgIEluIHByb2JlOiBgY2xrX3ByZXBhcmVfZW5hYmxlYC4KPiAgICAgSW4gcmVtb3ZlIChkZXZt
-IGFjdGlvbj8pOiBgY2xrX2Rpc2FibGVfdW5wcmVwYXJlYCAoYnV0IHRoaXMgc3RpbGwgaGFzIHRo
-ZSBpc3N1ZSkuCj4gCj4gICAgIENvcnJlY3QgRml4Ogo+ICAgICBEbyBub3QgdXNlIGBjbGtfZGlz
-YWJsZV91bnByZXBhcmVgIGluIGBydW50aW1lX3N1c3BlbmRgIGlmIHlvdSB1c2VkCj4gICAgIGBk
-ZXZtX2Nsa19nZXRfZW5hYmxlZGAuCj4gICAgIE9SCj4gICAgIERvbid0IHVzZSBgZGV2bV9jbGtf
-Z2V0X2VuYWJsZWRgLiBVc2UgYGRldm1fY2xrX2dldGAuCj4gICAgIE1hbmFnZSB0aGUgY2xvY2sg
-ZW50aXJlbHkgdmlhIFJ1bnRpbWUgUE0uCj4gICAgIEluIHByb2JlOgo+ICAgICBgY2xrX3ByZXBh
-cmVfZW5hYmxlKHB2dC0+Y2xrKTtgIChUZW1wb3JhcnkgZm9yIGNoZWNrX3B3cikKPiAgICAgYGNo
-ZWNrX3B3ci4uLmAKPiAgICAgYGNsa19kaXNhYmxlX3VucHJlcGFyZShwdnQtPmNsayk7YAo+ICAg
-ICBgcG1fcnVudGltZV9lbmFibGUoZGV2KTtgCj4gICAgIC4uLgoKV2Ugd2lsbCByZXByb2R1Y2Ug
-YW5kIGZ1cnRoZXIgYW5hbHl6ZSB0aGUgY2xvY2sgcmVmY291bnQgaW1iYWxhbmNlCnNjZW5hcmlv
-LgoKPiAKPiAyLiAgZWljNzcwMC1wdnQuYzoxNTQ6IEVSUk9SOiBTd2FsbG93aW5nIHNpZ25hbCBp
-bnRlcnJ1cHRpb24KPiAgICAgPiArCWlmIChyZXQgJiYgKHJldCAhPSAtRVJFU1RBUlRTWVMpKQo+
-ICAgICA+ICsJCXJldHVybiByZXQ7Cj4gCj4gICAgIElmIGB3YWl0X2Zvcl9jb21wbGV0aW9uX2lu
-dGVycnVwdGlibGUoKWAgcmV0dXJucyBgLUVSRVNUQVJUU1lTYCAod2hpY2ggaXMKPiAgICAgbm9u
-LXplcm8pLCB0aGUgY29uZGl0aW9uIGAocmV0ICE9IC1FUkVTVEFSVFNZUylgIGlzIGZhbHNlLCBz
-byB0aGUgaWYtc3RhdGVtZW50Cj4gICAgIGlzIHNraXBwZWQuIFRoZSBmdW5jdGlvbiB0aGVuIHBy
-b2NlZWRzIHRvIHJldHVybiAwIChzdWNjZXNzKSB3aXRoIHBvdGVudGlhbGx5Cj4gICAgIHVuaW5p
-dGlhbGl6ZWQvc3RhbGUgZGF0YS4KPiAKPiAgICAgRml4Ogo+ICAgICBgYGBjCj4gICAgIGlmIChy
-ZXQpCj4gICAgICAgICByZXR1cm4gcmV0Owo+ICAgICBgYGAKCkluIHYzLCB3ZSB3aWxsIHJldHVy
-biBhbGwgbm9uLXplcm8gZXJyb3IgY29kZXMgZGlyZWN0bHksIHdpdGhvdXQKc3BlY2lhbC1jYXNp
-bmcgLUVSRVNUQVJUU1lTLgoKPiAKPiAzLiAgZWljNzcwMC1wdnQuYzozNjg6IFdBUk46IFNwdXJp
-b3VzIGludGVycnVwdHMgb24gc2hhcmVkIElSUSBsaW5lCj4gICAgID4gKwllaWM3NzAwX3B2dF91
-cGRhdGUocHZ0LT5yZWdzICsgUFZUX0VOQSwgUFZUX0VOQV9FTiwgUFZUX0VOQV9FTik7Cj4gCj4g
-ICAgIGBjaGVja19wd3JgIGVuYWJsZXMgdGhlIGRldmljZSAoYW5kIHRodXMgcG90ZW50aWFsIGlu
-dGVycnVwdHMpIGJlZm9yZQo+ICAgICBgcmVxdWVzdF9pcnFgIGlzIGNhbGxlZC4gSWYgdGhlIElS
-USBsaW5lIGlzIHNoYXJlZCBhbmQgdGhlIGRldmljZSBhc3NlcnRzCj4gICAgIGFuIGludGVycnVw
-dCBpbW1lZGlhdGVseSwgdGhlIGludGVycnVwdCB3aWxsIGJlIHVuaGFuZGxlZCAoc3B1cmlvdXMp
-IGJlY2F1c2UKPiAgICAgbm8gaGFuZGxlciBpcyByZWdpc3RlcmVkIHlldC4KPiAKPiAgICAgRml4
-OiBSZXF1ZXN0IHRoZSBJUlEgYmVmb3JlIGVuYWJsaW5nIHRoZSBkZXZpY2UsIG9yIGVuc3VyZSBp
-bnRlcnJ1cHRzIGFyZSBtYXNrZWQKPiAgICAgYXQgdGhlIGNvbnRyb2xsZXIgbGV2ZWwgKGlmIHBv
-c3NpYmxlKSBiZWZvcmUgZW5hYmxpbmcgdGhlIGJsb2NrLiBTaW5jZSBgY2hlY2tfcHdyYAo+ICAg
-ICByZWxpZXMgb24gcG9sbGluZyBhbmQgSVNSIGNsZWFycyB0aGUgc3RhdHVzLCBtb3ZpbmcgYHJl
-cXVlc3RfaXJxYCBpcyB0cmlja3kuCj4gICAgIFZlcmlmeSBpZiBgUFZUX0VOQWAgaGFzIGEgc2Vw
-YXJhdGUgaW50ZXJydXB0IGVuYWJsZSBiaXQgb3IgaWYgYFBWVF9JTlRgIGhhcyBhIG1hc2suCj4g
-ICAgIElmIG5vdCwgdGhpcyBpcyBhIGhhcmR3YXJlL2RyaXZlciBkZXNpZ24gcmlzay4KPiAKCkNv
-bmZpcm1lZCB3aXRoIHRoZSBoYXJkd2FyZSB0ZWFtLCB0aGUgUFZUX0VOQSByZWdpc3RlciBoYXMg
-bm8gaW5kZXBlbmRlbnQKaW50ZXJydXB0IGVuYWJsZSwgYW5kIFBWVF9JTlQgZG9lcyBub3Qgc3Vw
-cG9ydCBtYXNraW5nLgpFbmFibGluZyB0aGUgZGV2aWNlIGJlZm9yZSByZXF1ZXN0X2lycSBtYXkg
-Z2VuZXJhdGUgaW50ZXJydXB0cywgYnV0IHRoZQpkcml2ZXIgZGlzYWJsZXMgdGhlIFBWVCBtb2R1
-bGUgKFBWVF9FTkFfRU4gPSAwKSBhbmQgY2xlYXJzIGludGVycnVwdHMgYnkKd3JpdGluZyBQVlRf
-SU5UX0NMUi4gSW4gcHJhY3RpY2UsIG5vIGlzc3VlcyBoYXZlIGJlZW4gb2JzZXJ2ZWQuCgo+IDQu
-ICBlaWM3NzAwLXB2dC5jOjE0NzogTk9URTogSW5maW5pdGUgd2FpdCBwb3NzaWJpbGl0eQo+ICAg
-ICA+ICsJcmV0ID0gd2FpdF9mb3JfY29tcGxldGlvbl9pbnRlcnJ1cHRpYmxlKCZwdnQtPmNvbnZl
-cnNpb24pOwo+IAo+ICAgICBJZiB0aGUgaGFyZHdhcmUgZmFpbHMgdG8gZ2VuZXJhdGUgYW4gaW50
-ZXJydXB0IChlLmcuLCBoYW5ncyksIHRoaXMgd2lsbCB3YWl0Cj4gICAgIGluZGVmaW5pdGVseSAo
-dW5sZXNzIGEgc2lnbmFsIGlzIHNlbnQpLiBJdCBpcyBnZW5lcmFsbHkgc2FmZXIgdG8gdXNlCj4g
-ICAgIGB3YWl0X2Zvcl9jb21wbGV0aW9uX3RpbWVvdXRgIGluIGhhcmR3YXJlIGRyaXZlcnMuCj4g
-CgpJbiB2Mywgd2Ugd2lsbCByZXBsYWNlIHdhaXRfZm9yX2NvbXBsZXRpb25faW50ZXJydXB0aWJs
-ZSgpIHdpdGgKd2FpdF9mb3JfY29tcGxldGlvbl90aW1lb3V0KCkuCgpCZXN0IHJlZ2FyZHMsCkh1
-YW4gSGUK
+
+On 2026/2/14 14:33, Jiayu Du wrote:
+> On Sat, Feb 14, 2026 at 12:37:24AM +0800, Xukai Wang wrote:
+>> On 2026/2/5 00:15, Jiayu Du wrote:
+>>> On Fri, Jan 16, 2026 at 09:26:18PM +0800, Xukai Wang wrote:
+>>>> This patch series adds clock controller support for the Canaan Kendryte
+>>>> K230 SoC. The K230 SoC includes an external 24MHz OSC, 4 internal
+>>>> PLLs and an external pulse input, with the controller managing these
+>>>> sources and their derived clocks.
+>>>  
+>>> Hi, Xukai. Currently, the k230 initial series and the patch 3 of the
+>>> pinctrl series has been in the linux next. So if possible, you need
+>>> to rebase your clock series onto the latest linux-next.
+>>>
+>>> Then I will proceed with the development based on your v11 of the
+>>> clock series.
+>> I've rebased my patch series to `linux-next` (20260212). I noticed that
+>> the patch which updated the `k230.dtsi` format has been merged into
+>> `linux-next`.
+>>
+>> Consequently, I've updated the `prerequisite-patch-id` for my series
+>> from `deda3c472f0000ffd40cddd7cf6d3b5e2d7da7dc` [1] to
+>> `9a2d01f55574b538dad572e193f81c44661f0853` [2]. Is this change correct?
+> Junhui Liu's commit `8cfdbd5e207d434a6e924eb81092874177f97536: riscv: dts:
+> canaan: k230: Add b ISA extension`, also modified k230.dtsi. I'm not
+> sure if you noticed this.
+>
+So, should I use `8cfdbd5e207d434a6e924eb81092874177f97536` as the
+`prerequisite-patch-id` instead of
+`9a2d01f55574b538dad572e193f81c44661f0853`?
+>> Link:
+>> https://lore.kernel.org/linux-clk/tencent_F76EB8D731C521C18D5D7C4F8229DAA58E08@qq.com/
+>> [1]
+>> Link:
+>> https://lore.kernel.org/linux-devicetree/20251227092355.42825-1-jiayu.riscv@isrc.iscas.ac.cn/
+>> [2]
+>>
+>> _______________________________________________
+>> linux-riscv mailing list
+>> linux-riscv@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
