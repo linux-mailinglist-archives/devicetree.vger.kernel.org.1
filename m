@@ -1,268 +1,172 @@
-Return-Path: <devicetree+bounces-265550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265551-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SPEMMq1xkGncZgEAu9opvQ
-	(envelope-from <devicetree+bounces-265550-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 13:59:25 +0100
+	id yCm1K1VzkGmxZwEAu9opvQ
+	(envelope-from <devicetree+bounces-265551-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 14:06:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6096213C003
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 13:59:25 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3665213C0A3
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 14:06:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 032DD3019173
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 12:58:51 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id ED617302B52A
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 13:05:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE4A130CDA2;
-	Sat, 14 Feb 2026 12:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3431F2E8B64;
+	Sat, 14 Feb 2026 13:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="JMFiWQSY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iNsCXtl1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD9D30BF69;
-	Sat, 14 Feb 2026 12:58:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771073927; cv=pass; b=l2ghPz1w8wJR/wXNZaD2LfzSRoH65hrkGsD3d0S9USDEItiOPj/LwgIVr1EbmMu6eDHcOcNWZx8d9LZGpLL/qYm3YwE4mt8jRRhDxJTp0qJvWGFtRx6zGboOUqXh8gGA0aH+MZEWQaL0smC0IYQRoCNAI/+TRSyjzIps1YqAyHs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771073927; c=relaxed/simple;
-	bh=3F+dI4MMRuBaolMMITF1/+22ID9f72p6dEq/e2d7ltY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jFJshiszUiB3oXiA0d56aa+AQPIz6s7ZmyeiNIrNbhI7rS1fSfy1ad/UVrX8mr4M4wz0Ifli9Wr9qr81abmT2GCW/o3wu1MrmuCabjovUQ/FQy03w4HxHdmXPg9A14kR6ENSHw4mZjkvh1a64e6KMqPWTyOBhompfycbQtjxW6U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=JMFiWQSY; arc=pass smtp.client-ip=136.143.188.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
-ARC-Seal: i=1; a=rsa-sha256; t=1771073884; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=EFZa8obvZdsp9IY5pnFQ7RvlObQA97MxkO6M92oIuE7Wj5ZU1VH8pT4CkrSczu/8bNTrDbXYCKGlQiSqYBk8W0qzlaHErOjl0RmFlOd+6WlG3uTHXTToyRbBEmCOnrY2AkQry6rCSfk1a8Qkk4wIK72FCDwN9rLOHSMJIhRQC1o=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1771073884; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=8Rp5Hww2ob9dr4bjhNKWXvgLWq6gmlUka9uKN6WtVPo=; 
-	b=NRdAQaKrBM3dWCrWC+e5GEwxMGjhjNXzBOxhOaCx8Vh38Ll5CmXxbQucVys/lPildyC7khNfmbWknyyjFGwfcyhOteGSXu1oar3VOjpzYAZjhQz04NyoSu9oevwwxeWQNQZQolJ4uYyt3QLqpYU+ArtNSEpjGTHhRFofOPvk/DM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=zohomail.com;
-	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
-	dmarc=pass header.from=<kingxukai@zohomail.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1771073884;
-	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Feedback-ID:Reply-To;
-	bh=8Rp5Hww2ob9dr4bjhNKWXvgLWq6gmlUka9uKN6WtVPo=;
-	b=JMFiWQSYJSRURoy5DYSbruccbg/Sq7YP5nOralGsAE6mxIRLkPR98f8Ixead/byk
-	qOx5yynqSbvNrQ07+afh0secrXS4DLl1Y7k+18hXBmnjhwSPlit1LnH0MuiEzyEcrSZ
-	RZBVepBOl+lhaj25bdUsdx6zN5s/KdtKNUk1R6JA=
-Received: by mx.zohomail.com with SMTPS id 1771073881704551.7420160087022;
-	Sat, 14 Feb 2026 04:58:01 -0800 (PST)
-From: Xukai Wang <kingxukai@zohomail.com>
-Date: Sat, 14 Feb 2026 20:54:39 +0800
-Subject: [PATCH v11 3/3] riscv: dts: canaan: Add clock definition for K230
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FC4C2868A7;
+	Sat, 14 Feb 2026 13:05:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771074343; cv=none; b=Z2rzNKNq1YGQ/ZTvx4gYlZ1hqVEiiwJ5nhzfH13A6iePcLm4bE9A/YOWly0BMJ3GdArHhxhqi9dP6QGxIyq0+3Lawl1Ryb443Tn3niMJZ57mqNGwuzgqcMm7mahoTSYXjfhf7utpA0k8g1o0tBvUHgkmQy9t83oOAl9Qq0Mg3ck=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771074343; c=relaxed/simple;
+	bh=cg4LpuguQ/h/G8yLLQsj1m9APnyjaloYov77nAppJHQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=O6EpoLmlv/wE2gCu+K3t8YKJx45guhqy+SNlwSgtkH4yZ+Hr9/fduTLc8f2tDAaohCqmNY9an/C7xx1X9rryrMF3M66lHoqW3+AWVYCZ7+s90sFL827ADGlIHfDIaCrvy6eLeFHcDyEoO8agR5WzJJRrqqRwVJkiGJnhh4M8l1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iNsCXtl1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3B73C16AAE;
+	Sat, 14 Feb 2026 13:05:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771074342;
+	bh=cg4LpuguQ/h/G8yLLQsj1m9APnyjaloYov77nAppJHQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iNsCXtl17O//g29MKDscTp9eC2Y1cH6W+t4RLQgpVKM9iAfeVj/cmsX0dJ4O/TLdI
+	 TMOEK3RjpMi/29aRcDyEbh80dgR7dm4wFMQvtxJmchj0vSbtPXryz8ZXbCsxRlrsY5
+	 XPqWr6BpGuIynxuvf+DMb6C2P0F34kTkBXZBO7nafVAyGT13zO0VMaDzpsXcBiOxgZ
+	 GK/kW+DqFRU7eU87D0NydGNXj5ZZ3MO1Kvl+glrZa+8xyKewHAXiGNdFxNC8dTBtSv
+	 kPgDPdWz0n36XdDdNt/JHRcudKczpT2V6X5N46pG5KI4EZriKFj6bn12WnEwZ0jOKT
+	 Y6M0QrDe0rdEg==
+Message-ID: <f5869002-1b42-4164-9f14-2ee41f5b1496@kernel.org>
+Date: Sat, 14 Feb 2026 13:05:37 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: media: camss: Add qcom,sm6350-camss
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Luca Weiss <luca.weiss@fairphone.com>
+Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260213-sm6350-camss-v3-0-30a845b0b7cc@fairphone.com>
+ <20260213-sm6350-camss-v3-1-30a845b0b7cc@fairphone.com>
+ <W3evhxwcLQLbkKftGpGmJ5LaEO_h3nxsWSSzrthlfatPfO60KrPpbyaq7yAu1vKbQc0RLqsaCQhTPzRruNTg_Q==@protonmail.internalid>
+ <20260214-slick-ringtail-of-innovation-d8eecd@quoll>
+From: Bryan O'Donoghue <bod@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20260214-slick-ringtail-of-innovation-d8eecd@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260214-b4-k230-clk-v11-3-6de365489b89@zohomail.com>
-References: <20260214-b4-k230-clk-v11-0-6de365489b89@zohomail.com>
-In-Reply-To: <20260214-b4-k230-clk-v11-0-6de365489b89@zohomail.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Xukai Wang <kingxukai@zohomail.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Conor Dooley <conor@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Troy Mitchell <TroyMitchell988@gmail.com>, jiayu.riscv@isrc.iscas.ac.cn
-X-Mailer: b4 0.14.2
-Feedback-ID: rr080112276725751e768d2d5023020cae0000deaaa4797553921fbbf3320ea9b031fa982a1a4eab617b30d6:zu08011227a067aec1c8ebdec0af6391ea0000aacc3b2e52d957375c95d6d32978af63e930ab0fe56f6fda4c:rf0801122cc9dc982664869ce0c87aed23000043dc36565f0fbd71d2b9c6f6c6ebb9dae345e405bcbee5820a774c03d48f:ZohoMail
-X-ZohoMailClient: External
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[zohomail.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[zohomail.com:s=zm2022];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265550-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265551-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[zohomail.com:+];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linaro.org,lists.sr.ht,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kingxukai@zohomail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,sifive.com,gmail.com,isrc.iscas.ac.cn];
+	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6096213C003
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3665213C0A3
 X-Rspamd-Action: no action
 
-This patch describes the clock controller integrated in K230 SoC
-and replace dummy clocks with the real ones for UARTs.
+On 14/02/2026 08:37, Krzysztof Kozlowski wrote:
+> On Fri, Feb 13, 2026 at 02:15:01PM +0100, Luca Weiss wrote:
+>> +  power-domains:
+>> +    maxItems: 6
+>> +
+>> +  power-domain-names:
+>> +    items:
+>> +      - const: bps
+>> +      - const: ife0
+>> +      - const: ife1
+> 
+> ife0, ife1, ife2, top, bps, ipe like in sm6150 or sm8650.
+> 
+>> +      - const: ife2
+>> +      - const: ipe
+>> +      - const: top
+>> +
+>> +  vdd-csiphy0-0p9-supply:
+>> +    description:
+>> +      Phandle to a 0.9V regulator supply to CSIPHY0.
+>> +
+>> +  vdd-csiphy0-1p25-supply:
+>> +    description:
+>> +      Phandle to a 1.25V regulator supply to CSIPHY0.
+>> +
+>> +  vdd-csiphy1-0p9-supply:
+>> +    description:
+>> +      Phandle to a 0.9V regulator supply to CSIPHY1.
+>> +
+>> +  vdd-csiphy1-1p25-supply:
+>> +    description:
+>> +      Phandle to a 1.25V regulator supply to CSIPHY1.
+>> +
+>> +  vdd-csiphy2-0p9-supply:
+>> +    description:
+>> +      Phandle to a 0.9V regulator supply to CSIPHY2.
+>> +
+>> +  vdd-csiphy2-1p25-supply:
+>> +    description:
+>> +      Phandle to a 1.25V regulator supply to CSIPHY2.
+>> +
+>> +  vdd-csiphy3-0p9-supply:
+>> +    description:
+>> +      Phandle to a 0.9V regulator supply to CSIPHY3.
+>> +
+>> +  vdd-csiphy3-1p25-supply:
+>> +    description:
+>> +      Phandle to a 1.25V regulator supply to CSIPHY3.
+> 
+> I assume that we abandon the idea of separate CSI PHY devices. It was
+> discssed way too long time ago.
 
-For k230-canmv and k230-evb, they provide an additional external
-pulse input through a pin to serve as clock source.
+No just waiting for 6.20/7.0 to drop however, I think its fine to add 
+new definitions until we merge that series.
+> With domains changed:
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Co-developed-by: Troy Mitchell <TroyMitchell988@gmail.com>
-Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
-Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
----
- arch/riscv/boot/dts/canaan/k230-canmv.dts | 11 +++++++++++
- arch/riscv/boot/dts/canaan/k230-evb.dts   | 11 +++++++++++
- arch/riscv/boot/dts/canaan/k230.dtsi      | 26 ++++++++++++++++++--------
- 3 files changed, 40 insertions(+), 8 deletions(-)
-
-diff --git a/arch/riscv/boot/dts/canaan/k230-canmv.dts b/arch/riscv/boot/dts/canaan/k230-canmv.dts
-index 32ba53d17c0000ed00293d6834c631397548e6b9..2ba555f6de131f5b111cead31fef13579d42ac58 100644
---- a/arch/riscv/boot/dts/canaan/k230-canmv.dts
-+++ b/arch/riscv/boot/dts/canaan/k230-canmv.dts
-@@ -21,6 +21,12 @@ ddr: memory@0 {
- 		device_type = "memory";
- 		reg = <0x0 0x0 0x0 0x20000000>;
- 	};
-+
-+	timerx_pulse_in: clock-50000000 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+	};
- };
- 
- &uart0 {
-@@ -330,3 +336,8 @@ mmc1-data-cfg {
- 		};
- 	};
- };
-+
-+&sysclk {
-+	clocks = <&osc24m>, <&timerx_pulse_in>;
-+	clock-names = "osc24m", "timer-pulse-in";
-+};
-diff --git a/arch/riscv/boot/dts/canaan/k230-evb.dts b/arch/riscv/boot/dts/canaan/k230-evb.dts
-index bfa53f2e240334b7442ab22d18ef7c309ca11b7e..4246e4bba6ccd9d0c53d9b926e40cd63fde46e75 100644
---- a/arch/riscv/boot/dts/canaan/k230-evb.dts
-+++ b/arch/riscv/boot/dts/canaan/k230-evb.dts
-@@ -21,8 +21,19 @@ ddr: memory@0 {
- 		device_type = "memory";
- 		reg = <0x0 0x0 0x0 0x20000000>;
- 	};
-+
-+	timerx_pulse_in: clock-50000000 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+	};
- };
- 
- &uart0 {
- 	status = "okay";
- };
-+
-+&sysclk {
-+	clocks = <&osc24m>, <&timerx_pulse_in>;
-+	clock-names = "osc24m", "timer-pulse-in";
-+};
-diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
-index a73b1926ab9342f757a70c9b857de32746e96389..6dcb628a960b05c3c9542fcd2e4205539211fb0d 100644
---- a/arch/riscv/boot/dts/canaan/k230.dtsi
-+++ b/arch/riscv/boot/dts/canaan/k230.dtsi
-@@ -3,6 +3,7 @@
-  * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
-  */
- 
-+#include <dt-bindings/clock/canaan,k230-clk.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/reset/canaan,k230-rst.h>
- #include "k230-pinctrl.h"
-@@ -57,11 +58,11 @@ l2_cache: l2-cache {
- 		};
- 	};
- 
--	apb_clk: apb-clk-clock {
-+	osc24m: clock-24000000 {
- 		compatible = "fixed-clock";
--		clock-frequency = <50000000>;
--		clock-output-names = "apb_clk";
- 		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+		clock-output-names = "osc24m";
- 	};
- 
- 	soc {
-@@ -99,10 +100,19 @@ pinctrl: pinctrl@91105000 {
- 			reg = <0x0 0x91105000 0x0 0x100>;
- 		};
- 
-+		sysclk: clock-controller@91102000 {
-+			compatible = "canaan,k230-clk";
-+			reg = <0x0 0x91102000 0x0 0x40>,
-+			      <0x0 0x91100000 0x0 0x108>;
-+			clocks = <&osc24m>;
-+			clock-names = "osc24m";
-+			#clock-cells = <1>;
-+		};
-+
- 		uart0: serial@91400000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91400000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART0_RATE>;
- 			interrupts = <16 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -113,7 +123,7 @@ uart0: serial@91400000 {
- 		uart1: serial@91401000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91401000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART1_RATE>;
- 			interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -124,7 +134,7 @@ uart1: serial@91401000 {
- 		uart2: serial@91402000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91402000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART2_RATE>;
- 			interrupts = <18 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -135,7 +145,7 @@ uart2: serial@91402000 {
- 		uart3: serial@91403000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91403000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART3_RATE>;
- 			interrupts = <19 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -146,7 +156,7 @@ uart3: serial@91403000 {
- 		uart4: serial@91404000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91404000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART4_RATE>;
- 			interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-
--- 
-2.34.1
 
 
