@@ -1,534 +1,249 @@
-Return-Path: <devicetree+bounces-265497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265499-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kKYUKFrbj2lsUAEAu9opvQ
-	(envelope-from <devicetree+bounces-265497-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 03:18:02 +0100
+	id KSaUAXToj2lqUQEAu9opvQ
+	(envelope-from <devicetree+bounces-265499-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 04:13:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ACAA13AC2E
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 03:18:02 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6710113AD76
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 04:13:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C9670301CC5A
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 02:18:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E1196301DC03
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 03:13:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 571812882B7;
-	Sat, 14 Feb 2026 02:17:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6008328C006;
+	Sat, 14 Feb 2026 03:13:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jiPjGTSK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="htf5QPpR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1DB7289374
-	for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 02:17:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39DBD5CDF1;
+	Sat, 14 Feb 2026 03:13:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771035478; cv=none; b=K/dJMJ3lb+jmNL+sRxzPzgYGle30PhZ07fYrAjHLa5hy5/s/RDHYdBYFTXQFN6NiBgHBxhULdNJNBoz2AzrIDThuo+jK7k+wZrNs6xdMb7VqbKGhGybqoQN9w9KiK5f475MwYI2VuVHvK+9OWM8/Crlk9YVIjAhpmfACMY4LHlg=
+	t=1771038831; cv=none; b=Y+AIqdxwryh7YoDIHzXM/JVKKcZrVMhxHusNXHw4IMieaim1p2YZToEQeJTiLl8goDpmRgv1B+xcjl2Mr3p3HYTqZXCPpxbYeAbQCBFeQuRRc6iqgSYtT4d4IEBMEVqS9U5An/0FasTQfqjF8iSf6m7i9UVGoB8q8eUipCa1qaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771035478; c=relaxed/simple;
-	bh=CqllO3eNM2OV3aY6UKJck7NFbOD0msTwoUsSfwICzEk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HbB4HbhwG/XqY10hkhiwC2TMmKn2KTQqfxF6859Y1rzXvq8gagTVfqAse05o5Te/H5FnzOfRKRioMX+VzTzqX2ErnYm1FSwKoMVYDR/HaNymRvGVPEMSDp1hBJ8hRKkFQghdJSLSNrU+ezbkSJKP75yXg/FR5xdw0zl8nvOu0Ho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jiPjGTSK; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-4362507f0bcso1182890f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Feb 2026 18:17:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771035475; x=1771640275; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6VhO/qYqiosSKExqeNWU5ng7qojbf2T2pdtsPL45D4w=;
-        b=jiPjGTSK6tqrs9o+zM2rcwLrGd9UxsSTxbN9vn6+67bnjXtF5r87WUU6skpiJZtNcm
-         ffI1OEN4JeJ1TH5rjTth+l8iiQD8gsh5gNePmR3kdXZ9FOn2qxkXlzzePGNu+5ainVYP
-         OhtekN53o1eAv9u9eoC8jCzyLpxCPFdaMUP+BrxfnXkRjFL6cexLw9i+qTziJRYN0NC2
-         A2P1WWAsQGjxO1Bh+TJ4Mpw5YEU3YRb7ajPNhQxG/ONtzbgXQBQn5oIualbwvJVMl6h1
-         9UOIwyefRKUpbzKlm5zWR9OKE5mQzFo1XsSJf+CQvahvqw621vvT8ulV5/gspMf9X7XS
-         rXYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771035475; x=1771640275;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=6VhO/qYqiosSKExqeNWU5ng7qojbf2T2pdtsPL45D4w=;
-        b=F/3VdkYpTllnzc92lSGrAbBNL0/akBXBeYdFIrFMj6AV0BjLz3jVK+TOpDCQERKHL0
-         7OHb146yCCHghw9+ETZuq+FRDR/ObrxIkAOsp9npYk2u6n7Or5H694LbF3Ff76XJPk4u
-         3/RBBlWqxQxss8Nuiotc5ptMjuEhIAYwyGQwUv/zt1YI2OQu/dQvi4hXJ2oH6yCHlfL4
-         2cz5W6Wy4WJgOlFqh1HouvWCdnoPMXTxUx+fb9+1QnkrxJJLEqlGN6vWblnqOdsn5yoZ
-         Te2T2hAUsTrG4Hka6rOgkTIg9QaNbZf0ifISXm8qrjms1mdflJaewTVrXYS+LNa65TrR
-         ysVQ==
-X-Gm-Message-State: AOJu0YzQPuvgBsKNDG/WX96G4lIbb+KdPenumMQ9C+FitILWC6qsbnzf
-	Qv8GtXfu/HzOevSYJdwS7vduP0U6Zrm9xtA19TsjxZc6khB4fl/7amATQUXUsHudMyE=
-X-Gm-Gg: AZuq6aJBe+y0GGx6lYeL1xjYgUlBmjCeO7hZr/W2+AeqxXEMzg8e+qOVcEkeRzEH87X
-	5QvT0ao7f92z96o+HU4LWMn0eSoXdjy/X4glWLrZ/v0LP9OKh+WHS2TUCXX46dagJLkdZQUfsK8
-	EDJ9khiYkUfhE3QET5cwV71oB3Y2ztyIDxRrKpAkjB6ZqGRpr9E3HkYknLWwWXnVrbSMSNN1JWS
-	GjmW274LqFZ5DplNn+E9EP0eWtu+Ljm5A+COyxIiGhvD/bcwXY1JWfOGG7F87mUUvg0oSWaoCT3
-	ne/FsiSSsertaUOv/r5iWInY01XtBqcIvWivwgFiVHIu/m2vE9xDiiOwMto/oBY5Na6rYLS1gbA
-	XqZosgd9aBKtvjXcnqldxwjOmEK4Gv/cK2DFNPHE3SC7KHZLayI+c94XNGTc0TfnulK1samQ5dU
-	2NdWv0NMThxS9sdRuu6KV2
-X-Received: by 2002:a05:6000:228a:b0:430:fd0e:a502 with SMTP id ffacd0b85a97d-4379d61a68amr3274684f8f.22.1771035474722;
-        Fri, 13 Feb 2026 18:17:54 -0800 (PST)
-Received: from arch.localdomain ([2409:8a28:a53:6b71::1002])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43796acffcesm8608308f8f.37.2026.02.13.18.17.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Feb 2026 18:17:54 -0800 (PST)
-From: Jun Yan <jerrysteve1101@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	alchark@gmail.com,
-	dsimic@manjaro.org,
-	andyshrk@163.com,
-	jonas@kwiboo.se,
-	Jun Yan <jerrysteve1101@gmail.com>
-Subject: [PATCH v5 3/3] arm64: dts: rockchip: Add OneThing Edge Cube series
-Date: Sat, 14 Feb 2026 10:17:16 +0800
-Message-ID: <20260214021719.620752-4-jerrysteve1101@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260214021719.620752-1-jerrysteve1101@gmail.com>
-References: <20260214021719.620752-1-jerrysteve1101@gmail.com>
+	s=arc-20240116; t=1771038831; c=relaxed/simple;
+	bh=AveWrvXusFxamxdRx0C3nhvuASpHXQtiNHJ9W6SVTD0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=USdDDmYrzueVVym651RFl47vsBwf0R0kkmLq3EArRAxZYfIoEIq2uDeqAjw7nqul8yEVj4FfN/93R1UygrP1gC4hb02CCMz0wW5UCqfFgeTZTFFbB8UZxBTGfUF+YgBYJklZe5Mmwen9ucUhQhfeqTWkJEnG7EquYHi+mHw7EMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=htf5QPpR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AE412C116C6;
+	Sat, 14 Feb 2026 03:13:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771038830;
+	bh=AveWrvXusFxamxdRx0C3nhvuASpHXQtiNHJ9W6SVTD0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=htf5QPpROUREoUzab+2Ap5vldjgcVTmZAzlsCvRDPOb0HZVPE1d5fq6+YGwi6ZV56
+	 ZmSZ4rF/boBnyP2L0XdVHXRsLgiR14urgfgntZ9GcruWFc94ku3cUWRzXQoPOgDjqb
+	 hxUnI+EbCPwWmT2C5jgu7QepBudvscP8mIIPmWhJgn3Xl4JzEJ5hNstbEBUybgU0Ae
+	 hS9OXPful/WXcsbbQnT1y2nIcXeR1iZ3EojR1/ZUD9cKvuTk5JTHrb+sxmE6ZBqzrJ
+	 7NW7d1KWZyqkxa+FO635Fs4kCFqIRn6zip+Blo7dnwhrBjHXhrpicgXefp+twQ2XFR
+	 u2OpC8NFhMQuw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 912A2EF99D5;
+	Sat, 14 Feb 2026 03:13:50 +0000 (UTC)
+From: Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>
+Subject: [PATCH v6 0/6] Introduce MAX77759 charger driver
+Date: Sat, 14 Feb 2026 03:12:36 +0000
+Message-Id: <20260214-max77759-charger-v6-0-28c09bda74b4@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIACToj2kC/23QwW7DIAwG4FepOI8JDDaw095j2gESJ0VaS0Wmq
+ FOVdx+pNnVTcvyN/NnmJiaumSfxcriJynOecjm3QE8H0R3jeWSZ+5YFKECtFcpTvDrnMMj2XEe
+ u0iMkAuqJdBSt7VJ5yNc7+fbe8jFPn6V+3SfMeq3+YGC22KylkpSAbfKDG9C+jqWMH/zclZNYt
+ RkeAmi/I0ATIAGG4FUkTxvB/BHA7QimCWiZyA7YxQAbwf4KpNoSO4JdrwgWjO18z73eCPgQQO3
+ 9AzYhoTIBjaOIwz9hWZZvRNwDGLkBAAA=
+X-Change-ID: 20251105-max77759-charger-852b626d661a
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Lee Jones <lee@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Badhri Jagan Sridharan <badhri@google.com>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Mark Brown <broonie@kernel.org>, 
+ Matti Vaittinen <mazziesaccount@gmail.com>, 
+ Andrew Morton <akpm@linux-foundation.org>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>, 
+ Amit Sunil Dhamne <amitsd@google.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771038829; l=5661;
+ i=amitsd@google.com; s=20241031; h=from:subject:message-id;
+ bh=AveWrvXusFxamxdRx0C3nhvuASpHXQtiNHJ9W6SVTD0=;
+ b=c10MZSi5/tRPt3QQmxGUNygXPSvwX6fMeJjn0bye+BqKRxMW4brk9JP8Q2zStXD/7JS1HUKHP
+ Xaq6h0phelVCzdJmfF8dIaIkMnOHrNd4C++uP8YyxiRuBPMso6gvYCs
+X-Developer-Key: i=amitsd@google.com; a=ed25519;
+ pk=wD+XZSST4dmnNZf62/lqJpLm7fiyT8iv462zmQ3H6bI=
+X-Endpoint-Received: by B4 Relay for amitsd@google.com/20241031 with
+ auth_id=262
+X-Original-From: Amit Sunil Dhamne <amitsd@google.com>
+Reply-To: amitsd@google.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,sntech.de,gmail.com,manjaro.org,163.com,kwiboo.se];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-265497-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265499-lists,devicetree=lfdr.de,amitsd.google.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,linuxfoundation.org,google.com,linux.intel.com,samsung.com,gmail.com,linux-foundation.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.1:email]
-X-Rspamd-Queue-Id: 1ACAA13AC2E
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
+	HAS_REPLYTO(0.00)[amitsd@google.com]
+X-Rspamd-Queue-Id: 6710113AD76
 X-Rspamd-Action: no action
 
-The OneThing Edge Cube (OEC) series features the RK3566 SoC, 8GB
-eMMC storage, and supports one SATA interface, one Gigabit Ethernet
-port, and one USB 3.0 port.
+MAX77759 PMIC is used in Pixel 6 and 6 Pro (Oriole/Raven) boards.
+One of the functions of the MAX77759 PMIC is a battery charger. This
+patchset introduces a driver for this function. One of the unique
+features of this charger driver is that it works with a USB input where
+the Type-C controller is TCPCI based.
 
-Other than the difference in RAM capacity, the OEC and OEC-turbo are
-identical in all other specifications.
+Changes to the board files will follow soon once this patchset is reviewed.
 
-  Specification:
-    - Rockchip RK3566
-    - LPDDR4X 2GB (OEC) / 4GB (OEC-turbo)
-    - eMMC 8GB
-    - Gigabit Ethernet port x 1
-    - USB 3.0 port x 1
-    - USB-C 2.0 port x 1
-    - 12V DC Power supply
-    - SATA 3.0 connector x 1
+For reference to the MAX77759 MFD based patchset (present in upstream):
+https://lore.kernel.org/all/20250509-max77759-mfd-v10-0-962ac15ee3ef@linaro.org/
 
-These devices do not have a PMIC, and their hardware circuit design
-is highly similar to that of the rk3566-box-demo[1]. Hardware schematics
-are not available at this time, with the vendor firmware dts available
-for reference[2].
+Dependency list for patches (directionality indicates depends on):
+[6] -> [5] -> [4] & [3]
 
-Ethernet, USB 3.0 and SATA 3.0 ports tested, all working well.
-
-[1] https://elixir.bootlin.com/linux/v6.18.6/source/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-[2] https://archive.org/download/wxy-oec-RK3566-4G-dump/wxy-oec-RK3566-4G-dump.dts
-
-Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
 ---
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../rockchip/rk3566-onething-edge-cube.dts    | 342 ++++++++++++++++++
- 2 files changed, 343 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-onething-edge-cube.dts
+Changes in v6:
+-  Linear Range usage (André Draszik):
+  - Dedicate individual arrays for inlim, chgcc & chg_cv_prm to simplify
+    code.
+  - Use numerical values instead of macros for linear_range array init.
+  - Remove macros defining current and voltage limits due to above.
+  - Didn't use Reviewed-by tag for Patch 3 due to the above.
+  - Add new linear_ranges api to leverage it for obtaining selector
+    values.
+  - Improve voltage and current getters and setters functions by leveraging
+    existing and new linear_ranges API.
+- IRQ related changes (André Draszik)
+  - Dedicated names for individual irqs.
+  - Refactor irq handlers.
+  - Ratelimit prints
+- Retry mechanism (André Draszik):
+  - Initialize error retry counter to 0 when psy work is scheduled on a
+    new notifier event.
+  - Protect the counter using a lock.
+  - Add appropriate prints.
+- Link to v5: https://lore.kernel.org/r/20260203-max77759-charger-v5-0-b50395376a5f@google.com
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 4d384f153c13..71a7ab8e7223 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -104,6 +104,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg353v.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg353vs.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg503.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-odroid-m1s.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-onething-edge-cube.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-orangepi-3b-v1.1.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-orangepi-3b-v2.1.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-onething-edge-cube.dts b/arch/arm64/boot/dts/rockchip/rk3566-onething-edge-cube.dts
-new file mode 100644
-index 000000000000..b57bf7bf10f5
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-onething-edge-cube.dts
-@@ -0,0 +1,342 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/pwm/pwm.h>
-+#include "rk3566.dtsi"
-+
-+/ {
-+	model = "OneThing Edge Cube (OEC)/OEC Turbo";
-+	compatible = "onething,edge-cube", "rockchip,rk3566";
-+
-+	aliases {
-+		ethernet0 = &gmac1;
-+		mmc0 = &sdhci;
-+	};
-+
-+	chosen: chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	gmac1_clkin: external-gmac1-clock {
-+		compatible = "fixed-clock";
-+		clock-frequency = <125000000>;
-+		clock-output-names = "gmac1_clkin";
-+		#clock-cells = <0>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		rgb_led_b: led-0 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			default-state = "off";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&rgb_led_b_enable_l>;
-+		};
-+
-+		rgb_led_g: led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			default-state = "on";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_LOW>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&rgb_led_g_enable_l>;
-+		};
-+
-+		rgb_led_r: led-2 {
-+			color = <LED_COLOR_ID_RED>;
-+			default-state = "off";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_LOW>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&rgb_led_r_enable_l>;
-+		};
-+	};
-+
-+	vcc_1v8: regulator-vcc-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v8";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc_3v3: regulator-vcc-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc12v0_dcin: regulator-vcc12v0-dcin {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc12v0_dcin";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
-+	vcc3v3_sys: regulator-vcc3v3-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc12v0_dcin>;
-+	};
-+
-+	vcc5v0_sys: regulator-vcc5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc12v0_dcin>;
-+	};
-+
-+	vcc5v0_usb_host: regulator-vcc5v0-usb-host {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_usb_host_en>;
-+		regulator-name = "vcc5v0_usb_host";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vdd_cpu: regulator-vdd-cpu {
-+		compatible = "pwm-regulator";
-+		pwms = <&pwm0 0 5000 PWM_POLARITY_INVERTED>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-name = "vdd_cpu";
-+		regulator-min-microvolt = <800000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-settling-time-up-us = <250>;
-+		pwm-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vdd_fixed: regulator-vdd-fixed {
-+		compatible = "regulator-fixed";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-name = "vdd_fixed";
-+		regulator-min-microvolt = <950000>;
-+		regulator-max-microvolt = <950000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vdd_logic: regulator-vdd-logic {
-+		compatible = "pwm-regulator";
-+		pwms = <&pwm1 0 5000 PWM_POLARITY_INVERTED>;
-+		regulator-name = "vdd_logic";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <800000>;
-+		regulator-max-microvolt = <1100000>;
-+		regulator-settling-time-up-us = <250>;
-+		pwm-supply = <&vcc5v0_sys>;
-+	};
-+};
-+
-+
-+/* No hardware video output port */
-+&display_subsystem {
-+	status = "disabled";
-+};
-+
-+&combphy1 {
-+	status = "okay";
-+};
-+
-+&combphy2 {
-+	status = "okay";
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&gmac1 {
-+	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
-+	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>, <&gmac1_clkin>;
-+	clock_in_out = "input";
-+	phy-handle = <&rgmii_phy1>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac1m1_miim
-+		    &gmac1m1_tx_bus2
-+		    &gmac1m1_rx_bus2
-+		    &gmac1m1_rgmii_clk
-+		    &gmac1m1_rgmii_bus
-+		    &gmac1m1_clkinout>;
-+	status = "okay";
-+};
-+
-+&gpu {
-+	status = "okay";
-+};
-+
-+&mdio1 {
-+	rgmii_phy1: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x1>;
-+		reset-assert-us = <20000>;
-+		reset-deassert-us = <100000>;
-+		reset-gpios = <&gpio4 RK_PC2 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&pinctrl {
-+	gmac {
-+		eth_phy_reset_pin: eth-phy-reset-pin {
-+			rockchip,pins = <4 RK_PC2 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	leds {
-+		rgb_led_b_enable_l: rgb-led-b-enable-l {
-+			rockchip,pins = <3 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		rgb_led_g_enable_l: rgb-led-g-enable-l {
-+			rockchip,pins = <3 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		rgb_led_r_enable_l: rgb-led-r-enable-l {
-+			rockchip,pins = <0 RK_PC3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	usb {
-+		vcc5v0_usb_host_en: vcc5v0-usb-host-en {
-+			rockchip,pins = <0 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&pmu_io_domains {
-+	pmuio1-supply = <&vcc_3v3>;
-+	pmuio2-supply = <&vcc_3v3>;
-+	vccio1-supply = <&vcc_1v8>;
-+	vccio3-supply = <&vcc_3v3>;
-+	vccio4-supply = <&vcc_1v8>;
-+	vccio5-supply = <&vcc_3v3>;
-+	vccio6-supply = <&vcc_1v8>;
-+	vccio7-supply = <&vcc_3v3>;
-+	status = "okay";
-+};
-+
-+&pwm0 {
-+	status = "okay";
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+};
-+
-+&saradc {
-+	vref-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
-+&sata2 {
-+	status = "okay";
-+};
-+
-+&sdhci {
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-hs200-1_8v;
-+	no-sd;
-+	no-sdio;
-+	non-removable;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd &emmc_datastrobe>;
-+	status = "okay";
-+};
-+
-+&tsadc {
-+	rockchip,hw-tshut-mode = <1>;
-+	rockchip,hw-tshut-polarity = <0>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&usb_host0_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host0_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host1_xhci  {
-+	status = "okay";
-+};
-+
-+&usb2phy0 {
-+	status = "okay";
-+};
-+
-+&usb2phy0_host {
-+	phy-supply = <&vcc5v0_usb_host>;
-+	status = "okay";
-+};
-+
-+&usb2phy0_otg {
-+	status = "okay";
-+};
-+
-+&usb2phy1 {
-+	status = "okay";
-+};
-+
-+&usb2phy1_host {
-+	phy-supply = <&vcc5v0_usb_host>;
-+	status = "okay";
-+};
-+
-+&usb2phy1_otg {
-+	phy-supply = <&vcc5v0_usb_host>;
-+	status = "okay";
-+};
+Changes in v5:
+- Use linear_range library instead of reinventing it. (André Draszik)
+  - This requires a selector_max value so modified mfd/max77759.h to
+    include it for CHGCC and CHG_ILIM.
+  - Removed "reviewed-by" for Patch 3 (mfd) due to above
+- Use asnyc probe type. (André Draszik)
+- Retry mechanism for psy_work. (André Draszik)
+- Minor nits (André Draszik):
+  - Use named initializers for instantiating structs.
+  - Use static qualifier for `psy_name` variable.
+  - Refactor if-else ladder to remove else handling if return in prior
+    "if" loop.
+  - Remove redundant `unlikely`.
+- Link to v4: https://lore.kernel.org/r/20260121-max77759-charger-v4-0-694234c8ded1@google.com
+
+Changes in v4:
+- Removed a stray tabspace in mfd/max77759.h. (André Draszik)
+- Fixed the following issues in Patch 4/5 (André Draszik):
+  - Re-order Kconfig entry
+  - Refactored to not use global variable
+  - Use of clamp() to clamp values instead of duplicating logic
+  - Return IRQ_NONE for unhandled irqs or error conditions
+  - Remove debug messages in irq handler
+  - Refactor code to use dev_err_probe in *_init_irqhandler()
+  - Remove unneeded irq_flags
+  - Check return values of regmap ops
+  - Other nits like newlines, not using greedy init, using print stmnts
+- Link to v3: https://lore.kernel.org/r/20251227-max77759-charger-v3-0-54e664f5ca92@google.com
+
+Changes in v3:
+- Had incorrectly folded the charger sub-device with the pmic parent.
+  Corrected it. (Krzysztof Kozlowski)
+- Link to v2: https://lore.kernel.org/r/20251218-max77759-charger-v2-0-2b259980a686@google.com
+
+Changes in v2:
+- Fold charger binding in maxim,max77759-charger.yaml to its parent
+  node. (Krzysztof Kozlowski)
+- Renamed regulator supplier & consumer. (Krzysztof Kozlowski & Heikki
+  Krogerus)
+- Removed explicit setting of irq trigger types in max77759 driver.
+  (André Draszik & Krzysztof Kozlowski)
+- Complete bit definitions for IRQ registers. (André Draszik)
+- Consolidate all bit definitions for charger IP in mfd/max77759.h.
+  (André Draszik)
+- Modify the handling of charger IRQs such that regmap IRQ chip handles
+  masking, de-mux and acking of interrupts. (André Draszik)
+- Remove unused macro definitions relating to Charger modes in tcpci
+  maxim driver (André Draszik)
+- Add dependency on Regulator class in Kconfig definition for max77759
+  chg. (Kernel Test Robot)
+- Link to v1: https://lore.kernel.org/r/20251123-max77759-charger-v1-0-6b2e4b8f7f54@google.com
+
+---
+Amit Sunil Dhamne (6):
+      dt-bindings: mfd: maxim,max77759: reference power-supply schema and add regulator property
+      dt-bindings: usb: maxim,max33359: Add supply property for vbus
+      mfd: max77759: add register bitmasks and modify irq configs for charger
+      lib/linear_ranges: Add linear_range_get_selector_high_array
+      power: supply: max77759: add charger driver
+      usb: typec: tcpm/tcpci_maxim: deprecate WAR for setting charger mode
+
+ .../devicetree/bindings/mfd/maxim,max77759.yaml    |  16 +-
+ .../devicetree/bindings/usb/maxim,max33359.yaml    |   4 +
+ MAINTAINERS                                        |   6 +
+ drivers/mfd/max77759.c                             |  91 ++-
+ drivers/power/supply/Kconfig                       |  11 +
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/max77759_charger.c            | 768 +++++++++++++++++++++
+ drivers/usb/typec/tcpm/tcpci_maxim.h               |   1 +
+ drivers/usb/typec/tcpm/tcpci_maxim_core.c          |  54 +-
+ include/linux/linear_range.h                       |   3 +
+ include/linux/mfd/max77759.h                       | 176 ++++-
+ lib/linear_ranges.c                                |  36 +
+ 12 files changed, 1108 insertions(+), 59 deletions(-)
+---
+base-commit: 8dfce8991b95d8625d0a1d2896e42f93b9d7f68d
+change-id: 20251105-max77759-charger-852b626d661a
+
+Best regards,
 -- 
-2.53.0
+Amit Sunil Dhamne <amitsd@google.com>
+
 
 
