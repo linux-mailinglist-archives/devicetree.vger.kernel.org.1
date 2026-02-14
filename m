@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-265571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265572-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oGXkJBK7kGm8cgEAu9opvQ
-	(envelope-from <devicetree+bounces-265571-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:12:34 +0100
+	id yKdHJTK7kGm8cgEAu9opvQ
+	(envelope-from <devicetree+bounces-265572-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:13:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E60DF13CC2D
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:12:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35E0913CC61
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 19:13:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EBFAF305A6CB
-	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 18:10:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0A9993067069
+	for <lists+devicetree@lfdr.de>; Sat, 14 Feb 2026 18:10:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8459E31282E;
-	Sat, 14 Feb 2026 18:10:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71204313525;
+	Sat, 14 Feb 2026 18:10:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zg9AIgDp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Iyvz/SZB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00E3F30F94C
-	for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 18:10:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09ACE30F52A
+	for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 18:10:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771092627; cv=none; b=OUFxEnWk6H/nppwGVmYFtEtpDdjyTxLvnNCplr1bdFC06nsQo+IDQRPuPX3WF7JuLGPIEUFlZSNTGKaqHehjkfKOmxw3UbfM+sGLugDtj06bW0NX1TbiQCpdxR+eVU3wzSbO9W7TA1wKJHRYdPvz1dvLWNEXDkWRwzsOszxT2Sw=
+	t=1771092628; cv=none; b=iEAkjW6ukvXse7dxJsjE7dcOzOjlG/5NLVBFtLsyNeafxedwUlR5F7dOdXZ/IsTIjTKs6AJdYC9GDP5aJXLMOgRrXeKlJ/04hDM5dZ9t0XRvjfovsZRtlRUzd6UOO3zeMJP8p5o10Qz2D7yKsdDuVJnsSJ9EOmbPmcIqKIdu6Kc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771092627; c=relaxed/simple;
-	bh=82wJ6CSHc8UFLw87bHXmNuqNeti15tSupjn/C1BIx6g=;
+	s=arc-20240116; t=1771092628; c=relaxed/simple;
+	bh=kH6IxGWU9/YPnlpdIv152C9oL2JnvfglKibkmH2D9yc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lINniV6jVukkBiEcbD6ID9d4dS8ybzbGCftpSK/hj1DXzPQA7CYx2kARZwViJkZSDaNWV/ym4SsN8iNlJlYEvV+t+kUQEzpsnjpy8UP58RgTy6RvpjwMbdRkpH86mDV8Ib1Id24GJu5XTwuVC0a/0dBRJ5cDrPZRwkaanTvK6wU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zg9AIgDp; arc=none smtp.client-ip=209.85.208.51
+	 MIME-Version:Content-Type; b=oqkjRghiNImTHYq4wR9/56kn/H8px+gtfp76tCzzXCQ1VQeDywIo5Lm7mQDJuD4C7fekhzqC7QLpExNxlNEqmcsRE1gMHaWzGR4Vw+LGgJ97rAbBU/SB+L8iJl7s1x9Fs/PpqhMku2NX7pseF40RPHn1iPz3A1XQx4hqUhtEuYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Iyvz/SZB; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-65941c07fb4so2463994a12.3
-        for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 10:10:24 -0800 (PST)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b8fd976e921so28995666b.1
+        for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 10:10:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771092623; x=1771697423; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771092624; x=1771697424; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MxQXkdXlba88gXFDuag6mxU8wtp75fT8rqY0N+LZnb8=;
-        b=Zg9AIgDpVeaBMqz7wf69y5e+gGqHJRCV5R0msM9yPTaE8p7wPMQ329XbGwMcdUwDnF
-         woFhx7cfoadNZGS0ifQ9LpLO7VXONtmXDDFX5oBXQKqURXfLoHL9yvC2ILkKJFJy9YN0
-         +06ThKh3uW3EEns6j3JN6GmAe/WFmzw0TNE/GjMc1auCshS9pk78K48DiFCBWizQy9WF
-         Gzn3NI3KiwZjjYeUdJfH0tHc1iJDW52ZOgdOXrw6dqNfOdTJEP1xz6wz3dLOHN6s0VyR
-         miqiaEVCNVMQx3tbI3vUBbi8w+EDW1nyQSPkW/FABk6FrSI26pDk8n/XAW6qLG+9uhjo
-         iZKw==
+        bh=o3TwQJXKVq1pyC7HWfeudplW5CQQTbeaEyQZUhCqwB8=;
+        b=Iyvz/SZBiCjDWamqDjlo3av+apwColhoc0S7i31A7HLFbyoWbWuHb5/M4zAQq1UWyC
+         smNlwq17qZsAKlIHhrwI1SevBaO4RfWql6WIif0Kw8wKNDc42r/t4nrxtck1ntTHWCQ4
+         43X5be5Ieaao2UUfgO/Ju9l7vZF9pz2HmrCOfr2Ip3nF/1rs/ChARMsZYnBMsdW/+NNM
+         127D+ytH88aRFS/+meAfyK2XHzO73MPfp54FTsoxJMBr76ULQUu9yQslWc9mBlZ5CLEp
+         eAuevvPvsv/7yoQ7DvSuk6ObkWjUCBARNPal2c07sf2sqywtyxE4raWwan0GSwf7jpCK
+         zoWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771092623; x=1771697423;
+        d=1e100.net; s=20230601; t=1771092624; x=1771697424;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=MxQXkdXlba88gXFDuag6mxU8wtp75fT8rqY0N+LZnb8=;
-        b=WHRXrA75NFBTxCHtpKo4J7sKVWHxXsRUu17GWok+hdWOINmrcV/PVaBDe5oFPz1zYX
-         oRB4PO8JnACwjIWl2wUFBasLB/2a/ElQeAfZKjV06ebCg5VgxQATGMDT4pP9T3zpUqqf
-         2fkgQlc0SiQ/11xjdBMoviYGt72OmTJw05ExFvuV1b5k13emavcxg6OM3MCdpIfIzbSE
-         lwWWqgYUjTOqv04oSIovr+zYdpkg1ndOJo6+gX45bka1lQzLyWOVq1Fw0+Dn07IDbBEL
-         iw7YTjM0/U792hKLKTngMT5p1eD68y/yd1m03AHE1UC9mwUUmBn0lI1ZPUWyLtSsN1Cb
-         bSRg==
-X-Gm-Message-State: AOJu0YwuqB9WoUZOtjYmNA8Z8XvfohTIi28rgnEVqUjqNsljOzOUysZq
-	Uc1s2KOckGf7S6KyLfkI3WXJaueE9XlNKaHeO2MrcuxloyUM1oh8mVlv
-X-Gm-Gg: AZuq6aIt+gECYQmykD8Mjfkd7QwaLfp+meQOvaMIkD5HqMa6e3IzcoOV7vkrVmfifo7
-	pJbkvkC7vI8QQuetXjnig7UqBJb3J8HtHUGc68TePDhpn+D4nGPiE00utJOyfXH1KXcw8rGudoe
-	Qwobr5KFIl4zlniJ1qKenxz5tG5zYCwHteu2nEgDMMZrscOviHtixndVwUnGyW4o8bzpcN38QuM
-	RKzwWyb3BLWIcAmQNCyRedyAs87q894ejEna+cNrmksLwfN83rxJ9PNUuDxVc/32mlJa8B7ON8K
-	52KGDSauXRLPn6675sCKXbwDAxbPxtxm18gTZu+18AvezmkIKGObZeChQav+iAI9bmn7kvqp46o
-	uP9yZuEcYA3G+x0cTPws2UyRuuLy1Op4PgqeQmuq0As9aVw2xaAigImZCmvpYH1eYjyJIoes9aP
-	pbEFJ7qH8wvVZP
-X-Received: by 2002:a17:907:2dac:b0:b88:5ccf:5656 with SMTP id a640c23a62f3a-b8fb449d481mr363121166b.31.1771092623179;
-        Sat, 14 Feb 2026 10:10:23 -0800 (PST)
+        bh=o3TwQJXKVq1pyC7HWfeudplW5CQQTbeaEyQZUhCqwB8=;
+        b=qBxJw+uEbPIMlnz19FQ/tbj3V+YfdocqBgfbwIckQESJCR1syDow74/WlFeH02HKk0
+         /hbR37RDkU7Do1kSgVxpsj1VCwoYu+lC64Agx1FZWmNH+twJWrJiwx/ne/JhPRMe03/O
+         Jeev/VWACxcmyExFC+lSwPMvwUpCftuxgoQHBHrJspOMExG7N3p/KhN3fS5wTCxM2lvk
+         GAfic/iHxDVNr9gJde5RUr9wyFfVbJd503h/CkCu+YZuLERsfr/OsznrGJoEN/CibYlS
+         qhp7LVPxVH70MrQ9JU2WD5lHOXtPMuwbnTrzy6Mq82sn7u6Z5WAWgPOzopMPoNGB8MoU
+         LDAQ==
+X-Gm-Message-State: AOJu0Yz+H9kh4HaV0kSdOPnpx4+EsYXhM6Djy5ocjijI6xKgqvpAzShn
+	eUt2NT8Ps2Kb/KS2MkB+KyJ5FEeK2m1DKiAmbgCym38uhijVL3ibGJsk
+X-Gm-Gg: AZuq6aILMCjWZwTVQg2cgibpSOrbRq/KeduVQ9oh5tSL24ORKunbOo88OUwQa/Tn90r
+	T+aHqbWzNSdDoVZClsNLYKqQqG7SUMXtAK+ZJJgTmk3pE1wP+in7l0LnkP1N2R9T04eyZkvA61w
+	5E1pfjBAmIIhcHUIFECkyedpeVvFwi3KNAukhF/jiNwCiYeY1UfHiJSBYFmcbgOYQPeL3ZBbFbn
+	PIea7bxpC4wsBdU2uvUyUS0I+HNsEP7JchdhJzoLjcNsPxdFaRzAjqTw7rlDIJGrKj44ES10Vnk
+	qYU5m68sEJlYaMbUITsXDUMds8pdioj1CPUZ6bu7+t/s9l1+4iMUV5yKkIdByUtRW/8Txst5tnM
+	SinGvqopK/u+X1RypPmUyBdDZqpHMjkWrKDXezm34ipxZD7FZmlYP2q9cVV4iAMpGb3d1BsjVw6
+	4IeAwiNmmFkKCl
+X-Received: by 2002:a17:907:970b:b0:b89:fb0b:65e3 with SMTP id a640c23a62f3a-b8fc3ced714mr139976766b.47.1771092624151;
+        Sat, 14 Feb 2026 10:10:24 -0800 (PST)
 Received: from xeon ([188.163.112.48])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8fc735e506sm88122066b.11.2026.02.14.10.10.22
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8fc735e506sm88122066b.11.2026.02.14.10.10.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Feb 2026 10:10:22 -0800 (PST)
+        Sat, 14 Feb 2026 10:10:23 -0800 (PST)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -91,9 +91,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-input@vger.kernel.org,
 	linux-leds@vger.kernel.org,
 	linux-pm@vger.kernel.org
-Subject: [PATCH v3 6/7] power: supply: Add driver for ASUS Transformer battery
-Date: Sat, 14 Feb 2026 20:09:58 +0200
-Message-ID: <20260214180959.30714-7-clamor95@gmail.com>
+Subject: [PATCH v3 7/7] power: supply: Add charger driver for Asus Transformers
+Date: Sat, 14 Feb 2026 20:09:59 +0200
+Message-ID: <20260214180959.30714-8-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260214180959.30714-1-clamor95@gmail.com>
 References: <20260214180959.30714-1-clamor95@gmail.com>
@@ -117,7 +117,7 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-265571-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265572-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	FREEMAIL_TO(0.00)[kernel.org,gmail.com,agorria.com,rere.qmqm.pl];
@@ -133,336 +133,258 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[poll_work.work:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qmqm.pl:email]
-X-Rspamd-Queue-Id: E60DF13CC2D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qmqm.pl:email]
+X-Rspamd-Queue-Id: 35E0913CC61
 X-Rspamd-Action: no action
 
 From: Michał Mirosław <mirq-linux@rere.qmqm.pl>
 
-Driver implements one battery cell per EC controller and supports reading
-of battery status for ASUS Transformer's pad and mobile dock.
+Add support for charger detection capabilities found in the embedded
+controller of ASUS Transformer devices.
 
-Co-developed-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+Suggested-by: Maxim Schwalm <maxim.schwalm@gmail.com>
+Suggested-by: Svyatoslav Ryhel <clamor95@gmail.com>
 Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
+Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 ---
  drivers/power/supply/Kconfig                  |  11 +
  drivers/power/supply/Makefile                 |   1 +
- .../supply/asus-transformer-ec-battery.c      | 272 ++++++++++++++++++
- 3 files changed, 284 insertions(+)
- create mode 100644 drivers/power/supply/asus-transformer-ec-battery.c
+ .../supply/asus-transformer-ec-charger.c      | 193 ++++++++++++++++++
+ 3 files changed, 205 insertions(+)
+ create mode 100644 drivers/power/supply/asus-transformer-ec-charger.c
 
 diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-index 81fadb0695a9..3c46b412632d 100644
+index 3c46b412632d..56800aab82f9 100644
 --- a/drivers/power/supply/Kconfig
 +++ b/drivers/power/supply/Kconfig
-@@ -122,6 +122,17 @@ config BATTERY_CHAGALL
- 	  This driver can also be built as a module. If so, the module will be
- 	  called chagall-battery.
+@@ -497,6 +497,17 @@ config CHARGER_88PM860X
+ 	help
+ 	  Say Y here to enable charger for Marvell 88PM860x chip.
  
-+config BATTERY_ASUS_TRANSFORMER_EC
-+	tristate "Asus Transformer's battery driver"
++config CHARGER_ASUS_TRANSFORMER_EC
++	tristate "Asus Transformer's charger driver"
 +	depends on MFD_ASUS_TRANSFORMER_EC
 +	help
-+	  Say Y here to enable support APM status emulation using
-+	  battery class devices.
++	  Say Y here to enable support AC plug detection on Asus Transformer
++	  Dock.
 +
-+	  This sub-driver supports battery cells found in Asus Transformer
-+	  tablets and mobile docks and controlled by special embedded
-+	  controller.
++	  This sub-driver supports charger detection mechanism found in Asus
++	  Transformer tablets and mobile docks and controlled by special
++	  embedded controller.
 +
- config BATTERY_CPCAP
- 	tristate "Motorola CPCAP PMIC battery driver"
- 	depends on MFD_CPCAP && IIO
+ config CHARGER_PF1550
+ 	tristate "NXP PF1550 battery charger driver"
+ 	depends on MFD_PF1550
 diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-index 41c400bbf022..aa5e6b05b018 100644
+index aa5e6b05b018..24679f09bb61 100644
 --- a/drivers/power/supply/Makefile
 +++ b/drivers/power/supply/Makefile
-@@ -22,6 +22,7 @@ obj-$(CONFIG_TEST_POWER)	+= test_power.o
- obj-$(CONFIG_BATTERY_88PM860X)	+= 88pm860x_battery.o
- obj-$(CONFIG_CHARGER_ADP5061)	+= adp5061.o
- obj-$(CONFIG_BATTERY_ACT8945A)	+= act8945a_charger.o
-+obj-$(CONFIG_BATTERY_ASUS_TRANSFORMER_EC)	+= asus-transformer-ec-battery.o
- obj-$(CONFIG_BATTERY_AXP20X)	+= axp20x_battery.o
- obj-$(CONFIG_CHARGER_AXP20X)	+= axp20x_ac_power.o
- obj-$(CONFIG_BATTERY_CHAGALL)	+= chagall-battery.o
-diff --git a/drivers/power/supply/asus-transformer-ec-battery.c b/drivers/power/supply/asus-transformer-ec-battery.c
+@@ -68,6 +68,7 @@ obj-$(CONFIG_CHARGER_RT9471)	+= rt9471.o
+ obj-$(CONFIG_CHARGER_RT9756)	+= rt9756.o
+ obj-$(CONFIG_BATTERY_TWL4030_MADC)	+= twl4030_madc_battery.o
+ obj-$(CONFIG_CHARGER_88PM860X)	+= 88pm860x_charger.o
++obj-$(CONFIG_CHARGER_ASUS_TRANSFORMER_EC)	+= asus-transformer-ec-charger.o
+ obj-$(CONFIG_CHARGER_PF1550)	+= pf1550-charger.o
+ obj-$(CONFIG_BATTERY_RX51)	+= rx51_battery.o
+ obj-$(CONFIG_AB8500_BM)		+= ab8500_bmdata.o ab8500_charger.o ab8500_fg.o ab8500_btemp.o ab8500_chargalg.o
+diff --git a/drivers/power/supply/asus-transformer-ec-charger.c b/drivers/power/supply/asus-transformer-ec-charger.c
 new file mode 100644
-index 000000000000..aefcd3fed6fe
+index 000000000000..de01f0bf2fd7
 --- /dev/null
-+++ b/drivers/power/supply/asus-transformer-ec-battery.c
-@@ -0,0 +1,272 @@
++++ b/drivers/power/supply/asus-transformer-ec-charger.c
+@@ -0,0 +1,193 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later
 +
-+#include <linux/array_size.h>
-+#include <linux/devm-helpers.h>
 +#include <linux/err.h>
 +#include <linux/mfd/asus-transformer-ec.h>
 +#include <linux/module.h>
-+#include <linux/mutex.h>
 +#include <linux/platform_device.h>
 +#include <linux/power_supply.h>
 +#include <linux/property.h>
-+#include <linux/unaligned.h>
 +
-+#define ASUSEC_BATTERY_DATA_FRESH_MSEC		5000
-+
-+#define ASUSEC_BATTERY_DISCHARGING		0x40
-+#define ASUSEC_BATTERY_FULL_CHARGED		0x20
-+#define ASUSEC_BATTERY_NOT_CHARGING		0x10
-+
-+#define TEMP_CELSIUS_OFFSET			2731
-+
-+struct asus_ec_battery_data {
++struct asus_ec_charger_data {
++	struct notifier_block nb;
 +	const struct asusec_info *ec;
-+	struct power_supply *battery;
++	struct power_supply *psy;
 +	struct power_supply_desc psy_desc;
-+	struct delayed_work poll_work;
-+	struct mutex battery_lock; /* for data refresh */
-+	unsigned long batt_data_ts;
-+	int last_state;
-+	u8 batt_data[DOCKRAM_ENTRY_BUFSIZE];
 +};
 +
-+static int asus_ec_battery_refresh(struct asus_ec_battery_data *priv)
-+{
-+	int ret = 0;
-+
-+	guard(mutex)(&priv->battery_lock);
-+
-+	if (time_before(jiffies, priv->batt_data_ts))
-+		return ret;
-+
-+	ret = asus_dockram_read(priv->ec->dockram, ASUSEC_DOCKRAM_BATT_CTL,
-+				priv->batt_data);
-+	if (ret < 0)
-+		return ret;
-+
-+	priv->batt_data_ts = jiffies +
-+		msecs_to_jiffies(ASUSEC_BATTERY_DATA_FRESH_MSEC);
-+
-+	return ret;
-+}
-+
-+static enum power_supply_property asus_ec_battery_properties[] = {
-+	POWER_SUPPLY_PROP_STATUS,
-+	POWER_SUPPLY_PROP_VOLTAGE_MAX,
-+	POWER_SUPPLY_PROP_CURRENT_MAX,
-+	POWER_SUPPLY_PROP_TEMP,
-+	POWER_SUPPLY_PROP_VOLTAGE_NOW,
-+	POWER_SUPPLY_PROP_CURRENT_NOW,
-+	POWER_SUPPLY_PROP_CAPACITY,
-+	POWER_SUPPLY_PROP_CHARGE_NOW,
-+	POWER_SUPPLY_PROP_TIME_TO_EMPTY_NOW,
-+	POWER_SUPPLY_PROP_TIME_TO_FULL_NOW,
-+	POWER_SUPPLY_PROP_PRESENT,
++static enum power_supply_property asus_ec_charger_properties[] = {
++	POWER_SUPPLY_PROP_USB_TYPE,
++	POWER_SUPPLY_PROP_CHARGE_BEHAVIOUR,
++	POWER_SUPPLY_PROP_ONLINE,
++	POWER_SUPPLY_PROP_MODEL_NAME,
 +};
 +
-+static const unsigned int asus_ec_battery_prop_offs[] = {
-+	[POWER_SUPPLY_PROP_STATUS] = 1,
-+	[POWER_SUPPLY_PROP_VOLTAGE_MAX] = 3,
-+	[POWER_SUPPLY_PROP_CURRENT_MAX] = 5,
-+	[POWER_SUPPLY_PROP_TEMP] = 7,
-+	[POWER_SUPPLY_PROP_VOLTAGE_NOW] = 9,
-+	[POWER_SUPPLY_PROP_CURRENT_NOW] = 11,
-+	[POWER_SUPPLY_PROP_CAPACITY] = 13,
-+	[POWER_SUPPLY_PROP_CHARGE_NOW] = 15,
-+	[POWER_SUPPLY_PROP_TIME_TO_EMPTY_NOW] = 17,
-+	[POWER_SUPPLY_PROP_TIME_TO_FULL_NOW] = 19,
-+};
-+
-+static int asus_ec_battery_get_value(struct asus_ec_battery_data *priv,
-+				     enum power_supply_property psp)
-+{
-+	int ret, offs;
-+
-+	if (psp >= ARRAY_SIZE(asus_ec_battery_prop_offs))
-+		return -EINVAL;
-+
-+	offs = asus_ec_battery_prop_offs[psp];
-+	if (!offs)
-+		return -EINVAL;
-+
-+	ret = asus_ec_battery_refresh(priv);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (offs >= priv->batt_data[0])
-+		return -ENODATA;
-+
-+	return get_unaligned_le16(priv->batt_data + offs);
-+}
-+
-+static int asus_ec_battery_get_property(struct power_supply *psy,
++static int asus_ec_charger_get_property(struct power_supply *psy,
 +					enum power_supply_property psp,
 +					union power_supply_propval *val)
 +{
-+	struct asus_ec_battery_data *priv = power_supply_get_drvdata(psy);
++	struct asus_ec_charger_data *priv = power_supply_get_drvdata(psy);
++	enum power_supply_usb_type psu;
 +	int ret;
++	u64 ctl;
++
++	ret = asus_ec_get_ctl(priv->ec, &ctl);
++	if (ret)
++		return ret;
++
++	switch (ctl & (ASUSEC_CTL_FULL_POWER_SOURCE | ASUSEC_CTL_DIRECT_POWER_SOURCE)) {
++	case ASUSEC_CTL_FULL_POWER_SOURCE:
++		psu = POWER_SUPPLY_USB_TYPE_CDP;	/* DOCK */
++		break;
++	case ASUSEC_CTL_DIRECT_POWER_SOURCE:
++		psu = POWER_SUPPLY_USB_TYPE_SDP;	/* USB */
++		break;
++	case 0:
++		psu = POWER_SUPPLY_USB_TYPE_UNKNOWN;	/* no power source connected */
++		break;
++	default:
++		psu = POWER_SUPPLY_USB_TYPE_ACA;	/* power adapter */
++		break;
++	}
 +
 +	switch (psp) {
-+	case POWER_SUPPLY_PROP_PRESENT:
-+		val->intval = 1;
-+		break;
++	case POWER_SUPPLY_PROP_ONLINE:
++		val->intval = psu != POWER_SUPPLY_USB_TYPE_UNKNOWN;
++		return 0;
++
++	case POWER_SUPPLY_PROP_USB_TYPE:
++		val->intval = psu;
++		return 0;
++
++	case POWER_SUPPLY_PROP_CHARGE_BEHAVIOUR:
++		if (ctl & ASUSEC_CTL_TEST_DISCHARGE)
++			val->intval = POWER_SUPPLY_CHARGE_BEHAVIOUR_FORCE_DISCHARGE;
++		else if (ctl & ASUSEC_CTL_USB_CHARGE)
++			val->intval = POWER_SUPPLY_CHARGE_BEHAVIOUR_AUTO;
++		else
++			val->intval = POWER_SUPPLY_CHARGE_BEHAVIOUR_INHIBIT_CHARGE;
++		return 0;
++
++	case POWER_SUPPLY_PROP_MODEL_NAME:
++		val->strval = priv->ec->model;
++		return 0;
 +
 +	default:
-+		ret = asus_ec_battery_get_value(priv, psp);
-+		if (ret < 0)
-+			return ret;
++		return -EINVAL;
++	}
++}
 +
-+		val->intval = (s16)ret;
++static int asus_ec_charger_set_property(struct power_supply *psy,
++					enum power_supply_property psp,
++					const union power_supply_propval *val)
++{
++	struct asus_ec_charger_data *priv = power_supply_get_drvdata(psy);
 +
-+		switch (psp) {
-+		case POWER_SUPPLY_PROP_STATUS:
-+			if (ret & ASUSEC_BATTERY_FULL_CHARGED)
-+				val->intval = POWER_SUPPLY_STATUS_FULL;
-+			else if (ret & ASUSEC_BATTERY_NOT_CHARGING)
-+				val->intval = POWER_SUPPLY_STATUS_NOT_CHARGING;
-+			else if (ret & ASUSEC_BATTERY_DISCHARGING)
-+				val->intval = POWER_SUPPLY_STATUS_DISCHARGING;
-+			else
-+				val->intval = POWER_SUPPLY_STATUS_CHARGING;
-+			break;
++	switch (psp) {
++	case POWER_SUPPLY_PROP_CHARGE_BEHAVIOUR:
++		switch ((enum power_supply_charge_behaviour)val->intval) {
++		case POWER_SUPPLY_CHARGE_BEHAVIOUR_AUTO:
++			return asus_ec_update_ctl(priv->ec,
++				ASUSEC_CTL_TEST_DISCHARGE | ASUSEC_CTL_USB_CHARGE,
++				ASUSEC_CTL_USB_CHARGE);
 +
-+		case POWER_SUPPLY_PROP_TEMP:
-+			val->intval -= TEMP_CELSIUS_OFFSET;
-+			break;
++		case POWER_SUPPLY_CHARGE_BEHAVIOUR_INHIBIT_CHARGE:
++			return asus_ec_clear_ctl_bits(priv->ec,
++				ASUSEC_CTL_TEST_DISCHARGE | ASUSEC_CTL_USB_CHARGE);
 +
-+		case POWER_SUPPLY_PROP_CHARGE_NOW:
-+		case POWER_SUPPLY_PROP_CURRENT_NOW:
-+		case POWER_SUPPLY_PROP_CURRENT_MAX:
-+		case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-+		case POWER_SUPPLY_PROP_VOLTAGE_MAX:
-+			val->intval *= 1000;
-+			break;
-+
-+		case POWER_SUPPLY_PROP_TIME_TO_EMPTY_NOW:
-+		case POWER_SUPPLY_PROP_TIME_TO_FULL_NOW:
-+			val->intval *= 60;
-+			break;
-+
++		case POWER_SUPPLY_CHARGE_BEHAVIOUR_FORCE_DISCHARGE:
++			return asus_ec_update_ctl(priv->ec,
++				ASUSEC_CTL_TEST_DISCHARGE | ASUSEC_CTL_USB_CHARGE,
++				ASUSEC_CTL_TEST_DISCHARGE);
 +		default:
-+			break;
++			return -EINVAL;
 +		}
 +
++	default:
++		return -EINVAL;
++	}
++}
++
++static int asus_ec_charger_property_is_writeable(struct power_supply *psy,
++						 enum power_supply_property psp)
++{
++	switch (psp) {
++	case POWER_SUPPLY_PROP_CHARGE_BEHAVIOUR:
++		return true;
++	default:
++		return false;
++	}
++}
++
++static const struct power_supply_desc asus_ec_charger_desc = {
++	.name = "asus-ec-charger",
++	.type = POWER_SUPPLY_TYPE_USB,
++	.charge_behaviours = BIT(POWER_SUPPLY_CHARGE_BEHAVIOUR_AUTO) |
++			     BIT(POWER_SUPPLY_CHARGE_BEHAVIOUR_INHIBIT_CHARGE) |
++			     BIT(POWER_SUPPLY_CHARGE_BEHAVIOUR_FORCE_DISCHARGE),
++	.usb_types = BIT(POWER_SUPPLY_USB_TYPE_UNKNOWN) |
++		     BIT(POWER_SUPPLY_USB_TYPE_SDP) |
++		     BIT(POWER_SUPPLY_USB_TYPE_CDP) |
++		     BIT(POWER_SUPPLY_USB_TYPE_ACA),
++	.properties = asus_ec_charger_properties,
++	.num_properties = ARRAY_SIZE(asus_ec_charger_properties),
++	.get_property = asus_ec_charger_get_property,
++	.set_property = asus_ec_charger_set_property,
++	.property_is_writeable = asus_ec_charger_property_is_writeable,
++	.no_thermal = true,
++};
++
++static int asus_ec_charger_notify(struct notifier_block *nb,
++				  unsigned long action, void *data)
++{
++	struct asus_ec_charger_data *priv =
++		container_of(nb, struct asus_ec_charger_data, nb);
++
++	switch (action) {
++	case ASUSEC_SMI_ACTION(POWER_NOTIFY):
++	case ASUSEC_SMI_ACTION(ADAPTER_EVENT):
++		power_supply_changed(priv->psy);
 +		break;
 +	}
 +
-+	return 0;
++	return NOTIFY_DONE;
 +}
 +
-+static void asus_ec_battery_poll_work(struct work_struct *work)
++static int asus_ec_charger_probe(struct platform_device *pdev)
 +{
-+	struct asus_ec_battery_data *priv =
-+		container_of(work, struct asus_ec_battery_data, poll_work.work);
-+	int state;
-+
-+	state = asus_ec_battery_get_value(priv, POWER_SUPPLY_PROP_STATUS);
-+	if (state < 0)
-+		return;
-+
-+	if (state & ASUSEC_BATTERY_FULL_CHARGED)
-+		state = POWER_SUPPLY_STATUS_FULL;
-+	else if (state & ASUSEC_BATTERY_DISCHARGING)
-+		state = POWER_SUPPLY_STATUS_DISCHARGING;
-+	else
-+		state = POWER_SUPPLY_STATUS_CHARGING;
-+
-+	if (priv->last_state != state) {
-+		priv->last_state = state;
-+		power_supply_changed(priv->battery);
-+	}
-+
-+	/* continuously send uevent notification */
-+	schedule_delayed_work(&priv->poll_work,
-+			      msecs_to_jiffies(ASUSEC_BATTERY_DATA_FRESH_MSEC));
-+}
-+
-+static const struct power_supply_desc asus_ec_battery_desc = {
-+	.name = "asus-ec-battery",
-+	.type = POWER_SUPPLY_TYPE_BATTERY,
-+	.properties = asus_ec_battery_properties,
-+	.num_properties = ARRAY_SIZE(asus_ec_battery_properties),
-+	.get_property = asus_ec_battery_get_property,
-+	.external_power_changed = power_supply_changed,
-+};
-+
-+static int asus_ec_battery_probe(struct platform_device *pdev)
-+{
-+	struct asus_ec_battery_data *priv;
++	struct asus_ec_charger_data *priv;
 +	struct device *dev = &pdev->dev;
 +	struct power_supply_config cfg = { };
-+	int ret;
 +
 +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
 +	if (!priv)
 +		return -ENOMEM;
 +
 +	platform_set_drvdata(pdev, priv);
-+
-+	mutex_init(&priv->battery_lock);
-+
 +	priv->ec = cell_to_ec(pdev);
-+	priv->batt_data_ts = jiffies - 1;
-+	priv->last_state = POWER_SUPPLY_STATUS_UNKNOWN;
 +
 +	cfg.fwnode = dev_fwnode(dev->parent);
 +	cfg.drv_data = priv;
 +
-+	memcpy(&priv->psy_desc, &asus_ec_battery_desc, sizeof(priv->psy_desc));
-+	priv->psy_desc.name = devm_kasprintf(dev, GFP_KERNEL, "%s-battery",
++	memcpy(&priv->psy_desc, &asus_ec_charger_desc, sizeof(priv->psy_desc));
++	priv->psy_desc.name = devm_kasprintf(dev, GFP_KERNEL, "%s-charger",
 +					     priv->ec->name);
 +
-+	priv->battery = devm_power_supply_register(dev, &priv->psy_desc, &cfg);
-+	if (IS_ERR(priv->battery))
-+		return dev_err_probe(dev, PTR_ERR(priv->battery),
++	priv->psy = devm_power_supply_register(dev, &priv->psy_desc, &cfg);
++	if (IS_ERR(priv->psy))
++		return dev_err_probe(dev, PTR_ERR(priv->psy),
 +				     "Failed to register power supply\n");
 +
-+	ret = devm_delayed_work_autocancel(dev, &priv->poll_work,
-+					   asus_ec_battery_poll_work);
-+	if (ret)
-+		return ret;
++	priv->nb.notifier_call = asus_ec_charger_notify;
 +
-+	schedule_delayed_work(&priv->poll_work,
-+			      msecs_to_jiffies(ASUSEC_BATTERY_DATA_FRESH_MSEC));
-+
-+	return 0;
++	return devm_asus_ec_register_notifier(pdev, &priv->nb);
 +}
 +
-+static int __maybe_unused asus_ec_battery_suspend(struct device *dev)
-+{
-+	struct asus_ec_battery_data *priv = dev_get_drvdata(dev);
-+
-+	cancel_delayed_work_sync(&priv->poll_work);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused asus_ec_battery_resume(struct device *dev)
-+{
-+	struct asus_ec_battery_data *priv = dev_get_drvdata(dev);
-+
-+	schedule_delayed_work(&priv->poll_work,
-+			      msecs_to_jiffies(ASUSEC_BATTERY_DATA_FRESH_MSEC));
-+
-+	return 0;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(asus_ec_battery_pm_ops,
-+			 asus_ec_battery_suspend, asus_ec_battery_resume);
-+
-+static struct platform_driver asus_ec_battery_driver = {
-+	.driver = {
-+		.name = "asus-transformer-ec-battery",
-+		.pm = &asus_ec_battery_pm_ops,
-+	},
-+	.probe = asus_ec_battery_probe,
++static struct platform_driver asus_ec_charger_driver = {
++	.driver.name = "asus-transformer-ec-charger",
++	.probe = asus_ec_charger_probe,
 +};
-+module_platform_driver(asus_ec_battery_driver);
++module_platform_driver(asus_ec_charger_driver);
 +
 +MODULE_AUTHOR("Michał Mirosław <mirq-linux@rere.qmqm.pl>");
-+MODULE_AUTHOR("Svyatoslav Ryhel <clamor95@gmail.com>");
-+MODULE_DESCRIPTION("ASUS Transformer's battery driver");
++MODULE_DESCRIPTION("ASUS Transformer Pad battery charger driver");
 +MODULE_LICENSE("GPL");
 -- 
 2.51.0
