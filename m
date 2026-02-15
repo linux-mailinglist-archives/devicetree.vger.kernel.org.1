@@ -1,187 +1,201 @@
-Return-Path: <devicetree+bounces-265596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265597-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eDkxDmJGkWn2gwEAu9opvQ
-	(envelope-from <devicetree+bounces-265596-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 05:06:58 +0100
+	id WbpmICdekWnwhwEAu9opvQ
+	(envelope-from <devicetree+bounces-265597-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 06:48:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C10513DFA2
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 05:06:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC50F13E122
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 06:48:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EE056300DA5B
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 04:06:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 95ED130166FC
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 05:48:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95BC123A9AD;
-	Sun, 15 Feb 2026 04:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3719623A98E;
+	Sun, 15 Feb 2026 05:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kMoww0kX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FZl8Djqg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EF91230BD9
-	for <devicetree@vger.kernel.org>; Sun, 15 Feb 2026 04:06:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.160.177
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771128412; cv=pass; b=cLGNORZCGX8tCLpenRwjgkXxOnhY5Tq9udkR0ROc+SaYnJeyUgajVCT1y93FQ6pUb077EfGhTifXPBEqxYciC25J2LxaS9q0asr2JiRUCrT32kLHmjqqWYjYkaGc22/PGgrCKzT4Lv5tdyAveYnpOE1SXi4MBOCX18hz+f0s/mk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771128412; c=relaxed/simple;
-	bh=Cg/UB636EWecP2AJFXinJ2G1jlune6FD0wjfEnUOnmY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AnzUF2elNdQ2iG8g7a2rXWxCzX2sH5X4M9S6ovV9GCRhJqBoGy+Zr+3q3XTcIzKh2JIEoKmxIOmSvr4GrQJ8fLNavffBSgBfXGF3B92w2QOlH5mtA88DwmVhjsTEypwqTqCDv5xWw7Xuf++vq41KMaE2a/FsocKGMLl7WuBbKRc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kMoww0kX; arc=pass smtp.client-ip=209.85.160.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BD8F1A08BC
+	for <devicetree@vger.kernel.org>; Sun, 15 Feb 2026 05:48:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771134499; cv=none; b=DNPBeKHNKzMcWrB0gLRz9tkLsA0DM6jDtEXjQSLlLizReYYjajgmtlW1vd7FYXDPUNsYnGG73lafZ43INgI7GcnrJxDT7KvLL2QswD3JyqEVyBkH9jOGeZjhkEouBECGgkFTdrJ3mJMKyLhLh8uBmHGd6wRgatLcjX0WOadNv5U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771134499; c=relaxed/simple;
+	bh=5URDJWoLCpr+Om63hjZ88pppsyVzXpiTCCJDPdvVwpk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j7B0jwoO4i4frnE1ptxUe57p68OKD+5/p/jKSmd4DY6fkc7yr13gAranzIwBFObcfEsk+TrAnEhf0tZmABkY5zn4Zto7a55zJze1zb8mDS145uJ9LLl3eVIfUcJxd8f352lUpJBpReyL/8WWFVtjSQiKvylIRG9S2Saq0jLEePs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FZl8Djqg; arc=none smtp.client-ip=209.85.210.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-50332392929so2130271cf.2
-        for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 20:06:51 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771128410; cv=none;
-        d=google.com; s=arc-20240605;
-        b=SlhQfAnE6pWDO6x4jkLV1kGH71HbO+UpitCF6HAdlT5IqLfuOLS/WWoV+q3IXqXCTq
-         PyweMSYVepU2IbztOyo78Jq6pmi9Ue+RP0qE/6XjlBY8kc8yG4dcPMXooqws62dW93N5
-         Hucpo1/4VtSmAWR87wvdPQSryT4EVg1cAfxUn8gbqiIiiBapTVntOAY3fqSX26zZ9rH/
-         LT7eopA9RxoHXCfmOC2zRkr8YGKtanLTZ+H3C7vV9P7fhlYpj/xR5fDyqNQK5TKHZCKb
-         DnQl8eF8UX9al2vAzuPuO72uH/tcoNnfOlMnfyg1HnuYmD+7zCxqhdbxjlVg66WThgF9
-         5v0A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=Cg/UB636EWecP2AJFXinJ2G1jlune6FD0wjfEnUOnmY=;
-        fh=4+nf/2bfSgLtk6ow6WB1lsjxqQxmsueEXmVInV6ueGo=;
-        b=QVJu+6Z6qdDuHmBgJuRH80I/bEL0I0TavIeJQU+M+HjBlg4oKnmq3e8SP+TnbxKKJH
-         oCGojgXI/gZpM5XZhXE/JV3qEVusoWSAjcjHkpfGXKORuHbXA5ZGw8DTkq4ImqBc9m5N
-         IJIzSnLh4fVQZ9P45pK4LuiJQv5BW/6jB+m8oK++XgUIFfltZ7BrjUXZb/bugnrMeGGA
-         4peCBWzliTvNc9DDAN8CJ8wLgoG/Qlx4k2LqWT95rjjRwmwoUHR9G43TwYqpMRemX5YG
-         FmUIt8b0IqIQBF6SYLY1gfNTXBayRfvmivUFWzZ/83AOpLTCXyq6HIH8MkRXC1bOFUuX
-         rQ3w==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-824b5f015bcso2533600b3a.1
+        for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 21:48:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771128410; x=1771733210; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Cg/UB636EWecP2AJFXinJ2G1jlune6FD0wjfEnUOnmY=;
-        b=kMoww0kXWSlb1Nnb4D9BQREmWwLMT4Z7xy9RF29WOXk77PH3Lh8iyIIfZr9+uVLNBK
-         rm3oOMDgs8ErPZvVjyWzbfVA681hrkjPN0w/1+1VXCms+cU2i3z7K/sDbL1zN/y6LtA2
-         qxx/kGlnhnT+CrlTcnLs/8Bh3vI+3G3BLzG4GCI4aRjMgldUXkMGsTWxiUG4PBEVRVXf
-         te9nLFkLdQH91V/H2nUeZ5Ug+N1aKzB3rEySaa1WQNDBlw0dv4XtJiIlBOK1FDHVuCXG
-         VVyHYxtI5x+iPMeTj/llFheSu+g4+CjAynbt8mPCwYFJN93fiM8vP+cNUkU/sWhc4ROS
-         WdXg==
+        d=gmail.com; s=20230601; t=1771134497; x=1771739297; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B48NNf1YJcuHdmdFyYwGz74LGN+blqEWKGYew4mmQ3Y=;
+        b=FZl8Djqgb/OekQ4L6njDWiM4QZ9k8bwLgXkPYpOYzIF899gcPD1rlweYc7wM1up8k2
+         208rYBH4yx4tclPxmIS7aHss5TOvaO6TL3knibmeFDqkWXDwl6Ep4pIXFbxnJlv14IeG
+         WlBxTI+9C5AhW7WfRr2L9MtWnmsur3u3Gcnu2YwgNF7AQL5Ak5jQk+ZEinf4vL9ZyVqS
+         M1TtRGnopDisUs6p+AYIm/lLWV8Di+lHpHpyRTcqL7OZ1TlP48pnNWF1988V0PPFlOyl
+         qOAzBNLaNT9TiNGN2kuz1NJ6Fvs26rcG0hDpkEeRGE2WFJcNbjBhhFxstAVTtlp9e9x9
+         aCNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771128410; x=1771733210;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Cg/UB636EWecP2AJFXinJ2G1jlune6FD0wjfEnUOnmY=;
-        b=utVcakBIddQbwbyRmvkyOAhjH15xCUufAGss8HTPna1vxPa/J420AUgkIXxfs+u0Sz
-         wASoM8FZi0WbaWm3Ed3QtXwZnAhxRWBw/zEPln0UHYeAylPPbZPpQB32rrsW4OootsLz
-         9JtNLPH84rslBdCVa5G5ucSQlVgt1k4SKIetbbXjyeXfKdpgiioQDFDAFLybpkOdFxHe
-         kOF8S4USjhQCKPHSqwQjZ0ffizbGTUT0P3NEGmCzQo8yNK6C+gJW2y1aps8qHeswyFoP
-         KaGKu9XW/VD98Xs3o9lQFW9XWe2B4omGjkh+2NWPp8oTSXCrc3MWNsgP8lQcXNj9uJhU
-         p0UA==
-X-Forwarded-Encrypted: i=1; AJvYcCVR2sAbhAyqocAwZyGUna9CUnluEhwkTd8P9VgEwchkC2ykDP73MUSDHTf5XF+xq+y6Fjnfc2hHWA9b@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUtRY9FcT66inf8jVz7Dt7dG1gUKPJ6/1AJMM0kpTx6Z8xixDe
-	HZ/wJIyk+cXfRFjL0VxIbbmJL2UGg9aff6Ty/DlF2tB68TeqFjFm90uOWSmCS/oHpJA6qgTuAC7
-	ZH0viwyf2KPcmStuC41AmnPGbQ6jIqGM=
-X-Gm-Gg: AZuq6aJl487IPVQ7NPCcaSW2tJKTyn9ZJ7e3QR9q9QIyllHRqP1UlJimJ4EyVsNSCg4
-	I7kLtO9AC9veUP+PPCXOrJ52uuTdohynDVbOBh2OpRURMXAHRrKWQAEdI7OG2UXxK9PnzpGmbD0
-	wfhOXpHciB/GzaCAG8uVxak+kivacdy39OwJAYxttXyFxDLte92henFgApWXpl7EjVpsxpf68yJ
-	bYzVnL9A9iMbSYuCqam/LJMV/jqY4F94hr7bXd2J2zw+FOv4KCVdgrbh8NkcQhi+C0dMQq7I8Jm
-	8fE9Mgb0D6bM8SoD/MHQ2CkW5/OwWnVL29Z/Ova80wll0Z8WaJZNwwd9zPCrIdf18bFEGB8R
-X-Received: by 2002:ac8:594b:0:b0:4ee:87e:dedf with SMTP id
- d75a77b69052e-506a6a2d1acmr74533191cf.8.1771128410127; Sat, 14 Feb 2026
- 20:06:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1771134497; x=1771739297;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B48NNf1YJcuHdmdFyYwGz74LGN+blqEWKGYew4mmQ3Y=;
+        b=q+W/Vcl/ICyVyOBB5Tkx62mboI0xchKqOC9mrqK0wpuOPhDASEk376VQwlDvKXGB1c
+         8XKl4jsXYTH2uwwQWG+Ook+HNBQLubyqYSbpnM/zdFp8DstLdXGvBOdFZtByw1heqD00
+         JuDvdqlhio/gK47xq6wiloVMXqlePH+Si0NQxxGTv2BVGMDlTVV3skrMF/gmEMZT7F6R
+         4PkqMO6PD8ltcRUepgP4Ac4ssE4rpG4qBpQ9S+r2MCcrXd9ibwsC1NOuHvpOks36lWWk
+         UUqRR3h0ik75+BDIvXJMztwzjLyfF4UXL6K+ofAYhoGkyRhWxq6Q4yM3QVdgbT4nrjWz
+         3mrg==
+X-Forwarded-Encrypted: i=1; AJvYcCXPURKq2hGIBSEpB9dn9018hybW3qlqwaUhPUFhr6nHiw1SOBD36GBGrRK3msfBLigu31elItn8/ksX@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRjJ1WM6sM3cTCM5SGnJ+gcbr2D/cOdTG1YOUtSYtIbyw4iqDt
+	6yY9a1K5jBBc8vKx7xCLhj795nQD+3gxlSq4RasMsEyqZeVfcYrV7hVC
+X-Gm-Gg: AZuq6aLhXCYODRme+R7Fhk2RvHtA932KBcGg9cQQElqzakWDLu3D1mh14OOWscqMK6j
+	sI8W7MHKkwpfcePVSAv9ywZ+fdR/uBUihVCqzYX00MbxPokreOEMQeWqs6N7iDyrR/8hldvQypA
+	HmzR0NOpCMcTs7CAxJGrvh/OjF49bOrHamzQnJgTbnYj3woXUxUwpi+uWR1ScbBM5JF6jqd4raB
+	qJWu6PXMLEkwW7su7bcdwPMPXr5KjZL0nl8qGBZL6zLCPazLTrq9JAdKD4BwD16BY8grdpp7V7j
+	vKWDE7rWeguPGggbBTqJz3yRA7/6wAaVHMhYeZMXAPYIWACNVkHQfa9cQMUREv3kKlOmQMNnK3Y
+	FoTyOEZoRtjRQES5NvVtMEciVjpbOgtcL9zt3OTuu60eVvuG2Fwh5YTVWghHc/kSSUJaZLSTbQt
+	4rcbXpzDMV5u+QdlKtMGgYKkvlo9Idh3lvsfeYmLwTppk=
+X-Received: by 2002:a05:6a00:a883:b0:81f:22ca:257 with SMTP id d2e1a72fcca58-824c5ef0916mr7245870b3a.20.1771134497374;
+        Sat, 14 Feb 2026 21:48:17 -0800 (PST)
+Received: from [192.168.1.4] ([27.7.171.51])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-824c6b6a17fsm8677833b3a.34.2026.02.14.21.48.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 14 Feb 2026 21:48:16 -0800 (PST)
+Message-ID: <26b05fa5-b985-4e21-b848-7427044b04c0@gmail.com>
+Date: Sun, 15 Feb 2026 11:18:09 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260213-upstream-20260219-v3-0-df9371d29f5c@gmail.com>
- <20260213-upstream-20260219-v3-2-df9371d29f5c@gmail.com> <aY9TtJQoIyLVqqR-@smile.fi.intel.com>
- <20260214174312.7f6e299f@jic23-huawei>
-In-Reply-To: <20260214174312.7f6e299f@jic23-huawei>
-From: Yasin Lee <yasin.lee.x@gmail.com>
-Date: Sun, 15 Feb 2026 12:06:38 +0800
-X-Gm-Features: AZwV_Qh7AlN2Nm6jnpkv5cFhBmD9NtGsFQfL1-LB27hQtvR_tsPptkMgUA5H0yE
-Message-ID: <CA+NOmzKYv4H70axDMo3POufOW3ryTYVJ-=_rfvVaD2XkSS1FOA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] iio: proximity: hx9023s: Protect against division
- by zero in set_samp_freq
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, yasin.lee.x@outlook.com, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: (subset) [PATCH v4 0/3] dt-bindings: phy: Convert TI OMAP control
+ and PIPE3 PHY to DT schema
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
+ <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>,
+ Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+ Roger Quadros <rogerq@ti.com>, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-omap@vger.kernel.org
+References: <20260123-ti-phy-v4-0-b557e2c46e6f@gmail.com>
+ <177021985530.133434.13436195442562231016.b4-ty@kernel.org>
+ <f60156a6-58af-4548-9dc3-71c71b822343@gmail.com>
+ <20260213190054.ezblztj3blmhtywr@skbuf>
+Content-Language: en-US
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+In-Reply-To: <20260213190054.ezblztj3blmhtywr@skbuf>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265596-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-265597-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yasinleex@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[intel.com,baylibre.com,analog.com,kernel.org,outlook.com,vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9C10513DFA2
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BC50F13E122
 X-Rspamd-Action: no action
 
-On Sun, Feb 15, 2026 at 1:43=E2=80=AFAM Jonathan Cameron <jic23@kernel.org>=
- wrote:
->
-> On Fri, 13 Feb 2026 18:39:16 +0200
-> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
->
-> > On Fri, Feb 13, 2026 at 11:14:44PM +0800, Yasin Lee wrote:
-> > > Avoid division by zero when sampling frequency is unspecified.
-> >
-> > In case of agreement this is the desired behaviour you can add
-> > Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-> It seems sensible to me as avoids undefined behaviour + is
-> unlikely to make any functional difference as I assume that whatever
-> we got from the undef never in practice matched a valid input.
->
-> So applied patches 1 and 2 to my fixes-togreg branch. I'm not pushing
-> that out just now though as I want rc1 to rebase it on first.
->
-> Thanks,
->
-> Jonathan
->
 
-Hi Jonathan,
 
-That's great! Thank you for applying the entire series, and thanks to
-Andy and Krzysztof for the detailed review and guidance throughout the
-process.
+On 14-02-2026 00:30, Vladimir Oltean wrote:
+> Hi Charan,
+> 
+> On Fri, Feb 13, 2026 at 10:06:16PM +0530, Charan Pedumuru wrote:
+>> On 04-02-2026 21:14, Vinod Koul wrote:
+>>>
+>>> On Fri, 23 Jan 2026 15:39:01 +0000, Charan Pedumuru wrote:
+>>>> This series converts the old text-based DeviceTree bindings for TI OMAP
+>>>> Control PHY and TI PIPE3 PHY to modern JSON-schema (YAML) format.
+>>>>
+>>>>
+>>>
+>>> Applied, thanks!
+>>>
+>>> [2/3] dt-bindings: phy: ti,phy-usb3: convert to DT schema
+>>>       commit: 62c9ff8fc20d23c0dc36be1330734fdafb3e8585
+>>> [3/3] dt-bindings: phy: ti,control-phy-otghs: convert to DT schema
+>>>       commit: 7878306d182a1750583a325a29e5ccab9ce0235b
+>>
+>> Hi Vinod,
+>>
+>> You missed to apply the first patch which has DT node pattern changes
+>> and now this dtb check fails in linux-next as these YAML patches use
+>> the updated node pattern. I got a report of errors from kernel test
+>> robot.
+> 
+> If there was any request formulated to Vinod to pick up patch 1, then I
+> also missed it while reading this series.
+> 
+> Usually, dt-bindings patches are picked up by the subsystem maintainer
+> while DTS patches are picked up by the platform maintainer. If you know
+> that there is any dependency then it would greatly help if you could
+> mention that upfront, or even specify how you expect the patches to be
+> merged.
+> 
+> In this case, I expect the warnings will get eventually resolved when
+> Kevin picks up patch 1.
 
-Best regards,
-Yasin Lee
+Yes.
 
-> >
->
+> 
+> To avoid warnings from being introduced in the first place, you could
+> have
+> - requested all patches to be taken through a single tree (requires
+>   maintainer coordination with ACK from the other one, more complicated
+>   if the files touched are under heavy development)
+> - requested a stable tag from the first maintainer, to be pulled in the
+>   second tree
+> - send patch 1, wait for a merge window to pass, send patches 2-3
+
+Sure, next time I will follow this procedure. Thanks.
+
+-- 
+Best Regards,
+Charan.
+
 
