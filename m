@@ -1,195 +1,213 @@
-Return-Path: <devicetree+bounces-265644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265645-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ONsfHZgskmmVrgEAu9opvQ
-	(envelope-from <devicetree+bounces-265644-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 21:29:12 +0100
+	id StVcJNRAkmnEsQEAu9opvQ
+	(envelope-from <devicetree+bounces-265645-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 22:55:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9951B13FA4B
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 21:29:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB8E213FD40
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 22:55:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id ED6603003BD1
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 20:29:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 362573029272
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 21:55:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E47A2FBDF5;
-	Sun, 15 Feb 2026 20:29:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E6B72EA731;
+	Sun, 15 Feb 2026 21:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ED3tmrop"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DuS26j/D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 228842F9D83;
-	Sun, 15 Feb 2026 20:29:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69E1114A4F9;
+	Sun, 15 Feb 2026 21:55:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771187346; cv=none; b=kWNCHAgyuzXjRQfImFvlX9w3D2pXZhdDqxBpJdKGF6KeDeSbMSLajFzEJToLj0x/QfuAnK/PcvC8FYiSZpegiS5ZQ5itbQBQDVBl/QZgNYiZkUlm5QCAEDCr5EgB/VwVppmwFX8R8aMQhXed159+22arpwJbSHozT3xbOF/GhyQ=
+	t=1771192529; cv=none; b=kB8LMhbK8vzy1nQLj3XXTtIrX8v0VW8rRoJm09KmkA25g6SgukpIra8i76cadfogZ2bp8jACJrQTXeEmBpklzP+5us4x4ol+pNVStBakCbtMBWdt9OxhOWmnDFz4IEQci2pSflp1U2QJzZmy2HJ8jnLZHUyQLYxaQix0o2QKjnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771187346; c=relaxed/simple;
-	bh=hVLVSplviPu8tm98WtJ2k363b25r3G+Ovp7/xnmIpJs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BSlh2pBSeLdZ5YdtV6c54wKc9TplTcGCF9qqaUWviz38gnNXxA9luJWQEdbCYVmOcANTsees0gcKFBFQLkiB2zg2SnWU98sIC762YoqQ4AvmPciIgMiRT16fv95F3arNJoA6fGsVrSnxFnrmFjRWLMk9jcZWrImzFcuKADho7ME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ED3tmrop; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771187345; x=1802723345;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=hVLVSplviPu8tm98WtJ2k363b25r3G+Ovp7/xnmIpJs=;
-  b=ED3tmropF3TbJQh8kMDoNBoz45Uv0nHxCj3m7VLOhNugjYnotxKgSzCi
-   Yf86n1aSZ3Bwdi4YAv9bWgW7bQhqFp3Tvs2+dJ38Au2w3b6CIHreFkRir
-   jfGjADfrrgID1yopiN2l57+o4IKVgrOg1tl5N2tw1OH3xHc9PHzsdaIzC
-   Kck/SdDBwJn2IpXq78whMfFDEN+XqSb5MDkmg2UaPf/cEp9b4mwxLe1h2
-   T3TO545rS7Q8yyU0gDq/iSMPEnI9nn6VXfjtyS/+3+kQ7PQE+2pJ0eL9P
-   9YBhn8uUP/MuA+PrOYKpbaNcBHJpOMp4KNf1L65KMSNDArJ3fTPd/IbYo
-   A==;
-X-CSE-ConnectionGUID: gLWbu2mrSU+EJ6JwW9Lt4A==
-X-CSE-MsgGUID: pxhA4nlJRsmMYzVzuPTh4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11702"; a="72329949"
-X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; 
-   d="scan'208";a="72329949"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2026 12:29:04 -0800
-X-CSE-ConnectionGUID: XETOTSvKSHO+C3XiRh4rVg==
-X-CSE-MsgGUID: p/iu48HgScuRC6tyTII80w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; 
-   d="scan'208";a="213518818"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 15 Feb 2026 12:29:01 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vriji-00000000z8e-1N4C;
-	Sun, 15 Feb 2026 20:28:58 +0000
-Date: Mon, 16 Feb 2026 04:28:11 +0800
-From: kernel test robot <lkp@intel.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>, Ion Agorria <ion@agorria.com>,
-	=?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 2/7] mfd: Add driver for ASUS Transformer embedded
- controller
-Message-ID: <202602160408.CZnIzWhv-lkp@intel.com>
-References: <20260214180959.30714-3-clamor95@gmail.com>
+	s=arc-20240116; t=1771192529; c=relaxed/simple;
+	bh=OsrXSR4TAr7r5OEDbdtcLofIPw/h6O/aaMftNJnb2nY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=b/S0wg1sa8O9/875IP/SmrW/PRrQw/UVhp7b7V+k7TpeEihzlVGrKcDoa9G+jDKa2ffol630PSlTE09fM/GXDdKkqoRAKx4LFWg+aGl4O7UwT0xCe/888RB7VaVlkSouq6cuRMVtTP84pM89jk4RTINIYFX/d78xx4O9RRAJlUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DuS26j/D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 021C6C4CEF7;
+	Sun, 15 Feb 2026 21:55:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771192529;
+	bh=OsrXSR4TAr7r5OEDbdtcLofIPw/h6O/aaMftNJnb2nY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=DuS26j/DBFRhmxG455T4F6ORKbRVGDTl3fHSJxlr6qDuSoad0z3RQxd2JOnn8JYDl
+	 sALveOKIXgKocm5np3mv+KIvkHDqIlg62GyssIa40AJ1gkfB7bd15H9/Bixc+DEH0d
+	 1/MIGNU43XSHwK5kPGgWZu/Jmn89O2qWNDuiwzUrMOYFv/Tlk6k7tGSQEd8YA6jsMJ
+	 eveyvjQ8rV26qkNYVbu3wgu7jgQ9U/z8T1h4O+sR4xfqYVIsM3Sd43b96z6Hl9ZB36
+	 W7Kslk0kmXS2mBjegDdEM7gHEEIlkV21XQWmCFmxZTFS4J4B7XwoXEDlBpwWD9BVh6
+	 wB2rsCDMoy4yg==
+Date: Sun, 15 Feb 2026 21:55:19 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Erikas Bitovtas <xerikasxx@gmail.com>
+Cc: andy@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ dlechner@baylibre.com, krzk+dt@kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, nuno.sa@analog.com,
+ phone-devel@vger.kernel.org, pmeerw@pmeerw.net, robh@kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v4 2/2] iio: light: vcnl4000: add support for Capella
+ CM36686 and CM36672P
+Message-ID: <20260215215519.23126ef3@jic23-huawei>
+In-Reply-To: <20260215200628.53841-1-xerikasxx@gmail.com>
+References: <20260215193114.2a1010a8@jic23-huawei>
+	<20260215200628.53841-1-xerikasxx@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260214180959.30714-3-clamor95@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265644-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,agorria.com,rere.qmqm.pl];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-265645-lists,devicetree=lfdr.de];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,git-scm.com:url,intel.com:mid,intel.com:dkim,intel.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9951B13FA4B
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pastebin.com:url]
+X-Rspamd-Queue-Id: CB8E213FD40
 X-Rspamd-Action: no action
 
-Hi Svyatoslav,
+On Sun, 15 Feb 2026 22:06:28 +0200
+Erikas Bitovtas <xerikasxx@gmail.com> wrote:
 
-kernel test robot noticed the following build warnings:
+> On 2/15/26 9:31 PM, Jonathan Cameron wrote:
+> > On Sun, 15 Feb 2026 19:28:56 +0200
+> > Erikas Bitovtas <xerikasxx@gmail.com> wrote:
+> >   
+> >> On 2/14/26 8:09 PM, Jonathan Cameron wrote:  
+> >>>> ---
+> >>>>  drivers/iio/light/vcnl4000.c | 40 ++++++++++++++++++++++++++++++++++++++++
+> >>>>  1 file changed, 40 insertions(+)
+> >>>>
+> >>>> diff --git a/drivers/iio/light/vcnl4000.c b/drivers/iio/light/vcnl4000.c
+> >>>> index a36c23813679..1f8f4e4586f4 100644
+> >>>> --- a/drivers/iio/light/vcnl4000.c
+> >>>> +++ b/drivers/iio/light/vcnl4000.c
+> >>>> @@ -185,6 +185,7 @@ static const int vcnl4040_ps_oversampling_ratio[] = {1, 2, 4, 8};
+> >>>>  #define VCNL4000_SLEEP_DELAY_MS	2000 /* before we enter pm_runtime_suspend */
+> >>>>  
+> >>>>  enum vcnl4000_device_ids {
+> >>>> +	CM36672P,
+> >>>>  	VCNL4000,
+> >>>>  	VCNL4010,
+> >>>>  	VCNL4040,
+> >>>> @@ -235,6 +236,8 @@ struct vcnl4000_chip_spec {
+> >>>>  };
+> >>>>  
+> >>>>  static const struct i2c_device_id vcnl4000_id[] = {
+> >>>> +	{ "cm36672p", CM36672P },
+> >>>> +	{ "cm36686", VCNL4040 },
+> >>>>  	{ "vcnl4000", VCNL4000 },
+> >>>>  	{ "vcnl4010", VCNL4010 },
+> >>>>  	{ "vcnl4020", VCNL4010 },
+> >>>> @@ -1842,6 +1845,22 @@ static const struct iio_chan_spec vcnl4040_channels[] = {
+> >>>>  	}
+> >>>>  };    
+> >>>
+> >>> ...
+> >>>     
+> >>>>  	[VCNL4000] = {
+> >>>>  		.prod = "VCNL4000",
+> >>>>  		.init = vcnl4000_init,
+> >>>> @@ -2033,6 +2065,14 @@ static int vcnl4000_probe(struct i2c_client *client)
+> >>>>  }
+> >>>>  
+> >>>>  static const struct of_device_id vcnl_4000_of_match[] = {
+> >>>> +	{
+> >>>> +		.compatible = "capella,cm36672p",
+> >>>> +		.data = (void *)CM36672P,
+> >>>> +	},
+> >>>> +	{
+> >>>> +		.compatible = "capella,cm36686",
+> >>>> +		.data = (void *)VCNL4040,    
+> >>>
+> >>> Is this necessary? I 'think' if you drop it we'll match instead
+> >>> on the vcnl4040 fallback and then the access to the data will be
+> >>> through the stripped name only bit of the compatible (first entry, not
+> >>> the fallback so cm36686 in this case). So you do need the cm36686
+> >>> entry in the i2c_device_id table above. Probably better to keep
+> >>> this here to avoid having to reason this out - but perhaps a
+> >>> comment to that affect would be useful (assuming you verify my
+> >>> reasoning).
+> >>>    
+> >> After I removed the entry for "capella,cm36686", I received the "Unable
+> >> to handle kernel NULL pointer dereference" error in dmesg. And at least
+> >> stk3310 driver includes a compatible entry both for the device (stk3013)
+> >> and for the fallback (stk3310). So my assumption is that this entry is
+> >> needed.
+> >> I could include a comment explaining that cm36686 is fully compatible
+> >> with vcnl4040, however, if that is necessary.  
+> > 
+> > Thanks for checking.
+> > 
+> > What did you get as the backtrace?  I'm hoping it'll explain what I'm
+> > misunderstanding!  The hacks around using the wrong table for compatible
+> > matches have tripped me up before.
+> > 
+> > Jonathan
+> >   
+> 
+> I am attaching a link to the dmesg. There were quite a lot of lines in
+> the stack trace and I am not sure what is the right way to post logs in
+> the mailing list.
+> 
+> https://pastebin.com/QgeTdNEP
 
-[auto build test WARNING on next-20260213]
-[also build test WARNING on linus/master v6.19]
-[cannot apply to dtor-input/next dtor-input/for-linus sre-power-supply/for-next robh/for-next v6.19 v6.19-rc8 v6.19-rc7]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Thanks. only relevant bit is probably:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Svyatoslav-Ryhel/dt-bindings-embedded-controller-document-ASUS-Transformer-EC/20260215-021406
-base:   next-20260213
-patch link:    https://lore.kernel.org/r/20260214180959.30714-3-clamor95%40gmail.com
-patch subject: [PATCH v3 2/7] mfd: Add driver for ASUS Transformer embedded controller
-config: riscv-allyesconfig (https://download.01.org/0day-ci/archive/20260216/202602160408.CZnIzWhv-lkp@intel.com/config)
-compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260216/202602160408.CZnIzWhv-lkp@intel.com/reproduce)
+[   15.566076]  vcnl4000_probe+0x54/0x288 [vcnl4000] (P)
+[   15.566102]  i2c_device_probe+0x2b0/0x358
+[   15.566121]  really_probe+0x154/0x448
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602160408.CZnIzWhv-lkp@intel.com/
+My guess is my understanding of i2c_client_get_device_id() is wrong and that
+is returning NULL.  That can only happen if client->name is not a match for
+anything the i2_device_id table.  If you have a chance, can you dump
+what client->name is in this case? I thought it ended up as
+cm36686 (stripped first entry in compatible) but seems I'm probably wrong on
+that :(
 
-All warnings (new ones prefixed by >>):
+The path I thought worked was via info->type (which gets copied to client->name)
+set via of_alias_from_compatible() here.
+https://elixir.bootlin.com/linux/v6.19-rc4/source/drivers/i2c/i2c-core-of.c#L30
+Which should just return the first compatible without that vendor prefix.
 
->> drivers/mfd/asus-transformer-ec.c:234:40: warning: field width should have type 'int', but argument has type 'unsigned long' [-Wformat]
-           dev_dbg(&priv->self->dev, "EC read: %*ph, ret = %d%s\n",
-                                               ~~^
-   include/linux/dev_printk.h:165:31: note: expanded from macro 'dev_dbg'
-           dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
-                                        ^~~     ~~~~~~~~~~~
-   include/linux/dev_printk.h:19:22: note: expanded from macro 'dev_fmt'
-   #define dev_fmt(fmt) fmt
-                        ^~~
-   include/linux/dynamic_debug.h:285:12: note: expanded from macro 'dynamic_dev_dbg'
-                              dev, fmt, ##__VA_ARGS__)
-                                   ^~~    ~~~~~~~~~~~
-   include/linux/dynamic_debug.h:261:59: note: expanded from macro '_dynamic_func_call'
-           _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
-                                                                    ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:259:65: note: expanded from macro '_dynamic_func_call_cls'
-           __dynamic_func_call_cls(__UNIQUE_ID(ddebug), cls, fmt, func, ##__VA_ARGS__)
-                                                                          ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:231:15: note: expanded from macro '__dynamic_func_call_cls'
-                   func(&id, ##__VA_ARGS__);                       \
-                               ^~~~~~~~~~~
-   1 warning generated.
+Meh, this doesn't really matter anyway as once we refactor to actually use
+the data in the of_device_id table, we will need the entry and in the meantime
+it's sort of documentation.
 
+J
 
-vim +234 drivers/mfd/asus-transformer-ec.c
+> 
 
-   227	
-   228	static int asus_ec_read(struct asus_ec_data *priv, bool in_irq)
-   229	{
-   230		int ret = i2c_smbus_read_i2c_block_data(priv->self, ASUSEC_READ_BUF,
-   231							sizeof(priv->ec_data),
-   232							priv->ec_data);
-   233	
- > 234		dev_dbg(&priv->self->dev, "EC read: %*ph, ret = %d%s\n",
-   235			sizeof(priv->ec_data), priv->ec_data,
-   236			ret, in_irq ? "; in irq" : "");
-   237	
-   238		return ret;
-   239	}
-   240	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
