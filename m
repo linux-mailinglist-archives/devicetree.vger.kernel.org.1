@@ -1,201 +1,162 @@
-Return-Path: <devicetree+bounces-265597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265598-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WbpmICdekWnwhwEAu9opvQ
-	(envelope-from <devicetree+bounces-265597-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 06:48:23 +0100
+	id 6JstF4NtkWlkigEAu9opvQ
+	(envelope-from <devicetree+bounces-265598-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 07:53:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC50F13E122
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 06:48:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA8C813E272
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 07:53:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 95ED130166FC
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 05:48:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 48DA130136A7
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 06:53:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3719623A98E;
-	Sun, 15 Feb 2026 05:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EDA3289811;
+	Sun, 15 Feb 2026 06:53:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FZl8Djqg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="izS6GASo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BD8F1A08BC
-	for <devicetree@vger.kernel.org>; Sun, 15 Feb 2026 05:48:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771134499; cv=none; b=DNPBeKHNKzMcWrB0gLRz9tkLsA0DM6jDtEXjQSLlLizReYYjajgmtlW1vd7FYXDPUNsYnGG73lafZ43INgI7GcnrJxDT7KvLL2QswD3JyqEVyBkH9jOGeZjhkEouBECGgkFTdrJ3mJMKyLhLh8uBmHGd6wRgatLcjX0WOadNv5U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771134499; c=relaxed/simple;
-	bh=5URDJWoLCpr+Om63hjZ88pppsyVzXpiTCCJDPdvVwpk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j7B0jwoO4i4frnE1ptxUe57p68OKD+5/p/jKSmd4DY6fkc7yr13gAranzIwBFObcfEsk+TrAnEhf0tZmABkY5zn4Zto7a55zJze1zb8mDS145uJ9LLl3eVIfUcJxd8f352lUpJBpReyL/8WWFVtjSQiKvylIRG9S2Saq0jLEePs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FZl8Djqg; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33D0527EC80
+	for <devicetree@vger.kernel.org>; Sun, 15 Feb 2026 06:53:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771138432; cv=pass; b=fhoz8Az/swILZgAgJHFJtX0JFniVzD9n1ontQpEiR6Lwzitj6Uidv7g8HxA39lhLCWzXlo4sQpTkkGYe4cRv2KGfo9Ozd7jlPvUtDLjc7cX2A+laWBbtZzX+IKp45H2pN9noZKuXABHXWp2F4CTi6FP6fX3SfhI6Y126knUonhU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771138432; c=relaxed/simple;
+	bh=fm7OyMKRSbRkqMu+SlOlybvCFrAlEJBRCeRwqVomiXI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QTlT1jwMNCKqor0IV62i4u0ekBsU2Os56OwvUnhPsZasUL28U6mmBrUXgvXXrk/DVAn9jzKSGbS2tDsic0NMClovdW/P/XHLts241xzbYL1eQveSr/G6otRAov0Bdv0ENPznU2r85XvWdix7RVF4Bo24A3SEw6p2Y0O9WLC5gDs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=izS6GASo; arc=pass smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-824b5f015bcso2533600b3a.1
-        for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 21:48:17 -0800 (PST)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b8f7a30515aso287588866b.0
+        for <devicetree@vger.kernel.org>; Sat, 14 Feb 2026 22:53:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771138430; cv=none;
+        d=google.com; s=arc-20240605;
+        b=PjOJl7rnVo7SFTjIoTXaFbrRaVaASB8t1kz7Jb7HOWPPQVVi42D0NGb7LOEwDHcvCk
+         MyOp6NO4+GTB1g8ItiaOhequcmh55HEF8xC82gGm8Qh65jp4CleWanAln+OoXwKbB79l
+         XYk2tX7Pcvw8LKn9m3Hz5ZWVbOk4KiU5DeL2VJ+DY/ThGdajQilFjM/49uj2+8hAU94s
+         wFqqmxvvP+PAC0haHbeW8tw+ajDQTnJbZK0kP/RxdnHly4+YvdG/m6xY2TKm4TUQzsx9
+         TISBGOTrXvakbP8Xw9Jo+39PVqP9Fe37U6djXqdVtMQs/relj1Vo6MGFwQ2Rw/uX3Xbc
+         sFLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=fm7OyMKRSbRkqMu+SlOlybvCFrAlEJBRCeRwqVomiXI=;
+        fh=Ec1l9KVwg6+oF1Ub3YL6Tnd68pyotNmxlxyQyqwg3KM=;
+        b=cbDpB8EXjPH7OkjreffvIrf6EwO1o8gPeCHzVZeWvSCeIDC4PvAPtg5pEciIak4pQQ
+         +EyYa5bGCTa1IpxYTYgGyc/ANs4rdg0/jct8YmEUi6wvhLDt05ABFxrw+TbQK+J351Ho
+         xiLZ8x2iOeo/paizaIfkAoW/6TjKJOWxSpQDfoLGuSOer8cW8owyG3bDNdGoN68L6Isf
+         53Dibi/mvop0qqr/GSbRrmKpgPRYuSKd2kM6ASIQPI7ysdU7KDaTUQlBPtoYmCealcJa
+         XUChZkGMxtdDQNMDIYVrH49IcLaCOqN4dC5E5v+n0xs6AanfFt1Ov8QXCgs0E+GMxWIq
+         VuNg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771134497; x=1771739297; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B48NNf1YJcuHdmdFyYwGz74LGN+blqEWKGYew4mmQ3Y=;
-        b=FZl8Djqgb/OekQ4L6njDWiM4QZ9k8bwLgXkPYpOYzIF899gcPD1rlweYc7wM1up8k2
-         208rYBH4yx4tclPxmIS7aHss5TOvaO6TL3knibmeFDqkWXDwl6Ep4pIXFbxnJlv14IeG
-         WlBxTI+9C5AhW7WfRr2L9MtWnmsur3u3Gcnu2YwgNF7AQL5Ak5jQk+ZEinf4vL9ZyVqS
-         M1TtRGnopDisUs6p+AYIm/lLWV8Di+lHpHpyRTcqL7OZ1TlP48pnNWF1988V0PPFlOyl
-         qOAzBNLaNT9TiNGN2kuz1NJ6Fvs26rcG0hDpkEeRGE2WFJcNbjBhhFxstAVTtlp9e9x9
-         aCNw==
+        d=gmail.com; s=20230601; t=1771138430; x=1771743230; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=fm7OyMKRSbRkqMu+SlOlybvCFrAlEJBRCeRwqVomiXI=;
+        b=izS6GASoBVX68fi7RX/rPsmThHO2AX3uHnO7Cpk0t7IKxX5bci/jKUoSlsuH2SuhPk
+         M6WhJxvn+UvpCzm+OZk4InM+Vc/kk7HgUEdVaesuFAkrkvY8Us0g1FoWvbDMkKJUmB2L
+         3i01kbNXmIHPLro7pCiLrnByHYKguQzxuNpkbe5+4ZeCMIUJfYuhYO05+fCBBOAF1Qxa
+         isFotsoKlVc+WPReOKdEtxWBYS3c/um7RWKO+hjCIwBCKPSEH2h9YRCuXC76td6cw1dr
+         emcxbKlqbg/XxX152B8vzAjLArnswC4LQTA3Ysp+UXjGVC0apm47WGZYytbOuKIeYKlt
+         kNOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771134497; x=1771739297;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B48NNf1YJcuHdmdFyYwGz74LGN+blqEWKGYew4mmQ3Y=;
-        b=q+W/Vcl/ICyVyOBB5Tkx62mboI0xchKqOC9mrqK0wpuOPhDASEk376VQwlDvKXGB1c
-         8XKl4jsXYTH2uwwQWG+Ook+HNBQLubyqYSbpnM/zdFp8DstLdXGvBOdFZtByw1heqD00
-         JuDvdqlhio/gK47xq6wiloVMXqlePH+Si0NQxxGTv2BVGMDlTVV3skrMF/gmEMZT7F6R
-         4PkqMO6PD8ltcRUepgP4Ac4ssE4rpG4qBpQ9S+r2MCcrXd9ibwsC1NOuHvpOks36lWWk
-         UUqRR3h0ik75+BDIvXJMztwzjLyfF4UXL6K+ofAYhoGkyRhWxq6Q4yM3QVdgbT4nrjWz
-         3mrg==
-X-Forwarded-Encrypted: i=1; AJvYcCXPURKq2hGIBSEpB9dn9018hybW3qlqwaUhPUFhr6nHiw1SOBD36GBGrRK3msfBLigu31elItn8/ksX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRjJ1WM6sM3cTCM5SGnJ+gcbr2D/cOdTG1YOUtSYtIbyw4iqDt
-	6yY9a1K5jBBc8vKx7xCLhj795nQD+3gxlSq4RasMsEyqZeVfcYrV7hVC
-X-Gm-Gg: AZuq6aLhXCYODRme+R7Fhk2RvHtA932KBcGg9cQQElqzakWDLu3D1mh14OOWscqMK6j
-	sI8W7MHKkwpfcePVSAv9ywZ+fdR/uBUihVCqzYX00MbxPokreOEMQeWqs6N7iDyrR/8hldvQypA
-	HmzR0NOpCMcTs7CAxJGrvh/OjF49bOrHamzQnJgTbnYj3woXUxUwpi+uWR1ScbBM5JF6jqd4raB
-	qJWu6PXMLEkwW7su7bcdwPMPXr5KjZL0nl8qGBZL6zLCPazLTrq9JAdKD4BwD16BY8grdpp7V7j
-	vKWDE7rWeguPGggbBTqJz3yRA7/6wAaVHMhYeZMXAPYIWACNVkHQfa9cQMUREv3kKlOmQMNnK3Y
-	FoTyOEZoRtjRQES5NvVtMEciVjpbOgtcL9zt3OTuu60eVvuG2Fwh5YTVWghHc/kSSUJaZLSTbQt
-	4rcbXpzDMV5u+QdlKtMGgYKkvlo9Idh3lvsfeYmLwTppk=
-X-Received: by 2002:a05:6a00:a883:b0:81f:22ca:257 with SMTP id d2e1a72fcca58-824c5ef0916mr7245870b3a.20.1771134497374;
-        Sat, 14 Feb 2026 21:48:17 -0800 (PST)
-Received: from [192.168.1.4] ([27.7.171.51])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-824c6b6a17fsm8677833b3a.34.2026.02.14.21.48.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 Feb 2026 21:48:16 -0800 (PST)
-Message-ID: <26b05fa5-b985-4e21-b848-7427044b04c0@gmail.com>
-Date: Sun, 15 Feb 2026 11:18:09 +0530
+        d=1e100.net; s=20230601; t=1771138430; x=1771743230;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fm7OyMKRSbRkqMu+SlOlybvCFrAlEJBRCeRwqVomiXI=;
+        b=Uk6rYTDOHEwxozdZiboU7lxxRc50a19n3IooqtHnVnX5smwHJPuwFTKjUqsBx271Vo
+         uWPq7vJCqy/Mi0WDIjdFcES31youwELYr4U4iEgfRLPUZ+F6xIbr5tUmtfKd/362gLvu
+         wCtDR/YV90Nx/6gUhEib2wGf9h9tZTjPFgDEBZ6ENTsK3BBtwxQNn0yICGuqHDX7rSAN
+         OKRJmvUlFt2l2MsuRRzgRKLUld00H9Igvec8GeFeIZAadXgs5xohFvnXRp5Wl/QSfvMz
+         HuQLBAX8WYw7/GGLCMnxRTGSP5bYRTRUnZZHnP1ckVKdBxndcPY+97HVeDKNzOXq44Z+
+         Mj9A==
+X-Forwarded-Encrypted: i=1; AJvYcCVIITsxLeIEoDPxPBNj6QsYO+I/Vo7G/Y4DPGVfzd8tM5vDYxPoVdiqMZCz/HB661+c/1gdMhFQLyP3@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuLe3NXQQNDQLXJZ/fZ5Ak96WAXv1stwK8nYhSalGirazGccVC
+	pLrxf9JQfs9nvBD11+FmEokRl5l0gDYs1p19un1d565c1tewMCxztqlBSOn5PIh+shNrV/Nt+cF
+	d1HC4fB8ros4y7imUZQOGT4n63xQmt0o=
+X-Gm-Gg: AZuq6aLdqhRzeLiCLNzuCjstMGutU1iE+NaqjBrwGJAQ9eM3P5J74sLMDGMWOoOOzPq
+	NrirEcV0ZY5Kf5UWyD5AGl+2+whFu7hBNoMtlAkjnAgQnWtMi3hWpmhfBq5B2z82qfJoQOo1Cnq
+	tKqlu4S5qJ77PH9AozT+q62+yaAGjPaqVgAcqK/tyBbzMrlb6ejVmMdUTUglGLmI78sZBRVa0SD
+	vhN01nD0PxJuuBoEyzlAp6E1DJK9+p9ItLSaZXvZWkfjZkybUKzrVSqVTwvoNNAFmNmFfyZjSme
+	brwurPQ=
+X-Received: by 2002:a17:907:d0e:b0:b8a:f9d7:1aec with SMTP id
+ a640c23a62f3a-b8fc38f9100mr241469766b.10.1771138429366; Sat, 14 Feb 2026
+ 22:53:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v4 0/3] dt-bindings: phy: Convert TI OMAP control
- and PIPE3 PHY to DT schema
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
- <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>,
- Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
- Roger Quadros <rogerq@ti.com>, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-omap@vger.kernel.org
-References: <20260123-ti-phy-v4-0-b557e2c46e6f@gmail.com>
- <177021985530.133434.13436195442562231016.b4-ty@kernel.org>
- <f60156a6-58af-4548-9dc3-71c71b822343@gmail.com>
- <20260213190054.ezblztj3blmhtywr@skbuf>
-Content-Language: en-US
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-In-Reply-To: <20260213190054.ezblztj3blmhtywr@skbuf>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260124163611.3279104-1-onlywig@gmail.com> <CAPStFe4qiEhmF_zDynuWE68LGtAsKsjg_mQHY1zdBsoMsHru3w@mail.gmail.com>
+In-Reply-To: <CAPStFe4qiEhmF_zDynuWE68LGtAsKsjg_mQHY1zdBsoMsHru3w@mail.gmail.com>
+From: Wig Cheng <onlywig@gmail.com>
+Date: Sun, 15 Feb 2026 14:53:36 +0800
+X-Gm-Features: AaiRm531Ead2P1abmmNlJDfTGkABx5t6UtzMpzXenz8InTeCNWJcFNf_5jR9URQ
+Message-ID: <CAPStFe49H5x7S6JPV5D2MtH2_R3oxxRy+tScEJpQC_wBSNTB2g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: Add pixpaper display overlay for
+ RZ/V2H Kakip board
+To: geert+renesas@glider.be, magnus.damm@gmail.com
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, zaq14760@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265597-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-265598-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[glider.be,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[onlywig@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BC50F13E122
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: BA8C813E272
 X-Rspamd-Action: no action
 
+> >
+> > Add device tree overlay to support the MayQueen PixPaper e-paper display
+> > on the Renesas RZ/V2H EVK (KAKIP board). The display is connected via
+> > SPI0 interface and uses GPIO pins for reset, busy, and DC control.
+> >
 
+Hi Geert, Magnus,
 
-On 14-02-2026 00:30, Vladimir Oltean wrote:
-> Hi Charan,
-> 
-> On Fri, Feb 13, 2026 at 10:06:16PM +0530, Charan Pedumuru wrote:
->> On 04-02-2026 21:14, Vinod Koul wrote:
->>>
->>> On Fri, 23 Jan 2026 15:39:01 +0000, Charan Pedumuru wrote:
->>>> This series converts the old text-based DeviceTree bindings for TI OMAP
->>>> Control PHY and TI PIPE3 PHY to modern JSON-schema (YAML) format.
->>>>
->>>>
->>>
->>> Applied, thanks!
->>>
->>> [2/3] dt-bindings: phy: ti,phy-usb3: convert to DT schema
->>>       commit: 62c9ff8fc20d23c0dc36be1330734fdafb3e8585
->>> [3/3] dt-bindings: phy: ti,control-phy-otghs: convert to DT schema
->>>       commit: 7878306d182a1750583a325a29e5ccab9ce0235b
->>
->> Hi Vinod,
->>
->> You missed to apply the first patch which has DT node pattern changes
->> and now this dtb check fails in linux-next as these YAML patches use
->> the updated node pattern. I got a report of errors from kernel test
->> robot.
-> 
-> If there was any request formulated to Vinod to pick up patch 1, then I
-> also missed it while reading this series.
-> 
-> Usually, dt-bindings patches are picked up by the subsystem maintainer
-> while DTS patches are picked up by the platform maintainer. If you know
-> that there is any dependency then it would greatly help if you could
-> mention that upfront, or even specify how you expect the patches to be
-> merged.
-> 
-> In this case, I expect the warnings will get eventually resolved when
-> Kevin picks up patch 1.
+Gentle ping on this patch. Note that the pixpaper driver and
+dt-bindings "mayqueen,pixpaper" were merged into drm-misc-next for
+v6.18 in September 2025, so the prerequisite is now in mainline.
+Happy to make any changes if needed.
 
-Yes.
+Thanks,
 
-> 
-> To avoid warnings from being introduced in the first place, you could
-> have
-> - requested all patches to be taken through a single tree (requires
->   maintainer coordination with ACK from the other one, more complicated
->   if the files touched are under heavy development)
-> - requested a stable tag from the first maintainer, to be pulled in the
->   second tree
-> - send patch 1, wait for a merge window to pass, send patches 2-3
-
-Sure, next time I will follow this procedure. Thanks.
-
--- 
-Best Regards,
-Charan.
-
+Wig
 
