@@ -1,84 +1,89 @@
-Return-Path: <devicetree+bounces-265604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265605-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wZ+3G/B6kWmbjAEAu9opvQ
-	(envelope-from <devicetree+bounces-265604-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 08:51:12 +0100
+	id 2A8qAtl9kWkhjQEAu9opvQ
+	(envelope-from <devicetree+bounces-265605-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 09:03:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2000E13E3E2
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 08:51:10 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BA9913E424
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 09:03:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 634A2301158C
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 07:51:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 50E01300B3F4
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 08:03:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAB552580D7;
-	Sun, 15 Feb 2026 07:51:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67406289811;
+	Sun, 15 Feb 2026 08:03:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RlAgJEgc"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cF4wANW7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47EBC23909C;
-	Sun, 15 Feb 2026 07:51:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 195F51FC7C5;
+	Sun, 15 Feb 2026 08:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771141866; cv=none; b=eoBBRB6LKpz9VrYpO47j5JC+EoUjCL+ebuGP/y7IE+HJ7/GDNeUqz594cY9mjjBRFaBOPTJ4sF31BgdiZt+U3FVtvP0XqyZ3GKQn+CnI9T/H9pimEegCoT57URFrLnfNknIDCCUznUv55FzK9D/nnefa+U48+zkYAETpd4snuRI=
+	t=1771142614; cv=none; b=IU4UJMBXLRC9HTTdg1/plmmi4bciwAQnVE5IozJ8ZHujDGfzRmLGN+c36yr+w2Eki7H8dPHgsBYfWY/4cA+o6AsCyGyGckd0Clz3wUlpwXo31l1v+mKstcAFrRqxWGf/OJpfo3H41LRYh/1SUkdm+KErZjqbKd/zlWL+KGaUZHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771141866; c=relaxed/simple;
-	bh=h47AjjEMPuqdAX7HdRBvsNK93jDDK5Z1ffRD8cj1/9Y=;
+	s=arc-20240116; t=1771142614; c=relaxed/simple;
+	bh=eM4rQYhZZLvvDldIUzDPHDXYwzeYHd8jF5H7MNZ8kmE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nKMycxBJo7p63ZUrNE5DcN2t9Cf9TWGKnzUlnSxVF0iltJh5hRt+EcXPYRndfK5H4GOhVJz1QXSf8By2JmgDF6j/ChN0+So7VRpmDknOrjEbLeavLEEBMrunsjKzQXGk8keMRbsYM50ipEtQMkb3vWfYoJt94NlAvZYXDuZN0aA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RlAgJEgc; arc=none smtp.client-ip=198.175.65.9
+	 Content-Type:Content-Disposition:In-Reply-To; b=dTApP98pjdbfqmfD/wHwmgzFTzl1XyhUeQ0f45GkXttvVtoH9mPxL0CtLFDuqbQPBHYPON8ywe+BYtbTE3Vx8k7m/9suFH347FsK2ThzQ5QCE2vl6vFxEs1f+oE4kDt7xuR/Y7pMQQEkaJplVMFv/l1ubkUm6I7+nAqWCJZpVp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cF4wANW7; arc=none smtp.client-ip=192.198.163.10
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771141864; x=1802677864;
+  t=1771142613; x=1802678613;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=h47AjjEMPuqdAX7HdRBvsNK93jDDK5Z1ffRD8cj1/9Y=;
-  b=RlAgJEgcJCufogwFCA8Jrea+nPIlwB9Okxseu8s2SlH2nDmNVRhsmV0T
-   o8gImSYfUyAONxds/wkFMi85pHMg7p/9+9ImdXkJuBNXeMrWV9d+11Adk
-   9Nbjx9lzKU2zejKC07r4+uj+zVozvo3PV2518EJDSzADttdj4DlxRpxAs
-   FTBDqWaRF7U4Y9yPqNafZFsD+3igwFB6bYOXHgdQqdKqzCXmFCckcc5Yo
-   rJuYaw2WhuGrudv0pFZnKPUQjgEVxRD3K+RJh9tzlNVvdfsbJFWbjupWH
-   Hi12E2431hjULrOImgRO78YXN7kOcKgn2bNWHmaocn8Q+ZCMIRFNSLN3e
+  bh=eM4rQYhZZLvvDldIUzDPHDXYwzeYHd8jF5H7MNZ8kmE=;
+  b=cF4wANW7RtcEP4eq8mrtsOEcI6UtIXJ2/RvGLOrV9D+CtrrUOWf4/oUx
+   3TYH7wyopeYrXrpjN6s6LIv6/00d6PDIxP6741vipOkHwhEZH3Au0rZoH
+   cYdg1RU/WxMfjaie4g//3MeoXfbpQZMLOxg2kBlcQm97RYD4+kSzlw/oV
+   CfDCou5JirAEThnAMYAY5o3qRZMHvFnngOibEKKOx/YWW3b29WuzRD9xc
+   +Cn+RiuUsNGZHF3b9DWCvyD72KewcYrvtbE92zCk2HBbOhgxccil7e7wK
+   hNa06juij/RQDdpviYX0dnqVsSnCvw2YCkSh318M4C8lYrHi3a6j9jOMp
    Q==;
-X-CSE-ConnectionGUID: tjg8VFc0SZaHjHGz6dgeQw==
-X-CSE-MsgGUID: vRcLmsU8Snangg+FmcWANg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11701"; a="94896125"
+X-CSE-ConnectionGUID: rJkEvmlLSxqLkFQ3j5IPew==
+X-CSE-MsgGUID: KU02drmhRIOKyDhJLyYS0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11701"; a="83627893"
 X-IronPort-AV: E=Sophos;i="6.21,292,1763452800"; 
-   d="scan'208";a="94896125"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2026 23:51:03 -0800
-X-CSE-ConnectionGUID: nR2LqsqTT5WTBip9E4CXgg==
-X-CSE-MsgGUID: Lp8HFp2VQRK7d+ZTHJWXAw==
+   d="scan'208";a="83627893"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2026 00:03:32 -0800
+X-CSE-ConnectionGUID: cl1r0fUaRNOCzh9VYMZWqA==
+X-CSE-MsgGUID: 3hEt8fSQT4e/53JsMv0frA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.21,292,1763452800"; 
-   d="scan'208";a="243904317"
+   d="scan'208";a="218283076"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.136])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2026 23:51:00 -0800
-Date: Sun, 15 Feb 2026 09:50:58 +0200
+  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2026 00:03:29 -0800
+Date: Sun, 15 Feb 2026 10:03:26 +0200
 From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>,
-	rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Antoniu Miclaus <antoniu.miclaus@analog.com>,
 	Lars-Peter Clausen <lars@metafoo.de>,
-	David Lechner <dlechner@baylibre.com>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
 	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v4 05/11] iio: amplifiers: ad8366: use devm_mutex_init()
- and drop mutex_init()
-Message-ID: <aZF64mqQ-SDjzbe5@smile.fi.intel.com>
-References: <20260210-iio-ad8366-update-v4-0-15505f7b15b4@analog.com>
- <20260210-iio-ad8366-update-v4-5-15505f7b15b4@analog.com>
- <20260214183616.14f790bc@jic23-huawei>
+	Conor Dooley <conor+dt@kernel.org>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org
+Subject: Re: [PATCH v2 0/4] iio: adc: ad4080: add support for AD4880
+ dual-channel ADC
+Message-ID: <aZF9zoWHL9iHSK3q@smile.fi.intel.com>
+References: <cover.1770393792.git.antoniu.miclaus@analog.com>
+ <aYiGj_TYelvJdVaR@smile.fi.intel.com>
+ <20260214160852.6862b58d@jic23-huawei>
+ <aZC6wIWDdS8J_1eJ@smile.fi.intel.com>
+ <897bd4d4-bbdf-4cbf-84f6-05c110d75d03@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,7 +92,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260214183616.14f790bc@jic23-huawei>
+In-Reply-To: <897bd4d4-bbdf-4cbf-84f6-05c110d75d03@baylibre.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
@@ -95,45 +100,102 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265604-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265605-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim]
-X-Rspamd-Queue-Id: 2000E13E3E2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,intel.com:email,intel.com:dkim]
+X-Rspamd-Queue-Id: 7BA9913E424
 X-Rspamd-Action: no action
 
-On Sat, Feb 14, 2026 at 06:36:16PM +0000, Jonathan Cameron wrote:
-> On Tue, 10 Feb 2026 19:42:05 +0000
-> Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
+On Sat, Feb 14, 2026 at 12:31:12PM -0600, David Lechner wrote:
+> On 2/14/26 12:11 PM, Andy Shevchenko wrote:
+> > On Sat, Feb 14, 2026 at 04:08:52PM +0000, Jonathan Cameron wrote:
+> >> On Sun, 8 Feb 2026 14:50:23 +0200
+> >> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+> >>> On Fri, Feb 06, 2026 at 06:07:12PM +0200, Antoniu Miclaus wrote:
 
-> > Adopt proper mutex lifecycle with devm_mutex_init(), replacing
-> > mutex_init(). Also, Include linux/mutex.h header.
+...
+
+> >>> I believe there is a better approach, what you need is rather a flag
+> >>> to SPI core to tell that this is the device with shared CS.
+> >>
+> >> Antoniu, this comment from Andy needs addressing before we move
+> >> on. It seems fairly fundamental and I'm not seeing a reply to it on list.
+> >>
+> >> I'm not entirely sure what Andy is suggesting will work but this
+> >> is perhaps a mismatch in really understanding what is going on here.
+> >> Andy, how would a flag work given they seem to be separately addressable
+> >> SPI buses. I think this isn't a shared SPI CS, but rather a device
+> >> with two entirely separate SPI buses. I think the only reason
+> >> we are bothering to implement it as a single device at all is the
+> >> shared backend.
+> > 
+> > My understanding that there are two devices that for whatever reason share
 > 
-> Why move the *mutex_init()?  Even if it is just because it looks better there,
-> not breaking up spi related stuff, then say that.
+> It is the opposite. It is a _single_ device with _two_ CS lines.
 
-Yes, this needs to be recorded. But actually initialising mutex (and lock
-in general) earlier is usually a good thing and in some cases might even
-fix a hidden bug.
+Don't we have already support for that? This changes the picture even more towards
+NAKing this. See below why.
+
+> adc@0 {
+> 	reg = <0>, <1>;
+> 	...
+> };
+> 
+> > the same CS line. Yes, I probably misread the idea behind, but I meant
+> > some flag for SPI device that tells SPI core that the CS it wants is shared
+> > (maybe a high bit in the cs field or so), then CS core won't complain on
+> > validation about using the same cs number which is "already in use".
+> 
+> There was one existing user in the kernel of spi_new_ancillary_device()
+> that looked like this, so it seemed the right way to approach it. However,
+> code was added later that caused the primary SPI device to "claim" both
+> CS lines for itself and probably broke the one existing user of
+> spi_new_ancillary_device() (hard to tell without hardware to test).
+> 
+> The idea here was to unbreak that so we could use spi_new_ancillary_device()
+> just as in the existing use case.
+> 
+> The patch for that could have been a bit more strict to only allow the
+> spi_new_ancillary_device() to take CS 1 and fail otherwise, but users
+> are going to notice if it isn't working right anyway, so I didn't ask
+> for more checking.
+
+> >> There is an argument that maybe we should be looking at how
+> >> to do data muxing backends to support the more general case of two
+> >> separate chips feeding into a single buffer, but that's a complex
+> >> beast and I'm not sure if it is something we actually need.
+> 
+> I think it would actually be quite similar to what is done in this
+> series.
+
+TBH, the change sounds to me like a hack. It doesn't cover other potential ways
+of the multi-cs devices come into play. Given that SPI core supports multi-cs
+I don't see a good justification for this patch.
+
+What did I miss?
+
+> > Yeah, if possible I prefer to look at the (ASCII art) schematics
+> > on how the HW looks like (connections with busses and CS lines).
 
 -- 
 With Best Regards,
