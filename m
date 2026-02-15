@@ -1,409 +1,221 @@
-Return-Path: <devicetree+bounces-265623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265624-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oKFQO/f1kWl4ogEAu9opvQ
-	(envelope-from <devicetree+bounces-265623-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 17:36:07 +0100
+	id r/aQOmsCkmk/pQEAu9opvQ
+	(envelope-from <devicetree+bounces-265624-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 18:29:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B1F813F1A4
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 17:36:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43B9413F373
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 18:29:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D3862300292C
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 16:36:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BCE18300CC25
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 17:29:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF322EB5BA;
-	Sun, 15 Feb 2026 16:36:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 391D625A655;
+	Sun, 15 Feb 2026 17:29:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OOfBZVXA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eoOCqX0n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F549257854
-	for <devicetree@vger.kernel.org>; Sun, 15 Feb 2026 16:35:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBA7617993
+	for <devicetree@vger.kernel.org>; Sun, 15 Feb 2026 17:29:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771173362; cv=none; b=iHshhr4mVz7xRnfxtOxpvX/rBOuBo46e/i5VA8Z3KNDEtoIWZPV6Zh/53KJjUcjtw+sMUxuO5r7D8OHhN7I0JxTC+RtL+w+aozGxkKglw70jB9GM993qmjtT+BoNDdbWPY8q8H2AIJiMOyJKdtlOb9vC6dYXsSZDj9z76DbZKSk=
+	t=1771176553; cv=none; b=nKYAGB1UJSALsO4x3b9wuoJvhoGEoTiW1Woe30dyWoIFRET4eQbS/0DEMpO+VTO0+oJ6z/g7Er+rdDc2NfJzx0EU0qNCUQiOnqbGTBx0YufIsAALbd0uwObmTG1FX6QF/pMP6fH9tb2nd1OFpKr+u9W/N8T7oK5sfTu9zWowlLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771173362; c=relaxed/simple;
-	bh=63mkXh8wdgGy/5WBuOlGOaPWGf204xoM9SEF76Pp984=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Y7NB3bDxHn3Ty1wOn3dP7kHdRkdK/dhFxmF7/opCwZT5v+F23aVX3KOVZbLEiYqX2m/zaG53GlRn3JCPMEBPv1/CV/Wos/tVc9r2M7z6pQS3i5P5B510aOktm/AvAkXtSA6BrZ1WU5xVVvTxVUee6BfUCEwZZ1o90ESIY1z/lTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OOfBZVXA; arc=none smtp.client-ip=209.85.221.54
+	s=arc-20240116; t=1771176553; c=relaxed/simple;
+	bh=kRubzSeb34gMBhG/k1GBQIhV9N/5ZWh5nds6hV6yhWQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=ge7BimSQA0hLT6nuZ13NGKUaAu3GCSc7y5+huQt+xTEx2uFKav0plejQ6CtL2+ELdSwxSiA4q5eoOcJCp2Fcm0dPTdiIkw2s8SptQM6VRUg+FIR8w72yjGXvWfqWpn76la888fBEMKodJpGATcq7+zbMxbr6O2VcW18IkW62wyc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eoOCqX0n; arc=none smtp.client-ip=209.85.128.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-4359a302794so1622135f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 15 Feb 2026 08:35:59 -0800 (PST)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-7927b1620ddso30290447b3.0
+        for <devicetree@vger.kernel.org>; Sun, 15 Feb 2026 09:29:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771173358; x=1771778158; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rkgk08i2VDNmIlHOtwetmTzX3cu5OCSN90qqnNHKmCo=;
-        b=OOfBZVXASsGoHvaHR1FjwJ2lvJOHoyotTVS4SwRmEeVtroWVmHJyQg3vTkN0O9Oy6S
-         o0CjPH+DmpD55brSureqvtcmVlSR1oTNNKYsB1VqTpdKrYldrpvwtFzGDmHnvxOHMXer
-         qlZP1FuKZlH4mku5wKPFuQDRzaGU5tBeIbY4p5ADSK3xp/1ZCGIsdOtqp7t4ZoBZDxB9
-         pliAENpZsFkw0wiPeAiI8OyzY78J6VjVdAObgkyN7F5+woCJ+eT1+hbSwt7x50Qn/rN6
-         bhl2jxmOdEsxqTHdOSPpVmJJXH3m2cl0qC8CvtmOLfM4ZF/gVbFWPDKOQFKkriMYKg4u
-         DIkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771173358; x=1771778158;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1771176551; x=1771781351; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Rkgk08i2VDNmIlHOtwetmTzX3cu5OCSN90qqnNHKmCo=;
-        b=sYfm0NAyEIZF/EuIQgthAyqtFTCVay8JuvsgF01n1YVkXUOUZamieMlGkLM3vli3wL
-         B/8Glxc/fBrfyb36UtoUdUMfrgv4a/A9p3Yn6Q5rd2yLN2XIC1QCbKTlSdmcFFg3pf/B
-         KIza570a7higebd4m6Lq6Q6PwC2oLViAjX9rVTYUwWUBrJxJiSBIynMpDeGDeGPDokSt
-         iTUt/9oNvI4Li1PXSngua5FYqylT6FUiqUH/ygAnqHAX9mEG0k5nDJ03asCZq+cpvOS/
-         nKJIW3YS4QVZBjhwOxWMV8cy30dA58B7HoOWNv5jVbd5SoLRUc2DgzJS0H4ltHP4riYh
-         hkow==
-X-Forwarded-Encrypted: i=1; AJvYcCWUZfR0JOLksTx1grcPTxwUIAXwq4PyHuho59CLMPjAD4T2qi6ja0FwrCa7zN3YfSU7B/KTYEWJHQnz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKeRZSd6NxLxMi2YBooKXMEkEGA3PcM6QhkDN2aqT61LhAZ3pN
-	+HQh6ctpRG+u5Oos0xdWPkK9VdRAsUkj0FwfMMDAVBbJj50EsHX8b20n
-X-Gm-Gg: AZuq6aIFDSPGsR+nrsoqGEpg2Z6tlrFlwttG9fTsj7AvWH0ugymJ4VMnwzIT+yyH6I2
-	DItwhnFyBN9G/zakwhFL12L0I8NPAo3BjbnlWr7NbqeiAMirt1niFL+991hDnuUhrZwFi6QN3sK
-	qoqXAQuIWUb0XsK2WCITL+1ZyYFI48lWajqGAsXXV0qTmPRe7jsDC19x8c8Ifgt3VGbdyXXw3g3
-	4EDum4hIx2N41U0YlSLxkOkw3TvbcGv10mcm+vc/TbtnyBFVc+kORL4NhcnX8dFa1Wal5OInxzN
-	pItIAYoVnbheupJ0BHwi0QlM3pwrl0AS8Qj23o/wT1aeT5eDzfXOlEqdjINqqs5AcKAENgmXa0g
-	f7fEb/QBp8CLYF98CHwPjKl06HM0rF4WNQdv0zMFdCB8urYEjOVIJg4H/mGWuodBQNbQgeLhqDG
-	nb72asmgRn3tl+9osQHWpL86EAOE4pdKTapA==
-X-Received: by 2002:a05:6000:2901:b0:435:7154:2a7 with SMTP id ffacd0b85a97d-4379db3411emr7986116f8f.6.1771173357710;
-        Sun, 15 Feb 2026 08:35:57 -0800 (PST)
-Received: from taln60.nuvoton.co.il ([212.199.177.18])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43796ac8209sm22085970f8f.30.2026.02.15.08.35.55
+        bh=J0U5EsIEfZrt+jHVfvpA1PnJrdcLESznUrVQtE1RRsU=;
+        b=eoOCqX0ndzmjxkVSpUoyZB235XkiIBNm/uZNdlBQV5u6l+wMqR3adCxol5W0736aIC
+         dvn2eEO/ywRqlgPasRIWfyrBXFCKypHCgrK/NAcKZ2EqpjOILr3yd0V13rCnyj7ct8D0
+         2p4sYtNAt32rG8yowCEVTSKDC0cuB3lhCTpqWn5tGskCdpYIi4scyEVZtU8PO9QUouUf
+         eYWPw6P4QWUNJNoINhPDhTDZwZWznLqRztOeLIxpCM+bZLdfKNKWEbObxv4z471/IHz0
+         3WrZkAqedHZMxwtnUfD5UyDanFufdzNGm4ZVeyjyOpOZ/fp8WUiBtdFCrkIx02/84XSv
+         ogQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771176551; x=1771781351;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=J0U5EsIEfZrt+jHVfvpA1PnJrdcLESznUrVQtE1RRsU=;
+        b=lBjlmvtBspWXRmzXAyunJParxXx1Xo6jtztqdvoAVk6xBhrWzirRiwvAdNtoz5UIqf
+         oFE36/I7yNIq01AcqhOFsGvunimoQThJfLcYcZ7ZGE0xpHsQC3kBy6xQqVfQEMuzfezx
+         P6sHvLPAWA/wnXHQDSPPh2Z80ldEwP494tcaqOHu1gd9KM653AmFQvaLEDaXQ7nXybg5
+         +j9rK2/anBsB0yJ4kqHQD+dqSZwdQZVc53J6mvIAlfD1f9/mYIFJdHHiiIjBXedIP4g5
+         HRmHaQCMHZmGRTavf3qPQbXjPFKpXtHdRfVOt7u774erlp1KvvAbDdMOytCN62q8s+Vv
+         P9SA==
+X-Forwarded-Encrypted: i=1; AJvYcCXBVjvPJFTKY29N0ebi584V9l3DEQMSBBnpZ2RraF8qTdog9X17yY07RyPCKIdntNPjF4u8vt/XaCEl@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVGdi6dnIkDgx4NFr/K4lX3v8P0uJJN8tFzALXkIXGDYd24CnG
+	Wvhq7NmSznG1UYf0YCDmUZXAZxYSsPaR8Ig1wkwy1KxT62SbS+yxLrsy
+X-Gm-Gg: AZuq6aI8KOno1RfQx2/ciNqxLtlHeTpfF3Sw0XRq7dMXqXZQ0yqgJcyZ+6WKNRykD3y
+	yLrjhXQ8wyBn5pGW/+cQdNQTMZ9zNjmDUWUl9/Bli0P9s118w/bYZFW1Cyq2GalT+2toMQh+A1T
+	yLVbd6R15LGvH/Dm7epJfpvK08jKRJjX+WJkVhC7NnFOkd+ZAgSHq1zvOFmL4rdY1Zj4pgDXLlZ
+	EHyKlka2UP2we/qyKrOS6Oqcm08ckA6YqJS6jraws4SP/t4TA8y5hR2uaFYj+j9UNXncJ9UYJIL
+	rQDKtWAxa2YyxHlUbreFRITrCErg4UGkDltKJzD1a/5/1j4YBwZ32Fzz5enn3vEK9JTgNKfABha
+	kpdw7vzxxuoJfbqi05luxZCvE4BpoaNQHVzQ4n+3vW+nCVUhjbTiscmsmqDOSUumHI12x3jyuar
+	mQ6jNS3CZp9adhKTP8KIIYhaKnyfC3uUI=
+X-Received: by 2002:a05:690c:e3c3:b0:796:4015:94a with SMTP id 00721157ae682-797aa905a63mr48543847b3.20.1771176550933;
+        Sun, 15 Feb 2026 09:29:10 -0800 (PST)
+Received: from crusty-box ([79.133.247.80])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-7966c16e7b0sm92169247b3.4.2026.02.15.09.29.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Feb 2026 08:35:57 -0800 (PST)
-From: Tomer Maimon <tmaimon77@gmail.com>
-To: andrew@codeconstruct.com.au,
-	avifishman70@gmail.com,
-	tali.perry1@gmail.com,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: venture@google.com,
-	yuenn@google.com,
-	benjaminfair@google.com,
-	openbmc@lists.ozlabs.org,
-	linux-hwmon@vger.kernel.org,
+        Sun, 15 Feb 2026 09:29:10 -0800 (PST)
+From: Erikas Bitovtas <xerikasxx@gmail.com>
+To: jic23@kernel.org
+Cc: andy@kernel.org,
+	conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
+	dlechner@baylibre.com,
+	krzk+dt@kernel.org,
+	linux-iio@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v2] dt-bindings: hwmon: convert npcm750-pwm-fan to DT schema
-Date: Sun, 15 Feb 2026 18:35:53 +0200
-Message-Id: <20260215163553.1334475-1-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	nuno.sa@analog.com,
+	phone-devel@vger.kernel.org,
+	pmeerw@pmeerw.net,
+	robh@kernel.org,
+	xerikasxx@gmail.com,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v4 2/2] iio: light: vcnl4000: add support for Capella CM36686 and CM36672P
+Date: Sun, 15 Feb 2026 19:28:56 +0200
+Message-ID: <20260215172856.34702-1-xerikasxx@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260214180919.72389701@jic23-huawei>
+References: <20260214180919.72389701@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[codeconstruct.com.au,gmail.com,roeck-us.net,kernel.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[google.com,lists.ozlabs.org,vger.kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-265623-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,baylibre.com,analog.com,pmeerw.net,gmail.com,lists.sr.ht];
+	TAGGED_FROM(0.00)[bounces-265624-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_PROHIBIT(0.00)[0.0.0.2:email];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_NONE(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.1.146.88:email,0.0.0.1:email,0.0.0.0:email,devicetree.org:url]
-X-Rspamd-Queue-Id: 1B1F813F1A4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 43B9413F373
 X-Rspamd-Action: no action
 
-Convert the Nuvoton HWMON PWM and FAN controllers binding to schema
-format.
-
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----=0D
-Addressed comments from:=0D
- - Rob Herring : https://www.spinics.net/lists/kernel/msg6047623.html=0D
-=0D
-Changes since version 1:=0D
- - Modify yaml file.=0D
- - Remove unnecessary symbols.=0D
- - Add items.=0D
-
- .../bindings/hwmon/npcm750-pwm-fan.txt        |  88 -----------
- .../hwmon/nuvoton,npcm750-pwm-fan.yaml        | 139 ++++++++++++++++++
- 2 files changed, 139 insertions(+), 88 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan=
-.txt
- create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,npcm750=
--pwm-fan.yaml
-
-diff --git a/Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.txt b/=
-Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.txt
-deleted file mode 100644
-index 18095ba87a5a..000000000000
---- a/Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.txt
-+++ /dev/null
-@@ -1,88 +0,0 @@
--Nuvoton NPCM PWM and Fan Tacho controller device
--
--The Nuvoton BMC NPCM7XX supports 8 Pulse-width modulation (PWM)
--controller outputs and 16 Fan tachometer controller inputs.
--
--The Nuvoton BMC NPCM8XX supports 12 Pulse-width modulation (PWM)
--controller outputs and 16 Fan tachometer controller inputs.
--
--Required properties for pwm-fan node
--- #address-cells : should be 1.
--- #size-cells	: should be 0.
--- compatible	: "nuvoton,npcm750-pwm-fan" for Poleg NPCM7XX.
--				: "nuvoton,npcm845-pwm-fan" for Arbel NPCM8XX.
--- reg			: specifies physical base address and size of the registers.
--- reg-names	: must contain:
--					* "pwm" for the PWM registers.
--					* "fan" for the Fan registers.
--- clocks		: phandle of reference clocks.
--- clock-names	: must contain
--					* "pwm" for PWM controller operating clock.
--					* "fan" for Fan controller operating clock.
--- interrupts	: contain the Fan interrupts with flags for falling edge.
--- pinctrl-names	: a pinctrl state named "default" must be defined.
--- pinctrl-0	: phandle referencing pin configuration of the PWM and Fan
--					controller ports.
--
--fan subnode format:
--=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
--Under fan subnode can be upto 8 child nodes, each child node representing =
-a fan.
--Each fan subnode must have one PWM channel and at least one Fan tach chann=
-el.
--
--For PWM channel can be configured cooling-levels to create cooling device.
--Cooling device could be bound to a thermal zone for the thermal control.
--
--Required properties for each child node:
--- reg : specify the PWM output channel.
--	integer value in the range 0 through 7, that represent
--	the PWM channel number that used.
--
--- fan-tach-ch : specify the Fan tach input channel.
--		integer value in the range 0 through 15, that represent
--		the fan tach channel number that used.
--
--		At least one Fan tach input channel is required
--
--Optional property for each child node:
--- cooling-levels: PWM duty cycle values in a range from 0 to 255
--                  which correspond to thermal cooling states.
--
--Examples:
--
--pwm_fan:pwm-fan-controller@103000 {
--	#address-cells =3D <1>;
--	#size-cells =3D <0>;
--	compatible =3D "nuvoton,npcm750-pwm-fan";
--	reg =3D <0x103000 0x2000>,
--		<0x180000 0x8000>;
--	reg-names =3D "pwm", "fan";
--	clocks =3D <&clk NPCM7XX_CLK_APB3>,
--		<&clk NPCM7XX_CLK_APB4>;
--	clock-names =3D "pwm","fan";
--	interrupts =3D <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
--	pinctrl-names =3D "default";
--	pinctrl-0 =3D <&pwm0_pins &pwm1_pins &pwm2_pins
--			&fanin0_pins &fanin1_pins &fanin2_pins
--			&fanin3_pins &fanin4_pins>;
--	fan@0 {
--		reg =3D <0x00>;
--		fan-tach-ch =3D /bits/ 8 <0x00 0x01>;
--		cooling-levels =3D <127 255>;
--	};
--	fan@1 {
--		reg =3D <0x01>;
--		fan-tach-ch =3D /bits/ 8 <0x02 0x03>;
--	};
--	fan@2 {
--		reg =3D <0x02>;
--		fan-tach-ch =3D /bits/ 8 <0x04>;
--	};
--
--};
-diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,npcm750-pwm-fa=
-n.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,npcm750-pwm-fan.ya=
-ml
-new file mode 100644
-index 000000000000..73464af3078e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/nuvoton,npcm750-pwm-fan.yaml
-@@ -0,0 +1,139 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/nuvoton,npcm750-pwm-fan.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Nuvoton NPCM7xx/NPCM8xx PWM and Fan Tach Controller
-+
-+maintainers:
-+  - Tomer Maimon <tmaimon77@gmail.com>
-+
-+description:
-+  The NPCM7xx/NPCM8xx family includes a PWM and Fan Tachometer controller.
-+  The controller provides up to 8 (NPCM7xx) or 12 (NPCM8xx) PWM channels a=
-nd up
-+  to 16 tachometer inputs. It is used for fan speed control and monitoring.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nuvoton,npcm750-pwm-fan
-+      - nuvoton,npcm845-pwm-fan
-+
-+  reg:
-+    maxItems: 2
-+    description: Register addresses for PWM and Fan Tach units.
-+
-+  reg-names:
-+    items:
-+      - const: pwm
-+      - const: fan
-+
-+  clocks:
-+    maxItems: 2
-+    description: Clocks for the PWM and Fan Tach modules.
-+
-+  clock-names:
-+    items:
-+      - const: pwm
-+      - const: fan
-+
-+  interrupts:
-+    description:
-+      Contains the Fan interrupts with flags for falling edge.
-+      For NPCM7XX, 8 interrupt lines are expected (one per PWM channel).
-+      For NPCM8XX, 12 interrupt lines are expected (one per PWM channel).
-+
-+    minItems: 8
-+    maxItems: 12
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^fan@[0-9a-f]+$":
-+    type: object
-+    $ref: fan-common.yaml#
-+    unevaluatedProperties: false
-+
-+    properties:
-+      reg:
-+        description:
-+          Specify the PWM output channel. Integer value in the range 0-7 f=
-or
-+          NPCM7XX or 0-11 for NPCM8XX, representing the PWM channel number.
-+
-+        maximum: 11
-+
-+      fan-tach-ch:
-+        $ref: /schemas/types.yaml#/definitions/uint8-array
-+        description:
-+          The tach channel(s) used for the fan.
-+          Integer values in the range 0-15.
-+
-+        items:
-+          maximum: 15
-+
-+      cooling-levels:
-+        description:
-+          PWM duty cycle values in a range from 0 to 255 which
-+          correspond to thermal cooling states. This property enables
-+          thermal zone integration for automatic fan speed control
-+          based on temperature.
-+
-+        items:
-+          maximum: 255
-+
-+    required:
-+      - reg
-+      - fan-tach-ch
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - clocks
-+  - clock-names
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/nuvoton,npcm7xx-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    pwm_fan: pwm-fan@103000 {
-+        compatible =3D "nuvoton,npcm750-pwm-fan";
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+
-+        reg =3D <0x103000 0x2000>, <0x180000 0x8000>;
-+        reg-names =3D "pwm", "fan";
-+
-+        clocks =3D <&clk NPCM7XX_CLK_APB3>, <&clk NPCM7XX_CLK_APB4>;
-+        clock-names =3D "pwm", "fan";
-+
-+        interrupts =3D <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+        pinctrl-names =3D "default";
-+        pinctrl-0 =3D <&pwm0_pins &fanin0_pins>;
-+
-+        fan@0 {
-+            reg =3D <0>;
-+            fan-tach-ch =3D <0 1>;
-+            cooling-levels =3D <64 128 192 255>;
-+        };
-+
-+        fan@1 {
-+            reg =3D <1>;
-+            fan-tach-ch =3D <2>;
-+        };
-+    };
---=20
-2.34.1
-
+On 2/14/26 8:09 PM, Jonathan Cameron wrote:
+>> ---
+>>  drivers/iio/light/vcnl4000.c | 40 ++++++++++++++++++++++++++++++++++++++++
+>>  1 file changed, 40 insertions(+)
+>>
+>> diff --git a/drivers/iio/light/vcnl4000.c b/drivers/iio/light/vcnl4000.c
+>> index a36c23813679..1f8f4e4586f4 100644
+>> --- a/drivers/iio/light/vcnl4000.c
+>> +++ b/drivers/iio/light/vcnl4000.c
+>> @@ -185,6 +185,7 @@ static const int vcnl4040_ps_oversampling_ratio[] = {1, 2, 4, 8};
+>>  #define VCNL4000_SLEEP_DELAY_MS	2000 /* before we enter pm_runtime_suspend */
+>>  
+>>  enum vcnl4000_device_ids {
+>> +	CM36672P,
+>>  	VCNL4000,
+>>  	VCNL4010,
+>>  	VCNL4040,
+>> @@ -235,6 +236,8 @@ struct vcnl4000_chip_spec {
+>>  };
+>>  
+>>  static const struct i2c_device_id vcnl4000_id[] = {
+>> +	{ "cm36672p", CM36672P },
+>> +	{ "cm36686", VCNL4040 },
+>>  	{ "vcnl4000", VCNL4000 },
+>>  	{ "vcnl4010", VCNL4010 },
+>>  	{ "vcnl4020", VCNL4010 },
+>> @@ -1842,6 +1845,22 @@ static const struct iio_chan_spec vcnl4040_channels[] = {
+>>  	}
+>>  };
+> 
+> ...
+> 
+>>  	[VCNL4000] = {
+>>  		.prod = "VCNL4000",
+>>  		.init = vcnl4000_init,
+>> @@ -2033,6 +2065,14 @@ static int vcnl4000_probe(struct i2c_client *client)
+>>  }
+>>  
+>>  static const struct of_device_id vcnl_4000_of_match[] = {
+>> +	{
+>> +		.compatible = "capella,cm36672p",
+>> +		.data = (void *)CM36672P,
+>> +	},
+>> +	{
+>> +		.compatible = "capella,cm36686",
+>> +		.data = (void *)VCNL4040,
+> 
+> Is this necessary? I 'think' if you drop it we'll match instead
+> on the vcnl4040 fallback and then the access to the data will be
+> through the stripped name only bit of the compatible (first entry, not
+> the fallback so cm36686 in this case). So you do need the cm36686
+> entry in the i2c_device_id table above. Probably better to keep
+> this here to avoid having to reason this out - but perhaps a
+> comment to that affect would be useful (assuming you verify my
+> reasoning).
+>
+After I removed the entry for "capella,cm36686", I received the "Unable
+to handle kernel NULL pointer dereference" error in dmesg. And at least
+stk3310 driver includes a compatible entry both for the device (stk3013)
+and for the fallback (stk3310). So my assumption is that this entry is
+needed.
+I could include a comment explaining that cm36686 is fully compatible
+with vcnl4040, however, if that is necessary.
+> As Andy suggested moving away from enum values an towards
+> direct pointers to the chip_info structures + drop the
+> i2c_client_get_device_id() in favour of i2c_get_match_data() which
+> uses the right firmware entry to get the data in all cases is the
+> right long term solution and avoids an association being necessary
+> between the two tables.
+> 
+> Jonathan
+> 
+> 
+> 
+> 
+>> +	},
+>>  	{
+>>  		.compatible = "vishay,vcnl4000",
+>>  		.data = (void *)VCNL4000,
+>>
+> 
 
