@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-265608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265614-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oNyjLyiKkWnkjgEAu9opvQ
-	(envelope-from <devicetree+bounces-265608-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 09:56:08 +0100
+	id 0PSBGHmKkWn1jgEAu9opvQ
+	(envelope-from <devicetree+bounces-265614-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 09:57:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E8DA13E56E
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 09:56:08 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C9F113E5D5
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 09:57:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9D6A03016D00
-	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 08:55:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0D383300371A
+	for <lists+devicetree@lfdr.de>; Sun, 15 Feb 2026 08:57:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A32326F471;
-	Sun, 15 Feb 2026 08:55:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 403D52BEFE7;
+	Sun, 15 Feb 2026 08:57:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rFaimtH3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i24gR8Ni"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA8C1221F39;
-	Sun, 15 Feb 2026 08:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B24A246766;
+	Sun, 15 Feb 2026 08:57:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771145739; cv=none; b=Up06noNCe3aqhscb+77TqER6rGJSmqTYf1XSfnuxXsxg6TlGYTBotI5PoqKvb/FmWSxjXmLga8BEGQVPKfLCu1K0hrFbaTjb2RTe2W2XFwbc7Y2xnYgrSFHW7RStHh2YJHP7kiJPX/FfTYTHosT1PBTn0Pi2CkrgOgh2WCeYTC4=
+	t=1771145842; cv=none; b=rNX0RAFmqdLBBHRVu7uP6QT7TQpuTYojLsQ+zboAXMaNrPkwSXdc8ufGxSY4uj2GYPReVUm7TMOX9qdAL2oZb6lxuddbeForcIWM0up1F5BRWsLom6PBhW/yYNcaQaEwEk5HPFxfYRugjrtYh6wY+hrAXMAaF2xi96W4vD6DpFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771145739; c=relaxed/simple;
-	bh=QQO+j1E3+GhhZtDPLBDgQ5bYSmkIcaM5bXYvmccLwoQ=;
+	s=arc-20240116; t=1771145842; c=relaxed/simple;
+	bh=UnIhEyFqsBzxtq7irrv/xJVxAo0Al4iv+ZsfkLBUjhs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LFMK3GpnCxprQQGREeFljVeEqHrhnkOVXZmkE84NtPhwNdefv+Biqdd3kgLjvebh0cUKyURK8XYX0CVIoLtoqX14dIv8GcFskQ6c5pZfoPLYeNFvFgz1vjnTubIcGM4mpMsWCeVrHFW54ftcJ8g/e27/SaGIImG30UzOA2cecTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rFaimtH3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCDEFC4CEF7;
-	Sun, 15 Feb 2026 08:55:36 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IhrHr2xHL2MvzvVJxH8MtSsJyY7JuGj1cOkjPDPsi5FMqib1YlUQ+DpMsH2wH1y9peliN8XmzTH+CcZx6hlM/EvrvVyM/RBSmD2TJFABNtAcm13hAFMo97ZsFfww7RE11YVc7ztgtgED3awXfGO2t8RiGiX6V2rnRAhWONm9tL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i24gR8Ni; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1191C19422;
+	Sun, 15 Feb 2026 08:57:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771145738;
-	bh=QQO+j1E3+GhhZtDPLBDgQ5bYSmkIcaM5bXYvmccLwoQ=;
+	s=k20201202; t=1771145841;
+	bh=UnIhEyFqsBzxtq7irrv/xJVxAo0Al4iv+ZsfkLBUjhs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rFaimtH3Cfmt/BAbUhUfor6Gx2OrxNhFJVhDdIeaTmQRvvrRcFGoVrXg905ac9Xa5
-	 xhrX41RsINilsHboyqdhIyYrseTQWpsS2hAiHlpX9VI0NQvPfiye7hgeaQs7qrhxey
-	 8FfLsrOZfkAYb7ILi+6BDOy1Srg2Dst00B9m5ut1wOJ6gf4klmIitre6YEI85jPm9D
-	 TBgzpi9qA6+Dxz1YAckUX/c3BeXrQ4cmml6U/a50gOdrIP5rWsmz6ElfcUxwggJ5VU
-	 AIJ7Y7fno5wc7qLOL+7iJCKj4Ex3LzVOyOb4T7671hbrGibNV76yInw7ze6fsOBArU
-	 hxmcebxZ22fFg==
-Message-ID: <a80eada0-c30b-4e4c-a47d-5e03f5331ff6@kernel.org>
-Date: Sun, 15 Feb 2026 09:55:35 +0100
+	b=i24gR8NiM8nE5iYedl+X34eE0MSZeMQD0sBpdDZNET0FyK4QEv7UIj8oRZ9jWpASI
+	 CkkbFYKdiqWn6l5yn06D5RtfaGB7ZPgC/h24y/sY1Y3oIaNy11QSgEzKQAVFL0Q9mp
+	 lJiBExqG/q3A5B5AAZzjjNVNHXKYh2mvDy75/i4gx26SiMr4V/Up3V0w2QADbZ8aIR
+	 pC+blAj12mgSge6cB/ojugUGLkglYOGNBI7KfHWuaGw9fN6yr77W8ryGbdSmiV5Pkj
+	 m9Oficby5XjjDwXPpj0ahh69NQ4AxjzIP+N7vwxbC8ehMEIAbvJ+iTD6RJoAazkZpb
+	 IwWM2fdPzOTqA==
+Message-ID: <2edff611-76bb-45aa-922e-f96581dd0525@kernel.org>
+Date: Sun, 15 Feb 2026 09:57:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,18 +53,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] dt-bindings: net: wireless: mt76: clarify backoff
- limit usage
-To: Ryder Lee <Ryder.Lee@mediatek.com>
-Cc: "robh@kernel.org" <robh@kernel.org>, "nbd@nbd.name" <nbd@nbd.name>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- =?UTF-8?B?QWxsZW4gWWUgKOiRieiKt+WLsyk=?= <Allen.Ye@mediatek.com>,
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>
-References: <8fa8ec500b3d4de7b1966c6887f1dfbe5c46a54c.1770856296.git.ryder.lee@mediatek.com>
- <e39bff1d56a3f8b5146b881eef3442a4af97078b.1770856296.git.ryder.lee@mediatek.com>
- <20260212-benevolent-peacock-of-rain-afbb6b@quoll>
- <d7e22b328fda50ebbf96f334fc15d63da9e7c19b.camel@mediatek.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: exynos: ExynosAutov920: Add regulators
+ for the USB
+To: pritam.sutar@samsung.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, alim.akhtar@samsung.com
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ rosa.pila@samsung.com, dev.tailor@samsung.com, faraz.ata@samsung.com,
+ muhammed.ali@samsung.com, selvarasu.g@samsung.com
+References: <20260122130721.205664-1-pritam.sutar@samsung.com>
+ <CGME20260122125134epcas5p36625b7ac70b8dfba9430831a11955682@epcas5p3.samsung.com>
+ <20260122130721.205664-3-pritam.sutar@samsung.com>
+ <352427f4-144a-4a43-a2f3-dd959302939f@kernel.org>
+ <000001dc9c13$ea305520$be90ff60$@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,82 +111,174 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <d7e22b328fda50ebbf96f334fc15d63da9e7c19b.camel@mediatek.com>
+In-Reply-To: <000001dc9c13$ea305520$be90ff60$@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265608-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-265614-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_SEVEN(0.00)[7];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2E8DA13E56E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email,4.196.180.0:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7C9F113E5D5
 X-Rspamd-Action: no action
 
-On 12/02/2026 18:31, Ryder Lee wrote:
->>>  
->>>    reg:
->>>      minItems: 1
->>> @@ -252,6 +257,14 @@ properties:
->>>                        followed by 10 power limit values. The order
->>> of the
->>>                        channel resource unit settings is RU26,
->>> RU52, RU106,
->>>                        RU242/SU20, RU484/SU40, RU996/SU80 and
->>> RU2x996/SU160.
->>> +                      - For mt7981/mt7986/mt7915/mt7916
->>> +                        - Beamforming entries for BW20~BW160 and
->>> OFDM do not
->>> +                          include 1T1ss.
->>> +                        - When 1T1ss is not used, it should be
->>> filled with 0.
+On 12/02/2026 12:37, pritam.sutar@samsung.com wrote:
+> Hi Krzysztof,
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Thursday, January 22, 2026 7:04 PM
+>> To: Pritam Manohar Sutar <pritam.sutar@samsung.com>; robh@kernel.org;
+>> krzk+dt@kernel.org; conor+dt@kernel.org; alim.akhtar@samsung.com
+>> Cc: devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+>> samsung-soc@vger.kernel.org; linux-kernel@vger.kernel.org;
+>> rosa.pila@samsung.com; dev.tailor@samsung.com;
+>> faraz.ata@samsung.com; muhammed.ali@samsung.com;
+>> selvarasu.g@samsung.com
+>> Subject: Re: [PATCH v2 2/3] arm64: dts: exynos: ExynosAutov920: Add
+>> regulators for the USB
 >>
->> Shouldn't be skipped in such case? Why filling with 0 matters?
+>> On 22/01/2026 14:07, Pritam Manohar Sutar wrote:
+>>> Add dummy regulator for USB and PHY supplies.
+>>>
+>>> Add vbus regulator that is enabled by GPIO pin.
+>>>
+>>> Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+>>> ---
+>>>  .../boot/dts/exynos/exynosautov920-sadk.dts   | 139
+>> ++++++++++++++++++
+>>>  1 file changed, 139 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+>>> b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+>>> index a397f068ed53..f90f7704597c 100644
+>>> --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+>>> +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+>>> @@ -52,6 +52,76 @@ memory@80000000 {
+>>>  		      <0x8 0x80000000 0x1 0xfba00000>,
+>>>  		      <0xa 0x00000000 0x2 0x00000000>;
+>>>  	};
+>>> +
+>>> +	/* TODO: Remove this once PMIC is implemented  */
+>>> +	dummy_regulator: regulator-0 {
+>>> +		 compatible = "regulator-fixed";
+>>> +		 regulator-name = "dummy_regulator";
+>>> +	};
+>>> +
+>>> +	usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus {
 >>
-> This logic was already present in driver. The driver determines whether
-> to skip 1T1ss based on its value (0), so my update is focused on
-> improving the documentation to guide users on the correct DTS format.
+>> Please use name for all fixed regulators which matches current format
+>> recommendation: 'regulator-[0-9]v[0-9]'
+>>
+>> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/
+>> Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+>>
+>> None of the regulators are called like you wrote. Really NONE.
+>>
 > 
-> For example, in the paths-ru-bf entries:
-> <1 20 22 38 36 24 30 23 21 28 29>,
-> <1 20 39 31 25 26 25 28 30 39 39>,
-> <1 37 34 26 26 25 21 34 23 34 24>,
-> <1 0 20 23 31 23 30 39 28 29 36>,
-> <1 0 27 34 33 34 29 38 33 33 22>,
-> <1 0 30 23 39 28 21 25 29 28 21>,
-> <1 0 34 20 38 32 35 33 37 26 36>;
-> (The order of all fields is required by the firmware.)
+> Thank you for the references. Will bring changes for regulator's name 
+> and labels as 
+> 			
+> -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus {
+> +       reg_usbdrd31_dwc3_vbus: regulator-1 {
+
+Did you read the binding? That's not what I asked.
+
+
 > 
-> The value for 1T1ss is set to 0 when it is not used, and the driver
-> will skip it during parsing. So, users should always fill the DTS with
-> all 10 values, using 0 for unused entries.
+>> Also, carefully follow DTS coding style.
+>>
 > 
-> This ensures that the parsing logic remains simple and uniform,
-> avoiding potential errors or misalignment.
+> Sorry for that. Checking the code and will update in next 
+> patchset version (v3).
+> 
+>>> +	       compatible = "regulator-fixed";
+>>> +	       regulator-name = "usbdrd31_dwc3-vbus";
+>>> +	       regulator-min-microvolt = <5000000>;
+>>> +	       regulator-max-microvolt = <5000000>;
+>>> +	       enable-active-high;
+>>> +	       regulator-always-on;
+>>> +	       gpio = <&gpp2 0 GPIO_ACTIVE_HIGH>;
+>>> +	};
+>>> +
+>>> +	/* Use gpio for enabling vbus regulator */
+>>> +	usb_phy0: usb-phy0 {
+>>
+>> usb-phy-0
+>>
+>>> +		compatible = "usb-nop-xceiv";
+>>> +		vbus-supply = <&usbdrd31_dwc3_vbus>;
+>>
+>> That's pretty incomplete. Why do you need such node - just to toggle
+>> regulator?
+>>
+> 
+> There is no external controller to detect or switch the USB modes 
+> automatically rather it is switched using userspace control 
+> (sysfs attributes) for this SoC.  GPIO pins are required to enable 
+> vbus regulators. Existing phy-generic and fixed regulator are used to 
+> avoid making any USB driver changes for the same purpose and it is 
+> referenced from below -
+> 				
+> https://lore.kernel.org/r/20230825215445.28309-3-semen.protsenko@linaro.org
+> a12af1c20751340ab6e449a5ef78b37d31123aca: ARM64: dts: marvell: armada-3720-db: Add phy for USB3
+> 		
+>>> +	};
+>>
+>> ...
+>>
+>>> +&usbdrd20_phy2 {
+>>> +	dvdd-supply = <&dummy_regulator>;
+>>> +	vdd18-supply = <&dummy_regulator>;
+>>> +	vdd33-supply = <&dummy_regulator>;
+>>> +};
+>>> +
+>>> +&usbdrd20_dwc3_2 {
+>>> +	maximum-speed = "high-speed";
+>>> +	usb-phy = <&usb_phy3>;
+>>> +};
+>>> +
+>>> +&usbdrd20_2 {
+>>> +	vdd10-supply = <&dummy_regulator>;
+>>> +	vdd33-supply = <&dummy_regulator>;
+>>> +};
+>>
+>> That's a bit too much of dummies. This is heavily incomplete. You need to
+>> bring back the PMIC first.
+>>
+> 
+> Presently, relying on USB LDOs being enabled by the bootloader in this
+> automotive SoC. However, we understand the concern and it is added in case 
+> if anyone wants to use implemented PMIC in future. For now, would like 
+> to proceed with the dummy regulators to enable the required USB features. 
+
+And I don't see the point of these dummies. Solves nothing.
+
+> Dummy regulators are clearly marked so that they will be replaced once 
+> the PMIC driver is fully up.
 > 
 
-OK
 
 Best regards,
 Krzysztof
