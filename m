@@ -1,72 +1,68 @@
-Return-Path: <devicetree+bounces-265939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265940-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gJcbO4mqk2lV7gEAu9opvQ
-	(envelope-from <devicetree+bounces-265939-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 00:38:49 +0100
+	id IIjFI92qk2lE7gEAu9opvQ
+	(envelope-from <devicetree+bounces-265940-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 00:40:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5541C1481D8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 00:38:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AF89148232
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 00:40:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 760FB301700A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 23:38:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8E9A0303E2F7
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 23:39:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C5782F3614;
-	Mon, 16 Feb 2026 23:38:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09F582F363B;
+	Mon, 16 Feb 2026 23:39:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="IP4sEnXg"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="OXJx9inD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-183.mta1.migadu.com (out-183.mta1.migadu.com [95.215.58.183])
+Received: from out-172.mta1.migadu.com (out-172.mta1.migadu.com [95.215.58.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A9B01EB5B
-	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 23:38:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92B7027A92D
+	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 23:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771285122; cv=none; b=qjOSbczSRbcdCYrIIMwvwAudUEbP76/F4FS/W4wEBkyfUdIpk1GBa67t4czJ5mkGsUdWUDhFHI3BiTG9Q4Dt5bdhzsAPgGMzRAIhWBVzcJSYWtuNcHGhBQsf5GLWWuSF8JGt2RqZEV2c+9OeLHv9zV1Fa6ms7nxQUHzL/ZUe7C4=
+	t=1771285146; cv=none; b=S9N5I1dVx6lCZPZGjtt1Oxf9gbgGEjU8CxgX1KMZsMc6NPBi/rVeGtFGXSgQ6VYiJbo2GpITkduJe5wmJ0/dkHRLE784LlkwNDwNdhJA7tPn88wcr1H4UL0Zh5DaZ8jA37sf1HpOLalyHekIOHZRDm7lGh6YopzJ5IAveT9FwHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771285122; c=relaxed/simple;
-	bh=OMRlCPZ0qEsHQmJTvMNnWe15UorBiHbpB3WG68YnfuE=;
+	s=arc-20240116; t=1771285146; c=relaxed/simple;
+	bh=RbCV6vzOlnwxtYtR5B5jbd9YeOD8iqu6VXuc+VtdXhI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qoqGeudPKz72mBt4GPpr6YiF3hloplsfJs4KYRjQf7Lq16tUItckzDdrIQI2l18eUNIpnxiQwxrKHHSY817wy3CnI0Ibi4ut2QvWLBl8jWUawDRCBX0ooqx8k578yJq3XInNPejDeLj4Y80QcXexNycZGO09oR7A9ag03jdOaac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=IP4sEnXg; arc=none smtp.client-ip=95.215.58.183
+	 MIME-Version; b=p8gwvmilkdeKypwdXhPq7zoIBwlVWPBrIvBsG5AtaSGJEqZGodPE7jxqvEcDxuNI4mxE0B6I4u1+SNS0wBkGtfOUB5wZ+i2kMY7p5dML7o92F/iSpJpw8U+t2dPYmg/H06sY2qMgUoMgYuSKNWwju3taVuXNAYS1SwK4dabSK8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=OXJx9inD; arc=none smtp.client-ip=95.215.58.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1771285119;
+	s=key1; t=1771285143;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=eQuQSiGO+iS/wZyw+tk5yrutgULYwUrgwsAfbZSdAiQ=;
-	b=IP4sEnXgqOFc/6LA/A4W+MyzXKJTYAUjOYF6oICmlthJIabh0uKfDlAqvx3iFznDO/kHHb
-	NhwcT2QksYVC0i7JebM5fgfeS8TPUsF4WjCiS3bsipkSq7jAYsaXSpMGyaIbZbrUZM4yeo
-	WvLdlg4AGBSKv/X+hIv8KAehjZlbhW5W37kl9xhqugSS7QDajelvB8GAxJYP4sgSykXPeh
-	7+avHkYYoN4dNe2wpp0a7qM9L05SWfkMhkBnjdeGWiFnFOUl275XH5PZ63wLNCCNEQ2VAM
-	Sw1+JsFmFSYUlMMxUctnYhePFxhYXRlpqerLPfy1giIkv3G74ygNg/OFHr2thw==
+	bh=KY82BaUYIukxsPfbzUE86Y/IZ+XbH/uKCDnIMOz06rs=;
+	b=OXJx9inDTjXp2JZwbkvCjcdcucOwNDeBErqq8EwU86/GBwbVAwNTyfoRATgdmwjf3UZFpU
+	1cI/Lqa3LYdh6STnQoWQSXMX1mQo9J71ytvxEYKjyrkqs7iHRb4MmYgBKtoLJdxXsr9u1/
+	rz6JUUoqZngpsgro5frg2b8KZfk/WubtTRHnUZj1rqiX9eGewn6V+92cAhWYS/EQ3sc563
+	Fzz4nnak1rUiWvnCsPIqMihosvatamtAA0/GuFO3Xqjqipzjg+4rfQzlu0F1qFkJRd2Ab3
+	dqZemXDgmt93pbgAhVv8WiyzTnu0g+q8oWJDyyurFNAyutdUdA/vvEWaWfN4mA==
 From: Val Packett <val@packett.cool>
 To: Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Martin Botka <martin.botka@somainline.org>
+	Adam Skladowski <a39.skl@gmail.com>
 Cc: linux-arm-msm@vger.kernel.org,
 	phone-devel@vger.kernel.org,
 	~postmarketos/upstreaming@lists.sr.ht,
 	Val Packett <val@packett.cool>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/6] dt-bindings: clock: qcom,dispcc-sm6125: Define MDSS resets
-Date: Mon, 16 Feb 2026 20:25:20 -0300
-Message-ID: <20260216233600.13098-4-val@packett.cool>
+Subject: [PATCH 5/6] arm64: dts: qcom: sm6115: Add missing MDSS core reset
+Date: Mon, 16 Feb 2026 20:25:23 -0300
+Message-ID: <20260216233600.13098-7-val@packett.cool>
 In-Reply-To: <20260216233600.13098-2-val@packett.cool>
 References: <20260216233600.13098-2-val@packett.cool>
 Precedence: bulk
@@ -84,63 +80,56 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[packett.cool,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265939-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265940-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
+	DKIM_TRACE(0.00)[packett.cool:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[packett.cool:+];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5541C1481D8
+X-Rspamd-Queue-Id: 2AF89148232
 X-Rspamd-Action: no action
 
-Add the missing defines for MDSS resets.
-While here, align comment style with other SoCs.
+To make sure the display subsystem starts in a predictable state, we
+need to reset it. Otherwise, unpredictable issues can happen, e.g.
+on the motorola-guamp smartphone DSI would not transmit anything.
 
-Fixes: 8397c9c0c26b ("dt-bindings: clock: add QCOM SM6125 display clock bindings")
+Wire up the reset to fix.
+
+Fixes: 705e50427d81 ("arm64: dts: qcom: sm6115: Add mdss/dpu node")
 Signed-off-by: Val Packett <val@packett.cool>
 ---
- include/dt-bindings/clock/qcom,dispcc-sm6125.h | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sm6115.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/include/dt-bindings/clock/qcom,dispcc-sm6125.h b/include/dt-bindings/clock/qcom,dispcc-sm6125.h
-index 4ff974f4fcc3..f58b85d2c814 100644
---- a/include/dt-bindings/clock/qcom,dispcc-sm6125.h
-+++ b/include/dt-bindings/clock/qcom,dispcc-sm6125.h
-@@ -6,6 +6,7 @@
- #ifndef _DT_BINDINGS_CLK_QCOM_DISP_CC_SM6125_H
- #define _DT_BINDINGS_CLK_QCOM_DISP_CC_SM6125_H
+diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+index e9336adbc391..3a9a1ad8d581 100644
+--- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+@@ -1864,6 +1864,8 @@ mdss: display-subsystem@5e00000 {
+ 				 <&gcc GCC_DISP_HF_AXI_CLK>,
+ 				 <&dispcc DISP_CC_MDSS_MDP_CLK>;
  
-+/* Clocks */
- #define DISP_CC_PLL0			0
- #define DISP_CC_MDSS_AHB_CLK		1
- #define DISP_CC_MDSS_AHB_CLK_SRC	2
-@@ -35,7 +36,10 @@
- #define DISP_CC_MDSS_VSYNC_CLK_SRC	26
- #define DISP_CC_XO_CLK			27
- 
--/* DISP_CC GDSCR */
-+/* Resets */
-+#define DISP_CC_MDSS_CORE_BCR			0
++			resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
 +
-+/* GDSCs */
- #define MDSS_GDSC			0
- 
- #endif
+ 			interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <1>;
 -- 
 2.52.0
 
