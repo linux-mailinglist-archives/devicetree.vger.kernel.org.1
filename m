@@ -1,174 +1,266 @@
-Return-Path: <devicetree+bounces-265873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265871-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WP+jHXo/k2kg2wEAu9opvQ
-	(envelope-from <devicetree+bounces-265873-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:02:02 +0100
+	id qJF/KGY/k2kg2wEAu9opvQ
+	(envelope-from <devicetree+bounces-265871-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:01:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64516145DED
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:01:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA12D145DC0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:01:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0F3813008301
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:01:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5E91A300A393
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:01:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69A262BDC05;
-	Mon, 16 Feb 2026 16:01:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF38C3191C8;
+	Mon, 16 Feb 2026 16:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="GNPoEeCF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KQSYovJb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f66.google.com (mail-ed1-f66.google.com [209.85.208.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6655828D8DB;
-	Mon, 16 Feb 2026 16:01:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B68B28D8DB
+	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 16:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771257712; cv=none; b=Qv6Y8mciUYs/sbJJj5jyELnpd3gbmMhzdyGY16BydBcEM5sRR7pOr4mgCRFW6P4BM1KocunkUiWLVJEF4KqlKtDkEJUIb88XQHjKmoIsgvevwpJa7+gfDcKhExSac3a2KCnl+VIohN08V7XbiVR6oPglgO9ft10RQPLeriZqG5Y=
+	t=1771257684; cv=none; b=ZXVTamY1cnbYPI8LpEZc9kPlB4IFynK975lOgS+mwWVxttgVmrwntW6Ceypvp+Vyd35JmKRwYcGJdBIFhxYtZHzgNPDhY47khDjcXzK58ObjOsTg2RPI8TJroLmwgO2M2jsxFHzWc4drSRX9nQjZQPVYnmEoh1Q0oSFjfXa6Ogo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771257712; c=relaxed/simple;
-	bh=K63sE+heA6dIPkSHQF8iWzG6C+zCfl+e50if7LFWoLk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rJ6KrKSUmde0/tSc1hCfq8cRbGGIpIuSUcJ9H9yZ8IRix2M43+Vpy+6V/24nO5iejrCMeSnC0LcUnbPy8XZsBrXxWkbDH0YwiKpA0YeOj21kU95XyDqEdtZIO9h5cj/UVOWjmwJCfw9MFHQ6mLGQblv7v0QbrnbHp7L01PIvqpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=GNPoEeCF; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: c486c3a20b5011f185319dbc3099e8fb-20260217
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=rAzH74nBcBGKigZp9kU3P2C14pIvF/kRN1BygaisLuw=;
-	b=GNPoEeCF5QhYrGITsWrBLIs3DYkL+dQHSHbpehuq+hZbr8Hgqsf+epn2G+gx78bvoknLNs97W4H+xt7vV2kLg4URgwxNAsJAXF90JNJO33xmkRcqcyBkIxf3a1QH73O0jyK6/34CyZ70IcEsBjdqCvcHunpiZ6BsSulQAkMRTwQ=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.11,REQID:5790d6a6-80a6-4bd7-b071-2ca9e24462ee,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:89c9d04,CLOUDID:6a5a565b-a957-4259-bcca-d3af718d7034,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|888|898,TC:-5,Content:
-	0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI
-	:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: c486c3a20b5011f185319dbc3099e8fb-20260217
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-	(envelope-from <ryder.lee@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 2138928291; Tue, 17 Feb 2026 00:01:34 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 17 Feb 2026 00:01:33 +0800
-Received: from mussdccf250.eus.mediatek.inc (10.73.250.250) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Tue, 17 Feb 2026 00:01:32 +0800
-From: Ryder Lee <ryder.lee@mediatek.com>
-To: Felix Fietkau <nbd@nbd.name>, Rob Herring <robh@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-wireless@vger.kernel.org>, Ryder Lee <ryder.lee@mediatek.com>, Allen
- Ye <allen.ye@mediatek.com>
-Subject: [PATCH v7 3/3] dt-bindings: net: wireless: mt76: clarify backoff limit usage
-Date: Mon, 16 Feb 2026 08:01:16 -0800
-Message-ID: <87acf1a8ab5642298c67915b3afc41e624b312a7.1771205424.git.ryder.lee@mediatek.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <8fa8ec500b3d4de7b1966c6887f1dfbe5c46a54c.1771205424.git.ryder.lee@mediatek.com>
-References: <8fa8ec500b3d4de7b1966c6887f1dfbe5c46a54c.1771205424.git.ryder.lee@mediatek.com>
+	s=arc-20240116; t=1771257684; c=relaxed/simple;
+	bh=ICFY/FglSHrH1Z9iGwxybkFrXH6UwDjtopfxEgM4QJI=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=tdn+6YMJSNxHx93Hg1NYdK9PpWT4Zqu5BpnosY4jLjUMPTd9vY32cqqXRUB8h4okVsgem2YXUSPZejmcNRUXD7LWf+MzaJqQIdF9lOzg6Va6GZ/L0GrtxOwcfQjG8ZNI1wUGCQkyxNcrFfn46zakLDye2RcT0o+LKE5sqT0FxnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KQSYovJb; arc=none smtp.client-ip=209.85.208.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f66.google.com with SMTP id 4fb4d7f45d1cf-65bf20c10fdso1554962a12.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 08:01:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1771257681; x=1771862481; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QUAlu6XYigsGBemijuVDswvQMOiLK2+waYYTQNmfMck=;
+        b=KQSYovJbrFvfGfe+/I4RIdGB2ze5by2aGkMRCOTmkIU1E2GK/DkJlgvOqcdWlp+lKx
+         I3CwujlWny/FR86knWcDUzLMvzOKlkOv3ffXJVLbjFY8/AbPt02Wa1Lw51jhhFmJXPrr
+         4nPvJghHaJrky4F8vH0cZk8XUS714mzHApXXUtMMAhwD9mx2+fxZMT+er5LG9LRFZaOn
+         hg5xA+RRMMHMV0oroA2f52Z7lm8MhBgX+EEECe69A24TQoMLZM/VvsyJ5U79H+b7vjkk
+         k1aJSpfqj8rJV8vxee43wCqLgItb6YkVgfouNKZUUhZVo93bweKeLBN14kIjly3kvZQq
+         9DfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771257681; x=1771862481;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QUAlu6XYigsGBemijuVDswvQMOiLK2+waYYTQNmfMck=;
+        b=P9PbxFbDzw80wrJHHsrdhQnVUYU+C+kBMvhFTjAj3gJlh6iLmowu7bd3wOgvhGjDx0
+         xf2p5nzBeuoiH29NMS+AKfluzogFVFHcT1plD7Houift6nnNuH2E593J5G3IgicElohz
+         1XwPyBjCu8vYQcTHZfJ9Q6TRfjavReV/NiTW9S6PjU4QR4nhfhKzb5DG23I2Ce5YIBxM
+         s4eLrkFlfQI/3of/02gwoEaDsg4DLZFWPf22cfKFMdVZWEq6+9AZcCAo0Y1TrZ0X3aQa
+         vpMqpPmFpez+9Ot94nIIdWVEmPtF0togjIgbTu1yeJM8OU9vsIpxIUiuPNQGhQwHvoel
+         4FsA==
+X-Forwarded-Encrypted: i=1; AJvYcCVZyJtu1Wbdl0L4VBGlvpBBTuv5Nu00BfZdmF/RIpfkYblDnE15TZXS+uZNyT8jWD69aVLMdAnRazFN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXF47ZAeOuUHzEY3uxjSfrBIG4AAbxNxsq1fzruwCqIHKgb4er
+	ku4eBHOo6h+jDBl4dAnHxZuUkGb450QcycqC1taQRoNO4QzXhKI5OR4RD92uvN8ntOWilXsuqWx
+	Z2MbOB04=
+X-Gm-Gg: AZuq6aKrHW/jkigaqT4Qz3YlYu8HkW95d9MYGXbhX/9Xn8kDgUGJ8lTLBt1NYNH1nyd
+	HMNAwflUCWwEyhzec0I6963dRCJ7LGUA+FXVtvO5TIJg9UsZaUGPiFa7uG6dklY0Z7wf3mTlYHI
+	LBQthGQH8S8GZgrd5QtzfMNfB8w4/zkoULplxVpqh3HPzH8T8t5mL+H766z0bSKX4iAv0TsVgq3
+	nk2fiva0cJPvY9zj7bYZkHhjoVX8NxKkwWt7bZG0Urr4+JurNqpEB7FIF3Km4zmYXa3iHaQcQNJ
+	0jRno4eX4JylL2jdn7/NXCelZ43Lq7+OLWf/rP3oyuBlDh/f8YZ9YSc8o6XJP73u9r86FlZZ+wA
+	AB2C7sGKcMsXm58k+CSoCESF4Bt661SyRemMK/OoO7moAkLGBAR/M0bYTn4Jlf9Or6dM03pi21M
+	1oFdjL9Jj6GK/mt8I6ruGql6uASDHYaK9J13a1kkoOmU0lwSrJw4xQT+wq4Ao5Dh9dKtk0BaFHP
+	z0EEQ==
+X-Received: by 2002:a17:907:6d22:b0:b88:505d:2ac with SMTP id a640c23a62f3a-b8fc38f90eamr352340766b.1.1771257680468;
+        Mon, 16 Feb 2026 08:01:20 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:106d:1080:80b4:8b51:72a6:9e2a? ([2a01:e0a:106d:1080:80b4:8b51:72a6:9e2a])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8fc76c7015sm259165666b.66.2026.02.16.08.01.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Feb 2026 08:01:20 -0800 (PST)
+Message-ID: <b10bf126-d664-42e4-a333-10657eca6d94@linaro.org>
+Date: Mon, 16 Feb 2026 17:01:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v3 1/2] drm/panel: simple: Add Waveshare 13.3" panel
+ support
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+ dri-devel@lists.freedesktop.org
+Cc: Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Jessica Zhang <jesszhan0024@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
+ Rob Herring <robh@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
+ Simona Vetter <simona@ffwll.ch>, Thierry Reding <thierry.reding@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20260117005028.126361-1-marek.vasut+renesas@mailbox.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20260117005028.126361-1-marek.vasut+renesas@mailbox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RSPAMD_URIBL_FAIL(0.00)[mediatek.com:query timed out];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265873-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[mediatek.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,glider.be,linux.intel.com,ravnborg.org,ffwll.ch,suse.de,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-265871-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ryder.lee@mediatek.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 64516145DED
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_EQ_FROM(0.00)[]
+X-Rspamd-Queue-Id: DA12D145DC0
 X-Rspamd-Action: no action
 
-Clarify the usage of path backoff limit properties in mt76 binding.
-Add explicit documentation for old generation (mt7915, mt7916, mt7981,
-mt7986) and new generation (mt7990, mt7992, mt7996) devices, including
-the difference in beamforming and non-beamforming entries.
+On 1/17/26 01:49, Marek Vasut wrote:
+> Add WaveShare 13.3inch 1920x1080 DSI Capacitive Touch Display support.
+> 
+> While the panel is described as DPI panel, it is part of a larger unit
+> in non-removable metal casing, so the actual internal configuration is
+> not known. The panel is attached to "waveshare,dsi2dpi" bridge via DT.
+> It is likely that internally, this panel is an LVDS panel, connected to
+> ICN6211 DSI-to-DPI bridge and then another unknown DPI-to-LVDS bridge.
+> 
+> Current device link is at https://www.waveshare.com/13.3inch-dsi-lcd.htm
+> 
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> ---
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Jessica Zhang <jesszhan0024@gmail.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Magnus Damm <magnus.damm@gmail.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> ---
+> V3: New patch. Note that the compatible string is already part of
+>      Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> ---
+>   drivers/gpu/drm/panel/panel-simple.c | 30 ++++++++++++++++++++++++++++
+>   1 file changed, 30 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index 91ab280869bac..40a73c32b0b17 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -4998,6 +4998,33 @@ static const struct panel_desc vl050_8048nt_c01 = {
+>   	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
+>   };
+>   
+> +static const struct drm_display_mode waveshare_133inch_mode = {
+> +	.clock = 148500,
+> +	.hdisplay = 1920,
+> +	.hsync_start = 1920 + 88,
+> +	.hsync_end = 1920 + 88 + 44,
+> +	.htotal = 1920 + 88 + 44 + 148,
+> +	.vdisplay = 1080,
+> +	.vsync_start = 1080 + 4,
+> +	.vsync_end = 1080 + 4 + 5,
+> +	.vtotal = 1080 + 4 + 5 + 36,
+> +	.flags = DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_PHSYNC,
+> +};
+> +
+> +static const struct panel_desc waveshare_133inch = {
+> +	.modes = &waveshare_133inch_mode,
+> +	.num_modes = 1,
+> +	.bpc = 8,
+> +	.size = {
+> +		.width = 293,
+> +		.height = 163,
+> +	},
+> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
+> +	.connector_type = DRM_MODE_CONNECTOR_DPI,
+> +	.bus_flags = DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE |
+> +		     DRM_BUS_FLAG_SYNC_SAMPLE_POSEDGE,
+> +};
+> +
+>   static const struct drm_display_mode winstar_wf35ltiacd_mode = {
+>   	.clock = 6410,
+>   	.hdisplay = 320,
+> @@ -5598,6 +5625,9 @@ static const struct of_device_id platform_of_match[] = {
+>   	}, {
+>   		.compatible = "vxt,vl050-8048nt-c01",
+>   		.data = &vl050_8048nt_c01,
+> +	}, {
+> +		.compatible = "waveshare,13.3inch-panel",
+> +		.data = &waveshare_133inch,
+>   	}, {
+>   		.compatible = "winstar,wf35ltiacd",
+>   		.data = &winstar_wf35ltiacd,
 
-Rephrase the paths-ru/paths-ru-bf description to make them more precise.
+LGTM
 
-Co-developed-by: Allen Ye <allen.ye@mediatek.com>
-Signed-off-by: Allen Ye <allen.ye@mediatek.com>
-Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
----
-v4:
-- revise commit message
-- use PCI id as the compatible string to replace "connac2/3"
 
-v5: fix missing starting space in comment(comments)
-v6: separate commits with their own separate rationale
-v7: add missing dts mailing list and maintainers
----
- .../bindings/net/wireless/mediatek,mt76.yaml     | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-index 72cc30251..20b868f7d 100644
---- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-@@ -257,6 +257,14 @@ properties:
-                       followed by 10 power limit values. The order of the
-                       channel resource unit settings is RU26, RU52, RU106,
-                       RU242/SU20, RU484/SU40, RU996/SU80 and RU2x996/SU160.
-+                      - For mt7981/mt7986/mt7915/mt7916
-+                        - Beamforming entries for BW20~BW160 and OFDM do not
-+                          include 1T1ss.
-+                        - When 1T1ss is not used, it should be filled with 0.
-+                      - For mt7996/mt7992/mt7990
-+                        - Beamforming entries for BW20~BW160 and RU include
-+                          1T1ss, but OFDM does not include 1T1ss.
-+                        - 1T1ss is taken into account, so no need to fill with 0.
-                     minItems: 1
-                     maxItems: 7
-                     items:
-@@ -275,6 +283,14 @@ properties:
-                       followed by 10 power limit values. The order of the
-                       channel resource unit settings is RU26, RU52, RU106,
-                       RU242/SU20, RU484/SU40, RU996/SU80 and RU2x996/SU160.
-+                      - For mt7981/mt7986/mt7915/mt7916
-+                        - Beamforming entries for BW20~BW160 and OFDM do not
-+                          include 1T1ss.
-+                        - When 1T1ss is not used, it should be filled with 0.
-+                      - For mt7996/mt7992/mt7990
-+                        - Beamforming entries for BW20~BW160 and RU include
-+                          1T1ss, but OFDM does not include 1T1ss.
-+                        - 1T1ss is taken into account, so no need to fill with 0.
-                     minItems: 1
-                     maxItems: 7
-                     items:
--- 
-2.45.2
-
+Thanks,
+Neil
 
