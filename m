@@ -1,298 +1,215 @@
-Return-Path: <devicetree+bounces-265905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265906-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EHTQMt9Pk2nA3QEAu9opvQ
-	(envelope-from <devicetree+bounces-265905-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 18:11:59 +0100
+	id UBfCHG9Qk2nA3QEAu9opvQ
+	(envelope-from <devicetree+bounces-265906-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 18:14:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61EE01469B7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 18:11:59 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BBA0146A0B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 18:14:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 18E36303793A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:11:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 50DDC3002F77
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 975F632D7F0;
-	Mon, 16 Feb 2026 17:10:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFCCE2D6E58;
+	Mon, 16 Feb 2026 17:14:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AyxeSNxQ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JMvM+OHz";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NpCC7xpo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6D93164C2;
-	Mon, 16 Feb 2026 17:10:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40362BE031
+	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 17:14:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771261854; cv=none; b=T/x0ebyD27g4HMRJxShmZ/GsBUXkolLf1osnxwd3bUKBs3Ad5c1Jz3KJDkPWGXO4QH7pj6rxYqvDM1ywmJOt/U80wYNF8kK3lCo1iEmE3ykQgzRLUJoCN6mshaHwLXdhf57SlJx756vQCNftKh1GGtDYnvp7jRpK2jZ8JivH9RU=
+	t=1771262047; cv=none; b=OG/5mKnj6tEfQjaKAWu8DCE3ZvbAAIqg9cBGX6irEkCGq7gn0l6zDOLWwZJU9UlLtDt+4w89GGFINTiAuVrSgVQ72x/W5GA09sSMxAP8Np2hX6FsF/itgSSGmMYTxAImH7rrpW5ShWjgaet0q0JPZ7sGM942T23lQROp7zR1hms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771261854; c=relaxed/simple;
-	bh=e0IeUiRaVin5omBjuJSDZUirOOK2r3E2elE9nOGlE9U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BTy0F9jcEz6ZaxHHNao5pYvJZXKAmkugTzEJ6OYKO0QU7wWlZ8imjK3L5xdwpg4eappvhKOXFedfPBRfvbiUOX+QFZSQPJRtLh9HQR57adGmgBBpx3dWWLuG6lSA5VxXrNe/ozEyYclZLQFZVlzwO+lNnVxY6fj5jGewhX2VdwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AyxeSNxQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3D700C4AF0B;
-	Mon, 16 Feb 2026 17:10:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771261854;
-	bh=e0IeUiRaVin5omBjuJSDZUirOOK2r3E2elE9nOGlE9U=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=AyxeSNxQ8UwtUoomR9DuReWBnVu1PHUwdI/VpJnG0hfC43ojMUSTPPPr/+9w4ZqRL
-	 Mv2NXWsW8Ih2RXsJvBTXXcoghnoIYSW6ehubF+LxFABilgEL3RvVYOaNsOA+UjYgIK
-	 PAW9N4uC2/LCzH0kwwqekcCI6IzQglZs3i08+e6sJBCmNXmVHF3stHbqghnoXcbEKi
-	 cIj9eJ33XT6Tly1EBXkJ4+J/PojPafvJv/m4TYSCxYlH6/psdp/mvZm7/6C1dcA9fX
-	 +VJBHrF7Ej2yYas2ICUsJtpOWOiI5lkxHCJXaThf9aMdJZFV8hOJLuLiIGAEDjZhNc
-	 XdTTwTmLZKlsg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 300EDE81A5B;
-	Mon, 16 Feb 2026 17:10:54 +0000 (UTC)
-From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Date: Mon, 16 Feb 2026 17:10:55 +0000
-Subject: [PATCH v5 11/11] iio: amplifiers: ad8366: update device support
+	s=arc-20240116; t=1771262047; c=relaxed/simple;
+	bh=DJfoagWYlcT7C9h6T8R8g2p5mRdkknDD4p0iI8EnbJs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UsBBQOORUr1ntp3OQWuXBlOcB2YQeXXnErADqbTuis+EyOzxBaPEjbKNyWUkH/YWDjw3oMF9BI1D2YnjlihLoeuOJh6R+yMVwU1gSV0nwWq3yi54ue7gb8o4V/EUucWF6TiDamhaUaYmr0XJ+hhDrUQgf6s0QUkQgrYaSFNfeG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JMvM+OHz; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NpCC7xpo; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61GG1i65048843
+	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 17:14:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=8YzRM8u5SY+kbtvUuFO0hctv
+	CD25XVo03kPlNPSNdN8=; b=JMvM+OHz5eRh4zvi+NHjLJ2YoYUuB0kacVQGHp9G
+	t/ciwnM7uUIj2aKY5XoYRqQLDepRuwtWhQJ42txhfZicyWvZ6e4Mt15fjLrEgWc1
+	u9FKbPfjrw6Ro8NsbQAiSTh2MLNxKjyBpdlal+wh+pNPa5vxOFT3HFudBbI5cOyP
+	ea6EhDOJPQS3fcFjLmoT74OuUZgaSTSj0ss10HlLI11B/VpS9iFGm0vftlUJOv3j
+	fCSldRd8cacdhgz8ffFrF8TcqyBsfmMuMpoFvk7qmbogJ/3J1zHQTLnwcKKTJTet
+	cFtVQZDZjjssdkyWTBO2RnnRg7U+jhnsLD28v6M/3t5G3w==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cc6d805ys-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 17:14:06 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c70ef98116so2288159485a.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 09:14:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1771262045; x=1771866845; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8YzRM8u5SY+kbtvUuFO0hctvCD25XVo03kPlNPSNdN8=;
+        b=NpCC7xpovC5NgXyBWL5BaR1Rjchnh8qnKy3qqS5xSk2zPBjqOpKHz7/45g5iSce5KZ
+         +/pl13/7zpC8MoXYxygWgfpXT3Bl9muWCPP3DnSSpGnj1jgkPqZujb+77bwReON0K81t
+         ncRZ86dUQgLI6Q6S2kmHB8YXNtQHn9jxRxxLArgbHyg/WhHvzx/ZTA83xngWzH0zAvVd
+         Acvl34iQGTXNt7YT9X1cSEFq6yebksMUOs1I8/jFKqjXO7EkvpBz95LVWGlHOpYkOWMx
+         wOu6o7lmlFaNuhTRKt2/l52IDbqIr9TqXZXbDEHVywFs1TVN0whM7LTJmVcOgbIWglso
+         nrGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771262045; x=1771866845;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8YzRM8u5SY+kbtvUuFO0hctvCD25XVo03kPlNPSNdN8=;
+        b=idXhDM2sWZ0AVp7H0L0tpoYhgIePDG6+UdD0JYm7/hXDt2N8nVQjoSzoHVfseUli0G
+         u+J4ecZ5npkO9m/gJC/5CHYIZo8X7fRxRQkw/BhNx5NQwvBJo6UvvHZEUbG0aRoU3UJz
+         WqIlRyP3dqcERxXDcwdy1xPzRyzqca8EkTEZhpvF3euhejEgKOjkecWBeCCzrG3+g0Hz
+         xfIvtL2cAMdWTg+1MwZDNlx6pwNXUnG+4JBNtG/C4+fEow5qXAAEjeH3LuAgn2OrXx1K
+         BS5oECGV5QfIx+LHw3CKPoCXyq3g4T3b2F0C+yLy6mJmi59EIJpUJ3iLM5eX1/2zr1T/
+         XeBA==
+X-Forwarded-Encrypted: i=1; AJvYcCXCu0arQd4IuznmWUsFJDawbOkpKp7qivo18+DqXM0kVaIFITBQtw+G4L7so3GS8/mOrzFy8Op3PeMB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQ6aCaKak3gRtyZSElMRGktP0k4/8LE6jZ3wuvDOIMoBBKyUSP
+	HGA3BcAJMGeZ2R6vQOsElbEJpB1adbFsDADxmJj3UIFO39/U5LG2E05de/D4qtq42UnzC5Rdoiz
+	o4ykBlvh8BLYk8mvjHO2n2horMfEz0/y2mVriMnK6o/fL/F5jwZop5lel3Xc8EHXg
+X-Gm-Gg: AZuq6aKtCvKO/IaCRy6Zww87fIDq+DFPjE188rmRL5PfHrNF+USwe4OCbpDG5RBMOC5
+	utVFoi2azRvWcrloQzlMoNGX5cmO+rKPvUAJQ/dtcCZRXWpA1n4hNYfgmHpvaIebiut5I0yytSp
+	TA5mib9+eZ3kWsNUGT56/Ulg4LyMT3ti2mIpL4gaNwbyOXeEfQ3IhkmDEGdMNI+9ONatFvIUBk8
+	wQxNzz1YdvV3PHX/ktaF+1SiyKOiCv8DaeXD/nT7+3O8MEm/JWhHHhwMlgsURcRuqpP8yOf8ESV
+	ArDFqPnZ9+nvV+c0BG9JR4eiNWDE34JX2CWAn6zX3PfifQMRUosMx7v+9zqILJeNWnhGg5Qmn3y
+	DjuIJlcVBnqrvZF2CDw6ZAUp87xSEq+yd/+RJ
+X-Received: by 2002:a05:620a:4706:b0:8b1:f1e4:a3d2 with SMTP id af79cd13be357-8cb4229c927mr1280895085a.24.1771262044885;
+        Mon, 16 Feb 2026 09:14:04 -0800 (PST)
+X-Received: by 2002:a05:620a:4706:b0:8b1:f1e4:a3d2 with SMTP id af79cd13be357-8cb4229c927mr1280891585a.24.1771262044384;
+        Mon, 16 Feb 2026 09:14:04 -0800 (PST)
+Received: from oss.qualcomm.com ([86.121.162.109])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4834d482480sm496539185e9.0.2026.02.16.09.14.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Feb 2026 09:14:03 -0800 (PST)
+Date: Mon, 16 Feb 2026 19:14:01 +0200
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH v3 4/6] clk: qcom: rpmh: Add support for Eliza rpmh clocks
+Message-ID: <3vn7er5thzwnly5kihzvpjboik5fm7jfotdvqspt6p73horbpk@67k6weab3ec4>
+References: <20260216-eliza-clocks-v3-0-8afc5a7e3a98@oss.qualcomm.com>
+ <20260216-eliza-clocks-v3-4-8afc5a7e3a98@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260216-iio-ad8366-update-v5-11-7e6091357d02@analog.com>
-References: <20260216-iio-ad8366-update-v5-0-7e6091357d02@analog.com>
-In-Reply-To: <20260216-iio-ad8366-update-v5-0-7e6091357d02@analog.com>
-To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>, 
- Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Rodrigo Alencar <rodrigo.alencar@analog.com>, 
- Alexandru Ardelean <alexandru.ardelean@analog.com>, 
- Andy Shevchenko <andriy.shevchenko@intel.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1771261851; l=6757;
- i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
- bh=IP0Q14Wu7q7zwFy9Nj6jg6zOD0UoOhkxtbBst3yVtgM=;
- b=A3+YY8X4cn13eCtaxB/G4oBGtatXQZylFpHWeG9NWFGhG7LCmYQ50UeE9aHAw0mLNTN7WxDw1
- BkghbVjuI7xDTPOvNkskVtrvTx0PywSJB090uvucDemK/QFjDv/u41D
-X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
- pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
-X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
- with auth_id=561
-X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-Reply-To: rodrigo.alencar@analog.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260216-eliza-clocks-v3-4-8afc5a7e3a98@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=bqVBxUai c=1 sm=1 tr=0 ts=6993505e cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
+ a=kj9zAlcOel0A:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=EUspDBNiAAAA:8 a=yZxmAL73Vz1KKP0sLwcA:9 a=CjuIK1q_8ugA:10
+ a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE2MDE0NyBTYWx0ZWRfX9kyrOhcFjm2S
+ OwXcQTHEU0LIUZ5ZRSf5Zhwa0iJD5WxkIn9fiz6T6cflHCsbVwxagLSyeztSRxmgrTWHQ1geLeM
+ QqGlqlCYtnUONAuFSOg267OsqtUVD5WsWgZ6z/PJwcIQuzFiSnCfasevXLt57dfiqz3XAijDMha
+ gEs48cuatEwHGu7eC2JaW+yd/YElVNeex9Ku2c4SgZoXdAkv3SOm9Jd1cJ41L6URKMi82uy8VfL
+ MCiSjGyNhWYOE4EyKNYG0LlgbKJiKhFK+gDrqUG/hqvnLIRVyvEWOegyNv/vypuETNC/lizyFmv
+ HHsr7TFSCJXB+Ht+2+R4TpBHQpxneLYL0rd4qiRJJt0zLA39i+eJkR3qqWH/N99xY2z4uMrhXA4
+ KBAxDunK7mY2QPlPODzj9EF8oWnIbfakaK/w0589Ue+6NVz36a9NoYaFWfNcN4YFbBSNw6NCd4Q
+ z7Gp+HNDQsl0/SBywMA==
+X-Proofpoint-GUID: AeFHYuWWLtHJEp2G4IdNmLYF4VC0faEc
+X-Proofpoint-ORIG-GUID: AeFHYuWWLtHJEp2G4IdNmLYF4VC0faEc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-16_05,2026-02-16_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 impostorscore=0 lowpriorityscore=0 bulkscore=0
+ priorityscore=1501 spamscore=0 adultscore=0 phishscore=0 clxscore=1015
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2602160147
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265905-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265906-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,analog.com:mid,analog.com:email,analog.com:replyto,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 61EE01469B7
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 8BBA0146A0B
 X-Rspamd-Action: no action
 
-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+On 26-02-16 15:43:06, Abel Vesa wrote:
+> From: Taniya Das <taniya.das@oss.qualcomm.com>
+> 
+> Add the RPMH clocks present in Eliza SoC.
+> 
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
+>  drivers/clk/qcom/clk-rpmh.c | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
+> index 547729b1a8ee..cf46a6585174 100644
+> --- a/drivers/clk/qcom/clk-rpmh.c
+> +++ b/drivers/clk/qcom/clk-rpmh.c
+> @@ -940,6 +940,25 @@ static const struct clk_rpmh_desc clk_rpmh_kaanapali = {
+>  	.num_clks = ARRAY_SIZE(kaanapali_rpmh_clocks),
+>  };
+>  
+> +static struct clk_hw *eliza_rpmh_clocks[] = {
+> +	[RPMH_CXO_CLK]          = &clk_rpmh_bi_tcxo_div2.hw,
+> +	[RPMH_CXO_CLK_A]        = &clk_rpmh_bi_tcxo_div2_ao.hw,
+> +	[RPMH_LN_BB_CLK1]	= &clk_rpmh_clk6_a2.hw,
+> +	[RPMH_LN_BB_CLK1_A]	= &clk_rpmh_clk6_a2_ao.hw,
+> +	[RPMH_LN_BB_CLK3]	= &clk_rpmh_clk8_a2.hw,
+> +	[RPMH_LN_BB_CLK3_A]	= &clk_rpmh_clk8_a2_ao.hw,
+> +	[RPMH_RF_CLK1]		= &clk_rpmh_rf_clk1_a.hw,
+> +	[RPMH_RF_CLK1_A]	= &clk_rpmh_rf_clk1_a_ao.hw,
+> +	[RPMH_RF_CLK2]		= &clk_rpmh_rf_clk2_a.hw,
+> +	[RPMH_RF_CLK2_A]	= &clk_rpmh_rf_clk2_a_ao.hw,
+> +	[RPMH_IPA_CLK]		= &clk_rpmh_ipa.hw,
 
-Add support for the following digital step attenuators:
-- HMC271A: 1dB LSB 5-Bit Digital Attenuator SMT, 0.7 - 3.7 GHz
-- ADRF5720: 0.5 dB LSB, 6-Bit, Digital Attenuator, 9 kHz to 40 GHz
-- ADRF5730: 0.5 dB LSB, 6-Bit, Digital Attenuator, 100 MHz to 40 GHz
-- ADRF5731: 2 dB LSB, 4-Bit, Digital Attenuator, 100 MHz to 40 GHz
-- HMC1018A: 1.0 dB LSB GaAs MMIC 5-BIT DIGITAL ATTENUATOR, 0.1 - 30 GHz
-- HMC1019A: 0.5 dB LSB GaAs MMIC 5-BIT DIGITAL ATTENUATOR, 0.1 - 30 GHz
+Actually, there seems to the rfclka4 and rfclka5 in cmd-db.
 
-Additionally, copyright notice was updated with current year.
-
-Co-developed-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
-Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
-Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
----
- drivers/iio/amplifiers/Kconfig  |  6 +++
- drivers/iio/amplifiers/ad8366.c | 84 ++++++++++++++++++++++++++++++++++++++++-
- 2 files changed, 89 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/iio/amplifiers/Kconfig b/drivers/iio/amplifiers/Kconfig
-index a8a604863eed..39d280d4d437 100644
---- a/drivers/iio/amplifiers/Kconfig
-+++ b/drivers/iio/amplifiers/Kconfig
-@@ -18,7 +18,13 @@ config AD8366
- 	    AD8366 Dual-Digital Variable Gain Amplifier (VGA)
- 	    ADA4961 BiCMOS RF Digital Gain Amplifier (DGA)
- 	    ADL5240 Digitally controlled variable gain amplifier (VGA)
-+	    ADRF5720: 0.5 dB LSB, 6-Bit, Silicon Digital Attenuator
-+	    ADRF5730: 0.5 dB LSB, 6-Bit, Silicon Digital Attenuator
-+	    ADRF5731: 2 dB LSB, 4-Bit, Silicon Digital Attenuator
-+	    HMC271A: 1dB LSB 5-Bit Digital Attenuator SMT
- 	    HMC792A 0.25 dB LSB GaAs MMIC 6-Bit Digital Attenuator
-+	    HMC1018A: 1.0 dB LSB GaAs MMIC 5-BIT Digital Attenuator
-+	    HMC1019A: 0.5 dB LSB GaAs MMIC 5-BIT Digital Attenuator
- 	    HMC1119 0.25 dB LSB, 7-Bit, Silicon Digital Attenuator
- 
- 	  To compile this driver as a module, choose M here: the
-diff --git a/drivers/iio/amplifiers/ad8366.c b/drivers/iio/amplifiers/ad8366.c
-index d4499af0518a..334ca91c0f59 100644
---- a/drivers/iio/amplifiers/ad8366.c
-+++ b/drivers/iio/amplifiers/ad8366.c
-@@ -5,10 +5,16 @@
-  *   AD8366 Dual-Digital Variable Gain Amplifier (VGA)
-  *   ADA4961 BiCMOS RF Digital Gain Amplifier (DGA)
-  *   ADL5240 Digitally controlled variable gain amplifier (VGA)
-+ *   ADRF5720: 0.5 dB LSB, 6-Bit, Silicon Digital Attenuator, 9 kHz to 40 GHz
-+ *   ADRF5730: 0.5 dB LSB, 6-Bit, Silicon Digital Attenuator, 100 MHz to 40 GHz
-+ *   ADRF5731: 2 dB LSB, 4-Bit, Silicon Digital Attenuator, 100 MHz to 40 GHz
-+ *   HMC271A: 1dB LSB 5-Bit Digital Attenuator SMT, 0.7 - 3.7 GHz
-  *   HMC792A 0.25 dB LSB GaAs MMIC 6-Bit Digital Attenuator
-+ *   HMC1018A: 1.0 dB LSB GaAs MMIC 5-BIT DIGITAL ATTENUATOR, 0.1 - 30 GHz
-+ *   HMC1019A: 0.5 dB LSB GaAs MMIC 5-BIT DIGITAL ATTENUATOR, 0.1 - 30 GHz
-  *   HMC1119 0.25 dB LSB, 7-Bit, Silicon Digital Attenuator
-  *
-- * Copyright 2012-2019 Analog Devices Inc.
-+ * Copyright 2012-2026 Analog Devices Inc.
-  */
- 
- #include <linux/bitrev.h>
-@@ -61,6 +67,20 @@ static size_t ad8366_pack_code(const unsigned char *code, size_t num_channels,
- 	return sizeof(__be16);
- }
- 
-+static size_t adrf5731_pack_code(const unsigned char *code, size_t num_channels,
-+				 unsigned char *data)
-+{
-+	data[0] = code[0] << 2;
-+	return 1;
-+}
-+
-+static size_t hmc271_pack_code(const unsigned char *code, size_t num_channels,
-+			       unsigned char *data)
-+{
-+	data[0] = bitrev8(code[0]) >> 3;
-+	return 1;
-+}
-+
- static const struct ad8366_info ad8366_chip_info = {
- 	.name = "ad8366",
- 	.gain_min = 4500,
-@@ -86,6 +106,40 @@ static const struct ad8366_info adl5240_chip_info = {
- 	.num_channels = 1,
- };
- 
-+static const struct ad8366_info adrf5720_chip_info = {
-+	.name = "adrf5720",
-+	.gain_min = -31500,
-+	.gain_max = 0,
-+	.gain_step = -500,
-+	.num_channels = 1,
-+};
-+
-+static const struct ad8366_info adrf5730_chip_info = {
-+	.name = "adrf5730",
-+	.gain_min = -31500,
-+	.gain_max = 0,
-+	.gain_step = -500,
-+	.num_channels = 1,
-+};
-+
-+static const struct ad8366_info adrf5731_chip_info = {
-+	.name = "adrf5731",
-+	.gain_min = -30000,
-+	.gain_max = 0,
-+	.gain_step = -2000,
-+	.num_channels = 1,
-+	.pack_code = adrf5731_pack_code,
-+};
-+
-+static const struct ad8366_info hmc271_chip_info = {
-+	.name = "hmc271a",
-+	.gain_min = -31000,
-+	.gain_max = 0,
-+	.gain_step = 1000,
-+	.num_channels = 1,
-+	.pack_code = hmc271_pack_code,
-+};
-+
- static const struct ad8366_info hmc792_chip_info = {
- 	.name = "hmc792a",
- 	.gain_min = -15750,
-@@ -94,6 +148,22 @@ static const struct ad8366_info hmc792_chip_info = {
- 	.num_channels = 1,
- };
- 
-+static const struct ad8366_info hmc1018_chip_info = {
-+	.name = "hmc1018a",
-+	.gain_min = -31000,
-+	.gain_max = 0,
-+	.gain_step = 1000,
-+	.num_channels = 1,
-+};
-+
-+static const struct ad8366_info hmc1019_chip_info = {
-+	.name = "hmc1019a",
-+	.gain_min = -15500,
-+	.gain_max = 0,
-+	.gain_step = 500,
-+	.num_channels = 1,
-+};
-+
- static const struct ad8366_info hmc1119_chip_info = {
- 	.name = "hmc1119",
- 	.gain_min = -31750,
-@@ -267,7 +337,13 @@ static const struct spi_device_id ad8366_id[] = {
- 	{ "ad8366", (kernel_ulong_t)&ad8366_chip_info },
- 	{ "ada4961", (kernel_ulong_t)&ada4961_chip_info },
- 	{ "adl5240", (kernel_ulong_t)&adl5240_chip_info },
-+	{ "adrf5720", (kernel_ulong_t)&adrf5720_chip_info },
-+	{ "adrf5730", (kernel_ulong_t)&adrf5730_chip_info },
-+	{ "adrf5731", (kernel_ulong_t)&adrf5731_chip_info },
-+	{ "hmc271a", (kernel_ulong_t)&hmc271_chip_info },
- 	{ "hmc792a", (kernel_ulong_t)&hmc792_chip_info },
-+	{ "hmc1018a", (kernel_ulong_t)&hmc1018_chip_info },
-+	{ "hmc1019a", (kernel_ulong_t)&hmc1019_chip_info },
- 	{ "hmc1119", (kernel_ulong_t)&hmc1119_chip_info },
- 	{ }
- };
-@@ -277,7 +353,13 @@ static const struct of_device_id ad8366_of_match[] = {
- 	{ .compatible = "adi,ad8366", .data = &ad8366_chip_info },
- 	{ .compatible = "adi,ada4961", .data = &ada4961_chip_info },
- 	{ .compatible = "adi,adl5240", .data = &adl5240_chip_info },
-+	{ .compatible = "adi,adrf5720", .data = &adrf5720_chip_info },
-+	{ .compatible = "adi,adrf5730", .data = &adrf5730_chip_info },
-+	{ .compatible = "adi,adrf5731", .data = &adrf5731_chip_info },
-+	{ .compatible = "adi,hmc271a", .data = &hmc271_chip_info },
- 	{ .compatible = "adi,hmc792a", .data = &hmc792_chip_info },
-+	{ .compatible = "adi,hmc1018a", .data = &hmc1018_chip_info },
-+	{ .compatible = "adi,hmc1019a", .data = &hmc1019_chip_info },
- 	{ .compatible = "adi,hmc1119", .data = &hmc1119_chip_info },
- 	{ }
- };
-
--- 
-2.43.0
-
-
+Will respin and add those.
 
