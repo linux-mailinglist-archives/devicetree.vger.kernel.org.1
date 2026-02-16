@@ -1,104 +1,58 @@
-Return-Path: <devicetree+bounces-265661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265662-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gKp8Ep/Pkmm1yQEAu9opvQ
-	(envelope-from <devicetree+bounces-265661-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 09:04:47 +0100
+	id EGN4FFXRkmk1ygEAu9opvQ
+	(envelope-from <devicetree+bounces-265662-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 09:12:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEA24141699
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 09:04:46 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C327514171D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 09:12:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0AAB8300231E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 08:04:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E51B63006526
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 08:12:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76F442F7ADE;
-	Mon, 16 Feb 2026 08:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 776E62FDC5E;
+	Mon, 16 Feb 2026 08:12:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HMi69wWK";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="b9MIuhGY"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="SqF8Smib"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4621F291C10
-	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 08:04:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F247A2EE617;
+	Mon, 16 Feb 2026 08:11:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771229083; cv=none; b=kP3xHNuIb9hFhzE1JggPD9phv1zZxpfVZ1DITdXtNzssj5+VyKsduvtP8KFuqJ8A7gdf/bmtdBLuae8Tyydr4DyUTQ/GqqVCqZuI/W9FM8t5GfelaMMnkxP1zo6BLR2z/6X6tpuTz6yqQaPIkb3pUlxzgcMw69+7sSjZtDhWIUU=
+	t=1771229522; cv=none; b=T9qMhj16lPtwOtUF2xB5bwxE33cB0ISZU9uYqGCQ11mx1o966u+Fs0s/RmKuPSND/fa8JlR+e1/kQDVksmQEcvnPZa9jBpzRAvROWkmYpf5/sPQInAbG6IS7Q7QU07JJXC7a/M60SEVrRhFmb0D3NWT1t3dav/0nn4yXi7XnA/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771229083; c=relaxed/simple;
-	bh=pBtE9DL5BTRf7rTFWdzuOuE87QBnLTwQaL6W3mK/dTA=;
+	s=arc-20240116; t=1771229522; c=relaxed/simple;
+	bh=3HYqKGUDU9JGeXZAcBF46can3OoH/CCNNOhHTr/xDHE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rVDE4EnmpCzutQGOd8fjvCM+IOuQZIUf6vO4RWYQARJfleI5htUNQGHN5pWtlZDBfzSXD7z8F9b2iO2a+/8k8Pkofksd0pWghRyiRPmv4x0WRFvW+V63o7BbN09sBXa1dsKr+QGpvQUtGIErUheFm9yAQ+c3ffrxYL/KsoYn/+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HMi69wWK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=b9MIuhGY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61FNCsTH1813118
-	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 08:04:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pBtE9DL5BTRf7rTFWdzuOuE87QBnLTwQaL6W3mK/dTA=; b=HMi69wWKosR8Go3c
-	zdgG1s5TMXw2nQRjcn088vPRpp91qiy83qBH2XaFeJoMovUZYwv4PqYi6Tc+Tcbv
-	y2D8avqlQGhZIhvgBbqj/0RUjphWALebLOcovi143xYSLOqp+3czyuM1FPzHtS9A
-	zek2zY75/5SsMuDvu0tnEASWLfv9QCx7BI9Z22JIwSVSbTGolkV7f00lDxsy41hZ
-	pKoCOc+SoEM21goWQ2Bu4FGsytmB8VbMK3UX7eIoautbrK83UxvUp0m/pfZigK/0
-	hVfeb1+P2AQLd9foR027GBjToSNqWOE+vAneHnFfmh+PTwbCXABnyBOahl+cbhy0
-	CpEyiw==
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cbnv9gwub-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 08:04:41 +0000 (GMT)
-Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-c62e3b40e7cso1197004a12.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 00:04:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771229080; x=1771833880; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pBtE9DL5BTRf7rTFWdzuOuE87QBnLTwQaL6W3mK/dTA=;
-        b=b9MIuhGYhGYIBoNAKkaCiGLvV+Iw41y04LdbWn0othMNIKdpqQiCZpKCLNEJhz91SJ
-         53w0iaYam67RkXH/HG9XL+Ris3ww6nsf57wtqu2P+vmckpDT7m4k5FE/DHcXp0tzHVon
-         IyEt0OcPqdz2YzLid7QkeK3YmwguQiTc2+KRkiq3Lp2TPme4KWA+Rzq2TXbwgfJ2Es0t
-         9m/uhtiGAlFLzTtEmqf4q4JWtL3dEni1h7ShB7OZFVp0WePiKUOH333f4+DYzticc4kg
-         MklAmwSKVcCi4aAAdD7gCcqmCwpg3c04HSUGOuc5u4sE6NOheWPkk68ajRd6e7SudSvo
-         ENOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771229080; x=1771833880;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pBtE9DL5BTRf7rTFWdzuOuE87QBnLTwQaL6W3mK/dTA=;
-        b=nO3C+3WFt9+g71bXAMR5TQ9jhANqJIdlKBbQsnCf+1hgJ5GHKk7Vj7yxpC6p73+fe8
-         sSZVlLDTz3DLFDEx2B+u8sP8zJeQNQEC7WGUQfBTUuyDIijHUpWUVbJB0rbkQt3rJOuN
-         BHmO/kgHbEaujq1Z26zLPEMJmgPqf0Z2Hl0mqKzhrR/W5uKT87pPI1U7eQyBS4SFqqdx
-         4JSICKh+Pft66ovS4bB0eohU6c0/FpxYAHin5Ix2JxQ42DOMGXV0OgP0IH6gaPhFy+uu
-         jU4JgZJAVi25Xbtt26xSgOQ62ydVrkPrKSq9p+qMPndibQcYQOq7noxA4w6w01OVb40+
-         bG+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWybJO7oyZ44zUzqI+SQMxKHwmb8K2q/nU3WI56KjqY1SVe+/bQyYbXRuqJyCxSuCYmlkbZRqg8OctI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSzjXgGehPzC5V/RttvfLf7E1BnJ3ntEuqw8FyOpCsQHthIYg4
-	A6LqdDhan08gk7hv6ki7lBrRcbcfxLyt3vRi4k6zxLgukxh3QD2+ysqRGjq7UyTAKF9uWQuPob3
-	ka28CafFF7muB2p8/7uRpQCRi91g4VMUpXqKbzzqsp6zGyv0RJRNLySfIMovMK/u2
-X-Gm-Gg: AZuq6aKxwgCLvHQxgnSDWBjVzNQgQhP48jrWiTa7R6J0ReDp1qOqZsLOgGfnYMRKZW4
-	5YcJ1X6tStOPcaxD/pWZ9bilomaltLOGORl4T5RVfuf4P8MeDg8eN2OlcqSQjqN+mWXxAE/fswf
-	ourdSRYhejLN2cOlXbmRnPHJGiJYEwplkhQfJx3pT/iPpO3eHyEVvBSS0piLGYN07rcnlv34wub
-	lpZU/b7jsjoN2pCprMqGiCuUBGANev86CC5xdj/WSXkez+XZ1WJFbktQ8TcNhwFENi+0WelCBNZ
-	9Yifhd0GU2r+BeL5r1gvWEQq+t8pdNzVju5p8RK/XawBnMTAmwhD+BYUFK7GSYD80q9qexCNmF1
-	Pe3oTw2OGresM59D8dPxrXk90Dav9yL+XaKUDJEBdutFfsQbDqQ==
-X-Received: by 2002:a17:903:3d06:b0:2a7:cbe3:a6e3 with SMTP id d9443c01a7336-2ab4cef9723mr82266635ad.2.1771229080160;
-        Mon, 16 Feb 2026 00:04:40 -0800 (PST)
-X-Received: by 2002:a17:903:3d06:b0:2a7:cbe3:a6e3 with SMTP id d9443c01a7336-2ab4cef9723mr82266385ad.2.1771229079687;
-        Mon, 16 Feb 2026 00:04:39 -0800 (PST)
-Received: from [10.218.41.33] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1a73200asm63220775ad.36.2026.02.16.00.04.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Feb 2026 00:04:39 -0800 (PST)
-Message-ID: <be4fc7dd-e7c4-4f2e-ab5c-543d8fedf7d6@oss.qualcomm.com>
-Date: Mon, 16 Feb 2026 13:34:34 +0530
+	 In-Reply-To:Content-Type; b=Fj7yotDU3y27ASjWKAHnzDW4HwL0sfhfhvvc3S7aGWEb6DJFu1b5bTs7wNKW43fzmS/js8PA9nyI1sTnqEVBowEn+/Ytu5tx77ZsUBJx39y4U+BsPRVcApCbxarDBpjS/w4j+OOto0rEkkozaIh6Y+KPA59VheULzmXqeYCHb74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=SqF8Smib; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1771229518;
+	bh=3HYqKGUDU9JGeXZAcBF46can3OoH/CCNNOhHTr/xDHE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SqF8Smib7nHdDc32RttjOuPwKqz4BLw1OCQwXYrdq2AGpmvo/C6HNk6IK7MGvcm+m
+	 jydz1JyhssE5o8cEMkUzIBCdHluxaCRisFF5xIHoy3gQjgvD0U1UJPJ5FRTtni62lD
+	 x+2CJO0rMWo42vedhE9z9llD9GcDuFVBmx21BtfVXWeM3zGo9/fLeBl+Y4I3IxX792
+	 ZL2XFXFDbM5ELc/7kax9yJ4eGvyVQT4ApOl55AYMaIE41N79vT86tP8lDhLmLbMj/h
+	 3rCoyOw/T5z8khP+MJEWr2kHWpLcvskOzKSmV68HvMXCt+MWp43r8XucmgwPXhEEe8
+	 cwed7IEOhWRJw==
+Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8A80217E1406;
+	Mon, 16 Feb 2026 09:11:57 +0100 (CET)
+Message-ID: <eef04746-00cf-4971-8e65-37a2a3e60672@collabora.com>
+Date: Mon, 16 Feb 2026 09:11:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,96 +60,285 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: monaco-evk: Add Mezzanine
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, richardcochran@gmail.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mohd.anwar@oss.qualcomm.com,
-        krishna.chundru@oss.qualcomm.com, monish.chunara@oss.qualcomm.com
-References: <20260210103821.4169-1-umang.chheda@oss.qualcomm.com>
- <20260210103821.4169-2-umang.chheda@oss.qualcomm.com>
- <957d7896-cd01-4864-bf07-e6dbdfff1273@oss.qualcomm.com>
- <2d688258-2e2a-4a86-aa98-eca31627d418@oss.qualcomm.com>
- <af15dfbc-806e-4731-a7a3-6832a781154e@oss.qualcomm.com>
+Subject: Re: [PATCH v2 4/6] media: synopsys: csi2rx: Use enum and u32 array
+ for register offsets
+To: Frank Li <Frank.Li@nxp.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, Guoniu Zhou <guoniu.zhou@oss.nxp.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, imx@lists.linux.dev
+References: <20260213-imx93-dw-csi2-v2-0-8be6039f44c6@nxp.com>
+ <20260213-imx93-dw-csi2-v2-4-8be6039f44c6@nxp.com>
 Content-Language: en-US
-From: Umang Chheda <umang.chheda@oss.qualcomm.com>
-In-Reply-To: <af15dfbc-806e-4731-a7a3-6832a781154e@oss.qualcomm.com>
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <20260213-imx93-dw-csi2-v2-4-8be6039f44c6@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: MSY5t5jjQJ-2IH7d3r2HYGBTrOhLlHcv
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE2MDA2NiBTYWx0ZWRfX4lc0N3UBkhu8
- 8SXwAnZRD3oXBbg1QlAhdMQs80t9VQBuTJb3KgwGYBuNRWcnLfbFCV9CcXmyM0bCghMTd0qZbhv
- lcOVfVaFjzlBWhCTtLoTab6AqBeirfYJLWkbZpJWh7rlFe3FP2RGUzV9EPuZ6akvZWZSZt7E2ip
- o5DHr+mF93noUf8VqdzLHMwxcZrtnmQeyhUaI3zQ2PnK/cJVBGHb2X5OO5efIgA/nqkv/Rmauuc
- 2XpavTW2zUKAnjNzGOrPbEo8tx49WCgoz3mK91QH7LQkwB2QBT2KXQ2CTYHsGg5Yb2Op5wpTFIb
- 3iSngsXGdoxpkEHjUuHOhm4b+N+oQnj8mhtjYAhcR7ebLWlKfJ2EYvddBGvW3jqOS172vjt5lUW
- difNn4J28mlbvj2ERQgl1s2ebAAUQTwmpvxWOGWumoxX8qmPhMdgG/oy3JRFjaTUF9AZXlssphM
- dhc+wPXwdxCl4XTkYNQ==
-X-Authority-Analysis: v=2.4 cv=b7K/I9Gx c=1 sm=1 tr=0 ts=6992cf99 cx=c_pps
- a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=QtLaxJc4UxdN8FgP6j4A:9 a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
-X-Proofpoint-GUID: MSY5t5jjQJ-2IH7d3r2HYGBTrOhLlHcv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-16_03,2026-02-16_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 impostorscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0
- phishscore=0 spamscore=0 clxscore=1015 priorityscore=1501 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602160066
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265661-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-265662-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[umang.chheda@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[michael.riesch@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: DEA24141699
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim,collabora.com:email]
+X-Rspamd-Queue-Id: C327514171D
 X-Rspamd-Action: no action
 
+Hi Frank,
 
-On 2/12/2026 9:59 PM, Konrad Dybcio wrote:
-> On 2/12/26 4:50 PM, Umang Chheda wrote:
->> Hi Konrad,
->>
->> On 2/12/2026 7:10 PM, Konrad Dybcio wrote:
->>> On 2/10/26 11:38 AM, Umang Chheda wrote:
->>>> The Mezzanine is an hardware expansion add-on board designed
->>> There's normally multiple mezzanine boards (e.g. a "vision mezzanine"),
->>> is there a better name for it?
->> Does, Interface Plus (IFP) Mezz sounds good ?
-> I don't know, does it stay Interface Plus on the silkscreen or similar?
+Thanks for the update.
 
+Some minor nitpicks, but it already looks good.
 
-I checked the board - there is nothing written on the silkscreen. Internally we call this board Interface Plus (IFP) mezz.
+On 2/13/26 21:25, Frank Li wrote:
+> Use enum dw_mipi_csi2rx_regs_index together with a u32 array to describe
+> register offsets. This allows supporting new IP versions with different
+> register layouts in a structured way.
+> 
+> Add rk3568_regs matching the previous macro definitions and pass it as
+> driver data during probe.
+> 
+> No functional change intended.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> change in v2
+> - change to use enum and u32 array method
+> - use order
+>  - #includes
+>  - #defines
+>  - enum and struct definitions
+>  - the rest
+> ---
+>  drivers/media/platform/synopsys/dw-mipi-csi2rx.c | 91 ++++++++++++++++++++----
+>  1 file changed, 78 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/media/platform/synopsys/dw-mipi-csi2rx.c b/drivers/media/platform/synopsys/dw-mipi-csi2rx.c
+> index a6d251ca5ad14c5138a6fd0202a970460e64c68f..b00ae5fb328da4cc78fe36b629d6661d438e124a 100644
+> --- a/drivers/media/platform/synopsys/dw-mipi-csi2rx.c
+> +++ b/drivers/media/platform/synopsys/dw-mipi-csi2rx.c
+> @@ -24,15 +24,6 @@
+>  #include <media/v4l2-mc.h>
+>  #include <media/v4l2-subdev.h>
+>  
+> -#define DW_MIPI_CSI2RX_N_LANES		0x04
+> -#define DW_MIPI_CSI2RX_RESETN		0x10
+> -#define DW_MIPI_CSI2RX_PHY_STATE	0x14
+> -#define DW_MIPI_CSI2RX_ERR1		0x20
+> -#define DW_MIPI_CSI2RX_ERR2		0x24
+> -#define DW_MIPI_CSI2RX_MSK1		0x28
+> -#define DW_MIPI_CSI2RX_MSK2		0x2c
+> -#define DW_MIPI_CSI2RX_CONTROL		0x40
+> -
+>  #define SW_CPHY_EN(x)		((x) << 0)
+>  #define SW_DSI_EN(x)		((x) << 4)
+>  #define SW_DATATYPE_FS(x)	((x) << 8)
+> @@ -40,12 +31,33 @@
+>  #define SW_DATATYPE_LS(x)	((x) << 20)
+>  #define SW_DATATYPE_LE(x)	((x) << 26)
+>  
+> +/* Help check wrong access unexisted register at difference IP version */
 
->
-> Konrad
+Maybe
 
-Thanks,
-Umang
+/* helper for checking whether register exists */
+
+? However, I think the naming speaks for itself and you can leave the
+comment away.
+
+> +#define DW_REG_EXIST		BIT(31)
+> +#define DW_REG(x)		(DW_REG_EXIST | (x))
+> +
+> +enum dw_mipi_csi2rx_regs_index {
+> +	DW_MIPI_CSI2RX_N_LANES,
+> +	DW_MIPI_CSI2RX_RESETN,
+> +	DW_MIPI_CSI2RX_PHY_STATE,
+> +	DW_MIPI_CSI2RX_ERR1,
+> +	DW_MIPI_CSI2RX_ERR2,
+> +	DW_MIPI_CSI2RX_MSK1,
+> +	DW_MIPI_CSI2RX_MSK2,
+> +	DW_MIPI_CSI2RX_CONTROL,
+> +
+> +	DW_MIPI_CSI2RX_MAX,
+> +};
+> +
+>  enum {
+>  	DW_MIPI_CSI2RX_PAD_SINK,
+>  	DW_MIPI_CSI2RX_PAD_SRC,
+>  	DW_MIPI_CSI2RX_PAD_MAX,
+>  };
+>  
+> +struct dw_mipi_csi2rx_drvdata {
+> +	const u32 *regs;
+> +};
+> +
+>  struct dw_mipi_csi2rx_format {
+>  	u32 code;
+>  	u8 depth;
+> @@ -72,6 +84,23 @@ struct dw_mipi_csi2rx_device {
+>  
+>  	enum v4l2_mbus_type bus_type;
+>  	u32 lanes_num;
+> +
+> +	const struct dw_mipi_csi2rx_drvdata *drvdata;
+> +};
+> +
+> +static const u32 rk3568_regs[DW_MIPI_CSI2RX_MAX] = {
+> +	[DW_MIPI_CSI2RX_N_LANES] = DW_REG(0x4),
+> +	[DW_MIPI_CSI2RX_RESETN] = DW_REG(0x10),
+> +	[DW_MIPI_CSI2RX_PHY_STATE] = DW_REG(0x14),
+> +	[DW_MIPI_CSI2RX_ERR1] = DW_REG(0x20),
+> +	[DW_MIPI_CSI2RX_ERR2] = DW_REG(0x24),
+> +	[DW_MIPI_CSI2RX_MSK1] = DW_REG(0x28),
+> +	[DW_MIPI_CSI2RX_MSK2] = DW_REG(0x2c),
+> +	[DW_MIPI_CSI2RX_CONTROL] = DW_REG(0x40),
+> +};
+> +
+> +static const struct dw_mipi_csi2rx_drvdata rk3568_drvdata = {
+> +	.regs = rk3568_regs,
+>  };
+>  
+>  static const struct v4l2_mbus_framefmt default_format = {
+> @@ -186,16 +215,46 @@ static inline struct dw_mipi_csi2rx_device *to_csi2(struct v4l2_subdev *sd)
+>  	return container_of(sd, struct dw_mipi_csi2rx_device, sd);
+>  }
+>  
+> +static bool dw_mipi_csi2rx_is_exist(struct dw_mipi_csi2rx_device *csi2,
+
+Sounds a bit weird to me, maybe "dw_mipi_csi2rx_has_reg(ister)" or
+"dw_mipi_csi2rx_reg(ister)_exists?
+
+> +				    enum dw_mipi_csi2rx_regs_index index)
+> +{
+> +	if (index < DW_MIPI_CSI2RX_MAX &&
+> +	    (csi2->drvdata->regs[index] & DW_REG_EXIST))
+> +		return true;
+> +
+> +	return false;
+> +}
+> +
+> +static void __iomem *
+> +dw_mipi_csi2rx_get_regaddr(struct dw_mipi_csi2rx_device *csi2,
+> +			   enum dw_mipi_csi2rx_regs_index index)
+> +{
+> +	u32 off = (~DW_REG_EXIST) & csi2->drvdata->regs[index];
+> +
+> +	return csi2->base_addr + off;
+> +}
+> +
+>  static inline void dw_mipi_csi2rx_write(struct dw_mipi_csi2rx_device *csi2,
+> -					unsigned int addr, u32 val)
+> +					enum dw_mipi_csi2rx_regs_index index,
+> +					u32 val)
+>  {
+> -	writel(val, csi2->base_addr + addr);
+> +	if (dw_mipi_csi2rx_is_exist(csi2, index))
+> +		writel(val, dw_mipi_csi2rx_get_regaddr(csi2, index));
+> +
+> +	dev_err_once(csi2->dev,
+> +		     "write to non-existent register index: %d\n", index);
+
+Not sure about to control flow here, as the error message is shown in
+any case. Do you mean
+
+{
+	if (!dw_mipi_csi2rx_is_exist(csi2, index)) {
+		dev_err_once(csi2->dev,
+			"write to non-existent register index: %d\n",
+			index);
+		return;
+	}
+
+	writel(val, dw_mipi_csi2rx_get_regaddr(csi2, index));
+}
+
+?
+
+>  }
+>  
+>  static inline u32 dw_mipi_csi2rx_read(struct dw_mipi_csi2rx_device *csi2,
+> -				      unsigned int addr)
+> +				      enum dw_mipi_csi2rx_regs_index index)
+>  {
+> -	return readl(csi2->base_addr + addr);
+> +	if (dw_mipi_csi2rx_is_exist(csi2, index))
+> +		return readl(dw_mipi_csi2rx_get_regaddr(csi2, index));
+
+Here it seems to be correct, but personally I'd prefer
+
+{
+	if (!dw_mipi_csi2rx_is_exist(csi2, index)) {
+		// print error
+		return 0;
+	}
+
+	return readl(...);
+}
+Anyway, it should match the write method.
+
+> +
+> +	dev_err_once(csi2->dev,
+> +		     "read non-existent register index: %d\n", index);
+> +	/* Return 0 for unexisted registers */
+
+/* return 0 for non-existent registers */
+
+or leave away altogether.
+
+> +	return 0;
+>  }
+>  
+>  static const struct dw_mipi_csi2rx_format *
+> @@ -631,6 +690,7 @@ static void dw_mipi_csi2rx_unregister(struct dw_mipi_csi2rx_device *csi2)
+>  static const struct of_device_id dw_mipi_csi2rx_of_match[] = {
+>  	{
+>  		.compatible = "rockchip,rk3568-mipi-csi2",
+> +		.data = &rk3568_drvdata,
+>  	},
+>  	{}
+>  };
+> @@ -652,6 +712,11 @@ static int dw_mipi_csi2rx_probe(struct platform_device *pdev)
+>  	if (IS_ERR(csi2->base_addr))
+>  		return PTR_ERR(csi2->base_addr);
+>  
+> +	csi2->drvdata = device_get_match_data(dev);
+> +	if (!csi2->drvdata)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "failed to get driver data\n");
+> +
+>  	ret = devm_clk_bulk_get_all(dev, &csi2->clks);
+>  	if (ret < 0)
+>  		return dev_err_probe(dev, -ENODEV, "failed to get clocks\n");
+> 
+
+With the comments above addressed,
+
+Reviewed-by: Michael Riesch <michael.riesch@collabora.com>
+
+Best regards,
+Michael
 
 
