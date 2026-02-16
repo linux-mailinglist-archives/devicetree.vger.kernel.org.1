@@ -1,245 +1,445 @@
-Return-Path: <devicetree+bounces-265926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265927-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QJ1ULTJ7k2nV5gEAu9opvQ
-	(envelope-from <devicetree+bounces-265926-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 21:16:50 +0100
+	id 2OnDGpB7k2ko5wEAu9opvQ
+	(envelope-from <devicetree+bounces-265927-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 21:18:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E880B147657
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 21:16:49 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9CDA14767F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 21:18:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 72C3F3003718
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 20:16:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 84C2B301C6D8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 20:18:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBEA7275AF0;
-	Mon, 16 Feb 2026 20:16:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EDA72E54DE;
+	Mon, 16 Feb 2026 20:18:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="iUDnseMZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XFB/GxkJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013000.outbound.protection.outlook.com [52.101.72.0])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com [209.85.128.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C0EE3EBF07;
-	Mon, 16 Feb 2026 20:16:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.0
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771273005; cv=fail; b=az/rJzVWeuuD76rNWpvPnrmd13XgSZdnMnr5ZIETqruckh6t+CNwPjZFwzHfjmA/xGBsV21uHKqo/vuY+OYVJOzqyGZa1d3RNjo+I1NZW5RS3O9Uz+trFc12QRwr3EzLYetgMWjDYRiT7gnvTy/Y11HiytF0qL1XF/W7u4paCek=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771273005; c=relaxed/simple;
-	bh=IWppdVFv6Iu619wnajCddhdDTbexMAUg0nHN+EmOPWQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=ru1qPQ7KykXcotQL3zUvQHIBvayzoEp2mKvTtMJBviAN49/STVBJ0rpSmqcQKE/5chaj2+ruXAcUkt76NCNjz8HbteZwNkjLKjqVtTfCJiOcuRnPnfibmCIwfNYETVtlYf7z8pDz1JQkyZu42leudnBr04RVCq1/1FYWBeH+W8I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=iUDnseMZ; arc=fail smtp.client-ip=52.101.72.0
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Cd89T8cmzv7cYeFYmAD5WFgRe+aoB0u8sJyeR89vGSfUZOVWJkmPBnuI1FzFrRP6AMq3g3FfCxiZrZ15tQJeRxSyqIfMoa4uzoltLBAXIzll9qVoafMVhqrNZIb5sj820inLLPzufeU5+ag+yDoIlYXAKP0EPcyGiuC8tRwGtOGrjPspCaXkxTnTBsEsMeSX8BVy7vTii/0LMjGGbuMOmUilabf/HEar6auY1dKVKBbX1BZGb3tZKkRqVAOt4na0Hvzdl6ad73O4bVibYwsnnXXpT+uK/cJ0/K7aVt9x5VA9NurQu451xXpAl8FwQXH31+lpLGOSv/skmpdRSqrDBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TWzui092eYVBj2PECYki/C0Jb9kQrYFfkOW2QqTKCMc=;
- b=NcwsHBlADsDgki8ml+zrMRiWIoHKajNkHucVS5QSYwxqxzMUyidI79lHBPUn3LhV2CCrg8tpOwPZXhmGJ8GCYV3UL++F2v74fR9uodvWXgV2ZPLD1ioaOyOb8XlxmfvF6q6HTbRVwzKpye+L5gajqPiq7ckL0vNy/NYXNIWo5dGL+JIP1qQIM2cVD+NH7d7IUbEAchoUxDZL4BMAA3fs/RGlUkTNI6tGG2vL9GWImFavDu15F9tBZL4CWMai7+11QQiiOKxWKBZ1CixJGSPSXh413bzeUN23oSQssyxjTMvyJlmuswyYO9ZrfVR+Y+V2IKmyk67ATvIV6wPtat9n9A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TWzui092eYVBj2PECYki/C0Jb9kQrYFfkOW2QqTKCMc=;
- b=iUDnseMZ2aZSQuN7mcBtQtk9Ea0jWqby8IbDO/e+98gnGfDVXMOITBh2cDZLZRuRLtffSUeNf5ROCFvC/HFYsPHcmDJXcvwTm8YfmE2MtPocmqnzUwXtM5Mh1+uaPKiP4TbQdXBDNEvQVD7XPsiA1y8DKBPmsk1YBcmT7IN4WBdwPtkVeXYJEIWqcWPxkQDNkArBXnVvycPHyv6Zgb9xd8bGm72JvUZYQ9YPKX4VrfQWAOFTxeHogQOs0OC7J7sVOsA5RTTz4LZpg/vlTITnT0JKVZ8lyObF2jtKzdS/8eTDsYjwf09C/NM5KvBbw67M2dogv7JIQh4NJik5iMZhjA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by DBAPR04MB7429.eurprd04.prod.outlook.com (2603:10a6:10:1a2::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.16; Mon, 16 Feb
- 2026 20:16:41 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9611.013; Mon, 16 Feb 2026
- 20:16:40 +0000
-Date: Mon, 16 Feb 2026 15:16:31 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Larisa Grigore <larisa.grigore@oss.nxp.com>
-Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, sumit.semwal@linaro.org,
-	christian.koenig@amd.com, chester62515@gmail.com,
-	cosmin.stoica@nxp.com, adrian.nitu@freescale.com,
-	stefan-gabriel.mirea@nxp.com, Mihaela.Martinas@freescale.com,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
-	s32@nxp.com, imx@lists.linux.dev, clizzi@redhat.com,
-	aruizrui@redhat.com, eballetb@redhat.com, echanude@redhat.com,
-	jkangas@redhat.com, Radu Pirea <radu-nicolae.pirea@nxp.com>
-Subject: Re: [PATCH 01/13] serial: linflexuart: Fix locking in set_termios
-Message-ID: <aZN7Hx_aK4ta1ksL@lizhi-Precision-Tower-5810>
-References: <20260216150205.212318-1-larisa.grigore@oss.nxp.com>
- <20260216150205.212318-2-larisa.grigore@oss.nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260216150205.212318-2-larisa.grigore@oss.nxp.com>
-X-ClientProxiedBy: PH2PEPF0000384F.namprd17.prod.outlook.com
- (2603:10b6:518:1::71) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96CF8285CB6
+	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 20:18:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.67
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771273100; cv=none; b=A5/fLED64/ooJgfHR7GtKz+bNZOYDt7TjKC17ZMqdG3VUp/iPiu9LQj0X0m3hEfLUAPNBnP4eBKT2fV4U+8pUjs+SsA045SQAhCGm9M3AxSJ0aWREXKzb5cCSFFdhHgt3ba4U9fkgz0nlfqUEsGA+5Qz5ES9O905KOdITLq75eg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771273100; c=relaxed/simple;
+	bh=yYVeCCr96bBtlxwG7VSMF03VxAhdWV3PgzYenu7A0ng=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=b1vzJT31W/X2qxoVGd+e9Qjz971sqPUCO7YxK4baFeIHdconemshhfBt9sRO2klSNL4DyP8eQkij4UkV8FFKUFzsoLjt4IeQa55cz3cxyAMg/SHrRh9elvPVp9fJnPaxc45VsKMiWY7WS1AR7SyuEFQ4WH2wo5FIp1Ikr9mLuYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XFB/GxkJ; arc=none smtp.client-ip=209.85.128.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f67.google.com with SMTP id 5b1f17b1804b1-48068127f00so37775785e9.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 12:18:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1771273097; x=1771877897; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PB3ZjHo1xt3MMj/ZU/68wizCKs7RW2YjdlONtSTthE4=;
+        b=XFB/GxkJelsR1FV4xTjOT5ttR9Zv9ywvGS1bSPQwJcVW5De6cPtWOlNpdV+jcGNHCi
+         Zy9HVLuQjLul0Wd6asJoAPqalXmUgZ9atJJm5Cw8dV7BImgzPqP/M/TsIZRy2GK90owJ
+         1OVMbQfHNjzLf8ijfgbSL8DVe5h+SeNwo72gkoATT5j9UzRtjvYzHwgyAca9syM3mjwI
+         dSunLhYSHWZJ+XYFlARH9P12zVAitc9UxFLEC5AYs+fQ5UgRbxMjFP4oRLgNTz+TKT+j
+         XuLmGeo2iXtKjO5nx9TwT5LWnvoC6GrdSdZOr3Ffpcw+qn6Bc/I56dj/l777qRFrn3RL
+         FhSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771273097; x=1771877897;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PB3ZjHo1xt3MMj/ZU/68wizCKs7RW2YjdlONtSTthE4=;
+        b=F8ifS7RumrgGVkoctMoOQcb4EgPfjWQl6An+gJ6v3KcTbvYmiNIsliXEejtaHiF18Q
+         TGV+xhys6mcChSSaiV3koCDMJezowfXjOzbH69ZXu/vIJewlJ/ZZxaRvZwhSLtlISTd1
+         y4syTHoV7seGY174CBw2B4YPXn68CBtP7KFIpIZTk3j2+Vn18s4fM1EPqye8hBFx8Kq5
+         sOqOKevVO/V0OkyBZ2FuxAKr60m6kWXoXcxuhc4FsoNOuHXV6km2HpOneNcuT/CH7AGi
+         EsyfE6E+LRcKXOejpZCdR4/z69uF47CG/YZCB9Uiyhm7nSZo697Agrz+lm1O8LKfFW4j
+         ZL4g==
+X-Forwarded-Encrypted: i=1; AJvYcCUwwfhYBmMJFCEINMczge+54sHU0jDKeBLQaXrXdFRAuhu6HTscagVU80wrOdDuU5foC1WejXZ9dUh4@vger.kernel.org
+X-Gm-Message-State: AOJu0YybbmKNovbv9GHKdNzwreijwioMbhWhGkNjk1SNraPaJPD+Cgrf
+	PUIzgKnhODi/VcFDvx7Aaiov4U1FNe+B9EPy05ypEgId4XlFAAlU+hrm0btPyQpoizs=
+X-Gm-Gg: AZuq6aIxVkLpVWdpXvAbK1mvctxOb5/uGGAnS7AJsw5njEmw/sIjBHoA0rSESI/s0Z8
+	gUsMxyd1CUCGO9+Z0rSImq1TTZv3q+o4KYLw8XoG1hHXk4bD3IJM+5lKUBC6KQNxZFf0vwkfE9c
+	u85ewX5f0hWcCLNpTKxdvr64VJbh2AziIA/qIsnxPLo3Q1bkJAGV55wHIgbUjCn+3hHI+SzVY0t
+	0WECkeiOIQloXkaPd2QMws1hcUTSYp3vreYXZkkAUebGpmrkOPv8bKqgz+HZFemH+0Tx0YofFvY
+	vDmNdHreyi2ucC/g1i2iLmAc/iEr3B4jFM92rj6k3lYd6rujhtkW2UpnOK+gvUoKbMeth9KYCC1
+	zI96tJAcXTCskH2B1MMg+3ZtngwzmCwGowcg7PAFubzy/ShS9UdanPNHdHuEZCd3sybWormti4A
+	EtLWFjgSCDavdAEgiVZgbKo8KyMFLsN+zEk0tNkwWKkVtC3ASiKMTUkeIpXE5+v5rrMA4/yn7Gc
+	i0iGoTZyuY4AeP2
+X-Received: by 2002:a05:600c:a08c:b0:480:6910:abd1 with SMTP id 5b1f17b1804b1-48373a5ba84mr208662795e9.18.1771273096827;
+        Mon, 16 Feb 2026 12:18:16 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:106d:1080:80b4:8b51:72a6:9e2a? ([2a01:e0a:106d:1080:80b4:8b51:72a6:9e2a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48370a78c89sm285579085e9.5.2026.02.16.12.18.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Feb 2026 12:18:16 -0800 (PST)
+Message-ID: <c2eb1c2d-6e3c-4e61-a193-840ad42cf860@linaro.org>
+Date: Mon, 16 Feb 2026 21:18:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DBAPR04MB7429:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8cd632c9-dc69-4a45-5377-08de6d984bbd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|1800799024|52116014|376014|366016|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?jLEWiG5jRzRBnt4GR3egLdtwxGLvorvq0lscRUJBufgyJUZkN61uavDy2s2L?=
- =?us-ascii?Q?iQrraocGcXQclb9PutfV7K8rln2MEY9oH1kzwN/Rw72g6HhN/2PtQe3dXBcs?=
- =?us-ascii?Q?y1X4dEYcPcRkp76i0aj7X051Ox0feE0I4BR7s+ft5fVS4MuClr7ME0h6gmws?=
- =?us-ascii?Q?57OszgahTnTm1tBGS19ACI2g/kqoAh1E1kAulnmuBiV0O6qt/GeoKcisf+8e?=
- =?us-ascii?Q?iLb2Z2OLEtxZeAeHYNqgcOaAf5ELJ1Y/sNt0VLHW8rMzMfHySOPZQdL9uMgL?=
- =?us-ascii?Q?WV+1OLAE+Q1vRDSKs3y9FLE/aOIXg9umHzIxGAyljdLoafFyy6cm2Cs3DA5z?=
- =?us-ascii?Q?dFzDqX1CT5mfwr+XhY+86c1ijRmANxxdtYpi79mOg8tz8Mo741b2dwNeuiE1?=
- =?us-ascii?Q?RXpw3+sYBBv20Ox6gkqOzyZ0U3pTidIULOFdVMcvpLYbU/kqNCRLebOy2391?=
- =?us-ascii?Q?+9LKmwqxSDPU18FWLx/VoPADZw9prtGiacCoeLyO16IXetds80aUv6WWwOF7?=
- =?us-ascii?Q?e4HjqWsfy4hCMkvMCpuCN2IMdPB4oYrq1KnZKUwwAMiq2jysgspacRdqBwFy?=
- =?us-ascii?Q?FZEZ8AkKZm9NmTi06G39hhaaCQAv33aJUqM4RvJaFBbWVuYPyxzz+mQN/Mw9?=
- =?us-ascii?Q?vtJmxU5Nf3UzqQfcwMk2TU3Cj//4m0trn5CKL2EmEXjdPnaKsDnbIs/rhLS6?=
- =?us-ascii?Q?xWFru6lbB9OfI/cV2E2u59tXZ9ih8wwsV27M6XGsjSJchSx1IUATLbwEkIWt?=
- =?us-ascii?Q?UVY8CCTa9INNYtc3+om8gSXo3h9JGrcZZMI564SJlPCt0+NRXtd0th3idO9g?=
- =?us-ascii?Q?Fzctou4kH8jjnboUxUEaNWM+DhQgmS4g2i5mjP+3By5Q6ZGx5wmpJIiuP5Ue?=
- =?us-ascii?Q?sLvb2DFF7XLhJTUCk+dXaERlh1DD6FQPAj9/I44aecRQrHXyjuXQinjDIlPJ?=
- =?us-ascii?Q?g+Vx6c7ta8AA7oWc6cKozxsMBFIGIVqDqeQz2h3lyRus5UxNtmOFN1k3rRaU?=
- =?us-ascii?Q?bD9WROno25SNaoThJWFhw1ZtzjdiW0tlf9vNFs5DGuf3F1WzHggkV/yF0wU9?=
- =?us-ascii?Q?hKv1KMgZIwrDxYwU0XxijHJHdzqKYRTO2R442ayXlQ+dViLW6VSwFMI2RGgw?=
- =?us-ascii?Q?w8aV6h85VGB4VXG/IXE9QsBzagl54P+xTkNm2U78fT+Fz5SBykx1lI55wOG9?=
- =?us-ascii?Q?yf0kUErxjlL4SLL2S1Ii//bQ3jOxKj3I+OYb4bI8Ju+WwWB00JSUcbM7TB/8?=
- =?us-ascii?Q?K03x/SqfHdV0VqBQeu12DaV/ZqixNH78TmgwFHYz1kDpvfuLb7k7XzW288C5?=
- =?us-ascii?Q?Bq64uUQhLl+sOTR5HYtw+uQvqA23/LZNNYECnFplmyPLpffBhznTTWj41vHl?=
- =?us-ascii?Q?0u+EAfDrcdJXPu7oi1OIwv2GWWzFqM6KvozzD5h8Q27ZVT9Nt0vPfeASBhdk?=
- =?us-ascii?Q?X7K2Wlsk6BTBqlbdfCAdNVyfR58j8KOyDQmoKLwtr6xVMNBdRDKDPrEwoAld?=
- =?us-ascii?Q?sZwjVn+7SDEQhmUyILg8nDgh+XldgiU6W+U4i8zaTIaua0MeGXd4xNV1zwYb?=
- =?us-ascii?Q?Hrbg3CfeWJDHAlfs+L3LWxW8Iq4njFLbzCk+kiDW8PmsFDGYLp8Yy8eJdMz9?=
- =?us-ascii?Q?vvNw8+bgf4qrjGclP7aBDL4=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(52116014)(376014)(366016)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?r/LBheWFx6CKZ/g165q2tZ47U+Qc5Z471zRBwNwIPbJIOkzAHqDbuT5maxWT?=
- =?us-ascii?Q?V4NgetmJ4K3vBwikeoh7JDayP71qfhSbpCZ5tXyPvIZyqMG49BwbnrmZCdWI?=
- =?us-ascii?Q?1GTVS0sReScJkiQ/ukiTslNKzi8Y8cr8wrCp8hEl7vDyKEAUihI1+KXdjNQn?=
- =?us-ascii?Q?SyOBo2lencqZqlc2eD96/ASNnSRgmkJvXLkmEique+mH4H0HGWCyiG+Y8O8a?=
- =?us-ascii?Q?cn/s4hdoVTWFC53gEQVqh8xMInTvvLC04rwA4iPg45wKU/wEIWYTOAct5s8z?=
- =?us-ascii?Q?HFPhiGMBxILt3w9bvgfGAFSHL+SuhOeKl/bzmg5UeqqZuujFn3fzYddwKeIy?=
- =?us-ascii?Q?+xlvWsB80LkxmHr5lLGUvdB03cDnenY0/R8ChHt8UMu4aELWMgqF8/QaKTtA?=
- =?us-ascii?Q?cAuc9GyQ7TVmEAvbCPO+QZGl/EFsGoYkbk6Nz1jQn+NGYmVMkr1RerF2Hoz+?=
- =?us-ascii?Q?dwHsn3GQYNttTuveYg3/8+KHKP2r/5WTPS9CUSUgGxmsdXrwreMONAaOLpsf?=
- =?us-ascii?Q?vl0DpAglOJo6D5MwRrSdEjsoXmpBPIIKwj5RNYbGcotXwyzqw2g2ABAHVX8K?=
- =?us-ascii?Q?rA0nBSuljM9C7FM1ijZfJjT1ceB3hmnMVP2oifAa8CEMQBHXOM3VmqaOeUf/?=
- =?us-ascii?Q?lVXIeOQGow8SFVWLU8rtXtJJ+6UNOqf//0hgYTP5G8klJobvaFBzHmwmNXIX?=
- =?us-ascii?Q?lDqww2XJHd7tMfZzuqInsJPYc/tsOR3zmqci7R6kI2KhA8ufiKU9d3ZZ9MZA?=
- =?us-ascii?Q?0it2Zq1e/UPqkzYU/mRVpCCzh/k1wJce4zVY2qzJxKhQ45us+YG+Et1W9mVV?=
- =?us-ascii?Q?SEV00WwZ6eApbnuZUIfudLe/ek2Ij8Nho/jgOnmTvMIEupNfhucI3zMMktIR?=
- =?us-ascii?Q?G4c2ylJYSNfz21tXtLt85jjqcmYiTlu7XY8m0mB+0j6oJby3nVL5Br0K2+XI?=
- =?us-ascii?Q?qe+XqBOaKj/w/DBpkr75e9MsA0I/VT/irCiEfEasNh8YNiMxfIty5fQAA46z?=
- =?us-ascii?Q?u867ZuCQcv+837YkMnCZCEzRvlcnmxE6GwquaXynnREl9jVecwO67mjBHd0M?=
- =?us-ascii?Q?JQ7UWnEpk8qdCxNfgA83lcXc5XQ7+RtalhRIojTdBg6iON7x8Bkuiiz+VVHu?=
- =?us-ascii?Q?aCtgGqdLi7o3fVlqyPqmcHt0R9ANjR4+3u/TQEoaEpOVltcAzu+zq4rNqVhZ?=
- =?us-ascii?Q?jWmHUkkNVNoJMkzx2Fhx/I8O9Q9FrbszFrEIJbHJyOrI6KUywz30vdG7uRWx?=
- =?us-ascii?Q?/rQJkpZEfgZG5Gnh9Mu98N80QA8m5vQ+qjgwvmnk13n0hs+HSsa0yyzaya/P?=
- =?us-ascii?Q?OowuaVNjcyppTQdtpEk20UL2K6J2CtFBP6IJr+LpOERyt5Sn26dJJFhEkC9T?=
- =?us-ascii?Q?4cYcgZQD1+T6+t2DBGWldxukaqPTt65RG0JPY5adQN2vNRnBUqMQBjOVCQNt?=
- =?us-ascii?Q?GursOg6M65OTDbHqyzMSLCXMSkLGOAxQNQ94kPBj8RfmU+LgTX2zkc8qNVNd?=
- =?us-ascii?Q?4bRtFExU54LkxzfeGe0ETihX5paQ4JclxhAWUaG+eS8ncZBsS+1i+s+4aKaI?=
- =?us-ascii?Q?ovDZpe0tK73kflFyYfNIroUkQrIIIYlMbpDcUgZEnQ/GwBsrSJrPGgaJEtiK?=
- =?us-ascii?Q?7zIn3FWbZ7MqGhsuE7gcfjJmlHEezwcDjJaz47EJcPpeIM8AKXTa6oy+PLFX?=
- =?us-ascii?Q?tuoXzCqFzBqnGKtS9yLly1FCTb3wdok55RI4Rz7mqNsnEkd/?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8cd632c9-dc69-4a45-5377-08de6d984bbd
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2026 20:16:40.8273
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: O69q27S4LzP1clvrROrpJRuUu/dc2A6m+uZudNWiytk108O1O5sL8ir+sOtPGadSLKWoox1mf/+1k+rS/ekPDg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7429
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v4 3/9] pci: pwrctrl: rename pci-pwrctrl-slot as generic
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20260216-topic-sm8650-ayaneo-pocket-s2-base-v4-0-802c82795431@linaro.org>
+ <20260216-topic-sm8650-ayaneo-pocket-s2-base-v4-3-802c82795431@linaro.org>
+ <xiizfsm7tbcqqb2w2bittscipyxac5xdx7fhmplc6e7ogl74o5@p2gsjolien6c>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <xiizfsm7tbcqqb2w2bittscipyxac5xdx7fhmplc6e7ogl74o5@p2gsjolien6c>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265926-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265927-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,linaro.org,amd.com,gmail.com,nxp.com,freescale.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev,redhat.com];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com,google.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[27];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: E880B147657
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MID_RHS_MATCH_FROM(0.00)[];
+	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	REPLYTO_EQ_FROM(0.00)[]
+X-Rspamd-Queue-Id: C9CDA14767F
 X-Rspamd-Action: no action
 
-On Mon, Feb 16, 2026 at 04:01:53PM +0100, Larisa Grigore wrote:
-> From: Radu Pirea <radu-nicolae.pirea@nxp.com>
->
-> Take the port->lock when set_termios is called, otherwise if characters
-> are sent while IP is in init mode, the IP will hang in an uncertain
-> state.
+On 2/16/26 17:33, Manivannan Sadhasivam wrote:
+> On Mon, Feb 16, 2026 at 03:21:47PM +0100, Neil Armstrong wrote:
+>> The driver is pretty generic and would fit for either
+>> PCI Slots or endpoints connected to PCI ports, so rename
+>> the driver and module as pci-pwrctrl-generic.
+>>
+>> Suggested-by: Manivannan Sadhasivam <mani@kernel.org>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/pci/pwrctrl/Kconfig   | 13 ++++---
+>>   drivers/pci/pwrctrl/Makefile  |  4 +-
+>>   drivers/pci/pwrctrl/generic.c | 91 +++++++++++++++++++++++++++++++++++++++++++
+>>   drivers/pci/pwrctrl/slot.c    | 91 -------------------------------------------
+>>   4 files changed, 100 insertions(+), 99 deletions(-)
+>>
+>> diff --git a/drivers/pci/pwrctrl/Kconfig b/drivers/pci/pwrctrl/Kconfig
+>> index e0f999f299bb..0ba095729694 100644
+>> --- a/drivers/pci/pwrctrl/Kconfig
+>> +++ b/drivers/pci/pwrctrl/Kconfig
+>> @@ -11,16 +11,17 @@ config PCI_PWRCTRL_PWRSEQ
+>>   	select POWER_SEQUENCING
+>>   	select PCI_PWRCTRL
+>>   
+>> -config PCI_PWRCTRL_SLOT
+>> -	tristate "PCI Power Control driver for PCI slots"
+> 
+> This symbol is selected by a few controller drivers also in:
+> drivers/pci/controller/dwc/Kconfig
+> 
+>> +config PCI_PWRCTRL_GENERIC
+>> +	tristate "Generic PCI Power Control driver for PCI slots and endpoints"
+>>   	select PCI_PWRCTRL
+>>   	help
+>> -	  Say Y here to enable the PCI Power Control driver to control the power
+>> -	  state of PCI slots.
+>> +	  Say Y here to enable the generic PCI Power Control driver to control
+>> +	  the power state of PCI slots and endpoints.
+>>   
+>>   	  This is a generic driver that controls the power state of different
+>> -	  PCI slots. The voltage regulators powering the rails of the PCI slots
+>> -	  are expected to be defined in the devicetree node of the PCI bridge.
+>> +	  PCI slots and endpoints. The voltage regulators powering the rails
+>> +	  of the PCI slots or endpoints are expected to be defined in the
+>> +	  devicetree node of the PCI bridge.
+>>   
+>>   config PCI_PWRCTRL_TC9563
+>>   	tristate "PCI Power Control driver for TC9563 PCIe switch"
+>> diff --git a/drivers/pci/pwrctrl/Makefile b/drivers/pci/pwrctrl/Makefile
+>> index 13b02282106c..f6bb4fb9a410 100644
+>> --- a/drivers/pci/pwrctrl/Makefile
+>> +++ b/drivers/pci/pwrctrl/Makefile
+>> @@ -5,7 +5,7 @@ pci-pwrctrl-core-y			:= core.o
+>>   
+>>   obj-$(CONFIG_PCI_PWRCTRL_PWRSEQ)	+= pci-pwrctrl-pwrseq.o
+>>   
+>> -obj-$(CONFIG_PCI_PWRCTRL_SLOT)		+= pci-pwrctrl-slot.o
+>> -pci-pwrctrl-slot-y			:= slot.o
+>> +obj-$(CONFIG_PCI_PWRCTRL_GENERIC)	+= pci-pwrctrl-generic.o
+>> +pci-pwrctrl-generic-y			:= generic.o
+>>   
+>>   obj-$(CONFIG_PCI_PWRCTRL_TC9563)	+= pci-pwrctrl-tc9563.o
+>> diff --git a/drivers/pci/pwrctrl/generic.c b/drivers/pci/pwrctrl/generic.c
+>> new file mode 100644
+>> index 000000000000..a5b7b7965f46
+>> --- /dev/null
+>> +++ b/drivers/pci/pwrctrl/generic.c
+>> @@ -0,0 +1,91 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (C) 2024 Linaro Ltd.
+>> + * Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>> + */
+>> +
+>> +#include <linux/clk.h>
+>> +#include <linux/device.h>
+>> +#include <linux/mod_devicetable.h>
+>> +#include <linux/module.h>
+>> +#include <linux/pci-pwrctrl.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/regulator/consumer.h>
+>> +#include <linux/slab.h>
+>> +
+>> +struct pci_pwrctrl_generic_data {
+> 
+> Ah, just realised that Bjorn renamed these structures and helpers in
+> https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/commit/drivers/pci/pwrctrl/slot.c?h=next&id=e40d16e6c23994b28894179b87f9747edd63062a
+> 
+> So this needs some adapting...
 
-According to patch, you move it before read(UARTCR). can explain why hang?
+Arghh, ok will update
 
-Frank
->
-> Fixes: 09864c1cdf5c ("tty: serial: Add linflexuart driver for S32V234")
-> Signed-off-by: Radu Pirea <radu-nicolae.pirea@nxp.com>
-> Signed-off-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
-> ---
->  drivers/tty/serial/fsl_linflexuart.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/tty/serial/fsl_linflexuart.c b/drivers/tty/serial/fsl_linflexuart.c
-> index e70a56de1fce..5a410e2d56ac 100644
-> --- a/drivers/tty/serial/fsl_linflexuart.c
-> +++ b/drivers/tty/serial/fsl_linflexuart.c
-> @@ -407,6 +407,8 @@ linflex_set_termios(struct uart_port *port, struct ktermios *termios,
->  	unsigned long cr, old_cr, cr1;
->  	unsigned int old_csize = old ? old->c_cflag & CSIZE : CS8;
->
-> +	uart_port_lock_irqsave(port, &flags);
-> +
->  	cr = readl(port->membase + UARTCR);
->  	old_cr = cr;
->
-> @@ -475,8 +477,6 @@ linflex_set_termios(struct uart_port *port, struct ktermios *termios,
->  		cr &= ~LINFLEXD_UARTCR_PCE;
->  	}
->
-> -	uart_port_lock_irqsave(port, &flags);
-> -
->  	port->read_status_mask = 0;
->
->  	if (termios->c_iflag & INPCK)
-> --
-> 2.47.0
->
+Thanks,
+Neil
+
+> 
+> - Mani
+> 
+>> +	struct pci_pwrctrl ctx;
+>> +	struct regulator_bulk_data *supplies;
+>> +	int num_supplies;
+>> +};
+>> +
+>> +static void devm_pci_pwrctrl_generic_power_off(void *data)
+>> +{
+>> +	struct pci_pwrctrl_generic_data *generic = data;
+>> +
+>> +	regulator_bulk_disable(generic->num_supplies, generic->supplies);
+>> +	regulator_bulk_free(generic->num_supplies, generic->supplies);
+>> +}
+>> +
+>> +static int pci_pwrctrl_generic_probe(struct platform_device *pdev)
+>> +{
+>> +	struct pci_pwrctrl_generic_data *generic;
+>> +	struct device *dev = &pdev->dev;
+>> +	struct clk *clk;
+>> +	int ret;
+>> +
+>> +	generic = devm_kzalloc(dev, sizeof(*generic), GFP_KERNEL);
+>> +	if (!generic)
+>> +		return -ENOMEM;
+>> +
+>> +	ret = of_regulator_bulk_get_all(dev, dev_of_node(dev),
+>> +					&generic->supplies);
+>> +	if (ret < 0)
+>> +		return dev_err_probe(dev, ret, "Failed to get regulators\n");
+>> +
+>> +	generic->num_supplies = ret;
+>> +	ret = regulator_bulk_enable(generic->num_supplies, generic->supplies);
+>> +	if (ret < 0) {
+>> +		regulator_bulk_free(generic->num_supplies, generic->supplies);
+>> +		return dev_err_probe(dev, ret, "Failed to enable regulators\n");
+>> +	}
+>> +
+>> +	ret = devm_add_action_or_reset(dev, devm_pci_pwrctrl_generic_power_off,
+>> +				       generic);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	clk = devm_clk_get_optional_enabled(dev, NULL);
+>> +	if (IS_ERR(clk))
+>> +		return dev_err_probe(dev, PTR_ERR(clk),
+>> +				     "Failed to enable clock\n");
+>> +
+>> +	pci_pwrctrl_init(&generic->ctx, dev);
+>> +
+>> +	ret = devm_pci_pwrctrl_device_set_ready(dev, &generic->ctx);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Failed to register generic pwrctrl driver\n");
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct of_device_id pci_pwrctrl_generic_of_match[] = {
+>> +	{
+>> +		.compatible = "pciclass,0604",
+>> +	},
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, pci_pwrctrl_generic_of_match);
+>> +
+>> +static struct platform_driver pci_pwrctrl_generic_driver = {
+>> +	.driver = {
+>> +		.name = "pci-pwrctrl-generic",
+>> +		.of_match_table = pci_pwrctrl_generic_of_match,
+>> +	},
+>> +	.probe = pci_pwrctrl_generic_probe,
+>> +};
+>> +module_platform_driver(pci_pwrctrl_generic_driver);
+>> +
+>> +MODULE_AUTHOR("Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>");
+>> +MODULE_DESCRIPTION("Generic PCI Power Control driver for PCI Slots");
+>> +MODULE_LICENSE("GPL");
+>> diff --git a/drivers/pci/pwrctrl/slot.c b/drivers/pci/pwrctrl/slot.c
+>> deleted file mode 100644
+>> index 08e53243cdbd..000000000000
+>> --- a/drivers/pci/pwrctrl/slot.c
+>> +++ /dev/null
+>> @@ -1,91 +0,0 @@
+>> -// SPDX-License-Identifier: GPL-2.0-only
+>> -/*
+>> - * Copyright (C) 2024 Linaro Ltd.
+>> - * Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>> - */
+>> -
+>> -#include <linux/clk.h>
+>> -#include <linux/device.h>
+>> -#include <linux/mod_devicetable.h>
+>> -#include <linux/module.h>
+>> -#include <linux/pci-pwrctrl.h>
+>> -#include <linux/platform_device.h>
+>> -#include <linux/regulator/consumer.h>
+>> -#include <linux/slab.h>
+>> -
+>> -struct pci_pwrctrl_slot_data {
+>> -	struct pci_pwrctrl ctx;
+>> -	struct regulator_bulk_data *supplies;
+>> -	int num_supplies;
+>> -};
+>> -
+>> -static void devm_pci_pwrctrl_slot_power_off(void *data)
+>> -{
+>> -	struct pci_pwrctrl_slot_data *slot = data;
+>> -
+>> -	regulator_bulk_disable(slot->num_supplies, slot->supplies);
+>> -	regulator_bulk_free(slot->num_supplies, slot->supplies);
+>> -}
+>> -
+>> -static int pci_pwrctrl_slot_probe(struct platform_device *pdev)
+>> -{
+>> -	struct pci_pwrctrl_slot_data *slot;
+>> -	struct device *dev = &pdev->dev;
+>> -	struct clk *clk;
+>> -	int ret;
+>> -
+>> -	slot = devm_kzalloc(dev, sizeof(*slot), GFP_KERNEL);
+>> -	if (!slot)
+>> -		return -ENOMEM;
+>> -
+>> -	ret = of_regulator_bulk_get_all(dev, dev_of_node(dev),
+>> -					&slot->supplies);
+>> -	if (ret < 0)
+>> -		return dev_err_probe(dev, ret, "Failed to get slot regulators\n");
+>> -
+>> -	slot->num_supplies = ret;
+>> -	ret = regulator_bulk_enable(slot->num_supplies, slot->supplies);
+>> -	if (ret < 0) {
+>> -		regulator_bulk_free(slot->num_supplies, slot->supplies);
+>> -		return dev_err_probe(dev, ret, "Failed to enable slot regulators\n");
+>> -	}
+>> -
+>> -	ret = devm_add_action_or_reset(dev, devm_pci_pwrctrl_slot_power_off,
+>> -				       slot);
+>> -	if (ret)
+>> -		return ret;
+>> -
+>> -	clk = devm_clk_get_optional_enabled(dev, NULL);
+>> -	if (IS_ERR(clk))
+>> -		return dev_err_probe(dev, PTR_ERR(clk),
+>> -				     "Failed to enable slot clock\n");
+>> -
+>> -	pci_pwrctrl_init(&slot->ctx, dev);
+>> -
+>> -	ret = devm_pci_pwrctrl_device_set_ready(dev, &slot->ctx);
+>> -	if (ret)
+>> -		return dev_err_probe(dev, ret, "Failed to register pwrctrl driver\n");
+>> -
+>> -	return 0;
+>> -}
+>> -
+>> -static const struct of_device_id pci_pwrctrl_slot_of_match[] = {
+>> -	{
+>> -		.compatible = "pciclass,0604",
+>> -	},
+>> -	{ }
+>> -};
+>> -MODULE_DEVICE_TABLE(of, pci_pwrctrl_slot_of_match);
+>> -
+>> -static struct platform_driver pci_pwrctrl_slot_driver = {
+>> -	.driver = {
+>> -		.name = "pci-pwrctrl-slot",
+>> -		.of_match_table = pci_pwrctrl_slot_of_match,
+>> -	},
+>> -	.probe = pci_pwrctrl_slot_probe,
+>> -};
+>> -module_platform_driver(pci_pwrctrl_slot_driver);
+>> -
+>> -MODULE_AUTHOR("Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>");
+>> -MODULE_DESCRIPTION("Generic PCI Power Control driver for PCI Slots");
+>> -MODULE_LICENSE("GPL");
+>>
+>> -- 
+>> 2.34.1
+>>
+> 
+
 
