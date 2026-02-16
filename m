@@ -1,149 +1,153 @@
-Return-Path: <devicetree+bounces-265710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265711-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8F9JOb0Ak2lr0wEAu9opvQ
-	(envelope-from <devicetree+bounces-265710-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 12:34:21 +0100
+	id QE6bEtkAk2lr0wEAu9opvQ
+	(envelope-from <devicetree+bounces-265711-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 12:34:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A3E814303D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 12:34:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA262143053
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 12:34:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 34B2E3013A77
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 11:33:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A0153301991B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 11:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A40272BE644;
-	Mon, 16 Feb 2026 11:33:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE1C2BE644;
+	Mon, 16 Feb 2026 11:33:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="hlt37SUD"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="kX93qde/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80EDC1DE2AD;
-	Mon, 16 Feb 2026 11:33:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDE87239099;
+	Mon, 16 Feb 2026 11:33:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771241603; cv=none; b=EmvcTXhzCNMr+WfCTijUlRrXqZEn7Vo/xdbuvhATlbVBj54dvsNyH9wQkMPfDnqYP1wCIXLRLe7oMUTJF7PBt5CZEG/5ggnDqalze0sOEf57cRpcwrtgV/eUmRXwtfPKb7RRlGxs3xgcGyEEQ0k0otb269xN1leL7GACQOzIAR4=
+	t=1771241623; cv=none; b=KCiM/ySGgqR4h/8ejeWFZq1XkZ6w8JlbItAa6Ms3z4BBnI8eR/avQxsyYiljXvT2szEce63sjMNsSFBEqm3r0bBa84RV2TqNdZt06tvqMXlIGGIOJyKTkt8iGCtH5VB//mfe0she9XMKFUkUE/3VI49nDpbTWJsD0jhiKWOH5mI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771241603; c=relaxed/simple;
-	bh=XfM+uO3B6t4V13J7WywM7ZB+hvwWMnXflkL5iW+xmD0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eK08oP/lHribXby3a9zJaKoz5Ml/eM+NCzqHgxc7FjdjHxjM/tr2sylgliLOt2yoTlXD318r1fkSuDw8PdacjcCqmfJnNWYAjB1mQM/ysZSl9nHQa3NlqTj7SxWtt47ADnqF+ItyjF+l5xkpROxhBkYF1BewerB7LABMxiZ6tIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=hlt37SUD; arc=none smtp.client-ip=178.251.229.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A9E0410DFC3;
-	Mon, 16 Feb 2026 12:33:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1771241599;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=qoEb1XR+DvoKvuE1+8lQvknx+Q7A1egR2GoxJ6whEys=;
-	b=hlt37SUDAjJI7q8KMVJO+g+KffWs5ok/uj1DyhEEpWVQiazm5kV0sjzPaHL/0L1eVUx1NZ
-	M0XrcR10oOLIuVo7IDaZ6zfhzeSmUt+go0Wv9+KhksA7Dj1bHKri37q1ApbGrEaT1pxCbr
-	do2rMtqJRY6yNzHjITgpVoDPZvvqcKOTIKt0+VfWgpyDVI+usLCBGhBZsJhggYLLIcx2HK
-	rX1r4G+z/lF2UcrLsjOTy7IHUZCW4Q+V2DMV3d0S/LJsKVZ5C4cSiRhfA7wkyR8i0Bdn3S
-	uPlAme14G7Ro/jMb45unQbCXuQSe6CbMqoJcmHex1tkVmmCZQQApZtz7Ox6Umw==
-Date: Mon, 16 Feb 2026 12:33:12 +0100
-From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukma@nabladev.com>
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: Peng Fan <peng.fan@oss.nxp.com>, Abel Vesa <abelvesa@kernel.org>, Peng
- Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn
- Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 0/4] clk: vf610: Add clocks to support MTIP L2 switch
-Message-ID: <20260216123312.4a310b39@wsk>
-In-Reply-To: <jk6roonftm44qwnyxezhukdoqahrj2l7zaa55w35oq3uj4en4w@obfufdazx3wb>
-References: <20260129095442.1646748-1-lukma@nabladev.com>
-	<aYAEM8pcuumly+hc@shlinux89>
-	<20260216101538.0aeae484@wsk>
-	<jk6roonftm44qwnyxezhukdoqahrj2l7zaa55w35oq3uj4en4w@obfufdazx3wb>
-Organization: Nabla
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1771241623; c=relaxed/simple;
+	bh=onTyZagYpAPjiiOZuy6MDCXz/JCQKAyBYFGyzLZzLvw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=M4okgFqJQuJpBZYUdTiz6TBEKPxanfA7HzIserhJxKo3UJwUShr8s0EatPYnrN+rB6hklHNzczmu9vilWmqh638jEbLJI0zcBP9c7nYDREsUPrZVU8qtF4zWqTKGo4ihhN9/pbblc64ARBqhss74SDkCiJhUIF24f9K2Gj4t8Qk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=kX93qde/; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1771241621;
+	bh=onTyZagYpAPjiiOZuy6MDCXz/JCQKAyBYFGyzLZzLvw=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=kX93qde/2AGQpxYE4XsVcgtKBFHd2odwj54axOcPaJn8lH5LzoUWBy9va68nieeGL
+	 st8DAbsV8+1gZXyLvwEOuO9eGmgXeCVPpqL09fLA0sNMoGscCZi8mfyoNgSR7J4Cqr
+	 9hV8N3qFiyhH6GsO2kMOeH/CPcd7RcHteDX69oxzztgDmDtfk82HlyMTXQ79kSV6fR
+	 hL8SnaIxskTYKK+Fqkx0A1KD5yIVES8vImsdgCP0w3073X3PZ6VaDmE6INjiIp2bvI
+	 xN47yJb3drwTEFgYR4hRpmGIHpWYfrpsDuDaIHNz02NI8U7fRkHN8aNL437B6yqsbl
+	 3oWfpQiB6miCA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 68FA917E012E;
+	Mon, 16 Feb 2026 12:33:40 +0100 (CET)
+Message-ID: <b42a1da6-110a-4bd5-a4f1-23c3f25e2a17@collabora.com>
+Date: Mon, 16 Feb 2026 12:33:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] arm64: dts: add missing sram-supply to mali gpu
+ nodes
+To: =?UTF-8?Q?Onur_=C3=96zkan?= <work@onurozkan.dev>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20260215100302.136719-1-work@onurozkan.dev>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20260215100302.136719-1-work@onurozkan.dev>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
-	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-265711-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265710-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[onurozkan.dev,kernel.org,gmail.com,sholland.org,samsung.com,glider.be,sntech.de,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[nabladev.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lukma@nabladev.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[oss.nxp.com,kernel.org,nxp.com,baylibre.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,nabladev.com:email,nabladev.com:dkim]
-X-Rspamd-Queue-Id: 4A3E814303D
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim]
+X-Rspamd-Queue-Id: AA262143053
 X-Rspamd-Action: no action
 
-Hi Abel,
+Il 15/02/26 11:02, Onur Özkan ha scritto:
+> Some arm64 Mali GPU DT nodes define mali-supply but
+> are missing sram-supply.
+> 
+> As discussed in [1], sram-supply should be explicitly
+> defined for all relevant compatibles. If there is no
+> separate SRAM rail, it can reference the same regulator
+> as mali-supply.
+> 
+> This change adds the missing sram-supply properties to
+> affected DT files. This aligns DTs with expected regulator
+> modeling and avoids relying on implicit fallback behavior.
+> 
+> [1]: https://lore.kernel.org/all/20260213155937.6af75786@nimda/
+> 
 
-> On 26-02-16 10:15:38, =C5=81ukasz Majewski wrote:
-> > Dear all,
-> >  =20
-> > > On Thu, Jan 29, 2026 at 10:54:38AM +0100, Lukasz Majewski wrote: =20
-> > > >This patch series:
-> > > >- cleans up clocks' setup on vf610 by moving VF610_CLK_END define
-> > > >  to driver code
-> > > >- introduces support for several clocks required by MTIP switch
-> > > >IP block
-> > > >
-> > > >Lukasz Majewski (4):
-> > > >  clk: vf610: Move VF610_CLK_END define to clk-vf610 driver
-> > > >  dt-bindings: clock: vf610: Drop VF610_CLK_END define
-> > > >  dt-bindings: clock: vf610: Add definitions for MTIP L2 switch
-> > > >  clk: vf610: Add support for the Ethernet switch clocks   =20
-> > >=20
-> > > Reviewed-by: Peng Fan <peng.fan@nxp.com> =20
-> >=20
-> > Gentle ping regarding this patch set... =20
->=20
-> Will apply after rc1.
+Sorry, at least for MediaTek, this makes no sense. The SRAM supply on MTK platforms
+is managed by the mediatek-regulator-coupler driver, as it scales in a peculiar way
+in relation to the GPU core supply.
 
-Thanks :-)
+Besides, you're cloning the GPU core supply to the sram supply, which is, well,
+simply wrong... and you're changing devicetrees of SoCs that are running on
+panfrost (not on panthor), which will anyway ignore the existance of the SRAM
+supply.
 
---=20
-Best regards,
+That's also going to give all sorts of binding warnings, I guess, but I didn't
+check anyway.
 
-Lukasz Majewski
+While the change makes sense, as in, I agree with Mark in that the SRAM must have
+a power supply in order to actually work... I'm afraid that what you're doing here
+needs a bit more work before it becomes acceptable.
 
---
-Nabla Software Engineering GmbH
-HRB 40522 Augsburg
-Phone: +49 821 45592596
-E-Mail: office@nabladev.com
-Managing Director : Stefano Babic
+Especially - faking the vgpu-core regulator (not just on MTK, but on all) to also
+be the sram regulator leads to confusion and is, well, plain wrong.
+
+Cheers,
+Angelo
+
+
 
