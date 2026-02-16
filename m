@@ -1,291 +1,176 @@
-Return-Path: <devicetree+bounces-265855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265852-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MD8BK5o2k2mV2gEAu9opvQ
-	(envelope-from <devicetree+bounces-265855-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:24:10 +0100
+	id MJ6DKws2k2mV2gEAu9opvQ
+	(envelope-from <devicetree+bounces-265852-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:21:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E92F1457DE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:24:09 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0A09145704
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:21:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DD21B30A0C3A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 15:12:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 762FF3010732
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 15:11:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8CB83164A9;
-	Mon, 16 Feb 2026 15:12:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97EB1315D40;
+	Mon, 16 Feb 2026 15:11:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="MUcA5Z6e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ftkfm0nK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 694DD313272;
-	Mon, 16 Feb 2026 15:12:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7305E314A6F;
+	Mon, 16 Feb 2026 15:11:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771254724; cv=none; b=r+j15uX60HBQ2eJURdHBsXeXF6pJ1cAoKDgQxTrKDXW58rFvqIpnSEOrP8fLmDpYWYv3504qsTymYbFsg7bnqnYrYfCOQkOfM+9RVzGQa51TytxjWjcUEwjh0voG/T+tEfndsin6MxHcJYf/+9iYIsiTZjuaDEtuUd+CBD9anYk=
+	t=1771254689; cv=none; b=k40FeKRYOgrT8wfTSEYy2/hUDx3NIKtpVe3rkrZARfCMVys1w7ID8jeFz9w+okGU8A2czfEd+wsCOyXuN0OiXRifEn9omCw/CzHO6Ar064XD0GBJ/esG71jVLCdK1NGyczUa48zCrk4qmCjGS4WAX2Hdmck9WFDX37UuQfXhqr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771254724; c=relaxed/simple;
-	bh=K6q2uvUFNe74IlsTDGrMP4E+PlT8aZ9Rg6OHl6Ov8wA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GEpDvOVZ6vRAqf8xH5y8el8zCcqDoJ76SiIOh59bwrBik0EbaT9YBfU0RlnQP5EcxbEM3wrWmnB1W+QVBklI8/Z75oMH6H9w16OqtLCJ2s5DiIrFXuiayUpvF9zS7jTr3/9xNg9tv/JH8iXxLtlCwUyL/psHqVi0MsbiOj07zFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=MUcA5Z6e; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0516787.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61GDRsV34079294;
-	Mon, 16 Feb 2026 10:11:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=5PvLE
-	OsRpHbflBCStESm7hryd52QgpUq4ThFgSnBS3g=; b=MUcA5Z6edSBiwr+yqOfCv
-	IPiKb/Vlk0h7bA9Hm6oZPn/WeQGTK5nRdto+BbYfLjS5IgxS1079NFogKlmkVC/M
-	rznFBBsblVYqMM2NvniRcthFKgKzul6t95n0nJtS+7a3gp+D9IJT5D32Yx+cx4vW
-	w86YOd4tC0EWdO+0cxLkFuKTvkHnUzsE/7PO7/SoWXufC3jMM6TRGxyHuzC9cF13
-	HQRDx9zuA3t8vgqRv2IbpQufLTwNCpCjA9r/ydPP3CpEN6cFxKaBiAjeHLXthnem
-	zdRQ3gPMh51fp2yKz0AnpllJmhwuj/jad+I459eYMoLvUEEjbSLxyR/b8ihqNqHP
-	A==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4cbn8r3et1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Feb 2026 10:11:48 -0500 (EST)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 61GFBloJ021598
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 16 Feb 2026 10:11:47 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Mon, 16 Feb
- 2026 10:11:47 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Mon, 16 Feb 2026 10:11:47 -0500
-Received: from HYB-b1tGeUj4GP1.ad.analog.com (HYB-b1tGeUj4GP1.ad.analog.com [10.48.65.247])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 61GFBT9D017396;
-	Mon, 16 Feb 2026 10:11:40 -0500
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
-        Lars-Peter Clausen
-	<lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan
- Cameron <jic23@kernel.org>,
-        David Lechner <dlechner@baylibre.com>,
-        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-        Andy Shevchenko
-	<andy@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: Andy Shevchenko <andriy.shevchenko@intel.com>
-Subject: [PATCH v3 2/2] iio: adc: ad4080: add support for AD4082, AD4085 and AD4088
-Date: Mon, 16 Feb 2026 17:11:11 +0200
-Message-ID: <20260216151112.139359-3-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260216151112.139359-1-antoniu.miclaus@analog.com>
-References: <20260216151112.139359-1-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1771254689; c=relaxed/simple;
+	bh=PN7JuZ0MWYp3x4UY+Sr1aCCdlWCIA2xS8o7MwthqdS4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=elrFaM9QGleqCReuFYA0UZeB18xiqSZRjrQPXGRlOKXYpappzDi3KwFJ4zJa5Vlh6XorZ1uptjY1kxwpkLyu1WP2zDBw/pM6yZuJr51XZlLfR/2bCQH9t3eWViSkGoaFWXBmw5fbNoHyw1UsUDpv8TYs002uKbSGr471lUTN9HA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ftkfm0nK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E998BC116C6;
+	Mon, 16 Feb 2026 15:11:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771254689;
+	bh=PN7JuZ0MWYp3x4UY+Sr1aCCdlWCIA2xS8o7MwthqdS4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ftkfm0nKVpL/WcEvY2rnmi2r3bcql47QcEn/8OiKR8fl4I2TH69w98jrxOjk3KZHD
+	 yZTvhKULXH1NcaHDTYEzix8vDE5I2cCJKJfJJY+0XBCGjGizx20gCz+VIaw1bSeCHX
+	 kL3rRUC5hU6TOhGd7YQ1AaL1BS6xWNRvmwD0kR/MCOeagu1YIygMyv1sg6K6b4+0vh
+	 +iqliDiYug2hH0mD6GEkDraPHrBUNx4+XOjKV95tdLJyHTjnHM1C6HkO+ShLMB+I/n
+	 P10aRKSryoLykGcRCnOyToXngRI4V0mKVWdG95hZoMLlLU6UcovjithuKuRrHUkeSb
+	 UaiaAwCTVZj9w==
+Message-ID: <3ca29f96-2b17-493f-a5f6-d770b6fa8530@kernel.org>
+Date: Mon, 16 Feb 2026 16:11:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: wFIm4DDa3sB_8STTGME2W2tyXz0Fnabi
-X-Proofpoint-ORIG-GUID: wFIm4DDa3sB_8STTGME2W2tyXz0Fnabi
-X-Authority-Analysis: v=2.4 cv=aIb9aL9m c=1 sm=1 tr=0 ts=699333b4 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=QyXUC8HyAAAA:8
- a=gAnH3GRIAAAA:8 a=N7TgUSQySV4cBu0JIyQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE2MDEyOSBTYWx0ZWRfXy+QAoObLmga9
- 3AcSUE+Ab3EefMWQd7OQQC4Ypu3sfsEaI6NMcxh4TCQgXP7w4cN40NNIpSZHcyCJ2JPBjJvNYn8
- qLL/A8JRJUwTIRrrCnqd4thyCnovi2KbGwsfZ6HsfhFszfzKSSmGj+rrqr69wxyukbsNJkMpPre
- bu0QfP7nznNrS2FxMFJH5HMO5uz/ldidAxpj1YnPk2M/M1rjneAmPyyI8XyoUOwHjj8AhFxROVf
- j3zTRqAZKk09RY4BO+bFusXxNTscZhT8EJQQLsafsunTDED5nYtY/tRuKN/yG7oYrzJT214wC+h
- e8BiZVpmTxoxPnjSLnUuZLmkiU/EiLy98lhx2v0bIuYwrcRncDf78SeTD50jkpbbCoLEO3k40K8
- 2Td8ur7nw3Dj4E+lmxviEOQ194yP6CRIYjCt85i1LCQYoMQrbWQO24KgBkxM3s+FeL3WtPOTM4c
- cMz5kiRSwebZnckUt7Q==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-16_04,2026-02-16_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 clxscore=1015 bulkscore=0 malwarescore=0
- priorityscore=1501 suspectscore=0 spamscore=0 lowpriorityscore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602160129
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/13] serial: linflexuart: Add DMA support
+To: Larisa Grigore <larisa.grigore@oss.nxp.com>, gregkh@linuxfoundation.org,
+ jirislaby@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, sumit.semwal@linaro.org, christian.koenig@amd.com,
+ chester62515@gmail.com, cosmin.stoica@nxp.com, adrian.nitu@freescale.com,
+ stefan-gabriel.mirea@nxp.com, Mihaela.Martinas@freescale.com
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ s32@nxp.com, imx@lists.linux.dev, clizzi@redhat.com, aruizrui@redhat.com,
+ eballetb@redhat.com, echanude@redhat.com, jkangas@redhat.com,
+ Radu Pirea <radu-nicolae.pirea@nxp.com>, Phu Luu An <phu.luuan@nxp.com>,
+ Js Ha <js.ha@nxp.com>, Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+References: <20260216150205.212318-1-larisa.grigore@oss.nxp.com>
+ <20260216150205.212318-13-larisa.grigore@oss.nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260216150205.212318-13-larisa.grigore@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265855-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-265852-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[oss.nxp.com,linuxfoundation.org,kernel.org,linaro.org,amd.com,gmail.com,nxp.com,freescale.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,analog.com:mid,analog.com:dkim,analog.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[antoniu.miclaus@analog.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[analog.com:+];
 	PRECEDENCE_BULK(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 1E92F1457DE
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nxp.com:email]
+X-Rspamd-Queue-Id: E0A09145704
 X-Rspamd-Action: no action
 
-Add support for the AD4082, AD4085 and AD4088 SAR ADCs. These devices
-share the same resolution as their base variants but differ in LVDS CNV
-clock count maximum:
-  - AD4082 (20-bit, like AD4080): lvds_cnv_clk_cnt_max 8 vs 7
-  - AD4085 (16-bit, like AD4084): lvds_cnv_clk_cnt_max 8 vs 2
-  - AD4088 (14-bit, like AD4087): lvds_cnv_clk_cnt_max 8 vs 1
+On 16/02/2026 16:02, Larisa Grigore wrote:
+> Add support for using DMA to avoid generating one interrupt per
+> character and losing characters while copy-paste.
+> In UART mode, the DMA capability can be used only if the UART Tx/Rx
+> buffers are configured as FIFOs.
+> If the DMA related properties are missing from the device tree, the
+> driver will fall back to interrupt + Buffer mode.
+> On the RX side, a timer is used to periodically poll for received data.
+> 
+> Signed-off-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
+> Co-developed-by: Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>
+> Signed-off-by: Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>
+> Co-developed-by: Radu Pirea <radu-nicolae.pirea@nxp.com>
+> Signed-off-by: Radu Pirea <radu-nicolae.pirea@nxp.com>
+> Co-developed-by: Phu Luu An <phu.luuan@nxp.com>
+> Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
+> Co-developed-by: Js Ha <js.ha@nxp.com>
+> Signed-off-by: Js Ha <js.ha@nxp.com>
+> Co-developed-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-Reviewed-by: Nuno Sá <nuno.sa@analog.com>
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-Changes in v3:
-  - Merged individual per-device driver patches into a single patch
-    adding AD4082, AD4085 and AD4088.
 
- drivers/iio/adc/ad4080.c | 45 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+Incorrect DCO chain. Please read submitting patches document.
 
-diff --git a/drivers/iio/adc/ad4080.c b/drivers/iio/adc/ad4080.c
-index 7cf3b6ed7940..fc261d3d7687 100644
---- a/drivers/iio/adc/ad4080.c
-+++ b/drivers/iio/adc/ad4080.c
-@@ -127,10 +127,13 @@
- #define AD4080_SPI_READ						BIT(7)
- #define AD4080_CHIP_ID						0x0050
- #define AD4081_CHIP_ID						0x0051
-+#define AD4082_CHIP_ID						0x0052
- #define AD4083_CHIP_ID						0x0053
- #define AD4084_CHIP_ID						0x0054
-+#define AD4085_CHIP_ID						0x0055
- #define AD4086_CHIP_ID						0x0056
- #define AD4087_CHIP_ID						0x0057
-+#define AD4088_CHIP_ID						0x0058
- 
- #define AD4080_LVDS_CNV_CLK_CNT_MAX				7
- 
-@@ -442,14 +445,20 @@ static const struct iio_chan_spec ad4080_channel = AD4080_CHANNEL_DEFINE(20, 32)
- 
- static const struct iio_chan_spec ad4081_channel = AD4080_CHANNEL_DEFINE(20, 32);
- 
-+static const struct iio_chan_spec ad4082_channel = AD4080_CHANNEL_DEFINE(20, 32);
-+
- static const struct iio_chan_spec ad4083_channel = AD4080_CHANNEL_DEFINE(16, 16);
- 
- static const struct iio_chan_spec ad4084_channel = AD4080_CHANNEL_DEFINE(16, 16);
- 
-+static const struct iio_chan_spec ad4085_channel = AD4080_CHANNEL_DEFINE(16, 16);
-+
- static const struct iio_chan_spec ad4086_channel = AD4080_CHANNEL_DEFINE(14, 16);
- 
- static const struct iio_chan_spec ad4087_channel = AD4080_CHANNEL_DEFINE(14, 16);
- 
-+static const struct iio_chan_spec ad4088_channel = AD4080_CHANNEL_DEFINE(14, 16);
-+
- static const struct ad4080_chip_info ad4080_chip_info = {
- 	.name = "ad4080",
- 	.product_id = AD4080_CHIP_ID,
-@@ -470,6 +479,16 @@ static const struct ad4080_chip_info ad4081_chip_info = {
- 	.lvds_cnv_clk_cnt_max = 2,
- };
- 
-+static const struct ad4080_chip_info ad4082_chip_info = {
-+	.name = "ad4082",
-+	.product_id = AD4082_CHIP_ID,
-+	.scale_table = ad4080_scale_table,
-+	.num_scales = ARRAY_SIZE(ad4080_scale_table),
-+	.num_channels = 1,
-+	.channels = &ad4082_channel,
-+	.lvds_cnv_clk_cnt_max = 8,
-+};
-+
- static const struct ad4080_chip_info ad4083_chip_info = {
- 	.name = "ad4083",
- 	.product_id = AD4083_CHIP_ID,
-@@ -490,6 +509,16 @@ static const struct ad4080_chip_info ad4084_chip_info = {
- 	.lvds_cnv_clk_cnt_max = 2,
- };
- 
-+static const struct ad4080_chip_info ad4085_chip_info = {
-+	.name = "ad4085",
-+	.product_id = AD4085_CHIP_ID,
-+	.scale_table = ad4080_scale_table,
-+	.num_scales = ARRAY_SIZE(ad4080_scale_table),
-+	.num_channels = 1,
-+	.channels = &ad4085_channel,
-+	.lvds_cnv_clk_cnt_max = 8,
-+};
-+
- static const struct ad4080_chip_info ad4086_chip_info = {
- 	.name = "ad4086",
- 	.product_id = AD4086_CHIP_ID,
-@@ -510,6 +539,16 @@ static const struct ad4080_chip_info ad4087_chip_info = {
- 	.lvds_cnv_clk_cnt_max = 1,
- };
- 
-+static const struct ad4080_chip_info ad4088_chip_info = {
-+	.name = "ad4088",
-+	.product_id = AD4088_CHIP_ID,
-+	.scale_table = ad4080_scale_table,
-+	.num_scales = ARRAY_SIZE(ad4080_scale_table),
-+	.num_channels = 1,
-+	.channels = &ad4088_channel,
-+	.lvds_cnv_clk_cnt_max = 8,
-+};
-+
- static int ad4080_setup(struct iio_dev *indio_dev)
- {
- 	struct ad4080_state *st = iio_priv(indio_dev);
-@@ -666,10 +705,13 @@ static int ad4080_probe(struct spi_device *spi)
- static const struct spi_device_id ad4080_id[] = {
- 	{ "ad4080", (kernel_ulong_t)&ad4080_chip_info },
- 	{ "ad4081", (kernel_ulong_t)&ad4081_chip_info },
-+	{ "ad4082", (kernel_ulong_t)&ad4082_chip_info },
- 	{ "ad4083", (kernel_ulong_t)&ad4083_chip_info },
- 	{ "ad4084", (kernel_ulong_t)&ad4084_chip_info },
-+	{ "ad4085", (kernel_ulong_t)&ad4085_chip_info },
- 	{ "ad4086", (kernel_ulong_t)&ad4086_chip_info },
- 	{ "ad4087", (kernel_ulong_t)&ad4087_chip_info },
-+	{ "ad4088", (kernel_ulong_t)&ad4088_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, ad4080_id);
-@@ -677,10 +719,13 @@ MODULE_DEVICE_TABLE(spi, ad4080_id);
- static const struct of_device_id ad4080_of_match[] = {
- 	{ .compatible = "adi,ad4080", &ad4080_chip_info },
- 	{ .compatible = "adi,ad4081", &ad4081_chip_info },
-+	{ .compatible = "adi,ad4082", &ad4082_chip_info },
- 	{ .compatible = "adi,ad4083", &ad4083_chip_info },
- 	{ .compatible = "adi,ad4084", &ad4084_chip_info },
-+	{ .compatible = "adi,ad4085", &ad4085_chip_info },
- 	{ .compatible = "adi,ad4086", &ad4086_chip_info },
- 	{ .compatible = "adi,ad4087", &ad4087_chip_info },
-+	{ .compatible = "adi,ad4088", &ad4088_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ad4080_of_match);
--- 
-2.43.0
-
+Best regards,
+Krzysztof
 
