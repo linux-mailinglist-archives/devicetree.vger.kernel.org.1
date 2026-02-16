@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-265890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265891-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4JNuGENMk2mi3AEAu9opvQ
-	(envelope-from <devicetree+bounces-265890-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:56:35 +0100
+	id GNtIFExMk2mi3AEAu9opvQ
+	(envelope-from <devicetree+bounces-265891-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:56:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EA991467F6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:56:34 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADDA9146815
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:56:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B10053004C9F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:56:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DDA983028F5C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:56:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2915A2C2374;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98C202D8780;
 	Mon, 16 Feb 2026 16:56:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bz5zSQV3"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="0t1mzztA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93AD12D3A7B
-	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 16:56:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 435ED2C11FE;
+	Mon, 16 Feb 2026 16:56:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771260982; cv=none; b=fEM+Xap54Rx02FyhadqRTHKG0Txoq0bkxumuv7EvwTBKu1jMGT09jsEZZUtGeMkBHb+siLcw5FpsL3yzso+0M+breo5YG5PpWXXs18ddo2JYNT3Qd3J4nFuD5gpA6QHuTLNZzcVR7spZnGnq4Tso9CFVY20+2lSHHyjcilxqIq4=
+	t=1771260982; cv=none; b=d8Y54ZabJqVwaPn9woRK3bZyiymoJzutRalac6g7gmeR0aztYNmM0QnHPmgWUQVoCIszj5xfXLvG5wsR957sl5iYTwWjcmRu7s+eNdUrY7OttrZuTzX46QHCDcnBc5nQqaupU/TNALVUklfOev9/C8Mui3mTu5E0By3F+euyzvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1771260982; c=relaxed/simple;
-	bh=fbNdoihFr9FkkJ9cHnW0O7g6A92QHEroSwGVHY99SmY=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oj9aip5RhLyRHZk/w0M6ejc9cwCr7b46UFpx8ZFyUp6vwslQxIrzYXWx256vN9kDdEAFyFLKAP2/CDXpFCDea5E/8yzkm4yMHQ37Sy8ffwptiD+XVvok9GF7L49u2QTS5JUEscmhdEUKdvUUw/iEoUJhZnG71dnh9PW8w1EIIOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bz5zSQV3; arc=none smtp.client-ip=185.171.202.116
+	bh=zN9QT8XAkb2Sgn0Z/CZ9IDUnnI+CfE2W98DRP7UuIjQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=lcvH+vrzFepLpx+M/srS2S5o0RHn1cpqraDKO5ugNVHUNhklDjWece9TqrPD0IZaOdtYUlmG99BVyeDSjI9Q/q35Cn4mvrICzDgQJJL5ddXmpY6NTgg6vmIYIZFA1oBhcL9YGq5eCvliQCS8JHEvvetaT1OWblbsKXcTmqWjRRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=0t1mzztA; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 918DAC16A13;
-	Mon, 16 Feb 2026 16:56:28 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 93E481A0FE9;
+	Mon, 16 Feb 2026 16:56:19 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 7EAB0606CF;
-	Mon, 16 Feb 2026 16:56:17 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 519E110368016;
-	Mon, 16 Feb 2026 17:56:11 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 69AFD606CF;
+	Mon, 16 Feb 2026 16:56:19 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C22F510368019;
+	Mon, 16 Feb 2026 17:56:16 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1771260976; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=rk33jShkc5GyZhH4ODiSXr2qkDwH0lTssejEJ6ovQ6U=;
-	b=bz5zSQV3pLrKKxR0fLQsaBJAvoAvaUGQzTK+LpxUzlhx+i180FBz/iFwzA3caeM7gbmbkU
-	izBSorum1pxK4fcOoH9EFdpsH/etwbJ860KKT+z4LaIpsSKxK0HvJjPZKkM/xGkEkwJJoL
-	vpH0IzssWWlGxu76/KzjCuW+cd07Ed+aVTycQk/15TrIrFr/XjzL+zD2Frn+KQHQUNX8Cc
-	dU5hfQD9/avEq2h5iLwBemuJjQwTODdJBbK73R43iiXcSssyb0/sspuRI1ZLMlwIGFOc9O
-	Q3LIzh4H5i4RM48NGlc/fIVT1gw/4tQiHX5oz9U4B9cb8Z5sdw9BATfJgsM/Kg==
+	t=1771260978; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=sC4bAGIJDG3yyvTBBbsE91LqqXHjAZB97T8h25dY4js=;
+	b=0t1mzztA+BNXLahIfAmH2E6QJ6kshnwGDk7Oiyf4VeQCNeKcb4ZMB6HyVFoJBCMBuRRnq/
+	/jMlF/p4Ft7L+DeFei/7Phv4hs7XjpK36PbgiyohDEZskKvjI9zwq7Iy42w+k/tdFSnmEr
+	0NskbHG+XwPELNyK6YYFVOPdQyyYyMEHdDI6CSl2FpjIFi5MCOM6PX9Aq9iwKbrCabwDxy
+	ClxXe0XZX6R1LjUeQtzO7lvNCntk/rjIphQGGNz5gb9JfEPesGSbov/QwhAmvjKKeeUBFi
+	eWuIAEbGxr5k5WZBonJn7I9K9MreBjMX/I1ySokQVkOLPOf4oNXnKwhRO9t+hw==
 From: "Kory Maincent (TI)" <kory.maincent@bootlin.com>
-Subject: [PATCH v2 0/3] Add support for Seeed Studio BeagleBone HDMI cape
- overlay
-Date: Mon, 16 Feb 2026 17:55:51 +0100
-Message-Id: <20260216-feature_bbge-v2-0-22805cfdbf62@bootlin.com>
+Date: Mon, 16 Feb 2026 17:55:52 +0100
+Subject: [PATCH v2 1/3] ARM: dts: ti: Enable overlays for am335x
+ BeagleBoard devicetrees
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,10 +62,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIABdMk2kC/3WMQQ7CIBBFr9LMWgxMrVpX3sM0BtrBTqJgAImm4
- e5i9y7ff/lvgUiBKcKpWSBQ5sjeVcBNA+Os3Y0ET5UBJe4lKhSWdHoFuhpTXd/i8SAN0mQ7qJd
- nIMvvNXcZKs8ckw+ftZ7Vb/0TykpIgb1UO12dbbuz8T7d2W1H/4ChlPIFmoudV6oAAAA=
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260216-feature_bbge-v2-1-22805cfdbf62@bootlin.com>
+References: <20260216-feature_bbge-v2-0-22805cfdbf62@bootlin.com>
+In-Reply-To: <20260216-feature_bbge-v2-0-22805cfdbf62@bootlin.com>
 To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
  Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
  Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
@@ -88,18 +89,18 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265890-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265891-lists,devicetree=lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[23];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
@@ -109,49 +110,40 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,seeedstudio.com:url]
-X-Rspamd-Queue-Id: 7EA991467F6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: ADDA9146815
 X-Rspamd-Action: no action
 
-Add devicetree overlay for the Seeed Studio BeagleBone HDMI cape, which
-provides HDMI output via an ITE IT66121 HDMI bridge and audio support
-through McASP.
-
-https://www.seeedstudio.com/Seeed-Studio-BeagleBoner-Green-HDMI-Cape.html
-
-This overlay requires the recent tilcdc cleanup patch series that was merged
-to drm-misc-next to function properly:
-https://lore.kernel.org/lkml/20260123-feature_tilcdc-v5-0-5a44d2aa3f6f@bootlin.com/
-
-With this DRM tree dependency I don't know if this series should land in
-DRM tree or in OMAP tree.
+Allow overlays to be applied to am335x BeagleBoard boards. This adds
+around ~40% to the total size of the DTB files on average.
 
 Signed-off-by: Kory Maincent (TI) <kory.maincent@bootlin.com>
 ---
+
 Changes in v2:
 - Enable overlays only for am335x BeagleBoard boards.
-- Squash defconfig changes in one patch.
-- Link to v1: https://lore.kernel.org/r/20260212-feature_bbge-v1-0-29014a212f35@bootlin.com
-
 ---
-Kory Maincent (TI) (3):
-      ARM: dts: ti: Enable overlays for am335x BeagleBoard devicetrees
-      ARM: multi_v7_defconfig: omap2plus_defconfig: Enable ITE IT66121 driver
-      ARM: dts: am335x: Add Seeed Studio BeagleBone HDMI cape overlay
+ arch/arm/boot/dts/ti/omap/Makefile | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
- arch/arm/boot/dts/ti/omap/Makefile                 |  13 ++
- .../boot/dts/ti/omap/am335x-bone-hdmi-00a0.dtso    | 157 +++++++++++++++++++++
- arch/arm/configs/multi_v7_defconfig                |   2 +
- arch/arm/configs/omap2plus_defconfig               |   1 +
- 4 files changed, 173 insertions(+)
----
-base-commit: 40c1ccc1a3b86259e455a9a5082d5c8e0f944d62
-change-id: 20260212-feature_bbge-932870b2edf5
+diff --git a/arch/arm/boot/dts/ti/omap/Makefile b/arch/arm/boot/dts/ti/omap/Makefile
+index 14e500846875e..dcc6d4422e411 100644
+--- a/arch/arm/boot/dts/ti/omap/Makefile
++++ b/arch/arm/boot/dts/ti/omap/Makefile
+@@ -175,3 +175,11 @@ dtb-$(CONFIG_SOC_TI81XX) += \
+ 	dm8148-t410.dtb \
+ 	dm8168-evm.dtb \
+ 	dra62x-j5eco-evm.dtb
++
++# Enable support for device-tree overlays
++DTC_FLAGS_am335x-bone += -@
++DTC_FLAGS_am335x-boneblack += -@
++DTC_FLAGS_am335x-boneblack-wireless += -@
++DTC_FLAGS_am335x-bonegreen += -@
++DTC_FLAGS_am335x-bonegreen-wireless += -@
++DTC_FLAGS_am335x-bonegreen-eco += -@
 
-Best regards,
 -- 
-Köry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+2.43.0
 
 
