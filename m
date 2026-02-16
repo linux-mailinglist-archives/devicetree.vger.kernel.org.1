@@ -1,197 +1,530 @@
-Return-Path: <devicetree+bounces-265654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265655-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id NjQ4ALqjkmmnwAEAu9opvQ
-	(envelope-from <devicetree+bounces-265654-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 05:57:30 +0100
+	id gMRNJ0awkmkFwgEAu9opvQ
+	(envelope-from <devicetree+bounces-265655-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 06:51:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86046140E59
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 05:57:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAF15141056
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 06:51:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C0C8130022C9
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 04:57:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 524A53006B79
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 05:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E097F2D878D;
-	Mon, 16 Feb 2026 04:57:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AC8C2C3252;
+	Mon, 16 Feb 2026 05:50:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WKaTGrPy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XmJaFS1H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com [74.125.82.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED84329D27D;
-	Mon, 16 Feb 2026 04:57:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771217847; cv=none; b=MzdOz+lh2hSLfXoAN+aPvtGpKzjw/85V01UWyrWO8vmO8bJ3KvFU6Ax3SaWDLtpy0yr+hsDk7SEV80Vt4lJU9osm00i+QXvtF4B5z7n1nUzE2zOKaPkI06IjQ6IO8RpsfI07dsY6/GX07feiQhpmh1RJaufANGaEMLg9nvFSXZU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771217847; c=relaxed/simple;
-	bh=wxPEhoCNfX5ApkUi+QjSsB5zRQFwVKuYuWOp/TBfPDc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AFqP7c6EAJ9MX1EelU55pXpmiJKFfmPNihI5ksOc6Q5gZfmsD0HEgxW8o+7PDmD2WKBn6zTo1DtKNCRuBw7RFzvYJXwtRynTcvNjn07W9FCSoIL9IN1zJoaj5XF6ZbqCvu751PnkA/UHfsBEck1oHbn3bswQjWX2P9mxktRDM6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WKaTGrPy; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771217846; x=1802753846;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wxPEhoCNfX5ApkUi+QjSsB5zRQFwVKuYuWOp/TBfPDc=;
-  b=WKaTGrPymjpedMk0a2LB9IbCtejrJdQz5QzKU4gr3a5EzGf8D0Ruf778
-   ebOuN6qAlFD1P2Z1TzTdJOSgxZvr+gBtfOFHiehIoHcuUfr1a7irg5dvm
-   j8Bl3eWtMZkzOoJsY0TdPdmrhTQIbdeXGQ1ZisaVbGjeTUQZNhIbpUKfy
-   ZxtHuPHDpPLZitX1U8nC/04iTdx3WjUqJySx/JharbovT+9CDlV6AvzzP
-   G9/YoD6t5zQptUvj1IjqoomfRIvR0QN0Aw8y8g3CdlbisCJaNg3RjWBze
-   i03sLgoHE4Yzl5DyPPczo/omGf5V/nnU5oviAbWjWPV/FslahAZ3T0EDE
-   w==;
-X-CSE-ConnectionGUID: fOFGNmZyR8WLSff8BlXEgw==
-X-CSE-MsgGUID: lgH2pbR3TJWvDd6n6ssn5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11702"; a="74897022"
-X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; 
-   d="scan'208";a="74897022"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2026 20:57:25 -0800
-X-CSE-ConnectionGUID: yfZNHOOiQ9+WtjJzPVzoDA==
-X-CSE-MsgGUID: JDNYBeQ6RPOY8EIElNfzEQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; 
-   d="scan'208";a="218050915"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa004.jf.intel.com with ESMTP; 15 Feb 2026 20:57:22 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vrqff-00000000zPU-1G59;
-	Mon, 16 Feb 2026 04:57:19 +0000
-Date: Mon, 16 Feb 2026 12:57:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>, Ion Agorria <ion@agorria.com>,
-	=?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 2/7] mfd: Add driver for ASUS Transformer embedded
- controller
-Message-ID: <202602161252.Kq5BRohK-lkp@intel.com>
-References: <20260214180959.30714-3-clamor95@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A0E23D7DE
+	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 05:50:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.172
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771221058; cv=pass; b=VdyFMzNgsifSw2FMCbrx+qN2fABFqXpmX+zMMd8BwWv/jlhhrlCeRIKvpMMBKra4SCXNBUGKVlazaoQP7cCLTcXQhpOBGmcFEj7fyNKRF9fHHLzWcqh+KMis5p/x9aqppTBRq/DgghgtduDlss1gUt9Kejv2FNmQ7HhVSdA0FcU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771221058; c=relaxed/simple;
+	bh=8N6sHoUocgLKylL6+OeyZy0DKP5s3E1uVeGhaLvbgQ0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=i2le7zezNLTZEnwZ8KTYEKS9A2oOJFqTcK+fCyeT6tozKWx+hQ3fY7rKuSD7pkDCiKM3eDsc+r42exS6If3YM/I/ScpztrTRTqdfbQZ+fdKUHN7FLJinU1Nb6TjzKRbxsS+U2QCpLkXjCuzpm/5kLHj1UDAyLo1tymXYGESG2kE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XmJaFS1H; arc=pass smtp.client-ip=74.125.82.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f172.google.com with SMTP id 5a478bee46e88-2b6b0500e06so2923083eec.1
+        for <devicetree@vger.kernel.org>; Sun, 15 Feb 2026 21:50:56 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771221056; cv=none;
+        d=google.com; s=arc-20240605;
+        b=gWWbNKN1G9ShlVlPUmN7eZ24zUGWf8J0BZwAAmeUPX3tOkbauI74ud6sOxEmwUddtj
+         SzoOJeTGZqYsLmk5mt7U4Q/Rsmp5Sv4B4jPuVEFwHc7FGDQNKzA8rvEW47BDHk4gyprS
+         cUBTkLscfH3Afoz/8j1qG8EUs8/dL4UylnZ/KEYkEJpIWhEd85VKdrfmv8rytm6ZNARD
+         AEb4ApKzbtlP9oPzr3z6NY3ang1l+F8+QsD/7M0La2nagxA1eJ3e7spT7hW3bgRmFlJi
+         0eoIvJ96OnDXfzAOiBGtmJMmxK8S0BL9R4Od0vuJk8u/G+QPB7VcPOyvjrRkMPzapz6f
+         0uZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=fm+iCKNQvKaZ2VySunGW9Kgo/WZL9LMB8aA7YGMIP0U=;
+        fh=FNlbFdAZFC3kmFl0wn3JBpuJ8mYwzh6qvWtVnrHg2jI=;
+        b=kgd+6x6CFtU+cQv7UFWdKlA8L/pWlCWJNiUiCd+VVYeWHg8Jsz9XgULqq1ArxEgfOu
+         hD2RM4Yx9BIzRCMd1UEKtgkY4sl8StR6k7kYAKVaLNaL2HEYatCtzL2MP2qZE/doWu5M
+         2reoVhXou50Ga+o0f9NYUka0SgG3alTUgiuXKKHBK7CYXRenFJ4NUf62oj+WAFUgqiPM
+         MogpF445A0rE0GvTK9hvNnT5wZVVrer3vCS00k0AA8sNCX8rRo7zZb1MW35YGIFTGZ+i
+         m1zY41o3uVePqtNiDUqOy1BDCd2up0/lN4TMSFn7yOgqDn00gtTzHhl4px81kZkguUHa
+         Fjwg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771221056; x=1771825856; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fm+iCKNQvKaZ2VySunGW9Kgo/WZL9LMB8aA7YGMIP0U=;
+        b=XmJaFS1HQaIbR6fCFwJaSlrcBmwTda76LyzeCvmkLJxW4LlUrxQ7DHV7HzQqrgJz/7
+         JERZUafCKOaKDZlJsSQ/nOiiYP7z34UWWFIr7WnWyVWYDKXHR/tl8C8KXvSE35IEniQU
+         44xlGyZZEsttTA0Is4njzITiY10a/HwphgwAjPmKDYyFEZuDK6P2lEqqMMxYVo0k187A
+         yRDQQm7zrFcPZ0MhF+hvdHjYj2/iOAVw//O0kpFeuW/85+th5ChBt72Knl0AUciH5onX
+         v80ImPW/PhQfM1MhWjq4MOO1rK82fzm49e3Vng0JSs7gYk+v2uL6bZHFZnF0DcV1HxMH
+         /+Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771221056; x=1771825856;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=fm+iCKNQvKaZ2VySunGW9Kgo/WZL9LMB8aA7YGMIP0U=;
+        b=rZO3DqjolkJoSD4g/gxfiXIwx3tbyGNzD4FesNgXpXSDgQEl6WzG56DzA9+9+yHflt
+         oSuTuEtaztL0hsRLxofvOuxwe5mM3cTgRIRilAST7Y7d92vIg89pXLSQMiezoXb0N1uz
+         txeRURn9j4+8UyTpx9GWom4M4Q2Pywk0T0kVyfjfoekW4C/6OPVpguhBbZtll0vRZibI
+         jRqahWqI6AQwN1O5T9pUsdhBrxvslZeadKAUC7gjKKRp0GbgNbnVd7VP76KVT13d2GWh
+         f/QeUohrnpNnpeLgl7+1DpRsWZcop+kRI8RG4+CcKK/iqkg0ubDjL0u2XxqFa7YaA7Hg
+         zAOA==
+X-Forwarded-Encrypted: i=1; AJvYcCWVLo0qJS1OAmW+diFaE2Q/JlcjTCnMbFOvgEUouneSC+uTQcHOfE1VaSRYtVgSnsFCDt0JuEvNtURo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoOQRJlij0kaSLY2EaIc2PSL+WyzL+luda+OJ4TTpOztKyJjam
+	holZ1sh8clkKT/idTr+x7Wxthz6TBh77lkGOJ4neKrqribyGLBuPmDICi/u/es9PSOHFtMOwAY8
+	aPhsaGyXleZAWwkdOLL1lom8tUCdiafs=
+X-Gm-Gg: AZuq6aJQHX6YE3+ky9GsaHwC+ym/CgJFR8+wKoGMjNrMcB7rZxZ7pn5qpd8LO/kIDNj
+	tdEfifdXBoakMl86mfvbIGvKvxCzOwINUhzrkF/57hjpFqMk6T8zF7cGhO2MtFE7WQp1Q74dGQg
+	bQXwpOt/0tHMplw2sJFQRNaxNHNBahfZ8eJC0SofKaQAzBZw5LqT8GMbuO3RkyVCpORKdshRv/0
+	dfNVmsjDFz//BJMwYvcgittj1uVWCRmIAhE86hhI8GIi8XXcEx91pbnx879wEtbHWqdBMZoYRar
+	WqBtPC26
+X-Received: by 2002:a05:7301:1f0a:b0:2ba:673b:e32f with SMTP id
+ 5a478bee46e88-2baba131414mr3382395eec.37.1771221055619; Sun, 15 Feb 2026
+ 21:50:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260214180959.30714-3-clamor95@gmail.com>
+References: <20260202080355.53061-1-Ashish.Yadav@infineon.com>
+ <20260202080355.53061-3-Ashish.Yadav@infineon.com> <d0854014-7977-48b9-bf31-d66865352ecf@roeck-us.net>
+ <CAJKbuCan+5AMuGuqKg4V1qs5HYZQ9zgS9S1rDDJ1usjJAjEGqw@mail.gmail.com>
+ <CAJKbuCavMxc7xc4-QW95NfCaUCbLZck5nP1+iMtVxOt4LZ5esg@mail.gmail.com> <4b1ab525-8a60-4980-90f4-c7a761cf1536@roeck-us.net>
+In-Reply-To: <4b1ab525-8a60-4980-90f4-c7a761cf1536@roeck-us.net>
+From: ashish yadav <ashishyadav78@gmail.com>
+Date: Mon, 16 Feb 2026 11:20:44 +0530
+X-Gm-Features: AaiRm5288nLu9mJ4orvRIVndJnOlsgp8dWXuttdqasyv_7wYbQqB8CePLfLWmcI
+Message-ID: <CAJKbuCYuTyu87Q+NY4yAE48xmfayG9Bkq7hqo5TJe01M6G01UA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] hwmon:(pmbus/xdpe1a2g7b) Add support for
+ xdpe1a2g5b/7b controllers
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Ashish Yadav <ashish.yadav@infineon.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265654-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,agorria.com,rere.qmqm.pl];
+	TAGGED_FROM(0.00)[bounces-265655-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[git-scm.com:url,intel.com:mid,intel.com:dkim,intel.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 86046140E59
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ashishyadav78@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EAF15141056
 X-Rspamd-Action: no action
 
-Hi Svyatoslav,
+Hi Guenter,
 
-kernel test robot noticed the following build warnings:
+I hope you are doing well.
 
-[auto build test WARNING on next-20260213]
-[also build test WARNING on linus/master v6.19]
-[cannot apply to dtor-input/next dtor-input/for-linus sre-power-supply/for-next robh/for-next v6.19 v6.19-rc8 v6.19-rc7]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Please find our response inline.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Svyatoslav-Ryhel/dt-bindings-embedded-controller-document-ASUS-Transformer-EC/20260215-021406
-base:   next-20260213
-patch link:    https://lore.kernel.org/r/20260214180959.30714-3-clamor95%40gmail.com
-patch subject: [PATCH v3 2/7] mfd: Add driver for ASUS Transformer embedded controller
-config: sparc64-allmodconfig (https://download.01.org/0day-ci/archive/20260216/202602161252.Kq5BRohK-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 9b8addffa70cee5b2acc5454712d9cf78ce45710)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260216/202602161252.Kq5BRohK-lkp@intel.com/reproduce)
+With Best Regards,
+ Ashish Yadav
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602161252.Kq5BRohK-lkp@intel.com/
+On Fri, Feb 13, 2026 at 10:28=E2=80=AFAM Guenter Roeck <linux@roeck-us.net>=
+ wrote:
+>
+> On 2/12/26 19:45, ashish yadav wrote:
+> > Hi Guenter,
+> >
+> > I hope this email finds you well.
+> >
+> > I am reaching out to request your assistance with a specific inquiry
+> > regarding the handling of loops/pages for different VOUT modes
+> > independently.
+> > The challenge I am facing is that the Linux kernel provides a single
+> > "PSC_VOLTAGE_OUT" for the chip, which is not page-specific, making it
+> > difficult to handle these different modes independently.
+> >
+> > I would greatly appreciate it if you could provide me with more
+> > information or guidance on how to address this issue, as your
+> > expertise in this area would be invaluable in helping me find a
+> > solution.
+> >
+>
+> Best idea I have at this point is to announce a single mode for all pages
+> and convert values for pages with other modes. We _could_ enhance the pmb=
+us
+> code to support per-page modes, but that only makes sense if more than a
+> single chip is affected and if this is a real problem.
+>
+> Practical question is if the chip supports this. So far I have not encoun=
+tered
+> a chip which does. Unfortunately Infineon doesn't provide datasheets for =
+these
+> chips, so it is impossible for me to determine if this is a real or a the=
+oretic
+> problem.
+>
+> Guenter
 
-All warnings (new ones prefixed by >>):
+After discussing with the concerned Infineon team, We have decided to
+move forward with the following approach:
+XDPE1A2G5B and XDPE1A2G7B support both Linear and NVIDIA PWM VID Data
+formats for VOUT_MODE.
 
->> drivers/mfd/asus-transformer-ec.c:234:40: warning: field width should have type 'int', but argument has type '__size_t' (aka 'unsigned long') [-Wformat]
-     234 |         dev_dbg(&priv->self->dev, "EC read: %*ph, ret = %d%s\n",
-         |                                             ~~^
-     235 |                 sizeof(priv->ec_data), priv->ec_data,
-         |                 ~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:165:31: note: expanded from macro 'dev_dbg'
-     165 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                      ^~~     ~~~~~~~~~~~
-   include/linux/dev_printk.h:19:22: note: expanded from macro 'dev_fmt'
-      19 | #define dev_fmt(fmt) fmt
-         |                      ^~~
-   include/linux/dynamic_debug.h:285:12: note: expanded from macro 'dynamic_dev_dbg'
-     285 |                            dev, fmt, ##__VA_ARGS__)
-         |                                 ^~~    ~~~~~~~~~~~
-   include/linux/dynamic_debug.h:261:59: note: expanded from macro '_dynamic_func_call'
-     261 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
-         |                                                                  ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:259:65: note: expanded from macro '_dynamic_func_call_cls'
-     259 |         __dynamic_func_call_cls(__UNIQUE_ID(ddebug), cls, fmt, func, ##__VA_ARGS__)
-         |                                                                        ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:231:15: note: expanded from macro '__dynamic_func_call_cls'
-     231 |                 func(&id, ##__VA_ARGS__);                       \
-         |                             ^~~~~~~~~~~
-   1 warning generated.
+The configuration options for both devices will be as follows:
+1.  Both Page 0 and Page 1 can be set to Linear
+2.  Both Page 0 and Page 1 can be set to VID (NVIDIA format)
+
+Important Note:
+Please note that configuring both loops/pages of the device
+independently is not possible.
+The following combinations are not supported:
+  1. Page 0: Linear, Page 1: VID
+  2. Page 0: VID, Page 1: Linear
+
+I will document these details in the next version of the patch.
 
 
-vim +234 drivers/mfd/asus-transformer-ec.c
-
-   227	
-   228	static int asus_ec_read(struct asus_ec_data *priv, bool in_irq)
-   229	{
-   230		int ret = i2c_smbus_read_i2c_block_data(priv->self, ASUSEC_READ_BUF,
-   231							sizeof(priv->ec_data),
-   232							priv->ec_data);
-   233	
- > 234		dev_dbg(&priv->self->dev, "EC read: %*ph, ret = %d%s\n",
-   235			sizeof(priv->ec_data), priv->ec_data,
-   236			ret, in_irq ? "; in irq" : "");
-   237	
-   238		return ret;
-   239	}
-   240	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> > With Best Regards,
+> >    Ashish Yadav
+> >
+> >
+> > On Thu, Feb 5, 2026 at 2:20=E2=80=AFPM ashish yadav <ashishyadav78@gmai=
+l.com> wrote:
+> >>
+> >> Hi Guenter,
+> >>
+> >> Thank you for taking the time to review and provide feedback.
+> >> I appreciate your input and insights.
+> >> Please find my comments inline below.
+> >>
+> >> Best regards,
+> >> Ashish Yadav
+> >>
+> >> On Mon, Feb 2, 2026 at 9:01=E2=80=AFPM Guenter Roeck <linux@roeck-us.n=
+et> wrote:
+> >>>
+> >>> On 2/2/26 00:03, ASHISH YADAV wrote:
+> >>>> From: Ashish Yadav <ashish.yadav@infineon.com>
+> >>>>
+> >>>> Add the pmbus driver for Infineon Digital Multi-phase XDPE1A2G5B and
+> >>>> XDPE1A2G7B controllers.
+> >>>>
+> >>>> XDPE1A2G5B controller supports Linear Data format for VOUT using VOU=
+T_MODE
+> >>>> command.
+> >>>> XDPE1A2G7B controller supports Linear and VID Data format for VOUT u=
+sing
+> >>>> VOUT_MODE command.
+> >>>>
+> >>>> In case of vid mode in XDPE1A2G7B controller, NVIDIA PWM VID vrm_ver=
+sion
+> >>>> is supported:
+> >>>> Vout =3D 5mV * (VID-1) + 195mV
+> >>>>
+> >>>> Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
+> >>>> ---
+> >>>>    drivers/hwmon/pmbus/Kconfig      |   9 +++
+> >>>>    drivers/hwmon/pmbus/Makefile     |   1 +
+> >>>>    drivers/hwmon/pmbus/pmbus.h      |   2 +-
+> >>>>    drivers/hwmon/pmbus/pmbus_core.c |   4 ++
+> >>>>    drivers/hwmon/pmbus/xdpe1a2g7b.c | 115 ++++++++++++++++++++++++++=
++++++
+> >>>
+> >>> Driver documentation missing.
+> >>>
+> >>     ACK, We will take care of this in the next release.
+> >>
+> >>>>    5 files changed, 130 insertions(+), 1 deletion(-)
+> >>>>    create mode 100644 drivers/hwmon/pmbus/xdpe1a2g7b.c
+> >>>>
+> >>>> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconf=
+ig
+> >>>> index f3fb94cebf1a..c6750bce446d 100644
+> >>>> --- a/drivers/hwmon/pmbus/Kconfig
+> >>>> +++ b/drivers/hwmon/pmbus/Kconfig
+> >>>> @@ -684,6 +684,15 @@ config SENSORS_XDPE152
+> >>>>          This driver can also be built as a module. If so, the modul=
+e will
+> >>>>          be called xdpe152c4.
+> >>>>
+> >>>> +config SENSORS_XDPE1A2G7B
+> >>>> +     tristate "Infineon XDPE1A2G7B"
+> >>>> +     help
+> >>>> +       If you say yes here you get hardware monitoring support for =
+Infineon
+> >>>> +       XDPE1A2G5B and XDPE1A2G7B.
+> >>>> +
+> >>>> +       This driver can also be built as a module. If so, the module=
+ will
+> >>>> +       be called xdpe1a2g7b.
+> >>>> +
+> >>>>    config SENSORS_XDPE122
+> >>>>        tristate "Infineon XDPE122 family"
+> >>>>        help
+> >>>> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Make=
+file
+> >>>> index 349a89b6d92e..620f24baa289 100644
+> >>>> --- a/drivers/hwmon/pmbus/Makefile
+> >>>> +++ b/drivers/hwmon/pmbus/Makefile
+> >>>> @@ -67,6 +67,7 @@ obj-$(CONFIG_SENSORS_UCD9200)       +=3D ucd9200.o
+> >>>>    obj-$(CONFIG_SENSORS_XDP710)        +=3D xdp710.o
+> >>>>    obj-$(CONFIG_SENSORS_XDPE122)       +=3D xdpe12284.o
+> >>>>    obj-$(CONFIG_SENSORS_XDPE152)       +=3D xdpe152c4.o
+> >>>> +obj-$(CONFIG_SENSORS_XDPE1A2G7B)     +=3D xdpe1a2g7b.o
+> >>>>    obj-$(CONFIG_SENSORS_ZL6100)        +=3D zl6100.o
+> >>>>    obj-$(CONFIG_SENSORS_PIM4328)       +=3D pim4328.o
+> >>>>    obj-$(CONFIG_SENSORS_CRPS)  +=3D crps.o
+> >>>> diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus=
+.h
+> >>>> index d2e9bfb5320f..3ddcb742d289 100644
+> >>>> --- a/drivers/hwmon/pmbus/pmbus.h
+> >>>> +++ b/drivers/hwmon/pmbus/pmbus.h
+> >>>> @@ -416,7 +416,7 @@ enum pmbus_sensor_classes {
+> >>>>    #define PMBUS_PAGE_VIRTUAL  BIT(31) /* Page is virtual */
+> >>>>
+> >>>>    enum pmbus_data_format { linear =3D 0, ieee754, direct, vid };
+> >>>> -enum vrm_version { vr11 =3D 0, vr12, vr13, imvp9, amd625mv };
+> >>>> +enum vrm_version { vr11 =3D 0, vr12, vr13, imvp9, amd625mv, nvidia1=
+95mv };
+> >>>>
+> >>>>    /* PMBus revision identifiers */
+> >>>>    #define PMBUS_REV_10 0x00   /* PMBus revision 1.0 */
+> >>>> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/=
+pmbus_core.c
+> >>>> index be6d05def115..4d7634ee6148 100644
+> >>>> --- a/drivers/hwmon/pmbus/pmbus_core.c
+> >>>> +++ b/drivers/hwmon/pmbus/pmbus_core.c
+> >>>> @@ -885,6 +885,10 @@ static s64 pmbus_reg2data_vid(struct pmbus_data=
+ *data,
+> >>>>                if (val >=3D 0x0 && val <=3D 0xd8)
+> >>>>                        rv =3D DIV_ROUND_CLOSEST(155000 - val * 625, =
+100);
+> >>>>                break;
+> >>>> +     case nvidia195mv:
+> >>>> +             if (val >=3D 0x01)
+> >>>> +                     rv =3D 195 + (val - 1) * 5;  /* VID step is 5m=
+v */
+> >>>> +             break;
+> >>>>        }
+> >>>>        return rv;
+> >>>>    }
+> >>>
+> >>> The core change needs to be a separate patch.
+> >>>
+> >> ACK, We will take care of this in the next release.
+> >>
+> >>>> diff --git a/drivers/hwmon/pmbus/xdpe1a2g7b.c b/drivers/hwmon/pmbus/=
+xdpe1a2g7b.c
+> >>>> new file mode 100644
+> >>>> index 000000000000..79b12b56e7b6
+> >>>> --- /dev/null
+> >>>> +++ b/drivers/hwmon/pmbus/xdpe1a2g7b.c
+> >>>> @@ -0,0 +1,115 @@
+> >>>> +// SPDX-License-Identifier: GPL-2.0+
+> >>>> +/*
+> >>>> + * Hardware monitoring driver for Infineon Multi-phase Digital XDPE=
+1A2G5B
+> >>>> + * and XDPE1A2G7B Controllers
+> >>>> + *
+> >>>> + * Copyright (c) 2026 Infineon Technologies. All rights reserved.
+> >>>> + */
+> >>>> +
+> >>>> +#include <linux/err.h>
+> >>>> +#include <linux/i2c.h>
+> >>>> +#include <linux/init.h>
+> >>>> +#include <linux/kernel.h>
+> >>>> +#include <linux/module.h>
+> >>>> +#include "pmbus.h"
+> >>>> +
+> >>>> +#define XDPE1A2G7B_PAGE_NUM 2
+> >>>> +#define XDPE1A2G7B_NVIDIA_195MV 0x1E /* NVIDIA mode 1.95mV, VID ste=
+p is 5mV */
+> >>>> +
+> >>>> +static int xdpe1a2g7b_identify(struct i2c_client *client,
+> >>>> +                            struct pmbus_driver_info *info)
+> >>>> +{
+> >>>> +     u8 vout_params;
+> >>>> +     int i, ret, vout_mode;
+> >>>> +
+> >>>> +     vout_mode =3D pmbus_read_byte_data(client, 0, PMBUS_VOUT_MODE)=
+;
+> >>>> +     if (vout_mode >=3D 0 && vout_mode !=3D 0xff) {
+> >>>
+> >>> What if vout_mode < 0 ? Also, what if the mode is different for page =
+1 ?
+> >>
+> >> ACK, We will take care of this in the next release.
+> >>
+> >>> Also, if I understand patch 0 correctly, executing this function is n=
+ot needed
+> >>> for XDPE1A2G5B.
+> >>>
+> >> ACK, We will take care of this in the next release.
+> >>
+> >>>> +             switch (vout_mode >> 5) {
+> >>>> +             case 0:
+> >>>> +                     info->format[PSC_VOLTAGE_OUT] =3D linear;
+> >>>> +                     return 0;
+> >>>> +             case 1:
+> >>>> +                     info->format[PSC_VOLTAGE_OUT] =3D vid;
+> >>>> +                     break;
+> >>>> +             default:
+> >>>> +                     return -ENODEV;
+> >>>> +             }
+> >>>> +     }
+> >>>> +
+> >>>> +     for (i =3D 0; i < info->pages; i++) {
+> >>>> +             /* Read the VOUT_MODE register for VID Code Type. */
+> >>>> +             ret =3D pmbus_read_byte_data(client, i, PMBUS_VOUT_MOD=
+E);
+> >>>
+> >>> Given that there are only two pages, reading PMBUS_VOUT_MODE for
+> >>> page 0 twice is a bit of a waste. On top of that, the need for the lo=
+op
+> >>> suggests that the mode can be different across pages. That needs to b=
+e
+> >>> supported: Bailing out in that case is not acceptable. Worse:
+> >>> What if the mode is linear on page 0 but vid on page 1 ?
+> >>>
+> >> ACK, We will take care of this in the next release.
+> >>
+> >>>> +             if (ret < 0)
+> >>>> +                     return ret;
+> >>>> +
+> >>>> +             vout_params =3D ret & GENMASK(4, 0);
+> >>>> +             switch (vout_params) {
+> >>>> +             case XDPE1A2G7B_NVIDIA_195MV:
+> >>>> +                     info->vrm_version[i] =3D nvidia195mv;
+> >>>> +                     break;
+> >>>> +             default:
+> >>>> +                     return -EINVAL;
+> >>>
+> >>> This warrants an error message and an explanation (comment) why other=
+ modes
+> >>> are not supported by the driver. The detailed datasheet is not public=
+, so
+> >>> you'll have to help out here. As mentioned above, bailing out because=
+ the
+> >>> mode on page 1 is linear is not acceptable.
+> >>>
+> >> ACK, we will provide comments in the next release.
+> >> Additionally, please note that the XDPE1A2G7B Controller only supports
+> >> the 'nvidia195mv' vrm_version in the VID Data format for VOUT.
+> >> We will ensure that this limitation is properly documented and
+> >> commented on in the next release.
+> >>
+> >>>> +             }
+> >>>> +     }
+> >>>> +
+> >>>> +     return 0;
+> >>>> +}
+> >>>> +
+> >>>> +static struct pmbus_driver_info xdpe1a2g7b_info =3D {
+> >>>> +     .pages =3D XDPE1A2G7B_PAGE_NUM,
+> >>>> +     .identify =3D xdpe1a2g7b_identify,
+> >>>> +     .format[PSC_VOLTAGE_IN] =3D linear,
+> >>>> +     .format[PSC_TEMPERATURE] =3D linear,
+> >>>> +     .format[PSC_CURRENT_IN] =3D linear,
+> >>>> +     .format[PSC_CURRENT_OUT] =3D linear,
+> >>>> +     .format[PSC_POWER] =3D linear,
+> >>>> +     .func[0] =3D PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STA=
+TUS_VOUT |
+> >>>> +                PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATU=
+S_IOUT |
+> >>>> +                PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_STA=
+TUS_TEMP |
+> >>>> +                PMBUS_HAVE_POUT | PMBUS_HAVE_PIN | PMBUS_HAVE_STATU=
+S_INPUT,
+> >>>> +     .func[1] =3D PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STA=
+TUS_VOUT |
+> >>>> +                PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATU=
+S_IOUT |
+> >>>> +                PMBUS_HAVE_PIN | PMBUS_HAVE_POUT | PMBUS_HAVE_STATU=
+S_INPUT,
+> >>>> +};
+> >>>> +
+> >>>> +static int xdpe1a2g7b_probe(struct i2c_client *client)
+> >>>> +{
+> >>>> +     struct pmbus_driver_info *info;
+> >>>> +
+> >>>> +     info =3D devm_kmemdup(&client->dev, &xdpe1a2g7b_info, sizeof(*=
+info),
+> >>>> +                         GFP_KERNEL);
+> >>>> +     if (!info)
+> >>>> +             return -ENOMEM;
+> >>>> +
+> >>>> +     return pmbus_do_probe(client, info);
+> >>>> +}
+> >>>> +
+> >>>> +static const struct i2c_device_id xdpe1a2g7b_id[] =3D { { "xdpe1a2g=
+5b" },
+> >>>> +                                                   { "xdpe1a2g7b" }=
+,
+> >>>> +                                                   {} };
+> >>>
+> >>> Please use more lines and less indentation.
+> >>>
+> >> ACK, We will take care of this in the next release.
+> >>
+> >>>> +
+> >>>> +MODULE_DEVICE_TABLE(i2c, xdpe1a2g7b_id);
+> >>>> +
+> >>>> +static const struct of_device_id __maybe_unused xdpe1a2g7b_of_match=
+[] =3D {
+> >>>> +     { .compatible =3D "infineon,xdpe1a2g5b" },
+> >>>> +     { .compatible =3D "infineon,xdpe1a2g7b" },
+> >>>> +     {}
+> >>>
+> >>> ... just like here.
+> >>>
+> >>>> +};
+> >>>> +
+> >>>> +MODULE_DEVICE_TABLE(of, xdpe1a2g7b_of_match);
+> >>>> +
+> >>>> +static struct i2c_driver xdpe1a2g7b_driver =3D {
+> >>>> +     .driver =3D {
+> >>>> +             .name =3D "xdpe1a2g7b",
+> >>>> +             .of_match_table =3D of_match_ptr(xdpe1a2g7b_of_match),
+> >>>> +     },
+> >>>> +     .probe =3D xdpe1a2g7b_probe,
+> >>>> +     .id_table =3D xdpe1a2g7b_id,
+> >>>> +};
+> >>>> +
+> >>>> +module_i2c_driver(xdpe1a2g7b_driver);
+> >>>> +
+> >>>> +MODULE_AUTHOR("Ashish Yadav <ashish.yadav@infineon.com>");
+> >>>> +MODULE_DESCRIPTION("PMBus driver for Infineon XDPE1A2G5B/7B");
+> >>>> +MODULE_LICENSE("GPL");
+> >>>> +MODULE_IMPORT_NS("PMBUS");
+> >>>
+>
 
