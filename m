@@ -1,76 +1,87 @@
-Return-Path: <devicetree+bounces-265653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265654-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ABH4LWeikmnqvwEAu9opvQ
-	(envelope-from <devicetree+bounces-265653-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 05:51:51 +0100
+	id NjQ4ALqjkmmnwAEAu9opvQ
+	(envelope-from <devicetree+bounces-265654-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 05:57:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3608140E36
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 05:51:50 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86046140E59
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 05:57:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A6A363001CC5
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 04:45:12 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C0C8130022C9
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 04:57:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 712A22DC792;
-	Mon, 16 Feb 2026 04:45:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E097F2D878D;
+	Mon, 16 Feb 2026 04:57:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b="bjyVvXSl"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WKaTGrPy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40CE6145348;
-	Mon, 16 Feb 2026 04:45:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771217111; cv=pass; b=ngUquaOW2rHmBAkSJvvwbig5Cly+uY9XpB28pCbR628YYRroYX0X9agIuLtHZl5zljYNV9nFZMzmHDORRlgFmIK802ySuddHcaTiWggG4WDUu38mvSfkB0W6t9yTcTxq74cei08d0D66c5aG/KLplFe9Dzb10fWqhhJiC5ejdjM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771217111; c=relaxed/simple;
-	bh=P/1qhIyAZEiykNohWV1DmzJhR7R+Knovx2ve5mqgFG8=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED84329D27D;
+	Mon, 16 Feb 2026 04:57:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771217847; cv=none; b=MzdOz+lh2hSLfXoAN+aPvtGpKzjw/85V01UWyrWO8vmO8bJ3KvFU6Ax3SaWDLtpy0yr+hsDk7SEV80Vt4lJU9osm00i+QXvtF4B5z7n1nUzE2zOKaPkI06IjQ6IO8RpsfI07dsY6/GX07feiQhpmh1RJaufANGaEMLg9nvFSXZU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771217847; c=relaxed/simple;
+	bh=wxPEhoCNfX5ApkUi+QjSsB5zRQFwVKuYuWOp/TBfPDc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M1gLwWzCpht2fgj7X7Yo3HGzXRKrY8lUqOw67iWTlxbyeAiwwgSDKEI9YI3tRnT/tEnjKHLKTrPUAcwMgoBwnZtIbHYkdp8gvDOHDy9oInrwWcbcg4n3aFyGOsRWaYtesi5R/UTm0JK7ur2ZIO/UBRU6ALIPswVM8BmpuDMay5Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b=bjyVvXSl; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
-ARC-Seal: i=1; a=rsa-sha256; t=1771217081; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=B7wCwXOO1D7g0K+7R5ASkP5b3rvxhtu5zZxL8YqVpQFt1/JZ0OGfTEvtEhSvZ1aG9kzbcuyqRKjnrFiKzDTa1D6As2i02L5aF3EGxVt4I9o78gOelgMF8pM6sBw+iyy8hJiZq6gYg1rV20YRQVOBiKThhEWsQIDzQegXKAbQSMY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1771217081; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=mlee/apZf5PJS46oj3LoJC3aGU8uMTOOND+HuontO9M=; 
-	b=dplu+3QZvL7/81pGX2ryCEfkAGq6mlrKFOaZeiFG//OurBZ8Uqc5PGxtrF7/HlodlIydn7QFlPrXT/SvAmP6M5rsqw62Qw2FGcZSvtxzaA5bHjIiEUsle5GGq5B9lXnACv666S9z3iBNE/mp6hEijEQTvFglYPkiAo898Hw24VA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=ziyao.cc;
-	spf=pass  smtp.mailfrom=me@ziyao.cc;
-	dmarc=pass header.from=<me@ziyao.cc>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1771217081;
-	s=zmail; d=ziyao.cc; i=me@ziyao.cc;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=mlee/apZf5PJS46oj3LoJC3aGU8uMTOOND+HuontO9M=;
-	b=bjyVvXSlGZiyFG6yYoHm9AktJOZNCeprYLUxXM/NS63tlxpFiaDSAVLC5FMVjqVB
-	YeHyDUJPkr+EIwpzIhvu1Gs/0dwaYQMJZ6UJI6UErZdBEkgTxZ7ER9u6McAe5Eyz6ws
-	/tGSrhTmCseqKZbrvvx7+WAmQxNMrSBxn2Xy4Gko=
-Received: by mx.zohomail.com with SMTPS id 1771217079900392.5437106229082;
-	Sun, 15 Feb 2026 20:44:39 -0800 (PST)
-Date: Mon, 16 Feb 2026 04:44:27 +0000
-From: Yao Zi <me@ziyao.cc>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: Problematic understanding of phy-mode in Rockchip DWMAC driver
-Message-ID: <aZKgq0-aptu-PnsB@pie>
-References: <aY9s5PXP4zZ7R6fa@pie>
- <aY9xsslT56D9LGLe@shell.armlinux.org.uk>
+	 Content-Type:Content-Disposition:In-Reply-To; b=AFqP7c6EAJ9MX1EelU55pXpmiJKFfmPNihI5ksOc6Q5gZfmsD0HEgxW8o+7PDmD2WKBn6zTo1DtKNCRuBw7RFzvYJXwtRynTcvNjn07W9FCSoIL9IN1zJoaj5XF6ZbqCvu751PnkA/UHfsBEck1oHbn3bswQjWX2P9mxktRDM6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WKaTGrPy; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1771217846; x=1802753846;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wxPEhoCNfX5ApkUi+QjSsB5zRQFwVKuYuWOp/TBfPDc=;
+  b=WKaTGrPymjpedMk0a2LB9IbCtejrJdQz5QzKU4gr3a5EzGf8D0Ruf778
+   ebOuN6qAlFD1P2Z1TzTdJOSgxZvr+gBtfOFHiehIoHcuUfr1a7irg5dvm
+   j8Bl3eWtMZkzOoJsY0TdPdmrhTQIbdeXGQ1ZisaVbGjeTUQZNhIbpUKfy
+   ZxtHuPHDpPLZitX1U8nC/04iTdx3WjUqJySx/JharbovT+9CDlV6AvzzP
+   G9/YoD6t5zQptUvj1IjqoomfRIvR0QN0Aw8y8g3CdlbisCJaNg3RjWBze
+   i03sLgoHE4Yzl5DyPPczo/omGf5V/nnU5oviAbWjWPV/FslahAZ3T0EDE
+   w==;
+X-CSE-ConnectionGUID: fOFGNmZyR8WLSff8BlXEgw==
+X-CSE-MsgGUID: lgH2pbR3TJWvDd6n6ssn5Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11702"; a="74897022"
+X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; 
+   d="scan'208";a="74897022"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2026 20:57:25 -0800
+X-CSE-ConnectionGUID: yfZNHOOiQ9+WtjJzPVzoDA==
+X-CSE-MsgGUID: JDNYBeQ6RPOY8EIElNfzEQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; 
+   d="scan'208";a="218050915"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 15 Feb 2026 20:57:22 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vrqff-00000000zPU-1G59;
+	Mon, 16 Feb 2026 04:57:19 +0000
+Date: Mon, 16 Feb 2026 12:57:12 +0800
+From: kernel test robot <lkp@intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>, Ion Agorria <ion@agorria.com>,
+	=?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 2/7] mfd: Add driver for ASUS Transformer embedded
+ controller
+Message-ID: <202602161252.Kq5BRohK-lkp@intel.com>
+References: <20260214180959.30714-3-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,67 +90,108 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aY9xsslT56D9LGLe@shell.armlinux.org.uk>
-X-ZohoMailClient: External
+In-Reply-To: <20260214180959.30714-3-clamor95@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [9.34 / 15.00];
-	URIBL_BLACK(7.50)[ziyao.cc:dkim];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	R_DKIM_ALLOW(0.00)[ziyao.cc:s=zmail];
-	GREYLIST(0.00)[pass,body];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265653-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-265654-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,agorria.com,rere.qmqm.pl];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[sntech.de,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,lists.infradead.org];
-	DMARC_POLICY_ALLOW(0.00)[ziyao.cc,quarantine];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c15:e001:75::/64:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[me@ziyao.cc,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DKIM_TRACE(0.00)[ziyao.cc:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[armlinux.org.uk:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ziyao.cc:dkim]
-X-Rspamd-Queue-Id: E3608140E36
-X-Rspamd-Action: add header
-X-Spam: Yes
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[git-scm.com:url,intel.com:mid,intel.com:dkim,intel.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 86046140E59
+X-Rspamd-Action: no action
 
-On Fri, Feb 13, 2026 at 06:47:14PM +0000, Russell King (Oracle) wrote:
-> On Fri, Feb 13, 2026 at 06:26:44PM +0000, Yao Zi wrote:
-> > Hi folks,
-> > 
-> > I was looking through the RGMII delay setup logic found in
-> > rk_gmac_powerup() of dwmac-rk.c, and found its behavior is strange,
-> 
-> dwmac-rk is very broken and is unfixable thanks to Rockchip not
-> understanding the RGMII interface modes used by the kernel.
-> 
-> It is what it is, we can't change it without causing regressions.
-> Please do not try to fix it.
+Hi Svyatoslav,
 
-Thanks for confirming. I understand concerns about regressions and
-agree keeping the driver/dts as-is is better.
+kernel test robot noticed the following build warnings:
 
-However, should we mention the difference between "phy-mode" defined
-ethernet-controller.yaml and "phy-mode" understood by dwmac-rk
-driver in rockchip-dwmac.yaml to avoid confusion in the future?
+[auto build test WARNING on next-20260213]
+[also build test WARNING on linus/master v6.19]
+[cannot apply to dtor-input/next dtor-input/for-linus sre-power-supply/for-next robh/for-next v6.19 v6.19-rc8 v6.19-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Regards,
-Yao Zi
+url:    https://github.com/intel-lab-lkp/linux/commits/Svyatoslav-Ryhel/dt-bindings-embedded-controller-document-ASUS-Transformer-EC/20260215-021406
+base:   next-20260213
+patch link:    https://lore.kernel.org/r/20260214180959.30714-3-clamor95%40gmail.com
+patch subject: [PATCH v3 2/7] mfd: Add driver for ASUS Transformer embedded controller
+config: sparc64-allmodconfig (https://download.01.org/0day-ci/archive/20260216/202602161252.Kq5BRohK-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 9b8addffa70cee5b2acc5454712d9cf78ce45710)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260216/202602161252.Kq5BRohK-lkp@intel.com/reproduce)
 
-> -- 
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202602161252.Kq5BRohK-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/mfd/asus-transformer-ec.c:234:40: warning: field width should have type 'int', but argument has type '__size_t' (aka 'unsigned long') [-Wformat]
+     234 |         dev_dbg(&priv->self->dev, "EC read: %*ph, ret = %d%s\n",
+         |                                             ~~^
+     235 |                 sizeof(priv->ec_data), priv->ec_data,
+         |                 ~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:165:31: note: expanded from macro 'dev_dbg'
+     165 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                      ^~~     ~~~~~~~~~~~
+   include/linux/dev_printk.h:19:22: note: expanded from macro 'dev_fmt'
+      19 | #define dev_fmt(fmt) fmt
+         |                      ^~~
+   include/linux/dynamic_debug.h:285:12: note: expanded from macro 'dynamic_dev_dbg'
+     285 |                            dev, fmt, ##__VA_ARGS__)
+         |                                 ^~~    ~~~~~~~~~~~
+   include/linux/dynamic_debug.h:261:59: note: expanded from macro '_dynamic_func_call'
+     261 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
+         |                                                                  ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:259:65: note: expanded from macro '_dynamic_func_call_cls'
+     259 |         __dynamic_func_call_cls(__UNIQUE_ID(ddebug), cls, fmt, func, ##__VA_ARGS__)
+         |                                                                        ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:231:15: note: expanded from macro '__dynamic_func_call_cls'
+     231 |                 func(&id, ##__VA_ARGS__);                       \
+         |                             ^~~~~~~~~~~
+   1 warning generated.
+
+
+vim +234 drivers/mfd/asus-transformer-ec.c
+
+   227	
+   228	static int asus_ec_read(struct asus_ec_data *priv, bool in_irq)
+   229	{
+   230		int ret = i2c_smbus_read_i2c_block_data(priv->self, ASUSEC_READ_BUF,
+   231							sizeof(priv->ec_data),
+   232							priv->ec_data);
+   233	
+ > 234		dev_dbg(&priv->self->dev, "EC read: %*ph, ret = %d%s\n",
+   235			sizeof(priv->ec_data), priv->ec_data,
+   236			ret, in_irq ? "; in irq" : "");
+   237	
+   238		return ret;
+   239	}
+   240	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
