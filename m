@@ -1,60 +1,56 @@
-Return-Path: <devicetree+bounces-265893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265896-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qErnKn5Mk2mi3AEAu9opvQ
-	(envelope-from <devicetree+bounces-265893-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:57:34 +0100
+	id gJfcBq1Pk2nA3QEAu9opvQ
+	(envelope-from <devicetree+bounces-265896-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 18:11:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B820146848
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:57:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6B811468F3
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 18:11:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 69E253037C09
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:56:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 15125302810B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:10:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BB5332913;
-	Mon, 16 Feb 2026 16:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D55302D838E;
+	Mon, 16 Feb 2026 17:10:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="x1xPDPkK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VPzeoVEi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A8FE33123D;
-	Mon, 16 Feb 2026 16:56:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1E2F2D7398;
+	Mon, 16 Feb 2026 17:10:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771260986; cv=none; b=cWZ35j+JpBTFACTuCGq/2NkMnDpXUk6zTAzdWW0LAXCZ2ui3wI2FEE1VeCoav6aN9rs8mZ5MEIvljgWeofHVHW8+TrTOqHHU01lGV/MSSupDSBFELRDYpVjLpmQ/O9OKtxmJM+VFEOP3hRjDpgyXqTA0MP71o3thz2KEUaxCFsE=
+	t=1771261853; cv=none; b=ayxdQI86oIQW7C+n6PekAGVszDlaq8BgCLuYyRfpBmvCwbTsuyfhaQbkoWSKziQA4ukxJ8h0V8P73+JFf7+nM2yd1vhI/Ga65E0ut/R43K9lCSG0A3He9KglhTD8hjmU8p1djYKQ5e4inMf5wmagyLutSzrOshuEGfgOQUfoANo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771260986; c=relaxed/simple;
-	bh=uEnV3cn8HlC77+q5dDwanSvHf4oDCSNBDLOuTvFR+Qk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Qn73wiCiQXxwtQ6+invPUj8raLZQ6bHcnpDEEs0/GZOhQ5BcZ5dd2BRLyH+01hY4AZbQt8powRowBIFfk1aqYG7lB5N62MLv4gHtTrB+3ge5FFVU96cNF9lFo9SghodGd0sDWsRQI4yY7PjPjsnzW/yNliLvCQbwdTWjqH21VQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=x1xPDPkK; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 0C4034E40E7C;
-	Mon, 16 Feb 2026 16:56:24 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id CB620606CF;
-	Mon, 16 Feb 2026 16:56:23 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D1DC610368022;
-	Mon, 16 Feb 2026 17:56:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1771260982; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=pbMUYX90oorNbiOH6+eDHwT+ZNvoGjptVI0ItPpXrFg=;
-	b=x1xPDPkKnGqeJRwV8OAfCuVBIiBDAVs/7OQ2nkwaFt+U74TcKUDJqKakIn87QIl1CeEYBD
-	zbCTmIxwZ4gwVMl603QYfOn2IdPmJ7VsRhEkkW+0bKrmelzqfdnsJtvctJbXT2z9vrss0B
-	BXp9L/QwAyQ4Ji78ZfO4cTAXkpUxTOYeeTzjP9U/iC9kpp5rOOxr7jYN8uofWK1s35jKHh
-	JP4g3073kmEag/eLzCIHHR/jntb0sQIDoX/GETCaKx/PkqCaQIclgkq5onLSC+XOheR34Z
-	w0Z0IIw0jvlk5myizbZ5Ult2ZSH1vo/im33qKovZjyfvcuweoHdC59t3HpxuyA==
-From: "Kory Maincent (TI)" <kory.maincent@bootlin.com>
-Date: Mon, 16 Feb 2026 17:55:54 +0100
-Subject: [PATCH v2 3/3] ARM: dts: am335x: Add Seeed Studio BeagleBone HDMI
- cape overlay
+	s=arc-20240116; t=1771261853; c=relaxed/simple;
+	bh=Olf/VDLJhhSeV5DTXf2NCG4rihN5dnjKW9gQCyqFtKE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Qfi5/UhUcYwAHFLtIo44iAgX2fZpa3/zkIfuWDt0+rfa/LwFpqKZb5eicw/3UL+G6+jJ8qW8MRRg6evtlCfNeJcAfe0ryuoJHYkyIrFJopOvZRz5tme25CcnKKE7JlzcbGF5ToASG3zXK2nx8AUEBh2w84qs/JduoNZaJDolrYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VPzeoVEi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3F9A0C116C6;
+	Mon, 16 Feb 2026 17:10:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771261853;
+	bh=Olf/VDLJhhSeV5DTXf2NCG4rihN5dnjKW9gQCyqFtKE=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=VPzeoVEiwTfrgO0aFiOyEvgb99Ocve0kZlk3h216XHFJLE8hcfWcoSXda5JKt2Ype
+	 9W7Yq3vFpgIkSYU8X8gdZNP6nIJq/bUGEnouYGdEVF7KcjtcDrWURpcoJRViVX5Gl4
+	 hGv1aG2llhu/YALHe0DcEo7hMb2D8w5jwXW0pD+mwAhKBmPPqonHiaqs9i/qmIaWLz
+	 EW/42+jwxqauxR3ERN5HuFL0qdPCULRz1T9xpTokK21n1xBZgBnQqrxFuYS3KMa+k/
+	 prHIvWeBKJI0oEW8/hyuk76rrDcWcooyTPWoQfHPqTVBq+jBCzUx+xyPwFpCLc26CV
+	 tD65YvhbSvX0g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2DEC8E81A32;
+	Mon, 16 Feb 2026 17:10:53 +0000 (UTC)
+From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Subject: [PATCH v5 00/11] iio: amplifiers: ad8366: driver update and dt
+ support
+Date: Mon, 16 Feb 2026 17:10:44 +0000
+Message-Id: <20260216-iio-ad8366-update-v5-0-7e6091357d02@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,260 +59,136 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260216-feature_bbge-v2-3-22805cfdbf62@bootlin.com>
-References: <20260216-feature_bbge-v2-0-22805cfdbf62@bootlin.com>
-In-Reply-To: <20260216-feature_bbge-v2-0-22805cfdbf62@bootlin.com>
-To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
- Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
- Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+X-B4-Tracking: v=1; b=H4sIAJRPk2kC/23OwQ7CIAyA4VcxnMVQoLh58j2MhwJVSXQsmy4as
+ 3eXeVHjjn+Tfu1T9Nwl7sVm8RQdD6lPuSmBy4UIJ2qOLFMsLbTSCKBBppQlxco4J29tpCtLdOQ
+ pYOV9IFH22o4P6f42d/vSp9Rfc/d4nxhgmk6aUwD1jDaAVLJS1rI2XDtLW2ronI+rkC9i4gb9R
+ Wg3R+hChJpsNEDsFfwR5kNoZeYIUwiM6IzzCBX8f2G/CFBzhC0EICo8rD2gtz/EOI4vLD4wrnw
+ BAAA=
+X-Change-ID: 20251121-iio-ad8366-update-56abac58bbca
+To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- dri-devel@lists.freedesktop.org, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Bajjuri Praneeth <praneeth@ti.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Louis Chauvet <louis.chauvet@bootlin.com>, 
- "Kory Maincent (TI)" <kory.maincent@bootlin.com>
-X-Mailer: b4 0.14-dev-d4707
-X-Last-TLS-Session-Version: TLSv1.3
+ Conor Dooley <conor+dt@kernel.org>, 
+ Rodrigo Alencar <rodrigo.alencar@analog.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Alexandru Ardelean <alexandru.ardelean@analog.com>, 
+ Andy Shevchenko <andriy.shevchenko@intel.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771261851; l=3134;
+ i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
+ bh=Olf/VDLJhhSeV5DTXf2NCG4rihN5dnjKW9gQCyqFtKE=;
+ b=zObDgaAqkiIy1SlDAA4FyA8zRvq9fngqhETRkt/rlUoIe2rqGQBDefLIyw5AJizLonVYCxSfC
+ sc2PF6SuiprDpN87QHjtbKpADT/CliivU/aZhNVds9TsYSb1AFEyYU1
+X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
+ pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
+X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
+ with auth_id=561
+X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Reply-To: rodrigo.alencar@analog.com
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265893-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265896-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,seeedstudio.com:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:mid,bootlin.com:dkim,bootlin.com:email]
-X-Rspamd-Queue-Id: 2B820146848
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:mid,analog.com:email,analog.com:replyto]
+X-Rspamd-Queue-Id: A6B811468F3
 X-Rspamd-Action: no action
 
-Add devicetree overlay for the Seeed Studio BeagleBone HDMI cape, which
-provides HDMI output via an ITE IT66121 HDMI bridge and audio support
-through McASP.
+This patch series updates the AD8366 amplifier/attenuator driver with
+modern device resource management, including support for additional
+device variants.
 
-The cape is designed for BeagleBone Green but is also compatible with
-BeagleBone and BeagleBone Black due to pin compatibility.
+Adds support for multiple digital step attenuators:
+- ADRF5720: 0.5 dB LSB, 6-Bit, Digital Attenuator, 9 kHz to 40 GHz
+- ADRF5730: 0.5 dB LSB, 6-Bit, Digital Attenuator, 100 MHz to 40 GHz
+- ADRF5731: 2 dB LSB, 4-Bit, Digital Attenuator, 100 MHz to 40 GHz
+- HMC271A: 1 dB LSB, 5-bit, Digital Attenuator, 0.7 - 3.7 GHz
+- HMC1018A: 1.0 dB LSB GaAs MMIC 5-BIT DIGITAL ATTENUATOR, 0.1 - 30 GHz
+- HMC1019A: 0.5 dB LSB GaAs MMIC 5-BIT DIGITAL ATTENUATOR, 0.1 - 30 GHz
 
-Link: https://www.seeedstudio.com/Seeed-Studio-BeagleBoner-Green-HDMI-Cape.html
-Signed-off-by: Kory Maincent (TI) <kory.maincent@bootlin.com>
+Device Tree Support:
+- Adds device tree binding documentation
+- Adds device tree compatible strings for all supported devices
+- Favor chip info tables over device type.
+
+Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
 ---
- arch/arm/boot/dts/ti/omap/Makefile                 |   5 +
- .../boot/dts/ti/omap/am335x-bone-hdmi-00a0.dtso    | 157 +++++++++++++++++++++
- 2 files changed, 162 insertions(+)
+Changes in v5:
+- Another review of include headers.
+- Reset changes going before regulator changes
+- Chip info table adjustments.
+- Consume enable gpio before the reset.
+- Link to v4: https://lore.kernel.org/r/20260210-iio-ad8366-update-v4-0-15505f7b15b4@analog.com
 
-diff --git a/arch/arm/boot/dts/ti/omap/Makefile b/arch/arm/boot/dts/ti/omap/Makefile
-index dcc6d4422e411..d70706e6d467b 100644
---- a/arch/arm/boot/dts/ti/omap/Makefile
-+++ b/arch/arm/boot/dts/ti/omap/Makefile
-@@ -82,6 +82,10 @@ dtb-$(CONFIG_ARCH_OMAP4) += \
- 	omap4-var-stk-om44.dtb \
- 	omap4-xyboard-mz609.dtb \
- 	omap4-xyboard-mz617.dtb
-+
-+am335x-bonegreen-hdmi-00a0-dtbs := am335x-bonegreen-eco.dtb \
-+	am335x-bone-hdmi-00a0.dtbo
-+
- dtb-$(CONFIG_SOC_AM33XX) += \
- 	am335x-baltos-ir2110.dtb \
- 	am335x-baltos-ir3220.dtb \
-@@ -94,6 +98,7 @@ dtb-$(CONFIG_SOC_AM33XX) += \
- 	am335x-bonegreen.dtb \
- 	am335x-bonegreen-wireless.dtb \
- 	am335x-bonegreen-eco.dtb \
-+	am335x-bonegreen-hdmi-00a0.dtb \
- 	am335x-chiliboard.dtb \
- 	am335x-cm-t335.dtb \
- 	am335x-evm.dtb \
-diff --git a/arch/arm/boot/dts/ti/omap/am335x-bone-hdmi-00a0.dtso b/arch/arm/boot/dts/ti/omap/am335x-bone-hdmi-00a0.dtso
-new file mode 100644
-index 0000000000000..f43f44c79c96d
---- /dev/null
-+++ b/arch/arm/boot/dts/ti/omap/am335x-bone-hdmi-00a0.dtso
-@@ -0,0 +1,157 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * 2017 Copyright (c) Seeed Technology Inc.  All right reserved.
-+ * Author: Baozhu Zuo <zuobaozhu@gmail.com>
-+ * Copyright (c) Bootlin 2026
-+ *
-+ * This device tree overlay is compatible with the BeagleBone Black, Green
-+ * and their subversions.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/pinctrl/am33xx.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+&{/} {
-+	hdmi0: connector-hdmi {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "a";
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&it66121_out>;
-+			};
-+		};
-+	};
-+
-+	clk_mcasp0_fixed: clk-mcasp0-fixed {
-+		#clock-cells = <0>;
-+		compatible = "fixed-clock";
-+		clock-frequency = <24576000>;
-+	};
-+
-+	clk_mcasp0: clk-mcasp0 {
-+		#clock-cells = <0>;
-+		compatible = "gpio-gate-clock";
-+		clocks = <&clk_mcasp0_fixed>;
-+		enable-gpios = <&gpio1 27 0>;
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "TI BeagleBone Green HDMI cape";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,bitclock-master = <&sound_master>;
-+		simple-audio-card,frame-master = <&sound_master>;
-+
-+		sound_master: simple-audio-card,cpu {
-+			sound-dai = <&mcasp0>;
-+			clocks = <&clk_mcasp0>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&it66121>;
-+		};
-+	};
-+};
-+
-+&am33xx_pinmux {
-+	bb_lcd_pins: pinmux-bb-lcd-pins {
-+		pinctrl-single,pins = <
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA0, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA1, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA2, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA3, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA4, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA5, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA6, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA7, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA8, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA9, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA10, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA11, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA12, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA13, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA14, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA15, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_VSYNC, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_HSYNC, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_PCLK, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_AC_BIAS_EN, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_GPMC_ADVN_ALE, PIN_OUTPUT_PULLDOWN, MUX_MODE7)
-+			AM33XX_PADCONF(AM335X_PIN_GPMC_OEN_REN, PIN_OUTPUT_PULLDOWN, MUX_MODE7)
-+			AM33XX_PADCONF(AM335X_PIN_GPMC_WEN, PIN_INPUT, MUX_MODE7)
-+		>;
-+	};
-+	mcasp0_pins: mcasp0-pins {
-+		pinctrl-single,pins = <
-+			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKX, PIN_INPUT_PULLUP, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKR, PIN_OUTPUT_PULLDOWN, MUX_MODE2)
-+			AM33XX_PADCONF(AM335X_PIN_MCASP0_FSX, PIN_OUTPUT_PULLUP, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_MCASP0_ACLKX, PIN_OUTPUT_PULLDOWN, MUX_MODE0)
-+		>;
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	it66121: it66121 {
-+		compatible = "ite,it66121";
-+		reg = <0x4d>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bb_lcd_pins>;
-+
-+		#sound-dai-cells = <0>;
-+
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <4 IRQ_TYPE_EDGE_RISING>;
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				it66121_in: endpoint {
-+					bus-width = <24>;
-+					remote-endpoint = <&lcdc_0>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				it66121_out: endpoint {
-+					remote-endpoint = <&hdmi_connector_in>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&lcdc {
-+	status = "okay";
-+	blue-and-red-wiring = "straight";
-+	port {
-+		lcdc_0: endpoint@0 {
-+			remote-endpoint = <&it66121_in>;
-+		};
-+	};
-+};
-+
-+
-+&mcasp0 {
-+	status = "okay";
-+	#sound-dai-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcasp0_pins>;
-+	op-mode = <0>;
-+	tdm-slots = <2>;
-+	serial-dir = < 0 0 1 0 >;
-+	tx-num-evt = <32>;
-+	rx-num-evt = <32>;
-+};
-+
+Changes in v4:
+- Review of included headers.
+- Split of device-tree support patch.
+- Consume reset controller rather than gpio.
+- Link to v3: https://lore.kernel.org/r/20260203-iio-ad8366-update-v3-0-5d5636b5181a@analog.com
 
+Changes in v3:
+- Add compatible checks for dt-binding gpio properties.
+- Remove reset and enable gpio from device state struct.
+- Split refactoring commits.
+- Drop part of the refactoring in favor of a cleaner diff.
+- Get included header files sorted.
+- Link to v2: https://lore.kernel.org/r/20260126-iio-ad8366-update-v2-0-c9a4d31aeb01@analog.com
+
+Changes in v2:
+- Reorganize commits with cleanups before features.
+- Link to v1: https://lore.kernel.org/r/20260119-iio-ad8366-update-v1-0-8044e23e964a@analog.com
+
+---
+Rodrigo Alencar (11):
+      MAINTAINERS: Add missing maintainer entry for AD8366 driver
+      dt-bindings: iio: amplifiers: Add AD8366 support
+      iio: amplifiers: ad8366: refactor include headers
+      iio: amplifiers: ad8366: add local dev pointer to the probe function
+      iio: amplifiers: ad8366: use devm_mutex_init() and drop mutex_init()
+      iio: amplifiers: ad8366: refactor device resource management
+      iio: amplifiers: ad8366: replace reset-gpio with reset controller
+      iio: amplifiers: ad8366: prepare for device-tree support
+      iio: amplifiers: ad8366: add device tree support
+      iio: amplifiers: ad8366: consume enable gpio
+      iio: amplifiers: ad8366: update device support
+
+ .../bindings/iio/amplifiers/adi,ad8366.yaml        |  97 ++++++
+ MAINTAINERS                                        |   9 +
+ drivers/iio/amplifiers/Kconfig                     |   6 +
+ drivers/iio/amplifiers/ad8366.c                    | 387 +++++++++++----------
+ 4 files changed, 321 insertions(+), 178 deletions(-)
+---
+base-commit: cce8de7f9744a210a4441ca8a667a9950515eea7
+change-id: 20251121-iio-ad8366-update-56abac58bbca
+
+Best regards,
 -- 
-2.43.0
+Rodrigo Alencar <rodrigo.alencar@analog.com>
+
 
 
