@@ -1,246 +1,178 @@
-Return-Path: <devicetree+bounces-265858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265859-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4Bl3DDI2k2mV2gEAu9opvQ
-	(envelope-from <devicetree+bounces-265858-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:22:26 +0100
+	id MJZ5HyE3k2mV2gEAu9opvQ
+	(envelope-from <devicetree+bounces-265859-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:26:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED3D1145755
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:22:25 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DF2214587B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:26:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 20026300D0F8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 15:22:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0632330048DD
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 15:25:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D448326935;
-	Mon, 16 Feb 2026 15:22:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD78D328B42;
+	Mon, 16 Feb 2026 15:25:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VGp0ddLi"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="3I3ct1mS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23C9D32572D;
-	Mon, 16 Feb 2026 15:22:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76B8C3164C2;
+	Mon, 16 Feb 2026 15:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771255337; cv=none; b=YZ9Vo3rZuv09kHwfwsZuQrYCxaddp2fR6jEIIJe8dfypHAZ+LJYY17tsR10yyZnhi8FtgD9m25mbj2/Ggqp2x/xR3cCu4ZI6N8hYV2DaMUmy53mWam8RH1XM9XYqwHfdd3r+M0bLghT2VGeTjYHarcZ85fWLM/OVTb9ghebh4nM=
+	t=1771255535; cv=none; b=syI6h/6BOV8LB6E265Q8DahJFXr3pjQNPTCc00/EH73b/RqmIlMjvclCzHZMGQGphj8ljwEHwAkjopQeeOKuhwuCwWMaf0ddyNGIRQuhW2EFLqh8xXgMdvjcILSnZHyaUm82dICj2fk1MD9UKY1r93cURSUe9PeWeyW/f0mOm9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771255337; c=relaxed/simple;
-	bh=rO5pvMpoFmL8Fx9NoSnLv4h+94kVFJV6QpMLCSMKBYY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Vaw3tKJpzu28WHRhbErQp0vJCbqBq9zwhbk4bZNC593aw3KwuzDJ8TrlyDBDLx8TDsgh4Cm0HrcESyKnzYi91x+PuiED8SuT7NH5yrL2fYASZQ/gUi0ZqHJNmw/mwaaTzeBgwknyZ3tO5tAI8XUeqvYtiPxiQg1dj9qICSIbB6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VGp0ddLi; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1771255334;
-	bh=rO5pvMpoFmL8Fx9NoSnLv4h+94kVFJV6QpMLCSMKBYY=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=VGp0ddLiK3M75iH7slbP42Pf/2drvgeo7I2GaYWx/+Myyou9z+e7TCwWnvR7CzAGf
-	 EY51OJSso1SO642glioZJgYN+GTdR4PtW+OvdpHVPJecniKapCxvtZRDSYbS/RJLLU
-	 WZmPL0Wx37NdMhvuN0EU17NMgPGG0DypPlvmZtQSP3FI6q4EUVvjwfinuOvE3MLpSV
-	 5eLPr6my7g1iyVfEeuTmtgH+9hVOOFGLQREN+6S21DwbVGbjKQZ0R5B9J3FGZB67yM
-	 S76+lNXDz2EGmNuGCdt1yWO1C7zFamE414YxxtoMy0ySguT8eQjunWNWALdtQCCdHh
-	 MVfgifyFu4OYQ==
-Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: mriesch)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id DADEB17E01E7;
-	Mon, 16 Feb 2026 16:22:13 +0100 (CET)
-Message-ID: <e06feb9d-47cd-40e6-8c43-b24ff8a3e800@collabora.com>
-Date: Mon, 16 Feb 2026 16:22:13 +0100
+	s=arc-20240116; t=1771255535; c=relaxed/simple;
+	bh=K3lRTqVkgTbsUZEdt0AotXacxdi5Nb+Ix685DjTsOz0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=X96MBk9WCXgvTsD2MB8t2KtocbGROaLSVBuv+5gF1vsNSzKTSZ/1UY+S/4w4oLAe4Lyhh+BC9a/abXjP/rFcSTPipcBkQvONXaCROWoFjxKu2bFwS6IQJs6e80ooT54szqGNmFI9GJNZUh9HgkXgM+g8fKw9AW1CKzRf5NUkzc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=3I3ct1mS; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=+NuGee1f3YReNLAkZ92SuV7HlsXpngRlfWnVEVSkgmQ=; b=3I3ct1mSQotzkI0CFg0yUeDyPU
+	uszNV5kuZ5BoqCMC6ea1ywRQ9F8zCXOL/daxPnD8zkNgUHA+mmizXUBINHJxHNlw7hMr4s0IHioh9
+	5rlaft8K+ZH5XDqp0Yd3XdFnTcTPA0XAPgtXdL/jwazhLlNkinKzlgXymtdDixCgO7CocgnDF5suu
+	iCBCt9pqxSEP8lbjwY7jbss/nmXL51hQ0fv4jm+WRPHHO549392zOcsxYzRk4jTZQeTcsDoqFc90M
+	+tiUVHW2jQH47ycjEgqCjs3dAESLSss5wECck4GJNgxvFwo7SB0sPhR8g79fm5Jur8p5mkQOASMuj
+	68a4dnlQ==;
+Date: Mon, 16 Feb 2026 16:24:06 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: Josua Mayer <josua@solid-run.com>, Geert Uytterhoeven
+ <geert@linux-m68k.org>, Marc Kleine-Budde <mkl@pengutronix.de>, Vincent
+ Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Peter Rosin <peda@axentia.se>, Aaro Koskinen
+ <aaro.koskinen@iki.fi>, Kevin Hilman <khilman@baylibre.com>, Roger Quadros
+ <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, Janusz Krzysztofik
+ <jmkrzyszt@gmail.com>, Vignesh R <vigneshr@ti.com>, Andi Shyti
+ <andi.shyti@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus
+ Damm <magnus.damm@gmail.com>, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, Yazan Shhady
+ <yazan.shhady@solid-run.com>, Jon Nettleton <jon@solid-run.com>, Mikhail
+ Anikin <mikhail.anikin@solid-run.com>, "linux-can@vger.kernel.org"
+ <linux-can@vger.kernel.org>, "linux-phy@lists.infradead.org"
+ <linux-phy@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "linux-omap@vger.kernel.org"
+ <linux-omap@vger.kernel.org>, "linux-i2c@vger.kernel.org"
+ <linux-i2c@vger.kernel.org>, "linux-mmc@vger.kernel.org"
+ <linux-mmc@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
+ <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v9 1/7] phy: can-transceiver: rename temporary helper
+ function to avoid conflict
+Message-ID: <20260216162406.0121dd91@kemnade.info>
+In-Reply-To: <20260216092914.kmvl7aep7dantcsd@skbuf>
+References: <20260208-rz-sdio-mux-v9-0-9a3be13c1280@solid-run.com>
+	<20260208-rz-sdio-mux-v9-1-9a3be13c1280@solid-run.com>
+	<20260212164823.mbeycqwzsy2dfq6e@skbuf>
+	<CAMuHMdVOqovkugmCnR4FOfk8VkQyN_dmyKFzbsOSN0mPKQedeQ@mail.gmail.com>
+	<f9ede0d3-6a37-449c-b62b-a5c761ece097@solid-run.com>
+	<20260216092914.kmvl7aep7dantcsd@skbuf>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/6] media: dt-bindings: add NXP i.MX93 compatible
- string
-From: Michael Riesch <michael.riesch@collabora.com>
-To: Frank Li <Frank.Li@nxp.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, Guoniu Zhou <guoniu.zhou@oss.nxp.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, imx@lists.linux.dev,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-References: <20260213-imx93-dw-csi2-v2-0-8be6039f44c6@nxp.com>
- <20260213-imx93-dw-csi2-v2-5-8be6039f44c6@nxp.com>
- <50a82e17-1666-4ef6-ab6e-c0be3c780a0d@collabora.com>
-Content-Language: en-US
-In-Reply-To: <50a82e17-1666-4ef6-ab6e-c0be3c780a0d@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[kemnade.info,none];
+	R_DKIM_ALLOW(-0.20)[kemnade.info:s=20220719];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265858-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-265859-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[33];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kemnade.info:+];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michael.riesch@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FROM_NEQ_ENVFROM(0.00)[andreas@kemnade.info,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[solid-run.com,linux-m68k.org,pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com,vger.kernel.org,lists.infradead.org];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim,collabora.com:email,qualcomm.com:email]
-X-Rspamd-Queue-Id: ED3D1145755
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,kemnade.info:mid,kemnade.info:dkim]
+X-Rspamd-Queue-Id: 3DF2214587B
 X-Rspamd-Action: no action
 
-Hi Frank,
+On Mon, 16 Feb 2026 11:29:14 +0200
+Vladimir Oltean <olteanv@gmail.com> wrote:
 
-On 2/16/26 09:31, Michael Riesch wrote:
-> Hi Frank,
+> Hi Josua,
 > 
-> On 2/13/26 21:25, Frank Li wrote:
->> The i.MX93 uses the DW CSI-2 RX controller, which is similar to the
->> Rockchip RK3568 implementation.
->>
->> The i.MX93 variant provides one IRQ, two clocks, and no resets. Add the
->> "fsl,imx93-mipi-csi2" compatible string and keep the same constraints for
->> rk3568.
+> On Mon, Feb 16, 2026 at 08:19:27AM +0000, Josua Mayer wrote:
+> > >> In the future, when you have a series with cross-tree dependencies,
+> > >> please try to think of it as individual mini-series for each tree's
+> > >> 'next' branch, and specify clearly that you need stable tags (to be
+> > >> pulled into other trees).  
+> > 
+> > I don't really understand how I could split my series up to avoid this 
+> > issue.
+> > 
+> > Due to the fact that one (and now two) drivers implemented local
+> > mux helpers, to undo that an atomic change must be made tree-wide.
+> > 
+> > Meanwhile it must be avoided that while the mux core helpers are being
+> > tested / reviewed, that any tree adds another driver-local mux helper
+> > like appears to have happened here.
+> > 
+> > Note that my patch-set did go to linux-phy@lists.infradead.org list, too.
+> > 
+> > The second challenge for this series was that mux framework is being
+> > enabled only by drivers Kconfig "select" - and not possible by menuconfig.
+> > This is e.g. responsible for being unable to test =m build with arm64
+> > defconfig - and lead to it only being detected through kernel robot
+> > x86_64 allmodconfig.  
 > 
-> RK3568.
+> To avoid this, a combination of developer due diligence + maintainer due
+> diligence is probably required.
 > 
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> From linux-phy perspective, there will be some automated build testing
+> (which did not exist at the time of your submission). This would have
+> caught the 'hidden' devm_mux_state_get_optional() call present only in
+> linux-phy/next, when testing patch 2/7.
 > 
-> With that cosmetic fix,
+> But, to work, the build automation needs to be able to apply the entire
+> patch set on linux-phy/next. So expect some pushback if it doesn't
+> (hence the recommendation to send a mini-series to linux-phy first, and
+> request a stable tag).
 > 
-> Acked-by: Michael Riesch <michael.riesch@collabora.com>
+I do not think that is at all the duty of the patch submitter. I think as
+long as every dependencies and side effects are documented, it is IMHO up to the
+maintainers to decide how it can be merged best. They know best whether there
+is any danger of conflicts in their working tree because that is an area 
+where people are working on. Especially this patchset is around for months.
 
-I just recalled a conversation with Heiko we had off-list a while ago,
-and back then we kind of decided against a snps binding document and
-compatible, since the integration in the respective SoC (family) varies.
-Thus, we went for a Rockchip document (which shall be extended with the
-RK3588 variant of this block, for example) and thought that any other
-variant (e.g., the one of the imx93) could be documented in a separate
-document fsl,somethingsomething.
+ In MFD where it is
+more common practice to have cross-subsystem patchsets, once acks from
+everyone are there, MFD Maintainer creates an immutable branch with a tag.
+The maintainers of the affected subsystems pull it in. 
 
-Seeing that interrupts, clocks, and resets are different, I would
-recommend that you add a new fsl,... document.
-
-What do you think?
-
-Best regards,
-Michael
-
-
-> 
-> Best regards,
-> Michael
-> 
-> 
->> ---
->>  .../bindings/media/rockchip,rk3568-mipi-csi2.yaml  | 47 +++++++++++++++++++++-
->>  1 file changed, 45 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi2.yaml
->> index 2c2bd87582eb8bfdd13720edd62a5f00dda958ba..4ac4a3b6f406408b9524c795e6cdeb117d3353da 100644
->> --- a/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi2.yaml
->> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi2.yaml
->> @@ -17,6 +17,7 @@ description:
->>  properties:
->>    compatible:
->>      enum:
->> +      - fsl,imx93-mipi-csi2
->>        - rockchip,rk3568-mipi-csi2
->>  
->>    reg:
->> @@ -26,14 +27,23 @@ properties:
->>      items:
->>        - description: Interrupt that signals changes in CSI2HOST_ERR1.
->>        - description: Interrupt that signals changes in CSI2HOST_ERR2.
->> +    minItems: 1
->>  
->>    interrupt-names:
->>      items:
->>        - const: err1
->>        - const: err2
->> +    minItems: 1
->>  
->>    clocks:
->> -    maxItems: 1
->> +    minItems: 1
->> +    maxItems: 2
->> +
->> +  clock-names:
->> +    items:
->> +      - const: per
->> +      - const: pixel
->> +    minItems: 1
->>  
->>    phys:
->>      maxItems: 1
->> @@ -88,10 +98,43 @@ required:
->>    - phys
->>    - ports
->>    - power-domains
->> -  - resets
->>  
->>  additionalProperties: false
->>  
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: rockchip,rk3568-mipi-csi2
->> +    then:
->> +      properties:
->> +        interrupts:
->> +          minItems: 2
->> +        interrupt-names:
->> +          minItems: 2
->> +        clocks:
->> +          maxItems: 1
->> +        clock-names:
->> +          maxItems: 1
->> +      required:
->> +        - resets
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: fsl,imx93-mipi-csi2
->> +    then:
->> +      properties:
->> +        interrupts:
->> +          maxItems: 1
->> +        interrupt-names: false
->> +        clocks:
->> +          minItems: 2
->> +        clock-names:
->> +          minItems: 2
->> +
->>  examples:
->>    - |
->>      #include <dt-bindings/clock/rk3568-cru.h>
->>
-> 
-
+Regards,
+Andreas
 
