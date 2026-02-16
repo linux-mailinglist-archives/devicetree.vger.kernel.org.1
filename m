@@ -1,201 +1,200 @@
-Return-Path: <devicetree+bounces-265673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265674-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mJ11CVbdkmlvzQEAu9opvQ
-	(envelope-from <devicetree+bounces-265673-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 10:03:18 +0100
+	id 4MHwCHDdkmlvzQEAu9opvQ
+	(envelope-from <devicetree+bounces-265674-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 10:03:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93B2A141CE3
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 10:03:17 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31BF6141CF2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 10:03:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 393833032CDF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 09:01:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A574F300119D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 09:03:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE531F3B87;
-	Mon, 16 Feb 2026 09:01:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F4AC27A462;
+	Mon, 16 Feb 2026 09:03:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WmQaaKp9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jZSRYKO9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6609D22B5AD
-	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 09:01:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1751C2727E0;
+	Mon, 16 Feb 2026 09:03:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771232478; cv=none; b=SrQRKB1AV+5g/X6A2GuPAVMjiL7J0BgxNX99hRaRyPFj4eD6d8/YklNXUkyHu+urlmOoWWRqtQ/8Q4LNQOxP8PDDRhJQch6zhH2z6O9jRcLsr7cOd1m1pOq9cLdLd7QDMTWw2sqYV0TYe+EF5vWTY53iP5Hg7uKItz7vJ8mDzJU=
+	t=1771232617; cv=none; b=Y+Q0I9ErCcglxNXc5uLjAhbsME03grXnQkQr+cgfHeik5jf+xbrDVFjm9c3K3uDmCXzYEIieXmu6cF6zk+WEU6JQHoNhbrXFs6KX6YqwCJcIohOZwLeuUq+TejnrEVtVQYtAUUB9QlWjpgiZdxH96UFQ0Xbd5Jj6zYztsR7z6/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771232478; c=relaxed/simple;
-	bh=2MLUkdf1st2wI8Mhpz3EHSzrYYrzKyvFdnclNChQ0Po=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uScQbdaHm/RAcc2s2vieebWS0hTVUGAEaMmEpQ7cjIim/65RdxtbodHxQp+Akl1BVWCnwzA2mCdfkq0P0GKbQRzIW8rSFXl6ya97Qo+PQz1o4lxLr+lhKKzP8SrKICiYXS2eWregI17sBSO193ZQ2iKaPayniTfTvCacBcQVqe8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WmQaaKp9; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-483708b697cso2837155e9.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 01:01:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771232476; x=1771837276; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qHnHPcuynIqTUxCpCO7mrbWmUqF4Rxqiy/wTilKTles=;
-        b=WmQaaKp9Q3jJ/sf6KjjXgX5qSHAyxuIcukKFq5+OnhxY2YzB6+XgUjPjfG0wIpHXXm
-         txXA+guyXjVjltaIPhRT8f7kxJ8/CBSnUuFS9dHvlqztpE4agEPuAWyiAHqzY6uS2gKs
-         A6Z249mKc0XjtW7Uangtt28PG/6poFZp+PTJi4H1NrTrlOBS7BiYeBICyHycPNowxBBM
-         E8pCq7jLUt3hgssCzGl0eIg7NwHUa1pf9sQQ18pp2UzC57NRHhnetjNHUB1kcBMlDUrw
-         h7HHu8CvkZxse/rJviqN1ACWSutngZf6cBKg/SEbhJEVvT8jrjjiVL9AEjZ0omG3Mbcq
-         bgTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771232476; x=1771837276;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qHnHPcuynIqTUxCpCO7mrbWmUqF4Rxqiy/wTilKTles=;
-        b=ERxuRD9OCzUecOLheEP4eylkgTDtFHZ915fDj/7PNJSymj/AuMzxg/8KT2ax0fcXgW
-         vfu3O1q6HbjaR7LMM4REJWiiTdT5jJkCOTg6EezVlUS/t/7QC0UpSm4UaGIeB6IqHV4g
-         AjK8LdIuxm3QSiBjd1cwa5j2aX2h/FjxKpdGqPa/ITn8t3pLVQdFAvX/2x4IXtfFmwZ/
-         Ul8ygRqOrCeJL/3ZI/kObYfrFstJOpZfnVYNJaFpSto20PIXqi7m78LakMPizUzjrPcZ
-         Q3jglmVhLhaYPG/lxgozLutHB1hRPDvAVsH+hlLAKf25R/2C3f9R8rqBCmHGJVwqKZPE
-         aGZg==
-X-Forwarded-Encrypted: i=1; AJvYcCVMw/1jwVXuionKP5aPQ/21Ej4iuUe5R8KousX4GRzWZ9eyHrSGyYcmm98ou9o6FQuQFEelosRjTTlm@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEwh8K+COwQb3hAMWFsoWxWxWbIOIfibDpuOJCpXAUM/ouV+WR
-	PJG0AApzZEEu+d8nde9LDL0YA53xD+dCc9p4ZgsoavXiOc4dYNlTcXXc
-X-Gm-Gg: AZuq6aIbWGyfDEEo8KePCj4FDWs6kVNUicxtz0ujFPFJosVk3L1DkH2cP6+DUv+njWa
-	TUlmGOVnFD+HtINh8FJEgb9pji5/dbTY7wQ3ZgTwKaYzzOPpc108jbWBCQINgKj/VUP37u7/Qtd
-	lm4Bf+qpREpui/CyOq6c6T6cSKkODbM+NWAM3xFHbLG2j1lWzYtpddnuc40ULF5zl9qh5EpZKCh
-	52RkZHZY+NL3Kqjgk0bHGl11X7bdlUsytbB+X4RWszR3PoCKmmPPsKrdCV0Ofpt9q16EONANsci
-	n3ctihq0hgn7rck/TZSujVrjLZ6W+o88pvMluOVkXBWJFNRDSlqnwbAnwa0LpVAQDwM//3iLMRb
-	AAQe/PZDm6DRrvXcoprSDtREF7i2G+ye/4/7n2UeX/5o9DVtrBuYasgk/6MJAU+8V3rwuQSlTN5
-	UTWksQrSCfCqXQAw==
-X-Received: by 2002:a05:600c:4448:b0:47b:d992:601e with SMTP id 5b1f17b1804b1-48370e2b6bemr118797125e9.2.1771232475530;
-        Mon, 16 Feb 2026 01:01:15 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d501:d900:68e2:cc27:74c:c083])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48370a78c89sm249517325e9.5.2026.02.16.01.01.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Feb 2026 01:01:14 -0800 (PST)
-Date: Mon, 16 Feb 2026 11:01:12 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Yixun Lan <dlan@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>,
-	Junzhong Pan <panjunzhong@linux.spacemit.com>,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] phy: k1-usb: add disconnect function support
-Message-ID: <20260216090112.n5jjpui3luqsybb5@skbuf>
-References: <20260214-11-k3-usb2-phy-v2-0-6ed31e031ab4@kernel.org>
- <20260214-11-k3-usb2-phy-v2-2-6ed31e031ab4@kernel.org>
+	s=arc-20240116; t=1771232617; c=relaxed/simple;
+	bh=CerHdd7ifYZ0MG0558lVQyf1bD5hVdlvuN3igVFLSsU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J/AwSOSPrftSTKncOYZs9Dn/ft9FTT45u/AMpR9dd1gbbbyfuik4Zf33pTnGUoTcFD8Ko8aK7uB5V5MQJWC1iI0o0hFNcLgZuL+HAYOU2zltMKHdVLg5zSaDuPk5mJQVo5KQQVn1MIn8M3BIMSxz69vLdgj3GqAGXh/bVkrGvGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jZSRYKO9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAAFFC116C6;
+	Mon, 16 Feb 2026 09:03:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771232616;
+	bh=CerHdd7ifYZ0MG0558lVQyf1bD5hVdlvuN3igVFLSsU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jZSRYKO9XvPRnZGjrlyw5Ss075qUu9iRCT06/0Vj6jGvL7KvvmUukEkOykMeXPf2i
+	 VQo8/PSA13efJ6gqLmn5bA6JsY5rldqKXxrUcgDRmr5imvxWWtf+cOHpSNE13KH8a8
+	 OioSfCAabTpeQHqrALFvJ3ljNSoZp10pLM+93tiYSZXbuKf7OT0Yl9mfMvFOhJlRhj
+	 unpimRPY3wpyDw4B+gw06bOmYA5HZErPk06N+o/gMYulCGx6nqh0LVXqSWOFn+/jZM
+	 nSKaBQbzGhqymoSUjH0XVb8yVr+rMMuAp7Nj7nAB7QaHnCEjhgPJvNWgEYYMBEK1Jz
+	 cLHLmFJmFj1gg==
+Message-ID: <5a0bbe24-321f-4bfe-8809-4ba2bcb038a1@kernel.org>
+Date: Mon, 16 Feb 2026 10:03:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260214-11-k3-usb2-phy-v2-2-6ed31e031ab4@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: light: vcnl4000: add Capella
+ CM36686 and CM36672P
+To: Erikas Bitovtas <xerikasxx@gmail.com>,
+ David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20260212-cm36686-v4-0-8f587d4a72bf@gmail.com>
+ <20260212-cm36686-v4-1-8f587d4a72bf@gmail.com>
+ <20260213-unyielding-pistachio-ape-deda74@quoll>
+ <3a20c906-647c-458f-a118-c7927495e7ef@gmail.com>
+ <8fb27a7a-82dc-443b-bcc4-21007783fc54@kernel.org>
+ <f014078c-6e4d-48b0-a814-45898b005c44@gmail.com>
+ <880ddcad-a92e-43bb-ad5c-d6f2f353d182@baylibre.com>
+ <eea4cf8c-4126-49a8-ada8-1b1893a406c2@gmail.com>
+ <1326c41d-e4cf-493e-a758-364edaddd04f@kernel.org>
+ <8b539c02-9b39-4451-bc00-2af23d43578d@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <8b539c02-9b39-4451-bc00-2af23d43578d@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-265674-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265673-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,baylibre.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 93B2A141CE3
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 31BF6141CF2
 X-Rspamd-Action: no action
 
-Hello Yixun,
-
-On Sat, Feb 14, 2026 at 08:29:15PM +0800, Yixun Lan wrote:
-> A disconnect status BIT of USB2 PHY need to be cleared, otherwise
-> it will fail to work properly during next connection when devices
-> connect to roothub directly.
-> 
-> Fixes: fe4bc1a08638 ("phy: spacemit: support K1 USB2.0 PHY controller")
-> Signed-off-by: Yixun Lan <dlan@kernel.org>
-> ---
->  drivers/phy/spacemit/phy-k1-usb2.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/drivers/phy/spacemit/phy-k1-usb2.c b/drivers/phy/spacemit/phy-k1-usb2.c
-> index 342061380012..959bf79c7a72 100644
-> --- a/drivers/phy/spacemit/phy-k1-usb2.c
-> +++ b/drivers/phy/spacemit/phy-k1-usb2.c
-> @@ -48,6 +48,9 @@
->  #define  PHY_CLK_HSTXP_EN		BIT(3)		/* clock hstxp enable */
->  #define  PHY_HSTXP_MODE			BIT(4)		/* 0: force en_txp to be 1; 1: no force */
->  
-> +#define PHY_K1_HS_HOST_DISC		0x40
-> +#define  PHY_K1_HS_HOST_DISC_CLR		BIT(0)
-> +
->  #define PHY_PLL_DIV_CFG			0x98
->  #define  PHY_FDIV_FRACT_8_15		GENMASK(7, 0)
->  #define  PHY_FDIV_FRACT_16_19		GENMASK(11, 8)
-> @@ -142,9 +145,20 @@ static int spacemit_usb2phy_exit(struct phy *phy)
->  	return 0;
->  }
->  
-> +static int spacemit_usb2phy_disconnect(struct phy *phy, int port)
-> +{
-> +	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
-> +
-> +	regmap_update_bits(sphy->regmap_base, PHY_K1_HS_HOST_DISC,
-> +					   PHY_K1_HS_HOST_DISC_CLR, PHY_K1_HS_HOST_DISC_CLR);
-
-Please align function arguments to the open parenthesis.
-
-Since we are in the merge window, it is likely that new features will
-not be picked up at this stage.
-
-But this seems to be a fix for existing SpacemiT K1 support, currently
-in the linux-phy/next branch. The linux-phy pull request hasn't been
-sent yet, so if you can resend just this patch and we can get an ACK for
-it in time, perhaps it can be included for v7.0.
-
-The K3 support should be resent after the merge window.
-
-> +
-> +	return 0;
-> +}
-> +
->  static const struct phy_ops spacemit_usb2phy_ops = {
->  	.init = spacemit_usb2phy_init,
->  	.exit = spacemit_usb2phy_exit,
-> +	.disconnect = spacemit_usb2phy_disconnect,
->  	.owner = THIS_MODULE,
->  };
->  
-> 
-> -- 
-> 2.52.0
+On 16/02/2026 09:49, Erikas Bitovtas wrote:
 > 
 > 
+> On 2/16/26 9:27 AM, Krzysztof Kozlowski wrote:
+>> On 15/02/2026 17:16, Erikas Bitovtas wrote:
+>>>> But CM36686 is fully compatible with CM36672P, right?
+>>>>
+>>>> So this would make sense?
+>>>>
+>>>>       - items:
+>>>>           - const: capella,cm36686
+>>>>           - const: vishay,vcnl4040
+>>>>           - const: capella,cm36686p
+>>>>
+>>>>
+>>> If you try to use CM36686 compatible for CM36672P, proximity channels
+>>> will work, but in_illuminance_raw will return 0 and changing illuminance
+>>> parameters will have no effect. That is because CM36672P is a proximity
+>>> sensor only and the register fields for ambient light are reserved.
+>>> And if you try to use CM36672P compatible with CM36686, it will work,
+>>> but only proximity channel will be available, even though CM36686 also
+>>> can sense light.
+>>
+>> So clearly CM36672P is the superset and should be used with CM36686
+>> fallback.
+>>
+>> Lack of the fallback how the patch is written now is a mistake.
+>>
+> 
+> Is it not the other way around? CM36686 compatible fully supports
+> CM36672P, but CM36672P does not fully support CM36686. This would make
+> CM36672P a subset of CM36686, because CM36672P is the proximity sensor,
+> and CM36686 is proximity and ambient light sensor, and therefore, a
+> superset of CM36672P.
+
+
+Yes, you are right. The sentence "CM36672P compatible with CM36686" was
+a bit confusing what is the device what is the compatible. Anyway the
+commit msg needs changes to clarify reason you chosen vcnl4040 as
+fallback, even though there is compatibility between CM devices.
+
+
+Best regards,
+Krzysztof
 
