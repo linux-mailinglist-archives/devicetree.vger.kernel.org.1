@@ -1,318 +1,217 @@
-Return-Path: <devicetree+bounces-265914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265915-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YNCwFIlgk2m64AEAu9opvQ
-	(envelope-from <devicetree+bounces-265914-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 19:23:05 +0100
+	id U35PLUNkk2k/4QEAu9opvQ
+	(envelope-from <devicetree+bounces-265915-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 19:38:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB291146F70
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 19:23:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FE1D147026
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 19:38:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 964F8302BA7B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 18:22:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A9F1D3021D0A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 18:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C36E42D5C83;
-	Mon, 16 Feb 2026 18:22:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423C72E0B6E;
+	Mon, 16 Feb 2026 18:38:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mrn4c/f9"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="TG3GZ1kV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA6B2C11FE
-	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 18:22:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771266174; cv=pass; b=ahLzqtWbA4F/LEfBXuHKUAG9Srbskgk6EnKQdntvcAv8/Vb5sLfB6vopi2rTQ3HIK6Kt9/14nlkEdbzpZXxq5E96AyVtHak38cFDuNxxIqtxNHuTmp/e9rQ5RrF6blwZPx+195kVkr/Mr5/xN8yKIPET0AFOjlUVRQSkCBC+gGo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771266174; c=relaxed/simple;
-	bh=cm1yxjwH9Z28ptmYFhe3IeX8mFESDp5HLnpkx6ZPfcw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ckDb1b9BzsIpe2fKQFFI4CtQmn9FThXcZwOj6JX77NctqJOhvyFYax81Ls4nbqNNPqBjx3YO5Uestxt/eU2zDWSUJhuWuvP8uGvqTW+q1OnHIYlnmiq1Kq74YkKbuIDzSllY/h//eoGJJYB311lA4wdKvcs6ZhHp3Q9cckWvyZ8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mrn4c/f9; arc=pass smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-43622089851so3203475f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 10:22:52 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771266171; cv=none;
-        d=google.com; s=arc-20240605;
-        b=YJvw2Kin1zDFe+ipGQwJyhH06uu8nsHce+N17D5/tdtcYTsQYxYCHUDiL/3yx/46Nx
-         QMh8rlmhHEEo8NZuHB3uxMFOP7BON0L01yYPgoG0k+8P1hdOrvQ6E7dRmxIxOUUAhTBs
-         Zun31CBQoafRTqMIIddmaqCIv99DqyyPuoKjAKhgB3egcuCwV5QFis/EysoaiPdpuprX
-         ugn2htkyxG5281LZYWwNylLhK0AAM3CETvjYQsOcrHAOGYg8/lGhL5lv+Cvf51YdTS2/
-         i7Uy8Lr9fWCL89VSshPp6EQ4OsnVKTwPm3BTJ9dDfHcq5DbjpaFSiXzXBYxidGDnoM1Q
-         q/SA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=lx9sMXC6RQXXITKl7w/e4T7ej5sF4JRPpHYSQw3vBPo=;
-        fh=BikXVbBslCe8/GiVH0Ix8e15OON388r4qEnvRucn9y8=;
-        b=UlsmoWjX1rn0HLb2ev58n93d/K69UoPArhGzdEIm8GAtqFuZwEy8unlQydtRwSpTzq
-         PxhDWl8f9NuqMwlaviGuDNbv9qqsOpjfbi+KYQm93ETKLt4kolO9Nds84ILWgMeW/mGw
-         gD3DFB02lwF7e8yuzre7MBuaP4SAQbw4WUS4PIQBBriXZPw6ELoLhKgGYzgYSecHHMi6
-         gJozEYfaGDSTvWP52cVX7zo4C7nsd83QYmLEKqOkpgl1XxzANOZs3XyK+Rd/NDCPY6B8
-         URrKOWVN3MwzjIhGSk9Yrdr1mgVzvTD7GfCNNIAM+lHtm/BJIr5PI0bAGAQjq902i2bD
-         bIhw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9FD71C69D
+	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 18:38:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771267129; cv=none; b=m4ZzHgBXfbm3nYTxNSyKLJidnjSBk58Vu/d/jB44PALVq50nYQdJ6KnYZ8YyN98KdWRuBs0TIFa5DvyTQvOXBmluGyU2qWOk2B2MLHdids/m0dD+9vOaGFU0K9T/K93tIv3jkDx91RrBGa2ix6D6tkwlcQTkVllHoEstc21zZ2s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771267129; c=relaxed/simple;
+	bh=Hga/yI7lb3JU4eP+Zv7hPwnm8zmrz/Hem1JLcJbvYnk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jtF3HoKFRX+9jT68xGg2LyIMX/P01YrvhL3TraJQdWyTo5Bd5aAGLRDmgOYXisXKlz69zW3oFLoQFKsaUrGqFStZdx8wq9KQgbozdwDk7uEKePksyYYql+2ujnjIzy8HHlqEn3MniCoc4t+pswinDB9HAsUThK+3hNrZ6cAt2+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=TG3GZ1kV; arc=none smtp.client-ip=209.85.210.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-7d4b9c839b1so1318066a34.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 10:38:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771266171; x=1771870971; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lx9sMXC6RQXXITKl7w/e4T7ej5sF4JRPpHYSQw3vBPo=;
-        b=mrn4c/f9C8iG3KjzBr7WeyIuFe4HbDBR1txqEj8X8i15dnw9KiSGR8KMIrQzttndlj
-         mhb3drp9n8nnz3LWvST2aRgAlVQ9V64/xpS1DhR/l1J2RSirIpgmiVCt1SKYdZG0XERx
-         GAS+1Nd0P1jdknc7jfxebO9TkTOZfQlv7HXPolkFjS6IF5tBQsYVGijYuS15jgAVtrdd
-         Gd52bf+ebNmQeoh0/Ng4lP0kGIVeA9icjrzVqf8HGNk+AZ/5IHVm3VgGrp2Z7XUcpm4c
-         IvpX6+6trK50UJVV8xgbhfJ2r55K9Y6E772E1VjnL7FI1VfUJ9s1yHbhhNt2QC0EnXOw
-         ZxDg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1771267125; x=1771871925; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aDiQ566T8bkw/d5Doj5hiSSr6BOtEFdXBHTWP9g1Fv0=;
+        b=TG3GZ1kV+rFmYYSEa0GTVqjnVGyFI1eOQulX8sS3JUIfJNgvgp7zzCLtD5RD7CNrqB
+         q7iALtebS0T+2aeUh6gavtq4G/SfeYTJtBqxKKvrk7k8MYa0E41F3EJReJ2QPTVuF6dK
+         r1igJ2BtQdWTA0lKlNxYOf1f5CuRFQaf1G8NgSwzWdJ+EL+VIIVOk+0dHGt0xZhUVbxB
+         4vMtIrcKPYKrwkZEnCdXBFujf1ax5B9V1cNQgIQmjdsX69Kir+/Tnr1DHNAX316F4IkN
+         s5NS58mpeahc/ItQOp3q7/R8b9Ao0wk6+ahyo+UgKLhUM1rbEsF/1DyXxaF25gqZWN8i
+         wpCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771266171; x=1771870971;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=lx9sMXC6RQXXITKl7w/e4T7ej5sF4JRPpHYSQw3vBPo=;
-        b=ZwjQ+IVaoxLyi0oxlYmKql9fdGHlwIa8hIY8TAzZ13j6EdgwzFb/ANXzwTsZHPUbYw
-         7PyHgIoJ05gLkMHe3zVAA8fkNp3KIvBzdJ+6x6ZENpLMi+nvA2LcsqtEmy7jxRyPh7If
-         42VJYjKw7uZZeC/KpTS3sWXNq3+5Busl79KyoMe0cJCWeJCYu4Am3ZEOcYT2aF0vION1
-         bywbHd2zYGDHuliq5N2P+Ay5C25FcHq/LWyTvCdYf0IWpFPwelzq+N07dlf3Uz9F5I7/
-         PmRGIkdZyVInew4CLYvU2JTViOmPOhwA1/PwUXWEliqVAtHPHKf6/mCx6igWHugsaP5S
-         dxBA==
-X-Forwarded-Encrypted: i=1; AJvYcCXwOm3S0OrrJ0FFOQJ3PpoTCcrUakOqct55ywziY1Bd8Wh+AchXQ737Nfid2ETNAlupwNaPfW4oFije@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywi+fOSxVtuCCt8Nr+FYcyPudPTWOf458t2X6CEdCmwfcSIZUa0
-	RcPMYDX+xHOnUP4FqLltfwW9Du+iHTnpl2+uhZ5JVFkQIrEcE569ZciCkkd7qNlsIjmimZmU93d
-	2Tp5cQAxwVEgyQlfwX6rK/5ZWt93mA60=
-X-Gm-Gg: AZuq6aK+B6j6nUb4x+GASbamdm7hlPTn7heTwpPKA/sHQGWGh8bQaaTGEZxXgq3lLrQ
-	/Qv/6S8JeUmn3524q1HoivmzYjXc0rWpRFe0ZznxzTgLgahzMYz7pf/w6GDvHHvhzpzQvQkUTPL
-	2Z8zkzFtke4Gvw8M7GaUUwnBwMVtpV0mWdSU1uRKaHCwVwj7uY/3KeDvUrifIF6g47cTL2SA5Ig
-	AdMzQfe0ZGGJZsLTtJ+Lt3NdbeAtHsRfwVrxn+g0eXP0zBmWRZo6nZh1FJRd8IsPB2wxaGnE5au
-	Phgenhod
-X-Received: by 2002:a05:6000:1a8b:b0:437:8f37:881 with SMTP id
- ffacd0b85a97d-4379791904emr22365422f8f.32.1771266170899; Mon, 16 Feb 2026
- 10:22:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1771267125; x=1771871925;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aDiQ566T8bkw/d5Doj5hiSSr6BOtEFdXBHTWP9g1Fv0=;
+        b=nl1Rl53t85T9jYhL6jZZalUOb5zHv0CZ6u+6ZFWjex5C6eCkGq51YbSZU8CQOcvUbQ
+         jLXAbSL7BzVVq0i1dWm8ZKt1gh1UJAjKx+k3IcAMSTCtYvtT6J7yAMcWlmpVLAsFAgi9
+         kNX8Yvv/gruwY5sTWUZizTkeGXTdZHLFVbmfliRh0AkcTRWlW25DCvBf/S5xqU1zkSJu
+         1lmg0SApNGgugmeaqZvNjnDxdbpiKcF2/6KCuwxH7O3exSBKiAoqcbcvSI2V/7uEpove
+         BkGhVHRegxSGGokoZfTY1+MjhdXEruTH+5S+h7GanmyevK7FHkCr71Pm1V7mIcEghBHd
+         adhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVzgM80rYVGY/eVnmbu77dOFznNdDgONEXj5wTa3IlCSuKY4Av3HfrI1XR4B0T0cGdvhTadcncHluqb@vger.kernel.org
+X-Gm-Message-State: AOJu0YxU0ctmMhD5ipQsSSjh6iJnpClihV62tWwdYPGzHs18D+zBGyGt
+	C6Us84FrekQzh78T/ugF2iihXog9EfsTOpPINR0Mfaj+c5DyNwRWCrsXhz3QLgnMxeA=
+X-Gm-Gg: AZuq6aKj2HRNQ0U+Y+GytoefdKDJV2ova6jjI1Ty5IrUpo3ry7i1Qb28uWKGmVRhHx9
+	UJ5dq8NSYpFSMm880B0gHEUXfiP7C3lprY6AoLVjr44UWKReTKsDLL/Me5HFNN3w61LTFqaBe2N
+	KBEhB13/NqVXIsDJcHSdHxPMyD/A/uxkUqe5dFZmSdT4X2C5xCElkRm2DKAo9Q9JVvEY9YNTCch
+	lTXjrjGHkfSPVyJ1k1iuEJ9Q5IcE/fp5fC1zXqzk8qxSobYL5l4upESU2pwMtiMgcboAuUMYZ+p
+	wWVCMRKPS63sRzg5olTcdpq0USMTtjASq0am8gNpFROxFu4Yp8YFOkRFewHNcyeRAqobdy2klW/
+	RN4NZPSE6eFihWcKUzuU1E36P573n4ZYe9cFr7VhhPytbe5oLp+igH9X/FTmm/bw17oSsXIPpdU
+	1umdYxQmSiuw6utJdQnAihwdFz0uRiVYBJp/QadnJuVqrUoUtfJJYT8/IoJKANeNCsbOeE8vNu
+X-Received: by 2002:a05:6820:4687:b0:676:778d:dfc6 with SMTP id 006d021491bc7-67768ccc026mr4066989eaf.38.1771267124634;
+        Mon, 16 Feb 2026 10:38:44 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:2d75:8cf2:6289:6a96? ([2600:8803:e7e4:500:2d75:8cf2:6289:6a96])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-6777c128a11sm6499574eaf.0.2026.02.16.10.38.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Feb 2026 10:38:44 -0800 (PST)
+Message-ID: <623dc31e-cfa9-4cf7-a6ca-5044333e47bb@baylibre.com>
+Date: Mon, 16 Feb 2026 12:38:43 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260214180959.30714-1-clamor95@gmail.com> <20260214180959.30714-2-clamor95@gmail.com>
- <20260216-sprung-scallop-de7b64bf528c@spud>
-In-Reply-To: <20260216-sprung-scallop-de7b64bf528c@spud>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Mon, 16 Feb 2026 20:22:38 +0200
-X-Gm-Features: AaiRm51tYAHBz4R8xs0e14b6OB9K4x6nBDeDJNAKVOoJXReY0VIDDmGSWevQOtk
-Message-ID: <CAPVz0n06+uLCSfY_bYS9v7KJ-hXotye7ej-rze6-Q8_JAF7XVA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/7] dt-bindings: embedded-controller: document ASUS
- Transformer EC
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: iio: dac: add support for Microchip
+ MCP48FEB02
 To: Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
-	Ion Agorria <ion@agorria.com>, =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Cc: Ariana.Lazar@microchip.com, andriy.shevchenko@intel.com,
+ nuno.sa@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ robh@kernel.org, jic23@kernel.org, andy@kernel.org, krzk+dt@kernel.org,
+ linux-kernel@vger.kernel.org, conor+dt@kernel.org
+References: <20260212-mcp48feb02-v1-0-ce5843db65db@microchip.com>
+ <20260212-mcp48feb02-v1-1-ce5843db65db@microchip.com>
+ <20260212-germless-favoring-c27ab4c53128@spud>
+ <aY4yaVP2TQFRI1E4@smile.fi.intel.com>
+ <a3bab395580cd83410c1c7364283285586c9b128.camel@microchip.com>
+ <5818b02c-4456-4484-9443-da7429cea3dc@baylibre.com>
+ <20260216-shiny-itunes-00a31d1f4db7@spud>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20260216-shiny-itunes-00a31d1f4db7@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265914-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265915-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	DMARC_NA(0.00)[baylibre.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,agorria.com,rere.qmqm.pl,vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,0.0.0.19:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: DB291146F70
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1FE1D147026
 X-Rspamd-Action: no action
 
-=D0=BF=D0=BD, 16 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 20:04 Cono=
-r Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Sat, Feb 14, 2026 at 08:09:53PM +0200, Svyatoslav Ryhel wrote:
-> > Document embedded controller used in ASUS Transformer device series.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  .../asus,transformer-ec.yaml                  | 98 +++++++++++++++++++
-> >  1 file changed, 98 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/embedded-controll=
-er/asus,transformer-ec.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/embedded-controller/asus=
-,transformer-ec.yaml b/Documentation/devicetree/bindings/embedded-controlle=
-r/asus,transformer-ec.yaml
-> > new file mode 100644
-> > index 000000000000..670c4c2d339d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/embedded-controller/asus,transf=
-ormer-ec.yaml
-> > @@ -0,0 +1,98 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/embedded-controller/asus,transforme=
-r-ec.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: ASUS Transformer's Embedded Controller
-> > +
-> > +description:
-> > +  Several Nuvoton based Embedded Controllers attached to an I2C bus,
-> > +  running a custom ASUS firmware, specific to the ASUS Transformer
-> > +  device series.
-> > +
-> > +maintainers:
-> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/power/supply/power-supply.yaml
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - enum:
-> > +          - asus,p1801-t-ec-pad
-> > +          - asus,sl101-ec-dock
-> > +          - asus,tf600t-ec-pad
-> > +          - asus,tf701t-ec-pad
-> > +
-> > +      - items:
-> > +          - enum:
-> > +              - asus,tf101-ec-dock
-> > +              - asus,tf101g-ec-dock
-> > +              - asus,tf201-ec-dock
-> > +              - asus,tf300t-ec-dock
-> > +              - asus,tf300tg-ec-dock
-> > +              - asus,tf300tl-ec-dock
-> > +              - asus,tf700t-ec-dock
-> > +          - const: asus,transformer-ec-dock
-> > +
-> > +      - items:
-> > +          - enum:
-> > +              - asus,tf201-ec-pad
-> > +              - asus,tf300t-ec-pad
-> > +              - asus,tf300tg-ec-pad
-> > +              - asus,tf300tl-ec-pad
-> > +              - asus,tf700t-ec-pad
-> > +          - const: asus,transformer-ec-pad
->
-> Can you explain somewhere here what the "dock" and "pad" devices are and
-> how they differ? For example, I am currently wondering why tf700t has bot=
-h
-> "dock" and "pad".
+On 2/16/26 11:34 AM, Conor Dooley wrote:
+> On Mon, Feb 16, 2026 at 09:37:35AM -0600, David Lechner wrote:
+>> On 2/16/26 7:31 AM, Ariana.Lazar@microchip.com wrote:
+>>> Hi all,
+>>>
+>>> Thank you for your reviews.
+>>>
+>>>
+>>> On Thu, 2026-02-12 at 22:04 +0200, Andy Shevchenko wrote:
+>>>> EXTERNAL EMAIL: Do not click links or open attachments unless you
+>>>> know the content is safe
+>>>>
+>>>> On Thu, Feb 12, 2026 at 06:00:06PM +0000, Conor Dooley wrote:
+>>>>> On Thu, Feb 12, 2026 at 02:48:34PM +0200, Ariana Lazar wrote:
+>>>>>> This is the device tree schema for iio driver for Microchip
+>>>>>> MCP48FxBy1/2/4/8 series of buffered voltage output Digital-to-
+>>>>>> Analog
+>>>>>> Converters with nonvolatile or volatile memory and an SPI
+>>>>>> Interface.
+>>>>>>
+>>>>>> The families support up to 8 output channels.
+>>>>>>
+>>>>>> The devices can be 8-bit, 10-bit and 12-bit.
+>>>>>>
+>>>>>> Signed-off-by: Ariana Lazar <ariana.lazar@microchip.com>
+>>>>>
+>>>>> Other than the interface, what's actually different between this
+>>>>> and the
+>>>>> 47? Could they share the same binding?
+>>>>
+>>>> If that is the case, I don't think we even need a brand new driver,
+>>>> the
+>>>> existing one should be refactored to adapt SPI interface.
+>>>>
+>>>> --
+>>>> With Best Regards,
+>>>> Andy Shevchenko
+>>>>
+>>>>
+>>>
+>>>
+>>> I have decided to submit two separate drivers, even though the chips
+>>> share similar functionality, in order to make it easier for the client
+>>> to identify the supported chips.
+>>>
+>>> For example the I2C family of devices has: 3 different resolutions,
+>>> with 4 different channel numbers available for a particular part and
+>>> most important you can get the same part with or without EEPROM.
+>>> That means the I2C driver will cover 24 different devices. The SPI
+>>> family follows the same pattern, covering another 24 devices.
+>>>
+>>> Microchip also has some devices (I2C and SPI) with Nonvolatile Memory
+>>> (similar to EEPROM but limited to fewer than 32 writes) and I want to
+>>> add these families to the existing drivers while maintaining the split
+>>> by interface.
+>>>
+>>> Please tell me if you have anything against this approach (having 2
+>>> different drivers split based on interface and each of them to support
+>>> at least 24 different part numbers).
+>>>
+>>> Best regards,
+>>> Ariana
+>>
+>> The usual way we support parts with the same register map that can have
+>> an I2C or a SPI bus it to make three modules: <name>_core.c, <name>_i2c.c
+>> and <name>_spi.c. If you look through the iio folders, you will see many
+>> drivers like this.
+>>
+>> The _i2c.c and _spi.c files will just contain the chip info tables that
+>> contain all of the differences between the chips and pass that to a
+>> common probe function in the _core.c module.
+>>
+>> It seems like this approach should work in your case as well.
+> 
+> These usually have merged bindings too, right? Only real difference is
+> going to be that the spi devices will need
+> spi-peripheral-properties.yaml which obviously the i2c ones wont.
 
-"pad" is used for the controller in the tablet itself in the pad
-"dock" is used for the controller in the mobile dock keyboard.
-Seems quite obvious.
-
-> Also, why are some of the compatibles permitted standalone? That should
-> be mentioned in your commit message too. Also, other than the sl101, the
-> standalone ones seem to have the same match data in the mfd driver. Why
-> are fallbacks not made use of there?
->
-
-Because standalone compatibles describe a unique hw configuration
-which cannot be grouped into something meaningful. asus,p1801-t-ec-pad
-is for EC of Tegra30/Intel based p1801-t AIO, asus,sl101-ec-dock is
-for EC of Tegra20 slider tablet, asus,tf600t-ec-pad is for altered EC
-in Win8 Tegra30 tablet, asus,tf701t-ec-pad is for Tegra114 tablet.
-Different generations, different form-factors.
-
-> Since this transformer series seems to have multiple programming models
-> for "ec-pad" devices, it calls into question your use of the generic
-> fallback compatibles is appropriate and makes it seem like you should be
-> using device compatibles as a fallback.
-
-That is redundant.
-
->
-> The rest looks okay other than the filename, which doesn't match any of
-> the compatibles that you've got here.
->
-
-How should I call it then?
-
-> Cheers,
-> Conor.
->
-> > +
-> > +  reg:
-> > +    description:
-> > +      The ASUS Transformer EC has a main I2C address and an associated
-> > +      DockRAM device, which provides power-related functions for the
-> > +      embedded controller. Both addresses are required for operation.
-> > +    minItems: 2
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: ec
-> > +      - const: dockram
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  request-gpios:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - interrupts
-> > +  - request-gpios
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    i2c {
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <0>;
-> > +
-> > +      embedded-controller@19 {
-> > +        compatible =3D "asus,tf201-ec-dock", "asus,transformer-ec-dock=
-";
-> > +        reg =3D <0x19>, <0x1b>;
-> > +        reg-names =3D "ec", "dockram";
-> > +
-> > +        interrupt-parent =3D <&gpio>;
-> > +        interrupts =3D <151 IRQ_TYPE_LEVEL_LOW>;
-> > +
-> > +        request-gpios =3D <&gpio 134 GPIO_ACTIVE_LOW>;
-> > +
-> > +        monitored-battery =3D <&dock_battery>;
-> > +      };
-> > +    };
-> > +...
-> > --
-> > 2.51.0
-> >
+Correct.
 
