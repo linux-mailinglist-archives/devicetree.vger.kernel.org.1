@@ -1,197 +1,183 @@
-Return-Path: <devicetree+bounces-265877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265878-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sEOUIkZEk2kP3AEAu9opvQ
-	(envelope-from <devicetree+bounces-265877-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:22:30 +0100
+	id WJP8Jq9Fk2l83AEAu9opvQ
+	(envelope-from <devicetree+bounces-265878-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:28:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3615C146101
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:22:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 025DF1462C6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:28:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9FAE0300BBA1
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:22:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7C80A302AC3B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:24:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D35332EA2;
-	Mon, 16 Feb 2026 16:22:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21016332EA5;
+	Mon, 16 Feb 2026 16:24:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="wzpY9zrj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ECfZb5yq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21109332918;
-	Mon, 16 Feb 2026 16:22:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B06733328E7
+	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 16:24:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771258939; cv=none; b=WdmxFqF1jwqGGKPyOzuWue7mGK5Bz/CTW5UxzMgdtKRmxiIoZhXsIUqAprXKIb8qczgB9TMZ5SfnhigsLDvDErmB81T+38iOHNoHiOJy/oZNf8VOq+LnPF6NRUyG5UqtbFYkYpzY9XRCR0OVBTVOIlA/L41h4LLY//9E1BiDJ/o=
+	t=1771259093; cv=none; b=BEK/RK58Qa8gxVoGmFxcVxy6ZmEgT1Akobu9GnXe6NpN2jiHKzwqA/b1x6iLNMgSxalsznmg7gDIlVT8XSk7vHZZBmyQ2FYgYUo7j1DIulIgRcVYn0xE5sZcf1I9kOlIW+Ccg/CC29K21PcO4y1TdnoKVIo3HrhgxCC4nn6t91U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771258939; c=relaxed/simple;
-	bh=fNlCLUtbKeIb1zzt1eO0YOxNhyy8MlcOvRZbjbsK5GE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aMXKPew70jPKMUm34dvzxzHnfJqM8BmlvjFbXMv0CCSgky/r1iZAU2joPgXQLSY96hgKXS/ZCBCKbjIyS3NntOeNtHRJgCPKNNyT0lbbB9Qp4h/jfG6AC49s3AJnlbS8/vTGrklzmxLRuuhMEjIDV2IQ0V9m27GSXcnZxufUaL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=wzpY9zrj; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=NKTLKp3nWhZDwjOkHRJTFj5kVkczUXVF/iVpKSDYRWw=; b=wzpY9zrj9WAxSHlWXxWbYSnhz5
-	AaehbjFO6gx6LALpnAEVjho9vUmSmI7tuHat6SGQR8yYzct8zKu39JEyG7ALK5J/AUXDoKvkhZ9Qd
-	l57eRi9VdCcebfBeOzYG6G/SM6CrLyVUvGnRtZXk7kQ56spDKHYA5ljzI7EM2hh5n7rQeNYzWS8Ho
-	AyGTPyULJedEa7ddTXoEbqu6EHKM0ifzVZ3oGGDTR2g8jOHsIH20bWlGHo8ehLsgABLqqaAWqWFtV
-	yUuApxi4zI7b/Fhdl48Rr42JZLi5cbRXN+Z0MUKfXTzTQnBUEmjY9RcFNggl9J3NExA39opSSKn3V
-	MsI3OBDg==;
-Date: Mon, 16 Feb 2026 17:22:07 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc: "Kory Maincent (TI)" <kory.maincent@bootlin.com>, Aaro Koskinen
- <aaro.koskinen@iki.fi>, Kevin Hilman <khilman@baylibre.com>, Roger Quadros
- <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Bajjuri Praneeth <praneeth@ti.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Louis
- Chauvet <louis.chauvet@bootlin.com>
-Subject: Re: [PATCH 1/5] ARM: dts: ti: Enable overlays for all DTB files
-Message-ID: <20260216172207.1b34324e@kemnade.info>
-In-Reply-To: <9D7424B6-2022-4B03-9B8C-455CD3E3FBF1@goldelico.com>
-References: <20260212-feature_bbge-v1-0-29014a212f35@bootlin.com>
-	<20260212-feature_bbge-v1-1-29014a212f35@bootlin.com>
-	<B3366A17-641F-4E02-A5D4-978F525E0A96@goldelico.com>
-	<20260212174718.7daccb70@kemnade.info>
-	<719BF710-26DF-49AB-A016-D2306F0389E2@goldelico.com>
-	<20260212231907.6120a2e2@kemnade.info>
-	<9D7424B6-2022-4B03-9B8C-455CD3E3FBF1@goldelico.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1771259093; c=relaxed/simple;
+	bh=7SKrId/QHyVf5t6Y9oYP3Y9lo0Gw0hVIOGht55gyshY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MpenSWy3QFX9UjNMq2CkG6QIB0+kd5SH+7t3WnEFK6VMkeZGp3RLSzMLv9730h/6MX9EEyzIUYrXG+w0+vKrHGY0Blta4ipHCIw3F98S5FwLG69XVujiotkiPqpVJKxp04LIg8ubt51nErw4k3kI0C1JCoQwEYqStmNncfJkmbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ECfZb5yq; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-4362c635319so3372203f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 08:24:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771259090; x=1771863890; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eFUae8M607uXIOUb6KuR+f1ZcnqADfRg4QxjDLkY0MQ=;
+        b=ECfZb5yqJeF3/0j7fTStuk/qJoIQJ44Rkk3naKVsU0g70DrunSU+L8ZajGzHtj6qXZ
+         s97jSLhWJZCI1/dUtrAVLtrEAan41h5QZyGYtfTrXUDReR+cUvGSMNJq0jgcjxcTeezn
+         GZW0SqOVxVrpx/cIM/CdPJASnKbfBHpNwjR5TQNH4WxwfrXpIquthKW5wCS7RjAaf6Mx
+         cLeMMvPn/NRzGwqfrcmDTlX7DF9ujse3cXkX6Uw0Aty+jsr/dYAAexbYVZEbq+OSuV76
+         VjO2OfWlC6b/lrBPDFkGqy59lvjPXmYwwPbec5YEl9ADgyKA6h1x++s8E7WjOecxjV0H
+         +4EA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771259090; x=1771863890;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eFUae8M607uXIOUb6KuR+f1ZcnqADfRg4QxjDLkY0MQ=;
+        b=jB60FQ0m4EjN4YXi92TPX3oLcwEEBxAzDpE6cEhBj1ph+Gl7+EajJCyWt0XdRn7fhx
+         LwmPM6IxDASHBw8JZPQTtI8f4U73QWncuZw+q6FLWeRTVqREtgy3yTRpQwZ+UPdACIOE
+         0h1cCcdrLEx0aXFhuZ/a1YHUgJM+G/B/j9UAd8P9cClsZHZx+StAnhFM3UeT/hGlhCqX
+         FBit68QGD866h039/GlzsO21QThWdo7rrDCL3gz4nq8ee9Pd6hBLr1Mr8VbuOxxeZE++
+         +pXjBnk0XtXe4XQjWSfsOLlVjN+ZLLt+5f8mSLFyt6kHedfseXenyssxCWAaxZ9N+08O
+         cl9w==
+X-Forwarded-Encrypted: i=1; AJvYcCXObWx+9ZUr0ozA1zYNY/xyETQd4gzynfXSDBOm8r5raLRBxTvxFZ3HGBDLjaluSmeSbO73D+uiIcvr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyoj1nnyhYu4bzMPYxO8UD5qAsn4iXEqGHxOd4M6hdDPF3rbrK1
+	f8DKq6UM3JvZUlW5P5BbYeMhGGkqQ7AjqLHRBz77EM7Wq+Spj7B8kAzZ
+X-Gm-Gg: AZuq6aJurNkwFSZR3WZi9e+ytNK7Yi7E66kwyDFGUga/20PHqxb84tMS1uONLOC6Esq
+	EtKEV0Iva4wV1qF6RnTiHyIfzYLDnoVOEAwG3NgUG0ZHvY7gSZ8JTLnOocCHgeO7JeC15Y+1/gp
+	FvWOd+SWprTVde1trfcc9/kDl5WmAbjO29dsGlMDAPkKx3Yg+FiDvPSNxedr++WFiQQRwoossMP
+	XaUlGNIEWF/K8aQGUcSp6S8uaKmcZcDQxyAVOmOqHY04Ub5b8AezxnvY1XcNRYdI7XyFloyb2rI
+	W96QD/w6Zv83hPeSW+Y+v1eDfYLNhyvMrFjsYLntk43gUMxZtLQXKYSMsJxLhVjsKcGQb1XkPdx
+	Q5HBhJvHl84B6URGS3a2c5XuNkc+J7Y4IF4fWxXfLcn7FD/L04j92J9Nvlicx6mAZZnyW5GlUfo
+	pHIiYhg8BhJJTutfcyOto=
+X-Received: by 2002:a05:6000:2501:b0:435:e460:235b with SMTP id ffacd0b85a97d-4379795572emr15102960f8f.59.1771259089859;
+        Mon, 16 Feb 2026 08:24:49 -0800 (PST)
+Received: from luca-vm.lan ([154.61.61.58])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43796a6a6desm28775962f8f.10.2026.02.16.08.24.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Feb 2026 08:24:49 -0800 (PST)
+From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+To: linux-mediatek@lists.infradead.org
+Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Jitao Shi <jitao.shi@mediatek.com>,
+	Fabien Parent <fparent@baylibre.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org
+Subject: [PATCH v2 0/6] Add support for mt8167 display blocks
+Date: Mon, 16 Feb 2026 16:22:11 +0000
+Message-ID: <cover.1771258407.git.l.scorcia@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kemnade.info,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kemnade.info:s=20220719];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265877-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-265878-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,pengutronix.de,ffwll.ch,linux.intel.com,suse.de,mediatek.com,linaro.org,collabora.com,baylibre.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andreas@kemnade.info,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kemnade.info:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[goldelico.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3615C146101
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 025DF1462C6
 X-Rspamd-Action: no action
 
-On Fri, 13 Feb 2026 06:33:46 +0100
-"H. Nikolaus Schaller" <hns@goldelico.com> wrote:
+This series adds support for the display blocks on MediaTek mt8167.
+Tested on Xiaomi Mi Smart Clock x04g.
 
-> Hi,
->=20
-> > Am 12.02.2026 um 23:19 schrieb Andreas Kemnade <andreas@kemnade.info>:
-> >=20
-> > On Thu, 12 Feb 2026 17:55:43 +0100
-> > "H. Nikolaus Schaller" <hns@goldelico.com> wrote:
-> >  =20
-> >>> Am 12.02.2026 um 17:47 schrieb Andreas Kemnade <andreas@kemnade.info>:
-> >>>=20
-> >>> On Thu, 12 Feb 2026 16:49:43 +0100
-> >>> "H. Nikolaus Schaller" <hns@goldelico.com> wrote:
-> >>>  =20
-> >>>>> Am 12.02.2026 um 16:26 schrieb Kory Maincent (TI) <kory.maincent@bo=
-otlin.com>:
-> >>>>>=20
-> >>>>> Allow overlays to be applied to any DTB. This adds around ~40% to t=
-he
-> >>>>> total size of the DTB files on average.     =20
-> >>>>=20
-> >>>> Is this unconditionally enabled or can it be turned off by some CONF=
-IG? We have
-> >>>> our own defconfig so I would not worry if if is enabled in omap2plus=
-_defconfig
-> >>>> and disabled in ours.
-> >>>>=20
-> >>>> We have several devices where the boot loader can't handle overlays =
-(never touch
-> >>>> a working boot-loader :) So this seems to only contribute to build a=
-nd load time
-> >>>> without benefit.
-> >>>>  =20
-> >>> As long as you do not add overlays, the bootloader does not care. I w=
-ould
-> >>> like to simply carry around the 1-bit mmc overlay for one broken boar=
-d.
-> >>> That would help me. So I think there is a benefit but nobody forces
-> >>> you to use it.   =20
-> >>=20
-> >> Well, it does not force to use the really good feature, but it forces =
-to add
-> >> ~40% more file size and some more compile time, if I understand it cor=
-rectly.
-> >>  =20
-> > Compile time, hardly measurable even if you just do make dtbs.
-> >=20
-> > Size on disk:
-> > a) if it lives around in a /boot partitions with kernels and initrams i=
-n it,
-> >   then we are around 1% more space needed. =20
->=20
-> Ah, I see. I was too focussed on the "adds around ~40% to the total size =
-of the DTB files".
->=20
-> For the Letux arm distro all DTBs are around 8.1 MB at the moment so it w=
-ill grow not that much
-> (there are non-TI devices included).
->=20
-> So you are right, it is ~1% of the total if the kernel image is counted.
->=20
-> Therefore, space should not be something we should be too concerned about=
- (although I remember
-> discussions for driver code where every single byte did count).
->=20
-> On the other hand this increases load time from (sometimes slow) =C2=B5SD=
- for a specific DTB by 40%.
-> That should at least be discussed.
->=20
-so also 1% of total loading time. And symbols can be stripped away during
-e.g. deployment.
-fdtput -r some_board.dtb /__symbols__
+The first patch just does some reordering of dts nodes with no other changes
+as this makes later patches cleaner and easier to follow.
 
-I am not strongly against it. It is just we are doing something unusual her=
-e.
-Are there reasons why it is unusual I do not understand?
-I think it can be useful for every board in some situations. For the
-ones with can carry a head, they are the most useful.
+v2:
+ - Separate patch for mediatek,dsi-phy binding;
+ - Separate patch for mt8167-dsi binding;
+ - Simplified OF graph endpoints in mt8167.dtsi.
 
-What was the reasoning to have it enabled for k3 for every board? K3 and Br=
-oadcom-64bit
-seem to be the only arch doing that. Broadcom mostly many RPis, some router=
-s.=20
+Luca Leonardo Scorcia (5):
+  arm64: dts: mt8167: Reorder nodes according to mmio address
+  dt-bindings: display: mediatek: Add compatibles for MediaTek mt8167
+  dt-bindings: display: mediatek: Correct compatibility for mt8167-dsi
+  dt-bindings: phy: mediatek,dsi-phy: Add support for mt8167
+  arm64: dts: mediatek: mt8167: Add DRM nodes
 
-Regards,
-Andreas
+Val Packett (1):
+  gpu: drm: mediatek: ovl: add specific entry for mt8167
+
+ .../display/mediatek/mediatek,aal.yaml        |   1 +
+ .../display/mediatek/mediatek,ccorr.yaml      |   4 +-
+ .../display/mediatek/mediatek,dither.yaml     |   1 +
+ .../display/mediatek/mediatek,dsi.yaml        |   5 +-
+ .../display/mediatek/mediatek,gamma.yaml      |   1 +
+ .../display/mediatek/mediatek,ovl.yaml        |   1 +
+ .../display/mediatek/mediatek,rdma.yaml       |   1 +
+ .../display/mediatek/mediatek,wdma.yaml       |   4 +-
+ .../bindings/phy/mediatek,dsi-phy.yaml        |   1 +
+ arch/arm64/boot/dts/mediatek/mt8167.dtsi      | 381 ++++++++++++++++--
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c       |  12 +
+ 11 files changed, 377 insertions(+), 35 deletions(-)
+
+-- 
+2.43.0
+
 
