@@ -1,263 +1,465 @@
-Return-Path: <devicetree+bounces-265737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265738-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UM3GOU4ck2mM1gEAu9opvQ
-	(envelope-from <devicetree+bounces-265737-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 14:31:58 +0100
+	id QA6sCmIek2mM1gEAu9opvQ
+	(envelope-from <devicetree+bounces-265738-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 14:40:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D42F143D03
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 14:31:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2AAF143F14
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 14:40:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5AFA730215AC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 13:31:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5E70E30F62C1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 13:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C59228C871;
-	Mon, 16 Feb 2026 13:31:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4103330EF71;
+	Mon, 16 Feb 2026 13:34:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="b0v6W8is"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IwxS7QnZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11013010.outbound.protection.outlook.com [40.93.201.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9037202F70;
-	Mon, 16 Feb 2026 13:31:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.201.10
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771248696; cv=fail; b=TfL7eCMW6+T1D0/+2JJvMwDk33qgimmZo4LJwRskH2VY8ig5DOZfx4lXixdPJUNjP1oXFbmqDcPfuKPIs2hJV21nLWjlFFmeAZg5dthVfbDVnkbpp5Kn4FmNOyVi0mtPZ2B+qv4JS8zx8Vy4C/Tk6G23T3Y7CFlFijwBtrWwMkA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771248696; c=relaxed/simple;
-	bh=muZTiny571Ibxz+5cxXwgO3eQ/9JWgLZEzHUGNQKeeU=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=HjC7SEQVU+ccAaqJwsyMtLwyptXM6nDhsqtqukMLA+nM1+Erxd1MSSA44bfjnsYeAY5prtIqji5WeCUQ6vzlgi1RlUvqASjTTEankgd5ODMztZX0zOohTo3wrd4+F7NjovLbOUdiZYII1UfI7K2mO8VuonMQCxZgSQRPp+8k8oU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=b0v6W8is; arc=fail smtp.client-ip=40.93.201.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eQoi3dH5cagyocxiqTSq86uMIzDAIKL50eraCjoxcmVokiUPlZ1NRkov3n6Wb8W/1BK3G3BC9+rjnas7iT25rHhqxInCI1hToWYkcv7xyqtT0wnaKkIIp23+aBAcf63oXjghxMLGlAYdrJQK7f2QIz5T6j6KVJBAztBd9utTm7yraNKKdG1Wi92ClGvxpZCIXBdGQr7Q9CXV1GYWKvDlSiLnGK4f1Je6mipQWT6P4jpO4hbhSr+cePPjGdYcOSei3TgMp/jhKmW4erk3mCM73G+UxloZXK3h3sk4cyvG9DFBWlUmt5FANiicW7Ap7+fHhQ+9ZiAH3ofzNaIyTXzCiA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=muZTiny571Ibxz+5cxXwgO3eQ/9JWgLZEzHUGNQKeeU=;
- b=kMWvngv27jq6q4qNq5ojgEJU61LCCaf/MjgwKPAGwTXPP0v0y+5PNJ1A03vuOWRIqRs6PwFSO5q/dSK6DLbymmzoRvxsDfavZTndhWfLaHPjQ9urRD91LX+9fUD1fL8lXZpv8LASrPcfKUkX0vyRFcrY3ikIpZBvoEytD/MFzYoRa/PeMGG+Y7ksL7zsfSOjoCBAu6k1bjqc2XliAIf4nxfEeqBroVqvblrqrgZA13MpHeK7GUqbYFnIdT82WWN2oy2PP6CIcF5DG/a0ZteDxIuBqA5VRvllf/XulkarTErHltOx8RmUL/hw5qj5x5sN9gIiLAO1PAndEsQUuzzBjg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=muZTiny571Ibxz+5cxXwgO3eQ/9JWgLZEzHUGNQKeeU=;
- b=b0v6W8isy1VnihxDhePjnMS7CfDYKE3vssIL6Cq29ChmlHWt/fjMdG5IeTuqqF3tT0tgTdjzMYxElODamDNoU7RirWp0NVYljwBgbHig7CiXNIlrFdKgej1P3px/B+6kvXNJ5jqWsbl30YGwI3xhTbt/xHQY9Y4C/Mhf4EIAX8PZRBnlm4OphPPC8OAWH1E0vVsoVu2Rfj7PzH2/psGiWfpVJ9fGRIeZLRXjiSF2P292w4ibmP4PYHcw0eZu99Hg26dZ0f0xoAHNhfXgqnP5+1syv1E0NtgQaWt8UUKtXthy3aKtaB/Kb//D3ZYQg/SZnC0JQ1FwHhK+t2mqvFpHOg==
-Received: from PH7PR11MB8251.namprd11.prod.outlook.com (2603:10b6:510:1a9::9)
- by BL3PR11MB6409.namprd11.prod.outlook.com (2603:10b6:208:3b8::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.16; Mon, 16 Feb
- 2026 13:31:30 +0000
-Received: from PH7PR11MB8251.namprd11.prod.outlook.com
- ([fe80::e81b:3e24:1804:5c7c]) by PH7PR11MB8251.namprd11.prod.outlook.com
- ([fe80::e81b:3e24:1804:5c7c%5]) with mapi id 15.20.9611.013; Mon, 16 Feb 2026
- 13:31:30 +0000
-From: <Ariana.Lazar@microchip.com>
-To: <conor@kernel.org>, <andriy.shevchenko@intel.com>
-CC: <dlechner@baylibre.com>, <nuno.sa@analog.com>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>, <robh@kernel.org>,
-	<jic23@kernel.org>, <andy@kernel.org>, <krzk+dt@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: dac: add support for Microchip
- MCP48FEB02
-Thread-Topic: [PATCH 1/2] dt-bindings: iio: dac: add support for Microchip
- MCP48FEB02
-Thread-Index: AQHcnB392ecUxV6iaEygr1LK1sJXJ7V/WpoAgAAi4oCABbsWgA==
-Date: Mon, 16 Feb 2026 13:31:29 +0000
-Message-ID: <a3bab395580cd83410c1c7364283285586c9b128.camel@microchip.com>
-References: <20260212-mcp48feb02-v1-0-ce5843db65db@microchip.com>
-	 <20260212-mcp48feb02-v1-1-ce5843db65db@microchip.com>
-	 <20260212-germless-favoring-c27ab4c53128@spud>
-	 <aY4yaVP2TQFRI1E4@smile.fi.intel.com>
-In-Reply-To: <aY4yaVP2TQFRI1E4@smile.fi.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB8251:EE_|BL3PR11MB6409:EE_
-x-ms-office365-filtering-correlation-id: f55d57ae-2335-4ee7-8181-08de6d5fb177
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|376014|366016|7416014|38070700021;
-x-microsoft-antispam-message-info:
- =?utf-8?B?b1RMWFZQS2dnNFVoMVlPSHNRY1J2cGsxVnB0a0JLYStqWjg4VFpLcjBSZWdK?=
- =?utf-8?B?UWU3NFRTWlNwb3BnWjg5SXhWNU83VGI1MXlETEl5Y1BkVkhxaVFNMHVIbjRz?=
- =?utf-8?B?aVQ5TjVMdkdjUTNzRDNXTmpVZDA0UlBIdURYRjNpMU1NZUYvaGMyQThRUngr?=
- =?utf-8?B?YVhxbzZMZmNRcVVlbGdNRFROYW1LaFpGZ0JreEVuVkZCdGlySEdFeEdJWWpJ?=
- =?utf-8?B?dmptYTZnelhDY3I3ZmtNTFQ1eXNMaHo1ZkVIQS8zOG02amV5RnoxbnRiaWlD?=
- =?utf-8?B?M1d0RUt1d1NhSEZQUFJFZVBTRTVBSGxES2YrWkpSQkVtSVl5ay92Z3N3OFpl?=
- =?utf-8?B?N2kwMlRqeTJYMWpLUUpjK0hic2xhWllMWXljQjNSNWNBNGVBUDVCOG5UdjFv?=
- =?utf-8?B?VnhZejh0TjZ3aXM2RTkyMkljQVh4cUxrTlA4Z2ZrM1BQWVA1LzNJRmpLSWFZ?=
- =?utf-8?B?aWt3QUxnd2paZjFLckhVcW8yWDhLSDJRcXJteUdFYnJiM214bW8zNjN5MVEy?=
- =?utf-8?B?ZEtxY1ZjYzdIbTRFN0trM3U0cWNrNGZ3MVpRb3Y4YmlCNDdFdmpQV0hDT0FO?=
- =?utf-8?B?NDRpRXduOWY5RVBvNG5ia3FWSDRKSHFEVllXYnkyY3B4bXg1c0pvaklzK3p5?=
- =?utf-8?B?OExSYllBL3VCUkp3bkIvMUlTdlFORDBmUno5MXBCWFpyNmVPOFBPWithZEJJ?=
- =?utf-8?B?cUdUbTIvTjMzM0dMSVhrak1ra2hGN21lQnpSd0VMME9ubkIxY0RTYVpybWJM?=
- =?utf-8?B?RkF2MG5JWTcwOUI2OVJsa1puTHdKbGdIaW12b3FtcmkzcXhyT3FQRWRMZHkr?=
- =?utf-8?B?cDBXd0FBeVZ2c25ZV2l4VFNxK0hqQXd0WlpCOFB5NUJTejdjdzdLTWFYYW9X?=
- =?utf-8?B?cXJpUGQyYWFKbUZOMDUxeVRuSVlYbkovRVdQSUVHV2dMVy82bmhwaGZtam03?=
- =?utf-8?B?OE5uWm0zamNuay9LOTZOc21sbm5JN2hjSEdyTDNWalVKb25hRHhGUmdIaE9V?=
- =?utf-8?B?MGtJR05jSkJtUkJXamd1RFVsb0RPSXJVbUFlYWt5V3VMUkJNMnExd0ZtVG9y?=
- =?utf-8?B?M1BNUXp3QzRPREpkUjV6T0h1eVhXMHdOY3ozWnVxVVJvVTMvK082Rnk2d2Jk?=
- =?utf-8?B?RFFLMWZ3bXlZNXlsTzlTeEMwR0Z6NUlyUGtMNzh1ektDa2hjNTdTY29oQVNE?=
- =?utf-8?B?dkJiUThpODNnSDk4ZHYxUHNEM2oxTWxYODlLQlRuSmhzRmVhQXVlU29LbFBL?=
- =?utf-8?B?cHQ1MFRCMkVxekI3MG1XWE9qd294c0RTWThDLzlRMm5aMnlZNkQ5UTFyUGlZ?=
- =?utf-8?B?Y2RPTDM4d2tneldzVjBsLytWWFpPd25uZkovbzJrN2V0dlN0Ky9ibStnNE8v?=
- =?utf-8?B?T2ZyMEZ4alNmN1hpam13RzNEaS85MmxDWW9YdGVGbTFUd01ON2RRb0k2WmFG?=
- =?utf-8?B?RGNEazBLNEpCUDJoN2Z2VzF2V2IzZ2dXWE93M05oQTlDVHZ1WGt5SU1ZWS9u?=
- =?utf-8?B?QldJNFNLTHB6djVkQUx6b1htQ0p2OXJZeElCNVBrc1NCY2VGQXlZMmFxd08x?=
- =?utf-8?B?UTVGRHJ4KzYwcGU2SmowaWg3NFhpK0tDOHBJYlBHV1dPQVJNZERNMEEvcitH?=
- =?utf-8?B?SGxuMWFUZExuTnpjcmpUb2pjMkVFQ3RncEorc0FHcnlNSjZ4cDk5V2NNMFlH?=
- =?utf-8?B?VUh0UjMvSlNPcFJabWlDUXJjMEdnZlpDcFNNczBpd2NWS3c2c2ZoRGQra0Ni?=
- =?utf-8?B?Ty8rZUtueDc2T1lwakV1MGU2dkVzWlpMcjZEL3c3aHo3NSs1Q1NNUmpLUnQ0?=
- =?utf-8?B?aFVDWW8vaW5TS3ljN0l2S1RROVlZcGxUdXlkTk5SajZpeVgyUTBUSTZsSjNX?=
- =?utf-8?B?RjZZRVlSUElxbFJ0L2p6bFlxN3dmck4rZnRqMUd3dmMrdVNyWmYxVE1BZzhT?=
- =?utf-8?B?WDNDam5MaVo3SmFyelZJTkw4SXdqNFNQSzRGbUFmUGxUUkhHZ0FnVVFab0Rj?=
- =?utf-8?B?czQxK3kwZ3lSbWZISVNMSGgyRjIvNjI2cDNVS1dKQ1VYMW9odUFTN2xZTWFp?=
- =?utf-8?B?SnhwRmZXOC9zNFJWcDNlNkpUU2JncHVZVHV4RjFjWWRYNVdQTVBPbWpmUDN2?=
- =?utf-8?B?WS9rdFkrVXh5UWpOTVlyWlNycU8rT0pTNHh4R0REVEhyNzMzeExEK3dCRlBN?=
- =?utf-8?Q?dAGtKngYw3eFX70gwlvv7Sc=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB8251.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(7416014)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?ZHRDMnVMR3pWaGVHZDl0WjJUdEg4blZrZ3B5ZStTOHhNSVkrdXhjR1NEakEw?=
- =?utf-8?B?QU1LRm5BREVjNDkza0ViZGdCajhMMVl6RndIOEI4SjViczA0amtNUVl5VG1q?=
- =?utf-8?B?SDl2ajNjQWthbmNvUzVNTHdJZjhyUDh2OU5zYnRkZ2FNczc2cll6MlFiYzZy?=
- =?utf-8?B?ZUNRNWgrVnphYXNiQSthYUxubmtqVlptaXcxbG8xcUpUOHN5dU1EUzN1eG9X?=
- =?utf-8?B?RVRnUEp1VlNMSksvUkt6eVIyM2RrWDNHajZya0x3SEtqZEtHUWNHZDR3dXM3?=
- =?utf-8?B?Q2w2VHZ2U3pPdklGLytWMWVuTTNjcHN5d0dQdnk1dllrTVRvYmlMaXlsMnBz?=
- =?utf-8?B?L3VKeVU0L2VBZFpNMXpXNm9MYm5VOEtjcEJ1eWFwa0FMOFpibGtsc3hpeGdP?=
- =?utf-8?B?dG1sNjNoL0pjcEFjNG9VRFdvZDZRZmdpaTg2UHpPMlVZcFVPK2pGbjVCK2hz?=
- =?utf-8?B?Q2N0WVNza3NxVldiVVUyd25ENk8rb015ZHJicHNSU2FKOHVaZ3BnbnlJYTBK?=
- =?utf-8?B?Zzc1dy9mM29YOW1xcEFITG4xMUhiUy8xcUZrSTIvZTBIL0VTNk1wdTArNXFa?=
- =?utf-8?B?VkFWalJkUVp2THZJNE42VGJEaGVNRlNMZjAzcHRRYS9ja0M3WGZqbEc1NDZo?=
- =?utf-8?B?R3RTNWdIS1k0cGlwaVV0UVZ3OEw3bDU0Tml2M0F0ODZsUExjMEhmbWdrUG5V?=
- =?utf-8?B?dGtjTGJWYTFXTDdJd3VCdVBYblRVaHdzUThsc01TWlVOUkRVYlVVb21aWnFT?=
- =?utf-8?B?UnR4dnBKU0NQNnlCYXQwY2pXWThwejZGb0E1NzVjRVljeTR2U1FSNlNIQU04?=
- =?utf-8?B?ZVh5ZFZycm44S1U2Z1ZZREY5SGtJRUNhRytaeERaYk9TVFJVWHdHb2t3K0hz?=
- =?utf-8?B?c083VXVGUTVMcWtETVpRU3BOaUhmcW01VXllYTl2M1JGT2E4dG83RTk0b0Y0?=
- =?utf-8?B?RnBaSlhkRDZiSjhmclg5dURxYzVnRVVYVlVmcFlsQmlOTTNBWUwrL1FXekNP?=
- =?utf-8?B?THZiSFU3K2VGZXdrbXZERUdWdTVWL1ZneFRSdWF3YncrcXdoOUt2aWRDSmg4?=
- =?utf-8?B?YXdaamVZTmtsYzVFTHJDSnQwM250c0g5UFFFZjVhTEhyNHlEK3lMNlZGbVRI?=
- =?utf-8?B?RXp5WGUzQ2I3MmRnOVpyM2Y1dUl4cXdkM295clhNd1Q3T3IvalR4R0FLMTFU?=
- =?utf-8?B?WUtZZU5XSUlscXRNRVhtN1dYR1poSFVDYjh5Q3lwdzUxN2pjOE92MzRvTkFh?=
- =?utf-8?B?WFIzSkgzRXcvbkNMbVRrcVl0QkdoeTdZeGtnbHRZajVqWk9XZnREN1k5Mnov?=
- =?utf-8?B?RHlVaHQwaXdWd2NxTjdNZ05OZkJyRnhjNGIzUk80WFVnWkNOZnJOSm5zVlRl?=
- =?utf-8?B?K2lhNU5TakxTclAzR3ViVTFKNnBKMzBkOHhTRXhIUHJkeWVpWWNZWlpUSFRr?=
- =?utf-8?B?bnAzdkNacHl0c3Bia01KdFduU0RGWk9SNGR0SWZENGt1Z1ZvaEtaWERteWZl?=
- =?utf-8?B?NlMwWS9SMGNiNUdtZE5GaHcxT2pxSlFZS216YkVoZnQwaHpUNG94MThJTlBT?=
- =?utf-8?B?UFZDWWZUUEI1Rk5DS25iL2l1ZDhnbjBoYTZoQlBLcVlWNXVTRnY2S2t3anhn?=
- =?utf-8?B?L0lMeEgydCtPOWZWa1Z3eXdrSU50cTBZSmRMUzNnMWNxdTlZMUsxVG1ZQjdP?=
- =?utf-8?B?eEduVnhQWllWT25WQUxjZ1lrOWJhcGVBU1VGY2RkZiswNzFsbDFoLzlDWjV0?=
- =?utf-8?B?eWdMMGQ1TnVJM0hYZUFoU1hXRWhDQlB6bERkOXhlNnRXOEpzbXFFd0NndXdo?=
- =?utf-8?B?cGRWaG5tZ1ZpdkthWEdBMEdoOHVrcTF3V0hyeCt2Wi9mbnRjN1RDSUdmd2g3?=
- =?utf-8?B?WWlvNk5QUnF0TXpma2Y0SVJ5MVJSSzA4ZTZTMXV5UFkvZkR1SHpyQ1EvQVdy?=
- =?utf-8?B?SllhWWZQRURoc1FJaVU5ZUV1eW1pSmNVOG9IU1U2aFpBQ2w5SEE4WmRmQjVQ?=
- =?utf-8?B?TlIvKzZmYVhlelFBOEtwaVFkVGQrbU9QUU5Wc01ZY21iakNoOUM1YnZQUzJS?=
- =?utf-8?B?MEVNWVlIN2JaUkhYc1ZKaDg1aGlhR0VmcmNVL3czNnZaWDh0UEVqS2xNK0dC?=
- =?utf-8?B?ODExSnlnN0E5b1kwSkkyelFocit2dUZBSVpNQ1hlTjVrZ2NtbXV2M3RMN0V3?=
- =?utf-8?B?VlZZMU5oTTJaRkNaUCtUM0JWZm9udmRnMFpPdUJEVjZvYnVFM3pmRGJUUW5L?=
- =?utf-8?B?TVB1UStBVFRZb1hvWVovZElEMVF1QmJHZlZzVmNJZk9VM1Q2bVUyN2ZtQWFk?=
- =?utf-8?B?bmdnN0ZNZmlBQy9iNmQwNW1XNGdnWXAzaVFoM091MEt3eUgyZFpsR1pEMWVn?=
- =?utf-8?Q?MPYnRrRyin4RcFbU=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <236D1F1C7DD64A4AB04D71756FF5FC43@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2A53016F1;
+	Mon, 16 Feb 2026 13:34:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771248865; cv=none; b=nAgwVf/UfHOucbYv2bNalzC1qXBdaM7xnFb7jTI/wq+kZjmaioKZ2ZzyKh+TXNZDA7cEJ1YwHhL8OTU+EmmTIpE26hRt5ZZ0JOi/MTutPNd1Lf1gEa4Yty3zrL6hNtT9/pApq2++6/d+lr8AlTFZcvjcQLck9aYWC8X7rXpwyP8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771248865; c=relaxed/simple;
+	bh=y0fQTQo6X8umeZ/M7VxvcuIfs0YY6Q0TYhb3UdnM1CQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VVEA4FQHCdSlxNcbVV1kbmKz0UAMtUZ+Z7KHmqzIopYIjCBw+MFCkINRkJzfPKFYnHUxcwLNHriNAsYglitlOr3ly30M+AoioUOx3zfgQj/awr+Y45QyPs+E/TPskt9149iVS15/bpvST+DXrsxt1uRYBb4e55rbFCLBgbQiL7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IwxS7QnZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8395C116C6;
+	Mon, 16 Feb 2026 13:34:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771248864;
+	bh=y0fQTQo6X8umeZ/M7VxvcuIfs0YY6Q0TYhb3UdnM1CQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IwxS7QnZAuAnm+0K4bsO2QA2PNHJ7y1v77ekOdLUkC0cg4rdQZ5YKdzF/13vwNy+I
+	 yfb7ufPWgkEn9keP5ytodVXXNvMAh84iGL2mJ5VBbWfMdZsw3bXlI1hXPGIM2wE02a
+	 +y5gmFEucDPtEgq/0QpkPSV+Upy7kRcGWeTRrA3agdUwhmiMgoH+siftToI7zlHtWf
+	 EG4lFG5Aoe/CqNxgzsucm0MMe4fA8yAyDJNl3lsJsb3xoSxf7GwyLwjzqdp9TjEheh
+	 6uC/QeXP/ANUmkeNRvr2ytfpDM5EvA/caaBCYYn+wZhUfnracZxfbv3UtfpvmObqUM
+	 b/w4HzHIr4B1A==
+Message-ID: <05873ad7-ca35-4542-b064-5b401f7bd069@kernel.org>
+Date: Mon, 16 Feb 2026 13:34:20 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: microchip.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB8251.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f55d57ae-2335-4ee7-8181-08de6d5fb177
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Feb 2026 13:31:29.9363
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cKrMPtJywvMTs2t++Tfks98oJgWwteM79uVjOH3VamkJrHMWd9wXFLvYCvr+lWf1rcLXxyZG7xI7EkAFJqXUd/ELhkjWYahrAgopiNTX4K0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6409
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 09/10] ASoC: qcom: add sdm660 internal sound card support
+To: Richard Acayan <mailingradian@gmail.com>,
+ Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Wesley Cheng <quic_wcheng@quicinc.com>, Johan Hovold <johan@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Nickolay Goppen <setotau@mainlining.org>
+References: <20260211020302.2674-1-mailingradian@gmail.com>
+ <20260211020302.2674-10-mailingradian@gmail.com>
+Content-Language: en-US
+From: Srinivas Kandagatla <srini@kernel.org>
+In-Reply-To: <20260211020302.2674-10-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-265737-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265738-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Ariana.Lazar@microchip.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,perex.cz,suse.com,linuxfoundation.org,quicinc.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[microchip.com:+];
+	FROM_NEQ_ENVFROM(0.00)[srini@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:mid,microchip.com:dkim,microchip.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4D42F143D03
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D2AAF143F14
 X-Rspamd-Action: no action
 
-SGkgYWxsLA0KDQpUaGFuayB5b3UgZm9yIHlvdXIgcmV2aWV3cy4NCg0KDQpPbiBUaHUsIDIwMjYt
-MDItMTIgYXQgMjI6MDQgKzAyMDAsIEFuZHkgU2hldmNoZW5rbyB3cm90ZToNCj4gRVhURVJOQUwg
-RU1BSUw6IERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3UN
-Cj4ga25vdyB0aGUgY29udGVudCBpcyBzYWZlDQo+IA0KPiBPbiBUaHUsIEZlYiAxMiwgMjAyNiBh
-dCAwNjowMDowNlBNICswMDAwLCBDb25vciBEb29sZXkgd3JvdGU6DQo+ID4gT24gVGh1LCBGZWIg
-MTIsIDIwMjYgYXQgMDI6NDg6MzRQTSArMDIwMCwgQXJpYW5hIExhemFyIHdyb3RlOg0KPiA+ID4g
-VGhpcyBpcyB0aGUgZGV2aWNlIHRyZWUgc2NoZW1hIGZvciBpaW8gZHJpdmVyIGZvciBNaWNyb2No
-aXANCj4gPiA+IE1DUDQ4RnhCeTEvMi80Lzggc2VyaWVzIG9mIGJ1ZmZlcmVkIHZvbHRhZ2Ugb3V0
-cHV0IERpZ2l0YWwtdG8tDQo+ID4gPiBBbmFsb2cNCj4gPiA+IENvbnZlcnRlcnMgd2l0aCBub252
-b2xhdGlsZSBvciB2b2xhdGlsZSBtZW1vcnkgYW5kIGFuIFNQSQ0KPiA+ID4gSW50ZXJmYWNlLg0K
-PiA+ID4gDQo+ID4gPiBUaGUgZmFtaWxpZXMgc3VwcG9ydCB1cCB0byA4IG91dHB1dCBjaGFubmVs
-cy4NCj4gPiA+IA0KPiA+ID4gVGhlIGRldmljZXMgY2FuIGJlIDgtYml0LCAxMC1iaXQgYW5kIDEy
-LWJpdC4NCj4gPiA+IA0KPiA+ID4gU2lnbmVkLW9mZi1ieTogQXJpYW5hIExhemFyIDxhcmlhbmEu
-bGF6YXJAbWljcm9jaGlwLmNvbT4NCj4gPiANCj4gPiBPdGhlciB0aGFuIHRoZSBpbnRlcmZhY2Us
-IHdoYXQncyBhY3R1YWxseSBkaWZmZXJlbnQgYmV0d2VlbiB0aGlzDQo+ID4gYW5kIHRoZQ0KPiA+
-IDQ3PyBDb3VsZCB0aGV5IHNoYXJlIHRoZSBzYW1lIGJpbmRpbmc/DQo+IA0KPiBJZiB0aGF0IGlz
-IHRoZSBjYXNlLCBJIGRvbid0IHRoaW5rIHdlIGV2ZW4gbmVlZCBhIGJyYW5kIG5ldyBkcml2ZXIs
-DQo+IHRoZQ0KPiBleGlzdGluZyBvbmUgc2hvdWxkIGJlIHJlZmFjdG9yZWQgdG8gYWRhcHQgU1BJ
-IGludGVyZmFjZS4NCj4gDQo+IC0tDQo+IFdpdGggQmVzdCBSZWdhcmRzLA0KPiBBbmR5IFNoZXZj
-aGVua28NCj4gDQo+IA0KDQoNCkkgaGF2ZSBkZWNpZGVkIHRvIHN1Ym1pdCB0d28gc2VwYXJhdGUg
-ZHJpdmVycywgZXZlbiB0aG91Z2ggdGhlIGNoaXBzDQpzaGFyZSBzaW1pbGFyIGZ1bmN0aW9uYWxp
-dHksIGluIG9yZGVyIHRvIG1ha2UgaXQgZWFzaWVyIGZvciB0aGUgY2xpZW50DQp0byBpZGVudGlm
-eSB0aGUgc3VwcG9ydGVkIGNoaXBzLg0KDQpGb3IgZXhhbXBsZSB0aGUgSTJDIGZhbWlseSBvZiBk
-ZXZpY2VzIGhhczogMyBkaWZmZXJlbnQgcmVzb2x1dGlvbnMsDQp3aXRoIDQgZGlmZmVyZW50IGNo
-YW5uZWwgbnVtYmVycyBhdmFpbGFibGUgZm9yIGEgcGFydGljdWxhciBwYXJ0IGFuZA0KbW9zdCBp
-bXBvcnRhbnQgeW91IGNhbiBnZXQgdGhlIHNhbWUgcGFydCB3aXRoIG9yIHdpdGhvdXQgRUVQUk9N
-Lg0KVGhhdCBtZWFucyB0aGUgSTJDIGRyaXZlciB3aWxsIGNvdmVyIDI0IGRpZmZlcmVudCBkZXZp
-Y2VzLiBUaGUgU1BJDQpmYW1pbHkgZm9sbG93cyB0aGUgc2FtZSBwYXR0ZXJuLCBjb3ZlcmluZyBh
-bm90aGVyIDI0IGRldmljZXMuDQoNCk1pY3JvY2hpcCBhbHNvIGhhcyBzb21lIGRldmljZXMgKEky
-QyBhbmQgU1BJKSB3aXRoIE5vbnZvbGF0aWxlIE1lbW9yeQ0KKHNpbWlsYXIgdG8gRUVQUk9NIGJ1
-dCBsaW1pdGVkIHRvIGZld2VyIHRoYW4gMzIgd3JpdGVzKSBhbmQgSSB3YW50IHRvDQphZGQgdGhl
-c2UgZmFtaWxpZXMgdG8gdGhlIGV4aXN0aW5nIGRyaXZlcnMgd2hpbGUgbWFpbnRhaW5pbmcgdGhl
-IHNwbGl0DQpieSBpbnRlcmZhY2UuDQoNClBsZWFzZSB0ZWxsIG1lIGlmIHlvdSBoYXZlIGFueXRo
-aW5nIGFnYWluc3QgdGhpcyBhcHByb2FjaCAoaGF2aW5nIDINCmRpZmZlcmVudCBkcml2ZXJzIHNw
-bGl0IGJhc2VkIG9uIGludGVyZmFjZSBhbmQgZWFjaCBvZiB0aGVtIHRvIHN1cHBvcnQNCmF0IGxl
-YXN0IDI0IGRpZmZlcmVudCBwYXJ0IG51bWJlcnMpLg0KDQpCZXN0IHJlZ2FyZHMsDQpBcmlhbmEN
-Cg==
+
+
+On 2/11/26 2:03 AM, Richard Acayan wrote:
+> The Snapdragon 670 and Snapdragon 660 both share the same drivers for
+> the sound cards. These different sound cards are tasha, tavil, and
+tasha, tavil are codecs, most of differences is pretty much taken care
+at dt level.
+
+> internal. Add support for the internal sound card.
+> 
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>  sound/soc/qcom/Kconfig           |  12 ++
+>  sound/soc/qcom/Makefile          |   2 +
+>  sound/soc/qcom/sdm660-internal.c | 271 +++++++++++++++++++++++++++++++
+>  3 files changed, 285 insertions(+)
+>  create mode 100644 sound/soc/qcom/sdm660-internal.c
+internal name really looks odd.
+
+Any reason why totally new driver without resusing the existing ones or
+even the helper functions from existing code?
+
+
+> 
+> diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
+> index e6e24f3b9922..86b2778adc1a 100644
+> --- a/sound/soc/qcom/Kconfig
+> +++ b/sound/soc/qcom/Kconfig
+> @@ -167,6 +167,18 @@ config SND_SOC_MSM8996
+>  	  APQ8096 SoC-based systems.
+>  	  Say Y if you want to use audio device on this SoCs
+>  
+> +config SND_SOC_SDM660_INT
+> +	tristate "SoC Machine driver for SDM660 and SDM670 boards"
+> +	depends on QCOM_APR
+> +	depends on OF
+> +	depends on PM
+> +	select SND_SOC_QDSP6
+> +	select SND_SOC_QCOM_COMMON
+> +	help
+> +	  This adds support for audio on Qualcomm Technologies Inc.
+> +	  SDM660 and SDM670 SoC-based systems.
+> +	  Say Y if you want to use audio devices on these SoCs.
+> +
+>  config SND_SOC_SDM845
+>  	tristate "SoC Machine driver for SDM845 boards"
+>  	depends on QCOM_APR && I2C && SOUNDWIRE
+> diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
+> index 985ce2ae286b..9a0da6279299 100644
+> --- a/sound/soc/qcom/Makefile
+> +++ b/sound/soc/qcom/Makefile
+> @@ -24,6 +24,7 @@ snd-soc-apq8016-sbc-y := apq8016_sbc.o
+>  snd-soc-apq8096-y := apq8096.o
+>  snd-soc-sc7180-y := sc7180.o
+>  snd-soc-sc7280-y := sc7280.o
+> +snd-soc-sdm660-int-y := sdm660-internal.o
+>  snd-soc-sdm845-y := sdm845.o
+>  snd-soc-sm8250-y := sm8250.o
+>  snd-soc-sc8280xp-y := sc8280xp.o
+> @@ -38,6 +39,7 @@ obj-$(CONFIG_SND_SOC_MSM8996) += snd-soc-apq8096.o
+>  obj-$(CONFIG_SND_SOC_SC7180) += snd-soc-sc7180.o
+>  obj-$(CONFIG_SND_SOC_SC7280) += snd-soc-sc7280.o
+>  obj-$(CONFIG_SND_SOC_SC8280XP) += snd-soc-sc8280xp.o
+> +obj-$(CONFIG_SND_SOC_SDM660_INT) += snd-soc-sdm660-int.o
+>  obj-$(CONFIG_SND_SOC_SDM845) += snd-soc-sdm845.o
+>  obj-$(CONFIG_SND_SOC_SM8250) += snd-soc-sm8250.o
+>  obj-$(CONFIG_SND_SOC_QCOM_COMMON) += snd-soc-qcom-common.o
+> diff --git a/sound/soc/qcom/sdm660-internal.c b/sound/soc/qcom/sdm660-internal.c
+> new file mode 100644
+> index 000000000000..beb810aa4eb9
+> --- /dev/null
+> +++ b/sound/soc/qcom/sdm660-internal.c
+> @@ -0,0 +1,271 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2015-2020, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2023, Richard Acayan. All rights reserved.
+> + */
+> +
+> +#include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <sound/pcm.h>
+> +#include <sound/pcm_params.h>
+> +#include <sound/jack.h>
+> +#include <sound/soc.h>
+> +#include <sound/soc-card.h>
+> +#include <sound/soc-dai.h>
+> +#include <sound/soc-dapm.h>
+> +#include <sound/soc-jack.h>
+> +
+> +#include "common.h"
+> +#include "qdsp6/q6afe.h"
+> +
+> +#define DEFAULT_SAMPLE_RATE_48K		48000
+> +#define DEFAULT_INT_MCLK_RATE		9600000
+> +#define MI2S_BCLK_RATE			1536000
+> +
+> +struct sdm660_int_snd_data {
+> +	struct snd_soc_jack jack;
+> +	bool jack_setup;
+> +	uint32_t int0_mi2s_clk_count;
+> +	uint32_t int3_mi2s_clk_count;
+> +};
+> +
+> +static int snd_sdm660_int_startup(struct snd_pcm_substream *stream)
+> +{
+> +	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(stream);
+> +	struct sdm660_int_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
+> +	struct snd_soc_dai *cpu = snd_soc_rtd_to_cpu(rtd, 0);
+> +
+> +	switch (cpu->id) {
+> +	case INT0_MI2S_RX:
+> +		data->int0_mi2s_clk_count++;
+> +		if (data->int0_mi2s_clk_count == 1)
+> +			snd_soc_dai_set_sysclk(cpu,
+> +				Q6AFE_LPASS_CLK_ID_INT0_MI2S_IBIT,
+> +				MI2S_BCLK_RATE, SNDRV_PCM_STREAM_PLAYBACK);
+> +
+> +		/*
+> +		 * Downstream specifies that the AFE is a clock consumer, but
+> +		 * the sound is distorted (loud on the right channel and sped
+> +		 * up) unless we set it as a producer.
+This comment does not make any value, Who is driving the bit clk and
+frame clock is totally depended on the hw setup on the platform, Driving
+incorrect clock would lead to such issues. Does the codec drive on the
+platform that you are testing?
+
+> +		 */
+> +		snd_soc_dai_set_fmt(cpu, SND_SOC_DAIFMT_CBP_CFP);
+> +
+> +		break;
+> +	case INT3_MI2S_TX:
+> +		data->int3_mi2s_clk_count++;
+> +		if (data->int3_mi2s_clk_count == 1)
+> +			snd_soc_dai_set_sysclk(cpu,
+> +				Q6AFE_LPASS_CLK_ID_INT3_MI2S_IBIT,
+> +				MI2S_BCLK_RATE, SNDRV_PCM_STREAM_PLAYBACK);
+> +
+> +		/*
+> +		 * Downstream specifies that the AFE is a clock consumer, but
+> +		 * the sound is distorted (slowed down) unless we set it as a
+> +		 * producer.
+> +		 */
+> +		snd_soc_dai_set_fmt(cpu, SND_SOC_DAIFMT_CBP_CFP);
+> +
+> +		break;
+> +	default:
+> +		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__,
+> +			cpu->id);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void snd_sdm660_int_shutdown(struct snd_pcm_substream *stream)
+> +{
+> +	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(stream);
+> +	struct sdm660_int_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
+> +	struct snd_soc_dai *cpu = snd_soc_rtd_to_cpu(rtd, 0);
+> +
+> +	switch (cpu->id) {
+> +	case INT0_MI2S_RX:
+> +		data->int0_mi2s_clk_count--;
+> +		if (data->int0_mi2s_clk_count == 0)
+> +			snd_soc_dai_set_sysclk(cpu,
+> +				Q6AFE_LPASS_CLK_ID_INT0_MI2S_IBIT,
+> +				0, SNDRV_PCM_STREAM_PLAYBACK);
+> +
+> +		break;
+> +	case INT3_MI2S_TX:
+> +		data->int3_mi2s_clk_count--;
+> +		if (data->int3_mi2s_clk_count == 0)
+> +			snd_soc_dai_set_sysclk(cpu,
+> +				Q6AFE_LPASS_CLK_ID_INT3_MI2S_IBIT,
+> +				0, SNDRV_PCM_STREAM_PLAYBACK);
+> +
+> +		break;
+> +	default:
+> +		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__,
+> +			cpu->id);
+> +		break;
+> +	}
+> +}
+> +
+> +static int snd_sdm660_int_hw_free(struct snd_pcm_substream *stream)
+> +{
+> +	return 0;
+> +}
+> +
+> +static int snd_sdm660_int_prepare(struct snd_pcm_substream *stream)
+> +{
+> +	return 0;
+> +}
+
+Why dummy functions?
+
+> +
+> +static const struct snd_soc_ops sdm660_int_ops = {
+> +	.startup = snd_sdm660_int_startup,
+> +	.shutdown = snd_sdm660_int_shutdown,
+> +	.hw_free = snd_sdm660_int_hw_free,
+> +	.prepare = snd_sdm660_int_prepare,
+> +};
+> +
+> +static int sdm660_int_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
+> +					 struct snd_pcm_hw_params *params)
+> +{
+> +	struct snd_interval *rate = hw_param_interval(params,
+> +					SNDRV_PCM_HW_PARAM_RATE);
+> +	struct snd_interval *channels = hw_param_interval(params,
+> +			SNDRV_PCM_HW_PARAM_CHANNELS);
+> +	struct snd_mask *fmt = hw_param_mask(params, SNDRV_PCM_HW_PARAM_FORMAT);
+> +
+> +	rate->min = rate->max = DEFAULT_SAMPLE_RATE_48K;
+> +	snd_mask_set_format(fmt, SNDRV_PCM_FORMAT_S16_LE);
+> +
+> +	channels->min = channels->max = 2;
+> +
+> +	return 0;
+> +}
+> +
+> +static void sdm660_int_jack_free(struct snd_jack *jack)
+> +{
+> +	struct snd_soc_component *component = jack->private_data;
+> +
+> +	snd_soc_component_set_jack(component, NULL, NULL);
+> +}
+> +
+> +static int sdm660_int_dai_init(struct snd_soc_pcm_runtime *rtd)
+> +{
+> +	struct snd_soc_card *card = rtd->card;
+> +	struct sdm660_int_snd_data *data = snd_soc_card_get_drvdata(card);
+> +	struct snd_soc_dai *cpu = snd_soc_rtd_to_cpu(rtd, 0);
+> +	/* first codec on INT0_MI2S_RX must be the analog codec */
+> +	struct snd_soc_dai *codec = snd_soc_rtd_to_codec(rtd, 0);
+> +	struct snd_jack *jack;
+> +	int ret;
+> +
+> +	if (!data->jack_setup) {
+> +		/* headset buttons not tested */
+> +		ret = snd_soc_card_jack_new(card, "Headset Jack",
+> +					    SND_JACK_HEADSET | SND_JACK_BTN_0
+> +					  | SND_JACK_BTN_1 | SND_JACK_BTN_2
+> +					  | SND_JACK_BTN_3 | SND_JACK_BTN_4,
+> +					    &data->jack);
+> +		if (ret < 0) {
+> +			dev_err(card->dev, "could not create headset jack\n");
+> +			return ret;
+> +		}
+> +
+> +		data->jack_setup = true;
+> +	}
+> +
+> +	switch (cpu->id) {
+> +	case INT0_MI2S_RX:
+> +		jack = data->jack.jack;
+> +
+> +		jack->private_data = codec->component;
+> +		jack->private_free = sdm660_int_jack_free;
+> +
+> +		ret = snd_soc_component_set_jack(codec->component,
+> +						 &data->jack,
+> +						 NULL);
+> +		if (ret < 0) {
+> +			dev_err(card->dev, "could not set headset jack\n");
+> +			return ret;
+> +		}
+> +
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return 0;
+> +}
+looks like common.c has something pretty much identicaly, can you not
+use it or make it usable?
+
+> +
+> +static void snd_sdm660_int_add_ops(struct snd_soc_card *card)
+> +{
+> +	struct snd_soc_dai_link *link;
+> +	int i;
+> +
+> +	for_each_card_prelinks(card, i, link) {
+> +		if (link->no_pcm == 1) {
+> +			link->ops = &sdm660_int_ops;
+> +			link->be_hw_params_fixup = sdm660_int_be_hw_params_fixup;
+> +		}
+> +
+> +		link->init = sdm660_int_dai_init;
+> +	}
+> +}
+> +
+> +static const struct snd_soc_dapm_widget snd_sdm660_int_dapm_widgets[] = {
+> +};
+> +
+??
+
+> +static int snd_sdm660_int_probe(struct platform_device *pdev)
+> +{
+> +	struct snd_soc_card *card;
+> +	struct sdm660_int_snd_data *data;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	card = devm_kzalloc(dev, sizeof(struct snd_soc_card), GFP_KERNEL);
+> +	if (!card)
+> +		return -ENOMEM;
+> +
+> +	data = devm_kzalloc(dev, sizeof(struct sdm660_int_snd_data), GFP_KERNEL);
+> +	if (!card)
+> +		return -ENOMEM;
+> +
+> +	card->driver_name = "sdm660-internal";
+> +	card->dapm_widgets = snd_sdm660_int_dapm_widgets;
+> +	card->num_dapm_widgets = ARRAY_SIZE(snd_sdm660_int_dapm_widgets);
+> +	card->dev = dev;
+> +	card->owner = THIS_MODULE;
+> +
+> +	ret = qcom_snd_parse_of(card);
+> +	if (ret)
+> +		return ret;
+> +
+> +	snd_soc_card_set_drvdata(card, data);
+> +
+> +	snd_sdm660_int_add_ops(card);
+> +
+> +	return devm_snd_soc_register_card(dev, card);
+> +}
+> +
+> +static void snd_sdm660_int_remove(struct platform_device *pdev)
+> +{
+> +}
+Why do we need this empty function.
+> +
+> +static const struct of_device_id snd_sdm660_int_device_id[] = {
+> +	{ .compatible = "qcom,sdm660-internal-sndcard", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, snd_sdm660_int_device_id);
+> +
+> +static struct platform_driver snd_sdm660_int_driver = {
+> +	.probe = snd_sdm660_int_probe,
+> +	.remove = snd_sdm660_int_remove,
+> +	.driver = {
+> +		.name = "sdm660-int-sndcard",
+> +		.of_match_table = snd_sdm660_int_device_id,
+> +		.pm = &snd_soc_pm_ops,
+> +	},
+> +};
+> +module_platform_driver(snd_sdm660_int_driver);
+> +
+> +MODULE_DESCRIPTION("sdm660 Internal ASoC Machine Driver");
+> +MODULE_LICENSE("GPL");
+
 
