@@ -1,483 +1,218 @@
-Return-Path: <devicetree+bounces-265847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265832-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oPedELgzk2lx2gEAu9opvQ
-	(envelope-from <devicetree+bounces-265847-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:11:52 +0100
+	id YKSMN5cyk2mI2QEAu9opvQ
+	(envelope-from <devicetree+bounces-265832-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:07:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79A8314534B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:11:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C29814516F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:07:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0A66830DEA10
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 15:05:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7EC80306AEFC
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 15:03:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ADF0328632;
-	Mon, 16 Feb 2026 15:02:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA682319610;
+	Mon, 16 Feb 2026 15:02:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="Ar4Q0rDT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FOfMMph/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011040.outbound.protection.outlook.com [40.107.130.40])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0F4B32860E;
-	Mon, 16 Feb 2026 15:02:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771254167; cv=fail; b=aJP1jbSSKxvsT6leVqPpwrDppwn7f1DjW3pMCmz2PfEqKCVdRomdAc/rQ4u0unuQf/7N1iGGeYPxiwf2tIITAiyglzqG4LPnHD42J+sW+VWXQVBywFaEtoosjZ5YKLgO5igGuhpG1AXvmAnfc1NebULMzzGOovB6ShCJmqb1RG8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771254167; c=relaxed/simple;
-	bh=YiArEPWxMYeBElPZEHZaxtA+x6hib9gg+2nJFuplUq4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=jhvUkDJz42ju8/GbiWUIf6PhmvtynlBhzAdJN/FCNs6rNVQVh6n+fugu0PP/D0+MddNn7A1xNPmfDu2x74MykMgJjs8cHzgH1huTrPeyxZYDeuO/hJO00BlvzQbnbin7up9VlYPBheElaYYDkFsvfEx+EF+7EOBZDbb70bFQKag=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=Ar4Q0rDT; arc=fail smtp.client-ip=40.107.130.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=B9OpqAScS/nvCHB2+Ay14mHbvaPOCws0leo1AhT2gVu2X2gO/GXa7i1UTnikxZ+HLLhiVoKF+DX17rlbYtvxeFXHMB8hViFG5FnD2Bo36UX1ExEHjFI8AW8RxOD9nMcnZ+vOG+4S+KdkeaDlxoGGVsALomSC9lliRWfLzINP8NVhdaMY/C9Y/g+8qX7j2OpWD6746s5PGWF0/+IIp9O9sotcjmwmubdGeYBL9k8zztRRxq+/I6wiQPi2IRpDkzpOSY/0o/fWXU3ou2UKIb4fmk9U5OM+IA+RbftMU2+po17lSbjE/quVicnjsoBh+yJGvjl19J6JvwcTwMSg9JH6Nw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KmX5oU8/dmKxwsz/rnUDA4IdPqZitxkBszm0hKYibNc=;
- b=yYOuCVzKzeHSxLHXXMOOCQs0okBsoH0vckT59Nt0hNUwn0ZqF6dw6v6nZ5IX8Mz34Tt9bQh6BtGR6uNjXqBgGtD9MQENrSIABXM2d/eYy5I3smrNwKg12+oX9f57eJEBla4dY8l/1WWqG9LEFcKzT9VoeyNfonKr/1QVagaFFyYZwOzp+kJYIqjpHeyKUXs6JpPfXH3FpNbNveovkmnltIHufuxUSlMv0aKedDmJ3tKuUn53d4Dr2qDpvXoPEoSYx8JOkDl++iQbzYPiThwMLBg7dXZiTI8p8Sf6W1I0DT2N5Y0FsVVHLjki7trTA68Y9HZIi7cTvjxK1gGKjh/9tw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KmX5oU8/dmKxwsz/rnUDA4IdPqZitxkBszm0hKYibNc=;
- b=Ar4Q0rDTPZZLttTHbM9qdTAC0Lxy/87004V+M57wBo/iceDjT2m5PZyEbnlrIFdniMVnRqqN/n6CENhfWn8OUN5WB9PkgCCcq0hqSJt73HNMB2vMSYBDl/SCeYvk+eOUcj8pPadF87+8PwpSyPd+D4sSSUVecdR7cb+NGq//Vf2jzmwuzCrCu+Tou9p6UUIBwPxs77m2C0ptpObKrm62vQ6gzPKTWsZ3pzercOav4W+fdBuunJgVmGTuKMVEsyNJ5d8wHCW1RQjEpTHO1D6MtSDfZPKbHrBhkUvUrXYlmaMlY9MkwRj5dhsQXq6hYkxXpynJ1Da/1MYqPktGc0Atnw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PA4PR04MB9224.eurprd04.prod.outlook.com (2603:10a6:102:2a3::5)
- by DU4PR04MB12026.eurprd04.prod.outlook.com (2603:10a6:10:643::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.16; Mon, 16 Feb
- 2026 15:02:41 +0000
-Received: from PA4PR04MB9224.eurprd04.prod.outlook.com
- ([fe80::8e54:4d38:df79:fd63]) by PA4PR04MB9224.eurprd04.prod.outlook.com
- ([fe80::8e54:4d38:df79:fd63%7]) with mapi id 15.20.9587.017; Mon, 16 Feb 2026
- 15:02:41 +0000
-From: Larisa Grigore <larisa.grigore@oss.nxp.com>
-To: gregkh@linuxfoundation.org,
-	jirislaby@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	sumit.semwal@linaro.org,
-	christian.koenig@amd.com,
-	chester62515@gmail.com,
-	cosmin.stoica@nxp.com,
-	adrian.nitu@freescale.com,
-	stefan-gabriel.mirea@nxp.com,
-	Mihaela.Martinas@freescale.com
-Cc: linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linaro-mm-sig@lists.linaro.org,
-	s32@nxp.com,
-	imx@lists.linux.dev,
-	clizzi@redhat.com,
-	aruizrui@redhat.com,
-	eballetb@redhat.com,
-	echanude@redhat.com,
-	jkangas@redhat.com,
-	Radu Pirea <radu-nicolae.pirea@nxp.com>,
-	Larisa Grigore <larisa.grigore@oss.nxp.com>
-Subject: [PATCH 13/13] serial: linflexuart: Avoid stopping DMA during receive operations
-Date: Mon, 16 Feb 2026 16:02:05 +0100
-Message-ID: <20260216150205.212318-14-larisa.grigore@oss.nxp.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260216150205.212318-1-larisa.grigore@oss.nxp.com>
-References: <20260216150205.212318-1-larisa.grigore@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0171.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:b7::18) To PA4PR04MB9224.eurprd04.prod.outlook.com
- (2603:10a6:102:2a3::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95B1A3191BF;
+	Mon, 16 Feb 2026 15:02:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771254152; cv=none; b=JyPJuEUGN3fk8VPw3i5j8DzT8pZk/LmiU0iscDqIhojvgVirqQc9oGIccIkgsoGEfM7S5CsqqIO+763tP/6zUot0EO3OY04VzEMzt4D7hnfvQwl1PNzIAtAtZgJWLJIyvWTJQ1i5gFA9Jz6VlByxc2/leWArlj4+I7gn8tn43UY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771254152; c=relaxed/simple;
+	bh=U1lEfjI+z1Avgj2/tKUt7srl6TH1jOcXtS/244eTisA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PPPnLM41L6dqmMMjIZFpLfmJ6Bfgmojixa8xgmVxH8kSI94JJ/tLDqhNrYtyjzFNvqbOYmeDi3uCVca0ojMub6/r1uHNc9uxo2P/2BTlmU51R4W8Y/ZpdtoNRrqxZSufWxjp5a+3VKBnxffxhexKCE33iCIDV8Gvh2TwqELFLZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FOfMMph/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2605BC116C6;
+	Mon, 16 Feb 2026 15:02:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771254152;
+	bh=U1lEfjI+z1Avgj2/tKUt7srl6TH1jOcXtS/244eTisA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=FOfMMph/MpEYak99/f18Rs78wjDoSqu0J1IspD9aKpfnt4jtgjyG0O4skn1zpwMIU
+	 RSW9Bjg3wMviiexajpgLOVXLq+c5Ypx95piPw23AhjO2ipm4q/26U9ph7nfrVU8mxc
+	 z2uOKNLlxjk2j6fIXFgoJO/bg6aMYo360YcerpMrntsDJTTCgRizp0ySAuuOUHoQ1k
+	 s/oPETV89LgZRLe1EaTvVWw9q8lbvj7MdZuo8zfIoZQdzdBlGzjCxj9Bm0X3xoCy50
+	 p2KrNMoJBRbGMMIVZ03kP8jhEWC6SyWGCfh9Dm1U0s9TTXSMj2FedD7q+mYGomEuic
+	 O2IlcAzNPbVzw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E1564E81A2F;
+	Mon, 16 Feb 2026 15:02:31 +0000 (UTC)
+From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Subject: [PATCH v7 0/8] ADF41513/ADF41510 PLL frequency synthesizers
+Date: Mon, 16 Feb 2026 15:02:15 +0000
+Message-Id: <20260216-adf41513-iio-driver-v7-0-b0ed387ab559@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9224:EE_|DU4PR04MB12026:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1d4636d3-d615-45d3-fa77-08de6d6c6e86
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|376014|19092799006|1800799024|7416014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?N1NIMkpXK0F6TmdjN09mTmVoZ29WeVR6SGw4ZW9SZ211MkZsSUFBd2dpeGRC?=
- =?utf-8?B?RXY1bi9MVmhsditvY2d2TjJUTUhhNVZpR2JBZStGdEZMbi9JclVEQnRXS0lN?=
- =?utf-8?B?Njh2bXcyTEcwa21aY3F1RlNTSFhtT3RycWNJMFRRQmpubTRiOW5kZ1l3TWl0?=
- =?utf-8?B?UUJKU29oR01UblJkY3NqZlE5bGJIYVdlM1hBam5ZTEhzRnJNS25seDlQd1c0?=
- =?utf-8?B?ckExZmtDdkV0WDA2U1JwQzY4cFNOdEViOTJ1dFl6T2xLUEhxVU5kZTQzN0FC?=
- =?utf-8?B?ZHFuYUxrWStEaG90VUhlOU4yWFVCVUVwRGhHTTBuOHhoYUxOQUtsZ0VvdzQw?=
- =?utf-8?B?YnFHc3hMWm9OcW5pbzU2SEpQeTJIUnowUEZqS3lqTXVvNkJYNVdVQ09PU3dn?=
- =?utf-8?B?eXdacDNFbEVESXJ6Qit5ZWVSVWRxZXJIbk9SdlA3cEdzNytBSlFXOVpCM3Ns?=
- =?utf-8?B?UkVVTGtOYmxOSk40MFN3K3I2WldMNDlucjl0MVZJREd1TTh1NUVWWGdlNVUw?=
- =?utf-8?B?bktqellOMy96VTNEYXhxdEJCQmJrT085QTNsK1dQTmpMUkd3U2VhRTVUZ05z?=
- =?utf-8?B?My9Idnlab3plUVY2MXhiTHJvQlhQLzNQUU5vdjNoY1hnbm5lcDg0dlk1bGNB?=
- =?utf-8?B?cFgxbVdFMVI4NTJRUXFuZFdjMXROekV6RjZIYzhGdmZGY3YvUGRyNWlmZk9N?=
- =?utf-8?B?Q1pPR1o5SE5LOWV5ejRFcEV4bzB2Tis0dDlQOHY3SHJQMkRIRHluTmdmdGV4?=
- =?utf-8?B?aXVGMzQ1VGN1TlE2R29vY3NDZHg3Z0d3cG1vbnQwbi85T1BXU3MrV1FmQXlv?=
- =?utf-8?B?YmpIUTZyemZWbHBRQWFsdUx3aG1zanNCck9MeXFSUy9UaldjYkg1eUE5M0ZL?=
- =?utf-8?B?M3pqcGxMdTFITWllOTZ6MTVjVEozbEFEVlNTUytHMWZJcVo0UFNvTWtNSUJE?=
- =?utf-8?B?S3paZ2t5TTY0YVdocytLOXBuT0JCQ1NpUitTT29ZcThueTRpTzNyWlFRMHlC?=
- =?utf-8?B?N09hdnl1Y3A3SC9TTTdacTNiOWpKSnEweGcrQWZJZXB3NzdLWWVaMms1a1cw?=
- =?utf-8?B?Q1IwYlh5Ykg5c0hENXhrbTR4c1RXMUg1cFZjbUJVUWYwVlZuVXdHYW5mdFM5?=
- =?utf-8?B?OStLT3hyZC9VbWs5cTJQZmlIWWZpMnZXMkNJUGc1aytSSEcxZml0MFNVTStP?=
- =?utf-8?B?NFlnRlhjamlVVEczaDZNVUNTTFRyMFhJRk5JbFZET1JucGt2ZTFUc0FTRG1E?=
- =?utf-8?B?ckc3WFJGVTVSWnpROGYxZCtrUStKMnhpZzczTEt6UVgvc2tRRGp6VzlSR3hq?=
- =?utf-8?B?bUVRbkRGT2psR21Bc2puZng2dU41d3Q5VW5GSSt5K2ZidUh6czJlQ0cwZXJz?=
- =?utf-8?B?NGV2UzhXbXJxWUswSy9uMFdyOFNxVktlemh3ZDRvem9weWxpQzBnN0hyRVlT?=
- =?utf-8?B?V3VFZXNySnBQZkJ3QmJSeW8rVDVqOTFIczBNS1krbndQaW9RVmdxQlFrSE8x?=
- =?utf-8?B?V3hZa1dMUkI0MllPdHY2Vnd4dlFjREExQkNISGVVMzgzc2llT3ROSmszNTBO?=
- =?utf-8?B?V1hvU011WTd5OEVocnYvdkFxZ0xmNFpJSXdJaEhLQ25YRmFZR3dURlU2RkhI?=
- =?utf-8?B?L011WHdad2g3bUlYTXc0cGdqVTJlR25TVWF5dlh1RHovbzBQUFZyRS9MQ2hh?=
- =?utf-8?B?ck15ZURnV0ZrczlRc2trSFJJbjN6VEpvbjM1eG1ITUI0NWJ1ME1TS3oxaUVu?=
- =?utf-8?B?TG5BOWtlSTBZbk05cGNnRTVBYzA3dzh5RWp3TnVEVDRnS3hRdHNJTFkvL2Rh?=
- =?utf-8?B?Y3JrYWw0M1dtR3BjeXhsV2o2SDVkT1V6RVV3Y043OWhxUW02SThvcU5HeEhW?=
- =?utf-8?B?OEV3b1Y4NjdzTnFiN0gyVE8vVHF0dElIM2l4Ylc4YlRidThCdmpmK1g0Nmxz?=
- =?utf-8?B?NnRDNlhRVE9uc1pxWkN6Qy84VWgvTzFoN05Iek5VaEFnQ200R01abWwyU3Rl?=
- =?utf-8?B?Q0xYUUh5cVB0MnJSbUhqT1B0S0lrUVpOZ1BMdWlsekFhOWc2alIrU0dXQ2NL?=
- =?utf-8?B?TmdneFRPSHc1QnZLVWthMjdtbmkvVkZKTnRvVHRaUkZpYWlzcFdVazhEMGZx?=
- =?utf-8?B?Q3A1NnBEUHgvclBBQmNhWXZCd3V1RWFUcXhLVUhyd1R4eVJHWmp5bURkS3VI?=
- =?utf-8?B?ZEE9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9224.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(19092799006)(1800799024)(7416014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VWZVa2xrSFM1QUMxZSs0cExkOXZUQUE4T3dEdU10WGgyWWZ0RVRGbGd2OUhv?=
- =?utf-8?B?a3J1TitZUWJGMWF4d09RYzZwSENHWnNVU0UzdHFrRUtDMmVTMHVCWEZrSExv?=
- =?utf-8?B?SnlyNGxZWE9XczZEbUJDdGxCVUMxRE9pM1ZmYlpUMk53VFJWNktLSnRjR0VB?=
- =?utf-8?B?VytVQlpOVmJGRmhXejlwWWJXVCsvc2VvQ0lsZDNQdFppeGM0OGNwZWZRd3dF?=
- =?utf-8?B?WXV0cVpMYlBJcVdqclBIM2pMR2dsVStXc256aHBxMWNiRXNZWVlrbHQ2cWRR?=
- =?utf-8?B?anZpeHZ2NmNLTWpJdVB6SzcrRDNxQ1BVc2ZpS0RrQ1JRek53S2thb3BoSVp1?=
- =?utf-8?B?LzllWTFxcTVucEM5ckJiWFRlM2pnZldRaDV4SW8rSXpPcmN2NWcvamlYVjY2?=
- =?utf-8?B?end1bHYvVHAwZlpybWdPdi82RWYyL29MNDJ1TE5wRGhONnNhUWRxZXhheDlE?=
- =?utf-8?B?VHZSd0R2ZXhsRXozNUZzeXFuQlo1UHlIcTY3WDArM3VydEV5UXErVjk5ZzFO?=
- =?utf-8?B?SjlyUWpoSyt0cDBSRk4yVE1sV2FqNXlCU09WbkRUWGJXcHdGNDRLbU1lM3pX?=
- =?utf-8?B?a1FCM2piZW1ESDdERDZ5a0RYb0t2ekxNb212SmozdTZHUjI5Wnd5UlZaSzJZ?=
- =?utf-8?B?RnV6R3cvVUlMZFdLdjBHMGdBM1pkTDNYeHhib2xFMG1TZkUvcFVmRDhQMUhL?=
- =?utf-8?B?ZEYwOTM4K1cwRFJGdVNoZnNpd0pBQUJVUGIrdC9BaUhFLzAyVURQb3ZWWjUy?=
- =?utf-8?B?eGxtMHpxQ0JkZFViSGY3amtIRGdvRlB5NUMzL2hOVVJvaDhabFJlVDhKcngw?=
- =?utf-8?B?Z1V2ZGtZK0lObjZ2YUljVTVRYy9RTzFHdXk0UkE0S2crV1RtcHo3eE4xMk9t?=
- =?utf-8?B?VG9IaCtkRUM0dEE1aXIrS1ZqZjVMcGo1QWx4dkI3em04Tm05d2ZlRXhHSEk5?=
- =?utf-8?B?ZkVYT0NMcVFMdDdZK0poTHRxbmNSZ1NPWlk2cVNtRkFzVzRyeDRJRmVzRHRE?=
- =?utf-8?B?RVVhNHl6Uk8xVlBlNjArWHh5bmhpRnUwdnNZZFlraW9yT2FZTW1vdzRqeWJ0?=
- =?utf-8?B?Y3FiSDBTMkpvekhObjFFakdtRnhWSlFjRlVDb1d6bXhSOFBmb1NyRkROM281?=
- =?utf-8?B?R1lGc3pNV3NnakxwcjVmelVWK2o1TjJxVWpHbXFUTlZPdUpyK3l1c0xOekFH?=
- =?utf-8?B?dmhqczl0Ky9YY0hORGV2bXJMZEZ6SWdVZUVzWDAySTFjcmFMOTZOU1FiQ09P?=
- =?utf-8?B?akpZRlo2ZnVnYyt1K2RtQUtUS1pKY2xaZkowZXUzUkVCK3ovQmN3S3c5UUZn?=
- =?utf-8?B?RWJTTXBBRkpoVElXK05kWitBLzlSMXdkSFEvMm9IR1MxcUdWY2JnTEc1OGVa?=
- =?utf-8?B?b1FJUXBRYys0L1k5a29Ic1E1QngvYlk5djlyM0NxRTQvZHo0cWpVUDg4bXhx?=
- =?utf-8?B?VEd4dUhRc1hiUnM5dXRLY1RxWklYVXh5Mlh5eGNMOUlCWWVNSFdJenlBamNC?=
- =?utf-8?B?UjRQM1NRMXorMkx2bzBYaU5JMlk2dGNyMndmdmFpTjlrZ2ZGTFhtYS9talBa?=
- =?utf-8?B?TXJ0MGlLSlZMeHdxK2oxNExjYVkwQitXSSs1eFZoZFRuaUQrdXpTT1ppQXZW?=
- =?utf-8?B?b2xUc0RWWnZUcjV0Z0Jhdm5XSFpiNWtnVGVQdW9iTXVkMnhHWHh2Z1krTFhq?=
- =?utf-8?B?ZTU1cHQzeW94QndMMjNkb3hjS0p1UWJWMDIrZjV0ODc4VnRSNk81T1pEVitX?=
- =?utf-8?B?Q1RrbnJGUitsU0xjeGJDTzMxT2JDZlA0Z25rWXBMa2pWc25vTjc5WHl3WStt?=
- =?utf-8?B?UVVqaEZNYmlwVm9xLzdlRzR1c3BOc0NGRVBxOFBtNTFPSXZUdEJhM0IwcGhs?=
- =?utf-8?B?S2FRZjFIRmhoT3NBYm9aTDFtRlRlNTV4RnE5MW9TV2F2SC9obW90UGdWbi9M?=
- =?utf-8?B?bi84Tk9TK3BSUml4YTE0alFGbklyRThVbFJUdWpVKzFiZmQvRmRLbEljUG1Q?=
- =?utf-8?B?ZUJuZlVCQTVsN1BXYlhMTG92Tkxub2dBbW93QXJJRDJSb0xDejlGWHRsRTBh?=
- =?utf-8?B?bW92a1F1Qm1MRWx0RTZ3Q2toREZIY0tTL3l1eHRCdWc0eW1zUStyTit2bVU5?=
- =?utf-8?B?dTE0a1BDZEt2VUdCY2JSUVRrS3d3WDdPMUVzamVzeUl6NFVoZklKZEYxTmJO?=
- =?utf-8?B?UkdUbm9jMXg2VU1oakwxMEdtWjRVcGp4OUIrYmdlOWZrR3Qzc2I3R3hoZFJo?=
- =?utf-8?B?T09CR2hQM1ZXdm9BdTk4NGFrWlJmekVVM1dybmNYTGsrQWpoSm9PekpBcUtt?=
- =?utf-8?B?R3lvaGhkNHJwWFdxd2RTR3hIbndmdnFtM2Y0ZnQ3bnJ2U21xbnhHeCtYMXBE?=
- =?utf-8?Q?7RnBK52+9W6GcMZk=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1d4636d3-d615-45d3-fa77-08de6d6c6e86
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9224.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2026 15:02:41.3107
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SU1V07VkUQKopWg6u0wMheJpClYNbBmpP4Z478RkVeKtnacZ8RrHcjqa955PhLetvjR/qYQJE1cPaBWP38vMyA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB12026
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHcxk2kC/33Q0UrFMAwG4Fc59NpKk25t55XvIV5kTXpOQc+kk
+ 6Ec9u52A3Gy6eUfki8hNzVKyTKqh9NNFZnymIdrDf7upOKFrmfRmWtWaLAFAKOJUwMtWJ3zoLn
+ kSYomihTIp2CCqDr5ViTlj1V9eq75ksf3oXyuSyZYqv97E2ijkVPoxSSOTh7pSi/D+T4Or2oBJ
+ /xBELpjBCvSC3YULLe+szvEfiPOgAnHiF0usQzWA0lqwg5pNgi4Y6SpCPe9Z+cDIvgd0m4QtMd
+ Iu/4kSgAkZKYd4jaI/eOxriIxNQ5tV/v6+AuZ5/kL3s7b9RACAAA=
+X-Change-ID: 20251110-adf41513-iio-driver-aaca8a7f808e
+To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Rodrigo Alencar <rodrigo.alencar@analog.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Andy Shevchenko <andriy.shevchenko@intel.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771254149; l=4379;
+ i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
+ bh=U1lEfjI+z1Avgj2/tKUt7srl6TH1jOcXtS/244eTisA=;
+ b=t+H06vNT/wXjrrPVwzezii81kDmoZMdlDfHD6g/VMLUh1wtkCJ4FjmsXMcM/M1trwDzBI0Lha
+ 6PhsnEMwfTCD31/nE/8293B/Uy5kRnH40QeejT1RMU63/fS7oZF7gjL
+X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
+ pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
+X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
+ with auth_id=561
+X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Reply-To: rodrigo.alencar@analog.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.94 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-265832-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265847-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,linaro.org,amd.com,gmail.com,nxp.com,freescale.com];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[larisa.grigore@oss.nxp.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.nxp.com:mid,nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,NXP1.onmicrosoft.com:dkim]
-X-Rspamd-Queue-Id: 79A8314534B
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:mid,analog.com:email,analog.com:replyto]
+X-Rspamd-Queue-Id: 7C29814516F
 X-Rspamd-Action: no action
 
-From: Radu Pirea <radu-nicolae.pirea@nxp.com>
+This patch series adds support for the Analog Devices ADF41513 and ADF41510
+ultralow noise PLL frequency synthesizers. These devices are designed for
+implementing local oscillators (LOs) in high-frequency applications.
+The ADF41513 covers frequencies from 1 GHz to 26.5 GHz, while the ADF41510
+operates from 1 GHz to 10 GHz.
 
-Replace DMA single transactions with DMA cyclic transactions. Characters
-may be lost between two single DMA transactions if the CPU is running at
-lower frequencies.
+Key features supported by this driver:
+- Integer-N and fractional-N operation modes
+- High maximum PFD frequency (250 MHz integer-N, 125 MHz fractional-N)
+- 25-bit fixed modulus or 49-bit variable modulus fractional modes
+- Digital lock detect functionality
+- Phase resync capability for consistent output phase
+- Load Enable vs Reference signal syncronization
 
-Signed-off-by: Radu Pirea <radu-nicolae.pirea@nxp.com>
-Co-developed-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
-Signed-off-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
+The series includes:
+1. PLL driver implementation
+2. Device tree bindings documentation
+3. IIO ABI documentation
+
+Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
 ---
- drivers/tty/serial/fsl_linflexuart.c | 119 +++++++++++++++------------
- 1 file changed, 68 insertions(+), 51 deletions(-)
+Changes in v7:
+- Addressed minor suggestions.
+- frequency_resolution ABI for AD4350 removed in favor of generic one.
+- Link to v6: https://lore.kernel.org/r/20260130-adf41513-iio-driver-v6-0-cf46239026bc@analog.com
 
-diff --git a/drivers/tty/serial/fsl_linflexuart.c b/drivers/tty/serial/fsl_linflexuart.c
-index dff37c68cff0..4598c7ff669e 100644
---- a/drivers/tty/serial/fsl_linflexuart.c
-+++ b/drivers/tty/serial/fsl_linflexuart.c
-@@ -6,6 +6,7 @@
-  * Copyright 2017-2019, 2021-2022, 2025 NXP
-  */
- 
-+#include <linux/circ_buf.h>
- #include <linux/clk.h>
- #include <linux/console.h>
- #include <linux/dma-mapping.h>
-@@ -180,7 +181,7 @@ struct linflex_port {
- 	dma_addr_t		dma_rx_buf_bus;
- 	dma_cookie_t		dma_tx_cookie;
- 	dma_cookie_t		dma_rx_cookie;
--	unsigned char		*dma_rx_buf_virt;
-+	struct circ_buf		dma_rx_ring_buf;
- 	unsigned int		dma_tx_bytes;
- 	int			dma_tx_in_progress;
- 	int			dma_rx_in_progress;
-@@ -210,28 +211,63 @@ to_linflex_port(struct uart_port *uart)
- 	return container_of(uart, struct linflex_port, port);
- }
- 
--static void linflex_copy_rx_to_tty(struct linflex_port *lfport,
--				   struct tty_port *tty, int count)
-+static void linflex_copy_rx_to_tty(struct linflex_port *lfport)
- {
--	size_t copied;
--
--	lfport->port.icount.rx += count;
-+	struct circ_buf *ring_buf = &lfport->dma_rx_ring_buf;
-+	struct tty_port *port = &lfport->port.state->port;
-+	size_t count, received = 0, copied = 0;
-+	struct dma_tx_state state;
-+	enum dma_status dmastat;
-+	int new_head;
- 
--	if (!tty) {
-+	if (!port) {
- 		dev_err(lfport->port.dev, "No tty port\n");
- 		return;
- 	}
- 
-+	dmastat = dmaengine_tx_status(lfport->dma_rx_chan, lfport->dma_rx_cookie, &state);
-+	if (dmastat == DMA_ERROR) {
-+		dev_err(lfport->port.dev, "Rx DMA transfer failed!\n");
-+		return;
-+	}
-+
-+	new_head = FSL_UART_RX_DMA_BUFFER_SIZE - state.residue;
-+	if (ring_buf->head == new_head)
-+		return;
-+
-+	ring_buf->head = new_head;
- 	dma_sync_single_for_cpu(lfport->port.dev, lfport->dma_rx_buf_bus,
- 				FSL_UART_RX_DMA_BUFFER_SIZE, DMA_FROM_DEVICE);
--	copied = tty_insert_flip_string(tty,
--					((unsigned char *)(lfport->dma_rx_buf_virt)),
--					count);
- 
--	if (copied != count) {
--		WARN_ON(1);
--		dev_err(lfport->port.dev, "RxData copy to tty layer failed\n");
-+	if (ring_buf->head > FSL_UART_RX_DMA_BUFFER_SIZE)
-+		dev_err_once(lfport->port.dev,
-+			     "Circular buffer head bigger than the buffer size\n");
-+
-+	if (ring_buf->head < ring_buf->tail) {
-+		count = FSL_UART_RX_DMA_BUFFER_SIZE - ring_buf->tail;
-+		received += count;
-+		copied += tty_insert_flip_string(port, ring_buf->buf + ring_buf->tail, count);
-+		ring_buf->tail = 0;
-+		lfport->port.icount.rx += count;
- 	}
-+
-+	if (ring_buf->head > ring_buf->tail) {
-+		count = ring_buf->head - ring_buf->tail;
-+		received += count;
-+		copied += tty_insert_flip_string(port, ring_buf->buf + ring_buf->tail, count);
-+		if (ring_buf->head >= FSL_UART_RX_DMA_BUFFER_SIZE)
-+			ring_buf->head = 0;
-+		ring_buf->tail = ring_buf->head;
-+		lfport->port.icount.rx += count;
-+	}
-+
-+	if (copied != received)
-+		dev_err_once(lfport->port.dev, "RxData copy to tty layer failed\n");
-+
-+	dma_sync_single_for_device(lfport->port.dev, lfport->dma_rx_buf_bus,
-+				   FSL_UART_RX_DMA_BUFFER_SIZE,
-+				   DMA_FROM_DEVICE);
-+	tty_flip_buffer_push(port);
- }
- 
- static void linflex_enable_dma_rx(struct uart_port *port)
-@@ -348,8 +384,6 @@ static void _linflex_stop_rx(struct uart_port *port)
- static void linflex_stop_rx(struct uart_port *port)
- {
- 	struct linflex_port *lfport = to_linflex_port(port);
--	struct dma_tx_state state;
--	unsigned int count;
- 
- 	_linflex_stop_rx(port);
- 
-@@ -357,14 +391,12 @@ static void linflex_stop_rx(struct uart_port *port)
- 		return;
- 
- 	dmaengine_pause(lfport->dma_rx_chan);
--	dmaengine_tx_status(lfport->dma_rx_chan,
--			    lfport->dma_rx_cookie, &state);
-+	linflex_copy_rx_to_tty(lfport);
-+	lfport->dma_rx_ring_buf.head = 0;
-+	lfport->dma_rx_ring_buf.tail = 0;
- 	dmaengine_terminate_all(lfport->dma_rx_chan);
--	count = FSL_UART_RX_DMA_BUFFER_SIZE - state.residue;
- 
- 	lfport->dma_rx_in_progress = 0;
--	linflex_copy_rx_to_tty(lfport, &port->state->port, count);
--	tty_flip_buffer_push(&port->state->port);
- }
- 
- static void linflex_put_char(struct uart_port *sport, unsigned char c)
-@@ -501,11 +533,12 @@ static int linflex_dma_rx(struct linflex_port *lfport)
- 	dma_sync_single_for_device(lfport->port.dev, lfport->dma_rx_buf_bus,
- 				   FSL_UART_RX_DMA_BUFFER_SIZE,
- 				   DMA_FROM_DEVICE);
--	lfport->dma_rx_desc = dmaengine_prep_slave_single(lfport->dma_rx_chan,
--							  lfport->dma_rx_buf_bus,
--							  FSL_UART_RX_DMA_BUFFER_SIZE,
--							  DMA_DEV_TO_MEM, DMA_PREP_INTERRUPT |
--							  DMA_CTRL_ACK);
-+	lfport->dma_rx_desc =
-+		dmaengine_prep_dma_cyclic(lfport->dma_rx_chan,
-+					  lfport->dma_rx_buf_bus,
-+					  FSL_UART_RX_DMA_BUFFER_SIZE,
-+					  FSL_UART_RX_DMA_BUFFER_SIZE / 2,
-+					  DMA_DEV_TO_MEM, DMA_PREP_INTERRUPT);
- 
- 	if (!lfport->dma_rx_desc) {
- 		dev_err(lfport->port.dev, "Not able to get desc for rx\n");
-@@ -525,11 +558,8 @@ static int linflex_dma_rx(struct linflex_port *lfport)
- static void linflex_dma_rx_complete(void *arg)
- {
- 	struct linflex_port *lfport = arg;
--	struct tty_port *port = &lfport->port.state->port;
- 	unsigned long flags;
- 
--	timer_delete_sync(&lfport->timer);
--
- 	uart_port_lock_irqsave(&lfport->port, &flags);
- 
- 	/* stopped before? */
-@@ -538,34 +568,17 @@ static void linflex_dma_rx_complete(void *arg)
- 		return;
- 	}
- 
--	lfport->dma_rx_in_progress = 0;
--	linflex_copy_rx_to_tty(lfport, port, FSL_UART_RX_DMA_BUFFER_SIZE);
--	tty_flip_buffer_push(port);
--	linflex_dma_rx(lfport);
-+	linflex_copy_rx_to_tty(lfport);
- 
- 	uart_port_unlock_irqrestore(&lfport->port, flags);
--
- 	mod_timer(&lfport->timer, jiffies + lfport->dma_rx_timeout);
- }
- 
- static void linflex_timer_func(struct timer_list *t)
- {
- 	struct linflex_port *lfport = timer_container_of(lfport, t, timer);
--	unsigned long flags;
--
--	uart_port_lock_irqsave(&lfport->port, &flags);
- 
--	/* stopped before? */
--	if (!lfport->dma_rx_in_progress) {
--		uart_port_unlock_irqrestore(&lfport->port, flags);
--		return;
--	}
--
--	linflex_stop_rx(&lfport->port);
--	linflex_dma_rx(lfport);
--
--	uart_port_unlock_irqrestore(&lfport->port, flags);
--	mod_timer(&lfport->timer, jiffies + lfport->dma_rx_timeout);
-+	linflex_dma_rx_complete(lfport);
- }
- 
- static void _linflex_start_tx(struct uart_port *port)
-@@ -827,8 +840,8 @@ static int linflex_dma_rx_request(struct uart_port *port)
- {
- 	struct linflex_port *lfport = to_linflex_port(port);
- 	struct dma_slave_config dma_rx_sconfig;
--	unsigned char *dma_buf;
- 	dma_addr_t dma_bus;
-+	char *dma_buf;
- 	int ret;
- 
- 	dma_buf = devm_kmalloc(port->dev, FSL_UART_RX_DMA_BUFFER_SIZE,
-@@ -860,7 +873,9 @@ static int linflex_dma_rx_request(struct uart_port *port)
- 		return ret;
- 	}
- 
--	lfport->dma_rx_buf_virt = dma_buf;
-+	lfport->dma_rx_ring_buf.buf = dma_buf;
-+	lfport->dma_rx_ring_buf.head = 0;
-+	lfport->dma_rx_ring_buf.tail = 0;
- 	lfport->dma_rx_buf_bus = dma_bus;
- 	lfport->dma_rx_in_progress = 0;
- 
-@@ -883,10 +898,12 @@ static void linflex_dma_rx_free(struct uart_port *port)
- 
- 	dma_unmap_single(lfport->port.dev, lfport->dma_rx_buf_bus,
- 			 FSL_UART_RX_DMA_BUFFER_SIZE, DMA_FROM_DEVICE);
--	devm_kfree(lfport->port.dev, lfport->dma_rx_buf_virt);
-+	devm_kfree(lfport->port.dev, lfport->dma_rx_ring_buf.buf);
- 
- 	lfport->dma_rx_buf_bus = 0;
--	lfport->dma_rx_buf_virt = NULL;
-+	lfport->dma_rx_ring_buf.buf = NULL;
-+	lfport->dma_rx_ring_buf.head = 0;
-+	lfport->dma_rx_ring_buf.tail = 0;
- }
- 
- static int linflex_startup(struct uart_port *port)
+Changes in v6:
+- Drop usage of simple_strtoull().
+- Implement better overflow checks with iio_safe_strntou64().
+- Link to v5: https://lore.kernel.org/r/20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com
+
+Changes in v5:
+- Drop local parsing of 64-bit plus fractional parts
+- Add iio_str_to_fixpoint64() to iio core with parsing tests
+- Add DT property dependency for adi,charge-pump-resistor-ohms
+- Add local definition for ADF41513_HZ_PER_GHZ and drop units.h patch
+- Link to v4: https://lore.kernel.org/r/20260116-adf41513-iio-driver-v4-0-dbb7d6782217@analog.com
+
+Changes in v4:
+- Proper usage of units.h macros
+- Simplifications to DT property parsing
+- Adjustments to return value handling
+- Drop of simple DT property node example
+- Link to v3: https://lore.kernel.org/r/20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com
+
+Changes in v3:
+- Use FIELD_MODIFY macro in driver implementation
+- Drop refin_frequency iio attribute
+- Drop muxout-select property from dt-bindings (and rename logic-level property)
+- Use -mhz suffix in power-up frequency property
+- Address documentation issues
+- Link to v2: https://lore.kernel.org/r/20251219-adf41513-iio-driver-v2-0-be29a83d5793@analog.com
+
+Changes in v2:
+- separate driver implementation from extra features and improve commit messages
+- use macros from units.h
+- explanation of custom parse function: adf41513_parse_uhz
+- reorganize driver data structures
+- drop clock framework support for now
+- reorganize documentation
+- Link to v1: https://lore.kernel.org/r/20251110-adf41513-iio-driver-v1-0-2df8be0fdc6e@analog.com
+
+---
+Rodrigo Alencar (8):
+      dt-bindings: iio: frequency: add adf41513
+      iio: core: add fixed point parsing with 64-bit parts
+      iio: test: add kunit test for fixed-point parsing
+      iio: frequency: adf41513: driver implementation
+      iio: frequency: adf41513: handle LE synchronization feature
+      iio: frequency: adf41513: features on frequency change
+      docs: iio: add documentation for adf41513 driver
+      Documentation: ABI: testing: add common ABI file for iio/frequency
+
+ Documentation/ABI/testing/sysfs-bus-iio-frequency  |   11 +
+ .../ABI/testing/sysfs-bus-iio-frequency-adf4350    |   10 -
+ .../bindings/iio/frequency/adi,adf41513.yaml       |  215 ++++
+ Documentation/iio/adf41513.rst                     |  199 ++++
+ Documentation/iio/index.rst                        |    1 +
+ MAINTAINERS                                        |   10 +
+ drivers/iio/frequency/Kconfig                      |   10 +
+ drivers/iio/frequency/Makefile                     |    1 +
+ drivers/iio/frequency/adf41513.c                   | 1240 ++++++++++++++++++++
+ drivers/iio/industrialio-core.c                    |  211 +++-
+ drivers/iio/test/Kconfig                           |   12 +
+ drivers/iio/test/Makefile                          |    1 +
+ drivers/iio/test/iio-test-fixpoint-parse.c         |  470 ++++++++
+ include/linux/iio/iio.h                            |    2 +
+ 14 files changed, 2333 insertions(+), 60 deletions(-)
+---
+base-commit: cce8de7f9744a210a4441ca8a667a9950515eea7
+change-id: 20251110-adf41513-iio-driver-aaca8a7f808e
+
+Best regards,
 -- 
-2.47.0
+Rodrigo Alencar <rodrigo.alencar@analog.com>
+
 
 
