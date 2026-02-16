@@ -1,58 +1,105 @@
-Return-Path: <devicetree+bounces-265723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265724-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sLDjOFYQk2lh1QEAu9opvQ
-	(envelope-from <devicetree+bounces-265723-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 13:40:54 +0100
+	id YPDrLCoSk2mL1QEAu9opvQ
+	(envelope-from <devicetree+bounces-265724-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 13:48:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6020C143686
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 13:40:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F910143720
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 13:48:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7A9B53016293
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 12:40:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0113D3005EBE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 12:48:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 991631DBB3A;
-	Mon, 16 Feb 2026 12:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076061EBA19;
+	Mon, 16 Feb 2026 12:48:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IrQ8brem"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MeZiya4r";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Qt+uSNo3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BAE221A457;
-	Mon, 16 Feb 2026 12:40:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E233746BF
+	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 12:48:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771245633; cv=none; b=grz2stC0H5s7e7P+GOlVgu++0GO+zFtiQlSEqShtXyIwJx8U3dSBZkoOBmIBtFCaEhio+6wIXq8/jfKimObdzJtr31BCz1yuY9TT8Nq9Odj5sl1OP4ozXErrZREvzmHm3A2+ZDdDybDsDw3c/TDdd1VA4WYclxkQ8g51pq/sA+g=
+	t=1771246119; cv=none; b=Ld2AfeoWBK2YJDQwW3C6aa9RJmgNyaK60BBI0ms4ambiafFnZrZOvDQvv02eMSfRuJEr2MFrOhhW29arxULwunf7HcM/Ek8yj5nMlRSNJN2aTev/69p2xKEEcjzu+rC55XlfVGq4iGHT3NKZAJm4e1k0vGvoHWLBjJenn2HDQEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771245633; c=relaxed/simple;
-	bh=PHIqXh1eLE9p2tZcIm96nDuJo+9ii2K9jjaxQdmaZYw=;
+	s=arc-20240116; t=1771246119; c=relaxed/simple;
+	bh=FopIntENjY+GEQfEd3Ie+E+cfwzshAxs33Nh8q04coU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iayu5h7qBZ+WJYKupGURwlKXdHuHHY3ryD9vY3aKSEDCkgHHGGnhfO0bwSfrJ+qC4Ld6bdjeTiMqFYeqWOnHbgQBukjC4wCSKJ8maK6cPLf8M0MG8rJuiO+wFi8YaUST4/1oMzcpX9Su1OxlrzUgB0udey2RwA/txI6WYy+xXpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=IrQ8brem; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1771245629;
-	bh=PHIqXh1eLE9p2tZcIm96nDuJo+9ii2K9jjaxQdmaZYw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IrQ8bremQEZjbg01aNCDrn750sqUk0ybTWIVCZAkFrY1bw89+SLoiIhCLdA/ll009
-	 1jHWrvmAk4riWb6sxOrJsfLrWzbYto7qU1Vg0jn91SrlFUoZTFSDPL4IG8u9IpsBsA
-	 nHaF58HdlaHPbW3OX86CsU4NxzmbA9QZDx45oWrlAVSolKTN2ZaXBiXeNNRVVdQyz4
-	 uSJp/sQU3Towk5ziQGMfloPmonmfJGACNsdSnefoB0ucq+J+uw2L8Ae3sU7mlBsTsF
-	 h7AjXMRVo200AS09QenWCC9BKpsnKdpz/l9Fw1ETWVa6ysVsfKD2xVQN/gf5yhvefm
-	 TYcK4zFOm4miw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3C25A17E00A3;
-	Mon, 16 Feb 2026 13:40:28 +0100 (CET)
-Message-ID: <90e0cbe5-3219-4196-a4bd-015e320d07b3@collabora.com>
-Date: Mon, 16 Feb 2026 13:40:27 +0100
+	 In-Reply-To:Content-Type; b=S+8Ddl31nQAwpJTMt2quWY7+6BENIYH/72cp1D5Gsl1KmHaz28jgndYUoM49EtVgjm8S/2iSwIqLx4U6TCq/aSIsmYD6Z0WzYfCjG6EN/Ntmo3G+s+IXmXo0BJ6k4zicfuufPK6B9POrdS3Blu480wYrYB8LV8xHRkHA2le9RHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MeZiya4r; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Qt+uSNo3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61GBtGKl3145983
+	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 12:48:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gwm05FI3e3NX0ebgAX9OH6TMIb9jFbuqyHKt4YLbX/M=; b=MeZiya4rHdRK0MLE
+	zDNuiviKMPm30djNTJQnthOUPobj58P6DT2jjS6wBj3jyEJWyKxphRpwuT87D5fE
+	6CintDvLkv6o/UeocGg44+W+KAZMa3Opvfav48cmX9t2Z/ocM7CvutDcgMVJXy4V
+	9VAJe1nmfqR79dcIwUIkpG7sn0XKDYEyYY+DYT7+X1u9bCGPFHALO8wD1ErqYRIU
+	YDMVQDREEEkBLN3I6jUHuhYaC0HSU+7KHqsp0bMdrZhoDMFZ9yPRDnixNiSKYJLs
+	b/9vF89IUFnNmsDumK9boLT2jL9lQD+D2ufXoOxnb0R0Y9iOGVf6qsG58Yw2N9Cy
+	WXwA5g==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cahtcme9s-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 12:48:38 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-50698374e33so28267961cf.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 04:48:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1771246117; x=1771850917; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gwm05FI3e3NX0ebgAX9OH6TMIb9jFbuqyHKt4YLbX/M=;
+        b=Qt+uSNo3fiUBkLO0BpssoMT/tKKbbgA9FK/boVaV6SX08em2lA0XBWUTnD+pvdSKVg
+         qwbUV0IBaIVoahioyqXUhAGUbMCmafz/LCS3v5mKf8+i6Vjwo5xSPaLjhPepCy6amlRM
+         vbJxcvV2vwkliwHWC7BBF+tAzIDlFHJ0DTR9ndQi7jggtdQRCjKSvIjPgORCT2nLi7TH
+         mNm6wyhq4eIRXYT62UtXaqombxfpmP0PgjH0Ss5iBeypniSRyEPSiZ/dcO1SzJ4Zvb7M
+         RnZDxR7gHEvWFhC7p0DDFvt9rFV+rdOsBvvoFeQOT/rh0xXlOFu8uP/b3kmFU4CmIf4s
+         lmhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771246117; x=1771850917;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gwm05FI3e3NX0ebgAX9OH6TMIb9jFbuqyHKt4YLbX/M=;
+        b=ayYRSU9rgrO2l//yFlek9TvmpoClITx2f7dt1/8m+pwSKhU797iYSaBM7PBg/l9dp/
+         S5z424NSs5gcgmKQsDceqtLCU6KDEcIvDmHw90S8wmpBmu5pW1Tqa5XA6185/eoPiALk
+         GhIzvZWWoIeQAC7m3oXKNKyXa/OdUzmthlgpFKVYXS6wkqze80yATG4y+8AmV58LcGQP
+         lpoKV+gKvBbSaGsgxzOHGEir/PwxZKL9i7Sp1ePmH76C7CRv8W3yDLyk8yW6SBYO9YrB
+         weEdssoLnLJSjXDtHQ5SCfTq/Wc0HssWJD9r2R/tfM/d/Bs17sbw0bIMyUFtCVKRpTPm
+         36qQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXBVOCkr8KEAw/Kz8A7bDqhIXffWcfS4auU2RXMtUYQK81NXRhrH8d1Tb2EAcIvzJlgEaLauexiV1sk@vger.kernel.org
+X-Gm-Message-State: AOJu0YzH8Y3j+PxIsEzszMHh+9yA1NDWYNZ/+jsNh1pdQ20Rq9GR/J/p
+	2P4yVeKaSjRTUGWXTr34C+F0wpCjjxQHeBT9m+7X+WOhE4yLvO+ArwBkiW4/ZrP3Le1TrWaZd7b
+	Ph6zxJyFdSU+Y3wZO5jSeW7QOApn37G3AnEXpXWmvCHqfTRimj92z2A6Y34h2/JU3
+X-Gm-Gg: AZuq6aIioghpaKFShPHKsUVOwYWu51NvMFByy0xhKtF2N2Alq0+zBjc1gjun3paR8oD
+	Ov0IhoDVjH8S2W4KHwAk7tDM6UC5h8cGx6Sw0NweFiWlxRM6uTSi2Ld6WNQZG7p6Wc8vH+Y/spW
+	RjtWtX3LWwOgNnGKlK/VlY70xodF6+g5tERmPsy9uwhIFlsmNOZOKFNPlk9JqJeRwgYXvYGMHD9
+	vw6wlEfAV3MDV/0OTQuClgbV7PXV2z6yzKt+GugbGvCJWUcZeE4dNcTeylhmbiVTYkRZrvC33dk
+	5tezAN/8zmT1NL9uMq3DKYC1gsMhZlRoj6f5h0FMhzlpWL6/WZWX+6XAGkoqvbxrplTnFhe2N5o
+	M3WWtxaYPQ8TScxPSygFUIKlR/pM5zMoikQrq5g6SzqwwiMjwhdoXOFshAALVFCtfnsqj7hUyI9
+	oVPn0=
+X-Received: by 2002:a05:622a:130d:b0:4ed:6862:cdd0 with SMTP id d75a77b69052e-506a6b2acc8mr106731171cf.10.1771246117089;
+        Mon, 16 Feb 2026 04:48:37 -0800 (PST)
+X-Received: by 2002:a05:622a:130d:b0:4ed:6862:cdd0 with SMTP id d75a77b69052e-506a6b2acc8mr106730971cf.10.1771246116584;
+        Mon, 16 Feb 2026 04:48:36 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65bad3f0b55sm1828771a12.23.2026.02.16.04.48.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Feb 2026 04:48:35 -0800 (PST)
+Message-ID: <4fbc3ceb-ac69-4c62-8493-e216f352a64e@oss.qualcomm.com>
+Date: Mon, 16 Feb 2026 13:48:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,215 +107,112 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 00/24] MediaTek UFS Cleanup and MT8196 Enablement
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
- Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Peter Wang <peter.wang@mediatek.com>, Stanley Jhu <chu.stanley@gmail.com>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Chaotian Jing <Chaotian.Jing@mediatek.com>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- kernel@collabora.com, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-phy@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-References: <20260124-mt8196-ufs-v6-0-e7c005b60028@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH RFC] arm64: dts: qcom: qcs6490-rb3gen2: Enable uPD720201
+ and GL3590
+To: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20260212-rb3gen2-upd-gl3590-v1-1-18fb04bb32b0@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <20260124-mt8196-ufs-v6-0-e7c005b60028@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260212-rb3gen2-upd-gl3590-v1-1-18fb04bb32b0@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE2MDEwOCBTYWx0ZWRfXwBZXN+vl1pLb
+ Vi1ubtd/vVoAnmdSCJy1rH4gotu0JL8qQNeseDtktvbARHVqjGmSyQnKwODNxA8blA4HwmCUCqD
+ TwicohO2mv96VvN14p9yLznA9rUfbSg5VHSWAp1rLF4IpYgFIP3a3syBPmm82FgVvDPJH3jbp7U
+ OE73wFhb/jLVFIVbt15xlKJrF77zHaWK2QzK8XsBQ9DvyJSHzMJEZCeYjU5XbYIu/iMhjMdkqkH
+ eaxqVzXzeoGYuvM0fHSFjCbHU5PVnG0e1ymduxvCeK3zx37zvC1VR1CP52SQcWgBVOhYTtodb06
+ T/LJh/qbw1fnMmCOBn/aP9xiEO1PJbv0hASi/Erke0SNGPNnFhfQAxWYH/4/v6gHm2GAcs6sDPp
+ PHLNPUP+ntox+2F3TWjvCJV8GJqfCQfruDaDftujOik4RnyNYKbMtG36ay5hkM9nqwlIQb4QY1d
+ TdGMqJCq+gzFW5RitVw==
+X-Proofpoint-ORIG-GUID: qWZ2Dtun32jh71TNrRMNd7pEQJACG4GE
+X-Authority-Analysis: v=2.4 cv=DJOCIiNb c=1 sm=1 tr=0 ts=69931226 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=k6EWo2rcp4jYI08GLI8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-GUID: qWZ2Dtun32jh71TNrRMNd7pEQJACG4GE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-16_04,2026-02-16_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 lowpriorityscore=0 adultscore=0 priorityscore=1501
+ impostorscore=0 malwarescore=0 phishscore=0 bulkscore=0 spamscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2602160108
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265723-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[collabora.com,samsung.com,wdc.com,acm.org,kernel.org,gmail.com,mediatek.com,HansenPartnership.com,oracle.com,pengutronix.de,linaro.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[30];
+	TAGGED_FROM(0.00)[bounces-265724-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:mid,collabora.com:dkim,collabora.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6020C143686
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 2F910143720
 X-Rspamd-Action: no action
 
-Il 24/01/26 13:00, Nicolas Frattaroli ha scritto:
-> In this series, the existing MediaTek UFS binding is expanded and
-> completed to correctly describe not just the existing compatibles, but
-> also to introduce a new compatible in the from of the MT8196 SoC.
+On 2/12/26 9:43 PM, Bjorn Andersson wrote:
+> The QCS6490 Rb3Gen2 has a Renesas μPD720201 XHCI controller hanging off
+> the TC9563 PCIe switch, on this a Genesys Logic GL3590 USB hub provides
+> two USB Type-A ports and an ASIX AX88179 USB 3.0 Gigabit Ethernet
+> interface.
 > 
-> The resets, which until now were completely absent from both the UFS
-> host controller binding and the UFS PHY binding, are introduced to both.
-> This also means the driver's undocumented and, in mainline, unused reset
-> logic is reworked. In particular, the PHY reset is no longer a reset of
-> the host controller node, but of the PHY node.
+> The Renesas chip is powered by two regulators controlled through PM7250B
+> GPIOs 1 and 4, and the power/reset pin is pulled down by PM8350C GPIO 4.
+> The Genesys chip power is always-on, but the reset pin is controlled
+> through TLMM GPIO 162.
 > 
-> This means the host controller can reset the PHY through the common PHY
-> framework.
+> Describe the Renesas chip on the PCIe bus, with supplies and reset, to
+> allow it to be brought out of reset and discovered. Then describe the
+> two peers of the USB hub, with its reset GPIO, to allow this to be
+> brought out of reset.
 > 
-> The resets remain optional.
-> 
-> Additionally, a massive number of driver cleanups are introduced. These
-> were prompted by me inspecting the driver more closely as I was
-> adjusting it to correspond to the binding.
-> 
-> The driver still implements vendor properties that are undocumented in
-> the binding. I did not touch most of those, as I neither want to
-> convince the bindings maintainers that they are needed without knowing
-> precisely what they're for, nor do I want to argue with the driver
-> authors when removing them.
-> 
-> Due to the "Marie Kondo with a chainsaw" nature of the driver cleanup
-> patches, I humbly request that reviewers do not comment on displeasing
-> code they see in the context portion of a patch before they've read the
-> whole patch series, as that displeasing code may in fact be reworked in
-> a subsequent patch of this series. Please keep comments focused on the
-> changed lines of the diff; I know there's more that can be done, but it
-> doesn't necessarily need to be part of this series.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> The USB Type-A connectors are not described, as they are in no regard
+> controlled by the operating system.
 
-Nicolas, can you please rebase this series on the latest linux-next?
+Nice, for a change ;)
 
-All that you have to do is resend everything as-is, but drop patch [14/24], as the
-same thing that you've done there landed in form of..
+[...]
 
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers/ufs/host/ufs-mediatek.c?h=next-20260213&id=bbb8d98fb4536594cb104fd630ea0f7dce3771d6
+> +
+> +	usb_hub_reset_state: usb-hub-reset-state {
+> +		pins = "gpio162";
+> +		function = "gpio";
+> +
+> +		drive-strength = <2>;
+> +		bias-disable;
 
-Besides. It feels like we're again playing a resend-and-nobody-cares game again
-with this UFS driver.
+Straying away from the main topic, I find these newlines in the middle
+excessive
 
-I want to remind everyone that we've been trying to cleanup this thing for more
-than a year and that our patches keep getting mostly ignored, if not for some
-random nitpick here and there. (we: as I myself tried to clean it up a year ago
-with my own patches that I had sent to the list - multiple versions of those)
-
-Expressing my huge frustration here: at this point I'm not even sure why we keep
-trying to make this right, other than being stubborn about feeling the need to
-have good stuff in the kernel, instead of downstream code dumps which should've
-never landed in the first place.
-
-Though everyone here is human, and humans make mistakes (a lot), that's fine: the
-problem happens when people negate mistakes, don't fix those, and don't care (not
-because of lack of time, but because not caring at all, again - we've tried to do
-those cleanups for a year now). One. Year.
-Actually, more than one year, I don't even remember anymore.
-
-This is not good behavior in a community, and should never happen.
-
-Yet, here we are. Again. On the same driver. In the same subsystem.
-
-Oh well.
-
-Regards,
-Angelo
-
-> ---
-> Changes in v6:
-> - Reword "Rework probe function" commit to better justify the changes
->    being made.
-> - Drop "Add vendor prefix to clk-scale-up-vcore-min"
-> - Add patch to remove clk-scale-up-vcore-min entirely, describing the
->    process for bringing it back (in a different form) in the commit
->    message.
-> - Link to v5: https://lore.kernel.org/r/20260108-mt8196-ufs-v5-0-49215157ec41@collabora.com
-> 
-> Changes in v5:
-> - Drop "scsi: ufs: mediatek: Make scale_us in setup_clk_gating const" as
->    someone else already got a patch in for this into next.
-> - Make mtk_init_boost_crypt void
-> - Don't disable/enable misc regulators during suspend/resume, but enable
->    them once when acquiring with a devm helper.
-> - Link to v4: https://lore.kernel.org/r/20251218-mt8196-ufs-v4-0-ddec7a369dd2@collabora.com
-> 
-> Changes in v4:
-> - bindings: Redo the supply situation, as the avdd pins don't describe
->    the vcc(q2) card supplies.
-> - bindings: format clock in mt8196 example more tersely.
-> - phy: use devm_reset_control_get_optional_exclusive directly
-> - driver: get and enable/disable the aforementioned avdd supplies.
-> - Link to v3: https://lore.kernel.org/r/20251023-mt8196-ufs-v3-0-0f04b4a795ff@collabora.com
-> 
-> Changes in v3:
-> - Split mediatek,ufs bindings change into two patches, one for
->    completing the existing binding, one for the MT8196
-> - Add over a dozen driver cleanup patches
-> - Add explicit support for the MT8196 compatible to the driver
-> - Note: next-20251023, on which I based this, currently has a broken
->    build due to an unrelated OPP core change that was merged with no
->    build testing. I can't use next-20251022 either, as that lacks the
->    recent mediatek UFS changes. It is what it is.
-> - Link to v2: https://lore.kernel.org/r/20251016-mt8196-ufs-v2-0-c373834c4e7a@collabora.com
-> 
-> Changes in v2:
-> - Reorder define in mtk_sip_svc.h
-> - Use bulk reset APIs in UFS host driver
-> - Link to v1: https://lore.kernel.org/r/20251014-mt8196-ufs-v1-0-195dceb83bc8@collabora.com
-> 
-> ---
-> Nicolas Frattaroli (24):
->        dt-bindings: phy: Add mediatek,mt8196-ufsphy variant
->        dt-bindings: ufs: mediatek,ufs: Complete the binding
->        dt-bindings: ufs: mediatek,ufs: Add mt8196 variant
->        scsi: ufs: mediatek: Move MTK_SIP_UFS_CONTROL to mtk_sip_svc.h
->        phy: mediatek: ufs: Add support for resets
->        scsi: ufs: mediatek: Rework resets
->        scsi: ufs: mediatek: Rework 0.9V regulator
->        scsi: ufs: mediatek: Rework init function
->        scsi: ufs: mediatek: Rework the crypt-boost stuff
->        scsi: ufs: mediatek: Handle misc host voltage regulators
->        scsi: ufs: mediatek: Rework probe function
->        scsi: ufs: mediatek: Remove vendor kernel quirks cruft
->        scsi: ufs: mediatek: Use the common PHY framework
->        scsi: ufs: mediatek: Switch to newer PM ops helpers
->        scsi: ufs: mediatek: Remove mediatek,ufs-broken-rtc property
->        scsi: ufs: mediatek: Rework _ufs_mtk_clk_scale error paths
->        scsi: ufs: mediatek: Clean up logging prints
->        scsi: ufs: mediatek: Rework ufs_mtk_wait_idle_state
->        scsi: ufs: mediatek: Don't acquire dvfsrc-vcore twice
->        scsi: ufs: mediatek: Rework hardware version reading
->        scsi: ufs: mediatek: Back up idle timer in per-instance struct
->        scsi: ufs: mediatek: Remove ret local from link_startup_notify
->        scsi: ufs: mediatek: Remove undocumented "clk-scale-up-vcore-min"
->        scsi: ufs: mediatek: Add MT8196 compatible, update copyright
-> 
->   .../devicetree/bindings/phy/mediatek,ufs-phy.yaml  |  16 +
->   .../devicetree/bindings/ufs/mediatek,ufs.yaml      | 173 +++-
->   drivers/phy/mediatek/phy-mtk-ufs.c                 |  71 ++
->   drivers/ufs/host/ufs-mediatek-sip.h                |   9 -
->   drivers/ufs/host/ufs-mediatek.c                    | 973 +++++++++------------
->   drivers/ufs/host/ufs-mediatek.h                    |  17 +-
->   include/linux/soc/mediatek/mtk_sip_svc.h           |   3 +
->   7 files changed, 655 insertions(+), 607 deletions(-)
-> ---
-> base-commit: 4af4e95edc37ae54f64cbd75b46f16ce15f3a6b8
-> change-id: 20251014-mt8196-ufs-cec4b9a97e53
-> 
-> Best regards,
-
+Konrad
 
