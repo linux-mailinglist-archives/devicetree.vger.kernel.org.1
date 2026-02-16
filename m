@@ -1,331 +1,284 @@
-Return-Path: <devicetree+bounces-265918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265919-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aBk9MrNsk2kd4gEAu9opvQ
-	(envelope-from <devicetree+bounces-265918-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 20:14:59 +0100
+	id sO1fNKRtk2kd4gEAu9opvQ
+	(envelope-from <devicetree+bounces-265919-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 20:19:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6367F147327
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 20:14:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 311451473D1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 20:19:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A76503009884
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 19:14:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B2CB63025934
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 19:18:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7635E2E54DE;
-	Mon, 16 Feb 2026 19:14:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 216E72E62B5;
+	Mon, 16 Feb 2026 19:18:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gBraj7yv"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="HLIUBzK3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013039.outbound.protection.outlook.com [52.101.83.39])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC07E26FD93
-	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 19:14:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E3CB2E7BD2;
+	Mon, 16 Feb 2026 19:18:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.39
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771269295; cv=pass; b=qav0hvVl0T3t9bWAufLNLvcxxXmpkppugfHNzdTterzkIIN63TeDboOW+2Zgowe0PYEh/bmGh8Gw99wYjXOeCBn2GI1xPBeip0IFZFeR/Np6NB+zEL4ucklg5675AvMh7Yay3pQHIRsuDK8Ex59BzzqOinuPsliP/PdTwyAsPPY=
+	t=1771269538; cv=fail; b=poxICRq0UtyTSMC7YvdCNbNuOx+HLi3JxJqI9wbzCQ4hoYyXh9q4cjlbcTw6vWmsAcoIUHMKMwLZbKNwvNBcV4BijbxETyW/5zIuYeMHwWrybAki2qHQImgOX6J199skFnSP4niamrmhQ+CAA6si8Rn2Cc7gr67/kaaVr6akV3E=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771269295; c=relaxed/simple;
-	bh=6roQzUPN6oF3NP6XZiyAscAXoZCFMtBPdLph18EvMsQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YIqOdxogD3iEgKaHxsZw3z3DLWVIGg7npbxzlG3f8u6Pfop53Lzey9GKhWm9cUJkLRTwm9MpW9vxyo+Y19eG2Iaevllg5mdbPR8cdxFPg028zvZAA9gs3aeMW3UMtXMWH77B0ZDYP4IJ1cbMdColiemKfeaXwSuSMoVXtGYdKQQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gBraj7yv; arc=pass smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-483487335c2so33159425e9.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 11:14:53 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771269292; cv=none;
-        d=google.com; s=arc-20240605;
-        b=M5ftdT31eeuzA/FqbI9vNO5Xympafcxoe6RJ0OO9gxzYIE3oIbagmT4+eUtXy/OM73
-         D+0mfV+tIN5nobZ6We9t0TrpW4YqlzC/8luwWCfAyEL4FzNZH58POlxV2ITtm/kYwFcM
-         wwzbfJ8kXB9ejLMA0tf+jpAbp1fi3MutSYYCDuh93A/ieAxklDmDDIyH8hk+u1LhfMrF
-         tB++/lDrOedaWGQINXYBFy/v4Z/daouLsg35KqO1ckBBQGrwqaRdaeYa7ASfyA/8D6B6
-         VW3NebNhMnD7kejF1dOn4GzRbQiMLYnqTTErOfGaOv/xjBuNmiDOJhEti6nrKojNu5ZA
-         6kIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=8HzOcCRMFSbyhDqPBsCkdLqSYse4L0GDbUboaIwjmC0=;
-        fh=IbtLktRPRNnBatD09xQaM422JJkq2ls9hk647g2CuS8=;
-        b=D/aAC7TidCSeS/0JuRcGkS3Ff05ORUM6a+E9AEQyB8+D5sQIMF6HBVf4n3a2wPHe6j
-         vLAHyHlKzkuQGPSfUeFzt2Wq/0e/D+DnOwiLi53FgnLfz9rHGYoGGcc4ugjKjTRuUr6b
-         sT2Ah6Ph/D+zgBljDkguvpyk94rY5OIwtmeQdcSQ4gK9WOQPAwg121J+bhztNueIcMfu
-         1HU2+8RH4ZUqccKNT9AA5Fn7xxyUcN8BczAzPy+cjsIzjJXS42OlYOknyYAxsvecSDyL
-         suTlB9Jjwc/dVUT7FWEnf8/GBHxJ6U2baE3dpYiByJeZX/ZF4UBeocymJ/nVQhXZP6DT
-         muuQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771269292; x=1771874092; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8HzOcCRMFSbyhDqPBsCkdLqSYse4L0GDbUboaIwjmC0=;
-        b=gBraj7yvq+F0JdwUJQGHi4JwvgYHX8PH+X4t8HtCuAQ0MX6rh0TxmgG7XZcamn5M/7
-         pNyAMs4ysjDh3rD1Zbnw2niCR29cCHjIwUgnh0pG+0yub7kWA44vmiGZcmRqwvBRQTnE
-         kyL6bUN2OUdP0VeNwbzytm8+luO1vUgRk0sq4GPcz6ikxpB7jGHYdusz58VOTbZFJfx6
-         SM153meyBkL+zq08mPcj+KpaRd32z7XbntEgJ3NJzb/aU9u4KEIAjg+Ns4KHdeU/zUT+
-         W6PfHFSD7BiB/kbNHoHX42pXTHcUp0oau9UnwKBzjZ/LOWgXXI6b1sw09yHmm/nhSm4J
-         ikZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771269292; x=1771874092;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=8HzOcCRMFSbyhDqPBsCkdLqSYse4L0GDbUboaIwjmC0=;
-        b=Z9JUj18lCxzwca1Wt4OnqwXeDnI8O0K9/dwZcrEsDumBSYN8toH/nM+ozqDyDCzzAB
-         aBuAqovG9Gel2DEYRGhKvYwu4SzFScXYZt12T9rJtWt5GN026i+HWc5Oo2edhhe7/l54
-         JmJCrc00Cxqw2h/d6QNC4YFbtaxDjHTx1mVnGO/SJl9SIhBxmbam4hvPKekT5hHxJEmb
-         v3X2rr2RdZDrSW8aBSAcMmQ/yrVbfIghdOxxsL7uzKLzs/lVjUEx6mEsAJHxDqnljhOs
-         WbuDg/nmlqQRrVJUl8uJduecc4/hI6Tn4SyOtkNQbLDxvnGxsaigOQ9mqYF8WwJTHh6D
-         DyoA==
-X-Forwarded-Encrypted: i=1; AJvYcCXNLmf6xXgWhv59rSsFODqQ7GBPqEH0vHubNHpMpBKNyMIIIC9T1X3AsvJBlPjSNqyQgTEtjwU/KU83@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWm6sX5KVLZZU3pnMW5tvYqMH0dsiLgHr38+1ntCU7VK3pDgaE
-	u+vRatBKg+eRd7MU97oKrfEC1DsnNkL1d7xeqLfbQjZbHx6C/0UxizIp9vPMoY2ts+SnYuABkza
-	OOeC8quGEEGG2GtvjSG9MuGPOYC7ekXR6EiuI
-X-Gm-Gg: AZuq6aI5+cYYZJnYKl+twzm54sP7gxql2H0IwnpOa8Xr/I90TfFk3kuXIftioLj4YQy
-	gsZzDqurdco0qi2hMVDzT/Kt0CbfleflUyF/GN59VMelduXYQ0Ujc1lV6SEQwMvwIS7HnjNWyEO
-	ELAIzQ325klq2fmDW9A+j+5vfl2pqxqDOLiOHMBxjkg8Y7fZbLvCHzm29WqEwujQsizh4XSiEBE
-	DZAG+OjDoP/WNyil3wi190/pSHPFHa8wltied0Eqakk1F3IiDWoyV+HMajRFSvA/f2aXca1bcWf
-	p0Ohd6Az
-X-Received: by 2002:a05:600d:6413:20b0:483:79ad:f3b9 with SMTP id
- 5b1f17b1804b1-48379adf60amr118355585e9.28.1771269292113; Mon, 16 Feb 2026
- 11:14:52 -0800 (PST)
+	s=arc-20240116; t=1771269538; c=relaxed/simple;
+	bh=K6VSUzky08N7jd6wNgkNb9KNQx6uSrXfpNAXwXWqTNs=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=nFfBMWOygK2eoYTT+nc6e7+Sjd9Xlq5S970hZGYNBcHlMCSZxqhyPN/L6DeIvPSB6Lsz0KVwPs8udK4t9VeWhR/mvIlpUa2cxNJyg0/QT3ib+kU/fY6AljOTpER3iUw0hwbaVQLecFSDlzoJnEXemgA8aBn4DUFEZP+/KLKM7nA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=HLIUBzK3; arc=fail smtp.client-ip=52.101.83.39
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=APXmWSN8q6XbdZeW7tO3WaPX9G7nAqzXbvP3l6g3IADDwS772AMfr8XbY5P1FnCUwCwOeJE07HGY8o64qPWlJZHdQBy0bhwqFC6MQ9qwOEdSUNkLows0uczZjBCBH9y+TcFDo8B3+o03y3LeThoPBJscs7hfh5G4UnvkSwLXNtZq/CPkYncDSrRlPVuNkPezmk1Zr7z0OLHu/PrtzAcRAM6b13Rk5xjJTZs7uC81wwyPU7yEhBmux7R9vH9AzC6dq6WfmSufEZ1pNcMXEDSXqHZ/MG/vKYazlDfbmexCwlMn0vcY3IrgcJG0spW/5Y1xtv9XxD0sb4yfS/TS2/HiXw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8gNqffjcGkn5cvmDGDSfGoKiew/qS2+FfzCNwZskS/M=;
+ b=KxHrZnIcfglbsvIXpKVmwFK7p083KB7t0nfNqoMKi5mWuK/DvonwKOL5Pf47VADNp/umNgwFNSO6mzyxHn5x8zoildJl0nx5RSrHOua/P1/T/IBJ8AxFCng0hr5qYhqlnitUqxj/k1eGH85dxkLQYRV2Z2tFptXQvjMKkucNpmKZzzsj+f5RLN64YLlLrwJwLU//KaSNg7nxrHJ1CDhLoCu76K4Of0a8oJ/PDG1JIlcZtTF6H5MCsL9UJ+YkyVmxZS1fKK0w3S8ed3h2sKoVdlLVAwEt4B2IUfgv7OLE3a7Zexr+qkJniXs5sEG5IWpiKppkfhltTCx/aj1kvV9vQw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8gNqffjcGkn5cvmDGDSfGoKiew/qS2+FfzCNwZskS/M=;
+ b=HLIUBzK3h3p6Q2cyIRcqSjPRis1o4mzANAPjrFnVIWQJjllnkPCm/EqZPKl6VRWo7mdlRrNDjv+PRKqc0AxaLEDk7sFvVArvHYNEooLNq0M8vYLtNLuzep7TvxYUuJcuF6K/g+JadksP6DMs8Kw2KFpDI/RRUU5Ui8twxU6Q1U0XHcR4rpuN8w0s7kXe7wiC3jlGc10VGHTo6g97/0mM0IdS76FI8Jsxj71ffGp54FVEp0GO65+9wFvdPPvpZdgDPxTx3+ZJWra9+wGZ+lTzDIljL3fqml4Bmqx0aHZLH34limVWuxyXAOHyTiglVqrBW5HaVi/NYQSoU95ciwzqwQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by PA4PR04MB7599.eurprd04.prod.outlook.com (2603:10a6:102:ea::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.15; Mon, 16 Feb
+ 2026 19:18:52 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9611.013; Mon, 16 Feb 2026
+ 19:18:52 +0000
+From: Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH v3 0/6] media: synopsys: Add imx93 support
+Date: Mon, 16 Feb 2026 14:18:38 -0500
+Message-Id: <20260216-imx93-dw-csi2-v3-0-aabafee10923@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAI5tk2kC/13MSw6CMBSF4a2Qjq1pb8kFHLkP44A+kDvgkdbUG
+ sLeLTjQMDwn+b+FBefJBXYpFuZdpEDTmIc6Fcz07fhwnGzeDASgkFBzGlKjuH1xEwi4Liuw1mh
+ ZYctyM3vXUdq92z3vnsJz8u+dj3J7vxJIcZCi5IJjg1hpXaPu2uuY5rOZBrY5Ef5bdWwht7V2K
+ FTTlaXBX7uu6wf+z9TG5AAAAA==
+X-Change-ID: 20260128-imx93-dw-csi2-b472ddcb176a
+To: Michael Riesch <michael.riesch@collabora.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, Guoniu Zhou <guoniu.zhou@oss.nxp.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, imx@lists.linux.dev, 
+ Frank Li <Frank.Li@nxp.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771269529; l=1944;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=K6VSUzky08N7jd6wNgkNb9KNQx6uSrXfpNAXwXWqTNs=;
+ b=F2kuxcVMvC73iKFQ7LRRa12WUcioCONI0G9Wb3qaK9z4SI+bPnZ/8hlQU4mxO7oUXaup5J7b1
+ RMVTEjT5W6+CyVv87mc6o3Igd9ujnMsjjUCARwstftaZpXxqoUJYF52
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-ClientProxiedBy: PH7P220CA0023.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:326::10) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260214180959.30714-1-clamor95@gmail.com> <20260214180959.30714-2-clamor95@gmail.com>
- <20260216-sprung-scallop-de7b64bf528c@spud> <CAPVz0n06+uLCSfY_bYS9v7KJ-hXotye7ej-rze6-Q8_JAF7XVA@mail.gmail.com>
- <20260216-plunder-defense-de11cf56dd3d@spud>
-In-Reply-To: <20260216-plunder-defense-de11cf56dd3d@spud>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Mon, 16 Feb 2026 21:14:40 +0200
-X-Gm-Features: AaiRm53pjJr4DTXWQu3qeK8s5InrNWpSnyhcexyGL2cJPzW4JG4-eMOhlmVuupI
-Message-ID: <CAPVz0n0-LbTUZBCaO=oN3PpPLpwAqzNo29r687pKY8NbEE9giA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/7] dt-bindings: embedded-controller: document ASUS
- Transformer EC
-To: Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
-	Ion Agorria <ion@agorria.com>, =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|PA4PR04MB7599:EE_
+X-MS-Office365-Filtering-Correlation-Id: 56f3ce26-ac3a-4bb9-2fe2-08de6d903884
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|366016|52116014|7416014|376014|19092799006|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?utf-8?B?TFlSMmNsNUVuM1hoRGR6Lzh2TlJaYXoydVkyNm5VOXdwZm0wb2lzUW44R0w2?=
+ =?utf-8?B?dWNGdEJTSXVmaGU5ZlZKZXZBNEZVUkQ4QTBZMnlYdEs3YnYwbzhWM0Jtc0ph?=
+ =?utf-8?B?SUxSQ0tac1ZiRjRlZFMxUmI0ZmJ5QnVRVlhXQy81L2Q2QUxHMjBxdVVpTi9v?=
+ =?utf-8?B?eElURkRDOHdqU2F6elByQWFDYVp6enNPYitwb3BtTU5xd09sV2t5TzBrSWIy?=
+ =?utf-8?B?TFpZRC9WQ3ZJUlhpRlA5SE5oVGhNNmJKb3FCNE1oMkVCS1MxeXk3aThCc0hh?=
+ =?utf-8?B?dHhGMXYrbGJ6ZkpIdXdVNFpLV3VRRk9NVDZweFp0WjB3cGZTTEJVSEtzeE9V?=
+ =?utf-8?B?WTdkTkdpbXBnWUpreTFlSGtsdGV0V0QvdTF4c3U4Wk1XNXQweUZCZG4vWkFl?=
+ =?utf-8?B?cW9WQ2p5ZVdISkNSZHlJakdiUEdEZG5oajExTWU2RFhmSVQ0M3hCNVBwenB5?=
+ =?utf-8?B?U2haR2pKRDdDM3l0NjREQlFpdFltWGlrNTF0WGplcmxwM2dZaXBESVF3MENz?=
+ =?utf-8?B?V0c1SWZPazRucEh0L1l0elBhcmRYdVdsUU5BbjU1STZyR2lLSjhjdUhSOGs2?=
+ =?utf-8?B?bUdkNkR5dkt5cVJDZVlMS096Z3h5UlRRS2c4TmJmU2V6VkdqdWZkdUxqWEF5?=
+ =?utf-8?B?NnBhNDJ6ZEdVeHJ6M0lOdG00a25EamtmQjVhcTR6dHVGRjhQd05rSG1iMW9w?=
+ =?utf-8?B?elVJK0xCMU5MZjRmYmlZRllZTE1BbVZPN1VYNndlYUxKeDJBZnZkd2R6cGFs?=
+ =?utf-8?B?ZHFQOXVsKzE5WnZoTmpFcnROTDVVT3M3Qzg3ZEVWdmtneDQzeVpKbndVYkFi?=
+ =?utf-8?B?TThiN243aStFUFFXQlhSTE9HejQ3UzNDd1RkU2M2dVErd1FlZVAzUDQzOC9D?=
+ =?utf-8?B?Y1REVGROQUlRSDJ3KzluaWVvQWltckMySVdOZFRhU0dhZkJadnNyVkJXOXNr?=
+ =?utf-8?B?LzkrNi9lLzBteHFadzk0KzFrWU43c0NTcm0ramxIN1Y3aWQ2ZTlJdWZhSEZ0?=
+ =?utf-8?B?SHF2bU9uSnlpUFN6YUxtL2RQMEZLVXkza2oydkMyMkhLamM1S0FRbjNtWjNu?=
+ =?utf-8?B?UXFxNFlETE5xS29uWnNnNVFabmlmbFhXeFAzR3BkL2g1V2tUOEQ0N0NUay80?=
+ =?utf-8?B?eSs0WG0wMFZZZ2Q4bDVMeVMxQUtqVE5UcWJNNnB1azQzSWY1M2I4cHQyZnVY?=
+ =?utf-8?B?aTY4RWg2ZFlNZ1A0TDVJZXpBM1o5dDd4cGNPc2FKS2t2bzBZMTJoZ1VwMFFQ?=
+ =?utf-8?B?OGwzYVNVRmFDUTEyV21FSUxPanB2K2FYUGNSWUp2VlRhK0xWMDhlMnE0bG5Y?=
+ =?utf-8?B?Uk9yRkVmWkdUMktHU2JlQUtCc3E4L3hhcUhPZVBNV2ZMZW1rTEZsTW8vaWRi?=
+ =?utf-8?B?YjJuNUgvL0dWSWVEYkZoemEvbnRmNEJPb3ZZSVJVNzNxMFpiZ2loejZPSVFh?=
+ =?utf-8?B?MHJvWWhVMjhiZUZEcGh1UGFjaFdiSC9XaVVFNXM2cU5CZlZ5N0IyWVUxU25E?=
+ =?utf-8?B?NlFGWXV5WUtTS2FFUmlGZVJnNDZ3THdCVXV0a0FwbUpMbWRhbFpMazUzMXc4?=
+ =?utf-8?B?MHRMVk5KZm5JbDk2bW1jeW9EUVNseHNDZ0VPV2Q0Z0xkb2Z2VlduK0pGcjRO?=
+ =?utf-8?B?aUg1aVZiOWJSWGs3d0RCWG56S1FENGV2SDFIM0hCa2s1Nnd3ZWEwazJFb2pP?=
+ =?utf-8?B?aG9XZUdBbkhkU3diNDE4UVNwMGxRZUpGdHFBUnlYT2NZRDVBUVlHbkFmbTNI?=
+ =?utf-8?B?VVFmUmhyYkU5RjROTnFSdDZzbmlVRkVEcm5pUDNPaVFKMERzV2VyV1FleVFV?=
+ =?utf-8?B?QW1EU3A1b1dMdkdxLzFHdnVSTFFMaG9vdEMrUks2RGZXa0VGQUxKbHNBZnJ3?=
+ =?utf-8?B?enFkRHhXRmwwMkpnN3ZNd3kxYjRCeXppeFhNQkcrbkc2c3hMbm12RkFGeFU2?=
+ =?utf-8?B?VEFqcGU1WCtEc0Y5elI5M0JhRW9mMnpWQjVySWc5cC8rVGp2dVBOSVVWbXI4?=
+ =?utf-8?B?aER4ZXJneGJKRklaeGtDRFg0ZmpxRjNSc3hjTlJKVFBFbUV4SzlYT2l1d010?=
+ =?utf-8?B?T0dHS1JYOFhZbGM1YzZ4UUVNeWE5dEZVRUJhVzRnNVVVa25OVmtDN0NXRFpX?=
+ =?utf-8?B?NTlUZlV5Y09nUUVvVGxvT2QyRHZDbzU0R0pLLzc4TkJKTFFmdkdKWFhZWXhq?=
+ =?utf-8?Q?d853j+CS4gbRwiCNqQZ6qPY=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(19092799006)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?TXRjWkJreDhLWXdQOEZuc3JRQ3VIR3pnT1VWblpwakhYblZQbURCbjZ3R1d4?=
+ =?utf-8?B?QUcyblVLSVBrdW5KazVsQ3hSU3I1clZzbWVxL2xOMWJyR2t6OXhEaFEzODBi?=
+ =?utf-8?B?K3N6MEI3cHd6UC9ESm84c044UEtTMkNocnJHOVFrellNVEM5b3kxUi9wQlgx?=
+ =?utf-8?B?cEZvcGlqZHdKS2duejBNVXQ5V241LzBzU3FHcXFNUnJ3c2VkYmsrWVJaTFky?=
+ =?utf-8?B?cVNQR0xxbFA3cmFMNWJJbzNHUmJGc1FGZ2N4V1ltOGhrNmdhU21tSlZzYlpL?=
+ =?utf-8?B?VlhUN0RnQjNlb1NJRTBHSFVCSjZDUjRaSUREYTRsVGtwUjVqdHdSckwyYlpP?=
+ =?utf-8?B?SlFKZURpR2w5V1hEaWNsRGx5ODFkNnJtaktQQ25vMy9YY0d2MndncWFJZXdk?=
+ =?utf-8?B?Q21yT0VFWWxXOGpNMVM2QzUrRm5xcUwzeko2YlFjaDYxTWV6OWcxc1l4dWV4?=
+ =?utf-8?B?cVVVTXcyRTNYUm9wM0tMRURVc0UvSy9VSG9MOWZLOERyeVBCaHRhWVJGZHpY?=
+ =?utf-8?B?TDNEeUdQZVZWbHl1K28rTnhNUUJjS1hNdmRYZnQwOEU0Lyt5dGpQYm5VZWt0?=
+ =?utf-8?B?UTdVa0V2TXg0a1p4UmlVMXBoa3R3K0g3d2RQVW9ZZDdNckh0SUJnQkp1Tmpj?=
+ =?utf-8?B?cHVxSjBjUzVQc0NGb00zYzgza1ZMOFFvY1lpLzRwcDBmdC9wbC9PRGFRQ1FP?=
+ =?utf-8?B?UWFHT2xjdWxqSk5VRUI3NWw0bjlFZ2tYZWJ2MzNsT09qSmhvZG1MUW9KRy9S?=
+ =?utf-8?B?Z2NTdDNEa2RCQ3RwVzBkd1ZJamlNUjJ1NmphMEpVUlcxZ2hIaEdpd2M4Q0wy?=
+ =?utf-8?B?NXpsakJ5VjJzMm1LaENkemRmTG1QTlFvRSs5SUNtR2I1RGRZbnVWQUx5eG9z?=
+ =?utf-8?B?emYrQXlJYkh0VG1HOXg2TGZBQ0dvMk1xOUpYM3NQRkw0NFVuOERyeTR0bzlm?=
+ =?utf-8?B?Q2pnWTR0Yk0yWlZmLzFscEhUUzcyVkM3aFRxNitSK01NWVNKUytDVmE2L3l1?=
+ =?utf-8?B?QlpkL2N2MVRiYU5zYkNqOWcySkhET0RyWkhLS3VPOVllWTB2YzFWMWZra1VB?=
+ =?utf-8?B?T0FPbnM0T2hjaUd3SWozemFrT3lJak4vbUtMWnhFZXhndmJqb2tLZmtsZ1ZB?=
+ =?utf-8?B?WWVKRGhycUt5bXp3a1VuRUV1ektVbUoxZC9BUlpMVjJhMTE3bUVlajNlY0x5?=
+ =?utf-8?B?ajI3dXN0QVF5U2trdTEwaEF4ajBucWlXdXpJeFVmVTZLWlVhRnRSK3Zzb2F5?=
+ =?utf-8?B?RzFLSUN2N203RzdtcXdDNlVtVng5OUVKeVJ0b0FBSDFHUFpQK2dRVXNBUHpj?=
+ =?utf-8?B?WHhiV29MMVRYaUMzZEQ3SklWbWhoQU9jTDVWMVNXQnEzMStTUWErU05hV050?=
+ =?utf-8?B?cE9LT3lrb1h2N2h5NURuUElONExXMTFFdmswOExhVW5aaS8zYitqZUJFNzln?=
+ =?utf-8?B?ZFlvL3hQSE56K1RBaExVdkw4NUluUGF0MDlUMEoyb0VmMk95VVAwTU5HUGtq?=
+ =?utf-8?B?UmNucXBxaThBT2VCb2lxV2NzOHE5Ym5SRGpUZmR5RWgzeXphdE5XWEpycWpV?=
+ =?utf-8?B?ZTYrdFFveWZWSE5Ed05pN0NhSms3bzR6S2RZQUtWUWJmb1kxb3JVL3YyMzRV?=
+ =?utf-8?B?OFFTYW1raGpKdHp5TlVwWGV5SFA5ZE5aQXdNL3JUTjYxeW5GckNiT1Z2alp1?=
+ =?utf-8?B?YUNTM216V0x1ajk5Zmlsc3VNQjMrZzJzM0loSlp3VGZDanduUEJmTEZkVVNa?=
+ =?utf-8?B?aWlrM3NLajBjV3llZzhwK1VodGhWS0l0eUg3c0ZObFBiMjJtUWN6a2p1U2h6?=
+ =?utf-8?B?NXFlUGJnL2x0MnBZVUNJZnVmNGpuWVJ1aDBzaDlISG0xa09wK2h0ak1kSkNB?=
+ =?utf-8?B?M3Q1N3NveExsSk4wQjc1ZDVSSFREcitRV3pLb3RHNThVRUlYTzRYY2NOSEgy?=
+ =?utf-8?B?T05tUG96cEluSkUwNmVrM3hSZ3BMYXAzUzNwbmlkUkRRVThBalMvZXBvNTNX?=
+ =?utf-8?B?a3duV3AvMHUyY29VUHV3bk1qcmx4OHBSVDYyd2JGVzZoeU9zOEcxSk9vRjZv?=
+ =?utf-8?B?ZHdaN1lNbkVQR3pxWENwMXNnMzcvSVlFZHYwNTRDS2dZWkxXR3ZvQnhLdXNT?=
+ =?utf-8?B?OUVzL0NuY3hrQVRpS2pQSTk2ck1GUjk0UUNGbldpaXpoRnFlNGNmSlZwRmhW?=
+ =?utf-8?B?N05pYnJIQ0VqNnF5MSt4NWZpZGNaMVJUVWhTN2YzaWpYa1VFcFpNOXBJR1VE?=
+ =?utf-8?B?WlgvcG9kenRyYWFWTDQ2eGxDUmpKV3cydlMxZzNHQTFBVlNKcWRVd3RQWWdQ?=
+ =?utf-8?Q?U/dtqYggxAm8zsppID?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56f3ce26-ac3a-4bb9-2fe2-08de6d903884
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2026 19:18:52.6323
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: USS7sj7wy+OsanTkf5uedyQfak2wPFUfgb+6ZzzLXriO1i+2KBP8x1FIawb3jGI2fqLquCR8oDHlltr0sfUDJg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7599
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265918-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265919-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,agorria.com,rere.qmqm.pl,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 6367F147327
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+]
+X-Rspamd-Queue-Id: 311451473D1
 X-Rspamd-Action: no action
 
-=D0=BF=D0=BD, 16 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 20:50 Cono=
-r Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Mon, Feb 16, 2026 at 08:22:38PM +0200, Svyatoslav Ryhel wrote:
-> > =D0=BF=D0=BD, 16 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 20:04 =
-Conor Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
-> > >
-> > > On Sat, Feb 14, 2026 at 08:09:53PM +0200, Svyatoslav Ryhel wrote:
-> > > > Document embedded controller used in ASUS Transformer device series=
-.
-> > > >
-> > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > ---
-> > > >  .../asus,transformer-ec.yaml                  | 98 +++++++++++++++=
-++++
-> > > >  1 file changed, 98 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/embedded-cont=
-roller/asus,transformer-ec.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/embedded-controller/=
-asus,transformer-ec.yaml b/Documentation/devicetree/bindings/embedded-contr=
-oller/asus,transformer-ec.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..670c4c2d339d
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/embedded-controller/asus,tr=
-ansformer-ec.yaml
-> > > > @@ -0,0 +1,98 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/embedded-controller/asus,transf=
-ormer-ec.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: ASUS Transformer's Embedded Controller
-> > > > +
-> > > > +description:
-> > > > +  Several Nuvoton based Embedded Controllers attached to an I2C bu=
-s,
-> > > > +  running a custom ASUS firmware, specific to the ASUS Transformer
-> > > > +  device series.
-> > > > +
-> > > > +maintainers:
-> > > > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > +
-> > > > +allOf:
-> > > > +  - $ref: /schemas/power/supply/power-supply.yaml
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    oneOf:
-> > > > +      - enum:
-> > > > +          - asus,p1801-t-ec-pad
-> > > > +          - asus,sl101-ec-dock
-> > > > +          - asus,tf600t-ec-pad
-> > > > +          - asus,tf701t-ec-pad
-> > > > +
-> > > > +      - items:
-> > > > +          - enum:
-> > > > +              - asus,tf101-ec-dock
-> > > > +              - asus,tf101g-ec-dock
-> > > > +              - asus,tf201-ec-dock
-> > > > +              - asus,tf300t-ec-dock
-> > > > +              - asus,tf300tg-ec-dock
-> > > > +              - asus,tf300tl-ec-dock
-> > > > +              - asus,tf700t-ec-dock
-> > > > +          - const: asus,transformer-ec-dock
-> > > > +
-> > > > +      - items:
-> > > > +          - enum:
-> > > > +              - asus,tf201-ec-pad
-> > > > +              - asus,tf300t-ec-pad
-> > > > +              - asus,tf300tg-ec-pad
-> > > > +              - asus,tf300tl-ec-pad
-> > > > +              - asus,tf700t-ec-pad
-> > > > +          - const: asus,transformer-ec-pad
-> > >
-> > > Can you explain somewhere here what the "dock" and "pad" devices are =
-and
-> > > how they differ? For example, I am currently wondering why tf700t has=
- both
-> > > "dock" and "pad".
-> >
-> > "pad" is used for the controller in the tablet itself in the pad
-> > "dock" is used for the controller in the mobile dock keyboard.
-> > Seems quite obvious.
->
-> To someone intimately familiar with the devices maybe. Not to the people
-> you have to justify your patches to. Your response implies that this is
-> some sort of thing that's like a surface, but please put an explicit
-> explanation into the binding somewhere as to what each compatible is
-> for.
+This 3rd time try to support DW CSI2RX support for imx93.
 
-Ok, fair.
+1st: Create new dw csi2 driver
+https://lore.kernel.org/all/20250701-95_cam-v1-5-c5172bab387b@nxp.com/
 
->
-> > > Also, why are some of the compatibles permitted standalone? That shou=
-ld
-> > > be mentioned in your commit message too. Also, other than the sl101, =
-the
-> > > standalone ones seem to have the same match data in the mfd driver. W=
-hy
-> > > are fallbacks not made use of there?
-> > >
-> >
-> > Because standalone compatibles describe a unique hw configuration
-> > which cannot be grouped into something meaningful. asus,p1801-t-ec-pad
-> > is for EC of Tegra30/Intel based p1801-t AIO, asus,sl101-ec-dock is
-> > for EC of Tegra20 slider tablet, asus,tf600t-ec-pad is for altered EC
-> > in Win8 Tegra30 tablet, asus,tf701t-ec-pad is for Tegra114 tablet.
-> > Different generations, different form-factors.
->
-> I don't see any reasons here that eliminate fallback compatibles.
-> +       { .compatible =3D "asus,p1801-t-ec-pad", .data =3D &asus_ec_pad_c=
-harger_data },
-> +       { .compatible =3D "asus,tf600t-ec-pad", .data =3D &asus_ec_pad_ch=
-arger_data },
-> +       { .compatible =3D "asus,tf701t-ec-pad", .data =3D &asus_ec_pad_ch=
-arger_data },
-> +       { }
-> Three of them use the same match data, so you need to explain why you've
-> made these three standalone when all the others that share a programming
-> model got a generic fallback. Fallback usage is based on programming
-> model, not based on whether the devices are a physically different, so
-> your explanation must reflect this.
->
-> > > Since this transformer series seems to have multiple programming mode=
-ls
-> > > for "ec-pad" devices, it calls into question your use of the generic
-> > > fallback compatibles is appropriate and makes it seem like you should=
- be
-> > > using device compatibles as a fallback.
-> >
-> > That is redundant.
->
-> I don't understand how that is a response to what I said.
->
+2nd: Based on legacy imx6's DW CSI2 constroller.
+https://lore.kernel.org/imx/20250821-95_cam-v3-0-c9286fbb34b9@nxp.com/
 
-in other words you propose this:
+Now rockchip create a common DW CSI2RX driver at
+drivers/media/platform/synopsys/dw-mipi-csi2rx.c
 
-properties:
-  compatible:
-    oneOf:
-      - items:
-          - enum:
-              - asus,sl101-ec-dock
-              - asus,tf101-ec-dock
-              - asus,tf101g-ec-dock
-              - asus,tf201-ec-dock
-              - asus,tf300t-ec-dock
-              - asus,tf300tg-ec-dock
-              - asus,tf300tl-ec-dock
-              - asus,tf700t-ec-dock
-          - const: asus,transformer-ec-dock
+This time base on rockchip's implement.
 
-      - items:
-          - enum:
-              - asus,p1801-t-ec-pad
-              - asus,tf201-ec-pad
-              - asus,tf300t-ec-pad
-              - asus,tf300tg-ec-pad
-              - asus,tf300tl-ec-pad
-              - asus,tf700t-ec-pad
-              - asus,tf600t-ec-pad
-              - asus,tf701t-ec-pad
-          - const: asus,transformer-ec-pad
+i.MX93's version is newer than rockchip one. i.MX6's is more similar with
+rockchips.
 
-And in the driver add match to every single entry of enums?
+But i.MX6 is too old. So start at i.MX93 firstly even it has bigger
+difference.
 
-> > > The rest looks okay other than the filename, which doesn't match any =
-of
-> > > the compatibles that you've got here.
-> > >
-> >
-> > How should I call it then?
->
-> Make it match a compatible, just like any other binding.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Changes in v3:
+- use dw_mipi_csi2rx_has_reg().
+- detail change see each patches's change log
+- Link to v2: https://lore.kernel.org/r/20260213-imx93-dw-csi2-v2-0-8be6039f44c6@nxp.com
+
+Changes in v2:
+- use enum and array map to real register offset.
+- Please keep the order:
+ - #includes
+ - #defines
+ - enum and struct definitions
+ - the rest
+- detail change see each patches's change log
+- Link to v1: https://lore.kernel.org/r/20260210-imx93-dw-csi2-v1-0-69667bb86bfa@nxp.com
+
+---
+Frank Li (6):
+      media: synopsys: csi2rx: use devm_reset_control_get_optional_exclusive()
+      media: synopsys: csi2rx: only check errors from devm_clk_bulk_get_all()
+      media: synopsys: csi2rx: implement .get_frame_desc() callback
+      media: synopsys: csi2rx: Use enum and u32 array for register offsets
+      media: dt-bindings: add NXP i.MX93 compatible string
+      media: synopsys: csi2rx: add i.MX93 support
+
+ .../bindings/media/rockchip,rk3568-mipi-csi2.yaml  |  47 +++-
+ drivers/media/platform/synopsys/dw-mipi-csi2rx.c   | 278 +++++++++++++++++++--
+ 2 files changed, 303 insertions(+), 22 deletions(-)
+---
+base-commit: ada3fa02f7a95623b724dfe300fce6f49cc2d75a
+change-id: 20260128-imx93-dw-csi2-b472ddcb176a
+
+Best regards,
+--
+Frank Li <Frank.Li@nxp.com>
+
 
