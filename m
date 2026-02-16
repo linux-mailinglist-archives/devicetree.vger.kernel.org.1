@@ -1,149 +1,269 @@
-Return-Path: <devicetree+bounces-265875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265876-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qEzcEEFAk2m62wEAu9opvQ
-	(envelope-from <devicetree+bounces-265875-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:05:21 +0100
+	id UHDrK1REk2kP3AEAu9opvQ
+	(envelope-from <devicetree+bounces-265876-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:22:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9763B145E7C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:05:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29063146117
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:22:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 492C0300823F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:05:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 69D9D3025A67
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:22:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E78D3321B0;
-	Mon, 16 Feb 2026 16:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59CF8332EB3;
+	Mon, 16 Feb 2026 16:22:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iYBW+CHp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bg8pC+rq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AF753191C8
-	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 16:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35A67332EA4;
+	Mon, 16 Feb 2026 16:22:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771257918; cv=none; b=sBnfVdl3fEiQVDlzj+FYP2LjpvwGQjdlq7xXgdTddsKondoLxUxu6DTpe+HJjWGZDLeKTHbscemBHz4qk5VeTn6ojw079IS+RQK6YWaclCLeb5Hr0Ud9yTXmw6wp/lnyIoihcGM8y8Ab8a7nU2YFv5cYvHYMBfNQNwYg5nROX0A=
+	t=1771258935; cv=none; b=F+FM8le5L6N39vRN74QuiInG/37Xrqc9ULhtSnT6+d/3fLHa4igzncRNlypiTkjtA0++EWWAshCrxkoMTBNJUQxKqQlyTYsWEk80wIeFpa/bhgFObCeJzj5+cyZHG23Bi13EHXwyzdHrjuNrgxTEVCTgL1t2xVt47XmTo1n0ub8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771257918; c=relaxed/simple;
-	bh=Ug0bv2q+MJyHMxXUhfuIzRES2n74yPYoafPq/Crx5xk=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=a6tdOnCD4XvPUBi/vDuRWTX+ey13lDqkpjaCKzoutir6th6gv6NqgeQf9ODA9j+w7F4k96adYkrx/YFLIPOt8BT1zx/QFZ7e4cxsJiGyWKpJR92EFApkPWXqtKyowLL3Xrz1TnyzVlV7i0HTLLKHT8TVPyP6Y0zY27/mLHbeydY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iYBW+CHp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AA49C4AF09
-	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 16:05:18 +0000 (UTC)
+	s=arc-20240116; t=1771258935; c=relaxed/simple;
+	bh=/+qcMyQK4+5hc9Ldn03hDO8S8aBIYGQ/NqQ+XgKlnRk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hu2ZS4zb6NN3i4SwI3IujIjJ9LUEAKjA+udRVF+Z5Uim22591TKBzCzP4gctfN2/pP/3usryRU7VxTZtPF4pyXBdz0iUh6m2SWGKlOg7niYq97yiq40BlEBug8UU6qLXcaowxrBsSFDgizHhaH2ysCm9+HsZ9cMgknhproxZwt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bg8pC+rq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBDAEC116C6;
+	Mon, 16 Feb 2026 16:22:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771257918;
-	bh=Ug0bv2q+MJyHMxXUhfuIzRES2n74yPYoafPq/Crx5xk=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
-	b=iYBW+CHplOx33/O2WVqyNRi2MEOw8eDXFDQOas9ZlvDY3O5Os1XHVZBS35/telWBV
-	 NP05f4Jr5Fh0kmZjM4DZEMbO/DguaFTwIu6TamlNG2+yGAlGtR+govm8mW6Y8TYDlH
-	 1OdeM7Kbhb4VL7x+Tvctyw9z6h0q448WCSbuPs+pcEWJyEvCmfPxPJRFZTxFOlJNyv
-	 FhI1AnEBSYVkrr37Asxuzd8pP4L9GWfsMBVIHozCZoy5zp7IZBm86DMWyet5hJP5mB
-	 MDqKh31qWy4MbA14dthX6DOQ3E7S5gO7cLlerqfBI1PSkOOUN/XikEv2q2kfXTb86Z
-	 fQi1Mn/tZqGlw==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-59e4a04f059so3906674e87.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 08:05:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXGNXf4DcM0TRTCRrSV77T8HCV1UYcopz95wQ3HCE/gq6HqVoh63EX/O+T2M+DH7Qc2WG0PWOBug5vd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpfiXmbpLnDciLVdeOiLMQLSwKee6KWjwyq1qcVyNfoGPT6TQn
-	2B8oU/WNaRvT1aTwCNUzkKUNTOeYS6l5XrAR7c9tAYXmwwvpUBMS1Q3mnee9sfpwvFdWDRNYjRP
-	BPkxISfx6/NwppBY8Xt8QUbgT4uEyjoKP0iFiJyv/NQ==
-X-Received: by 2002:a05:6512:2351:b0:59e:2aee:7439 with SMTP id
- 2adb3069b0e04-59f6d375968mr2731986e87.31.1771257916893; Mon, 16 Feb 2026
- 08:05:16 -0800 (PST)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 16 Feb 2026 08:05:15 -0800
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 16 Feb 2026 08:05:15 -0800
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260216-topic-sm8650-ayaneo-pocket-s2-base-v4-4-802c82795431@linaro.org>
+	s=k20201202; t=1771258934;
+	bh=/+qcMyQK4+5hc9Ldn03hDO8S8aBIYGQ/NqQ+XgKlnRk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Bg8pC+rqbGylvy2c8iMQH3VefDPhgMnwVm3sUXgz43ApVPmA1Gt6oIrnqIn+bqZyG
+	 /o1UluqSQl/d8LruUtUIpeRW1poeYQCUILIGI9RtwIk/Uk97b0gKsCa06POCCWXL6K
+	 carjxr+b8e5HIfAwpsMrS5/QF41XqtxMxW2z5fN6B/kFu+KeqH915D6Jr4q8PRXJ2c
+	 bqx5/YAaPCNn8oqVpAShu8C38WCbjvMSKacj1otD5/FtW97Ug+nREtUHxQLKy+cOqQ
+	 /6QHGFFbWuamrP1wEdaN+Yv1LGQPFj/oVCpWKLLSIz/YHXEPLi5naZiScFTmel9F/Y
+	 1Upgdr4UmxTIQ==
+Date: Mon, 16 Feb 2026 21:51:58 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Sherry Sun <sherry.sun@nxp.com>
+Cc: hongxing.zhu@nxp.com, l.stach@pengutronix.de, Frank.Li@nxp.com, 
+	bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, 
+	imx@lists.linux.dev, kernel@pengutronix.de, linux-pci@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V5 02/12] PCI: host-generic: Add common helpers for
+ parsing Root Port properties
+Message-ID: <woglgacwnhpzy3wrevjs4am4rs754tajzmhvndli4u2fycmzuf@rvbwfzcgnsrf>
+References: <20260213040852.3340547-1-sherry.sun@nxp.com>
+ <20260213040852.3340547-3-sherry.sun@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260216-topic-sm8650-ayaneo-pocket-s2-base-v4-0-802c82795431@linaro.org>
- <20260216-topic-sm8650-ayaneo-pocket-s2-base-v4-4-802c82795431@linaro.org>
-Date: Mon, 16 Feb 2026 08:05:15 -0800
-X-Gmail-Original-Message-ID: <CAMRc=McWrc7uG=HSZEGybiG+d0DMw_U4c=A22aGV8DM1+h1ubA@mail.gmail.com>
-X-Gm-Features: AaiRm52M5Hr-VX4bzyAyiWWbvFrECG2u4oIptkEYguyjaGQVcwZSpUCmWBHLcCM
-Message-ID: <CAMRc=McWrc7uG=HSZEGybiG+d0DMw_U4c=A22aGV8DM1+h1ubA@mail.gmail.com>
-Subject: Re: [PATCH v4 4/9] pci: pwrctrl: generic: support for the
- UPD720201/UPD720202 USB 3.0 xHCI Host Controller
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260213040852.3340547-3-sherry.sun@nxp.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265875-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,linuxfoundation.org,kernel.org,glider.be,gmail.com,google.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,linaro.org:email,qualcomm.com:email];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-265876-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 9763B145E7C
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[nxp.com,pengutronix.de,google.com,kernel.org,gmail.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email]
+X-Rspamd-Queue-Id: 29063146117
 X-Rspamd-Action: no action
 
-On Mon, 16 Feb 2026 15:21:48 +0100, Neil Armstrong
-<neil.armstrong@linaro.org> said:
-> Enable the generic pwrctrl driver to control the power of the
-> PCIe UPD720201/UPD720202 USB 3.0 xHCI Host Controller.
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Fri, Feb 13, 2026 at 12:08:42PM +0800, Sherry Sun wrote:
+> Introduce generic helper functions to parse Root Port device tree nodes
+> and extract common properties like reset GPIOs. This allows multiple
+> PCI host controller drivers to share the same parsing logic.
+> 
+> Define struct pci_host_port to hold common Root Port properties
+> (currently only reset GPIO descriptor) and add
+> pci_host_common_parse_ports() to parse Root Port nodes from device tree.
+> 
+> Also add the 'ports' list to struct pci_host_bridge for better maintain
+> parsed Root Port information.
+> 
+> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
 > ---
->  drivers/pci/pwrctrl/generic.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/pci/pwrctrl/generic.c b/drivers/pci/pwrctrl/generic.c
-> index a5b7b7965f46..1afda639f0c4 100644
-> --- a/drivers/pci/pwrctrl/generic.c
-> +++ b/drivers/pci/pwrctrl/generic.c
-> @@ -73,6 +73,10 @@ static const struct of_device_id pci_pwrctrl_generic_of_match[] = {
->  	{
->  		.compatible = "pciclass,0604",
->  	},
-> +	/* Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller */
-> +	{
-> +		.compatible = "pci1912,0014",
-> +	},
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, pci_pwrctrl_generic_of_match);
->
-> --
-> 2.34.1
->
->
+>  drivers/pci/controller/pci-host-common.c | 58 ++++++++++++++++++++++++
+>  drivers/pci/controller/pci-host-common.h | 15 ++++++
+>  drivers/pci/probe.c                      |  2 +
+>  include/linux/pci.h                      |  1 +
+>  4 files changed, 76 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/pci-host-common.c b/drivers/pci/controller/pci-host-common.c
+> index d6258c1cffe5..0c35907a5076 100644
+> --- a/drivers/pci/controller/pci-host-common.c
+> +++ b/drivers/pci/controller/pci-host-common.c
+> @@ -9,6 +9,7 @@
+>  
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/of.h>
+>  #include <linux/of_address.h>
+>  #include <linux/of_pci.h>
+> @@ -17,6 +18,63 @@
+>  
+>  #include "pci-host-common.h"
+>  
+> +/**
+> + * pci_host_common_parse_port - Parse a single Root Port node
+> + * @bridge: PCI host bridge
+> + * @node: Device tree node of the Root Port
+> + *
+> + * Returns: 0 on success, negative error code on failure
+> + */
+> +static int pci_host_common_parse_port(struct pci_host_bridge *bridge,
+> +				      struct device_node *node)
+> +{
+> +	struct device *dev = &bridge->dev;
+> +	struct pci_host_port *port;
+> +	struct gpio_desc *reset;
+> +
+> +	reset = devm_fwnode_gpiod_get(dev, of_fwnode_handle(node),
+> +				      "reset", GPIOD_OUT_HIGH, "PERST#");
 
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+For usecases like link retention from bootloader to kernel, this could be
+requested as GPIOD_ASIS:
+https://lore.kernel.org/linux-pci/20260109-link_retain-v1-3-7e6782230f4b@oss.qualcomm.com/
+
+- Mani
+
+> +	if (IS_ERR(reset))
+> +		return PTR_ERR(reset);
+> +
+> +	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
+> +	if (!port)
+> +		return -ENOMEM;
+> +
+> +	port->reset = reset;
+> +	INIT_LIST_HEAD(&port->list);
+> +	list_add_tail(&port->list, &bridge->ports);
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * pci_host_common_parse_ports - Parse Root Port nodes from device tree
+> + * @bridge: PCI host bridge
+> + *
+> + * This function iterates through child nodes of the host bridge and parses
+> + * Root Port properties (currently only reset GPIO).
+> + *
+> + * Returns: 0 on success, -ENOENT if no ports found, other negative error codes
+> + * on failure
+> + */
+> +int pci_host_common_parse_ports(struct pci_host_bridge *bridge)
+> +{
+> +	struct device *dev = &bridge->dev;
+> +	int ret = -ENOENT;
+> +
+> +	for_each_available_child_of_node_scoped(dev->of_node, of_port) {
+> +		if (!of_node_is_type(of_port, "pci"))
+> +			continue;
+> +		ret = pci_host_common_parse_port(bridge, of_port);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(pci_host_common_parse_ports);
+> +
+>  static void gen_pci_unmap_cfg(void *ptr)
+>  {
+>  	pci_ecam_free((struct pci_config_window *)ptr);
+> diff --git a/drivers/pci/controller/pci-host-common.h b/drivers/pci/controller/pci-host-common.h
+> index b5075d4bd7eb..25d808319836 100644
+> --- a/drivers/pci/controller/pci-host-common.h
+> +++ b/drivers/pci/controller/pci-host-common.h
+> @@ -12,6 +12,21 @@
+>  
+>  struct pci_ecam_ops;
+>  
+> +/**
+> + * struct pci_host_port - Generic Root Port properties
+> + * @list: List node for linking multiple ports
+> + * @reset: GPIO descriptor for PERST# signal
+> + *
+> + * This structure contains common properties that can be parsed from
+> + * Root Port device tree nodes.
+> + */
+> +struct pci_host_port {
+> +	struct list_head	list;
+> +	struct gpio_desc	*reset;
+> +};
+> +
+> +int pci_host_common_parse_ports(struct pci_host_bridge *bridge);
+> +
+>  int pci_host_common_probe(struct platform_device *pdev);
+>  int pci_host_common_init(struct platform_device *pdev,
+>  			 struct pci_host_bridge *bridge,
+> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+> index 2975974f35e8..007a3fb8da86 100644
+> --- a/drivers/pci/probe.c
+> +++ b/drivers/pci/probe.c
+> @@ -647,6 +647,7 @@ static void pci_release_host_bridge_dev(struct device *dev)
+>  
+>  	pci_free_resource_list(&bridge->windows);
+>  	pci_free_resource_list(&bridge->dma_ranges);
+> +	pci_free_resource_list(&bridge->ports);
+>  
+>  	/* Host bridges only have domain_nr set in the emulation case */
+>  	if (bridge->domain_nr != PCI_DOMAIN_NR_NOT_SET)
+> @@ -671,6 +672,7 @@ static void pci_init_host_bridge(struct pci_host_bridge *bridge)
+>  {
+>  	INIT_LIST_HEAD(&bridge->windows);
+>  	INIT_LIST_HEAD(&bridge->dma_ranges);
+> +	INIT_LIST_HEAD(&bridge->ports);
+>  
+>  	/*
+>  	 * We assume we can manage these PCIe features.  Some systems may
+> diff --git a/include/linux/pci.h b/include/linux/pci.h
+> index 1c270f1d5123..b05482355abc 100644
+> --- a/include/linux/pci.h
+> +++ b/include/linux/pci.h
+> @@ -634,6 +634,7 @@ struct pci_host_bridge {
+>  	int		domain_nr;
+>  	struct list_head windows;	/* resource_entry */
+>  	struct list_head dma_ranges;	/* dma ranges resource list */
+> +	struct list_head ports;		/* Root Port list (pci_host_port) */
+>  #ifdef CONFIG_PCI_IDE
+>  	u16 nr_ide_streams; /* Max streams possibly active in @ide_stream_ida */
+>  	struct ida ide_stream_ida;
+> -- 
+> 2.37.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
