@@ -1,69 +1,74 @@
-Return-Path: <devicetree+bounces-265651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265652-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2LdrNrZ5kmnluAEAu9opvQ
-	(envelope-from <devicetree+bounces-265651-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 02:58:14 +0100
+	id jMDCOiShkmlmvwEAu9opvQ
+	(envelope-from <devicetree+bounces-265652-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 05:46:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F215140993
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 02:58:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A22F140DEF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 05:46:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4CE9D3006514
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 01:58:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5AB84300A742
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 04:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23B4E21D596;
-	Mon, 16 Feb 2026 01:58:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D1F029CB57;
+	Mon, 16 Feb 2026 04:40:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="nfIHjmae"
+	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b="G4dlI7uf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from sender4-pp-e107.zoho.com (sender4-pp-e107.zoho.com [136.143.188.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF40E3B1BD;
-	Mon, 16 Feb 2026 01:58:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771207091; cv=none; b=Mc49ZeA8mKCa3wAGJK7223hfjYGKOx7+VJMbLjyoY3ZtL79t4rKm1Nf1cbBdwdXJhETsTTQ3OiOZiSGoiB04b/gPEgSqNYxx6ownZR3e4j//4oThNNqZhTHxpNGJlDX0ucoAFZZ5tRMKXOuk1s9xnOSS4JAiqTGpwFrbuesVu9o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771207091; c=relaxed/simple;
-	bh=xLYjo0R5nKI1doM2qtYzktPaC4eWOHCI4hd9jZ3RF4g=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 505F22882B4;
+	Mon, 16 Feb 2026 04:40:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.107
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771216843; cv=pass; b=AlxHbe3e/bIv1cED63oxT4BesvLcvf+gZi/3r2vn4iImx4Y6z/PZkPTTJ91dlxSFvMow9hhJ3T1TLaei9HOQu34z1sqlQohH5T1XUrCDdeqHLIyEwg7CumkVaJoAFjQCLBEvGXJsz7cGSjD1zvKPvEUB00qOwBV5aTzRti33ZYw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771216843; c=relaxed/simple;
+	bh=dwoKVpl6ioy/SALJvpxxpzFdHH3Io/eujHQSAMFaXTA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jv50kkHqTutKNSyjt2MVd6XvsmU4WXcCyqFgBaMnwYfMEhveww1/aoFIzT91QkwmAnxm0pO/iOeNQC2bgsyOUDHWYq3YTMEMgDXogjub5KEA4A0DtBSvSzAOpla8XAIsc9/fBtl46x7Tzx7J5izhl/m0r00cvGNUKMfJhwFOIv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=nfIHjmae; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=uc89jBtcLlFdS6/M6+W3LFai5QtY7x4yNmHjHJ8jUSk=; b=nfIHjmaeZZaFa/nCmijVPvJMJZ
-	X8JLzv0KLKsk05aHsVvLYYg2df7DL5rQViVc1/Uok4zGVJAUikXJaP8iwOjaOfkxHAcOzS62Xr7/a
-	4x5rH4LK+GMIH9jxFfA1WU8H8HMTzCpzemZmI3K/lqqzGy1i30trWM8U3InvwBfi0RS0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vrnrw-007RYn-Tn; Mon, 16 Feb 2026 02:57:48 +0100
-Date: Mon, 16 Feb 2026 02:57:48 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Yao Zi <me@ziyao.cc>, Heiko Stuebner <heiko@sntech.de>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZM/TEVyrA71D/uk3g71Plh6D/BXIwAIgYZwlzl9oTJY9+xLbSzq0yuwV/Sq4i6pY1cHcIHvO2P3Uk0miSszQkEjgav05op10AeU7MPtDpnnIz0YvwSf8aGfJP019UxvcMRUATMrOuV8ewWuD0AyhnOxTPEZ+06U9nx3hwuML/cQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b=G4dlI7uf; arc=pass smtp.client-ip=136.143.188.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
+ARC-Seal: i=1; a=rsa-sha256; t=1771216819; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Dws1CK1Ncg9xfL/bS9uHyb+7p3KS8L1uqY7QMUaOA0sMjQCoGnZ5ioWSEuNNOf2TbnDg1lw5x6dGXe+QExV7XBvL4moUTYJL+ty3pbEB+O9pOvV7ajEKzsovSghr/7BLAymeY02Pp1F30+O2uNkmGDY8u+i/+xStD6VkJcGP7b0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1771216819; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=E4yO3rtfux2YLjw+kJJwbVUfdaJfx7vt8Qi+ogorLoo=; 
+	b=PssSJJmcWSrgvJU4zlJ4vTHv+I0gbVHZ3AL7AuQ7nVdlQ9kk6QnIqP4nWG5+usMK/cslDitSjX7wnfcKha4Tfj/p9Vv2TkpTEJ6k6cB7jniBwGNSpQgpkjM2SQgYsPWQvgiddoy6qZh/ZqNJOYyh9FBjjV2Xrxm7mJZuUT3lTEw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=ziyao.cc;
+	spf=pass  smtp.mailfrom=me@ziyao.cc;
+	dmarc=pass header.from=<me@ziyao.cc>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1771216819;
+	s=zmail; d=ziyao.cc; i=me@ziyao.cc;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=E4yO3rtfux2YLjw+kJJwbVUfdaJfx7vt8Qi+ogorLoo=;
+	b=G4dlI7ufZwJI2frTfOUFrNS2HUXmxpcCrDB19BiMj3NUCN6NLqqMhJQLkrm0QQvP
+	eYGWT9WpT+Ctm5n8207y1cStIYIwkEc4WscNjcjNiGdWPB3KNF4pp6l+myEw6TBs88A
+	cclrcxZn2zeS0zsNzA103SmaqJfXpJgKHe8+Zbow=
+Received: by mx.zohomail.com with SMTPS id 1771216817194335.9362570477522;
+	Sun, 15 Feb 2026 20:40:17 -0800 (PST)
+Date: Mon, 16 Feb 2026 04:39:59 +0000
+From: Yao Zi <me@ziyao.cc>
+To: Yixun Lan <dlan@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: Problematic understanding of phy-mode in Rockchip DWMAC driver
-Message-ID: <a4aebacc-c273-4e42-97ff-0cdd88d771dd@lunn.ch>
-References: <aY9s5PXP4zZ7R6fa@pie>
- <aY9xsslT56D9LGLe@shell.armlinux.org.uk>
- <f1e047e1-3f1c-4562-ab43-af2fe358fe04@lunn.ch>
- <aZDGsJNLZIty0242@shell.armlinux.org.uk>
+	Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>
+Cc: Junzhong Pan <panjunzhong@linux.spacemit.com>,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] phy: k1-usb: k3: add USB2 PHY support
+Message-ID: <aZKfnxXrYVXE8oP4@pie>
+References: <20260214-11-k3-usb2-phy-v2-0-6ed31e031ab4@kernel.org>
+ <20260214-11-k3-usb2-phy-v2-3-6ed31e031ab4@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,49 +77,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aZDGsJNLZIty0242@shell.armlinux.org.uk>
+In-Reply-To: <20260214-11-k3-usb2-phy-v2-3-6ed31e031ab4@kernel.org>
+X-ZohoMailClient: External
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [9.34 / 15.00];
+	URIBL_BLACK(7.50)[ziyao.cc:email,ziyao.cc:dkim];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265651-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-265652-lists,devicetree=lfdr.de];
+	R_DKIM_ALLOW(0.00)[ziyao.cc:s=zmail];
+	GREYLIST(0.00)[pass,body];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[ziyao.cc,sntech.de,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[ziyao.cc,quarantine];
+	DKIM_TRACE(0.00)[ziyao.cc:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[me@ziyao.cc,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim]
-X-Rspamd-Queue-Id: 8F215140993
-X-Rspamd-Action: no action
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ziyao.cc:email,ziyao.cc:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3A22F140DEF
+X-Rspamd-Action: add header
+X-Spam: Yes
 
-On Sat, Feb 14, 2026 at 07:02:08PM +0000, Russell King (Oracle) wrote:
-> On Sat, Feb 14, 2026 at 05:50:15PM +0100, Andrew Lunn wrote:
-> > Rockchip have recently started adding support for a new version, and
-> > appear to of listened to what we have been saying. So it could be the
-> > next generation of chips get this correct.
+On Sat, Feb 14, 2026 at 08:29:16PM +0800, Yixun Lan wrote:
+> Add USB2 PHY support for SpacemiT K3 SoC.
 > 
-> Have you seen any proposed code from Rockchip for their new scheme?
+> Register layout of handling USB disconnect operation has been changed,
+> So introducing a platform data to distinguish the different SoCs.
+> 
+> Signed-off-by: Yixun Lan <dlan@kernel.org>
 
-There was a patch, including a rather odd formulae to convert register
-value to delay. I gave some feedback, but it has been silence
-afterwards.
-
-	Andrew
+Reviewed-by: Yao Zi <me@ziyao.cc>
 
