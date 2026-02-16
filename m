@@ -1,264 +1,139 @@
-Return-Path: <devicetree+bounces-265820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265821-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kMW4MqQxk2k72gEAu9opvQ
-	(envelope-from <devicetree+bounces-265820-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:03:00 +0100
+	id OMeYOmwyk2mI2QEAu9opvQ
+	(envelope-from <devicetree+bounces-265821-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:06:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D95D3144FEC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:02:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95CA91450ED
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:06:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A7AC93019165
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 15:01:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F36FD3051858
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 15:01:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEBE7313E3D;
-	Mon, 16 Feb 2026 15:01:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6837314A8D;
+	Mon, 16 Feb 2026 15:01:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="cR+iBBaQ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="w6PjxASX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4D89313E2F;
-	Mon, 16 Feb 2026 15:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E1DB314A9B;
+	Mon, 16 Feb 2026 15:01:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771254079; cv=none; b=kaLPOKaMl8FD0TBhpovNDKFjbkychhJhBNiM5suYlBPfr/8uB89h/q7ulKPUy7kz539gBOy1+Cs4JZGHEm4vfDRnz3Dz2OuI2KoWhRguyjRqrzOL/4uKPA/D+UHoZb7kxVkcom571Vs25hrO4YIynEAOQFsqFWv75RWW30YSrww=
+	t=1771254093; cv=none; b=nmVG7oLB3Hj6L9dPkihq72pYyMl1ofNOq1qqeQae96fCYLDermGPCtmxHGmikAWOL3Oy7vn1sBcNtvS2gFrFNSB/WR2+kEc6hktrtr9Rgo0jNwmQS7gaw9JSi+Mu8Fybp/s3RUIzeh4PO25c10Jnnm9aSiWtye1B4SEZeOY4kXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771254079; c=relaxed/simple;
-	bh=InbEuM1RUKUq3ar9rzmvtN/7hrW8sOkIN5se2UrQjVo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RxkCeIDHVLxNRywmharkCodkbtL4+GxQ/1bUzC0V3XCu2/tJCWuJQJMJNXgdfpL7SdLOR4WWzUaVjbHZntRiFpdb080Su2gIVWrZT6/5JaTaA3dPzLZmiOcT7tQ0e8OKOrXQ0Cn+FS/R3d1bFycjceBhavSSZxBswTgjrqacUGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=cR+iBBaQ; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0516787.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61GAxAP74079306;
-	Mon, 16 Feb 2026 10:01:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=dUi5M
-	gpALa6eumQoBYZ6/8jJm1a0EGNazZcchEAaOZk=; b=cR+iBBaQxrtHCwEqO1H8v
-	b+ZnrXdgz4ScK8slk+XwzhBYoNzoOm116UTXlH/J44qYBYrx6lihVjgWSoVnfIn2
-	sdHubcRG8c0sRf0UyZ+VudTCNkneS/5HXcOHWKuPHkcFFPpohveP2/fqSV3Tf0nV
-	3wBZMSJ5CL7RA5bDzg3e8R7wL29f6FMaxRcbxdJLlwwtzoRlDCofIl1SjooBxGLx
-	xKt2iwuiG0MbDjp+zJo5rgSMc2HLTuSl5U3mpAFUxl7JlLaX3TOkV1iTHcfSJ/8A
-	2YeR9D91ZaSKauHNGIfstbTMpjhqnLSmacLGR+UydhzfvaJJjexaSxBNAzhYdJjt
-	A==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4cbn8r3dec-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Feb 2026 10:01:12 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 61GF1BXi020115
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 16 Feb 2026 10:01:11 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Mon, 16 Feb
- 2026 10:01:11 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Mon, 16 Feb 2026 10:01:11 -0500
-Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 61GF0u0Y016874;
-	Mon, 16 Feb 2026 10:00:58 -0500
-From: Marcelo Schmitt <marcelo.schmitt@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <jic23@kernel.org>, <michael.hennerich@analog.com>, <nuno.sa@analog.com>,
-        <eblanc@baylibre.com>, <dlechner@baylibre.com>, <andy@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <corbet@lwn.net>, <marcelo.schmitt1@gmail.com>,
-        Conor Dooley
-	<conor.dooley@microchip.com>
-Subject: [PATCH v9 6/8] dt-bindings: iio: adc: adi,ad4030: Add ADAQ4216 and ADAQ4224
-Date: Mon, 16 Feb 2026 12:00:55 -0300
-Message-ID: <972f7ae122edd61a7f9e479f882f399734eec705.1771253601.git.marcelo.schmitt@analog.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1771253601.git.marcelo.schmitt@analog.com>
-References: <cover.1771253601.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1771254093; c=relaxed/simple;
+	bh=vWuDr3Tx4NiEtoueri5s7dOMix7kqoaTVHP12WT4dMM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XvolYd2yVKneQptDm3d1kwzhwzw7eW81DqzpDFEvP2DZY9vUO0bpFYUHwkNtJzDS3+6xNyeXyCYkYDifOybD1q0kKVWLnNRj2ISjqvDQvnE5Dt+EgnM0c+rkGwz3H0b/C53H49RDEpD4wJtMR91tJwiCxtJedy9JjKBwVMgsJWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=w6PjxASX; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=fZ0BCqVUH5xPPVxomeaJKF0H4wRC7cRMGuNTgfAR7WI=; b=w6PjxASXJb/jnKoq7U4mc7F09F
+	M+xmz3gOYR7Ca1HJInWEsV5zH2bW7wTOmUURs8Iqd/CedefWZsl40Eml0ThMfyZS96rueKMgBG4zv
+	Z3GYZTxYKJKEl1eD6d/vndPPB7BzF8znThFBD5KMyrGoWDlc50i6brFtlE32V91VSFrC/qEaiauFh
+	LgDo4370TZ7ofHrDPYb31I8cSwTfqRp4vVCbBly/4F8zr87B0JN3GmwCfaL9Df0ReNWQYLYuZZ/ZA
+	/dJjNkCQ+lPvU0WaSAfDlkFOELE+aN5C3/GsLc2AgZRHIp306ODXzaPchHtcOCqIKglF+c+m5/O7W
+	GOxrcLrQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:47910)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vs05t-0000000073K-1oiw;
+	Mon, 16 Feb 2026 15:01:01 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vs05p-000000000K6-2pxV;
+	Mon, 16 Feb 2026 15:00:57 +0000
+Date: Mon, 16 Feb 2026 15:00:57 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Yao Zi <me@ziyao.cc>, Heiko Stuebner <heiko@sntech.de>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: Problematic understanding of phy-mode in Rockchip DWMAC driver
+Message-ID: <aZMxKdkl2Qa7e1WU@shell.armlinux.org.uk>
+References: <aY9s5PXP4zZ7R6fa@pie>
+ <aY9xsslT56D9LGLe@shell.armlinux.org.uk>
+ <f1e047e1-3f1c-4562-ab43-af2fe358fe04@lunn.ch>
+ <aZDGsJNLZIty0242@shell.armlinux.org.uk>
+ <a4aebacc-c273-4e42-97ff-0cdd88d771dd@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: anXs0q-qi-9kXO9ufTrs7KR6aJc6aMqa
-X-Proofpoint-ORIG-GUID: anXs0q-qi-9kXO9ufTrs7KR6aJc6aMqa
-X-Authority-Analysis: v=2.4 cv=aIb9aL9m c=1 sm=1 tr=0 ts=69933139 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22
- a=GgsMoib0sEa3-_RKJdDe:22 a=gAnH3GRIAAAA:8 a=XYAwZIGsAAAA:8
- a=0GKIfBuVSP7uAb9je7gA:9 a=E8ToXWR_bxluHZ7gmE-Z:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE2MDEyOCBTYWx0ZWRfX9pFIwfy53r4H
- BKWw5dwFSs8Lrp33tXxnrredG1Ua/9XNC3jf4DSwkTGU3teRu/Cilj0vgTSpWmCUOU2Rh3fGVRe
- CtllPPuZGbEsXPI2wm7nQ9k2ir620lL83jP9pqZX17A9L2BhjKFoKlkAHZUQ8xyQpSYFeqJypS/
- eCo8KHiOaS/m4MGIXwnnRvWxaeb6duvpVFZ6nVATrU4iQGBO9PEKzrHMVwT6esLgihAmk6fTjXk
- Ft7DuYlBILsT48SkRLyCCio8elaDF6lTVG19C5r5O162/BMcfbvsmJG/1YV+XGhTepuQlaMA052
- aZJQ+B1x561PdS/AhNLXTIJigEzpl7KBOZM0ddg4AC3fC5LdaIIBSJLR2+nOwDhYCp4CEMa3uSR
- nQIJgkWFXB+E+8SUul0WkS0SCKLqLjgLX7xsArGIpF6hDIPw+Xi7gEgqhAkDCuwjzTWAMTI9NHn
- HYBWAQWj8Hp34GEQNrA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-16_04,2026-02-16_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 clxscore=1015 bulkscore=0 malwarescore=0
- priorityscore=1501 suspectscore=0 spamscore=0 lowpriorityscore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602160128
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a4aebacc-c273-4e42-97ff-0cdd88d771dd@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,lwn.net,gmail.com,microchip.com];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-265820-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marcelo.schmitt@analog.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-265821-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[analog.com:+];
+	FREEMAIL_CC(0.00)[ziyao.cc,sntech.de,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[armlinux.org.uk:-];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,analog.com:mid,analog.com:dkim,analog.com:url,analog.com:email,microchip.com:email];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: D95D3144FEC
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,armlinux.org.uk:url,shell.armlinux.org.uk:mid]
+X-Rspamd-Queue-Id: 95CA91450ED
 X-Rspamd-Action: no action
 
-ADAQ4216 and ADAQ4224 are similar to AD4030 except that ADAQ devices have a
-PGA (programmable gain amplifier) that scales the input signal prior to it
-reaching the ADC inputs. The PGA is controlled through a couple of pins (A0
-and A1) that set one of four possible signal gain configurations.
+On Mon, Feb 16, 2026 at 02:57:48AM +0100, Andrew Lunn wrote:
+> On Sat, Feb 14, 2026 at 07:02:08PM +0000, Russell King (Oracle) wrote:
+> > On Sat, Feb 14, 2026 at 05:50:15PM +0100, Andrew Lunn wrote:
+> > > Rockchip have recently started adding support for a new version, and
+> > > appear to of listened to what we have been saying. So it could be the
+> > > next generation of chips get this correct.
+> > 
+> > Have you seen any proposed code from Rockchip for their new scheme?
+> 
+> There was a patch, including a rather odd formulae to convert register
+> value to delay. I gave some feedback, but it has been silence
+> afterwards.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
----
-No changes in v9.
+Searching lore's netdev archive doesn't seem to bring anything up.
 
- .../bindings/iio/adc/adi,ad4030.yaml          | 58 +++++++++++++++++++
- 1 file changed, 58 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-index a135c66142df..08b1f9d75f89 100644
---- a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-@@ -19,6 +19,8 @@ description: |
-   * https://www.analog.com/media/en/technical-documentation/data-sheets/ad4030-24-4032-24.pdf
-   * https://www.analog.com/media/en/technical-documentation/data-sheets/ad4630-24_ad4632-24.pdf
-   * https://www.analog.com/media/en/technical-documentation/data-sheets/ad4630-16-4632-16.pdf
-+  * https://www.analog.com/media/en/technical-documentation/data-sheets/adaq4216.pdf
-+  * https://www.analog.com/media/en/technical-documentation/data-sheets/adaq4224.pdf
- 
- $ref: /schemas/spi/spi-peripheral-props.yaml#
- 
-@@ -31,6 +33,8 @@ properties:
-       - adi,ad4630-24
-       - adi,ad4632-16
-       - adi,ad4632-24
-+      - adi,adaq4216
-+      - adi,adaq4224
- 
-   reg:
-     maxItems: 1
-@@ -62,6 +66,14 @@ properties:
-     description:
-       Internal buffered Reference. Used when ref-supply is not connected.
- 
-+  vddh-supply:
-+    description:
-+      PGIA Positive Power Supply.
-+
-+  vdd-fda-supply:
-+    description:
-+      FDA Positive Power Supply.
-+
-   cnv-gpios:
-     description:
-       The Convert Input (CNV). It initiates the sampling conversions.
-@@ -72,6 +84,13 @@ properties:
-       The Reset Input (/RST). Used for asynchronous device reset.
-     maxItems: 1
- 
-+  pga-gpios:
-+    description:
-+      A0 and A1 pins for gain selection. For devices that have PGA configuration
-+      input pins, pga-gpios should be defined.
-+    minItems: 2
-+    maxItems: 2
-+
-   pwms:
-     description: PWM signal connected to the CNV pin.
-     maxItems: 1
-@@ -113,6 +132,22 @@ allOf:
-       properties:
-         spi-rx-bus-width:
-           maxItems: 1
-+  # ADAQ devices require a gain property to indicate how hardware PGA is set
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            pattern: ^adi,adaq
-+    then:
-+      required:
-+        - vddh-supply
-+        - vdd-fda-supply
-+        - pga-gpios
-+      properties:
-+        ref-supply: false
-+    else:
-+      properties:
-+        pga-gpios: false
- 
- examples:
-   - |
-@@ -154,3 +189,26 @@ examples:
-             reset-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
-         };
-     };
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@0 {
-+            compatible = "adi,adaq4216";
-+            reg = <0>;
-+            spi-max-frequency = <80000000>;
-+            vdd-5v-supply = <&supply_5V>;
-+            vdd-1v8-supply = <&supply_1_8V>;
-+            vio-supply = <&supply_1_8V>;
-+            refin-supply = <&refin_sup>;
-+            vddh-supply = <&vddh>;
-+            vdd-fda-supply = <&vdd_fda>;
-+            cnv-gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
-+            reset-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
-+            pga-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>,
-+                        <&gpio0 3 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
 -- 
-2.39.2
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
