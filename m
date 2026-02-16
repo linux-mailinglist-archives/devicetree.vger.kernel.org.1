@@ -1,200 +1,400 @@
-Return-Path: <devicetree+bounces-265870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265872-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wGlcGqM+k2kg2wEAu9opvQ
-	(envelope-from <devicetree+bounces-265870-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:58:27 +0100
+	id yCttMGs/k2kg2wEAu9opvQ
+	(envelope-from <devicetree+bounces-265872-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:01:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5C86145D90
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:58:26 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 856D0145DC3
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:01:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5AE003018BF5
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 15:57:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 065123013EF9
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 16:01:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 760733321DC;
-	Mon, 16 Feb 2026 15:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6FD0311C2F;
+	Mon, 16 Feb 2026 16:01:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="S7D43Ov9";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="kY2R+IpL"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="dVTGfZBc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B8A63314DB
-	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 15:57:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2C503D544;
+	Mon, 16 Feb 2026 16:01:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771257453; cv=none; b=GfFR16qmoyYN2UewiBID+V47LifvN+gxG2tdt87QPtn/aOvbMpPQ19QELun5veLM3Yh2YfL3GEz82ZfiMH56Q6LgoWe67x0T0g3OvnYJZbEtK+To1avsMiv29+S8e2PMRYGwySkzlbXH6NS33f6FIrEODjGcP+64eUvUt7s5Z8I=
+	t=1771257697; cv=none; b=HDlBY9fAueUxIoN6wuXb631yMTpoCnQAuhdP09q2mRuYw3kMmlEBMYLQ1MSEvyCCCEk/UERZkAvs6/zk3X7m/MYr6FHG1KJjPAjCR2FbD/KkD1NmRB8UCKAKa/fQZL9q2K3ja7B8wn/7jQqW1ehowIsARw1nMlhlrSDRliUEnAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771257453; c=relaxed/simple;
-	bh=oeRmS+RnbI7iajNHi4vkTeNb1F6SCKI0ecOw1bP3KVM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e8+kOLV+f39c/NoghzmJmos9FNrCUTJlgACgLbogxDWz0a0MLhsyG3C0wibnwa3Em6RWjVSLQrcW8yLAZdM7eXcNuHyIDyDqg3y8KAoXtp7B+mm41d2MOU77OqA+w/EO6F76VQ5PUUb3QzE+BfDrfWZsf8NUKoQrMwdw1ep87zQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=S7D43Ov9; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kY2R+IpL; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61GFkWDN982440
-	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 15:57:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HDqYjUR+aQMkdEFghyjdfYjEhiYd5etbRbmhTWvDQso=; b=S7D43Ov9dvx/yiuL
-	GBSnqyr696b3Vf1Nsxu4WONbIT167QqYS3hsbJFdEz4eg/uZv4UxipLmDyhJ7xYG
-	lwqjJfZwSg0xn+7lT0xXvlcbV4qAjvKFfAKTQuEs2BtbxogEzjhTrfPX9yDKqEd+
-	WVczDO0ybnRgqIp1DDR8NrieZyCBe1x0oRyl3cOtwVnvO8U/Sua9Ub+izuvPq/3y
-	Wu5MaTCmgapBS7fJ1T6DMnoMyC6dYxUEeOVhAQ/zpV2MfaJWfO3cWMaRxSISWDyE
-	xWeDGNNJCAThLEPGUFKAqbc8DPA9zJwuqN3NiY8/KfUUj+sR8+6HGhlL4E6BBWOj
-	7TrkKQ==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cc662r0wf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 15:57:30 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c70cb31bcdso228415085a.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 07:57:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771257450; x=1771862250; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HDqYjUR+aQMkdEFghyjdfYjEhiYd5etbRbmhTWvDQso=;
-        b=kY2R+IpLfoDQuAQezcgscFjakyx9mCWUWeUg5ZXCpl71PwLfSVrHLkrorpirkXF399
-         bj130rPDJDMv7NLYt5SkuribU0SSKQKXWwQwi+v2kSDSvRUZMXLRkepftJ+I9CcYLWoe
-         kJ5/RsFtAGz0bKTE6sNEFP0bvvVRcfz9J9vC6TvL0C5l18KGuzsZ5drtX15NZ/mRHH2h
-         tQ8oS7Xg4ciUZFxHkwsMH5xr9v398gF634dk8cfI1pfGGyUF0W3Sbaldam3ZhzU9FEgV
-         jPKCP7sklzwKK3jxj6/aKlBofoIz6gkNISWamIXcgOCQi0KSa/XrfsIBfogjNSQxoNyU
-         bvnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771257450; x=1771862250;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HDqYjUR+aQMkdEFghyjdfYjEhiYd5etbRbmhTWvDQso=;
-        b=HiEMSKfXQJKF5q4s5MzdhOr2v/03aFobtjyKWgwzFVdBtcIQGSfknT9wf1uCbYTc0F
-         z7rDNwuLSZ8S3QmLJDh/l5CijiVO7/ug7lQs9XNIiRjsdK7gL5ntk5iIWA0UQwKzt6Sy
-         PvC8Feu/FZZPDngRJMbq36qkrWjOuI+ao/XsRYgeuO9AJQK0/dwqNWzLt1DIHiQ4TQXp
-         +ZoAQMPRVGZq48pcbCZG5Doh2fZkRNLVPUiIWEcHe1UMXsnpQVUy6C7bdj+4U8FsHjBA
-         cgTrEiQD8umGR674QUoan9JhD+6oSbjg81dRZh2iTVW36FQ0DmO1iojKysiCBB94Eek3
-         LIow==
-X-Forwarded-Encrypted: i=1; AJvYcCXmqRdntd+8LQCkI2kcMY2MOv68YvgqExuf73katA0rz/fJYv+I4hT7Ypc0i+vZ6VlVS9MdNRbq43Ht@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3Kyg2u+OWVeNkRiLbSLH9JecmK+KP7ahgNB80bYJbZtKNq0VR
-	tToGnWxac2LM3rKMYcR7SUTAXFYCH59Jno5W+aTSbVgZNcyiaBypkTN7AfGkeBju+QatqXjgdGr
-	5Qs76vhjuO0nVu9zWm7TuV2SldhcpOvPwO3n+ACZARKGgDHfyiWFgnJlV0WINs0DH
-X-Gm-Gg: AZuq6aLk5Pmjk8cj8y6YGt57YxNL2j4buitctnq5JPvW8I1aQYNUDxWGGt8cuW/OmoR
-	DjfnFYUCxtuGMeLjd/KdQzU10Ir3sGSwf6fbJiGGoALAFcqeWW5+wjXmRb69rVQaUxTL3ALxOJI
-	+QyilHTe2W2a4KDaAUXOFS7plBaWVKxyyU5FmLloS8r6OyJTL44Kw1KA1aovBQ2SwX8kOSiJdYu
-	1lAEBl3OH26JSZpjsfeOdD26tW2PizUe1fJryFnwmQ4kEj4PTK6kRRgsBxYXRQc+QckVYOASqgY
-	sv0Y1/qcaqUOKmWOSO5GGFgDrFlRI48Zf5dGFLB/FjlUHmsCzGlSUPn+FJTu7WZoogP6OttJXAf
-	5sG0nRwVYo/Nhn1k9SsNk1g5JQaJLCvn8SbEmJxibf4kLgF9//xbPmqo/5zt/QxGsknVfIH6Hik
-	P766s=
-X-Received: by 2002:a05:620a:45a3:b0:8b2:e177:fb18 with SMTP id af79cd13be357-8cb408fb864mr1126017585a.9.1771257449917;
-        Mon, 16 Feb 2026 07:57:29 -0800 (PST)
-X-Received: by 2002:a05:620a:45a3:b0:8b2:e177:fb18 with SMTP id af79cd13be357-8cb408fb864mr1126014785a.9.1771257449474;
-        Mon, 16 Feb 2026 07:57:29 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65bad29d571sm1914625a12.11.2026.02.16.07.57.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Feb 2026 07:57:29 -0800 (PST)
-Message-ID: <0f3fec98-4d58-4197-82e4-41480066d42b@oss.qualcomm.com>
-Date: Mon, 16 Feb 2026 16:57:24 +0100
+	s=arc-20240116; t=1771257697; c=relaxed/simple;
+	bh=+0ia6mLsJNOEssOXFL8cKR8Qd0fL/DAXFyLZcKrrCjQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jCb/KY5GPuHnn12/f0/cYprE1ile/ujzR/o4jVV5T9FtBhaZTQU/KfZ+svQMC1/BhOfjwhMmexQhLJOX0bIf0xNLtK9PiHcd0GEhlMTFW0Dq5ET+/ak5zlDAgOQZX7/b0H/8/1z59gxc+lJ6ARiTSiPvCdjCvLZCyXu+IEtZlaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=dVTGfZBc; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: c1a5a3600b5011f185319dbc3099e8fb-20260217
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=pkwIbbWuaRHSuI60ba7tFAZeixEkrpc5I8oRuVKtKU0=;
+	b=dVTGfZBc+N2K+oi5MI9+Y1HzHlWMpqUjPTTrLF1CI6zdlM6YB6Njke3uiKq5jkdFaXgdbdFENNOcl2iNbKggu3XP1u1Z2F+ERxO+Zbctnby5oORuihcghPviNZ9x6JSqU21ihMMtvhzhk5jrl5Qxni//P4meoRu/E7ggIKJhFks=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.11,REQID:c78ec608-ee20-47cc-b812-c9c0f6391ad5,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:89c9d04,CLOUDID:c55ab8e9-ef90-4382-9c6f-55f2a0689a6b,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI:0,OSA
+	:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: c1a5a3600b5011f185319dbc3099e8fb-20260217
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
+	(envelope-from <ryder.lee@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1008439685; Tue, 17 Feb 2026 00:01:29 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Tue, 17 Feb 2026 00:01:28 +0800
+Received: from mussdccf250.eus.mediatek.inc (10.73.250.250) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Tue, 17 Feb 2026 00:01:27 +0800
+From: Ryder Lee <ryder.lee@mediatek.com>
+To: Felix Fietkau <nbd@nbd.name>, Rob Herring <robh@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-wireless@vger.kernel.org>, Allen Ye <allen.ye@mediatek.com>, Ryder Lee
+	<ryder.lee@mediatek.com>
+Subject: [PATCH v7 1/3] wifi: mt76: fix backoff fields and max_power calculation
+Date: Mon, 16 Feb 2026 08:01:14 -0800
+Message-ID: <8fa8ec500b3d4de7b1966c6887f1dfbe5c46a54c.1771205424.git.ryder.lee@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/6] clk: qcom: Add support for Global clock controller
- on Eliza
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20260216-eliza-clocks-v3-0-8afc5a7e3a98@oss.qualcomm.com>
- <20260216-eliza-clocks-v3-5-8afc5a7e3a98@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260216-eliza-clocks-v3-5-8afc5a7e3a98@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE2MDEzNiBTYWx0ZWRfX8ZWXSxBdWRAH
- gDcYcJ35IWb7a7CLbi/15sg50RD+v5Jo1tKoExFwqoy2ViFkETAGtvR3uo/38TUh6iRliVEIbjt
- /zRLUjgg89ILgSXFCwhN8rnxj4i5V5zLvF3SyGJhS3r3wG5+5zJO6QMPMtzfLKhTfJT9zmz2RkF
- myiGefq7dqnNSxwroYNGiIKEFoQJx1azAvme/iTfnJx0EAFnTIPnpo4an9Y+y3liJbFfodrNVis
- qRHfxAT1RYvbrNQoDDBgEY/Z1+4kQbUJa/Xyj/G5BaGhy6uiFw2anz52cxqUAgpOIhV1POFTT3U
- ZcHbnRBT9cshyzI9yUnOib9pgsYGe2c5j6mzmofNZn1FLzTCuIfre+bQQkeKN5gLbNWRvHaoBgh
- muMEpqm98wsPKs5x6yxNKjWMJygxIP85dAJOue6ATByYoLLdHc5pVfWT8XpI+mWbrEzW28u9big
- X5XWpjTiSMivr4GoqZg==
-X-Authority-Analysis: v=2.4 cv=Y6b1cxeN c=1 sm=1 tr=0 ts=69933e6a cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=EUspDBNiAAAA:8 a=F7eGajQwVCTwq7oO_cwA:9 a=QEXdDO2ut3YA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-GUID: Ox1eqeNSSMLyo7YLPWOWbTQyuKvH_I0l
-X-Proofpoint-ORIG-GUID: Ox1eqeNSSMLyo7YLPWOWbTQyuKvH_I0l
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-16_05,2026-02-16_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 adultscore=0 priorityscore=1501 impostorscore=0
- bulkscore=0 spamscore=0 lowpriorityscore=0 malwarescore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602160136
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265870-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	DKIM_TRACE(0.00)[mediatek.com:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265872-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ryder.lee@mediatek.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	RSPAMD_EMAILBL_FAIL(0.00)[ryder.lee.mediatek.com:query timed out,allen.ye.mediatek.com:query timed out];
 	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: C5C86145D90
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mediatek.com:mid,mediatek.com:dkim,mediatek.com:email]
+X-Rspamd-Queue-Id: 856D0145DC3
 X-Rspamd-Action: no action
 
-On 2/16/26 2:43 PM, Abel Vesa wrote:
-> From: Taniya Das <taniya.das@oss.qualcomm.com>
-> 
-> Add support for Global clock controller for Eliza Qualcomm SoC.
-> 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-> ---
+From: Allen Ye <allen.ye@mediatek.com>
 
-Do we need force_mem_on on UFS clocks?
+The maximum power value may exist in either the data or backoff field.
+Previously, backoff power limits were not considered in txpower reporting.
+This patch ensures mt76 also considers backoff values in the SKU table.
 
-Konrad
+Also, each RU entry (RU26, RU52, RU106, BW20, ...) in the DTS corresponds
+to 10 stream combinations (1T1ss, 2T1ss, 3T1ss, 4T1ss, 2T2ss, 3T2ss,
+4T2ss, 3T3ss, 4T3ss, 4T4ss).
+
+For beamforming tables:
+- In connac2, beamforming entries for BW20~BW160, and OFDM do not include
+  1T1ss.
+- In connac3, beamforming entries for BW20~BW160, and RU include 1T1ss,
+  but OFDM beamforming does not include 1T1ss.
+
+Non-beamforming and RU entries for both connac2 and connac3 include 1T1ss.
+
+Fixes: b05ab4be9fd7 ("wifi: mt76: mt7915: add bf backoff limit table support")
+Signed-off-by: Allen Ye <allen.ye@mediatek.com>
+Co-developed-by: Ryder Lee <ryder.lee@mediatek.com>
+Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
+---
+v1:
+- Add "wifi:" prefix to the subject.
+
+v2:
+- Fix checkpatch errors.
+- Remove unnecessary style changes.
+- Add explanation for connac2 index adjustment.
+
+v3:
+- Fix "case"s for MT76_SKU_BACKOFF_BF_OFFSET and MT76_SKU_BACKOFF.
+- add more explanation for connac2/connac3 tables.
+
+v7: add missing dts mailing list and maintainers.
+---
+ drivers/net/wireless/mediatek/mt76/eeprom.c | 154 ++++++++++++++------
+ drivers/net/wireless/mediatek/mt76/mt76.h   |   1 -
+ 2 files changed, 109 insertions(+), 46 deletions(-)
+
+diff --git a/drivers/net/wireless/mediatek/mt76/eeprom.c b/drivers/net/wireless/mediatek/mt76/eeprom.c
+index 573400d57..afdb73661 100644
+--- a/drivers/net/wireless/mediatek/mt76/eeprom.c
++++ b/drivers/net/wireless/mediatek/mt76/eeprom.c
+@@ -9,6 +9,13 @@
+ #include <linux/nvmem-consumer.h>
+ #include <linux/etherdevice.h>
+ #include "mt76.h"
++#include "mt76_connac.h"
++
++enum mt76_sku_type {
++	MT76_SKU_RATE,
++	MT76_SKU_BACKOFF,
++	MT76_SKU_BACKOFF_BF_OFFSET,
++};
+ 
+ static int mt76_get_of_eeprom_data(struct mt76_dev *dev, void *eep, int len)
+ {
+@@ -292,7 +299,6 @@ mt76_find_channel_node(struct device_node *np, struct ieee80211_channel *chan)
+ }
+ EXPORT_SYMBOL_GPL(mt76_find_channel_node);
+ 
+-
+ static s8
+ mt76_get_txs_delta(struct device_node *np, u8 nss)
+ {
+@@ -306,9 +312,24 @@ mt76_get_txs_delta(struct device_node *np, u8 nss)
+ 	return be32_to_cpu(val[nss - 1]);
+ }
+ 
++static inline u8 mt76_backoff_n_chains(struct mt76_dev *dev, u8 idx)
++{
++	/* 0:1T1ss, 1:2T1ss, ..., 14:5T5ss */
++	static const u8 connac3_table[] = {
++		1, 2, 3, 4, 5, 2, 3, 4, 5, 3, 4, 5, 4, 5, 5};
++	static const u8 connac2_table[] = {
++		1, 2, 3, 4, 2, 3, 4, 3, 4, 4, 0, 0, 0, 0, 0};
++
++	if (idx >= ARRAY_SIZE(connac3_table))
++		return 0;
++
++	return is_mt799x(dev) ? connac3_table[idx] : connac2_table[idx];
++}
++
+ static void
+-mt76_apply_array_limit(s8 *pwr, size_t pwr_len, const s8 *data,
+-		       s8 target_power, s8 nss_delta, s8 *max_power)
++mt76_apply_array_limit(struct mt76_dev *dev, s8 *pwr, size_t pwr_len,
++		       const s8 *data, s8 target_power, s8 nss_delta,
++		       s8 *max_power, int n_chains, enum mt76_sku_type type)
+ {
+ 	int i;
+ 
+@@ -316,18 +337,51 @@ mt76_apply_array_limit(s8 *pwr, size_t pwr_len, const s8 *data,
+ 		return;
+ 
+ 	for (i = 0; i < pwr_len; i++) {
+-		pwr[i] = min_t(s8, target_power, data[i] + nss_delta);
++		u8 backoff_chain_idx = i;
++		int backoff_n_chains;
++		s8 backoff_delta;
++		s8 delta;
++
++		switch (type) {
++		case MT76_SKU_RATE:
++			delta = 0;
++			backoff_delta = 0;
++			backoff_n_chains = 0;
++			break;
++		case MT76_SKU_BACKOFF_BF_OFFSET:
++			backoff_chain_idx += 1;
++			fallthrough;
++		case MT76_SKU_BACKOFF:
++			delta = mt76_tx_power_path_delta(n_chains);
++			backoff_n_chains = mt76_backoff_n_chains(dev, backoff_chain_idx);
++			backoff_delta = mt76_tx_power_path_delta(backoff_n_chains);
++			break;
++		default:
++			return;
++		}
++
++		pwr[i] = min_t(s8, target_power + delta - backoff_delta, data[i] + nss_delta);
++
++		/* used for padding, doesn't need to be considered */
++		if (data[i] >= S8_MAX - 1)
++			continue;
++
++		/* only consider backoff value for the configured chain number */
++		if (type != MT76_SKU_RATE && n_chains != backoff_n_chains)
++			continue;
++
+ 		*max_power = max(*max_power, pwr[i]);
+ 	}
+ }
+ 
+ static void
+-mt76_apply_multi_array_limit(s8 *pwr, size_t pwr_len, s8 pwr_num,
+-			     const s8 *data, size_t len, s8 target_power,
+-			     s8 nss_delta)
++mt76_apply_multi_array_limit(struct mt76_dev *dev, s8 *pwr, size_t pwr_len,
++			     s8 pwr_num, const s8 *data, size_t len,
++			     s8 target_power, s8 nss_delta, s8 *max_power,
++			     int n_chains, enum mt76_sku_type type)
+ {
++	static const int connac2_backoff_ru_idx = 2;
+ 	int i, cur;
+-	s8 max_power = -128;
+ 
+ 	if (!data)
+ 		return;
+@@ -337,8 +391,26 @@ mt76_apply_multi_array_limit(s8 *pwr, size_t pwr_len, s8 pwr_num,
+ 		if (len < pwr_len + 1)
+ 			break;
+ 
+-		mt76_apply_array_limit(pwr + pwr_len * i, pwr_len, data + 1,
+-				       target_power, nss_delta, &max_power);
++		/* Each RU entry (RU26, RU52, RU106, BW20, ...) in the DTS
++		 * corresponds to 10 stream combinations (1T1ss, 2T1ss, 3T1ss,
++		 * 4T1ss, 2T2ss, 3T2ss, 4T2ss, 3T3ss, 4T3ss, 4T4ss).
++		 *
++		 * For beamforming tables:
++		 * - In connac2, beamforming entries for BW20~BW160 and OFDM
++		 *   do not include 1T1ss.
++		 * - In connac3, beamforming entries for BW20~BW160 and RU
++		 *   include 1T1ss, but OFDM beamforming does not include 1T1ss.
++		 *
++		 * Non-beamforming and RU entries for both connac2 and connac3
++		 * include 1T1ss.
++		 */
++		if (!is_mt799x(dev) && type == MT76_SKU_BACKOFF &&
++		    i > connac2_backoff_ru_idx)
++			type = MT76_SKU_BACKOFF_BF_OFFSET;
++
++		mt76_apply_array_limit(dev, pwr + pwr_len * i, pwr_len, data + 1,
++				       target_power, nss_delta, max_power,
++				       n_chains, type);
+ 		if (--cur > 0)
+ 			continue;
+ 
+@@ -360,18 +432,11 @@ s8 mt76_get_rate_power_limits(struct mt76_phy *phy,
+ 	struct device_node *np;
+ 	const s8 *val;
+ 	char name[16];
+-	u32 mcs_rates = dev->drv->mcs_rates;
+-	u32 ru_rates = ARRAY_SIZE(dest->ru[0]);
+ 	char band;
+ 	size_t len;
+-	s8 max_power = 0;
+-	s8 max_power_backoff = -127;
++	s8 max_power = -127;
+ 	s8 txs_delta;
+ 	int n_chains = hweight16(phy->chainmask);
+-	s8 target_power_combine = target_power + mt76_tx_power_path_delta(n_chains);
+-
+-	if (!mcs_rates)
+-		mcs_rates = 10;
+ 
+ 	memset(dest, target_power, sizeof(*dest) - sizeof(dest->path));
+ 	memset(&dest->path, 0, sizeof(dest->path));
+@@ -409,46 +474,45 @@ s8 mt76_get_rate_power_limits(struct mt76_phy *phy,
+ 	txs_delta = mt76_get_txs_delta(np, hweight16(phy->chainmask));
+ 
+ 	val = mt76_get_of_array_s8(np, "rates-cck", &len, ARRAY_SIZE(dest->cck));
+-	mt76_apply_array_limit(dest->cck, ARRAY_SIZE(dest->cck), val,
+-			       target_power, txs_delta, &max_power);
++	mt76_apply_array_limit(dev, dest->cck, ARRAY_SIZE(dest->cck), val,
++			       target_power, txs_delta, &max_power, n_chains, MT76_SKU_RATE);
+ 
+-	val = mt76_get_of_array_s8(np, "rates-ofdm",
+-				   &len, ARRAY_SIZE(dest->ofdm));
+-	mt76_apply_array_limit(dest->ofdm, ARRAY_SIZE(dest->ofdm), val,
+-			       target_power, txs_delta, &max_power);
++	val = mt76_get_of_array_s8(np, "rates-ofdm", &len, ARRAY_SIZE(dest->ofdm));
++	mt76_apply_array_limit(dev, dest->ofdm, ARRAY_SIZE(dest->ofdm), val,
++			       target_power, txs_delta, &max_power, n_chains, MT76_SKU_RATE);
+ 
+-	val = mt76_get_of_array_s8(np, "rates-mcs", &len, mcs_rates + 1);
+-	mt76_apply_multi_array_limit(dest->mcs[0], ARRAY_SIZE(dest->mcs[0]),
+-				     ARRAY_SIZE(dest->mcs), val, len,
+-				     target_power, txs_delta);
++	val = mt76_get_of_array_s8(np, "rates-mcs", &len, ARRAY_SIZE(dest->mcs[0]) + 1);
++	mt76_apply_multi_array_limit(dev, dest->mcs[0], ARRAY_SIZE(dest->mcs[0]),
++				     ARRAY_SIZE(dest->mcs), val, len, target_power,
++				     txs_delta, &max_power, n_chains, MT76_SKU_RATE);
+ 
+-	val = mt76_get_of_array_s8(np, "rates-ru", &len, ru_rates + 1);
+-	mt76_apply_multi_array_limit(dest->ru[0], ARRAY_SIZE(dest->ru[0]),
+-				     ARRAY_SIZE(dest->ru), val, len,
+-				     target_power, txs_delta);
++	val = mt76_get_of_array_s8(np, "rates-ru", &len, ARRAY_SIZE(dest->ru[0]) + 1);
++	mt76_apply_multi_array_limit(dev, dest->ru[0], ARRAY_SIZE(dest->ru[0]),
++				     ARRAY_SIZE(dest->ru), val, len, target_power,
++				     txs_delta, &max_power, n_chains, MT76_SKU_RATE);
+ 
+-	max_power_backoff = max_power;
+ 	val = mt76_get_of_array_s8(np, "paths-cck", &len, ARRAY_SIZE(dest->path.cck));
+-	mt76_apply_array_limit(dest->path.cck, ARRAY_SIZE(dest->path.cck), val,
+-			       target_power_combine, txs_delta, &max_power_backoff);
++	mt76_apply_array_limit(dev, dest->path.cck, ARRAY_SIZE(dest->path.cck), val,
++			       target_power, txs_delta, &max_power, n_chains, MT76_SKU_BACKOFF);
+ 
+ 	val = mt76_get_of_array_s8(np, "paths-ofdm", &len, ARRAY_SIZE(dest->path.ofdm));
+-	mt76_apply_array_limit(dest->path.ofdm, ARRAY_SIZE(dest->path.ofdm), val,
+-			       target_power_combine, txs_delta, &max_power_backoff);
++	mt76_apply_array_limit(dev, dest->path.ofdm, ARRAY_SIZE(dest->path.ofdm), val,
++			       target_power, txs_delta, &max_power, n_chains, MT76_SKU_BACKOFF);
+ 
+ 	val = mt76_get_of_array_s8(np, "paths-ofdm-bf", &len, ARRAY_SIZE(dest->path.ofdm_bf));
+-	mt76_apply_array_limit(dest->path.ofdm_bf, ARRAY_SIZE(dest->path.ofdm_bf), val,
+-			       target_power_combine, txs_delta, &max_power_backoff);
++	mt76_apply_array_limit(dev, dest->path.ofdm_bf, ARRAY_SIZE(dest->path.ofdm_bf), val,
++			       target_power, txs_delta, &max_power, n_chains,
++			       MT76_SKU_BACKOFF_BF_OFFSET);
+ 
+ 	val = mt76_get_of_array_s8(np, "paths-ru", &len, ARRAY_SIZE(dest->path.ru[0]) + 1);
+-	mt76_apply_multi_array_limit(dest->path.ru[0], ARRAY_SIZE(dest->path.ru[0]),
+-				     ARRAY_SIZE(dest->path.ru), val, len,
+-				     target_power_combine, txs_delta);
++	mt76_apply_multi_array_limit(dev, dest->path.ru[0], ARRAY_SIZE(dest->path.ru[0]),
++				     ARRAY_SIZE(dest->path.ru), val, len, target_power,
++				     txs_delta, &max_power, n_chains, MT76_SKU_BACKOFF);
+ 
+ 	val = mt76_get_of_array_s8(np, "paths-ru-bf", &len, ARRAY_SIZE(dest->path.ru_bf[0]) + 1);
+-	mt76_apply_multi_array_limit(dest->path.ru_bf[0], ARRAY_SIZE(dest->path.ru_bf[0]),
+-				     ARRAY_SIZE(dest->path.ru_bf), val, len,
+-				     target_power_combine, txs_delta);
++	mt76_apply_multi_array_limit(dev, dest->path.ru_bf[0], ARRAY_SIZE(dest->path.ru_bf[0]),
++				     ARRAY_SIZE(dest->path.ru_bf), val, len, target_power,
++				     txs_delta, &max_power, n_chains, MT76_SKU_BACKOFF);
+ 
+ 	return max_power;
+ }
+diff --git a/drivers/net/wireless/mediatek/mt76/mt76.h b/drivers/net/wireless/mediatek/mt76/mt76.h
+index d05e83ea1..32876eab2 100644
+--- a/drivers/net/wireless/mediatek/mt76/mt76.h
++++ b/drivers/net/wireless/mediatek/mt76/mt76.h
+@@ -540,7 +540,6 @@ struct mt76_driver_ops {
+ 	u32 survey_flags;
+ 	u16 txwi_size;
+ 	u16 token_size;
+-	u8 mcs_rates;
+ 
+ 	unsigned int link_data_size;
+ 
+-- 
+2.45.2
+
 
