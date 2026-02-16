@@ -1,51 +1,58 @@
-Return-Path: <devicetree+bounces-265700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265701-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2LChAr/6kmlx0gEAu9opvQ
-	(envelope-from <devicetree+bounces-265700-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 12:08:47 +0100
+	id 0BHUDQP7kmlx0gEAu9opvQ
+	(envelope-from <devicetree+bounces-265701-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 12:09:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D4EE142AF1
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 12:08:46 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9390142B25
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 12:09:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E64D23019135
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 11:08:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9314D30073DB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 11:09:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DFEE2FD67C;
-	Mon, 16 Feb 2026 11:08:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92BB2D4816;
+	Mon, 16 Feb 2026 11:09:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lr1z6BgV"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Xi9XsN2X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 783ED2F1FC7;
-	Mon, 16 Feb 2026 11:08:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B4F2BF3D7;
+	Mon, 16 Feb 2026 11:09:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771240113; cv=none; b=U8Dg9Wxywudf2H6O7rU7PWyb2ZvctPtIxynyo+QsWtmneQ5P03uzCtoFsBEEpUGL32s76iIPXRbiRVOySFjPNotzU//wjYYK6y7NNFOXTzIiopcUXRv5PsFsdDeyZkCTVevWch68WWYysag47JHpcs9Z4BOM+cpBa0VOPseo/SI=
+	t=1771240192; cv=none; b=Q8qpSz5v8Jbx4rGVtS7znuLmn+ypvuJiIK/d3JcRYksl/VMayZeuUzM5ujWD5bvFiAnJAIPYw0rho5h2QLROurq5EI3SotqN5pMpzEgnq3AMAJVAl4fQwZ0UWyQC2jT5YofKEurxb37nevYSRv7ZvrJdKy/B7bsYhOQVAoQ2nyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771240113; c=relaxed/simple;
-	bh=3LVYokJeMWivWKgeVcKV82xhskBynkboV20Vzq+QB74=;
+	s=arc-20240116; t=1771240192; c=relaxed/simple;
+	bh=7ietRFN+k+TRUno7TzNeMRtjx+kFVY2I1NkiqflKaCU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RLL1zDwlTuQgna7MGJfANOuZAeOxhh5wJIRYKYqWnyCDds4wPSL/YMVmm2HfCpNGBhIu76gwjnsO7N8tV7Jqm+OmHgp9torMZTLy8XpLqM4O/Dvrj8YthR8sqC97Mg/O/tr4hIursZqwck9olC/9ZZ/ms9zBgeYXoQbS1S3P2mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lr1z6BgV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66A75C116C6;
-	Mon, 16 Feb 2026 11:08:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771240113;
-	bh=3LVYokJeMWivWKgeVcKV82xhskBynkboV20Vzq+QB74=;
+	 In-Reply-To:Content-Type; b=bUoGMA3vk5N8No9tGdhwqXMk0gnBygbvcvIZL2+I3eXeJtOoy/QJwjclNiSQl7vgoFmlcI0xGAyxXGk09a9tyBugELh7wTZAmvw/tuDYcZpBbdXyxiUxnJUB387Xx5cKJWpxYkQ7WhcVJwSaRyMJtvsjTtsBqgpYkacwWIzBPyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Xi9XsN2X; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1771240189;
+	bh=7ietRFN+k+TRUno7TzNeMRtjx+kFVY2I1NkiqflKaCU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lr1z6BgVMEHEj81mWB5i3VbVSA2bCBgvc74vLfwXrVKVrLUukXFbf4WjxoIIwarre
-	 5nIgfigSm/8soPxfcZedOQ43iAifoTTP9z03M6uaHWUAYzyQN2Pmj0z8U9EoiPYnHj
-	 wp/xZ59OvA8q2Qz2doX9zSbZ3qmyCzB8oKR3rbN9yZfwookCcNucI/PFg1puRBkyBo
-	 u7vuGqDnudopc3j9kmTR56zzZhg8QfqV44Ky+TSn8by1BLYLJb4k4NoJo8FXMsM6au
-	 LrCAZwOs8KHPVTXMiXC37D5z8GOks4+OS9kM/Lp6Nb3r/G7oFzF7C6jFKzKkk03tzb
-	 p0UHkAsxvBQxg==
-Message-ID: <2e212989-5976-4ac0-a86a-01414ca856f5@kernel.org>
-Date: Mon, 16 Feb 2026 12:08:28 +0100
+	b=Xi9XsN2XuP/NOMgD8xmsvfAskZ0p1oaCPQqEHR/XUh2U6uvr8WYr3P/QJ3POFiVTt
+	 qlQtrr6HjRt5oMOTC2v6SinHAWSTZJ192NsUTms78LmXflEmCzPyUodjfwS5EbrXvH
+	 QUJjBwYB1w9inrtcr/9dD7lR4lGGyAJw45NGVteuFX6IVd3Rztf1cmmXGAa8ifxF4b
+	 Mlzje39Ida3WYAUnVsHS9qpHpAS3P3Y2D5msTIhA9/4JMrBSz699d30Nc4E3gdO6iL
+	 jIiZFceBX4a8FOEvEiKIcVEEzdMwLfVbVvKytm2PYeeb6l3qWD/T2CzWdmzT9CZS1l
+	 ebTKR4cERKeSg==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id AE9F317E12E9;
+	Mon, 16 Feb 2026 12:09:48 +0100 (CET)
+Message-ID: <02766a04-b777-4e8b-9908-7abfc4ba113c@collabora.com>
+Date: Mon, 16 Feb 2026 12:09:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,143 +60,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: sdhci-msm: Add ICE phandle
-To: Neeraj Soni <neeraj.soni@oss.qualcomm.com>, ulf.hansson@linaro.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
- Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
-References: <20260206112053.3287756-1-neeraj.soni@oss.qualcomm.com>
- <20260206112053.3287756-2-neeraj.soni@oss.qualcomm.com>
- <b6e510da-b369-4c43-b9a1-455478af4948@kernel.org>
- <640e2eca-1656-1723-38e8-d6cd97e6e2e3@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 4/4] gpu: drm: mediatek: ovl: add specific entry for
+ mt8167
+To: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+ linux-mediatek@lists.infradead.org
+Cc: Val Packett <val@packett.cool>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chunfeng Yun
+ <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Jitao Shi
+ <jitao.shi@mediatek.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org
+References: <cover.1771144723.git.l.scorcia@gmail.com>
+ <b440a9c1972dedc4cfbf29a84366e635b0d7d984.1771144723.git.l.scorcia@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <640e2eca-1656-1723-38e8-d6cd97e6e2e3@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <b440a9c1972dedc4cfbf29a84366e635b0d7d984.1771144723.git.l.scorcia@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-265701-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265700-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,linaro.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7D4EE142AF1
+	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[packett.cool,kernel.org,pengutronix.de,linux.intel.com,suse.de,gmail.com,ffwll.ch,mediatek.com,linaro.org,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim,collabora.com:email]
+X-Rspamd-Queue-Id: A9390142B25
 X-Rspamd-Action: no action
 
-On 16/02/2026 12:05, Neeraj Soni wrote:
+Il 15/02/26 09:53, Luca Leonardo Scorcia ha scritto:
+> From: Val Packett <val@packett.cool>
 > 
+> While this configuration is otherwise identical to mt8173, according
+> to Android kernel sources, this SoC does need smi_id_en.
 > 
-> On 2/6/2026 4:56 PM, Krzysztof Kozlowski wrote:
->> On 06/02/2026 12:20, Neeraj Soni wrote:
->>> Starting with sc7280(kodiak), the ICE will have its own device-tree node.
->>> So add the qcom,ice property to reference it.
->>>
->>> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
->>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
->>> Co-developed-by: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
->>> Signed-off-by: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
->>> Signed-off-by: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
->>>
->>> ---
->>>
->>> Some initial work is done by Abel here:
->>> https://lore.kernel.org/all/ba3da82d-999b-b040-5230-36e60293e0fd@linaro.org/
->>> and by Abhinaba here:
->>> https://lore.kernel.org/all/20251009-add-separate-ice-ufs-and-emmc-device-nodes-for-qcs615-platform-v1-1-2a34d8d03c72@oss.qualcomm.com/
->>>
->>> This patch adds the purpose and usage for phandle in the description and encodes
->>> it properly in the schema.
->>> ---
->>>  .../devicetree/bindings/mmc/sdhci-msm.yaml    | 26 +++++++++++++++++++
->>>  1 file changed, 26 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
->>> index 938be8228d66..f35b675c9f16 100644
->>> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
->>> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
->>> @@ -140,6 +140,12 @@ properties:
->>>      $ref: /schemas/types.yaml#/definitions/uint32
->>>      description: platform specific settings for DLL_CONFIG reg.
->>>  
->>> +  qcom,ice:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description: |
->>> +      phandle to the Inline Crypto Engine node. ICE having its own platform driver will use this phandle to
->>
->> Please wrap code according to the preferred limit expressed in Kernel
->> coding style (checkpatch is not a coding style description, but only a
->> tool).  However don't wrap blindly (see Kernel coding style).
->>
-> Sure. While executing dt_binding_check the tool reported max limit as 110 characters so i wrapped
-> around it. I will consolidate the description to single line in next patch.
+> Signed-off-by: Val Packett <val@packett.cool>
+> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 
-Can you read Linux kernel coding style as I asked?
+Okay, sure.
 
-Best regards,
-Krzysztof
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+> ---
+>   drivers/gpu/drm/mediatek/mtk_disp_ovl.c | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> index e0236353d499..97a899e4bd99 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> @@ -671,6 +671,16 @@ static const struct mtk_disp_ovl_data mt2701_ovl_driver_data = {
+>   	.num_formats = ARRAY_SIZE(mt8173_formats),
+>   };
+>   
+> +static const struct mtk_disp_ovl_data mt8167_ovl_driver_data = {
+> +	.addr = DISP_REG_OVL_ADDR_MT8173,
+> +	.gmc_bits = 8,
+> +	.layer_nr = 4,
+> +	.fmt_rgb565_is_0 = true,
+> +	.smi_id_en = true,
+> +	.formats = mt8173_formats,
+> +	.num_formats = ARRAY_SIZE(mt8173_formats),
+> +};
+> +
+>   static const struct mtk_disp_ovl_data mt8173_ovl_driver_data = {
+>   	.addr = DISP_REG_OVL_ADDR_MT8173,
+>   	.gmc_bits = 8,
+> @@ -742,6 +752,8 @@ static const struct mtk_disp_ovl_data mt8195_ovl_driver_data = {
+>   static const struct of_device_id mtk_disp_ovl_driver_dt_match[] = {
+>   	{ .compatible = "mediatek,mt2701-disp-ovl",
+>   	  .data = &mt2701_ovl_driver_data},
+> +	{ .compatible = "mediatek,mt8167-disp-ovl",
+> +	  .data = &mt8167_ovl_driver_data},
+>   	{ .compatible = "mediatek,mt8173-disp-ovl",
+>   	  .data = &mt8173_ovl_driver_data},
+>   	{ .compatible = "mediatek,mt8183-disp-ovl",
+
+
 
