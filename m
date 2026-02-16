@@ -1,244 +1,331 @@
-Return-Path: <devicetree+bounces-265917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265918-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +PaUNeFnk2mR4QEAu9opvQ
-	(envelope-from <devicetree+bounces-265917-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 19:54:25 +0100
+	id aBk9MrNsk2kd4gEAu9opvQ
+	(envelope-from <devicetree+bounces-265918-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 20:14:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3497E147201
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 19:54:25 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6367F147327
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 20:14:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 33C8D302297E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 18:53:16 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A76503009884
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 19:14:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC1D2E5B32;
-	Mon, 16 Feb 2026 18:53:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7635E2E54DE;
+	Mon, 16 Feb 2026 19:14:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2u2wkyla"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gBraj7yv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09A6328AAEE
-	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 18:53:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771267994; cv=none; b=SFVWp3YYf4e2XDps5dPbqOkY51EdZokq78lxgughnr65vTIJRb2zxYRArGd9u9gGbuvyr1yvqsYpRPcj3jLxHdIWlaFL/1cPG/rZH24CHoPT81GWMJcV0gT6dUCuV29xblK3yXBv/+mVw9McLR4pgd2VNYTpHVxsa10u7AQR51c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771267994; c=relaxed/simple;
-	bh=xXwfcFKB8CzFUyxLd95qfxY8XKTEIeiJ1uum/PvThEc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qhPD/IEpDuilLXyQASeEhoXkFutxClicirrVvezMxbWkMGvvUjfbYQax6fg9dEEyl5N2cyPJmi1pWE8fthF7GvCjZp8EOCB5aFaXC+P7Vx30CLNL/wv4kudbQNnsHEtAuFISHMUVGzGRqT99l8ogVxUdv3Fh2pL9xhB8WhZ3gEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2u2wkyla; arc=none smtp.client-ip=209.85.167.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-45f10d7eb81so1133373b6e.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 10:53:12 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC07E26FD93
+	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 19:14:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771269295; cv=pass; b=qav0hvVl0T3t9bWAufLNLvcxxXmpkppugfHNzdTterzkIIN63TeDboOW+2Zgowe0PYEh/bmGh8Gw99wYjXOeCBn2GI1xPBeip0IFZFeR/Np6NB+zEL4ucklg5675AvMh7Yay3pQHIRsuDK8Ex59BzzqOinuPsliP/PdTwyAsPPY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771269295; c=relaxed/simple;
+	bh=6roQzUPN6oF3NP6XZiyAscAXoZCFMtBPdLph18EvMsQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YIqOdxogD3iEgKaHxsZw3z3DLWVIGg7npbxzlG3f8u6Pfop53Lzey9GKhWm9cUJkLRTwm9MpW9vxyo+Y19eG2Iaevllg5mdbPR8cdxFPg028zvZAA9gs3aeMW3UMtXMWH77B0ZDYP4IJ1cbMdColiemKfeaXwSuSMoVXtGYdKQQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gBraj7yv; arc=pass smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-483487335c2so33159425e9.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 11:14:53 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771269292; cv=none;
+        d=google.com; s=arc-20240605;
+        b=M5ftdT31eeuzA/FqbI9vNO5Xympafcxoe6RJ0OO9gxzYIE3oIbagmT4+eUtXy/OM73
+         D+0mfV+tIN5nobZ6We9t0TrpW4YqlzC/8luwWCfAyEL4FzNZH58POlxV2ITtm/kYwFcM
+         wwzbfJ8kXB9ejLMA0tf+jpAbp1fi3MutSYYCDuh93A/ieAxklDmDDIyH8hk+u1LhfMrF
+         tB++/lDrOedaWGQINXYBFy/v4Z/daouLsg35KqO1ckBBQGrwqaRdaeYa7ASfyA/8D6B6
+         VW3NebNhMnD7kejF1dOn4GzRbQiMLYnqTTErOfGaOv/xjBuNmiDOJhEti6nrKojNu5ZA
+         6kIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=8HzOcCRMFSbyhDqPBsCkdLqSYse4L0GDbUboaIwjmC0=;
+        fh=IbtLktRPRNnBatD09xQaM422JJkq2ls9hk647g2CuS8=;
+        b=D/aAC7TidCSeS/0JuRcGkS3Ff05ORUM6a+E9AEQyB8+D5sQIMF6HBVf4n3a2wPHe6j
+         vLAHyHlKzkuQGPSfUeFzt2Wq/0e/D+DnOwiLi53FgnLfz9rHGYoGGcc4ugjKjTRuUr6b
+         sT2Ah6Ph/D+zgBljDkguvpyk94rY5OIwtmeQdcSQ4gK9WOQPAwg121J+bhztNueIcMfu
+         1HU2+8RH4ZUqccKNT9AA5Fn7xxyUcN8BczAzPy+cjsIzjJXS42OlYOknyYAxsvecSDyL
+         suTlB9Jjwc/dVUT7FWEnf8/GBHxJ6U2baE3dpYiByJeZX/ZF4UBeocymJ/nVQhXZP6DT
+         muuQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1771267992; x=1771872792; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=flLYJCvb8ulr0CmalyULUpn6SChFpx51neWX5LGkNPY=;
-        b=2u2wkylaP80F1Nhor6YiyEUbJ5O70DhP4hcRN9ijF8tcpDQY1kMMOMq59JoL0tQBhD
-         cmyIoL3Z2vny2NYIMJzMsNN7fsJr5YEy5u3P3GLFVYC2fj1W5B3SIDdP28Fo/4NlOFPJ
-         Qe37nVthfLzrGMHbLVV8rYwtCiGeONrhPYAV8iAvwy1XGfIazR2gB0Gz66rJUVKl/9c1
-         5mXGbMRCTDmesKSbPbV569fRoG6XBd1rSyZfczOnI7EEhE3RbdRvHfTByAG5MlxVTKah
-         RpEsvRpZQRjZbPgmpcGG6yXNTrz5fZq681N+6oi0vYoNePZ3Dey2e2J116F8tcvWmigZ
-         uNbg==
+        d=gmail.com; s=20230601; t=1771269292; x=1771874092; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8HzOcCRMFSbyhDqPBsCkdLqSYse4L0GDbUboaIwjmC0=;
+        b=gBraj7yvq+F0JdwUJQGHi4JwvgYHX8PH+X4t8HtCuAQ0MX6rh0TxmgG7XZcamn5M/7
+         pNyAMs4ysjDh3rD1Zbnw2niCR29cCHjIwUgnh0pG+0yub7kWA44vmiGZcmRqwvBRQTnE
+         kyL6bUN2OUdP0VeNwbzytm8+luO1vUgRk0sq4GPcz6ikxpB7jGHYdusz58VOTbZFJfx6
+         SM153meyBkL+zq08mPcj+KpaRd32z7XbntEgJ3NJzb/aU9u4KEIAjg+Ns4KHdeU/zUT+
+         W6PfHFSD7BiB/kbNHoHX42pXTHcUp0oau9UnwKBzjZ/LOWgXXI6b1sw09yHmm/nhSm4J
+         ikZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771267992; x=1771872792;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=flLYJCvb8ulr0CmalyULUpn6SChFpx51neWX5LGkNPY=;
-        b=wCeA8ncZ6A6S+1wEc7tL4YdZ8esduXNT90taMw5mx8iKJE6K3A6BK4+UutA1sjg7pa
-         PTK0CXOaWnvPwskVFUKf2fYNoiSINU9zpI/UD99Uak9wZxfRVyS72ZoEi6tMZzs7OhsM
-         44qZb33nSu6irbFgD92AHm98StJiRovTPto95utUzFLmhcOUI45aHEPdzzqgbchAXCXU
-         s0Xg4gBGKa207tDdaMaFW7tlLRUoaCudYlc3yghH00yi3GikXcHZu/fr2ouMKnTwVsHu
-         jmd2gP71NH+qcrioJJwEOXpgUZ4sxJ4GIMFz1z6E92l8YNWfodGhi1zfcaXdvD3IiMqr
-         bz7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWofFHMDTIgobYsZU74JKgf3IGh1pSsS/5HVkwF+4GBKtLANNc3icbx06TkBazxLsHR6KOdfpSznxP0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBip3i/pPSvfmxDpebxxe5XlH+YZ8YP2Ekq+uGmfLKL3EKNRFy
-	AlrUg7pS0YSN49eHZQsB5+0Zn3VdnID35dYtsE5QAedE2AGBjPEDJb+0B57GjWPcSRw=
-X-Gm-Gg: AZuq6aJkRJQTgKtNIO3HGr/0R2irVjRSjhiDL5oCVwKD4Yb8wz885W2QxSeJ+lCMvpv
-	LkgAxyQX5BdHca1zq5RI8sq9m1558OEkNaXhs+VOmVBVWmlm9v1AIBV3CdGav10QKPm4nO9Pvt0
-	gw2jZMeyFc4fPZqFCaA6v1DEMy6nXX6weJi9Ie87nKI62E8vbsWkCTytVCIAIp14ZwnAh037hCA
-	x8ARh9DIlvIuL6nPm4uq8/dydp6qRs2/T9PZFYcwTTrXl4kI2N3Lf5iH5sms+oEZs54L1QqTGEd
-	xNlXLQFXJMwIsF99GlRvgOQFYyda+7KJxMNEcD19ous+FQ3K7oKsPb4say9en1hEOd+2QLBjcdq
-	z3ygC3SHt7sfnqWF2/2jgYD8ib3t+hXKAzHXa2aCqr+Wfz3yWTcESv+VnLmec0HLvFScVzyjwRU
-	4GweqCACgfNZiDhRwHES0m0hnu0G7LnOhmMAOQEQabEir0mLF9SjKSoobOZ1AIuWZvlZB1sIbIg
-	yiOdeTwE7o=
-X-Received: by 2002:a05:6830:43a3:b0:7cf:cf19:cc62 with SMTP id 46e09a7af769-7d4d0c7f3edmr6175611a34.38.1771267991908;
-        Mon, 16 Feb 2026 10:53:11 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:2d75:8cf2:6289:6a96? ([2600:8803:e7e4:500:2d75:8cf2:6289:6a96])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d4c7288d34sm8058133a34.18.2026.02.16.10.53.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Feb 2026 10:53:11 -0800 (PST)
-Message-ID: <2f9fc7fa-dd55-44f2-9b78-c9902b8b1bbf@baylibre.com>
-Date: Mon, 16 Feb 2026 12:53:10 -0600
+        d=1e100.net; s=20230601; t=1771269292; x=1771874092;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=8HzOcCRMFSbyhDqPBsCkdLqSYse4L0GDbUboaIwjmC0=;
+        b=Z9JUj18lCxzwca1Wt4OnqwXeDnI8O0K9/dwZcrEsDumBSYN8toH/nM+ozqDyDCzzAB
+         aBuAqovG9Gel2DEYRGhKvYwu4SzFScXYZt12T9rJtWt5GN026i+HWc5Oo2edhhe7/l54
+         JmJCrc00Cxqw2h/d6QNC4YFbtaxDjHTx1mVnGO/SJl9SIhBxmbam4hvPKekT5hHxJEmb
+         v3X2rr2RdZDrSW8aBSAcMmQ/yrVbfIghdOxxsL7uzKLzs/lVjUEx6mEsAJHxDqnljhOs
+         WbuDg/nmlqQRrVJUl8uJduecc4/hI6Tn4SyOtkNQbLDxvnGxsaigOQ9mqYF8WwJTHh6D
+         DyoA==
+X-Forwarded-Encrypted: i=1; AJvYcCXNLmf6xXgWhv59rSsFODqQ7GBPqEH0vHubNHpMpBKNyMIIIC9T1X3AsvJBlPjSNqyQgTEtjwU/KU83@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWm6sX5KVLZZU3pnMW5tvYqMH0dsiLgHr38+1ntCU7VK3pDgaE
+	u+vRatBKg+eRd7MU97oKrfEC1DsnNkL1d7xeqLfbQjZbHx6C/0UxizIp9vPMoY2ts+SnYuABkza
+	OOeC8quGEEGG2GtvjSG9MuGPOYC7ekXR6EiuI
+X-Gm-Gg: AZuq6aI5+cYYZJnYKl+twzm54sP7gxql2H0IwnpOa8Xr/I90TfFk3kuXIftioLj4YQy
+	gsZzDqurdco0qi2hMVDzT/Kt0CbfleflUyF/GN59VMelduXYQ0Ujc1lV6SEQwMvwIS7HnjNWyEO
+	ELAIzQ325klq2fmDW9A+j+5vfl2pqxqDOLiOHMBxjkg8Y7fZbLvCHzm29WqEwujQsizh4XSiEBE
+	DZAG+OjDoP/WNyil3wi190/pSHPFHa8wltied0Eqakk1F3IiDWoyV+HMajRFSvA/f2aXca1bcWf
+	p0Ohd6Az
+X-Received: by 2002:a05:600d:6413:20b0:483:79ad:f3b9 with SMTP id
+ 5b1f17b1804b1-48379adf60amr118355585e9.28.1771269292113; Mon, 16 Feb 2026
+ 11:14:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/4] iio: adc: ad4080: add support for AD4880
- dual-channel ADC
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
- Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org
-References: <cover.1770393792.git.antoniu.miclaus@analog.com>
- <aYiGj_TYelvJdVaR@smile.fi.intel.com> <20260214160852.6862b58d@jic23-huawei>
- <aZC6wIWDdS8J_1eJ@smile.fi.intel.com>
- <897bd4d4-bbdf-4cbf-84f6-05c110d75d03@baylibre.com>
- <aZF9zoWHL9iHSK3q@smile.fi.intel.com>
- <dce24f01-2a8e-4b36-9685-6ff4293e2d5a@baylibre.com>
- <aZLDyWICGB_j0Z1Y@smile.fi.intel.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <aZLDyWICGB_j0Z1Y@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260214180959.30714-1-clamor95@gmail.com> <20260214180959.30714-2-clamor95@gmail.com>
+ <20260216-sprung-scallop-de7b64bf528c@spud> <CAPVz0n06+uLCSfY_bYS9v7KJ-hXotye7ej-rze6-Q8_JAF7XVA@mail.gmail.com>
+ <20260216-plunder-defense-de11cf56dd3d@spud>
+In-Reply-To: <20260216-plunder-defense-de11cf56dd3d@spud>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Mon, 16 Feb 2026 21:14:40 +0200
+X-Gm-Features: AaiRm53pjJr4DTXWQu3qeK8s5InrNWpSnyhcexyGL2cJPzW4JG4-eMOhlmVuupI
+Message-ID: <CAPVz0n0-LbTUZBCaO=oN3PpPLpwAqzNo29r687pKY8NbEE9giA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/7] dt-bindings: embedded-controller: document ASUS
+ Transformer EC
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
+	Ion Agorria <ion@agorria.com>, =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265917-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265918-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,agorria.com,rere.qmqm.pl,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,baylibre.com:mid]
-X-Rspamd-Queue-Id: 3497E147201
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 6367F147327
 X-Rspamd-Action: no action
 
-On 2/16/26 1:14 AM, Andy Shevchenko wrote:
-> On Sun, Feb 15, 2026 at 05:16:47PM -0600, David Lechner wrote:
->> On 2/15/26 2:03 AM, Andy Shevchenko wrote:
->>> On Sat, Feb 14, 2026 at 12:31:12PM -0600, David Lechner wrote:
->>>> On 2/14/26 12:11 PM, Andy Shevchenko wrote:
->>>>> On Sat, Feb 14, 2026 at 04:08:52PM +0000, Jonathan Cameron wrote:
->>>>>> On Sun, 8 Feb 2026 14:50:23 +0200
->>>>>> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
->>>>>>> On Fri, Feb 06, 2026 at 06:07:12PM +0200, Antoniu Miclaus wrote:
-> 
-> ...
-> 
->>>>>>> I believe there is a better approach, what you need is rather a flag
->>>>>>> to SPI core to tell that this is the device with shared CS.
->>>>>>
->>>>>> Antoniu, this comment from Andy needs addressing before we move
->>>>>> on. It seems fairly fundamental and I'm not seeing a reply to it on list.
->>>>>>
->>>>>> I'm not entirely sure what Andy is suggesting will work but this
->>>>>> is perhaps a mismatch in really understanding what is going on here.
->>>>>> Andy, how would a flag work given they seem to be separately addressable
->>>>>> SPI buses. I think this isn't a shared SPI CS, but rather a device
->>>>>> with two entirely separate SPI buses. I think the only reason
->>>>>> we are bothering to implement it as a single device at all is the
->>>>>> shared backend.
->>>>>
->>>>> My understanding that there are two devices that for whatever reason share
->>>>
->>>> It is the opposite. It is a _single_ device with _two_ CS lines.
->>>
->>> Don't we have already support for that? This changes the picture even more towards
->>> NAKing this. See below why.
->>
->> Yes, spi_new_ancillary_device() was introduced exactly for this sort
->> of thing, which is why I think it makes sense to use it.
->>
->>>> adc@0 {
->>>> 	reg = <0>, <1>;
->>>> 	...
->>>> };
->>>>
->>>>> the same CS line. Yes, I probably misread the idea behind, but I meant
->>>>> some flag for SPI device that tells SPI core that the CS it wants is shared
->>>>> (maybe a high bit in the cs field or so), then CS core won't complain on
->>>>> validation about using the same cs number which is "already in use".
->>>>
->>>> There was one existing user in the kernel of spi_new_ancillary_device()
->>>> that looked like this, so it seemed the right way to approach it. However,
->>>> code was added later that caused the primary SPI device to "claim" both
->>>> CS lines for itself and probably broke the one existing user of
->>>> spi_new_ancillary_device() (hard to tell without hardware to test).
->>>>
->>>> The idea here was to unbreak that so we could use spi_new_ancillary_device()
->>>> just as in the existing use case.
->>>>
->>>> The patch for that could have been a bit more strict to only allow the
->>>> spi_new_ancillary_device() to take CS 1 and fail otherwise, but users
->>>> are going to notice if it isn't working right anyway, so I didn't ask
->>>> for more checking.
->>>
->>>>>> There is an argument that maybe we should be looking at how
->>>>>> to do data muxing backends to support the more general case of two
->>>>>> separate chips feeding into a single buffer, but that's a complex
->>>>>> beast and I'm not sure if it is something we actually need.
->>>>
->>>> I think it would actually be quite similar to what is done in this
->>>> series.
->>>
->>> TBH, the change sounds to me like a hack. It doesn't cover other potential ways
->>> of the multi-cs devices come into play. Given that SPI core supports multi-cs
->>> I don't see a good justification for this patch.
->>>
->>> What did I miss?
->>
->> As far as I can tell, other than the one existing user of
->> spi_new_ancillary_device(), other SPI multi-CS stuff is only used
->> by SPI flash memory devices, not general SPI devices. There code
->> that is being modified here was introduced to support the SPI
->> flash memory devices, so that use case is already covered by
->> existing code.
-> 
-> Right. And obvious question why can't we apply the same approach
-> to any SPI device? Like extending existing code to cover generic
-> cases.
-> 
+=D0=BF=D0=BD, 16 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 20:50 Cono=
+r Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Mon, Feb 16, 2026 at 08:22:38PM +0200, Svyatoslav Ryhel wrote:
+> > =D0=BF=D0=BD, 16 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 20:04 =
+Conor Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+> > >
+> > > On Sat, Feb 14, 2026 at 08:09:53PM +0200, Svyatoslav Ryhel wrote:
+> > > > Document embedded controller used in ASUS Transformer device series=
+.
+> > > >
+> > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > > > ---
+> > > >  .../asus,transformer-ec.yaml                  | 98 +++++++++++++++=
+++++
+> > > >  1 file changed, 98 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/embedded-cont=
+roller/asus,transformer-ec.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/embedded-controller/=
+asus,transformer-ec.yaml b/Documentation/devicetree/bindings/embedded-contr=
+oller/asus,transformer-ec.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..670c4c2d339d
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/embedded-controller/asus,tr=
+ansformer-ec.yaml
+> > > > @@ -0,0 +1,98 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/embedded-controller/asus,transf=
+ormer-ec.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: ASUS Transformer's Embedded Controller
+> > > > +
+> > > > +description:
+> > > > +  Several Nuvoton based Embedded Controllers attached to an I2C bu=
+s,
+> > > > +  running a custom ASUS firmware, specific to the ASUS Transformer
+> > > > +  device series.
+> > > > +
+> > > > +maintainers:
+> > > > +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: /schemas/power/supply/power-supply.yaml
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    oneOf:
+> > > > +      - enum:
+> > > > +          - asus,p1801-t-ec-pad
+> > > > +          - asus,sl101-ec-dock
+> > > > +          - asus,tf600t-ec-pad
+> > > > +          - asus,tf701t-ec-pad
+> > > > +
+> > > > +      - items:
+> > > > +          - enum:
+> > > > +              - asus,tf101-ec-dock
+> > > > +              - asus,tf101g-ec-dock
+> > > > +              - asus,tf201-ec-dock
+> > > > +              - asus,tf300t-ec-dock
+> > > > +              - asus,tf300tg-ec-dock
+> > > > +              - asus,tf300tl-ec-dock
+> > > > +              - asus,tf700t-ec-dock
+> > > > +          - const: asus,transformer-ec-dock
+> > > > +
+> > > > +      - items:
+> > > > +          - enum:
+> > > > +              - asus,tf201-ec-pad
+> > > > +              - asus,tf300t-ec-pad
+> > > > +              - asus,tf300tg-ec-pad
+> > > > +              - asus,tf300tl-ec-pad
+> > > > +              - asus,tf700t-ec-pad
+> > > > +          - const: asus,transformer-ec-pad
+> > >
+> > > Can you explain somewhere here what the "dock" and "pad" devices are =
+and
+> > > how they differ? For example, I am currently wondering why tf700t has=
+ both
+> > > "dock" and "pad".
+> >
+> > "pad" is used for the controller in the tablet itself in the pad
+> > "dock" is used for the controller in the mobile dock keyboard.
+> > Seems quite obvious.
+>
+> To someone intimately familiar with the devices maybe. Not to the people
+> you have to justify your patches to. Your response implies that this is
+> some sort of thing that's like a surface, but please put an explicit
+> explanation into the binding somewhere as to what each compatible is
+> for.
 
-spi_new_ancillary_device() was already accepted in the kernel as the
-solution for this sort of use case, so isn't it already the generic
-approach?
+Ok, fair.
 
-I can see that it could possibly be nice if the SPI core saw that
-there was more than one CS and called spi_new_ancillary_device()
-automatically and somehow passed that along with the main SPI device
-to the driver probe function. But since this is only the second user
-of spi_new_ancillary_device(), I don't think we have enough data
-points to be able to say if this is really what all peripheral drivers
-would want.
+>
+> > > Also, why are some of the compatibles permitted standalone? That shou=
+ld
+> > > be mentioned in your commit message too. Also, other than the sl101, =
+the
+> > > standalone ones seem to have the same match data in the mfd driver. W=
+hy
+> > > are fallbacks not made use of there?
+> > >
+> >
+> > Because standalone compatibles describe a unique hw configuration
+> > which cannot be grouped into something meaningful. asus,p1801-t-ec-pad
+> > is for EC of Tegra30/Intel based p1801-t AIO, asus,sl101-ec-dock is
+> > for EC of Tegra20 slider tablet, asus,tf600t-ec-pad is for altered EC
+> > in Win8 Tegra30 tablet, asus,tf701t-ec-pad is for Tegra114 tablet.
+> > Different generations, different form-factors.
+>
+> I don't see any reasons here that eliminate fallback compatibles.
+> +       { .compatible =3D "asus,p1801-t-ec-pad", .data =3D &asus_ec_pad_c=
+harger_data },
+> +       { .compatible =3D "asus,tf600t-ec-pad", .data =3D &asus_ec_pad_ch=
+arger_data },
+> +       { .compatible =3D "asus,tf701t-ec-pad", .data =3D &asus_ec_pad_ch=
+arger_data },
+> +       { }
+> Three of them use the same match data, so you need to explain why you've
+> made these three standalone when all the others that share a programming
+> model got a generic fallback. Fallback usage is based on programming
+> model, not based on whether the devices are a physically different, so
+> your explanation must reflect this.
+>
+> > > Since this transformer series seems to have multiple programming mode=
+ls
+> > > for "ec-pad" devices, it calls into question your use of the generic
+> > > fallback compatibles is appropriate and makes it seem like you should=
+ be
+> > > using device compatibles as a fallback.
+> >
+> > That is redundant.
+>
+> I don't understand how that is a response to what I said.
+>
 
+in other words you propose this:
+
+properties:
+  compatible:
+    oneOf:
+      - items:
+          - enum:
+              - asus,sl101-ec-dock
+              - asus,tf101-ec-dock
+              - asus,tf101g-ec-dock
+              - asus,tf201-ec-dock
+              - asus,tf300t-ec-dock
+              - asus,tf300tg-ec-dock
+              - asus,tf300tl-ec-dock
+              - asus,tf700t-ec-dock
+          - const: asus,transformer-ec-dock
+
+      - items:
+          - enum:
+              - asus,p1801-t-ec-pad
+              - asus,tf201-ec-pad
+              - asus,tf300t-ec-pad
+              - asus,tf300tg-ec-pad
+              - asus,tf300tl-ec-pad
+              - asus,tf700t-ec-pad
+              - asus,tf600t-ec-pad
+              - asus,tf701t-ec-pad
+          - const: asus,transformer-ec-pad
+
+And in the driver add match to every single entry of enums?
+
+> > > The rest looks okay other than the filename, which doesn't match any =
+of
+> > > the compatibles that you've got here.
+> > >
+> >
+> > How should I call it then?
+>
+> Make it match a compatible, just like any other binding.
 
