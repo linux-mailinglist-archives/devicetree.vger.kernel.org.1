@@ -1,169 +1,489 @@
-Return-Path: <devicetree+bounces-265929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265930-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oI6GNtaDk2k46AEAu9opvQ
-	(envelope-from <devicetree+bounces-265929-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 21:53:42 +0100
+	id nxaGIMmHk2ns6AEAu9opvQ
+	(envelope-from <devicetree+bounces-265930-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 22:10:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D28E147910
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 21:53:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2E3A147A58
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 22:10:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1DFAB305B951
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 20:49:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C4852301681C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 21:10:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2DD5330B2C;
-	Mon, 16 Feb 2026 20:49:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 530672F6573;
+	Mon, 16 Feb 2026 21:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mcc2se07"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T+Jdbft/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A390C329C5E;
-	Mon, 16 Feb 2026 20:49:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B15DD64
+	for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 21:10:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771274979; cv=none; b=s5/GlP2gU4WDfnfY6KdE3eGhDv6zTd0sGXBro1k9JDYofH6FwO3LBUxdjODRm8sQe+NuHw0uSpBlvx0kHy/DEDi8pkwYGdSjh2zOgRKLIY2p4k/Uj2wSgp9a440xdznZI/hZF2Od/WIcDZtScXmL1vyUbY3qWGXzX02Jirrd0nI=
+	t=1771276230; cv=none; b=f07PqXNBhu0SXEjgVHJ08mgAaUA3gr5PuScU3geAvd1bbwXubiaQ0j/YD0PtCb7aIGG6b2ikX0bG6+JVUrKTlz73sFYbxVgkCbShi7UQn6MY9k+vztDf1PJfJfwZdOyGofp/cY/90XtSPwhMxM2xSy+wGMR+xnfRYYc46HgcUN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771274979; c=relaxed/simple;
-	bh=kLdYIq6SYQsYCiukpbRLt9V5tJH5I16KOa7znlZAcK4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R3MYqhLwrmreo9N1qeoKHNHu8KE3utqBesan83Oi3HxXjnhOt2/VIDQQYwm6mucTCXBrNJoYab+Y05zSSME5d3fAMaQs9umORQ+Fa1VZ0xMBCVJUsAo6tEOeRgz2+H9LJNoNEHBxXxR51+SXLQ4lq6FjVBbEGDp3dimTlQFva3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mcc2se07; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771274979; x=1802810979;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kLdYIq6SYQsYCiukpbRLt9V5tJH5I16KOa7znlZAcK4=;
-  b=mcc2se077cPMsZ3HMSKLmIQrXrm/GoKZ2WJYAQxMct9QhNsBzokTBiUl
-   cctKPu37Aq2oWW8Zl4A6jPLAdVOKGb0lEhaVfVgC9iRmDFU9ObR9OTVlq
-   v6twpLtrAmoyb0126L+VEOI0oCIlmYKMhy8DK7fjh9g3B3ux4scITSkGZ
-   STHbCn3KL0XseDy6Yd//eD65opgmZZaNh0afPuhsWMSzwyqlSuby3LAMU
-   lz72tx2gOZPTWHa/XUQkXIs+iMDonrUeB+4yWSKQfh2UnO5J2SCnQVRAf
-   hP8TBfBQhG/3GCGIxyuK7hA7s6FFMXi2mwtFGp2UBlfOdzSyPFuwO1qQP
-   A==;
-X-CSE-ConnectionGUID: DyGhh7ZOQmmNZwboS+Halg==
-X-CSE-MsgGUID: kR/sS1BCSrizR8QR/G2T5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11703"; a="72399696"
-X-IronPort-AV: E=Sophos;i="6.21,294,1763452800"; 
-   d="scan'208";a="72399696"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2026 12:49:38 -0800
-X-CSE-ConnectionGUID: nahu5ToeTQ2eopx+iuUz6g==
-X-CSE-MsgGUID: ogXU4/T0T/uV3GV2X23/Xw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,294,1763452800"; 
-   d="scan'208";a="218232127"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 16 Feb 2026 12:49:32 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vs5X8-000000010H2-0ZIN;
-	Mon, 16 Feb 2026 20:49:30 +0000
-Date: Tue, 17 Feb 2026 04:48:56 +0800
-From: kernel test robot <lkp@intel.com>
-To: Larisa Grigore <larisa.grigore@oss.nxp.com>, gregkh@linuxfoundation.org,
-	jirislaby@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, sumit.semwal@linaro.org,
-	christian.koenig@amd.com, chester62515@gmail.com,
-	cosmin.stoica@nxp.com, adrian.nitu@freescale.com,
-	stefan-gabriel.mirea@nxp.com, Mihaela.Martinas@freescale.com
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linaro-mm-sig@lists.linaro.org, s32@nxp.com, imx@lists.linux.dev,
-	clizzi@redhat.com, aruizrui@redhat.com, eballetb@redhat.com,
-	echanude@redhat.com, jkangas@redhat.com,
-	Larisa Grigore <larisa.grigore@oss.nxp.com>,
-	Radu Pirea <radu-nicolae.pirea@nxp.com>,
-	Phu Luu An <phu.luuan@nxp.com>, Js Ha <js.ha@nxp.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-Subject: Re: [PATCH 12/13] serial: linflexuart: Add DMA support
-Message-ID: <202602170428.SOCWu0Wb-lkp@intel.com>
-References: <20260216150205.212318-13-larisa.grigore@oss.nxp.com>
+	s=arc-20240116; t=1771276230; c=relaxed/simple;
+	bh=gi/vS2WBIvjKTvDNwCGoJ1Sn3vwTdP3btLdqWXMtbys=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NVY44ff/RIQkFaDRYAZvkHzG4GyqVXdmxtRq9yBI9CyXKeFBOqFNbE+MbP1V4GaI041g9/2/EcYpRW8cJmD5QRH9h/I2wEJA/xwST2kWVEYZSmTuAJSlf8mDi/+Cl5mLaujQwFON0sKi3OHhXqmfcRW9KbP2CtEbmsJTS5aZibY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T+Jdbft/; arc=none smtp.client-ip=209.85.210.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-7d4bc6a8021so2865243a34.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 13:10:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771276227; x=1771881027; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PofBO8lUwGBUKB9LSos0xCn+tFUPzNgDgwvV8yIWRgA=;
+        b=T+Jdbft/l7ivL7ibixLPDc5Os+XAK8xEoaPrt6pr38D3LegSiERQbUpJOMM3eCP4bU
+         pwM0IgIy6DMNM+vkJ2y96PYgxYnDUA+gD1p8hNWp4Y/A+Oa4dtVtrwRPsO/tJNzkSWX2
+         sVC1av35/TOSwusHUVjl4ypT2kN7hiaKDMvrgxbWxGtEb9/mUyUj6mED0IXHUZvKvr8O
+         PMiE4KNr9FZUI9/jVQqx5EFDGgawG2JTOkOA9fgG7QT+Abw2Xp+lGVzD4vzEweKOPI2v
+         O2LqVwvzkzWVwi8rcTNHzbbvXH94WcFCg6Y9cHR9ru5wtrY4A9bnwXH4qyyzh7Mph1Xa
+         hK7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771276227; x=1771881027;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PofBO8lUwGBUKB9LSos0xCn+tFUPzNgDgwvV8yIWRgA=;
+        b=QkuVR5jX2v1YZNjTvKg2b5/lzlhpYQ3uxhXp+eblPpKHehLQZUPPnA5MduCpcYcGUk
+         9DwSPDkWirwMSORzlL3Y80rXS1537UnLhqixLVJkfgq4sKn2d/p848ec/qCoMucUyGTN
+         GybAqBw7RUDZl5eVZ5TGm5eDj5N9LW5vq0E5yrM6aGw0DtLV2ZdFqzeP5KqmoEXKyc8x
+         WFRMHSwVx29Hc8kibVqwDjNjBYaDLxv1SC9zzjoTtVk83X5IvPAba1x1JsYuENB+Z6Wm
+         aP7SF1O7xSU93bL2YuDlaue16t0doC+V8xKo9J0RX5PH/rWFUpgjUGgTrc1iK3aXlLmW
+         TYHw==
+X-Forwarded-Encrypted: i=1; AJvYcCWYXKPIgmeS0JbixFzvYXS/oZvW8YqpY+6NeLEUgMIT6sS4mxoSYEQgHLYmfWZCluDBGuaScpzNmQab@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFyNkOKObFUss8c5VhjdwCNaJTo8mHB5Ex/S46YramXldBserA
+	7y2Uht07ubnuI8H9LeYncum147RznB4gfoFGkGVqt+5FigvIgcfqW78t
+X-Gm-Gg: AZuq6aJYjoi30h+Q+03N2Ip0JCMrYaSouGKif0a34lQBVVH8DJ5PffIfSGxPMdnYYLS
+	bLgclcKq3LZ236NskhdJEwGwW8NTK+QPmM4VLduSXnpWZGXwrAqKo3WRY+GNDgHhRldt5e8uGIq
+	uae0V02cQENL6ZfDCJM7Cq0Fim7+JSJcK76KGZTFCAJJk8RmI02ja0XTpvivUsE8GjCdSEToP5O
+	Snro/uzEfV7pn4/n6YkbIZ+hEtE35RXSqXWfT9zFbpeI17hF+xBSyjcygc+ooow0IjlhDto5Mvo
+	RyNMbrbQvv9v7/D0d3tYmlm6ugo0hc644DGbFu0Ns/Reu0pWiH+fnA+oKKJfcQO7uSd/3sqSuaF
+	fJkbpWKwORqT+GH4+5TLHs4DamSzIzBTHAnwXGp8GVnuQGAgBK5jAQRB53OkT4EyYyW7gOQuS0Q
+	0gxQQiPYtEMJ5gk1badIYN405sVNG2IoG/Jnrf7Ojh0bWxDMpOqD+w4HDlBQ7r21KTKI5FEgPRp
+	9nKwuNA6bbZiNEvRN0XTubfkwlVNyR084QQ9QNngXPQarC8MvnUQkChFnptemA=
+X-Received: by 2002:a05:6830:2119:b0:7c6:8bfe:f5e with SMTP id 46e09a7af769-7d4d0c3cd36mr6053842a34.32.1771276227511;
+        Mon, 16 Feb 2026 13:10:27 -0800 (PST)
+Received: from james-x399.localdomain (71-218-105-26.hlrn.qwest.net. [71.218.105.26])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d4a77200fbsm13435593a34.27.2026.02.16.13.10.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Feb 2026 13:10:26 -0800 (PST)
+From: James Hilliard <james.hilliard1@gmail.com>
+To: linux-gpio@vger.kernel.org
+Cc: James Hilliard <james.hilliard1@gmail.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v3 1/1] gpiolib: of: add gpio-line node support
+Date: Mon, 16 Feb 2026 14:10:19 -0700
+Message-ID: <20260216211021.3019827-1-james.hilliard1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260216150205.212318-13-larisa.grigore@oss.nxp.com>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265929-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[oss.nxp.com,linuxfoundation.org,kernel.org,linaro.org,amd.com,gmail.com,nxp.com,freescale.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[32];
+	TAGGED_FROM(0.00)[bounces-265930-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 3D28E147910
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[jameshilliard1@gmail.com,devicetree@vger.kernel.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D2E3A147A58
 X-Rspamd-Action: no action
 
-Hi Larisa,
+Allow GPIO controller child nodes marked with "gpio-line" to apply
+probe-time direction/flags without hogging the line.
 
-kernel test robot noticed the following build warnings:
+Extend OF gpiochip scanning and OF dynamic reconfiguration handling to
+process gpio-line nodes alongside gpio-hog nodes.
 
-[auto build test WARNING on tty/tty-testing]
-[also build test WARNING on tty/tty-next tty/tty-linus usb/usb-testing usb/usb-next usb/usb-linus robh/for-next linus/master v6.19 next-20260216]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Some boards need probe-time GPIO direction/value setup while still
+leaving lines available for later userspace or driver requests. GPIO
+hogs can initialize lines but reserve them permanently.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Larisa-Grigore/serial-linflexuart-Fix-locking-in-set_termios/20260216-231403
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
-patch link:    https://lore.kernel.org/r/20260216150205.212318-13-larisa.grigore%40oss.nxp.com
-patch subject: [PATCH 12/13] serial: linflexuart: Add DMA support
-config: parisc-randconfig-001-20260217 (https://download.01.org/0day-ci/archive/20260217/202602170428.SOCWu0Wb-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260217/202602170428.SOCWu0Wb-lkp@intel.com/reproduce)
+Add gpiod_apply_line_init() as a core helper for one-shot line
+initialization and use it for gpio-line setup.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602170428.SOCWu0Wb-lkp@intel.com/
+Because gpio-line initialization does not reserve ownership, subsequent
+consumer requests remain normal requests and may reconfigure or release
+the line as usual.
 
-All warnings (new ones prefixed by >>):
+Support "gpio-line-name" for setting the visible line name. For
+gpio-hog nodes, keep "line-name" semantics as the hog consumer label.
 
->> drivers/tty/serial/fsl_linflexuart.c:205:13: warning: 'linflex_console_putchar' declared 'static' but never defined [-Wunused-function]
-     205 | static void linflex_console_putchar(struct uart_port *port, unsigned char ch);
-         |             ^~~~~~~~~~~~~~~~~~~~~~~
+Some boards only need to name a small subset of GPIO lines. Doing this
+generally requires defining a full gpio-line-names array with empty
+placeholders for unrelated lines.
 
+In overlays, gpio-line-names replacement is all-or-nothing. Names from
+base DT and multiple overlays for the same gpiochip do not compose,
+because each update replaces the full property.
 
-vim +205 drivers/tty/serial/fsl_linflexuart.c
+Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+---
+Depends on:
+  - https://github.com/devicetree-org/dt-schema/pull/185
 
-   202	
-   203	static void linflex_dma_tx_complete(void *arg);
-   204	static void linflex_dma_rx_complete(void *arg);
- > 205	static void linflex_console_putchar(struct uart_port *port, unsigned char ch);
-   206	
+Changes v1 -> v2:
+  - drop documentation changes
+  - add depends on to changelog
 
+Changes v2 -> v3:
+  - add gpiod_apply_line_init() in gpiolib core
+  - switch gpio-line setup to use gpiod_apply_line_init()
+---
+ drivers/gpio/gpiolib-of.c     | 89 ++++++++++++++++++++++++++++-------
+ drivers/gpio/gpiolib-shared.c |  7 +--
+ drivers/gpio/gpiolib.c        | 48 +++++++++++++++++++
+ drivers/gpio/gpiolib.h        |  3 ++
+ drivers/of/property.c         |  7 +--
+ scripts/dtc/checks.c          |  4 +-
+ 6 files changed, 133 insertions(+), 25 deletions(-)
+
+diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
+index ef1ac68b94b7..5f531d5cbc00 100644
+--- a/drivers/gpio/gpiolib-of.c
++++ b/drivers/gpio/gpiolib-of.c
+@@ -744,6 +744,7 @@ struct gpio_desc *of_find_gpio(struct device_node *np, const char *con_id,
+  * @lflags:	bitmask of gpio_lookup_flags GPIO_* values - returned from
+  *		of_find_gpio() or of_parse_own_gpio()
+  * @dflags:	gpiod_flags - optional GPIO initialization flags
++ * @hog:	indicates if this is a gpio-hog node
+  *
+  * Returns:
+  * GPIO descriptor to use with Linux GPIO API, or one of the errno
+@@ -753,11 +754,13 @@ static struct gpio_desc *of_parse_own_gpio(struct device_node *np,
+ 					   struct gpio_chip *chip,
+ 					   unsigned int idx, const char **name,
+ 					   unsigned long *lflags,
+-					   enum gpiod_flags *dflags)
++					   enum gpiod_flags *dflags,
++					   bool hog)
+ {
+ 	struct device_node *chip_np;
+ 	enum of_gpio_flags xlate_flags;
+ 	struct of_phandle_args gpiospec;
++	const char *desc_name;
+ 	struct gpio_desc *desc;
+ 	unsigned int i;
+ 	u32 tmp;
+@@ -797,15 +800,19 @@ static struct gpio_desc *of_parse_own_gpio(struct device_node *np,
+ 		*dflags |= GPIOD_OUT_LOW;
+ 	else if (of_property_read_bool(np, "output-high"))
+ 		*dflags |= GPIOD_OUT_HIGH;
+-	else {
++	else if (hog) {
+ 		pr_warn("GPIO line %d (%pOFn): no hogging state specified, bailing out\n",
+ 			desc_to_gpio(desc), np);
+ 		return ERR_PTR(-EINVAL);
+ 	}
+ 
+-	if (name && of_property_read_string(np, "line-name", name))
++	if (hog && name && of_property_read_string(np, "line-name", name))
+ 		*name = np->name;
+ 
++	if (!of_property_read_string(np, "gpio-line-name", &desc_name) &&
++	    desc_name[0])
++		desc->name = desc_name;
++
+ 	return desc;
+ }
+ 
+@@ -827,7 +834,8 @@ static int of_gpiochip_add_hog(struct gpio_chip *chip, struct device_node *hog)
+ 	int ret;
+ 
+ 	for (i = 0;; i++) {
+-		desc = of_parse_own_gpio(hog, chip, i, &name, &lflags, &dflags);
++		desc = of_parse_own_gpio(hog, chip, i, &name, &lflags, &dflags,
++					 true);
+ 		if (IS_ERR(desc))
+ 			break;
+ 
+@@ -843,6 +851,36 @@ static int of_gpiochip_add_hog(struct gpio_chip *chip, struct device_node *hog)
+ 	return 0;
+ }
+ 
++/**
++ * of_gpiochip_add_line - Configure all lines in a gpio-line device node
++ * @chip:	gpio chip to act on
++ * @line:	device node describing GPIO lines to configure
++ *
++ * Returns:
++ * 0 on success, or negative errno on failure.
++ */
++static int of_gpiochip_add_line(struct gpio_chip *chip, struct device_node *line)
++{
++	enum gpiod_flags dflags;
++	struct gpio_desc *desc;
++	unsigned long lflags;
++	unsigned int i;
++	int ret;
++
++	for (i = 0;; i++) {
++		desc = of_parse_own_gpio(line, chip, i, NULL, &lflags, &dflags,
++					 false);
++		if (IS_ERR(desc))
++			break;
++
++		ret = gpiod_apply_line_init(desc, NULL, lflags, dflags);
++		if (ret < 0)
++			return ret;
++	}
++
++	return 0;
++}
++
+ /**
+  * of_gpiochip_scan_gpios - Scan gpio-controller for gpio definitions
+  * @chip:	gpio chip to act on
+@@ -858,14 +896,22 @@ static int of_gpiochip_scan_gpios(struct gpio_chip *chip)
+ 	int ret;
+ 
+ 	for_each_available_child_of_node_scoped(dev_of_node(&chip->gpiodev->dev), np) {
+-		if (!of_property_read_bool(np, "gpio-hog"))
++		if (of_property_read_bool(np, "gpio-hog")) {
++			ret = of_gpiochip_add_hog(chip, np);
++			if (ret < 0)
++				return ret;
++
++			of_node_set_flag(np, OF_POPULATED);
+ 			continue;
++		}
+ 
+-		ret = of_gpiochip_add_hog(chip, np);
+-		if (ret < 0)
+-			return ret;
++		if (of_property_read_bool(np, "gpio-line")) {
++			ret = of_gpiochip_add_line(chip, np);
++			if (ret < 0)
++				return ret;
+ 
+-		of_node_set_flag(np, OF_POPULATED);
++			of_node_set_flag(np, OF_POPULATED);
++		}
+ 	}
+ 
+ 	return 0;
+@@ -905,14 +951,15 @@ static int of_gpio_notify(struct notifier_block *nb, unsigned long action,
+ 	int ret;
+ 
+ 	/*
+-	 * This only supports adding and removing complete gpio-hog nodes.
+-	 * Modifying an existing gpio-hog node is not supported (except for
+-	 * changing its "status" property, which is treated the same as
+-	 * addition/removal).
++	 * This only supports adding and removing complete gpio-hog and
++	 * gpio-line nodes. Modifying an existing node is not supported
++	 * (except for changing its "status" property, which is treated
++	 * the same as addition/removal).
+ 	 */
+ 	switch (of_reconfig_get_state_change(action, arg)) {
+ 	case OF_RECONFIG_CHANGE_ADD:
+-		if (!of_property_read_bool(rd->dn, "gpio-hog"))
++		if (!of_property_read_bool(rd->dn, "gpio-hog") &&
++		    !of_property_read_bool(rd->dn, "gpio-line"))
+ 			return NOTIFY_DONE;	/* not for us */
+ 
+ 		if (of_node_test_and_set_flag(rd->dn, OF_POPULATED))
+@@ -922,9 +969,12 @@ static int of_gpio_notify(struct notifier_block *nb, unsigned long action,
+ 		if (!gdev)
+ 			return NOTIFY_DONE;	/* not for us */
+ 
+-		ret = of_gpiochip_add_hog(gpio_device_get_chip(gdev), rd->dn);
++		if (of_property_read_bool(rd->dn, "gpio-hog"))
++			ret = of_gpiochip_add_hog(gpio_device_get_chip(gdev), rd->dn);
++		else
++			ret = of_gpiochip_add_line(gpio_device_get_chip(gdev), rd->dn);
+ 		if (ret < 0) {
+-			pr_err("%s: failed to add hogs for %pOF\n", __func__,
++			pr_err("%s: failed to configure lines for %pOF\n", __func__,
+ 			       rd->dn);
+ 			of_node_clear_flag(rd->dn, OF_POPULATED);
+ 			return notifier_from_errno(ret);
+@@ -932,6 +982,10 @@ static int of_gpio_notify(struct notifier_block *nb, unsigned long action,
+ 		return NOTIFY_OK;
+ 
+ 	case OF_RECONFIG_CHANGE_REMOVE:
++		if (!of_property_read_bool(rd->dn, "gpio-hog") &&
++		    !of_property_read_bool(rd->dn, "gpio-line"))
++			return NOTIFY_DONE;	/* not for us */
++
+ 		if (!of_node_check_flag(rd->dn, OF_POPULATED))
+ 			return NOTIFY_DONE;	/* already depopulated */
+ 
+@@ -939,7 +993,8 @@ static int of_gpio_notify(struct notifier_block *nb, unsigned long action,
+ 		if (!gdev)
+ 			return NOTIFY_DONE;	/* not for us */
+ 
+-		of_gpiochip_remove_hog(gpio_device_get_chip(gdev), rd->dn);
++		if (of_property_read_bool(rd->dn, "gpio-hog"))
++			of_gpiochip_remove_hog(gpio_device_get_chip(gdev), rd->dn);
+ 		of_node_clear_flag(rd->dn, OF_POPULATED);
+ 		return NOTIFY_OK;
+ 	}
+diff --git a/drivers/gpio/gpiolib-shared.c b/drivers/gpio/gpiolib-shared.c
+index b3525d1f06a4..b934e58a07f0 100644
+--- a/drivers/gpio/gpiolib-shared.c
++++ b/drivers/gpio/gpiolib-shared.c
+@@ -147,10 +147,11 @@ static bool gpio_shared_of_node_ignore(struct device_node *node)
+ 		return true;
+ 
+ 	/*
+-	 * GPIO hogs have a "gpios" property which is not a phandle and can't
+-	 * possibly refer to a shared GPIO.
++	 * GPIO hog and gpio-line nodes have a "gpios" property which is not a
++	 * phandle and can't possibly refer to a shared GPIO.
+ 	 */
+-	if (of_property_present(node, "gpio-hog"))
++	if (of_property_present(node, "gpio-hog") ||
++	    of_property_present(node, "gpio-line"))
+ 		return true;
+ 
+ 	return false;
+diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
+index c52200eaaaff..e5ef2c0d8432 100644
+--- a/drivers/gpio/gpiolib.c
++++ b/drivers/gpio/gpiolib.c
+@@ -5061,6 +5061,54 @@ int gpiod_hog(struct gpio_desc *desc, const char *name,
+ 	return 0;
+ }
+ 
++/**
++ * gpiod_apply_line_init - Apply one-shot line initialization and release
++ * @desc:	gpio whose value will be assigned
++ * @name:	initialization label
++ * @lflags:	bitmask of gpio_lookup_flags GPIO_* values
++ * @dflags:	gpiod_flags - optional GPIO initialization flags
++ *
++ * Applies GPIO configuration using the descriptor APIs without keeping the line
++ * reserved by gpiolib. After configuration, the temporary internal request is
++ * released.
++ *
++ * Returns:
++ * 0 on success, or negative errno on failure.
++ */
++int gpiod_apply_line_init(struct gpio_desc *desc, const char *name,
++			  unsigned long lflags, enum gpiod_flags dflags)
++{
++	struct gpio_device *gdev = desc->gdev;
++	struct gpio_desc *local_desc;
++	int hwnum;
++	int ret;
++
++	CLASS(gpio_chip_guard, guard)(desc);
++	if (!guard.gc)
++		return -ENODEV;
++
++	hwnum = gpiod_hwgpio(desc);
++
++	local_desc = gpiochip_request_own_desc(guard.gc, hwnum, name,
++					       lflags, dflags);
++	if (IS_ERR(local_desc)) {
++		ret = PTR_ERR(local_desc);
++		pr_err("requesting init GPIO %s (chip %s, offset %d) failed, %d\n",
++		       name ? : "?", gdev->label, hwnum, ret);
++		return ret;
++	}
++
++	gpiochip_free_own_desc(local_desc);
++
++	gpiod_dbg(desc, "line init applied as %s/%s\n",
++		  !(dflags & GPIOD_FLAGS_BIT_DIR_SET) ? "as-is" :
++		  (dflags & GPIOD_FLAGS_BIT_DIR_OUT) ? "output" : "input",
++		  (dflags & GPIOD_FLAGS_BIT_DIR_OUT) ?
++		  str_high_low(dflags & GPIOD_FLAGS_BIT_DIR_VAL) : "?");
++
++	return 0;
++}
++
+ /**
+  * gpiochip_free_hogs - Scan gpio-controller chip and release GPIO hog
+  * @gc:	gpio chip to act on
+diff --git a/drivers/gpio/gpiolib.h b/drivers/gpio/gpiolib.h
+index 3abb90385829..ed78f9d4d0af 100644
+--- a/drivers/gpio/gpiolib.h
++++ b/drivers/gpio/gpiolib.h
+@@ -271,6 +271,9 @@ int gpio_do_set_config(struct gpio_desc *desc, unsigned long config);
+ int gpiod_configure_flags(struct gpio_desc *desc, const char *con_id,
+ 		unsigned long lflags, enum gpiod_flags dflags);
+ int gpio_set_debounce_timeout(struct gpio_desc *desc, unsigned int debounce);
++int gpiod_apply_line_init(struct gpio_desc *desc,
++			  const char *name, unsigned long lflags,
++			  enum gpiod_flags dflags);
+ int gpiod_hog(struct gpio_desc *desc, const char *name,
+ 		unsigned long lflags, enum gpiod_flags dflags);
+ int gpiochip_get_ngpios(struct gpio_chip *gc, struct device *dev);
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index 50d95d512bf5..7689c4315115 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -1435,10 +1435,11 @@ static struct device_node *parse_gpio_compat(struct device_node *np,
+ 		return NULL;
+ 
+ 	/*
+-	 * Ignore node with gpio-hog property since its gpios are all provided
+-	 * by its parent.
++	 * Ignore nodes with gpio-hog and gpio-line properties since their gpios
++	 * are all provided by their parent.
+ 	 */
+-	if (of_property_read_bool(np, "gpio-hog"))
++	if (of_property_read_bool(np, "gpio-hog") ||
++	    of_property_read_bool(np, "gpio-line"))
+ 		return NULL;
+ 
+ 	if (of_parse_phandle_with_args(np, prop_name, "#gpio-cells", index,
+diff --git a/scripts/dtc/checks.c b/scripts/dtc/checks.c
+index 45d0213f3bf3..ee64cb4ada4f 100644
+--- a/scripts/dtc/checks.c
++++ b/scripts/dtc/checks.c
+@@ -1533,8 +1533,8 @@ static void check_gpios_property(struct check *c,
+ {
+ 	struct property *prop;
+ 
+-	/* Skip GPIO hog nodes which have 'gpios' property */
+-	if (get_property(node, "gpio-hog"))
++	/* Skip gpio-hog and gpio-line nodes which have 'gpios' property */
++	if (get_property(node, "gpio-hog") || get_property(node, "gpio-line"))
+ 		return;
+ 
+ 	for_each_property(node, prop) {
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
