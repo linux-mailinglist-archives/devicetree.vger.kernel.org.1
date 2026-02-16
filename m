@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-265899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265900-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oHN8Lr9Pk2nA3QEAu9opvQ
-	(envelope-from <devicetree+bounces-265899-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 18:11:27 +0100
+	id wHqwD7tPk2nA3QEAu9opvQ
+	(envelope-from <devicetree+bounces-265900-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 18:11:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA20146947
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 18:11:27 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FFEB14692A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 18:11:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 62711302EAAA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:11:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5CAAA3008085
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 17:11:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD072DC77A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3051A2DCF45;
 	Mon, 16 Feb 2026 17:10:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mm006ShV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hxb1dk0E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE7792D836D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1082D8793;
 	Mon, 16 Feb 2026 17:10:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771261853; cv=none; b=d/Te8aF+2sDKpRoaufgbo8Ix+WzDSNG93c4hMN0prNDb5Rsbj0LqB1nDHOeTPJF6rF5a4HsrdJt0W7ojhFsX5FaFSiHTXUqAdKRu81IS3fCM/1LK+TCHQvWr/I8k/Qb7K9/ekaNUyPc0OuOppFfArIXbKB3GIWXR55GFhe2w3fo=
+	t=1771261854; cv=none; b=dN+DGvUCnPZQ0EzYW5BGPEFRJ931B7zoDj7PvYZ/MFs47KTNxtT7Z1wCc2dk7dRo/fufMT7pDKTaxkPRj//3h1v3ZwPo+MVAXDweKQHo8/n77H8AXp+ls83h7Qx88xA2pbMSJRqLZxsC5eLCBixkGI7sKmTN7t4KnocEKQpWXag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771261853; c=relaxed/simple;
-	bh=WB3uNtPxOXBeyvnMEjIGCj3b9y7bQt14nCNr/5URaso=;
+	s=arc-20240116; t=1771261854; c=relaxed/simple;
+	bh=VJIxV51qTWBKnBlL0cp3FKxxTxkOycr50HPLDnoxl8Q=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XVM83+jP2niFO1f63vT3rho/4vtOEXMSVMSeLzIpfYITYbi8SGjOZ7qiqM8nGSeIRDZNEr/qBCvRLLth7+J6auR3WjK6ex4CMCzQ3naDBZc47p6ymHty5hyYS+dmCvpSaKiWpBVSMz4AzVbcIKFXc+G1P6S5yP/ML+lVF+71Zs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mm006ShV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A93EBC2BCB7;
+	 In-Reply-To:To:Cc; b=kzI2l4QG7PHEEYZzKFgrLXsGQl4bE4Zo3YLK0jaeiw2sMXnvoXlx3siY14YSeuNK3MiT2sPylMy0Mlga0xnRoK9rF/i9Ae8O1atuWMx35FVspQShvuyJQLdicDXsKEFOS5U4UdIKF2J4Qbgy5sJmojILOAoogpKH2W0UbZKETsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hxb1dk0E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BC7A3C19424;
 	Mon, 16 Feb 2026 17:10:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1771261853;
-	bh=WB3uNtPxOXBeyvnMEjIGCj3b9y7bQt14nCNr/5URaso=;
+	bh=VJIxV51qTWBKnBlL0cp3FKxxTxkOycr50HPLDnoxl8Q=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Mm006ShVeAELIW+YhIssX1l54nR4TQHxWwCNBin7OAUm81mCGKPc707flgZmNB9jE
-	 p2GAqTHkerBq6E7ckVzP1j7sXAo91lJwz7eYrfCNdc6V03m3jhgl+DI8ce/PLQoQdl
-	 dR4yayIYHyWbNhYEbVGMrqxULAFIsqWqAxrdi+ZirerJtTSTAtN6U9anJFeoLhwZ3F
-	 QbXecdZt1WP1LrtnKBc4gGZNUcUXte07ibXFsCyd5OlzqHbf7BTKCxgXM3owOvDIVh
-	 x0Al11z/Nszk9etSuKGOVTgO7gwPLZOf/DJ0L/TNKJm7l24rzP+DkTAxZ3d0FLJ9Qv
-	 lCDJw6leANCzw==
+	b=hxb1dk0ElITDRI6MH3ApbaShbMeLaIQe1wa8Qo/j0EgKFOrvkr4oVYEsDhFL3+2eq
+	 1T4heWs5PRLiRDzop7WhvVa/Sjq1UUliHUs8oKbjPOesLxX1moH1M2LadLanWx60k3
+	 1xIiC1ZfbyjcNXsPSiE4CfXIxc5MfBGj0fMIpp7WCx5MtLlcJcsO8m5gE3jrWYLUiS
+	 HUkY5Yx+75E13JhZlRZnbzTrWeGeD58Rn/sd9fBdyxmoLVjKTNDeHmq/H6jVDw3w98
+	 sAHG4OS9p+f4GcM56ymK0vW0cZFgNDktnMpY1rb7Sn5CNST53SGKPOdi1u64yWjCvj
+	 XaR07RWIn+xOQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A0F1BE81A5B;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B5533E81A56;
 	Mon, 16 Feb 2026 17:10:53 +0000 (UTC)
 From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Date: Mon, 16 Feb 2026 17:10:49 +0000
-Subject: [PATCH v5 05/11] iio: amplifiers: ad8366: use devm_mutex_init()
- and drop mutex_init()
+Date: Mon, 16 Feb 2026 17:10:50 +0000
+Subject: [PATCH v5 06/11] iio: amplifiers: ad8366: refactor device resource
+ management
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,7 +59,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260216-iio-ad8366-update-v5-5-7e6091357d02@analog.com>
+Message-Id: <20260216-iio-ad8366-update-v5-6-7e6091357d02@analog.com>
 References: <20260216-iio-ad8366-update-v5-0-7e6091357d02@analog.com>
 In-Reply-To: <20260216-iio-ad8366-update-v5-0-7e6091357d02@analog.com>
 To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
@@ -71,11 +71,11 @@ Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
  Conor Dooley <conor+dt@kernel.org>, 
  Rodrigo Alencar <rodrigo.alencar@analog.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1771261851; l=1096;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771261851; l=3284;
  i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
- bh=Hc2oDziDqm76kntTxzCYZxXGJ8oFjf16eqD+h6jkb6Y=;
- b=NbSdFlOD0YSqM+1UOH7XzHN/+6UynpQX/NRfeDM/C/2NDF/6kP0lO0zdVqMCVSO67Hew97HPW
- 2EuuE90K/ALDcCIi4eADmbPLjwTwlP2WJFh4LXuhpRUG5FNWwxFJ0W1
+ bh=hd/kdztzjkqokqD0/DlRs6C35T+S3wfeCNHmHeep5rY=;
+ b=RBa1W3xX34QtistcDCpL93oZyXPHUmlWaKtpOOvr4beJPTQgDmq99AKSThqdHpR+mSULjFArk
+ aaCQXfRxsw0D3aNPByXMd50i/rNygHKWDFbIqlR3h586+4DhZjaLKxY
 X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
  pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
 X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
@@ -88,11 +88,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265899-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
+	TAGGED_FROM(0.00)[bounces-265900-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
@@ -107,46 +107,121 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:mid,analog.com:email,analog.com:replyto]
-X-Rspamd-Queue-Id: 4DA20146947
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,analog.com:mid,analog.com:email,analog.com:replyto]
+X-Rspamd-Queue-Id: 4FFEB14692A
 X-Rspamd-Action: no action
 
 From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 
-Adopt proper mutex lifecycle with devm_mutex_init(), replacing
-mutex_init(). Mutex init is moved up (before regulator init),
-so that goto statement in the error path is avoided (which will
-be cleaned up later).
+Adhere modern device resource management with the following:
+- Voltage regulator managed and enabled internally;
+- IIO device registration handled with devm_iio_device_register();
+- removal of goto's from the probe function;
+- ad8366_remove() removed as it is not needed anymore;
+
+With the drop of goto's dev_err_probe() is used to report probe errors.
 
 Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
 ---
- drivers/iio/amplifiers/ad8366.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/iio/amplifiers/ad8366.c | 50 +++++++++--------------------------------
+ 1 file changed, 10 insertions(+), 40 deletions(-)
 
 diff --git a/drivers/iio/amplifiers/ad8366.c b/drivers/iio/amplifiers/ad8366.c
-index 677d02f4f075..6466f3eb6bbc 100644
+index 6466f3eb6bbc..e8c80551d524 100644
 --- a/drivers/iio/amplifiers/ad8366.c
 +++ b/drivers/iio/amplifiers/ad8366.c
-@@ -259,6 +259,10 @@ static int ad8366_probe(struct spi_device *spi)
+@@ -43,7 +43,6 @@ struct ad8366_info {
  
- 	st = iio_priv(indio_dev);
+ struct ad8366_state {
+ 	struct spi_device	*spi;
+-	struct regulator	*reg;
+ 	struct mutex            lock; /* protect sensor state */
+ 	struct gpio_desc	*reset_gpio;
+ 	unsigned char		ch[2];
+@@ -263,14 +262,10 @@ static int ad8366_probe(struct spi_device *spi)
+ 	if (ret)
+ 		return ret;
  
-+	ret = devm_mutex_init(dev, &st->lock);
+-	st->reg = devm_regulator_get(&spi->dev, "vcc");
+-	if (!IS_ERR(st->reg)) {
+-		ret = regulator_enable(st->reg);
+-		if (ret)
+-			return ret;
+-	}
++	ret = devm_regulator_get_enable(dev, "vcc");
 +	if (ret)
-+		return ret;
-+
- 	st->reg = devm_regulator_get(&spi->dev, "vcc");
- 	if (!IS_ERR(st->reg)) {
- 		ret = regulator_enable(st->reg);
-@@ -267,7 +271,6 @@ static int ad8366_probe(struct spi_device *spi)
- 	}
++		return dev_err_probe(dev, ret, "Failed to get regulator\n");
  
- 	spi_set_drvdata(spi, indio_dev);
--	mutex_init(&st->lock);
+-	spi_set_drvdata(spi, indio_dev);
  	st->spi = spi;
  	st->type = spi_get_device_id(spi)->driver_data;
+ 
+@@ -284,17 +279,15 @@ static int ad8366_probe(struct spi_device *spi)
+ 	case ID_HMC792:
+ 	case ID_HMC1119:
+ 		st->reset_gpio = devm_gpiod_get_optional(&spi->dev, "reset", GPIOD_OUT_HIGH);
+-		if (IS_ERR(st->reset_gpio)) {
+-			ret = PTR_ERR(st->reset_gpio);
+-			goto error_disable_reg;
+-		}
++		if (IS_ERR(st->reset_gpio))
++			return dev_err_probe(dev, PTR_ERR(st->reset_gpio),
++					     "Failed to get reset gpio\n");
++
+ 		indio_dev->channels = ada4961_channels;
+ 		indio_dev->num_channels = ARRAY_SIZE(ada4961_channels);
+ 		break;
+ 	default:
+-		dev_err(&spi->dev, "Invalid device ID\n");
+-		ret = -EINVAL;
+-		goto error_disable_reg;
++		return dev_err_probe(dev, -EINVAL, "Invalid device ID\n");
+ 	}
+ 
+ 	st->info = &ad8366_infos[st->type];
+@@ -304,31 +297,9 @@ static int ad8366_probe(struct spi_device *spi)
+ 
+ 	ret = ad8366_write(indio_dev, 0, 0);
+ 	if (ret < 0)
+-		goto error_disable_reg;
++		return dev_err_probe(dev, ret, "failed to write initial gain\n");
+ 
+-	ret = iio_device_register(indio_dev);
+-	if (ret)
+-		goto error_disable_reg;
+-
+-	return 0;
+-
+-error_disable_reg:
+-	if (!IS_ERR(st->reg))
+-		regulator_disable(st->reg);
+-
+-	return ret;
+-}
+-
+-static void ad8366_remove(struct spi_device *spi)
+-{
+-	struct iio_dev *indio_dev = spi_get_drvdata(spi);
+-	struct ad8366_state *st = iio_priv(indio_dev);
+-	struct regulator *reg = st->reg;
+-
+-	iio_device_unregister(indio_dev);
+-
+-	if (!IS_ERR(reg))
+-		regulator_disable(reg);
++	return devm_iio_device_register(dev, indio_dev);
+ }
+ 
+ static const struct spi_device_id ad8366_id[] = {
+@@ -346,7 +317,6 @@ static struct spi_driver ad8366_driver = {
+ 		.name	= KBUILD_MODNAME,
+ 	},
+ 	.probe		= ad8366_probe,
+-	.remove		= ad8366_remove,
+ 	.id_table	= ad8366_id,
+ };
  
 
 -- 
