@@ -1,51 +1,58 @@
-Return-Path: <devicetree+bounces-265674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265675-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4MHwCHDdkmlvzQEAu9opvQ
-	(envelope-from <devicetree+bounces-265674-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 10:03:44 +0100
+	id OO8/JYTdkmlvzQEAu9opvQ
+	(envelope-from <devicetree+bounces-265675-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 10:04:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31BF6141CF2
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 10:03:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18F25141D08
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 10:04:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A574F300119D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 09:03:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 090B730056D0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Feb 2026 09:03:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F4AC27A462;
-	Mon, 16 Feb 2026 09:03:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58AC528468E;
+	Mon, 16 Feb 2026 09:03:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jZSRYKO9"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PxqPN+nj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1751C2727E0;
-	Mon, 16 Feb 2026 09:03:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DB3726E719;
+	Mon, 16 Feb 2026 09:03:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771232617; cv=none; b=Y+Q0I9ErCcglxNXc5uLjAhbsME03grXnQkQr+cgfHeik5jf+xbrDVFjm9c3K3uDmCXzYEIieXmu6cF6zk+WEU6JQHoNhbrXFs6KX6YqwCJcIohOZwLeuUq+TejnrEVtVQYtAUUB9QlWjpgiZdxH96UFQ0Xbd5Jj6zYztsR7z6/0=
+	t=1771232633; cv=none; b=EGjf2KeKD8s7J2xsEJWe79o7LE6xq+IEedjNcxq2IcYy9kb0a2AyoSvgKwKa652r/n68a1K51yrYfBOSV1TeDEwQEctLehDgl6sYi2dq2NSPAgZNr8+dpUp+YPywFOvPtN0pPgZKPnL0buxbLKnotmh9D5pLBvQMbxfFREgsEqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771232617; c=relaxed/simple;
-	bh=CerHdd7ifYZ0MG0558lVQyf1bD5hVdlvuN3igVFLSsU=;
+	s=arc-20240116; t=1771232633; c=relaxed/simple;
+	bh=egyZNlVxOKps8c+uu05c+5nto53qJQKuDG16P33A490=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J/AwSOSPrftSTKncOYZs9Dn/ft9FTT45u/AMpR9dd1gbbbyfuik4Zf33pTnGUoTcFD8Ko8aK7uB5V5MQJWC1iI0o0hFNcLgZuL+HAYOU2zltMKHdVLg5zSaDuPk5mJQVo5KQQVn1MIn8M3BIMSxz69vLdgj3GqAGXh/bVkrGvGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jZSRYKO9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAAFFC116C6;
-	Mon, 16 Feb 2026 09:03:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771232616;
-	bh=CerHdd7ifYZ0MG0558lVQyf1bD5hVdlvuN3igVFLSsU=;
+	 In-Reply-To:Content-Type; b=Bwdj5wsfmZfV0OP9Smzohw9UsZm4BI5LpyAZrb1UswYMWZ4qGyBfMpjahOWYm/ZSMvG6qIiIFk5xSgtcn7vHs5QI/mV0uA0TtB3VHFj/YDm1wM3ZX2GpB/iN/wLZKlEygPoHINCQOoAWDMpzIfSnd7mBl9cPMukL3aQvPD1N954=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PxqPN+nj; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1771232630;
+	bh=egyZNlVxOKps8c+uu05c+5nto53qJQKuDG16P33A490=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jZSRYKO9XvPRnZGjrlyw5Ss075qUu9iRCT06/0Vj6jGvL7KvvmUukEkOykMeXPf2i
-	 VQo8/PSA13efJ6gqLmn5bA6JsY5rldqKXxrUcgDRmr5imvxWWtf+cOHpSNE13KH8a8
-	 OioSfCAabTpeQHqrALFvJ3ljNSoZp10pLM+93tiYSZXbuKf7OT0Yl9mfMvFOhJlRhj
-	 unpimRPY3wpyDw4B+gw06bOmYA5HZErPk06N+o/gMYulCGx6nqh0LVXqSWOFn+/jZM
-	 nSKaBQbzGhqymoSUjH0XVb8yVr+rMMuAp7Nj7nAB7QaHnCEjhgPJvNWgEYYMBEK1Jz
-	 cLHLmFJmFj1gg==
-Message-ID: <5a0bbe24-321f-4bfe-8809-4ba2bcb038a1@kernel.org>
-Date: Mon, 16 Feb 2026 10:03:31 +0100
+	b=PxqPN+nj4/xel63axAnL+UABpl+Xy88tyLF+48q1YvuE0TXc+PQjjdnay1cPPdYqY
+	 XTLhup0YYmEnJtlUWYS8IweQuB16PAAGl1tR0HAhPoYEQlmU3C48xpUpt0aMa4eHNN
+	 bWYLMV9Jdf/tk56we0+mJVDhn8zMt/f1z5jMCdRCfOsU+BD1/+OtXN2uCfwZd3y52A
+	 4xiwjrNMvfiziZLcfoNDbGWbq8CpMOkhJ+wJVXejKBjiX20RYc5+T4PNkvJhKJqxLI
+	 +KRR8Kp5tchL5SO5PMhfPoRbbZwSYgdenbCxtWRqzOqUceNNjeyNhImTI6mY7LwD2A
+	 OYKJHXuvfkL6A==
+Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B5D7717E137B;
+	Mon, 16 Feb 2026 10:03:49 +0100 (CET)
+Message-ID: <75abd9eb-6141-46cc-b2d7-0c4d112e2ca5@collabora.com>
+Date: Mon, 16 Feb 2026 10:03:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,148 +60,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: light: vcnl4000: add Capella
- CM36686 and CM36672P
-To: Erikas Bitovtas <xerikasxx@gmail.com>,
- David Lechner <dlechner@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20260212-cm36686-v4-0-8f587d4a72bf@gmail.com>
- <20260212-cm36686-v4-1-8f587d4a72bf@gmail.com>
- <20260213-unyielding-pistachio-ape-deda74@quoll>
- <3a20c906-647c-458f-a118-c7927495e7ef@gmail.com>
- <8fb27a7a-82dc-443b-bcc4-21007783fc54@kernel.org>
- <f014078c-6e4d-48b0-a814-45898b005c44@gmail.com>
- <880ddcad-a92e-43bb-ad5c-d6f2f353d182@baylibre.com>
- <eea4cf8c-4126-49a8-ada8-1b1893a406c2@gmail.com>
- <1326c41d-e4cf-493e-a758-364edaddd04f@kernel.org>
- <8b539c02-9b39-4451-bc00-2af23d43578d@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 3/6] media: synopsys: csi2rx: implement
+ .get_frame_desc() callback
+To: Frank Li <Frank.Li@nxp.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, Guoniu Zhou <guoniu.zhou@oss.nxp.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, imx@lists.linux.dev
+References: <20260213-imx93-dw-csi2-v2-0-8be6039f44c6@nxp.com>
+ <20260213-imx93-dw-csi2-v2-3-8be6039f44c6@nxp.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <8b539c02-9b39-4451-bc00-2af23d43578d@gmail.com>
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <20260213-imx93-dw-csi2-v2-3-8be6039f44c6@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265674-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,baylibre.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265675-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[michael.riesch@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 31BF6141CF2
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,collabora.com:mid,collabora.com:dkim]
+X-Rspamd-Queue-Id: 18F25141D08
 X-Rspamd-Action: no action
 
-On 16/02/2026 09:49, Erikas Bitovtas wrote:
-> 
-> 
-> On 2/16/26 9:27 AM, Krzysztof Kozlowski wrote:
->> On 15/02/2026 17:16, Erikas Bitovtas wrote:
->>>> But CM36686 is fully compatible with CM36672P, right?
->>>>
->>>> So this would make sense?
->>>>
->>>>       - items:
->>>>           - const: capella,cm36686
->>>>           - const: vishay,vcnl4040
->>>>           - const: capella,cm36686p
->>>>
->>>>
->>> If you try to use CM36686 compatible for CM36672P, proximity channels
->>> will work, but in_illuminance_raw will return 0 and changing illuminance
->>> parameters will have no effect. That is because CM36672P is a proximity
->>> sensor only and the register fields for ambient light are reserved.
->>> And if you try to use CM36672P compatible with CM36686, it will work,
->>> but only proximity channel will be available, even though CM36686 also
->>> can sense light.
->>
->> So clearly CM36672P is the superset and should be used with CM36686
->> fallback.
->>
->> Lack of the fallback how the patch is written now is a mistake.
->>
-> 
-> Is it not the other way around? CM36686 compatible fully supports
-> CM36672P, but CM36672P does not fully support CM36686. This would make
-> CM36672P a subset of CM36686, because CM36672P is the proximity sensor,
-> and CM36686 is proximity and ambient light sensor, and therefore, a
-> superset of CM36672P.
+Hi Frank,
 
+On 2/13/26 21:25, Frank Li wrote:
+> Implement the .get_frame_desc() callback to fetch information from the
+> remote endpoint.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> change in v2
+> - add csi2rx in subject
+> ---
+>  drivers/media/platform/synopsys/dw-mipi-csi2rx.c | 25 ++++++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
+> diff --git a/drivers/media/platform/synopsys/dw-mipi-csi2rx.c b/drivers/media/platform/synopsys/dw-mipi-csi2rx.c
+> index f03fe01280013bf9a832433c6b06dab691bf8f4c..a6d251ca5ad14c5138a6fd0202a970460e64c68f 100644
+> --- a/drivers/media/platform/synopsys/dw-mipi-csi2rx.c
+> +++ b/drivers/media/platform/synopsys/dw-mipi-csi2rx.c
+> @@ -68,6 +68,8 @@ struct dw_mipi_csi2rx_device {
+>  	struct v4l2_async_notifier notifier;
+>  	struct v4l2_subdev sd;
+>  
+> +	struct v4l2_subdev *remote_source;
+> +
+>  	enum v4l2_mbus_type bus_type;
+>  	u32 lanes_num;
+>  };
+> @@ -429,10 +431,31 @@ static int dw_mipi_csi2rx_disable_streams(struct v4l2_subdev *sd,
+>  	return ret;
+>  }
+>  
+> +static int
+> +dw_mipi_csi2rx_get_frame_desc(struct v4l2_subdev *sd, unsigned int pad,
+> +			      struct v4l2_mbus_frame_desc *fd)
+> +{
+> +	struct dw_mipi_csi2rx_device *csi2 = to_csi2(sd);
+> +	struct media_pad *remote_pad;
+> +
+> +	if (!csi2->remote_source)
+> +		return -ENODEV;
+> +
+> +	remote_pad = media_pad_remote_pad_unique(&csi2->pads[DW_MIPI_CSI2RX_PAD_SINK]);
+> +	if (IS_ERR(remote_pad)) {
+> +		dev_err(csi2->dev, "can't get source pad of %s (%pe)\n",
+> +			csi2->remote_source->name, remote_pad);
+> +		return PTR_ERR(remote_pad);
+> +	}
 
-Yes, you are right. The sentence "CM36672P compatible with CM36686" was
-a bit confusing what is the device what is the compatible. Anyway the
-commit msg needs changes to clarify reason you chosen vcnl4040 as
-fallback, even though there is compatibility between CM devices.
-
+You can get the remote subdevice with
+	remote_sd = media_entity_to_v4l2_subdev(remote_pad->entity);
+instead of storing it in the device data.
 
 Best regards,
-Krzysztof
+Michael
+
+> +	return v4l2_subdev_call(csi2->remote_source, pad, get_frame_desc,
+> +				remote_pad->index, fd);
+> +}
+> +
+>  static const struct v4l2_subdev_pad_ops dw_mipi_csi2rx_pad_ops = {
+>  	.enum_mbus_code = dw_mipi_csi2rx_enum_mbus_code,
+>  	.get_fmt = v4l2_subdev_get_fmt,
+>  	.set_fmt = dw_mipi_csi2rx_set_fmt,
+> +	.get_frame_desc = dw_mipi_csi2rx_get_frame_desc,
+>  	.set_routing = dw_mipi_csi2rx_set_routing,
+>  	.enable_streams = dw_mipi_csi2rx_enable_streams,
+>  	.disable_streams = dw_mipi_csi2rx_disable_streams,
+> @@ -485,6 +508,8 @@ static int dw_mipi_csi2rx_notifier_bound(struct v4l2_async_notifier *notifier,
+>  		return ret;
+>  	}
+>  
+> +	csi2->remote_source = sd;
+> +
+>  	return 0;
+>  }
+>  
+> 
+
 
